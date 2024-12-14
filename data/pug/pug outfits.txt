@@ -54,7 +54,7 @@ outfit "Pug Zapper Turret"
 		sound "zapper"
 		"hit effect" "zapper impact"
 		"inaccuracy" .3
-		"turret turn" 2.5
+		"turret turn" 1
 		"velocity" 320
 		"lifetime" 1
 		"reload" 1
@@ -101,7 +101,7 @@ outfit "Pug Seeker"
 		"tracking" .5
 		"shield damage" 24
 		"hull damage" 13
-		"hit force" 2
+		"hit force" 3
 		"missile strength" 40
 	description "You have no idea how this weapon works. It requires no ammunition, but its energy-based projectiles have the ability to home in on a target ship."
 
@@ -152,6 +152,7 @@ outfit "Tier 3 Anti-Missile"
 	"outfit space" -67
 	"weapon capacity" -67
 	"turret mounts" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/t3 anti missile"
 		"fire effect" "tier 3 anti-missile fire"
@@ -189,6 +190,7 @@ outfit "Pug Gridfire Turret"
 	"outfit space" -83
 	"weapon capacity" -83
 	"turret mounts" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/pug gridfire turret"
 		"fire effect" "gridfire fire"
@@ -202,7 +204,7 @@ outfit "Pug Gridfire Turret"
 		"turret turn" 20
 		"firing energy" 800
 		"firing heat" 400
-		"firing force" 150
+		"firing force" 225
 		"shield damage" 600
 		"hull damage" 600
 		"blast radius" 40
@@ -244,7 +246,7 @@ outfit "Pug Akfar Thruster"
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
-	"thrust" 32.45
+	"thrust" 48.675
 	"thrusting energy" 2.2
 	"thrusting heat" 3.1
 	"flare sprite" "effect/pug flare/medium"
@@ -259,7 +261,7 @@ outfit "Pug Akfar Steering"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
-	"turn" 863
+	"turn" 1294.5
 	"turning energy" 1.3
 	"turning heat" 2.1
 	"steering flare sprite" "effect/pug flare/medium"
@@ -274,7 +276,7 @@ outfit "Pug Cormet Thruster"
 	"mass" 60
 	"outfit space" -60
 	"engine capacity" -60
-	"thrust" 47.85
+	"thrust" 71.775
 	"thrusting energy" 3.3
 	"thrusting heat" 4.6
 	"flare sprite" "effect/pug flare/large"
@@ -289,7 +291,7 @@ outfit "Pug Cormet Steering"
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
-	"turn" 1300
+	"turn" 1950
 	"turning energy" 1.9
 	"turning heat" 3.1
 	"steering flare sprite" "effect/pug flare/large"
@@ -304,7 +306,7 @@ outfit "Pug Lohmar Thruster"
 	"mass" 84
 	"outfit space" -84
 	"engine capacity" -84
-	"thrust" 69.3
+	"thrust" 103.95
 	"thrusting energy" 4.9
 	"thrusting heat" 6.9
 	"flare sprite" "effect/pug flare/huge"
@@ -319,7 +321,7 @@ outfit "Pug Lohmar Steering"
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
-	"turn" 1955
+	"turn" 2932.5
 	"turning energy" 2.8
 	"turning heat" 4.7
 	"steering flare sprite" "effect/pug flare/huge"
@@ -334,7 +336,7 @@ outfit "Pug Biodefenses"
 	category "Hand to Hand"
 	cost 100000
 	thumbnail "outfit/pug biodefenses"
-	"capture defense" 250
+	"capture defense" 100
 	"unplunderable" 1
 	description "This semi-organic defense system is designed to release a highly lethal bioengineered virus capable of rapidly infecting any foreign entities present on the ship that it is installed on while leaving the crew of the ship unharmed. The virus, when combined with the defense system itself, is highly accurate at automatically determining friend from foe."
 

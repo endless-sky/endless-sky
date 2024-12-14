@@ -17,9 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "GameData.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Projectile.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Ship.h"
 
 #include <algorithm>
@@ -41,7 +41,7 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 	if(flagship)
 	{
 		isTargetingFlagship = projectile.TargetPtr() == flagship;
-		double maxHP = flagship->Attributes().Get("hull") + flagship->Attributes().Get("shield");
+		double maxHP = flagship->MaxHull() + flagship->MaxShields();
 		double missileDamage = projectile.GetWeapon().HullDamage() + projectile.GetWeapon().ShieldDamage();
 		isDangerous = (missileDamage / maxHP) > DANGEROUS_ABOVE;
 	}

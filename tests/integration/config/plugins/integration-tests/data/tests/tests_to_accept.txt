@@ -1,3 +1,16 @@
+# Copyright (c) 2022 by rovermicrover
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "To Accept Blocks Accept Save"
 	category "savegame"
 	contents
@@ -71,12 +84,12 @@ test-data "To Accept Blocks Accept Save"
 test-data "To Accept Blocks Accept Mission"
 	category mission
 	contents
-		mission "%TEST%: TO ACCEPT BLOCKED MISSION"
+		mission "TEST: TO ACCEPT BLOCKED MISSION"
 			source "Prime"
 			destination "Earth"
 			blocked "There mission is blocked because you are not in the right type of ship."
 			to offer
-				has "%TEST%: TO ACCEPT BLOCKED MISSION OFFER"
+				has "TEST: TO ACCEPT BLOCKED MISSION OFFER"
 			to accept
 				has "flagship model: Shuttle"
 			on offer
@@ -95,7 +108,7 @@ test "To Accept Blocks Accepts When Conditions Fail"
 		inject "To Accept Blocks Accept Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: TO ACCEPT BLOCKED MISSION OFFER" = 1
+			"TEST: TO ACCEPT BLOCKED MISSION OFFER" = 1
 		call "Trigger Prime Spaceport Mission"
 		call "Skip Spaceport Mission"
 		assert

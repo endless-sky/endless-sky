@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLAYER_INFO_H_
-#define PLAYER_INFO_H_
+#pragma once
 
 #include "Account.h"
 #include "CargoHold.h"
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Government.h"
 #include "Mission.h"
+#include "RaidFleet.h"
 #include "SystemEntry.h"
 
 #include <chrono>
@@ -100,7 +100,7 @@ public:
 	// Apply the given changes and store them in the player's saved game file.
 	void AddChanges(std::list<DataNode> &changes);
 	// Add an event that will happen at the given date.
-	void AddEvent(const GameEvent &event, const Date &date);
+	void AddEvent(GameEvent event, const Date &date);
 
 	// Mark the player as dead, or check if they have died.
 	void Die(int response = 0, const std::shared_ptr<Ship> &capturer = nullptr);
@@ -113,7 +113,7 @@ public:
 
 	// Get or change the current date.
 	const Date &GetDate() const;
-	void IncrementDate();
+	void AdvanceDate(int amount = 1);
 
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;
@@ -166,7 +166,7 @@ public:
 	// In the case of a gift, return a pointer to the newly instantiated ship.
 	void BuyShip(const Ship *model, const std::string &name);
 	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
-	void SellShip(const Ship *selected);
+	void SellShip(const Ship *selected, bool storeOutfits = false);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
 	// instead of allowing the player to buy them back by putting them in the stock.
 	void TakeShip(const Ship *shipToTake, const Ship *model = nullptr, bool takeOutfits = false);
@@ -178,13 +178,13 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const Government::RaidFleet &raidFleet, const System *system) const;
+	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
 
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
 	// Get items stored on the player's current planet.
-	CargoHold *Storage(bool forceCreate = false);
+	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
 	const std::map<const Planet *, CargoHold> &PlanetaryStorage() const;
 	// Get cost basis for commodities.
@@ -210,6 +210,8 @@ public:
 	void AddLogEntry(const std::string &text);
 	const std::map<std::string, std::map<std::string, std::string>> &SpecialLogs() const;
 	void AddSpecialLog(const std::string &type, const std::string &name, const std::string &text);
+	void RemoveSpecialLog(const std::string &type, const std::string &name);
+	void RemoveSpecialLog(const std::string &type);
 	bool HasLogs() const;
 
 	// Get mission information.
@@ -258,6 +260,7 @@ public:
 	// Maps defined names for gifted ships to UUIDs for the ship instances.
 	const std::map<std::string, EsUuid> &GiftedShips() const;
 	std::map<std::string, std::string> GetSubstitutions() const;
+	void AddPlayerSubstitutions(std::map<std::string, std::string> &subs) const;
 
 	// Get and set the "tribute" that the player receives from dominated planets.
 	bool SetTribute(const Planet *planet, int64_t payment);
@@ -267,6 +270,7 @@ public:
 
 	// Check what the player knows about the given system or planet.
 	bool HasSeen(const System &system) const;
+	bool CanView(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
 	bool KnowsName(const System &system) const;
@@ -305,12 +309,14 @@ public:
 	bool SelectShips(const Rectangle &box, bool hasShift);
 	bool SelectShips(const std::vector<const Ship *> &stack, bool hasShift);
 	void SelectShip(const Ship *ship, bool hasShift);
+	void DeselectShip(const Ship *ship);
 	void SelectGroup(int group, bool hasShift);
 	void SetGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetGroup(int group);
 
 	// Keep track of any outfits that you have sold since landing. These will be
 	// available to buy back until you take off.
+	const std::map<const Outfit*, int> &GetStock() const;
 	int Stock(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.
@@ -369,6 +375,8 @@ private:
 
 	// Check that this player's current state can be saved.
 	bool CanBeSaved() const;
+	// Handle the daily salaries and payments.
+	void DoAccounting();
 
 
 private:
@@ -448,8 +456,8 @@ private:
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
-	// Events that are going to happen some time in the future:
-	std::list<GameEvent> gameEvents;
+	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
+	std::multiset<GameEvent> gameEvents;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
@@ -468,7 +476,3 @@ private:
 
 	DataWriter *transactionSnapshot = nullptr;
 };
-
-
-
-#endif

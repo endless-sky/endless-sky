@@ -140,44 +140,37 @@ void Files::Init(const char * const *argv)
 
 	if(config.empty())
 	{
-		// Find the path to the directory for saved games (and create it if it does
-		// not already exist). This can also be overridden in the command line.
-		char *str = SDL_GetPrefPath("endless-sky", "saves");
+		// Create the directory for the saved games, preferences, etc., if necessary.
+		char *str = SDL_GetPrefPath(nullptr, "endless-sky");
 		if(!str)
-			throw runtime_error("Unable to get path to saves directory!");
-
-		savePath = str;
-#if defined _WIN32
-		FixWindowsSlashes(savePath);
-#endif
+			throw runtime_error("Unable to get path to config directory!");
+		config = str;
 		SDL_free(str);
-		if(savePath.back() != '/')
-			savePath += '/';
-		config = savePath.substr(0, savePath.rfind('/', savePath.length() - 2) + 1);
 	}
-	else
-	{
-#if defined _WIN32
-		FixWindowsSlashes(config);
+
+#ifdef _WIN32
+	FixWindowsSlashes(config);
 #endif
-		if(config.back() != '/')
-			config += '/';
-		savePath = config + "saves/";
-	}
+	if(config.back() != '/')
+		config += '/';
+
+	if(!Exists(config))
+		throw runtime_error("Unable to create config directory!");
+
+	savePath = config + "saves/";
+	CreateFolder(savePath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	{
-		char *str = SDL_GetPrefPath("endless-sky", "plugins");
-		if(str != nullptr)
-			SDL_free(str);
-	}
+	CreateFolder(config + "plugins/");
 
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
-		throw runtime_error("Unable to create config directory!");
+		throw runtime_error("Unable to create save directory!");
+	if(!Exists(config + "plugins/"))
+		throw runtime_error("Unable to create plugins directory!");
 }
 
 
@@ -561,10 +554,32 @@ void Files::Write(FILE *file, const string &data)
 
 
 
+void Files::CreateFolder(const std::string &path)
+{
+	if(Exists(path))
+		return;
+
+#ifdef _WIN32
+	CreateDirectoryW(Utf8::ToUTF16(path).c_str(), nullptr);
+#else
+	mkdir(path.c_str(), 0700);
+#endif
+}
+
+
+
 // Open this user's plugins directory in their native file explorer.
 void Files::OpenUserPluginFolder()
 {
 	OpenFolder(Config() + "plugins");
+}
+
+
+
+// Open this user's save file directory in their native file explorer.
+void Files::OpenUserSavesFolder()
+{
+	OpenFolder(savePath);
 }
 
 

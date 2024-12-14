@@ -58,7 +58,7 @@ outfit "Bombardment Turret"
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
-		"turret turn" 2.8
+		"turret turn" 1.5
 		"velocity" 6
 		"random velocity" 1
 		"lifetime" 150
@@ -174,7 +174,7 @@ outfit "Active Finisher"
 		"missile strength" 50
 		"shield damage" 1500
 		"hull damage" 1900
-		"hit force" 750
+		"hit force" 1125
 
 outfit "Finisher Storage Tube"
 	category "Ammunition"
@@ -194,7 +194,8 @@ outfit "Finisher Torpedo"
 	thumbnail "outfit/finisher"
 	"mass" .5
 	"finisher capacity" -1
-	description `This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`
+	description `A substantial fraction of the Heliarch military complex is devoted to supervising the refining, enrichment, and breeding of nuclear fuels. Having ensured a steady supply of feedstock, they are able to produce a selective set of highly exotic fissile materials. With minuscule critical masses and favorable neutronics properties, these carefully controlled isotopes are the key to giving the miniaturized nuclear warhead in the Finisher Torpedo enough power to deter any would-be threats to the Coalition.`
+	description `	This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`
 
 effect "finisher sparks"
 	sprite "effect/finisher sparks"
@@ -255,7 +256,7 @@ outfit "Heliarch Attractor"
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
-		"turret turn" 4.1
+		"turret turn" 2
 		"velocity" 640
 		"lifetime" 1
 		"reload" 1
@@ -263,8 +264,8 @@ outfit "Heliarch Attractor"
 		"firing heat" 4.5
 		"shield damage" 5.4
 		"hull damage" 4.2
-		"firing force" -30
-		"hit force" -30
+		"firing force" -45
+		"hit force" -45
 	description "When battling the Quarg, the Heliarchs learned that the Quarg would not engage in a battle that their ships might be unable to escape. In response, they focused on building weapons that would keep a ship from being able to come to a stop and activate its jump drive."
 
 effect "attractor impact"
@@ -298,7 +299,7 @@ outfit "Heliarch Repulsor"
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
-		"turret turn" 3.4
+		"turret turn" 1.5
 		"velocity" 560
 		"lifetime" 1
 		"reload" 1
@@ -306,8 +307,8 @@ outfit "Heliarch Repulsor"
 		"firing heat" 1.2
 		"shield damage" 3.6
 		"hull damage" 5.8
-		"firing force" 60
-		"hit force" 60
+		"firing force" 90
+		"hit force" 90
 		"slowing damage" .1
 	description "This beam turret allows a Heliarch ship to hold its enemies far enough away that they cannot make use of their short-range weapons."
 
@@ -338,7 +339,7 @@ outfit "Ion Hail Turret"
 		"hardpoint offset" 10.
 		sound "ion rain"
 		"inaccuracy" 3
-		"turret turn" 4.2
+		"turret turn" 1.9
 		"velocity" 12
 		"reload" 15
 		"burst reload" 3
@@ -429,6 +430,7 @@ outfit "MCS Extractor"
 		"shield damage" .2
 		"hull damage" 1.4
 		"minable damage" 8.2
+		"prospecting" 9
 	description `Not legally a weapon under Heliarch definitions, the "Mineral Collection and Sorting" extraction unit consists of a set of sharp, durable blades designed to quickly break down minable asteroids. It also comes with an integrated scanning system that looks for asteroids rich in minerals to facilitate the mining efforts.`
 	description `	Especially popular with novice pilots looking to pay off their ships, the extractor has been a reliable tool of mining businesses in the Coalition for millennia.`
 

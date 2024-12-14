@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 
+#include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
@@ -39,7 +40,7 @@ DataNode::DataNode(const DataNode *parent) noexcept(false)
 
 // Copy constructor.
 DataNode::DataNode(const DataNode &other)
-	: children(other.children), tokens(other.tokens), lineNumber(other.lineNumber)
+	: children(other.children), tokens(other.tokens), lineNumber(std::move(other.lineNumber))
 {
 	Reparent();
 }
@@ -51,7 +52,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 {
 	children = other.children;
 	tokens = other.tokens;
-	lineNumber = other.lineNumber;
+	lineNumber = std::move(other.lineNumber);
 	Reparent();
 	return *this;
 }
@@ -59,7 +60,7 @@ DataNode &DataNode::operator=(const DataNode &other)
 
 
 DataNode::DataNode(DataNode &&other) noexcept
-	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(std::move(other.lineNumber))
+	: children(std::move(other.children)), tokens(std::move(other.tokens)), lineNumber(other.lineNumber)
 {
 	Reparent();
 }
@@ -70,7 +71,7 @@ DataNode &DataNode::operator=(DataNode &&other) noexcept
 {
 	children.swap(other.children);
 	tokens.swap(other.tokens);
-	lineNumber = std::move(other.lineNumber);
+	lineNumber = other.lineNumber;
 	Reparent();
 	return *this;
 }
@@ -89,6 +90,14 @@ int DataNode::Size() const noexcept
 const vector<string> &DataNode::Tokens() const noexcept
 {
 	return tokens;
+}
+
+
+
+// Add tokens to the node.
+void DataNode::AddToken(const std::string &token)
+{
+	tokens.emplace_back(token);
 }
 
 
@@ -262,6 +271,31 @@ bool DataNode::IsBool(const string &token)
 
 
 
+bool DataNode::IsConditionName(const string &token)
+{
+	// For now check if condition names start with an alphabetic character, and that is all we check for now.
+	// Token "'" is required for backwards compatibility (used for illegal tokens).
+	// Boolean keywords are not valid conditionNames, so we also check for that.
+	return
+		!token.empty() &&
+		!IsBool(token) &&
+		(
+			(token == "'") ||
+			(token[0] >= 'a' && token[0] <= 'z') ||
+			(token[0] >= 'A' && token[0] <= 'Z')
+		);
+}
+
+
+
+// Add a new child. The child's parent must be this node.
+void DataNode::AddChild(const DataNode &child)
+{
+	children.emplace_back(child);
+}
+
+
+
 // Check if this node has any children.
 bool DataNode::HasChildren() const noexcept
 {
@@ -307,13 +341,7 @@ int DataNode::PrintTrace(const string &message) const
 	{
 		if(&token != &tokens.front())
 			line += ' ';
-		bool hasSpace = any_of(token.begin(), token.end(), [](char c) { return isspace(c); });
-		bool hasQuote = any_of(token.begin(), token.end(), [](char c) { return (c == '"'); });
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
-		line += token;
-		if(hasSpace)
-			line += hasQuote ? '`' : '"';
+		line += DataWriter::Quote(token);
 	}
 	Logger::LogError(line);
 

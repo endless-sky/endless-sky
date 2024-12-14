@@ -424,8 +424,8 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 		"Korath Detainer" 2
 		"Thermal Repeater Turret" 2
 		"Warder Anti-Missile"
-		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Piercer Missile Launcher" 2
+		"Piercer Missile" 62
 		"Firelight Missile Bank" 4
 		"Firelight Missile" 80
 
@@ -445,8 +445,8 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 
 	gun "Korath Detainer"
 	gun "Korath Detainer"
-	gun "Korath Piercer Launcher"
-	gun "Korath Piercer Launcher"
+	gun "Piercer Missile Launcher"
+	gun "Piercer Missile Launcher"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
 	gun "Firelight Missile Bank"
@@ -769,8 +769,8 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 		"Thermal Repeater Turret" 4
 		"Grab-Strike Turret" 2
 		"Banisher Grav-Turret"
-		"Korath Piercer Launcher" 2
-		"Korath Piercer" 62
+		"Piercer Missile Launcher" 2
+		"Piercer Missile" 62
 		"Warder Anti-Missile" 3
 		
 		"Triple Plasma Core"
@@ -791,8 +791,8 @@ ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
 	gun "Korath Detainer"
 	gun "Korath Detainer"
 	gun "Korath Detainer"
-	gun "Korath Piercer Launcher"
-	gun "Korath Piercer Launcher"
+	gun "Piercer Missile Launcher"
+	gun "Piercer Missile Launcher"
 	turret "Thermal Repeater Turret"
 	turret "Grab-Strike Turret"
 	turret "Warder Anti-Missile"

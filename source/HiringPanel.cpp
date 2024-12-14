@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "HiringPanel.h"
 
+#include "Command.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
-#include "UI.h"
 
 #include <algorithm>
 
@@ -109,6 +109,12 @@ void HiringPanel::Draw()
 
 bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	if(command.Has(Command::HELP))
+	{
+		DoHelp("hiring", true);
+		return true;
+	}
+
 	if(!player.Flagship())
 		return false;
 
@@ -123,6 +129,8 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		player.Flagship()->AddCrew(-min(maxFire, Modifier()));
 		player.UpdateCargoCapacities();
 	}
+	else
+		return false;
 
-	return false;
+	return true;
 }

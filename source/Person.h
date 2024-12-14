@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PERSON_H_
-#define PERSON_H_
+#pragma once
 
 #include "LocationFilter.h"
 #include "Personality.h"
@@ -24,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 
 class DataNode;
+class FormationPattern;
 class Government;
 class Ship;
 class System;
@@ -66,11 +66,8 @@ private:
 	int frequency = 100;
 
 	std::list<std::shared_ptr<Ship>> ships;
+	const FormationPattern *formationPattern = nullptr;
 	const Government *government = nullptr;
 	Personality personality;
 	Phrase hail;
 };
-
-
-
-#endif

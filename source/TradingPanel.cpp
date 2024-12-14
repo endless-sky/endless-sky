@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "Command.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -224,7 +224,9 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_UP)
+	if(command.Has(Command::HELP))
+		DoHelp("trading", true);
+	else if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
 		player.SetMapColoring(max(0, min(COMMODITY_COUNT - 1, player.MapColoring() + 1)));
@@ -232,9 +234,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || key == 'B' || (key == 'b' && (mod & KMOD_SHIFT)))
 		Buy(1000000000);
-	else if(key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || key == 'S' || (key == 's' && (mod & KMOD_SHIFT)))
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{

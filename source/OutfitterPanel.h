@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFITTER_PANEL_H_
-#define OUTFITTER_PANEL_H_
+#pragma once
 
 #include "ShopPanel.h"
 
@@ -50,10 +49,10 @@ protected:
 	virtual int TileSize() const override;
 	virtual int VisibilityCheckboxesSize() const override;
 	virtual bool HasItem(const std::string &name) const override;
-	virtual void DrawItem(const std::string &name, const Point &point, int scrollY) override;
+	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(const Point &center) override;
+	virtual double DrawDetails(const Point &center) override;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
 	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
@@ -64,8 +63,7 @@ protected:
 	virtual void ToggleForSale() override;
 	virtual void ToggleStorage() override;
 	virtual void ToggleCargo() override;
-
-
+	virtual int FindItem(const std::string &text) const override;
 
 
 private:
@@ -95,7 +93,6 @@ private:
 
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
+
+	int shipsHere = 0;
 };
-
-
-#endif

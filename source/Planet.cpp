@@ -25,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Random.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "System.h"
 #include "Wormhole.h"
 
@@ -65,7 +65,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 
 	// If this planet has been loaded before, these sets of items should be
 	// reset instead of appending to them:
-	set<string> shouldOverwrite = {"attributes", "description", "spaceport"};
+	set<string> shouldOverwrite = {"attributes", "description", "spaceport", "port"};
 
 	for(const DataNode &child : node)
 	{
@@ -92,7 +92,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		removeAll |= (!add && !remove && hasValue && value == "clear");
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && !removeAll && shouldOverwrite.contains(key));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
 		{
@@ -102,9 +102,17 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "attributes")
 				attributes.clear();
 			else if(key == "description")
-				description.clear();
-			else if(key == "spaceport")
-				spaceport.clear();
+				description.Clear();
+			else if(key == "port" || key == "spaceport")
+			{
+				port = Port();
+				// Overwriting either port or spaceport counts as overwriting the other.
+				if(overwriteAll)
+				{
+					shouldOverwrite.erase("port");
+					shouldOverwrite.erase("spaceport");
+				}
+			}
 			else if(key == "shipyard")
 				shipSales.clear();
 			else if(key == "outfitter")
@@ -129,8 +137,10 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 				continue;
 		}
 
+		if(key == "port")
+			port.Load(child);
 		// Handle the attributes which can be "removed."
-		if(!hasValue)
+		else if(!hasValue)
 		{
 			child.PrintTrace("Error: Expected key to have a value:");
 			continue;
@@ -168,13 +178,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			landscape = SpriteSet::Get(value);
 		else if(key == "music")
 			music = value;
-		else if(key == "description" || key == "spaceport")
+		else if(key == "description")
+			description.Load(child);
+		else if(key == "spaceport")
 		{
-			string &text = (key == "description") ? description : spaceport;
-			if(!text.empty() && !value.empty() && value[0] > ' ')
-				text += '\t';
-			text += value;
-			text += '\n';
+			port.LoadDefaultSpaceport();
+			port.LoadDescription(child);
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
@@ -226,8 +235,51 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	static const vector<string> AUTO_ATTRIBUTES = {"spaceport", "shipyard", "outfitter"};
-	bool autoValues[3] = {!spaceport.empty(), !shipSales.empty(), !outfitSales.empty()};
+	// For reverse compatibility, if this planet has a spaceport but it was not custom loaded,
+	// and the planet has the "uninhabited" attribute, replace the spaceport with a special-case
+	// uninhabited spaceport.
+	if(HasNamedPort() && !port.CustomLoaded())
+	{
+		if(attributes.contains("uninhabited"))
+			port.LoadUninhabitedSpaceport();
+		else
+			port.LoadDefaultSpaceport();
+	}
+
+	// Apply any auto-attributes to this planet depending on what it has.
+	static const vector<string> AUTO_ATTRIBUTES = {
+		"spaceport",
+		"port",
+		"shipyard",
+		"outfitter",
+		"service: trading",
+		"service: jobs",
+		"service: bank",
+		"service: crew",
+		"service: missions",
+		"recharges: shields",
+		"recharges: hull",
+		"recharges: energy",
+		"recharges: fuel",
+		"spaceport news",
+	};
+	bool autoValues[14] = {
+		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
+				&& port.HasNews() && HasNamedPort(),
+		HasNamedPort(),
+		!shipSales.empty(),
+		!outfitSales.empty(),
+		port.HasService(Port::ServicesType::Trading),
+		port.HasService(Port::ServicesType::JobBoard),
+		port.HasService(Port::ServicesType::Bank),
+		port.HasService(Port::ServicesType::HireCrew),
+		port.HasService(Port::ServicesType::OffersMissions),
+		port.CanRecharge(Port::RechargeType::Shields),
+		port.CanRecharge(Port::RechargeType::Hull),
+		port.CanRecharge(Port::RechargeType::Energy),
+		port.CanRecharge(Port::RechargeType::Fuel),
+		port.HasNews(),
+	};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
 	{
 		if(autoValues[i])
@@ -237,7 +289,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasSpaceport() || requiredReputation || !defenseFleets.empty()) && !attributes.count("uninhabited");
+	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
@@ -296,7 +348,7 @@ const string &Planet::TrueName() const
 
 
 // Get the planet's descriptive text.
-const string &Planet::Description() const
+const Paragraphs &Planet::Description() const
 {
 	return description;
 }
@@ -342,19 +394,27 @@ const string &Planet::Noun() const
 
 
 
-// Check whether there is a spaceport (which implies there is also trading,
-// jobs, banking, and hiring).
-bool Planet::HasSpaceport() const
+// Check whether this planet's port is named.
+bool Planet::HasNamedPort() const
 {
-	return !spaceport.empty();
+	return !port.Name().empty();
 }
 
 
 
-// Get the spaceport's descriptive text.
-const string &Planet::SpaceportDescription() const
+// Get this planet's port.
+const Port &Planet::GetPort() const
 {
-	return spaceport;
+	return port;
+}
+
+
+
+// Check whether there are port services (such as trading, jobs, banking, and hiring)
+// available on this planet.
+bool Planet::HasServices() const
+{
+	return port.HasServices();
 }
 
 
@@ -538,7 +598,7 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && HasSpaceport() && CanLand(ship);
+	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
 }
 
 
@@ -668,4 +728,11 @@ void Planet::ResetDefense() const
 	isDefending = false;
 	defenseDeployed = 0;
 	defenders.clear();
+}
+
+
+
+bool Planet::IsDefending() const
+{
+	return isDefending;
 }

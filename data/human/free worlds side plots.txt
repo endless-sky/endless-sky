@@ -306,6 +306,31 @@ mission "FW Conservatory 2B"
 
 
 
+mission "FW Deep Memorial"
+	landing
+	source "Deep"
+	to offer
+		has "event: memorial on Deep"
+		not "event: navy occupying the south"
+	on offer
+		conversation
+			`As you disembark, you hear the sounds of warning sirens and heavy machinery coming from the edge of <planet>'s spaceport. It doesn't take long to find the source of the noise: several large construction vehicles are paving a large clearing at the edge of a cliff. At its center are nine large walls covered in letters, with spaces reserved for an additional fourteen walls. The largest wall is emblazoned with the text "Free Worlds War Memorial." Already, there are friends and family paying their respects to the ever-growing number of fallen.`
+			branch browerdeath end
+				has "FW Pirates: Attack 2: done"
+				has "Care Package to South 1: done"
+			label browerdeath
+			`	As you inspect the walls, you recognize one of the names:`
+			``
+			`		MSGT IRENE BROWER`
+			`			KILLED AT THE ATTACK ON GREENROCK`
+			``
+			label end
+			`	The sound of construction persists as you return to the main spaceport.`
+				decline
+
+
+
+
 mission "FW Flamethrower 1"
 	landing
 	name "Weapon Testing"
@@ -351,13 +376,13 @@ mission "FW Flamethrower 2"
 			`	"Great," he says, rubbing his hands together with a gleeful expression on his face. He's clearly looking forward to hearing what you think of his latest invention.`
 				accept
 	
-	npc save disable
-		personality disables staying heroic
+	npc disable save
+		personality disables heroic staying
 		government "Test Dummy"
 		ship "Doombat" "Doombat"
 	
 	on visit
-		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it and before returning.`
+		dialog `You've landed on <planet>, but you have not disabled the <npc> yet. Disable it before returning.`
 	on complete
 		event "flamethrower available" 30
 		log "Assisted Barmy Edward with another weapon test: this time, a flamethrower weapon that works by overheating and disabling its target rather than dealing lots of damage to it. It may or may not be useful in actual combat."
@@ -712,7 +737,7 @@ mission "FW Wolf Pack 4"
 			cargo 0
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 	
 	on visit
@@ -813,4 +838,51 @@ mission "FW Stack Core 1C"
 		log "The Free Worlds now has a new reactor core of their own design available for sale, specifically for increasing the Dreadnought's energy performance."
 		conversation
 			`You receive a message from Freya: "Hello again, Captain! Thanks for your help escorting the materials to Solace. Ever since we developed the Dreadnoughts people have been talking about how badly we need a generator that can meet their energy needs, and that's what Delta V Corporation has been working on. So, take a look next time you're on Solace or one of our other major manufacturing centers. Sorry for the mystery surrounding the cargo, but we didn't exactly want to advertise that a huge shipment of fissionable material was headed for Free Worlds space."`
+				decline
+
+mission "FW Greenrock Lost Announcement"
+	invisible
+	landing
+	source
+		government "Free Worlds"
+	to offer
+		has "event: fw abandoned Greenrock"
+	on offer
+		conversation
+			`While waiting in <planet>'s spaceport for your ship to be refueled, you hear an announcement coming from an unseen loudspeaker. "Attention! The Free Worlds have withdrawn our presence from Greenrock. Be advised that any further travel to the Shaula system may carry the risk of pirate attacks." The message cuts off abruptly, only to repeat a few minutes later.`
+			`	A militia captain who paused nearby to listen to the announcement shakes his head before recognizing you. "Well, that's a damn shame, isn't it?"`
+			choice
+				`	"Yeah, I risked my life and position taking Greenrock."`
+					goto risked
+					to display
+						has "FW Pirates: Attack 3: done"
+				`	"It was probably going to happen sooner or later."`
+				`	"We shouldn't have wasted the resources on it at all."`
+			`	"I suppose, but things should have gone differently. The Free Worlds, and the Pact before that, was founded to eliminate piracy from the South, so I thought it was the right thing to do. We really put the pirates on the wire when we went straight for their guts.`
+			choice
+				`	"Well, the most obvious threat to the Free Worlds' sovereignty is the Navy. Attacking Greenrock hasn't helped in that regard."`
+					goto challenge
+				`	"Tomek's plan didn't work out, though. The other pirate planets didn't surrender when Greenrock fell, like he had wanted."`
+			`	"That's true. But we mustn't lose sight of our original goals, either. Piracy is a bloody stain on the Southern Rim, and every ship we lose fighting a petty war between Bourne and Earth is a ship that can't protect our families on Solace or Longjump from the horrors of piracy.`
+			`	"But now it looks like we'll have our hands full for the foreseeable future, and the pirates are going to make the most out of this for sure. Best to see this war over with."`
+				goto end
+
+			label risked
+			`	"I was at Shaula that day too, although it wasn't me who was commanding the ship. I thought my old captain did the right thing at that time, but he took the fall for it when the Senate began to butt their heads into our business. Even when Bourne decided overriding the orders of their most capable combat commander was a severe misjudgement, they go and disregard all our sacrifices in Shaula and throw Greenrock back to the jackals."`
+			choice
+				`	"Perhaps the Senate made a wise decision this time around. After all, Tomek's plan relied on the rest of the pirate worlds surrendering after Greenrock, and that didn't happen."`
+				`	"There's little we can do now. The challenge now is the Navy, not the pirates."`
+					goto challenge
+				`	(Stay silent.)`
+					goto silent
+			`	"You could make a case there. In the circumstances, it seemed like attacking Greenrock could have taken a lot of weight off our shoulders... but nonetheless, after the lull in action following Wei I think the Senate could have handled Greenrock far better."`
+				goto end
+
+			label challenge
+			`	"That may be true, but I still believe it was a lost opportunity. We've had all this time since then to stabilize the situation in Shaula, yet the Senate has done nothing so they can prove the Greenrock occupation was a waste of resources."`
+
+			label silent
+			`	The militia captain continues, "It's really too bad, we really put the pirates on the wire when we went straight for their guts. But now it looks like we'll have our hands full for the foreseeable future, and the pirates are going to make the most out of this for sure."`
+			label end
+			`	On that note, the two of you return to your duties.`
 				decline

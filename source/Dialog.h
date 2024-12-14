@@ -13,14 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DIALOG_H_
-#define DIALOG_H_
+#pragma once
 
 #include "Panel.h"
 
 #include "Point.h"
+#include "TextArea.h"
 #include "text/truncate.hpp"
-#include "text/WrappedText.h"
 
 #include <functional>
 #include <string>
@@ -38,6 +37,10 @@ class System;
 // callback function can be given to receive the player's response.
 class Dialog : public Panel {
 public:
+	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
+	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
+	Dialog(std::function<void()> okFunction, const std::string &message, Truncate truncate,
+		bool canCancel, bool okIsActive);
 	// Dialog that has no callback (information only). In this form, there is
 	// only an "ok" button, not a "cancel" button.
 	explicit Dialog(const std::string &text, Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
@@ -99,11 +102,14 @@ private:
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback(bool isOk = true) const;
+	// The width of the dialog, excluding margins.
+	int Width() const;
 
 
 protected:
-	WrappedText text;
-	int height;
+	std::shared_ptr<TextArea> text;
+	// The number of extra segments in this dialog.
+	int extensionCount;
 
 	std::function<void(int)> intFun;
 	std::function<void(const std::string &)> stringFun;
@@ -116,6 +122,7 @@ protected:
 	bool isMission;
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
+	bool isWide = false;
 
 	std::string input;
 
@@ -190,7 +197,3 @@ Dialog::Dialog(T *t, void (T::*fun)(bool), const std::string &text, Truncate tru
 {
 	Init(text, truncate);
 }
-
-
-
-#endif

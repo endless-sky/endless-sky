@@ -1,101 +1,63 @@
 name: Release CD
 
 on:
-  push:
-    tags:
-      - v*
+  workflow_dispatch:
+    inputs:
+      release_version:
+        required: true
+        type: string
 
 jobs:
   release_appimage_x64:
     name: AppImage x64
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       ARCH: x86_64
-      OUTPUT: Endless_Sky-${{ github.ref_name }}-x86_64.AppImage
+      OUTPUT: Endless_Sky-${{ inputs.release_version  }}-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
       - name: Setup sccache
-        uses: ./.github/sccache
-        with:
-          read-only: 'true'
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
           buildPreset: 'linux-ci-release'
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          draft: true
-          files: ${{ env.OUTPUT }}
-
-
-  release_windows_x86:
-    name: Windows x86
-    runs-on: windows-2022
-    env:
-      OUTPUT: EndlessSky-win32-${{ github.ref_name }}.zip
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install x86 MinGW
-        run: choco install mingw --forcex86 --force
-      - uses: lukka/get-cmake@latest
-      - uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
-      - uses: lukka/run-cmake@v10
-        with:
-          configurePreset: 'mingw32-release'
-          buildPreset: 'mingw32-ci-release'
-      - name: Package Application
-        run: |
-          cmake --install build/release
-          7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
-        with:
-          draft: true
-          files: ${{ env.OUTPUT }}
-      - name: Upload Steam Depot
-        uses: actions/upload-artifact@v3
-        with:
-          name: steam-win32-depot
-          path: |
-            ./install/release/Endless Sky.exe
-            ./install/release/*.dll
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
 
 
   release_windows_x64:
     name: Windows x64
     runs-on: windows-2022
     env:
-      OUTPUT: EndlessSky-win64-${{ github.ref_name }}.zip
+      OUTPUT: EndlessSky-win64-${{ inputs.release_version }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup sccache
-        uses: ./.github/sccache
+      - uses: actions/checkout@v4
         with:
-          read-only: 'true'
+          show-progress: false
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -104,13 +66,13 @@ jobs:
         run: |
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          draft: true
-          files: ${{ env.OUTPUT }}
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
       - name: Upload Steam Depot
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: steam-win64-depot
           path: |
@@ -120,27 +82,26 @@ jobs:
 
   release_macos_universal:
     name: MacOS Universal
-    runs-on: macos-12
+    runs-on: macos-13
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Endless-Sky-${{ github.ref_name }}
+      OUTPUT: Endless-Sky-${{ inputs.release_version }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup sccache
-        uses: ./.github/sccache
+      - uses: actions/checkout@v4
         with:
-          read-only: 'true'
+          show-progress: false
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-arm-release'
-          buildPreset: 'macos-ci-release'
+          buildPreset: 'macos-arm-ci-release'
       - name: Prepare for x64 app bundle
         run: |
           mv "build/release/Endless Sky.app" "Endless Sky.app.arm"
@@ -160,12 +121,12 @@ jobs:
           mkdir "${{ env.OUTPUT }}"
           cp -r "Endless Sky.app" "${{ env.OUTPUT }}"
           ln -s /Applications "${{ env.OUTPUT }}"
-          hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"
-      - name: Upload Release
-        uses: softprops/action-gh-release@v1
+          until hdiutil create -ov -fs HFS+ -format UDZO -imagekey zlib-level=9 -srcfolder "${{ env.OUTPUT }}" "${{ github.workspace }}/${{ env.OUTPUT }}.dmg"; do echo "hdiutil create failed, retrying..."; done
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          draft: true
-          files: ${{ env.OUTPUT }}.dmg
+          name: ${{ env.OUTPUT }}.dmg
+          path: ${{ env.OUTPUT }}.dmg
       - name: Prepare Steam Depot
         run: |
           mv "Endless Sky.app/Contents/Resources/endless-sky.icns" .
@@ -175,7 +136,7 @@ jobs:
           mkdir depot/
           mv "Endless Sky.app/" depot/
       - name: Upload Steam Depot
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: steam-macos-depot
           path: depot
@@ -184,40 +145,40 @@ jobs:
   release_steam_linux:
     name: Steam Linux
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        arch: [x64, x86]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Build Endless Sky
       run: |
         cd steam
-        docker-compose run steam-${{ matrix.arch }}
+        docker compose run steam-x64
     - name: Prepare binary
-      run: cp build/steam-${{ matrix.arch }}/endless-sky .
+      run: cp build/steam-x64/endless-sky .
     - name: Upload Steam Depot
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: steam-linux${{ matrix.arch == 'x64' && '64' || '32' }}-depot
+        name: steam-linux64-depot
         path: endless-sky
 
 
   deploy_steam:
     name: Deploy Steam
-    needs: [release_steam_linux, release_windows_x64, release_windows_x86, release_macos_universal]
+    needs: [release_steam_linux, release_windows_x64, release_macos_universal]
     runs-on: ubuntu-latest
     # environment: steam
     env:
       data: steam-data-depot
-      linux32: steam-linux-x86
-      linux64: steam-linux-x64
+      linux: steam-linux-x64
       win32: steam-win32
       win64: steam-win64
       macos: steam-macos
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Upload Steam Data Depot
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ env.data }}
         path: |
@@ -244,6 +205,5 @@ jobs:
     #     depot3Path: ${{ env.win32 }}
     #     depot4Path: ${{ env.win64 }}
     #     depot5Path: ${{ env.macos }}
-    #     depot6Path: ${{ env.linux32 }}
-    #     depot7Path: ${{ env.linux64 }}
+    #     depot7Path: ${{ env.linux }}
     #     releaseBranch: canary

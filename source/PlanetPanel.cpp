@@ -28,15 +28,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HiringPanel.h"
 #include "Interface.h"
 #include "MapDetailPanel.h"
+#include "MessageLogPanel.h"
 #include "MissionPanel.h"
 #include "OutfitterPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
+#include "Port.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "SpaceportPanel.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "TradingPanel.h"
 #include "UI.h"
 
@@ -59,18 +62,27 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	text.Wrap(planet.Description());
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
-	GameData::Preload(planet.Landscape());
-	GameData::FinishLoadingSprites();
+	TaskQueue queue;
+	GameData::Preload(queue, planet.Landscape());
+	queue.Wait();
+	queue.ProcessSyncTasks();
 }
 
 
 
 void PlanetPanel::Step()
 {
+	// If the player is dead, pop the planet panel.
+	if(player.IsDead())
+	{
+		player.SetPlanet(nullptr);
+		GetUI()->Pop(this);
+		return;
+	}
+
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
@@ -98,9 +110,6 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw()
 {
-	if(player.IsDead())
-		return;
-
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 
@@ -110,16 +119,21 @@ void PlanetPanel::Draw()
 
 	if(planet.CanUseServices())
 	{
-		if(planet.IsInhabited())
-		{
-			info.SetCondition("is inhabited");
-			info.SetCondition("has bank");
-			if(system.HasTrade())
-				info.SetCondition("has trade");
-		}
+		const Port &port = planet.GetPort();
 
-		if(planet.HasSpaceport())
-			info.SetCondition("has spaceport");
+		if(port.HasService(Port::ServicesType::Bank))
+			info.SetCondition("has bank");
+		if(port.HasService(Port::ServicesType::JobBoard))
+			info.SetCondition("has job board");
+		if(port.HasService(Port::ServicesType::HireCrew))
+			info.SetCondition("can hire crew");
+		if(port.HasService(Port::ServicesType::Trading) && system.HasTrade())
+			info.SetCondition("has trade");
+		if(planet.HasNamedPort())
+		{
+			info.SetCondition("has port");
+			info.SetString("port name", port.Name());
+		}
 
 		if(planet.HasShipyard())
 			info.SetCondition("has shipyard");
@@ -134,10 +148,8 @@ void PlanetPanel::Draw()
 	{
 		Rectangle box = ui.GetBox("content");
 		if(box.Width() != text.WrapWidth())
-		{
 			text.SetWrapWidth(box.Width());
-			text.Wrap(planet.Description());
-		}
+		text.Wrap(planet.Description().ToString(player.Conditions()));
 		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 	}
 }
@@ -147,6 +159,9 @@ void PlanetPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	if(player.IsDead())
+		return true;
+
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
@@ -158,17 +173,18 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 'l')
 		selectedPanel = nullptr;
-	else if(key == 't' && hasAccess && planet.IsInhabited() && system.HasTrade())
+	else if(key == 't' && hasAccess
+			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
 		selectedPanel = trading.get();
 		GetUI()->Push(trading);
 	}
-	else if(key == 'b' && hasAccess && planet.IsInhabited())
+	else if(key == 'b' && hasAccess && planet.GetPort().HasService(Port::ServicesType::Bank))
 	{
 		selectedPanel = bank.get();
 		GetUI()->Push(bank);
 	}
-	else if(key == 'p' && hasAccess && planet.HasSpaceport())
+	else if(key == 'p' && hasAccess && planet.HasNamedPort())
 	{
 		selectedPanel = spaceport.get();
 		if(isNewPress)
@@ -185,12 +201,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
-	else if(key == 'j' && hasAccess && planet.IsInhabited())
+	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
-	else if(key == 'h' && hasAccess && planet.IsInhabited())
+	else if(key == 'h' && hasAccess && planet.GetPort().HasService(Port::ServicesType::HireCrew))
 	{
 		selectedPanel = hiring.get();
 		GetUI()->Push(hiring);
@@ -203,6 +219,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(command.Has(Command::INFO))
 	{
 		GetUI()->Push(new PlayerInfoPanel(player));
+		return true;
+	}
+	else if(command.Has(Command::MESSAGE_LOG))
+	{
+		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
 	else
@@ -305,13 +326,23 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 	const CargoHold &cargo = player.DistributeCargo();
 	// Are you overbooked? Don't count fireable flagship crew.
 	// (If your ship can't support its required crew, it is counted as having no fireable crew.)
-	const int overbooked = cargo.Passengers() - flagship->Crew() + flagship->RequiredCrew();
+	const int overbooked = cargo.Passengers() - max(0, flagship->Crew() - flagship->RequiredCrew());
 	const int missionCargoToSell = cargo.MissionCargoSize();
 	// Will you have to sell something other than regular cargo?
 	const int commoditiesToSell = cargo.CommoditiesSize();
 	int outfitsToSell = 0;
+	map<const Outfit *, int> uniquesToSell;
 	for(auto &it : cargo.Outfits())
+	{
 		outfitsToSell += it.second;
+		if(it.first->Attributes().Get("unique"))
+			uniquesToSell[it.first] = it.second;
+	}
+	// Have you left any unique items at the outfitter?
+	map<const Outfit *, int> leftUniques;
+	for(const auto &it : player.GetStock())
+		if(it.second > 0 && it.first->Attributes().Get("unique"))
+			leftUniques[it.first] = it.second;
 	// Count how many active ships we have that cannot make the jump (e.g. due to lack of fuel,
 	// drive, or carrier). All such ships will have been logged in the player's flightcheck.
 	size_t nonJumpCount = 0;
@@ -323,58 +354,93 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		};
 		for(const auto &result : flightChecks)
 			for(const auto &warning : result.second)
-				if(jumpWarnings.count(warning))
+				if(jumpWarnings.contains(warning))
 				{
 					++nonJumpCount;
 					break;
 				}
 	}
 
-	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0)
+	if(nonJumpCount > 0 || missionCargoToSell > 0 || outfitsToSell > 0 || commoditiesToSell > 0 || overbooked > 0
+		|| !leftUniques.empty())
 	{
 		ostringstream out;
+		auto ListUniques = [&out] (const map<const Outfit *, int> &uniques)
+		{
+			const int detailedSize = (uniques.size() > 5 ? 4 : uniques.size());
+			auto it = uniques.begin();
+			for(int i = 0; i < detailedSize; ++i)
+			{
+				out << "\n" + to_string(it->second) + " "
+					+ (it->second == 1 ? it->first->DisplayName() : it->first->PluralName());
+				++it;
+			}
+			int otherUniquesCount = 0;
+			if(it != uniques.end())
+			{
+				for( ; it != uniques.end(); ++it)
+					otherUniquesCount += it->second;
+				out << "\nand " + to_string(otherUniquesCount) + " other unique outfits.";
+			}
+			else
+				out << ".";
+		};
+		out << "If you take off now, you will:";
+
 		// Warn about missions that will fail on takeoff.
 		if(missionCargoToSell > 0 || overbooked > 0)
 		{
-			const bool both = (missionCargoToSell > 0 && overbooked > 0);
-			out << "If you take off now, you will abort a mission due to not having enough ";
+			out << "\n- abort a mission due to not having enough ";
 
 			if(overbooked > 0)
 			{
 				out << "bunks available for " << overbooked;
 				out << (overbooked > 1 ? " of the passengers" : " passenger");
-				out << (both ? " and not having enough " : ".");
+				out << (missionCargoToSell > 0 ? " and not having enough " : ".");
 			}
 
 			if(missionCargoToSell > 0)
-				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "your mission cargo") << ".";
+				out << "cargo space to hold " << Format::CargoString(missionCargoToSell, "mission cargo.");
 		}
 		// Warn about outfits that can't be carried.
-		else if(outfitsToSell > 0)
+		if(outfitsToSell > 0)
 		{
-			out << "If you take off now, you will ";
+			out << "\n- ";
 			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
+			if(!uniquesToSell.empty())
+			{
+				out << " Some of the outfits are unique:";
+				ListUniques(uniquesToSell);
+			}
+		}
+		// Warn about unique items you sold.
+		if(!leftUniques.empty())
+		{
+			out << "\n- not be able to re-purchase unique outfits you sold at the outfitter:";
+			ListUniques(leftUniques);
 		}
 		// Warn about ships that won't travel with you.
-		else if(nonJumpCount > 0)
+		if(nonJumpCount > 0)
 		{
-			out << "If you take off now you will launch with ";
+			out << "\n- launch with ";
 			if(nonJumpCount == 1)
 				out << "a ship";
 			else
 				out << nonJumpCount << " ships";
 			out << " that will not be able to leave the system.";
 		}
-		// Warn about non-commodity cargo you will have to sell.
-		else
+		// Warn about commodities you will have to sell.
+		if(commoditiesToSell > 0)
 		{
-			out << "If you take off now you will have to sell ";
-			out << Format::CargoString(commoditiesToSell, "cargo");
+			out << "\n- sell " << Format::CargoString(commoditiesToSell, "cargo");
 			out << " that you do not have space for.";
 		}
-		out << " Are you sure you want to continue?";
+		out << "\nAre you sure you want to continue?";
+		// Pool cargo together, so that the cargo number on the trading panel
+		// is still accurate while the popup is active.
+		player.PoolCargo();
 		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
@@ -389,9 +455,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 void PlanetPanel::WarningsDialogCallback(const bool isOk)
 {
 	if(isOk)
-		TakeOff(false);
-	else
-		player.PoolCargo();
+		TakeOff(true);
 }
 
 

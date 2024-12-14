@@ -16,9 +16,12 @@ mission "Kestrel Testing"
 	description "Travel to the <waypoints> system to fight and disable a prototype warship that Tarazed Corporation is testing. Do not destroy the ship, or you will lose your payment and your opportunity to buy one."
 	source "Wayfarer"
 	waypoint "Umbral"
+	# The Kestrel is a secret that can only be unlocked after completing the rest of the game. Combat rating is used to track gameplay progression.
+	# After finding the Kestrel once, the threshold is lowered so players can use the ship during the human campaign on a later playthrough.
+	# Any requests to reduce the requirements will be rejected.
 	to offer
 		or
-			"combat rating" > 8000
+			"combat rating" > 6000
 			and
 				"combat rating" > 2000
 				has "global: unlocked kestrel"
@@ -89,6 +92,8 @@ mission "Kestrel Testing"
 					goto engines
 				`	"Maybe you should work on improving the shields and hull."`
 					goto shields
+				`	"I feel like such a large ship should have more bays for fighters."`
+					goto bays
 			
 			label weapons
 			action
@@ -106,6 +111,12 @@ mission "Kestrel Testing"
 			action
 				set "kestrel: more shields"
 			`	"Okay," he says, "we'll focus on strengthening the hull and the shield matrix."`
+				goto name
+			
+			label bays
+			action
+				set "kestrel: more bays"
+			`	"Very well," he says, "we'll see if we can incorporate more fighter bays into the hull."`
 				goto name
 			
 			label name
@@ -187,6 +198,17 @@ mission "Kestrel: More Shields"
 
 
 
+mission "Kestrel: More Bays"
+	landing
+	invisible
+	to offer
+		has "kestrel: more bays"
+	on offer
+		event "kestrel available: more bays" 50
+		fail
+
+
+
 mission "Kestrel Available"
 	landing
 	source
@@ -202,6 +224,9 @@ mission "Kestrel Available"
 			branch shields
 				has "kestrel: more shields"
 			
+			branch bays
+				has "kestrel: more bays"
+			
 			scene "thumbnail/kestrelw"
 			``
 				goto message
@@ -214,24 +239,42 @@ mission "Kestrel Available"
 			label shields
 			scene "thumbnail/kestrels"
 			``
+				goto message
+				
+			label bays
+			scene "thumbnail/kestrelc"
+			``
 			label message
 			`You receive a message from Charles Atinoda, the ship designer at Tarazed Corporation: "Captain <last>, we are pleased to inform you that our latest warship is now available for sale here on Wayfarer. We've taken all your feedback into account in the final design. Thank you again!"`
 				decline
 
 
+shipyard "Kestrel"
 
 event "kestrel available: more weapons"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Weapons)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more engines"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Engines)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 event "kestrel available: more shields"
 	set "kestrel available"
-	shipyard "Tarazed Advanced"
+	shipyard "Kestrel"
 		"Kestrel (More Shields)"
+	planet Wayfarer
+		add shipyard "Kestrel"
+event "kestrel available: more bays"
+	set "kestrel available"
+	shipyard "Kestrel"
+		"Kestrel (More Bays)"
+	planet Wayfarer
+		add shipyard "Kestrel"
 
 
 ship "Unknown Ship Type"
@@ -244,9 +287,9 @@ ship "Unknown Ship Type"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -301,9 +344,9 @@ ship "Kestrel"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 740
-		"drag" 11
-		"heat dissipation" .6
+		"mass" 2135
+		"drag" 20.9
+		"heat dissipation" .32
 		"fuel capacity" 500
 		"cargo space" 120
 		"outfit space" 810
@@ -357,7 +400,7 @@ ship "Kestrel" "Kestrel (More Engines)"
 	sprite "ship/kestrele"
 	thumbnail "thumbnail/kestrele"
 	add attributes
-		"drag" -1.0
+		"drag" -1.9
 		"fuel capacity" 100
 		"engine capacity" 30
 	engine 13 170
@@ -371,7 +414,7 @@ ship "Kestrel" "Kestrel (More Shields)"
 	add attributes
 		"shields" 3000
 		"hull" 1500
-		"heat dissipation" .06
+		"heat dissipation" .032
 
 ship "Kestrel" "Kestrel (More Weapons)"
 	sprite "ship/kestrelw"
@@ -394,3 +437,45 @@ ship "Kestrel" "Kestrel (More Weapons)"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
 	turret 23 14 "Heavy Laser Turret"
+
+ship "Kestrel" "Kestrel (More Bays)"
+	sprite "ship/kestrelc"
+	thumbnail "thumbnail/kestrelc"
+	add attributes
+		"mass" 60
+		"weapon capacity" -20
+	outfits
+		"Particle Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret" 4
+		
+		"Fusion Reactor"
+		"LP144a Battery Pack"
+		"D94-YV Shield Generator"
+		"Liquid Nitrogen Cooler"
+		"Tactical Scanner" 2
+		
+		"Orca Plasma Thruster"
+		"Orca Plasma Steering"
+		"Hyperdrive"
+	gun -73.5 46 "Torpedo Launcher"
+	gun 73.5 46 "Torpedo Launcher"
+	gun -29.5 52 "Particle Cannon"
+	gun 29.5 52 "Particle Cannon"
+	turret -8 -10.5 "Heavy Laser Turret"
+	turret 8 -10.5 "Heavy Laser Turret"
+	turret -20.5 9 "Heavy Laser Turret"
+	turret 20.5 9 "Heavy Laser Turret"
+	bay "Fighter" -46 106
+		"launch effect" "human internal"
+	bay "Fighter" 46 106
+		"launch effect" "human internal"
+	bay "Fighter" -62 78
+		"launch effect" "human internal"
+	bay "Fighter" 62 78
+		"launch effect" "human internal"
+	bay "Fighter" -56 70
+		"launch effect" "human internal"
+	bay "Fighter" 56 70
+		"launch effect" "human internal"
