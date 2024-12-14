@@ -439,7 +439,7 @@ mission "Efreti: Distress Call 5"
 	destination "Greenwater"
 	landing
 	passengers 66
-	blocked `You need <bunks> available to carry the salvage team.`
+	blocked `You will need <bunks> available bunks to carry the salvage team.`
 	
 	to offer
 		has "Efreti: Distress Call 4: done"
