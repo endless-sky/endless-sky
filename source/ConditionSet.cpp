@@ -141,6 +141,56 @@ ConditionSet::ConditionSet(int64_t newLiteral)
 
 
 
+ConditionSet& ConditionSet::operator=(const ConditionSet&& other) noexcept
+{
+	// Guard against self-assignment as per C++ conventions.
+	if(this == &other)
+		return *this;
+
+	// The other ConditionSet might be a child of the current one, so we
+	// need to keep the children safe until the end of the assignment.
+	[[maybe_unused]] vector<ConditionSet> oldChildren = std::move(children);
+
+	// Then move over all content.
+	expressionOperator = other.expressionOperator;
+	literal = other.literal;
+	conditionName = std::move(other.conditionName);
+	children = std::move(other.children);
+
+	// Tell the compiler to keep the oldChildren at least until here.
+	// And avoid warning on unused variable (which is not actually unused).
+	(void)oldChildren;
+
+	return *this;
+}
+
+
+
+ConditionSet& ConditionSet::operator=(const ConditionSet& other)
+{
+	// Guard against self-assignment as per C++ conventions.
+	if(this == &other)
+		return *this;
+
+	// The other ConditionSet might be a child of the current one, so we
+	// need to keep the children safe until the end of the assignment.
+	[[maybe_unused]] vector<ConditionSet> oldChildren = std::move(children);
+
+	// Then copy over all content.
+	expressionOperator = other.expressionOperator;
+	literal = other.literal;
+	conditionName = other.conditionName;
+	children = other.children;
+
+	// Tell the compiler to keep the oldChildren at least until here.
+	// And avoid warning on unused variable (which is not actually unused).
+	(void)oldChildren;
+
+	return *this;
+}
+
+
+
 // Load a set of conditions from the children of this node.
 void ConditionSet::Load(const DataNode &node)
 {
@@ -467,7 +517,7 @@ bool ConditionSet::Optimize(const DataNode &node)
 		case ExpressionOp::OP_OR:
 			// If we only have a single element, then replace the current OP/AND by its child.
 			if(children.size() == 1)
-				PromoteFirstChild(node);
+				*this = children[0];
 
 			break;
 
@@ -491,7 +541,7 @@ bool ConditionSet::Optimize(const DataNode &node)
 		case ExpressionOp::OP_HAS:
 			// Optimize away HAS, we can directly use the expression below it.
 			if(children.size() == 1)
-				PromoteFirstChild(node);
+				*this = children[0];
 
 			break;
 
@@ -675,17 +725,6 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 
 
 
-bool ConditionSet::PromoteFirstChild(const DataNode &node)
-{
-	// Need to copy first, before moving the vector.
-	ConditionSet cs = children[0];
-	expressionOperator = cs.expressionOperator;
-	literal = cs.literal;
-	conditionName = cs.conditionName;
-	children = cs.children;
-
-	return true;
-}
 
 
 

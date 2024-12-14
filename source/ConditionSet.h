@@ -35,6 +35,9 @@ public:
 	ConditionSet() = default;
 	ConditionSet(const ConditionSet &) = default;
 
+	ConditionSet& operator=(const ConditionSet&& other) noexcept;
+	ConditionSet& operator=(const ConditionSet& other);
+
 	// Construct and Load() at the same time.
 	explicit ConditionSet(const DataNode &node);
 
@@ -132,9 +135,6 @@ private:
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
 	bool ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp);
 
-
-	/// Replace current node by its first child node.
-	bool PromoteFirstChild(const DataNode &node);
 
 	/// Push sub-expressions and the operator from the current expression one level down into a new single
 	/// sub-expression.
