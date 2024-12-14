@@ -4029,6 +4029,10 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
+	// Sort the available missions. This causes the missions to first be sorted
+	// by their `order` field descending, then in alphabetical order by their identifier.
+	availableMissions.sort();
+
 	// If any of the available missions are "priority" missions, no other
 	// special missions will be offered in the spaceport.
 	if(hasPriorityMissions)
@@ -4050,6 +4054,7 @@ void PlayerInfo::CreateMissions()
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them. This is to avoid having two
 		// or three missions pop up as soon as you enter the spaceport.
+		// The mission sorted last will win.
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
