@@ -4009,6 +4009,7 @@ void PlayerInfo::CreateMissions()
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
 	bool hasPriorityMissions = false;
+	unsigned nonBlockingMissions = 0;
 	for(const auto &it : GameData::Missions())
 	{
 		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
@@ -4025,7 +4026,10 @@ void PlayerInfo::CreateMissions()
 			if(missions.back().IsFailed(*this))
 				missions.pop_back();
 			else if(!it.second.IsAtLocation(Mission::JOB))
+			{
 				hasPriorityMissions |= missions.back().HasPriority();
+				nonBlockingMissions += missions.back().IsNonBlocking();
+			}
 		}
 	}
 
@@ -4045,18 +4049,18 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
-	else if(availableMissions.size() > 1)
+	else if(availableMissions.size() > 1 + nonBlockingMissions)
 	{
 		// Minor missions only get offered if no other missions (including other
-		// minor missions) are competing with them. This is to avoid having two
-		// or three missions pop up as soon as you enter the spaceport.
+		// minor missions) are competing with them, except for "non-blocking" missions.
+		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
 			if(it->IsMinor())
 			{
 				it = availableMissions.erase(it);
-				if(availableMissions.size() <= 1)
+				if(availableMissions.size() <= 1 + nonBlockingMissions)
 					break;
 			}
 			else
