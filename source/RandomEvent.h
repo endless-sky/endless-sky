@@ -31,7 +31,6 @@ public:
 	constexpr const T *Get() const noexcept;
 	constexpr int Period() const noexcept;
 	bool CanTrigger(const ConditionsStore &tester) const;
-	void AddConditions(const DataNode &node);
 
 private:
 	const T *event;
