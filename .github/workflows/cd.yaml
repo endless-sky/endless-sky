@@ -10,35 +10,40 @@ on:
       - opened
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
 
   cd_appimage_x64:
     name: Linux
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       OUTPUT: Endless_Sky-continuous-x86_64.AppImage
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install dependencies
         run: |
-          sudo rm /etc/apt/sources.list.d/* && sudo dpkg --clear-avail # Speed up installation and get rid of unwanted lists
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev
-      - name: Setup sccache
-        uses: ./.github/sccache
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
+      - name: Setup cached directories
+        uses: actions/cache@v4
         with:
-          read-only: 'true'
+          path: /home/runner/.cache/sccache
+          key: ${{ runner.os }}-cd-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-cd-sccache-refs/heads/master
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
@@ -46,7 +51,7 @@ jobs:
       - name: Package Application
         run: ./utils/build_appimage.sh build/release
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -58,19 +63,25 @@ jobs:
       OUTPUT: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup sccache
-        uses: ./.github/sccache
+      - uses: actions/checkout@v4
         with:
-          read-only: 'true'
+          show-progress: false
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          key: ${{ runner.os }}-cd-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-cd-sccache-refs/heads/master
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -80,30 +91,36 @@ jobs:
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
 
   cd_macos_x64:
     name: MacOS
-    runs-on: macos-12
+    runs-on: macos-13
     env:
       OUTPUT: EndlessSky-macOS-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup sccache
-        uses: ./.github/sccache
+      - uses: actions/checkout@v4
         with:
-          read-only: 'true'
+          show-progress: false
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/Library/Caches/Mozilla.sccache
+          key: ${{ runner.os }}-${{ runner.arch }}-cd-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-cd-sccache-refs/heads/master
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '69efe9cc2df0015f0bb2d37d55acde4a75c9a25b'
-          doNotCache: true
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'
@@ -113,7 +130,7 @@ jobs:
           cmake --install build/release
           7z a ${{ env.OUTPUT }} "./install/release/*"
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
@@ -132,7 +149,9 @@ jobs:
       OUTPUT_WINDOWS: EndlessSky-win64-continuous.zip
       OUTPUT_MACOS: EndlessSky-macOS-continuous.zip
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
       - name: Install github-release
         run: |
           go install github.com/github-release/github-release@latest
@@ -167,10 +186,11 @@ jobs:
               --pre-release
           fi
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: ${{ github.workspace }} # This will download all files to e.g `./EndlessSky-win64.zip/EndlessSky-win64.zip`
       - name: Add ${{ env.OUTPUT_APPIMAGE }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \
@@ -178,6 +198,7 @@ jobs:
             --name ${{ env.OUTPUT_APPIMAGE }} \
             --file ${{ env.OUTPUT_APPIMAGE }}/${{ env.OUTPUT_APPIMAGE }}
       - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
+        continue-on-error: true
         run: |
           github-release upload \
             --tag continuous \

@@ -215,7 +215,7 @@ event "remnant: pantica void sprites"
 		add attributes remnant
 		remove attributes uninhabited
 		description `While Esquiline used to be simply another planet the Remnant harvested valuable resources from, the introduction of void sprites and the activation of their station has turned this world into a hidden research lab: The first human astrobiology station studying void sprites.`
-		add spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
+		spaceport `Although the facilities here are basic, the Remnant cafeteria boasts a food dispenser that is available at any time, along with a mesmerizing view of the clouds outside. Occasionally a void sprite will pass in front of the window, much to the delight of everyone.`
 
 
 
@@ -284,7 +284,7 @@ event "remnant: merganser fleet"
 
 event "remnant: ssil vida inhabited"
 	planet "Ssil Vida"
-		attributes emitter sheragi remnant
+		attributes emitter "remnant station" sheragi
 		landscape land/station0
 		description `The silence of this station rings in your ears, and as you explore you are increasingly surprised that it even has an atmosphere. It is obviously ancient, and patches of ambiguous green and purple material resembling fungus grow through the walls. Whoever built this station designed it for beings much larger than you - either that, or they liked spacious environments. Even the shortest doorway you pass through is easily double your height. They are always wider than they are tall.`
 		description `	Exploring beyond the docks reveals that most of this facility is infrastructure for some type of massive emitter. It is not clear exactly what it's supposed to be emitting, but it might have something to do with how this system appeared in the first place.`
@@ -347,7 +347,7 @@ event "remnant: ssil vida activation"
 	planet Fertriery
 		attributes "requires: gaslining" uninhabited
 		landscape land/nasa8
-		description `You are not quite sure what Fetriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
+		description `You are not quite sure what Fertriery is. It lacks cohesive edges, and yet it has sufficient atmospheric pressure to threaten the hull integrity of ships not designed for high pressure environments. Despite such density, which would indicate a strong gravitational presence, your sensors are unable to find any kind of core.`
 		spaceport `Delving further into the clouds, it becomes obvious that the entire planet appears to be a mix of gases, aerosols, and suspended particles. Despite this, or perhaps because of it, void sprites appear to thrive in its depths, where they can be seen dancing among energy currents reminiscent of the ion storms.`
 		government "Ember Waste"
 		bribe 0
@@ -447,7 +447,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
-		fleet "Embersylphs" 3000
+		fleet "Embersylphs" 4000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -497,7 +497,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
-		fleet "Embersylphs" 3000
+		fleet "Embersylphs" 4000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -614,7 +614,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
-		fleet "Embersylphs" 3000
+		fleet "Embersylphs" 4000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -665,7 +665,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
-		fleet "Embersylphs" 3000
+		fleet "Embersylphs" 4000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -723,7 +723,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
-		fleet "Embersylphs" 3000
+		fleet "Embersylphs" 4000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -778,7 +778,7 @@ event "remnant: ssil vida activation"
 		minables "live crystal" 60 3
 		fleet "Void Sprites (Ember Waste)" 400
 		fleet "Subsidurial (Ember Waste)" 2000
-		fleet "Embersylphs" 3000
+		fleet "Embersylphs" 4000
 		hazard "Ember Waste Base Heat" 50
 		hazard "Ember Waste Base Storm" 9000
 		hazard "Ember Waste Base Storm" 15000
@@ -1183,6 +1183,9 @@ event "remnant: teciimach deployment"
 		add "Teciimach Pod"
 		add "Teciimach Canister"
 		add "Teciimach Canister Rack"
+	outfitter "Remnant Core"
+		remove "EMP Torpedo"
+		add "Teciimach Canister"
 	fleet "Small Remnant"
 		add variant 5
 			"Merganser (II)" 2

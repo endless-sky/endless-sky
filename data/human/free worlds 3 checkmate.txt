@@ -61,7 +61,7 @@ mission "FWC Attack Kaus Borealis"
 	on offer
 		event "fwc attack kaus borealis"
 		conversation
-			`When you return to New Portland, a sizeable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut our territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
+			`When you return to New Portland, a sizable Free Worlds fleet is already parked on the landing pads surrounding the spaceport. JJ explains to you, "When the Navy struck and cut our territory in half, a lot of these ships were cut off from their chain of command and just went and sheltered wherever they could. So it took a bit of doing to gather them all together. And now what we need is another stirring victory, or they'll begin to scatter again."`
 			choice
 				`	"Are you saying we risk having members of our militia desert?"`
 					goto desert
@@ -100,7 +100,8 @@ mission "FWC Attack Kaus Borealis"
 		personality heroic escort
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Skein"
@@ -127,14 +128,16 @@ mission "FWC Attack Kaus Borealis"
 		government "Republic"
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -145,13 +148,15 @@ mission "FWC Attack Kaus Borealis"
 		government "Republic"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Frigate" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Frigate" 2
@@ -214,10 +219,11 @@ mission "FWC Cebalrai 1"
 		government "Republic"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 2
 
@@ -279,30 +285,34 @@ mission "FWC Cebalrai 1B"
 		government "Republic"
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Frigate (Mark II)"
 				"Gunboat (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Frigate"
 				"Gunboat" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
-				"Lance" 4
+				"Combat Drone" 4
 				"Frigate" 2
 
 
@@ -564,14 +574,16 @@ mission "FWC Diplomacy 1C"
 		government "Republic"
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -582,14 +594,16 @@ mission "FWC Diplomacy 1C"
 		government "Republic"
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -625,7 +639,8 @@ mission "FWC Checkmate 1"
 		personality heroic escort
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Skein"
@@ -662,7 +677,8 @@ mission "FWC Checkmate 1"
 		government "Republic"
 		fleet 3
 			names "republic small"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Frigate (Mark II)"
 				"Gunboat (Mark II)" 2
@@ -674,14 +690,16 @@ mission "FWC Checkmate 1"
 		system Menkent
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -692,14 +710,16 @@ mission "FWC Checkmate 1"
 		system Sol
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -710,14 +730,16 @@ mission "FWC Checkmate 1"
 		system Pollux
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -748,7 +770,8 @@ mission "FWC Checkmate 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Skein"
@@ -848,7 +871,8 @@ mission "FWC Checkmate 1B"
 		personality heroic escort
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Skein"
@@ -879,14 +903,16 @@ mission "FWC Checkmate 1B"
 		system Menkent
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -897,14 +923,16 @@ mission "FWC Checkmate 1B"
 		system Menkent
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
 				"Frigate (Mark II)" 2
 				"Gunboat (Mark II)" 1
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Frigate (Mark II)" 1
@@ -969,7 +997,8 @@ mission "FWC Checkmate Escorts"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein"
 				"Finch" 6
@@ -1042,7 +1071,8 @@ mission "FWC Pug 1"
 		government "Free Worlds"
 		fleet
 			names "free worlds small"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein"
 				"Finch" 6
@@ -1535,7 +1565,8 @@ mission "FWC Pug 3B"
 		personality heroic escort
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Skein"
 				"Finch" 6
@@ -1569,7 +1600,7 @@ mission "FWC Pug 3C"
 	destination Tundra
 	on enter Cebalrai
 		dialog
-			"As soon as you reenter human space, you contact the Navy and tell them to send an attack fleet to the Cebalrai system. Then, just for good measure, you contact the Free Worlds and ask them to do the same."
+			"As soon as you re-enter human space, you contact the Navy and tell them to send an attack fleet to the Cebalrai system. Then, just for good measure, you contact the Free Worlds and ask them to do the same."
 	to offer
 		has "FWC Pug 3B: done"
 	passengers 1
@@ -1652,17 +1683,19 @@ mission "FWC Pug 3D: Reinforcements"
 		personality heroic waiting
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc kill
@@ -1670,17 +1703,19 @@ mission "FWC Pug 3D: Reinforcements"
 		personality heroic waiting
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
 				"Frigate" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat" 2
 	npc kill
@@ -1694,7 +1729,8 @@ mission "FWC Pug 3D: Reinforcements"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
@@ -1956,7 +1992,7 @@ mission "FWC Pug 4C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		event "fwc reconnect ascella"
+		event "fwc reconnect ascella" 0
 		conversation
 			`You help Freya to unload and set up the reflector equipment, then contact the Navy on Oblivion and instruct them to point the transmitter in your direction. A few minutes later Admiral Danforth contacts you. "This link appears to be returning too," he says. "So, let's move on. We're going to make an attack on the <system> system, now, and we would welcome your assistance in this battle." You leave the equipment on <origin> and return to your ship with Freya.`
 				accept
@@ -1965,7 +2001,7 @@ mission "FWC Pug 4C"
 		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	on complete
 		log "Succeeded in restoring a few more hyperspace connections, and in driving back the Pug (with the help of the Navy). But, Freya thinks it is way too coincidental that the aliens have left behind the exact technology needed to fix the hyperspace disruptions; it feels like the Pug are playing a game rather than fighting a serious war."
-		event "fwc reconnect zeta aquilae"
+		event "fwc reconnect zeta aquilae" 0
 		dialog `After a few minutes of scanning the surface of <planet>, Freya locates another transmitter station that matches the one you found on Oblivion. You contact Admiral Danforth to tell him its location, and he dispatches a crew to take control of it. He also reports to you that once again, apparently all the Pug left the planet during the course of the battle. "A pity," he says. "If we had taken prisoners, maybe we could have gotten some answers from them. Anyway, meet me in the spaceport whenever you're ready to help with our next mission."`
 	
 	npc evade
@@ -1984,14 +2020,16 @@ mission "FWC Pug 4C"
 		personality heroic staying
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2002,14 +2040,16 @@ mission "FWC Pug 4C"
 		personality heroic staying uninterested
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2032,7 +2072,7 @@ mission "FWC Pug 5"
 	
 	on offer
 		conversation
-			`You find Admiral Danforth supervising the repairs of the damaged Navy ships. "Glad you survived that battle!" he says. "These alien ships are much more advanced than ours, but we outnumber them, so now that we've established a strong beachhead I think we actually have a chance at defeating them. The only problem is, the majority of our fleet is still up north. With the Vega system cut off, our supply lines are having to go all the way around through the dirt belt. So I'd like to propose liberating Vega next."`
+			`You find Admiral Danforth supervising the repairs of the damaged Navy ships. "Glad you survived that battle!" he says. "These alien ships are much more advanced than ours, but we outnumber them, so now that we've established a strong beachhead I think we actually have a chance at defeating them. The only problem is, the majority of our fleet is still up north. With the Vega system cut off, our supply lines are having to go all the way around through the Dirt Belt. So I'd like to propose liberating Vega next."`
 			choice
 				`	"That does sound like a good strategic choice."`
 				`	"How will your fleet get to Vega without traveling through the Pug home system? That system is swarming with their ships."`
@@ -2054,18 +2094,19 @@ mission "FWC Pug 5"
 	on visit
 		dialog `You've landed on <planet>, but there are still Pug ships circling overhead. You should take off and help finish them off.`
 	on complete
-		event "fwc liberation of vega"
+		event "fwc liberation of vega" 0
 	
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic escort
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Jump)"
 				"Combat Drone" 6
-				"Dagger" 4
+				"Dagger" 8
 	
 	npc evade
 		personality disables heroic staying
@@ -2123,10 +2164,11 @@ mission "FWC Pug 5B"
 		personality heroic staying uninterested
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2165,10 +2207,11 @@ mission "FWC Pug 5C"
 		personality heroic waiting
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2207,7 +2250,7 @@ mission "FWC Pug 6"
 				`	"Sure, with the Navy at our backs I think we've got a good chance."`
 				`	"As ready as I'll ever be, I guess."`
 			`	She laughs. "I suppose that's the best we can hope for. Do you mind if I ride in your ship tomorrow, rather than one of the others? If this is the end, I'd rather face it with people I know." You agree. She turns back to look out the window.`
-			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizeable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
+			`	Since Freya seems to want to be alone, you return downstairs, and discover that a sizable Oathkeeper fleet has arrived. In the main vestibule of the spaceport, an Oathkeeper officer is leading a group in qigong meditation. And surprisingly, you spot Admiral Danforth sitting with the Muslim prayer group and chanting in fluent Arabic. Meanwhile, the party outside the pub continues.`
 			`	Eventually morning comes, and you prepare your ship for the assault on the Pug homeworld...`
 				accept
 	
@@ -2216,10 +2259,11 @@ mission "FWC Pug 6"
 		personality heroic
 		fleet 3
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2232,17 +2276,19 @@ mission "FWC Pug 6"
 		system Cebalrai
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
 				"Frigate (Mark II)" 2
 		fleet 2
 			names "republic capital"
-			fighters "republic fighter"
+			fighters
+				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc
@@ -2258,7 +2304,8 @@ mission "FWC Pug 6"
 				"Argosy (Laser)"
 		fleet
 			names "free worlds capital"
-			fighters "free worlds fighters"
+			fighters
+				names "free worlds fighters"
 			variant
 				"Dreadnought"
 				"Falcon (Plasma)"
@@ -2377,6 +2424,7 @@ mission "FWC End"
 		set "free worlds plot completed"
 		set "free worlds checkmate"
 		event "stack core for sale"
+		event "fwc kaus borealis ceded back"
 		conversation
 			`You arrive in the Parliament building just as Alondo and Katya have finished meeting with them. "Good news," says Katya. "We're all officially pardoned. And you, Captain <last>, have become something of a hero."`
 			`	"Better yet," says Alondo, "the war with the Republic is over. We agreed to limiting our territory to its current size, and to a very minor tax to cover the cost of Navy protection if the aliens attack again or some other major catastrophe strikes. In return, the Free Worlds have been granted autonomy from the Republic."`

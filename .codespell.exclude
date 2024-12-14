@@ -1,9 +1,7 @@
 		"Ikrehpeb haslrikpeb ikpecem sara nives"      # Stop acting like a child
 		"akmac pano nives ralret umsab lravriv" # a pasta of small snakes with mice meatballs
-		"haet sunt"                     # heat shunt (mispronounced)
 		"Yoo no gud fite so gif up."      # You are no good in a fight, so give up. (mispronounced)
 		"do gud"             # [do|does] good (mispronounced)
-		"We Korath imotal!"     # We, the Korath, are immortal! (mispronounced)
 		"a's no gud"         # is no good (mispronounced)
 		"ain' gud"           # ain't good (mispronounced)
 		"do gud"             # [do|does] good (mispronounced)
@@ -11,15 +9,7 @@
 		"Can hav" 3     # Can have (mispronounced)
 		"yoo ded mor"          # you dead more (mispronounced)
 		"'oo wil" 3     # You will (mispronounced)
-		"bomance novals"           # [romance|bromance] novels (mispronounced)
-		"cley n kiln"              # clay and kiln (mispronounced)
-		"benjos"                   # banjos (mispronounced)
-		"bokets f painte"          # buckets of paint (mispronounced)
-		"easls ith trypods"        # easels with tripods (mispronounced)
-		"recerd playrs"            # record players (mispronounced)
-		"relegos tects"            # religious texts (mispronounced)
 		"blak muusic shee's"       # blank music sheets (mispronounced)
-		"sinin boowl sets"         # singing bowl set (mispronounced)
 		"Wee taek yur"           # We take your (mispronounced)
 		"Te"                     # The (mispronounced)
 		"blong to u'."           # belong to us (mispronounced)
@@ -30,6 +20,7 @@
 		"rasi it maka makpes"                   # fish en papillote
 		"Far Upugf Enrel Ugt"                 # Nam Myoho Renge Kyo (Buddhist religious chant)
 		"Far Uhudf Elrep Uds"                  # Nam Myoho Renge Kyo (Buddhist religious chant)
+			"Capitalise that proper noun. Use American English for consistency. For goodness' sake, that needs a comma!"
 		"Woh"
 		"Yot"
 		"mor"
@@ -42,7 +33,6 @@
 		"Diamond Grey"
 		"Grey Wolf"
 				`	"The Grey Goose."`
-			`	He stops and frowns. "Look at me, rambling like an ol' man. Ser, Captain, I'd like to pay you <payment> to take me home, to <destination>."`
 			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man than looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
 			`	Cygnet strokes his mustache. "Tod Copper. Tod Copper. Tell you what, that name doesn' ring a bell. Heck, I don' even keep track of names 'less I get someone impor'ant. If ya lookin' for someone in particular to buy, can I get a description?"`
 					goto shotdown
@@ -51,13 +41,6 @@
 		"cach"
 		"oder"
 		" Grat"
-			`	"Fantastic, you understand the situation," she says, though her tone is much more businesslike than the wording would imply. "In that case, if you could please take this to Earth and communicate with your various governments we can begin a dialogue on how best to deal with this current scenario."`
-			`	"Hello, ser! I hope you've been enjoying your stay in our state of the art spaceport! But why stay cooped up in here, when you could be out there?" She gestures toward the windows.`
-			`	"So ser," she continues, "what do you say? Should I sign you up for the VIP Winter-Wonder Excursion Package for a special time limited-only offer of 2,000 credits?"`
-			`	The woman frowns, but nods knowingly. "I am afraid, ser, most seem to think the way you do. Still, if you ever run into anyone out there who might be interested, let them know. We could really use the work." With that, she turns and walks briskly back to her booth.`
-			`	The woman's face lights up, and you get the sense that she isn't used to hearing "yes" very often. "Oh, that is wonderful ser, just wonderful!"`
-			`	She puts her finger to her ear and says, "Hjlod, we have a customer! Get the crawler warmed up!" The woman then drops her hand and waves to you. "Right this way, ser! And might I add - you will not be disappointed." She chatters excitedly about the cultural, artistic and scientific merits of the trip as she leads you toward a large pressure hatch.`
-			`	The woman's face, red with the cold, looks crest-fallen, but unsurprised, like she was half expecting this outcome. "Brunhilda can be an... intimidating vehicle, it's true. But she is safe ser, I assure you. Either way, I'll take you back to the spaceport."`
 			`	The uneventful journey to the boiling ice river of Slidr is suddenly interrupted when a deep tremor followed by a thunderous boom shakes the Ice-Crawler to its core and causes it to slip on the disturbed ice and snow. Somewhere outside, subsequent rumble starts to build rapidly. After Hjlod regains control of the crawler, she immediately veers away from the noise. "That vas Nifel-quake, and loud noise was avalanche, or landslide, maybe both. This is not good."`
 			`	By the time you are on your feet, Hjlod has already gathered up numerous supplies and is preparing to open the hatch and dig her way to the surface. She looks at you. "Nothing to vorry about. Happens all time. Vell, not really. First time this happen, but Hjlod not let you die, probably. I can lead us to settlement not far from here."`
 			`	Hjlod abruptly stops and glares at you. "You are fool. You vill certainly die, and you endanger me in process. This is no game, valk only vhere I valk or die."`
@@ -68,20 +51,45 @@
 			`	"Sounds like herbalist box. Ondurdis had one long before I vas born. Gave it to liar. It not important though, not Setstokkr."`
 			`	Hjlod nods. "Hrithfjall sounds like good place. I vill tell Ondurdis.`
 			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis.`
-			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
-			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They will steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
+			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Ondurdis told me to tell you."`
+			`	Hjlod takes a deep, calming breath. "I call because you are our only hope. They vill not let us leave. They vill not let us be. They vill steal our souls." She points a shaky finger at you. "Take us back to Nifel. All those who are left. Take us home. Ve know the cold vill get us eventually. But better to live on a dying vorld as Skadenga than to live here as nothing."`
 			`	Hjlod grimaces. "Once they know you are here, they vill collect us. Come back here in an hour. Any longer than that, and ve vill be gone." She slumps down on the ground as you exit the dark, dirty tunnel where the remaining Skadenga cling to their fleeting identity.`
-			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and will pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
+			`	"Ve have 52 people that need off this vorld right now." Hjlod hesitates a moment, and then adds, "I know how much you like money. Ve have pooled all our savings together and vill pay you <payment> for this job." She grabs a ragged duffle bag and a group gather around her. "The rest vill meet us at your ship. Ve move now."`
+			`	Hjlod frowns. "It's Arnson's family isn't it? I told him he vas too far."`
 			`	"I do not know vhy you sent us to that place. But I am happy to be home. So go, and maybe one day I vill not hate to see you again."`
 			`A familiar woman is waiting for you outside your ship. Although it's been more than seven years since you've last seen her, you recognize Hjlod instantly. Her eyes are brighter than when last you parted, and she has the same lopsided grin that you remember. "<first>, I saw your ship landing, and thought I vould say hello."`
 			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
-			`	"A data archive with the latest briefings and analyses. Heavily shielded and encrypted, of course, so no need to worry about it showing up on a scan. It has to get there by <date>. So, could you do it?" They hold out a small case with a data crystal visible through the window.`
-			`As the scan results arrive the data is relayed down to the team in the cargo hold. Your video feed shows a large hologram of the system floating in midair above one of the pallets. Nearby, terminals flash rolling readouts and analyses. As the data on the spectral ship solidifies, cones of projected courses appear on the display. Line by line the cone tightens in as additional data flows from your telemetry, closing in on a path intersecting with the nearby world.`
-			`	He gestures confidently. "A team of Remnant, for instance, could all review incoming data from an experiment, form their own analyses, and then hold what amounts to a conference where each fully presents their thoughts and ideas with supporting data and reasoning within the span of a few minutes."`
-system Nnaug
 	object "Sies Upi"
 planet "Sies Upi"
-	description "Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry world with harsh living environments serves as more of an outpost than it does a colony, but nevertheless the Vi found ways to create manageable living conditions."
+	description `Sies Upi is one of the most recently colonized planets of the Gegno Vi. This hot, dry, and harsh world serves as more of an outpost than it does a colony, but nevertheless the Vi have found ways to create manageable living conditions for their settlers.`
 		"Brocken"
 			`	"What part of non-negotiable did you not understand? You're pushing your luck, Captain <last>. I didn't expect you to be such a petty money pincher."`
 		"Shepard"
+			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh.'"`
+			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh.'"`
+		ship Geocoris "Vai e Lur"
+				`	"Uh, luf e ow, vai, luf e eh?"`
+				`	"No wait! Luf e ow, vai, luf e eh?"`
+		"Vai"
+		"Mis"
+			`	Torrey breaks out into a brilliant grin. "Well, that's great news, then. You'll find Irene at the militia base on <destination> - that's Gunnery Sergeant Irene Brower. I do appreciate this. You'll be paid upon receipt of the package, too, lest you think my appreciation is all I can give."`
+			`You arrive at the militia base on <destination>, and ask at the gate for Gunnery Sergeant Irene Brower. After a few minutes, a compact young woman with close-cropped blonde hair appears and walks over. When she sees the package at your feet, her face splits into a lopsided grin and her steps quicken. "I see you've brought me a package; this must be from Torrey! She said she was sending something."`
+			`		MSGT IRENE BROWER`
+			`As you step out of your ship, you spot a familiar face: Irene Brower, the gunnery sergeant you delivered a care package to before the war, though she seems to have master sergeant insignia now. She's on crutches, with what looks like a brand-new prosthetic leg. When she spots you, her pained face brightens. "Hey, I know you! You brought me that package from Tor before. Thanks!" She shifts her weight, then winces and shifts it back.`
+		log "Minor People" "Torrey and Irene" `Torrey Dupont, an activist, is friends with SMDP militia NCO Irene Brower. You delivered a package for them.`
+		"Brin"
+		"exis"
+			`	The old man narrows his eyes at you and his mouth falls slightly open like he's trying to make sense of a puzzle. Finally he says, "What's the bits between a fella's legs gotta do with anything? I already said, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+			`	The old man gives you a gruff nod and says, "Ah, I see. Can be confusing for a newcomer, I s'pose. What's 'tween a fella's legs gots nothing to do with it. Just like I said before, 'Ser' is just what decent folk call each other; ain't nothing more to it. Don't matter if you're a guy, gal, or anything else. Hel, I reckon I'd even call an elf 'Ser' if they done me a good turn.`
+planet Independance
+	description `Independance, originally named for a document of emancipation for an ancient nation on old Earth, became of interest to the Confederated Councils when they began to consider plans for a defense against an invasion. One such plan involved deploying "cloud bunkers" into the gas giants of the Outer Rim from which an uprising could be staged against a foreign occupier. Independance, given its fitting name and position near Alvorada, was chosen as the testing site for this project.`
+	description `	Of the few prototype bunkers that were deployed, none ever survived the surface of Independance; the Councils simply didn't have the technology for such an ambitious project. The official who proposed the plan was shortly shuffled out of the Politburo, and what remained of the bunkers were left quietly in the depths of the gas giant.`
+	object Independance
+system Currus
+	link Currus
+		"Mian"
+		"i' amazin"          # is amazing (mispronounced)
+            * Care Package 2a has been replaced with a new mission, FW Deep Memorial, a set of missions and events that offers regardless of the player's choices, but which has a branch if Brower dies during the attack.
+			`	He smiles sadly. "Skaldgar always had a nose for good folks. Anyways, he told me he had a nephew named Helm who worked at the Norn spaceport. Find 'im and he can get'cha and this stone where it needs to go." The young man then looks you in the eye and gives a slow respectful nod, "For Ol' Skaldgar, may he be findin' ore in hel."`
+			`	"Oh yes." He shifts his weight on the stool. "I'm old enough to remember hayipp bread, yur ki bread - you name it. Hayipp is a grain, similar to your human 'corn,' which creates a wholesome ruddy brown flour when milled. The bread was hearty, yet exquisite." You note the wistful look on his face. "Yur ki is a milk, sourced from livestock we raise. You may have seen some on Newhome; I'm told your kind has a similar animal called 'sheep.' Bread made from yur ki is rich and decadent. It is among my favorite foods to have for breakfast." He pauses for a moment and looks a bit downcast. "Acorn bread was once a rare sight in Hai cuisine. Far too sweet. But, since humans have joined us on our planets, all they want is acorn bread. The high demand has displaced all of the traditional breads that I grew up with from high traffic areas such as this spaceport restaurant. I miss having them easily available."`
+		"Love's Labour Lost"

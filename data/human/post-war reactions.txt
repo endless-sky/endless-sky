@@ -223,10 +223,10 @@ mission "War Reactions: Syndicate Orphan"
 				`	"I blew up my share of Pug ships."`
 					goto blew
 				`	"Actually, I led the battle."`
-			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device.' After some typing and swiping, he declares, "You're Captain <first> <last>! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled "Syndicate Childcare Device." After some typing and swiping, he declares, "You're Captain <first> <last>! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
 				goto next
 			label me
-			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device'. After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled "Syndicate Childcare Device." After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
 				goto next
 			label blew
 			`	"I bet you did! I wish I was on one of our warships, bravely defending us all. Blowing up Pugs, getting paid. It sounds amazing!"`

@@ -18,6 +18,9 @@ galaxy "Milky Way"
 galaxy "label arachi"
 	pos -750 615
 
+galaxy "label umbral"
+	pos 1150 -500
+
 galaxy "label core"
 	pos -136 130
 	sprite label/core
@@ -43,6 +46,9 @@ galaxy "label graveyard"
 galaxy "label hai"
 	pos -74 -497
 
+galaxy "label incipias"
+	pos 300 -870
+
 galaxy "label kimek"
 	pos -1250 215
 
@@ -67,6 +73,9 @@ galaxy "label saryds"
 galaxy "label south"
 	pos -566 501
 	sprite label/south
+
+galaxy "label successors"
+	pos -122 1385
 
 galaxy "label wanderers"
 	pos -145 -753
@@ -1792,6 +1801,74 @@ system "9 Spring Above"
 			distance 415
 			period 28.1138
 
+system Aaura-Kaska
+	pos -86 1298
+	government Successor
+	attributes successor
+	arrival 1313.28
+	habitable 1313.28
+	link Myruet-Kvelq
+	link Pelaa-Muora
+	link Stiidej-Nnesa
+	link Tuur-Kella
+	asteroids "medium rock" 11 3.12
+	asteroids "large rock" 6 3.463
+	asteroids "small metal" 17 4.43
+	asteroids "medium metal" 70 4.181
+	asteroids "large metal" 14 3.775
+	trade Clothing 282
+	trade Electronics 745
+	trade Equipment 491
+	trade Food 505
+	trade "Heavy Metals" 849
+	trade Industrial 635
+	trade "Luxury Goods" 1159
+	trade Medical 480
+	trade Metal 402
+	trade Plastic 272
+	fleet "Medium Successor Freight" 1000
+	fleet "Small Successor Transport" 2000
+	fleet "Small Old Houses" 3000
+	fleet "Small New Houses" 3000
+	fleet "Large Old Houses" 7000
+	fleet "Large New Houses" 7000
+	fleet "Old Houses Surveillance" 6000
+	fleet "New Houses Surveillance" 6000
+	haze _menu/haze-67
+	object
+		sprite star/g0
+		distance 21.316
+		period 14.51
+	object
+		sprite star/m4
+		distance 98.684
+		period 14.51
+		offset 180
+	object
+		sprite planet/dust6
+		distance 317.774
+		period 62.526
+	object
+		sprite planet/desert9
+		distance 568.214
+		period 149.503
+	object
+		sprite planet/mercury
+		distance 841.254
+		period 269.322
+	object
+		sprite planet/gas2
+		distance 1456
+		period 378.715
+		object Mosaa-Oa-Vyret
+			sprite planet/rhea
+			distance 300
+			period 200
+	object
+		sprite planet/gas7
+		distance 3071.33
+		period 1878.76
+
 system Ablodab
 	pos -854.587 592.051
 	government Coalition
@@ -1973,6 +2050,7 @@ system Acamar
 	fleet "Small Core Merchants" 2000
 	fleet "Small Republic" 3600
 	fleet "Small Syndicate" 3200
+	fleet "Derelict Core" 30000
 	object
 		sprite star/g0
 		period 10
@@ -2086,10 +2164,12 @@ system Acnanjo
 	asteroids "medium rock" 6 1.48
 	asteroids "large rock" 4 1.18
 	asteroids "large metal" 3 0.96
-	fleet "Gegno Basic" 3600
-	fleet "Gegno Miners" 2800
+	minables aluminum 12 3.216
+	minables silicon 24 6.41
+	minables silver 11 4.1
 	fleet "Small Vi" 1600
-	fleet "Vi Transport" 3700
+	fleet "Gegno Basic" 7600
+	fleet "Gegno Miners" 2800
 	object
 		sprite star/g-giant
 		period 10
@@ -2208,9 +2288,9 @@ system Actannka
 	asteroids "small metal" 5 4
 	asteroids "medium metal" 23 3.74
 	asteroids "large metal" 45 3.3
-	minables iron 22 3.6
-	minables silver 12 5.36
-	minables titanium 12 5.45
+	minables iron 11 3.6
+	minables silver 6 5.36
+	minables titanium 4 5.45
 	trade Clothing 365
 	trade Electronics 785
 	trade Equipment 700
@@ -2345,7 +2425,7 @@ system "Ae Ce L-332"
 	asteroids "large metal" 1 2.1
 	asteroids "medium rock" 11 3.6
 	minables unknown 1 2.7
-	fleet Astral 45000
+	fleet Astral 50000
 	object
 		sprite star/f-dwarf
 		period 10
@@ -2414,7 +2494,7 @@ system "Ae Il A-3"
 	government Uninhabited
 	attributes "giant star" "multi-star" "notable star" "supergiant star"
 	arrival 5000
-	habitable 15715
+	habitable 15705
 	belt 1031 5
 	belt 1674 6
 	haze _menu/haze-133
@@ -2448,9 +2528,9 @@ system "Ae Il A-3"
 			period 60
 			offset 20
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l
 		distance 9784.96
-		period 1100
+		period 3089.43
 		offset 270
 		object
 			sprite planet/lava4-b
@@ -2459,7 +2539,7 @@ system "Ae Il A-3"
 	object
 		sprite planet/gas1
 		distance 32407.6
-		period 18609.5
+		period 18621.3
 
 system "Ae Il B-11"
 	pos 397.635 -661.079
@@ -2850,7 +2930,7 @@ system Aescolanus
 		period 2870.08
 
 system Aierena
-	pos 1048.06 -348.956
+	pos 1045.83 -347.623
 	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 3000
@@ -3087,6 +3167,52 @@ system "Al Dhanab"
 		distance 2298.15
 		period 1340.95
 
+system "Al Hurr"
+	hidden
+	pos -432 -491
+	government Uninhabited
+	arrival 1715
+	habitable 1715
+	belt 1312
+	haze _menu/haze-brown
+	trade Clothing 201
+	trade Electronics 658
+	trade Equipment 484
+	trade Food 280
+	trade "Heavy Metals" 850
+	trade Industrial 621
+	trade "Luxury Goods" 1134
+	trade Medical 582
+	trade Metal 339
+	trade Plastic 353
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock15
+		distance 382
+		period 72.1145
+	object
+		sprite planet/rock6
+		distance 686
+		period 173.545
+	object Aspiration
+		sprite planet/ice8-b
+		distance 980
+		period 296.324
+	object
+		sprite planet/dust6
+		distance 1299
+		period 452.211
+	object
+		sprite planet/gas1
+		distance 1706.99
+		period 681.199
+		object
+			sprite planet/dust1
+			distance 216
+			period 11.1964
+
 system Albaldah
 	pos -350 484
 	government Republic
@@ -3263,7 +3389,7 @@ system Alcyone
 		distance 58.7886
 		period 26.2809
 	object Stormhold
-		sprite planet/ocean0
+		sprite planet/cloud1
 		distance 332.91
 		period 141.461
 	object
@@ -4101,7 +4227,7 @@ system Alkaid
 		sprite planet/gas0
 		distance 1927.89
 		period 1030.31
-		object
+		object "Rowark's Roost"
 			sprite planet/dust3-b
 			distance 266
 			period 12.0683
@@ -4335,6 +4461,7 @@ system Alnasl
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 6000
 	fleet "Small Southern Pirates" 4000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k5-old
 		distance 31.6761
@@ -4604,6 +4731,7 @@ system "Alpha Arae"
 	fleet "Large Militia" 9000
 	fleet "Small Southern Pirates" 4000
 	fleet "Large Southern Pirates" 9000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		distance 37.4834
@@ -4936,7 +5064,7 @@ system Alpheratz
 			sprite planet/rock14-b
 			distance 173
 			period 18.5791
-	object
+	object Neriene
 		sprite planet/dust0
 		distance 1246.89
 		period 527.429
@@ -4948,6 +5076,72 @@ system Alpheratz
 			sprite planet/oberon
 			distance 285
 			period 12.909
+
+system Alpherg
+	pos -1009.44 272.194
+	government Pirate
+	attributes "ccor" "giant star" "notable star" "south"
+	arrival 4475
+	habitable 4475
+	haze _menu/haze-33
+	link Fumalsamakah
+	asteroids "medium rock" 3 2.97
+	asteroids "small metal" 3 3.195
+	trade Clothing 305
+	trade Electronics 878
+	trade Equipment 442
+	trade Food 221
+	trade "Heavy Metals" 860
+	trade Industrial 900
+	trade "Luxury Goods" 1280
+	trade Medical 869
+	trade Metal 280
+	trade Plastic 286
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
+	object
+		sprite star/g-giant
+		period 10
+	object
+		sprite star/k5
+		distance 220
+		period 25
+	object "Mendez Station"
+		sprite planet/mendez
+			scale 0.5
+		distance 517.5
+		period 70.3929
+	object
+		sprite planet/cloud8-b
+		distance 1817.57
+		period 463.340
+	object Jakobsen
+		sprite planet/ocean3-b
+		distance 3164.1
+		period 1064.23
+	object
+		sprite planet/desert10-b
+		distance 3943.18
+		period 1480.58
+		object
+			sprite planet/dust1-b
+			distance 226.581
+			offset 180
+		object
+			sprite planet/dust3
+			distance 332.337
+			offset 40
+	object
+		sprite planet/gas13
+		distance 5672.61
+		period 2554.68
+		object
+			sprite planet/rhea
+			distance 535.683
+			offset 13
 
 system Altair
 	pos -357 161
@@ -5093,7 +5287,9 @@ system Anbrim
 	asteroids "small metal" 1 2.6
 	asteroids "medium metal" 39 3.4
 	asteroids "large metal" 9 2.6
-	minables yottrite 2 6.7
+	minables silicon 2 6.2
+	minables uranium 2 5.5
+	minables yottrite 3 6.7
 	fleet "Small Scin" 7900
 	fleet "Small Vi" 7900
 	object
@@ -5851,6 +6047,7 @@ system Asio
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.2
 	minables iron 7 1.8
+	minables lead 3 2.26
 	trade Clothing 230
 	trade Electronics 640
 	trade Equipment 680
@@ -5945,7 +6142,7 @@ system Aspidiske
 system Atik
 	pos -66 -52
 	government Uninhabited
-	attributes "bright star" "giant star" "multi-star" "notable star"
+	attributes "bright star" "core" "giant star" "multi-star" "notable star"
 	arrival 5000
 	habitable 15105
 	belt 1240
@@ -5974,6 +6171,7 @@ system Atik
 	fleet "Large Core Pirates" 18000
 	fleet "Human Miners" 5000
 	fleet "Korath Miners" 15000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/b-giant
 		distance 150
@@ -6119,6 +6317,31 @@ system Auhru
 		sprite planet/rock2-b
 		distance 5000
 		period 1520.57
+
+system Avasaa-Novaa
+	shrouded
+	pos 71 917.52
+	government Uninhabited
+	attributes predecessor
+	arrival 500
+	habitable 320
+	hazard "Predecessors Base Spatial Decay" 400
+	hazard "Predecessors Spatial Rift Weak" 10000
+	haze _menu/haze-tear
+	object
+		sprite star/m0
+	object
+		sprite planet/titan
+		distance 980
+		period 980
+	object
+		sprite planet/tethys-b
+		distance 1112
+		period 1112
+	object
+		sprite planet/gas2
+		distance 3502
+		period 3502
 
 system Avior
 	pos -658 -317
@@ -6383,6 +6606,63 @@ system Beginning
 			sprite planet/dust1
 			distance 256
 			period 11.563
+
+system Belenos
+	pos -901.111 279.139
+	government Pirate
+	attributes "ccor" "south"
+	arrival 1310
+	habitable 1310
+	haze _menu/haze-33
+	link Fumalsamakah
+	link Thuban
+	asteroids "small rock" 1 1.188
+	asteroids "large rock" 1 0.977
+	asteroids "small metal" 6 0.977
+	asteroids "medium metal" 6 0.871
+	trade Clothing 270
+	trade Electronics 805
+	trade Equipment 404
+	trade Food 243
+	trade "Heavy Metals" 900
+	trade Industrial 870
+	trade "Luxury Goods" 1330
+	trade Medical 833
+	trade Metal 265
+	trade Plastic 267
+	fleet "Small Southern Pirates" 600
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 5000
+	fleet "CCOR Logistics" 8000
+	object
+		sprite star/f8
+		period 10
+	object
+		sprite planet/desert0-b
+		distance 238
+		period 40.5779
+	object
+		sprite planet/ice0-b
+		distance 658.6
+		period 186.791
+	object Gagarin
+		sprite planet/forest5
+		distance 1432.76
+		period 599.355
+		object Mordente-Bridi
+			sprite planet/station18
+				scale 0.5
+			distance 185
+			period 40
+	object
+		sprite planet/gas10-b
+		distance 2762.88
+		period 1604.97
+		object
+			sprite planet/ice0-b
+			distance 271.352
+			period 81
 
 system Bellatrix
 	pos -225 -82
@@ -6695,6 +6975,7 @@ system "Beta Lupi"
 	fleet "Small Militia" 2000
 	fleet "Large Militia" 5000
 	fleet "Human Miners" 3000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		period 10
@@ -7032,6 +7313,7 @@ system Boral
 	fleet "Small Southern Pirates" 1500
 	fleet "Small Militia" 10000
 	fleet "Human Miners" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/m3
 		period 10
@@ -7085,16 +7367,16 @@ system "Bore Fah"
 	minables aluminum 12 5.51239
 	minables lead 26 6.01005
 	minables titanium 8 6.5253
-	trade Clothing 328
-	trade Electronics 695
-	trade Equipment 440
-	trade Food 577
-	trade "Heavy Metals" 865
-	trade Industrial 731
-	trade "Luxury Goods" 1145
-	trade Medical 725
-	trade Metal 358
-	trade Plastic 322
+	trade Clothing 327
+	trade Electronics 735
+	trade Equipment 484
+	trade Food 468
+	trade "Heavy Metals" 925
+	trade Industrial 718
+	trade "Luxury Goods" 1138
+	trade Medical 730
+	trade Metal 383
+	trade Plastic 385
 	fleet "Small Hai" 2000
 	fleet "Large Hai" 2000
 	fleet "Small Hai Merchant" 1000
@@ -7106,6 +7388,7 @@ system "Bore Fah"
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 15000
 	object
 		sprite star/g5
 		period 10
@@ -7210,15 +7493,15 @@ system "Bote Asu"
 	minables iron 12 7.05904
 	minables titanium 9 4.77203
 	trade Clothing 268
-	trade Electronics 665
-	trade Equipment 430
-	trade Food 477
-	trade "Heavy Metals" 875
-	trade Industrial 631
+	trade Electronics 723
+	trade Equipment 480
+	trade Food 428
+	trade "Heavy Metals" 929
+	trade Industrial 678
 	trade "Luxury Goods" 1035
-	trade Medical 765
+	trade Medical 746
 	trade Metal 408
-	trade Plastic 362
+	trade Plastic 401
 	fleet "Small Hai" 1800
 	fleet "Large Hai" 1200
 	fleet "Small Hai Merchant" 900
@@ -7806,6 +8089,7 @@ system Cardax
 	fleet "Small Core Pirates" 3000
 	fleet "Small Republic" 2000
 	fleet "Large Republic" 5000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g0
 		distance 36.6984
@@ -8144,7 +8428,7 @@ system Chikatip
 	trade Medical 606
 	trade Metal 283
 	trade Plastic 278
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Kor Efret Miners" 10800
 	object
 		sprite star/k5
@@ -8325,7 +8609,7 @@ system Chornifath
 	trade Medical 508
 	trade Metal 468
 	trade Plastic 373
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	object
 		sprite star/k0
 		period 10
@@ -8428,6 +8712,58 @@ system Chy'chra
 			distance 614
 			period 80.0847
 
+system Chyyra-Osolaa
+	pos -241 1365
+	government Successor
+	attributes successor
+	arrival 2560
+	habitable 2560
+	link Luue-Saqru
+	link Myiara-Nnesa
+	link Pelaa-Muora
+	link Raaqa-Ryuit
+	asteroids "large rock" 8 1
+	asteroids "small rock" 4 1
+	trade Clothing 248
+	trade Electronics 699
+	trade Equipment 523
+	trade Food 570
+	trade "Heavy Metals" 729
+	trade Industrial 492
+	trade "Luxury Goods" 1227
+	trade Medical 546
+	trade Metal 382
+	trade Plastic 314
+	fleet "Small New Houses" 3000
+	fleet "Large New Houses" 4000
+	fleet "Medium Successor Freight" 800
+	fleet "Small Successor Transport" 1600
+	fleet "People's Houses" 8000
+	fleet "People's Houses Raiders" 12000
+	fleet "Aqrabe Home" 1200
+	haze _menu/haze-67
+	object
+		sprite star/f0
+	object
+		sprite planet/lava4
+		distance 300
+		period 189
+	object Vyraa-Viir-Kella
+		sprite planet/water1
+		distance 1800
+		period 1800
+		object
+			sprite planet/luna-b
+			distance 320
+	object
+		sprite planet/gas8
+		distance 3240
+		period 3240
+	object Kasii-Cavasaa-Oa
+		sprite planet/ice4-b
+		distance 3688
+		period 3688
+
 system Cinxia
 	pos 265.87 415.242
 	government Remnant
@@ -8488,6 +8824,116 @@ system Cinxia
 			sprite planet/rock20
 			distance 270
 			period 16.6355
+
+system Citadelle
+	pos -980.667 225.917
+	government Pirate
+	attributes "ccor" "south"
+	arrival 1240
+	habitable 1240
+	haze _menu/haze-33
+	link Fumalsamakah
+	asteroids "small rock" 28 1.404
+	asteroids "medium rock" 7 1.24
+	asteroids "large rock" 15 2.059
+	asteroids "small metal" 1 1.287
+	asteroids "medium metal" 27 1.217
+	asteroids "large metal" 3 1.661
+	minables iron 6 1.7
+	minables lead 7 2.9
+	trade Clothing 260
+	trade Electronics 882
+	trade Equipment 470
+	trade Food 260
+	trade "Heavy Metals" 832
+	trade Industrial 911
+	trade "Luxury Goods" 1190
+	trade Medical 879
+	trade Metal 236
+	trade Plastic 278
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2500
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 4500
+	fleet "CCOR Logistics" 6000
+	object
+		sprite star/k0
+		period 15
+	object
+		sprite star/a-dwarf
+		distance 102.423
+		period 15
+	object Bailey
+		sprite planet/lava0
+		distance 192.4
+		period 30.3149
+	object Alvorada
+		sprite planet/alvorada
+			scale 0.5
+		distance 1428.7
+		period 613.423
+	object
+		sprite planet/desert0-b
+		distance 2253.29
+		period 1214.99
+	object Independance
+		sprite planet/gas14-b
+		distance 3916.23
+		period 2783.88
+		object
+			sprite planet/ice0-b
+			distance 254.677
+			period 214
+		object
+			sprite planet/ice8
+			distance 396.023
+			period 385
+			offset 54
+		object
+			sprite planet/desert9-b
+			distance 540.643
+			period 269
+
+system Clepsydra
+	pos 264 -874
+	government Uninhabited
+	attributes "bright star" "notable star"
+	arrival 4050
+	habitable 4050
+	belt 1134
+	haze _menu/haze-dark-nebula
+	link "Cura Dic"
+	link "Pedita Pri"
+	link "Pedita Sec"
+	link Supra
+	asteroids "small rock" 6 0.988
+	asteroids "medium rock" 2 0.832
+	asteroids "large rock" 3 1.209
+	asteroids "small metal" 5 0.832
+	asteroids "medium metal" 3 1.261
+	asteroids "large metal" 1 1.287
+	minables aluminum 3 1.513
+	minables yottrite 4 7
+	object
+		sprite star/a-eater
+		period 10
+	object
+		sprite star/a-dwarf
+		distance 55
+		period 10
+	object
+		sprite planet/ganymede-b
+		distance 999.815
+		period 461.752
+	object
+		sprite planet/rock7-b
+		distance 1391.08
+		period 757.811
+		offset 25
+	object
+		sprite planet/desert9
+		distance 1728.26
+		period 1049.40
 
 system Coluber
 	pos 149.504 197.389
@@ -8561,6 +9007,7 @@ system Coluber
 system Companion
 	pos -1032.59 709.051
 	government Coalition
+	attributes "saryd"
 	arrival 500
 	habitable 425
 	belt 1786
@@ -8809,8 +9256,7 @@ system Cshudlye
 	minables titanium 10 9.7
 	minables lead 20 6.64
 	minables tungsten 16 9.25
-	fleet "Small Vi" 4500
-	fleet "Vi Transport" 3800
+	fleet "Small Vi" 6500
 	object
 		sprite star/b5
 		period 10
@@ -8855,6 +9301,98 @@ system Cshudlye
 			distance 248
 			period 147.6
 
+system "Cura Dic"
+	pos 340.667 -859.667
+	government "Quarg (Incipias)"
+	attributes "quarg"
+	arrival 3880
+	habitable 3880
+	belt 1144
+	haze _menu/haze-dark-nebula
+	link Clepsydra
+	link Supra
+	asteroids "small rock" 9 4.576
+	asteroids "medium rock" 25 5.468
+	asteroids "large rock" 27 5.468
+	trade Clothing 362
+	trade Electronics 763
+	trade Equipment 644
+	trade Food 165
+	trade "Heavy Metals" 1280
+	trade Industrial 848
+	trade "Luxury Goods" 1055
+	trade Medical 509
+	trade Metal 457
+	trade Plastic 503
+	fleet Quarg 600
+	object
+		sprite star/f5-old
+		distance 34.323
+		period 47.155
+		offset 180
+	object
+		sprite star/k3
+		distance 130.677
+		period 47.155
+	object
+		sprite planet/forest4
+		distance 356
+		period 43.1339
+	object
+		sprite planet/rock5-b
+		distance 677
+		period 113.116
+	object
+		sprite planet/rock10-b
+		distance 3408
+		period 236.839
+		object "Spec Inci"
+			sprite planet/rock3
+			distance 176
+			period 88.261
+	object
+		sprite planet/ocean7
+		distance 3838
+		period 425.711
+		object "Ut Divitas"
+			sprite planet/io
+			distance 200
+
+system Currus
+	pos 260.583 -987.75
+	government Uninhabited
+	arrival 500
+	habitable 10
+	belt 1198 4
+	belt 2284 3
+	link Equus
+	link Ianua
+	link Rota
+	link Sedes
+	asteroids "small rock" 22 0.968
+	asteroids "medium rock" 18 1.408
+	asteroids "large rock" 3 1.038
+	asteroids "large metal" 2 1.056
+	minables titanium 14 1.751
+	object
+		sprite planet/browndwarf-y-rogue
+	object
+		sprite planet/rock20
+		distance 273
+		period 180.428
+	object
+		sprite planet/dust1-b
+		distance 393
+		period 311.636
+	object
+		sprite planet/io-b
+		distance 543
+		period 506.127
+	object
+		sprite planet/gas13-b
+		distance 999
+		period 1263.01
+
 system "Da Ent"
 	pos -6.22391 -462.536
 	government Hai
@@ -8869,16 +9407,16 @@ system "Da Ent"
 	asteroids "large metal" 26 1.428
 	minables lead 85 5.2954
 	minables silicon 4 4.19935
-	trade Clothing 148
-	trade Electronics 655
-	trade Equipment 420
+	trade Clothing 255
+	trade Electronics 698
+	trade Equipment 476
 	trade Food 487
-	trade "Heavy Metals" 1065
-	trade Industrial 551
-	trade "Luxury Goods" 1025
-	trade Medical 695
-	trade Metal 408
-	trade Plastic 532
+	trade "Heavy Metals" 1005
+	trade Industrial 646
+	trade "Luxury Goods" 1090
+	trade Medical 718
+	trade Metal 403
+	trade Plastic 469
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 2400
 	fleet "Small Hai Merchant" 500
@@ -8890,6 +9428,7 @@ system "Da Ent"
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 10000
 	fleet "Hai Surveillance" 3000
+	fleet "Hai Miners" 9000
 	object
 		sprite star/m3
 		period 10
@@ -8948,16 +9487,16 @@ system "Da Lest"
 	minables silicon 35 5.1558
 	minables titanium 12 3.16646
 	minables uranium 5 3.90543
-	trade Clothing 338
-	trade Electronics 885
-	trade Equipment 530
+	trade Clothing 331
+	trade Electronics 836
+	trade Equipment 520
 	trade Food 377
-	trade "Heavy Metals" 1105
-	trade Industrial 691
-	trade "Luxury Goods" 1125
-	trade Medical 595
-	trade Metal 368
-	trade Plastic 452
+	trade "Heavy Metals" 1021
+	trade Industrial 702
+	trade "Luxury Goods" 1130
+	trade Medical 678
+	trade Metal 387
+	trade Plastic 437
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 2800
 	fleet "Small Hai Merchant" 600
@@ -8969,6 +9508,7 @@ system "Da Lest"
 	fleet "Small Human Merchants (Hai)" 7000
 	fleet "Large Human Merchants (Hai)" 8000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 10000
 	object
 		sprite star/m0
 		period 10
@@ -9093,6 +9633,7 @@ system Danoa
 	fleet "Large Northern Pirates" 16000
 	fleet "Large Republic" 30000
 	fleet "Human Miners" 1600
+	fleet "Derelict Pirate" 15000
 	object
 		sprite star/m8
 		period 10
@@ -9274,7 +9815,7 @@ system Debrugt
 system "Deep Space 19K12"
 	pos -1113 -747
 	government Uninhabited
-	attributes "proto-system" "notable star"
+	attributes "inaccessible" "notable star" "proto-system"
 	arrival 500
 	habitable 135
 	belt 1977
@@ -9305,7 +9846,7 @@ system "Deep Space 19K12"
 system "Deep Space 19M1"
 	pos -895 -745
 	government Uninhabited
-	attributes "giant star" "notable star"
+	attributes "giant star" "inaccessible" "notable star"
 	arrival 4050
 	habitable 4050
 	belt 2115
@@ -9379,6 +9920,7 @@ system "Deep Space 19M1"
 system "Deep Space 19M2"
 	pos -960 -777
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 3430
 	habitable 3430
 	belt 1977
@@ -9434,7 +9976,7 @@ system "Deep Space 19M2"
 system "Deep Space 19M5"
 	pos -1133 -828
 	government Uninhabited
-	attributes "proto-system" "notable star"
+	attributes "inaccessible" "notable star" "proto-system"
 	arrival 500
 	habitable 370
 	belt 1977
@@ -9491,7 +10033,7 @@ system "Deep Space 19M5"
 system "Deep Space 1Q"
 	pos -920 -668
 	government Uninhabited
-	attributes "bright star" "notable star"
+	attributes "bright star" "inaccessible" "notable star"
 	arrival 3650
 	habitable 3650
 	belt 2577
@@ -9562,7 +10104,7 @@ system "Deep Space 1Q"
 system "Deep Space 1X"
 	pos -935 -695
 	government Uninhabited
-	attributes "notable star" "nova"
+	attributes "inaccessible" "notable star" "nova"
 	arrival 500
 	habitable 100
 	belt 1751
@@ -9588,6 +10130,7 @@ system "Deep Space 1X"
 system "Deep Space 5J"
 	pos -890 -532
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1715
 	habitable 1715
 	belt 1869
@@ -9651,6 +10194,7 @@ system "Deep Space 5J"
 system "Deep Space 5N"
 	pos -895 -584
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 980
 	habitable 980
 	belt 1236
@@ -9701,6 +10245,7 @@ system "Deep Space 5N"
 system "Deep Space 5T"
 	pos -863 -615
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 500
 	habitable 320
 	belt 1302
@@ -9753,6 +10298,7 @@ system "Deep Space 5T"
 system "Deep Space 7C"
 	pos -774 -450
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 500
 	habitable 425
 	belt 2309
@@ -9802,13 +10348,14 @@ system "Deep Space 7C"
 		distance 2557.67
 		period 2509.76
 	object "Devil-Run Wormhole"
-		sprite planet/wormhole-red
+		sprite planet/wormhole
 		distance 4106.27
 		period 5105.48
 
 system "Deep Space 7F"
 	pos -814 -472
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1080
 	habitable 1080
 	belt 1319
@@ -10262,8 +10809,10 @@ system Denebola
 		period 2677.01
 
 system Devil-Hide
+	hidden
 	pos -1047 -775
 	government "Pirate (Devil-Run Gang)"
+	attributes "inaccessible"
 	arrival 500
 	habitable 10
 	belt 5000
@@ -10299,19 +10848,12 @@ system Devil-Hide
 
 system Devil-Run
 	hidden
-	pos -19 179
+	pos -148 162
 	government Uninhabited
+	attributes "inaccessible"
 	arrival 1080
 	habitable 1080
-	asteroids "small rock" 121 1.9558
-	asteroids "medium rock" 14 1.9096
-	asteroids "large rock" 28 1.4784
-	asteroids "small metal" 8 1.8326
-	asteroids "medium metal" 77 2.2946
-	asteroids "large metal" 19 1.7094
-	minables uranium 46 2.98163
-	minables tungsten 18 3.78094
-	minables titanium 4 2.67322
+	haze _menu/haze-brown
 	trade Clothing 271
 	trade Electronics 722
 	trade Equipment 623
@@ -10322,7 +10864,6 @@ system Devil-Run
 	trade Medical 801
 	trade Metal 273
 	trade Plastic 394
-	fleet "Korath Raid" 30000
 	object
 		sprite star/g0
 		period 10
@@ -10331,7 +10872,7 @@ system Devil-Run
 		distance 351.97
 		period 80.3723
 	object "Devil-Run Wormhole"
-		sprite planet/wormhole-red
+		sprite planet/wormhole
 		distance 1805.33
 		period 933.647
 
@@ -10520,6 +11061,7 @@ system Dokdobaru
 	government "Quarg (Kor Efret)"
 	attributes "korath" "ringworld"
 	arrival 700
+	departure 1000
 	habitable 700
 	belt 1935
 	haze _menu/haze-133
@@ -10634,6 +11176,56 @@ system Dokdobaru
 		distance 812
 		period 349.820
 		offset 220
+
+system Dom'us
+	pos 180.716 -760.552
+	government Hicemus
+	arrival 1325
+	habitable 1325
+	belt 1259
+	link Hui'uc
+	link Il'le
+	asteroids "small rock" 1 6.9552
+	asteroids "medium rock" 21 7.7004
+	asteroids "large rock" 18 4.0986
+	minables copper 4 4.5
+	minables iron 2 5.3
+	minables silicon 5 3.2
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	fleet "Hicemus Standard Surveilance" 2400
+	fleet "Incipias Standard Trade" 1500
+	fleet "Incipias Standard Mining" 900
+	object
+		sprite star/g5
+		distance 103.322
+		period 20.8284
+		offset 180
+	object
+		sprite star/g3
+		distance 500.677
+		period 20.8284
+	object
+		sprite planet/cloud6
+		distance 707.022
+		period 63.7596
+	object Redias
+		sprite planet/redias
+		distance 1536.91
+		period 204.347
+		object Pon'tes
+			sprite planet/pontes
+				scale 0.5
+			distance 600
+			period 12.484
 
 system Dschubba
 	pos -598 501
@@ -10785,16 +11377,16 @@ system "Due Yoot"
 	asteroids "medium metal" 2 3.9375
 	asteroids "large metal" 1 3.528
 	minables titanium 5 3.77479
-	trade Clothing 308
-	trade Electronics 765
-	trade Equipment 540
-	trade Food 237
-	trade "Heavy Metals" 1095
-	trade Industrial 711
-	trade "Luxury Goods" 1135
-	trade Medical 595
-	trade Metal 538
-	trade Plastic 472
+	trade Clothing 319
+	trade Electronics 763
+	trade Equipment 524
+	trade Food 332
+	trade "Heavy Metals" 1017
+	trade Industrial 710
+	trade "Luxury Goods" 1134
+	trade Medical 678
+	trade Metal 455
+	trade Plastic 445
 	fleet "Small Hai" 1400
 	fleet "Large Hai" 4000
 	fleet "Small Hai Merchant" 700
@@ -10875,6 +11467,7 @@ system Durax
 	fleet "Large Syndicate" 2500
 	fleet "Korath Raid" 7000
 	fleet "Korath Miners" 17000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/g0-old
 		period 10
@@ -10912,6 +11505,7 @@ system Durax
 			period 29.2266
 
 system E-4183
+	shrouded
 	pos 1042.97 -618.13
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" "umbral reach"
@@ -10921,16 +11515,15 @@ system E-4183
 	"jump range" 50
 	haze _menu/haze-coal
 	link M-1188
-	asteroids "medium rock" 32 1.12
-	asteroids "large rock" 5 1.32
-	asteroids "small metal" 85 1.076
-	asteroids "medium metal" 10 1.232
-	asteroids "large metal" 49 0.79
+	asteroids "large rock" 3 1.32
+	asteroids "small metal" 5 1.076
+	asteroids "medium metal" 9 1.232
 	minables silver 1 8.3
 	minables aluminum 1 9.0285
-	fleet "Iije (Uninterested)" 1200
-	fleet "Iije (Swarming)" 600
-	fleet "Iije (Surveillance)" 600
+	fleet "Iije (Uninterested)" 1500
+	fleet "Iije (Swarming)" 900
+	fleet "Iije (Surveillance)" 900
+	"starfield density" .2
 	object
 		sprite star/a-giant
 		period 10
@@ -10968,6 +11561,7 @@ system E-4183
 			offset 240
 
 system E-9182
+	shrouded
 	pos 1167.2 -629
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -10977,15 +11571,16 @@ system E-9182
 	haze _menu/haze-none
 	link O-3184
 	asteroids "large rock" 1 4.29
-	asteroids "small metal" 14 3.09
-	asteroids "medium metal" 27 4.2
+	asteroids "small metal" 3 3.09
+	asteroids "medium metal" 1 4.2
 	asteroids "large metal" 1 3.64
 	minables copper 1 7.53
-	minables iron 8 7.36
-	minables aluminum 8 7.61
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	minables iron 1 7.36
+	minables aluminum 3 7.61
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 4000
+	fleet "Iije (Surveillance)" 3000
+	"starfield density" .2
 	object
 		sprite star/o0
 		period 10
@@ -11001,14 +11596,6 @@ system E-9182
 			sprite planet/dust1
 			distance 383
 			period 233
-	object
-		sprite planet/lava0-b
-		distance 1420
-		period 182.732
-	object
-		sprite planet/gas10
-		distance 2516
-		period 430.971
 	object
 		sprite planet/gas10-hot
 		distance 3132
@@ -11051,6 +11638,7 @@ system Eber
 	fleet "Small Militia" 4000
 	fleet "Large Militia" 5000
 	fleet "Small Southern Pirates" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/k5-old
 		period 10
@@ -11228,10 +11816,12 @@ system Eebu
 	asteroids "small metal" 4 0.91
 	asteroids "medium metal" 4 1.38
 	asteroids "large metal" 12 0.95
-	minables neodymium 5 3.5
 	minables copper 8 4.7
-	fleet "Small Vi" 2200
+	minables neodymium 5 3.5
+	minables titanium 16 6.9
+	fleet "Small Vi" 3600
 	fleet "Small Scin" 3500
+	fleet "Scin Warfleet" 3500
 	object
 		sprite star/g5-old
 		period 10
@@ -11313,16 +11903,16 @@ system "Ehma Ti"
 	minables lead 2 4.84357
 	minables silver 2 3.81787
 	minables titanium 1 3.78167
-	trade Clothing 308
-	trade Electronics 795
-	trade Equipment 550
-	trade Food 570
-	trade "Heavy Metals" 785
-	trade Industrial 901
-	trade "Luxury Goods" 1155
-	trade Medical 915
-	trade Metal 188
-	trade Plastic 532
+	trade Clothing 319
+	trade Electronics 775
+	trade Equipment 528
+	trade Food 466
+	trade "Heavy Metals" 893
+	trade Industrial 786
+	trade "Luxury Goods" 1142
+	trade Medical 806
+	trade Metal 315
+	trade Plastic 469
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 750
@@ -11721,8 +12311,9 @@ system Elifennka
 	asteroids "small metal" 51 4.58
 	asteroids "medium metal" 105 8.54
 	asteroids "large metal" 27 4.49
-	minables aluminum 28 8.68
-	minables titanium 31 9.59
+	minables lead 6 5.68
+	minables neodymium 11 6.33
+	minables titanium 21 7.59
 	fleet "Gegno Miners" 10000
 	fleet "Quarg (Gegno)" 4000
 	object
@@ -11902,6 +12493,7 @@ system Eltanin
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 4000
+	fleet "Derelict Southern" 30000
 	fleet Quarg 10000
 	object
 		sprite star/k3
@@ -11947,10 +12539,9 @@ system Empeles
 	asteroids "small metal" 92 5.33
 	asteroids "medium metal" 61 5.79
 	asteroids "large metal" 13 3.84
+	minables aluminum 4 7.29
 	minables iron 10 8.68
-	minables aluminum 14 7.29
-	fleet "Small Vi" 6600
-	fleet "Vi Transport" 5600
+	fleet "Small Vi" 5600
 	object
 		sprite star/g3
 		period 10
@@ -12305,6 +12896,40 @@ system "Epsilon Leonis"
 			distance 515
 			period 37.9234
 
+system Equus
+	pos 313.25 -1051.08
+	government Uninhabited
+	attributes "neutron" "notable star"
+	arrival 500
+	habitable 405
+	belt 1157 6
+	belt 2400 5
+	link Currus
+	link Rota
+	asteroids "small rock" 5 3.249
+	asteroids "medium rock" 64 2.804
+	asteroids "large rock" 12 2.668
+	asteroids "small metal" 9 2.291
+	asteroids "medium metal" 36 3.386
+	asteroids "large metal" 73 2.599
+	minables silicon 9 4.092
+	minables aluminum 28 3.354
+	hazard "Neutron Star Magnetic Field" 1
+	object
+		sprite star/neutron-small-core
+		period 10
+		object
+			sprite star/neutron-small
+			period 10
+	object
+		sprite star/f-dwarf
+		distance 400
+		period 10
+	object Methuselah
+		sprite planet/gas17
+		distance 700
+		period 971.072
+
 system "Era Natta"
 	pos 129.2 -134.8
 	government Bunrodea
@@ -12526,7 +13151,7 @@ system "Erba Yle"
 	asteroids "small metal" 13 2.07
 	asteroids "medium metal" 3 2.8
 	asteroids "large metal" 15 3.3
-	minables copper 1 3.7
+	minables copper 11 3.7
 	trade Clothing 210
 	trade Electronics 800
 	trade Equipment 670
@@ -12770,6 +13395,30 @@ system Esix
 		distance 3618.74
 		period 1163.59
 
+system "Eta Carinae"
+	shrouded
+	pos -212.62 928.99
+	government Uninhabited
+	attributes predecessor
+	arrival 5000
+	habitable 36800
+	asteroids "small rock" 1 4.65
+	asteroids "large rock" 1 4.237
+	asteroids "large metal" 1 2.55
+	haze _menu/haze-tear
+	object
+		sprite star/wr
+			scale 2.0
+		distance 200
+		period 300
+		offset 180
+		object
+			sprite star/o-supergiant
+	object
+		sprite star/o-giant
+		distance 400
+		period 300
+
 system Eteron
 	pos -330 33
 	government Republic
@@ -12804,6 +13453,7 @@ system Eteron
 	fleet "Large Republic" 4000
 	fleet "Small Northern Pirates" 1000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/m8
 		period 10
@@ -12838,8 +13488,8 @@ system Eteron
 
 system Evrae
 	pos 884.49 -475.35
-	government Gegno
-	attributes "bright star" "gegno" "notable star"
+	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 3200
 	habitable 3200
 	belt 1985
@@ -12854,12 +13504,13 @@ system Evrae
 	asteroids "small metal" 1 7.4
 	asteroids "medium metal" 12 5.2
 	asteroids "large metal" 2 5.4
-	minables platinum 1 6.8
+	minables neodymium 11 6.8
+	minables silicon 25 5.11
+	minables uranium 7 4.7
 	fleet "Small Scin" 800
 	fleet "Large Scin" 1600
-	fleet "Scin Cargo" 2200
-	fleet "Small Vi" 4900
-	fleet "Large Vi" 5900
+	fleet "Scin Cargo" 2700
+	fleet "Scin Warfleet" 3000
 	object
 		sprite star/a5
 		distance 1.24
@@ -12919,16 +13570,16 @@ system "Fah Root"
 	minables copper 4 6.40626
 	minables iron 9 4.25952
 	minables lead 22 4.29651
-	trade Clothing 458
-	trade Electronics 785
-	trade Equipment 550
-	trade Food 187
-	trade "Heavy Metals" 1105
-	trade Industrial 721
-	trade "Luxury Goods" 1135
-	trade Medical 435
-	trade Metal 538
-	trade Plastic 332
+	trade Clothing 379
+	trade Electronics 771
+	trade Equipment 528
+	trade Food 312
+	trade "Heavy Metals" 1021
+	trade Industrial 714
+	trade "Luxury Goods" 1134
+	trade Medical 614
+	trade Metal 455
+	trade Plastic 389
 	fleet "Small Hai" 4000
 	fleet "Large Hai" 8000
 	fleet "Small Hai Merchant" 2000
@@ -12994,16 +13645,16 @@ system "Fah Soom"
 	minables aluminum 4 4.22938
 	minables lead 1 2.43818
 	minables neodymium 1 3.87433
-	trade Clothing 408
-	trade Electronics 885
-	trade Equipment 730
-	trade Food 237
-	trade "Heavy Metals" 1305
-	trade Industrial 911
-	trade "Luxury Goods" 1125
-	trade Medical 615
+	trade Clothing 359
+	trade Electronics 811
+	trade Equipment 643
+	trade Food 332
+	trade "Heavy Metals" 1101
+	trade Industrial 790
+	trade "Luxury Goods" 1130
+	trade Medical 686
 	trade Metal 368
-	trade Plastic 532
+	trade Plastic 469
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 3200
 	fleet "Small Hai Merchant" 600
@@ -13083,6 +13734,7 @@ system Fala
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g5-old
 		period 10
@@ -13251,7 +13903,7 @@ system Farbutero
 	trade Medical 549
 	trade Metal 450
 	trade Plastic 403
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Small Kor Mereti" 9400
 	fleet "Large Kor Mereti" 5000
 	object
@@ -13684,7 +14336,7 @@ system Feraticus
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-l-rouge
+		sprite planet/browndwarf-l-rogue
 		period 10
 	object
 		sprite planet/rock0-b
@@ -13786,7 +14438,7 @@ system Feroteri
 	trade Medical 492
 	trade Metal 406
 	trade Plastic 451
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 12000
 	fleet "Large Kor Mereti" 6400
 	object
@@ -13930,6 +14582,7 @@ system Fingol
 	fleet "Large Republic" 3000
 	fleet "Small Northern Pirates" 2000
 	fleet "Human Miners" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/m8
 		period 10
@@ -14082,10 +14735,11 @@ system Fomalhaut
 		sprite planet/gas10-b
 		distance 2203.28
 		period 1950.10
-		object
-			sprite planet/oberon-b
-			distance 181
-			period 12.0027
+		object "Dagon Station"
+			sprite planet/station19
+				scale 0.5
+			distance 204
+			period 12.003
 		object
 			sprite planet/rock0-b
 			distance 320
@@ -14121,7 +14775,7 @@ system Fornarep
 	trade Medical 694
 	trade Metal 438
 	trade Plastic 375
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	fleet "Small Kor Mereti" 9000
 	fleet "Large Kor Mereti" 5800
 	object
@@ -14225,8 +14879,8 @@ system "Four Pillars"
 
 system Fscher
 	pos 725.47 -418.2
-	government Gegno
-	attributes "bright star" "gegno" "notable star"
+	government Uninhabited
+	attributes "bright star" "notable star"
 	arrival 5000
 	habitable 6300
 	belt 1048
@@ -14241,9 +14895,9 @@ system Fscher
 	asteroids "small metal" 30 4.3
 	asteroids "medium metal" 197 3.78
 	asteroids "large metal" 46 4.18
-	minables uranium 22 7.1
-	minables platinum 64 6.142
-	minables copper 22 5.87
+	minables copper 12 7.1
+	minables lead 4 6.142
+	minables titanium 7 5.87
 	fleet "Small Vi" 2600
 	fleet "Small Scin" 5100
 	object
@@ -14265,6 +14919,65 @@ system Fscher
 		sprite planet/gas0-hot
 		distance 15894
 		period 10098.0
+
+system Fumalsamakah
+	pos -962.334 301.805
+	government Pirate
+	attributes "bright star" "ccor" "notable star" "south"
+	arrival 5000
+	habitable 5600
+	haze _menu/haze-33
+	link Alpherg
+	link Belenos
+	link Citadelle
+	link Thuban
+	asteroids "small rock" 4 12
+	trade Clothing 318
+	trade Electronics 808
+	trade Equipment 358
+	trade Food 217
+	trade "Heavy Metals" 954
+	trade Industrial 834
+	trade "Luxury Goods" 1220
+	trade Medical 882
+	trade Metal 245
+	trade Plastic 366
+	fleet "Small Southern Pirates" 1000
+	fleet "Large Southern Pirates" 2000
+	fleet "Small CCOR" 3800
+	fleet "Large CCOR" 6000
+	fleet "CCOR Logistics" 9000
+	object
+		sprite star/b5
+		period 10
+	object
+		sprite planet/dust1-b
+		distance 757.697
+		period 111.483
+	object
+		sprite planet/gas0-b
+		distance 3608.23
+		period 1158.53
+		object
+			sprite planet/cloud0
+			distance 314.164
+			period 83
+		object
+			sprite planet/rock11-b
+			distance 475.844
+			period 121
+	object
+		sprite planet/gas1
+		distance 6016.11
+		period 2494.24
+		object
+			sprite planet/ice1
+			distance 575.411
+			period 84
+		object
+			sprite planet/rock3
+			distance 846.619
+			period 120
 
 system Furmeliki
 	pos -35.5695 -281.812
@@ -14288,7 +15001,7 @@ system Furmeliki
 	trade Medical 536
 	trade Metal 346
 	trade Plastic 313
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	object
 		sprite star/k0
 		period 10
@@ -14333,7 +15046,7 @@ system Furmeliki
 system G-3191
 	pos 1039.23 -395
 	government Uninhabited
-	attributes "bright star" "notable star" "supergiant star" "umbral reach"
+	attributes "bright star" "notable star" "supergiant star"
 	arrival 5000
 	departure 1000
 	habitable 20250
@@ -14371,6 +15084,7 @@ system G-3191
 		period 5084.55
 
 system G-6183
+	shrouded
 	pos 1019.4 -590.18
 	government Uninhabited
 	attributes "black hole" "notable star" "umbral reach"
@@ -14379,12 +15093,10 @@ system G-6183
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
-	asteroids "large metal" 1 3.4
-	minables neodymium 6 3.87
-	minables titanium 44 4.15
-	minables tungsten 16 2.37
+	minables neodymium 1 3.87
 	hazard "Small Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
+	"starfield density" .05
 	object
 		sprite star/coal-black-hole
 		period 1
@@ -14411,6 +15123,7 @@ system G-6183
 		offset 145
 
 system G-719
+	shrouded
 	pos 1162.19 -417.18
 	government Uninhabited
 	attributes "umbral reach"
@@ -14420,9 +15133,10 @@ system G-719
 	haze _menu/haze-coal
 	link W-3197
 	asteroids "large metal" 1 2.22
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 3900
+	fleet "Iije (Surveillance)" 2400
+	"starfield density" .1
 	object
 		sprite star/f3
 		distance 76.28
@@ -14441,18 +15155,6 @@ system G-719
 			distance 134
 			period 95.53
 	object
-		sprite planet/neptune
-		distance 1358
-		period 371.715
-	object
-		sprite planet/neptune-b
-		distance 2669.51
-		period 1024.49
-		object
-			sprite planet/callisto
-			distance 269.46
-			period 570.1
-	object
 		sprite planet/gas0-b
 		distance 5879
 		period 3348.23
@@ -14462,6 +15164,7 @@ system G-719
 			period 147.7
 
 system G-819
+	shrouded
 	pos 1186.97 -477.17
 	government Uninhabited
 	attributes "umbral reach"
@@ -14473,13 +15176,13 @@ system G-819
 	link H-9187
 	link W-3197
 	asteroids "small rock" 5 1.53
-	asteroids "medium rock" 5 2.4
 	asteroids "large rock" 1 2.04
 	asteroids "large metal" 2 3
 	minables iron 2 2.4
-	fleet "Iije (Uninterested)" 6000
-	fleet "Iije (Swarming)" 3000
-	fleet "Iije (Surveillance)" 3000
+	fleet "Iije (Uninterested)" 3000
+	fleet "Iije (Swarming)" 6000
+	fleet "Iije (Surveillance)" 3500
+	"starfield density" .2
 	object
 		sprite star/g3
 		period 10
@@ -14535,6 +15238,7 @@ system Gacrux
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 15000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/k8
 		distance 28.8811
@@ -14548,8 +15252,8 @@ system Gacrux
 		sprite planet/lava5
 		distance 316.995
 		period 98.0619
-	object
-		sprite planet/ocean5
+	object Asphodel
+		sprite planet/cloud6-b
 		distance 698.285
 		period 320.605
 	object
@@ -14605,6 +15309,7 @@ system "Gamma Cassiopeiae"
 	fleet "Large Core Pirates" 2000
 	fleet "Large Syndicate" 5000
 	fleet "Human Miners" 2000
+	fleet "Derelict Core" 10000
 	object
 		sprite star/b0
 		period 10
@@ -14701,13 +15406,13 @@ system "Gamma Corvi"
 		period 2076.63
 
 system Gaungu
-	pos 1097.72 -321.899
+	pos 1096.97 -320.418
 	government Uninhabited
 	arrival 500
 	habitable 400
 	belt 1072
 	"jump range" 80
-	haze _menu/haze-none
+	haze _menu/haze-brown
 	link Yranjiu
 	asteroids "small rock" 13 4.35
 	asteroids "medium rock" 19 3.9
@@ -14947,8 +15652,7 @@ system Ghhil
 	asteroids "medium metal" 30 3.64
 	asteroids "large metal" 4 1.95
 	minables silicon 2 6.3
-	minables copper 13 3.31
-	minables titanium 7 4.9
+	minables copper 7 3.31
 	trade Clothing 340
 	trade Electronics 760
 	trade Equipment 740
@@ -15446,6 +16150,7 @@ system Gorvi
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 4000
 	fleet "Small Northern Merchants" 8000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/wr
 		period 10
@@ -15633,6 +16338,7 @@ system Gupta
 		period 1077.08
 
 system H-8188
+	shrouded
 	pos 1206.6 -506.5
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -15642,25 +16348,16 @@ system H-8188
 	haze _menu/haze-none
 	link H-9187
 	asteroids "small rock" 1 1.32
-	asteroids "medium rock" 3 1.36
 	asteroids "large rock" 1 1.44
-	asteroids "small metal" 1 1.48
 	asteroids "medium metal" 3 1.3
 	asteroids "large metal" 2 0.81
-	fleet "Iije (Uninterested)" 6000
-	fleet "Iije (Swarming)" 3000
+	fleet "Iije (Uninterested)" 3400
+	fleet "Iije (Swarming)" 6000
 	fleet "Iije (Surveillance)" 3000
+	"starfield density" .1
 	object
 		sprite star/a0
 		period 10
-	object
-		sprite planet/rock4-b
-		distance 364
-		period 45.9796
-	object
-		sprite planet/rock16-b
-		distance 794
-		period 148.130
 	object
 		sprite planet/gas2-b
 		distance 2169
@@ -15671,6 +16368,7 @@ system H-8188
 		period 5620.03
 
 system H-9187
+	shrouded
 	pos 1130.88 -455.97
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -15684,9 +16382,10 @@ system H-9187
 	link L-118
 	link MC-42
 	asteroids "large metal" 1 4.9
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
-	fleet "Iije (Surveillance)" 2000
+	fleet "Iije (Uninterested)" 3000
+	fleet "Iije (Swarming)" 4000
+	fleet "Iije (Surveillance)" 4000
+	"starfield density" .3
 	object
 		sprite star/a3
 		period 10
@@ -15979,6 +16678,7 @@ system Hatysa
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
 		distance 5.29989
@@ -16028,16 +16728,16 @@ system "Heia Due"
 	minables copper 32 6.53713
 	minables lead 1 10.1532
 	minables silver 6 9.57567
-	trade Clothing 318
-	trade Electronics 835
-	trade Equipment 580
-	trade Food 307
-	trade "Heavy Metals" 1005
-	trade Industrial 761
-	trade "Luxury Goods" 1195
-	trade Medical 675
-	trade Metal 518
-	trade Plastic 362
+	trade Clothing 323
+	trade Electronics 791
+	trade Equipment 540
+	trade Food 360
+	trade "Heavy Metals" 981
+	trade Industrial 730
+	trade "Luxury Goods" 1158
+	trade Medical 710
+	trade Metal 447
+	trade Plastic 401
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 4000
 	fleet "Small Hai Merchant" 600
@@ -16119,7 +16819,7 @@ system Hesselpost
 	trade Medical 484
 	trade Metal 536
 	trade Plastic 281
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/k0
@@ -16184,8 +16884,8 @@ system Heutesl
 	asteroids "small metal" 6 1.71
 	asteroids "medium metal" 44 2.1
 	minables copper 8 1.1
-	minables lead 10 1.4
-	minables silicon 10 1.3
+	minables lead 7 1.4
+	minables silicon 9 1.3
 	trade Clothing 250
 	trade Electronics 650
 	trade Equipment 650
@@ -16210,7 +16910,7 @@ system Heutesl
 		period 60.0582
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
-		distance 1000
+		distance 820
 		period 349.481
 	object
 		sprite planet/gas4
@@ -16234,16 +16934,16 @@ system "Hevru Hai"
 	habitable 700
 	belt 1245
 	link "Fah Soom"
-	trade Clothing 362
-	trade Electronics 763
-	trade Equipment 644
-	trade Food 165
-	trade "Heavy Metals" 1280
-	trade Industrial 848
-	trade "Luxury Goods" 1055
-	trade Medical 509
-	trade Metal 457
-	trade Plastic 503
+	trade Clothing 337
+	trade Electronics 762
+	trade Equipment 552
+	trade Food 327
+	trade "Heavy Metals" 1060
+	trade Industrial 751
+	trade "Luxury Goods" 1109
+	trade Medical 666
+	trade Metal 417
+	trade Plastic 450
 	fleet "Small Hai" 2000
 	fleet "Large Hai" 5000
 	fleet "Small Hai Merchant" 1000
@@ -16381,16 +17081,16 @@ system "Hi Yahr"
 	asteroids "large metal" 5 5.6448
 	minables aluminum 3 9.20554
 	minables silicon 19 8.16134
-	trade Clothing 438
-	trade Electronics 605
-	trade Equipment 580
-	trade Food 540
-	trade "Heavy Metals" 795
-	trade Industrial 881
-	trade "Luxury Goods" 1355
-	trade Medical 825
-	trade Metal 308
-	trade Plastic 372
+	trade Clothing 371
+	trade Electronics 699
+	trade Equipment 540
+	trade Food 454
+	trade "Heavy Metals" 897
+	trade Industrial 778
+	trade "Luxury Goods" 1222
+	trade Medical 770
+	trade Metal 363
+	trade Plastic 405
 	fleet "Unfettered Logistics" 450
 	fleet "Small Unfettered" 500
 	fleet "Large Unfettered" 1000
@@ -16453,6 +17153,7 @@ system Hintar
 	fleet "Small Southern Merchants" 1000
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/g5
 		period 10
@@ -16510,6 +17211,7 @@ system Holeb
 	fleet "Large Southern Merchants" 3000
 	fleet "Small Southern Pirates" 5000
 	fleet "Small Militia" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/f5-old
 		period 10
@@ -16653,6 +17355,80 @@ system Host
 			distance 360
 			period 41.3874
 
+system Hui'uc
+	pos 248.933 -792.506
+	government Uninhabited
+	arrival 1505
+	habitable 1505
+	belt 1246
+	link Dom'us
+	link Il'le
+	link "Porta Terra"
+	asteroids "small rock" 17 1.859
+	asteroids "medium rock" 92 1.1726
+	asteroids "large rock" 16 1.9162
+	asteroids "small metal" 4 1.9734
+	asteroids "medium metal" 70 0.9438
+	asteroids "large metal" 6 0.9867
+	minables aluminum 10 2.29532
+	minables lead 11 1.44159
+	minables neodymium 23 1.22571
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	object
+		sprite star/g0
+		distance 36.768
+		period 15.2783
+		offset 180
+	object
+		sprite star/k5
+		distance 93.232
+		period 15.2783
+	object
+		sprite planet/rock4
+		distance 391.392
+		period 79.8380
+		object
+			sprite planet/lava0
+			distance 157
+			period 17.9093
+	object
+		sprite planet/desert4
+		distance 683.802
+		period 184.368
+	object
+		sprite planet/desert2
+		distance 863.802
+		period 261.765
+	object
+		sprite planet/ice0
+		distance 1100.09
+		period 508.649
+	object Turra
+		sprite planet/gas3
+		distance 1900.25
+		period 1593.81
+		object
+			sprite planet/dust3
+			distance 305
+			period 13.6055
+		object
+			sprite planet/rock0
+			distance 400
+			period 20.4341
+		object
+			sprite planet/rock14
+			distance 526
+			period 30.8137
+
 system Hunter
 	pos -968.587 590.051
 	government Coalition
@@ -16734,8 +17510,7 @@ system Huud
 	asteroids "medium metal" 1 3.78
 	asteroids "large metal" 1 2.55
 	minables aluminum 1 3.6
-	fleet "Large Vi" 2800
-	fleet "Large Scin" 1700
+	fleet "Small Vi" 4700
 	object
 		sprite star/f5-old
 		period 10
@@ -16756,13 +17531,49 @@ system Huud
 		distance 4967
 		period 2390.86
 
+system Ianua
+	pos 371.917 -995.75
+	government Uninhabited
+	arrival 500
+	habitable 35
+	belt 1472
+	link Currus
+	link Tectum
+	asteroids "small rock" 5 2.736
+	asteroids "medium rock" 20 2.124
+	asteroids "large rock" 2 1.836
+	asteroids "small metal" 2 3.528
+	asteroids "medium metal" 1 1.836
+	asteroids "large metal" 1 3.06
+	minables uranium 4 3.906
+	minables silver 6 2.471
+	object
+		sprite star/m-dwarf
+		period 10
+	object
+		sprite planet/rock13
+		distance 228
+		period 232.770
+	object
+		sprite planet/uranus
+		distance 802
+		period 1535.63
+	object
+		sprite planet/tethys
+		distance 1247
+		period 2977.32
+	object
+		sprite planet/rock17-b
+		distance 2451
+		period 8204.28
+
 system Iigen
 	pos 928.4 -615.7
 	government Uninhabited
 	arrival 500
 	habitable 230
 	belt 1699
-	"jump range" 60
+	"jump range" 70
 	haze _menu/haze-brown
 	link Heutesl
 	link Oosuoro
@@ -16774,8 +17585,9 @@ system Iigen
 	asteroids "small metal" 33 5.42
 	asteroids "medium metal" 21 5.8
 	asteroids "large metal" 45 3.84
-	minables uranium 4 5.8
+	minables gold 4 5.8
 	minables iron 22 1.47
+	minables platinum 1 2.15
 	fleet "Gegno Basic" 1100
 	fleet "Gegno Cargo" 2800
 	fleet "Gegno Miners" 2400
@@ -16819,10 +17631,12 @@ system Iinjma
 	asteroids "small metal" 51 4.9
 	asteroids "medium metal" 4 5.4
 	asteroids "large metal" 55 4.8
-	minables iron 1 8.91
-	minables neodymium 4 9.39
+	minables iron 11 4.91
+	minables lead 9 3.6
+	minables neodymium 4 2.39
 	fleet "Small Scin" 3500
-	fleet "Scin Transport" 4500
+	fleet "Scin Transport" 6000
+	fleet "Gegno Miners" 7000
 	object
 		sprite star/a3
 		distance 5.36
@@ -16983,8 +17797,7 @@ system Ildaria
 	fleet "Large Southern Merchants" 2000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 6000
-	fleet "Small Southern Pirates" 1000
-	fleet "Large Southern Pirates" 2000
+	fleet "Derelict Southern" 25000
 	object
 		sprite star/nova-small
 		period 10
@@ -17021,6 +17834,7 @@ system Iliniza
 	link Zeinar
 	asteroids "large metal" 1 5.1
 	minables iron 46 1.16
+	minables silver 9 2.8
 	trade Clothing 190
 	trade Electronics 810
 	trade Equipment 670
@@ -17035,6 +17849,7 @@ system Iliniza
 	fleet "Large Scin" 2500
 	fleet "Scin Transport" 600
 	fleet "Scin Cargo" 1200
+	fleet "Scin Warfleet" 4000
 	object
 		sprite star/g5
 		distance 30.19
@@ -17084,9 +17899,21 @@ system Ilirco
 	link Yerser
 	asteroids "medium metal" 7 2.42
 	asteroids "large metal" 5 2.2
-	minables titanium 1 3.4
+	minables lead 9 6.23
+	minables silicon 10 5.6
+	minables titanium 10 3.4
+	trade Clothing 190
+	trade Electronics 890
+	trade Equipment 600
+	trade Food 500
+	trade "Heavy Metals" 780
+	trade Industrial 730
+	trade "Luxury Goods" 910
+	trade Medical 810
+	trade Metal 440
+	trade Plastic 570
 	fleet "Small Vi" 4500
-	fleet "Small Scin" 2500
+	fleet "Small Scin" 3500
 	object
 		sprite star/k0-old
 		period 10
@@ -17107,6 +17934,61 @@ system Ilirco
 		distance 6154
 		period 6168.55
 
+system Il'le
+	pos 255.933 -716.506
+	government Uninhabited
+	arrival 1715
+	habitable 1715
+	belt 1165
+	link Dom'us
+	link Hui'uc
+	asteroids "small rock" 4 1.4352
+	asteroids "medium rock" 10 2.3
+	asteroids "large rock" 3 2.0608
+	asteroids "small metal" 2 2.3
+	asteroids "large metal" 3 1.2328
+	minables platinum 2 1.43013
+	minables titanium 5 1.78627
+	minables silicon 27 0.74013
+	minables iron 18 1.55307
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock11
+		distance 142.89
+		period 16.4979
+	object
+		sprite planet/cloud2
+		distance 492.3
+		period 105.504
+		object
+			sprite planet/lava0
+			distance 188
+			period 20.7352
+	object Occupas
+		sprite planet/gas17
+		distance 1686.91
+		period 445.913
+		object
+			sprite planet/dust0
+			distance 195
+			period 11.6339
+	object
+		sprite planet/dust4
+		distance 2030.4
+		period 883.690
+
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
@@ -17121,19 +18003,21 @@ system "Imo Dep"
 	asteroids "small metal" 98 4.4156
 	asteroids "medium metal" 124 5.9052
 	asteroids "large metal" 4 2.9792
-	minables silicon 18 10.1357
+	minables silicon 18 7.411
 	minables silver 12 6.77561
 	minables titanium 9 8.61292
-	trade Clothing 338
-	trade Electronics 765
-	trade Equipment 550
-	trade Food 477
-	trade "Heavy Metals" 615
-	trade Industrial 531
-	trade "Luxury Goods" 1315
-	trade Medical 865
-	trade Metal 198
-	trade Plastic 532
+	minables tungsten 15 3.154
+	minables uranium 7 2.786
+	trade Clothing 331
+	trade Electronics 763
+	trade Equipment 528
+	trade Food 428
+	trade "Heavy Metals" 825
+	trade Industrial 638
+	trade "Luxury Goods" 1206
+	trade Medical 786
+	trade Metal 319
+	trade Plastic 469
 	fleet "Small Hai" 2000
 	fleet "Large Hai" 4000
 	fleet "Small Hai Merchant" 1000
@@ -17145,6 +18029,7 @@ system "Imo Dep"
 	fleet "Small Human Merchants (Hai)" 10000
 	fleet "Large Human Merchants (Hai)" 14000
 	fleet "Hai Surveillance" 3000
+	fleet "Hai Miners" 8000
 	object
 		sprite star/f5
 		period 10
@@ -17261,16 +18146,16 @@ system "Io Lowe"
 	asteroids "large metal" 4 8.8425
 	minables iron 42 7.16043
 	minables silicon 42 9.89542
-	trade Clothing 268
-	trade Electronics 775
-	trade Equipment 540
-	trade Food 357
-	trade "Heavy Metals" 895
-	trade Industrial 661
-	trade "Luxury Goods" 1125
-	trade Medical 765
-	trade Metal 438
-	trade Plastic 262
+	trade Clothing 303
+	trade Electronics 767
+	trade Equipment 524
+	trade Food 380
+	trade "Heavy Metals" 937
+	trade Industrial 690
+	trade "Luxury Goods" 1130
+	trade Medical 746
+	trade Metal 415
+	trade Plastic 361
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 2400
 	fleet "Small Hai Merchant" 600
@@ -17282,6 +18167,7 @@ system "Io Lowe"
 	fleet "Small Human Merchants (Hai)" 4000
 	fleet "Large Human Merchants (Hai)" 7000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 7000
 	object
 		sprite star/m8
 		period 10
@@ -17332,16 +18218,16 @@ system "Io Mann"
 	asteroids "large metal" 1 2.5704
 	minables silicon 11 7.68053
 	minables tungsten 4 7.9976
-	trade Clothing 348
-	trade Electronics 855
-	trade Equipment 600
-	trade Food 187
-	trade "Heavy Metals" 1175
-	trade Industrial 761
-	trade "Luxury Goods" 1225
-	trade Medical 615
-	trade Metal 588
-	trade Plastic 532
+	trade Clothing 335
+	trade Electronics 799
+	trade Equipment 548
+	trade Food 312
+	trade "Heavy Metals" 1049
+	trade Industrial 730
+	trade "Luxury Goods" 1170
+	trade Medical 686
+	trade Metal 475
+	trade Plastic 469
 	fleet "Small Hai" 1400
 	fleet "Large Hai" 3600
 	fleet "Small Hai Merchant" 700
@@ -17422,6 +18308,7 @@ system Ipsing
 	trade Plastic 416
 	fleet "Small Southern Merchants" 2000
 	fleet "Small Southern Pirates" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/g0-old
 		distance 20.2927
@@ -17485,7 +18372,7 @@ system "Is Ce B-139"
 	asteroids "medium metal" 5 3.41
 	asteroids "large metal" 2 4.402
 	fleet "Vyrmeid (Plankton)" 300
-	fleet Astral 50000
+	fleet Astral 55000
 	object
 		sprite star/g8
 		period 40
@@ -17509,7 +18396,7 @@ system "Is Ce F-422"
 	asteroids "large rock" 9 2.262
 	asteroids "large metal" 1 3.783
 	fleet "Vyrmeid (Plankton)" 400
-	fleet Astral 50000
+	fleet Astral 57000
 	object
 		sprite star/a5
 		distance 52.236
@@ -17583,7 +18470,7 @@ system "Is Ce G-460"
 	minables silicon 6 10.214
 	minables unknown 2 2.5
 	fleet "Vyrmeid (Plankton)" 700
-	fleet Astral 50000
+	fleet Astral 65000
 	object
 		sprite star/k-dwarf
 		period 10
@@ -17630,7 +18517,7 @@ system "Is Ce J-591"
 	asteroids "large metal" 3 1.664
 	minables silicon 8 3.635
 	fleet "Vyrmeid (Plankton)" 450
-	fleet Astral 50000
+	fleet Astral 60000
 	object
 		sprite star/f-giant
 		distance 60.57
@@ -17814,7 +18701,7 @@ system "Is Il V-263"
 	minables titanium 3 5.731
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 700
-	fleet Astral 50000
+	fleet Astral 56000
 	object
 		sprite star/b-supergiant
 		period 10
@@ -17862,7 +18749,7 @@ system "Is Il X-626"
 	asteroids "large metal" 1 3.402
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Boomerang)" 800
-	fleet Astral 50000
+	fleet Astral 62000
 	object
 		sprite star/a8
 		distance 48.468
@@ -17905,7 +18792,7 @@ system "Is Il Z-59"
 	minables iron 14 4.93
 	fleet "Vyrmeid (Plankton)" 500
 	fleet "Vyrmeid (Cephalopod)" 600
-	fleet Astral 50000
+	fleet Astral 75000
 	object
 		sprite star/g3
 		distance 67.938
@@ -18226,8 +19113,8 @@ system Jied
 	asteroids "large metal" 1 1.25
 	minables tungsten 18 2
 	minables copper 2 2.16
-	fleet "Small Vi" 800
-	fleet "Large Vi" 1600
+	fleet "Small Vi" 1800
+	fleet "Large Vi" 2500
 	fleet "Vi Cargo" 2300
 	fleet "Small Vi II" 3600
 	fleet "Gegno Miners" 1700
@@ -18307,17 +19194,27 @@ system Jyelio
 	link Fscher
 	link Vesvii
 	link Wreoul
-	minables tungsten 2 4.15
 	minables copper 2 6.62
-	fleet "Large Vi" 1800
-	fleet "Large Scin" 2700
+	minables tungsten 1 4.15
+	trade Clothing 190
+	trade Electronics 870
+	trade Equipment 700
+	trade Food 200
+	trade "Heavy Metals" 915
+	trade Industrial 770
+	trade "Luxury Goods" 930
+	trade Medical 640
+	trade Metal 460
+	trade Plastic 420
+	fleet "Vi Warfleet" 2400
+	fleet "Scin Warfleet" 2800
 	fleet "Small Vi II" 3600
 	fleet "Small Scin" 3200
 	object
 		sprite star/g8
 		period 10
-	object
-		sprite planet/ice3
+	object "Uye Mpi"
+		sprite planet/rock5
 		distance 307
 		period 91.7458
 	object
@@ -18495,7 +19392,7 @@ system Kaliptari
 	trade Medical 675
 	trade Metal 334
 	trade Plastic 398
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 10000
 	fleet "Large Kor Mereti" 4800
 	object
@@ -18543,7 +19440,7 @@ system Kaliptari
 			period 29.5684
 
 system Kanguwa
-	pos 990.137 -331.456
+	pos 995.47 -329.975
 	government Uninhabited
 	attributes "neutron" "notable star" "rulei"
 	music "ambient/rulei space"
@@ -18669,8 +19566,6 @@ system Karhio
 	minables aluminum 1 7.1
 	minables tungsten 12 6.8
 	minables uranium 1 9.7
-	fleet "Small Vi" 7100
-	fleet "Vi Transport" 6300
 	object
 		sprite star/k5-old
 		distance 9.4
@@ -18758,6 +19653,106 @@ system Kashikt
 			sprite planet/ice7-b
 			distance 297
 			period 13.0737
+
+system Kasii-Cavaasa
+	shrouded
+	pos -21.76 909.31
+	government Uninhabited
+	attributes predecessor
+	arrival 5000
+	habitable 17025
+	link Mavra-Ijsola
+	hazard "Predecessors Base Spatial Decay" 400
+	asteroids "small rock" 1 1
+	asteroids "small metal" 3 1
+	haze _menu/haze-tear
+	object
+		sprite star/b-supergiant
+	object
+		sprite planet/lava0
+		distance 2250
+		period 2000
+	object Cavaasa-Vasa-Tej
+		sprite planet/dust7-b
+		distance 3890
+		period 3000
+
+system Kasii-Sola
+	shrouded
+	pos -23 1089.98
+	government Uninhabited
+	attributes predecessor
+	arrival 500
+	habitable 320
+	link Vasa-Oorua
+	hazard "Predecessors Base Spatial Decay" 600
+	asteroids "small rock" 1 1.005
+	asteroids "small metal" 1 1.17
+	haze _menu/haze-tear
+	object
+		sprite star/m0
+		period 10
+	object
+		sprite planet/gas14-b
+		distance 1186.32
+		period 913.667
+		object
+			sprite planet/luna-b
+			distance 266
+			period 17.668
+		object Raaqa-Uur-Kaav
+			sprite planet/ocean0-b
+			distance 422
+			period 31.607
+	object
+		sprite planet/cloud0
+		distance 2600
+		period 2600
+		object
+			sprite planet/desert4
+			distance 235.36
+			period 32
+	object
+		sprite planet/gas2
+		distance 3991.81
+		period 5639.49
+		object
+			sprite planet/rhea
+			distance 209
+			period 18.308
+		object
+			sprite planet/dust3
+			distance 322
+			period 35.011
+	object
+		sprite planet/rock13
+		distance 5600
+		period 10000
+
+system Kasi-Vasa-Novaa
+	shrouded
+	pos -149.44 989.64
+	government Uninhabited
+	attributes predecessor
+	arrival 500
+	habitable 10
+	link Kiiraj-Luue
+	hazard "Predecessors Base Spatial Decay" 600
+	haze _menu/haze-tear
+	object
+		sprite planet/browndwarf-l-rogue
+	object
+		sprite planet/ganymede
+		distance 800
+		period 800
+	object
+		sprite planet/desert4
+		distance 1250
+		period 2000
+	object
+		sprite planet/dust0
+		distance 4000
+		period -8000
 
 system Kasikfar
 	pos 10.4305 -127.812
@@ -18920,6 +19915,161 @@ system "Kaus Borealis"
 			sprite planet/rock14-b
 			distance 371
 			period 35.2227
+
+system Kella-Uoasa
+	pos -359 1511
+	government "People's Houses"
+	attributes successor
+	arrival 5000
+	habitable 8650
+	link Luue-Saqru
+	link Maspa-Raaqa
+	asteroids "large metal" 58 4.5
+	asteroids "small rock" 32 3.317
+	asteroids "medium rock" 18 3.445
+	asteroids "large rock" 12 3.156
+	minables iron 14 4.5
+	minables silver 1 8
+	trade Clothing 370
+	trade Electronics 767
+	trade Equipment 464
+	trade Food 542
+	trade "Heavy Metals" 654
+	trade Industrial 698
+	trade "Luxury Goods" 994
+	trade Medical 792
+	trade Metal 469
+	trade Plastic 267
+	fleet "People's Houses" 800
+	fleet "Light Successor Freight" 9000
+	fleet "Small Successor Transport" 9000
+	fleet "People's Houses Raiders" 3000
+	fleet "Small New Houses" 15000
+	haze _menu/haze-none
+	"starfield density" 0.7
+	object
+		sprite star/o8
+	object
+		sprite planet/callisto
+		distance 2500
+		period 3000
+	object
+		sprite planet/gas0-hot
+		distance 5000
+		period 5000
+		object Kasii-Tuur-Saqru
+			sprite "planet/station successor 2"
+			distance 180
+			period 64
+		object
+			sprite planet/ice8
+			distance 700
+			period 1000
+	object Giiq-Sou-Kella
+		sprite planet/ocean9
+		distance 9270
+		period 10000
+
+system Khasola-Ryuit
+	shrouded
+	pos -71.87 833.59
+	government Uninhabited
+	attributes predecessor
+	arrival 5000
+	habitable 12000
+	hazard "Predecessors Base Spatial Decay" 600
+	asteroids "small metal" 2 1.5
+	asteroids "large metal" 1 1.3
+	haze _menu/haze-tear
+	object
+		sprite star/a-supergiant
+		distance 200
+		period 200
+	object
+		sprite star/o-dwarf
+		distance 600
+		period 600
+	object
+		sprite planet/browndwarf-y
+		distance 6240
+		period 6240
+		object
+			sprite planet/ice4
+			distance 520
+			period 520
+
+system Khosa-Kaska
+	pos 201 1279
+	government Successor
+	attributes successor
+	arrival 5000
+	habitable 5000
+	link Vade-Staja
+	asteroids "small metal" 8 1.5
+	asteroids "small rock" 9 1.8
+	asteroids "large metal" 1 1.2
+	minables lead 3 2.2
+	fleet "Small Old Houses" 2500
+	fleet "Successor Miners" 2000
+	fleet "Medium Successor Freight" 4000
+	fleet "Small Successor Transport" 2000
+	haze _menu/haze-67
+	object
+		sprite star/a0
+		distance 75
+		period 30
+	object
+		sprite star/o-dwarf
+		distance 120
+		period 30
+		offset 180
+	object
+		sprite planet/lava3
+		distance 1500
+		period 1500
+	object
+		sprite planet/lava0
+		distance 1732
+		period 2000
+	object Kuj-Sol-Nnesa
+		sprite planet/desert0-b
+		distance 4972
+		period 6000
+		object
+			sprite planet/rock0-b
+			distance 182
+			period 71
+
+system Kiiraj-Luue
+	shrouded
+	pos -125.52 955.66
+	government Uninhabited
+	attributes predecessor
+	arrival 2560
+	habitable 2560
+	link Kasi-Vasa-Novaa
+	hazard "Predecessors Base Spatial Decay" 200
+	hazard "Predecessors Spatial Rift Weak" 10000
+	hazard "Predecessors Spatial Rift Intense" 20000
+	haze _menu/haze-tear
+	object
+		sprite star/f0
+	object
+		sprite planet/gas2
+		distance 1230
+		period 1230
+		object
+			sprite planet/luna
+			distance 350
+			period 350
+		object
+			sprite planet/ice0
+			distance 500
+			period 500
+	object
+		sprite planet/forest1
+		distance 2890
+		period 2890
 
 system "Ki War Ek"
 	pos -1106.63 368.214
@@ -19230,11 +20380,12 @@ system "Kifrana Terberah"
 		period 3488.63
 
 system Kilema
-	pos 1043.5 -472.08
+	pos 1039.94 -479.191
 	government Uninhabited
 	arrival 500
 	habitable 150
 	belt 612
+	"jump range" 70
 	haze _menu/haze-brown
 	link "Erba Yle"
 	asteroids "small rock" 4 1.9
@@ -19244,10 +20395,10 @@ system Kilema
 	asteroids "medium metal" 7 2.7
 	asteroids "large metal" 3 2.3
 	minables lead 3 1.4
-	minables iron 5 1.1
+	minables iron 3 1.1
 	fleet "Small Scin" 4600
 	fleet "Scin Transport" 3500
-	fleet "Scin Science" 14400
+	fleet "Scin Science" 12000
 	object
 		sprite star/g-dwarf
 		period 10
@@ -19256,12 +20407,12 @@ system Kilema
 		distance 638
 		period 526.314
 		offset -10
-	object "Beryl"
+	object Beryl
 		sprite planet/beryl/beryl
-			"scale" 0.5
 			"frame rate" 4
+			scale 0.5
 		distance 1200
-		period 3000
+		period 1357.64
 		offset 75
 	object
 		sprite planet/rock17
@@ -19279,7 +20430,6 @@ system Kiluit
 	arrival 2430
 	habitable 2430
 	belt 1258
-	"jump range" 70
 	haze _menu/haze
 	link Jied
 	link Nnaug
@@ -19470,8 +20620,7 @@ system Kiru'kichi
 
 system Kneirc
 	pos 856.6 -511.36
-	government "Gegno Scin"
-	attributes "gegno" "scin"
+	government Uninhabited
 	arrival 1430
 	habitable 1430
 	belt 1163
@@ -19485,11 +20634,21 @@ system Kneirc
 	asteroids "small metal" 9 5.2
 	asteroids "medium metal" 10 6.2
 	asteroids "large metal" 15 3.8
-	minables aluminum 1 7.04
-	minables tungsten 12 6.8
-	minables uranium 1 9.7
-	fleet "Small Vi" 3800
-	fleet "Small Scin" 2400
+	minables aluminum 12 7.04
+	minables iron 7 9.7
+	minables tungsten 26 6.8
+	trade Clothing 240
+	trade Electronics 800
+	trade Equipment 730
+	trade Food 260
+	trade "Heavy Metals" 790
+	trade Industrial 680
+	trade "Luxury Goods" 950
+	trade Medical 700
+	trade Metal 370
+	trade Plastic 340
+	fleet "Small Vi" 4600
+	fleet "Small Scin" 3400
 	object
 		sprite star/k0-old
 		distance 44.7
@@ -19675,7 +20834,7 @@ system "Kor En'lakfar"
 	fleet "Korath Defense" 1775
 	fleet "Korath Civilian Miners" 6000
 	fleet "Korath Civilian Large" 955
-	fleet "Korsmanath A'awojs" 2000
+	fleet "Korsmanath A'awojs" 4000
 	object
 		sprite star/g0
 		period 10
@@ -19744,7 +20903,7 @@ system "Kor Fel'tar"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
 	fleet "Korath Surveillance" 24000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/k3
 		period 10
@@ -19817,7 +20976,7 @@ system "Kor Men"
 	fleet "Korath Surveillance" 46000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian Miners" 8000
-	fleet "Korsmanath A'awojs" 2808
+	fleet "Korsmanath A'awojs" 5616
 	object
 		sprite star/f5
 		distance 28.0824
@@ -19886,7 +21045,7 @@ system "Kor Nor'peli"
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
-	fleet "Korsmanath A'awojs" 1100
+	fleet "Korsmanath A'awojs" 2200
 	object
 		sprite star/k3
 		distance 22.4307
@@ -19961,7 +21120,7 @@ system "Kor Tar'bei"
 	fleet "Korath Ember Waste Raid" 3050
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/m3
 		period 10
@@ -20019,7 +21178,7 @@ system "Kor Zena'i"
 	fleet "Korath Large Raid" 16000
 	fleet "Korath Surveillance" 31000
 	fleet "Korath Civilian Large" 845
-	fleet "Korsmanath A'awojs" 2500
+	fleet "Korsmanath A'awojs" 5000
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -20156,7 +21315,7 @@ system Korsmanath
 	trade Medical 479
 	trade Metal 427
 	trade Plastic 440
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	fleet "Small Kor Mereti" 8000
 	object
 		sprite star/k0
@@ -20292,6 +21451,7 @@ system Kugel
 	fleet "Small Syndicate" 8000
 	fleet "Large Core Pirates" 4000
 	fleet "Small Core Pirates" 4000
+	fleet "Derelict Core" 10000
 	object
 		sprite star/g5
 		period 10
@@ -20388,12 +21548,14 @@ system Kursa
 		period 1517.13
 
 system L-118
-	pos 1085.78 -416.75
+	shrouded
+	pos 1088.89 -408.306
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
 	arrival 3000
 	habitable 3000
 	belt 1724
+	"jump range" 70
 	haze _menu/haze-coal
 	link H-9187
 	asteroids "small rock" 12 3.3
@@ -20404,6 +21566,7 @@ system L-118
 	asteroids "large metal" 1 2.8
 	minables aluminum 2 4.17
 	minables iron 3 5.3
+	"starfield density" .3
 	object
 		sprite star/a8
 		period 10
@@ -20425,6 +21588,7 @@ system L-118
 			period 434
 
 system L-6181
+	shrouded
 	pos 1139.93 -522.87
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -20435,17 +21599,15 @@ system L-6181
 	haze _menu/haze-coal
 	link M-1188
 	link MS-219
-	asteroids "small rock" 11 1.8
-	asteroids "medium rock" 33 2.7
-	asteroids "large rock" 16 2.13
-	asteroids "small metal" 3 2.8
-	asteroids "medium metal" 153 1.6
+	asteroids "small rock" 1 1.8
+	asteroids "medium metal" 1 1.6
 	asteroids "large metal" 1 1.5
-	minables titanium 8 2.32
-	minables copper 11 3.569
-	fleet "Iije (Uninterested)" 2000
-	fleet "Iije (Swarming)" 1000
-	fleet "Iije (Surveillance)" 1000
+	minables titanium 2 2.32
+	minables copper 4 3.569
+	fleet "Iije (Uninterested)" 2100
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 1800
+	"starfield density" .2
 	object
 		sprite star/m8
 		distance 16.78
@@ -20467,6 +21629,7 @@ system L-6181
 system "Last Word"
 	pos -1145.59 495.051
 	government Coalition
+	attributes "saryd"
 	arrival 625
 	habitable 625
 	belt 1761
@@ -20562,6 +21725,7 @@ system Lesath
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 4000
 	fleet "Small Militia" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/f5
 		period 10
@@ -20696,6 +21860,7 @@ system Limen
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Human Miners" 1000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/f5
 		period 10
@@ -20866,6 +22031,7 @@ system Lolami
 	fleet "Small Northern Pirates" 2000
 	fleet "Large Northern Pirates" 4000
 	fleet "Human Miners" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/g0
 		distance 11.5199
@@ -20919,16 +22085,16 @@ system "Lom Tahr"
 	asteroids "large metal" 7 2.226
 	minables aluminum 1 3.57125
 	minables neodymium 17 4.40926
-	trade Clothing 228
-	trade Electronics 865
-	trade Equipment 430
-	trade Food 337
-	trade "Heavy Metals" 995
-	trade Industrial 611
-	trade "Luxury Goods" 1025
-	trade Medical 695
-	trade Metal 458
-	trade Plastic 372
+	trade Clothing 287
+	trade Electronics 803
+	trade Equipment 480
+	trade Food 372
+	trade "Heavy Metals" 977
+	trade Industrial 670
+	trade "Luxury Goods" 1090
+	trade Medical 719
+	trade Metal 423
+	trade Plastic 405
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 3200
 	fleet "Small Hai Merchant" 600
@@ -21133,6 +22299,7 @@ system Lurata
 	fleet Quarg 7000
 	fleet "Small Militia" 9000
 	fleet "Large Southern Pirates" 4000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k3
 		period 10
@@ -21165,7 +22332,59 @@ system Lurata
 		distance 2068.68
 		period 1774.16
 
+system Luue-Saqru
+	pos -319 1432
+	government Successor
+	attributes successor
+	arrival 500
+	habitable 490
+	link Chyyra-Osolaa
+	link Kella-Uoasa
+	link Raaqa-Ryuit
+	asteroids "small rock" 32 6
+	asteroids "large rock" 16 2
+	asteroids "small metal" 24 4
+	asteroids "large metal" 32 3
+	minables silicon 8 6
+	minables aluminum 12 3.5
+	trade Clothing 291
+	trade Electronics 674
+	trade Equipment 553
+	trade Food 512
+	trade "Heavy Metals" 752
+	trade Industrial 643
+	trade "Luxury Goods" 1122
+	trade Medical 439
+	trade Metal 368
+	trade Plastic 324
+	fleet "People's Houses" 2000
+	fleet "People's Houses Raiders" 10000
+	fleet "Small New Houses" 3000
+	fleet "Successor Miners" 9000
+	fleet "Successor Miners (Well-Defended)" 6000
+	haze _menu/haze-none
+	"starfield density" 0.7
+	object
+		sprite star/k0
+	object
+		sprite planet/dust4
+		distance 1250
+		period 1200
+	object
+		sprite planet/dust0-b
+		distance 1880
+		period 1800
+	object Chyyra-Raaqa-Tuur
+		sprite planet/ice6
+		distance 3220
+		period 3000
+		object Vade-Osolaa-Kaska
+			sprite "planet/station successor 3"
+			distance 450
+			period 32
+
 system M-1188
+	shrouded
 	pos 1124.66 -607.233
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -21177,10 +22396,12 @@ system M-1188
 	link E-4183
 	link L-6181
 	link MS-219
-	asteroids "large metal" 1 2.54
-	fleet "Iije (Uninterested)" 800
-	fleet "Iije (Swarming)" 400
-	fleet "Iije (Surveillance)" 400
+	asteroids "large metal" 2 2.54
+	minables uranium 1 3.66
+	fleet "Iije (Uninterested)" 1300
+	fleet "Iije (Swarming)" 1400
+	fleet "Iije (Surveillance)" 1500
+	"starfield density" .1
 	object
 		sprite star/a-dwarf
 		period 10
@@ -21202,6 +22423,7 @@ system M-1188
 		period 38041.2
 
 system MC-42
+	shrouded
 	pos 1113.33 -500.68
 	government Uninhabited
 	attributes "iije" "umbral reach"
@@ -21211,11 +22433,12 @@ system MC-42
 	"jump range" 60
 	haze _menu/haze-coal
 	link H-9187
-	minables platinum 7 4.2
-	minables copper 32 7.91
-	fleet "Iije (Uninterested)" 3000
-	fleet "Iije (Swarming)" 1500
-	fleet "Iije (Surveillance)" 1500
+	minables platinum 1 4.2
+	minables copper 6 7.91
+	fleet "Iije (Uninterested)" 2900
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 2400
+	"starfield density" .2
 	object
 		sprite star/g5
 		period 10
@@ -21237,6 +22460,7 @@ system MC-42
 		period 3186.04
 
 system MS-219
+	shrouded
 	pos 1075.13 -568.167
 	government Uninhabited
 	attributes "bright star" "iije" "notable star" "umbral reach"
@@ -21248,9 +22472,10 @@ system MS-219
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
-	fleet "Iije (Uninterested)" 200
-	fleet "Iije (Swarming)" 100
-	fleet "Iije (Surveillance)" 100
+	fleet "Iije (Uninterested)" 400
+	fleet "Iije (Swarming)" 700
+	fleet "Iije (Surveillance)" 500
+	"starfield density" .1
 	object
 		sprite star/o-dwarf
 		distance 33.38
@@ -21370,7 +22595,7 @@ system Maoni
 	asteroids "small metal" 4 1.81
 	asteroids "medium metal" 58 1.71
 	asteroids "large metal" 33 2.37
-	minables copper 14 3.22
+	minables copper 9 3.22
 	object
 		sprite star/k-dwarf
 		period 10
@@ -21534,6 +22759,119 @@ system Markeb
 		distance 2787.49
 		period 2775.06
 
+system Maspa-Cavaasa
+	pos -534 1426
+	government Successor
+	attributes successor
+	arrival 2310
+	habitable 2310
+	link Osolaa-Uuoru
+	asteroids "large metal" 12 1.5
+	minables lead 8 1.5
+	minables silicon 4 2
+	minables tungsten 9 1
+	trade Clothing 264
+	trade Electronics 715
+	trade Equipment 491
+	trade Food 545
+	trade "Heavy Metals" 710
+	trade Industrial 617
+	trade "Luxury Goods" 1068
+	trade Medical 452
+	trade Metal 397
+	trade Plastic 320
+	fleet "Small Successor Transport" 3000
+	fleet "Successor Miners" 4000
+	fleet "Small New Houses" 8000
+	haze _menu/haze-none
+	"starfield density" 0.6
+	object
+		sprite star/g0-old
+		period 10
+	object
+		sprite star/g-dwarf
+		distance 92
+		period 10
+	object
+		sprite planet/gas3
+		distance 1200
+		period 323.262
+	object Kasi-Osolaa-Sossa
+		sprite planet/ocean7
+		distance 2500
+		period 680.325
+	object Vyraa-Giiq-Sora
+		sprite planet/forest4
+		distance 3000
+		period 1011.154
+	object
+		sprite planet/uranus
+		distance 4000
+		period 2272.498
+		object
+			sprite planet/ice0
+			distance 250
+			period 173.691
+
+system Maspa-Mavra
+	pos -514 1571
+	government Uninhabited
+	attributes successor
+	arrival 500
+	habitable 320
+	link Osolaa-Uuoru
+	asteroids "small metal" 1 1
+	asteroids "large metal" 1 1
+	minables gold 1 1
+	fleet "Small New Houses" 10000
+	fleet "Successor Miners" 5000
+	haze _menu/haze-none
+	"starfield density" 0.05
+	object
+		sprite star/m0
+	object Khosa-Kella-Oa
+		sprite planet/rock0-b
+		distance 1000
+		period 1000
+
+system Maspa-Raaqa
+	pos -334 1614
+	government Successor
+	attributes successor
+	arrival 500
+	habitable 370
+	link Kella-Uoasa
+	asteroids "small rock" 12 8
+	asteroids "large metal" 13 3
+	asteroids "small metal" 54 3
+	minables aluminum 12 5
+	minables iron 8 4
+	fleet "Successor Miners" 5000
+	fleet "Successor Miners (Well-Defended)" 3000
+	fleet "People's Houses" 2000
+	fleet "People's Houses Raiders" 4000
+	fleet "Small New Houses" 10000
+	haze _menu/haze-none
+	"starfield density" 0.5
+	object
+		sprite star/protostar-orange
+	object Giiq-Oj-Sol
+		sprite planet/desert0
+		distance 1425
+		period 512
+	object
+		sprite planet/gas4
+		distance 3200
+		period 1678
+		object
+			sprite planet/mercury-b
+			distance 300
+			period 300
+		object Myiara-Sola-Tej
+			sprite "planet/station successor 4"
+			distance 510
+			period 510
+
 system Matar
 	pos -218 272
 	government Syndicate
@@ -21592,6 +22930,35 @@ system Matar
 			sprite planet/luna
 			distance 332
 			period 23.3043
+
+system Mavra-Ijsola
+	shrouded
+	pos -68.67 883.61
+	government Uninhabited
+	attributes predecessor
+	arrival 3000
+	habitable 3000
+	hazard "Predecessors Base Spatial Decay" 200
+	hazard "Predecessors Spatial Rift Weak" 10000
+	hazard "Predecessors Spatial Rift Intense" 20000
+	link Kasii-Cavaasa
+	haze _menu/haze-tear
+	object
+		sprite star/carbon-core
+	object
+		sprite star/carbon
+	object
+		sprite planet/lava3
+		distance 2300
+		period 2300
+		object
+			sprite planet/dust0
+			distance 223
+			period 223
+	object
+		sprite planet/desert10-b
+		distance 3430
+		period 3430
 
 system Mebla
 	pos -814.587 555.051
@@ -21825,7 +23192,7 @@ system Meftarkata
 	trade Medical 599
 	trade Metal 484
 	trade Plastic 334
-	fleet "Large Quarg" 1000
+	fleet "Large Quarg (Kor Efret)" 1000
 	fleet "Kor Efret Miners" 7200
 	object
 		sprite star/f5
@@ -22050,16 +23417,16 @@ system "Mei Yohn"
 	asteroids "small metal" 2 4.851
 	asteroids "medium metal" 1 5.9136
 	asteroids "large metal" 8 3.7422
-	trade Clothing 348
-	trade Electronics 785
-	trade Equipment 550
-	trade Food 437
-	trade "Heavy Metals" 785
-	trade Industrial 711
-	trade "Luxury Goods" 1125
-	trade Medical 865
-	trade Metal 348
-	trade Plastic 362
+	trade Clothing 335
+	trade Electronics 771
+	trade Equipment 528
+	trade Food 412
+	trade "Heavy Metals" 893
+	trade Industrial 710
+	trade "Luxury Goods" 1130
+	trade Medical 786
+	trade Metal 379
+	trade Plastic 401
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 2000
 	fleet "Small Hai Merchant" 600
@@ -22174,7 +23541,7 @@ system Mekislepti
 			period 30.4733
 
 system Men
-	pos -888 361
+	pos -900.2 366.4
 	government Pirate
 	attributes "south"
 	arrival 500
@@ -22182,6 +23549,7 @@ system Men
 	belt 1580
 	haze _menu/haze-33
 	link "Beta Lupi"
+	link Thuban
 	asteroids "small rock" 9 3.504
 	asteroids "medium rock" 2 5.376
 	asteroids "large rock" 5 5.952
@@ -22899,6 +24267,7 @@ system Mintaka
 	fleet "Large Republic" 5000
 	fleet "Small Northern Merchants" 4000
 	fleet "Human Miners" 2000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
 		distance 51.7144
@@ -23122,7 +24491,7 @@ system Mirzam
 system Misam
 	pos -9 -80
 	government Pirate
-	attributes "multi-star" "notable star"
+	attributes "core" "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
 	belt 1091
@@ -23225,6 +24594,7 @@ system Mizar
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g0
 		period 10
@@ -23270,8 +24640,8 @@ system Mnashyu
 	asteroids "medium metal" 10 6.27
 	asteroids "large metal" 15 3.89
 	minables aluminum 1 7.04
-	minables tungsten 12 6.8
-	minables uranium 1 9.75
+	minables titanium 8 4.75
+	minables tungsten 22 6.8
 	object
 		sprite star/k0-old
 		distance 44.72
@@ -23326,8 +24696,7 @@ system Mohuwo
 	asteroids "large metal" 2 5.53
 	fleet "Small Scin" 1400
 	fleet "Large Scin" 1800
-	fleet "Scin Transport" 2000
-	fleet "Scin Cargo" 1900
+	fleet "Scin Transport" 3000
 	object
 		sprite star/a0
 		distance 85.6
@@ -23397,6 +24766,7 @@ system Moktar
 	fleet "Large Syndicate" 4000
 	fleet "Small Core Pirates" 2000
 	fleet "Small Northern Pirates" 3000
+	fleet "Derelict Core" 30000
 	object
 		sprite star/k8
 		distance 31.0221
@@ -23465,6 +24835,7 @@ system Mora
 	fleet "Large Southern Pirates" 3000
 	fleet "Small Republic" 20000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/k5
 		period 10
@@ -23493,8 +24864,65 @@ system Mora
 			distance 402
 			period 24.168
 
+system Mosaa-Iyra
+	pos 121 1459
+	government Successor
+	attributes successor
+	arrival 2900
+	habitable 2900
+	belt 2240 3
+	link Ojstaan-Sola
+	asteroids "small rock" 22 4
+	asteroids "large rock" 12 3
+	asteroids "small metal" 18 5
+	minables silicon 11 9
+	minables lead 18 4
+	minables gold 2 8
+	trade Clothing 378
+	trade Electronics 739
+	trade Equipment 428
+	trade Food 429
+	trade "Heavy Metals" 748
+	trade Industrial 629
+	trade "Luxury Goods" 1402
+	trade Medical 482
+	trade Metal 324
+	trade Plastic 399
+	fleet "Successor Miners" 3000
+	fleet "Small Successor Transport" 1500
+	fleet "Light Successor Freight" 1500
+	fleet "Small Old Houses" 2000
+	haze _menu/haze-none
+	"starfield density" 0.7
+	object
+		sprite star/m0
+	object
+		sprite planet/gas2
+		distance 800
+		period 250
+		object
+			sprite planet/mercury
+			distance 250
+			period 300
+		object
+			sprite planet/miranda
+			distance 325
+			period 380
+	object
+		sprite planet/gas3-b
+		distance 2870
+		period 1678
+		object Iyra-Ijasa-Iret
+			sprite planet/water0-b
+			distance 330
+			period 320
+		object
+			sprite planet/europa
+			distance 500
+			period 800
+
 system Msalbit
-	pos 978.348 -274.767
+	pos 986.052 -277.73
 	government Uninhabited
 	attributes "bright star" "notable star"
 	arrival 5000
@@ -23598,6 +25026,7 @@ system Muphrid
 	fleet "Large Southern Merchants" 3500
 	fleet "Small Southern Pirates" 6000
 	fleet "Small Republic" 5000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/g5-old
 		distance 19.407
@@ -23627,6 +25056,132 @@ system Muphrid
 		sprite planet/dust1
 		distance 2405.68
 		period 1191.15
+
+system Myiara-Nnesa
+	pos -247 1273
+	government "New Houses"
+	attributes successor
+	arrival 3450
+	habitable 3450
+	belt 1179 3
+	link Chyyra-Osolaa
+	link Pelaa-Muora
+	asteroids "large metal" 10 3.062
+	minables iron 8 1.5
+	trade Clothing 264
+	trade Electronics 715
+	trade Equipment 552
+	trade Food 305
+	trade "Heavy Metals" 790
+	trade Industrial 617
+	trade "Luxury Goods" 1068
+	trade Medical 452
+	trade Metal 452
+	trade Plastic 320
+	fleet "Small New Houses" 1500
+	fleet "Large New Houses" 2000
+	fleet "New Houses Surveillance" 2500
+	fleet "Medium Successor Freight" 1000
+	fleet "Successor Miners" 6000
+	fleet "Seineq Home" 1000
+	haze _menu/haze-67
+	object
+		sprite star/m-giant
+		period 10
+	object
+		sprite planet/gas6-b
+		distance 1311
+		period 323.262
+	object
+		distance 2153
+		period 680
+		object Yoqqa-Vasa-Vasa
+			sprite planet/ice8
+			distance 120
+			period 140
+		object O-Vasa-Oa
+			sprite planet/dust0-b
+			distance 120
+			period 140
+			offset 180
+	object
+		sprite planet/browndwarf-t
+		distance 2804
+		period 1011.154
+	object
+		sprite planet/neptune
+		distance 4811
+		period 2272.498
+		object
+			sprite planet/miranda
+			distance 238
+			period 173.691
+	object
+		sprite planet/jupiter
+		distance 9120
+		period 5931.202
+		object
+			sprite planet/desert4-b
+			distance 263
+			period 201.765
+	object
+		sprite planet/browndwarf-y
+		distance 11064
+		period 7925.354
+		object
+			sprite planet/rock7-b
+			distance 293
+			period 237.254
+		object
+			sprite planet/oberon-b
+			distance 398
+			period 489.011
+
+system Myruet-Kvelq
+	pos -104 1378
+	government Successor
+	attributes successor
+	arrival 1715
+	habitable 1715
+	link Aaura-Kaska
+	asteroids "small rock" 27 4.785
+	asteroids "medium rock" 67 3.924
+	asteroids "large rock" 4 2.233
+	asteroids "large metal" 20 3.222
+	trade Clothing 282
+	trade Electronics 745
+	trade Equipment 491
+	trade Food 505
+	trade "Heavy Metals" 849
+	trade Industrial 635
+	trade "Luxury Goods" 1159
+	trade Medical 480
+	trade Metal 402
+	trade Plastic 272
+	haze _menu/haze-33
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/cloud4
+		distance 180.84
+		period 23.489
+	object
+		sprite planet/gas9
+		distance 1481.98
+		period 551.051
+	object Uuoru-Veldt-Stir
+		sprite planet/rock11
+		distance 1683.69
+		period 870
+	object "Successor Wormhole"
+		sprite planet/wormhole-red
+		distance 2240
+		period 1400
+	object
+		sprite planet/gas1
+		distance 3735.87
+		period 2205.54
 
 system Naos
 	pos -653 -396
@@ -23734,6 +25289,7 @@ system Naper
 	fleet "Small Militia" 5000
 	fleet "Small Southern Pirates" 1000
 	fleet "Human Miners" 3000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/f5
 		period 10
@@ -24053,6 +25609,7 @@ system Nocte
 	fleet "Large Republic" 7000
 	fleet "Small Northern Pirates" 2500
 	fleet "Human Miners" 1600
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/m8
 		period 10
@@ -24068,12 +25625,12 @@ system Nocte
 		sprite planet/gas17
 		distance 973.25
 		period 1045.27
-		object
-			sprite planet/dust2
+		object Asterus
+			sprite planet/europa
 			distance 219
 			period 13.075
 		object
-			sprite planet/europa
+			sprite planet/dust2
 			distance 363
 			period 27.9019
 	object
@@ -24168,9 +25725,9 @@ system Nssryos
 	minables titanium 4 4.27
 	minables silver 6 5.13
 	fleet "Small Vi" 1400
-	fleet "Large Vi" 1600
+	fleet "Large Vi" 2600
 	fleet "Vi Transport" 1600
-	fleet "Vi Cargo" 1700
+	fleet "Vi Cargo" 4000
 	object
 		sprite star/f-giant
 		period 10
@@ -24275,6 +25832,7 @@ system Nunki
 			period 66.2404
 
 system O-3184
+	shrouded
 	pos 1100.4 -646.047
 	government Uninhabited
 	attributes "umbral reach"
@@ -24285,16 +25843,14 @@ system O-3184
 	haze _menu/haze-coal
 	link E-9182
 	link U-5188
-	asteroids "small rock" 28 5.85
 	asteroids "medium rock" 7 6.75
-	asteroids "large rock" 3 6.12
-	asteroids "medium metal" 10 6.93
 	asteroids "large metal" 1 6.84
 	minables iron 5 2.23
-	minables lead 42 3.43
-	fleet "Iije (Uninterested)" 500
-	fleet "Iije (Swarming)" 250
-	fleet "Iije (Surveillance)" 250
+	minables lead 2 3.43
+	fleet "Iije (Uninterested)" 700
+	fleet "Iije (Swarming)" 900
+	fleet "Iije (Surveillance)" 700
+	"starfield density" .1
 	object
 		sprite star/m3
 		period 10
@@ -24306,14 +25862,6 @@ system O-3184
 		sprite planet/lava0
 		distance 579.671
 		period 368.102
-	object
-		sprite planet/ocean9
-		distance 2143.07
-		period 2616.67
-		object
-			sprite planet/dust0
-			distance 155
-			period 118.84
 	object
 		sprite planet/gas17-b
 		distance 4306
@@ -24351,6 +25899,7 @@ system Oblate
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
+	fleet "Derelict Pirate" 30000
 	object
 		sprite star/m-giant
 		period 10
@@ -24401,7 +25950,7 @@ system Oihaug
 	minables tungsten 11 2.56
 	fleet "Gegno Basic" 3700
 	fleet "Gegno Cargo" 4700
-	fleet "Small Vi" 1600
+	fleet "Small Vi" 2500
 	fleet "Vi Transport" 3200
 	object
 		sprite star/m5
@@ -24427,6 +25976,90 @@ system Oihaug
 		distance 8308
 		period 23946.6
 
+system Ojstaan-Sola
+	pos 72 1379
+	government Successor
+	attributes successor
+	arrival 625
+	habitable 625
+	link Stiidej-Nnesa
+	link Uuoru-Kella
+	link Mosaa-Iyra
+	asteroids "small rock" 4 2.215
+	asteroids "medium rock" 32 3.553
+	asteroids "large rock" 29 3.887
+	asteroids "small metal" 10 3.804
+	asteroids "medium metal" 1 5.643
+	asteroids "large metal" 1 2.675
+	minables iron 8 2.5
+	minables silver 5 3
+	minables silicon 16 3.3
+	trade Clothing 363
+	trade Electronics 641
+	trade Equipment 401
+	trade Food 286
+	trade "Heavy Metals" 1022
+	trade Industrial 640
+	trade "Luxury Goods" 1278
+	trade Medical 778
+	trade Metal 586
+	trade Plastic 369
+	fleet "Small Old Houses" 1500
+	fleet "Large Old Houses" 3000
+	fleet "Old Houses Surveillance" 2000
+	fleet "Medium Successor Freight" 1200
+	fleet "Small Successor Transport" 1200
+	fleet "Myurej Home" 1000
+	haze _menu/haze-33
+	object
+		sprite star/g5
+		period 10
+	object
+		sprite planet/desert8
+		distance 264.25
+		period 68.729
+		object
+			sprite planet/europa
+			distance 116
+			period 16.025
+	object Raaqa-Kvelq-Ryuit
+		sprite planet/forest2-b
+		distance 1000.41
+		period 400.255
+		object Saska-Aa-Noorr
+			sprite "planet/station successor 1"
+			distance 300
+			period 30
+			offset 2
+	object
+		sprite planet/gas15
+		distance 2305.5
+		period 846.677
+		object
+			sprite planet/io
+			distance 208
+			period 15.79
+	object
+		sprite planet/jupiter
+		distance 4488.75
+		period 2194.731
+		object
+			sprite planet/dust7
+			distance 283
+			period 14.96
+		object
+			sprite planet/lava0
+			distance 423
+			period 27.338
+		object
+			sprite planet/ice8
+			distance 531
+			period 38.451
+		object
+			sprite planet/ice7
+			distance 727
+			period 61.598
+
 system Ookmya
 	pos 633.6 -610.17
 	government "Gegno Vi"
@@ -24440,7 +26073,7 @@ system Ookmya
 	asteroids "small metal" 136 6
 	asteroids "medium metal" 55 4
 	asteroids "large metal" 4 7.69
-	minables lead 11 1.2
+	minables lead 5 1.2
 	trade Clothing 160
 	trade Electronics 590
 	trade Equipment 700
@@ -24511,7 +26144,7 @@ system Oosuoro
 	trade Clothing 230
 	trade Electronics 655
 	trade Equipment 675
-	trade Food 480
+	trade Food 460
 	trade "Heavy Metals" 780
 	trade Industrial 640
 	trade "Luxury Goods" 1260
@@ -24582,6 +26215,7 @@ system Orbona
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 3200
 	fleet "Human Miners" 1500
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/b-giant
 		distance 3.8401
@@ -24652,6 +26286,7 @@ system Orvala
 	fleet "Small Southern Merchants" 3000
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 3000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/k0
 		distance 8.71066
@@ -24689,6 +26324,44 @@ system Orvala
 			sprite planet/dust3
 			distance 202
 			period 14.1511
+
+system Osolaa-Uuoru
+	pos -446 1453
+	government Successor
+	attributes successor
+	arrival 5000
+	habitable 13720
+	link Maspa-Cavaasa
+	link Raaqa-Ryuit
+	link Maspa-Mavra
+	asteroids "small rock" 8 7
+	asteroids "large rock" 7 8
+	trade Clothing 284
+	trade Electronics 723
+	trade Equipment 569
+	trade Food 512
+	trade "Heavy Metals" 796
+	trade Industrial 611
+	trade "Luxury Goods" 1022
+	trade Medical 443
+	trade Metal 386
+	trade Plastic 331
+	haze _menu/haze-none
+	"starfield density" 0.4
+	object
+		sprite star/o0
+	object Maspa-Viir-Kella
+		sprite planet/ocean0
+		distance 3000
+		period 3000
+		object
+			sprite planet/callisto-b
+			distance 300
+			period 300
+	object
+		sprite planet/dust0
+		distance 4500
+		period 4500
 
 system Ossipago
 	pos 6.87033 429.242
@@ -24763,6 +26436,39 @@ system Ossipago
 		distance 3674.15
 		period 1486.78
 
+system Oublaa-Khora
+	pos 24 1122
+	government Uninhabited
+	attributes predecessor
+	arrival 2160
+	habitable 2160
+	asteroids "small rock" 1 2
+	asteroids "small metal" 2 3
+	hazard "Predecessors Base Spatial Decay" 600
+	haze _menu/haze-tear
+	object
+		sprite star/g0-old
+	object Myiara-Aret-Iir
+		sprite planet/rock13
+		distance 2480
+		period 2480
+	object
+		sprite planet/gas14-b
+		distance 5289
+		period 5289
+		object
+			sprite planet/io
+			distance 528
+			period 528
+		object
+			sprite planet/rhea-b
+			distance 850
+			period 850
+		object "Successor Wormhole"
+			sprite planet/wormhole-red
+			distance 1200
+			period 1200
+
 system "Over the Rainbow"
 	pos 9904 7176
 	government Uninhabited
@@ -24835,7 +26541,7 @@ system Paeli
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-t-rouge
+		sprite planet/browndwarf-t-rogue
 		period 10
 	object
 		sprite planet/desert4-b
@@ -24849,6 +26555,21 @@ system Paeli
 		sprite planet/desert6-b
 		distance 1013.03
 		period 2883.88
+	object
+		sprite planet/gas2-b
+		distance 2010.84
+		period 8065.12
+		offset 270.243
+		object Eavine
+			sprite planet/ice8-b
+			distance 302.81
+			period 31.9279
+			offset 256.243
+		object
+			sprite planet/oberon-b
+			distance 457.81
+			period 59.353
+			offset 360
 
 system Pantica
 	pos 303.87 445.242
@@ -25069,7 +26790,7 @@ system Patir
 	hidden
 	pos -38 553
 	government Uninhabited
-	attributes "black hole" "ember waste" "notable star" "nova" "graveyard"
+	attributes "black hole" "ember waste" "graveyard" "notable star" "nova"
 	arrival 500
 	ramscoop
 		universal 0
@@ -25137,8 +26858,9 @@ system Pbelnep
 	asteroids "small metal" 7 2.89
 	asteroids "medium metal" 9 3.14
 	asteroids "large metal" 31 3.64
+	minables copper 9 3.34
+	minables silicon 38 1.6
 	minables titanium 3 5.75
-	minables silicon 28 1.6
 	trade Clothing 190
 	trade Electronics 770
 	trade Equipment 665
@@ -25257,6 +26979,154 @@ system Peacock
 			sprite planet/dust3
 			distance 498
 			period 49.3926
+
+system "Pedita Pri"
+	pos 207.333 -936
+	government Uninhabited
+	arrival 5000
+	habitable 10030
+	belt 1909
+	haze _menu/haze-dark-nebula
+	link Clepsydra
+	link "Pedita Sec"
+	asteroids "small rock" 1 2.58
+	asteroids "medium rock" 7 2.64
+	asteroids "large rock" 27 2.94
+	asteroids "small metal" 5 1.8
+	asteroids "medium metal" 4 2.55
+	asteroids "large metal" 6 2.67
+	minables iron 15 3.025
+	minables yottrite 2 7
+	object
+		sprite star/o5
+		distance 1.485
+		period 45.7
+	object
+		sprite star/l-dwarf
+		distance 148.515
+		period 45.7
+		offset 180
+	object
+		sprite planet/desert1-b
+		distance 339
+		period 24.9292
+	object
+		sprite planet/rock11
+		distance 725
+		period 77.9680
+	object
+		sprite planet/luna-b
+		distance 1943
+		period 342.072
+	object Gliese
+		sprite planet/gliese
+		distance 6037
+		period 1873.44
+		object
+			sprite planet/europa-b
+			distance 236
+			period 171.506
+
+system "Pedita Sec"
+	pos 185.333 -888
+	government Uninhabited
+	arrival 1080
+	habitable 1080
+	belt 1554
+	haze _menu/haze-dark-nebula
+	link Clepsydra
+	link "Pedita Pri"
+	asteroids "large metal" 1 4.638
+	minables yottrite 4 7
+	object
+		sprite star/g0
+		period 10
+	object
+		sprite planet/desert8-b
+		distance 285
+		period 58.5619
+	object Treser
+		sprite planet/treser
+		distance 870
+		period 1249.98
+	object
+		sprite planet/mercury-b
+		distance 2193
+		period 363.737
+
+system Pelaa-Muora
+	pos -168 1322
+	government Successor
+	attributes successor
+	arrival 2895
+	habitable 2895
+	belt 1841 4
+	belt 1916 3
+	link Aaura-Kaska
+	link Chyyra-Osolaa
+	link Myiara-Nnesa
+	asteroids "small rock" 9 5.325
+	asteroids "medium rock" 83 4.2
+	asteroids "large rock" 7 6.825
+	asteroids "small metal" 9 6.375
+	asteroids "medium metal" 3 5.25
+	asteroids "large metal" 2 5.775
+	minables neodymium 7 6.338
+	minables copper 12 7.083
+	minables gold 4 4
+	minables silver 8 5.1
+	trade Clothing 406
+	trade Electronics 720
+	trade Equipment 464
+	trade Food 534
+	trade "Heavy Metals" 775
+	trade Industrial 638
+	trade "Luxury Goods" 1119
+	trade Medical 472
+	trade Metal 338
+	trade Plastic 295
+	fleet "Small Successor Transport" 1200
+	fleet "Light Successor Freight" 1200
+	fleet "Successor Miners" 600
+	fleet "Small New Houses" 1400
+	haze _menu/haze-33
+	object
+		sprite star/f-dwarf
+		distance 161.974
+		period 88.77
+		offset 180
+	object
+		sprite star/f3
+		distance 117.026
+		period 88.77
+	object
+		sprite planet/lava2-b
+		distance 474
+		period 36.23
+	object
+		sprite planet/lava1
+		distance 836
+		period 84.862
+	object Shassa-Wyra-Orrou
+		sprite planet/rock13-b
+		distance 2600
+		period 137.629
+	object
+		sprite planet/gas13
+		distance 2880
+		period 369.46
+	object
+		sprite planet/gas1-b
+		distance 3567
+		period 685.909
+		object Uo-Oraa-Vayya
+			sprite planet/callisto-b
+			distance 502
+			period 294.356
+	object
+		sprite planet/gas4-b
+		distance 6701
+		period 1925.801
 
 system Pelubta
 	pos -757.587 575.051
@@ -25497,7 +27367,7 @@ system Perfica
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite planet/browndwarf-y-rouge
+		sprite planet/browndwarf-y-rogue
 		period 10
 	object
 		sprite planet/ice5
@@ -25547,6 +27417,7 @@ system Persian
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 2000
 	fleet "Human Miners" 3000
+	fleet "Derelict Core" 30000
 	object
 		sprite star/f5-old
 		distance 14.3826
@@ -26054,6 +27925,7 @@ system Plort
 system Polaris
 	pos -35 126
 	government Syndicate
+	attributes "core"
 	arrival 1715
 	habitable 1715
 	belt 1906
@@ -26305,6 +28177,35 @@ system Porrima
 			distance 294
 			period 11.4255
 
+system "Porta Terra"
+	pos 202.6 -825.506
+	government Uninhabited
+	attributes "bright star" "notable star"
+	arrival 3650
+	habitable 3650
+	belt 1291
+	link Hui'uc
+	asteroids "large metal" 1 2.611
+	object
+		sprite star/a0
+		period 10
+	object Aera
+		sprite planet/aera
+		distance 3050
+		period 178.762
+		object
+			sprite planet/desert4
+			distance 300
+			period 188.115
+	object Igna
+		sprite planet/gas1-b
+		distance 3847
+		period 365.187
+		object
+			sprite planet/ice8
+			distance 504
+			period 427.707
+
 system Postverta
 	hidden
 	pos 297 269
@@ -26466,7 +28367,7 @@ system Procyon
 	object
 		sprite star/k3
 		period 10
-	object
+	object Cassandra
 		sprite planet/rock4
 		distance 243.06
 		period 71.4535
@@ -26554,7 +28455,7 @@ system Ptetubo
 	asteroids "small metal" 4 1.4
 	asteroids "medium metal" 11 1.26
 	asteroids "large metal" 3 1.1
-	minables copper 4 1.9
+	minables copper 44 3.12
 	minables uranium 2 0.9
 	minables titanium 3 2.3
 	trade Clothing 195
@@ -26697,8 +28598,8 @@ system Pukako
 	asteroids "medium rock" 154 0.61
 	asteroids "large rock" 5 0.58
 	asteroids "large metal" 1 0.65
-	minables neodymium 2 0.76
-	minables lead 26 1.095
+	minables lead 5 1.095
+	minables neodymium 1 0.76
 	object
 		sprite star/k0
 		period 10
@@ -27144,6 +29045,64 @@ system Queri
 		period 349.820
 		offset 335
 
+system Raaqa-Ryuit
+	pos -338 1354
+	government Successor
+	attributes successor
+	arrival 1080
+	habitable 1080
+	link Chyyra-Osolaa
+	link Luue-Saqru
+	link Osolaa-Uuoru
+	asteroids "small rock" 14 4
+	asteroids "small metal" 8 12
+	trade Clothing 337
+	trade Electronics 762
+	trade Equipment 357
+	trade Food 434
+	trade "Heavy Metals" 728
+	trade Industrial 751
+	trade "Luxury Goods" 1380
+	trade Medical 839
+	trade Metal 496
+	trade Plastic 285
+	fleet "People's Houses" 3000
+	fleet "Medium Successor Freight" 2000
+	fleet "Small Successor Transport" 1100
+	fleet "Large New Houses" 5000
+	fleet "Kaatrij Home" 1500
+	haze _menu/haze-33
+	object
+		sprite star/g0
+	object
+		sprite planet/callisto
+		distance 600
+		period 500
+	object Raaqa-Puan-Uuoru
+		sprite planet/cloud0-b
+		distance 1000
+		period 1000
+	object
+		sprite planet/gas2-b
+		distance 2200
+		period 2200
+		object Qasa-Sija-Iri
+			sprite planet/dust0-b
+			distance 250
+			period 250
+		object
+			sprite planet/rock17-b
+			distance 410
+			period 410
+	object Aqra-Kvel-Taaq
+		sprite planet/ice1
+		distance 3420
+		period 3000
+		object
+			sprite planet/ice8-b
+			distance 380
+			period 300
+
 system Rajak
 	pos -270 -236
 	government Republic
@@ -27352,16 +29311,16 @@ system "Rati Cal"
 	asteroids "large metal" 23 3.105
 	minables titanium 2 2.87921
 	minables tungsten 3 3.30683
-	trade Clothing 338
-	trade Electronics 775
+	trade Clothing 331
+	trade Electronics 767
 	trade Equipment 460
-	trade Food 297
-	trade "Heavy Metals" 1105
-	trade Industrial 701
-	trade "Luxury Goods" 1115
-	trade Medical 665
+	trade Food 356
+	trade "Heavy Metals" 1021
+	trade Industrial 706
+	trade "Luxury Goods" 1126
+	trade Medical 706
 	trade Metal 448
-	trade Plastic 392
+	trade Plastic 413
 	fleet "Small Hai" 1800
 	fleet "Large Hai" 3400
 	fleet "Small Hai Merchant" 900
@@ -27568,6 +29527,7 @@ system Regulus
 	fleet "Large Southern Pirates" 8000
 	fleet "Small Republic" 10000
 	fleet "Human Miners" 3000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/b0
 		period 10
@@ -27790,6 +29750,7 @@ system Rigel
 	fleet "Small Northern Pirates" 3000
 	fleet "Large Northern Pirates" 5000
 	fleet "Human Miners" 2000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/b-supergiant
 		period 10
@@ -27908,6 +29869,62 @@ system Ritilas
 			distance 365
 			period 26.1475
 
+system Rota
+	pos 193.25 -1029.75
+	government Uninhabited
+	attributes "bright star" "notable star"
+	arrival 5000
+	habitable 7160
+	belt 1387
+	link Currus
+	link Equus
+	asteroids "small rock" 3 2.256
+	asteroids "medium rock" 4 2.16
+	asteroids "large rock" 4 1.992
+	asteroids "small metal" 1 2.112
+	asteroids "medium metal" 8 1.728
+	asteroids "large metal" 9 1.392
+	minables copper 4 4.121
+	minables iron 1 3.541
+	minables lead 5 3.398
+	object
+		sprite star/g0-old
+		distance 66.6
+		period 50.325
+	object
+		sprite star/b8
+		distance 118.4
+		period 50.325
+		offset 180
+	object
+		sprite planet/desert10-b
+		distance 403
+		period 38.2438
+	object
+		sprite planet/ocean8
+		distance 859
+		period 119.012
+	object Vulpa
+		sprite planet/vulpa
+		distance 6978
+		period 415.855
+		object
+			sprite planet/oberon
+			distance 244
+			period 234.736
+		object
+			sprite planet/ice0-b
+			distance 374
+			period 273.406
+		object
+			sprite planet/callisto-b
+			distance 571
+			period 357.085
+	object
+		sprite planet/browndwarf-y
+		distance 3466
+		period 964.597
+
 system Rouseu
 	pos 566.7 -404.133
 	government Uninhabited
@@ -27921,7 +29938,8 @@ system Rouseu
 	asteroids "medium rock" 42 2.32
 	asteroids "large rock" 106 1.75
 	asteroids "large metal" 1 1.51
-	minables uranium 16 7.1
+	minables aluminum 5 8.66
+	minables gold 2 5.1
 	object
 		sprite star/b5
 		distance 43.2
@@ -28168,7 +30186,7 @@ system Sabriset
 	trade Medical 621
 	trade Metal 275
 	trade Plastic 441
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/g0
 		distance 34.3036
@@ -28347,6 +30365,7 @@ system Sadr
 	fleet "Small Southern Pirates" 5000
 	fleet "Large Southern Pirates" 9000
 	fleet "Human Miners" 2000
+	fleet "Derelict Southern" 10000
 	object
 		sprite star/a5
 		distance 6.26811
@@ -28881,6 +30900,7 @@ system Scija
 	fleet "Large Vi" 1500
 	fleet "Vi Transport" 600
 	fleet "Vi Cargo" 1200
+	fleet "Vi Warfleet" 3000
 	fleet "Gegno Basic" 3200
 	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 2500
@@ -28916,12 +30936,54 @@ system Scija
 			period 413.1
 	object
 		sprite planet/saturn
-		distance 8500
+		distance 9400
 		period 4188.84
 		object
 			sprite planet/europa
 			distance 485.167
 			period 46
+
+system Sedes
+	pos 301.917 -948.417
+	government Uninhabited
+	attributes "bright star" "giant star" "notable star"
+	arrival 500
+	habitable 100
+	belt 1651
+	link Currus
+	link Tectum
+	asteroids "medium rock" 4 3.595
+	asteroids "large rock" 5 3.72
+	asteroids "small metal" 1 3.511
+	asteroids "medium metal" 2 2.424
+	asteroids "large metal" 1 3.929
+	object
+		sprite star/k-dwarf
+		period 10
+	object
+		sprite planet/rock11
+		distance 303
+		period 210.971
+	object
+		sprite planet/rock0
+		distance 691
+		period 726.569
+	object
+		sprite planet/gas16-b
+		distance 2250
+		period 4269.07
+		object
+			sprite planet/dust7
+			distance 231
+			period 132.715
+		object
+			sprite planet/rock7
+			distance 365
+			period 329.876
+		object
+			sprite planet/dust1
+			distance 478
+			period 325.028
 
 system Segesta
 	pos 111.87 294.242
@@ -29085,7 +31147,7 @@ system Seketra
 	trade Medical 635
 	trade Metal 327
 	trade Plastic 286
-	fleet "Large Quarg" 3000
+	fleet "Large Quarg (Kor Efret)" 3000
 	object
 		sprite star/k5
 		period 10
@@ -29208,7 +31270,7 @@ system Sepriaptu
 	trade Medical 604
 	trade Metal 320
 	trade Plastic 449
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/f5
 		distance 15.0211
@@ -29463,6 +31525,10 @@ system Sheratan
 		sprite planet/ocean1
 		distance 1329.34
 		period 424.581
+		object Taylor
+			sprite planet/dust0
+			distance 220
+			period 34.8
 	object
 		sprite planet/rhea-b
 		distance 1632.5
@@ -30025,7 +32091,7 @@ system Skeruto
 	trade Medical 621
 	trade Metal 393
 	trade Plastic 333
-	fleet "Large Quarg" 2000
+	fleet "Large Quarg (Kor Efret)" 2000
 	object
 		sprite star/m0
 		period 10
@@ -30411,8 +32477,8 @@ system "Sol Kimek"
 		period 31.1678
 	object "Ki Patek Ka"
 		sprite planet/ocean1
-		distance 679.68
-		period 343.812
+		distance 466.11
+		period 195.253
 		object "Starting Rubin"
 			sprite planet/station1c
 				scale 0.5
@@ -30554,7 +32620,7 @@ system Solifar
 	trade Medical 678
 	trade Metal 285
 	trade Plastic 442
-	fleet "Large Quarg" 4000
+	fleet "Large Quarg (Kor Efret)" 4000
 	object
 		sprite star/m0
 		period 10
@@ -30618,6 +32684,7 @@ system Sospi
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
 	fleet "Human Miners" 5000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/wr
 		period 10
@@ -30983,6 +33050,59 @@ system Stercutus
 		distance 2557.67
 		period 1305.80
 
+system Stiidej-Nnesa
+	pos -13 1358
+	government Successor
+	attributes successor
+	arrival 4020
+	habitable 4020
+	link Aaura-Kaska
+	link Ojstaan-Sola
+	link Tuur-Kella
+	asteroids "small rock" 32 16
+	asteroids "large rock" 28 17
+	asteroids "small metal" 44 18
+	asteroids "large metal" 18 20
+	minables lead 15 18
+	minables neodymium 12 21
+	trade Clothing 350
+	trade Electronics 665
+	trade Equipment 408
+	trade Food 272
+	trade "Heavy Metals" 978
+	trade Industrial 610
+	trade "Luxury Goods" 1353
+	trade Medical 588
+	trade Metal 513
+	trade Plastic 334
+	fleet "Small Old Houses" 1200
+	fleet "Large Old Houses" 2400
+	fleet "Old Houses Surveillance" 4000
+	fleet "Successor Miners" 1000
+	fleet "Medium Successor Freight" 1000
+	object
+		sprite star/a0
+	object
+		sprite star/k8
+		distance 104
+		period 24
+	object
+		sprite planet/rock10
+		distance 2440
+		period 2500
+	object
+		sprite planet/gas1
+		distance 4500
+		period 4500
+		object
+			sprite planet/callisto
+			distance 450
+			period 450
+		object Mavra-Sol-Kvel
+			sprite planet/forest6
+			distance 890
+			period 900
+
 system Suhail
 	pos -774 -338
 	government Republic
@@ -31175,6 +33295,53 @@ system Sumprast
 			distance 464
 			period 29.291
 
+system Supra
+	pos 319 -820
+	government Uninhabited
+	arrival 5000
+	habitable 11635
+	belt 1481
+	haze _menu/haze-dark-nebula
+	link Clepsydra
+	link "Cura Dic"
+	asteroids "small rock" 23 2.088
+	asteroids "medium rock" 72 2.064
+	asteroids "large rock" 62 1.752
+	asteroids "small metal" 4 1.608
+	asteroids "medium metal" 174 2.352
+	asteroids "large metal" 8 1.296
+	minables lead 32 3.752
+	minables yottrite 1 3
+	object
+		sprite star/o3
+		distance 18.018
+		period 52.635
+		offset 180
+	object
+		sprite star/m8
+		distance 152.482
+		period 52.635
+	object
+		sprite planet/browndwarf-l
+		distance 611
+		period 56.0065
+		object
+			sprite planet/callisto-b
+			distance 297
+			period 133.953
+	object Humo
+		sprite planet/gas7-b
+		distance 12092
+		period 235.554
+		object
+			sprite planet/rock7-b
+			distance 253
+			period 190.367
+		object
+			sprite planet/miranda
+			distance 404
+			period 384.135
+
 system Tais
 	pos -346 381
 	government Republic
@@ -31210,6 +33377,7 @@ system Tais
 	fleet Quarg 15000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 7000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/a5
 		period 10
@@ -31506,6 +33674,48 @@ system Tebuteb
 		distance 2511.99
 		period 2147.36
 
+system Tectum
+	pos 399.25 -933.083
+	government Uninhabited
+	arrival 5000
+	habitable 29300
+	belt 1350 7
+	belt 2133 1
+	link Ianua
+	link Sedes
+	asteroids "small rock" 20 2.036
+	asteroids "medium rock" 86 2.176
+	asteroids "large rock" 14 1.591
+	asteroids "large metal" 1 1.638
+	minables gold 4 2.485
+	minables aluminum 3 3.003
+	minables iron 6 2.125
+	object
+		sprite star/b0
+		distance 257.5
+		period 206.603
+	object
+		sprite star/o-giant
+		distance 257.5
+		period 206.603
+		offset 180
+	object
+		sprite planet/neptune
+		distance 907
+		period 63.8318
+		object
+			sprite planet/dust0
+			distance 222
+			period 203.715
+	object
+		sprite planet/browndwarf-t
+		distance 2550
+		period 300.909
+		object
+			sprite planet/ice7-b
+			distance 300
+			period 135.988
+
 system Tejat
 	pos -489 -107
 	government Republic
@@ -31615,6 +33825,7 @@ system Terminus
 	trade Plastic 402
 	fleet "Small Southern Pirates" 2000
 	fleet "Large Southern Pirates" 5000
+	fleet "Derelict Northern" 10000
 	object
 		sprite star/k5-old
 		period 10
@@ -31744,6 +33955,36 @@ system "Thshybo Le"
 		distance 4964.03
 		period 2473.07
 
+system Thuban
+	pos -882.629 328.38
+	government Pirate
+	attributes "bright star" "ccor" "notable star" "south"
+	arrival 5000
+	habitable 7050
+	belt 200 1
+	belt 600 1
+	belt 1500 2
+	haze _menu/haze-33
+	link Belenos
+	link Fumalsamakah
+	link Men
+	asteroids "small metal" 14 7
+	asteroids "large rock" 25 4
+	minables uranium 9 1.3
+	minables titanium 11 1
+	fleet "Small Southern Pirates" 1500
+	fleet "Large Southern Pirates" 2500
+	fleet "Small CCOR" 6000
+	object
+		sprite star/a0
+		distance 100
+		period 50
+	object
+		sprite star/a3
+		distance 100
+		period 50
+		offset 180
+
 system Torbab
 	pos -949.587 490.051
 	government Coalition
@@ -31857,6 +34098,7 @@ system Tortor
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 6000
 	fleet "Small Northern Merchants" 6000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/k3
 		period 10
@@ -31906,8 +34148,9 @@ system Tscera
 	asteroids "small metal" 9 3.1
 	asteroids "medium metal" 9 4.1
 	asteroids "large metal" 2 4.27
-	minables aluminum 1 5.75
+	minables aluminum 5 5.75
 	minables lead 7 6.19
+	minables titanium 5 5.2
 	fleet "Gegno Basic" 1000
 	fleet "Gegno Cargo" 3000
 	fleet "Quarg (Gegno)" 3800
@@ -31989,7 +34232,58 @@ system Turais
 		distance 2424.17
 		period 4109.01
 
+system Tuur-Kella
+	pos -5 1269
+	government Successor
+	attributes successor
+	arrival 5000
+	habitable 6300
+	link Aaura-Kaska
+	link Stiidej-Nnesa
+	link Uuoru-Kella
+	asteroids "small metal" 85 8
+	asteroids "large metal" 64 7
+	minables tungsten 16 9
+	trade Clothing 286
+	trade Electronics 716
+	trade Equipment 458
+	trade Food 458
+	trade "Heavy Metals" 932
+	trade Industrial 595
+	trade "Luxury Goods" 1251
+	trade Medical 588
+	trade Metal 369
+	trade Plastic 258
+	fleet "Small Old Houses" 1000
+	fleet "Large Old Houses" 1400
+	fleet "Old Houses Surveillance" 2000
+	fleet "Chydiyi Home" 2500
+	haze _menu/haze-67
+	object
+		sprite star/b3
+	object
+		sprite planet/gas0-hot
+		distance 1200
+		period 1000
+	object
+		sprite planet/gas1-b
+		distance 3800
+		period 3000
+		object Tuur-Aasa-Kaska
+			sprite planet/rock1-b
+			distance 550
+			period 500
+		object Tuur-Oa-Sola
+			sprite planet/io-b
+			distance 300
+			period 300
+	object
+		sprite planet/ice8
+		distance 7500
+		period 10000
+
 system U-5188
+	shrouded
 	pos 1084 -665.623
 	government Uninhabited
 	attributes "umbral reach"
@@ -32001,22 +34295,16 @@ system U-5188
 	link O-3184
 	link V-2189
 	asteroids "small rock" 2 2.24
-	asteroids "medium rock" 9 1.91
+	asteroids "medium rock" 2 1.91
 	asteroids "large rock" 1 2.87
-	asteroids "small metal" 37 2.8
-	asteroids "medium metal" 70 2.83
-	asteroids "large metal" 29 1.65
-	minables iron 22 2.93
-	fleet "Iije (Uninterested)" 2000
-	fleet "Iije (Swarming)" 1000
-	fleet "Iije (Surveillance)" 1000
+	minables iron 3 2.93
+	fleet "Iije (Uninterested)" 1600
+	fleet "Iije (Swarming)" 2000
+	fleet "Iije (Surveillance)" 1400
+	"starfield density" .2
 	object
 		sprite star/k5
 		period 10
-	object
-		sprite planet/rock19
-		distance 259
-		period 80.8751
 	object
 		sprite planet/dust5
 		distance 570
@@ -32050,7 +34338,7 @@ system Uelawan
 	minables lead 3 2.06
 	minables titanium 1 3.02
 	fleet "Gegno Basic" 1800
-	fleet "Small Scin" 2000
+	fleet "Small Scin" 2700
 	fleet "Gegno Miners" 2500
 	object
 		sprite star/a5
@@ -32112,9 +34400,12 @@ system Uhebe
 	asteroids "small metal" 2 1.36
 	asteroids "medium metal" 16 2
 	asteroids "large metal" 5 1.9
-	minables silicon 1 2.8
+	minables aluminum 9 8.8
 	minables neodymium 6 3.28
-	fleet "Small Vi" 4200
+	minables tungsten 3 2.11
+	fleet "Small Vi" 4000
+	fleet "Vi Transport" 6000
+	fleet "Vi Warfleet" 4200
 	object
 		sprite star/o5
 		period 10
@@ -32162,15 +34453,15 @@ system "Ula Mon"
 	minables silicon 9 5.62634
 	minables titanium 2 4.55496
 	trade Clothing 278
-	trade Electronics 675
-	trade Equipment 440
-	trade Food 417
-	trade "Heavy Metals" 875
-	trade Industrial 611
+	trade Electronics 727
+	trade Equipment 484
+	trade Food 404
+	trade "Heavy Metals" 929
+	trade Industrial 670
 	trade "Luxury Goods" 1015
 	trade Medical 855
-	trade Metal 378
-	trade Plastic 372
+	trade Metal 391
+	trade Plastic 405
 	fleet "Small Hai" 800
 	fleet "Large Hai" 1800
 	fleet "Small Hai Merchant" 400
@@ -32316,11 +34607,11 @@ system Umbral
 	fleet "Large Southern Pirates" 6000
 	object
 		sprite star/k0-old
-		distance 23.3222
+		distance 25
 		period 10.2313
 	object
 		sprite star/m0
-		distance 71.4243
+		distance 90
 		period 10.2313
 		offset 180
 	object
@@ -32391,6 +34682,7 @@ system Unagi
 	trade Plastic 364
 	fleet "Small Northern Pirates" 1500
 	fleet "Large Northern Pirates" 3000
+	fleet "Derelict Pirate" 10000
 	object
 		sprite star/m0
 		period 10
@@ -32554,8 +34846,7 @@ system Uttna
 	asteroids "large rock" 2 3.96
 	asteroids "small metal" 4 2.84
 	asteroids "large metal" 16 3.42
-	minables platinum 5 1.4
-	minables uranium 8 2.2
+	minables lead 2 2.2
 	fleet "Gegno Basic" 2600
 	fleet "Gegno Miners" 1800
 	object
@@ -32586,6 +34877,111 @@ system Uttna
 			distance 350
 			period 247.515
 
+system Uuoru-Kella
+	pos 63 1317
+	government "Old Houses"
+	attributes successor
+	arrival 2300
+	habitable 2300
+	belt 1631 6
+	link Ojstaan-Sola
+	link Valkraa-Uuoru
+	link Vade-Staja
+	link Tuur-Kella
+	asteroids "small metal" 14 4.805
+	asteroids "medium metal" 146 4.93
+	asteroids "large metal" 1 6.178
+	minables titanium 4 8.02
+	minables iron 39 9.789
+	trade Clothing 341
+	trade Electronics 678
+	trade Equipment 431
+	trade Food 409
+	trade "Heavy Metals" 1082
+	trade Industrial 674
+	trade "Luxury Goods" 1245
+	trade Medical 673
+	trade Metal 473
+	trade Plastic 323
+	fleet "Light Successor Freight" 500
+	fleet "Medium Successor Freight" 1000
+	fleet "Small Old Houses" 1000
+	fleet "Large Old Houses" 2000
+	fleet "Old Houses Surveillance" 1000
+	haze _menu/haze-67
+	object
+		sprite star/f3
+	object Aava-Aasa-Khora
+		sprite planet/cloud2
+		distance 2500
+		period 400
+		object Kua-Oa-Aava
+			sprite planet/rock7
+			distance 300
+			period 500
+	object
+		sprite planet/ocean2-b
+		distance 3940
+		period 700
+	object
+		sprite planet/gas2-b
+		distance 6000
+		period 1000
+		object
+			sprite planet/ice8-b
+			distance 500
+			period 500
+		object
+			sprite planet/io-b
+			distance 750
+			period 700
+			offset 32
+
+system Uuoru-Sossa
+	shrouded
+	pos -58 976.13
+	government Uninhabited
+	attributes predecessor
+	arrival 2700
+	habitable 2700
+	hazard "Predecessors Base Spatial Decay" 100
+	hazard "Predecessors Spatial Rift Intense" 8000
+	haze _menu/haze-tear
+	object
+		sprite star/void-scar
+			scale 8.0
+		distance 2200
+		period 2000
+		hazard "Predecessors Void Scar Erosion" 6
+	object
+		sprite star/f0
+		distance 40
+		period 80
+	object
+		sprite star/k-dwarf
+		distance 200
+		period 80
+	object
+		sprite planet/gas5
+		distance 2200
+		period 2000
+		object Kella-Uuoru-Sossa
+			sprite planet/dust6-b
+			distance 380
+			period 60
+		object
+			sprite planet/ice0
+			distance 840
+			period 72
+	object
+		sprite planet/gas12
+		distance 5000
+		period 5000
+	object
+		sprite planet/ice5
+		distance 8000
+		period 12000
+
 system "Uwa Fahn"
 	pos 35.1585 -491.67
 	government Hai
@@ -32602,16 +34998,16 @@ system "Uwa Fahn"
 	minables gold 1 5.69635
 	minables silicon 5 4.2659
 	minables tungsten 4 5.64685
-	trade Clothing 188
-	trade Electronics 865
-	trade Equipment 410
-	trade Food 537
-	trade "Heavy Metals" 1075
-	trade Industrial 621
-	trade "Luxury Goods" 925
-	trade Medical 895
-	trade Metal 398
-	trade Plastic 372
+	trade Clothing 271
+	trade Electronics 803
+	trade Equipment 472
+	trade Food 452
+	trade "Heavy Metals" 1009
+	trade Industrial 674
+	trade "Luxury Goods" 1050
+	trade Medical 798
+	trade Metal 399
+	trade Plastic 405
 	fleet "Small Hai" 1400
 	fleet "Large Hai" 1400
 	fleet "Small Hai Merchant" 700
@@ -32699,6 +35095,7 @@ system "Uwo Seija"
 		period 2910.75
 
 system V-2189
+	shrouded
 	pos 1135.9 -711.667
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -32708,11 +35105,11 @@ system V-2189
 	haze _menu/haze-none
 	link U-5188
 	asteroids "small rock" 1 5.74
-	asteroids "large rock" 3 5.6
-	asteroids "small metal" 1 7.4
-	asteroids "medium metal" 12 5.21
+	asteroids "small metal" 6 7.4
+	asteroids "medium metal" 1 5.21
 	asteroids "large metal" 2 5.44
-	minables platinum 1 6.86
+	minables platinum 2 6.86
+	"starfield density" .1
 	object
 		sprite star/o0
 		distance 77.281
@@ -32755,6 +35152,76 @@ system V-2189
 			distance 508
 			period 299.64
 
+system Vade-Staja
+	pos 152 1341
+	government Successor
+	attributes successor
+	arrival 2560
+	habitable 2560
+	link Khosa-Kaska
+	link Uuoru-Kella
+	link Valkraa-Uuoru
+	asteroids "small rock" 2 3.8
+	asteroids "medium rock" 20 5.603
+	asteroids "large rock" 1 4.444
+	asteroids "small metal" 30 5.023
+	asteroids "medium metal" 31 3.993
+	asteroids "large metal" 82 6.118
+	minables neodymium 2 9.03
+	minables silver 6 6.166
+	minables lead 8 7.544
+	trade Clothing 251
+	trade Electronics 723
+	trade Equipment 526
+	trade Food 422
+	trade "Heavy Metals" 955
+	trade Industrial 643
+	trade "Luxury Goods" 1167
+	trade Medical 468
+	trade Metal 396
+	trade Plastic 286
+	fleet "Small Successor Transport" 1000
+	fleet "Light Successor Freight" 1500
+	fleet "Small Old Houses" 4000
+	fleet "Old Houses Surveillance" 7500
+	fleet "Sioeora Home" 2000
+	haze _menu/haze-67
+	object
+		sprite star/f0
+		period 10
+	object
+		sprite planet/desert9
+		distance 328
+		period 28.4
+	object
+		sprite planet/rock6
+		distance 1554
+		period 292.879
+	object Staja-Kella-Oa
+		sprite planet/cloud3
+		distance 2870
+		period 580.451
+		object
+			sprite planet/callisto
+			distance 192
+			period 125.853
+	object
+		sprite planet/gas12
+		distance 3648
+		period 967.97
+		object
+			sprite planet/rock3
+			distance 307
+			period 331.285
+		object
+			sprite planet/rock8
+			distance 413
+			period 397.042
+	object
+		sprite planet/gas9
+		distance 4549
+		period 1466.847
+
 system Vaiov
 	pos 631.5 -347
 	government Uninhabited
@@ -32793,8 +35260,78 @@ system Vaiov
 		period 2026.72
 		offset 180
 
+system Valkraa-Uuoru
+	pos 114 1257
+	government Successor
+	attributes successor
+	arrival 3651.37
+	habitable 3651.37
+	link Uuoru-Kella
+	link Vade-Staja
+	trade Clothing 347
+	trade Electronics 664
+	trade Equipment 419
+	trade Food 323
+	trade "Heavy Metals" 1052
+	trade Industrial 640
+	trade "Luxury Goods" 1217
+	trade Medical 691
+	trade Metal 423
+	trade Plastic 248
+	fleet "Large Old Houses" 1600
+	fleet "Old Houses Surveillance" 2000
+	fleet "Medium Successor Freight" 1400
+	fleet "Small Successor Transport" 2000
+	fleet "Chydiyi Home" 800
+	haze _menu/haze-67
+	object
+		sprite star/k0
+		distance 155.228
+		period 61.049
+		offset 180
+	object
+		sprite star/a0
+		distance 40.772
+		period 61.049
+	object Naph-Naap-Kella
+		sprite planet/cloud0
+		distance 902
+		period 53.355
+	object
+		sprite planet/gas6-hot
+		distance 1608
+		period 426.836
+		object Khora-Uurau-Uuoru
+			sprite planet/rock14-b
+			distance 246
+			period 100.976
+	object
+		sprite planet/desert4-b
+		distance 2129
+		period 650.273
+	object
+		sprite planet/gas1
+		distance 3859.251
+		period 1149.358
+		object
+			sprite planet/dust7
+			distance 419.157
+			period 408.756
+		object Khora-Vasa-Reyyaa
+			sprite planet/cloud4
+			distance 603
+			period 460.526
+	object
+		sprite planet/gas12
+		distance 5626
+		period 2793.391
+		object
+			sprite planet/ice0-b
+			distance 286
+			period 182.831
+
 system Vanguwo
-	pos 978.189 -237.686
+	pos 965.152 -237.39
 	government Uninhabited
 	attributes "giant star" "notable star"
 	arrival 4050
@@ -32826,6 +35363,31 @@ system Vanguwo
 		sprite planet/gas11
 		distance 7325
 		period 3940.43
+
+system Vasa-Oorua
+	shrouded
+	pos 31.3947 1014.88
+	government Uninhabited
+	attributes predecessor
+	arrival 1705
+	habitable 1705
+	link Kasii-Sola
+	hazard "Predecessors Base Spatial Decay" 400
+	hazard "Predecessors Spatial Rift Weak" 10000
+	haze _menu/haze-tear
+	asteroids "small rock" 2 5
+	asteroids "small metal" 1 5.5
+	minables tungsten 3 6.5
+	object
+		sprite star/g0
+	object
+		sprite planet/gas10
+		distance 1800
+		period 2000
+	object Osolaa-Val-Mavra
+		sprite planet/ice7
+		distance 2390
+		period 2000
 
 system Vaticanus
 	pos 324 112
@@ -32965,12 +35527,12 @@ system Vesvii
 	asteroids "small metal" 15 2.2
 	asteroids "medium metal" 2 3.3
 	asteroids "large metal" 4 2.9
-	minables aluminum 8 1.5
+	minables aluminum 46 4.5
 	minables gold 6 2.4
-	minables iron 9 1.7
-	minables lead 11 2.1
-	fleet "Vi Warfleet" 1100
-	fleet "Scin Warfleet" 1000
+	minables iron 17 7.7
+	minables platinum 9 2.1
+	fleet "Vi Warfleet" 1200
+	fleet "Scin Warfleet" 1200
 	object
 		sprite star/k5-old
 		distance 81.5
@@ -33123,6 +35685,7 @@ system Volax
 	fleet "Large Northern Pirates" 3000
 	fleet "Small Republic" 5000
 	fleet "Large Republic" 9000
+	fleet "Derelict Northern" 30000
 	object
 		sprite star/f5
 		period 10
@@ -33193,13 +35756,13 @@ system Vorsuke
 			period 320
 
 system Vulcuja
-	pos 1071.75 -263.767
+	pos 1072.04 -264.656
 	government Uninhabited
 	attributes "carbon" "notable star"
 	arrival 3000
 	habitable 3000
 	belt 1972
-	haze _menu/haze-coal
+	haze _menu/haze-33
 	link Yranjiu
 	asteroids "large rock" 1 1
 	asteroids "large metal" 1 1
@@ -33221,6 +35784,7 @@ system Vulcuja
 		period 1989.22
 
 system W-3197
+	shrouded
 	pos 1204.5 -400
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -33230,17 +35794,15 @@ system W-3197
 	haze _menu/haze-coal
 	link G-719
 	link G-819
-	asteroids "small rock" 25 1
+	asteroids "small rock" 3 1
 	asteroids "medium rock" 5 0.91
-	asteroids "large rock" 27 1.71
-	asteroids "small metal" 3 1.27
-	asteroids "medium metal" 39 1.14
-	asteroids "large metal" 4 1.34
-	minables titanium 46 3.4
-	minables neodymium 101 4.76
-	fleet "Iije (Uninterested)" 4000
-	fleet "Iije (Swarming)" 2000
+	asteroids "large rock" 2 1.71
+	minables titanium 6 3.4
+	minables neodymium 1 4.76
+	fleet "Iije (Uninterested)" 2000
+	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 2000
+	"starfield density" .2
 	object
 		sprite star/b3
 		period 10
@@ -33279,16 +35841,16 @@ system "Wah Ki"
 	minables iron 4 7.24347
 	minables lead 2 6.42551
 	minables titanium 2 5.26511
-	trade Clothing 378
-	trade Electronics 595
-	trade Equipment 360
-	trade Food 577
-	trade "Heavy Metals" 765
-	trade Industrial 711
-	trade "Luxury Goods" 1135
-	trade Medical 835
-	trade Metal 338
-	trade Plastic 432
+	trade Clothing 347
+	trade Electronics 695
+	trade Equipment 452
+	trade Food 468
+	trade "Heavy Metals" 885
+	trade Industrial 710
+	trade "Luxury Goods" 1134
+	trade Medical 774
+	trade Metal 375
+	trade Plastic 429
 	fleet "Small Hai" 1200
 	fleet "Large Hai" 500
 	fleet "Large Plundering Unfettered" 550
@@ -33357,16 +35919,16 @@ system "Wah Oh"
 	minables aluminum 29 2.79911
 	minables iron 10 4.13916
 	minables titanium 5 3.97474
-	trade Clothing 378
-	trade Electronics 835
-	trade Equipment 640
-	trade Food 177
-	trade "Heavy Metals" 1195
-	trade Industrial 811
-	trade "Luxury Goods" 1235
-	trade Medical 525
-	trade Metal 478
-	trade Plastic 432
+	trade Clothing 347
+	trade Electronics 791
+	trade Equipment 564
+	trade Food 308
+	trade "Heavy Metals" 1057
+	trade Industrial 750
+	trade "Luxury Goods" 1174
+	trade Medical 650
+	trade Metal 431
+	trade Plastic 429
 	fleet "Small Hai" 1000
 	fleet "Large Hai" 3000
 	fleet "Small Hai Merchant" 500
@@ -33378,6 +35940,7 @@ system "Wah Oh"
 	fleet "Small Human Merchants (Hai)" 6000
 	fleet "Large Human Merchants (Hai)" 9000
 	fleet "Hai Surveillance" 5000
+	fleet "Hai Miners" 9000
 	object
 		sprite star/a0
 		period 10
@@ -33444,16 +36007,16 @@ system "Wah Yoot"
 	asteroids "large metal" 2 5.6628
 	minables lead 14 3.40165
 	minables silicon 30 4.23582
-	trade Clothing 418
-	trade Electronics 695
-	trade Equipment 470
-	trade Food 598
-	trade "Heavy Metals" 705
-	trade Industrial 811
-	trade "Luxury Goods" 1245
-	trade Medical 925
-	trade Metal 248
-	trade Plastic 472
+	trade Clothing 363
+	trade Electronics 735
+	trade Equipment 496
+	trade Food 477
+	trade "Heavy Metals" 861
+	trade Industrial 750
+	trade "Luxury Goods" 1178
+	trade Medical 810
+	trade Metal 339
+	trade Plastic 445
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 1000
 	fleet "Large Unfettered" 500
@@ -33512,16 +36075,16 @@ system Waypoint
 	asteroids "large metal" 2 1.9404
 	minables lead 11 3.06125
 	minables silicon 3 2.57646
-	trade Clothing 378
-	trade Electronics 765
-	trade Equipment 580
-	trade Food 357
-	trade "Heavy Metals" 1015
-	trade Industrial 691
-	trade "Luxury Goods" 1195
-	trade Medical 745
-	trade Metal 478
-	trade Plastic 452
+	trade Clothing 347
+	trade Electronics 763
+	trade Equipment 540
+	trade Food 380
+	trade "Heavy Metals" 985
+	trade Industrial 702
+	trade "Luxury Goods" 1158
+	trade Medical 738
+	trade Metal 431
+	trade Plastic 437
 	fleet "Small Human Merchants (Hai)" 12000
 	fleet "Large Human Merchants (Hai)" 18000
 	fleet "Hai Surveillance" 2000
@@ -33648,6 +36211,7 @@ system Wei
 	fleet "Small Southern Pirates" 4000
 	fleet "Small Militia" 3000
 	fleet "Large Militia" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/k3
 		period 10
@@ -33912,10 +36476,11 @@ system Wreoul
 	asteroids "large rock" 4 2.24
 	asteroids "large metal" 2 3.71
 	fleet "Small Vi" 3600
-	fleet "Large Vi" 5400
-	fleet "Vi Transport" 3400
-	fleet "Vi Cargo" 5000
-	fleet "Small Vi II" 4600
+	fleet "Large Vi" 4400
+	fleet "Vi Transport" 4400
+	fleet "Vi Cargo" 5600
+	fleet "Small Vi II" 5600
+	fleet "Vi Warfleet" 4000
 	object
 		sprite star/g-dwarf
 		period 10
@@ -34074,16 +36639,16 @@ system "Ya Hai"
 	minables aluminum 2 2.13976
 	minables iron 7 1.5968
 	minables lead 2 2.26139
-	trade Clothing 168
-	trade Electronics 765
-	trade Equipment 330
-	trade Food 437
-	trade "Heavy Metals" 985
-	trade Industrial 561
-	trade "Luxury Goods" 925
-	trade Medical 795
-	trade Metal 488
-	trade Plastic 472
+	trade Clothing 263
+	trade Electronics 763
+	trade Equipment 440
+	trade Food 412
+	trade "Heavy Metals" 973
+	trade Industrial 650
+	trade "Luxury Goods" 1050
+	trade Medical 758
+	trade Metal 435
+	trade Plastic 445
 	fleet "Small Hai" 800
 	fleet "Large Hai" 1000
 	fleet "Small Hai Merchant" 400
@@ -34214,7 +36779,8 @@ system Yerser
 	asteroids "medium metal" 9 4.13
 	asteroids "large metal" 2 4.27
 	minables aluminum 1 5.75
-	minables lead 7 6.19
+	minables copper 3 6.19
+	fleet "Small Scin" 4600
 	object
 		sprite star/a0
 		period 10
@@ -34248,13 +36814,22 @@ system Yli
 	asteroids "small metal" 7 2.95
 	asteroids "medium metal" 172 4.23
 	asteroids "large metal" 1 3.36
-	minables tungsten 5 5.58
-	minables aluminum 32 6.6
-	minables platinum 8 5.1
-	fleet "Small Vi" 900
-	fleet "Large Vi" 1600
+	minables neodymium 6 6.6
+	minables silicon 1 5.1
+	trade Clothing 160
+	trade Electronics 710
+	trade Equipment 730
+	trade Food 340
+	trade "Heavy Metals" 1050
+	trade Industrial 840
+	trade "Luxury Goods" 985
+	trade Medical 607
+	trade Metal 510
+	trade Plastic 290
+	fleet "Small Vi" 1000
+	fleet "Large Vi" 1700
 	fleet "Vi Transport" 2300
-	fleet "Vi Cargo" 1700
+	fleet "Vi Cargo" 2000
 	object
 		sprite star/k8
 		distance 2.742
@@ -34299,8 +36874,9 @@ system Yllke
 	asteroids "small metal" 126 1.4
 	asteroids "medium metal" 71 1.5
 	asteroids "large metal" 36 0.99
-	minables iron 27 2.32
-	minables aluminum 42 1.94
+	minables aluminum 19 3.1
+	minables iron 7 2.32
+	minables silicon 3 1.94
 	fleet "Gegno Basic" 1300
 	fleet "Gegno Cargo" 4000
 	fleet "Gegno Miners" 3000
@@ -34336,7 +36912,7 @@ system Yllke
 			period 242.1
 
 system Yranjiu
-	pos 1054.27 -298.942
+	pos 1056.34 -303.683
 	government Uninhabited
 	attributes "black hole" "notable star"
 	arrival 5000
@@ -34461,8 +37037,8 @@ system Zeinar
 	asteroids "small metal" 2 3.2
 	asteroids "medium metal" 7 4.4
 	asteroids "large metal" 9 4.1
-	minables aluminum 3 1.52
-	minables tungsten 4 1.319
+	minables aluminum 13 1.52
+	minables tungsten 14 1.319
 	trade Clothing 180
 	trade Electronics 830
 	trade Equipment 685
@@ -34477,6 +37053,7 @@ system Zeinar
 	fleet "Large Scin" 2000
 	fleet "Scin Transport" 500
 	fleet "Scin Cargo" 1200
+	fleet "Scin Warfleet" 3000
 	fleet "Gegno Basic" 3400
 	fleet "Gegno Cargo" 3600
 	fleet "Gegno Miners" 2500
@@ -34489,7 +37066,7 @@ system Zeinar
 		period 185.218
 	object
 		sprite planet/gas1-b
-		distance 650
+		distance 1080
 		period 321.540
 		object Cipi
 			sprite planet/ice7-b
@@ -34754,16 +37331,16 @@ system "Zuba Zub"
 	asteroids "small metal" 4 1.776
 	asteroids "medium metal" 3 1.944
 	asteroids "large metal" 1 2.928
-	trade Clothing 428
-	trade Electronics 695
-	trade Equipment 460
-	trade Food 547
-	trade "Heavy Metals" 675
-	trade Industrial 601
+	trade Clothing 387
+	trade Electronics 735
+	trade Equipment 492
+	trade Food 456
+	trade "Heavy Metals" 791
+	trade Industrial 666
 	trade "Luxury Goods" 1225
-	trade Medical 925
-	trade Metal 238
-	trade Plastic 452
+	trade Medical 810
+	trade Metal 302
+	trade Plastic 437
 	fleet "Small Hai" 2000
 	fleet "Large Hai" 1600
 	fleet "Small Hai Merchant" 1600
@@ -34849,6 +37426,7 @@ system Zubenelgenubi
 	fleet "Large Militia" 3000
 	fleet "Small Southern Pirates" 3000
 	fleet "Large Southern Pirates" 5000
+	fleet "Derelict Southern" 30000
 	object
 		sprite star/g5
 		distance 37.6707

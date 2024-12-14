@@ -29,9 +29,9 @@ person "Michael Zahniser"
 			"hull" 40000
 			"required crew" 400
 			"bunks" 500
-			"mass" 740
-			"drag" 12.5
-			"heat dissipation" 0.45
+			"mass" 2270
+			"drag" 18.75
+			"heat dissipation" 0.3
 			"fuel capacity" 500
 			"cargo space" 200
 			"outfit space" 2400
@@ -111,6 +111,9 @@ ship "Finch" "Finch (MZ)"
 		"A125 Atomic Steering"
 		"A120 Atomic Thruster"
 		"Ionic Afterburner"
+	gun
+	gun "Electron Beam"
+	gun "Electron Beam"
 
 
 
@@ -239,9 +242,9 @@ ship "Marauder Fury"
 		"hull" 600
 		"required crew" 1
 		"bunks" 3
-		"mass" 100
-		"drag" 1.9
-		"heat dissipation" .85
+		"mass" 278
+		"drag" 2.85
+		"heat dissipation" .57
 		"fuel capacity" 500
 		"cargo space" 15
 		"outfit space" 256
@@ -357,9 +360,9 @@ person "Captain Nate"
 			"hull" 8000
 			"required crew" 23
 			"bunks" 45
-			"mass" 500
-			"drag" 8
-			"heat dissipation" .6
+			"mass" 1357.5
+			"drag" 12
+			"heat dissipation" .4
 			"fuel capacity" 400
 			"cargo space" 50
 			"outfit space" 1215
@@ -469,9 +472,9 @@ ship "Lampyrid-Class Transport"
 		"hull" 4400
 		"required crew" 5
 		"bunks" 23
-		"mass" 240
-		"drag" 8.5
-		"heat dissipation" .7
+		"mass" 490
+		"drag" 12.75
+		"heat dissipation" .47
 		"fuel capacity" 700
 		"cargo space" 160
 		"outfit space" 260
@@ -545,8 +548,7 @@ person "Power of the People"
 			"Take it from me: "
 			"A word of caution: "
 			"A piece of advice: "
-			""
-			""
+			"" 2
 		word
 			"If you think the other guy might have a blaster hidden under the table... bring two blasters."
 			"I'm a team player. As long as the rest of the team stays behind me."
@@ -619,9 +621,9 @@ ship "Modified Osprey"
 		"hull repair rate" 10
 		"required crew" 189
 		"bunks" 240
-		"mass" 220
-		"drag" 15.1
-		"heat dissipation" .6
+		"mass" 1416
+		"drag" 22.65
+		"heat dissipation" .4
 		"fuel capacity" 625
 		"cargo space" 80
 		"outfit space" 2172
@@ -791,13 +793,13 @@ ship "Ursa Polaris"
 		hull 27000
 		"required crew" 559
 		"bunks" 972
-		"mass" 1839
-		"drag" 12
-		"heat dissipation" .9
+		"mass" 2758.5
+		"drag" 18
+		"heat dissipation" .6
 		"fuel capacity" 600
 		"solar collection" 15
-		"afterburner thrust" 200
-		"turn" 4005.0
+		"afterburner thrust" 300
+		"turn" 6007.5
 		"ramscoop" 20
 		"hull repair rate" 7
 		"energy generation" 200
@@ -869,7 +871,7 @@ outfit "LG Gridfire Turret"
 		"turret turn" 20
 		"firing energy" 800
 		"firing heat" 400
-		"firing force" 150
+		"firing force" 225
 		"shield damage" 600
 		"hull damage" 600
 		"blast radius" 40
@@ -994,18 +996,18 @@ ship "Shooting Star"
 		"automaton" 200
 		"cost" -49500000
 		"energy capacity" 100
-		"mass" 450
-		"drag" 3.9
-		"heat dissipation" 10
+		"mass" 839.5
+		"drag" 5.75
+		"heat dissipation" 6.7
 		"fuel capacity" 200
 		"outfit space" 329
 		"weapon capacity" 156
 		"cargo space" 10
 		"hull repair" 3
-		"thrust" 15.6
+		"thrust" 23.4
 		"reverse thrust" 15.6
 		"flare sound" "ion medium"
-		"turn" 1089.2
+		"turn" 2453.7
 		"jump speed" .2
 		"jump fuel" 50
 		"hyperdrive" 1
@@ -1047,6 +1049,7 @@ outfit "Crystal Projector"
 	"outfit space" -2
 	"gun ports" -1
 	"crystal projector" -1
+	"unique" 1
 	weapon
 		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
@@ -1060,13 +1063,14 @@ outfit "Floating Crystal"
 	"outfit space" -3
 	"turret mounts" -1
 	"spinal mount" -1
+	"unique" 1
 	weapon
 		"turret turn" 6
 		"velocity" 250
 		"lifetime" 3
 		"reload" 4
-		"firing force" -93
-		"hit force" -81
+		"firing force" -139.5
+		"hit force" -121.5
 	description "The real core of the Shooting Star, this floating crystal uses the effects of space-time to reduce the distance between a ship and its target. Legend has it this is no different from a thruster, but conventional engines don't bring your enemy closer."
 	description "	It also takes up a spinal mount slot to be installed, although you aren't sure why."
 
@@ -1078,6 +1082,7 @@ outfit "Crystalline Formation"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
+	"unique" 1
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1098,6 +1103,7 @@ outfit "Hexagonal Crystal"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
+	"unique" 1
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1108,7 +1114,7 @@ outfit "Hexagonal Crystal"
 		"reload" 30
 		"piercing" 1
 		"firing force" 2700
-		"hit force" 3500
+		"hit force" 5250
 		"hull damage" 2160
 	description "'Any sufficiently advanced technology is indistinguishable from magic,' Arthur C. Clarke said. This is sufficiently advanced technology."
 
@@ -1118,6 +1124,7 @@ outfit "Tree Skeleton Key Stone"
 	thumbnail "outfit/rock 1"
 	"mass" 1
 	"outfit space" -1
+	"unique" 1
 	"quantum keystone" 1
 	description "Although in appearance it may look somewhat similar to a tree, you don't know how it is supposed to resemble a skeleton. You aren't sure you want to find out either."
 
@@ -1219,9 +1226,9 @@ ship "Marauder Bactrian"
 		"hull" 12000
 		"required crew" 70
 		"bunks" 93
-		"mass" 650
-		"drag" 15
-		"heat dissipation" 0.4
+		"mass" 1738
+		"drag" 22.5
+		"heat dissipation" 0.33
 		"fuel capacity" 800
 		"cargo space" 80
 		"outfit space" 1526
@@ -1421,9 +1428,9 @@ ship "Modified Boxwing"
 		"hull" 8000
 		"required crew" 1
 		"bunks" 3
-		"mass" 60
-		"drag" 2.59
-		"heat dissipation" .27
+		"mass" 90
+		"drag" 3.875
+		"heat dissipation" .18
 		"fuel capacity" 500
 		"cargo space" 80
 		"outfit space" 350
@@ -1527,9 +1534,9 @@ ship "Modified Battleship"
 		"hull" 26000
 		"required crew" 160
 		"bunks" 212
-		"mass" 1010
-		"drag" 19.4
-		"heat dissipation" .35
+		"mass" 1515
+		"drag" 29.1
+		"heat dissipation" .24
 		"fuel capacity" 1000
 		"cargo space" 30
 		"outfit space" 1152
@@ -1572,24 +1579,24 @@ ship "Modified Battleship"
 	engine -45 212
 	engine -21 220
 		zoom 0.8
+	gun 0 -223 "Prototype Fusion Cannon"
 	gun -59 14 "Typhoon Pod"
 	gun 59 14 "Typhoon Pod"
 	gun -72 25 "Torpedo Pod"
 	gun 72 26 "Torpedo Pod"
 	gun -84 38 "Torpedo Pod"
 	gun 84 38 "Torpedo Pod"
-	gun 0 -223 "Prototype Fusion Cannon"
 	turret -37 -11 "Electron Turret"
 	turret 37 -11 "Electron Turret"
+	turret 0 10 "Wanderer Anti-Missile"
 	turret -37 31 "Quad Blaster Turret"
 	turret 37 31 "Quad Blaster Turret"
 	turret -39 73 "Quad Blaster Turret"
 	turret 39 73 "Quad Blaster Turret"
-	turret -23 108 "Heavy Laser Turret"
-	turret 23 108 "Heavy Laser Turret"
 	turret -75 108 "Heavy Laser Turret"
 	turret 75 108 "Heavy Laser Turret"
-	turret 0 10 "Wanderer Anti-Missile"
+	turret -23 108 "Heavy Laser Turret"
+	turret 23 108 "Heavy Laser Turret"
 	explode "tiny explosion" 20
 	explode "small explosion" 45
 	explode "medium explosion" 50
@@ -1634,7 +1641,7 @@ outfit "Prototype Fusion Cannon"
 		"hull damage" 330
 		"piercing" 0.2
 		"disruption damage" 5
-		"hit force" 100
+		"hit force" 150
 		"missile strength" 10
 	description "This is a personally obtained prototype Fusion Cannon, a deadly, massive spinal weapon. Where it came from, nobody knows except the owner, and those who wish to ask are too afraid of being on the receiving end."
 	
@@ -1768,9 +1775,9 @@ ship "Modified Ladybug"
 		
 		"required crew" 16
 		"bunks" 33
-		"mass" 280
-		"drag" 5.4
-		"heat dissipation" .85
+		"mass" 740
+		"drag" 8.1
+		"heat dissipation" .58
 		"fuel capacity" 900
 		"cargo space" 91
 		"outfit space" 647
@@ -1781,8 +1788,6 @@ ship "Modified Ladybug"
 		"ramscoop" 0.5
 		"cargo scan power" 5
 		"cargo scan efficiency" 16
-		"outfit scan power" 17
-		"outfit scan efficiency" 15
 		"tactical scan power" 25
 		"atmosphere scan" 100
 		"asteroid scan power" 30
@@ -1847,3 +1852,367 @@ ship "Modified Ladybug"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description `This is an old war-torn Hai Ladybug with numerous modifications done on the hull. Apart from the additional turret mounts, the main adjustments on the vessel are three huge engine cells - two in the back replacing the old engine pods, and one in the front replacing the gun mounts. These push the Modified Ladybug to speeds only an insane captain would enjoy.`
+
+
+
+person "Patrol Team"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+#		Marksman
+			"If you're interested in helping out but don't have time, consider being a proofreader! You can take my job, and I get to laze around doing nothing!"
+			"The number of times someone breaks the fourth wall, it's mind-boggling!"
+			"Look, we aren't here for your money. We do all this for free and look where that gets us."
+			"If you're interested in helping out but don't have time, consider looking through the proposals on GitHub! Sometimes, a new perspective is needed!"
+			"What do you mean you don't have a save file for this pull request!?"
+			"This statement is, intentionally wrote wrongly to make point."
+
+#		Saugia
+			"Sometimes, a large amount of detail on a model can look less appealing."
+			"Sometimes, a small amount of detail on a model can look more appealing."
+			"Make sure to look at an image from a few steps back as well."
+			"Down with tangents, up with overlaps."
+			"Don't be afraid of adding more contrast."
+			"If you want to learn how to create artwork, start with a donut."
+
+#		tibetiroka
+			"It's just the Steam CI, no need to panic."
+			"Did you check for nullptr?"
+			"		How do we indent after line breaks again?"
+			"Please put the includes in alphabetical order."
+			"Always keep three empty lines between functions."
+			"Why do aliens speak English?"
+
+#		bene-dictator
+			"Just a syntax review. Hold on, I have to rewrite this whole paragraph for you quickly. Delay the merge!"
+			"I was requested for spelling? Oh my goodness, this needs a rewrite..."
+			"One more review. Pretty please?"
+			"Just one more review before merging."
+			"Capitalise that proper noun. Use American English for consistency. For goodness' sake, that needs a comma!"
+			"Comma here. Comma doesn't go there. I think that one needs a comma. Hold on, what was a comma again?"
+			"Unidentified sentence appears to be lacking a comma. Very dangerous, and highly likely to incite multiple suggestions on where the comma should go. Calling backup reviewers."
+			"Commas are your greatest friends."
+			"Commas are your greatest enemies."
+
+#		roadrunner56
+			"More semicolons!"
+			"...I think I broke something."
+			"Canadian spelling fails me again."
+			"This is my last review, I swear."
+			"Looks like school's starting back up again. See you in a few months."
+			"Typo detected. Initiating weapons engagement."
+			"Code non-functional. Destroy them."
+
+#		EjoThims
+	phrase
+		word
+			"If you want your pull request not to be merged"
+			"If you prefer that your pull request never be merged"
+			"If you prefer that your pull request sits idle"
+			"If you want your pull request to be closed"
+		word
+			", "
+		word
+			"make sure you keep adding content to it"
+			"always change unrelated things"
+			"do not ever test it and don't add integration tests. Whatever those even are, they're apparently important"
+			"try your best to avoid respecting existing syntax and conventions"
+			"just forget about it for a while"
+			"use the forbidden word: 'realism'"
+			"bury the new feature in semi-relevant data changes"
+			"do not, under any circumstances, ever be willing to compromise"
+			"make sure to completely ignore what the reviewers tell you to do"
+			"skip over writing an issue about it first"
+		word
+			"!"
+			"."
+			". Trust me! It works."
+			". You shouldn't do those things, though! I'm just kidding."
+
+	phrase
+		word
+			"You don't have to be a Reviewer to review pull requests"
+			"Anyone can review a pull request, even you"
+			"If you're unsure of how to help, try reviewing some pull requests"
+			"We welcome an alternative view to the reviews on the pull requests"
+			"If you spot a typo, do start a review"
+			"If you have an idea to make something better, do start a review"
+		word
+			"."
+			"!"
+
+	ship "Waverider" "Proofreader's Pain"
+		"never disabled"
+	ship "Waverider" "Art Critics' Regret"
+		"never disabled"
+	ship "Waverider" "Code Herders' Curse"
+		"never disabled"
+		add attributes
+			"required crew" 2
+	ship "Waverider" "Choreographers' Tears"
+		"never disabled"
+	ship "Waverider" "Adjuncators' Blood"
+		"never disabled"
+		outfits
+			"Particle Cannon" 4
+			"S-970 Regenerator"
+			"Dwarf Core"
+			"LP072a Battery Pack"
+			"Liquid Nitrogen Cooler"
+			"Catalytic Ramscoop"
+			"Tactical Scanner"
+			"Cargo Scanner"
+			"Outfit Scanner"
+			"Asteroid Scanner"
+
+			"A120 Atomic Thruster"
+			"A125 Atomic Steering" 2
+			"Scram Drive"
+
+			"Emotional Baggage"
+			"Tear of Skade" 2
+	ship "Waverider" "Balancers' Madness"
+		"never disabled"
+		add attributes
+			"shields" 12000
+			"hull" 5000
+			"mass" 100
+
+ship "Waverider"
+	sprite "ship/waverider"
+	attributes
+		category "Light Warship"
+		"cost" 3000000
+		"shields" 10000
+		"hull" 7000
+		"required crew" 1
+		"bunks" 1
+		"mass" 398
+		"drag" 2.25
+		"heat dissipation" .67
+		"fuel capacity" 1000
+		"cargo space" 100
+		"outfit space" 346
+		"weapon capacity" 120
+		"engine capacity" 54
+		weapon
+			"blast radius" 340
+			"shield damage" 3400
+			"hull damage" 1700
+			"hit force" 5000
+	outfits
+		"Particle Cannon" 4
+		"S-970 Regenerator"
+		"Dwarf Core"
+		"LP072a Battery Pack"
+		"Liquid Nitrogen Cooler"
+		"Catalytic Ramscoop"
+		"Tactical Scanner"
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Asteroid Scanner"
+
+		"A120 Atomic Thruster"
+		"A125 Atomic Steering" 2
+		"Scram Drive"
+
+		"Emotional Baggage"
+	engine 0 56
+	engine -23 64
+	engine 23 64
+	gun -22.5 -56.5 "Particle Cannon"
+	gun 22.5 -56.5 "Particle Cannon"
+	gun -31.5 -7 "Particle Cannon"
+	gun 31.5 -7 "Particle Cannon"
+	description `The Waverider was a ship that was first requested and never used for five years, seven months and twenty-seven days.`
+	description `	Its disappointment was so immense, it willed itself into being.`
+
+outfit "Emotional Baggage"
+	category "Unique"
+	thumbnail "outfit/unknown"
+	description `The physical embodiment of everything that makes the Reviewers who they are today.`
+	description `	Unfortunately, it's not for sale.`
+
+
+
+person "Danau"
+	government "Author"
+	frequency 100
+	personality
+		heroic unconstrained opportunistic
+	formation "Vic"
+	phrase
+		word
+			"When you want to stop your ship, press shift and reverse."
+			"Your hyperdrive doesn't work? Have you tried turning it off and on again?"
+	phrase
+		word
+			"Change the orientation of your"
+		word
+			" "
+		word
+			"drone"
+			"interceptor"
+			"fighter"
+		word
+			" "
+		word
+			"bays"
+			"docking ports"
+		word
+			" "
+		word
+			"just for the fun of it."
+			"for faster deployments."
+			"on your new Marauder ship."
+			"to improve atmospheric handling."
+	phrase
+		word
+			"I have a delivery for"
+			"I'm looking for"
+		word
+			" "
+		word
+			"Arrakis"
+			"Caladan"
+			"the Eaxaw"
+			"the Gyisache"
+			"the Happy Birthday"
+			"the Laenfa"
+			"the Muursh"
+			"the Ourbools"
+			"Tycho Magnetic Anomaly 2"
+		word
+			"; "
+		word
+			"is this the right game?"
+	phrase
+		word
+			"The Hauler VI is a nice ship, "
+		word
+			"as long as you don't activate the cargo refrigeration systems."
+			"but it hasn't gotten beyond the prototype stage yet."
+			"but it is not for sale on the regular market."
+			"but using two Hauler IIIs is probably more economical."
+	phrase
+		word
+			"Automate"
+			"Extend"
+			"Improve"
+			"Streamline"
+		word
+			" "
+		word
+			"our"
+			"the ES"
+			"your"
+		word
+			" "
+		word
+			"builds"
+			"builds and tests"
+			"CI jobs"
+			"coding style checks"
+			"integration processes"
+			"merge process"
+			"software tests"
+			"test and integration processes"
+			"test processes"
+			"tests"
+		word
+			"."
+			"!"
+		word
+			" "
+		word
+			"Avoid game crashes!"
+			"Improve the quality of our codebase!"
+			"Get new features into the game faster!"
+			"Have more time for good reviews!"
+			"Have more time for playing the game!"
+			"Prevent bugs!"
+
+	ship "Modified Hauler VI" "Bouldered Sea"
+		"never disabled"
+	ship "Hauler III" "Gravelly Reservoir"
+		"never disabled"
+	ship "Hauler III" "Stony Mere"
+		"never disabled"
+	ship "Hauler II" "Rocky Lake"
+		"never disabled"
+	ship "Hauler II" "Shingly Loch"
+		"never disabled"
+	ship "Hauler" "Craggy Tarn"
+		"never disabled"
+	ship "Hauler" "Pebbly Pond"
+		"never disabled"
+
+
+
+ship "Modified Hauler VI"
+	sprite "ship/hauler vi"
+	thumbnail "thumbnail/hauler vi"
+	attributes
+		category "Heavy Freighter"
+		"shields" 13200
+		"hull" 26800
+		"required crew" 3
+		"bunks" 12
+		"mass" 1240
+		"drag" 21.7
+		"heat dissipation" .43
+		"fuel capacity" 800
+		"cargo space" 780
+		"outfit space" 900
+		"weapon capacity" 430
+		"engine capacity" 160
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 180
+		"Point Defense Turret" 2
+		"Bombardment Turret" 6
+
+		"Fusion Reactor"
+		"S3 Thermionic"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
+		"Hyperdrive"
+
+	engine -83.5 196.5
+	engine 83.5 196.5
+	engine 0 196.5
+	gun -14.5 -168
+	gun 14.5 -168
+	gun -35 -128
+	gun 35 -128
+	turret -21 -124.5
+	turret 21 -124.5 "Point Defense Turret"
+	turret -32.5 -102.5
+	turret 32.5 -102.5
+	turret -22 154 "Point Defense Turret"
+	turret 22 154
+	turret -60 154
+	turret 60 154
+	leak "leak" 70 50
+	leak "flame" 40 80
+	leak "big leak" 90 40
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Hauler cargo ships are considered by many to be outdated, and it is unclear if upgrading the cargo space to six containers is sufficient to make this Hauler ship popular. It certainly doesn't help that the Hauler VI is more expensive than four Hauler IIIs."

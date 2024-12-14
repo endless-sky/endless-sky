@@ -20,18 +20,42 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "Mask.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
 #include <cmath>
 
 using namespace std;
+
+
+
+Minable::Payload::Payload(const DataNode &node)
+{
+	outfit = GameData::Outfits().Get(node.Token(1));
+	maxDrops = (node.Size() == 2 ? 1 : max<int>(1, node.Value(2)));
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(!hasValue)
+			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "max drops")
+			maxDrops = max<int>(1, child.Value(1));
+		else if(key == "drop rate")
+			dropRate = max(0., min(child.Value(1), 1.));
+		else if(key == "toughness")
+			toughness = max(1., child.Value(1));
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+}
 
 
 
@@ -44,25 +68,29 @@ void Minable::Load(const DataNode &node)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "display name" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(!hasValue)
+			child.PrintTrace("Error: Expected key to have a value:");
+		else if(key == "display name")
 			displayName = child.Token(1);
-		else if(child.Token(0) == "noun" && child.Size() >= 2)
+		else if(key == "noun")
 			noun = child.Token(1);
 		// A full sprite definition (frame rate, etc.) is not needed, because
 		// the frame rate will be set randomly and it will always be looping.
-		else if(child.Token(0) == "sprite" && child.Size() >= 2)
+		else if(key == "sprite")
 			SetSprite(SpriteSet::Get(child.Token(1)));
-		else if(child.Token(0) == "hull" && child.Size() >= 2)
+		else if(key == "hull")
 			hull = child.Value(1);
-		else if(child.Token(0) == "random hull" && child.Size() >= 2)
+		else if(key == "random hull")
 			randomHull = max(0., child.Value(1));
-		else if((child.Token(0) == "payload" || child.Token(0) == "explode") && child.Size() >= 2)
+		else if(key == "payload")
+			payload.emplace_back(child);
+		else if(key == "explode")
 		{
 			int count = (child.Size() == 2 ? 1 : child.Value(2));
-			if(child.Token(0) == "payload")
-				payload[GameData::Outfits().Get(child.Token(1))] += count;
-			else
-				explosions[GameData::Effects().Get(child.Token(1))] += count;
+			explosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -80,7 +108,7 @@ void Minable::Load(const DataNode &node)
 void Minable::FinishLoading()
 {
 	for(const auto &it : payload)
-		value += it.first->Cost() * it.second * 0.25;
+		value += it.outfit->Cost() * it.maxDrops * it.dropRate;
 }
 
 
@@ -186,16 +214,20 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 				visuals.emplace_back(*it.first, position + 2. * dp, velocity + dp, angle);
 			}
 		}
-		for(const auto &it : payload)
+		for(const Payload &it : payload)
 		{
-			if(it.second < 1)
+			// Each payload has a default 25% chance of surviving. This
+			// creates a distribution with occasional very good payoffs.
+			double dropRate = it.dropRate;
+			// Special weapons are capable of increasing this drop rate through
+			// prospecting.
+			if(prospecting > 0. && dropRate < 1.)
+				dropRate += (1. - dropRate) / (1. + it.toughness / prospecting);
+			if(dropRate <= 0.)
 				continue;
-
-			// Each payload object has a 25% chance of surviving. This creates
-			// a distribution with occasional very good payoffs.
-			for(int amount = Random::Binomial(it.second, .25); amount > 0; amount -= Flotsam::TONS_PER_BOX)
+			for(int amount = Random::Binomial(it.maxDrops, dropRate); amount > 0; amount -= Flotsam::TONS_PER_BOX)
 			{
-				flotsam.emplace_back(new Flotsam(it.first, min(amount, Flotsam::TONS_PER_BOX)));
+				flotsam.emplace_back(new Flotsam(it.outfit, min(amount, Flotsam::TONS_PER_BOX)));
 				flotsam.back()->Place(*this);
 			}
 		}
@@ -225,6 +257,7 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 void Minable::TakeDamage(const Projectile &projectile)
 {
 	hull -= projectile.GetWeapon().MinableDamage() + projectile.GetWeapon().RelativeMinableDamage() * maxHull;
+	prospecting += projectile.GetWeapon().Prospecting();
 }
 
 
@@ -237,7 +270,7 @@ double Minable::Hull() const
 
 
 // Determine what flotsam this asteroid will create.
-const map<const Outfit *, int> &Minable::Payload() const
+const vector<Minable::Payload> &Minable::GetPayload() const
 {
 	return payload;
 }

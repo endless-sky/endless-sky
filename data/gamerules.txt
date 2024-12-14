@@ -24,9 +24,9 @@ gamerules
 	"universal ramscoop" true
 	
 	# An attempt to spawn a person ship happens on average every this many frames.
-	# DEFAULT: 36000 frames (ten minutes)
+	# DEFAULT: 72000 frames (twenty minutes)
 	# ALLOWABLE VALUES: any integer >= 1
-	"person spawn period" 36000
+	"person spawn period" 72000
 	
 	# While an attempt to spawn a person ship is made on average every number of frames specified
 	# above, a person ship may still not spawn. Each person ship has a "weight" associated with them
@@ -45,7 +45,46 @@ gamerules
 	# ALLOWABLE VALUES: any integer >= 0
 	"npc max mining time" 3600
 	
-	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health is at or below this fraction.
+	# Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their
+	# health is at or below this fraction.
 	# DEFAULT: .75 (75 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
-	"universal frugal threshold" .75
+	"universal frugal threshold" 0.75
+
+	# Controls which fighters, when disabled, will not be hit by projectiles unless they are directly targeting.
+	# DEFAULT: all
+	# ALLOWABLE VALUES: all, none, only player
+	"disabled fighters avoid projectiles" "all"
+
+	# Depreciation related game rules:
+
+	# The depreciated value of an item that is "age" days old is calculated with the following equation:
+	# Where: "base value" is the undepreciated value of the item;
+	# min is "depreciation min";
+	# "grace period" is "depreciation grace period";
+	# daily is "depreciation daily"; and
+	# "max age" is "depreciation max age", and
+	# age is at greater than "grace period" and less than "max age".
+	# "depreciated value" = "base value" *
+	#   (min + (1 - min) * (daily ^ (age - "grace period")) * ("max age" + "grace period" - age) / "max age")
+
+	# The lowest value that a ship or outfit can depreciate to relative to its full price.
+	# Captured and gifted items start at this value.
+	# DEFAULT: 0.25 (25 percent)
+	# ALLOWABLE VALUES: any value between 0. and 1.
+	"depreciation min" 0.25
+
+	# Number of days before a new outfit or ship will begin to depreciate.
+	# DEFAULT: 7 (7 days)
+	# ALLOWABLE VALUES: any integer >= 0.
+	"depreciation grace period" 7
+
+	# The percentage of an item's depreciable value that it maintains day over day.
+	# DEFAULT: .997 (99.7 percent)
+	# ALLOWABLE VALUES: any value between 0. and 1.
+	"depreciation daily" 0.997
+
+	# The age (in days), after the end of the grace period, at which an item will become fully depreciated.
+	# DEFAULT: 1000 (1000 days)
+	# ALLOWABLE VALUES: any integer >= 0.
+	"depreciation max age" 1000

@@ -322,6 +322,7 @@ mission "Hai Reveal: Early Arrival: Alondo"
 	source
 		government "Hai"
 		not attributes "uninhabited" "station"
+		not planet "Hai-home"
 	destination "Hai-home"
 	clearance
 	to offer
@@ -349,6 +350,7 @@ mission "Hai Reveal: Late Arrival: Alondo"
 	source
 		government "Hai"
 		not attributes "uninhabited" "station"
+		not planet "Hai-home"
 	destination "Hai-home"
 	clearance
 	to offer
@@ -405,13 +407,13 @@ mission "Hai Reveal: Meet the Team: FW"
 			branch late
 				has "event: hr: join later"
 			`You follow Alondo's ship to the surface of <origin>. Instead of landing at the main spaceport, his ship veers off to a separate area of the city where a cluster of several large structures are set slightly apart from the rest. A Hai warship shadows you as you approach.`
-			`	Alondo's ship touches down in a smaller port atop one of the highrises here, and you follow suit. As you touch your ship down next to Alondo's, the Hai warship following you moves to idle above the spaceport.`
+			`	Alondo's ship touches down in a smaller port atop one of the high-rises here, and you follow suit. As you touch your ship down next to Alondo's, the Hai warship following you moves to idle above the spaceport.`
 			`	"Welcome to the secure port," Alondo greets you as you exit your ship. "Our home away from home."`
 				goto landed
 			
 			label late
 			`As you enter the atmosphere of <origin>, the spaceport authorities contact you and give you coordinates to a landing area that is separate from the main spaceport. A Hai warship shadows you as you approach.`
-			`	You find that the coordinates lead to a smaller port atop one of the city's highrises, and you spot a Hai Centipede already landed there, with Alondo standing just outside of it. As you touch your ship down next to Alondo, the Hai warship following you moves to idle above the spaceport.`
+			`	You find that the coordinates lead to a smaller port atop one of the city's high-rises, and you spot a Hai Centipede already landed there, with Alondo standing just outside of it. As you touch your ship down next to Alondo, the Hai warship following you moves to idle above the spaceport.`
 			`	"Glad you could make it," Alondo greets you as you exit your ship. "Welcome to the secure port. Our home away from home."`
 			
 			label landed
@@ -451,7 +453,7 @@ mission "Hai Reveal: Meet the Team: FW"
 				`	"What's the problem with new arrivals?"`
 				`	"Do we not have a way of blocking captains from entering the wormhole?"`
 					goto block
-			`	"We do not have the means of handling a large influx of humans," says the Hai. "For decades, we have dealt with a small trickle of humans arriving through the wormhole. We have grown acustomed to it. But if that trickle were to suddenly become a downpour, then our services would quickly become overrun."`
+			`	"We do not have the means of handling a large influx of humans," says the Hai. "For decades, we have dealt with a small trickle of humans arriving through the wormhole. We have grown accustomed to it. But if that trickle were to suddenly become a downpour, then our services would quickly become overrun."`
 			`	The man presenting the graphs nods in agreement. "Of importance is also the effect that this situation may have for the Republic," he says while pointing at another graph labeled "artifact penetration" which shows a map of various stages of events and their outcomes.`
 				goto continue
 			label block
@@ -518,10 +520,10 @@ mission "Hai Reveal: Meet the Team: Xilin 2"
 		has "Hai Reveal: Meet the Team: Xilin 1: done"
 	on offer
 		conversation
-			`The rate at which new ships show up isn't tremendous, so Xilin starts by speak with some of the older captains who have been here prior to the news. "You can learn a lot by sharing a drink with the right merchant," he says to you.`
+			`The rate at which new ships show up isn't tremendous, so Xilin starts by speaking with some of the older captains who have been here prior to the news. "You can learn a lot by sharing a drink with the right merchant," he says to you.`
 			`	One captain in particular has been camped out here to intercept new captains as they arrive and give them the induction tour. He also has a copious set of notes that he gladly shares with Xilin. "After I heard the news, I figured I'd help by keeping notes on new arrivals. They make themselves very obvious with the way they gawk," he says. "We had two new ships come in yesterday, a Freighter and an Osprey, but there's been nothing today as of yet. It's normally only one or two smaller ships a day, if that."`
 			`	Xilin decides to next search the spaceport for captains that showed up recently, but just before heading off, a Star Queen full of passengers lands in the spaceport with everyone on board pressing their faces against the windows.`
-			`	"You have to be kidding me," Xilin says under his breath while approaching ship.`
+			`	"You have to be kidding me," Xilin says under his breath while approaching the ship.`
 			`	"Welcome, one and all, to the land of the Hai," the ship's captain says while walking down the boarding ramp with all her passengers behind her.`
 			`	"Excuse me, Captain. Do you care to answer a few questions?" Xilin shouts up to the captain. She looks concerned to see Xilin standing there in a Republic uniform, but agrees to talk after shooing her passengers off into the spaceport.`
 			`	"What is it you need to know, officer?" the captain asks.`
@@ -531,7 +533,7 @@ mission "Hai Reveal: Meet the Team: Xilin 2"
 				`	(Let Xilin handle this.)`
 					goto xilin
 				`	"Didn't you hear the Navy's advisory? You could have gotten your passengers killed coming here."`
-			`	The captain scoffs. "Well yeah, but I figured it was just a coverup from the Navy to stop people."`
+			`	The captain scoffs. "Well yeah, but I figured it was just a cover-up from the Navy to stop people."`
 			`	"Would that not imply that the secret isn't truly 'out' then?" Sayari asks while giving the captain a stern look.`
 				goto trouble
 			label xilin
@@ -597,7 +599,7 @@ mission "Hai Reveal: Meet the Team: Samuel 1"
 				has "met remington"
 			action
 				log "People" "Samuel Remington" `Samuel Remington is the Syndicate's head of public relations. He is acting as the Syndicate's representative in helping to deal with the situation regarding the Hai, and thinks the role will be a good break from the Syndicate's current internal turmoil.`
-			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may not have heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, nevermind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis."`
+			`	"Captain <last>, is it? I don't believe we've met before," he says while shaking your hand, perhaps a little too firmly. "I'm Samuel Remington, head of the Syndicate's PR department. You may not have heard of me before, but I'm sure you've heard of my work. I..." He stops himself. "You know what, never mind. We're not here to make small talk. We have bigger things to worry about. I'm looking forward to working alongside you to handle this emerging crisis."`
 				goto terry
 			label met
 			action

@@ -21,6 +21,7 @@ mission "Remnant: Visit to Paradise 1"
 		government "Remnant"
 	destination "Caelian"
 	stopover "Vail"
+	passengers 1
 	to offer
 		has "event: remnant: cognizance calm"
 		or
@@ -163,7 +164,7 @@ mission "Remnant: Celebration 1"
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
 		random < 50
-		"day" = 7
+		"day" == 7
 	on offer
 		conversation
 			`You stop by the starport just in time to see a large group of Remnant departing. A few of the nearest notice your interest and begin gesturing recognition or various invitations to accompany them, but before you are able to respond, Taely appears from the stream of people and approaches you.`
@@ -234,9 +235,6 @@ mission "Remnant: Celebration 1"
 			label countdown
 			`	On the final word the chant ends and dozens of deep voices join together in a roaring crescendo before fading away, replaced by many new voices expressing tones of wonder. At this point, it seems that almost every single person in the room is drumming, dancing, or singing - many seem to be doing several simultaneously.`
 			`	As the stars wheel through the night sky above the mouth of the cave, you note the flow of the ceremony seems to be telling a story of some kind. You understand very few snippets of words, but the emotion conveyed in the singing is clear. The early tone of anticipation shifts to the roar of excitement and then on to a peaceful tone of wonder.`
-			`	As the ceremony continues, this shifts again to a steady, almost mechanical feel, which is in turn abruptly penetrated by a piercing thread of excitement, leading to the entire tone of the song becoming one of curiosity over another driving beat. The melody then seems to wander more, caught in duel tones of regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other deeply emotional pairings before finally culminating in a return to the original, unified heartbeat as the singers' voices come together, reaching upwards in hope before finally everything trails off into silence.`
-				to display
-					not "remnant: celebration: annotated"
 			`	As the ceremony continues, this shifts again to a steady, almost mechanical feel, which is in turn abruptly penetrated by a piercing thread of excitement, leading to the entire tone of the song becoming one of curiosity over another driving beat. The melody then seems to wander more, caught in dual tones of regret and anticipation, mourning and rejoicing, terror and hope, disorder and structure, disappointment and awe, and countless other deeply emotional pairings before finally culminating in a return to the original, unified heartbeat as the singers' voices come together, reaching upwards in hope before finally everything trails off into silence.`
 			`	Through it all, Taely offers a running commentary on how each stretch of the ceremony represents a different piece of their collective history, ranging from the launch of the first human into space to its commercialization and then the new age of exploration opened by the advent of hyperdrives. It also includes numerous conflicts, disasters, and wars. Much of it is rather familiar to you from what you know of human history, but the later part is strange and unfamiliar. Filled with stories of first contact, strange ruins, alien invasions, desperate last stands, and brilliant discoveries, you are left with the impression that, despite the Remnant's current security, they have been on the precipice of extinction for much of their existence.`
 				to display
@@ -489,7 +487,7 @@ mission "Remnant: Shattered Light 3"
 					accept
 				`	"Wait, 'Maudrakoi'?"`
 			`	The Remnant who showed the video looks startled, and then embarrassed. "My apologies, I did not realize you had not been familiarized with them." She looks around the room, then gestures. The hologram returns, now showing a large room with many shelves around the edge and several large objects within it, including some that look like Point Defense Turrets.`
-			`	"We do not have time for an in-depth presentation, but the short version is this: the Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
+			`	"We do not have time for an in-depth presentation, but the short version is this: the Maudrakoi are the primary civilization that lived on these worlds before we arrived. They are not the only civilization to have lived here, but they are the one we find most often in the archaeological record. Fortunately for our research, it seems that they lived extensively underground in complexes such as this one."`
 			`	Her gestures take on an appreciative tone. "The Maudrakoi made extensive use of the materials that make our ships and architecture so distinctive, and this has allowed their cities and technologies to survive the eons since they went extinct. One technology of note is they had an interesting ability to manipulate space. They used this to make large, highly complex objects, and then, for lack of a better term, partially embed them in pocket dimensions so as to not be entirely present. They used this frequently to allow equipment and materials to be much smaller than normal." She shrugs, and gestures with a frustrated tone. "We cannot replicate it, but we have figured out how to disrupt the compression, and thus recover the artifact."`
 			`	The hologram shifts back to showing the Shattered Light. "This ship does not show the same signatures as the Maudrakoi artifacts, but we think it is sufficiently similar that our equipment should work on it too. Hopefully. In any case, though, time is passing, so we should start loading." With that, the Remnant gather their equipment and head out.`
 				accept
@@ -505,6 +503,9 @@ mission "Remnant: Shattered Light 3"
 				set "remnant: scanned specter"
 			`As the scan results arrive the data is relayed down to the team in the cargo hold. Your video feed shows a large hologram of the system floating in midair above one of the pallets. Nearby, terminals flash rolling readouts and analyses. As the data on the spectral ship solidifies, cones of projected courses appear on the display. Line by line the cone tightens in as additional data flows from your telemetry, closing in on a path intersecting with the nearby world.`
 			`	While the system continues to refine the orbital paths, the team seemed disinclined to wait: Ruach activates her commlink, broadcasting quickly to you. "It is on a crash course for Far Monad!" she exclaims. "Quick, land there!" Behind her, you can see her team scrambling to move equipment around near your cargo door and seal their spacesuits.`
+	to fail
+		has "remnant: scanned specter"
+		has "flagship planet: Far Monad"
 	to complete
 		never
 
@@ -519,10 +520,9 @@ mission "Remnant: Shattered Light 4"
 	to offer
 		has "remnant: scanned specter"
 	on offer
-		fail "Remnant: Shattered Light 3"
 		conversation
 			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land within close proximity of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
-			`	"Ready for drop, Captain. Just get us along side the Shattered Light without too much forward velocity. We can handle the rest."`
+			`	"Ready for drop, Captain. Just get us alongside the Shattered Light without too much forward velocity. We can handle the rest."`
 			branch livingship
 				or
 					has "flagship model: Peregrine"
@@ -538,9 +538,10 @@ mission "Remnant: Shattered Light 4"
 					has "flagship model: Peregrine"
 					has "flagship model: Merganser"
 			`	With their confirmation, you quickly pull away from the approaching wreck and retreat to a safe distance.`
-				accept
+				goto cleared
 			label livingclear
 			`	The <ship> veers and accelerates away from the approaching wreck without waiting for your approval and retreats to a safe distance.`
+			label cleared
 			`	Eventually, you find a good vantage point, several kilometers away, where you can watch the approaching ship. The Shattered Light falls through the sky with deceptive slowness, made all the worse by the fact that you can see clouds and sky passing through it. As it nears the surface you see a ripple in the air explode out from it, followed by a concussive shockwave as the Shattered Light suddenly becomes very solid. Its engines flare to life with a roar that rattles your bones and the ship lurches to a stop in mid-air, before crunching down into the forest.`
 			`	The dust and debris settle within a few minutes, and soon you and the <ship> are skimming over the vegetation. The approach gives you ample time to appreciate just how massive the Shattered Light is; everything that one could need to lay the foundations for a new colony is packed into a single ship. You note large gashes in the hull, massive sensor arrays, and a shattered dome on top. Based on the mismatch of parts, this ship has been substantially modified from its original hull, and survived untold damage.`
 			`	As you slow to a hover alongside the ship, Ruach appears on your viewscreen. "Well met, Captain! Our theory worked! We managed to snap the Shattered Light back into the Primary Weft, and are now onboard. The systems are dubious, though, so we dare not shut anything down lest we cannot restart it. We would appreciate your assistance in escorting us back to Viminal."`
@@ -605,7 +606,7 @@ mission "Remnant: Shattered Light 6"
 		has "Remnant: Shattered Light 5: done"
 	on offer
 		conversation
-			`On <destination> the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
+			`On <origin>, the spaceport is awash in conversation, and you spot snippets here and there of people talking about the recovery of the Shattered Light. Many are speculating as to what happened to it in the first place, while others are discussing the technical merits of what the research team did to recover it. Details travel quickly, it seems.`
 			`	The team you are sent to pick up are waiting next to the information desk. They have a collection of pallets nearby, and a small crowd is gathered around them in animated conversation. They spot you and the crowd start waving their goodbyes as the group pick up their bags and head towards you.`
 			`	"Ah, <first>! Thank you for transporting us. We are excited to see the Shattered Light and start studying this mystery you have found." They briskly head to your ship.`
 				accept
@@ -635,7 +636,7 @@ mission "Remnant: Shattered Light 6"
 			label shatteredhelp
 			`	"Thank you, Captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
 			label shatteredrequest
-			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
+			`	Ruach's gestures take on a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at the Tycho Crater shipyard on Luna... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
 
@@ -717,7 +718,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	minor
 	landing
 	name "Sympathy For The Korath"
-	description "Travel to the <waypoints> system to disable a stranded Kas'lor Ik 582. Do not destroy or capture the ship, as it likely has a large civilian population."
+	description "Travel to the <waypoints> system to disable a stranded Dathnak A'awoj. Do not destroy or capture the ship, as it likely has a large civilian population."
 	source
 		government "Remnant"
 	waypoint "Vaticanus"
@@ -732,7 +733,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 	on offer
 		conversation
 			`You step out of your airlock to find Prefect Chilia waiting for you with a worried look on his face. "Captain <first>, I have a sensitive request for you.`
-			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Kas'lor Ik 582 to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
+			`	"Our scouts are reporting a stranded Korath ship in Vaticanus, a Dathnak A'awoj to be precise. If it were a typical warship obstructing our operations, we would request you track it down and eliminate it, but because ships of this type tend to be home to a large civilian population, destroying or capturing it outright may instigate a reprisal, especially in that sector.`
 			`	"Would you be up for disabling it, so the threat is eliminated while preserving the lives of the innocents on board?" His signs shift from a questioning tone to a confident one. "After you are done we can disarm the ship and fix their jump drive. If they adhere to their typical doctrine they should decide to head back home."`
 			choice
 				`	"Happy to help those in need, even the Korath."`
@@ -748,7 +749,7 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		personality heroic target marked staying disables plunders
 		system "Vaticanus"
 		ship "Kas'lor Ik 582 (Stranded)" "Fligrookor"
-		dialog `You have disabled the Kas'lor Ik 582. Time to report back to <planet>.`
+		dialog `You have disabled the Dathnak A'awoj. Time to report back to <planet>.`
 	npc
 		government "Korath"
 		personality timid disables plunders swarming
@@ -763,11 +764,11 @@ mission "Remnant: Will Not Someone Please Think Of The Children"
 		dialog `The Remnant are puzzled at your aborting of this mission, but they tell you they will send someone else to do this work. They warn you they will not propose any more of the sort to you again.`
 	on fail
 		"reputation: Remnant" -= 250
-		dialog `You where unable to disable the Kas'lor Ik 582 without destroying it... The Remnant will not be pleased...`
+		dialog `You were unable to disable the Dathnak A'awoj without destroying it... The Remnant will not be pleased...`
 	on complete
 		"remnant: disable and save count" ++
 		payment 2500000
 		conversation
 			`You find Chilia with a relieved look on his face when you land.`
-			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matter. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you." He signs with a content smile on his face.`
+			`	"These assignments are typically handled by our most trusted teams, as taking on the larger Korath vessels is a sensitive matter. Most of their larger ships are home to large groups of Korath civilians, including children. I must admit there were concerns you might not be those children's best chance, but our fleet was occupied elsewhere at the time. I am glad I was not wrong in my assessment of you," he signs with a content smile on his face.`
 			`	"We must be careful not to let ignorance of Korath society result in the unnecessary destruction of similar ships. Now that you have shown you can handle these tasks with the proper finesse, you can expect these to turn up in the task board in the future." Chilia then walks away with a confident pace.`

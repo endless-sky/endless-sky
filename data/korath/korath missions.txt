@@ -102,7 +102,7 @@ mission "Setar Fort Heating"
 					goto decline
 			
 			label payment
-			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... Yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagerie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
+			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagerie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
 			choice
 				`	"I understand, and the money isn't a huge problem. I was just curious. Load it up onto my ship, and I'll be ready to go."`
 					goto agree
@@ -161,7 +161,7 @@ mission "Korath Family to Ringworld"
 		conversation
 			`You enjoy the new company on your ship. The child has taught you a game where you take turns throwing a ball against the wall. You spend an hour or two playing with them in the cargo hold.`
 			`	When you arrive, you decide to accompany the family into the spaceport. Waiting near the docking bay are two more Korath, one an adult and the other elderly, and the three you've transported rush to meet them. After the happy reunion has died down, the Korath who had originally asked you for transportation turns to a nearby Quarg and says something. The Quarg responds and then turns to you.`
-			`	"This fellow pridefulest has claimed he regarded my indebted translation with reverence and asks my usage of it be preferred. I am inclined to acquiesce his request happyifully." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to more or less gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our camaraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
+			`	"This fellow pridefulest has claimed he regarded my indebted translation with reverence and asks my usage of it be preferred. I am inclined to acquiesce his request happyfully." This Quarg does not seem to have an especially strong grasp of your language, but you should be able to more or less gather what is being said. "The comrade says, 'I disproportionately thank you for reuniting my familial, in fateful service to our camaraderie.' He additionally supplants there was no method in which this gaggle would vicinitied in which absenced your presence. That is all."`
 			choice
 				`	"Tell him it's no problem at all."`
 				`	"Tell him he has a wonderful family, and I was glad to help."`
@@ -191,7 +191,7 @@ mission "Korath Livestock"
 			`	You hear the shuffling of feet behind you and turn around. Three towering Korath wearing similar heavy clothing have stepped out of a nearby doorway and are making their way toward you. The bleating noise returns, and you turn again, only to see the original Kor Efret has returned from around the corner. Whatever chance you had of getting out of this is gone now.`
 			`	The one in front turns back to where it came from, and the Korath behind you hisses and gestures forward. It looks like you should follow. You brace yourself and turn the corner to see... animals?`
 			`	The rusting buildings have given way to a massive abandoned plaza, and the entire space is taken up by a mix of large livestock and supplies. They remind you of sheep, but they're around five times larger, have six legs, and come in a variety of brown-black colors. Each has a full coat of fur and an additional blanket made of their own wool-like fabric on them. It's the same material these Korath are wearing. Even with their extra blanket, the "sheep" are huddled in small groups and look uncomfortably cold. They occasionally bleat loudly whenever a cold wind rushes through the plaza. Fortunately for you, these Kor Efreti look to be farmers, not muggers. This must have been the only place near the spaceport where they could keep their entire herd together.`
-			`	The one who led you here, who also seems to be the leader, gestures for you to come over to it. It has opened a paper map - a rare sight in the era of interstellar travel. When you take a look, you realize it's not of the local area, but space; it seems to show the surroundings systems. The Korath points to one, pauses and gestures broadly at the mix of livestock and supplies, then draws its finger to another system and says something that sounds roughly like <planet>. "<planet>?" you confirm, and the Korath hisses in approval. It looks like they want transportation there. You wager the livestock and supplies will take up roughly <tons>, and there are <bunks> Korath farmers in the group.`
+			`	The one who led you here, who also seems to be the leader, gestures for you to come over to it. It has opened a paper map - a rare sight in the era of interstellar travel. When you take a look, you realize it's not of the local area, but space; it seems to show the surrounding systems. The Korath points to one, pauses and gestures broadly at the mix of livestock and supplies, then draws its finger to another system and says something that sounds roughly like <planet>. "<planet>?" you confirm, and the Korath hisses in approval. It looks like they want transportation there. You wager the livestock and supplies will take up roughly <tons>, and there are <bunks> Korath farmers in the group.`
 			`	It pulls a stack of 200 credits from its pocket and sets it on the ground before drawing a circle around it with a piece of chalk. It then draws four more, makes a large circle around the five total smaller ones, then draws nine additional large circles. Your best guess is it's offering 10,000 credits for their transport.`
 			choice
 				`	(Agree to take them.)`
@@ -257,3 +257,322 @@ mission "Small Scale Delivery"
 	on complete
 		payment 1000
 		dialog `You find a Korath who seems to have been waiting for you in the spaceport. They greet you by showing their palms, then outstretch their hands as if waiting to receive the package. You hand off the small delivery and they hand you a small payment of <payment>.`
+
+
+substitutions
+	"<EDC-ship>" "Esketari"
+
+mission "Efreti: Distress Call 1"
+	minor
+	landing
+	name "Distress call from the <EDC-ship>"
+	description "The Quarg have requested you respond to a distress call from the Efreti ship <EDC-ship>, which has crashed on <destination>. There are 40 survivors to rescue."
+	source "Karek Fornati"
+	destination "Seleptra Nak"
+
+	to offer
+		not "event: wanderers: kor mereti friendly"
+		has "First Contact: Karek Fornati: offered"
+		has "First Contact: Hai: offered"
+		has "visited system: Fah Soom"
+		random < 30
+		"combat rating" > 250
+		
+	on offer
+		conversation
+			`The occasional blue flashes of Quarg ships are nothing new as you travel Efreti space. Usually that is all you see of the enigmatic aliens. Today, however, you receive an urgent hail from one of them as you land.`
+			`	"Salutations, Captain of the <ship>. Victims of uncertain fate need your most diligent efforts, lest many families mourn the dead. Mereti drones waylayed the Efreti ship <EDC-ship> near <planet> ere it could elude. Two score Korath still live, awaiting rescue."`
+			choice
+				`	"I'll go there immediately."`
+					accept
+				`	"Can't the Quarg respond?"`
+					goto quarg
+				`	"I don't care about the Korath."`
+					goto careless
+			
+			label quarg
+			`	"We vanquished the Mereti, but the <EDC-ship> fell beyond our reach at landfall. Without strong plate, we fare ill on a heavy world. A human can reach them days before an expedition from Kuwaru Efreti."`
+			choice
+				`	"I'll go help, then."`
+					accept
+				`	"I won't risk my ship for the Korath."`
+					goto careless
+
+			label careless
+			`	The Quarg is silent for some time. Eventually it responds, "Life is rare and precious across the vastness of space. Look about the Korath worlds and see what remains when one cares not what others suffer."`
+				decline
+
+
+mission "Efreti: Distress Call 2"
+	landing
+	name "Return the <EDC-ship> survivors"
+	description "Transport the <bunks> survivors of the <EDC-ship> to <planet>."
+	source "Seleptra Nak"
+	destination "Laki Nemparu"
+	passengers 40
+	blocked `Looking towards the downed <EDC-ship>, you suddenly realize you forgot the <bunks> bunks you need for the evacuees.`
+	to offer
+		has "Efreti: Distress Call 1: done"
+	on offer
+		conversation
+			`It takes you some time to find the <EDC-ship>. You had expected a beacon of some sort, but either they are keeping radio silence to avoid drawing the Mereti, or there were no survivors. When you manage to open the hatch, you find yourself staring down a thermal rifle.`
+			`	The Korath shouts something at you, and you hold your hands out with your palms forward. He limps back a few steps, but keeps the weapon trained on you. Slowly pulling a communicator out, you play a recording of the Quarg transmission you received earlier. Once the Korath hears the Quarg's voice, he becomes excited and lowers his rifle. "<planet>?" he asks repeatedly. You nod your head and show your palms again.`
+			`	He leads you into the ship, shouting into a communication device that is then broadcasted on speakers throughout the vessel. You can only glance around as you move through the engineering section, but it's clear they are running on emergency power, and several important-looking systems are destroyed. The living area is a makeshift hospital. You don't see any bodies, but there are far fewer Korath here than you would expect to crew a ship of this size. It's clear that all the surviving crew are injured to some degree, while more than half are incapacitated or unconscious. Even if the ship is spaceworthy, there aren't enough crew to fly it.`
+			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms, and makes quick circles. You think he is agreeing and wants to hurry. Calling your crew over to help, the survivors are moved onboard the <ship>. Within a couple of hours you are ready to go.`
+				to display
+					"flagship crew" > 1
+				accept
+			`	You quickly count the number of survivors and communicate to your guide that you can take them all. He mimics your nodding head gesture, shows you his palms, and makes quick circles. You think he is agreeing and wants to hurry. With no crew helping you, it takes several hours to transfer the survivors to the <ship>.`
+				accept
+	npc
+		government "Kor Mereti"
+		personality staying
+		system "Seketra"
+		to spawn
+			random < 30
+		fleet "Small Kor Mereti"
+	on complete
+		payment 300000
+		conversation
+			`Medical crews await you once you land, and it takes several hours to evacuate the injured. Doctors, or maybe paramedics, swarm over them to triage, treat, and prepare them for transport. Three who died during the flight are treated with respect and carried off the <ship>.`
+			`	When you make it to the spaceport, you find a message from the Quarg. "Bold human! With profuse thanks we offer you for helping the stranded Korath. The Korath ever mourn the loss of their worlds, and, from time to time, brave their dangers. They salvage what they can among the ruins, and seek out worlds where they may one day live again. For the young, this gives them hope, but sometimes they are caught, and the Efreti are reminded why they live crushed together around these few stars."`
+			`	Your communicator notifies you of a payment of <payment>.`
+
+
+mission "Efreti: Distress Call 3"
+	landing
+	name "Recover the fallen crew of the <EDC-ship>"
+	description "Recover the bodies of the dead <EDC-ship> crew on <destination> and return them to <origin>."
+	source "Laki Nemparu"
+	destination "Seleptra Nak"
+	cargo "efreti coffins" 13
+
+	to offer
+		has "Efreti: Distress Call 2: done"
+
+	on offer
+		conversation
+			`Before you can leave, a delegation of Korath approach you somewhat hesitantly. They are dressed in what appears to be much finer clothing than most Korath you have met, certainly nothing you would wear to do work in a spaceport. As they make the traditional gesture of greeting, which you return, you are curious both as to what they want and how they will ask.`
+			`	One of them takes a small case out of a pocket and removes a black device that looks like three triangles hooked together. He hisses at it for a moment and it rises out of his hand. The air around it begins to shimmer, followed by the appearance of a life-sized hologram of a Quarg.`
+			`	"Salutations, far traveler," the Quarg rumbles. "These Korath-Friends are the princes of the clan that you assisted. While grateful for the living, they cannot fully mourn those that lie dead. They beseech you travel back to <planet> and bring their lost ones home to <origin>."`
+			choice
+				`	"I will bring them home."`
+					goto home
+				`	"I will if they pay me."`
+					goto pay
+				`	"I won't risk my ship for the dead."`
+			`	The leader of the group visibly sags as the Quarg translates your words. Two younger Korath bear him up as the group turns and leaves.`
+				decline
+
+			label home
+			`	You hadn't realized how tense the group was until you saw them relax as your words reach them. They seem relieved at your answer.`
+				goto title
+
+			label pay
+			`	The group relaxes quickly as you see a ripple of relief and pride pass through them.`
+
+			label title
+			`	The leader turns and speaks to you directly. His eyes never waver from yours even as you wait for the translation. "Efreti crews have families, as children learn by working with parents. For some families, three generations were lost. We will not try to salvage the ship, for none can bear to fly it. We offer you title to salvage the <EDC-ship> and carry our grief far from here."`
+				accept
+	npc
+		government "Kor Mereti"
+		personality staying
+		system "Seketra"
+		to spawn
+			random < 30
+		fleet "Small Kor Mereti"
+
+mission "Efreti: Distress Call 4"
+	landing
+	name "Recover the fallen of <EDC-ship>"
+	description "Return the bodies of the dead <EDC-ship> crew to <planet>."
+	source "Seleptra Nak"
+	destination "Karek Fornati"
+	cargo "efreti deceased" 13
+	to offer
+		has "Efreti: Distress Call 3: done"
+	on offer
+		conversation
+			`Locating the <EDC-ship>, you and your crew enter it wearing environment suits. It's been several days since the crash, and Korath ships run hot. This will be an unpleasant task in the suits and perhaps impossible without them.`
+				to display
+					"flagship crew" > 1
+			`Locating the <EDC-ship>, you enter it wearing an environment suit. It's been several days since the crash, and Korath ships run hot. This will be an unpleasant task in the suit and perhaps impossible without it, especially with no crew helping you.`
+				to display
+					"flagship crew" == 1
+
+			`	While your engineer works on refreshing the atmosphere with outside air, the rest of the crew gathers the bodies and places them in the fibrous, vaguely egg-shaped coffins the Korath provided. As you move them to your cargo bay, you find they stack together like a clutch of eggs in a nest.`
+				to display
+					"flagship crew" > 2
+			`	While your crewmate works on refreshing the atmosphere with outside air, you gather the bodies and place them in the fibrous, vaguely egg-shaped coffins the Korath provided. As you move them to your cargo bay, you find they stack together like a clutch of eggs in a nest.`
+				to display
+					"flagship crew" == 2
+			`	One by one, you gather the bodies and place them in fibrous, vaguely egg-shaped coffins the Korath provided. As you move them to your cargo bay, you find they stack together like a clutch of eggs in a nest. It takes a while to refresh the atmosphere with outside air before the smell is tolerable.`
+				to display
+					"flagship crew" < 2
+
+			`	Returning to the Korath ship, you carefully gather all the personal effects you can find in the living quarters and box them for transport. You've no way of knowing if those Korath in the photographs you find are now safely recovering or lying in your hold.`
+
+			`	The crew makes a last sweep to move debris, both to assess for repairs later and to make sure you haven't missed anyone, or parts of them. You clean and disinfect as best you can and return to your ship for the trip to <destination>.`
+				to display
+					"flagship crew" > 1
+			`	As a precaution, you make a last sweep to move debris, both to assess for repairs later and to make sure you haven't missed anyone, or parts of them. You clean and disinfect as best you can and return to your ship for the trip to <destination>.`
+				to display
+					"flagship crew" <= 1
+			branch accept
+	npc
+		government "Kor Mereti"
+		personality staying
+		system "Seketra"
+		to spawn
+			random < 30
+		fleet "Small Kor Mereti"
+	on complete
+		conversation
+			`A crowd pours out of the spaceport when you land. It takes some time for the workers to establish barricades and clear a path so the transports can get to your cargo hold. A team in uniform greets you formally when you open the hatch, and you count the coffins together with them. Afterwards, you show them the boxes of possessions, which they handle with care. An officer thanks you and hands you a data chip that vaguely reminds you of a license.`
+			`	The crowd has been somber, but when the first coffin leaves your ship, they erupt in a cacophony of barking sounds. Some Korath try to rush forward but are held back by others, presumably their family.`
+			`	Rather than intrude on their grief, you return to your ship, slotting the data chip you received into your systems. Unfortunately, the information is in an alien language, so you set it aside and work on a plan to salvage the <EDC-ship>. Gathering some notes on the ship and the number of crew they were carrying, it's clear that you will need to carry at least 66 additional crew that you can communicate with to be able to salvage it. The closest system that comes to mind with many human speakers is on Greenwater, in Hai space.`
+
+mission "Efreti: Distress Call 5"
+	name "<EDC-ship> salvage team"
+	description "Hire a <bunks> member salvage team on <destination> to salvage the Efreti ship <EDC-ship>."
+	source "Karek Fornati"
+	destination "Greenwater"
+	landing
+	passengers 66
+	blocked `You need <bunks> available to carry the salvage team.`
+	
+	to offer
+		has "Efreti: Distress Call 4: done"
+	
+	on complete
+		conversation
+			`Many stories tell of Hai who like change and excitement, but their enthusiasm seems to have died. Thoughts of the species that invaded them still inspire fear. No Hai have the courage to salvage a ship that has been caught in the crossfire of the Mereti and Sestor war.`
+			`	Fortunately, there are plenty of humans who are willing to risk it for the right pay, even given the comfortable life they have in Hai space. You show the new crew members to their bunks and prepare to salvage the <EDC-ship>.`
+
+ship "Charm-Shallop" "Charm-Shallop (Distressed)"
+	outfits
+		"Digger Mining Beam" 2
+		"Fuel Processor"
+		"Generator (Furnace Class)"
+		"Large Heat Shunt"
+		"Plasma Core"
+		"Scram Drive"
+		"Small Heat Shunt"
+		"Steering (Planetary Class)"
+		"Thermal Repeater Rifle" 19
+		"Thruster (Lunar Class)"
+		"Warder Anti-Missile"
+	gun 0 -118 "Digger Mining Beam"
+	gun -16.5 -114.5 "Digger Mining Beam"
+	gun 16.5 -114.5
+	turret 0 -35 "Warder Anti-Missile"
+	turret 0 97
+
+mission "Efreti: Distress Call 6"
+	landing
+	name "Salvage the <EDC-ship>"
+	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
+	source "Greenwater"
+	destination "Seleptra Nak"
+	passengers 66
+	blocked "You need to be able to carry <bunks> additional crew to salvage the ship. Return here when you have sufficient crew capacity."
+
+	to offer
+		has "Efreti: Distress Call 5: done"
+
+
+mission "Efreti: Distress Call 6 Ships"
+	landing
+	invisible
+	source "Greenwater"
+	to offer
+		has "Efreti: Distress Call 5: done"
+	to accept
+		has "Efreti: Distress Call 6: active"
+	to fail
+		or
+			has "Efreti: Distress Call 7: failed"
+			has "Efreti: Distress Call 7: aborted"
+			has "Efreti: Distress Call 7: done"
+	npc kill
+		government "Kor Mereti"
+		personality staying
+		system "Seketra"
+		fleet "Small Kor Mereti" 2
+
+
+mission "Efreti: Distress Call 7"
+	landing
+	name "Salvage the <EDC-ship>"
+	description "Salvage the <EDC-ship> and return it to <planet> to claim rights to it."
+	source "Seleptra Nak"
+	destination "Karek Fornati"
+	to offer
+		has "Efreti: Distress Call 6: done"
+	on offer
+		conversation
+			`Thanks to the work of your crew, the atmosphere on the ship is brought to human standards, if a bit tropical. As the salvage continues, you and your crew start to become familiar with the ship. Its strong hull appears spaceworthy, but the ship has barely any weapons, the battery systems are beyond repair, and shield regeneration is impossible. If the Mereti attack, the <EDC-ship> won't be able to survive long.`
+			choice
+				`	(Fly the <EDC-ship> home.)`
+					goto runforit
+				`	(Abandon the ship.)`
+					goto abandon
+			
+			label abandon
+			action
+				fail
+			`	Your crew abandons the Korath ship to the elements, just one more tragic story amid the ruins of their civilization.`
+				flee
+			
+			label runforit
+			`	You manage to bring up the shields, at least initially, using the <ship>. Your crew on the <EDC-ship> take their stations as you prepare to evade Mereti patrols on your way to <destination>.`
+				launch
+	on visit
+		dialog "You arrive, but you notice the <EDC-ship> is absent. You'll have to bring it here to finish the salvage mission."
+
+	npc accompany save
+		government "Kor Efret"
+		personality timid escort
+		ship "Charm-Shallop (Distressed)" "Esketari"
+
+	on complete
+		conversation
+			action
+				give ship "Charm-Shallop (Distressed)" "Esketari"
+			`This time, there are no crowds waiting for you when you land; rather, the ground crews seem astonished to see the ship. It takes you some time to arrange for additional repairs, but by the time you're finished, a pavilion has been set up near the <EDC-ship>, and small groups of Korath periodically stop by.`
+			choice
+				`	(Check it out.)`
+				`	(I've got places to be.)`
+					decline
+				
+			`	The tent is larger than you expected. At the back there is a group of Korath arranged like a choir, but standing oddly still. A Korath in some kind of robe stands next to a table piled with sweets and cups of some kind of thick drink. As you approach, you realize that the "choir" is made of holograms. You do a quick mental count and guess that these are the Korath that died on the ship; this is probably some type of memorial. The Korath in robes greets you and presses a cup into your hand.`
+			choice
+				`	(Drink it.)`
+					goto drink
+				`	(Make a motion as if drinking.)`
+			`	Either the Efret don't notice your ruse, or they are too polite to say. They press the sweets on you so you take them. You see a few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
+				goto end
+			label drink
+			`	The drink is fermented, and has a sweet and sour taste that leaves your lips and mouth tingling, eventually numbing them. The Korath then presses the sweets on you, and you humbly accept them. A few groups from the spaceport follow the same ritual, though some of them walk up to the "choir" and say something to them. When you finish the food, you take your leave and return to your ship.`
+			label end
+
+mission "Efreti: Distress Call 8"
+	landing
+	invisible
+	source
+		attributes quarg
+	to offer
+		has "Efreti: Distress Call 7: done"
+	on offer
+		conversation
+			`The Quarg have translated the Korath language for you in the past. You have the data chip from when you helped the Efret salvage the <EDC-ship>. Would you like to see if the Quarg can tell you what the data chip says?`
+			choice
+				`	(Ask the Quarg to translate the data chip.)`
+				`	(Maybe another time.)`
+					defer
+				`	(I don't care what it says.)`
+					decline
+			
+			`	You approach one of the Quarg in the spaceport and request assistance with the data chip. It stops and acknowledges you, but doesn't speak. It pauses for a few moments after you make your request, but then holds out its hand. Taking the data chip, it slots it into a communicator of some sort, slowly nods to itself, and hands it back to you.`
+			`	You return to your ship and try plugging the chip into your systems again, which now displays two files: one in the Korath language, and one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
+			`	You carefully store the chip in a safe place.`
