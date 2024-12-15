@@ -29,6 +29,7 @@ category "ship"
 	"Unclassified"
 	"Unclassified Minor"
 	"Game Mechanics"
+	"Intrasolar"
 
 
 # Ships of these types can be carried by other ships.
