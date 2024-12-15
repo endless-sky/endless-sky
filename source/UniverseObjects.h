@@ -38,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "Shader.h"
+#include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
 #include "System.h"
