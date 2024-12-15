@@ -28,8 +28,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 
 #include <algorithm>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <mutex>
 #include <stdexcept>
 
