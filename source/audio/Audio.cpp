@@ -114,8 +114,8 @@ namespace {
 	// The number of Pause vs Resume requests received.
 	int pauseChangeCount = 0;
 	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
-	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
-	int pauseCount = -1;
+	// We start with -2, so when MenuPanel and PlanetPanel opens up the first time, it doesn't pause the loading sounds.
+	int pauseCount = -2;
 }
 
 
@@ -333,6 +333,36 @@ void Audio::Step()
 	if(!isInitialized)
 		return;
 
+	if(pauseChangeCount > 0)
+	{
+		if(pauseCount += pauseChangeCount)
+		{
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PLAYING)
+					alSourcePause(source.ID());
+			}
+		}
+	}
+	else if(pauseChangeCount < 0)
+	{
+		// Check that the game is not paused after this request. Also don't allow the pause count to go into negatives.
+		if(pauseCount && (pauseCount += pauseChangeCount) <= 0)
+		{
+			pauseCount = 0;
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PAUSED)
+					alSourcePlay(source.ID());
+			}
+		}
+	}
+	pauseChangeCount = 0;
+
 	vector<Source> newSources;
 	// For each sound that is looping, see if it is going to continue. For other
 	// sounds, check if they are done playing.
@@ -459,36 +489,6 @@ void Audio::Step()
 		if(state != AL_PLAYING && state != AL_PAUSED)
 			alSourcePlay(musicSource);
 	}
-
-	if(pauseChangeCount > 0)
-	{
-		if(pauseCount += pauseChangeCount)
-		{
-			ALint state;
-			for(const Source &source : sources)
-			{
-				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-				if(state == AL_PLAYING)
-					alSourcePause(source.ID());
-			}
-		}
-	}
-	else if(pauseChangeCount < 0)
-	{
-		// Check that the game is not paused after this request. Also don't allow the pause count to go into negatives.
-		if(pauseCount && (pauseCount += pauseChangeCount) <= 0)
-		{
-			pauseCount = 0;
-			ALint state;
-			for(const Source &source : sources)
-			{
-				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-				if(state == AL_PAUSED)
-					alSourcePlay(source.ID());
-			}
-		}
-	}
-	pauseChangeCount = 0;
 }
 
 

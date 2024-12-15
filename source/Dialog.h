@@ -47,7 +47,7 @@ public:
 	// Mission accept / decline dialog.
 	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
-	virtual ~Dialog() = default;
+	virtual ~Dialog() override;
 
 	// Three different kinds of dialogs can be constructed: requesting numerical
 	// input, requesting text input, or not requesting any input at all. In any
