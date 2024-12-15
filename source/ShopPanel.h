@@ -210,9 +210,13 @@ private:
 	void MainDown();
 	void CategoryAdvance(const std::string &category);
 	std::vector<Zone>::const_iterator Selected() const;
-	// Check if the given point is within the button zone, and if so return the
-	// letter of the button (or ' ' if it's not on a button).
 	char CheckButton(int x, int y);
+
+	// Check if at least one of the selected ships is an escort.
+	bool EscortSelected();
+	// Check whether there is a selected ship that can be parked/unparked.
+	bool CanPark();
+	bool CanUnpark();
 
 
 private:
