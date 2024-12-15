@@ -179,7 +179,7 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 
-	DataFile prefs(Files::Config() + "preferences.txt");
+	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
 		if(node.Token(0) == "window size" && node.Size() >= 3)
@@ -271,7 +271,7 @@ void Preferences::Load()
 
 void Preferences::Save()
 {
-	DataWriter out(Files::Config() + "preferences.txt");
+	DataWriter out(Files::Config() / "preferences.txt");
 
 	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());

@@ -135,6 +135,7 @@ private:
 			HOSTILE,
 			NEUTRAL,
 			SCAN,
+			SCAN_OUT_OF_RANGE,
 			COUNT // This item should always be the last in this list.
 		};
 
@@ -258,6 +259,9 @@ private:
 	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
+	// Represents the state of the currently targeted ship when it was last seen,
+	// so the target display does not show updates to its state the player should not be aware of.
+	int lastTargetType = 0;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
 	std::vector<Outline> outlines;
