@@ -45,13 +45,13 @@ float sdOrientedBox(highp vec2 p, highp vec2 a, highp vec2 b, highp float th) {
 
 void main() {
 	float dist;
-	if(cap == 1) {
-        // Rounded caps can shortcut to a segment sdf.
-        // Segment sdf only provides a distance fromt the line itself so we manually subtract it from the width.
-        dist = width - sdSegment(pos, start, end);
+	if (cap == 1) {
+		// Rounded caps can shortcut to a segment sdf.
+		// Segment sdf only provides a distance fromt the line itself so we manually subtract it from the width.
+		dist = width - sdSegment(pos, start, end);
 	} else {
-        // Subtract from 1 here to add some AA.
-        dist = 1. - sdOrientedBox(pos, start, end, width);
+		// Subtract from 1 here to add some AA.
+		dist = 1. - sdOrientedBox(pos, start, end, width);
 	}
 	float alpha = clamp(dist, 0.0, 1.0);
 	finalColor = color * alpha;

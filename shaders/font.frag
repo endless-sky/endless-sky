@@ -27,5 +27,5 @@ out vec4 finalColor;
 
 // Multiply the texture by the user-specified color (including alpha).
 void main() {
-  finalColor = texture(tex, texCoord).a * color;
+	finalColor = texture(tex, texCoord).a * color;
 }
