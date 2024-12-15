@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cstdlib>
 #include <stdexcept>
 #include <utility>
