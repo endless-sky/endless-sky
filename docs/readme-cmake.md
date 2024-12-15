@@ -65,15 +65,7 @@ Additionally, if you want to build unit tests:
 ```
 catch2
 ```
-On Ubuntu 22.04 you will need to build from source as the apt only has Catch 2.x while you need Catch 3.x to build.
-```
-git clone https://github.com/catchorg/Catch2.git
-cd Catch2
-git checkout v3.4.0  # What version do we actually want?
-cmake -Bbuild -H. -DBUILD_TESTING=OFF
-cd build
-sudo make install
-```
+Since Catch2 version 3.x is needed (3.4 works), you will have to install it with something like `vcpkg`, rather than apt.
 
 
 </details>
