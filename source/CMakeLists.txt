@@ -99,8 +99,6 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.h
 	ExclusiveItem.h
 	FighterHitHelper.h
-	File.cpp
-	File.h
 	Files.cpp
 	Files.h
 	FireCommand.cpp

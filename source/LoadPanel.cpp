@@ -66,8 +66,11 @@ namespace {
 	}
 
 	// Convert a time_t to a human-readable time and date.
-	string TimestampString(time_t timestamp)
+	string TimestampString(filesystem::file_time_type time)
 	{
+		// TODO: Replace with chrono formatting when it is properly supported.
+		time_t timestamp = chrono::system_clock::to_time_t(chrono::clock_cast<chrono::system_clock>(time));
+
 		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
 		static const size_t BUF_SIZE = 25;
 		char str[BUF_SIZE];
@@ -529,7 +532,7 @@ void LoadPanel::UpdateLists()
 		if(start->first.find('~') == string::npos)
 			++start;
 		sort(start, it.second.end(),
-			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
+			[](const pair<string, filesystem::file_time_type> &a, const pair<string, filesystem::file_time_type> &b) -> bool
 			{
 				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}

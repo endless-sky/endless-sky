@@ -15,13 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
-#include "../File.h"
+#include "../Files.h"
 #include "../Logger.h"
 
 #include <jpeglib.h>
 #include <png.h>
 
-#include <cstdio>
 #include <stdexcept>
 #include <vector>
 
@@ -191,10 +190,15 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 
 
 namespace {
+	void ReadPNGInput(png_structp png_ptr, png_bytep outBytes, png_size_t byteCountToRead)
+	{
+		static_cast<iostream *>(png_get_io_ptr(png_ptr))->read(reinterpret_cast<char *>(outBytes), byteCountToRead);
+	}
+
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
 		// Open the file, and make sure it really is a PNG.
-		File file(path.string());
+		shared_ptr<iostream> file = Files::Open(path.string());
 		if(!file)
 			return false;
 
@@ -216,9 +220,7 @@ namespace {
 			return false;
 		}
 
-		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
-		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
-		png_init_io(png, file);
+		png_set_read_fn(png, file.get(), ReadPNGInput);
 		png_set_sig_bytes(png, 0);
 
 		png_read_info(png, info);
@@ -293,8 +295,8 @@ namespace {
 
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		File file(path.string());
-		if(!file)
+		std::string data = Files::Read(path);
+		if(data.empty())
 			return false;
 
 		jpeg_decompress_struct cinfo;
@@ -305,7 +307,7 @@ namespace {
 		jpeg_create_decompress(&cinfo);
 #pragma GCC diagnostic pop
 
-		jpeg_stdio_src(&cinfo, file);
+		jpeg_mem_src(&cinfo, reinterpret_cast<const unsigned char *>(data.c_str()), data.size() + 1);
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 
