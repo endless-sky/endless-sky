@@ -69,7 +69,7 @@ void LandedOfferPanel::Step()
 				GetPort()->HasService(Port::ServicesType::OffersMissions))
 			mission = player.MissionToOffer(Mission::LANDING);
 
-		// Offer a mission if we have one
+		// Offer a mission if we have one.
 		if(mission)
 			mission->Do(Mission::OFFER, player, GetUI());
 		// Otherwise, show "blocked mission" dialogs.

@@ -55,7 +55,7 @@ public:
 	// Check whether the given panel is the top panel out of all possible panels,
 	// including ones not yet drawn.
 	bool WillBeTop(const Panel *panel) const;
-	// Check whether the given panel is the top panel of only the ones already drawn in this step
+	// Check whether the given panel is the top panel of only the ones already drawn in this step.
 	bool IsTop(const Panel *panel) const;
 	// Get the top panel, out of all possible panels, including ones not yet drawn.
 	std::shared_ptr<Panel> Top() const;
