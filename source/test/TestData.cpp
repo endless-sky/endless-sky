@@ -33,7 +33,7 @@ const string &TestData::Name() const
 }
 
 
-
+#include <iostream>
 // Loader to load the generic test-data entry
 void TestData::Load(const DataNode &node, const filesystem::path &sourceDataFilePath)
 {
@@ -108,11 +108,16 @@ bool TestData::InjectSavegame() const
 	// Get the contents node in the test data.
 	const auto &nodePtr = GetContentsNode(sourceData);
 	if(!nodePtr)
+	{
+		std::cout << "sad" << std::endl;
 		return false;
+	}
+	std::cout << "happy" << std::endl;
 	const DataNode &dataNode = *nodePtr;
 	// Then write out the complete contents to the target file
 	// Savegame data is written to the saves directory. Other test data
 	// types might be injected differently, e.g. direct object loading.
+	std::cout << Files::Saves() / (dataSetName + ".txt") << std::endl;
 	DataWriter dataWriter(Files::Saves() / (dataSetName + ".txt"));
 	for(const DataNode &child : dataNode)
 		dataWriter.Write(child);

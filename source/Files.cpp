@@ -323,7 +323,7 @@ string Files::Name(const filesystem::path &path)
 shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 {
 	if(write)
-		return shared_ptr<iostream>{new fstream(path, fstream::in | fstream::out | fstream::binary)};
+		return shared_ptr<iostream>{new fstream(path, fstream::out | fstream::binary)};
 	return shared_ptr<iostream>{new fstream(path, fstream::in | fstream::binary)};
 }
 
@@ -357,6 +357,7 @@ void Files::Write(shared_ptr<iostream> file, const string &data)
 	if(!file)
 		return;
 	*file << data;
+	file->flush();
 }
 
 
