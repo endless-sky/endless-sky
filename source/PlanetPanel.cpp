@@ -79,7 +79,7 @@ void PlanetPanel::Step()
 	if(player.IsDead())
 	{
 		player.SetPlanet(nullptr);
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
 		return;
 	}
 
@@ -149,7 +149,7 @@ void PlanetPanel::Draw()
 		Rectangle box = ui.GetBox("content");
 		if(box.Width() != text.WrapWidth())
 			text.SetWrapWidth(box.Width());
-		text.Wrap(planet.Description());
+		text.Wrap(planet.Description().ToString(player.Conditions()));
 		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 	}
 }
@@ -354,7 +354,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		};
 		for(const auto &result : flightChecks)
 			for(const auto &warning : result.second)
-				if(jumpWarnings.count(warning))
+				if(jumpWarnings.contains(warning))
 				{
 					++nonJumpCount;
 					break;
@@ -438,6 +438,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";
+		// Pool cargo together, so that the cargo number on the trading panel
+		// is still accurate while the popup is active.
+		player.PoolCargo();
 		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
@@ -452,9 +455,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 void PlanetPanel::WarningsDialogCallback(const bool isOk)
 {
 	if(isOk)
-		TakeOff(false);
-	else
-		player.PoolCargo();
+		TakeOff(true);
 }
 
 

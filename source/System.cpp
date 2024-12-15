@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Minable.h"
 #include "Planet.h"
 #include "Random.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -127,8 +127,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		bool removeAll = (remove && !hasValue && !(key == "object" && child.HasChildren()));
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
-		overwriteAll |= (!add && !remove && key == "minables" && shouldOverwrite.count("asteroids"));
+		bool overwriteAll = (!add && !remove && shouldOverwrite.contains(key));
+		overwriteAll |= (!add && !remove && key == "minables" && shouldOverwrite.contains("asteroids"));
 		// Clear the data of the given type.
 		if(removeAll || overwriteAll)
 		{
@@ -165,9 +165,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			{
 				// Make sure any planets that were linked to this system know
 				// that they are no longer here.
+				// Use const_cast to convert the "const Planet *" to "Planet *".
+				// Non-const access is available through the passed parameter "Set<Planet> &planets"
+				// but, in the case of an as-yet undefined Planet, the object will not have a name with which
+				// it can be found in that collection.
 				for(StellarObject &object : objects)
-					if(object.GetPlanet())
-						planets.Get(object.GetPlanet()->TrueName())->RemoveSystem(this);
+					if(object.planet)
+						const_cast<Planet *>(object.planet)->RemoveSystem(this);
 
 				objects.clear();
 			}
@@ -1042,6 +1046,12 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.speed = 360. / node.Value(1);
 	else if(key == "offset" && hasValue)
 		object.offset = node.Value(1);
+	else if(key == "visibility" && hasValue)
+	{
+		object.distanceInvisible = node.Value(1);
+		if(node.Size() >= 3)
+			object.distanceVisible = node.Value(2);
+	}
 	else if(removing && (key == "hazard" || key == "object"))
 		node.PrintTrace("Key \"" + key + "\" cannot be removed from an object:");
 	else

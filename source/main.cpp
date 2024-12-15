@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
@@ -37,11 +37,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Screen.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "TaskQueue.h"
-#include "Test.h"
-#include "TestContext.h"
+#include "test/Test.h"
+#include "test/TestContext.h"
 #include "UI.h"
 
 #include <chrono>
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		Preferences::Load();
 
 		// Load global conditions:
-		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		DataFile globalConditions(Files::Config() / "global conditions.txt");
 		for(const DataNode &node : globalConditions)
 			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
@@ -292,8 +292,14 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_9)
+			{
 				isPaused = !isPaused;
+				if(isPaused)
+					Audio::Pause();
+				else
+					Audio::Resume();
+			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& Command(event.key.keysym.sym).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
@@ -504,7 +510,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.8-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.11-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;
@@ -540,6 +546,7 @@ Conversation LoadConversation()
 		{"<passengers>", "[your passengers]"},
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
+		{"<model>", "[Ship Model]"},
 		{"<system>", "[Star]"},
 		{"<tons>", "[N tons]"}
 	};

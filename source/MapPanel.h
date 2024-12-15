@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PANEL_H_
-#define MAP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -177,7 +176,7 @@ private:
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
-	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
 		bool drawBack = true, bool bigger = false);
 
@@ -211,7 +210,3 @@ private:
 	};
 	std::vector<Link> links;
 };
-
-
-
-#endif

@@ -18,16 +18,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "Color.h"
 #include "Command.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
+#include "Information.h"
 #include "Interface.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -61,6 +62,14 @@ void MessageLogPanel::Draw()
 		backColor);
 
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + width);
+
+	Information info;
+	if(messages.empty())
+	{
+		info.SetCondition("empty");
+		GameData::Interfaces().Get("message log")->Draw(info, nullptr);
+		return;
+	}
 
 	const Font &font = FontSet::Get(14);
 

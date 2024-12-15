@@ -22,25 +22,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -87,7 +87,7 @@ namespace {
 	}
 
 	// Compute the required scroll amount for the given list of jobs/missions.
-	void DoScroll(const list<Mission> &missionList, const list<Mission>::const_iterator &it,
+	void ScrollMissionList(const list<Mission> &missionList, const list<Mission>::const_iterator &it,
 		double &sideScroll, bool checkVisibility)
 	{
 		// We don't need to scroll at all if the selection must be within the viewport. The current
@@ -216,11 +216,11 @@ void MissionPanel::Draw()
 	const Color &routeColor = *colors.Get("mission route");
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
-	const System *previous = nullptr;
-	const System *next = selectedSystem;
-	for(; distance.Days(next) > 0; next = previous)
+	const System *previous = player.GetSystem();
+	const vector<const System *> plan = distance.Plan(*selectedSystem);
+	for(auto it = plan.rbegin(); it != plan.rend(); ++it)
 	{
-		previous = distance.Route(next);
+		const System *next = *it;
 
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
@@ -236,9 +236,11 @@ void MissionPanel::Draw()
 
 		// Non-hyperspace jumps are drawn with a dashed line.
 		if(isJump)
-			LineShader::DrawDashed(from, to, unit, 5.f, routeColor, 11., 4.);
+			LineShader::DrawDashed(from, to, unit, 3.f, routeColor, 11., 4.);
 		else
-			LineShader::Draw(from, to, 5.f, routeColor);
+			LineShader::Draw(from, to, 3.f, routeColor);
+
+		previous = next;
 	}
 
 	const Color &availableColor = *colors.Get("available back");
@@ -531,9 +533,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			acceptedIt = accepted.end();
 		// Scroll the relevant panel so that the mission highlighted is visible.
 		if(availableIt != available.end())
-			DoScroll(available, availableIt, availableScroll, false);
+			ScrollMissionList(available, availableIt, availableScroll, false);
 		else if(acceptedIt != accepted.end())
-			DoScroll(accepted, acceptedIt, acceptedScroll, true);
+			ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
 
 	return true;
@@ -616,12 +618,12 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
-		DoScroll(available, availableIt, availableScroll, false);
+		ScrollMissionList(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
-		DoScroll(accepted, acceptedIt, acceptedScroll, true);
+		ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
 
 	// Center on the selected system.

@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -34,9 +34,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #if defined _WIN32
@@ -66,16 +66,22 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
-	PATH_LENGTH = Files::Saves().size();
+	PATH_LENGTH = Files::Saves().string().size();
 #endif
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(ship)
+	{
 		subs["<ship>"] = ship->Name();
+		subs["<model>"] = ship->DisplayModelName();
+	}
 	else if(player.Flagship())
+	{
 		subs["<ship>"] = player.Flagship()->Name();
+		subs["<model>"] = player.Flagship()->DisplayModelName();
+	}
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.

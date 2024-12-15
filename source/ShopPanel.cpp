@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -29,17 +29,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "Mission.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "Sale.h"
 #include "Screen.h"
+#include "ScrollBar.h"
+#include "ScrollVar.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 #include "text/WrappedText.h"
@@ -84,6 +86,15 @@ namespace {
 		FillShader::Fill(anchor - .5 * textSize, textSize, backColor);
 		wrap.Draw(anchor - textSize + Point(PAD, PAD), textColor);
 	}
+
+	constexpr auto ScrollbarMaybeUpdate = [](const auto &op, ScrollBar &scrollbar,
+		ScrollVar<double> &scroll, bool animate)
+	{
+		if(!op(scrollbar))
+			return false;
+		scrollbar.SyncInto(scroll, animate ? 5 : 0);
+		return true;
+	};
 }
 
 
@@ -190,8 +201,8 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	// Draw the ship name.
 	const Font &font = FontSet::Get(14);
 	const string &name = ship.Name().empty() ? ship.DisplayModelName() : ship.Name();
-	Point offset(-SIDEBAR_WIDTH / 2, -.5f * SHIP_SIZE + 10.f);
-	font.Draw({name, {SIDEBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
+	Point offset(-SIDEBAR_CONTENT / 2, -.5f * SHIP_SIZE + 10.f);
+	font.Draw({name, {SIDEBAR_CONTENT, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
 }
 
@@ -419,7 +430,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 
-			if(!playerShips.count(playerShip))
+			if(!playerShips.contains(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 		else
@@ -433,7 +444,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(CanShowInSidebar(*ship, here))
 					playerShips.insert(ship);
 
-			if(!playerShips.count(playerShip))
+			if(!playerShips.contains(playerShip))
 				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
 		}
 	}
@@ -449,7 +460,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
-bool ShopPanel::Click(int x, int y, int /* clicks */)
+bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
 	// Handle clicks on the buttons.
@@ -457,30 +468,17 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 	if(button)
 		return DoKey(button);
 
-	// Check for clicks on the ShipsSidebar pane arrows.
-	if(x >= Screen::Right() - 20)
+	auto ScrollbarClick = [x, y, clicks](ScrollBar &scrollbar, ScrollVar<double> &scroll)
 	{
-		if(y < Screen::Top() + 20)
-			return Scroll(0, 4);
-		if(y < Screen::Bottom() - BUTTON_HEIGHT && y >= Screen::Bottom() - BUTTON_HEIGHT - 20)
-			return Scroll(0, -4);
-	}
-	// Check for clicks on the DetailsSidebar pane arrows.
-	else if(x >= Screen::Right() - SIDEBAR_WIDTH - 20 && x < Screen::Right() - SIDEBAR_WIDTH)
-	{
-		if(y < Screen::Top() + 20)
-			return Scroll(0, 4);
-		if(y >= Screen::Bottom() - 20)
-			return Scroll(0, -4);
-	}
-	// Check for clicks on the Main pane arrows.
-	else if(x >= Screen::Right() - SIDE_WIDTH - 20 && x < Screen::Right() - SIDE_WIDTH)
-	{
-		if(y < Screen::Top() + 20)
-			return Scroll(0, 4);
-		if(y >= Screen::Bottom() - 20)
-			return Scroll(0, -4);
-	}
+		return ScrollbarMaybeUpdate([x, y, clicks](ScrollBar &scrollbar)
+			{
+				return scrollbar.Click(x, y, clicks);
+			}, scrollbar, scroll, true);
+	};
+	if(ScrollbarClick(mainScrollbar, mainScroll)
+			|| ScrollbarClick(sidebarScrollbar, sidebarScroll)
+			|| ScrollbarClick(infobarScrollbar, infobarScroll))
+		return true;
 
 	const Point clickPoint(x, y);
 
@@ -554,6 +552,10 @@ bool ShopPanel::Click(int x, int y, int /* clicks */)
 
 bool ShopPanel::Hover(int x, int y)
 {
+	mainScrollbar.Hover(x, y);
+	infobarScrollbar.Hover(x, y);
+	sidebarScrollbar.Hover(x, y);
+
 	hoverPoint = Point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
@@ -603,7 +605,19 @@ bool ShopPanel::Drag(double dx, double dy)
 				}
 	}
 	else
-		DoScroll(dy, 0);
+	{
+		auto scrollbarInterceptSpec = [dx, dy](ScrollBar &scrollbar, ScrollVar<double> &scroll) {
+			scrollbar.SyncFrom(scroll, scrollbar.from, scrollbar.to, false);
+			return ScrollbarMaybeUpdate([dx, dy](ScrollBar &scrollbar)
+				{
+					return scrollbar.Drag(dx, dy);
+				}, scrollbar, scroll, false);
+		};
+		if(!scrollbarInterceptSpec(mainScrollbar, mainScroll)
+				&& !scrollbarInterceptSpec(sidebarScrollbar, sidebarScroll)
+				&& !scrollbarInterceptSpec(infobarScrollbar, infobarScroll))
+			DoScroll(dy, 0);
+	}
 
 	return true;
 }
@@ -701,6 +715,7 @@ const Outfit *ShopPanel::Zone::GetOutfit() const
 void ShopPanel::DrawShipsSidebar()
 {
 	const Font &font = FontSet::Get(14);
+	const Color &dark = *GameData::Colors().Get("dark");
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
@@ -723,8 +738,8 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Start below the "Your Ships" label, and draw them.
 	Point point(
-		Screen::Right() - SIDEBAR_WIDTH / 2 - 93,
-		Screen::Top() + SIDEBAR_WIDTH / 2 - sidebarScroll.AnimatedValue() + 40 - 93);
+		Screen::Right() - SIDEBAR_CONTENT / 2 - SIDEBAR_PADDING - 93,
+		Screen::Top() + SIDEBAR_CONTENT / 2 - sidebarScroll.AnimatedValue() + 40 - 93);
 
 	const Planet *here = player.GetPlanet();
 	int shipsHere = 0;
@@ -754,7 +769,7 @@ void ShopPanel::DrawShipsSidebar()
 			point.Y() += ICON_TILE;
 		}
 
-		bool isSelected = playerShips.count(ship.get());
+		bool isSelected = playerShips.contains(ship.get());
 		const Sprite *background = SpriteSet::Get(isSelected ? "ui/icon selected" : "ui/icon unselected");
 		SpriteShader::Draw(background, point);
 		// If this is one of the selected ships, check if the currently hovered
@@ -782,7 +797,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		if(mouse.Y() < Screen::Bottom() - BUTTON_HEIGHT && shipZones.back().Contains(mouse))
 		{
-			shipName = ship->Name();
+			shipName = ship->Name() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
 			hoverPoint = shipZones.back().TopLeft();
 		}
 
@@ -800,6 +815,13 @@ void ShopPanel::DrawShipsSidebar()
 			PointerShader::Draw(Point(point.X() - static_cast<int>(ICON_TILE / 3), point.Y()),
 				Point(1., 0.), 14.f, 12.f, 0., Color(.9f, .9f, .9f, .2f));
 
+		if(ship->IsParked())
+		{
+			static const Point CORNER = .35 * Point(ICON_TILE, ICON_TILE);
+			FillShader::Fill(point + CORNER, Point(6., 6.), dark);
+			FillShader::Fill(point + CORNER, Point(4., 4.), isSelected ? bright : medium);
+		}
+
 		point.X() += ICON_TILE;
 	}
 	point.Y() += ICON_TILE;
@@ -807,10 +829,10 @@ void ShopPanel::DrawShipsSidebar()
 	if(playerShip)
 	{
 		point.Y() += SHIP_SIZE / 2;
-		point.X() = Screen::Right() - SIDEBAR_WIDTH / 2;
+		point.X() = (Screen::Right() - SIDEBAR_CONTENT / 2) - SIDEBAR_PADDING;
 		DrawShip(*playerShip, point, true);
 
-		Point offset(SIDEBAR_WIDTH / -2, SHIP_SIZE / 2);
+		Point offset(SIDEBAR_CONTENT / -2, SHIP_SIZE / 2);
 		const int detailHeight = DrawPlayerShipInfo(point + offset);
 		point.Y() += detailHeight + SHIP_SIZE / 2;
 	}
@@ -823,12 +845,16 @@ void ShopPanel::DrawShipsSidebar()
 		font.Draw({space, {SIDEBAR_WIDTH - 20, Alignment::RIGHT}}, point, bright);
 		point.Y() += 20.;
 	}
-	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + BUTTON_HEIGHT));
+	sidebarScroll.SetDisplaySize(Screen::Height() - BUTTON_HEIGHT);
+	sidebarScroll.SetMaxValue(max(0., point.Y() + sidebarScroll.AnimatedValue() - Screen::Bottom() + Screen::Height()));
 
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10, Screen::Bottom() - 80),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(!sidebarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+	if(sidebarScroll.Scrollable())
+	{
+		Point top(Screen::Right() - 3, Screen::Top() + 10);
+		Point bottom(Screen::Right() - 3, Screen::Bottom() - 80);
+
+		sidebarScrollbar.SyncDraw(sidebarScroll, top, bottom);
+	}
 }
 
 
@@ -856,12 +882,16 @@ void ShopPanel::DrawDetailsSidebar()
 
 	double heightOffset = DrawDetails(point);
 
-	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()));
+	infobarScroll.SetDisplaySize(Screen::Height());
+	infobarScroll.SetMaxValue(max(0., heightOffset + infobarScroll.AnimatedValue() - Screen::Bottom()) + Screen::Height());
 
-	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - SIDEBAR_WIDTH - 10, Screen::Bottom() - 10),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(!infobarScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+	if(infobarScroll.Scrollable())
+	{
+		Point top{Screen::Right() - SIDEBAR_WIDTH - 7., Screen::Top() + 10.};
+		Point bottom{Screen::Right() - SIDEBAR_WIDTH - 7., Screen::Bottom() - 10.};
+
+		infobarScrollbar.SyncDraw(infobarScroll, top, bottom);
+	}
 }
 
 
@@ -999,7 +1029,7 @@ void ShopPanel::DrawMain()
 		point.Y() += bigFont.Height() + 20;
 		nextY += bigFont.Height() + 20;
 
-		bool isCollapsed = collapsed.count(category);
+		bool isCollapsed = collapsed.contains(category);
 		bool isEmpty = true;
 		for(const string &name : it->second)
 		{
@@ -1047,20 +1077,25 @@ void ShopPanel::DrawMain()
 
 	// What amount would mainScroll have to equal to make nextY equal the
 	// bottom of the screen? (Also leave space for the "key" at the bottom.)
+	mainScroll.SetDisplaySize(Screen::Height());
 	mainScroll.SetMaxValue(max(0., nextY + mainScroll.AnimatedValue() - Screen::Height() / 2 - TILE_SIZE / 2 +
-		VisibilityCheckboxesSize() + 40.));
+		VisibilityCheckboxesSize() + 40.) + Screen::Height());
 
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Top() + 10),
-		Point(0., -1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMin() ? .8f : .2f, 0.f));
-	PointerShader::Draw(Point(Screen::Right() - 10 - SIDE_WIDTH, Screen::Bottom() - 10),
-		Point(0., 1.), 10.f, 10.f, 5.f, Color(!mainScroll.IsScrollAtMax() ? .8f : .2f, 0.f));
+	if(mainScroll.Scrollable())
+	{
+		double scrollbarX = Screen::Right() - 7 - SIDE_WIDTH;
+		Point top(scrollbarX, Screen::Top() + 10.);
+		Point bottom(scrollbarX, Screen::Bottom() - 10.);
+
+		mainScrollbar.SyncDraw(mainScroll, top, bottom);
+	}
 }
 
 
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.count("description"), true);
+	shipInfo.Update(*playerShip, player, collapsed.contains("description"), true);
 	shipInfo.DrawAttributes(point, !isOutfitter);
 	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
@@ -1186,7 +1221,7 @@ void ShopPanel::SideSelect(Ship *ship)
 	}
 	else if(!control)
 		playerShips.clear();
-	else if(playerShips.count(ship))
+	else if(playerShips.contains(ship))
 	{
 		playerShips.erase(ship);
 		if(playerShip == ship)
