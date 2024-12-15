@@ -132,6 +132,7 @@ private:
 			HOSTILE,
 			NEUTRAL,
 			SCAN,
+			SCAN_OUT_OF_RANGE,
 			COUNT // This item should always be the last in this list.
 		};
 
