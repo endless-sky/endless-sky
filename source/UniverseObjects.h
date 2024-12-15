@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 
 #include <atomic>
+#include <filesystem>
 #include <future>
 #include <map>
 #include <mutex>
@@ -71,7 +72,8 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::string> &sources, bool debugMode = false);
+	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::filesystem::path> &sources,
+		bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
@@ -92,7 +94,7 @@ public:
 
 
 private:
-	void LoadFile(const std::string &path, bool debugMode = false);
+	void LoadFile(const std::filesystem::path &path, bool debugMode = false);
 
 
 private:

@@ -39,14 +39,14 @@ namespace {
 
 
 
-Font::Font(const string &imagePath)
+Font::Font(const filesystem::path &imagePath)
 {
 	Load(imagePath);
 }
 
 
 
-void Font::Load(const string &imagePath)
+void Font::Load(const filesystem::path &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;

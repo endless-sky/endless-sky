@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BatchShader.h"
 
-#include "GameData.h"
-#include "Screen.h"
+#include "../GameData.h"
+#include "../Screen.h"
 #include "Shader.h"
-#include "image/Sprite.h"
+#include "../image/Sprite.h"
 
 using namespace std;
 

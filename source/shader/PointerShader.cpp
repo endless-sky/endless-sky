@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PointerShader.h"
 
-#include "Color.h"
-#include "GameData.h"
-#include "Point.h"
-#include "Screen.h"
+#include "../Color.h"
+#include "../GameData.h"
+#include "../Point.h"
+#include "../Screen.h"
 #include "Shader.h"
 
 #include <stdexcept>

@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "opengl.h"
+#include "../opengl.h"
 
 
 
