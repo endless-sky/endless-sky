@@ -279,8 +279,8 @@ void GameData::LoadShaders()
 	for(const filesystem::path &source : sources)
 	{
 		filesystem::path base = source / "shaders";
-		if(Files::Exists(base.generic_string()))
-			for(filesystem::path shaderFile : Files::RecursiveList(base.generic_string()))
+		if(Files::Exists(base))
+			for(filesystem::path shaderFile : Files::RecursiveList(base))
 			{
 				filesystem::path shader = shaderFile;
 #ifdef ES_GLES
@@ -292,7 +292,7 @@ void GameData::LoadShaders()
 				if(shaderFile.extension() == ".gl")
 					shader = shader.parent_path() / shader.stem();
 #endif
-				string name = relative(shader.parent_path() / shader.stem(), base).generic_string();
+				string name = (shader.parent_path() / shader.stem()).lexically_relative(base).generic_string();
 				if(shader.extension() == ".vert")
 					loaded[name].first = shaderFile.string();
 				else if(shader.extension() == ".frag")
