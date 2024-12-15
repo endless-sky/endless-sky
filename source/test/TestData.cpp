@@ -35,7 +35,7 @@ const string &TestData::Name() const
 
 
 // Loader to load the generic test-data entry
-void TestData::Load(const DataNode &node, const string &sourceDataFilePath)
+void TestData::Load(const DataNode &node, const filesystem::path &sourceDataFilePath)
 {
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
@@ -113,7 +113,7 @@ bool TestData::InjectSavegame() const
 	// Then write out the complete contents to the target file
 	// Savegame data is written to the saves directory. Other test data
 	// types might be injected differently, e.g. direct object loading.
-	DataWriter dataWriter(Files::Saves() + dataSetName + ".txt");
+	DataWriter dataWriter(Files::Saves() / (dataSetName + ".txt"));
 	for(const DataNode &child : dataNode)
 		dataWriter.Write(child);
 

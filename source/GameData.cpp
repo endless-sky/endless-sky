@@ -90,7 +90,7 @@ namespace {
 
 	StarField background;
 
-	vector<string> sources;
+	vector<filesystem::path> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
@@ -104,7 +104,8 @@ namespace {
 	bool preventSpriteUpload = false;
 
 	// Tracks the progress of loading the sprites when the game starts.
-	int spriteLoadingProgress = 0;
+	std::atomic<bool> queuedAllImages = false;
+	std::atomic<int> spritesLoaded = 0;
 	std::atomic<int> totalSprites = 0;
 
 	// List of image sets that are waiting to be uploaded to the GPU.
@@ -139,7 +140,7 @@ namespace {
 			[image, &queue]
 			{
 				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
-				++spriteLoadingProgress;
+				++spritesLoaded;
 
 				// Start loading the next image in the queue, if any.
 				lock_guard lock(imageQueueMutex);
@@ -147,7 +148,7 @@ namespace {
 			});
 	}
 
-	void LoadPlugin(TaskQueue &queue, const string &path)
+	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
 		const auto *plugin = Plugins::Load(path);
 		if(!plugin)
@@ -162,19 +163,19 @@ namespace {
 		// Try adding all the possible icon variants.
 		for(const string &extension : ImageBuffer::ImageExtensions())
 		{
-			string iconPath = path + "icon" + extension;
+			filesystem::path iconPath = path / ("icon" + extension);
 			if(Files::Exists(iconPath))
 			{
-				icon->Add(filesystem::path(iconPath));
+				icon->Add(iconPath);
 				break;
 			}
 		}
 		for(const string &extension : ImageBuffer::ImageExtensions())
 		{
-			string iconPath = path + "icon@2x" + extension;
+			filesystem::path iconPath = path / ("icon@2x" + extension);
 			if(Files::Exists(iconPath))
 			{
-				icon->Add(filesystem::path(iconPath));
+				icon->Add(iconPath);
 				break;
 			}
 		}
@@ -223,6 +224,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 					++totalSprites;
 				}
 			}
+			queuedAllImages = true;
 
 			// Launch the tasks to actually load the images, making sure not to exceed the amount
 			// of tasks the main thread can handle in a single frame to limit peak memory usage.
@@ -271,16 +273,16 @@ void GameData::CheckReferences()
 void GameData::LoadSettings()
 {
 	// Load the key settings.
-	Command::LoadSettings(Files::Resources() + "keys.txt");
-	Command::LoadSettings(Files::Config() + "keys.txt");
+	Command::LoadSettings(Files::Resources() / "keys.txt");
+	Command::LoadSettings(Files::Config() / "keys.txt");
 }
 
 
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
+	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
 
 	FillShader::Init();
 	FogShader::Init();
@@ -299,7 +301,14 @@ void GameData::LoadShaders()
 
 double GameData::GetProgress()
 {
-	double spriteProgress = static_cast<double>(spriteLoadingProgress) / totalSprites;
+	double spriteProgress = 0.;
+	if(queuedAllImages)
+	{
+		if(!totalSprites)
+			spriteProgress = 1.;
+		else
+			spriteProgress = static_cast<double>(spritesLoaded) / totalSprites;
+	}
 	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
 }
 
@@ -360,7 +369,7 @@ void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 
 
 // Get the list of resource sources (i.e. plugin folders).
-const vector<string> &GameData::Sources()
+const vector<filesystem::path> &GameData::Sources()
 {
 	return sources;
 }
@@ -910,13 +919,13 @@ void GameData::LoadSources(TaskQueue &queue)
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
-	for(const string &path : globalPlugins)
+	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 
-	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : localPlugins)
+	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
+	for(const auto &path : localPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
@@ -926,14 +935,14 @@ void GameData::LoadSources(TaskQueue &queue)
 map<string, shared_ptr<ImageSet>> GameData::FindImages()
 {
 	map<string, shared_ptr<ImageSet>> images;
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		string directoryPath = source + "images/";
+		filesystem::path directoryPath = source / "images/";
 
-		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		for(string &path : imageFiles)
+		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
+		for(auto &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
 				ImageFileData data(path, directoryPath);
