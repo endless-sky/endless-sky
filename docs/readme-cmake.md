@@ -33,7 +33,7 @@ We recommend using Visual Studio 2022 or newer. If you are unsure of which editi
   
 We recommend the [MinGW Winlibs](https://winlibs.com/#download-release) distribution, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW distributions too (like Msys2 for example), but you'll need to make sure to install [CMake](https://cmake.org/) (3.21 or later) and [Ninja](https://ninja-build.org/).
 
-You'll need the POSIX version of MinGW. For the Winlibs distribution mentioned above, the latest version is currently gcc 13 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/13.2.0-16.0.6-11.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-13.2.0-mingw-w64ucrt-11.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
+You'll need the POSIX version of MinGW. If you want your builds to have the same runtime library requirements as the official releases of Endless Sky, choose a version that links to the UCRT. For the Winlibs distribution mentioned above, the latest version is currently gcc 14 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/14.2.0posix-18.1.8-12.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-14.2.0-mingw-w64ucrt-12.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
 
 ### MacOS
 
@@ -59,7 +59,11 @@ In addition to the below dependencies, you will also need CMake 3.16 or newer, h
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev catch2
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
+```
+Additionally, if you want to build unit tests:
+```
+catch2
 ```
 
 </details>
@@ -68,7 +72,11 @@ g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev li
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel catch2-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
+```
+Additionally, if you want to build unit tests:
+```
+catch2-devel
 ```
 
 </details>
@@ -82,11 +90,12 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 Here's a summary of every command you will need for development:
 
 ```bash
-$ cmake --preset <preset>                     # configure project (only needs to be done once)
-$ cmake --build --preset <preset>-debug       # build Endless Sky (as well as any tests)
-$ ctest --preset <preset>-test                # run the unit tests
-$ ctest --preset <preset>-benchmark           # run the benchmarks
-$ ctest --preset <preset>-integration         # run the integration tests (Linux only)
+$ cmake --preset <preset>                                       # configure project (only needs to be done once)
+$ cmake --build --preset <preset>-debug                         # build Endless Sky and all tests
+$ cmake --build --preset <preset>-debug --target EndlessSky     # build only the game
+$ ctest --preset <preset>-test                                  # run the unit tests
+$ ctest --preset <preset>-benchmark                             # run the benchmarks
+$ ctest --preset <preset>-integration                           # run the integration tests (Linux only)
 ```
 
 The executable will be located in `build/<preset>/Debug/`. If you'd like to debug a specific integration test (on any OS), you can do so as follows:

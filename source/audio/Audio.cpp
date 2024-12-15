@@ -96,7 +96,7 @@ namespace {
 	unsigned maxSources = 255;
 
 	// Queue and thread for loading sound files in the background.
-	map<string, string> loadQueue;
+	map<string, filesystem::path> loadQueue;
 	thread loadThread;
 
 	// The current position of the "listener," i.e. the center of the screen.
@@ -110,12 +110,18 @@ namespace {
 	shared_ptr<Music> previousTrack;
 	int musicFade = 0;
 	vector<int16_t> fadeBuffer;
+
+	// The number of Pause vs Resume requests received.
+	int pauseChangeCount = 0;
+	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
+	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
+	int pauseCount = -1;
 }
 
 
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init(const vector<string> &sources)
+void Audio::Init(const vector<filesystem::path> &sources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
@@ -142,20 +148,20 @@ void Audio::Init(const vector<string> &sources)
 	alDopplerFactor(0.);
 
 	// Get all the sound files in the game data and all plugins.
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
-		string root = source + "sounds/";
-		vector<string> files = Files::RecursiveList(root);
-		for(const string &path : files)
+		filesystem::path root = source / "sounds/";
+		vector<filesystem::path> files = Files::RecursiveList(root);
+		for(const auto &path : files)
 		{
-			if(!path.compare(path.length() - 4, 4, ".wav"))
+			if(path.extension() == ".wav")
 			{
 				// The "name" of the sound is its full path within the "sounds/"
 				// folder, without the ".wav" or "~.wav" suffix.
-				size_t end = path.length() - 4;
-				if(path[end - 1] == '~')
-					--end;
-				loadQueue[path.substr(root.length(), end - root.length())] = path;
+				string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
+				if(name.ends_with('~'))
+					name.resize(name.length() -1);
+				loadQueue[name] = path;
 			}
 		}
 	}
@@ -303,6 +309,23 @@ void Audio::PlayMusic(const string &name)
 
 
 
+// Pause all active playback streams. Doesn't cause new streams to be paused, and doesn't pause the music source.
+void Audio::Pause()
+{
+	pauseChangeCount++;
+}
+
+
+
+// Resumes all paused sound sources. If Pause() was called multiple times,
+// you have to call Resume() the same number of times to resume the sound sources.
+void Audio::Resume()
+{
+	pauseChangeCount--;
+}
+
+
+
 // Begin playing all the sounds that have been added since the last time
 // this function was called.
 void Audio::Step()
@@ -335,7 +358,7 @@ void Audio::Step()
 			// Non-looping sounds: check if they're done playing.
 			ALint state;
 			alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-			if(state == AL_PLAYING)
+			if(state == AL_PLAYING || state == AL_PAUSED)
 				newSources.push_back(source);
 			else
 				recycledSources.push_back(source.ID());
@@ -357,6 +380,8 @@ void Audio::Step()
 			alSourcef(*it, AL_GAIN, gain);
 			++it;
 		}
+		else if(state == AL_PAUSED)
+			++it;
 		else
 		{
 			recycledSources.push_back(*it);
@@ -431,9 +456,39 @@ void Audio::Step()
 		// Check if the source has stopped (i.e. because it ran out of buffers).
 		ALint state;
 		alGetSourcei(musicSource, AL_SOURCE_STATE, &state);
-		if(state != AL_PLAYING)
+		if(state != AL_PLAYING && state != AL_PAUSED)
 			alSourcePlay(musicSource);
 	}
+
+	if(pauseChangeCount > 0)
+	{
+		if(pauseCount += pauseChangeCount)
+		{
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PLAYING)
+					alSourcePause(source.ID());
+			}
+		}
+	}
+	else if(pauseChangeCount < 0)
+	{
+		// Check that the game is not paused after this request. Also don't allow the pause count to go into negatives.
+		if(pauseCount && (pauseCount += pauseChangeCount) <= 0)
+		{
+			pauseCount = 0;
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PAUSED)
+					alSourcePlay(source.ID());
+			}
+		}
+	}
+	pauseChangeCount = 0;
 }
 
 
@@ -580,7 +635,7 @@ namespace {
 	void Load()
 	{
 		string name;
-		string path;
+		filesystem::path path;
 		Sound *sound;
 		while(true)
 		{
@@ -603,7 +658,7 @@ namespace {
 
 			// Unlock the mutex for the time-intensive part of the loop.
 			if(!sound->Load(path, name))
-				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path);
+				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path.string());
 		}
 	}
 }
