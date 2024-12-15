@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
-#include <chrono>
 #include <cstdlib>
 #include <stdexcept>
 #include <utility>
@@ -70,7 +69,9 @@ namespace {
 	string TimestampString(filesystem::file_time_type time)
 	{
 		// TODO: Replace with chrono formatting when it is properly supported.
-		time_t timestamp = chrono::system_clock::to_time_t(chrono::clock_cast<chrono::system_clock>(time));
+		auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
+				+ chrono::system_clock::now());
+		time_t timestamp = chrono::system_clock::to_time_t(sctp);
 
 		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
 		static const size_t BUF_SIZE = 25;
