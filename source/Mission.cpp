@@ -141,6 +141,8 @@ void Mission::Load(const DataNode &node)
 		return;
 	}
 	name = node.Token(1);
+	if(!DataNode::IsConditionName(name))
+		node.PrintTrace("Error: Invalid mission name");
 
 	for(const DataNode &child : node)
 	{
@@ -204,6 +206,8 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
+		else if(child.Token(0) == "non-blocking")
+			isNonBlocking = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
 		else if(child.Token(0) == "autosave")
@@ -370,6 +374,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
+		if(isNonBlocking)
+			out.Write("non-blocking");
 		if(isMinor)
 			out.Write("minor");
 		if(autosave)
@@ -485,8 +491,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 void Mission::NeverOffer()
 {
-	// Add the equivalent "never" condition, `"'" != 0`.
-	toOffer.Add("has", "'");
+	toOffer.MakeNever();
 }
 
 
@@ -584,6 +589,15 @@ bool Mission::IsValid() const
 bool Mission::HasPriority() const
 {
 	return hasPriority;
+}
+
+
+
+// Check if this mission is a "non-blocking" mission.
+// Such missions will not prevent minor missions from being offered alongside them.
+bool Mission::IsNonBlocking() const
+{
+	return isNonBlocking;
 }
 
 
@@ -1287,6 +1301,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.hasFailed = true;
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
+	result.isNonBlocking = isNonBlocking;
 	result.isMinor = isMinor;
 	result.autosave = autosave;
 	result.location = location;
@@ -1584,12 +1599,12 @@ int Mission::CalculateJumps(const System *sourceSystem)
 				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
-		int bestDays = distance.Days(*bestIt);
+		int bestDays = distance.Days(**bestIt);
 		if(bestDays < 0)
 			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
 		{
-			int days = distance.Days(*it);
+			int days = distance.Days(**it);
 			if(days >= 0 && days < bestDays)
 			{
 				bestIt = it;
@@ -1606,7 +1621,7 @@ int Mission::CalculateJumps(const System *sourceSystem)
 			distanceCalcSettings.WormholeStrat(),
 			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
-	expectedJumps += distance.Days(destination->GetSystem());
+	expectedJumps += distance.Days(*destination->GetSystem());
 
 	return expectedJumps;
 }

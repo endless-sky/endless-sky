@@ -21,6 +21,7 @@ mission "Remnant: Visit to Paradise 1"
 		government "Remnant"
 	destination "Caelian"
 	stopover "Vail"
+	passengers 1
 	to offer
 		has "event: remnant: cognizance calm"
 		or
@@ -163,7 +164,7 @@ mission "Remnant: Celebration 1"
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
 		random < 50
-		"day" = 7
+		"day" == 7
 	on offer
 		conversation
 			`You stop by the starport just in time to see a large group of Remnant departing. A few of the nearest notice your interest and begin gesturing recognition or various invitations to accompany them, but before you are able to respond, Taely appears from the stream of people and approaches you.`
@@ -502,6 +503,9 @@ mission "Remnant: Shattered Light 3"
 				set "remnant: scanned specter"
 			`As the scan results arrive the data is relayed down to the team in the cargo hold. Your video feed shows a large hologram of the system floating in midair above one of the pallets. Nearby, terminals flash rolling readouts and analyses. As the data on the spectral ship solidifies, cones of projected courses appear on the display. Line by line the cone tightens in as additional data flows from your telemetry, closing in on a path intersecting with the nearby world.`
 			`	While the system continues to refine the orbital paths, the team seemed disinclined to wait: Ruach activates her commlink, broadcasting quickly to you. "It is on a crash course for Far Monad!" she exclaims. "Quick, land there!" Behind her, you can see her team scrambling to move equipment around near your cargo door and seal their spacesuits.`
+	to fail
+		has "remnant: scanned specter"
+		has "flagship planet: Far Monad"
 	to complete
 		never
 
@@ -516,10 +520,9 @@ mission "Remnant: Shattered Light 4"
 	to offer
 		has "remnant: scanned specter"
 	on offer
-		fail "Remnant: Shattered Light 3"
 		conversation
 			`With the Shattered Light careening towards the surface of Far Monad, you push the <ship> into a dive. As you focus on finding a safe place to land within close proximity of the approaching ship, you notice out the corner of your eye that the Remnant team have all suited up and are pushing their equipment to the cargo hatch. A message appears on your console.`
-			`	"Ready for drop, Captain. Just get us along side the Shattered Light without too much forward velocity. We can handle the rest."`
+			`	"Ready for drop, Captain. Just get us alongside the Shattered Light without too much forward velocity. We can handle the rest."`
 			branch livingship
 				or
 					has "flagship model: Peregrine"
@@ -633,7 +636,7 @@ mission "Remnant: Shattered Light 6"
 			label shatteredhelp
 			`	"Thank you, Captain. Of course we do not want to keep you waiting, so rest assured that we will contact you if your assistance is needed in the future."`
 			label shatteredrequest
-			`	Taely gestures take a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
+			`	Ruach's gestures take on a tone of curiosity. "One thing that you could help us with, if you wish, is resources. Right now we do not have any real need to put all this machinery to work, and as such we do not have the resources to spare to get it fully operational. That being said, if ever you would like a replica of the Shattered Light, we could use this equipment to build one."`
 			`	Her gestures take on an apologetic tone. "It will not be a perfect replica as we will have to use our own systems for most of the internals, and the resource allotment cost will be significantly higher than it would have been back at the Tycho Crater shipyard on Luna... but if you have the resources and interest, the opportunity is there. The shipyard will have more information for you in a day or two." Her gestures trail off with a sign that indicates vast possibilities.`
 			`	"Someday, Captain <first>, much may come from this. But for now, it will be months before we have analyzed everything. Thank you for helping recover a piece of our history, Captain."`
 

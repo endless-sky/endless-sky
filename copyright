@@ -449,6 +449,35 @@ License: CC-BY-SA-3.0
 Comment: Derived from works by Rob Lavinsky (under the same license).
 
 Files:
+ images/scene/hai?bank*
+Copyright: Tomasz Frankowski
+License: public-domain
+ Taken from https://archive.is/uZuiY. This image was uploaded to
+ unsplash.com before June 2017, so it is in the public domain.
+
+Files:
+ images/scene/hai?shipyard*
+Copyright: Dan Asaki
+License: Unsplash
+Comment:
+ Taken from https://archive.is/OcBnr. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
+Files:
+ images/scene/hai?start*
+Copyright: Willian Justen de Vasconcellos
+License: Unsplash
+Comment:
+ Taken from https://archive.is/7WLG3. This image was uploaded
+ to unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded on February 11, 2018,
+ so it is not subject to additional restrictions, as this is
+ a week before the additional restrictions were added.
+
+Files:
  images/land/badlands0*
  images/land/badlands5*
  images/land/badlands7*
@@ -730,12 +759,10 @@ License: public-domain
 
 Files:
  images/land/water4*
-Copyright: N/A (CC0 Public Domain)
-License: CC0
+Copyright: Unknown
+License: Depends
 Comment:
- Taken from https://pixabay.com/photos/macedonia-sunset-dusk-lake-water-260851, resized,
- cropped, and adjusted gamma. According to Section 3 of the Pixabay Terms of Service,
- all images with a "published date" earlier than January 9, 2019 have the CC0 license.
+ Cannot source. The image was probably removed from unsplash.
 
 Files:
  images/land/badlands10*
@@ -2667,6 +2694,7 @@ Files:
  images/ship/frigate*
  images/ship/gunboat*
  images/ship/lance*
+ images/ship/modified?carrier*
  images/ship/rainmaker*
  images/ship/raven*
  images/ship/splinter*
@@ -2680,6 +2708,7 @@ Files:
  images/thumbnail/frigate*
  images/thumbnail/gunboat*
  images/thumbnail/lance*
+ images/thumbnail/modified?carrier*
  images/thumbnail/rainmaker*
  images/thumbnail/raven*
  images/thumbnail/splinter*
@@ -2903,6 +2932,7 @@ Files:
  images/ship/arch-carrack*
  images/ship/charm-shallop*
  images/ship/echo-galleon*
+ images/ship/hauler?vi*
  images/ship/heavy?gust*
  images/ship/mining?drone*
  images/ship/mule*
@@ -2915,6 +2945,7 @@ Files:
  images/thumbnail/arch-carrack*
  images/thumbnail/charm-shallop*
  images/thumbnail/echo-galleon*
+ images/thumbnail/hauler?vi*
  images/thumbnail/heavy?gust*
  images/thumbnail/mining?drone*
  images/thumbnail/mule*
@@ -2960,6 +2991,7 @@ Files:
  sounds/sheragi?launch*
  sounds/stagnation?beam*
  sounds/star?tail*
+ sounds/*successor?afterburner*
  sounds/swarm?missile*
  sounds/thorax?cannon*
  sounds/tractor?beam*
@@ -3334,6 +3366,7 @@ License: CC-BY-SA-4.0
 Comment: Image data: NASA/JPL-Caltech/SwRI/MSSS and Image processing by Brian Swift.
 
 Files:
+ images/icon/swarm*
  images/outfit/twin?blaster*
  images/outfit/twin?mod?blaster*
  images/outfit/repeater*
@@ -3524,6 +3557,31 @@ Comment:
  sale of unaltered copies.
 
 Files:
+ images/land/city26*
+ images/land/city27*
+ images/land/city28*
+ images/land/clouds9*
+ images/land/clouds10*
+ images/land/fields28*
+ images/land/fields29*
+ images/land/forest11*
+ images/land/forest12*
+ images/land/path1*
+ images/land/path2*
+ images/land/path3*
+ images/land/path4*
+ images/land/sea24*
+ images/land/sky12*
+ images/land/sky13*
+ images/land/water21*
+ images/land/water22*
+ images/land/water23*
+ images/land/water24*
+ images/land/water25*
+Copyright: DAK (4robits@gmail.com)
+License: CC-BY-SA-4.0
+
+Files:
  images/land/snow22*
 Copyright: Paston Woelber
 License: Unsplash
@@ -3591,6 +3649,145 @@ Files:
 Copyright: NASA
 License: public-domain
  Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
+
+Files:
+ images/effect/bimodal?impact*
+ images/effect/bimodal?switch?impact*
+ images/effect/drag?cannon?impact*
+ images/effect/overcharged?pulse?laser?impact*
+ images/effect/successor?flare/*
+ images/effect/successor?pulse?laser?impact*
+ images/effect/void?spark*
+ images/hardpoint/bimodal?turret*
+ images/hardpoint/overcharged?pulse?laser?turret*
+ images/hardpoint/successor?pulse?laser?turret*
+ images/icon/hv?spike*
+ images/label/successors*
+ images/outfit/bimodal?coilgun?turret*
+ images/outfit/bimodal?coilgun*
+ images/outfit/drag?cannon*
+ images/outfit/fuel?sail*
+ images/outfit/hv?spike?rack*
+ images/outfit/hv?spike*
+ images/outfit/large?betavoltaic*
+ images/outfit/large?successor?battery*
+ images/outfit/large?successor?reactor*
+ images/outfit/large?successor?reverse*
+ images/outfit/large?successor?shield*
+ images/outfit/large?successor?steering*
+ images/outfit/large?successor?thruster*
+ images/outfit/medium?betavoltaic*
+ images/outfit/medium?successor?reactor*
+ images/outfit/medium?successor?repair*
+ images/outfit/medium?successor?reverse*
+ images/outfit/medium?successor?shield*
+ images/outfit/medium?successor?steering*
+ images/outfit/medium?successor?thruster*
+ images/outfit/overcharged?betavoltaic*
+ images/outfit/overcharged?pulse?laser?turret*
+ images/outfit/overcharged?pulse?laser*
+ images/outfit/railgun?h2h*
+ images/outfit/shield?cortex?interface*
+ images/outfit/sjeja?kinetic?lance*
+ images/outfit/small?betavoltaic*
+ images/outfit/small?successor?battery*
+ images/outfit/small?successor?reactor*
+ images/outfit/small?successor?repair*
+ images/outfit/small?successor?reverse*
+ images/outfit/small?successor?shield*
+ images/outfit/small?successor?steering*
+ images/outfit/small?successor?thruster*
+ images/outfit/successor?armor*
+ images/outfit/successor?cooling*
+ images/outfit/successor?engines?tiny*
+ images/outfit/successor?license*
+ images/outfit/successor?pulse?laser?turret*
+ images/outfit/successor?pulse?laser*
+ images/outfit/tiny?successor?shield*
+ images/outfit/tuur?scanning?suite*
+ images/outfit/veldt?combat?scanner*
+ images/planet/station?successor*
+ images/projectile/bimodal?switch*
+ images/projectile/bimodal*
+ images/projectile/drag?cannon*
+ images/projectile/sjeja?kinetic?lance*
+ images/projectile/successor?pulse?laser*
+ images/ship/aaulqra*
+ images/ship/ejniisde*
+ images/ship/kaskhorade*
+ images/ship/kvelqde-khora*
+ images/ship/kvelqde*
+ images/ship/myaede*
+ images/ship/nnesaarau*
+ images/ship/ojde*
+ images/ship/seiitej*
+ images/ship/stolsaqra*
+ images/ship/veusade*
+ images/ship/vujlet*
+ images/thumbnail/aaulqra*
+ images/thumbnail/ejniisde*
+ images/thumbnail/kaskhorade*
+ images/thumbnail/kvelqde-khora*
+ images/thumbnail/kvelqde*
+ images/thumbnail/myaede*
+ images/thumbnail/nnesaarau*
+ images/thumbnail/ojde*
+ images/thumbnail/seiitej*
+ images/thumbnail/stolsaqra*
+ images/thumbnail/veusade*
+ images/thumbnail/vujlet*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+
+Files:
+  sounds/bimodal*
+  sounds/drag?cannon*
+  sounds/overcharged?pulse?laser*
+  sounds/successor?pulse?laser*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC-BY-SA-4.0
+Comment: Sound effects generated with Labchirp v1.60 (https://labbed.net/software/labchirp/).
+
+Files:
+ images/_menu/haze-tear*
+ images/star/void-scar*
+Copyright: Daeridanii (https://github.com/Daeridanii1)
+License: CC0
+Comment: Derived from works by NASA in the public domain.
+
+Files:
+ images/land/fog12*
+Copyright: US National Park Service
+License: public-domain
+ From the US National Park Service, and therefore in the public domain
+ because it was created by government employees while doing work for the government.
+
+Files:
+ images/land/snow24*
+Copyright: NPS Photo / Kent Miller
+License: public-domain
+ From the US National Park Service, and therefore in the public domain
+ because it was created by government employees while doing work for the government.
+
+Files:
+ images/land/snow25*
+Copyright: DCheretovich
+License: CC0
+Comment: Taken from https://commons.wikimedia.org/wiki/File:Vatnajökull_glacier.jpg and cropped.
+
+Files:
+ images/land/lava14*
+Copyright: USGS
+License: public-domain
+ From the USGS, and therefore in the public domain because it was created by
+ government employees while doing work for the government.
+
+Files:
+ images/holovid?zone*
+ images/phantom?pallet*
+Copyright: None (placed in public domain by an anonymous author)
+License: CC0
+Comment: Uses public domain textures from texture.ninja. Meshes were made by an anonymous author in 2023-2024.
 
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
