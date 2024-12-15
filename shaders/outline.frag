@@ -1,3 +1,18 @@
+/* outline.frag
+Copyright (c) 2014 by Michael Zahniser
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
 // The outline shader applies a Sobel filter to an image. The alpha channel
 // (i.e. the silhouette of the sprite) is given the most weight, but some
 // weight is also given to the RGB values so that there will be some detail
