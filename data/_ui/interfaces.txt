@@ -120,7 +120,9 @@ color "overlay neutral shields" .43 .55 .70 .75
 color "overlay neutral hull" .45 .5 0. .25
 color "overlay neutral disabled" .5 0. 0. .25
 color "overlay outfit scan" .5 .5 .5 .25
+color "overlay outfit scan out of range" .25 .25 .25 .25
 color "overlay cargo scan" .7 .7 .7 .25
+color "overlay cargo scan out of range" .35 .35 .35 .25
 
 # Colors used when "missile overlays" are enabled
 color "missile enemy" 1. 1. .25 .7
