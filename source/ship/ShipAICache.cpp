@@ -113,7 +113,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 	for(const auto &hardpoint : ship.Weapons())
 	{
 		const Weapon *weapon = hardpoint.GetOutfit();
-		if(!weapon || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
+		if(!weapon || hardpoint.IsSpecial() || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
 			continue;
 		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
 		if(hardpoint.IsTurret())

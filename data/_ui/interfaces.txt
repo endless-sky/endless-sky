@@ -972,10 +972,10 @@ interface "hud"
 
 	visible if "target acceleration display"
 	sprite "ui/tactical/acceleration"
-		from 190 321
+		from 194 321
 		align top left
 	string "target acceleration"
-		from 204 321
+		from 208 321
 		align top left
 	
 	

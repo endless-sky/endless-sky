@@ -207,6 +207,8 @@ public:
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
 	const ShipAICache &GetAICache() const;
+	// Updates the AI and navigation caches. If the ship's mass hasn't changed,
+	// reuses some of the previous values.
 	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
@@ -415,11 +417,10 @@ public:
 	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
-	// This is their potential acceleration right now
+	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
 	double TrueAcceleration() const;
-	// This is their potential turn right now
 	double TrueTurnRate() const;
-	// This is their current speed right now
+	// The ship's current speed right now
 	double CurrentSpeed() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
