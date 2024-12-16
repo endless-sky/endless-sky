@@ -96,7 +96,7 @@ outfit "Star Tail"
 	mass 48
 	"outfit space" -50
 	"weapon capacity" -50
-	"gun ports" -1
+	"missile pylons" -1
 	thumbnail "outfit/star tail launcher"
 	"star tail capacity" 20
 	licenses
@@ -254,6 +254,7 @@ outfit "MH Blue-Class Thruster"
 	"thrust" 24
 	"thrusting energy" 2
 	"thrusting heat" 2.5
+	"thrusting slot" -1
 	description "In Incipian culture, blue is the weakest color. A thruster labeled as blue does not bode well for the speed of any ship using it."
 
 outfit "MH Blue-Class Steering"
@@ -266,6 +267,7 @@ outfit "MH Blue-Class Steering"
 	"turn" 498
 	"turning energy" 1.
 	"turning heat" 3
+	"steering slot" -1
 	description "This steering barely provides the minimum force needed to turn a ship, but it is still used often because of how cheap it is."
 
 outfit "MH Green-Class Thruster"
@@ -281,6 +283,7 @@ outfit "MH Green-Class Thruster"
 	"thrust" 30
 	"thrusting energy" 2.2
 	"thrusting heat" 2.8
+	"thrusting slot" -1
 	description "Green is a color of balance for the Incipias. This thruster balances the need for space with the need for powerful engines."
 
 outfit "MH Green-Class Steering"
@@ -293,6 +296,7 @@ outfit "MH Green-Class Steering"
 	"turn" 618
 	"turning energy" 1.1
 	"turning heat" 3.1
+	"steering slot" -1
 	description "The Incipias seem to have something against turning their ships. Even though this steering is supposed to be an upgrade from the Blue-Class steering, it is barely an improvement."
 
 outfit "MH Red-Class Thruster"
@@ -308,6 +312,7 @@ outfit "MH Red-Class Thruster"
 	"thrust" 48
 	"thrusting energy" 5
 	"thrusting heat" 10
+	"thrusting slot" -1
 	description "The abundance of metallic hydrogen on the Incipias home planet has led to the development of engines that utilize this potent source of energy, allowing for more efficient thrusters than what might be expected given the Incipias' short history of spaceflight."
 
 outfit "MH Red-Class Steering"
@@ -320,6 +325,7 @@ outfit "MH Red-Class Steering"
 	"turn" 1134
 	"turning energy" 2.5
 	"turning heat" 12
+	"steering slot" -1
 	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. This steering is specifically designed for combat, but captains with a lot of money find it very useful for mining."
 
 

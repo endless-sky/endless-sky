@@ -74,3 +74,6 @@ CMakeUserPresets.json
 
 # static code analysis
 /.scannerwork
+
+# Endless Sky Delta Check Fix
+/.github/**

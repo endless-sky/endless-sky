@@ -23,9 +23,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "text/layout.hpp"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "Rectangle.h"
 #include "Ship.h"
 #include "text/Table.h"
 
@@ -34,6 +36,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <sstream>
 
 using namespace std;
+
+namespace {
+	constexpr double WIDTH = 250.;
+	constexpr int COLUMN_WIDTH = static_cast<int>(WIDTH) - 20;
+}
 
 
 
@@ -292,8 +299,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		"outfit space free:", "outfit space",
 		"    weapon capacity:", "weapon capacity",
 		"    engine capacity:", "engine capacity",
+		"engine mod space free:", "engine mod space",
+		"reverse thruster slots free:", "reverse thruster slot",
+		"steering slots free:", "steering slot",
+		"thruster slots free:", "thruster slot",
 		"gun ports free:", "gun ports",
-		"turret mounts free:", "turret mounts"
+		"turret mounts free:", "turret mounts",
+		"missile pylons free:", "missile pylons"
 	};
 	for(unsigned i = 1; i < NAMES.size(); i += 2)
 		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
@@ -477,4 +489,690 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	saleLabels.push_back("  + outfits:");
 	saleValues.push_back(Format::Credits(totalCost - chassisCost));
 	saleHeight += 20;
+}
+
+
+
+void ShipInfoDisplay::DrawShipName(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	table.DrawTruncatedPair("ship:", dim, ship.Name(), bright, Truncate::MIDDLE, true);
+	infoPanelLine++;
+}
+
+
+
+void ShipInfoDisplay::DrawShipModelStats(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	table.DrawTruncatedPair("model:", dim, ship.DisplayModelName(), bright, Truncate::MIDDLE, true);
+	infoPanelLine++;
+}
+
+
+
+void ShipInfoDisplay::DrawShipCosts(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	// This just displays the ship's cost.
+	// Another function should give the hull + outfits breakdown.
+	table.DrawTruncatedPair("cost:", dim, Format::Credits(ship.Cost()), bright, Truncate::MIDDLE, true);
+	infoPanelLine++;
+}
+
+
+
+void ShipInfoDisplay::DrawShipHealthStats(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+	double shieldRegen = (attributes.Get("shield generation")
+		+ attributes.Get("delayed shield generation"))
+		* (1. + attributes.Get("shield generation multiplier"));
+	bool hasShieldRegen = shieldRegen > 0.;
+	double hullRegen = (attributes.Get("hull repair rate"))
+		* (1. + attributes.Get("hull repair multiplier"));
+	bool hasHullRegen = hullRegen > 0.;
+
+
+	// This allows the section to stack nicely with other info panel sections,
+	// but will also allow it to be called on its own in a new box if desired.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	if(hasShieldRegen)
+	{
+		CheckHover(table, "shields (charge):");
+		table.DrawTruncatedPair("shields (charge):", dim, Format::Number(ship.MaxShields())
+			+ " (" + Format::Number(60. * shieldRegen) + "/s)", bright, Truncate::MIDDLE, true);
+	}
+	else
+	{
+		CheckHover(table, "shields:");
+		table.DrawTruncatedPair("shields:", dim, Format::Number(ship.MaxShields()), bright, Truncate::MIDDLE, true);
+	}
+	if(hasHullRegen)
+	{
+		CheckHover(table, "hull (repair):");
+		table.DrawTruncatedPair("hull (repair):", dim, Format::Number(ship.MaxHull())
+			+ " (" + Format::Number(60. * hullRegen) + "/s)", bright, Truncate::MIDDLE, true);
+	}
+	else
+	{
+		CheckHover(table, "hull:");
+		table.DrawTruncatedPair("hull:", dim, Format::Number(ship.MaxHull()), bright, Truncate::MIDDLE, true);
+	}
+	infoPanelLine = infoPanelLine + 2;
+}
+
+
+
+void ShipInfoDisplay::DrawShipCarryingCapacities(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	CheckHover(table, "mass:");
+	table.DrawTruncatedPair("current mass:", dim, Format::Number(ship.Mass()) + " tons", bright, Truncate::MIDDLE, true);
+	CheckHover(table, "cargo:");
+	table.DrawTruncatedPair("cargo space:", dim, Format::Number(ship.Cargo().Used())
+		+ " / " + Format::Number(attributes.Get("cargo space")) + " tons", bright, Truncate::MIDDLE, true);
+	CheckHover(table, "required crew / bunks:");
+	table.DrawTruncatedPair("required crew / bunks", dim, Format::Number(ship.Crew())
+		+ " / " + Format::Number(attributes.Get("bunks")), bright, Truncate::MIDDLE, true);
+	CheckHover(table, "fuel / fuel capacity:");
+	table.DrawTruncatedPair("fuel / fuel capacity:", dim, Format::Number(ship.Fuel() * attributes.Get("fuel capacity"))
+		+ " / " + Format::Number(attributes.Get("fuel capacity")), bright, Truncate::MIDDLE, true);
+
+	infoPanelLine = infoPanelLine + 4;
+}
+
+
+
+void ShipInfoDisplay::DrawShipManeuverStats(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	// Get the number of bays
+	int totalBays = 0;
+	for(const auto & category : GameData::GetCategory(CategoryType::BAY))
+	{
+		const string & bayType = category.Name();
+		totalBays = totalBays + ship.BaysTotal(bayType);
+	}
+
+	// Get the full mass of the ship
+	double emptyMass = attributes.Mass();
+	// double currentMass = ship.Mass();
+	double fullMass = ship.InertialMass() + attributes.Get("cargo space") + (totalBays * 275);
+
+	// Movement stats are influenced by inertia reduction.
+	double reduction = 1. + attributes.Get("inertia reduction");
+	emptyMass /= reduction;
+	// currentMass /= reduction;
+	fullMass /= reduction;
+
+	// This calculates a fixed lateral thrust using the ship's empty mass.
+	double lateralThrustValue = 0.;
+
+	if(attributes.Get("lateral thrust ratio"))
+		lateralThrustValue = attributes.Get("lateral thrust ratio");
+	else if(!attributes.Get("lateral thrust ratio"))
+	{
+		double tempLateralThrustRatio = (3000 - emptyMass) / 3500;
+		double defaultLateralThrustRatio = GameData::GetGamerules().DefaultLateralThrustRatio();
+		if(tempLateralThrustRatio > defaultLateralThrustRatio)
+			lateralThrustValue = tempLateralThrustRatio;
+		else lateralThrustValue = defaultLateralThrustRatio;
+	}
+	double emptyLatThrust = attributes.Get("thrust") * lateralThrustValue;
+
+	double baseAccel = 3600. * attributes.Get("thrust") * (1. + attributes.Get("acceleration multiplier"));
+	double afterburnerAccel = 3600. * attributes.Get("afterburner thrust") * (1. +
+		attributes.Get("acceleration multiplier"));
+	double reverseAccel = 3600. * attributes.Get("reverse thrust") * (1. + attributes.Get("acceleration multiplier"));
+	double lateralAccel = 3600. * emptyLatThrust * (1. + attributes.Get("acceleration multiplier"));
+
+	double baseTurn = (60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"))) / emptyMass;
+	double minTurn = (60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"))) / fullMass;
+
+	CheckHover(table, "max speed (w/AB):");
+	table.DrawTruncatedPair("max speed (w/AB):", dim, Format::Number(60. * attributes.Get("thrust") / ship.Drag()) + " (" +
+		Format::Number(60. * attributes.Get("afterburner thrust") / ship.Drag()) + ")", bright, Truncate::MIDDLE, true);
+	CheckHover(table, "movement (full - no cargo):");
+	table.DrawTruncatedPair("thrust (min - max):", dim, " ", bright, Truncate::MIDDLE, true);
+	CheckHover(table, "acceleration:");
+	table.DrawTruncatedPair("   forward:", dim, Format::Number(baseAccel / fullMass) +
+		" - " + Format::Number(baseAccel / emptyMass), bright, Truncate::MIDDLE, true);
+	CheckHover(table, "acceleration (afterburner):");
+	table.DrawTruncatedPair("   Afterburner:", dim, Format::Number(afterburnerAccel / fullMass) +
+		" - " + Format::Number(afterburnerAccel / emptyMass), bright, Truncate::MIDDLE, true);
+	CheckHover(table, "acceleration (reverse):");
+	table.DrawTruncatedPair("   reverse:", dim, Format::Number(reverseAccel / fullMass) +
+		" - " + Format::Number(reverseAccel / emptyMass), bright, Truncate::MIDDLE, true);
+	CheckHover(table, "acceleration (lateral):");
+	table.DrawTruncatedPair("   lateral:", dim, Format::Number(lateralAccel / fullMass) +
+		" - " + Format::Number(lateralAccel / emptyMass), bright, Truncate::MIDDLE, true); // currently doesn't work
+	CheckHover(table, "turning:");
+	table.DrawTruncatedPair("turning:", dim, Format::Number(minTurn) + " - " + Format::Number(baseTurn), bright,
+		Truncate::MIDDLE, true);
+
+	infoPanelLine = infoPanelLine + 7;
+}
+
+
+
+void ShipInfoDisplay::DrawShipOutfitStat(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	// Find out how much outfit space the chassis has.
+	map<string, double> chassis;
+	static const vector<string> NAMES = {
+		"outfit space free:", "outfit space",
+	};
+
+	for(unsigned i = 1; i < NAMES.size(); i += 2)
+		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
+	for(const auto & it : ship.Outfits())
+		for(auto & cit : chassis)
+			cit.second -= min(0., it.second * it.first->Get(cit.first));
+
+	for(unsigned i = 0; i < NAMES.size(); i += 2)
+	{
+		CheckHover(table, "outfit space free:");
+		table.DrawTruncatedPair((NAMES[i]), dim, Format::Number(attributes.Get(NAMES[i + 1]))
+			+ " / " + Format::Number(chassis[NAMES[i + 1]]), bright, Truncate::MIDDLE, true);
+		infoPanelLine++;
+	}
+}
+
+
+
+void ShipInfoDisplay::DrawShipCapacities(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	// Find out how much engine and weapon space the chassis has.
+	map<string, double> chassis;
+	static const vector<string> NAMES = {
+		"    weapon capacity:", "weapon capacity",
+		"    engine capacity:", "engine capacity",
+	};
+
+	for(unsigned i = 1; i < NAMES.size(); i += 2)
+		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
+	for(const auto & it : ship.Outfits())
+		for(auto & cit : chassis)
+			cit.second -= min(0., it.second * it.first->Get(cit.first));
+
+	for(unsigned i = 0; i < NAMES.size(); i += 2)
+	{
+		CheckHover(table, NAMES[i]);
+		table.DrawTruncatedPair((NAMES[i]), dim, Format::Number(attributes.Get(NAMES[i + 1]))
+			+ " / " + Format::Number(chassis[NAMES[i + 1]]), bright, Truncate::MIDDLE, true);
+		infoPanelLine++;
+	}
+}
+
+
+
+void ShipInfoDisplay::DrawShipPropulsionCapacities(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	// Find out how much outfit, engine, and weapon space the chassis has.
+	map<string, double> chassis;
+	static const vector<string> NAMES = {
+		"engine mod space free:", "engine mod space",
+		"reverse thruster slots free:", "reverse thruster slot",
+		"steering slots free:", "steering slot",
+		"thruster slots free:", "thruster slot",
+	};
+
+	for(unsigned i = 1; i < NAMES.size(); i += 2)
+		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
+	for(const auto & it : ship.Outfits())
+		for(auto & cit : chassis)
+			cit.second -= min(0., it.second * it.first->Get(cit.first));
+
+	for(unsigned i = 0; i < NAMES.size(); i += 2)
+	{
+		CheckHover(table, NAMES[i]);
+		table.DrawTruncatedPair((NAMES[i]), dim, Format::Number(attributes.Get(NAMES[i + 1]))
+			+ " / " + Format::Number(chassis[NAMES[i + 1]]), bright, Truncate::MIDDLE, true);
+		infoPanelLine++;
+	}
+}
+
+
+
+void ShipInfoDisplay::DrawShipHardpointStats(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	// Find out how much outfit, engine, and weapon space the chassis has.
+	map<string, double> chassis;
+	static const vector<string> NAMES = {
+		"gun ports free:", "gun ports",
+		"turret mounts free:", "turret mounts",
+		"missile pylons free:", "missile pylons"
+	};
+
+	for(unsigned i = 1; i < NAMES.size(); i += 2)
+		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
+	for(const auto & it : ship.Outfits())
+		for(auto & cit : chassis)
+			cit.second -= min(0., it.second * it.first->Get(cit.first));
+
+	for(unsigned i = 0; i < NAMES.size(); i += 2)
+	{
+		CheckHover(table, NAMES[i]);
+		table.DrawTruncatedPair((NAMES[i]), dim, Format::Number(attributes.Get(NAMES[i + 1]))
+			+ " / " + Format::Number(chassis[NAMES[i + 1]]), bright, Truncate::MIDDLE, true);
+		infoPanelLine++;
+	}
+}
+
+
+
+void ShipInfoDisplay::DrawShipBayStats(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	if(bounds.Width() < WIDTH)
+		return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	int BayCategoryCount = 0;
+
+	// Two columns of opposite alignment are used to simulate a single visual column.
+	Table table;
+	table.AddColumn(0, { COLUMN_WIDTH, Alignment::LEFT });
+	table.AddColumn(COLUMN_WIDTH, { COLUMN_WIDTH, Alignment::RIGHT, Truncate::MIDDLE });
+	table.SetUnderline(0, COLUMN_WIDTH);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", bright, Truncate::MIDDLE, true);
+	}
+
+	// Print the number of bays for each bay-type we have
+	for(const auto & category : GameData::GetCategory(CategoryType::BAY))
+	{
+		const string & bayType = category.Name();
+		int totalBays = ship.BaysTotal(bayType);
+		if(totalBays)
+		{
+			// Count  how many types of bays are displayed
+			BayCategoryCount = BayCategoryCount + 1;
+			// make sure the label is printed in lower case
+			string bayLabel = bayType;
+			transform(bayLabel.begin(), bayLabel.end(), bayLabel.begin(), ::tolower);
+
+			CheckHover(table, bayLabel + " bays:");
+			table.DrawTruncatedPair(bayLabel + " bays:", dim, Format::Number(totalBays), bright, Truncate::MIDDLE, true);
+		}
+	}
+
+	infoPanelLine = infoPanelLine + BayCategoryCount;
+}
+
+
+
+void ShipInfoDisplay::DrawShipEnergyHeatStats(const Ship &ship, const Rectangle & bounds, int & infoPanelLine)
+{
+	// Check that the specified area is big enough.
+	// if(bounds.Width() < WIDTH)
+		// return;
+
+	// Colors to draw with.
+	Color dim = *GameData::Colors().Get("medium");
+	Color bright = *GameData::Colors().Get("bright");
+	const Outfit & attributes = ship.Attributes();
+
+	// Three columns are created.
+	Table table;
+	table.AddColumn(0, { 230, Alignment::LEFT });
+	table.AddColumn(150, { 160, Alignment::RIGHT });
+	table.AddColumn(230, { 220, Alignment::RIGHT });
+	table.SetHighlight(0, 240);
+	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
+	// table.DrawGap(10.);
+
+	// This allows the section to stack nicely with other info panel sections,
+	// But will also allow it to be called on its own in a new box if desire.
+	// The heat/energy section uses three columns, which causes the draw pair to
+	// be short. This uses a "table.Advance();" to push it an extra cell.
+	for(int i = 0; i < infoPanelLine; i++)
+	{
+		table.DrawTruncatedPair(" ", dim, " ", dim, Truncate::MIDDLE, true);
+		table.Advance();
+	}
+
+	table.Advance();
+	table.Draw("energy", dim);
+	table.Draw("heat", dim);
+
+	tableLabels.clear();
+	energyTable.clear();
+	heatTable.clear();
+	// Skip a spacer and the table header.
+	attributesHeight += 30;
+
+	const double idleEnergyPerFrame = attributes.Get("energy generation")
+		+ attributes.Get("solar collection")
+		+ attributes.Get("fuel energy")
+		- attributes.Get("energy consumption")
+		- attributes.Get("cooling energy");
+	const double idleHeatPerFrame = attributes.Get("heat generation")
+		+ attributes.Get("solar heat")
+		+ attributes.Get("fuel heat")
+		- ship.CoolingEfficiency() * (attributes.Get("cooling") + attributes.Get("active cooling"));
+	tableLabels.push_back("idle:");
+	energyTable.push_back(Format::Number(60. * idleEnergyPerFrame));
+	heatTable.push_back(Format::Number(60. * idleHeatPerFrame));
+
+	// Add energy and heat while moving to the table.
+	attributesHeight += 20;
+	const double movingEnergyPerFrame =
+		max(attributes.Get("thrusting energy"), attributes.Get("reverse thrusting energy"))
+		+ attributes.Get("turning energy")
+		+ attributes.Get("afterburner energy");
+	const double movingHeatPerFrame = max(attributes.Get("thrusting heat"), attributes.Get("reverse thrusting heat"))
+		+ attributes.Get("turning heat")
+		+ attributes.Get("afterburner heat");
+	tableLabels.push_back("moving:");
+	energyTable.push_back(Format::Number(-60. * movingEnergyPerFrame));
+	heatTable.push_back(Format::Number(60. * movingHeatPerFrame));
+
+	// Add energy and heat while firing to the table.
+	attributesHeight += 20;
+	double firingEnergy = 0.;
+	double firingHeat = 0.;
+	for(const auto & it : ship.Outfits())
+		if(it.first->IsWeapon() && it.first->Reload())
+		{
+			firingEnergy += it.second * it.first->FiringEnergy() / it.first->Reload();
+			firingHeat += it.second * it.first->FiringHeat() / it.first->Reload();
+		}
+	tableLabels.push_back("firing:");
+	energyTable.push_back(Format::Number(-60. * firingEnergy));
+	heatTable.push_back(Format::Number(60. * firingHeat));
+
+	// Add energy and heat when doing shield and hull repair to the table.
+	attributesHeight += 20;
+
+	double shieldRegen = (attributes.Get("shield generation")
+		+ attributes.Get("delayed shield generation"))
+		* (1. + attributes.Get("shield generation multiplier"));
+	bool hasShieldRegen = shieldRegen > 0.;
+	double shieldEnergy = (hasShieldRegen) ? (attributes.Get("shield energy")
+		+ attributes.Get("delayed shield energy"))
+		* (1. + attributes.Get("shield energy multiplier")) : 0.;
+	double hullRepair = (attributes.Get("hull repair rate")
+		+ attributes.Get("delayed hull repair rate"))
+		* (1. + attributes.Get("hull repair multiplier"));
+	bool hasHullRepair = hullRepair > 0.;
+	double hullEnergy = (hasHullRepair) ? (attributes.Get("hull energy")
+		+ attributes.Get("delayed hull energy"))
+		* (1. + attributes.Get("hull energy multiplier")) : 0.;
+	tableLabels.push_back((shieldEnergy && hullEnergy) ? "shields / hull:" :
+		hullEnergy ? "repairing hull:" : "charging shields:");
+	energyTable.push_back(Format::Number(-60. * (shieldEnergy + hullEnergy)));
+	double shieldHeat = (hasShieldRegen) ? (attributes.Get("shield heat")
+		+ attributes.Get("delayed shield heat"))
+		* (1. + attributes.Get("shield heat multiplier")) : 0.;
+	double hullHeat = (hasHullRepair) ? (attributes.Get("hull heat")
+		+ attributes.Get("delayed hull heat"))
+		* (1. + attributes.Get("hull heat multiplier")) : 0.;
+	heatTable.push_back(Format::Number(60. * (shieldHeat + hullHeat)));
+
+	// Add up the maximum possible changes and add the total to the table.
+	attributesHeight += 20;
+	const double overallEnergy = idleEnergyPerFrame
+		- movingEnergyPerFrame
+		- firingEnergy
+		- shieldEnergy
+		- hullEnergy;
+	const double overallHeat = idleHeatPerFrame
+		+ movingHeatPerFrame
+		+ firingHeat
+		+ shieldHeat
+		+ hullHeat;
+	tableLabels.push_back("net change:");
+	energyTable.push_back(Format::Number(60. * overallEnergy));
+	heatTable.push_back(Format::Number(60. * overallHeat));
+
+	// Add maximum values of energy and heat to the table.
+	attributesHeight += 20;
+	const double maxEnergy = attributes.Get("energy capacity");
+	const double maxHeat = 60. * ship.HeatDissipation() * ship.MaximumHeat();
+	tableLabels.push_back("max:");
+	energyTable.push_back(Format::Number(maxEnergy));
+	heatTable.push_back(Format::Number(maxHeat));
+	// Pad by 10 pixels on the top and bottom.
+	attributesHeight += 30;
+
+	for(unsigned i = 0; i < tableLabels.size(); ++i)
+	{
+		CheckHover(table, tableLabels[i]);
+		table.Draw(tableLabels[i], dim);
+		table.Draw(energyTable[i], bright);
+		table.Draw(heatTable[i], bright);
+	}
+
+	infoPanelLine = infoPanelLine + 4;
 }

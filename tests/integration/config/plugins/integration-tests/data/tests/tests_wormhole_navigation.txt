@@ -41,7 +41,7 @@ test-data "Wormhole Navigation Save"
 				"mass" 5000
 				"drag" 25
 				"heat dissipation" .80
-				"fuel capacity" 2500
+				"fuel capacity" 45300
 				"ramscoop" 10
 				"cargo space" 1110
 				"outfit space" 21500
@@ -158,7 +158,7 @@ test-data "Ember Wastes Navigation Save"
 				"mass" 5000
 				"drag" 25
 				"heat dissipation" .80
-				"fuel capacity" 2500
+				"fuel capacity" 45300
 				"ramscoop" 10
 				"cargo space" 1110
 				"outfit space" 2150

@@ -11,6 +11,8 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+########################################################################
+
 mission "Hai Reveal: Secret Leaks"
 	landing
 	invisible
@@ -23,6 +25,7 @@ mission "Hai Reveal: Secret Leaks"
 		event "hr: friend settled in" 60
 		"hr: knew of hai" = "First Contact: Hai: offered" + "First Contact: Unfettered: offered"
 		fail
+
 
 event "hr: friend arrives"
 
@@ -369,6 +372,7 @@ mission "Hai Reveal: Late Arrival: Alondo"
 	on complete
 		set "hr: meet the team"
 
+
 event "hr: join later"
 
 
@@ -506,7 +510,6 @@ mission "Hai Reveal: Meet the Team: Xilin 1"
 		dialog phrase "generic passenger on visit"
 
 
-
 mission "Hai Reveal: Meet the Team: Xilin 2"
 	landing
 	name "New Arrivals"
@@ -625,7 +628,6 @@ mission "Hai Reveal: Meet the Team: Samuel 1"
 		dialog phrase "generic passenger on visit"
 
 
-
 mission "Hai Reveal: Meet the Team: Samuel 2"
 	landing
 	name "High Tension"
@@ -741,7 +743,6 @@ mission "Hai Reveal: Meet the Team: Sayari 1"
 					accept
 
 
-
 mission "Hai Reveal: Meet the Team: Sayari 2"
 	landing
 	name "Important Message"
@@ -767,6 +768,13 @@ mission "Hai Reveal: Meet the Team: Sayari 2"
 					goto more
 			`	Sayari smiles. "How humble. Although I suppose you're wondering what do to next.`
 			label more
+			branch "familiar"
+				"reputation: Hai" >= 1000
 			`	"For now, there are no immediate tasks for you. The others will continue working on the plan to manage the situation, and we will call upon you once you are needed. I suggest you explore our systems while you wait and gain a better understanding of the Hai people. It will do us well for you to have this knowledge."`
+				goto end
+			label "familiar"
+			`	"For now, there are no immediate tasks for you. The others will continue working on the plan to manage the situation, and we will call upon you once you are needed. I suggest you tie up any unfinished business you have around here while you wait. There may not be much opportunity to do so in the future."`
+			label end
+
 
 event "hr: exploration period"

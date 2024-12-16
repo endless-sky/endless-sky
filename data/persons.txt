@@ -29,6 +29,7 @@ person "Michael Zahniser"
 			"hull" 40000
 			"required crew" 400
 			"bunks" 500
+			"mass" 5920
 			"mass" 2270
 			"drag" 18.75
 			"heat dissipation" 0.3
@@ -37,6 +38,9 @@ person "Michael Zahniser"
 			"outfit space" 2400
 			"weapon capacity" 900
 			"engine capacity" 400
+			"reverse thruster slot" 1
+			"steering slot" 2
+			"thruster slot" 1
 		outfits
 			"Ion Cannon" 12
 			"Electron Turret" 4
@@ -250,6 +254,9 @@ ship "Marauder Fury"
 		"outfit space" 256
 		"weapon capacity" 96
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"ramscoop" 2
 		weapon
 			"blast radius" 36
@@ -278,14 +285,14 @@ ship "Marauder Fury"
 	engine -12.5 41 0.35
 	engine 12.5 41 0.35
 	engine 0 46
-	gun -13.5 -36 "Meteor Missile Launcher"
-	gun 13.5 -36 "Meteor Missile Launcher"
-	gun -20 -25 "Meteor Missile Launcher"
-	gun 20 -25 "Meteor Missile Launcher"
+	pylon -13.5 -36 "Meteor Missile Launcher"
+	pylon 13.5 -36 "Meteor Missile Launcher"
+	pylon -20 -25 "Meteor Missile Launcher"
+	pylon 20 -25 "Meteor Missile Launcher"
 	gun -6 -41.5
 	gun 6 -41.5
-	gun -43.5 2 "Hai Tracker Pod"
-	gun 43.5 2 "Hai Tracker Pod"
+	pylon -43.5 2 "Hai Tracker Pod"
+	pylon 43.5 2 "Hai Tracker Pod"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	"final explode" "final explosion small"
@@ -360,7 +367,7 @@ person "Captain Nate"
 			"hull" 8000
 			"required crew" 23
 			"bunks" 45
-			"mass" 1357.5
+			"mass" 4000
 			"drag" 12
 			"heat dissipation" .4
 			"fuel capacity" 400
@@ -368,6 +375,9 @@ person "Captain Nate"
 			"outfit space" 1215
 			"weapon capacity" 450
 			"engine capacity" 330
+			"reverse thruster slot" 1
+			"steering slot" 1
+			"thruster slot" 1
 			weapon
 				"blast radius" 160
 				"shield damage" 1600
@@ -399,14 +409,6 @@ person "Captain Nate"
 			parallel
 		gun 0 -130.5 "Proton Gun"
 			parallel
-		gun -24 -122 "Heavy Rocket Launcher"
-			parallel
-		gun -24 -122 "Heavy Rocket Launcher"
-			parallel
-		gun 24 -122 "Heavy Rocket Launcher"
-			parallel
-		gun 24 -122 "Heavy Rocket Launcher"
-			parallel
 		gun -40 -46 "Proton Gun"
 			parallel
 		gun -40 -46 "Proton Gun"
@@ -422,6 +424,14 @@ person "Captain Nate"
 		gun 34.5 -43 "Proton Gun"
 			parallel
 		gun 34.5 -43 "Proton Gun"
+			parallel
+		pylon -24 -122 "Heavy Rocket Launcher"
+			parallel
+		pylon -24 -122 "Heavy Rocket Launcher"
+			parallel
+		pylon 24 -122 "Heavy Rocket Launcher"
+			parallel
+		pylon 24 -122 "Heavy Rocket Launcher"
 			parallel
 		turret 0 42 "Anti-Missile Turret"
 		explode "tiny explosion" 18
@@ -472,13 +482,16 @@ ship "Lampyrid-Class Transport"
 		"hull" 4400
 		"required crew" 5
 		"bunks" 23
-		"mass" 490
-		"drag" 12.75
+		"mass" 960
+		"drag" 12
 		"heat dissipation" .47
-		"fuel capacity" 700
+		"fuel capacity" 850
 		"cargo space" 160
 		"outfit space" 260
 		"engine capacity" 105
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -624,11 +637,15 @@ ship "Modified Osprey"
 		"mass" 1416
 		"drag" 22.65
 		"heat dissipation" .4
-		"fuel capacity" 625
+		"fuel capacity" 1350
 		"cargo space" 80
 		"outfit space" 2172
 		"weapon capacity" 851
 		"engine capacity" 499
+		"engine mod space" 4
+		"reverse thruster slot" 1
+		"steering slot" 4
+		"thruster slot" 2
 		"afterburner fuel" -.678
 		"afterburner heat" -30
 		"ramscoop" 6
@@ -673,7 +690,7 @@ ship "Modified Osprey"
 	engine 45.5 64 .8
 	engine -16.5 105 .6
 	engine 16.5 105 .6
-	gun 0 -114 "Nuclear Missile"
+	pylon 0 -114 "Nuclear Missile"
 	gun -6.5 -100 "Husk-Slice"
 	gun 6.5 -100 "Husk-Slice"
 	gun -14 -91 "Husk-Slice"
@@ -682,8 +699,8 @@ ship "Modified Osprey"
 	gun 19 -59 "Korath Detainer"
 	gun -26.5 -53 "Korath Detainer"
 	gun 26.5 -53 "Korath Detainer"
-	gun -67 -1.5 "Finisher Pod"
-	gun 67 -1.5 "Finisher Pod"
+	pylon -67 -1.5 "Finisher Pod"
+	pylon 67 -1.5 "Finisher Pod"
 	turret 0 -91.5 "Point Defense Turret"
 	turret -13.5 -15.5 "Shield Disruptor Turret"
 	turret 13.5 -15.5 "Shield Disruptor Turret"
@@ -787,16 +804,16 @@ ship "Ursa Polaris"
 	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		cost 142857
 		shields 39000
 		hull 27000
 		"required crew" 559
 		"bunks" 972
-		"mass" 2758.5
+		"mass" 7356
 		"drag" 18
 		"heat dissipation" .6
-		"fuel capacity" 600
+		"fuel capacity" 2950
 		"solar collection" 15
 		"afterburner thrust" 300
 		"turn" 6007.5
@@ -811,6 +828,9 @@ ship "Ursa Polaris"
 		"outfit space" 1768
 		"weapon capacity" 861
 		"engine capacity" 301
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 3
 		weapon
 			"blast radius" 1000
 			"shield damage" 4000
@@ -1226,14 +1246,17 @@ ship "Marauder Bactrian"
 		"hull" 12000
 		"required crew" 70
 		"bunks" 93
-		"mass" 1738
+		"mass" 5200
 		"drag" 22.5
 		"heat dissipation" 0.33
-		"fuel capacity" 800
+		"fuel capacity" 2725
 		"cargo space" 80
 		"outfit space" 1526
 		"weapon capacity" 1000
 		"engine capacity" 220
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -1431,11 +1454,14 @@ ship "Modified Boxwing"
 		"mass" 90
 		"drag" 3.875
 		"heat dissipation" .18
-		"fuel capacity" 500
+		"fuel capacity" 450
 		"cargo space" 80
 		"outfit space" 350
 		"weapon capacity" 130
 		"engine capacity" 100
+		"reverse thruster slot" 1
+		"steering slot" 2
+		"thruster slot" 2
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1534,14 +1560,17 @@ ship "Modified Battleship"
 		"hull" 26000
 		"required crew" 160
 		"bunks" 212
-		"mass" 1515
+		"mass" 8080
 		"drag" 29.1
 		"heat dissipation" .24
-		"fuel capacity" 1000
+		"fuel capacity" 4400
 		"cargo space" 30
 		"outfit space" 1152
 		"weapon capacity" 592
 		"engine capacity" 123
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"spinal mount" 1
 		weapon
 			"blast radius" 340
@@ -1580,12 +1609,12 @@ ship "Modified Battleship"
 	engine -21 220
 		zoom 0.8
 	gun 0 -223 "Prototype Fusion Cannon"
-	gun -59 14 "Typhoon Pod"
-	gun 59 14 "Typhoon Pod"
-	gun -72 25 "Torpedo Pod"
-	gun 72 26 "Torpedo Pod"
-	gun -84 38 "Torpedo Pod"
-	gun 84 38 "Torpedo Pod"
+	pylon -59 14 "Typhoon Pod"
+	pylon 59 14 "Typhoon Pod"
+	pylon -72 25 "Torpedo Pod"
+	pylon 72 26 "Torpedo Pod"
+	pylon -84 38 "Torpedo Pod"
+	pylon 84 38 "Torpedo Pod"
 	turret -37 -11 "Electron Turret"
 	turret 37 -11 "Electron Turret"
 	turret 0 10 "Wanderer Anti-Missile"
@@ -1775,14 +1804,17 @@ ship "Modified Ladybug"
 		
 		"required crew" 16
 		"bunks" 33
-		"mass" 740
+		"mass" 1200
 		"drag" 8.1
 		"heat dissipation" .58
-		"fuel capacity" 900
+		"fuel capacity" 1300
 		"cargo space" 91
 		"outfit space" 647
 		"weapon capacity" 206
 		"engine capacity" 153
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 2
 
 		# Features from original Ladybug:
 		"ramscoop" 0.5
@@ -1998,6 +2030,9 @@ ship "Waverider"
 		"outfit space" 346
 		"weapon capacity" 120
 		"engine capacity" 54
+		"reverse thruster slot" 1
+		"steering slot" 2
+		"thruster slot" 1
 		weapon
 			"blast radius" 340
 			"shield damage" 3400
@@ -2164,11 +2199,14 @@ ship "Modified Hauler VI"
 		"mass" 1240
 		"drag" 21.7
 		"heat dissipation" .43
-		"fuel capacity" 800
+		"fuel capacity" 1475
 		"cargo space" 780
 		"outfit space" 900
 		"weapon capacity" 430
 		"engine capacity" 160
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -2195,10 +2233,10 @@ ship "Modified Hauler VI"
 	engine -83.5 196.5
 	engine 83.5 196.5
 	engine 0 196.5
-	gun -14.5 -168
-	gun 14.5 -168
-	gun -35 -128
-	gun 35 -128
+	pylon -14.5 -168
+	pylon 14.5 -168
+	pylon -35 -128
+	pylon 35 -128
 	turret -21 -124.5
 	turret 21 -124.5 "Point Defense Turret"
 	turret -32.5 -102.5
@@ -2216,3 +2254,285 @@ ship "Modified Hauler VI"
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
 	description "The Hauler cargo ships are considered by many to be outdated, and it is unclear if upgrading the cargo space to six containers is sufficient to make this Hauler ship popular. It certainly doesn't help that the Hauler VI is more expensive than four Hauler IIIs."
+
+
+
+person "Random Author"
+	government "Author"
+	frequency 300
+	personality
+		mining harvests plunders
+	phrase
+		word
+			"Forget your worries, come on, get happy!"
+			"Akunamatata! (Did I spell that right? I'm never sure.)"
+			"Dance like no-one is watching."
+			"Dance like you've got bigger things to worry about than what people think about you waving your arms."
+			"Hope for the best!"
+			"Prepare for the worst, but hope for the best."
+			"The journey of a thousand miles begins with a single step."
+			"Journey before Destination."
+			"If all you've got left is hope, then ask for help!"
+			"Someone cares. Never forget that."
+			"If in doubt, ask for help!"
+			"Even if you don't doubt, ask for help!"
+			"It may not always be apparent, but you have friends."
+			"No matter your place in the world, you matter."
+			"You are important to someone."
+			"Time for flashy lights!"
+			"Which way to the rave?"
+			"The best rave I've ever been to was in... uh... what town was that again?"
+	ship "Modified Protector" "Disco Ball"
+		"never disabled"
+
+
+
+ship "Protector" "Modified Protector"
+	sprite "ship/protector"
+	thumbnail "thumbnail/protector"
+	attributes
+		category "Heavy Warship"
+		"cost" 5500000
+		"shields" 20000
+		"hull" 15600
+		"required crew" 30
+		"bunks" 69
+		"mass" 5000
+		"drag" 20
+		"heat dissipation" .6
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 974
+		"weapon capacity" 455
+		"engine capacity" 307
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
+		weapon
+			"blast radius" 160
+			"shield damage" 1600
+			"hull damage" 800
+			"hit force" 2400
+	outfits
+		"Beam Laser"
+		"Electron Beam"
+		"Fire-Lance"
+		"Heavy Laser"
+		"Mining Laser" 2
+		"Moonbeam"
+		"Sunbeam"
+		"Meteor Missile Launcher" 3
+		"Meteor Missile" 90
+		"Sidewinder Missile Launcher" 3
+		"Sidewinder Missile" 180
+		"Quad Blaster Turret" 6
+		"Heavy Anti-Missile Turret" 2
+		
+		"Fusion Reactor"
+		"LP576a Battery Pack"
+		"D67-TM Shield Generator"
+		"Luxury Accommodations"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 69
+		
+		"Tyrant Plasma Thruster"
+		"Tyrant Plasma Steering"
+		"Hyperdrive"
+		
+	engine -12 122.5
+	engine 12 122.5
+	gun -17.5 -101 "Mining Laser"
+		parallel
+	gun -68 -68.5 "Beam Laser"
+		"angle" -45
+	gun -97.5 -1.5 "Heavy Laser"
+		"angle" -90
+	gun -70 66.5 "Electron Beam"
+		"angle" -135
+	gun 68.5 69 "Sunbeam"
+		"angle" 135
+	gun 97.5 0.5 "Moonbeam"
+		"angle" 90
+	gun 67.5 -71 "Fire-Lance"
+		"angle" 45
+	gun 17.5 -101 "Mining Laser"
+		parallel
+	pylon -68 -68.5 "Sidewinder Missile Launcher"
+		"angle" -45
+	pylon -97.5 -1.5 "Meteor Missile Launcher"
+		"angle" -90
+	pylon -70 66.5 "Sidewinder Missile Launcher"
+		"angle" -135
+	pylon 68.5 69 "Meteor Missile Launcher"
+		"angle" 135
+	pylon 97.5 0.5 "Sidewinder Missile Launcher"
+		"angle" 90
+	pylon 67.5 -71 "Meteor Missile Launcher"
+		"angle" 45
+	turret 0 -28.5 "Heavy Anti-Missile Turret"
+	turret -48.5 -48.5 "Quad Blaster Turret"
+		"angle" -45
+	turret 48.5 -48.5 "Quad Blaster Turret"
+		"angle" 45
+	turret -68.5 0 "Quad Blaster Turret"
+		"angle" -90
+	turret 68.5 0 "Quad Blaster Turret"
+		"angle" 90
+	turret -48.5 48.5 "Quad Blaster Turret"
+		"angle" -135
+	turret 48.5 48.5 "Quad Blaster Turret"
+		"angle" 135
+	turret 0 30 "Heavy Anti-Missile Turret"
+	leak "leak" 60 50
+	leak "flame" 20 80
+	explode "tiny explosion" 18
+	explode "small explosion" 36
+	explode "medium explosion" 24
+	explode "large explosion" 8
+	"final explode" "final explosion large"
+	description `Voted the "ugliest ship in the sky" by Stars and Starships Magazine, the Protector is a typical example of brutally efficient Syndicate engineering. It is basically nothing more than eight turrets attached to a set of engines and crew's quarters, designed as a defense platform that can accompany merchant convoys.`
+
+
+
+person "Sanujab"
+	government "Hai"
+	frequency 100
+	personality
+		disables getaway harvests timid
+	system
+		government "Hai" "Quarg (Hai)"
+	phrase
+		word
+			"Hey there!"
+			"Vai bin so."
+			"You're a human, right?"
+			"Remember, only those of peace are allowed in Hai space."
+			"I've never owned a Shield Beetle, and have got no intention of ever upgrading."
+			"Nobody knows how I think. Not even myself."
+			"I don't like fighting the Unfettered. Their Trackers are a nuisance."
+			"They say Quantum Keystones make you lucky. Guess I'm in luck."
+			"Do you know what time it is on ${deep planets}?" 2
+			"Better get a pen and pencil ready, I'm about to ask a whole bunch of questions!"
+			"Did you know that we Hai already had a mountain named ${mountains} before we met you?"
+			"Have you ever seen a ship named ${civilian}? It's an interesting name."
+			"I can't decide what planet I'm from. Maybe ${hai planets}?"
+	ship "Cicada (Sanujab)" "No Lee Mon"
+
+
+
+ship "Cicada" "Cicada (Sanujab)"
+	outfits
+		"Ion Cannon"
+		"Bullfrog Anti-Missile" 2
+		"Geode Reactor"
+		"Hai Diamond Regenerator"
+		"Quantum Keystone" 3
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+	gun "Ion Cannon"
+	pylon
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
+	turret
+	turret
+
+
+
+person "Intola"
+	government "Merchant"
+	frequency 100
+	personality
+		disables hunting plunders secretive
+	system
+		government "Free Worlds" "Neutral" "Pirate" "Republic" "Syndicate"
+	phrase
+		word
+			"Do you know how useless radar jammers are?"
+			"I love exploring."
+			"I got my atomic engines from ${deep planets}. Not exactly legitimately..."
+			"The best thing in the universe to do is shoot pirates!"
+			"Pirates are sometimes annoying, but I've figured out how to deal with the scoundrels."
+			"Speed is better then power."
+			"Lots of people like weapons, but I wouldn't trade my engines for anything."
+			"Ramscoops are excellent when you're exploring, but they take up a lot of space otherwise."
+			"Never run out of power. A doomed ship is a dead ship."
+			"You want to know why I don't have any cooling? I don't like being cold."
+			"Pirates are all over the galaxy, aren't they?"
+			"Those Quarg; so powerful!"
+			"Which would you prefer, a Scout or a Bounder? Answer in five seconds, and my guns are trained on you."
+			"There are interesting anomalies in this galaxy. I wonder what lies on the other side?"
+			"Cargo hauling is the least glamorous way to make a living I've ever heard of."
+	ship "Scout (Intola)" "Intola"
+
+
+
+ship "Scout" "Scout (Intola)"
+	outfits
+		"Heavy Laser" 2
+
+		"nGVF-CC Fuel Cell"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Ramscoop" 3
+
+		"A250 Atomic Thruster"
+		"A255 Atomic Steering"
+		"Hyperdrive"
+	gun "Heavy Laser"
+	gun "Heavy Laser"
+	pylon
+	pylon
+	turret
+
+
+
+person "Verdorve"
+	government "Merchant"
+	frequency 100
+	personality
+		heroic opportunistic vindictive
+	system
+		government "Free Worlds" "Pirate" "Republic" "Syndicate"
+	phrase
+		word
+			"When you scan my ship, you see the Power of Plasma."
+			"The default Splinter comes equipped for speed, not power. I changed that."
+			"Plasma weapons are great at overheating. The only problem is, I overheat myself."
+			"Shooting pirates is the only worthwhile thing to do."
+			"There are these strange 'bad guys' appearing out of nowhere near where I got this ship. I really like them; they seem to be overheaters. Just like me." # This allusion to the Korath may be too obvious, but it's a great reference.
+			"Guess what. The Republic leader is an Alpha. I wish I could be teleported to Earth."
+			"Nunki once paid me tribute, but no more. Or was it Bloodsea?"
+			"Shoot 'em. Bang bang."
+			"Gatling Guns are ridiculously overpowered and expensive."
+			"Exploring the Confederated Councils of the Outer Rim's former territory is a nightmare. How do they have so many Leviathans?"
+			"You'll never guess where I got my name... or what it is."
+			"The Splinter is Megaparsec's best ship. Those Protectors are too slow, and Quicksilvers can't hold Plasma Turrets."
+			"Plasma, plasma. Overheat, overheat. Shoot, shoot."
+			"I wish I could join the Navy, but they won't let me. I refuse to give up this Splinter."
+			"I wish I could join the Syndicate, but they won't let me. For some reason, the corporate leaders have a prejudice against Southbound-sold weapons. Poor plasma."
+	ship "Splinter (Verdorve)" "Verdorve"
+
+
+
+ship "Splinter" "Splinter (Verdorve)"
+	outfits
+		"Plasma Turret" 2
+
+		"Liquid Sodium Cooler" 2
+		"RT-I Radiothermal"
+		"D67-TM Shield Generator"
+		"Outfits Expansion" 2
+
+		"Impala Plasma Steering"
+		"Greyhound Plasma Thruster"
+		"Volcano Afterburner"
+		"Hyperdrive"
+	gun
+	gun
+	pylon
+	pylon
+	turret
+	turret "Plasma Turret"
+	turret "Plasma Turret"

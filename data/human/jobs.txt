@@ -1297,7 +1297,7 @@ mission "Southern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "frontier"
 		attributes "rim" "south" "dirt belt"
 	npc evade
@@ -1333,7 +1333,7 @@ mission "Northern Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "frontier"
 		attributes "north" "paradise" "deep"
 	npc evade
@@ -1369,7 +1369,7 @@ mission "Core Pirate Attack"
 		"combat rating" > 100
 		random < 10
 	source
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "frontier"
 		attributes "core" "near earth"
 	npc evade
@@ -4167,3 +4167,947 @@ mission "Republic Navy Advisory System [wildfire firefighters]"
 	on complete
 		payment 9000 85
 		dialog "You land at a makeshift landing site a few minutes flight from the blaze. The smoky haze that drifts into your ship when the firefighters open the hatch to depart makes your eyes and nose itch. As you watch your passengers heading toward a staging area nearby, you think about the inferno they will soon be voluntarily entering. A chirp from your communications system indicates your stipend of <payment> has been deposited, and you begin your atmospheric flight back to <planet>'s main spaceport."
+
+mission "Syndicate Defectors [0]"
+	name "Syndicate defectors to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	passengers 2 8 .8
+	illegal 50000
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		random < 60
+	source
+		government "Independent (Korath-Allied) Port"
+	destination
+		government "Independent (Korath-Allied) Port"
+	stopover
+		government "Pirate"
+		not attributes uninhabited
+		distance 5 16
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on complete
+		payment 15000 180
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Syndicate Defectors [1]"
+	name "Syndicate defectors to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	passengers 4 15 .8
+	illegal 50000
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		random < 50
+		"passenger space" > 5
+	source
+		government "Independent (Korath-Allied) Port"
+	destination
+		government "Independent (Korath-Allied) Port"
+	stopover
+		government "Pirate"
+		not attributes uninhabited
+		distance 5 16
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on complete
+		payment 15000 180
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Syndicate Defectors [2]"
+	name "Syndicate defectors to <planet>"
+	job
+	repeat
+	description "Go to <stopovers> and pick up <bunks> Syndicate defectors. Fly them to <destination> for <payment>. Expect bounty hunters."
+	passengers 7 28 .8
+	illegal 50000
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		random < 40
+		"passenger space" > 10
+	source
+		government "Independent (Korath-Allied) Port"
+	destination
+		government "Independent (Korath-Allied) Port"
+	stopover
+		government "Pirate"
+		not attributes uninhabited
+		distance 5 16
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 15000 180
+		dialog phrase "generic passenger dropoff payment"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Rescue Slaves [0]"
+	name "Emancipation on <planet stopovers>"
+	job
+	repeat
+	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
+	passengers 2 8 .8
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		random < 60
+	source
+		attributes "slavery ban"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic infiltrating emancipation stopover pickup"
+	on complete
+		payment 30000 170
+		dialog phrase "generic completed emancipation mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Rescue Slaves [1]"
+	name "Emancipation on <planet stopovers>"
+	job
+	repeat
+	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
+	passengers 4 15 .8
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		random < 50
+		"passenger space" > 5
+	source
+		attributes "slavery ban"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic infiltrating emancipation stopover pickup"
+	on complete
+		payment 30000 170
+		dialog phrase "generic completed emancipation mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Rescue Slaves [2]"
+	name "Emancipation on <planet stopovers>"
+	job
+	repeat
+	description "An anonymous group will pay <payment> to transport <bunks> people out of slavery on <stopovers> to freedom on <planet>. You will have a passcode for landing clearance. Expect bounty hunters."
+	passengers 7 28 .8
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		random < 40
+		"passenger space" > 10
+	source
+		attributes "slavery ban"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic infiltrating emancipation stopover pickup"
+	on complete
+		payment 30000 170
+		dialog phrase "generic completed emancipation mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Escaped Slaves [0]"
+	name "Help slaves escape to <planet>"
+	job
+	repeat
+	description "An anonymous group will pay <payment> to transport <bunks> slaves to a new life on <planet>. Expect bounty hunters."
+	passengers 2 8 .8
+	to offer
+		random < 60
+	source
+		government "Pirate"
+		not attributes "slavery ban"
+	destination
+		attributes "slavery ban"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 7000 170
+		dialog phrase "generic completed emancipation mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Escaped Slaves [1]"
+	name "Help slaves escape to <planet>"
+	job
+	repeat
+	description "An anonymous group will pay <payment> to transport <bunks> slaves to a new life on <planet>. Expect bounty hunters."
+	passengers 4 15 .8
+	to offer
+		random < 50
+		"passenger space" > 5
+	source
+		government "Pirate"
+		not attributes "slavery ban"
+	destination
+		attributes "slavery ban"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 7000 170
+		dialog phrase "generic completed emancipation mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Escaped Slaves [2]"
+	name "Help slaves escape to <planet>"
+	job
+	repeat
+	description "An anonymous group will pay <payment> to transport <bunks> slaves to a new life on <planet>. Expect bounty hunters."
+	passengers 7 28 .8
+	to offer
+		random < 40
+		"passenger space" > 10
+	source
+		government "Pirate"
+		not attributes "slavery ban"
+	destination
+		attributes "slavery ban"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 7000 170
+		dialog phrase "generic completed emancipation mission"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+
+mission "Emancipation Raid Escort [0]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 50
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog "The emancipation raid isn't complete. The Nighthawk must reach <planet stopovers> and then <planet>."
+	on stopover
+		dialog "The Nighthawk lands on a different vector. You can see a bunker explode from bombardment before it lands. Not long after, it meets you in the spaceport, filled with freed slaves."
+	on complete
+		payment 130000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Independent (Korath-Allied)"
+		personality timid escort
+		fleet
+			names "emancipation fleet"
+			variant
+				"Nighthawk (New Tortuga)"
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Bounty Hunters"
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Small Syndicate"
+		system
+			distance 3 5
+
+mission "Emancipation Raid Escort [1]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort three Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 100
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <planet stopovers> and then <planet>."
+	on stopover
+		dialog "The Nighthawks land on a different vector. You can see a hardened bunker explode from bombardment before they land. Not long after, they meet you at the spaceport, filled with freed slaves."
+	on complete
+		payment 240000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Independent (Korath-Allied)"
+		personality timid escort
+		fleet
+			names "emancipation fleet"
+			variant
+				"Nighthawk (New Tortuga)" 3
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Small Core Pirates" 2
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Small Syndicate" 2
+		system
+			distance 3 5
+
+mission "Emancipation Raid Escort [2]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort a fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 150
+		random < 25
+	source "New Tortuga"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on visit
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <planet stopovers> and then <planet>."
+	on stopover
+		dialog "The Nighthawks land on a different vector. You can see hardened bunkers explode from bombardment before the ships land. Not long after, they meet you at the spaceport, filled with freed slaves."
+	on complete
+		payment 380000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Independent (Korath-Allied)"
+		personality timid escort
+		fleet
+			names "emancipation fleet"
+			variant
+				"Nighthawk (New Tortuga)" 5
+			variant 3
+				"Nighthawk (New Tortuga)" 6
+			variant
+				"Nighthawk (New Tortuga)" 7
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Small Core Pirates"
+		fleet "Large Core Pirates" 2
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Large Syndicate"
+		fleet "Small Syndicate"
+		system
+			distance 3 5
+
+mission "Emancipation Raid Escort [3]"
+	name "Emancipation escort: <planet stopovers>"
+	job
+	repeat
+	description "Escort a large fleet of Nighthawks to <stopovers> for an emancipation raid, then back to <planet> for <payment>. You will have a passcode for landing clearance. The Syndicate and bounty hunters will attack these ships."
+	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
+	to offer
+		"combat rating" > 250
+		random < 15
+	source "New Tortuga"
+	stopover
+		government "Pirate"
+		not attributes "slavery ban"
+		attributes spaceport
+		distance 5 16
+	on stopover
+		dialog "The Nighthawks land on a different vector. You can see hardened bunkers and ground turrets explode from bombardment before the ships land. Not long after, they meet you at the spaceport, filled with freed slaves."
+	on visit
+		dialog "The emancipation raid isn't complete. All Nighthawks must arrive together at <planet stopovers> and then <planet>."
+	on complete
+		payment 640000
+		dialog phrase "generic completed emancipation raid mission"
+	npc save accompany
+		government "Independent (Korath-Allied)"
+		personality timid escort
+		fleet
+			names "emancipation fleet"
+			variant 1
+				"Nighthawk (New Tortuga)" 7
+			variant 1
+				"Nighthawk (New Tortuga)" 8
+			variant 2
+				"Nighthawk (New Tortuga)" 9
+			variant 5
+				"Nighthawk (New Tortuga)" 10
+			variant 1
+				"Nighthawk (New Tortuga)" 11
+			variant 1
+				"Nighthawk (New Tortuga)" 12
+	npc
+		government "Bounty Hunter"
+		personality heroic unconstrained nemesis plunders harvests waiting
+		fleet "Small Core Pirates"
+		fleet "Marauder fleet IV"
+		system
+			distance 1 2
+	npc
+		government "Syndicate"
+		personality heroic unconstrained nemesis waiting
+		fleet "Small Syndicate"
+		fleet "Large Syndicate" 2
+		system
+			distance 3 5
+
+mission "Transport recruiters [0]"
+	name "Recruiter and supplies to <planet>"
+	job
+	repeat
+	description `Transport a <origin> recruiter and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
+	passengers 1
+	cargo 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	destination
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Transport recruiters [1]"
+	name "Recruiters and supplies to <planet>"
+	job
+	repeat
+	description `Transport <bunks> <origin> recruiters and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
+	passengers 2 5 0.8
+	cargo 4 12 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	destination
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Transport recruiters [2]"
+	name "Recruiters and supplies to <planet>"
+	job
+	repeat
+	description `Transport a team of <bunks> <origin> recruiters and <tons> of recruitment supplies to <planet> by <date> for <payment>.`
+	passengers 7 20 0.8
+	cargo 12 40 0.8
+	deadline 5 3
+	to offer
+		random < 40
+		"cargo space" > 10
+		"passenger space" > 5
+	source "New Tortuga"
+	destination
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes farming mining research factory urban
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+
+mission "Retrieve recruiters [0]"
+	name "Return a recruiter home to <planet>"
+	job
+	repeat
+	description `Pick up a recruiter on <stopovers> and fly them home to <planet> by <date> for <payment>.`
+	passengers 1
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+		not attributes uninhabited
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+
+mission "Retrieve recruiters [1]"
+	name "Return recruiters home to <planet>"
+	job
+	repeat
+	description `Pick up <bunks> recruiters on <stopovers> and fly them home to <planet> by <date> for <payment>.`
+	passengers 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+		not attributes uninhabited
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+
+mission "Retrieve recruiters [2]"
+	name "Return recruiters home to <planet>"
+	job
+	repeat
+	description `Pick up a team of <bunks> recruiters on <stopovers> and fly them home to <planet> by <date> for <payment>.`
+	passengers 7 20 0.8
+	deadline 5 3
+	to offer
+		random < 40
+		"passenger space" > 5
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming mining research factory urban
+		not attributes uninhabited
+	on complete
+		payment 7000 170
+		dialog phrase "generic passenger dropoff payment"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+
+mission "Farming Employee Poaching"
+	name "Agronomist to <planet>"
+	job
+	repeat
+	description `A research farmer needs a ride to their lucrative new job. Fly them to <planet> before <date> for <payment>.`
+	passengers 1
+	deadline 5 2
+	to offer
+		or
+			random < 20
+			and
+				not "event: know about Korath fish jobs"
+				random < 35
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes farming
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 300
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Mining Employee Poaching"
+	name "Skilled miner to <planet>"
+	job
+	repeat
+	description `A skilled miner needs a ride to their lucrative new job. Fly them to <planet> before <date> for <payment>.`
+	passengers 1
+	deadline 5 2
+	to offer
+		or
+			random < 20
+			and
+				not "event: know about Korath fish jobs"
+				random < 35
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes mining
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 300
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Science Employee Poaching"
+	name "Scientist to <planet>"
+	job
+	repeat
+	description `A scientist needs a ride to their lucrative new job. Fly them to <planet> before <date> for <payment>.`
+	passengers 1
+	deadline 5 2
+	to offer
+		or
+			random < 20
+			and
+				not "event: know about Korath fish jobs"
+				random < 35
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes research
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 300
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Factory Employee Poaching"
+	name "Skilled factory worker to <planet>"
+	job
+	repeat
+	description `A skilled factory worker needs a ride to their lucrative new job. Fly them to <planet> before <date> for <payment>.`
+	passengers 1
+	deadline 5 2
+	to offer
+		or
+			random < 20
+			and
+				not "event: know about Korath fish jobs"
+				random < 35
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes factory
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 300
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Urban Employee Poaching"
+	name "Urban worker to <planet>"
+	job
+	repeat
+	description `A skilled city worker needs a ride to their lucrative new job. Fly them to <planet> before <date> for <payment>.`
+	passengers 1
+	deadline 5 2
+	to offer
+		or
+			random < 20
+			and
+				not "event: know about Korath fish jobs"
+				random < 35
+	source
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		not attributes uninhabited
+		attributes urban
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 300
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Farming Team Recruitment"
+	name "Agronomists to <planet>"
+	job
+	repeat
+	description `A team of <bunks> research farmers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	passengers 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes farming
+		not attributes uninhabited
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 160
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Mining Team Recruitment"
+	name "Skilled miners to <planet>"
+	job
+	repeat
+	description `A team of <bunks> skilled miners need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	passengers 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes mining
+		not attributes uninhabited
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 160
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Science Team Recruitment"
+	name "Scientists to <planet>"
+	job
+	repeat
+	description `A team of <bunks> scientists need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	passengers 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes research
+		not attributes uninhabited
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 160
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Factory Team Recruitment"
+	name "Skilled factory workers to <planet>"
+	job
+	repeat
+	description `A team of <bunks> skilled factory workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	passengers 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes factory
+		not attributes uninhabited
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 160
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Urban Employee Team Recruitment"
+	name "Urban workers to <planet>"
+	job
+	repeat
+	description `A team of <bunks> skilled city workers need a ride to their lucrative new jobs. Pick them up at <stopovers> and take them to <planet> before <date> for <payment>.`
+	passengers 2 5 0.8
+	deadline 5 3
+	to offer
+		random < 40
+	source "New Tortuga"
+	stopover
+		government "Republic" "Pirate" "Free Worlds" "Neutral" "Independent"
+		attributes urban
+		not attributes uninhabited
+		distance 5 100
+	destination
+		government "Independent (Korath-Allied) Port"
+	on stopover
+		dialog phrase "generic passenger stopover pickup"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 35000 160
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [0]"
+	name "Banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
+	cargo "Syndicate-banned items" 2 5 0.8
+	illegal 50000
+	to offer
+		random < 50
+	source "New Tortuga"
+	destination
+		government Syndicate
+		not attributes uninhabited
+		distance 5 100
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [1]"
+	name "Banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
+	cargo "Syndicate-banned items" 4 7 0.8
+	illegal 50000
+	to offer
+		random < 50
+		"cargo space" > 3
+	source "New Tortuga"
+	destination
+		government Syndicate
+		not attributes uninhabited
+		distance 5 100
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [2]"
+	name "Banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
+	cargo "Syndicate-banned items" 7 20 0.8
+	illegal 50000
+	to offer
+		random < 50
+		"cargo space" > 5
+	source "New Tortuga"
+	destination
+		government Syndicate
+		not attributes uninhabited
+		distance 5 100
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [3]"
+	name "Banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
+	cargo "Syndicate-banned items" 16 40 0.8
+	illegal 50000
+	to offer
+		random < 40
+		"cargo space" > 20
+	source "New Tortuga"
+	destination
+		government Syndicate
+		not attributes uninhabited
+		distance 5 100
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Banned Syndicate Items [4]"
+	name "Banned items to <planet>"
+	job
+	repeat
+	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
+	cargo "Syndicate-banned items" 35 100 0.8
+	illegal 50000
+	to offer
+		random < 40
+		"cargo space" > 40
+	source "New Tortuga"
+	destination
+		government Syndicate
+		not attributes uninhabited
+		distance 5 100
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 40000 170
+		dialog phrase "generic passenger dropoff payment"
