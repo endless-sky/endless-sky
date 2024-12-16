@@ -52,8 +52,6 @@ private:
 	double gunRange = 0.;
 	bool hasWeapons = false;
 	bool canFight = false;
-	double turretRange = 0.;
-	double gunRange = 0.;
 };
 
 
