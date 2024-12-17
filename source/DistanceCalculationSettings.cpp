@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DistanceCalculationSettings.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 
 using namespace std;
 
@@ -53,6 +54,21 @@ void DistanceCalculationSettings::Load(const DataNode &node)
 		else
 			child.PrintTrace("Invalid distance calculation setting:");
 	}
+}
+
+
+
+void DistanceCalculationSettings::Save(DataWriter &out) const
+{
+	if(wormholeStrategy == WormholeStrategy::NONE)
+		out.Write("no wormholes");
+	else if(wormholeStrategy == WormholeStrategy::ONLY_UNRESTRICTED)
+		out.Write("only unrestricted wormholes");
+	else if(wormholeStrategy == WormholeStrategy::ALL)
+		out.Write("all wormholes");
+
+	if(assumesJumpDrive)
+		out.Write("assumes jump drive");
 }
 
 
