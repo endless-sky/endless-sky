@@ -16,7 +16,7 @@ test-data "Timer Test Mission"
 	contents
 		mission "10 second timer"
 			landing
-			timer "why do I have a name"
+			timer "Why do I have a name?"
 				time 600
 				reset "leave system"
 				on timeup
@@ -37,7 +37,7 @@ test "Timer - Simple 10 seconds timer"
 		apply
 			"test: steps to wait" = 30 * 60
 		label "floating"
-		# empty input to make 10 seconds and one frame pass
+		# An empty input to make 30 seconds pass.
 		input
 		apply
 			"test: steps to wait" = "test: steps to wait" - 1

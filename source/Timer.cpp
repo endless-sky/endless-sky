@@ -136,7 +136,7 @@ void Timer::Load(const DataNode &node)
 
 
 
-// Note: the Save() function can assume this is an instantiated Timer, not a template,
+// Note: the Save() function can assume this is an instantiated timer, not a template,
 // so the time to wait will be saved fully calculated, and with any elapsed time subtracted.
 void Timer::Save(DataWriter &out) const
 {
@@ -225,7 +225,7 @@ Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs
 	result.idleMaxSpeed = idleMaxSpeed;
 	result.requirePeaceful = requirePeaceful;
 
-	// Validate all the actions attached to the timer, and if they're *all* valid, instantiate them too.
+	// Validate all the actions attached to the timer, and if they're all valid, instantiate them too.
 	string reason;
 	auto ait = actions.begin();
 	for( ; ait != actions.end(); ++ait)
@@ -248,7 +248,7 @@ Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs
 	if(randomWaitTime > 1)
 		result.waitTime += Random::Int(randomWaitTime);
 
-	// We also build a cache of the matching proximity object(s) for the instantiated Timer.
+	// We also build a cache of the matching proximity object(s) for the instantiated timer.
 	// This avoids having to do all these comparisons every Step().
 	if(system && (proximityCenter || !proximityCenters.IsEmpty()))
 		for(const StellarObject &proximityObject : system->Objects())
@@ -276,7 +276,7 @@ bool Timer::IsComplete() const
 }
 
 
-// This method gets called every time the *possible* reset conditions are met,
+// This method gets called every time the possible reset conditions are met,
 // regardless of whether this particular timer is set to reset on them.
 // If it is, then it resets the elapsed time to 0, marks the timer as inactive,
 // and conditionally fires the reset action, if any.
@@ -295,8 +295,8 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Missi
 	if(isActive && reset)
 	{
 		timeElapsed = 0;
-		// Perform the reset action, if there is one, assuming *either* it
-		// hasn't fired yet, *or* the timer is configured to fire it every reset.
+		// Perform the reset action, if there is one, assuming either it
+		// hasn't fired yet, or the timer is configured to fire it every reset.
 		if(repeatReset || !resetFired)
 		{
 			auto it = actions.find(TimerTrigger::RESET);
