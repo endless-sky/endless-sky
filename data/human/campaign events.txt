@@ -129,13 +129,13 @@ event "war begins"
 		fleet "Republic Logistics" 3000
 	planet "Geminus"
 		description `Until recently, Geminus was home to the Republic Navy Yard, the largest shipyard in human space. Now, there is nothing left of the shipyard but a gaping crater in the ground, from the recent terrorist bombing.`
-		spaceport `Fortunately, the spaceport and residential areas survived the bombing, which was focused only on the Navy yard and happened early in the morning, when very few people were at work.`
+		spaceport `Fortunately, the spaceport and residential areas survived the bombing, which was focused only on the Navy Yard and happened early in the morning, when very few people were at work.`
 		spaceport `The Navy officers who are in charge here have no time for anyone who is not enlisted in the Navy and participating in the ongoing investigation.`
 		shipyard clear
 		outfitter clear
 		"required reputation" 100
 	planet "Martini"
-		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
+		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the Galactic Stock Exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the capital city as well.`
 		description `	Currently, a massive rescue and evacuation operation is underway in and around the capital to find and treat survivors and contain the radiation. As to be expected, the planet's supplies are running dangerously low, and what remains of Martini's government has called for civilian ships to help deliver goods and provisions for the operation.`
 		spaceport `Instead of the immaculate spaceport that Martini once sported, this temporary spaceport consists of randomly-scattered makeshift landing areas, in order to support the large number of Navy and civilian ships assisting with the rescue and evacuation operation.`
 		"required reputation" 100
@@ -143,7 +143,7 @@ event "war begins"
 	planet "Bourne"
 		description `Bourne is a well-developed industrial world that was first settled four centuries ago. Its cities are home to some of the richest individuals in this section of the galaxy, but also home to tens of thousands of homeless people, and many others whose factory jobs are barely providing enough to make ends meet.`
 		description `	Outside the cities, the climate is somewhat dry, but the deep valleys and some coastal regions are suitable for farming. Very little of the planet remains that is untouched by human hands.`
-		description `	Bourne is also the seat of government for the newly formed Free Worlds.`
+		description `	Bourne is also the seat of government for the newly-formed Free Worlds.`
 
 mission "event: war begins"
 	landing
@@ -307,7 +307,7 @@ event "initial deployment 1"
 	planet "New Wales"
 		description `New Wales is home to a few mining outposts which extract and refine rare earth minerals and heavy metals. It is dangerous work: the mines are deep underground and prone to noxious gases and cave-ins, and the refineries work with molten radioactive materials and caustic chemicals.`
 		description `Due to the somewhat dim light of the star Algorel, and the cloudiness of the atmosphere, this is not a good world for farming, and the population remains quite small.`
-		description `The Republic Navy has planted a base on New Wales: so far, just a densely packed cluster of prefabricated barracks and infirmary buildings on the outskirts of one of the mining colonies.`
+		description `The Republic Navy has planted a base on New Wales. So far, it's just a densely packed cluster of prefabricated barracks and infirmary buildings on the outskirts of one of the mining colonies.`
 	system "Porrima"
 		fleet "Small Southern Merchants" 1400
 		fleet "Large Southern Merchants" 4000
@@ -1148,7 +1148,7 @@ event "oathkeepers founded"
 		fleet "Derelict Pirate" 10000
 	planet "Farpoint"
 		description `Farpoint, on the northernmost end of human space, is a rocky desert planet home to a Republic Navy base and not much else. Farming is possible only within greenhouses, and this system is too far from the galactic center to be desirable for trade or industry.`
-		description `	Lately the Navy base on Farpoint is growing, because it has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
+		description `	Lately, the Navy base on Farpoint has been growing. It has become the new home of the Navy Oathkeepers, a small branch of the Navy that has sworn to stay uninvolved in the conflict with the Free Worlds.`
 
 
 
@@ -1234,7 +1234,7 @@ event "fw conservatory founded"
 		fleet "Human Miners" 1600
 	planet "Winter"
 		description `The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago, when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gases would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going.`
-		description `	Winter is home to the Free Worlds Conservatory, a new university that is focused on making terraforming technology and expertise available at a reasonable price, as well as on ecological protection and renewal.`
+		description `	Winter is home to the Free Worlds Conservatory, a new university focused on making terraforming technology and expertise available at a reasonable price, as well as on ecological protection and renewal.`
 		security .4
 
 
@@ -1251,10 +1251,10 @@ event "Thule becomes independent"
 		fleet "Large Free Worlds" 1500
 	planet "Thule"
 		add attributes "ex-pirate"
-		description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the Earth government did not yet have the strength to control any system but its own, and when the Republic was formed, Thule did not join, and has repulsed all efforts to force them to do so.`
+		description `Thule is a mountainous world with a population of nearly a billion, settled in the early days of space exploration. When the colony was first established, the government on Earth did not yet have the strength to control any system but its own. As such, Thule refused to join the Republic when it was formed, and has since repulsed all efforts to force it to do so.`
 		description `	Until recently, Thule was a well-known den of pirate activity, but the major tribal authorities have now forsworn piracy in the interest of keeping the Free Worlds from further meddling in their affairs. However, it is likely that all manner of illegal activity is still going on in secret here.`
 	planet "Smuggler's Den"
-		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates, and became a haven for all manner of smugglers and privateers. Now, at least in theory it is an independent station, no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
+		description `Smuggler's Den was formerly known as Grendel Station, back when it was an operating refinery. After that, it was taken over by pirates, and became a haven for all manner of smugglers and privateers. Now, at least in theory, it is an independent station no longer allied with the pirates. In practice, you suspect a fair amount of piracy still goes on here.`
 		description `The repair shops here can make a variety of legal and illegal modifications to your ship, and in the shipyard you can buy refurbished starships... if it does not trouble your conscience to think about the likely fates of their previous owners.`
 		spaceport `It is a strange but indisputable fact that anarchists smell worse than ordinary human beings. In this day and age, where even the cheapest shuttlecraft at least has a sonic shower, there is no logical explanation for it, except that anarchist tendencies must somehow go hand in hand with a tendency to reject society's norms around hygiene. Here in a space station, with nothing but recycled air to breathe, the effect is overpowering.`
 
@@ -1292,7 +1292,7 @@ event "fw suppressed Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
 		description `	Now that the Free Worlds is occupying the system, Greenrock has become a marginally more respectable world. Pirates still run wild in the wilderness of the planet, but the Free Worlds is actively arresting criminals and freeing slaves in the population centers.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The normally shady establishments are now filled with militia and the occasional merchant captain looking to explore the planet while it's still in Free Worlds hands.`
-		spaceport `	Despite the Free Worlds presence, dark alleyways are still to be avoided. Down one alley you see a shop called "Mike's Mustelids," the inside overrun by weasels, ferrets, and wolverines that were once caged there.`
+		spaceport `	Despite the Free Worlds presence, dark alleyways are still to be avoided. Down one alley you see an abandoned shop called "Mike's Mustelids," now overrun by weasels, ferrets, and wolverines that were once caged there.`
 
 
 
@@ -1506,11 +1506,11 @@ event "navy using mark ii ships"
 			"Rainmaker (Mark II)"
 		add variant 6
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 		add variant 3
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
@@ -1556,11 +1556,11 @@ event "navy using mark ii ships"
 			"Rainmaker (Mark II)"
 		add variant 6
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 		add variant 3
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
@@ -1789,7 +1789,7 @@ event "liberation of Poisonwood"
 		fleet "Human Miners" 2000
 	planet "Poisonwood"
 		spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals here welcome you to their planet heartily.`
-		spaceport `	The tavern in the center of the port is named The Parting Glass. Its walls are covered with photographs from after the war: liberated slaves boarding Navy ships to leave this planet that had brought them so much pain; Navy officers leaving their ships to retire on this world that they liberated; friends gone away; friends left behind. There are newer pictures, too: a Cruiser and two Falcons, side by side; armored troops walking away from a factory; a familiar captain talking to a man you know as Commander Nguyen. It is a strange feeling to be shown among heroes of a history that you have had only the smallest effect on.`
+		spaceport `	The tavern in the center of the port is named The Parting Glass. Its walls are covered in photographs from after the war, all taken here on Poisonwood: freed slaves boarding Navy ships to leave the planet that brought them so much pain; Navy officers disembarking to retire on the world that they liberated; friends gone away; friends left behind. There are newer pictures, too: a Cruiser and two Falcons, side by side; armored troops walking away from a factory; a familiar captain talking to a man you know as Commander Nguyen. It is a strange feeling to be shown among heroes of a history that you've had only the smallest effect on.`
 
 event "Poisonwood reverts to Republic"
 	system "Graffias"
@@ -3336,7 +3336,7 @@ event "martini recovers"
 	planet "Martini"
 		description `Martini is a world of exotic beaches and perfect weather. The Republic's central bank and the galactic stock exchange were previously headquartered here, before a terrorist attack destroyed them and a large portion of the old capital city as well.`
 		description `	The new capital city is on the other side of the main continent, where lingering radiation will not affect the rest of the population. It is not so grand as the old capital, but its population has swelled from resettlement from the irradiated areas and it is quickly gaining the air of a major metropolis. The inhabitants, many of whom are survivors of the blast, have rallied behind a sort of 'will-do' attitude that only occurs after such a devastating and destructive event.`
-		spaceport `Currently, the newly-designated planetary spaceport does not possess the infrastructure to act as the main spaceport of Martini. The expansive temporary spaceport from the relief operation is still being used, and since then, permanent landing pads have been built, but there are now plans to demolish it and give the new planetary spaceport a desperately needed expansion.`
+		spaceport `Currently, the newly-designated planetary spaceport does not possess the infrastructure to act as Martini's main spaceport. The expansive temporary spaceport from the relief operation is still being used, and since then, permanent landing pads have been built, but there are now plans to demolish it and give the new planetary spaceport a desperately needed expansion.`
 		spaceport `	Martini's old spaceport still remains, as it was located just outside the blast zone and its deflector shields bore the brunt of the shockwave, but its towers partially collapsed in the days following the devastation. It now appears from a distance to be a few unevenly-levelled black spires rising before a backdrop of the smoke and remnants of a ruined city, no longer gleaming as it once did.`
 
 mission "Martini Recovers"

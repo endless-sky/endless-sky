@@ -618,17 +618,18 @@ mission "FW Escort 0"
 
 
 
+# Deprecated in v0.10.11. This event is preserved in case an older version of the mission "FW Escort 1B" is already active upon updating.
+event "fw escorts abandon timer"
+
+
+
 mission "FW Escort: Escorts"
 	landing
 	invisible
 	to offer
 		has "FW Escort 0: done"
 	to fail
-		or
-			has "chosen sides"
-			and
-				has "event: fw escorts abandon timer"
-				not "FW Escort 2: offered"
+		has "chosen sides"
 	to complete
 		never
 	npc
@@ -797,36 +798,32 @@ mission "FW Escort 1B"
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 400000
-		event "fw escorts abandon timer"
-		dialog `Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
-
-
-
-event "fw escorts abandon timer"
 
 
 
 mission "FW Escort 2"
 	autosave
+	landing
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
 	source "Longjump"
 	destination "Wayfarer"
 	to offer
 		has "FW Escort 1B: done"
-		not "event: fw escorts abandon timer"
 	to fail
 		has "chosen sides"
 	
 	on offer
 		conversation
-			`A few of the escort pilots, yourself included, have stuck around for another mission, and luckily a few new faces have joined in as well. Tomek meets you in the spaceport and says, "You know the drill. Escort the freighters to <planet> and back. 400,000 credits for your troubles. Plus, please believe that all of you are known to the Council, and your bravery will not be forgotten. We can't afford to lose any of these freighters. Who's willing to help escort them?"`
+			`Tomek is waiting in <origin>'s spaceport to receive the freighters. After double-checking that the cargo is all intact, he turns to you and the rest of the escort captains and says, "All of you have done a great service for the Free Worlds." He walks over and personally presents a credit chip to each captain.`
+			`	After handing over your payment, Tomek announces, "The convoy is heading back to <planet> immediately. Same deal as before: 400,000 credits for the safe return of the freighters, their crew, and their cargo. And I swear your courage will never be forgotten by the Council or the Free Worlds. If you're willing to volunteer a second time, please stay here."`
+			`	Tomek leaves, presumably to gather replacements for the captains who have already run off.`
 			choice
 				`	(Volunteer.)`
-				`	(Go find some other work to do.)`
+				`	(Ditch the escort group.)`
 					decline
 			
-			`	"Great!" says Tomek. "Good luck to all of you, and I pray to see you all safely back here in a couple of weeks."`
+			`	You stick around with a few of the other escort pilots and watch as most of the others wander away. Soon Tomek returns, luckily with some new faces in tow. "You know the drill," he says. "We can't afford to lose any of these freighters. Good luck to all of you, and I pray to see you all safely back here in a couple of weeks."`
 				accept
 	
 	on decline
@@ -924,12 +921,12 @@ mission "FW Escort 2B"
 	on complete
 		fail "FW Escort: Escorts"
 		payment 400000
-		dialog `Again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
 
 
 
 mission "FW Escort 3"
 	autosave
+	landing
 	name "Stranded Freighter"
 	description "Repair the <npc>, which is stranded in the <waypoints> system, and escort it safely back to <destination>."
 	source "Longjump"
@@ -941,7 +938,8 @@ mission "FW Escort 3"
 	
 	on offer
 		conversation
-			`When you walk into the bar, Tomek looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by pirates. Do you think you're up to the task?"`
+			`Once again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each 400,000 credits. Afterwards, he pulls you aside and says, "Captain <last>, please follow me."`
+			`	Tomek brings you to one of the spaceport bars, exchanging greetings with the patrons before sitting at the counter. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by pirates. Do you think you're up to the task?"`
 			choice
 				`	"Sure!"`
 				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
@@ -2287,7 +2285,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3
@@ -2302,7 +2300,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3

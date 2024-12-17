@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "CargoHold.h"
 #include "Dialog.h"
-#include "FillShader.h"
-#include "FogShader.h"
+#include "shader/FillShader.h"
+#include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
@@ -37,16 +37,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Politics.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -69,14 +69,36 @@ namespace {
 	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 
-	// Struct to track per system how many pointers are drawn and still
+	// Class to track per system how many pointers are drawn and still
 	// need to be drawn.
-	struct PointerDrawCount {
+	class PointerDrawCount {
+	public:
+		// Calculate and check the most number of pointer positions that should be available for active missions.
+		// This can be up to half the maximum number of pointers that can be drawn.
+		void Reserve();
+
+		unsigned MaximumActive() const;
+
+	public:
 		// Amount of systems already drawn.
 		unsigned drawn = 0;
 		unsigned available = 0;
 		unsigned unavailable = 0;
+
+	private:
+		unsigned maximumActive = MAX_MISSION_POINTERS_DRAWN;
 	};
+
+	void PointerDrawCount::Reserve()
+	{
+		maximumActive = max(MAX_MISSION_POINTERS_DRAWN / 2, MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
+	}
+
+	unsigned PointerDrawCount::MaximumActive() const
+	{
+		return maximumActive;
+	}
+
 
 	// Struct for storing the ends of wormhole links and their colors.
 	struct WormholeArrow {
@@ -815,6 +837,8 @@ void MapPanel::Select(const System *system)
 			flagship->SetTargetSystem(nullptr);
 
 		plan = distance.Plan(*system);
+		if(isJumping)
+			plan.push_back(source);
 	}
 
 	// Reset the travel destination if the final system in the travel plan has changed.
@@ -1452,6 +1476,7 @@ void MapPanel::DrawMissions()
 		else
 			++it.unavailable;
 	}
+	for_each(missionCount.begin(), missionCount.end(), [](auto &it) { it.second.Reserve(); });
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -1461,22 +1486,25 @@ void MapPanel::DrawMissions()
 		if(!system)
 			continue;
 
-		// Reserve a maximum of half of the slots for available missions.
-		auto &&it = missionCount[system];
-		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
-		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
-			continue;
-
-		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
-		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		auto &it = missionCount[system];
+		if(it.drawn < it.MaximumActive())
+		{
+			pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+			bool isSatisfied = IsSatisfied(player, mission) && blink.second;
+			const Color &color = blink.first ? black : isSatisfied ? currentColor : blockedColor;
+			DrawPointer(system, it.drawn, it.MaximumActive(), color, isSatisfied);
+		}
 
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
+			DrawPointer(waypoint, missionCount[waypoint].drawn, missionCount[waypoint].MaximumActive(), waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
+		{
+			const System *stopoverSystem = stopover->GetSystem();
+			auto &counts = missionCount[stopoverSystem];
+			DrawPointer(stopoverSystem, counts.drawn, counts.MaximumActive(), waypointColor);
+		}
 		for(const System *mark : mission.MarkedSystems())
-			DrawPointer(mark, missionCount[mark].drawn, waypointColor);
+			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
@@ -1484,16 +1512,18 @@ void MapPanel::DrawMissions()
 		const auto &system = it.first;
 		auto &&counters = it.second;
 		for(unsigned i = 0; i < counters.available; ++i)
-			DrawPointer(system, counters.drawn, availableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
-			DrawPointer(system, counters.drawn, unavailableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, unavailableColor);
 	}
 }
 
 
 
-void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger)
 {
+	if(systemCount >= max)
+		return;
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 
