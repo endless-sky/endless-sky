@@ -1435,6 +1435,7 @@ government "New Houses"
 		"House Seineq" 1
 		"House Aqrabe" 1
 		"People's Houses (Hostile)" -0.01
+	"bribe" 0
 	"penalty for"
 		assist 0
 	"friendly hail" "new houses friendly hail"
@@ -1455,6 +1456,7 @@ government "Old Houses"
 		"House Myurej" 1
 		"House Sioeora" 1
 		"People's Houses (Hostile)" -0.01
+	"bribe" 0
 	"penalty for"
 		assist 0
 	"friendly hail" "old houses friendly hail"

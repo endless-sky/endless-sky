@@ -271,7 +271,7 @@ mission "Remnant: Logistics Industrial Delivery"
 	to offer
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
-		has "Remnant: Logistics Civil Engineering: done" >= 9
+		"Remnant: Logistics Civil Engineering: done" >= 9
 		random < 76
 	source
 		government "Remnant"
@@ -299,7 +299,7 @@ mission "Remnant: Logistics Outfitter Delivery"
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant"
-		has "Remnant: Logistics Industrial Delivery: done" >= 9
+		"Remnant: Logistics Industrial Delivery: done" >= 9
 		random < 30
 	source
 		government "Remnant"
@@ -327,7 +327,7 @@ mission "Remnant: Logistics Salvage Delivery"
 		not "remnant: ssil vida active"
 		has "Remnant: Logistics 1: done"
 		has "license: Remnant Capital"
-		has "Remnant: Logistics Outfitter Delivery: done" >= 9
+		"Remnant: Logistics Outfitter Delivery: done" >= 9
 		random < 11
 	source
 		government "Remnant"
