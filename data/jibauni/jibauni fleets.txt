@@ -1,0 +1,342 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+fleet "Jibauni Pilgrim Transport"
+	government "Jibauni (Civilian)"
+	names "jibauni civilian"
+	cargo 4
+	personality
+		confusion 35
+		appeasing
+		timid
+	variant 46
+		"Quyan" 2
+	variant 23
+		"Yankul"
+	variant 14
+		"Quyan" 2
+		"Furus" 2
+	variant 10
+		"Quyan"
+		"Furus"
+	variant 9
+		"Quyan"
+		"Yankul"
+	variant
+		"Quyan" 5
+		"Saghir"
+		"Furus" 3
+	variant
+		"Quyan" 4
+		"Furus" 3
+
+fleet "Hajay Pilgrim Transport"
+	government "Jibauni (Civilian)"
+	names "jibauni civilian"
+	cargo 1
+	personality
+		appeasing
+		timid
+	variant 9
+		"Quyan (Inter-system)"
+	variant 4
+		"Quyan (Inter-system)" 2
+
+
+fleet "Large Jibauni Military"
+	government "Jibauni"
+	names "jibauni military"
+	cargo 3
+	personality
+		confusion 10
+		disables
+		heroic
+		merciful
+		opportunistic
+		plunders
+	variant 11
+		"Nathar"
+		"Larajal" 2
+		"Yiyharsi"
+		"Furus"
+	variant 11
+		"Yiyharsi" 2
+	variant 10
+		"Yiyharsi (Flak)" 2
+	variant 9
+		"Yiyharsi" 3
+	variant 8
+		"Yiyharsi"
+		"Nakil"
+		"Muraw" 2
+		"Larajal" 2
+		"Latbaliday" 2
+		"Duntay" 4
+	variant 6
+		"Nathar"
+		"Larajal" 2
+	variant 5
+		"Nathar"
+		"Muraw" 2
+	variant 4
+		"Nathar"
+		"Latbaliday" 2
+	variant 4
+		"Furus"
+		"Furus (Flak)"
+	variant 2
+		"Furus" 2
+	variant 2
+		"Yiyharsi"
+	variant
+		"Yiyharsi" 5
+	variant
+		"Furus" 2
+		"Furus (Flak)" 3
+
+fleet "Small Jibauni Military"
+	government "Jibauni"
+	names "jibauni military"
+	cargo 2
+	personality
+		confusion 12
+		disables
+		heroic
+		merciful
+		opportunistic
+		plunders
+	variant 29
+		"Yiyharsi"
+	variant 24
+		"Furus"
+	variant 20
+		"Furus"
+		"Yiyharsi"
+	variant 18
+		"Furus" 2
+	variant 14
+		"Yiyharsi (Flak)"
+	variant 8
+		"Furus (Flak)"
+	variant 5
+		"Yiyharsi" 2
+	variant 2
+		"Furus (Flak)" 2
+	variant
+		"Nathar"
+		"Muraw" 2
+	variant
+		"Nakil"
+		"Muraw" 4
+		"Larajal" 2
+		"Duntay" 4
+
+
+fleet "Jibauni Leaders"
+	government "Jibauni (Ruler)"
+	names "jibauni civilian"
+	cargo 3
+	personality
+		confusion 10
+		timid
+	variant 2
+		"Yiyharsi (Government)"
+	variant 2
+		"Furus (Government)"
+	variant 2
+		"Quyan (Government)"
+	variant 2
+		"Nathaq (Government)"
+		"Duntay" 4
+	variant 2
+		"Nathar (Government)"
+	variant
+		"Yiyharsi (Government)" 2
+	variant
+		"Furus (Government)" 2
+	variant
+		"Quyan (Government)" 2
+	variant
+		"Nathaq (Government)" 2
+		"Daybal" 2
+		"Duntay" 6
+	variant
+		"Nathar (Government)" 2
+
+
+fleet "Large Rebel Jibauni Military"
+	government "Jibauni (Rebel)"
+	names "rebel jibauni military"
+	cargo 3
+	personality
+		confusion 10
+		disables
+		heroic
+		merciful
+		opportunistic
+		plunders
+	variant 11
+		"Nathar (Rebel)"
+		"Larajal" 2
+		"Yiyharsi"
+		"Saghir"
+	variant 11
+		"Yiyharsi" 2
+	variant 10
+		"Yiyharsi (Flak)" 2
+	variant 9
+		"Yiyharsi" 3
+	variant 8
+		"Yiyharsi"
+		"Nakil"
+		"Muraw" 2
+		"Larajal" 2
+		"Latbaliday" 2
+		"Duntay" 4
+	variant 6
+		"Nathar (Rebel)"
+		"Larajal" 2
+	variant 5
+		"Nathar (Rebel)"
+		"Muraw" 2
+	variant 4
+		"Nathar (Rebel)"
+		"Latbaliday" 2
+	variant 2
+		"Saghir" 2
+	variant 2
+		"Yiyharsi"
+	variant
+		"Yiyharsi" 5
+	variant
+		"Saghir" 4
+
+fleet "Small Rebel Jibauni Military"
+	government "Jibauni (Rebel)"
+	names "rebel jibauni military"
+	cargo 2
+	personality
+		confusion 12
+		disables
+		heroic
+		merciful
+		opportunistic
+		plunders
+	variant 20
+		"Saghir"
+	variant 18
+		"Saghir"
+		"Yiyharsi (Rebel)"
+	variant 16
+		"Saghir" 2
+	variant 15
+		"Yiyharsi"
+	variant 14
+		"Yiyharsi (Flak)"
+	variant 14
+		"Yiyharsi (Tractor Flak)"
+	variant 5
+		"Yiyharsi"
+		"Yiyharsi (Tractor Flak)"
+	variant 3
+		"Furus"
+	variant 2
+		"Furus (Flak)"
+	variant
+		"Nathar"
+		"Muraw" 2
+	variant
+		"Nakil"
+		"Muraw" 4
+		"Larajal" 2
+		"Duntay" 4
+
+
+fleet "Rebel Jibauni Civilian"
+	government "Jibauni (Rebel)"
+	names "rebel jibauni civilian"
+	personality
+		confusion 20
+		merciful
+		opportunistic
+		timid
+	variant 10
+		"Yankul"
+	variant 9
+		"Saghir"
+	variant 7
+		"Quyan"
+	variant 5
+		"Yankul" 2
+	variant 4
+		"Yiyharsi"
+	variant 2
+		"Nathas"
+		"Daybal" 2
+	variant 2
+		"Nathas" 2
+		"Daybal" 2
+		"Duntay" 2
+	variant 2
+		"Quyan"
+		"Yiyharsi"
+	variant 2
+		"Yiyharsi"
+		"Saghir"
+	variant
+		"Furus"
+	variant
+		"Nathas"
+		"Duntay" 2
+		"Saghir"
+
+fleet "Jibauni Civilian"
+	government "Jibauni"
+	names "jibauni civilian"
+	cargo 4
+	personality
+		confusion 20
+		merciful
+		opportunistic
+		timid
+	variant 8
+		"Yankul"
+	variant 7
+		"Quyan"
+	variant 7
+		"Nathas"
+		"Daybal" 2
+	variant 4
+		"Nathas" 2
+		"Daybal" 4
+	variant 3
+		"Nathaq"
+		"Daybal" 4
+	variant 3
+		"Yiyharsi"
+	variant 3
+		"Nathas"
+		"Daybal" 2
+		"Furus"
+	variant 3
+		"Yankul" 2
+	variant 2
+		"Nathaq"
+		"Daybal" 4
+		"Yiyharsi"
+	variant 2
+		"Quyan"
+		"Yiyharsi"
+	variant
+		"Nathar"
+		"Daybal" 2

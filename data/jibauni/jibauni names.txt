@@ -1,0 +1,163 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "jibauni military"
+	word
+		"J.N.S. "
+	phrase
+		"jibauni"
+
+phrase "jibauni civilian"
+	phrase
+		"jibauni"
+
+phrase "rebel jibauni civilian"
+	word
+		"T.S. "
+	phrase
+		"jibauni"
+
+phrase "rebel jibauni military"
+	word
+		"T.N S. "
+	phrase
+		"jibauni"
+
+phrase "jibauni fighter"
+	word
+		"J. F. S. "
+	phrase
+		"jibauni ship name 1" 10
+		"jibauni ship name 2" 10
+		"jibauni ship name 3" 12
+		"jibauni ship name 4" 9
+	word
+		" al "
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+
+phrase "jibauni"
+	phrase
+		"jibauni ship name 1" 10
+		"jibauni ship name 2" 10
+		"jibauni ship name 3" 12
+		"jibauni ship name 4" 9
+	word
+		" "
+	phrase
+		"jibauni median"
+	word
+		" "
+	phrase
+		"jibauni ship name 1" 10
+		"jibauni ship name 2" 10
+		"jibauni ship name 3" 12
+		"jibauni ship name 4" 9
+
+phrase "jibauni"
+	phrase
+		"jewels"
+	phrase
+		"items"
+
+phrase "jibauni ship name 1"
+	word
+		"Allah"
+		"Batal"
+		"Malik"
+		"Musdus"
+		"Nabal"
+		"Nazir"
+		"Qinqin"
+		"Rabana"
+		"Tirani"
+		"Yuton"
+
+phrase "jibauni median"
+	word
+		"al"
+		"wa" 19
+
+phrase "jibauni ship name 2"
+	word
+		"Alhudu"
+		"Malnina"
+		"Mulala"
+		"Qadas"
+		"Rahaa"
+		"Rida"
+		"Salaam"
+		"Shaler"
+		"Talab"
+		"Waltu"
+
+phrase "jibauni ship name 3"
+	word
+		"Baiki"
+		"Harba"
+		"Hariqi"
+		"Hayala"
+		"Miraka"
+		"Muna"
+		"Qasif"
+		"Qital"
+		"Rishi"
+		"Sirae"
+		"Tisha"
+		"Wahsa"
+
+phrase "jibauni ship name 4"
+	word
+		"Alawan"
+		"Batal"
+		"Fatih"
+		"Fayiz"
+		"Fazhal"
+		"Hazima"
+		"Laqima"
+		"Munta"
+		"Sira"
+
+phrase "jewels"
+	word
+		"Amber"
+		"Amethyst"
+		"Diamond"
+		"Emerald"
+		"Gold"
+		"Jade"
+		"Opal"
+		"Platinum"
+		"Ruby"
+		"Sapphire"
+		"Silver"
+
+phrase "items"
+	word
+		"Arrow"
+		"Bow"
+		"Crown"
+		"Dragon"
+		"Gem"
+		"Ingot"
+		"Lord"
+		"Palace"
+		"Ring"
+		"Scepter"
+		"Spear"
+		"Sword"
+		"Treasure"

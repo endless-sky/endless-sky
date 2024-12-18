@@ -1352,6 +1352,28 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Small Steering Module" 3
 		"Hyperdrive"
 
+ship "Heliarch Punisher" "Heliarch Punisher (Jump Defense)" # Used only in the "Jibauni: Heliarch Patrol" mission.
+	outfits
+		"Ion Rain Gun" 6
+		"Heliarch Repulsor" 4
+
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
+		"Scanning Module" 4
+		"Enforcer Riot Staff" 78
+		"Enforcer Confrontation Gear" 44
+		"Outfits Expansion" 2
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 3
+		"Hyperdrive"
+		"Jump Drive"
+
 ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 	outfits
 		"Finisher Pod" 6

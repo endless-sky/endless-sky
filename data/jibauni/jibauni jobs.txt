@@ -1,0 +1,416 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Jibauni Pilgrims [0]"
+	name "Pilgrims to <planet>"
+	description "Bring these <fare> to <planet> in the <system> system. Payment will be <payment>. The pilgrimage requires that you get there before <date>."
+	job
+	repeat
+	deadline 10
+	cargo "pilgrimage supplies" 10 30
+	passengers 2 20
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	destination
+		government "Jibauni"
+		attributes religious
+		not planet Laqualk
+	to offer
+		has "language: Jibauni"
+		random < 40
+	on accept
+		dialog "The <bunks> passengers get onto your ship, and get settled in their cabins."
+	on complete
+		payment
+		payment 1250
+		"Jibauni government" ++
+		"pilgrim help" ++
+		dialog "The <bunks> pilgrims get off the <ship>, but not before one of them hands you <payment>."
+	on fail
+		"pilgrim help" --
+		"left pilgrims" ++
+
+mission "Jibauni Kasim Cargo (pre-war)"
+	name "Cargo to <planet>"
+	description "Take these <cargo> to <planet> for Kasim Aboagye, a wealthy businessman. Payment will be <payment>."
+	job
+	repeat
+	cargo "Aboagye Shipyards Parts" 1 30
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	destination
+		attributes "kasim shipyards"
+	to offer
+		has "language: Jibauni"
+		not "event: jibauni rebel jibauni peace"
+		random < 33
+	on complete
+		payment
+		payment 250
+		dialog phrase "generic jibauni shipyard delivery"
+
+mission "Jibauni Kasim Cargo (post-war)"
+	name "Cargo to <planet>"
+	description "Take these <cargo> to <planet> for Kasim Aboagye, a wealthy businessman. Payment will be <payment>, which is one thousand extra because of you knowing Kasim."
+	job
+	repeat
+	cargo "Aboagye Shipyards Parts" 1 30
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	destination
+		attributes "kasim shipyards"
+	to offer
+		has "language: Jibauni"
+		random < 25
+		has "event: jibauni rebel jibauni peace"
+	on complete
+		payment
+		payment 1250
+		dialog phrase "generic jibauni shipyard delivery"
+
+mission "Jibauni Res-redi Cargo (pre-war)"
+	name "Cargo to <planet>"
+	description "Take these <cargo> to <planet> for the Shipyards of Res-redi, one of the most influential conpanies in history. When you complete the hauling, you will be paid <payment>."
+	job
+	repeat
+	cargo "Res-redi Shipyards Parts" 1 30
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	destination
+		attributes "res-redi shipyards"
+	to offer
+		has "language: Jibauni"
+		not "event: jibauni rebel jibauni peace"
+		random < 33
+	on complete
+		payment
+		dialog phrase "generic jibauni shipyard delivery"
+
+mission "Jibauni Res-redi Cargo (post-war)"
+	name "Cargo to <planet>"
+	description "Take these <cargo> to <planet> for the Shipyards of Res-redi, one of the most influential conpanies in history. When you complete the hauling, you will be paid <payment>, an additional 1500 credits for knowing Res-redi."
+	job
+	repeat
+	cargo "Res-redi Shipyards Parts" 1 30
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	destination
+		attributes "res-redi shipyards"
+	to offer
+		has "language: Jibauni"
+		has "event: jibauni rebel jibauni peace"
+		random < 25
+	on complete
+		payment
+		payment 1500
+		dialog phrase "generic jibauni shipyard delivery"
+
+mission "Jibauni Rebel Bounty Small"
+	name "Kill the <npc>"
+	description "The <npc>, a small Rebel Jibauni ship, is marauding near the <origin> system. You will receive <payment> for destroying it, if you do so by the <day>."
+	job
+	repeat
+	"apparent payment" 40000
+	deadline 20
+	source
+		government "Jibauni"
+	to offer
+		has "language: Jibauni"
+		random < 30
+		"combat rating" > 100
+		not "event: jibauni rebel jibauni peace"
+	npc kill
+		government "Jibauni (Rebel)"
+		personality
+			confusion 10
+			heroic
+			target
+			nemesis
+			staying
+			unconstrained
+			marked
+		system
+			distance 1 1
+		fleet
+			names "rebel jibauni military"
+			variant
+				Saghir
+			variant
+				Furus
+			variant
+				Yiyharsi
+			variant
+				Minaldmasmin
+			variant
+				"Quyan (Fighting)"
+		dialog phrase "jibauni got rid of bounty"
+		on kill
+			payment 40000
+			fail
+
+mission "Jibauni Rebel Bounty Large"
+	name "Kill the <npc>"
+	description "The large Rebel Jibauni ship <npc> has been attacking our ships near the <origin> system. Destroy it and its escorts by <day> if you wish to receive <payment>."
+	job
+	repeat
+	"apparent payment" 100000
+	deadline 20
+	source
+		government "Jibauni"
+	to offer
+		has "language: Jibauni"
+		random < 30
+		"combat rating" > 200
+		not "event: jibauni rebel jibauni peace"
+	deadline 10
+	npc kill
+		government "Jibauni (Rebel)"
+		personality
+			confusion 10
+			heroic
+			target
+			nemesis
+			staying
+			unconstrained
+			marked
+		system
+			distance 1 1
+		fleet
+			names "rebel jibauni military"
+			variant 4
+				Nathar
+			variant 2
+				Nakil
+		dialog phrase "jibauni got rid of bounty"
+		on kill
+			payment 100000
+			fail
+
+mission "Jibauni Passengers [0]"
+	name "Passengers to <planet>"
+	description "Take these <bunks> passengers to <planet> for <payment>."
+	job
+	repeat
+	passengers 2 15
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 30
+	destination
+		distance 1 4
+		not planet Laqualk
+	on complete
+		payment
+		dialog "The <bunks> passengers get off your ship to do whatever they wanted to go here for, but not before they pay you <payment>."
+
+mission "Jibauni Passengers [1]"
+	name "Passengers to <planet>"
+	description "Take these <bunks> passengers to <planet> for <payment>."
+	job
+	repeat
+	passengers 2 15
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 30
+	destination
+		distance 1 4
+		not planet Laqualk
+	on complete
+		payment
+		dialog "The <bunks> passengers get off your ship to do whatever they wanted to go here for, but not before they pay you <payment>."
+
+mission "Jibauni Passengers [2]"
+	name "Jibauni to <planet>"
+	description "Take these large group of <bunks> passengers to <planet>. They are many, and so will collectively pay you <payment>."
+	job
+	repeat
+	passengers 20 120
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 23
+	destination
+		distance 1 4
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet Laqualk
+	on complete
+		payment
+		payment 2000
+		dialog "As the group of Jibauni go out of your ship, they each hand you 1/<bunks>th of <payment>."
+
+#mission "Jibauni Risky Tourists"
+#	name "Risk-loving Tourists"
+#	description "These Jibauni are interested in touring non-Jibauni space. Discreetly take them to the marked systems and back for <payment>."
+#	job
+#	repeat
+#	passengers 2 20
+#	clearance "You find coordinates to land where there are no inhabitants."
+#	source
+#		government "Jibauni" "Jibauni (Rebel)"
+#	to offer
+#		has "language: Jibauni"
+#		random < 10
+#	"distance calculation settings"
+#		"all wormholes"
+#	stopover
+#		distance 2 5
+#		government "Pirate" "Independent" "Free Worlds" "Republic"
+#	stopover
+#		distance 5 8
+#		government "Pirate" "Independent" "Free Worlds" "Republic"
+#	stopover
+#		distance 2 5
+#		government "Diba" "Pirate" "Independent" "Free Worlds" "Republic"
+#	on stopover
+#		conversation
+#			`	As your <bunks> passengers get out to stretch their legs and enjoy the scenary, you hear a patrol coming by with inquiring and perhaps angry thoughts."
+#			choice
+#				`	(Take off, don't risk my life.)`
+#					goto leftbehind
+#				`	"Everyone back on!"`
+#			`	As your passengers hurry back to your ship, you take off. Hopefully that was everyone.`
+#				depart
+#			label leftbehind
+#			`	Well, too bad for those poor Jibauni. You see them being surrounded by the other ships, but decide to take off anyway.`
+#				flee
+#				fail
+#	on complete
+#		payment
+#		payment 10000
+#		dialog "Your passengers walk away, excitedly taking about their trip. You find <payment> in their cabin."
+
+mission "Jibauni Rush Delivery [0]"
+	name "Rush to <planet>"
+	description "A character on <planet> is in dire need of <cargo> before <day>. Get it there by then for the reward of <payment>."
+	job
+	repeat
+	cargo random 2 10
+	deadline
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 23
+	destination
+		distance 1 4
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet Laqualk
+	on complete
+		payment
+		payment 100
+		dialog "The cargo is speedily unloaded from your ship, and you are paid <payment> as the trolley leaves."
+
+mission "Jibauni Rush Delivery [1]"
+	name "Rush to <planet>"
+	description "Take this <cargo> to <planet> before <day> for a payment of <payment>."
+	job
+	repeat
+	cargo random 5 40
+	deadline
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 23
+	destination
+		distance 1 4
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet Laqualk
+	on complete
+		payment
+		dialog "The cargo is unloaded from your ship and carted away."
+
+mission "Jibauni Rush Delivery [2]"
+	name "Rush to <planet>"
+	description "Take this <cargo> to <planet> before <day> for a payment of <payment>."
+	job
+	repeat
+	cargo random 5 40
+	deadline
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 23
+	destination
+		distance 1 4
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet Laqualk
+	on complete
+		payment
+		dialog "The cargo is unloaded from your ship and carted away."
+
+mission "Jibauni Bulk Delivery [0]"
+	name "Bulk Delivery to <planet>"
+	description "Take these <cargo> to <planet>. For each set of <tons> that safely arrive, you will be paid <payment>."
+	job
+	repeat
+	cargo random 30 100
+	deadline
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 40
+	destination
+		distance 1 4
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet Laqualk
+	on complete
+		payment
+		payment 1000
+		dialog "You take the cargo to a huge unloading facility, whence it is sent to the warehouses."
+
+mission "Jibauni Bulk Delivery [1]"
+	name "Bulk Delivery to <planet>"
+	description "Take these <cargo> to <planet>. For each set of <tons> that safely arrive, you will be paid <payment>."
+	job
+	repeat
+	cargo random 30 100
+	deadline
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 40
+	destination
+		distance 1 4
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet Laqualk
+	on complete
+		payment
+		payment 3000
+		dialog "You take the cargo to a huge unloading facility, whence it is sent to the warehouses."
+
+trade
+	commodity "Aboagye Shipyards Parts"
+		"Furus parts"
+		"Larajal parts"
+		"Qudaw parts"
+		"Latbaliday parts"
+		"Nathas parts"
+		"Nathaq parts"
+		"Quyan parts"
+		"Nakil parts"
+		"Nathar parts"
+
+trade
+	commodity "Res-redi Shipyards Parts"
+		"Yiyharsi parts"
+		"Saghir parts"
+		"Daybal parts"
+		"Muraw parts"

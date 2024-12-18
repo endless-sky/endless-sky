@@ -1,0 +1,574 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "jibauni title"
+	word
+		"alien captain"
+		"human captain"
+		"Captain of the <ship>"
+
+phrase "jibauni planet"
+	word
+		"Baitoon"
+		"Kahbani"
+		"Kanlil"
+		"Lamalmuq"
+		"Taltahard"
+
+phrase "consonant capitalized"
+	word
+		"B"
+		"C"
+		"D"
+		"F"
+		"G"
+		"H"
+		"J"
+		"K"
+		"L"
+		"M"
+		"N"
+		"P"
+		"Q"
+		"R"
+		"S"
+		"T"
+		"V"
+		"W"
+		"X"
+		"Z"
+
+phrase "consonant uncapitalized"
+	word
+		"b"
+		"c"
+		"d"
+		"f"
+		"g"
+		"h"
+		"j"
+		"k"
+		"l"
+		"m"
+		"n"
+		"p"
+		"q"
+		"r"
+		"s"
+		"t"
+		"u"
+		"v"
+		"w"
+		"x"
+		"z"
+
+phrase "jibauni untranslated"
+	word
+		"Cuf"
+		"Hiuf"
+		"Hqiavepr"
+		"Jamku"
+		"Jamn"
+		"Je"
+		"Oodilara"
+		"Tumuen"
+		"Xambuna"
+	word
+		"."
+		"!"
+
+phrase "jibauni untranslated"
+	word
+		"${digit}${digit}" 10
+		"${digit}${digit}${digit}" 5
+		"${digit}"
+	word
+		"."
+
+phrase "jibauni untranslated"
+	phrase
+		"jibauni untranslated random word 1"
+		"jibauni untranslated random word 2"
+	phrase
+		"empty"
+		"jibauni untranslated random word 1"
+	phrase
+		"empty"
+		"jibauni untranslated random word 2"
+	phrase
+		"empty"
+		"jibauni untranslated random word 1"
+		"jibauni untranslated random word 2"
+	word
+		"."
+		"!"
+
+phrase "jibauni untranslated random word 1"
+	phrase
+		"consonant capitalized"
+	phrase
+		"vocal" 2
+		"empty"
+	phrase
+		"consonant uncapitalized" 2
+		"empty"
+	phrase
+		"empty"
+		"vocal" 2
+	phrase
+		"empty"
+		"vocal" 2
+	phrase
+		"consonant uncapitalized" 2
+		"empty"
+	word
+		" "
+
+phrase "jibauni untranslated random word 2"
+	phrase
+		"vocal (capitalized)"
+	phrase
+		"consonant uncapitalized" 2
+		"empty"
+	phrase
+		"consonant uncapitalized"
+		"empty"
+		"vocal"
+	phrase
+		"vocal"
+	phrase
+		"consonant uncapitalized"
+		"vocal"
+	phrase
+		"consonant uncapitalized"
+	phrase
+		"empty"
+		"vocal"
+	word
+		" "
+
+phrase "empty"
+	word
+		""
+
+phrase "friendly jibauni civilian"
+	phrase
+		"friendly jibauni civilian 1" 2
+		"friendly jibauni civilian 2" 3
+		"friendly jibauni civilian 3" 14
+		"friendly jibauni civilian 4" 19
+
+phrase "friendly disabled jibauni civilian"
+	phrase
+		"friendly disabled jibauni civilian 1"
+		"friendly disabled jibauni civilian 2"
+		"friendly disabled jibauni civilian 3"
+
+
+phrase "friendly jibauni civilian 1"
+	word
+		"Good "
+		"Great "
+		"Nice "
+	word
+		"to "
+	word
+		"lay eyes upon "
+		"see "
+		"talk to "
+	word
+		"you, "
+	phrase
+		"jibauni title"
+	word
+		"!"
+
+phrase "friendly jibauni civilian 2"
+	word
+		"How is it going, "
+		"Are you doing well, "
+	phrase
+		"jibauni title"
+	word
+		"? "
+	word
+		"Our "
+	word
+		"ship "
+		"spacecraft "
+	word
+		"sure "
+		"definitely "
+	word
+		"is!"
+	word
+		" So are we!"
+		" We are as well!"
+		" The same as us!"
+		"" 4
+
+phrase "friendly jibauni civilian 3"
+	word
+		"Meet me next time you're on "
+	phrase
+		"jibauni planet"
+	word
+		"! "
+	word
+		"I "
+	word
+		"go by the name "
+		"live under the name "
+		"have the name "
+	word
+		"of "
+	phrase
+		"jibauni first name"
+	phrase
+		"family names"
+	word
+		"."
+
+phrase "friendly jibauni civilian 4"
+	word
+		"My "
+	word
+		"company "
+		"business "
+		"corporation "
+		"agency "
+	word
+		"called "
+		"named "
+		"labeled "
+		"titled "
+	phrase
+		"adjectives"
+	word
+		" "
+	phrase
+		"nouns of indeterminate quantity"
+		"singular nouns"
+	word
+		" on "
+	phrase
+		"jibauni planet"
+	word
+		" is about to "
+	word
+		"expand"
+		"grow larger"
+	word
+		"!"
+	word
+		" Stop by and see us sometime!"
+		"" 2
+
+phrase "friendly jibauni military"
+	word
+		"We "
+	word
+		"shall "
+		"will "
+	word
+		""
+		"happily "
+	word
+		"defend "
+		"protect "
+		"guard "
+	word
+		"all "
+		"any "
+	word
+		"people, Jibauni or otherwise "
+		"people "
+		"ships "
+		"spacecraft "
+	word
+		"with good "
+	word
+		"intent "
+		"thoughts "
+	word
+		"that come into "
+	word
+		"our "
+		"Jibauni "
+	word
+		"space"
+		"territory"
+	word
+		"."
+
+phrase "friendly jibauni military"
+	word
+		"Guarding "
+		"Defending "
+		"Protecting "
+	word
+		"peaceful "
+		"unarmed "
+	word
+		"ships "
+		"spacecraft "
+	word
+		"is "
+	word
+		"our duty"
+		"a noble calling"
+		"only polite"
+	word
+		"."
+	word
+		" Especially with the Rebels around."
+		"" 3
+
+
+phrase "friendly disabled jibauni civilian 1"
+	word
+		"We are "
+		"Our ship is "
+	word
+		"in a bit of a bind "
+		"disabled "
+	word
+		"because of those "
+	word
+		"bad "
+		"terrible "
+		"wicked "
+	word
+		"enemies "
+		"opponents "
+	word
+		"of ours. "
+	word
+		"Would you be willing to "
+		"Could you be so kind as to "
+	word
+		"render "
+		"give "
+	word
+		"a bit of help"
+		"some assistance"
+		"a helping hand"
+	word
+		"?"
+
+phrase "friendly disabled jibauni civilian 2"
+	word
+		"Being "
+	word
+		"unable to move "
+		"disabled "
+	word
+		"is"
+	word
+		" not "
+		" definitely not "
+		", of course, not "
+	word
+		"fun, "
+		"enjoyable, "
+		"entertaining, "
+	word
+		"so please "
+	word
+		"help "
+		"assist "
+		"repair "
+	word
+		"us!"
+
+phrase "friendly disabled jibauni civilian 3"
+	word
+		"Friend! "
+		"Person who is not hostile! "
+		"Unhostile one! "
+	word
+		"Kindly "
+		"Please "
+	word
+		"assist "
+		"help "
+		"repair "
+	word
+		"us! "
+	word
+		"We have been "
+	word
+		"unable to move "
+		"disabled "
+	word
+		"for the past "
+		"for the time of "
+	phrase
+		"digit"
+	phrase
+		"digit"
+		"empty"
+	word
+		"days"
+		"hours"
+	word
+		"!"
+
+phrase "friendly disabled jibauni military"
+	word
+		"As we have "
+		"Our people have "
+	word
+		"defended "
+		"protected "
+		"guarded "
+	word
+		"you "
+		"your ship "
+		"your spacecraft "
+	word
+		"for the time you have been in "
+	word
+		"Jibauni "
+		"our "
+	word
+		"space"
+	word
+		". You"
+		"; you"
+	word
+		" should come " 2
+		" should speedily come "
+	word
+		"assist "
+		"help "
+		"repair "
+	word
+		"us."
+	word
+		" Do it fast."
+		""
+
+phrase "hostile jibauni military"
+	phrase
+		"hostile jibauni"
+
+phrase "hostile jibauni"
+	word
+		"You "
+	word
+		"bad "
+		"wicked "
+		"terrible "
+	word
+		"alien! "
+		"human! "
+		"madman! "
+	word
+		"Why "
+		"For what reason "
+	word
+		"would you "
+	word
+		"fight "
+		"give battle to "
+		"seek to destroy "
+	word
+		"us?"
+
+phrase "hostile jibauni military"
+	word
+		"Prepare to die, "
+	word
+		"vile "
+		"cruel "
+		"evil "
+	word
+		"alien scum! "
+	word
+		"You are going to be "
+	word
+		"disabled "
+		"destroyed "
+		"unable to move "
+	word
+		"soon"
+		"within seconds"
+	word
+		"!"
+
+phrase "hostile disabled jibauni civilian"
+	word
+		"Please don't shoot us! What have we done to you! We "
+	word
+		"didn't "
+		"failed to "
+	word
+		"blow you up!"
+		"turn you into a rapidly expanding cloud of debris!"
+
+phrase "hostile disabled jibauni military 1"
+	word
+		"We cannot be "
+	word
+		"destroyed! "
+		"turned into a rapidly expanding cloud of debris! "
+	word
+		"It is "
+	word
+		"futile "
+		"a waste of time "
+		"a bad idea "
+	word
+		"to try"
+	word
+		" to turn us into one"
+		" it"
+		"" 2
+	word
+		"!"
+
+phrase "hostile disabled jibauni military 2"
+	word
+		"My friends will avenge me, "
+	word
+		"vile "
+		"cruel "
+		"evil "
+	word
+		"alien "
+		"foreign"
+	word
+		" scum!"
+
+
+phrase "hostile disabled jibauni military"
+	phrase
+		"hostile disabled jibauni military 1" 2
+		"hostile disabled jibauni military 2"
+
+phrase "jibauni ruler"
+	word
+		"I "
+		"We "
+		"My friends "
+		"My friends and I "
+	word
+		"rule "
+		"own "
+	word
+		"this space"
+		"Jibauni space"
+		"this galaxy"
+	word
+		"."

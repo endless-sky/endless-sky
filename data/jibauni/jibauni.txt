@@ -1,0 +1,202 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# shipyards
+
+shipyard "Aboagye Basics"
+	"Duntay"
+	"Furus"
+	"Larajal"
+	"Latbaliday"
+	"Quyan"
+
+shipyard "Aboagye Advanced"
+	"Nakil"
+	"Nathar"
+	"Nathas"
+
+shipyard "Resredi Basics"
+	"Yankul"
+	"Muraw"
+	"Daybal"
+
+shipyard "Resredi Advanced"
+	"Minaldmasmin"
+	"Nathaq"
+	"Yiyharsi"
+
+shipyard "Jibauni Colonism"
+	"Osra"
+	"Safinat"
+
+shipyard "Rebel Jibauni"
+	"Saghir"
+
+# outfitters
+
+outfitter "Lamalmuq"
+	"Almash Scanner"
+	"Cargo Expansion"
+	"Hyperdrive"
+	"Outfits Expansion"
+	"Small Map"
+
+outfitter "Jibauni Basics"
+	"Alhaja Steering"
+	"Alhaja Thrusters"
+	"Cargo Expansion"
+	"Cargo Scanner"
+	"Hyperdrive"
+	"Altaedin Laser"
+	"Almash Scanner"
+	"Jibauni Small Laser"
+	"Minjal"
+	"Musaghar Shield Generator"
+	"Outfits Expansion"
+	"Ruksay Missile"
+	"Small Bunk Room"
+	"Small Map"
+	"Bunk"
+	"Wasita Steering"
+	"Wasita Thrusters"
+	"Watsaq Energy Generator"
+
+outfitter "Jibauni Advanced"
+	"Alhaja Steering"
+	"Alhaja Thrusters"
+	"Aljaraar Tractor Beam"
+	"Almash Scanner"
+	"Altaedin Laser"
+	"Alwaqud Fuel Pod"
+	"Bunk"
+	"Bunk Room"
+	"Cargo Expansion"
+	"Cargo Scanner"
+	"Daltaq Energy Generator"
+	"Eimlaq Steering"
+	"Eimlaq Thrusters"
+	"Flak Launcher"
+	"Hyperdrive"
+	"Jahgir Energy Generator"
+	"Jamum Shield Generator"
+	"Jibauni Medium Laser"
+	"Jibauni Ramscoop"
+	"Jibauni Small Laser"
+	"Lilsa Anti-Missile"
+	"Large Bunk Room"
+	"Musaghar Shield Generator"
+	"Outfit Scanner"
+	"Outfits Expansion"
+	"Rukjay Missile"
+	"Rukjay Missile Launcher"
+	"Ruksay Missile"
+	"Ruksay Missile Launcher"
+	"Small Bunk Room"
+	"Small Map"
+	"Tactical Scanner"
+	"Tamum Shield Generator"
+	"Tashwish Radar Jammer"
+	"Tawasitaq Energy Generator"
+	"Tractor Beam"
+	"Wasita Steering"
+	"Wasita Thrusters"
+	"Watsaq Energy Generator"
+	"Zarhal Laser Turret"
+	"Zarwal Laser Turret"
+
+
+event "jibauni translated hails"
+	government "Jibauni"
+		"friendly hail" "friendly jibauni military"
+		"friendly disabled hail" "friendly disabled jibauni military"
+		"hostile hail" "hostile jibauni military"
+		"hostile disabled hail" "hostile disabled jibauni military"
+	government "Jibauni (Civilian)"
+		"friendly hail" "friendly jibauni civilian"
+		"friendly disabled hail" "friendly disabled jibauni civilian"
+		"hostile hail" "hostile jibauni"
+		"hostile disabled hail" "hostile disabled jibauni civilian"
+	government "Jibauni (Rebel)"
+		"friendly hail" "friendly jibauni military"
+		"friendly disabled hail" "friendly disabled jibauni military"
+		"hostile hail" "hostile jibauni military"
+		"hostile disabled hail" "hostile disabled jibauni military"
+	government "Jibauni (Ruler)"
+		"friendly hail" "friendly jibauni civilian"
+		"friendly disabled hail" "friendly disabled jibauni civilian"
+		"hostile hail" "hostile jibauni"
+		"hostile disabled hail" "hostile disabled jibauni civilian"
+
+
+# phrases
+
+phrase "generic jibauni shipyard delivery"
+	word
+		The
+	word
+		" cargo "
+		" freight "
+	word
+		"is"
+	word
+		" speedily "
+		" quickly "
+	word
+		"unloaded from "
+		"taken off "
+	word
+		"your ship, "
+		"the <ship>, "
+	word
+		"and"
+	word
+		" a sullen worker "
+		" a friendly worker "
+		" a group of workers "
+	word
+		" pays "
+		" gives "
+	word
+		"you <payment>."
+
+phrase "jibauni got rid of bounty"
+	word
+		"You have "
+	word
+		"destroyed "
+		"gotten rid of "
+	word
+		the
+	word
+		" enemy "
+		" target "
+	word
+		"ship"
+		"spacecraft"
+	word
+		", and the "
+	word
+		"government"
+		"governor"
+		"ruler"
+	word
+		" of <origin> "
+		" on <origin> "
+	word
+		"happily"
+		"gladly"
+	word
+		" pays"
+		" gives"
+	word
+		" you <payment>."

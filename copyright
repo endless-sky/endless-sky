@@ -1867,6 +1867,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
+ images/outfit/bunk*
+ images/outfit/giant?bunk?room*
+Copyright: Loymdayddaud (https://github.com/TheGiraffe3)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso (under the same license).
+
+Files:
  images/hardpoint/javelin?turret*
  images/planet/station1*
  images/planet/station2*
@@ -2381,6 +2388,164 @@ Copyright: @Karirawri (crim@live.no)
 License: CC-BY-SA-4.0
 
 Files:
+ images/ship/llama*
+ images/thumbnail/llama*
+Copyright: Petersupes (https://github.com/Petersupes)
+License: CC-BY-SA-4.0
+
+Files:
+ images/planet/wormhole-green*
+Copyright: Loymdayddaud (https://github.com/TheGiraffe3)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/land/lamalmuq*
+Copyright: Kanenori (https://pixabay.com/users/kanenori-4749850/)
+License: CC0
+Comment:
+ Taken from https://pixabay.com/photos/autumn-mountains-shirakami-sanchi-2183489/, and
+ resized. According to Section 3 of the Pixabay Terms of Service, all images with a
+ "published date" earlier than January 9, 2019 have the CC0 license.
+
+Files:
+ images/land/baitoon*
+Copyright: Pexels (https://pixabay.com/users/pexels-2286921/)
+License: CC0
+Comment:
+ Taken from https://pixabay.com/photos/buildings-illuminated-skyline-1870010/, and
+ resized. According to Section 3 of the Pixabay Terms of Service, all images with a
+ "published date" earlier than January 9, 2019 have the CC0 license.
+
+Files:
+ images/land/ligastoli*
+Copyright: sasint (https://pixabay.com/users/sasint-3639875/)
+License: CC0
+Comment:
+ Taken from https://pixabay.com/photos/rice-terraces-mountains-plantation-1822443/,
+ and resized. According to Section 3 of the Pixabay Terms of Service, all images
+ with a "published date" earlier than January 9, 2019 have the CC0 license.
+
+Files:
+ images/land/owiay*
+Copyright: ryannoeker (https://pixabay.com/users/ryannoeker-41074070/)
+License: CC-BY-SA-3.0
+
+Files:
+ images/land/buhayra*
+ images/land/ghayima*
+ images/land/khariq*
+ images/land/minmanmun*
+ images/land/tud?habal*
+ images/land/zilat*
+Copyright: Alexander Savin (https://commons.wikimedia.org/wiki/User:A.Savin)
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/sukhur*
+Copyright: European Space Agency
+License: CC-BY-SA-3.0
+
+Files:
+ images/land/makhi*
+Copyright: Araştırmacı Ekanrın
+License: CC-BY-SA-4.0
+
+Files:
+ images/land/sio*
+Copyright: Wolfgang-1958 (https://pixabay.com/users/wolfgang-1958-32693390/)
+License: CC-BY-SA-3.0
+
+Files:
+ images/land/vardelu*
+Copyright: photoangel (https://www.freepik.com/author/photoangel)
+License: CC0
+
+Files:
+ images/outfit/daltaq?generator*
+ images/outfit/jahgir?generator*
+ images/outfit/jamum?generator*
+ images/outfit/jibauni?fuel?pod*
+ images/outfit/jibauni?medium?laser*
+ images/outfit/jibauni?mining?laser*
+ images/outfit/jibauni?ramscoop*
+ images/outfit/jibauni?small?laser*
+ images/outfit/lilsa?anti-missile*
+ images/outfit/minjal*
+ images/outfit/ridtab?cooling*
+ images/outfit/rukjay?missile?launcher*
+ images/outfit/rukjay?missile*
+ images/outfit/ruksay?missile?launcher*
+ images/outfit/ruksay?missile*
+ images/outfit/tamum?generator*
+ images/outfit/tawasitaq?generator*
+ images/outfit/watsaq?generator*
+ images/outfit/zarhal?turret*
+ images/outfit/zarwal?turret*
+ images/planet/baitoon*
+ images/planet/lamalmuq*
+ images/projectile/jibauni?anti-missile*
+ images/projectile/jibauni?medium?laser*
+ images/projectile/jibauni?mining?laser*
+ images/projectile/jibauni?small?laser*
+ images/projectile/rukjay*
+ images/projectile/ruksay*
+ sounds/jibauni?anti-missile*
+ sounds/jibauni?medium?laser*
+ sounds/jibauni?mining?laser*
+ sounds/jibauni?small?laser*
+ sounds/rukjay?missile*
+ sounds/ruksay?missile*
+ sounds/zarhal?turret*
+ sounds/zarwal?turret*
+Copyright: Loymdayddaud (https://github.com/TheGiraffe3)
+License: CC-BY-SA-4.0
+
+Files:
+ images/ship/arbquaya?one*
+ images/ship/arbquaya?two*
+ images/ship/ithquaya?one*
+ images/ship/ithquaya?two*
+ images/ship/tahquaya?one*
+ images/ship/tahquaya?two*
+ images/ship/tamquaya?one*
+ images/ship/tamquaya?two*
+ images/thumbnail/arbquaya?one*
+ images/thumbnail/arbquaya?two*
+ images/thumbnail/ithquaya?one*
+ images/thumbnail/ithquaya?two*
+ images/thumbnail/tahquaya?one*
+ images/thumbnail/tahquaya?two*
+ images/thumbnail/tamquaya?one*
+ images/thumbnail/tamquaya?two*
+Copyright: Loymdayddaud (https://github.com/TheGiraffe3)
+License: CC-BY-SA-4.0
+Comment: Uses textures from freepik.com.
+
+Files:
+ images/land/diba?station*
+ images/land/kahbani*
+Copyright: Freepik (https://freepik.com)
+License: CC0
+
+Files:
+ images/land/nulto*
+Copyright: Philipp Reiner (https://unsplash.com/@philippreiner)
+License: Unsplash
+
+Files:
+ images/land/andwerfen*
+ images/land/muntisir*
+ images/land/taltahard*
+Copyright: wirestock on Freepik
+License: Freepik
+
+Files:
+ images/land/sinsansun*
+Copyright: frimufilms on Freepik
+License: Freepik
+
+Files:
  images/effect/pwave?impact*
  images/effect/ionball?ring*
  images/effect/ion?explosion*
@@ -2427,6 +2592,12 @@ Files:
  images/land/clouds*
 Copyright: Benjamin Jackson (gods.benyamin@outlook.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/land/clouds_09*
+ images/land/sky14*
+Copyright: ELG21 (https://pixabay.com/users/elg21-3764790/)
+License: CC-BY-SA-3.0
 
 Files:
  images/outfit/ka'het?maeri?engine*

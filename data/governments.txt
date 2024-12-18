@@ -226,6 +226,28 @@ government "Derelict (Boardable)"
 	"crew attack" 0
 	"crew defense" 0
 
+government Diba
+	swizzle 22
+	color 0.882 0.686 0.294
+	"player reputation" -1000
+	"crew attack" 30
+	"crew defense" 30
+	"attitude toward"
+		"Alpha" 1000
+	"default attitude" -0.01
+	atrocities
+		"Scram Drive"
+		ship Llama
+		ship Tahquaya
+		ship Tamquaya
+		ship Ithquaya
+		ship Arbquaya
+	"bribe" 0.99 # leader'll let you off if he must, but you pay dearly
+	"friendly hail" "friendly diba"
+	"friendly disabled hail" "friendly disabled diba"
+	"hostile hail" "hostile diba"
+	"hostile disabled hail" "hostile disabled diba"
+
 government "Drak"
 	swizzle 0
 	color 1 1 1
@@ -727,9 +749,11 @@ government "Hai (Unfettered Civilians)"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
 
+color "governments: Heliarch" 1 .8 .5
+
 government "Heliarch"
 	swizzle 22
-	color 1 .8 .5
+	color "governments: Heliarch"
 	"crew attack" 1.3
 	"crew defense" 2.8
 	"player reputation" 1
@@ -748,7 +772,7 @@ government "Heliarch"
 government "Heliarch Test Dummy"
 	"display name" "Heliarch"
 	swizzle 0
-	color 1 .8 .5
+	color "governments: Heliarch"
 	"player reputation" -1000
 	"hostile hail" "heliarch test dummy"
 	"hostile disabled hail" "disabled heliarch test dummy"
@@ -969,6 +993,94 @@ government "Indigenous Lifeform (Astral)"
 		capture 0
 		destroy 0
 		atrocity 0
+
+color "governments: Jibauni" 0 0.353 0
+
+government Jibauni
+	color "governments: Jibauni"
+	swizzle 20
+	"player reputation" 10
+	"crew attack" 3
+	"crew defense" 0.5
+	"attitude toward"
+		"Jibauni (Rebel)" -1
+		"Jibauni (Civilian)" 1
+		"Jibauni (Ruler)" 1
+		"Pirate" -0.01
+	"penalty for"
+		assist -10
+		disable 0.2
+		board 0.5
+		capture 5
+		destroy 10
+	"bribe" 0.01
+	"friendly hail" "jibauni untranslated"
+	"friendly disabled hail" "jibauni untranslated"
+	"hostile hail" "jibauni untranslated"
+	"hostile disabled hail" "jibauni untranslated"
+
+government "Jibauni (Civilian)"
+	color "governments: Jibauni"
+	swizzle 20
+	"display name" "Madaniun" # Civilian
+	"player reputation" 10
+	"crew attack" 3
+	"crew defense" 0.5
+	"attitude toward"
+		Jibauni 1
+		"Jibauni (Rebel)" -1
+	"penalty for"
+		assist -10
+		disable 0.2
+		board 0.5
+		capture 5
+		destroy 10
+	"bribe" 0.02
+	"friendly hail" "jibauni untranslated"
+	"friendly disabled hail" "jibauni untranslated"
+	"hostile hail" "jibauni untranslated"
+	"hostile disabled hail" "jibauni untranslated"
+
+government "Jibauni (Rebel)"
+	swizzle 18
+	color 0 0.196 0.196
+	"display name" "Rebel Jibauni"
+	"player reputation" 0
+	"crew attack" 3
+	"crew defense" 0.3
+	"attitude toward"
+		Jibauni -1
+		"Jibauni (Civilian)" -1
+	"penalty for"
+		assist -2
+		disable 1
+		board 0
+		capture 1
+		destroy 1000
+	"bribe" 0.07 # not worthy
+	"friendly hail" "jibauni untranslated"
+	"friendly disabled hail" "jibauni untranslated"
+	"hostile hail" "jibauni untranslated"
+	"hostile disabled hail" "jibauni untranslated"
+
+government "Jibauni (Ruler)"
+	color "governments: Jibauni"
+	swizzle 19
+	"display name" "Hakim" # Ruler
+	"player reputation" 0
+	"crew attack" 3
+	"crew defense" 0.5
+	"attitude toward"
+		"Jibauni (Rebel)" -1
+		"Jibauni (Civilian)" 1
+		"Jibauni" 1
+	"penalty for"
+		assist 0
+	"bribe" 0.05 # for daring to attack them
+	"friendly hail" "jibauni untranslated"
+	"friendly disabled hail" "jibauni untranslated"
+	"hostile hail" "jibauni untranslated"
+	"hostile disabled hail" "jibauni untranslated"
 
 government "Ka'het"
 	swizzle 0
@@ -1752,6 +1864,59 @@ government "Sheragi"
 	"player reputation" 1
 	"crew attack" 0
 	"crew defense" 0
+
+government "Sheragi (Jibauni)"
+	swizzle 19
+	"display name" "Sheragi"
+	color 0.196 0.588 1
+	"player reputation" 1
+	"crew attack" 0.5
+	"crew defense" 3
+	"attitude toward"
+		Jibauni -0.01
+		"Jibauni (Civilian)" -0.01
+		"Jibauni (Rebel)" -0.01
+		Diba -0.01
+		"Sheragi (Pirate)" -0.1
+	"bribe" 0.01
+	"friendly hail" "friendly sheragi military"
+	"friendly disabled hail" "friendly disabled sheragi military"
+	"hostile hail" "hostile sheragi military"
+	"hostile disabled hail" "hostile disabled sheragi military"
+
+government "Sheragi Civilian (Jibauni)"
+	swizzle 19
+	"display name" "Sheragi Civilian"
+	color 0.196 0.588 1
+	"player reputation" 1
+	"crew attack" 0.5
+	"crew defense" 3
+	"attitude toward"
+		Jibauni -0.01
+		"Jibauni (Civilian)" -0.01
+		"Jibauni (Rebel)" -0.01
+		Diba -0.01
+		"Sheragi (Pirate)" -0.1
+	"bribe" 0.02 # for wasting their time
+	"friendly hail" "friendly sheragi civilian"
+	"friendly disabled hail" "friendly disabled sheragi civilian"
+	"hostile hail" "hostile sheragi civilian"
+	"hostile disabled hail" "hostile disabled sheragi civilian"
+
+government "Sheragi (Pirate)"
+	swizzle 19
+	color 0.275 0.667 0.784
+	"player reputation" -1000
+	"crew attack" 0.5
+	"crew defense" 3
+	"attitude toward"
+		Jibauni -0.1
+		Sheragi -0.1
+		"Sheragi Civilian (Jibauni)" -0.1
+		"Jibauni (Civilian)" -0.1
+		"Jibauni (Rebel)" -0.1
+	"bribe" 0.05 # unworthy
+	# have no hails for them, as of right now
 
 government "Silent Ones"
 	"display name" "Indigenous Lifeform"
