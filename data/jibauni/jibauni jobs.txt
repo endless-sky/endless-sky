@@ -252,47 +252,6 @@ mission "Jibauni Passengers [2]"
 		payment 2000
 		dialog "As the group of Jibauni go out of your ship, they each hand you 1/<bunks>th of <payment>."
 
-#mission "Jibauni Risky Tourists"
-#	name "Risk-loving Tourists"
-#	description "These Jibauni are interested in touring non-Jibauni space. Discreetly take them to the marked systems and back for <payment>."
-#	job
-#	repeat
-#	passengers 2 20
-#	clearance "You find coordinates to land where there are no inhabitants."
-#	source
-#		government "Jibauni" "Jibauni (Rebel)"
-#	to offer
-#		has "language: Jibauni"
-#		random < 10
-#	"distance calculation settings"
-#		"all wormholes"
-#	stopover
-#		distance 2 5
-#		government "Pirate" "Independent" "Free Worlds" "Republic"
-#	stopover
-#		distance 5 8
-#		government "Pirate" "Independent" "Free Worlds" "Republic"
-#	stopover
-#		distance 2 5
-#		government "Diba" "Pirate" "Independent" "Free Worlds" "Republic"
-#	on stopover
-#		conversation
-#			`	As your <bunks> passengers get out to stretch their legs and enjoy the scenary, you hear a patrol coming by with inquiring and perhaps angry thoughts."
-#			choice
-#				`	(Take off, don't risk my life.)`
-#					goto leftbehind
-#				`	"Everyone back on!"`
-#			`	As your passengers hurry back to your ship, you take off. Hopefully that was everyone.`
-#				depart
-#			label leftbehind
-#			`	Well, too bad for those poor Jibauni. You see them being surrounded by the other ships, but decide to take off anyway.`
-#				flee
-#				fail
-#	on complete
-#		payment
-#		payment 10000
-#		dialog "Your passengers walk away, excitedly taking about their trip. You find <payment> in their cabin."
-
 mission "Jibauni Rush Delivery [0]"
 	name "Rush to <planet>"
 	description "A character on <planet> is in dire need of <cargo> before <day>. Get it there by then for the reward of <payment>."
