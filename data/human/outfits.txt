@@ -430,6 +430,14 @@ outfit "Tear of Skade"
 	"unique" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
 
+outfit "Blood of Surtr"
+	category "Unique"
+	thumbnail "outfit/surtrblood"
+	"energy generation" 2
+	"heat generation" 4
+	"unique" 1
+	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
+
 
 outfit "Local Map"
 	category "Special"
