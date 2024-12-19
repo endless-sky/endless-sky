@@ -1865,59 +1865,6 @@ government "Sheragi"
 	"crew attack" 0
 	"crew defense" 0
 
-government "Sheragi (Jibauni)"
-	swizzle 19
-	"display name" "Sheragi"
-	color 0.196 0.588 1
-	"player reputation" 1
-	"crew attack" 0.5
-	"crew defense" 3
-	"attitude toward"
-		Jibauni -0.01
-		"Jibauni (Civilian)" -0.01
-		"Jibauni (Rebel)" -0.01
-		Diba -0.01
-		"Sheragi (Pirate)" -0.1
-	"bribe" 0.01
-	"friendly hail" "friendly sheragi military"
-	"friendly disabled hail" "friendly disabled sheragi military"
-	"hostile hail" "hostile sheragi military"
-	"hostile disabled hail" "hostile disabled sheragi military"
-
-government "Sheragi Civilian (Jibauni)"
-	swizzle 19
-	"display name" "Sheragi Civilian"
-	color 0.196 0.588 1
-	"player reputation" 1
-	"crew attack" 0.5
-	"crew defense" 3
-	"attitude toward"
-		Jibauni -0.01
-		"Jibauni (Civilian)" -0.01
-		"Jibauni (Rebel)" -0.01
-		Diba -0.01
-		"Sheragi (Pirate)" -0.1
-	"bribe" 0.02 # for wasting their time
-	"friendly hail" "friendly sheragi civilian"
-	"friendly disabled hail" "friendly disabled sheragi civilian"
-	"hostile hail" "hostile sheragi civilian"
-	"hostile disabled hail" "hostile disabled sheragi civilian"
-
-government "Sheragi (Pirate)"
-	swizzle 19
-	color 0.275 0.667 0.784
-	"player reputation" -1000
-	"crew attack" 0.5
-	"crew defense" 3
-	"attitude toward"
-		Jibauni -0.1
-		Sheragi -0.1
-		"Sheragi Civilian (Jibauni)" -0.1
-		"Jibauni (Civilian)" -0.1
-		"Jibauni (Rebel)" -0.1
-	"bribe" 0.05 # unworthy
-	# have no hails for them, as of right now
-
 government "Silent Ones"
 	"display name" "Indigenous Lifeform"
 	swizzle 0

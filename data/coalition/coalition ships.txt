@@ -1362,7 +1362,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Jump Defense)" # Used only in the "
 		"Overcharged Shield Module" 2
 		"Overclocked Repair Module" 2
 		"Cooling Module" 4
-		"Scanning Module" 4
+		"Scanning Module" 3
 		"Enforcer Riot Staff" 78
 		"Enforcer Confrontation Gear" 44
 		"Outfits Expansion" 2

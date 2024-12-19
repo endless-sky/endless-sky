@@ -596,6 +596,8 @@ mission "Jibauni: Kanlanmo 3"
 		conversation
 			`"Thank you for working with me so long," says Kanlanmo as he leaves the ship. "Meet me in the spaceport in a hour or two if you want to hear about it. But I will not be available tomorrow or the day afterwards, so you will have to come soon."`
 
+event "jibauni gather fleet against rebels"
+
 event "nokanlanmomeet1"
 
 mission "Jibauni: Kanlanmo 4"

@@ -30273,7 +30273,6 @@ system Quinlo
 	fleet "Small Rebel Jibauni Military" 500
 	fleet "Large Rebel Jibauni Military" 1500
 	fleet "Rebel Jibauni Civilian" 1600
-	fleet "Heliarch (Jibauni)" 600
 	object
 		sprite star/a0
 		period 10
