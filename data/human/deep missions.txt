@@ -5900,7 +5900,7 @@ mission "Hroar's Haulers 15"
 
 			label payall
 			action
-				payment -720,000
+				payment -720000
 			`	Yngvar nods, and says nothing.`
 			`	Leland looks annoyed, "You... fine. Good!" He recovers and the mask of indeference slides back down his face, "Always a pleasure."`
 			`	He briefly swipes his fingers across a few screens and accepts your payment. A moment later the holding cells open and all of the Haulers begin filing out.`
