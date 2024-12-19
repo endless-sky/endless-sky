@@ -88,7 +88,10 @@ void GameEvent::Load(const DataNode &node)
 	if(node.Size() >= 2)
 	{
 		name = node.Token(1);
-		conditionsToApply.Add("set", "event: " + name);
+		if(!DataNode::IsConditionName(name))
+			node.PrintTrace("Invalid event/condition name:");
+
+		conditionsToApply.AddSetCondition("event: " + name);
 	}
 	isDefined = true;
 
@@ -250,4 +253,12 @@ list<DataNode> GameEvent::Apply(PlayerInfo &player)
 const list<DataNode> &GameEvent::Changes() const
 {
 	return changes;
+}
+
+
+
+// Date comparison.
+bool GameEvent::operator<(const GameEvent &other) const
+{
+	return date < other.date;
 }

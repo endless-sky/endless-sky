@@ -2696,6 +2696,7 @@ Files:
  images/ship/frigate*
  images/ship/gunboat*
  images/ship/lance*
+ images/ship/modified?carrier*
  images/ship/rainmaker*
  images/ship/raven*
  images/ship/splinter*
@@ -2709,6 +2710,7 @@ Files:
  images/thumbnail/frigate*
  images/thumbnail/gunboat*
  images/thumbnail/lance*
+ images/thumbnail/modified?carrier*
  images/thumbnail/rainmaker*
  images/thumbnail/raven*
  images/thumbnail/splinter*
@@ -3606,6 +3608,11 @@ Comment:
 
 Files:
  images/ui/red?alert*
+ images/ui/tactical/acceleration*
+ images/ui/tactical/gun?range*
+ images/ui/tactical/turret?range*
+ images/ui/tactical/turn*
+ images/ui/tactical/velocity*
 Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -3614,6 +3621,15 @@ Files:
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Becca Tommaso (under the same license).
+
+Files:
+ images/ui/tactical/crew*
+ images/ui/tactical/energy*
+ images/ui/tactical/fuel*
+ images/ui/tactical/thermal*
+Copyright: Zitchas
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/_menu/haze-brown*
