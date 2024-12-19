@@ -16363,7 +16363,6 @@ system H-8188
 		period 5620.03
 
 system H-9187
-	shrouded
 	pos 1130.88 -455.97
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
