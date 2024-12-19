@@ -1,0 +1,963 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+ship "Quyan"
+	sprite "ship/star queen"
+	thumbnail "thumbnail/star queen"
+	attributes
+		category "Transport"
+		"cost" 3482000
+		"shields" 1500
+		"hull" 600
+		"required crew" 5
+		"bunks" 30
+		"mass" 300
+		"drag" 3.35
+		"heat dissipation" .3
+		"fuel capacity" 400
+		"cargo space" 40
+		"outfit space" 200
+		"weapon capacity" 18
+		"engine capacity" 71
+		"jibauni generator" 2
+		"fuel protection" .65
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 60
+			"shield damage" 600
+			"hull damage" 300
+			"hit force" 900
+	outfits
+		"Lilsa Anti-Missile"
+
+		"Tawasitaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal" 12
+
+		"Wasita Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+		
+	engine 0 0
+	turret 0 0 "Lilsa Anti-Missile"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Quyan is a Jibauni ship with a rich history; it was one of the first ships ever produced by the Jibauni. However, the longevity of its history means that in wartime, the Quyan is a terrible fighter; as such it is used only for hauling passengers, the designers' key priority."
+
+
+ship "Yankul"
+	swizzle 0
+	sprite "ship/yankul"
+	thumbnail "thumbnail/yankul"
+	attributes
+		category "Transport"
+		"cost" 650000
+		"shields" 900
+		"hull" 500
+		"required crew" 1
+		"bunks" 7
+		"mass" 65
+		"drag" 0.79
+		"heat dissipation" .34
+		"fuel capacity" 200
+		"cargo space" 11
+		"outfit space" 45
+		"weapon capacity" 4
+		"engine capacity" 0
+		"jibauni generator" 0.5
+		"fuel protection" .7
+		"thrust" 22
+		"turn" 110
+		"thrusting fuel" .2
+		"steering fuel" .4
+		"flare sprite" "effect/ion flare/tiny"
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 10
+			"shield damage" 150
+			"hull damage" 65
+			"hit force" 200
+	outfits
+		"Jahgir Energy Generator"
+
+		"Musaghar Shield Generator"
+
+		"Hyperdrive"
+	engine 0 38.5
+	gun 0 -38
+	explode "tiny explosion" 20
+	"final explode" "final explosion small"
+	description "The smallest ship the Jibauni possess, this ship is terrible at combat and only mediocre at cargo hauling. Its fame comes from the fact that it has many bunks for the cost, and that it can sport a weapon, though by default it does not come with one."
+
+
+
+ship "Nathas"
+	sprite "ship/nathas"
+	thumbnail "thumbnail/nathas"
+	plural "Nathases"
+	attributes
+		category "Light Freighter"
+		"cost" 5955000
+		"shields" 2500
+		"hull" 1500
+		"required crew" 3
+		"bunks" 5
+		"mass" 400
+		"drag" 6.8
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"cargo space" 50
+		"outfit space" 215
+		"weapon capacity" 22
+		"engine capacity" 73
+		"jibauni generator" 4
+		"fuel protection" .6
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 40
+			"shield damage" 400
+			"hull damage" 200
+			"hit force" 600
+	outfits
+		"Ruksay Missile" 30
+		"Ruksay Missile Launcher"
+		"Lilsa Anti-Missile"
+
+		"Tawasitaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal" 2
+
+		"Eimlaq Steering"
+		"Wasita Thrusters"
+		"Hyperdrive"
+
+	engine 0 0
+	gun 5 0 "Ruksay Missile Launcher"
+	turret 0 0 "Lilsa Anti-Missile"
+	bay Drone 0 0
+	bay Drone 0 0
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "A fairly recent design, the Nathas is a lighter, cheaper, and smaller ship then the original Nathaq model. The smaller number of drone bays is the main reason Aboagye was able to speed up Res-redi's cargo model."
+	description "	This ship is also capable of filling its drone bays with the Daybal cargo drone to increase space for hauling."
+
+
+
+ship "Nathaq"
+	sprite "ship/nathaq"
+	thumbnail "thumbnail/nathaq"
+	attributes
+		category "Heavy Freighter"
+		"cost" 10504000
+		"shields" 3500
+		"hull" 1750
+		"required crew" 10
+		"bunks" 13
+		"mass" 1460
+		"drag" 15.89
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"cargo space" 250
+		"outfit space" 295
+		"weapon capacity" 50
+		"engine capacity" 96
+		"jibauni generator" 4
+		"fuel protection" .7
+		licenses
+			"Jibauni Rebel Fighter"
+		weapon
+			"blast radius" 140
+			"shield damage" 1450
+			"hull damage" 650
+			"hit force" 2100
+	outfits
+		"Ruksay Missile" 60
+		"Ruksay Missile Launcher" 2
+		"Lilsa Anti-Missile" 2
+
+		"Daltaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal" 9
+
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+		
+	engine 0 0
+	gun 0 5 "Ruksay Missile Launcher"
+	gun 0 -5 "Ruksay Missile Launcher"
+	turret 0 0 "Lilsa Anti-Missile"
+	turret 5 0 "Lilsa Anti-Missile"
+	bay Drone 0 0
+	bay Drone 0 0
+	bay Drone 0 0
+	bay Drone 0 0
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Nathaq is the oldest purely cargo design the Jibauni have. First built in 2400, it also has drone bays to guard against Rebel attacks; most Jibauni dislike the fact that by itself the Nathaq is quite vulnerable."
+	description "	This ship is also capable of filling its drone bays with the Daybal cargo drone to increase space for hauling."
+
+
+
+ship "Minaldmasmin"
+	sprite "ship/minaldmasmin"
+	thumbnail "ship/minaldmasmin"
+	attributes
+		category "Utility"
+		"cost" 4408000
+		"shields" 2000
+		"hull" 1000
+		"required crew" 5
+		"bunks" 11
+		"mass" 530
+		"drag" 6.49
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"cargo space" 35
+		"outfit space" 213
+		"weapon capacity" 45
+		"engine capacity" 95
+		"atmosphere scan" 50
+		"asteroid scan power" 75
+		"outfit scan power" 25
+		"tactical scan power" 35
+		"cargo scan power" 10
+		"jibauni generator" 2
+		"fuel protection" .2
+		licenses
+			"Jibauni Rebel Fighter"
+		weapon
+			"blast radius" 30
+			"shield damage" 300
+			"hull damage" 150
+			"hit force" 450
+	outfits
+		"Jibauni Small Laser" 2
+		"Lilsa Anti-Missile"
+		"Altaedin Laser"
+
+		"Tawasitaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal"
+
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+
+	engine 0 0
+	gun 0 0 "Altaedin Laser"
+	gun 0 10 "Jibauni Small Laser"
+	gun 0 -10 "Jibauni Small Laser"
+	turret 0 0 "Lilsa Anti-Missile"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "This is a powerful Jibauni mining ship, with built-in scanners and some anti-missile defenses. It also has Small Lasers for offensive use."
+
+
+ship "Safinat"
+	sprite "ship/safinat"
+	thumbnail "thumbnail/safinat"
+	attributes
+		category "Utility"
+		"cost" 50000000
+		"shields" 19500
+		"hull" 12000
+		"required crew" 59
+		"bunks" 247
+		"mass" 2500
+		"drag" 16.8
+		"heat dissipation" .3
+		"fuel capacity" 900
+		"cargo space" 330
+		"outfit space" 800
+		"weapon capacity" 300
+		"engine capacity" 240
+		"jibauni generator" 12
+		"fuel protection" .65
+		licenses
+			"Jibauni Government"
+		weapon
+			"blast radius" 300
+			"shield damage" 3000
+			"hull damage" 2000
+			"hit force" 4500
+	outfits
+		"Rukjay Missile" 135
+		"Rukjay Missile Launcher" 3
+		"Jibauni Small Laser" 2
+		"Lilsa Anti-Missile" 2
+		"Zarhal Laser Turret" 5
+
+		"Daltaq Energy Generator" 2
+		"Tamum Shield Generator" 3
+		"Minjal" 61
+
+		"Eimlaq Steering" 2
+		"Eimlaq Thrusters" 2
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Hyperdrive"
+		
+	engine 0 0
+	gun 0 5 "Rukjay Missile Launcher"
+	gun 0 -5 "Rukjay Missile Launcher"
+	gun 0 0 "Rukjay Missile Launcher"
+	gun 0 -10 "Jibauni Small Laser"
+	gun 0 10 "Jibauni Small Laser"
+	turret -5 0 "Lilsa Anti-Missile"
+	turret 5 0 "Lilsa Anti-Missile"
+	turret -5 0 "Zarhal Laser Turret"
+	turret 5 0 "Zarhal Laser Turret"
+	turret 0 0 "Zarhal Laser Turret"
+	turret 0 5 "Zarhal Laser Turret"
+	turret 5 0 "Zarhal Laser Turret"
+	bay Fighter 0 0
+	bay Fighter 0 0
+	bay Fighter 0 0
+	bay Drone 0 0
+	bay Drone 0 0
+	bay Drone 0 0
+	bay Drone 0 0
+	bay Drone 0 0
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 30
+	explode "small explosion" 60
+	explode "medium explosion" 45
+	explode "large explosion" 50
+	"final explode" "final explosion large"
+	description "The Jibauni Safinat is truly a sight to behold. The sheer size is intimidating, and when it begins to fire its many weapons most enemies will immediately turn tail and flee."
+
+
+
+ship "Furus"
+	sprite "ship/furus"
+	thumbnail "thumbnail/furus"
+	plural "Furus"
+	attributes
+		category "Interceptor"
+		"cost" 1600000
+		"shields" 1740
+		"hull" 1000
+		"required crew" 2
+		"bunks" 8
+		"mass" 130
+		"drag" 2.1
+		"heat dissipation" .3
+		"fuel capacity" 200
+		"cargo space" 7
+		"outfit space" 195
+		"weapon capacity" 26
+		"engine capacity" 72
+		"jibauni generator" 1
+		"fuel protection" .15
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 25
+			"shield damage" 235
+			"hull damage" 130
+			"hit force" 380
+	outfits
+		"Jibauni Small Laser" 2
+		"Rukjay Missile Launcher"
+		"Rukjay Missile" 30
+
+		"Watsaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal"
+
+		"Wasita Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+		
+	engine 0 0
+	gun 0 0 "Rukjay Missile Launcher"
+	gun 0 10 "Jibauni Small Laser"
+	gun 0 -10 "Jibauni Small Laser"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "While the Jibauni are not really into interceptors, preferring drones and fighters instead, they have built two, this one a speedy little ship with outsized thrusters. In fact, veteran captains tell new pilots not to get one, for they might run into one of their own missiles. There are no recorded incidents of this happening, but given the size of the Furus's thrusters and the abysmal speed of Rukjay missiles, it could easily happen."
+
+
+ship "Saghir"
+	sprite "ship/saghir"
+	thumbnail "thumbnail/saghir"
+	attributes
+		category "Interceptor"
+		"cost" 990000
+		"shields" 1500
+		"hull" 800
+		"required crew" 1
+		"bunks" 4
+		"mass" 84
+		"drag" 1.71
+		"heat dissipation" .2
+		"fuel capacity" 300
+		"cargo space" 10
+		"outfit space" 143
+		"weapon capacity" 20
+		"engine capacity" 52
+		"jibauni generator" 1
+		"fuel protection" .4
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 16
+			"shield damage" 175
+			"hull damage" 90
+			"hit force" 250
+	outfits
+		"Jibauni Small Laser"
+		"Ruksay Missile Launcher"
+		"Ruksay Missile" 30
+
+		"Watsaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal"
+
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Hyperdrive"
+		
+	engine 0 0
+	gun 0 -10 "Ruksay Missile Launcher"
+		angle 180
+	gun 0 10 "Jibauni Small Laser"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Saghir exists mainly as a hyperspace capable mix of the Latbaliday and Larajal. It has a backward-facing port for missiles, but can defend itself in face to face combat relatively easily. Given that the Furus is faster, however, only the Rebel Jibauni produce and use the Saghir, for its cheapness."
+
+
+
+ship "Yiyharsi"
+	sprite "ship/yiyharsi"
+	thumbnail "thumbnail/yiyharsi"
+	attributes
+		category "Light Warship"
+		"cost" 6391000
+		"shields" 3500
+		"hull" 1750
+		"required crew" 5
+		"bunks" 20
+		"mass" 210
+		"drag" 3.95
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"cargo space" 10
+		"outfit space" 200
+		"weapon capacity" 50
+		"engine capacity" 51
+		"slowing resistance" 1
+		"slowing resistance fuel" -1
+		"jibauni generator" 4
+		"fuel protection" 1
+		licenses
+			"Jibauni Rebel Fighter"
+		weapon
+			"blast radius" 72
+			"shield damage" 720
+			"hull damage" 360
+			"hit force" 1080
+	outfits
+		"Ruksay Missile" 60
+		"Ruksay Missile Launcher" 2
+		"Jibauni Small Laser" 2
+		"Lilsa Anti-Missile"
+
+		"Tawasitaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal" 6
+
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Hyperdrive"
+
+	engine 0 0
+	gun 0 5 "Ruksay Missile Launcher"
+	gun 0 -5 "Ruksay Missile Launcher"
+	gun 0 10 "Jibauni Small Laser"
+	gun 0 -10 "Jibauni Small Laser"
+	turret 0 0 "Lilsa Anti-Missile"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Yiyharsi is a medium-strength warship. While comparatively slow to the Furus' large engines and dwarfed by the Nakil's incredible drone and fighter swarms, the Yiyharsi under a well-trained pilot can destroy any Jibauni ship but the Nathar - provided that it doesn't run out of fuel."
+
+
+
+ship "Nakil"
+	sprite "ship/nakil"
+	thumbnail "thumbnail/nakil"
+	attributes
+		category "Heavy Warship"
+		"cost" 7000000
+		"shields" 4000
+		"hull" 5000
+		"required crew" 6
+		"bunks" 17
+		"mass" 1500
+		"drag" 21
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"cargo space" 45
+		"outfit space" 200
+		"weapon capacity" 30
+		"engine capacity" 100
+		"jibauni generator" 4
+		"fuel protection" .7
+		licenses
+			"Jibauni Government"
+		weapon
+			"blast radius" 320
+			"shield damage" 4000
+			"hull damage" 2000
+			"hit force" 2500
+	outfits
+		"Lilsa Anti-Missile"
+
+		"Tawasitaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal" 5
+
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+		
+	engine 0 0
+	turret 0 0 "Lilsa Anti-Missile"
+	bay Fighter 0 0
+	bay Drone 0 0
+	bay Fighter 0 0
+	bay Drone 0 0
+	bay Fighter 0 0
+	bay Drone 0 0
+	bay Fighter 0 0
+	bay Drone 0 0
+	bay Fighter 0 0
+	bay Fighter 0 0
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Nakil is one of the best ships the Jibauni produce, in terms of firepower - when it has a full complement of fighters and drones, that is. If not, the Nakil can be overwhelmed by anything, including a Duntay."
+
+
+ship "Nathar"
+	sprite "ship/nathar"
+	thumbnail "thumbnail/nathar"
+	attributes
+		category "Heavy Warship"
+		"cost" 12683000
+		"shields" 7000
+		"hull" 3750
+		"required crew" 65
+		"bunks" 103
+		"mass" 900
+		"drag" 9.95
+		"heat dissipation" .6
+		"fuel capacity" 600
+		"cargo space" 60
+		"outfit space" 450
+		"weapon capacity" 135
+		"engine capacity" 94
+		"jibauni generator" 4
+		"fuel protection" .8
+		licenses
+			"Jibauni Government"
+		weapon
+			"blast radius" 260
+			"shield damage" 2600
+			"hull damage" 1350
+			"hit force" 3900
+	outfits
+		"Ruksay Missile" 60
+		"Ruksay Missile Launcher" 2
+		"Jibauni Medium Laser" 2
+		"Zarwal Laser Turret"
+		"Zarhal Laser Turret" 2
+		"Lilsa Anti-Missile" 2
+
+		"Daltaq Energy Generator"
+		"Jamum Shield Generator"
+		"Tamum Shield Generator"
+		"Minjal" 72
+
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+		
+	engine 0 0
+	gun 0 5 "Ruksay Missile Launcher"
+	gun 0 -5 "Ruksay Missile Launcher"
+	gun 0 -10 "Jibauni Medium Laser"
+	gun 0 10 "Jibauni Medium Laser"
+	turret -5 0 "Lilsa Anti-Missile"
+	turret 5 0 "Lilsa Anti-Missile"
+	turret 0 0 "Zarwal Laser Turret"
+	turret 0 5 "Zarhal Laser Turret"
+	turret 5 0 "Zarhal Laser Turret"
+	bay Fighter 0 0
+	bay Fighter 0 0
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Nathar is ridiculously powerful compared to other Jibauni ships. Three offensive turrets and two anti-missiles - and this is only by default - allow it to stand against anything but a Nakil swarm, and depending on who it targets first, could even destroy one of those."
+
+
+
+ship "Larajal"
+	sprite "ship/larajal"
+	thumbnail "thumbnail/larajal"
+	attributes
+		category "Fighter"
+		"cost" 850000
+		"shields" 800
+		"hull" 1000
+		"required crew" 1
+		"bunks" 1
+		"mass" 87
+		"drag" 0.9
+		"heat dissipation" .2
+		"fuel capacity" 10
+		"cargo space" 5
+		"outfit space" 90
+		"weapon capacity" 12
+		"engine capacity" 20
+		"jibauni generator" .5
+		"fuel protection" .05
+		"slowing resistance" 100
+		"fuel generation" 1
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Jibauni Small Laser" 3
+
+		"Jahgir Energy Generator"
+		"Minjal"
+		
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+		
+	engine 0 0
+	gun -39 -14.5 "Jibauni Small Laser"
+	gun 39 -14.5 "Jibauni Small Laser"
+	gun 0 -21 "Jibauni Small Laser"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Jibauni like this fighter, as it is their only small ship with more than two gun ports. Unfortunately, those gun ports don't do very much damage. But they do do some, and the Larajal can be formidable, when present in great numbers."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
+
+ship "Latbaliday"
+	sprite "ship/latbaliday"
+	thumbnail "thumbnail/latbaliday"
+	attributes
+		category "Fighter"
+		"cost" 675000
+		"shields" 1100
+		"hull" 1000
+		"required crew" 1
+		"bunks" 1
+		"mass" 45
+		"drag" .7
+		"heat dissipation" .8
+		"fuel capacity" 10
+		"cargo space" 20
+		"outfit space" 56
+		"weapon capacity" 26
+		"engine capacity" 20
+		"jibauni generator" .5
+		"fuel protection" .05
+		"slowing resistance" 100
+		"fuel generation" 1
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Jibauni Small Laser"
+
+		"Jahgir Energy Generator"
+		"Minjal"
+
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+		
+	gun 0 0 "Jibauni Small Laser"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 1
+	explode "small explosion" 1
+	explode "medium explosion" 50
+	"final explode" "final explosion small"
+	description "Made to hammer away at enemies without a distraction, the Latbaliday has high shields and hull, but only minimum potential as a weapon bearer."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
+
+ship "Muraw"
+	sprite "ship/muraw"
+	thumbnail "thumbnail/muraw"
+	attributes
+		category "Fighter"
+		"cost" 700000
+		"shields" 1000
+		"hull" 400
+		"required crew" 1
+		"bunks" 1
+		"mass" 60
+		"drag" 0.8
+		"heat dissipation" .2
+		"fuel capacity" 10
+		"cargo space" 5
+		"outfit space" 67
+		"weapon capacity" 12
+		"engine capacity" 20
+		"jibauni generator" .5
+		"fuel protection" .05
+		"slowing resistance" 100
+		"fuel generation" 1
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Lilsa Anti-Missile"
+
+		"Watsaq Energy Generator"
+		"Minjal"
+		
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+		
+	engine 0 0
+	turret 0 0 "Lilsa Anti-Missile"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The only small Jibauni ship with a turret mount, the Muraw mostly carries Anti-Missile Turrets as missile defense against attacks. However, it has no offensive armament."
+	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
+
+
+ship "Daybal"
+	sprite "ship/daybal"
+	thumbnail "thumbnail/daybal"
+	attributes
+		category "Drone"
+		"cost" 500000
+		"shields" 50
+		"hull" 200
+		"automaton" 1
+		"bunks" 0
+		"mass" 100
+		"drag" 1
+		"heat dissipation" .6
+		"fuel capacity" 10
+		"cargo space" 25
+		"outfit space" 0
+		"weapon capacity" 0
+		"engine capacity" 0
+		"thrust" 1
+		"turn" 6
+		"energy generation" 0.0001
+		"fuel protection" .05
+		"slowing resistance" 1
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+
+	engine -5 0
+	engine 5 0
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	"final explode" "final explosion medium"
+	description "The Daybal is useful for nothing except carrying cargo. However, its cargo space is not bad for such a small ship."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+ship "Duntay"
+	sprite "ship/duntay"
+	thumbnail "thumbnail/duntay"
+	attributes
+		category "Drone"
+		"cost" 600000
+		"shields" 800
+		"hull" 500
+		"automaton" 1
+		"bunks" 0
+		"mass" 110
+		"drag" .53
+		"heat dissipation" .9
+		"fuel capacity" 10
+		"cargo space" 0
+		"outfit space" 45
+		"weapon capacity" 10
+		"engine capacity" 20
+		"fuel protection" .05
+		"slowing resistance" 100
+		"fuel generation" 1
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Jibauni Small Laser"
+
+		"Jahgir Energy Generator"
+
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+		
+	engine 0 0
+	gun 0 10 "Jibauni Small Laser"
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 25
+	explode "large explosion" 10
+	"final explode" "final explosion medium"
+	description "The Jibauni drone weapons bearer, the Duntay mostly works by zipping around targets to confuse their turrets and do tiny amounts of damage at the same time."
+	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
+
+
+ship "Osra"
+	sprite "ship/osra"
+	thumbnail "thumbnail/osra"
+	attributes
+		category "Drone"
+		"cost" 375000
+		"shields" 750
+		"hull" 500
+		"automaton" 1
+		"bunks" 6
+		"mass" 70
+		"drag" .67
+		"heat dissipation" .9
+		"fuel capacity" 10
+		"cargo space" 8
+		"outfit space" 35
+		"weapon capacity" 0
+		"engine capacity" 20
+		"jibauni generator" .5
+		"fuel protection" .05
+		licenses
+			Jibauni
+		weapon
+			"blast radius" 12
+			"shield damage" 120
+			"hull damage" 76
+			"hit force" 180
+	outfits
+		"Jahgir Energy Generator"
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+		
+	engine 0 0
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 30
+	"final explode" "final explosion small"
+	description "The Osra is a tiny ship, barely big enough to see in the void of space. Yet its interior has space for up to six crew, and some cargo. As a result, it moves quite slowly."

@@ -1,0 +1,362 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "First Contact: Rebel Jibauni"
+	name "Travel to <planet>"
+	description `Travel to <destination> to meet up with the leaders of this "Rebel Jibauni" faction.`
+	landing
+	source
+		government "Jibauni (Rebel)"
+	destination Andwerfen
+	to offer
+		not "Jibauni: Kanlanmo 0: active"
+		not "Jibauni: Kanlanmo 0: done"
+		not "Jibauni: Kanlanmo (0 declined): active"
+		not "Jibauni: Kanlanmo (0 declined): done"
+	on offer
+		conversation
+			branch "flagship andwerfen"
+				has "flagship planet: Andwerfen"
+			branch "met and declined the jibauni"
+				has "jibauni: joined the rebels"
+				not "flagship planet: Andwerfen"
+			branch "met and declined the jibauni and on andwerfen"
+				has "jibauni: joined the rebels"
+				not "flagship planet: Andwerfen"
+			label nothing
+			`As you land on <origin>, a strange creature comes up to you. It is in the shape of the fabled Tyrannosaurus Rex from Earth, but it is covered in what is seemingly metal armor.`
+			`	Dangerous, yes, but it might also be wise to go out and attempt to communicate with the mysterious dinosaur.`
+			choice
+				`	(Go try to speak with the alien.)`
+					goto speak
+				`	(Leave. The danger isn't worth it.)`
+					goto flee
+				`	(The unknown is dangerous. Shoot the thing.)`
+					goto shot
+			label speak
+			`	Before you can do anything, you hear strange words, something like "Je. Vqekuves?" Suddenly the words are converted to a language you can barely understand. "Go to <planet>." Apparently that is the only thing they have to say, and the huge crowd disperses after watching you make your preparations for taking off... and starting the launch sequence.`
+				launch
+			label shot
+			branch "shot and missed"
+				random < 30
+			action
+				"reputation: Jibauni (Rebel)" = -1
+				set "jibauni: disliked by the rebels"
+			`	You grab a weapon from the interior of the <ship> and point it at the stranger. But before you can attack, a loud noise sounds, and your ship is launched into the air, with the likeness of planetary defenses pointing at it.`
+			`	You decide to leave before anything else can happen.`
+				flee
+			label "shot and missed"
+			`	Grabbing a pistol from the inside of the <ship>, you rush outside and fire. Aim was hasty, however, and you see the bullet miss wildly.`
+				goto speak
+			label "flagship andwerfen"
+			action
+				"reputation: Jibauni (Rebel)" = 10
+			`As you land on this alien planet, a pedastal raises out of the ground about a mile away from the <ship>. A creature with a megaphone is on top of it, and begins yelling something. You faintly hear words telling you to take off and land again, so that they will have time to properly prepare for your arrival. They then use a strange device to launch you into the air.`
+				flee
+			label "met and declined the jibauni and on andwerfen"
+			action
+				"reputation: Jibauni (Rebel)" = 10
+			`A Rebel Jibauni comes up to your ship as you land, telling you to take off and land again so that they can prepare for your arrival. You then are unceremoniously launched by a strange spring.`
+				flee
+			label "met and declined the jibauni"
+			`Upon landing, a Rebel comes up to you telling you to go to <planet> to consult with the leaders. You don't have another option, and so you tell the Jibauni that you will. As the Rebels seem to expect you to leave immediately, you decide to do so.`
+				launch
+			label flee
+			action
+				"reputation: Rebel Jibauni" = -1
+				set "jibauni: disliked by the rebels"
+	on complete
+		event "rebel jibauni ready first contact" 1
+		"reputation: Jibauni (Rebel)" = 10
+		conversation
+			`A Rebel Jibauni tells you to take off and re-land so that they can prepare for your arrival. You are then unceremoniously launched with some strange mechanism.`
+				launch
+
+event "rebel jibauni ready first contact"
+
+mission "Rebel Jibauni: Landed on Andwerfen"
+	landing
+	source Andwerfen
+	to offer
+		or
+			has "First Contact: Rebel Jibauni: declined"
+			has "First Contact: Rebel Jibauni: done"
+		not "attempted to shoot a rebel jibauni"
+		has "event: rebel jibauni ready first contact"
+	on offer
+		conversation
+			`A long wait ensues after you land on <origin>. The Rebel Jibauni seem to be trying to find someone you can speak your language. Feeling bored, you wonder about going to see what's happening.`
+			choice
+				`	(Hey, it's better then staying here the rest of the day.)`
+					goto explore
+				`	(You have no idea what this world is about, and don't want to wander unbidden.)`
+					goto stay
+			label explore
+			`	Wandering around the spaceport of <origin>, the people do not seem very happy, and make way for you without being asked. But at last, you run into a Jibauni who has something around its neck. It gives an exclamation of surprise, and then asks in a language that you can easily understand, "Why have you not come before? I will take you to the government building." It drags you through the city, and then down a side alley. After a long climp up a ramp, you enter a room which has a congregation of dinosaurs.`
+				goto conversation
+			label stay
+			`	After a few more hours, a Rebel comes rushing up, full of apologies. "I am so sorry. The leaders had different things to do, and the person supposed to find you was ambushed. Come with me now though for a consultation." It pulls you, with remarkable speed, through the streets of the city. Finally, after ducking down a side alley and going up a wide stairway, you are led into a room with a congregation of dinosaurs in it.`
+			label conversation
+			`	One of them begins to speak. "Welcome, fair stranger. How have you arrived here, and where have you come from?"`
+			choice
+				`	"I come from human space, of course."`
+					goto human
+				`	"Well, that may be hard to say."`
+					goto cantsay
+				`	"I came from your foolish originals the Jibauni. For some reason they are prejudiced about you and don't like the sound of the word 'Rebel'."`
+					to display
+						has "jibauni: joined the rebels"
+					goto metrelatives
+				`	"Why should I tell you?"`
+					goto refusedtotell
+			label human
+			`	"What if I tell you the word 'human' is strange to our ears? No matter. May I ask though whether your ship is painted red?"`
+			label humanchoice
+			choice
+				`	"Why?"`
+					to display
+						not "rebel jibauni: why red"
+					goto humanwhy
+				`	"No."`
+					goto prenoandcontinue
+				`	"In a manner of speaking, yes."`
+					to display
+						has "event: became a pirate"
+					goto iamapirate
+			label humanwhy
+			action
+				set "rebel jibauni: why red"
+			`	"We wish to know. You don't need to be aware of anything else related to this."`
+				goto humanchoice
+			label iamapirate
+			`	"What!" All the Rebel Jibauni jump out of their seats in seeming fury. "This means you have ten minutes to leave. If you have not gone by then, you die!"`
+			label chasedbytherebels
+			`	Do you want to leave? They are threatening, but may not actually mean it.`
+			choice
+				`	(No. They are surely joking.)`
+					goto joking
+				`	(Get out of here, now.)`
+					goto nowleave
+			label joking
+			`	You wait in the building. At ten minutes, a Jibauni pulls out a gun and shoots you.`
+			`	This is the reward for being an honest pirate.`
+				die
+			label nowleave
+			action
+				"reputation: Jibauni (Rebel)" = -1000
+				set "jibauni: disliked by the rebels"
+			`	You rush toward your ship, finally making it nine and a half minutes into the timer. When you take off, the Rebels are preparing for a fight...`
+				flee
+			label cantsay
+			`	"Well, whatever you wish, I suppose. Now, a promise you need to make. Here are the terms and conditions."`
+				goto realpoint
+			label prenoandcontinue
+			`	"I have something you must agree to, should you wish to continue in our space. I will lay out the terms and conditions."`
+				goto realpoint
+			label metrelatives
+			`	"They are deluded. You shall have problems should you be as well. Now, a thing you must agree to if you want to continue in our space. Terms and conditions are as following."`
+				goto realpoint
+			label refusedtotell
+			`	"Because you want to live, of course. But I suppose it does not matter, if you agree to our terms and conditions of commerce in Rebel Jibauni space. Here, look at this."`
+			label realpoint
+			`	The Rebel Jibauni lays out a paper with these words on it: "To continue your sojourn in our space, you must be willing to take any government official anywhere whenever we request you to with the words: 'Requested by the Real Jibauni'. If you agree, you may stay. If not..."`
+			choice
+				`	"Oh, I'll do it alright."`
+					goto good
+				`	"Unlikely."`
+					goto thatisterrible
+			label good
+			action
+				set "rebel jibauni: will transport upon request"
+			`	"Perfect! We will contact you when we want you. Goodbye." The same Rebel who led you here takes you back to the <ship> and you are left to your own devices.`
+				decline
+			label thatisterrible
+			`	"Now now now, no need to get angry. Are you sure of this?"`
+			choice
+				`	"No. I'll take anyone who asks."`
+					goto good
+				`	"I am sure that I will never submit to your aggression."`
+			label ouch
+			`	"Your loss. Leave immediately. Or you will be-" At this point the speaker is pulled aside. They must mean it.`
+			`	Do you want to leave? They are threatening, but may not actually mean that you will have trouble.`
+			choice
+				`	(Get out of here, now.)`
+					goto leave
+				`	(Stay here.)`
+					goto die
+			label leave
+			action
+				"reputation: Jibauni (Rebel)" = -1000
+				set "jibauni: disliked by the rebels"
+			`	You rush back to your ship, getting there before news has spread. Leaving immediately, you find that the Rebel Jibauni up in space are preparing for a fight...`
+				flee
+			label die
+			`	You haven't stayed long when a Jibauni pulls out a gigantic pistol and shoots you in the forehead. You are dead. This is the penalty for being "impolite" to the Rebel Jibauni.`
+				die
+	on decline
+		clear "rebel jibauni: why red"
+		event "rebel jibauni: initial transportation" 4 8
+	npc
+		government "Jibauni (Rebel)"
+		personality heroic nemesis
+		ship "Nathar" "Rin"
+	npc
+		government "Jibauni (Rebel)"
+		personality heroic nemesis staying
+		fleet "Small Rebel Jibauni Military" 3
+
+event "rebel jibauni: initial transportation"
+
+mission "Rebel Jibauni: Government Transportation 1"
+	landing
+	source Andwerfen
+	destination Sinsansun
+	passengers 1
+	to offer
+		has "event: rebel jibauni: initial transportation"
+		has "rebel jibauni: will transport upon request"
+		not "jibauni: disliked by the rebels"
+	on offer
+		conversation
+			`A Rebel Jibauni comes up and announces something. Your translator converts it to, "Take me to <planet> for our leaders and the good of the Rebel Jibauni. Do not dare refuse. This has been 'Requested by the Real Jibauni'."`
+				accept
+	on complete
+		event "rebel jibauni: first transportation done and second ready to offer" 2 14
+		conversation
+			`The Rebel Jibauni thanks you, and tells you that you will be on call whenever the leaders want.`
+
+event "rebel jibauni: first transportation done and second ready to offer"
+
+mission "Rebel Jibauni: Government Transportation 2"
+	landing
+	source Andwerfen
+	destination Minmanmun
+	passengers 1
+	to offer
+		has "event: rebel jibauni: first transportation done and second ready to offer"
+	on offer
+		conversation
+			`A Rebel Jibauni comes up to the <ship> and says, "The Rebel Jibauni leaders request you to kindly transport me to <planet>. They will back it up. This has been 'Requested by the Real Jibauni'."`
+				accept
+	on complete
+		event "rebel jibauni: second transportation done and third ready to offer" 3 9
+		conversation
+			`The Rebel Jibauni leaves after telling you that you will be on call as needed.`
+
+event "rebel jibauni: second transportation done and third ready to offer"
+
+mission "Rebel Jibauni: Government Transportation 3"
+	landing
+	source Andwerfen
+	destination Muntisir
+	passengers 3
+	to offer
+		has "event: rebel jibauni: second transportation done and third ready to offer"
+	on offer
+		conversation
+			`A group of Rebels approach the landing pad that the <ship> is landed on and ask you to take them to <planet>. You do not seem to be able to refuse, as they tell you that this transport mission has been "Requested by the Real Jibauni".`
+				accept
+	on complete
+		event "rebel jibauni: government transportation done" 10 25
+		payment 50000
+		conversation
+			`The group disembarks, but one of them gives you <payment>, "As a small token of our gratitude."`
+
+event "rebel jibauni: government transportation done"
+
+mission "Rebel Jibauni: Bring Them Back"
+	name "Transport Rebels Back"
+	description "Get the Rebel Jibauni that you transported out to <stopovers> back to <destination>."
+	source Andwerfen
+	stopover Minmanmun
+	stopover Muntisir
+	stopover Sinsansun
+	passengers 5
+	to offer
+		has "event: rebel jibauni: government transportation done"
+	on offer
+		payment 10000
+		conversation
+			`The spaceport of <origin> is a very busy place. As you walk around admiring the sights, you are suddenly pulled into an alley by an unknown assailant and yanked away from the main thoroughfare. You are then knocked out.`
+			`	A while later, when you wake up, you find yourself in the same place as you were when the Rebel Jibauni Leaders spoke to you. As you think this, the same Jibauni enter and are seated.`
+			`	"Good job not being startled when kidnapped," one of them says in complimentary tones. "This is surprising to many of our people, but I see that you are special."`
+			`	Another one speaks. "Our request for you today is that you will go to <stopovers> to pick up the members of our people whom you transported there. You will receive money for this, and indeed have already gained ten thousand credits for doing what you have so far."`
+			`	"So, what do you say? Will you bring them back here? Or be stripped of all further services?"`
+			choice
+				`	"I'll do whatever you want."`
+					goto accept
+				`	"As you like."`
+					goto acceptone
+				`	"Never, foul tyrants!"`
+					goto foul
+				`	"No, not really."`
+					goto nonotreally
+			label acceptone
+			action
+				set "rebel jibauni: calm"
+			label accept
+			`	"Perfect! The agents will be waiting for you at the spaceports."`
+				accept
+			label foul
+			`	"What! An insult! How dare you!" the Rebel Jibauni simultaneously exclaim. They jump out of their seats and mob you.`
+			`	It is a bad idea to be impolite to the Jibauni.`
+				die
+			label nonotreally
+			`	"Positive? We don't really love people who decline us, you know..."`
+			choice
+				`	"Oh, whatever. I'll take them."`
+					goto accept
+				`	"Never, foul tyrannosauruses!"`
+					goto foul
+				`	"No means no, my friends."`
+					goto nomeansno
+			label nomeansno
+			`	"No, no means yes. But this is your final chance. Say no one more time, and you will be stripped of all connections with us."`
+			choice
+				`	"If you insist, you insist. I'll take them, I guess."`
+					goto accept
+				`	"I have already given you my answer."`
+					goto alreadyanswer
+			label alreadyanswer
+			action
+				"reputation: Jibauni (Rebel)" = -100 # I would like to make this so that you have a two-day time limit before the Rebels become hostile, but that doesn't seem possible.
+			`	"As you please. Guards," and the Rebel snaps its fingers. You are escorted back to the <ship> and warned that no mercy will be shown when you take off. You are also informed that you are taking off now.`
+				flee
+	on stopover
+		dialog `All of the Rebel Jibauni are on your ship. Now return to Andwerfen for the reward.`
+	on complete
+		event "rebel jibauni: storyline can continue: bring them back" 20 60
+		payment 50000
+		conversation
+			`This time when you land you and the Jibauni you were transporting are escorted in state to the government building. Instead of going through a side alley, the entourage goes right up the main steps and into the same room, where the Leaders are already waiting for you.`
+			`	"Excellent, excellent, excellent!" exclaims one of them. "So glad to see that you're back here, and with everybody safe and sound! How goes it?"`
+			choice
+				`	"Well."`
+				`	"As fine as ever."`
+			`	"Thank you for bringing Rin, Min, Lin, Nin, and Iin back to Andwerfen. Really quite kind of you."`
+			choice
+				`	"Because you definitely didn't force me to do so."`
+					goto forced
+				`	(Say nothing.)`
+					goto nothing
+			label forced
+			action
+				set "rebel jibauni: sarcasm"
+			`	"No, not really. But let us not speak of those things."`
+			label nothing
+			`	A different Rebel speaks up, "You are being rewarded with <payment> and the knowledge that you have helped the Rebel Jibauni. You may go now."`
+			`	You are escorted out of the building and back to your ship. This seems to be everything the Rebels want you to do for now.`
+	on visit
+		dialog `You've returned to Andwerfen, but you do not yet have all of the Rebel Jibauni on your ship! Go and get them before landing again.`
+
+event "rebel jibauni: storyline can continue: bring them back"

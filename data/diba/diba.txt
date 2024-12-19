@@ -1,0 +1,374 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Discovered Diba Space"
+	landing
+	invisible
+	source
+		attributes "diba" "near diba"
+	on offer
+		event "label diba space"
+		fail
+
+event "label diba space"
+	galaxy "label diba"
+		sprite "label/diba"
+
+outfit "Diba Laser Turret"
+	category "Turrets"
+	cost 60000
+	thumbnail "outfit/heavy laser turret"
+	"mass" 15
+	"outfit space" 0
+	"weapon capacity" 0
+	"turret mounts" -1
+	"diba gun ports" 1
+	"unplunderable" 1
+	licenses
+		Diba
+	weapon
+		sprite "projectile/2x heavy laser"
+			"frame rate" 1
+		sound "heavy laser"
+		"hit effect" "heavy laser impact"
+		"inaccuracy" .4
+		"velocity" 400
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 0
+		"firing heat" 0
+		"shield damage" 3
+		"hull damage" 4.5
+		"turret turn" 50
+	description "This appears to be a Heavy Laser from back in human space, except for the seeming fact that it has been heavily modified to only fit on Diba ships."
+
+outfit "Diba Anti-Missile"
+	category "Turrets"
+	cost 60000
+	thumbnail "outfit/heavy anti-missile"
+	"mass" 20
+	"outfit space" 0
+	"weapon capacity" 0
+	"turret mounts" -1
+	"diba gun ports" 1
+	"unplunderable" 1
+	licenses
+		Diba
+	weapon
+		"hardpoint sprite" "hardpoint/heavy anti-missile"
+		"hardpoint offset" 5.
+		"hit effect" "large anti-missile"
+		"anti-missile" 4
+		"velocity" 100
+		"lifetime" 2
+		"reload" 4
+		"firing energy" 0
+		"firing heat" 0
+	description "This appears to be a Heavy Anti-Missile Turret from back in human space, except for the seeming fact that it has been heavily modified to only fit on Diba ships."
+
+fleet "Small Diba"
+	government Diba
+	names "Diba"
+	fighters "Diba"
+	cargo 2
+	commodities Food Clothing
+	personality
+		confusion 20
+		heroic
+		vindictive
+		unconstrained
+		ramming
+		mute
+	variant 10
+		"Ithquaya"
+	variant 4
+		"Ithquaya" 2
+	variant 4
+		"Arbquaya"
+		"Llama"
+	variant 3
+		"Arbquaya"
+		"Llama (Anti-Missile)"
+	variant
+		"Tamquaya"
+		"Llama" 2
+	variant
+		"Tamquaya"
+		"Llama (Anti-Missile)" 2
+	variant 10
+		"Ithquaya (Sprite Two)"
+	variant 4
+		"Ithquaya (Sprite Two)" 2
+	variant 4
+		"Ithquaya"
+		"Ithquaya (Sprite Two)"
+	variant 4
+		"Arbquaya (Sprite Two)"
+		"Llama"
+	variant 3
+		"Arbquaya (Sprite Two)"
+		"Llama (Anti-Missile)"
+	variant
+		"Tamquaya (Sprite Two)"
+		"Llama" 2
+	variant
+		"Tamquaya (Sprite Two)"
+		"Llama (Anti-Missile)" 2
+
+fleet "Large Diba"
+	government Diba
+	names "Diba"
+	fighters "Diba"
+	cargo 2
+	commodities Food Clothing Metals "Heavy Metals" "Luxury Goods"
+	personality
+		confusion 15
+		heroic
+		vindictive
+		unconstrained
+		ramming
+		mute
+	variant 5
+		"Tahquaya"
+		"Llama" 4
+	variant 3
+		"Tahquaya" 2
+		"Llama" 8
+	variant 3
+		"Tamquaya" 2
+		"Llama" 4
+	variant 2
+		"Tamquaya" 2
+		"Llama" 2
+		"Llama (Anti-Missile)" 2
+	variant 2
+		"Tahquaya" 3
+		"Llama" 12
+	variant
+		"Tamquaya"
+		"Llama" 2
+	variant
+		"Ithquaya" 8
+	variant
+		"Arbquaya" 5
+		"Llama" 10
+	variant
+		"Llama" 20
+	variant 5
+		"Tahquaya (Sprite Two)"
+		"Llama" 4
+	variant 3
+		"Tahquaya (Sprite Two)" 2
+		"Llama" 8
+	variant 3
+		"Tamquaya (Sprite Two)" 2
+		"Llama" 4
+	variant 2
+		"Tamquaya (Sprite Two)" 2
+		"Llama" 2
+		"Llama (Anti-Missile)" 2
+	variant 2
+		"Tahquaya (Sprite Two)" 3
+		"Llama" 12
+	variant
+		"Tamquaya (Sprite Two)"
+		"Llama" 2
+	variant
+		"Ithquaya (Sprite Two)" 8
+	variant
+		"Arbquaya (Sprite Two)" 5
+		"Llama" 10
+	variant
+		"Llama" 20
+
+# hails
+
+phrase "diba explode"
+	word
+		"things"
+		"us"
+		"robots"
+		"glorious warriors"
+		"anything"
+
+phrase "diba bad"
+	word
+		"rude"
+		"impolite"
+		"mean"
+		"bad"
+		"wicked"
+		"evil"
+
+phrase "diba suspicion"
+	word
+		"Syndicate"
+		"Republic"
+		"Navy"
+		"Deep"
+		"planet of Earth"
+		"planet of Valhalla"
+
+phrase "friendly diba"
+	word
+		"Do not blow ${diba explode} up." 8
+		"Do not blow yourself up." 2
+		"Are you from the ${diba suspicion}?" 8
+		"We come from Diba Station." 2
+		"Hello, stranger."
+
+phrase "friendly disabled diba"
+	phrase
+		"friendly disabled diba 1" 6
+		"friendly disabled diba 2" 4
+		"friendly disabled diba 3" 4
+
+phrase "friendly disabled diba 1"
+	word
+		"For the sake of glorious warriors, do not shoot us. "
+		"Do not blow us up, for we may be a home for a glorious warrior."
+		"We come from Diba Station, so repair us."
+
+phrase "friendly disabled diba 2"
+	word
+		"Blowing "
+	word
+		"us "
+		"friends "
+	word
+		"up is ${diba bad}."
+
+phrase "friendly disabled diba 3"
+	word
+		"Don't be from the ${diba suspicion}. We are not in a very advantageous "
+	word
+		"position "
+		"situation "
+	word
+		"currently."
+		"at present."
+
+phrase "hostile diba"
+	phrase
+		"hostile diba 1" 5
+		"hostile diba 2" 3
+		"hostile diba 3" 3
+
+phrase "hostile diba 1"
+	word
+		"You must blow up."
+		"You are fighting a glorious all powerful warrior. Prepare to blow up."
+		"Time for destruction of hostiles."
+		"Robots blow up other things."
+		"We come from Diba Station, so we are invincible."
+
+phrase "hostile diba 2"
+	word
+		"Blow yourself up "
+	word
+		"immediately "
+		"right now "
+	word
+		"or else in ${digit} ${digit} nanoseconds."
+
+phrase "hostile diba 3"
+	word
+		"You "
+		"Your ship "
+	word
+		"must be from "
+		"must come from "
+	word
+		"the ${diba suspicion}!"
+	word
+		" Explode!"
+		""
+
+phrase "hostile disabled diba"
+	word
+		"Self destructing in ${digit} seconds."
+		"Self destructing in ${digit}${digit}${digit} nanoseconds."
+		"We come from Diba Station, so do not blow us up."
+
+phrase "hostile disabled diba"
+	word
+		"You "
+		"Your ship "
+	word
+		"was from "
+	word
+		"the ${diba suspicion}! "
+	word
+		"And we "
+	word
+		"thought "
+		"believed "
+	word
+		"that you were "
+	word
+		"friendly "
+		"opposed to the ${diba suspicion}!"
+
+phrase "hostile disabled diba"
+	word
+		"Blowing "
+	word
+		"us "
+		"enemies "
+	word
+		"up is ${diba bad}!"
+
+# names
+
+phrase "Diba Lordship"
+	word
+		L
+		O
+		R
+		D
+		S
+		H
+		I
+		P
+
+phrase "Diba"
+	phrase
+		"Diba Lordship"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+	phrase
+		"digit"
+
+shipyard "Diba"
+	"Llama"
+	"Ithquaya"
+	"Arbquaya"
+	"Tamquaya"
+	"Tahquaya"
+
+outfitter "Diba"
+	"Diba Anti-Missile"
+	"Diba Laser Turret"
+	"Scram Drive"

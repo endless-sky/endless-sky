@@ -1,0 +1,275 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship "Nathar" "Nathar (Anti-Missile Missile)"
+	outfits
+		"Lilsa Anti-Missile" 5
+		"Rukjay Missile Launcher" 4
+		"Rukjay Missile" 120
+		"Jamum Shield Generator" 2
+		"Tamum Shield Generator"
+		"Daltaq Energy Generator"
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+
+ship "Nathar" "Nathar (Laser)"
+	add attributes
+		"cargo space" -15
+		"weapon capacity" 10
+	outfits
+		"Lilsa Anti-Missile"
+		"Zarhal Laser Turret" 4
+		"Outfits Expansion" 2
+		"Jibauni Medium Laser" 4
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Tamum Shield Generator"
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Daltaq Energy Generator"
+
+ship "Quyan" "Quyan (Inter-system)"
+	outfits
+		"Watsaq Energy Generator"
+		"Wasita Steering"
+		"Eimlaq Thrusters"
+		"Large Bunk Room"
+		"Small Bunk Room"
+
+ship "Latbaliday" "Latbaliday (Bunks)"
+	outfits
+		"Jahgir Energy Generator"
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+		"Outfits Expansion"
+		"Bunk Room"
+		"Small Bunk Room"
+
+ship "Daybal" "Daybal (Bunks)"
+	outfits
+		"Outfits Expansion"
+		"Bunk" 2
+
+ship "Yiyharsi" "Yiyharsi (Bunks)"
+	outfits
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Tawasitaq Energy Generator"
+		"Hyperdrive"
+		"Large Bunk Room" 2
+		"Small Bunk Room"
+
+ship "Nathaq" "Nathaq (Bunks)"
+	outfits
+		"Outfits Expansion" 12
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Daltaq Energy Generator"
+		"Large Bunk Room" 7
+		"Small Bunk Room"
+
+ship "Yiyharsi" "Yiyharsi (Government)"
+	outfits
+		"Lilsa Anti-Missile"
+		"Tawasitaq Energy Generator"
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Ruksay Missile" 60
+		"Ruksay Missile Launcher" 2
+		"Jibauni Small Laser" 2
+		"Jibauni Government License"
+
+ship "Furus" "Furus (Government)"
+	outfits
+		"Jibauni Small Laser" 2
+		"Rukjay Missile Launcher"
+		"Rukjay Missile" 30
+		"Watsaq Energy Generator"
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Wasita Steering"
+		"Eimlaq Thrusters"
+		"Jibauni Government License"
+
+ship "Quyan" "Quyan (Government)"
+	outfits
+		"Lilsa Anti-Missile"
+		"Watsaq Energy Generator"
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Wasita Steering"
+		"Eimlaq Thrusters"
+		"Jibauni Government License"
+
+ship "Nathaq" "Nathaq (Government)"
+	outfits
+		"Lilsa Anti-Missile" 2
+		"Daltaq Energy Generator"
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Ruksay Missile" 60
+		"Ruksay Missile Launcher" 2
+		"Jibauni Government License"
+
+ship "Nathar" "Nathar (Government)"
+	outfits
+		"Lilsa Anti-Missile" 2
+		"Daltaq Energy Generator"
+		"Zarwal Laser Turret"
+		"Zarhal Laser Turret" 2
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Tamum Shield Generator"
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+		"Ruksay Missile" 60
+		"Ruksay Missile Launcher" 2
+		"Jibauni Medium Laser" 2
+		"Jibauni Government License"
+
+ship "Muraw" "Muraw (Fighting)"
+	add attributes
+		"weapon capacity" 6
+		"outfit space" 8
+		"cargo space" -5
+	outfits
+		"Zarwal Laser Turret"
+		"Watsaq Energy Generator"
+		
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+
+ship "Quyan" "Quyan (Fighting)"
+	outfits
+		"Zarwal Laser Turret"
+		"Watsaq Energy Generator"
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Wasita Steering"
+		"Eimlaq Thrusters"
+
+ship "Duntay" "Duntay (Flak)"
+	outfits
+		"Flak Launcher"
+		"Jahgir Energy Generator"
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+
+ship "Yiyharsi" "Yiyharsi (Rebel)"
+	outfits
+		"Aljaraar Tractor Beam"
+		"Tawasitaq Energy Generator"
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Jibauni Small Laser" 4
+	gun "Jibauni Small Laser"
+	gun "Jibauni Small Laser"
+	gun "Jibauni Small Laser"
+	gun "Jibauni Small Laser"
+	turret "Aljaraar Tractor Beam"
+
+ship "Nathar" "Nathar (Rebel)"
+	outfits
+		"Ruksay Missile" 60
+		"Ruksay Missile Launcher" 2
+		"Jibauni Medium Laser" 2
+		"Aljaraar Tractor Beam"
+		"Zarhal Laser Turret" 2
+		"Lilsa Anti-Missile" 2
+		"Daltaq Energy Generator"
+		"Jamum Shield Generator"
+		"Tamum Shield Generator"
+		"Eimlaq Steering"
+		"Eimlaq Thrusters"
+
+		"Hyperdrive"
+	gun "Ruksay Missile Launcher"
+	gun "Ruksay Missile Launcher"
+	gun "Jibauni Medium Laser"
+	gun "Jibauni Medium Laser"
+	turret "Lilsa Anti-Missile"
+	turret "Lilsa Anti-Missile"
+	turret "Aljaraar Tractor Beam"
+	turret "Zarhal Laser Turret"
+	turret "Zarhal Laser Turret"
+
+ship "Latbaliday" "Latbaliday (Flak)"
+	outfits
+		"Flak Launcher"
+
+		"Jahgir Energy Generator"
+		"Minjal"
+
+		"Alhaja Steering"
+		"Alhaja Thrusters"
+
+ship "Yiyharsi" "Yiyharsi (Flak)"
+	outfits
+		"Flak Launcher" 4
+		"Lilsa Anti-Missile"
+
+		"Tawasitaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal" 6
+
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Hyperdrive"
+
+ship "Saghir" "Saghir (Flak)"
+	outfits
+		"Flak Launcher" 2
+
+		"Watsaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal"
+
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Hyperdrive"
+
+ship "Furus" "Furus (Flak)"
+	outfits
+		"Flak Launcher" 2
+		"Watsaq Energy Generator"
+		"Jamum Shield Generator"
+		"Minjal"
+
+		"Wasita Steering"
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+	gun
+	gun "Flak Launcher"
+	gun "Flak Launcher"
+
+ship "Yiyharsi" "Yiyharsi (Tractor Flak)"
+	outfits
+		"Aljaraar Tractor Beam"
+		"Tawasitaq Energy Generator"
+		"Hyperdrive"
+		"Jamum Shield Generator"
+		"Wasita Steering"
+		"Wasita Thrusters"
+		"Flak Launcher" 2
+	gun "Flak Launcher"
+	gun "Flak Launcher"
+	gun
+	gun
+	turret "Aljaraar Tractor Beam"
