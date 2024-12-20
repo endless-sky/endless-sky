@@ -5933,6 +5933,7 @@ mission "Hroar's Haulers 15"
 					goto whosehere
 				`	(Sit tight.)`
 			`	You sit on the ground and wait. Minutes pass as you ignore the background hum of angry muttering Haulers. There's a sudden clicking sound and the cell door grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
+			label outofthecell
 			`	"Him?" A unfamiliar voice sneers. You look up into the offensively white teeth of a slick haired Syndicate official.`
 			`	"Aye, him." A tired sounding Yngvar pulls you to your feet.`
 			`	An unsteady Captain Gunhilda is standing next to him. He must have also freed her.`
@@ -5954,7 +5955,8 @@ mission "Hroar's Haulers 15"
 				goto options22
 			
 			label whosehere
-			`	`
+			`	The cell is packed with Haulers. The whole place is lousy with Rust-red jackets, and the smell of cheap Syndicate alcohol.  You're sure Captain Unferth around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the cell door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
+			goto outofthecell
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
