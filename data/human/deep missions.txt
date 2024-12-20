@@ -5375,6 +5375,7 @@ mission "Hroar's Haulers 15"
 			label timetogo
 			action
 				set "makerhero"
+				"reputation: Syndicate" <?= -5
 			`	"We don't got time to sit around and pat each other on the back. We gotta get back to our ships and offworld fast before they impound the fleet." Yngvar puts his fingers to lips and lets out a high piercing whistle.`
 			`	"Listen up Haulers! Gotta get offworld double-time! If those Syndies impound us we're done! So everyone move now!" Yngvar's words light a fire in the assembled Haulers as many of them turn without a word and start hoofing it toward the exit and their ships.`
 			`	Yngvar settles his eye back on you, "This ain't the time or place, but just so you know this'll cost us something. Now let's go!"`
@@ -5425,7 +5426,7 @@ mission "Hroar's Haulers 15"
 				
 			label behavesolvi
 			action
-				"reputation: Syndicate" <?= -5
+				"reputation: Syndicate" <?= -1
 				set "savedsolvi"
 			`	Working together you and Solvi manage to push your way past the mostly engaged Enforcers and out toward the establishment's exit.`
 			`	You find Yngvar and the majority of the Haulers just beyond the premises.`
@@ -5920,7 +5921,40 @@ mission "Hroar's Haulers 15"
 				goto whosenext
 
 			label arrested
-			`	The spacious holding cells on Maker...`
+			`	You find yourself in one of the Syndicate Spaceport Authority's gigantic holding blocks. The might meticulously clean walls give way to cramped and unhappy Haulers, most of whom appear to be part of Captain Unferth's fleet.`
+			`	Beyond the transparent cell you see the back of a Syndicate authority having a discussion with a very unhappy Yngvar.`
+			label options 22
+			choice
+				`	(Bang on the glass.)`
+					goto bang
+					to display
+						not "bang"
+				`	(See whose here.)`	
+					goto whosehere
+				`	(Sit tight.)`
+			`	You sit on the ground and wait. Some minutes pass before there click sounds and the cell door opens. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
+			`	"Him?" A unfamiliar voice sneers. You look up into a offensively white teeth of a slick haired Syndicate official.`
+			`	"Y'up, that's the one." A tired sounding Yngvar pulls you to your feet.`
+			`	An unsteady Captain Gunhilda is standing next to him. He must have also freed her.`
+			`	"Just these two? There's a lot more left in the tank." The Syndicate official says with hostile grin.`
+			`	Yngvar just glares at the man, "All I can rustle up. I'll find a way to take care of the rest later."`
+			`	The Syndicate official holds up a hand, "Surely we can come to some sort of arrangement for their freedom? Maybe a trade of sorts?"`
+			`	Yngvar angry stare would wilt iron.`
+			`	"How about you agree to end your contract with us? And I'll set them all free." The Syndicate man says slyly.`
+			`	The old spacer barks out a hard laughter. A tear glistens in his one good eye.`
+			`	"So, we've come to the rub, have we? What this whole circus has been about since the get-go." Yngvar spits on the ground, "That contract's worth more then a couple of boys in the drunk tank, I can tell you that."`
+			`	Yngvar puts a strong hand on your shoulder and Captain Gunhilda's, "Best we get back to the ship before this Syndie Snake finds cause to lock us up again."`
+				decline
+			
+			label bang
+			action
+				set "bang"
+				`	You bang on the glass, or transparent material, but nothing appears to happen. Whatever conversation or haggling that is going on outside takes no notice of you.`
+				goto options22
+			
+			label whosehere
+			`	`
+
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
