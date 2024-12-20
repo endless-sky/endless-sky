@@ -64,6 +64,37 @@
 		},
 		{
 			"name": "linux",
+			"displayName": "Linux x86",
+			"description": "Builds with the default host compiler with x86-specific optimizations on Linux",
+			"inherits": "base",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+				"ES_SSE3": "ON"
+			},
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			}
+		},
+		{
+			"name": "linux-gles",
+			"displayName": "Linux x86 OpenGL ES",
+			"description": "Builds with the default host compiler with x86-specific optimizations and OpenGL ES on Linux",
+			"inherits": "base",
+			"cacheVariables": {
+				"VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+				"ES_SSE3": "ON",
+				"ES_GLES": "ON"
+			},
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			}
+		},
+		{
+			"name": "linux-universal",
 			"displayName": "Linux",
 			"description": "Builds with the default host compiler on Linux",
 			"inherits": "base",
@@ -77,7 +108,7 @@
 			}
 		},
 		{
-			"name": "linux-gles",
+			"name": "linux-universal-gles",
 			"displayName": "Linux OpenGL ES",
 			"description": "Builds with the default host compiler with OpenGL ES on Linux",
 			"inherits": "base",
@@ -98,7 +129,8 @@
 			"inherits": "base",
 			"cacheVariables": {
 				"CMAKE_OSX_ARCHITECTURES": "x86_64",
-				"VCPKG_TARGET_TRIPLET": "x64-osx-dynamic"
+				"VCPKG_TARGET_TRIPLET": "x64-osx-dynamic",
+				"ES_SSE3": "ON"
 			},
 			"condition": {
 				"type": "equals",
@@ -136,7 +168,8 @@
 			},
 			"cacheVariables": {
 				"VCPKG_TARGET_TRIPLET": "x64-windows",
-				"CMAKE_CXX_COMPILER": "clang-cl.exe"
+				"CMAKE_CXX_COMPILER": "clang-cl.exe",
+				"ES_SSE3": "ON"
 			},
 			"condition": {
 				"type": "equals",
@@ -153,7 +186,8 @@
 				"CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "x64-mingw-dynamic",
-				"VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+				"VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+				"ES_SSE3": "ON"
 			},
 			"condition": {
 				"type": "equals",
@@ -174,7 +208,8 @@
 				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "x86-mingw-dynamic",
-				"VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
+				"VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic",
+				"ES_SSE3": "ON"
 			},
 			"condition": {
 				"type": "equals",
@@ -264,7 +299,8 @@
 			"cacheVariables": {
 				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
 				"VCPKG_HOST_TRIPLET": "linux64-release",
-				"VCPKG_TARGET_TRIPLET": "linux64-release"
+				"VCPKG_TARGET_TRIPLET": "linux64-release",
+				"ES_SSE3": "ON"
 			}
 		},
 		{
@@ -278,7 +314,8 @@
 				"VCPKG_HOST_TRIPLET": "macos64-release",
 				"VCPKG_TARGET_TRIPLET": "macos64-release",
 				"CMAKE_OSX_ARCHITECTURES": "x86_64",
-				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.7"
+				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.7",
+				"ES_SSE3": "ON"
 			}
 		},
 		{
@@ -310,7 +347,8 @@
 				"CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "win64-release",
-				"VCPKG_TARGET_TRIPLET": "win64-release"
+				"VCPKG_TARGET_TRIPLET": "win64-release",
+				"ES_SSE3": "ON"
 			}
 		},
 		{
@@ -323,7 +361,8 @@
 				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "win64-release",
-				"VCPKG_TARGET_TRIPLET": "win32-release"
+				"VCPKG_TARGET_TRIPLET": "win32-release",
+				"ES_SSE3": "ON"
 			}
 		}
 	],
