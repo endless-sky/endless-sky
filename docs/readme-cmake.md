@@ -65,6 +65,8 @@ Additionally, if you want to build unit tests:
 ```
 catch2
 ```
+Since Catch2 version 3.x is needed (3.4 works), you will have to install it with something like `vcpkg`, rather than apt.
+
 
 </details>
 
