@@ -5932,18 +5932,19 @@ mission "Hroar's Haulers 15"
 				`	(See whose here.)`	
 					goto whosehere
 				`	(Sit tight.)`
-			`	You sit on the ground and wait. Some minutes pass before there click sounds and the cell door opens. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
-			`	"Him?" A unfamiliar voice sneers. You look up into a offensively white teeth of a slick haired Syndicate official.`
-			`	"Y'up, that's the one." A tired sounding Yngvar pulls you to your feet.`
+			`	You sit on the ground and wait. Minutes pass as you ignore the background hum of angry muttering Haulers. There's a sudden clicking sound and the cell door grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
+			`	"Him?" A unfamiliar voice sneers. You look up into the offensively white teeth of a slick haired Syndicate official.`
+			`	"Aye, him." A tired sounding Yngvar pulls you to your feet.`
 			`	An unsteady Captain Gunhilda is standing next to him. He must have also freed her.`
-			`	"Just these two? There's a lot more left in the tank." The Syndicate official says with hostile grin.`
-			`	Yngvar just glares at the man, "All I can rustle up. I'll find a way to take care of the rest later."`
-			`	The Syndicate official holds up a hand, "Surely we can come to some sort of arrangement for their freedom? Maybe a trade of sorts?"`
-			`	Yngvar angry stare would wilt iron.`
-			`	"How about you agree to end your contract with us? And I'll set them all free." The Syndicate man says slyly.`
+			`	"Just these two? There's a lot more left in the tank." The Syndicate official says with hostile grin. `
+			`	Your eyes dart to still imprisoned Haulers. You notice Captain Unferth among them.`
+			`	Yngvar just glares at the man, "Don't have ready cash for bribes."`
+			`	The Syndicate official holds up a hand, "It's all quite legal. However, I am not without feelings, surely we can come to some sort of arrangement for rest of your crews freedom? Maybe a trade of sorts?"`
+			`	Yngvar's angry stare would wilt iron. He says nothing.`
+			`	"How about you agree to end your contract with us? And I'll set them all free." The Syndicate man says with insincere concern.`
 			`	The old spacer barks out a hard laughter. A tear glistens in his one good eye.`
-			`	"So, we've come to the rub, have we? What this whole circus has been about since the get-go." Yngvar spits on the ground, "That contract's worth more then a couple of boys in the drunk tank, I can tell you that."`
-			`	Yngvar puts a strong hand on your shoulder and Captain Gunhilda's, "Best we get back to the ship before this Syndie Snake finds cause to lock us up again."`
+			`	"So, we've come to the rub, have we? What this whole circus has been about since the get-go." Yngvar spits on the ground, "That contract's worth more then a couple of boys in a drunk tank, I can tell you that."`
+			`	Yngvar puts a strong hand on your shoulder and Captain Gunhilda's, "Best we get back to the ship. 'Fore this Syndie Snack strikes again."`
 				decline
 			
 			label bang
