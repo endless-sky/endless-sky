@@ -24,6 +24,7 @@ mission "FW Diplomacy 1"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
+		event "catalytic ramscoop available"
 		event "joined the free worlds"
 		event "fw abandoned Greenrock" 60
 		event "Greenrock recovered" 420
@@ -42,7 +43,6 @@ mission "FW Diplomacy 1"
 			`			Sincerely,`
 			`				Jean-Jacques and Freya`
 				accept
-		event "catalytic ramscoop available"
 	
 	on complete
 		dialog `As you are landing, Alondo contacts you and asks you to meet him in the spaceport as soon as you have a bunk prepared for him.`
@@ -117,7 +117,7 @@ mission "FW Diplomacy 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		log "Stopped on Earth with Alondo to talk to Parliament and try to head off another bloody battle. But, they were not willing to negotiate."
+		log "Stopped on Earth with Alondo to talk to Parliament and try to head off another bloody battle. Unfortunately, they were not willing to negotiate."
 		conversation
 			`You drop off Alondo and wish him luck. Hours pass, and you begin to worry that he has been taken prisoner or killed. But finally he returns, looking very discouraged. "It makes no sense," he says. "The tax revenue they get from those four worlds doesn't come close to covering the cost of defending them. They should be glad to let them go."`
 			choice
@@ -204,6 +204,8 @@ mission "FW Southern Recon 1B"
 	autosave
 	source "Trinket"
 	destination "Trinket"
+	mark "Alnasl"
+	mark "Wei"
 	to offer
 		has "FW Southern Recon 1: done"
 	
@@ -232,6 +234,10 @@ mission "FW Southern Recon 1B"
 			names "republic small"
 			variant
 				"Gunboat (Mark II)"
+	on enter Alnasl
+		unmark Alnasl
+	on enter Wei
+		unmark Wei
 	to complete
 		not "FW Southern Recon 1B (Turret): done"
 	to fail
@@ -274,7 +280,7 @@ mission "FW Southern Recon 1B: Alnasl Hint 1"
 		conversation
 			`While refueling on <planet>, a Free Worlds captain approaches you. "Captain <last>, I hear you're on the search for one of those new lasers the Navy is using."`
 			choice
-				`	"Yes I am."`
+				`	"Yes, I am."`
 				`	"Do you have any information on them?"`
 					goto information
 			`	"Good, because we have some information that could help you.`
@@ -324,7 +330,6 @@ mission "FW Southern Battle 1"
 				goto battle
 			label reverse
 			`	"Maybe, although we haven't even mastered the art of building Heavy Lasers yet," she says. "We certainly won't have time before the upcoming battle."`
-				goto battle
 			label battle
 			`	"So we're definitely going to attack the Navy?" you ask.`
 			`	"We have no choice," she says. "We tried diplomacy. If we don't show a willingness to support new worlds that want to join us, or if we don't seem to have enough strength to defend them, some of those that have joined us already may start to return to the Republic."`
@@ -484,7 +489,7 @@ mission "FW Southern Battle 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
@@ -1937,7 +1942,7 @@ mission "FW Rand 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)"
 	
@@ -2307,7 +2312,7 @@ mission "FW Liberate Delta Sagittarii"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 4
 		fleet

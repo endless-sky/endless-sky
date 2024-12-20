@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <algorithm>
+#include <filesystem>
 #include <map>
 #include <sstream>
 #include <string>
@@ -33,7 +34,7 @@ class DataNode;
 class DataWriter {
 public:
 	// Constructor, specifying the file to write.
-	explicit DataWriter(const std::string &path);
+	explicit DataWriter(const std::filesystem::path &path);
 	// Constructor for a DataWriter that will not save its contents automatically
 	DataWriter();
 	DataWriter(const DataWriter &) = delete;
@@ -45,7 +46,7 @@ public:
 	~DataWriter();
 
 	// Save the contents to a file.
-	void SaveToPath(const std::string &path);
+	void SaveToPath(const std::filesystem::path &path);
 	// Get the contents as a string.
 	std::string SaveToString();
 
@@ -82,7 +83,7 @@ public:
 
 private:
 	// Save path (in UTF-8). Empty string for in-memory DataWriter.
-	std::string path;
+	std::filesystem::path path;
 	// Current indentation level.
 	std::string indent;
 	// Before writing each token, we will write either the indentation string
