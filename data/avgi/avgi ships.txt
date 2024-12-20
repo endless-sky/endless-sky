@@ -1215,7 +1215,7 @@ ship "Prismaios"
 		"Speckle Turret" 2
 		"Speck Round" 4800
 		"Vertical Launch Array"
-		`"Nettle" KKV` 240
+		`"Nettle" KKV` 216
 		"Green Optical Laser"
 
 		"Ultracapacitor Bank"
@@ -1328,7 +1328,7 @@ ship "Interferos"
 	outfits
 		"Green Optical Laser"
 		"Vertical Launch Array" 2
-		`"Nettle" KKV` 480
+		`"Nettle" KKV` 432
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
@@ -1439,7 +1439,7 @@ ship "Diaspersi"
 		"Speck Round" 2400
 		"Vertical Launch Array"
 		"Nettle Magazine" 6
-		`"Nettle" KKV` 600
+		`"Nettle" KKV` 648
 		
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1578,7 +1578,7 @@ ship "Difraktos"
 		"Speck Round" 9600
 		"Vertical Launch Array" 2
 		"Nettle Magazine" 2
-		`"Nettle" KKV` 600
+		`"Nettle" KKV` 576
 
 		"Lantern Fission Core"
 		"Ultracapacitor Bank"
@@ -1655,7 +1655,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Speck Round" 4800
 		"Vertical Launch Array" 4
 		"Nettle Magazine" 6
-		`"Nettle" KKV` 1320
+		`"Nettle" KKV` 1296
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -1853,7 +1853,7 @@ ship "Atenuatia"
 		"Green Optical Laser" 3
 		"Vertical Launch Array" 2
 		"Nettle Magazine" 6
-		`"Nettle" KKV` 840
+		`"Nettle" KKV` 864
 		
 		"Ultracapacitor Bank" 2
 		"Specular Deflector"
@@ -1897,11 +1897,11 @@ ship "Atenuatia"
 	gun 15 -114
 		angle 90
 	turret 0 -252 "Green Optical Laser"
-	turret 60 -174 "Blue Optical Laser"
-	turret -60 -174 "Blue Optical Laser"
+	turret 63 -195 "Blue Optical Laser"
+	turret -63 -195 "Blue Optical Laser"
 	turret 0 -96 "Vertical Launch Array"
-	turret 0 -36 "Vertical Launch Array"
-	turret 0 30 "Speckle Turret"
+	turret 0 -36 "Speckle Turret"
+	turret 0 30 "Vertical Launch Array"
 	turret 0 96 "Green Optical Laser"
 	turret 0 160 "Green Optical Laser"
 
@@ -1980,8 +1980,8 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 	turret "Blue Optical Laser"
 	turret "Blue Optical Laser"
 	turret
-	turret
 	turret "Speckle Turret"
+	turret
 	turret "Green Optical Laser"
 	turret "Green Optical Laser"
 

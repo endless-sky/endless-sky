@@ -119,7 +119,7 @@ outfit "Jamfruit"
 	thumbnail "outfit/jamfruit pod"
 	"mass" 0.3
 	"flotsam chance" 0.3
-	description "Yum."
+	description "Closer to a berry than a fruit, this tart prize of a Windjammer tree is not only delicious, but is rich in nutrients. It can be refined to extract a variety of useful medicinal compounds, giving it value both as a delicacy and as a remedy."
 
 
 # Ships

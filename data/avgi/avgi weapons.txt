@@ -182,10 +182,11 @@ outfit "Blue Optical Laser"
 		sprite "projectile/avgi laser blue"
 			"frame rate" 1
 		"sound" "optical laser"
-		"hit effect" "laser ejecta" 4
-		"hit effect" "blue laser reflection" 30
+		"hit effect" "laser ejecta" 6
+		"hit effect" "blue laser reflection" 60
 		"hit effect" "blue laser scattering"
-		"fire effect" "blue laser fire"
+		"fire effect" "blue laser glare"
+		"fire effect" "blue laser fire" 60
 		"velocity" 2400
 		"lifetime" 1
 		"reload" 1
@@ -212,15 +213,30 @@ effect "laser ejecta"
 	"random velocity" -12
 	"velocity scale" -0.003
 
+effect "blue laser glare"
+	sprite "effect/ion rain impact"
+		"frame rate" 4
+		"random start frame"
+	"lifetime" 1
+
+effect "blue laser fire"
+	sprite "effect/skylance impact"
+		"no repeat"
+		"frame rate" 20
+		"scale" 0.125
+	"lifetime" 1
+	"random lifetime" 3
+	"random velocity" 60
+
 effect "blue laser reflection"
 	sprite "effect/skylance impact"
 		"no repeat"
 		"frame rate" 20
 		"scale" 0.125
 	"lifetime" 3
-	"random lifetime" 2
-	"random velocity" -12
-	"velocity scale" -0.0009
+	"random lifetime" 3
+	"random velocity" -30
+	"velocity scale" -0.0012
 
 effect "blue laser scattering"
 	sprite "effect/skylance impact"
@@ -228,19 +244,11 @@ effect "blue laser scattering"
 		"scale" 0.5
 	"lifetime" 3
 	"velocity scale" 0
-	
-effect "blue laser fire"
-	sprite "effect/ion rain impact"
-		"frame rate" 4
-		"random start frame"
-	"lifetime" 1
 
-effect "green laser scattering"
+effect "green laser fire"
 	sprite "effect/heavy laser impact"
-		"frame rate" 30
-		"random start frame"
+		"frame rate" 5
 	"lifetime" 1
-	"velocity scale" 0
 
 effect "green laser reflection"
 	sprite "effect/typhoon fire"
@@ -250,11 +258,14 @@ effect "green laser reflection"
 	"lifetime" 3
 	"random lifetime" 2
 	"random velocity" -24
-	
-effect "green laser fire"
+
+effect "green laser scattering"
 	sprite "effect/heavy laser impact"
-		"frame rate" 5
+		"frame rate" 30
+		"random start frame"
 	"lifetime" 1
+	"velocity scale" 0
+
 
 outfit "Ultrarelativistic Electron Beam"
 	series "Avgi: Beams"
@@ -342,8 +353,10 @@ outfit "External Launch Rail"
 	"gun ports" -1
 	"ophrys capacity" 1
 	weapon
-		sprite "projectile/emp torpedo"
-			"frame rate" 3
+		"hardpoint sprite" "hardpoint/external launch rail"
+		"hardpoint offset" 12
+		sprite "projectile/orchid terminal"
+			"scale" 0.5
 		sound "torpedo"
 		ammo `"Ophrys" Nuclear Torpedo`
 		"stream"
@@ -378,6 +391,8 @@ outfit "External Launch Tube"
 	"gun ports" -1
 	"orchid capacity" 6
 	weapon
+		"hardpoint sprite" "hardpoint/external launch tube"
+		"hardpoint offset" 12
 		sprite "projectile/orchid inactive"
 			"scale" 0.5
 		sound "bounce"
@@ -408,12 +423,13 @@ outfit "Vertical Launch Array"
 		"Twilight Guard"
 	cost 1370000
 	thumbnail "outfit/vertical launch array"
-	"mass" 9
+	"mass" 12
 	"outfit space" -45
 	"weapon capacity" -45
 	"turret mounts" -1
-	"nettle capacity" 240
+	"nettle capacity" 216
 	weapon
+		"hardpoint sprite" "hardpoint/vertical launch array"
 		sprite "projectile/nettle"
 			"scale" 0.5
 		sound "bounce"
@@ -426,7 +442,7 @@ outfit "Vertical Launch Array"
 		"reload" 15
 		"burst reload" 9
 		"burst count" 12
-		"turret turn" 9
+		"turret turn" 0.000001
 		"firing energy" 3
 		"firing heat" 1.5
 		"drag" .024
@@ -462,7 +478,7 @@ outfit "Nettle Magazine"
 	thumbnail "outfit/unknown"
 	"mass" 3
 	"outfit space" -12
-	"nettle capacity" 60
+	"nettle capacity" 72
 	ammo `"Nettle" KKV`
 	description "To improve the combat endurance of ships that rely on flooding the battlespace with small missiles, this magazine extends the capacity of Nettle launch cells by loading new Nettle KKVs through the bottoms of the cells."
 
@@ -642,7 +658,7 @@ outfit "Orchid Boost Stage Expended"
 			"scale" 0.5
 		"die effect" "missile death"
 		"lifetime" 300
-		"velocity" -12
+		"velocity" -15
 		"random velocity" 3
 		"inaccuracy" 30
 		"drag" 1.2
@@ -657,7 +673,7 @@ outfit "Orchid Divert Stage Expended"
 			"scale" 0.5
 		"die effect" "missile death"
 		"lifetime" 300
-		"velocity" -12
+		"velocity" -15
 		"random velocity" 3
 		"inaccuracy" 30
 		"drag" 1.2
