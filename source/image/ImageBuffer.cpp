@@ -158,12 +158,21 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 	bool isPNG = (extension == ".png" || extension == ".PNG");
 	bool isJPG = (extension == ".jpg" || extension == ".JPG");
 	if(!isPNG && !isJPG)
+	{
+		Logger::LogError("File: \"" + path.string() + "\" is not a png or jpg.");
 		return false;
+	}
 
 	if(isPNG && !ReadPNG(path, *this, frame))
+	{
+		Logger::LogError("File: \"" + path.string() + "\" failed ReadPNG.");
 		return false;
+	}
 	if(isJPG && !ReadJPG(path, *this, frame))
+	{
+		Logger::LogError("File: \"" + path.string() + "\" failed ReadJPG.");
 		return false;
+	}
 
 	// Check if the sprite uses additive blending. Start by getting the index of
 	// the last character before the frame number (if one is specified).
