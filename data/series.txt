@@ -12,6 +12,14 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 category "series"
+	# Weapons
+	"Avgi: Beams" 600
+	"Avgi: Missiles" 610
+	# Systems
+	"Avgi: Shields" 620
+	"Avgi: Fuel" 630
+	"Avgi: Laminae" 640
+	"Avgi: Sensors" 650
 	# Guns
 	"Guns: Successors" 800
 	# Turrets
@@ -31,6 +39,7 @@ category "series"
 	"Human: Plasma" 120
 	"Human: Atomic" 130
 	"Human: Afterburners" 140
+	"Avgi: Engines" 660
 	"Engines: Successors" 800
 	# Licenses
 	"Licenses: Successors" 800
