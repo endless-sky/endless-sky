@@ -5384,6 +5384,9 @@ mission "Hroar's Haulers 15"
 			`	Despite his age and injuries Yngvar manages to keep up with you. He climbs aboard your ship after you and straps in. "The sooner the better, <last>!"`
 			choice
 				`	(Launch your ship.)`
+			action
+				clear "cairn"
+				clear "logofficer"
 					launch
 
 			label chooseyourbattles
@@ -5776,12 +5779,14 @@ mission "Hroar's Haulers 15"
 			`	Solvi nods, and leaves. Yngvar points to your ship, "Ain't nothing for us here but bad memories and more trouble. Let's go."`
 				to display
 					has "savedsolvi"
-			`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to launch. "Let's move, <last>!"`
+			`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to prepare to launch. "Let's move, <last>!"`
 				to display
 					not "savedsolvi"
-			choice
-				`	(Launch your ship.)`
-					launch
+			action
+				clear "cairn"
+				clear "logofficer"
+				clear "otheroptions"
+				decline
 			
 			label gunhilda2
 			`	"If you want her, that's 15,000 credits." Leland grins.`
@@ -5810,7 +5815,11 @@ mission "Hroar's Haulers 15"
 			`	Solvi nods, and heads into the office. Yngvar frowns at you, "Ain't nothing for us here but bad memories and more trouble. I'll a waitin' for ya on your ship."`
 				to display
 					has "savedsolvi"
-				accept
+				action
+					clear "cairn"
+					clear "logofficer"
+					clear "otheroptions"
+				decline
 			
 			label nothing
 			`	Yngvar clears his throat, "We both know the only law here is the mighty credit. So whatdya want for our folk?"`
@@ -5858,10 +5867,14 @@ mission "Hroar's Haulers 15"
 						not "otheroptions"
 				`	"No deal. They are on their own."`
 			`	Yngvar presses a button and desposits all 120,000 of the collected credits into the Syndicate account. "That'll be enough to free most of the Iron Siren's crew. Thisaway it'll only be Solvi's fleet suffering."`
-			`	The old spacer pauses and then levels his good at you, "I know you saved his hide in that fight. But best be expectin' Solvi to hang tight here until his crew his free. He's a good sort that wouldn't leave his people behind."`
+			`	The old spacer pauses and then levels his good at you, "I know you saved his hide in that fight. But best be expectin' Solvi to hang tight here until his crew is free. He's a good sort that wouldn't leave his people behind."`
 				to display
 					has "savedsolvi"
 			`	He turns his back to Leland Hemshaw and starts walking out of the office. "I'll be a waitin' on your ship when you're ready to launch, Captain <last>. Try not to be too long, the sooner we leave this snake-den, the better."`
+			action
+				clear "cairn"
+				clear "logofficer"
+				clear "otheroptions"
 				decline
 
 			label newdeal
@@ -5909,6 +5922,10 @@ mission "Hroar's Haulers 15"
 			`	The empanicpated Haulers nod, or grunt their understanding and begin to quickly exit the office.`
 			`	Leland cannot hide his disdain as he stares daggers at everyone, and refuses to even look at you. Yngvar puts an arm on your shoulder, "That includes us, Captain <last>. I am gonna head straight for your ship. Recommending you do the same."`
 			`	He turns and leaves.`
+			action
+				clear "cairn"
+				clear "logofficer"
+				clear "otheroptions"
 				accept
 			
 			label paysome
@@ -5946,6 +5963,10 @@ mission "Hroar's Haulers 15"
 			`	The old spacer barks out a hard laughter. A tear glistens in his one good eye.`
 			`	"So, we've come to the rub, have we? What this whole circus has been about since the get-go." Yngvar spits on the ground, "That contract's worth more then a couple of boys in a drunk tank, I can tell you that."`
 			`	Yngvar puts a strong hand on your shoulder and Captain Gunhilda's, "Best we get back to the ship. 'Fore this Syndie Snack strikes again."`
+			action
+				clear "bang"
+				clear "cairn"
+				clear "logofficer"
 				decline
 			
 			label bang
