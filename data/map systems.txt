@@ -15082,7 +15082,6 @@ system G-3191
 		period 5084.55
 
 system G-6183
-	shrouded
 	pos 1019.4 -590.18
 	government Uninhabited
 	attributes "black hole" "notable star" "umbral reach"
