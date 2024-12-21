@@ -282,6 +282,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
+	SpriteParameters.cpp
+	SpriteParameters.h
 	StartConditions.cpp
 	StartConditions.h
 	StartConditionsPanel.cpp
@@ -342,8 +344,6 @@ target_sources(EndlessSkyLib PRIVATE
 	image/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
-	image/SpriteParameters.cpp
-	image/SpriteParameters.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
 	shader/BatchDrawList.cpp
