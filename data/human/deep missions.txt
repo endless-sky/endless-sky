@@ -6009,8 +6009,23 @@ mission "Yngvar Interlude"
 				goto paid
 				to display
 					has "Hroar's Haulers 15: accepted"
+		label paid
 		`	"Means a lot to put your dime on the line for us." The old man nods slowly, "Don't be thinking we'll forget. We may not be able to make you whole, but we'll do what we can."`
-		`	"Now, we shouldn't run into too much more trouble. `	
+		`	"Now, the Syndies are about as trustworthy as the gravity in a trinary system, but this was new low even for them." Yngvar frowns thoughtfully, "Somethin' else is goin' on and we just got caught in the middle."`
+		`	"The loss of Solvi's fleet will sting. Moving folks about is a nice way to earn extra income, but the Long Haul will survive. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it." The old spacer turns and leaves you to your bridge.`
+			to display
+				has "paidsome"
+		`	"Getting Solvi's crew outta there will pay dividends. Moving Folks about is a nice way to earn extra income, and there's still lots of folk to move 'fore the Long Haul is done." He lays a scarred hand on your shoulder, "A hirthr looks after their fleet, and that's just what'chya did in there." Yngvar says nothing more and leaves you to the bridge.`
+			to display
+				not "paidsome"
+			decline
+		label notgood
+		`	"Kid, you ain't done us no favors in there." Yngvar's face is red, "That contract brought in a lot of creds, kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
+		choice
+			`	"I did what I thought was right."`
+			`	"Sorry."`
+			`	(Say nothing.)`
+			
 
 
 
