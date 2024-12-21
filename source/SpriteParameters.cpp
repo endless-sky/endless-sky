@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpriteParameters.h"
 
-#include "Sprite.h"
+#include "image/Sprite.h"
 
 
 SpriteParameters::SpriteParameters()
