@@ -5127,6 +5127,7 @@ mission "Hroar's Haulers 14"
 
 
 mission "Hroar's Haulers 15"
+	invisible
 	name "The Long Haul"
 	source "Maker"
 	destination "Rand"
@@ -6003,9 +6004,6 @@ mission "Hroar's Haulers 15"
 	on visit
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
-	on complete
-		dialog
-			`The Long Haul convoy sets down in Maker's expansive spaceport. `
 
 mission "Yngvar Interlude"
 	invisible
