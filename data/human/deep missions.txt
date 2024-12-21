@@ -6020,7 +6020,7 @@ mission "Yngvar Interlude"
 				not "paidsome"
 			decline
 		label notgood
-		`	"<last>, ." Yngvar's face is red, "That contract brought in a lot of creds, kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
+		`	"<last>, that was some piss poor negotiating." Yngvar's face is red, "That contract brought in a lot of creds, kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
 		choice
 			`	"I did what I thought was right."`
 			`	"Sorry."`
