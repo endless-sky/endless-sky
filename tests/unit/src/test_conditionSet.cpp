@@ -86,66 +86,6 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 			}
 		}
 	}
-	GIVEN( "a longer incomplete arithmetic add expression" ) {
-		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 + 6 +");
-		const auto set = ConditionSet{nodeWithIncompleteAdd};
-		THEN( "the expression should be identified as invalid" ) {
-			const std::string validationWarning = "Error: expected terminal after infix operator \"+\":\n";
-			const std::string invalidNodeText = "toplevel\n";
-			const std::string invalidNodeTextInWarning = "L2:   4 + 6 +";
-
-			REQUIRE( set.IsEmpty() );
-			REQUIRE_FALSE( set.IsValid() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
-			}
-		}
-	}
-	GIVEN( "a longer incomplete arithmetic subtract expression" ) {
-		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 - 6 -");
-		const auto set = ConditionSet{nodeWithIncompleteAdd};
-		THEN( "the expression should be identified as invalid" ) {
-			const std::string validationWarning = "Error: expected terminal after infix operator \"-\":\n";
-			const std::string invalidNodeText = "toplevel\n";
-			const std::string invalidNodeTextInWarning = "L2:   4 - 6 -";
-
-			REQUIRE( set.IsEmpty() );
-			REQUIRE_FALSE( set.IsValid() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
-			}
-		}
-	}
-	GIVEN( "an invalid expression of two numerical terminals" ) {
-		auto nodeWithTwoTerminals = AsDataNode("toplevel\n\t4 77");
-		const auto set = ConditionSet{nodeWithTwoTerminals};
-		THEN( "the expression should be identified as invalid" ) {
-			const std::string validationWarning = "Error: expected infix operator instead of \"77\":\n";
-			const std::string invalidNodeText = "toplevel\n";
-			const std::string invalidNodeTextInWarning = "L2:   4 77";
-
-			REQUIRE( set.IsEmpty() );
-			REQUIRE_FALSE( set.IsValid() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
-			}
-		}
-	}
-	GIVEN( "an invalid token instead of a terminal" ) {
-		auto nodeWithIncompleteTerminal = AsDataNode("toplevel\n\t%%percentFail");
-		const auto set = ConditionSet{nodeWithIncompleteTerminal};
-		THEN( "the expression should be identified as invalid" ) {
-			const std::string validationWarning = "Error: expected terminal or open-bracket:\n";
-			const std::string invalidNodeText = "toplevel\n";
-			const std::string invalidNodeTextInWarning = "L2:   %%percentFail";
-
-			REQUIRE( set.IsEmpty() );
-			REQUIRE_FALSE( set.IsValid() );
-			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + invalidNodeTextInWarning + '\n' + '\n' );
-			}
-		}
-	}
 }
 
 SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
@@ -303,6 +243,30 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			REQUIRE_FALSE( numberSet.IsEmpty() );
 			REQUIRE( numberSet.IsValid() );
 			REQUIRE( numberSet.Evaluate(storeWithData) == std::get<1>(expressionAndAnswer) );
+		}
+	}
+	GIVEN( "various incorrect expression(s) as conditionSet" ) {
+		OutputSink warnings(std::cerr);
+		auto expressionAndMessage = GENERATE(table<std::string, std::string>({
+			{"4 +", "Error: expected terminal after infix operator \"+\":\n"},
+			{"4 + 6 +", "Error: expected terminal after infix operator \"+\":\n"},
+			{"4 + 6 -", "Error: expected terminal after infix operator \"-\":\n"},
+			{"4 - 6 -", "Error: expected terminal after infix operator \"-\":\n"},
+			{"4 77", "Error: expected infix operator instead of \"77\":\n"},
+			{"%%percentFail", "Error: expected terminal or open-bracket:\n"},
+			{") + 4", "Error: expected terminal or open-bracket:\n"},
+			{") 4", "Error: expected terminal or open-bracket:\n"},
+			{"( 4 + 6", "Error: missing closing bracket:\n"},
+			{"( 4 + 6 )\n\t\t5 + 5", "Error: unexpected child-nodes under toplevel:\n"},
+			{"never + 5", "Error: tokens found after never keyword:\n"},
+			{"has someData + 5", "Error: has keyword requires a single condition:\n"},
+			{"or", "Error: child-nodes expected, found none:\n"}
+		}));
+		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndMessage))};
+		THEN( "The expression \'" + std::get<0>(expressionAndMessage) + "\' is invalid and triggers the correct error-message" ) {
+			REQUIRE_FALSE( numberSet.IsValid() );
+			REQUIRE( warnings.Flush().substr(0, std::get<1>(expressionAndMessage).size()) == std::get<1>(expressionAndMessage) );
+			REQUIRE( numberSet.IsEmpty() );
 		}
 	}
 }
