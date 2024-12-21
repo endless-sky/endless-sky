@@ -5244,7 +5244,7 @@ mission "Hroar's Haulers 15"
 
 			label helpgun
 			branch "50 percent chance"
-				random < 50
+				random < 75
 			`	You quickly pull Gunhilda to her feet and drape an arm around her shoulder. "Wh-what are you...?"`
 			`	Unsteadily you are able to lead Gunhilda out of the bar even as the shouting and scuffling noises behind you reach a crescendo.`
 			`	You find Yngvar and the majority of the Haulers just beyond the premises.`
@@ -5420,8 +5420,6 @@ mission "Hroar's Haulers 15"
 					goto followyngvar
 
 			label "50 percent chance solvi"
-			action
-				set "resist"
 			`	You twist out of the Enforcers grasp and plunge into the chaos errupting all around you. Your freedom is short-lived as you're tackled by another Enforcer deeper in the crowd. You fall to the ground with his heavy body on yop of you. A few more enforcers appear to help restrain and cuff you.`
 			`	The Syndicate Enforcer gives you a twisted smile as they pull you to your feet, "Now we get to add a resisting arrest charge. That's a bonus for me."`
 			`	The Enforcer drags you away toward the exit along with all the other arrested Haulers.`
@@ -6020,12 +6018,23 @@ mission "Yngvar Interlude"
 				not "paidsome"
 			decline
 		label notgood
-		`	"<last>, that was some piss poor negotiating." Yngvar's face is red, "That contract brought in a lot of creds, kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
+		`	"<last>, that was some piss poor negotiating." Yngvar's face is red, "That contract was critical to our operations; kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
 		choice
 			`	"I did what I thought was right."`
 			`	"Sorry."`
 			`	(Say nothing.)`
-			
+		`	Yngvar paces angerily around the bridge for several uncomfortable moments before finally stopping before you, "Naught can be done about it now. The Long Haul still comes first." He turns and storms out.`
+			decline
+		label sortagood
+		`	"I am sure you're thinking you're somethin' special. The other Haulers probably already writin' a song about your deeds. The Brawler of Maker or some skitr." Yngvar shakes his head gravely, "But you ain't a hero, and when those Haulers are struggling for work because you just cost us our most lucrative contract - they won't think so either."`
+		`	Yngvar taps his scarred skull, "Being a hirthr, a leader, is about being above the fray. Making the smart calls, even when they feel wrong." He points out toward black space beyond your ship, "The Gap don't care about songs, or who deserved what, only who is smart enough to suvive. Next time try thinking."`
+		`	He pasues, looks at you disappointingly, and then leaves the bridge.`
+			decline
+		label failed
+		`	Yngvar's face is stern and unhappy, "With all the bluster we blow about the Syndies you'd likely 'spect what happened back there was just another Tuesday." He shakes his head, "'Cept it wasn't. We have our disagreements but we also have our understandings. A few drunken Haulers at the Watering Hole is about as regular as a pulsar and they always let us be."`
+		`	The old spacer paces thoughtfully around your bridge, "No, this was different. Somethin' is up. I they they were trying to get us to break their contract. But, I'm not sure why. It's a big contract for us, keeps a lot of Hauler's solvent, but for the Syndicate it's small potatoes."`
+		`	He shakes his head, "Figurin' that out will have to wait. We gotta stay focused on the Long Haul. Not having Solvi's passanger fleet will hurt, but it won't break us is either. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it."`
+			decline
 
 
 
