@@ -4922,6 +4922,25 @@ mission "Hroar's Haulers 10"
 	on visit
 		dialog phrase "generic passenger on visit"
 
+mission "Hroar's Haulers X"
+	invisible
+	landing
+	source "Muspel"
+	to offer
+		has "Hroar's Haulers 9: done"
+	destination "Maker"
+
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Leviathan" "H.H.H. Red Ruin"
+		ship "Hogshead" "H.H.H. Twilit Hope"
+		ship "Mule" "H.H.H. Cardinal Winsome"
+		ship "Star Queen" "H.H.H. Land of Plenty"
+		ship "Star Queen" "H.H.H. Red Roamer"
+		ship "Mule" "H.H.H. Dirty Destiny"
+
+
 
 
 mission "Hroar's Haulers 11"
@@ -4995,12 +5014,6 @@ mission "Hroar's Haulers 11"
 		ship "Hauler" "H.H.H. Red Dawn"
 		ship "Mule" "H.H.H. Breadbasket"
 		ship "Mule" "H.H.H. Rock Skipper"
-		ship "Leviathan" "H.H.H. Red Ruin"
-		ship "Hogshead" "H.H.H. Twilit Hope"
-		ship "Mule" "H.H.H. Cardinal Winsome"
-		ship "Star Queen" "H.H.H. Land of Plenty"
-		ship "Star Queen" "H.H.H. Red Roamer"
-		ship "Mule" "H.H.H. Dirty Destiny"
 		ship "Saber" "H.H.H. Iron Siren"
 		ship "Bulk Freighter" "H.H.H. Oath Fulfilled"
 		ship "Bulk Freighter" "H.H.H. Coyote Meal"
@@ -5976,6 +5989,23 @@ mission "Hroar's Haulers 15"
 			label whosehere
 			`	The cell is packed with Haulers. The whole place is lousy with Rust-red jackets, and the smell of cheap Syndicate alcohol.  You're sure Captain Unferth around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the cell door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
 			goto outofthecell
+
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Leviathan" "H.H.H. Red Ruin"
+		ship "Hogshead" "H.H.H. Twilit Hope"
+		ship "Mule" "H.H.H. Cardinal Winsome"
+		ship "Star Queen" "H.H.H. Land of Plenty"
+		ship "Star Queen" "H.H.H. Red Roamer"
+		ship "Mule" "H.H.H. Dirty Destiny"
+
+	on visit
+		dialog
+			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
+	on complete
+		dialog
+			`The Long Haul convoy sets down in Maker's expansive spaceport. `
 
 mission "Yngvar Interlude"
 	invisible
