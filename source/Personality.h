@@ -86,6 +86,9 @@ public:
 	bool IsDecloaked() const;
 	bool IsQuiet() const;
 
+	// Amount of time to linger, or -1 if it should use the system value:
+	int LingerTime() const;
+
 	// Current inaccuracy in this ship's targeting:
 	const Point &Confusion() const;
 	void UpdateConfusion(bool isFiring);
@@ -111,4 +114,5 @@ private:
 	double aimMultiplier;
 	Point confusion;
 	Point confusionVelocity;
+	int lingerTime = -1;
 };
