@@ -112,8 +112,8 @@ public:
 	// connected provider).
 	int64_t Get(const std::string &name) const;
 
-	// Add a value to a condition or set a value for a condition. Returns true on
-	// success, false on failure.
+	// Add a value to a condition or set a value for a condition.
+	// Returns true on success, false on failure.
 	bool Add(const std::string &name, int64_t value);
 	bool Set(const std::string &name, int64_t value);
 
