@@ -2458,7 +2458,7 @@ License: CC-BY-SA-3.0
 
 Files:
  images/land/vardelu*
-Copyright: photoangel (https://www.freepik.com/author/photoangel)
+Copyright: photoangel
 License: CC0
 
 Files:
@@ -2520,7 +2520,6 @@ Files:
  images/thumbnail/tamquaya?two*
 Copyright: Loymdayddaud (https://github.com/TheGiraffe3)
 License: CC-BY-SA-4.0
-Comment: Uses textures from freepik.com.
 
 Files:
  images/land/diba?station*
@@ -2535,15 +2534,29 @@ License: Unsplash
 
 Files:
  images/land/andwerfen*
- images/land/muntisir*
+Copyright: Eva Lacroix (https://www.pexels.com/@eva-lacroix-326723901/)
+License: CC-BY-SA-4.0
+
+Files:
  images/land/taltahard*
-Copyright: wirestock on Freepik
-License: Freepik
+Copyright: Brigette Warner (https://pixabay.com/users/arttower-5337/)
+Comment:
+ Taken from https://pixabay.com/photos/arches-national-park-utah-moab-usa-51612/, and
+ resized. According to Section 3 of the Pixabay Terms of Service, all images with a
+ "published date" earlier than January 9, 2019 have the CC0 license.
+
+Files:
+ images/land/muntisir*
+Copyright: Pixabay (https://www.pexels.com/@pixabay/)
+License: CC0
 
 Files:
  images/land/sinsansun*
-Copyright: frimufilms on Freepik
-License: Freepik
+Copyright: Steve Buissinne (https://pixabay.com/users/stevepb-282134/)
+Comment:
+ Taken from https://pixabay.com/photos/canola-fields-green-rolling-hills-1911392/, and
+ resized. According to Section 3 of the Pixabay Terms of Service, all images with a
+ "published date" earlier than January 9, 2019 have the CC0 license.
 
 Files:
  images/effect/pwave?impact*
