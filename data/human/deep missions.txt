@@ -5070,7 +5070,7 @@ mission "Hroar's Haulers 12"
 		has "Hroar's Haulers 11: active"
 	on offer
 		conversation
-			`The Long Haul convoy sets down in one of Earth's sprawling mega-cities. Most of the fleet focuses on refueling and minor repairs, while Captain Unferth's ships begin the unboard process. Yngvar tells you to meet him in the spaceport.`
+			`The Long Haul convoy sets down in one of Earth's sprawling mega-cities. Most of the fleet focuses on refueling and minor repairs, while Captain Unferth's ships begin the unboarding process. Yngvar tells you to meet him in the spaceport.`
 				decline
 
 mission "Hroar's Haulers 13"
@@ -6063,6 +6063,28 @@ mission "Yngvar Interlude"
 		`	The old spacer paces thoughtfully around your bridge, "No, this was different. Somethin' is up. I they they were trying to get us to break their contract. But, I'm not sure why. It's a big contract for us, keeps a lot of Hauler's solvent, but for the Syndicate it's small potatoes."`
 		`	He shakes his head, "Figurin' that out will have to wait. We gotta stay focused on the Long Haul. Not having Solvi's passanger fleet will hurt, but it won't break us is either. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it."`
 			decline
+
+mission "Hroar's Haulers 16"
+	landing
+	name "The Long Haul"
+	source "Rand"
+	to offer
+		has "Hroar's Haulers 11: active"
+		has "Yngvar Interlude: declined"
+	on offer
+		conversation
+			`The Long Haul convoy kicks up a flurry of agitated sand as they descend upon the sleepy concrete pads outside Rand's spaceport. `
+				decline
+
+mission "Hroar's Haulers 17"
+	name "The Long Haul"
+	source "Rand"
+	to offer
+		has "Hroar's Haulers 11: active"
+		has "Yngvar Interlude: declined"
+	on offer
+		conversation
+			`You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
 
 
 
