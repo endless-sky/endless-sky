@@ -4718,7 +4718,7 @@ mission "Hroar's Haulers 7"
 			`	"Sorry." Hroar looks back at you. "Gotta lot going on just now. Lots of pieces finally coming together. Gonna need a little time though to get it all ready."`
 			`	Again Hroar suddenly looks past you, "No! Not in there! Use the other hold!"`
 			`	He sighs, "Just come back in two weeks, alright <first>? I reckon we'll have most of it sorted by then."`
-			`	Without waiting for you to respond he stomps off toward a group of haulers moving equipment from one ship to another. "How many times do I gotta say it!? Read the manifest!"`
+			`	Without waiting for you to respond he stomps off toward a group of Haulers moving equipment from one ship to another. "How many times do I gotta say it!? Read the manifest!"`
 
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -4743,7 +4743,7 @@ mission "Hroar's Haulers 8"
 				`	"So, now you want me to do a Long Haul?"`
 					goto courier
 				`	"What do you mean 'Long Haul'?"`
-			`	Hroar strokes his beard, "Think of it as an initiation of sorts. Without the Long Haul, there ain't no Haulers. It's our most lucrative run, and without it we'd be another tiny mom and pop outfit, or worse, we'd be Blue Caps forced to work for the Transport Union."`
+			`	Hroar strokes his beard, "Think of it as an initiation of sorts. Without the Long Haul, there ain't no Haulers. It's our most lucrative run, without it we'd be another tiny mom and pop outfit, or worse, we'd be Blue Caps forced to work for the Transport Union."`
 			`	"Before you can properly be one of us," Hroar continues. "You have to do a Long Haul. You have to pay your dues, and head out into the Gap."`
 			choice
 				`	"Wait, so everyone does this? I thought I was a Speciality-Courier. So far nothing I've done has felt special."`
@@ -4776,7 +4776,7 @@ mission "Hroar's Haulers 9"
 		conversation
 			`The spaceport on Memory is a handful of unconnected and hastily constructed buildings that exist on the very edge of the concrete landing field where ships set down. The first few buildings you approach are locked. The next building's door swings open, but you find the inside of it dark and empty. On your forth try the door opens to a warehouse with a couple of startled people. They let you know, in annoyed tones, where the Cantina can be found and suggest that you should head there.`
 			`	The Cantina is a large gray space filled with cheap chairs and wobbly tables. There's a handful of automatic food vendors, and a few clumps of chattering people. You remove your respirator, and notice an old graying man in a faded red hauler jacket walking toward you.`
-			`	"Saw you set down an hour ago. Sure took your time gettin' here," the old man says with a gruff voice as he takes a seat in front of you. He's old, older than you realized, with deep creases crisscrossing his leathery scarred face. One of his eyes is milky white, and surrounded by vacuum burns that stretch into a thin hairline, and past the scarred slit that was once an ear. He lifts up his right hand, its covered with the tale-tell bubbles of severe radition damage, and offers it to you.`
+			`	"Saw you set down an hour ago. Sure took your time gettin' here," the old man says with a gruff voice as he takes a seat in front of you. He's old, older than you realized, with deep creases crisscrossing his leathery scarred face. One of his eyes is milky white, and surrounded by vacuum burns that stretch into a thin hairline, and past the scarred slit that was once an ear. He lifts up his right hand, its covered with the tale-tell bubbles of severe radiation damage, and offers it to you.`
 			`	"Name's Yngvar." He looks at you hard with his one good eye.`
 			choice
 				`	(Shake his hand.)`
@@ -4818,7 +4818,7 @@ mission "Hroar's Haulers 9"
 				decline
 
 			label fine
-			`	Yngvar nods, "Ain't nothing wrong with asking questions. That's half the reason I am here."`
+			`	Yngvar nods, "Ain't nothing wrong with asking questions. That's half the reason I'm here."`
 
 			label whyhel
 			`	"We've been moving and storing all the cargo for the Long Haul to Muspel over the last few months. I'm sure Hartha-Hroar had you running all over collecting supplies. Problem is some cargo doesn't store too good. The folk kind. Which is why we have to wait until everything else is ready to go before we start loading up the guest-workers on Helheim. Which is where we're at in the timeline right now. We need to stop by Helheim, make sure them folks are loaded up, and then head to Muspel to pick up the rest of the caravan."`
@@ -4894,7 +4894,7 @@ mission "Hroar's Haulers 10"
 				accept
 			
 			label exploit
-			`	Yngvar shakes his head, "Nothing of the sort. We pay 'em better wages then they'd ever see on Earth, and if they keep their noses clean and stick around for three seasons, we sponsor them and make them full fledged members of our organization. If they keep with it eventually mining crews can even pool together to get their own ship."`
+			`	Yngvar shakes his head, "Nothing of the sort. We pay 'em better wages then they'd ever see on Earth, and if they keep their noses clean and stick around for three seasons, we sponsor them and make them full fledged members of our organization. If they keep with it eventually mining crews can pool enough together to get their own ship."`
 			`	He gets a wistful look in his eye, "Hel, nearly a quarter of the Haulers you see out there in the Gap started out as Guest-Workers. So, no, <last>, we don't exploit them. One might even argue that we save them."`
 			`	The old man jerks his head at the rapidly dwindling lines of miners, "But not this lot, they still belong to Earth. So we'll move them for a fee and make some extra money on the Long Haul. Can't rightly traverse the whole of human space without taking advantage of lucrative stops along the way."`
 			`	Yngvar casts a quick glance at the shirking lines of workers, "Anyways, I am done here. Just needed to check in with Solvi. Didn't want us sitting around on Muspel twiddling our thumbs because of a loggerjam on Helheim. So how abouts you take us to Muspel? Our shipment is waiting for us there, assuming you got space for 430 tons of cargo. But then, what kind of Hauler would you be if you couldn't haul."`
@@ -5069,7 +5069,7 @@ mission "Hroar's Haulers 13"
 		conversation
 			`You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
 			`	He gives you a gruff nod as you arrive.`
-			`	"Smooth run so far. They mostly are. Pirate has to be a few stars short of a galaxy to take on a fleet as big as ours." Yngvar says as his eyes scan the crowd below.`
+			`	"Smooth run so far. They mostly are. Pirate has to be a few stars short of a galaxy to take on a fleet as big as ours." Yngvar says as his eye scans the crowd below.`
 			`	"Sometimes fights break out 'tween the guest-workers. Old scores, gambling gone bad on the trip, anything of the like. But so far everything looks good."`
 			`	Yngvar takes in a deep breath, "Earth air. Doesn't smell like home. Just smells stale."`
 			choice
@@ -5083,15 +5083,15 @@ mission "Hroar's Haulers 13"
 				decline
 
 			label earth
-			`	Yngvar shakes his head, "My people left here on a generation ship first chance they got, and never looked back. Earth's a world gone stale with the weight of its history, and the cowardice of ancestors. The stars called to us and these folks stayed home."`
+			`	Yngvar shakes his head, "My people left here on a generation ship first chance they got, and never looked back. Earth's a world gone rotten with the weight of its history, and the cowardice of its ancestors. The stars called to us and these folks stayed home."`
 			choice
 				`	"Interesting, well what now?"`
 					goto whatnow
 				`	"Generation ship?"`
 			action
 				set "generationship"
-			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. For four generations my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs.`
-			`	Yngvar's eyes gloss over as he talks,"Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes? Ah, we could never quite kick the knack for it after that. Always felt most at home 'tween worlds. Which is one of the reasons why we became Haulers."`
+			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. Four generations of my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs.`
+			`	Yngvar's eye glosses over as he talks, "Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes, eh? Ah, we could never quite kick the knack for it after that. Always felt most at home 'tween worlds. Which is one of the reasons why we became Haulers."`
 			`	The old man shakes his head, "That's enough of my wobblin' jaw. Let's get back to the matter at hand."`
 			`	He leans back over the railing and nods toward disembarking guest-workers.`
 			label whatnow
@@ -5109,7 +5109,7 @@ mission "Hroar's Haulers 14"
 		has "Hroar's Haulers 13: declined"
 	on offer
 		conversation
-			`The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the Local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
+			`The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 				decline
 
 
@@ -5444,7 +5444,7 @@ mission "Hroar's Haulers 15"
 
 			label yngvar
 			`	Yngvar nods to you as you approach the quiet table he shares with Bolverka in the back. Bolverka looks about middle aged, older than Unferth and Gunhilda, but quite a bit younger than Yngvar. She has close cropped brown hair and dark brown eyes. She watches you curiously as you take your seat.`
-			`	"Smart thinking, <last>." Yngvar says, "You'll go deaf or blind from the music or drink with the crowd at the bar. Safer back here with us."`
+			`	"Smart thinking, <last>." Yngvar says, "You'll go deaf or blind from the music and drink with the crowd at the bar. Safer back here with us."`
 			`	Bolverka laughs, "Don't let old Yngvar fool you, if he wasn't the logistics officer he'd be right there with them."`
 			`	"Bah," Yngvar rolls his one good eye, "What's a stoner know about having a little fun anyways?"`
 			label stonertalk
@@ -5459,7 +5459,7 @@ mission "Hroar's Haulers 15"
 			`	"You know full well that we 'stoners' have just as much fun as anyone else, Yng. Besides, you're practically one yourself so stop with the act." Bolverka says with more affection than venom.`
 			label yngcont
 			`	"I'm a spacer, not a stoner! There ain't no stones with my life memories scribbled on them under my bed!" Yngvar retorts, and you suddenly feel like you're in the middle of an argument they've had a hundred times before.`
-			`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old asteroid next to an Elf-Stone is about as stoner as it gets, with only the mildest of tweaks."`
+			`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old station is about as stoner as it gets, with only the mildest of tweaks."`
 			`	Yngvar frowns, "A piece of high technology is as different from a stone as a dwarf planet from a sun."`
 			`	This time Bolverka rolls her eyes, "It's the symbolism that matters, not the... you know what? How about we ask the greenhorn? Let them weigh in on the matter. I hear they have some experience with us 'stoners'."`
 			`	"Fine." Yngvar grumbles, "What do you say, <last>? Are they the same thing? Or different?"`
@@ -5474,7 +5474,7 @@ mission "Hroar's Haulers 15"
 				`	"A ship is not a stone. I'm with Yngvar on this one."`
 					goto shipnotstone
 				`	"I'm just here because Yngvar told me to report in. I don't care about this discussion."`
-			`	Both Yngvar and Bolverka give you unflattering frowns. "Fine," Yngvar says,"I thought you could do with a little culture, but if that's the case you're free to go."`
+			`	Both Yngvar and Bolverka give you unflattering frowns. "Fine," Yngvar says, "I thought you could do with a little culture, but if that's the case you're free to go."`
 			choice
 				`	(Get up and leave.)`
 			`	As you make your way to the exit you hear the singing suddenly cut off and some sort of fight break out.`
@@ -5482,8 +5482,8 @@ mission "Hroar's Haulers 15"
 			`	You find yourself suddenly in the middle a large group of Haulers who've followed you outside. A moment later Yngvar joins you.`
 			`	"<last>." Yngvar says dryly, "Syndicate Enforcers decided we were a little too disorderly and started arresting folks. They got Solvi and most his crew, along with Gunhilda, but there's no point in picking a fight we can't win."`
 			`	Yngvar pushes into the middle of the Haulers and whistles until the frantic chatter dies down.`
-			`	"Alright everyone," Yngvar's voice rings out, "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
-			`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks with them. Let's see if we can wriggle our way outta this mess."`
+			`	"Alright everyone," Yngvar's voice rings out. "Head back to your ships and stay put. Do you pre-launch checks as discretely as possible and wait for my signal. <last> and myself are going to go try and sort things out."`
+			`	With that the group starts shuffling away from you and Yngvar. The old man turns to you, "Syndies are always looking for an excuse to come down hard on us Haulers. I shoulda seen it coming. Still, they are more or less lawful, and where that fails money still talks. Let's see if we can wriggle our way outta this mess."`
 			`	Yngvar starts walking in the opposite direction of the departing haulers.`
 			choice
 				`	(Follow Yngvar.)`
@@ -5491,7 +5491,7 @@ mission "Hroar's Haulers 15"
 
 			label stoner
 			`	Yngvar chuckles, "Buncha stone-worshipping fools who think elves brought 'em to the Deep."`
-			`	"Yng, dear, you know that isn't the whole story." Bolverka says with exhasperation.`
+			`	"Yng, dear, you know that isn't the whole story." Bolverka says with mild exhasperation.`
 			`	"Listen, I ain't never seen no elf. But I've sure as Schwarzschild seen a lot of ships. You stoners are just the children of a lost generation ship who reverted to their primal natures is all."`
 			`	Bolverka sighs and taps her fingers on the table, "Generation ships? The ones that couldn't have possibly traveled to the Deep in the time you claim they did? That's nearly as outlandish as any story about elves."`
 			`	She pauses and then turns back to you, "Stoners is just what some folk in the Deep call those of us who follow the old ways. We don't necessarily believe it was elves that brought us here, but something did."`
@@ -5522,7 +5522,7 @@ mission "Hroar's Haulers 15"
 			label logofficer
 			action
 				set "logofficer"
-			`	"I'm whatever the Haulers need me to be. Back in Hrut's day, that's Hroar's father, I often ran hrither like you. But before and after that I ran my own ships and convoys. Important to have one of us spacers around to keep an eye on the miners. Just because they got themselves a ship, doesn't mean they know what to do with it."`
+			`	"I'm whatever the Haulers need me to be. Back in Hrut's day, that's Hroar's father, I often ran hirthr like you. But before and after that I ran my own ships and convoys. Important to have one of us spacers around to keep an eye on the miners. Just because they got themselves a ship, doesn't mean they know what to do with it."`
 			`	Bolverka scoffs.`
 			`	"I figure Captain Solvi Unferth, another spacer like me, will take over logistics when it's time for me to return to the cosmic dust."`
 			`	"Could you be less dramatic, Yng?" Bolverka nearly laughs, "you'll outlast all of us yet. Probably put a few of those blackholes you're always talking about to shame, too. Now, I think you were saying something about us 'stoners' not having any fun."`
@@ -5536,10 +5536,10 @@ mission "Hroar's Haulers 15"
 			`	Bolverka holds up both hands in surrender, "Fine, fine. Tell your story, old man."`
 			`	"Haulers are a figurative, and often times literal, marriage of miners and spacers from the Caravan days. I'll admit after near 300 years, the differences between the two groups have gotten more than a little muddled. These days most Haulers are a mix of both, they spend some time mining and some time spacing. But there's still a few of us, who to stick to one trade and one tradition."`
 			`	Bolverka yawns.`
-			`	Yngvar pointedly ignores her, "I was born on the Haulers old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family had served on it for centuries."`
-			`	"She was a beauty, what I wouldn't do to see her like fly again," Yngvar's clear eye sparkles, "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and keep with it with us for all our days. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to the Spacer Asteroid where it's laid to rest."`
+			`	Yngvar pointedly ignores her, "I was born on the Hauler's old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family had served on it for centuries."`
+			`	"She was a beauty, what I wouldn't do to see her like fly again," Yngvar's clear eye sparkles, "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and keep with it with us for all our days. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to the Old Station where it's laid to rest."`
 			`	"So just like our stones." Bolverka says brightly.`
-			`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the Spacer Asteroid they'll last forever. It's different, better, and more refined."`
+			`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the Old Station they'll last forever. It's different, better, and more refined."`
 			`	"Sure, Yng," Bolverka turns her attention back to you, "So what do you say, greenhorn? Same thing, right?"`
 				goto cairntalk
 
@@ -5559,7 +5559,7 @@ mission "Hroar's Haulers 15"
 			`	"Ha!" Yngvar exclaims triumphantly, "I told you. It's different. It's more technical, more nuanced, more rational, more..."`
 			`	"...of the same." Bolverka interrupts.`
 			`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look, "Who knows what winning could cost you?"`
-			`	"I, uh..." Yngvar stammers, but before he can say anything else a commotion can breaks out near the bar.`
+			`	"I, uh..." Yngvar stammers, but before he can say anything else a commotion breaks out near the bar.`
 			`	A group of people in riot gear have surrounded Captain Unferth and those nearest him.`
 			label yngvarswears
 			`	Yngvar swears under his breath, "Syndicate Enforcers. Here to arrest as many of us as they can for trumped up charges, no doubt."`
@@ -5978,6 +5978,40 @@ mission "Hroar's Haulers 15"
 			label whosehere
 			`	The cell is packed with Haulers. The whole place is lousy with Rust-red jackets, and the smell of cheap Syndicate alcohol.  You're sure Captain Unferth around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the cell door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
 			goto outofthecell
+
+mission "Yngvar Interlude"
+	invisible
+	landing
+	source "Maker"
+	destination "Rand"
+	to offer
+		has "Hroar's Haulers 13: offered"
+	on enter
+
+	# You will see this conversation after the first jump you make.
+	on enter
+		conversation
+			`Yngvar finds you on the bridge. "Captain <last>, best we spoke."`
+		choice
+			`	"Sure, what about?"`
+				goto notgood
+				to display
+					has "brokecontract"
+			`	"Sure, what about?"`
+				goto sortagood
+				to display
+					has "makerhero"
+			`	"Sure, what about?"`
+				goto failed
+				to display
+					has "Hroar's Haulers 15: declined"
+			`	"Sure, what about?"`
+				goto paid
+				to display
+					has "Hroar's Haulers 15: accepted"
+		`	"Means a lot to put your dime on the line for us." The old man nods slowly, "Don't be thinking we'll forget. We may not be able to make you whole, but we'll do what we can."`
+		`	"Now, we shouldn't run into too much more trouble. `	
+
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
