@@ -6020,7 +6020,7 @@ mission "Yngvar Interlude"
 				not "paidsome"
 			decline
 		label notgood
-		`	"Kid, you ain't done us no favors in there." Yngvar's face is red, "That contract brought in a lot of creds, kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
+		`	"<last>, ." Yngvar's face is red, "That contract brought in a lot of creds, kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
 		choice
 			`	"I did what I thought was right."`
 			`	"Sorry."`
