@@ -27,7 +27,7 @@ SpriteParameters::SpriteParameters()
 SpriteParameters::SpriteParameters(const Sprite *sprite)
 {
 	auto spriteDetails = SpriteDetails{sprite, {}, {}};
-	sprites.insert(pair<int, SpriteDetails>(0, spriteDetails));
+	sprites.insert(std::pair<int, SpriteDetails>(0, spriteDetails));
 	exposed = {};
 	exposedIndex = 0;
 	defaultDetails = spriteDetails;
@@ -40,7 +40,7 @@ void SpriteParameters::SetSprite(int index, const Sprite *sprite, AnimationParam
 	ConditionSet triggerConditions)
 {
 	auto spriteDetails = SpriteDetails{sprite, data, triggerConditions};
-	sprites.insert(pair<int, SpriteDetails>(index, spriteDetails));
+	sprites.insert(std::pair<int, SpriteDetails>(index, spriteDetails));
 	if(index == 0)
 	{
 		exposed = data;

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPRITE_PARAMETERS_H_
-#define SPRITE_PARAMETERS_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "Point.h"
@@ -24,8 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <tuple>
 
 class Sprite;
-
-using namespace std;
 
 
 // Class holding all of the animation parameters required to animate a sprite.
@@ -81,8 +78,8 @@ public:
 		Point center;
 	};
 
-	using SpriteDetails = tuple<const Sprite*, AnimationParameters, ConditionSet>;
-	using SpriteMap = map<int, SpriteDetails>;
+	using SpriteDetails = std::tuple<const Sprite*, AnimationParameters, ConditionSet>;
+	using SpriteMap = std::map<int, SpriteDetails>;
 
 
 public:
@@ -121,6 +118,3 @@ private:
 	int requestedIndex = 0;
 };
 
-
-
-#endif
