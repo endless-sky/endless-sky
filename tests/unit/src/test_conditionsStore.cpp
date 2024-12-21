@@ -197,7 +197,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 	}
 }
 
-SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]" )
+SCENARIO( "Setting conditions", "[ConditionStore][ConditionSetting]" )
 {
 	GIVEN( "An empty conditionsStore" )
 	{
