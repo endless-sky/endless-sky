@@ -110,7 +110,7 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw()
 {
-	info.ClearConditions();
+	Information info;
 	info.SetSprite("land", planet.Landscape());
 
 	const Ship *flagship = player.Flagship();
