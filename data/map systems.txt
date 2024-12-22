@@ -11745,7 +11745,6 @@ system Durax
 			period 29.2266
 
 system E-4183
-	shrouded
 	pos 1042.97 -618.13
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" "umbral reach"
@@ -11801,7 +11800,6 @@ system E-4183
 			offset 240
 
 system E-9182
-	shrouded
 	pos 1167.2 -629
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -15361,7 +15359,6 @@ system G-3191
 		period 5084.55
 
 system G-6183
-	shrouded
 	pos 1019.4 -590.18
 	government Uninhabited
 	attributes "black hole" "notable star" "umbral reach"
@@ -15400,7 +15397,6 @@ system G-6183
 		offset 145
 
 system G-719
-	shrouded
 	pos 1162.19 -417.18
 	government Uninhabited
 	attributes "umbral reach"
@@ -15441,7 +15437,6 @@ system G-719
 			period 147.7
 
 system G-819
-	shrouded
 	pos 1186.97 -477.17
 	government Uninhabited
 	attributes "umbral reach"
@@ -16667,7 +16662,6 @@ system Gupta
 		period 1077.08
 
 system H-8188
-	shrouded
 	pos 1206.6 -506.5
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -16697,7 +16691,6 @@ system H-8188
 		period 5620.03
 
 system H-9187
-	shrouded
 	pos 1130.88 -455.97
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -22559,7 +22552,6 @@ system Kursa
 		period 1517.13
 
 system L-118
-	shrouded
 	pos 1088.89 -408.306
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -22599,7 +22591,6 @@ system L-118
 			period 434
 
 system L-6181
-	shrouded
 	pos 1139.93 -522.87
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -23432,7 +23423,6 @@ system Luue-Saqru
 			period 32
 
 system M-1188
-	shrouded
 	pos 1124.66 -607.233
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -23471,7 +23461,6 @@ system M-1188
 		period 38041.2
 
 system MC-42
-	shrouded
 	pos 1113.33 -500.68
 	government Uninhabited
 	attributes "iije" "umbral reach"
@@ -23508,7 +23497,6 @@ system MC-42
 		period 3186.04
 
 system MS-219
-	shrouded
 	pos 1075.13 -568.167
 	government Uninhabited
 	attributes "bright star" "iije" "notable star" "umbral reach"
@@ -27014,7 +27002,6 @@ system Nunki
 			period 66.2404
 
 system O-3184
-	shrouded
 	pos 1100.4 -646.047
 	government Uninhabited
 	attributes "umbral reach"
@@ -36283,7 +36270,6 @@ system Tuur-Kella
 		period 10000
 
 system U-5188
-	shrouded
 	pos 1084 -665.623
 	government Uninhabited
 	attributes "umbral reach"
@@ -37095,7 +37081,6 @@ system "Uwo Seija"
 		period 2910.75
 
 system V-2189
-	shrouded
 	pos 1135.9 -711.667
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -37784,7 +37769,6 @@ system Vulcuja
 		period 1989.22
 
 system W-3197
-	shrouded
 	pos 1204.5 -400
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"

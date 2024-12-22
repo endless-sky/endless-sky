@@ -3305,11 +3305,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
 		return true;
 	});
-	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
-		return true;
-	});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
 	auto tributeHasGetFun = [this](const string &name) -> int64_t
@@ -3328,27 +3323,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), value);
 	});
-	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), 0);
-	});
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
 	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return HasLicense(name.substr(strlen("license: ")));
 	});
-
 	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
 		if(!value)
 			RemoveLicense(name.substr(strlen("license: ")));
 		else
 			AddLicense(name.substr(strlen("license: ")));
-		return true;
-	});
-
-	licenseProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		RemoveLicense(name.substr(strlen("license: ")));
 		return true;
 	});
 
@@ -3991,11 +3976,6 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		string condition = name.substr(strlen("global: "));
 		return GameData::GlobalConditions().Set(condition, value);
-	});
-	globalProvider.SetEraseFunction([](const string &name) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Erase(condition);
 	});
 }
 
