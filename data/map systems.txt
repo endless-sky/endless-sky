@@ -6322,7 +6322,7 @@ system Avasaa-Novaa
 	shrouded
 	pos 71 917.52
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 500
 	habitable 320
 	hazard "Predecessors Base Spatial Decay" 400
@@ -13394,10 +13394,9 @@ system Esix
 		period 1163.59
 
 system "Eta Carinae"
-	shrouded
 	pos -212.62 928.99
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 5000
 	habitable 36800
 	asteroids "small rock" 1 4.65
@@ -14344,6 +14343,10 @@ system Feraticus
 		sprite planet/lava0
 		distance 622.81
 		period 1390.20
+	object
+		sprite planet/gateway-frozen
+		distance 10000
+		period 126491
 
 system Fereti
 	pos -39 600
@@ -19651,7 +19654,7 @@ system Kasii-Cavaasa
 	shrouded
 	pos -21.76 909.31
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 5000
 	habitable 17025
 	link Mavra-Ijsola
@@ -19674,7 +19677,7 @@ system Kasii-Sola
 	shrouded
 	pos -23 1089.98
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 500
 	habitable 320
 	link Vasa-Oorua
@@ -19726,7 +19729,7 @@ system Kasi-Vasa-Novaa
 	shrouded
 	pos -149.44 989.64
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 500
 	habitable 10
 	link Kiiraj-Luue
@@ -19967,7 +19970,7 @@ system Khasola-Ryuit
 	shrouded
 	pos -71.87 833.59
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 5000
 	habitable 12000
 	hazard "Predecessors Base Spatial Decay" 600
@@ -20037,7 +20040,7 @@ system Kiiraj-Luue
 	shrouded
 	pos -125.52 955.66
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 2560
 	habitable 2560
 	link Kasi-Vasa-Novaa
@@ -22923,7 +22926,7 @@ system Mavra-Ijsola
 	shrouded
 	pos -68.67 883.61
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 3000
 	habitable 3000
 	hazard "Predecessors Base Spatial Decay" 200
@@ -34927,7 +34930,7 @@ system Uuoru-Sossa
 	shrouded
 	pos -58 976.13
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 2700
 	habitable 2700
 	hazard "Predecessors Base Spatial Decay" 100
@@ -35353,7 +35356,7 @@ system Vasa-Oorua
 	shrouded
 	pos 31.3947 1014.88
 	government Uninhabited
-	attributes predecessor
+	attributes predecessor "tangled shroud"
 	arrival 1705
 	habitable 1705
 	link Kasii-Sola
