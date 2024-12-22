@@ -40,28 +40,6 @@ mission "Jibauni: Heliarch Patrol"
 		personality launching quiet secretive uninterested
 		ship "Heliarch Punisher (Jump Defense)" "Gentle Guardian"
 
-ship "Heliarch Punisher" "Heliarch Punisher (Jump Defense)"
-	outfits
-		"Ion Rain Gun" 6
-		"Heliarch Repulsor" 4
-
-		"Large Reactor Module" 2
-		"Large Battery Module"
-		"Overcharged Shield Module" 2
-		"Overclocked Repair Module" 2
-		"Cooling Module" 4
-		"Scanning Module" 4
-		"Enforcer Riot Staff" 78
-		"Enforcer Confrontation Gear" 44
-		"Outfits Expansion" 2
-		
-		"Large Thrust Module" 2
-		"Small Thrust Module" 2
-		"Large Steering Module" 2
-		"Small Steering Module" 3
-		"Hyperdrive"
-		"Jump Drive"
-
 
 mission "Jibauni: Jibauni Rebel Fighter License"
 	landing
