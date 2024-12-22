@@ -198,7 +198,7 @@ void PlayerInfo::New(const StartConditions &start)
 
 
 // Load player information from a saved game file.
-void PlayerInfo::Load(const string &path)
+void PlayerInfo::Load(const filesystem::path &path)
 {
 	// Make sure any previously loaded data is cleared.
 	Clear();
@@ -210,7 +210,7 @@ void PlayerInfo::Load(const string &path)
 	map<string, map<string, int>> missionCargoToDistribute;
 	map<string, map<string, int>> missionPassengersToDistribute;
 
-	filePath = path;
+	filePath = path.string();
 	// Strip anything after the "~" from snapshots, so that the file we save
 	// will be the auto-save, not the snapshot.
 	size_t pos = filePath.find('~');
@@ -472,7 +472,7 @@ void PlayerInfo::Load(const string &path)
 // Load the most recently saved player (if any). Returns false when no save was loaded.
 bool PlayerInfo::LoadRecent()
 {
-	string recentPath = Files::Read(Files::Config() + "recent.txt");
+	string recentPath = Files::Read(Files::Config() / "recent.txt");
 	// Trim trailing whitespace (including newlines) from the path.
 	while(!recentPath.empty() && recentPath.back() <= ' ')
 		recentPath.pop_back();
@@ -497,7 +497,7 @@ void PlayerInfo::Save() const
 		return;
 
 	// Remember that this was the most recently saved player.
-	Files::Write(Files::Config() + "recent.txt", filePath + '\n');
+	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
 	if(filePath.rfind(".txt") == filePath.length() - 4)
 	{
@@ -524,7 +524,7 @@ void PlayerInfo::Save() const
 	Save(filePath);
 
 	// Save global conditions:
-	DataWriter globalConditions(Files::Config() + "global conditions.txt");
+	DataWriter globalConditions(Files::Config() / "global conditions.txt");
 	GameData::GlobalConditions().Save(globalConditions);
 }
 
@@ -694,7 +694,7 @@ void PlayerInfo::SetName(const string &first, const string &last)
 
 	// If there are multiple pilots with the same name, append a number to the
 	// pilot name to generate a unique file name.
-	filePath = Files::Saves() + fileName;
+	filePath = (Files::Saves() / fileName).string();
 	int index = 0;
 	while(true)
 	{
@@ -1693,7 +1693,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		if(!ship->IsParked() && !ship->IsDisabled())
 		{
 			// Recalculate the weapon cache in case a mass-less change had an effect.
-			ship->GetAICache().Calibrate(*ship.get());
+			ship->UpdateCaches(true);
 			if(ship->GetSystem() != system)
 			{
 				ship->Recharge(Port::RechargeType::None, false);
@@ -3305,11 +3305,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
 		return true;
 	});
-	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
-		return true;
-	});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
 	auto tributeHasGetFun = [this](const string &name) -> int64_t
@@ -3328,27 +3323,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), value);
 	});
-	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), 0);
-	});
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
 	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return HasLicense(name.substr(strlen("license: ")));
 	});
-
 	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
 		if(!value)
 			RemoveLicense(name.substr(strlen("license: ")));
 		else
 			AddLicense(name.substr(strlen("license: ")));
-		return true;
-	});
-
-	licenseProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		RemoveLicense(name.substr(strlen("license: ")));
 		return true;
 	});
 
@@ -3992,11 +3977,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		string condition = name.substr(strlen("global: "));
 		return GameData::GlobalConditions().Set(condition, value);
 	});
-	globalProvider.SetEraseFunction([](const string &name) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Erase(condition);
-	});
 }
 
 
@@ -4009,6 +3989,7 @@ void PlayerInfo::CreateMissions()
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
 	bool hasPriorityMissions = false;
+	unsigned nonBlockingMissions = 0;
 	for(const auto &it : GameData::Missions())
 	{
 		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
@@ -4025,7 +4006,10 @@ void PlayerInfo::CreateMissions()
 			if(missions.back().IsFailed(*this))
 				missions.pop_back();
 			else if(!it.second.IsAtLocation(Mission::JOB))
+			{
 				hasPriorityMissions |= missions.back().HasPriority();
+				nonBlockingMissions += missions.back().IsNonBlocking();
+			}
 		}
 	}
 
@@ -4045,18 +4029,18 @@ void PlayerInfo::CreateMissions()
 				++it;
 		}
 	}
-	else if(availableMissions.size() > 1)
+	else if(availableMissions.size() > 1 + nonBlockingMissions)
 	{
 		// Minor missions only get offered if no other missions (including other
-		// minor missions) are competing with them. This is to avoid having two
-		// or three missions pop up as soon as you enter the spaceport.
+		// minor missions) are competing with them, except for "non-blocking" missions.
+		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
 			if(it->IsMinor())
 			{
 				it = availableMissions.erase(it);
-				if(availableMissions.size() <= 1)
+				if(availableMissions.size() <= 1 + nonBlockingMissions)
 					break;
 			}
 			else
