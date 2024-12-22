@@ -263,7 +263,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"or", "Error: child-nodes expected, found none:\n"}
 		}));
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndMessage))};
-		THEN( "The expression \'" + std::get<0>(expressionAndMessage) + "\' is invalid and triggers the correct error-message" ) {
+		THEN( "Expression \'" + std::get<0>(expressionAndMessage) + "\' is invalid and triggers error-message" ) {
 			REQUIRE_FALSE( numberSet.IsValid() );
 			REQUIRE( warnings.Flush().substr(0, std::get<1>(expressionAndMessage).size()) == std::get<1>(expressionAndMessage) );
 			REQUIRE( numberSet.IsEmpty() );
