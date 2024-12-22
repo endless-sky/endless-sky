@@ -704,7 +704,7 @@ news "tour guide - warning"
 		word
 			`"`
 		word
-			"Be carefull"
+			"Be careful"
 			"Be aware"
 		word
 			" "
