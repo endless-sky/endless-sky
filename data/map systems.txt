@@ -4993,7 +4993,6 @@ system "Alpha Hydri"
 		period 1185.18
 
 system Alphan
-	shrouded
 	pos -1407 684
 	government Diba
 	habitable 8748.634
@@ -19951,7 +19950,6 @@ system Jied
 		period 2930.38
 
 system Jiggi
-	shrouded
 	pos -1452 673
 	government Diba
 	habitable 14044.159
@@ -27230,7 +27228,6 @@ system Ojstaan-Sola
 			period 61.598
 
 system Ondelon
-	shrouded
 	pos -1397 629
 	government Diba
 	habitable 625
@@ -31436,7 +31433,6 @@ system Rilal
 			period 122.509
 
 system Rinl
-	shrouded
 	pos -1376 652
 	government Diba
 	habitable 1250
@@ -34248,7 +34244,6 @@ system "Sol Arach"
 			period 26.2104
 
 system "Sol Diba"
-	shrouded
 	pos -1457 643
 	government Diba
 	habitable 1310
