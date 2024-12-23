@@ -75,7 +75,6 @@ news "merchant anywhere"
 			"Getting there is half the fun. Getting paid is the other half."
 			"Being a pilot isn't all fun and games. We have angry customers, hostile pirates and asteroids to deal with."
 			"We are always at risk of being killed by faulty equipment, solar storms, asteroids, pirates or angry customers. Ever wonder why you didn't just take a desk job?"
-			"Did you ever look at ships going into hyperspace? They appear to be moving backwards because they are moving faster than light."
 			"You think highly of that boat of yours? My ship is ten times larger."
 		word
 			`"`
@@ -1603,6 +1602,21 @@ news "student"
 
 
 
+news "philosopher"
+	name
+		word
+			"Philosopher"
+	message
+		word
+			`"`
+		word
+			"If I take a grain of sand away from a heap, one at a time, then when does the heap stop being a heap?"
+			"What if we could look at ships going into hyperspace? Will they appear to be moving backwards because they are moving faster than light?"
+		word
+			`"`
+
+
+
 news "religious"
 	location
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
@@ -2127,6 +2141,8 @@ news "sticker on ship"
 			"Babe onboard."
 			"Baby onboard."
 			"There is no place like [insert homeplanet here]."
+			"This is not a bumper sticker, this is a rust retardant patch."
+			"Air leak seal, do not remove."
 
 
 
@@ -2145,7 +2161,8 @@ news "label on ship"
 			"Stay away from thruster outlets during takeoff."
 			"Door opens outwards."
 			"Remove red ribbons before flight."
-			"Nuclear reactor compartiment, NEA certification required for servicing this part of the ship."
+			"Nuclear reactor compartment, certification is required for servicing this part of the ship."
+			"Compartiment du réacteur nucléaire, la certification est requise avant l'entretien."
 
 
 
