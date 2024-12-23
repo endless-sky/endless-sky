@@ -89,7 +89,7 @@ public:
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
