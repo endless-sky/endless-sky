@@ -2547,7 +2547,7 @@ mission "Terraforming 13"
 		conversation
 			`As you approach <planet>, Amy is astounded by the magnitude of volcanic ash in the air, far exceeding what was released by the volcano you triggered on Tundra. "This place makes Tundra seem temperate," she remarks after observing the glaciers that occupy most of the planet's polar regions.`
 			`	Her fascination with the state of this world is temporarily forgotten when she exits your ship and sees the Wanderers for the first time. "I don't know what I expected them to be like, but it wasn't birds," she mumbles, staring at them from head to toe. However, she quickly returns to the reason for coming here. "Do you know how we can find someone who can answer my questions?"`
-			`	You approach one of the nearby Wanderers and ask if they could direct you to Tema'a Iriket, the terraforming director. They don't appear to understand the Hai language, but they seem to recognize the name and gesture for you to wait in the spaceport, before heading off in a different direction, presumably to fetch Iriket for you.`
+			`	Approaching one of the nearby Wanderers, you ask if they could direct you to Tema'a Iriket, the terraforming director. While they don't appear to understand the Hai language from your translator, they seem to recognize the name and gesture for you to wait in the spaceport, before flying off into the distance, presumably to fetch Iriket for you.`
 
 
 
