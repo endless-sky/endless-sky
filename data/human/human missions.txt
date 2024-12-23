@@ -2526,6 +2526,8 @@ mission "Terraforming 13"
 		has "wanderers sestor done"
 	on offer
 		conversation
+			branch repeat
+				has "terraforming field trip: deferred later"
 			`As you walk through the spaceport, you notice a poster featuring Amy, whom you previously helped terraform this world and Rand. The poster describes that terraforming action, and the long-term goal to restore the warmer climate Tundra had millions of years ago. Amy's work on "equilibrium mapping," the idea that planets naturally "want" to support more complex and varied life, seems similar to the Wanderer philosophy that each planet has its own "will", and that the best way to terraform it is to work with that "will." Amy may be interested in learning about the Wanderers and their techniques. Would you like to find her and tell her about them?`
 			choice
 				`	(Yes.)`
@@ -2540,9 +2542,26 @@ mission "Terraforming 13"
 			`	Now that the Kor Mereti drones are peaceful, and the Kor Sestor drones have been eliminated, there is no longer an immediate threat to the Wanderers, and they will be focused much more on their work to repair the former Korath worlds. They would probably be happy to discuss some of that work with someone as enthused by the prospect as Amy.`
 			choice
 				`	"Alright. I'll prepare a bunk for you."`
+					goto end
 				`	"Sorry, that's too far out of my way."`
-					decline
+			action
+				set "terraforming field trip: deferred later"
+			`	Amy's disappointment returns, but before leaving, she gives you her contact information, saying, "Well, I'd still love to come along the next time you are travelling that way."`
+				defer
+			label end
 			`	She is delighted, and explains that she will meet you at your ship later today, before leaving to attend to her work in preparation for her absence.`
+				accept
+			label repeat
+			`You've returned to Tundra, where Amy, the terraforming researcher who is interested in visiting the Wanderers, works. Would you like to contact her to offer her the trip now?`
+			choice
+				`	(Yes.)`
+				`	(Not today.)`
+					defer
+				`	(No.)`
+					decline
+			`	You use the contact information Amy provided the first time you told her about the Wanderers and inform her that you are prepared to take her on the journey now.`
+			`	"I just need to tend to a few things here, in preparation for my absence, and I'll be at your ship in a few hours," she says.`
+			`	Once she arrives, you show her to her bunk and she settles in for the journey.`
 				accept
 	on complete
 		conversation
