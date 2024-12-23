@@ -2533,6 +2533,8 @@ mission "Terraforming 13"
 					defer
 				`	(No.)`
 					decline
+			`	You're able to contact Amy. She has been continuing to monitor the status of Tundra's climate, alongside the researchers from the Deep who she worked with to terraform this world. You give her a quick summary of your adventures, and ask if she has time to discuss the Wanderers in more detail. Upon learning that they are terraformers and their philosophy resembles her own, she readily agrees to meet in the spaceport bar.`
+			`	Once she arrives, you tell her about the Wanderers: that the work of their civilization is to repair worlds left in ruin by their previous inhabitants. You explain their view that those worlds have their own identities that they must collaborate with in order for terraforming to be successful.`
 			`	She has a slew of questions ranging from how the Wanderers determine a planet's identity to how often asteroids are used in their work. Unfortunately, you are not able to offer much information about the specific details of how the Wanderers go about their terraforming work. Disappointed, but not defeated, Amy asks, "Could you take me to visit these aliens?`
 			`	Now that the Kor Mereti drones are peaceful, and the Kor Sestor drones have been eliminated, there is no longer an immediate threat to the Wanderers, and they will be focused much more on their work to repair the former Korath worlds. They would probably be happy to discuss some of that work with someone as enthused by the prospect as Amy.`
 			choice
