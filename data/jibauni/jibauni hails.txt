@@ -89,22 +89,26 @@ phrase "jibauni untranslated"
 
 phrase "jibauni untranslated"
 	word
-		"${digit}${digit}" 10
-		"${digit}${digit}${digit}" 5
+		"${digit}	${digit}" 10
+		"${digit}	${digit}	${digit}" 5
 		"${digit}"
-	word
-		"."
 
 phrase "jibauni untranslated"
 	phrase
 		"jibauni untranslated random word 1"
 		"jibauni untranslated random word 2"
+	word
+		" "
 	phrase
 		"empty"
 		"jibauni untranslated random word 1"
+	word
+		" "
 	phrase
 		"empty"
 		"jibauni untranslated random word 2"
+	word
+		" "
 	phrase
 		"empty"
 		"jibauni untranslated random word 1"
@@ -131,8 +135,6 @@ phrase "jibauni untranslated random word 1"
 	phrase
 		"consonant uncapitalized" 2
 		"empty"
-	word
-		" "
 
 phrase "jibauni untranslated random word 2"
 	phrase
@@ -154,8 +156,6 @@ phrase "jibauni untranslated random word 2"
 	phrase
 		"empty"
 		"vocal"
-	word
-		" "
 
 phrase "empty"
 	word

@@ -71,6 +71,8 @@ phrase "jibauni"
 phrase "jibauni"
 	phrase
 		"jewels"
+	word
+		" "
 	phrase
 		"items"
 
