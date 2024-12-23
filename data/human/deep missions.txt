@@ -1634,6 +1634,7 @@ event "deep: arculus empty"
 		remove fleet "Remnant Transport"
 		remove fleet "Remnant Home Guard"
 		remove fleet "Korath Ember Waste Raid"
+		remove fleet "Kor Alaji Raid"
 
 event "deep: arculus restored"
 	system "Arculus"
@@ -1641,7 +1642,8 @@ event "deep: arculus restored"
 		add fleet "Small Remnant" 2200
 		add fleet "Remnant Transport" 2200
 		add fleet "Remnant Home Guard" 2000
-		add fleet "Korath Ember Waste Raid" 40000
+		add fleet "Korath Ember Waste Raid" 120000
+		add fleet "Kor Alaji Raid" 60000
 
 
 
@@ -2324,8 +2326,8 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 		"Hyperdrive"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret "Heavy Anti-Missile Turret"
 	turret "Pulse Turret"
 	turret "Pulse Turret"

@@ -44,6 +44,8 @@ color "shop info panel background" .055 .055 .055 1.
 color "tooltip background" .2 .2 .2 1.
 color "player info hardpoint gun" .5 .375 0. 1.
 color "player info hardpoint gun hover" .8 .6 0. 1.
+color "player info hardpoint pylon" 0.5 .1 .6 1.
+color "player info hardpoint pylon hover" 0.8 .4 .9 1.
 color "player info hardpoint turret" 0. .375 .5 1.
 color "player info hardpoint turret hover" 0. .6 .8 1.
 color "logbook sidebar" .09 .09 .09 1.
@@ -197,6 +199,7 @@ color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
+color "map system ring" .4 .4 .4 .6
 
 # Colors used for the routing issue text in the map panel when
 # a route to the selected system cannot be determined.
@@ -475,7 +478,9 @@ interface "load menu"
 
 interface "controls"
 	sprite "ui/keys panel"
-		center -65 -20
+		center -25 -20
+	sprite "ui/shift panel"
+		center -346 56
 	button c "_Controls"
 		center -300 -230
 		dimensions 90 30
@@ -592,6 +597,7 @@ interface "preferences"
 
 
 
+# HUD
 interface "hud"
 	# Player status.
 	anchor top right
@@ -600,7 +606,7 @@ interface "hud"
 		from 0 0
 		align top right
 	
-	string "location"
+	string "flagship name"
 		from -160 25
 		color "medium"
 		align right
@@ -619,6 +625,14 @@ interface "hud"
 	outline "player sprite"
 		center -75 155
 		dimensions 70 70
+	outline "flagship velocity sprite"
+		center -75 155
+		dimensions 70 70
+		colored
+	point "flagship velocity indicator"
+		center -75 155
+		dimensions 140 140
+	value "flagship velocity radius" 50
 	visible if "fast hud sprites"
 	image "player sprite"
 		center -75 155
@@ -664,6 +678,107 @@ interface "hud"
 		dimensions 0 -192
 		color "dim"
 		size 2
+	visible if "flagship data display"
+	sprite "ui/tactical/velocity"
+		from -114 230
+		align top left
+	string "flagship speed"
+		from -94 237
+		color "medium"
+		align left
+	sprite "ui/tactical/acceleration"
+		from -114 250
+		align top left
+	string "flagship acceleration"
+		from -94 257
+		color "medium"
+		align left
+	sprite "ui/tactical/turn"
+		from -114 270
+		align top left
+	string "flagship turn"
+		from -94 277
+		color "medium"
+		align left
+	sprite "ui/thrust bar frame"
+		from -2 454
+		align top right
+	bar "thrust"
+		from -89 460
+		dimensions 40 0
+		color "heat"
+		size 2
+	bar "turn"
+		from -89 477
+		dimensions 40 0
+		color "heat"
+		size 2
+	bar "lateralthrust"
+		from -89 494
+		dimensions 40 0
+		color "heat"
+		size 2
+
+	# If the player has a ship mass display, then this will display their flagship's mass in the HUD.
+	visible if "flagship mass display"
+	sprite "ui/tactical/mass"
+		from -116 328
+		align top left
+	string "flagship mass"
+		from -94 337
+		color "medium"
+		align left
+
+	# If the player has the relevant fuel cost calculator display, this will show that element in the HUD.
+	visible if "flagship hyper fuel display"
+	sprite "ui/tactical/hyperjump"
+		from -116 350
+		align top left
+	string "flagship hyperdrive fuel per hyperjump"
+		from -94 359
+		color "medium"
+		align left
+	visible if "flagship scram fuel display"
+	sprite "ui/tactical/scramjump"
+		from -116 372
+		align top left
+	string "flagship scram drive fuel per hyperjump"
+		from -94 381
+		color "medium"
+		align left
+	visible if "flagship jump fuel display"
+	sprite "ui/tactical/jumpdrivejump"
+		from -116 394
+		align top left
+	string "flagship jump drive fuel per hyperjump"
+		from -94 403
+		color "medium"
+		align left
+
+	visible if "flagship ramscoop display"
+	sprite "ui/tactical/ramscoop"
+		from -118 290
+		align top left
+	string "flagship ramscoop"
+		from -94 297
+		color "medium"
+		align left
+
+	visible if "flagship solar display"
+	sprite "ui/tactical/solar"
+		from -114 308
+		align top left
+	string "flagship solar"
+		from -94 317
+		color "medium"
+		align left
+
+	string "incoming"
+		from -70 320
+		color "medium"
+		align right
+
+
 
 	# Targets.
 	anchor top left
@@ -671,18 +786,32 @@ interface "hud"
 	sprite "ui/red alert"
 		from 10 10
 		align top left
+
 	visible
 	sprite "ui/radar"
-		from 0 0
+		from 0 32
 		align top left
 	point "radar"
-		center 128 128
+		center 128 160
 	value "radar radius" 110
 	value "radar pointer radius" 130
 	
-	sprite "ui/navigation"
-		from 200 0
+	# Current system.
+	sprite "ui/current system"
+		from 43 0
 		align top left
+	string "location"
+	#	from -65 13
+		from 63 20
+		color "medium"
+		align center
+		width 130
+		truncate back
+
+	sprite "ui/navigation"
+		from 195 0
+		align top left
+
 	string "navigation mode"
 		from 215 20
 		align left
@@ -691,162 +820,162 @@ interface "hud"
 		from 230 40
 		align left
 		color "medium"
-		width 135
+		width 130
 		truncate back
 	
 	sprite "ui/target"
-		from 0 240
+		from 0 275
 		align top left
 	point "target"
-		center 75 315
+		center 75 350
 		dimensions 140 140
 	value "target radius" 70
 	visible if "!fast hud sprites"
 	outline "target sprite"
-		center 75 315
+		center 75 350
 		dimensions 70 70
 		colored
 	visible if "fast hud sprites"
 	image "target sprite"
-		center 75 315
+		center 75 350
 		dimensions 70 70
 	visible
 	ring "target shields"
-		center 75 315
+		center 75 350
 		dimensions 120 120
 		color "shields"
 		size 1.5
 	ring "target hull"
-		center 75 315
+		center 75 350
 		dimensions 110 110
 		color "hull"
 		size 1.5
 	ring "target disabled hull"
-		center 75 315
+		center 75 350
 		dimensions 110 110
 		color "disabled hull"
 		size 1.5
 	string "target name"
-		center 75 395
+		center 75 430
 		color "bright"
 		width 150
 		truncate middle
 	string "target type"
-		center 75 415
+		center 75 450
 		color "medium"
 		width 150
 		truncate middle
 	string "target government"
-		center 75 435
+		center 75 470
 		color "medium"
 		width 150
 		truncate middle
 	point "faction markers"
-		center 75 435
+		center 75 470
 	string "mission target"
-		center 75 455
+		center 75 490
 		color "medium"
 	
 	visible if "range display"
 	sprite "ui/tactical/range"
-		from 130 263
+		from 130 298
 		align top left
 	string "target range"
-		from 160 260
+		from 160 295
 		align top left
 
 	visible if "strategic range display"
 	sprite "ui/tactical/range"
-		from 2 255
+		from 2 290
 		align top left
 	string "target range"
-		from 2 240
+		from 2 275
 		align top left
 
 	visible if "target crew display"
 	sprite "ui/tactical/crew"
-		from 148 286
+		from 148 321
 		align top left
 	string "target crew"
-		from 162 286
+		from 162 321
 		align top left
 	
 	visible if "mobility crew display"
 	sprite "ui/tactical/crew"
-		from 13 354
+		from 13 389
 		align top left
 	string "target crew"
-		from 17 372
+		from 17 407
 		align top center
 
 	visible if "target fuel display"
 	sprite "ui/tactical/fuel"
-		from 146 308
+		from 146 343
 		align top left
 	string "target fuel"
-		from 162 306
+		from 162 341
 		align top left
 
 	visible if "target energy display"
 	sprite "ui/tactical/energy"
-		from 144 324
+		from 144 359
 		align top left
 	string "target energy"
-		from 157 325
+		from 157 360
 		align top left
 
 	visible if "target thermal display"
 	sprite "ui/tactical/thermal"
-		from 136 343
+		from 136 378
 		align top left
 	string "target heat"
-		from 147 346
+		from 147 381
 		align top left
 
 	visible if "target weapon range display"
 	sprite "ui/tactical/gun range"
-		from 154 252
+		from 154 287
 		align top center
 	sprite "ui/tactical/turret range"
-		from 190 252
+		from 190 287
 		align top center
 	string "target gun"
-		from 152 268
+		from 152 302
 		align top center
 	string "target turret"
-		from 190 268
+		from 190 302
 		align top center
 
 	visible if "turn while combined"
 	sprite "ui/tactical/turn"
-		from 118 370
+		from 118 405
 		align top left
 	string "target turnrate"
-		from 139 370
+		from 139 405
 		align top left
 
 	visible if "turn while not combined"
 	sprite "ui/tactical/turn"
-		from 145 288
+		from 145 323
 		align top left
 	string "target turnrate"
-		from 162 286
+		from 162 321
 		align top left
 
 	visible if "target velocity display"
 	sprite "ui/tactical/velocity"
-		from 142 288
+		from 142 323
 		align top left
 	string "target velocity"
-		from 158 286
+		from 158 321
 		align top left
 
 	visible if "target acceleration display"
 	sprite "ui/tactical/acceleration"
-		from 194 286
+		from 194 321
 		align top left
 	string "target acceleration"
-		from 208 286
+		from 208 321
 		align top left
 	
 	
@@ -869,13 +998,45 @@ interface "hud"
 
 interface "main view"
 	list "zooms"
+		.008
+		.009
+		.011
+		.013
+		.016
+		.019
+		.022
+		.026
+		.031
+		.037
+		.044
+		.053
+		.063
+		.074
+		.088
+		.105
+		.125
+		.149
+		.177
+		.21
 		.25
+		.30
 		.35
+		.42
 		.5
-		.7
+		.59
+		.71
+		.84
 		1.
-		1.4
+		1.19
+		1.41
+		1.68
 		2.
+		2.38
+		2.83
+		3.36
+		4.
+		4.76
+		5.66
 
 
 
@@ -1462,6 +1623,20 @@ interface "map buttons" bottom right
 		from -50 -90 to -80 -120
 		size 18
 
+	sprite "ui/map display"
+		from 0 -120 to -49 -169
+	button x ""
+		from 0 -120 to -49 -169
+	visible if "map is starry"
+	ring "system ring"
+		center -24 -145
+		dimensions 10 10
+		color "map system ring"
+		size 2
+	visible if "!map is starry"
+	sprite "ui/star icon"
+		from 0 -120 to -49 -169
+
 
 interface "map buttons (small screen)" bottom right
 	active if "!is shipyards"
@@ -1511,11 +1686,24 @@ interface "map buttons (small screen)" bottom right
 		from -50 -90 to -80 -120
 		size 18
 
+	sprite "ui/map display"
+		from 0 -120 to -49 -169
+	button x ""
+		from 0 -120 to -49 -169
+	visible if "map is starry"
+	ring "system ring"
+		center -24 -145
+		dimensions 10 10
+		color "map system ring"
+		size 2
+	visible if "!map is starry"
+	sprite "ui/star icon"
+		from 0 -120 to -49 -169
 
 
 interface "map"
-	value "max zoom" 2
-	value "min zoom" -2
+	value "max zoom" 3
+	value "min zoom" -3
 
 	anchor top
 	string "route error"
@@ -1549,9 +1737,33 @@ interface "info panel"
 	box "outfits"
 		from -250 -290 to 500 30
 	box "weapons"
-		from -250 30 to 250 280
+		from -250 -270 to 500 280
+	box "ship info thumbnail"
+		from -250 30 to 125 280
+	box "ship info sprite"
+		from 125 30 to 500 280
 	box "cargo"
 		from 250 -290 to 500 280
+	
+	visible if "hardpoint tab"
+	button R
+		center -375 -270
+		dimensions 250 30
+	sprite "ui/hardpoint tab"
+		center 0 -310
+	label "Hardpoint Info"
+		center -180 -305
+		color "bright"
+	label "_Ship Info"
+		center -300 -305
+	label "Player _Info"
+		center -420 -305
+	button i
+		center -420 -305
+		dimensions 120 30
+	button s
+		center -300 -305
+		dimensions 120 30
 	
 	visible if "ship tab"
 	button R
@@ -1559,11 +1771,16 @@ interface "info panel"
 		dimensions 250 30
 	sprite "ui/ship tab"
 		center 0 -310
+	label "_Hardpoint Info"
+		center -180 -305
 	label "Ship Info"
 		center -300 -305
 		color "bright"
 	label "Player _Info"
 		center -420 -305
+	button h
+		center -180 -305
+		dimensions 120 30
 	button i
 		center -420 -305
 		dimensions 120 30
@@ -1571,11 +1788,16 @@ interface "info panel"
 	visible if "player tab"
 	sprite "ui/player tab"
 		center 0 -310
+	label "_Hardpoint Info"
+		center -180 -305
 	label "_Ship Info"
 		center -300 -305
 	label "Player Info"
 		center -420 -305
 		color "bright"
+	button h
+		center -180 -305
+		dimensions 120 30
 	button s
 		center -300 -305
 		dimensions 120 30

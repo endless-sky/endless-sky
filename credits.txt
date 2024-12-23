@@ -1,5 +1,6 @@
-Welcome to Endless Sky!
-version 0.10.11-alpha
+Welcome to Endless Sky Delta!
+
+version 0.10.10.5-delta
 
 The player's manual and other
 resources are available at:
@@ -12,6 +13,24 @@ artwork, or programming, visit:
 - https://endless-sky.github.io
 - The game's Steam forums
 - Discord (invite: ZeuASSx)
+
+Credits Wanted!
+  Over the years many people have
+  contributed indirectly to this
+  game. Some by providing hours of
+  advice, others by writing out
+  missions that they gave to others
+  to formally upload. (GitHub and
+  the PR process have had problems)
+
+  I have added a "Writers" section,
+  as well as a Special Thanks. If
+  you or someone you know has
+  contributed writing or other great
+  efforts towards helping the game,
+  but aren't currently acknowledged,
+  please let me know. They deserve
+  to be recognized.
 
 Creator and Lead Programmer
   Michael Zahniser
@@ -49,6 +68,8 @@ Major Programming
   NomadicVolcano
   oo13
   Peter van der Meer
+  vitalchip
+  Zitchas
 
 Storyline & Faction Authors
   Amazinite
@@ -64,6 +85,9 @@ Storyline & Faction Authors
   Saugia
   TheUnfetteredOne
   Zitchas
+
+Writers
+  Moonbeam
 
 Editors & Proofreaders
   Arrow2thekn33
@@ -85,6 +109,10 @@ Editors & Proofreaders
   W1zrad
   Zearth Goh aka TheMarksman
 
+Special thanks
+  Kiko
+  VitalChip
+
 Artwork
   Michael Zahniser (CC-BY-SA-4.0)
   Maximilian Korber (CC-BY-SA-4.0)
@@ -105,6 +133,7 @@ Artwork
   Saugia (CC-BY-SA-4.0)
   Rising Leaf (CC-BY-SA-4.0)
   Unordered Sigh (CC-BY-SA-3.0)
+  Zitchas (CC-BY-SA-4.0)
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA-3.0)
@@ -312,6 +341,7 @@ contributed to Endless Sky:
   lumbar527
   macfreek
   Mach565
+  MadisonianX
   MageKing17
   MagicMuscleMan
   Mailaender

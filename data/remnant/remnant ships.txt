@@ -27,21 +27,32 @@ ship "Albatross"
 		"required crew" 44
 		"bunks" 75
 		"cargo space" 124
-		"mass" 1443
-		"drag" 14.2
-		"heat dissipation" 0.37
-		"fuel capacity" 600
+		"mass" 4880
+		"drag" 12.0
+		"heat dissipation" 0.4
+		"fuel capacity" 1775
 		"ramscoop" 2.75
 		"outfit space" 672
 		"weapon capacity" 236
 		"engine capacity" 142
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 5.2
 		"shield energy" 4.6
 		"hull repair rate" 1.5
 		"hull energy" 1.2
 		"outfit scan power" 18
 		"outfit scan efficiency" 24
-		"tactical scan power" 39
+		"acceleration scan power" 40
+		"crew scan power" 40
+		"energy scan power" 40
+		"fuel scan power" 40
+		"maneuver scan power" 40
+		"range finder power" 40
+		"thermal scan power" 40
+		"velocity scan power" 40
+		"weapon scan power" 40
 		weapon
 			"blast radius" 360
 			"shield damage" 3600
@@ -72,6 +83,18 @@ ship "Albatross"
 	gun 14 -162 "Inhibitor Cannon"
 	gun -18 -144 "Inhibitor Cannon"
 	gun 18 -144 "Inhibitor Cannon"
+	pylon -9 -110
+		angle 345
+	pylon 9 -110
+		angle 15
+	pylon -13 -99
+		angle 345
+	pylon 13 -99
+		angle 15
+	pylon -26 47
+		angle 345
+	pylon 26 47
+		angle 15
 	turret -23 -34 "Thrasher Turret"
 	turret 23 -34 "Thrasher Turret"
 	turret -74 62
@@ -104,7 +127,7 @@ ship "Albatross" "Albatross (Sniper)"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" # Extra thruster
 		"Smelter-Class Steering"
 		"Scram Drive"
 
@@ -113,9 +136,14 @@ ship "Albatross" "Albatross (Sniper)"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun "EMP Torpedo Bay"
-	gun "EMP Torpedo Bay"
-
+	gun
+	gun
+	pylon "EMP Torpedo Bay"
+	pylon
+	pylon "EMP Torpedo Bay"
+	pylon
+	pylon
+	pylon
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 	turret
@@ -162,9 +190,9 @@ ship "Albatross" "Albatross (Heavy)"
 		"Tuning Rifle" 65
 
 		"Forge-Class Thruster"
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" # Extra thruster
 		"Smelter-Class Steering"
-		"Forge-Class Steering"
+		# "Forge-Class Steering" # Extra steering
 		"Scram Drive"
 
 	gun "Inhibitor Cannon"
@@ -250,7 +278,7 @@ ship "Albatross" "Albatross (Sniper II)"
 		"Tuning Rifle" 57
 
 		"Forge-Class Thruster"
-		"Crucible-Class Thruster"
+		# "Crucible-Class Thruster" # Extra thruster
 		"Smelter-Class Steering"
 		"Scram Drive"
 
@@ -259,9 +287,14 @@ ship "Albatross" "Albatross (Sniper II)"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
-	gun "Teciimach Bay"
-	gun "Teciimach Bay"
-
+	gun
+	gun
+	pylon
+	pylon "Teciimach Bay"
+	pylon "Teciimach Bay"
+	pylon
+	pylon
+	pylon
 	turret "Point Defense Turret"
 	turret "Point Defense Turret"
 	turret
@@ -282,18 +315,29 @@ ship "Modified Dromedary"
 		"hull" 9600
 		"required crew" 95
 		"bunks" 300
-		"mass" 4732
+		"mass" 12840
 		"drag" 28.7
 		"heat dissipation" .22
-		"fuel capacity" 900
+		"fuel capacity" 5725
 		"cargo space" 550
 		"outfit space" 740
 		"weapon capacity" 270
 		"engine capacity" 195
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"solar collection" 1.1
 		"outfit scan power" 18
 		"outfit scan efficiency" 48
-		"tactical scan power" 39
+		"acceleration scan power" 40
+		"crew scan power" 40
+		"energy scan power" 40
+		"fuel scan power" 40
+		"maneuver scan power" 40
+		"range finder power" 40
+		"thermal scan power" 40
+		"velocity scan power" 40
+		"weapon scan power" 40
 		"asteroid scan power" 42
 		"atmosphere scan" 100
 		weapon
@@ -328,6 +372,26 @@ ship "Modified Dromedary"
 		angle 270
 	gun 78 64
 		angle 90
+	pylon 78.5 -78.5
+		angle 90
+	pylon 77 -52.5
+		angle 90
+	pylon 71.5 -22
+		angle 90
+	pylon 72.5 8
+		angle 90
+	pylon 71.5 38.5
+		angle 90
+	pylon 47 171
+		angle 180
+	pylon 58 169.5
+		angle 180
+	pylon -63 30.5
+		angle 270
+	pylon -63 37.5
+		angle 270
+	pylon -63 45
+		angle 270
 	turret 10 -136.5 "Thrasher Turret"
 	turret -21.5 -57.5 "Point Defense Turret"
 	turret 51 101
@@ -486,15 +550,18 @@ ship "Gull"
 		"hull" 2500
 		"required crew" 3
 		"bunks" 20
-		"mass" 416
-		"drag" 7.5
+		"mass" 540
+		"drag" 6.
 		"heat dissipation" 0.56
-		"fuel capacity" 600
+		"fuel capacity" 650
 		"ramscoop" 1.75
 		"cargo space" 175
 		"outfit space" 311
 		"weapon capacity" 83
 		"engine capacity" 101
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 1.6
 		"shield energy" 1.1
 		"hull repair rate" 0.7
@@ -502,9 +569,19 @@ ship "Gull"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
+		"cloaked communication" 1
+		"cloaked scanning" 1
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
-		"tactical scan power" 26
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -532,6 +609,8 @@ ship "Gull"
 	gun 0 -96 "Inhibitor Cannon"
 	gun -7 -94
 	gun 7 -94
+	pylon -24 -6.5
+	pylon 24 -6.5
 	turret 0 26 "Point Defense Turret"
 	leak "remnant leak" 30 7
 	leak "remnant leak sparkle" 30 7
@@ -646,15 +725,18 @@ ship "Heron"
 		"hull" 250500
 		"required crew" 1000
 		"bunks" 3000
-		"mass" 15725
-		"drag" 62.5
+		"mass" 40000
+		"drag" 62
 		"heat dissipation" .32
-		"fuel capacity" 2500
+		"fuel capacity" 45300
 		"ramscoop" 10.75
 		"cargo space" 1110
 		"outfit space" 2150
 		"weapon capacity" 470
 		"engine capacity" 800
+		"reverse thruster slot" 1
+		"steering slot" 5
+		"thruster slot" 5
 		"shield generation" 15
 		"shield energy" 1.8
 		"hull repair rate" 15
@@ -662,11 +744,21 @@ ship "Heron"
 		"cloak" .05
 		"cloaking energy" 3
 		"cloaking fuel" .05
+		"cloaked communication" 1
+		"cloaked scanning" 1
 		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 175
 		"outfit scan efficiency" 120
-		"tactical scan power" 350
+		"acceleration scan power" 350
+		"crew scan power" 350
+		"energy scan power" 350
+		"fuel scan power" 350
+		"maneuver scan power" 350
+		"range finder power" 350
+		"thermal scan power" 350
+		"velocity scan power" 350
+		"weapon scan power" 350
 		"force protection" 1
 		"heat protection" 1.5
 		"ion resistance" 0.3
@@ -709,6 +801,22 @@ ship "Heron"
 	gun 0 -325 "Ember Tear"
 	gun -23.5 -302.5
 	gun 23.5 -302.5
+	pylon -31 -223
+		angle 345
+	pylon 31 -223
+		angle 15
+	pylon -90 50
+		angle 315
+	pylon 90 50
+		angle 45
+	pylon -182 140.5
+		angle 315
+	pylon 182 140
+		angle 45
+	pylon -177 221
+		angle 180
+	pylon 177 221
+		angle 180
 	turret 0 -240.5 "Point Defense Turret"
 	turret -34.5 -134.5 "Inhibitor Turret"
 	turret 34.5 -134.5 "Inhibitor Turret"
@@ -813,22 +921,33 @@ ship "Ibis"
 		"hull" 6200
 		"required crew" 16
 		"bunks" 36
-		"mass" 700
-		"drag" 7.4
+		"mass" 1400
+		"drag" 7.0
 		"heat dissipation" 0.49
-		"fuel capacity" 700
+		"fuel capacity" 1000
 		"ramscoop" 2.75
 		"cargo space" 103
 		"outfit space" 427
 		"weapon capacity" 147
 		"engine capacity" 109
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 3.5
 		"shield energy" 3.1
 		"hull repair rate" 1.2
 		"hull energy" 0.95
 		"outfit scan power" 18
 		"outfit scan efficiency" 20
-		"tactical scan power" 39
+		"acceleration scan power" 42
+		"crew scan power" 42
+		"energy scan power" 42
+		"fuel scan power" 42
+		"maneuver scan power" 42
+		"range finder power" 42
+		"thermal scan power" 42
+		"velocity scan power" 42
+		"weapon scan power" 42
 		weapon
 			"blast radius" 240
 			"shield damage" 2400
@@ -849,7 +968,7 @@ ship "Ibis"
 		"Tuning Rifle" 20
 		
 		"Forge-Class Thruster"
-		"Forge-Class Steering" 2
+		"Forge-Class Steering" # Extra steering
 		"Scram Drive"
 		
 	bay "Drone" 0 30 over
@@ -870,6 +989,8 @@ ship "Ibis"
 	gun 0 -135.5 "Inhibitor Cannon"
 	gun 15.5 -102 "Inhibitor Cannon"
 	gun -15.5 -102 "Inhibitor Cannon"
+	pylon -18 -96
+	pylon 18 -96
 	turret 0 -62
 	turret 0 -20.5 "Point Defense Turret"
 	turret 0 58.5 "Thrasher Turret"
@@ -892,34 +1013,49 @@ ship "Merganser"
 		category "Interceptor"
 		licenses
 			Remnant
-		"cost" 4830000
-		"shields" 3500
-		"hull" 3000
+		"cost" 6830000
+		"shields" 3000
+		"hull" 5000
 		"required crew" 1
 		"bunks" 3
 		"cargo space" 11
-		"fuel capacity" 600
+		"fuel capacity" 475
 		"ramscoop" 1.75
-		"mass" 130
-		"drag" 1.7
+		"mass" 80
+		"drag" 1.5
 		"heat dissipation" .75
 		"gaslining" 1
-		"outfit space" 181
-		"weapon capacity" 60
-		"engine capacity" 64
-		"shield generation" 1.4
+		"outfit space" 219
+		"weapon capacity" 85
+		"engine capacity" 70
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
+		"shield generation" 2.8
 		"shield energy" 1.2
-		"hull repair rate" 0.9
+		"hull repair rate" 1.8
 		"hull energy" 0.6
-		"cloak" .03
-		"cloaking energy" 4
+		"cloak" .04
+		"cloaking energy" 2
 		"cloaking fuel" .075
+		"cloaked communication" 1
+		"cloaked scanning" 1
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
-		"tactical scan power" 26
-		"ion resistance" 0.06
-		"scramble resistance" 0.06
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
+		"ion resistance" 0.1
+		"ion resistance energy" -0.05
+		"scramble resistance" 0.1
+		"scramble resistance energy" -0.05
 		"thrust" 7.5
 		"turn" 90.0
 		"reverse thrust" 7.5
@@ -938,7 +1074,6 @@ ship "Merganser"
 		"reverse flare sprite" "effect/remnant flare/small"
 			"frame rate" 5
 		"reverse flare sound" "plasma tiny"
-		
 		weapon
 			"blast radius" 10
 			"shield damage" 100
@@ -948,18 +1083,20 @@ ship "Merganser"
 		"Inhibitor Cannon" 2
 		
 		"Millennium Cell" 2
-		"Crystal Capacitor"
+		"Crystal Capacitor" 2
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
-		"Crucible-Class Thruster"
-		"Crucible-Class Steering"
+		# "Crucible-Class Thruster" Extra thruster
+		"Anvil-Class Engine"
 		"Bellows-Class Afterburner"
-		"Hyperdrive"
+		"Scram Drive"
 		
 	gun 0 -48.5
 	gun -6 -41 "Inhibitor Cannon"
 	gun 6 -41 "Inhibitor Cannon"
+	pylon -17 -12
+	pylon 17 -12
 	turret 0 0
 	engine 0 45
 	engine -10 49
@@ -977,18 +1114,20 @@ ship "Merganser" "Merganser (II)"
 		"Teciimach Canister" 3
 		
 		"Millennium Cell" 2
-		"Crystal Capacitor"
+		"Crystal Capacitor" 2
 		"Small Heat Shunt"
 		"Quantum Key Stone"
 		
-		"Crucible-Class Thruster"
-		"Crucible-Class Steering"
+		# "Crucible-Class Thruster" Extra Thruster
+		"Anvil-Class Engine"
 		"Bellows-Class Afterburner"
-		"Hyperdrive"
+		"Scram Drive"
 		
-	gun 0 -48.5 "Teciimach Pod"
+	gun 0 -48.5
 	gun -6 -41 "Inhibitor Cannon"
 	gun 6 -41 "Inhibitor Cannon"
+	pylon -17 -12 "Teciimach Pod"
+	pylon 17 -12
 	turret 0 0
 
 
@@ -1006,21 +1145,32 @@ ship "Pelican"
 		"required crew" 14
 		"bunks" 35
 		"cargo space" 302
-		"mass" 640
-		"drag" 10.1
+		"mass" 1200
+		"drag" 9.0
 		"heat dissipation" 0.5
-		"fuel capacity" 600
+		"fuel capacity" 875
 		"ramscoop" 2.75
 		"outfit space" 480
 		"weapon capacity" 157
 		"engine capacity" 144
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 2.7
 		"shield energy" 1.8
 		"hull repair rate" 1
 		"hull energy" 0.75
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
-		"tactical scan power" 26
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		weapon
 			"blast radius" 160
 			"shield damage" 1600
@@ -1046,6 +1196,11 @@ ship "Pelican"
 	engine 0 114 1.1
 	gun 8 -135
 	gun -8 -135
+	pylon 0 -144
+	pylon -41 82
+		angle 180
+	pylon 41 82
+		angle 180
 	turret 0 -67 "Thrasher Turret"
 	turret 56 35 "Point Defense Turret"
 	turret -56 35 "Point Defense Turret"
@@ -1087,15 +1242,18 @@ ship "Penguin"
 		"required crew" 1
 		"bunks" 3
 		"mass" 89
-		"drag" 1.37
+		"drag" 1.25
 		"heat dissipation" 0.88
-		"fuel capacity" 800
+		"fuel capacity" 600
 		"energy capacity" 300
 		"ramscoop" 1.25
 		"cargo space" 19
 		"outfit space" 109
 		"weapon capacity" 33
 		"engine capacity" 54
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 1
 		"shield energy" 0.5
 		"hull repair rate" 2
@@ -1104,9 +1262,19 @@ ship "Penguin"
 		"cloak" .03
 		"cloaking energy" 3
 		"cloaking fuel" .05
+		"cloaked communication" 1
+		"cloaked scanning" 1
 		"outfit scan power" 50
 		"outfit scan efficiency" 36
-		"tactical scan power" 50
+		"acceleration scan power" 55
+		"crew scan power" 55
+		"energy scan power" 55
+		"fuel scan power" 55
+		"maneuver scan power" 55
+		"range finder power" 55
+		"thermal scan power" 55
+		"velocity scan power" 55
+		"weapon scan power" 55
 		"atmosphere scan" 100
 		"ion protection" 0.25
 		"scramble protection" 0.25
@@ -1158,25 +1326,26 @@ ship "Penguin"
 		angle 10
 	"steering engine" -11 -17
 		"zoom" 0.15
-		"angle" 90
+		angle 90
 		under
 		right
 	"steering engine" 11 -17
 		"zoom" 0.15
-		"angle" 270
+		angle 270
 		under
 		left
 	"steering engine" -11 17
 		"zoom" 0.15
-		"angle" 90
+		angle 90
 		under
 		left
 	"steering engine" 11 17
 		"zoom" 0.15
-		"angle" 270
+		angle 270
 		under
 		right
 	gun 0 -33
+	pylon 0 -20
 	turret 0 5.5
 	leak "remnant leak sparkle" 30 2
 	explode "tiny explosion" 8
@@ -1196,32 +1365,48 @@ ship "Peregrine"
 		licenses
 			"Remnant Capital"
 		"cost" 41627000
-		"shields" 15400
-		"hull" 8600
+		"shields" 16400
+		"hull" 10600
 		"required crew" 9
 		"bunks" 25
-		"mass" 801
-		"drag" 6.5
+		"mass" 1400
+		"drag" 6.0
 		"heat dissipation" 0.57
-		"fuel capacity" 900
+		"fuel capacity" 1625
 		"ramscoop" 3.25
 		"cargo space" 59
-		"outfit space" 522
+		"outfit space" 552
 		"weapon capacity" 220
 		"engine capacity" 171
-		"shield generation" 3.9
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 2
+		"shield generation" 4.9
 		"shield energy" 3.0
-		"hull repair rate" 1.5
+		"hull repair rate" 2.5
 		"hull energy" 0.90
-		"cloak" .03
-		"cloaking energy" 4
+		"cloak" .04
+		"cloaking energy" 2.5
 		"cloaking fuel" .075
+		"cloaked communication" 1
+		"cloaked scanning" 1
 		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
-		"tactical scan power" 50
-		"ion resistance" .15
-		"scrambling resistance" .15
+		"acceleration scan power" 50
+		"crew scan power" 50
+		"energy scan power" 50
+		"fuel scan power" 50
+		"maneuver scan power" 50
+		"range finder power" 50
+		"thermal scan power" 50
+		"velocity scan power" 50
+		"weapon scan power" 50
+		"ion resistance" .25
+		"ion resistance energy" -0.125
+		"scrambling resistance" .25
+		"scrambling resistance energy" -0.125
+		"slowing protection" 0.25
 		"remnant node" 5
 		weapon
 			"blast radius" 240
@@ -1248,11 +1433,14 @@ ship "Peregrine"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
-	gun 0 -133.5 "EMP Torpedo Bay"
+	gun 0 -133.5
 	gun -12.5 -105 "Thrasher Cannon"
 	gun 12.5 -105 "Thrasher Cannon"
 	gun -17.5 -83 "Thrasher Cannon"
 	gun 17.5 -83 "Thrasher Cannon"
+	pylon 0 -122 "EMP Torpedo Bay"
+	pylon -13 -67
+	pylon 13 -67
 	turret 0 -44 "Point Defense Turret"
 	turret 0 21 "Thrasher Turret"
 	engine 0 120.5 1.5
@@ -1291,11 +1479,14 @@ ship "Peregrine" "Peregrine (II)"
 		"Smelter-Class Steering"
 		"Scram Drive"
 		
-	gun 0 -133.5 "Teciimach Bay"
+	gun 0 -133.5
 	gun -12.5 -105 "Thrasher Cannon"
 	gun 12.5 -105 "Thrasher Cannon"
 	gun -17.5 -83 "Thrasher Cannon"
 	gun 17.5 -83 "Thrasher Cannon"
+	pylon 0 -122 "Teciimach Bay"
+	pylon -13 -67
+	pylon 13 -67
 	turret 0 -44 "Point Defense Turret"
 	turret 0 21 "Thrasher Turret"
 
@@ -1312,16 +1503,19 @@ ship "Petrel"
 		"shields" 1000
 		"hull" 2500
 		"cargo space" 15
-		"fuel capacity" 100
+		"fuel capacity" 75
 		"ramscoop" 1.25
 		"required crew" 2
 		"bunks" 3
 		"mass" 68
-		"drag" 1.7
+		"drag" 1.40
 		"heat dissipation" .73
 		"outfit space" 133
 		"weapon capacity" 33
 		"engine capacity" 34
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 0.36
 		"shield energy" 0.24
 		"hull repair rate" 0.82
@@ -1329,7 +1523,15 @@ ship "Petrel"
 		"gaslining" 1
 		"outfit scan power" 10
 		"outfit scan efficiency" 14
-		"tactical scan power" 20
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		"asteroid scan power" 30
 		weapon
 			"blast radius" 15
@@ -1349,6 +1551,8 @@ ship "Petrel"
 	gun 0 -38.5
 	gun -10.5 -24 "Inhibitor Cannon"
 	gun 10.5 -24 "Inhibitor Cannon"
+	pylon -14 -13
+	pylon 14 -13
 	turret 0 2.5
 	engine 0 41.5
 	leak "remnant leak sparkle" 20 3
@@ -1373,14 +1577,17 @@ ship "Puffin"
 		"required crew" 1
 		"bunks" 2
 		"mass" 46
-		"drag" 1.33
+		"drag" 1.27
 		"heat dissipation" 0.86
-		"fuel capacity" 700
+		"fuel capacity" 500
 		"energy capacity" 150
 		"ramscoop" 1.25
 		"cargo space" 8
 		"outfit space" 80
 		"engine capacity" 26
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 0.6
 		"shield energy" 0.4
 		"hull repair rate" 1.2
@@ -1391,7 +1598,15 @@ ship "Puffin"
 		"cooling energy" .4
 		"outfit scan power" 24
 		"outfit scan efficiency" 28
-		"tactical scan power" 52
+		"acceleration scan power" 52
+		"crew scan power" 52
+		"energy scan power" 52
+		"fuel scan power" 52
+		"maneuver scan power" 52
+		"range finder power" 52
+		"thermal scan power" 52
+		"velocity scan power" 52
+		"weapon scan power" 52
 		"atmosphere scan" 100
 		"ion protection" 0.25
 		"scramble protection" 0.25
@@ -1426,13 +1641,16 @@ ship "Smew"
 		"required crew" 1
 		"bunks" 8
 		"mass" 56.5
-		"drag" 1.84
+		"drag" 1.65
 		"heat dissipation" .62
-		"fuel capacity" 100
+		"fuel capacity" 75
 		"cargo space" 70
 		"outfit space" 80
 		"weapon capacity" 10
 		"engine capacity" 46
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 3000
 		"ion resistance" 0.002
 		"scramble resistance" 0.002
@@ -1443,7 +1661,15 @@ ship "Smew"
 		"hull energy" 0.58
 		"outfit scan power" 14
 		"outfit scan efficiency" 20
-		"tactical scan power" 28
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		"asteroid scan power" 50
 		weapon
 			"blast radius" 24
@@ -1459,6 +1685,7 @@ ship "Smew"
 
 	engine 0 48.5
 	gun 0 -47.5
+	pylon 0 -46.5
 	leak "remnant leak sparkle" 22 3
 	explode "tiny explosion" 35
 	explode "small explosion" 24
@@ -1510,15 +1737,18 @@ ship "Starling"
 		"hull" 4900
 		"required crew" 6
 		"bunks" 15
-		"mass" 387
-		"drag" 4.6
+		"mass" 540
+		"drag" 4.4
 		"heat dissipation" 0.59
-		"fuel capacity" 900
+		"fuel capacity" 925
 		"ramscoop" 1.75
 		"cargo space" 36
 		"outfit space" 316
 		"weapon capacity" 83
 		"engine capacity" 94
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 1.8
 		"shield energy" 1.2
 		"hull repair rate" 0.8
@@ -1526,9 +1756,19 @@ ship "Starling"
 		"cloak" .02
 		"cloaking energy" 5
 		"cloaking fuel" .1
+		"cloaked communication" 1
+		"cloaked scanning" 1
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
-		"tactical scan power" 26
+		"acceleration scan power" 30
+		"crew scan power" 30
+		"energy scan power" 30
+		"fuel scan power" 30
+		"maneuver scan power" 30
+		"range finder power" 30
+		"thermal scan power" 30
+		"velocity scan power" 30
+		"weapon scan power" 30
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -1547,7 +1787,7 @@ ship "Starling"
 		
 		"Forge-Class Thruster"
 		"Forge-Class Steering"
-		"Crucible-Class Steering"
+		# "Crucible-Class Steering" # Extra steering
 		"Hyperdrive"
 
 	engine -16 82 0.7
@@ -1558,6 +1798,10 @@ ship "Starling"
 	gun 12 -72 "Inhibitor Cannon"
 	gun -18 -49
 	gun 18 -49
+	pylon -6 -58
+	pylon 6 -58
+	pylon -13 -38
+	pylon 13 -38
 	turret 0 2 "Point Defense Turret"
 	leak "remnant leak" 30 4
 	leak "remnant leak sparkle" 30 10
@@ -1603,11 +1847,15 @@ ship "Starling" "Starling (Sniper)"
 		"Smelter-Class Steering"
 		"Hyperdrive"
 
-	gun "EMP Torpedo Bay"
+	gun
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
 	gun "Inhibitor Cannon"
+	pylon "EMP Torpedo Bay"
+	pylon
+	pylon
+	pylon
 
 ship "Starling" "Starling (Hunter)"
 	outfits
@@ -1678,6 +1926,9 @@ ship "Tern"
 		"outfit space" 76
 		"weapon capacity" 16
 		"engine capacity" 26
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"shield generation" 0.25
 		"shield energy" 0.16
 		"hull repair rate" 0.55
@@ -1685,7 +1936,15 @@ ship "Tern"
 		"gaslining" 1
 		"outfit scan power" 10
 		"outfit scan efficiency" 12
-		"tactical scan power" 20
+		"acceleration scan power" 20
+		"crew scan power" 20
+		"energy scan power" 20
+		"fuel scan power" 20
+		"maneuver scan power" 20
+		"range finder power" 20
+		"thermal scan power" 20
+		"velocity scan power" 20
+		"weapon scan power" 20
 		"atmosphere scan" 100
 		"asteroid scan power" 30
 		weapon
@@ -1703,6 +1962,7 @@ ship "Tern"
 		"Anvil-Class Engine"
 		
 	gun 0 -22 "Inhibitor Cannon"
+	pylon 0 -20
 	engine -5 20.5
 	engine 5 20.5
 	leak "remnant leak sparkle" 30 2
