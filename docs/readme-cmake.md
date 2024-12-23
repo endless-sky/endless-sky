@@ -65,7 +65,7 @@ Additionally, if you want to build unit tests:
 ```
 catch2
 ```
-Since Catch2 version 3.x is needed (3.4 works), you will have to install it with something like `vcpkg`, rather than apt.
+While sufficient versions of other dependencies are available, Ubuntu 22.04 does not provide an up to date version of catch2 (3.0 or newer is required), so this will need to be built from source if unit tests are desired.
 
 
 </details>
