@@ -48,7 +48,7 @@ mission "Remnant: Cognizance 1"
 		personality staying heroic disables uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
 	npc
-		government "Korath"
+		government "Kor Alaji"
 		system "Nenia"
 		personality entering forbearing timid uninterested surveillance staying
 		fleet
@@ -111,7 +111,7 @@ mission "Remnant: Cognizance 2"
 		dialog
 			`As you spot the Korath hunters, you recall Plume's request and tap the "Record" button as your ship prepares for combat.`
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		system "Nenia"
 		personality forbearing timid uninterested surveillance staying
 		fleet
@@ -122,7 +122,6 @@ mission "Remnant: Cognizance 2"
 				"'olofez" 2
 		dialog "You have destroyed the Korath hunters. You can now return to <planet> to collect your payment."
 	on complete
-		event "korath hunting"
 		event "korath rescue: nenia small"
 		event "korath rescue: nenia small end" 18
 		conversation
@@ -173,7 +172,7 @@ mission "Remnant: Cognizance 4"
 	npc kill
 		to despawn
 			has "remnant: cognizance: found korath fleet"
-		government "Korath"
+		government "Kor Alaji"
 		personality staying surveillance
 		system "Aescolanus"
 		fleet
@@ -234,7 +233,7 @@ mission "Remnant: Cognizance 5"
 			`	He steps back and looks at the group. "May the Embers burn bright for you." With that, he gives the group a respectful nod and walks away. The captains all look around and make various signs you think are probably encouraging combat pilot slang and variations on Prefect Chilia's parting words. As they disperse to their ships, one gestures to you. "Lead on, Captain."`
 				accept
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality staying target
 		system "Nenia"
 		fleet
@@ -323,7 +322,7 @@ mission "Remnant: Cognizance 7"
 			`	With a respectful bow to Chilia (who returns it equally respectfully), Plume heads for your ship. "I will be waiting onboard for you, Captain."`
 				accept
 	npc
-		government "Korath"
+		government "Kor Alaji"
 		personality staying
 		system "Nenia"
 		fleet
@@ -354,7 +353,7 @@ mission "Remnant: Cognizance 8"
 			`	"It is wonderful to be here, watching them from a distance. A few did venture close, too. But I'm worried about them. Some of the void sprites out there have scorch marks similar to the scoring left by Korath weapons. And we already noticed that they are hiding much deeper in the atmosphere than normal." He glances down at his datapad then back up at you. "Once we are back into the chaos of the Ember Waste, I will send Chilia a signal. It looks like I will need to double-check my records and samples back on Aventine. Please take me there."`
 				accept
 	npc
-		government "Korath"
+		government "Kor Alaji"
 		personality staying
 		system "Nenia"
 		fleet
@@ -642,7 +641,7 @@ mission "Remnant: Cognizance 18"
 		personality launching escort disables plunders
 		fleet "Large Remnant" 3
 	npc evade
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic disables plunders harvests entering staying
 		system "Nenia"
 		fleet
@@ -1066,7 +1065,7 @@ mission "Remnant: Cognizance 23"
 	on accept
 		give ship Merganser
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality coward target uninterested staying
 		system "Farinus"
 		fleet
@@ -1200,7 +1199,7 @@ mission "Remnant: Cognizance 25"
 					accept
 				`	"No."`
 					decline
-	npc kill
+	npc disable
 		government "Korath"
 		personality target marked waiting
 		system "Egeria"
@@ -1282,7 +1281,7 @@ mission "Remnant: Cognizance 28"
 			`Your commlink springs to life as you enter final approach to Caelian, revealing Torza in a flurry of motion. He focuses momentarily on the camera. "Captain <first>, and flying a ship with a substantial lifting capacity, excellent! The Korath have discovered one of our forward operating bases, and we need help evacuating it now. It is located on Baianus in the Parca system. There are 20 people and 280 cubic meters of equipment to retrieve. The Korath have set up a blockade, so you will need something reasonably fast to get through it. You can fight them or not, as you wish, but the primary task is evacuating the outpost. Embers speed your flight, Captain."`
 				accept
 	npc
-		government "Korath"
+		government "Kor Isaha"
 		personality heroic plunders harvests waiting staying
 		system "Parca"
 		fleet
@@ -1316,7 +1315,7 @@ mission "Remnant: Cognizance 29"
 			`	The shield opens one final time to allow you to leave, and you practically leap into the teeth of a Korath attack. The anti-air artillery continues its rhythmic barrage against the incoming ships, but it is evident that both it and the shields around the base are failing under the assault. As you head for orbit, the last image you see is the artillery pieces sag and collapse as they melt into the ground. Your sensors record a sudden explosion from the cavern, to which the Remnant give a sad but satisfied nod. "Take us back to Caelian please, Captain."`
 				launch
 	npc
-		government "Korath"
+		government "Kor Isaha"
 		personality heroic plunders harvests waiting launching
 		system "Parca"
 		fleet
