@@ -2536,7 +2536,7 @@ mission "Terraforming 13"
 				`	(No.)`
 					decline
 			`	The poster includes small writing with contact instructions for inquiries about the terraforming process and Tundra's climate. Once you get through to a person on the other side, there is initially reluctance to put you through to anyone involved with the terraforming directly, but after verifying that you worked with them to get the process started, you are connected to Amy.`
-			`	You briefly summarise your adventures, including about the Wanderers: "Aliens with an approach to terraforming that matches your theories from when you were at the Academy of Planetary Sciences." She seems interested in learning more and agrees to meet you in the spaceport bar.`
+			`	You briefly summarize your adventures, including about the Wanderers: "Aliens with an approach to terraforming that matches your theories from when you were at the Academy of Planetary Sciences." She seems interested in learning more and agrees to meet you in the spaceport bar.`
 			`	Once she arrives, you tell her about the Wanderers: that the work of their civilization is to repair worlds left in ruin by their previous inhabitants. You explain their view that those worlds have their own identities that they must collaborate with in order for terraforming to be successful.`
 			`	She has a slew of questions ranging from how the Wanderers determine a planet's identity to how often asteroids are used in their work. Unfortunately, you are not able to offer much information about the specific details of how the Wanderers go about their terraforming work. Disappointed, but not defeated, Amy asks, "Could you take me to visit these aliens?`
 			`	Now that the Kor Mereti drones are peaceful, and the Kor Sestor drones have been eliminated, there is no longer an immediate threat to the Wanderers, and they will be focused much more on their work to repair the former Korath worlds. They would probably be happy to discuss some of that work with someone as enthused by the prospect as Amy.`
@@ -2626,7 +2626,7 @@ mission "Terraforming 16"
 			`Tema'a Iriket meets you in the spaceport and hands Amy a tablet, explaining, "I have stored [records, histories] of over a hundred worlds from our archive here. I hope the translation is [adequate, acceptable]. There has not been much opportunity to test our translation systems for the human language."`
 			`	Amy has already begun browsing the data; Iriket's concerns about the quality of the translation seem to go unheard. "This is incredible. Thank you so much."`
 			`	"Explaining our work to an outsider has been [gratifying, novel]. I must thank you for the opportunity, Captain <last>." Iriket bids you goodbye.`
-			`	Amy returns to her bunk, beginning to organise the notes she has made on this trip. It seems it's time to return her to <planet>.`
+			`	Amy returns to her bunk, beginning to organize the notes she has made on this trip. It seems it's time to return her to <planet>.`
 				accept
 	on complete
 		conversation
