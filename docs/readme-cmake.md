@@ -65,6 +65,8 @@ Additionally, if you want to build unit tests:
 ```
 catch2
 ```
+While sufficient versions of other dependencies are available, Ubuntu 22.04 does not provide an up to date version of catch2 (3.0 or newer is required), so this will need to be built from source if unit tests are desired.
+
 
 </details>
 
