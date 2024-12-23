@@ -2568,11 +2568,6 @@ mission "Terraforming 14"
 			`	"Won't that take hundreds or thousands of years?" Amy asks.`
 			`	"Indeed," says Iriket. "But, to attempt to [accelerate, advance] the process by more [direct?] means would [harm, deteriorate] the product. While some worlds may [benefit from, require] a more [extreme, radical] change to begin their restoration, we do not believe it is [necessary, appropriate] here. It is [important, our goal] that a world at the conclusion of our work not only be [pristine, healthy] in that moment, but that it be [sustainable?] without additional [intervention, support]."`
 			`	Eventually, Amy asks "Are there any worlds where you have completed your work that I could see?" Iriket suggests <destination>, and asks you to take them there.`
-			choice
-				`	"Sure."`
-					accept
-				`	"Sorry, I need to go elsewhere."`
-					decline
 
 
 
