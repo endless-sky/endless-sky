@@ -2615,7 +2615,7 @@ mission "Terraforming 16"
 				`	"I'll leave you to your work here."`
 					goto done
 				`	"What did you think of the Wanderers?"`
-			`	"Terraforming for the sake of improving ecosystems, providing a place for future inhabitants, is very different to most of what I saw in the Paradise worlds." She explains. "Many of the people there are only interested in terraforming for the economic opportunities.`
+			`	"Terraforming for the sake of improving ecosystems, providing a place for future inhabitants, whoever they may be, is very different to most of what I saw in the Paradise worlds," she explains. "Many of the people there are only interested in terraforming for the economic opportunities for themselves, and they have little regard for anything that doesn't directly increase the value for themselves or their clients. Even the garden or 'natural' areas are artificial; forcing the whims and desires of the rich onto nature.`
 			`	"I've heard about a project in the Free Worlds working on affordable terraforming as well. Perhaps we should look into working with them. The Republic might not be too happy about that, though."`
 			choice
 				`	"I'm glad you had a good time."`
