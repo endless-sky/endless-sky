@@ -1,0 +1,119 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Rebel Jibauni: Qui-ni"
+	minor
+	name "Rebel Jibauni transport"
+	description "You bumped into a Rebel Jibauni in <origin>'s spaceport and agreed to take it to <destination>."
+	source
+		government "Jibauni (Rebel)"
+	destination Kanlil
+	to offer
+		random < 3
+	on offer
+		conversation
+			`Stepping off of the <ship> into the busy spaceport of <origin>, you see a Rebel Jibauni coming straight towards you with a purposeful look on its face. Looking around, you also see a patrol of Rebel Jibauni soldiers who seem to be searching the spaceport.`
+			choice
+				`	(Wait for the Jibauni to arrive.)`
+				`	(Leave.)`
+					decline
+			`	The Jibauni is coming faster now. When it gets within speaking distance you hear it ask, "Can anyone take me to <planet>? I need to leave immediately."`
+			choice
+				`	(Offer to transport the Jibauni.)`
+				`	(Ignore the Jibauni.)`
+					decline
+			`	You ask the Jibauni if you would fit the bill for transportation. It immediately thanks you and pulls you towards the <ship>, seemingly wanting to go.`
+			choice
+				`	(Follow the Jibauni and leave with it.)`
+					goto followandleave
+				`	"Whoa, not so fast there."`
+			`	"We've got to go now," the Jibauni exclaims. "Come on!" It pulls you into your ship and forces you to launch.`
+				launch
+			label followandleave
+			`	You take off upon reaching your ship. Rebel Jibauni ships launch with you.`
+				launch
+	on enter
+		"old reputation: Rebel Jibauni" = "reputation: Jibauni (Rebel)"
+		"reputation: Jibauni (Rebel)" <?= -1
+		conversation
+			`The Jibauni seems somewhat calmer now. "My name is Qui-ni," it says. "You are taking me to <destination>, right?"`
+			choice
+				`	"Well, I did leave with you."`
+				`	"Not willingly."`
+					goto notwilling
+			`	"Good. Now, please evade the Rebel Jibauni who are chasing us. Let's go immediately."`
+				goto end
+			label notwilling
+			`	"Really? Well, you can take me to <destination> immediately and be rid of me."`
+			label end
+	on complete
+		"reputation: Jibauni (Rebel)" = "old reputation: Rebel Jibauni"
+		clear "old reputation: Rebel Jibauni"
+		payment 500
+		conversation
+			`When you finally settle into the allotted dock, Qui-ni pays you <payment> with a relieved look. "I'm glad to be back," it says. Qui-ni then walks past you and out the door of the <ship>, leaving you to wonder what in space that was about.`
+	npc
+		government "Jibauni (Rebel)"
+		personality entering staying
+		fleet "Small Rebel Jibauni Military"
+	npc
+		government "Jibauni (Rebel)"
+		personality launching waiting
+		fleet "Small Rebel Jibauni Military" 2
+
+
+mission "Rebel Jibauni: Scam Government Transportation 1"
+	landing
+	name "Take a Rebel to <planet>"
+	description "Take a Rebel Jibauni to <destination>."
+	source
+		government "Jibauni (Rebel)"
+	destination
+		government "Jibauni (Rebel)"
+		distance 1 2
+	passengers 1
+	to offer
+		has "event: rebel jibauni: initial transportation"
+		has "Rebel Jibauni: Landed on Andwerfen: declined"
+		has "rebel jibauni: will transport upon request"
+		random < 80
+	on offer
+		conversation
+			`A Rebel arrives panting at the door of the <ship> as it opens. "Take me to <destination>," they say. "This has been requested by Rebel Jibauni."`
+			choice
+				`	"Alright."`
+					accept
+				`	"Isn't that the wrong wording?"`
+			`	"W-wrong wording? Wha-what do you mean?" queries the Jibauni. A commotion has arisen in the spaceport behind them.`
+			choice
+				`	"Never mind. Come aboard."`
+					accept
+				`	"Others have told me this with the words, 'This has been Requested by the Real Jibauni'."`
+					goto gavethegameaway
+				`	"You gave me the wrong sequence of words. I don't think you're real."`
+			label crestfallencaught
+			action
+				payment 1000
+			`	"But..." The crestfallen Jibauni turns away, only to be captured by Rebel soldiers. One of them thanks you for helping to apprehend a criminal, and pays you a thousand credits.`
+				decline
+			label gavethegameaway
+			`	"Oh, right. Of course. I have no idea how I forgot that." The Jibauni chuckles, and repeats, "Take me to <destination>. This has been Requested by the Real Jibauni."`
+			choice
+				`	"Since you ask so nicely..."`
+					accept
+				`	"I still don't think you're real. Away from here, before I call the cops!"`
+					goto crestfallencaught
+	on complete
+		fine 3000
+		conversation
+			`The Rebel Jibauni darts off the moment the ship lands. Soon, the port authorities of <planet> come and warn you that you have been carrying a criminal. They fine you <fine> for so doing.`

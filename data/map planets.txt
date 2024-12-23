@@ -192,6 +192,13 @@ planet Amazon
 		threshold 3500
 		fleet "Small Syndicate" 10
 
+planet Andwerfen
+	attributes capital jibauni "rebel jibauni" "res-redi shipyards" "seat of government"
+	landscape land/andwerfen
+	description `Obviously, Andwerfen is occupied by the Rebel Jibauni government. Fortified buildings and bunkers dot the whole city, in readiness to shoot invaders, and planetary defenses jut out of the landscape everywhere - even on the tops of buildings.`
+	description `	Wahlkin, a Jibauni once a peaceful planet-dweller, was inspired by stories of new spacecraft and heroic feats of flight. Eventually he started exploring, and subsequently started the colony of Andwerfen, now grown into a full-fledged military academy.`
+	spaceport `The spaceport is filled by armed patrols keeping an eye out for any sign of rebellion. Every Jibauni you see wears a frightened expression, and many wish to escape back to normal Jibauni space.`
+
 planet Angko
 	attributes bunrodea factory manufacturing
 	landscape land/water6
@@ -360,6 +367,23 @@ planet Bailey
 	tribute 300
 		threshold 1500
 		fleet "Small CCOR" 11
+
+planet Baitoon
+	attributes homeworld jibauni "res-redi shipyards"
+	landscape land/baitoon
+	description `Baitoon is the planet where the Jibauni were created, and presumably where the seat of the Normal Jibauni government convenes. Many Jibauni move about in long, narrow passageways between the landing pads, many of which, old and cracked, have received no maintenance for generations.`
+	description `	Other dinosaurs used to live on this planet, but the Jibauni have transplanted them to a different planet, Owiay, where they thrive and grow much better then they would in a land of T. Rexes.`
+		to display
+			has "jibauni knowledge: dinosaur skulls"
+	spaceport `This is the oldest existing spaceport in Jibauni space, and is filled with many different sizes of hangars and pads to compensate for the large amounts of traffic this planet gets as the third tourist destination in all of Jibauni space. Every building here is old, many small and close together.`
+	government Jibauni
+	shipyard "Aboagye Basics"
+	shipyard "Resredi Advanced"
+	shipyard "Resredi Basics"
+	outfitter "Jibauni Advanced"
+	outfitter "Jibauni Basics"
+	"required reputation" 3
+	security 0.8
 
 planet "Bank of Blugtad"
 	attributes arach urban wealthy
@@ -569,6 +593,11 @@ planet "Buccaneer Bay"
 		threshold 3000
 		fleet "Large Core Pirates" 9
 
+planet Buhayra
+	attributes uninhabited
+	landscape land/buhayra
+	description `Deadly acids and innocent rocks define the features of Buhayra. Yet caution does well to be exercised, because in the pools great fish lurk, and not all of the rocks can be trusted to stay in one place.`
+
 planet "Builder Settlement"
 	attributes ka'het "requires: ka'sei" uninhabited
 	landscape land/asteroid0
@@ -680,6 +709,11 @@ planet Cavaasa-Vasa-Tej
 		to display
 			has "trusted by the successors"
 	government Predecessor
+
+planet Caya
+	attributes uninhabited
+	landscape land/canyon15
+	description `"Stunning" is the only way to describe the natural beauty of Caya. Rock and tree and bare land combine here to make a wonderful picture. The world is dark because of the large cloudbanks, but the most of the planet's features are still visible.`
 
 planet "Ceaseless Toil"
 	attributes factory saryd uninhabited
@@ -1101,6 +1135,18 @@ planet "Devru Kaska"
 	spaceport `As the station's orbit carries it in and out of the gas giant's shadow, the station cools by a considerable amount, and the metal of the hull creaks and groans in protest. When the station is not in shadow, the temperatures here are almost too hot for human survival.`
 	"required reputation" 1
 	bribe 0
+	security 0
+
+planet "Diba Station"
+	attributes diba robot station
+	landscape "land/diba station"
+	description `This is the nicest station the Diba possess. The parts that you have access to are spick and span, polished with the labor of countless helper bots. It appears that this is where the rulers of the Diba live, and also, though you can't find the exact location, where the robots that are the terror of Diba space are produced.`
+	port "Robot Housing"
+		description `The robots here do not acknowledge your presence, and nothing exists here to refuel your type of ship. It is easy to imagine hostile eyes watching you from within buildings.`
+	"required reputation" 20
+	outfitter Diba
+	shipyard Diba
+	bribe 1
 	security 0
 
 planet "Diligent Hand"
@@ -1788,6 +1834,16 @@ planet "Garden Empyreal"
 	spaceport `	Each hub shares the same overall design in general, but the decoration pieces, services, and local amenities for each one have grown in their own way over the centuries. The only common thing they have between all of them is the signature restaurant, which serves a variety of dishes, drinks, and even desserts all based on the processed, scooped up produce.`
 	"required reputation" 20
 	security 0.4
+
+planet "Gare Station"
+	attributes diba robot station
+	landscape land/station47
+	description `This Diba station has a steady stream of robotic ships docking and undocking from the long hallways. Apparently, however, they don't use it for anything.`
+	"required reputation" 20
+	outfitter Diba
+	shipyard Diba
+	bribe 1
+	security 0
 
 planet Geminus
 	attributes factory military mining paradise
@@ -2519,6 +2575,15 @@ planet Jentuthro
 	bribe 0
 	security 0
 
+planet "Jibauni Wormhole"
+	wormhole "Jibauni Wormhole"
+
+wormhole "Jibauni Wormhole"
+	mappable
+	link Jibtrav Huyya
+	link Huyya Jibtrav
+	color 0 0.353 0
+
 planet Jupiter
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa12
@@ -2536,11 +2601,42 @@ planet Kaeyin
 		description `The only word you can think of to describe the spaceport is "impressive." It is on the top of the largest tower, placed in the exact center of a gargantuan city. With a base almost as big as a sizable village, very quickly getting thinner as it raises into the city's skyline.`
 		description `	Tiny, four-legged robots walk on the walls of every room, cleaning them in a matter of seconds. You can see more on the road below, and you presume they are everywhere in this city; this makes it impossible to estimate how long the planet has been abandoned, since everything here is perfect and clean.`
 
+planet Kahbani
+	attributes jibauni "kasim shipyards"
+	landscape land/kahbani
+	description `Kahbani: the farming world that feeds the entirety of Jibauni space. Not a single other planet has such large crop yields, and it just so happens that the food growable here is the best for the Jibauni - that is, when they're not eating meat.`
+	description `	This planet is in the first system discovered by the Jibauni. The official story was that government ships found it after long periods of trying to make hyperdrives, but popular tradition contradicts with the idea that a captain named Rindil Jibson discovered it just a few hundred years after the Jibauni were created - and years before the hyperdrive was invented.`
+	spaceport `Little passenger service lies in the spaceport in the only city on Kahbani. A few immigrants are scattered preparing to officially enter the planet, but the vast majority of Kahbani's facilities carry cargo; another portion to feed Baitoon, one to go to Lamalmuq; it seems that plants fill the whole of the small spaceport.`
+	government Jibauni
+	outfitter "Jibauni Basics"
+	security 0.5
+	tribute 2200
+		threshold 400
+		fleet "Small Jibauni Military" 30
+
 planet Kalbai
 	attributes bunrodea uninhabited
 	landscape land/forest4
 	description `For some reason, this apparently fruitful world has been left largely unsettled by the Bunrodea. Kalbai is teeming with life of all kinds, from varieties of plants across the various forests and plains of the planet's surface to the critters of varying sizes that scurry through the underbrush.`
 	description `	There are only minimal signs that anyone has ever set foot on this world; there are a number of ancient ruins scattered across the largest continent. A few appear to have been abandoned and reclaimed by nature, but most look as though they were destroyed, creating strikingly lifeless circles in the landscape around the center of the ruins.`
+
+planet Kanlil
+	attributes jibauni "kasim shipyards" station tourism
+	landscape land/station13
+	description `Kanlil, as the stopover for pilgrims wishing to visit Lamalmuq, is quite busy. It also sells luxurious goods unavailable on the pilgrims' planet, such as personal tablets and cigars. Most trading in this system naturally passes through Kanlil.`
+	description `	Surprisingly, the station is a fairly recent creation, only built two hundred years ago. Dertoy Enterprises, the original founder, went out of business soon afterwards; this contributes to the rumor that Kanlil has existed since the beginning of time as the Jibauni know it.`
+	spaceport `Most Jibauni loitering on Kanlil wear black robes; the rest wear the generic spaceport employee uniforms that permeate Jibauni space. Many ships are docked to the station, and the spaceport workers are kept busy unloading and reloading the large amounts of traffic in Hajay.`
+	government Jibauni
+	shipyard "Aboagye Basics"
+	shipyard "Resredi Basics"
+	outfitter "Jibauni Advanced"
+	outfitter "Jibauni Basics"
+	"required reputation" 5
+	security 0.8
+	tribute 1500
+		threshold 8104
+		fleet "Jibauni Pilgrim Transport" 2
+		fleet "Large Jibauni Military" 3
 
 planet "Karek Fornati"
 	attributes efret korath
@@ -2630,6 +2726,11 @@ planet "Kessel Sepret"
 	description `In this factory station, raw metal harvested in the other Korath systems is shaped into ships and weapons, the war materiel for their raids on human space. Sections of the ships are assembled and tested in pressurized hangars, but the Palavret is a large enough ship that the final assembly must be done in space, outside the station.`
 	spaceport `This station is run with military discipline reminiscent of a human Navy base. All the Korath, even the construction workers, are in full uniform with some sort of rank insignia: epaulettes that vary both in shape and color. The largest ones appear to mark the officers in charge.`
 	security 0
+
+planet Khariq
+	attributes uninhabited
+	landscape land/khariq
+	description `A lava world, sweltering with heat and smoke. Poisonous gases rise out of many volcanos, and magma is seeping over the rocky ground. Your ship's sensors are giving warnings, indicating that melting is possible for those who stay in the heat. It is best to not stay on the planet for too long.`
 
 planet Khora-Uurau-Uuoru
 	attributes successor uninhabited
@@ -2807,6 +2908,41 @@ planet "Laki Nemparu"
 	spaceport `All the Korath you encounter in the spaceport are wearing ventilator masks, and if you were staying here for longer you would probably do the same. The air leaves a metallic taste in your mouth, and your eyes feel dry and sting when the wind hits them. On the outskirts of the city, factory smokestacks are belching more pollution into the air; the Korath have either given up on preserving this planet, or simply have too great a need for the goods manufactured here to be willing to shut the factories down.`
 	outfitter "Korath Basics"
 
+planet Lamalmuq
+	attributes jibauni pilgrims tourism
+	landscape land/lamalmuq
+	description `Lamalmuq is the center of Jibauni religion. Many Jibauni roam on the surface, wearing simple black robes. There also are many religious buildings and none of the pubs and bars that would be expected on a normal planet. Billboards are posted everywhere advertising something impossible to read.`
+	description `	This is the planet of the gods to the Jibauni. Their ancient legends tell of a place where the rulers of the universe lived, and where all was quiet and peaceful.`
+	description `	This, they believe, is that planet, and so have been very careful not to spoil it.`
+	spaceport `Compared to other Jibauni planets, and the station of Kanlil nearby, Lamalmuq is quite sparsely populated in the matter of spacecraft. Most of the ships are built for the sole purpose of passenger transport. One city exists on the surface; every other continent is untouched by any Jibauni methods.`
+	government Jibauni
+	outfitter Lamalmuq
+	"required reputation" 10
+	security 1
+	tribute 10
+		threshold 3
+		fleet "Large Jibauni Military" 15
+
+planet Landalmon
+	attributes jibauni moon uninhabited
+	landscape land/dune1
+	description `This moon does not seem to be very important to the Jibauni. Hardly any work has been put into developing it, and the few buildings that remain are just small blobs of plastic. It is mostly filled with giant dunes of sand and rock.`
+	bribe 0
+	security 0
+
+planet Laqualk
+	attributes government jibauni military "requires: Jibauni"
+	landscape land/nasa29
+	description `This is the Jibauni seat of government. There are projectors and unknown electronic technology in an order that looks randomly strewn about, but this electronic equipment is really the high-tech apparatus that makes this planet look like the gas giant it isn't. There is one store, and no trading buildings or job buildings. The single job board is in the store in a conspicuous position.`
+	spaceport `There are only a few buildings here, only the amount required to house the government representatives as well as fueling, repairing, and cleaning the few ships that are authorized to land as well as the knowledge. There are almost no spaceport workers, and only a few landing pads, which, however, are in the best of condition.`
+	government Jibauni
+	"required reputation" 30
+	security 1
+	tribute 5600
+		threshold 3100
+		fleet "Large Jibauni Military" 6
+		fleet "Small Jibauni Military" 20
+
 planet "Lenz's Loop"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa28
@@ -2846,6 +2982,11 @@ planet Lichen
 	tribute 500
 		threshold 3000
 		fleet "Large Militia" 8
+
+planet Ligastoli
+	attributes uninhabited
+	landscape land/ligastoli
+	description `Ligastoli is a wonderful world, with lush greenery much like ancient rice terraces. In fact, it is remarkably like Earth, except for the wildlife. The only animals here, your ship's computer decides, are called Stoli, and are a mix between a fox and a raccoon. They seem to live in trees. Nothing else exists on the lush slopes of Ligastoli.`
 
 planet Limejog
 	attributes hai station uninhabited
@@ -2919,6 +3060,16 @@ planet Maelstrom
 		threshold 5500
 		fleet "Large Republic" 11
 
+planet "Mahata Station"
+	attributes diba robot station
+	landscape land/station50
+	description `Clearly on Mahata Station the Diba are going for function and not style. All surfaces are covered with dust and rust, and the equivalent of chicken wire is put up instead of solid wall.`
+	"required reputation" 20
+	outfitter Diba
+	shipyard Diba
+	bribe 1
+	security 0
+
 planet Mahoganybox
 	attributes hai retirement station
 	landscape land/station41
@@ -2973,6 +3124,11 @@ planet Makerplace
 	shipyard "Mon Ki i'Hiya Basics"
 	outfitter "Hai Advanced"
 	security 0.2
+
+planet Makhi
+	attributes uninhabited
+	landscape land/makhi
+	description `Makhi is filled with pools of bubbling liquid and rocks jutting high into the air. Poisonous algae covers the surface of the water, and steam is continually rising. This planet could be easily regarded as spooky to captains not versed in the methods of science.`
 
 planet Mani
 	attributes deep moon
@@ -3168,6 +3324,15 @@ planet Millrace
 		threshold 4000
 		fleet "Large Syndicate" 8
 
+planet Minmanmun
+	attributes jibauni mining "rebel jibauni" terraformed
+	landscape land/desert
+	description `Minmanmun: the first planet the Rebel Jibauni ever terraformed. Unfortunately, they seem to have only cared about external looks to inhabitants of main population centers, because even a little outside the city, the true landscape takes over and rock strikes in.`
+	description `	This planet is also a mining planet, so the rock has great scars in it at places and there are many machines to do the digging, which are scattered around parked looking very untidy.`
+	spaceport `When coming down for landing, most of what can be seen is rock, though ships above the city see nothing but planets and trees, due to the haphazard nature of the Rebels that terraformed this planet. However, once down, the streets are wide and cool, with luxurious buildings and shady pathways.`
+	spaceport `	This was built by Reshi, a Jibauni who spearheaded the Rebel movement. She still lives and fights today.`
+	government "Jibauni (Rebel)"
+
 planet Mirrorlake
 	attributes hai "hai tourism" moon
 	landscape land/bwerner1
@@ -3181,6 +3346,13 @@ planet Mnai
 	description `The environment of this world is quite pleasant by human standards. A majority of Mnai's yearly seasons consist of extended warm summer periods that provide healthy conditions for wildlife to thrive. Canyons are a common sight, sometimes harboring their own smaller ecosystems both in their higher mountainous regions and down in the valleys. Other patches of Mnai's surface have mesas that are home to mammals that look like large bears with antlers.`
 	description `	Although this world remains an uncolonized paradise, there is some indication that the planet has been visited recently by the Gegno. A few landing sites can be found atop the taller ridges, but none are intricate enough to indicate any attempt to establish a settlement.`
 	government Uninhabited
+
+planet Monwon
+	attributes "near diba" uninhabited
+	landscape land/fields28
+	description `An uninhabited planet, Monwon seems very interesting for its bunches of foliage. And curiously, the grass is flat, as it would be on any human world that had professional mowers.`
+	description ``
+	description `	Perhaps the Diba come here occasionally, and have used the lawn as a landing strip.`
 
 planet Moonshake
 	attributes core factory forest urban
@@ -3259,6 +3431,20 @@ planet "Muninn Station"
 	tribute 1100
 		threshold 5500
 		fleet "Small Deep Security" 25
+
+planet Muntisir
+	attributes jibauni "rebel jibauni"
+	landscape land/muntisir
+	description `This is where the Rebel Jibauni movement started, and where most of the Rebel population live. Many of them work in the city where you landed, but there are cities far and wide across the planet, though most of those cites look to be smaller then this one, which is none too large itself. There are also many oceans on this planet.`
+	description `	The ground also shivers and quakes, and there are great cranes and craters scattered across the surface.`
+	spaceport `The facilities of all kinds here are quite large, this planet having one of the best of the Jibauni spaceports. Rumor has it that there are secret passageways all over underneath the spaceport, and that in fact the whole spaceport is a cover for something far bigger that the Rebel Jibauni are building.`
+	government "Jibauni (Rebel)"
+	shipyard "Resredi Advanced"
+	shipyard "Resredi Basics"
+	outfitter "Jibauni Advanced"
+	outfitter "Jibauni Basics"
+	"required reputation" 5
+	security 1
 
 planet Muspel
 	attributes deep factory mining
@@ -3704,6 +3890,12 @@ planet Norn
 		threshold 3000
 		fleet "Small Deep Security" 12
 
+planet Nulto
+	attributes jibauni uninhabited
+	landscape land/nulto
+	description `This planet is beautiful, with trees and grasses abundant in all areas of the mountainous region you are in. No signs of Jibauni habitation are visible, and it is unclear why they haven't settled here, though they may have decided not to spoil the planet with the smog and pollution of large cities.`
+	"required reputation" -1000
+
 planet Oasis
 	attributes farming rim textiles
 	landscape land/dune4
@@ -3811,6 +4003,15 @@ planet "Oup Je"
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet Owiay
+	attributes jibauni uninhabited
+	landscape land/owiay
+	description `This is a beautiful world, with rushing rivers and great trees. No other ships, hostile or friendly, seem to be here.`
+	description `	The wildlife on Owiay is abundant, and there do not seem to be predators. All animals you see eat nothing but leaves. Plant-eating dinosaurs roam the green hillsides.`
+		to display
+			not "jibauni knowledge: dinosaur skulls"
+	description `	The wildlife on Owiay is abundant, and there do not seem to be predators. All animals you see eat nothing but leaves. Plant-eating dinosaurs, which the Jibauni moved from Baitoon when they first discovered spaceflight, roam the green hillsides.`
 
 planet O-Vasa-Oa
 	attributes successor urban wealthy
@@ -4007,6 +4208,11 @@ planet Prime
 	tribute 4400
 		threshold 8000
 		fleet "Large Republic" 17
+
+planet Prineanuhara
+	attributes uninhabited
+	landscape land/bwerner8
+	description `Uninhabited and strikingly warm, giant mesas and rock cliffs are scattered on the burning sand of Prineanuhara. Boots are essential to prevent scalded feet on the sand that sinks under the weight of even a feather.`
 
 planet "Pug Wormhole"
 	wormhole "Pug Wormhole"
@@ -4681,6 +4887,14 @@ planet Silver
 		threshold 4000
 		fleet "Small Republic" 25
 
+planet Sinsansun
+	attributes farming jibauni "rebel jibauni"
+	landscape land/sinsansun
+	description `Sinsansun produces a good portion of the food for the Rebel Jibauni; essentially being the Rebel version of Kahbani. As the second largest planet in all of Jibauni space dedicated exclusively to food production, Sinsansun is famous in more ways than one - including the fact that all non-Jibauni animals here dislike light. Artificial shades cover much of the planet, although the above side is cleverly painted to look like the surface of the planet beneath.`
+	spaceport `The market is flooded with animals, barrels, baskets, and buckets of other provisions; the price of food here is astoundingly low, as is the clothing commodity. However, metal and luxurious good stalls are few and far between, and do not seem to be getting hardly any business. The outfitter is difficult to find.`
+	government "Jibauni (Rebel)"
+	outfitter "Jibauni Basics"
+
 planet Sinter
 	attributes "dirt belt" mining
 	landscape land/nasa2
@@ -4694,6 +4908,11 @@ planet Sinter
 	tribute 400
 		threshold 3000
 		fleet "Small Militia" 28
+
+planet Sio
+	attributes uninhabited
+	landscape land/sio
+	description `On Sio, snow fills the whole of every visible continent. Ice-covered water with ready to topple dead trees on the edge takes up the other forty percent, and rocks in the ice make landing hazardous. Snowdrifts dot the surface on land and ice alike; deep holes in the ice are uncommon but not entirely nonexistent.`
 
 planet Siteria
 	attributes ka'het uninhabited
@@ -4962,6 +5181,11 @@ wormhole "Successor Wormhole"
 	color "wormholes: Ember Waste"
 	mappable
 
+planet Sukhur
+	attributes uninhabited
+	landscape land/sukhur
+	description `The small rocky moon Sukhur remains uninhabited and contains little of value. While at one point in the far distant future a civilization in dire need may conduct mining operations here, Sukhur will likely continue in its abandoned state until then, though long patrols may check on it occasionally.`
+
 planet Sundive
 	attributes core farming forest frontier research
 	landscape land/water9
@@ -5015,6 +5239,19 @@ planet Swiftsong
 	spaceport `The spaceport promenade runs around the interior of the station and is divided into the usual two levels, but has four additional ring levels rising up from the promenade into each of the station's main branches. Almost any business or service you could want can be found here - except for an outfitter or shipyard. Apparently there is simply no room, as the docking bay must take up nearly all the station's exterior space to accommodate its massive volume of daily traffic.`
 	bribe 0.1
 	security 0.5
+
+planet Taltahard
+	attributes jibauni "kasim shipyards" moon
+	landscape land/taltahard
+	description `The small moon of Taltahard is much like many moons, save the single fact that iron ore can be found in great quantities. Additionally, large reserves of deuterium, which is used to make hyperspace fuel, have been found here. However, all food must be shipped in from outside.`
+	description `	The system Taltahard is in was the last of the five Jibauni systems to be discovered. A captain on Landalmon had sensed it soon after the discovery of Hajay with the rudimentary technology the Jibauni then had. However, it was a captain on Baitoon who first jumped into it, and so he has the credit for discovering it.`
+	spaceport `There are few places in Jibauni space you have seen that have so many Nathaqs and Nathases around, but few passenger transports are evident. Only large landing pads dot the site, and the main amenity is the fuel - which just so happens to be in great tanks without automatic fuel connectors.`
+	government Jibauni
+	outfitter "Jibauni Basics"
+	tribute 2000
+		threshold 6000
+		fleet "Large Jibauni Military"
+		fleet "Small Jibauni Military" 2
 
 planet Taylor
 	landscape land/moon0
@@ -5246,6 +5483,11 @@ planet Tschyss
 	"required reputation" 1
 	bribe 0
 	security 0
+
+planet "Tud Habal"
+	attributes uninhabited
+	landscape "land/tud habal"
+	description `Without an atmosphere to thrive on, it is a miracle that the sparse vegetation on Tud Habal survives. Not a single plant from Earth could live here, and indeed, it would be hard to find greenery hardy enough to survive. The land is dotted with lone mountains, covered with rock that moves and leaps with hostile intent toward intruders. You can only guess what the spooky stone might be called if any sentient being lived here, but it is unlikely that the name would be pleasant.`
 
 planet Tundra
 	attributes "dirt belt" frozen oil textiles
@@ -5519,6 +5761,12 @@ planet "Vara Rakak"
 		threshold 6500
 		fleet "Wanderer Defense" 5
 
+planet Vardelu
+	attributes uninhabited
+	landscape land/vardelu
+	description `Vardelu, covered with a thick atmosphere and beautiful clouds, appears peaceful and aesthetic. Yet all is not idollic. Innocent-looking clouds conceal deadly black birds of prey, and exiting a spaceship brings great flocks of the predators down upon anybody who dares set foot on the world.`
+	description `	It doesn't help that the hard grass bounces travelers sky-high - right into the middle of the bird clouds, who would like nothing better than to murder any trespassers.`
+
 planet "Varu Ek'lak'lai"
 	attributes mining wanderer
 	landscape land/canyon7
@@ -5756,6 +6004,11 @@ planet "Weir of Glubatub"
 	spaceport `The spaceport is on an island near one of the planet's poles, where the temperature is cool and sea ice can be gathered to stock the warehouses where the fish are kept cold until they can be shipped off-world. Even with most of the fish being kept on ice, the smell is still overpowering, except at the rare moments when the wind picks up and it is replaced by the smell of fresh salt air.`
 	"required reputation" 15
 
+planet Weloon
+	attributes uninhabited
+	landscape land/hills6-sfiera
+	description `Yellow slopes underneath clouds and rolling fog dominate the small trees on Weloon. Mountains dwarf the hills, covered with light wisps of some unknown plant native to this cold planet. Trees, visible but hue-shifting, dot the nearer sides of the mesas at the top of the world, while on the other side a long fall awaits those who step too far.`
+
 planet Windblain
 	attributes deep oil textiles
 	landscape land/bwerner0
@@ -5915,6 +6168,12 @@ planet Zenith
 	tribute 400
 		threshold 2500
 		fleet "Small Northern Pirates" 13
+
+planet Zilat
+	attributes uninhabited
+	landscape land/zilat
+	description `Nothing of interest resides on this abandoned planet. Zilat's nearness to Jibauni space suggests it may once have been inhabited, but if so, no indications remain; the planet looks remarkably free from intervention of any sentient being.`
+	description `	At your landing location, a lone yellow rock formation stands, the only splotch of different color in miles of red rock.`
 
 planet Zug
 	attributes factory farming rim
