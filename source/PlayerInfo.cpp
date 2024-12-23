@@ -3995,12 +3995,14 @@ void PlayerInfo::RegisterDerivedConditions()
 		fleetCounters[fleetName] = value;
 		return true;
 	});
-	fleetCountProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		string fleetName = name.substr(strlen("fleet count by name: "));
-		fleetCounters.erase(fleetName);
-		return true;
-	});
+	// Following code was broken by upstream's removal of erase support. Commenting
+	// it out for now to verify that it doesn't actually remove any functionality.
+	// fleetCountProvider.SetEraseFunction([this](const string &name) -> bool
+	// {
+	// 	string fleetName = name.substr(strlen("fleet count by name: "));
+	// 	fleetCounters.erase(fleetName);
+	// 	return true;
+	// });
 
 	// A condition for returning a random integer in the range [0, input). Input may be a number,
 	// or it may be the name of a condition. For example, "roll: 100" would roll a random
