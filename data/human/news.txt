@@ -2162,7 +2162,7 @@ news "label on ship"
 			"Door opens outwards."
 			"Remove red ribbons before flight."
 			"Nuclear reactor compartment, certification is required for servicing this part of the ship."
-			"Compartiment du réacteur nucléaire, la certification est requise avant l'entretien."
+			"Compartiment du reacteur nucleaire, la certification est requise avant l'entretien."
 
 
 
