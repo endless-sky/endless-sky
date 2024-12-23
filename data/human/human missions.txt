@@ -2606,7 +2606,7 @@ mission "Terraforming 16"
 			`Tema'a Iriket meets you in the spaceport and hands Amy a tablet, explaining, "I have stored [records, histories] of over a hundred worlds from our archive here. I hope the translation is [adequate, acceptable]. There has not been much opportunity to test our translation systems for the human language."`
 			`	Amy has already begun browsing the data; Iriket's concerns about the quality of the translation seem to go unheard. "This is incredible. Thank you so much."`
 			`	"Explaining our work to an outsider has been [gratifying, novel]. I must thank you for the opportunity, Captain <last>." Iriket bids you goodbye.`
-			`	Amy spends the rest of your time here in her bunk, studying the Wanderers' data. It seems it's time to return her to <planet>.`
+			`	Amy returns to her bunk, beginning to organise the notes she has made on this trip. It seems it's time to return her to <planet>.`
 				accept
 	on complete
 		conversation
