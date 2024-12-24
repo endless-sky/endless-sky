@@ -2160,8 +2160,8 @@ news "label on ship"
 			"Stay away from thruster outlets during takeoff."
 			"Door opens outwards."
 			"Remove red ribbons before flight."
-			"Nuclear reactor compartment, certification is required for servicing this part of the ship."
-			"Compartiment du reacteur nucleaire, la certification est requise avant l'entretien."
+			"Nuclear reactor compartment, NEA certification is required for servicing this part of the ship."
+			"Compartiment du reacteur nucleaire, la certification du NEA est requise avant l'entretien."
 
 
 
