@@ -59,7 +59,7 @@ ship "Latbaliday" "Latbaliday (Bunks)"
 ship "Daybal" "Daybal (Bunks)"
 	outfits
 		"Outfits Expansion"
-		"Bunk" 2
+		"Small Bunk Room"
 
 ship "Yiyharsi" "Yiyharsi (Bunks)"
 	outfits

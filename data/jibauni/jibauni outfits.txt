@@ -442,16 +442,6 @@ outfit "Tashwish Radar Jammer"
 	description "Wonderful for its radar jamming purposes, the Tashwish nevertheless takes up large amounts of space when compared to other non-Jibauni jammers."
 
 
-outfit "Bunk"
-	category "Systems"
-	cost 15000
-	thumbnail "outfit/bunk"
-	"mass" 2
-	"bunks" 1
-	"outfit space" -7
-	"unplunderable" 1
-	description "Captains who treat passengers and crew like slaves can use this to cram another bunk into their spaceship."
-
 outfit "Large Bunk Room"
 	category "Systems"
 	cost 90000
