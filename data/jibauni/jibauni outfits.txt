@@ -520,7 +520,7 @@ outfit "Eimlaq Steering"
 	"turning fuel" 1.25
 	"slowing resistance" .049
 	"slowing resistance fuel" .049
-	"steering flare sprite" "effect/atomic flare/large"
+	"steering flare sprite" "effect/eimlaq"
 		"frame rate" 11
 	"steering flare sound" "eimlaq engines"
 	description "The Eimlaq Steering - along with the thruster set under the same name - are the greatest invention of the company that first produced them, Darro-ol. These huge rockets produce large amounts of flame, driving Jibauni ships with great speed."
@@ -540,7 +540,7 @@ outfit "Eimlaq Thrusters"
 	"thrusting fuel" .1
 	"slowing resistance" .051
 	"slowing resistance fuel" .051
-	"flare sprite" "effect/atomic flare/huge"
+	"flare sprite" "effect/eimlaq"
 		"frame rate" 10
 	"flare sound" "eimlaq engines"
 	description "The Eimlaq Thrusters - along with the steering set under the same name - are the greatest invention of the company that first produced them, Darro-ol. These huge rockets produce large amounts of flame, driving Jibauni ships with great speed."
@@ -561,7 +561,7 @@ outfit "Wasita Steering"
 	"turning fuel" .6
 	"slowing resistance" .025
 	"slowing resistance fuel" .025
-	"steering flare sprite" "effect/atomic flare/tiny"
+	"steering flare sprite" "effect/wasita"
 		"frame rate" 11
 	"steering flare sound" "wasita engines"
 	description "Surprisingly, the Wasita Steering and its parallel thruster set were the first engines produced by the Jibauni which remain in existence today. Now, the Wasita pair are produced by Aboagye Shipyards, even though their rivals from Res-redi use them sometimes."
@@ -581,7 +581,7 @@ outfit "Wasita Thrusters"
 	"thrusting fuel" .65
 	"slowing resistance" .025
 	"slowing resistance fuel" .025
-	"flare sprite" "effect/atomic flare/small"
+	"flare sprite" "effect/wasita"
 		"frame rate" 10
 	"flare sound" "wasita engines"
 	description "Surprisingly, the Wasita Thrusters and their parallel steering set were the first engines produced by the Jibauni which remain in existence today. Now, the Wasita pair are produced by Aboagye Shipyards, even though Aboagye's rivals from Res-redi use them sometimes."
@@ -601,7 +601,7 @@ outfit "Alhaja Steering"
 	"turning heat" .7
 	"slowing resistance" .005
 	"slowing resistance fuel" .005
-	"steering flare sprite" "effect/atomic flare/tiny"
+	"steering flare sprite" "effect/alhaja"
 		"frame rate" 11
 	"steering flare sound" "alhaja engines"
 	description "Any Jibauni who must fly a fighter or other small ship thanks Res-redi for its Alhaja inventions. The latest Jibauni engines to be designed, the Alhaja pair is used to power only the smallest of Jibauni ships - many of which are made by Res-redi's rival Aboagye Shipyards."
@@ -620,7 +620,7 @@ outfit "Alhaja Thrusters"
 	"thrusting heat" .5
 	"slowing resistance" .005
 	"slowing resistance fuel" .005
-	"flare sprite" "effect/atomic flare/small"
+	"flare sprite" "effect/alhaja"
 		"frame rate" 10
 	"flare sound" "alhaja engines"
 	description "Any Jibauni who must fly a fighter or other small ship thanks Res-redi for its Alhaja inventions. The latest Jibauni engines to be designed, the Alhaja pair is used to power only the smallest of Jibauni ships - many of which are made by Res-redi's rival Aboagye Shipyards."
