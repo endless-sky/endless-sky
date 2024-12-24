@@ -2517,7 +2517,7 @@ event "terraforming follow-up"
 mission "Terraforming 13"
 	minor
 	name "Field Trip"
-	description "Amy, who you helped terraform Rand and Tundra, seems to share some of her terraforming philosophy with the Wanderers. Bring her to <destination> to visit them."
+	description "Amy, whom you helped terraform Rand and Tundra, seems to share some of her terraforming philosophy with the Wanderers. Bring her to <destination> to visit them."
 	source "Tundra"
 	destination "Desi Seledrak"
 	passengers 1
@@ -2528,7 +2528,7 @@ mission "Terraforming 13"
 		conversation
 			branch repeat
 				has "terraforming field trip: deferred later"
-			`As you walk through the spaceport, you notice a poster featuring Amy, whom you previously helped terraform this world and Rand. The poster describes that terraforming action, and the long-term goal to restore the warmer climate Tundra had millions of years ago. Amy's work on "equilibrium mapping," the idea that planets naturally "want" to support more complex and varied life, seems similar to the Wanderer philosophy that each planet has its own "will", and that the best way to terraform it is to work with that "will." Amy may be interested in learning about the Wanderers and their techniques. Would you like to find her and tell her about them?`
+			`As you walk through the spaceport, you notice a poster featuring Amy, whom you previously helped terraform this world and Rand. The poster describes that terraforming action, and the long-term goal to restore the warmer climate Tundra had millions of years ago. Amy's work on "equilibrium mapping," the idea that planets naturally "want" to support more complex and varied life, seems similar to the Wanderer philosophy that each planet has its own "will," and that the best way to terraform it is to work with that "will." Amy may be interested in learning about the Wanderers and their techniques. Would you like to find her and tell her about them?`
 			choice
 				`	(Yes.)`
 				`	(Not right now.)`
@@ -2586,7 +2586,8 @@ mission "Terraforming 14"
 			`	"The gases [released, produced] by the factories will help the atmosphere retain more heat, which will in turn begin to melt the glaciers and return water to the [ecosystem, environment]. Over time, this will [mix, interact] with the abundant ash, helping to [restore, rejuvenate] the soils all over this world. In time, it will become [fruitful, bountiful] again."`
 			`	"Won't that take hundreds or thousands of years?" Amy asks.`
 			`	"Indeed," says Iriket. "But, to attempt to [accelerate, advance] the process by more [direct?] means would [harm, deteriorate] the product. While some worlds may [benefit from, require] a more [extreme, radical] change to begin their restoration, we do not believe it is [necessary, appropriate] here. It is [important, our goal] that a world at the conclusion of our work not only be [pristine, healthy] in that moment, but that it be [sustainable?] without additional [intervention, support]."`
-			`	Eventually, Amy asks "Are there any worlds where you have completed your work that I could see?" Iriket suggests <destination>, and asks you to take them there.`
+			`	Eventually, Amy asks, "Are there any worlds where you have completed your work that I could see?" Iriket suggests <destination>, and asks you to take them there.`
+				accept
 
 
 
@@ -2601,7 +2602,7 @@ mission "Terraforming 15"
 		has "Terraforming 14: done"
 	on offer
 		conversation
-			`You fly across large swathes of the planet's surface, giving Amy a view of all the greenery and the oceans here. Meanwhile, Tema'a Iriket describes the condition of this world when the Wanderers first began working on it. "The atmosphere was [close to, nearing] a [runaway, uncontrolled] greenhouse effect. Many species had recently gone extinct, or were very close to it. The oceans were also quite toxic. Now, the atmosphere is [stable, sustainable], and many of the species that were [on the brink?] of extinction now flourish."`
+			`You fly across large swaths of the planet's surface, giving Amy a view of all the greenery and the oceans here. Meanwhile, Tema'a Iriket describes the condition of this world when the Wanderers first began working on it. "The atmosphere was [close to, nearing] a [runaway, uncontrolled] greenhouse effect. Many species had recently gone extinct, or were very close to it. The oceans were also quite toxic. Now, the atmosphere is [stable, sustainable], and many of the species that were [on the brink?] of extinction now flourish."`
 			`	Amy also explains about her recent experimental terraforming. "We believe the planet used to be temperate, or even tropical millions of years ago. We used an asteroid impact to trigger a supervolcano that was close to eruption. The greenhouse gases from the eruption have already begun to warm the climate."`
 			`	Iriket thinks for a moment before responding. "Using the planet's [features, assets] to restore more habitable conditions is an [admirable?] approach." The approval buoys Amy, but she is somewhat deflated by what comes next. "However, an asteroid would not be our [preferred, first] step."`
 			`	As you conclude your sightseeing, Tema'a Iriket says your next stop should be <planet>, where she will provide Amy with more detailed records of their terraforming activities than she can provide orally.`
@@ -2629,7 +2630,7 @@ mission "Terraforming 16"
 				accept
 	on complete
 		conversation
-			`	Most of Amy's time on the return journey was spent with the Wanderer data. Even still, she claims to have barely scratched the surface of what the Wanderers have done.`
+			`Most of Amy's time on the return journey was spent with the Wanderer data. Even still, she claims to have barely scratched the surface of what the Wanderers have done.`
 			choice
 				`	"I'll leave you to your work here."`
 					goto done
