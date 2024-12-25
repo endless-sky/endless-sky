@@ -150,11 +150,15 @@ outfit "Zarhal Laser Turret"
 	"turret mounts" -1
 	"required crew" 1
 	weapon
-		sound "zarhal turret"
 		sprite "projectile/jibauni medium laser"
-		"inaccuracy" 2
+		"hardpoint sprite" "hardpoint/zarhal turret"
+		"hardpoint offset" 8.
+		sound "zarhal turret"
 		"hit effect" "heavy laser impact"
+		"inaccuracy" 2
 		"turret turn" 1.1
+		"velocity" 650
+		"lifetime" 1
 		"reload" 1
 		"firing energy" 1
 		"firing heat" 2.25
@@ -162,7 +166,6 @@ outfit "Zarhal Laser Turret"
 		"hit force" 10
 		"shield damage" 4.5
 		"hull damage" 2.2
-		"velocity" 650
 		"phasing"
 	description "Jibauni inventors didn't know how to make a laser that could hit asteroids - nor did they care much. The Zarhal Laser Turret does the most damage of any Jibauni weapon, but the abysmal turn rate has sent many captains down the opposite path of the Zarwal Turret."
 
@@ -175,11 +178,15 @@ outfit "Zarwal Laser Turret"
 	"weapon capacity" -18
 	"turret mounts" -1
 	weapon
-		sound "zarwal turret"
 		sprite "projectile/jibauni small laser"
+		"hardpoint sprite" "hardpoint/zarwal turret"
+		"hardpoint offset" 8.
+		sound "zarwal turret"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" 2
 		"turret turn" 2
+		"velocity" 425
+		"lifetime" 1
 		"reload" 1
 		"firing energy" 0.5
 		"firing heat" 1
@@ -187,7 +194,6 @@ outfit "Zarwal Laser Turret"
 		"hit force" 4
 		"shield damage" 2.33
 		"hull damage" .83
-		"velocity" 425
 		"phasing"
 	description "The Zarwal Turret does not do nearly as much damage as the Zarhal. However, having the turret turn at more than a millimeter a second is a great blessing to Jibauni captains which use it."
 
@@ -223,13 +229,14 @@ outfit "Lilsa Anti-Missile"
 	"mass" 10
 	"turret mounts" -1
 	weapon
+		"hardpoint sprite" "hardpoint/lilsa anti-missile"
 		"hit effect" "small anti-missile"
+		"anti-missile" 1
 		"velocity" 155
 		"lifetime" 1
-		"anti-missile" 1
+		"reload" 5
 		"firing energy" 3
 		"firing fuel" 0.1
-		"reload" 5
 		"firing heat" 3
 	description "The Lilsa Anti-Missile operates in a quite different manner to most other anti-missiles. While they zap lasers at incoming hostile projectiles, the Lilsa sprays burning fuel at targets, causing them to explode before arriving at the ship the Lilsa has been installed on."
 
