@@ -37,6 +37,7 @@ class PlayerInfoPanel : public Panel {
 public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
 	explicit PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState);
+	virtual ~PlayerInfoPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
