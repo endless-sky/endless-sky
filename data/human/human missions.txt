@@ -2629,6 +2629,7 @@ mission "Terraforming Field Trip 4"
 			`	Amy returns to her bunk, beginning to organize the notes she has made on this trip. It seems it's time to return her to <planet>.`
 				accept
 	on complete
+		log `Took Amy on a "field trip" to Wanderer space to learn about their approach to terraforming. Tema'a Iriket provided great insight and showed Amy both their ongoing and complete work, as well as providing an extensive library of Wanderer records that should keep Amy busy for a very long time.`
 		conversation
 			`Most of Amy's time on the return journey was spent with the Wanderer data. Even still, she claims to have barely scratched the surface of what the Wanderers have done.`
 			choice
