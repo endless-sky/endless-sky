@@ -1051,7 +1051,7 @@ void OutfitterPanel::DrawKey()
 	SpriteShader::Draw(box[showInstalled], pos);
 	// The text color will be "medium" when no ships are selected, regardless of checkmark state,
 	// indicating that the selection is invalid (invalid context).
-	font.Draw("Show installed outfits", pos + off, color[showInstalled && playerShip]);
+	font.Draw("Show outfits installed", pos + off, color[showInstalled && playerShip]);
 	AddZone(Rectangle(pos + checkboxOffset, checkboxSize), [this]() { ToggleInstalled(); });
 
 	pos.Y() += checkboxSpacing;
