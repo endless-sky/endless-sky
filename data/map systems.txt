@@ -16559,7 +16559,7 @@ system Greiun
 		distance 5729
 		period 2501
 		object
-			sprite planet/moon56
+			sprite planet/luna-b
 			distance 329.5
 			period 36.92
 		object
@@ -30443,7 +30443,7 @@ system Rabalin
 		period 187.088
 		object
 		object Taltahard
-			sprite planet/moon56
+			sprite planet/taltahard
 				scale 0.5
 			distance 395
 			period 250
@@ -31221,13 +31221,9 @@ system Reie
 			distance 266
 			period 205.227
 	object
-		sprite planet/sheragi_postverta
+		sprite planet/lava5
 		distance 1555
 		period 345.194
-		object
-			sprite planet/miranda-b
-			distance 158
-			period 93.95
 	object
 		sprite planet/gas0-b
 		distance 2807
