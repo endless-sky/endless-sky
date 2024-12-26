@@ -2514,7 +2514,7 @@ event "terraforming follow-up"
 
 
 
-mission "Terraforming 13"
+mission "Terraforming Field Trip 1"
 	minor
 	name "Field Trip"
 	description "Amy, whom you helped terraform Rand and Tundra, seems to share some of her terraforming philosophy with the Wanderers. Bring her to <destination> to visit them."
@@ -2570,7 +2570,7 @@ mission "Terraforming 13"
 
 
 
-mission "Terraforming 14"
+mission "Terraforming Field Trip 2"
 	name "Field Trip"
 	description "Take Tema'a Iriket and Amy to <destination> to show her a world where the Wanderers have finished their work."
 	source "Desi Seledrak"
@@ -2578,7 +2578,7 @@ mission "Terraforming 14"
 	passengers 2
 	blocked "You need <capacity> in order to take on this mission."
 	to offer
-		has "Terraforming 13: done"
+		has "Terraforming Field Trip 1: done"
 	on offer
 		conversation
 			`It is not long before Iriket arrives. You introduce Amy to her, and explain why you have brought her here. "I would be [glad, honored] to answer any questions about our work," she agrees.`
@@ -2591,7 +2591,7 @@ mission "Terraforming 14"
 
 
 
-mission "Terraforming 15"
+mission "Terraforming Field Trip 3"
 	landing
 	name "Field Trip"
 	description "Take Tema'a Iriket and Amy to <destination> to retrieve records of Wanderer terraforming for Amy to study."
@@ -2599,7 +2599,7 @@ mission "Terraforming 15"
 	destination "Vara K'chrai"
 	passengers 2
 	to offer
-		has "Terraforming 14: done"
+		has "Terraforming Field Trip 2: done"
 	on offer
 		conversation
 			`You fly across large swaths of the planet's surface, giving Amy a view of all the greenery and the oceans here. Meanwhile, Tema'a Iriket describes the condition of this world when the Wanderers first began working on it. "The atmosphere was [close to, nearing] a [runaway, uncontrolled] greenhouse effect. Many species had recently gone extinct, or were very close to it. The oceans were also quite toxic. Now, the atmosphere is [stable, sustainable], and many of the species that were [on the brink?] of extinction now flourish."`
@@ -2613,14 +2613,14 @@ mission "Terraforming 15"
 
 
 
-mission "Terraforming 16"
+mission "Terraforming Field Trip 4"
 	name "Field Trip"
 	description "Return Amy to <destination> following her trip to meet the Wanderers and learn about how they go about terraforming."
 	source "Vara K'chrai"
 	destination "Tundra"
 	passengers 1
 	to offer
-		has "Terraforming 15: done"
+		has "Terraforming Field Trip 3: done"
 	on offer
 		conversation
 			`Tema'a Iriket meets you in the spaceport and hands Amy a tablet, explaining, "I have stored [records, histories] of over a hundred worlds from our archive here. I hope the translation is [adequate, acceptable]. There has not been much opportunity to test our translation systems for the human language."`
