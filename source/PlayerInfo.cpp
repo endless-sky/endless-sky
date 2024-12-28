@@ -4019,12 +4019,10 @@ void PlayerInfo::CreateMissions()
 	// This list is already in alphabetical order by virture of the way that the Set
 	// class stores objects, so stable sorting on the offer precedence will maintain
 	// the alphabetical ordering for missions with the same precedence.
-	stable_sort(availableMissions.begin(),
-				availableMissions.end(),
-				[](const Mission &a, const Mission &b)
-				{
-					return a.OfferPrecedence() > b.OfferPrecedence();
-				});
+	availableMissions.sort([](const Mission &a, const Mission &b)
+		{
+			return a.OfferPrecedence() > b.OfferPrecedence();
+		});
 
 	// If any of the available missions are "priority" missions, no other
 	// special missions will be offered in the spaceport.
