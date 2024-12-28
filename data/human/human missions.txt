@@ -4353,9 +4353,8 @@ mission "Spaceport Reminder Setter"
 		"spaceport reminder month" = "month"
 		fail
 
-# Use of "AA" at the start of the mission name is to make it offer only if no other missions have.
-mission "AA Spaceport Reminder Resetter"
-	minor
+mission "Spaceport Reminder Resetter"
+	non-blocking
 	invisible
 	repeat
 	to offer
