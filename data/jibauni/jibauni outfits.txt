@@ -25,7 +25,7 @@ outfit "Jibauni Small Laser"
 		sound "jibauni small laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"velocity" 425
+		"velocity" 450
 		"lifetime" 1
 		"reload" 1
 		"firing energy" .25
@@ -50,7 +50,7 @@ outfit "Jibauni Medium Laser"
 		"hit effect" "heavy laser impact"
 		sound "jibauni medium laser"
 		"parallel"
-		"velocity" 650
+		"velocity" 400
 		"lifetime" 1
 		"firing heat" 1
 		"inaccuracy" 2
@@ -157,7 +157,7 @@ outfit "Zarhal Laser Turret"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" 2
 		"turret turn" 1.1
-		"velocity" 650
+		"velocity" 400
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 1
@@ -185,7 +185,7 @@ outfit "Zarwal Laser Turret"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" 2
 		"turret turn" 2
-		"velocity" 425
+		"velocity" 450
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 0.5
