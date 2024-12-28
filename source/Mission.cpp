@@ -210,6 +210,8 @@ void Mission::Load(const DataNode &node)
 			isNonBlocking = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
+		else if(child.Token(0) == "offer precedence" && child.Size() >= 2)
+			offerPrecedence = child.Value(1);
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -378,6 +380,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("non-blocking");
 		if(isMinor)
 			out.Write("minor");
+		if(offerPrecedence)
+			out.Write("offer precedence", offerPrecedence);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -607,6 +611,13 @@ bool Mission::IsNonBlocking() const
 bool Mission::IsMinor() const
 {
 	return isMinor;
+}
+
+
+
+int Mission::OfferPrecedence() const
+{
+	return offerPrecedence;
 }
 
 
@@ -1303,6 +1314,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.hasPriority = hasPriority;
 	result.isNonBlocking = isNonBlocking;
 	result.isMinor = isMinor;
+	result.offerPrecedence = offerPrecedence;
 	result.autosave = autosave;
 	result.location = location;
 	result.overridesCapture = overridesCapture;

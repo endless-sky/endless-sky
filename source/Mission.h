@@ -87,6 +87,7 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
@@ -209,6 +210,12 @@ private:
 	bool hasPriority = false;
 	bool isNonBlocking = false;
 	bool isMinor = false;
+	// By default, missions are offered in alphabetical order.
+	// Using a non-zero offer precedence changes the order that missions are offered in.
+	// Missions with a higher offer precedence are offered before missions with a lower
+	// precedence. Where two missions have the same offer precedence, they continue to
+	// offer in alphabetical order.
+	int offerPrecedence = 0;
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;
