@@ -715,6 +715,10 @@ news "tour guide - warning"
 			" "
 		word
 			"metallic"
+			"salty"
+			"savory"
+			"sour"
+			"spicy"
 			"sweet"
 		word
 			" "
@@ -883,8 +887,8 @@ news "electrical engineer"
 		word
 			"Earth has a weird power-distribution network, where the polarity of home outlets changes 50 or 60 times per second. Every other planet just uses a positive and negative polarity for outlets."
 			"Earth has a beautiful power-distribution network, where the polarity of home outlets changes 50 or 60 times per second. Other planets use DC current and need to add measures to ensure that polarity is matched, but on Earth the outlets are symmetric by default."
-			"Voltage conversion from DC power to DC power works extremely well on every planet except Earth. Earth's ancient power-network still uses AC power for distribution."
-			"Most equipment works from 100 volt to 500 volt power, but just check compatibility before connecting your equipment."
+			"Voltage conversion from DC power to DC power works extremely well on every planet except Earth, who's ancient power network still uses AC power for distribution."
+			"Most equipment works from 100 volt to 500 volt power, but be sure to check compatibility before connecting your equipment."
 			"I'm so happy that I'm certified to work on the Paradise planets. Both pay and climate are much better there."
 			"I caused a power outage affecting more than half of the planet. Could you transport me to some place far from here?"
 		word
@@ -1799,7 +1803,7 @@ news "republic soldier"
 			"Curiosity killed the cat. Yes, the R.N.S. Curiosity landed right on top of the poor creature."
 			"We arrested a fortune teller yesterday; they didn't see it coming."
 			"Pirates were entering the ship port-side. So I took an EVA suit, flew around both ships and captured their ship."
-			"So we were fighting close quarters, when suddenly that Sparrow fired its lasers on us. We are lucky to still be alive."
+			"So we were fighting close quarters, when suddenly that Sparrow fired its lasers on us. We're lucky to still be alive."
 			"I once arrested one of those drunk flyers, but they walked free within two hours. The paperwork took me much longer. Next time I'll just blow them to pieces."
 		word
 			`"`
