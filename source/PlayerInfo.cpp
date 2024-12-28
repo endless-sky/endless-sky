@@ -4024,7 +4024,7 @@ void PlayerInfo::CreateMissions()
 				[](const Mission &a, const Mission &b)
 				{
 					return a.OfferPrecedence() > b.OfferPrecedence();
-				})
+				});
 
 	// If any of the available missions are "priority" missions, no other
 	// special missions will be offered in the spaceport.
