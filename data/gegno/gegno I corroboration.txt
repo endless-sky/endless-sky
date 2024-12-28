@@ -351,7 +351,7 @@ mission "Gegno Suspicions"
 	landing
 	source "Giaru Gegno"
 	to offer
-		"gegno: encounters" >= 1
+		has "gegno: encounters"
 		"gegno: encounters" < 6
 		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
