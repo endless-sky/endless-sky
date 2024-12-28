@@ -58,7 +58,7 @@ outfit "Bombardment Turret"
 		sound "bombardment"
 		"hit effect" "bombardment impact"
 		"inaccuracy" 4
-		"turret turn" 1.5
+		"turret turn" 2.6
 		"velocity" 6
 		"random velocity" 1
 		"lifetime" 150
@@ -256,7 +256,7 @@ outfit "Heliarch Attractor"
 		sound "heliarch attractor"
 		"hit effect" "attractor impact"
 		"inaccuracy" 2
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 640
 		"lifetime" 1
 		"reload" 1
@@ -299,7 +299,7 @@ outfit "Heliarch Repulsor"
 		sound "heliarch repulsor"
 		"hit effect" "repulsor impact"
 		"inaccuracy" 3
-		"turret turn" 1.5
+		"turret turn" 2.6
 		"velocity" 560
 		"lifetime" 1
 		"reload" 1
@@ -339,7 +339,7 @@ outfit "Ion Hail Turret"
 		"hardpoint offset" 10.
 		sound "ion rain"
 		"inaccuracy" 3
-		"turret turn" 1.9
+		"turret turn" 3.5
 		"velocity" 12
 		"reload" 15
 		"burst reload" 3
