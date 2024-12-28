@@ -74,7 +74,7 @@ news "merchant anywhere"
 			"Don't look a gift shuttle in the engine outlets."
 			"Getting there is half the fun. Getting paid is the other half."
 			"Being a pilot isn't all fun and games. We have angry customers, hostile pirates and asteroids to deal with."
-			"We are always at risk of being killed by faulty equipment, solar storms, asteroids, pirates or angry customers. Ever wonder why you didn't just take a desk job?"
+			"We're always at risk of being killed by faulty equipment, solar storms, asteroids, pirates or angry customers. Ever wonder why you didn't just take a desk job?"
 			"You think highly of that boat of yours? My ship is ten times larger."
 		word
 			`"`
@@ -886,8 +886,8 @@ news "electrical engineer"
 			`"`
 		word
 			"Earth has a weird power-distribution network, where the polarity of home outlets changes 50 or 60 times per second. Every other planet just uses a positive and negative polarity for outlets."
-			"Earth has a beautiful power-distribution network, where the polarity of home outlets changes 50 or 60 times per second. Other planets use DC current and need to add measures to ensure that polarity is matched, but on Earth the outlets are symmetric by default."
-			"Voltage conversion from DC power to DC power works extremely well on every planet except Earth, who's ancient power network still uses AC power for distribution."
+			"Earth has a beautiful power-distribution network, where the polarity of home outlets changes 50 or 60 times per second. Other planets use DC current and need to add measures to ensure that polarity is matched, but on Earth the outlets are symmetrical by default."
+			"Voltage conversion from DC power to DC power works extremely well on every planet except Earth, whose ancient power network still uses AC power for distribution."
 			"Most equipment works from 100 volt to 500 volt power, but be sure to check compatibility before connecting your equipment."
 			"I'm so happy that I'm certified to work on the Paradise planets. Both pay and climate are much better there."
 			"I caused a power outage affecting more than half of the planet. Could you transport me to some place far from here?"
@@ -1228,7 +1228,7 @@ news "museum curator"
 			"Every so often, we get contacted by someone shady wishing to donate something to our museum."
 			"Much of human technological progress has been driven by a desire to more effectively induce entropy in one's opponents."
 			"Did you know Cleopatra lived closer in time to the invention of the hyperdrive than the building of the pyramids?"
-			"We bought an ancient shuttle 'The Theseus,' but the engines, the hull, the power systems and every other part of it was replaced since its construction. Is it still an ancient shuttle when every part was replaced?"
+			"We bought an ancient shuttle called 'The Theseus,' but the engines, the hull, the power systems and every other part of it was replaced since its construction. Is it still an ancient shuttle when every part was replaced?"
 		word
 			`"`
 
@@ -1614,7 +1614,7 @@ news "philosopher"
 			`"`
 		word
 			"If I take a grain of sand away from a heap, one at a time, then when does the heap stop being a heap?"
-			"What if we could look at ships going into hyperspace? Will they appear to be moving backwards because they are moving faster than light?"
+			"What if we could look at ships going into hyperspace? Would they appear to be moving backwards because they are moving faster than light?"
 		word
 			`"`
 
@@ -2164,7 +2164,7 @@ news "label on ship"
 			"Stay away from thruster outlets during takeoff."
 			"Door opens outwards."
 			"Remove red ribbons before flight."
-			"Nuclear reactor compartment, NEA certification is required for servicing this part of the ship."
+			"Nuclear reactor compartment: NEA certification is required for servicing this part of the ship."
 			"Compartiment du reacteur nucleaire, la certification du NEA est requise avant l'entretien."
 
 
