@@ -2730,7 +2730,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// Have a 10% minimum to avoid ships getting in a chase loop.
 	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
-	ShipAICache &shipAICache = ship.GetAICache();
+	const ShipAICache &shipAICache = ship.GetAICache();
 	const bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
 	const double shortestRange = shipAICache.ShortestRange();
 	const double shortestArtillery = shipAICache.ShortestArtillery();
@@ -4153,7 +4153,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		}
 
 		// Inform the player of any destinations in the system they are jumping to.
-		if(!destinations.empty())
+		if(!destinations.empty() && Preferences::GetNotificationSetting() != Preferences::NotificationSetting::OFF)
 		{
 			string message = "Note: you have ";
 			message += (missions == 1 ? "a mission that requires" : "missions that require");
@@ -4171,6 +4171,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			}
 			message += " in the system you are jumping to.";
 			Messages::Add(message, Messages::Importance::Info);
+
+			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
+				Audio::Play(Audio::Get("fail"));
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
@@ -4359,7 +4362,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			// If the player is moving slowly over an object, then the player is considering landing there.
 			// The target object might not be able to be landed on, for example an enemy planet or a star.
 			const bool isTryingLanding = (ship.Position().Distance(object.Position()) < object.Radius() && isMovingSlowly);
-			if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(&ship))
+			if(object.HasValidPlanet() && object.GetPlanet()->IsAccessible(&ship) && object.IsVisible(ship.Position()))
 			{
 				landables.emplace_back(&object);
 				if(isTryingLanding)
@@ -4544,7 +4547,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		AutoFire(ship, firingCommands, false, true);
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	if(mouseTurning && !ship.IsBoarding() && !ship.IsReversing())
+	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.Attributes().Get("reverse thrust")))
 		command.SetTurn(TurnToward(ship, mousePosition));
 
 	if(activeCommands)

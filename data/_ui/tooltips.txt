@@ -232,7 +232,7 @@ tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
 
 tip "energy capacity:"
-	`The amount of energy this ship can store. This allows you to temporarily use more power than your generators produce.`
+	`The amount of energy this outfit adds to your ship's energy capacity. This allows you to temporarily use more power than your generators produce.`
 
 tip "energy consumption:"
 	`Energy consumed per second while in flight.`
@@ -438,8 +438,11 @@ tip "scramble resistance heat:"
 tip "jump speed:"
 	`The maximum velocity the ship can jump at.`
 
-tip "jump fuel:"
-	`Fuel consumed when jumping between systems using this drive.`
+tip "hyperdrive fuel:"
+	`Fuel consumed when jumping between systems using this hyperdrive.`
+
+tip "jump drive fuel:"
+	`Fuel consumed when jumping between systems using this jump drive.`
 
 tip "jump range:"
 	`The maximum distance this drive can jump.`
@@ -667,7 +670,7 @@ tip "silent jumps:"
 	`Prevents a ship from making hyperdrive or jump drive sounds when entering or leaving a system.`
 
 tip "silent scans:"
-	`Prevents a ship from generating scan sounds.`
+	`Prevents a ship from emitting scan sounds.`
 
 tip "slowing protection:"
 	`Protection against slowing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -690,8 +693,42 @@ tip "solar collection:"
 tip "solar heat:"
 	`Heat produced depending on how far this ship is from the star at the center of the system.`
 
+tip "strategic scan power:"
+	`Strategic scanners allow you to view your current target's distance from you, maximum gun range, maximum turret range, current speed, maximum acceleration, and turning speed when it is within range. The range is proportional to the square root of this value.`
+
 tip "tactical scan power:"
-	`Allows viewing your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
+	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "acceleration scan power:"
+	`Mobility scanners allow you to view your current target's current maximum acceleration when it is within range. The range is proportional to the square root of this value.`
+
+tip "crew scan power:"
+	`Crew scanners allow you to view your current target's crew complement when it is within range. The range is proportional to the square root of this value.`
+
+tip "energy scan power:"
+	`Energy scanners allow you to view your current target's energy levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "fuel scan power:"
+	`Fuel scanners allow you to view your current target's fuel levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "maneuver scan power:"
+	`Maneuver scanners allow you to view your current target's current maximum turn speed when it is within range. The range is proportional to the square root of this value.`
+
+tip "mobility scan power:"
+	`Mobility scanners allow you to view your current target's current speed and maximum acceleration when it is within range. The range is proportional to the square root of this value.`
+
+tip "range finder power:"
+	`Range finders allow you to view the distance from the center of your ship to the center of your current target. There is no range limit.`
+
+tip "thermal scan power:"
+	`Thermal scanners allow you to view your current target's thermal level when it is within range. The range is proportional to the square root of this value.`
+
+tip "velocity scan power:"
+	`Mobility scanners allow you to view your current target's current speed when it is within range. The range is proportional to the square root of this value.`
+
+tip "weapon scan power:"
+	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scanner range is proportional to the square root of this value.`
+
 
 tip "thrust:"
 	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
@@ -1485,3 +1522,6 @@ tip "Date format"
 
 tip "Show parenthesis"
 	`Toggle parenthesis around the trade prices in the ports map mode.`
+
+tip "Notify on destination"
+	`If you enter a system with a planet you must land on for a mission, plays a notification sound.`
