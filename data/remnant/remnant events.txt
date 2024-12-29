@@ -39,12 +39,15 @@ event "remnant: defense timer"
 event "remnant: surveillance begin"
 	system "Parca"
 		remove fleet "Korath Ember Waste Raid"
-
+		remove fleet "Kor Alaji Raid"
+		remove fleet "Kor Isaha Raid"
 
 
 event "remnant: surveillance end"
 	system "Parca"
-		add fleet "Korath Ember Waste Raid" 10000
+		add fleet "Kor Alaji Raid" 30000
+		add fleet "Korath Ember Waste Raid" 30000
+		add fleet "Kor Isaha Raid" 15000
 
 
 
@@ -127,14 +130,6 @@ event "remnant: lab availability"
 		add "Research Laboratory"
 	outfitter "Remnant Core"
 		add "Research Laboratory"
-
-
-
-event "korath hunting"
-	government "Korath"
-		"attitude toward"
-			"Indigenous Lifeform" -.01
-			"Ember Waste" -.01
 
 
 
@@ -378,7 +373,8 @@ event "remnant: ssil vida activation"
 		trade Medical 508
 		trade Metal 272
 		trade Plastic 289
-		fleet "Korath Ember Waste Raid" 20000
+		fleet "Kor Alaji Raid" 40000
+		fleet "Korath Ember Waste Raid" 40000
 		fleet "Korath Rescue" 60000
 		fleet "Small Remnant" 30000
 		fleet "Large Remnant" 30000
@@ -546,7 +542,8 @@ event "remnant: ssil vida activation"
 		trade Medical 736
 		trade Metal 407
 		trade Plastic 222
-		fleet "Korath Ember Waste Raid" 10000
+		fleet "Kor Alaji Raid" 30000
+		fleet "Korath Ember Waste Raid" 15000
 		fleet "Korath Rescue" 30000
 		hazard "Ember Waste Base Heat" 100
 		hazard "Ember Waste Base Storm" 9000
@@ -1259,3 +1256,7 @@ event "remnant: tubfalet appearance"
 		add variant 3
 			"Tubfalet" 2
 			"'olofez" 6
+	fleet "Kor Alaji Raid"
+		add variant 3
+			"Tubfalet"
+			"'olofez" 3
