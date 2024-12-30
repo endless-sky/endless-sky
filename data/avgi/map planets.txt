@@ -375,10 +375,10 @@ planet Yiddoi
 	government Uninhabited
 
 
-planet Katradol
+planet Katkradol
 	attributes frozen research uninhabited
 	landscape land/snow30
-	description `Katradol is a large rocky world, what human scientists would call a "super-Earth." Far from the local primary, Katradol is extremely cold; during the winter its atmosphere condenses in the higher latitudes, where it snows frozen nitrogen. Many of Katradol's mountains are made mostly of ice, which is strong enough in the extreme cold to stretch upwards for kilometers, even under the high gravity. The roots of these mountains generated some interest in the Avgi scientific community due to the many exotic phases of ice that form under the intense pressures, but Katradol's deep gravity well made ice mining uncompetitive with comet harvesting in the region.`
+	description `Katkradol is a large rocky world, what human scientists would call a "super-Earth." Far from the local primary, Katkradol is extremely cold; during the winter its atmosphere condenses in the higher latitudes, where it snows frozen nitrogen. Many of Katkradol's mountains are made mostly of ice, which is strong enough in the extreme cold to stretch upwards for kilometers, even under the high gravity. The roots of these mountains generated some interest in the Avgi scientific community due to the many exotic phases of ice that form under the intense pressures, but Katkradol's deep gravity well made ice mining uncompetitive with comet harvesting in the region.`
 	government Uninhabited
 
 

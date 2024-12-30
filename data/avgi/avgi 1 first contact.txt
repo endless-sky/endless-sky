@@ -493,7 +493,7 @@ mission "Avgi: Defend Ensemble 2"
 
 			`	"Confusion. Yes, of course. What else would we use, beam weapons?" She flicks her wings. "Don't tell me you're a beam fan, I'll have you know guided weapons win every time."`
 			choice
-				`	"It's nothing, I was just suprised."`
+				`	"It's nothing, I was just surprised."`
 					goto end
 				`	"I'm not sure I'm comfortable with weapons of genocide."`
 
