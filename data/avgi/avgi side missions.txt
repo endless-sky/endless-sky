@@ -32,7 +32,7 @@ mission "Avgi Culture: Park Politics"
 			`	"Courteous introduction. I am called Wisteria. Would you grace me with your own name?"`
 			`	"I'm Captain <first> <last>," you say.`
 			label name
-			`	"Appreciated meeting. A pleasure to meet you, Captain <last>. Would you like to join old Wisteria at a game of Space Chess, question? I would be happy to teach you how to play, of course."`
+			`	"Appreciated meeting. A pleasure to meet you, Captain <last>. Would you like to join old Wisteria at a game of Trefoil, question? I would be happy to teach you how to play, of course."`
 			choice
 				`	"Sure."`
 				`	"No thank you."`
@@ -52,7 +52,7 @@ mission "Avgi Culture: Park Politics"
 				`	"Red."`
 				`	"Green."`
 				`	"Blue."`
-			`	"Acknowledgment. Excellent. Explanation. The objective is to remove all of your pieces from the board by moving them to the opposite edge to your own triangle," he explains. Demonstrating with a stone, he shows you how to skip it over connected chains of other pieces, moving to their endpoint. "You must balance your moves between freeing your own pieces and blocking the other colors from their own escape."`
+			`	"Acknowledgment. Excellent. Explanation. The objective is to remove all of your pieces from the board by moving them to the opposite edge to your own triangle." Demonstrating with a stone, he shows you how to skip it over connected chains of other pieces, moving to their endpoint. "You must balance your moves between freeing your own pieces and blocking the other colors from their own escape."`
 			`	You delicately take a seat on the rail. It's at least only a little worse than a park bench, and you're thankful for the lower gravity on Peripheria.`
 			choice
 				`	"But there's three sides and only two of us."`
@@ -222,7 +222,7 @@ mission "Avgi Culture: Park Politics"
 				goto next5
 
 			label abandon
-			`	"Contemplation. That view would have been anathema to us only a short few years ago, but it is one that is steadily growing. With each defeat and failed expedition back to the Twilight, the calls grow to focus on preserving what we have, not reaching to reclaim the old. And many say that those on the old worlds are safe, for now, and may even be able to build a fleet to liberate themselves, if they can but reclaim their orbital shipyards and asteroid mines. If that truly is the case, they say, then we should build ourselves up as a bastion first, with the living space and abundance to support our population."`
+			`	"Contemplation. That view would have been anathema to us only a short few years ago, but it is one that is steadily gaining ground. With each defeat and failed expedition back to the Twilight, the calls grow to focus on preserving what we have, not reaching to reclaim the old. And many say that those on the old worlds are safe, for now, and may even be able to build a fleet to liberate themselves, if they can but reclaim their orbital shipyards and asteroid mines. If that truly is the case, they say, then we should build ourselves up as a bastion first, with the living space and abundance to support our population."`
 
 			label anotherway
 			`	"Amusement. Always in search of another way, everyone is. Perhaps because the choice we are left with is so abhorrent, that seeking another way provides a means of relieving them of it. We have attempted communication with the Aberrant, to no avail, and it seems likely they are not an intelligent species to begin with. They do not appear to coordinate with each other, and examining their debris in the rare instances we have managed to destroy one reveals no crew, just a strange mixture of machine and flesh. Perhaps they are some forgotten living weapon, engineered by a race long gone, or the mere servants of some ancient race far beyond us in power, the equivalents of our mining drones and service robots."`
@@ -295,7 +295,7 @@ mission "Avgi Culture: Park Politics"
 			label breakwall4b
 			action
 				"avgi: trefoil classical" ++
-			`	"Instructing. Ah, you see how you were unable to break the blockade, question? Your formation was not organized well enough for it with the stones you have available, and you would have been better served by ignoring those pieces and making moves elsewhere.."`
+			`	"Instructing. Ah, you see how you were unable to break the blockade, question? Your formation was not organized well enough for it with the stones you have available, and you would have been better served by ignoring those pieces and making moves elsewhere."`
 				goto next6
 
 			label escape4
@@ -307,7 +307,7 @@ mission "Avgi Culture: Park Politics"
 			label blockwisteria4
 			action
 				"avgi: trefoil aggressive" ++
-			`	"Approving. Instead of trying to break my blockade, which would be difficult, you choose to instead take the opportunity to block in my own pieces, which forces me to respond"`
+			`	"Approving. Instead of trying to break my blockade, which would be difficult, you choose to instead take the opportunity to block in my own pieces, which forces me to respond."`
 
 			label next6
 			`	You play a few more rounds, each of you managing to take a few of your pieces off the board.`
@@ -316,7 +316,7 @@ mission "Avgi Culture: Park Politics"
 				`	"What about the Dissonance? I've heard of them."`
 					goto dissonance
 
-			`	"Contemplation. Perhaps a better question would be, 'what it was like before the hyperdrive.' For our society was not placed into turmoil first by the Aberrant, but rather by the discovery of a means to travel faster than light. Inside a handful of years an outlandish physics experiment went from theory to reality, and stars that had been decades or centuries away instead became reachable in first months, then weeks, then days as the hyperdrive continued to improve."`
+			`	"Contemplation. Perhaps a better question would be, 'what it was like before the hyperdrive?' For our society was not placed into turmoil first by the Aberrant, but rather by the discovery of a means to travel faster than light. Inside a handful of years an outlandish physics experiment went from theory to reality, and stars that had been decades or centuries away instead became reachable in first months, then weeks, then days as the hyperdrive continued to improve."`
 			`	"You must understand, emphasis, just how economically separated the various pockets of Avgi civilization were. Aviskir of course was dominant within the Anax system, but beyond interplanetary politics practically every system was independent in both a political and economic sense. There was no Consonance to organize the various powers, and everyone largely kept to themselves by sheer virtue of the distance and expense involved in interstellar travel."`
 			`	"Then, almost overnight, the situation went from one of extreme separation to one of interconnection. The fleets of vast starships, powered by stores of antimatter or immense lasers, became obsolete, and it suddenly became possible for even moderately well-off individuals to travel between the stars."`
 			choice
@@ -622,7 +622,7 @@ mission "Avgi: Infocourier Encounter"
 			choice
 				`	"What changed?"`
 
-			`	He sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system adapted, and now the system is just that, a system. Regular. Predictable. And ultimately unexciting."`
+			`	He sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system has adapted, and now it is just that - a system. Regular. Predictable. And ultimately unexciting."`
 			label couriers
 			`	"Today, we make the rounds in ships that are fast, but have the room for enough storage media to update a planet's entire network. In our heyday, before the Incursion, a courier ship would visit a world every day to upload its database, but since then we've struggled to keep each system controlled by the Consonance updated once per week."`
 			label ask
@@ -644,7 +644,7 @@ mission "Avgi: Infocourier Encounter"
 			label job
 			`	"Consideration. With a fast ship, anyone trusted enough to haul a few dozen tons of memory diamond can do the job. In fact, I can make a few calls and see about expediting the process for you, if you'd like."`
 			choice
-				`	"Yes, I'd like that"`
+				`	"Yes, I'd like that."`
 					goto end
 				`	"How much are you normally paid for ferrying information?"`
 
@@ -788,7 +788,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			label doctrine
 			`	Claret looks incredulous, standing up animately. "Disbelief. Doctrine is everything. Both in how we design our weapons and how we actually employ them. Everything is built for a specific purpose, from the largest nuclear missile to the humblest coilgun. You must know your objective, your reason for being, and then you must look at the enemy and see the tools they have to stop you, and then develop your own to counter them. Everything your fleet carries must have a specific purpose, a way to fit into the engagement you have planned, or it is simply dead weight."`
 			choice
-				`	"What if you don't know what the enemy has? "`
+				`	"What if you don't know what the enemy has?"`
 
 			`	"Impatience. That's why you gather information, assess their capabilities, and train against a wide variety of threats, even ones well beyond what you think an enemy might really have. All of that informs the way you choose to fight."`
 			choice
@@ -1013,11 +1013,23 @@ mission "Avgi: Atomics Testing 2"
 				`	"Terrifying."`
 
 			`	"Contemplation. Indeed it is." You turn and see Aliza watching the fireball with you, along with a few others. The rest are dutifully staring at instrument readouts and sensor logs, collecting whatever esoteric knowledge they sought to gain from this test.`
+			choice
+				`	"So, how did it go?"`
+				`	"What were you trying to learn form this?"`
 
+			`	"Enthusiasm. The point of this wasn't in the actual bomb - it's an old, reliable design with plenty of heritage, so we know how it works. Rather, we used it essentially as a giant x-ray source to drive a dozen other experiments. That's pretty common in nuclear testing, actually, since experiments that could benefit from a nuke are far more common than new designs that need to be tested. Most of the experiments we ran today were nuclear-driven accelerator tests, using the energy of the explosion to drive a particle beam. Just the laboratory scale for now, but we hope to scale it up into a proper weapon at some point," she says, looking proud.`
+			choice
+				`	"That's impressive."`
+					goto return
+				`	"I didn't know you could use nuclear weapons that way."`
 
+			`	"Oh, that's just scratching the surface. Just using them as a simple bomb is a bit of a waste really, you can use them to drive all sorts of lasers and particle beams, and even kinetics if you know what you're doing. You can push their effective range way up there with the right methods."`
+			choice
+				`	"Making nuclear weapons more dangerous is almost scary to think about."`
+				`	"That all sounds very interesting. And useful against the Aberrant, too."`
 
-
-			`	"Would you mind giving me a ride back up to Ergastirio, question?"`
+			label return
+			`	"Yes, yes it is," she says. "Now, would you mind giving me a ride back up to Ergastirio, question?"`
 			choice
 				`	"Sure."`
 					accept

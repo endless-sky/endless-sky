@@ -511,7 +511,7 @@ ship "Aberrant Junior"
 	"final explode" "nuke explosion"
 	"final explode" "nuke residue fast" 50
 	description "This appears to be some kind of organo-metallic entity, made from a strange mosaic of organic tissue, conventional material, and an exotic matter that defies conventional analysis."
-	description "This variant in particular seems to be a compact, smaller-than-average version still in the process of growing."
+	description "This variant in particular seems to be compact, smaller-than-average, and still in the process of growing."
 
 
 ship "Aberrant Junior" "Aberrant Junior (Disable-able)"

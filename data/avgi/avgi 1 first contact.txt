@@ -485,10 +485,21 @@ mission "Avgi: Defend Ensemble 2"
 		conversation
 			`Navigeo is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the deep blue of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into dry dock for repair.`
 			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
-			`	"Caution. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says.`
+			`	"Warning. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says. "It would be appreciated if you flew ahead of our fleet and cleared out any straggler Aberrant in the way, so that we can save as many atomics for the battle in Ensemble."`
 			choice
 				`	"Acknowledged."`
+					goto end
 				`	"Wait, nuclear weapons? You people use those?"`
+
+			`	"Confusion. Yes, of course. What else would we use, beam weapons?" She flicks her wings. "Don't tell me you're a beam fan, I'll have you know guided weapons win every time."`
+			choice
+				`	"It's nothing, I was just suprised."`
+					goto end
+				`	"I'm not sure I'm comfortable with weapons of genocide."`
+
+			`	"Annoyance. It's not like we're using them against civilian targets, or even a planetary surface target to begin with. Honestly, you humans have some strange sensibilities."`
+
+			label end
 			`	She turns away from the viewscreen as another Avgi starts speaking to her, dismissing you.`
 				accept
 	npc
@@ -498,7 +509,7 @@ mission "Avgi: Defend Ensemble 2"
 			names "avgi military names"
 			variant
 				"Prismaios"
-				"Prismaios (Atomic)"
+				"Prismaios (Atomic)" 2
 				"Tremoros" 3
 	npc
 		government "Avgi (Twilight Guard)"
