@@ -21,9 +21,9 @@ planet "Antivli Station"
 
 planet Avalet
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/clouds01
+	landscape land/clouds_01
 	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the trace water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of powerful winds that ring the entire planet, producing immense cyclones capable of even pushing some clouds to the edge of space.`
-	description `The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In modern times, the antimatter produced by solar charged particles trapped in Avalet's magnetic field was a significant source of the material until the construction of Antivili station.`
+	description `The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped in Avalet's magnetic field fueled Avgi starships until Antivili Station was built.`
 	government Uninhabited
 
 planet Omanet

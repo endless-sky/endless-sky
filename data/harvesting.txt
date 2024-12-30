@@ -431,9 +431,9 @@ minable "small water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 600
-	"random hull" 300
-	payload "Voidfish" 12
+	hull 300
+	"random hull" 150
+	payload "Voidfish" 6
 	explode puff
 
 minable "medium water droplet"
@@ -444,9 +444,9 @@ minable "medium water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 1200
-	"random hull" 600
-	payload "Voidfish" 60
+	hull 600
+	"random hull" 300
+	payload "Voidfish" 30
 	explode puff
 
 minable "large water droplet"
@@ -457,9 +457,9 @@ minable "large water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 3000
-	"random hull" 1200
-	payload "Voidfish" 120
+	hull 1500
+	"random hull" 600
+	payload "Voidfish" 60
 	explode puff
 
 outfit "Voidfish"

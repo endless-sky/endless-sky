@@ -1015,7 +1015,7 @@ mission "Avgi: Atomics Testing 2"
 			`	"Contemplation. Indeed it is." You turn and see Aliza watching the fireball with you, along with a few others. The rest are dutifully staring at instrument readouts and sensor logs, collecting whatever esoteric knowledge they sought to gain from this test.`
 			choice
 				`	"So, how did it go?"`
-				`	"What were you trying to learn form this?"`
+				`	"What were you trying to learn from this?"`
 
 			`	"Enthusiasm. The point of this wasn't in the actual bomb - it's an old, reliable design with plenty of heritage, so we know how it works. Rather, we used it essentially as a giant x-ray source to drive a dozen other experiments. That's pretty common in nuclear testing, actually, since experiments that could benefit from a nuke are far more common than new designs that need to be tested. Most of the experiments we ran today were nuclear-driven accelerator tests, using the energy of the explosion to drive a particle beam. Just the laboratory scale for now, but we hope to scale it up into a proper weapon at some point," she says, looking proud.`
 			choice
