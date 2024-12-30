@@ -63,14 +63,18 @@ system Anax
 	object
 		sprite star/f3
 		period 10
-	object Omanet
-		sprite planet/callisto
+	object Avalet
+		sprite planet/gas9-hot
 		distance 812
 		period 197.325
+		object Omanet
+			sprite planet/callisto
+			distance 240
+			period 24
 		object
 			sprite planet/station-solar-a3
 				scale 0.5
-			distance 150
+			distance 600
 			period 197.325
 	object "Antivli Station"
 		sprite planet/station-accelerator-broken
@@ -470,7 +474,8 @@ system Anax
 			distance 333.434
 			period 149.109
 		object Anitlos
-			sprite planet/europa-b
+			sprite planet/rock21
+				scale 0.5
 			distance 457.248
 			period 474.342
 		object
@@ -518,7 +523,8 @@ system Anax
 			period 44
 			offset 180
 		object Entantel
-			sprite planet/ice8-b
+			sprite planet/ice10
+				scale 0.5
 			distance 267.286
 			period 44
 	object
@@ -531,7 +537,8 @@ system Anax
 			distance 423.741
 			period 60
 		object
-			sprite planet/ice8-b
+			sprite planet/ice12
+				scale 0.5
 			distance 278.66
 			period 430.255
 
@@ -697,7 +704,7 @@ system Tumble
 			distance 273
 			period 118.049
 	object Noluc
-		sprite planet/desert0-b
+		sprite planet/desert12
 		distance 1678.599
 		period 878.754
 	object
@@ -770,8 +777,8 @@ system Firmament
 		sprite planet/gas2-b
 		distance 8755.163
 		period 3072.454
-	object
-		sprite planet/ice4-b
+	object Katkradol
+		sprite planet/ice9
 		distance 18654.559
 		period 9555.788
 
@@ -1020,7 +1027,7 @@ system Trio
 		sprite star/k5-old
 		period 10
 	object Masada
-		sprite planet/desert10-b
+		sprite planet/desert11
 		distance 778.712
 		period 282.01
 		object
@@ -1456,7 +1463,7 @@ system Ensemble
 			distance 400.418
 			period 30
 	object
-		sprite planet/ice1
+		sprite planet/ice12
 		distance 4614.052
 		period 2199.085
 	object
@@ -1594,7 +1601,7 @@ system Headwind
 		distance 470.787
 		period 228.413
 	object
-		sprite planet/ice2
+		sprite planet/ice11
 		distance 1508.346
 		period 1309.895
 	object
@@ -1602,7 +1609,8 @@ system Headwind
 		distance 3745.21
 		period 5125.064
 		object Gamla
-			sprite planet/dust0-b
+			sprite planet/dust8
+				scale 0.5
 			distance 249
 			period 122.202
 	object
@@ -1994,11 +2002,11 @@ system Interlude
 		period 293.627
 		offset 180
 	object
-		sprite planet/rock17-b
+		sprite planet/rock21
 		distance 833
 		period 108.152
 	object
-		sprite planet/ocean8
+		sprite planet/ocean10
 		distance 1762.113
 		period 332.751
 	object
@@ -2703,7 +2711,7 @@ system Billow
 		distance 311.028
 		period 122.654
 	object Hilothire
-		sprite planet/ocean4-b
+		sprite planet/ocean10
 		distance 659.242
 		period 378.488
 	object
@@ -3561,7 +3569,7 @@ system Evanescence
 		distance 823.283
 		period 203.309
 	object Janalos
-		sprite planet/forest0-b
+		sprite planet/forest10
 		distance 1695.37
 		period 600.8
 		object
@@ -3894,7 +3902,7 @@ system Aileron
 			distance 182
 			period 116.15
 	object
-		sprite planet/rock14-b
+		sprite planet/rock21
 		distance 3173.673
 		period 1968.209
 	object
@@ -3985,7 +3993,7 @@ system Wake
 		distance 237.65
 		period 66.202
 	object Amathil
-		sprite planet/desert5-b
+		sprite planet/desert13
 		distance 467.127
 		period 182.438
 	object

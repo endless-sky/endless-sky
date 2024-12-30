@@ -15,16 +15,22 @@
 planet "Antivli Station"
 	attributes avgi station uninhabited
 	landscape land/station25
-	description `This was once a particle accelerator several kilometers in diameter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts.`
+	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts.`
 	description `Combined, the amat farms around Anax produced several tons of antimatter each year.`
 	government Uninhabited
 
+planet Avalet
+	attributes "gas giant" "requires: gaslining" uninhabited
+	landscape land/clouds01
+	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the trace water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of powerful winds that ring the entire planet, producing immense cyclones capable of even pushing some clouds to the edge of space.`
+	description `The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In modern times, the antimatter produced by solar charged particles trapped in Avalet's magnetic field was a significant source of the material until the construction of Antivili station.`
+	government Uninhabited
 
 planet Omanet
 	attributes avgi mining uninhabited
 	landscape land/mars0
-	description `Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense planet made almost entirely out of metal.`
-	description `Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as the first step towards a Dyson swarm, but at the current rate of mirror assembly it will take millennia to exploit a meaningful fraction of Anax's output.`
+	description `Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense world made almost entirely out of metal, ultimately captured around another gas giant, Avalet, as an unusually large moon.`
+	description `Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as the first step towards a swarm that would eventually cover the entire star, but at the current rate of mirror assembly it will take millennia to exploit a meaningful fraction of Anax's output.`
 	government Uninhabited
 	
 
@@ -219,7 +225,7 @@ planet Steli
 	attributes uninhabited
 	landscape land/water31
 	description `The small tectonic plates on Steli move especially slowly, as though they are almost locked in place. Most of the mountain ranges here are eroded, worn down by time and the moon's extensive hydrosphere, which lends it a cool, temperate climate.`
-	description `	Frequent hot spots trickle lava and heat through the otherwise lethargic crust, and Steli has one of the highest rates of hot springs in all of the Twilight. Only its distance from the core of Avgi space precluded its widespread settlement, though it is rumored that hidden villages and nomadic groups are scattered across the surface.`
+	description `	Frequent hot spots trickle lava and heat through the otherwise lethargic crust, and Steli has one of the highest counts of hot springs in all the habitable planets of the Twilight. Only its distance from the core of Avgi space precluded its widespread settlement, though it is rumored that hidden villages and nomadic groups live scattered across the surface.`
 	government Uninhabited
 
 

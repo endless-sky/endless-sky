@@ -2098,10 +2098,26 @@ Files:
  images/outfit/spectrometer?array*
  images/outfit/telescopic?antimissile*
  images/outfit/ultracapacitor?bank*
-  images/outfit/ultracapacitor?cell*
+ images/outfit/ultracapacitor?cell*
  images/planet/debris0*
  images/planet/debris1*
+ images/planet/desert11*
+ images/planet/desert12*
+ images/planet/desert13*
+ images/planet/dust8*
+ images/planet/dust9*
  images/planet/forest7*
+ images/planet/forest8*
+ images/planet/forest9*
+ images/planet/forest10*
+ images/planet/forest11*
+ images/planet/forest12*
+ images/planet/ice9*
+ images/planet/ice10*
+ images/planet/ice11*
+ images/planet/ice12*
+ images/planet/ocean10*
+ images/planet/rock21*
  images/planet/gateway-active*
  images/planet/gateway-frozen*
  images/planet/gateway-inactive*
