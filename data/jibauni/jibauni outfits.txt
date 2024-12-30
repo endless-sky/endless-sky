@@ -152,7 +152,7 @@ outfit "Zarhal Laser Turret"
 	weapon
 		sprite "projectile/jibauni medium laser"
 		"hardpoint sprite" "hardpoint/zarhal turret"
-		"hardpoint offset" 8.
+		"hardpoint offset" 5.
 		sound "zarhal turret"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" 2
@@ -167,7 +167,7 @@ outfit "Zarhal Laser Turret"
 		"shield damage" 4.5
 		"hull damage" 2.2
 		"phasing"
-	description "Jibauni inventors didn't know how to make a laser that could hit asteroids - nor did they care much. The Zarhal Laser Turret does the most damage of any Jibauni weapon, but the abysmal turn rate has sent many captains down the opposite path of the Zarwal Turret."
+	description "Jibauni inventors didn't know how to make a laser that could hit asteroids - nor did they care much. The Zarhal Laser Turret does the most damage of any Jibauni weapon, but the abysmal turn rate has sent many captains down the opposite path of the Zarwal Turret - and it has a disadvantage in range against the Zarhal turret."
 
 outfit "Zarwal Laser Turret"
 	category "Turrets"
@@ -180,7 +180,7 @@ outfit "Zarwal Laser Turret"
 	weapon
 		sprite "projectile/jibauni small laser"
 		"hardpoint sprite" "hardpoint/zarwal turret"
-		"hardpoint offset" 8.
+		"hardpoint offset" 5.
 		sound "zarwal turret"
 		"hit effect" "heavy laser impact"
 		"inaccuracy" 2
@@ -195,7 +195,7 @@ outfit "Zarwal Laser Turret"
 		"shield damage" 2.33
 		"hull damage" .83
 		"phasing"
-	description "The Zarwal Turret does not do nearly as much damage as the Zarhal. However, having the turret turn at more than a millimeter a second is a great blessing to Jibauni captains which use it."
+	description "The Zarwal Turret does not do nearly as much damage as the Zarhal. However, having the turret turn at more than a millimeter a second is a great blessing to Jibauni captains which use it - and the extra range helps."
 
 
 outfit "Aljaraar Tractor Beam"
