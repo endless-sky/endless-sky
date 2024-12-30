@@ -879,7 +879,7 @@ system Mote
 		distance 1457.407
 		period 7037.711
 		object Delodir
-			sprite planet/ice7
+			sprite planet/ice12
 			distance 238
 			period 96.091
 
@@ -1388,7 +1388,7 @@ system Stream
 		distance 3731.815
 		period 1563.006
 	object
-		sprite planet/gas15
+		sprite planet/ice11
 		distance 6432.278
 		period 3536.939
 		object
@@ -2391,26 +2391,6 @@ system Gossamer
 		sprite planet/gas11
 		distance 2373.734
 		period 914.299
-	object
-		sprite planet/gas17
-		distance 5268.724
-		period 3023.418
-		object
-			sprite planet/rock0
-			distance 256
-			period 154.832
-	object
-		sprite planet/gas6
-		distance 9578.507
-		period 7411.169
-		object
-			sprite planet/ice7-b
-			distance 296.817
-			period 94.28
-		object
-			sprite planet/tethys-b
-			distance 408.444
-			period 410.203
 
 system Prelude
 	hidden
@@ -3775,8 +3755,8 @@ system Current
 		distance 1399.641
 		period 592.42
 		object Steli
-			sprite planet/earth-b
-				scale 0.5
+			sprite planet/forest12
+				scale 0.25
 			distance 342.442
 			period 222
 		object
@@ -4978,7 +4958,7 @@ system Kr-84
 		distance 1813.594
 		period 664.727
 		object Aspar
-			sprite planet/ocean8-b
+			sprite planet/forest11
 				scale 0.5
 			distance 260
 			period 74

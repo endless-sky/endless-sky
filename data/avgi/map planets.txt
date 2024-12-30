@@ -550,8 +550,8 @@ planet Viso
 planet Nilokep
 	attributes uninhabited
 	landscape land/sky14
-	description `Silently orbiting its distant parent, Nilokep is a dead, airless world of stony flats and salt plains. Granite mountains jut up at the poles, but any tectonic activity this small world may have once had has long since faded.`
-	description `Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing particulates of uranium, across its surface.`
+	description `Silently orbiting its distant parent, Nilokep is a dead, airless world of stony flats and salt plains. Granite mountains jut up at the poles, but any tectonic heat this small world may have once had has long since bled away.`
+	description `Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing trace amounts of uranium, across its surface. While not economical to mine, it is thought that this is the remnant of some ancient geological system that eroded and dispersed the planet's primordial mountains.`
 	government Uninhabited
 
 
