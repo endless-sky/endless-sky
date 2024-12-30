@@ -2391,6 +2391,7 @@ Files:
  images/thumbnail/llama*
 Copyright: Petersupes (https://github.com/Petersupes)
 License: CC-BY-SA-4.0
+Comment: Adjustments done by Loymdayddaud.
 
 Files:
  images/planet/wormhole-green*
@@ -2461,46 +2462,57 @@ Copyright: photoangel
 License: CC0
 
 Files:
+ images/effect/alhaja*
+ images/effect/eimlaq*
+ images/effect/wasita*
+ images/hardpoint/aljaraar?tractor?beam*
+ images/hardpoint/lilsa?anti-missile*
+ images/hardpoint/zarhal?turret*
+ images/hardpoint/zarwal?turret*
+ images/icon/rukjay*
+ images/icon/ruksay*
+ images/label/diba*
+ images/label/jibauni*
+ images/outfit/alhaja?steering*
+ images/outfit/alhaja?thrusters*
+ images/outfit/aljaraar?tractor?beam*
+ images/outfit/almash?scanner*
+ images/outfit/altaedin?laser*
  images/outfit/daltaq?generator*
+ images/outfit/eimlaq?steering*
+ images/outfit/eimlaq?thrusters*
+ images/outfit/flak?launcher*
  images/outfit/jahgir?generator*
- images/outfit/jamum?generator*
+ images/outfit/jamum?shield?generator*
  images/outfit/jibauni?fuel?pod*
  images/outfit/jibauni?medium?laser*
- images/outfit/jibauni?mining?laser*
  images/outfit/jibauni?ramscoop*
  images/outfit/jibauni?small?laser*
  images/outfit/lilsa?anti-missile*
  images/outfit/minjal*
- images/outfit/ridtab?cooling*
+ images/outfit/musaghar?shield?generator*
+ images/outfit/rebel?jibauni?capital?license*
+ images/outfit/rebel?jibauni?license*
  images/outfit/rukjay?missile?launcher*
  images/outfit/rukjay?missile*
  images/outfit/ruksay?missile?launcher*
  images/outfit/ruksay?missile*
- images/outfit/tamum?generator*
+ images/outfit/tamum?shield?generator*
+ images/outfit/tashwish?jammer*
  images/outfit/tawasitaq?generator*
+ images/outfit/wasita?steering*
+ images/outfit/wasita?thrusters*
  images/outfit/watsaq?generator*
  images/outfit/zarhal?turret*
  images/outfit/zarwal?turret*
  images/planet/baitoon*
- images/planet/lamalmuq*
+ images/planet/taltahard*
  images/projectile/jibauni?anti-missile*
  images/projectile/jibauni?medium?laser*
  images/projectile/jibauni?mining?laser*
  images/projectile/jibauni?small?laser*
  images/projectile/rukjay*
  images/projectile/ruksay*
- sounds/jibauni?anti-missile*
- sounds/jibauni?medium?laser*
- sounds/jibauni?mining?laser*
- sounds/jibauni?small?laser*
- sounds/rukjay?missile*
- sounds/ruksay?missile*
- sounds/zarhal?turret*
- sounds/zarwal?turret*
-Copyright: Loymdayddaud (https://github.com/TheGiraffe3)
-License: CC-BY-SA-4.0
-
-Files:
  images/ship/arbquaya?one*
  images/ship/arbquaya?two*
  images/ship/ithquaya?one*
@@ -2517,6 +2529,14 @@ Files:
  images/thumbnail/tahquaya?two*
  images/thumbnail/tamquaya?one*
  images/thumbnail/tamquaya?two*
+ sounds/jibauni?anti-missile*
+ sounds/jibauni?medium?laser*
+ sounds/jibauni?mining?laser*
+ sounds/jibauni?small?laser*
+ sounds/rukjay?missile*
+ sounds/ruksay?missile*
+ sounds/zarhal?turret*
+ sounds/zarwal?turret*
 Copyright: Loymdayddaud (https://github.com/TheGiraffe3)
 License: CC-BY-SA-4.0
 
