@@ -423,62 +423,119 @@ minable "unknown"
 # Gossamer Smoke Ring Minables
 
 
-minable "small droplet"
+minable "small water droplet"
 	"display name" Small
 	noun "Water Droplet"
 	sprite "asteroid/small droplet/small droplet"
-	hull 60
-	"random hull" 30
-	payload "Boiled Voidfish" 1
+		scale 0.25
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 600
+	"random hull" 300
+	payload "Voidfish" 12
 	explode puff
 
-minable "medium droplet"
+minable "medium water droplet"
 	"display name" Medium
 	noun "Water Droplet"
 	sprite "asteroid/medium droplet/medium droplet"
-	hull 120
-	"random hull" 60
-	payload "Boiled Voidfish" 6
+		scale 0.5
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 1200
+	"random hull" 600
+	payload "Voidfish" 60
 	explode puff
 
-minable "large droplet"
+minable "large water droplet"
 	"display name" Large
 	noun "Water Droplet"
 	sprite "asteroid/large droplet/large droplet"
-	hull 300
-	"random hull" 120
-	payload "Boiled Voidfish" 12
+		scale 0.5
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 3000
+	"random hull" 1200
+	payload "Voidfish" 120
 	explode puff
 
-outfit "Boiled Voidfish"
+outfit "Voidfish"
 	category "Minerals"
-	plural "Boiled Fish"
+	plural "Voidfish"
 	cost 2400
 	thumbnail "outfit/unknown"
 	"flotsam sprite" "effect/flotsam iron"
 	"mass" 1
 	"installable" -1
 	"minable" 1
-	description "These are Voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze-dried, they are surprisingly appetizing."
+	description "These are a collection of numerous species of voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze-dried, they are surprisingly appetizing, and equally nourishing."
 
 
-minable "integral tree"
+minable "integral tree a"
 	"display name" Integral
 	noun Tree
-	sprite "asteroid/integral tree/tree"
-	hull 120
-	"random hull" 120
-	payload "Integral Wood" 6
-	explode puff
+	sprite "asteroid/integral tree/tree a"
+	hull 1200
+	"random hull" 1200
+	payload "Integral Wood" 120
+	explode "timber" 30
+
+minable "integral tree b"
+	"display name" Integral
+	noun Tree
+	sprite "asteroid/integral tree/tree b"
+	hull 600
+	"random hull" 300
+	payload "Integral Wood" 30
+	explode "timber" 6
+
+minable "integral tree c"
+	"display name" Integral
+	noun Tree
+	sprite "asteroid/integral tree/tree c"
+	hull 1200
+	"random hull" 600
+	payload "Integral Wood" 60
+	payload "Platinum" 120
+	explode "timber" 12
+
+minable "integral tree d"
+	"display name" Integral
+	noun Tree
+	sprite "asteroid/integral tree/tree d"
+	hull 1200
+	"random hull" 600
+	payload "Integral Wood" 60
+	payload "Gold" 120
+	explode "timber" 12
+
+minable "integral tree e"
+	"display name" "Dead Integral"
+	noun Tree
+	sprite "asteroid/integral tree/tree e"
+	hull 300
+	"random hull" 600
+	payload "Integral Wood" 120
+	explode "timber" 30
+
+effect "timber"
+	sprite "effect/flotsam integral wood"
+	"random angle" 360
+	"random lifetime" 120
+	"random velocity" 3
+	"velocity scale" 0
 
 outfit "Integral Wood"
 	category "Minerals"
 	plural "Integral Wood"
 	cost 12000
-	thumbnail "outfit/unknown"
-	"flotsam sprite" "effect/flotsam neodymium"
+	thumbnail "outfit/integral wood"
+	"flotsam sprite" "effect/flotsam integral wood"
 	"mass" 0.3
 	"installable" -1
 	"minable" 1
 	description "Wood harvested from an integral tree is exquisitely lightweight, strong, and radiation resistant - it also fetches extraordinary prices on the market for exotic goods."
-	description "Some claim it would even be the material of choice for a wooden starship, as ridiculous as that idea is."
+	description "Some claim it would even be the material of choice for a wooden starship, as ridiculous as the idea would be."
