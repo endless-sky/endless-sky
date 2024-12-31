@@ -2961,8 +2961,8 @@ mission "Paradise Fortune 4"
 			label conversation
 			`	You meet with Alondo at his office in the Free Worlds Senate building. After he and Diana exchange greetings, you explain the situation to him.`
 			`	"You what?" Alondo responds. "You have to turn her in. The war may be over, Captain, but there is still tension between the Republic and Free Worlds that we cannot have a situation like this exacerbating."`
-			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds was supposed to be all about going against the Republic, but you're just going to give in?"`
-			`	"Look here, kid," Alondo says in a stern tone. "The Free Worlds was never about being against the Republic, it was only ever about being against Parliament. There's a big difference there. What you've done is a crime, even to the Free Worlds. We are not about to gain a reputation of harboring criminals of the Republic."`
+			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds were supposed to be all about going against the Republic, but you're just going to give in?"`
+			`	"Look here, kid," Alondo says in a stern tone. "The Free Worlds were never about being against the Republic, it was only ever about being against Parliament. There's a big difference there. What you've done is a crime, even to the Free Worlds. We are not about to gain a reputation of harboring criminals of the Republic."`
 			`	Diana, instead of protesting further, puts her head down. "I'll be in your ship, Captain," she says. Diana storms off, making an effort to create as much noise as possible with the stomps of her feet.`
 			`	"Spoiled kid," Alondo says quietly. "Attitudes like that are why I joined the Southern Defense Pact. Anyway Captain, I suggest you hand her over to the Navy immediately. I'll contact the Republic if you need me to."`
 			choice
@@ -4353,9 +4353,8 @@ mission "Spaceport Reminder Setter"
 		"spaceport reminder month" = "month"
 		fail
 
-# Use of "AA" at the start of the mission name is to make it offer only if no other missions have.
-mission "AA Spaceport Reminder Resetter"
-	minor
+mission "Spaceport Reminder Resetter"
+	non-blocking
 	invisible
 	repeat
 	to offer
@@ -6724,7 +6723,7 @@ mission "FW Refugees to Humanika"
 				`	(Approach them.)`
 				`	(Ignore them.)`
 					defer
-			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds is going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
+			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds are going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
 			label "main choice"
 			choice
 				`	"Why were those other captains refusing to take you?"`
