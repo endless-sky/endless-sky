@@ -99,9 +99,9 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
-	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
+ShopPanel::ShopPanel(PlayerInfo &player, Mission::Location location)
+	: LandedOfferPanel(player, location), day(player.GetDate().DaysSinceEpoch()),
+	planet(player.GetPlanet()), isOutfitter(location == Mission::OUTFITTER), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
@@ -115,6 +115,13 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
+	LandedOfferPanel::Step();
+	if(TimeToLeaveOrDie())
+	{
+		GetUI()->Pop(this);
+		return;
+	}
+
 	// If the player has acquired a second ship for the first time, explain to
 	// them how to reorder the ships in their fleet.
 	if(player.Ships().size() > 1)
@@ -125,6 +132,9 @@ void ShopPanel::Step()
 
 void ShopPanel::Draw()
 {
+	if(player.IsDead())
+		return;
+
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	// These get added by both DrawMain and DrawDetailsSidebar, so clear them here.
@@ -204,20 +214,6 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 	Point offset(-SIDEBAR_CONTENT / 2, -.5f * SHIP_SIZE + 10.f);
 	font.Draw({name, {SIDEBAR_CONTENT, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, *GameData::Colors().Get("bright"));
-}
-
-
-
-void ShopPanel::CheckForMissions(Mission::Location location)
-{
-	if(!GetUI()->IsTop(this))
-		return;
-
-	Mission *mission = player.MissionToOffer(location);
-	if(mission)
-		mission->Do(Mission::OFFER, player, GetUI());
-	else
-		player.HandleBlockedMissions(location, GetUI());
 }
 
 
