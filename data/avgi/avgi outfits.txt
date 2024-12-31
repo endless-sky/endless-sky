@@ -131,13 +131,13 @@ outfit "Multispectral Scanner"
 	category "Systems"
 	cost 24000
 	thumbnail "outfit/multispectral scanner"
-	"mass" 3
-	"outfit space" -6
-	"tactical scan power" 72
-	"energy consumption" 0.3
-	"heat generation" 0.3
-	description "A scanner with excellent sensitivity by human standards, this array of sensors and telescopes covers nearly the entire electromagnetic spectrum, from hard x-rays to ultralow-frequency radio waves. With a phased array RADAR and LIDAR, and telescopes looking in the infrared, ultraviolet, and x-ray spectrums, it is able to discern a surprising amount of information about a ship from a significant distance."
-	description "To increase the sensitivity of the instrument, certain components are cooled to temperatures ranging in the low microkelvins. The heat pump system responsible for maintaining this requires a surprisingly significant amount of power, while also producing a small amount of waste heat."
+	"mass" 6
+	"outfit space" -12
+	"tactical scan power" 180
+	"energy consumption" 0.45
+	"heat generation" 1.8
+	description "The Multispectral Scanner is a veritable suite of instruments, including an active scanning phased array radar, a combined infrared/optical/ultraviolet telescope, an array of semiconductor gamma detectors, and a bundle of neutron-detecting helium-3 tubes. With this plethora of instruments, distant ships can be detected, ranged, and tracked, despite any attempts to hide."
+	description "To increase the sensitivity of the instruments, certain components are cryocooled to temperatures ranging in the low microkelvins. The heat pump system responsible for maintaining this requires a surprising amount of power, while also producing a significant amount of waste heat."
 
 
 outfit "Spectrometer Array"
@@ -146,14 +146,14 @@ outfit "Spectrometer Array"
 	category "Systems"
 	cost 24000
 	thumbnail "outfit/spectrometer array"
-	"mass" 6
-	"outfit space" -12
-	"outfit scan power" 42
-	"outfit scan efficiency" 12
-	"cargo scan power" 42
-	"cargo scan efficiency" 12
-	"asteroid scan power" 72
-	"energy consumption" 0.06
+	"mass" 9
+	"outfit space" -18
+	"outfit scan power" 72
+	"outfit scan efficiency" 18
+	"cargo scan power" 72
+	"cargo scan efficiency" 18
+	"asteroid scan power" 90
+	"energy consumption" 0.12
 	description "This array of spectrometers is capable of analyzing the spectral signatures of materials in order to determine their composition. A small laser can speed this process up for asteroids by ablating a small surface sample and then analyzing the spectral lines of the emitted light, but this is sadly less useful against shielded ships and their internal systems."
 	description "Unfortunately, while these sensors excel in reading basic physical and chemical information, such as the elemental composition of an object, the amount of sensor data required to predict an outfit's functionality means this sensor can be quite slow when scanning a ship's complex systems or cargo."
 
@@ -300,7 +300,7 @@ outfit "Magnetoplasma Drive"
 	"reverse flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
-	description "For speed agnostic, bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for their versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive speeds over time, but is also quite energy-hungry. Being propellant agnostic, it is common to see magnetoplasmadynamic drives run with water or ammonia propellants, contributing to their renowned flexibility."
+	description "For bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for its versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive velocities, given time to accelerate, but it is also notably energy-hungry. Being propellant agnostic, it is common to see magnetoplasmadynamic drives run with common water or ammonia propellants, contributing to their renowned flexibility."
 	description "Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
 
 

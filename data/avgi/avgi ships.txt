@@ -774,8 +774,8 @@ ship "Entasi"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 2
-		"Multispectral Scanner" 6
-		"Spectrometer Array" 12
+		"Multispectral Scanner" 3
+		"Spectrometer Array" 9
 		"Optical Laser Rifle" 9
 
 		"Magnetoplasma Drive" 3
@@ -1027,6 +1027,7 @@ ship "Modified Tachytia"
 		"Specular Deflector" 2
 		"Optical Lasing Generator" 5
 		"Multispectral Scanner" 9
+		"Spectrometer Array" 6
 		"Electrostatic Ramscoop" 3
 		"Concealment Lamina"
 		"Radiative Lamina"
@@ -1755,7 +1756,7 @@ ship "Refraktos"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 4
-		"Multispectral Scanner"
+		"Multispectral Scanner" 2
 		"Electrostatic Ramscoop"
 		"Heatsink Partition"
 		"Optical Laser Rifle" 24
@@ -1852,14 +1853,14 @@ ship "Atenuatia"
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
 		"Vertical Launch Array" 2
-		"Nettle Magazine" 6
-		`"Nettle" KKV` 864
+		"Nettle Magazine" 3
+		`"Nettle" KKV` 648
 		
-		"Ultracapacitor Bank" 2
+		"Ultracapacitor Bank" 3
 		"Specular Deflector"
 		"Optical Lasing Generator" 3
 		"Electrostatic Ramscoop"
-		"Multispectral Scanner" 9
+		"Multispectral Scanner" 6
 		"Optical Laser Rifle" 90
 		
 		`Z-666 "Zap" Fusion Torch`
@@ -1954,15 +1955,15 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Speckle Turret"
 		"Speck Round" 2400
 		"Blue Optical Laser" 2
-		"Green Optical Laser" 3
+		"Green Optical Laser" 2
 		"External Launch Tube" 2
-		`"Orchid" Nuclear Missile` 24
-		"Ophrys Stockpile" 6
-		`"Ophrys" Nuclear Torpedo` 72
+		`"Orchid" Nuclear Missile` 12
+		"Ophrys Stockpile" 3
+		`"Ophrys" Nuclear Torpedo` 36
 		
 		"Ultracapacitor Bank"
 		"Specular Deflector"
-		"Optical Lasing Generator" 3
+		"Optical Lasing Generator" 2
 		"Electrostatic Ramscoop"
 		"Multispectral Scanner" 6
 		"Optical Laser Rifle" 90
@@ -1970,7 +1971,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
 		"Remass Injector" 4
-		"XY-360 Radial Thrusters"
+		"XY-720 Radial Thrusters"
 		"Hyperdrive"
 
 	gun
@@ -1982,7 +1983,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 	turret
 	turret "Speckle Turret"
 	turret
-	turret "Green Optical Laser"
+	turret
 	turret "Green Optical Laser"
 
 

@@ -2527,7 +2527,6 @@ system Symphony
 		period 4189.625
 		object "Navigeo Yards"
 			sprite planet/station-shipyard-a1
-				scale 0.5
 			distance 360
 			period 48
 			offset 180
