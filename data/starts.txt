@@ -162,11 +162,11 @@ conversation "hai intro"
 		goto deal
 	
 	label freighter
-	`	"Unfortunately, all my Aphids were bought earlier today. Still, I'm sure you can survive; the Unfettered'll be a tough ask, but pirates in human space won't be much of a match. Plus, if you still can't handle it, you can always sell her. She'll only cost you 1.132 million credits, and you'll be able to use the old parts of the Pristine Jewel to buy an Aphid at a discount.`
+	`	"Unfortunately, all my Aphids were bought earlier today. Still, I'm sure you can survive; the Unfettered'll be a tough ask, but pirates in human space won't be much of a match. Plus, if you still can't handle it, you can always sell her. She'll only cost you 870 thousand credits, and you'll be able to use the old parts of the Pristine Jewel to buy an Aphid at a discount.`
 		goto deal
 	
 	label pick
-	`	The Hai shakes his head. "Don't worry. Most of the crowd are just spectators. Usually it'd be a human captain pulling a stunt like selling their fleet publicly; most retiring Hai just donate their fleets to the government. I'm not exactly handing these ships out for free either. If you want her, the Pristine Jewel's 1.132 million credits.`
+	`	The Hai shakes his head. "Don't worry. Most of the crowd are just spectators. Usually it'd be a human captain pulling a stunt like selling their fleet publicly; most retiring Hai just donate their fleets to the government. I'm not exactly handing these ships out for free either. If you want her, the Pristine Jewel's 870 thousand credits.`
 	
 	label deal
 	`	"So, do we have a deal?"`
@@ -180,7 +180,7 @@ conversation "hai intro"
 	action
 		set "hai space start: Grasshopper"
 		give ship "Grasshopper (Hai Start)" "Pristine Jewel"
-		payment -1132000
+		payment -870000
 	`	The Hai gives you the keys to the Grasshopper after you hand over the tablet and your payment. "Looks like this your first step to becoming an interstellar entrepreneur. I'd say we'll meet again someday, but I'd rather not lie. In all my years, I never did meet the captain who sold me my first ship again. Not that that should matter, anyway; this is your story, not mine."`
 	`	He gives you one last salute before returning to the crowd to sell yet another ship.`
 		decline
