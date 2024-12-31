@@ -342,12 +342,6 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	mapIsStarry = player.StarryMap();
-	if(mapIsStarry)
-	{
-		info.SetCondition("map is starry");
-		info.SetBar("system ring", 1.);
-	}
 	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
@@ -576,7 +570,12 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
+		GetUI()->Push(new MapDetailPanel(*this, false));
+	}
+	else if (key == 'a' && buttonCondition != "is stars")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
 	{
@@ -584,8 +583,6 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
-	else if(key == 'x')
-		player.SetStarryMap(!mapIsStarry);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
@@ -1399,18 +1396,13 @@ void MapPanel::DrawSystems()
 	// Draw the circles for the systems.
 	BatchDrawList starBatch;
 	double zoom = Zoom();
-	const float ringFade = mapIsStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		if(!mapIsStarry)
+		if(commodity != SHOW_STARS)
 			RingShader::Draw(pos, OUTER, INNER, node.color);
 		else
 		{
-			// System rings fade as you zoom in if starry map is enabled.
-			const float alpha = max(ringFade, node.mapIcons.empty() ? .9f : 0.f);
-			RingShader::Draw(pos, OUTER, INNER, node.color.Additive(alpha));
-
 			// Ensures every multiple-star system has a characteristic, deterministic rotation.
 			Angle starAngle = 0;
 			Angle angularSpacing = 0;
@@ -1430,7 +1422,7 @@ void MapPanel::DrawSystems()
 				starAngle += angularSpacing;
 				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
-					Point(0, 0), 0, sqrt(zoom) / 2, min(zoom + 0.3, 0.75));
+					Point(0, 0), 0, sqrt(max(zoom, 0.5)) / 2, min(zoom + 0.25, 0.75));
 				starBatch.Add(starBody);
 			}
 		}
