@@ -141,7 +141,7 @@ outfit "Green Optical Laser"
 	index 10
 	category "Turrets"
 	cost 120000
-	thumbnail "outfit/avgi green laser"
+	thumbnail "outfit/green optical laser"
 	"mass" 6
 	"outfit space" -6
 	"weapon capacity" -6
@@ -149,7 +149,7 @@ outfit "Green Optical Laser"
 	"optical jamming" 6
 	"lasing power" -1
 	weapon
-		"hardpoint sprite" "hardpoint/avgi green laser"
+		"hardpoint sprite" "hardpoint/green optical laser"
 		"sound" "optical laser"
 		"die effect" "laser ejecta" 4
 		"die effect" "green laser reflection" 30
@@ -171,14 +171,14 @@ outfit "Blue Optical Laser"
 	licenses
 		"Twilight Guard"
 	cost 120000
-	thumbnail "outfit/avgi blue laser"
+	thumbnail "outfit/blue optical laser"
 	"mass" 9
 	"outfit space" -9
 	"weapon capacity" -9
 	"turret mounts" -1
 	"lasing power" -2
 	weapon
-		"hardpoint sprite" "hardpoint/avgi blue laser"
+		"hardpoint sprite" "hardpoint/blue optical laser"
 		sprite "projectile/avgi laser blue"
 			"frame rate" 1
 		"sound" "optical laser"
@@ -475,7 +475,7 @@ outfit "Nettle Magazine"
 	licenses
 		"Twilight Guard"
 	cost 1440000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/nettle magazine"
 	"mass" 3
 	"outfit space" -12
 	"nettle capacity" 72
