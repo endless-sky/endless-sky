@@ -902,7 +902,7 @@ ship "Undsyni"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 2
+		"Multispectral Scanner"
 		"Electrostatic Ramscoop"
 		"Spectrometer Array" 2
 		"Cargo Expansion" 12
@@ -978,8 +978,8 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Electrostatic Ramscoop"
 		"Cryogenic Deuterium Tank" 18
 		"Deuterium Slush Tank" 12
-		"Multispectral Scanner" 2
-		"Spectrometer Array" 2
+		"Multispectral Scanner"
+		"Spectrometer Array"
 
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
