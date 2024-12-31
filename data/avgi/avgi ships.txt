@@ -158,7 +158,7 @@ ship "Melodikos"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Luxury Accommodations"
-		"Multispectral Scanner" 3
+		"Multispectral Scanner"
 		"Optical Laser Rifle" 6
 
 		"Magnetoplasma Drive" 2
@@ -412,7 +412,7 @@ ship "Harmonikos"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Multispectral Scanner" 3
+		"Multispectral Scanner"
 		"Optical Laser Rifle" 6
 
 		"Magnetoplasma Drive" 2
@@ -671,7 +671,7 @@ ship "Polari"
 		"heat dissipation" 0.9
 		"fuel capacity" 1800
 		"cargo space" 42
-		"outfit space" 294
+		"outfit space" 312
 		"weapon capacity" 36
 		"engine capacity" 66
 		"asteroid scan power" 72
@@ -774,8 +774,8 @@ ship "Entasi"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 2
-		"Multispectral Scanner" 3
-		"Spectrometer Array" 9
+		"Multispectral Scanner" 2
+		"Spectrometer Array" 6
 		"Optical Laser Rifle" 9
 
 		"Magnetoplasma Drive" 3
@@ -882,7 +882,7 @@ ship "Undsyni"
 		"drag" 15
 		"heat dissipation" 1.2
 		"fuel capacity" 2400
-		"outfit space" 630
+		"outfit space" 636
 		"weapon capacity" 153
 		"engine capacity" 168
 		"spinal mount" 1
@@ -902,8 +902,8 @@ ship "Undsyni"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Electrostatic Ramscoop" 2
 		"Multispectral Scanner" 2
+		"Electrostatic Ramscoop"
 		"Spectrometer Array" 2
 		"Cargo Expansion" 12
 
@@ -1425,7 +1425,7 @@ ship "Diaspersi"
 		"heat dissipation" 1.24
 		"fuel capacity" 2400
 		"cargo space" 120
-		"outfit space" 420
+		"outfit space" 432
 		"weapon capacity" 96
 		"engine capacity" 114
 		"anchor point" 1
@@ -1658,7 +1658,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Nettle Magazine" 6
 		`"Nettle" KKV` 1296
 
-		"Ultracapacitor Bank"
+		"Ultracapacitor Cell" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
@@ -1688,8 +1688,8 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Speckle Turret" 2
 		"Speck Round" 9600
 		"External Launch Tube" 4
-		"Orchid Magazine" 8
-		`"Orchid" Nuclear Missile` 48
+		"Orchid Magazine" 6
+		`"Orchid" Nuclear Missile` 42
 
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
@@ -2394,7 +2394,6 @@ ship "Sonikis" "Sonikis (Armed)"
 		"Concentrating Solar Array"
 		"Ultracapacitor Cell" 2
 		"Spectrometer Array"
-		"Multispectral Scanner"
 
 		"Magnetoplasma Drive"
 
