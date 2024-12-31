@@ -347,6 +347,11 @@ mission "Hai Legacy 3"
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				fail
 			`As you take to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
+	on enter
+		"can trigger after failure"
+		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
+		fail
+		dialog `You receive a hail from the Unfettered. "You failed to complete the duel, and as such, you will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us should we ever find you on our worlds again!`
 	on disabled
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		fail
@@ -357,10 +362,12 @@ mission "Hai Legacy 3"
 				decline
 			`After your ship is disabled, one of the Unfettered ships hails you. "You have lost the challenge, but we didn't expect much from a human like you. We will repair your ship for a fair bribe, but you better land at one of our worlds and return it to us with a most generous compensation. If you try to keep it from us, we'll do things the hard way.`
 			`	"Be warned, however, that your truce with us ends as soon as you land. Today, you've failed us. Maybe someday you will prove yourself otherwise."`
+	on visit
+		fail
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		clear "old reputation: Hai (Unfettered)"
-		dialog `The Unfettered hail you. "You failed to complete the duel, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us on Darkcloak, but any of our worlds will do."`
+		dialog `You are contacted by the Unfettered as you enter the planet's atmosphere. "You failed to complete the duel, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -408,8 +415,6 @@ mission "Hai Legacy 3"
 			has "unfettered: fled with the relic"
 		personality heroic launching marked pacifist unconstrained
 		ship "Sea Scorpion (Shredder)" "Hunter"
-	on visit
-		dialog "Either you have not defeated the Unfettered challenger in orbit yet, or you have broken the terms of the duel."
 	to complete
 		not "unfettered: fled with the relic"
 		# Needed to make sure the mission doesn't auto complete if no ships spawn.
