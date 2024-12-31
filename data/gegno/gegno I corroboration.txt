@@ -1016,6 +1016,7 @@ mission "Acquiescence"
 			has "Gegno Intervention: offered"
 		not "Gegno Anticipation: failed"
 		not "Gegno Intervention: failed"
+		not "Gegno Genocide Defense: offered"
 
 	destination "Tschyss"
 	on offer
