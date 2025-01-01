@@ -341,6 +341,7 @@ void Hardpoint::Jam()
 	// Reset the reload count.
 	reload += outfit->Reload();
 	burstReload += outfit->BurstReload();
+	--burstCount;
 }
 
 
