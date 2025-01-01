@@ -43,7 +43,7 @@ outfit "Generator (Inferno Class)"
 	"outfit space" -71
 	"energy generation" 10.4
 	"heat generation" 27.0
-	description "With their typical disregard for the environmental impacts of their technology, the Korath put some rather alarming isotopes into this radiothermal generator. Its considerable energy output is offset by the heat it produces."
+	description "With their typical disregard for environmental impacts, the Korath put alarming isotopes into this radiothermal generator. Its large energy output comes with considerable heat production."
 
 outfit "Plasma Core"
 	category "Power"
@@ -53,7 +53,7 @@ outfit "Plasma Core"
 	"outfit space" -54
 	"energy generation" 11.9
 	"heat generation" 36.0
-	description "This compact Fusion Reactor is an ancient Korath design, and served as the mainstay of their war fleets until larger ships and more powerful weapons created a need for bigger and more powerful generators."
+	description "This compact fusion reactor is an ancient Korath design, once the mainstay of their war fleets until more powerful weapons and bigger ships demanded more capable generators."
 
 outfit "Double Plasma Core"
 	category "Power"
@@ -63,7 +63,7 @@ outfit "Double Plasma Core"
 	"outfit space" -93
 	"energy generation" 22.0
 	"heat generation" 72.0
-	description "This reactor core combines a pair of the ancient and robust Korath Plasma Cores into a single package."
+	description "By combining two robust Plasma Cores into a single integrated package, the Korath produce a reactor suited to their thirst for raw power, at the cost of high waste heat."
 
 outfit "Triple Plasma Core"
 	category "Power"
@@ -73,8 +73,7 @@ outfit "Triple Plasma Core"
 	"outfit space" -169
 	"energy generation" 43.6
 	"heat generation" 154.0
-	description "For the largest of their capital ships, the Korath designed a fusion reactor far more powerful than any comparable human technology."
-
+	description "For the largest Korath capital ships, these triple fusion reactors deliver colossal energy while generating tremendous heat in a monstrous block of radiothermal technology."
 
 
 outfit "Small Heat Shunt"
@@ -84,7 +83,7 @@ outfit "Small Heat Shunt"
 	"mass" 7
 	"outfit space" -7
 	"cooling" 13.5
-	description "The sheer inefficiency of most Korath equipment has forced them to become exceptionally good at one thing: dealing with large amounts of waste heat."
+	description "The Korath's inefficiency forces them to excel at handling large waste heat. This miniature heat shunt is enough to keep small craft from an early meltdown."
 
 outfit "Large Heat Shunt"
 	category "Systems"
@@ -93,7 +92,7 @@ outfit "Large Heat Shunt"
 	"mass" 24
 	"outfit space" -24
 	"cooling" 54
-	description "Without these powerful cooling systems, most Korath warships would overheat within seconds as soon as they began to fire their weapons."
+	description "Korath warships often need robust cooling systems that few other species would ever design. This large heat shunt is enough to manage multiple power-hungry systems at once."
 
 outfit "Liquid Sodium Cooler"
 	category "Systems"
@@ -105,7 +104,7 @@ outfit "Liquid Sodium Cooler"
 	"cooling energy" 5.2
 	"energy consumption" 2.4
 	"heat capacity" 680
-	description "This active cooling system uses a liquid sodium cooling loop to extract heat from the ship's hottest systems. A secondary system draws a moderate amount of power to continuously run the pump and maintain a minimum temperature in order to keep the sodium from freezing when the system is inactive."
+	description "Using a liquid sodium cooling loop, this system extracts heat from the hottest areas of a ship. A secondary pump draws moderate power to maintain the sodium in a liquid state, ensuring quick activation when needed."
 
 
 outfit "Systems Core (Tiny)"
@@ -121,7 +120,9 @@ outfit "Systems Core (Tiny)"
 	"hull repair rate" 0.1
 	"hull energy" 0.1
 	"hull heat" 0.15
-	description `Most Korath fighter pilots dispense with Systems Cores, preferring to run larger than necessary generators and return to their mothership if they take damage. Usually, only civilian small craft operators are willing to sacrifice enough firepower to mount this shield generator, capacitor, swarm of repair microbots, and computer to control them.`
+	description """
+		Only a few Korath fighter pilots bother with this minimal Systems Core, preferring bigger-than-needed generators and returning to base if they take damage. 
+		Nevertheless, it provides a small shield generator, microbot swarm, and the computer to coordinate them all."""
 
 outfit "Systems Core (Small)"
 	plural "Systems Cores (Small)"
@@ -136,7 +137,9 @@ outfit "Systems Core (Small)"
 	"hull repair rate" 0.2
 	"hull energy" 0.2
 	"hull heat" 0.3
-	description `The heart of any Korath ship is the Systems Core, which houses the ship's central computer, shield generators, reserve power, and a small reservoir which stores, produces and recycles a small microbot swarm that can make minor repairs to the ship while in flight.`
+	description """
+		The heart of a Korath ship is the Systems Core, which hosts the central computer, shield generators, spare power, 
+		and a microbot swarm to handle minor hull repairs. Even in smaller frames, it provides considerable improvements."""
 
 outfit "Systems Core (Medium)"
 	plural "Systems Cores (Medium)"
@@ -151,7 +154,9 @@ outfit "Systems Core (Medium)"
 	"hull repair rate" 0.4
 	"hull energy" 0.4
 	"hull heat" 0.6
-	description `The Systems Core houses a powerful computer, shield generators, reserve power, and a control center for repair microbots that can move across a ship's exterior and slowly repair damage to the hull. The microbot reservoir is capable of supporting a significant swarm.`
+	description """
+		For mid-range Korath ships, the Systems Core integrates powerful shielding, a large energy reservoir, and a potent microbot swarm for hull repairs.
+		Its power draw and heat production is balanced to remain feasible for typical Korath designs."""
 
 outfit "Systems Core (Large)"
 	plural "Systems Cores (Large)"
@@ -166,7 +171,9 @@ outfit "Systems Core (Large)"
 	"hull repair rate" 0.8
 	"hull energy" 0.8
 	"hull heat" 1.2
-	description `This massive bank of computers, shield generators, capacitors and repair microbot reservoirs holds everything needed to keep the very largest of Korath ships in working condition.`
+	description """
+		This massive Systems Core suits the largest Korath ships, containing advanced computers, shield generators, huge capacitors,
+		and an abundant microbot reservoir. It provides robust self-repair and formidable shield capacity, but demands major power."""
 
 
 outfit "Fuel Processor"
@@ -177,7 +184,9 @@ outfit "Fuel Processor"
 	"outfit space" -14
 	"fuel capacity" 200
 	"ramscoop" 2
-	description "The Fuel Processor was developed during the latter half of the Korath Civil War, when Korath factions attempted to provide for their war effort by raiding the Hai for supplies. Their ships would often end up stranded after they had run out of fuel and were unable to escape from the Hai military fleets, prompting the creation of this hybrid fuel storage and ramscoop device. These outfits are now the main source of fuel for the remaining Korath in the galaxy."
+	description """
+		Developed during the latter half of the Korath Civil War, this hybrid fuel storage and ramscoop served stranded Korath raiders who had run out of fuel.
+		It's now the main source of fuel for the remnants of the Korath in the galaxy."""
 
 
 outfit "Command Center"
@@ -190,7 +199,10 @@ outfit "Command Center"
 	"required crew" 1
 	"automaton" -1
 	unplunderable 1
-	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan Command Center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The Command Center only provides a single bunk for the captain, so more bunks may be necessary if the ship has turrets or other systems that require crew."
+	description """
+		In attempts to capture AI-driven Korath ships, the Kor Efret designed this minimal Command Center, letting a pilot override onboard AI.
+		However, it provides only a single bunk, so more might be needed for ships with turrets or large systems."""
+
 
 outfit "Reasoning Node"
 	category "Systems"
@@ -198,7 +210,10 @@ outfit "Reasoning Node"
 	thumbnail "outfit/reasoning node"
 	"mass" 1
 	"outfit space" -1
-	description "This is some sort of advanced, miniature computer combined with various sensor inputs and a hyperspace communication relay. Presumably, in some way it controls the Mereti automata or allows them to more easily coordinate their actions with each other."
+	description """
+		An advanced mini-computer with sensor inputs and a hyperspace relay, likely controlling Mereti automata or coordinating them more effectively.
+		Its exact internal logic remains beyond current understanding."""
+
 
 outfit "Control Transceiver"
 	category "Systems"
@@ -206,13 +221,15 @@ outfit "Control Transceiver"
 	thumbnail "outfit/control transceiver"
 	"mass" 1
 	"outfit space" -1
-	description "This is a miniaturized communication device, which can be connected to all the major systems of a Kor Sestor automaton, apparently as a way of controlling them remotely. The communications are encrypted and authenticated in a way that would make it nearly impossible to spoof the control signals."
+	description """
+		A miniaturized device that ties into major systems of a Kor Sestor automaton, enabling remote controlling signals.
+		Communications are heavily encrypted, preventing unauthorized spoofing."""
 
 
 outfit "Afterburner (Asteroid Class)"
 	plural "Afterburners (Asteroid Class)"
 	category "Engines"
-	"cost" 136000
+	cost 136000
 	thumbnail "outfit/tiny korath afterburner"
 	"mass" 9
 	"outfit space" -9
@@ -224,13 +241,15 @@ outfit "Afterburner (Asteroid Class)"
 	"afterburner heat" 6.25
 	"afterburner fuel" 0.0375
 	"afterburner effect" "korath afterburner tiny"
-	description "The smallest of afterburners is as much Fuel Processor as it is afterburner. It allows Korath small craft operators to squeeze a hyperdrive into otherwise intrasystem ships and dispense with conventional thrusters entirely."
-	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that may nearly melt the thruster."
+	description """
+		The smallest afterburner also includes a partial fuel processor, letting some intrasystem craft carry a hyperdrive 
+		by skipping standard thrusters entirely. It pumps super-heated hyperspace fuel into a thruster's plasma stream,
+		causing a massive but short-lived thrust explosion."""
 
 outfit "Afterburner (Comet Class)"
 	plural "Afterburners (Comet Class)"
 	category "Engines"
-	"cost" 299000
+	cost 299000
 	thumbnail "outfit/small korath afterburner"
 	"mass" 19
 	"outfit space" -19
@@ -240,13 +259,14 @@ outfit "Afterburner (Comet Class)"
 	"afterburner heat" 22.75
 	"afterburner fuel" 0.125
 	"afterburner effect" "korath afterburner small"
-	description "Adding these afterburners to an interceptor allows it to reach absurd speeds; however, the heat produced ensures that running them for any substantial period of time will require some serious cooling."
-	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description """
+		This compact afterburner grants an interceptor absurd speeds, at the risk of generating enough heat to demand serious cooling.
+		It super-heats hyperspace fuel in the thruster's plasma stream, producing a near-melting plasma explosion."""
 
 outfit "Afterburner (Lunar Class)"
 	plural "Afterburners (Lunar Class)"
 	category "Engines"
-	"cost" 647000
+	cost 647000
 	thumbnail "outfit/medium korath afterburner"
 	"mass" 32
 	"outfit space" -32
@@ -256,13 +276,14 @@ outfit "Afterburner (Lunar Class)"
 	"afterburner heat" 41.65
 	"afterburner fuel" 0.225
 	"afterburner effect" "korath afterburner medium"
-	description "Although these afterburners produce an incredible amount of thrust for their fuel usage, the prospect of installing one brings to mind many safety concerns."
-	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description """
+		Powerful yet heat-intensive, these mid-size afterburners produce a scorching output that requires top-tier Korath cooling technology to operate safely.
+		It pumps super-heated hyperspace fuel directly into a thruster's plasma stream, nearly melting the thruster."""
 
 outfit "Afterburner (Planetary Class)"
 	plural "Afterburners (Planetary Class)"
 	category "Engines"
-	"cost" 1459000
+	cost 1459000
 	thumbnail "outfit/large korath afterburner"
 	"mass" 55
 	"outfit space" -55
@@ -273,13 +294,14 @@ outfit "Afterburner (Planetary Class)"
 	"afterburner fuel" 0.4
 	"afterburner effect" "korath afterburner large"
 	"heat capacity" 150
-	description "These enormous afterburners have dedicated reaction chambers with cooling vents to keep the fuel-plasma explosion from destroying the thruster."
-	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description """
+		Enormous afterburners with dedicated reaction chambers and cooling vents keep the fuel-plasma explosion from destroying the thruster.
+		Such monstrous thrust once again reveals the Korath obsession with raw power over all else."""
 
 outfit "Afterburner (Stellar Class)"
 	plural "Afterburners (Stellar Class)"
 	category "Engines"
-	"cost" 3280000
+	cost 3280000
 	thumbnail "outfit/huge korath afterburner"
 	"mass" 94
 	"outfit space" -94
@@ -292,8 +314,10 @@ outfit "Afterburner (Stellar Class)"
 	"active cooling" 8
 	"cooling energy" 0.4
 	"heat capacity" 150
-	description "The very largest of Korath afterburners have integrated active cooling systems, powered by the fuel-plasma explosion, in order to keep the reaction chambers from melting."
-	description "	Korath afterburners pump super-heated hyperspace fuel directly into a thruster's plasma stream, resulting in a phenomenal explosion that nearly melts the thruster."
+	description """
+		These largest Korath afterburners integrate an active cooling loop fed by the explosive thrust reaction itself, 
+		in order to keep the reaction chambers from melting. They yield staggering thrust at equally staggering thermal cost."""
+
 
 effect "korath afterburner tiny"
 	sprite "effect/korath afterburner"
@@ -363,7 +387,7 @@ effect "korath afterburner huge"
 outfit "Engine (Meteor Class)"
 	plural "Engines (Meteor Class)"
 	category "Engines"
-	"cost" 187000
+	cost 187000
 	thumbnail "outfit/tiny korath engine"
 	"mass" 18
 	"outfit space" -18
@@ -380,12 +404,14 @@ outfit "Engine (Meteor Class)"
 	"steering flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"steering flare sound" "plasma tiny"
-	description `Although the prevailing Korath attitude towards engine construction has always been with a focus on making things bigger, faster, and more powerful, the Exiles found it necessary to develop these engines to allow their fighters to carry larger weapons or more cargo, at the cost of some speed.`
+	description """
+		To allow fighters to carry bigger weapons or cargo, Korath Exiles needed an engine that gave up some raw speed in exchange for additional capacity. 
+		This compact engine is their solution, though it still runs fairly hot by most standards."""
 
 outfit "Bow Drive (Meteor Class)"
 	plural "Bow Drives (Meteor Class)"
 	category "Engines"
-	"cost" 187000
+	cost 187000
 	thumbnail "outfit/korath bow drive"
 	"mass" 18
 	"outfit space" -18
@@ -403,12 +429,14 @@ outfit "Bow Drive (Meteor Class)"
 		"frame rate" 8
 	"reverse flare sound" "plasma tiny"
 	"steering flare sound" "plasma tiny"
-	description "This modification of the Meteor Class engines acts as a reverser, allowing a full range of mobility for small craft when paired with more powerful base thrusters."
+	description """
+		Combining a small thruster with a reversed mount, this drive offers a full range of movement to complement powerful forward thrusters.
+		The tradeoff is reduced total capacity for weapons or other systems."""
 
 outfit "Reverser (Asteroid Class)"
 	plural "Reversers (Asteroid Class)"
 	category "Engines"
-	"cost" 113000
+	cost 113000
 	thumbnail "outfit/tiny korath reverser"
 	"mass" 14
 	"outfit space" -14
@@ -420,13 +448,15 @@ outfit "Reverser (Asteroid Class)"
 	"reverse flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"reverse flare sound" "plasma tiny"
-	description "The Asteroid Class reverser provides a modest amount of thrust, giving Korath captains with weapon space to spare a small edge in battle."
-	description "	This Korath engine has been modified to be partially installed in a ship's weapon space, allowing it to push the ship in reverse."
+	description """
+		The smallest Korath reverser offers modest backward thrust. Some captains mount it to gain a small tactical advantage, 
+		though it costs valuable mass and weapon space to install. 
+		Korath engineers simply repurpose a smaller thruster to channel reverse force."""
 
 outfit "Reverser (Comet Class)"
 	plural "Reversers (Comet Class)"
 	category "Engines"
-	"cost" 249000
+	cost 249000
 	thumbnail "outfit/small korath reverser"
 	"mass" 24
 	"outfit space" -24
@@ -438,13 +468,15 @@ outfit "Reverser (Comet Class)"
 	"reverse flare sprite" "effect/korath flare/small"
 		"frame rate" 7.5
 	"reverse flare sound" "plasma small"
-	description "The Comet Class reverser is unpopular amongst Korath captains, who find it a bit weak to pair with Planetary Class engines, yet too large to be worth sacrificing weapon space."
-	description "	This Korath engine has been modified to be partially installed in a ship's weapon space, allowing it to push the ship in reverse."
+	description """
+		The Comet Class reverser is large enough to generate serious backward thrust on many mid-sized Korath warships. 
+		Its heat output is still quite high, which is a typical Korath hallmark. 
+		This partial engine fitting is half in the ship's weapon space, half in the engine space."""
 
 outfit "Reverser (Lunar Class)"
 	plural "Reversers (Lunar Class)"
 	category "Engines"
-	"cost" 539000
+	cost 539000
 	thumbnail "outfit/medium korath reverser"
 	"mass" 40
 	"outfit space" -40
@@ -456,13 +488,14 @@ outfit "Reverser (Lunar Class)"
 	"reverse flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
 	"reverse flare sound" "plasma medium"
-	description "Dwarfing any reversers in human space, this engine provides a considerable amount of reverse thrust for medium-sized Korath ships, where it is most commonly found."
-	description "	This Korath engine has been modified to be partially installed in a ship's weapon space, allowing it to push the ship in reverse."
+	description """
+		Modified from a mid-sized thruster, this reverser is popular on many mid-range Korath ships for advanced maneuvering. 
+		However, it typically requires strong cooling and power generation to handle its waste heat and consumption."""
 
 outfit "Reverser (Planetary Class)"
 	plural "Reversers (Planetary Class)"
 	category "Engines"
-	"cost" 1216000
+	cost 1216000
 	thumbnail "outfit/large korath reverser"
 	"mass" 68
 	"outfit space" -68
@@ -474,13 +507,14 @@ outfit "Reverser (Planetary Class)"
 	"reverse flare sprite" "effect/korath flare/large"
 		"frame rate" 6.5
 	"reverse flare sound" "plasma large"
-	description "Being essentially a slightly altered Planetary Class engine, this reverser provides an enormous amount of reverse thrust for any ship capable of installing it."
-	description "	This Korath engine has been modified to be partially installed in a ship's weapon space, allowing it to push the ship in reverse."
+	description """
+		Self-acknowledged as an engineering overkill, the Planetary Class reverser basically replicates a scaled-down main engine 
+		facing backward. It grants large ships staggering reverse thrust at the expense of huge resource usage."""
 
 outfit "Reverser (Stellar Class)"
 	plural "Reversers (Stellar Class)"
 	category "Engines"
-	"cost" 2733000
+	cost 2733000
 	thumbnail "outfit/huge korath reverser"
 	"mass" 118
 	"outfit space" -118
@@ -492,14 +526,15 @@ outfit "Reverser (Stellar Class)"
 	"reverse flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
 	"reverse flare sound" "plasma huge"
-	description "Modeled on their largest engines, the Stellar Class reverser provides a reverse thrust unlike anything you've seen before."
-	description "	This Korath engine has been modified to be partially installed in a ship's weapon space, allowing it to push the ship in reverse."
+	description """
+		The largest Korath reverser stands as a testament to their 'bigger is better' philosophy. 
+		It yields an astonishing level of reverse thrust, but demands truly immense amounts of power and cooling."""
 
 
 outfit "Thruster (Asteroid Class)"
 	plural "Thrusters (Asteroid Class)"
 	category "Engines"
-	"cost" 113000
+	cost 113000
 	thumbnail "outfit/tiny korath thruster"
 	"mass" 14
 	"outfit space" -14
@@ -510,12 +545,12 @@ outfit "Thruster (Asteroid Class)"
 	"flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"flare sound" "plasma tiny"
-	description "Given its size, this tiny Korath thruster produces quite a kick. But, it also draws a considerable amount of power."
+	description "A tiny thruster producing remarkable push, but it demands plenty of energy and runs uncomfortably hot."
 
 outfit "Thruster (Comet Class)"
 	plural "Thrusters (Comet Class)"
 	category "Engines"
-	"cost" 249000
+	cost 249000
 	thumbnail "outfit/small korath thruster"
 	"mass" 24
 	"outfit space" -24
@@ -526,12 +561,12 @@ outfit "Thruster (Comet Class)"
 	"flare sprite" "effect/korath flare/small"
 		"frame rate" 7.5
 	"flare sound" "plasma small"
-	description "Like most Korath technology, this thruster's power is offset by its energy requirements and heat output."
+	description "Another example of Korath's 'push power at any cost' approach. High thrust, but also high heat and energy usage."
 
 outfit "Thruster (Lunar Class)"
 	plural "Thrusters (Lunar Class)"
 	category "Engines"
-	"cost" 539000
+	cost 539000
 	thumbnail "outfit/medium korath thruster"
 	"mass" 40
 	"outfit space" -40
@@ -542,12 +577,12 @@ outfit "Thruster (Lunar Class)"
 	"flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
 	"flare sound" "plasma medium"
-	description "The Korath have the dubious distinction of relying on propulsion systems that produce more waste heat than the weapon systems of most other species."
+	description "Demanding as it is, this mid-range thruster is widely used by the Korath. Its heat output surpasses many species' weapon systems."
 
 outfit "Thruster (Planetary Class)"
 	plural "Thrusters (Planetary Class)"
 	category "Engines"
-	"cost" 1216000
+	cost 1216000
 	thumbnail "outfit/large korath thruster"
 	"mass" 68
 	"outfit space" -68
@@ -558,12 +593,12 @@ outfit "Thruster (Planetary Class)"
 	"flare sprite" "effect/korath flare/large"
 		"frame rate" 6.5
 	"flare sound" "plasma large"
-	description "The Quarg, who do all things efficiently, view the Korath propulsion systems with particular distaste."
+	description "Disdain for efficiency plus obsession with power yields these large thrusters. Quarg observers often consider them painfully wasteful."
 
 outfit "Thruster (Stellar Class)"
 	plural "Thrusters (Stellar Class)"
 	category "Engines"
-	"cost" 2733000
+	cost 2733000
 	thumbnail "outfit/huge korath thruster"
 	"mass" 118
 	"outfit space" -118
@@ -574,12 +609,15 @@ outfit "Thruster (Stellar Class)"
 	"flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
 	"flare sound" "plasma huge"
-	description "A legend among the Korath claims that when they were first testing out their latest generation of plasma thrusters, a concerned Quarg fleet approached and volunteered to help evacuate the Korath crew from what they assumed was a dying ship. The Quarg were surprised to learn that the flames shooting out the back of the ship were in fact its intended mode of propulsion."
+	description """
+		One anecdote claims a Quarg fleet approached a Korath test ship with these thrusters, believing it was on fire.
+		This monstrous device harnesses a near-melting plasma flow to propel huge warships."""
+
 
 outfit "Steering (Asteroid Class)"
 	plural "Steerings (Asteroid Class)"
 	category "Engines"
-	"cost" 95000
+	cost 95000
 	thumbnail "outfit/tiny korath steering"
 	"mass" 10
 	"outfit space" -10
@@ -590,12 +628,12 @@ outfit "Steering (Asteroid Class)"
 	"steering flare sprite" "effect/korath flare/tiny"
 		"frame rate" 8
 	"steering flare sound" "plasma tiny"
-	description "The Korath use these steering systems only in the very smallest of their ships."
+	description "This minimal steering system suits the smallest Korath craft, offering surprising torque for its size."
 
 outfit "Steering (Comet Class)"
 	plural "Steerings (Comet Class)"
 	category "Engines"
-	"cost" 221000
+	cost 221000
 	thumbnail "outfit/small korath steering"
 	"mass" 18
 	"outfit space" -18
@@ -606,12 +644,12 @@ outfit "Steering (Comet Class)"
 	"steering flare sprite" "effect/korath flare/small"
 		"frame rate" 7.5
 	"steering flare sound" "plasma small"
-	description "This compact steering system is a classic example of Korath technology: small, powerful, and woefully inefficient."
+	description "Small yet potent, the Comet Class steering exemplifies the Korath's preference for cramming maximum power into minimal space."
 
 outfit "Steering (Lunar Class)"
 	plural "Steerings (Lunar Class)"
 	category "Engines"
-	"cost" 473000
+	cost 473000
 	thumbnail "outfit/medium korath steering"
 	"mass" 30
 	"outfit space" -30
@@ -622,12 +660,14 @@ outfit "Steering (Lunar Class)"
 	"steering flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
 	"steering flare sound" "plasma medium"
-	description "Korath engines can be fitted into just about any ship, but unless accompanied by some Korath cooling systems as well, their heat output will often be more than the ship can handle."
+	description """
+		These mid-sized steering thrusters deliver formidable torque, albeit at the cost of high energy consumption. 
+		They are widely used by mid-range Korath vessels and require matching power generation."""
 
 outfit "Steering (Planetary Class)"
 	plural "Steerings (Planetary Class)"
 	category "Engines"
-	"cost" 1077000
+	cost 1077000
 	thumbnail "outfit/large korath steering"
 	"mass" 52
 	"outfit space" -52
@@ -638,12 +678,14 @@ outfit "Steering (Planetary Class)"
 	"steering flare sprite" "effect/korath flare/large"
 		"frame rate" 6.5
 	"steering flare sound" "plasma large"
-	description "Where other species might focus on converting energy into thrust as efficiently as possible, the Korath instead strive to pack as much power as possible into the smallest area. This steering system is a classic example of their work."
+	description """
+		Explicitly built to move large ships with minimal design overhead, these huge steering thrusters remain faithful to the
+		'cram more power in' Korath approach, despite inefficiencies."""
 
 outfit "Steering (Stellar Class)"
 	plural "Steerings (Stellar Class)"
 	category "Engines"
-	"cost" 2435000
+	cost 2435000
 	thumbnail "outfit/huge korath steering"
 	"mass" 89
 	"outfit space" -89
@@ -654,11 +696,14 @@ outfit "Steering (Stellar Class)"
 	"steering flare sprite" "effect/korath flare/huge"
 		"frame rate" 6
 	"steering flare sound" "plasma huge"
-	description "After millennia of war, the Korath have developed some truly enormous warships. These steering systems give even their largest warships a reasonable amount of agility in combat."
+	description """
+		For the largest warships, the Korath designed these monumental steering systems. 
+		Efficient or not, they allow enormous craft an agility rarely seen on such large vessels."""
+
 
 outfit "Arkrof GP Hybrid Thruster"
 	category "Engines"
-	"cost" 165000
+	cost 165000
 	thumbnail "outfit/tiny efreti thruster"
 	"mass" 19
 	"outfit space" -19
@@ -669,11 +714,13 @@ outfit "Arkrof GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"flare sound" "ion tiny"
-	description "Efreti engineers have begun to grudgingly take inspiration from their not-entirely-welcome Quarg guardians. The incorporation of gravitational propulsion increases the thrust output for engines in this line, at the cost of even higher energy use. These are the smallest such gravitoplasma-based thrusters."
+	description """
+		Efreti engineers took partial inspiration from Quarg gravitational propulsion, merging it with classic Korath plasma drives to form these 
+		small thrusters that produce strong thrust, albeit with high energy draw."""
 
 outfit "Farves GP Hybrid Thruster"
 	category "Engines"
-	"cost" 405000
+	cost 405000
 	thumbnail "outfit/small efreti thruster"
 	"mass" 33
 	"outfit space" -33
@@ -684,11 +731,13 @@ outfit "Farves GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"flare sound" "ion small"
-	description "The forced retreat from research into interstellar jump drive technology has left the Efreti engineers with little else to tinker with than subluminal propulsion. These resulting thrusters are one important example of this effort. Synthesizing gravitational propulsion with more traditional plasma thrusters moderates the heat output from these engines."
+	description """
+		Though forced to abandon jump drive research, the Efreti used their developing knowledge of quantum gravity in subluminal propulsion, 
+		resulting in these moderate-heat thrusters that combine standard plasma with partial gravitational push."""
 
 outfit "Gaktem GP Hybrid Thruster"
 	category "Engines"
-	"cost" 883000
+	cost 883000
 	thumbnail "outfit/medium efreti thruster"
 	"mass" 57
 	"outfit space" -57
@@ -699,11 +748,13 @@ outfit "Gaktem GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"flare sound" "ion medium"
-	description "The design of these engines suggests Efreti physicists appear to have gone considerably further than the mathematically self-consistent, but stubbornly unfalsifiable, conjectures of String Theory. Despite the Efreti's limited resources, these thrusters allow their engines to maintain the traditional Korath emphasis on speed in a small package while keeping heat output down."
+	description """
+		These mid-tier gravitoplasma thrusters leverage new Efreti insights into quantum gravity. Despite moderate efficiency gains, 
+		the design is still overshadowed by the raw power demands typical of Korath-based technology."""
 
 outfit "Nelmeb GP Hybrid Thruster"
 	category "Engines"
-	"cost" 1649000
+	cost 1649000
 	thumbnail "outfit/large efreti thruster"
 	"mass" 86
 	"outfit space" -86
@@ -714,12 +765,15 @@ outfit "Nelmeb GP Hybrid Thruster"
 	"flare sprite" "effect/efreti flare/large"
 		"frame rate" 6.5
 	"flare sound" "ion large"
-	description "Korath physicists have, for several centuries, understood concrete aspects of the unity that underlies both quantum gravity and the forces that bind quarks and gluons together. However, as Efreti efforts are comparatively recent, this technological synthesis lags behind comparable Quarg technology."
-	description "	These are the largest gravitoplasma thrusters that the Efreti have to offer, and as such are usually only found on their gargantuan civilian ships. Despite their size and thrusting power, the Quarg are still rather unimpressed with the inefficient nature of the design."
+	description """
+		A large engine that merges Efreti gravitational knowledge with the Korath plasma tradition. 
+		The Quarg remain unimpressed by its relatively high power demands and lower efficiency, 
+		but the Efreti appreciate the robust output it provides."""
+
 
 outfit "Arkrof GP Hybrid Steering"
 	category "Engines"
-	"cost" 131000
+	cost 131000
 	thumbnail "outfit/tiny efreti steering"
 	"mass" 12
 	"outfit space" -12
@@ -730,11 +784,13 @@ outfit "Arkrof GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/tiny"
 		"frame rate" 8
 	"steering flare sound" "ion tiny"
-	description "Unlike most Korath engines, Efreti engines do not rely solely on plasma. Gravitoplasma engines combine traditional Korath plasma thrust with Quarg-inspired forays into gravitation-based propulsion. The smallest steering manages to develop a great deal of torque at the expense of higher energy costs."
+	description """
+		Tiny Efreti 'gravitoplasma' steering, combining partial gravity-based torque with a standard plasma backbone. 
+		A small but potent device offering high turn rates for small ships."""
 
 outfit "Farves GP Hybrid Steering"
 	category "Engines"
-	"cost" 413000
+	cost 413000
 	thumbnail "outfit/small efreti steering"
 	"mass" 24
 	"outfit space" -24
@@ -745,12 +801,14 @@ outfit "Farves GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/small"
 		"frame rate" 7.5
 	"steering flare sound" "ion small"
-	description "An important product of Efreti engineers' ongoing effort to evolve their understanding of fundamental physics and how it can be put into practice is this compact steering system. A classic example of Korath technology, it is small, powerful, and woefully inefficient. It appears that the Quarg influence on the Efreti has not changed the underlying design philosophy of the Korath living here."
+	description """
+		Small but nimble, these Efreti steering systems illustrate the continuing synergy between Quarg theory and Korath practice, 
+		though inefficiency remains a hallmark of their design."""
 
 
 outfit "Gaktem GP Hybrid Steering"
 	category "Engines"
-	"cost" 833000
+	cost 833000
 	thumbnail "outfit/medium efreti steering"
 	"mass" 42
 	"outfit space" -42
@@ -761,12 +819,14 @@ outfit "Gaktem GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/medium"
 		"frame rate" 7
 	"steering flare sound" "ion medium"
-	description "In these hybrid gravitoplasma thrusters, Efreti scientists and engineers have begun to instantiate the newest, unified understandings of quantum gravity with the nuclear forces."
-	description "	Unless accompanied by some Korath power systems, this Efreti steering system's energy consumption will often be more than a ship can handle. Their main advantage when compared to other Korath engines of the same size is reduced heat production."
+	description """
+		A mid-sized Efreti system harnessing quantum gravity for improved turn rates. 
+		Though it produces less heat than a similar pure Korath design, it still draws significant power and remains far from Quarg efficiency levels."""
+
 
 outfit "Nelmeb GP Hybrid Steering"
 	category "Engines"
-	"cost" 1439000
+	cost 1439000
 	thumbnail "outfit/large efreti steering"
 	"mass" 67
 	"outfit space" -67
@@ -777,8 +837,10 @@ outfit "Nelmeb GP Hybrid Steering"
 	"steering flare sprite" "effect/efreti flare/large"
 		"frame rate" 6.5
 	"steering flare sound" "ion large"
-	description "Prompted by the grim will to trudge onwards and innovate despite being forced to abandon jump drive technology, Efreti engineers have recently begun to utilize their theoretical knowledge to incorporate gravitational propulsion into their more traditional fusion-based plasma engines."
-	description "	More stable than one would expect from Korath engines this large, these steering thrusters were developed by the Efreti as a means of guiding their most massive ships. Their high energy usage is tempered by the fact that they are usually powered by the most massive Korath fusion reactors."
+	description """
+		In the Nelmeb line, Efreti engineers integrate partial gravitational torque with plasma steering on large vessels.
+		Though less stable than Quarg equivalents, it is safer than typical Korath thruster designs and has more moderate heat output."""
+
 
 outfit "Thermal Repeater Rifle"
 	category "Hand to Hand"
@@ -787,7 +849,10 @@ outfit "Thermal Repeater Rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
 	"unplunderable" 1
-	description "This rifle is commonplace among the Korath, predating the creation of the ship-scale Thermal Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+	description """
+		This Korath infantry-scale weapon uses superheated plasma in short bursts. It's slow to fire and can burn the user's hands 
+		if used carelessly, but typically kills targets quickly enough that return fire is rarely an issue."""
+
 
 outfit "Microbot Defense Station"
 	category "Hand to Hand"
@@ -800,5 +865,9 @@ outfit "Microbot Defense Station"
 	"energy consumption" 0.01
 	"heat generation" 0.1
 	unplunderable 1
-	description `This insidious trap awaits anyone foolish enough to attempt to capture Korath World-Ships. Intruders are trapped before this airlock, ahead of which a cloud of microbots programmed to break down organic matter into nutrigel is released. The resulting gel then drains into the vat below while the robots are recalled.`
-	description `	Many races find this means of defense abhorrent. Citing the excruciating, confusing death experienced by its victims, the violation of taboos relating to cannibalism, and erroneous fears that the microbots could somehow "escape," possession of these airlocks may result in heavy fines.`
+	description """
+		A particularly grim contraption found in certain Korath warships, it awaits boarders in an airlock and releases microbots 
+		programmed to dismantle organic matter into nutrigel. Then the microbots are reclaimed, leaving an empty corridor behind.
+		Many species consider this both horrific and illegal, due to its excruciating, taboo-breaking nature.
+	"""
+
