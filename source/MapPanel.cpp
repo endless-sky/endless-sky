@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
-#include "BatchDrawList.h"
+#include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "shader/FillShader.h"
