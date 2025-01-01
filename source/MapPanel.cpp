@@ -20,8 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
-#include "FillShader.h"
-#include "FogShader.h"
+#include "shader/FillShader.h"
+#include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -30,7 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
@@ -39,15 +39,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Politics.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
+#include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -71,14 +72,36 @@ namespace {
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
-	// Struct to track per system how many pointers are drawn and still
+	// Class to track per system how many pointers are drawn and still
 	// need to be drawn.
-	struct PointerDrawCount {
+	class PointerDrawCount {
+	public:
+		// Calculate and check the most number of pointer positions that should be available for active missions.
+		// This can be up to half the maximum number of pointers that can be drawn.
+		void Reserve();
+
+		unsigned MaximumActive() const;
+
+	public:
 		// Amount of systems already drawn.
 		unsigned drawn = 0;
 		unsigned available = 0;
 		unsigned unavailable = 0;
+
+	private:
+		unsigned maximumActive = MAX_MISSION_POINTERS_DRAWN;
 	};
+
+	void PointerDrawCount::Reserve()
+	{
+		maximumActive = max(MAX_MISSION_POINTERS_DRAWN / 2, MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
+	}
+
+	unsigned PointerDrawCount::MaximumActive() const
+	{
+		return maximumActive;
+	}
+
 
 	// Struct for storing the ends of wormhole links and their colors.
 	struct WormholeArrow {
@@ -168,17 +191,17 @@ namespace {
 				if(Preferences::Has("Deadline blink by distance"))
 				{
 					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(mission.Destination()->GetSystem()))
+					if(distance.HasRoute(*mission.Destination()->GetSystem()))
 					{
 						set<const System *> toVisit;
 						for(const Planet *stopover : mission.Stopovers())
 						{
-							if(distance.HasRoute(stopover->GetSystem()))
+							if(distance.HasRoute(*stopover->GetSystem()))
 								toVisit.insert(stopover->GetSystem());
 							--daysLeft;
 						}
 						for(const System *waypoint : mission.Waypoints())
-							if(distance.HasRoute(waypoint))
+							if(distance.HasRoute(*waypoint))
 								toVisit.insert(waypoint);
 
 						int systemCount = toVisit.size();
@@ -187,16 +210,16 @@ namespace {
 							const System *closest;
 							int minimalDist = numeric_limits<int>::max();
 							for(const System *sys : toVisit)
-								if(distance.Days(sys) < minimalDist)
+								if(distance.Days(*sys) < minimalDist)
 								{
 									closest = sys;
-									minimalDist = distance.Days(sys);
+									minimalDist = distance.Days(*sys);
 								}
-							daysLeft -= distance.Days(closest);
+							daysLeft -= distance.Days(*closest);
 							distance = DistanceMap(player, closest);
 							toVisit.erase(closest);
 						}
-						daysLeft -= distance.Days(mission.Destination()->GetSystem());
+						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
 					}
 				}
 				int blinkFactor = min(6, max(1, daysLeft));
@@ -409,7 +432,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 	// Draw a warning if the selected system is not routable.
 
-	if(selectedSystem != &playerSystem && !distance.HasRoute(selectedSystem))
+	if(selectedSystem != &playerSystem && !distance.HasRoute(*selectedSystem))
 	{
 		static const string UNAVAILABLE = "You have no available route to this system.";
 		static const string UNKNOWN = "You have not yet mapped a route to this system.";
@@ -805,28 +828,23 @@ void MapPanel::Select(const System *system)
 	}
 	else if(shift)
 	{
-		DistanceMap localDistance(player, plan.front());
-		if(localDistance.Days(system) <= 0)
+		const System *planEnd = plan.front();
+		if(system == planEnd)
 			return;
 
-		auto it = plan.begin();
-		while(system != *it)
-		{
-			it = ++plan.insert(it, system);
-			system = localDistance.Route(system);
-		}
+		RoutePlan addedRoute(*planEnd, *system, &player);
+		if(!addedRoute.HasRoute())
+			return;
+
+		vector<const System *> newPlan = addedRoute.Plan();
+		plan.insert(plan.begin(), newPlan.begin(), newPlan.end());
 	}
-	else if(distance.Days(system) > 0)
+	else if(distance.HasRoute(*system))
 	{
-		plan.clear();
 		if(!isJumping)
 			flagship->SetTargetSystem(nullptr);
 
-		while(system != source)
-		{
-			plan.push_back(system);
-			system = distance.Route(system);
-		}
+		plan = distance.Plan(*system);
 		if(isJumping)
 			plan.push_back(source);
 	}
@@ -1246,8 +1264,8 @@ void MapPanel::DrawSelectedSystem()
 	auto it = find(plan.begin(), plan.end(), selectedSystem);
 	if(it != plan.end())
 		jumps = plan.end() - it;
-	else if(distance.HasRoute(selectedSystem))
-		jumps = distance.Days(selectedSystem);
+	else if(distance.HasRoute(*selectedSystem))
+		jumps = distance.Days(*selectedSystem);
 
 	if(jumps == 1)
 		text += " (1 jump away)";
@@ -1290,11 +1308,14 @@ void MapPanel::DrawEscorts()
 				// Stored outfits are drawn/indicated by 8 short rays out of the system center.
 				for(int i = 0; i < 8; ++i)
 				{
+					static constexpr float WIDTH = 1.6f;
+
 					// Starting at 7.5 degrees to intentionally mis-align with mission pointers.
 					Angle angle = Angle(7.5f + 45.f * i);
-					Point from = pos + angle.Unit() * OUTER;
-					Point to = from + angle.Unit() * 4.f;
-					LineShader::Draw(from, to, 2.f, active);
+					// Account for how rounded caps extend out by an additional WIDTH.
+					Point from = pos + angle.Unit() * (OUTER + WIDTH);
+					Point to = from + angle.Unit() * (4.f - WIDTH);
+					LineShader::Draw(from, to, WIDTH, active);
 				}
 		}
 }
@@ -1496,6 +1517,7 @@ void MapPanel::DrawMissions()
 		else
 			++it.unavailable;
 	}
+	for_each(missionCount.begin(), missionCount.end(), [](auto &it) { it.second.Reserve(); });
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -1505,22 +1527,25 @@ void MapPanel::DrawMissions()
 		if(!system)
 			continue;
 
-		// Reserve a maximum of half of the slots for available missions.
-		auto &&it = missionCount[system];
-		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
-		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
-			continue;
-
-		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
-		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		auto &it = missionCount[system];
+		if(it.drawn < it.MaximumActive())
+		{
+			pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+			bool isSatisfied = IsSatisfied(player, mission) && blink.second;
+			const Color &color = blink.first ? black : isSatisfied ? currentColor : blockedColor;
+			DrawPointer(system, it.drawn, it.MaximumActive(), color, isSatisfied);
+		}
 
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
+			DrawPointer(waypoint, missionCount[waypoint].drawn, missionCount[waypoint].MaximumActive(), waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
+		{
+			const System *stopoverSystem = stopover->GetSystem();
+			auto &counts = missionCount[stopoverSystem];
+			DrawPointer(stopoverSystem, counts.drawn, counts.MaximumActive(), waypointColor);
+		}
 		for(const System *mark : mission.MarkedSystems())
-			DrawPointer(mark, missionCount[mark].drawn, waypointColor);
+			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
@@ -1528,16 +1553,18 @@ void MapPanel::DrawMissions()
 		const auto &system = it.first;
 		auto &&counters = it.second;
 		for(unsigned i = 0; i < counters.available; ++i)
-			DrawPointer(system, counters.drawn, availableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
-			DrawPointer(system, counters.drawn, unavailableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, unavailableColor);
 	}
 }
 
 
 
-void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger)
 {
+	if(systemCount >= max)
+		return;
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 
