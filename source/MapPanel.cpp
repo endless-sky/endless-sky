@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
+#include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "shader/FillShader.h"
@@ -35,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
@@ -68,6 +70,7 @@ namespace {
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
+	const int MAX_STARS = 5;
 
 	// Class to track per system how many pointers are drawn and still
 	// need to be drawn.
@@ -590,7 +593,12 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
+		GetUI()->Push(new MapDetailPanel(*this, false));
+	}
+	else if(key == 'a' && buttonCondition != "is stars")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
 	{
@@ -1114,10 +1122,14 @@ void MapPanel::UpdateCache()
 			}
 		}
 
+		static const vector<const Sprite *> unmappedSystem = {SpriteSet::Get("map/unexplored-star")};
+
+		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.Name() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.CanView(system) ? system.GetGovernment() : nullptr);
+			canViewSystem ? system.GetGovernment() : nullptr,
+			canViewSystem ? system.GetMapIcons() : unmappedSystem);
 	}
 
 	// Now, update the cache of the links.
@@ -1403,11 +1415,38 @@ void MapPanel::DrawSystems()
 		closeGovernments.clear();
 
 	// Draw the circles for the systems.
+	BatchDrawList starBatch;
 	double zoom = Zoom();
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+		if(commodity != SHOW_STARS)
+			RingShader::Draw(pos, OUTER, INNER, node.color);
+		else
+		{
+			// Ensures every multiple-star system has a characteristic, deterministic rotation.
+			Angle starAngle = 0;
+			Angle angularSpacing = 0;
+			Point starOffset = Point(0, 0);
+
+			const int starsToDraw = min(static_cast<int>(node.mapIcons.size()), MAX_STARS);
+			if(starsToDraw > 1)
+			{
+				starAngle = node.name.length() + node.position.Length();
+				angularSpacing = 360. / starsToDraw;
+				starOffset = starsToDraw * Point(2., 2.);
+			}
+
+			// Draw the star icons.
+			for(int i = 0; i < starsToDraw; ++i)
+			{
+				starAngle += angularSpacing;
+				const Sprite *star = node.mapIcons[i];
+				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
+					Point(0, 0), 0, sqrt(max(zoom, 0.5)) / 2, min(zoom + 0.25, 0.75));
+				starBatch.Add(starBody);
+			}
+		}
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
@@ -1422,6 +1461,8 @@ void MapPanel::DrawSystems()
 				it->second = min(it->second, distance);
 		}
 	}
+	starBatch.Draw();
+	starBatch.Clear();
 }
 
 

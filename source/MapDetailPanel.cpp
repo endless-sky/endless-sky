@@ -99,11 +99,11 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
 
 
 
-MapDetailPanel::MapDetailPanel(const MapPanel &panel)
-	: MapPanel(panel)
+MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
+	: MapPanel(panel), isStars(isStars)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
-	commodity = player.MapColoring();
+	commodity = isStars ? -8 : player.MapColoring();
 }
 
 
@@ -121,6 +121,7 @@ void MapDetailPanel::Step()
 	{
 		DoHelp("map advanced danger");
 		DoHelp("map advanced ports");
+		DoHelp("map advanced stars");
 	}
 	if(!player.GetPlanet())
 		DoHelp("map");
@@ -135,7 +136,7 @@ void MapDetailPanel::Draw()
 	DrawInfo();
 	DrawOrbits();
 	DrawKey();
-	FinishDrawing("is ports");
+	FinishDrawing(isStars ? "is stars" : "is ports");
 }
 
 
@@ -204,6 +205,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	{
 		DoHelp("map advanced danger", true);
 		DoHelp("map advanced ports", true);
+		DoHelp("map advanced stars", true);
 		if(!player.GetPlanet())
 			DoHelp("map", true);
 	}

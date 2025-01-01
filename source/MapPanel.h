@@ -50,6 +50,7 @@ public:
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
 	static const int SHOW_DANGER = -7;
+	static const int SHOW_STARS = -8;
 
 	static const float OUTER;
 	static const float INNER;
@@ -188,14 +189,16 @@ private:
 	class Node {
 	public:
 		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+			const Color &nameColor, const Government *government, const std::vector<const Sprite *> &mapIcons)
+			: position(position), color(color), name(name), nameColor(nameColor),
+			government(government), mapIcons(mapIcons) {}
 
 		Point position;
 		Color color;
 		std::string name;
 		Color nameColor;
 		const Government *government;
+		std::vector<const Sprite *> mapIcons;
 	};
 	std::vector<Node> nodes;
 
