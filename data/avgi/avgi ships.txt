@@ -595,9 +595,10 @@ ship "Frequentia"
 		"hull"	1800
 		"required crew" 2
 		"bunks" 6
-		"mass" 180
+		"mass" 270
 		"drag" 4.5
 		"heat dissipation" 1.2
+		"solar heat" 2.7
 		"fuel capacity" 2400
 		"cargo space" 240
 		"outfit space" 186
@@ -619,7 +620,7 @@ ship "Frequentia"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
-		"XY-180 Radial Thrusters"
+		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
 	engine 0 75
@@ -669,12 +670,14 @@ ship "Polari"
 		"mass" 240
 		"drag" 3.6
 		"heat dissipation" 0.9
+		"solar heat" 2.4
 		"fuel capacity" 1800
 		"cargo space" 42
 		"outfit space" 312
 		"weapon capacity" 36
 		"engine capacity" 66
 		"asteroid scan power" 72
+		"tactical scan power" 72
 		"anchor point" 1
 		weapon
 			"blast radius" 90
@@ -698,7 +701,7 @@ ship "Polari"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
-		"XY-180 Radial Thrusters"
+		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
 	turret -14 27 "Green Optical Laser"
@@ -752,7 +755,7 @@ ship "Entasi"
 		"hull" 3600
 		"required crew" 6
 		"bunks" 12
-		"mass" 540
+		"mass" 720
 		"drag" 6
 		"heat dissipation" 0.72
 		"fuel capacity" 1200
@@ -760,8 +763,8 @@ ship "Entasi"
 		"outfit space" 420
 		"weapon capacity" 120
 		"engine capacity" 42
-		"solar collection" 12
-		"solar heat" 3.6
+		"solar collection" 18
+		"solar heat" 7.2
 		"anchor point" 1
 		weapon
 			"blast radius" 360
@@ -878,9 +881,10 @@ ship "Undsyni"
 		"required crew" 12
 		"bunks" 60
 		"cargo space" 600
-		"mass" 1500
+		"mass" 2100
 		"drag" 15
 		"heat dissipation" 1.2
+		"solar heat" 21
 		"fuel capacity" 2400
 		"outfit space" 636
 		"weapon capacity" 153
@@ -910,7 +914,7 @@ ship "Undsyni"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-360 Radial Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun 0 -213
@@ -984,7 +988,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-360 Radial Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 
@@ -1002,6 +1006,7 @@ ship "Modified Tachytia"
 		"mass" 6000
 		"drag" 6
 		"heat dissipation" 0.66
+		"solar heat" 60
 		"fuel capacity" 60000
 		"hull repair rate" 0.3
 		"hull repair energy" 3
@@ -1145,7 +1150,7 @@ ship "Tremoros"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-180 Radial Thrusters"
+		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
 	gun -6.5 -18 "Speckle Coilgun"
@@ -1198,9 +1203,10 @@ ship "Prismaios"
 		"hull" 6000
 		"required crew" 2
 		"bunks" 6
-		"mass" 300
+		"mass" 450
 		"drag" 2.4
 		"heat dissipation" 1.5
+		"solar heat" 4.5
 		"fuel capacity" 1200
 		"cargo space" 36
 		"outfit space" 360
@@ -1229,7 +1235,7 @@ ship "Prismaios"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-360 Radial Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	engine 0 108
@@ -1289,7 +1295,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-180 Radial Thrusters"
+		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
 	gun
@@ -1312,9 +1318,10 @@ ship "Interferos"
 		"hull" 3000
 		"automaton" 1
 		"crew equivalent" 3
-		"mass" 180
+		"mass" 270
 		"drag" 5.4
 		"heat dissipation" 1.2
+		"solar heat" 2.7
 		"fuel capacity" 600
 		"cargo space" 12
 		"outfit space" 288
@@ -1339,7 +1346,7 @@ ship "Interferos"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
-		"XY-180 Radial Thrusters"
+		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
 	gun 0 -114
@@ -1396,7 +1403,7 @@ ship "Interferos" "Interferos (Atomic)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector"
-		"XY-180 Radial Thrusters"
+		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
 	gun
@@ -1420,9 +1427,10 @@ ship "Diaspersi"
 		"hull" 9000
 		"required crew" 15
 		"bunks" 36
-		"mass" 540
-		"drag" 9
-		"heat dissipation" 1.24
+		"mass" 810
+		"drag" 6
+		"heat dissipation" 1.2
+		"solar heat" 8.1
 		"fuel capacity" 2400
 		"cargo space" 120
 		"outfit space" 432
@@ -1454,7 +1462,7 @@ ship "Diaspersi"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-360 Radial Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun 0 -156
@@ -1534,7 +1542,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-360 Radial Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun
@@ -1560,13 +1568,14 @@ ship "Difraktos"
 		"required crew" 15
 		"bunks" 42
 		"mass" 1200
-		"drag" 15
+		"drag" 7.2
 		"heat dissipation" 1.5
+		"solar heat" 1.2
 		"fuel capacity" 1800
 		"cargo space" 60
 		"outfit space" 540
 		"weapon capacity" 252
-		"engine capacity" 142
+		"engine capacity" 144
 		"anchor point" 1
 		weapon
 			"blast radius" 420
@@ -1591,9 +1600,10 @@ ship "Difraktos"
 		"Optical Laser Rifle" 42
 
 		`Z-666 "Zap" Fusion Torch`
-		"Inductive Extractor" 2
-		"Remass Injector" 4
-		"XY-360 Radial Thrusters"
+		"Inductive Extractor"
+		"Remass Injector" 2
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 
@@ -1666,10 +1676,11 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Electrostatic Ramscoop"
 		"Optical Laser Rifle" 42
 		
-		`Z-333 "Spark" Fusion Torch`
-		"Inductive Extractor" 1
+		`Z-666 "Zap" Fusion Torch`
+		"Inductive Extractor"
 		"Remass Injector" 2
-		"XY-360 Radial Thrusters"
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	turret "Speckle Turret"
@@ -1700,9 +1711,10 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Optical Laser Rifle" 42
 
 		`Z-666 "Zap" Fusion Torch`
-		"Inductive Extractor" 2
-		"Remass Injector" 4
-		"XY-360 Radial Thrusters"
+		"Inductive Extractor"
+		"Remass Injector" 2
+		"R-180 RCS Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun
@@ -1734,9 +1746,10 @@ ship "Refraktos"
 		"hull" 8400
 		"required crew" 12
 		"bunks" 24
-		"mass" 540
+		"mass" 810
 		"drag" 6
 		"heat dissipation" 1.8
+		"solar heat" 8.1
 		"fuel capacity" 1800
 		"cargo space" 60
 		"outfit space" 516
@@ -1764,7 +1777,7 @@ ship "Refraktos"
 		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 5
 		"Remass Injector" 1
-		"XY-360 Radial Thrusters"
+		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
 	gun 0 -162
@@ -1833,9 +1846,10 @@ ship "Atenuatia"
 		"hull" 27600
 		"required crew" 60
 		"bunks" 90
-		"mass" 1800
+		"mass" 2700
 		"drag" 18
 		"heat dissipation" 1.5
+		"solar heat" 2.7
 		"fuel capacity" 2400
 		"cargo space" 120
 		"outfit space" 690
@@ -1866,7 +1880,7 @@ ship "Atenuatia"
 		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 3
 		"Remass Injector" 3
-		"XY-720 Radial Thrusters"
+		"R-720 RCS Thrusters"
 		"Hyperdrive"
 
 	engine 0 250
@@ -1971,7 +1985,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		`Z-666 "Zap" Fusion Torch`
 		"Inductive Extractor" 2
 		"Remass Injector" 4
-		"XY-720 Radial Thrusters"
+		"R-720 RCS Thrusters"
 		"Hyperdrive"
 
 	gun

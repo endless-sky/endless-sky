@@ -108,15 +108,15 @@ outfitter "Avgi Superconductors"
 outfitter "Avgi Propulsion"
 	"Magnetoplasma Drive"
 	`Z-333 "Spark" Fusion Torch`
-	"XY-180 Radial Thrusters"
-	"XY-360 Radial Thrusters"
+	"R-180 RCS Thrusters"
+	"R-360 RCS Thrusters"
 	"Inductive Extractor"
 	"Remass Injector"
 
 outfitter "Avgi Torches"
 	`Z-666 "Zap" Fusion Torch`
 	`Z-999 "Arc" Fusion Torch`
-	"XY-720 Radial Thrusters"
+	"R-720 RCS Thrusters"
 
 outfitter "Avgi Militia Surplus"
 	"Speckle Coilgun"

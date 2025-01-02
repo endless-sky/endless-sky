@@ -233,9 +233,9 @@ effect "blue laser reflection"
 		"no repeat"
 		"frame rate" 20
 		"scale" 0.125
-	"lifetime" 3
+	"lifetime" 1
 	"random lifetime" 3
-	"random velocity" -30
+	"random velocity" -90
 	"velocity scale" -0.0012
 
 effect "blue laser scattering"

@@ -312,7 +312,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 		"Avgi Torch"
 	"cost" 660000
 	thumbnail "outfit/spark fusion torch"
-	"mass" 99
+	"mass" 333
 	"outfit space" -33
 	"engine capacity" -33
 	"thrust" 90
@@ -338,7 +338,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 		"Avgi Torch"
 	"cost" 1440000
 	thumbnail "outfit/zap fusion torch"
-	"mass" 198
+	"mass" 666
 	"outfit space" -66
 	"engine capacity" -66
 	"thrust" 210
@@ -363,7 +363,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 		"Avgi Torch"
 	"cost" 2760000
 	thumbnail "outfit/arc fusion torch"
-	"mass" 297
+	"mass" 999
 	"outfit space" -99
 	"engine capacity" -99
 	"thrust" 360
@@ -456,8 +456,8 @@ outfit "Magnozzle Storage Loop"
 	description "As the rings of Avgi magnetic nozzles are made of diamond-backed high temperature superconductors, they are capable of holding large circulating currents within them, storing energy in the resulting magnetic field. This same magnetic field is also responsible for confining, and eventually expanding, the fusion plasma to produce thrust. With this popular aftermarket engine modification, consisting of a power conditioning unit and superconducting conduits, the field can be exploited for use as a general energy storage of unprecedented density."
 
 
-outfit "XY-180 Radial Thrusters"
-	plural "XY-180 Radial Thrusters"
+outfit "R-180 RCS Thrusters"
+	plural "R-180 RCS Thrusters"
 	series "Avgi: Engines"
 	index 10
 	category "Engines"
@@ -480,11 +480,11 @@ outfit "XY-180 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.125
 	"reverse flare sound" "plasma small"
-	description "Avgi radial thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have excess heat in order to function."
+	description "Avgi reaction control thrusters are hybrid thermal-electric thrusters, designed to allow translation in any direction. By using reactor heat to expel superheated water vapor out of a set of nozzles, they can help a ship cool off, but require the ship to have excess heat in order to function."
 
 
-outfit "XY-360 Radial Thrusters"
-	plural "XY-360 Radial Thrusters"
+outfit "R-360 RCS Thrusters"
+	plural "R-360 RCS Thrusters"
 	series "Avgi: Engines"
 	index 20
 	category "Engines"
@@ -507,11 +507,11 @@ outfit "XY-360 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.25
 	"reverse flare sound" "plasma small"
-	description "The Avgi have designed their radial thrusters to synergize well with their fusion torches, tapping off high temperature waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves efficiency at the cost of using some energy. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
+	description "The Avgi have designed their reaction control thrusters to synergize with their fusion torches, tapping off high temperature waste heat and using it to superheat water for use in their reaction control systems. An additional magnetohydrodynamic accelerator around each thruster's nozzle improves specific impulse at the cost of significant energy use. These thrusters allow Avgi starships to easily dock with stations or other ships without igniting their highly radioactive fusion torches."
 
 
-outfit "XY-720 Radial Thrusters"
-	plural "XY-720 Radial Thrusters"
+outfit "R-720 RCS Thrusters"
+	plural "R-720 RCS Thrusters"
 	series "Avgi: Engines"
 	index 30
 	category "Engines"
@@ -534,7 +534,7 @@ outfit "XY-720 Radial Thrusters"
 		"frame rate" 30
 		"scale" 0.5
 	"reverse flare sound" "plasma small"
-	description "This large set of radial thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
+	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
 
 
 outfit `Z-3600 "Beam" Antimatter Torch`
