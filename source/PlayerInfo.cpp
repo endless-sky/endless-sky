@@ -1033,6 +1033,7 @@ Ship *PlayerInfo::Flagship()
 // Determine which ship is the flagship and return the shared pointer to it.
 const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 {
+	bool foundFlagship = false;
 	if(!flagship)
 	{
 		bool clearance = false;
@@ -1047,11 +1048,14 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 			if(!it->CanBeFlagship())
 				continue;
 			const bool sameLocation = !planet || it->GetPlanet() == planet;
-			if(sameLocation || (clearance && !it->GetPlanet() && planet->IsAccessible(it.get())))
+			if((sameLocation || (clearance && !it->GetPlanet() && planet->IsAccessible(it.get()))) && !foundFlagship)
 			{
 				flagship = it;
-				break;
+				flagship->SetIsPlayerFlagship();
+				foundFlagship = true;
 			}
+			else
+				it->SetIsPlayerFlagship(false);
 		}
 	}
 
