@@ -34,7 +34,7 @@ public:
 	static const int NO_LIMIT = -1;
 
 
-	LimitedEvents(const T *event, int period = RandomEvent<T>::DEFAULT_PERIOD);
+	LimitedEvents(const T *event, int period = RandomEvent<T>::DEFAULT_PERIOD, const DataNode &node = DataNode());
 	LimitedEvents(const T *event, int period, const std::string &category, int limit = NO_LIMIT,
 		int initial = 0, unsigned flags = 0, int nonDisabledLimit = NO_LIMIT);
 
@@ -73,8 +73,8 @@ private:
 
 
 template <typename T>
-LimitedEvents<T>::LimitedEvents(const T *event, int period)
-	: RandomEvent<T>(event, period)
+LimitedEvents<T>::LimitedEvents(const T *event, int period, const DataNode &node)
+	: RandomEvent<T>(event, period, node)
 {
 }
 
