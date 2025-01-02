@@ -424,8 +424,8 @@ outfit "Vertical Launch Array"
 	cost 1370000
 	thumbnail "outfit/vertical launch array"
 	"mass" 12
-	"outfit space" -45
-	"weapon capacity" -45
+	"outfit space" -42
+	"weapon capacity" -42
 	"turret mounts" -1
 	"nettle capacity" 216
 	weapon

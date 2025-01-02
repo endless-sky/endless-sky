@@ -1665,8 +1665,8 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Speckle Turret" 2
 		"Speck Round" 4800
 		"Vertical Launch Array" 4
-		"Nettle Magazine" 6
-		`"Nettle" KKV` 1296
+		"Nettle Magazine" 2
+		`"Nettle" KKV` 1008
 
 		"Ultracapacitor Cell" 2
 		"Diffuse Deflector"
@@ -1771,7 +1771,7 @@ ship "Refraktos"
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 2
 		"Electrostatic Ramscoop"
-		"Heatsink Partition"
+		"Heatsink Partition" 3
 		"Optical Laser Rifle" 24
 		
 		`Z-666 "Zap" Fusion Torch`
