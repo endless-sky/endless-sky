@@ -1597,22 +1597,23 @@ void Engine::EnterSystem()
 	// Place five seconds worth of fleets and weather events. Check for
 	// undefined fleets by not trying to create anything with no
 	// government set.
+	ConditionsStore &conditions = player.Conditions();
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
 			// Skip fleets that don't want to spawn on system entry,
 			// or fleets whose limits have already been reached.
 			if(!fleet.GetFlags(Fleet::SKIP_SYSTEM_ENTRY) &&
-				FleetPlacementLimit(fleet, 60, true))
+				fleet.CanTrigger(conditions) && FleetPlacementLimit(fleet, 60, true))
 			{
 				fleetShips.clear();
 				fleet.Get()->Place(*system, fleetShips, true);
 				AddSpawnedFleet(fleet);
 			}
 
-		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
 		{
-			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60)
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger(conditions))
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
@@ -2076,8 +2077,9 @@ void Engine::SpawnFleets()
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
+	ConditionsStore &conditions = player.Conditions();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(FleetPlacementLimit(fleet, 1, true) > 0)
+		if(FleetPlacementLimit(fleet, 1, true) > 0 && fleet.CanTrigger(conditions))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -2155,9 +2157,10 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
+	ConditionsStore &conditions = player.Conditions();
+	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
 	{
-		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()))
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger(conditions))
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the

@@ -282,11 +282,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else
 			{
-				fleets.emplace_back(fleet);
+				int periodIndex = valueIndex + 1;
+				int period = child.Size() > periodIndex ? child.Value(periodIndex) : RandomEvent<Fleet>::DEFAULT_PERIOD;
+				fleets.emplace_back(fleet, period, child);
 				LimitedEvents<Fleet> &fleet = fleets.back();
-
-				if(child.Size() > valueIndex + 1)
-					fleet.Period() = child.Value(valueIndex + 1);
 
 				if(child.HasChildren())
 					LoadFleet(child, fleet);
@@ -310,7 +309,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				hazards.emplace_back(hazard, child.Value(valueIndex + 1));
+			{
+				hazards.emplace_back(hazard, child.Value(valueIndex + 1), child);
+			}
 		}
 		else if(key == "belt")
 		{
@@ -1036,7 +1037,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "hazard" && child.Size() >= 3)
-			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
+			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2), child);
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
 		else
