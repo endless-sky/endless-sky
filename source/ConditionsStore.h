@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONDITIONS_STORE_H_
-#define CONDITIONS_STORE_H_
+#pragma once
 
 #include <cstdint>
 #include <functional>
@@ -53,7 +52,6 @@ public:
 		// Functions to set the lambda functions for accessing the conditions.
 		void SetGetFunction(std::function<int64_t(const std::string &)> newGetFun);
 		void SetSetFunction(std::function<bool(const std::string &, int64_t)> newSetFun);
-		void SetEraseFunction(std::function<bool(const std::string &)> newEraseFun);
 
 	public:
 		// This is intended as a private constructor, only to be called from within
@@ -70,7 +68,6 @@ public:
 		std::function<int64_t(const std::string &)> getFunction = [](const std::string &name) { return 0; };
 		std::function<bool(const std::string &, int64_t)> setFunction = [](const std::string &name, int64_t value) {
 			return false; };
-		std::function<bool(const std::string &)> eraseFunction = [](const std::string &name) { return false; };
 	};
 
 
@@ -115,11 +112,10 @@ public:
 	// connected provider).
 	int64_t Get(const std::string &name) const;
 
-	// Add a value to a condition, set a value for a condition or erase a
-	// condition completely. Returns true on success, false on failure.
+	// Add a value to a condition or set a value for a condition.
+	// Returns true on success, false on failure.
 	bool Add(const std::string &name, int64_t value);
 	bool Set(const std::string &name, int64_t value);
-	bool Erase(const std::string &name);
 
 	// Direct access to a specific condition (using the ConditionEntry as proxy).
 	ConditionEntry &operator[](const std::string &name);
@@ -150,7 +146,3 @@ private:
 	std::map<std::string, ConditionEntry> storage;
 	std::map<std::string, DerivedProvider> providers;
 };
-
-
-
-#endif

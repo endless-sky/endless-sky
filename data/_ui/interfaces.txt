@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
 # Colors used to reflect the active or hovered interface button.
 color "hover" 1. 1. 1. 0.
 color "active" .75 .75 .75 0.
@@ -50,6 +51,7 @@ color "logbook background" .125 .125 .125 1.
 color "logbook line" .2 .2 .2 1.
 color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
+color "outfitter difference highlight" 1. .5 0. 1.
 
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .85 .8
@@ -117,7 +119,9 @@ color "overlay neutral shields" .43 .55 .70 .75
 color "overlay neutral hull" .45 .5 0. .25
 color "overlay neutral disabled" .5 0. 0. .25
 color "overlay outfit scan" .5 .5 .5 .25
+color "overlay outfit scan out of range" .25 .25 .25 .25
 color "overlay cargo scan" .7 .7 .7 .25
+color "overlay cargo scan out of range" .35 .35 .35 .25
 
 # Colors used when "missile overlays" are enabled
 color "missile enemy" 1. 1. .25 .7
@@ -194,6 +198,11 @@ color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
 
+# Colors used for the routing issue text in the map panel when
+# a route to the selected system cannot be determined.
+color "map route error text" 1. 0. 0. 1.
+color "map route error shadow" 0. 0. 0. 1.
+
 # Miscellaneous colors
 color "wormholes: Ember Waste" .7 .1 .3
 
@@ -260,7 +269,7 @@ interface "main menu"
 		dimensions 90 30
 	
 	visible
-	button l "_Load / Save..."
+	button m "_Manage Pilots..."
 		center 300 155
 		dimensions 120 30
 	
@@ -579,7 +588,7 @@ interface "preferences"
 		from 280.5 15
 		dimensions 0 -200
 		color "energy"
-		size 3
+		size 2
 
 
 
@@ -717,32 +726,6 @@ interface "hud"
 		dimensions 110 110
 		color "disabled hull"
 		size 1.5
-	
-	visible if "range display"
-	sprite "ui/range"
-		from 130 263
-		align top left
-	string "target range"
-		from 160 260
-		align top left
-	visible if "tactical display"
-	sprite "ui/tactical"
-		from 130 290
-		align top left
-	string "target crew"
-		from 162 298
-		align top left
-	string "target fuel"
-		from 162 318
-		align top left
-	string "target energy"
-		from 157 338
-		align top left
-	string "target heat"
-		from 147 358
-		align top left
-	visible
-	
 	string "target name"
 		center 75 395
 		color "bright"
@@ -763,6 +746,109 @@ interface "hud"
 	string "mission target"
 		center 75 455
 		color "medium"
+	
+	visible if "range display"
+	sprite "ui/tactical/range"
+		from 130 263
+		align top left
+	string "target range"
+		from 160 260
+		align top left
+
+	visible if "strategic range display"
+	sprite "ui/tactical/range"
+		from 2 255
+		align top left
+	string "target range"
+		from 2 240
+		align top left
+
+	visible if "target crew display"
+	sprite "ui/tactical/crew"
+		from 148 286
+		align top left
+	string "target crew"
+		from 162 286
+		align top left
+	
+	visible if "mobility crew display"
+	sprite "ui/tactical/crew"
+		from 13 354
+		align top left
+	string "target crew"
+		from 17 372
+		align top center
+
+	visible if "target fuel display"
+	sprite "ui/tactical/fuel"
+		from 146 308
+		align top left
+	string "target fuel"
+		from 162 306
+		align top left
+
+	visible if "target energy display"
+	sprite "ui/tactical/energy"
+		from 144 324
+		align top left
+	string "target energy"
+		from 157 325
+		align top left
+
+	visible if "target thermal display"
+	sprite "ui/tactical/thermal"
+		from 136 343
+		align top left
+	string "target heat"
+		from 147 346
+		align top left
+
+	visible if "target weapon range display"
+	sprite "ui/tactical/gun range"
+		from 154 252
+		align top center
+	sprite "ui/tactical/turret range"
+		from 190 252
+		align top center
+	string "target gun"
+		from 152 268
+		align top center
+	string "target turret"
+		from 190 268
+		align top center
+
+	visible if "turn while combined"
+	sprite "ui/tactical/turn"
+		from 118 370
+		align top left
+	string "target turnrate"
+		from 139 370
+		align top left
+
+	visible if "turn while not combined"
+	sprite "ui/tactical/turn"
+		from 145 288
+		align top left
+	string "target turnrate"
+		from 162 286
+		align top left
+
+	visible if "target velocity display"
+	sprite "ui/tactical/velocity"
+		from 142 288
+		align top left
+	string "target velocity"
+		from 158 286
+		align top left
+
+	visible if "target acceleration display"
+	sprite "ui/tactical/acceleration"
+		from 194 286
+		align top left
+	string "target acceleration"
+		from 208 286
+		align top left
+	
 	
 	# Other HUD elements:
 	box "escorts"
@@ -1141,7 +1227,7 @@ interface "boarding"
 		dimensions 80 30
 	
 	active if "can defend"
-	button d "_Defend"
+	button D "_Defend"
 		center 210 185
 		dimensions 80 30
 
@@ -1430,6 +1516,16 @@ interface "map buttons (small screen)" bottom right
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2
+
+	anchor top
+	string "route error"
+		center 1 59
+		size 18
+		color "map route error shadow"
+	string "route error"
+		center 0 58
+		size 18
+		color "map route error text"
 
 
 

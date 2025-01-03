@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BODY_H_
-#define BODY_H_
+#pragma once
 
 #include "Angle.h"
 #include "Point.h"
@@ -78,7 +77,12 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
-	double Alpha() const;
+	// Functions determining the current alpha value of the body,
+	// dependent on the position of the body relative to the center of the screen.
+	double Alpha(const Point &drawCenter) const;
+	double DistanceAlpha(const Point &drawCenter) const;
+	bool IsVisible(const Point &drawCenter) const;
+
 
 protected:
 	// Adjust the frame rate.
@@ -107,6 +111,9 @@ protected:
 	float scale = 1.f;
 
 	double alpha = 1.;
+	// The maximum distance at which the body is visible, and at which it becomes invisible again.
+	double distanceVisible = 0.;
+	double distanceInvisible = 0.;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
@@ -142,7 +149,3 @@ private:
 	mutable int currentStep = -1;
 	mutable float frame = 0.f;
 };
-
-
-
-#endif

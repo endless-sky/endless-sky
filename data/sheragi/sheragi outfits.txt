@@ -100,6 +100,7 @@ outfit "Fusion Drive"
 	"outfit space" -480
 	"engine capacity" -230
 	"unique" 1
+	"jump fuel" 100
 	"jump speed" 0.2
 	"hyperdrive" 1
 	"energy generation" 54
@@ -173,7 +174,7 @@ outfit "Dragonflame Cannon"
 		"hull damage" 15000
 		"heat damage" 50000
 		"piercing" 0.4
-		"blast radius" 50
+		"penetration count" 20
 	description "The ancient Sheragi superweapon is simple in concept, but the cost involved in developing something like it is exorbitant. It's hard to envision what could have motivated the creation of such a thing. It uses an obscene amount of energy to trigger an extremely powerful thermonuclear reaction, directing most of the energy from the resulting explosion forwards in a devastatingly powerful beam of gamma radiation."
 
 effect "dragonflame"
@@ -263,7 +264,7 @@ outfit "Particle Waveform Turret"
 		"fire effect" "lightning flare"
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
-		"turret turn" 1.8
+		"turret turn" 0.8
 		"velocity" 50
 		"lifetime" 18
 		"reload" 60
