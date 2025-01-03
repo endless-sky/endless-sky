@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Dialog.h"
-#include "DrawList.h"
+#include "shader/DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -179,7 +179,7 @@ void HailPanel::Draw()
 {
 	DrawBackdrop();
 
-	info.ClearConditions();
+	Information info;
 	info.SetString("header", header);
 	if(ship)
 	{

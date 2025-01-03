@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PreferencesPanel.h"
 #include "Ship.h"
 #include "image/Sprite.h"
-#include "StarField.h"
+#include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
@@ -64,7 +64,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	{
 		for(const auto &source : GameData::Sources())
 		{
-			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
+			auto credit = Format::Split(Files::Read(source / "credits.txt"), "\n");
 			if((credit.size() > 1) || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());
@@ -127,7 +127,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	info.ClearConditions();
+	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");

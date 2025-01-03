@@ -153,7 +153,7 @@ mission "event: war begins"
 	to offer
 		has "event: war begins"
 	on offer
-		log "Factions" "Free Worlds" `The Free Worlds is a collection of local governments in the southern galactic arm who have declared independence from the Republic after Parliament refused to address issues they raised about trade tariffs, taxation, and representation. They may be linked to the recent terrorist attacks on the Navy Yard and the galactic stock exchange, although they deny responsibility.`
+		log "Factions" "Free Worlds" `The Free Worlds are a collection of local governments in the southern galactic arm who have declared independence from the Republic after Parliament refused to address issues they raised about trade tariffs, taxation, and representation. They may be linked to the recent terrorist attacks on the Navy Yard and the galactic stock exchange, although they deny responsibility.`
 		conversation
 			branch geminus
 				has "flagship planet: Geminus"
@@ -1290,7 +1290,7 @@ event "fw suppressed Greenrock"
 		fleet "Large Southern Pirates" 5000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
-		description `	Now that the Free Worlds is occupying the system, Greenrock has become a marginally more respectable world. Pirates still run wild in the wilderness of the planet, but the Free Worlds is actively arresting criminals and freeing slaves in the population centers.`
+		description `	Now that the Free Worlds are occupying the system, Greenrock has become a marginally more respectable world. Pirates still run wild in the wilderness of the planet, but the Free Worlds are actively arresting criminals and freeing slaves in the population centers.`
 		spaceport `You have heard enough about this port's reputation that you are not surprised to see the remnants of slave markets, now empty as a result of the Free Worlds occupation. The normally shady establishments are now filled with militia and the occasional merchant captain looking to explore the planet while it's still in Free Worlds hands.`
 		spaceport `	Despite the Free Worlds presence, dark alleyways are still to be avoided. Down one alley you see an abandoned shop called "Mike's Mustelids," now overrun by weasels, ferrets, and wolverines that were once caged there.`
 
@@ -1506,11 +1506,11 @@ event "navy using mark ii ships"
 			"Rainmaker (Mark II)"
 		add variant 6
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 		add variant 3
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
@@ -1556,11 +1556,11 @@ event "navy using mark ii ships"
 			"Rainmaker (Mark II)"
 		add variant 6
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 		add variant 3
 			"Carrier (Mark II)"
-			"Lance" 4
+			"Lance" 8
 			"Combat Drone" 6
 			"Cruiser (Mark II)"
 			"Combat Drone" 4
@@ -1837,7 +1837,7 @@ event "bloodsea joins free worlds"
 	planet "Bloodsea"
 		add attributes "ex-pirate"
 		description `Bloodsea is nearly uninhabited, except for a few small outposts. Its name comes from the planet's oceans, which are blood-red due to rhodophyte algae. Although the climate is temperate and there are many white sand beaches, no one comes here hoping to go swimming.`
-		description `	Until recently, this was a pirate world, but as the Free Worlds continued to expand they saw the writing on the wall and decided to become a civilized world. The Free Worlds is building a new spaceport here, but that will take months, and in the meantime the old spaceport is still in use.`
+		description `	Until recently, this was a pirate world, but as the Free Worlds continued to expand they saw the writing on the wall and decided to become a civilized world. The Free Worlds are building a new spaceport here, but that will take months, and in the meantime the old spaceport is still in use.`
 	system "Antares"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 700
@@ -1885,7 +1885,7 @@ event "albatross joins free worlds"
 	planet "Albatross"
 		add attributes "ex-pirate"
 		description `Albatross is a cold ocean world orbiting a small, cold sun. The first settlers on Albatross were anarchists who believed that in a society free from unnatural laws and constraints, everyone would happily and freely work for the common good. The next settlers were pirates who believed that a planet free from laws and constraints would be a great base of operations.`
-		description `	Recently, the Free Worlds has liberated Albatross from their pirate oppressors, but many of the locals remain skeptical, seeing the Free Worlds as little different from the other protection rackets that have held sway over them.`
+		description `	Recently, the Free Worlds have liberated Albatross from their pirate oppressors, but many of the locals remain skeptical, seeing the Free Worlds as little different from the other protection rackets that have held sway over them.`
 	system "Nunki"
 		government "Free Worlds"
 		fleet "Small Southern Merchants" 700
