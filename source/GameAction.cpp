@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameAction.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -148,7 +148,13 @@ void GameAction::LoadSingle(const DataNode &child)
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
 
-	if(key == "log")
+	if(key == "remove" && child.Size() >= 3 && child.Token(1) == "log")
+	{
+		auto &type = specialLogClear[child.Token(2)];
+		if(child.Size() > 3)
+			type.push_back(child.Token(3));
+	}
+	else if(key == "log")
 	{
 		bool isSpecial = (child.Size() >= 3);
 		string &text = (isSpecial ?
@@ -251,6 +257,14 @@ void GameAction::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			out.Write("remove", "log", it.first);
+		else
+			for(auto &&jt : it.second)
+				out.Write("remove", "log", it.first, jt);
+	}
 	for(auto &&it : giftShips)
 		it.Save(out);
 	for(auto &&it : giftOutfits)
@@ -371,6 +385,14 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			player.RemoveSpecialLog(it.first);
+		else
+			for(auto &&jt : it.second)
+				player.RemoveSpecialLog(it.first, jt);
+	}
 
 	// If multiple outfits, ships are being transferred, first remove the ships,
 	// then the outfits, before adding any new ones.
@@ -422,7 +444,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()))
+			if(fail.contains(mission.Identifier()))
 				player.FailMission(mission);
 	}
 	if(failCaller && caller)
@@ -460,7 +482,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 		result.events[it.first] = make_pair(day, day);
 	}
 
-	result.giftShips = giftShips;
+	for(auto &&it : giftShips)
+		result.giftShips.push_back(it.Instantiate(subs));
 	result.giftOutfits = giftOutfits;
 
 	result.music = music;
@@ -480,6 +503,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
 	result.failCaller = failCaller;

@@ -581,7 +581,8 @@ mission "Remnant: Void Sprites 1"
 				`	"Yes, I'd be glad to."`
 					goto end
 				`	"Wait, that sounds super shady. Can you explain why you think it's safe for me to enter that star system, but not for you to do so?"`
-
+			action
+				set "remnant: void sprites 1: asked for more details"
 			`	He says, "We studied the organisms and determined that they could not possibly be sentient. Therefore we saw no moral issues with collecting, well, ah... a sample. Unexpected things happened and certain grudges have been, ah, borne against Remnant ships for centuries as a result."`
 			choice
 				`	"Well, as long as you don't ask me to do something that will get me in similar trouble, I'll help you out."`
@@ -686,7 +687,13 @@ mission "Remnant: Void Sprites 3"
 			`The Remnant researcher seems disappointed that an outfit scan didn't reveal any information about the void sprites, but he is also excited about a new idea for studying them. "I found that we have several old mothballed ships suitable for exploring the upper atmosphere of a gas giant," he says. "Until I can publish my results I will not have the resources to compensate you, but I can provide you with one of our ships. Then you could land on the void sprite worlds and observe them in their natural habitat."`
 			choice
 				`	"How much will it cost to buy one?"`
+				`	"You said before you cannot safely approach these organisms. How will I land on their planets in one of your ships?"`
+					to display
+						not "remnant: void sprites 1: asked for more details"
+					goto attack
 				`	"Didn't you say before that anyone entering that system in a Remnant ship gets attacked?"`
+					to display
+						has "remnant: void sprites 1: asked for more details"
 					goto attack
 				`	"Sorry, I'm not interested in helping you anymore."`
 					decline
@@ -756,10 +763,9 @@ mission "Remnant: Gascraft-Puffin Compatibility"
 
 
 mission "Remnant: Technology Available"
+	landing
 	name "License Training"
 	description "Transport a prefect to <destination> so he can tell you more about the Remnant license."
-	landing
-	invisible
 	source
 		government "Remnant"
 	destination
@@ -1260,7 +1266,7 @@ mission "Remnant: Deep Surveillance"
 				has "Deep: Remnant Research: offered"
 			
 			`	You ask a receptionist what Ivan's room number is, and he points you to a room on the twentieth floor. After taking an elevator up, you knock on the door to Ivan's office.`
-			`	"Who is it?" Ivan says before peaking out the blinds. "Oh! Captain <last>! Please, come in."`
+			`	"Who is it?" Ivan says before peeking out the blinds. "Oh! Captain <last>! Please, come in."`
 			`	Ivan opens the door and lets you inside. The office is cramped, the walls almost entirely obscured by filing cabinets. Ivan walks over to a desk that he barely has space to get behind, picking up a collection of papers and shoving them into the nearest cabinet. "Sorry about the mess," he says nervously. "I didn't know you were coming. Is there something I can help you with?"`
 			choice
 				`	"I was wondering if you'd found out anything new about the anomaly in Terminus."`
@@ -1636,7 +1642,12 @@ mission "Remnant: Tech Retrieval"
 	on offer
 		"remnant met taely" ++
 		conversation
-			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important. In contrast, she reminds you of the mechanics who maintained the textile factories back on New Boston. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+			branch familiar
+				has "remnant met taely"
+			`As you enter the spaceport, you notice someone across the plaza appears to have been waiting for you. A tall, solidly built woman in short-sleeved coveralls stands up from where she was sitting near the information desk. With a few quick gestures at the person behind the counter, she heads towards you with a confident stride. As she approaches, you note that the crowds of people moving around the plaza seem to be staying out of her way as if she were someone important.`
+			`	In contrast, she reminds you of the mechanics who maintained the textile factories back on <starting planet>. In particular, the tools at her belt and the wear marks on her clothing suggest someone who is more comfortable inside a ship access duct than behind a desk.`
+				to display
+					has "human space start"
 			`	Before you can decide if you want to avoid this person or not, she is standing in front of you, clearing her throat. "You are captain <first> <last> of the <ship>?" She asks in a lyrical chant.`
 			choice
 				`	"That's me."`
@@ -1645,6 +1656,10 @@ mission "Remnant: Tech Retrieval"
 			`	She looks at you with an inscrutable expression for a moment. "Trying to be inconspicuous is admirable. Being oblivious to the fact that you stand out like a star in empty space is not."`
 			label admit
 			`	"I have an opportunity for you, if you are interested in being helpful to the Remnant." When you express your interest she leads you over to a balcony overlooking the primary shipyards. As she leans on the railing a cold breeze makes you shiver, but she seems oblivious to it. "I am known as Taely. As a prefect among the Remnant, I am responsible for this." She gestures at the shipyards, where you can see a myriad of the Remnant's alien-looking ships in various stages of construction or repair. "The ships we have serve us well, but they are old designs. Only the Ibis is comparatively new. We need new ideas, new inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a Puffin.`
+				goto question
+			label familiar
+			`As you enter the spaceport, you notice Taely across the plaza. She begins approaching you immediately, appearing to have been waiting for you. "Greetings, <first>. I hope you are not too busy as I have an opportunity for you." When you express interest, she leads you to a balcony overlooking the primary shipyards. She seems oblivious to the chilling breeze as she leans on the railing. "As you may have noticed in your time with us, many of our ships, while they do serve us well, are old designs. While we have recently made significant progress with a new concept, we still need new ideas and inspiration." She pauses, focusing briefly on a small bay where several people appear to be pulling what looks like a supercapacitor out of a Puffin.`
+			label question
 			choice
 				`	"So, what are you asking?"`
 					goto request
@@ -1670,6 +1685,8 @@ mission "Remnant: Tech Retrieval"
 			`	Taely looks at you with a blank expression, then chants in a monotone voice "If that is your choice, you are unlikely to find much of interest to do among us." With that, she vaults over the edge of the railing and drops from view. As you quickly peer over the railing, you discover that she had must have caught a handhold somehow, as she is rapidly moving down the wall in a controlled fashion with ease of a spider.`
 				decline
 	to complete
+		never
+	to fail
 		or
 			has "Remnant: Heavy Laser: done"
 			has "Remnant: Catalytic Ramscoop: done"
@@ -1677,6 +1694,11 @@ mission "Remnant: Tech Retrieval"
 			has "Remnant: Electron Beam: done"
 			has "Remnant: D94-YV Shield Generator: done"
 			has "Remnant: S-970 Regenerator: done"
+	on fail
+		clear "Remnant: Tech Retrieval: failed"
+		set "Remnant: Tech Retrieval: done"
+	on abort
+		# Empty, just here so aborting this mission doesn't trigger the failure action.
 
 
 
@@ -1937,6 +1959,24 @@ mission "Remnant: S-970 Regenerator"
 
 
 
+# For players who did the original versions of these missions before ccbc671.
+# The main "Remnant: Tech Retrieval" mission did not exist and only the
+# Heavy Laser, Plasma Cannon, and Catalytic Ramscoop missions existed.
+mission "Remnant: Tech Retrieval Patch"
+	landing
+	invisible
+	to offer
+		not "Remnant: Tech Retrieval: offered"
+		or
+			has "Remnant: Heavy Laser: done"
+			has "Remnant: Plasma Cannon: done"
+			has "Remnant: Catalytic Ramscoop: done"
+	on offer
+		set "Remnant: Tech Retrieval: done"
+		fail
+
+
+
 mission "Remnant: Taely Intro Log"
 	invisible
 	source
@@ -1945,6 +1985,17 @@ mission "Remnant: Taely Intro Log"
 		"remnant met taely" >= 1
 	on offer
 		log "People" "Taely" `As an engineering prefect, Taely is the foremost authority among the Remnant on salvaged technology and a senior leader in their reverse engineering program.`
+		fail
+
+
+
+mission "Remnant: Taely Penguin Log"
+	invisible
+	to offer
+		has "Remnant: Taely Intro Log: failed"
+		has "Remnant: Face to Maw 2: done"
+	on offer
+		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant ships. To this end she has been working on building a new prototype ship based on the void sprites.`
 		fail
 
 
@@ -2064,6 +2115,7 @@ mission "Remnant: Return the Samples 2"
 	on complete
 		"reputation: Drak" += 1
 		event "remnant: return the samples timer" 2 4
+		set "remnant: return the samples timer triggered"
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
@@ -2075,7 +2127,7 @@ mission "Remnant: Return the Samples Compatibility Patch"
 	invisible
 	to offer
 		has "Remnant: Return the Samples 2: done"
-		not "event: remnant: return the samples timer"
+		not "remnant: return the samples timer triggered"
 	on offer
 		event "remnant: return the samples timer" 2
 		fail
@@ -2089,6 +2141,8 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 	to offer
 		has "event: remnant: return the samples timer"
 		or
+			has "Remnant: Face to Maw 2: done"
+			has "Remnant: Face to Maw 2B: done"
 			and
 				not "Remnant: Face to Maw 1: active"
 				not "Remnant: Face to Maw 1: done"
@@ -2096,9 +2150,6 @@ mission "Remnant: Return the Samples 3 Exploration Hint"
 				not "Remnant: Face to Maw 1B: done"
 				not "Remnant: Face to Maw 2: active"
 				not "Remnant: Face to Maw 2B: active"
-			or
-				has "Remnant: Face to Maw 2: done"
-				has "Remnant: Face to Maw 2B: done"
 	on offer
 		event "remnant: wait for plume" 7 14
 		conversation
@@ -2155,11 +2206,7 @@ mission "Remnant: Salvage 1"
 		not "human cultural data"
 		has "Remnant: Learn Sign Follow Up: offered"
 		random < 50
-		or
-			has "Remnant: Catalytic Ramscoop: done"
-			has "Remnant: Plasma Cannon: done"
-			has "Remnant: Heavy Laser: done"
-			has "Remnant: Tech Retrieval: done"
+		has "Remnant: Tech Retrieval: done"
 	on offer
 		conversation "taely cultural data"
 	on visit
@@ -2199,11 +2246,7 @@ mission "Remnant: Salvage 2"
 				has "human cultural data"
 				has "Remnant: Learn Sign Follow Up: offered"
 				random < 50
-				or
-					has "Remnant: Catalytic Ramscoop: done"
-					has "Remnant: Plasma Cannon: done"
-					has "Remnant: Heavy Laser: done"
-					has "Remnant: Tech Retrieval: done"
+				has "Remnant: Tech Retrieval: done"
 	on offer
 		conversation "taely cultural data"
 	npc
@@ -2391,9 +2434,9 @@ mission "Remnant: Salvage 6"
 
 
 mission "Remnant: Scanning Tolerances"
+	landing
 	name "Deliver Data to <planet>"
 	description `Deliver data crystal to a Remnant named Torza on <destination>.`
-	landing
 	deadline 15
 	source
 		government "Remnant"
@@ -2447,11 +2490,12 @@ mission "Remnant: Scanning Tolerances"
 
 
 mission "Remnant: Expanded Horizons Quarg 1"
+	minor
 	name "Visiting the Quarg"
 	description "Take Remnant researchers to <destination> to see the Quarg."
-	minor
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination "Wayfarer"
 	passengers 3
 	to offer
@@ -2834,10 +2878,14 @@ mission "Remnant: Face to Maw 1"
 				`	(Activate the shields.)`
 				`	(Do not activate the shields.)`
 					goto holdground
+			action
+				set "remnant: face to maw: raised shields"
 			`	You push against the paralysis and trigger the shields in a rush. The millisecond that follows feels like an eternity. The void sprite is just a few meters away, one tendril reaches out and touches you just as the shield slams into place. The tendril becomes caught on both sides of the shield, cleaving it in two. In the same instant, the pressure on your mind vanishes as if it was simply a dream. You momentarily stare at the immobile void sprite, frozen in shock over what just happened. Then time reasserts itself and the sprite spasms away from the ship with an unearthly crescendo of dissonant tones. It plunges down into the clouds, leaving you standing on your hull with the floating severed piece of tendril.`
 			`	You carefully scoop up the tendril in a container and seal it. While the attack spoiled the beautiful moment, at least you have a sample and some recordings that might be of interest to Plume.`
-				flee
+				launch
 			label holdground
+			action
+				set "remnant: face to maw: did not raise shields"
 			`	The feeling of paralysis leaves your body as the void sprite is only a few meters away, but you resolve yourself to face down the creature without triggering your shields. Time seems to slow down as the sprite rushes up to you and its leading tentacle reaches out to touch you. As you brace for an impact you realize that the sprite has managed to bring itself to a complete stop and the tentacle has telescoped in on itself slightly. You can see that it is touching you, but you didn't even feel the impact. You and the void sprite stand frozen for a moment, and the force trying to paralyze you snaps off, replaced by a feeling of weightlessness. Moments later the void sprite pulls back and pulses skyward with an unearthly fountain of sounds, spiraling around the <ship> before disappearing into the swirling clouds.`
 			`	As you re-enter the ship, you notice that your suit is covered in some kind of translucent slime. You scrape off as much as you can into a sealed container, but your pressure suit appears to be permanently stained an iridescent purplish color as a result. You resolve to go find Plume, since he will almost certainly find this interesting.`
 				accept
@@ -2845,35 +2893,13 @@ mission "Remnant: Face to Maw 1"
 		fail "Remnant: Face to Maw 1B"
 	on complete
 		conversation
-			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
+			`When you walk into Plume's lab on Aventine, you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
 			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+			branch threatening
+				has "remnant: face to maw: raised shields"
 			`	You tell Plume about how you visited Nenia and had an interesting encounter with a void sprite, and offer him the recording and container of slime. He eagerly accepts the data chip and the container from you. Sliding the container into some kind of machine, it immediately starts to whir as he slots the data chip into his console. Moments later his holographic projection shifts to the new footage. He checks the timestamps, then chants, "These will take me a little while to analyze. I will meet you in the spaceport in a few hours to discuss my preliminary findings."`
-
-
-
-mission "Remnant: Face to Maw 1B"
-	name "Talk to Plume about the void sprites"
-	description "Plume would be very interested in a report on what happened with the void sprites."
-	landing
-	to offer
-		has "event: remnant: return the samples timer"
-		has "flagship model: Puffin"
-		or
-			not "Remnant: Cognizance 1: offered"
-			has "Remnant: Cognizance 19: done"
-	to fail
-		or
-			has "Remnant: Face to Maw 1: done"
-			has "Remnant: Face to Maw 1: active"
-	to complete
-		has "Remnant: Face to Maw 1: declined"
-	source
-		system "Nenia"
-	destination "Aventine"
-	on complete
-		conversation
-			`When you walk into Plume's lab on Aventine you find him buried in some kind of holographic projection of your egg returning mission. You can see that he appears to be watching the video in slow-motion as he taps out notes on his data pad. After a few minutes he looks up and sees you standing in the entryway. He quickly pulls himself out of the projection and hits what you assume must be the pause button.`
-			`	"Captain <first>! What a pleasant surprise," he trills. "If you are looking for more work, I don't have anything for you right now."`
+				decline
+			label threatening
 			`	You tell Plume about how you visited Nenia and had a threatening encounter with a void sprite, and offer him the recording and container with the tentacle. Plume recoils from you in disgust. "After all our work rebuilding trust with the Archon and the void sprites, you go and risk it for... what, exactly? Sightseeing? Thrill of the hunt?" His chant settles into an angry tone. "Leave the recording on the console. I want no part of that tentacle, though."`
 			`	As you are leaving Plume's lab a technician pulls you aside. "Our records mention that the tentacles had some interesting properties that were useful in combat. If you are interested, meet me in the spaceport in a few hours."`
 
@@ -2884,6 +2910,7 @@ mission "Remnant: Face to Maw 2"
 	description "The void sprite slime has properties of interest to a team of engineers on <planet>."
 	to offer
 		has "Remnant: Face to Maw 1: done"
+		not "remnant: face to maw: raised shields"
 	source "Aventine"
 	destination "Viminal"
 	cargo "slime sample" 1
@@ -2900,7 +2927,6 @@ mission "Remnant: Face to Maw 2"
 	on accept
 		event "remnant: penguin"
 	on complete
-		log "People" "Taely" `One of Taely's main priorities is improving the maneuverability characteristics of Remnant Ships. To this end she has been working on building a new prototype ship based on the void sprites.`
 		"remnant met taely" ++
 		give ship "Penguin" "Shadow Hope"
 		conversation
@@ -2937,7 +2963,11 @@ mission "Remnant: Face to Maw 2B"
 	name "Bring tentacle to <planet>"
 	description "The tentacle has properties that may be put to use by the engineers on <planet>."
 	to offer
-		has "Remnant: Face to Maw 1B: done"
+		or
+			has "Remnant: Face to Maw 1B: done"
+			and
+				has "Remnant: Face to Maw 1: done"
+				has "remnant: face to maw: raised shields"
 	source "Aventine"
 	destination "Caelian"
 	cargo "tentacle" 1
@@ -2976,9 +3006,9 @@ mission "Remnant: Face to Maw 2B"
 
 
 mission "Remnant: Keystone Research 1"
+	minor
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, starting in <destination>.`
-	minor
 	source "Viminal"
 	destination "Greenwater"
 	cargo "(reserved)" 19
@@ -3079,9 +3109,9 @@ mission "Remnant: Keystone Research 1"
 
 
 mission "Remnant: Keystone Research 2"
+	landing
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from the Hai for the Remnant to study, next from <destination>`
-	landing
 	source "Greenwater"
 	destination "Allhome"
 	cargo "Keystones" 2
@@ -3093,9 +3123,9 @@ mission "Remnant: Keystone Research 2"
 
 
 mission "Remnant: Keystone Research 3"
+	landing
 	name "Retrieve more keystones"
 	description `Retrieve quantum keystones from several Hai worlds, ending on Newhome.`
-	landing
 	source "Allhome"
 	destination "Newhome"
 	stopover "Makerplace"
@@ -3213,10 +3243,10 @@ mission "Remnant: Keystone Research 3G"
 
 
 mission "Remnant: Keystone Research 4"
+	landing
 	name "Retrieve more keystones"
 	description `Return the quantum keystones to Viminal.`
 	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
-	landing
 	source "Newhome"
 	destination "Viminal"
 	cargo "Keystones" 19
@@ -3254,9 +3284,9 @@ ship "Starling" "Starling (Keystone)"
 
 
 mission "Remnant: Keystone Research 5"
+	landing
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the keystone post-wormhole.`
-	landing
 	waypoint "Peragenor"
 	source "Viminal"
 	to offer
@@ -3296,9 +3326,9 @@ mission "Remnant: Keystone Research 5"
 
 
 mission "Remnant: Keystone Research 6"
+	landing
 	name "Scan the <npc>"
 	description `Go scan the <npc> in <waypoints> to record the Key Stone post-wormhole.`
-	landing
 	waypoint "Peragenor"
 	source "Viminal"
 	npc "scan outfits" "save"
@@ -3343,6 +3373,8 @@ mission "Remnant: Keystone Research 7"
 				`	"The Remnant sure like to eat."`
 				`	"Why do the Remnant eat so much?"`
 					goto foodvolume
+					to display
+						not "remnant symbionts info"
 				`	"Maybe I should import some spices."`
 					goto spices
 				`	"What is our next step?"`
@@ -3397,6 +3429,7 @@ mission "Remnant: Expanded Horizons Astral 1"
 	passengers 1
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	destination
 		government "Remnant"
 		not distance 0
@@ -3676,6 +3709,7 @@ mission "Remnant: Expanded Horizons Storms 1"
 	passengers 1
 	source
 		government "Remnant"
+		attributes "remnant primary"
 	waypoint
 		system "Aescolanus"
 	to offer
@@ -3792,9 +3826,9 @@ mission "Remnant: Logistics 1"
 		has "Remnant: Defense 1: done"
 	on offer
 		conversation
-			`You step out of the <ship> amidst the strange sight of the <origin> spaceport. The structures that surround the landing pads look as much grown as built, and they seem to merge into the landing pads themselves. As usual, the dock entrance is busy. When your commlink vibrates, you have to find a place where the traffic eddies so you can step aside. When you do, you learn you need to check in with the information desk.`
+			`You step into the strange sight of the <origin> spaceport. The structures that surround the landing pads look as much grown as built, and they seem to merge into the landing pads themselves. As usual, the dock entrance is busy. When your commlink vibrates, you have to find a place where the traffic eddies so you can step aside. When you do, you learn you need to check in with the information desk.`
 			`	The woman working the desk seems startled to see you when you walk up. You can see the realization dawn on her as she looks you over with a practiced eye. "Ah," she sings, "you are the ancestral sojourner among us."`
-			`	It is typical for people to gawk at you, so you respond by singing, "The Embers guided me to friends I didn't know, and your message invited me to meet a new one."`
+			`	It is typical for people to gawk at you, so you respond by singing, "I've been guided to friends I didn't know, and your message invited me to meet a new one."`
 			`	Her hands make a short series of shakes and a moment later she remembers to laugh for you. The delayed response makes her laugh again, spontaneously this time, and you both join in. When she recovers herself, she sings, "Logistics have requested that we find someone who can carry <tons> of cargo to <planet>. Is the <ship> available immediately?"`
 			choice
 				`	"Certainly!"`

@@ -27,7 +27,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int64_t K = 1000;
+	// The greatest number displayed without switching to scientific notation.
+	constexpr int64_t SCIENTIFIC_THRESHOLD = 1e15;
+	constexpr int64_t K = 1000;
 	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
 		{ "quintillion", K * K * K * K * K * K },
 		{ "quadrillion", K * K * K * K * K },
@@ -274,10 +276,9 @@ namespace {
 string Format::Credits(int64_t value)
 {
 	bool isNegative = (value < 0);
-	int64_t absolute = abs(value);
 
 	// If the value is above one quadrillion, show it in scientific notation.
-	if(absolute > 1000000000000000ll)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		ostringstream out;
 		out.precision(3);
@@ -289,21 +290,26 @@ string Format::Credits(int64_t value)
 	string result;
 	result.reserve(8);
 
+	int64_t absolute = abs(value);
+
 	// Handle numbers bigger than a million.
-	static const vector<char> SUFFIX = {'T', 'B', 'M'};
-	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll};
-	for(size_t i = 0; i < SUFFIX.size(); ++i)
-		if(absolute > THRESHOLD[i])
+	static constexpr array<pair<int64_t, char>, 3> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute > threshold)
 		{
-			result += SUFFIX[i];
-			int decimals = (absolute / (THRESHOLD[i] / 1000)) % 1000;
+			result += suffix;
+			int decimals = (absolute / (threshold / 1000)) % 1000;
 			for(int d = 0; d < 3; ++d)
 			{
 				result += static_cast<char>('0' + decimals % 10);
 				decimals /= 10;
 			}
 			result += '.';
-			absolute /= THRESHOLD[i];
+			absolute /= threshold;
 			break;
 		}
 
@@ -374,6 +380,70 @@ string Format::PlayTime(double timeVal)
 
 
 
+// Convert an ammo count into a short string for use in the ammo display.
+// Only the absolute value of a negative number is considered.
+string Format::AmmoCount(int64_t value)
+{
+	if(fabs(value) >= SCIENTIFIC_THRESHOLD)
+	{
+		if(abs(value) == SCIENTIFIC_THRESHOLD)
+			return "1e+15";
+		ostringstream out;
+		out.precision(1);
+		out << static_cast<double>(value);
+		return out.str();
+	}
+
+	int64_t absolute = abs(value);
+
+	if(absolute < 10000)
+		return to_string(value);
+
+	string result;
+	result.reserve(5);
+
+	// Handle numbers bigger than a thousand.
+	static constexpr array<pair<int64_t, char>, 4> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'},
+		{1000ll, 'k'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute >= threshold)
+		{
+			int head = absolute / threshold;
+			int64_t tail = absolute % threshold;
+			do {
+				result += '0' + head % 10;
+				head /= 10;
+			} while(head > 0);
+			reverse(result.begin(), result.end());
+			switch(result.length())
+			{
+				case 1:
+					tail /= threshold / 100;
+					result += '.';
+					result += '0' + tail / 10;
+					result += '0' + tail % 10;
+					break;
+				case 2:
+					tail /= threshold / 10;
+					result += '.';
+					result += '0' + tail;
+					break;
+				default:
+					break;
+			}
+			result += suffix;
+			break;
+		}
+
+	return result;
+}
+
+
+
 // Convert the given number to a string, with a reasonable number of decimal
 // places. (This is primarily for displaying ship and outfit attributes.)
 string Format::Number(double value)
@@ -384,6 +454,14 @@ string Format::Number(double value)
 		return "???";
 	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
+	else if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	{
+		// Use scientific notation for excessively large numbers.
+		ostringstream out;
+		out.precision(3);
+		out << value;
+		return out.str();
+	}
 
 	string result;
 	bool isNegative = (value < 0.);
