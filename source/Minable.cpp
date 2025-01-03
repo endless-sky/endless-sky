@@ -77,8 +77,6 @@ void Minable::Load(const DataNode &node)
 			displayName = child.Token(1);
 		else if(key == "noun")
 			noun = child.Token(1);
-		// A full sprite definition (frame rate, etc.) is not needed, because
-		// the frame rate will be set randomly and it will always be looping.
 		else if(key == "sprite")
 			LoadSprite(child);
 		else if(key == "hull")
