@@ -1523,7 +1523,7 @@ void PlayerInfo::Land(UI *ui)
 
 	if(!freshlyLoaded)
 	{
-		Audio::Play(Audio::Get("landing"));
+		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
 		Audio::PlayMusic(planet->MusicName());
 	}
 
@@ -1669,7 +1669,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		return false;
 
 	shouldLaunch = false;
-	Audio::Play(Audio::Get("takeoff"));
+	Audio::Play(Audio::Get("takeoff"), SoundCategory::ENGINE);
 
 	// Jobs are only available when you are landed.
 	availableJobs.clear();
