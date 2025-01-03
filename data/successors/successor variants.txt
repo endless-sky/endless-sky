@@ -25,6 +25,7 @@ ship "Aaulqra" "Aaulqra (Brawler)"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -52,6 +53,7 @@ ship "Aaulqra" "Aaulqra (Sniper)"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Veusa" Inductive Reverser`
 		"Hyperdrive"
@@ -78,6 +80,7 @@ ship "Kaskhorade" "Kaskhorade (Brawler)"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		"Hyperdrive"
@@ -104,6 +107,7 @@ ship "Kaskhorade" "Kaskhorade (Sniper)"
 		"Successor Cooling"
 
 		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		`"Veusa" Inductive Reverser`
 		"Hyperdrive"
@@ -145,6 +149,7 @@ ship "Kvelqde" "Kvelqde (Violent)"
 		`"Ej" Shield Cortex`
 
 		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -164,6 +169,7 @@ ship "Kvelqde-Khora" "Kvelqde-Khora (Mining)"
 		"Cargo Expansion" 2
 
 		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -184,6 +190,7 @@ ship "Myaede" "Myaede (Mining)"
 		"Cargo Expansion"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -203,6 +210,7 @@ ship "Myaede" "Myaede (Mining, Defensive)"
 		`"Tuur" Scanning Suite`
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		"Hyperdrive"
 	gun "Successor Pulse Laser"
@@ -222,6 +230,7 @@ ship "Myaede" "Myaede (Violent)"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		"Hyperdrive"
 	gun "Overcharged Pulse Laser"
@@ -242,6 +251,7 @@ ship "Nnaatej" "Nnaatej (Defensive)"
 		"Successor Cooling"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		"Hyperdrive"
 	turret "Pulse Laser Turret"
@@ -259,6 +269,7 @@ ship "Ojde" "Ojde (Mining)"
 		`"Tuur" Scanning Suite` 2
 		
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		"Hyperdrive"
@@ -280,6 +291,7 @@ ship "Stolsaqra" "Stolsaqra (Military)"
 		`"Veldt" Combat Scanner`
 
 		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -298,6 +310,7 @@ ship "Stolsaqra" "Stolsaqra (Mission Escort)"
 		"Multimodal Armor: Heavy"
 
 		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -315,7 +328,8 @@ ship "Stolsaqra" "Stolsaqra (Short-Range)"
 		"Multimodal Armor: Heavy"
 		`"Veldt" Combat Scanner`
 
-		`"Aqra" Inductive Thruster` 2
+		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -337,6 +351,7 @@ ship "Veusade" "Veusade (Surveillance)"
 		`"Veldt" Combat Scanner`
 
 		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		"Hyperdrive"
 	gun "Drag Cannon"
@@ -361,6 +376,7 @@ ship "Vujlet" "Vujlet (Aggressive)"
 		"Multimodal Armor: Heavy"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		"Hyperdrive"
 	gun `"Ojet" Bimodal Coilgun`
@@ -381,6 +397,7 @@ ship "Vujlet" "Vujlet (Surveillance)"
 		`"Veldt" Combat Scanner`
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		"Hyperdrive"

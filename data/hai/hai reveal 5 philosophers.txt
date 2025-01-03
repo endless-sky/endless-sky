@@ -972,6 +972,7 @@ ship "Centipede" "Centipede (Teeneep Jump)"
 		"Fuel Pod" 2
 		Supercapacitor
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"Pulse Rifle" 131
 
 

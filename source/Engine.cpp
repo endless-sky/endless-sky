@@ -1895,6 +1895,11 @@ void Engine::CalculateStep()
 					for(const auto &it : ship->Attributes().ReverseFlareSounds())
 						Audio::Play(it.first, ship->Position());
 				}
+				else if(ship->IsLatThrusting() && !ship->LateralEnginePoints().empty())
+				{
+					for(const auto &it : ship->Attributes().LateralFlareSounds())
+						Audio::Play(it.first, ship->Position());
+				}
 				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().SteeringFlareSounds())
@@ -1916,6 +1921,11 @@ void Engine::CalculateStep()
 		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
+				Audio::Play(it.first);
+		}
+		else if(flagship->IsLatThrusting() && !flagship->LateralEnginePoints().empty())
+		{
+			for(const auto &it : flagship->Attributes().LateralFlareSounds())
 				Audio::Play(it.first);
 		}
 		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
@@ -2884,7 +2894,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsLatThrusting() && !ship.LateralEnginePoints().empty())
 		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.LateralEnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
+			ship.Attributes().LateralFlareSprites(), Ship::EnginePoint::UNDER);
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
@@ -2919,7 +2929,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsLatThrusting() && !ship.LateralEnginePoints().empty())
 		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.LateralEnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
+			ship.Attributes().LateralFlareSprites(), Ship::EnginePoint::OVER);
 	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
 		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
 			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);

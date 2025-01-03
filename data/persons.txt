@@ -99,7 +99,7 @@ ship "Finch" "Finch (MZ)"
 		"hull" 1800
 		"outfit space" 140
 		"weapon capacity" 22
-		"engine capacity" 22
+		"engine capacity" 28
 	outfits
 		"Electron Beam" 2
 		
@@ -113,6 +113,7 @@ ship "Finch" "Finch (MZ)"
 		"Fission Reactor"
 		
 		"A125 Atomic Steering"
+		"AL129 Atomic LTC"
 		"A120 Atomic Thruster"
 		"Ionic Afterburner"
 	gun
@@ -146,6 +147,7 @@ person "Cap'n Pester"
 			"Wanderer Ramscoop"
 			
 			"Medium Graviton Thruster"
+			"Medium Graviton LTC"
 			"Medium Graviton Steering"
 			"Scram Drive"
 
@@ -251,9 +253,10 @@ ship "Marauder Fury"
 		"heat dissipation" .57
 		"fuel capacity" 500
 		"cargo space" 15
-		"outfit space" 256
+		"outfit space" 286
 		"weapon capacity" 96
 		"engine capacity" 100
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -275,6 +278,7 @@ ship "Marauder Fury"
 		"Nerve Gas"
 
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		
@@ -487,8 +491,9 @@ ship "Lampyrid-Class Transport"
 		"heat dissipation" .47
 		"fuel capacity" 850
 		"cargo space" 160
-		"outfit space" 260
-		"engine capacity" 105
+		"outfit space" 309
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -505,6 +510,7 @@ ship "Lampyrid-Class Transport"
 		"Ramscoop"
 	
 		"Impala Plasma Thruster"
+		"Impala Plasma LTC"
 		"Impala Plasma Steering"
 		"Hyperdrive"
 
@@ -639,13 +645,14 @@ ship "Modified Osprey"
 		"heat dissipation" .4
 		"fuel capacity" 1350
 		"cargo space" 80
-		"outfit space" 2172
+		"outfit space" 2176
 		"weapon capacity" 851
 		"engine capacity" 499
 		"engine mod space" 4
 		"reverse thruster slot" 1
 		"steering slot" 4
 		"thruster slot" 2
+		"lateral thruster slot" 2
 		"afterburner fuel" -.678
 		"afterburner heat" -30
 		"ramscoop" 6
@@ -680,6 +687,7 @@ ship "Modified Osprey"
 		
 		"Volcano Afterburner"
 		`"Bufaer" Atomic Thruster`
+		`"Bufaer" Atomic LTC`
 		"Ionic Afterburner" 5
 		"Type 4 Radiant Thruster"
 		"Type 4 Radiant Steering" 4
@@ -825,9 +833,10 @@ ship "Ursa Polaris"
 		"tactical scan power" 99
 		"asteroid scan power" 69
 		"cargo space" 1408
-		"outfit space" 1768
+		"outfit space" 1808
 		"weapon capacity" 861
-		"engine capacity" 301
+		"engine capacity" 341
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 3
@@ -848,6 +857,7 @@ ship "Ursa Polaris"
 		"Systems Core (Large)" 2
 		"Thermal Repeater Rifle" 600
 		"Thruster (Stellar Class)"
+		"Lateral (Stellar Class)"
 		"Smelter-Class Thruster"
 		`"Basrem" Atomic Thruster`
 	engine 26 219 0.9
@@ -1025,6 +1035,7 @@ ship "Shooting Star"
 		"cargo space" 10
 		"hull repair" 3
 		"thrust" 23.4
+		"lateral thrust" 16
 		"reverse thrust" 15.6
 		"flare sound" "ion medium"
 		"turn" 2453.7
@@ -1251,9 +1262,10 @@ ship "Marauder Bactrian"
 		"heat dissipation" 0.33
 		"fuel capacity" 2725
 		"cargo space" 80
-		"outfit space" 1526
+		"outfit space" 1589
 		"weapon capacity" 1000
-		"engine capacity" 220
+		"engine capacity" 282
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1270,6 +1282,7 @@ ship "Marauder Bactrian"
 		"Large Heat Shunt" 3
 		"Outfits Expansion" 4
 		"A860 Atomic Thruster"
+		"AL869 Atomic LTC"
 		"A865 Atomic Steering"
 		"Hyperdrive"
 	engine -45 230 1.2
@@ -1484,6 +1497,7 @@ ship "Modified Boxwing"
 		"A120 Atomic Thruster"
 		"A125 Atomic Steering"
 		"Chipmunk Plasma Steering"
+		"Chipmunk Plasma LTC"
 		"Chipmunk Plasma Thruster"
 		"Scram Drive"
 
@@ -1565,9 +1579,10 @@ ship "Modified Battleship"
 		"heat dissipation" .24
 		"fuel capacity" 4400
 		"cargo space" 30
-		"outfit space" 1152
+		"outfit space" 1187
 		"weapon capacity" 592
-		"engine capacity" 123
+		"engine capacity" 160
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1599,6 +1614,7 @@ ship "Modified Battleship"
 
 		"Afterburner (Lunar Class)"
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
@@ -1809,9 +1825,10 @@ ship "Modified Ladybug"
 		"heat dissipation" .58
 		"fuel capacity" 1300
 		"cargo space" 91
-		"outfit space" 647
+		"outfit space" 684
 		"weapon capacity" 206
-		"engine capacity" 153
+		"engine capacity" 190
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 2
@@ -1848,6 +1865,7 @@ ship "Modified Ladybug"
 		
 		`"Biroo" Reverse Thruster`
 		`"Bondir" Atomic Steering`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Thruster`
 		"Hyperdrive"
 		"Jump Drive"
@@ -2027,9 +2045,9 @@ ship "Waverider"
 		"heat dissipation" .67
 		"fuel capacity" 1000
 		"cargo space" 100
-		"outfit space" 346
+		"outfit space" 362
 		"weapon capacity" 120
-		"engine capacity" 54
+		"engine capacity" 75
 		"reverse thruster slot" 1
 		"steering slot" 2
 		"thruster slot" 1
@@ -2051,6 +2069,7 @@ ship "Waverider"
 		"Asteroid Scanner"
 
 		"A120 Atomic Thruster"
+		"AL129 Atomic LTC"
 		"A125 Atomic Steering" 2
 		"Scram Drive"
 
@@ -2204,6 +2223,7 @@ ship "Modified Hauler VI"
 		"outfit space" 900
 		"weapon capacity" 430
 		"engine capacity" 160
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2226,6 +2246,7 @@ ship "Modified Hauler VI"
 		"Laser Rifle" 3
 		
 		"Impala Plasma Thruster"
+		"Impala Plasma LTC"
 		"Impala Plasma Steering"
 		"Capybara Reverse Thruster"
 		"Hyperdrive"
@@ -2302,9 +2323,10 @@ ship "Protector" "Modified Protector"
 		"heat dissipation" .6
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 974
+		"outfit space" 1038
 		"weapon capacity" 455
 		"engine capacity" 307
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2337,6 +2359,7 @@ ship "Protector" "Modified Protector"
 		"Laser Rifle" 69
 		
 		"Tyrant Plasma Thruster"
+		"Tyrant Plasma LTC"
 		"Tyrant Plasma Steering"
 		"Hyperdrive"
 		
@@ -2429,6 +2452,7 @@ ship "Cicada" "Cicada (Sanujab)"
 		"Hai Diamond Regenerator"
 		"Quantum Keystone" 3
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 	gun "Ion Cannon"
@@ -2478,6 +2502,7 @@ ship "Scout" "Scout (Intola)"
 		"Ramscoop" 3
 
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	gun "Heavy Laser"
@@ -2527,6 +2552,7 @@ ship "Splinter" "Splinter (Verdorve)"
 
 		"Impala Plasma Steering"
 		"Greyhound Plasma Thruster"
+		"Impala Plasma LTC"
 		"Volcano Afterburner"
 		"Hyperdrive"
 	gun

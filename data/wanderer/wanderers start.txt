@@ -713,6 +713,7 @@ ship "Deep River" "Deep River (Jump, Unarmed)"
 		"Dark Storm Shielding" 3
 		"Fuel Pod"
 		"Type 2 Radiant Thruster"
+		"Type 2 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Jump Drive"
 
@@ -1196,6 +1197,7 @@ ship "Carrier" "Carrier (Alpha)"
 		"Laser Rifle" 120
 		
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	

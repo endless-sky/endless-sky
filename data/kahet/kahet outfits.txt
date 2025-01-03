@@ -403,6 +403,7 @@ outfit "Maeri Engine Nacelles"
 	thumbnail "outfit/ka'het maeri engine"
 	"steering slot" -0.25
 	"thruster slot" -0.25
+	"lateral slot" -0.25
 	"engine mod space" 1.26
 	"mass" 59
 	"outfit space" -76
@@ -411,11 +412,16 @@ outfit "Maeri Engine Nacelles"
 	"heat generation" 1.1
 	"thrust" 58
 	"thrusting heat" 2.8
+	"lateral thrust" 41
+	"lateral thrusting heat" 1.9
 	"turn" 1397
 	"turning heat" 1.3
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma medium"
+	"lateral flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"lateral flare sound" "plasma medium"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
@@ -433,6 +439,7 @@ outfit "Ka'het Sustainer Nacelles"
 	thumbnail "outfit/ka'het sustainer engine"
 	"steering slot" -0.25
 	"thruster slot" -0.25
+	"lateral slot" -0.25
 	"engine mod space" 1
 	"mass" 27
 	"outfit space" -34
@@ -441,11 +448,16 @@ outfit "Ka'het Sustainer Nacelles"
 	"energy consumption" 2.49
 	"thrust" 25
 	"thrusting heat" 1.0
+	"lateral thrust" 20
+	"lateral thrusting heat" 0.8
 	"turn" 648
 	"turning heat" 0.5
 	"flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
+	"lateral flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"lateral flare sound" "plasma small"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
@@ -463,6 +475,7 @@ outfit "Telis Engine Nacelles"
 	thumbnail "outfit/ka'het telis engine"
 	"steering slot" -0.25
 	"thruster slot" -0.25
+	"lateral slot" -0.25
 	"engine mod space" 1.36
 	"mass" 81
 	"outfit space" -101
@@ -471,11 +484,16 @@ outfit "Telis Engine Nacelles"
 	"heat generation" 1.4
 	"thrust" 83
 	"thrusting heat" 3.5
+	"lateral thrust" 50
+	"lateral thrusting heat" 2.1
 	"turn" 2068
 	"turning heat" 1.9
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma medium"
+	"lateral flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"lateral flare sound" "plasma medium"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
@@ -492,6 +510,7 @@ outfit "Vareti Engine Block"
 	thumbnail "outfit/ka'het vareti engine"
 	"steering slot" -0.5
 	"thruster slot" -0.5
+	"lateral slot" -0.5
 	"engine mod space" 1.5
 	"mass" 137
 	"outfit space" -168
@@ -499,11 +518,15 @@ outfit "Vareti Engine Block"
 	"energy consumption" 10.90
 	"heat generation" 2.58
 	"thrust" 140
+	"lateral thrust" 70
 	"turn" 3500
 	"turning heat" 3.32
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma large"
+	"lateral flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"lateral flare sound" "plasma large"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma large"
@@ -520,6 +543,7 @@ outfit "Ka'het Compact Engine"
 	thumbnail "outfit/ka'het compact engine"
 	"steering slot" -0.25
 	"thruster slot" -0.25
+	"lateral slot" -0.25
 	"engine mod space" 0.9
 	"mass" 21
 	"outfit space" -26
@@ -529,6 +553,9 @@ outfit "Ka'het Compact Engine"
 	"thrust" 20
 	"thrusting energy" 1.7
 	"thrusting heat" 1.2
+	"lateral thrust" 18
+	"lateral thrusting energy" 1.5
+	"lateral thrusting heat" 1.0
 	"turn" 351
 	"turning energy" 0.42
 	"turning heat" 0.3

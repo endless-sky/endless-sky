@@ -26,6 +26,7 @@ ship "Subsidurial"
 		"heat dissipation" .54
 		"fuel capacity" 100
 		"thrust" 15
+		"lateral thrust" 8
 		"turn" 1200
 		"hull repair rate" 3
 		"ion protection" 3
@@ -79,6 +80,7 @@ ship "Void Sprite"
 		"cargo space" 40
 		"outfit space" 20
 		"thrust" 30
+		"lateral thrust" 15
 		"turn" 1350
 		"hull repair rate" 3
 		"ion protection" 3
@@ -136,6 +138,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 		"cargo space" 20
 		"outfit space" 10
 		"thrust" 27
+		"lateral thrust" 13
 		"turn" 675
 		"hull repair rate" 1
 		"ion protection" 3
@@ -184,6 +187,7 @@ ship "Ember Waste Node"
 		"cargo space" 39
 		"outfit space" 0
 		"thrust" 120
+		"lateral thrust" 60
 		"turn" 4750
 		"hull repair rate" 3
 		"ion protection" 3
@@ -240,6 +244,7 @@ ship "Embershade"
 		"cargo space" 40
 		"fuel capacity" 275
 		"thrust" 30
+		"lateral thrust" 15
 		"turn" 1350
 		"energy capacity" 500
 		"energy generation" 6
@@ -282,6 +287,7 @@ ship "Embersylph"
 		"cargo space" 0
 		"fuel capacity" 75
 		"thrust" 15
+		"lateral thrust" 8
 		"reverse thrust" 4.5
 		"turn" 150
 		"energy capacity" 800

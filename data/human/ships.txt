@@ -26,9 +26,10 @@ ship "Aerie"
 		"heat dissipation" .47
 		"fuel capacity" 515
 		"cargo space" 50
-		"outfit space" 390
+		"outfit space" 431
 		"weapon capacity" 150
-		"engine capacity" 95
+		"engine capacity" 136
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -50,8 +51,9 @@ ship "Aerie"
 		"Large Radar Jammer"
 		"Laser Rifle" 3
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine 15 97
@@ -101,9 +103,10 @@ ship "Argosy"
 		"heat dissipation" .56
 		"fuel capacity" 550
 		"cargo space" 120
-		"outfit space" 270
+		"outfit space" 305
 		"weapon capacity" 90
-		"engine capacity" 80
+		"engine capacity" 115
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -123,9 +126,10 @@ ship "Argosy"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
-		"Capybara Reverse Thruster"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -25 91 0.6
@@ -171,9 +175,10 @@ ship "Arrow"
 		"heat dissipation" .74
 		"fuel capacity" 500
 		"cargo space" 10
-		"outfit space" 180
+		"outfit space" 185
 		"weapon capacity" 50
-		"engine capacity" 75
+		"engine capacity" 82
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -193,8 +198,9 @@ ship "Arrow"
 		"Small Radar Jammer"
 		"Luxury Accommodations"
 		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -8 56
@@ -234,9 +240,10 @@ ship "Auxiliary"
 		"heat dissipation" .27
 		"fuel capacity" 3325
 		"cargo space" 250
-		"outfit space" 720
+		"outfit space" 772
 		"weapon capacity" 160
-		"engine capacity" 200
+		"engine capacity" 252
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -259,9 +266,10 @@ ship "Auxiliary"
 		"Large Radar Jammer"
 		"Ramscoop"
 		
-		"X4700 Ion Thruster"
-		# "X1700 Ion Thruster" # Extra thruster
-		"X5200 Ion Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		# "RC17 Reaction Thruster" # Extra thruster
+		"RC52 Reaction Steering"
 		"Scram Drive"
 	engine -41. 180.5 0.45
 	engine 41. 180.5 0.45
@@ -310,9 +318,10 @@ ship "Bactrian"
 		"heat dissipation" .22
 		"fuel capacity" 2950
 		"cargo space" 530
-		"outfit space" 740
+		"outfit space" 792
 		"weapon capacity" 300
-		"engine capacity" 180
+		"engine capacity" 232
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -336,8 +345,9 @@ ship "Bactrian"
 		"Ramscoop"
 		"Laser Rifle" 15
 		
-		"X4700 Ion Thruster"
-		"X5200 Ion Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		"RC52 Reaction Steering"
 		"Hyperdrive"
 		
 	engine 18.5 232
@@ -395,6 +405,7 @@ ship "Barb"
 		"outfit space" 85
 		"weapon capacity" 28
 		"engine capacity" 22
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -411,7 +422,7 @@ ship "Barb"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 
-		"X1050 Ion Engines"
+		"RC10 Reaction Engines"
 		
 	engine 9 25
 	engine -8 25
@@ -442,9 +453,10 @@ ship "Bastion"
 		"heat dissipation" .32
 		"fuel capacity" 925
 		"cargo space" 110
-		"outfit space" 470
+		"outfit space" 507
 		"weapon capacity" 190
-		"engine capacity" 120
+		"engine capacity" 152
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -469,8 +481,9 @@ ship "Bastion"
 		"Tactical Scanner"
 		"Laser Rifle" 7
 		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine 31.5 89.5
@@ -511,9 +524,10 @@ ship "Behemoth"
 		"heat dissipation" .26
 		"fuel capacity" 1675
 		"cargo space" 490
-		"outfit space" 510
+		"outfit space" 567
 		"weapon capacity" 280
-		"engine capacity" 90
+		"engine capacity" 147
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -532,9 +546,10 @@ ship "Behemoth"
 		"Small Radar Jammer"
 		"Laser Rifle" 3
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster" 1 # Extra reverse thruster
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster" 1 # Extra reverse thruster
 		"Scram Drive"
 		
 	engine -34 143 0.8
@@ -576,9 +591,10 @@ ship "Berserker"
 		"heat dissipation" .74
 		"fuel capacity" 325
 		"cargo space" 10
-		"outfit space" 200
+		"outfit space" 227
 		"weapon capacity" 35
-		"engine capacity" 65
+		"engine capacity" 92
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -596,8 +612,9 @@ ship "Berserker"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
-		"X2700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -10 45
@@ -634,9 +651,10 @@ ship "Blackbird"
 		"heat dissipation" .56
 		"fuel capacity" 825
 		"cargo space" 60
-		"outfit space" 350
+		"outfit space" 387
 		"weapon capacity" 90
-		"engine capacity" 110
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -656,8 +674,9 @@ ship "Blackbird"
 		"Small Radar Jammer"
 		"Luxury Accommodations"
 		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -42.5 52
@@ -690,9 +709,10 @@ ship "Bounder"
 		"heat dissipation" .67
 		"fuel capacity" 700
 		"cargo space" 40
-		"outfit space" 220
+		"outfit space" 261
 		"weapon capacity" 50
-		"engine capacity" 110
+		"engine capacity" 151
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -709,8 +729,9 @@ ship "Bounder"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -10 44
@@ -739,8 +760,9 @@ ship "Boxwing"
 		"mass" 54
 		"drag" .65
 		"heat dissipation" .25
-		"outfit space" 45
-		"engine capacity" 28
+		"outfit space" 58
+		"engine capacity" 42
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -753,7 +775,7 @@ ship "Boxwing"
 	outfits
 		"nGVF-AA Fuel Cell"
 
-		"X1050 Ion Engines"
+		"RC10 Reaction Engines"
 
 	engine 23 -1
 	engine -23 -1
@@ -782,9 +804,10 @@ ship "Bulk Freighter"
 		"heat dissipation" .27
 		"fuel capacity" 3500
 		"cargo space" 640
-		"outfit space" 410
+		"outfit space" 452
 		"weapon capacity" 180
-		"engine capacity" 85
+		"engine capacity" 127
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -804,9 +827,10 @@ ship "Bulk Freighter"
 		"D23-QP Shield Generator"
 		"Laser Rifle"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Scram Drive"
 		
 	engine -22 198
@@ -848,9 +872,10 @@ ship "Bulwark"
 		"heat dissipation" .27
 		"fuel capacity" 1150
 		"cargo space" 12
-		"outfit space" 521
+		"outfit space" 550
 		"weapon capacity" 223
-		"engine capacity" 120
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -876,8 +901,9 @@ ship "Bulwark"
 		"Laser Rifle" 19
 		"Nerve Gas" 3
 		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine 31.5 89.5
@@ -920,9 +946,10 @@ ship "Carrier"
 		"heat dissipation" .23
 		"fuel capacity" 2875 # will need to adjust this for carried ships
 		"cargo space" 100
-		"outfit space" 820
+		"outfit space" 944
 		"weapon capacity" 240
-		"engine capacity" 210
+		"engine capacity" 254
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -952,8 +979,9 @@ ship "Carrier"
 		"Security Station" 2
 		"Tactical Scanner"
 		
-		"X5700 Ion Thruster"
-		"X4200 Ion Steering"
+		"RC57 Reaction Thruster"
+		"RC54 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 
 	engine -36.5 200 0.65
@@ -1025,9 +1053,10 @@ ship "Class C Freighter"
 		"heat dissipation" .27
 		"fuel capacity" 3300
 		"cargo space" 20
-		"outfit space" 410
+		"outfit space" 425
 		"weapon capacity" 150
 		"engine capacity" 85
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1054,8 +1083,9 @@ ship "Class C Freighter"
 		"Brig"
 		"Interference Plating"
 		
-		"A250 Atomic Thruster"
-		"A255 Atomic Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Scram Drive"
 		
 	engine -20 195.5
@@ -1121,9 +1151,10 @@ ship "Clipper"
 		"heat dissipation" .7
 		"fuel capacity" 450
 		"cargo space" 70
-		"outfit space" 260
+		"outfit space" 297
 		"weapon capacity" 60
-		"engine capacity" 80
+		"engine capacity" 115
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1141,8 +1172,9 @@ ship "Clipper"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -22 47
@@ -1178,9 +1210,10 @@ ship "Combat Drone"
 		"mass" 20
 		"drag" .59
 		"heat dissipation" .9
-		"outfit space" 58
+		"outfit space" 75
 		"weapon capacity" 8
-		"engine capacity" 28
+		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1195,8 +1228,9 @@ ship "Combat Drone"
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		
 	engine -8.5 28.5 0.9
 	engine 8.5 28.5 0.9
@@ -1223,12 +1257,14 @@ ship "Container Transport"
 		"heat dissipation" .4
 		"fuel capacity" 2350
 		"cargo space" 550
-		"outfit space" 410
+		"outfit space" 452
 		"weapon capacity" 180
-		"engine capacity" 85
+		"engine capacity" 127
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1248,9 +1284,10 @@ ship "Container Transport"
 		"D23-QP Shield Generator"
 		"Laser Rifle"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Scram Drive"
 		
 	engine -20 195.5
@@ -1290,9 +1327,10 @@ ship "Corvette"
 		"heat dissipation" .5
 		"fuel capacity" 550
 		"cargo space" 40
-		"outfit space" 420
+		"outfit space" 461
 		"weapon capacity" 150
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1316,8 +1354,9 @@ ship "Corvette"
 		"Large Radar Jammer"
 		"Laser Rifle" 3
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -11.5 119
@@ -1363,9 +1402,10 @@ ship "Cruiser"
 		"heat dissipation" .25
 		"fuel capacity" 1925
 		"cargo space" 60
-		"outfit space" 760
+		"outfit space" 811
 		"weapon capacity" 320
-		"engine capacity" 170
+		"engine capacity" 221
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1391,8 +1431,9 @@ ship "Cruiser"
 		"Security Station"
 		"Tactical Scanner"
 		
-		"X4700 Ion Thruster"
-		"X4200 Ion Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -28 154 0.95
@@ -1453,9 +1494,10 @@ ship "Cutthroat"
 		"heat dissipation" .7
 		"fuel capacity" 475
 		"cargo space" 27
-		"outfit space" 282
+		"outfit space" 322
 		"weapon capacity" 60
-		"engine capacity" 111
+		"engine capacity" 156
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1476,8 +1518,9 @@ ship "Cutthroat"
 		"D23-QP Shield Generator"
 		"Laser Rifle" 5
 		
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
 		
@@ -1514,9 +1557,10 @@ ship "Dagger"
 		"mass" 20
 		"drag" .65
 		"heat dissipation" .9
-		"outfit space" 90
+		"outfit space" 101
 		"weapon capacity" 20
-		"engine capacity" 35
+		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1535,8 +1579,9 @@ ship "Dagger"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
-		"A120 Atomic Thruster"
-		"X1200 Ion Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		
 	engine -8 34
 	engine 8 34
@@ -1571,9 +1616,10 @@ ship "Dreadnought"
 		"heat dissipation" .36
 		"fuel capacity" 1050
 		"cargo space" 100
-		"outfit space" 790
+		"outfit space" 846
 		"weapon capacity" 360
-		"engine capacity" 190
+		"engine capacity" 230
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1597,8 +1643,9 @@ ship "Dreadnought"
 		"Tactical Scanner"
 		"Laser Rifle" 25
 		
-		"Orca Plasma Thruster"
-		"Orca Plasma Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -25.5 173.5
@@ -1644,9 +1691,10 @@ ship "Dropship"
 		"drag" 0.8
 		"heat dissipation" .9
 		"cargo space" 5
-		"outfit space" 100
+		"outfit space" 112
 		"weapon capacity" 16
-		"engine capacity" 40
+		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1663,8 +1711,9 @@ ship "Dropship"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 	
 	engine 13 26
 	engine -13 26
@@ -1695,9 +1744,10 @@ ship "Enforcer"
 		"heat dissipation" .61
 		"fuel capacity" 325
 		"cargo space" 30
-		"outfit space" 210
+		"outfit space" 237
 		"weapon capacity" 55
-		"engine capacity" 60
+		"engine capacity" 87
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1714,8 +1764,9 @@ ship "Enforcer"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 
 	engine 0 39
@@ -1751,9 +1802,10 @@ ship "Falcon"
 		"heat dissipation" .42
 		"fuel capacity" 1550
 		"cargo space" 130
-		"outfit space" 560
+		"outfit space" 591
 		"weapon capacity" 250
-		"engine capacity" 150
+		"engine capacity" 194
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1778,8 +1830,9 @@ ship "Falcon"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 15
 		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -16.5 143
@@ -1822,9 +1875,10 @@ ship "Finch"
 		"mass" 50
 		"drag" .87
 		"heat dissipation" .81
-		"outfit space" 110
+		"outfit space" 120
 		"weapon capacity" 20
-		"engine capacity" 40
+		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1843,8 +1897,9 @@ ship "Finch"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		
 	engine -5 32
 	engine 5 32
@@ -1876,9 +1931,10 @@ ship "Firebird"
 		"heat dissipation" .4
 		"fuel capacity" 525
 		"cargo space" 50
-		"outfit space" 400
+		"outfit space" 441
 		"weapon capacity" 160
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1900,8 +1956,9 @@ ship "Firebird"
 		"D41-HY Shield Generator"
 		"Laser Rifle" 3
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -31.5 67
@@ -1946,9 +2003,10 @@ ship "Flivver"
 		"heat dissipation" .86
 		"fuel capacity" 375
 		"cargo space" 15
-		"outfit space" 130
-		"weapon capacity" 16
-		"engine capacity" 45
+		"outfit space" 147
+		"weapon capacity" 17
+		"engine capacity" 57
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1964,9 +2022,10 @@ ship "Flivver"
 		"Supercapacitor"
 		"D14-RN Shield Generator"
 		
-		"A120 Atomic Thruster"
-		"X1200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -16.5 26
@@ -1997,9 +2056,10 @@ ship "Freighter"
 		"heat dissipation" .45
 		"fuel capacity" 725
 		"cargo space" 150
-		"outfit space" 250
+		"outfit space" 280
 		"weapon capacity" 80
-		"engine capacity" 70
+		"engine capacity" 99
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2016,9 +2076,10 @@ ship "Freighter"
 		"LP072a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Scram Drive"
 		
 	engine -7.5 92
@@ -2054,9 +2115,10 @@ ship "Frigate"
 		"heat dissipation" .46
 		"fuel capacity" 675
 		"cargo space" 35
-		"outfit space" 410
+		"outfit space" 451
 		"weapon capacity" 170
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2081,8 +2143,9 @@ ship "Frigate"
 		"Fragmentation Grenades" 5
 		"Security Station"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -26 96.5
@@ -2126,9 +2189,10 @@ ship "Fury"
 		"heat dissipation" .79
 		"fuel capacity" 475
 		"cargo space" 15
-		"outfit space" 160
+		"outfit space" 187
 		"weapon capacity" 40
-		"engine capacity" 60
+		"engine capacity" 87
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2145,8 +2209,9 @@ ship "Fury"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -11 35 0.8
@@ -2187,9 +2252,10 @@ ship "Gunboat"
 		"heat dissipation" .62
 		"fuel capacity" 550
 		"cargo space" 50
-		"outfit space" 270
+		"outfit space" 310
 		"weapon capacity" 100
-		"engine capacity" 90
+		"engine capacity" 130
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2211,8 +2277,9 @@ ship "Gunboat"
 		"Tactical Scanner"
 		"Brig"
 		
-		"X3700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -12 57.5 0.7
@@ -2249,9 +2316,10 @@ ship "Hauler"
 		"heat dissipation" .43
 		"fuel capacity" 500
 		"cargo space" 130
-		"outfit space" 350
+		"outfit space" 364
 		"weapon capacity" 140
-		"engine capacity" 80
+		"engine capacity" 104
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2271,9 +2339,10 @@ ship "Hauler"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Capybara Reverse Thruster"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 122.5
@@ -2313,9 +2382,10 @@ ship "Hauler II"
 		"heat dissipation" .43
 		"fuel capacity" 600
 		"cargo space" 260
-		"outfit space" 350
+		"outfit space" 364
 		"weapon capacity" 140
-		"engine capacity" 80
+		"engine capacity" 104
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2337,9 +2407,10 @@ ship "Hauler II"
 		"Small Radar Jammer"
 		"Laser Rifle"
 		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Capybara Reverse Thruster"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Hyperdrive"
 		
 	engine -45 159.5
@@ -2379,9 +2450,10 @@ ship "Hauler III"
 		"heat dissipation" .43
 		"fuel capacity" 700
 		"cargo space" 390
-		"outfit space" 350
+		"outfit space" 364
 		"weapon capacity" 140
-		"engine capacity" 80
+		"engine capacity" 104
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2403,9 +2475,10 @@ ship "Hauler III"
 		"Small Radar Jammer"
 		"Laser Rifle"
 		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Capybara Reverse Thruster"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
@@ -2445,9 +2518,10 @@ ship "Hawk"
 		"heat dissipation" .67
 		"fuel capacity" 250
 		"cargo space" 20
-		"outfit space" 200
+		"outfit space" 227
 		"weapon capacity" 50
-		"engine capacity" 70
+		"engine capacity" 97
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2465,8 +2539,9 @@ ship "Hawk"
 		"D23-QP Shield Generator"
 		"Small Radar Jammer"
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -23.5 41
@@ -2498,9 +2573,10 @@ ship "Headhunter"
 		"heat dissipation" .7
 		"fuel capacity" 350
 		"cargo space" 50
-		"outfit space" 250
+		"outfit space" 276
 		"weapon capacity" 60
-		"engine capacity" 80
+		"engine capacity" 99
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2518,8 +2594,9 @@ ship "Headhunter"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 	
 	engine -16 47
@@ -2562,9 +2639,10 @@ ship "Heavy Shuttle"
 		"heat dissipation" .73
 		"fuel capacity" 400
 		"cargo space" 40
-		"outfit space" 130
+		"outfit space" 157
 		"weapon capacity" 16
-		"engine capacity" 65
+		"engine capacity" 92
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2578,8 +2656,9 @@ ship "Heavy Shuttle"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -6.5 38.5
@@ -2608,9 +2687,10 @@ ship "Hogshead"
 		"heat dissipation" .38
 		"fuel capacity" 700
 		"cargo space" 45
-		"outfit space" 320
+		"outfit space" 346
 		"weapon capacity" 80
 		"engine capacity" 90
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2631,8 +2711,9 @@ ship "Hogshead"
 		"Small Radar Jammer" 2
 		"Luxury Accommodations"
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 
 	engine 34 42
@@ -2652,6 +2733,104 @@ ship "Hogshead"
 	description `	Unfortunately, only a few decades after introducing the ship, the shipyard went bankrupt and was never heard from again, leaving the Hogshead to history as their one-hit-wonder. In the current era, Hogsheads are much less common; they are considered "unsightly" compared to modern vessels such as the Star Queen, though a few places in human space still sell them.`
 
 
+ship "Lampyrid Mk. II"
+	sprite "ship/lampyrid"
+	thumbnail "thumbnail/lampyrid"
+	attributes
+		category "Transport"
+		"cost" 2760000
+		"shields" 5400
+		"hull" 4400
+		"required crew" 5
+		"bunks" 14
+		"mass" 240
+		"drag" 8.5
+		"heat dissipation" .7
+		"fuel capacity" 850
+		"cargo space" 160
+		"outfit space" 309
+		"engine capacity" 139
+		"weapon capacity" 50
+		"reverse thruster slot" 1
+		"lateral thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Anti-Missile Turret"
+		"KP-6 Photovoltaic Array"
+		"LP036a Battery Pack"
+		"D14-RN Shield Generator"
+		"Small Radar Jammer"
+		"Ramscoop"
+	
+		"RC32 Reaction Steering"
+		"RC34 Reaction LTC"
+		"RC37 Reaction Thruster"
+		"Hyperdrive"
+
+	engine -64 28 0.7
+	engine 0 80 1.8
+	engine 0 100 1.2
+	engine 64 28 0.7
+	"lateral engine" -23 -66
+		angle 90
+		right
+		under
+		zoom 0.3
+	"lateral engine" 23 -66
+		angle 270
+		left
+		under
+		zoom 0.3
+	"lateral engine" -79 0
+		angle 90
+		right
+		under
+		zoom 0.3
+	"lateral engine" 79 0
+		angle 270
+		left
+		under
+		zoom 0.3
+	"lateral engine" -30 68
+		angle 90
+		right
+		under
+		zoom 0.3
+	"lateral engine" 30 68
+		angle 270
+		left
+		under
+		zoom 0.3
+	"reverse engine" -64.5 -31.5 0.7
+	"reverse engine" 64.5 -31.5 0.7
+	"steering engine" -64.5 -31.5 0.7
+		angle -180
+		left
+	"steering engine" 64 28 0.7
+		left
+	"steering engine" -64 28 0.7
+		right
+	"steering engine" 64.5 -31.5 0.7
+		angle -180
+		right
+	turret 0 9 "Anti-Missile Turret"
+	bay "Fighter" -26.5 9.5 under
+	bay "Fighter" 26.5 9.5 under
+	explode "tiny explosion" 10
+	explode "small explosion" 25
+	explode "medium explosion" 30
+	explode "large explosion" 15
+	"final explode" "final explosion medium" 1
+	description `The Lampyrid line of ships date back to the early colonization era, when it was frequently used as a support ship for the great city ships. The distinctive multi-directional rotating thrust pods on the wingtips provided it with much better directional control, allowing it to conduct precision maneuvers and landings without ground control support.`
+	description `	With the advent of advanced ground control systems as well as the development of limited gravitational nullification landing gear, the complex machinery was no longer necessary to facilitate remote landings. This rendered the Lampyrid family of ships obsolete, and are now only legends of an older era when space was still a wild frontier full of explorers and renegades.`
+
+
 
 ship "Lance"
 	sprite "ship/lance"
@@ -2666,9 +2845,10 @@ ship "Lance"
 		"mass" 30
 		"drag" .7
 		"heat dissipation" .8
-		"outfit space" 100
+		"outfit space" 116
 		"weapon capacity" 20
-		"engine capacity" 30
+		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2688,8 +2868,9 @@ ship "Lance"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer" 2
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		
 	engine -14.5 30.5
 	engine 14.5 30.5
@@ -2720,9 +2901,10 @@ ship "Leviathan"
 		"heat dissipation" .3
 		"fuel capacity" 1450
 		"cargo space" 80
-		"outfit space" 620
+		"outfit space" 666
 		"weapon capacity" 240
-		"engine capacity" 120
+		"engine capacity" 166
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2742,8 +2924,9 @@ ship "Leviathan"
 		"Liquid Helium Cooler"
 		"Laser Rifle" 15
 		
-		"X3700 Ion Thruster"
-		"X4200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -24 126
@@ -2795,9 +2978,10 @@ ship "Mammoth"
 		"heat dissipation" .21
 		"fuel capacity" 3250
 		"cargo space" 400
-		"outfit space" 536
+		"outfit space" 559
 		"weapon capacity" 294
-		"engine capacity" 114
+		"engine capacity" 132
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2824,8 +3008,9 @@ ship "Mammoth"
 		
 		"Volcano Afterburner" # Extra afterburner
 		"AR120 Reverse Thruster"
-		"A370 Atomic Thruster"
-		"A375 Atomic Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Scram Drive"
 		
 	engine 17 147 0.8
@@ -2875,9 +3060,10 @@ ship "Manta"
 		"heat dissipation" .6
 		"fuel capacity" 450
 		"cargo space" 20
-		"outfit space" 350
+		"outfit space" 391
 		"weapon capacity" 140
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 2
@@ -2897,8 +3083,9 @@ ship "Manta"
 		"D14-RN Shield Generator"
 		"Laser Rifle"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -33 40
@@ -2930,9 +3117,10 @@ ship "Mining Drone"
 		"mass" 12
 		"drag" .55
 		"heat dissipation" .8
-		"outfit space" 62
+		"outfit space" 79
 		"weapon capacity" 12
-		"engine capacity" 28
+		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2947,8 +3135,9 @@ ship "Mining Drone"
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor"
 
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		
 	engine 0 22 0.9
 	gun 0 -22
@@ -2974,9 +3163,10 @@ ship "Modified Argosy"
 		"heat dissipation" .48
 		"fuel capacity" 425
 		"cargo space" 60
-		"outfit space" 340
+		"outfit space" 372
 		"weapon capacity" 140
-		"engine capacity" 80
+		"engine capacity" 104
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -2999,8 +3189,9 @@ ship "Modified Argosy"
 		"Brig"
 		"Laser Rifle" 12
 		
-		"Greyhound Plasma Thruster"
-		"X3200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -25 93 0.6
@@ -3045,9 +3236,10 @@ ship "Mule"
 		"heat dissipation" .32
 		"fuel capacity" 850
 		"cargo space" 170
-		"outfit space" 440
+		"outfit space" 481
 		"weapon capacity" 170
-		"engine capacity" 110
+		"engine capacity" 151
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3071,9 +3263,10 @@ ship "Mule"
 		"Ramscoop"
 		"Laser Rifle"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
-		"X1100 Ion Reverse Thruster"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Hyperdrive"
 		
 	engine 11 128
@@ -3116,9 +3309,10 @@ ship "Nest"
 		"heat dissipation" .48
 		"fuel capacity" 625
 		"cargo space" 40
-		"outfit space" 400
+		"outfit space" 424
 		"weapon capacity" 140
-		"engine capacity" 80
+		"engine capacity" 104
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3139,8 +3333,9 @@ ship "Nest"
 		"Large Radar Jammer"
 		"Laser Rifle" 2
 		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -45 122.5
@@ -3182,9 +3377,10 @@ ship "Nighthawk"
 		"heat dissipation" .52
 		"fuel capacity" 875
 		"cargo space" 16
-		"outfit space" 362
+		"outfit space" 397
 		"weapon capacity" 102
-		"engine capacity" 123
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3206,8 +3402,9 @@ ship "Nighthawk"
 		"Laser Rifle" 24
 		"Nerve Gas" 10
 		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -42.5 63 .8
@@ -3243,9 +3440,10 @@ ship "Osprey"
 		"heat dissipation" .54
 		"fuel capacity" 775
 		"cargo space" 40
-		"outfit space" 450
+		"outfit space" 492
 		"weapon capacity" 180
-		"engine capacity" 130
+		"engine capacity" 169
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3266,8 +3464,9 @@ ship "Osprey"
 		"Liquid Helium Cooler"
 		"Laser Rifle" 3
 		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -42.5 62.5 .8
@@ -3311,9 +3510,10 @@ ship "Protector"
 		"heat dissipation" .38
 		"fuel capacity" 1025
 		"cargo space" 50
-		"outfit space" 590
+		"outfit space" 631
 		"weapon capacity" 230
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3336,8 +3536,9 @@ ship "Protector"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 6
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -12 122.5
@@ -3378,9 +3579,10 @@ ship "Quicksilver"
 		"heat dissipation" .7
 		"fuel capacity" 350
 		"cargo space" 15
-		"outfit space" 240
+		"outfit space" 263
 		"weapon capacity" 80
-		"engine capacity" 70
+		"engine capacity" 87
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3395,9 +3597,10 @@ ship "Quicksilver"
 		"nGVF-DD Fuel Cell"
 		"LP036a Battery Pack"
 
-		"Capybara Reverse Thruster"
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"RC11 Reaction Reverse Thruster"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -15.5 54
@@ -3429,9 +3632,10 @@ ship "Rainmaker"
 		"heat dissipation" .5
 		"fuel capacity" 450
 		"cargo space" 25
-		"outfit space" 240
+		"outfit space" 267
 		"weapon capacity" 70
-		"engine capacity" 50
+		"engine capacity" 77
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3452,8 +3656,9 @@ ship "Rainmaker"
 		"Large Radar Jammer"
 		"Tactical Scanner"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -11.5 44.5 0.4
@@ -3490,9 +3695,10 @@ ship "Raven"
 		"heat dissipation" .62
 		"fuel capacity" 450
 		"cargo space" 30
-		"outfit space" 280
+		"outfit space" 321
 		"weapon capacity" 100
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3514,8 +3720,9 @@ ship "Raven"
 		"D41-HY Shield Generator"
 		"Laser Rifle" 2
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -9.5 63
@@ -3552,9 +3759,10 @@ ship "Roost"
 		"heat dissipation" .48
 		"fuel capacity" 875
 		"cargo space" 80
-		"outfit space" 450
+		"outfit space" 474
 		"weapon capacity" 140
-		"engine capacity" 80
+		"engine capacity" 99
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3576,8 +3784,9 @@ ship "Roost"
 		"Tactical Scanner"
 		"Laser Rifle" 2
 		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -45 159.5
@@ -3623,9 +3832,10 @@ ship "Saber"
 		"heat dissipation" .35
 		"fuel capacity" 625
 		"cargo space" 30
-		"outfit space" 280
+		"outfit space" 321
 		"weapon capacity" 105
-		"engine capacity" 90
+		"engine capacity" 131
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3645,8 +3855,9 @@ ship "Saber"
 		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 
 	engine 0 105
@@ -3687,9 +3898,10 @@ ship "Scout"
 		"heat dissipation" .61
 		"fuel capacity" 675
 		"cargo space" 55
-		"outfit space" 220
+		"outfit space" 261
 		"weapon capacity" 40
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3708,8 +3920,9 @@ ship "Scout"
 		"Small Radar Jammer"
 		"Ramscoop"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -7 40
@@ -3744,9 +3957,10 @@ ship "Scrapper"
 		"heat dissipation" .77
 		"fuel capacity" 225
 		"cargo space" 21
-		"outfit space" 125
+		"outfit space" 152
 		"weapon capacity" 12
-		"engine capacity" 58
+		"engine capacity" 85
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3761,8 +3975,9 @@ ship "Scrapper"
 		"KP-6 Photovoltaic Panel" 4
 		"LP036a Battery Pack"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -6 30
@@ -3793,9 +4008,10 @@ ship "Shuttle"
 		"heat dissipation" .77
 		"fuel capacity" 300
 		"cargo space" 20
-		"outfit space" 120
+		"outfit space" 147
 		"weapon capacity" 10
-		"engine capacity" 60
+		"engine capacity" 87
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3809,8 +4025,9 @@ ship "Shuttle"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -6 30
@@ -3841,9 +4058,10 @@ ship "Skein"
 		"heat dissipation" .51
 		"fuel capacity" 1175 # All carriers will need fuel revised upwards
 		"cargo space" 120
-		"outfit space" 500
+		"outfit space" 524
 		"weapon capacity" 140
-		"engine capacity" 80
+		"engine capacity" 99
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3866,9 +4084,10 @@ ship "Skein"
 		"Tactical Scanner"
 		"Laser Rifle" 4
 		
-		"Greyhound Plasma Thruster"
-		"Impala Plasma Steering"
-		"Capybara Reverse Thruster"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC32 Reaction Steering"
+		"RC11 Reaction Reverse Thruster"
 		"Hyperdrive"
 
 	engine -45 196.5
@@ -3918,9 +4137,10 @@ ship "Sparrow"
 		"heat dissipation" .77
 		"fuel capacity" 225
 		"cargo space" 15
-		"outfit space" 130
+		"outfit space" 147
 		"weapon capacity" 25
-		"engine capacity" 40
+		"engine capacity" 53
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3936,8 +4156,9 @@ ship "Sparrow"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"Chipmunk Plasma Thruster"
-		"Chipmunk Plasma Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -5 35
@@ -3973,9 +4194,10 @@ ship "Splinter"
 		"heat dissipation" .5
 		"fuel capacity" 750
 		"cargo space" 75
-		"outfit space" 400
+		"outfit space" 441
 		"weapon capacity" 150
-		"engine capacity" 100
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -3996,8 +4218,9 @@ ship "Splinter"
 		"Water Coolant System"
 		"Laser Rifle"
 		
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -15.5 115
@@ -4036,9 +4259,10 @@ ship "Star Barge"
 		"heat dissipation" .77
 		"fuel capacity" 250
 		"cargo space" 50
-		"outfit space" 130
+		"outfit space" 147
 		"weapon capacity" 20
-		"engine capacity" 40
+		"engine capacity" 57
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -4054,8 +4278,9 @@ ship "Star Barge"
 		"LP036a Battery Pack"
 		"D14-RN Shield Generator"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -9.5 38
@@ -4084,9 +4309,10 @@ ship "Star Queen"
 		"heat dissipation" .44
 		"fuel capacity" 850
 		"cargo space" 60
-		"outfit space" 360
-		"weapon capacity" 120
-		"engine capacity" 100
+		"outfit space" 390
+		"weapon capacity" 144
+		"engine capacity" 116
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -4106,8 +4332,9 @@ ship "Star Queen"
 		"Small Radar Jammer" 3
 		"Luxury Accommodations"
 		
-		"X3700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC22 Reaction Steering"
 		"AR120 Reverse Thruster"
 		"Hyperdrive"
 		
@@ -4150,9 +4377,10 @@ ship "Sunder"
 		"heat dissipation" .56
 		"fuel capacity" 550
 		"cargo space" 80
-		"outfit space" 230
+		"outfit space" 271
 		"weapon capacity" 50
-		"engine capacity" 90
+		"engine capacity" 131
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -4170,8 +4398,9 @@ ship "Sunder"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
 
-		"X3700 Ion Thruster"
-		"X3200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC32 Reaction Steering"
 		"Hyperdrive"
 
 	engine -11.5 54
@@ -4210,9 +4439,10 @@ ship "Surveillance Drone"
 		"mass" 15
 		"drag" .53
 		"heat dissipation" .9
-		"outfit space" 53
+		"outfit space" 70
 		"weapon capacity" 0
-		"engine capacity" 28
+		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -4225,8 +4455,9 @@ ship "Surveillance Drone"
 		"nGVF-AA Fuel Cell"
 		"Surveillance Pod"
 		
-		"X1700 Ion Thruster"
-		"X1200 Ion Steering"
+		"RC17 Reaction Thruster"
+		"RC14 Reaction LTC"
+		"RC12 Reaction Steering"
 		
 	engine -3 29
 	engine 3 29
@@ -4251,9 +4482,10 @@ ship "Valkyrie"
 		"heat dissipation" .42
 		"fuel capacity" 550
 		"cargo space" 41
-		"outfit space" 400
+		"outfit space" 414
 		"weapon capacity" 170
 		"engine capacity" 76
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -4276,8 +4508,9 @@ ship "Valkyrie"
 		"Laser Rifle" 18
 		"Nerve Gas" 3
 		
-		"Greyhound Plasma Thruster"
-		"Greyhound Plasma Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine 15 97
@@ -4319,9 +4552,10 @@ ship "Vanguard"
 		"heat dissipation" .4
 		"fuel capacity" 1025
 		"cargo space" 50
-		"outfit space" 560
+		"outfit space" 591
 		"weapon capacity" 220
-		"engine capacity" 120
+		"engine capacity" 147
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -4340,8 +4574,9 @@ ship "Vanguard"
 		"Liquid Nitrogen Cooler"
 		"Laser Rifle" 4
 		
-		"X3700 Ion Thruster"
-		"X4200 Ion Steering"
+		"RC37 Reaction Thruster"
+		"RC34 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 	
 	engine -16.5 131
@@ -4394,9 +4629,10 @@ ship "Wasp"
 		"heat dissipation" .73
 		"fuel capacity" 300
 		"cargo space" 10
-		"outfit space" 150
+		"outfit space" 177
 		"weapon capacity" 28
-		"engine capacity" 60
+		"engine capacity" 87
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -4415,8 +4651,9 @@ ship "Wasp"
 		"D14-RN Shield Generator"
 		"Small Radar Jammer"
 		
-		"X2700 Ion Thruster"
-		"X2200 Ion Steering"
+		"RC27 Reaction Thruster"
+		"RC24 Reaction LTC"
+		"RC22 Reaction Steering"
 		"Hyperdrive"
 		
 	engine -5.5 32.5

@@ -26,8 +26,9 @@ ship "Earth Shaper"
 		"heat dissipation" .86
 		"fuel capacity" 225
 		"cargo space" 27
-		"outfit space" 59
-		"engine capacity" 26
+		"outfit space" 68
+		"engine capacity" 31
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -41,6 +42,7 @@ ship "Earth Shaper"
 		"Small Biochemical Cell"
 		
 		"Type 1 Radiant Thruster"
+		"Type 1 Radiant LTC"
 		"Type 1 Radiant Steering"
 		"Hyperdrive"
 		
@@ -65,9 +67,10 @@ ship "Flycatcher"
 		"mass" 40
 		"drag" .6
 		"heat dissipation" .9
-		"outfit space" 86
+		"outfit space" 89
 		"weapon capacity" 28
-		"engine capacity" 26
+		"engine capacity" 31
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -82,6 +85,7 @@ ship "Flycatcher"
 		"Small Biochemical Cell" 2
 		
 		"Type 1 Radiant Thruster"
+		"Type 1 Radiant LTC"
 		"Type 1 Radiant Steering"
 		
 	engine -9 28
@@ -115,6 +119,7 @@ ship "Summer Leaf"
 		"outfit space" 320
 		"weapon capacity" 84
 		"engine capacity" 103
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -132,6 +137,7 @@ ship "Summer Leaf"
 		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
 		
@@ -167,9 +173,10 @@ ship "Autumn Leaf"
 		"heat dissipation" .67
 		"fuel capacity" 925
 		"cargo space" 45
-		"outfit space" 361
+		"outfit space" 387
 		"weapon capacity" 103
-		"engine capacity" 117
+		"engine capacity" 118
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -187,6 +194,7 @@ ship "Autumn Leaf"
 		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 		
@@ -212,6 +220,7 @@ ship "Autumn Leaf" "Autumn Leaf (Heavy)"
 		"Bright Cloud Shielding"
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 
@@ -234,9 +243,10 @@ ship "Strong Wind"
 		"heat dissipation" .5
 		"fuel capacity" 775
 		"cargo space" 68
-		"outfit space" 493
+		"outfit space" 516
 		"weapon capacity" 198
-		"engine capacity" 114
+		"engine capacity" 118
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -259,6 +269,7 @@ ship "Strong Wind"
 		"Wanderer Ramscoop" 2
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 		
@@ -295,9 +306,10 @@ ship "Tempest"
 		"heat dissipation" 0.42
 		"fuel capacity" 875
 		"cargo space" 47
-		"outfit space" 607
+		"outfit space" 642
 		"weapon capacity" 271
-		"engine capacity" 122
+		"engine capacity" 151
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -318,6 +330,7 @@ ship "Tempest"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 	
@@ -353,6 +366,7 @@ ship "Tempest" "Tempest (Heavy)"
 		"Wanderer Ramscoop"
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		"Type 4 Radiant Steering"
 		# "Type 2 Radiant Steering" # Extra steering
 		"Hyperdrive"
@@ -375,6 +389,7 @@ ship "Tempest" "Tempest (Missile)"
 		"Outfits Expansion"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 	
@@ -395,6 +410,7 @@ ship "Tempest" "Tempest (Moonbeam)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 	
@@ -428,6 +444,7 @@ ship "Derecho"
 		"outfit space" 796
 		"weapon capacity" 342
 		"engine capacity" 164
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -451,6 +468,7 @@ ship "Derecho"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		# "Type 3 Radiant Steering" # Extra steering
@@ -487,6 +505,7 @@ ship "Derecho" "Derecho (Turret)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		# "Type 2 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		# "Type 2 Radiant Steering" # Extra steering
@@ -504,6 +523,7 @@ ship "Derecho" "Derecho (Tough)"
 		"Outfits Expansion"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		"Type 4 Radiant Steering" # Extra steering
 		"Hyperdrive"
 	
@@ -527,6 +547,7 @@ ship "Derecho" "Derecho (Moonbeam)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		# "Type 3 Radiant Steering" # Extra steering
@@ -560,9 +581,10 @@ ship "Hurricane"
 		"heat dissipation" 0.29
 		"fuel capacity" 1800
 		"cargo space" 98
-		"outfit space" 960
+		"outfit space" 978
 		"weapon capacity" 428
-		"engine capacity" 140
+		"engine capacity" 151
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -583,6 +605,7 @@ ship "Hurricane"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		"Type 4 Radiant Steering"
 		# "Type 2 Radiant Steering" # Extra steering
 		"Hyperdrive"
@@ -622,6 +645,7 @@ ship "Hurricane" "Hurricane (Turret)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		# "Type 2 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
@@ -641,6 +665,7 @@ ship "Hurricane" "Hurricane (Tough)"
 		"Outfits Expansion" 2
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		# "Type 1 Radiant Steering" # Extra steering
@@ -676,6 +701,7 @@ ship "Hurricane" "Hurricane (Moonbeam)"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		"Type 4 Radiant Steering"
 		# "Type 2 Radiant Steering" # Extra steering
 		"Hyperdrive"
@@ -715,9 +741,10 @@ ship "Cool Breeze"
 		"heat dissipation" .79
 		"fuel capacity" 325
 		"cargo space" 14
-		"outfit space" 192
+		"outfit space" 211
 		"weapon capacity" 41
-		"engine capacity" 62
+		"engine capacity" 91
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -733,6 +760,7 @@ ship "Cool Breeze"
 		"Bright Cloud Shielding"
 		
 		"Type 2 Radiant Thruster"
+		"Type 2 Radiant LTC"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
 	
@@ -755,6 +783,7 @@ ship "Cool Breeze" "Cool Breeze (Sunbeam)"
 		"Bright Cloud Shielding"
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		"Type 2 Radiant Steering"
 		"Hyperdrive"
 
@@ -777,9 +806,10 @@ ship "Winter Gale"
 		"heat dissipation" .54
 		"fuel capacity" 625
 		"cargo space" 28
-		"outfit space" 478
+		"outfit space" 505
 		"weapon capacity" 171
-		"engine capacity" 120
+		"engine capacity" 151
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -797,6 +827,7 @@ ship "Winter Gale"
 		"Dark Storm Shielding"
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		"Type 4 Radiant Steering"
 		# "Type 3 Radiant Steering" # Extra steering
 		"Hyperdrive"
@@ -829,6 +860,7 @@ ship "Winter Gale" "Winter Gale (Heavy)"
 		"Dark Storm Shielding"
 		
 		"Type 3 Radiant Thruster"
+		"Type 3 Radiant LTC"
 		# "Type 1 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		# "Type 1 Radiant Steering" # Extra steering
@@ -855,6 +887,7 @@ ship "Winter Gale" "Winter Gale (Missile)"
 		"Dark Storm Shielding"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 		
@@ -891,9 +924,10 @@ ship "Deep River"
 		"heat dissipation" .4
 		"fuel capacity" 1850
 		"cargo space" 1140
-		"outfit space" 363
+		"outfit space" 375
 		"weapon capacity" 177
-		"engine capacity" 83
+		"engine capacity" 95
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -912,6 +946,7 @@ ship "Deep River"
 		"Wanderer Ramscoop"
 		
 		"Type 2 Radiant Thruster"
+		"Type 2 Radiant LTC"
 		"Type 3 Radiant Steering"
 		"Hyperdrive"
 		
@@ -991,9 +1026,10 @@ ship "Deep River Transport"
 		"heat dissipation" .39
 		"fuel capacity" 1625
 		"cargo space" 74
-		"outfit space" 321
+		"outfit space" 341
 		"weapon capacity" 114
-		"engine capacity" 83
+		"engine capacity" 95
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1010,6 +1046,7 @@ ship "Deep River Transport"
 		"Wanderer Ramscoop"
 		
 		"Type 2 Radiant Thruster"
+		"Type 2 Radiant LTC"
 		"Type 4 Radiant Steering"
 		"Hyperdrive"
 		
@@ -1063,6 +1100,7 @@ ship "Riptide"
 		"outfit space" 488
 		"weapon capacity" 98
 		"engine capacity" 186
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1080,6 +1118,7 @@ ship "Riptide"
 		"Wanderer Ramscoop"
 		
 		"Type 4 Radiant Thruster"
+		"Type 4 Radiant LTC"
 		# "Type 2 Radiant Thruster" # Extra thruster
 		"Type 4 Radiant Steering"
 		# "Type 3 Radiant Steering" # Extra steering

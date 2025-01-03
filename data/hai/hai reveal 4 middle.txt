@@ -1882,6 +1882,7 @@ ship "Centipede" "Centipede (Teeneep)"
 		Brig
 		"Fuel Pod" 3
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"Pulse Rifle" 131
 
 

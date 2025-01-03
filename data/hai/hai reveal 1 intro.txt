@@ -1054,9 +1054,10 @@ ship "Geodesic Geocoris"
 		"heat dissipation" 0.4
 		"fuel capacity" 3500
 		"cargo space" 1003
-		"outfit space" 555
+		"outfit space" 563
 		"weapon capacity" 250
 		"engine capacity" 134
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1086,6 +1087,7 @@ ship "Geodesic Geocoris"
 
 		"A525 Atomic Steering"
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		"AR120 Reverse Thruster" # Extra reverse thruster
 		Hyperdrive
 
@@ -1121,6 +1123,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 		"Quantum Keystone"
 		"Pulse Rifle" 14
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 		Hyperdrive

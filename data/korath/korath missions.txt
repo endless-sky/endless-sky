@@ -461,6 +461,7 @@ ship "Charm-Shallop" "Charm-Shallop (Distressed)"
 		"Steering (Planetary Class)"
 		"Thermal Repeater Rifle" 19
 		"Thruster (Lunar Class)"
+		"Lateral (Lunar Class)"
 		"Warder Anti-Missile"
 	gun 0 -118 "Digger Mining Beam"
 	gun -16.5 -114.5 "Digger Mining Beam"

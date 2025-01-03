@@ -719,6 +719,9 @@ outfit "Anvil-Class Engine"
 	"thrust" 22
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
+	"lateral thrust" 20
+	"lateral thrusting energy" 1.84
+	"lateral thrusting heat" 1.75
 	"turn" 554.4
 	"turning energy" 1.05
 	"turning heat" 1.1
@@ -729,6 +732,9 @@ outfit "Anvil-Class Engine"
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"lateral flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"lateral flare sound" "plasma tiny"
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
@@ -871,6 +877,70 @@ outfit "Smelter-Class Steering"
 		"frame rate" 3
 	"steering flare sound" "plasma medium"
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
+
+
+# Note on Lateral Thrusters: My initial values here are to have each set of lateral thrusters be based on the thruster of the same "rank".
+# So the tiny lateral has values equivalent to about 90% of a tiny thruster. The small lateral thruster is roughly 80% of a small thruster, etc.
+# This continues by 10% increments down to the Large lateral thrusters that are equivalent of 60% of the large thrusters.
+# Note that the Remnant do not have a huge thruster currently.
+# This percentage is applied equally to mass, outfit space, engine capacity, lateral thrust, lateral thrusting energy, and lateral thrusting heat; although an additional 20% reduction to mass, outfit space, and engine capacity was applied since, unlike the thrusters, these do not have the reverse thrust capability.
+
+outfit "Crucible-Class LTC"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 200000
+	thumbnail "outfit/small remnant thruster"
+	"lateral thruster slot" -1
+	"mass" 14
+	"outfit space" -14
+	"engine capacity" -14
+	"lateral thrust" 23
+	"lateral thrusting energy" 1.89
+	"lateral thrusting heat" 1.80
+	"slowing resistance" 0.012
+	"lateral flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"lateral flare sound" "plasma tiny"
+	description "These small but powerful lateral engines bear a superficial appearance of being classic ion thrusters, albeit very advanced ones."
+
+outfit "Forge-Class LTC"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 441000
+	thumbnail "outfit/medium remnant thruster"
+	"lateral thruster slot" -1
+	"mass" 23
+	"outfit space" -23
+	"engine capacity" -23
+	"lateral thrust" 41
+	"lateral thrusting energy" 3.52
+	"lateral thrusting heat" 3.4
+	"slowing resistance" 0.024
+	"lateral flare sprite" "effect/remnant flare/small"
+		"frame rate" 4
+	"lateral flare sound" "plasma small"
+	description "The capabilities of what are described as very advanced forms of the basic ionic lateral thrusters suggest that there is much more to these than meets the eye."
+
+outfit "Smelter-Class LTC"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 984000
+	thumbnail "outfit/large remnant thruster"
+	"lateral thruster slot" -1
+	"mass" 38
+	"outfit space" -38
+	"engine capacity" -38
+	"lateral thrust" 75 # 70%
+	"lateral thrusting energy" 6.65
+	"lateral thrusting heat" 6.72
+	"slowing resistance" 0.048
+	"lateral flare sprite" "effect/remnant flare/medium"
+		"frame rate" 5
+	"lateral flare sound" "plasma medium"
+	description "These lateral thruster components, found on many of their largest ships, demonstrates the Remnant preference for mobility and avoiding damage instead of merely absorbing it."
 
 
 

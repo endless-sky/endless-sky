@@ -12,6 +12,13 @@ Files: images/*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
+Files:
+ images/outfit/*reaction?steering*
+ images/outfit/*reaction?thruster*
+Copyright: Michael Zahniser (mzahniser@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Originally included in early versions of ES, then replaced by improved and/or retouched images after Michael Zahniser ceased to be actively involved in the project. Now re-included as repurposed imagery.
+
 Files: images/land/*
 Copyright: Various
 License: public-domain

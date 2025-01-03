@@ -27,6 +27,7 @@ ship "Kaiken"
 		"outfit space" 121
 		"weapon capacity" 35
 		"engine capacity" 45
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -44,6 +45,7 @@ ship "Kaiken"
 		"Shield Relay Limiter" 6
 		
 		"Chiisana Rift Thruster" # Extra thruster
+		"Chiisana Rift LTC"
 		"Chiisana Rift Steering"
 	
 	engine -5.5 30.5
@@ -77,9 +79,10 @@ ship "Sasumata"
 		"heat dissipation" 0.54
 		"fuel capacity" 800
 		"cargo space" 32
-		"outfit space" 397
+		"outfit space" 430
 		"weapon capacity" 122
-		"engine capacity" 126
+		"engine capacity" 141
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -105,6 +108,7 @@ ship "Sasumata"
 		"Shield Relay Limiter" 10
 		
 		"Subarashii Rift Thruster"
+		"Subarashii Rift LTC"
 		"Ookii Rift Steering"
 		"Hyperdrive"
 	
@@ -145,9 +149,10 @@ ship "Tanto"
 		"heat dissipation" 0.7
 		"fuel capacity" 625
 		"cargo space" 219
-		"outfit space" 231
+		"outfit space" 242
 		"weapon capacity" 56
-		"engine capacity" 102
+		"engine capacity" 107
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -164,6 +169,7 @@ ship "Tanto"
 		"Small Shield Relay"
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
 		# "Chiisana Rift Thruster" # Extra thruster
 		"Hyperdrive"
@@ -200,9 +206,10 @@ ship "Ararebo"
 		"heat dissipation" 0.53
 		"fuel capacity" 1250
 		"cargo space" 414
-		"outfit space" 594
+		"outfit space" 615
 		"weapon capacity" 112
 		"engine capacity" 108
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -226,6 +233,7 @@ ship "Ararebo"
 		"Nanite Enhancer" 5
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
 		"Hyperdrive"
 	
@@ -270,9 +278,10 @@ ship "Tekkan"
 		"heat dissipation" 0.75
 		"fuel capacity" 700
 		"cargo space" 21
-		"outfit space" 321
+		"outfit space" 342
 		"weapon capacity" 100
-		"engine capacity" 85
+		"engine capacity" 107
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -293,6 +302,7 @@ ship "Tekkan"
 		"Shield Relay Booster" 5
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
 		"Hyperdrive"
 	
@@ -329,9 +339,10 @@ ship "Kunai"
 		"heat dissipation" 0.66
 		"fuel capacity" 800
 		"cargo space" 28
-		"outfit space" 407
+		"outfit space" 412
 		"weapon capacity" 158
-		"engine capacity" 102
+		"engine capacity" 107
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -352,6 +363,7 @@ ship "Kunai"
 		"Small Nanite Fabricator"
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
 		# "Chiisana Rift Steering" # Extra steering
 		"Hyperdrive"
@@ -393,6 +405,7 @@ ship "Kama"
 		"outfit space" 573
 		"weapon capacity" 247
 		"engine capacity" 121
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -415,6 +428,7 @@ ship "Kama"
 		"Outfits Expansion" 2
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
 		# "Nami Rift Steering" # Extra steering
 		"Hyperdrive"
@@ -469,6 +483,7 @@ ship "Chigiriki"
 		"outfit space" 747
 		"weapon capacity" 504
 		"engine capacity" 145
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -492,6 +507,7 @@ ship "Chigiriki"
 		"Outfits Expansion" 4
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Subarashii Rift Steering"
 		"Hyperdrive"
 		

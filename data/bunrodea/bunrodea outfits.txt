@@ -377,3 +377,76 @@ outfit "Subarashii Rift Steering"
 	"turning energy" 17.1
 	"turning heat" 6.5
 	description "The largest of the rift steering systems, these engines are what allow the Bunrodea's heavy gunships to bear their many guns toward their unfortunate target."
+
+
+
+outfit "Chiisana Rift LTC"
+	category "Engines"
+	cost 130000
+	thumbnail "outfit/chiisana rift thruster"
+	"lateral thruster slot" -1
+	"mass" 9
+	"outfit space" -9
+	"engine capacity" -9
+	"lateral thrust" 10
+	"lateral thrusting energy" 1.04
+	"lateral thrusting heat" 0.59
+	"lateral flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.3
+	"lateral flare sound" "ion tiny"
+	description "While the Korath favor raw power in their engines, the Bunrodea favor efficiency, opting to make use of engines that produce less thrust for significantly less heat produced."
+
+outfit "Nami Rift LTC"
+	category "Engines"
+	cost 262000
+	thumbnail "outfit/nami rift thruster"
+	"lateral thruster slot" -1
+	"mass" 15
+	"outfit space" 15
+	"engine capacity" -15
+	"lateral thrust" 26
+	"lateral thrusting energy" 1.9
+	"lateral thrusting heat" 1.1
+	"lateral flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.6
+	"lateral flare sound" "ion small"
+	description "Although rift engines are extremely heat efficient, their energy requirement is rather high compared to the thrust they produce, even next to terribly inefficient Korath engines."
+
+outfit "Ookii Rift LTC"
+	category "Engines"
+	cost 512000
+	thumbnail "outfit/ookii rift thruster"
+	"lateral thruster slot" -1
+	"mass" 22
+	"outfit space" -22
+	"engine capacity" -22
+	"lateral thrust" 26
+	"lateral thrusting energy" 3.1
+	"lateral thrusting heat" 1.8
+	"lateral flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+		"scale" 0.8
+	"lateral flare sound" "ion medium"
+	description "Even though the energy drawn per unit thrust of rift engines is poorer than that of Korath engines, the overall energy requirement of rift engines is still far lesser by comparison."
+
+outfit "Subarashii Rift LTC"
+	category "Engines"
+	cost 1004000
+	thumbnail "outfit/subarashii rift thruster"
+	"lateral thruster slot" -1
+	"mass" 33
+	"outfit space" -33
+	"engine capacity" -33
+	"lateral thrust" 42
+	"lateral thrusting energy" 5.2
+	"lateral thrusting heat" 3.0
+	"lateral flare sprite" "effect/bunrodea flare/large"
+		"frame rate" 1
+		"rewind"
+	"lateral flare sound" "ion large"
+	description "Given the lower size and thrust of rift engines, Bunrodean ships aren't well known for their pursuit capabilities. But there are rumors among some Bunrodea of an ancient cache of engines, more powerful than even those of the Korath, that would allow any ship to zip across the stars like a comet and chase down any potential target."

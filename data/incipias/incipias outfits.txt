@@ -254,8 +254,24 @@ outfit "MH Blue-Class Thruster"
 	"thrust" 24
 	"thrusting energy" 2
 	"thrusting heat" 2.5
-	"thrusting slot" -1
+	"thruster slot" -1
 	description "In Incipian culture, blue is the weakest color. A thruster labeled as blue does not bode well for the speed of any ship using it."
+
+outfit "MH Blue-Class LTC"
+	category "Engines"
+	thumbnail "outfit/mh blue-class thruster"
+	cost 32000
+	mass 21
+	"outfit space" -21
+	"engine capacity" -21
+	"lateral flare sprite" "effect/incipias flare/metallic hydrogen small"
+		"frame rate" 24
+	"lateral flare sound" "incip plasma small"
+	"lateral thrust" 20.
+	"lateral thrusting energy" 1.6
+	"lateral thrusting heat" 2.
+	"lateral thruster slot" -1
+	description "In Incipian culture, blue is the weakest color. A lateral thruster component (LTC) labeled as blue does not bode well for the speed of any ship using it."
 
 outfit "MH Blue-Class Steering"
 	category "Engines"
@@ -283,8 +299,24 @@ outfit "MH Green-Class Thruster"
 	"thrust" 30
 	"thrusting energy" 2.2
 	"thrusting heat" 2.8
-	"thrusting slot" -1
+	"thruster slot" -1
 	description "Green is a color of balance for the Incipias. This thruster balances the need for space with the need for powerful engines."
+
+outfit "MH Green-Class LTC"
+	category "Engines"
+	thumbnail "outfit/mh green-class thruster"
+	cost 44000
+	mass 22
+	"outfit space" -22
+	"engine capacity" -22
+	"lateral flare sprite" "effect/incipias flare/metallic hydrogen medium"
+		"frame rate" 24
+	"lateral flare sound" "incip plasma med"
+	"lateral thrust" 22.
+	"lateral thrusting energy" 1.6
+	"lateral thrusting heat" 2.
+	"lateral thruster slot" -1
+	description "Green is a color of balance for the Incipias. This lateral thruster balances the need for space with the need for powerful engines."
 
 outfit "MH Green-Class Steering"
 	category "Engines"
@@ -312,8 +344,24 @@ outfit "MH Red-Class Thruster"
 	"thrust" 48
 	"thrusting energy" 5
 	"thrusting heat" 10
-	"thrusting slot" -1
+	"thruster slot" -1
 	description "The abundance of metallic hydrogen on the Incipias home planet has led to the development of engines that utilize this potent source of energy, allowing for more efficient thrusters than what might be expected given the Incipias' short history of spaceflight."
+
+outfit "MH Red-Class LTC"
+	category "Engines"
+	thumbnail "outfit/mh red-class thruster"
+	cost 50000
+	mass 24
+	"outfit space" -24
+	"engine capacity" -24
+	"lateral flare sprite" "effect/incipias flare/metallic hydrogen large"
+		"frame rate" 24
+	"lateral flare sound" "incip plasma large"
+	"lateral thrust" 29
+	"lateral thrusting energy" 3.
+	"lateral thrusting heat" 6.
+	"lateral thruster slot" -1
+	description "The abundance of metallic hydrogen on the Incipias home planet has led to the development of engines that utilize this potent source of energy, allowing for more efficient lateral thrusters than what might be expected given the Incipias' short history of spaceflight."
 
 outfit "MH Red-Class Steering"
 	category "Engines"
@@ -327,6 +375,7 @@ outfit "MH Red-Class Steering"
 	"turning heat" 12
 	"steering slot" -1
 	description "Even the Incipias realize that ships need to turn towards their target to be able to shoot it. This steering is specifically designed for combat, but captains with a lot of money find it very useful for mining."
+
 
 
 # Hand to Hand

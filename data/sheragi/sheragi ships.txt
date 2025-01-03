@@ -30,6 +30,7 @@ ship "Emerald Sword"
 		"outfit space" 1190
 		"weapon capacity" 512
 		"engine capacity" 230
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -183,6 +184,7 @@ ship "Black Diamond"
 		"outfit space" 152
 		"weapon capacity" 35
 		"engine capacity" 38
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1

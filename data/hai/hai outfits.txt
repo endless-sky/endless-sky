@@ -631,6 +631,12 @@ outfit `"Baellie" Atomic Engines`
 	"thrust" 16
 	"thrusting energy" .87
 	"thrusting heat" 1.7
+	"lateral thrust" 15 # 90%
+	"lateral thrusting energy" .78
+	"lateral thrusting heat" 1.53
+	"lateral flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"lateral flare sound" "atomic tiny"
 	"turn" 366
 	"turning energy" .64
 	"turning heat" 1.28
@@ -761,6 +767,88 @@ outfit `"Bufaer" Atomic Thruster`
 	"reverse flare sprite" "effect/atomic flare/tiny"
 		"frame rate" 14
 	"reverse flare sound" "atomic tiny"
+	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
+
+# Lateral thrusters. Using 90% for tiny, and 50% for huge, 10% steps in between.
+
+outfit `"Basrem" Atomic LTC`
+	category "Engines"
+	"cost" 150000
+	thumbnail "outfit/tiny atomic thruster hai"
+	"lateral thruster slot" -1
+	"mass" 16
+	"outfit space" -16
+	"engine capacity" -16
+	"lateral thrust" 21 # 90%
+	"lateral thrusting energy" 1.26
+	"lateral thrusting heat" 2.52
+	"lateral flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"lateral flare sound" "atomic tiny"
+	description "Unbeknownst to the scientists of the Deep, the Hai have been using atomic engine technology for many millennia. Hai atomic engines are still much more energy hungry than other engines, but exhibit greater efficiency than their human counterparts."
+
+outfit `"Benga" Atomic LTC`
+	category "Engines"
+	"cost" 300000
+	thumbnail "outfit/small atomic thruster hai"
+	"lateral thruster slot" -1
+	"mass" 22
+	"outfit space" -22
+	"engine capacity" -22
+	"lateral thrust" 30
+	"lateral thrusting energy" 2.0
+	"lateral thrusting heat" 6.84
+	"lateral flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"lateral flare sound" "atomic tiny"
+	description "Unlike human space where atomic engines are a rare sight to see and a luxury to have, many years of being confined to a relatively small pocket of the Galaxy has allowed all Hai ships to be outfitted with atomic engines."
+
+outfit `"Biroo" Atomic LTC`
+	category "Engines"
+	"cost" 610000
+	thumbnail "outfit/medium atomic thruster hai"
+	"lateral thruster slot" -1
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"lateral thrust" 44
+	"lateral thrusting energy" 2.8
+	"lateral thrusting heat" 5.74
+	"lateral flare sprite" "effect/atomic flare/small"
+		"frame rate" 13
+	"lateral flare sound" "atomic small"
+	description "This lateral thruster is the standard lateral thruster on most Hai light warships, providing enough lateral thrust to make them usable in combat, but it is not quite big enough to suffice for something as large as a Hai Shield Beetle."
+
+outfit `"Bondir" Atomic LTC`
+	category "Engines"
+	"cost" 1100000
+	thumbnail "outfit/large atomic thruster hai"
+	"lateral thruster slot" -1
+	"mass" 37
+	"outfit space" -37
+	"engine capacity" -37
+	"lateral thrust" 57
+	"lateral thrusting energy" 3.66
+	"lateral thrusting heat" 7.62
+	"lateral flare sprite" "effect/atomic flare/medium"
+		"frame rate" 12
+	"lateral flare sound" "atomic medium"
+	description "While Deep Sky was busy developing the combat atomic engines, the Hai were working on making theirs even better. Because of this, Hai atomic engines are highly efficient compared to their human variants, requiring less energy to fire and producing less heat in the process."
+
+outfit `"Bufaer" Atomic LTC`
+	category "Engines"
+	"cost" 2400000
+	thumbnail "outfit/huge atomic thruster hai"
+	"lateral thruster slot" -1
+	"mass" 52
+	"outfit space" -52
+	"engine capacity" -52
+	"lateral thrust" 82
+	"lateral thrusting energy" 5.2
+	"lateral thrusting heat" 11.3
+	"lateral flare sprite" "effect/atomic flare/large"
+		"frame rate" 11
+	"lateral flare sound" "atomic large"
 	description "These thrusters are the largest of the Hai atomic thrusters, and one of the most powerful thrusters in known space. Beat out by only the largest human atomic thrusters, these massive engines provide enough thrust to push around even the largest of ships as if they were fighters."
 
 outfit `"Basrem" Reverse Thruster`

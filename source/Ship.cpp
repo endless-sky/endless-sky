@@ -1020,6 +1020,9 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.ReverseFlareSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("reverse flare sound", it.first->Name());
+			for(const auto &it : baseAttributes.LateralFlareSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("lateral flare sound", it.first->Name());
 			for(const auto &it : baseAttributes.SteeringFlareSprites())
 				for(int i = 0; i < it.second; ++i)
 					it.first.SaveSprite(out, "steering flare sprite");
@@ -1354,6 +1357,7 @@ vector<string> Ship::FlightCheck() const
 	double fuel = fuelCapacity + fuelChange;
 	double thrust = attributes.Get("thrust");
 	double reverseThrust = attributes.Get("reverse thrust");
+	double lateralThrust = attributes.Get("lateral thrust");
 	double afterburner = attributes.Get("afterburner thrust");
 	double thrustEnergy = attributes.Get("thrusting energy");
 	double turn = attributes.Get("turn");
@@ -1369,7 +1373,7 @@ vector<string> Ship::FlightCheck() const
 		checks.emplace_back("no energy!");
 	else if((energy - consuming <= 0.) && (fuel <= 0.))
 		checks.emplace_back("no fuel!");
-	else if(!thrust && !reverseThrust && !afterburner)
+	else if(!thrust && !reverseThrust && !lateralThrust && !afterburner)
 		checks.emplace_back("no thruster!");
 	else if(!turn)
 		checks.emplace_back("no steering!");
@@ -3256,8 +3260,9 @@ double Ship::InertialMass() const
 
 double Ship::TurnRate() const
 {
+	double turnReductionRatio = 1. - attributes.Get("turn reduction ratio");
 	return attributes.Get("turn") / InertialMass()
-		* (1. + attributes.Get("turn multiplier"));
+		* (1. + attributes.Get("turn multiplier")) * turnReductionRatio;
 }
 
 
@@ -3272,8 +3277,9 @@ double Ship::TrueTurnRate() const
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
+	double thrustReductionRatio = 1 - attributes.Get("thrust reduction ratio");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
-		* (1. + attributes.Get("acceleration multiplier"));
+		* (1. + attributes.Get("acceleration multiplier")) * thrustReductionRatio;
 }
 
 
@@ -4885,9 +4891,13 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 {
 	isUsingAfterburner = false;
 
+	double turnReductionRatio = 0.;
+	double turnCombinedFactors = 0.;
+	turnReductionRatio = 1. - attributes.Get("turn reduction ratio");
 	double mass = InertialMass();
 	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
+	turnCombinedFactors = slowMultiplier * turnReductionRatio;
 
 	if(isDisabled)
 		velocity *= 1. - dragForce;
@@ -4939,7 +4949,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				slowness += scale * attributes.Get("turning slowing");
 				disruption += scale * attributes.Get("turning disruption");
 
-				Turn(commands.Turn() * TurnRate() * slowMultiplier);
+				Turn(commands.Turn() * TurnRate() * turnCombinedFactors);
 			}
 		}
 		double thrustCommand = commands.Thrust();
@@ -4973,7 +4983,16 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			if(cost > 0. && heat < cost * fabs(thrustCommand))
 				thrustCommand = copysign(heat / cost, thrustCommand);
 
-			thrustMagnitude = thrustCommand * slowMultiplier;
+			// The thrust reduction ratio is a percentage-as-decimal value that indicates how much the thrust will be reduced.
+			// It is intended to be paired with the lateral thrust ratio to create outfits that split a thruster's propulsion
+			// between pointing to the rear and to the sides. Ex. 50% to forward thrust, 50% to lateral thrust.
+			// The two are separate values, however, to give content creators full control. As such, for instance, it is fully
+			// acceptable to have lateral thrust ratio of 0.4 (40%) and a thrust reduction ratio of 0.5 (50%) which would
+			// be a situation where 50% of the thrust is completely diverted into lateral thrust, but with a 10% inefficiency.
+			double thrustReductionRatio = 0.;
+			thrustReductionRatio = 1. - attributes.Get("thrust reduction ratio");
+
+			thrustMagnitude = thrustCommand * slowMultiplier * thrustReductionRatio;
 
 			if(thrustCommand)
 			{
@@ -4982,6 +5001,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
@@ -5006,28 +5026,42 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			}
 		}
 		// Lateral Thrust functionality.
-		// This pulls "lateral thrust ratio" from the ship definition,
-		// and if there isn't one, it uses the default value of 0.25,
-		// which is listed as a gamerule value.
+		// This pulls "lateral thrust" from the ship definition,
+		// This also pulls the lateral thrust ratio, if one is present, as well as the thrust reduction ratio.
 		double latThrustCommand = commands.LateralThrust();
 		double latThrust = 0.;
-		double lateralThrustValue = 0.;
+		double latRatioThrust = 0.;
+		double lateralRatioThrust = 0.;
+		double lateralRatioEnergy = 0.;
+		double lateralRatioHeat = 0.;
+		latRatioThrust = attributes.Get("lateral thrust ratio");
+
 		if(attributes.Get("lateral thrust ratio"))
-			lateralThrustValue = attributes.Get("lateral thrust ratio");
-		else if(!attributes.Get("lateral thrust ratio"))
 		{
-			// lateralThrustValue = GameData::GetGamerules().DefaultLateralThrustRatio();
-			double tempLateralThrustRatio = (3000 - mass) / 3500;
-			double defaultLateralThrustRatio = GameData::GetGamerules().DefaultLateralThrustRatio();
-			if(tempLateralThrustRatio > defaultLateralThrustRatio)
-				lateralThrustValue = tempLateralThrustRatio;
-			else lateralThrustValue = defaultLateralThrustRatio;
+			lateralRatioThrust = latRatioThrust * attributes.Get("thrust");
+			lateralRatioEnergy = latRatioThrust * attributes.Get("thrusting energy");
+			lateralRatioHeat = latRatioThrust * attributes.Get("thrusting heat");
+		}
+
+		// This is the ratio pulled from the ship.
+		double latRatioTurn = 0.;
+		// This is the amount of lateral thrust derived from the turn attribute due to the ratio.
+		double lateralRatioTurn = 0.;
+		// These are the heat and energy costs derived from the turn attribute due to the ratio.
+		double latRatioTurnEnergy = 0.;
+		double latRatioTurnHeat = 0.;
+		latRatioTurn = attributes.Get("lateral turn ratio");
+		if(attributes.Get("lateral turn ratio"))
+		{
+			lateralRatioTurn = latRatioTurn * (attributes.Get("turn") / 25);
+			latRatioTurnEnergy = latRatioTurn * attributes.Get("turn energy");
+			latRatioTurnHeat = latRatioTurn * attributes.Get("turn heat");
 		}
 
 		if(latThrustCommand)
 		{
 			// Check if we are able to apply this thrust.
-			double cost = attributes.Get("thrusting energy") * lateralThrustValue;
+			double cost = attributes.Get("lateral thrusting energy") + lateralRatioEnergy + latRatioTurnEnergy;
 			if(energy < cost)
 				latThrustCommand *= energy / cost;
 
@@ -5036,12 +5070,12 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				// These area used for lateral thrusting flares.
 				isLatThrusting = true;
 				lateralDirection = latThrustCommand;
-				latThrust = attributes.Get("thrust") * lateralThrustValue;
+				latThrust = attributes.Get("lateral thrust") + lateralRatioThrust + lateralRatioTurn;
 				if(latThrust)
 				{
 					double scale = fabs(latThrustCommand);
 					energy -= scale * cost;
-					heat += scale * attributes.Get("thrusting heat") * lateralThrustValue;
+					heat += scale * (attributes.Get("lateral thrusting heat") + lateralRatioHeat + latRatioTurnHeat);
 					Point lateral(-angle.Unit().Y(), angle.Unit().X());
 					acceleration += lateral * (latThrustCommand * latThrust / mass);
 				}

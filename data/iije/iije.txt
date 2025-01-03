@@ -34,6 +34,7 @@ ship "Jje"
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -45,7 +46,9 @@ ship "Jje"
 		"energy generation" 4
 		
 		"thrust" 12
+		"lateral thrust" 10
 		"flare sound" "jje"
+		"lateral flare sound" "jje"
 		"turn" 90
 		"steering flare sound" "jje"
 		
@@ -90,6 +93,7 @@ ship "Ayym"
 		"outfit space" 10
 		"weapon capacity" 10
 		"engine capacity" 10
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -102,6 +106,7 @@ ship "Ayym"
 		"inscrutable" 1
 		
 		"thrust" 21
+		"lateral thrust" 18
 		"flare sound" "ayym"
 		"turn" 120
 		"steering flare sound" "ayym"

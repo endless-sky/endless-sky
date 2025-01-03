@@ -71,6 +71,7 @@ outfitter "Hai Basics"
 	"Hai Corundum Regenerator"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	"Local Map"
 	"Quantum Keystone"
@@ -101,12 +102,15 @@ outfitter "Hai Intermediate"
 	"Hai Corundum Regenerator"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
+	`"Benga" Atomic LTC`
 	`"Benga" Atomic Steering`
 	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic LTC`
 	`"Biroo" Atomic Steering`
 	"Local Map"
 	"Quantum Keystone"
@@ -145,16 +149,21 @@ outfitter "Hai Advanced"
 	"Hai Diamond Regenerator"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
+	`"Benga" Atomic LTC`
 	`"Benga" Atomic Steering`
 	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic LTC`
 	`"Biroo" Atomic Steering`
 	`"Bondir" Atomic Thruster`
+	`"Bondir" Atomic LTC`
 	`"Bondir" Atomic Steering`
 	`"Bufaer" Atomic Thruster`
+	`"Bufaer" Atomic LTC`
 	`"Bufaer" Atomic Steering`
 	"Luxury Accommodations"
 	"Local Map"
@@ -201,6 +210,7 @@ outfitter "Unfettered Basics"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	"Value Detector"
 	"Local Map"

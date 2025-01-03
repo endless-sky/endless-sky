@@ -28,9 +28,11 @@ ship "Arach Courier"
 		"heat dissipation" .6
 		"fuel capacity" 250
 		"cargo space" 94
-		"outfit space" 148
+		"outfit space" 157
 		"weapon capacity" 39
-		"engine capacity" 40
+		"engine capacity" 60
+		"lateral thruster slot" 1.5
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -45,6 +47,8 @@ ship "Arach Courier"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -70,6 +74,7 @@ ship "Arach Courier" "Arach Courier (Miner)"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
 
@@ -94,7 +99,8 @@ ship "Arach Freighter"
 		"cargo space" 372
 		"outfit space" 349
 		"weapon capacity" 132
-		"engine capacity" 92
+		"engine capacity" 135
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -110,8 +116,10 @@ ship "Arach Freighter"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 2
@@ -142,9 +150,11 @@ ship "Arach Freighter" "Arach Freighter (Miner)"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -170,7 +180,8 @@ ship "Arach Hulk"
 		"cargo space" 688
 		"outfit space" 520
 		"weapon capacity" 208
-		"engine capacity" 148
+		"engine capacity" 224
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -187,8 +198,10 @@ ship "Arach Hulk"
 		"Large Repair Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
@@ -224,9 +237,11 @@ ship "Arach Hulk" "Arach Hulk (Miner)"
 		"Large Repair Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -250,9 +265,10 @@ ship "Arach Spindle"
 		"heat dissipation" .36
 		"fuel capacity" 775
 		"cargo space" 392
-		"outfit space" 434
+		"outfit space" 503
 		"weapon capacity" 138
-		"engine capacity" 148
+		"engine capacity" 217
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -270,8 +286,10 @@ ship "Arach Spindle"
 		"Cooling Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 1
@@ -305,9 +323,11 @@ ship "Arach Spindle" "Arach Spindle (Miner)"
 		"Small Repair Module" 3
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -322,7 +342,9 @@ ship "Arach Spindle" "Arach Spindle (Plasma)"
 		"Large Repair Module"
 		"Cooling Module" 5
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Small Battery Module"
 		"Large Battery Module"
@@ -344,7 +366,9 @@ ship "Arach Spindle" "Arach Spindle (Jump Drive)"
 		"Fuel Module" 4
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Jump Drive"
@@ -370,7 +394,8 @@ ship "Arach Transport"
 		"cargo space" 228
 		"outfit space" 281
 		"weapon capacity" 96
-		"engine capacity" 70
+		"engine capacity" 96
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -386,6 +411,7 @@ ship "Arach Transport"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
@@ -416,6 +442,7 @@ ship "Arach Transport" "Arach Transport (Miner)"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
@@ -442,9 +469,10 @@ ship "Heliarch Breacher"
 		"scramble protection" .1
 		"fuel capacity" 775
 		"cargo space" 13
-		"outfit space" 372
+		"outfit space" 435
 		"weapon capacity" 112
-		"engine capacity" 106
+		"engine capacity" 160
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -469,6 +497,7 @@ ship "Heliarch Breacher"
 		"Enforcer Confrontation Gear" 6
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
 	
@@ -504,7 +533,9 @@ ship "Heliarch Breacher" "Heliarch Breacher (Ions)"
 		"Enforcer Confrontation Gear" 7
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Hyperdrive"
 
@@ -525,6 +556,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Enforcer Confrontation Gear" 7
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -545,7 +577,9 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		"Enforcer Confrontation Gear" 8
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Hyperdrive"
 
@@ -570,9 +604,10 @@ ship "Heliarch Hunter"
 		"scramble protection" .2
 		"fuel capacity" 2350
 		"cargo space" 27
-		"outfit space" 552
-		"weapon capacity" 201
-		"engine capacity" 141
+		"outfit space" 639
+		"weapon capacity" 271
+		"engine capacity" 213
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -597,7 +632,9 @@ ship "Heliarch Hunter"
 		"Enforcer Confrontation Gear" 13
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module"
 		"Small Steering Module" 3
 		"Scram Drive"
@@ -639,7 +676,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
 		"Enforcer Confrontation Gear" 35
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 4
 		"Scram Drive"
@@ -671,7 +710,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Enforcer Confrontation Gear" 14
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Scram Drive"
@@ -703,7 +744,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Enforcer Confrontation Gear" 16
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Scram Drive"
@@ -726,7 +769,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 		"Enforcer Confrontation Gear" 17
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 2 # Extra thruster
+		"Large Lateral Thrust Module" 2
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Scram Drive"
 
@@ -748,7 +793,9 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Enforcer Confrontation Gear" 18
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Scram Drive"
@@ -774,9 +821,10 @@ ship "Heliarch Interdictor"
 		"scramble protection" .2
 		"fuel capacity" 1400
 		"cargo space" 79
-		"outfit space" 544
+		"outfit space" 630
 		"weapon capacity" 179
-		"engine capacity" 135
+		"engine capacity" 217
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -802,6 +850,7 @@ ship "Heliarch Interdictor"
 		"Enforcer Confrontation Gear" 30
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -841,7 +890,9 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Enforcer Confrontation Gear" 27
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -864,7 +915,9 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
 		"Enforcer Confrontation Gear" 63
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -887,6 +940,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 		"Enforcer Confrontation Gear" 33
 
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -908,6 +962,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 		"Enforcer Confrontation Gear" 28
 
 		"Large Thrust Module" 3
+		"Large Lateral Thrust Module" 3
 		# "Small Thrust Module" # Extra thruster
 		"Large Steering Module"
 		"Hyperdrive"
@@ -932,7 +987,9 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 		"Enforcer Confrontation Gear" 29
 
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -958,9 +1015,10 @@ ship "Heliarch Judicator"
 		"scramble protection" .2
 		"fuel capacity" 1525
 		"cargo space" 136
-		"outfit space" 524
+		"outfit space" 601
 		"weapon capacity" 164
-		"engine capacity" 114
+		"engine capacity" 192
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -985,8 +1043,10 @@ ship "Heliarch Judicator"
 		"Enforcer Confrontation Gear" 49
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Scram Drive"
 	
@@ -1038,6 +1098,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Attractor)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Scram Drive"
 
@@ -1059,7 +1120,9 @@ ship "Heliarch Judicator" "Heliarch Judicator (Ions)"
 		"Enforcer Confrontation Gear" 31
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Large Steering Module" 2
 		"Scram Drive"
 
@@ -1081,7 +1144,9 @@ ship "Heliarch Judicator" "Heliarch Judicator (Missile)"
 		"Enforcer Confrontation Gear" 36
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 2  # Extra thruster
+		"Large Lateral Thrust Module" 2
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2  # Extra thruster
 		"Small Steering Module" 3
 		"Scram Drive"
 
@@ -1104,7 +1169,9 @@ ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Large Steering Module" 2
 		"Scram Drive"
 
@@ -1127,7 +1194,9 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Enforcer Confrontation Gear" 33
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Scram Drive"
@@ -1153,9 +1222,10 @@ ship "Heliarch Neutralizer"
 		"scramble protection" .1
 		"fuel capacity" 1050
 		"cargo space" 36
-		"outfit space" 367
+		"outfit space" 438
 		"weapon capacity" 72
-		"engine capacity" 102
+		"engine capacity" 169
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -1177,7 +1247,9 @@ ship "Heliarch Neutralizer"
 		"Enforcer Confrontation Gear" 11
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1216,7 +1288,9 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		"Enforcer Confrontation Gear" 12
 
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module"
 		"Hyperdrive"
 	
@@ -1244,7 +1318,9 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Enforcer Confrontation Gear" 10
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1264,7 +1340,9 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Enforcer Confrontation Gear" 9
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Hyperdrive"
 
@@ -1289,9 +1367,10 @@ ship "Heliarch Punisher"
 		"scramble protection" .3
 		"fuel capacity" 2150
 		"cargo space" 94
-		"outfit space" 885
+		"outfit space" 973
 		"weapon capacity" 352
-		"engine capacity" 187
+		"engine capacity" 256
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -1316,7 +1395,9 @@ ship "Heliarch Punisher"
 		"Enforcer Confrontation Gear" 44
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
@@ -1366,6 +1447,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 		"Enforcer Confrontation Gear" 113
 		
 		"Large Thrust Module" 3
+		"Large Lateral Thrust Module" 3
 		# "Small Thrust Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Small Steering Module" 2 # Extra steering
@@ -1396,7 +1478,9 @@ ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
 		"Enforcer Confrontation Gear" 150
 	
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Jump Drive"
@@ -1421,7 +1505,9 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 2 # Extra thruster
+		"Large Lateral Thrust Module" 2
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1461,6 +1547,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Enforcer Confrontation Gear" 48
 
 		"Large Thrust Module" 3
+		"Large Lateral Thrust Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
@@ -1483,6 +1570,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Enforcer Confrontation Gear" 40
 		
 		"Large Thrust Module" 3 # Extra thrust
+		"Large Lateral Thrust Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1509,6 +1597,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 		"Enforcer Confrontation Gear" 40
 
 		"Large Thrust Module" 3 # Extra thruster
+		"Large Lateral Thrust Module" 3
 		# "Small Thrust Module" # Extra thruster
 		"Large Steering Module" 2
 		"Hyperdrive"
@@ -1531,7 +1620,9 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Enforcer Confrontation Gear" 45
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 3 # Extra steering
 		# "Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
@@ -1552,9 +1643,10 @@ ship "Heliarch Pursuer"
 		"mass" 31
 		"drag" 0.8
 		"heat dissipation" 0.99
-		"outfit space" 105
+		"outfit space" 118
 		"weapon capacity" 19
-		"engine capacity" 36
+		"engine capacity" 46
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -1574,6 +1666,7 @@ ship "Heliarch Pursuer"
 		
 		"Small Steering Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 	
 	engine 0 34.5
 	engine 7 33.5
@@ -1598,6 +1691,7 @@ ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
 
 
@@ -1617,9 +1711,10 @@ ship "Heliarch Rover"
 		"mass" 37
 		"drag" 1.19
 		"heat dissipation" .96
-		"outfit space" 125
+		"outfit space" 139
 		"weapon capacity" 24
-		"engine capacity" 32
+		"engine capacity" 46
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -1638,6 +1733,7 @@ ship "Heliarch Rover"
 		"Small Repair Module" 3
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
 	
 	engine 7 28
@@ -1663,6 +1759,7 @@ ship "Heliarch Rover" "Heliarch Rover (Ions)"
 		"Large Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
 
 
@@ -1691,6 +1788,9 @@ ship "Heliarch Stalker"
 		"thrust" 4
 		"thrusting energy" 1.7
 		"thrusting heat" 11
+		"lateral thrust" 3
+		"lateral thrusting energy" 1.3
+		"lateral thrusting heat" 8.3
 		"turn" 178.8
 		"turning energy" 0.26
 		"turning heat" 1.8
@@ -1747,9 +1847,10 @@ ship "Kimek Briar"
 		"heat dissipation" .6
 		"fuel capacity" 650
 		"cargo space" 23
-		"outfit space" 245
+		"outfit space" 247
 		"weapon capacity" 89
-		"engine capacity" 60
+		"engine capacity" 89
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -1764,6 +1865,7 @@ ship "Kimek Briar"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
@@ -1790,6 +1892,7 @@ ship "Kimek Briar" "Kimek Briar (Miner)"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
@@ -1815,7 +1918,8 @@ ship "Kimek Spire"
 		"cargo space" 70
 		"outfit space" 489
 		"weapon capacity" 256
-		"engine capacity" 129
+		"engine capacity" 185
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -1832,6 +1936,7 @@ ship "Kimek Spire"
 		"Small Shield Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
@@ -1867,6 +1972,7 @@ ship "Kimek Spire" "Kimek Spire (Miner)"
 		"Small Shield Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
@@ -1890,9 +1996,10 @@ ship "Kimek Thistle"
 		"heat dissipation" .5
 		"fuel capacity" 725
 		"cargo space" 32
-		"outfit space" 321
+		"outfit space" 366
 		"weapon capacity" 118
-		"engine capacity" 87
+		"engine capacity" 128
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -1907,8 +2014,10 @@ ship "Kimek Thistle"
 		"Small Shield Module" 3
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
@@ -1943,9 +2052,11 @@ ship "Kimek Thistle" "Kimek Thistle (Miner)"
 		"Small Shield Module" 3
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1958,8 +2069,10 @@ ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
 		"Small Repair Module" 2
 		"Cooling Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Battery Module"
 		"Large Steering Module"
 		"Heavy Anti-Missile Turret"
@@ -1985,9 +2098,10 @@ ship "Kimek Thorn"
 		"heat dissipation" .77
 		"fuel capacity" 450
 		"cargo space" 13
-		"outfit space" 133
+		"outfit space" 145
 		"weapon capacity" 40
-		"engine capacity" 38
+		"engine capacity" 46
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -2002,6 +2116,7 @@ ship "Kimek Thorn"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -2027,6 +2142,7 @@ ship "Kimek Thorn" "Kimek Thorn (Miner)"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
 
@@ -2051,7 +2167,8 @@ ship "Saryd Runabout"
 		"cargo space" 46
 		"outfit space" 172
 		"weapon capacity" 44
-		"engine capacity" 42
+		"engine capacity" 53
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -2066,6 +2183,7 @@ ship "Saryd Runabout"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
@@ -2090,6 +2208,7 @@ ship "Saryd Runabout" "Saryd Runabout (Miner)"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
 
@@ -2111,9 +2230,10 @@ ship "Saryd Sojourner"
 		"heat dissipation" .33
 		"fuel capacity" 2475
 		"cargo space" 312
-		"outfit space" 568
+		"outfit space" 636
 		"weapon capacity" 202
-		"engine capacity" 156
+		"engine capacity" 224
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -2130,8 +2250,10 @@ ship "Saryd Sojourner"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
-		"Small Thrust Module" 2 # Extra thruster
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Small Reverse Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Small Steering Module"
@@ -2169,9 +2291,11 @@ ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
-		"Small Thrust Module" 2 # Extra thruster
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Small Reverse Module" 2 # Extra reverse thruster
 		"Small Steering Module"
 		"Hyperdrive"
@@ -2186,8 +2310,10 @@ ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
 		"Small Battery Module"
 		"Large Battery Module" 2
 		"Cooling Module" 3
-		"Small Thrust Module" 2 # Extra thruster
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Steering Module" 2
 		"Large Steering Module" 2
 		"Overclocked Repair Module"
@@ -2214,7 +2340,8 @@ ship "Saryd Traveler"
 		"cargo space" 164
 		"outfit space" 466
 		"weapon capacity" 177
-		"engine capacity" 79
+		"engine capacity" 112
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -2232,8 +2359,10 @@ ship "Saryd Traveler"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Small Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
@@ -2267,9 +2396,11 @@ ship "Saryd Traveler" "Saryd Traveler (Miner)"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Small Reverse Module"
 		"Small Steering Module"
 		"Hyperdrive"
@@ -2295,7 +2426,8 @@ ship "Saryd Visitor"
 		"cargo space" 108
 		"outfit space" 320
 		"weapon capacity" 90
-		"engine capacity" 57
+		"engine capacity" 73
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1
@@ -2311,6 +2443,7 @@ ship "Saryd Visitor"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Small Reverse Module" 3
 		"Large Steering Module"
 		"Hyperdrive"
@@ -2341,5 +2474,6 @@ ship "Saryd Visitor" "Saryd Visitor (Miner)"
 		
 		"Large Steering Module"
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Small Reverse Module" 3
 		"Hyperdrive"

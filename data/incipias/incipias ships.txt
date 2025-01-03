@@ -29,9 +29,10 @@ ship "Venta"
 		"drag" 10.2
 		"heat dissipation" .42
 		"cargo space" 20
-		"outfit space" 552
+		"outfit space" 566
 		"weapon capacity" 240
 		"engine capacity" 130
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -53,6 +54,7 @@ ship "Venta"
 		"Cloud Piercer" 40
 
 		"MH Red-Class Thruster"
+		"MH Red-Class LTC"
 		"MH Red-Class Steering"
 
 	engine -90.5 42
@@ -97,7 +99,8 @@ ship "Nimbus"
 		"cargo space" 75
 		"outfit space" 450
 		"weapon capacity" 120
-		"engine capacity" 85
+		"engine capacity" 106
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -116,6 +119,7 @@ ship "Nimbus"
 		"Cloud Piercer" 20
 
 		"MH Red-Class Thruster"
+		"MH Red-Class LTC"
 		"MH Red-Class Steering"
 
 	engine 0 120
@@ -140,6 +144,7 @@ ship "Nimbus" "Nimbus (Civilian)"
 		"Metallic Hydrogen Cell"
 
 		"MH Red-Class Thruster"
+		"MH Red-Class LTC"
 		"MH Red-Class Steering"
 
 ship "Nimbus" "Nimbus (Mining)"
@@ -151,6 +156,7 @@ ship "Nimbus" "Nimbus (Mining)"
 		"Cloud Piercer" 20
 
 		"MH Red-Class Thruster"
+		"MH Red-Class LTC"
 		"MH Red-Class Steering"
 
 ship "Nimbo Stratus"
@@ -171,7 +177,8 @@ ship "Nimbo Stratus"
 		"cargo space" 50
 		"outfit space" 270
 		"weapon capacity" 50
-		"engine capacity" 60
+		"engine capacity" 72
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -188,6 +195,7 @@ ship "Nimbo Stratus"
 		"Plasma Discharger" 2
 
 		"MH Blue-Class Thruster"
+		"MH Blue-Class LTC"
 		"MH Blue-Class Steering"
 
 	gun -13 -48.5
@@ -214,8 +222,9 @@ ship "Nimbo Cirrus"
 		"drag" 8.7
 		"heat dissipation" .6
 		"cargo space" 200
-		"outfit space" 160
-		"engine capacity" 60
+		"outfit space" 162
+		"engine capacity" 82
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -231,6 +240,7 @@ ship "Nimbo Cirrus"
 		"Metallic Hydrogen Cell"
 
 		"MH Green-Class Thruster"
+		"MH Green-Class LTC"
 		"MH Green-Class Steering"
 
 	engine -32 80
@@ -257,7 +267,8 @@ ship "Gero"
 		"heat dissipation" .58
 		"cargo space" 20
 		"outfit space" 158
-		"engine capacity" 54
+		"engine capacity" 72
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -273,6 +284,7 @@ ship "Gero"
 		"Metallic Hydrogen Cell"
 
 		"MH Blue-Class Thruster"
+		"MH Blue-Class LTC"
 		"MH Blue-Class Steering"
 
 	engine -41 76.5

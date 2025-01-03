@@ -28,6 +28,8 @@ ship "Nanobot"
 		"turning energy" .2
 		"thrust" 10
 		"thrusting energy" .3
+		"lateral thrust" 10
+		"lateral thrusting energy" .3
 	outfits
 		"Nano Strike"
 	

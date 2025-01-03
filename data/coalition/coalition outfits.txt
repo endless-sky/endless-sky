@@ -425,6 +425,48 @@ outfit "Large Steering Module"
 	description "By focusing on small, modular engines rather than the massive capital ship drives that most other species develop, the Coalition loses some of the potential efficiency for very large ships, but gains a considerable amount of flexibility."
 	description "Like the large thruster module, the large steering module is actually trio of small steering modules with a mounting framework that takes up half a standard steering mounting slot."
 
+# Note on Coalition Lateral Thrusters:
+# The coalition effectively just has one thruster that is available either individually or a set of three. So the normal pattern doesn't really work here. For initial values, 80% for the small lateral thrust module, and 60% for the larger set.
+# This percentage is applied equally to mass, outfit space, engine capacity, lateral thrust, lateral thrusting energy, and lateral thrusting heat.
+
+outfit "Small Lateral Thrust Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 66000
+	thumbnail "outfit/small thrust module"
+	"lateral thruster slot" -0.25
+	"mass" 7
+	"outfit space" -7
+	"engine capacity" -7
+	"lateral thrust" 9 # 80%
+	"lateral thrusting energy" 0.37
+	"lateral thrusting heat" 2.4
+	"lateral flare sprite" "effect/coalition flare/small"
+		"frame rate" 10
+	"lateral flare sound" "atomic tiny"
+	description "This tiny lateral thruster produces a considerable amount of thrust... but also a considerable amount of heat."
+	description "In order to optimize the production costs of propulsion systems for their vast transportation network, Coalition engineers opted to perfect a single lateral thrust module that could be installed in varying configurations. As a result, up to four of these can be installed in a typical lateral thruster slot."
+
+outfit "Large Lateral Thrust Module"
+	category "Engines"
+	licenses
+		Coalition
+	"cost" 292000
+	thumbnail "outfit/large thrust module"
+	"lateral thruster slot" -0.5
+	"mass" 32
+	"outfit space" -32
+	"engine capacity" -32
+	"lateral thrust" 20 # 60%
+	"lateral thrusting energy" 0.83
+	"lateral thrusting heat" 5.4
+	"lateral flare sprite" "effect/coalition flare/large"
+		"frame rate" 7
+	"lateral flare sound" "atomic small"
+	description "Coalition engineers prefer to focus on perfecting a few versatile designs rather than producing a wide range of them. As their large ships would require many of them stacked together to produce sufficient lateral thrust, they created an array installation that incorporates three modules into a single mounting framework. Since two of these modules can be installed in a typical slot, it allows ships that require large amounts of lateral thrust to incorporate six modules in a standard slot."
+	description "In order to facilitate the utilization of their modular designs, most ships of Coalition design have additional mounting brackets beyond the typical single standard slot."
+
 outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"
 	licenses

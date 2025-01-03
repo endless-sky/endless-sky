@@ -391,6 +391,7 @@ ship "Rescue Dummy"
 		"automaton" 1
 		"energy generation" 1
 		"thrust" 30
+		"lateral thrust" 30
 		"turn" 30
 	outfits
 		"Suicide Gun"

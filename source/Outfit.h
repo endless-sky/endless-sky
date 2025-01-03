@@ -93,6 +93,7 @@ public:
 	const std::vector<std::pair<Body, int>>& LateralFlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	const std::map<const Sound *, int> &ReverseFlareSounds() const;
+	const std::map<const Sound *, int> &LateralFlareSounds() const;
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
@@ -143,6 +144,7 @@ private:
 	std::vector<std::pair<Body, int>> lateralFlareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Sound *, int> reverseFlareSounds;
+	std::map<const Sound *, int> lateralFlareSounds;
 	std::map<const Sound *, int> steeringFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
 	std::map<const Effect *, int> jumpEffects;

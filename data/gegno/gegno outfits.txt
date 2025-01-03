@@ -293,6 +293,7 @@ outfit "SC-1 Plasma Engines"
 	thumbnail "outfit/tiny plasma engines scin"
 	"steering slot" -1
 	"thruster slot" -1
+	"lateral slot" -1
 	"engine mod space" 0.92
 	"mass" 21
 	"outfit space" -21
@@ -303,6 +304,12 @@ outfit "SC-1 Plasma Engines"
 	"flare sprite" "effect/scin flare/tiny"
 		"frame rate" 0.6
 	"flare sound" "scplasma tiny"
+	"lateral thrust" 8
+	"lateral thrusting energy" 0.32
+	"lateral thrusting heat" 0.8
+	"lateral flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"lateral flare sound" "scplasma tiny"
 	"turn" 240
 	"turning energy" 0.35
 	"turning heat" 0.8
@@ -440,6 +447,107 @@ outfit "SC-15 Plasma Thrusters"
 		"frame rate" 0.3
 	"reverse flare sound" "scplasma large"
 	description `The Gegno Scin have taken another step forward from the SC-14 class engine system, incorporating both reverse and forward thrust into a single engine. In order to field the SC-15, the Scin had to design their largest ships around the thrusters, rather than fit it on later. The ability to reverse is especially important in engagements with the Gegno Vi's forward-heavy combat vessels.`
+
+
+# Laterals
+outfit "RG15 Torch LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 17000
+	thumbnail "outfit/small torch thruster vi"
+	"lateral slot" -1
+	"mass" 21
+	"outfit space" -21
+	"engine capacity" -21
+	"lateral thrust" 12 # 70%
+	"lateral thrusting energy" 0.5
+	"lateral thrusting heat" 1.1
+	"lateral flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"lateral flare sound" "ion torch small"
+	description `The RG15 Ion Torch LTC is the Gegno Vi's smallest torch lateral thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size in exchange for using slightly less energy.`
+
+
+outfit "RG18 Torch LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 38000
+	thumbnail "outfit/medium torch thruster vi"
+	"lateral slot" -1
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"lateral thrust" 18
+	"lateral thrusting energy" 0.8
+	"lateral thrusting heat" 1.8
+	"lateral flare sprite" "effect/vi flare/medium"
+		"frame rate" 2.4
+	"lateral flare sound" "ion torch medium"
+	description `The RG18 is a moderately large lateral thruster used by the Gegno Vi. Ion Torch Thrusters are similar to human ion thrusters, but their explosive exhaust causes them to run hotter. However, they also require slightly less energy.`
+
+
+outfit "RG3 Torch LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 84000
+	thumbnail "outfit/large torch thruster vi"
+	"lateral slot" -1
+	"mass" 41
+	"outfit space" -41
+	"engine capacity" -41
+	"lateral thrust" 27
+	"lateral thrusting energy" 1.2
+	"lateral thrusting heat" 2.8
+	"lateral flare sprite" "effect/vi flare/large"
+		"frame rate" 2.3
+	"lateral flare sound" "ion torch large"
+	description `Derived from the massive thrusters that powered early Gegno generation ships, RG3 Ion Torch LTCs are the Gegno's largest lateral thrusters and the oldest still used. Smaller ships that attempt to use these engines often end up overheating themselves.`
+
+
+outfit "SC-12 Plasma LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 20900
+	thumbnail "outfit/small plasma thruster scin"
+	"lateral slot" -1
+	"mass" 17
+	"outfit space" -17
+	"engine capacity" -17
+	"lateral thrust" 14
+	"lateral thrusting energy" 0.6
+	"lateral thrusting heat" 1.6
+	"lateral flare sprite" "effect/scin flare/small"
+		"frame rate" 0.5
+	"lateral flare sound" "scplasma small"
+	description `Rather than developing on the Ion Torch design of the Vi, the Scin began work on a plasma-based thruster. They are more compact, weigh less, and produce significantly more lateral thrust. However, since Ion Torches expel some of their heat in their thrust, the more stable and powerful SC thrusters tend to run hotter.`
+
+
+outfit "SC-14 Plasma LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 52500
+	thumbnail "outfit/medium plasma thruster scin"
+	"lateral slot" -1
+	"mass" 27
+	"outfit space" -27
+	"engine capacity" -27
+	"lateral thrust" 24
+	"lateral thrusting energy" 1.1
+	"lateral thrusting heat" 3.0
+	"lateral flare sprite" "effect/scin flare/med"
+		"frame rate" 0.4
+	"lateral flare sound" "scplasma medium"
+	description `SC-14 class lateral thrusters power the Scin's average gunboat or transport, giving their ships reliable speed. They can quickly stabilize any medium-sized ship's lateral motion with reasonable efficiency.`
 
 # Weapons:
 

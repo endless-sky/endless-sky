@@ -421,6 +421,7 @@ ship "Fury" "Doombat"
 		"D14-RN Shield Generator"
 		"Ramscoop"
 		"X2700 Ion Thruster"
+		"X2400 Ion LTC"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 

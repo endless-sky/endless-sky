@@ -34,6 +34,7 @@ ship "Maeri'het"
 		"outfit space" 383
 		"weapon capacity" 184
 		"engine capacity" 86
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -142,6 +143,7 @@ ship "Telis'het"
 		"outfit space" 673
 		"weapon capacity" 254
 		"engine capacity" 138
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -288,6 +290,7 @@ ship "Vareti'het"
 		"outfit space" 914
 		"weapon capacity" 372
 		"engine capacity" 150
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -519,6 +522,7 @@ ship "Selii'mar"
 		"outfit space" 77
 		"weapon capacity" 18
 		"engine capacity" 21
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -554,6 +558,7 @@ ship "Faes'mar"
 		"cargo space" 102
 		"outfit space" 113
 		"engine capacity" 21
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5
@@ -606,6 +611,7 @@ ship "Fetri'sei"
 		"cargo space" 62
 		"outfit space" 173
 		"weapon capacity" 54
+		"lateral thruster slot" 1.5
 		"reverse thruster slot" 1.5
 		"steering slot" 1.5
 		"thruster slot" 1.5

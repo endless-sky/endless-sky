@@ -26,9 +26,10 @@ ship "Marauder Arrow"
 		"heat dissipation" .74
 		"fuel capacity" 525
 		"cargo space" 5
-		"outfit space" 210
+		"outfit space" 243
 		"weapon capacity" 55
 		"engine capacity" 95
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -49,6 +50,7 @@ ship "Marauder Arrow"
 		"Laser Rifle" 5
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
@@ -69,7 +71,8 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
 	thumbnail "thumbnail/marrowe"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 43
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -83,6 +86,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -106,6 +110,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 		"Laser Rifle" 5
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
@@ -134,9 +139,10 @@ ship "Marauder Bounder"
 		"heat dissipation" .67
 		"fuel capacity" 700
 		"cargo space" 20
-		"outfit space" 240
+		"outfit space" 277
 		"weapon capacity" 80
 		"engine capacity" 115
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -159,6 +165,7 @@ ship "Marauder Bounder"
 		"Laser Rifle" 18
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -181,6 +188,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	thumbnail "thumbnail/mboundere"
 	add attributes
 		"engine capacity" 15
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -197,6 +205,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"Laser Rifle" 18
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
@@ -224,6 +233,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		"Laser Rifle" 18
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
@@ -253,9 +263,10 @@ ship "Marauder Falcon"
 		"heat dissipation" .42
 		"fuel capacity" 1650
 		"cargo space" 80
-		"outfit space" 620
+		"outfit space" 668
 		"weapon capacity" 275
-		"engine capacity" 165
+		"engine capacity" 191
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -283,6 +294,7 @@ ship "Marauder Falcon"
 		"Security Station"
 		
 		"A520 Atomic Thruster"
+		"AL529 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 
@@ -312,7 +324,8 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
 	thumbnail "thumbnail/mfalcone"
 	add attributes
-		"engine capacity" 25
+		"engine capacity" 85
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -331,6 +344,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"Security Station" 3
 		
 		"A860 Atomic Thruster"
+		"AL869 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -372,6 +386,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"Nerve Gas" 20
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -411,9 +426,10 @@ ship "Marauder Firebird"
 		"heat dissipation" .4
 		"fuel capacity" 575
 		"cargo space" 20
-		"outfit space" 450
+		"outfit space" 480
 		"weapon capacity" 175
-		"engine capacity" 110
+		"engine capacity" 123
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -437,6 +453,7 @@ ship "Marauder Firebird"
 		"Nerve Gas" 29
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -468,7 +485,8 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
 	thumbnail "thumbnail/mfirebirds"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 27
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -488,6 +506,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 
@@ -516,6 +535,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"Nerve Gas" 13
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -552,9 +572,10 @@ ship "Marauder Leviathan"
 		"heat dissipation" .3
 		"fuel capacity" 1575
 		"cargo space" 40
-		"outfit space" 680
+		"outfit space" 709
 		"weapon capacity" 265
-		"engine capacity" 140
+		"engine capacity" 166
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -580,6 +601,7 @@ ship "Marauder Leviathan"
 		"Nerve Gas" 15
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Ionic Afterburner"
 		"Hyperdrive"
@@ -610,7 +632,8 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
 	thumbnail "thumbnail/mleviathane"
 	add attributes
-		"engine capacity" 40
+		"engine capacity" 57
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -631,6 +654,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Nerve Gas" 8
 		
 		"A520 Atomic Thruster"
+		"AL529 Atomic LTC"
 		"A865 Atomic Steering"
 		"Hyperdrive"
 	
@@ -662,6 +686,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Nerve Gas" 48
 
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Ionic Afterburner"
 		"Hyperdrive"
@@ -697,9 +722,10 @@ ship "Marauder Manta"
 		"heat dissipation" .6
 		"fuel capacity" 475
 		"cargo space" 10
-		"outfit space" 400
+		"outfit space" 434
 		"weapon capacity" 155
-		"engine capacity" 110
+		"engine capacity" 121
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -724,6 +750,7 @@ ship "Marauder Manta"
 		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -749,7 +776,8 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
 	thumbnail "thumbnail/mmantae"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 29
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -766,6 +794,7 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 		"Laser Rifle" 11
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -806,6 +835,7 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
@@ -839,9 +869,10 @@ ship "Marauder Quicksilver"
 		"heat dissipation" .67
 		"fuel capacity" 350
 		"cargo space" 5
-		"outfit space" 265
+		"outfit space" 302
 		"weapon capacity" 85
-		"engine capacity" 75
+		"engine capacity" 86
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -863,6 +894,7 @@ ship "Marauder Quicksilver"
 		"Laser Rifle"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	
@@ -887,7 +919,8 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
-		"engine capacity" 40
+		"engine capacity" 42
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -904,6 +937,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
@@ -917,8 +951,9 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
 	sprite "ship/mquicksilvere"
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
-		"engine capacity" 40
+		"engine capacity" 42
 		"self destruct" -.25
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -934,6 +969,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
 		"Laser Rifle" 5
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
@@ -960,6 +996,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 		"Laser Rifle"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	
@@ -988,6 +1025,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons) (Safe)"
 		"Laser Rifle"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	
@@ -1012,9 +1050,10 @@ ship "Marauder Raven"
 		"heat dissipation" .62
 		"fuel capacity" 450
 		"cargo space" 20
-		"outfit space" 310
+		"outfit space" 337
 		"weapon capacity" 115
 		"engine capacity" 110
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1035,6 +1074,7 @@ ship "Marauder Raven"
 		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -1063,6 +1103,8 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 	thumbnail "thumbnail/mravene"
 	add attributes
 		"engine capacity" 20
+		"outfit space" 9
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1077,6 +1119,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"Outfits Expansion"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
@@ -1106,6 +1149,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
@@ -1137,9 +1181,10 @@ ship "Marauder Splinter"
 		"heat dissipation" .5
 		"fuel capacity" 775
 		"cargo space" 40
-		"outfit space" 450
+		"outfit space" 487
 		"weapon capacity" 165
-		"engine capacity" 110
+		"engine capacity" 123
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1162,6 +1207,7 @@ ship "Marauder Splinter"
 		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -1186,7 +1232,8 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
 	thumbnail "thumbnail/msplintere"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 27
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -1204,6 +1251,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 		"Laser Rifle" 21
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -1235,6 +1283,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	

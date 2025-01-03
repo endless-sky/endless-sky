@@ -3277,6 +3277,7 @@ ship "Starling" "Starling (Keystone)"
 		"Salvage Scanner"
 		
 		"Forge-Class Thruster"
+		"Forge-Class LTC"
 		"Forge-Class Steering"
 		# "Crucible-Class Steering" # Extra steering
 		"Hyperdrive"
@@ -3696,6 +3697,7 @@ ship "_Ion Timer Ship"
 		"automaton" 1
 		"energy generation" 1
 		"thrust" 10
+		"lateral thrust" 10
 		"turn" 600
 	outfits
 		"Timer Weapon"

@@ -292,9 +292,10 @@ ship "Unknown Ship Type"
 		"heat dissipation" .32
 		"fuel capacity" 1725
 		"cargo space" 120
-		"outfit space" 810
+		"outfit space" 868
 		"weapon capacity" 390
-		"engine capacity" 210
+		"engine capacity" 268
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -316,6 +317,7 @@ ship "Unknown Ship Type"
 		"Tactical Scanner" 2
 		
 		"Orca Plasma Thruster"
+		"Orca Plasma LTC"
 		"Orca Plasma Steering"
 		"Hyperdrive"
 	engine 13 170
@@ -356,9 +358,10 @@ ship "Kestrel"
 		"heat dissipation" .32
 		"fuel capacity" 1725
 		"cargo space" 120
-		"outfit space" 810
+		"outfit space" 850
 		"weapon capacity" 390
-		"engine capacity" 210
+		"engine capacity" 250
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -379,8 +382,9 @@ ship "Kestrel"
 		"Liquid Nitrogen Cooler"
 		"Tactical Scanner" 2
 		
-		"Orca Plasma Thruster"
-		"Orca Plasma Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 	engine 13 170
 	engine -13 170
@@ -415,8 +419,9 @@ ship "Kestrel" "Kestrel (More Engines)"
 	thumbnail "thumbnail/kestrele"
 	add attributes
 		"drag" -1.9
-		"engine capacity" 30
+		"engine capacity" 60
 		"fuel capacity" 475 # Improvised amount should be a bit over 1 additional jump.
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -478,8 +483,9 @@ ship "Kestrel" "Kestrel (More Bays)"
 		"Liquid Nitrogen Cooler"
 		"Tactical Scanner" 2
 		
-		"Orca Plasma Thruster"
-		"Orca Plasma Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 	gun -73.5 46
 	gun 73.5 46

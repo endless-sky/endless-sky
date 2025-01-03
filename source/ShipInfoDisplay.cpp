@@ -259,7 +259,9 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	double fullMass = emptyMass + attributes.Get("cargo space");
 	isGeneric &= (fullMass != emptyMass);
-	double forwardThrust = attributes.Get("thrust") ? attributes.Get("thrust") : attributes.Get("afterburner thrust");
+	double thrustModified = 0.;
+	thrustModified = attributes.Get("thrust") * (1 - attributes.Get("thrust reduction ratio"));
+	double forwardThrust = thrustModified ? thrustModified : attributes.Get("afterburner thrust");
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
@@ -736,29 +738,47 @@ void ShipInfoDisplay::DrawShipManeuverStats(const Ship &ship, const Rectangle & 
 	// currentMass /= reduction;
 	fullMass /= reduction;
 
-	// This calculates a fixed lateral thrust using the ship's empty mass.
-	double lateralThrustValue = 0.;
-
+	// This section checks to see if a ship or an outfit on that ship has the lateral thrust ratio attribute
+	// or the lateral steering ratio attribute. If it does, it will get that amount and add it to
+	// the "lateralCombinedThrust" variable.
+	double lateralRatioThrust = 0.;
+	double lateralRatioTurn = 0.;
+	double lateralCombinedThrust = 0.;
+	double thrustReductionRatio = 0.;
+	double turnReductionRatio = 0.;
+	double thrustCombinedModifiers = 0.;
+	double turnCombinedModifiers = 0.;
 	if(attributes.Get("lateral thrust ratio"))
-		lateralThrustValue = attributes.Get("lateral thrust ratio");
-	else if(!attributes.Get("lateral thrust ratio"))
-	{
-		double tempLateralThrustRatio = (3000 - emptyMass) / 3500;
-		double defaultLateralThrustRatio = GameData::GetGamerules().DefaultLateralThrustRatio();
-		if(tempLateralThrustRatio > defaultLateralThrustRatio)
-			lateralThrustValue = tempLateralThrustRatio;
-		else lateralThrustValue = defaultLateralThrustRatio;
-	}
-	double emptyLatThrust = attributes.Get("thrust") * lateralThrustValue;
+		lateralRatioThrust = attributes.Get("lateral thrust ratio") * attributes.Get("thrust");
+	// The "/25" is an arbitrary value used to reduce the size of the turn amount, as turn seems to use different
+	// units than thrust. 30 was picked because dividing the largest turn amount of human steering by it gave a result
+	// that was close to the largest thrust amount of any human thruster; and dividing the weakest human steering by it
+	// gave a result that was very close to the weakest human thruster.
+	if(attributes.Get("lateral turn ratio"))
+		lateralRatioTurn = attributes.Get("lateral turn ratio") * attributes.Get("turn") / 25;
+	lateralCombinedThrust = attributes.Get("lateral thrust") + lateralRatioThrust + lateralRatioTurn;
 
-	double baseAccel = 3600. * attributes.Get("thrust") * (1. + attributes.Get("acceleration multiplier"));
+	// The thrust reduction ratio is a percentage-as-decimal value that indicates how much the thrust will be reduced.
+	// It is intended to be paired with the lateral thrust ratio to create outfits that split a thruster's propulsion
+	// between pointing to the rear and to the sides. Ex. 50% to forward thrust, 50% to lateral thrust.
+	// The two are separate values, however, to give content creators full control. As such, for instance, it is fully
+	// acceptable to have lateral thrust ratio of 0.4 (40%) and a thrust reduction ratio of 0.5 (50%) which would
+	// be a situation where 50% of the thrust is completely diverted into lateral thrust, but with a 10% inefficiency.
+	// A content creator could also use it to simulate damage or hinderance to the player. For instance, giving them
+	// an outfit called "gummed up fuel" that has "thrust reduction ratio 0.1 to give them a 10% thrust penalty.
+	thrustReductionRatio = 1. - attributes.Get("thrust reduction ratio");
+	thrustCombinedModifiers = thrustReductionRatio * (1. + attributes.Get("acceleration multiplier"));
+	turnReductionRatio = 1. - attributes.Get("turn reduction ratio");
+	turnCombinedModifiers = turnReductionRatio * (1. + attributes.Get("turn multiplier"));
+
+	double baseAccel = 3600. * attributes.Get("thrust") * thrustCombinedModifiers;
 	double afterburnerAccel = 3600. * attributes.Get("afterburner thrust") * (1. +
 		attributes.Get("acceleration multiplier"));
 	double reverseAccel = 3600. * attributes.Get("reverse thrust") * (1. + attributes.Get("acceleration multiplier"));
-	double lateralAccel = 3600. * emptyLatThrust * (1. + attributes.Get("acceleration multiplier"));
+	double lateralAccel = 3600. * lateralCombinedThrust * (1. + attributes.Get("acceleration multiplier"));
 
-	double baseTurn = (60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"))) / emptyMass;
-	double minTurn = (60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"))) / fullMass;
+	double baseTurn = (60. * attributes.Get("turn") * turnCombinedModifiers) / emptyMass;
+	double minTurn = (60. * attributes.Get("turn") * turnCombinedModifiers) / fullMass;
 
 	CheckHover(table, "max speed (w/AB):");
 	table.DrawTruncatedPair("max speed (w/AB):", dim, Format::Number(60. * attributes.Get("thrust") / ship.Drag()) + " (" +

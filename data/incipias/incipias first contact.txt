@@ -146,6 +146,7 @@ ship "Nimbus" "Nimbus FTL"
 		"Cloud Piercer" 20
 
 		"MH Red-Class Thruster"
+		"MH Red-Class LTC"
 		"MH Red-Class Steering"
 
 mission "Incipias: The Derelict"

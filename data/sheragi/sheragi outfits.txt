@@ -80,8 +80,11 @@ outfit "Fission Drive"
 	"energy generation" 5.2
 	"heat generation" 19.4
 	"thrust" 27
-	"thrusting energy" 1.508
-	"thrusting heat" 2.86
+	"thrusting energy" 1.5 # Removing the last 08 off this (was 1.508) because will have additional energy drain from laterals
+	"thrusting heat" 2.8 # Removing the last 6 off this (was 2.86) because will have additional heat produced by laterals
+	"lateral thrust" 25 # 90%
+	"lateral thrusting energy" 1.3
+	"lateral thrusting heat" 2.5
 	"turn" 480
 	"turning energy" 0.585
 	"turning heat" 1.365
@@ -89,6 +92,10 @@ outfit "Fission Drive"
 		"frame rate" 30
 		"rewind"
 	"flare sound" "atomic small"
+	"lateral flare sprite" "effect/fissionflare"
+		"frame rate" 30
+		"rewind"
+	"lateral flare sound" "atomic small"
 	"steering flare sprite" "effect/fissionflare"
 		"frame rate" 30
 		"rewind"
@@ -125,6 +132,9 @@ outfit "Fusion Drive"
 	"thrust" 271
 	"thrusting energy" 11
 	"thrusting heat" 33
+	"lateral thrust" 190 # 70%
+	"lateral thrusting energy" 7
+	"lateral thrusting heat" 23 # This is a lot of extra heat the ship the ship will produce to counter drag that it wasn't originally designed for. May need to rebalance Sheragi heat somehow.
 	"reverse thrust" 63.9
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3

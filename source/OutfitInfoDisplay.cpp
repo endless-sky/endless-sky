@@ -93,6 +93,11 @@ namespace {
 		{"leak resistance fuel", 0},
 		{"leak resistance heat", 0},
 		{"overheat damage rate", 0},
+		{"lateral thrusting shields", 0},
+		{"lateral thrusting hull", 0},
+		{"lateral thrusting energy", 0},
+		{"lateral thrusting fuel", 0},
+		{"lateral thrusting heat", 0},
 		{"reverse thrusting shields", 0},
 		{"reverse thrusting hull", 0},
 		{"reverse thrusting energy", 0},
@@ -126,6 +131,7 @@ namespace {
 
 		{"thrust", 1},
 		{"reverse thrust", 1},
+		{"lateral thrust", 1},
 		{"afterburner thrust", 1},
 
 		{"afterburner discharge", 2},
@@ -136,6 +142,15 @@ namespace {
 		{"afterburner burn", 2},
 		{"afterburner slowing", 2},
 		{"afterburner disruption", 2},
+
+		{"lateral thrusting discharge", 2},
+		{"lateral thrusting corrosion", 2},
+		{"lateral thrusting ion", 2},
+		{"lateral thrusting scramble", 2},
+		{"lateral thrusting leakage", 2},
+		{"lateral thrusting burn", 2},
+		{"lateral thrusting slowing", 2},
+		{"lateral thrusting disruption", 2},
 
 		{"reverse thrusting discharge", 2},
 		{"reverse thrusting corrosion", 2},

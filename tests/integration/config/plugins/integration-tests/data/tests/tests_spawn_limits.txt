@@ -42,6 +42,10 @@ test-data "Spawn Limits Test"
 				"reverse thrust" 100
 				"turn" 1000
 				"energy generation" 10
+				"lateral thruster slot" 1
+				"reverse thruster slot" 1
+				"steering slot" 1
+				"thruster slot" 1
 			outfits
 				Hyperdrive
 			crew 1

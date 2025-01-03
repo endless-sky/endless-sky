@@ -26,9 +26,10 @@ ship "Pug Zibruka"
 		"heat dissipation" .67
 		"fuel capacity" 575
 		"cargo space" 20
-		"outfit space" 180
+		"outfit space" 214
 		"weapon capacity" 68
-		"engine capacity" 76
+		"engine capacity" 110
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -49,6 +50,7 @@ ship "Pug Zibruka"
 		"Pug Peacekeeping Staff" 4
 		
 		"Pug Akfar Thruster"
+		"Pug Akfar LTC"
 		"Pug Akfar Steering"
 		"Jump Drive"
 		
@@ -79,9 +81,10 @@ ship "Pug Enfolta"
 		"heat dissipation" .49
 		"fuel capacity" 900
 		"cargo space" 40
-		"outfit space" 360
+		"outfit space" 402
 		"weapon capacity" 184
-		"engine capacity" 106
+		"engine capacity" 148
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -104,6 +107,7 @@ ship "Pug Enfolta"
 		"Pug Peacekeeping Staff" 19
 		
 		"Pug Cormet Thruster"
+		"Pug Cormet LTC"
 		"Pug Cormet Steering"
 		"Jump Drive"
 		
@@ -137,9 +141,10 @@ ship "Pug Maboro"
 		"heat dissipation" .36
 		"fuel capacity" 2375
 		"cargo space" 70
-		"outfit space" 560
+		"outfit space" 610
 		"weapon capacity" 309
-		"engine capacity" 148
+		"engine capacity" 198
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -162,6 +167,7 @@ ship "Pug Maboro"
 		"Pug Peacekeeping Staff" 54
 		
 		"Pug Lohmar Thruster"
+		"Pug Lohmar LTC"
 		"Pug Lohmar Steering"
 		"Jump Drive"
 		
@@ -204,6 +210,7 @@ ship "Pug Arfecta"
 		"outfit space" 640
 		"weapon capacity" 390
 		"engine capacity" 220
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -232,6 +239,7 @@ ship "Pug Arfecta"
 		"Pug Peacekeeping Staff" 36
 		
 		"Pug Lohmar Thruster"
+		"Pug Lohmar LTC"
 		"Pug Lohmar Steering" # Extra steering
 		"Jump Drive"
 	

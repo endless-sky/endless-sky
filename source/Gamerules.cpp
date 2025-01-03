@@ -66,8 +66,6 @@ void Gamerules::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
-		else if(key == "default lateral thrust ratio")
-			defaultLateralThrustRatio = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -143,9 +141,3 @@ Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 	return fighterHitPolicy;
 }
 
-
-
-double Gamerules::DefaultLateralThrustRatio() const
-{
-	return defaultLateralThrustRatio;
-}

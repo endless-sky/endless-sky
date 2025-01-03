@@ -37,6 +37,7 @@ ship "vyu-Ir"
 		"outfit space" 1000
 		"weapon capacity" 1000
 		"engine capacity" 1000
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 1
 		"thruster slot" 1
@@ -48,6 +49,10 @@ ship "vyu-Ir"
 		"thrust" 75
 		"thrusting energy" 20
 		"thrusting heat" 10
+		"flare sound" "impulse engine"
+		"lateral thrust" 37
+		"lateral thrusting energy" 10
+		"lateral thrusting heat" 5
 		"flare sound" "impulse engine"
 		"reverse thrust" 75
 		"reverse thrusting energy" 20

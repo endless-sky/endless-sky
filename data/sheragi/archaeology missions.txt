@@ -308,6 +308,7 @@ ship "Timer Ship"
 		"drag" 5
 		"automaton" 1
 		"thrust" 10
+		"lateral thrust" 10
 		"turn" 600
 	outfits
 		"Timer Weapon"
