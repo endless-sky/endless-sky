@@ -2892,7 +2892,9 @@ double Ship::HeatDissipation() const
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {
-	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass() + attributes.Get("heat capacity"));
+	double shipThermalMass = cargo.Used() + attributes.Mass() + attributes.Get("heat capacity");
+	double fuelThermalMass = fuel * attributes.Get("fuel heat capacity");
+	return MAXIMUM_TEMPERATURE * (shipThermalMass + fuelThermalMass);
 }
 
 
