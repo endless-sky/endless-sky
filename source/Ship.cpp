@@ -3038,11 +3038,13 @@ double Ship::InertialMass() const
 }
 
 
-// Account for the mass of fuel for ships with the "fuel mass" attribute
+
+// Account for the mass of fuel for ships with the "fuel mass" attribute.
 double Ship::FuelMass() const
 {
 	return fuel * attributes.Get("fuel mass");
 }
+
 
 
 double Ship::TurnRate() const
