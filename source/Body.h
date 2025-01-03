@@ -52,6 +52,8 @@ public:
 	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
+	// Get the frame rate for this sprite
+	double GetFrameRate();
 
 	// Positional attributes.
 	const Point &Position() const;

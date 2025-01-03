@@ -178,7 +178,8 @@ void Minable::Place(double energy, double beltRadius)
 	// Start the object off with a random facing angle and spin rate.
 	angle = Angle::Random();
 	spin = Angle::Random(energy) - Angle::Random(energy);
-	SetFrameRate(Random::Real() * 4. * energy + 5.);
+	double frameRate = GetFrameRate() ? GetFrameRate() : Random::Real() * 4. * energy + 5.;
+	SetFrameRate(frameRate);
 	// Choose a random direction for the angle of periapsis.
 	rotation = Random::Real() * 2. * PI;
 
