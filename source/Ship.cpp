@@ -3014,7 +3014,7 @@ bool Ship::CanBeFlagship() const
 
 double Ship::Mass() const
 {
-	return carriedMass + cargo.Used() + attributes.Mass();
+	return carriedMass + cargo.Used() + attributes.Mass() + FuelMass();
 }
 
 
@@ -3025,6 +3025,12 @@ double Ship::InertialMass() const
 	return Mass() / (1. + attributes.Get("inertia reduction"));
 }
 
+
+// Account for the mass of fuel for ships with the "fuel mass" attribute
+double Ship::FuelMass() const
+{
+	return fuel * attributes.Get("fuel mass");
+}
 
 
 double Ship::TurnRate() const

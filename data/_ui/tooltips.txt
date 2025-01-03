@@ -273,6 +273,9 @@ tip "fuel generation:"
 tip "fuel heat:"
 	`Heat produced per second when consuming fuel.`
 
+tip "fuel mass:"
+	`Mass added by each unit of fuel on this ship.`
+
 tip "fuel protection:"
 	`Protection provided against fuel damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in fuel damage, while a total value of 11 only results in a 10 percent reduction.`
 
