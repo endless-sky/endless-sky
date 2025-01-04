@@ -5477,6 +5477,7 @@ system Anax
 		distance 812
 		period 197.325
 		offset 150
+		hazard "Avgi Beamed Power" 1
 	object
 		sprite planet/station-solar-a1-broken
 			scale 0.5
