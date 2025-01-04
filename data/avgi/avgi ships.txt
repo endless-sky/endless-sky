@@ -1011,7 +1011,7 @@ ship "Modified Tachytia"
 		"hull repair rate" 0.3
 		"hull repair energy" 3
 		"cargo space" 1200
-		"outfit space" 1440
+		"outfit space" 1800
 		"weapon capacity" 180
 		"engine capacity" 900
 		"spinal mount" 1
