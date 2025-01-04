@@ -1014,8 +1014,9 @@ ship "Modified Tachytia"
 		"outfit space" 1800
 		"weapon capacity" 180
 		"engine capacity" 900
+		"self destruct" 1
 		"spinal mount" 1
-		"anchor point" 1
+		"anchor point" 3
 		weapon
 			"blast radius" 900
 			"shield damage" 14400
