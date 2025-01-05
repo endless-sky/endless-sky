@@ -353,7 +353,6 @@ mission "Hai Legacy 3"
 		fail
 		dialog `You receive a hail from the Unfettered. "You failed to complete the duel, and as such, you will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us should we ever find you on our worlds again!`
 	on disabled
-		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		fail
 		conversation
 			`The enemy ship hails you after disabling your own. "Thought you could get away from us so easily? You better give us a good bribe to land on our worlds and return that ship, before we value blowing you up more than preserving it!"`
