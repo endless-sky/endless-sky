@@ -550,7 +550,7 @@ outfit "Orchid Magazine"
 	licenses
 		"Avgi Atomics"
 	cost 1440000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/orchid magazine"
 	"mass" 3
 	"outfit space" -12
 	"orchid capacity" 3

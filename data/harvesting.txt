@@ -466,8 +466,8 @@ outfit "Voidfish"
 	category "Minerals"
 	plural "Voidfish"
 	cost 2400
-	thumbnail "outfit/unknown"
-	"flotsam sprite" "effect/flotsam iron"
+	thumbnail "outfit/voidfish"
+	"flotsam sprite" "effect/flotsam voidfish"
 	"mass" 1
 	"installable" -1
 	"minable" 1

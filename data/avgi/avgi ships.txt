@@ -1130,7 +1130,7 @@ ship "Tremoros"
 		"heat dissipation" 0.72
 		"fuel capacity" 900
 		"cargo space" 12
-		"outfit space" 210
+		"outfit space" 216
 		"weapon capacity" 60
 		"engine capacity" 69
 		"anchor point" 1
@@ -1325,7 +1325,7 @@ ship "Interferos"
 		"solar heat" 2.7
 		"fuel capacity" 600
 		"cargo space" 12
-		"outfit space" 288
+		"outfit space" 294
 		"weapon capacity" 99
 		"engine capacity" 66
 		"anchor point" 1
@@ -1531,7 +1531,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Ophrys Stockpile" 3
 		`"Ophrys" Nuclear Torpedo` 36
 		
-		"Ultracapacitor Bank"
+		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
@@ -1853,7 +1853,7 @@ ship "Atenuatia"
 		"solar heat" 2.7
 		"fuel capacity" 2400
 		"cargo space" 120
-		"outfit space" 690
+		"outfit space" 696
 		"weapon capacity" 180
 		"engine capacity" 186
 		"anchor point" 1

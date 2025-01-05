@@ -406,11 +406,11 @@ outfit "Remass Injector"
 	licenses
 		"Avgi Torch"
 	"cost" 2760000
-	thumbnail "outfit/unknown"
-	"mass" 3
-	"outfit space" -3
+	thumbnail "outfit/remass injector"
+	"mass" 6
+	"outfit space" -6
 	"engine capacity" -3
-	"afterburner thrust" 72
+	"afterburner thrust" 90
 	"afterburner energy" 3
 	"afterburner heat" -18
 	"afterburner fuel" 0.24
@@ -436,7 +436,7 @@ outfit "Inductive Extractor"
 	"thrusting energy" -30
 	"thrusting heat" 6
 	"magnozzle rings" -1
-	description "A reinforced pair of superconducting loops and a power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's exhaust as it expands against the field produced by the magnetic nozzle. This removes some energy from the exhaust plume and reduces its produced thrust, but the liberated energy is great enough that this is the primary means by which high performance Avgi starships generate power."
+	description "A reinforced pair of superconducting loops, a large rectifier diode, and a power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's plasma exhaust as it expands against the field produced by the magnetic nozzle. This removes some energy from the exhaust plume and reduces its produced thrust, but the liberated energy is great enough that this is the primary means by which high performance Avgi starships generate power."
 	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnozzle ring slot to be installed."
 
 
