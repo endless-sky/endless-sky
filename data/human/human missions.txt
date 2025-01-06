@@ -9927,8 +9927,18 @@ mission "Ice Queen 8"
 			`	In the dim light the footsteps materialize into a woman in her mid-thirties with hair darker than vacuum. Ildico Drifa gives you a warm smile, then raises up her hand and fires her side-arm.`
 			choice
 				`	(Duck.)`
-
+					goto duck
+				`	(Jump to the side.)`
+					goto jump
+				`	(Do nothing.)`
+			`	You don't flinch as the rotten-toothed man besides you crumples to the ground, a bullet hole in his head.`
+				goto onlyfriends
+			label jump
+			`	You jump to the side, knocking against some empty barrels, only to realize she wasn't aiming at you. The rotten-toothed man lies dead on the ground, a bullet hole in his head.`
+				goto onlyfriends
+			label duck
 			`	You duck, startled by the attack, only to realize she wasn't aiming at you. The rotten-toothed man lies dead on the ground, a bullet hole in his head.`
+			label onlyfriends
 			`	She looks to the rest of her crew, "Only my friends call me Ildy. And I have only one friend."`
 			`	"Yes, boss."`
 			`	"Got it, boss."`
