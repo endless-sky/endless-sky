@@ -9511,15 +9511,13 @@ conversation "Ice Queen"
 
 	action
 		set "threw tosti's stone"
-	`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it. Forever separated from its kindred-stones.`
+	`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it, forever separated from its kindred-stones.`
 		decline
 
 	label placestone
 	action
 		set "placed tosti's stone"
 	`	Carefully you place Tosti's stone with the others. The act is greeted only by the deafening silence and the icy air of the abandoned world.`
-	choice
-		`	(Head back.)`
 	`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
 
 	label building
@@ -9541,7 +9539,7 @@ conversation "Ice Queen"
 		`	"Are you okay?"`
 		`	"What are you doing here?"`
 
-	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit, the kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale, and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
+	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit, the kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
 	`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
 	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
 	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravado there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she asks, through gritted teeth.`
@@ -9716,7 +9714,7 @@ mission "Ice Queen 3"
 			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
 			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a Second Degree Terraformer, and after the initial meeting I wasn't privy to the details. But someone, or some government or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
 			`	Ildico seems to deflate. "Ask him? Is he here?"`
-			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. Just head to the the Republic's main office for the Department of Migration which is located on Chiron."`
+			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. Just head to the the Republic's main office for the Department of Migration, which is located on Chiron."`
 			`	Without saying another word, Ildico turns and leaves. You thank Ian for his help and follow her out.`
 				accept
 
@@ -9733,16 +9731,13 @@ mission "Ice Queen 4"
 		conversation
 			`It's easy to imagine Earth once looked and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe; or at least, to run it.`
 			`	The Department of Migration, Stellar Populations and Advanced Interplanetary Economics is easy enough to find. What's surprising is how quickly you are ushered into a waiting room outside the office of one Mr. Drifa, Sub-Executive of Multiplanetary Pricing.`
-			choice
-				`	(Wait for Mr. Drifa.)`
-
 			`	After a brief wait, a young secretary announces that Mr. Drifa is ready to see you, and brings you and Ildico into his office.`
 			`	"So what can I help you with..." Deoric Drifa's voice trails off as he sees Ildico.`
 			`	Ildico tries to step forward than stops herself. She freezes up.`
 			`	"It can't be," the elder Drifa whispers.`
 			`	"Why. Didn't. You. Come?" Ildico forces out each word.`
 			`	"I sent for you. They told me you were all dead. They found bodies... and the generator blown."`
-			`	"The accident..." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father. Everything forgiven.`
+			`	"The accident..." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father, with everything forgiven.`
 			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died... including Hogne." She glances at you and says, "He was my older brother."`
 			`	She continues, "I salvaged what I could and set up at home. I've been there the whole time."`
 			`	"It's my fault," Deoric says. "I should have gone and looked for you myself. I would have known where to look."`
@@ -9862,7 +9857,7 @@ mission "Ice Queen 6"
 			`	She holds up the box. "And in this, well, this may take some explaining. Before we migrated to Hope, the Drifa were old nobility in the Deep. Legend says we ruled Valhalla before the first ships came. Whatever the truth, my ancestors had this in their possession as a sign of their royalty, this bauble."`
 			`	Ildico opens the rune-carved lid of the box, revealing a faintly glowing red rock. "It is called the Blood of Surtr, and it was said to have been the symbol of our rulership, and more importantly, a source of power."`
 			`	She shrugs. "I know it sounds far-fetched. But I had this with me on Hope, and I don't think I would have survived without it. When the generators went down, this kept the lights on.`
-			`	"But, it's time with me is over. I want you, the last friend of House Drifa, and the only person who has shown me any kindness in many years, to have it.`
+			`	"But its time with me is over. I want you, the last friend of House Drifa, and the only person who has shown me any kindness in many years, to have it.`
 			scene "outfit/surtrblood"
 			`	"I'll also transfer a small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help."`
 			choice
@@ -9945,10 +9940,10 @@ mission "Ice Queen 8"
 			`	Ildico holsters her gun right next to where she keeps her dagger and continues. "But making moves is hard. Everyone wants to be on top. Which is why I need you."`
 			`	She looks you in the eye and says, "There's a rival gang right next door to us. They have a lot more firepower, but if they could be removed, we could easily double our territory.`
 			`	"I don't have the ships," she glances at her gang in the distance, "or the quality of crew, to deal with them.`
-			`	"But, I think you do. I can't afford to pay you right now, things are pretty fluid, but I'll owe you. What do you say?"`
+			`	"But I think you do. I can't afford to pay you right now, things are pretty fluid, but I'll owe you. What do you say?"`
 			choice
 				`	"Sure, I'll help."`
-				`	"Fine. But you're going to owe big when this is all over."`
+				`	"Fine. But you're going to owe me big when this is all over."`
 				`	"Anything for you, Ildy."`
 				`	"Not interested."`
 					goto uninterested
@@ -10003,7 +9998,7 @@ mission "Ice Queen 8"
 				goto words
 			
 			label bump
-			`	Her small fist bumps against yours and then she gives you an easy grin and babbles something incoherent.`
+			`	Her small fist bumps against yours. She then gives you an easy grin and babbles something incoherent.`
 
 			label words
 			`	"She's not quite got the hang of words yet. But they'll come," Ildico says approvingly.`
@@ -10012,7 +10007,7 @@ mission "Ice Queen 8"
 			`	Ilidco puts a hand on Randalin's shoulder and draws her close. She turns her attention back to the battlefield.`
 			`	"This is only the beginning, <first>." Her eyes blaze as she says, "House Drifa will rise again. You'll see. You'll be there."`
 			`	She glances back toward her mulling forces. "Thanks again for this, it means a lot that I can count on you, but I have to work to do. Until next time."`
-			`	Ildico returns to her group, barking orders and gesturing at the rubble and leaving you to your own devices.`
+			`	Ildico returns to her group, barking orders and gesturing at the rubble, leaving you to your own devices.`
 
 
 mission "Ice Queen: News"
@@ -10026,8 +10021,8 @@ mission "Ice Queen: News"
 		conversation
 			`A news kiosk is doing a segment on the growing threat of pirates around Haven. A certain name catches your eye, and you read:`
 			`	Self-styled "pirate queen" Ildico Drifa continues to expand her territory and reach. While there is some concern this growing centralization of power could result in greater threats to trade and stability in the Far North, most analysts think it is quite unlikely.`
-			`	Professor Grenwich Millstone, foremost authority on the Economy and History of the Northern Pariah worlds, had this to say about Drifa:`
-			`	"It is patently inconceivable that any single magnate could consolidate power on Haven. It is culturally anathema, and economically impractical. Frankly, all this talk of a so-called 'pirate queen' is just sensationalist journalism trying to sell the news. In a few weeks another pirate captain will be the new boogieman, and then another."`
+			`	Professor Grenwich Millstone, foremost authority on the economy and history of the northern pirate worlds, had this to say about Drifa:`
+			`	"It is patently inconceivable that any single magnate could consolidate power on Haven. It is culturally anathema, and economically impractical. Frankly, all this talk of a so-called 'pirate queen' is just sensationalist journalism trying to sell the news. In a few weeks another pirate captain will be the new bogeyman, and then another."`
 			`	The segment ends, and the news kiosk automatically scrolls down to the next article.`
 				decline
 
@@ -10088,9 +10083,6 @@ mission "Skadenga: Blood of Surtr"
 			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
 			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wondrous stones of power."`
 			`	She points at the Blood of Surtr. "Maybe that is where yours came from. But more than guesses, we cannot provide."`
-			choice
-				`	(Take your leave.)`
-
 			`	You thank the Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily prepares a small meal, believing it bad manners to let a guest leave unfed, and wishes you well in your future travels among the lofty stars.`
 				decline
 
