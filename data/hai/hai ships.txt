@@ -1103,8 +1103,8 @@ ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 		`"Bondir" Atomic Thruster`
 		"Boulder Reactor"
 		"Chameleon Anti-Missile"
-		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 2
 		"Hai Valley Batteries"
 		"Hyperdrive"
 		"Ion Cannon"
