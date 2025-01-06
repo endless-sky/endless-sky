@@ -614,7 +614,7 @@ ship "Frequentia"
 		"Ultracapacitor Cell" 3
 		"Multispectral Scanner"
 		"Cryogenic Deuterium Tank" 6
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 2
 
 		`Z-333 "Spark" Fusion Torch`
@@ -695,7 +695,7 @@ ship "Polari"
 		"Spectrometer Array" 3
 		"Heatsink Partition"
 		"Deuterium Slush Tank"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 9
 
 		`Z-333 "Spark" Fusion Torch`
@@ -907,7 +907,7 @@ ship "Undsyni"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Spectrometer Array" 2
 		"Cargo Expansion" 12
 
@@ -965,7 +965,7 @@ ship "Undsyni"
 
 	description "The Undsyni-class Auxiliary Freighter is not a flimsy bulk freighter, but rather one built to be large and strong enough to hold its own against attacks from smaller, more militarized vessels. While not quite as payload efficient as more spindly ships such as the Avlaki and Harmonikos, the Undsyni's resilience makes it much more survivable against attacks, with its fusion torch giving it the acceleration to both evade enemies and minimize travel times."
 	description "Even before the Incursion, the Undsyni's strong hull and internal outfit capacity made it a popular option as a capital ship for renegade groups who could not gain access to specialized warships."
-	description "A reinforced spine running the length of the ship allows it to fit a huge Plasmadyne Ramscoop, capable of bearing the extreme stresses the ramscoop's magnetic field puts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
+	description "A reinforced spine running the length of the ship allows it to fit a huge Plasmadyne Scoop, capable of bearing the extreme stresses the plasma magnet's field inflicts on its superconducting magnets. In this configuration, a tanker Undsyni can supply the fuel needs of an entire fleetgroup across dozens of systems."
 
 
 ship "Undsyni" "Undsyni (Tanker)"
@@ -979,7 +979,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Ultracapacitor Bank" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Cryogenic Deuterium Tank" 18
 		"Deuterium Slush Tank" 12
 		"Multispectral Scanner"
@@ -1025,7 +1025,7 @@ ship "Modified Tachytia"
 	outfits
 		"Blue Optical Laser" 6
 		"Green Optical Laser" 3
-		"Plasmadyne Ramscoop"
+		"Plasmadyne Scoop"
 
 		"Lantern Fission Core" 3
 		"Photoelectric Lamina"
@@ -1034,7 +1034,7 @@ ship "Modified Tachytia"
 		"Optical Lasing Generator" 5
 		"Multispectral Scanner" 9
 		"Spectrometer Array" 6
-		"Electrostatic Ramscoop" 3
+		"Magnetic Scoop" 3
 		"Concealment Lamina"
 		"Radiative Lamina"
 		"Optical Laser Rifle" 600
@@ -1043,7 +1043,7 @@ ship "Modified Tachytia"
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
-	gun 0 -384 "Plasmadyne Ramscoop"
+	gun 0 -384 "Plasmadyne Scoop"
 	turret -27 162 "Blue Optical Laser"
 	turret 27 162 "Blue Optical Laser"
 	turret -27 -324 "Blue Optical Laser"
@@ -1146,7 +1146,7 @@ ship "Tremoros"
 		"Ultracapacitor Cell" 4
 		"Diffuse Deflector"
 		"Multispectral Scanner"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1229,7 +1229,7 @@ ship "Prismaios"
 		"Ultracapacitor Bank"
 		"Diffuse Deflector"
 		"Multispectral Scanner"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Lasing Generator"
 		"Optical Laser Rifle" 6
 		
@@ -1290,7 +1290,7 @@ ship "Prismaios" "Prismaios (Atomic)"
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 6
 		
 		`Z-333 "Spark" Fusion Torch`
@@ -1342,7 +1342,7 @@ ship "Interferos"
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1399,7 +1399,7 @@ ship "Interferos" "Interferos (Atomic)"
 
 		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"
@@ -1457,7 +1457,7 @@ ship "Diaspersi"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
 		"Deuterium Slush Tank"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
 		`Z-333 "Spark" Fusion Torch`
@@ -1537,7 +1537,7 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
 		"Deuterium Slush Tank"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 36
 		
 		`Z-333 "Spark" Fusion Torch`
@@ -1597,7 +1597,7 @@ ship "Difraktos"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
 		`Z-666 "Zap" Fusion Torch`
@@ -1674,7 +1674,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 		
 		`Z-666 "Zap" Fusion Torch`
@@ -1708,7 +1708,7 @@ ship "Difraktos" "Difraktos (Atomic)"
 		"Optical Lasing Generator"
 		"Multispectral Scanner" 2
 		"Concealment Lamina"
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Optical Laser Rifle" 42
 
 		`Z-666 "Zap" Fusion Torch`
@@ -1771,7 +1771,7 @@ ship "Refraktos"
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 2
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Heatsink Partition" 3
 		"Optical Laser Rifle" 24
 		
@@ -1874,7 +1874,7 @@ ship "Atenuatia"
 		"Ultracapacitor Bank" 3
 		"Specular Deflector"
 		"Optical Lasing Generator" 3
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Multispectral Scanner" 6
 		"Optical Laser Rifle" 90
 		
@@ -1979,7 +1979,7 @@ ship "Atenuatia" "Atenuatia (Atomic)"
 		"Ultracapacitor Bank"
 		"Specular Deflector"
 		"Optical Lasing Generator" 2
-		"Electrostatic Ramscoop"
+		"Magnetic Scoop"
 		"Multispectral Scanner" 6
 		"Optical Laser Rifle" 90
 		

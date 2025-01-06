@@ -203,12 +203,11 @@ hazard "Predecessors Void Scar Erosion"
 
 hazard "Avgi Beamed Power"
 	"constant strength"
-	"range" 600
+	"range" 300
 	"environmental effect" "power beaming" 12
 	weapon
-		"damage dropoff" 0 600
-		"relative energy damage" -0.03
-		"target effect" "power beaming" 24
+		"damage dropoff" 0 300
+		"target effect" "power beaming" 60
 
 effect "power beaming"
 	sprite "effect/spark"
@@ -225,7 +224,7 @@ effect "power beaming"
 
 
 
-hazard "Smoke Ring Drag"
+hazard "Smoke Ring Atmosphere"
 	range 2000 2600
 	"constant strength"
 	weapon
