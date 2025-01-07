@@ -9795,7 +9795,16 @@ mission "Ice Queen 6"
 			`	As you approach the main gate you find it wide open, and the attached security booth is abandoned. You could just walk right in.`
 			choice
 				`	(Walk right in.)`
+					goto walkin
+				`	(Investigate before entering.)`
+			`	The gate itself apppears to have been opened from the inside, not broken into, and there are no signs of a struggle in the security booth. The employee parking beyond is also completely empty. It seems everyone left in a hurry and didn't bother to close the gate behind them. You're entirely alone out here.`
+			choice
+				`	(Walk right in.)`
+				`	(Leave.)`
+			`	Whatever this is; you decide you aren't interested. Ildico will just have to fend for herself.`
+				decline
 
+			label walkin
 			`	The spacious building is eerily empty of servants. Doors are left often, incomplete tasks clutter the floor. Whatever happened here, the people left in a hurry.`
 			`	There's a loud crashing noise in the floor above you. You ascend the central grand staircase following the noise.`
 			`	There are streaks of crimson blood across the opulent decor and a pool of it settles in the center of the room. Lavish baroque furniture is stained with the carnage.`
