@@ -10086,6 +10086,8 @@ mission "Skadenga: Blood of Surtr"
 				`	"I've come to show you something."`
 					goto something
 				`	"What do you know about other stones like the Tear of Skade?"`
+					to display
+						not "tears"
 			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe."`
 				goto something
 
@@ -10096,6 +10098,8 @@ mission "Skadenga: Blood of Surtr"
 			`	"But, <first>, you have not come all this way to talk with old woman. What brings you here?"`
 
 			label something
+			action
+				clear "tears"
 			`	You show her the Blood of Surtr, and tell her the story of House Drifa taking it from the Deep.`
 			`	The Ondurdis nods slowly. "I only know of Tears of Skade. Our Goddess cried, maybe others did as well?"`
 			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears?"`
