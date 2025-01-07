@@ -9647,7 +9647,7 @@ mission "Ice Queen 2"
 	on complete
 		conversation
 			`To some Glory is a testament to human ingenuity, skill, and potential. It is the dream made real, the promise proven true. A world perfectly sculpted to suit the needs, desires, and tastes of humanity. Nothing here is left to chance; every inch carefully, artfully, manifested by man's will.`
-			`	And yet, to others, it is grotesque, a mockery of nature. A lie made into a monument. As you deal with the Republic spaceport officials you notice the plastic-perfect denizens walking around, staring at your defective face and your dirty ship.`
+			`	And yet, to others, it is grotesque, a mockery of nature. A lie made into a monument. As you deal with the Republic spaceport officials you notice the plastic-perfect denizens walking around, staring at your defective face and your workworn ship.`
 			`	"There is no beauty here," Ildico says vacantly when you're finished with the officials. "Only vanity."`
 			`	The spaceport's transport terminal has a direct rail link to the Academy of Planetary Sciences. Perhaps you could find out what happened to Ildico's father in the Academy.`
 
