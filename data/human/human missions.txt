@@ -9798,7 +9798,7 @@ mission "Ice Queen 6"
 				`	(Walk right in.)`
 					goto walk
 				`	(Investigate before entering.)`
-			`	The gate itself apppears to have been opened from the inside, not broken into, and there are no signs of a struggle in the security booth. The employee parking beyond is also completely empty. It seems everyone left fast and didn't bother to close the gate behind them. You're entirely alone out here.`
+			`	The gate itself appears to have been opened from the inside, not broken into, and there are no signs of a struggle in the security booth. The employee parking beyond is also completely empty. It seems everyone left fast and didn't bother to close the gate behind them. You're entirely alone out here.`
 			choice
 				`	(Walk right in.)`
 					goto walk
