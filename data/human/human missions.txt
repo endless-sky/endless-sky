@@ -10066,6 +10066,7 @@ mission "Skadenga: Blood of Surtr"
 				`	(Take the Blood of Surtr to Hrithfjall.)`
 					goto hrithland
 				`	(Ask about the Blood of Surtr another time.)`
+					defer
 				`	(Don't visit Hrithfjall at all.)`
 					decline
 
@@ -10073,8 +10074,8 @@ mission "Skadenga: Blood of Surtr"
 				defer
 
 			label hrithland
-			`	You pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere; it always seems larger every time you visit it.`
-			`	At the old village hall you find the Ondurdis and Aldfrith deep in conversation with a band of people who stick out beside the Skadenga and Ranfolk; they appear to be foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
+			`	You pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere; it always seems larger every time you visit.`
+			`	At the old village hall you find the Ondurdis and Aldfrith deep in conversation with a band of people who stick out beside the Skadenga and indigenous Ranfolk; these people appear to be foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
 			`	"<first>!" the Ondurdis exclaims happily. "My heart sings to see you."`
 			choice
 				`	"Who are they?"`
