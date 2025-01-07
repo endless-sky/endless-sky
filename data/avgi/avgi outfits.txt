@@ -554,10 +554,8 @@ outfit `Z-3600 "Beam" Antimatter Torch`
 
 outfit "Optical Laser Rifle"
 	category "Hand to Hand"
-	licenses
-		"Avgi Civilian"
 	cost 24000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/optical laser rifle"
 	"capture attack" 0.9
 	"capture defense" 1.8
 	"unplunderable" 1

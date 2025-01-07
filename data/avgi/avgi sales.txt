@@ -102,7 +102,6 @@ outfitter "Avgi Superconductors"
 	"Magnetic Scoop"
 	"Plasmadyne Scoop"
 	"Diffuse Deflector"
-	"Magnozzle Storage Loop"
 	"Inductive Extractor"
 
 outfitter "Avgi Propulsion"
