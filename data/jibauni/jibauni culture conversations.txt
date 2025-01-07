@@ -20,19 +20,19 @@ mission "Jibauni Culture: Rebel Chase"
 		random < 1
 	on offer
 		conversation
-			`As you are walking through the spaceport, you hear a commotion behind you. A Jibauni is running your way, and behind it are several more in some sort of uniform.`
+			`As you are walking through the crowded spaceport of <origin>, a commotion breaks out behind you. A Rebel Jibauni streaks your way, and behind it are several more in dark green uniforms and yellow boots.`
 			choice
 				`	(Go back to <ship> and wait for the ruckus to calm down.)`
 					goto wait
 				`	"What is going on?"`
 					goto question
-				`	(Stay where you are.)`
+				`	(Ignore the interruption.)`
 					goto runinto
 			label wait
 			`	You go back to <ship>. The Jibauni who was being chased comes running your way, but is caught by the others and put in chains before passing your ship.`
 				decline
 			label runinto
-			`	As you stand where you are, the Jibauni come racing your way, knocking you down as the chase continues. Once all of the soldiers pass, a bystander helps you up and brushes you off, telling you that scenes like this are fairly frequent, happening either when a Jibauni is accused of stealing... or does something people of power dislike.`
+			`	As you stand where you are, the Jibauni come racing your way, knocking you down as the chase continues. Once all of the soldiers pass, a bystander helps you up and brushes you off, telling you that scenes like this are fairly frequent in Rebel space.`
 				decline
 			label question
 			`	All of the Jibauni keep running past you, intent on what they are doing. After the traces are gone, a bystander tells you that scenes like this are fairly frequent, when a Jibauni is accused of stealing... or doing something the Governor does not like.`
