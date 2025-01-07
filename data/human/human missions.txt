@@ -10059,6 +10059,7 @@ mission "Skadenga: Blood of Surtr"
 	to offer
 		has "Ice Queen 6: done"
 		has "outfit: Blood of Surtr"
+		has "Stones of Skadenga 3: offered"
 	on offer
 		conversation
 			`As your ship descends through Windblain's cloudy atmosphere, you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
