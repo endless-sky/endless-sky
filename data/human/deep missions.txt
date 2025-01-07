@@ -3997,6 +3997,10 @@ mission "Home for Skadenga 13"
 			`	She looks at you sadly, "These stones are relics from lost age. Stolen age." She pauses, "More I cannot I tell, but if you bring me such a stone I will look for you, and see if more I might know."`
 				goto answers
 			label done
+			action
+				clear "ages"
+				clear "elf"
+				clear "amending"
 			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
 			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your clothes.`
