@@ -9567,7 +9567,7 @@ conversation "Ice Queen"
 
 	`	Ildico, her eyes still closed, makes a swift motion with her hand and flicks her wrist toward you. Before you have a chance to react, her knife is embedded deep in your throat.`
 	`	You're on the ground now, with ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
-	`	As the world fades to black, you hear her talking, though her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
+	`	As the world fades to black, you hear her talking, her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
 	`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
 		die
 
@@ -9679,7 +9679,7 @@ mission "Ice Queen 3"
 				`	(Fill out the final set of forms.)`
 
 			`	A few painfully tedious hours later, all the right forms have been filled out and you're met by an intern in a small vehicle.`
-			`	She glances at her electronic clipboard. "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility." She opens the door and gestures to you two. "Please climb aboard. I know the confines are quite small, but the E.F. is a few kilometers away."`
+			`	She glances at her electronic clipboard. "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility." She opens the door and gestures to you two. "Please climb aboard. I know the confines are quite small, but the E.F. is only a few kilometers away."`
 			`	Ildico glares at the young woman suspiciously, then turns to you. "Can we trust her?"`
 			`	The intern looks confused and a little hurt, but says nothing.`
 			choice
@@ -9798,7 +9798,7 @@ mission "Ice Queen 6"
 				`	(Walk right in.)`
 					goto walkin
 				`	(Investigate before entering.)`
-			`	The gate itself apppears to have been opened from the inside, not broken into, and there are no signs of a struggle in the security booth. The employee parking beyond is also completely empty. It seems everyone left in a hurry and didn't bother to close the gate behind them. You're entirely alone out here.`
+			`	The gate itself apppears to have been opened from the inside, not broken into, and there are no signs of a struggle in the security booth. The employee parking beyond is also completely empty. It seems everyone left fast and didn't bother to close the gate behind them. You're entirely alone out here.`
 			choice
 				`	(Walk right in.)`
 				`	(Leave.)`
@@ -9817,7 +9817,7 @@ mission "Ice Queen 6"
 				`	(Say nothing.)`
 
 			`	She ignores you, her attention focused elsewhere.`
-			`	"You thought," Ildico says as she catches her breath, "that you could sell me? That you could give me to the bureaucrat who signed Hope's death warrant? That I would be your pawn, your tool, your object in order to gain favor and promotion?"`
+			`	"You thought," Ildico says as she catches her breath, "that you could sell me? That you could give me to this bureaucrat who signed Hope's death warrant?" She kicks the lifeless body at her feet. "That I would be your pawn, your tool, your object in order to gain favor and promotion?"`
 			`	The raven-haired woman laughs, as she cleans off her bloody dagger, and takes a step toward a figure cowering in the corner. The man you recognize as her father.`
 			`	"Wh-what have you done? You've ruined everything. I was so close. I would have had it all." Deoric blinks, his face sets in hard, and he straightens up, he looks as if he just remembered who he is.`
 			`	"You stupid, selfish, arrogant brat. You just needed to do as you were told. To play your pathetic part. You couldn't could you? You were always worthless. If only your brother had survived." Deoric picks up a broken furniture leg and confidently wields it like a club.`
@@ -9846,7 +9846,7 @@ mission "Ice Queen 6"
 
 			choice
 				`	"Go where?"`
-				`	"Okay, but where exactly?"`
+				`	"Go? You murdered a high ranking executive in the Republic administration. No where in the Republic will be safe."`
 			label where
 			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>." She looks at you seriously, "And do not let anyone scan your ship until we get there."`
 			`	The two of you escape out into the night and onto your ship.`
