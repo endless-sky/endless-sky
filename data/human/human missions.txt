@@ -9846,7 +9846,6 @@ mission "Ice Queen 6"
 
 			choice
 				`	"Go where?"`
-				`	"Go? You murdered a high ranking executive in the Republic administration. Nowhere in the Republic will be safe."`
 			label where
 			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>." She looks at you seriously, "And do not let anyone scan your ship until we get there."`
 			`	The two of you escape out into the night and onto your ship.`
