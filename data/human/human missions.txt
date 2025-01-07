@@ -9842,7 +9842,8 @@ mission "Ice Queen 6"
 				`	"Go where?"`
 					goto where
 				`	"What's in the briefcase?"`
-			`	The recently widowed women gives you a suspecious look, but then nods, "What I need to survive." She pauses, "Now grab it, and let's go."`
+			`	The recently widowed woman gives you a suspicious look, but then nods. "What I need to survive.`
+			`	"Now grab it, and let's go."`
 
 			choice
 				`	"Go where?"`
