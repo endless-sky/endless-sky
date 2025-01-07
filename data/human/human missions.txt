@@ -9830,8 +9830,15 @@ mission "Ice Queen 6"
 			`	Ildico recollects herself for a moment before pointing to a briefcase lying by a table. "Grab that, and let's go."`
 			choice
 				`	"Go where?"`
+					goto where
+				`	"What's in the briefcase?"`
+			`	The recently widowed women gives you a suspecious look, but then nods, "What I need to survive." She pauses, "Now grab it, and let's go."`
 
-			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>. And you should probably not let anyone scan your ship until we get there."`
+			choice
+				`	"Go where?"`
+				`	"Okay, but where exactly?"`
+			label where
+			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>." She looks at you seriously, "And do not let anyone scan your ship until we get there."`
 			`	The two of you escape out into the night and onto your ship.`
 				launch
 
