@@ -9847,7 +9847,7 @@ mission "Ice Queen 6"
 			choice
 				`	"Go where?"`
 			label where
-			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>." She looks at you seriously, "And do not let anyone scan your ship until we get there."`
+			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>." She looks at you seriously and says, "And do not let anyone scan your ship until we get there."`
 			`	The two of you escape out into the night and onto your ship.`
 				launch
 
