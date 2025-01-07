@@ -9352,7 +9352,7 @@ mission "Stone to Hope"
 	name "Bring Tosti's stone to <planet>"
 	description "Take Tosti's family stone to <destination>, where the Snaiwaz clan used to live before they immigrated to <origin>."
 	to offer
-		random < 60
+		random < 75
 		has "Stone of our Fathers 5: done"
 		has "event: stone waiting most"
 		not "Ice Queen: offered"
