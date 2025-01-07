@@ -9185,7 +9185,7 @@ mission "Timothy Radrickson 7: Monk"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
 			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head at you and gives you a deep solemn bow.`
 			`	Timothy stays to watch as you begin your slow descent down the mountain, and back to civilization.`
-			decline
+				decline
 
 
 
