@@ -9460,7 +9460,7 @@ mission "Ice Queen"
 	to offer
 		has "Expedition to Hope 2: done"
 		not "Stone to Hope: done"
-		random < 15
+		random < 5
 	on offer
 		conversation "Ice Queen"
 	on complete
@@ -9548,6 +9548,7 @@ conversation "Ice Queen"
 			to display
 				has "Stone to Hope: done"
 		`	(Tell her who you are, and how you were just out exploring.)`
+		`	(Tell her it's none of her business.)`
 
 	`	The woman nods slowly, and then painfully, slides back down to the ground.`
 	`	Her eyes fall to the floor. "I have no choice but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
