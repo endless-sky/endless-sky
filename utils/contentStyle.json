@@ -70,7 +70,7 @@
 						}
 					},
 					{
-						"description": "trailing period in a parenthesised sentence",
+						"description": "trailing period in a parenthesized sentence",
 						"regex": "(`|\")(\\s*)\\((.*)\\)\\.\\1",
 						"except": [],
 						"correction": {
