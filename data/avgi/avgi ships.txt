@@ -1201,7 +1201,7 @@ ship "Prismaios"
 			"Twilight Guard"
 		"cost" 2640000
 		"shields" 1800
-		"hull" 6000
+		"hull" 7200
 		"required crew" 2
 		"bunks" 6
 		"mass" 450
@@ -1316,7 +1316,7 @@ ship "Interferos"
 		category "Light Warship"
 		"cost" 1380000
 		"shields" 900
-		"hull" 3000
+		"hull" 4500
 		"automaton" 1
 		"crew equivalent" 3
 		"mass" 270
@@ -1425,7 +1425,7 @@ ship "Diaspersi"
 			"Twilight Guard"
 		"cost" 3600000
 		"shields" 2400
-		"hull" 9000
+		"hull" 14400
 		"required crew" 15
 		"bunks" 36
 		"mass" 810
@@ -1565,7 +1565,7 @@ ship "Difraktos"
 			"Twilight Guard"
 		"cost" 5400000
 		"shields" 6000
-		"hull" 12000
+		"hull" 18000
 		"required crew" 15
 		"bunks" 42
 		"mass" 1200
@@ -1744,7 +1744,7 @@ ship "Refraktos"
 			"Twilight Guard"
 		"cost" 4560000
 		"shields" 3600
-		"hull" 8400
+		"hull" 12600
 		"required crew" 12
 		"bunks" 24
 		"mass" 810
@@ -1844,7 +1844,7 @@ ship "Atenuatia"
 			"Twilight Guard"
 		"cost" 14400000
 		"shields" 4200
-		"hull" 27600
+		"hull" 36000
 		"required crew" 60
 		"bunks" 90
 		"mass" 2700
