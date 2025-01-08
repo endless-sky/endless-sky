@@ -34,7 +34,7 @@ mission "First Contact: Rebel Jibauni"
 				has "jibauni: joined the rebels"
 				not "flagship planet: Andwerfen"
 			label nothing
-			`As you land on <origin>, a strange creature comes up to you. It is in the shape of the fabled Tyrannosaurus Rex from Earth, but it is covered in what is seemingly metal armor.`
+			`After landing on <origin>, an unusual creature approaches you. It looks like a long-extinct Tyrannosaurus Rex from Earth, but in miniature, no taller than yourself, and also covered in a metallic looking armor.`
 			`	Dangerous, yes, but it might also be wise to go out and attempt to communicate with the mysterious dinosaur.`
 			choice
 				`	(Go try to speak with the alien.)`
@@ -44,7 +44,7 @@ mission "First Contact: Rebel Jibauni"
 				`	(The unknown is dangerous. Shoot the thing.)`
 					goto shot
 			label speak
-			`	Before you can do anything, you hear strange words, something like "Je. Vqekuves?" Suddenly the words are converted to a language you can barely understand. "Go to <planet>." Apparently that is the only thing they have to say, and the huge crowd disperses after watching you make your preparations for taking off... and starting the launch sequence.`
+			`	Before you can do anything, incomprehensible sounds erupt from the alien's mouth, something like "Je. Vqekuves?" Suddenly the words are snatched out of the air and twisted into a recognizable phrase. "Go to <planet>." Apparently that is the only thing they have to say, and the huge crowd disperses after watching you make your preparations for taking off... and confirming you start the launch sequence.`
 				launch
 			label shot
 			branch "shot and missed"
@@ -52,11 +52,11 @@ mission "First Contact: Rebel Jibauni"
 			action
 				"reputation: Jibauni (Rebel)" = -1
 				set "jibauni: disliked by the rebels"
-			`	You grab a weapon from the interior of the <ship> and point it at the stranger. But before you can attack, a loud noise sounds, and your ship is launched into the air, with the likeness of planetary defenses pointing at it.`
+			`	You grab a weapon from the interior of the <ship> and point it at the stranger. But before you can attack, a loud noise sounds, and your ship is launched into the air, with the likeness of planetary defenses targeting it.`
 			`	You decide to leave before anything else can happen.`
 				flee
 			label "shot and missed"
-			`	Grabbing a pistol from the inside of the <ship>, you rush outside and fire. Aim was hasty, however, and you see the bullet miss wildly.`
+			`	Grabbing a pistol from the inside of the <ship>, you rush outside and fire. Your aim was hasty, however, and the shot goes wildly off-target.`
 				goto speak
 			label "flagship andwerfen"
 			action
