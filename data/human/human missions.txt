@@ -10128,16 +10128,18 @@ mission "Skadenga: Blood of Surtr"
 			label aldtime
 			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers the Ondurdis's words as he strokes his white beard. "The sea has no mercy, and no memory. Ran would never cry."`
 			`	He chews his lip and then says slowly and carefully, "But she did leave us scales."`
-			`	He nods to himself and becomes more confident. "Long ago we would find the Scales of Ran on the beaches nearest her God-Stone. The stories say that they made a bubble of breathable air around those who carried them, and allowed us to explore the secrets of the depths."`
+			`	He nods to himself and becomes more confident. "Long ago we would find the Scales of Ran on the beaches nearest her God-Stone. The stories say that they made a bubble of breathable air around those who carried them, and allowed us to explore the secrets of her depths."`
 			choice
 				`	"What happened to them?"`
 				`	"Where could I find them?"`
 
-			`	Aldfrith shakes his head slowly. "In the time of my grandfather the men from the Deep came and took them off world. They said they were too valuable to belong in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
+			`	Aldfrith shakes his head slowly. "In the time of my grandfather the men from the Deep came and took the Scales off world. They said they were too valuable to be left in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
 			`	The old man pauses for a moment and then says, "Although... I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about... our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
 			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
-			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Maybe all God-Stones once produced wondrous stones of power."`
-			`	She points at the Blood of Surtr. "Maybe that is where yours came from. But more than guesses, we cannot provide."`
+			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Stone-magic fades when outsiders come, this is known. Maybe all God-Stones once gave such gifts, but no longer."`
+			`	She points at the Blood of Surtr. "Surtr, is known, he is volcano that erupts on ice. He is black fire that swallows world. But he had no God-Stone on Nifel." She pauses and looks at Aldfrith.`
+			`	"Oh, uh, and none here. Ran, like the sea, is jealous and would share no world with another." Aldfrith says quickly.`
+			`	"Maybe on other world, there is Surtr God-Stone, and from it he bleeds. More than that, I do not know." She says apologetically.`
 			`	You thank the Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily prepares a small meal, believing it bad manners to let a guest leave unfed, and wishes you well in your future travels among the lofty stars.`
 				decline
 
