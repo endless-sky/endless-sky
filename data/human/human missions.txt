@@ -9361,7 +9361,7 @@ mission "Stone to Hope"
 	on offer
 		conversation
 			`There is a certain comfort to be found in the familiar swaying of Norn's spaceport. The creaking bridges no longer feel intimidating or threatening, only welcoming. There's never many staff here, but the few you do run into greet you warmly. Word has apparently spread that you've all but been adopted into the Hlewagasti family.`
-			`	Helm, with his sandy hair and short beard, approaches you with a young man in tow. "<first>! It's well to see you again.`
+			`	Helm, with his sandy hair and short beard, approaches you with a young man in tow. "<first>! It is well to see you again.`
 			`	"So..." he says conspiratorially, "... there is no date yet, but a certain red-haired stoic and his exotic Alfheimian girlfriend may be looking at wedding dates."`
 			choice
 				`	"That's great news!"`
@@ -9402,19 +9402,33 @@ mission "Stone to Hope"
 			`	Tosti suddenly stops, and takes a deep breath. His face is red, and beads of sweat glisten on his brow. "We're from Hope, ser. My family. We're refugees and we had to leave everything behind. But da, he never really left Hope."`
 			`	The young refugee pulls out a stone criss-crossed in tiny chiseled letters. The familiar engraved story of a life now ended. "This is his stone, and well, he - he'd want his stone left on Hope. I was hoping that was something you could do."`
 			`	With the words out his eyes drop to the floor and he tenses up as though expecting a blow.`
+			label hopeoptions
 			choice
 				`	"I can take the stone to Hope."`
 					goto hopeyes
 				`	"I can take the stone to Hope, for a price."`
 					goto hopeprice
+				`	"I thought Family-Cairns were exclusive to the Deep. Why would there be one on Hope?"`
+					goto whyhope
+					to display
+						not "stones"
 				`	"Hire a courier. I have more important things to do."`
 				`	"No."`
 
 			label hopeno
+			action
+				clear "stones"
 			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame. "Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
 			`	Tosti is red and shaking, and mumbles some apologies before slinking away from you and Helm.`
 			`	Helm gives you a nod and says, "Thank you for listening, at least."`
 				decline
+
+			label whyhope
+			action
+				set "stones"
+			`	"Lots of the first folks who settled Hope came from the Deep." Helm answers, getting a far off look in his eyes. "It wasn't like most worlds in the south. It was going to be different. Atleast, that's what they believed."`
+			`	He shrugs, "Many of them didn't forget where they came from. Brought the old ways with them. Some refugees, like Tosti's family, even found there way back here when Hope was lost."`
+			`	"Anyways, that's why you can find Family-Cairns on Hope - because our people were there. Now, getting back to the matter at hand, you willing to help Tosti out?"`
 
 			label hopeprice
 			`	He grimaces, as if he was just punched in the gut. "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
@@ -9426,6 +9440,8 @@ mission "Stone to Hope"
 					goto hopeno
 
 			label hopeyes
+			action
+				clear "stones"
 			`	The young man's eyes light up as he drags them off the floor and focuses on your face once more. "Really? Truly? I didn't dare hope..."`
 			`	His body weight shifts and it looks as though he's about to hug you before he abruptly stops himself and tries to regain a little composure.`
 			`	"Thorleif was right about you," he says as he presses the small, cool stone into your hand. "The Family-Cairn is not far from where the last spaceport used to be. Just by the cliffs, and the family name was Snaiwaz."`
