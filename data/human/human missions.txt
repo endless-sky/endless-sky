@@ -9744,7 +9744,7 @@ mission "Ice Queen 4"
 	to offer
 		has "Ice Queen 3: done"
 	on offer
-		event "deoricdeeds" 1103
+		event "deoricdeeds" 700
 		conversation
 			`It's easy to imagine Earth once looked and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe; or at least, to run it.`
 			`	The Department of Migration, Stellar Populations and Advanced Interplanetary Economics is easy enough to find. What's surprising is how quickly you are ushered into a waiting room outside the office of one Mr. Drifa, Sub-Executive of Multiplanetary Pricing.`
@@ -9861,12 +9861,17 @@ mission "Ice Queen 6"
 				`	"What's in the briefcase?"`
 			`	The recently widowed woman gives you a suspicious look, but then nods. "What I need to survive.`
 			`	"Now grab it, and let's go."`
-
 			choice
 				`	"Go where?"`
+					goto where
+				`	(Grab the briefcase).`
+			`	"We need to go where the Republic cannot. Take us to <planet>." She gives you a serious look and adds, "And do not let anyone scan your ship until we get there."`
+			`	The three of you escape out into the night and onto your ship.`
+				launch
+
 			label where
-			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted for this. We need to go to <planet>." She looks at you seriously and says, "And do not let anyone scan your ship until we get there."`
-			`	The two of you escape out into the night and onto your ship.`
+			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted. We need to go to <planet>." She looks at you seriously and says, "And do not let anyone scan your ship until we get there."`
+			`	The three of you escape out into the night and onto your ship.`
 				launch
 
 			label arrest
