@@ -335,7 +335,7 @@ outfit `"Sjeja" Kinetic Lance`
 	"outfit space" -60
 	"weapon capacity" -60
 	"energy capacity" 1900
-	"gun ports" -1
+	"missile pylons" -1
 	"spike capacity" 20
 	weapon
 		sprite "projectile/sjeja kinetic lance"

@@ -26,11 +26,16 @@ ship "Arach Courier"
 		"mass" 125
 		"drag" 3.2
 		"heat dissipation" .6
-		"fuel capacity" 300
+		"fuel capacity" 250
 		"cargo space" 94
-		"outfit space" 148
+		"outfit space" 157
 		"weapon capacity" 39
-		"engine capacity" 40
+		"engine capacity" 60
+		"lateral thruster slot" 1.5
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 20
 			"shield damage" 200
@@ -42,6 +47,8 @@ ship "Arach Courier"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -67,8 +74,11 @@ ship "Arach Courier" "Arach Courier (Miner)"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
+
+
 
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
@@ -82,14 +92,18 @@ ship "Arach Freighter"
 		"hull" 8500
 		"required crew" 3
 		"bunks" 10
-		"mass" 672
+		"mass" 1520
 		"drag" 14.8
 		"heat dissipation" .4
-		"fuel capacity" 500
+		"fuel capacity" 775
 		"cargo space" 372
 		"outfit space" 349
 		"weapon capacity" 132
-		"engine capacity" 92
+		"engine capacity" 135
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -102,8 +116,10 @@ ship "Arach Freighter"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 2
@@ -122,6 +138,7 @@ ship "Arach Freighter"
 	"final explode" "final explosion medium"
 	description `Arach cargo ship hulls are legendary for their durability. It is not uncommon for a large Arach family to convert a freighter that is no longer space-worthy into a planet-side dwelling, and even in the harshest of conditions these converted houses can last for hundreds of years with little or no exterior maintenance.`
 
+
 ship "Arach Freighter" "Arach Freighter (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -133,12 +150,16 @@ ship "Arach Freighter" "Arach Freighter (Miner)"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
+
+
 
 ship "Arach Hulk"
 	sprite "ship/arach hulk"
@@ -152,14 +173,18 @@ ship "Arach Hulk"
 		"hull" 13800
 		"required crew" 8
 		"bunks" 14
-		"mass" 1325
+		"mass" 5360
 		"drag" 29.3
 		"heat dissipation" .33
-		"fuel capacity" 500
+		"fuel capacity" 1650
 		"cargo space" 688
 		"outfit space" 520
 		"weapon capacity" 208
-		"engine capacity" 148
+		"engine capacity" 224
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -173,8 +198,10 @@ ship "Arach Hulk"
 		"Large Repair Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
@@ -196,6 +223,7 @@ ship "Arach Hulk"
 	"final explode" "final explosion large"
 	description `The Arachi believe that efficient functionality is the highest form of beauty, and none of their ships demonstrate that principle more clearly than the ugly yet utilitarian Hulk, designed with detachable side pods that can be swapped out on a planet in a matter of minutes if the captain is in a hurry to reach the next destination.`
 
+
 ship "Arach Hulk" "Arach Hulk (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -209,12 +237,16 @@ ship "Arach Hulk" "Arach Hulk (Miner)"
 		"Large Repair Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
+
+
 
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
@@ -228,14 +260,18 @@ ship "Arach Spindle"
 		"hull" 9700
 		"required crew" 4
 		"bunks" 14
-		"mass" 766
+		"mass" 1360
 		"drag" 16.7
 		"heat dissipation" .36
-		"fuel capacity" 500
+		"fuel capacity" 775
 		"cargo space" 392
-		"outfit space" 434
+		"outfit space" 503
 		"weapon capacity" 138
-		"engine capacity" 148
+		"engine capacity" 217
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -250,9 +286,11 @@ ship "Arach Spindle"
 		"Cooling Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
-		"Small Thrust Module" 3
-		"Small Reverse Module" 3
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
+		"Small Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 1
 		"Hyperdrive"
@@ -270,6 +308,7 @@ ship "Arach Spindle"
 	"final explode" "final explosion large"
 	description `The Arach Hulk is an ungainly, lumbering behemoth of a ship, but with its side pods removed it becomes the much more maneuverable Spindle. Because of its much lower cargo space, usually the only reason a fleet would include a Spindle is if they are planning on picking up new cargo pods at their destination.`
 
+
 ship "Arach Spindle" "Arach Spindle (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -284,12 +323,15 @@ ship "Arach Spindle" "Arach Spindle (Miner)"
 		"Small Repair Module" 3
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
-		"Small Thrust Module" 3
-		"Small Reverse Module" 3
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
+		"Small Reverse Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Arach Spindle" "Arach Spindle (Plasma)"
 	outfits
@@ -299,14 +341,17 @@ ship "Arach Spindle" "Arach Spindle (Plasma)"
 		"Small Repair Module" 2
 		"Large Repair Module"
 		"Cooling Module" 5
-		"Small Thrust Module" 3
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Small Battery Module"
 		"Large Battery Module"
 		"Large Steering Module" 2
 		"Fusion Reactor"
 		"Plasma Turret" 2
+
 
 ship "Arach Spindle" "Arach Spindle (Jump Drive)"
 	outfits
@@ -321,10 +366,13 @@ ship "Arach Spindle" "Arach Spindle (Jump Drive)"
 		"Fuel Module" 4
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 3
+		"Large Lateral Thrust Module" 2
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Jump Drive"
+
 
 
 ship "Arach Transport"
@@ -339,14 +387,18 @@ ship "Arach Transport"
 		"hull" 4800
 		"required crew" 2
 		"bunks" 5
-		"mass" 420
+		"mass" 560
 		"drag" 9
 		"heat dissipation" .48
-		"fuel capacity" 400
+		"fuel capacity" 450
 		"cargo space" 228
 		"outfit space" 281
 		"weapon capacity" 96
-		"engine capacity" 70
+		"engine capacity" 96
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -359,6 +411,7 @@ ship "Arach Transport"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
@@ -377,6 +430,7 @@ ship "Arach Transport"
 	"final explode" "final explosion medium"
 	description `The Arach Transport is the oldest of their ship designs, dating back to the time when they first joined the Coalition in overthrowing the Quarg and capturing their ringworlds. Back then, Transports were occasionally used as warships, but now, thousands of years later, they are considered outdated compared to the latest Heliarch military ships.`
 
+
 ship "Arach Transport" "Arach Transport (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -388,10 +442,12 @@ ship "Arach Transport" "Arach Transport (Miner)"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 
 ship "Heliarch Breacher"
@@ -406,16 +462,20 @@ ship "Heliarch Breacher"
 		"hull" 21500
 		"required crew" 11
 		"bunks" 15
-		"mass" 343
+		"mass" 400
 		"drag" 4.0
 		"heat dissipation" .62
 		"ion protection" .1
 		"scramble protection" .1
-		"fuel capacity" 800
+		"fuel capacity" 775
 		"cargo space" 13
-		"outfit space" 372
+		"outfit space" 435
 		"weapon capacity" 112
-		"engine capacity" 106
+		"engine capacity" 160
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 150
 			"shield damage" 1200
@@ -437,21 +497,26 @@ ship "Heliarch Breacher"
 		"Enforcer Confrontation Gear" 6
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
 	
 	engine 0 85 .9
 	engine -19 78 .7
 	engine 19 79 .7
-	gun 0 -87 "Finisher Pod"
+	gun 0 -87
 	gun -20 -33 "Bombardment Cannon"
 	gun 20 -33 "Bombardment Cannon"
+	pylon 0 -85 "Finisher Pod"
+	pylon -20 -31
+	pylon 20 -31
 	turret 0 -23.5 "Bombardment Turret"
 	explode "small explosion" 30
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
 	description `The Breacher isn't the most durable Heliarch vessel, but its impressive forward speed and high firepower for its size make this ship ideal for strafing runs.`
+
 
 ship "Heliarch Breacher" "Heliarch Breacher (Ions)"
 	outfits
@@ -468,9 +533,12 @@ ship "Heliarch Breacher" "Heliarch Breacher (Ions)"
 		"Enforcer Confrontation Gear" 7
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 	outfits
@@ -488,9 +556,11 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Enforcer Confrontation Gear" 7
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 	outfits
@@ -507,9 +577,12 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		"Enforcer Confrontation Gear" 8
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 
 ship "Heliarch Hunter"
@@ -524,16 +597,20 @@ ship "Heliarch Hunter"
 		"hull" 45300
 		"required crew" 26
 		"bunks" 41
-		"mass" 860
+		"mass" 1680
 		"drag" 7.7
 		"heat dissipation" .5
 		"ion protection" .2
 		"scramble protection" .2
-		"fuel capacity" 1500
+		"fuel capacity" 2350
 		"cargo space" 27
-		"outfit space" 552
-		"weapon capacity" 201
-		"engine capacity" 141
+		"outfit space" 639
+		"weapon capacity" 271
+		"engine capacity" 213
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 200
 			"shield damage" 2700
@@ -555,7 +632,9 @@ ship "Heliarch Hunter"
 		"Enforcer Confrontation Gear" 13
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module"
 		"Small Steering Module" 3
 		"Scram Drive"
@@ -564,9 +643,12 @@ ship "Heliarch Hunter"
 	engine 5.5 103 .1
 	engine -25 113 .8
 	engine 25 113 .8
-	gun 0 -117 "Finisher Pod"
-	gun -17.5 -72.5 "Finisher Pod"
-	gun 17.5 -72.5 "Finisher Pod"
+	gun 0 -117
+	gun -17.5 -72.5
+	gun 17.5 -72.5
+	pylon 0 -115 "Finisher Pod"
+	pylon -17.5 -70 "Finisher Pod"
+	pylon 17.5 -70 "Finisher Pod"
 	turret 0 -39.5 "Heliarch Attractor"
 	turret 0 33 "Bombardment Turret"
 	explode "small explosion" 30
@@ -575,6 +657,7 @@ ship "Heliarch Hunter"
 	explode "huge explosion" 5
 	"final explode" "final explosion large" 1
 	description `Although they mostly serve as patrol vessels nowadays in peacetime, Hunters were originally designed to quickly track down dissidents and bring them to justice.`
+
 
 ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
 	outfits
@@ -593,15 +676,21 @@ ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
 		"Enforcer Confrontation Gear" 35
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 4
 		"Scram Drive"
 		
 	gun
-	gun "Finisher Maegrolain"
-	gun "Finisher Maegrolain"
-	
+	gun
+	gun
+	pylon
+	pylon "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+
+
 ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 	outfits
 		"Finisher Pod" 2
@@ -621,16 +710,22 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Enforcer Confrontation Gear" 14
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Scram Drive"
 	
 	gun
-	gun "Finisher Pod"
-	gun "Finisher Pod"
+	gun
+	gun
+	pylon
+	pylon "Finisher Pod"
+	pylon "Finisher Pod"
 	turret "Heliarch Repulsor"
 	turret "Heliarch Attractor"
+
 
 ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 	outfits
@@ -649,10 +744,13 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Enforcer Confrontation Gear" 16
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Scram Drive"
+
 
 ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 	outfits
@@ -671,9 +769,12 @@ ship "Heliarch Hunter" "Heliarch Hunter (Missile)"
 		"Enforcer Confrontation Gear" 17
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 3
+		"Large Lateral Thrust Module" 2
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Scram Drive"
+
 
 ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 	outfits
@@ -692,10 +793,13 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Enforcer Confrontation Gear" 18
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Scram Drive"
+
 
 
 ship "Heliarch Interdictor"
@@ -710,16 +814,20 @@ ship "Heliarch Interdictor"
 		"hull" 54600
 		"required crew" 42
 		"bunks" 70
-		"mass" 1052
+		"mass" 2080
 		"drag" 11.1
 		"heat dissipation" .47
 		"ion protection" .2
 		"scramble protection" .2
-		"fuel capacity" 800
+		"fuel capacity" 1400
 		"cargo space" 79
-		"outfit space" 544
+		"outfit space" 630
 		"weapon capacity" 179
-		"engine capacity" 135
+		"engine capacity" 217
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 250
 			"shield damage" 3000
@@ -742,6 +850,7 @@ ship "Heliarch Interdictor"
 		"Enforcer Confrontation Gear" 30
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -750,8 +859,10 @@ ship "Heliarch Interdictor"
 	engine -20 163 .85
 	engine 20 163 .85
 	engine 30 163 .5
-	gun -20 -98 "Finisher Pod"
-	gun 20 -98 "Finisher Pod"
+	gun -20 -98
+	gun 20 -98
+	pylon -20 -96 "Finisher Pod"
+	pylon 20 -96 "Finisher Pod"
 	turret -8 -63 "Heliarch Attractor"
 	turret 8 -63 "Heliarch Repulsor"
 	explode "small explosion" 20
@@ -760,6 +871,7 @@ ship "Heliarch Interdictor"
 	explode "huge explosion" 10
 	"final explode" "final explosion large" 1
 	description `Anyone who incurs the wrath of the Heliarchs cannot count on making a fast getaway thanks to the Interdictors, which were primarily designed to carry a pair of attractor and repulsor beams that can hold a ship a safe distance away while pushing it around enough to prevent it from getting a hyperspace lock to jump out of the system.`
+
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 	outfits
@@ -778,10 +890,13 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Enforcer Confrontation Gear" 27
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
 	outfits
@@ -800,10 +915,13 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Burst Fire)"
 		"Enforcer Confrontation Gear" 63
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 	outfits
@@ -822,9 +940,11 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Ions)"
 		"Enforcer Confrontation Gear" 33
 
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 	outfits
@@ -842,9 +962,11 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 		"Enforcer Confrontation Gear" 28
 
 		"Large Thrust Module" 3
-		"Small Thrust Module"
+		"Large Lateral Thrust Module" 3
+		# "Small Thrust Module" # Extra thruster
 		"Large Steering Module"
 		"Hyperdrive"
+
 
 ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 	outfits
@@ -865,10 +987,13 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 		"Enforcer Confrontation Gear" 29
 
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 
 ship "Heliarch Judicator"
@@ -883,16 +1008,20 @@ ship "Heliarch Judicator"
 		"hull" 41900
 		"required crew" 31
 		"bunks" 110
-		"mass" 982
+		"mass" 1920
 		"drag" 11.9
 		"heat dissipation" .45
 		"ion protection" .2
 		"scramble protection" .2
-		"fuel capacity" 900
+		"fuel capacity" 1525
 		"cargo space" 136
-		"outfit space" 524
+		"outfit space" 601
 		"weapon capacity" 164
-		"engine capacity" 114
+		"engine capacity" 192
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 250
 			"shield damage" 2800
@@ -914,8 +1043,10 @@ ship "Heliarch Judicator"
 		"Enforcer Confrontation Gear" 49
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Scram Drive"
 	
@@ -923,8 +1054,10 @@ ship "Heliarch Judicator"
 	engine -17 163 .7
 	engine 17 163 .7
 	engine 33 108 .5
-	gun -13 -124.5 "Finisher Pod"
-	gun 13 -124.5 "Finisher Pod"
+	gun -13 -124.5
+	gun 13 -124.5
+	pylon -13 -122 "Finisher Pod"
+	pylon 13 -122 "Finisher Pod"
 	turret 0 45 "Ion Hail Turret"
 	bay "Fighter" -34.5 -82
 		"launch effect" "coalition launch"
@@ -946,6 +1079,7 @@ ship "Heliarch Judicator"
 	description `During their time battling the Quarg, the Coalition focused on producing the strongest, toughest warships they could, so fightercraft were out of the question. Now, however, the Heliarch's shield matrix and hull integrity technology is much more advanced, and they have recently experimented with such ships. The Judicator was made for transportation of these new fighters.`
 	description `	Alongside their six fighter bays, Judicators come with a large bunk count and higher cargo space than other Heliarch warships, thus doubling as a logistics vessel for transporting troops and equipment.`
 
+
 ship "Heliarch Judicator" "Heliarch Judicator (Attractor)"
 	outfits
 		"Ion Rain Gun" 2
@@ -964,8 +1098,10 @@ ship "Heliarch Judicator" "Heliarch Judicator (Attractor)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Scram Drive"
+
 
 ship "Heliarch Judicator" "Heliarch Judicator (Ions)"
 	outfits
@@ -984,9 +1120,12 @@ ship "Heliarch Judicator" "Heliarch Judicator (Ions)"
 		"Enforcer Confrontation Gear" 31
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Large Steering Module" 2
 		"Scram Drive"
+
 
 ship "Heliarch Judicator" "Heliarch Judicator (Missile)"
 	outfits
@@ -1005,9 +1144,12 @@ ship "Heliarch Judicator" "Heliarch Judicator (Missile)"
 		"Enforcer Confrontation Gear" 36
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 3
+		"Large Lateral Thrust Module" 2
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2  # Extra thruster
 		"Small Steering Module" 3
 		"Scram Drive"
+
 
 ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
 	outfits
@@ -1027,9 +1169,12 @@ ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Large Steering Module" 2
 		"Scram Drive"
+
 
 ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 	outfits
@@ -1049,10 +1194,13 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Enforcer Confrontation Gear" 33
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Scram Drive"
+
 
 
 ship "Heliarch Neutralizer"
@@ -1067,16 +1215,20 @@ ship "Heliarch Neutralizer"
 		"hull" 32800
 		"required crew" 17
 		"bunks" 24
-		"mass" 429
+		"mass" 540
 		"drag" 5.1
 		"heat dissipation" .6
 		"ion protection" .1
 		"scramble protection" .1
-		"fuel capacity" 1000
+		"fuel capacity" 1050
 		"cargo space" 36
-		"outfit space" 367
+		"outfit space" 438
 		"weapon capacity" 72
-		"engine capacity" 102
+		"engine capacity" 169
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 150
 			"shield damage" 1800
@@ -1095,7 +1247,9 @@ ship "Heliarch Neutralizer"
 		"Enforcer Confrontation Gear" 11
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module"
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1107,11 +1261,16 @@ ship "Heliarch Neutralizer"
 	gun 16 -59 "Ion Rain Gun"
 	gun -22 -57 "Ion Rain Gun"
 	gun 22 -57 "Ion Rain Gun"
+	pylon -16 -57
+	pylon 16 -57
+	pylon -22 -55
+	pylon 22 -55
 	explode "small explosion" 30
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium" 1
 	description `The most common Heliarch patrol ship, Neutralizers are designed to be just strong enough to keep an enemy vessel occupied until reinforcements can arrive.`
+
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 	outfits
@@ -1129,14 +1288,21 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Missile)"
 		"Enforcer Confrontation Gear" 12
 
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module"
 		"Hyperdrive"
 	
-	gun "Finisher Pod"
-	gun "Finisher Pod"
 	gun
 	gun
+	gun
+	gun
+	pylon "Finisher Pod"
+	pylon "Finisher Pod"
+	pylon
+	pylon
+
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 	outfits
@@ -1152,10 +1318,13 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Enforcer Confrontation Gear" 10
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 	outfits
@@ -1171,9 +1340,12 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Enforcer Confrontation Gear" 9
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 
 ship "Heliarch Punisher"
@@ -1188,16 +1360,20 @@ ship "Heliarch Punisher"
 		"hull" 85000
 		"required crew" 96
 		"bunks" 145
-		"mass" 2030
+		"mass" 6240
 		"drag" 21.3
 		"heat dissipation" .35
 		"ion protection" .3
 		"scramble protection" .3
-		"fuel capacity" 600
+		"fuel capacity" 2150
 		"cargo space" 94
-		"outfit space" 885
+		"outfit space" 973
 		"weapon capacity" 352
-		"engine capacity" 187
+		"engine capacity" 256
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 400
 			"shield damage" 4800
@@ -1219,9 +1395,11 @@ ship "Heliarch Punisher"
 		"Enforcer Confrontation Gear" 44
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
-		"Small Steering Module" 3
+		"Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
 	
 	engine -24 184 .6
@@ -1231,8 +1409,14 @@ ship "Heliarch Punisher"
 	gun 21 -121 "Ion Rain Gun"
 	gun -27 -118 "Ion Rain Gun"
 	gun 27 -118 "Ion Rain Gun"
-	gun -43 -43 "Finisher Pod"
-	gun 43 -43 "Finisher Pod"
+	gun -43 -43
+	gun 43 -43
+	pylon -21 -119
+	pylon 21 -119
+	pylon -27 -116
+	pylon 27 -116
+	pylon -43 -41 "Finisher Pod"
+	pylon 43 -41 "Finisher Pod"
 	turret -13 -42 "Bombardment Turret"
 	turret 13 -42 "Bombardment Turret"
 	turret 0 -35 "Bombardment Turret"
@@ -1243,6 +1427,7 @@ ship "Heliarch Punisher"
 	explode "huge explosion" 20
 	"final explode" "final explosion large" 1
 	description `Although not quite as strong or powerful as the Quarg ships that they are designed to oppose, Heliarch Punishers are versatile and durable ships. Rumors say that the Heliarchs have a small stash of stolen Quarg Skylances that they can outfit the Punishers with in times of war.`
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 	outfits
@@ -1262,17 +1447,19 @@ ship "Heliarch Punisher" "Heliarch Punisher (Burst Fire)"
 		"Enforcer Confrontation Gear" 113
 		
 		"Large Thrust Module" 3
-		"Small Thrust Module" 2
+		"Large Lateral Thrust Module" 3
+		# "Small Thrust Module" 2 # Extra thruster
 		"Large Steering Module" 2
-		"Small Steering Module" 3
+		"Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
 	
-	gun "Finisher Maegrolain"
-	gun "Finisher Maegrolain"
-	gun
-	gun
-	gun "Finisher Maegrolain"
-	gun "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+	pylon
+	pylon
+	pylon "Finisher Maegrolain"
+	pylon "Finisher Maegrolain"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
 	outfits
@@ -1291,10 +1478,13 @@ ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
 		"Enforcer Confrontation Gear" 150
 	
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Jump Drive"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	outfits
@@ -1315,7 +1505,9 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Enforcer Confrontation Gear" 42
 		
 		"Large Thrust Module" 2
-		"Small Thrust Module" 3
+		"Large Lateral Thrust Module" 2
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1324,12 +1516,19 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 	gun "Bombardment Cannon"
 	gun "Bombardment Cannon"
 	gun "Bombardment Cannon"
-	gun "Finisher Pod"
-	gun "Finisher Pod"
+	gun
+	gun
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon "Finisher Pod"
+	pylon "Finisher Pod"
 	turret "Heliarch Attractor"
 	turret "Heliarch Attractor"
 	turret "Heliarch Repulsor"
 	turret "Bombardment Turret"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 	outfits
@@ -1348,9 +1547,11 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Enforcer Confrontation Gear" 48
 
 		"Large Thrust Module" 3
+		"Large Lateral Thrust Module" 3
 		"Large Steering Module" 2
-		"Small Steering Module" 3
+		"Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 	outfits
@@ -1368,7 +1569,8 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Enforcer Riot Staff" 85
 		"Enforcer Confrontation Gear" 40
 		
-		"Large Thrust Module" 4
+		"Large Thrust Module" 3 # Extra thrust
+		"Large Lateral Thrust Module" 3
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1377,6 +1579,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 	turret
 	turret "Heliarch Repulsor"
 	turret
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 	outfits
@@ -1393,10 +1596,12 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 		"Enforcer Riot Staff" 71
 		"Enforcer Confrontation Gear" 40
 
-		"Large Thrust Module" 4
-		"Small Thrust Module"
+		"Large Thrust Module" 3 # Extra thruster
+		"Large Lateral Thrust Module" 3
+		# "Small Thrust Module" # Extra thruster
 		"Large Steering Module" 2
 		"Hyperdrive"
+
 
 ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 	outfits
@@ -1415,9 +1620,11 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Enforcer Confrontation Gear" 45
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Thrust Module"
-		"Large Steering Module" 4
-		"Small Steering Module" 2
+		"Small Lateral Thrust Module"
+		"Large Steering Module" 3 # Extra steering
+		# "Small Steering Module" 2 # Extra steering
 		"Hyperdrive"
 
 
@@ -1436,9 +1643,13 @@ ship "Heliarch Pursuer"
 		"mass" 31
 		"drag" 0.8
 		"heat dissipation" 0.99
-		"outfit space" 105
+		"outfit space" 118
 		"weapon capacity" 19
-		"engine capacity" 36
+		"engine capacity" 46
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1455,16 +1666,19 @@ ship "Heliarch Pursuer"
 		
 		"Small Steering Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 	
 	engine 0 34.5
 	engine 7 33.5
 	engine -7 33.5
 	gun 0 -35.5
+	pylon 0 -33
 	explode "tiny explosion" 20
 	explode "small explosion" 10
 	description `Occasionally, when a Heliarch cadet shows promising results in dogfighting simulations, they are allowed to fly a ship of their own: the Pursuer.`
 	description `	Though certainly not as durable as the other fighters in Coalition space, this Kimek design is cheaper to produce and capable of outrunning any other Coalition ship.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 	outfits
@@ -1477,7 +1691,9 @@ ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
+
 
 
 ship "Heliarch Rover"
@@ -1495,9 +1711,13 @@ ship "Heliarch Rover"
 		"mass" 37
 		"drag" 1.19
 		"heat dissipation" .96
-		"outfit space" 125
+		"outfit space" 139
 		"weapon capacity" 24
-		"engine capacity" 32
+		"engine capacity" 46
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1513,16 +1733,20 @@ ship "Heliarch Rover"
 		"Small Repair Module" 3
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
 	
 	engine 7 28
 	engine -7 28
-	gun 5 -30
 	gun -5 -30
+	gun 5 -30
+	pylon -5 -28
+	pylon 5 -28
 	explode "tiny explosion" 25
 	explode "small explosion" 15
 	description `The very first fighter they designed, Rovers are well-rounded ships that the Heliarchs employ regularly due to their reliability in any situation.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 ship "Heliarch Rover" "Heliarch Rover (Ions)"
 	outfits
@@ -1535,7 +1759,9 @@ ship "Heliarch Rover" "Heliarch Rover (Ions)"
 		"Large Repair Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
+
 
 
 ship "Heliarch Stalker"
@@ -1553,9 +1779,21 @@ ship "Heliarch Stalker"
 		"mass" 101
 		"drag" 2.3
 		"heat dissipation" 0.59
-		"outfit space" 133
+		"outfit space" 117
 		"weapon capacity" 43
-		"engine capacity" 16
+		"engine capacity" 0
+		"reverse thruster slot" 1.5
+		"steering slot" 1.25
+		"thruster slot" 1.25
+		"thrust" 4
+		"thrusting energy" 1.7
+		"thrusting heat" 11
+		"lateral thrust" 3
+		"lateral thrusting energy" 1.3
+		"lateral thrusting heat" 8.3
+		"turn" 178.8
+		"turning energy" 0.26
+		"turning heat" 1.8
 		weapon
 			"blast radius" 15
 			"shield damage" 150
@@ -1570,8 +1808,7 @@ ship "Heliarch Stalker"
 		"Large Shield Module"
 		"Large Repair Module"
 		
-		"Small Steering Module"
-		"Small Thrust Module"
+		# This ship is supposed to be a more of a fortified independently mobile turret rather than a fighter. So it needs either un-fighterly mass, have its propulsion replaced with built-in stats that replicate the old engine stats, or a tiny thruster module added just for this ship. The "include the old propulsion stats built in" is the approach that has been taken here. Mass has been increased by 16 (equiv to the small thruster+steering), outfit space and engine capacity reduced by the same amount. So it should have exactly the same mobility as before Zitchas & Arkhne's mass & thrust revamp.
 	
 	engine 0 40 .8
 	turret 0 -1.5
@@ -1579,6 +1816,7 @@ ship "Heliarch Stalker"
 	explode "small explosion" 15
 	description `Boasting incredible durability for a ship this size, the Stalker is a compact fortress that can take serious punishment and recover faster than some warships. Its speed and maneuverability, however, leave much to be desired.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 	outfits
@@ -1589,9 +1827,7 @@ ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 		"Small Shield Module"
 		"Small Repair Module" 2
 		"Cooling Module"
-		
-		"Small Thrust Module"
-		"Small Steering Module"
+
 
 
 ship "Kimek Briar"
@@ -1606,14 +1842,18 @@ ship "Kimek Briar"
 		"hull" 1700
 		"required crew" 3
 		"bunks" 38
-		"mass" 286
+		"mass" 360
 		"drag" 4.8
 		"heat dissipation" .6
-		"fuel capacity" 700
+		"fuel capacity" 650
 		"cargo space" 23
-		"outfit space" 245
+		"outfit space" 247
 		"weapon capacity" 89
-		"engine capacity" 60
+		"engine capacity" 89
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 34
 			"shield damage" 340
@@ -1625,6 +1865,7 @@ ship "Kimek Briar"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
@@ -1651,9 +1892,12 @@ ship "Kimek Briar" "Kimek Briar (Miner)"
 		"Small Shield Module" 2
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Hyperdrive"
+
+
 
 ship "Kimek Spire"
 	sprite "ship/kimek spire"
@@ -1667,14 +1911,18 @@ ship "Kimek Spire"
 		"hull" 4900
 		"required crew" 19
 		"bunks" 296
-		"mass" 1152
+		"mass" 4560
 		"drag" 13
 		"heat dissipation" .39
-		"fuel capacity" 800
+		"fuel capacity" 2175
 		"cargo space" 70
 		"outfit space" 489
 		"weapon capacity" 256
-		"engine capacity" 129
+		"engine capacity" 185
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 140
 			"shield damage" 1400
@@ -1688,6 +1936,7 @@ ship "Kimek Spire"
 		"Small Shield Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
@@ -1710,6 +1959,7 @@ ship "Kimek Spire"
 	"final explode" "final explosion large"
 	description `The Spire is the largest passenger transport in Coalition space, able to carry nearly three hundred individuals... as long as they're comfortable staying in the tiny bunk rooms that are primarily designed to meet the needs of a Kimek. Most of the ceilings are too short for a Saryd to stand up straight, and the beds are too small for an Arach to stretch their legs out comfortably.`
 
+
 ship "Kimek Spire" "Kimek Spire (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -1722,10 +1972,12 @@ ship "Kimek Spire" "Kimek Spire (Miner)"
 		"Small Shield Module"
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
@@ -1739,14 +1991,18 @@ ship "Kimek Thistle"
 		"hull" 2800
 		"required crew" 7
 		"bunks" 78
-		"mass" 506
+		"mass" 540
 		"drag" 8.1
 		"heat dissipation" .5
-		"fuel capacity" 700
+		"fuel capacity" 725
 		"cargo space" 32
-		"outfit space" 321
+		"outfit space" 366
 		"weapon capacity" 118
-		"engine capacity" 87
+		"engine capacity" 128
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -1758,8 +2014,10 @@ ship "Kimek Thistle"
 		"Small Shield Module" 3
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Large Steering Module"
 		"Small Steering Module"
@@ -1770,6 +2028,10 @@ ship "Kimek Thistle"
 	engine 13 120 .7
 	gun -11 -92
 	gun 11 -92
+	pylon -19 3.5
+		angle 270
+	pylon 19 3.5
+		angle 90
 	turret -13 3
 	turret 13 3
 	explode "small explosion" 10
@@ -1777,6 +2039,7 @@ ship "Kimek Thistle"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description `The Kimek love traveling so much that some of them will happily spend months at a time in a transport this size, and the passengers often grow into a tight-knit community by the end of their journeys together.`
+
 
 ship "Kimek Thistle" "Kimek Thistle (Miner)"
 	outfits
@@ -1789,12 +2052,15 @@ ship "Kimek Thistle" "Kimek Thistle (Miner)"
 		"Small Shield Module" 3
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
 	outfits
@@ -1803,14 +2069,17 @@ ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
 		"Small Repair Module" 2
 		"Cooling Module" 2
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module"
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Small Battery Module"
 		"Large Steering Module"
 		"Heavy Anti-Missile Turret"
 		"Torpedo Launcher" 2
 		Torpedo 60
 		"Breeder Reactor"
+
 
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
@@ -1827,11 +2096,15 @@ ship "Kimek Thorn"
 		"mass" 90
 		"drag" 1.9
 		"heat dissipation" .77
-		"fuel capacity" 600
+		"fuel capacity" 450
 		"cargo space" 13
-		"outfit space" 133
+		"outfit space" 145
 		"weapon capacity" 40
-		"engine capacity" 38
+		"engine capacity" 46
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 14
 			"shield damage" 140
@@ -1843,6 +2116,7 @@ ship "Kimek Thorn"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
@@ -1857,6 +2131,7 @@ ship "Kimek Thorn"
 	"final explode" "final explosion small"
 	description `The Thorn is the Kimek equivalent of a shuttle, and thanks to their speed and maneuverability they are used throughout Coalition space for transferring passengers from one ship to another or from a planet into orbit.`
 
+
 ship "Kimek Thorn" "Kimek Thorn (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -1867,8 +2142,10 @@ ship "Kimek Thorn" "Kimek Thorn (Miner)"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 2
 		"Hyperdrive"
+
 
 
 ship "Saryd Runabout"
@@ -1883,14 +2160,18 @@ ship "Saryd Runabout"
 		"hull" 1400
 		"required crew" 2
 		"bunks" 14
-		"mass" 190
+		"mass" 280
 		"drag" 3.2
 		"heat dissipation" .61
-		"fuel capacity" 400
+		"fuel capacity" 350
 		"cargo space" 46
 		"outfit space" 172
 		"weapon capacity" 44
-		"engine capacity" 42
+		"engine capacity" 53
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 22
 			"shield damage" 220
@@ -1902,6 +2183,7 @@ ship "Saryd Runabout"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Reverse Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
@@ -1915,6 +2197,7 @@ ship "Saryd Runabout"
 	"final explode" "final explosion small"
 	description `Saryds place high value both on solitude, but also on community and collaboration. So, it is not surprising that their smallest spacefaring vessel requires a team of at least two individuals to operate it. It is quite common for a lone Saryd to take on a Kimek or Arach copilot as a way of building cross-species friendships.`
 
+
 ship "Saryd Runabout" "Saryd Runabout (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -1925,8 +2208,10 @@ ship "Saryd Runabout" "Saryd Runabout (Miner)"
 		"Small Shield Module"
 		
 		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2
 		"Small Steering Module" 3
 		"Hyperdrive"
+
 
 ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
@@ -1940,14 +2225,18 @@ ship "Saryd Sojourner"
 		"hull" 7700
 		"required crew" 17
 		"bunks" 101
-		"mass" 1304
+		"mass" 5120
 		"drag" 20
 		"heat dissipation" .33
-		"fuel capacity" 800
+		"fuel capacity" 2475
 		"cargo space" 312
-		"outfit space" 568
+		"outfit space" 636
 		"weapon capacity" 202
-		"engine capacity" 156
+		"engine capacity" 224
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
@@ -1961,9 +2250,11 @@ ship "Saryd Sojourner"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
-		"Small Thrust Module" 3
-		"Small Reverse Module" 3
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
+		"Small Reverse Module" 2 # Extra thruster
 		"Large Steering Module" 2
 		"Small Steering Module"
 		"Hyperdrive"
@@ -1985,6 +2276,7 @@ ship "Saryd Sojourner"
 	"final explode" "final explosion large"
 	description `When the first wars were fought against the Quarg, the Saryds had been spacefaring for more than ten thousand Earth years, and their starship technology was considerably more advanced than the Kimek or the Arachi. At that time, ships similar to the modern Sojourner were the most powerful capital ships in the Coalition fleet.`
 
+
 ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -1999,12 +2291,15 @@ ship "Saryd Sojourner" "Saryd Sojourner (Miner)"
 		"Small Repair Module" 2
 		
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Large Reverse Module" 2
 		"Large Steering Module" 2
-		"Small Thrust Module" 3
-		"Small Reverse Module" 3
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
+		"Small Reverse Module" 2 # Extra reverse thruster
 		"Small Steering Module"
 		"Hyperdrive"
+
 
 ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
 	outfits
@@ -2015,12 +2310,16 @@ ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
 		"Small Battery Module"
 		"Large Battery Module" 2
 		"Cooling Module" 3
-		"Small Thrust Module" 3
+		"Small Thrust Module" 2
+		"Small Lateral Thrust Module" 2 # Extra thruster
 		"Large Thrust Module" 2
+		"Large Lateral Thrust Module" 2
 		"Small Steering Module" 2
 		"Large Steering Module" 2
 		"Overclocked Repair Module"
 		"Overcharged Shield Module"
+
+
 
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
@@ -2034,14 +2333,18 @@ ship "Saryd Traveler"
 		"hull" 4000
 		"required crew" 10
 		"bunks" 54
-		"mass" 676
+		"mass" 1400
 		"drag" 7.7
 		"heat dissipation" .43
-		"fuel capacity" 600
+		"fuel capacity" 900
 		"cargo space" 164
 		"outfit space" 466
 		"weapon capacity" 177
-		"engine capacity" 79
+		"engine capacity" 112
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"asteroid scan power" 36
 		"atmosphere scan" 100
 		weapon
@@ -2056,8 +2359,10 @@ ship "Saryd Traveler"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Small Reverse Module"
 		"Large Steering Module"
 		"Small Steering Module"
@@ -2079,6 +2384,7 @@ ship "Saryd Traveler"
 	"final explode" "final explosion medium"
 	description `Travelers were originally designed as science vessels, thousands of years ago before the Saryds had catalogued all the life forms and physical phenomena of every world in Coalition space. Today, many Saryd communities still choose to live in a Traveler and journey together from system to system rather than putting down roots on a planet.`
 
+
 ship "Saryd Traveler" "Saryd Traveler (Miner)"
 	outfits
 		"MCS Extractor" 4
@@ -2090,12 +2396,16 @@ ship "Saryd Traveler" "Saryd Traveler (Miner)"
 		"Small Repair Module"
 		
 		"Large Thrust Module"
+		"Large Lateral Thrust Module"
 		"Large Reverse Module"
 		"Large Steering Module"
 		"Small Thrust Module"
+		"Small Lateral Thrust Module"
 		"Small Reverse Module"
 		"Small Steering Module"
 		"Hyperdrive"
+
+
 
 ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
@@ -2109,14 +2419,18 @@ ship "Saryd Visitor"
 		"hull" 2400
 		"required crew" 5
 		"bunks" 32
-		"mass" 418
+		"mass" 540
 		"drag" 5.5
 		"heat dissipation" .52
-		"fuel capacity" 400
+		"fuel capacity" 425
 		"cargo space" 108
 		"outfit space" 320
 		"weapon capacity" 90
-		"engine capacity" 57
+		"engine capacity" 73
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1
 		weapon
 			"blast radius" 42
 			"shield damage" 420
@@ -2129,6 +2443,7 @@ ship "Saryd Visitor"
 		"Small Repair Module"
 		
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Small Reverse Module" 3
 		"Large Steering Module"
 		"Hyperdrive"
@@ -2146,6 +2461,7 @@ ship "Saryd Visitor"
 	"final explode" "final explosion medium"
 	description `Rather than specializing in carrying passengers or carrying cargo, Saryds seek to make their ships as well-balanced and versatile as possible. As a result, the crew of a typical Visitor can count on performing a different sort of job every week.`
 
+
 ship "Saryd Visitor" "Saryd Visitor (Miner)"
 	outfits
 		"MCS Extractor" 2
@@ -2158,5 +2474,6 @@ ship "Saryd Visitor" "Saryd Visitor (Miner)"
 		
 		"Large Steering Module"
 		"Small Thrust Module" 3
+		"Small Lateral Thrust Module" 3
 		"Small Reverse Module" 3
 		"Hyperdrive"

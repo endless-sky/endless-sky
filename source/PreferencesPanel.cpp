@@ -80,13 +80,14 @@ namespace {
 	const string BACKGROUND_PARALLAX = "Parallax background";
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
+	const string FLAGSHIP_VELOCITY_INDICATOR = "Flagship Velocity Indicator";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
 	const int SETTINGS_PAGE_COUNT = 2;
 	// Hovering a preference for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 30;
 }
 
 
@@ -473,6 +474,9 @@ void PreferencesPanel::DrawControls()
 		Command::LEFT,
 		Command::RIGHT,
 		Command::BACK,
+		Command::MOUSE_TURNING_HOLD,
+		Command::LATERALLEFT,
+		Command::LATERALRIGHT,
 		Command::AFTERBURNER,
 		Command::AUTOSTEER,
 		Command::LAND,
@@ -498,7 +502,6 @@ void PreferencesPanel::DrawControls()
 		Command::SELECT,
 		Command::SECONDARY,
 		Command::CLOAK,
-		Command::MOUSE_TURNING_HOLD,
 		Command::NONE,
 		Command::NONE,
 		Command::MENU,
@@ -590,6 +593,7 @@ void PreferencesPanel::DrawControls()
 	Table infoTable;
 	infoTable.AddColumn(125, {150, Alignment::RIGHT});
 	infoTable.SetUnderline(0, 130);
+	// infoTable coordinates are Y axis (up/down), then X axis (left/right)
 	infoTable.DrawAt(Point(-400, 32));
 
 	infoTable.DrawUnderline(medium);
@@ -661,6 +665,8 @@ void PreferencesPanel::DrawSettings()
 		"Show asteroid scanner overlay",
 		"Highlight player's flagship",
 		"Rotate flagship in HUD",
+		FLAGSHIP_VELOCITY_INDICATOR,
+		"Show flagship data in HUD",
 		"Show planet labels",
 		"Show mini-map",
 		"Clickable radar display",
@@ -674,6 +680,7 @@ void PreferencesPanel::DrawSettings()
 		TURRET_TRACKING,
 		TARGET_ASTEROIDS_BASED_ON,
 		BOARDING_PRIORITY,
+		"Disable auto-stabilization",
 		EXPEND_AMMO,
 		FLOTSAM_SETTING,
 		FIGHTER_REPAIR,
@@ -909,6 +916,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == FLAGSHIP_VELOCITY_INDICATOR)
+		{
+			isOn = Preferences::GetFlagshipVelocityIndicator() != Preferences::FlagshipVelocityIndicator::OFF;
+			text = Preferences::FlagshipVelocityIndicatorSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1252,6 +1264,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == FLAGSHIP_VELOCITY_INDICATOR)
+				Preferences::ToggleFlagshipVelocityIndicator();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));

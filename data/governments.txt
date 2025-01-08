@@ -234,6 +234,7 @@ government "Drak"
 	"attitude toward"
 		"Indigenous Lifeform" 1
 		"Ember Waste" 1
+		"Korath (Civilian)" 0.05
 
 # A Drak government that is always hostile to the player.
 government "Drak (Hostile)"
@@ -920,6 +921,74 @@ government "Independent (Killable)"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
 
+# These are Korath- and pirate-friendly humans that dislike the Syndicate
+government "Independent (Korath-Allied)"
+	swizzle 9
+	color "governments: Independent"
+	"display name" "Independent"
+
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+	"attitude toward"
+		"Korath (Civilian)" .01
+
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+
+government "Independent (Korath-Allied) Port"
+	swizzle 9
+	color "governments: Independent"
+	"display name" "Independent"
+
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+	"attitude toward"
+		"Syndicate" -.01
+		"Syndicate (Extremist)" -.01
+		"Republic" -.01
+		"Republic that won't enter wormhole" -.01
+		"Navy Intelligence" -.01
+		"Independent (Korath-Allied)" 1
+		# Negative for Korath ensures the Korath raiding groups will not come
+		# from Independent (Korath-Allied) Port planets and stations.
+		"Korath" -.01
+		"Kor Alaji" -.01
+		"Kor Isaha" -.01
+
+# Used for smuggling sites and other restricted-access stations. Allows Korath to land.
+government "Independent (Korath-Allied) Restricted"
+	swizzle 9
+	color "governments: Independent"
+	"display name" "Independent"
+
+	"player reputation" 10
+	"bribe" .05
+	"fine" 0
+	"friendly hail" "friendly civilian"
+	"hostile hail" "hostile civilian"
+	"attitude toward"
+		"Syndicate" -.01
+		"Syndicate (Extremist)" -.01
+		"Merchant" -.01
+		"Pirate" -.01
+		"Republic" -.01
+		"Republic that won't enter wormhole" -.01
+		"Hai" -.01
+		"Hai (Wormhole Access)" -.01
+		"Remnant" -.01
+		"Quarg" -.01
+		"Navy (Oathkeeper)" -.01
+		"Free Worlds" -.01
+		"Wanderer" -.01
+		"Navy Intelligence" -.01
+		"Independent (Korath-Allied)" 1
+
 government "Indigenous Lifeform"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
@@ -1009,11 +1078,19 @@ government "Korath"
 	language "Korath"
 	
 	"attitude toward"
+		"Kor Alaji" .01
+		"Kor Isaha" .01
 		"Kor Sestor" -.01
 		"Korath (Civilian)" 1
 		"Hai (Friendly Unfettered)" -.01
+		"Independent (Korath-Allied)" .1
+	"penalty for"
+		assist -0.25
+		disable 0.26
+		capture 5
 	
 	"player reputation" -10
+	"bribe" .1
 	"send untranslated hails"
 	"friendly hail" "friendly korath untranslated"
 	"friendly disabled hail" "friendly disabled korath untranslated"
@@ -1029,11 +1106,92 @@ government "Korath (Civilian)"
 	language "Korath"
 
 	"attitude toward"
-		"Kor Mereti" -.01
-		"Kor Sestor" -.01
 		"Korath" .01
+		"Independent (Korath-Allied)" .2
+	"penalty for"
+		assist -0.25
+		disable 0.26
+		board 1
+		capture 10
 
 	"player reputation" 1
+	"bribe" .2
+	"send untranslated hails"
+	"friendly hail" "friendly korath untranslated"
+	"friendly disabled hail" "friendly disabled korath untranslated"
+	"hostile hail" "hostile korath civilian untranslated"
+	"hostile disabled hail" "hostile disabled korath untranslated"
+
+government "Korath (Station)"
+	"display name" "Korath"
+	color .8 .5 .1
+	language "Korath"
+
+	"attitude toward"
+		"Wanderer" -.01
+		"Remnant" -.01
+		"Korath" 1
+		"Korath (Civilian)" 1
+
+	"player reputation" -10
+	"bribe" 0
+
+government "Kor Alaji"
+	"display name" "Korath"
+	swizzle 8
+	color "governments: Korath Exiles"
+	"crew attack" 1.4
+	"crew defense" 2.1
+	language "Korath"
+
+	"attitude toward"
+		"Korath" .01
+		"Korath (Civilian)" .05
+		"Kor Isaha" .01
+		"Remnant" -1
+		"Independent (Korath-Allied)" .01
+		"Indigenous Lifeform" -.01
+		"Ember Waste" -.01
+	"penalty for"
+		assist -0.25
+		disable 0.26
+		board 1
+		capture 5
+		scan 0.1
+	"provoked on scan"
+
+	"player reputation" -100
+	"bribe" .2
+	"raid" "Kor Alaji Raid"
+	"send untranslated hails"
+	"friendly hail" "friendly korath untranslated"
+	"friendly disabled hail" "friendly disabled korath untranslated"
+	"hostile hail" "hostile korath civilian untranslated"
+	"hostile disabled hail" "hostile disabled korath untranslated"
+
+government "Kor Isaha"
+	"display name" "Korath"
+	swizzle 23
+	color "governments: Korath Exiles"
+	"crew attack" 1.4
+	"crew defense" 2.6
+	language "Korath"
+
+	"attitude toward"
+		"Kor Alaji" .01
+		"Korath" .05
+		"Kor Sestor" -.01
+		"Korath (Civilian)" 1
+		"Hai (Friendly Unfettered)" -.01
+		"Independent (Korath-Allied)" .05
+	"penalty for"
+		assist -0.25
+		disable 0.26
+		capture 5
+
+	"player reputation" -10
+	"bribe" .1
+	"raid" "Kor Isaha Raid"
 	"send untranslated hails"
 	"friendly hail" "friendly korath untranslated"
 	"friendly disabled hail" "friendly disabled korath untranslated"
@@ -1048,7 +1206,7 @@ government "Korath Nanobots"
 government "Kor Efret"
 	swizzle 4
 	color .49 .33 .69
-	language "Korath"
+	language "Efret"
 	
 	"attitude toward"
 		"Kor Mereti" -.01
@@ -1065,7 +1223,7 @@ government "Kor Efret"
 government "Kor Mereti"
 	swizzle 5
 	color .43 .48 .87
-	language "Korath"
+	language "Mereti"
 	
 	"attitude toward"
 		"Kor Sestor" -.01
@@ -1077,7 +1235,7 @@ government "Kor Mereti"
 government "Kor Mereti (Hostile)"
 	"display name" "Kor Mereti"
 	swizzle 5
-	language "Korath"
+	language "Mereti"
 	"attitude toward"
 		"Wanderer" -.01
 		"Kor Mereti" -.01
@@ -1086,7 +1244,7 @@ government "Kor Mereti (Hostile)"
 government "Kor Sestor"
 	swizzle 0
 	color 1 .36 .49
-	language "Korath"
+	language "Sestor"
 	
 	"attitude toward"
 		"Kor Mereti" -.01
@@ -1097,6 +1255,18 @@ government "Kor Sestor"
 		"Syndicate" -.01
 	
 	"player reputation" -1000
+
+government "Kraz Cybernetics"
+	swizzle 2
+	color "governments: Free"
+	"player reputation" 0
+	"friendly hail" "friendly kraz cybernetics"
+	"attitude toward"
+		"Free Worlds" .01
+		"Pirate" -.01
+	"friendly disabled hail" "friendly disabled"
+	"hostile hail" "hostile free worlds"
+	"hostile disabled hail" "hostile disabled"
 
 government "Lunarium"
 	swizzle 2
@@ -1436,6 +1606,7 @@ government "Quarg"
 		"Quarg Anti-Missile"
 		"Intrusion Countermeasures"
 		"Medium Graviton Thruster"
+		"Medium Graviton LTC"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
 		ship "Quarg Skylark"
@@ -1468,6 +1639,7 @@ government "Quarg (Hai)"
 		"Quarg Anti-Missile"
 		"Intrusion Countermeasures"
 		"Medium Graviton Thruster"
+		"Medium Graviton LTC"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
 		ship "Quarg Skylark"
@@ -1510,6 +1682,7 @@ government "Quarg (Incipias)"
 		"Quarg Anti-Missile"
 		"Intrusion Countermeasures"
 		"Medium Graviton Thruster"
+		"Medium Graviton LTC"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
 		ship "Quarg Skylark"
@@ -1541,6 +1714,7 @@ government "Quarg (Kor Efret)"
 		"Quarg Anti-Missile"
 		"Intrusion Countermeasures"
 		"Medium Graviton Thruster"
+		"Medium Graviton LTC"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
 		ship "Quarg Skylark"
@@ -1570,6 +1744,7 @@ government "Quarg (Gegno)"
 		"Quarg Anti-Missile"
 		"Intrusion Countermeasures"
 		"Medium Graviton Thruster"
+		"Medium Graviton LTC"
 		"Medium Graviton Steering"
 		"Quantum Shield Generator"
 		ship "Quarg Skylark"
@@ -1587,8 +1762,10 @@ government "Remnant"
 	"attitude toward"
 		"Indigenous Lifeform" 0.05
 		"Korath" -.05
+		"Kor Alaji" -.1
 		"Alpha" -.05
 		"Remnant (Research)" 1
+		"Korath (Civilian)" 0.02
 	"penalty for"
 		assist -0.25
 		disable 1
@@ -1813,6 +1990,7 @@ government "Syndicate"
 		"Pirate (Devil-Run Gang)" -.4
 		"Smuggler (Hai Trafficker)" .3
 		"Korath" -.5
+		"Independent (Korath-Allied)" -.4
 	"bribe" .08
 	"friendly hail" "friendly syndicate"
 	"friendly disabled hail" "friendly disabled"
