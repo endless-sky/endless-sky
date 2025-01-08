@@ -142,12 +142,11 @@ fleet "Small Jibauni Military"
 		"Duntay" 4
 
 
-fleet "Jibauni Leaders"
-	government "Jibauni (Ruler)"
+fleet "Jibauni Government"
+	government "Jibauni (Government)"
 	names "jibauni civilian"
 	cargo 3
 	personality
-		confusion 10
 		timid
 	variant 2
 		"Yiyharsi (Government)"
@@ -172,6 +171,23 @@ fleet "Jibauni Leaders"
 		"Duntay" 6
 	variant
 		"Nathar (Government)" 2
+
+
+fleet "Jibauni Religious Leaders"
+	government "Jibauni (Religious Leader)"
+	names "jibauni civilian"
+	cargo 1
+	personality
+		timid
+	variant 4
+		"Furus (Religious Leader)"
+	variant 3
+		"Quyan (Religious Leader)"
+	variant
+		"Nathas (Religious Leader)"
+	variant
+		"Furus (Religious Leader)"
+		"Quyan (Religious Leader)"
 
 
 fleet "Large Rebel Jibauni Military"

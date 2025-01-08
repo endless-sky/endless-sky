@@ -16819,7 +16819,8 @@ system Hajay
 	fleet "Small Jibauni Military" 900
 	fleet "Large Jibauni Military" 700
 	fleet "Jibauni Civilian" 180
-	fleet "Jibauni Leaders" 8000
+	fleet "Jibauni Government" 8000
+	fleet "Jibauni Religious Leaders" 5000
 	hazard "Jibauni Slowing" 200
 	object
 		sprite star/a-giant
@@ -18176,7 +18177,8 @@ system Huyya
 	fleet "Small Jibauni Military" 530
 	fleet "Large Jibauni Military" 940
 	fleet "Jibauni Civilian" 310
-	fleet "Jibauni Leaders" 3880
+	fleet "Jibauni Government" 3880
+	fleet "Jibauni Religious Leaders" 3000
 	fleet "Large Rebel Jibauni Military" 5920
 	hazard "Jibauni Slowing" 200
 	object
@@ -20330,7 +20332,8 @@ system Kanalsa
 	fleet "Small Jibauni Military" 430
 	fleet "Large Jibauni Military" 900
 	fleet "Jibauni Civilian" 400
-	fleet "Jibauni Leaders" 4920
+	fleet "Jibauni Government" 4920
+	fleet "Jibauni Religious Leaders" 4200
 	hazard "Jibauni Slowing" 200
 	object
 		sprite star/b-supergiant
@@ -20751,7 +20754,7 @@ system Kateaza
 	fleet "Small Jibauni Military" 500
 	fleet "Large Jibauni Military" 860
 	fleet "Jibauni Civilian" 1090
-	fleet "Jibauni Leaders" 50000
+	fleet "Jibauni Government" 50000
 	fleet "Small Rebel Jibauni Military" 300
 	fleet "Large Rebel Jibauni Military" 1200
 	hazard "Jibauni Slowing" 200
@@ -30416,9 +30419,8 @@ system Rabalin
 	fleet "Small Jibauni Military" 370
 	fleet "Large Jibauni Military" 1450
 	fleet "Jibauni Civilian" 280
-	fleet "Jibauni Leaders" 5000
-	fleet "Large Jibauni Military" 1000
-	fleet "Jibauni Leaders" 8800
+	fleet "Jibauni Government" 5000
+	fleet "Jibauni Religious Leaders" 3400
 	hazard "Jibauni Slowing" 200
 	object
 		sprite planet/browndwarf-l-rogue
@@ -31817,7 +31819,8 @@ system Sabibal
 	fleet "Small Jibauni Military" 800
 	fleet "Large Jibauni Military" 700
 	fleet "Jibauni Civilian" 320
-	fleet "Jibauni Leaders" 7350
+	fleet "Jibauni Government" 7350
+	fleet "Jibauni Religious Leaders" 5800
 	hazard "Jibauni Slowing" 200
 	object
 		sprite star/o-dwarf

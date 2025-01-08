@@ -226,7 +226,7 @@ government "Derelict (Boardable)"
 	"crew attack" 0
 	"crew defense" 0
 
-government Diba
+government "Diba"
 	swizzle 22
 	color 0.882 0.686 0.294
 	"player reputation" -1000
@@ -996,16 +996,16 @@ government "Indigenous Lifeform (Astral)"
 
 color "governments: Jibauni" 0 0.353 0
 
-government Jibauni
+government "Jibauni"
 	color "governments: Jibauni"
 	swizzle 20
 	"player reputation" 10
 	"crew attack" 3
 	"crew defense" 0.5
 	"attitude toward"
-		"Jibauni (Rebel)" -1
 		"Jibauni (Civilian)" 1
-		"Jibauni (Ruler)" 1
+		"Jibauni (Government)" 1
+		"Jibauni (Rebel)" -1
 		"Pirate" -0.01
 	"penalty for"
 		assist -10
@@ -1027,7 +1027,7 @@ government "Jibauni (Civilian)"
 	"crew attack" 3
 	"crew defense" 0.5
 	"attitude toward"
-		Jibauni 1
+		"Jibauni" 1
 		"Jibauni (Rebel)" -1
 	"penalty for"
 		assist -10
@@ -1041,6 +1041,25 @@ government "Jibauni (Civilian)"
 	"hostile hail" "jibauni untranslated"
 	"hostile disabled hail" "jibauni untranslated"
 
+government "Jibauni (Government)"
+	color "governments: Jibauni"
+	swizzle 19
+	"display name" "Hakim" # Ruler
+	"player reputation" 0
+	"crew attack" 3
+	"crew defense" 0.5
+	"attitude toward"
+		"Jibauni" 1
+		"Jibauni (Civilian)" 1
+		"Jibauni (Rebel)" -1
+	"penalty for"
+		assist 0
+	"bribe" 0.05 # for daring to attack them
+	"friendly hail" "jibauni untranslated"
+	"friendly disabled hail" "jibauni untranslated"
+	"hostile hail" "jibauni untranslated"
+	"hostile disabled hail" "jibauni untranslated"
+
 government "Jibauni (Rebel)"
 	swizzle 18
 	color 0 0.196 0.196
@@ -1049,8 +1068,9 @@ government "Jibauni (Rebel)"
 	"crew attack" 3
 	"crew defense" 0.3
 	"attitude toward"
-		Jibauni -1
+		"Jibauni" -1
 		"Jibauni (Civilian)" -1
+		"Jibauni (Government)" -1
 	"penalty for"
 		assist -2
 		disable 1
@@ -1063,20 +1083,19 @@ government "Jibauni (Rebel)"
 	"hostile hail" "jibauni untranslated"
 	"hostile disabled hail" "jibauni untranslated"
 
-government "Jibauni (Ruler)"
+government "Jibauni (Religious Leader)"
 	color "governments: Jibauni"
 	swizzle 19
-	"display name" "Hakim" # Ruler
+	"display name" "Zaeim"
 	"player reputation" 0
-	"crew attack" 3
-	"crew defense" 0.5
+	"crew attack" 2.1
+	"crew defense" 0.75
 	"attitude toward"
-		"Jibauni (Rebel)" -1
 		"Jibauni (Civilian)" 1
 		"Jibauni" 1
 	"penalty for"
 		assist 0
-	"bribe" 0.05 # for daring to attack them
+	"bribe" 0
 	"friendly hail" "jibauni untranslated"
 	"friendly disabled hail" "jibauni untranslated"
 	"hostile hail" "jibauni untranslated"

@@ -273,3 +273,29 @@ ship "Yiyharsi" "Yiyharsi (Tractor Flak)"
 	gun
 	gun
 	turret "Aljaraar Tractor Beam"
+
+ship "Furus" "Furus (Religious Leader)"
+	outfits
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+		"Jahgir Energy Generator" 2
+		"Jibauni Ramscoop" 5
+		"Wasita Steering"
+
+ship "Nathas" "Nathas (Religious Leader)"
+	outfits
+		"Eimlaq Steering"
+		"Hyperdrive"
+		"Jibauni Ramscoop" 4
+		"Lilsa Anti-Missile"
+		"Tawasitaq Energy Generator"
+		"Wasita Thrusters"
+
+ship "Quyan" "Quyan (Religious Leader)"
+	outfits
+		"Eimlaq Thrusters"
+		"Hyperdrive"
+		"Jibauni Ramscoop" 2
+		"Lilsa Anti-Missile"
+		"Tawasitaq Energy Generator"
+		"Wasita Steering"
