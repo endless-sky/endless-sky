@@ -20,6 +20,7 @@ mission "Avgi: Lost in Twilight"
 	on enter
 		system
 			attributes "twilight" "tangled shroud"
+		log "Became trapped in a strange region after entering a system my jump drive could not return from."
 		fail
 		set "avgi: lost in twilight"
 		dialog phrase "lost in twilight"
@@ -206,7 +207,6 @@ mission "Avgi: First Contact"
 		"reputation: Avgi" >?= 5
 		"reputation: Avgi (Consonance)" >?= 5
 		"reputation: Avgi (Twilight Guard)" >?= 5
-		log "Factions" "Avgi" `Met an alien race calling themselves the "Avgi."`
 
 	on fail
 		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
@@ -219,7 +219,12 @@ mission "Avgi: First Contact"
 		"reputation: Avgi (Consonance)" += 10
 		"reputation: Avgi (Twilight Guard)" += 10
 		set "discovered avgi"
-		log "Factions" "Avgi" `The Avgi are a young race of dragonfly-like aliens inhabiting this part of the galaxy. Their homeworld and core space have been occupied by an alien invasion.`
+		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let you purchase civilian technology.`
+		log "Factions" "Avgi" `The Avgi are a young race of aliens resembling large, colorful dragonflies, which inhabit the Twilight Nebula in this part of the galaxy. After an overwhelming invasion by ships they call the Aberrant, most of their surviving spacecraft fled south through a maze-like region called the Tangled Shroud.`
+		log "Factions" "Avgi Consonance" `The exiled Avgi seem to be led by a central government called the Consonance, but there are many who do not recognize this government.`
+		log "People" "Asime" `Asime is one of the three First Speakers of the Consonance Assembly. While reserved, Asime appears to be defensive about the decisions made by the Consonance in response to the Aberrant incursion.`
+		log "People" "Galano" `Asime is one of the three First Speakers of the Consonance Assembly. He appears to be an elder statesman, with much pride for what the Avgi have accomplished.`
+		log "People" "Prasinos" `Asime is one of the three First Speakers of the Consonance Assembly. She seems to take a negative view on the Avgi history of division and fractiousness.`
 		event "outer limits label"
 		conversation
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the final system the alien marked on your map. You notice that your flight computer has failed to record the locations of most of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This region appears unaffected however, and your computer is able to chart its position.`
@@ -370,6 +375,7 @@ mission "Avgi: Humans From the Deep"
 		has "Avgi: First Contact: done"
 
 
+
 mission "Avgi: Defend Ensemble 1"
 	name "Avgi Strike Force"
 	description "Meet up with the Avgi strike force at <destination>."
@@ -381,6 +387,7 @@ mission "Avgi: Defend Ensemble 1"
 	to offer
 		has "Avgi: Humans From the Deep: done"
 	on offer
+		log "People" "Darius Caldwell" `Darius was a Deep Security captain, who led an expedition sponsored by the Deep to learn more about Quarg technology. While on the return trip, he ordered his crew to investigate an anomalous extra hyperlane leading south of human space. After becoming trapped in Avgi space, the Deep crew sought refuge with the Consonance. Darius seems to blame himself for his crew's situation.`
 		conversation
 			`From afar, the Aktina Cylinder looks like a titanic skeletal tube, with ribs of graphene and a metallic spine. Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews.`
 			`	You've been told that word of your arrival has been sent ahead of you, so you aren't entirely surprised to see a middle-aged human waiting for you, a look of pure astonishment on his face as your ship settles into a free hangar. You disembark from the <ship> to find Darius waiting right outside the hatch.`
@@ -418,7 +425,7 @@ mission "Avgi: Defend Ensemble 1"
 				goto next
 
 			label korath
-			`	"Aliens other than the Quarg?" You nod. "Huh. I've heard rumors about alien attacks in the Core before, but I always thought it was the Syndicate making excuses for piracy."`
+			`	"Aliens other than the Quarg?" You nod. "Huh. I've heard rumors about alien attacks in the Core before, but I always thought it was the Syndicate making excuses for the out-of-control piracy in the region."`
 				goto next
 
 			label pug
@@ -430,7 +437,7 @@ mission "Avgi: Defend Ensemble 1"
 				goto next
 
 			label quarg
-			`	"... what? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
+			`	"...What? You're kidding, right? How the hell did you defeat a Quarg ship?" He looks worried for a second, taking a step back. "Do I even want to be seen associating with you?" He laughs nervously.`
 
 			label next
 			`	Darius shakes his head for a moment, then looks back at you. "Well, since you're still here, I'm assuming your jump drive couldn't get you out of here?" You tell him about how you were unable to jump back to human space, and he nods along.`
@@ -482,9 +489,12 @@ mission "Avgi: Defend Ensemble 2"
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
+		log `Agreed to help the Twilight Guard defend the Ensemble system from an Aberrant raid inside the Tangled Shroud. The Avgi appear to enthusiastically use nuclear weapons, contrary to the taboo most humans place on them.`
+		log "Factions" "Twilight Guard" `The Twilight Guard is the military arm of the Avgi Consonance, a unified command created in response to the Aberrant incursion.`
+		log "Factions" "Avgi" `Notably, the Avgi appear to have no taboo around nuclear weapons, and use them freely against the Aberrant.`
 		conversation
 			`Navigeo is buzzing with activity as you pull into one of the few open berths available. Avgi ships of all sizes, painted in the deep blue of the Twilight Guard, launch every few minutes, replaced moments later by battle-scarred warships that slip into dry dock for repair.`
-			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
+			`	Parked a few kilometers from the station, a fleetgroup is assembling in a wide formation. You see a handful of cruiser-sized ships, along with a dozen smaller ships congregated around them. You hail them, asking to join the formation, and a surprised Avgi admiral directs you to fly towards the Ensemble system.`
 			`	"Warning. Atomics will be used in the upcoming battle, so stay your distance from our warheads," she says. "It would be appreciated if you flew ahead of our fleet and cleared out any straggler Aberrant in the way, so that we can save as many atomics for the battle in Ensemble."`
 			choice
 				`	"Acknowledged."`
@@ -497,10 +507,10 @@ mission "Avgi: Defend Ensemble 2"
 					goto end
 				`	"I'm not sure I'm comfortable with weapons of genocide."`
 
-			`	"Annoyance. It's not like we're using them against civilian targets, or even a planetary surface target to begin with. Honestly, you humans have some strange sensibilities."`
+			`	"Annoyance. It's not like we're using them against civilian targets, or even a planetary target to begin with. Honestly, you humans have some strange sensibilities."`
 
 			label end
-			`	She turns away from the viewscreen as another Avgi starts speaking to her, dismissing you.`
+			`	She turns away from the viewscreen as another Avgi starts speaking to her, dismissing you with a flick of her fingers.`
 				accept
 	npc
 		government "Avgi (Twilight Guard)"
@@ -586,6 +596,10 @@ mission "Avgi: Defend Ensemble 2"
 				"Aberrant Triplet (Disable-able)" 3
 
 	on complete
+		log `Defended Ensemble from the Aberrant raid with the help of a fleet of Twilight Guard ships armed with nuclear weapons. The Aberrant apparently do not usually raid this deep into the Tangled Shroud, which makes the size of this battle worrying.`
+		log "People" "Sora" `Sora was part of the Deep expedition that became trapped in Avgi space, serving as an engineer. She has been assisting the Twilight Guard with reinforcing their defenses in the Tangled Shroud. Despite Darius' fears, she does not appear to blame him for their predicament.`
+		log "People" "Darius Caldwell" `Despite Darius' pessimism, at least some of his crew does not blame him for their situation.`
+		log "People" "Kokkino" `Kokkino is a Captain in the Twilight Guard, who seems interested in the possible help you can provide the Avgi..`
 		conversation
 			`You land on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to the Navigeo Yards. While you and Darius are checking the <ship> for damage, you hear someone walk up with distinctly human footsteps.`
 			`	"So, those rumors weren't all talk. There really is another one of us here." You look up to see a woman in combat fatigues standing in front of you, hand extended.`
@@ -650,7 +664,7 @@ mission "Avgi: Defend Ensemble 2"
 				`	"I'm not sure."`
 			`	He looks a little disappointed, then collects himself. "Well, I suppose there's no real urgency to it. Though, I've been thinking. If your jump drive wasn't able to let you escape from the north, there might not be a point in looking in that direction."`
 			`	"What do you suggest?" you ask.`
-			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's an entire second branch of the Tangled Shroud, mostly ran by miners and small-time shipbuilders, the kind of people who talk a lot among themselves about rumors and tall tales. The official story behind the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission."`
+			`	"I have a friend among the Avgi, one who doesn't frequent the official circles in the Consonance as much. There's a number of hideaways and side branches in the Tangled Shroud, with outposts mostly ran by miners and small-time shipbuilders. Just the kind of people who talk a lot among themselves about rumors and tall tales. The official story of the Incursion, the invasion of the Aberrant, is that they came from a chain of systems in the East, but no one ever talks about where exactly that chain leads. I think we should pay my friend a visit after you wrap up this next mission."`
 
 
 mission "Avgi: Scout Rescue"
@@ -684,6 +698,8 @@ mission "Avgi: Scout Rescue"
 				`	"Yes, it's called a jump drive."`
 			`	"Excitement. Then, the trip could be shortened to mere days, giving us the possibility of mounting a rescue. I will mark the location of the Twirl system on your map, though it is probable that the Silver Albedo is elsewhere in the star cluster. The highest priority is of course the safe recovery of its crew, though if you could recover any data or samples they have managed to gather, that would also be much appreciated."`
 				accept
+	on accept
+		log `Agreed to help Kokkino by trying to rescue the crew of an Avgi scout ship that failed to report in from a mission in the Twilight.`
 
 	npc assist
 		government "Avgi"
@@ -730,14 +746,16 @@ mission "Avgi: Frontline Combat"
 	on offer
 		conversation
 			`You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
-			`	"Explanation. The Aberrant are relentless, but as a rule only push lightly against our lines into the Tangled Shroud. The recent incursion excepted, of course. But Arche holds the first lines of defense, with the Feo Platform and its cannons." He points to a trinary system just outside the Shroud.`
+			`	"Explanation. The Aberrant are relentless, but as a rule push only lightly into the Tangled Shroud. The recent incursion excepted, of course. But Arche holds the first lines of defense, with the Feo Platform and its cannons." He points to a trinary system just outside the Shroud.`
 			`	"But, if we are to reclaim our homes, we cannot merely fight on the defensive. Thus, the front lines of this war are as of late drawn in the Quintessence system, and the triangle of systems to its north, which we are still in the process of clearing."`
 			choice
 				`	"Where do I come in?"`
 				`	"What do you want me to do?"`
 			`	"Consideration. Your ship is far beyond anything we can produce indigenously, at least for the moment. While you are certainly skilled in fleet combat, I am of the opinion that you would be best put to use launching independent strikes, those that a single one of our vessels could not manage on their own."`
-			`	He looks down at a device similar to a tablet. "With the attack on Ensemble, we were forced to pull back our main fleetgroups from the front lines in Quintessence in an attempt to contain them. While we have since reclaimed our initial positions, during the maneuvering a large group of Aberrant were able to slip past us, not into the Shroud, but rather north, towards the Empyrean system. With the current situation, I do not want to divert an entire strike force from the defenses to hunt them down. Report back to the Feo Platform when the Aberrant are eliminated."`
+			`	He looks down at a device similar to a tablet. "With the attack on Ensemble, we were forced to pull back our main fleetgroups from the front lines in Quintessence in an attempt to contain them. While we have since reclaimed much of our initial positions, during all the maneuvering a large number of Aberrant were able to slip past us, not into the Shroud, but rather north, towards the Empyrean system. With the current situation, I do not want to divert an entire strike force from the defenses to hunt them down. Report back to the Feo Platform when the Aberrant are eliminated."`
 				accept
+	on accept
+		log `Agreed to help Kokkino by clearing out Aberrant stragglers infesting a cluster of systems behind the front lines.`
 
 	npc kill
 		government "Aberrant"
@@ -817,6 +835,10 @@ mission "Avgi: Dissonance Outreach"
 			has "Avgi: Scout Rescue: done"
 			has "Avgi: Frontline Combat: done"
 	on offer
+		log "People" "Hriso" `Hriso is an Avgi diplomat, who negotiates with dissenters unhappy with Consonance rule. While loyal to the Consonance, he seems to have some sympathy for the Dissonance movement and its views.`
+		log "People" "Sora" `Sora takes a negative view on the Dissonance, and those who she sees as not contributing to the war effort against the Aberrant.`
+		log "Factions" "Avgi Consonance" `Membership in the Consonance varies widely between the various Avgi polities, and a significant portion of the Avgi that escaped the Aberrant do not recognize its legitimacy.`
+		log "Factions" "Avgi Dissonance" `The Dissonance is a catchall term for the various groups and individuals who do not accept the Consonance as a unified Avgi government. Ranging from anarchists to dissenting corporations, the Dissonance is a big-tent movement rather than being is a centralized group.`
 		conversation
 			`Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."`
 			choice
@@ -826,11 +848,14 @@ mission "Avgi: Dissonance Outreach"
 			`	He thrums in laughter. "One can only wish our species was that unified. No, membership in the Consonance is purely at-will, and many polities have chosen to go it alone even with the current crisis. Regret. The initial evacuation into the Tangled Shroud was haphazard to say the least, as much of it was, and still is, unmapped. Many captains took their ships down differing paths, meeting up with each other and forming alliances just to survive. In a way, it's a miracle that the Consonance was even able to reconstitute itself at all."`
 
 			label dissonance
-			`	"Those polities not fully aligned with the Consonance are largely independent of each other, but their movement has collectively been labeled as the 'Dissonance.' Imperative. Please do understand, we are not enemies, nor would I say we bear them any ill-will. The Dissonance participates in trade with us and de facto follows the regulations passed by the Assembly, and each and every one of them wants the Aberrant scoured from our space as much as the rest of us."`
+			`	"Those polities not fully aligned with the Consonance are largely independent of each other, but their movement has collectively been labeled as the 'Dissonance.' Imperative. Please do understand, we are not enemies, nor would I say we bear them any ill-will. The Dissonance participates in trade with us and de-facto follows the regulations passed by the Assembly, and each and every one of them wants the Aberrant scoured from our space as much as the rest of us."`
 			`	"The individuals we will be negotiating with on this trip are still loyal to the Consonance, merely unhappy with the price controls in place on certain minerals. Necessary for the Twilight Guard to expand the fleet," he explains.`
 			`	Sora says, "I still think they're a bunch of cowards. The existence of your species is threatened, and you let someone else do the fighting? Then you complain about the price they can pay for iron? What kind of person does that?"`
 			`	Hriso flicks his wings. "Reproach. The kind that still has to support themselves, and pay for the precision machinery they cannot make themselves. But we can discuss this later. For now, let us set off as soon as possible."`
 				accept
+
+	on accept
+		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help you escape the Twilight.`
 
 
 mission "Avgi: Twilight Escape 1"
@@ -844,6 +869,9 @@ mission "Avgi: Twilight Escape 1"
 	to offer
 		has "Avgi: Dissonance Outreach: done"
 	on offer
+		log `Heard of a potential way out of the Twilight. Apparently, the Aberrant invaded through a chain of systems stretching to the East, and while no Avgi ships have been able to explore the area since the Incursion, Leon thinks there could be a way back to human space from there.`
+		log "Factions" "Avgi Dissonance" `Independent miners, collectives, and corporations alike are unhappy with the price controls the Consonance has placed on minerals mined from asteroids. While the Consonance claims they are necessary due to the austere war economy and the need for raw materials, the artificially low prices make it hard to survive and make a living.`
+		log "People" "Leon" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections and could be close to uncovering a way back to human space.`
 		conversation
 			`Outpost Tekis is a large station built into an asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
 			`	You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
@@ -916,6 +944,8 @@ mission "Avgi: Twilight Escape 1"
 			`	"<first>," says Darius in a shaky voice. "Take us to the Deep, please. I need to see my home. And my wife."`
 			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
+		log `Successfully escaped the Twilight after using a magnetar in the Decet system to boost the range of your jump drive in an apparent inversion of the effect that trapped you here.`
+		log "People" "Leon" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
 		clear "avgi: lost in twilight"
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
 		conversation
@@ -951,6 +981,10 @@ mission "Avgi: Twilight Escape 2"
 			`	"Of course," you say.`
 				accept
 
+	on accept
+		log `Agreed to take Sora to her parents' farm on Memory, as she has nowhere else to go.`
+		log "People" "Darius Caldwell" `Despite escaping the Twilight, Darius still feels guilty over his crewmembers that lost their lives to the Aberrant.`
+
 
 mission "Avgi: Twilight Escape 3"
 	name "Darius' Return"
@@ -963,6 +997,7 @@ mission "Avgi: Twilight Escape 3"
 	to offer
 		has "Avgi: Twilight Escape 2: done"
 	on offer
+		log "People" "Darius Caldwell" `Darius is extremely devoted to his wife Katrina, but worries that she may have moved on in the six years he's been missing.`
 		conversation
 			`Memory is a dry world, covered in sands and shrubland. From the spaceport, the three of you catch a shuttle bus that heads out into the countryside, passing miles of cacti and dry plants that abruptly turn into greener fields of crops, probably irrigated by aquifers. It is one of these farms you finally arrive at, the one Sora says belongs to her parents. Traffic must be rare here, because only a few minutes after the bus stops the door to the well-maintained farmhouse opens, a middle-aged couple peering out.`
 			`	"...Sora? Is that you?" the older woman calls out while the man gapes in silence.`
@@ -980,7 +1015,13 @@ mission "Avgi: Twilight Escape 3"
 			label optimism
 			`	Darius rubs his eyes. "Thank you, <first>. I hope I'm wrong. Let's go to Valhalla."`
 				accept
+
+	on accept
+		log `After reuniting Sora with her parents, agreed to help Darius find his wife on Valhalla.`
+
 	on complete
+		log `Successfully reunited Darius with his wife Katrina, who refused to believe he was dead.`
+		log "Minor People" "Katrina Caldwell" `Katrina is Darius' wife, who moved out of the city but refused to believe he was dead.`
 		conversation
 			`You land in Valhalla's main spaceport, and Darius practically jumps out of your ship before it can even touch down. A quick call for an automated taxi, and you soon find yourselves outside an expansive, fancy-looking apartment complex. "Our old address," he explains. "We were still renting, but were looking at buying our apartment within a few years."`
 			`	You knock on the door to the right apartment, but it is answered by a tall man with black hair. "Hello, can I help you?" he asks cautiously.`

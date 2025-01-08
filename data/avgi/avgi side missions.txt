@@ -239,6 +239,9 @@ mission "Avgi Culture: Park Politics"
 			`	"Consideration. I see. It is something that should be rectified, then, to make your time among us less confusing. The first thing that you should know is that the Avgi are not, nor have ever been, united under a single government."`
 
 			label assembly
+			action
+				log "Factions" "Avgi" `There are thousands of Avgi governments called polities, which seem to resemble city-states or ideological identities more than true nations. Many, if not most, have banded together into the Consonance, where Electors with varying political weight based on the population of their respective polities make consensus decisions for the species as a whole.`
+
 			`	"Explanation. The Assembly of Polities, as it is formally named, is a rather complicated institution. As its name suggests, it is, well, an assembly of polities. Polities being... associations, or identities. I have read of your human histories, and you could perhaps consider them an analog of nations, but with two key differences."`
 			`	Wisteria raises a sharp finger. "One, they are not geographically bounded. Oh, many will perhaps have ownership over various pieces of land and space stations, but that is in constant flux, and they are rarely joined into a contiguous whole. And two, an individual Avgi can belong to any number of polities at the same time. Citizenship, you may think of it, is shared - and diluted - between as many polities as an Avgi wishes to belong to. Religion, ethnic heritage, economic sector, and even common interests are the most common lines by which polities might base themselves around, but there is one for almost any group imaginable. Even major corporations, or industries that have banded together."`
 			`	He spreads his arms out as if presenting a great circle. "The Assembly was an attempt at securing harmony between these polities, to prevent conflicts, and when that became impossible, to set the rules and limits of war. One representative, an Elector, per polity, with a vote weighted by the number of Avgi belonging to it, and by how those Avgi had chosen to dilute their own membership among the various polities. And from they select three Speakers, a Trirumvirate to lead the leaders."`
@@ -246,13 +249,15 @@ mission "Avgi Culture: Park Politics"
 				`	"Do the Avgi in a polity elect their Elector?"`
 				`	"Corporations are part of the government? I've seen that one before."`
 					goto syndicate
+			action
+				log "Factions" "Avgi Consonance" `While most of the Electors the various Avgi polities select to represent them in the Consonance are elected democratically, others are not, with their own systems of appointment. The Consonance is thus perhaps an example of a republic without being fully democratic.`
 
-			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time commitment to make."`
+			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their own leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time commitment to make."`
 			`	"But yes, most of the polities use some form of democracy. An Avgi might find themselves voting in several elections, one for each polity they claim membership to, with their vote diluted by how many polities they belong to."`
 				goto nextassembly
 
 			label syndicate
-			`	Wisteria thrums in laughter. "Amusement. Yes, I've heard of your Syndicate. It was strange to me, to hear of a corporation that wished for the burden of true governance, instead of leaving that to your Republic. It seems to me that the industrial polities try their best to avoid any responsibility, while still reaping the benefits of representation."`
+			`	Wisteria thrums in laughter. "Amusement. Yes, I've heard of your Syndicate. It was strange to me, to hear of a corporation that wished for the burden of true governance, instead of leaving that to your Republic. It seems to me that the industrial polities here try their best to avoid any responsibility, while still reaping the benefits of representation."`
 
 			label nextassembly
 			`	"Amusement. And of course there are internal factions within the Assembly, as likeminded polities work together to advance their agendas, then just as quickly abandon each other. A harsh world, the Assembly is."`
@@ -264,6 +269,15 @@ mission "Avgi Culture: Park Politics"
 			`	He laughs. "Of course they are. Oh, most of them have the same goal in the end, defeating the Aberrant, but there are many who are convinced that their methods are best suited for achieving that goal."`
 
 			label factions
+			action
+				log "Factions" "Avgi Consonance" `There are many factions in the Consonance Assembly that compete for power and influence.`
+				log "Factions" "Avgi Consonance" `The Centralists wish to see the Consonance evolve into a true central government with real power. Mostly popular among smaller polities that would otherwise lack influence, their critics accuse them of authoritarianism while they argue strong leadership is needed to combat the Aberrant.`
+				log "Factions" "Avgi Consonance" `The Technocrats are a group of corporate and industrial polities that believe in the power of technology to defeat the Aberrant. Besides a shared interest in funding research and development projects, they often conflict with each other, and the results of their sponsorships have been mixed.`
+				log "Factions" "Avgi Consonance" `The Financiers are influenced primarily by old money, those families and polities who control the largest trade unions and banking organizations. Their financial power makes them almost universally unpopular to the people, but they work behind the scenes to promote unity and effective governance by taking advantage of their influence.`
+				log "Factions" "Avgi Consonance" `The Nationalists are a diverse group that rail against the Consonance's subversion of individual polities. They especially resent the consolidation of individual national navies into the Twilight Guard, but are considered a reliable force against percieved overreach.`
+				log "Factions" "Avgi Consonance" `The Ecologists are a single issue faction that simply desires the settlement of Weledos. Many have sympathies to the increasingly popular position that the Avgi should focus on settling the Tangled Shroud instead of trying to reclaim Aviskir.`
+				log "Factions" "Avgi Consonance" `The Freelancers have little in common besides a disdain for the taxes and financial controls imposed by the Assembly. Many with Dissonance sympathies can be found among them, but just as many are loyal Consonance supporters who merely desire lower taxes.`
+
 			`	He ticks them off on his pointed fingers, three on each hand. "There are the Centralists, those from the smaller polities who wish to see the Consonance grow in authority and power. The war against the Aberrant demands strong leaders, they say, and many agree with them."`
 			`	"The Technocrats, they disdain that, and place their hopes in a qualitative solution to defeat the Aberrant. Build better ships and give them better weapons, and the Aberrant can be swept from the Twilight without the need to demand ever more resources from our people. They draw from many of the industrialist polities, but their loyalties are often divided."`
 			`	"The Financiers, the old money types with their fingers in everything, they represented many of the more urbanized regions of the core worlds, and their influence has come with them. Disdained by everyone in public, and beloved by all who would seek to benefit from their influence, I would credit them for being half the reason for the present unity between polities that would normally refuse to cooperate with each other."`
@@ -414,6 +428,8 @@ mission "Avgi Culture: Park Politics"
 				accept
 
 	on accept
+		log `Played an Avgi board game in the park with an elderly Avgi named Wisteria.`
+		log "People" "Wisteria" `Seemingly an old Avgi who plays board games in the park, Wisteria was formerly one of the First Speakers of the Consonance Assembly before retiring. He has a deep understanding of Avgi politics and history, and is curious about how they compare to those of humanity.`
 		outfit "Trefoil Board" 1
 		fail
 
@@ -427,6 +443,7 @@ mission "Avgi Culture: Zapchannel Energy"
 	source
 		government "Avgi (Consonance)"
 	on offer
+		log "Minor People" "Nikkio" `Nikkio is a shifty salesman peddling "Zapchannel Ray Energy," a supposed health tonic with a suspicious glow.`
 		conversation
 			action
 				set "Avgi: met nikkio"
@@ -479,8 +496,13 @@ mission "Avgi Culture: Zapchannel Energy"
 			`	"Alarm. There's no need for that, apologies, apologies! Be on your way, Captain!"`
 				decline
 	on accept
+		log `Met a suspicious-looking Avgi salesman named Nikkio. Accepted a free sample of a strange glowing drink and somehow developed minor superpowers from it.`
 		outfit "Damselflyman"
 		fail
+
+	on decline
+		log `Met a suspicious-looking Avgi salesman named Nikkio. Refused his offer of a definitely radioactive "energy drink" that would probably have been lethal.`
+
 
 mission "Damselflyman Abilities"
 	landing
@@ -501,6 +523,7 @@ mission "Avgi: Cylinder Construction"
 	source
 		planet "Aktina Cylinder"
 	on offer
+		log "People" "Gamboge" `Gamboge manages construction on the Aktina Cylinder, an immense habitat station whose construction has stalled in recent years. He is frustrated about the lack of support offered by the Assembly and believes Aktina deserves to be a higher priority.`
 		conversation
 			`You are struck by just how massive this space station is, even in its incomplete state. At three kilometers in diameter, it is only a small fraction of the size of the ones back in Avgi space, but even so it overshadows any human orbital construction. The site is an active construction zone, based on what you've heard, though you see little evidence of activity. A few Avgi lounge about in the small, temporary living quarters for the construction workers, but all of the Akoustiki Excursion Vehicles with their welding arms and nanofilament spinners are docked and powered down.`
 			`	Would you like to ask what's going on?`
@@ -596,6 +619,7 @@ mission "Avgi: Infocourier Encounter"
 	source
 		government "Avgi (Consonance)"
 	on offer
+		log "People" "Hansa" `Hansa is an Infocourier, a role that sees him transport files and records between systems in a small ship. As the Avgi never developed hyperspace comms, courier ships are necessary to communicate across interstellar distances.`
 		conversation
 			`While admiring the ships in <origin>'s spaceport, you notice a Polari painted in civilian Avgi colors, rather than usual deep blue of the Twilight Guard. All of the scouts you've seen before have been commissioned ships of the Guard, but it seems like this one might be privately owned.`
 			choice
@@ -671,6 +695,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 	source
 		attributes "twilight guard"
 	on offer
+		log "People" "Claret" `Claret is a member of the Twilight Guard, curious about humans and passionate about the details of tactical space combat.`
 		conversation
 			`You find yourself wandering into what looks like the Avgi version of a spaceport bar. A circular ampitheatre provides seating and tables around the dance floor, with drinks served at a long raised bar that curves around the rim of the room. Curious, you get in line, attracting more than a few interested stares from the aliens, until you reach the bar.`
 			`	"Hey you, want a drink, question?" the bartender asks with a wave, your translator receiving the musical tone. You look behind him, expecting shelves of bottles or barrels, but instead the space behind the bar looks more like a greenhouse, with rows of colorful flowers and plants growing in troughs under blue-violet lights.`
@@ -860,6 +885,7 @@ mission "Avgi: Atomics Testing 1"
 	destination "Dokimi Range"
 	blocked "You need <capacity> to transport Aliza and her colleagues to Dokimi."
 	on offer
+		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of an enthusiasm for nuclear weapons, she is eager to share what she knows.`
 		conversation
 			action
 				set "Avgi: met aliza"
@@ -1037,6 +1063,7 @@ mission "Avgi: Atomics Testing 2"
 					decline
 
 	on complete
+		log "Minor People" "Yinmn" `Yinmn is a security specialist working to keep nuclear materials secure and out of the wrong hands. He is apparently quite successful at this.`
 		conversation
 			`	You drop off Aliza near the same place you met her, in the main concourse. It's rather more full than last time, with a veritable crowd moving through the room, probably fresh off a transport ship. Aliza seems to spot someone she recognizes. Waving, she drags you over to a dark blue Avgi in dark, steel gray clothing.`
 			`	"This is my colleague, Yinmn," she says. And this is Captain <first> <last>.`
