@@ -3994,7 +3994,7 @@ mission "Home for Skadenga 13"
 			action
 				set "tears"
 			`	"Less than I would like," she says softly. "Longer I live, more I learn how little I know. Before ships came, when we knew only ways of stone, there was different kind of power here. A fragile, gentle, stone-magic. Then came endless colonists, men from stars with ships that sailed night. The stone-magic failed and secret ways shut."`
-			`	She looks at you sadly. "These stones are relics from lost age. Stolen age." She pauses. "More I cannot I tell, but if you bring me such a stone I will look for you, and see if more I might know."`
+			`	She looks at you sadly. "These stones are relics from lost age. Stolen age." She pauses. "More I cannot tell, but if you bring me such a stone I will look for you, and see if more I might know."`
 				goto answers
 			label done
 			action
