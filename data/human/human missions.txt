@@ -9984,12 +9984,12 @@ mission "Ice Queen 8"
 			`	"Sure thing, Cap."`
 			`	"Whatever you say, boss."`
 			`	The group of pirates melt away into the warehouse, one of them dragging the dead body, leaving you and Ildy relatively alone.`
-			`	"I'm so glad you came, <first>." Ildico puts a friendly hand on your shoulder and squeezes.`
-			`	She turns and waves toward the warehouse. "This is my temporary headquarters. I have few other safe-houses, and I own part of a hangar elsewhere. Not too many ships yet, but I intend to change that soon."`
+			`	"I'm glad you came, <first>." Ildico puts a friendly hand on your shoulder and squeezes.`
+			`	She turns and waves toward the warehouse. "This is my temporary headquarters. I have few other safe-houses, and I own part of a hangar elsewhere. Not too many ships yet, but that will change soon."`
 			`	Ildico holsters her gun right next to where she keeps her dagger and continues. "But making moves is hard. Everyone wants to be on top. Which is why I need you."`
 			`	She looks you in the eye and says, "There's a rival gang right next door to us. They have a lot more firepower, but if they could be removed, we could easily double our territory.`
 			`	"I don't have the ships," she glances at her gang in the distance, "or the quality of crew, to deal with them.`
-			`	"But I think you do. I can't afford to pay you right now, things are pretty fluid, but I'll owe you. What do you say?"`
+			`	"But I think you do. I can't afford to pay you right now, things are pretty fluid, but I'll owe you. So, are you in?"`
 			choice
 				`	"Sure, I'll help."`
 				`	"Fine. But you're going to owe me big when this is all over."`
@@ -9997,8 +9997,8 @@ mission "Ice Queen 8"
 				`	"Not interested."`
 					goto uninterested
 
-			`	Her smile nearly lights up the dim room. "I always know I can count on you. And only you.`
-			`	"I fed the gang some false information. They have their entire fleet right now looking for some juicy merchant ships that don't actually exist, so they're not expecting a captain like you to take them on and blow them out of the sky.`
+			`	Her smile lights up the dim room. "I always know I can count on you. And only you.`
+			`	"I fed the gang some false information. They have their entire fleet hunting some juicy merchant ships that don't actually exist, so they'll be surprised when they find you instead."`
 			`	"Check out the nearby systems and look for a ship called the <npc>, which is their flagship. Kill them all, and come back here. To me."`
 				accept
 
@@ -10023,7 +10023,7 @@ mission "Ice Queen 8"
 
 	on complete
 		conversation
-			`There's been some intense fighting around the district where Ildico's warehouse was located. A few gunshots echo as you make your way through the rubble and around the fire.`
+			`There's been intense fighting around the district where Ildico's warehouse was located. A few gunshots echo as you make your way through the rubble and around the fire.`
 			`	A group of injured but high-spirited pirates are set up outside the building, and there are bodies littering the nearby streets. An unharmed but bloody Ildico walks up to you, smiling. She is trailed by a small incongruous toddler with short black hair and lopsided grin.`
 			`	"Perfect. They never had a chance." She wipes the blood off her dagger, and notices your gaze.`
 			`	"The safest place for her was by my side," she says matter-of-factly to you, then she kneels down to her daughter. "Randalin, this is <first>. You met them long ago when you were a baby. <first> is my friend."`
