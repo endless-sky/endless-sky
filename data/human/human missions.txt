@@ -9864,7 +9864,7 @@ mission "Ice Queen 6"
 			choice
 				`	"Go where?"`
 					goto where
-				`	(Grab the briefcase).`
+				`	(Grab the briefcase.)`
 			`	"We need to go where the Republic cannot. Take us to <planet>." She gives you a serious look and adds, "And do not let anyone scan your ship until we get there."`
 			`	The three of you escape out into the night and onto your ship.`
 				launch
