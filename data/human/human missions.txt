@@ -9730,7 +9730,7 @@ mission "Ice Queen 3"
 			`	Ian shrugs. "Though he could afford it, there were other concerns."`
 			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
 			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a Second Degree Terraformer, and after the initial meeting I wasn't privy to the details. But someone, or some government or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
-			`	Ildico seems to deflate. "Ask him? Is...is he here?"`
+			`	Ildico seems to deflate. "Ask him? Is... is he here?"`
 			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. Just head to the the Republic's main office for the Department of Migration, which is located on Chiron."`
 			`	Without saying another word, Ildico turns and leaves. You thank Ian for his help and follow her out.`
 				accept
