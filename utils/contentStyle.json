@@ -68,6 +68,14 @@
 						"correction": {
 							"replaceWith": "\\1\\2"
 						}
+					},
+					{
+						"description": "trailing period in a parenthesised sentence",
+						"regex": "(`|\")(\\s*)\\((.*)\\)\\.\\1",
+						"except": [],
+						"correction": {
+							"replaceWith": "\\1\\2(\\3.)\\1"
+						}
 					}
 				]
 			},
