@@ -469,7 +469,7 @@ mission "Avgi Culture: Zapchannel Energy"
 					goto nope
 
 			label glow
-				`"Excitement, excellent! I can see you are clearly a very intelligent and discerning captain. Anticipation. This serum was invented by yours truly, capable of resolving all of your worldly woes! Only 3,000 credits!" He proudly holds out a vial of cloudy white liquid, glowing a bright, intense pale blue.`
+				`	"Excitement, excellent! I can see you are clearly a very intelligent and discerning captain. Anticipation. This serum was invented by yours truly, capable of resolving all of your worldly woes! Only 3,000 credits!" He proudly holds out a vial of cloudy white liquid, glowing a bright, intense pale blue.`
 			choice
 				`	"Uh, what is this?"`
 				`	"Is this radioactive?"`

@@ -223,8 +223,8 @@ mission "Avgi: First Contact"
 		log "Factions" "Avgi" `The Avgi are a young race of aliens resembling large, colorful dragonflies, which inhabit the Twilight Nebula in this part of the galaxy. After an overwhelming invasion by ships they call the Aberrant, most of their surviving spacecraft fled south through a maze-like region called the Tangled Shroud.`
 		log "Factions" "Avgi Consonance" `The exiled Avgi seem to be led by a central government called the Consonance, but there are many who do not recognize this government.`
 		log "People" "Asime" `Asime is one of the three First Speakers of the Consonance Assembly. While reserved, Asime appears to be defensive about the decisions made by the Consonance in response to the Aberrant incursion.`
-		log "People" "Galano" `Asime is one of the three First Speakers of the Consonance Assembly. He appears to be an elder statesman, with much pride for what the Avgi have accomplished.`
-		log "People" "Prasinos" `Asime is one of the three First Speakers of the Consonance Assembly. She seems to take a negative view on the Avgi history of division and fractiousness.`
+		log "People" "Galano" `Galano is one of the three First Speakers of the Consonance Assembly. He appears to be an elder statesman, with much pride for what the Avgi have accomplished.`
+		log "People" "Prasinos" `Prasinos is one of the three First Speakers of the Consonance Assembly. She seems to take a negative view on the Avgi history of division and fractiousness.`
 		event "outer limits label"
 		conversation
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the final system the alien marked on your map. You notice that your flight computer has failed to record the locations of most of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This region appears unaffected however, and your computer is able to chart its position.`
@@ -598,8 +598,8 @@ mission "Avgi: Defend Ensemble 2"
 	on complete
 		log `Defended Ensemble from the Aberrant raid with the help of a fleet of Twilight Guard ships armed with nuclear weapons. The Aberrant apparently do not usually raid this deep into the Tangled Shroud, which makes the size of this battle worrying.`
 		log "People" "Sora Kun" `Sora was part of the Deep expedition that became trapped in Avgi space, serving as an engineer. She has been assisting the Twilight Guard with reinforcing their defenses in the Tangled Shroud. Despite Darius' fears, she does not appear to blame him for their predicament.`
-		log "People" "Darius Caldwell" `Despite Darius' pessimism, at least some of his crew does not blame him for their situation.`
-		log "People" "Kokkino" `Kokkino is a Captain in the Twilight Guard, who seems interested in the possible help you can provide the Avgi..`
+		log "People" "Darius Caldwell" `Despite Darius' pessimism, at least some of his crew do not blame him for their situation.`
+		log "People" "Kokkino" `Kokkino is a Captain in the Twilight Guard, who seems interested in the possible help you can provide the Avgi.`
 		conversation
 			`You land on Weledos after the battle, while most of the surviving Avgi ships begin temporary repairs in orbit before they travel back to the Navigeo Yards. While you and Darius are checking the <ship> for damage, you hear someone walk up with distinctly human footsteps.`
 			`	"So, those rumors weren't all talk. There really is another one of us here." You look up to see a woman in combat fatigues standing in front of you, hand extended.`
@@ -838,7 +838,7 @@ mission "Avgi: Dissonance Outreach"
 		log "People" "Hriso" `Hriso is an Avgi diplomat, who negotiates with dissenters unhappy with Consonance rule. While loyal to the Consonance, he seems to have some sympathy for the Dissonance movement and its views.`
 		log "People" "Sora Kun" `Sora takes a negative view on the Dissonance, and those who she sees as not contributing to the war effort against the Aberrant.`
 		log "Factions" "Avgi Consonance" `Membership in the Consonance varies widely between the various Avgi polities, and a significant portion of the Avgi that escaped the Aberrant do not recognize its legitimacy.`
-		log "Factions" "Avgi Dissonance" `The Dissonance is a catchall term for the various groups and individuals who do not accept the Consonance as a unified Avgi government. Ranging from anarchists to dissenting corporations, the Dissonance is a big-tent movement rather than being is a centralized group.`
+		log "Factions" "Avgi Dissonance" `The Dissonance is a catchall term for the various groups and individuals who do not accept the Consonance as a unified Avgi government. Ranging from anarchists to dissenting corporations, the Dissonance is a big-tent movement rather than being a centralized group.`
 		conversation
 			`Hriso turns out to be a yellow-orange Avgi of middling age. "Excitement. A true pleasure to meet you, Captain <first> <last>. I look forward to your company during these negotiations."`
 			choice
