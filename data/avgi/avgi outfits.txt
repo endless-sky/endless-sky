@@ -166,12 +166,12 @@ outfit "Diffuse Deflector"
 	thumbnail "outfit/diffuse deflector"
 	"mass" 48
 	"outfit space" -48
-	"energy capacity" 21600
+	"energy capacity" 14400
 	"delayed shield generation" 0.6
 	"delayed shield energy" 1.8
 	"delayed shield heat" 4.8
 	"shield delay" 3
-	description "The Avgi never developed shields indigenously, instead being first introduced to the technology by lost explorers from the Deep. Directly copying the technique used in human shields proved unappealing to Avgi scientists, in part due to the totally alien principles involved, so instead they attempted to tap into the shield effect via enormous superconducting magnets, for them a much more mature technology."
+	description "The Avgi never developed shields indigenously, instead being first introduced to the technology by lost explorers from the Deep. Directly copying the technique used in human shields proved unappealing to Avgi scientists, in part due to the totally alien principles involved, so instead they attempted to tap into the shield effect via enormous superconducting magnets, for them a much more mature technology commonly used in efficient energy storage."
 	description "Unfortunately, for its size, you would expect this shield generator to be far more powerful than it actually is. While it is nearly as large as the heaviest human shield generators, it is only about half as strong, while also consuming far more power. Much of this power ends up being shed as waste heat instead of being used to efficiently regenerate a shield, resulting in a generator that can be generously described as anemic."
 
 
@@ -183,7 +183,7 @@ outfit "Specular Deflector"
 	thumbnail "outfit/specular deflector"
 	"mass" 72
 	"outfit space" -72
-	"energy capacity" 32400
+	"energy capacity" 25920
 	"delayed shield generation" 1.2
 	"delayed shield energy" 3.6
 	"delayed shield heat" 9.6

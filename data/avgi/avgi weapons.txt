@@ -373,7 +373,7 @@ outfit "External Launch Rail"
 		"optical tracking" 0.72
 		"range override" 600
 		"stream"
-		"submunition" "Ophrys Active"
+		"submunition" "Ophrys Terminal"
 	description "This pylon externally mounts a single torpedo, employing a small electromagnetic catapult to fling its payload towards a nearby target."
 
 
@@ -646,7 +646,7 @@ outfit "Orchid Terminal"
 		"acceleration" 0.12
 		"drag" 0.012
 		"trigger radius" 90
-		"blast radius" 300
+		"blast radius" 180
 		"shield damage" 12000
 		"hull damage" 18000
 		"hit force" 6000
@@ -716,7 +716,7 @@ outfit "Ophrys Stockpile"
 	description "The restocking system requires oversight by a small team of specialists to ensure no accidents occur during the loading process."
 
 
-outfit "Ophrys Active"
+outfit "Ophrys Terminal"
 	weapon
 		sprite "projectile/orchid terminal"
 			"scale" 0.5
@@ -731,7 +731,7 @@ outfit "Ophrys Active"
 		"homing" 2
 		"optical tracking" 0.72
 		"trigger radius" 30
-		"blast radius" 300
+		"blast radius" 90
 		"shield damage" 12000
 		"hull damage" 18000
 		"hit force" 6000
