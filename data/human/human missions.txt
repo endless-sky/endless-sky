@@ -9426,7 +9426,7 @@ mission "Stone to Hope"
 			label whyhope
 			action
 				set "stones"
-			`	"Lots of the first folks who settled Hope came from the Deep." Helm answers, getting a far off look in his eyes. "It wasn't like most worlds in the south. It was going to be different. Atleast, that's what they believed."`
+			`	"Lots of the first folks who settled Hope came from the Deep." Helm answers, getting a far off look in his eyes. "It wasn't like most worlds in the south. It was going to be different. At least, that's what they believed."`
 			`	He shrugs, "Many of them didn't forget where they came from. Brought the old ways with them. Some refugees, like Tosti's family, even found there way back here when Hope was lost."`
 			`	"Anyways, that's why you can find Family-Cairns on Hope - because our people were there. Now, getting back to the matter at hand, you willing to help Tosti out?"`
 
