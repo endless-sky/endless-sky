@@ -10656,7 +10656,7 @@ system Companion
 
 system Concerto
 	pos -465 1234
-	government Avgi
+	government "Avgi (Consonance)"
 	attributes "avgi" "bright star" "consonance" "notable star" "outer limits"
 	arrival 3650
 	habitable 3650

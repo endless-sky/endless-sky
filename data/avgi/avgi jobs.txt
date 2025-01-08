@@ -12,6 +12,9 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
+# Cargo Jobs
+
+
 # Transport Jobs
 
 phrase "avgi specialists complete"
@@ -33,38 +36,77 @@ phrase "avgi specialists complete"
 mission "Avgi: Specialized Workers 1"
 	job
 	repeat
-	name "Workers to <planet>"
-	description "Take these <bunks> to <planet> to provide rapid subject matter expertise in exchange for <payment>."
+	name "Specialized workers to <planet>"
+	description "Take these <bunks> specialists to <planet> to provide subject matter expertise in exchange for <payment>."
 	passengers 6 3 .45
 	to offer
 		random < 30
 	source
-		government "Avgi (Consonance)"
+		government "Avgi (Consonance)" "Avgi (Twilight Guard)" "Avgi (Dissonance)"
 	destination
-		distance 1 18
-		government "Avgi (Consonance)" "Avgi (Dissonance)"
+		distance 1 30
+		government "Avgi (Consonance)" "Avgi (Twilight Guard)" "Avgi (Dissonance)"
 	on visit
-		dialog phrase "avgi specialists complete"
+		dialog phrase "generic passenger on visit"
 	on complete
+		dialog phrase "avgi specialists complete"
 		payment 6000 300
 
 mission "Avgi: Specialized Workers 2"
 	job
 	repeat
-	name "Workers to <planet>"
-	description "Take these <bunks> to <planet> to provide rapid subject matter expertise in exchange for <payment>."
+	name "Specialized workers to <planet>"
+	description "Take these <bunks> specialists to <planet> to provide subject matter expertise in exchange for <payment>."
 	passengers 3 3 .3
 	to offer
 		random < 15
 	source
-		government "Avgi (Consonance)"
+		government "Avgi (Consonance)" "Avgi (Twilight Guard)" "Avgi (Dissonance)"
 	destination
-		distance 1 18
-		government "Avgi (Consonance)" "Avgi (Dissonance)"
+		distance 1 30
+		government "Avgi (Consonance)" "Avgi (Twilight Guard)" "Avgi (Dissonance)"
 	on visit
-		dialog phrase "avgi specialists complete"
+		dialog phrase "generic passenger on visit"
 	on complete
+		dialog phrase "avgi specialists complete"
 		payment 6000 300
+
+
+phrase "avgi diplomats complete"
+	word
+		`You drop off the `
+	word
+		`diplomats`
+		`negotiators`
+	word
+		` on <planet> as they `
+	word
+		`review papers`
+		`shuffle papers 
+		`practice arguments`
+	word
+		` for the negotiations. You collect <payment> in payment.`
+
+mission "Avgi: Outpost Diplomats 1"
+	job
+	repeat
+	name "Diplomats to <planet>"
+	description "Take these <bunks> diplomats to <planet> to negotiate with dissenters in exchange for <payment>."
+	passengers 1 3 .6
+	to offer
+		random < 30
+	source
+		planet "Peripheria"
+	destination
+		distance 1 30
+		government "Avgi (Dissonance)"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "avgi diplomats complete"
+		payment 9000 240
+
+
 
 
 # Special Jobs
@@ -298,7 +340,7 @@ mission "Avgi: Twilight Guardsmen Transport"
 		attributes "twilight guard"
 		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
 	destination
-		distance 1 12
+		distance 1 30
 		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -319,7 +361,7 @@ mission "Avgi: Twilight Guard Officers Transport"
 		attributes "twilight guard"
 		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
 	destination
-		distance 1 12
+		distance 1 30
 		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -342,7 +384,7 @@ mission "Avgi: Twilight Guard Flag Officers Transport"
 		attributes "twilight guard"
 		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
 	destination
-		distance 1 12
+		distance 1 30
 		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
 	on visit
 		dialog phrase "generic passenger on visit"
