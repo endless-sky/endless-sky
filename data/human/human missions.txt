@@ -10139,7 +10139,7 @@ mission "Skadenga: Blood of Surtr"
 			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Stone-magic fades when outsiders come, this is known. Maybe all God-Stones once gave such gifts, but no longer."`
 			`	She points at the Blood of Surtr. "Surtr, is known, he is volcano that erupts on ice. He is black fire that swallows world. But he had no God-Stone on Nifel." She pauses and looks at Aldfrith.`
 			`	"Oh, uh, and none here. Ran, like the sea, is jealous and would share no world with another." Aldfrith says quickly.`
-			`	"Maybe on other world, there is Surtr God-Stone, and from it he bleeds. More than that, I do not know." She says apologetically.`
+			`	"Maybe on other world, there is Surtr God-Stone, and from it he bleeds. More than that, I do not know," she says apologetically.`
 			`	You thank the Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily prepares a small meal, believing it bad manners to let a guest leave unfed, and wishes you well in your future travels among the lofty stars.`
 				decline
 
