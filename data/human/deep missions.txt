@@ -3967,7 +3967,7 @@ mission "Home for Skadenga 13"
 					goto amends
 					to display
 						not "amending"
-				`	"This Tear of Skade, I've seen something like it before, might you know more about these enigmatic stones?"`
+				`	"This Tear of Skade, I've seen something like it before. Might you know more about these enigmatic stones?"`
 					goto enigmatic
 					to display
 						has "Ice Queen 6: done"
