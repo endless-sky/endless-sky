@@ -597,7 +597,7 @@ mission "Avgi: Defend Ensemble 2"
 
 	on complete
 		log `Defended Ensemble from the Aberrant raid with the help of a fleet of Twilight Guard ships armed with nuclear weapons. The Aberrant apparently do not usually raid this deep into the Tangled Shroud, which makes the size of this battle worrying.`
-		log "People" "Sora" `Sora was part of the Deep expedition that became trapped in Avgi space, serving as an engineer. She has been assisting the Twilight Guard with reinforcing their defenses in the Tangled Shroud. Despite Darius' fears, she does not appear to blame him for their predicament.`
+		log "People" "Sora Kun" `Sora was part of the Deep expedition that became trapped in Avgi space, serving as an engineer. She has been assisting the Twilight Guard with reinforcing their defenses in the Tangled Shroud. Despite Darius' fears, she does not appear to blame him for their predicament.`
 		log "People" "Darius Caldwell" `Despite Darius' pessimism, at least some of his crew does not blame him for their situation.`
 		log "People" "Kokkino" `Kokkino is a Captain in the Twilight Guard, who seems interested in the possible help you can provide the Avgi..`
 		conversation
@@ -836,7 +836,7 @@ mission "Avgi: Dissonance Outreach"
 			has "Avgi: Frontline Combat: done"
 	on offer
 		log "People" "Hriso" `Hriso is an Avgi diplomat, who negotiates with dissenters unhappy with Consonance rule. While loyal to the Consonance, he seems to have some sympathy for the Dissonance movement and its views.`
-		log "People" "Sora" `Sora takes a negative view on the Dissonance, and those who she sees as not contributing to the war effort against the Aberrant.`
+		log "People" "Sora Kun" `Sora takes a negative view on the Dissonance, and those who she sees as not contributing to the war effort against the Aberrant.`
 		log "Factions" "Avgi Consonance" `Membership in the Consonance varies widely between the various Avgi polities, and a significant portion of the Avgi that escaped the Aberrant do not recognize its legitimacy.`
 		log "Factions" "Avgi Dissonance" `The Dissonance is a catchall term for the various groups and individuals who do not accept the Consonance as a unified Avgi government. Ranging from anarchists to dissenting corporations, the Dissonance is a big-tent movement rather than being is a centralized group.`
 		conversation
@@ -871,7 +871,7 @@ mission "Avgi: Twilight Escape 1"
 	on offer
 		log `Heard of a potential way out of the Twilight. Apparently, the Aberrant invaded through a chain of systems stretching to the East, and while no Avgi ships have been able to explore the area since the Incursion, Leon thinks there could be a way back to human space from there.`
 		log "Factions" "Avgi Dissonance" `Independent miners, collectives, and corporations alike are unhappy with the price controls the Consonance has placed on minerals mined from asteroids. While the Consonance claims they are necessary due to the austere war economy and the need for raw materials, the artificially low prices make it hard to survive and make a living.`
-		log "People" "Leon" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections and could be close to uncovering a way back to human space.`
+		log "People" "Leon Shez" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections and could be close to uncovering a way back to human space.`
 		conversation
 			`Outpost Tekis is a large station built into an asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
 			`	You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
@@ -945,7 +945,7 @@ mission "Avgi: Twilight Escape 1"
 			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
 		log `Successfully escaped the Twilight after using a magnetar in the Decet system to boost the range of your jump drive in an apparent inversion of the effect that trapped you here.`
-		log "People" "Leon" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
+		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
 		clear "avgi: lost in twilight"
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
 		conversation
