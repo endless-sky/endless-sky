@@ -10173,12 +10173,17 @@ mission "Stone to Hope: Thanks"
 						has "threw tosti's stone"
 				`	"Where's Tosti?"`
 			label where
+			action
+				clear "placed tosti's stone"
 			`	"Ah, Tosti's out on the seas. The lad got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
 			`	Helm gives you a friendly smile. "Still, you've done him a good turn. I'll have a message passed along to him so he knows he can rest easy."`
 			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but word will spread and people here will appreciate it all the same. Here on Norn we have long memories."`
 				decline
 
 			label threw
+			action
+				clear "threw tosti's stone"
+				clear "chucked tosti's stone"
 			`	Helm stops what's he doing and looks up at you searchingly. "Best keep that to yourself, then. You of all people should know that folks around here take stone-bearing pretty seriously."`
 			`	He sighs, "Still, better than not being on Hope at all, I suppose. As for Tosti, he's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
 			`	He turns and looks out over Norn's endless oceans. "I'll have a message sent to him so he knows he can rest easy. I'll of course leave out the part about you tossing the stone. No reason to give him grief."`
