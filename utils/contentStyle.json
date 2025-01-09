@@ -70,11 +70,11 @@
 						}
 					},
 					{
-						"description": "trailing period in a parenthesized sentence",
-						"regex": "(`|\")(\\s*)\\((.*)\\)\\.\\1",
+						"description": "trailing punctuation after a paranthesized paragraph",
+						"regex": "(`|\")(\\s*)\\((.*)\\)([.!?,])\\1",
 						"except": [],
 						"correction": {
-							"replaceWith": "\\1\\2(\\3.)\\1"
+							"replaceWith": "\\1\\2(\\3\\4)\\1"
 						}
 					}
 				]
