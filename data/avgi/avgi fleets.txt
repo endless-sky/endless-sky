@@ -39,10 +39,10 @@ fleet "Avgi Core Defense"
 	variant 10
 		"Prismaios" 2
 	variant 10
-		"Prismaios (Laser)" 2
+		"Prismaios (Laserstar)" 2
 	variant 10
 		"Prismaios"
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 	variant 10
 		"Tremoros" 3
 	variant 1
@@ -90,10 +90,10 @@ fleet "Avgi Patrol"
 	variant 6
 		"Prismaios"
 	variant 6
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 	variant 3
 		"Prismaios"
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 	variant 2
 		"Diaspersi"
 		"Vibratia" 3
@@ -173,14 +173,14 @@ fleet "Avgi Twilight Guard Logistics"
 		"Harmonikos"
 		"Melodikos"
 		"Interferos"
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 		"Tremoros" 6
 	variant 5
 		"Harmonikos"
 		"Melodikos"
 		"Undsyni (Tanker)"
 		"Sonikis (Tanker)" 4
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 		"Interferos" 2
 		"Tremoros" 6
 
@@ -209,7 +209,7 @@ fleet "Avgi Scouts"
 	variant 1
 		"Polari" 2
 		"Optikon" 2
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 
 
 fleet "Avgi Strike Group"
@@ -227,10 +227,10 @@ fleet "Avgi Strike Group"
 	variant 10
 		"Prismaios" 3
 	variant 10
-		"Prismaios (Laser)" 3
+		"Prismaios (Laserstar)" 3
 	variant 10
 		"Prismaios" 2
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 	variant 10
 		"Diaspersi"
 		"Vibratia" 3
@@ -272,7 +272,7 @@ fleet "Avgi Fleetgroup"
 		"Vibratia" 18
 		"Photikon" 6
 		"Difraktos"
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 		"Tremoros" 3
 	variant 5
 		"Atenuatia"
@@ -286,7 +286,7 @@ fleet "Avgi Fleetgroup"
 		"Vibratia" 18
 		"Photikon" 6
 		"Refraktos"
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 		"Tremoros" 3
 	variant 3
 		"Atenuatia"
@@ -296,7 +296,7 @@ fleet "Avgi Fleetgroup"
 		"Difraktos (Missile)"
 		"Refraktos"
 		"Prismaios"
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 		"Tremoros" 3
 	variant 2
 		"Atenuatia"
@@ -307,7 +307,7 @@ fleet "Avgi Fleetgroup"
 		"Difraktos"
 		"Refraktos"
 		"Prismaios"
-		"Prismaios (Laser)"
+		"Prismaios (Laserstar)"
 		"Tremoros" 3
 
 

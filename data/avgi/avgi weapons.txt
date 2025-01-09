@@ -159,7 +159,7 @@ outfit "Green Optical Laser"
 		"velocity" 1800
 		"lifetime" 1
 		"firing energy" 6
-		"firing heat" 6
+		"firing heat" 12
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret's precise optics seems designed to hold a beam on target at an extreme distance for a longer period of time, making it better suited for defending and supporting other ships from afar."
 	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
 
@@ -192,7 +192,7 @@ outfit "Blue Optical Laser"
 		"reload" 1
 		"turret turn" 6
 		"firing energy" 6
-		"firing heat" 6
+		"firing heat" 12
 		"shield damage" 3.6
 		"hull damage" 4.8
 		"heat damage" 6
