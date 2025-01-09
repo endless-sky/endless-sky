@@ -4183,7 +4183,7 @@ planet "Outpost Alkos"
 	attributes avgi "avgi diaspora" station shipping
 	landscape land/station53
 	description `Outpost Alkos is a large early warning station set up soon after the Avgi decided to settle beyond the Tangled Shroud. Fearful of the Aberrant managing to overcome their supposed aversion to the mazelike region of space, it was quickly decided that a tripwire would be needed to warn of an incursion in the event of the fall of the Feo Platform and the infestation of the Tangled Shroud with Aberrations. However, when a large-scale attack never materialized, Outpost Alkos quickly found a second use as an intermediary waystation for the trade of minerals from the Tangled Shroud with the settlements beyond it.`
-	description `Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where minerals and raw resources can be unloaded and transferred between ships.`
+	description `Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where raw resources and cargo can be transferred between ships.`
 	spaceport `The only amenities in what passes for the "spaceport" are a refueling station and small repair shop. As ships do not generally linger after refueling or transferring their cargo, a skeleton crew is the only permanent inhabitants of the station, and most accommodations are reserved for this crew.`
 	government "Avgi (Consonance)"
 	"required reputation" 15
