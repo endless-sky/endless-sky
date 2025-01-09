@@ -27,7 +27,7 @@ mission "Avgi: Lost in Twilight"
 
 phrase "lost in twilight"
 	word
-		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to where you came from, but your computer tells you the system you just came from is out of range. It appears you are stuck in this region for now.`
+		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to where you came from, but your computer tells you the system is out of range. It appears you are stuck in this region for now.`
 
 mission "Avgi: First Contact"
 	autosave
@@ -118,7 +118,7 @@ mission "Avgi: First Contact"
 			label orbit
 			`	Back in orbit, you are startled when another ship appears over the horizon on an intercept trajectory with you. It doesn't look like any other ship you've seen before, appearing more than a little ungainly compared to the sleeker human ships you're accustomed to. You aren't sure whether it belongs to the same species that inhabits this space, or an entirely different one, but it at least definitely isn't similar to the hostile ships that seem to infest this star cluster.`
 			choice
-				`	(Transmit a standard hail.)`
+				`	(Try transmitting a standard hail.)`
 					goto talk
 				`	(Transmit a series of prime numbers.)`
 					goto prime
@@ -281,7 +281,7 @@ mission "Avgi: First Contact"
 					goto humans
 					to display
 						not "avgi: asked about humans"
-				`	"The Aberrant?"`
+				`	"What are the Aberrant?"`
 					goto aberrant
 					to display
 						not "avgi: asked about aberrant"
@@ -295,7 +295,7 @@ mission "Avgi: First Contact"
 			`	"Appreciation. They have told us much of humanity, and developed these devices so as to allow us to more easily communicate. And without the ability to return home, they now live among us, helping where they can with their knowledge of humanity's advanced technologies."`
 			label humanquestions
 			choice
-				`	"Aberrations?"`
+				`	"What are these 'Aberrations?'"`
 					goto aberrant
 					to display
 						not "avgi: asked about aberrant"
@@ -353,7 +353,7 @@ mission "Avgi: First Contact"
 
 			`	"Consideration. As an alien, you will inevitably be a novelty to most of us, but the existence of humans is well-known among the public enough for you to walk among us without issue. I will speak to others about a more formal role, but until then I am unsure if we can ask anything of you beyond keeping the peace."`
 			label buystuff
-			`	Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase items with your human credits, which we will back with our own currency with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have a small stockpile of your currency available."`
+			`	Galano says, "Galano says, "Interest. I would expect human technology to be superior to our own in most aspects, but we will of course allow you to purchase our items with the agreement of the Assembly. In the event that it becomes possible to open trade relations with your human government, we may find it useful to have prior transactions."`
 			`	"Amusement. Not to mention the goodwill such a gesture could buy us," says Asime.`
 			`	Prasinos says, more seriously, "Reservation. Our material resources are quite limited at the moment, so for now I would only support providing for the requisition of small items that do not strain the needs of the Guard."`
 			`	Asime looks like she wants to object, but then Galano says, "Agreement. A reasonable compromise, one I can sell to the Assembly fairly easily. Beyond that, we will provide you with a line of credit with which to purchase housing and nutrition. I cannot vouch for its usefulness among... certain elements that do not recognize the authority of Consonance, but anywhere else, you should find no issues."`
@@ -594,6 +594,8 @@ mission "Avgi: Defend Ensemble 2"
 			variant
 				"Aberrant Trip"
 				"Aberrant Triplet (Disable-able)" 3
+	on visit
+		dialog `You've landed on <planet>, but there are still Abberant attacking the system. You should take off and help the Avgi defeat them.`
 
 	on complete
 		log `Defended Ensemble from the Aberrant raid with the help of a fleet of Twilight Guard ships armed with nuclear weapons. The Aberrant apparently do not usually raid this deep into the Tangled Shroud, which makes the size of this battle worrying.`
