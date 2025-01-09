@@ -632,7 +632,7 @@ mission "Avgi: Defend Ensemble 2"
 			label yes
 			`	"Sounds good to me, then. I'll see you around when you're ready to leave." She walks off to collect her belongings.`
 			`	A few hours later, an Avgi cruiser, a Refraktos-class Laserstar, settles down on the pad next to yours, and an Avgi officer disembarks.`
-			`	"Salutations. Hello, Captain <first> <last>. My name is Kokkino, Captain of the Distant Collision. Tell me, is the <ship> a warship, question?"`
+			`	"Salutations. Hello, Captain <first> <last>. My name is Kokkino, Captain of the Spectral Collision. Tell me, is the <ship> a warship, question?"`
 			choice
 				`	"Yes, the <ship> is as powerful as they come."`
 					goto warship

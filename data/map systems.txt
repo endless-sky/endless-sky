@@ -14885,7 +14885,7 @@ system Ensemble
 	shrouded
 	pos -515 1161
 	government "Avgi (Consonance)"
-	attributes "avgi" "avgi diaspora" bright star" "notable star" "tangled shroud"
+	attributes "avgi" "avgi diaspora" "bright star" "notable star" "tangled shroud"
 	arrival 4250
 	habitable 4250
 	belt 1401
