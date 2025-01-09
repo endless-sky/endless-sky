@@ -360,7 +360,7 @@ outfit "External Launch Rail"
 		sound "torpedo"
 		ammo `"Ophrys" Nuclear Torpedo`
 		"stream"
-		icon "icon/nuke"
+		icon "icon/orchid"
 		"fire effect" "torpedo fire"
 		"firing energy" 30
 		"firing heat" 15
@@ -397,7 +397,7 @@ outfit "External Launch Tube"
 			"scale" 0.5
 		sound "bounce"
 		ammo `"Orchid" Nuclear Missile`
-		icon "icon/nuke"
+		icon "icon/orchid"
 		"fire effect" "sidewinder fire"
 		"fire effect" "speckle fire"
 		"inaccuracy" 1.2
@@ -434,7 +434,7 @@ outfit "Vertical Launch Array"
 			"scale" 0.5
 		sound "bounce"
 		ammo `"Nettle" KKV`
-		icon "icon/finisher"
+		icon "icon/nettle"
 		"fire effect" "sidewinder fire"
 		"inaccuracy" 360
 		"velocity" 3

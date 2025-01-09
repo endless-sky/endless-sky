@@ -92,7 +92,7 @@ government "Avgi (Consonance)"
 	"hostile hail" "hostile avgi"
 	"hostile disabled hail" "hostile disabled avgi"
 
-color "governments: Twilight Guard" 0.18 0.3 0.72
+color "governments: Twilight Guard" 0.12 0.18 0.69
 
 government "Avgi (Twilight Guard)"
 	"display name" "Twilight Guard"
