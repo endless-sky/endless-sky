@@ -5399,7 +5399,7 @@ system Aludra
 system Anax
 	pos -463 699
 	government Avgi
-	attributes "avgi" "twilight"
+	attributes "avgi" "avgi core" "twilight"
 	arrival 2200
 	ramscoop
 		multiplier 1.5
@@ -6296,8 +6296,8 @@ system Antevorta
 
 system Anthem
 	pos -617 1206
-	government Uninhabited
-	attributes "outer limits"
+	government "Avgi (Consonance)"
+	attributes "avgi" "avgi diaspora" "outer limits"
 	arrival 500
 	habitable 425
 	belt 1764
@@ -6313,13 +6313,23 @@ system Anthem
 	asteroids "medium metal" 15 2.114
 	asteroids "large metal" 11 2.967
 	minables copper 5 2.937
+	trade Clothing 420
+	trade Electronics 870
+	trade Equipment 660
+	trade Food 570
+	trade "Heavy Metals" 1170
+	trade Industrial 600
+	trade "Luxury Goods" 1380
+	trade Medical 720
+	trade Metal 450
+	trade Plastic 510
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
 	fleet "Small Dissonance Merchants" 4200
 	fleet "Large Dissonance Merchants" 8400
 	fleet "Dissonance Miners" 9000
-	fleet "Avgi Scouts" 9000
-	fleet "Avgi Patrol" 2700
+	fleet "Avgi Scouts" 3000
+	fleet "Avgi Patrol" 2400
 	fleet "Avgi Strike Group" 9000
 	fleet "Avgi Twilight Guard Logistics" 6000
 	fleet "Small Aberrant" 12000
@@ -6328,16 +6338,20 @@ system Anthem
 		sprite star/k5
 		period 10
 	object
-		sprite planet/gas15
+		sprite planet/gas5-b
 		distance 650
 		period 321.540
-		object
-			sprite planet/rhea-b
-			distance 250
-			period 122.939
+		object "Outpost Alkos"
+			sprite planet/station-platform-a2
+				scale 0.5
+			distance 300
+			period 60
+			offset 180
 		object
 			sprite planet/desert3
-			distance 362
+				scale 0.5
+			distance 300
+			period 60
 	object
 		sprite planet/rock3
 		distance 1403
@@ -6547,7 +6561,7 @@ system Ar-40
 system Arche
 	pos -407 926
 	government "Avgi (Twilight Guard)"
-	attributes "avgi" "bright star" "consonance" "multi-star" "notable star" "twilight"
+	attributes "avgi" "avgi diaspora" "bright star" "multi-star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
 		multiplier 1.2
@@ -10447,7 +10461,7 @@ system Clepsydra
 system Clip
 	pos -509 712
 	government Avgi
-	attributes "avgi" "twilight"
+	attributes "avgi" "avgi core" "twilight"
 	arrival 625
 	ramscoop
 		multiplier 1.5
@@ -10486,25 +10500,47 @@ system Clip
 		distance 751.776
 		period 329.801
 		object
-			sprite planet/debris0
+			sprite planet/debris1
 				scale 0.5
-			distance 172
-			period 106.71
-			offset 270
+			distance 120
+			period 15
 		object
 			sprite planet/station-outpost-a2
 				scale 0.5
-			distance 172
-			period 106.71
-			offset 270
+			distance 120
+			period 15
+		object
+			sprite planet/station-reflector-a1
+				scale 0.5
+			distance 240
+			period 120
+			offset 180
+		object
+			sprite planet/station-solar-a2
+				scale 0.25
+			distance 180
+			period 120
+			offset 120
+		object
+			sprite planet/station-outpost-a0
+				scale 0.25
+			distance 180
+			period 120
+			offset 240
 		object
 			sprite planet/rock7-b
-			distance 172
-			period 106.71
+			distance 180
+			period 120
 	object Iconil
 		sprite planet/ice8
 		distance 1540.21
 		period 967.144
+		object
+			sprite planet/station-outpost-a1
+				scale 0.25
+			distance 90
+			period 60
+			offset 120
 	object
 		sprite planet/gas11-b
 		distance 3446.86
@@ -10657,7 +10693,7 @@ system Companion
 system Concerto
 	pos -465 1234
 	government "Avgi (Consonance)"
-	attributes "avgi" "bright star" "consonance" "notable star" "outer limits"
+	attributes "avgi" "avgi diaspora" "bright star" "notable star" "outer limits"
 	arrival 3650
 	habitable 3650
 	belt 4475
@@ -12592,7 +12628,7 @@ system Demilude
 	shrouded
 	pos -300 1182
 	government "Avgi (Dissonance)"
-	attributes "avgi" "dissonance" "tangled shroud"
+	attributes "avgi" "avgi diaspora" "tangled shroud"
 	arrival 500
 	habitable 160
 	belt 1885 3
@@ -14849,7 +14885,7 @@ system Ensemble
 	shrouded
 	pos -515 1161
 	government "Avgi (Consonance)"
-	attributes "avgi" "bright star" "consonance" "notable star" "tangled shroud"
+	attributes "avgi" "avgi diaspora" bright star" "notable star" "tangled shroud"
 	arrival 4250
 	habitable 4250
 	belt 1401
@@ -20949,7 +20985,7 @@ system Interlude
 	shrouded
 	pos -596 1043
 	government "Avgi (Dissonance)"
-	attributes "avgi" "bright star" "dissonance" "giant star" "multi-star" "notable star" "tangled shroud"
+	attributes "avgi" "avgi diaspora" "bright star" "giant star" "multi-star" "notable star" "tangled shroud"
 	arrival 5000
 	habitable 8220
 	belt 3024
@@ -26794,8 +26830,14 @@ system Mellow
 		period 232.197
 		object
 			sprite planet/tethys
-			distance 186
-			period 156.23
+			distance 180
+			period 30
+		object
+			sprite planet/station-platform-a3
+				scale 0.25
+			distance 180
+			period 30
+			offset 120
 	object
 		sprite planet/gas16-b
 		distance 2409.12
@@ -32255,7 +32297,7 @@ system Prelude
 	shrouded
 	pos -477 940
 	government "Avgi (Dissonance)"
-	attributes "avgi" "dissonance" "giant star" "notable star" "tangled shroud"
+	attributes "avgi" "avgi diaspora" "giant star" "notable star" "tangled shroud"
 	arrival 2300
 	ramscoop
 		multiplier 1.2
@@ -34781,8 +34823,13 @@ system Sail
 		period 1866.73
 		object Elthe
 			sprite planet/luna
-			distance 298.397
-			period 133.577
+			distance 300
+			period 180
+			object
+				sprite planet/station-outpost-a2
+					scale 0.5
+				distance 90
+				period 30
 		object
 			sprite planet/dust1
 			distance 418.753
@@ -34791,6 +34838,11 @@ system Sail
 			sprite planet/dust0-b
 			distance 557.742
 			period 728.191
+		object
+			sprite planet/station-outpost-a3
+				scale 0.5
+			distance 240
+			period 90
 	object
 		sprite planet/gas4-b
 		distance 5258.20
@@ -36817,7 +36869,7 @@ system Sko'karak
 system Soar
 	pos -449 655
 	government Avgi
-	attributes "avgi" "twilight"
+	attributes "avgi" "avgi core" "twilight"
 	arrival 500
 	ramscoop
 		multiplier 1.5
@@ -36864,25 +36916,36 @@ system Soar
 		object
 			sprite planet/station-outpost-a1
 				scale 0.25
-			distance 123
+			distance 150
 			period 60
-			offset 180
 		object
 			sprite planet/debris0
 				scale 0.25
-			distance 123
+			distance 150
 			period 60
-			offset 180
 		object
 			sprite planet/station-platform-a3
 				scale 0.25
-			distance 130
+			distance 180
 			period 60
+			offset 180
 		object
 			sprite planet/debris1
 				scale 0.5
-			distance 130
+			distance 180
 			period 60
+			offset 180
+		object
+			sprite planet/station-reflector-a0
+				scale 0.5
+			distance 180
+			period 90
+			offset 180
+		object
+			sprite planet/station-solar-a1-broken
+				scale 0.5
+			distance 240
+			period 90
 	object
 		sprite planet/station-platform-a0
 			scale 0.25
@@ -36910,6 +36973,12 @@ system Soar
 			sprite planet/rock17
 			distance 459
 			period 605.638
+		object
+			sprite planet/station-platform-a4
+				scale 0.5
+			distance 459
+			period 605.638
+			offset 180
 
 system Sobarati
 	pos 277.431 -557.812
@@ -38282,7 +38351,7 @@ system Supra
 system Symphony
 	pos -347 1253
 	government "Avgi (Consonance)"
-	attributes "avgi" "consonance" "outer limits"
+	attributes "avgi" "avgi diaspora" "outer limits"
 	arrival 500
 	habitable 450
 	belt 1997 7
@@ -38346,7 +38415,6 @@ system Symphony
 			sprite planet/station-shipyard-a1
 			distance 360
 			period 48
-			offset 180
 		object
 			sprite planet/dust0
 			distance 467.152
@@ -39033,7 +39101,7 @@ system "Terra Incognita"
 system Thread
 	pos -417 737
 	government Avgi
-	attributes "avgi" "twilight"
+	attributes "avgi" "avgi core" "twilight"
 	arrival 1215
 	ramscoop
 		multiplier 1.5
@@ -39077,6 +39145,11 @@ system Thread
 		sprite planet/rock11
 		distance 414.696
 		period 96.9095
+		object
+			sprite planet/station-reflector-a1
+				scale 0.5
+			distance 180
+			period 30
 	object
 		sprite planet/gas4-b
 		distance 1156.74
@@ -39088,8 +39161,31 @@ system Thread
 		object Cyreal
 			sprite planet/forest1-b
 				scale 0.5
-			distance 335.695
+			distance 330
 			period 72
+		object
+			sprite planet/station-outpost-a1
+				scale 0.5
+			distance 330
+			period 72
+			offset 180
+		object
+			sprite planet/debris0
+				scale 0.5
+			distance 330
+			period 72
+			offset 180
+		object
+			sprite planet/station-solar-a0-broken
+				scale 0.5
+			distance 420
+			period 90
+		object
+			sprite planet/station-solar-a1
+				scale 0.5
+			distance 420
+			period 90
+			offset 180
 	object Palos
 		sprite planet/desert3
 		distance 3104.7

@@ -206,7 +206,7 @@ planet Alvorada
 planet Amathil
 	attributes "aberrant siege" avgi desert
 	landscape land/canyon16
-	description `As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity-- or at least that is how the locals like to be perceived by outsiders.`
+	description `As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity - or at least that is how the locals like to be perceived by outsiders.`
 	spaceport `The spaceport is spartan, with Amathil not receiving much traffic on a daily basis even before the Incursion. Amathil's primary export was people, with many choosing to leave the isolated planet in favor of moving to one of the more cosmopolitan worlds elsewhere.`
 	government Avgi
 	outfitter "Avgi General"
@@ -1549,7 +1549,7 @@ planet Entantel
 	landscape land/snow39
 	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density gives rise to a very low gravitational acceleration for its size.`
 	description `Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system.`
-	spaceport `The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel here to fill a few large tankers.`
+	spaceport `The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel stockpiled here to fill a few large tankers.`
 	government Uninhabited
 
 planet Erabuthro
@@ -1588,7 +1588,7 @@ planet "Ergastirio Station"
 	description `When Consonance researchers' need for plentiful space and isolation outgrew what was available on Peripheria or Navigeo, dedicated as they were to habitation and shipbuilding respectively, this mid-sized station was built to accommodate a state-of-the-art collection of laboratory facilities. The work here is largely aimed towards weapons research, a necessary consequence of the fight against the Aberrant.`
 	description `	The facilities are surprisingly comfortable for what you might expect from a research station, a deliberate attempt to boost the productivity of the scientists that live and work here. Labs for all sorts of applied energistics, nuclear research, and even hyperspace experimentation form wings around the central habitation core, which is home to tens of thousands of scientists and engineers as well as a sizable support staff.`
 	spaceport `Ergastirio's spaceport is small, but well-equipped, with the facilities to handle special nuclear material and fragile scientific instrumentation alike. These constitute most of the goods offloaded here, which the station's laboratories require a steady supply of.`
-	government "Avgi (Twilight Guard)"
+	government "Avgi (Consonance)"
 	outfitter "Avgi General"
 	outfitter "Avgi Engineering"
 	outfitter "Avgi Militia Surplus"
@@ -4179,6 +4179,16 @@ planet Oura
 	description `Oura was the primary source of the helium-3 that fueled Avgi sublight starships. Even now, you can see aerostat collectors separating valuable isotopes from the surrounding gas, which are then launched via mass driver to orbit in pressurized canisters.`
 	government Uninhabited
 
+planet "Outpost Alkos"
+	attributes avgi "avgi diaspora" station shipping
+	landscape land/station53
+	description `Outpost Alkos is a large early warning station set up soon after the Avgi decided to settle beyond the Tangled Shroud. Fearful of the Aberrant managing to overcome their supposed aversion to the mazelike region of space, it was quickly decided that a tripwire would be needed to warn of an incursion in the event of the fall of the Feo Platform and the infestation of the Tangled Shroud with Aberrations. However, when a large-scale attack never materialized, Outpost Alkos quickly found a second use as an intermediary waystation for the trade of minerals from the Tangled Shroud with the settlements beyond it.`
+	description `Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where minerals and raw resources can be unloaded and transferred between ships.`
+	spaceport `The only amenities in what passes for the "spaceport" are a refueling station and small repair shop. As ships do not generally linger after refueling or transfering their cargo, a skeleton crew is the only permanent inhabitants of the station, and most accommodations are reserved for this crew.`
+	government "Avgi (Consonance)"
+	"required reputation" 15
+	security 0.5
+
 planet "Outpost Enka"
 	attributes asteroid avgi "avgi diaspora" dissonance station
 	landscape land/station27
@@ -4255,7 +4265,7 @@ planet Palatine
 planet Palos
 	attributes desert uninhabited
 	landscape land/desert12
-	description `A cool desert world, Palos hosts a surface temperature suitable for habitation, but an unbreathable carbon dioxide atmosphere and deep gravity well has precluded any large scale settlement here. Had it been present in the Anax system, it very likely would have been an attractive target for terraforming, but with the natural beauty of nearby Cyreal free for the taking the Avgi of the Soar system declined to spend their scarce resources on the comparatively barren Palos.`
+	description `A cool desert world, Palos hosts a surface temperature suitable for habitation, but an unbreathable carbon dioxide atmosphere and deep gravity well has precluded any large scale settlement here. Had it been present in the Anax system, it very likely would have been an attractive target for terraforming, but with the natural beauty of nearby Cyreal free for the taking the Avgi of the Thread system declined to spend their scarce resources on the comparatively barren Palos.`
 	description `Panspermia spread various anaerobic fungi and bacteria from Cyreal to Palos long ago, and while they have taken poorly to the planet's conditions you can still occasionally find a mottled bacterial film growing over the alkaline soil, or something resembling lichen spotting a rock.`
 	government Uninhabited
 
