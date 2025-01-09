@@ -323,15 +323,6 @@ bool Body::IsVisible(const Point &drawCenter) const
 
 // Set the frame rate of the sprite. This is used for objects that just specify
 // a sprite instead of a full animation data structure.
-double Body::GetFrameRate()
-{
-	return frameRate;
-}
-
-
-
-// Set the frame rate of the sprite. This is used for objects that just specify
-// a sprite instead of a full animation data structure.
 void Body::SetFrameRate(float framesPerSecond)
 {
 	frameRate = framesPerSecond / 60.f;

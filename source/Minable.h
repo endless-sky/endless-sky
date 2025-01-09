@@ -130,4 +130,6 @@ private:
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
 	int64_t value = 0.;
+	// Whether to use a random frame rate.
+	bool useRandomFramerate = true;
 };
