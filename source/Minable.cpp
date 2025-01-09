@@ -78,10 +78,12 @@ void Minable::Load(const DataNode &node)
 		else if(key == "noun")
 			noun = child.Token(1);
 		else if(key == "sprite")
+		{
 			LoadSprite(child);
 			for(const auto &grand : child)
 				if(grand.Token(0) == "frame rate")
-						useRandomFramerate = false;
+					useRandomFramerate = false;
+		}
 		else if(key == "hull")
 			hull = child.Value(1);
 		else if(key == "random hull")
