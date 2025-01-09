@@ -277,6 +277,8 @@ outfit "Uranium"
 
 minable "yottrite"
 	sprite "asteroid/yottrite/spin"
+		"frame rate" 360
+		scale 4
 	hull 18000
 	"random hull" 4000
 	payload "Yottrite" 7
