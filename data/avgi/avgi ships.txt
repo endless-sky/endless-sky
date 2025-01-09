@@ -1277,6 +1277,31 @@ ship "Prismaios"
 	description "The Prismaios-class Frigate is a recent, streamlined design, praised by many Twilight Guard captains as a highly successful addition to Avgi strike fleets. New construction techniques allow for unprecedented gains in structural integrity for such a lightweight frame, allowing the frigate to serve on the front lines against the Aberrant as a fast, versatile, multirole warship."
 
 
+ship "Prismaios" "Prismaios (Laser)"
+	outfits
+		"Green Optical Laser" 2
+		"Blue Optical Laser" 2
+
+		"Lantern Fission Core"
+		"Ultracapacitor Bank" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator" 2
+		"Multispectral Scanner"
+		"Magnetic Scoop"
+		"Optical Laser Rifle" 6
+		
+		`Z-333 "Spark" Fusion Torch`
+		"Inductive Extractor" 2
+		"Remass Injector"
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "Green Optical Laser"
+	turret "Blue Optical Laser"
+	turret "Blue Optical Laser"
+	turret "Green Optical Laser"
+
+
 ship "Prismaios" "Prismaios (Atomic)"
 	outfits
 		"Green Optical Laser" 2

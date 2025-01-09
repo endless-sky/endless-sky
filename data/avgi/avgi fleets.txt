@@ -39,6 +39,11 @@ fleet "Avgi Core Defense"
 	variant 10
 		"Prismaios" 2
 	variant 10
+		"Prismaios (Laser)" 2
+	variant 10
+		"Prismaios"
+		"Prismaios (Laser)"
+	variant 10
 		"Tremoros" 3
 	variant 1
 		"Atenuatia"
@@ -78,12 +83,17 @@ fleet "Avgi Patrol"
 			disables surveillance
 	personality
 		surveillance hunting
-	variant 12
+	variant 36
 		"Tremoros"
 	variant 6
 		"Tremoros" 3
 	variant 6
 		"Prismaios"
+	variant 6
+		"Prismaios (Laser)"
+	variant 3
+		"Prismaios"
+		"Prismaios (Laser)"
 	variant 2
 		"Diaspersi"
 		"Vibratia" 3
@@ -151,6 +161,7 @@ fleet "Avgi Twilight Guard Logistics"
 	variant 10
 		"Undsyni (Tanker)"
 		"Sonikis (Tanker)" 4
+		"Interferos"
 		"Tremoros" 6
 	variant 10
 		"Koryfi" 2
@@ -162,12 +173,14 @@ fleet "Avgi Twilight Guard Logistics"
 		"Harmonikos"
 		"Melodikos"
 		"Interferos"
+		"Prismaios (Laser)"
 		"Tremoros" 6
 	variant 5
 		"Harmonikos"
 		"Melodikos"
 		"Undsyni (Tanker)"
 		"Sonikis (Tanker)" 4
+		"Prismaios (Laser)"
 		"Interferos" 2
 		"Tremoros" 6
 
@@ -196,7 +209,7 @@ fleet "Avgi Scouts"
 	variant 1
 		"Polari" 2
 		"Optikon" 2
-		"Prismaios"
+		"Prismaios (Laser)"
 
 
 fleet "Avgi Strike Group"
@@ -213,6 +226,11 @@ fleet "Avgi Strike Group"
 		heroic disables
 	variant 10
 		"Prismaios" 3
+	variant 10
+		"Prismaios (Laser)" 3
+	variant 10
+		"Prismaios" 2
+		"Prismaios (Laser)"
 	variant 10
 		"Diaspersi"
 		"Vibratia" 3
@@ -253,6 +271,13 @@ fleet "Avgi Fleetgroup"
 		"Atenuatia"
 		"Vibratia" 18
 		"Photikon" 6
+		"Difraktos"
+		"Prismaios (Laser)"
+		"Tremoros" 3
+	variant 5
+		"Atenuatia"
+		"Vibratia" 18
+		"Photikon" 6
 		"Difraktos (Missile)"
 		"Prismaios"
 		"Tremoros" 3
@@ -261,7 +286,7 @@ fleet "Avgi Fleetgroup"
 		"Vibratia" 18
 		"Photikon" 6
 		"Refraktos"
-		"Prismaios"
+		"Prismaios (Laser)"
 		"Tremoros" 3
 	variant 3
 		"Atenuatia"
@@ -270,7 +295,8 @@ fleet "Avgi Fleetgroup"
 		"Difraktos"
 		"Difraktos (Missile)"
 		"Refraktos"
-		"Prismaios" 2
+		"Prismaios"
+		"Prismaios (Laser)"
 		"Tremoros" 3
 	variant 2
 		"Atenuatia"
@@ -280,7 +306,8 @@ fleet "Avgi Fleetgroup"
 		"Optikon" 2
 		"Difraktos"
 		"Refraktos"
-		"Prismaios" 2
+		"Prismaios"
+		"Prismaios (Laser)"
 		"Tremoros" 3
 
 
