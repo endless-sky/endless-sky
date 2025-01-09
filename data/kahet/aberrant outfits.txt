@@ -91,7 +91,7 @@ outfit "Nucleolysis Beam"
 	weapon
 		sprite "projectile/nucleolysis"
 			"frame rate" 15
-		sound "nucleo"
+		sound "nucleolysis"
 		"hit effect" "acuit hit"
 		"inaccuracy" .2
 		"velocity" 420
