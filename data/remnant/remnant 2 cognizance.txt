@@ -902,6 +902,7 @@ mission "Remnant: Cognizance Interest Condition Patch"
 
 mission "Remnant: Cognizance 22"
 	name "Deliver Data Backups for Taely"
+	storyline "Remnant"
 	description "Deliver a data backup to <stopovers> for Taely."
 	source
 		government "Remnant"
@@ -913,6 +914,7 @@ mission "Remnant: Cognizance 22"
 	to offer
 		has "Remnant: Cognizance 21: done"
 	on offer
+		log `Delivered a data backup for Taely.`
 		conversation
 			`You step out of the <ship> into the fresh air of <origin>. You recall seeing some unusual activity over at one of the research hangars. There must be something interesting going on to generate that much activity.`
 			choice
@@ -1004,6 +1006,7 @@ mission "Remnant: Cognizance 22"
 mission "Remnant: Cognizance 23"
 	landing
 	name "First Flight"
+	storyline "Remnant"
 	description "Escort the Merganser to <waypoints>, and destroy the Korath ship there."
 	source
 		government "Remnant"
@@ -1101,6 +1104,7 @@ mission "Remnant: Cognizance 23"
 
 mission "Remnant: Cognizance 24"
 	name "Equipment to Ssil Vida"
+	storyline "Remnant"
 	description "Dusk needs a load of <cargo> picked up from Esquiline, then taken to Ssil Vida."
 	source
 		government "Remnant"
@@ -1182,6 +1186,7 @@ mission "Remnant: Cognizance 24"
 mission "Remnant: Cognizance 25"
 	landing
 	name "Patrol systems near Postverta."
+	storyline "Remnant"
 	description "Gavriil has asked you to do a patrol through the nearby systems to make sure that a Palavret that passed by recently did not leave behind any surprises."
 	source "Ssil Vida"
 	waypoint "Diespiter"
@@ -1229,6 +1234,7 @@ mission "Remnant: Cognizance 25"
 
 mission "Remnant: Cognizance 26"
 	name "Bring an Aeon Cell to Ssil Vida"
+	storyline "Remnant"
 	description "Gavriil has asked you to go pick up an Aeon Cell from <stopovers> by <date>."
 	deadline 14
 	source "Ssil Vida"
@@ -1257,6 +1263,7 @@ mission "Remnant: Cognizance 26"
 mission "Remnant: Cognizance 27"
 	landing
 	name "Check in with Torza on <planet>"
+	storyline "Remnant"
 	description "Torza should have a team ready on <planet>."
 	source "Ssil Vida"
 	destination "Caelian"
@@ -1268,6 +1275,7 @@ mission "Remnant: Cognizance 27"
 mission "Remnant: Cognizance 28"
 	landing
 	name "Recover equipment from Baianus."
+	storyline "Remnant"
 	description "Torza has asked you to recover 280 tons of equipment and 20 personnel from Baianus by <date>."
 	source "Caelian"
 	destination "Baianus"
@@ -1299,6 +1307,7 @@ mission "Remnant: Cognizance 28"
 mission "Remnant: Cognizance 29"
 	landing
 	name "Recover equipment from Baianus."
+	storyline "Remnant"
 	description "Torza has asked you to recover equipment from Baianus by <date>."
 	source "Baianus"
 	destination "Caelian"
@@ -1337,6 +1346,7 @@ mission "Remnant: Cognizance 29"
 
 mission "Remnant: Cognizance 30"
 	name "Transport team to <planet>"
+	storyline "Remnant"
 	description "Torza has tasked you with transporting a team of technicians to <destination>."
 	source "Caelian"
 	destination "Ssil Vida"
@@ -1379,6 +1389,7 @@ mission "Remnant: Cognizance 30"
 mission "Remnant: Cognizance 31"
 	landing
 	name "Deliver data crystal to <planet>"
+	storyline "Remnant"
 	description "Gavriil has asked you to take a data crystal to <destination>."
 	source "Ssil Vida"
 	destination "Viminal"
@@ -1392,6 +1403,7 @@ mission "Remnant: Cognizance 31"
 
 mission "Remnant: Cognizance 32"
 	name "Pick Up Refined Fuel"
+	storyline "Remnant"
 	description "Chilia has asked you to pick up <tons> of refined fuel from <planet> by <date>."
 	source "Viminal"
 	destination "Clink"
@@ -1464,6 +1476,7 @@ mission "Remnant: Cognizance 32"
 mission "Remnant: Cognizance 33"
 	landing
 	name "Drop off refined fuel"
+	storyline "Remnant"
 	description "Deliver the refined fuel to <destination> by <date>."
 	illegal 0
 	stealth
@@ -1503,6 +1516,7 @@ mission "Remnant: Cognizance 33"
 mission "Remnant: Cognizance 34"
 	landing
 	name "Observe changes in Postverta"
+	storyline "Remnant"
 	description "Something is going on outside, and Dusk would like you to take a look."
 	source "Ssil Vida"
 	waypoint "Postverta"
@@ -1530,6 +1544,7 @@ mission "Remnant: Cognizance 34"
 mission "Remnant: Cognizance 35"
 	landing
 	name "Postverta system sweep"
+	storyline "Remnant"
 	description "Conduct a sweep of nearby systems and return to <origin>."
 	source "Ssil Vida"
 	waypoint "Diespiter"
@@ -1621,6 +1636,7 @@ mission "Remnant: Cognizance 37"
 mission "Remnant: Cognizance 38"
 	landing
 	name "Take data to <planet>"
+	storyline "Remnant"
 	description "The rest of the Remnant need to know what is happening. Take this data to them on <destination>."
 	source "Ssil Vida"
 	destination "Viminal"
@@ -1673,6 +1689,7 @@ mission "Remnant: Cognizance 38"
 mission "Remnant: Cognizance 39"
 	landing
 	invisible
+	storyline "Remnant"
 	source
 		government "Remnant"
 	to offer
@@ -1680,3 +1697,26 @@ mission "Remnant: Cognizance 39"
 	on offer
 		event "remnant: cognizance calm" 5
 		fail
+
+storyline Testing
+	color "governments: Remnant"
+
+conversation "storytest"
+	`This is a test. This is only a test.`
+	choice
+		`	Accept`
+		`	Decline`
+			decline
+	`OK, that sounds good.`
+		accept
+
+
+mission "Storyline Test"
+	storyline "Testing"
+	landing
+	source
+		government "Remnant"
+	to offer
+		has "Remnant: Cognizance 1: done"
+	on offer
+		conversation storytest

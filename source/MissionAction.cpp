@@ -145,6 +145,9 @@ void MissionAction::LoadSingle(const DataNode &child)
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
 
+	if (hasValue && child.Token(1) == "storytest")
+		string dummy = "got the story test";
+
 	if(key == "dialog")
 	{
 		// Parse the "dialog phrase whatever" and "dialog whatever" lines:
