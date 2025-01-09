@@ -705,7 +705,7 @@ outfit "Ophrys Stockpile"
 	licenses
 		"Avgi Atomics"
 	cost 1440000
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/ophrys stockpile"
 	"mass" 6
 	"outfit space" -24
 	"cargo space" -18
