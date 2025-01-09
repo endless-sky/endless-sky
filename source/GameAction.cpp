@@ -381,7 +381,11 @@ const vector<ShipManager> &GameAction::Ships() const noexcept
 void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 {
 	if(!logText.empty())
+	{
 		player.AddLogEntry(logText);
+		if(caller->GetStoryline() != nullptr)
+			player.AddSpecialLog("Storylines", caller->GetStoryline()->Name(), logText);
+	}
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);

@@ -232,6 +232,17 @@ void Conversation::Load(const DataNode &node)
 			}
 		}
 	}
+	set<pair<int, int>> checked;
+	// Check for choice nodes that can lead to a decline, so they can be marked clearly for the player.
+	for(int n=0; n<nodes.size(); n++)
+	{
+		Node node = nodes[n];
+		for(int e=0; e<node.elements.size(); e++)
+		{
+			Element element = node.elements[e];
+			element.leadsToDecline = LeadsToDecline(n, e, &checked);
+		}
+	}
 
 	// Free the working buffers that we no longer need.
 	labels.clear();
@@ -481,6 +492,12 @@ const string &Conversation::Text(int node, int element) const
 }
 
 
+bool Conversation::WillDecline(int node, int element) const
+{
+	return nodes[node].elements[element].leadsToDecline;
+}
+
+
 
 // Get the scene image, if any, associated with the given node.
 const Sprite *Conversation::Scene(int node) const
@@ -553,6 +570,49 @@ bool Conversation::ElementIsValid(int node, int element) const
 	else if(element < 0)
 		return false;
 	return static_cast<unsigned>(element) < nodes[node].elements.size();
+}
+
+
+
+// Traverse a node's tree to determine whether it leads to a decline.
+bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int, int>> *checked) const
+{
+	Node node = nodes[nodeIndex];
+	Element element = node.elements[elementIndex];
+	// Trivially true if this element is a decline.
+	if(element.next == Conversation::DECLINE)
+	{
+		checked->insert({nodeIndex, elementIndex});
+		return true;
+	}
+	// Trivially false if it is not a decline, and does not lead anywhere.
+	if(element.next == nodes.size() || element.next < 0)
+	{
+		checked->insert({nodeIndex, elementIndex});
+		return false;
+	}
+	// Otherwise we need to get all the elements this can lead to and test them.
+	bool leadsTo = false;
+	Node nextNode = nodes[element.next];
+	// If the next node is a choice node, then this only leads to a decline if all
+	// options there lead to one. Otherwise, it leads to a decline if any options do.
+	checked->insert({nodeIndex, elementIndex});
+	if(nextNode.isChoice)
+		for(int e=0; e<nextNode.elements.size(); e++)
+		{
+			if(!checked->contains({element.next, e})) {
+				leadsTo &= LeadsToDecline(element.next, e, checked);
+			}
+		}
+	else
+		for(int e=0; e<nextNode.elements.size(); e++)
+		{
+			if(!checked->contains({element.next, e})) {
+				leadsTo |= LeadsToDecline(element.next, e, checked);
+			}
+		}
+
+	return leadsTo;
 }
 
 

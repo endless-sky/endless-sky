@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -84,6 +85,8 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<ship>"] = player.Flagship()->Name();
 		subs["<model>"] = player.Flagship()->DisplayModelName();
 	}
+
+	warningSprite = SpriteSet::Get("warning");
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.
@@ -143,6 +146,14 @@ void ConversationPanel::Draw()
 	// Draw all the conversation text up to this point.
 	for(const Paragraph &it : text)
 		point = it.Draw(point, gray);
+
+	// Draw the storyline color bar, if applicable
+	if(caller->GetStoryline() != nullptr)
+	{
+		Point storyLineTop(Screen::Left() + boxWidth - 3, Screen::Top() + MARGIN + scroll);
+		Point storyLineBottom(Screen::Left() + boxWidth - 3, Screen::Top() + Screen::Height() - MARGIN);
+		LineShader::Draw(storyLineTop, storyLineBottom, 3, caller->GetStoryline()->GetColor());
+	}
 
 	// Draw whatever choices are being presented.
 	if(node < 0)
@@ -222,6 +233,9 @@ void ConversationPanel::Draw()
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
 			++index;
+
+			if(caller->GetStoryline() != nullptr && paragraph.LeadsToDecline())
+				SpriteShader::Draw(warningSprite, point + Point(-15, 0));
 
 			font.Draw(label, point + Point(-15, 0), dim);
 			point = paragraph.Draw(point, bright);
@@ -427,7 +441,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 		{
 			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
-			choices.emplace_back(Paragraph(altered), i);
+			choices.emplace_back(Paragraph(altered, nullptr, false, conversation.WillDecline(node, i)), i);
 		}
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
 	if(choices.empty() && conversation.Choices(node) != 0)
@@ -502,14 +516,21 @@ int ConversationPanel::MapChoice(int n) const
 
 
 // Paragraph constructor.
-ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
-	: scene(scene), isFirst(isFirst)
+ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst, bool leadsToDecline)
+	: scene(scene), isFirst(isFirst), leadsToDecline(leadsToDecline)
 {
 	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 
 	wrap.Wrap(text);
+}
+
+
+
+bool ConversationPanel::Paragraph::LeadsToDecline() const
+{
+	return leadsToDecline;
 }
 
 

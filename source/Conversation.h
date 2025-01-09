@@ -78,6 +78,7 @@ public:
 	// the user to select; others just automatically continue to another node.
 	// Nodes may also display images or include conditional branches.
 	bool IsChoice(int node) const;
+	bool WillDecline(int node, int element) const;
 	// Some choices have conditions in each option. If all options are disabled,
 	// the choice cannot be shown.
 	bool HasAnyChoices(const ConditionsStore &vars, int node) const;
@@ -132,12 +133,15 @@ private:
 	public:
 		explicit Element(std::string text, int next)
 			: text(std::move(text)), next(next) {}
+		Element(std::string text, int next, bool leadsToDecline) : text(std::move(text)), next(next), leadsToDecline(leadsToDecline) {}
 		// The text to display:
 		std::string text;
 		// The next node to visit:
 		int next;
 		// Conditions for displaying the text:
 		ConditionSet conditions;
+		// Precalculate whether this element leads inevitably to a decline.
+		bool leadsToDecline;
 	};
 
 	// The conversation is a network of "nodes" that you travel between by
@@ -183,6 +187,8 @@ private:
 	// Add an "empty" node. It will contain one empty line of text, with its
 	// goto link set to fall through to the next node.
 	void AddNode();
+	// Traverse an element's tree to determine whether it leads to a decline.
+	bool LeadsToDecline(int nodeIndex, int elementIndex, std::set<std::pair<int, int>> *checked) const;
 
 
 private:
