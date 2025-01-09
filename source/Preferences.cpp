@@ -43,8 +43,8 @@ namespace {
 	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
-	const vector<string> NOTIF_OPTIONS = {"message", "both", "off"};
-	int notifOptionsIndex = 0;
+	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
+	int notifOptionsIndex = 1;
 
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;

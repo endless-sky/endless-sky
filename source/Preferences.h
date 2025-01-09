@@ -42,9 +42,9 @@ public:
 	};
 
 	enum class NotificationSetting : int_fast8_t {
-		MESSAGE = 0,
-		BOTH,
-		OFF
+		OFF = 0,
+		MESSAGE,
+		BOTH
 	};
 
 	enum class OverlayState : int_fast8_t {
