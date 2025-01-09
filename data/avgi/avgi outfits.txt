@@ -323,7 +323,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
 		"scale" 0.75
-	"flare sound" "zpinch"
+	"flare sound" "avgi torch"
 	"afterburner effect" "small remass injection"
 	"magnozzle rings" 3
 	description "The smallest Avgi fusion torch is actually the most recent design in the family, owing to the difficulties of miniaturizing the systems driving nuclear fusion. By cooling the fuel with a laser and passing it through an extremely powerful magnetic field, it can be spin polarized, aligning the nuclear spins of the deuterons to reduce ignition requirements and direct some of the emitted neutrons away from the spacecraft. While spin polarization is used on all Avgi fusion torches, it allows the Spark in particular to be far lighter and more compact than would otherwise be possible, reducing the required currents to drive the pinch and the mass of the necessary radiation shielding."
@@ -348,7 +348,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 	"drag reduction" 2
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 15
-	"flare sound" "zpinch"
+	"flare sound" "avgi torch"
 	"afterburner effect" "medium remass injection"
 	"magnozzle rings" 6
 	description "The fusion confinement scheme favored by the Avgi is a variant on the Z-pinch, which runs current axially down a column of deuterium plasma to squeeze it with the resulting magnetic field until it is hot and dense enough for fusion to occur. An annular flow surrounding the pinch keeps it stable, confining the plasma long enough for nearly all of the fuel to be burned by the time it makes its way down the length of the engine and out the magnetic nozzle on its rear. Without the need for fragile, heavy magnets or bulky lasers to ignite and confine the fusion reaction, the resulting drive is incredibly efficient and compact, which has made it the mainstay of Avgi spacecraft propulsion for centuries."
@@ -374,7 +374,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 	"flare sprite" "effect/avgi flare/fusion"
 		"frame rate" 30
 		"scale" 2
-	"flare sound" "zpinch"
+	"flare sound" "avgi torch"
 	"afterburner effect" "large remass injection"
 	"magnozzle rings" 9
 	description "The largest and oldest of the common fusion torches used by the Avgi, the Arc is derived from an interstellar-class design that was modified and downrated to make it more suitable for intra-system operations by trading specific impulse for raw thrust. At this scale, the pinch is long enough that it is able to confine the plasma for sufficient time to not only fuse the deuterium into a mix of helium-3 and tritium, but to likewise burn the aforementioned fusion products together with leftover deuterium to release even more energy. This reaction, known as catalyzed D-D fusion, gives the Arc unprecedented fuel efficiency over its smaller cousins."
@@ -537,7 +537,7 @@ outfit `Z-3600 "Beam" Antimatter Torch`
 	"drag reduction" 9
 	"flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
-	"flare sound" "zpinch"
+	"flare sound" "avgi torch"
 	"turn" 2100
 	"turning energy" 1.8
 	"turning heat" 1.2
