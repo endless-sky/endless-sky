@@ -282,6 +282,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
+	SpriteParameters.cpp
+	SpriteParameters.h
 	StartConditions.cpp
 	StartConditions.h
 	StartConditionsPanel.cpp
