@@ -790,7 +790,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 
 			label accurate
 			`	"You humans aren't too different from us then." She looks thoughtful. "Maybe that would help us get along, your Republic and our Consonance bonding over shared bureaucratic torment. Might even be able to work together and invent something even worse." Claret shudders.`
-					goto humans
+				goto humans
 
 			label humans
 			`	"But aside from that, you humans are a true delight. I met your Captain Darius and he regaled me with many stories of your own Navy. Your Carriers sound especially fearsome."`

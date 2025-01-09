@@ -54,13 +54,14 @@ event "Avgi: Siege Respite Timer"
 	clear "Avgi: Aberrant Siege Respite"
 
 
-mission "Avgi: Spawn Wandering Fleet"
+mission "Avgi: Initial Wandering Fleet"
 	invisible
 	landing
 	repeat
 	to offer
-		not "Avgi: Spawn Wandering Fleet: active"
-		not "Avgi: Wandering Fleet Upgrade: done"
+		not "Avgi: Initial Wandering Fleet: active"
+		not "avgi: wandering fleet refit 1"
+		not "avgi: wandering fleet despawn"
 	to complete
 		never
 	npc save
@@ -89,4 +90,6 @@ mission "Avgi: Spawn Wandering Fleet"
 		ship "Photikon" "Pilos-401"
 		ship "Photikon" "Pilos-402"
 		ship "Photikon" "Pilos-403"
+		to despawn
+			has "avgi: wandering fleet despawn"
 

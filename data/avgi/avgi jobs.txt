@@ -82,7 +82,8 @@ phrase "avgi diplomats complete"
 		` on <planet> as they `
 	word
 		`review papers`
-		`shuffle papers 
+		`shuffle papers`
+		`prepare arguments`
 		`practice arguments`
 	word
 		` for the negotiations. You collect <payment> in payment.`
