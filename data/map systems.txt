@@ -19053,7 +19053,7 @@ system H-1
 			distance 159
 			period 123.478
 	object
-		sprite planet/gas17-b
+		sprite planet/gas9
 		distance 2346
 		period 3911.87
 		object
@@ -20989,6 +20989,7 @@ system Interlude
 	arrival 5000
 	habitable 8220
 	belt 3024
+	"jump range" 30
 	haze _menu/haze-tear
 	link Ca-40
 	link Ge-73
