@@ -831,7 +831,7 @@ mission "Avgi: Dissonance Outreach"
 	blocked "You'll need <capacity> to transport Darius, Sora, and Hriso."
 	source "Peripheria"
 	destination "Outpost Tekis"
-	clearance
+	clearance "Hriso has an animated argument with the spaceport controller, saying something about access rights, and manages to get you reluctant permission to dock."
 	to offer
 		or
 			has "Avgi: Scout Rescue: done"
