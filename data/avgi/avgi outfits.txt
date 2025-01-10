@@ -526,21 +526,21 @@ outfit `Z-3600 "Beam" Antimatter Torch`
 	series "Avgi: Engines"
 	index 80
 	"cost" 900000000
-	thumbnail "outfit/unknown"
-	"mass" 360
+	thumbnail "outfit/beam antimatter torch"
+	"mass" 3600
 	"outfit space" -360
 	"engine capacity" -360
-	"thrust" 540
-	"thrusting energy" 12
+	"thrust" 600
+	"thrusting energy" 15
 	"thrusting heat" 90
-	"thrusting fuel" 0.24
-	"drag reduction" 9
+	"thrusting fuel" 0.3
+	"drag reduction" 30
 	"flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
 	"flare sound" "avgi torch"
-	"turn" 2100
-	"turning energy" 1.8
-	"turning heat" 1.2
+	"turn" 6000
+	"turning energy" 9
+	"turning heat" 54
 	"steering flare sprite" "effect/avgi flare/antimatter"
 		"frame rate" 30
 		"scale" 0.25
