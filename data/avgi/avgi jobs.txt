@@ -1224,7 +1224,8 @@ mission "Avgi: Outpost Diplomats 1"
 		random < 100
 	source "Peripheria"
 	destination
-		government "Avgi (Dissonance)"
+		attributes "dissonance"
+	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1242,6 +1243,25 @@ mission "Avgi: Outpost Diplomats 2"
 	source "Peripheria"
 	destination
 		attributes "dissonance"
+	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "avgi diplomats complete"
+		payment 9000 240
+
+mission "Avgi: Outpost Diplomats 3"
+	job
+	repeat
+	name "Diplomats to <planet>"
+	description "Take these <bunks> diplomats to <planet> to soothe dissatisfied Avgi in exchange for <payment>."
+	passengers 3 6 .6
+	to offer
+		random < 100
+	source "Peripheria"
+	destination
+		attributes "dissonance"
+	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
