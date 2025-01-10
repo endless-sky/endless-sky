@@ -521,7 +521,7 @@ outfit "R-720 RCS Thrusters"
 	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
 
 
-outfit `Z-3600 "Beam" Antimatter Torch`
+outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
 	series "Avgi: Engines"
 	index 80

@@ -1039,7 +1039,7 @@ ship "Modified Tachytia"
 		"Radiative Lamina"
 		"Optical Laser Rifle" 600
 		
-		`Z-3600 "Beam" Antimatter Torch`
+		`Z-3600 "Beam" Amat Torch`
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
