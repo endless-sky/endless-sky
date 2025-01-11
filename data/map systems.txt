@@ -26837,7 +26837,7 @@ system Mellow
 	asteroids "medium metal" 18 0.858
 	asteroids "large metal" 22 1.301
 	minables neodymium 9 1.587
-	trade Clothing 390
+	trade Clothing 330
 	trade Electronics 720
 	trade Equipment 540
 	trade Food 150
@@ -34820,7 +34820,7 @@ system Sail
 	minables iron 9 2.899
 	minables aluminum 18 1.231
 	minables uranium 5 3.582
-	trade Clothing 360
+	trade Clothing 300
 	trade Electronics 690
 	trade Equipment 600
 	trade Food 105
