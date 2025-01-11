@@ -1626,15 +1626,91 @@ Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
+ images/map/milky?way*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA and Michael Zahniser.
+
+Files:
+ images/map/a-dwarf-star*
+ images/map/a-giant-star*
+ images/map/a-large-star*
+ images/map/a-small-star*
+ images/map/a-star*
+ images/map/a-supergiant-star*
+ images/map/b-dwarf-star*
+ images/map/b-giant-star*
+ images/map/b-large-star*
+ images/map/b-small-star*
+ images/map/b-star*
+ images/map/b-supergiant-star*
+ images/map/f-dwarf-star*
+ images/map/f-giant-star*
+ images/map/f-large-star*
+ images/map/f-old-star*
+ images/map/f-small-star*
+ images/map/f-star*
+ images/map/f-supergiant-star*
+ images/map/g-dwarf-star*
+ images/map/g-giant-star*
+ images/map/g-large-star*
+ images/map/g-old-star*
+ images/map/g-small-star*
+ images/map/g-star*
+ images/map/g-supergiant-star*
+ images/map/k-dwarf-star*
+ images/map/k-giant-star*
+ images/map/k-large-star*
+ images/map/k-old-star*
+ images/map/k-small-star*
+ images/map/k-star*
+ images/map/k-supergiant-star*
+ images/map/m-dwarf-star*
+ images/map/m-giant-star*
+ images/map/m-large-star*
+ images/map/m-small-star*
+ images/map/m-star*
+ images/map/m-supergiant-star*
+ images/map/o-dwarf-star*
+ images/map/o-giant-star*
+ images/map/o-large-star*
+ images/map/o-small-star*
+ images/map/o-star*
+ images/map/o-supergiant-star*
+ images/map/unexplored-star*
  images/planet/nebula1*
 Copyright: Azure
 License: CC-BY-SA-4.0
 
 Files:
-  images/ui/milky?way*
+ images/map/small-neutron-star*
 Copyright: Azure
 License: CC-BY-SA-4.0
-Comment: Derived from works by NASA and Michael Zahniser.
+Comment: Derived from works by RisingLeaf.
+
+Files:
+ images/map/coal-black-hole-star*
+ images/map/neutron-star*
+ images/map/small-black-hole-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Gefüllte Taubenbrust.
+
+Files:
+ images/map/black-hole-star*
+ images/map/carbon-star*
+ images/map/nova-old-star*
+ images/map/nova-small-star*
+ images/map/small-wr-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matteo "Lead" M.
+
+Files:
+ images/map/nova-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser.
 
 Files: sounds/*
 Copyright: Various
@@ -3606,8 +3682,22 @@ Comment:
 
 Files:
  images/ui/red?alert*
+ images/ui/tactical/acceleration*
+ images/ui/tactical/gun?range*
+ images/ui/tactical/turret?range*
+ images/ui/tactical/turn*
+ images/ui/tactical/velocity*
 Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
+
+Files:
+ images/ui/tactical/crew*
+ images/ui/tactical/energy*
+ images/ui/tactical/fuel*
+ images/ui/tactical/thermal*
+Copyright: Zitchas
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
  images/_menu/haze-brown*
