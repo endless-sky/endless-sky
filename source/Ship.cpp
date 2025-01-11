@@ -3772,7 +3772,7 @@ void Ship::SetTargetSystem(const System *system)
 // Persistent targets for mission NPCs.
 bool Ship::HasTravelDirective() const
 {
-	return !stopovers.empty() || destinationPlanet || destinationSystem;
+	return !stopovers.empty() || !waypoints.empty() || destinationPlanet || destinationSystem;
 }
 
 

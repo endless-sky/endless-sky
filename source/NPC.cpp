@@ -411,18 +411,18 @@ void NPC::Save(DataWriter &out) const
 		{
 			out.WriteToken("waypoint");
 			for(const auto &waypoint : waypoints)
-				out.WriteToken(waypoint->Name());
+				out.WriteToken(waypoint->TrueName());
 			out.Write();
 		}
 
 		if(finalDestination)
-			out.Write("destination", finalDestination->Name());
+			out.Write("destination", finalDestination->TrueName());
 
 		if(!stopovers.empty())
 		{
 			out.WriteToken("stopover");
 			for(const auto &stopover : stopovers)
-				out.WriteToken(stopover->Name());
+				out.WriteToken(stopover->TrueName());
 			out.Write();
 		}
 
