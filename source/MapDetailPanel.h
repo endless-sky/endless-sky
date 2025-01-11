@@ -37,7 +37,7 @@ class System;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
+	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr, bool fromMission = false);
 	explicit MapDetailPanel(const MapPanel &panel, bool isStars);
 
 	virtual void Step() override;
