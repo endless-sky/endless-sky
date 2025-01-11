@@ -373,36 +373,45 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
-		isStars = false;
 		if(y >= tradeY && y < tradeY + 200)
 		{
 			// The player clicked on a tradable commodity. Color the map by its price.
+			isStars = false;
 			SetCommodity((y - tradeY) / 20);
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
 		// But the bit to the left will show danger of pirate/raid fleets instead.
 		else if(y < governmentY && y > governmentY - 30)
+		{
+			isStars = false;
 			SetCommodity(x < Screen::Left() + mapInterface->GetValue("text margin") ?
 				SHOW_DANGER : SHOW_REPUTATION);
+		}
+
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 25)
+		{
+			isStars = false;
 			SetCommodity(SHOW_GOVERNMENT);
+		}
+
 	}
 	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
-		isStars = false;
 		for(auto &card : planetCards)
 		{
 			MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
 			if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
 			{
+				isStars = false;
 				GetUI()->Pop(this);
 				GetUI()->Push(new MapShipyardPanel(*this, true));
 				break;
 			}
 			else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
 			{
+				isStars = false;
 				GetUI()->Pop(this);
 				GetUI()->Push(new MapOutfitterPanel(*this, true));
 				break;
@@ -985,5 +994,8 @@ void MapDetailPanel::DrawOrbits()
 void MapDetailPanel::SetCommodity(int index)
 {
 	commodity = index;
+	if(index != SHOW_STARS)
+		isStars = false;
+
 	player.SetMapColoring(commodity);
 }
