@@ -373,6 +373,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	{
 		// The player clicked in the left-hand interface. This could be the system
 		// name, the system government, a planet box, the commodity listing, or nothing.
+		isStars = false;
 		if(y >= tradeY && y < tradeY + 200)
 		{
 			// The player clicked on a tradable commodity. Color the map by its price.
@@ -390,6 +391,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	}
 	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
+		isStars = false;
 		for(auto &card : planetCards)
 		{
 			MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
@@ -421,6 +423,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	{
 		// The player has clicked within the "orbits" scene.
 		// Select the nearest planet to the click point.
+		isStars = false;
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
 		double distance = numeric_limits<double>::infinity();

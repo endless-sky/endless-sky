@@ -602,11 +602,14 @@ const Government *System::GetGovernment() const
 }
 
 
+
 // Get this system's map icons.
 const vector<const Sprite *> &System::GetMapIcons() const
 {
 	return mapIcons;
 }
+
+
 
 // Get the name of the ambient audio to play in this system.
 const string &System::MusicName() const

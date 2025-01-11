@@ -1525,6 +1525,7 @@ interface "map buttons (small screen)" bottom right
 		size 18
 
 
+
 interface "map"
 	value "max zoom" 2
 	value "min zoom" -2

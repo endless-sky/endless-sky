@@ -339,7 +339,6 @@ public:
 	// Get or set the map zoom level.
 	int MapZoom() const;
 	void SetMapZoom(int level);
-	// Get or set the map display mode.
 	// Get the set of collapsed categories for the named panel.
 	std::set<std::string> &Collapsed(const std::string &name);
 	// Should help dialogs relating to carriers be displayed?
