@@ -1485,9 +1485,9 @@ interface "map buttons (small screen)" bottom right
 
 	active if "!is missions"
 	sprite "ui/dialog cancel"
-		from -170 -40 to -80 -90
+		from -170 -30 to -80 -180
 	button i "M_issions"
-		from -160 -80 to -90 -50
+		from -160 -60 to -90 -150
 
 	active if "!is ports"
 	sprite "ui/dialog cancel"
@@ -1497,9 +1497,9 @@ interface "map buttons (small screen)" bottom right
 
 	active if "!is stars"
 	sprite "ui/dialog cancel"
-		from -170 -50 to -80 0
+		from -170 -40 to -80 -90
 	button a "St_ars"
-		from -160 -40 to -90 -10
+		from -160 -80 to -90 -50
 
 	active
 	sprite "ui/dialog cancel"
