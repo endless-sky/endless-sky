@@ -31,10 +31,6 @@ target_sources(EndlessSkyLib PRIVATE
 	AsteroidField.h
 	BankPanel.cpp
 	BankPanel.h
-	BatchDrawList.cpp
-	BatchDrawList.h
-	BatchShader.cpp
-	BatchShader.h
 	Bitset.cpp
 	Bitset.h
 	BoardingPanel.cpp
@@ -93,8 +89,6 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
-	DrawList.cpp
-	DrawList.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -109,8 +103,6 @@ target_sources(EndlessSkyLib PRIVATE
 	File.h
 	Files.cpp
 	Files.h
-	FillShader.cpp
-	FillShader.h
 	FireCommand.cpp
 	FireCommand.h
 	Fleet.cpp
@@ -119,8 +111,6 @@ target_sources(EndlessSkyLib PRIVATE
 	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
-	FogShader.cpp
-	FogShader.h
 	FormationPattern.cpp
 	FormationPattern.h
 	FormationPositioner.cpp
@@ -162,8 +152,6 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpTypes.h
 	Logger.cpp
 	Logger.h
-	LineShader.cpp
-	LineShader.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -214,8 +202,6 @@ target_sources(EndlessSkyLib PRIVATE
 	OutfitInfoDisplay.h
 	OutfitterPanel.cpp
 	OutfitterPanel.h
-	OutlineShader.cpp
-	OutlineShader.h
 	Panel.cpp
 	Panel.h
 	Paragraphs.cpp
@@ -240,8 +226,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Plugins.h
 	Point.cpp
 	Point.h
-	PointerShader.cpp
-	PointerShader.h
 	Politics.cpp
 	Politics.h
 	Port.cpp
@@ -265,8 +249,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Rectangle.h
 	RenderBuffer.cpp
 	RenderBuffer.h
-	RingShader.cpp
-	RingShader.h
 	RouteEdge.cpp
 	RouteEdge.h
 	RoutePlan.cpp
@@ -280,8 +262,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ScrollBar.h
 	ScrollVar.h
 	Set.h
-	Shader.cpp
-	Shader.h
 	Ship.cpp
 	Ship.h
 	ShipEvent.cpp
@@ -302,10 +282,6 @@ target_sources(EndlessSkyLib PRIVATE
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
-	SpriteShader.cpp
-	SpriteShader.h
-	StarField.cpp
-	StarField.h
 	StartConditions.cpp
 	StartConditions.h
 	StartConditionsPanel.cpp
@@ -368,6 +344,30 @@ target_sources(EndlessSkyLib PRIVATE
 	image/Sprite.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
+	shader/BatchDrawList.cpp
+	shader/BatchDrawList.h
+	shader/BatchShader.cpp
+	shader/BatchShader.h
+	shader/DrawList.cpp
+	shader/DrawList.h
+	shader/FillShader.cpp
+	shader/FillShader.h
+	shader/FogShader.cpp
+	shader/FogShader.h
+	shader/LineShader.cpp
+	shader/LineShader.h
+	shader/OutlineShader.cpp
+	shader/OutlineShader.h
+	shader/PointerShader.cpp
+	shader/PointerShader.h
+	shader/RingShader.cpp
+	shader/RingShader.h
+	shader/Shader.cpp
+	shader/Shader.h
+	shader/SpriteShader.cpp
+	shader/SpriteShader.h
+	shader/StarField.cpp
+	shader/StarField.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp

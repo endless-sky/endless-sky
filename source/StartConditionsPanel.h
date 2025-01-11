@@ -71,6 +71,8 @@ private:
 	const Color &selectedBackground;
 	// The selected scenario's description.
 	WrappedText description;
+	// Displayed information for the selected scenario.
+	Information info;
 
 	bool hasHover = false;
 	Point hoverPoint;

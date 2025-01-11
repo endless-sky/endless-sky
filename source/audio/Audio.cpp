@@ -96,7 +96,7 @@ namespace {
 	unsigned maxSources = 255;
 
 	// Queue and thread for loading sound files in the background.
-	map<string, string> loadQueue;
+	map<string, filesystem::path> loadQueue;
 	thread loadThread;
 
 	// The current position of the "listener," i.e. the center of the screen.
@@ -121,7 +121,7 @@ namespace {
 
 
 // Begin loading sounds (in a separate thread).
-void Audio::Init(const vector<string> &sources)
+void Audio::Init(const vector<filesystem::path> &sources)
 {
 	device = alcOpenDevice(nullptr);
 	if(!device)
@@ -148,20 +148,20 @@ void Audio::Init(const vector<string> &sources)
 	alDopplerFactor(0.);
 
 	// Get all the sound files in the game data and all plugins.
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
-		string root = source + "sounds/";
-		vector<string> files = Files::RecursiveList(root);
-		for(const string &path : files)
+		filesystem::path root = source / "sounds/";
+		vector<filesystem::path> files = Files::RecursiveList(root);
+		for(const auto &path : files)
 		{
-			if(!path.compare(path.length() - 4, 4, ".wav"))
+			if(path.extension() == ".wav")
 			{
 				// The "name" of the sound is its full path within the "sounds/"
 				// folder, without the ".wav" or "~.wav" suffix.
-				size_t end = path.length() - 4;
-				if(path[end - 1] == '~')
-					--end;
-				loadQueue[path.substr(root.length(), end - root.length())] = path;
+				string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
+				if(name.ends_with('~'))
+					name.resize(name.length() -1);
+				loadQueue[name] = path;
 			}
 		}
 	}
@@ -635,7 +635,7 @@ namespace {
 	void Load()
 	{
 		string name;
-		string path;
+		filesystem::path path;
 		Sound *sound;
 		while(true)
 		{
@@ -658,7 +658,7 @@ namespace {
 
 			// Unlock the mutex for the time-intensive part of the loop.
 			if(!sound->Load(path, name))
-				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path);
+				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path.string());
 		}
 	}
 }

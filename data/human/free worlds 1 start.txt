@@ -1436,7 +1436,7 @@ mission "FW Pirates: Attack 2"
 			variant
 				"Aerie" 2
 				"Mule (Heavy)"
-				"Dagger" 5
+				"Dagger" 9
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
@@ -1887,7 +1887,7 @@ mission "FW Early Warning 3"
 			`	"Lieutenant Commander Jean-Jacques Soleau, in the flesh before my very eyes," Hines says, wiping the edges of his mouth. "I never imagined I'd be seeing you again after you so unceremoniously left the Navy."`
 			`	"I'm not here to discuss the past, Commander," JJ responds. "I'm here to prevent more bloodshed in this pointless war."`
 			`	"As am I, Soleau, as am I. Although I might ask, were the lives lost in your attacks on Geminus and Martini pointless, or were those necessary losses."`
-			`	"The Free Worlds is not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
+			`	"The Free Worlds are not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
 			`	"There was no 'taking,' Soleau. Kornephoros is rightfully Republic territory. We were simply enacting a police action on one of our own worlds, and arresting the terrorists who-"`
 			`	"So did you only come here to insult me and the Free Worlds or are you here to discuss peace as I asked?" JJ says, cutting Hines off. "As I said, I'm here to prevent more bloodshed. The deaths of those on Geminus and Martini as well as those in Kornephoros and Sabik were enough already. Continued bloodshed will not satisfy either side in this war."`
 			`	"Continued bloodshed like what occurred on Greenrock only days ago?" Hines quips. "I'm sure you are aware that the Navy cannot bring its full force upon the 'Free Worlds.' We have borders to patrol and piracy to tend to. You, on the other hand, have just shattered the biggest hub of piracy in the region, and I have no doubt that this has freed up many resources. It would appear to me that you yourselves are consolidating your forces for an offensive and further bloodshed despite your insistence to the opposite."`
@@ -2127,7 +2127,7 @@ mission "FW Senate Hearing"
 		event "wolf pack reveal" 30
 		event "fw stripped of service"
 		set "fw first chapter done"
-		log "Officially censured by the Free Worlds Senate for launching an attack on a pirate world rather than obeying their instructions to seek a diplomatic solution. It may be a while before any further work for the Free Worlds is available."
+		log "Officially censured by the Free Worlds Senate for launching an attack on a pirate world rather than obeying their instructions to seek a diplomatic solution. It may be a while before any further work for the Free Worlds are available."
 		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and captured the pirate world of Greenrock rather than pursue the diplomatic solution that the Senate preferred.`
 		conversation
 			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`

@@ -102,7 +102,7 @@ namespace {
 			return false;
 		else if(rhs->GetSystem() == nullptr)
 			return true;
-		return lhs->GetSystem()->Name() < rhs->GetSystem()->Name();
+		return lhs->GetSystem()->DisplayName() < rhs->GetSystem()->DisplayName();
 	}
 
 	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -207,8 +207,8 @@ void PlayerInfoPanel::Draw()
 	DrawBackdrop();
 
 	// Fill in the information for how this interface should be drawn.
-	info.ClearConditions();
-	info.SetCondition("player tab");
+	Information interfaceInfo;
+	interfaceInfo.SetCondition("player tab");
 	if(panelState.CanEdit() && !panelState.Ships().empty())
 	{
 		bool allParked = true;
@@ -226,8 +226,8 @@ void PlayerInfoPanel::Draw()
 			}
 		if(hasOtherShips)
 		{
-			info.SetCondition(allParked ? "show unpark all" : "show park all");
-			info.SetCondition(allParkedSystem ? "show unpark system" : "show park system");
+			interfaceInfo.SetCondition(allParked ? "show unpark all" : "show park all");
+			interfaceInfo.SetCondition(allParkedSystem ? "show unpark system" : "show park system");
 		}
 
 		// If ships are selected, decide whether the park or unpark button
@@ -247,8 +247,8 @@ void PlayerInfoPanel::Draw()
 			}
 			if(parkable)
 			{
-				info.SetCondition("can park");
-				info.SetCondition(allParked ? "show unpark" : "show park");
+				interfaceInfo.SetCondition("can park");
+				interfaceInfo.SetCondition(allParked ? "show unpark" : "show park");
 			}
 		}
 
@@ -256,16 +256,16 @@ void PlayerInfoPanel::Draw()
 		// show the save order button. Any manual sort by the player
 		// is applied immediately and doesn't need this button.
 		if(panelState.CanEdit() && panelState.CurrentSort())
-			info.SetCondition("show save order");
+			interfaceInfo.SetCondition("show save order");
 	}
 
-	info.SetCondition("three buttons");
+	interfaceInfo.SetCondition("three buttons");
 	if(player.HasLogs())
-		info.SetCondition("enable logbook");
+		interfaceInfo.SetCondition("enable logbook");
 
 	// Draw the interface.
 	const Interface *infoPanelUi = GameData::Interfaces().Get("info panel");
-	infoPanelUi->Draw(info, this);
+	infoPanelUi->Draw(interfaceInfo, this);
 
 	// Draw the player and fleet info sections.
 	menuZones.clear();
@@ -780,7 +780,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
-		table.Draw(system ? (player.KnowsName(*system) ? system->Name() : "???") : "");
+		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
 		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
 		table.Draw(shields);
