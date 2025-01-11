@@ -416,11 +416,7 @@ void NPC::Save(DataWriter &out) const
 		}
 
 		if(finalDestination)
-		{
-			out.WriteToken("destination");
-			out.WriteToken(finalDestination->Name());
-			out.Write();
-		}
+			out.Write("destination", finalDestination->Name());
 
 		if(!stopovers.empty())
 		{
@@ -798,7 +794,6 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.waypoints.push_back(result.destination);
 	for(const LocationFilter &filter : waypointFilters)
 	{
-		// Each new waypoint calculates "distance X Y" from the previous waypoint / origin.
 		const System *choice = filter.PickSystem(result.waypoints.empty() ?
 				origin : result.waypoints.back());
 		if(choice)

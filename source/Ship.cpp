@@ -2555,7 +2555,7 @@ bool Ship::HasLanded() const
 // Check if this ship has permanently landed or been destroyed.
 bool Ship::LandedOrDestroyed() const
 {
-	return (hull < 0. || hasLanded);
+	return (IsDestroyed() || HasLanded());
 }
 
 
@@ -2710,6 +2710,7 @@ void Ship::ClearTargetsAndOrders()
 	destinationPlanet = nullptr;
 	stopovers.clear();
 	waypoints.clear();
+	waypoint = 0;
 }
 
 
@@ -3788,10 +3789,7 @@ bool Ship::AllStopoversVisited() const
 	if(stopovers.empty())
 		return true;
 
-	for(const auto &it : stopovers)
-		if(!it.second)
-			return false;
-	return true;
+	return all_of(stopovers.begin(), stopovers.end(), [](const auto &it) { return it.second; });
 }
 
 
@@ -5291,9 +5289,6 @@ void Ship::Jettison(shared_ptr<Flotsam> toJettison)
 
 void Ship::ResetStopovers()
 {
-	if(stopovers.empty())
-		return;
-
 	for(auto &stopover : stopovers)
 		stopover.second = false;
 }
