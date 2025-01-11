@@ -250,7 +250,7 @@ mission "Avgi Culture: Park Politics"
 				`	"Corporations are part of the government? I've seen that one before."`
 					goto syndicate
 			action
-				log "Factions" "Avgi Consonance" `While most of the Electors the various Avgi polities select to represent them in the Consonance are elected democratically, others are not, with their own systems of appointment. The Consonance is thus perhaps an example of a republic without being fully democratic.`
+				log "Factions" "Avgi Consonance" `While most of the Electors the various Avgi polities select to represent them in the Consonance are elected democratically, others are not, with their own systems of appointment. The Consonance is thus perhaps an example of a republic that is not fully democratic.`
 
 			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their own leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time commitment to make."`
 			`	"But yes, most of the polities use some form of democracy. An Avgi might find themselves voting in several elections, one for each polity they claim membership to, with their vote diluted by how many polities they belong to."`
@@ -885,7 +885,7 @@ mission "Avgi: Atomics Testing 1"
 	destination "Dokimi Range"
 	blocked "You need <capacity> to transport Aliza and her colleagues to Dokimi."
 	on offer
-		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of an enthusiasm for nuclear weapons, she is eager to share what she knows.`
+		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of a passion for nuclear weapons, she is eager to share what she knows.`
 		conversation
 			action
 				set "Avgi: met aliza"
