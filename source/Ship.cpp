@@ -3816,29 +3816,29 @@ void Ship::SetDestination(const Planet *destination)
 
 
 
-void Ship::SetStopovers(const vector<const Planet *> &stopovers)
+void Ship::SetStopovers(const vector<const Planet *> &newStopovers)
 {
 	// Mark each planet as not visited.
-	for(const auto &it : stopovers)
-		this->stopovers[it] = false;
+	for(const auto &it : newStopovers)
+		stopovers[it] = false;
 }
 
 
 
-void Ship::SetWaypoints(const vector<const System *> &waypoints)
+void Ship::SetWaypoints(const vector<const System *> &newWaypoints)
 {
 	// Ships loaded from save files may have an existing waypoint that
 	// indicates which systems have already been visited.
-	if(waypoint < waypoints.size())
+	if(waypoint < newWaypoints.size())
 	{
-		this->waypoints = waypoints;
+		waypoints = newWaypoints;
 		if(targetSystem && personality.IsEntering())
 		{
 			--waypoint;
 			destinationSystem = targetSystem;
 		}
 		else
-			destinationSystem = waypoints[waypoint];
+			destinationSystem = newWaypoints[waypoint];
 	}
 	else
 		destinationSystem = nullptr;
