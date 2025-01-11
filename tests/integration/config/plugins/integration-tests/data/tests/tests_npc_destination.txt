@@ -75,7 +75,7 @@ test-data "NPC Destination Save"
 		visited "Pollux"
 		visited "Castor"
 
-test-data "Npc Destination Mission"
+test-data "NPC Destination Mission"
 	category mission
 	contents
 		mission "npc"
@@ -89,12 +89,12 @@ test-data "Npc Destination Mission"
 				personality waiting
 
 
-test "Npc Destination Test"
+test "NPC Destination Test"
 	status active
 	description "Starts the mission, accepts it and then goes to the destination making sure the Quarg got there first."
 	sequence
-		inject "Npc Destination Mission"
-		inject "Npc Destination Save"
+		inject "NPC Destination Mission"
+		inject "NPC Destination Save"
 		call "Load First Savegame"
 		# Set desired travel plan.
 		navigate
