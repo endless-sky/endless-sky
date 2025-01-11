@@ -171,7 +171,7 @@ government "Avgi (Dissonance Angry)"
 
 government "Avgi (Wandering Fleet)"
 	"display name" "Wandering Fleet"
-	swizzle 6
+	swizzle 22
 	language "Avgi"
 	color "governments: Avgi"
 

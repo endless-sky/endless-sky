@@ -1224,7 +1224,7 @@ mission "Avgi: Outpost Diplomats 1"
 		random < 100
 	source "Peripheria"
 	destination
-		attributes "dissonance"
+		attributes "dissonance sympathies"
 	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1242,7 +1242,7 @@ mission "Avgi: Outpost Diplomats 2"
 		random < 100
 	source "Peripheria"
 	destination
-		attributes "dissonance"
+		attributes "dissonance sympathies"
 	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1260,7 +1260,7 @@ mission "Avgi: Outpost Diplomats 3"
 		random < 100
 	source "Peripheria"
 	destination
-		attributes "dissonance"
+		attributes "dissonance sympathies"
 	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	on visit
 		dialog phrase "generic passenger on visit"

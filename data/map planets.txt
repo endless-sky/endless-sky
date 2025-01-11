@@ -4190,7 +4190,7 @@ planet "Outpost Alkos"
 	security 0.5
 
 planet "Outpost Enka"
-	attributes asteroid avgi "avgi diaspora" dissonance station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
 	landscape land/station27
 	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one asteroid is also riddled with pressurized tunnels and pockets filled with farms and open green spaces.`
 	description `Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters.`
@@ -4207,7 +4207,7 @@ planet "Outpost Enka"
 	"required reputation" 10
 
 planet "Outpost Leto"
-	attributes asteroid avgi "avgi diaspora" dissonance station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
 	landscape land/station30
 	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot the icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
 	spaceport `The spaceport is hosted in one of the many pressurized domes adorning the surface of the planetoid, with a large airlock in the ceiling enabling passage between the station itself and the cold black of space outside.`
@@ -4215,7 +4215,7 @@ planet "Outpost Leto"
 	"required reputation" 10
 
 planet "Outpost Tekis"
-	attributes asteroid avgi "avgi diaspora" dissonance station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
 	landscape land/station25
 	description `Outpost Tekis is a station built into an enormous asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens.`
 	description `Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
@@ -5671,7 +5671,7 @@ planet "Tik Klai"
 		fleet "Wanderer Defense" 4
 
 planet "Tilo Station"
-	attributes avgi "avgi diaspora" dissonance station
+	attributes avgi "avgi diaspora" "dissonance sympathies" station
 	landscape land/space0
 	description `Predating the Incursion, Tilo Station was the first major refueling station built in the Tangled Shroud. While it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment.`
 	description `	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance.`
