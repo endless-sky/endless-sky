@@ -3697,6 +3697,45 @@ const System *Ship::GetTargetSystem() const
 
 
 
+// Persistent targets for mission NPCs.
+bool Ship::HasTravelDirective() const
+{
+	return !stopovers.empty() || !waypoints.empty() || destinationPlanet || destinationSystem;
+}
+
+
+
+const map<const Planet *, bool> &Ship::GetStopovers() const
+{
+	return stopovers;
+}
+
+
+
+bool Ship::AllStopoversVisited() const
+{
+	if(stopovers.empty())
+		return true;
+
+	return all_of(stopovers.begin(), stopovers.end(), [](const auto &it) { return it.second; });
+}
+
+
+
+const Planet *Ship::GetDestinationPlanet() const
+{
+	return destinationPlanet;
+}
+
+
+
+const System *Ship::GetDestinationSystem() const
+{
+	return destinationSystem;
+}
+
+
+
 // Mining target.
 shared_ptr<Minable> Ship::GetTargetAsteroid() const
 {
@@ -3765,45 +3804,6 @@ void Ship::SetTargetStellar(const StellarObject *object)
 void Ship::SetTargetSystem(const System *system)
 {
 	targetSystem = system;
-}
-
-
-
-// Persistent targets for mission NPCs.
-bool Ship::HasTravelDirective() const
-{
-	return !stopovers.empty() || !waypoints.empty() || destinationPlanet || destinationSystem;
-}
-
-
-
-const map<const Planet *, bool> &Ship::GetStopovers() const
-{
-	return stopovers;
-}
-
-
-
-bool Ship::AllStopoversVisited() const
-{
-	if(stopovers.empty())
-		return true;
-
-	return all_of(stopovers.begin(), stopovers.end(), [](const auto &it) { return it.second; });
-}
-
-
-
-const Planet *Ship::GetDestinationPlanet() const
-{
-	return destinationPlanet;
-}
-
-
-
-const System *Ship::GetDestinationSystem() const
-{
-	return destinationSystem;
 }
 
 
