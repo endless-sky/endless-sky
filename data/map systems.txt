@@ -10976,7 +10976,7 @@ system Corporeal
 		sprite planet/station1q
 			scale 0.5
 		distance 960
-		period 449.694
+		period 349.820
 		offset 180
 	object
 		sprite planet/gas2

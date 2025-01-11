@@ -1626,32 +1626,175 @@ Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
- images/planet/nebula1*
  images/_menu/haze-twilight*
  images/_menu/haze-twilight-thick*
  images/_menu/haze-twilight-thin*
  images/_menu/haze-twilit-embers*
  images/asteroid/integral?tree/tree*
- images/asteroid/small?droplet/*
- images/asteroid/medium?droplet/*
  images/asteroid/large?droplet/*
+ images/asteroid/medium?droplet/*
+ images/asteroid/small?droplet/*
  images/effect/avgi?flare/afterburner*
  images/effect/avgi?flare/fusion*
  images/effect/avgi?flare/rcs*
+ images/effect/flotsam?integral?wood*
+ images/effect/flotsam?voidfish*
+ images/icon/nettle*
+ images/icon/orchid*
  images/label/outer?limits*
  images/label/tangled?shroud*
  images/label/twilight*
- images/outfit/cryogenic?deuterium?tank*
- images/outfit/nettle?kkv*
- images/outfit/optical?lasing?generator*
  images/outfit/concentrating?solar?array*
  images/outfit/concentrating?solar?cell*
+ images/outfit/cryogenic?deuterium?tank*
+ images/outfit/integral?wood*
+ images/outfit/nettle?kkv*
+ images/outfit/nettle?magazine*
+ images/outfit/ophrys?stockpile*
+ images/outfit/ophrys?torpedo*
+ images/outfit/optical?laser?rifle*
+ images/outfit/optical?lasing?generator*
+ images/outfit/orchid?magazine*
+ images/outfit/orchid?missile*
+ images/outfit/remass?injector*
  images/outfit/trefoil?board*
+ images/outfit/trefoil?board*
+ images/outfit/voidfish*
  images/planet/aviskir*
+ images/planet/nebula1*
  images/projectile/nettle*
  images/projectile/nucleolysis*
+ images/projectile/orchid?boost*
+ images/projectile/orchid?boost?stage*
+ images/projectile/orchid?coast*
+ images/projectile/orchid?divert*
+ images/projectile/orchid?divert?stage*
+ images/projectile/orchid?inactive*
+ images/projectile/orchid?terminal*
+ images/projectile/orchid?terminal*
+ images/scene?trefoil?board*
 Copyright: Azure
 License: CC-BY-SA-4.0
+
+Files:
+ images/hardpoint/avgi?blue?laser*
+ images/hardpoint/avgi?green?laser*
+ images/hardpoint/impact?shield
+ images/hardpoint/plasmadyne?scoop
+ images/hardpoint/speckle?turret
+ images/outfit/anomalous?shield?restorer*
+ images/outfit/antimatter?power?cell*
+ images/outfit/arc?fusion?torch*
+ images/outfit/avgi?blue?laser*
+ images/outfit/avgi?green?laser*
+ images/outfit/beam?antimatter?torch*
+ images/outfit/concealment?lamina*
+ images/outfit/deuterium?slush?tank*
+ images/outfit/diffuse?deflector*
+ images/outfit/external?launch?rail*
+ images/outfit/external?launch?tube*
+ images/outfit/heatsink?partition*
+ images/outfit/inductive?extractor*
+ images/outfit/lantern?fission?core*
+ images/outfit/magnetic?scoop*
+ images/outfit/magnetoplasma?drive*
+ images/outfit/multispectral?scanner*
+ images/outfit/nucleolysis?beam*
+ images/outfit/ophrys?torpedo*
+ images/outfit/photoelectric?lamina*
+ images/outfit/plasmadyne?scoop*
+ images/outfit/radiative?lamina*
+ images/outfit/rcs?large*
+ images/outfit/rcs?medium*
+ images/outfit/rcs?small*
+ images/outfit/spark?fusion?torch*
+ images/outfit/speck?magazine*
+ images/outfit/speck?round*
+ images/outfit/speckle?coilgun*
+ images/outfit/speckle?turret*
+ images/outfit/spectrometer?array*
+ images/outfit/specular?deflector*
+ images/outfit/telescopic?antimissile*
+ images/outfit/ultracapacitor?bank*
+ images/outfit/ultracapacitor?cell*
+ images/outfit/vertical?launch?array*
+ images/outfit/zap?fusion?torch*
+ images/effect/flotsam?telescopic?antimissile*
+ images/effect/flotsam?nucleolysis?beam*
+ images/effect/flotsam?antimatter?power?cell*
+ images/effect/flotsam?anomalous?shield?restorer*
+ images/effect/flotsam?anomalous?mass*
+ images/planet/station1q*
+ images/projectile/aberrant?spike*
+ images/projectile/fleck*
+ images/projectile/speck*
+ images/ship/avgi?akoustiki*
+ images/ship/avgi?atenuatia*
+ images/ship/avgi?atenuatia@sw*
+ images/ship/avgi?avlaki*
+ images/ship/avgi?avlaki@sw*
+ images/ship/avgi?diaspersi*
+ images/ship/avgi?diaspersi@sw*
+ images/ship/avgi?difraktos*
+ images/ship/avgi?difraktos@sw*
+ images/ship/avgi?entasi*
+ images/ship/avgi?entasi@sw*
+ images/ship/avgi?frequentia*
+ images/ship/avgi?frequentia@sw*
+ images/ship/avgi?harmonikos*
+ images/ship/avgi?harmonikos@sw*
+ images/ship/avgi?intereros*
+ images/ship/avgi?interferos@sw*
+ images/ship/avgi?koryfi/*
+ images/ship/avgi?melodikos/*
+ images/ship/avgi?melodikos@sw*
+ images/ship/avgi?optikon*
+ images/ship/avgi?phononos*
+ images/ship/avgi?photikon*
+ images/ship/avgi?polari*
+ images/ship/avgi?polari@sw*
+ images/ship/avgi?prismaios*
+ images/ship/avgi?prismaios@sw*
+ images/ship/avgi?refraktos*
+ images/ship/avgi?refraktos@sw*
+ images/ship/avgi?sonikis*
+ images/ship/avgi?tachytia/*
+ images/ship/avgi?tachytia/tachytia@sw*
+ images/ship/avgi?tremoros*
+ images/ship/avgi?undsyni*
+ images/ship/avgi?undsyni@sw*
+ images/ship/avgi?undulon*
+ images/ship/avgi?vibratia*
+ images/thumbnail/avgi?akoustiki*
+ images/thumbnail/avgi?atenuatia*
+ images/thumbnail/avgi?atenuatia@sw
+ images/thumbnail/avgi?avlaki*
+ images/thumbnail/avgi?avlaki@sw*
+ images/thumbnail/avgi?diaspersi*
+ images/thumbnail/avgi?difraktos*
+ images/thumbnail/avgi?entasi*
+ images/thumbnail/avgi?frequentia*
+ images/thumbnail/avgi?harmonikos*
+ images/thumbnail/avgi?harmonikos@sw*
+ images/thumbnail/avgi?intereros*
+ images/thumbnail/avgi?koryfi/*
+ images/thumbnail/avgi?melodikos/*
+ images/thumbnail/avgi?melodikos@sw*
+ images/thumbnail/avgi?optikon*
+ images/thumbnail/avgi?phononos*
+ images/thumbnail/avgi?photikon*
+ images/thumbnail/avgi?polari*
+ images/thumbnail/avgi?prismaios*
+ images/thumbnail/avgi?refraktos*
+ images/thumbnail/avgi?sonikis*
+ images/thumbnail/avgi?tachytia/*
+ images/thumbnail/avgi?tremoros*
+ images/thumbnail/avgi?undsyni*
+ images/thumbnail/avgi?undulon*
+ images/thumbnail/avgi?vibratia*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso.
 
 Files:
  images/ui/milky?way*
@@ -1681,7 +1824,7 @@ Files:
  sounds/clink*
  sounds/optical?laser*
  sounds/speckle*
- sounds/zpinch*
+ sounds/avgi?torch*
 Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from public domain sounds taken from freesound.org.
@@ -2044,6 +2187,9 @@ Files:
  images/outfit/swatter*
  images/outfit/thorax?cannon*
  images/outfit/*rift*
+ images/outfit/pollen?particle*
+ images/outfit/jamfruit?pod*
+ images/outfit/anomalous?mass*
  images/outfit/decoy?plating*
  images/planet/dyson1*
  images/planet/dyson2*
@@ -2062,43 +2208,6 @@ Files:
  images/scene/ringworld?debris*
  images/scene/remnant?station*
  images/scene/asteroid?scene*
- images/hardpoint/avgi?blue?laser*
- images/hardpoint/avgi?green?laser*
- images/hardpoint/impact?shield
- images/hardpoint/plasmadyne?ramscoop
- images/hardpoint/speckle?turret
- images/outfit/anomalous?shield?restorer*
- images/outfit/antimatter?power?cell*
- images/outfit/avgi?blue?laser*
- images/outfit/avgi?green?laser*
- images/outfit/concealment?lamina*
- images/outfit/deuterium?slush?tank*
- images/outfit/diffuse?deflector*
- images/outfit/specular?deflector*
- images/outfit/external?launch?rail*
- images/outfit/arc?fusion?torch*
- images/outfit/zap?fusion?torch*
- images/outfit/spark?fusion?torch*
- images/outfit/jamfruit?pod*
- images/outfit/lantern?fission?core*
- images/outfit/magnetoplasma?drive*
- images/outfit/multispectral?scanner*
- images/outfit/nucleolysis?beam*
- images/outfit/ophrys?torpedo*
- images/outfit/photoelectric?lamina*
- images/outfit/pollen?particle*
- images/outfit/rcs?large*
- images/outfit/rcs?medium*
- images/outfit/rcs?small*
- images/outfit/radiative?lamina*
- images/outfit/speck?magazine*
- images/outfit/speck?round*
- images/outfit/speckle?coilgun*
- images/outfit/speckle?turret*
- images/outfit/spectrometer?array*
- images/outfit/telescopic?antimissile*
- images/outfit/ultracapacitor?bank*
- images/outfit/ultracapacitor?cell*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/desert11*
@@ -2181,57 +2290,6 @@ Files:
  images/ship/windjammer*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
-
-Files:
- images/ship/avgi?akoustiki*
- images/ship/avgi?atenuatia*
- images/ship/avgi?avlaki*
- images/ship/avgi?diaspersi*
- images/ship/avgi?difraktos*
- images/ship/avgi?entasi*
- images/ship/avgi?frequentia*
- images/ship/avgi?harmonikos*
- images/ship/avgi?intereros*
- images/ship/avgi?koryfi/*
- images/ship/avgi?melodikos/*
- images/ship/avgi?optikon*
- images/ship/avgi?phononos*
- images/ship/avgi?photikon*
- images/ship/avgi?polari*
- images/ship/avgi?prismaios*
- images/ship/avgi?refraktos*
- images/ship/avgi?sonikis*
- images/ship/avgi?tachytia/*
- images/ship/avgi?tremoros*
- images/ship/avgi?undsyni*
- images/ship/avgi?undulon*
- images/ship/avgi?vibratia*
- images/thumbnail/avgi?akoustiki*
- images/thumbnail/avgi?atenuatia*
- images/thumbnail/avgi?avlaki*
- images/thumbnail/avgi?diaspersi*
- images/thumbnail/avgi?difraktos*
- images/thumbnail/avgi?entasi*
- images/thumbnail/avgi?frequentia*
- images/thumbnail/avgi?harmonikos*
- images/thumbnail/avgi?intereros*
- images/thumbnail/avgi?koryfi/*
- images/thumbnail/avgi?melodikos/*
- images/thumbnail/avgi?optikon*
- images/thumbnail/avgi?phononos*
- images/thumbnail/avgi?photikon*
- images/thumbnail/avgi?polari*
- images/thumbnail/avgi?prismaios*
- images/thumbnail/avgi?refraktos*
- images/thumbnail/avgi?sonikis*
- images/thumbnail/avgi?tachytia/*
- images/thumbnail/avgi?tremoros*
- images/thumbnail/avgi?undsyni*
- images/thumbnail/avgi?undulon*
- images/thumbnail/avgi?vibratia*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Detailed by Azure.
 
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
@@ -2359,33 +2417,6 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
-
-Files:
- images/planet/station1q*
- images/projectile/aberrant?spike*
- images/projectile/fleck*
- images/projectile/speck*
- images/ship/avgi?atenuatia@sw*
- images/ship/avgi?avlaki@sw*
- images/ship/avgi?diaspersi@sw*
- images/ship/avgi?difraktos@sw*
- images/ship/avgi?entasi@sw*
- images/ship/avgi?frequentia@sw*
- images/ship/avgi?harmonikos@sw*
- images/ship/avgi?interferos@sw*
- images/ship/avgi?melodikos@sw*
- images/ship/avgi?polari@sw*
- images/ship/avgi?prismaios@sw*
- images/ship/avgi?refraktos@sw*
- images/ship/avgi?tachytia/tachytia@sw*
- images/ship/avgi?undsyni@sw*
- images/thumbnail/avgi?atenuatia@sw
- images/thumbnail/avgi?avlaki@sw*
- images/thumbnail/avgi?harmonikos@sw*
- images/thumbnail/avgi?melodikos@sw*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by Becca Tommaso.
 
 Files:
  images/outfit/*battery?hai*
