@@ -27,6 +27,7 @@ government "Aberrant"
 		"Avgi (Wandering Fleet)" -0.01
 		"Quarg" -0.01
 		"Pug" -0.01
+		"Indigenous Lifeform" 1
 	"penalty for"
 		assist 0
 		disable 0
