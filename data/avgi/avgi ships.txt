@@ -1071,29 +1071,29 @@ ship "Modified Tachytia"
 	bay "Fighter" -21 459
 	bay "Fighter" 21 459
 
-	engine -201 -465
+	engine -204 -456
+		angle 12
+		zoom 2
+	engine 204 -456
+		angle -12
+		zoom 2
+	engine -177 -426
 		angle 9
 		zoom 2
-	engine 201 -465
-		angle -9
-		zoom 2
-	engine -177 -435
-		angle 9
-		zoom 2
-	engine 177 -435
+	engine 177 -426
 		angle -9
 		zoom 2
 
-	"steering engine" -5 450
+	"steering engine" -6 450
 		angle 90
 		left
-	"steering engine" 5 450
+	"steering engine" 6 450
 		angle -90
 		right
-	"steering engine" -35 -324
+	"steering engine" -36 -324
 		angle 90
 		right
-	"steering engine" 35 -324
+	"steering engine" 36 -324
 		angle -90
 		left
 

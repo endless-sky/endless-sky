@@ -6343,7 +6343,7 @@ system Anthem
 		sprite planet/gas5-b
 		distance 650
 		period 321.540
-		object "Outpost Alkos"
+		object "Outpost Pilos"
 			sprite planet/station-platform-a2
 				scale 0.5
 			distance 300
@@ -14980,7 +14980,7 @@ system Ensemble
 			sprite planet/ice0-b
 			distance 321.69
 			period 24
-		object "Tilo Station"
+		object "Outpost Alkos"
 			sprite planet/station-depot-a1
 				scale 0.5
 			distance 454.091

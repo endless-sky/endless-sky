@@ -372,7 +372,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 	"thrusting fuel" 0.27
 	"drag reduction" 3
 	"flare sprite" "effect/avgi flare/fusion"
-		"frame rate" 30
+		"frame rate" 15
 		"scale" 2
 	"flare sound" "avgi torch"
 	"afterburner effect" "large remass injection"
@@ -382,18 +382,18 @@ outfit `Z-999 "Arc" Fusion Torch`
 
 
 effect "small remass injection"
-	sprite "effect/avgi flare/afterburner"
+	sprite "effect/avgi flare/remass"
 		"frame rate" 30
 		"scale" 0.75
 	sound "flamethrower"
 
 effect "medium remass injection"
-	sprite "effect/avgi flare/afterburner"
+	sprite "effect/avgi flare/remass"
 		"frame rate" 30
 	sound "flamethrower"
 
 effect "large remass injection"
-	sprite "effect/avgi flare/afterburner"
+	sprite "effect/avgi flare/remass"
 		"frame rate" 30
 		"scale" 2
 	sound "flamethrower"
@@ -536,14 +536,14 @@ outfit `Z-3600 "Beam" Amat Torch`
 	"thrusting fuel" 0.3
 	"drag reduction" 30
 	"flare sprite" "effect/avgi flare/antimatter"
-		"frame rate" 30
+		"frame rate" 15
 	"flare sound" "avgi torch"
 	"turn" 6000
 	"turning energy" 9
 	"turning heat" 54
-	"steering flare sprite" "effect/avgi flare/antimatter"
-		"frame rate" 30
-		"scale" 0.25
+	"steering flare sprite" "effect/avgi flare/rcs"
+		"frame rate" 15
+		"scale" 0.5
 	"steering flare sound" "remnant afterburner"
 	"magnozzle rings" 18
 	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
