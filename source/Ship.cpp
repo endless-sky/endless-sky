@@ -3858,15 +3858,13 @@ const System *Ship::NextWaypoint()
 
 void Ship::EraseWaypoint(const System *system)
 {
-	for(size_t i = 0; i < waypoints.size(); ++i)
-		if(waypoints[i] == system)
-		{
-			waypoints.erase(waypoints.begin() + i);
-			if(waypoint > i)
-				--waypoint;
-			destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
-			break;
-		}
+	auto it = waypoints.find(system);
+	if(it == waypoints.end())
+		return;
+	if(waypoint > std::distance(waypoints.begin(), it))
+		--waypoint;
+	waypoints.erase(it);
+	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
 }
 
 
