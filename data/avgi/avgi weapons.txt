@@ -103,7 +103,7 @@ outfit "Speck"
 	weapon
 		sprite "projectile/speck"
 			"scale" 0.5
-			"frame rate" 120
+			"frame rate" 30
 			"no repeat"
 		"hit effect" "bullet impact"
 		"lifetime" 30
@@ -522,7 +522,8 @@ outfit "Nettle Flecks"
 effect "nettle split"
 	sprite "effect/emp spark"
 		"no repeat"
-		"frame rate" 120
+		"frame rate" 60
+	sound "clink"
 	"lifetime" 60
 	"random angle" 180
 	"random velocity" 15
@@ -583,7 +584,7 @@ outfit "Orchid Boost"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
-		"die effect" "missile death"
+		"die effect" "nettle split" 30
 		"lifetime" 180
 		"acceleration" 0.3
 		"drag" 0.018
@@ -622,7 +623,7 @@ outfit "Orchid Divert"
 		"hit effect" "thermonuclear flash"
 		"hit effect" "prompt radiation" 30
 		"hit effect" "fission fragments" 240
-		"die effect" "missile death"
+		"die effect" "nettle split" 30
 		"lifetime" 300
 		"acceleration" 0.09
 		"drag" 0.006

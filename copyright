@@ -1625,6 +1625,143 @@ Files:
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
+Files: sounds/*
+Copyright: Various
+License: public-domain
+ Based on public domain sounds taken from freesound.org.
+
+Files:
+ sounds/pincer*
+Copyright: Michael Zahniser
+License: GPL-2
+Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
+
+Files: sounds/heavy?rocket?hit.wav
+Copyright: Copyright Mike Koenig
+License: CC-BY-SA-3.0
+Comment: Taken from http://soundbible.com/1467-Grenade-Explosion.html
+
+Files: sounds/missile?hit.wav
+Copyright: Copyright "Nbs Dark"
+License: public-domain
+ Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
+
+Files: sounds/torpedo?hit.wav
+Copyright: Public Domain
+License: public-domain
+ Taken from a now-defunct public domain sharing site. Please contact Pointedstick (Nate Graham <pointedstick@zoho.com>) for legal enquires.
+
+Files: sounds/meteor.wav
+Copyright: Copyright "18hiltc"
+License: CC-BY-SA-3.0
+Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
+
+Files: sounds/sidewinder.wav
+Copyright: Copyright "NHMWretched"
+License: public-domain
+ Taken from https://freesound.org/people/NHMWretched/sounds/151858/
+
+Files: sounds/explosion?huge.wav
+Copyright: Copyright Mike Koenig
+License: CC-BY-SA-3.0
+Comment: Taken from http://soundbible.com/1151-Grenade.html
+
+Files:
+ sounds/asteroid?crunch?small.wav
+ sounds/asteroid?crunch?medium.wav
+Copyright: Copyright AlanCat
+License: public-domain
+ Derived from https://freesound.org/people/AlanCat/sounds/381645/
+
+Files: sounds/asteroid?crunch?large.wav
+Copyright: Copyright "BW_Clowes"
+License: CC-BY-3.0
+Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
+
+Files:
+ sounds/thrasher.wav
+ sounds/point?defense.wav
+Copyright: Lineth (https://github.com/Lineth)
+License: CC-BY-SA-4.0
+Comment: Derived from public domain sounds taken from freesound.org.
+
+Files:
+ images/outfit/t3?anti?missile*
+ images/outfit/pug?gridfire?turret*
+ images/hardpoint/t3?anti?missile*
+ images/hardpoint/pug?gridfire?turret*
+Copyright: Becca Tommaso (tommasobecca03@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Derived from works by Frederick Goy IV (under the same license).
+
+Files:
+ images/ship/nest*
+ images/ship/roost*
+ images/ship/skein*
+ images/thumbnail/nest*
+ images/thumbnail/roost*
+ images/thumbnail/skein*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/barb*
+ images/ship/boxwing*
+ images/thumbnail/barb*
+ images/thumbnail/boxwing*
+Copyright: Iaz Poolar
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
+Files:
+ images/ship/argosy*
+ images/ship/clipper*
+ images/ship/dreadnought*
+ images/ship/fury*
+ images/ship/hauler?i*
+ images/ship/hauler?ii*
+ images/ship/hauler?iii*
+ images/ship/modified?argosy*
+ images/ship/bastion*
+ images/ship/behemoth*
+ images/ship/heavy?shuttle*
+ images/ship/firebird*
+ images/ship/leviathan*
+ images/ship/shuttle*
+ images/ship/star?queen*
+ images/ship/localworldship*
+ images/ship/arrow*
+ images/ship/container?transport*
+ images/ship/freighter*
+ images/ship/protector*
+ images/ship/star?barge*
+ images/ship/wasp*
+ images/thumbnail/argosy*
+ images/thumbnail/clipper*
+ images/thumbnail/dreadnought*
+ images/thumbnail/fury*
+ images/thumbnail/hauler?i*
+ images/thumbnail/hauler?ii*
+ images/thumbnail/hauler?iii*
+ images/thumbnail/modified?argosy*
+ images/thumbnail/bastion*
+ images/thumbnail/behemoth*
+ images/thumbnail/heavy?shuttle*
+ images/thumbnail/firebird*
+ images/thumbnail/leviathan*
+ images/thumbnail/shuttle*
+ images/thumbnail/star?queen*
+ images/thumbnail/arrow*
+ images/thumbnail/container?transport*
+ images/thumbnail/freighter*
+ images/thumbnail/protector*
+ images/thumbnail/star?barge*
+ images/thumbnail/wasp*
+Copyright: Michael Zahniser <mzahniser@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
+
 Files:
  images/_menu/haze-twilight*
  images/_menu/haze-twilight-thick*
@@ -1651,13 +1788,11 @@ Files:
  images/outfit/nettle?kkv*
  images/outfit/nettle?magazine*
  images/outfit/ophrys?stockpile*
- images/outfit/ophrys?torpedo*
  images/outfit/optical?laser?rifle*
  images/outfit/optical?lasing?generator*
  images/outfit/orchid?magazine*
  images/outfit/orchid?missile*
  images/outfit/remass?injector*
- images/outfit/trefoil?board*
  images/outfit/trefoil?board*
  images/outfit/voidfish*
  images/planet/aviskir*
@@ -1670,7 +1805,6 @@ Files:
  images/projectile/orchid?divert*
  images/projectile/orchid?divert?stage*
  images/projectile/orchid?inactive*
- images/projectile/orchid?terminal*
  images/projectile/orchid?terminal*
  images/scene?trefoil?board*
 Copyright: Azure
@@ -1814,11 +1948,6 @@ Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from works by Lawrence Livermore National Laboratory.
 
-Files: sounds/*
-Copyright: Various
-License: public-domain
- Based on public domain sounds taken from freesound.org.
-
 Files:
  sounds/bounce*
  sounds/clink*
@@ -1828,138 +1957,6 @@ Files:
 Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from public domain sounds taken from freesound.org.
-
-Files:
- sounds/pincer*
-Copyright: Michael Zahniser
-License: GPL-2
-Comment: Created by a past contributor modified from Battle for Wesnoth (https://www.wesnoth.org/) sounds, which are copyright David White [dave@whitevine.net](mailto:dave@whitevine.net) under GPL 2 or later. Rights relinquished to Michael Zahniser.
-
-Files: sounds/heavy?rocket?hit.wav
-Copyright: Copyright Mike Koenig
-License: CC-BY-SA-3.0
-Comment: Taken from http://soundbible.com/1467-Grenade-Explosion.html
-
-Files: sounds/missile?hit.wav
-Copyright: Copyright "Nbs Dark"
-License: public-domain
- Taken from https://freesound.org/people/Nbs%20Dark/sounds/94185/
-
-Files: sounds/torpedo?hit.wav
-Copyright: Public Domain
-License: public-domain
- Taken from a now-defunct public domain sharing site. Please contact Pointedstick (Nate Graham <pointedstick@zoho.com>) for legal enquires.
-
-Files: sounds/meteor.wav
-Copyright: Copyright "18hiltc"
-License: CC-BY-SA-3.0
-Comment: Taken from https://freesound.org/people/18hiltc/sounds/202725/
-
-Files: sounds/sidewinder.wav
-Copyright: Copyright "NHMWretched"
-License: public-domain
- Taken from https://freesound.org/people/NHMWretched/sounds/151858/
-
-Files: sounds/explosion?huge.wav
-Copyright: Copyright Mike Koenig
-License: CC-BY-SA-3.0
-Comment: Taken from http://soundbible.com/1151-Grenade.html
-
-Files:
- sounds/asteroid?crunch?small.wav
- sounds/asteroid?crunch?medium.wav
-Copyright: Copyright AlanCat
-License: public-domain
- Derived from https://freesound.org/people/AlanCat/sounds/381645/
-
-Files: sounds/asteroid?crunch?large.wav
-Copyright: Copyright "BW_Clowes"
-License: CC-BY-3.0
-Comment: Derived from https://freesound.org/people/BW_Clowes/sounds/128126/
-
-Files:
- sounds/thrasher.wav
- sounds/point?defense.wav
-Copyright: Lineth (https://github.com/Lineth)
-License: CC-BY-SA-4.0
-Comment: Derived from public domain sounds taken from freesound.org.
-
-Files:
- images/outfit/t3?anti?missile*
- images/outfit/pug?gridfire?turret*
- images/hardpoint/t3?anti?missile*
- images/hardpoint/pug?gridfire?turret*
-Copyright: Becca Tommaso (tommasobecca03@gmail.com)
-License: CC-BY-SA-4.0
-Comment: Derived from works by Frederick Goy IV (under the same license).
-
-Files:
- images/ship/nest*
- images/ship/roost*
- images/ship/skein*
- images/thumbnail/nest*
- images/thumbnail/roost*
- images/thumbnail/skein*
-Copyright: Iaz Poolar
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license) and detailed by Becca Tommaso (tommasobecca03@gmail.com).
-
-Files:
- images/ship/barb*
- images/ship/boxwing*
- images/thumbnail/barb*
- images/thumbnail/boxwing*
-Copyright: Iaz Poolar
-License: CC-BY-SA-4.0
-Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
-
-Files:
- images/ship/argosy*
- images/ship/clipper*
- images/ship/dreadnought*
- images/ship/fury*
- images/ship/hauler?i*
- images/ship/hauler?ii*
- images/ship/hauler?iii*
- images/ship/modified?argosy*
- images/ship/bastion*
- images/ship/behemoth*
- images/ship/heavy?shuttle*
- images/ship/firebird*
- images/ship/leviathan*
- images/ship/shuttle*
- images/ship/star?queen*
- images/ship/localworldship*
- images/ship/arrow*
- images/ship/container?transport*
- images/ship/freighter*
- images/ship/protector*
- images/ship/star?barge*
- images/ship/wasp*
- images/thumbnail/argosy*
- images/thumbnail/clipper*
- images/thumbnail/dreadnought*
- images/thumbnail/fury*
- images/thumbnail/hauler?i*
- images/thumbnail/hauler?ii*
- images/thumbnail/hauler?iii*
- images/thumbnail/modified?argosy*
- images/thumbnail/bastion*
- images/thumbnail/behemoth*
- images/thumbnail/heavy?shuttle*
- images/thumbnail/firebird*
- images/thumbnail/leviathan*
- images/thumbnail/shuttle*
- images/thumbnail/star?queen*
- images/thumbnail/arrow*
- images/thumbnail/container?transport*
- images/thumbnail/freighter*
- images/thumbnail/protector*
- images/thumbnail/star?barge*
- images/thumbnail/wasp*
-Copyright: Michael Zahniser <mzahniser@gmail.com>
-License: CC-BY-SA-4.0
-Comment: Detailed by Becca Tommaso (tommasobecca03@gmail.com).
 
 Files:
  images/ship/pirate?mammoth*

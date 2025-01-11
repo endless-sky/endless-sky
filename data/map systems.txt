@@ -5418,11 +5418,13 @@ system Anax
 	asteroids "medium metal" 3 2.171
 	asteroids "large metal" 3 2.001
 	minables iron 24 4.123
+	minables silicon 24 2.222
 	minables aluminum 18 4.383
 	minables copper 60 6.231
 	minables silver 36 12.312
 	minables titanium 18 6.213
 	minables tungsten 12 8.132
+	minables uranium 15 3.724
 	trade Clothing 162
 	trade Electronics 630
 	trade Equipment 420
@@ -8296,6 +8298,11 @@ system Billow
 		sprite planet/ocean10
 		distance 659.242
 		period 378.488
+		object
+			sprite planet/station-platform-a0
+				scale 0.5
+			distance 210
+			period 15
 	object
 		sprite planet/io
 		distance 1439
@@ -10470,6 +10477,7 @@ system Clip
 	haze _menu/haze-twilight
 	link Anax
 	asteroids "large metal" 1 3.181
+	minables uranium 1 3.122
 	trade Clothing 156
 	trade Electronics 660
 	trade Equipment 432
@@ -10488,10 +10496,12 @@ system Clip
 		period 10
 	object
 		sprite planet/station-solar-a1-broken
+			scale 0.5
 		distance 348
 		period 103.869
 	object
 		sprite planet/station-solar-a0-broken
+			scale 0.5
 		distance 348
 		period 103.869
 		offset 90
@@ -10510,35 +10520,57 @@ system Clip
 			distance 120
 			period 15
 		object
-			sprite planet/station-reflector-a1
-				scale 0.5
-			distance 240
-			period 120
-			offset 180
+			sprite planet/station-solar-a2
+				scale 0.1
+			distance 210
+			period 30
+			offset 105
 		object
 			sprite planet/station-solar-a2
-				scale 0.25
-			distance 180
-			period 120
+				scale 0.1
+			distance 210
+			period 30
 			offset 120
+		object
+			sprite planet/station-solar-a2
+				scale 0.1
+			distance 210
+			period 30
+			offset 135
 		object
 			sprite planet/station-outpost-a0
 				scale 0.25
-			distance 180
-			period 120
+			distance 210
+			period 30
 			offset 240
 		object
-			sprite planet/rock7-b
-			distance 180
-			period 120
+			sprite planet/oberon
+			distance 210
+			period 30
+			object
+				sprite planet/station-weapon-a0
+					scale 0.5
+				distance 90
+				period 12
+			object
+				sprite planet/debris1
+					scale 0.5
+				distance 90
+				period 12
+		object
+			sprite planet/station-reflector-a1
+				scale 0.5
+			distance 240
+			period 30
+			offset 240
 	object Iconil
 		sprite planet/ice8
 		distance 1540.21
 		period 967.144
 		object
 			sprite planet/station-outpost-a1
-				scale 0.25
-			distance 90
+				scale 0.5
+			distance 120
 			period 60
 			offset 120
 	object
@@ -11272,6 +11304,7 @@ system Cusp
 	asteroids "large metal" 3 2.622
 	minables aluminum 3 3.956
 	minables silver 3 3.245
+	minables uranium 3 3.734
 	fleet "Avgi Scouts" 48000
 	fleet "Small Aberrant" 3600
 	fleet "Large Aberrant" 7200
@@ -17278,6 +17311,7 @@ system Frenzy
 	asteroids "medium metal" 60 1.702
 	asteroids "large metal" 5 2.66
 	minables lead 9 2.682
+	minables silicon 12 4.621
 	fleet "Avgi Scouts" 12000
 	fleet "Small Aberrant" 2400
 	fleet "Large Aberrant" 3600
@@ -30803,6 +30837,7 @@ system Peak
 	asteroids "large metal" 11 2.495
 	minables iron 2 3.017
 	minables aluminum 22 3.106
+	minables silicon 11 3.601
 	fleet "Small Aberrant" 2200
 	fleet "Large Aberrant" 4600
 	object
@@ -34784,6 +34819,7 @@ system Sail
 	minables platinum 12 4.801
 	minables iron 9 2.899
 	minables aluminum 18 1.231
+	minables uranium 5 3.582
 	trade Clothing 360
 	trade Electronics 690
 	trade Equipment 600
@@ -34809,15 +34845,21 @@ system Sail
 		distance 1302.73
 		period 519.645
 		object
+			sprite planet/station-outpost-a1
+				scale 0.5
+			distance 180
+			period 30
+			offset 180
+		object
 			sprite planet/debris0
 				scale 0.5
-			distance 187
-			period 96.664
+			distance 180
+			period 30
 			offset 180
 		object
 			sprite planet/oberon
-			distance 187
-			period 96.664
+			distance 180
+			period 30
 	object
 		sprite planet/gas2
 		distance 3055.66
@@ -34851,12 +34893,12 @@ system Sail
 		object
 			sprite planet/station-depot-a0
 				scale 0.5
-			distance 218.36
+			distance 268
 			period 60
 		object
 			sprite planet/callisto
-			distance 317
-			period 147.709
+			distance 370
+			period 147
 	object
 		sprite planet/gas8-b
 		distance 11911.5
@@ -36939,14 +36981,26 @@ system Soar
 		object
 			sprite planet/station-reflector-a0
 				scale 0.5
-			distance 180
-			period 90
+			distance 150
+			period 30
 			offset 180
 		object
 			sprite planet/station-solar-a1-broken
 				scale 0.5
 			distance 240
 			period 90
+		object
+			sprite planet/station-weapon-a1
+				scale 0.5
+			distance 240
+			period 90
+			offset 180
+		object
+			sprite planet/debris0
+				scale 0.5
+			distance 240
+			period 90
+			offset 180
 	object
 		sprite planet/station-platform-a0
 			scale 0.25
@@ -39157,7 +39211,7 @@ system Thread
 		period 451.469
 		object
 			sprite planet/dust3-b
-			distance 238.339
+			distance 230
 			period 23
 		object Cyreal
 			sprite planet/forest1-b
@@ -39167,24 +39221,24 @@ system Thread
 		object
 			sprite planet/station-outpost-a1
 				scale 0.5
-			distance 330
+			distance 390
 			period 72
 			offset 180
 		object
 			sprite planet/debris0
 				scale 0.5
-			distance 330
+			distance 390
 			period 72
 			offset 180
 		object
 			sprite planet/station-solar-a0-broken
 				scale 0.5
-			distance 420
+			distance 480
 			period 90
 		object
 			sprite planet/station-solar-a1
 				scale 0.5
-			distance 420
+			distance 480
 			period 90
 			offset 180
 	object Palos
@@ -39317,7 +39371,7 @@ system Tide
 		sprite star/a-giant
 		period 10
 	object
-		sprite planet/gas5-hot
+		sprite planet/gas1-hot
 		distance 643.504
 		period 73.4637
 	object
@@ -39325,17 +39379,18 @@ system Tide
 		distance 1270.76
 		period 203.866
 	object
-		sprite planet/gas9-hot
+		sprite planet/gas5-hot
 		distance 2258.79
 		period 483.128
 		object
 			sprite planet/lava0-b
+				scale 0.5
 			distance 232
 			period 92.48
 		object
 			sprite planet/station-outpost-a0
 				scale 0.5
-			distance 348
+			distance 448
 			period 60
 	object
 		sprite planet/gas3-hot
@@ -41776,17 +41831,39 @@ system Wake
 		sprite star/k0
 		period 10
 	object
-		sprite planet/rock20
+		sprite planet/io
 		distance 237.65
 		period 66.2016
 	object Amathil
 		sprite planet/desert13
 		distance 467.127
 		period 182.437
+		object
+			sprite planet/station-reflector-a0
+				scale 0.5
+			distance 150
+			period 15
+		object
+			sprite planet/station-reflector-a1
+				scale 0.25
+			distance 150
+			period 15
+			offset 30
+		object
+			sprite planet/station-solar-a2
+				scale 0.1
+			distance 150
+			period 15
+			offset 60
 	object
-		sprite planet/io
+		sprite planet/rock20
 		distance 2659.01
 		period 2477.67
+		object
+			sprite planet/station-weapon-a2
+				scale 0.5
+			distance 90
+			period 30
 
 system Wave
 	pos -563 842
