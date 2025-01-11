@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -206,6 +206,9 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &highlight = *GameData::Colors().Get("outfitter difference highlight");
+
+	bool highlightDifferences = false;
 	if(playerShip || isLicense || mapSize)
 	{
 		int minCount = numeric_limits<int>::max();
@@ -216,8 +219,16 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 			minCount = maxCount = player.HasMapped(mapSize);
 		else
 		{
+			highlightDifferences = true;
+			string firstModelName;
 			for(const Ship *ship : playerShips)
 			{
+				// Highlight differences in installed outfit counts only when all selected ships are of the same model.
+				string modelName = ship->TrueModelName();
+				if(firstModelName.empty())
+					firstModelName = modelName;
+				else
+					highlightDifferences &= (modelName == firstModelName);
 				int count = ship->OutfitCount(outfit);
 				minCount = min(minCount, count);
 				maxCount = max(maxCount, count);
@@ -227,13 +238,19 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(maxCount)
 		{
 			string label = "installed: " + to_string(minCount);
+			Color color = bright;
 			if(maxCount > minCount)
+			{
 				label += " - " + to_string(maxCount);
+				if(highlightDifferences)
+					color = highlight;
+			}
 
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
-			font.Draw(label, labelPos, bright);
+			font.Draw(label, labelPos, color);
 		}
 	}
+
 	// Don't show the "in stock" amount if the outfit has an unlimited stock.
 	int stock = 0;
 	if(!outfitter.Has(outfit))

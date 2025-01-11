@@ -174,10 +174,6 @@ namespace {
 		{"turn multiplier", -1.}
 	};
 
-	constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
-	constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
-	constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
-
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),

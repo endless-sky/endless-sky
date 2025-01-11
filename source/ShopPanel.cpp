@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -29,10 +29,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "Mission.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "Sale.h"
 #include "Screen.h"
@@ -41,7 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 #include "text/WrappedText.h"
@@ -386,6 +386,15 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		return SetScrollToTop();
 	else if(key == SDLK_END)
 		return SetScrollToBottom();
+	else if(key == 'k' || (key == 'p' && (mod & KMOD_SHIFT)))
+	{
+		const Ship *flagship = player.Flagship();
+		bool anyEscortUnparked = any_of(playerShips.begin(), playerShips.end(),
+			[&](const Ship *ship){ return ship != flagship && !ship->IsParked() && !ship->IsDisabled(); });
+		for(const Ship *ship : playerShips)
+			if(ship != flagship)
+				player.ParkShip(ship, anyEscortUnparked);
+	}
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
