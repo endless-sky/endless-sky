@@ -3861,7 +3861,7 @@ void Ship::EraseWaypoint(const System *system)
 	auto it = std::find(waypoints.begin(), waypoints.end(), system);
 	if(it == waypoints.end())
 		return;
-	if(waypoint > (unsigned) std::distance(waypoints.begin(), it))
+	if(waypoint > static_cast<unsigned>(std::distance(waypoints.begin(), it)))
 		--waypoint;
 	waypoints.erase(it);
 	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
