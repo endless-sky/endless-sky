@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
+#include "Screen.h"
 #include "Ship.h"
 
 #include <algorithm>
@@ -46,7 +47,8 @@ void HiringPanel::Step()
 void HiringPanel::Draw()
 {
 	const Ship *flagship = player.Flagship();
-	const Interface *hiring = GameData::Interfaces().Get("hiring");
+	// Tweak planet panels for small screens by 60px to the left.
+	const Interface *hiring = GameData::Interfaces().Get(Screen::Width() < 1280 ? "hiring (small screen)" : "hiring");
 	Information info;
 
 	int flagshipBunks = 0;
