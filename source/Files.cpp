@@ -88,7 +88,7 @@ void Files::Init(const char * const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
-		resources = filesystem::current_path();
+		resources = SDL_GetBasePath();
 		if(resources.empty())
 			throw runtime_error("Unable to get path to resource directory!");
 
