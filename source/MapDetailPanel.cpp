@@ -535,9 +535,10 @@ void MapDetailPanel::DrawKey()
 		"", // Special should never be active in this mode.
 		"Government:",
 		"System:",
-		"Danger level:"
+		"Danger level:",
+		"" // Temporary blank tile for the starry map mode.
 	};
-	const string &header = HEADER[-min(0, max(-7, commodity))];
+	const string &header = HEADER[-min(0, max(-8, commodity))];
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 
@@ -658,16 +659,21 @@ void MapDetailPanel::DrawKey()
 			pos.Y() += 20.;
 		}
 	}
-
-	if(commodity != SHOW_DANGER)
+	else if(commodity == SHOW_STARS)
+	{
+		// The starry map mode leave the legend panel blank.
+	}
+	if(commodity != SHOW_DANGER && commodity != SHOW_STARS)
 	{
 		RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
 		font.Draw("Uninhabited", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
-
-	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
-	font.Draw("Unexplored", pos + textOff, dim);
+	if(commodity != SHOW_STARS)
+	{
+		RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
+		font.Draw("Unexplored", pos + textOff, dim);
+	}
 }
 
 
