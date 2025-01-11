@@ -2407,7 +2407,7 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 		subs["<model>"] = flag->DisplayModelName();
 	}
 
-	subs["<system>"] = GetSystem()->Name();
+	subs["<system>"] = GetSystem()->DisplayName();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
 }
@@ -3305,11 +3305,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), value);
 		return true;
 	});
-	salaryIncomeProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		accounts.SetSalaryIncome(name.substr(strlen("salary: ")), 0);
-		return true;
-	});
 
 	auto &&tributeProvider = conditions.GetProviderPrefixed("tribute: ");
 	auto tributeHasGetFun = [this](const string &name) -> int64_t
@@ -3328,27 +3323,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	tributeProvider.SetSetFunction([this](const string &name, int64_t value) -> bool {
 		return SetTribute(name.substr(strlen("tribute: ")), value);
 	});
-	tributeProvider.SetEraseFunction([this](const string &name) -> bool {
-		return SetTribute(name.substr(strlen("tribute: ")), 0);
-	});
 
 	auto &&licenseProvider = conditions.GetProviderPrefixed("license: ");
 	licenseProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return HasLicense(name.substr(strlen("license: ")));
 	});
-
 	licenseProvider.SetSetFunction([this](const string &name, int64_t value) -> bool
 	{
 		if(!value)
 			RemoveLicense(name.substr(strlen("license: ")));
 		else
 			AddLicense(name.substr(strlen("license: ")));
-		return true;
-	});
-
-	licenseProvider.SetEraseFunction([this](const string &name) -> bool
-	{
-		RemoveLicense(name.substr(strlen("license: ")));
 		return true;
 	});
 
@@ -3803,7 +3788,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!previousSystem)
 			return false;
-		return name == "previous system: " + previousSystem->Name();
+		return name == "previous system: " + previousSystem->TrueName();
 	};
 	previousSystemProvider.SetGetFunction(previousSystemFun);
 
@@ -3813,7 +3798,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!flagship || !flagship->GetSystem())
 			return false;
-		return name == "flagship system: " + flagship->GetSystem()->Name();
+		return name == "flagship system: " + flagship->GetSystem()->TrueName();
 	};
 	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
 
@@ -3992,11 +3977,6 @@ void PlayerInfo::RegisterDerivedConditions()
 		string condition = name.substr(strlen("global: "));
 		return GameData::GlobalConditions().Set(condition, value);
 	});
-	globalProvider.SetEraseFunction([](const string &name) -> bool
-	{
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Erase(condition);
-	});
 }
 
 
@@ -4042,7 +4022,8 @@ void PlayerInfo::CreateMissions()
 		{
 			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
 				|| it->IsAtLocation(Mission::SHIPYARD)
-				|| it->IsAtLocation(Mission::OUTFITTER);
+				|| it->IsAtLocation(Mission::OUTFITTER)
+				|| it->IsAtLocation(Mission::JOB_BOARD);
 			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
@@ -4332,9 +4313,9 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	out.Write("system entry method", EntryToString(entry));
 	if(previousSystem)
-		out.Write("previous system", previousSystem->Name());
+		out.Write("previous system", previousSystem->TrueName());
 	if(system)
-		out.Write("system", system->Name());
+		out.Write("system", system->TrueName());
 	if(planet)
 		out.Write("planet", planet->TrueName());
 	if(planet && planet->CanUseServices())
@@ -4345,7 +4326,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	if(shouldLaunch)
 		out.Write("launching");
 	for(const System *system : travelPlan)
-		out.Write("travel", system->Name());
+		out.Write("travel", system->TrueName());
 	if(travelDestination)
 		out.Write("travel destination", travelDestination->TrueName());
 	// Detect which ship number is the current flagship, for showing on LoadPanel.
@@ -4576,10 +4557,10 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save a list of systems the player has visited.
 	WriteSorted(visitedSystems,
 		[](const System *const *lhs, const System *const *rhs)
-			{ return (*lhs)->Name() < (*rhs)->Name(); },
+			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
 		[&out](const System *system)
 		{
-			out.Write("visited", system->Name());
+			out.Write("visited", system->TrueName());
 		});
 
 	// Save a list of planets the player has visited.
@@ -4602,13 +4583,13 @@ void PlayerInfo::Save(DataWriter &out) const
 				{
 					// Sort by system name and then by outfit name.
 					if(lhs->first != rhs->first)
-						return lhs->first->Name() < rhs->first->Name();
+						return lhs->first->TrueName() < rhs->first->TrueName();
 					else
 						return lhs->second->TrueName() < rhs->second->TrueName();
 				},
 				[&out](const HarvestLog &it)
 				{
-					out.Write(it.first->Name(), it.second->TrueName());
+					out.Write(it.first->TrueName(), it.second->TrueName());
 				});
 		}
 		out.EndChild();
