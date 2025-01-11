@@ -169,11 +169,13 @@ government "Avgi (Dissonance Angry)"
 	raid "Large Dissonance Pirates"
 
 
+color "governments: Wandering Fleet" 0.9 0.72 0.12
+
 government "Avgi (Wandering Fleet)"
 	"display name" "Wandering Fleet"
 	swizzle 22
 	language "Avgi"
-	color "governments: Avgi"
+	color "governments: Wandering Fleet"
 
 	"player reputation" 0
 	"attitude toward"
