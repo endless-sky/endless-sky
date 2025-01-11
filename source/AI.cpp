@@ -2049,7 +2049,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 		MoveToPlanet(ship, command);
 		// Ships should land on their destination planet if they are free to
 		// move about, or have a travel directive indicating they should land.
-		if(!shouldStay || !ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
+		if(!(shouldStay && ship.Attributes().Get("fuel capacity")) && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
 		else if(ship.Position().Distance(ship.GetTargetStellar()->Position()) < 100.)
