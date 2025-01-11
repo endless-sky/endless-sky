@@ -1,4 +1,4 @@
-# Copyright (c) 2022 by rovermicrover
+# Copyright (c) 2024 by Anarchist2
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-test-data "Shipyard Outfitter Mission Save"
+test-data "Job Board Mission Save"
 	category "savegame"
 	contents
 		pilot Bobbi Bughunter
@@ -65,67 +65,75 @@ test-data "Shipyard Outfitter Mission Save"
 		"visited planet" Ruin
 		changes
 			planet Ruin
-				add shipyard "Remnant"
-				add outfitter "Remnant Core"
+				port
+					services "job board"
 
 
 
-test-data "Shipyard Outfitter Mission Missions"
+test-data "Job Board Mission"
 	category mission
 	contents
-		mission "TEST: SHIPYARD MISSION"
-			shipyard
+		mission "TEST: JOB BOARD MISSION"
+			"job board"
 			source "Ruin"
 			to offer
-				has "TEST: SHIPYARD MISSION OFFER"
+				has "TEST: JOB BOARD MISSION OFFER"
 			on offer
 				conversation
-					`THIS IS A SHIPYARD MISSION YO!`
+					`This is a job board mission.`
 						decline
 			on decline
 				set "succeed test"
 
 
 
-		mission "TEST: OUTFITTER MISSION"
-			outfitter
-			source "Ruin"
-			to offer
-				has "TEST: OUTFITTER MISSION OFFER"
-			on offer
-				conversation
-					`THIS IS A OUTFITTER MISSION YO!`
-						decline
-			on decline
-				set "succeed test"
-
-
-
-test "Trigger Shipyard Mission"
+test "Trigger Job Board Mission From Planet"
 	status partial
-	description "Launch, land, and go to the spaceport to trigger any potential missions in the shipyard."
+	description "Launch, land, and go to the job board to trigger any potential missions in the job board."
 	sequence
 		call "Depart"
 		navigate
 			"travel destination" Ruin
 		call "Land"
 		input
-			key s
+			key j
 
 
-test "Trigger Outfitter Mission"
+test "Trigger Job Board Mission From Map"
 	status partial
-	description "Launch, land, and go to the spaceport to trigger any potential missions in the outfitter."
+	description "Launch, land, open up the map and go to the mission panel to trigger any potential missions in the job board."
 	sequence
 		call "Depart"
 		navigate
 			"travel destination" Ruin
 		call "Land"
 		input
-			key o
+			key m
+		input
+			key i
 
 
-test "Test Shipyard And Outfitter Mission"
+test "Go To Mission Panel"
+	status partial
+	description "Open up the map mid-conversation and go to the mission panel, then close it."
+	sequence
+		input
+			key m
+		input
+			key i
+		input
+			key d
+
+
+test "Exit Map"
+	status partial
+	description "Leave the map screen."
+	sequence
+		input
+			key d
+
+
+test "Test Job Board Mission"
 	status partial
 	description "Set a few conditions so they are displayed on errors, clarifying things up."
 	sequence
@@ -136,35 +144,55 @@ test "Test Shipyard And Outfitter Mission"
 			"test: flagship landed" = "flagship landed"
 
 
-test "Shipyard Mission Test"
+test "Job Board Mission From Planet Test"
 	status active
-	description "Test if a conversation option shows up when the given condition is set."
+	description "Test if a job board mission can offer by entering the mission panel from a planet."
 	sequence
-		inject "Shipyard Outfitter Mission Missions"
-		inject "Shipyard Outfitter Mission Save"
+		inject "Job Board Mission"
+		inject "Job Board Mission Save"
 		call "Load First Savegame"
 		apply
-			"TEST: SHIPYARD MISSION OFFER" = 1
-		call "Trigger Shipyard Mission"
+			"TEST: JOB BOARD MISSION OFFER" = 1
+		call "Trigger Job Board Mission From Planet"
 		call "Skip Mission"
 		call "Depart"
-		call "Test Shipyard And Outfitter Mission"
+		call "Test Job Board Mission"
 		assert
 			"succeed test" == 1
 
 
-test "Outfitter Mission Test"
+test "Job Board Mission From Map Test"
 	status active
-	description "Test if a first conversation option does not show up but the second one does, when the given condition is set. Also makes sure goto still works as expected."
+	description "Test if a job board mission can offer by entering the mission panel from the map."
 	sequence
-		inject "Shipyard Outfitter Mission Missions"
-		inject "Shipyard Outfitter Mission Save"
+		inject "Job Board Mission"
+		inject "Job Board Mission Save"
 		call "Load First Savegame"
 		apply
-			"TEST: OUTFITTER MISSION OFFER" = 1
-		call "Trigger Outfitter Mission"
+			"TEST: JOB BOARD MISSION OFFER" = 1
+		call "Trigger Job Board Mission From Map"
 		call "Skip Mission"
+		call "Exit Map"
 		call "Depart"
-		call "Test Shipyard And Outfitter Mission"
+		call "Test Job Board Mission"
+		assert
+			"succeed test" == 1
+
+
+test "Job Board During Mission Test"
+	status active
+	description "Test if the map and mission panel can be accessed mid-conversation without triggering a second mission."
+	sequence
+		inject "Job Board Mission"
+		inject "Job Board Mission Save"
+		call "Load First Savegame"
+		apply
+			"TEST: JOB BOARD MISSION OFFER" = 1
+		call "Trigger Job Board Mission From Planet"
+		call "Go To Mission Panel"
+		call "Skip Mission"
+		call "Exit Map"
+		call "Depart"
+		call "Test Job Board Mission"
 		assert
 			"succeed test" == 1
