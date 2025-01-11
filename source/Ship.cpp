@@ -3858,7 +3858,7 @@ const System *Ship::NextWaypoint()
 
 void Ship::EraseWaypoint(const System *system)
 {
-	auto it = waypoints.find(system);
+	auto it = std::find(waypoints.begin(), waypoints.end(), system);
 	if(it == waypoints.end())
 		return;
 	if(waypoint > std::distance(waypoints.begin(), it))
