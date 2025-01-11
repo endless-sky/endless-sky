@@ -64,6 +64,19 @@ project("Endless Sky" VERSION 0.10.11
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
 
+# Issue warnings about unstable configurations.
+# You can still build the game with these, but might experience issues due to third-party bugs.
+set(UNICODE_PATH_WARNING "For proper unicode path handling support, please upgrade to GCC 14 or newer.")
+if(WIN32)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 14)
+        message(WARNING ${UNICODE_PATH_WARNING})
+    endif()
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 18)
+        message(WARNING ${UNICODE_PATH_WARNING})
+    endif()
+endif()
+
+
 # Find the needed library dependencies.
 find_package(SDL2 CONFIG REQUIRED)
 find_package(PNG REQUIRED)
