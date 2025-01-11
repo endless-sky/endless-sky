@@ -141,6 +141,8 @@ void Mission::Load(const DataNode &node)
 		return;
 	}
 	name = node.Token(1);
+	if(!DataNode::IsConditionName(name))
+		node.PrintTrace("Error: Invalid mission name");
 
 	for(const DataNode &child : node)
 	{
@@ -204,6 +206,8 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
+		else if(child.Token(0) == "non-blocking")
+			isNonBlocking = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
 		else if(child.Token(0) == "autosave")
@@ -372,6 +376,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
+		if(isNonBlocking)
+			out.Write("non-blocking");
 		if(isMinor)
 			out.Write("minor");
 		if(autosave)
@@ -451,11 +457,11 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.EndChild();
 		}
 		if(destination)
-			out.Write("destination", destination->Name());
+			out.Write("destination", destination->TrueName());
 		for(const System *system : waypoints)
-			out.Write("waypoint", system->Name());
+			out.Write("waypoint", system->TrueName());
 		for(const System *system : visitedWaypoints)
-			out.Write("waypoint", system->Name(), "visited");
+			out.Write("waypoint", system->TrueName(), "visited");
 
 		for(const Planet *planet : stopovers)
 			out.Write("stopover", planet->TrueName());
@@ -463,9 +469,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("stopover", planet->TrueName(), "visited");
 
 		for(const System *system : markedSystems)
-			out.Write("mark", system->Name());
+			out.Write("mark", system->TrueName());
 		for(const System *system : unmarkedSystems)
-			out.Write("mark", system->Name(), "unmarked");
+			out.Write("mark", system->TrueName(), "unmarked");
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -489,8 +495,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 void Mission::NeverOffer()
 {
-	// Add the equivalent "never" condition, `"'" != 0`.
-	toOffer.Add("has", "'");
+	toOffer.MakeNever();
 }
 
 
@@ -588,6 +593,15 @@ bool Mission::IsValid() const
 bool Mission::HasPriority() const
 {
 	return hasPriority;
+}
+
+
+
+// Check if this mission is a "non-blocking" mission.
+// Such missions will not prevent minor missions from being offered alongside them.
+bool Mission::IsNonBlocking() const
+{
+	return isNonBlocking;
 }
 
 
@@ -1291,6 +1305,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.hasFailed = true;
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
+	result.isNonBlocking = isNonBlocking;
 	result.isMinor = isMinor;
 	result.autosave = autosave;
 	result.location = location;
@@ -1433,11 +1448,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
-		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<origin>"] = player.GetPlanet()->DisplayName();
 	else if(boardingShip)
 		subs["<origin>"] = boardingShip->Name();
-	subs["<planet>"] = result.destination ? result.destination->Name() : "";
-	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
+	subs["<planet>"] = result.destination ? result.destination->DisplayName() : "";
+	subs["<system>"] = result.destination ? result.destination->GetSystem()->DisplayName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
@@ -1460,8 +1475,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 				stopovers += result;
 				planets += result;
 			}
-			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
-			planets += planet->Name();
+			stopovers += planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
+			planets += planet->DisplayName();
 		}
 		subs["<stopovers>"] = stopovers;
 		subs["<planet stopovers>"] = planets;
@@ -1475,7 +1490,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{
 			if(count++)
 				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
-			systems += system->Name();
+			systems += system->DisplayName();
 		}
 		return systems;
 	};
@@ -1529,7 +1544,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1588,12 +1603,12 @@ int Mission::CalculateJumps(const System *sourceSystem)
 				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
-		int bestDays = distance.Days(*bestIt);
+		int bestDays = distance.Days(**bestIt);
 		if(bestDays < 0)
 			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
 		{
-			int days = distance.Days(*it);
+			int days = distance.Days(**it);
 			if(days >= 0 && days < bestDays)
 			{
 				bestIt = it;
@@ -1610,7 +1625,7 @@ int Mission::CalculateJumps(const System *sourceSystem)
 			distanceCalcSettings.WormholeStrat(),
 			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
-	expectedJumps += distance.Days(destination->GetSystem());
+	expectedJumps += distance.Days(*destination->GetSystem());
 
 	return expectedJumps;
 }

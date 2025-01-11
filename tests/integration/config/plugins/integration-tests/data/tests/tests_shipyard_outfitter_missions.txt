@@ -73,11 +73,11 @@ test-data "Shipyard Outfitter Mission Save"
 test-data "Shipyard Outfitter Mission Missions"
 	category mission
 	contents
-		mission "%TEST%: SHIPYARD MISSION"
+		mission "TEST: SHIPYARD MISSION"
 			shipyard
 			source "Ruin"
 			to offer
-				has "%TEST%: SHIPYARD MISSION OFFER"
+				has "TEST: SHIPYARD MISSION OFFER"
 			on offer
 				conversation
 					`THIS IS A SHIPYARD MISSION YO!`
@@ -87,11 +87,11 @@ test-data "Shipyard Outfitter Mission Missions"
 
 
 
-		mission "%TEST%: OUTFITTER MISSION"
+		mission "TEST: OUTFITTER MISSION"
 			outfitter
 			source "Ruin"
 			to offer
-				has "%TEST%: OUTFITTER MISSION OFFER"
+				has "TEST: OUTFITTER MISSION OFFER"
 			on offer
 				conversation
 					`THIS IS A OUTFITTER MISSION YO!`
@@ -144,7 +144,7 @@ test "Shipyard Mission Test"
 		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: SHIPYARD MISSION OFFER" = 1
+			"TEST: SHIPYARD MISSION OFFER" = 1
 		call "Trigger Shipyard Mission"
 		call "Skip Mission"
 		call "Depart"
@@ -161,7 +161,7 @@ test "Outfitter Mission Test"
 		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: OUTFITTER MISSION OFFER" = 1
+			"TEST: OUTFITTER MISSION OFFER" = 1
 		call "Trigger Outfitter Mission"
 		call "Skip Mission"
 		call "Depart"

@@ -23,6 +23,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
 	unit/src/test_categoryList.cpp
+	unit/src/test_conditionAssignments.cpp
 	unit/src/test_conditionSet.cpp
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp

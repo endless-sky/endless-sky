@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Dialog.h"
-#include "DrawList.h"
+#include "shader/DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -138,7 +138,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
-		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
+		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
 	// If the player is hailing a planet, determine if a mission grants them clearance before checking
@@ -392,7 +392,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 			{
 				planet->Bribe();
-				Messages::Add("You bribed the authorities on " + planet->Name() + " "
+				Messages::Add("You bribed the authorities on " + planet->DisplayName() + " "
 					+ Format::CreditString(bribe) + " to permit you to land."
 						, Messages::Importance::High);
 			}

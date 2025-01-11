@@ -13,7 +13,7 @@
 
 galaxy "Milky Way"
 	pos 112 22
-	sprite "ui/milky way"
+	sprite "map/milky way"
 
 galaxy "label arachi"
 	pos -750 615
@@ -11505,7 +11505,6 @@ system Durax
 			period 29.2266
 
 system E-4183
-	shrouded
 	pos 1042.97 -618.13
 	government Uninhabited
 	attributes "bright star" "giant star" "notable star" "umbral reach"
@@ -11561,7 +11560,6 @@ system E-4183
 			offset 240
 
 system E-9182
-	shrouded
 	pos 1167.2 -629
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -15084,7 +15082,6 @@ system G-3191
 		period 5084.55
 
 system G-6183
-	shrouded
 	pos 1019.4 -590.18
 	government Uninhabited
 	attributes "black hole" "notable star" "umbral reach"
@@ -15123,7 +15120,6 @@ system G-6183
 		offset 145
 
 system G-719
-	shrouded
 	pos 1162.19 -417.18
 	government Uninhabited
 	attributes "umbral reach"
@@ -15164,7 +15160,6 @@ system G-719
 			period 147.7
 
 system G-819
-	shrouded
 	pos 1186.97 -477.17
 	government Uninhabited
 	attributes "umbral reach"
@@ -16338,7 +16333,6 @@ system Gupta
 		period 1077.08
 
 system H-8188
-	shrouded
 	pos 1206.6 -506.5
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -16368,7 +16362,6 @@ system H-8188
 		period 5620.03
 
 system H-9187
-	shrouded
 	pos 1130.88 -455.97
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -16910,7 +16903,7 @@ system Heutesl
 		period 60.0582
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
-		distance 1000
+		distance 820
 		period 349.481
 	object
 		sprite planet/gas4
@@ -20834,7 +20827,7 @@ system "Kor En'lakfar"
 	fleet "Korath Defense" 1775
 	fleet "Korath Civilian Miners" 6000
 	fleet "Korath Civilian Large" 955
-	fleet "Korsmanath A'awojs" 2000
+	fleet "Korsmanath A'awojs" 4000
 	object
 		sprite star/g0
 		period 10
@@ -20903,7 +20896,7 @@ system "Kor Fel'tar"
 	fleet "Korath Civilian Miners" 5000
 	fleet "Korath Civilian Large" 1600
 	fleet "Korath Surveillance" 24000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/k3
 		period 10
@@ -20976,7 +20969,7 @@ system "Kor Men"
 	fleet "Korath Surveillance" 46000
 	fleet "Korath Civilian Large" 1500
 	fleet "Korath Civilian Miners" 8000
-	fleet "Korsmanath A'awojs" 2808
+	fleet "Korsmanath A'awojs" 5616
 	object
 		sprite star/f5
 		distance 28.0824
@@ -21045,7 +21038,7 @@ system "Kor Nor'peli"
 	fleet "Korath Surveillance" 48000
 	fleet "Korath Civilian Large" 2000
 	fleet "Korath Home" 900
-	fleet "Korsmanath A'awojs" 1100
+	fleet "Korsmanath A'awojs" 2200
 	object
 		sprite star/k3
 		distance 22.4307
@@ -21120,7 +21113,7 @@ system "Kor Tar'bei"
 	fleet "Korath Ember Waste Raid" 3050
 	fleet "Korath Surveillance" 50000
 	fleet "Korath Ember Waste Large Raid" 30000
-	fleet "Korsmanath A'awojs" 900
+	fleet "Korsmanath A'awojs" 1800
 	object
 		sprite star/m3
 		period 10
@@ -21178,7 +21171,7 @@ system "Kor Zena'i"
 	fleet "Korath Large Raid" 16000
 	fleet "Korath Surveillance" 31000
 	fleet "Korath Civilian Large" 845
-	fleet "Korsmanath A'awojs" 2500
+	fleet "Korsmanath A'awojs" 5000
 	object
 		sprite star/g5-old
 		distance 11.9387
@@ -21548,7 +21541,6 @@ system Kursa
 		period 1517.13
 
 system L-118
-	shrouded
 	pos 1088.89 -408.306
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -21588,7 +21580,6 @@ system L-118
 			period 434
 
 system L-6181
-	shrouded
 	pos 1139.93 -522.87
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -22384,7 +22375,6 @@ system Luue-Saqru
 			period 32
 
 system M-1188
-	shrouded
 	pos 1124.66 -607.233
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -22423,7 +22413,6 @@ system M-1188
 		period 38041.2
 
 system MC-42
-	shrouded
 	pos 1113.33 -500.68
 	government Uninhabited
 	attributes "iije" "umbral reach"
@@ -22460,7 +22449,6 @@ system MC-42
 		period 3186.04
 
 system MS-219
-	shrouded
 	pos 1075.13 -568.167
 	government Uninhabited
 	attributes "bright star" "iije" "notable star" "umbral reach"
@@ -25832,7 +25820,6 @@ system Nunki
 			period 66.2404
 
 system O-3184
-	shrouded
 	pos 1100.4 -646.047
 	government Uninhabited
 	attributes "umbral reach"
@@ -30936,7 +30923,7 @@ system Scija
 			period 413.1
 	object
 		sprite planet/saturn
-		distance 8500
+		distance 9400
 		period 4188.84
 		object
 			sprite planet/europa
@@ -34283,7 +34270,6 @@ system Tuur-Kella
 		period 10000
 
 system U-5188
-	shrouded
 	pos 1084 -665.623
 	government Uninhabited
 	attributes "umbral reach"
@@ -35095,7 +35081,6 @@ system "Uwo Seija"
 		period 2910.75
 
 system V-2189
-	shrouded
 	pos 1135.9 -711.667
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -35784,7 +35769,6 @@ system Vulcuja
 		period 1989.22
 
 system W-3197
-	shrouded
 	pos 1204.5 -400
 	government Uninhabited
 	attributes "bright star" "notable star" "umbral reach"
@@ -37066,7 +37050,7 @@ system Zeinar
 		period 185.218
 	object
 		sprite planet/gas1-b
-		distance 650
+		distance 1080
 		period 321.540
 		object Cipi
 			sprite planet/ice7-b
