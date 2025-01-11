@@ -823,7 +823,7 @@ mission "Gegno Unwelcoming"
 			`You are greeted by a large group of Gegno on the surface of the planet, though they don't seem too happy to welcome you on their world - in fact, several squads in numbers you can't quickly determine rush towards you, equipped with advanced looking combat gear and weapons. As they do, countless ships belonging to both the Vi and Scin factions begin to descend in formations from the sky above.`
 				to display
 					has "Giaru Gegno: Quarg Contact: offered"
-			`	It probably wasn't the smartest plan to purposefully land here after assaulting civilians. There's no room for talk as they immediately begin to attack, and you do your best to fight as many off as you can. While you're able to fend off several with your pistol, you are eventually overwhelmed, and the last thing you experience is a cold, sharp pain through your upper body.`
+			`	It probably wasn't the smartest plan to purposefully land here after assaulting civilians. There's no room for talk as they immediately begin to attack, and you do your best to fight as many off as you can. While you are able to fend off several with your pistol, you are eventually overwhelmed, and the last thing you experience is a cold, sharp pain through your upper body.`
 				die
 
 
