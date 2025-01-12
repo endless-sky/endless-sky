@@ -9537,7 +9537,7 @@ conversation "Ice Queen"
 	`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
 
 	label building
-	`	As you pass around one corner of the sagging spaceport towards your ship, you notice a large, ice-free building in the distance with a light burning within.`
+	`	As you pass around one corner of the sagging spaceport, you notice a large, ice-free building in the distance with a light burning within.`
 	choice
 		`	(Enter the building.)`
 			goto litbuilding
