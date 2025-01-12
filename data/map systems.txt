@@ -60,7 +60,7 @@ galaxy "label north"
 	sprite label/north
 
 galaxy "label outer limits"
-	pos -510 1200
+	pos -540 1260
 
 galaxy "label paradise"
 	pos -345 -136
@@ -2089,7 +2089,7 @@ system Acamar
 		period 3183.91
 
 system Acapella
-	pos -450 1348
+	pos -348 1253
 	government Uninhabited
 	attributes "outer limits"
 	arrival 1080
@@ -2097,7 +2097,9 @@ system Acapella
 	belt 1545 7
 	belt 1677 2
 	haze _menu/haze-none
+	link Cantata
 	link Concerto
+	link Rhapsody
 	asteroids "small rock" 6 1.96
 	asteroids "medium rock" 2 1.346
 	asteroids "large rock" 1 1.861
@@ -6297,7 +6299,7 @@ system Antevorta
 			period 46.8468
 
 system Anthem
-	pos -617 1206
+	pos -584 1227
 	government "Avgi (Consonance)"
 	attributes "avgi" "avgi diaspora" "outer limits"
 	arrival 500
@@ -6306,9 +6308,7 @@ system Anthem
 	haze _menu/haze-67
 	link Ballad
 	link Cantata
-	link Chorale
 	link Serenade
-	link Sonata
 	asteroids "medium rock" 17 2.387
 	asteroids "large rock" 1 2.114
 	asteroids "small metal" 9 2.319
@@ -6561,7 +6561,7 @@ system Ar-40
 			period 141.425
 
 system Arche
-	pos -407 926
+	pos -311 920
 	government "Avgi (Twilight Guard)"
 	attributes "avgi" "avgi diaspora" "bright star" "multi-star" "notable star" "twilight"
 	arrival 5000
@@ -7611,7 +7611,7 @@ system B-11
 		period 7397.46
 
 system Ballad
-	pos -568 1145
+	pos -548 1125
 	government Uninhabited
 	attributes "outer limits"
 	arrival 1350
@@ -8823,7 +8823,7 @@ system "Bote Asu"
 system Br-80
 	hidden
 	shrouded
-	pos -516 1104
+	pos -526 1103
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
@@ -9252,7 +9252,7 @@ system Caeculus
 			period 23.2775
 
 system Caesura
-	pos -721 865
+	pos -730 903
 	government Uninhabited
 	attributes "black hole" "notable star" "twilight"
 	arrival 5000
@@ -9317,16 +9317,18 @@ system Canopus
 		period 2315.96
 
 system Cantata
-	pos -518 1293
+	pos -507 1276
 	government Uninhabited
 	attributes "outer limits"
 	arrival 500
 	habitable 450
 	belt 1853
 	haze _menu/haze-67
+	link Acapella
 	link Anthem
 	link Concerto
-	link Opera
+	link Serenade
+	link Symphony
 	asteroids "small rock" 21 1.228
 	asteroids "medium rock" 3 0.766
 	asteroids "large rock" 22 0.858
@@ -10040,15 +10042,15 @@ system Chirr'ay'akai
 			period 13.6328
 
 system Chorale
-	pos -729 1208
+	pos -716 1234
 	government Uninhabited
 	attributes "outer limits"
 	arrival 500
 	habitable 230
 	belt 1970
 	haze _menu/haze-33
-	link Anthem
 	link Madrigal
+	link Serenade
 	link Sonata
 	asteroids "large metal" 1 3.067
 	fleet "Small Avgi Merchants" 7200
@@ -10723,7 +10725,7 @@ system Companion
 			period 13.4397
 
 system Concerto
-	pos -465 1234
+	pos -463 1351
 	government "Avgi (Consonance)"
 	attributes "avgi" "avgi diaspora" "bright star" "notable star" "outer limits"
 	arrival 3650
@@ -10732,7 +10734,7 @@ system Concerto
 	haze _menu/haze-67
 	link Acapella
 	link Cantata
-	link Symphony
+	link Serenade
 	asteroids "small rock" 2 1.735
 	asteroids "medium rock" 7 1.86
 	asteroids "large rock" 3 1.191
@@ -11196,7 +11198,7 @@ system "Cura Dic"
 			distance 200
 
 system Current
-	pos -623 827
+	pos -633 833
 	government Uninhabited
 	attributes "twilight"
 	arrival 1250
@@ -11207,6 +11209,7 @@ system Current
 	haze _menu/haze-twilit-embers
 	link Gust
 	link Torrent
+	link Wave
 	link Whirlwind
 	asteroids "small rock" 7 2.244
 	asteroids "medium rock" 8 2.312
@@ -17755,7 +17758,7 @@ system Gacrux
 			period 33.4236
 
 system Gale
-	pos -656 903
+	pos -671 925
 	government Uninhabited
 	attributes "twilight"
 	arrival 1080
@@ -18462,7 +18465,7 @@ system Girtab
 			period 55.2737
 
 system Glide
-	pos -545 886
+	pos -532 888
 	government Uninhabited
 	attributes "twilight"
 	arrival 1700
@@ -18475,7 +18478,6 @@ system Glide
 	link Mote
 	link Pearl
 	link Torrent
-	link Wave
 	asteroids "medium rock" 3 3.422
 	asteroids "large rock" 9 3.571
 	asteroids "large metal" 1 2.195
@@ -18810,7 +18812,7 @@ system Gorvi
 			period 32.1366
 
 system Gossamer
-	pos -765 785
+	pos -820 797
 	government Uninhabited
 	attributes "smoke ring" "twilight"
 	arrival 2560
@@ -19002,7 +19004,7 @@ system Gupta
 		period 1077.08
 
 system Gust
-	pos -662 799
+	pos -672 805
 	government Uninhabited
 	attributes "twilight"
 	arrival 500
@@ -19495,7 +19497,7 @@ system Hatysa
 system He-4
 	hidden
 	shrouded
-	pos -450 965
+	pos -405 972
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
@@ -22207,7 +22209,7 @@ system Jyelio
 system K-39
 	hidden
 	shrouded
-	pos -477 1184
+	pos -474 1188
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 980
@@ -24366,7 +24368,7 @@ system Kr-84
 	arrival 2160
 	habitable 2160
 	belt 1811
-	"jump range" 90
+	"jump range" 60
 	haze _menu/haze-none
 	link As-75
 	asteroids "large metal" 1 3.325
@@ -24952,7 +24954,7 @@ system Li-7
 		period 25768.8
 
 system Lift
-	pos -531 924
+	pos -533 941
 	government Uninhabited
 	attributes "twilight"
 	arrival 500
@@ -25733,7 +25735,7 @@ system MS-219
 			period 80
 
 system Madrigal
-	pos -877 1118
+	pos -866 1263
 	government Uninhabited
 	attributes "outer limits"
 	arrival 500
@@ -28332,7 +28334,7 @@ system Mosaa-Iyra
 			period 800
 
 system Mote
-	pos -462 893
+	pos -455 896
 	government Uninhabited
 	attributes "twilight"
 	ramscoop
@@ -29935,7 +29937,7 @@ system Oosuoro
 		period 13480.5
 
 system Opera
-	pos -537 1192
+	pos -641 1398
 	government Uninhabited
 	attributes "outer limits"
 	arrival 1400
@@ -29943,7 +29945,7 @@ system Opera
 	belt 1589 7
 	belt 1614 9
 	haze _menu/haze-67
-	link Cantata
+	link Serenade
 	asteroids "medium rock" 1 4.185
 	asteroids "large rock" 3 4.253
 	asteroids "small metal" 11 4.388
@@ -30315,7 +30317,7 @@ system "Over the Rainbow"
 system P-31
 	hidden
 	shrouded
-	pos -625 1118
+	pos -662 1140
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
@@ -30868,7 +30870,7 @@ system Peak
 			period 178.869
 
 system Pearl
-	pos -510 859
+	pos -504 854
 	government Uninhabited
 	attributes "twilight"
 	arrival 1250
@@ -32334,7 +32336,7 @@ system Prakacha'a
 system Prelude
 	hidden
 	shrouded
-	pos -477 940
+	pos -427 925
 	government "Avgi (Dissonance)"
 	attributes "avgi" "avgi diaspora" "giant star" "notable star" "tangled shroud"
 	arrival 2300
@@ -33954,14 +33956,14 @@ system Remembrance
 			period 13.2191
 
 system Rhapsody
-	pos -320 1202
+	pos -311 1169
 	government Uninhabited
 	attributes "outer limits"
 	arrival 1080
 	habitable 1080
 	belt 1720
 	haze _menu/haze-33
-	link Symphony
+	link Acapella
 	asteroids "small rock" 11 3.229
 	asteroids "medium rock" 3 3.478
 	asteroids "large rock" 10 3.478
@@ -35898,7 +35900,7 @@ system "Sera Natta"
 		period 985.582
 
 system Serenade
-	pos -653 1293
+	pos -584 1320
 	government Uninhabited
 	attributes "outer limits"
 	arrival 2160
@@ -35907,6 +35909,10 @@ system Serenade
 	belt 1833 4
 	haze _menu/haze-67
 	link Anthem
+	link Cantata
+	link Chorale
+	link Concerto
+	link Opera
 	asteroids "small rock" 7 1.706
 	asteroids "medium rock" 4 1.339
 	asteroids "large rock" 3 1.793
@@ -36267,7 +36273,7 @@ system "Shini Bori"
 system Si-28
 	hidden
 	shrouded
-	pos -470 984
+	pos -429 960
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
@@ -37514,7 +37520,7 @@ system Solifar
 		period 2104.34
 
 system Sonata
-	pos -719 1124
+	pos -687 1154
 	government Uninhabited
 	attributes "outer limits"
 	arrival 980
@@ -37522,7 +37528,6 @@ system Sonata
 	belt 1543 1
 	belt 1949 4
 	haze _menu/haze-33
-	link Anthem
 	link Chorale
 	asteroids "large rock" 1 2.201
 	asteroids "small metal" 7 1.736
@@ -38407,7 +38412,7 @@ system Supra
 			period 384.135
 
 system Symphony
-	pos -347 1253
+	pos -470 1215
 	government "Avgi (Consonance)"
 	attributes "avgi" "avgi diaspora" "outer limits"
 	arrival 500
@@ -38415,8 +38420,7 @@ system Symphony
 	belt 1997 7
 	belt 2468 5
 	haze _menu/haze-33
-	link Concerto
-	link Rhapsody
+	link Cantata
 	asteroids "small rock" 2 5.25
 	asteroids "medium rock" 6 5.18
 	asteroids "small metal" 2 5.39
@@ -39487,7 +39491,7 @@ system Torbab
 			period 18.1784
 
 system Torrent
-	pos -609 871
+	pos -619 880
 	government Uninhabited
 	attributes "bright star" "giant star" "multi-star" "notable star" "twilight"
 	arrival 3625
@@ -39500,6 +39504,7 @@ system Torrent
 	link Current
 	link Gale
 	link Glide
+	link Wave
 	asteroids "small rock" 51 1.377
 	asteroids "medium rock" 3 0.935
 	asteroids "large rock" 63 1.377
@@ -39897,7 +39902,7 @@ system Tuur-Kella
 		period 10000
 
 system Twirl
-	pos -579 985
+	pos -602 1003
 	government Uninhabited
 	attributes "neutron" "notable star" "twilight"
 	arrival 500
@@ -41870,7 +41875,7 @@ system Wake
 			period 30
 
 system Wave
-	pos -563 842
+	pos -579 843
 	government Uninhabited
 	attributes "twilight"
 	arrival 550
@@ -41878,8 +41883,9 @@ system Wave
 	belt 1402 7
 	belt 1954 5
 	haze _menu/haze-black
-	link Glide
+	link Current
 	link Rivulet
+	link Torrent
 	asteroids "small rock" 50 3.758
 	asteroids "medium rock" 59 5.975
 	asteroids "large rock" 37 4.558
@@ -42201,7 +42207,7 @@ system Wezen
 			period 38.9601
 
 system Whirlwind
-	pos -669 845
+	pos -722 856
 	government Uninhabited
 	attributes "twilight"
 	arrival 2750

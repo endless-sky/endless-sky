@@ -878,7 +878,7 @@ mission "Avgi: Atomics Testing 1"
 	name "Atomic Testing"
 	description "Take Aliza and her colleagues to the surface of Dokimi."
 	landing
-	passengers 6
+	passengers 3
 	to offer
 		not "avgi: lost in twilight"
 	source "Ergastirio Station"

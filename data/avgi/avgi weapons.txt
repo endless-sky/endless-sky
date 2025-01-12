@@ -125,7 +125,6 @@ effect "speck impact"
 	sprite "effect/bullet impact"
 		"no repeat"
 		"frame rate" 60
-	sound "explosion tiny"
 	"lifetime" 9
 	"random angle" 30
 	"velocity scale" -.06
