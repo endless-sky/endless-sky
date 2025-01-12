@@ -9427,7 +9427,7 @@ mission "Stone to Hope"
 			action
 				set "stones"
 			`	"Lots of the first folks who settled Hope came from the Deep." Helm answers, getting a far off look in his eyes. "It wasn't like most worlds in the south. It was going to be different. At least, that's what they believed."`
-			`	He shrugs, "Many of them didn't forget where they came from. Brought the old ways with them. Some refugees, like Tosti's family, even found there way back here when Hope was lost.`
+			`	He shrugs, "Many of them didn't forget where they came from. Brought the old ways with them. Some refugees, like Tosti's family, even found their way back here when Hope was lost.`
 			`	"Anyways, that's why you can find Family-Cairns on Hope - because our people were there. Now, getting back to the matter at hand, you willing to help Tosti out?"`
 				goto hopeoptions
 
@@ -9538,7 +9538,7 @@ conversation "Ice Queen"
 	`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
 
 	label building
-	`	As you pass around one corner of the sagging spaceport towards your ship, you notice a large, ice-free building in the distance with a light burning within.`
+	`	As you pass around one corner of the sagging spaceport, you notice a large, ice-free building in the distance with a light burning within.`
 	choice
 		`	(Enter the building.)`
 			goto litbuilding
@@ -9625,7 +9625,7 @@ conversation "Ice Queen End"
 		goto end
 
 	label helpildico
-	`Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport. Ildico, looking less pale, and significantly more sturdy, waits by the exit.`
+	`Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport. Ildico, looking less pale and significantly more sturdy, waits by the exit.`
 	`	"The terraforming firm is certain to have an office, or booth, in the ramshackle spaceport here. Let's pay them a visit."`
 	label end
 
@@ -9747,7 +9747,7 @@ mission "Ice Queen 4"
 	on offer
 		event "deoricdeeds" 700
 		conversation
-			`It's easy to imagine Earth once looked and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe; or at least, to run it.`
+			`It's easy to imagine Earth once looked and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe - or at least, to run it.`
 			`	The Department of Migration, Stellar Populations and Advanced Interplanetary Economics is easy enough to find. What's surprising is how quickly you are ushered into a waiting room outside the office of one Mr. Drifa, Sub-Executive of Multiplanetary Pricing.`
 			`	After a brief wait, a young secretary announces that Mr. Drifa is ready to see you, and brings you and Ildico into his office.`
 			`	"So what can I help you with..." Deoric Drifa's voice trails off as he sees Ildico.`
@@ -9802,14 +9802,14 @@ mission "Ice Queen 6"
 	source "Chiron"
 	destination "Haven"
 	passengers 2
-	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic and its most honorable servants. Her infant child is taken into the custody of the Republic. You can only watch in sad silence as they are removed from your ship. You wind up quite a bit poorer through a combination of fines and bribes (the breakdown remains somewhat unclear).`
+	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic. You can only watch in silence as they are removed from your ship and her infant child is taken into custody. You end up fined <fine> for your actions.`
 	stealth
 	to offer
 		has "Ice Queen 5: done"
 
 	on offer
 		conversation
-			`The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of New Sydney. The architecture of the building is reminiscent of elite villas you've seen in the Deep.`
+			`The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of New Sydney. The architecture of the building is reminiscent of upper-class villas you've seen in the Deep.`
 			`	As you approach the main gate you find it wide open, and the attached security booth is abandoned. You could just walk right in.`
 			choice
 				`	(Walk right in.)`
@@ -9932,7 +9932,7 @@ mission "Ice Queen 7"
 			`Your inbox blinks with a new message from Ildico from Haven:`
 			``
 			`	"It's been too long, and I could use your help. Please, come to <planet>.`
-			`				-your friend`
+			`				- Your friend,`
 			`					Ildy"`
 
 	on complete
@@ -9948,7 +9948,7 @@ mission "Ice Queen 8"
 		has "Ice Queen 7: done"
 	on offer
 		conversation
-			`You arrive at the address Ildico gave you; a large warehouse on the edge of the spaceport. When you step into the dimly lit building, your eyes struggle to adjust, gradually you realize you're face-to-face with a group of dirty burly men and women leveling a half-dozen weapons right at you.`
+			`You arrive at the address Ildico gave you; a large warehouse on the edge of the spaceport. When you step into the dimly lit building, your eyes struggle to adjust, and gradually you realize you're face-to-face with a group of dirty burly men and women leveling a half-dozen weapons right at you.`
 			`	"Looks like someone's lost," a voice rises from the group, though you can't tell who's speaking.`
 			`	"They look right fancy. Good thing we found them."`
 			`	"Whaddya say, Frank, kill 'em now? Or keep 'em for a bit? Maybe their worth something? Maybe we can have some fun with 'em."`
@@ -10072,7 +10072,7 @@ mission "Ice Queen: News"
 			`A news kiosk is doing a segment on the growing threat of pirates around Haven. A certain name catches your eye, and you read:`
 			`	Self-styled "pirate queen" Ildico Drifa continues to expand her territory and reach. While there is some concern this growing centralization of power could result in greater threats to trade and stability in the Far North, most analysts think it is quite unlikely.`
 			`	Professor Grenwich Millstone, foremost authority on the economy and history of the northern pirate worlds, had this to say about Drifa:`
-			`	"It is patently inconceivable that any single magnate could consolidate power on Haven. It is culturally anathema, and economically impractical. Frankly, all this talk of a so-called 'pirate queen' is just sensationalist journalism trying to sell the news. In a few weeks another pirate captain will be the new bogeyman, and then another."`
+			`	"It is patently inconceivable that any single magnate could consolidate power on Haven. It is cultural anathema, and economically impractical. Frankly, all this talk of a so-called 'pirate queen' is just sensationalist journalism trying to sell the news. In a few weeks another pirate captain will be the new bogeyman, and then another."`
 			`	The segment ends, and the news kiosk automatically scrolls down to the next article.`
 				decline
 
@@ -10123,8 +10123,8 @@ mission "Skadenga: Blood of Surtr"
 			action
 				clear "tears"
 			`	You show her the Blood of Surtr, and tell her the story of House Drifa taking it from the Deep.`
-			`	The Ondurdis nods slowly. "I only know of Tears of Skade. Our Goddess cried, maybe others did as well?"`
-			`	She turns and motions to Aldfrith who steps over to you and asks, "Did Ran ever cry cold tears?"`
+			`	The Ondurdis nods slowly. "I only know of Tears of Skade. Our Goddess cried - maybe others did as well?"`
+			`	She turns and motions to Aldfrith who steps over to you. She asks, "Did Ran ever cry cold tears?"`
 			
 			label aldtime
 			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers the Ondurdis's words as he strokes his white beard. "The sea has no mercy, and no memory. Ran would never cry."`
