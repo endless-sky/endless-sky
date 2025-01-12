@@ -92,7 +92,6 @@ void Files::Init(const char * const *argv)
 		if(!basePath)
 			throw runtime_error("Unable to get path to resource directory!");
 		resources = basePath;
-		// TODO: this SDL_free call should be removed when migrating to SDL3.
 		SDL_free(basePath);
 
 		if(Exists(resources))
