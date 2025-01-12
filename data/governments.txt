@@ -26,13 +26,14 @@ government "Aberrant"
 		"Avgi (Wandering Fleet)" -0.01
 		"Quarg" -0.01
 		"Pug" -0.01
+
 	"penalty for"
 		assist 0
+		atrocity 0
 		disable 0
 		board 0
 		capture 0
 		destroy 0
-		atrocity 0
 
 government "Alpha"
 	swizzle 1
@@ -62,7 +63,13 @@ government "Avgi"
 		"Avgi (Dissonance)" 0.01
 		"Avgi (Dissonance Angry)" -0.05
 		"Aberrant" -0.1
+
+	"penalty for"
+		atrocity 0
+
 	bribe 0.3
+	fine 0
+
 	"friendly hail" "friendly avgi"
 	"friendly disabled hail" "friendly disabled avgi"
 	"hostile hail" "hostile avgi"
@@ -80,12 +87,17 @@ government "Avgi (Consonance)"
 		"Avgi (Dissonance)" 0.1
 		"Avgi (Dissonance Angry)" -0.05
 		"Aberrant" -0.1
+
 	"penalty for"
+		atrocity 0
 		disable 0.3
 		board 0.2
 		capture 3
 		destroy 2
+
 	bribe 0.3
+	fine 0
+
 	"friendly hail" "friendly avgi"
 	"friendly disabled hail" "friendly disabled avgi"
 	"hostile hail" "hostile avgi"
@@ -106,13 +118,18 @@ government "Avgi (Twilight Guard)"
 		"Avgi (Dissonance)" 0.1
 		"Avgi (Dissonance Angry)" -0.05
 		"Aberrant" -0.1
+
 	"penalty for"
+		atrocity 0
 		disable 0.3
 		board 0.2
 		capture 3
 		destroy 2
 		provoke 0.1
+
 	bribe 0
+	fine 0
+
 	"friendly hail" "friendly twilight guard"
 	"friendly disabled hail" "friendly disabled twilight guard"
 	"hostile hail" "hostile twilight guard"
@@ -134,14 +151,22 @@ government "Avgi (Dissonance)"
 		"Avgi (Twilight Guard)" 0.01
 		"Avgi (Dissonance Angry)" 0.01
 		"Aberrant" -0.01
+
+	"penalty for"
+		atrocity 0
+
 	"custom penalties for"
 		"Avgi (Dissonance Angry)"
+			atrocity 0
 			disable 0
 			board 0.1
 			capture 1
 			destroy 1
 			provoke 0
+
 	bribe 0.3
+	fine 0
+
 	"friendly hail" "friendly dissonance"
 	"friendly disabled hail" "friendly disabled dissonance"
 	"hostile hail" "hostile dissonance"
@@ -160,7 +185,13 @@ government "Avgi (Dissonance Angry)"
 		"Avgi (Twilight Guard)" -0.05
 		"Avgi (Dissonance)" 1
 		"Aberrant" -0.01
+
+	"penalty for"
+		atrocity 0
+
 	bribe 0.3
+	fine 0
+
 	"friendly hail" "friendly dissonance"
 	"friendly disabled hail" "friendly disabled dissonance"
 	"hostile hail" "hostile dissonance"
@@ -183,14 +214,19 @@ government "Avgi (Wandering Fleet)"
 		"Avgi (Twilight Guard)" 0.01
 		"Avgi (Dissonance)" 0.01
 		"Aberrant" -0.1
+
 	"penalty for"
+		atrocity 0
 		disable 1
 		board 1
 		capture 3
 		destroy 2
 		provoke 0.1
 		scan 0.01
+
 	bribe 0
+	fine 0
+
 	"travel restrictions"
 		system "Arche"
 		system "Ballad"
