@@ -92,8 +92,8 @@ double MapDetailPanel::planetPanelHeight = 0.;
 
 
 
-MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
-	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool fromMission)
+	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system, fromMission)
 {
 }
 
