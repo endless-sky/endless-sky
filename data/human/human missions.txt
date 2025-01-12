@@ -9399,9 +9399,9 @@ mission "Stone to Hope"
 				decline
 
 			label finish
-			`	Tosti suddenly stops, and takes a deep breath. His face is red, and beads of sweat glisten on his brow. "We're from Hope, ser. My family. We're refugees and we had to leave everything behind. But da, he never really left Hope."`
+			`	Tosti suddenly stops, and takes a deep breath. "We're from Hope, ser. My family. We're refugees and we had to leave everything behind. But da, he never really left Hope."`
 			`	The young refugee pulls out a stone criss-crossed in tiny chiseled letters. The familiar engraved story of a life now ended. "This is his stone, and well, he - he'd want his stone left on Hope. I was hoping that was something you could do."`
-			`	With the words out his eyes drop to the floor and he tenses up as though expecting a blow.`
+			`	With the words he swallows and looks at you earnestly.`
 			label hopeoptions
 			choice
 				`	"I can take the stone to Hope."`
@@ -9418,7 +9418,7 @@ mission "Stone to Hope"
 			label hopeno
 			action
 				clear "stones"
-			`	Helm sighs and tries to pat the young man on the back before he entirely deflates in shame. "Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
+			`	Helm sighs and tries to pat the young man on the back before he entirely deflates. "Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
 			`	Tosti is red and shaking, and mumbles some apologies before slinking away from you and Helm.`
 			`	Helm gives you a nod and says, "Thank you for listening, at least."`
 				decline
@@ -9432,8 +9432,7 @@ mission "Stone to Hope"
 				goto hopeoptions
 
 			label hopeprice
-			`	He grimaces, as if he was just punched in the gut. "I am sorry, ser. We're just poor laborers. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
-			`	His eyes remain downcast and tears slide down his smooth face. His whole body seems to shake with the shame of what he just admitted.`
+			`	He grimaces, "I am sorry, ser. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
 			choice
 				`	"I might be in the area. No promises though."`
 				`	"Alright. I'll do it."`
@@ -9443,10 +9442,10 @@ mission "Stone to Hope"
 			label hopeyes
 			action
 				clear "stones"
-			`	The young man's eyes light up as he drags them off the floor and focuses on your face once more. "Really? Truly? I didn't dare hope..."`
+			`	The young man's eyes light up. "Really? Truly? I didn't dare hope..."`
 			`	His body weight shifts and it looks as though he's about to hug you before he abruptly stops himself and tries to regain a little composure.`
 			`	"Thorleif was right about you," he says as he presses the small, cool stone into your hand. "The Family-Cairn is not far from where the last spaceport used to be. Just by the cliffs, and the family name was Snaiwaz."`
-			`	With the stone firmly in your fist, he takes his leave from you, saying "thank you" over and over again before he's finally gone.`
+			`	With the stone firmly in your fist, he thanks you one last time, and then takes his leave.`
 			`	Helm silently watches him go and then turns back to you, shaking his head. "You're not like any off-worlder I've ever known. Most would have laughed in that boy's face, let alone done him a good turn for free."`
 			`	He smiles at you and says, "You really are one of us."`
 				accept
