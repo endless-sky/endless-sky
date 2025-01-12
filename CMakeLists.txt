@@ -66,12 +66,12 @@ project("Endless Sky" VERSION 0.10.11
 
 # Issue warnings about unstable configurations.
 # You can still build the game with these, but might experience issues due to third-party bugs.
-set(UNICODE_PATH_WARNING "For proper unicode path handling support, please upgrade to GCC 14 or newer.")
+set(UNICODE_PATH_WARNING "For proper unicode path handling support, please upgrade to GCC 14 or newer. (There is no known Clang version with a working fix.)")
 if(WIN32)
     if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 14)
         message(WARNING ${UNICODE_PATH_WARNING})
     endif()
-    if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 18)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         message(WARNING ${UNICODE_PATH_WARNING})
     endif()
 endif()
