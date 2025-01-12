@@ -968,7 +968,7 @@ void Engine::Step(bool isActive)
 			}
 			// This calculates the current speed
 			if((targetRange <= (strategicScanRange + accelerationScanRange) && scrutable)
-				|| ((tacticalRange || accelerationScanRange) && target->IsYours()))
+				|| ((strategicScanRange || accelerationScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target velocity display");
 				int presentSpeed = round(60 * target->CurrentSpeed());
@@ -976,7 +976,7 @@ void Engine::Step(bool isActive)
 			}
 			// This calculates the current maximum acceleration
 			if((targetRange <= (strategicScanRange + velocityScanRange) && scrutable)
-				|| ((tacticalRange || velocityScanRange) && target->IsYours()))
+				|| ((strategicScanRange || velocityScanRange) && target->IsYours()))
 			{
 				info.SetCondition("target acceleration display");
 				int presentAcceleration = 3600 * target->TrueAcceleration();
