@@ -6572,7 +6572,6 @@ system Arche
 	belt 2396 8
 	haze _menu/haze-twilight-thin
 	link H-1
-	link He-4
 	link Quintessence
 	asteroids "small rock" 3 5.94
 	asteroids "medium rock" 6 3.66
@@ -8829,6 +8828,7 @@ system Br-80
 	arrival 500
 	habitable 100
 	belt 1989
+	"jump range" 30
 	haze _menu/haze-tear
 	link Ge-73
 	asteroids "small rock" 1 1.61
@@ -19062,6 +19062,7 @@ system H-1
 	"jump range" 30
 	haze _menu/haze-tear
 	link Arche
+	link He-4
 	link Li-7
 	asteroids "small rock" 1 1.548
 	asteroids "large rock" 1 1.525
@@ -19505,7 +19506,7 @@ system He-4
 	belt 1514
 	"jump range" 30
 	haze _menu/haze-tear
-	link Arche
+	link H-1
 	asteroids "small rock" 16 1.903
 	asteroids "medium rock" 10 2.808
 	asteroids "small metal" 9 2.402
