@@ -24954,7 +24954,7 @@ system Li-7
 		period 25768.8
 
 system Lift
-	pos -533 941
+	pos -534 930
 	government Uninhabited
 	attributes "twilight"
 	arrival 500
