@@ -9802,7 +9802,7 @@ mission "Ice Queen 6"
 	source "Chiron"
 	destination "Haven"
 	passengers 2
-	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic. You can only watch in silence as they are removed from your ship and her infant child is taken into custody. You end up fined <fine> for your actions.`
+	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic. You can only watch in silence as they are removed from your ship and her infant child is taken into custody. You end up fined for your actions.`
 	stealth
 	to offer
 		has "Ice Queen 5: done"
