@@ -974,7 +974,14 @@ government "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
-	"default attitude" -.01
+	"attitude toward"
+		"Ka'het (Infighting)" -.01
+		"Remnant" -.01
+		"Remnant (Research)"
+		"Quarg" -.01
+		"Hai" -.01
+		"Hai (Unfettered)" -.01
+		"Korath" -.01
 	
 	"player reputation" -1
 
@@ -984,7 +991,14 @@ government "Ka'het (Infighting)"
 	swizzle 0
 	language "Ka'het"
 
-	"default attitude" -.01
+	"attitude toward"
+		"Ka'het" -.01
+		"Remnant" -.01
+		"Remnant (Research)"
+		"Quarg" -.01
+		"Hai" -.01
+		"Hai (Unfettered)" -.01
+		"Korath" -.01
 	
 	"player reputation" -1
 
