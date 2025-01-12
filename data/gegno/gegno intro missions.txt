@@ -171,6 +171,8 @@ mission "First Contact: Gegno Vi"
 	on defer
 		set "First Contact: Gegno Vi: deferred"
 
+	on abort
+
 	to fail
 		"reputation: Gegno" < -100
 
@@ -747,6 +749,9 @@ mission "Gegno Genocide Defense"
 		fail "First Contact: Gegno Vi"
 		fail "Visit Quarg in Gegno Space"
 		fail "Vi Augen"
+		fail "Gegno Anticipation"
+		fail "Gegno Intervention"
+		fail "Acquiescence"
 		"reputation: Gegno" = -1000
 		"reputation: Gegno Vi" = -1000
 		"reputation: Gegno Scin" = -1000
@@ -799,6 +804,27 @@ mission "Gegno Genocide Defense"
 		personality heroic vindictive staying
 		system "Heutesl"
 		ship "Augen" "Vytii Yrrlausei"
+
+
+# Mission for if the player has clearance on a Gegno world despite having provoked civilians.
+
+mission "Gegno Unwelcoming"
+	landing
+	invisible
+	source
+		government "Gegno" "Gegno Vi" "Gegno Scin"
+	to offer
+		"reputation: Gegno" < 0
+	on offer
+		conversation
+			`You are greeted by a large force of aliens on the surface of the planet, though they don't seem too happy to welcome you on their world - in fact, several squads in numbers you can't quickly determine rush towards you, equipped with advanced looking combat gear and weapons. As they do, countless ships begin to descend in formations from the sky above.`
+				to display
+					not "Giaru Gegno: Quarg Contact: offered"
+			`You are greeted by a large group of Gegno on the surface of the planet, though they don't seem too happy to welcome you on their world - in fact, several squads in numbers you can't quickly determine rush towards you, equipped with advanced looking combat gear and weapons. As they do, countless ships belonging to both the Vi and Scin factions begin to descend in formations from the sky above.`
+				to display
+					has "Giaru Gegno: Quarg Contact: offered"
+			`	It probably wasn't the smartest plan to purposefully land here after assaulting civilians. There's no room for talk as they immediately begin to attack, and you do your best to fight as many off as you can. While you are able to fend off several with your pistol, you are eventually overwhelmed, and the last thing you experience is a cold, sharp pain through your upper body.`
+				die
 
 
 # Gegno Hunter Fleets

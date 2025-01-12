@@ -231,6 +231,8 @@ void Mission::Load(const DataNode &node)
 			location = SHIPYARD;
 		else if(child.Token(0) == "outfitter")
 			location = OUTFITTER;
+		else if(child.Token(0) == "job board")
+			location = JOB_BOARD;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -386,6 +388,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("shipyard");
 		else if(location == OUTFITTER)
 			out.Write("outfitter");
+		else if(location == JOB_BOARD)
+			out.Write("job board");
 		else if(location == ASSISTING)
 			out.Write("assisting");
 		else if(location == BOARDING)
@@ -453,11 +457,11 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.EndChild();
 		}
 		if(destination)
-			out.Write("destination", destination->Name());
+			out.Write("destination", destination->TrueName());
 		for(const System *system : waypoints)
-			out.Write("waypoint", system->Name());
+			out.Write("waypoint", system->TrueName());
 		for(const System *system : visitedWaypoints)
-			out.Write("waypoint", system->Name(), "visited");
+			out.Write("waypoint", system->TrueName(), "visited");
 
 		for(const Planet *planet : stopovers)
 			out.Write("stopover", planet->TrueName());
@@ -465,9 +469,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("stopover", planet->TrueName(), "visited");
 
 		for(const System *system : markedSystems)
-			out.Write("mark", system->Name());
+			out.Write("mark", system->TrueName());
 		for(const System *system : unmarkedSystems)
-			out.Write("mark", system->Name(), "unmarked");
+			out.Write("mark", system->TrueName(), "unmarked");
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -1444,11 +1448,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
-		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<origin>"] = player.GetPlanet()->DisplayName();
 	else if(boardingShip)
 		subs["<origin>"] = boardingShip->Name();
-	subs["<planet>"] = result.destination ? result.destination->Name() : "";
-	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
+	subs["<planet>"] = result.destination ? result.destination->DisplayName() : "";
+	subs["<system>"] = result.destination ? result.destination->GetSystem()->DisplayName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
@@ -1471,8 +1475,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 				stopovers += result;
 				planets += result;
 			}
-			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
-			planets += planet->Name();
+			stopovers += planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
+			planets += planet->DisplayName();
 		}
 		subs["<stopovers>"] = stopovers;
 		subs["<planet stopovers>"] = planets;
@@ -1486,7 +1490,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{
 			if(count++)
 				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
-			systems += system->Name();
+			systems += system->DisplayName();
 		}
 		return systems;
 	};
@@ -1540,7 +1544,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
