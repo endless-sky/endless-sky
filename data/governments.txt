@@ -975,8 +975,6 @@ government "Indigenous Lifeform (Subsidurial)"
 	"player reputation" 1
 	"bribe" 0
 	"fine" 0
-	
-	"default attitude" 0.01
 
 	"penalty for"
 		assist 0
