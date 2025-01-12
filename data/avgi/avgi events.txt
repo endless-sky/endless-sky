@@ -30,8 +30,8 @@ mission "Avgi: Aberrant Blockade"
 	landing
 	repeat
 	to offer
-		has "Avgi: Aberrant Siege"
-		not "Avgi: Aberrant Siege Respite"
+		has "avgi: aberrant siege"
+		not "avgi: aberrant siege respite"
 	source
 		attributes "aberrant siege"
 	on offer
@@ -47,11 +47,11 @@ mission "Avgi: Aberrant Blockade"
 		fleet "Small Aberrant" 2
 		fleet "Large Aberrant"
 		on kill
-			set "Avgi: Aberrant Siege Respite"
-			event "Avgi: Siege Respite Timer" 1 3
+			set "avgi: aberrant siege respite"
+			event "avgi: siege respite timer" 1 3
 
-event "Avgi: Siege Respite Timer"
-	clear "Avgi: Aberrant Siege Respite"
+event "avgi: siege respite timer"
+	clear "avgi: aberrant siege respite"
 
 
 mission "Avgi: Initial Wandering Fleet"

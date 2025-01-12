@@ -975,8 +975,9 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Speck Round" 4800
 		"Optical Laser Rifle" 24
 
-		"Lantern Fission Core"
-		"Ultracapacitor Bank" 3
+		"Lantern Fission Core" 3
+		"Ultracapacitor Bank"
+		"Ultracapacitor Cell" 3
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
@@ -984,6 +985,7 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"Deuterium Slush Tank" 12
 		"Multispectral Scanner"
 		"Spectrometer Array"
+		"Outfits Expansion"
 
 		`Z-333 "Spark" Fusion Torch`
 		"Inductive Extractor"

@@ -108,15 +108,18 @@ outfit "Pollen"
 	category "Minerals"
 	cost 12000
 	thumbnail "outfit/pollen particle"
+	"flotsam sprite" "effect/flotsam pollen particle"
 	"mass" 0.3
 	"flotsam chance" 0.6
-	description "Achoo!"
+	description "This granule of exotic Windjammer pollen is not only replete with nutritous proteins, but also appears to contain valuable platinum group elements bound in organic molecules. This includes a collection of complex enzymes, which appear to be capable of catalyzing many difficult reactions with ease."
+	description "	Achoo!"
 
 
 outfit "Jamfruit"
 	category "Minerals"
 	cost 36000
 	thumbnail "outfit/jamfruit pod"
+	"flotsam sprite" "effect/flotsam jamfruit pod"
 	"mass" 0.3
 	"flotsam chance" 0.3
 	description "Closer to a berry than a fruit, this tart prize of a Windjammer tree is not only delicious, but is rich in nutrients. It can be refined to extract a variety of useful medicinal compounds, giving it value both as a delicacy and as a remedy."
@@ -139,7 +142,8 @@ ship "Windjammer"
 		"cargo space" 150
 		"outfit space" 250
 		"weapon capacity" 30
-		"overheat damage threshold" -0.33
+		"cooling" 30
+		"overheat damage threshold" -0.06
 		"overheat damage rate" 2.1
 		"disabled recovery timer" 720
 		"thrust" 44
@@ -288,7 +292,8 @@ ship "Bluejacket"
 		"cargo space" 150
 		"outfit space" 250
 		"weapon capacity" 30
-		"overheat damage threshold" -0.33
+		"cooling" 30
+		"overheat damage threshold" -0.06
 		"overheat damage rate" 2.1
 		"disabled recovery timer" 720
 		"thrust" 22
@@ -400,6 +405,7 @@ ship "Pollen"
 		"drag" .3
 		"heat dissipation" .85
 		"outfit space" 10
+		"cooling" 6
 		"thrust" 3
 		"turn" 14
 		"overheat damage threshold" -0.33

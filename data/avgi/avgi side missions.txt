@@ -706,7 +706,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 					goto claret
 				`"Sure. What would you recommend?"`
 
-			`	He gives you a look. "Amusement. You're no regular so I'll start you off with a quis nectar. On the house." He turns around, deftly snatching up something close to a cocktail glass, and pulls out a big, dangerous-looking glass pipette from somewhere under the bar. Smoothly dipping it into something that looks like a large pitcher plant, he draws out a clear, slightly pink-tinged liquid before depositing it in the glass. "Enjoy, amusement."`
+			`	He gives you a look. "Amusement. You're no regular so I'll start you off with a Quis Nectar. On the house." He turns around, deftly snatching up something close to a cocktail glass, and pulls out a big, dangerous-looking glass pipette from somewhere under the bar. Smoothly dipping it into something that looks like a large pitcher plant, he draws out a clear, slightly pink-tinged liquid before depositing it in the glass. "Enjoy, amusement."`
 			choice
 				`	(Gulp it down.) "Bottoms up."`
 					goto toomuch
@@ -785,7 +785,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				goto humans
 
 			label exploit
-			`	"Perhaps. But I don't think so, not from what I've seen of you. Your stranded fellows, they dedicated themselves to helping us as soon as they realized they couldn't go home. I didn't like that short fellow though, all he did was complain." she smirks. "Reminded me of an ensign back in school."`
+			`	"Perhaps. But I don't think so, not from what I've seen of you. Your stranded fellows, they dedicated themselves to helping us as soon as they realized they couldn't go home. I didn't like that short fellow though, all he did was complain." She smirks. "Reminded me of an ensign back in school."`
 				goto humans
 
 			label accurate

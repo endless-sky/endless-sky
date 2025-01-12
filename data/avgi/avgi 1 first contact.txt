@@ -366,7 +366,7 @@ mission "Avgi: First Contact"
 				clear "avgi: asked about aberrant"
 
 mission "Avgi: Humans From the Deep"
-	name "Humans among the Avgi"
+	name "Humans Among the Avgi"
 	description "Visit the <destination>, where there is another human, Darius Calwell, stranded in Avgi space."
 	landing
 	source "Peripheria"
@@ -826,7 +826,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 
 mission "Avgi: Dissonance Outreach"
 	name "Dissonance Outreach"
-	description "Take Hriso to <destination> for negotiations with the local miners."
+	description "Take Hriso to <destination> for negotiations with the local miners. You may need to hail the station to receive permission to dock."
 	passengers 3
 	blocked "You'll need <capacity> to transport Darius, Sora, and Hriso."
 	source "Peripheria"

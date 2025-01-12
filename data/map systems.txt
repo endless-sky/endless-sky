@@ -6540,7 +6540,7 @@ system Ar-40
 			distance 216
 			period 83.08
 	object
-		sprite planet/alvorada
+		sprite planet/rock20
 		distance 1053
 		period 901.236
 	object
@@ -10785,6 +10785,7 @@ system Concerto
 			offset 180
 		object Peripheria
 			sprite planet/station-disk
+				scale 0.5
 			distance 400
 			period 120
 	object
@@ -11779,6 +11780,7 @@ system Decet
 		period 1
 	object
 		sprite star/magnetar
+			scale 0.5
 			"frame rate" 15
 			"rewind"
 		period 1
@@ -12692,6 +12694,7 @@ system Demilude
 		period 246.542
 	object
 		sprite planet/browndwarf-y-rogue
+			scale 0.5
 		distance 290.378
 		period 156.475
 		offset 180
@@ -25736,7 +25739,7 @@ system Madrigal
 	arrival 500
 	habitable 425
 	belt 1380
-	haze _menu/haze-red
+	haze _menu/haze-33
 	link Chorale
 	asteroids "small rock" 1 7.44
 	asteroids "large rock" 1 6.845
@@ -38468,6 +38471,7 @@ system Symphony
 			period 48
 		object "Navigeo Yards"
 			sprite planet/station-shipyard-a1
+				scale 0.5
 			distance 360
 			period 48
 		object

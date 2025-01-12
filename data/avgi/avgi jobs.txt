@@ -1359,6 +1359,7 @@ mission "Avgi: Doctors 1"
 		random < 30
 	source "Peripheria"
 	destination
+		not "Peripheria"
 		attributes "avgi diaspora"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1376,6 +1377,7 @@ mission "Avgi: Doctors 2"
 		random < 30
 	source "Peripheria"
 	destination
+		not "Peripheria"
 		attributes "avgi diaspora"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1393,6 +1395,7 @@ mission "Avgi: Doctors 3"
 		random < 30
 	source "Peripheria"
 	destination
+		not "Peripheria"
 		attributes "avgi diaspora"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1421,7 +1424,8 @@ mission "Avgi: Cylinder Materials"
 	to accept
 		has "Avgi: Aktina Cylinder Supply Jobs"
 	source
-		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
+		not "Aktina Cylinder"
+		attributes "avgi diaspora"
 	destination "Aktina Cylinder"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1441,7 +1445,8 @@ mission "Avgi: Bulk Cylinder Materials"
 	to accept
 		has "Avgi: Aktina Cylinder Supply Jobs"
 	source
-		government "Avgi (Consonance)" "Avgi (Dissonance)" "Avgi (Twilight Guard)"
+		not "Aktina Cylinder"
+		attributes "avgi diaspora"
 	destination "Aktina Cylinder"
 	on visit
 		dialog phrase "generic cargo on visit"

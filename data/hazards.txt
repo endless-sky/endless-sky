@@ -229,5 +229,4 @@ hazard "Smoke Ring Atmosphere"
 	"constant strength"
 	weapon
 		"shield damage" 0.6
-		"heat damage" 6
-		"relative heat damage" 0.006
+		"relative heat damage" 0.003

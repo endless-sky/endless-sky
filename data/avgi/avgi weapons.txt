@@ -340,7 +340,7 @@ effect "electron flare"
 
 
 outfit "External Launch Rail"
-	series "Avgi: Missiles"
+	series "Avgi: Missiles"s
 	index 10
 	category "Secondary Weapons"
 	licenses
@@ -348,7 +348,7 @@ outfit "External Launch Rail"
 	cost 80000
 	thumbnail "outfit/external launch rail"
 	"mass" 6
-	"outfit space" -6
+	"outfit space" -9
 	"weapon capacity" -9
 	"gun ports" -1
 	"ophrys capacity" 1
@@ -357,7 +357,7 @@ outfit "External Launch Rail"
 		"hardpoint offset" 12
 		sprite "projectile/orchid terminal"
 			"scale" 0.5
-		sound "torpedo"
+		sound "nuke"
 		ammo `"Ophrys" Nuclear Torpedo`
 		"stream"
 		icon "icon/orchid"
@@ -395,7 +395,7 @@ outfit "External Launch Tube"
 		"hardpoint offset" 12
 		sprite "projectile/orchid inactive"
 			"scale" 0.5
-		sound "bounce"
+		sound "nuke"
 		ammo `"Orchid" Nuclear Missile`
 		icon "icon/orchid"
 		"fire effect" "sidewinder fire"
