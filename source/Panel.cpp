@@ -18,14 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "image/Sprite.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 using namespace std;
@@ -101,15 +101,9 @@ void Panel::AddZone(const Rectangle &rect, const function<void()> &fun)
 
 
 
-void Panel::AddZone(const Rectangle &rect, SDL_Keycode key, const vector<string> &conditionsToEnable)
+void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 {
-	AddZone(rect, [this, key, conditionsToEnable]()
-	{
-		for(const string &condition : conditionsToEnable)
-			if(!info.HasCondition(condition))
-				return;
-		this->KeyDown(key, 0, Command(), true);
-	});
+	AddZone(rect, [this, key](){ this->KeyDown(key, 0, Command(), true); });
 }
 
 

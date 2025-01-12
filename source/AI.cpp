@@ -488,7 +488,7 @@ void AI::IssueMoveTarget(const Point &target, const System *moveToSystem)
 	newOrders.point = target;
 	newOrders.targetSystem = moveToSystem;
 	string description = "moving to the given location";
-	description += player.GetSystem() == moveToSystem ? "." : (" in the " + moveToSystem->Name() + " system.");
+	description += player.GetSystem() == moveToSystem ? "." : (" in the " + moveToSystem->DisplayName() + " system.");
 	IssueOrders(newOrders, description);
 }
 
@@ -2730,7 +2730,7 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 	// Have a 10% minimum to avoid ships getting in a chase loop.
 	const bool isAbleToRun = target.MaxVelocity() * SAFETY_MULTIPLIER < ship.MaxVelocity();
 
-	ShipAICache &shipAICache = ship.GetAICache();
+	const ShipAICache &shipAICache = ship.GetAICache();
 	const bool useArtilleryAI = shipAICache.IsArtilleryAI() && isAbleToRun;
 	const double shortestRange = shipAICache.ShortestRange();
 	const double shortestArtillery = shipAICache.ShortestArtillery();
@@ -4153,7 +4153,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		}
 
 		// Inform the player of any destinations in the system they are jumping to.
-		if(!destinations.empty())
+		if(!destinations.empty() && Preferences::GetNotificationSetting() != Preferences::NotificationSetting::OFF)
 		{
 			string message = "Note: you have ";
 			message += (missions == 1 ? "a mission that requires" : "missions that require");
@@ -4162,7 +4162,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			bool oxfordComma = (count > 2);
 			for(const Planet *planet : destinations)
 			{
-				message += planet->Name();
+				message += planet->DisplayName();
 				--count;
 				if(count > 1)
 					message += ", ";
@@ -4171,6 +4171,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			}
 			message += " in the system you are jumping to.";
 			Messages::Add(message, Messages::Importance::Info);
+
+			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
+				Audio::Play(Audio::Get("fail"));
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
@@ -4413,7 +4416,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				Audio::Play(Audio::Get("fail"));
 			}
 			else if(next != target)
-				message = "Switching landing targets. Now landing on " + next->Name() + ".";
+				message = "Switching landing targets. Now landing on " + next->DisplayName() + ".";
 		}
 		else if(message.empty())
 		{
@@ -4473,10 +4476,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 						message += ' ' + *it++ + ',';
 					message += " or " + *it;
 				}
-				message += " in this system. Landing on " + target->Name() + ".";
+				message += " in this system. Landing on " + target->DisplayName() + ".";
 			}
 			else
-				message = "Landing on " + target->Name() + ".";
+				message = "Landing on " + target->DisplayName() + ".";
 		}
 		if(!message.empty())
 			Messages::Add(message, messageImportance);
@@ -4508,13 +4511,13 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		{
 			// The player is guaranteed to have a travel plan for isWormhole to be true.
 			Messages::Add("Landing on a local wormhole to navigate to the "
-					+ player.TravelPlan().back()->Name() + " system.", Messages::Importance::High);
+					+ player.TravelPlan().back()->DisplayName() + " system.", Messages::Importance::High);
 		}
 		if(ship.GetTargetSystem() && !isWormhole)
 		{
 			string name = "selected star";
 			if(player.KnowsName(*ship.GetTargetSystem()))
-				name = ship.GetTargetSystem()->Name();
+				name = ship.GetTargetSystem()->DisplayName();
 
 			if(activeCommands.Has(Command::FLEET_JUMP))
 				Messages::Add("Engaging fleet autopilot to jump to the " + name + " system."
@@ -4628,7 +4631,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		const Planet *planet = player.TravelDestination();
 		if(planet && planet->IsInSystem(ship.GetSystem()) && planet->IsAccessible(&ship))
 		{
-			Messages::Add("Autopilot: landing on " + planet->Name() + ".", Messages::Importance::High);
+			Messages::Add("Autopilot: landing on " + planet->DisplayName() + ".", Messages::Importance::High);
 			autoPilot |= Command::LAND;
 			ship.SetTargetStellar(ship.GetSystem()->FindStellar(planet));
 		}

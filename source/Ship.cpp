@@ -890,7 +890,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!isNewInstance && targetSystem)
 	{
 		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
-			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->Name();
+			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->TrueName();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
@@ -899,7 +899,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		else if(!currentSystem->Links().contains(targetSystem)
 			&& (!navigation.JumpRange() || !currentSystem->JumpNeighbors(navigation.JumpRange()).contains(targetSystem)))
 		{
-			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->TrueName() + ".\"");
 			targetSystem = nullptr;
 		}
 	}
@@ -1128,18 +1128,18 @@ void Ship::Save(DataWriter &out) const
 		if(formationPattern)
 			out.Write("formation", formationPattern->Name());
 		if(currentSystem)
-			out.Write("system", currentSystem->Name());
+			out.Write("system", currentSystem->TrueName());
 		else
 		{
 			// A carried ship is saved in its carrier's system.
 			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
-				out.Write("system", parent->currentSystem->Name());
+				out.Write("system", parent->currentSystem->TrueName());
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
-			out.Write("destination system", targetSystem->Name());
+			out.Write("destination system", targetSystem->TrueName());
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1545,17 +1545,22 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+const ShipAICache &Ship::GetAICache() const
 {
 	return aiCache;
 }
 
 
 
-void Ship::UpdateCaches()
+void Ship::UpdateCaches(bool massLessChange)
 {
-	aiCache.Recalibrate(*this);
-	navigation.Recalibrate(*this);
+	if(massLessChange)
+		aiCache.Calibrate(*this);
+	else
+	{
+		aiCache.Recalibrate(*this);
+		navigation.Recalibrate(*this);
+	}
 }
 
 
@@ -3040,11 +3045,25 @@ double Ship::TurnRate() const
 
 
 
+double Ship::TrueTurnRate() const
+{
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueAcceleration() const
+{
+	return Acceleration() * 1. / (1. + slowness * .05);
 }
 
 
@@ -3072,6 +3091,13 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::CurrentSpeed() const
+{
+	return Velocity().Length();
 }
 
 

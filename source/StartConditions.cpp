@@ -188,8 +188,8 @@ void StartConditions::FinishLoading()
 	// may now be invalid, meaning the CoreStartData would actually send the start to New Boston instead
 	// of what was displayed.
 	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
-	unlocked.planet = GetPlanet().Name();
-	unlocked.system = GetSystem().Name();
+	unlocked.planet = GetPlanet().DisplayName();
+	unlocked.system = GetSystem().DisplayName();
 	unlocked.date = GetDate();
 	unlocked.credits = Format::Credits(GetAccounts().Credits());
 	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
