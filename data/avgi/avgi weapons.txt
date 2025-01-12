@@ -105,7 +105,7 @@ outfit "Speck"
 			"scale" 0.5
 			"frame rate" 30
 			"no repeat"
-		"hit effect" "bullet impact"
+		"hit effect" "speck impact"
 		"lifetime" 30
 		"random lifetime" 3
 		"shield damage" 24
@@ -120,6 +120,15 @@ effect "speckle fire"
 		"frame rate" 60
 	"lifetime" 3
 	"random angle" 30
+
+effect "speck impact"
+	sprite "effect/bullet impact"
+		"no repeat"
+		"frame rate" 60
+	sound "explosion tiny"
+	"lifetime" 9
+	"random angle" 30
+	"velocity scale" -.06
 
 
 # Energy Weapons:
@@ -353,8 +362,6 @@ outfit "External Launch Rail"
 	"gun ports" -1
 	"ophrys capacity" 1
 	weapon
-		"hardpoint sprite" "hardpoint/external launch rail"
-		"hardpoint offset" 12
 		sprite "projectile/orchid terminal"
 			"scale" 0.5
 		sound "nuke"
@@ -391,8 +398,6 @@ outfit "External Launch Tube"
 	"gun ports" -1
 	"orchid capacity" 6
 	weapon
-		"hardpoint sprite" "hardpoint/external launch tube"
-		"hardpoint offset" 12
 		sprite "projectile/orchid inactive"
 			"scale" 0.5
 		sound "nuke"
@@ -509,7 +514,7 @@ outfit "Nettle Flecks"
 			"frame rate" 30
 			"no repeat"
 		"die effect" "missile death"
-		"hit effect" "bombardment impact"
+		"hit effect" "fleck impact"
 		"inaccuracy" 15
 			narrow
 		"lifetime" 60
@@ -528,6 +533,16 @@ effect "nettle split"
 	"random angle" 180
 	"random velocity" 15
 
+effect "fleck impact"
+	sprite "effect/bombardment impact"
+		"no repeat"
+		"frame rate" 30
+	sound "explosion tiny"
+	"lifetime" 9
+	"random angle" 30
+	"random spin" 30
+	"random velocity" 3
+	"velocity scale" -.12
 
 outfit `"Orchid" Nuclear Missile`
 	series "Avgi: Missiles"

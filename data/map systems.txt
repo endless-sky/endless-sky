@@ -81,7 +81,7 @@ galaxy "label successors"
 	pos -122 1385
 
 galaxy "label tangled shroud"
-	pos -480 1020
+	pos -480 1050
 
 galaxy "label twilight"
 	pos -420 750
