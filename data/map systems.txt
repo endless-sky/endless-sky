@@ -9257,14 +9257,14 @@ system Caesura
 	arrival 5000
 	habitable 100000
 	haze _menu/haze-twilight-thin
-	hazard "Black Hole Accretion Disk" 3
-	hazard "Black Hole Event Horizon" 3
-	hazard "Black Hole Gravity" 3
+	hazard "Small Black Hole Event Horizon" 1
+	hazard "Small Black Hole Gravity" 1
 	object
-		sprite star/black-hole-core
+		sprite star/coal-black-hole
 		period 10
 	object
-		sprite star/black-hole
+		sprite star/neutron-core
+			scale 0.25
 		period 10
 
 system Canopus
