@@ -970,6 +970,22 @@ government "Indigenous Lifeform (Astral)"
 		destroy 0
 		atrocity 0
 
+government "Indigenous Lifeform (Subsidurial)"
+	# This indigenous gov is specifically for the Subsidurial, so that nothing in the game tries to hurt the poor thing.
+	"player reputation" 1
+	"bribe" 0
+	"fine" 0
+	
+	"default attitude" 0.01
+
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
 government "Ka'het"
 	swizzle 0
 	language "Ka'het"
