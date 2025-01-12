@@ -117,7 +117,7 @@ namespace {
 	const vector<string> OverlaySetting::OVERLAY_SETTINGS = {"off", "always on", "damaged", "--", "on hit"};
 
 	map<Preferences::OverlayType, OverlaySetting> statusOverlaySettings = {
-		{Preferences::OverlayType::ALL, Preferences::OverlayState::OFF},
+		{Preferences::OverlayType::ALL, Preferences::OverlayState::ON_HIT},
 		{Preferences::OverlayType::FLAGSHIP, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ESCORT, Preferences::OverlayState::ON},
 		{Preferences::OverlayType::ENEMY, Preferences::OverlayState::ON},
@@ -175,6 +175,8 @@ void Preferences::Load()
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
+	settings["Show missile overlays"] = true;
+	settings["Deadline blink by distance"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
