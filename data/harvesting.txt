@@ -433,7 +433,8 @@ minable "small water droplet"
 		"random start frame"
 	hull 300
 	"random hull" 150
-	payload "Voidfish" 6
+	payload "Voidfish" 3
+		"toughness" 900
 	explode puff
 
 minable "medium water droplet"
@@ -447,19 +448,20 @@ minable "medium water droplet"
 	hull 600
 	"random hull" 300
 	payload "Voidfish" 30
+		"toughness" 1800
 	explode puff
 
 minable "large water droplet"
 	"display name" Large
 	noun "Water Droplet"
 	sprite "asteroid/large droplet/large droplet"
-		scale 0.5
 		"frame rate" 12
 		"rewind"
 		"random start frame"
 	hull 1500
 	"random hull" 600
 	payload "Voidfish" 60
+		"toughness" 4500
 	explode puff
 
 outfit "Voidfish"
@@ -481,6 +483,7 @@ minable "integral tree a"
 	hull 1200
 	"random hull" 1200
 	payload "Integral Wood" 120
+		"toughness" 3600
 	explode "timber" 30
 
 minable "integral tree b"
@@ -490,6 +493,7 @@ minable "integral tree b"
 	hull 600
 	"random hull" 300
 	payload "Integral Wood" 30
+		"toughness" 1800
 	explode "timber" 6
 
 minable "integral tree c"
@@ -499,7 +503,9 @@ minable "integral tree c"
 	hull 1200
 	"random hull" 600
 	payload "Integral Wood" 60
+		"toughness" 3600
 	payload "Platinum" 120
+		"toughness" 10800
 	explode "timber" 12
 
 minable "integral tree d"
@@ -509,7 +515,9 @@ minable "integral tree d"
 	hull 1200
 	"random hull" 600
 	payload "Integral Wood" 60
+		"toughness" 3600
 	payload "Gold" 120
+		"toughness" 10800
 	explode "timber" 12
 
 minable "integral tree e"
@@ -519,6 +527,7 @@ minable "integral tree e"
 	hull 300
 	"random hull" 600
 	payload "Integral Wood" 120
+		"toughness" 3600
 	explode "timber" 30
 
 effect "timber"
