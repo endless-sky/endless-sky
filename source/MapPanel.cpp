@@ -595,7 +595,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this, false));
 	}
-	else if(key == 'a' && buttonCondition != "is stars")
+	else if(key == 't' && buttonCondition != "is stars")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this, true));

@@ -91,7 +91,7 @@ help "map advanced shops"
 	`You can also press F to search the shipyard and outfitter maps for a specific ship or outfit.`
 
 help "map advanced stars"
-	`The starry map mode toggles the display of star types on the system map. This can also be triggered by pressing A while the map is open. The stars present in a system affect the amount of solar power and solar wind available for use by solar collectors and ramscoops respectively.`
+	`The starry map mode toggles the display of star types on the system map. This can also be triggered by pressing T while the map is open. The stars present in a system affect the amount of solar power and solar wind available for use by solar collectors and ramscoops respectively.`
 
 help "map advanced danger"
 	`The galaxy can be a dangerous place! Pirates raid some systems more frequently or in greater strength than others, and a poorly defended convoy risks attracting them in many systems. To get an idea of the relative danger of different systems, click on the alert icon next to the system name.`
