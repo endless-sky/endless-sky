@@ -993,7 +993,7 @@ government "Ka'het"
 	"attitude toward"
 		"Ka'het (Infighting)" -.01
 		"Remnant" -.01
-		"Remnant (Research)"
+		"Remnant (Research)" -.01
 		"Quarg" -.01
 		"Hai" -.01
 		"Hai (Unfettered)" -.01
@@ -1010,7 +1010,7 @@ government "Ka'het (Infighting)"
 	"attitude toward"
 		"Ka'het" -.01
 		"Remnant" -.01
-		"Remnant (Research)"
+		"Remnant (Research)" -.01
 		"Quarg" -.01
 		"Hai" -.01
 		"Hai (Unfettered)" -.01
