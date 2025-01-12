@@ -536,7 +536,6 @@ effect "fleck impact"
 	sprite "effect/bombardment impact"
 		"no repeat"
 		"frame rate" 30
-	sound "explosion tiny"
 	"lifetime" 9
 	"random angle" 30
 	"random spin" 30
@@ -673,7 +672,8 @@ outfit "Orchid Boost Stage Expended"
 			"scale" 0.5
 		"die effect" "missile death"
 		"lifetime" 300
-		"velocity" -15
+		"fade out" 60
+		"velocity" -18
 		"random velocity" 3
 		"inaccuracy" 30
 		"drag" 1.2
@@ -688,7 +688,8 @@ outfit "Orchid Divert Stage Expended"
 			"scale" 0.5
 		"die effect" "missile death"
 		"lifetime" 300
-		"velocity" -15
+		"fade out" 60
+		"velocity" -12
 		"random velocity" 3
 		"inaccuracy" 30
 		"drag" 1.2

@@ -6334,8 +6334,8 @@ system Anthem
 	fleet "Avgi Patrol" 2400
 	fleet "Avgi Strike Group" 9000
 	fleet "Avgi Twilight Guard Logistics" 6000
-	fleet "Small Aberrant" 12000
-	fleet "Large Aberrant" 18000
+	fleet "Small Aberrant" 15000
+	fleet "Large Aberrant" 21000
 	object
 		sprite star/k5
 		period 10
@@ -7635,8 +7635,8 @@ system Ballad
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
 	fleet "Avgi Twilight Guard Logistics" 6000
-	fleet "Small Aberrant" 12000
-	fleet "Large Aberrant" 18000
+	fleet "Small Aberrant" 14400
+	fleet "Large Aberrant" 21000
 	object
 		sprite star/k0-old
 		distance 51.835
@@ -7672,7 +7672,6 @@ system Ballad
 		period 11745.0
 
 system Be-9
-	hidden
 	shrouded
 	pos -238 1005
 	government Uninhabited
@@ -35931,8 +35930,8 @@ system Serenade
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
 	fleet "Avgi Twilight Guard Logistics" 42000
-	fleet "Small Aberrant" 12000
-	fleet "Large Aberrant" 18000
+	fleet "Small Aberrant" 18000
+	fleet "Large Aberrant" 24000
 	object
 		sprite star/g0-old
 		period 10
@@ -39921,6 +39920,8 @@ system Twirl
 	minables uranium 3 4.255
 	minables gold 6 1.872
 	fleet "Avgi Scouts" 18000
+	hazard "Predecessors Base Spatial Decay" 3000
+	hazard "Predecessors Spatial Rift Weak" 36000
 	hazard "Neutron Star Magnetic Field" 1
 	object
 		sprite star/neutron-core

@@ -207,6 +207,7 @@ hazard "Avgi Beamed Power"
 	"environmental effect" "power beaming" 12
 	weapon
 		"damage dropoff" 0 300
+		"energy damage" -90
 		"target effect" "power beaming" 60
 
 effect "power beaming"

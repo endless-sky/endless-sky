@@ -1264,7 +1264,7 @@ ship "Prismaios"
 		angle -90
 	gun 9 33
 		angle 90
-	turret 0 -54 "Vertical Launch Array"
+	turret 0 -48 "Vertical Launch Array"
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
 	turret 0 90 "Green Optical Laser"
@@ -1942,7 +1942,7 @@ ship "Atenuatia"
 	turret 0 -252 "Green Optical Laser"
 	turret 63 -195 "Blue Optical Laser"
 	turret -63 -195 "Blue Optical Laser"
-	turret 0 -96 "Vertical Launch Array"
+	turret 0 -105 "Vertical Launch Array"
 	turret 0 -36 "Speckle Turret"
 	turret 0 30 "Vertical Launch Array"
 	turret 0 96 "Green Optical Laser"
