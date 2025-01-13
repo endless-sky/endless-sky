@@ -29,11 +29,11 @@ government "Aberrant"
 
 	"penalty for"
 		assist 0
-		atrocity 0
 		disable 0
 		board 0
 		capture 0
 		destroy 0
+		atrocity 0
 
 government "Alpha"
 	swizzle 1
@@ -89,11 +89,11 @@ government "Avgi (Consonance)"
 		"Aberrant" -0.1
 
 	"penalty for"
-		atrocity 0
 		disable 0.3
 		board 0.2
 		capture 3
 		destroy 2
+		atrocity 0
 
 	bribe 0.3
 	fine 0
@@ -120,12 +120,12 @@ government "Avgi (Twilight Guard)"
 		"Aberrant" -0.1
 
 	"penalty for"
-		atrocity 0
 		disable 0.3
 		board 0.2
 		capture 3
 		destroy 2
 		provoke 0.1
+		atrocity 0
 
 	bribe 0
 	fine 0
@@ -157,12 +157,12 @@ government "Avgi (Dissonance)"
 
 	"custom penalties for"
 		"Avgi (Dissonance Angry)"
-			atrocity 0
 			disable 0
 			board 0.1
 			capture 1
 			destroy 1
 			provoke 0
+			atrocity 0
 
 	bribe 0.3
 	fine 0
@@ -216,13 +216,13 @@ government "Avgi (Wandering Fleet)"
 		"Aberrant" -0.1
 
 	"penalty for"
-		atrocity 0
 		disable 1
 		board 1
 		capture 3
 		destroy 2
 		provoke 0.1
 		scan 0.01
+		atrocity 0
 
 	bribe 0
 	fine 0

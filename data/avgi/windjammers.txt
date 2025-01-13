@@ -31,10 +31,10 @@ mission "Gossamer Sailors"
 	repeat
 	to offer
 		not "Gossamer Sailors: active"
+		not "avgi: windjammers change"
+		not "avgi: windjammers despawn"
 	to complete
 		never
-	on offer
-		fail "Gossamer Sailors"
 	npc save
 		government "Indigenous Lifeform (Tree)"
 		personality fleeing surveillance

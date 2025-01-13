@@ -14,12 +14,13 @@
 category "series"
 	# Weapons
 	"Avgi: Beams" 600
-	"Avgi: Missiles" 610
+	"Avgi: Kinetics" 610
+	"Avgi: Missiles" 620
 	# Systems
-	"Avgi: Shields" 620
-	"Avgi: Fuel" 630
-	"Avgi: Laminae" 640
-	"Avgi: Sensors" 650
+	"Avgi: Shields" 630
+	"Avgi: Fuel" 640
+	"Avgi: Laminae" 650
+	"Avgi: Sensors" 660
 	# Guns
 	"Guns: Successors" 800
 	# Turrets
@@ -39,7 +40,7 @@ category "series"
 	"Human: Plasma" 120
 	"Human: Atomic" 130
 	"Human: Afterburners" 140
-	"Avgi: Engines" 660
+	"Avgi: Thrusters" 670
 	"Engines: Successors" 800
 	# Licenses
 	"Licenses: Successors" 800

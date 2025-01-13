@@ -36,6 +36,8 @@ outfit "Speck Magazine"
 
 
 outfit "Speckle Coilgun"
+	series "Avgi: Kinetics"
+	index 10
 	category "Guns"
 	cost 40000
 	thumbnail "outfit/speckle coilgun"
@@ -65,6 +67,8 @@ outfit "Speckle Coilgun"
 	
 
 outfit "Speckle Turret"
+	series "Avgi: Kinetics"
+	index 20
 	category "Turrets"
 	cost 40000
 	thumbnail "outfit/speckle turret"

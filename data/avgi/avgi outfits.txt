@@ -273,7 +273,7 @@ outfit "Ultracapacitor Bank"
 # Engines:
 
 outfit "Magnetoplasma Drive"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 40
 	category "Engines"
 	"cost" 30000
@@ -306,7 +306,7 @@ outfit "Magnetoplasma Drive"
 
 outfit `Z-333 "Spark" Fusion Torch`
 	category "Engines"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 50
 	licenses
 		"Avgi Torch"
@@ -332,7 +332,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 
 outfit `Z-666 "Zap" Fusion Torch`
 	category "Engines"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 60
 	licenses
 		"Avgi Torch"
@@ -357,7 +357,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 
 outfit `Z-999 "Arc" Fusion Torch`
 	category "Engines"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 70
 	licenses
 		"Avgi Torch"
@@ -400,7 +400,7 @@ effect "large remass injection"
 
 
 outfit "Remass Injector"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 100
 	category "Engines"
 	licenses
@@ -420,7 +420,7 @@ outfit "Remass Injector"
 
 
 outfit "Inductive Extractor"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 90
 	category "Engines"
 	licenses
@@ -442,7 +442,7 @@ outfit "Inductive Extractor"
 
 outfit "R-180 RCS Thrusters"
 	plural "R-180 RCS Thrusters"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 10
 	category "Engines"
 	"cost" 221000
@@ -469,7 +469,7 @@ outfit "R-180 RCS Thrusters"
 
 outfit "R-360 RCS Thrusters"
 	plural "R-360 RCS Thrusters"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 20
 	category "Engines"
 	"cost" 473000
@@ -496,7 +496,7 @@ outfit "R-360 RCS Thrusters"
 
 outfit "R-720 RCS Thrusters"
 	plural "R-720 RCS Thrusters"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 30
 	category "Engines"
 	"cost" 1077000
@@ -523,7 +523,7 @@ outfit "R-720 RCS Thrusters"
 
 outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
-	series "Avgi: Engines"
+	series "Avgi: Thrusters"
 	index 80
 	"cost" 900000000
 	thumbnail "outfit/beam antimatter torch"
