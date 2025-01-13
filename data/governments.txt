@@ -1002,7 +1002,7 @@ government "Ka'het (Infighting)"
 	swizzle 0
 	language "Ka'het"
 
-	"default attitude" -0.1
+	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
 		"Indigenous Lifeform (Subsidurial)" 0
