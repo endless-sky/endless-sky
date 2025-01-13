@@ -1113,7 +1113,7 @@ government "Kor Sestor"
 	"default attitude" -0.1
 	"attitude toward"
 		"Author" 0
-		"Indigenous Lifeform (Subsidurial)" 0	
+		"Indigenous Lifeform (Subsidurial)" 0
 	
 	"player reputation" -1000
 
