@@ -560,6 +560,7 @@ outfit "Optical Laser Rifle"
 	"capture defense" 1.8
 	"unplunderable" 1
 	description "This slim laser rifle can be tuned to produce a beam across a wide spectrum of settings, resulting in a versatile small arm suitable for both ground combat and boarding operations. A solid-state emitter works anywhere between the near-infrared to blue-green, and with a wide range of power and pulse length settings. While the low end of the near-infrared range is nominally eye-safe, even a diffuse reflection of the visible light beam can cause instant blindness, so users of this rifle must wear specialized goggles that darken when exposed to bright light. Incidentally, this makes the Optical Laser Rifle especially dangerous for unprepared foes, such as unwelcome intruders or enemy boarding parties."
+	description "Both the aiming scope and laser aperture share the same focusing mirror, eliminating scope parallax and allowing auto-focusing optics to easily aim the beam at anything the user can see in the scope."
 
 
 outfit "Trefoil Board"
