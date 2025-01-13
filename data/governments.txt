@@ -989,14 +989,10 @@ government "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
+	"default attitude" -0.1
 	"attitude toward"
-		"Ka'het (Infighting)" -.01
-		"Remnant" -.01
-		"Remnant (Research)" -.01
-		"Quarg" -.01
-		"Hai" -.01
-		"Hai (Unfettered)" -.01
-		"Korath" -.01
+		"Author" 0
+		"Indigenous Lifeform (Subsidurial)" 0
 	
 	"player reputation" -1
 
@@ -1006,14 +1002,10 @@ government "Ka'het (Infighting)"
 	swizzle 0
 	language "Ka'het"
 
+	"default attitude" -0.1
 	"attitude toward"
-		"Ka'het" -.01
-		"Remnant" -.01
-		"Remnant (Research)" -.01
-		"Quarg" -.01
-		"Hai" -.01
-		"Hai (Unfettered)" -.01
-		"Korath" -.01
+		"Author" 0
+		"Indigenous Lifeform (Subsidurial)" 0
 	
 	"player reputation" -1
 
@@ -1096,9 +1088,10 @@ government "Kor Mereti"
 	color .43 .48 .87
 	language "Korath"
 	
+	"default attitude" -0.1
 	"attitude toward"
-		"Kor Sestor" -.01
-		"Wanderer" -.01
+		"Author" 0
+		"Indigenous Lifeform (Subsidurial)" 0
 	
 	"player reputation" -1000
 
@@ -1117,13 +1110,10 @@ government "Kor Sestor"
 	color 1 .36 .49
 	language "Korath"
 	
+	"default attitude" -0.1
 	"attitude toward"
-		"Kor Mereti" -.01
-		"Wanderer" -.01
-		"Republic" -.01
-		"Merchant" -.01
-		"Navy (Oathkeeper)" -.01
-		"Syndicate" -.01
+		"Author" 0
+		"Indigenous Lifeform (Subsidurial)" 0	
 	
 	"player reputation" -1000
 
