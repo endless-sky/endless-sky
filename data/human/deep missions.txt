@@ -6151,7 +6151,8 @@ mission "Hroar's Haulers 17"
 					goto Hrodny
 					to display
 						not "hrodny"
-				`	"There anything I can do?"`
+				`	"Looks like you're all good here."`
+					goto allgood
 				`	(Say nothing.)`
 			`	Yngvar narrows his eyes and then shrugs, "Fair enough. Ain't much to say. Just wish by Hel we had those ships. Don't much like upsetting folks of Rand. We do big business here. Anyways, there's not much else for you to do here. I gotta do a bit more talkin', but I'll see ya back on the <ship>."`
 			`	He turns from you and signals to the lurking representatives that they can approach him. A flurry of chatter about deadlines and goods trails after Yngvar.`
@@ -6177,9 +6178,45 @@ mission "Hroar's Haulers 17"
 			label Hrodny
 			action
 				set "hrodny"
-			`	"`
+			`	"That'd be Captain Hrodny Hildasdottir, Hroar's niece. She maintains a permenent Haulers fleet down here in the south. You can find 'em all over these parts, but she's headquartered on Wayfarer. We might see her on our way out."`
+			label hrodnychat
+			choice
+				`	"Hroar's niece?"`
+					goto niece
+					to display
+						not "niece"
+				`	"Why do you need a permenent southern fleet?"`
+					goto southernfleet
+					to display
+						not "sfleet"
+				`	"Thanks, I have no more questions about her."`
+					goto hrodnydone
+			label niece
+			action 
+				set "niece"
+				`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling shots."`
+				goto hrodnychat
+			label southernfleet
+			action
+				set "sfleet"
+			`	"Now, I know you've seen a starmap or two in your day, so this should come as no surprise. This region is flush in resources, and places that need 'em. We'd have to be a star short of constellation to not want a piece of that pie. So, we have a permenent fleet down here doing the work. We'll rotate ships evert so often, as folks tend to miss the Deep."`
+			goto hrodnychat
 
+			label hrodnydone
+			action
+				clear "niece"
+				clear "sfleet"
+			`	"Good, anything else you need?"`
+				goto yngvarchat
 
+			label allgood
+			action
+				clear "lagrange"
+				clear "whyhere"
+				clear "hrodny"
+			`	Yngvar nods, "Yeah, little rowdier than normal, but nothing like trouble we had back on Maker. I should be good to finish getting this all sorted out. We should be all loaded up in no time and ready to head for Lagrange. I'll meetchya back at the <ship>."`
+			`	He turns from you to engage with the remaining representatives.`
+				decline
 
 
 mission "Hroar's Haulers 17b"
