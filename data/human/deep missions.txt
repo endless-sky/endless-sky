@@ -6031,79 +6031,79 @@ mission "Yngvar Interlude"
 	on enter
 		conversation
 			`Yngvar finds you on the bridge. "Captain <last>, best we spoke."`
-		choice
-			`	"Sure, what about?"`
-				goto notgood
-				to display
-					has "brokecontract"
-			`	"Sure, what about?"`
-				goto sortagood
-				to display
-					has "makerhero"
-			`	"Sure, what about?"`
-				goto failed
-				to display
-					has "Hroar's Haulers 15: declined"
-			`	"Sure, what about?"`
-				goto paid
-				to display
+			choice
+				`	"Sure, what about?"`
+					goto notgood
+					to display
+						has "brokecontract"
+				`	"Sure, what about?"`
+					goto sortagood
+					to display
+						has "makerhero"
+				`	"Sure, what about?"`
+					goto failed
+					to display
+						has "Hroar's Haulers 15: declined"
+				`	"Sure, what about?"`
+					goto paid
+					to display
 					has "Hroar's Haulers 15: accepted"
-			`	"No."`
-		`	Yngvar frowns, and doesn't move, "Respectfully, Captain, I wasn't really asking. This might be your ship, but," He jabs a thumb toward the bulkhead and space beyond, "that's all our fleet. So, you listening?"`
-				choice
-			`	"Yeah, I am listening"`
-			`	(Nod.)`
-			`	(Say nothing.)`
-				goto notgood
-				to display
-					has "brokecontract"
-			`	"Yeah, I am listening"`
-			`	(Nod.)`
-			`	(Say nothing.)`
-				goto sortagood
-				to display
-					has "makerhero"
-			`	"Yeah, I am listening"`
-			`	(Nod.)`
-			`	(Say nothing.)`
-				goto failed
-				to display
-					has "Hroar's Haulers 15: declined"
-			`	"Yeah, I am listening"`
-			`	(Nod.)`
-			`	(Say nothing.)`
-				goto paid
-				to display
-					has "Hroar's Haulers 15: accepted"
+				`	"No."`
+			`	Yngvar frowns, and doesn't move, "Respectfully, Captain, I wasn't really asking. This might be your ship, but," He jabs a thumb toward the bulkhead and space beyond, "that's all our fleet. So, you listening?"`
+					choice
+				`	"Yeah, I am listening"`
+				`	(Nod.)`
+				`	(Say nothing.)`
+					goto notgood
+					to display
+						has "brokecontract"
+				`	"Yeah, I am listening"`
+				`	(Nod.)`
+				`	(Say nothing.)`
+					goto sortagood
+					to display
+						has "makerhero"
+				`	"Yeah, I am listening"`
+				`	(Nod.)`
+				`	(Say nothing.)`
+					goto failed
+					to display
+						has "Hroar's Haulers 15: declined"
+				`	"Yeah, I am listening"`
+				`	(Nod.)`
+				`	(Say nothing.)`
+					goto paid
+					to display
+						has "Hroar's Haulers 15: accepted"
 
-		label paid
-		`	"Means a lot to put your dime on the line for us." The old man nods slowly, "Don't be thinking we'll forget. We may not be able to make you whole, but we'll do what we can."`
-		`	"Now, the Syndies are about as trustworthy as the gravity in a trinary system, but this was new low even for them." Yngvar frowns thoughtfully, "Somethin' else is goin' on and we just got caught in the middle."`
-		`	"The loss of Solvi's fleet will sting. Moving folks about is a nice way to earn extra income, but the Long Haul will survive. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it." The old spacer turns and leaves you to your bridge.`
-			to display
-				has "paidsome"
-		`	"Getting Solvi's crew outta there will pay dividends. Moving Folks about is a nice way to earn extra income, and there's still lots of folk to move 'fore the Long Haul is done." He lays a scarred hand on your shoulder, "A hirthr looks after their fleet, and that's just what'chya did in there." Yngvar squeezes your shoulder and leaves you to the bridge.`
-			to display
-				not "paidsome"
-			decline
-		label notgood
-		`	"<last>, that was some piss poor negotiating." Yngvar's face is red, "That contract was critical to our operations; kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
-		choice
-			`	"I did what I thought was right."`
-			`	"Sorry."`
-			`	(Say nothing.)`
-		`	Yngvar paces angerily around the bridge for several uncomfortable moments before finally stopping before you, "Naught can be done about it now. The Long Haul still comes first." He turns and storms out.`
-			decline
-		label sortagood
-		`	"I am sure you're thinking you're somethin' special. The other Haulers probably already writin' a song about your deeds. The Brawler of Maker or some skitr." Yngvar shakes his head gravely, "But you ain't a hero, and when those Haulers are struggling for work because you just cost us our most lucrative contract - they won't think so either."`
-		`	Yngvar taps his scarred skull, "Being a hirthr, a leader, is about being above the fray. Making the smart calls, even when they feel wrong." He points out toward black space beyond your ship, "The Gap don't care about songs, or who deserved what, only who is smart enough to suvive. Next time try thinking."`
-		`	He pasues, looks at you disappointingly, and then leaves the bridge.`
-			decline
-		label failed
-		`	Yngvar's face is stern and unhappy, "With all the bluster we blow about the Syndies you'd likely 'spect what happened back there was just another Tuesday." He shakes his head, "'Cept it wasn't. We have our disagreements but we also have our understandings. A few drunken Haulers at the Watering Hole is about as regular as a pulsar and they always let us be."`
-		`	The old spacer paces thoughtfully around your bridge, "No, this was different. Somethin' is up. I they they were trying to get us to break their contract. But, I'm not sure why. It's a big contract for us, keeps a lot of Hauler's solvent, but for the Syndicate it's small potatoes."`
-		`	He shakes his head, "Figurin' that out will have to wait. We gotta stay focused on the Long Haul. Not having Solvi's passanger fleet will hurt, but it won't break us is either. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it."`
-			decline
+			label paid
+			`	"Means a lot to put your dime on the line for us." The old man nods slowly, "Don't be thinking we'll forget. We may not be able to make you whole, but we'll do what we can."`
+			`	"Now, the Syndies are about as trustworthy as the gravity in a trinary system, but this was new low even for them." Yngvar frowns thoughtfully, "Somethin' else is goin' on and we just got caught in the middle."`
+			`	"The loss of Solvi's fleet will sting. Moving folks about is a nice way to earn extra income, but the Long Haul will survive. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it." The old spacer turns and leaves you to your bridge.`
+				to display
+					has "paidsome"
+			`	"Getting Solvi's crew outta there will pay dividends. Moving Folks about is a nice way to earn extra income, and there's still lots of folk to move 'fore the Long Haul is done." He lays a scarred hand on your shoulder, "A hirthr looks after their fleet, and that's just what'chya did in there." Yngvar squeezes your shoulder and leaves you to the bridge.`
+				to display
+					not "paidsome"
+				decline
+			label notgood
+			`	"<last>, that was some piss poor negotiating." Yngvar's face is red, "That contract was critical to our operations; kept a lot of Haulers solvent. It was sure as Hel worth more than a handful of crews in the drunk tank."`
+			choice
+				`	"I did what I thought was right."`
+				`	"Sorry."`
+				`	(Say nothing.)`
+			`	Yngvar paces angerily around the bridge for several uncomfortable moments before finally stopping before you, "Naught can be done about it now. The Long Haul still comes first." He turns and storms out.`
+				decline
+			label sortagood
+			`	"I am sure you're thinking you're somethin' special. The other Haulers probably already writin' a song about your deeds. The Brawler of Maker or some skitr." Yngvar shakes his head gravely, "But you ain't a hero, and when those Haulers are struggling for work because you just cost us our most lucrative contract - they won't think so either."`
+			`	Yngvar taps his scarred skull, "Being a hirthr, a leader, is about being above the fray. Making the smart calls, even when they feel wrong." He points out toward black space beyond your ship, "The Gap don't care about songs, or who deserved what, only who is smart enough to suvive. Next time try thinking."`
+			`	He pasues, looks at you disappointingly, and then leaves the bridge.`
+				decline
+			label failed
+			`	Yngvar's face is stern and unhappy, "With all the bluster we blow about the Syndies you'd likely 'spect what happened back there was just another Tuesday." He shakes his head, "'Cept it wasn't. We have our disagreements but we also have our understandings. A few drunken Haulers at the Watering Hole is about as regular as a pulsar and they always let us be."`
+			`	The old spacer paces thoughtfully around your bridge, "No, this was different. Somethin' is up. I they they were trying to get us to break their contract. But, I'm not sure why. It's a big contract for us, keeps a lot of Hauler's solvent, but for the Syndicate it's small potatoes."`
+			`	He shakes his head, "Figurin' that out will have to wait. We gotta stay focused on the Long Haul. Not having Solvi's passanger fleet will hurt, but it won't break us is either. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it."`
+				decline
 
 mission "Hroar's Haulers 16"
 	landing
@@ -6128,9 +6128,59 @@ mission "Hroar's Haulers 17"
 		has "Hroar's Haulers 15: declined"
 	on offer
 		conversation
-			`You find Yngvar in the Trade building, surrounded by a swarm of officials and representatives from Rand.`
-			`	"No transport? What am I supposed to tell them? They've been waiting for weeks!" One of them officials yells.`
-			`	"Wait for the next fleet! Hrodny will be able to move most of 'em next time she comes through." `
+			`You find Yngvar in the large unadorned building labeled "Trade". He's surrounded by a swarm of officials and representatives from Rand.`
+			`	"No transport? What am I supposed to tell them? They've been waiting for weeks!" One of the officials yells.`
+			`	"Wait for the next fleet! Hrodny will be able to move most of 'em next time she comes through." Yngvar's voice rages back.`
+			`	"Whose going to pay for that? They need Discounts! Refunds!"`
+			`	"Enough!" Yngvar holds out his thick hands, and the room quiets, "No discounts. The trip costs what the trip costs. If they want refunds, fine. But that won't get them to Humanika any faster."`
+			`	A few of the more agitated officials seem to calm at that.`
+			`	"Now." Yngvar continues, "We still got plenty of ships that need seeing too. The faster you get your goods loaded, the faster they'll get to Lagrange, and we all get paid."`
+			`	At that the crowd thinned, though a few people stayed back, clearly intending to falk to Yngvar further. Yngvar ignores them and instead approaches you.`
+			`	"Captain <last>." He says, "As you can see we're not the only folk fouled up by Solvi and his fleet getting locked up. Feels like half the planet was hoping to hitch a ride with us."`
+			label yngvarchat
+			choice
+				`	"I didn't think Lagrange was that popular."`
+					goto lagrange
+					to display
+						not "lagrange"
+				`	"What are we doing here."`
+					goto whyhere
+					to display
+						not "whyhere"
+				`	"Who is Hrodny?"`
+					goto Hrodny
+					to display
+						not "hrodny"
+				`	"There anything I can do?"`
+				`	(Say nothing.)`
+			`	Yngvar narrows his eyes and then shrugs, "Fair enough. Ain't much to say. Just wish by Hel we had those ships. Don't much like upsetting folks of Rand. We do big business here. Anyways, there's not much else for you to do here. I gotta do a bit more talkin', but I'll see ya back on the <ship>."`
+			`	He turns from you and signals to the lurking representatives that they can approach him. A flurry of chatter about deadlines and goods trails after Yngvar.`
+			action
+				clear "lagrange"
+				clear "whyhere"
+				clear "hrodny"
+				decline
+
+			label lagrange
+			action
+				set "lagrange"
+			`	"The folk ain't headed for Lagrange, it's Humanika they got their eye on. Spend some time on Rand, working for megacorps and hyper-capitalists, and a'fore long you'll find yourself pining for some alien overlords of your own." Yngvar gives you half mischievous grin.`
+			`	"Least, that's what I reckon is going on here. News likes to make it sound different, like folks are afraid of alien rulers, but down here in the south, it's the human ones you gotta keep your eye one." He points to his one good eye.`
+			`	"Now, need anything else?"`
+				goto yngvarchat
+			
+			label whyhere
+			action
+				set "whyhere"
+			`	"It's not much different from Maker. We're dropping off the last of our quality mining equipment, and filling our hulls to absolute max with their cheap raw materials. Maximizing our profits for when we hit Lagrange. We normally also fill our bunks with migrant workers eager to get off this world. But without Solvi's fleet that's not happening this time around."`
+			goto yngvarchat
+			label Hrodny
+			action
+				set "hrodny"
+			`	"`
+
+
+
 
 mission "Hroar's Haulers 17b"
 	name "The Long Haul"
