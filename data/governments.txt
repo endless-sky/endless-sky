@@ -973,6 +973,7 @@ government "Indigenous Lifeform (Astral)"
 government "Indigenous Lifeform (Subsidurial)"
 	# This indigenous gov is specifically for the Subsidurial, so that nothing in the game tries to hurt the poor thing.
 	"player reputation" 1
+	"display name" "Indigenous Lifeform"
 	"bribe" 0
 	"fine" 0
 
