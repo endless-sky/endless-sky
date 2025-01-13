@@ -119,6 +119,8 @@ outfit "Pollen"
 	thumbnail "outfit/pollen particle"
 	"flotsam sprite" "effect/flotsam pollen particle"
 	"mass" 0.3
+	"installable" -1
+	"minable" 1
 	"flotsam chance" 0.6
 	description "This granule of exotic Windjammer pollen is not only replete with nutritous proteins, but also appears to contain valuable platinum group elements bound in organic molecules. This includes a collection of complex enzymes, which appear to be capable of catalyzing many difficult reactions with ease."
 	description "	Achoo!"
@@ -130,6 +132,8 @@ outfit "Jamfruit"
 	thumbnail "outfit/jamfruit pod"
 	"flotsam sprite" "effect/flotsam jamfruit pod"
 	"mass" 0.3
+	"installable" -1
+	"minable" 1
 	"flotsam chance" 0.3
 	description "Closer to a berry than a fruit, this tart prize of a Windjammer tree is not only delicious, but is rich in nutrients. It can be refined to extract a variety of useful medicinal compounds, giving it value both as a delicacy and as a remedy."
 
