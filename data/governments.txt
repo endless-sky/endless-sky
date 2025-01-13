@@ -1088,7 +1088,7 @@ government "Kor Mereti"
 	color .43 .48 .87
 	language "Korath"
 	
-	"default attitude" -0.1
+	"default attitude" -0.01
 	"attitude toward"
 		"Author" 0
 		"Indigenous Lifeform (Subsidurial)" 0
@@ -1110,7 +1110,7 @@ government "Kor Sestor"
 	color 1 .36 .49
 	language "Korath"
 	
-	"default attitude" -0.1
+	"default attitude" -0.01
 	"attitude toward"
 		"Author" 0
 		"Indigenous Lifeform (Subsidurial)" 0
