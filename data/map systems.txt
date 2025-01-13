@@ -18823,8 +18823,8 @@ system Gossamer
 	haze _menu/haze-twilight-thick
 	link Whirlwind
 	minables "small water droplet" 180 1.8
-	minables "medium water droplet" 60 0.9
-	minables "large water droplet" 30 0.5
+	minables "medium water droplet" 90 0.9
+	minables "large water droplet" 45 0.5
 	minables "integral tree a" 6 1.5
 	minables "integral tree b" 9 1.8
 	minables "integral tree c" 1 3
@@ -18837,6 +18837,7 @@ system Gossamer
 	object
 		sprite "star/smoke ring"
 			scale 1.5
+			"frame rate" 0.15
 		period 914.299
 		offset 180
 	object Kapnos
