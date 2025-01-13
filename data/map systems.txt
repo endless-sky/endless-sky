@@ -18840,7 +18840,7 @@ system Gossamer
 		period 914.299
 		offset 180
 	object Kapnos
-		sprite planet/gas11
+		sprite planet/neptune-b
 		distance 2373.73
 		period 914.298
 

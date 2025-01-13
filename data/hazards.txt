@@ -226,8 +226,34 @@ effect "power beaming"
 
 
 hazard "Smoke Ring Atmosphere"
-	range 2000 2600
+	range 1800 3000
 	"constant strength"
 	weapon
 		"shield damage" 0.6
-		"relative heat damage" 0.003
+		"relative heat damage" 0.0009
+		"target effect" "airstream 1" 6
+		"target effect" "airstream 2" 6
+
+effect "airstream 1"
+	sprite "effect/leak big"
+		"start frame" 2
+		"no repeat"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 60
+	"random lifetime" 60
+	"random angle" 12
+	"random spin" 180
+	"velocity scale" 0
+
+effect "airstream 2"
+	sprite "effect/leak"
+		"start frame" 2
+		"no repeat"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 60
+	"random lifetime" 90
+	"random angle" 15
+	"random spin" 180
+	"velocity scale" 0
