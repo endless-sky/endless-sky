@@ -644,8 +644,8 @@ outfit "Orchid Divert"
 		"hit effect" "fission fragments" 240
 		"die effect" "nettle split" 30
 		"lifetime" 300
-		"acceleration" 0.09
-		"drag" 0.006
+		"acceleration" 0.3
+		"drag" 0.018
 		"turn" 3
 		"homing" 4
 		"radar tracking" 0.9
