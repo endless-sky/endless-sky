@@ -818,13 +818,13 @@ mission "Republic 300 Year Anniversary"
 			`	Not all is well, of course, as the bombing of Geminus and Martini appears to have set the Republic on the precipice of war with the Free Worlds, in the southern portion of human space. You can't help but feel that the cheerfulness of the spaceport celebration has more to do with the national holiday than with a deep-rooted appreciation for the Republic's history and what it stands for.`
 				goto end
 			label "war over"
-			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear conflict loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
+			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear war loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
 			branch "zenith bombed"
 				has "Wanderers: Sestor: Return to Wanderers: done"
 			branch "sestor beaten at farpoint"
 				has "Wanderers: Sestor Alt: Return to Wanderers: done"
 			label end
-			`	You decide to take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, having a couple of drinks, speaking to some of the locals, and partying with a few revelers. Once it's getting late, you head back to your ship, and reflect on the meaning of this day throughout human space.`
+			`	You decide to take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, have a couple of drinks, speak to some of the locals, and party with a few revelers. Once it's getting late, you head back to your ship, and reflect on the meaning of this day throughout human space.`
 				decline
 			label "zenith bombed"
 			`	Dimming the mood of the otherwise mostly positive news titles are the comments about a mysterious armada of robotic warships invading the Far North. Having crushed the Navy forces over Farpoint, the fleet was only partially beaten after the detonation of a terrible bomb on Zenith, which wrecked much of the planet. Indeed, it was weeks still before the scattered ships were fully destroyed, and confidence in the Navy's - and by extension the Republic's - ability of keeping humanity safe seems to have been affected significantly...`
