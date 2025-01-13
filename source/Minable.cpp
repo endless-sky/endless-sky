@@ -80,9 +80,9 @@ void Minable::Load(const DataNode &node)
 		else if(key == "sprite")
 		{
 			LoadSprite(child);
-			for(const auto &grand : child)
-				if(grand.Token(0) == "frame rate")
-					useRandomFramerate = false;
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "frame rate" || grand.Token(0) == "frame time")
+					useRandomFrameRate = false;
 		}
 		else if(key == "hull")
 			hull = child.Value(1);
@@ -183,7 +183,7 @@ void Minable::Place(double energy, double beltRadius)
 	// Start the object off with a random facing angle and spin rate.
 	angle = Angle::Random();
 	spin = Angle::Random(energy) - Angle::Random(energy);
-	if(useRandomFramerate)
+	if(useRandomFrameRate)
 		SetFrameRate(Random::Real() * 4. * energy + 5.);
 	// Choose a random direction for the angle of periapsis.
 	rotation = Random::Real() * 2. * PI;
