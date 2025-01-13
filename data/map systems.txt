@@ -9260,7 +9260,7 @@ system Caesura
 	hazard "Small Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
 	object
-		sprite star/coal-black-hole
+		sprite star/small-black-hole
 		period 10
 	object
 		sprite star/neutron-core
