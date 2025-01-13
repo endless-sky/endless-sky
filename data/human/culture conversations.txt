@@ -815,7 +815,13 @@ mission "Republic 300 Year Anniversary"
 			`	Originally formed by Earth and planets close to it, the Rim, and a few Dirt Belt worlds, the Republic went on to gradually expand and incorporate the Syndicate, Paradise Worlds, and the Deep. For three hundred years now, most of humanity has existed under its flag, and through protests and the space renaissance, waves of colonization, expansion, and battles against remnants of the Alphas, that flag remains flying over most human worlds today.`
 			branch "war over"
 				has "main plot completed"
+			branch "war ongoing"
+				has "chosen sides"
+				not "main plot completed"
 			`	Not all is well, of course, as the bombing of Geminus and Martini appears to have set the Republic on the precipice of war with the Free Worlds, in the southern portion of human space. You can't help but feel that the cheerfulness of the spaceport celebration has more to do with the national holiday than with a deep-rooted appreciation for the Republic's history and what it stands for.`
+				goto end
+			label "war ongoing"
+			`	The ongoing war with the Free Worlds has greatly diminished what the Republic Deparment of Arts and Culture no doubt hoped to turn into the public event of the year, as local workers and merchant captains alike whisper among themselves, Navy personnel march to and from warships that come and go at an alarming rate, seemingly unfazed by the historical date, and some bar fights break out between likely inebriated local patriots, and those reckless enough to voice their support for the Free Worlds here.`
 				goto end
 			label "war over"
 			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear war loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
@@ -824,6 +830,13 @@ mission "Republic 300 Year Anniversary"
 			branch "sestor beaten at farpoint"
 				has "Wanderers: Sestor Alt: Return to Wanderers: done"
 			label end
+			choice
+				`	(Celebrate the Republic's 300th anniversary.)`
+					goto celebrate
+				`	(Go on about your day as usual.)`
+			`	You switch your media channels off from the celebrations, and get to your ship's system checks. Once you're done, you spend the rest of the day in the cockpit, thinking up the next course for you to chart, and head to your bunk at night, for the end of just another day.`
+				decline
+			label celebrate
 			`	You decide to take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, have a couple of drinks, speak to some of the locals, and party with a few revelers. Once it's getting late, you head back to your ship, and reflect on the meaning of this day throughout human space.`
 				decline
 			label "zenith bombed"
