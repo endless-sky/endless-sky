@@ -1,7 +1,10 @@
 Version 0.10.11
+  * Big changes:
+    * Systems and planets can now have display names. (@TomGoodIdea)
+    * Added a new map mode that draws star graphics instead of rings. (@Azure3141)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Anarchist2, @ImprovidesUsername, @mOctave, @TheGiraffe3, @tibetiroka, @xobes)
+      * Typo fixes. (@Anarchist2, @ImprovidesUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
       * Improved the handling of Dusk being unavailable (due to other missions already being in progress) in Remnant and Ka'het story missions. (@warp-core)
       * Made various other improvements to Remnant missions: (@warp-core)
         * Better continuity about whether Taely is met in the Tech Retrieval or Face to Maw missions first.
@@ -20,6 +23,7 @@ Version 0.10.11
       * Increased the number of "Star Tail Cell"s on the Venta to match the total ammunition capacity of all its installed outfits. (@Arachi-Lover)
       * Removed an instance of the player character using the phrase "The Embers" before ever encountering a Remnant saying it. (@roadrunner56)
       * Removed incorrect uses of "has" in condition expressions with other comparisons, and corrected uses of "=" (assignment) where equality comparison is needed. (@TheGiraffe3)
+      * The Wanderer tribute fleet on Kort Vek'kri will now be removed when it is taken over by the Unfettered. (@TheGiraffe3)
     * Engine bugs:
       * Outfits from cargo that were stored on take off will no longer be counted as part of sold outfits in the income message. (@Anarchist2)
       * Starts with invalid planets will now fall back to New Boston. (@TomGoodIdea)
@@ -31,6 +35,11 @@ Version 0.10.11
       * The flagship and target sprites in the HUD in the "fast" outline mode will now have the correct swizzle applied. (@xobes)
       * Corrected the output format of Date::LongString. (@warp-core)
       * Fixed an issue where "on fail" missions actions would not always be allowed to trigger. (@tibetiroka)
+      * Fixed some edge cases in the boarding panel interface where some buttons and inputs had unexpected effects. (@warp-core)
+      * Improved game loading progress checking and prevented possibly undefined behaviour in some edge cases. (@warp-core)
+      * The target display will no longer leak information about changes in state of a target that has left the current system that the player should not have access to. (@warp-core, @petervdmeer)
+      * Fixed an issue where stopover/waypoint markers in the map would disappear if the destination system has too many markers. (@warp-core)
+      * Fixed an issue where weapon jamming was being accumulated incorrectly. (@TomGoodIdea)
   * Game content:
     * New content:
       * Hai start. (@Hurleveur, @Anarchist2, @TheGiraffe3)
@@ -48,11 +57,19 @@ Version 0.10.11
       * Added more hails and ship names for the Sucessors. (@Daeridanii1)
       * Added an easter egg to Freya's epilogue conversation. (@ImprovisedUsername, @Zitchas)
       * Created a new mission chain featuring a stowaway. (@SpearDane, @bene-dictator)
+      * Added a "Gegno Unwelcoming" mission that appears if the player manages to land on a Gegno planet (through a previously accepted mission granting clearance) while the Gegno are hostile to them. (@Saugia)
+      * Created a chain of missions about saving a person named Ildico. (@SpearDane, @bene-dictator)
     * Mission changes:
       * "FW Southern Recon 1B" now marks the systems of interest where lone Electron Beam carrying Gunboats can be found. (@TheGiraffe3)
       * The "Tarazed neutrality" event will now apply immediately when "FW Syndicate Diplomacy 1C" is offered, instead of on take off. (@Anarchist2)
       * The missions in the "FW Escort" chain are no longer separated by visits to the spaceport; each subsequent mission will be offered immediately upon landing and completing hte previous. (@Anarchist2)
       * Increased the offer rate of "Coalition Incident: Ring of Wisdom" from 1% to 3%. (@TheGiraffe3)
+      * Removed "Remnant: Face to Maw 1B" and integrated its functionality into "Remnant: Face to Maw 1" to improve maintainability and prevent edge case problems. (@warp-core)
+      * Improved the functionality of the Remnant tech retrieval missions to remove some jankiness. (@warp-core)
+      * The spaceport reminder resetter mission is now "non-blocking" and so will reset the spaceport reminder timer every time the player checks the spaceport, instead of only when no missions are offered. (@ziproot)
+      * Reduced the number of "gegno encounters" needed to receive the mission "Gegno Suspicions" from three to one. (@Saugia)
+    * Graphics:
+      * Modified the sprite for the "Systems Core (Tiny)" to better match the other Systems Cores. (@Anarchist2)
     * Balance:
       * Rebalanced and nerfed turret turn rates. (@Hecter94)
         * Todo: details.
@@ -67,11 +84,18 @@ Version 0.10.11
         * Nest: 1.7 -> 9.8
         * Roost: 16.1 -> 10.7
         * Skein: 17.5 -> 11.6
+      * Made significant changes to the Carrier, and smaller changes to the Aerie. (@Saugia)
+        * Todo: details
+      * Reduced the missile strength of the Pug Seeker from 40 to 10 to make human anti-missiles less useless against it. (@Quantumshark)
     * Other:
       * Expanded the description of the Finisher Torpedo. (@Arachi-Lover)
       * The engine flares on the Lance are no longer scaled down. (@Anarchist2)
       * Adjusted the description of the Slate. (@Saugia)
       * Doubled the spawn period of the "Korsmanath A'awojs" fleet. (@Quantumshark)
+      * Slightly tweaked some wording in "Successors: Predecessor Research 1". (@nathan-b)
+      * Systems in the Umbral Reach are no longer "shrouded". (@Saugia)
+      * Reworded the description of Viminal to improve its readability. (@NateEag)
+      * Changed wording for declining choices in the Free Worlds prologue missions to make them more direct. (@Anarchist2)
   * Game mechanics:
     * New mechanics:
       * Added a "cloaked ship permeability" attribute which wllows some damage to pass through a ships shields while it is cloaked. (@Quantumshark)
@@ -79,8 +103,12 @@ Version 0.10.11
       * Special log entries can now be removed by mission triggers and conversation actions. (@TomGoodIdea)
       * Outfits that provide both hyperdrive and jump drive capabilities can now consume different amounts of fuel for each using the "hyperdrive fuel" and "jump drive fuel" attributes, and default fuel values will now be set on outfits that do not provide values. (@TomGoodIdea, @tibetiroka)
       * Added support for stellar objects to be hidden based on the player's distance to them. (@tibetiroka)
+      * Defined a new type of mission, "non-blocking", which, unlike all other missions, will not prevent "minor" missions from offering. (@warp-core)
+      * Added various new scanner attributes that work similarly to tactical scan, and individual attributes for each piece of data the tactical scanner provides. (@Zitchas, @VitalChip, @Hurleveur)
+      * Added a way for non-job missions to offer upon entering the job board, similarly to the spaceport, shipyard, and outfitter, in addition to the listed available jobs. (@Anarchist2)
     * Mechanics changes:
       * Ships will be brought to an absolute stop when their speed is very low. (@tibetiroka)
+      * System fleets and system and stellar object hazards can be given "to spawn" condition sets. (@UnorderedSigh)
   * User interface:
     * The parentheses around commodity price differences in the map panel can now be disabled. (@Just-Existing)
     * The outfitter will now list all the reasons an outfit cannot be bought or installed. (@HungryBear, @alextd, @warp-core)
@@ -89,6 +117,13 @@ Version 0.10.11
     * If mouse steering is enabled, the flagship will now also turn towards the cursor while reverse thrusting. (@SomeTroglodyte)
     * Replaced the text on the "Load / Save..." button on the main menu to "Manage Pilots..." (@xobes)
     * Sound effects will now be paused when the menu is opened. (@tibetiroka)
+    * Added a help message describing how to display help messages on demand. (@ziproot)
+    * Off-world escorts will now show their own cargo instead of the player's pooled cargo in the ship info panel when landed on a planet. (@SomeTroglodyte)
+    * Outfits with empty category or display names will no longer be listed in the outfit scan dialog, ship info panel, or shipyard panel. (@tibetiroka)
+    * Added an audible notification when entering a system containing destination planet(s) of active missions. (@a-random-lemurian, @ziproot)
+    * Selecting multiple ships of the same model in the outfitter will highlight outfit counts where not all selected ships have the same number installed. (@SomeTroglodyte)
+    * The scan progress overlay will be dimmed when out of scan range while a scan is in progress. (@warp-core)
+    * The 'k' key, or "shift+p" can now be used to park and unpark selected ships in the shipyard and outfitter. (@nickshanks)
   * Under the hood:
     * Refactored DistanceMap. (@alextd)
     * Corrected a comment on Armament::Fire. (@TomGoodIdea)
@@ -96,6 +131,14 @@ Version 0.10.11
     * Status overlay types now have meaningful names via an enum class instead of using numeric literals. (@warp-core)
     * Added validation and warnings for condition, event, and missiong names. (@petervdmeer)
     * Moved the condition assignment interface to its own class. (@petervdmeer)
+    * Moved the OpenGL shader source code files into their own subfolder in the source directory. (@tibetiroka)
+    * Refactored the Dialog class to give meaningful names to some numeric literals. (@tibetiroka)
+    * Added support for advancing the in game date by arbitrary amounts, to lay future support for "time travel". (@tibetiroka)
+    * The "random" condition is now a registered derived condition, instead of being a special case in ConditionSet. (@petervdmeer)
+    * Switched the Files class from using std::strings to store paths to using std::filesystem members. (@tibetiroka)
+    * Removed unused "Erase" and "EraseFunction" functionality in ConditionsStore and ConditionsStore::DerivedProvider classes, respectively. (@petervdmeer)
+  * Documentation:
+    * Added a deprecation warning to scons. (@TomGoodIdea)
   * CI/CD and development environment:
     * Removed "%" characters from the names of conditions and game objects used in integration tests. (@petervdmeer)
     * Updated the version vcpkg that is used for retrieving and building dependencies. (@TomGoodIdea)
@@ -103,6 +146,12 @@ Version 0.10.11
     * Removed some exclusions for the codespell GitHub Action that are no longer necessary. (@TheGiraffe3)
     * Added editorconfig entries for .json and ,py files. (@warp-core)
     * Added a CI job that builds for and tests in an ARM MacOS environment. (@warp-core)
+    * Added various new missions to the list of missions disabled when running integration tests. (@TheGiraffe3, @petervdmeer)
+    * Expanded the code style checker to support some Doxygen style comments. (@petervdmeer, @tibetiroka)
+    * Significantly reduced the allowed time before an integration test times out. (@tibetiroka)
+    * Added support for integration tests to print debug messages defined in the test script. (@petervdmeer)
+    * Fixed some clangd errors in cmake project files. (@Koranir)
+    * Added checks for punctuation around closing parentheses to the content style checker. (@Koranir)
 
 Version 0.10.10
   * Big changes:
