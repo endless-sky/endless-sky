@@ -142,14 +142,16 @@ ship "Windjammer"
 		"cargo space" 150
 		"outfit space" 250
 		"weapon capacity" 30
-		"cooling" 30
-		"overheat damage threshold" -0.06
-		"overheat damage rate" 2.1
+		"cooling" 300
+		"overheat damage threshold" 0.66
+		"overheat damage rate" -0.06
 		"disabled recovery timer" 720
 		"thrust" 44
 		"turn" 720
 		"hull repair rate" 3
 		"solar collection" 24
+		"solar heat" 3
+		"inscrutable" 1
 		"atmosphere scan" 1
 		weapon
 			"blast radius" 40
@@ -293,13 +295,15 @@ ship "Bluejacket"
 		"outfit space" 250
 		"weapon capacity" 30
 		"cooling" 30
-		"overheat damage threshold" -0.06
-		"overheat damage rate" 2.1
+		"overheat damage threshold" 0.66
+		"overheat damage rate" -0.06
 		"disabled recovery timer" 720
 		"thrust" 22
 		"turn" 1440
 		"hull repair rate" 3
 		"solar collection" 24
+		"solar heat" 3
+		"inscrutable" 1
 		"atmosphere scan" 1
 		weapon
 			"blast radius" 100
@@ -403,14 +407,16 @@ ship "Pollen"
 		"bunks" 1
 		"mass" 1
 		"drag" .3
-		"heat dissipation" .85
+		"heat dissipation" .99
 		"outfit space" 10
 		"cooling" 6
-		"thrust" 3
-		"turn" 14
 		"overheat damage threshold" -0.33
 		"overheat damage rate" 0.3
+		"thrust" 3
+		"turn" 14
+		"solar collection" 3
 		"atmosphere scan" 1
+		"inscrutable" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
