@@ -431,11 +431,11 @@ minable "small water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 300
+	hull 150
 	"random hull" 150
 	payload "Voidfish" 3
 		"toughness" 900
-	explode puff
+	explode "droplet burst" 3
 
 minable "medium water droplet"
 	"display name" Medium
@@ -445,11 +445,11 @@ minable "medium water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 600
+	hull 300
 	"random hull" 300
 	payload "Voidfish" 30
 		"toughness" 1800
-	explode puff
+	explode "droplet burst" 6
 
 minable "large water droplet"
 	"display name" Large
@@ -458,11 +458,11 @@ minable "large water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 1500
+	hull 900
 	"random hull" 600
 	payload "Voidfish" 60
 		"toughness" 4500
-	explode puff
+	explode "droplet burst" 12
 
 outfit "Voidfish"
 	category "Minerals"
@@ -476,6 +476,22 @@ outfit "Voidfish"
 	description "These are a collection of numerous species of voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze-dried, they are surprisingly appetizing, and equally nourishing."
 
 
+effect "droplet burst"
+	sprite "effect/puff"
+		"frame rate" 12
+		"no repeat"
+		"scale" 0.5
+	sound "bombardment"
+	"random angle" 360
+	"random spin" 3
+	"lifetime" 15
+	"random lifetime" 15
+	"random velocity" 9
+	"velocity scale" 0
+
+
+
+
 minable "integral tree a"
 	"display name" Integral
 	noun Tree
@@ -484,6 +500,7 @@ minable "integral tree a"
 	"random hull" 1200
 	payload "Integral Wood" 120
 		"toughness" 3600
+		"drop rate" 0.6
 	explode "timber" 30
 
 minable "integral tree b"
@@ -494,6 +511,7 @@ minable "integral tree b"
 	"random hull" 300
 	payload "Integral Wood" 30
 		"toughness" 1800
+		"drop rate" 0.6
 	explode "timber" 6
 
 minable "integral tree c"
@@ -504,6 +522,7 @@ minable "integral tree c"
 	"random hull" 600
 	payload "Integral Wood" 60
 		"toughness" 3600
+		"drop rate" 0.6
 	payload "Platinum" 120
 		"toughness" 10800
 	explode "timber" 12
@@ -516,6 +535,7 @@ minable "integral tree d"
 	"random hull" 600
 	payload "Integral Wood" 60
 		"toughness" 3600
+		"drop rate" 0.6
 	payload "Gold" 120
 		"toughness" 10800
 	explode "timber" 12
@@ -528,14 +548,16 @@ minable "integral tree e"
 	"random hull" 600
 	payload "Integral Wood" 120
 		"toughness" 3600
+		"drop rate" 0.3
 	explode "timber" 30
 
 effect "timber"
 	sprite "effect/flotsam integral wood"
-	"random angle" 360
+	sound "crunch"
+	"random angle" 180
 	"random lifetime" 120
 	"random velocity" 3
-	"velocity scale" 0
+	"velocity scale" 0.3
 
 outfit "Integral Wood"
 	category "Minerals"

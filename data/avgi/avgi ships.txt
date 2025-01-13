@@ -1224,7 +1224,7 @@ ship "Prismaios"
 	outfits
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Vertical Launch Array"
+		"Medium VLS"
 		`"Nettle" KKV` 216
 		"Green Optical Laser"
 
@@ -1264,7 +1264,7 @@ ship "Prismaios"
 		angle -90
 	gun 9 33
 		angle 90
-	turret 0 -48 "Vertical Launch Array"
+	turret 0 -48 "Medium VLS"
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
 	turret 0 90 "Green Optical Laser"
@@ -1363,7 +1363,7 @@ ship "Interferos"
 			"hit force" 900
 	outfits
 		"Green Optical Laser"
-		"Vertical Launch Array" 2
+		"Medium VLS" 2
 		`"Nettle" KKV` 432
 
 		"Ultracapacitor Cell" 3
@@ -1474,7 +1474,7 @@ ship "Diaspersi"
 		"Green Optical Laser" 2
 		"Speckle Turret"
 		"Speck Round" 2400
-		"Vertical Launch Array"
+		"Medium VLS"
 		"Nettle Magazine" 6
 		`"Nettle" KKV` 648
 		
@@ -1498,7 +1498,7 @@ ship "Diaspersi"
 		angle -90
 	gun 18 -9
 		angle 90
-	turret 0 -12 "Vertical Launch Array"
+	turret 0 -12 "Medium VLS"
 	turret -9 9 "Green Optical Laser"
 	turret 9 9 "Green Optical Laser"
 	turret 0 51 "Speckle Turret"
@@ -1614,7 +1614,7 @@ ship "Difraktos"
 		"Green Optical Laser" 2
 		"Speckle Turret" 4
 		"Speck Round" 9600
-		"Vertical Launch Array" 2
+		"Medium VLS" 2
 		"Nettle Magazine" 2
 		`"Nettle" KKV` 576
 
@@ -1648,8 +1648,8 @@ ship "Difraktos"
 	turret 9 -111 "Speckle Turret"
 	turret -9 -87 "Speckle Turret"
 	turret 9 -87 "Speckle Turret"
-	turret -9 -66 "Vertical Launch Array"
-	turret 9 -66 "Vertical Launch Array"
+	turret -9 -66 "Medium VLS"
+	turret 9 -66 "Medium VLS"
 	turret 0 36 "Green Optical Laser"
 	turret 0 90 "Green Optical Laser"
 
@@ -1692,7 +1692,7 @@ ship "Difraktos" "Difraktos (Missile)"
 		"Green Optical Laser" 2
 		"Speckle Turret" 2
 		"Speck Round" 4800
-		"Vertical Launch Array" 4
+		"Medium VLS" 4
 		"Nettle Magazine" 2
 		`"Nettle" KKV` 1008
 
@@ -1713,10 +1713,10 @@ ship "Difraktos" "Difraktos (Missile)"
 
 	turret "Speckle Turret"
 	turret "Speckle Turret"
-	turret "Vertical Launch Array"
-	turret "Vertical Launch Array"
-	turret "Vertical Launch Array"
-	turret "Vertical Launch Array"
+	turret "Medium VLS"
+	turret "Medium VLS"
+	turret "Medium VLS"
+	turret "Medium VLS"
 	turret "Green Optical Laser"
 	turret "Green Optical Laser"
 
@@ -1894,7 +1894,7 @@ ship "Atenuatia"
 		"Speck Round" 2400
 		"Blue Optical Laser" 2
 		"Green Optical Laser" 3
-		"Vertical Launch Array" 2
+		"Medium VLS" 2
 		"Nettle Magazine" 3
 		`"Nettle" KKV` 648
 		
@@ -1942,9 +1942,9 @@ ship "Atenuatia"
 	turret 0 -252 "Green Optical Laser"
 	turret 63 -195 "Blue Optical Laser"
 	turret -63 -195 "Blue Optical Laser"
-	turret 0 -105 "Vertical Launch Array"
+	turret 0 -105 "Medium VLS"
 	turret 0 -36 "Speckle Turret"
-	turret 0 30 "Vertical Launch Array"
+	turret 0 30 "Medium VLS"
 	turret 0 96 "Green Optical Laser"
 	turret 0 160 "Green Optical Laser"
 

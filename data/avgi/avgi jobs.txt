@@ -860,12 +860,12 @@ mission "Avgi: Rush Cargo 3 (Avgi Equipment)"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Avgi: Small Cargo 1 (Avgi Fission Fuels)"
+mission "Avgi: Small Cargo 1 (Avgi Radionuclides)"
 	job
 	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo "Avgi Fission Fuels" 3 6 .3
+	cargo "Avgi Radionuclides" 3 6 .3
 	to offer
 		random < 9
 	source
@@ -879,12 +879,12 @@ mission "Avgi: Small Cargo 1 (Avgi Fission Fuels)"
 		payment
 		dialog phrase "generic cargo delivery payment"
 
-mission "Avgi: Small Cargo 2 (Avgi Fission Fuels)"
+mission "Avgi: Small Cargo 2 (Avgi Radionuclides)"
 	job
 	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo "Avgi Fission Fuels" 6 6 .6
+	cargo "Avgi Radionuclides" 6 6 .6
 	to offer
 		random < 9
 	source
@@ -898,12 +898,12 @@ mission "Avgi: Small Cargo 2 (Avgi Fission Fuels)"
 		payment
 		dialog phrase "generic cargo delivery payment"
 
-mission "Avgi: Small Cargo 3 (Avgi Fission Fuels)"
+mission "Avgi: Small Cargo 3 (Avgi Radionuclides)"
 	job
 	repeat
 	name "Cargo to <planet>"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
-	cargo "Avgi Fission Fuels" 3 9 .6
+	cargo "Avgi Radionuclides" 3 9 .6
 	to offer
 		random < 9
 	source
@@ -919,13 +919,13 @@ mission "Avgi: Small Cargo 3 (Avgi Fission Fuels)"
 		dialog phrase "generic cargo delivery payment"
 
 
-mission "Avgi: Rush Cargo 1 (Avgi Fission Fuels)"
+mission "Avgi: Rush Cargo 1 (Avgi Radionuclides)"
 	job
 	repeat
 	deadline
 	name "Rush delivery to <planet>"
 	description "<destination> urgently needs a shipment of <cargo> by <date>. Payment is <payment>."
-	cargo "Avgi Fission Fuels" 3 9 .6
+	cargo "Avgi Radionuclides" 3 9 .6
 	to offer
 		random < 9
 	source
@@ -940,13 +940,13 @@ mission "Avgi: Rush Cargo 1 (Avgi Fission Fuels)"
 		payment 18000
 		dialog phrase "generic cargo delivery payment"
 
-mission "Avgi: Rush Cargo 2 (Avgi Fission Fuels)"
+mission "Avgi: Rush Cargo 2 (Avgi Radionuclides)"
 	job
 	repeat
 	deadline
 	name "Rush delivery to <planet>"
 	description "<destination> urgently needs a shipment of <cargo> by <date>. Payment is <payment>."
-	cargo "Avgi Fission Fuels" 3 9 .45
+	cargo "Avgi Radionuclides" 3 9 .45
 	to offer
 		random < 9
 	source
@@ -961,13 +961,13 @@ mission "Avgi: Rush Cargo 2 (Avgi Fission Fuels)"
 		payment 18000
 		dialog phrase "generic cargo delivery payment"
 
-mission "Avgi: Rush Cargo 3 (Avgi Fission Fuels)"
+mission "Avgi: Rush Cargo 3 (Avgi Radionuclides)"
 	job
 	repeat
 	deadline
 	name "Rush delivery to <planet>"
 	description "<destination> urgently needs a shipment of <cargo> by <date>. Payment is <payment>."
-	cargo "Avgi Fission Fuels" 3 9 .3
+	cargo "Avgi Radionuclides" 3 9 .3
 	to offer
 		random < 9
 	source
@@ -1466,7 +1466,7 @@ mission "Avgi: Special Nuclear Material Shipment 1"
 	name "Special nuclear materials to <planet>"
 	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	deadline
-	cargo "Avgi Radioisotopes" 3 6 .3
+	cargo "Avgi Special Nuclear Material" 3 6 .3
 	to offer
 		not "Avgi: Fissiles Shortage"
 		random < 9
@@ -1540,7 +1540,7 @@ mission "Avgi: Special Nuclear Material Shipment 3"
 	name "Special nuclear materials to <planet>"
 	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	deadline
-	cargo "Avgi Radioisotopes" 3 6 .3
+	cargo "Avgi Special Nuclear Material" 3 6 .3
 	to offer
 		not "Avgi: Fissiles Shortage"
 		random < 6
@@ -1614,7 +1614,7 @@ mission "Avgi: Special Nuclear Material Shipment 5"
 	name "Special nuclear materials to <planet>"
 	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	deadline
-	cargo "Avgi Radioisotopes" 3 6 .3
+	cargo "Avgi Special Nuclear Material" 3 6 .3
 	to offer
 		not "Avgi: Fissiles Shortage"
 		random < 3
