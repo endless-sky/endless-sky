@@ -422,11 +422,22 @@ minable "unknown"
 
 # Gossamer Smoke Ring Minables
 
+minable "tiny water droplet"
+	"display name" Tiny
+	noun "Water Droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 0.125
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 60
+	"random hull" 150
+	explode "droplet burst"
 
 minable "small water droplet"
 	"display name" Small
 	noun "Water Droplet"
-	sprite "asteroid/small droplet/small droplet"
+	sprite "asteroid/water droplet/droplet"
 		scale 0.25
 		"frame rate" 12
 		"rewind"
@@ -440,7 +451,7 @@ minable "small water droplet"
 minable "medium water droplet"
 	"display name" Medium
 	noun "Water Droplet"
-	sprite "asteroid/medium droplet/medium droplet"
+	sprite "asteroid/water droplet/droplet"
 		scale 0.5
 		"frame rate" 12
 		"rewind"
@@ -454,15 +465,30 @@ minable "medium water droplet"
 minable "large water droplet"
 	"display name" Large
 	noun "Water Droplet"
-	sprite "asteroid/large droplet/large droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 1
 		"frame rate" 12
 		"rewind"
 		"random start frame"
 	hull 900
-	"random hull" 600
+	"random hull" 900
 	payload "Voidfish" 60
 		"toughness" 4500
 	explode "droplet burst" 12
+
+minable "huge water droplet"
+	"display name" Huge
+	noun "Water Droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 1.5
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 1800
+	"random hull" 1800
+	payload "Voidfish" 120
+		"toughness" 10800
+	explode "droplet burst" 36
 
 outfit "Voidfish"
 	category "Minerals"

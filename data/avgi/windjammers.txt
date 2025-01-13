@@ -162,6 +162,8 @@ ship "Windjammer"
 		"thrust" 44
 		"turn" 720
 		"hull repair rate" 3
+		"energy generation" 3
+		"energy capacity" 14400
 		"solar collection" 24
 		"solar heat" 0.3
 		"heat protection" 0.9
@@ -315,6 +317,8 @@ ship "Bluejacket"
 		"thrust" 22
 		"turn" 1440
 		"hull repair rate" 3
+		"energy generation" 3
+		"energy capacity" 14400
 		"solar collection" 24
 		"solar heat" 0.3
 		"heat protection" 0.9

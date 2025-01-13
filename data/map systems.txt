@@ -18822,9 +18822,11 @@ system Gossamer
 	"jump range" 30
 	haze _menu/haze-twilight-thick
 	link Whirlwind
-	minables "small water droplet" 180 1.8
-	minables "medium water droplet" 90 0.9
-	minables "large water droplet" 45 0.5
+	minables "tiny water droplet" 90 3.9
+	minables "small water droplet" 120 2.4
+	minables "medium water droplet" 90 1.5
+	minables "large water droplet" 30 0.9
+	minables "huge water droplet" 6 0.6
 	minables "integral tree a" 6 1.5
 	minables "integral tree b" 9 1.8
 	minables "integral tree c" 1 3
