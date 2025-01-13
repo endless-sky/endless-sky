@@ -57,6 +57,9 @@ mission "Gossamer Sailors"
 				"Sprout" 2
 				"Pollen" 2
 				"Sprout" 1
+		to despawn
+			has "avgi: windjammers despawn"
+
 	npc save
 		government "Indigenous Lifeform (Tree Two)"
 		personality timid uninterested mining
@@ -79,6 +82,8 @@ mission "Gossamer Sailors"
 				"Sprout" 2
 				"Pollen" 1
 				"Sprout" 1
+		to despawn
+			has "avgi: windjammers despawn"
 
 
 # Outfits

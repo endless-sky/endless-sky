@@ -229,8 +229,8 @@ hazard "Smoke Ring Atmosphere"
 	range 1800 3000
 	"constant strength"
 	weapon
-		"shield damage" 0.6
-		"relative heat damage" 0.0009
+		"shield damage" 0.3
+		"heat damage" 3
 		"target effect" "airstream 1" 6
 		"target effect" "airstream 2" 6
 
