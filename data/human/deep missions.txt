@@ -5681,6 +5681,7 @@ mission "Hroar's Haulers 15"
 			`	Leland's smile turns feral, "Very well, Yngvar." He says between grit teeth. "I was doing my best not to assume you had any association with the rioters we apprenhended earlier, but clearly my good manners are wasted upon you Hauler flith."`
 			`	"I ain't seen no riots. Just a couple fella's enjoying themselves after some long days on the haul. But, I ain't tellin' ya something you don't already know am I?" Yngvar's words sound tired.`
 			`	Leland ignores Yngvar and turns his attention to you, "Forgive me rudeness, we've not been formally introduced. This is the Syndicate Spaceport Authority, and I am the First Authority, Leland Hemshaw. And you are?"`
+			label lelandtalk
 			choice
 				`	"Captain <last> of the <ship>."`
 					goto lastship
@@ -5691,12 +5692,12 @@ mission "Hroar's Haulers 15"
 				goto hrithhello
 
 			label lastship
-			`	"A fine ship, I'm sure." Leland nods, "You don't have the look of a Hauler, but I take it you're with Yngvar? Perhap some mark he's scamming?"`
+			`	"A fine ship, I'm sure." Leland nods, "You don't have the look of a Hauler. Perhap some fresh mark he's scamming?"`
 			label hrithhello
 			`	"Captain <last> is our hirthr. A position of great respect." Yngvar interjects.`
 			`	"Hoother?" Leland mispronounces. "Another example of the Haulers' colorful colloquial nonsense I am sure."`
 			`	Leland leans toward you with a conspiratorial expression, "You look capable. Trust me, slumping around the galaxy with barely civilized Haulers is a losers game. Join up with the Transport Union if you're looking for respectable work."`
-			`	"Enough." Yngvar says angrily. "Your words are more crooked than a Dusty's teeth."`
+			`	"Enough." Yngvar says angrily. "Your words are more crooked than a Rock-Hopper's teeth."`
 			choice
 				`	"We're here to talk about the people imprisoned behind you."`
 				`	"I am a Hauler, through and through, now let's focus on the matter at hand. My people that you're holding."`
@@ -5812,7 +5813,7 @@ mission "Hroar's Haulers 15"
 			action
 				payment -15000
 			`	"Wonderful." Syndicate Authority Leland says with a smirk, and then releases Gunhilda from her cell after taking your payment.`
-			`	Gunhilda takes a few steps forward and then turns to look back at the all the still imprisoned Haulers. "It's not ride to keep so many wild red souls caged up like this."`
+			`	Gunhilda takes a few steps forward and then turns to look back at the all the still imprisoned Haulers. "It's not right to keep so many wild red souls caged up like this."`
 			`	Leland lets out a derisive laugh, but says nothing.`
 			`	"Come along, Gunhilda." Yngvar says quietly. "Ain't nothing we can do now about the rest of them."`
 			`	She looks at you as she walks past, "Thank you, but..." she pauses, "...no, nevermind. Thanks." She looks a little hurt as she follows after Yngvar to the hanger.`
@@ -5965,22 +5966,30 @@ mission "Hroar's Haulers 15"
 			label outofthecell
 			`	"Him?" A unfamiliar voice sneers. You look up into the offensively white teeth of a slick haired Syndicate official.`
 			`	"Aye, him." A tired sounding Yngvar pulls you to your feet.`
-			`	An unsteady Captain Gunhilda is standing next to him. He must have also freed her.`
-			`	"Just these two? There's a lot more left in the tank." The Syndicate official says with hostile grin. `
-			`	Your eyes dart to still imprisoned Haulers. You notice Captain Unferth among them.`
-			`	Yngvar just glares at the man, "Don't have ready cash for bribes."`
-			`	The Syndicate official holds up a hand, "It's all quite legal. However, I am not without feelings, surely we can come to some sort of arrangement for rest of your crews freedom? Maybe a trade of sorts?"`
+			`	"What about the rest of them?" The Syndicate officer hisses. "There's a lot more left in the tank, surely you'll want to free them as well?"`
+			choice
+				`	"Tell me who you are, and what is going on here."`
+					goto lelandblinks
+				`	(Say nothing.)`
+			`	"Don't have ready cash for bribes." Yngvar says through grit teeth.`
+			`	"Justa vomit colored reptile." Captain Gunhilda whispers a bit too loudly. You turn to see her standing toward the back of the room. Yngvar must have freed her as well.`
+			`	The Syndicate man pretends he didn't hear her. Behind him you can see the still imprisoned Haulers. Captain Unferth among them.`
+			`	The official holds up a hand, "I am not without feelings, surely we can come to some sort of arrangement for rest of your crew's freedom? Maybe a trade of sorts?"`
 			`	Yngvar's angry stare would wilt iron. He says nothing.`
 			`	"How about you agree to end your contract with us? And I'll set them all free." The Syndicate man says with insincere concern.`
 			`	The old spacer barks out a hard laughter. A tear glistens in his one good eye.`
 			`	"So, we've come to the rub, have we? What this whole circus has been about since the get-go." Yngvar spits on the ground, "That contract's worth more then a couple of boys in a drunk tank, I can tell you that."`
-			`	Yngvar puts a strong hand on your shoulder and Captain Gunhilda's, "Best we get back to the ship. 'Fore this Syndie Snack strikes again."`
+			`	Yngvar puts a strong hand on your shoulder and another on Captain Gunhilda's, "Best we get back to the ship. 'Fore this Syndie snake strikes again."`
 			action
 				clear "bang"
 				clear "cairn"
 				clear "logofficer"
 				decline
-			
+
+			label lelandblinks
+			`	The Syndicate man looks at you, as if for the first time, and blinks, "This is the Syndicate Spaceport Authority, and I am the First Authority, Leland Hemshaw. And you are?"`
+				goto lelandtalk
+
 			label bang
 			action
 				set "bang"
@@ -5988,7 +5997,7 @@ mission "Hroar's Haulers 15"
 				goto options22
 			
 			label whosehere
-			`	The cell is packed with Haulers. The whole place is lousy with Rust-red jackets, and the smell of cheap Syndicate alcohol.  You're sure Captain Unferth around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the cell door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
+			`	The cell is packed with Haulers. The whole place is lousy with rust-red jackets, and the smell of cheap Syndicate alcohol.  You're sure Captain Unferth around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the cell door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
 			goto outofthecell
 
 	npc accompany save
@@ -6004,6 +6013,10 @@ mission "Hroar's Haulers 15"
 	on visit
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
+	on complete
+		dialog
+			`The Long Haul convoy kicks up a flurry of agitated sand as they descend upon the energetic concrete pads outside Rand's spaceport. There's a small fleet of loading vehicles, and an army of workers, all awaiting your arrival.`
+			`	After landing Yngvar opens the airlock, "Got a few things to sort out. Meet me at the spaceport later."`
 
 mission "Yngvar Interlude"
 	invisible
@@ -6035,13 +6048,41 @@ mission "Yngvar Interlude"
 				goto paid
 				to display
 					has "Hroar's Haulers 15: accepted"
+			`	"No."`
+		`	Yngvar frowns, and doesn't move, "Respectfully, Captain, I wasn't really asking. This might be your ship, but," He jabs a thumb toward the bulkhead and space beyond, "that's all our fleet. So, you listening?"`
+				choice
+			`	"Yeah, I am listening"`
+			`	(Nod.)`
+			`	(Say nothing.)`
+				goto notgood
+				to display
+					has "brokecontract"
+			`	"Yeah, I am listening"`
+			`	(Nod.)`
+			`	(Say nothing.)`
+				goto sortagood
+				to display
+					has "makerhero"
+			`	"Yeah, I am listening"`
+			`	(Nod.)`
+			`	(Say nothing.)`
+				goto failed
+				to display
+					has "Hroar's Haulers 15: declined"
+			`	"Yeah, I am listening"`
+			`	(Nod.)`
+			`	(Say nothing.)`
+				goto paid
+				to display
+					has "Hroar's Haulers 15: accepted"
+
 		label paid
 		`	"Means a lot to put your dime on the line for us." The old man nods slowly, "Don't be thinking we'll forget. We may not be able to make you whole, but we'll do what we can."`
 		`	"Now, the Syndies are about as trustworthy as the gravity in a trinary system, but this was new low even for them." Yngvar frowns thoughtfully, "Somethin' else is goin' on and we just got caught in the middle."`
 		`	"The loss of Solvi's fleet will sting. Moving folks about is a nice way to earn extra income, but the Long Haul will survive. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it." The old spacer turns and leaves you to your bridge.`
 			to display
 				has "paidsome"
-		`	"Getting Solvi's crew outta there will pay dividends. Moving Folks about is a nice way to earn extra income, and there's still lots of folk to move 'fore the Long Haul is done." He lays a scarred hand on your shoulder, "A hirthr looks after their fleet, and that's just what'chya did in there." Yngvar says nothing more and leaves you to the bridge.`
+		`	"Getting Solvi's crew outta there will pay dividends. Moving Folks about is a nice way to earn extra income, and there's still lots of folk to move 'fore the Long Haul is done." He lays a scarred hand on your shoulder, "A hirthr looks after their fleet, and that's just what'chya did in there." Yngvar squeezes your shoulder and leaves you to the bridge.`
 			to display
 				not "paidsome"
 			decline
@@ -6071,9 +6112,11 @@ mission "Hroar's Haulers 16"
 	to offer
 		has "Hroar's Haulers 11: active"
 		has "Yngvar Interlude: declined"
+		has "Hroar's Haulers 15: declined"
 	on offer
 		conversation
-			`The Long Haul convoy kicks up a flurry of agitated sand as they descend upon the sleepy concrete pads outside Rand's spaceport. `
+			`The Long Haul convoy kicks up a flurry of agitated sand as they descend upon the energetic concrete pads outside Rand's spaceport. There's a small fleet of loading vehicles, and an army of workers, all awaiting your arrival.`
+			`	After landing Yngvar opens the airlock, "Got a few things to sort out. Meet me at the spaceport later."`
 				decline
 
 mission "Hroar's Haulers 17"
@@ -6082,9 +6125,24 @@ mission "Hroar's Haulers 17"
 	to offer
 		has "Hroar's Haulers 11: active"
 		has "Yngvar Interlude: declined"
+		has "Hroar's Haulers 15: declined"
 	on offer
 		conversation
-			`You find Yngvar standing on a balcony overlooking the transfer of human cargo, what he calls 'folk'.`
+			`You find Yngvar in the Trade building, surrounded by a swarm of officials and representatives from Rand.`
+			`	"No transport? What am I supposed to tell them? They've been waiting for weeks!" One of them officials yells.`
+			`	"Wait for the next fleet! Hrodny will be able to move most of 'em next time she comes through." `
+
+mission "Hroar's Haulers 17b"
+	name "The Long Haul"
+	source "Rand"
+	to offer
+		has "Hroar's Haulers 11: active"
+		has "Yngvar Interlude: declined"
+		has "Hroar's Haulers 15: done"
+	on offer
+		conversation
+			`You find Yngvar in the Trade building, surrounded by a swarm of officials and representatives from Rand.`
+			`	`
 
 
 
