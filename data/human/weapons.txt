@@ -847,8 +847,8 @@ outfit "Meteor Missile Launcher"
 		"turn" 1.8
 		"homing" 1
 		"infrared tracking" .65
-		"shield damage" 360
-		"hull damage" 220
+		"shield damage" 270
+		"hull damage" 165
 		"hit force" 330
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
@@ -885,8 +885,8 @@ outfit "Meteor Missile Pod"
 		"turn" 1.8
 		"homing" 1
 		"infrared tracking" .65
-		"shield damage" 360
-		"hull damage" 220
+		"shield damage" 270
+		"hull damage" 165
 		"hit force" 330
 		"missile strength" 6
 	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
@@ -948,8 +948,8 @@ outfit "Sidewinder Missile Launcher"
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
-		"shield damage" 260
-		"hull damage" 180
+		"shield damage" 195
+		"hull damage" 135
 		"hit force" 255
 		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
@@ -987,8 +987,8 @@ outfit "Sidewinder Missile Pod"
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
-		"shield damage" 260
-		"hull damage" 180
+		"shield damage" 195
+		"hull damage" 135
 		"hit force" 255
 		"missile strength" 18
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
@@ -1162,8 +1162,8 @@ outfit "Torpedo Launcher"
 		"turn" 1.5
 		"homing" 3
 		"optical tracking" .8
-		"shield damage" 820
-		"hull damage" 820
+		"shield damage" 615
+		"hull damage" 615
 		"hit force" 450
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge. Torpedo launchers are also much larger than other missile systems, so they are most often found in capital ships."
@@ -1200,8 +1200,8 @@ outfit "Torpedo Pod"
 		"turn" 1.5
 		"homing" 3
 		"optical tracking" .8
-		"shield damage" 820
-		"hull damage" 820
+		"shield damage" 615
+		"hull damage" 615
 		"hit force" 450
 		"missile strength" 30
 	description "Torpedoes are the most powerful homing weapon, but they move slowly enough that fast ships can simply outrun them, making them most useful against large targets or against small ships at times when they are too distracted to dodge."
@@ -1263,8 +1263,8 @@ outfit "Typhoon Launcher"
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
-		"shield damage" 1050
-		"hull damage" 1050
+		"shield damage" 780
+		"hull damage" 780
 		"hit force" 675
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
@@ -1301,8 +1301,8 @@ outfit "Typhoon Pod"
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
-		"shield damage" 1050
-		"hull damage" 1050
+		"shield damage" 780
+		"hull damage" 780
 		"hit force" 675
 		"missile strength" 40
 	description "Typhoon Torpedoes are an improved torpedo technology; they do considerably more damage than ordinary torpedoes. However, they are also much slower, because they are intended mostly for use against large and slow-moving capital ships. As a result, sufficiently skilled pilots can often dodge around them."
