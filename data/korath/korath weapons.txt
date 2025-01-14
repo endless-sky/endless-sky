@@ -994,8 +994,8 @@ outfit "Firelight Activated"
 		"optical tracking" .7
 		"trigger radius" 30
 		"blast radius" 60
-		"shield damage" 950
-		"hull damage" 950
+		"shield damage" 650
+		"hull damage" 650
 		"heat damage" 1800
 		"burn damage" 10
 		"corrosion damage" 2
@@ -1103,8 +1103,8 @@ outfit "Firestorm Battery"
 		"optical tracking" .9
 		"trigger radius" 40
 		"blast radius" 95
-		"shield damage" 2760
-		"hull damage" 2760
+		"shield damage" 2060
+		"hull damage" 2060
 		"heat damage" 5320
 		"burn damage" 40
 		"corrosion damage" 5
