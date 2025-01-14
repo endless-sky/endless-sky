@@ -874,6 +874,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = &system;
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -893,6 +894,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = planet.GetSystem();
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
