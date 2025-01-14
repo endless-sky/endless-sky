@@ -431,7 +431,7 @@ minable "tiny water droplet"
 		"rewind"
 		"random start frame"
 	hull 60
-	"random hull" 150
+	"random hull" 60
 	explode "droplet burst"
 
 minable "small water droplet"
@@ -458,7 +458,7 @@ minable "medium water droplet"
 		"random start frame"
 	hull 300
 	"random hull" 300
-	payload "Voidfish" 30
+	payload "Voidfish" 15
 		"toughness" 1800
 	explode "droplet burst" 6
 
@@ -466,13 +466,13 @@ minable "large water droplet"
 	"display name" Large
 	noun "Water Droplet"
 	sprite "asteroid/water droplet/droplet"
-		scale 1
+		scale 0.75
 		"frame rate" 12
 		"rewind"
 		"random start frame"
 	hull 900
 	"random hull" 900
-	payload "Voidfish" 60
+	payload "Voidfish" 30
 		"toughness" 4500
 	explode "droplet burst" 12
 
@@ -480,13 +480,13 @@ minable "huge water droplet"
 	"display name" Huge
 	noun "Water Droplet"
 	sprite "asteroid/water droplet/droplet"
-		scale 1.5
+		scale 1
 		"frame rate" 12
 		"rewind"
 		"random start frame"
 	hull 1800
 	"random hull" 1800
-	payload "Voidfish" 120
+	payload "Voidfish" 60
 		"toughness" 10800
 	explode "droplet burst" 36
 
@@ -519,7 +519,7 @@ effect "droplet burst"
 
 
 minable "integral tree a"
-	"display name" Integral
+	"display name" "Wizened Integral"
 	noun Tree
 	sprite "asteroid/integral tree/tree a"
 	hull 1200
@@ -533,6 +533,7 @@ minable "integral tree b"
 	"display name" Integral
 	noun Tree
 	sprite "asteroid/integral tree/tree b"
+		scale 0.75
 	hull 600
 	"random hull" 300
 	payload "Integral Wood" 30
@@ -544,6 +545,19 @@ minable "integral tree c"
 	"display name" Integral
 	noun Tree
 	sprite "asteroid/integral tree/tree c"
+		scale 0.75
+	hull 600
+	"random hull" 300
+	payload "Integral Wood" 30
+		"toughness" 1800
+		"drop rate" 0.6
+	explode "timber" 6
+
+minable "integral tree d"
+	"display name" "Frosty Integral"
+	noun Tree
+	sprite "asteroid/integral tree/tree d"
+		scale 0.75
 	hull 1200
 	"random hull" 600
 	payload "Integral Wood" 60
@@ -553,10 +567,11 @@ minable "integral tree c"
 		"toughness" 10800
 	explode "timber" 12
 
-minable "integral tree d"
-	"display name" Integral
+minable "integral tree e"
+	"display name" "Amber Integral"
 	noun Tree
-	sprite "asteroid/integral tree/tree d"
+	sprite "asteroid/integral tree/tree e"
+		scale 0.75
 	hull 1200
 	"random hull" 600
 	payload "Integral Wood" 60
@@ -566,10 +581,11 @@ minable "integral tree d"
 		"toughness" 10800
 	explode "timber" 12
 
-minable "integral tree e"
+minable "integral tree f"
 	"display name" "Dead Integral"
 	noun Tree
-	sprite "asteroid/integral tree/tree e"
+	sprite "asteroid/integral tree/tree f"
+		scale 0.75
 	hull 300
 	"random hull" 600
 	payload "Integral Wood" 120

@@ -18827,11 +18827,12 @@ system Gossamer
 	minables "medium water droplet" 90 1.5
 	minables "large water droplet" 30 0.9
 	minables "huge water droplet" 6 0.6
-	minables "integral tree a" 6 1.5
-	minables "integral tree b" 9 1.8
-	minables "integral tree c" 1 3
+	minables "integral tree a" 6 1.2
+	minables "integral tree b" 9 1.5
+	minables "integral tree c" 6 1.5
 	minables "integral tree d" 1 3
-	minables "integral tree e" 3 0.3
+	minables "integral tree e" 1 3
+	minables "integral tree f" 3 0.3
 	hazard "Smoke Ring Atmosphere" 1
 	object
 		sprite star/f0
