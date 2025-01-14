@@ -648,11 +648,13 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
+		UpdateCache();
 		ScrollMissionList(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
+		UpdateCache();
 		ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
 
