@@ -5711,11 +5711,6 @@ system Anax
 			period 60
 			offset 180
 		object
-			sprite planet/station-telescope-a0
-				scale 0.25
-			distance 240
-			period 60
-		object
 			sprite planet/debris1
 				scale 0.25
 			distance 240
@@ -5730,6 +5725,18 @@ system Anax
 				distance 63.53
 				period 60
 				offset 225
+		object
+			sprite planet/station-cylinder-a0
+				scale 0.15
+			distance 320
+			period 120
+			offset 60
+		object
+			sprite planet/station-telescope-a0
+				scale 0.25
+			distance 320
+			period 120
+			offset 300
 	object
 		sprite planet/station-asteroid-a1
 			scale 0.5
@@ -10525,25 +10532,25 @@ system Clip
 				scale 0.1
 			distance 210
 			period 30
-			offset 105
+			offset 45
 		object
 			sprite planet/station-solar-a2
 				scale 0.1
 			distance 210
 			period 30
-			offset 120
+			offset 60
 		object
 			sprite planet/station-solar-a2
 				scale 0.1
 			distance 210
 			period 30
-			offset 135
+			offset 75
 		object
 			sprite planet/station-outpost-a0
 				scale 0.25
 			distance 210
 			period 30
-			offset 240
+			offset 300
 		object
 			sprite planet/oberon
 			distance 210
@@ -10573,7 +10580,6 @@ system Clip
 				scale 0.5
 			distance 120
 			period 60
-			offset 120
 	object
 		sprite planet/gas11-b
 		distance 3446.86
@@ -26881,7 +26887,7 @@ system Mellow
 				scale 0.25
 			distance 180
 			period 30
-			offset 120
+			offset 60
 	object
 		sprite planet/gas16-b
 		distance 2409.12
