@@ -1584,7 +1584,7 @@ planet Eragarthro
 
 planet "Ergastirio Station"
 	attributes avgi "avgi diaspora" military "twilight guard"
-	landscape land/station50
+	landscape land/station59
 	description `When Consonance researchers' need for plentiful space and isolation outgrew what was available on Peripheria or Navigeo, dedicated as they were to habitation and shipbuilding respectively, this mid-sized station was built to accommodate a state-of-the-art collection of laboratory facilities. The work here is largely aimed towards weapons research, a necessary consequence of the fight against the Aberrant.`
 	description `	The facilities are surprisingly comfortable for what you might expect from a research station, a deliberate attempt to boost the productivity of the scientists that live and work here. Labs for all sorts of applied energistics, nuclear research, and even hyperspace experimentation form wings around the central habitation core, which is home to tens of thousands of scientists and engineers as well as a sizable support staff.`
 	spaceport `Ergastirio's spaceport is small, but well-equipped, with the facilities to handle special nuclear material and fragile scientific instrumentation alike. These constitute most of the goods offloaded here, which the station's laboratories require a steady supply of.`
@@ -3630,6 +3630,7 @@ planet Nasqueron
 
 planet "Navigeo Yards"
 	attributes avgi "avgi diaspora" military station "twilight guard"
+	music ambient/machinery
 	landscape land/station57
 	description `Navigeo is a station designed to be a dedicated shipyard, with dozens of modular dry docks capable of quickly laying down new ships or repairing damaged ones. Overall, almost all of the large warships in service of the Twilight Guard are built here, though efforts are being made to decentralize warship production for the sake of survivability.`
 	description `	Due to its importance and nature as a government-operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost.`
@@ -4180,18 +4181,18 @@ planet Oura
 	description `Oura was the primary source of the helium-3 that fueled Avgi sublight starships. Even now, you can see aerostat collectors separating valuable isotopes from the surrounding gas, which are then launched via mass driver to orbit in pressurized canisters.`
 	government Uninhabited
 
-planet "Outpost Pilos"
-	attributes avgi "avgi diaspora" station shipping
-	landscape land/station53
-	description `Outpost Pilos is a large early warning station set up soon after the Avgi decided to settle beyond the Tangled Shroud. Fearful of the Aberrant managing to overcome their supposed aversion to the mazelike region of space, it was quickly decided that a tripwire would be needed to warn of an incursion in the event of the fall of the Feo Platform and the infestation of the Tangled Shroud with Aberrations. However, when a large-scale attack never materialized, Outpost Pilos quickly found a second use as an intermediary waystation for the trade of minerals from the Tangled Shroud with the settlements beyond it.`
-	description `Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where raw resources and cargo can be transferred between ships.`
-	spaceport `The only amenities in what passes for the "spaceport" are a refueling station and small repair shop. As ships do not generally linger after refueling or transferring their cargo, a skeleton crew is the only permanent inhabitants of the station, and most accommodations are reserved for this crew.`
+planet "Outpost Alkos"
+	attributes avgi "avgi diaspora" "dissonance sympathies" station
+	music ambient/machinery
+	landscape land/space0
+	description `Predating the Incursion, Outpost Alkos was the first major refueling station built in the Tangled Shroud. While it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment.`
+	description `	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance.`
 	government "Avgi (Consonance)"
-	"required reputation" 15
-	security 0.5
+	"required reputation" 10
 
 planet "Outpost Enka"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	music ambient/machinery
 	landscape land/station27
 	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one asteroid is also riddled with pressurized tunnels and pockets filled with farms and open green spaces.`
 	description `Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters.`
@@ -4209,14 +4210,26 @@ planet "Outpost Enka"
 
 planet "Outpost Leto"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	music ambient/machinery
 	landscape land/station30
 	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot the icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
 	spaceport `The spaceport is hosted in one of the many pressurized domes adorning the surface of the planetoid, with a large airlock in the ceiling enabling passage between the station itself and the cold black of space outside.`
 	government "Avgi (Dissonance)"
 	"required reputation" 10
 
+planet "Outpost Pilos"
+	attributes avgi "avgi diaspora" station shipping
+	landscape land/station53
+	description `Outpost Pilos is a large early warning station set up soon after the Avgi decided to settle beyond the Tangled Shroud. Fearful of the Aberrant managing to overcome their supposed aversion to the mazelike region of space, it was quickly decided that a tripwire would be needed to warn of an incursion in the event of the fall of the Feo Platform and the infestation of the Tangled Shroud with Aberrations. However, when a large-scale attack never materialized, Outpost Pilos quickly found a second use as an intermediary waystation for the trade of minerals from the Tangled Shroud with the settlements beyond it.`
+	description `Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where raw resources and cargo can be transferred between ships.`
+	spaceport `The only amenities in what passes for the "spaceport" are a refueling station and small repair shop. As ships do not generally linger after refueling or transferring their cargo, a skeleton crew is the only permanent inhabitants of the station, and most accommodations are reserved for this crew.`
+	government "Avgi (Consonance)"
+	"required reputation" 15
+	security 0.5
+
 planet "Outpost Tekis"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	music ambient/machinery
 	landscape land/station25
 	description `Outpost Tekis is a station built into an enormous asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens.`
 	description `Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
@@ -5670,14 +5683,6 @@ planet "Tik Klai"
 	tribute 600
 		threshold 3500
 		fleet "Wanderer Defense" 4
-
-planet "Outpost Alkos"
-	attributes avgi "avgi diaspora" "dissonance sympathies" station
-	landscape land/space0
-	description `Predating the Incursion, Outpost Alkos was the first major refueling station built in the Tangled Shroud. While it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment.`
-	description `	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance.`
-	government "Avgi (Consonance)"
-	"required reputation" 10
 
 planet Tinker
 	attributes factory mining "near earth"
