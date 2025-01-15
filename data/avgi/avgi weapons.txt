@@ -191,8 +191,8 @@ outfit "Blue Optical Laser"
 	"lasing power" -2
 	weapon
 		"hardpoint sprite" "hardpoint/blue optical laser"
-		sprite "projectile/avgi laser blue"
-			"frame rate" 1
+		sprite "projectile/blue optical laser"
+			"frame rate" 3
 		"sound" "optical laser"
 		"hit effect" "laser ejecta" 6
 		"hit effect" "blue laser reflection" 60
@@ -228,7 +228,6 @@ effect "laser ejecta"
 effect "blue laser glare"
 	sprite "effect/ion rain impact"
 		"frame rate" 4
-		"random start frame"
 	"lifetime" 1
 
 effect "blue laser fire"
