@@ -930,6 +930,7 @@ mission "Avgi: Twilight Escape 1"
 			`	"There's no point in waiting, then. If there's a chance, even a small one, it's worth checking on," says Darius, looking hopeful for the first time since you've met him. You just hope his hope isn't a false one, for both of your sakes.`
 				accept
 	on enter "Decet"
+		log `Discovered a magnetar in the Decet system that can boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped me here.`
 		conversation
 			`Just as your jump drive reacted strangely when you first entered Avgi space, it does so again, but this time the effect is inverted. The plasma from your jump lingers unnaturally, as though energized by something outside. Your instrumentation tell you your jump drive is much warmer than it should be just after a jump, almost hot enough to be dangerous. Perhaps your jump drive's range has changed as well?`
 	on enter
@@ -946,7 +947,7 @@ mission "Avgi: Twilight Escape 1"
 			`	"<first>," says Darius in a shaky voice. "Take us to the Deep, please. I need to see my home. And my wife."`
 			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
-		log `Successfully escaped the Twilight after using a magnetar in the Decet system to boost the range of my jump drive in an apparent inversion of the mysterious effect that trapped you here.`
+		log `Successfully escaped the Twilight together with the humans stranded there.`
 		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
 		clear "avgi: lost in twilight"
 		"reputation: Avgi (Dissonance Aggressive)" <?= -10
