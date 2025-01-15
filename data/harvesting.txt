@@ -442,10 +442,10 @@ minable "small water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 150
-	"random hull" 150
+	hull 180
+	"random hull" 180
 	payload "Voidfish" 3
-		"toughness" 900
+		"toughness" 540
 	explode "droplet burst" 3
 
 minable "medium water droplet"
@@ -456,8 +456,8 @@ minable "medium water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 300
-	"random hull" 300
+	hull 600
+	"random hull" 600
 	payload "Voidfish" 15
 		"toughness" 1800
 	explode "droplet burst" 6
@@ -470,9 +470,9 @@ minable "large water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 900
-	"random hull" 900
-	payload "Voidfish" 30
+	hull 1800
+	"random hull" 1800
+	payload "Voidfish" 45
 		"toughness" 4500
 	explode "droplet burst" 12
 
@@ -484,9 +484,9 @@ minable "huge water droplet"
 		"frame rate" 12
 		"rewind"
 		"random start frame"
-	hull 1800
-	"random hull" 1800
-	payload "Voidfish" 60
+	hull 3600
+	"random hull" 3600
+	payload "Voidfish" 120
 		"toughness" 10800
 	explode "droplet burst" 36
 
@@ -522,10 +522,10 @@ minable "integral tree a"
 	"display name" "Wizened Integral"
 	noun Tree
 	sprite "asteroid/integral tree/tree a"
-	hull 3600
-	"random hull" 1800
+	hull 7200
+	"random hull" 3600
 	payload "Integral Wood" 120
-		"toughness" 3600
+		"toughness" 43200
 		"drop rate" 0.6
 	explode "timber" 30
 
@@ -534,10 +534,10 @@ minable "integral tree b"
 	noun Tree
 	sprite "asteroid/integral tree/tree b"
 		scale 0.75
-	hull 1200
-	"random hull" 600
+	hull 2400
+	"random hull" 1200
 	payload "Integral Wood" 30
-		"toughness" 1800
+		"toughness" 14400
 		"drop rate" 0.6
 	explode "timber" 6
 
@@ -546,10 +546,10 @@ minable "integral tree c"
 	noun Tree
 	sprite "asteroid/integral tree/tree c"
 		scale 0.75
-	hull 1800
-	"random hull" 900
+	hull 3600
+	"random hull" 1800
 	payload "Integral Wood" 30
-		"toughness" 1800
+		"toughness" 21600
 		"drop rate" 0.6
 	explode "timber" 6
 
@@ -558,10 +558,10 @@ minable "integral tree d"
 	noun Tree
 	sprite "asteroid/integral tree/tree d"
 		scale 0.75
-	hull 2400
-	"random hull" 1200
+	hull 4800
+	"random hull" 2400
 	payload "Integral Wood" 60
-		"toughness" 3600
+		"toughness" 28800
 		"drop rate" 0.6
 	payload "Platinum" 120
 		"toughness" 10800
@@ -572,10 +572,10 @@ minable "integral tree e"
 	noun Tree
 	sprite "asteroid/integral tree/tree e"
 		scale 0.75
-	hull 2400
-	"random hull" 1200
+	hull 4800
+	"random hull" 2400
 	payload "Integral Wood" 60
-		"toughness" 3600
+		"toughness" 28800
 		"drop rate" 0.6
 	payload "Gold" 120
 		"toughness" 10800
@@ -586,10 +586,10 @@ minable "integral tree f"
 	noun Tree
 	sprite "asteroid/integral tree/tree f"
 		scale 0.75
-	hull 300
-	"random hull" 600
+	hull 600
+	"random hull" 1200
 	payload "Integral Wood" 120
-		"toughness" 3600
+		"toughness" 1800
 		"drop rate" 0.3
 	explode "timber" 30
 
