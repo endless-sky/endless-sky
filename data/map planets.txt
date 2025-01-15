@@ -3620,7 +3620,7 @@ planet Naphir
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/snow27
 	description `Naphir was the chosen destination, and ultimately the final resting place, of an ill-fated early interstellar expedition. The Avgi pioneers who volunteered for the mission knew well in advance that the system lacked any garden planets, but set out regardless; all of them were well prepared to spend the rest of their lives in orbital stations. Finding a cool, airless moon around a gas giant, the colonists settled down and began constructing habitats and gathering essential resources.`
-	description `Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. Their precision machining equipment was still located on their orbiting starship, and was severely damaged; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day.`
+	description `Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. With most precision machinery left aboard their orbiting starship, it was severely degraded; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day.`
 	government Uninhabited
 
 planet Nasqueron

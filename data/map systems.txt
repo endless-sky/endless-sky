@@ -25745,7 +25745,7 @@ system MS-219
 			period 80
 
 system Madrigal
-	pos -866 1263
+	pos -866 1203
 	government Uninhabited
 	attributes "outer limits"
 	arrival 500
