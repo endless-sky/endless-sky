@@ -277,7 +277,6 @@ mission "Hai Legacy 3"
 	name "Ancient Claim"
 	description "Defeat the Unfettered challenger in combat. You only have one day, and becoming disabled will result in losing the fight."
 	source "Firelode"
-	deadline 2
 	to offer
 		has "Hai Legacy 2: done"
 		has "ship model: Anomalocaris"
