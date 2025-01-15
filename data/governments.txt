@@ -1088,10 +1088,9 @@ government "Kor Mereti"
 	color .43 .48 .87
 	language "Korath"
 	
-	"default attitude" -0.01
 	"attitude toward"
-		"Author" 0
-		"Indigenous Lifeform (Subsidurial)" 0
+		"Kor Sestor" -.01
+		"Wanderer" -.01
 	
 	"player reputation" -1000
 
@@ -1110,8 +1109,13 @@ government "Kor Sestor"
 	color 1 .36 .49
 	language "Korath"
 	
-	"default attitude" -0.01
 	"attitude toward"
+		"Kor Mereti" -.01
+		"Wanderer" -.01
+		"Republic" -.01
+		"Merchant" -.01
+		"Navy (Oathkeeper)" -.01
+		"Syndicate" -.01
 		"Author" 0
 		"Indigenous Lifeform (Subsidurial)" 0
 	
