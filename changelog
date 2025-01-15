@@ -109,6 +109,7 @@ Version 0.10.11
     * Mechanics changes:
       * Ships will be brought to an absolute stop when their speed is very low. (@tibetiroka)
       * System fleets and system and stellar object hazards can be given "to spawn" condition sets. (@UnorderedSigh)
+      * Minable sprites now support the same animation properties available elsewhere, such as ship or stellar object sprites. Providing a "frame rate" or "frame time" in this way will override the default behaviour of choosing this randomly for each minable instance. (@Azure3141)
   * User interface:
     * The parentheses around commodity price differences in the map panel can now be disabled. (@Just-Existing)
     * The outfitter will now list all the reasons an outfit cannot be bought or installed. (@HungryBear, @alextd, @warp-core)
