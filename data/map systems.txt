@@ -6568,7 +6568,7 @@ system Ar-40
 			period 141.425
 
 system Arche
-	pos -311 920
+	pos -315 924
 	government "Avgi (Twilight Guard)"
 	attributes "avgi" "avgi diaspora" "bright star" "multi-star" "notable star" "twilight"
 	arrival 5000
