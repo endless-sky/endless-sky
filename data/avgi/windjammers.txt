@@ -331,8 +331,8 @@ ship "Bluejacket"
 			"hit force" 1500
 	outfits
 		"Pinecone Launcher"
-		"Pollen" 120
-		"Jamfruit" 60
+		"Pollen" 90
+		"Jamfruit" 90
 
 	gun 0 -84.5 "Pinecone Launcher"
 	bay Fighter -14.5 -46

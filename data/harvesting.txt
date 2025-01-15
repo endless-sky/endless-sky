@@ -522,8 +522,8 @@ minable "integral tree a"
 	"display name" "Wizened Integral"
 	noun Tree
 	sprite "asteroid/integral tree/tree a"
-	hull 1200
-	"random hull" 1200
+	hull 3600
+	"random hull" 1800
 	payload "Integral Wood" 120
 		"toughness" 3600
 		"drop rate" 0.6
@@ -534,8 +534,8 @@ minable "integral tree b"
 	noun Tree
 	sprite "asteroid/integral tree/tree b"
 		scale 0.75
-	hull 600
-	"random hull" 300
+	hull 1200
+	"random hull" 600
 	payload "Integral Wood" 30
 		"toughness" 1800
 		"drop rate" 0.6
@@ -546,20 +546,20 @@ minable "integral tree c"
 	noun Tree
 	sprite "asteroid/integral tree/tree c"
 		scale 0.75
-	hull 600
-	"random hull" 300
+	hull 1800
+	"random hull" 900
 	payload "Integral Wood" 30
 		"toughness" 1800
 		"drop rate" 0.6
 	explode "timber" 6
 
 minable "integral tree d"
-	"display name" "Frosty Integral"
+	"display name" "Frosted Integral"
 	noun Tree
 	sprite "asteroid/integral tree/tree d"
 		scale 0.75
-	hull 1200
-	"random hull" 600
+	hull 2400
+	"random hull" 1200
 	payload "Integral Wood" 60
 		"toughness" 3600
 		"drop rate" 0.6
@@ -572,8 +572,8 @@ minable "integral tree e"
 	noun Tree
 	sprite "asteroid/integral tree/tree e"
 		scale 0.75
-	hull 1200
-	"random hull" 600
+	hull 2400
+	"random hull" 1200
 	payload "Integral Wood" 60
 		"toughness" 3600
 		"drop rate" 0.6

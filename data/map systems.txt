@@ -18827,7 +18827,7 @@ system Gossamer
 	minables "medium water droplet" 90 1.5
 	minables "large water droplet" 30 0.9
 	minables "huge water droplet" 6 0.6
-	minables "integral tree a" 6 1.2
+	minables "integral tree a" 6 0.9
 	minables "integral tree b" 9 1.5
 	minables "integral tree c" 6 1.5
 	minables "integral tree d" 1 3
