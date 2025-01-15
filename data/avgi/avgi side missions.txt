@@ -980,6 +980,9 @@ mission "Avgi: Atomics Testing 2"
 	on offer
 		conversation
 			`The descent to Dokimi is uneventful, but you get a good look at the planetoid's icy surface, stained red with organic tholins. The ice is smooth and pristine under most of your flight path, but eventually something new comes into view: austere buildings, crude roads, and overshadowing all else, the flat expanse of a field pockmarked with craters.`
+
+			scene "scene/dokimi range scene"
+
 			`	"A little dreary, isn't it, amusement?" comments Aliza.`
 			choice
 				`	"Yeah. Why do testing out here instead of in empty space?"`
