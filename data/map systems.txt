@@ -6435,7 +6435,7 @@ system Ap'arak
 			period 32.9651
 
 system Apeiron
-	pos -446 869
+	pos -420 869
 	government Uninhabited
 	attributes "twilight"
 	ramscoop
@@ -30880,7 +30880,7 @@ system Peak
 			period 178.869
 
 system Pearl
-	pos -504 854
+	pos -494 841
 	government Uninhabited
 	attributes "twilight"
 	arrival 1250
