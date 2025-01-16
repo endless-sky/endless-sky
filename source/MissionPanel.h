@@ -90,6 +90,8 @@ private:
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
 
+	bool canDrag = true;
+
 	int dragSide = 0;
 	int hoverSortCount = 0;
 	int hoverSort = -1; // 0 to 3 for each UI element
