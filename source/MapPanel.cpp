@@ -17,10 +17,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
+#include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
-#include "FillShader.h"
-#include "FogShader.h"
+#include "shader/FillShader.h"
+#include "shader/FogShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -29,24 +30,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Politics.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "RoutePlan.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
@@ -68,15 +70,38 @@ namespace {
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
+	const int MAX_STARS = 5;
 
-	// Struct to track per system how many pointers are drawn and still
+	// Class to track per system how many pointers are drawn and still
 	// need to be drawn.
-	struct PointerDrawCount {
+	class PointerDrawCount {
+	public:
+		// Calculate and check the most number of pointer positions that should be available for active missions.
+		// This can be up to half the maximum number of pointers that can be drawn.
+		void Reserve();
+
+		unsigned MaximumActive() const;
+
+	public:
 		// Amount of systems already drawn.
 		unsigned drawn = 0;
 		unsigned available = 0;
 		unsigned unavailable = 0;
+
+	private:
+		unsigned maximumActive = MAX_MISSION_POINTERS_DRAWN;
 	};
+
+	void PointerDrawCount::Reserve()
+	{
+		maximumActive = max(MAX_MISSION_POINTERS_DRAWN / 2, MAX_MISSION_POINTERS_DRAWN - (available + unavailable));
+	}
+
+	unsigned PointerDrawCount::MaximumActive() const
+	{
+		return maximumActive;
+	}
+
 
 	// Struct for storing the ends of wormhole links and their colors.
 	struct WormholeArrow {
@@ -225,13 +250,14 @@ const float MapPanel::LINK_OFFSET = 7.f;
 
 
 
-MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
+MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, bool fromMission)
 	: player(player), distance(player),
 	playerSystem(*player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
 	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
-	commodity(commodity)
+	commodity(commodity),
+	fromMission(fromMission)
 {
 	SetIsFullScreen(true);
 	SetInterruptible(false);
@@ -383,7 +409,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 				if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
 					for(const auto &it : t.outfits)
-						tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
+						tooltip += "\n - " + to_string(it.second) + " on " + it.first->DisplayName();
 			}
 
 			hoverText.Wrap(tooltip);
@@ -441,7 +467,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		const System &system = *jump[i];
 		const Government *gov = system.GetGovernment();
 		Point from = system.Position() - center + drawPos;
-		const string &name = player.KnowsName(system) ? system.Name() : UNKNOWN_SYSTEM;
+		const string &name = player.KnowsName(system) ? system.DisplayName() : UNKNOWN_SYSTEM;
 		font.Draw(name, from + Point(OUTER, -.5 * font.Height()), lineColor);
 
 		// Draw the origin and destination systems, since they
@@ -568,7 +594,12 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
+		GetUI()->Push(new MapDetailPanel(*this, false));
+	}
+	else if(key == 'a' && buttonCondition != "is stars")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
 	{
@@ -577,9 +608,9 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		return true;
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min<int>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max<int>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1));
 	else
 		return false;
 
@@ -663,9 +694,9 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point anchor = mouse / Zoom() - center;
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min<int>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1));
 	else if(dy < 0.)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max<int>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1));
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
@@ -1092,10 +1123,14 @@ void MapPanel::UpdateCache()
 			}
 		}
 
+		static const vector<const Sprite *> unmappedSystem = {SpriteSet::Get("map/unexplored-star")};
+
+		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(system) ? system.Name() : "",
+			player.KnowsName(system) ? system.DisplayName() : "",
 			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.CanView(system) ? system.GetGovernment() : nullptr);
+			canViewSystem ? system.GetGovernment() : nullptr,
+			canViewSystem ? system.GetMapIcons() : unmappedSystem);
 	}
 
 	// Now, update the cache of the links.
@@ -1223,7 +1258,7 @@ void MapPanel::DrawSelectedSystem()
 	if(!player.KnowsName(*selectedSystem))
 		text = "Selected system: unexplored system";
 	else
-		text = "Selected system: " + selectedSystem->Name();
+		text = "Selected system: " + selectedSystem->DisplayName();
 
 	int jumps = 0;
 	const vector<const System *> &plan = player.TravelPlan();
@@ -1381,11 +1416,38 @@ void MapPanel::DrawSystems()
 		closeGovernments.clear();
 
 	// Draw the circles for the systems.
+	BatchDrawList starBatch;
 	double zoom = Zoom();
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+		if(commodity != SHOW_STARS)
+			RingShader::Draw(pos, OUTER, INNER, node.color);
+		else
+		{
+			// Ensures every multiple-star system has a characteristic, deterministic rotation.
+			Angle starAngle = 0;
+			Angle angularSpacing = 0;
+			Point starOffset = Point(0, 0);
+
+			const int starsToDraw = min<int>(node.mapIcons.size(), MAX_STARS);
+			if(starsToDraw > 1)
+			{
+				starAngle = node.name.length() + node.position.Length();
+				angularSpacing = 360. / starsToDraw;
+				starOffset = starsToDraw * Point(2., 2.);
+			}
+
+			// Draw the star icons.
+			for(int i = 0; i < starsToDraw; ++i)
+			{
+				starAngle += angularSpacing;
+				const Sprite *star = node.mapIcons[i];
+				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
+					Point(0, 0), 0, sqrt(max(zoom, 0.5)) / 2, min(zoom + 0.25, 0.75));
+				starBatch.Add(starBody);
+			}
+		}
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
@@ -1400,6 +1462,8 @@ void MapPanel::DrawSystems()
 				it->second = min(it->second, distance);
 		}
 	}
+	starBatch.Draw();
+	starBatch.Clear();
 }
 
 
@@ -1454,6 +1518,7 @@ void MapPanel::DrawMissions()
 		else
 			++it.unavailable;
 	}
+	for_each(missionCount.begin(), missionCount.end(), [](auto &it) { it.second.Reserve(); });
 	for(const Mission &mission : player.Missions())
 	{
 		if(!mission.IsVisible())
@@ -1463,22 +1528,25 @@ void MapPanel::DrawMissions()
 		if(!system)
 			continue;
 
-		// Reserve a maximum of half of the slots for available missions.
-		auto &&it = missionCount[system];
-		int reserved = min(MAX_MISSION_POINTERS_DRAWN / 2, it.available + it.unavailable);
-		if(it.drawn >= MAX_MISSION_POINTERS_DRAWN - reserved)
-			continue;
-
-		pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
-		bool isSatisfied = IsSatisfied(player, mission) && blink.second;
-		DrawPointer(system, it.drawn, blink.first ? black : isSatisfied ? currentColor : blockedColor, isSatisfied);
+		auto &it = missionCount[system];
+		if(it.drawn < it.MaximumActive())
+		{
+			pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
+			bool isSatisfied = IsSatisfied(player, mission) && blink.second;
+			const Color &color = blink.first ? black : isSatisfied ? currentColor : blockedColor;
+			DrawPointer(system, it.drawn, it.MaximumActive(), color, isSatisfied);
+		}
 
 		for(const System *waypoint : mission.Waypoints())
-			DrawPointer(waypoint, missionCount[waypoint].drawn, waypointColor);
+			DrawPointer(waypoint, missionCount[waypoint].drawn, missionCount[waypoint].MaximumActive(), waypointColor);
 		for(const Planet *stopover : mission.Stopovers())
-			DrawPointer(stopover->GetSystem(), missionCount[stopover->GetSystem()].drawn, waypointColor);
+		{
+			const System *stopoverSystem = stopover->GetSystem();
+			auto &counts = missionCount[stopoverSystem];
+			DrawPointer(stopoverSystem, counts.drawn, counts.MaximumActive(), waypointColor);
+		}
 		for(const System *mark : mission.MarkedSystems())
-			DrawPointer(mark, missionCount[mark].drawn, waypointColor);
+			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
 	// Draw the available and unavailable jobs.
 	for(auto &&it : missionCount)
@@ -1486,16 +1554,18 @@ void MapPanel::DrawMissions()
 		const auto &system = it.first;
 		auto &&counters = it.second;
 		for(unsigned i = 0; i < counters.available; ++i)
-			DrawPointer(system, counters.drawn, availableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)
-			DrawPointer(system, counters.drawn, unavailableColor);
+			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, unavailableColor);
 	}
 }
 
 
 
-void MapPanel::DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger)
+void MapPanel::DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger)
 {
+	if(systemCount >= max)
+		return;
 	DrawPointer(Zoom() * (system->Position() + center), systemCount, color, true, bigger);
 }
 

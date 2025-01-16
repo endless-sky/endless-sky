@@ -25,6 +25,9 @@ help "basics 1"
 help "basics 2"
 	`For the main menu, press <Show main menu>. The control key bindings can be viewed and changed in the preferences.`
 
+help "basics 3"
+	`To see a help message again, press <Show help>. To see all help messages again, go to the main menu, select Preferences, then go to Settings. Navigate to page two, then select "Reactivate first-time help."`
+
 help "dead"
 	`Uh-oh! You just died. The universe can be a dangerous place for new captains!`
 	`Fortunately, your game is automatically saved every time you leave a planet. To load your most recent saved game, press <Show main menu> to return to the main menu, then click on "Manage Pilots" and "Enter Ship."`
@@ -86,6 +89,9 @@ help "map advanced shops"
 	`The shipyard and outfitter map panels respectively display the ships and outfits sold on any planets that you have seen. Ships and outfits are displayed in categories which can be collapsed by clicking on the category name. Using Shift+click on a category name will collapse or uncollapse all the categories at once.`
 	`Each ship or outfit can be clicked on, displaying that item's stats while also highlighting any planets where it is sold. Using Shift+click on a ship or outfit after you already have one selected will display that item's stats side by side with the previously selected item.`
 	`You can also press F to search the shipyard and outfitter maps for a specific ship or outfit.`
+
+help "map advanced stars"
+	`The starry map mode toggles the display of star types on the system map. This can also be triggered by pressing A while the map is open. The stars present in a system affect the amount of solar power and solar wind available for use by solar collectors and ramscoops respectively.`
 
 help "map advanced danger"
 	`The galaxy can be a dangerous place! Pirates raid some systems more frequently or in greater strength than others, and a poorly defended convoy risks attracting them in many systems. To get an idea of the relative danger of different systems, click on the alert icon next to the system name.`
