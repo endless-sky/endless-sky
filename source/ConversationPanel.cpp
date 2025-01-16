@@ -66,7 +66,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
-	PATH_LENGTH = Files::Saves().size();
+	PATH_LENGTH = Files::Saves().string().size();
 #endif
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
@@ -234,7 +234,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	// fields are currently active. The name text entry fields are active if
 	// choices is empty and we aren't at the end of the conversation.
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
-		GetUI()->Push(new MapDetailPanel(player, system));
+		GetUI()->Push(new MapDetailPanel(player, system, true));
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
