@@ -2120,7 +2120,7 @@ mission "Acorn Delights: Part 1"
 				`	(See what she wants.)`
 				`	(Ignore her.)`
 					decline
-			`	"My name is Eeeya, and I'm looking for my lost granddaughter, Anoo. She recently graduated from medical school, and I was going to give her three tons of cookies, but she's gone! Please help me find my granddaughter."`
+			`	"My name is Eeeya, and I'm looking for my lost granddaughter, Anoo. She recently graduated from medical school, and I was going to give her three tons of cookies, but she's gone! Please help me find her."`
 				goto "actual questions"
 			label questions
 			`	"So please, take me to find my granddaughter."`
@@ -2215,7 +2215,9 @@ mission "Acorn Delights: Part 4"
 					goto mention
 				`	"Why would a doctor join a band of warmongers?"`
 					goto warmonger
-				`	"As the honorable captain <first> <last>, I say let's go find her!"`
+				`	"As the honorable Captain <first> <last>, I say let's go find her!"`
+					accept
+				`	"I'd be happy to help."`
 					goto accept
 				`	"Unfettered space is too dangerous for me. You will have to find another captain."`
 					decline
@@ -2245,12 +2247,12 @@ mission "Acorn Delights: Part 5"
 		payment 3000
 		log "Finally found Anoo. It turns out she joined the Unfettered. I am supposed to take Eeeya to <destination> now."
 		conversation
-			`You're ushered from the landing platform to a nearby hospital when Eeeya finally manages to convey your intent. A few Unfettered Hai nearby are muttering in their language, and you keep hearing the Hai word for "cookies" as they watch Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. Unlike their southern brethren, it seems the Unfettered value function and progress over aesthetics and comfort like their southern brethren.`
-			`	As you rise through the main tower of the hospital, you're surprised at how advanced it is. Despite their willingness to die in battle, the Unfettered seem to value the lives of the survivors. Perhaps this hospital is to heal them quickly to fight again.`
+			`You're ushered from the landing platform to a nearby hospital when Eeeya finally manages to convey your intent. A few Unfettered Hai nearby are muttering in their language, and you keep hearing the Hai word for "cookies" as they watch Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. Unlike their southern brethren, it seems the Unfettered value function and progress over aesthetics and comfort.`
+			`	As you rise through the main tower of the hospital, you're surprised at how advanced it is. Despite their willingness to die in battle, the Unfettered seem to value the lives of the survivors. Perhaps this hospital is to heal them quickly so that they can fight again as soon as possible.`
 			`	You reach a high floor filled with personal offices. Eeeya knocks on each door, apologizing when the Unfettered inside aren't who she's looking for, until you finally reach the very last room.`
-			`	Eeeya opens this door, and runs to the Hai inside it - Anoo. A few minutes later, they begin to speak. Eventually the conversation turns to Anoo's new occupation.`
+			`	Eeeya opens this door, and runs to the Hai inside it - Anoo. A few minutes later, they begin to speak, surprisingly in a language you understand. Eventually the conversation turns to Anoo's new occupation.`
 			`	"Why did you come here, Anoo? The Unfettered hate us."`
-			`	"They don't hate us in particular, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our race is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.` # "us in particular" should be changed to "us" and italicized if/when support for that is ever implemented.
+			`	"They don't hate us in particular, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our species is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.` # "us in particular" should be changed to "us" and italicized if/when support for that is ever implemented.
 			`	"We think of them as mindless brutes, but they're not! They have scientists, doctors, musicians, and writers. Our resources dwarf theirs, but they thrive with what little they have. Soon the Unfettered will have many more planets and almost unlimited resources. The era of scarcity will be over, and they'll have the power to choose their future.`
 			`	"If enough good people join the Unfettered, we can change their minds and set them on a more productive path. They'll need good doctors."`
 			`	"But-" Eeeya objects.`
@@ -2263,10 +2265,10 @@ mission "Acorn Delights: Part 5"
 			`	"Well... I really don't know... but how can I refuse when both my granddaughter and <first> tell me to?"`
 			choice
 				`	"Never mind, you're right. Joining the Unfettered is a bad idea after all."`
-				`	"I stand by my guns. The Unfettered are honorable."`
+				`	"I stand by their guns. The Unfettered are honorable."`
 					goto reallyjoin
 			label "don't join"
-			`	"I'm sorry, Anoo, but I really think Captain <first> is right. While the Unfettered may be kind enough to shelter Hai who come bereaved from their own shots, they do have much starvation. And also, I can't sell cookies here. I will come visit occasionally though.`
+			`	"I'm sorry, Anoo, but I really think Captain <first> is right. Fundamentally, I'm not the kind of person to be friendly with a group who starves and yet paints an exotic picture of itself. And in addition, I doubt there would be a way to support a family of two here; nuts by themselves are precious enough, let alone cookies. Hospital work can only pay so much.`
 			`	"Captain, could you take me back to <planet> please? I'd like to sign the forms and give you some stock in my Acorn Delights factory. In the meantime, here is <payment> for what you've done so far."`
 			choice
 				`	"I'd be glad to take you back."`
@@ -2312,7 +2314,7 @@ mission "Acorn Delights: Part 6"
 				accept
 	on complete
 		payment 1000000
-		log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. After a long journey, we found her - she had gone to help the Unfettered as a trauma sergeon. Brought Eeeya back to <origin> so she could sell the shop, but both Hai are together on <destination> now. Received a total of one million and three thousand credits for my efforts.`
+		log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. After a long journey, we found her - she had gone to help the Unfettered as a trauma surgeon. Brought Eeeya back to <origin> so she could sell the shop, but both Hai are together on <destination> now. Received a total of one million and three thousand credits for my efforts.`
 		conversation
 			`Eeeya leaves to go to the hospital, after paying you five hundred thousand credits and thanking you for the third time. But before you are allowed to leave your ship, an Unfettered security officer arrives. "Come with me<, unfettered title>, we have something to say to you."`
 			`	"Why?" you ask. The Unfettered leads you to an office without answering. "We would like to thank you for recruiting a Hai - especially one as renowned as Chef Eeeya. You are being paid an additional five hundred thousand credits; do not think it is too much. You are dismissed." As you head back to <ship>, your communicator receives a receipt for the promised payment.`
