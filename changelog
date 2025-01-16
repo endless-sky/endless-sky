@@ -96,6 +96,7 @@ Version 0.10.11
       * Systems in the Umbral Reach are no longer "shrouded". (@Saugia)
       * Reworded the description of Viminal to improve its readability. (@NateEag)
       * Changed wording for declining choices in the Free Worlds prologue missions to make them more direct. (@Anarchist2)
+      * The Subsidurials now have their own government, and th Ka'het will no longer attack them or Author ships. (@Azure3141)
   * Game mechanics:
     * New mechanics:
       * Added a "cloaked ship permeability" attribute which wllows some damage to pass through a ships shields while it is cloaked. (@Quantumshark)
