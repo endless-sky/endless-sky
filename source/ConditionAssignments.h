@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <set>
 #include <string>
+#include <vector>
 
 class ConditionsStore;
 class DataNode;
@@ -58,6 +59,34 @@ public:
 	void Add(const DataNode &node);
 
 
+public:
+	/// Possible assignment operators.
+	enum class AssignOp
+	{
+		AO_ASSIGN, /// Used for =, set (with 1 as expression), clear ((with 0 as expression)
+		AO_ADD, /// Used for +=, ++ (with 1 as expression)
+		AO_SUB, /// Used for -=, -- (with 1 as expression)
+		AO_MUL, /// Used for *=
+		AO_DIV, /// Used for /= (integer division)
+		AO_LT,  /// Used for <?=
+		AO_GT  /// Used for >?=
+	};
+
+
 private:
-	ConditionSet setToEvaluate;
+	// Class that supports a single assignment
+	class Assignment {
+	public:
+		Assignment(std::string conditionToAssignTo, AssignOp assignOperator, ConditionSet expressionToEvaluate);
+
+
+	public:
+		std::string conditionToAssignTo;
+		AssignOp assignOperator;
+		ConditionSet expressionToEvaluate;
+	};
+
+
+private:
+	std::vector<Assignment> assignments;
 };
