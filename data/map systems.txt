@@ -6515,7 +6515,7 @@ system Ar-40
 	arrival 500
 	habitable 230
 	belt 1023
-	"jump range" 30
+	"jump range" 45
 	haze _menu/haze-tear
 	link Ca-40
 	link P-31
@@ -6860,7 +6860,7 @@ system As-75
 	habitable 100
 	belt 1315 10
 	belt 2249 8
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-tear
 	link Ca-40
 	link Kr-84
@@ -7480,7 +7480,7 @@ system "Avo Chigo"
 			period 77.5168
 
 system Axiom
-	pos -314 861
+	pos -306 864
 	government Uninhabited
 	attributes "bright star" "multi-star" "notable star" "twilight"
 	arrival 5000
@@ -7587,7 +7587,7 @@ system B-11
 	arrival 500
 	habitable 100
 	belt 1448
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-tear
 	link Demilude
 	link Li-7
@@ -7689,7 +7689,7 @@ system Be-9
 	arrival 3400
 	habitable 3400
 	belt 1490
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-tear
 	link Li-7
 	asteroids "medium rock" 4 5.116
@@ -9151,7 +9151,7 @@ system Ca-40
 	arrival 500
 	habitable 100
 	belt 1137
-	"jump range" 30
+	"jump range" 45
 	haze _menu/haze-tear
 	link Ar-40
 	link As-75
@@ -12678,14 +12678,14 @@ system "Delta Velorum"
 system Demilude
 	hidden
 	shrouded
-	pos -300 1182
+	pos -232 1192
 	government "Avgi (Dissonance)"
 	attributes "avgi" "avgi diaspora" "tangled shroud"
 	arrival 500
 	habitable 160
 	belt 1885 3
 	belt 2084 8
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-tear
 	link B-11
 	asteroids "large rock" 1 2.296
@@ -24396,7 +24396,7 @@ system Kr-84
 	arrival 2160
 	habitable 2160
 	belt 1811
-	"jump range" 60
+	"jump range" 90
 	haze _menu/haze-none
 	link As-75
 	asteroids "large metal" 1 3.325
@@ -24926,6 +24926,7 @@ system Li-7
 	belt 1565 2
 	belt 2323 10
 	belt 2984 7
+	"jump range" 45
 	haze _menu/haze-tear
 	link B-11
 	link Be-9
@@ -28665,14 +28666,14 @@ system Myruet-Kvelq
 system N-14
 	hidden
 	shrouded
-	pos -170 1104
+	pos -115 1107
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 1250
 	habitable 1250
 	belt 1578 5
 	belt 2409 1
-	"jump range" 30
+	"jump range" 90
 	haze _menu/haze-tear
 	link B-11
 	asteroids "large metal" 2 4.844
@@ -30363,7 +30364,7 @@ system P-31
 	arrival 500
 	habitable 100
 	belt 1352
-	"jump range" 30
+	"jump range" 60
 	haze _menu/haze-tear
 	link Ar-40
 	asteroids "medium metal" 6 3.29
@@ -32217,7 +32218,7 @@ system "Porta Terra"
 
 system Postlude
 	shrouded
-	pos -229 977
+	pos -261 951
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
@@ -33998,7 +33999,7 @@ system Remembrance
 			period 13.2191
 
 system Rhapsody
-	pos -311 1169
+	pos -289 1179
 	government Uninhabited
 	attributes "outer limits"
 	arrival 1080
