@@ -2300,6 +2300,7 @@ Files:
  images/outfit/voidfish*
  images/planet/aviskir*
  images/planet/nebula1*
+ images/projectile/blue?optical?laser*
  images/projectile/nettle*
  images/projectile/nucleolysis*
  images/projectile/orchid?boost*
@@ -2314,16 +2315,17 @@ Copyright: Azure
 License: CC-BY-SA-4.0
 
 Files:
- images/hardpoint/avgi?blue?laser*
- images/hardpoint/avgi?green?laser*
+ images/hardpoint/blue?optical?laser*
+ images/hardpoint/green?optical?laser*
  images/hardpoint/impact?shield
- images/hardpoint/plasmadyne?scoop
- images/hardpoint/speckle?turret
+ images/hardpoint/plasmadyne?scoop*
+ images/hardpoint/speckle?turret*
+ images/hardpoint/medium?vls*
  images/outfit/anomalous?shield?restorer*
  images/outfit/antimatter?power?cell*
  images/outfit/arc?fusion?torch*
- images/outfit/avgi?blue?laser*
- images/outfit/avgi?green?laser*
+ images/outfit/blue?optical?laser*
+ images/outfit/green?opticallaser*
  images/outfit/beam?antimatter?torch*
  images/outfit/concealment?lamina*
  images/outfit/deuterium?slush?tank*
@@ -2354,7 +2356,7 @@ Files:
  images/outfit/telescopic?antimissile*
  images/outfit/ultracapacitor?bank*
  images/outfit/ultracapacitor?cell*
- images/outfit/vertical?launch?array*
+ images/outfit/medium?vls*
  images/outfit/zap?fusion?torch*
  images/effect/flotsam?telescopic?antimissile*
  images/effect/flotsam?nucleolysis?beam*
