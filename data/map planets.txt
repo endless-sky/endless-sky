@@ -4232,7 +4232,7 @@ planet "Outpost Tekis"
 	music ambient/machinery
 	landscape land/station25
 	description `Outpost Tekis is a station built into an enormous asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens.`
-	description `Outpost Tekis is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
+	description `The complex is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
 	spaceport `The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar.`
 	government "Avgi (Dissonance)"
 	shipyard "Avgi Civilian Basics"

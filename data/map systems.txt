@@ -6599,8 +6599,8 @@ system Arche
 	trade Medical 900
 	trade Metal 360
 	trade Plastic 480
-	fleet "Small Avgi Merchants" 8400
-	fleet "Large Avgi Merchants" 6000
+	fleet "Small Avgi Merchants" 12000
+	fleet "Large Avgi Merchants" 18000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 4200
@@ -7596,6 +7596,9 @@ system B-11
 	asteroids "small metal" 3 2.713
 	fleet "Small Avgi Merchants" 7200
 	fleet "Large Avgi Merchants" 12000
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 8400
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
@@ -9120,6 +9123,9 @@ system C-12
 	asteroids "small metal" 4 3.735
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 9000
+	fleet "Large Dissonance Merchants" 12000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
@@ -9158,6 +9164,7 @@ system Ca-40
 	minables copper 8 4.361
 	fleet "Small Avgi Merchants" 36000
 	fleet "Large Avgi Merchants" 42000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 12000
 	fleet "Avgi Patrol" 9000
 	fleet "Avgi Strike Group" 24000
@@ -10418,6 +10425,8 @@ system Cl-35
 	asteroids "small metal" 4 1.496
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 9000
+	fleet "Large Dissonance Merchants" 12000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
@@ -12687,6 +12696,8 @@ system Demilude
 	minables neodymium 5 5.232
 	fleet "Small Dissonance Merchants" 1800
 	fleet "Large Dissonance Merchants" 4200
+	fleet "Small Dissonance Pirates" 12000
+	fleet "Large Dissonance Pirates" 30000
 	fleet "Dissonance Miners" 3600
 	fleet "Small Avgi Merchants" 9000
 	fleet "Large Avgi Merchants" 18000
@@ -18004,6 +18015,7 @@ system Ge-73
 	fleet "Small Dissonance Merchants" 4200
 	fleet "Large Dissonance Merchants" 8400
 	fleet "Dissonance Miners" 12000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
@@ -19081,6 +19093,8 @@ system H-1
 	minables iron 7 2.226
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 12000
+	fleet "Large Dissonance Merchants" 18000
 	fleet "Avgi Miners" 12000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
@@ -21063,6 +21077,8 @@ system Interlude
 	trade Plastic 390
 	fleet "Small Dissonance Merchants" 1800
 	fleet "Large Dissonance Merchants" 2700
+	fleet "Small Dissonance Pirates" 18000
+	fleet "Large Dissonance Pirates" 36000
 	fleet "Dissonance Miners" 2400
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 9000
@@ -22238,6 +22254,8 @@ system K-39
 	minables copper 3 4.652
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 9000
+	fleet "Large Dissonance Merchants" 12000
 	fleet "Avgi Miners" 9000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
@@ -24924,6 +24942,9 @@ system Li-7
 	minables silicon 9 6.889
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 6000
+	fleet "Large Dissonance Merchants" 9600
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Miners" 12000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
@@ -27338,6 +27359,9 @@ system Mg-24
 	asteroids "large metal" 1 3.584
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 6000
+	fleet "Large Dissonance Merchants" 9000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
@@ -28694,6 +28718,9 @@ system Na-23
 	asteroids "large metal" 3 4.262
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 6000
+	fleet "Large Dissonance Merchants" 9000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
@@ -28890,6 +28917,9 @@ system Ne-20
 	minables neodymium 4 3.253
 	fleet "Small Avgi Merchants" 4200
 	fleet "Large Avgi Merchants" 8400
+	fleet "Small Dissonance Merchants" 9000
+	fleet "Large Dissonance Merchants" 12000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Miners" 12000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
@@ -32381,6 +32411,8 @@ system Prelude
 	trade Plastic 330
 	fleet "Small Dissonance Merchants" 1800
 	fleet "Large Dissonance Merchants" 4200
+	fleet "Small Dissonance Pirates" 15000
+	fleet "Large Dissonance Pirates" 36000
 	fleet "Dissonance Miners" 3600
 	fleet "Small Avgi Merchants" 9000
 	fleet "Large Avgi Merchants" 18000
@@ -34484,8 +34516,11 @@ system S-32
 	minables iron 1 3.05
 	fleet "Small Avgi Merchants" 7200
 	fleet "Large Avgi Merchants" 12000
+	fleet "Small Dissonance Merchants" 9000
+	fleet "Large Dissonance Merchants" 12000
 	fleet "Small Dissonance Merchants" 7200
 	fleet "Large Dissonance Merchants" 12000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 4200
 	fleet "Avgi Strike Group" 18000
@@ -36304,6 +36339,7 @@ system Si-28
 	fleet "Small Dissonance Merchants" 4200
 	fleet "Large Dissonance Merchants" 8400
 	fleet "Dissonance Miners" 9000
+	fleet "Small Dissonance Pirates" 36000
 	fleet "Avgi Scouts" 9000
 	fleet "Avgi Patrol" 2700
 	fleet "Avgi Strike Group" 9000
