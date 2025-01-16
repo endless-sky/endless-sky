@@ -175,6 +175,13 @@ bool UI::IsTop(const Panel *panel) const
 
 
 
+bool UI::WillBeTop(const Panel *panel) const
+{
+	return Top().get() == panel;
+}
+
+
+
 // Get the absolute top panel, even if it is not yet drawn (i.e. was pushed on
 // this Step).
 shared_ptr<Panel> UI::Top() const
