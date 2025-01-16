@@ -2968,6 +2968,7 @@ Files:
  images/ship/*jje*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/ship/mining?barge*
  images/ship/saber*
  images/ship/*vyrmeid*
  images/ship/*vyuir*
@@ -2996,6 +2997,7 @@ Files:
  images/thumbnail/hogshead*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
+ images/thumbnail/mining?barge*
  images/thumbnail/saber*
  images/thumbnail/vyuir*
 Copyright: Saugia <https://github.com/Saugia>
