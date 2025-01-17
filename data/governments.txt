@@ -1188,7 +1188,8 @@ government "Indigenous Lifeform (Tree)"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
 	"player reputation" 1
-	"penalty for"
+	
+  "penalty for"
 		assist 0
 		disable 0
 		board 0
@@ -1204,7 +1205,8 @@ government "Indigenous Lifeform (Tree Two)"
 	# Nothing you do permanently angers indigenous creatures, because they are
 	# not sentient and do not remember you as an individual.
 	"player reputation" 1
-	"penalty for"
+	
+  "penalty for"
 		assist 0
 		disable 0
 		board 0
