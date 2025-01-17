@@ -60,8 +60,8 @@ outfit "Magnetic Scoop"
 	"fuel generation" 0.045
 	"energy consumption" 1.2
 	"solar heat" 2.4
-	description "To the Avgi, a reliable supply of fuel and reaction mass aboard their starships is critical. Even before inventing the hyperdrive, Magnetic Scoops gave their starships superior endurance and performance, allowing them to travel the gulf between the stars at speeds that would have otherwise been impossible. Now, with faster-than-light travel available, ramscoops are just as critical as before, allowing the Avgi to ply the hyperlanes between the many systems where no refineries or stations have been built."
-	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing a Magnetic Scoop to collect extra material on top of the naturally charged solar wind. This results in a more predictable supply of fuel, even around stars with solar winds poor in deuterium. Of course, the power the lasers require can be quite considerable, as is the heat produced from compressing the incoming plasma."
+	description "To the Avgi, a reliable supply of fuel and reaction mass aboard their starships is critical. Even before inventing the hyperdrive, Magnetic Scoops gave their starships superior endurance and performance, allowing them to travel the gulf between the stars at speeds that would have otherwise been impossible. Now, even with faster-than-light travel available, ramscoops are just as critical as before, allowing the Avgi to ply the hyperlanes between the many systems where no fuel depots have been built."
+	description "A powerful bank of lasers ionizes the interstellar medium around ships equipped with these ramscoops, allowing a Magnetic Scoop to collect extra material on top of the naturally charged solar wind. This results in a more predictable supply of fuel, even around stars with solar winds poor in deuterium. Of course, the power the lasers require can be quite considerable, as is the heat produced from compressing the incident plasma."
 
 
 outfit "Plasmadyne Scoop"
@@ -326,7 +326,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 		"scale" 0.75
 	"flare sound" "fusion torch"
 	"afterburner effect" "small remass injection"
-	"magnozzle rings" 3
+	"magnetic nozzle" 3
 	description "The smallest Avgi fusion torch is actually the most recent design in the family, owing to the difficulties of miniaturizing the systems driving nuclear fusion. By cooling the fuel with a laser and passing it through an extremely powerful magnetic field, it can be spin polarized, aligning the nuclear spins of the deuterons to reduce ignition requirements and direct some of the emitted neutrons away from the spacecraft. While spin polarization is used on all Avgi fusion torches, it allows the Spark in particular to be far lighter and more compact than would otherwise be possible, reducing the required currents to drive the pinch and the mass of the necessary radiation shielding."
 	description "The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
@@ -351,7 +351,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 		"frame rate" 15
 	"flare sound" "fusion torch"
 	"afterburner effect" "medium remass injection"
-	"magnozzle rings" 6
+	"magnetic nozzle" 6
 	description "The fusion confinement scheme favored by the Avgi is a variant on the Z-pinch, which runs current axially down a column of deuterium plasma to squeeze it with the resulting magnetic field until it is hot and dense enough for fusion to occur. An annular flow surrounding the pinch keeps it stable, confining the plasma long enough for nearly all of the fuel to be burned by the time it makes its way down the length of the engine and out the magnetic nozzle on its rear. Without the need for fragile, heavy magnets or bulky lasers to ignite and confine the fusion reaction, the resulting drive is incredibly efficient and compact, which has made it the mainstay of Avgi spacecraft propulsion for centuries."
 	description "The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
@@ -377,7 +377,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 		"scale" 2
 	"flare sound" "fusion torch"
 	"afterburner effect" "large remass injection"
-	"magnozzle rings" 9
+	"magnetic nozzle" 9
 	description "The largest and oldest of the common fusion torches used by the Avgi, the Arc is derived from an interstellar-class design that was modified and downrated to make it more suitable for interplanetary operations by trading specific impulse for raw thrust. At this scale, the pinch is long enough that it is able to confine the plasma for sufficient time to not only fuse the deuterium into a mix of helium-3 and tritium, but to likewise burn the aforementioned fusion products together with leftover deuterium to release even more energy. This reaction, known as catalyzed D-D fusion, gives the Arc superior fuel efficiency over its smaller cousins."
 	description "The magnetic nozzle is designed to support a variety of components that can be slotted in to provide various effects, from injecting additional propellant to improve thrust to tapping energy from the expanding fusion plasma to power a ship's systems."
 
@@ -415,9 +415,9 @@ outfit "Remass Injector"
 	"afterburner energy" 3
 	"afterburner heat" -18
 	"afterburner fuel" 0.24
-	"magnozzle rings" -1
+	"magnetic nozzle" -1
 	description "A powerful magnetohydrodynamic turbopump forces a torrent of lithium-seeded water into the throat of a fusion torch's magnetic nozzle, dramatically increasing thrust at the cost of a significant increase in propellant consumption. The additional mass flow likewise reduces the waste heat generated by a torch drive, capturing much of it as propellant is injected around the fusion reaction."
-	description "The Remass Injector is a component that can be installed into an Avgi fusion torch to give it afterburning capabilities. It requires a magnozzle ring slot to be installed."
+	description "The Remass Injector is a component that can be installed into an Avgi fusion torch to give it afterburning capabilities. It requires a magnetic nozzle slot to be installed."
 
 
 outfit "Inductive Extractor"
@@ -436,9 +436,9 @@ outfit "Inductive Extractor"
 	"thrust" -12
 	"thrusting energy" -30
 	"thrusting heat" 6
-	"magnozzle rings" -1
+	"magnetic nozzle" -1
 	description "A reinforced pair of superconducting loops, a large rectifier diode, and a power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's plasma exhaust as it expands against the field produced by the magnetic nozzle. This removes some energy from the exhaust plume and reduces its produced thrust, but the liberated energy is great enough that this is the primary means by which high performance Avgi starships generate power."
-	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnozzle ring slot to be installed."
+	description "The Inductive Extractor is a component that can be installed into an Avgi fusion torch to turn a portion of its thrust into energy. It requires a magnetic nozzle slot to be installed."
 
 
 outfit "R-180 RCS Thrusters"
@@ -546,7 +546,7 @@ outfit `Z-3600 "Beam" Amat Torch`
 		"frame rate" 15
 		"scale" 0.5
 	"steering flare sound" "remnant afterburner"
-	"magnozzle rings" 18
+	"magnetic nozzle" 18
 	description "The fastest Avgi starships were propelled not just by their engines, but also by immense banks of lasers and particle beams stationed in the Anax system, pushing ships to velocities in excess of 0.2c before braking with a magsail or plasma magnet. Just before the invention of the hyperdrive, however, the Avgi perfected this beam-core antimatter drive, capable of pushing a starship with sufficient antimatter fuel to 0.4c and perhaps beyond. Requiring immense quantities of antimatter, the amat farms around Anax such as Antivli Station would have been strained to their limits had this design entered mass production, but the surprise invention of the hyperdrive rendered it laughably obsolete overnight."
 
 
