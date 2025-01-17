@@ -1404,9 +1404,6 @@ mission "Avgi: Doctors 3"
 		payment 9000 300
 
 
-# Smuggling Jobs
-
-
 # Special Jobs
 
 phrase "avgi cylinder materials"
