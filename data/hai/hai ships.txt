@@ -36,10 +36,10 @@ ship "Anomalocaris"
 			"hull damage" 1050
 			"hit force" 3150
 	outfits
-		"Chameleon Anti-Missile" 2
 		"Ion Cannon"
 		"Pulse Cannon"
 		"Pulse Turret" 2
+		"Chameleon Anti-Missile" 2
 		"Boulder Reactor"
 		"Pebble Core"
 		"Hai Ravine Batteries"
@@ -52,10 +52,10 @@ ship "Anomalocaris"
 		Hyperdrive
 	gun -24 -89.5
 	gun 24 -89.5
+	turret 0 -32.5 "Pulse Turret"
 	turret -40 -28
 	turret 40 -28
-	turret 0 60
-	turret 0 -32.5
+	turret 0 60 "Pulse Turret"
 	engine -50 15
 	engine 50 15
 	"steering engine" -50 15
@@ -73,13 +73,12 @@ ship "Anomalocaris"
 	"final explode" "final explosion medium"
 	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage."
 
-# Disabled faster due to being submersed underwater for an extended period of time.
 ship "Anomalocaris" "Anomalocaris (Venerable)"
 	add attributes
 		"threshold percentage" 0.4
 	outfits
-		"Bullfrog Anti-Missile" 2
 		"Korath Detainer" 2
+		"Bullfrog Anti-Missile" 2
 		"Hai Williwaw Cooling"
 		"Boulder Reactor"
 		"Hai Valley Batteries"
@@ -91,6 +90,10 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 		`"Bondir" Atomic Steering`
 		"Afterburner (Asteroid Class)"
 		"Hyperdrive"
+	turret "Bullfrog Anti-Missile"
+	turret
+	turret
+	turret "Bullfrog Anti-Missile"
 	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."
 
 ship "Aphid"

@@ -96,10 +96,11 @@ mission "Hai Legacy 1"
 			label first
 			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull on your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again.`
 			`	"My associates and I have a lucrative business proposition for you. If you are interested, come find us at these coordinates." Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
+			branch continue
+				"credits" >= 10000000
 			`	However, the paper also mentions you need to have at least ten million credits in cash! You'll have to save up or take a loan and then come back another day before heading to the specified location.`
-				to display
-					"credits" < 10000000
 				defer
+			label continue
 			`	Will you go there?`
 			choice
 				`	(Sure.)`
@@ -325,7 +326,7 @@ mission "Hai Legacy 3"
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				set "unfettered: fled with the relic"
-			`	Seeing as they are unlikely to cooperate, you quickly head to your ship and launch, with the Unfettered rushing after you shortly after.`
+			`	Seeing as they are unlikely to cooperate, you quickly head to your ship and launch, with the Unfettered rushing after you.`
 				launch
 	on enter
 		conversation
@@ -347,7 +348,6 @@ mission "Hai Legacy 3"
 				fail
 			`As you take to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
 	on enter
-		"can trigger after failure"
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		fail
 		dialog `You receive a hail from the Unfettered. "You failed to complete the duel, and as such, you will not enjoy unwarranted respect any longer! It would be in your best interest to return the ship to us should we ever find you on our worlds again!`
@@ -399,7 +399,7 @@ mission "Hai Legacy 3"
 		to spawn
 			not "unfettered: fled with the relic"
 		ship "Lightning Bug (Unfettered Shipyards)" "Dungeon Master"
-		personality launching marked pacifist staying uninterested
+		personality launching pacifist staying uninterested
 		on disable
 			dialog `Mera hails you. "Stop! I am only here as an observer. If you destroy my ship, the deal is off!"`
 		on kill
@@ -411,7 +411,7 @@ mission "Hai Legacy 3"
 		government "Hai (Unfettered)"
 		to spawn
 			has "unfettered: fled with the relic"
-		personality heroic launching marked pacifist unconstrained
+		personality heroic launching pacifist unconstrained
 		ship "Sea Scorpion (Shredder)" "Hunter"
 	to complete
 		not "unfettered: fled with the relic"
