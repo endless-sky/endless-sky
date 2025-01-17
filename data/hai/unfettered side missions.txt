@@ -295,7 +295,7 @@ mission "Hai Legacy 3"
 					goto win
 				`	"Can't I just sell it to you?"`
 				`	"I bought this ship. It's mine and I shall do what I please with it."`
-					goto headingout
+					goto fleeing
 			`	"No, because in the eyes of my brethren that would mean I, too, did not deserve this ship. They would then challenge me for it."`
 			label win
 			`	Mera turns around, talking to other Unfettered for a bit before addressing you again. "You will win the right to access our worlds. But, in order to keep our respect, you must keep this Anomalocaris in good condition until you prove yourself another way. It is a priceless artifact. Should you refuse to prove your worth, you will no longer be allowed to land here."`
@@ -322,7 +322,7 @@ mission "Hai Legacy 3"
 			`	Mera starts to look a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships, but Mera pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!"`
 			`	You see the Unfettered have already begun their launching procedures, so you should prepare for takeoff in your Anomalocaris, and no other ships, as soon as you can.`
 				accept
-			label headingout
+			label fleeing
 			action
 				"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 				set "unfettered: fled with the relic"
