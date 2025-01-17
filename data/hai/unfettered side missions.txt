@@ -303,7 +303,7 @@ mission "Hai Legacy 3"
 			choice
 				`	"I accept."`
 				`	"I have nothing to prove to you. This is my ship now."`
-					goto headingout
+					goto fleeing
 			`	Mera grins. "Good! I won't be fighting you personally, as it is too risky to do so. I am but an engineer, after all. I would also not want to deny my brother and his crew the opportunity to prove themselves against a powerful human warrior!"`
 			`	You're not sure if Mera is being serious or not, but her friends seem to be in for it. One that appears to be their leader approaches you. "So you think you deserve to fly this mighty ship of the Hai empire?"`
 			`	"Yeah, what makes you think that, human?" another one adds.`
