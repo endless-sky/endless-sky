@@ -20,7 +20,7 @@ ship "Koryfi"
 	thumbnail "thumbnail/avgi koryfi"
 	attributes
 		category "Transport"
-		"cost" 1860000
+		"cost" 600000
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
@@ -130,7 +130,7 @@ ship "Melodikos"
 	thumbnail "thumbnail/avgi melodikos"
 	attributes
 		category "Space Liner"
-		"cost" 5220000
+		"cost" 1200000
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
@@ -276,7 +276,7 @@ ship "Avlaki"
 	thumbnail "thumbnail/avgi avlaki"
 	attributes
 		category "Light Freighter"
-		"cost" 1860000
+		"cost" 450000
 		"shields" 600
 		"hull" 1800
 		"required crew" 2
@@ -385,7 +385,7 @@ ship "Harmonikos"
 	thumbnail "thumbnail/avgi harmonikos"
 	attributes
 		category "Heavy Freighter"
-		"cost" 5220000
+		"cost" 900000
 		"shields" 1200
 		"hull" 2400
 		"required crew" 6
@@ -528,7 +528,7 @@ ship "Phononos"
 	thumbnail "thumbnail/avgi phononos"
 	attributes
 		category "Light Freighter"
-		"cost" 144000
+		"cost" 180000
 		"hull" 1500
 		"automaton" 1
 		"mass" 72
@@ -595,7 +595,7 @@ ship "Frequentia"
 		"hull"	1800
 		"required crew" 2
 		"bunks" 6
-		"mass" 270
+		"mass" 300
 		"drag" 4.5
 		"heat dissipation" 1.2
 		"solar heat" 2.7
@@ -612,6 +612,7 @@ ship "Frequentia"
 	outfits
 		"Lantern Fission Core"
 		"Ultracapacitor Cell" 3
+		"Heatsink Partition"
 		"Multispectral Scanner"
 		"Cryogenic Deuterium Tank" 6
 		"Magnetic Scoop"
@@ -1206,9 +1207,9 @@ ship "Prismaios"
 		"hull" 7200
 		"required crew" 2
 		"bunks" 6
-		"mass" 450
+		"mass" 420
 		"drag" 2.4
-		"heat dissipation" 1.5
+		"heat dissipation" 1.2
 		"solar heat" 4.5
 		"fuel capacity" 1200
 		"cargo space" 36
@@ -1348,7 +1349,7 @@ ship "Interferos"
 		"crew equivalent" 3
 		"mass" 270
 		"drag" 5.4
-		"heat dissipation" 1.2
+		"heat dissipation" 0.9
 		"solar heat" 2.7
 		"fuel capacity" 600
 		"cargo space" 12
@@ -1597,7 +1598,7 @@ ship "Difraktos"
 		"bunks" 42
 		"mass" 1200
 		"drag" 7.2
-		"heat dissipation" 1.5
+		"heat dissipation" 1.2
 		"solar heat" 1.2
 		"fuel capacity" 1800
 		"cargo space" 60
@@ -1776,7 +1777,7 @@ ship "Refraktos"
 		"bunks" 24
 		"mass" 810
 		"drag" 6
-		"heat dissipation" 1.8
+		"heat dissipation" 1.44
 		"solar heat" 8.1
 		"fuel capacity" 1800
 		"cargo space" 60
@@ -1876,7 +1877,7 @@ ship "Atenuatia"
 		"bunks" 90
 		"mass" 2700
 		"drag" 18
-		"heat dissipation" 1.5
+		"heat dissipation" 1.2
 		"solar heat" 2.7
 		"fuel capacity" 2400
 		"cargo space" 120
@@ -2036,14 +2037,14 @@ ship "Akoustiki"
 	thumbnail "thumbnail/avgi akoustiki"
 	attributes
 		category "Fighter"
-		"cost" 126000
+		"cost" 120000
 		"shields" 180
 		"hull" 1200
 		"required crew" 1
 		"bunks" 6
 		"mass" 60
 		"drag" 1.8
-		"heat dissipation" 0.9
+		"heat dissipation" 0.66
 		"fuel capacity" 120
 		"cargo space" 30
 		"outfit space" 96
@@ -2108,13 +2109,13 @@ ship "Photikon"
 		category "Fighter"
 		licenses
 			"Twilight Guard"
-		"cost" 138000
+		"cost" 180000
 		"shields" 240
 		"hull" 2100
 		"automaton" 1
 		"mass" 45
 		"drag" 0.6
-		"heat dissipation" 0.9
+		"heat dissipation" 0.72
 		"fuel capacity" 90
 		"outfit space" 90
 		"weapon capacity" 27
@@ -2198,14 +2199,14 @@ ship "Vibratia"
 		category "Drone"
 		licenses
 			"Twilight Guard"
-		"cost" 96000
+		"cost" 90000
 		"hull" 1200
 		"automaton" 1
 		"crew equivalent" 1
 		"threshold percentage" 0.12
 		"mass" 24
 		"drag" 0.3
-		"heat dissipation" 0.99
+		"heat dissipation" 0.9
 		"outfit space" 75
 		"weapon capacity" 18
 		"engine capacity" 24
@@ -2382,7 +2383,7 @@ ship "Sonikis"
 	thumbnail "thumbnail/avgi sonikis"
 	attributes
 		category "Drone"
-		"cost" 66000
+		"cost" 60000
 		"hull" 600
 		"automaton" 1
 		"crew equivalent" 1

@@ -19,7 +19,7 @@ outfit "Radiative Lamina"
 	series "Avgi: Laminae"
 	index 10
 	category "Systems"
-	cost 200000
+	cost 120000
 	thumbnail "outfit/radiative lamina"
 	"mass" 12
 	"anchor point" -1
@@ -36,7 +36,7 @@ outfit "Concealment Lamina"
 	category "Systems"
 	licenses
 		"Twilight Guard"
-	cost 2000000
+	cost 3000000
 	thumbnail "outfit/concealment lamina"
 	"mass" 6
 	"anchor point" -1
@@ -54,10 +54,10 @@ outfit "Magnetic Scoop"
 	category "Systems"
 	cost 720000
 	thumbnail "outfit/magnetic scoop"
-	"mass" 12
-	"outfit space" -12
+	"mass" 9
+	"outfit space" -9
 	"ramscoop" 6
-	"fuel generation" 0.03
+	"fuel generation" 0.045
 	"energy consumption" 1.2
 	"solar heat" 2.4
 	description "To the Avgi, a reliable supply of fuel and reaction mass aboard their starships is critical. Even before inventing the hyperdrive, Magnetic Scoops gave their starships superior endurance and performance, allowing them to travel the gulf between the stars at speeds that would have otherwise been impossible. Now, with faster-than-light travel available, ramscoops are just as critical as before, allowing the Avgi to ply the hyperlanes between the many systems where no refineries or stations have been built."
@@ -68,7 +68,7 @@ outfit "Plasmadyne Scoop"
 	series "Avgi: Fuel"
 	index 20
 	category "Systems"
-	cost 60000000
+	cost 30000000
 	thumbnail "outfit/plasmadyne scoop"
 	"mass" 60
 	"outfit space" -120
@@ -89,21 +89,21 @@ outfit "Deuterium Slush Tank"
 	series "Avgi: Fuel"
 	index 30
 	category "Systems"
-	cost 90000
+	cost 240000
 	thumbnail "outfit/deuterium slush tank"
 	"mass" 3
 	"outfit space" -12
 	"fuel capacity" 300
 	"energy consumption" 0.6
 	"heat generation" 0.6
-	description "This lightweight tank stores an appreciable amount of hyperspace fuel as deuterium slush - a slurry of liquid deuterium and deuterium ice. This allows fuel to be stored at higher densities than would otherwise be possible, but the cryocooler required to maintain the zero-boiloff system requires a small amount of energy to pump heat out of the vessel."
+	description "This lightweight tank stores an appreciable amount of hyperspace fuel as deuterium slush - a slurry of liquid deuterium and deuterium ice. This allows fuel to be stored at higher densities than would otherwise be possible, but the cryocooler required to maintain the zero-boiloff system requires a small amount of energy to pump heat out of the pressure vessel."
 
 
 outfit "Cryogenic Deuterium Tank"
 	series "Avgi: Fuel"
 	index 40
 	category "Systems"
-	cost 30000
+	cost 120000
 	thumbnail "outfit/cryogenic deuterium tank"
 	"mass" 12
 	"outfit space" -6
@@ -116,20 +116,20 @@ outfit "Heatsink Partition"
 	series "Avgi: Fuel"
 	index 50
 	category "Systems"
-	cost 84000
+	cost 60000
 	thumbnail "outfit/heatsink partition"
 	"mass" 9
 	"outfit space" -3
 	"fuel capacity" -100
 	"heat capacity" 240
-	description "This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane; this section can then be filled with a lithium hydride nanofluid with a high specific heat capacity. As a heatsink, it does not assist with cooling a ship, but allows it to temporarily take greater thermal loads while remaining at a safe temperature."
+	description "This lightweight modification partitions off a section of a ship's fuel tanks with an insulating membrane. This section can then be filled with a lithium hydride nanofluid with a high specific heat capacity, which coolant lines can be routed around. As a heatsink, it does not assist with cooling a ship, but allows it to temporarily take greater thermal loads while remaining at a safe temperature."
 
 
 outfit "Multispectral Scanner"
 	series "Avgi: Sensors"
 	index 10
 	category "Systems"
-	cost 24000
+	cost 360000
 	thumbnail "outfit/multispectral scanner"
 	"mass" 6
 	"outfit space" -12
@@ -144,7 +144,7 @@ outfit "Spectrometer Array"
 	series "Avgi: Sensors"
 	index 20
 	category "Systems"
-	cost 24000
+	cost 450000
 	thumbnail "outfit/spectrometer array"
 	"mass" 9
 	"outfit space" -18
@@ -153,6 +153,7 @@ outfit "Spectrometer Array"
 	"cargo scan power" 72
 	"cargo scan efficiency" 18
 	"asteroid scan power" 90
+	"atmosphere scan" 90
 	"energy consumption" 0.12
 	description "This array of spectrometers is capable of analyzing the spectral signatures of materials in order to determine their composition. A small laser can speed this process up for asteroids by ablating a small surface sample and then analyzing the spectral lines of the emitted light, but this is sadly less useful against shielded ships and their internal systems."
 	description "Unfortunately, while these sensors excel in reading basic physical and chemical information, such as the elemental composition of an object, the amount of sensor data required to predict an outfit's functionality means this sensor can be quite slow when scanning a ship's complex systems or cargo."
@@ -162,7 +163,7 @@ outfit "Diffuse Deflector"
 	series "Avgi: Shields"
 	index 10
 	category "Systems"
-	cost 1200000
+	cost 450000
 	thumbnail "outfit/diffuse deflector"
 	"mass" 48
 	"outfit space" -48
@@ -179,7 +180,7 @@ outfit "Specular Deflector"
 	series "Avgi: Shields"
 	index 20
 	category "Systems"
-	cost 2100000
+	cost 1200000
 	thumbnail "outfit/specular deflector"
 	"mass" 72
 	"outfit space" -72
@@ -197,18 +198,18 @@ outfit "Specular Deflector"
 
 outfit "Concentrating Solar Cell"
 	category "Power"
-	cost 12600
+	cost 12000
 	thumbnail "outfit/concentrating solar cell"
 	"mass" 1
 	"outfit space" -3
 	"solar collection" 0.3
 	"solar heat" 0.12
-	description "This tiny solar generator efficiently collects sunlight, turning it into usable energy. Thin mirrors concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving overall efficiency."
+	description "This tiny solar generator efficiently collects sunlight, turning it into usable energy. Thin mirrors concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving overall efficiency. As the solar cells need to be cooled, a significant amount of waste heat is also produced."
 
 
 outfit "Concentrating Solar Array"
 	category "Power"
-	cost 114000
+	cost 90000
 	thumbnail "outfit/concentrating solar array"
 	"mass" 3
 	"outfit space" -18
@@ -223,7 +224,7 @@ outfit "Photoelectric Lamina"
 	series "Avgi: Laminae"
 	index 30
 	category "Power"
-	cost 294000
+	cost 420000
 	thumbnail "outfit/photoelectric lamina"
 	"mass" 24
 	"anchor point" -1
@@ -235,32 +236,32 @@ outfit "Photoelectric Lamina"
 
 outfit "Lantern Fission Core"
 	category "Power"
-	cost 1200000
+	cost 1500000
 	thumbnail "outfit/lantern fission core"
 	"mass" 24
 	"outfit space" -24
-	"energy generation" 3.6
-	"heat generation" 12
+	"energy generation" 6
+	"heat generation" 54
 	"overheat damage rate" 3
-	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact gas core fission reactor, which supplies a stable, reliable flow of power to even smaller ships. With uranium plasma intermixed with hydrogen gas, electrostatic screens keep the uranium fuel contained in the reactor core while the superheated hydrogen is allowed to flow through a compact magnetohydrodynamic generator. The high temperatures involved allow the reactor to achieve a surprisingly high thermodynamic efficiency for its size, at the cost of producing significant amounts of waste heat."
+	description "While most Avgi starships either use solar arrays or tap energy from their torch drives, sometimes a more consistent power source is desirable. The Lantern is a compact electrostatic gas core fission reactor, which supplies a stable, reliable flow of power to even smaller ships. With uranium plasma intermixed with hydrogen gas, an applied voltage keeps the ionized uranium fuel contained in the reactor core while the superheated hydrogen is allowed to flow through a compact magnetohydrodynamic generator. The high temperatures involved allow the reactor to achieve a surprisingly high thermodynamic efficiency for its size, at the cost of producing significant amounts of waste heat."
 	description "Run at the very edge of its thermal limits, the Lantern does not tolerate overheating of its coolant loop, which can cause catastrophic damage if sustained."
 
 
 outfit "Ultracapacitor Cell"
 	category "Power"
-	cost 20400
+	cost 14400
 	thumbnail "outfit/ultracapacitor cell"
 	"mass" 1
 	"outfit space" -3
 	"energy capacity" 1500
 	"ion protection" -0.01
-	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together, flexing as charge builds up. While not the most efficient in their use of volumetric outfit space, this capacitor cell is extraordinarily energy dense for its mass, a legacy design choice from the days of sublight interstellar travel when every gram counted."
+	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together, flexing as charge builds up. While not the most efficient in their use of volumetric outfit space, this capacitor cell is extraordinarily energy dense for its mass, a legacy design choice from the days of sublight interstellar travel when every gram counted."c
 	"description" "Unfortunately, the internal structure of the capacitor is quite delicate, and is prone to potential discharge when exposed to external currents and ionization. Thankfully, resilient grounding and safety interlocks can prevent this discharge from becoming catastrophic."
 	
 	
 outfit "Ultracapacitor Bank"
 	category "Power"
-	cost 200000
+	cost 72000
 	thumbnail "outfit/ultracapacitor bank"
 	"mass" 6
 	"outfit space" -18
@@ -276,7 +277,7 @@ outfit "Magnetoplasma Drive"
 	series "Avgi: Thrusters"
 	index 40
 	category "Engines"
-	"cost" 30000
+	"cost" 27000
 	thumbnail "outfit/magnetoplasma drive"
 	"mass" 12
 	"outfit space" -12
@@ -300,7 +301,7 @@ outfit "Magnetoplasma Drive"
 	"reverse flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
 	"reverse flare sound" "plasma tiny"
-	description "For bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for its versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive velocities, given time to accelerate, but it is also notably energy-hungry. Being propellant agnostic, it is common to see magnetoplasmadynamic drives run with common water or ammonia propellants, contributing to their renowned flexibility."
+	description "For bulk transportation of passengers and goods, electric propulsion has long been used by the Avgi for its versatility and low cost. This compact set of magnetoplasmadynamic thrusters can propel light ships to impressive velocities, given time to accelerate, but it is also notably energy-hungry. Being propellant agnostic, it is common to see this workhorse drive ran with common water or ammonia propellants, contributing to its renowned flexibility."
 	description "Designed to be clustered and oriented in any direction, this design can give a ship full six-axis control, allowing it to translate and rotate in any direction with ease."
 
 
@@ -310,7 +311,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 	index 50
 	licenses
 		"Avgi Torch"
-	"cost" 660000
+	"cost" 1800000
 	thumbnail "outfit/spark fusion torch"
 	"mass" 333
 	"outfit space" -33
@@ -336,7 +337,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 	index 60
 	licenses
 		"Avgi Torch"
-	"cost" 1440000
+	"cost" 3900000
 	thumbnail "outfit/zap fusion torch"
 	"mass" 666
 	"outfit space" -66
@@ -361,7 +362,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 	index 70
 	licenses
 		"Avgi Torch"
-	"cost" 2760000
+	"cost" 6000000
 	thumbnail "outfit/arc fusion torch"
 	"mass" 999
 	"outfit space" -99
@@ -405,7 +406,7 @@ outfit "Remass Injector"
 	category "Engines"
 	licenses
 		"Avgi Torch"
-	"cost" 2760000
+	"cost" 90000
 	thumbnail "outfit/remass injector"
 	"mass" 6
 	"outfit space" -6
@@ -425,7 +426,7 @@ outfit "Inductive Extractor"
 	category "Engines"
 	licenses
 		"Avgi Torch"
-	"cost" 2760000
+	"cost" 120000
 	thumbnail "outfit/inductive extractor"
 	"mass" 12
 	"outfit space" -12
@@ -445,7 +446,7 @@ outfit "R-180 RCS Thrusters"
 	series "Avgi: Thrusters"
 	index 10
 	category "Engines"
-	"cost" 221000
+	"cost" 54000
 	thumbnail "outfit/rcs small"
 	"mass" 18
 	"outfit space" -18
@@ -472,7 +473,7 @@ outfit "R-360 RCS Thrusters"
 	series "Avgi: Thrusters"
 	index 20
 	category "Engines"
-	"cost" 473000
+	"cost" 126000
 	thumbnail "outfit/rcs medium"
 	"mass" 36
 	"outfit space" -36
@@ -499,7 +500,7 @@ outfit "R-720 RCS Thrusters"
 	series "Avgi: Thrusters"
 	index 30
 	category "Engines"
-	"cost" 1077000
+	"cost" 270000
 	thumbnail "outfit/rcs large"
 	"mass" 72
 	"outfit space" -72
@@ -554,7 +555,7 @@ outfit `Z-3600 "Beam" Amat Torch`
 
 outfit "Optical Laser Rifle"
 	category "Hand to Hand"
-	cost 24000
+	cost 12000
 	thumbnail "outfit/optical laser rifle"
 	"capture attack" 0.9
 	"capture defense" 1.8
@@ -565,7 +566,7 @@ outfit "Optical Laser Rifle"
 
 outfit "Trefoil Board"
 	category "Hand to Hand"
-	cost 30000
+	cost 69000
 	thumbnail "outfit/trefoil board"
 	"capture attack" 0.3
 	"capture defense" 0.9

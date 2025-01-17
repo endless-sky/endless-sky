@@ -2089,6 +2089,8 @@ Files:
  images/ship/bluejacket*
  images/ship/pollen*
  images/ship/windjammer*
+ images/effect/flotsam?pollen?particle*
+ images/effect/flotsam?jamfruit?pod*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -2271,11 +2273,10 @@ Files:
  images/_menu/haze-twilight-thin*
  images/_menu/haze-twilit-embers*
  images/asteroid/integral?tree/tree*
- images/asteroid/large?droplet/*
- images/asteroid/medium?droplet/*
- images/asteroid/small?droplet/*
- images/effect/avgi?flare/afterburner*
+ images/asteroid/water?droplet/*
+ images/effect/avgi?flare/antimatter*
  images/effect/avgi?flare/fusion*
+ images/effect/avgi?flare/remass*
  images/effect/avgi?flare/rcs*
  images/effect/flotsam?integral?wood*
  images/effect/flotsam?voidfish*
@@ -2317,7 +2318,6 @@ License: CC-BY-SA-4.0
 Files:
  images/hardpoint/blue?optical?laser*
  images/hardpoint/green?optical?laser*
- images/hardpoint/impact?shield
  images/hardpoint/plasmadyne?scoop*
  images/hardpoint/speckle?turret*
  images/hardpoint/medium?vls*
@@ -2325,7 +2325,7 @@ Files:
  images/outfit/antimatter?power?cell*
  images/outfit/arc?fusion?torch*
  images/outfit/blue?optical?laser*
- images/outfit/green?opticallaser*
+ images/outfit/green?optical?laser*
  images/outfit/beam?antimatter?torch*
  images/outfit/concealment?lamina*
  images/outfit/deuterium?slush?tank*
@@ -2363,7 +2363,7 @@ Files:
  images/effect/flotsam?antimatter?power?cell*
  images/effect/flotsam?anomalous?shield?restorer*
  images/effect/flotsam?anomalous?mass*
- images/planet/station1q*
+ images/planet/station0b*
  images/projectile/aberrant?spike*
  images/projectile/fleck*
  images/projectile/speck*
@@ -2455,6 +2455,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Lawrence Livermore National Laboratory.
 
 Files:
+ images/land/dokimi*
+ images/scene/dokimi?range*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by the National Nuclear Security Administration.
+
+Files:
  images/map/small-neutron-star*
  images/map/magnetar-star*
 Copyright: Azure
@@ -2474,7 +2481,7 @@ Files:
  images/map/carbon-star*
  images/map/nova-old-star*
  images/map/nova-small-star*
- images/map/small-wr-star*
+ images/map/wr-star*
 Copyright: Azure
 License: CC-BY-SA-4.0
 Comment: Derived from works by Matteo "Lead" M.

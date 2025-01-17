@@ -5894,12 +5894,6 @@ system Anax
 		period 5274.09
 		offset 65
 	object
-		sprite planet/station-cylinder-a0-broken
-			scale 0.5
-		distance 7258.82
-		period 5274.09
-		offset 70
-	object
 		sprite planet/gas2
 		distance 10719.1
 		period 9464.35
@@ -11022,7 +11016,7 @@ system Corporeal
 		period 349.820
 		offset 190
 	object Anatrefo
-		sprite planet/station1q
+		sprite planet/station0b
 			scale 0.5
 		distance 960
 		period 349.820
@@ -18856,7 +18850,7 @@ system Gossamer
 		sprite star/f0
 		period 1
 	object
-		sprite "star/smoke ring"
+		sprite "planet/smoke ring"
 			scale 1.5
 			"frame rate" 0.15
 		period 914.299

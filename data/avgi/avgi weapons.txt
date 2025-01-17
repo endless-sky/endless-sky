@@ -26,7 +26,7 @@ outfit "Speck Round"
 
 outfit "Speck Magazine"
 	category "Ammunition"
-	cost 60000
+	cost 12000
 	thumbnail "outfit/speck magazine"
 	"mass" 2.4
 	"outfit space" -6
@@ -39,7 +39,7 @@ outfit "Speckle Coilgun"
 	series "Avgi: Kinetics"
 	index 10
 	category "Guns"
-	cost 40000
+	cost 32000
 	thumbnail "outfit/speckle coilgun"
 	"mass" 6.3
 	"outfit space" -9
@@ -70,7 +70,7 @@ outfit "Speckle Turret"
 	series "Avgi: Kinetics"
 	index 20
 	category "Turrets"
-	cost 40000
+	cost 90000
 	thumbnail "outfit/speckle turret"
 	"mass" 16.8
 	"outfit space" -24
@@ -139,7 +139,7 @@ effect "speck impact"
 
 outfit "Optical Lasing Generator"
 	category "Systems"
-	cost 120000
+	cost 1200000
 	thumbnail "outfit/optical lasing generator"
 	"mass" 30
 	"outfit space" -30
@@ -152,7 +152,7 @@ outfit "Green Optical Laser"
 	series "Avgi: Beams"
 	index 10
 	category "Turrets"
-	cost 120000
+	cost 90000
 	thumbnail "outfit/green optical laser"
 	"mass" 6
 	"outfit space" -6
@@ -282,7 +282,7 @@ outfit "Ultrarelativistic Electron Beam"
 	series "Avgi: Beams"
 	index 30
 	category "Guns"
-	cost 40000
+	cost 3000000
 	thumbnail "outfit/unknown"
 	"mass" 90
 	"outfit space" -90
@@ -356,7 +356,7 @@ outfit "External Launch Rail"
 	category "Secondary Weapons"
 	licenses
 		"Avgi Atomics"
-	cost 80000
+	cost 90000
 	thumbnail "outfit/external launch rail"
 	"mass" 6
 	"outfit space" -9
@@ -392,7 +392,7 @@ outfit "External Launch Tube"
 	category "Secondary Weapons"
 	licenses
 		"Twilight Guard"
-	cost 1370000
+	cost 450000
 	thumbnail "outfit/external launch tube"
 	"mass" 6
 	"outfit space" -24
@@ -429,7 +429,7 @@ outfit "Medium VLS"
 	category "Secondary Weapons"
 	licenses
 		"Twilight Guard"
-	cost 1370000
+	cost 240000
 	thumbnail "outfit/medium vls"
 	"mass" 12
 	"outfit space" -42
@@ -469,7 +469,7 @@ outfit `"Nettle" KKV`
 	category "Ammunition"
 	licenses
 		"Twilight Guard"
-	cost 600
+	cost 450
 	thumbnail "outfit/nettle kkv"
 	"mass" 0.15
 	"nettle capacity" -1
@@ -483,7 +483,7 @@ outfit "Nettle Magazine"
 	category "Ammunition"
 	licenses
 		"Twilight Guard"
-	cost 1440000
+	cost 60000
 	thumbnail "outfit/nettle magazine"
 	"mass" 3
 	"outfit space" -12
@@ -515,7 +515,7 @@ outfit "Nettle Flecks"
 	plural "Nettle Flecks"
 	weapon
 		sprite "projectile/fleck"
-			"frame rate" 30
+			"frame rate" 15
 			"no repeat"
 		"die effect" "missile death"
 		"hit effect" "fleck impact"
@@ -553,7 +553,7 @@ outfit `"Orchid" Nuclear Missile`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
-	cost 660000
+	cost 300000
 	thumbnail "outfit/orchid missile"
 	"mass" 9
 	"orchid capacity" -1
@@ -568,7 +568,7 @@ outfit "Orchid Magazine"
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
-	cost 1440000
+	cost 150000
 	thumbnail "outfit/orchid magazine"
 	"mass" 3
 	"outfit space" -12
@@ -710,11 +710,11 @@ outfit `"Ophrys" Nuclear Torpedo`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
-	cost 660000
+	cost 90000
 	thumbnail "outfit/ophrys torpedo"
 	"mass" 3
 	"ophrys capacity" -1
-	description "The Ophrys is a minimally-guided nuclear torpedo derived from the Orchid Nuclear Missile. Little more than the Ochrid's terminal stage with a layer of ablative armor added to the front, it allows even small drones to pose a credible threat to a capital warship."
+	description "The Ophrys is a minimally-guided nuclear torpedo derived from the Orchid Nuclear Missile. Little more than the Orchid's terminal stage with a layer of ablative armor added to the front, it allows even small drones to pose a credible threat to a capital warship."
 	description "Unlike the nuclear missiles employed by the Avgi, the Ophrys carries only enough propellant to make small adjustments to its trajectory. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for enough armor to improve the odds of surviving antimissile fire during its terminal path."
 	description "The Ophrys Torpedo is ammunition for the External Launch Rail; without a External Launch Rail or Ophrys Stockpile to store them in you cannot purchase or use Ophrys Torpedoes."
 
@@ -725,7 +725,7 @@ outfit "Ophrys Stockpile"
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
-	cost 1440000
+	cost 210000
 	thumbnail "outfit/ophrys stockpile"
 	"mass" 6
 	"outfit space" -24
