@@ -942,7 +942,7 @@ void AI::Step(Command &activeCommands)
 		else if(it->IsSpecial() && !it->IsYours() && it->HasTravelDirective())
 		{
 			const Planet *destination = it->AllStopoversVisited() ? it->GetDestinationPlanet() : nullptr;
-			IssueNPCOrders(*it, it->GetDestinationSystem(), it->GetStopovers(), destination);
+			IssueNPCOrders(*it, destination);
 		}
 
 		// This ship may have updated its target ship.
@@ -5047,10 +5047,11 @@ void AI::UpdateOrders(const Ship &ship)
 
 
 // Mission NPC blocks may define specific travel plans.
-void AI::IssueNPCOrders(Ship &ship, const System *targetSystem,
-	const map<const Planet *, bool> &stopovers, const Planet *destination)
+void AI::IssueNPCOrders(Ship &ship, const Planet *destination)
 {
 	Orders newOrders;
+	const System *targetSystem = ship.GetDestinationSystem();
+	const map<const Planet *, bool> &stopovers = ship.GetStopovers();
 	const System *from = ship.GetSystem();
 	if(targetSystem)
 	{

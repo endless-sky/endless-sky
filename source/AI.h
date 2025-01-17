@@ -218,8 +218,7 @@ private:
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
 	// Mission NPC blocks may define specific travel plans.
-	void IssueNPCOrders(Ship &ship, const System *targetSystem,
-		const std::map<const Planet *, bool> &stopovers, const Planet *destination);
+	void IssueNPCOrders(Ship &ship, const Planet *destination);
 
 
 private:
