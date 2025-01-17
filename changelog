@@ -15,7 +15,7 @@ Version 0.10.11
       * Corrected the name of a phrase sentence from "disabled hostile" to "hostile disabled". (@TheGiraffe3)
       * Explicitly set the "jump fuel" attribute on the Fusion Drive. (@TheGiraffe3)
       * Reduced the lengths of the description of Sandsnap and an entry in the "betelgeuse stolen ship advisory" news to better fit their text box graphics. (@Saugia)
-      * Updated the description of Elenchus to account for hte player's starting planet. (@TheGiraffe3)
+      * Updated the description of Elenchus to account for the player's starting planet. (@TheGiraffe3)
       * Removed a duplicate "outfits" node from the "Tractor Beam" Splinter variant and duplicate "launch effect" nodes from the Feldspare. (@TheGiraffe3)
       * Adjust the positions of some planets in Heutesl, Scija, and Zeinar to prevent overlaps. (@Saugia)
       * Prevented Hai tourism jobs from choosing Swiftsong (or other stations) as their destination. (@roadrunner56)
@@ -28,7 +28,7 @@ Version 0.10.11
       * Outfits from cargo that were stored on take off will no longer be counted as part of sold outfits in the income message. (@Anarchist2)
       * Starts with invalid planets will now fall back to New Boston. (@TomGoodIdea)
       * Large ammo counts will now be truncated instead of overflowing the ammo display graphic. (@warp-core)
-      * The flagship highlight outline will now be scaled to match the scale of the flagship's sprite, instead of using the normal size of hte sprite. (@warp-core)
+      * The flagship highlight outline will now be scaled to match the scale of the flagship's sprite, instead of using the normal size of the sprite. (@warp-core)
       * Fixed an issue where over-capacity fleets would not properly unload cargo when aborting a take off. (@Anarchist2)
       * Attempting to land after the flagship is destroyed will no longer send a message indicating that the action will be carried out. (@mixx99)
       * Made haywire missiles fly off target properly. (@Anarchist2)
@@ -36,7 +36,7 @@ Version 0.10.11
       * Corrected the output format of Date::LongString. (@warp-core)
       * Fixed an issue where "on fail" missions actions would not always be allowed to trigger. (@tibetiroka)
       * Fixed some edge cases in the boarding panel interface where some buttons and inputs had unexpected effects. (@warp-core)
-      * Improved game loading progress checking and prevented possibly undefined behaviour in some edge cases. (@warp-core)
+      * Improved game loading progress checking and prevented possibly undefined behavior in some edge cases. (@warp-core)
       * The target display will no longer leak information about changes in state of a target that has left the current system that the player should not have access to. (@warp-core, @petervdmeer)
       * Fixed an issue where stopover/waypoint markers in the map would disappear if the destination system has too many markers. (@warp-core)
       * Fixed an issue where weapon jamming was being accumulated incorrectly. (@TomGoodIdea)
@@ -54,7 +54,7 @@ Version 0.10.11
           * Poisonwood (before the war), and
           * Valhalla.
       * Created a culture conversation for the Hai about the proliferation of acorn bread since humans arrived in their space. (@alexrovw, @TheGiraffe3)
-      * Added more hails and ship names for the Sucessors. (@Daeridanii1)
+      * Added more hails and ship names for the Successors. (@Daeridanii1)
       * Added an easter egg to Freya's epilogue conversation. (@ImprovisedUsername, @Zitchas)
       * Created a new mission chain featuring a stowaway. (@SpearDane, @bene-dictator)
       * Added a "Gegno Unwelcoming" mission that appears if the player manages to land on a Gegno planet (through a previously accepted mission granting clearance) while the Gegno are hostile to them. (@Saugia)
@@ -62,7 +62,7 @@ Version 0.10.11
     * Mission changes:
       * "FW Southern Recon 1B" now marks the systems of interest where lone Electron Beam carrying Gunboats can be found. (@TheGiraffe3)
       * The "Tarazed neutrality" event will now apply immediately when "FW Syndicate Diplomacy 1C" is offered, instead of on take off. (@Anarchist2)
-      * The missions in the "FW Escort" chain are no longer separated by visits to the spaceport; each subsequent mission will be offered immediately upon landing and completing hte previous. (@Anarchist2)
+      * The missions in the "FW Escort" chain are no longer separated by visits to the spaceport; each subsequent mission will be offered immediately upon landing and completing the previous. (@Anarchist2)
       * Increased the offer rate of "Coalition Incident: Ring of Wisdom" from 1% to 3%. (@TheGiraffe3)
       * Removed "Remnant: Face to Maw 1B" and integrated its functionality into "Remnant: Face to Maw 1" to improve maintainability and prevent edge case problems. (@warp-core)
       * Improved the functionality of the Remnant tech retrieval missions to remove some jankiness. (@warp-core)
@@ -110,7 +110,7 @@ Version 0.10.11
     * Mechanics changes:
       * Ships will be brought to an absolute stop when their speed is very low. (@tibetiroka)
       * System fleets and system and stellar object hazards can be given "to spawn" condition sets. (@UnorderedSigh)
-      * Minable sprites now support the same animation properties available elsewhere, such as ship or stellar object sprites. Providing a "frame rate" or "frame time" in this way will override the default behaviour of choosing this randomly for each minable instance. (@Azure3141)
+      * Minable sprites now support the same animation properties available elsewhere, such as ship or stellar object sprites. Providing a "frame rate" or "frame time" in this way will override the default behavior of choosing this randomly for each minable instance. (@Azure3141)
   * User interface:
     * The parentheses around commodity price differences in the map panel can now be disabled. (@Just-Existing)
     * The outfitter will now list all the reasons an outfit cannot be bought or installed. (@HungryBear, @alextd, @warp-core)
@@ -129,7 +129,7 @@ Version 0.10.11
   * Under the hood:
     * Refactored DistanceMap. (@alextd)
     * Corrected a comment on Armament::Fire. (@TomGoodIdea)
-    * Refactored Format::Credits to store some constants in an std::array<std::pair> instead of two std::vectorss. (@warp-core)
+    * Refactored Format::Credits to store some constants in an std::array<std::pair> instead of two std::vectors. (@warp-core)
     * Status overlay types now have meaningful names via an enum class instead of using numeric literals. (@warp-core)
     * Added validation and warnings for condition, event, and missiong names. (@petervdmeer)
     * Moved the condition assignment interface to its own class. (@petervdmeer)
