@@ -251,14 +251,14 @@ effect "blue laser flicker"
 		"no repeat"
 		"frame rate" 20
 		"scale" 0.125
-	"random lifetime" 3
-	"random velocity" 30
+	"random lifetime" 1
+	"random velocity" 90
 
 effect "blue laser reflection"
 	sprite "effect/skylance impact"
 		"random start frame"
 		"scale" 0.125
-	"lifetime" 3
+	"lifetime" 1
 	"random lifetime" 3
 	"random velocity" -90
 	"velocity scale" -0.0003
