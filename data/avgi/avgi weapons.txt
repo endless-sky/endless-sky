@@ -162,11 +162,12 @@ outfit "Green Optical Laser"
 	"lasing power" -1
 	weapon
 		"hardpoint sprite" "hardpoint/green optical laser"
+		"hardpoint offset" 3
 		"sound" "optical laser"
+		"fire effect" "green laser glare"
 		"die effect" "laser ejecta" 4
 		"die effect" "green laser reflection" 30
 		"die effect" "green laser scattering"
-		"fire effect" "green laser fire"
 		"anti-missile" 2
 		"velocity" 1800
 		"lifetime" 1
@@ -174,6 +175,30 @@ outfit "Green Optical Laser"
 		"firing heat" 12
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret's precise optics seems designed to hold a beam on target at an extreme distance for a longer period of time, making it better suited for defending and supporting other ships from afar."
 	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
+
+effect "green laser glare"
+	sprite "effect/green optical laser glare"
+		"frame rate" 3
+		"random start frame"
+		"rewind"
+	"lifetime" 1
+	"absolute angle" 0
+
+effect "green laser reflection"
+	sprite "effect/typhoon fire"
+		"frame rate" 30
+		"random start frame"
+		scale 0.25
+	"lifetime" 3
+	"random lifetime" 3
+	"random velocity" -24
+
+effect "green laser scattering"
+	sprite "effect/heavy laser impact"
+		"frame rate" 30
+		"random start frame"
+	"lifetime" 1
+	"velocity scale" 0
 
 
 outfit "Blue Optical Laser"
@@ -191,14 +216,15 @@ outfit "Blue Optical Laser"
 	"lasing power" -2
 	weapon
 		"hardpoint sprite" "hardpoint/blue optical laser"
+		"hardpoint offset" 3
 		sprite "projectile/blue optical laser"
 			"frame rate" 3
 		"sound" "optical laser"
+		"fire effect" "blue laser glare"
+		"fire effect" "blue laser flicker" 60
 		"hit effect" "laser ejecta" 6
 		"hit effect" "blue laser reflection" 60
 		"hit effect" "blue laser scattering"
-		"fire effect" "blue laser glare"
-		"fire effect" "blue laser fire" 60
 		"velocity" 2400
 		"lifetime" 1
 		"reload" 1
@@ -213,6 +239,36 @@ outfit "Blue Optical Laser"
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam ideal for damaging other ships. By pulsing thousands of times each second, the beam can create thermal and mechanical shocks in the target material, enhancing its ability to drill through armor. Unlike the advanced beam weapons used by some other species, this laser is subject to the effects of diffraction, causing its damage to become less intense with distance while also rendering it invisible. However, precise optics allow the beam to be targeted from an exceptional range, despite the tenuous damage at the edge of the laser's reach."
 	description "	The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support a single Blue Laser."
 
+effect "blue laser glare"
+	sprite "effect/blue optical laser glare"
+		"random start frame"
+		"rewind"
+	"lifetime" 1
+	"absolute angle" 0
+
+effect "blue laser flicker"
+	sprite "effect/skylance impact"
+		"no repeat"
+		"frame rate" 20
+		"scale" 0.125
+	"random lifetime" 3
+	"random velocity" 30
+
+effect "blue laser reflection"
+	sprite "effect/skylance impact"
+		"random start frame"
+		"scale" 0.125
+	"lifetime" 3
+	"random lifetime" 3
+	"random velocity" -90
+	"velocity scale" -0.0003
+
+effect "blue laser scattering"
+	sprite "effect/skylance impact"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 3
+	"velocity scale" 0
 
 effect "laser ejecta"
 	sprite "effect/static"
@@ -224,58 +280,6 @@ effect "laser ejecta"
 	"random spin" 15
 	"random velocity" -12
 	"velocity scale" -0.003
-
-effect "blue laser glare"
-	sprite "effect/ion rain impact"
-		"frame rate" 4
-	"lifetime" 1
-
-effect "blue laser fire"
-	sprite "effect/skylance impact"
-		"no repeat"
-		"frame rate" 20
-		"scale" 0.125
-	"lifetime" 1
-	"random lifetime" 3
-	"random velocity" 60
-
-effect "blue laser reflection"
-	sprite "effect/skylance impact"
-		"no repeat"
-		"frame rate" 20
-		"scale" 0.125
-	"lifetime" 1
-	"random lifetime" 3
-	"random velocity" -90
-	"velocity scale" -0.0012
-
-effect "blue laser scattering"
-	sprite "effect/skylance impact"
-		"frame rate" 3
-		"scale" 0.5
-	"lifetime" 3
-	"velocity scale" 0
-
-effect "green laser fire"
-	sprite "effect/heavy laser impact"
-		"frame rate" 5
-	"lifetime" 1
-
-effect "green laser reflection"
-	sprite "effect/typhoon fire"
-		"frame rate" 20
-		"random start frame"
-		scale 0.25
-	"lifetime" 3
-	"random lifetime" 2
-	"random velocity" -24
-
-effect "green laser scattering"
-	sprite "effect/heavy laser impact"
-		"frame rate" 30
-		"random start frame"
-	"lifetime" 1
-	"velocity scale" 0
 
 
 outfit "Ultrarelativistic Electron Beam"

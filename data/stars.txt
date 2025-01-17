@@ -276,6 +276,10 @@ star "star/coal-black-hole"
 	power 0
 	wind 0
 	icon "map/coal-black-hole-star"
+star "star/twilight-black-hole"
+	power 2.4
+	wind 0.3
+	icon "map/twilight-black-hole-star"
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"

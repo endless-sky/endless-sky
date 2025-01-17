@@ -4178,7 +4178,7 @@ planet "Oup Je"
 planet Oura
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds11
-	description `Oura was the primary source of the helium-3 that fueled Avgi sublight starships. Even now, you can see aerostat collectors separating valuable isotopes from the surrounding gas, which are then launched via mass driver to orbit in pressurized canisters.`
+	description `Oura was the primary source of the helium-3 that fueled Avgi sublight starships. Even now, you can see aerostat collectors separating valuable isotopes from the surrounding gas, which are then launched via mass driver to orbit in pressurized vessels.`
 	government Uninhabited
 
 planet "Outpost Alkos"

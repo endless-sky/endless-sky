@@ -9262,17 +9262,17 @@ system Caesura
 	pos -730 903
 	government Uninhabited
 	attributes "black hole" "notable star" "twilight"
-	arrival 5000
+	arrival 900
 	habitable 100000
 	haze _menu/haze-twilight-thin
-	hazard "Small Black Hole Event Horizon" 1
+	hazard "Black Hole Accretion Disk" 1
+	hazard "Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
 	object
-		sprite star/small-black-hole
+		sprite star/neutron-core
 		period 10
 	object
-		sprite star/neutron-core
-			scale 0.25
+		sprite star/twilight-black-hole
 		period 10
 
 system Canopus
