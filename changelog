@@ -59,6 +59,7 @@ Version 0.10.11
       * Created a new mission chain featuring a stowaway. (@SpearDane, @bene-dictator)
       * Added a "Gegno Unwelcoming" mission that appears if the player manages to land on a Gegno planet (through a previously accepted mission granting clearance) while the Gegno are hostile to them. (@Saugia)
       * Created a chain of missions about saving a person named Ildico. (@SpearDane, @bene-dictator)
+      * Added a culture conversation about the Korath on Far'en Lai. (@Arachi-Lover)
     * Mission changes:
       * "FW Southern Recon 1B" now marks the systems of interest where lone Electron Beam carrying Gunboats can be found. (@TheGiraffe3)
       * The "Tarazed neutrality" event will now apply immediately when "FW Syndicate Diplomacy 1C" is offered, instead of on take off. (@Anarchist2)
