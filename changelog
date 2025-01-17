@@ -16,13 +16,13 @@ Version 0.10.11
       * Explicitly set the "jump fuel" attribute on the Fusion Drive. (@TheGiraffe3)
       * Reduced the lengths of the description of Sandsnap and an entry in the "betelgeuse stolen ship advisory" news to better fit their text box graphics. (@Saugia)
       * Updated the description of Elenchus to account for the player's starting planet. (@TheGiraffe3)
-      * Removed a duplicate "outfits" node from the "Tractor Beam" Splinter variant and duplicate "launch effect" nodes from the Feldspare. (@TheGiraffe3)
+      * Removed a duplicate "outfits" node from the "Tractor Beam" Splinter variant and duplicate "launch effect" nodes from the Feldspar. (@TheGiraffe3)
       * Adjust the positions of some planets in Heutesl, Scija, and Zeinar to prevent overlaps. (@Saugia)
       * Prevented Hai tourism jobs from choosing Swiftsong (or other stations) as their destination. (@roadrunner56)
       * Set the bribe value for the Old and New Houses Successor governments to 0 and reduced the reqquired reputation of "Tuur-Aasa-Kaska" from 15 to 1. (@Daeridanii1)
       * Increased the number of "Star Tail Cell"s on the Venta to match the total ammunition capacity of all its installed outfits. (@Arachi-Lover)
       * Removed an instance of the player character using the phrase "The Embers" before ever encountering a Remnant saying it. (@roadrunner56)
-      * Removed incorrect uses of "has" in condition expressions with other comparisons, and corrected uses of "=" (assignment) where equality comparison is needed. (@TheGiraffe3)
+      * Removed incorrect uses of "has" in condition expressions with other comparisons, and corrected uses of "=" (assignment) where equality comparison is needed. (@petervdmeer, @TheGiraffe3)
       * The Wanderer tribute fleet on Kort Vek'kri will now be removed when it is taken over by the Unfettered. (@TheGiraffe3)
     * Engine bugs:
       * Outfits from cargo that were stored on take off will no longer be counted as part of sold outfits in the income message. (@Anarchist2)
@@ -42,10 +42,10 @@ Version 0.10.11
       * Fixed an issue where weapon jamming was being accumulated incorrectly. (@TomGoodIdea)
   * Game content:
     * New content:
-      * Hai start. (@Hurleveur, @Anarchist2, @TheGiraffe3)
+      * Hai start. (@Hurleveur, @Anarchist2)
       * Created new Hai outfits that provide cargo and outfit scan opacity. (@UnorderedSigh)
       * Added a short culture conversation on Solace. (@TheGiraffe3)
-      * Added a person ship for Petervdmeer. (@Saugia, @petervdmeer)
+      * Added a person ship for petervdmeer. (@Saugia, @petervdmeer)
       * Expanded the spaceport descriptions of various worlds to contain special details on and around Remembrance Day. (@Anarchist2)
         * Affected planets include:
           * Almost everywhere with the "dirt belt" attribute,
@@ -82,7 +82,7 @@ Version 0.10.11
         * Hauler: 14.7 -> 9.8
         * Hauler II: 16.1 -> 10.7
         * Hauler III: 17.5 -> 11.6
-        * Nest: 1.7 -> 9.8
+        * Nest: 14.7 -> 9.8
         * Roost: 16.1 -> 10.7
         * Skein: 17.5 -> 11.6
       * Made significant changes to the Carrier, and smaller changes to the Aerie. (@Saugia)
@@ -97,14 +97,14 @@ Version 0.10.11
       * Systems in the Umbral Reach are no longer "shrouded". (@Saugia)
       * Reworded the description of Viminal to improve its readability. (@NateEag)
       * Changed wording for declining choices in the Free Worlds prologue missions to make them more direct. (@Anarchist2)
-      * The Subsidurials now have their own government, and th Ka'het will no longer attack them or Author ships. (@Azure3141)
+      * The Subsidurials now have their own government, and the Ka'het will no longer attack them or Author ships. (@Azure3141)
   * Game mechanics:
     * New mechanics:
       * Added a "cloaked ship permeability" attribute which wllows some damage to pass through a ships shields while it is cloaked. (@Quantumshark)
       * Added a new "getaway" personality which makes ships with full cargo holds flee, and gave it to Pirate and CCOR fleets. (@Anarchist2)
       * Special log entries can now be removed by mission triggers and conversation actions. (@TomGoodIdea)
       * Outfits that provide both hyperdrive and jump drive capabilities can now consume different amounts of fuel for each using the "hyperdrive fuel" and "jump drive fuel" attributes, and default fuel values will now be set on outfits that do not provide values. (@TomGoodIdea, @tibetiroka)
-      * Added support for stellar objects to be hidden based on the player's distance to them. (@tibetiroka)
+      * Added support for stellar objects to be hidden based on the player's distance to them. (@RisingLeaf, @tibetiroka)
       * Defined a new type of mission, "non-blocking", which, unlike all other missions, will not prevent "minor" missions from offering. (@warp-core)
       * Added various new scanner attributes that work similarly to tactical scan, and individual attributes for each piece of data the tactical scanner provides. (@Zitchas, @VitalChip, @Hurleveur)
       * Added a way for non-job missions to offer upon entering the job board, similarly to the spaceport, shipyard, and outfitter, in addition to the listed available jobs. (@Anarchist2)
@@ -146,7 +146,7 @@ Version 0.10.11
     * Removed "%" characters from the names of conditions and game objects used in integration tests. (@petervdmeer)
     * Updated the version vcpkg that is used for retrieving and building dependencies. (@TomGoodIdea)
     * Added some new editorconfig options to apply some C++ style in some editors (such as Visual Studio). (@alextd)
-    * Removed some exclusions for the codespell GitHub Action that are no longer necessary. (@TheGiraffe3)
+    * Removed some exclusions for the codespell GitHub Action that are no longer necessary. (@TheGiraffe3, @warp-core)
     * Added editorconfig entries for .json and ,py files. (@warp-core)
     * Added a CI job that builds for and tests in an ARM MacOS environment. (@warp-core)
     * Added various new missions to the list of missions disabled when running integration tests. (@TheGiraffe3, @petervdmeer)
