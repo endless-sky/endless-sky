@@ -2159,7 +2159,7 @@ mission "Acorn Delights: Part 2"
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
 	source "Stonebreak"
-	destination "Alta Hai"
+	destination "Cloudfire"
 	passengers 1
 	cargo "acorn cookies" 3
 	to offer
@@ -2168,30 +2168,12 @@ mission "Acorn Delights: Part 2"
 		log "Took a Hai lady named Eeeya to Stonebreak to help find her granddaughter, who is named Anoo."
 		conversation
 			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, woman's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth.`
-			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "Sometimes very gifted students are allowed to study with the Quarg for a year after they graduate. There are trillions of Quarg on Alta Hai, so it wouldn't be surprising if she got lost. Let's go there next."`
-				accept
-	on visit
-		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
-
-mission "Acorn Delights: Part 3"
-	landing
-	name "Acorns for Anoo"
-	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
-	source "Alta Hai"
-	destination "Cloudfire"
-	passengers 1
-	cargo "acorn cookies" 3
-	to offer
-		has "Acorn Delights: Part 2: done"
-	on offer
-		conversation
-			`The Quarg on Alta Hai have a convenient information desk in the main spaceport. They tell Eeeya that Anoo was invited to study at Alta Hai, but turned down the offer for unknown reasons.`
-			`	Eeeya says, "If Anoo isn't studying, and isn't in a public hospital, she could be in the military. Let's go to Cloudfire and talk to the commanding officer."`
+			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "I've heard that sometimes very gifted students are allowed to study with the Quarg for a year after they graduate, but that is likely to be a fib. Since it's obvious she's not here, let's check on <destination> - she could be in the military."`
 				accept
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 			
-mission "Acorn Delights: Part 4"
+mission "Acorn Delights: Part 3"
 	name "Acorns for Anoo"
 	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
 	landing
@@ -2201,9 +2183,8 @@ mission "Acorn Delights: Part 4"
 	passengers 1
 	cargo "acorn cookies" 3
 	to offer
-		has "Acorn Delights: Part 3: done"
+		has "Acorn Delights: Part 2: done"
 	on offer
-		log "Eeeya's granddaughter Anoo still proves difficult to find. Checked for her on Alta Hai and Cloudfire."
 		conversation
 			`Eeeya takes you to the visitor's office and asks to see the Cloudfire military commander. Upon refusal, Eeeya throws a fit; after an hour of her panic they agree to let her speak with the commander.`
 			`	After a few minutes, she comes back looking despondent, and you lead her back to the <ship>.`
@@ -2234,7 +2215,7 @@ mission "Acorn Delights: Part 4"
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 			
-mission "Acorn Delights: Part 5"
+mission "Acorn Delights: Part 4"
 	landing
 	name "Acorn Delights"
 	description "Take Eeeya to <destination> to finalize some paperwork regarding the Acorn Delights shop."
@@ -2242,7 +2223,7 @@ mission "Acorn Delights: Part 5"
 	destination "Allhome"
 	passengers 1
 	to offer
-		has "Acorn Delights: Part 4: done"
+		has "Acorn Delights: Part 3: done"
 	on offer
 		payment 3000
 		log "Finally found Anoo. It turns out she joined the Unfettered. I am supposed to take Eeeya to <destination> now."
@@ -2289,7 +2270,7 @@ mission "Acorn Delights: Part 5"
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
 
-mission "Acorn Delights: Part 6"
+mission "Acorn Delights: Part 5"
 	name "Eeeya to Anoo"
 	description "Bring Eeeya to <destination> to join the Unfettered and be near her granddaughter."
 	landing
@@ -2298,7 +2279,7 @@ mission "Acorn Delights: Part 6"
 	destination "Darkcloak"
 	passengers 1
 	to offer
-		has "Acorn Delights: Part 5: done"
+		has "Acorn Delights: Part 4: done"
 	on offer
 		conversation
 			branch uhai
