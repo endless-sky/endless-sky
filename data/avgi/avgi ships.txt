@@ -1872,7 +1872,7 @@ ship "Atenuatia"
 			"Twilight Guard"
 		"cost" 14400000
 		"shields" 4200
-		"hull" 36000
+		"hull" 30000
 		"required crew" 60
 		"bunks" 90
 		"mass" 2700

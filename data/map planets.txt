@@ -4156,8 +4156,8 @@ planet Olohoa
 planet Omanet
 	attributes avgi mining uninhabited
 	landscape land/mars0
-	description `Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off, leaving behind an extraordinarily dense world made almost entirely out of metal, ultimately captured around another gas giant, Avalet, as an unusually large moon.`
-	description `Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized, with autofabs building enormous discs of nickel-iron anodized with silver. These orbital mirrors are then launched via mass driver, collecting sunlight for uses from industrial asteroid smelting to remote beamed power. Avgi futurists saw this as the first step towards a swarm that would eventually cover the entire star, but at the current rate of mirror assembly it will take millennia to exploit a meaningful fraction of Anax's output.`
+	description `Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off. Left behind was a dense world made almost entirely out of metal, captured around Avalet as a large moon.`
+	description `Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized. Numerous factories churned out enormous orbital mirrors, made from nickel-iron and silver, which were then launched around Anax. This swarm collected sunlight, beaming it across the system. Some Avgi predicted that the swarm would grow to eventually cover the entire star, but at the current rate of construction it would take millennia to exploit a fraction of Anax's output.`
 	government Uninhabited
 
 planet Orodens
@@ -5005,10 +5005,8 @@ planet Sela
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/snow37
 	description `A former planetoid captured into Aviskir's orbit only a few hundred million years ago, Sela is unusual for large moons in that it is not tidally locked, instead having a rapid rotational period of only forty-two hours. Almost one third of the moon is covered in a glassy plain of ice, smoothed by seasonal melting and refreezing. This is thought to have been deposited by a cometary impact relatively recently, and has been steadily sublimating away into space ever since.`
-	description `An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear explosives behind a pusher plate would be seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system.`
+	description `An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear devices behind a pusher plate would be seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system.`
 	government Uninhabited
-	outfitter "Avgi General"
-	outfitter "Avgi Engineering"
 
 planet "Selefkar Refinery"
 	attributes korath station
