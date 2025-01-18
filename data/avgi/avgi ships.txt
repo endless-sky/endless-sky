@@ -1756,7 +1756,7 @@ ship "Difraktos"
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21
 
-	engine 0 135
+	engine 0 141
 		gimbal 6
 	"reverse engine" -9 138
 		angle -35
