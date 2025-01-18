@@ -451,12 +451,12 @@ void GameData::WriteEconomy(DataWriter &out)
 			using Purchase = pair<const System *const, map<string, int>>;
 			WriteSorted(purchases,
 				[](const Purchase *lhs, const Purchase *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const Purchase &pit)
 				{
 					// Write purchases for all systems, even ones from removed plugins.
 					for(const auto &cit : pit.second)
-						out.Write(pit.first->Name(), cit.first, cit.second);
+						out.Write(pit.first->TrueName(), cit.first, cit.second);
 				});
 			out.EndChild();
 		}
@@ -472,7 +472,7 @@ void GameData::WriteEconomy(DataWriter &out)
 			if(!sit.second.IsValid() && !sit.second.HasTrade())
 				continue;
 
-			out.WriteToken(sit.second.Name());
+			out.WriteToken(sit.second.TrueName());
 			for(const auto &cit : GameData::Commodities())
 				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
 			out.Write();
@@ -813,6 +813,15 @@ double GameData::SolarWind(const Sprite *sprite)
 {
 	auto it = objects.solarWind.find(sprite);
 	return (it == objects.solarWind.end() ? 0. : it->second);
+}
+
+
+
+// Get the map icon of the given stellar object sprite.
+const Sprite *GameData::StarIcon(const Sprite *sprite)
+{
+	const auto it = objects.starIcons.find(sprite);
+	return (it == objects.starIcons.end() ? nullptr : it->second);
 }
 
 

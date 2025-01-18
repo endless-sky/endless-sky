@@ -2407,7 +2407,7 @@ void PlayerInfo::AddPlayerSubstitutions(map<string, string> &subs) const
 		subs["<model>"] = flag->DisplayModelName();
 	}
 
-	subs["<system>"] = GetSystem()->Name();
+	subs["<system>"] = GetSystem()->DisplayName();
 	subs["<date>"] = GetDate().ToString();
 	subs["<day>"] = GetDate().LongString();
 }
@@ -3788,7 +3788,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!previousSystem)
 			return false;
-		return name == "previous system: " + previousSystem->Name();
+		return name == "previous system: " + previousSystem->TrueName();
 	};
 	previousSystemProvider.SetGetFunction(previousSystemFun);
 
@@ -3798,7 +3798,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!flagship || !flagship->GetSystem())
 			return false;
-		return name == "flagship system: " + flagship->GetSystem()->Name();
+		return name == "flagship system: " + flagship->GetSystem()->TrueName();
 	};
 	flagshipSystemProvider.SetGetFunction(flagshipSystemFun);
 
@@ -4022,7 +4022,8 @@ void PlayerInfo::CreateMissions()
 		{
 			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
 				|| it->IsAtLocation(Mission::SHIPYARD)
-				|| it->IsAtLocation(Mission::OUTFITTER);
+				|| it->IsAtLocation(Mission::OUTFITTER)
+				|| it->IsAtLocation(Mission::JOB_BOARD);
 			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
@@ -4303,9 +4304,9 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("date", date.Day(), date.Month(), date.Year());
 	out.Write("system entry method", EntryToString(entry));
 	if(previousSystem)
-		out.Write("previous system", previousSystem->Name());
+		out.Write("previous system", previousSystem->TrueName());
 	if(system)
-		out.Write("system", system->Name());
+		out.Write("system", system->TrueName());
 	if(planet)
 		out.Write("planet", planet->TrueName());
 	if(planet && planet->CanUseServices())
@@ -4316,7 +4317,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	if(shouldLaunch)
 		out.Write("launching");
 	for(const System *system : travelPlan)
-		out.Write("travel", system->Name());
+		out.Write("travel", system->TrueName());
 	if(travelDestination)
 		out.Write("travel destination", travelDestination->TrueName());
 	// Detect which ship number is the current flagship, for showing on LoadPanel.
@@ -4547,10 +4548,10 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save a list of systems the player has visited.
 	WriteSorted(visitedSystems,
 		[](const System *const *lhs, const System *const *rhs)
-			{ return (*lhs)->Name() < (*rhs)->Name(); },
+			{ return (*lhs)->TrueName() < (*rhs)->TrueName(); },
 		[&out](const System *system)
 		{
-			out.Write("visited", system->Name());
+			out.Write("visited", system->TrueName());
 		});
 
 	// Save a list of planets the player has visited.
@@ -4573,13 +4574,13 @@ void PlayerInfo::Save(DataWriter &out) const
 				{
 					// Sort by system name and then by outfit name.
 					if(lhs->first != rhs->first)
-						return lhs->first->Name() < rhs->first->Name();
+						return lhs->first->TrueName() < rhs->first->TrueName();
 					else
 						return lhs->second->TrueName() < rhs->second->TrueName();
 				},
 				[&out](const HarvestLog &it)
 				{
-					out.Write(it.first->Name(), it.second->TrueName());
+					out.Write(it.first->TrueName(), it.second->TrueName());
 				});
 		}
 		out.EndChild();

@@ -197,6 +197,7 @@ color "map travel ok none" .55 .1 0. 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
+color "map system ring" .4 .4 .4 .6
 
 # Colors used for the routing issue text in the map panel when
 # a route to the selected system cannot be determined.
@@ -1417,26 +1418,32 @@ interface "mission" bottom
 interface "map buttons" bottom right
 	active if "!is shipyards"
 	sprite "ui/wide button"
-		from -464 -50 to -354 0
+		from -544 -50 to -434 0
 	button s "_Shipyards"
-		from -454 -40 to -364 -10
+		from -534 -40 to -444 -10
 	
 	active if "!is outfitters"
 	sprite "ui/wide button"
-		from -364 -50 to -254 0
+		from -444 -50 to -334 0
 	button o "_Outfitters"
-		from -354 -40 to -264 -10
+		from -434 -40 to -344 -10
 	
 	active if "!is missions"
 	sprite "ui/dialog cancel"
-		from -264 -50 to -174 0
+		from -344 -50 to -254 0
 	button i "M_issions"
-		from -254 -40 to -184 -10
+		from -334 -40 to -264 -10
 	
 	active if "!is ports"
 	sprite "ui/dialog cancel"
-		from -184 -50 to -94 0
+		from -264 -50 to -174 0
 	button p "_Ports"
+		from -254 -40 to -184 -10
+
+	active if "!is stars"
+	sprite "ui/dialog cancel"
+		from -184 -50 to -94 0
+	button a "St_ars"
 		from -174 -40 to -104 -10
 	
 	active
@@ -1478,15 +1485,21 @@ interface "map buttons (small screen)" bottom right
 
 	active if "!is missions"
 	sprite "ui/dialog cancel"
-		from -170 -40 to -80 -90
+		from -170 -30 to -80 -180
 	button i "M_issions"
-		from -160 -80 to -90 -50
+		from -160 -60 to -90 -150
 
 	active if "!is ports"
 	sprite "ui/dialog cancel"
 		from -170 -50 to -80 0
 	button p "_Ports"
 		from -160 -40 to -90 -10
+
+	active if "!is stars"
+	sprite "ui/dialog cancel"
+		from -170 -40 to -80 -90
+	button a "St_ars"
+		from -160 -80 to -90 -50
 
 	active
 	sprite "ui/dialog cancel"
