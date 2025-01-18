@@ -1799,7 +1799,7 @@ ship "Refraktos"
 		"Diffuse Deflector"
 		"Optical Lasing Generator" 4
 		"Multispectral Scanner" 2
-		"Magnetic Scoop"
+		"Magnetic Scoop" 2
 		"Heatsink Partition" 3
 		"Optical Laser Rifle" 24
 		

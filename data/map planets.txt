@@ -207,7 +207,7 @@ planet Amathil
 	attributes "aberrant siege" avgi desert
 	landscape land/canyon16
 	description `As far as desert worlds come, Amathil is merely dry and sandy, with a mild surface temperature that is surprisingly uniform across latitudes thanks to high altitude winds. While unattractive for settlement due to the scarcity of greenery, Amathil is still home to the descendents of those who arrived on the first few sublight starships, back when little was known about the planet besides that it had an oxygenated atmosphere. The unique culture that has since grown here, under a unified planetary government, emphasizes a sense of community and generosity - or at least that is how the locals like to be perceived by outsiders.`
-	spaceport `The spaceport is spartan, with Amathil not receiving much traffic on a daily basis even before the Incursion. Amathil's primary export was people, with many choosing to leave the isolated planet in favor of moving to one of the more cosmopolitan worlds elsewhere.`
+	spaceport `Thanks to its abundant solar energy, the cost of powering the laser launch array that served Amathil was quite low, and glittering fields of solar panels surround the entire site. The spaceport itself is spartan, with Amathil not receiving much traffic on a daily basis even before the Incursion. Amathil's primary export was people, with many choosing to leave the isolated planet in favor of moving to one of the more cosmopolitan worlds elsewhere.`
 	government Avgi
 	outfitter "Avgi General"
 
@@ -308,10 +308,9 @@ planet Araio
 	landscape land/canyon3
 	description `Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests.`
 	description `Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an oft-romanticized era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns.`
-	spaceport `Araio's spaceport was small but well run, capable of efficiently moving small volume goods on and off the world. It was however razed from orbit by the Incursors shortly after the fall of Anax, and the few scouts that are able to sneak through the blockade are forced to use a variety of rocky plateaus instead.`
+	spaceport `Araio's spaceport was small but well run, capable of efficiently moving small volume goods on and off the world via a paired laser launch array and skyhook. The laser array was however razed from orbit by the Aberrant shortly after the fall of Anax, and the skyhook cut to pieces.`
 	spaceport `Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future - even if it means a slight regression in technology.`
 	government Avgi
-	shipyard "Avgi Civilian Basics"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -427,10 +426,8 @@ planet Aviskir
 	landscape land/forest13
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
 	description `The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
-	spaceport `The largest spaceports once hosted 'beanstalks,' space elevators capable of lifting cargo en masse to geostationary orbit. After the invention of the gravity repulsor, they were largely relegated to historical curiosities, but the Aberrant still severed them during their attack on Aviskir's orbital infrastructure.`
+	spaceport `With the Avgi never developing the gravity repulsor independently, the largest spaceports once boasted arrays of launch lasers and dedicated skyhooks capable of lifting cargo en masse to orbit. The flurry of vessels taking off from these points drew the attention of the Aberrant, who targeted them during their attack on Aviskir's orbital infrastructure.`
 	government Avgi
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -1031,10 +1028,8 @@ planet Cyreal
 	landscape land/hills13
 	description `Cyreal was one of the first extrasolar worlds to be colonized by the Avgi, and, as with the other neighboring worlds, it was settled by slower than light starships. During a period of widespread scattered settlement, this low-gravity moon's sharp mountains and tall forests became popular with asteroid miners grown weary of cramped spacecraft. When the hyperdrive brought unprecedented immigration from other worlds, conservationists set aside large swathes of the moon as natural preserves, concentrating most residents in a small group of dense cities.`
 	description `While somewhat metal-poor itself, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily.`
-	spaceport `The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system. Situated along the side of one of the equatorial mountains, a set of short runways also service the moon's local aircraft.`
+	spaceport `The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system and the ease of lofting cargo in the low gravity. Unlike most Avgi spaceports, it was designed to primarily serve spaceplanes, enabled by the thick atmosphere and low gravity. Together with the sprawling spaceport complex, built along the side of an equatorial mountain, a set of shorter runways also service the moon's local aircraft.`
 	government Avgi
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
 	outfitter "Avgi General"
 	outfitter "Avgi Engineering"
 	outfitter "Avgi Electronics"
@@ -3119,10 +3114,9 @@ planet Livolua
 	attributes "aberrant siege" avgi "avgi core" rich urban
 	landscape land/water32
 	description `Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities.`
-	spaceport `The primary spaceport was built into the center of the first settlement to be established on the planet, which received incoming starships for decades. Since then, it was expanded upwards into a surprisingly tall cylinder of basalt and steel, itself housing over a million Avgi.`
+	description `	While perhaps not as wealthy or comfortable as Aviskir itself, Livolua is full of younger, ambitious polities with their eyes set on growth, a dynamic that has produced a vibrant independent civilization capable of rivaling the homeworld.`
+	spaceport `The primary spaceport was built into the center of the first settlement to be established on the planet, which handled most extraplanetary traffic for decades. An especially-ambitious skyhook design would stretch down each day to retrieve or deposit a payload mounted on a kilometer-tall tower, spindly enough that it had to be reinforced with nanotube guy lines reaching the ground. Since then, the tower has grown outwards into a surprisingly wide arcology of basalt and steel, itself housing over a million Avgi.`
 	government Avgi
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -3186,7 +3180,7 @@ planet Mabatham
 	landscape land/sky1
 	description `Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics.`
 	description `	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stubborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea.`
-	spaceport `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visiting starship.`
+	spaceport `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
 	government Avgi
 	security 0
 
@@ -5424,12 +5418,8 @@ planet Stilacrest
 	landscape land/myrabella4
 	description `Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse.`
 	description `The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
-	spaceport `The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Unlike most Avgi spaceports, the city that grew around it has fairly few skyscrapers or tall buildings, with most structures being short and sprawling.`
+	spaceport `The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Along with the usual laser launch array, a launch loop stretches into the sky, capable of carrying spacecraft almost all the way to orbit.`
 	government Avgi
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
