@@ -42,11 +42,12 @@ namespace {
 	// when those sounds actually start playing.
 	class QueueEntry {
 	public:
-		void Add(Point position);
+		void Add(Point position, SoundCategory category);
 		void Add(const QueueEntry &other);
 
 		Point sum;
 		double weight = 0.;
+		SoundCategory category = SoundCategory::MASTER;
 	};
 
 	// OpenAL only allows a certain number of distinct sound sources. To work
@@ -55,15 +56,17 @@ namespace {
 	// be recycled once they are no longer playing.
 	class Source {
 	public:
-		Source(const Sound *sound, unsigned source, bool isFastForward);
+		Source(const Sound *sound, unsigned source, SoundCategory category, bool isFastForward);
 
 		void Move(const QueueEntry &entry) const;
 		unsigned ID() const;
 		const Sound *GetSound() const;
+		SoundCategory Category() const;
 
 	private:
 		const Sound *sound = nullptr;
 		unsigned source = 0;
+		SoundCategory category = SoundCategory::MASTER;
 	};
 
 	// Thread entry point for loading the sound files.
@@ -77,7 +80,11 @@ namespace {
 	ALCdevice *device = nullptr;
 	ALCcontext *context = nullptr;
 	bool isInitialized = false;
-	double volume = .125;
+
+	// We keep track of the volume levels requested, and the volume levels
+	// currently set in OpenAL.
+	map<SoundCategory, double> volume{{SoundCategory::MASTER, .125}};
+	map<SoundCategory, double> cachedVolume;
 
 	// This queue keeps track of sounds that have been requested to play. Each
 	// added sound is "deferred" until the next audio position update to make
@@ -140,7 +147,7 @@ void Audio::Init(const vector<filesystem::path> &sources)
 	ALfloat zero[3] = {0., 0., 0.};
 	ALfloat orientation[6] = {0., 0., -1., 0., 1., 0.};
 
-	alListenerf(AL_GAIN, volume);
+	alListenerf(AL_GAIN, volume[SoundCategory::MASTER]);
 	alListenerfv(AL_POSITION, zero);
 	alListenerfv(AL_VELOCITY, zero);
 	alListenerfv(AL_ORIENTATION, orientation);
@@ -217,19 +224,20 @@ double Audio::GetProgress()
 
 
 // Get the volume.
-double Audio::Volume()
+double Audio::Volume(SoundCategory category)
 {
-	return volume;
+	if(!volume.contains(category))
+		volume[category] = 1.;
+
+	return volume[category];
 }
 
 
 
 // Set the volume (to a value between 0 and 1).
-void Audio::SetVolume(double level)
+void Audio::SetVolume(double level, SoundCategory category)
 {
-	volume = min(1., max(0., level));
-	if(isInitialized)
-		alListenerf(AL_GAIN, volume);
+	volume[category] = clamp(level, 0., 1.);
 }
 
 
@@ -262,28 +270,28 @@ void Audio::Update(const Point &listenerPosition)
 
 
 // Play the given sound, at full volume.
-void Audio::Play(const Sound *sound)
+void Audio::Play(const Sound *sound, SoundCategory category)
 {
-	Play(sound, listener);
+	Play(sound, listener, category);
 }
 
 
 
 // Play the given sound, as if it is at the given distance from the
 // "listener". This will make it softer and change the left / right balance.
-void Audio::Play(const Sound *sound, const Point &position)
+void Audio::Play(const Sound *sound, const Point &position, SoundCategory category)
 {
-	if(!isInitialized || !sound || !sound->Buffer() || !volume)
+	if(!isInitialized || !sound || !sound->Buffer() || !volume[SoundCategory::MASTER])
 		return;
 
 	// Place sounds from the main thread directly into the queue. They are from
 	// the UI, and the Engine may not be running right now to call Update().
 	if(this_thread::get_id() == mainThreadID)
-		soundQueue[sound].Add(position - listener);
+		soundQueue[sound].Add(position - listener, category);
 	else
 	{
 		unique_lock<mutex> lock(audioMutex);
-		deferred[sound].Add(position - listener);
+		deferred[sound].Add(position - listener, category);
 	}
 }
 
@@ -333,6 +341,20 @@ void Audio::Step(bool isFastForward)
 {
 	if(!isInitialized)
 		return;
+
+	for(const auto &[category, expected] : volume)
+		if(cachedVolume[category] != expected)
+		{
+			cachedVolume[category] = expected;
+			if(category == SoundCategory::MASTER)
+				alListenerf(AL_GAIN, expected);
+			else if(category == SoundCategory::MUSIC)
+				alSourcef(musicSource, AL_GAIN, expected);
+			else
+				for(const Source &source : sources)
+					if(source.Category() == category)
+						alSourcef(source.ID(), AL_GAIN, expected);
+		}
 
 	vector<Source> newSources;
 	// For each sound that is looping, see if it is going to continue. For other
@@ -418,7 +440,7 @@ void Audio::Step(bool isFastForward)
 			recycledSources.pop_back();
 		}
 		// Begin playing this sound.
-		sources.emplace_back(it.first, source, isFastForward);
+		sources.emplace_back(it.first, source, it.second.category, isFastForward);
 		sources.back().Move(it.second);
 		alSourcePlay(source);
 	}
@@ -566,7 +588,8 @@ void Audio::Quit()
 namespace {
 	// Add a new source to this queue entry. Sources are weighted based on their
 	// position, and multiple sources can be added together in the same entry.
-	void QueueEntry::Add(Point position)
+	// The preserved category is the category of the last source.
+	void QueueEntry::Add(Point position, SoundCategory category)
 	{
 		// A distance of 500 counts as 1 OpenAL unit of distance.
 		position *= .002;
@@ -575,6 +598,7 @@ namespace {
 		double d = 1. / (1. + position.Dot(position));
 		sum += d * position;
 		weight += d;
+		this->category = category;
 	}
 
 
@@ -584,19 +608,19 @@ namespace {
 	{
 		sum += other.sum;
 		weight += other.weight;
+		category = other.category;
 	}
 
 
 
 	// This is a wrapper for an OpenAL audio source.
-	Source::Source(const Sound *sound, unsigned source, bool isFastForward)
-		: sound(sound), source(source)
+	Source::Source(const Sound *sound, unsigned source, SoundCategory category, bool isFastForward)
+		: sound(sound), source(source), category(category)
 	{
 		// Give each source a small, random pitch variation. Otherwise, multiple
 		// instances of the same sound playing at slightly different times
 		// overlap and create a "grinding" interference sound.
 		alSourcef(source, AL_PITCH, 1. + (Random::Real() - Random::Real()) * .04);
-		alSourcef(source, AL_GAIN, 1.);
 		alSourcef(source, AL_REFERENCE_DISTANCE, 1.);
 		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);
 		alSourcef(source, AL_MAX_DISTANCE, 100.);
@@ -630,6 +654,14 @@ namespace {
 	const Sound *Source::GetSound() const
 	{
 		return sound;
+	}
+
+
+
+	// Get the category of this sound.
+	SoundCategory Source::Category() const
+	{
+		return category;
 	}
 
 
