@@ -804,7 +804,11 @@ void MapPanel::Select(const System *system)
 {
 	if(!system)
 		return;
+
 	selectedSystem = system;
+	// Update the cache to apply any visual changes needed after the selected system was changed.
+	UpdateCache();
+
 	vector<const System *> &plan = player.TravelPlan();
 	Ship *flagship = player.Flagship();
 	if(!flagship || (!plan.empty() && system == plan.front()))
@@ -870,6 +874,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = &system;
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -889,6 +894,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = planet.GetSystem();
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -1128,7 +1134,7 @@ void MapPanel::UpdateCache()
 		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.DisplayName() : "",
-			(&system == &playerSystem) ? closeNameColor : farNameColor,
+			(&system == &playerSystem || &system == selectedSystem) ? closeNameColor : farNameColor,
 			canViewSystem ? system.GetGovernment() : nullptr,
 			canViewSystem ? system.GetMapIcons() : unmappedSystem);
 	}
