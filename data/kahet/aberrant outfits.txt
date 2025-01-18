@@ -51,7 +51,7 @@ outfit "Aberrant Spiker"
 		"hull damage" 730
 		"shield damage" 690
 		"corrosion damage" 3
-		"missile strength" 17
+		"missile strength" 29
 	description "Spikes grow on the backs of many Aberrant variants, made of a seemingly random assortment of materials both metallic and mineral in nature. This device appears to allow an Aberrant to launch these spikes as an offensive weapon, but just how they are able to guide and propel themselves through space is a mystery that a cursory examination of this outfit does not reveal."
 
 effect "spiker trail"

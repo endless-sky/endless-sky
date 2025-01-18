@@ -226,7 +226,7 @@ mission "Avgi Culture: Park Politics"
 
 			label anotherway
 			`	"Amusement. Always in search of another way, everyone is. Perhaps because the choice we are left with is so abhorrent, that seeking another way provides a means of relieving them of it. We have attempted communication with the Aberrant, to no avail, and it seems likely they are not an intelligent species to begin with. They do not appear to coordinate with each other, and examining their debris in the rare instances we have managed to destroy one reveals no crew, just a strange mixture of machine and flesh. Perhaps they are some forgotten living weapon, engineered by a race long gone, or the mere servants of some ancient race far beyond us in power, the equivalents of our mining drones and service robots."`
-			`	"But no, a choice must be made in the end, even if it is only one of degree. Even should we attempt to both build new homes in the Outer Limits and protract our conflict with the Aberrant, the resources allocated to each still remain to be divided up. And there, the conflict between the Consonance and Dissonance lies."`
+			`	He splays his arms. "But no, a choice must be made in the end, even if it is only one of degree. Even should we attempt to both build new homes in the Outer Limits and protract our conflict with the Aberrant, the resources allocated to each still remain to be divided up. And there, the conflict between the Consonance and Dissonance lies."`
 
 			label next5
 			`	You play a few more rounds with Wisteria, and he shows you how to set up chains of pieces that can be used to skip ahead, while also denying their use to the enemy. After a particularly interesting set of moves, where he demonstrates how to break a chain and add your own endpoints to it, the conversation once more turns to politics.`
@@ -253,7 +253,7 @@ mission "Avgi Culture: Park Politics"
 				log "Factions" "Avgi Consonance" `While most of the Electors the various Avgi polities select to represent them in the Consonance are elected democratically, others are not, with their own systems of appointment. The Consonance is thus perhaps an example of a republic that is not fully democratic.`
 
 			`	He shrugs, an oddly human gesture. "It depends. Many polities do not even elect their own leadership, and they are free to select their representative however they wish. For some it is an elected position, for others it is one appointed by their leadership. A few even have their head of government serve as their Elector, though that is quite the time commitment to make."`
-			`	"But yes, most of the polities use some form of democracy. An Avgi might find themselves voting in several elections, one for each polity they claim membership to, with their vote diluted by how many polities they belong to."`
+			`	Wisteria looks up. "But yes, most of the polities use some form of democracy. An Avgi might find themselves voting in several elections, one for each polity they claim membership to, with their vote diluted by how many polities they belong to."`
 				goto nextassembly
 
 			label syndicate
@@ -266,7 +266,7 @@ mission "Avgi Culture: Park Politics"
 				`	"What factions are there in the Assembly?"`
 					goto factions
 				`	"They're all that ruthless, even now?"`
-			`	He laughs. "Of course they are. Oh, most of them have the same goal in the end, defeating the Aberrant, but there are many who are convinced that their methods are best suited for achieving that goal."`
+			`	Wisteria laughs. "Of course they are. Oh, most of them have the same goal in the end, defeating the Aberrant, but there are many who are convinced that their methods are best suited for achieving that goal."`
 
 			label factions
 			action
@@ -278,11 +278,11 @@ mission "Avgi Culture: Park Politics"
 				log "Factions" "Avgi Consonance" `The Ecologists are a single issue faction that simply desires the settlement of Weledos. Many have sympathies to the increasingly popular position that the Avgi should focus on settling the Tangled Shroud instead of trying to reclaim Aviskir.`
 				log "Factions" "Avgi Consonance" `The Freelancers have little in common besides a disdain for the taxes and financial controls imposed by the Assembly. Many with Dissonance sympathies can be found among them, but just as many are loyal Consonance supporters who merely desire lower taxes.`
 
-			`	He ticks them off on his pointed fingers, three on each hand. "There are the Centralists, those from the smaller polities who wish to see the Consonance grow in authority and power. The war against the Aberrant demands strong leaders, they say, and many agree with them."`
-			`	"The Technocrats, they disdain that, and place their hopes in a qualitative solution to defeat the Aberrant. Build better ships and give them better weapons, and the Aberrant can be swept from the Twilight without the need to demand ever more resources from our people. They draw from many of the industrialist polities, but their loyalties are often divided."`
-			`	"The Financiers, the old money types with their fingers in everything, they represented many of the more urbanized regions of the core worlds, and their influence has come with them. Disdained by everyone in public, and beloved by all who would seek to benefit from their influence, I would credit them for being half the reason for the present unity between polities that would normally refuse to cooperate with each other."`
+			`	He ticks them off on his pointed fingers, three on each hand. "There are the Centralists, those from the smaller polities who wish to see the Consonance grow in authority and power. The war against the Aberrant demands strong leaders, they say, and many agree with them." He tilts his head to the left.`
+			`	"The Technocrats, they disdain that, and place their hopes in a qualitative solution to defeat the Aberrant. Build better ships and give them better weapons, and the Aberrant can be swept from the Twilight without the need to demand ever more resources from our people. They draw from many of the industrialist polities, but their loyalties are often divided," he says as he makes a move.`
+			`	"The Financiers, the old money types with their fingers in everything, they represented many of the more urbanized regions of the core worlds, and their influence has come with them. Disdained by everyone in public, and beloved by all who would seek to benefit from their influence, I would credit them for being half the reason for the present unity between polities that would normally refuse to cooperate with each other," he says with an amused flick of his wings.`
 			`	"There are more, of course, with lesser influence. The Nationalists, who resent the decline of their polities' power, and especially the subsumption of their militaries into the Twilight Guard, are an ever-present thorn in the side of the Centralists, but they at least are quick to point out authoritarianism when they see it. The Ecologists want but a single thing, the complete settlement of Weledos, and the refocusing of resources on colonization and construction rather than shipbuilding. And there is a loose coalition, the Freelancers, who agree on nothing except that taxes and price controls should be relaxed."`
-			`	"And of course the Twilight Guard is its own faction, as much as they will emphasize their neutrality. They have their supporters and detractors, but none can oppose them entirely, for they are all that stands between us and the Aberrant."`
+			`	He sits back. "And of course the Twilight Guard is its own faction, as much as they will emphasize their neutrality. They have their supporters and detractors, but none can oppose them entirely, for they are all that stands between us and the Aberrant."`
 			`	With that, he deftly moves a Third piece, trapping a cluster of your stones behind a wall.`
 			choice
 				`	(Try to break the wall and turn it into a chain.)`
@@ -331,8 +331,8 @@ mission "Avgi Culture: Park Politics"
 					goto dissonance
 
 			`	"Contemplation. Perhaps a better question would be, 'what it was like before the hyperdrive?' For our society was not placed into turmoil first by the Aberrant, but rather by the discovery of a means to travel faster than light. Inside a handful of years an outlandish physics experiment went from theory to reality, and stars that had been decades or centuries away instead became reachable in first months, then weeks, then days as the hyperdrive continued to improve."`
-			`	"You must understand, emphasis, just how economically separated the various pockets of Avgi civilization were. Aviskir of course was dominant within the Anax system, but beyond interplanetary politics practically every system was independent in both a political and economic sense. There was no Consonance to organize the various powers, and everyone largely kept to themselves by sheer virtue of the distance and expense involved in interstellar travel."`
-			`	"Then, almost overnight, the situation went from one of extreme separation to one of interconnection. The fleets of vast starships, powered by stores of antimatter or immense lasers, became obsolete, and it suddenly became possible for even moderately well-off individuals to travel between the stars."`
+			`	He leans in. "You must understand, emphasis, just how economically separated the various pockets of Avgi civilization were. Aviskir of course was dominant within the Anax system, but beyond interplanetary politics practically every system was independent in both a political and economic sense. There was no Consonance to organize the various powers, and everyone largely kept to themselves by sheer virtue of the distance and expense involved in interstellar travel."`
+			`	Wisteria spreads his arms as if to encompass the entire station. "Then, almost overnight, the situation went from one of extreme separation to one of interconnection. The fleets of vast starships, powered by stores of antimatter or immense lasers, became obsolete, and it suddenly became possible for even moderately well-off individuals to travel between the stars."`
 			choice
 				`	"Were there wars?"`
 					goto war
@@ -357,7 +357,7 @@ mission "Avgi Culture: Park Politics"
 				`	"That seems too simple. That can't be their only reason for leaving the Consonance, not in an existential war."`
 
 			`	"Approving. That is an astute observation, and one you are correct in. It is of course more complicated than a simple disdain for taxation and price controls. There is the matter of sovereignty, the continued decline of the power of the polities as the Consonance takes on additional responsibilities. Many of the polities that created the Consonance no longer exist, and even more are nothing more than a collection of refugees, the bulk of which sleep in cryogenic storage, waiting for us to build the habitable space needed to awaken them. Many resent this, remembering the days of freedom and true independence, and the rejection of Consonance authority is one way to revisit those days."`
-			`	"Sadness. I cannot say I blame them. They are correct in that the Assembly does grow ever more overbearing, and the fear of more polities leaving the Consonance has served as a check on the tendency for the Assembly to grant itself ever more powers."`
+			`	He turns his head to the side. "Sadness. I cannot say I blame them. They are correct in that the Assembly does grow ever more overbearing, and the fear of more polities leaving the Consonance has served as a check on the tendency for the Assembly to grant itself ever more powers."`
 				goto next7
 
 			label guard
@@ -469,7 +469,7 @@ mission "Avgi Culture: Zapchannel Energy"
 					goto nope
 
 			label glow
-				`	"Excitement, excellent! I can see you are clearly a very intelligent and discerning captain. Anticipation. This serum was invented by yours truly, capable of resolving all of your worldly woes! Only 3,000 credits!" He proudly holds out a vial of cloudy white liquid, glowing a bright, intense pale blue.`
+			`	"Excitement, excellent! I can see you are clearly a very intelligent and discerning captain. Anticipation. This serum was invented by yours truly, capable of resolving all of your worldly woes! Only 3,000 credits!" He proudly holds out a vial of cloudy white liquid, glowing a bright, intense pale blue.`
 			choice
 				`	"Uh, what is this?"`
 				`	"Is this radioactive?"`
@@ -642,11 +642,11 @@ mission "Avgi: Infocourier Encounter"
 					goto couriers
 
 			`	"Hmm. Consideration. Decades ago, before the hyperdrive, the arrival of an interstellar courier ship would be a cause for celeberation. Entire planets would rejoice to receive news of the sciences and arts of other stars, which were cherished. You see, interstellar visits were rare during those days, only a few times a year at most. There was remote communication, of course, with bright x-ray lasers and telescopes to receive them, but the transfer rates were too slow for information to be shared in bulk."`
-			`	"A good courier ship might have been less than half as fast as a laser operating at the speed of light, but it could move a thousandfold more information in the same time nonetheless. And a courier ship could carry all the information produced by an entire system's worth of people in a decade, and share it with the neighboring systems so they could update their own databases. Those were the days," he says wistfully.`
+			`	Hansa flicks his wings. "A good courier ship might have been less than half as fast as a laser operating at the speed of light, but it could move a thousandfold more information in the same time nonetheless. And a courier ship could carry all the information produced by an entire system's worth of people in a decade, and share it with the neighboring systems so they could update their own databases. Those were the days," he says wistfully.`
 			choice
 				`	"What changed?"`
 
-			`	He sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system has adapted, and now it is just that - a system. Regular. Predictable. And ultimately unexciting."`
+			`	Hansa sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system has adapted, and now it is just that - a system. Regular. Predictable. And ultimately unexciting."`
 			label couriers
 			`	"Today, we make the rounds in ships that are fast, but have the room for enough storage media to update a planet's entire network. In our heyday, before the Incursion, a courier ship would visit a world every day to upload its database, but since then we've struggled to keep each system controlled by the Consonance updated once per week."`
 			label ask
@@ -662,7 +662,7 @@ mission "Avgi: Infocourier Encounter"
 
 			label diamond
 			`	"Explanation. Incredibly dense storage media, of course: memory diamond, we call it. You can find it under a dozen trade names, each claiming to be better than the last, but they're really all the same stuff, more or less. Chains of alternating carbon-12 and carbon-13, printed out as a diamond by specialized nanofabricators. The stuff is incredibly resilient, chemically stable, and will keep information archived practically forever. Just keep it away from radiation and high heat, which diamond doesn't stand up to well."`
-			`	"Amusement. Of course, don't be expecting data crystals or glowing gemstones like you see in science fiction. Most of the time it comes in matte black bricks or slabs, nothing flashy."`
+			`	He twitches his wings. "Amusement. Of course, don't be expecting data crystals or glowing gemstones like you see in science fiction. Most of the time it comes in matte black bricks or slabs, nothing flashy."`
 				goto ask
 
 			label job
@@ -970,7 +970,8 @@ mission "Avgi: Atomics Testing 1"
 
 
 mission "Avgi: Atomics Testing 2"
-	invisible
+	name "Atomic Testing"
+	description "Take Aliza back to <destination>."
 	landing
 	passengers 1
 	to offer
@@ -1084,7 +1085,7 @@ mission "Avgi: Atomics Testing 2"
 
 			label dissonance
 			`	Aliza chimes in. "And a lot of people, especially the Dissonance, would like to get their hands on some of our stockpile of fissile materials. We do quite a bit of mining, and have an impressive amount of breeder reactors running on fusion neutrons, so the amount of material being circulated at any given moment is quite high. Yinmn could tell you a lot of stories about the piracy that goes on with that supply chain."`
-			`	"Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by 'merchants' apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance."`
+			`	Yinmn taps his arms together. "Heh, but we'd be here for days, amusement. I'll just leave it at this: our convoys are often trailed by 'merchants' apparently making supply runs to secure facilities. Those are the worst, not the members of the Dissonance themselves, but the ones who hide their sympathies and feign loyalty to the Consonance."`
 			choice
 				`	"Wait, so do they have nukes too?"`
 					goto proliferation
@@ -1094,7 +1095,7 @@ mission "Avgi: Atomics Testing 2"
 				goto help
 
 			label proliferation
-			`	"Oh, of course they do. Even if they weren't stealing from us, which is risky but has a huge payout, they have all the tools you'd need to breed or enrich fissile materials on their own, so no doubt do they have a stockpile of weapons themselves."`
+			`	"Oh, of course they do. Even if they weren't stealing from us, which is risky but has an enormous potential payout, they have all the tools you'd need to breed or enrich fissile materials on their own, so no doubt do they have a stockpile of weapons themselves."`
 				goto help
 
 			label help
