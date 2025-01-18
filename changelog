@@ -2,6 +2,7 @@ Version 0.10.11
   * Big changes:
     * Systems and planets can now have display names. (@TomGoodIdea)
     * Added a new map mode that draws star graphics instead of rings. (@Azure3141)
+    * Added individual volume controls for different kinds of sounds. (@tibetiroka)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Anarchist2, @ImprovidesUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
@@ -24,6 +25,7 @@ Version 0.10.11
       * Removed an instance of the player character using the phrase "The Embers" before ever encountering a Remnant saying it. (@roadrunner56)
       * Removed incorrect uses of "has" in condition expressions with other comparisons, and corrected uses of "=" (assignment) where equality comparison is needed. (@petervdmeer, @TheGiraffe3)
       * The Wanderer tribute fleet on Kort Vek'kri will now be removed when it is taken over by the Unfettered. (@TheGiraffe3)
+      * The Successor sightseeing jobs will now include their full destinations in their descriptions. (@TheGiraffe3)
     * Engine bugs:
       * Outfits from cargo that were stored on take off will no longer be counted as part of sold outfits in the income message. (@Anarchist2)
       * Starts with invalid planets will now fall back to New Boston. (@TomGoodIdea)
@@ -40,6 +42,7 @@ Version 0.10.11
       * The target display will no longer leak information about changes in state of a target that has left the current system that the player should not have access to. (@warp-core, @petervdmeer)
       * Fixed an issue where stopover/waypoint markers in the map would disappear if the destination system has too many markers. (@warp-core)
       * Fixed an issue where weapon jamming was being accumulated incorrectly. (@TomGoodIdea)
+      * Corrected a memory leak by deallocating an SDL pointer properly. (@TomGoodIdea)
   * Game content:
     * New content:
       * Hai start. (@Hurleveur, @Anarchist2)
@@ -71,6 +74,7 @@ Version 0.10.11
       * Reduced the number of "gegno encounters" needed to receive the mission "Gegno Suspicions" from three to one. (@Saugia)
     * Graphics:
       * Modified the sprite for the "Systems Core (Tiny)" to better match the other Systems Cores. (@Anarchist2)
+      * Added a collar sprite for Puny. (@Anarchist2)
     * Balance:
       * Rebalanced and nerfed turret turn rates. (@Hecter94)
         * Todo: details.
@@ -127,6 +131,7 @@ Version 0.10.11
     * Selecting multiple ships of the same model in the outfitter will highlight outfit counts where not all selected ships have the same number installed. (@SomeTroglodyte)
     * The scan progress overlay will be dimmed when out of scan range while a scan is in progress. (@warp-core)
     * The 'k' key, or "shift+p" can now be used to park and unpark selected ships in the shipyard and outfitter. (@nickshanks)
+    * The name of the selected system in the map will now by highlighted. (@Koranir)
   * Under the hood:
     * Refactored DistanceMap. (@alextd)
     * Corrected a comment on Armament::Fire. (@TomGoodIdea)
