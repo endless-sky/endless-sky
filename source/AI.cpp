@@ -486,7 +486,7 @@ void AI::IssueMoveTarget(const Point &target, const System *moveToSystem)
 	newOrder.SetTargetSystem(moveToSystem);
 	string description = "moving to the given location";
 	description += player.GetSystem() == moveToSystem ? "." : (" in the " + moveToSystem->DisplayName() + " system.");
-	IssueOrders(newOrder, description);
+	IssueOrder(newOrder, description);
 }
 
 
