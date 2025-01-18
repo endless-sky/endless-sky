@@ -340,8 +340,8 @@ void Audio::Step()
 {
 	if(!isInitialized)
 		return;
-  
-  for(const auto &[category, expected] : volume)
+
+	for(const auto &[category, expected] : volume)
 		if(cachedVolume[category] != expected)
 		{
 			cachedVolume[category] = expected;
