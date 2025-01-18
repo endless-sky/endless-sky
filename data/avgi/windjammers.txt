@@ -96,6 +96,7 @@ outfit "Pinecone Launcher"
 	"outfit space" -30
 	"weapon capacity" -30
 	"gun ports" -1
+	"unplunderable" 1
 	weapon
 		"inaccuracy" 20
 		"velocity" 13
@@ -143,6 +144,7 @@ outfit "Jamfruit"
 ship "Windjammer"
 	sprite "ship/windjammer"
 	thumbnail "ship/windjammer"
+	"uncapturable"
 	attributes
 		category "Space Liner"
 		"cost" 1111000
@@ -298,6 +300,7 @@ ship "Bluejacket"
 	"display name" "Windjammer"
 	sprite "ship/bluejacket"
 	thumbnail "ship/bluejacket"
+	"uncapturable"
 	attributes
 		category "Space Liner"
 		"cost" 1212100
@@ -450,6 +453,7 @@ ship "Pollen"
 ship "Sprout"
 	sprite "ship/pollen"
 	thumbnail "ship/pollen"
+	"uncapturable"
 	attributes
 		category "Fighter"
 		"cost" 126000
