@@ -193,7 +193,6 @@ mission "Hai Legacy 1"
 				fine 10000000
 			`	They give you access to the ship and proceed to explain the details. "It is of no real significance, but surely you understand we cannot go through standard means for this sale. We will instead present it as a fine. You'll be charged for carrying technology you had no idea was forbidden, as these Korath weapons are suspicious indeed. However, it will not go on your permanent record."`
 			`	You quickly realize that they are not asking you for your opinion at all. In fact, you receive notice of the fine before they have even finished speaking. "We will need to make some modifications to the ship before you can use it.`
-			`	"Don't forget to return to the spaceport to get the cargo loaded onto your ship. You should use this ship and this ship alone to make these urgent deliveries."`
 			choice
 				`	(Go back to the shipyard.)`
 					goto leave
@@ -365,7 +364,7 @@ mission "Hai Legacy 3"
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		clear "old reputation: Hai (Unfettered)"
-		dialog `You are contacted by the Unfettered as you enter the planet's atmosphere. "You failed to complete the duel, and as such, are no longer authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
+		dialog `You are contacted by the Unfettered as you enter the planet's atmosphere. "You failed to complete the duel. We let you land to repair your ship as the terms dictate, but this is the last time you are authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
