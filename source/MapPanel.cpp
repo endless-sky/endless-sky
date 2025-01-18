@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
+#include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
@@ -259,6 +260,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	commodity(commodity),
 	fromMission(fromMission)
 {
+	Audio::Pause();
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
@@ -290,6 +292,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
 	CenterOnSystem(selectedSystem, true);
+}
+
+
+
+MapPanel::~MapPanel()
+{
+	Audio::Resume();
 }
 
 

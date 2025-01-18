@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
@@ -69,6 +70,13 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	GameData::Preload(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
+}
+
+
+
+PlanetPanel::~PlanetPanel()
+{
+	Audio::Resume();
 }
 
 
