@@ -76,7 +76,6 @@ if(WIN32)
     endif()
 endif()
 
-
 # Find the needed library dependencies.
 find_package(SDL2 CONFIG REQUIRED)
 find_package(PNG REQUIRED)
