@@ -8,7 +8,7 @@ if(MSVC)
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
-		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "$<$<CONFIG:Release>:-fno-rtti>")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.

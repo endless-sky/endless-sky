@@ -313,7 +313,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI()->Push(new MapDetailPanel(*player, system));
+		GetUI()->Push(new MapDetailPanel(*player, system, true));
 	else
 		return false;
 
@@ -374,7 +374,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	const Sprite *top = SpriteSet::Get("ui/dialog top");
 	// If the dialog is too tall, then switch to wide mode.
 	int maxHeight = Screen::Height() * 3 / 4;
-	if(text->GetTextHeight() > maxHeight)
+	if(text->GetTextHeight(false) > maxHeight)
 	{
 		textRectSize.Y() = maxHeight;
 		isWide = true;
@@ -392,7 +392,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 		}
 	}
 	else
-		textRectSize.Y() = text->GetTextHeight();
+		textRectSize.Y() = text->GetTextHeight(false);
 
 	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
