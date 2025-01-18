@@ -2167,8 +2167,8 @@ mission "Acorn Delights: Part 2"
 	on offer
 		log "Took a Hai lady named Eeeya to Stonebreak to help find her granddaughter, who is named Anoo."
 		conversation
-			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, woman's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth.`
-			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "I've heard that sometimes very gifted students are allowed to study with the Quarg for a year after they graduate, but that is likely to be a fib. Since it's obvious she's not here, let's check on <destination> - she could be in the military."`
+			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, women's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth.`
+			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "Since it's obvious she's not here, let's check on <destination> - she could be in the military."`
 				accept
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
@@ -2197,7 +2197,7 @@ mission "Acorn Delights: Part 3"
 				`	"Why would a doctor join a band of warmongers?"`
 					goto warmonger
 				`	"As the honorable Captain <first> <last>, I say let's go find her!"`
-					accept
+					goto accept
 				`	"I'd be happy to help."`
 					goto accept
 				`	"Unfettered space is too dangerous for me. You will have to find another captain."`
@@ -2228,7 +2228,7 @@ mission "Acorn Delights: Part 4"
 		payment 3000
 		log "Finally found Anoo. It turns out she joined the Unfettered. I am supposed to take Eeeya to <destination> now."
 		conversation
-			`You're ushered from the landing platform to a nearby hospital when Eeeya finally manages to convey your intent. A few Unfettered Hai nearby are muttering in their language, and you keep hearing the Hai word for "cookies" as they watch Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. Unlike their southern brethren, it seems the Unfettered value function and progress over aesthetics and comfort.`
+			`You're ushered from the landing platform to a nearby hospital, where Eeeya finally manages to convey your intent. A few Unfettered Hai nearby are muttering in their language, and you keep hearing the Hai word for "cookies" as they watch Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. Unlike their southern brethren, it seems the Unfettered value function and progress over aesthetics and comfort.`
 			`	As you rise through the main tower of the hospital, you're surprised at how advanced it is. Despite their willingness to die in battle, the Unfettered seem to value the lives of the survivors. Perhaps this hospital is to heal them quickly so that they can fight again as soon as possible.`
 			`	You reach a high floor filled with personal offices. Eeeya knocks on each door, apologizing when the Unfettered inside aren't who she's looking for, until you finally reach the very last room.`
 			`	Eeeya opens this door, and runs to the Hai inside it - Anoo. A few minutes later, they begin to speak, surprisingly in a language you understand. Eventually the conversation turns to Anoo's new occupation.`
@@ -2238,12 +2238,12 @@ mission "Acorn Delights: Part 4"
 			`	"If enough good people join the Unfettered, we can change their minds and set them on a more productive path. They'll need good doctors."`
 			`	"But-" Eeeya objects.`
 			choice
-				`	"Anoo is right; the Unfettered are prestigious. I would recommend joining them."`
+				`	"Anoo is right; the Unfettered are a noble people. I would recommend joining them."`
 					goto joinuhai
 				`	"There's no good reason to join the Unfettered. What have they ever done except kill innocent Hai?"`
 					goto "don't join"
 			label joinuhai
-			`	"Well... I really don't know... but how can I refuse when both my granddaughter and <first> tell me to?"`
+			`	"Well... I really don't know..."`
 			choice
 				`	"Never mind, you're right. Joining the Unfettered is a bad idea after all."`
 				`	"I stand by their guns. The Unfettered are honorable."`
@@ -2263,7 +2263,7 @@ mission "Acorn Delights: Part 4"
 			label reallyjoin
 			action
 				set "acorn delights: eeeya joined"
-			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in normal Hai space before officially joining the True Hai, which I have now decided to do. Could you take me back to <planet> so that I can sell off the factory? And Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies!"`
+			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in normal Hai space before officially joining the Unfettered. Could you take me back to <planet> so that I can sell off the factory? And Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies!"`
 			choice
 				`	"Sure thing. I'd be glad to take you back."`
 					accept
@@ -2285,19 +2285,18 @@ mission "Acorn Delights: Part 5"
 			branch uhai
 				has "acorn delights: eeeya joined"
 			action
-				"salary: Acorn Delights" = 200
-				log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. She ran off to join the Unfettered, but Eeeya wasn't interested in doing so. Received stocks for a two hundred credit salary for my efforts.`
+				"salary: Acorn Delights" = 100
+				log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. She ran off to join the Unfettered, but Eeeya wasn't interested in doing so. Received stocks for a one hundred credit salary for my efforts.`
 			`Eeeya immediately gets off the ship and goes to check on the acorn cookie shop. A few minutes later, she is back with documents for you to sign.`
-			`	"These will set you up with about a tenth of the stock in my company; you'll receive two hundred credits daily." As you sign the documents, she continues, "I'd just like to thank you again for helping me find Anoo. It means a lot." You check that the stocks have been transferred to your account, and Eeeya heads off.`
+			`	"These will set you up with about a twentieth of the stock in my company; you'll receive one hundred credits daily." As you sign the documents, she continues, "I'd just like to thank you again for helping me find Anoo. It means a lot to me." You check that the stocks have been transferred to your account, and Eeeya heads off.`
 				decline
 			label uhai
 			`Eeeya heads off to sell Acorn Delights' shop while you finish the landing procedure. Soon, she is back. "Well, there was a Hai who paid thirty million credits for that small place. I wonder why he thought it was worth so much - I sure don't. But I won't argue with that nutty person." She seems much merrier now that Anoo has been found. "I'll be ready to go when you are."`
 				accept
 	on complete
-		payment 1000000
-		log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. After a long journey, we found her - she had gone to help the Unfettered as a trauma surgeon. Brought Eeeya back to <origin> so she could sell the shop, but both Hai are together on <destination> now. Received a total of one million and three thousand credits for my efforts.`
+		payment 500000
+		log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. After a long journey, we found her - she had gone to help the Unfettered as a trauma surgeon. Brought Eeeya back to <origin> so she could sell the shop, but both Hai are together on <destination> now. Received a total of five hundred thousand credits for my efforts.`
 		conversation
-			`Eeeya leaves to go to the hospital, after paying you five hundred thousand credits and thanking you for the third time. But before you are allowed to leave your ship, an Unfettered security officer arrives. "Come with me<, unfettered title>, we have something to say to you."`
-			`	"Why?" you ask. The Unfettered leads you to an office without answering. "We would like to thank you for recruiting a Hai - especially one as renowned as Chef Eeeya. You are being paid an additional five hundred thousand credits; do not think it is too much. You are dismissed." As you head back to <ship>, your communicator receives a receipt for the promised payment.`
+			`Eeeya leaves to go to the hospital, after paying you five hundred thousand credits and thanking you for the third time.`
 	on visit
 		dialog "Eeeya is not in the system. Maybe she's in one of your escorts?"
