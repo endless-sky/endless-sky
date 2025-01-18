@@ -13,8 +13,8 @@
 
 
 ship "Quyan"
-	sprite "ship/star queen"
-	thumbnail "thumbnail/star queen"
+	sprite "ship/quyan"
+	thumbnail "thumbnail/quyan"
 	attributes
 		category "Transport"
 		"cost" 3482000
@@ -27,7 +27,7 @@ ship "Quyan"
 		"heat dissipation" .3
 		"fuel capacity" 400
 		"cargo space" 40
-		"outfit space" 200
+		"outfit space" 170
 		"weapon capacity" 18
 		"engine capacity" 71
 		"jibauni generator" 2
@@ -126,7 +126,7 @@ ship "Nathas"
 		"heat dissipation" .4
 		"fuel capacity" 400
 		"cargo space" 50
-		"outfit space" 215
+		"outfit space" 190
 		"weapon capacity" 22
 		"engine capacity" 73
 		"jibauni generator" 4
@@ -184,7 +184,7 @@ ship "Nathaq"
 		"heat dissipation" .4
 		"fuel capacity" 400
 		"cargo space" 250
-		"outfit space" 295
+		"outfit space" 245
 		"weapon capacity" 50
 		"engine capacity" 96
 		"jibauni generator" 4
@@ -385,7 +385,7 @@ ship "Furus"
 		"heat dissipation" .3
 		"fuel capacity" 200
 		"cargo space" 7
-		"outfit space" 195
+		"outfit space" 175
 		"weapon capacity" 26
 		"engine capacity" 72
 		"jibauni generator" 1
@@ -400,9 +400,9 @@ ship "Furus"
 	outfits
 		"Jibauni Small Laser" 2
 		"Rukjay Missile Launcher"
-		"Rukjay Missile" 30
+		"Rukjay Missile" 45
 
-		"Watsaq Energy Generator"
+		"Jahgir Energy Generator" 2
 		"Jamum Shield Generator"
 		"Minjal"
 
@@ -496,7 +496,7 @@ ship "Yiyharsi"
 		"heat dissipation" .4
 		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 200
+		"outfit space" 185
 		"weapon capacity" 50
 		"engine capacity" 51
 		"slowing resistance" 1
@@ -557,7 +557,7 @@ ship "Nakil"
 		"heat dissipation" .4
 		"fuel capacity" 400
 		"cargo space" 45
-		"outfit space" 200
+		"outfit space" 190
 		"weapon capacity" 30
 		"engine capacity" 100
 		"jibauni generator" 4
@@ -618,7 +618,7 @@ ship "Nathar"
 		"heat dissipation" .6
 		"fuel capacity" 600
 		"cargo space" 60
-		"outfit space" 450
+		"outfit space" 400la
 		"weapon capacity" 135
 		"engine capacity" 94
 		"jibauni generator" 4
@@ -686,7 +686,7 @@ ship "Larajal"
 		"heat dissipation" .2
 		"fuel capacity" 10
 		"cargo space" 5
-		"outfit space" 90
+		"outfit space" 60
 		"weapon capacity" 12
 		"engine capacity" 20
 		"jibauni generator" .5
@@ -740,7 +740,7 @@ ship "Latbaliday"
 		"heat dissipation" .8
 		"fuel capacity" 10
 		"cargo space" 20
-		"outfit space" 56
+		"outfit space" 46
 		"weapon capacity" 26
 		"engine capacity" 20
 		"jibauni generator" .5
@@ -790,7 +790,7 @@ ship "Muraw"
 		"heat dissipation" .2
 		"fuel capacity" 10
 		"cargo space" 5
-		"outfit space" 67
+		"outfit space" 52
 		"weapon capacity" 12
 		"engine capacity" 20
 		"jibauni generator" .5
