@@ -590,7 +590,7 @@ ship "Frequentia"
 	thumbnail "thumbnail/avgi frequentia"
 	attributes
 		category "Light Freighter"
-		"cost" 1920000
+		"cost" 1200000
 		"shields" 600
 		"hull"	1800
 		"required crew" 2
@@ -663,7 +663,7 @@ ship "Polari"
 	thumbnail "thumbnail/avgi polari"
 	attributes
 		category "Utility"
-		"cost" 2160000
+		"cost" 1800000
 		"shields" 600
 		"hull"	2100
 		"required crew" 6
@@ -751,7 +751,7 @@ ship "Entasi"
 	thumbnail "thumbnail/avgi entasi"
 	attributes
 		category "Utility"
-		"cost" 3360000
+		"cost" 2400000
 		"shields" 1500
 		"hull" 3600
 		"required crew" 6
@@ -876,7 +876,7 @@ ship "Undsyni"
 	thumbnail "thumbnail/avgi undsyni"
 	attributes
 		category "Utility"
-		"cost" 10400000
+		"cost" 12000000
 		"shields" 2400
 		"hull" 15000
 		"required crew" 12
@@ -1123,7 +1123,7 @@ ship "Tremoros"
 	thumbnail "thumbnail/avgi tremoros"
 	attributes
 		category "Interceptor"
-		"cost" 780000
+		"cost" 600000
 		"shields" 600
 		"hull" 2400
 		"automaton" 1
@@ -1202,7 +1202,7 @@ ship "Prismaios"
 		category "Light Warship"
 		licenses
 			"Twilight Guard"
-		"cost" 2640000
+		"cost" 3600000
 		"shields" 1800
 		"hull" 7200
 		"required crew" 2
@@ -1342,7 +1342,7 @@ ship "Interferos"
 	thumbnail "thumbnail/avgi interferos"
 	attributes
 		category "Light Warship"
-		"cost" 1380000
+		"cost" 1500000
 		"shields" 900
 		"hull" 4500
 		"automaton" 1
@@ -1451,7 +1451,7 @@ ship "Diaspersi"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
-		"cost" 3600000
+		"cost" 4200000
 		"shields" 2400
 		"hull" 14400
 		"required crew" 15
@@ -1591,7 +1591,7 @@ ship "Refraktos"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
-		"cost" 4560000
+		"cost" 4500000
 		"shields" 3600
 		"hull" 12600
 		"required crew" 12
@@ -1690,7 +1690,7 @@ ship "Difraktos"
 		category "Medium Warship"
 		licenses
 			"Twilight Guard"
-		"cost" 5400000
+		"cost" 6000000
 		"shields" 6000
 		"hull" 18000
 		"required crew" 15

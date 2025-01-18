@@ -80,7 +80,7 @@ effect "spiker impact"
 
 outfit "Nucleolysis Beam"
 	category "Guns"
-	cost 1800000
+	cost 1900000
 	thumbnail "outfit/nucleolysis beam"
 	"flotsam sprite" "effect/flotsam nucleolysis beam"
 	"mass" 31
@@ -111,7 +111,7 @@ outfit "Nucleolysis Beam"
 
 outfit "Telescopic Antimissile"
 	category "Turrets"
-	cost 6000000
+	cost 16000000
 	thumbnail "outfit/telescopic antimissile"
 	"flotsam sprite" "effect/flotsam telescopic antimissile"
 	"mass" 40
