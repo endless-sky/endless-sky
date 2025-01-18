@@ -1583,6 +1583,105 @@ ship "Diaspersi" "Diaspersi (Atomic)"
 	turret "Speckle Turret"
 
 
+ship "Refraktos"
+	plural "Refraktos"
+	sprite "ship/avgi refraktos"
+	thumbnail "thumbnail/avgi refraktos"
+	attributes
+		category "Medium Warship"
+		licenses
+			"Twilight Guard"
+		"cost" 4560000
+		"shields" 3600
+		"hull" 12600
+		"required crew" 12
+		"bunks" 24
+		"mass" 810
+		"drag" 6
+		"heat dissipation" 1.44
+		"solar heat" 8.1
+		"fuel capacity" 1800
+		"cargo space" 60
+		"outfit space" 516
+		"weapon capacity" 150
+		"engine capacity" 168
+		"anchor point" 1
+		weapon
+			"blast radius" 420
+			"shield damage" 880
+			"hull damage" 440
+			"hit force" 1320
+	outfits
+		"Blue Optical Laser" 4
+		"Green Optical Laser" 3
+
+		"Photoelectric Lamina"
+		"Ultracapacitor Bank" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator" 4
+		"Multispectral Scanner" 2
+		"Magnetic Scoop" 2
+		"Heatsink Partition" 3
+		"Optical Laser Rifle" 24
+		
+		`Z-666 "Zap" Fusion Torch`
+		"Inductive Extractor" 5
+		"Remass Injector" 1
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	gun 0 -162
+	gun -18 -84
+	gun 18 -84
+	gun -24 -33
+		angle -90
+	gun 24 -33
+		angle 90
+	gun -24 -9
+		angle -90
+	gun 24 -9
+		angle 90
+	turret -18 -81 "Blue Optical Laser"
+	turret 18 -81 "Blue Optical Laser"
+	turret -18 -72 "Blue Optical Laser"
+	turret 18 -72 "Blue Optical Laser"
+	turret -21 -60 "Green Optical Laser"
+	turret 21 -60 "Green Optical Laser"
+	turret 0 54 "Green Optical Laser"
+
+	engine 0 150
+		gimbal 6
+	"reverse engine" -9 162
+		angle -30
+	"reverse engine" 9 162
+		angle 30
+	"steering engine" -12 -108
+		angle 90
+		right
+	"steering engine" 12 -108
+		angle -90
+		left
+	"steering engine" -9 162
+		angle 90
+		left
+	"steering engine" 9 162
+		angle -90
+		right
+
+	leak "leak" 60 60
+	leak "flame" 60 90
+	leak "big leak" 30 60
+	explode "tiny explosion" 12
+	explode "small explosion" 18
+	explode "medium explosion" 18
+	explode "large explosion" 6
+	"final explode" "final explosion medium"
+
+	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora destroyer design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to destroy both missiles and small ships from a vast distance."
+	description "A long truss running the length of the ship is built to fit an impressively large mirror-cell fusion torch, giving the Refraktos the mobility needed to evade opponents until they are reduced to hot vapor."
+	description "Due to the anemic damage output of Avgi laser weapons compared to their kinetic weapons and missiles, the Refraktos is most often seen in a support role, providing antimissile coverage to entire fleets."
+
+
 ship "Difraktos"
 	plural "Difraktos"
 	sprite "ship/avgi difraktos"
@@ -1760,105 +1859,6 @@ ship "Difraktos" "Difraktos (Atomic)"
 	turret
 	turret "Green Optical Laser"
 	turret "Green Optical Laser"
-
-
-ship "Refraktos"
-	plural "Refraktos"
-	sprite "ship/avgi refraktos"
-	thumbnail "thumbnail/avgi refraktos"
-	attributes
-		category "Medium Warship"
-		licenses
-			"Twilight Guard"
-		"cost" 4560000
-		"shields" 3600
-		"hull" 12600
-		"required crew" 12
-		"bunks" 24
-		"mass" 810
-		"drag" 6
-		"heat dissipation" 1.44
-		"solar heat" 8.1
-		"fuel capacity" 1800
-		"cargo space" 60
-		"outfit space" 516
-		"weapon capacity" 150
-		"engine capacity" 168
-		"anchor point" 1
-		weapon
-			"blast radius" 420
-			"shield damage" 880
-			"hull damage" 440
-			"hit force" 1320
-	outfits
-		"Blue Optical Laser" 4
-		"Green Optical Laser" 3
-
-		"Photoelectric Lamina"
-		"Ultracapacitor Bank" 3
-		"Diffuse Deflector"
-		"Optical Lasing Generator" 4
-		"Multispectral Scanner" 2
-		"Magnetic Scoop" 2
-		"Heatsink Partition" 3
-		"Optical Laser Rifle" 24
-		
-		`Z-666 "Zap" Fusion Torch`
-		"Inductive Extractor" 5
-		"Remass Injector" 1
-		"R-360 RCS Thrusters"
-		"Hyperdrive"
-
-	gun 0 -162
-	gun -18 -84
-	gun 18 -84
-	gun -24 -33
-		angle -90
-	gun 24 -33
-		angle 90
-	gun -24 -9
-		angle -90
-	gun 24 -9
-		angle 90
-	turret -18 -81 "Blue Optical Laser"
-	turret 18 -81 "Blue Optical Laser"
-	turret -18 -72 "Blue Optical Laser"
-	turret 18 -72 "Blue Optical Laser"
-	turret -21 -60 "Green Optical Laser"
-	turret 21 -60 "Green Optical Laser"
-	turret 0 54 "Green Optical Laser"
-
-	engine 0 150
-		gimbal 6
-	"reverse engine" -9 162
-		angle -30
-	"reverse engine" 9 162
-		angle 30
-	"steering engine" -12 -108
-		angle 90
-		right
-	"steering engine" 12 -108
-		angle -90
-		left
-	"steering engine" -9 162
-		angle 90
-		left
-	"steering engine" 9 162
-		angle -90
-		right
-
-	leak "leak" 60 60
-	leak "flame" 60 90
-	leak "big leak" 30 60
-	explode "tiny explosion" 12
-	explode "small explosion" 18
-	explode "medium explosion" 18
-	explode "large explosion" 6
-	"final explode" "final explosion medium"
-
-	description "The Refraktos-class Laserstar is a relatively recent, post-Diaspora destroyer design with a single focus: directed energy weapons. While its armor and shielding systems are light for its size, its expansive radiators can support the thermal loads of a staggering array of laser weapons, both offensive and defensive, allowing it to destroy both missiles and small ships from a vast distance."
-	description "A long truss running the length of the ship is built to fit an impressively large mirror-cell fusion torch, giving the Refraktos the mobility needed to evade opponents until they are reduced to hot vapor."
-	description "Due to the anemic damage output of Avgi laser weapons compared to their kinetic weapons and missiles, the Refraktos is most often seen in a support role, providing antimissile coverage to entire fleets."
 
 
 # Heavy Warships

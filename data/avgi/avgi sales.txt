@@ -12,40 +12,58 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-shipyard "Avgi Civilian Basics"
+shipyard "Avgi Solar Light"
 	"Koryfi"
 	"Avlaki"
-	"Frequentia"
-	"Akoustiki"
-	"Sonikis"
-	"Optikon"
 
-shipyard "Avgi Civilian Advanced"
-	"Phononos"
+shipyard "Avgi Solar Heavy"
 	"Melodikos"
 	"Harmonikos"
-	"Undsyni"
-	"Interferos"
-	"Polari"
-
-shipyard "Avgi Dissonance Basics"
 	"Entasi"
+
+shipyard "Avgi Utility Ultralight"
 	"Akoustiki"
 	"Sonikis"
 
-shipyard "Avgi Spaceguard Light"
+shipyard "Avgi Utility Light"
+	"Entasi"
+	"Frequentia"
+
+shipyard "Avgi Utility Heavy"
+	"Undsyni"
+
+shipyard "Avgi Militia"
+	"Tremoros"
+	"Phononos"
+	"Interferos"
+
+shipyard "Avgi Research"
+	"Polari"
+	"Optikon"
+
+shipyard "Twilight Guard Ultralight"
+	"Tremoros"
+	"Photikon"
+	"Optikon"
+	"Undulon"
+	"Vibratia"
+
+shipyard "Twilight Guard Light"
 	"Tremoros"
 	"Prismaios"
 	"Interferos"
 	"Photikon"
-	"Vibratia"
 	"Undulon"
+	"Vibratia"
 
-shipyard "Avgi Spaceguard Heavy"
+shipyard "Twilight Guard Heavy"
+	"Interferos"
+	"Prismaios"
 	"Diaspersi"
 	"Refraktos"
 	"Difraktos"
 	"Atenuatia"
+
 
 
 outfitter "Avgi General"
@@ -113,9 +131,13 @@ outfitter "Avgi Propulsion"
 	"Remass Injector"
 
 outfitter "Avgi Torches"
+	`Z-333 "Spark" Fusion Torch`
 	`Z-666 "Zap" Fusion Torch`
 	`Z-999 "Arc" Fusion Torch`
+	"R-360 RCS Thrusters"
 	"R-720 RCS Thrusters"
+	"Inductive Extractor"
+	"Remass Injector"
 
 outfitter "Avgi Militia Surplus"
 	"Speckle Coilgun"
@@ -162,6 +184,7 @@ outfitter "Avgi Dissonance Smuggling"
 	"Heatsink Partition"
 	"Concealment Lamina"
 	"Diffuse Deflector"
+	`Z-333 "Spark" Fusion Torch`
 	`Z-666 "Zap" Fusion Torch`
 	"Inductive Extractor"
 	"Remass Injector"
