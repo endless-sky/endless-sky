@@ -521,6 +521,7 @@ outfit "Nettle Flecks"
 		sprite "projectile/fleck"
 			"frame rate" 15
 			"no repeat"
+			scale 0.5
 		"die effect" "missile death"
 		"hit effect" "fleck impact"
 		"inaccuracy" 15

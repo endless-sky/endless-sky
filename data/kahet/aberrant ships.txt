@@ -16,7 +16,7 @@ ship "Aberrant Latte"
 	"display name" `K-IA "Latte"`
 	plural `Lattes`
 	sprite "ship/aberrant latte"
-	thumbnail "thumbnail/aberrant latte"
+	thumbnail "ship/aberrant latte"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -84,7 +84,7 @@ ship "Aberrant Chomper"
 	"display name" `K-IB "Chomper"`
 	plural "Chompers"
 	sprite "ship/aberrant chomper"
-	thumbnail "thumbnail/aberrant chomper"
+	thumbnail "ship/aberrant chomper"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -159,7 +159,7 @@ ship "Aberrant Pileup"
 	"display name" "K-IC Pileup"
 	plural "Pileups"
 	sprite "ship/aberrant pileup"
-	thumbnail "thumbnail/aberrant pileup"
+	thumbnail "ship/aberrant pileup"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -228,7 +228,7 @@ ship "Aberrant Hugger"
 	"display name" `K-IE "Hugger"`
 	plural "Huggers"
 	sprite "ship/aberrant hugger"
-	thumbnail "thumbnail/aberrant hugger"
+	thumbnail "ship/aberrant hugger"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -299,7 +299,7 @@ ship "Aberrant Longfellow"
 	"display name" `K-IF "Longfellow"`
 	plural "Longfellows"
 	sprite "ship/aberrant longfellow"
-	thumbnail "thumbnail/aberrant longfellow"
+	thumbnail "ship/aberrant longfellow"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -376,7 +376,7 @@ ship "Aberrant Dancer"
 	"display name" `K-IG "Dancer"`
 	plural "Dancers"
 	sprite "ship/aberrant dancer"
-	thumbnail "thumbnail/aberrant dancer"
+	thumbnail "ship/aberrant dancer"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -451,7 +451,7 @@ ship "Aberrant Junior"
 	"display name" `K-IIA "Junior"`
 	plural "Juniors"
 	sprite "ship/aberrant junior"
-	thumbnail "thumbnail/aberrant junior"
+	thumbnail "ship/aberrant junior"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -523,7 +523,7 @@ ship "Aberrant Icebreaker"
 	"display name" `K-IIB "Icebreaker"`
 	plural "Icebreakers"
 	sprite "ship/aberrant icebreaker"
-	thumbnail "thumbnail/aberrant icebreaker"
+	thumbnail "ship/aberrant icebreaker"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -597,7 +597,7 @@ ship "Aberrant Pike"
 	"display name" `K-IIC "Pike"`
 	plural "Pikes"
 	sprite "ship/aberrant pike"
-	thumbnail "thumbnail/aberrant pike"
+	thumbnail "ship/aberrant pike"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -669,7 +669,7 @@ ship "Aberrant Mole"
 	"display name" `K-IID "Mole"`
 	plural "Moles"
 	sprite "ship/aberrant mole"
-	thumbnail "thumbnail/aberrant mole"
+	thumbnail "ship/aberrant mole"
 	"never disabled"
 	attributes
 		category "Light Warship"
@@ -743,7 +743,7 @@ ship "Aberrant Whiskers"
 	"display name" `K-IIE "Whiskers"`
 	plural "Whiskers"
 	sprite "ship/aberrant whiskers"
-	thumbnail "thumbnail/aberrant whiskers"
+	thumbnail "ship/aberrant whiskers"
 	"never disabled"
 	attributes
 		category "Interceptor"
@@ -810,7 +810,7 @@ ship "Aberrant Trip"
 	"display name" `K-IIF "Trip"`
 	plural "Trips"
 	sprite "ship/aberrant trip"
-	thumbnail "thumbnail/aberrant trip"
+	thumbnail "ship/aberrant trip"
 	"never disabled"
 	attributes
 		category "Medium Warship"
@@ -889,7 +889,7 @@ ship "Aberrant Triplet"
 	"display name" `K-IIG "Triplet"`
 	plural "Triplets"
 	sprite "ship/aberrant triplet"
-	thumbnail "thumbnail/aberrant triplet"
+	thumbnail "ship/aberrant triplet"
 	"never disabled"
 	attributes
 		category "Medium Warship"

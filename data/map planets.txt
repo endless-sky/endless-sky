@@ -95,11 +95,16 @@ planet Aksaray
 
 planet "Aktina Cylinder"
 	attributes avgi "avgi diaspora" station
-	landscape land/station52
-	description `Aktina Cylinder is an incomplete space station of an enormous scale. Two dozen kilometers in diameter and three times that in length, when complete it will be able to house tens of millions of Avgi in urban conditions. Thousands of cylinders like these were built over the years in the Avgi core systems, but limited resources have constrained the Avgi in the Tangled Shroud to only building one over the last decade.`
+	landscape land/station48
+	description `The Aktina Cylinder is an incomplete space station of an enormous scale. Two dozen kilometers in diameter and three times that in length, when complete it will be able to house tens of millions of Avgi in urban conditions. Thousands of cylinders like these were built over the years in the Avgi core systems, but limited resources have constrained the Avgi in the Tangled Shroud to only building one over the last decade.`
 	description `	With resources constantly being reallocated towards new warships and mining installations, many wonder if the cylinder will ever be completed, which would provide enough space to allow the millions of Avgi in cryogenic storage to be revived. The main habitat body is still open to space, and the only area sealed against vacuum is a relatively small section tucked under what will be the habitat's "floor."`
 	government "Avgi (Consonance)"
 	"required reputation" 10
+	tribute 600
+		threshold 6000
+		fleet "Avgi Core Defense" 6
+		fleet "Avgi Orbital Defense" 3
+		fleet "Avgi Strike Group" 3
 
 planet Alathil
 	attributes "gas giant" "requires: gaslining" uninhabited
@@ -1589,6 +1594,12 @@ planet "Ergastirio Station"
 	outfitter "Avgi Militia Surplus"
 	outfitter "Avgi Atomics"
 	"required reputation" 30
+	tribute 3000
+		threshold 6000
+		fleet "Avgi Core Defense" 3
+		fleet "Avgi Orbital Defense" 9
+		fleet "Avgi Strike Group" 3
+		fleet "Avgi Fleetgroup"
 
 planet "Esayaku Fen"
 	attributes korath
@@ -1782,8 +1793,9 @@ planet "Feo Platform"
 	description `Hastily assembled from the parts of a mothballed interstellar laser driver, the Feo Platform is an enormous free electron laser intended to provide fire support to Avgi fleets defending the Tangled Shroud from Aberrant invasion. While a few Aberrations sometimes manage to slip past, the beam together with the fleetgroup the platform supports have so far managed to hold the line.`
 	spaceport `The spaceport is designed to service an entire fleetgroup of Avgi warships at once, with dry docks large enough to repair mid-sized vessels without them needing to venture back into the Tangled Shroud.`
 	government "Avgi (Twilight Guard)"
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Spaceguard Light"
+	shipyard "Avgi Utility Ultralight"
+	shipyard "Twilight Guard Ultralight"
+	shipyard "Twilight Guard Light"
 	outfitter "Avgi General"
 	outfitter "Avgi Engineering"
 	outfitter "Avgi Nanomaterials"
@@ -1791,6 +1803,11 @@ planet "Feo Platform"
 	outfitter "Avgi Atomics"
 	"required reputation" 10
 	security 0.9
+	tribute 1800
+		threshold 9000
+		fleet "Avgi Orbital Defense" 6
+		fleet "Avgi Strike Group" 9
+		fleet "Avgi Fleetgroup" 6
 
 planet Fertriery
 	attributes "requires: gaslining"
@@ -3630,10 +3647,12 @@ planet "Navigeo Yards"
 	description `	Due to its importance and nature as a government-operated shipyard, the station is managed by the Twilight Guard directly. An oversight board appointed by the Assembly maintains a level of civilian governance, but given the composition of the station's population, this is clearly a military installation first and foremost.`
 	spaceport `The spaceport is closer to being a giant array of dry docks than a true port, with the available amenities confined to the bare essentials. You can easily see a dozen warships under construction, with Avgi workers and robotic arms alike working together to churn ships out every day.`
 	government "Avgi (Twilight Guard)"
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
-	shipyard "Avgi Spaceguard Light"
-	shipyard "Avgi Spaceguard Heavy"
+	shipyard "Avgi Utility Ultralight"
+	shipyard "Avgi Militia"
+	shipyard "Avgi Research"
+	shipyard "Twilight Guard Ultralight"
+	shipyard "Twilight Guard Light"
+	shipyard "Twilight Guard Heavy"
 	outfitter "Avgi General"
 	outfitter "Avgi Engineering"
 	outfitter "Avgi Nanomaterials"
@@ -3644,6 +3663,12 @@ planet "Navigeo Yards"
 	outfitter "Avgi Twilight Guard"
 	outfitter "Avgi Atomics"
 	"required reputation" 10
+	tribute 4500
+		threshold 9000
+		fleet "Avgi Core Defense" 6
+		fleet "Avgi Orbital Defense" 6
+		fleet "Avgi Strike Group" 9
+		fleet "Avgi Fleetgroup" 6
 
 planet "Nearby Jade"
 	attributes farming kimek longcows urban
@@ -4020,7 +4045,7 @@ planet Nimbus
 planet "Nisos Cylinder"
 	attributes avgi station uninhabited urban
 	landscape land/station55
-	description `The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth. Nisos was one of the few cylinders to be completely evacuated before the Aberrant took the Anax system, and compared to its neighbors it is relatively intact.`
+	description `The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth's 20th century. Nisos was one of the few cylinders to be completely evacuated before the Aberrant took the Anax system, and compared to its neighbors it is relatively intact.`
 	government Uninhabited
 
 planet Noluc
@@ -4183,6 +4208,11 @@ planet "Outpost Alkos"
 	description `	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance.`
 	government "Avgi (Consonance)"
 	"required reputation" 10
+	tribute 600
+		threshold 3000
+		fleet "Avgi Core Defense" 3
+		fleet "Avgi Orbital Defense" 3
+		fleet "Avgi Strike Group"
 
 planet "Outpost Enka"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
@@ -4192,6 +4222,12 @@ planet "Outpost Enka"
 	description `Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters.`
 	spaceport `The station's spaceport is spacious, with room for the many small drones used to harvest other asteroids in the belt. Several berths are also open to larger mining vessels, with a few occupied at the moment.`
 	government "Avgi (Dissonance)"
+	shipyard "Avgi Solar Light"
+	shipyard "Avgi Solar Heavy"
+	shipyard "Avgi Utility Ultralight"
+	shipyard "Avgi Utility Light"
+	shipyard "Avgi Militia"
+	shipyard "Avgi Research"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -4201,25 +4237,40 @@ planet "Outpost Enka"
 	outfitter "Avgi Militia Surplus"
 	outfitter "Avgi Dissonance Smuggling"
 	"required reputation" 10
+	tribute 600
+		threshold 4500
+		fleet "Small Dissonance Pirates" 12
+		fleet "Large Dissonance Pirates" 9
 
 planet "Outpost Leto"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
 	music ambient/machinery
 	landscape land/station30
-	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot the icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
+	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot an icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
 	spaceport `The spaceport is hosted in one of the many pressurized domes adorning the surface of the planetoid, with a large airlock in the ceiling enabling passage between the station itself and the cold black of space outside.`
 	government "Avgi (Dissonance)"
+	outfitter "Avgi General"
 	"required reputation" 10
+	tribute 600
+		threshold 4500
+		fleet "Small Dissonance Pirates" 6
+		fleet "Large Dissonance Pirates" 3
 
 planet "Outpost Pilos"
 	attributes avgi "avgi diaspora" station shipping
-	landscape land/station53
+	landscape land/station40
 	description `Outpost Pilos is a large early warning station set up soon after the Avgi decided to settle beyond the Tangled Shroud. Fearful of the Aberrant managing to overcome their supposed aversion to the mazelike region of space, it was quickly decided that a tripwire would be needed to warn of an incursion in the event of the fall of the Feo Platform and the infestation of the Tangled Shroud with Aberrations. However, when a large-scale attack never materialized, Outpost Pilos quickly found a second use as an intermediary waystation for the trade of minerals from the Tangled Shroud with the settlements beyond it.`
 	description `Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where raw resources and cargo can be transferred between ships.`
 	spaceport `The only amenities in what passes for the "spaceport" are a refueling station and small repair shop. As ships do not generally linger after refueling or transferring their cargo, a skeleton crew is the only permanent inhabitants of the station, and most accommodations are reserved for this crew.`
 	government "Avgi (Consonance)"
 	"required reputation" 15
 	security 0.5
+	tribute 300
+		threshold 3000
+		fleet "Avgi Core Defense" 3
+		fleet "Avgi Orbital Defense" 6
+		fleet "Avgi Strike Group" 3
+		fleet "Avgi Fleetgroup" 1
 
 planet "Outpost Tekis"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
@@ -4229,9 +4280,12 @@ planet "Outpost Tekis"
 	description `The complex is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
 	spaceport `The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar.`
 	government "Avgi (Dissonance)"
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
-	shipyard "Avgi Dissonance Basics"
+	shipyard "Avgi Solar Light"
+	shipyard "Avgi Solar Heavy"
+	shipyard "Avgi Utility Ultralight"
+	shipyard "Avgi Utility Light"
+	shipyard "Avgi Utility Heavy"
+	shipyard "Avgi Militia"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -4241,6 +4295,10 @@ planet "Outpost Tekis"
 	outfitter "Avgi Militia Surplus"
 	outfitter "Avgi Dissonance Smuggling"
 	"required reputation" 10
+	tribute 600
+		threshold 4500
+		fleet "Small Dissonance Pirates" 9
+		fleet "Large Dissonance Pirates" 6
 
 planet O-Vasa-Oa
 	attributes successor urban wealthy
@@ -4331,9 +4389,12 @@ planet Peripheria
 	spaceport `An extensive set of docks and shipyards makes up the innermost portion of the station's disc, and you can see dozens of ships in various states of completion.`
 	spaceport `The usual amenities often located on a station of this size fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense.`
 	government "Avgi (Consonance)"
-	shipyard "Avgi Civilian Basics"
-	shipyard "Avgi Civilian Advanced"
-	shipyard "Avgi Spaceguard Light"
+	shipyard "Avgi Solar Light"
+	shipyard "Avgi Solar Heavy"
+	shipyard "Avgi Utility Ultralight"
+	shipyard "Avgi Utility Light"
+	shipyard "Avgi Research"
+	shipyard "Twilight Guard Ultralight"
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -4344,6 +4405,12 @@ planet Peripheria
 	outfitter "Avgi Militia Surplus"
 	"required reputation" 10
 	security 0.5
+	tribute 6000
+		threshold 6000
+		fleet "Avgi Core Defense" 12
+		fleet "Avgi Orbital Defense" 6
+		fleet "Avgi Strike Group" 6
+		fleet "Avgi Fleetgroup" 6
 
 planet "Phoenix Station"
 	attributes deep station
@@ -5418,7 +5485,7 @@ planet Stilacrest
 	landscape land/myrabella4
 	description `Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse.`
 	description `The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
-	spaceport `The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Along with the usual laser launch array, a launch loop stretches into the sky, capable of carrying spacecraft almost all the way to orbit.`
+	spaceport `The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Along with the typical laser launch array, a Lofstrom launch loop stretches over the ocean and into the sky, capable of carrying spacecraft almost all the way to orbit.`
 	government Avgi
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
@@ -6315,6 +6382,11 @@ planet Weledos
 	outfitter "Avgi Militia Surplus"
 	"required reputation" 10
 	security 0
+	tribute 900
+		threshold 3000
+		fleet "Avgi Orbital Defense" 3
+		fleet "Avgi Strike Group" 3
+		fleet "Avgi Fleetgroup"
 
 planet Windblain
 	attributes deep oil textiles
