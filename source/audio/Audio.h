@@ -15,6 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "SoundCategory.h"
+
+#include <filesystem>
 #include <string>
 #include <vector>
 
@@ -33,15 +36,15 @@ class Sound;
 class Audio {
 public:
 	// Begin loading sounds (in a separate thread).
-	static void Init(const std::vector<std::string> &sources);
+	static void Init(const std::vector<std::filesystem::path> &sources);
 	static void CheckReferences();
 
 	// Report the progress of loading sounds.
 	static double GetProgress();
 
 	// Get or set the volume (between 0 and 1).
-	static double Volume();
-	static void SetVolume(double level);
+	static double Volume(SoundCategory category);
+	static void SetVolume(double level, SoundCategory category);
 
 	// Get a pointer to the named sound. The name is the path relative to the
 	// "sound/" folder, and without ~ if it's on the end, or the extension.
@@ -54,11 +57,11 @@ public:
 	static void Update(const Point &listenerPosition);
 
 	// Play the given sound, at full volume.
-	static void Play(const Sound *sound);
+	static void Play(const Sound *sound, SoundCategory category);
 
 	// Play the given sound, as if it is at the given distance from the
 	// "listener". This will make it softer and change the left / right balance.
-	static void Play(const Sound *sound, const Point &position);
+	static void Play(const Sound *sound, const Point &position, SoundCategory category);
 
 	// Play the given music. An empty string means to play nothing.
 	static void PlayMusic(const std::string &name);

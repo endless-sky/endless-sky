@@ -291,7 +291,7 @@ void GameWindow::SetIcon()
 
 	// Load the icon file.
 	ImageBuffer buffer;
-	if(!buffer.Read(Files::Resources() + "icon.png"))
+	if(!buffer.Read(Files::Resources() / "icon.png"))
 		return;
 	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
 		return;

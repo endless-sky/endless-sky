@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		Preferences::Load();
 
 		// Load global conditions:
-		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		DataFile globalConditions(Files::Config() / "global conditions.txt");
 		for(const DataNode &node : globalConditions)
 			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
 		Audio::Init(GameData::Sources());
 
 		if(isTesting && !noTestMute)
-			Audio::SetVolume(0);
+			Audio::SetVolume(0, SoundCategory::MASTER);
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
