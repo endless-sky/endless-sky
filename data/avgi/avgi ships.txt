@@ -51,9 +51,6 @@ ship "Koryfi"
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
 
-	gun 0 -27
-	turret 0 -12
-
 	engine -101.5 -11
 	engine 101.5 -11
 	engine -94.5 -11
@@ -110,6 +107,9 @@ ship "Koryfi"
 		right
 	"steering engine" 83 -11
 		left
+
+	gun 0 -27
+	turret 0 -12
 
 	leak "leak" 60 60
 	leak "flame" 60 60
@@ -164,13 +164,6 @@ ship "Melodikos"
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
 
-	gun -96 -3
-		angle -90
-	gun 96 -3
-		angle 90
-	turret -9 -3
-	turret 9 -3
-
 	engine -92 1.5
 	engine 92 1.5
 	engine -88 1.5
@@ -256,6 +249,13 @@ ship "Melodikos"
 	"steering engine" 72 1.5
 		left
 
+	gun -96 -3
+		angle -90
+	gun 96 -3
+		angle 90
+	turret -9 -3
+	turret 9 -3
+
 	leak "leak" 30 60
 	leak "flame" 30 60
 	explode "tiny explosion" 18
@@ -305,9 +305,6 @@ ship "Avlaki"
 
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
-
-	gun 0 -27
-	turret 0 -12
 
 	engine -101.5 -11
 	engine 101.5 -11
@@ -366,6 +363,9 @@ ship "Avlaki"
 	"steering engine" 83 -11
 		left
 
+	gun 0 -27
+	turret 0 -12
+
 	leak "leak" 60 60
 	leak "flame" 60 60
 	explode "tiny explosion" 15
@@ -417,13 +417,6 @@ ship "Harmonikos"
 
 		"Magnetoplasma Drive" 2
 		"Hyperdrive"
-
-	gun -96 -3
-		angle -90
-	gun 96 -3
-		angle 90
-	turret -9 -3
-	turret 9 -3
 
 	engine -92 1.5
 	engine 92 1.5
@@ -509,6 +502,13 @@ ship "Harmonikos"
 		right
 	"steering engine" 72 1.5
 		left
+
+	gun -96 -3
+		angle -90
+	gun 96 -3
+		angle 90
+	turret -9 -3
+	turret 9 -3
 
 	leak "leak" 30 60
 	leak "flame" 30 60
@@ -705,13 +705,6 @@ ship "Polari"
 		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
-	turret -14 27 "Green Optical Laser"
-	turret 14 27 "Green Optical Laser"
-
-	bay "Drone" -9 -25
-	bay "Drone" 9 -25
-	bay "Fighter" 0 48
-
 	engine 0 69
 		gimbal 6
 		zoom 0.6
@@ -731,6 +724,13 @@ ship "Polari"
 	"steering engine" 6 66
 		angle -90
 		right
+
+	turret -14 27 "Green Optical Laser"
+	turret 14 27 "Green Optical Laser"
+
+	bay "Drone" -9 -25
+	bay "Drone" 9 -25
+	bay "Fighter" 0 48
 
 	leak "leak" 30 30
 	leak "flame" 30 60
@@ -785,13 +785,6 @@ ship "Entasi"
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
 
-	gun -36 9
-	gun 36 9
-	gun -36 9
-	gun 36 9
-	turret -10 72 "Blue Optical Laser"
-	turret 10 72 "Blue Optical Laser"
-	turret 0 -4
 	bay "Fighter" 0 -30
 		over
 	bay "Fighter" 0 -30
@@ -860,6 +853,14 @@ ship "Entasi"
 		angle 90
 		left
 
+	gun -36 9
+	gun 36 9
+	gun -36 9
+	gun 36 9
+	turret -10 72 "Blue Optical Laser"
+	turret 10 72 "Blue Optical Laser"
+	turret 0 -4
+
 	leak "leak" 60 60
 	leak "flame" 60 60
 	explode "tiny explosion" 15
@@ -918,23 +919,6 @@ ship "Undsyni"
 		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
-	gun 0 -213
-		over
-	gun -42 -139
-		angle -90
-	gun 42 -139
-		angle 90
-	turret -33 -138 "Speckle Turret"
-	turret 33 -138 "Speckle Turret"
-	turret 0 -30 "Green Optical Laser"
-	turret 0 42 "Green Optical Laser"
-	turret 0 186 "Green Optical Laser"
-
-	bay "Drone" -65.5 3
-	bay "Drone" 65.5 3
-	bay "Drone" 65.5 29
-	bay "Drone" -65.5 29
-
 	engine 0 239
 		gimbal 6
 	"reverse engine" -6 240
@@ -953,6 +937,23 @@ ship "Undsyni"
 	"steering engine" 6 240
 		angle -90
 		right
+
+	gun 0 -213
+		over
+	gun -42 -139
+		angle -90
+	gun 42 -139
+		angle 90
+	turret -33 -138 "Speckle Turret"
+	turret 33 -138 "Speckle Turret"
+	turret 0 -30 "Green Optical Laser"
+	turret 0 42 "Green Optical Laser"
+	turret 0 186 "Green Optical Laser"
+
+	bay "Drone" -65.5 3
+	bay "Drone" 65.5 3
+	bay "Drone" 65.5 29
+	bay "Drone" -65.5 29
 
 	leak "leak" 30 90
 	leak "flame" 30 90
@@ -1046,6 +1047,32 @@ ship "Modified Tachytia"
 		"Inductive Extractor" 6
 		"Hyperdrive"
 
+	engine -204 -456
+		angle 12
+		zoom 2
+	engine 204 -456
+		angle -12
+		zoom 2
+	engine -177 -426
+		angle 9
+		zoom 2
+	engine 177 -426
+		angle -9
+		zoom 2
+
+	"steering engine" -6 450
+		angle 90
+		left
+	"steering engine" 6 450
+		angle -90
+		right
+	"steering engine" -36 -324
+		angle 90
+		right
+	"steering engine" 36 -324
+		angle -90
+		left
+
 	gun 0 -384 "Plasmadyne Scoop"
 	turret -27 162 "Blue Optical Laser"
 	turret 27 162 "Blue Optical Laser"
@@ -1073,32 +1100,6 @@ ship "Modified Tachytia"
 	bay "Fighter" 21 447
 	bay "Fighter" -21 459
 	bay "Fighter" 21 459
-
-	engine -204 -456
-		angle 12
-		zoom 2
-	engine 204 -456
-		angle -12
-		zoom 2
-	engine -177 -426
-		angle 9
-		zoom 2
-	engine 177 -426
-		angle -9
-		zoom 2
-
-	"steering engine" -6 450
-		angle 90
-		left
-	"steering engine" 6 450
-		angle -90
-		right
-	"steering engine" -36 -324
-		angle 90
-		right
-	"steering engine" 36 -324
-		angle -90
-		left
 
 	leak "leak" 60 15
 	leak "flame" 60 15
@@ -1157,12 +1158,6 @@ ship "Tremoros"
 		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
-	gun -6.5 -18 "Speckle Coilgun"
-	gun 6.5 -18 "Speckle Coilgun"
-	gun -6.5 -18 "Speckle Coilgun"
-	gun 6.5 -18 "Speckle Coilgun"
-	turret 0 39
-
 	engine 0 51
 		gimbal 6
 		zoom 0.6
@@ -1182,6 +1177,12 @@ ship "Tremoros"
 	"steering engine" 0 51
 		angle 30
 		left
+
+	gun -6.5 -18 "Speckle Coilgun"
+	gun 6.5 -18 "Speckle Coilgun"
+	gun -6.5 -18 "Speckle Coilgun"
+	gun 6.5 -18 "Speckle Coilgun"
+	turret 0 39
 
 	leak "flame" 30 90
 	explode "tiny explosion" 12
@@ -1260,6 +1261,7 @@ ship "Prismaios"
 	"steering engine" 3 99
 		angle -90
 		right
+
 	gun 0 -111
 	gun -9 33
 		angle -90
@@ -1378,19 +1380,6 @@ ship "Interferos"
 		"R-180 RCS Thrusters"
 		"Hyperdrive"
 
-	gun 0 -114
-	gun -33 -57
-		angle -60
-	gun 33 -57
-		angle 60
-	gun -33 -42
-		angle -60
-	gun 33 -42
-		angle 60
-	turret -21.5 -81
-	turret 21.5 -81
-	turret 0 -48 "Green Optical Laser"
-
 	engine 0 99
 		gimbal 6
 	"reverse engine" -6 99
@@ -1409,6 +1398,19 @@ ship "Interferos"
 	"steering engine" 6 99
 		angle -90
 		right
+
+	gun 0 -114
+	gun -33 -57
+		angle -60
+	gun 33 -57
+		angle 60
+	gun -33 -42
+		angle -60
+	gun 33 -42
+		angle 60
+	turret -21.5 -81
+	turret 21.5 -81
+	turret 0 -48 "Green Optical Laser"
 
 	leak "flame" 60 90
 	explode "tiny explosion" 15
@@ -1494,6 +1496,25 @@ ship "Diaspersi"
 		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
+	engine 0 144
+		gimbal 6
+	"reverse engine" -6 141
+		angle -35
+	"reverse engine" 6 141
+		angle 35
+	"steering engine" -9 -135
+		angle 90
+		right
+	"steering engine" 9 -135
+		angle -90
+		left
+	"steering engine" -6 141
+		angle 90
+		left
+	"steering engine" 6 141
+		angle -90
+		right
+
 	gun 0 -156
 	gun -18 -9
 		angle -90
@@ -1516,25 +1537,6 @@ ship "Diaspersi"
 	bay "Drone" 21 -54
 	bay "Drone" -24 -30
 	bay "Drone" 24 -30
-
-	engine 0 144
-		gimbal 6
-	"reverse engine" -6 141
-		angle -35
-	"reverse engine" 6 141
-		angle 35
-	"steering engine" -9 -135
-		angle 90
-		right
-	"steering engine" 9 -135
-		angle -90
-		left
-	"steering engine" -6 141
-		angle 90
-		left
-	"steering engine" 6 141
-		angle -90
-		right
 	
 	leak "leak" 60 60
 	leak "flame" 60 90
@@ -1630,25 +1632,6 @@ ship "Refraktos"
 		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
-	gun 0 -162
-	gun -18 -84
-	gun 18 -84
-	gun -24 -33
-		angle -90
-	gun 24 -33
-		angle 90
-	gun -24 -9
-		angle -90
-	gun 24 -9
-		angle 90
-	turret -18 -81 "Blue Optical Laser"
-	turret 18 -81 "Blue Optical Laser"
-	turret -18 -72 "Blue Optical Laser"
-	turret 18 -72 "Blue Optical Laser"
-	turret -21 -60 "Green Optical Laser"
-	turret 21 -60 "Green Optical Laser"
-	turret 0 54 "Green Optical Laser"
-
 	engine 0 150
 		gimbal 6
 	"reverse engine" -9 162
@@ -1667,6 +1650,25 @@ ship "Refraktos"
 	"steering engine" 9 162
 		angle -90
 		right
+
+	gun 0 -162
+	gun -18 -84
+	gun 18 -84
+	gun -24 -33
+		angle -90
+	gun 24 -33
+		angle 90
+	gun -24 -9
+		angle -90
+	gun 24 -9
+		angle 90
+	turret -18 -81 "Blue Optical Laser"
+	turret 18 -81 "Blue Optical Laser"
+	turret -18 -72 "Blue Optical Laser"
+	turret 18 -72 "Blue Optical Laser"
+	turret -21 -60 "Green Optical Laser"
+	turret 21 -60 "Green Optical Laser"
+	turret 0 54 "Green Optical Laser"
 
 	leak "leak" 60 60
 	leak "flame" 60 90
@@ -1734,6 +1736,24 @@ ship "Difraktos"
 		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
+	engine 0 141
+		gimbal 6
+	"reverse engine" -9 138
+		angle -35
+	"reverse engine" 9 138
+		angle 35
+	"steering engine" -18 -132
+		angle 90
+		right
+	"steering engine" 18 -132
+		angle -90
+		left
+	"steering engine" -9 138
+		angle 90
+		left
+	"steering engine" 9 138
+		angle -90
+		right
 
 	gun 0 -156
 	gun -21 -75
@@ -1755,25 +1775,6 @@ ship "Difraktos"
 
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21
-
-	engine 0 141
-		gimbal 6
-	"reverse engine" -9 138
-		angle -35
-	"reverse engine" 9 138
-		angle 35
-	"steering engine" -18 -132
-		angle 90
-		right
-	"steering engine" 18 -132
-		angle -90
-		left
-	"steering engine" -9 138
-		angle 90
-		left
-	"steering engine" 9 138
-		angle -90
-		right
 	
 	leak "leak" 60 60
 	leak "flame" 30 90
@@ -2067,9 +2068,6 @@ ship "Akoustiki"
 		
 		"Magnetoplasma Drive" 2
 
-	gun -18 -15 "Speckle Coilgun"
-	gun 18 -15
-
 	engine -12 18
 	engine 12 18
 	"reverse engine" -9 -15
@@ -2094,6 +2092,9 @@ ship "Akoustiki"
 		angle -60
 		zoom 0.5
 		right
+
+	gun -18 -15 "Speckle Coilgun"
+	gun 18 -15
 
 	leak "leak" 30 60
 	explode "tiny explosion" 9
@@ -2247,6 +2248,7 @@ ship "Vibratia"
 		angle -90
 		zoom 0.5
 		right
+
 	gun 0 -27 "Speckle Coilgun"
 	gun 0 -27
 
@@ -2406,7 +2408,6 @@ ship "Sonikis"
 
 		"Magnetoplasma Drive"
 
-	gun 0 -6
 	engine -39 -6
 	engine 39 -6
 	"reverse engine" -39 -6
@@ -2421,6 +2422,8 @@ ship "Sonikis"
 		right
 	"steering engine" 39 -6
 		left
+
+	gun 0 -6
 
 	leak "leak" 30 60
 	explode "tiny explosion" 9
