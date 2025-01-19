@@ -14,11 +14,11 @@
 
 mission "Avgi Culture: Park Politics"
 	invisible
+	source
+		planet "Peripheria"
 	to offer
 		not "avgi: lost in twilight"
 		random < 30
-	source
-		planet "Peripheria"
 	on offer
 		conversation
 			action
@@ -435,13 +435,13 @@ mission "Avgi Culture: Park Politics"
 
 
 mission "Avgi Culture: Zapchannel Energy"
-	invisible
 	landing
+	invisible
+	source
+		government "Avgi (Consonance)"
 	to offer
 		not "avgi: lost in twilight"
 		random < 30
-	source
-		government "Avgi (Consonance)"
 	on offer
 		log "Minor People" "Nikkio" `Nikkio is a shifty salesman peddling "Zapchannel Ray Energy," a supposed health tonic with a suspicious glow.`
 		conversation
@@ -511,16 +511,16 @@ mission "Damselflyman Abilities"
 		not "outfit: Damselflyman"
 	on offer
 		outfit "Damselflyman" 1
-			decline
+		fail
 
 
 mission "Avgi: Cylinder Construction"
-	invisible
 	landing
-	to offer
-		not "avgi: lost in twilight"
+	invisible
 	source
 		planet "Aktina Cylinder"
+	to offer
+		not "avgi: lost in twilight"
 	on offer
 		log "People" "Gamboge" `Gamboge manages construction on the Aktina Cylinder, an immense habitat station whose construction has stalled in recent years. He is frustrated about the lack of support offered by the Assembly and believes Aktina deserves to be a higher priority.`
 		conversation
@@ -617,11 +617,11 @@ mission "Avgi: Cylinder Construction"
 
 mission "Avgi: Infocourier Encounter"
 	invisible
+	source
+		government "Avgi (Consonance)"
 	to offer
 		not "avgi: lost in twilight"
 		random < 6
-	source
-		government "Avgi (Consonance)"
 	on offer
 		log "People" "Hansa" `Hansa is an Infocourier, a role that sees him transport files and records between systems in a small ship. As the Avgi never developed hyperspace comms, courier ships are necessary to communicate across interstellar distances.`
 		conversation
@@ -693,11 +693,11 @@ mission "Avgi: Infocourier Encounter"
 
 mission "Avgi Culture: Twilight Tavern Guard"
 	invisible
+	source
+		attributes "twilight guard"
 	to offer
 		not "avgi: lost in twilight"
 		random < 30
-	source
-		attributes "twilight guard"
 	on offer
 		log "People" "Claret" `Claret is a member of the Twilight Guard, curious about humans and passionate about the details of tactical space combat.`
 		conversation
@@ -879,15 +879,15 @@ mission "Avgi Culture: Twilight Tavern Guard"
 
 
 mission "Avgi: Atomics Testing 1"
+	landing
 	name "Atomic Testing"
 	description "Take Aliza and her colleagues to the surface of Dokimi."
-	landing
-	passengers 3
-	to offer
-		not "avgi: lost in twilight"
 	source "Ergastirio Station"
 	destination "Dokimi Range"
 	blocked "You need <capacity> to transport Aliza and her colleagues to Dokimi."
+	passengers 3
+	to offer
+		not "avgi: lost in twilight"
 	on offer
 		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of a passion for nuclear weapons, she is eager to share what she knows.`
 		conversation
@@ -974,15 +974,15 @@ mission "Avgi: Atomics Testing 1"
 
 
 mission "Avgi: Atomics Testing 2"
+	landing
 	name "Atomic Testing"
 	description "Take Aliza back to <destination>."
-	landing
-	passengers 1
-	to offer
-		has "Avgi: Atomics Testing 1: done"
 	source "Dokimi Range"
 	destination "Ergastirio Station"
 	clearance
+	passengers 1
+	to offer
+		has "Avgi: Atomics Testing 1: done"
 	on offer
 		conversation
 			`The descent to Dokimi is uneventful, but you get a good look at the planetoid's icy surface, stained red with organic tholins. The ice is smooth and pristine under most of your flight path, but eventually something new comes into view: austere buildings, crude roads, and overshadowing all else, the flat expanse of a field pockmarked with craters.`
