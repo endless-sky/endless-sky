@@ -5,6 +5,10 @@ on:
     # Run for pushes to master, e.g. a PR was merged ...
     branches:
       - master
+      - mirror
+      - main
+      - experimental
+      - releases/v[0-9]+.[0-9]+.[0-9]+
     # ... and only when we've possibly changed how the game will function.
     paths:
     - 'source/**'

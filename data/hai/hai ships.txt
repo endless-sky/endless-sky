@@ -24,11 +24,15 @@ ship "Aphid"
 		"mass" 130
 		"drag" 2.1
 		"heat dissipation" .82
-		"fuel capacity" 400
+		"fuel capacity" 325
 		"cargo space" 51
-		"outfit space" 185
+		"outfit space" 196
 		"weapon capacity" 37
-		"engine capacity" 48
+		"engine capacity" 70
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 30
 			"shield damage" 300
@@ -40,6 +44,7 @@ ship "Aphid"
 		"Hai Fissure Batteries"
 		"Hai Corundum Regenerator"
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic LTC`
 		`"Basrem" Atomic Steering`
 		"Hyperdrive"
 	engine -8 40
@@ -51,19 +56,6 @@ ship "Aphid"
 	explode "medium explosion" 15
 	description "The Aphid is the lightest freighter used by the Hai and was for many millennia the backbone of the Hai interplanetary economy. Because of how peaceful Hai space has been for much of its history, Aphids only come with basic defenses as stock, and rely on larger Hai ships for more serious protection."
 
-ship "Aphid" "Aphid (Phantom Pallet)"
-	outfits
-		"Pulse Turret"
-		"Pebble Core"
-		"Hai Fissure Batteries"
-		"Hai Corundum Regenerator"
-		"Hai Williwaw Cooling"
-		"Quantum Keystone"
-		"Pulse Rifle"
-		`"Benga" Atomic Thruster`
-		`"Benga" Atomic Steering`
-		"Hyperdrive"
-		"Phantom Pallet" 4
 
 ship "Aphid" "Aphid (Armed)"
 	outfits
@@ -75,8 +67,26 @@ ship "Aphid" "Aphid (Armed)"
 		"Quantum Keystone"
 		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+
+
+ship "Aphid" "Aphid (Phantom Pallet)"
+	outfits
+		"Pulse Turret"
+		"Pebble Core"
+		"Hai Fissure Batteries"
+		"Hai Corundum Regenerator"
+		"Hai Williwaw Cooling"
+		"Quantum Keystone"
+		"Pulse Rifle"
+		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
+		`"Benga" Atomic Steering`
+		"Hyperdrive"
+		"Phantom Pallet" 4
+
 
 ship "Aphid" "Aphid (Unfettered)"
 	outfits
@@ -90,7 +100,9 @@ ship "Aphid" "Aphid (Unfettered)"
 		"Pulse Rifle"
 		`"Basrem" Atomic Steering`
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic LTC`
 		"Hyperdrive"
+
 
 
 ship "Centipede"
@@ -108,9 +120,13 @@ ship "Centipede"
 		"heat dissipation" .52
 		"fuel capacity" 600
 		"cargo space" 38
-		"outfit space" 375
+		"outfit space" 412
 		"weapon capacity" 78
-		"engine capacity" 88
+		"engine capacity" 122
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 60
 			"shield damage" 600
@@ -128,14 +144,17 @@ ship "Centipede"
 		"Luxury Accommodations"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		`"Biroo" Atomic Steering`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		Hyperdrive
 		
 	engine -15 113
 	engine 15 113
-	gun -11 -113 "Hai Tracker Pod"
-	gun 11 -113 "Hai Tracker Pod"
+	gun -11 -113
+	gun 11 -113
+	pylon -31 -2 "Hai Tracker Pod"
+	pylon 31 -2 "Hai Tracker Pod"
 	turret 0 -19 "Bullfrog Anti-Missile"
 	turret -41 67 "Bullfrog Anti-Missile"
 	turret 41 67 "Bullfrog Anti-Missile"
@@ -148,6 +167,7 @@ ship "Centipede"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 	description `The introduction of humans to the Hai civilization has led to a substantial amount of cultural exchange. While some may argue that pickled acorns have been the greatest product of this relationship, many more will point to this luxury transport ship. The product of human-Hai cooperation from the project's inception, the Centipede was released around the turn of the 31st century, but has already become quite popular among Hai fleets.`
+
 
 ship "Centipede" "Centipede (Holovid)"
 	outfits
@@ -163,9 +183,11 @@ ship "Centipede" "Centipede (Holovid)"
 		"Holovid Zone"
 		"Quantum Keystone"
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		`"Biroo" Atomic Steering`
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		Hyperdrive
+
 
 ship "Centipede" "Centipede (Pulse)"
 	outfits
@@ -180,16 +202,18 @@ ship "Centipede" "Centipede (Pulse)"
 		"Quantum Keystone"
 		"Pulse Rifle" 24
 		`"Biroo" Atomic Thruster`
-		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic LTC`
+		# `"Basrem" Atomic Steering` # Extra steering
 		`"Biroo" Atomic Steering`
 		Hyperdrive
+
 
 ship "Centipede" "Centipede (Durable)"
 	outfits
 		Hyperdrive
 		"Outfits Expansion"
 		"Quantum Keystone"
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		"Bullfrog Anti-Missile" 3
 		"Tracker Storage Pod" 2
 		"Hai Tracker Pod" 2
@@ -198,8 +222,10 @@ ship "Centipede" "Centipede (Durable)"
 		"Hai Williwaw Cooling" 3
 		"Hai Tracker" 168
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		"Boulder Reactor"
 		"Hai Diamond Regenerator"
+
 
 ship "Centipede" "Centipede (Refugees)"
 	add attributes
@@ -208,7 +234,7 @@ ship "Centipede" "Centipede (Refugees)"
 		Hyperdrive
 		"Outfits Expansion"
 		"Quantum Keystone"
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		"Bullfrog Anti-Missile" 3
 		"Tracker Storage Pod" 2
 		"Hai Tracker Pod" 2
@@ -217,6 +243,7 @@ ship "Centipede" "Centipede (Refugees)"
 		"Hai Williwaw Cooling" 3
 		"Hai Tracker" 168
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		"Boulder Reactor"
 		"Hai Diamond Regenerator"
 		"Pulse Rifle" 35
@@ -233,14 +260,18 @@ ship "Cicada"
 		"hull" 2000
 		"required crew" 8
 		"bunks" 51
-		"mass" 487
+		"mass" 1200
 		"drag" 6.1
 		"heat dissipation" .58
-		"fuel capacity" 500
+		"fuel capacity" 675
 		"cargo space" 143
-		"outfit space" 323
+		"outfit space" 329
 		"weapon capacity" 89
-		"engine capacity" 64
+		"engine capacity" 70
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 80
 			"shield damage" 960
@@ -258,11 +289,13 @@ ship "Cicada"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 	engine -6 75
 	engine 6 75
-	gun 0 -76 "Hai Tracker Pod"
+	gun 0 -76
+	pylon 0 -76 "Hai Tracker Pod"
 	turret 34.5 -16.5 "Chameleon Anti-Missile"
 	turret -34.5 -16.5 "Chameleon Anti-Missile"
 	turret -20 42 "Bullfrog Anti-Missile"
@@ -293,6 +326,10 @@ ship "Flea"
 		"outfit space" 63
 		"weapon capacity" 13
 		"engine capacity" 22
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"automaton" 1
 		weapon
 			"blast radius" 6
@@ -315,12 +352,15 @@ ship "Flea"
 	description `This combat drone is built to amplify the strength of any combat force for as few credits as possible. It was designed in conjunction with the tactical recoil of the Skipper Railgun to allow it to kite its targets, prolonging its combat efficacy while it supports its allies with debilitating ion damage.`
 	description "	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay."
 
+
 ship "Flea" "Flea (Pulse)"
 	outfits
 		"Pulse Cannon"
 		"Sand Cell"
 		"Supercapacitor" 2
 		`"Baellie" Atomic Engines`
+
+
 
 ship "Geocoris"
 	plural "Geocoris"
@@ -333,14 +373,18 @@ ship "Geocoris"
 		"hull" 6200
 		"required crew" 15
 		"bunks" 56
-		"mass" 1576
+		"mass" 6480
 		"drag" 26.5
 		"heat dissipation" 0.3
-		"fuel capacity" 800
+		"fuel capacity" 3050
 		"cargo space" 761
-		"outfit space" 582
+		"outfit space" 606
 		"weapon capacity" 172
-		"engine capacity" 94
+		"engine capacity" 123
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 300
 			"shield damage" 3000
@@ -357,6 +401,7 @@ ship "Geocoris"
 		"Hai Williwaw Cooling" 4
 		`"Biroo" Reverse Thruster`
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
 
@@ -364,6 +409,8 @@ ship "Geocoris"
 	engine -100 39
 	gun 24 -118 "Pulse Cannon"
 	gun -24 -118 "Pulse Cannon"
+	pylon -36 93
+	pylon 36 93
 	turret 0 -89 "Bullfrog Anti-Missile"
 	turret 110 -23 "Pulse Turret"
 	turret -110 -23 "Pulse Turret"
@@ -379,6 +426,7 @@ ship "Geocoris"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "After large human freighters began to out-compete traditionally smaller Hai ships, the Hai responded by developing the Geocoris: a heavy freighter that surpassed anything humanity had to offer at the time."
+
 
 ship "Geocoris" "Geocoris (Tracker)"
 	outfits
@@ -396,6 +444,7 @@ ship "Geocoris" "Geocoris (Tracker)"
 		"Quantum Keystone"
 		"Pulse Rifle" 14
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		`"Bondir" Atomic Steering`
 		Hyperdrive
 	turret "Chameleon Anti-Missile"
@@ -419,11 +468,15 @@ ship "Grasshopper"
 		"mass" 124
 		"drag" 1.65
 		"heat dissipation" .78
-		"fuel capacity" 300
+		"fuel capacity" 250
 		"cargo space" 29
-		"outfit space" 198
+		"outfit space" 209
 		"weapon capacity" 47
-		"engine capacity" 61
+		"engine capacity" 70
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 180
@@ -438,18 +491,22 @@ ship "Grasshopper"
 		"Quantum Keystone"
 		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		Hyperdrive
 
 	engine 0 36
 	gun -6 -34 "Pulse Cannon"
 	gun 6 -34 "Pulse Cannon"
+	pylon -15 -10
+	pylon 15 -10
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 20
 	explode "medium explosion" 5
 	"final explode" "final explosion small"
 	description "Designed by the Hai to serve as a fast reconnaissance craft, the Grasshopper has been adopted by thrill-seekers and miners alike. At the same time, it is often used by Hai captains who are looking for effective protection at a low cost."
+
 
 ship "Grasshopper" "Grasshopper (Tracker)"
 	outfits
@@ -462,8 +519,10 @@ ship "Grasshopper" "Grasshopper (Tracker)"
 		"Quantum Keystone"
 		"Pulse Rifle"
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic LTC`
 		`"Basrem" Atomic Steering`
 		Hyperdrive
+
 
 ship "Grasshopper" "Grasshopper (Surveillance)"
 	outfits
@@ -478,8 +537,10 @@ ship "Grasshopper" "Grasshopper (Surveillance)"
 		"Quantum Keystone"
 		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		Hyperdrive
+
 
 ship "Grasshopper" "Grasshopper (Ion)"
 	outfits
@@ -492,7 +553,9 @@ ship "Grasshopper" "Grasshopper (Ion)"
 		"Pulse Rifle"
 		`"Benga" Atomic Steering`
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		Hyperdrive
+
 
 
 ship "Lightning Bug"
@@ -505,14 +568,18 @@ ship "Lightning Bug"
 		"hull" 1700
 		"required crew" 4
 		"bunks" 10
-		"mass" 345
+		"mass" 440
 		"drag" 4.8
 		"heat dissipation" .68
 		"fuel capacity" 600
 		"cargo space" 73
-		"outfit space" 278
-		"weapon capacity" 87
-		"engine capacity" 93
+		"outfit space" 305
+		"weapon capacity" 95
+		"engine capacity" 94
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 84
 			"shield damage" 840
@@ -529,12 +596,14 @@ ship "Lightning Bug"
 		"Quantum Keystone"
 		"Pulse Rifle" 2
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 
 	engine -40 22
 	engine 40 22
 	gun 0 -40 "Ion Cannon"
+	pylon 0 -16
 	turret -47 18 "Bullfrog Anti-Missile"
 	turret 47 18 "Bullfrog Anti-Missile"
 	leak "leak" 40 50
@@ -545,6 +614,7 @@ ship "Lightning Bug"
 	explode "large explosion" 8
 	"final explode" "final explosion small"
 	description "The Lightning Bug is a small defensive ship, mostly used by the Hai as a convoy escort. The Lightning Bug, as with many insects, works best in a swarm: even a small number of Lightning Bugs can manage to leave the largest of ships helpless with their stock-fitted Ion Cannons."
+
 
 ship "Lightning Bug" "Lightning Bug (Phantom Pallet)"
 	outfits
@@ -558,9 +628,11 @@ ship "Lightning Bug" "Lightning Bug (Phantom Pallet)"
 		"Quantum Keystone"
 		"Pulse Rifle" 2
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Phantom Pallet" 7
 		"Hyperdrive"
+
 
 ship "Lightning Bug" "Lightning Bug (Pulse)"
 	outfits
@@ -572,8 +644,10 @@ ship "Lightning Bug" "Lightning Bug (Pulse)"
 		"Hai Corundum Regenerator"
 		"Pulse Rifle" 2
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+
 
 ship "Lightning Bug" "Lightning Bug (Surveillance)"
 	outfits
@@ -589,8 +663,10 @@ ship "Lightning Bug" "Lightning Bug (Surveillance)"
 		"Hai Corundum Regenerator"
 		"Pulse Rifle" 2
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
+
 
 ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 	outfits
@@ -605,8 +681,10 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 		"Hai Gorge Batteries"
 		"Pulse Rifle" 6
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
 
 
 ship "Ladybug"
@@ -619,14 +697,18 @@ ship "Ladybug"
 		"hull" 3600
 		"required crew" 9
 		"bunks" 33
-		"mass" 584
+		"mass" 1120
 		"drag" 7.8
 		"heat dissipation" .59
-		"fuel capacity" 900
+		"fuel capacity" 1200
 		"cargo space" 91
-		"outfit space" 460
+		"outfit space" 489
 		"weapon capacity" 170
-		"engine capacity" 120
+		"engine capacity" 132
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 
 		# Expensive features mentioned in description:
 		"ramscoop" 0.25
@@ -660,11 +742,17 @@ ship "Ladybug"
 		
 		`"Bondir" Atomic Steering`
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		"Hyperdrive"
 
-	gun 0 -69.5 "Hai Tracker Pod"
+	gun 0 -69.5
 	gun -12 -68.5 "Ion Cannon"
 	gun 12 -68.5 "Ion Cannon"
+	pylon 0 -30 "Hai Tracker Pod"
+	pylon -46 -40
+		angle 20
+	pylon 46 -40
+		angle 340
 	turret -36 3 "Chameleon Anti-Missile"
 	turret 36 3 "Pulse Turret"
 	engine -36 62 0.8
@@ -677,6 +765,7 @@ ship "Ladybug"
 	"final explode" "final explosion large"
 	description "These sensor-laden exploration vessels hail back to a more peaceful era of the Hai. Though they have no true ramscoop, a technology the Hai never developed, their built-in collection gills magnify the natural ramscoop present in all ships. These expensive features are the reason the ship has been replaced with the Lightning Bug."
 	description "However, this ship has seen combat in recent years against human pirates. With room for plentiful shield regeneration, good maneuverability, and the range to strike deep in pirate territory, their long sleep has ended."
+
 
 ship "Ladybug" "Ladybug (Three Ion)"
 	outfits
@@ -693,12 +782,17 @@ ship "Ladybug" "Ladybug (Three Ion)"
 		
 		`"Bondir" Atomic Steering`
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		"Hyperdrive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
+	pylon
+	pylon
+	pylon
 	turret "Bullfrog Anti-Missile"
 	turret "Bullfrog Anti-Missile"
+
 
 ship "Ladybug" "Ladybug (Pulse)"
 	outfits
@@ -715,12 +809,17 @@ ship "Ladybug" "Ladybug (Pulse)"
 		
 		`"Bondir" Atomic Steering`
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		"Hyperdrive"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
+	pylon
+	pylon
+	pylon
 	turret "Pulse Turret"
 	turret "Pulse Turret"
+
 
 ship "Ladybug" "Ladybug (Tracker)"
 	outfits
@@ -736,15 +835,20 @@ ship "Ladybug" "Ladybug (Tracker)"
 		"Boulder Reactor"
 		"Pulse Rifle" 7
 		
-		`"Basrem" Atomic Steering`
+		# `"Basrem" Atomic Steering` # Extra steering
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Hyperdrive"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret "Chameleon Anti-Missile"
 	turret "Pulse Turret"
+
 
 
 ship "Pond Strider"
@@ -757,15 +861,19 @@ ship "Pond Strider"
 		"hull" 3000
 		"required crew" 9
 		"bunks" 18
-		"mass" 429
+		"mass" 672
 		"drag" 5.33
 		"hull repair rate" 1
 		"heat dissipation" .34
-		"fuel capacity" 300
+		"fuel capacity" 350
 		"cargo space" 71
-		"outfit space" 354
+		"outfit space" 375
 		"weapon capacity" 144
-		"engine capacity" 76
+		"engine capacity" 82
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 200
 			"shield damage" 1500
@@ -785,6 +893,7 @@ ship "Pond Strider"
 		"Quantum Keystone"
 		"Pulse Rifle" 9
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 		
@@ -793,6 +902,7 @@ ship "Pond Strider"
 	gun 0 -76 "Railgun"
 	gun -15 -72 "Ion Cannon"
 	gun 15 -72 "Ion Cannon"
+	pylon 0 -60
 	turret -18 -53 "Bullfrog Anti-Missile"
 	turret 18 -53 "Bullfrog Anti-Missile"
 	turret 0 14 "Chameleon Anti-Missile"
@@ -823,6 +933,7 @@ ship "Pond Strider"
 	"final explode" "final explosion large"
 	description "The Hai upgraded their original Pond Strider after acquiring hull repair technology through alien diplomacy. These improvements have greatly reduced casualties in their conflict with the Unfettered, since the light Pond Striders become vulnerable as they collect damaged drones. Besides enabling the ship to repair damaged drones, the Hai have cleverly innovated the Skipper Railgun to make the Pond Strider and Fleas into very efficient combat support for their fleets."
 
+
 ship "Pond Strider" "Pond Strider (Tracker)"
 	outfits
 		"Hai Tracker Pod"
@@ -838,8 +949,14 @@ ship "Pond Strider" "Pond Strider (Tracker)"
 		"Quantum Keystone"
 		"Pulse Rifle" 9
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+	gun
+	gun "Railgun"
+	gun "Railgun"
+	pylon "Hai Tracker Pod"
+
 
 ship "Pond Strider" "Pond Strider (Ion)"
 	outfits
@@ -855,8 +972,10 @@ ship "Pond Strider" "Pond Strider (Ion)"
 		"Quantum Keystone"
 		"Pulse Rifle" 9
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
 
 ship "Pond Strider" "Pond Strider (Pulse)"
 	outfits
@@ -873,8 +992,10 @@ ship "Pond Strider" "Pond Strider (Pulse)"
 		"Quantum Keystone"
 		"Pulse Rifle" 9
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
+
 
 ship "Pond Strider" "Pond Strider (Railgun)"
 	outfits
@@ -889,6 +1010,7 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 		"Quantum Keystone"
 		"Pulse Rifle" 9
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Biroo" Atomic Steering`
 		"Hyperdrive"
 
@@ -904,22 +1026,24 @@ ship "Sea Scorpion"
 		"hull" 4900
 		"required crew" 14
 		"bunks" 36
-		"mass" 735
+		"mass" 1280
 		"drag" 7.8
 		"heat dissipation" .47
-		"fuel capacity" 500
+		"fuel capacity" 700
 		"cargo space" 45
-		"outfit space" 510
+		"outfit space" 547
 		"weapon capacity" 188
-		"engine capacity" 117
+		"engine capacity" 149
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 84
 			"shield damage" 840
 			"hull damage" 420
 			"hit force" 1260
 	outfits
-		`"Bondir" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		"Cargo Expansion"
 		"Chameleon Anti-Missile"
 		"Fuel Pod"
@@ -929,12 +1053,15 @@ ship "Sea Scorpion"
 		"Hai Tracker" 336
 		"Hai Tracker Pod" 4
 		"Hai Williwaw Cooling"
-		Hyperdrive
 		"Pulse Rifle" 15
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tracker Storage Pod" 4
 		"Value Detector" 2
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
 
 	engine -28.5 68.5
 	engine 28.5 68.5
@@ -952,10 +1079,14 @@ ship "Sea Scorpion"
 		zoom 0.55
 		angle 90
 		left
-	gun -13 -77.5
-	gun 13 -77.5
-	gun -27 -56
-	gun 27 -56
+	gun -10 -50
+	gun 10 -50
+	gun -33 -20
+	gun 33 -20
+	pylon -13 -77.5
+	pylon 13 -77.5
+	pylon -27 -56
+	pylon 27 -56
 	turret -35.5 24.5
 	turret 35.5 24.5
 	leak "leak" 40 50
@@ -966,6 +1097,7 @@ ship "Sea Scorpion"
 	explode "large explosion" 14
 	"final explode" "final explosion medium"
 	description "The Sea Scorpion was designed several decades ago to serve as a mobile platform to launch Trackers. However, it is only recently that the Unfettered have been able to mass-produce them. While individually vulnerable, the reduced cost of manufacturing compared to Shield Beetles allow the materially inferior Unfettered to gain a numerical advantage against their brethren."
+
 
 ship "Sea Scorpion" "Sea Scorpion (Tracker)"
 	outfits
@@ -979,9 +1111,11 @@ ship "Sea Scorpion" "Sea Scorpion (Tracker)"
 		"Hai Ravine Batteries"
 		"Hai Diamond Regenerator"
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bondir" Atomic Steering`
 		"Value Detector"
 		"Hyperdrive"
+
 
 ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 	outfits
@@ -993,10 +1127,12 @@ ship "Sea Scorpion" "Sea Scorpion (Pulse)"
 		"Supercapacitor" 5
 		"Hai Diamond Regenerator" 2
 		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
 		`"Bondir" Atomic Steering`
 		"Value Detector"
 		"Hyperdrive"
 		"Pulse Rifle" 15
+
 
 ship "Sea Scorpion" "Sea Scorpion (Ion)"
 	outfits
@@ -1008,41 +1144,46 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hai Fissure Batteries"
 		"Hai Diamond Regenerator" 2
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bondir" Atomic Steering`
 		"Value Detector"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
+
 ship "Sea Scorpion" "Sea Scorpion (Ionic)"
 	outfits
-		`"Biroo" Atomic Steering`
-		`"Bondir" Atomic Thruster`
 		"Boulder Reactor"
 		"Chameleon Anti-Missile"
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
-		"Hyperdrive"
 		"Ion Cannon"
 		"Ionic Blaster Prototype" 2
 		"Ionic Turret Prototype"
 		"Pulse Rifle" 15
+		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
+
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
-		`"Biroo" Atomic Steering`
-		`"Biroo" Atomic Thruster`
 		"Boulder Reactor"
 		"Bullfrog Anti-Missile"
 		"Hai Diamond Regenerator" 2
 		"Hai Gorge Batteries"
 		"Hai Williwaw Cooling" 4
-		"Hyperdrive"
 		"Pulse Cannon" 2
 		"Pulse Rifle" 15
 		"Pulse Turret"
 		"Quantum Keystone"
 		"Tripulse Shredder" 2
+		`"Biroo" Atomic Thruster`
+		`"Biroo" Atomic LTC`
+		`"Biroo" Atomic Steering`
+		"Hyperdrive"
 
 
 
@@ -1056,14 +1197,18 @@ ship "Scarab"
 		"hull" 1500
 		"required crew" 4
 		"bunks" 27
-		"mass" 221
+		"mass" 832
 		"drag" 4.6
 		"heat dissipation" .73
-		"fuel capacity" 400
+		"fuel capacity" 450
 		"cargo space" 44
 		"outfit space" 231
 		"weapon capacity" 49
 		"engine capacity" 93
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 52
 			"shield damage" 540
@@ -1079,6 +1224,7 @@ ship "Scarab"
 		"Quantum Keystone"
 		"Pulse Rifle"
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 
@@ -1107,14 +1253,18 @@ ship "Shield Beetle"
 		"hull" 9800
 		"required crew" 47
 		"bunks" 95
-		"mass" 1881
+		"mass" 5200
 		"drag" 16.3
 		"heat dissipation" .33
-		"fuel capacity" 500
+		"fuel capacity" 1575
 		"cargo space" 142
-		"outfit space" 798
+		"outfit space" 835
 		"weapon capacity" 333
-		"engine capacity" 150
+		"engine capacity" 176
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 400
 			"shield damage" 4000
@@ -1135,18 +1285,35 @@ ship "Shield Beetle"
 		"Quantum Keystone"
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	engine -44 133
 	engine 44 133
 	gun -22 -102 "Ion Cannon"
 	gun 22 -102 "Ion Cannon"
-	gun -34 -68 "Hai Tracker Pod"
-	gun 34 -68 "Hai Tracker Pod"
 	gun -49 -38 "Ion Cannon"
 	gun 49 -38 "Ion Cannon"
-	gun -61 -14 "Hai Tracker Pod"
-	gun 61 -14 "Hai Tracker Pod"
+	gun -22 -102
+	gun 22 -102
+	gun -49 -38
+	gun 49 -38
+	pylon -34 -68 "Hai Tracker Pod"
+		angle 340
+	pylon 34 -68 "Hai Tracker Pod"
+		angle 20
+	pylon -61 -14 "Hai Tracker Pod"
+		angle 340
+	pylon 61 -14 "Hai Tracker Pod"
+		angle 20
+	pylon -39 -9
+		angle 20
+	pylon 39 -9
+		angle 340
+	pylon -55 72
+		"over"
+	pylon 55 72
+		"over"
 	turret -39 48
 	turret 39 48
 	turret -57 75
@@ -1161,6 +1328,7 @@ ship "Shield Beetle"
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
 	description "This ship was first built millennia ago, near the end of a more violent time in Hai history. Since then, it has served as the only heavy warship at the disposal of the Hai. The Shield Beetle is a versatile warship used by the Hai to guard their merchant convoys, or by the Unfettered to attack those very same convoys."
+
 
 ship "Shield Beetle" "Shield Beetle (Police)"
 	outfits
@@ -1180,20 +1348,30 @@ ship "Shield Beetle" "Shield Beetle (Police)"
 		"Hai Williwaw Cooling" 4
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon
+	pylon
+	pylon
+	pylon
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
 
 ship "Shield Beetle" "Shield Beetle (Unfettered)"
 	outfits
@@ -1212,8 +1390,10 @@ ship "Shield Beetle" "Shield Beetle (Unfettered)"
 		"Quantum Keystone"
 		"Pulse Rifle" 65
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+
 
 ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
 	outfits
@@ -1235,8 +1415,10 @@ ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
 		"Quantum Keystone"
 		"Pulse Rifle" 75
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+
 
 # Custom anti-pirate build; insufficient battery for fighting Hai:
 ship "Shield Beetle" "Shield Beetle (Pulse Tracker)"
@@ -1255,20 +1437,30 @@ ship "Shield Beetle" "Shield Beetle (Pulse Tracker)"
 		"Hai Williwaw Cooling" 7
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret "Pulse Turret"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
 
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
@@ -1286,20 +1478,30 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 		"Hai Williwaw Cooling" 4
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
 
 # Custom anti-pirate build; insufficient battery for fighting Hai:
 ship "Shield Beetle" "Shield Beetle (Six Ion)"
@@ -1313,6 +1515,7 @@ ship "Shield Beetle" "Shield Beetle (Six Ion)"
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	gun "Ion Cannon"
@@ -1323,10 +1526,19 @@ ship "Shield Beetle" "Shield Beetle (Six Ion)"
 	gun "Ion Cannon"
 	gun
 	gun
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
 
 # Shield beetle with extra fuel so they don't get stuck between systems.
 # They don't get their ramscoops until after the mission.
@@ -1342,6 +1554,7 @@ ship "Shield Beetle" "Shield Beetle (Fuel Jump)"
 		"Boulder Reactor"
 		"Geode Reactor"
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Tracker Storage Pod" 2
 		"Chameleon Anti-Missile" 2
@@ -1352,16 +1565,25 @@ ship "Shield Beetle" "Shield Beetle (Fuel Jump)"
 		"Fuel Pod" 9
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun
+	gun
+	gun
+	gun
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon
+	pylon
+	pylon
+	pylon
 	turret
 	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
 
 ship "Shield Beetle" "Shield Beetle (Particle Jump)"
 	outfits
@@ -1373,12 +1595,14 @@ ship "Shield Beetle" "Shield Beetle (Particle Jump)"
 		"Outfits Expansion" 2
 		"Boulder Reactor" 2
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Bullfrog Anti-Missile" 4
 		"Hai Diamond Regenerator" 2
 		"Fuel Pod" 3
 		"Liquid Nitrogen Cooler"
 		"Particle Cannon" 8
+
 
 ship "Shield Beetle" "Shield Beetle (Plasma Blaster Jump)"
 	outfits
@@ -1389,6 +1613,7 @@ ship "Shield Beetle" "Shield Beetle (Plasma Blaster Jump)"
 		"Outfits Expansion" 3
 		"Boulder Reactor" 2
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Chameleon Anti-Missile" 2
 		"Hai Diamond Regenerator" 2
@@ -1396,6 +1621,7 @@ ship "Shield Beetle" "Shield Beetle (Plasma Blaster Jump)"
 		"Fuel Pod" 3
 		"Plasma Cannon" 8
 		"Modified Blaster Turret" 2
+
 
 ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 	outfits
@@ -1410,8 +1636,10 @@ ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 47
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Jump Drive"
+
 
 ship "Shield Beetle" "Shield Beetle (Pulse)"
 	outfits
@@ -1425,8 +1653,10 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 		"Hai Williwaw Cooling" 3
 		"Pulse Rifle" 27
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+	
 	gun "Ion Cannon"
 	gun "Ion Cannon"
 	gun "Pulse Cannon"
@@ -1435,6 +1665,15 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+
 
 # Custom anti-pirate build; insufficient battery for fighting Hai:
 ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
@@ -1448,6 +1687,7 @@ ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
 		"Hai Williwaw Cooling" 8
 		"Pulse Rifle" 55
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 	gun "Pulse Cannon"
@@ -1462,6 +1702,7 @@ ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
 	turret "Pulse Turret"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
+
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
@@ -1478,6 +1719,7 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		"Quantum Keystone"
 		"Pulse Rifle" 32
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
@@ -1494,17 +1736,21 @@ ship "Emperor Beetle"
 		"hull" 19600
 		"required crew" 83
 		"bunks" 91
-		"mass" 2367
+		"mass" 6960
 		"drag" 18.1
-		"outfit space" 891
+		"outfit space" 931
 		"cargo space" 27
 		"weapon capacity" 352
-		"engine capacity" 139
+		"engine capacity" 179
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		# Expensive features inherited from Ladybug-era technology, with some fuel (and improved heat dissipation):
 		"heat dissipation" 0.38
 		"tactical scan power" 30
 		"ramscoop" .5
-		"fuel capacity" 600
+		"fuel capacity" 2300
 		weapon
 			"shield damage" 5000
 			"hull damage" 2500
@@ -1532,6 +1778,7 @@ ship "Emperor Beetle"
 		"Afterburner (Comet Class)"
 		"Steering (Planetary Class)"
 		"Thruster (Planetary Class)"
+		"Lateral (Planetary Class)"
 		
 		"Pulse Rifle" 65
 		"Fragmentation Grenades" 65
@@ -1568,12 +1815,20 @@ ship "Emperor Beetle"
 	"steering engine" 43 131
 		zoom 0.45
 		left
-	gun 12.5 -128
 	gun -10 -128
+	gun 12.5 -128
 	gun -23 -102.5
 	gun 24.5 -102.5
 	gun -42.5 -53.5 "Tripulse Shredder"
 	gun 43.5 -54.5 "Tripulse Shredder"
+	pylon 43.5 -54
+		angle 340
+	pylon 43.5 -54
+		angle 20
+	pylon -60 -20
+		angle 315
+	pylon 60 -20
+		angle 45
 	turret 0.5 -25.5 "Warder Anti-Missile"
 	turret -47.5 11.5
 	turret 48.5 11.5
@@ -1607,14 +1862,18 @@ ship "Solifuge"
 		"hull" 11000
 		"required crew" 62
 		"bunks" 118
-		"mass" 2590
+		"mass" 7400
 		"drag" 30
 		"heat dissipation" .22
-		"fuel capacity" 600
+		"fuel capacity" 2425
 		"cargo space" 142
-		"outfit space" 828
+		"outfit space" 852
 		"weapon capacity" 342
-		"engine capacity" 166
+		"engine capacity" 177
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 450
 			"shield damage" 4500
@@ -1633,18 +1892,28 @@ ship "Solifuge"
 		"Hai Williwaw Cooling" 6
 		"Quantum Keystone"
 		"Pulse Rifle" 62
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Hyperdrive"
 		
 	engine -28 135.5
 	engine 28 135.5
-	gun 0 -140 "Hai Tracker Pod"
+	gun 0 -140
 	gun -11.5 -138.5 "Ion Cannon"
 	gun 11.5 -138.5 "Ion Cannon"
 	gun -9.5 -101 "Ion Cannon"
 	gun 9.5 -101 "Ion Cannon"
+	pylon 0 -135 "Hai Tracker Pod"
+	pylon -39 -122
+		angle 315
+	pylon 39 -122
+		angle 45
+	pylon -63 -84
+		angle 345
+	pylon 63 -84
+		angle 15
 	turret 0 -109.5 "Chameleon Anti-Missile"
 	turret 54.5 -48.5 "Bullfrog Anti-Missile"
 	turret -54.5 -48.5 "Bullfrog Anti-Missile"
@@ -1675,6 +1944,7 @@ ship "Solifuge"
 	"final explode" "final explosion large"
 	description `Impressed by the Alphas' "Giftbringer," the Unfettered endeavored to build their own fighter carrier to take more advantage of their supply of jump drives.`
 
+
 ship "Solifuge" "Solifuge (Jump)"
 	outfits
 		"Hai Tracker Pod"
@@ -1688,10 +1958,12 @@ ship "Solifuge" "Solifuge (Jump)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 86
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Jump Drive"
+
 
 ship "Solifuge" "Solifuge (Jump, Pulse)"
 	outfits
@@ -1705,15 +1977,29 @@ ship "Solifuge" "Solifuge (Jump, Pulse)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
 		"Pulse Rifle" 71
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Jump Drive"
 	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
+	gun "Pulse Cannon"
+	gun "Pulse Cannon"
+	pylon
+	pylon
+	pylon
+	pylon
+	pylon
+	turret "Pulse Turret"
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+
 
 ship "Solifuge" "Solifuge (Jump, Tracker)"
 	outfits
@@ -1728,10 +2014,24 @@ ship "Solifuge" "Solifuge (Jump, Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 68
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Jump Drive"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
+	turret "Chameleon Anti-Missile"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Pulse Turret"
+	turret "Bullfrog Anti-Missile"
+	turret "Bullfrog Anti-Missile"
+
 
 ship "Solifuge" "Solifuge (Pulse)"
 	outfits
@@ -1745,15 +2045,17 @@ ship "Solifuge" "Solifuge (Pulse)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 8
 		"Pulse Rifle" 62
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Hyperdrive"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Ion Cannon"
 	gun "Ion Cannon"
+
 
 ship "Solifuge" "Solifuge (Tracker)"
 	outfits
@@ -1768,9 +2070,10 @@ ship "Solifuge" "Solifuge (Tracker)"
 		"Hai Diamond Regenerator" 2
 		"Hai Williwaw Cooling" 6
 		"Pulse Rifle" 59
-		`"Benga" Atomic Steering`
+		# `"Benga" Atomic Steering` # Extra steering
 		`"Bufaer" Atomic Steering`
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		"Hyperdrive"
 
 
@@ -1788,9 +2091,13 @@ ship "Violin Spider"
 		"mass" 31
 		"drag" 0.9
 		"heat dissipation" .7
-		"outfit space" 92
+		"outfit space" 107
 		"weapon capacity" 23
-		"engine capacity" 30
+		"engine capacity" 46
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1805,16 +2112,23 @@ ship "Violin Spider"
 		"Pulse Rifle"
 		`"Basrem" Atomic Steering`
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic LTC`
 
 	engine -15 30
 	engine 15 30
-	gun 0 -31 "Hai Tracker Pod"
+	gun 0 -31
+	pylon 0 -20 "Hai Tracker Pod"
+	pylon -7 -20
+		angle 350
+	pylon 7 -20
+		angle 10
 	turret 0 5
 	leak "leak" 60 50
 	explode "tiny explosion" 15
 	explode "small explosion" 5
 	description `The Hai fighter is equipped with what most humans would consider the greatest technology available, but all of that high tech comes at a cost.`
 	description "	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay."
+
 
 ship "Violin Spider" "Violin Spider (Pulse)"
 	outfits
@@ -1826,6 +2140,7 @@ ship "Violin Spider" "Violin Spider (Pulse)"
 		"Pulse Rifle"
 		`"Basrem" Atomic Steering`
 		`"Basrem" Atomic Thruster`
+		`"Basrem" Atomic LTC`
 
 
 
@@ -1839,14 +2154,18 @@ ship "Water Bug"
 		"hull" 4500
 		"required crew" 5
 		"bunks" 29
-		"mass" 461
+		"mass" 1080
 		"drag" 7.7
 		"heat dissipation" .58
-		"fuel capacity" 600
+		"fuel capacity" 800
 		"cargo space" 197
-		"outfit space" 368
+		"outfit space" 390
 		"weapon capacity" 145
-		"engine capacity" 64
+		"engine capacity" 70
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 124
 			"shield damage" 1240
@@ -1865,12 +2184,13 @@ ship "Water Bug"
 		"Quantum Keystone"
 		`"Basrem" Reverse Thruster`
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 	engine -50 33
 	engine 50 33
-	gun -24 -53 "Hai Tracker Pod"
-	gun 24 -53 "Hai Tracker Pod"
+	pylon -24 -53 "Hai Tracker Pod"
+	pylon 24 -53 "Hai Tracker Pod"
 	turret 0 -10 "Pulse Turret"
 	turret -17 17 "Chameleon Anti-Missile"
 	turret 17 17 "Chameleon Anti-Missile"
@@ -1884,6 +2204,7 @@ ship "Water Bug"
 	"final explode" "final explosion medium"
 	description "The design of the Water Bug is almost as old as the Aphid, but until recently it never saw much use. A spike in aggression from the Unfettered Hai has led the tougher and more well-defended Water Bug to see an increase in popularity over its little brother, the Aphid. The Water Bug is now the most widely used Hai freighter, comprising the bulk of all Hai merchant fleets."
 
+
 ship "Water Bug" "Water Bug (Phantom Pallet)"
 	outfits
 		"Hai Tracker Pod" 2
@@ -1896,11 +2217,13 @@ ship "Water Bug" "Water Bug (Phantom Pallet)"
 		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling"
 		"Quantum Keystone"
-		`"Basrem" Reverse Thruster`
+		# `"Basrem" Reverse Thruster` # Extra thruster
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"
 		"Phantom Pallet" 7
+
 
 ship "Water Bug" "Water Bug (Jump)"
 	outfits
@@ -1916,8 +2239,10 @@ ship "Water Bug" "Water Bug (Jump)"
 		"Quantum Keystone"
 		"Pulse Rifle" 8
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Jump Drive"
+
 
 ship "Water Bug" "Water Bug (Pulse)"
 	outfits
@@ -1931,5 +2256,6 @@ ship "Water Bug" "Water Bug (Pulse)"
 		"Hai Williwaw Cooling"
 		"Pulse Rifle" 3
 		`"Benga" Atomic Thruster`
+		`"Benga" Atomic LTC`
 		`"Benga" Atomic Steering`
 		"Hyperdrive"

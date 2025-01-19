@@ -18,7 +18,7 @@ ship "Archon"
 	thumbnail "thumbnail/archon"
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"cost" 1000000000
 		"shields" 4000000
 		"hull" 1000000
@@ -27,11 +27,15 @@ ship "Archon"
 		"mass" 2150
 		"drag" 40.5
 		"heat dissipation" 27
-		"fuel capacity" 800
+		"fuel capacity" 1650
 		"cargo space" 0
 		"outfit space" 1300
 		"weapon capacity" 1125
 		"engine capacity" 200
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 100000
 		"energy generation" 1000
 		"heat generation" 17
@@ -47,6 +51,9 @@ ship "Archon"
 		"thrust" 120
 		"thrusting energy" 20
 		"thrusting heat" 10
+		"lateral thrust" 60
+		"lateral thrusting energy" 10
+		"lateral thrusting heat" 5
 		"turn" 2400
 		"turning energy" 10
 		"turning heat" 5
@@ -113,6 +120,9 @@ ship "Archon" "Archon (Cloaked)"
 	"never disabled"
 	add attributes
 		"cloak" .04
+		"cloaked communication" 1
+		"cloak phasing" 1
+		"cloaked scanning" 1
 	"final explode" "archon c teleport"
 
 ship "Archon" "Archon (Hyperdrive Cloaked)"

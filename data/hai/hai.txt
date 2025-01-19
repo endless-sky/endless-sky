@@ -71,6 +71,7 @@ outfitter "Hai Basics"
 	"Hai Corundum Regenerator"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	"Local Map"
 	"Quantum Keystone"
@@ -101,12 +102,15 @@ outfitter "Hai Intermediate"
 	"Hai Corundum Regenerator"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
+	`"Benga" Atomic LTC`
 	`"Benga" Atomic Steering`
 	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic LTC`
 	`"Biroo" Atomic Steering`
 	"Local Map"
 	"Quantum Keystone"
@@ -145,16 +149,21 @@ outfitter "Hai Advanced"
 	"Hai Diamond Regenerator"
 	`"Basrem" Reverse Thruster`
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	`"Benga" Reverse Thruster`
 	`"Benga" Atomic Thruster`
+	`"Benga" Atomic LTC`
 	`"Benga" Atomic Steering`
 	`"Biroo" Reverse Thruster`
 	`"Biroo" Atomic Thruster`
+	`"Biroo" Atomic LTC`
 	`"Biroo" Atomic Steering`
 	`"Bondir" Atomic Thruster`
+	`"Bondir" Atomic LTC`
 	`"Bondir" Atomic Steering`
 	`"Bufaer" Atomic Thruster`
+	`"Bufaer" Atomic LTC`
 	`"Bufaer" Atomic Steering`
 	"Luxury Accommodations"
 	"Local Map"
@@ -201,6 +210,7 @@ outfitter "Unfettered Basics"
 	"Fuel Pod"
 	"Hai Corundum Regenerator"
 	`"Basrem" Atomic Thruster`
+	`"Basrem" Atomic LTC`
 	`"Basrem" Atomic Steering`
 	"Value Detector"
 	"Local Map"
@@ -251,6 +261,79 @@ phrase "hai"
 		"Oo"
 		"Mer"
 		"Tou"
+		
+phrase "hai (human)"
+	word
+		"Adorable"
+		"Friendly"
+		"Excitable"
+		"Playful"
+		"Cuddly"
+		"Joyful"
+		"Cheeky"
+		"Whimsical"
+		"Merry"
+		"Gleeful"
+		"Happy"
+		"Lively"
+		"Bashful"
+		"Curious"
+		"Grinning"
+		"Silly"
+		"Bouncing"
+		"Giddy"
+		"Frolicsome"
+		"Zesty"
+		"Radiant"
+		"Eager"
+		"Spry"
+		"Jovial"
+		"Vibrant"
+		"Jubilant"
+		"Pouncing"
+		"Dashing"
+		"Admiring"
+		"Chuckling"
+		"Amiable"
+		"Snuggly"
+		"Chirpy"
+	word
+		" "
+	word
+		"Chipmunk"
+		"Badger"
+		"Quokka"
+		"Panda"
+		"Koala"
+		"Jaguar"
+		"Chinchilla"
+		"Wombat"
+		"Meerkat"
+		"Gecko"
+		"Hamster"
+		"Lemur"
+		"Bunny"
+		"Capybara"
+		"Gazelle"
+		"Sloth"
+		"Binturong"
+		"Giraffe"
+		"Fox"
+		"Zebra"
+		"Raccoon"
+		"Emu"
+		"Squirrel"
+		"Jellyfish"
+		"Vulture"
+		"Jackal"
+		"Puma"
+		"Dolphin"
+		"Albatross"
+		"Cheetah"
+		"Antelope"
+		"Seahorse"
+		"Chimpanzee"
+
 
 phrase "hai first names"
 	word
@@ -283,6 +366,7 @@ phrase "hai first names"
 		"Ra"
 		"Des"
 		"Ai"
+		"Ke"
 	word
 		"neep"
 		"ari"
@@ -302,6 +386,7 @@ phrase "hai first names"
 		"kei"
 		"yo"
 		"met"
+		"lam"
 	word
 		"" 9
 		"aru"
@@ -313,6 +398,7 @@ phrase "hai first names"
 		"chi"
 		"li"
 		"ri"
+		"ursh"
 
 phrase "hai last names"
 	word
@@ -718,3 +804,32 @@ phrase "hostile disabled unfettered"
 	word
 		"!"
 		"."
+
+phrase "hai planets"
+	word
+		"Mirrorlake"
+		"Ochrescoop"
+		"Redwatch"
+		"Bluerun"
+		"Cloudfire"
+		"Violetwake"
+		"Darkmetal"
+		"Darkrest"
+		"Dustmaker"
+		"Everhope"
+		"Farwater"
+		"Firefall"
+		"Eldergrasp"
+		"Frostmark"
+		"Giverstone"
+		"Goldcrawl"
+		"Greenbloom"
+		"Greenview"
+		"Greymoon"
+		"Hai-home"
+		"Heartvalley"
+		"Iritoroost"
+		"Ironfirth"
+		"Limejog"
+		"Mahagonybox"
+		"Makerplace"

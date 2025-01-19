@@ -33,8 +33,10 @@ ship "Pincer Beast"
 		"heat dissipation" .47
 		"cargo space" 75
 		"cooling" 13
-		"thrust" 37.5
+		"thrust" 37
+		"lateral thrust" 19
 		"turn" 1650
+		"reverse thrust" 2.5
 		"hull repair rate" 5
 		"energy capacity" 1000
 		"energy generation" 5

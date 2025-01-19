@@ -632,6 +632,7 @@ ship "Gunboat" "Gunboat (Bunks)"
 		"Small Radar Jammer"
 		
 		"X3700 Ion Thruster"
+		"X3400 Ion LTC"
 		"X2200 Ion Steering"
 		"Hyperdrive"
 
