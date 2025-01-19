@@ -1,11 +1,14 @@
 "Automatic aiming" 1
 "Automatic firing" 1
 "help: bank" 1
+"help: bank advanced" 1
 "help: basics 1" 1
 "help: basics 2" 1
 "help: basics 3" 1
+"help: control ship with mouse" 1
 "help: dead" 1
 "help: disabled" 1
+"help: fighters transfer cargo" !
 "help: fleet asteroid mining shortcuts" 1
 "help: fleet asteroid mining" 1
 "help: fleet harvest tutorial" 1
@@ -21,8 +24,10 @@
 "help: lost 7" 1
 "help: map" 1
 "help: map advanced" 1
+"help: map advanced danger" 1
 "help: map advanced ports" 1
 "help: map advanced shops" 1
+"help: map advanced stars" 1
 "help: multiple ship controls" 1
 "help: multiple ships" 1
 "help: navigation" 1
