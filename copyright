@@ -3702,7 +3702,7 @@ Files:
  images/ui/tactical/energy*
  images/ui/tactical/fuel*
  images/ui/tactical/thermal*
-Copyright: Michael Zahniser
+Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Cropped and split into four new files by Zitchas (zitchas.jma@gmail.com)
 
