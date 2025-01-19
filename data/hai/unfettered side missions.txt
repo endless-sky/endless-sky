@@ -257,7 +257,7 @@ mission "Hai Legacy 2"
 			action
 				"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 				"reputation: Hai (Unfettered)" >?= 0
-			`As you enter the system, you prepare for a fight to get the cargo through. However, the Unfettered have suddenly stopped firing at you, and the system becomes surprisingly quiet.`
+			`As you enter the system, you prepare for a fight to get the cargo through. However, the usually aggressive Unfettered have suddenly stopped firing at you.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are clearly not happy when they somehow find out you didn't deliver the cargo in time, leaving you a brief message on your command panel: "You will not prove yourself to us by failing our requests."`
