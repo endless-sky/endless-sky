@@ -395,8 +395,9 @@ namespace {
 		}
 		// Maintenance note: this is where decoder defaults should be overwritten (codec, exif/xmp, etc.)
 
-		std::string data = Files::Read(path);
-		avifResult result = avifDecoderSetIOMemory(decoder.get(), reinterpret_cast<const uint8_t *>(data.c_str()), data.size());
+		string data = Files::Read(path);
+		avifResult result = avifDecoderSetIOMemory(decoder.get(), reinterpret_cast<const uint8_t *>(data.c_str()),
+				data.size());
 		if(result != AVIF_RESULT_OK)
 		{
 			Logger::LogError("Could not read file: " + path.generic_string());
