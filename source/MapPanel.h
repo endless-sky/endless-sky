@@ -72,7 +72,10 @@ public:
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION,
 		const System *special = nullptr, bool fromMission = false);
+
 	virtual ~MapPanel() override;
+
+
 
 	virtual void Step() override;
 	virtual void Draw() override;
