@@ -480,7 +480,7 @@ namespace {
 			result = avifImageYUVToRGB(decoder->image, &image);
 			if(result != AVIF_RESULT_OK)
 			{
-				Logger::LogError("\"Conversion from YUV failed for \"" + path.generic_string() + "\": " + avifResultToString(result));
+				Logger::LogError("Conversion from YUV failed for \"" + path.generic_string() + "\": " + avifResultToString(result));
 				return bufferFrame;
 			}
 
