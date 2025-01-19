@@ -25,6 +25,8 @@ Use your favorite package manager to install the following (version numbers may 
    - libopenal-dev
    - libmad0-dev
    - uuid-dev
+
+Additionally, if you want to build unit tests:
    - catch2
    - libavif-dev
 
@@ -39,6 +41,8 @@ Use your favorite package manager to install the following (version numbers may 
    - openal-soft-devel
    - libmad-devel
    - libuuid-devel
+
+Additionally, if you want to build unit tests:
    - catch2-devel
    - libavif-devel
 

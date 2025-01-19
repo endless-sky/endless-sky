@@ -104,7 +104,7 @@ namespace {
 			);
 		}
 		// If the distance is greater than the maximum, this is not a match.
-		int d = distance.Days(system);
+		int d = distance.Days(*system);
 		return (d > maximum) ? -1 : d;
 	}
 
@@ -227,7 +227,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.BeginChild();
 			{
 				for(const System *system : systems)
-					out.Write(system->Name());
+					out.Write(system->TrueName());
 			}
 			out.EndChild();
 		}
@@ -272,7 +272,7 @@ void LocationFilter::Save(DataWriter &out) const
 			out.EndChild();
 		}
 		if(center)
-			out.Write("near", center->Name(), centerMinDistance, centerMaxDistance);
+			out.Write("near", center->TrueName(), centerMinDistance, centerMaxDistance);
 	}
 	out.EndChild();
 }

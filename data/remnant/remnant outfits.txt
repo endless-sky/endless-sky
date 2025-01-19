@@ -76,7 +76,7 @@ outfit "Inhibitor Turret"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
-		"turret turn" 3.5
+		"turret turn" 3.6
 		"velocity" 36
 		"random velocity" .5
 		"lifetime" 24
@@ -152,7 +152,7 @@ outfit "Thrasher Turret"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
-		"turret turn" 2.4
+		"turret turn" 2
 		"velocity" 10
 		"lifetime" 36
 		"reload" 5

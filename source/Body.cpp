@@ -33,8 +33,8 @@ using namespace std;
 
 
 // Constructor, based on a Sprite.
-Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
-	: position(position), velocity(velocity), angle(facing), zoom(zoom), sprite(sprite), randomize(true)
+Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, double alpha)
+	: position(position), velocity(velocity), angle(facing), zoom(zoom), alpha(alpha), sprite(sprite), randomize(true)
 {
 }
 
@@ -297,9 +297,26 @@ void Body::SetSwizzle(int swizzle)
 
 
 
-double Body::Alpha() const
+double Body::Alpha(const Point &drawCenter) const
 {
-	return alpha;
+	return alpha * DistanceAlpha(drawCenter);
+}
+
+
+
+double Body::DistanceAlpha(const Point &drawCenter) const
+{
+	if(!distanceInvisible)
+		return 1.;
+	double distance = (drawCenter - position).Length();
+	return clamp<double>((distance - distanceInvisible) / (distanceVisible - distanceInvisible), 0., 1.);
+}
+
+
+
+bool Body::IsVisible(const Point &drawCenter) const
+{
+	return DistanceAlpha(drawCenter) > 0.;
 }
 
 
