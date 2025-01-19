@@ -2799,7 +2799,7 @@ planet Kalbai
 
 planet Kapnos
 	attributes "gas giant" "requires: gaslining" uninhabited
-	landscape land/clouds9
+	landscape land/clouds15
 	description `Kapnos is the heart of one of the most spectacular sights in the Milky Way. The gas giant is composed of largely molecular oxygen, despite the seeming impossibility of such an occurrence in nature. Its abnormally rapid spin, which causes the planet to bulge wildly at the equator, throws oxygen and water vapor off the top of its atmosphere to form the famous Gossamer "gas torus," something that has sparked awe in the entire Avgi civilization from the moment of its discovery.`
 	description `	The fact that there is more gas in the torus than one gas giant can account for has not been unnoticed, however, and many among the Avgi believe the entire system to be an artificial construct engineered by the long dead Antecessors.`
 	government Uninhabited
