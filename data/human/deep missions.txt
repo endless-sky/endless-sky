@@ -2824,6 +2824,7 @@ mission "Stone of our Fathers 5"
 	on visit
 		dialog `You have reached <planet>, but your escort with the space reserved for Thorleif and Ragnhild has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
+		event "stone waiting most" 30
 		payment 500000
 		conversation
 			`The trip back to Norn was restful.`
@@ -3945,7 +3946,7 @@ mission "Home for Skadenga 13"
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
 			scene "outfit/skadetear"
-			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Midgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
+			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Asgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
 			choice
 				`	"You honor me. Thank you."`
 					goto honor
@@ -3955,24 +3956,54 @@ mission "Home for Skadenga 13"
 				decline
 			label honor
 			`	"No, it is you who honor us. We will not forget this. Now, I told you when we met I would answer question. What would you like to know?"`
+			label answers
 			choice
 				`	"How old are you?"`
+					goto age
+					to display
+						not "ages"
 				`	"Who were the elves?"`
 					goto elves
+					to display
+						not "elf"
 				`	"Why were the Skadenga making amends?"`
 					goto amends
+					to display
+						not "amending"
+				`	"This Tear of Skade, I've seen something like it before. Might you know more about these enigmatic stones?"`
+					goto enigmatic
+					to display
+						has "Ice Queen 6: done"
+						not "tears"
 				`	"No. I am done here."`
 					goto done
+			label age
+			action
+				set "ages"
 			`	The Ondurdis' eyes sparkle mischievously. "Too old. Suffice to say, my name is Eymani, and I was Pathfinder who discovered cure to Rigellian plague. As to how I am so old, or all that I have seen: I cannot say more, for it is not my story to tell."`
-				goto done
+				goto answers
 			label elves
+			action
+				set "elf"
 			`	"Elves is broad term. Many creatures over long ages have been called elves. But, here, in Deep, I believe there are two kinds. First, there are alfar, known by many. They were ones who transported us here from Earth. I do not know why they did this, but I do know that it was not out of kindness. They are devious, and they are opaque."`
 			`	The Ondurdis lowers her voice and leans in. "But there is another kind of elf here. The Hudulfolk, the Hidden. They served makers of God-Stones. They are rare, and mostly dormant. I do not think even alfar are aware of them. They cannot be trusted, for no alien can be, but are not devious. Each Hidden is different, but all are connected to natural world. When Skadenga were new upon Nifel, we had some small dealing with them before they returned to sleep of eons."`
-				goto done
+				goto answers
 			label amends
+			action
+				set "amending"
 			`	The Ondurdis nods slowly. "On Earth, before alfar, or elves, came to us, we had forsaken Skade. Men of Book had persuaded us to abandon old ways and embrace their new religion. We deserted our temples, forsook our trees, and thought ourselves the better for it."`
 			`	Her old face scrunches up in anger at the memory. "When we were brought to Deep, when we saw Goddess-Stone, we realized our folly. We would atone, and we would be strong." She looks up at you, her eyes bright and her face firm. "And strong we have been."`
+			label enigmatic
+			action
+				set "tears"
+			`	"Less than I would like," she says softly. "Longer I live, more I learn how little I know. Before ships came, when we knew only ways of stone, there was different kind of power here. Fragile, gentle, stone-magic. Then came endless colonists, men from stars with ships that sailed night. Stone-magic failed and secret ways shut."`
+			`	She looks at you sadly. "These stones are relics from lost age. Stolen age." She pauses. "More I cannot tell, but if you bring me such stone I will look for you, and see if more I might know."`
+				goto answers
 			label done
+			action
+				clear "ages"
+				clear "elf"
+				clear "amending"
 			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
 			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your clothes.`
@@ -3998,8 +4029,8 @@ mission "Homecoming to Skadenga"
 				`	(Don't visit Hrithfjall.)`
 					decline
 			`	It's a short journey to the outskirts of Hrithfjall. You are evidently spotted from afar, as someone is waiting for you.`
-			`	Hjlod's lopsided smile is warm and refreshing. "<first>!" She says with genuine joy. "You did not say goodbye! How can I forgive?" You hug her. You walk together along the shore toward Hrithfjall. She tells you all about the growing village - how the Skadenga are thriving here, and how they've gotten along with the Ran-Folk.`
-			`	She points to a small wooden craft up ahead. "I built her." She says with pride. "No more Ice-Crawler for Hjlod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hjlod will take care of you."`
+			`	Hjlod's lopsided smile is warm and refreshing. "<first>!" She says with genuine joy. "You did not say goodbye! How can I forgive?" You hug her. You walk together along the shore toward Hrithfjall. She tells you all about the growing village - how the Skadenga are thriving here, and how they've gotten along with the Ranfolk.`
+			`	She points to a small wooden craft up ahead. "I built her," she says with pride. "No more Ice-Crawler for Hjlod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hjlod vill take care of you."`
 			`	You spend the afternoon in Hrithfjall, where you are treated like a guest of honor. The Ondurdis seems younger than you remember, and also appears quite fond of old Aldfrith. You eat strange fish, listen to unlikely stories, and laugh at outrageous jokes.`
 			`	As the sun sinks in the sky, you announce that you should be heading back. "Wait," the Ondurdis says. "I have task for you. If you are interested."`
 			choice

@@ -304,12 +304,12 @@ mission "FW Recon 0"
 				`	"Are you connected to the Free Worlds?"`
 			`	"Yes, I'm an officer in their militia." The man takes a half step back. "Is that a problem?"`
 			choice
-				`	"Sorry, I really don't want to assist the rebels."`
-					decline
 				`	"No problem at all. I'd be glad to help with your cause!"`
 					accept
 				`	"Not a problem, but I'm afraid I don't have space for you right now."`
 					defer
+				`	"I don't help rebels. Find someone else."`
+					decline
 	
 	on visit
 		dialog `You land on <planet>, but you realize that the militia officer is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -333,24 +333,22 @@ mission "FW Recon 1"
 			`When you walk into the spaceport bar, a man in a militia uniform flags you down, and says, "Captain <last>. One of my officers told me to keep an eye out for you. Would you be willing to do another small service for the Free Worlds?"`
 			choice
 				`	"Perhaps. What do you want me to do?"`
-				`	"Sorry, I want no part in your rebellion."`
+				`	"I only agreed to a transport job. I want no part in your rebellion."`
 					decline
 			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The outfitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
 			choice
 				`	"Sure, that sounds simple enough."`
 					accept
 				`	"Why can't you scan the ship yourself?"`
-				`	"Sorry, I don't want to assist rebels."`
-					decline
 			`	"I'm sure you understand the... tensions between the Free Worlds and the Republic at the moment. We're just trying to look out for ourselves, but we don't want to provoke anything with the Navy. It'd be much simpler if we could get a sympathetic merchant to scan the ship for us."`
 			choice
 				`	"Sounds reasonable enough. I'll do it."`
 					accept
-				`	"Sorry, but that sounds too risky for me to get involved in."`
+				`	"If shady jobs like this are what constitute 'helping the Free Worlds,' then count me out."`
 					decline
 	
 	on accept
-		log "Volunteered to do some recon work for the Free Worlds, as long as there is nothing illegal involved."
+		log "Volunteered to do some recon work for the Free Worlds."
 	
 	npc "scan outfits"
 		government "Republic"
@@ -404,7 +402,7 @@ mission "FW Recon 2"
 			choice
 				`	"Sure, I'd be glad to do that."`
 					accept
-				`	"Sorry, after the way this last captain responded to me scanning him, I'm not sure I want to risk it again."`
+				`	"Sorry. After the way the last captain responded to me scanning him, I'm not risking my head for the Free Worlds again."`
 					decline
 	
 	npc "scan outfits"
@@ -448,8 +446,8 @@ mission "FW Recon 3"
 			choice
 				`	"Okay, I'll do it."`
 					accept
-				`	"Sorry, I've decided I don't really want to side with the Free Worlds."`
-			`	"I'm really sorry to hear that," says JJ. "We had high hopes for you."`
+				`	"This is too far. I'm not trespassing on Navy property for you."`
+			`	"I'm really sorry to hear that," says JJ. "We had high hopes for you." He leaves the bar.`
 				decline
 
 
@@ -942,7 +940,7 @@ mission "FW Escort 3"
 			`	Tomek brings you to one of the spaceport bars, exchanging greetings with the patrons before sitting at the counter. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by pirates. Do you think you're up to the task?"`
 			choice
 				`	"Sure!"`
-				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
+				`	"Sorry, no. I'm a merchant captain with bills to pay. I'm not going to go search for your missing ships in the middle of nowhere."`
 					decline
 		
 			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if pirates board them before you get there, so get moving quickly."`
@@ -1057,7 +1055,7 @@ mission "FW Bounty 1"
 				`	"How powerful of a fleet do these pirates have?"`
 				`	"How much will you be paying me to take out this fleet?"`
 					goto payment
-				`	"Sorry, I don't want to have anything to do with the Free Worlds."`
+				`	"I don't want to have anything to do with the Free Worlds."`
 					decline
 			
 			`	"Well they aren't exactly a powerful fleet. They're just a collection of interceptors, but they're numerous and swift enough that we've had trouble taking them down before they can run or swarm our larger ships. We can pay you <payment> if you can take them out."`
@@ -1275,7 +1273,7 @@ mission "FW Katya 1"
 			choice
 				`	"That sounds fair. I'll hear you out."`
 					goto more
-				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns. Find someone else to do this job for you."`
+				`	"I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns. Find someone else to do this job for you."`
 					decline
 			
 			label terrorists
@@ -1470,13 +1468,13 @@ mission "FW Katya Alt 2"
 			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds Council, and I'm hoping you'd reconsider working with me."`
 			choice
 				`	"Okay, as long as you don't point any more guns at me."`
-				`	"Sorry, I just really don't like you. Or the Free Worlds."`
+				`	"No. I just don't like you. Or the Free Worlds."`
 					decline
 			`	"Great," she says. "Here's the deal. I have a friend named Mr. Eyes, who needs a lift from <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though. Can you give him a lift?"`
 			choice
 				`	"Sure, I would be glad to."`
 					accept
-				`	"Sorry, this sounds a bit too shady to me."`
+				`	"This sounds too shady. Find someone else to help you."`
 					decline
 	
 	on visit
@@ -1648,15 +1646,17 @@ mission "FW Katya 3"
 				`	"That sounds like a terrible idea."`
 					goto terrible
 			
-			`	Eyes laughs, spitting out his milkshake in the process. "We won't be asking you to do anything of that sort," Katya responds somewhat aggressively. "Look, if we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones, and you're the one with a ship unconnected to the Free Worlds. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't do anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
+			`	Eyes laughs, spitting out his milkshake in the process. "We won't be asking you to do anything of that sort," Katya responds somewhat aggressively. "Look, if we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones, and you're the one with a ship unconnected to the Free Worlds. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't do anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and the Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
 				goto decision
 			
 			label terrible
-			`	"Are you saying we're going to need to find a different captain to work with?" says Katya. "That would be a big disappointment."`
+			`	"Are you saying we're going to need to find a different captain to work with?" says Katya. "If we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't do anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and the Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
 			label decision
 			choice
 				`	"Fine, I'll do it. But I still think it's an unwise idea."`
-				`	"I'm sorry, but this is a bit farther than I'm willing to go. Count me out."`
+				`	"Even still, that doesn't justify destroying Navy property. Count me out."`
+					decline
+				`	"If this is the sort of reasoning the Free Worlds runs on, then you can kiss goodbye to working with me ever again."`
 					decline
 			
 			label agree
@@ -1885,14 +1885,14 @@ mission "FW Katya 6"
 				`	"Sure, I definitely want to help solve this case!"`
 					goto sure
 				`	"Why these worlds specifically? Why not check worlds in Free space if the Republic thinks you did it?"`
-				`	"Sorry, I'm through with helping the Free Worlds. I don't think we have a chance of beating the Navy to the punch."`
+				`	"I'm through with helping the Free Worlds. I don't think we have a chance of beating the Navy to the punch."`
 					decline
 			
 			`	"I suppose that showing a lack of evidence for nuclear testing done on Free planets would be circumstantial evidence for us," Eyes says, "but we're specifically hunting for the culprit, so these are our best bets as far as nearby mining worlds go. And searching these three worlds would be quicker than searching all of Free space."`
 			`	"Another thing we have to keep in mind is that we may not be able to operate outside of Free space forever," Katya responds. "I pray that we find answers before it comes to it, but war between the Free Worlds and Republic would cut us off from freely searching most of the galaxy."`
 			choice
 				`	"Okay, I'll help you search these worlds."`
-				`	"Sorry, but I don't think this is the best course of action. You'll have to find someone else to help you with this."`
+				`	"I don't think this is the best course of action. You'll have to find someone else to help you with this."`
 					decline
 			
 			label sure
@@ -1970,7 +1970,7 @@ mission "FW Katya 7"
 				`	"Sounds like a good possibility. Let's give it a try!"`
 					goto agree
 				`	"But <planet> is part of the Free Worlds. What happens if we do find evidence there?"`
-				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
+				`	"I've got other missions I need to run instead of continuing this wild goose chase."`
 					decline
 			
 			`	"The plan hasn't changed," Eyes responds. "We find where the testing occurred, and that will lead us to the culprits. Even if it turns out that someone connected to the Free Worlds are responsible, they'll be turned over to the Republic."`

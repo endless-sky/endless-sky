@@ -250,13 +250,14 @@ const float MapPanel::LINK_OFFSET = 7.f;
 
 
 
-MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
+MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, bool fromMission)
 	: player(player), distance(player),
 	playerSystem(*player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
 	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
-	commodity(commodity)
+	commodity(commodity),
+	fromMission(fromMission)
 {
 	SetIsFullScreen(true);
 	SetInterruptible(false);

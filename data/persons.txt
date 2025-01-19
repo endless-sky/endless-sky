@@ -910,7 +910,7 @@ outfit "LG Gridfire Turret"
 
 
 person "Subsidurial"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Subsidurial)"
 	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests mute

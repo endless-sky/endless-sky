@@ -61,7 +61,7 @@ jobs:
 
   cd_windows_x64:
     name: Windows
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       OUTPUT: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

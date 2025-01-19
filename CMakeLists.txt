@@ -18,6 +18,8 @@ set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
 set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+# We don't use modules, so avoid using unrecognised compiler-specific commands that cmake produces when they are enabled.
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 # Use LTO for Release builds only.
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
