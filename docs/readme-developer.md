@@ -28,6 +28,7 @@ Use your favorite package manager to install the following (version numbers may 
 
 Additionally, if you want to build unit tests:
    - catch2
+   - libavif-dev
 
 ##### RPM-based distros:
    - gcc-c++
@@ -43,6 +44,7 @@ Additionally, if you want to build unit tests:
 
 Additionally, if you want to build unit tests:
    - catch2-devel
+   - libavif-devel
 
 Then, from the project root folder, simply type:
 
