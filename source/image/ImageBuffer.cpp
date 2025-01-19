@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageBuffer.h"
 
 #include "../File.h"
+#include "../Files.h"
 #include "ImageFileData.h"
 #include "../Logger.h"
 
@@ -394,7 +395,8 @@ namespace {
 		}
 		// Maintenance note: this is where decoder defaults should be overwritten (codec, exif/xmp, etc.)
 
-		avifResult result = avifDecoderSetIOFile(decoder.get(), path.c_str());
+		std::string data = Files::Read(path);
+		avifResult result = avifDecoderSetIOMemory(decoder.get(), reinterpret_cast<const uint8_t *>(data.c_str()), data.size());
 		if(result != AVIF_RESULT_OK)
 		{
 			Logger::LogError("Could not read file: " + path.generic_string());
