@@ -317,7 +317,7 @@ mission "Hai Legacy 3"
 			# This is a "warning" for the incoming extra ship that happens because you killed/captured 10 Shield Beetles or so.
 			`	He then looks at you intensely, straight in the eyes. "We sometimes bend the rules for our friends, but that is not the case with you."`
 				to display
-					"reputation: Hai (Unfettered)" < -2000
+					"reputation: Hai (Unfettered)" < -1500
 			`	Mera starts to look a bit impatient. "Are you going to talk all day, or are you going to fight?" The Unfettered pilots immediately head to their ships, but Mera pulls you in close once they are far enough away. "I want this done by the end of the day, so do not try my patience. You are lucky I offered this deal in the first place, as they were planning to take the relic by force. Now, quick, get to your ship!"`
 			`	You see the Unfettered have already begun their launching procedures, so you should prepare for takeoff in your Anomalocaris, and no other ships, as soon as you can.`
 				accept
@@ -372,7 +372,7 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
-			"old reputation: Hai (Unfettered)" >= -2000
+			"old reputation: Hai (Unfettered)" >= -1500
 		personality disables heroic plunders staying target unconstrained
 		ship "Sea Scorpion (Ionic Blasters)" "Thunder Struck"
 		on kill
@@ -386,7 +386,7 @@ mission "Hai Legacy 3"
 			"total ships" == 1
 			has "flagship model: Anomalocaris"
 			not "unfettered: fled with the relic"
-			"old reputation: Hai (Unfettered)" < -2000
+			"old reputation: Hai (Unfettered)" < -1500
 		personality heroic mute plunders target unconstrained
 		ship "Shield Beetle (Tripulse Ionic Turret)" "Requiem"
 		on kill
