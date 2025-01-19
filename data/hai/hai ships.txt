@@ -1572,12 +1572,14 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 ship "Shield Beetle" "Shield Beetle (Tripulse Ionic Turret)"
 	crew 80
 	outfits
-		"Pulse Cannon" 3
-		"Tripulse Shredder" 3
+		"Ion Cannon" 2
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Tripulse Shredder" 2
 		"Hai Tracker" 112
 		"Hai Tracker Pod" 2
-		"Ionic Turret Prototype"
-		"Chameleon Anti-Missile" 3
+		"Chameleon Anti-Missile" 2
+		"Bullfrog Anti-Missile"
 		"Hai Diamond Regenerator"
 		"Hai Octopus Jammer"
 		"Hai Williwaw Cooling" 2
