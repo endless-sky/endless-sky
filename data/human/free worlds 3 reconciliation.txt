@@ -438,7 +438,7 @@ mission "FW Defend Farpoint"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser"
 				"Combat Drone" 4
@@ -1175,7 +1175,7 @@ mission "FW Pug 2B"
 		log "By plundering the Korath raiders, the Syndicate has acquired some jump drives, which allow a ship to travel between systems that are not connected by hyperspace links. They are willing to part with one of these jump drives in order to prove the truth of their story to the rest of humanity."
 		log "People" "Alastair Korban" `CEO of the Syndicate Corporation for over two decades, Alastair Korban's tenure of the megacorporation has been capped by soaring profits owing to the human civil war. However, Korban has confirmed in speech what Sawyer brought forward to the Free Worlds and the Republic; that a "certain extremist faction" of the Syndicate were behind the bombings on Martini and Geminus.`
 		conversation
-			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you have landed, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
+			`As you are coming in for a landing you announce yourselves to the spaceport authorities as diplomatic representatives of the Free Worlds and the Republic. The moment you land, a Syndicate employee meets you and escorts you to their headquarters, to the incredibly fancy corner office of Alastair Korban, the CEO of the entire Syndicate Corporation. "I'm very glad you've come," says Alastair. "It seems unlikely that we can defeat this attack unless we work together."`
 			`	"Wait," says Alondo, "you're saying this whole thing is not the Syndicate's doing?"`
 			`	Alastair seems taken aback. "Of course not. Seal off valuable trade routes? Why would we do that?"`
 			choice
@@ -2149,7 +2149,7 @@ mission "FW Pug 5A"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 
@@ -2194,7 +2194,7 @@ mission "FW Pug 5B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	
@@ -2260,7 +2260,7 @@ mission "FW Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc
@@ -2280,7 +2280,7 @@ mission "FW Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat" 3
 	npc
@@ -2541,7 +2541,7 @@ mission "FW Syndicate Extremists 1B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)" 3
-				"Lance" 12
+				"Lance" 24
 				"Combat Drone" 18
 				"Cruiser (Mark II)" 3
 				"Combat Drone" 12
@@ -2583,7 +2583,7 @@ mission "FW Syndicate Extremists 1C"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Freya hasn't entered the system yet. Better depart and wait for it to arrive.`
 	on complete
-		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds is officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
+		log "Received an official commendation from Parliament and a promise that the war with the Free Worlds are officially over. Humanity is at peace once more, but new challenges may await in the star systems out beyond human space that are accessible only by jump drive."
 		log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds, culminating in a series of military confrontations that ended when the Free Worlds were able to present credible evidence denying any involvement in the terrorist attacks. After the Free Worlds joined the effort to drive out the Pug invaders, the Republic officially recognized the Free Worlds and diplomatic relations were established.`
 		log "Factions" "Syndicate" `It was exposed that the bombings of Geminus and Martini that helped cause the war between the Republic and Free Worlds were the doing of the Syndicate, designed by top executives with the help of a group of Alphas. Despite the claims that all the extremists responsible have been purged and handed over to the Navy, the reputation of the Syndicate will be damaged for years to come.`
 		payment 5000000

@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 #include "Trade.h"
 
+#include <filesystem>
 #include <future>
 #include <map>
 #include <memory>
@@ -90,7 +91,7 @@ public:
 	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
-	static const std::vector<std::string> &Sources();
+	static const std::vector<std::filesystem::path> &Sources();
 
 	// Get a reference to the UniverseObjects object.
 	static UniverseObjects &Objects();
@@ -157,6 +158,7 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	static const Sprite *StarIcon(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);

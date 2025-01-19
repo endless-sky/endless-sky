@@ -23,6 +23,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
 	unit/src/test_categoryList.cpp
+	unit/src/test_conditionAssignments.cpp
 	unit/src/test_conditionSet.cpp
 	unit/src/test_conditionsStore.cpp
 	unit/src/test_datafile.cpp
@@ -62,6 +63,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_framework.txt
 	integration/config/plugins/integration-tests/data/tests/tests_hyperjumps_to_autocondition.txt
 	integration/config/plugins/integration-tests/data/tests/tests_illegal_atrocity.txt
+	integration/config/plugins/integration-tests/data/tests/tests_job_board_missions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_landing.txt
 	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
