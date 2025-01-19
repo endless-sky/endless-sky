@@ -16,6 +16,7 @@ category "ship"
 	"Transport"
 	"Space Liner"
 	"Light Freighter"
+	"Medium Freighter"
 	"Heavy Freighter"
 	"Utility"
 	"Interceptor"
@@ -25,12 +26,17 @@ category "ship"
 	"Superheavy"
 	"Fighter"
 	"Drone"
+	"Unclassified"
+	"Unclassified Minor"
+	"Game Mechanics"
+	"Intrasolar"
 
 
 # Ships of these types can be carried by other ships.
 category "bay type"
 	"Drone"
 	"Fighter"
+	"Unclassified Minor"
 
 
 # Outfits of these types can be bought and sold via the outfitter.
@@ -43,6 +49,7 @@ category "outfit"
 	"Power"
 	"Engines"
 	"Hand to Hand"
+	"Heads Up Displays"
 	"Unique"
 	"Minerals"
 	"Special"

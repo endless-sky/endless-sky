@@ -463,6 +463,30 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 				+ Format::CargoString(engineNeeded, "engine space") + ", and this ship has "
 				+ Format::MassString(engineSpace) + " free.");
 
+		int propulsionAccessorySlotNeeded = -selectedOutfit->Get("engine mod space");
+		int propulsionAccessorySlotFree = playerShip->Attributes().Get("engine mod space");
+		if(propulsionAccessorySlotNeeded && !propulsionAccessorySlotFree)
+			return "This afterbuner is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused propulsion accessory slots available.";
+
+		int reverseThrusterSlotNeeded = -selectedOutfit->Get("reverse thruster slot");
+		int reverseThrusterSlotFree = playerShip->Attributes().Get("reverse thruster slot");
+		if(reverseThrusterSlotNeeded && !reverseThrusterSlotFree)
+			return "This reverse thruster is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused reverse thruster slots available.";
+
+		int steeringSlotNeeded = -selectedOutfit->Get("steering slot");
+		int steeringSlotFree = playerShip->Attributes().Get("steering slot");
+		if(steeringSlotNeeded && !steeringSlotFree)
+			return "This steering is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused steering slots available.";
+
+		int thrusterSlotNeeded = -selectedOutfit->Get("thruster slot");
+		int thrusterSlotFree = playerShip->Attributes().Get("thruster slot");
+		if(thrusterSlotNeeded && !thrusterSlotFree)
+			return "This thruster is designed to be installed in a dedicated slot, "
+				"but your ship does not have any unused thruster slots available.";
+
 		if(selectedOutfit->Category() == "Ammunition")
 			errors.push_back(!playerShip->OutfitCount(selectedOutfit) ?
 				"This outfit is ammunition for a weapon. "
@@ -481,6 +505,12 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		if(gunsNeeded && !gunsFree)
 			errors.push_back("This weapon is designed to be installed in a gun port, "
 				"but your ship does not have any unused gun ports available.");
+
+		int pylonNeeded = -selectedOutfit->Get("missile pylons");
+		int pylonFree = playerShip->Attributes().Get("missile pylons");
+		if(pylonNeeded && !pylonFree)
+			return "This weapon is designed to be installed on a missile pylon, "
+				"but your ship does not have an unused missile pylons available.";
 
 		if(selectedOutfit->Get("installable") < 0.)
 			errors.push_back("This item is not an outfit that can be installed in a ship.");

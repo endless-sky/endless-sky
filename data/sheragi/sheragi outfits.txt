@@ -70,32 +70,53 @@ outfit "Fission Drive"
 	category "Engines"
 	cost 2650000
 	thumbnail "outfit/fissiondrive"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.11
 	"mass" 71
 	"outfit space" -71
 	"engine capacity" -38
 	"unique" 1
 	"energy generation" 5.2
 	"heat generation" 19.4
-	"thrust" 26.7
-	"thrusting energy" 1.508
-	"thrusting heat" 2.86
-	"turn" 479.7
+	"thrust" 27
+	"thrusting energy" 1.5 # Removing the last 08 off this (was 1.508) because will have additional energy drain from laterals
+	"thrusting heat" 2.8 # Removing the last 6 off this (was 2.86) because will have additional heat produced by laterals
+	"lateral thrust" 25 # 90%
+	"lateral thrusting energy" 1.3
+	"lateral thrusting heat" 2.5
+	"turn" 480
 	"turning energy" 0.585
 	"turning heat" 1.365
 	"flare sprite" "effect/fissionflare"
 		"frame rate" 30
 		"rewind"
 	"flare sound" "atomic small"
+	"lateral flare sprite" "effect/fissionflare"
+		"frame rate" 30
+		"rewind"
+	"lateral flare sound" "atomic small"
 	"steering flare sprite" "effect/fissionflare"
 		"frame rate" 30
 		"rewind"
 	"steering flare sound" "atomic tiny"
+	"reverse thrust" 2.7
+	"reverse thrusting energy" .15
+	"reverse thrusting heat" .286
+	"reverse flare sprite" "effect/fissionflare"
+		"frame rate" 30
+		"rewind"
+	"reverse flare sound" "atomic tiny"
 	description "A much smaller cousin of the Fusion Drive, it relies on fission instead of fusion to function, providing the necessary power generation and thrust to drive the Heavy Ion Cyclotron."
 
 outfit "Fusion Drive"
 	category "Engines"
 	cost 80000000
 	thumbnail "outfit/fusiondrive"
+	"reverse thruster slot" -1
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.5
 	"mass" 480
 	"outfit space" -480
 	"engine capacity" -230
@@ -105,12 +126,15 @@ outfit "Fusion Drive"
 	"hyperdrive" 1
 	"energy generation" 54
 	"heat generation" 156
-	"turn" 3744.0
+	"turn" 3744
 	"turning energy" 4.55
 	"turning heat" 12.35
-	"thrust" 270.75
+	"thrust" 271
 	"thrusting energy" 11
 	"thrusting heat" 33
+	"lateral thrust" 190 # 70%
+	"lateral thrusting energy" 7
+	"lateral thrusting heat" 23 # This is a lot of extra heat the ship the ship will produce to counter drag that it wasn't originally designed for. May need to rebalance Sheragi heat somehow.
 	"reverse thrust" 63.9
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 13.3
@@ -137,7 +161,13 @@ outfit "Electronic Warfare System"
 	"outfit space" -6
 	"unique" 1
 	"radar jamming" 10
-	"tactical scan power" 25
+	"crew scan power" 25
+	"energy scan power" 20
+	"fuel scan power" 20
+	"range finder power" 1
+	"thermal scan power" 27
+	"velocity scan power" 34
+	"weapon scan power" 34
 	"scan interference" 2
 	"energy consumption" .2
 	description "This device provides radar jamming and a whole suite of electronic warfare, gathering data about the battlefield in real time and enhancing a ship's combat capabilities. It was an essential item for every Sheragi warship, and the technique it uses is still difficult to counter to this very day."
@@ -301,7 +331,7 @@ outfit "Shard Fabricator"
 	"outfit space" -10
 	"weapon capacity" -7
 	"fuel capacity" 36
-	"gun ports" -1
+	"missile pylons" -1
 	"unique" 1
 	"operating costs" 150
 	weapon

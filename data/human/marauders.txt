@@ -21,14 +21,18 @@ ship "Marauder Arrow"
 		"hull" 500
 		"required crew" 2
 		"bunks" 5
-		"mass" 200
+		"mass" 290
 		"drag" 2.3
 		"heat dissipation" .74
-		"fuel capacity" 600
+		"fuel capacity" 525
 		"cargo space" 5
-		"outfit space" 210
+		"outfit space" 243
 		"weapon capacity" 55
 		"engine capacity" 95
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 27
@@ -46,6 +50,7 @@ ship "Marauder Arrow"
 		"Laser Rifle" 5
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
@@ -53,6 +58,7 @@ ship "Marauder Arrow"
 	engine 8 56
 	gun -7.5 -36 "Heavy Laser"
 	gun 7.5 -36 "Heavy Laser"
+	pylon 0 -38
 	turret 0 17.5 "Quad Blaster Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 18
@@ -65,7 +71,11 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 	sprite "ship/marrowe"
 	thumbnail "thumbnail/marrowe"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 43
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Laser" 2
 		
@@ -76,6 +86,7 @@ ship "Marauder Arrow" "Marauder Arrow (Engines)"
 		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -99,6 +110,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 		"Laser Rifle" 5
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
@@ -106,6 +118,7 @@ ship "Marauder Arrow" "Marauder Arrow (Weapons)"
 	gun -7.5 -36 "Energy Blaster"
 	gun 7.5 -36 "Energy Blaster"
 	gun 7.5 -36 "Energy Blaster"
+	pylon 0 -38
 	turret 0 17.5 "Heavy Laser Turret"
 	description "The weapons systems on this Arrow have been enhanced to the point of competing with Lionheart's Headhunter, although it can still outrun all but the fastest ships, if things get a little too hairy."
 
@@ -121,14 +134,18 @@ ship "Marauder Bounder"
 		"hull" 700
 		"required crew" 2
 		"bunks" 18
-		"mass" 220
+		"mass" 290
 		"drag" 4.4
 		"heat dissipation" .67
-		"fuel capacity" 800
+		"fuel capacity" 700
 		"cargo space" 20
-		"outfit space" 240
+		"outfit space" 277
 		"weapon capacity" 80
 		"engine capacity" 115
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 35
@@ -148,6 +165,7 @@ ship "Marauder Bounder"
 		"Laser Rifle" 18
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -155,6 +173,7 @@ ship "Marauder Bounder"
 	engine -10 44
 	engine 10 44
 	gun 0 -84.5 "Particle Cannon"
+	pylon 0 -80
 	turret -38 12 "Quad Blaster Turret"
 	turret 38 12 "Quad Blaster Turret"
 	explode "tiny explosion" 10
@@ -169,6 +188,10 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 	thumbnail "thumbnail/mboundere"
 	add attributes
 		"engine capacity" 15
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Rocket Pod"
 		"Heavy Rocket" 2
@@ -182,6 +205,7 @@ ship "Marauder Bounder" "Marauder Bounder (Engines)"
 		"Laser Rifle" 18
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
@@ -209,6 +233,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 		"Laser Rifle" 18
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 		
@@ -216,6 +241,7 @@ ship "Marauder Bounder" "Marauder Bounder (Weapons)"
 	engine 10 44
 	gun -9 -84.5 "Modified Blaster"
 	gun 9 -84.5 "Modified Blaster"
+	pylon 0 -80
 	turret -38 12 "Heavy Laser Turret"
 	turret 38 12 "Heavy Laser Turret"
 	description "Simultaneously the deadliest and most graceful interceptor in the galaxy, this former Bounder courier-scout has been equipped with incredibly powerful weapons for a ship of its size."
@@ -232,14 +258,18 @@ ship "Marauder Falcon"
 		"hull" 4100
 		"required crew" 57
 		"bunks" 96
-		"mass" 1390
+		"mass" 4480
 		"drag" 11.4
 		"heat dissipation" .42
-		"fuel capacity" 600
+		"fuel capacity" 1650
 		"cargo space" 80
-		"outfit space" 620
+		"outfit space" 668
 		"weapon capacity" 275
-		"engine capacity" 165
+		"engine capacity" 191
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .15
 		weapon
 			"blast radius" 170
@@ -264,6 +294,7 @@ ship "Marauder Falcon"
 		"Security Station"
 		
 		"A520 Atomic Thruster"
+		"AL529 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 
@@ -273,6 +304,10 @@ ship "Marauder Falcon"
 	gun 16 -86.5 "Plasma Cannon"
 	gun -19 -76.5 "Proton Gun"
 	gun 19 -76.5 "Proton Gun"
+	pylon -47 5
+	pylon 47 5
+	pylon -51 84
+	pylon 51 84
 	turret -16 -29 "Modified Blaster Turret"
 	turret 16 -29 "Modified Blaster Turret"
 	turret -50 39.5 "Proton Turret"
@@ -289,7 +324,11 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	sprite "ship/mfalcone"
 	thumbnail "thumbnail/mfalcone"
 	add attributes
-		"engine capacity" 25
+		"engine capacity" 85
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Proton Gun" 4
 		"Modified Blaster Turret" 2
@@ -305,6 +344,7 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 		"Security Station" 3
 		
 		"A860 Atomic Thruster"
+		"AL869 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -315,6 +355,10 @@ ship "Marauder Falcon" "Marauder Falcon (Engines)"
 	gun 16 -86.5
 	gun -19 -76.5
 	gun 19 -76.5
+	pylon -47 5
+	pylon 47 5
+	pylon -51 84
+	pylon 51 84
 	turret -16 -29 "Modified Blaster Turret"
 	turret 16 -29 "Modified Blaster Turret"
 	turret -50 39.5 "Quad Blaster Turret"
@@ -342,6 +386,7 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 		"Nerve Gas" 20
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -354,6 +399,10 @@ ship "Marauder Falcon" "Marauder Falcon (Weapons)"
 	gun 19 -76.5
 	gun -24.5 -66.5
 	gun 24.5 -66.5
+	pylon -47 5
+	pylon 47 5
+	pylon -51 84
+	pylon 51 84
 	turret -16 -29
 	turret 16 -29
 	turret -50 39.5
@@ -372,14 +421,18 @@ ship "Marauder Firebird"
 		"hull" 3600
 		"required crew" 10
 		"bunks" 25
-		"mass" 750
+		"mass" 1400
 		"drag" 6.7
 		"heat dissipation" .4
-		"fuel capacity" 400
+		"fuel capacity" 575
 		"cargo space" 20
-		"outfit space" 450
+		"outfit space" 480
 		"weapon capacity" 175
-		"engine capacity" 110
+		"engine capacity" 123
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 110
@@ -400,6 +453,7 @@ ship "Marauder Firebird"
 		"Nerve Gas" 29
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -409,6 +463,14 @@ ship "Marauder Firebird"
 	gun 28 -34 "Plasma Cannon"
 	gun -39 -19 "Plasma Cannon"
 	gun 39 -19 "Plasma Cannon"
+	pylon -39 37
+		over
+	pylon 39 37
+		over
+	pylon -10 20
+		over
+	pylon 10 20
+		over
 	turret 0 -44 "Heavy Anti-Missile Turret"
 	turret 0 -2.5 "Heavy Laser Turret"
 	explode "tiny explosion" 18
@@ -423,7 +485,11 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 	sprite "ship/mfirebirde"
 	thumbnail "thumbnail/mfirebirds"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 27
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Plasma Cannon" 4
 		"Quad Blaster Turret"
@@ -440,6 +506,7 @@ ship "Marauder Firebird" "Marauder Firebird (Engines)"
 		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 
@@ -468,6 +535,7 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 		"Nerve Gas" 13
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -475,6 +543,14 @@ ship "Marauder Firebird" "Marauder Firebird (Weapons)"
 	gun 27.5 -33.5 "Particle Cannon"
 	gun -38.5 -18.5 "Particle Cannon"
 	gun 38.5 -18.5 "Particle Cannon"
+	pylon -39 37
+		over
+	pylon 39 37
+		over
+	pylon -10 20
+		over
+	pylon 10 20
+		over
 	turret 0 -44 "Quad Blaster Turret"
 	turret 0 -2.5 "Quad Blaster Turret"
 	description "The Firebird is known to have one of the heaviest armaments possible for a warship of its size, and this modified version makes it even heavier. With more outfit space, giant gun ports, extra hull plating, and more shield emitters, this blast from the past will make its targets history."
@@ -491,14 +567,18 @@ ship "Marauder Leviathan"
 		"hull" 5500
 		"required crew" 48
 		"bunks" 69
-		"mass" 1700
+		"mass" 5440
 		"drag" 14.2
 		"heat dissipation" .3
-		"fuel capacity" 500
+		"fuel capacity" 1575
 		"cargo space" 40
-		"outfit space" 680
+		"outfit space" 709
 		"weapon capacity" 265
-		"engine capacity" 140
+		"engine capacity" 166
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .15
 		weapon
 			"blast radius" 90
@@ -521,6 +601,7 @@ ship "Marauder Leviathan"
 		"Nerve Gas" 15
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Ionic Afterburner"
 		"Hyperdrive"
@@ -531,6 +612,10 @@ ship "Marauder Leviathan"
 	gun 39.5 -33 "Particle Cannon"
 	gun -51 -21 "Particle Cannon"
 	gun 51 -21 "Particle Cannon"
+	pylon -39.5 -33
+	pylon 39.5 -33
+	pylon -51 -21
+	pylon 51 -21
 	turret -14.5 -11.5 "Quad Blaster Turret"
 	turret 14.5 -11.5 "Quad Blaster Turret"
 	turret -26 11.5 "Heavy Laser Turret"
@@ -547,7 +632,11 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 	sprite "ship/mleviathane"
 	thumbnail "thumbnail/mleviathane"
 	add attributes
-		"engine capacity" 40
+		"engine capacity" 57
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Rocket Launcher" 4
 		"Heavy Rocket" 80
@@ -565,6 +654,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Engines)"
 		"Nerve Gas" 8
 		
 		"A520 Atomic Thruster"
+		"AL529 Atomic LTC"
 		"A865 Atomic Steering"
 		"Hyperdrive"
 	
@@ -596,6 +686,7 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 		"Nerve Gas" 48
 
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Ionic Afterburner"
 		"Hyperdrive"
@@ -604,6 +695,10 @@ ship "Marauder Leviathan" "Marauder Leviathan (Weapons)"
 	gun 37.5 -41.5
 	gun -49.5 -29.5 "Particle Cannon"
 	gun 49.5 -29.5 "Particle Cannon"
+	pylon -39.5 -33
+	pylon 39.5 -33
+	pylon -51 -21
+	pylon 51 -21
 	turret -14.5 -11.5
 	turret 14.5 -11.5 "Heavy Laser Turret"
 	turret -26 11.5 "Heavy Laser Turret"
@@ -622,14 +717,18 @@ ship "Marauder Manta"
 		"hull" 1750
 		"required crew" 7
 		"bunks" 11
-		"mass" 400
+		"mass" 780
 		"drag" 6.3
 		"heat dissipation" .6
-		"fuel capacity" 400
+		"fuel capacity" 475
 		"cargo space" 10
-		"outfit space" 400
+		"outfit space" 434
 		"weapon capacity" 155
-		"engine capacity" 110
+		"engine capacity" 121
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 90
@@ -651,17 +750,20 @@ ship "Marauder Manta"
 		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
 	engine -33 40
 	engine 33 40
-	gun -68.5 -33 "Meteor Missile Launcher"
-	gun 68.5 -33 "Meteor Missile Launcher"
+	gun -68.5 -33
+	gun 68.5 -33
 	gun -20 -31 "Plasma Cannon"
 	gun 20 -31 "Plasma Cannon"
 	gun -26.5 -30 "Plasma Cannon"
 	gun 26.5 -30 "Plasma Cannon"
+	pylon -68.5 -33 "Meteor Missile Launcher"
+	pylon 68.5 -33 "Meteor Missile Launcher"
 	turret 0 -28 "Quad Blaster Turret"
 	explode "tiny explosion" 10
 	explode "small explosion" 20
@@ -674,7 +776,11 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 	sprite "ship/mmantae"
 	thumbnail "thumbnail/mmantae"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 29
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Plasma Cannon" 4
 		"Meteor Missile Launcher" 2
@@ -688,18 +794,21 @@ ship "Marauder Manta" "Marauder Manta (Engines)"
 		"Laser Rifle" 11
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
 	engine -33 43
 	engine 0 82.5 0.7
 	engine 33 43
-	gun "Meteor Missile Launcher"
-	gun "Meteor Missile Launcher"
+	gun
+	gun
 	gun "Plasma Cannon"
 	gun "Plasma Cannon"
 	gun "Plasma Cannon"
 	gun "Plasma Cannon"
+	pylon -68.5 -33 "Meteor Missile Launcher"
+	pylon 68.5 -33 "Meteor Missile Launcher"
 	turret "Quad Blaster Turret"
 	description `A previous owner of this Manta has gone to great lengths to make sure they could bring all six gun ports to bear in a hurry, and chase down smaller warships. Style was not lost on that captain, and a forked tail yielded a little more space for shield projectors in an area that would have been destabilized by engine exhaust. If its dry tonnage were any higher, it would be classified as a heavy warship.`
 
@@ -726,17 +835,20 @@ ship "Marauder Manta" "Marauder Manta (Weapons)"
 		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		
 	engine -33.5 38
 	engine 33.5 38
-	gun -68.5 -43 "Meteor Missile Launcher"
-	gun 68.5 -43 "Meteor Missile Launcher"
+	gun -68.5 -43
+	gun 68.5 -43
 	gun -26.5 -33 "Proton Gun"
 	gun 26.5 -33 "Proton Gun"
 	gun -20 -33 "Particle Cannon"
 	gun 20 -33 "Particle Cannon"
+	pylon -68.5 -33 "Meteor Missile Launcher"
+	pylon 68.5 -33 "Meteor Missile Launcher"
 	turret 0 -28.5 "Heavy Anti-Missile Turret"
 	description `This Manta has undergone extensive modification, featuring extra hull plating, shield emitters, weapon space, and even a turret mount. Whoever modified it seems to have forgotten to include dedicated space for the power systems, as they're crammed in and around everything else like an afterthought. If its dry tonnage were any higher, it would be classified as a heavy warship.`
 
@@ -752,14 +864,18 @@ ship "Marauder Quicksilver"
 		"hull" 900
 		"required crew" 4
 		"bunks" 7
-		"mass" 220
+		"mass" 280
 		"drag" 3.2
 		"heat dissipation" .67
-		"fuel capacity" 400
+		"fuel capacity" 350
 		"cargo space" 5
-		"outfit space" 265
+		"outfit space" 302
 		"weapon capacity" 85
-		"engine capacity" 75
+		"engine capacity" 86
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 45
@@ -778,6 +894,7 @@ ship "Marauder Quicksilver"
 		"Laser Rifle"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	
@@ -785,6 +902,7 @@ ship "Marauder Quicksilver"
 	engine 15.5 54
 	gun -6 -39.5 "Heavy Laser"
 	gun 6 -39.5 "Heavy Laser"
+	pylon 0 4
 	turret 0 26 "Heavy Anti-Missile Turret"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
@@ -801,7 +919,11 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 	sprite "ship/mquicksilvere"
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
-		"engine capacity" 40
+		"engine capacity" 42
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Pulse Cannon" 2
 		"Anti-Missile Turret"
@@ -815,6 +937,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
 		"Nerve Gas"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
@@ -828,8 +951,12 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
 	sprite "ship/mquicksilvere"
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
-		"engine capacity" 40
+		"engine capacity" 42
 		"self destruct" -.25
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Pulse Cannon" 2
 		"Anti-Missile Turret"
@@ -842,6 +969,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
 		"Laser Rifle" 5
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 	
@@ -868,11 +996,13 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons)"
 		"Laser Rifle"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	
 	gun -6 -52.5 "Heavy Laser"
 	gun 6 -52.5 "Heavy Laser"
+	pylon 0 4
 	turret 0 26 "Heavy Laser Turret"
 	description "This Quicksilver has even bigger gun ports. It's also got a few extra shield emitters, more hull plating, and an extra bunk. Outfitted right, this aftermarket model could be even faster than a stock model, bringing a couple of extra cannons and a turret to a fight in more menacing mimicry of Lionheart's Headhunter."
 
@@ -895,6 +1025,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons) (Safe)"
 		"Laser Rifle"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
 		"Hyperdrive"
 	
@@ -914,14 +1045,18 @@ ship "Marauder Raven"
 		"hull" 1600
 		"required crew" 7
 		"bunks" 14
-		"mass" 280
+		"mass" 290
 		"drag" 4.8
 		"heat dissipation" .62
-		"fuel capacity" 500
+		"fuel capacity" 450
 		"cargo space" 20
-		"outfit space" 310
+		"outfit space" 337
 		"weapon capacity" 115
 		"engine capacity" 110
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 65
@@ -939,6 +1074,7 @@ ship "Marauder Raven"
 		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Volcano Afterburner"
 		"Hyperdrive"
@@ -951,6 +1087,8 @@ ship "Marauder Raven"
 	gun 13.5 -35.5 "Heavy Laser"
 	gun -21 -28 "Heavy Laser"
 	gun 21 -28 "Heavy Laser"
+	pylon -40 -20
+	pylon 40 -20
 	turret 0 7.5 "Heavy Laser Turret"
 	explode "medium explosion" 24
 	explode "large explosion" 16
@@ -965,6 +1103,11 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 	thumbnail "thumbnail/mravene"
 	add attributes
 		"engine capacity" 20
+		"outfit space" 9
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Heavy Laser" 4
 		"Quad Blaster Turret"
@@ -976,6 +1119,7 @@ ship "Marauder Raven" "Marauder Raven (Engines)"
 		"Outfits Expansion"
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
@@ -1005,6 +1149,7 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 		"Outfits Expansion"
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Laser Rifle" 14
@@ -1014,6 +1159,8 @@ ship "Marauder Raven" "Marauder Raven (Weapons)"
 	gun 13.5 -35.5
 	gun -21 -28 "Pulse Cannon"
 	gun 21 -28 "Pulse Cannon"
+	pylon -40 -20
+	pylon 40 -20
 	turret 0 7.5 "Heavy Laser Turret"
 	description "A former owner of this ship apparently didn't like the lithe Raven, and has added so much more to it - more weapons, more shields, and more outfit capacity - that the central hull can only be recognized because of the wings. Besides adding a turret, this ship has enormous gun ports, making you wonder how much more deadly you could possibly make a warship this small."
 
@@ -1029,14 +1176,18 @@ ship "Marauder Splinter"
 		"hull" 1950
 		"required crew" 8
 		"bunks" 22
-		"mass" 565
+		"mass" 1100
 		"drag" 5.6
 		"heat dissipation" .5
-		"fuel capacity" 600
+		"fuel capacity" 775
 		"cargo space" 40
-		"outfit space" 450
+		"outfit space" 487
 		"weapon capacity" 165
-		"engine capacity" 110
+		"engine capacity" 123
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"self destruct" .25
 		weapon
 			"blast radius" 60
@@ -1056,6 +1207,7 @@ ship "Marauder Splinter"
 		"Nerve Gas" 2
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -1063,6 +1215,8 @@ ship "Marauder Splinter"
 	engine 15.5 115
 	gun -12 -93 "Plasma Cannon"
 	gun 12 -93 "Plasma Cannon"
+	pylon -22.5 -42
+	pylon 22.5 -42
 	turret -13 42 "Heavy Laser Turret"
 	turret 0 9 "Heavy Anti-Missile Turret"
 	turret 13 42 "Heavy Laser Turret"
@@ -1078,7 +1232,11 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 	sprite "ship/msplintere"
 	thumbnail "thumbnail/msplintere"
 	add attributes
-		"engine capacity" 20
+		"engine capacity" 27
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	outfits
 		"Plasma Cannon" 2
 		"Quad Blaster Turret" 2
@@ -1093,6 +1251,7 @@ ship "Marauder Splinter" "Marauder Splinter (Engines)"
 		"Laser Rifle" 21
 		
 		"A370 Atomic Thruster"
+		"AL379 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -1124,6 +1283,7 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 		"Nerve Gas" 4
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A525 Atomic Steering"
 		"Hyperdrive"
 	
@@ -1131,6 +1291,8 @@ ship "Marauder Splinter" "Marauder Splinter (Weapons)"
 	gun 11.5 -98 "Plasma Cannon"
 	gun -23.5 -28 "Plasma Cannon"
 	gun 23.5 -28 "Plasma Cannon"
+	pylon -22.5 -42
+	pylon 22.5 -42
 	turret -13.5 42.5 "Quad Blaster Turret"
 	turret 0 9 "Heavy Anti-Missile Turret"
 	turret 13.5 42.5 "Quad Blaster Turret"

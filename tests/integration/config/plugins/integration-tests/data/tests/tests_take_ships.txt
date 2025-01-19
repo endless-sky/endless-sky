@@ -37,6 +37,10 @@ test-data "Checking For A Gifted Ship Test Save"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
+				"lateral thruster slot" 1
+				"reverse thruster slot" 1
+				"steering slot" 1
+				"thruster slot" 1
 			outfits
 				"X1700 Ion Thruster"
 				"X1200 Ion Steering"
@@ -75,6 +79,10 @@ test-data "Checking For A Gifted Ship Test Save"
 				"outfit space" 130
 				"weapon capacity" 16
 				"engine capacity" 65
+				"lateral thruster slot" 1
+				"reverse thruster slot" 1
+				"steering slot" 1
+				"thruster slot" 1
 				weapon
 					"blast radius" 12
 					"shield damage" 120
@@ -172,17 +180,22 @@ test-data "Taking Ship With Outfits And Unconstrained Test Save"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 57
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 147
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
+				"lateral thruster slot" 1
+				"reverse thruster slot" 1
+				"steering slot" 1
+				"thruster slot" 1
 			outfits
 				"X1700 Ion Thruster"
+				"X1400 Ion LTC"
 				"X1200 Ion Steering"
 				Hyperdrive
 				"Anti-Missile Turret"
@@ -211,15 +224,19 @@ test-data "Taking Ship With Outfits And Unconstrained Test Save"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 57
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 147
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 20
+				"lateral thruster slot" 1
+				"reverse thruster slot" 1
+				"steering slot" 1
+				"thruster slot" 1
 			outfits
 				"Blaster Turret"
 				"nGVF-BB Fuel Cell"
@@ -227,6 +244,7 @@ test-data "Taking Ship With Outfits And Unconstrained Test Save"
 				"D14-RN Shield Generator"
 				"Laser Rifle"
 				"Chipmunk Plasma Thruster"
+				"Chipmunk Plasma LTC"
 				"Chipmunk Plasma Steering"
 				"Hyperdrive"
 			crew 1

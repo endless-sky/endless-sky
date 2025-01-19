@@ -683,6 +683,7 @@ ship "Boxwing" "Boxwing (Miner)"
 	outfits
 		"KP-6 Photovoltaic Array"
 		"X1700 Ion Thruster"
+		"X1400 Ion LTC"
 		"X1200 Ion Steering"
 
 
@@ -693,6 +694,7 @@ ship "Dagger" "Dagger (Miner)"
 		"nGVF-BB Fuel Cell"
 		"Supercapacitor"
 		"X1700 Ion Thruster"
+		"X1400 Ion LTC"
 		"X1200 Ion Steering"
 
 

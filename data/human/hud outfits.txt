@@ -1,0 +1,87 @@
+# Copyright (c) 2024 by Zitchas
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "In-flight Mass Display"
+	category "Heads Up Displays"
+	cost 5000
+	thumbnail "outfit/cockpit mass software"
+	"mass" 0
+	"outfit space" 0
+	"mass display" 1
+	description "This innocuous device is so compact as to barely count as an outfit at all. Some pilots find it useful to know what their ship's current mass is while in-flight, and this little display adds that information to their Heads Up Display."
+
+outfit "Hyperjump Fuel Display"
+	category "Heads Up Displays"
+	cost 11000
+	thumbnail "outfit/cockpit hyperjump software"
+	"mass" 0
+	"outfit space" 0
+	"hyperdrive fuel cost display" 1
+	description "This innocuous device is so compact as to barely count as an outfit at all. Its sole purpose is to allow pilots to customize their heads-up display to provide their flight computer's current estimate of the amount of fuel they need to make a hyperjump."
+
+outfit "Scram Drive Fuel Display"
+	category "Heads Up Displays"
+	cost 17000
+	thumbnail "outfit/cockpit scramjump software"
+	"mass" 0
+	"outfit space" 0
+	"scram drive fuel cost display" 1
+	description "This innocuous device is so compact as to barely count as an outfit at all. Its sole purpose is to allow pilots to customize their heads-up display to provide their flight computer's current estimate of the amount of fuel they need to make a hyperjump with a scram drive."
+
+outfit "Jump Drive Fuel Display"
+	category "Heads Up Displays"
+	cost 23000
+	thumbnail "outfit/cockpit jumpdrive software"
+	"mass" 0
+	"outfit space" 0
+	"jump drive fuel cost display" 1
+	description "This innocuous device is so compact as to barely count as an outfit at all. Its sole purpose is to allow pilots to customize their heads-up display to provide their flight computer's current estimate of the amount of fuel they need to make a hyperjump with a jump drive."
+
+outfit "Fuel Bar Hyperjump Display"
+	category "Heads Up Displays"
+	cost 7000
+	thumbnail "outfit/cockpit software"
+	"mass" 0
+	"outfit space" 0
+	"hyperdrive fuel bar scale" 1
+	description "This innocuous device is so compact as to barely count as an outfit at all. Its sole purpose is to allow pilots to customize their heads-up display so that their fuel bar is segmented into sections representing a single hyperdrive jump."
+	description "	Just like the HUD display, the amount of fuel represented by each segment of the bar is automatically calculated in flight, and while landed it uses the ship's fully outfitted but otherwise empty mass. Given how standardized hyperdrives are, this is the default segmentation most ships use, and it will override other fuel segmentation customizations. Due to limitations of the display, if you have 31 or more hyper jumps worth of fuel, the display will show as a solid bar."
+
+outfit "Fuel Bar Scram Display"
+	category "Heads Up Displays"
+	cost 9000
+	thumbnail "outfit/cockpit software"
+	"mass" 0
+	"outfit space" 0
+	"scram drive fuel bar scale" 1
+	description "This innocuous device is so compact as to barely count as an outfit at all. Its sole purpose is to allow pilots to customize their heads-up display so that their fuel bar is segmented into sections representing a single scram drive jump."
+	description "	Just like the HUD display, the amount of fuel represented by each segment of the bar is automatically calculated in flight, and while landed it uses the ship's fully outfitted but otherwise empty mass. Given how standardized hyperdrives are, this display modification will be overridden by the hyperdrive fuel segmentation, but will override other fuel display segmentations. Due to limitations of the display, if you have 31 or more scram jumps worth of fuel, the display will show as a solid bar."
+
+outfit "Fuel Bar Jump Display"
+	category "Heads Up Displays"
+	cost 11000
+	thumbnail "outfit/cockpit software"
+	"mass" 0
+	"outfit space" 0
+	"jump drive fuel bar scale" 1
+	description "This innocuous device is so compact as to barely count as an outfit at all. Its sole purpose is to allow pilots to customize their heads-up display so that their fuel bar is segmented into sections representing a single jump drive jump."
+	description "	Just like the HUD display, the amount of fuel represented by each segment of the bar is automatically calculated in flight, and while landed it uses the ship's fully outfitted but otherwise empty mass. Given how standardized hyperdrives are, this display modification will be overridden by the hyperdrive fuel segmentation as well as the scram drive fuel segmentation, but will override other fuel display segmentations. Due to limitations of the display, if you have 31 or more jump drive jumps worth of fuel, the display will show as a solid bar."
+
+outfit "Fuel Bar Fixed Display"
+	category "Heads Up Displays"
+	cost 2000
+	thumbnail "outfit/cockpit software"
+	"mass" 0
+	"outfit space" 0
+	"fixed scale fuel bar scale" 100
+	description "This innocuous device is so compact as to barely count as an outfit at all. Its sole purpose is to allow pilots to customize their heads-up display so that their fuel bar is segmented into sections where each full section is exactly the amount of fuel specified. It will be overridden by any other fuel display segmentation that is present; and due to display limitations, it will show a solid bar if 31 or more full fuel segments would be called for."

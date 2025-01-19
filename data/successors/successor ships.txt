@@ -29,11 +29,15 @@ ship "Aaulqra"
 		"mass" 650
 		"drag" 8.75
 		"heat dissipation" 0.49
-		"fuel capacity" 600
+		"fuel capacity" 700
 		"cargo space" 15
-		"outfit space" 550
+		"outfit space" 578
 		"weapon capacity" 240
 		"engine capacity" 120
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 2.75
 		"hull energy" 4.0
@@ -57,6 +61,7 @@ ship "Aaulqra"
 		"Kinetic Rail Rifle" 7
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		"Hyperdrive"
@@ -67,6 +72,8 @@ ship "Aaulqra"
 	gun 14 -74 `"Ojet" Bimodal Coilgun`
 	gun -12 -83 `"Ojet" Bimodal Coilgun`
 	gun 12 -83 `"Ojet" Bimodal Coilgun`
+	pylon 0 -116
+	pylon 0 -109
 	turret -17 4
 	turret 17 4
 	engine -17 50
@@ -122,11 +129,15 @@ ship "Ejniisde"
 		"mass" 350
 		"drag" 4.6
 		"heat dissipation" 0.67
-		"fuel capacity" 700
+		"fuel capacity" 650
 		"cargo space" 50
-		"outfit space" 265
+		"outfit space" 298
 		"weapon capacity" 85
-		"engine capacity" 100
+		"engine capacity" 136
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -140,6 +151,7 @@ ship "Ejniisde"
 		"Successor Fuel Sail"
 
 		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		"Hyperdrive"
@@ -200,11 +212,15 @@ ship "Kaskhorade"
 		"mass" 990
 		"drag" 13.6
 		"heat dissipation" .5
-		"fuel capacity" 600
+		"fuel capacity" 800
 		"cargo space" 140
-		"outfit space" 570
+		"outfit space" 608
 		"weapon capacity" 280
-		"engine capacity" 110
+		"engine capacity" 146
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 2.25
 		"hull energy" 3.26
@@ -229,14 +245,17 @@ ship "Kaskhorade"
 		"Kinetic Rail Rifle" 25
 
 		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		`"Veusa" Inductive Reverser`
 		"Hyperdrive"
 
-	gun -3 -120 `"Sjeja" Kinetic Lance`
-	gun 3 -120 `"Sjeja" Kinetic Lance`
+	gun -3 -120
+	gun 3 -120
 	gun -19 -74 `"Ojet" Bimodal Coilgun`
 	gun 19 -74 `"Ojet" Bimodal Coilgun`
+	pylon -3 -120 `"Sjeja" Kinetic Lance`
+	pylon 3 -120 `"Sjeja" Kinetic Lance`
 	turret -31 6
 	turret 31 6
 	turret 0 -15 "Bimodal Coilgun Turret"
@@ -296,11 +315,15 @@ ship "Kvelqde"
 		"mass" 110
 		"drag" 2.25
 		"heat dissipation" 0.82
-		"fuel capacity" 500
+		"fuel capacity" 400
 		"cargo space" 25
-		"outfit space" 160
+		"outfit space" 175
 		"weapon capacity" 55
-		"engine capacity" 45
+		"engine capacity" 63
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -311,6 +334,7 @@ ship "Kvelqde"
 		`"Ej" Shield Cortex`
 
 		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -377,11 +401,15 @@ ship "Kvelqde-Khora"
 		"mass" 158
 		"drag" 2.95
 		"heat dissipation" 0.78
-		"fuel capacity" 500
+		"fuel capacity" 400
 		"cargo space" 10
-		"outfit space" 197
+		"outfit space" 217
 		"weapon capacity" 63
-		"engine capacity" 45
+		"engine capacity" 63
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -396,6 +424,7 @@ ship "Kvelqde-Khora"
 		`"Ej" Shield Cortex`
 
 		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -458,11 +487,15 @@ ship "Myaede"
 		"mass" 500
 		"drag" 7.1
 		"heat dissipation" 0.62
-		"fuel capacity" 500
+		"fuel capacity" 525
 		"cargo space" 125
-		"outfit space" 275
+		"outfit space" 301
 		"weapon capacity" 125
 		"engine capacity" 130
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -476,6 +509,7 @@ ship "Myaede"
 		`"Ej" Shield Cortex`
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -543,9 +577,13 @@ ship "Nnaatej"
 		"heat dissipation" 0.61
 		"fuel capacity" 500
 		"cargo space" 35
-		"outfit space" 220
+		"outfit space" 245
 		"weapon capacity" 54
-		"engine capacity" 82
+		"engine capacity" 100
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"waterlining" 1
 		"corrosion resistance" 0.6
 		"slowing resistance" 0.6
@@ -564,6 +602,7 @@ ship "Nnaatej"
 		"Successor Fuel Sail"
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -623,11 +662,15 @@ ship "Nnesaarau"
 		"mass" 90
 		"drag" 2.1
 		"heat dissipation" 0.86
-		"fuel capacity" 600
+		"fuel capacity" 475
 		"cargo space" 8
-		"outfit space" 175
+		"outfit space" 202
 		"weapon capacity" 30
-		"engine capacity" 60
+		"engine capacity" 86
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -640,6 +683,7 @@ ship "Nnesaarau"
 		`"Ej" Shield Cortex`
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Scram Drive"
@@ -695,11 +739,15 @@ ship "Ojde"
 		"mass" 1190
 		"drag" 15.5
 		"heat dissipation" 0.5
-		"fuel capacity" 500
+		"fuel capacity" 725
 		"cargo space" 450
-		"outfit space" 330
+		"outfit space" 369
 		"weapon capacity" 180
 		"engine capacity" 150
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 100
 			"shield damage" 1000
@@ -714,6 +762,7 @@ ship "Ojde"
 		"Successor Cooling"
 
 		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		"Hyperdrive"
@@ -779,9 +828,13 @@ ship "Seiitej"
 		"heat dissipation" .60
 		"fuel capacity" 800
 		"cargo space" 130
-		"outfit space" 370
+		"outfit space" 405
 		"weapon capacity" 90
-		"engine capacity" 110
+		"engine capacity" 146
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 1.2
 		"hull energy" 1.74
@@ -802,6 +855,7 @@ ship "Seiitej"
 		"Kinetic Rail Rifle" 15
 
 		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		"Hyperdrive"
 
@@ -809,6 +863,7 @@ ship "Seiitej"
 	gun -5 -86
 	gun 5 -86
 	gun 10 -78
+	pylon 0 -76
 	turret 0 -29
 	engine -25 44
 	engine 25 44
@@ -862,11 +917,15 @@ ship "Stolsaqra"
 		"mass" 120
 		"drag" 2.75
 		"heat dissipation" 0.79
-		"fuel capacity" 300
+		"fuel capacity" 250
 		"cargo space" 5
-		"outfit space" 212
+		"outfit space" 226
 		"weapon capacity" 90
-		"engine capacity" 80
+		"engine capacity" 83
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 0.3
 		"hull energy" 0.4
@@ -884,7 +943,8 @@ ship "Stolsaqra"
 		"Auxiliary Power Reserve" 2
 		`"Byiaa" Shield Cortex`
 
-		`"Aqra" Inductive Thruster` 2
+		`"Aqra" Inductive Thruster`
+		`"Aqra" Inductive LTC`
 		`"Aqra" Inductive Steering`
 		`"Aqra" Inductive Reverser`
 		"Hyperdrive"
@@ -892,6 +952,7 @@ ship "Stolsaqra"
 	gun 0 -40 "Successor Pulse Laser"
 	gun -10.5 -20 "Successor Pulse Laser"
 	gun 10.5 -20 "Successor Pulse Laser"
+	pylon 0 -36
 	engine -8 35
 	engine 8 35
 	"steering engine" 4 -41
@@ -952,11 +1013,15 @@ ship "Veusade"
 		"mass" 360
 		"drag" 5.45
 		"heat dissipation" .62
-		"fuel capacity" 500
+		"fuel capacity" 475
 		"cargo space" 15
-		"outfit space" 370
+		"outfit space" 413
 		"weapon capacity" 96
-		"engine capacity" 120
+		"engine capacity" 146
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"multimodal armor" 1
 		"hull repair rate" 1.45
 		"hull energy" 2.1
@@ -978,6 +1043,7 @@ ship "Veusade"
 		"Kinetic Rail Rifle" 5
 
 		`"Veusa" Inductive Thruster`
+		`"Veusa" Inductive LTC`
 		`"Veusa" Inductive Steering`
 		"Hyperdrive"
 
@@ -1047,11 +1113,15 @@ ship "Vujlet"
 		"mass" 230
 		"drag" 3.8
 		"heat dissipation" .68
-		"fuel capacity" 600
+		"fuel capacity" 525
 		"cargo space" 10
-		"outfit space" 280
+		"outfit space" 309
 		"weapon capacity" 105
-		"engine capacity" 85
+		"engine capacity" 100
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"exclusive: Vujlet" 1
 		"multimodal armor" 1
 		"hull repair rate" 0.875
@@ -1074,6 +1144,7 @@ ship "Vujlet"
 		"Kinetic Rail Rifle" 4
 
 		`"Chyyra" Inductive Thruster`
+		`"Chyyra" Inductive LTC`
 		`"Chyyra" Inductive Steering`
 		`"Chyyra" Inductive Reverser`
 		"Hyperdrive"
@@ -1082,6 +1153,7 @@ ship "Vujlet"
 	gun 6 -46 `"Ojet" Bimodal Coilgun`
 	gun -9 -30
 	gun 9 -30
+	pylon 0 44
 	engine -16 49
 		zoom .9
 	engine 16 49
