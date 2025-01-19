@@ -300,6 +300,7 @@ mission "Deep Archaeology 5"
 
 ship "Timer Ship"
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 3
 		"hull repair rate" .001
@@ -307,6 +308,7 @@ ship "Timer Ship"
 		"drag" 5
 		"automaton" 1
 		"thrust" 10
+		"lateral thrust" 10
 		"turn" 600
 	outfits
 		"Timer Weapon"

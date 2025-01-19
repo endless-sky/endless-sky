@@ -41,6 +41,7 @@ ship "Vyrmeid"
 		"energy generation" 1
 		
 		"thrust" 15
+		"lateral thrust" 8
 		"turn" 180
 
 		"atmosphere scan" 1
@@ -96,6 +97,7 @@ ship "Vyrmeid" "Vyrmeid (B)"
 		"hull repair rate" 1
 
 		"thrust" 18
+		"lateral thrust" 9
 		"turn" 90
 
 		"energy protection" 1
@@ -148,6 +150,7 @@ ship "Vyrmeid" "Vyrmeid (C)"
 		"energy generation" 100
 
 		"thrust" 9
+		"lateral thrust" 5
 		"turn" 120
 
 		"energy protection" 1
@@ -191,7 +194,7 @@ ship "Astral Cetacean"
 		"mass" 1800
 		"drag" 23.6
 		"heat dissipation" 0.46
-		"fuel capacity" 200
+		"fuel capacity" 275
 		"cargo space" 0
 		"outfit space" 0
 		"weapon capacity" 0
@@ -204,6 +207,7 @@ ship "Astral Cetacean"
 		"energy generation" 160
 
 		"thrust" 36
+		"lateral thrust" 18
 		"flare sound" "astral cetacean"
 		"turn" 360
 		"steering flare sound" "astral cetacean"

@@ -160,7 +160,7 @@ namespace {
 	const Color black(0.f, 1.f);
 
 	// Hovering an escort pip for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 30;
 	// Length in frames of the recentering animation.
 	const int RECENTER_TIME = 20;
 
@@ -375,6 +375,12 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
+	mapIsStarry = player.StarryMap();
+	if(mapIsStarry)
+	{
+		info.SetCondition("map is starry");
+		info.SetBar("system ring", 1.);
+	}
 	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1280
 		? "map buttons (small screen)" : "map buttons");
 	mapButtonUi->Draw(info, this);
@@ -616,6 +622,8 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 			this, &MapPanel::Find, "Search for:", "", Truncate::NONE, true));
 		return true;
 	}
+	else if(key == 'x')
+		player.SetStarryMap(!mapIsStarry);
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 		player.SetMapZoom(min<int>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1));
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)

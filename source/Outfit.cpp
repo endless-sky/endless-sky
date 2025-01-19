@@ -64,6 +64,10 @@ namespace {
 		{"thrusting burn", 0.},
 		{"thrusting disruption", 0.},
 		{"thrusting slowing", 0.},
+		{"lateral thrust ratio", 0.},
+		{"thrust reduction ratio", 0.},
+		{"lateral turn ratio", 0.},
+		{"turn reduction ratio", 0.},
 
 		{"turning shields", 0.},
 		{"turning hull", 0.},
@@ -240,10 +244,17 @@ void Outfit::Load(const DataNode &node)
 			steeringFlareSprites.emplace_back(Body(), 1);
 			steeringFlareSprites.back().first.LoadSprite(child);
 		}
+		else if(child.Token(0) == "lateral flare sprite" && child.Size() >= 2)
+		{
+			lateralFlareSprites.emplace_back(Body(), 1);
+			lateralFlareSprites.back().first.LoadSprite(child);
+		}
 		else if(child.Token(0) == "flare sound" && child.Size() >= 2)
 			++flareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "reverse flare sound" && child.Size() >= 2)
 			++reverseFlareSounds[Audio::Get(child.Token(1))];
+		else if(child.Token(0) == "lateral flare sound" && child.Size() >= 2)
+			++lateralFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "steering flare sound" && child.Size() >= 2)
 			++steeringFlareSounds[Audio::Get(child.Token(1))];
 		else if(child.Token(0) == "afterburner effect" && child.Size() >= 2)
@@ -556,8 +567,11 @@ void Outfit::Add(const Outfit &other, int count)
 		AddFlareSprites(reverseFlareSprites, it, count);
 	for(const auto &it : other.steeringFlareSprites)
 		AddFlareSprites(steeringFlareSprites, it, count);
+	for(const auto & it : other.lateralFlareSprites)
+		AddFlareSprites(lateralFlareSprites, it, count);
 	MergeMaps(flareSounds, other.flareSounds, count);
 	MergeMaps(reverseFlareSounds, other.reverseFlareSounds, count);
+	MergeMaps(lateralFlareSounds, other.lateralFlareSounds, count);
 	MergeMaps(steeringFlareSounds, other.steeringFlareSounds, count);
 	MergeMaps(afterburnerEffects, other.afterburnerEffects, count);
 	MergeMaps(jumpEffects, other.jumpEffects, count);
@@ -611,6 +625,13 @@ const vector<pair<Body, int>> &Outfit::SteeringFlareSprites() const
 
 
 
+const vector<pair<Body, int>>& Outfit::LateralFlareSprites() const
+{
+	return lateralFlareSprites;
+}
+
+
+
 const map<const Sound *, int> &Outfit::FlareSounds() const
 {
 	return flareSounds;
@@ -621,6 +642,13 @@ const map<const Sound *, int> &Outfit::FlareSounds() const
 const map<const Sound *, int> &Outfit::ReverseFlareSounds() const
 {
 	return reverseFlareSounds;
+}
+
+
+
+const map<const Sound *, int> &Outfit::LateralFlareSounds() const
+{
+	return lateralFlareSounds;
 }
 
 
