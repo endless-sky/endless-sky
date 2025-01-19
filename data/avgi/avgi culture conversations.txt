@@ -26,8 +26,8 @@ mission "Avgi Culture: Verticality"
 
 
 mission "Avgi Culture: Free Fuel"
-	landing
 	minor
+	landing
 	invisible
 	source
 		government "Avgi (Consonance)"
