@@ -108,10 +108,10 @@ void TextArea::SetTruncate(Truncate t)
 
 
 
-int TextArea::GetTextHeight()
+int TextArea::GetTextHeight(bool trailingBreak)
 {
 	Validate();
-	return wrappedText.Height();
+	return wrappedText.Height(trailingBreak);
 }
 
 

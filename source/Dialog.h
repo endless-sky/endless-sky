@@ -47,7 +47,7 @@ public:
 	// Mission accept / decline dialog.
 	Dialog(const std::string &text, PlayerInfo &player, const System *system = nullptr,
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
-	virtual ~Dialog() = default;
+	virtual ~Dialog() override;
 
 	// Three different kinds of dialogs can be constructed: requesting numerical
 	// input, requesting text input, or not requesting any input at all. In any
@@ -102,12 +102,14 @@ private:
 	// Common code from all three constructors:
 	void Init(const std::string &message, Truncate truncate, bool canCancel = true, bool isMission = false);
 	void DoCallback(bool isOk = true) const;
+	// The width of the dialog, excluding margins.
 	int Width() const;
 
 
 protected:
 	std::shared_ptr<TextArea> text;
-	int height;
+	// The number of extra segments in this dialog.
+	int extensionCount;
 
 	std::function<void(int)> intFun;
 	std::function<void(const std::string &)> stringFun;

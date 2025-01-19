@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Logger.h"
-#include "Random.h"
 
 #include <algorithm>
 #include <cmath>
@@ -160,9 +159,7 @@ namespace {
 		for(const string &str : side)
 		{
 			int64_t value = 0;
-			if(str == "random")
-				value = Random::Int(100);
-			else if(DataNode::IsNumber(str))
+			if(DataNode::IsNumber(str))
 				value = static_cast<int64_t>(DataNode::Value(str));
 			else
 			{

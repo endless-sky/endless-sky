@@ -489,7 +489,7 @@ mission "FW Southern Battle 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
@@ -828,7 +828,7 @@ mission "FW Northern 2"
 	
 	on offer
 		conversation
-			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds is not able to hold this planet.`
+			`You wait in the spaceport bar for a while. Your Free Worlds uniform has drawn a good deal of attention from the locals: a few of them waved to you when you came in, or gave other subtle signs of approval, but no one is sitting with you. They probably want to avoid getting into trouble with the Republic if the Free Worlds are not able to hold this planet.`
 			`	Finally Alondo arrives. "Come on," he says. "Let's talk outside." He seems tired, but not frightened.`
 			choice
 				`	"Is everything okay?"`
@@ -1432,7 +1432,7 @@ mission "FW Bloodsea 1"
 				`	"Okay, sounds like fun!"`
 					accept
 				`	"Wait, didn't things go south rather quickly the last time we attempted this?"`
-			`	Alondo grins. "Yes, but the Free Worlds is in a much stronger position now, and the pirate worlds know it's only a matter of time before they are forced to become civilized. And, the incident on Poisonwood proved that we can't afford to fight a war on two fronts. We need to eliminate the pirate threat, and a diplomatic solution with them is the only sort that will last. So, let's get going!"`
+			`	Alondo grins. "Yes, but the Free Worlds are in a much stronger position now, and the pirate worlds know it's only a matter of time before they are forced to become civilized. And, the incident on Poisonwood proved that we can't afford to fight a war on two fronts. We need to eliminate the pirate threat, and a diplomatic solution with them is the only sort that will last. So, let's get going!"`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -1942,7 +1942,7 @@ mission "FW Rand 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)"
 	
@@ -2092,7 +2092,7 @@ mission "FW Defend New Tibet"
 			choice
 				`	(Continue watching the communication.)`
 			`	The video of the monk continues, "He was unable to show us this evidence, but he made claims of having plans for a nuclear device. After arriving he hid his ship in a cave, just before a Syndicate fleet appeared in orbit. They do not know where the defector landed, so they have begun searching settlement to settlement under the assumption that one is harboring him. They are currently here, wrecking the monastery in their hunt."`
-			`	After a moment, JJ says, "If these allegations are true, if we can prove that the Free Worlds was innocent of any involvement in those attacks, the Republic might make peace with us, or at least agree to a ceasefire. I vote that we try to shelter this defector and hear his story."`
+			`	After a moment, JJ says, "If these allegations are true, if we can prove that the Free Worlds were innocent of any involvement in those attacks, the Republic might make peace with us, or at least agree to a ceasefire. I vote that we try to shelter this defector and hear his story."`
 			`	"And if it's a lie," says Freya, "and we refuse the Syndicate's request, we lose our only ally. Many more civilians will be killed if we continue to fight without their backing, and we don't even know what this supposed evidence actually is. I care about justice, but trading a definite ally for a slim possibility of peace: that is an unwise investment. I vote that we hand this man over to the Syndicate."`
 			choice
 				`	(Continue watching the communication.)`
@@ -2312,7 +2312,7 @@ mission "FW Liberate Delta Sagittarii"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 4
 		fleet

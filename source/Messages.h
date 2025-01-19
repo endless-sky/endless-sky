@@ -53,10 +53,11 @@ public:
 
 public:
 	// Add a message to the list along with its level of importance
-	static void Add(const std::string &message, Importance importance = Importance::Low);
+	// When forced, the message is forcibly added to the log, but not to the list.
+	static void Add(const std::string &message, Importance importance = Importance::Low, bool force = false);
 	// Add a message to the log. For messages meant to be shown
 	// also on the main panel, use Add instead.
-	static void AddLog(const std::string &message, Importance importance = Importance::Low);
+	static void AddLog(const std::string &message, Importance importance = Importance::Low, bool force = false);
 
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have

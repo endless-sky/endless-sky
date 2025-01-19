@@ -72,10 +72,10 @@ const Planet *StellarObject::GetPlanet() const
 
 
 // Only planets that you can land on have names.
-const string &StellarObject::Name() const
+const string &StellarObject::DisplayName() const
 {
 	static const string UNKNOWN = "???";
-	return (planet && !planet->Name().empty()) ? planet->Name() : UNKNOWN;
+	return (planet && !planet->DisplayName().empty()) ? planet->DisplayName() : UNKNOWN;
 }
 
 

@@ -92,18 +92,18 @@ double MapDetailPanel::planetPanelHeight = 0.;
 
 
 
-MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system)
-	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system)
+MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool fromMission)
+	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system, fromMission)
 {
 }
 
 
 
-MapDetailPanel::MapDetailPanel(const MapPanel &panel)
-	: MapPanel(panel)
+MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
+	: MapPanel(panel), isStars(isStars)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
-	commodity = player.MapColoring();
+	commodity = isStars ? -8 : player.MapColoring();
 }
 
 
@@ -121,6 +121,7 @@ void MapDetailPanel::Step()
 	{
 		DoHelp("map advanced danger");
 		DoHelp("map advanced ports");
+		DoHelp("map advanced stars");
 	}
 	if(!player.GetPlanet())
 		DoHelp("map");
@@ -135,7 +136,7 @@ void MapDetailPanel::Draw()
 	DrawInfo();
 	DrawOrbits();
 	DrawKey();
-	FinishDrawing("is ports");
+	FinishDrawing(isStars ? "is stars" : "is ports");
 }
 
 
@@ -204,6 +205,7 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	{
 		DoHelp("map advanced danger", true);
 		DoHelp("map advanced ports", true);
+		DoHelp("map advanced stars", true);
 		if(!player.GetPlanet())
 			DoHelp("map", true);
 	}
@@ -374,17 +376,26 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		if(y >= tradeY && y < tradeY + 200)
 		{
 			// The player clicked on a tradable commodity. Color the map by its price.
+			isStars = false;
 			SetCommodity((y - tradeY) / 20);
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
 		// But the bit to the left will show danger of pirate/raid fleets instead.
 		else if(y < governmentY && y > governmentY - 30)
+		{
+			isStars = false;
 			SetCommodity(x < Screen::Left() + mapInterface->GetValue("text margin") ?
 				SHOW_DANGER : SHOW_REPUTATION);
+		}
+
 		// Clicking the government name activates the view of system / planet ownership.
 		else if(y >= governmentY && y < governmentY + 25)
+		{
+			isStars = false;
 			SetCommodity(SHOW_GOVERNMENT);
+		}
+
 	}
 	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
 	{
@@ -393,12 +404,14 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
 			if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
 			{
+				isStars = false;
 				GetUI()->Pop(this);
 				GetUI()->Push(new MapShipyardPanel(*this, true));
 				break;
 			}
 			else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
 			{
+				isStars = false;
 				GetUI()->Pop(this);
 				GetUI()->Push(new MapOutfitterPanel(*this, true));
 				break;
@@ -419,6 +432,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 	{
 		// The player has clicked within the "orbits" scene.
 		// Select the nearest planet to the click point.
+		isStars = false;
 		Point click = Point(x, y);
 		selectedPlanet = nullptr;
 		double distance = numeric_limits<double>::infinity();
@@ -530,9 +544,10 @@ void MapDetailPanel::DrawKey()
 		"", // Special should never be active in this mode.
 		"Government:",
 		"System:",
-		"Danger level:"
+		"Danger level:",
+		"" // Temporary blank tile for the starry map mode.
 	};
-	const string &header = HEADER[-min(0, max(-7, commodity))];
+	const string &header = HEADER[-min(0, max(-8, commodity))];
 	font.Draw(header, pos + headerOff, medium);
 	pos.Y() += 20.;
 
@@ -653,16 +668,21 @@ void MapDetailPanel::DrawKey()
 			pos.Y() += 20.;
 		}
 	}
-
-	if(commodity != SHOW_DANGER)
+	else if(commodity == SHOW_STARS)
+	{
+		// The starry map mode leave the legend panel blank.
+	}
+	if(commodity != SHOW_DANGER && commodity != SHOW_STARS)
 	{
 		RingShader::Draw(pos, OUTER, INNER, UninhabitedColor());
 		font.Draw("Uninhabited", pos + textOff, dim);
 		pos.Y() += 20.;
 	}
-
-	RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
-	font.Draw("Unexplored", pos + textOff, dim);
+	if(commodity != SHOW_STARS)
+	{
+		RingShader::Draw(pos, OUTER, INNER, UnexploredColor());
+		font.Draw("Unexplored", pos + textOff, dim);
+	}
 }
 
 
@@ -752,7 +772,7 @@ void MapDetailPanel::DrawInfo()
 	SpriteShader::Draw(alertSprite, uiPoint + Point(-textMargin / 2., -7. + font.Height() / 2.), alertScale);
 
 	string systemName = player.KnowsName(*selectedSystem) ?
-		selectedSystem->Name() : "Unexplored System";
+		selectedSystem->DisplayName() : "Unexplored System";
 	const auto alignLeft = Layout(145, Truncate::BACK);
 	font.Draw({systemName, alignLeft}, uiPoint + Point(0., -7.), medium);
 
@@ -962,7 +982,7 @@ void MapDetailPanel::DrawOrbits()
 				habitColor[6]);
 
 	// Draw the name of the selected planet.
-	const string &name = selectedPlanet ? selectedPlanet->Name() : selectedSystem->Name();
+	const string &name = selectedPlanet ? selectedPlanet->DisplayName() : selectedSystem->DisplayName();
 	Point namePos(Screen::Right() - 190., Screen::Top() + 7.);
 	font.Draw({name, {180, Alignment::CENTER, Truncate::BACK}},
 		namePos, *GameData::Colors().Get("medium"));
@@ -974,5 +994,8 @@ void MapDetailPanel::DrawOrbits()
 void MapDetailPanel::SetCommodity(int index)
 {
 	commodity = index;
+	if(index != SHOW_STARS)
+		isStars = false;
+
 	player.SetMapColoring(commodity);
 }

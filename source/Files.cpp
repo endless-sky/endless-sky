@@ -21,20 +21,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #if defined _WIN32
-#include "text/Utf8.h"
 #define STRICT
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #else
 #include <dirent.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <utime.h>
 #endif
 
 #include <algorithm>
-#include <cstdlib>
-#include <fstream>
 #include <iostream>
 #include <mutex>
 #include <stdexcept>
@@ -42,37 +36,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	string resources;
-	string config;
+	filesystem::path resources;
+	filesystem::path config;
 
-	string dataPath;
-	string imagePath;
-	string soundPath;
-	string savePath;
-	string testPath;
+	filesystem::path dataPath;
+	filesystem::path imagePath;
+	filesystem::path soundPath;
+	filesystem::path savePath;
+	filesystem::path userPluginPath;
+	filesystem::path globalPluginPath;
+	filesystem::path testPath;
 
 	File errorLog;
 
-	// Convert windows-style directory separators ('\\') to standard '/'.
-#if defined _WIN32
-	void FixWindowsSlashes(string &path)
-	{
-		for(char &c : path)
-			if(c == '\\')
-				c = '/';
-	}
-#endif
-
 	// Open the given folder in a separate window.
-	void OpenFolder(const string &path)
+	void OpenFolder(const filesystem::path &path)
 	{
+		// TODO: Remove SDL version check after Ubuntu 20.04 reaches end of life
 #if SDL_VERSION_ATLEAST(2, 0, 14)
-		if(SDL_OpenURL(("file://" + path).c_str()))
+		if(SDL_OpenURL(("file://" + path.string()).c_str()))
 			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
 #elif defined(__linux__)
 		// Some supported distributions do not have an up-to-date SDL.
 		cout.flush();
-		if(int result = WEXITSTATUS(system(("xdg-open file://" + path).c_str())))
+		if(int result = WEXITSTATUS(system(("xdg-open file://" + path.string()).c_str())))
 			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
 #else
 #warning SDL 2.0.14 or higher is needed for opening folders!
@@ -101,42 +88,47 @@ void Files::Init(const char * const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
-		char *str = SDL_GetBasePath();
-		if(!str)
+		char *basePath = SDL_GetBasePath();
+		if(!basePath)
 			throw runtime_error("Unable to get path to resource directory!");
+		resources = basePath;
+		SDL_free(basePath);
 
-		resources = str;
-		SDL_free(str);
-	}
-#if defined _WIN32
-	FixWindowsSlashes(resources);
-#endif
-	if(resources.back() != '/')
-		resources += '/';
+		if(Exists(resources))
+			resources = filesystem::canonical(resources);
+
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
-	// Special case, for Linux: the resource files are not in the same place as
-	// the executable, but are under the same prefix (/usr or /usr/local).
-	static const string LOCAL_PATH = "/usr/local/";
-	static const string STANDARD_PATH = "/usr/";
-	static const string RESOURCE_PATH = "share/games/endless-sky/";
-	if(!resources.compare(0, LOCAL_PATH.length(), LOCAL_PATH))
-		resources = LOCAL_PATH + RESOURCE_PATH;
-	else if(!resources.compare(0, STANDARD_PATH.length(), STANDARD_PATH))
-		resources = STANDARD_PATH + RESOURCE_PATH;
+		// Special case, for Linux: the resource files are not in the same place as
+		// the executable, but are under the same prefix (/usr or /usr/local).
+		static const filesystem::path LOCAL_PATH = "/usr/local/";
+		static const filesystem::path STANDARD_PATH = "/usr/";
+		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
+
+		const auto IsParent = [](const auto parent, const auto child) -> bool {
+			if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
+				return false;
+			return equal(parent.begin(), parent.end(), child.begin());
+		};
+
+		if(IsParent(LOCAL_PATH, resources))
+			resources = LOCAL_PATH / RESOURCE_PATH;
+		else if(IsParent(STANDARD_PATH, resources))
+			resources = STANDARD_PATH / RESOURCE_PATH;
 #endif
+	}
 	// If the resources are not here, search in the directories containing this
 	// one. This allows, for example, a Mac app that does not actually have the
 	// resources embedded within it.
-	while(!Exists(resources + "credits.txt"))
+	while(!Exists(resources / "credits.txt"))
 	{
-		size_t pos = resources.rfind('/', resources.length() - 2);
-		if(pos == string::npos || pos == 0)
+		if(!resources.has_parent_path() || resources.parent_path() == resources)
 			throw runtime_error("Unable to find the resource directories!");
-		resources.erase(pos + 1);
+		resources = resources.parent_path();
 	}
-	dataPath = resources + "data/";
-	imagePath = resources + "images/";
-	soundPath = resources + "sounds/";
+	dataPath = resources / "data/";
+	imagePath = resources / "images/";
+	soundPath = resources / "sounds/";
+	globalPluginPath = resources / "plugins/";
 
 	if(config.empty())
 	{
@@ -148,192 +140,122 @@ void Files::Init(const char * const *argv)
 		SDL_free(str);
 	}
 
-#ifdef _WIN32
-	FixWindowsSlashes(config);
-#endif
-	if(config.back() != '/')
-		config += '/';
-
 	if(!Exists(config))
 		throw runtime_error("Unable to create config directory!");
 
-	savePath = config + "saves/";
+	config = filesystem::canonical(config);
+
+	savePath = config / "saves/";
 	CreateFolder(savePath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	CreateFolder(config + "plugins/");
+	userPluginPath = config / "plugins/";
+	CreateFolder(userPluginPath);
 
 	// Check that all the directories exist.
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
 		throw runtime_error("Unable to create save directory!");
-	if(!Exists(config + "plugins/"))
+	if(!Exists(userPluginPath))
 		throw runtime_error("Unable to create plugins directory!");
 }
 
 
 
-const string &Files::Resources()
+const filesystem::path &Files::Resources()
 {
 	return resources;
 }
 
 
 
-const string &Files::Config()
+const filesystem::path &Files::Config()
 {
 	return config;
 }
 
 
 
-const string &Files::Data()
+const filesystem::path &Files::Data()
 {
 	return dataPath;
 }
 
 
 
-const string &Files::Images()
+const filesystem::path &Files::Images()
 {
 	return imagePath;
 }
 
 
 
-const string &Files::Sounds()
+const filesystem::path &Files::Sounds()
 {
 	return soundPath;
 }
 
 
 
-const string &Files::Saves()
+const filesystem::path &Files::Saves()
 {
 	return savePath;
 }
 
 
 
-const string &Files::Tests()
+const filesystem::path &Files::UserPlugins()
+{
+	return userPluginPath;
+}
+
+
+
+const filesystem::path &Files::GlobalPlugins()
+{
+	return globalPluginPath;
+}
+
+
+
+const filesystem::path &Files::Tests()
 {
 	return testPath;
 }
 
 
 
-vector<string> Files::List(string directory)
+vector<filesystem::path> Files::List(const filesystem::path &directory)
 {
-	if(directory.empty() || directory.back() != '/')
-		directory += '/';
+	vector<filesystem::path> list;
 
-	vector<string> list;
-
-#if defined _WIN32
-	WIN32_FIND_DATAW ffd;
-	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
-	if(!hFind)
+	if(!Exists(directory) || !is_directory(directory))
 		return list;
 
-	do {
-		if(ffd.cFileName[0] == '.')
-			continue;
-
-		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName));
-	} while(FindNextFileW(hFind, &ffd));
-
-	FindClose(hFind);
-#else
-	DIR *dir = opendir(directory.c_str());
-	if(!dir)
-		return list;
-
-	while(true)
-	{
-		dirent *ent = readdir(dir);
-		if(!ent)
-			break;
-		// Skip dotfiles (including "." and "..").
-		if(ent->d_name[0] == '.')
-			continue;
-
-		string name = directory + ent->d_name;
-		// Don't assume that this operating system's implementation of dirent
-		// includes the t_type field; in particular, on Windows it will not.
-		struct stat buf;
-		stat(name.c_str(), &buf);
-		bool isRegularFile = S_ISREG(buf.st_mode);
-
-		if(isRegularFile)
-			list.push_back(name);
-	}
-
-	closedir(dir);
-#endif
+	for(const auto &entry : filesystem::directory_iterator(directory))
+		if(entry.is_regular_file())
+			list.emplace_back(entry);
 
 	sort(list.begin(), list.end());
+
 	return list;
 }
 
 
 
 // Get a list of any directories in the given directory.
-vector<string> Files::ListDirectories(string directory)
+vector<filesystem::path> Files::ListDirectories(const filesystem::path &directory)
 {
-	if(directory.empty() || directory.back() != '/')
-		directory += '/';
+	vector<filesystem::path> list;
 
-	vector<string> list;
-
-#if defined _WIN32
-	WIN32_FIND_DATAW ffd;
-	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
-	if(!hFind)
+	if(!Exists(directory) || !is_directory(directory))
 		return list;
 
-	do {
-		if(ffd.cFileName[0] == '.')
-			continue;
-
-		if(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-			list.push_back(directory + Utf8::ToUTF8(ffd.cFileName) + '/');
-	} while(FindNextFileW(hFind, &ffd));
-
-	FindClose(hFind);
-#else
-	DIR *dir = opendir(directory.c_str());
-	if(!dir)
-		return list;
-
-	while(true)
-	{
-		dirent *ent = readdir(dir);
-		if(!ent)
-			break;
-		// Skip dotfiles (including "." and "..").
-		if(ent->d_name[0] == '.')
-			continue;
-
-		string name = directory + ent->d_name;
-		// Don't assume that this operating system's implementation of dirent
-		// includes the t_type field; in particular, on Windows it will not.
-		struct stat buf;
-		stat(name.c_str(), &buf);
-		bool isDirectory = S_ISDIR(buf.st_mode);
-
-		if(isDirectory)
-		{
-			if(name.back() != '/')
-				name += '/';
-			list.push_back(name);
-		}
-	}
-
-	closedir(dir);
-#endif
+	for(const auto &entry : filesystem::directory_iterator(directory))
+		if(entry.is_directory())
+			list.emplace_back(entry);
 
 	sort(list.begin(), list.end());
 	return list;
@@ -341,159 +263,79 @@ vector<string> Files::ListDirectories(string directory)
 
 
 
-vector<string> Files::RecursiveList(const string &directory)
+vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 {
-	vector<string> list;
-	RecursiveList(directory, &list);
+	vector<filesystem::path> list;
+	if(!Exists(directory) || !is_directory(directory))
+		return list;
+
+	for(const auto &entry : filesystem::recursive_directory_iterator(directory))
+		if(entry.is_regular_file())
+			list.emplace_back(entry);
+
 	sort(list.begin(), list.end());
 	return list;
 }
 
 
 
-void Files::RecursiveList(string directory, vector<string> *list)
+bool Files::Exists(const filesystem::path &filePath)
 {
-	if(directory.empty() || directory.back() != '/')
-		directory += '/';
-
-#if defined _WIN32
-	WIN32_FIND_DATAW ffd;
-	HANDLE hFind = FindFirstFileW(Utf8::ToUTF16(directory + '*').c_str(), &ffd);
-	if(hFind == INVALID_HANDLE_VALUE)
-		return;
-
-	do {
-		if(ffd.cFileName[0] == '.')
-			continue;
-
-		if(!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-			list->push_back(directory + Utf8::ToUTF8(ffd.cFileName));
-		else
-			RecursiveList(directory + Utf8::ToUTF8(ffd.cFileName) + '/', list);
-	} while(FindNextFileW(hFind, &ffd));
-
-	FindClose(hFind);
-#else
-	DIR *dir = opendir(directory.c_str());
-	if(!dir)
-		return;
-
-	while(true)
-	{
-		dirent *ent = readdir(dir);
-		if(!ent)
-			break;
-		// Skip dotfiles (including "." and "..").
-		if(ent->d_name[0] == '.')
-			continue;
-
-		string name = directory + ent->d_name;
-		// Don't assume that this operating system's implementation of dirent
-		// includes the t_type field; in particular, on Windows it will not.
-		struct stat buf;
-		stat(name.c_str(), &buf);
-		bool isRegularFile = S_ISREG(buf.st_mode);
-		bool isDirectory = S_ISDIR(buf.st_mode);
-
-		if(isRegularFile)
-			list->push_back(name);
-		else if(isDirectory)
-			RecursiveList(name + '/', list);
-	}
-
-	closedir(dir);
-#endif
+	return exists(filePath);
 }
 
 
 
-bool Files::Exists(const string &filePath)
+time_t Files::Timestamp(const filesystem::path &filePath)
 {
-#if defined _WIN32
-	struct _stat buf;
-	return !_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
-#else
-	struct stat buf;
-	return !stat(filePath.c_str(), &buf);
-#endif
+	auto time = last_write_time(filePath);
+	auto systemTime = time_point_cast<chrono::system_clock::duration>(time - chrono::file_clock::now()
+			+ chrono::system_clock::now());
+	return chrono::system_clock::to_time_t(systemTime);
 }
 
 
 
-time_t Files::Timestamp(const string &filePath)
+void Files::Copy(const filesystem::path &from, const filesystem::path &to)
 {
-#if defined _WIN32
-	struct _stat buf;
-	_wstat(Utf8::ToUTF16(filePath).c_str(), &buf);
-#else
-	struct stat buf;
-	stat(filePath.c_str(), &buf);
+#ifdef _WIN32
+	// Due to a mingw bug, the overwrite_existing flag is not respected on Windows.
+	// TODO: remove once it is fixed.
+	if(Exists(to))
+		Delete(to);
 #endif
-	return buf.st_mtime;
+	copy(from, to, filesystem::copy_options::overwrite_existing);
 }
 
 
 
-void Files::Copy(const string &from, const string &to)
+void Files::Move(const filesystem::path &from, const filesystem::path &to)
 {
-#if defined _WIN32
-	CopyFileW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), false);
-#else
-	Write(to, Read(from));
-	// Preserve the timestamps of the original file.
-	struct stat buf;
-	if(stat(from.c_str(), &buf))
-		Logger::LogError("Error: Cannot stat \"" + from + "\".");
-	else
-	{
-		struct utimbuf times;
-		times.actime = buf.st_atime;
-		times.modtime = buf.st_mtime;
-		if(utime(to.c_str(), &times))
-			Logger::LogError("Error: Failed to preserve the timestamps for \"" + to + "\".");
-	}
-#endif
+	rename(from, to);
 }
 
 
 
-void Files::Move(const string &from, const string &to)
+void Files::Delete(const filesystem::path &filePath)
 {
-#if defined _WIN32
-	MoveFileExW(Utf8::ToUTF16(from).c_str(), Utf8::ToUTF16(to).c_str(), MOVEFILE_REPLACE_EXISTING);
-#else
-	rename(from.c_str(), to.c_str());
-#endif
-}
-
-
-
-void Files::Delete(const string &filePath)
-{
-#if defined _WIN32
-	DeleteFileW(Utf8::ToUTF16(filePath).c_str());
-#else
-	unlink(filePath.c_str());
-#endif
+	remove_all(filePath);
 }
 
 
 
 // Get the filename from a path.
-string Files::Name(const string &path)
+string Files::Name(const filesystem::path &path)
 {
-	// string::npos = -1, so if there is no '/' in the path this will
-	// return the entire string, i.e. path.substr(0).
-	return path.substr(path.rfind('/') + 1);
+	return path.filename().string();
 }
 
 
 
-FILE *Files::Open(const string &path, bool write)
+FILE *Files::Open(const filesystem::path &path, bool write)
 {
 #if defined _WIN32
 	FILE *file = nullptr;
-	_wfopen_s(&file, Utf8::ToUTF16(path).c_str(), write ? L"w" : L"rb");
+	_wfopen_s(&file, path.c_str(), write ? L"w" : L"rb");
 	return file;
 #else
 	return fopen(path.c_str(), write ? "wb" : "rb");
@@ -502,7 +344,7 @@ FILE *Files::Open(const string &path, bool write)
 
 
 
-string Files::Read(const string &path)
+string Files::Read(const filesystem::path &path)
 {
 	File file(path);
 	return Read(file);
@@ -536,7 +378,7 @@ string Files::Read(FILE *file)
 
 
 
-void Files::Write(const string &path, const string &data)
+void Files::Write(const filesystem::path &path, const string &data)
 {
 	File file(path, true);
 	Write(file, data);
@@ -554,16 +396,15 @@ void Files::Write(FILE *file, const string &data)
 
 
 
-void Files::CreateFolder(const std::string &path)
+void Files::CreateFolder(const filesystem::path &path)
 {
 	if(Exists(path))
 		return;
 
-#ifdef _WIN32
-	CreateDirectoryW(Utf8::ToUTF16(path).c_str(), nullptr);
-#else
-	mkdir(path.c_str(), 0700);
-#endif
+	if(filesystem::create_directory(path))
+		filesystem::permissions(path, filesystem::perms(filesystem::perms::owner_all));
+	else
+		throw runtime_error("Error creating directory!");
 }
 
 
@@ -571,7 +412,7 @@ void Files::CreateFolder(const std::string &path)
 // Open this user's plugins directory in their native file explorer.
 void Files::OpenUserPluginFolder()
 {
-	OpenFolder(Config() + "plugins");
+	OpenFolder(userPluginPath);
 }
 
 
@@ -588,11 +429,11 @@ void Files::LogErrorToFile(const string &message)
 {
 	if(!errorLog)
 	{
-		errorLog = File(config + "errors.txt", true);
+		errorLog = File(config / "errors.txt", true);
 		if(!errorLog)
 		{
 			cerr << "Unable to create \"errors.txt\" " << (config.empty()
-				? "in current directory" : "in \"" + config + "\"") << endl;
+				? "in current directory" : "in \"" + config.string() + "\"") << endl;
 			return;
 		}
 	}

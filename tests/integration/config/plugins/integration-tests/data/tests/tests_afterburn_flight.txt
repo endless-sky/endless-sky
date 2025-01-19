@@ -109,6 +109,7 @@ test "Afterburner-flight - Simple depart land"
 		inject "burning flyers save"
 		call "Load First Savegame"
 		call "Depart"
+		debug "Departed from the planet"
 		# Wait for 10 seconds to drift away from the planet.
 		apply
 			"test: steps to wait" = 20
@@ -121,6 +122,8 @@ test "Afterburner-flight - Simple depart land"
 			"test: steps to wait" > 0
 		navigate
 			"travel destination" Ruin
+		debug "Start landing"
 		call "Land"
+		debug "Done landing"
 		assert
 			"flagship landed" == 1
