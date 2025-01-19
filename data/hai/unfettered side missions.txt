@@ -365,7 +365,7 @@ mission "Hai Legacy 3"
 	on fail
 		"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 		clear "old reputation: Hai (Unfettered)"
-		dialog `You are contacted by the Unfettered as you enter the planet's atmosphere. "You failed to complete the duel. We let you land to repair your ship as the terms dictate, but this is the last time you are authorized to land on our worlds. You will not enjoy unwarranted respect any longer!"`
+		dialog `You are contacted by the Unfettered as you enter the planet's atmosphere. "You failed to complete the duel. The ceasefire is over. You will not enjoy unwarranted respect any longer!"`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
