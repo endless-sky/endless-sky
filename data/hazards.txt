@@ -124,6 +124,7 @@ hazard "Rulei Gravity Field"
 
 effect "gravity well"
 	"sound" "gravity well"
+	"sound category" "environment"
 
 
 
