@@ -260,6 +260,8 @@ news "avgi missing advisory"
 			"entering"
 			"transiting"
 		word
+			" "
+		word
 			"the Ensemble system"
 			"the Interlude system"
 			"the Prelude system"
