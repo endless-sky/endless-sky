@@ -50,6 +50,7 @@ public:
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
 	static const int SHOW_DANGER = -7;
+	static const int SHOW_STARS = -8;
 
 	static const float OUTER;
 	static const float INNER;
