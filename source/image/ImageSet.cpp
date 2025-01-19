@@ -29,32 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Determine whether the given path is to an @2x image.
-	bool Is2x(const string &path)
-	{
-		if(path.length() < 7)
-			return false;
-
-		size_t pos = path.length() - 7;
-		return (path[pos] == '@' && path[pos + 1] == '2' && path[pos + 2] == 'x');
-	}
-
-	// Determine whether the given path is to a swizzle mask.
-	bool IsSwizzleMask(const string &path, bool is2x)
-	{
-		if(path.length() < 7 || (is2x && path.length() < 10))
-			return false;
-
-		size_t pos = path.length() - (is2x ? 10 : 7);
-		return (path[pos] == '@' && path[pos + 1] == 's' && path[pos + 2] == 'w');
-	}
-
-	// Check if the given character is a valid blending mode.
-	bool IsBlend(char c)
-	{
-		return (c == '-' || c == '~' || c == '+' || c == '=');
-	}
-
 	// Determine whether the given path or name is to a sprite for which a
 	// collision mask ought to be generated.
 	bool IsMasked(const filesystem::path &path)
@@ -177,10 +151,10 @@ void ImageSet::ValidateFrames() noexcept(false)
 		for(const auto &path : paths[i])
 		{
 			string ext = path.extension().string();
-			if(IMAGE_SEQUENCE_EXTENSIONS.contains(Format::LowerCase(ext)) && paths[i].size() > 1)
+			if(ImageBuffer::ImageSequenceExtensions().contains(Format::LowerCase(ext)) && paths[i].size() > 1)
 			{
 				Logger::LogError("Image sequences must be exclusive; ignoring all but the image sequence data for \""
-						+ name + "\n");
+						+ name + "\"");
 				paths[i][0] = path;
 				paths[i].resize(1);
 				break;

@@ -33,6 +33,8 @@ class ImageBuffer {
 public:
 	// The supported image extensions, in lower case and with a leading period.
 	static const std::set<std::string> &ImageExtensions();
+	// Image extensions that signify image sequences. This is a subset of ImageExtensions().
+	static const std::set<std::string> &ImageSequenceExtensions();
 
 
 public:

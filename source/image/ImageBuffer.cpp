@@ -34,7 +34,7 @@ using namespace std;
 namespace {
 	const set<string> PNG_EXTENSIONS{".png"};
 	const set<string> JPG_EXTENSIONS{".jpg", ".jpeg", ".jpe"};
-	const set<string> AVIF_EXTENSIONS{"avif", "avifs"};
+	const set<string> AVIF_EXTENSIONS{".avif", ".avifs"};
 	const set<string> IMAGE_EXTENSIONS = []()
 	{
 		set<string> extensions(PNG_EXTENSIONS);
@@ -42,6 +42,7 @@ namespace {
 		extensions.insert(AVIF_EXTENSIONS.begin(), AVIF_EXTENSIONS.end());
 		return extensions;
 	}();
+	const set<string> IMAGE_SEQUENCE_EXTENSIONS = AVIF_EXTENSIONS;
 
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
@@ -54,6 +55,13 @@ namespace {
 const set<string> &ImageBuffer::ImageExtensions()
 {
 	return IMAGE_EXTENSIONS;
+}
+
+
+
+const set<string> &ImageBuffer::ImageSequenceExtensions()
+{
+	return IMAGE_SEQUENCE_EXTENSIONS;
 }
 
 
