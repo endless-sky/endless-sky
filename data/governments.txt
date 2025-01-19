@@ -16,16 +16,14 @@ government "Aberrant"
 	language "Ka'het"
 	color 0.4 0.4 0.7
 
-	"player reputation" -1000
+	"default attitude" -.01
 	"attitude toward"
-		Avgi -0.01
-		"Avgi (Consonance)" -0.01
-		"Avgi (Twilight Guard)" -0.01
-		"Avgi (Dissonance)" -0.01
-		"Avgi (Dissonance Angry)" -0.01
-		"Avgi (Wandering Fleet)" -0.01
-		"Quarg" -0.01
-		"Pug" -0.01
+		"Author" 0
+		"Drak" 0
+		"Indigenous Lifeform (Subsidurial)" 0
+		"Indigenous Lifeform (Tree)" 0
+		"Indigenous Lifeform (Tree Two)" 0
+		"Ka'sei" 0
 
 	"penalty for"
 		assist 0

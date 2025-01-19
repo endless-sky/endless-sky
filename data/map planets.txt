@@ -97,8 +97,7 @@ planet "Aktina Cylinder"
 	attributes avgi "avgi diaspora" station
 	landscape land/station48
 	description `The Aktina Cylinder is an incomplete space station of an enormous scale. Two dozen kilometers in diameter and three times that in length, when complete it will be able to house tens of millions of Avgi in urban conditions. Thousands of cylinders like these were built over the years in the Avgi core systems, but limited resources have constrained the Avgi in the Tangled Shroud to only building one over the last decade.`
-	description `	With resources constantly being reallocated towards new warships and mining installations, many wonder if the cylinder will ever be completed, which would provide enough space to allow the millions of Avgi in cryogenic storage to be revived. The main habitat body is still open to space, and the only area sealed against vacuum is a relatively small section tucked under what will be the habitat's "floor."`
-	government "Avgi (Consonance)"
+	description `	With resources frequently reallocated towards new warships and mining installations, many wonder if the cylinder will ever be completed, which would provide enough space to allow the millions of Avgi in cryogenic storage to be revived. The main habitat body is still open to space, and the only area sealed against vacuum is a relatively small section tucked under what will be the habitat's "floor."`
 	"required reputation" 10
 	tribute 600
 		threshold 6000
@@ -185,7 +184,7 @@ planet "Alonis Observatory"
 	attributes avgi research station telescope uninhabited
 	landscape land/station56
 	description `Decades ago, this large observatory station was constructed in order to peer into the anomalous region known as the Ember Waste. Before the Avgi were able to harden their ships against the prevalent ion storms, this was their only way to extract its secrets. An array of advanced telescopes covering the entire electromagnetic spectrum sits side by side with more exotic equipment, from gravitational wave interferometers to neutrino detectors.`
-	description `After Avgi starships advanced to the point of being able to reliably withstand ion storms, it was trained deeper into the Ember Waste, looking further back in both space and time. It gathered an impressive amount of data before the Incursion forced its abandonment, though fortunately the telescope seems to have been left unscathed.`
+	description `	After Avgi starships advanced to the point of being able to reliably withstand ion storms, it was trained deeper into the Ember Waste, looking further back in both space and time. It gathered an impressive amount of data before the Incursion forced its abandonment, though fortunately the telescope seems to have been left unscathed.`
 	government Uninhabited
 
 planet "Alta Hai"
@@ -231,7 +230,7 @@ planet Anatrefo
 	attributes station uninhabited
 	landscape land/station49
 	description `Anatrefo was discovered mere years after the Avgi discovered the hyperdrive, and was soon considered the most momentous discovery in Avgi history. An intact alien station, albeit one stripped of any advanced technologies, proved once and for all that the Avgi were not alone in the universe. Even more significant was a long, slender megastructure near the station, appearing as though construction on it had barely been started.`
-	description `While study of the station's structure was hoped to provide insights into advanced alien technologies, it has so far proven stubbornly difficult to understand or reverse engineer, with some Avgi scientists remarking that even the station's materials appear to intelligently circumvent attempts to probe their internal structure.`
+	description `	While study of the station's structure was hoped to provide insights into advanced alien technologies, it has so far proven stubbornly difficult to understand or reverse engineer, with some Avgi scientists remarking that even the station's materials appear to intelligently circumvent attempts to probe their internal structure.`
 	government Uninhabited
 
 planet Angko
@@ -266,7 +265,7 @@ planet "Antivli Station"
 	attributes avgi station uninhabited
 	landscape land/station25
 	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts.`
-	description `Combined, the amat farms around Anax produced several tons of antimatter each year.`
+	description `	Combined, the amat farms around Anax produced several tons of antimatter each year.`
 	government Uninhabited
 
 planet Aqra-Kvel-Taaq
@@ -312,9 +311,9 @@ planet Araio
 	attributes "aberrant siege" avgi farming frontier rich
 	landscape land/canyon3
 	description `Araio is a relatively small world dominated by a single supercontinent. Continental uplift has made much of the land characterized by mountainous highland, scattered with numerous springs and lakes. Though the air is thin and the soil is rocky, hardy plants and woody trees cling to life, breaking up the landscape of rocky mountains with colorful meadows and bountiful forests.`
-	description `Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an oft-romanticized era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns.`
+	description `	Araio garnered a reputation as a frontier world ripe for plucky pioneers, reminiscent of an oft-romanticized era on Aviskir. While rich in gemstones, natural stones have not been competitive with nanofabricated alternatives since long before the planet was settled, and thus the economy on the surface is almost completely dominated by homesteads and small frontier towns.`
 	spaceport `Araio's spaceport was small but well run, capable of efficiently moving small volume goods on and off the world via a paired laser launch array and skyhook. The laser array was however razed from orbit by the Aberrant shortly after the fall of Anax, and the skyhook cut to pieces.`
-	spaceport `Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future - even if it means a slight regression in technology.`
+	spaceport `	Though imports of advanced technology from other worlds, which the planet lacks the development to manufacture itself, were cut off with the Incursion, the planet is self-sufficient enough to get by for the foreseeable future - even if it means a slight regression in technology.`
 	government Avgi
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
@@ -363,7 +362,7 @@ planet Ashkelon
 	attributes antecessor uninhabited
 	landscape land/mountain33
 	description `An otherwise mundane rocky world, Ashkelon is littered with thousands of basalt monoliths. Most are cracked, many others reduced to rubble, and a scant few are intact enough for the deep carvings that cover their surface to be read. These glyphs were seemingly designed to be easily translated, which Avgi researchers quickly did. There was much excitement when it was realized that the monoliths contained instructions and advice on various technologies, but this quickly turned to disappointment when a years-long survey revealed that no monolith had information on anything more advanced than the steam engine.`
-	description `Whoever left the monoliths here either never documented their more advanced technologies, or someone went to the trouble of destroying the monoliths that contained them.`
+	description `	Whoever left the monoliths here either never documented their more advanced technologies, or someone went to the trouble of destroying the monoliths that contained them.`
 	government Uninhabited
 
 planet "Ashy Reach"
@@ -403,7 +402,7 @@ planet Avalet
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_01
 	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the trace water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of powerful winds that ring the entire planet, producing immense cyclones capable of even pushing some clouds to the edge of space.`
-	description `The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped in Avalet's magnetic field fueled Avgi starships until Antivili Station was built.`
+	description `	The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped in Avalet's magnetic field fueled Avgi starships until Antivili Station was built.`
 	government Uninhabited
 
 planet Avalon
@@ -430,7 +429,7 @@ planet Aviskir
 	attributes "aberrant siege" avgi "avgi core" rich urban
 	landscape land/forest13
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
-	description `The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
+	description `	The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
 	spaceport `With the Avgi never developing the gravity repulsor independently, the largest spaceports once boasted arrays of launch lasers and dedicated skyhooks capable of lifting cargo en masse to orbit. The flurry of vessels taking off from these points drew the attention of the Aberrant, who targeted them during their attack on Aviskir's orbital infrastructure.`
 	government Avgi
 	outfitter "Avgi General"
@@ -1029,10 +1028,10 @@ planet Cyife
 	government Uninhabited
 
 planet Cyreal
-	attributes "aberrant siege" avgi forest tourism
+	attributes "aberrant siege" avgi "avgi core" forest tourism
 	landscape land/hills13
 	description `Cyreal was one of the first extrasolar worlds to be colonized by the Avgi, and, as with the other neighboring worlds, it was settled by slower than light starships. During a period of widespread scattered settlement, this low-gravity moon's sharp mountains and tall forests became popular with asteroid miners grown weary of cramped spacecraft. When the hyperdrive brought unprecedented immigration from other worlds, conservationists set aside large swathes of the moon as natural preserves, concentrating most residents in a small group of dense cities.`
-	description `While somewhat metal-poor itself, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily.`
+	description `	While somewhat metal-poor itself, by exploiting the asteroids and other bodies in the Span system, Cyreal developed a robust industrial base that allowed it to weather the economic shock that came with the invention of the hyperdrive relatively easily.`
 	spaceport `The spaceport is large for the moon's population, a product of its status as a hub for the many mining ships in the system and the ease of lofting cargo in the low gravity. Unlike most Avgi spaceports, it was designed to primarily serve spaceplanes, enabled by the thick atmosphere and low gravity. Together with the sprawling spaceport complex, built along the side of an equatorial mountain, a set of shorter runways also service the moon's local aircraft.`
 	government Avgi
 	outfitter "Avgi General"
@@ -1548,7 +1547,7 @@ planet Entantel
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/snow39
 	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density gives rise to a very low gravitational acceleration for its size.`
-	description `Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system.`
+	description `	Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system.`
 	spaceport `The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel stockpiled here to fill a few large tankers.`
 	government Uninhabited
 
@@ -1588,7 +1587,6 @@ planet "Ergastirio Station"
 	description `When Consonance researchers' need for plentiful space and isolation outgrew what was available on Peripheria or Navigeo, dedicated as they were to habitation and shipbuilding respectively, this mid-sized station was built to accommodate a state-of-the-art collection of laboratory facilities. The work here is largely aimed towards weapons research, a necessary consequence of the fight against the Aberrant.`
 	description `	The facilities are surprisingly comfortable for what you might expect from a research station, a deliberate attempt to boost the productivity of the scientists that live and work here. Labs for all sorts of applied energistics, nuclear research, and even hyperspace experimentation form wings around the central habitation core, which is home to tens of thousands of scientists and engineers as well as a sizable support staff.`
 	spaceport `Ergastirio's spaceport is small, but well-equipped, with the facilities to handle special nuclear material and fragile scientific instrumentation alike. These constitute most of the goods offloaded here, which the station's laboratories require a steady supply of.`
-	government "Avgi (Consonance)"
 	outfitter "Avgi General"
 	outfitter "Avgi Engineering"
 	outfitter "Avgi Militia Surplus"
@@ -1982,7 +1980,7 @@ planet Gamla
 	attributes antecessor moon uninhabited
 	landscape land/desert19
 	description `Unlike most fictional portrayals of precursor species, the previous inhabitants of this dry, salty moon did not leave behind any ancient technological ruins or monolithic stone constructs. Instead, the evidence of their past existence is in the form of tapped mineral veins, concentrations of unmistakably artificial radioisotopes, and a wide belt of orbiting debris degraded to little more than lumps of metal and dust.`
-	description `Before they were able to penetrate deeper into the Ember Waste, Gamla was the first evidence the Avgi found of the Antecessors, a species thought to have inhabited the eastern part of their space millions of years ago. While the moon contains no surviving examples of Antecessor technology, it engrossed xenoarcheologists for years.`
+	description `	Before they were able to penetrate deeper into the Ember Waste, Gamla was the first evidence the Avgi found of the Antecessors, a species thought to have inhabited the eastern part of their space millions of years ago. While the moon contains no surviving examples of Antecessor technology, it engrossed xenoarcheologists for years.`
 	government Uninhabited
 
 planet "Gara Pvu"
@@ -2486,7 +2484,7 @@ planet Hilothire
 	attributes avgi frontier frozen uninhabited
 	landscape land/snow28
 	description `While Hilothire contains an oxygen-rich atmosphere, it is almost entirely covered in icy oceans. At the poles, massive ice caps stretch nearly to the tropics. Pristine icebergs often float down to the equator, where they accumulate around the few rocky islands that peek above the waves.`
-	description `A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
+	description `	A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
 	spaceport `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
 	government Uninhabited
 	security 0
@@ -2790,7 +2788,7 @@ planet Kalakil
 	attributes forest uninhabited
 	landscape land/mountain38
 	description `The view from the surface of this pristine forest moon is nothing short of breathtaking, in equal parts from its natural beauty and the chill of its misty air. Cold glacier streams flow from a chain of tall, jagged mountains that round the entire moon, running through sunset-colored forests that meet the sun each morning tinged with frost.`
-	description `Aside from scientific expeditions that have left campsites scattered across the moon, Kalakil is untouched, a wilderness on the edge of what the Avgi managed to explore before the Incursion.`
+	description `	Aside from scientific expeditions that have left campsites scattered across the moon, Kalakil is untouched, a wilderness on the edge of what the Avgi managed to explore before the Incursion.`
 	government Uninhabited
 
 planet Kalbai
@@ -3319,7 +3317,7 @@ planet Masada
 	attributes antecessor uninhabited
 	landscape land/canyon18
 	description `Masada is an old world, one that was dying long before humanity was born. Its tectonic activity ended long ago, and the eons of erosion has worn its terrain down to the bedrock. Most of the surface is bone dry, with the only water trapped in a small chain of cold, brackish seas near the equator. Little rain falls outside their drainage basins, but what does is bitter and alkaline. The broken remains of what might have once been cities, worn down to little more than circular arrangements of rubble, hints that there is much history here - but no future.`
-	description `In orbit, the Avgi left behind a constellation of satellites to map the surface, but little else. The lack of anything left by the planet's original inhabitants is a reminder of just how old this world is - old enough for even the highest orbits to decay.`
+	description `	In orbit, the Avgi left behind a constellation of satellites to map the surface, but little else. The lack of anything left by the planet's original inhabitants is a reminder of just how old this world is - old enough for even the highest orbits to decay.`
 	government Uninhabited
 
 planet Maspa-Viir-Kella
@@ -3351,7 +3349,7 @@ planet Melatos
 	attributes avgi uninhabited
 	landscape land/snow36
 	description `Despite being a large rocky world, Melatos lacks all but the thinnest of atmospheres. Avgi astrogeologists have determined that some cataclysmic event only a few million years ago melted and quickly refroze the outermost layers of its crust. This rapid cooling created a world with a smooth, marble-like texture, almost like ceramic, which is crazed by deep cracks formed as the crust refroze.`
-	description `The remelting of Melatos' crust also means that heavier elements such as metals mostly sank to the core, and are hard to find without subcrustal mining, an unattractive prospect when combined with the planet's relatively deep gravity well. As such, Melatos remains mostly undeveloped, with the settlements on its surface being almost exclusively scientific in purpose.`
+	description `	The remelting of Melatos' crust also means that heavier elements such as metals mostly sank to the core, and are hard to find without subcrustal mining, an unattractive prospect when combined with the planet's relatively deep gravity well. As such, Melatos remains mostly undeveloped, with the settlements on its surface being almost exclusively scientific in purpose.`
 	government Uninhabited
 
 planet Melenci
@@ -3631,7 +3629,7 @@ planet Naphir
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/snow27
 	description `Naphir was the chosen destination, and ultimately the final resting place, of an ill-fated early interstellar expedition. The Avgi pioneers who volunteered for the mission knew well in advance that the system lacked any garden planets, but set out regardless; all of them were well prepared to spend the rest of their lives in orbital stations. Finding a cool, airless moon around a gas giant, the colonists settled down and began constructing habitats and gathering essential resources.`
-	description `Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. With most precision machinery left aboard their orbiting starship, it was severely degraded; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day.`
+	description `	Unfortunately, Span is prone to violent eruptions, and a coronal mass ejection struck after less than a year. With most precision machinery left aboard their orbiting starship, it was severely degraded; without that, the colony slowly succumbed to equipment failure until the last living Avgi recorded a farewell poem that remains famous to this day.`
 	government Uninhabited
 
 planet Nasqueron
@@ -4157,14 +4155,14 @@ planet Omanet
 	attributes avgi mining uninhabited
 	landscape land/mars0
 	description `Omanet is thought to be a chthonian world, a former gas giant whose atmosphere was stripped away until the rocky core was left bare. For whatever reason, Omanet went a step further, and its silicate crust and mantle were also boiled off. Left behind was a dense world made almost entirely out of metal, captured around Avalet as a large moon.`
-	description `Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized. Numerous factories churned out enormous orbital mirrors, made from nickel-iron and silver, which were then launched around Anax. This swarm collected sunlight, beaming it across the system. Some Avgi predicted that the swarm would grow to eventually cover the entire star, but at the current rate of construction it would take millennia to exploit a fraction of Anax's output.`
+	description `	Despite its unfavorable position deep in Anax's gravity well, Omanet was heavily industrialized. Numerous factories churned out enormous orbital mirrors, made from nickel-iron and silver, which were then launched around Anax. This swarm collected sunlight, beaming it across the system. Some Avgi predicted that the swarm would grow to eventually cover the entire star, but at the current rate of construction it would take millennia to exploit a fraction of Anax's output.`
 	government Uninhabited
 
 planet Orodens
 	attributes mining moon
 	landscape land/mountain26
 	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy elements. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material to orbit, where it could be shipped to other systems. Before the recent invention of the gravity repulsor, rows of mass drivers fired streams of raw material into orbit, where it would be collected by waiting ships.`
-	description `This was once the largest single source of fissile elements in Avgi space, but since the Incursion the mass drivers have gone quiet. Automated mining drones continue to watch over the last batch of excavated material.`
+	description `	This was once the largest single source of fissile elements in Avgi space, but since the Incursion the mass drivers have gone quiet. Automated mining drones continue to watch over the last batch of excavated material.`
 	government Uninhabited
 	security 0
 
@@ -4219,7 +4217,7 @@ planet "Outpost Enka"
 	music ambient/machinery
 	landscape land/station27
 	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one asteroid is also riddled with pressurized tunnels and pockets filled with farms and open green spaces.`
-	description `Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters.`
+	description `	Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters.`
 	spaceport `The station's spaceport is spacious, with room for the many small drones used to harvest other asteroids in the belt. Several berths are also open to larger mining vessels, with a few occupied at the moment.`
 	government "Avgi (Dissonance)"
 	shipyard "Avgi Solar Light"
@@ -4260,7 +4258,7 @@ planet "Outpost Pilos"
 	attributes avgi "avgi diaspora" station shipping
 	landscape land/station53
 	description `Outpost Pilos is a large early warning station set up soon after the Avgi decided to settle beyond the Tangled Shroud. Fearful of the Aberrant managing to overcome their supposed aversion to the mazelike region of space, it was quickly decided that a tripwire would be needed to warn of an incursion in the event of the fall of the Feo Platform and the infestation of the Tangled Shroud with Aberrations. However, when a large-scale attack never materialized, Outpost Pilos quickly found a second use as an intermediary waystation for the trade of minerals from the Tangled Shroud with the settlements beyond it.`
-	description `Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where raw resources and cargo can be transferred between ships.`
+	description `	Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where raw resources and cargo can be transferred between ships.`
 	spaceport `The only amenities in what passes for the "spaceport" are a refueling station and small repair shop. As ships do not generally linger after refueling or transferring their cargo, a skeleton crew is the only permanent inhabitants of the station, and most accommodations are reserved for this crew.`
 	government "Avgi (Consonance)"
 	"required reputation" 15
@@ -4277,7 +4275,7 @@ planet "Outpost Tekis"
 	music ambient/machinery
 	landscape land/station25
 	description `Outpost Tekis is a station built into an enormous asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens.`
-	description `The complex is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
+	description `	The complex is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
 	spaceport `The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar.`
 	government "Avgi (Dissonance)"
 	shipyard "Avgi Solar Light"
@@ -4332,7 +4330,7 @@ planet Palos
 	attributes desert uninhabited
 	landscape land/desert12
 	description `A cool desert world, Palos hosts a surface temperature suitable for habitation, but an unbreathable carbon dioxide atmosphere and deep gravity well has precluded any large scale settlement here. Had it been present in the Anax system, it very likely would have been an attractive target for terraforming, but with the natural beauty of nearby Cyreal free for the taking the Avgi of the Thread system declined to spend their scarce resources on the comparatively barren Palos.`
-	description `Panspermia spread various anaerobic fungi and bacteria from Cyreal to Palos long ago, and while they have taken poorly to the planet's conditions you can still occasionally find a mottled bacterial film growing over the alkaline soil, or something resembling lichen spotting a rock.`
+	description `	Panspermia spread various anaerobic fungi and bacteria from Cyreal to Palos long ago, and while they have taken poorly to the planet's conditions you can still occasionally find a mottled bacterial film growing over the alkaline soil, or something resembling lichen spotting a rock.`
 	government Uninhabited
 
 planet Parii'het
@@ -4384,10 +4382,10 @@ planet Peripheria
 	attributes avgi "avgi diaspora" station urban
 	landscape land/peripheria
 	description `This enormous, kilometer-wide rotating station is the capital of the Avgi civilization in exile. Shaped like a solid disc, it is home to almost a million Avgi, made up of both civilians that were able to flee the core worlds during the invasion and those who already led independent lives in deep space.`
-	description `The station contains hundreds of levels, with centripetal gravity on the edges being the strongest. The outer rim is perpetually expanded to create more living space, and will likely continue to grow until the structural limits of the station are reached.`
-	description `The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species-wide government.`
+	description `	The station contains hundreds of levels, with centripetal gravity on the edges being the strongest. The outer rim is perpetually expanded to create more living space, and will likely continue to grow until the structural limits of the station are reached.`
+	description `	The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species-wide government.`
 	spaceport `An extensive set of docks and shipyards makes up the innermost portion of the station's disc, and you can see dozens of ships in various states of completion.`
-	spaceport `The usual amenities often located on a station of this size fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense.`
+	spaceport `	The usual amenities often located on a station of this size fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense.`
 	government "Avgi (Consonance)"
 	shipyard "Avgi Solar Light"
 	shipyard "Avgi Solar Heavy"
@@ -4865,7 +4863,7 @@ planet Saeketer
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds14
 	description `This large ice giant hosts a layer in its upper atmosphere where the pressure and temperature are both close to Aviskir's at sea level. Beyond this, the gravity at this altitude is only slightly stronger than what a typical Avgi is used to, creating a paradoxically habitable area in the skies of a gas planet.`
-	description `If Saeketer was in the Anax system, it is likely some enterprising group of Avgi in the pre-hyperdrive era would have colonized its skies in aerostat habitats and floating colonies. The newly available real estate in the form of practically pristine terrestrial worlds has unfortunately devalued opportunities such as this, with there being less of a drive to colonize and exploit every body in a given star system.`
+	description `	If Saeketer was in the Anax system, it is likely some enterprising group of Avgi in the pre-hyperdrive era would have colonized its skies in aerostat habitats and floating colonies. The newly available real estate in the form of practically pristine terrestrial worlds has unfortunately devalued opportunities such as this, with there being less of a drive to colonize and exploit every body in a given star system.`
 	government Uninhabited
 
 planet "Safaresk Enlai"
@@ -5005,7 +5003,7 @@ planet Sela
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/snow37
 	description `A former planetoid captured into Aviskir's orbit only a few hundred million years ago, Sela is unusual for large moons in that it is not tidally locked, instead having a rapid rotational period of only forty-two hours. Almost one third of the moon is covered in a glassy plain of ice, smoothed by seasonal melting and refreezing. This is thought to have been deposited by a cometary impact relatively recently, and has been steadily sublimating away into space ever since.`
-	description `An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear devices behind a pusher plate would be seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system.`
+	description `	An Avgi first set foot on another world here, carried by a ship driven by nuclear pulsed propulsion. Driving a ship by detonating small nuclear devices behind a pusher plate would be seen as insanity by most species, but for the Avgi it was their first stepping stone in the colonization of their home system.`
 	government Uninhabited
 
 planet "Selefkar Refinery"
@@ -5239,7 +5237,7 @@ planet Silwan
 	attributes antecessor forest uninhabited
 	landscape land/fog12
 	description `Silwan is a wet, misty world shrouded in a permanent blanket of fog, which covers the entire planet year-round. The little light that makes it to the surface reveals a bleak landscape, eroded to a nearly uniform flatness from the eons of constant rains. Only at the equator is the layer of fog burned off by sunlight, feeding humid forests of fern-like trees.`
-	description `Even less evidence of the Antecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plants and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans.`
+	description `	Even less evidence of the Antecessors has survived here than usual, thanks to the rains, but this world is one of the few in this region to still host a substantial ecosystem, stubbornly clinging to life. Mossy plants and small, lizard-like scavengers are common across the entire planet, while large apex predators thrive deep in the world's oceans.`
 	government Uninhabited
 
 planet Sinter
@@ -5479,10 +5477,10 @@ planet Steli
 	government Uninhabited
 
 planet Stilacrest
-	attributes "aberrant siege" avgi fishing religious rich
+	attributes "aberrant siege" avgi "avgi core" fishing religious rich
 	landscape land/myrabella4
 	description `Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse.`
-	description `The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
+	description `	The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
 	spaceport `The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Along with the typical laser launch array, a Lofstrom launch loop stretches over the ocean and into the sky, capable of carrying spacecraft almost all the way to orbit.`
 	government Avgi
 	outfitter "Avgi General"
@@ -5639,7 +5637,7 @@ planet Thilos
 	attributes "aberrant siege" avgi frozen
 	landscape land/snow38
 	description `The Avgi were fortunate to have this nearly habitable planet in their home system. Covered in a thick crust of ice, a deep subsurface ocean lies just below the surface, heated by the radioactive decay of isotopes in its rocky core.`
-	description `This planet was the first to be settled by the Avgi, who almost immediately began thickening its atmosphere, oxygenating it, and warming the surface with orbital mirrors. Despite beginning this process nearly three centuries ago, it will likely be another century before Thilos becomes warm enough to live on, though its atmosphere is already breathable.`
+	description `	This planet was the first to be settled by the Avgi, who almost immediately began thickening its atmosphere, oxygenating it, and warming the surface with orbital mirrors. Despite beginning this process nearly three centuries ago, it will likely be another century before Thilos becomes warm enough to live on, though its atmosphere is already breathable.`
 	spaceport `The primary spaceport is located near a region where the icy crust is thin. The landing pads are built from enormous slabs of ice, thick enough to absorb the plume of a fusion torch. During the summer, the plumes of cryovolcanoes often surround the spaceport, tinging the tenuous sky with pale blue streaks.`
 	government Avgi
 
@@ -6004,7 +6002,7 @@ planet Vanikos
 	attributes ocean uninhabited
 	landscape land/beach18
 	description `A young, primordial world, Vanikos is a cold and watery moon still newly formed, with freshwater oceans dominated by strong tides and volcanism. Hydrothermal vents, fueled by the powerful tidal forces acting on the moon, bleed warmth into what are otherwise frigid seas. Life has yet to develop around these temperate islands of heat, but the abundance of water and organic compounds means it is only a matter of time before it takes hold.`
-	description `Of course, with Avgi exploration having taken note of Vanikos years ago for its liquid water and relatively hospitable temperatures, life may first emerge here as a result of eventual terraforming efforts before it can naturally evolve.`
+	description `	Of course, with Avgi exploration having taken note of Vanikos years ago for its liquid water and relatively hospitable temperatures, life may first emerge here as a result of eventual terraforming efforts before it can naturally evolve.`
 	government Uninhabited
 
 planet "Var Oti"
@@ -6270,7 +6268,7 @@ planet Viso
 	attributes frozen uninhabited
 	landscape land/snow33
 	description `A world of ice and ammonia, Viso is home to a curious ecosystem of ammonia-breathing bacteria, deep red algae, and small, cold amphibians. The planet's proximity to its host star, a red dwarf, amplifies the interactions between the solar wind and Viso's magnetic field, producing auroras that often reach the equator.`
-	description `Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
+	description `	Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
 	government Uninhabited
 
 planet "Vivid Aether"

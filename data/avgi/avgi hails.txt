@@ -35,6 +35,9 @@ phrase "friendly disabled avgi"
 		", "
 	phrase
 		"avgi polite playername"
+	word
+		"."
+		"!"
 
 phrase "hostile disabled avgi"
 	phrase
@@ -43,6 +46,9 @@ phrase "hostile disabled avgi"
 		", "
 	phrase
 		"avgi rude playername"
+	word
+		"."
+		"!"
 
 # Twilight Guard hails
 
@@ -65,6 +71,9 @@ phrase "friendly disabled twilight guard"
 		", "
 	phrase
 		"avgi polite playername"
+	word
+		"."
+		"!"
 
 phrase "hostile disabled twilight guard"
 	phrase
@@ -73,6 +82,9 @@ phrase "hostile disabled twilight guard"
 		", "
 	phrase
 		"avgi rude playername"
+	word
+		"."
+		"!"
 
 # Dissonance hails
 
@@ -93,6 +105,9 @@ phrase "friendly disabled dissonance"
 		", "
 	phrase
 		"dissonance polite playername"
+	word
+		"."
+		"!"
 
 phrase "hostile disabled dissonance"
 	phrase
@@ -101,6 +116,9 @@ phrase "hostile disabled dissonance"
 		", "
 	phrase
 		"dissonance rude playername"
+	word
+		"."
+		"!"
 
 
 phrase "avgi polite playername"
@@ -145,6 +163,7 @@ phrase "avgi rude playername"
 		"disgusting"
 		"distrusted"
 		"hostile"
+		"lazy"
 		"lying"
 		"malodorous"
 		"ominous"

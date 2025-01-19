@@ -19,7 +19,7 @@ mission "Avgi: Lost in Twilight"
 		never
 	on enter
 		system
-			attributes "twilight" "tangled shroud"
+			attributes "twilight"
 		log "Became trapped in a strange region after entering a system my jump drive could not return from."
 		fail
 		set "avgi: lost in twilight"
@@ -27,7 +27,7 @@ mission "Avgi: Lost in Twilight"
 
 phrase "lost in twilight"
 	word
-		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. You attempt to plot a jump back to where you came from, but your computer tells you the system is out of range. It appears you are stuck in this region for now.`
+		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. Your computer indicates that the system you came from is out of range, and that you cannot jump back to it. It appears you are stuck in this region for now.`
 
 mission "Avgi: First Contact"
 	autosave
@@ -49,7 +49,6 @@ mission "Avgi: First Contact"
 				has "flagship planet: Aviskir"
 			branch coreworld
 				has "flagship planet attribute: avgi core"
-				not "flagship planet attribute: station"
 			branch station
 				has "flagship planet attribute: station"
 			branch uninhabited
@@ -412,6 +411,7 @@ mission "Avgi: Defend Ensemble 1"
 					goto korath
 					to display
 						has "FW Pug 2B: done"
+						not "FW Pug 2C: Jump Drive: done"
 				`	"I took it from some angry space squirrels."`
 					goto unfettered
 					to display
@@ -960,6 +960,7 @@ mission "Avgi: Twilight Escape 1"
 				`	"I'm glad I was able to help."`
 
 			`	"No, really. I was expecting to die back there, with those Avgi. Six years... I don't know how to thank you, but if you're ever in the area and you need anything don't hesitate to give me a call." With that, he shakes your hand and sets off in the direction Sora and Darius went, toward Vinci's spaceport.`
+			`	Remember to meet Darius and Sora in the spaceport before you leave Vinci.`
 
 
 mission "Avgi: Twilight Escape 2"

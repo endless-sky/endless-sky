@@ -22,7 +22,7 @@ mission "Avgi Culture: Park Politics"
 	on offer
 		conversation
 			action
-				set "Avgi: met wisteria"
+				set "avgi: met wisteria"
 			`As you explore the spaceport of <origin>, you come across a small grassy park, the greenspace a welcome contrast to the otherwise industrial facilities. As the centerpiece of the park, where you'd expect a fountain or a statue in a human park, is a curious hanging windchime, made of pieces of colorful glass and various metals. It's more than a little mesmerizing, and you stop to listen as it rustles in the gentle circulation of the station's air.`
 			`	"Is this one of the humans I have heard so much about, question?" the translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of him, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
 			choice
@@ -446,7 +446,7 @@ mission "Avgi Culture: Zapchannel Energy"
 		log "Minor People" "Nikkio" `Nikkio is a shifty salesman peddling "Zapchannel Ray Energy," a supposed health tonic with a suspicious glow.`
 		conversation
 			action
-				set "Avgi: met nikkio"
+				set "avgi: met nikkio"
 			`You are on your way back to the <ship> after a stroll through the spaceport when a bright yellow Avgi lands in front of you. "Hey, you! Enthusiasm! I am Nikkio, famed medician and traveling salesman. Do you, alien sojourner, care for your health?"`
 			choice
 				`	"I guess so."`
@@ -490,13 +490,12 @@ mission "Avgi Culture: Zapchannel Energy"
 			`	You take the vial, warm to the touch, and uncork it before carefully tipping it back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in center of your chest, spreading as you start to feel somehow revitalized. After a brief, sharp pain, a suspiciously dragonfly-shaped patch of skin in the center of your skin begins to glow a vibrant blue.`
 			`	"Surprise. You surely are, ah, a worthy captain!" says Nikkio, shock evident on his face. He begins to sidle away, glancing in all directions as though he isn't sure what's going on. "Hurry. I must be on my way, goodbye for now, captain!"`
 				accept
-			action
-				set "damselflyman"
 			label nope
 			`	"Alarm. There's no need for that, apologies, apologies! Be on your way, Captain!"`
 				decline
 	on accept
 		log `Met a suspicious-looking Avgi salesman named Nikkio. Accepted a free sample of a strange glowing drink and somehow developed minor superpowers from it.`
+		set "damselflyman"
 		outfit "Damselflyman"
 		fail
 
@@ -533,7 +532,7 @@ mission "Avgi: Cylinder Construction"
 					defer
 
 			action
-				set "Avgi: met gamboge"
+				set "avgi: met gamboge"
 			`	You find a deep yellow Avgi, dressed in metallic blue-colored bangles around his limbs and forward body, perched in a makeshift office behind a pile of boxes. "Hey, do you mind if I ask some questions about this station?" you say.`
 			`	"Curiosity. Of course, alien traveler," he says, waving an arm at you. "My name is Gamboge, and I direct the construction effort on the Aktina Cylinder. What would you like to know?"`
 			label questions
@@ -555,7 +554,7 @@ mission "Avgi: Cylinder Construction"
 
 			label whenupdate
 			action
-				set "Avgi: asked about whenupdate"
+				set "avgi: asked about whenupdate"
 			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Napigeo Yards instead of here."`
 			choice
 				`	"Well, it makes sense that fighting the Aberrant would take priority."`
@@ -565,6 +564,8 @@ mission "Avgi: Cylinder Construction"
 				goto questions
 
 			label oneil
+			action
+				set "avgi: asked about oneil"
 			`	"A Class Two rotating cylinder habitat. Unless you use the Hekkedian classification system, in which case it is a Type One orbital habitat station. Of course, the Freosi would call it a Lieno-Drareg Cylinder, but that name hasn't been fashionable in quite some time."`
 			`	"I was more asking about what it'll look like when it's done," you say."`
 			`	"Amusement. I know, I know, I was just messing with you." He gestures out the window towards the steel skeleton of the unfinished station. "Six kilometers wide and twelve long, with two-hundred-sixty-six ribs of nickel-iron roidsteel and ninety spinal columns of carbon nanofilament. Once the base frame is complete, and it very nearly is, we will begin plating it with sheets of aerogel and graphene, with a fluorinated polymer layer coating the inside. After that my job is done, and we hand the project over to the ecosystem engineers.`
@@ -580,6 +581,8 @@ mission "Avgi: Cylinder Construction"
 				goto questions
 
 			label housing
+			action
+				set "avgi: asked about housing"
 			`	"Consideration. A place to live, with enough space to be a real home, not just a temporary outpost with a few houseplants. You should know, we had thousands of cylinders far larger than this one back in Anax and around our other colonies. Billions of Avgi, housed not on planets but in space. This is but a pale imitation of what we once had, but it is needed all the same. Do you know the most pressing question faced by the Assembly?"`
 			choice
 				`	"No."`
@@ -589,9 +592,9 @@ mission "Avgi: Cylinder Construction"
 
 			label conclusion
 			action
-				clear "Avgi: asked about whenupdate"
-				clear "Avgi: asked about oneil"
-				clear "Avgi: asked about housing"
+				clear "avgi: asked about whenupdate"
+				clear "avgi: asked about oneil"
+				clear "avgi: asked about housing"
 			`	"Appreciation. I was happy to answer them. Though, if I might ask a favor?"`
 			choice
 				`	"Sure."`
@@ -607,7 +610,7 @@ mission "Avgi: Cylinder Construction"
 
 			`	"Gratitude. I will ensure there are items posted on nearby job boards that you might gather and transport here."`
 			action
-				set "Avgi: aktina cylinder supply jobs"
+				set "avgi: aktina cylinder supply jobs"
 			accept
 
 
@@ -634,7 +637,7 @@ mission "Avgi: Infocourier Encounter"
 			`	The Avgi looks down from atop the Polari. "Invitation, I do. The name's Hansa, and you are?"`
 			`	"Captain <first> <last>," you say. "Are you one of the infocouriers?"`
 			action
-				set "Avgi: met hansa"
+				set "avgi: met hansa"
 			`	Hansa clicks his arms together. "Mild surprise. Indeed I am, but I'm surprised you've heard of us. Not a lot of people talk about the courier system these days."`
 			choice
 				`	"Why is that?"`
@@ -681,10 +684,10 @@ mission "Avgi: Infocourier Encounter"
 			`	"Sympathy. I understand, it's not the easiest work around, nor the most exciting for someone with their own starship, which is why it can be so hard to find enough couriers to keep the system running."`
 				decline
 			label end
+			action
+				set "avgi: infocourier jobs"
 			`	"Enthusiasm. I'm glad to hear that, there aren't nearly enough couriers plying the starways. I'll have your name passed along, and you should see offers to begin hauling media on the job board within a few days."`
 				decline
-			action
-				set "Avgi: infocourier jobs"
 
 
 mission "Avgi Culture: Twilight Tavern Guard"
@@ -732,7 +735,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 
 			label next
 			action
-				set "Avgi: met claret"
+				set "avgi: met claret"
 			`	"The name's Claret." She extends an arm, which you reach out to shake, but she instead taps her forearm to yours. "You're a hot topic among the Guard, you know?" She peers at you with inscrutable compound eyes.`
 			choice
 				`	"The Guard?"`
@@ -867,7 +870,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				`	"If you say so."`
 				`	"I hope you're right."`
 			action
-				set "Avgi: Twilight Guard Transport Jobs"
+				set "avgi: twilight guard transport jobs"
 			`	With that, you turn to lighter topics, as Claret finishes her drink. You learn about the new traditions the Twilight Guard is trying to promote to ensure unity and cohesion within its ranks, trying to bind together former members of dozens of independent militaries into a united whole. This apparently involves a lot of travel to promote inter-unit bonding, as well as frequent cycling between the front lines and the Outer Limits.`
 			`	Eventually, Claret is ready to leave. "Anyway, I'll see you around. And, a word of advice. If you're ever on a Twilight Guard station, look out for officers or Guardsmen who are looking for a ride. We often have people trying to make an impromptu trip, and our logistics have been so overstretched lately they're willing to contract with outside captains, if they're trustworthy."`
 			`	"I'll keep that in mind," you say.`
@@ -888,7 +891,7 @@ mission "Avgi: Atomics Testing 1"
 		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of a passion for nuclear weapons, she is eager to share what she knows.`
 		conversation
 			action
-				set "Avgi: met aliza"
+				set "avgi: met aliza"
 			`Ergastirio Station is quiet as you disembark from the <ship>. Everyone you see seems purposeful and deliberate, moving as if they all know exactly where they need to be. Wandering about as you are, you can't help but feel that you stand out, a feeling that proves warranted when a female Avgi stops you, a vibrant red tinged with purple.`
 			`	"Curiosity, hello. Who are you?"`
 			choice
@@ -1106,7 +1109,7 @@ mission "Avgi: Atomics Testing 2"
 
 			`	Yinmn thinkss for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
 			action
-				set "Avgi: Nuclear Material Transport Jobs"
+				set "avgi: nuclear material transport jobs"
 			choice
 				`	"I will."`
 				`	"Sounds good."`

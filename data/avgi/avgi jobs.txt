@@ -1110,25 +1110,25 @@ mission "Avgi: Rush Cargo 3 (Avgi Fusion Fuels)"
 
 phrase "avgi specialists complete"
 	word
-		`You drop off the `
+		"You drop off the "
 	word
-		`engineers`
-		`doctors`
-		`scientists`
-		`researchers`
-		`mechanics`
-		`technicians`
-		`specialists`
-		`experts`
-		`academics`
+		"engineers"
+		"doctors"
+		"scientists"
+		"researchers"
+		"mechanics"
+		"technicians"
+		"specialists"
+		"experts"
+		"academics"
 	word
-		` on <planet> as they chatter excitedly about their subjects of expertise. You collect <payment> in payment.`
+		" on <planet> as they chatter excitedly about their subjects of expertise. You collect <payment> in payment."
 
 mission "Avgi: Specialized Workers 1"
 	job
 	repeat
 	name "Specialists to <planet>"
-	description "Take these <bunks> specialists to <planet> to provide subject matter expertise in exchange for <payment>."
+	description "Take these <bunks> specialists to <destination> to provide subject matter expertise in exchange for <payment>."
 	passengers 6 3 .45
 	to offer
 		random < 60
@@ -1147,7 +1147,7 @@ mission "Avgi: Specialized Workers 2"
 	job
 	repeat
 	name "Specialists to <planet>"
-	description "Take these <bunks> specialists to <planet> to provide subject matter expertise in exchange for <payment>."
+	description "Take these <bunks> specialists to <destination> to provide subject matter expertise in exchange for <payment>."
 	passengers 3 3 .3
 	to offer
 		random < 30
@@ -1167,7 +1167,7 @@ mission "Avgi: Ergastirio Researchers 1"
 	job
 	repeat
 	name "Researchers to <planet>"
-	description "Take these <bunks> researchers to <planet> to work for a term on the laboratory station in exchange for <payment>."
+	description "Take these <bunks> researchers to <destination> to work for a term on the laboratory station in exchange for <payment>."
 	passengers 3 3 .45
 	clearance
 	to offer
@@ -1185,7 +1185,7 @@ mission "Avgi: Ergastirio Researchers 2"
 	job
 	repeat
 	name "Researchers to <planet>"
-	description "Take these <bunks> researchers to <planet> to work for a term on the laboratory station in exchange for <payment>."
+	description "Take these <bunks> researchers to <destination> to work for a term on the laboratory station in exchange for <payment>."
 	passengers 3 6 .36
 	clearance
 	to offer
@@ -1202,25 +1202,25 @@ mission "Avgi: Ergastirio Researchers 2"
 
 phrase "avgi diplomats complete"
 	word
-		`You drop off the `
+		"You drop off the "
 	word
-		`diplomats`
-		`negotiators`
+		"diplomats"
+		"negotiators"
 	word
-		` on <planet> as they `
+		" on <planet> as they "
 	word
-		`review papers`
-		`shuffle papers`
-		`prepare arguments`
-		`practice arguments`
+		"review papers"
+		"shuffle papers"
+		"prepare arguments"
+		"practice arguments"
 	word
-		` for the negotiations. You collect <payment> in payment.`
+		" for the negotiations. You collect <payment> in payment."
 
 mission "Avgi: Outpost Diplomats 1"
 	job
 	repeat
 	name "Diplomats to <planet>"
-	description "Take these <bunks> diplomats to <planet> to negotiate with unhappy workers in exchange for <payment>."
+	description "Take these <bunks> diplomats to <destination> to negotiate with unhappy workers in exchange for <payment>."
 	passengers 1 3 .6
 	to offer
 		random < 100
@@ -1238,7 +1238,7 @@ mission "Avgi: Outpost Diplomats 2"
 	job
 	repeat
 	name "Diplomats to <planet>"
-	description "Take these <bunks> diplomats to <planet> to soothe dissatisfied Avgi in exchange for <payment>."
+	description "Take these <bunks> diplomats to <destination> to soothe dissatisfied Avgi in exchange for <payment>."
 	passengers 1 9 .9
 	to offer
 		random < 100
@@ -1256,7 +1256,7 @@ mission "Avgi: Outpost Diplomats 3"
 	job
 	repeat
 	name "Diplomats to <planet>"
-	description "Take these <bunks> diplomats to <planet> to soothe dissatisfied Avgi in exchange for <payment>."
+	description "Take these <bunks> diplomats to <destination> to soothe dissatisfied Avgi in exchange for <payment>."
 	passengers 3 6 .6
 	to offer
 		random < 100
@@ -1273,30 +1273,32 @@ mission "Avgi: Outpost Diplomats 3"
 
 phrase "avgi twilight guards relief complete"
 	word
-		`You drop off the `
+		"You drop off the "
 	word
-		`tired`
-		`exhausted`
-		`grateful`
-		`talkative`
-		`withdrawn`
-		`injured`
-		`wounded`
+		"tired"
+		"exhausted"
+		"grateful"
+		"talkative"
+		"withdrawn"
+		"injured"
+		"wounded"
 	word
-		` Twilight Guardsmen`
+		" Twilight Guardsmen"
 	word
-		` on <planet> to rest and recover.`
+		" on <planet> to rest and recover."
 	word
-		` You collect <payment> in payment.`
+		" You collect <payment> in payment."
 
 mission "Avgi: Twilight Guard Relief 1"
 	job
 	repeat
 	name "Shore leave on <planet>"
-	description "Take these <bunks> Twilight Guards to <planet> to recover from their rotation on the front lines in exchange for <payment>."
+	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
 	passengers 3 6 .6
 	to offer
 		random < 60
+	to accept
+		has "avgi: twilight guard transport jobs"
 	source "Feo Platform"
 	destination
 		government "Avgi (Consonance)"
@@ -1310,10 +1312,12 @@ mission "Avgi: Twilight Guard Relief 2"
 	job
 	repeat
 	name "Shore leave on <planet>"
-	description "Take these <bunks> Twilight Guards to <planet> to recover from their rotation on the front lines in exchange for <payment>."
+	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
 	passengers 3 6 .45
 	to offer
 		random < 60
+	to accept
+		has "avgi: twilight guard transport jobs"
 	source "Feo Platform"
 	destination
 		government "Avgi (Consonance)"
@@ -1327,10 +1331,12 @@ mission "Avgi: Twilight Guard Relief 3"
 	job
 	repeat
 	name "Shore leave on <planet>"
-	description "Take these <bunks> Twilight Guards to <planet> to recover from their rotation on the front lines in exchange for <payment>."
+	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
 	passengers 3 6 .3
 	to offer
 		random < 60
+	to accept
+		has "avgi: twilight guard transport jobs"
 	source "Feo Platform"
 	destination
 		government "Avgi (Consonance)"
@@ -1343,19 +1349,19 @@ mission "Avgi: Twilight Guard Relief 3"
 
 phrase "avgi doctors complete"
 	word
-		`You drop off the `
+		"You drop off the "
 	word
-		` doctors`
+		" doctors"
 	word
-		` on <planet>, who immediately rush off to provide care.`
+		" on <planet>, who immediately rush off to provide care."
 	word
-		` You collect <payment> in payment.`
+		" You collect <payment> in payment."
 
 mission "Avgi: Doctors 1"
 	job
 	repeat
 	name "Doctors to <planet>"
-	description "Take these <bunks> doctors to <planet> to provide treatment and medical services in exchange for <payment>."
+	description "Take these <bunks> doctors to <destination> to provide treatment and medical services in exchange for <payment>."
 	passengers 3 6 .72
 	to offer
 		random < 30
@@ -1373,7 +1379,7 @@ mission "Avgi: Doctors 2"
 	job
 	repeat
 	name "Doctors to <planet>"
-	description "Take these <bunks> doctors to <planet> to provide treatment and medical services in exchange for <payment>."
+	description "Take these <bunks> doctors to <destination> to provide treatment and medical services in exchange for <payment>."
 	passengers 3 6 .6
 	to offer
 		random < 30
@@ -1391,7 +1397,7 @@ mission "Avgi: Doctors 3"
 	job
 	repeat
 	name "Doctors to <planet>"
-	description "Take these <bunks> doctors to <planet> to provide treatment and medical services in exchange for <payment>."
+	description "Take these <bunks> doctors to <destination> to provide treatment and medical services in exchange for <payment>."
 	passengers 3 6 .45
 	to offer
 		random < 30
@@ -1410,18 +1416,18 @@ mission "Avgi: Doctors 3"
 
 phrase "avgi cylinder materials"
 	word
-		`You drop off the cylinder construction materials and collect <payment> in payment.`
+		"You drop off the cylinder construction materials and collect <payment> in payment."
 
-mission "Avgi: Cylinder Materials"
+mission "Avgi: Cylinder Materials 1"
 	job
 	repeat
 	name "Construction materials to the <planet>"
-	description "Bring <cargo> from <origin> to the <planet> to support the construction of the <destination> in exchange for <payment>."
-	cargo "Avgi Industrial" 60 12 .3
+	description "Bring <cargo> from <origin> to the <destination> to support the construction of the <destination> in exchange for <payment>."
+	cargo "Avgi Industrial" 30 6 .3
 	to offer
-		random < 30
+		random < 15
 	to accept
-		has "Avgi: Aktina Cylinder Supply Jobs"
+		has "avgi: aktina cylinder supply jobs"
 	source
 		distance 1 30
 		attributes "avgi diaspora"
@@ -1433,16 +1439,100 @@ mission "Avgi: Cylinder Materials"
 		payment 12000
 		dialog phrase "avgi cylinder materials"
 
-mission "Avgi: Bulk Cylinder Materials"
+mission "Avgi: Cylinder Materials 2"
+	job
+	repeat
+	name "Construction materials to the <planet>"
+	description "Bring <cargo> from <origin> to the <destination> to support the construction of the <destination> in exchange for <payment>."
+	cargo "Avgi Industrial" 60 12 .3
+	to offer
+		random < 15
+	to accept
+		has "avgi: aktina cylinder supply jobs"
+	source
+		distance 1 30
+		attributes "avgi diaspora"
+	destination "Aktina Cylinder"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"cylinder deliveries" ++
+		payment 12000
+		dialog phrase "avgi cylinder materials"
+
+mission "Avgi: Cylinder Materials 3"
+	job
+	repeat
+	name "Construction materials to the <planet>"
+	description "Bring <cargo> from <origin> to the <destination> to support the construction of the <destination> in exchange for <payment>."
+	cargo "Avgi Industrial" 60 18 .3
+	to offer
+		random < 15
+	to accept
+		has "avgi: aktina cylinder supply jobs"
+	source
+		distance 1 30
+		attributes "avgi diaspora"
+	destination "Aktina Cylinder"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"cylinder deliveries" ++
+		payment 12000
+		dialog phrase "avgi cylinder materials"
+
+mission "Avgi: Bulk Cylinder Materials 1"
 	job
 	repeat
 	name "Bulk materials to the <planet>"
-	description "Bring <cargo> from <origin> to the <planet> to support the construction of the <destination> in exchange for <payment>."
+	description "Bring <cargo> from <origin> to the <destination> to support the construction of the <destination> in exchange for <payment>."
+	cargo "Avgi Megaconstruction" 60 6 .09
+	to offer
+		random < 9
+	to accept
+		has "avgi: aktina cylinder supply jobs"
+	source
+		distance 1 30
+		attributes "avgi diaspora"
+	destination "Aktina Cylinder"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"cylinder deliveries" ++
+		payment 9000
+		dialog phrase "avgi cylinder materials"
+
+mission "Avgi: Bulk Cylinder Materials 2"
+	job
+	repeat
+	name "Bulk materials to the <planet>"
+	description "Bring <cargo> from <origin> to the <destination> to support the construction of the <destination> in exchange for <payment>."
+	cargo "Avgi Megaconstruction" 60 6 .06
+	to offer
+		random < 9
+	to accept
+		has "avgi: aktina cylinder supply jobs"
+	source
+		distance 1 30
+		attributes "avgi diaspora"
+	destination "Aktina Cylinder"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		"cylinder deliveries" ++
+		payment 9000
+		dialog phrase "avgi cylinder materials"
+
+mission "Avgi: Bulk Cylinder Materials 3"
+	job
+	repeat
+	name "Bulk materials to the <planet>"
+	description "Bring <cargo> from <origin> to the <destination> to support the construction of the <destination> in exchange for <payment>."
 	cargo "Avgi Megaconstruction" 60 6 .03
 	to offer
-		random < 30
+		random < 6
 	to accept
-		has "Avgi: Aktina Cylinder Supply Jobs"
+		has "avgi: aktina cylinder supply jobs"
 	source
 		distance 1 30
 		attributes "avgi diaspora"
@@ -1457,20 +1547,20 @@ mission "Avgi: Bulk Cylinder Materials"
 
 phrase "avgi nuclear materials"
 	word
-		`You deliver the <cargo> to a heavily armed security detail and collect <payment> in payment.`
+		"You deliver the <cargo> to a heavily armed security detail and collect <payment> in payment."
 
 mission "Avgi: Special Nuclear Material Shipment 1"
 	job
 	repeat
 	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	description "Deliver <cargo> special nuclear material to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	deadline
 	cargo "Avgi Special Nuclear Material" 3 6 .3
 	to offer
 		not "Avgi: Fissiles Shortage"
 		random < 9
 	to accept
-		has "Avgi: Nuclear Material Supply Jobs"
+		has "avgi: nuclear material transport jobs"
 	source
 		government "Avgi (Twilight Guard)"
 	destination
@@ -1500,14 +1590,14 @@ mission "Avgi: Special Nuclear Material Shipment 2"
 	job
 	repeat
 	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	description "Deliver <cargo> special nuclear material to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	deadline
 	cargo "Avgi Nuclear Weapons" 3 6 .3
 	to offer
 		not "Avgi: Fissiles Shortage"
 		random < 9
 	to accept
-		has "Avgi: Nuclear Material Supply Jobs"
+		has "avgi: nuclear material transport jobs"
 	source
 		government "Avgi (Twilight Guard)"
 	destination
@@ -1537,14 +1627,14 @@ mission "Avgi: Special Nuclear Material Shipment 3"
 	job
 	repeat
 	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
+	description "Deliver <cargo> special nuclear material to <destination> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
 	deadline
 	cargo "Avgi Special Nuclear Material" 3 6 .3
 	to offer
 		not "Avgi: Fissiles Shortage"
 		random < 6
 	to accept
-		has "Avgi: Nuclear Material Supply Jobs"
+		has "avgi: nuclear material transport jobs"
 	source
 		government "Avgi (Twilight Guard)"
 	destination
@@ -1557,117 +1647,6 @@ mission "Avgi: Special Nuclear Material Shipment 3"
 		system
 			distance 1 2
 		fleet "Small Dissonance Merchants"
-	npc
-		government "Avgi (Dissonance)"
-		personality coward harvests timid secretive surveillance
-			confusion 20
-		system
-			distance 1 2
-		fleet "Small Dissonance Merchants"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		payment 30000
-		dialog phrase "avgi nuclear materials"
-
-mission "Avgi: Special Nuclear Material Shipment 4"
-	job
-	repeat
-	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
-	deadline
-	cargo "Avgi Nuclear Weapons" 3 6 .3
-	to offer
-		not "Avgi: Fissiles Shortage"
-		random < 6
-	to accept
-		has "Avgi: Nuclear Material Supply Jobs"
-	source
-		government "Avgi (Twilight Guard)"
-	destination
-		distance 1 30
-		government "Avgi (Twilight Guard)"
-	npc
-		government "Avgi (Dissonance)"
-		personality coward harvests timid secretive surveillance
-			confusion 20
-		system
-			distance 1 2
-		fleet "Small Dissonance Merchants"
-	npc
-		government "Avgi (Dissonance)"
-		personality coward harvests timid secretive surveillance
-			confusion 20
-		system
-			distance 1 2
-		fleet "Small Dissonance Merchants"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		payment 30000
-		dialog phrase "avgi nuclear materials"
-
-mission "Avgi: Special Nuclear Material Shipment 5"
-	job
-	repeat
-	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
-	deadline
-	cargo "Avgi Special Nuclear Material" 3 6 .3
-	to offer
-		not "Avgi: Fissiles Shortage"
-		random < 3
-	to accept
-		has "Avgi: Nuclear Material Supply Jobs"
-	source
-		government "Avgi (Twilight Guard)"
-	destination
-		distance 1 30
-		government "Avgi (Twilight Guard)"
-	npc
-		government "Avgi (Dissonance Angry)"
-		personality coward nemesis harvests plunders
-			confusion 20
-		system
-			distance 1 2
-		fleet "Large Dissonance Pirates"
-	npc
-		government "Avgi (Dissonance)"
-		personality coward harvests timid secretive surveillance
-			confusion 20
-		system
-			distance 1 2
-		fleet "Small Dissonance Merchants"
-	on visit
-		dialog phrase "generic cargo on visit"
-	on complete
-		payment 30000
-		dialog phrase "avgi nuclear materials"
-
-mission "Avgi: Special Nuclear Material Shipment 6"
-	job
-	repeat
-	name "Special nuclear materials to <planet>"
-	description "Deliver <cargo> special nuclear material to <planet> by <date> in exchange for <payment>. Be on the lookout for pirates looking to steal the nuclear material for nefarious purposes."
-	deadline
-	cargo "Avgi Nuclear Weapons" 3 6 .3
-	to offer
-		not "Avgi: Fissiles Shortage"
-		random < 3
-	to accept
-		has "Avgi: Nuclear Material Supply Jobs"
-	source
-		government "Avgi (Twilight Guard)"
-	destination
-		distance 1 30
-		government "Avgi (Twilight Guard)"
-	npc
-		government "Avgi (Dissonance Angry)"
-		personality coward nemesis harvests plunders
-			confusion 20
-		system
-			distance 1 2
-		fleet "Large Dissonance Pirates"
 	npc
 		government "Avgi (Dissonance)"
 		personality coward harvests timid secretive surveillance
@@ -1684,28 +1663,29 @@ mission "Avgi: Special Nuclear Material Shipment 6"
 
 phrase "avgi infocourier delivery"
 	word
-		`You drop off the `
+		"You drop off the "
 	word
-		`bricks`
-		`slabs`
-		`rods`
-		`tiles`
+		"bricks"
+		"sheets"
+		"slabs"
+		"rods"
+		"tiles"
 	word
-		` of `
+		" of "
 	word
-		`<commodity> at a designated terminal and receive <payment> in payment.`
+		"<commodity> at a designated terminal and receive <payment> in payment."
 
 mission "Avgi: Information Courier"
 	job
 	repeat
 	name "Information courier to <planet>"
-	description "Bring <cargo> storage media to update <planet>'s local network by <date> in exchange for <payment>."
+	description "Bring <cargo> storage media to <destination> to update <planet>'s local network by <date> in exchange for <payment>."
 	deadline
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
 		random < 30
 	to accept
-		has "Avgi: Infocourier Jobs"
+		has "avgi: infocourier jobs"
 	source
 		government "Avgi (Consonance)" "Avgi (Twilight Guard)"
 	destination
@@ -1721,13 +1701,13 @@ mission "Avgi: Information Courier Rush"
 	job
 	repeat
 	name "Information courier to <planet>"
-	description "Bring <cargo> storage media to update <planet>'s local network by <date> in exchange for <payment>."
+	description "Bring <cargo> storage media to <destination> to update <planet>'s local network by <date> in exchange for <payment>."
 	deadline 1 1
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
 		random < 15
 	to accept
-		has "Avgi: Infocourier Jobs"
+		has "avgi: infocourier jobs"
 	source
 		government "Avgi (Consonance)" "Avgi (Twilight Guard)"
 	destination
@@ -1742,7 +1722,7 @@ mission "Avgi: Information Courier Rush"
 
 phrase "avgi twilight guards dropoff"
 	word
-		`You say your goodbyes to the Twilight Guardsmen and receive <payment> in payment.`
+		"You say your goodbyes to the Twilight Guardsmen and receive <payment> in payment."
 
 mission "Avgi: Twilight Guardsmen Transport"
 	name "Twilight Guardsmen to <planet>"
@@ -1775,7 +1755,7 @@ mission "Avgi: Twilight Guard Officers Transport"
 	to offer
 		random < 30
 	to accept
-		has "Avgi: Twilight Guard Transport Jobs"
+		has "avgi: twilight guard transport jobs"
 	source
 		attributes "twilight guard"
 		government "Avgi (Twilight Guard)" "Avgi (Consonance)"
@@ -1797,7 +1777,7 @@ mission "Avgi: Twilight Guard Flag Officers Transport"
 	to offer
 		random < 15
 	to accept
-		has "Avgi: Twilight Guard Transport Jobs"
+		has "avgi: twilight guard transport jobs"
 		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "twilight guard"

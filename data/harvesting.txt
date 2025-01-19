@@ -423,7 +423,7 @@ minable "unknown"
 # Gossamer Smoke Ring Minables
 
 minable "tiny water droplet"
-	"display name" Tiny
+	"display name" "Tiny"
 	noun "Water Droplet"
 	sprite "asteroid/water droplet/droplet"
 		scale 0.125
@@ -435,7 +435,7 @@ minable "tiny water droplet"
 	explode "droplet burst"
 
 minable "small water droplet"
-	"display name" Small
+	"display name" "Small"
 	noun "Water Droplet"
 	sprite "asteroid/water droplet/droplet"
 		scale 0.25
@@ -449,7 +449,7 @@ minable "small water droplet"
 	explode "droplet burst" 3
 
 minable "medium water droplet"
-	"display name" Medium
+	"display name" "Medium"
 	noun "Water Droplet"
 	sprite "asteroid/water droplet/droplet"
 		scale 0.5
@@ -463,7 +463,7 @@ minable "medium water droplet"
 	explode "droplet burst" 6
 
 minable "large water droplet"
-	"display name" Large
+	"display name" "Large"
 	noun "Water Droplet"
 	sprite "asteroid/water droplet/droplet"
 		scale 0.75
@@ -477,7 +477,7 @@ minable "large water droplet"
 	explode "droplet burst" 12
 
 minable "huge water droplet"
-	"display name" Huge
+	"display name" "Huge"
 	noun "Water Droplet"
 	sprite "asteroid/water droplet/droplet"
 		scale 1
@@ -520,7 +520,7 @@ effect "droplet burst"
 
 minable "integral tree a"
 	"display name" "Wizened Integral"
-	noun Tree
+	noun "Tree"
 	sprite "asteroid/integral tree/tree a"
 	hull 7200
 	"random hull" 3600
@@ -531,7 +531,7 @@ minable "integral tree a"
 
 minable "integral tree b"
 	"display name" Integral
-	noun Tree
+	noun "Tree"
 	sprite "asteroid/integral tree/tree b"
 		scale 0.75
 	hull 2400
@@ -542,8 +542,8 @@ minable "integral tree b"
 	explode "timber" 6
 
 minable "integral tree c"
-	"display name" Integral
-	noun Tree
+	"display name" "Integral"
+	noun "Tree"
 	sprite "asteroid/integral tree/tree c"
 		scale 0.75
 	hull 3600
@@ -555,7 +555,7 @@ minable "integral tree c"
 
 minable "integral tree d"
 	"display name" "Frosted Integral"
-	noun Tree
+	noun "Tree"
 	sprite "asteroid/integral tree/tree d"
 		scale 0.75
 	hull 4800
@@ -569,7 +569,7 @@ minable "integral tree d"
 
 minable "integral tree e"
 	"display name" "Amber Integral"
-	noun Tree
+	noun "Tree"
 	sprite "asteroid/integral tree/tree e"
 		scale 0.75
 	hull 4800
@@ -583,7 +583,7 @@ minable "integral tree e"
 
 minable "integral tree f"
 	"display name" "Dead Integral"
-	noun Tree
+	noun "Tree"
 	sprite "asteroid/integral tree/tree f"
 		scale 0.75
 	hull 600
@@ -611,4 +611,4 @@ outfit "Integral Wood"
 	"installable" -1
 	"minable" 1
 	description "Wood harvested from an integral tree is exquisitely lightweight, strong, and radiation resistant - it also fetches extraordinary prices on the market for exotic goods."
-	description "Some claim it would even be the material of choice for a wooden starship, as ridiculous as the idea would be."
+	description "	Some claim it would even be the material of choice for a wooden starship, as ridiculous as the idea would be."

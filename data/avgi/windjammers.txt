@@ -25,12 +25,12 @@ phrase empty
 		" "
 
 
-mission "Gossamer Sailors"
+mission "Avgi: Gossamer Sailors"
 	invisible
 	landing
 	repeat
 	to offer
-		not "Gossamer Sailors: active"
+		not "Avgi: Gossamer Sailors: active"
 		not "avgi: windjammers change"
 		not "avgi: windjammers despawn"
 	to complete
