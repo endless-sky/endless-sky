@@ -218,13 +218,26 @@ mission "Avgi: First Contact"
 		"reputation: Avgi (Consonance)" += 10
 		"reputation: Avgi (Twilight Guard)" += 10
 		set "discovered avgi"
+		event "outer limits label"
+
+
+
+mission "Avgi: Humans From the Deep"
+	landing
+	name "Humans Among the Avgi"
+	description "Visit the <destination>, where there is another human, Darius Calwell, stranded in Avgi space."
+	source "Peripheria"
+	destination "Aktina Cylinder"
+	to offer
+		has "Avgi: First Contact: done"
+	on offer
 		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let you purchase civilian technology.`
 		log "Factions" "Avgi" `The Avgi are a young race of aliens resembling large, colorful dragonflies, which inhabit the Twilight Nebula in this part of the galaxy. After an overwhelming invasion by ships they call the Aberrant, most of their surviving spacecraft fled south through a maze-like region called the Tangled Shroud.`
 		log "Factions" "Avgi Consonance" `The exiled Avgi seem to be led by a central government called the Consonance, but there are many who do not recognize this government.`
 		log "People" "Asime" `Asime is one of the three First Speakers of the Consonance Assembly. While reserved, Asime appears to be defensive about the decisions made by the Consonance in response to the Aberrant incursion.`
 		log "People" "Galano" `Galano is one of the three First Speakers of the Consonance Assembly. He appears to be an elder statesman, with much pride for what the Avgi have accomplished.`
 		log "People" "Prasinos" `Prasinos is one of the three First Speakers of the Consonance Assembly. She seems to take a negative view on the Avgi history of division and fractiousness.`
-		event "outer limits label"
+		set "language: Avgi"
 		conversation
 			`After a confusing journey through the winding hyperlanes, you finally arrive at the final system the alien marked on your map. You notice that your flight computer has failed to record the locations of most of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This region appears unaffected however, and your computer is able to chart its position.`
 			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek-looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
@@ -358,20 +371,7 @@ mission "Avgi: First Contact"
 			`	Asime looks like she wants to object, but then Galano says, "Agreement. A reasonable compromise, one I can sell to the Assembly fairly easily. Beyond that, we will provide you with a line of credit with which to purchase housing and nutrition. I cannot vouch for its usefulness among... certain elements that do not recognize the authority of Consonance, but anywhere else, you should find no issues."`
 			`	He twitches his wings. "Satisfaction. For now, we will leave you with some time and space to think. The former captain of the ship that brought the other humans, one Darius Calwell, is currently advising construction on the cylinder habitat in this system. You will find him on Aktina Cylinder, if you wish to speak with him. And should you wish to speak to us as well, there is one last gift we will bestow upon you today that will facilitate that."`
 			`	Before you are dismissed, he holds out a long arm, with a black hairpin-shaped rod clutched between his three sharp fingers, like a smaller version of the translator the Avgi have been using to communicate with you. Tucked behind your ear, this device will translate the speech of the most common Avgi languages as is it spoken around you, quietly whispering the meaning into your ear.`
-			action
-				set "language: Avgi"
-				clear "avgi: asked about avgi"
-				clear "avgi: asked about humans"
-				clear "avgi: asked about aberrant"
-
-mission "Avgi: Humans From the Deep"
-	name "Humans Among the Avgi"
-	description "Visit the <destination>, where there is another human, Darius Calwell, stranded in Avgi space."
-	landing
-	source "Peripheria"
-	destination "Aktina Cylinder"
-	to offer
-		has "Avgi: First Contact: done"
+		clear "avgi: asked about aberrant"
 
 
 
