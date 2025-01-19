@@ -26,10 +26,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <typename T>
 class RandomEvent {
 public:
+	static const int DEFAULT_PERIOD = 200;
+
+
 	RandomEvent(const T *event, int period, const DataNode &node) noexcept;
 
 	const T *Get() const noexcept;
 	int Period() const noexcept;
+	int &Period() noexcept;
 	bool CanTrigger(const ConditionsStore &tester) const;
 
 private:
@@ -42,7 +46,7 @@ private:
 
 template <typename T>
 RandomEvent<T>::RandomEvent(const T *event, int period, const DataNode &node) noexcept
-	: event(event), period(period > 0 ? period : 200)
+	: event(event), period(period > 0 ? period : DEFAULT_PERIOD)
 {
 	for(const auto &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "spawn")
@@ -58,6 +62,12 @@ const T *RandomEvent<T>::Get() const noexcept
 
 template <typename T>
 int RandomEvent<T>::Period() const noexcept
+{
+	return period;
+}
+
+template <typename T>
+int &RandomEvent<T>::Period() noexcept
 {
 	return period;
 }

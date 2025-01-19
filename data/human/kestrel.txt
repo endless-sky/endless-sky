@@ -287,14 +287,18 @@ ship "Unknown Ship Type"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 2135
+		"mass" 5920
 		"drag" 20.9
 		"heat dissipation" .32
-		"fuel capacity" 500
+		"fuel capacity" 1725
 		"cargo space" 120
-		"outfit space" 810
+		"outfit space" 868
 		"weapon capacity" 390
-		"engine capacity" 210
+		"engine capacity" 268
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -313,16 +317,21 @@ ship "Unknown Ship Type"
 		"Tactical Scanner" 2
 		
 		"Orca Plasma Thruster"
+		"Orca Plasma LTC"
 		"Orca Plasma Steering"
 		"Hyperdrive"
 	engine 13 170
 	engine -13 170
-	gun -73.5 46 "Torpedo Launcher"
-	gun 73.5 46 "Torpedo Launcher"
+	gun -73.5 46
+	gun 73.5 46
 	gun -51 49.5 "Particle Cannon"
 	gun 51 49.5 "Particle Cannon"
 	gun -29.5 52 "Particle Cannon"
 	gun 29.5 52 "Particle Cannon"
+	pylon -17 -17 "Torpedo Launcher"
+		angle 315
+	pylon 17 -17 "Torpedo Launcher"
+		angle 45
 	turret -8 -10.5 "Heavy Laser Turret"
 	turret 8 -10.5 "Heavy Laser Turret"
 	turret -20.5 9 "Heavy Laser Turret"
@@ -344,14 +353,18 @@ ship "Kestrel"
 		"hull" 7200
 		"required crew" 64
 		"bunks" 128
-		"mass" 2135
+		"mass" 5920
 		"drag" 20.9
 		"heat dissipation" .32
-		"fuel capacity" 500
+		"fuel capacity" 1725
 		"cargo space" 120
-		"outfit space" 810
+		"outfit space" 850
 		"weapon capacity" 390
-		"engine capacity" 210
+		"engine capacity" 250
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 260
 			"shield damage" 2600
@@ -369,17 +382,22 @@ ship "Kestrel"
 		"Liquid Nitrogen Cooler"
 		"Tactical Scanner" 2
 		
-		"Orca Plasma Thruster"
-		"Orca Plasma Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
 	engine 13 170
 	engine -13 170
-	gun -73.5 46 "Torpedo Launcher"
-	gun 73.5 46 "Torpedo Launcher"
+	gun -73.5 46
+	gun 73.5 46
 	gun -51 49.5 "Particle Cannon"
 	gun 51 49.5 "Particle Cannon"
 	gun -29.5 52 "Particle Cannon"
 	gun 29.5 52 "Particle Cannon"
+	pylon -17 -17 "Torpedo Launcher"
+		angle 315
+	pylon 17 -17 "Torpedo Launcher"
+		angle 45
 	turret -8 -10.5 "Heavy Laser Turret"
 	turret 8 -10.5 "Heavy Laser Turret"
 	turret -20.5 9 "Heavy Laser Turret"
@@ -401,8 +419,12 @@ ship "Kestrel" "Kestrel (More Engines)"
 	thumbnail "thumbnail/kestrele"
 	add attributes
 		"drag" -1.9
-		"fuel capacity" 100
-		"engine capacity" 30
+		"engine capacity" 60
+		"fuel capacity" 475 # Improvised amount should be a bit over 1 additional jump.
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 	engine 13 170
 	engine -13 170
 	engine 24.5 160 0.4
@@ -421,9 +443,9 @@ ship "Kestrel" "Kestrel (More Weapons)"
 	thumbnail "thumbnail/kestrelw"
 	add attributes
 		"weapon capacity" 40
-	gun -73.5 46 "Torpedo Launcher"
+	gun -73.5 46
 	gun -76.5 49
-	gun 73.5 46 "Torpedo Launcher"
+	gun 73.5 46
 	gun 76.5 49
 	gun -51 49.5 "Particle Cannon"
 	gun -55.5 52.5
@@ -433,6 +455,10 @@ ship "Kestrel" "Kestrel (More Weapons)"
 	gun -33 55
 	gun 29.5 52 "Particle Cannon"
 	gun 33 55
+	pylon -17 -17 "Torpedo Launcher"
+		angle 315
+	pylon 17 -17 "Torpedo Launcher"
+		angle 45
 	turret -7 -4 "Heavy Laser Turret"
 	turret 7 -4 "Heavy Laser Turret"
 	turret -23 14 "Heavy Laser Turret"
@@ -444,6 +470,7 @@ ship "Kestrel" "Kestrel (More Bays)"
 	add attributes
 		"mass" 60
 		"weapon capacity" -20
+		"fuel capacity" 275 # This is an improvised stopgap to handle increased carrier mass.
 	outfits
 		"Particle Cannon" 2
 		"Torpedo Launcher" 2
@@ -456,13 +483,18 @@ ship "Kestrel" "Kestrel (More Bays)"
 		"Liquid Nitrogen Cooler"
 		"Tactical Scanner" 2
 		
-		"Orca Plasma Thruster"
-		"Orca Plasma Steering"
+		"RC47 Reaction Thruster"
+		"RC44 Reaction LTC"
+		"RC42 Reaction Steering"
 		"Hyperdrive"
-	gun -73.5 46 "Torpedo Launcher"
-	gun 73.5 46 "Torpedo Launcher"
+	gun -73.5 46
+	gun 73.5 46
 	gun -29.5 52 "Particle Cannon"
 	gun 29.5 52 "Particle Cannon"
+	pylon -17 -17 "Torpedo Launcher"
+		angle 315
+	pylon 17 -17 "Torpedo Launcher"
+		angle 45
 	turret -8 -10.5 "Heavy Laser Turret"
 	turret 8 -10.5 "Heavy Laser Turret"
 	turret -20.5 9 "Heavy Laser Turret"

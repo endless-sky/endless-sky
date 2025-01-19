@@ -244,7 +244,7 @@ outfit "EMP Torpedo Bay"
 	"mass" 9
 	"outfit space" -18
 	"weapon capacity" -18
-	"gun ports" -1
+	"missile pylons" -1
 	"emp torpedo capacity" 9
 	weapon
 		sprite "projectile/emp torpedo"
@@ -317,7 +317,7 @@ outfit "Teciimach Bay"
 	"mass" 9
 	"outfit space" -13
 	"weapon capacity" -13
-	"gun ports" -1
+	"missile pylons" -1
 	"teciimach canister capacity" 9
 	weapon
 		sprite "projectile/emp torpedo"
@@ -367,7 +367,7 @@ outfit "Teciimach Pod"
 	"mass" 3
 	"outfit space" -6
 	"weapon capacity" -6
-	"gun ports" -1
+	"missile pylons" -1
 	"teciimach canister capacity" 3
 	weapon
 		sprite "projectile/emp torpedo"
@@ -632,14 +632,22 @@ outfit "Research Laboratory"
 	thumbnail "outfit/research laboratory"
 	"mass" 11
 	"outfit space" -6
-	"asteroid scan power" 84
-	"cargo scan power" 20
-	"cargo scan efficiency" 6
 	"atmosphere scan" 100
+	"acceleration scan power" 100
+	"crew scan power" 100
+	"energy scan power" 100
+	"fuel scan power" 100
+	"maneuver scan power" 100
+	"range finder power" 100
+	"thermal scan power" 100
+	"velocity scan power" 100
+	"weapon scan power" 100
 	"required crew" 1
+	"energy consumption" 0.01
 	"unplunderable" 1
 	description "From the very beginning, the Remnant have relied on their ability to study everything they encounter. This knowledge has enabled them to survive and even prosper in the harsh environment of the Ember Waste. To enable this pursuit of knowledge, the Remnant designed this compact laboratory that is built onto the side of a cargo bay, mess hall, or other larger room. When the room isn't otherwise occupied, this module expands out to convert it into a fully fledged laboratory."
 	description "	While planetbound scientists might consider it little more than a closet packed with scanners and equipment, to the Remnant it is a base of operations used to investigate alien and stellar phenomena on-site. For captains, having advanced equipment to support their sensor suites as well as a trained scientist to serve in their crew amount to a strong benefit."
+	description "	This laboratory requires a trained scientist to be permanently assigned to it, and as such increases your required crew by 1. It also continuously consumes a small amount of energy."
 
 outfit "Quantum Key Stone"
 	category "Systems"
@@ -660,10 +668,12 @@ outfit "Salvage Scanner"
 	thumbnail "outfit/salvage scanner"
 	"mass" 7
 	"outfit space" -7
-	"outfit scan power" 13
-	"outfit scan efficiency" 12
-	"tactical scan power" 84
-	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those guidance systems into sophisticated scanning technology."
+	"asteroid scan power" 84
+	"cargo scan power" 40
+	"cargo scan efficiency" 35
+	"outfit scan power" 40
+	"outfit scan efficiency" 35
+	description "When the Remnant unraveled the alien Point Defense Turrets guarding the vaults on Aventine, they also deciphered the mechanisms that guided the ancient weapons. After significant investments in research and development, they have transformed those identification systems into sophisticated scanning technology."
 	description "	While all Remnant ships are equipped with internal scanners, some captains still prefer to boost their range and power to more effectively select enemy ships worth targeting."
 
 
@@ -674,14 +684,15 @@ outfit "Bellows-Class Afterburner"
 	category "Engines"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
+	"engine mod space" -0.76
 	"mass" 8
-	"outfit space" -11
-	"engine capacity" -11
+	"outfit space" -7
+	"engine capacity" -7
 	"slowing resistance" 0.01
-	"afterburner thrust" 187.5
-	"afterburner fuel" 1.3
-	"afterburner energy" 6
-	"afterburner heat" 18
+	"afterburner thrust" 250
+	"afterburner fuel" 0.65
+	"afterburner energy" 6.0
+	"afterburner heat" 8.0
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
 	description "	The Bellows-Class Afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
@@ -699,12 +710,18 @@ outfit "Anvil-Class Engine"
 		Remnant
 	"cost" 290000
 	thumbnail "outfit/tiny remnant engine"
+	"steering slot" -1
+	"thruster slot" -1
+	"engine mod space" 0.87
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 20.7
+	"thrust" 22
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
+	"lateral thrust" 20
+	"lateral thrusting energy" 1.84
+	"lateral thrusting heat" 1.75
 	"turn" 554.4
 	"turning energy" 1.05
 	"turning heat" 1.1
@@ -715,6 +732,9 @@ outfit "Anvil-Class Engine"
 	"flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"flare sound" "plasma tiny"
+	"lateral flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"lateral flare sound" "plasma tiny"
 	"steering flare sprite" "effect/remnant flare/small"
 		"frame rate" 5
 	"steering flare sound" "plasma tiny"
@@ -729,10 +749,12 @@ outfit "Crucible-Class Thruster"
 		Remnant
 	"cost" 200000
 	thumbnail "outfit/small remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 0.87
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 24.825
+	"thrust" 25
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
 	"reverse thrust" 18.6
@@ -753,6 +775,8 @@ outfit "Forge-Class Thruster"
 		Remnant
 	"cost" 441000
 	thumbnail "outfit/medium remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.12
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
@@ -777,13 +801,15 @@ outfit "Smelter-Class Thruster"
 		Remnant
 	"cost" 984000
 	thumbnail "outfit/large remnant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.33
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 106.65
+	"thrust" 107
 	"thrusting energy" 9.5
 	"thrusting heat" 9.6
-	"reverse thrust" 79.95
+	"reverse thrust" 80
 	"reverse thrusting energy" 7.1
 	"reverse thrusting heat" 7.2
 	"slowing resistance" 0.048
@@ -801,6 +827,7 @@ outfit "Crucible-Class Steering"
 		Remnant
 	"cost" 172000
 	thumbnail "outfit/small remnant steering"
+	"steering slot" -1
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
@@ -819,10 +846,11 @@ outfit "Forge-Class Steering"
 		Remnant
 	"cost" 393000
 	thumbnail "outfit/medium remnant steering"
+	"steering slot" -1
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 1492.5
+	"turn" 1493
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -837,10 +865,11 @@ outfit "Smelter-Class Steering"
 		Remnant
 	"cost" 880000
 	thumbnail "outfit/large remnant steering"
+	"steering slot" -1
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 3184.5
+	"turn" 3185
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032
@@ -848,6 +877,70 @@ outfit "Smelter-Class Steering"
 		"frame rate" 3
 	"steering flare sound" "plasma medium"
 	description "It's unclear whether the Remnant's powerful engine systems are purely their own invention, or whether they are partly inspired by alien technology."
+
+
+# Note on Lateral Thrusters: My initial values here are to have each set of lateral thrusters be based on the thruster of the same "rank".
+# So the tiny lateral has values equivalent to about 90% of a tiny thruster. The small lateral thruster is roughly 80% of a small thruster, etc.
+# This continues by 10% increments down to the Large lateral thrusters that are equivalent of 60% of the large thrusters.
+# Note that the Remnant do not have a huge thruster currently.
+# This percentage is applied equally to mass, outfit space, engine capacity, lateral thrust, lateral thrusting energy, and lateral thrusting heat; although an additional 20% reduction to mass, outfit space, and engine capacity was applied since, unlike the thrusters, these do not have the reverse thrust capability.
+
+outfit "Crucible-Class LTC"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 200000
+	thumbnail "outfit/small remnant thruster"
+	"lateral thruster slot" -1
+	"mass" 14
+	"outfit space" -14
+	"engine capacity" -14
+	"lateral thrust" 23
+	"lateral thrusting energy" 1.89
+	"lateral thrusting heat" 1.80
+	"slowing resistance" 0.012
+	"lateral flare sprite" "effect/remnant flare/small"
+		"frame rate" 5
+	"lateral flare sound" "plasma tiny"
+	description "These small but powerful lateral engines bear a superficial appearance of being classic ion thrusters, albeit very advanced ones."
+
+outfit "Forge-Class LTC"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 441000
+	thumbnail "outfit/medium remnant thruster"
+	"lateral thruster slot" -1
+	"mass" 23
+	"outfit space" -23
+	"engine capacity" -23
+	"lateral thrust" 41
+	"lateral thrusting energy" 3.52
+	"lateral thrusting heat" 3.4
+	"slowing resistance" 0.024
+	"lateral flare sprite" "effect/remnant flare/small"
+		"frame rate" 4
+	"lateral flare sound" "plasma small"
+	description "The capabilities of what are described as very advanced forms of the basic ionic lateral thrusters suggest that there is much more to these than meets the eye."
+
+outfit "Smelter-Class LTC"
+	category "Engines"
+	licenses
+		Remnant
+	"cost" 984000
+	thumbnail "outfit/large remnant thruster"
+	"lateral thruster slot" -1
+	"mass" 38
+	"outfit space" -38
+	"engine capacity" -38
+	"lateral thrust" 75 # 70%
+	"lateral thrusting energy" 6.65
+	"lateral thrusting heat" 6.72
+	"slowing resistance" 0.048
+	"lateral flare sprite" "effect/remnant flare/medium"
+		"frame rate" 5
+	"lateral flare sound" "plasma medium"
+	description "These lateral thruster components, found on many of their largest ships, demonstrates the Remnant preference for mobility and avoiding damage instead of merely absorbing it."
 
 
 

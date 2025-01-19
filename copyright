@@ -12,6 +12,13 @@ Files: images/*
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
+Files:
+ images/outfit/*reaction?steering*
+ images/outfit/*reaction?thruster*
+Copyright: Michael Zahniser (mzahniser@gmail.com)
+License: CC-BY-SA-4.0
+Comment: Originally included in early versions of ES, then replaced by improved and/or retouched images after Michael Zahniser ceased to be actively involved in the project. Now re-included as repurposed imagery.
+
 Files: images/land/*
 Copyright: Various
 License: public-domain
@@ -1626,15 +1633,91 @@ Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
 Files:
+ images/map/milky?way*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA and Michael Zahniser.
+
+Files:
+ images/map/a-dwarf-star*
+ images/map/a-giant-star*
+ images/map/a-large-star*
+ images/map/a-small-star*
+ images/map/a-star*
+ images/map/a-supergiant-star*
+ images/map/b-dwarf-star*
+ images/map/b-giant-star*
+ images/map/b-large-star*
+ images/map/b-small-star*
+ images/map/b-star*
+ images/map/b-supergiant-star*
+ images/map/f-dwarf-star*
+ images/map/f-giant-star*
+ images/map/f-large-star*
+ images/map/f-old-star*
+ images/map/f-small-star*
+ images/map/f-star*
+ images/map/f-supergiant-star*
+ images/map/g-dwarf-star*
+ images/map/g-giant-star*
+ images/map/g-large-star*
+ images/map/g-old-star*
+ images/map/g-small-star*
+ images/map/g-star*
+ images/map/g-supergiant-star*
+ images/map/k-dwarf-star*
+ images/map/k-giant-star*
+ images/map/k-large-star*
+ images/map/k-old-star*
+ images/map/k-small-star*
+ images/map/k-star*
+ images/map/k-supergiant-star*
+ images/map/m-dwarf-star*
+ images/map/m-giant-star*
+ images/map/m-large-star*
+ images/map/m-small-star*
+ images/map/m-star*
+ images/map/m-supergiant-star*
+ images/map/o-dwarf-star*
+ images/map/o-giant-star*
+ images/map/o-large-star*
+ images/map/o-small-star*
+ images/map/o-star*
+ images/map/o-supergiant-star*
+ images/map/unexplored-star*
  images/planet/nebula1*
 Copyright: Azure
 License: CC-BY-SA-4.0
 
 Files:
-  images/ui/milky?way*
+ images/map/small-neutron-star*
 Copyright: Azure
 License: CC-BY-SA-4.0
-Comment: Derived from works by NASA and Michael Zahniser.
+Comment: Derived from works by RisingLeaf.
+
+Files:
+ images/map/coal-black-hole-star*
+ images/map/neutron-star*
+ images/map/small-black-hole-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Gefüllte Taubenbrust.
+
+Files:
+ images/map/black-hole-star*
+ images/map/carbon-star*
+ images/map/nova-old-star*
+ images/map/nova-small-star*
+ images/map/small-wr-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matteo "Lead" M.
+
+Files:
+ images/map/nova-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser.
 
 Files: sounds/*
 Copyright: Various
@@ -2259,6 +2342,10 @@ Files:
  images/planet/browndwarf-l*
  images/planet/browndwarf-y-rogue*
  images/planet/browndwarf-y*
+ images/ui/tactical/hyperjump*
+ images/ui/tactical/jumpdrivejump*
+ images/ui/tactical/mass*
+ images/ui/tactical/scramjump*
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 
@@ -3608,6 +3695,8 @@ Files:
  images/ui/red?alert*
  images/ui/tactical/acceleration*
  images/ui/tactical/gun?range*
+ images/ui/tactical/ramscoop*
+ images/ui/tactical/solar*
  images/ui/tactical/turret?range*
  images/ui/tactical/turn*
  images/ui/tactical/velocity*
@@ -3615,6 +3704,7 @@ Copyright: Zitchas (zitchas.jma@gmail.com)
 License: CC-BY-SA-4.0
 
 Files:
+ images/outfit/cockpit?software*
  images/ui/tactical/crew*
  images/ui/tactical/energy*
  images/ui/tactical/fuel*
@@ -3624,10 +3714,52 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/outfit/cockpit?hyperjump?software*
+ images/outfit/cockpit?jumpdrive?software*
+ images/outfit/cockpit?mass?software*
+ images/outfit/cockpit?scramjump?software*
+Copyright: Zitchas & Lia Gerty
+License: CC-BY-SA-4.0
+Comment: Derived from works by Iaz Poolar, Michael Zahniser, and Lia Gerty (under the same license).
+
+Files:
  images/_menu/haze-brown*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 Comment: Derived from _menu/haze-133 (no copyright given).
+
+Files:
+ images/scene/volcanic-eruption-at-night*
+Copyright: N/A (public domain)
+License: public-domain
+ Taken from https://archive.is/I6L1t. From the US National Park Service, and therefore in the public domain because it was created by government employees while doing work for the government.
+
+Files:
+ images/scene/blue-whale*
+Copyright: Mike Baird
+License: CC-BY-2.0
+Comment:
+ Taken from https://archive.is/xDuTQ.
+
+Files:
+ images/scene/purple-lightning*
+ images/land/rough-seas*
+ images/land/monterey-bay-aquarium*
+Copyright: N/A (public domain)
+License: public-domain
+ Taken from https://archive.is/VzbdB, https://archive.is/NmmVG, and https://archive.is/Tr5I7, respectively. From US NOAA, and therefore in the public domain because they were created by government employees while doing work for the government.
+
+Files:
+ images/planet/ocean-rabasot.png
+Copyright: Public Domain
+License: public-domain
+ Created by two anonymous authors in 2022, donated to public domain.
+
+Files:
+ images/planet/lumpy-moon.png
+Copyright: Public Domain
+License: public-domain
+ Created by two anonymous authors in 2022, donated to public domain.
 
 Files:
  images/effect/ionic?impact*

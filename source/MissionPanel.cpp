@@ -55,7 +55,7 @@ namespace {
 	constexpr int SIDE_WIDTH = 280;
 
 	// Hovering over sort buttons for this many frames activates the tooltip.
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 30;
 
 	// Check if the mission involves the given system,
 	bool Involves(const Mission &mission, const System *system)

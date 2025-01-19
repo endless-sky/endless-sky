@@ -31,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int HOVER_TIME = 60;
+	const int HOVER_TIME = 30;
 }
 
 

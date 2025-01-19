@@ -1634,6 +1634,7 @@ event "deep: arculus empty"
 		remove fleet "Remnant Transport"
 		remove fleet "Remnant Home Guard"
 		remove fleet "Korath Ember Waste Raid"
+		remove fleet "Kor Alaji Raid"
 
 event "deep: arculus restored"
 	system "Arculus"
@@ -1641,7 +1642,8 @@ event "deep: arculus restored"
 		add fleet "Small Remnant" 2200
 		add fleet "Remnant Transport" 2200
 		add fleet "Remnant Home Guard" 2000
-		add fleet "Korath Ember Waste Raid" 40000
+		add fleet "Korath Ember Waste Raid" 120000
+		add fleet "Kor Alaji Raid" 60000
 
 
 
@@ -2260,6 +2262,7 @@ ship "Star Queen" "Star Queen (Unarmed)"
 		"D94-YV Shield Generator"
 		"Small Radar Jammer" 3
 		"X3700 Ion Thruster"
+		"X3400 Ion LTC"
 		"X3200 Ion Steering"
 		"Hyperdrive"
 
@@ -2301,12 +2304,12 @@ mission "Deep: Scientist Rescue 2"
 
 ship "Bactrian" "Bactrian (Cosmic Devil)"
 	outfits
-		"Inhibitor Cannon" 2
+		"Electron Beam" 2
 		"Hai Tracker Pod" 2
 		"Hai Tracker" 168
 		"Tracker Storage Pod" 2
 		"Pulse Turret" 4
-		"Point Defense Turret"
+		"Chameleon Anti-Missile"
 		"Heavy Anti-Missile Turret"
 		"Boulder Reactor" 2
 		"Hai Ravine Batteries"
@@ -2314,24 +2317,24 @@ ship "Bactrian" "Bactrian (Cosmic Devil)"
 		"Hai Diamond Regenerator"
 		"Liquid Helium Cooler"
 		"Outfits Expansion" 4
-		"Quantum Keystone"
 		"Tactical Scanner"
 		"Outfit Scanner"
 		"Cargo Scanner"
 		"Ramscoop"
 		`"Bondir" Atomic Thruster`
+		`"Bondir" Atomic LTC`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
-	gun "Inhibitor Cannon"
-	gun "Inhibitor Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
+	gun "Electron Beam"
+	gun "Electron Beam"
+	pylon "Hai Tracker Pod"
+	pylon "Hai Tracker Pod"
 	turret "Heavy Anti-Missile Turret"
 	turret "Pulse Turret"
 	turret "Pulse Turret"
 	turret "Pulse Turret"
 	turret "Pulse Turret"
-	turret "Point Defense Turret"
+	turret "Chameleon Anti-Missile"
 
 
 
