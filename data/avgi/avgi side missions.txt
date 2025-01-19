@@ -612,7 +612,7 @@ mission "Avgi: Cylinder Construction"
 			action
 				set "avgi: aktina cylinder supply jobs"
 			`	"Gratitude. I will ensure there are items posted on nearby job boards that you might gather and transport here."`
-			accept
+				accept
 
 
 mission "Avgi: Infocourier Encounter"
