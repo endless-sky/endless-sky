@@ -78,19 +78,20 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 	add attributes
 		"threshold percentage" 0.4
 	outfits
-		"Bullfrog Anti-Missile" 2
-		"Korath Detainer" 2
-		"Hai Williwaw Cooling"
-		"Boulder Reactor"
-		"Hai Valley Batteries"
-		"Hai Corundum Regenerator"
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Thermal Repeater Turret" 2
+		"Chameleon Anti-Missile"
 		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 4
+		Hyperdrive
 		"Value Detector"
-		"Pulse Rifle" 20
+		"Hai Valley Batteries"
+		"Boulder Reactor"
 		`"Biroo" Atomic Thruster`
 		`"Bondir" Atomic Steering`
 		"Afterburner (Asteroid Class)"
-		"Hyperdrive"
+		"Pulse Rifle" 20
 	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."
 
 ship "Aphid"
@@ -1096,20 +1097,20 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Pulse Rifle" 15
 
 # These variants don't spawn normally and have larger crew counts to represent experimentation with ionic weapons.
-ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+ship "Sea Scorpion" "Sea Scorpion (Ionic Blasters)"
 	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Boulder Reactor"
-		"Chameleon Anti-Missile"
-		"Hai Diamond Regenerator"
 		"Hai Williwaw Cooling" 2
+		"Hai Corundum Regenerator"
+		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
 		"Hyperdrive"
-		"Ion Cannon"
-		"Ionic Blaster Prototype" 2
-		"Ionic Turret Prototype"
+		"Value Detector"
+		"Ionic Blaster Prototype" 4
+		"Pulse Turret" 2
 		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
@@ -1565,24 +1566,27 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
-ship "Shield Beetle" "Shield Beetle (Prototype)"
+ship "Shield Beetle" "Shield Beetle (Tripulse Ionic Turret)"
+	crew 80
 	outfits
-		"Ionic Blaster Prototype" 4
-		"Tripulse Shredder" 4
-		"Chameleon Anti-Missile" 4
-		Hyperdrive
+		"Pulse Cannon" 3
+		"Tripulse Shredder" 3
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Ionic Turret Prototype"
+		"Chameleon Anti-Missile" 3
 		"Hai Diamond Regenerator"
-		"Quantum Keystone"
-		"Hai Williwaw Cooling" 2
 		"Hai Octopus Jammer"
+		"Hai Williwaw Cooling" 2
+		Hyperdrive
+		"Quantum Keystone"
 		"Value Detector"
-		"Boulder Reactor"
-		"Geode Reactor"
 		"Hai Gorge Batteries"
-		`"Biroo" Atomic Steering`
+		"Boulder Reactor" 2
 		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic Steering`
 		`"Bufaer" Atomic Thruster`
-		"Pulse Rifle" 75
+		"Pulse Rifle" 85
 
 
 
