@@ -29,13 +29,11 @@ public:
 	const std::string &Name() const;
 
 	unsigned Buffer() const;
-	unsigned Buffer3x() const;
 	bool IsLooping() const;
 
 
 private:
 	std::string name;
 	unsigned buffer = 0;
-	unsigned buffer3x = 0;
 	bool isLooped = false;
 };
