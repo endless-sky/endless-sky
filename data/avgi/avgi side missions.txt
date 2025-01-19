@@ -421,17 +421,15 @@ mission "Avgi Culture: Park Politics"
 			`	You play with bated breath as your pieces slowly inch off the board, until at last victory is yours, a scant single move before Wisteria would have evacuated his final piece. You suspect that while he has given you a fair game, he has perhaps gone easy on you to give you a chance to win.`
 
 			label final
+			action
+				log `Played an Avgi board game in the park with an elderly Avgi named Wisteria.`
+				log "People" "Wisteria" `Seemingly an old Avgi who plays board games in the park, Wisteria was formerly one of the First Speakers of the Consonance Assembly before retiring. He has a deep understanding of Avgi politics and history, and is curious about how they compare to those of humanity.`
+				outfit "Trefoil Board" 1
 			`	"Satisfaction. A fine game, Captain <first>," he says, congratulating you. "You are a talented player, and I much enjoyed our conversation during the game." You realize that hours have gone by since you started, with the station's lights simulating a ruddy sunset.`
 			`	"Appreciation. Allow me to gift you this Trefoil board, so that you might enjoy the game in your own time. I look forward to meeting you in the future, and perhaps we may even have the chance to play again."`
 			`	He gently hands you the Trefoil board, bows in respect, then climbs off his rail to depart. "Should you ever wish to speak to me again, ask for the office of former Speaker Wisteria and I will be more than pleased to host you."`
 			`	"Thank you," you say, and it is only after he has left that you realize Wisteria must have been not just an Elector, but one of the First Speakers at some point in the past.`
-				accept
 
-	on accept
-		log `Played an Avgi board game in the park with an elderly Avgi named Wisteria.`
-		log "People" "Wisteria" `Seemingly an old Avgi who plays board games in the park, Wisteria was formerly one of the First Speakers of the Consonance Assembly before retiring. He has a deep understanding of Avgi politics and history, and is curious about how they compare to those of humanity.`
-		outfit "Trefoil Board" 1
-		fail
 
 
 mission "Avgi Culture: Zapchannel Energy"
@@ -487,20 +485,18 @@ mission "Avgi Culture: Zapchannel Energy"
 				die
 
 			label superpowers
+			action
+				log `Met a suspicious-looking Avgi salesman named Nikkio. Accepted a free sample of a strange glowing drink and somehow developed minor superpowers from it.`
+				set "damselflyman"
+				outfit "Damselflyman"
 			`	You take the vial, warm to the touch, and uncork it before carefully tipping it back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as you start to feel somehow revitalized. After a brief, sharp pain, a suspiciously dragonfly-shaped patch of skin in the center of your chest begins to glow a vibrant blue.`
 			`	"Surprise. You surely are, ah, a worthy captain!" says Nikkio, shock evident on his face. He begins to sidle away, glancing in all directions as though he isn't sure what's going on. "Hurry. I must be on my way, goodbye for now, captain!"`
-				accept
-			label nope
-			`	"Alarm. There's no need for that, apologies, apologies! Be on your way, Captain!"`
 				decline
-	on accept
-		log `Met a suspicious-looking Avgi salesman named Nikkio. Accepted a free sample of a strange glowing drink and somehow developed minor superpowers from it.`
-		set "damselflyman"
-		outfit "Damselflyman"
-		fail
+			label nope
+			action
+				log `Met a suspicious-looking Avgi salesman named Nikkio. Refused his offer of a definitely radioactive "energy drink" that would probably have been lethal.`
+			`	"Alarm. There's no need for that, apologies, apologies! Be on your way, Captain!"`
 
-	on decline
-		log `Met a suspicious-looking Avgi salesman named Nikkio. Refused his offer of a definitely radioactive "energy drink" that would probably have been lethal.`
 
 
 mission "Damselflyman Abilities"
