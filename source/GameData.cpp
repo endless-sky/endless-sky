@@ -161,15 +161,24 @@ namespace {
 		auto icon = make_shared<ImageSet>(plugin->name);
 
 		// Try adding all the possible icon variants.
-		if(Files::Exists(path / "icon.png"))
-			icon->Add(path / "icon.png");
-		else if(Files::Exists(path / "icon.jpg"))
-			icon->Add(path / "icon.jpg");
-
-		if(Files::Exists(path / "icon@2x.png"))
-			icon->Add(path / "icon@2x.png");
-		else if(Files::Exists(path / "icon@2x.jpg"))
-			icon->Add(path / "icon@2x.jpg");
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			filesystem::path iconPath = path / ("icon" + extension);
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(iconPath);
+				break;
+			}
+		}
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			filesystem::path iconPath = path / ("icon@2x" + extension);
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(iconPath);
+				break;
+			}
+		}
 
 		if(!icon->IsEmpty())
 		{
@@ -945,12 +954,12 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 		for(auto &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
-				string name = ImageSet::Name(path.lexically_relative(directoryPath));
+				ImageFileData data(path, directoryPath);
 
-				shared_ptr<ImageSet> &imageSet = images[name];
+				shared_ptr<ImageSet> &imageSet = images[data.name];
 				if(!imageSet)
-					imageSet.reset(new ImageSet(name));
-				imageSet->Add(std::move(path));
+					imageSet.reset(new ImageSet(data.name));
+				imageSet->Add(std::move(data));
 			}
 	}
 	return images;

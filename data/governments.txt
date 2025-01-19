@@ -887,6 +887,20 @@ government "Hai (Unfettered)"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
 
+government "Hai (Unfettered Challenger)"
+	"display name" "Hai (Unfettered)"
+	swizzle 5
+	"crew attack" 1.4
+	"crew defense" 2.2
+
+	"player reputation" -1000
+	"bribe" .02
+	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+
 government "Hai (Unfettered Wanderer Tribute)"
 	swizzle 4
 	"display name" "Hai (Unfettered)"
