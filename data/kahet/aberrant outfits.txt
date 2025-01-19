@@ -42,16 +42,16 @@ outfit "Aberrant Spiker"
 		"firing hull" 150
 		"velocity" 15
 		"lifetime" 400
-		"acceleration" 1.4
+		"acceleration" 1.45
 		"drag" .21
-		"turn" 1.2
+		"turn" 1.3
 		"homing" 2
-		"optical tracking" 0.8
+		"optical tracking" 0.9
 		"hit force" -1150
 		"hull damage" 730
-		"shield damage" 690
+		"shield damage" 1270
 		"corrosion damage" 3
-		"missile strength" 29
+		"missile strength" 31
 	description "Spikes grow on the backs of many Aberrant variants, made of a seemingly random assortment of materials both metallic and mineral in nature. This device appears to allow an Aberrant to launch these spikes as an offensive weapon, but just how they are able to guide and propel themselves through space is a mystery that a cursory examination of this outfit does not reveal."
 
 effect "spiker trail"
@@ -103,7 +103,7 @@ outfit "Nucleolysis Beam"
 		"shield damage" 0.8
 		"hull damage" 1.6
 		"heat damage" -9.1
-		"fuel damage" 1.4
+		"fuel damage" 1.66
 		"corrosion damage" 0.015
 	description "This beam weapon creates a field inside which otherwise stable atomic nuclei rapidly decay. This effect seems to be inversely proportional to the mass of the nucleus, causing isotopes like deuterium to break down at a higher rate than heavier elements. As the resultant products have a higher energy state than the original nucleus, the beam cools its target, defying conventional thermodynamics."
 	description "In practice, this beam can deplete a ship's deuterium fuel while causing the very matter of its hull to decay."

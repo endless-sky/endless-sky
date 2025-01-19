@@ -1169,6 +1169,7 @@ mission "Avgi: Ergastirio Researchers 1"
 	name "Researchers to <planet>"
 	description "Take these <bunks> researchers to <planet> to work for a term on the laboratory station in exchange for <payment>."
 	passengers 3 3 .45
+	clearance
 	to offer
 		random < 30
 	source
@@ -1186,6 +1187,7 @@ mission "Avgi: Ergastirio Researchers 2"
 	name "Researchers to <planet>"
 	description "Take these <bunks> researchers to <planet> to work for a term on the laboratory station in exchange for <payment>."
 	passengers 3 6 .36
+	clearance
 	to offer
 		random < 30
 	source

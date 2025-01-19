@@ -33251,10 +33251,12 @@ system Quintessence
 		period 831.446
 		object
 			sprite planet/ice7-b
+				scale 0.5
 			distance 240
 			period 97.305
 		object
 			sprite planet/callisto-b
+				scale 0.5
 			distance 421
 			period 226.069
 
