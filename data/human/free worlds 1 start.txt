@@ -1298,6 +1298,23 @@ mission "FW Pirates: Attack 1"
 			`	Once you are outside, he pulls you aside and says, "Remember what we talked about, <first>." He walks back into the bar and leaves you alone.`
 				accept
 
+	on complete
+		conversation
+			`When you land on <origin>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a couple of carriers, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
+			`	The Navy failed to conquer Longjump. Why would a fleet of a similar size be capable of conquering Greenrock? Perhaps the Senate was right in suggesting a diplomatic solution. Or perhaps luck will be in your favor.`
+			choice
+				`	(Go ahead and attack Greenrock, disobeying the Senate's orders regardless of the consequences.)`
+				`	(Give up on Tomek's scheme and follow the Senate's orders to make a diplomatic visit to Thule.)`
+					goto thule
+			`	You speak with some of the captains of the invasion fleet. Apparently Tomek has been busy visiting spaceports and giving rousing speeches about ending piracy and slavery once and for all in the South, hence the fleet being so large despite being unsanctioned by the Senate. That also explains the inclusion of a few merchant captains in the fleet, likely local captains who overheard the speeches and aren't interested in joining the Free Worlds to fight against the Navy, but are more than happy to make life easier for their freighters if this succeeds.`
+			`	You plan to leave after nightfall, which should hopefully mean that Alondo doesn't realize that you've left him behind until it's too late. Now all that remains is for you to travel to <system>, defeat whatever opposition you find, and land on <planet>. Or die trying.`
+			action
+				event "battle for Greenrock"
+				accept
+			label thule
+			action
+				set "Aborted Greenrock battle"
+
 
 
 mission "FW Pirates: Attack 2"
@@ -1308,24 +1325,9 @@ mission "FW Pirates: Attack 2"
 	destination "Greenrock"
 	clearance
 	to offer
-		has "FW Pirates: Attack 1: done"
+		has "event: battle for Greenrock"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-	
-	on offer
-		conversation
-			`When you land on <origin>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a couple of carriers, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
-			`	The Navy failed to conquer Longjump. Why would a fleet of a similar size be capable of conquering Greenrock? Perhaps the Senate was right in suggesting a diplomatic solution. Or perhaps luck will be in your favor.`
-			choice
-				`	(Go ahead and attack Greenrock, disobeying the Senate's orders regardless of the consequences.)`
-				`	(Give up on Tomek's scheme and follow the Senate's orders to make a diplomatic visit to Thule.)`
-					decline
-			`	You speak with some of the captains of the invasion fleet. Apparently Tomek has been busy visiting spaceports and giving rousing speeches about ending piracy and slavery once and for all in the South, hence the fleet being so large despite being unsanctioned by the Senate. That also explains the inclusion of a few merchant captains in the fleet, likely local captains who overheard the speeches and aren't interested in joining the Free Worlds to fight against the Navy, but are more than happy to make life easier for their freighters if this succeeds.`
-			`	You plan to leave after nightfall, which should hopefully mean that Alondo doesn't realize that you've left him behind until it's too late. Now all that remains is for you to travel to <system>, defeat whatever opposition you find, and land on <planet>. Or die trying.`
-				accept
-	
-	on accept
-		event "battle for Greenrock"
 	
 	npc
 		government "Free Worlds"
