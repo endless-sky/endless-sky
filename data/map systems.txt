@@ -12729,7 +12729,7 @@ system Demilude
 		period 12746.7
 	object "Outpost Leto"
 		sprite planet/station-asteroid-a3
-			scale 0.5
+			scale 0.25
 		distance 18387.3
 		period 78845.5
 
@@ -21099,7 +21099,7 @@ system Interlude
 		period 326.343
 	object "Outpost Tekis"
 		sprite planet/station-asteroid-a2
-			scale 0.5
+			scale 0.25
 		distance 7555.36
 		period 2897.39
 	object
@@ -32434,7 +32434,7 @@ system Prelude
 		period 911.559
 		object "Outpost Enka"
 			sprite planet/station-asteroid-a0
-				scale 0.3
+				scale 0.25
 			distance 185
 			period 65.853
 	object
