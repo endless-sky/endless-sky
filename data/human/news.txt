@@ -2165,7 +2165,7 @@ news "label on ship"
 			"Door opens outwards."
 			"Remove red ribbons before flight."
 			"Nuclear reactor compartment: NEA certification is required for servicing this part of the ship."
-			"Compartiment du reacteur nucleaire : certification AEN requise pour l'entretien de cette partie du navire."
+			"Compartiment du reacteur nucleaire: certification AEN requise pour l'entretien de cette partie du navire."
 
 
 
