@@ -387,17 +387,20 @@ effect "small remass injection"
 		"frame rate" 30
 		"scale" 0.75
 	sound "flamethrower"
+	"sound category" "afterburner"
 
 effect "medium remass injection"
 	sprite "effect/avgi flare/remass"
 		"frame rate" 30
 	sound "flamethrower"
+	"sound category" "afterburner"
 
 effect "large remass injection"
 	sprite "effect/avgi flare/remass"
 		"frame rate" 30
 		"scale" 2
 	sound "flamethrower"
+	"sound category" "afterburner"
 
 
 outfit "Remass Injector"
