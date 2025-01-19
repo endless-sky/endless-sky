@@ -293,7 +293,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					LoadFleet(child, fleet);
 
 				if(fleet.Category().empty())
-					fleet.Category() = value + "@" + name;
+					fleet.Category() = value + "@" + trueName;
 			}
 		}
 		else if(key == "raid")
