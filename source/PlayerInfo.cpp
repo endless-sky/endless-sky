@@ -36,7 +36,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Preferences.h"
 #include "Raiders.h"
-#include "RaidFleet.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"

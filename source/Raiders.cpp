@@ -16,10 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Raiders.h"
 
 #include "DataNode.h"
-#include "Fleet.h"
 #include "GameData.h"
-#include "Government.h"
-#include "RaidFleet.h"
 
 #include <algorithm>
 
@@ -83,7 +80,7 @@ void Raiders::Load(const DataNode &node)
 		else if(key == "fleet")
 		{
 			if(!add)
-				raidFleets = {};
+				raidFleets.clear();
 			LoadFleets(child, remove, valueIndex);
 		}
 		else if(key == "government")

@@ -27,8 +27,8 @@ class Government;
 // Class containing and managing raid fleets.
 class Raiders {
 public:
-	// Helper function to load a single fleet and support the depreciated syntax.
-	void LoadFleets(const DataNode &node, bool remove, int valueIndex, bool depreciated = false);
+	// Helper function to load a single fleet and support the deprecated syntax.
+	void LoadFleets(const DataNode &node, bool remove, int valueIndex, bool deprecated = false);
 	void Load(const DataNode &node);
 	const std::vector<RaidFleet> &RaidFleets() const;
 	double EmptyCargoAttraction() const;

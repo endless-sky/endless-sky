@@ -162,7 +162,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 				hazards.clear();
 			else if(key == "belt")
 				belts.clear();
-			else if(key == "raid" || key == "raiders")
+			else if(key == "raiders" || key == "raid")
 				raiders = nullptr;
 			else if(key == "object")
 			{
@@ -293,7 +293,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex);
 		}
 		else if(key == "raiders")
-			raiders = GameData::GetRaiders().Get(child.Token(0));
+			raiders = GameData::GetRaiders().Get(child.Token(valueIndex));
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);

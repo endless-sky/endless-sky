@@ -152,7 +152,7 @@ void Government::Load(const DataNode &node)
 						reputationMin = numeric_limits<double>::lowest();
 				}
 			}
-			else if(key == "raid" || key == "raiders")
+			else if(key == "raiders" || key == "raid")
 				raiders = nullptr;
 			else if(key == "display name")
 				displayName = name;
