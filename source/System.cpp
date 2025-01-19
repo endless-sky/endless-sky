@@ -96,7 +96,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
-	name = node.Token(1);
+	trueName = node.Token(1);
 	isDefined = true;
 
 	// For the following keys, if this data node defines a new value for that
@@ -134,7 +134,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		if(removeAll || overwriteAll)
 		{
 			// Clear the data of the given type.
-			if(key == "government")
+			if(key == "display name")
+				displayName.clear();
+			else if(key == "government")
 				government = nullptr;
 			else if(key == "music")
 				music.clear();
@@ -291,7 +293,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					LoadFleet(child, fleet);
 
 				if(fleet.Category().empty())
-					fleet.Category() = value + "@" + name;
+					fleet.Category() = value + "@" + trueName;
 			}
 		}
 		else if(key == "raid")
@@ -376,6 +378,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 			continue;
 		}
+		else if(key == "display name" && hasValue)
+			displayName = value;
 		else if(key == "pos" && child.Size() >= 3)
 		{
 			position.Set(child.Value(valueIndex), child.Value(valueIndex + 1));
@@ -486,6 +490,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
 		belts.emplace_back(1, 1500.);
+
+	if(displayName.empty())
+		displayName = trueName;
 }
 
 
@@ -583,17 +590,26 @@ bool System::IsValid() const
 
 
 
-// Get this system's name.
-const string &System::Name() const
+const string &System::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
 
-void System::SetName(const std::string &name)
+void System::SetName(const string &name)
 {
-	this->name = name;
+	trueName = name;
+	if(displayName.empty())
+		displayName = trueName;
+}
+
+
+
+// Get this system's display name.
+const string &System::DisplayName() const
+{
+	return displayName;
 }
 
 
@@ -1101,7 +1117,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	{
 		const System &other = it.second;
 		// Skip systems that have no name or that are inaccessible.
-		if(it.first.empty() || other.Name().empty() || other.Inaccessible())
+		if(it.first.empty() || other.TrueName().empty() || other.Inaccessible())
 			continue;
 
 		if(&other != this && other.Position().Distance(position) <= distance)

@@ -44,7 +44,7 @@ namespace {
 	int dateFormatIndex = 0;
 
 	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
-	int notifOptionsIndex = 0;
+	int notifOptionsIndex = 1;
 
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;

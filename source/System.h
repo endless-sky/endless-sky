@@ -78,9 +78,10 @@ public:
 	void Unlink(System *other);
 
 	bool IsValid() const;
-	// Get this system's name and position (in the star map).
-	const std::string &Name() const;
+	const std::string &TrueName() const;
 	void SetName(const std::string &name);
+	// Get this system's name and position (in the star map).
+	const std::string &DisplayName() const;
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
@@ -209,8 +210,9 @@ private:
 private:
 	bool isDefined = false;
 	bool hasPosition = false;
+	std::string trueName;
 	// Name and position (within the star map) of this system.
-	std::string name;
+	std::string displayName;
 	Point position;
 	const Government *government = nullptr;
 	std::vector<const Sprite *> mapIcons;
