@@ -88,9 +88,11 @@ void Files::Init(const char * const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
-		resources = SDL_GetBasePath();
-		if(resources.empty())
+		char *basePath = SDL_GetBasePath();
+		if(!basePath)
 			throw runtime_error("Unable to get path to resource directory!");
+		resources = basePath;
+		SDL_free(basePath);
 
 		if(Exists(resources))
 			resources = filesystem::canonical(resources);
@@ -296,6 +298,12 @@ time_t Files::Timestamp(const filesystem::path &filePath)
 
 void Files::Copy(const filesystem::path &from, const filesystem::path &to)
 {
+#ifdef _WIN32
+	// Due to a mingw bug, the overwrite_existing flag is not respected on Windows.
+	// TODO: remove once it is fixed.
+	if(Exists(to))
+		Delete(to);
+#endif
 	copy(from, to, filesystem::copy_options::overwrite_existing);
 }
 

@@ -210,7 +210,7 @@ int main(int argc, char *argv[])
 		Audio::Init(GameData::Sources());
 
 		if(isTesting && !noTestMute)
-			Audio::SetVolume(0);
+			Audio::SetVolume(0, SoundCategory::MASTER);
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
@@ -402,7 +402,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				}
 			}
 
-			Audio::Step();
+			Audio::Step(isFastForward);
 
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
@@ -462,7 +462,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			if(!isHeadless)
 			{
-				Audio::Step();
+				Audio::Step(isFastForward);
 
 				// Events in this frame may have cleared out the menu, in which case
 				// we should draw the game panels instead:

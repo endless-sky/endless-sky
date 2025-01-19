@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "audio/SoundCategory.h"
+
 #include "Angle.h"
 #include "Body.h"
 
@@ -50,6 +52,7 @@ private:
 	std::string name;
 
 	const Sound *sound = nullptr;
+	SoundCategory soundCategory = SoundCategory::EXPLOSION;
 
 	// Parameters used for randomizing spin and velocity. The random angle is
 	// added to the parent angle, and then a random velocity in that direction
