@@ -13,8 +13,8 @@
 
 
 mission "Avgi: Lost in Twilight"
-	invisible
 	landing
+	invisible
 	to complete
 		never
 	on enter
@@ -30,10 +30,10 @@ phrase "lost in twilight"
 		`As soon as you jump into the system, you notice something is wrong. The characteristic plasma of your jump drive fades unnaturally quickly, and as you check your ship's systems, you notice its temperature is somehow much lower than normal. Your computer indicates that the system you came from is out of range, and that you cannot jump back to it. It appears you are stuck in this region for now.`
 
 mission "Avgi: First Contact"
+	landing
 	autosave
 	name "An Alien Encounter"
 	description "Accompany the alien ship to the destination marked on your map."
-	landing
 	source
 		attributes "avgi"
 	destination "Peripheria"
@@ -380,13 +380,13 @@ mission "Avgi: Humans From the Deep"
 
 
 mission "Avgi: Defend Ensemble 1"
+	landing
 	name "Avgi Strike Force"
 	description "Meet up with the Avgi strike force at <destination>."
-	landing
-	passengers 1
-	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
 	source "Aktina Cylinder"
 	destination "Navigeo Yards"
+	passengers 1
+	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
 	to offer
 		has "Avgi: Humans From the Deep: done"
 	on offer
@@ -485,9 +485,9 @@ mission "Avgi: Defend Ensemble 1"
 
 
 mission "Avgi: Defend Ensemble 2"
+	landing
 	name "Ensemble Defense"
 	description "Help the Avgi in the Ensemble system hold off an Aberrant raid until help arrives."
-	landing
 	source "Navigeo Yards"
 	destination "Weledos"
 	to offer
@@ -676,11 +676,11 @@ mission "Avgi: Defend Ensemble 2"
 mission "Avgi: Scout Rescue"
 	name "Search and Rescue"
 	description "Find and evacuate the crew of the <npc>, which was last seen in the Twirl system, but could be anywhere in the local star cluster."
-	passengers 12
-	blocked "You'll need <capacity> to complete this mission."
 	source "Weledos"
 	destination "Peripheria"
 	waypoint "Twirl"
+	passengers 12
+	blocked "You'll need <capacity> to complete this mission."
 	to offer
 		has "Avgi: Defend Ensemble 2: done"
 	to fail
@@ -809,9 +809,9 @@ mission "Avgi: Frontline Combat"
 
 
 mission "Avgi: Dissonance Outreach 0.5"
+	landing
 	name "Return to Peripheria"
 	description "Return to <destination> to collect Hriso, a Consonance Assemblyman."
-	landing
 	passengers 2
 	source "Feo Platform"
 	destination "Peripheria"
@@ -832,10 +832,10 @@ mission "Avgi: Dissonance Outreach 0.5"
 mission "Avgi: Dissonance Outreach"
 	name "Dissonance Outreach"
 	description "Take Hriso to <destination> for negotiations with the local miners. You may need to hail the station to receive permission to dock."
-	passengers 3
-	blocked "You'll need <capacity> to transport Darius, Sora, and Hriso."
 	source "Peripheria"
 	destination "Outpost Tekis"
+	passengers 3
+	blocked "You'll need <capacity> to transport Darius, Sora, and Hriso."
 	clearance "Hriso has an animated argument with the spaceport controller, saying something about access rights, and manages to get you reluctant permission to dock."
 	to offer
 		or
@@ -866,13 +866,13 @@ mission "Avgi: Dissonance Outreach"
 
 
 mission "Avgi: Twilight Escape 1"
+	landing
 	name "Escape the Twilight"
 	description "Find a way out of the Twilight. You may want to look to the far east of the Twilight, where the Incursion first began."
-	landing
-	passengers 3
-	blocked "You'll need <capacity> on the <ship> to transport Darius, Sora, and Leon."
 	source "Outpost Tekis"
 	destination "Vinci"
+	passengers 3
+	blocked "You'll need <capacity> on the <ship> to transport Darius, Sora, and Leon."
 	to offer
 		has "Avgi: Dissonance Outreach: done"
 	on offer
@@ -971,10 +971,10 @@ mission "Avgi: Twilight Escape 1"
 mission "Avgi: Twilight Escape 2"
 	name "Sora's Return"
 	description "Take Sora to her parents' farm on Memory."
-	passengers 2
-	blocked "You'll need <capacity> on the <ship> to transport Darious and Sora."
 	source "Vinci"
 	destination "Memory"
+	passengers 2
+	blocked "You'll need <capacity> on the <ship> to transport Darious and Sora."
 	to offer
 		has "Avgi: Twilight Escape 1: done"
 	on offer
@@ -996,13 +996,13 @@ mission "Avgi: Twilight Escape 2"
 
 
 mission "Avgi: Twilight Escape 3"
+	landing
 	name "Darius' Return"
 	description "Take Darius to his home on Valhalla, in the hope his wife is still there since his apparent death."
-	landing
-	passengers 1
-	blocked "You'll need <capacity> on the <ship> to transport Darius."
 	source "Memory"
 	destination "Valhalla"
+	passengers 1
+	blocked "You'll need <capacity> on the <ship> to transport Darius."
 	to offer
 		has "Avgi: Twilight Escape 2: done"
 	on offer
