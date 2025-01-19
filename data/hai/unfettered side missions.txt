@@ -257,7 +257,7 @@ mission "Hai Legacy 2"
 			action
 				"old reputation: Hai (Unfettered)" = "reputation: Hai (Unfettered)"
 				"reputation: Hai (Unfettered)" >?= 0
-			`As you enter the system, you prepare for a fight to get the cargo through. However, the Unfettered have suddenly stopped firing at you, and the system becomes surprisingly quiet.`
+			`As you enter the system, you prepare for a fight to get the cargo through. However, the usually aggressive Unfettered have suddenly stopped firing at you.`
 	on fail
 		"reputation: Hai (Unfettered)" <?= -1000
 		dialog `The Unfettered and their associates are clearly not happy when they somehow find out you didn't deliver the cargo in time, leaving you a brief message on your command panel: "You will not prove yourself to us by failing our requests."`
@@ -343,7 +343,7 @@ mission "Hai Legacy 3"
 			`The Unfettered don't seem too pleased to see you leaving with their prize. The challenger is already waiting for you in orbit, and hails you. "Where do you think you're going, monkey?"`
 				decline
 			label "too many ships"
-			`As you take to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
+			`As you take off to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
 				goto failed
 			label anomaly
 			`You are hailed by the Unfettered as soon as you reach orbit. "You think us blind, monkey? That is not the relic! You're not even worth a launch sequence."`
