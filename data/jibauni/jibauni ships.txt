@@ -489,13 +489,13 @@ ship "Yiyharsi"
 		"cost" 6391000
 		"shields" 3500
 		"hull" 1750
-		"required crew" 5
+		"required crew" 6
 		"bunks" 20
 		"mass" 210
 		"drag" 3.95
 		"heat dissipation" .4
 		"fuel capacity" 400
-		"cargo space" 10
+		"cargo space" 20
 		"outfit space" 185
 		"weapon capacity" 50
 		"engine capacity" 51
@@ -618,7 +618,7 @@ ship "Nathar"
 		"heat dissipation" .6
 		"fuel capacity" 600
 		"cargo space" 60
-		"outfit space" 400la
+		"outfit space" 400
 		"weapon capacity" 135
 		"engine capacity" 94
 		"jibauni generator" 4
@@ -740,7 +740,7 @@ ship "Latbaliday"
 		"heat dissipation" .8
 		"fuel capacity" 10
 		"cargo space" 20
-		"outfit space" 46
+		"outfit space" 52
 		"weapon capacity" 26
 		"engine capacity" 20
 		"jibauni generator" .5

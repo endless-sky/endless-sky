@@ -67,6 +67,7 @@ ship "Yiyharsi" "Yiyharsi (Bunks)"
 		"Wasita Thrusters"
 		"Tawasitaq Energy Generator"
 		"Hyperdrive"
+		"Outfits Expansion"
 		"Large Bunk Room" 2
 		"Small Bunk Room"
 
