@@ -2186,6 +2186,7 @@ Files:
  images/outfit/rock?4*
  images/scene/penguinscene*
  images/ship/hai?sea?scorpion*
+ images/ship/hai?anomalocaris*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -2198,6 +2199,7 @@ Files:
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
  images/thumbnail/hai?sea?scorpion*
+ images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
  images/thumbnail/merganser*
  images/thumbnail/penguin*
@@ -3986,15 +3988,27 @@ Files:
  images/ui/tactical/energy*
  images/ui/tactical/fuel*
  images/ui/tactical/thermal*
-Copyright: Zitchas
+Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Comment: Cropped and split into four new files by Zitchas (zitchas.jma@gmail.com)
+
+Files:
+ images/scene/cave?scene*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
  images/_menu/haze-brown*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
 License: CC-BY-SA-4.0
 Comment: Derived from _menu/haze-133 (no copyright given).
+
+Files:
+ images/scene/emerging?ladybug*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+Comment: Derived from public domain works previously submitted to Endless Sky.
 
 Files:
  images/effect/ionic?impact*

@@ -605,7 +605,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this, false));
 	}
-	else if(key == 'a' && buttonCondition != "is stars")
+	else if(key == 't' && buttonCondition != "is stars")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this, true));
@@ -1459,7 +1459,7 @@ void MapPanel::DrawSystems()
 				starAngle += angularSpacing;
 				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
-					Point(0, 0), 0, sqrt(max(zoom, 0.5)) / 2, min(zoom + 0.25, 0.75));
+					Point(0, 0), 0, cbrt(zoom) * 0.6, 0.8);
 				starBatch.Add(starBody);
 			}
 		}
