@@ -802,12 +802,6 @@ mission "Avgi: Frontline Combat"
 			variant
 				"Aberrant Chomper" 2
 
-	on complete
-		conversation
-			`You receive a hero's welcome back on the Feo Platform from the Twilight Guards stationed there. After a short celebration and many expressions of praise toward you, an alien stranger, you find Darius and Sora waiting by the <ship> to speak with you.`
-			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
-			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
-			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. We'll need to head to Peripheria to pick up Hriso and get this trip sorted out."`
 
 
 mission "Avgi: Dissonance Outreach 0.5"
@@ -819,6 +813,13 @@ mission "Avgi: Dissonance Outreach 0.5"
 	destination "Peripheria"
 	to offer
 		has "Avgi: Frontline Combat: done"
+	on offer
+		conversation
+			`You receive a hero's welcome back on the Feo Platform from the Twilight Guards stationed there. After a short celebration and many expressions of praise toward you, an alien stranger, you find Darius and Sora waiting by the <ship> to speak with you.`
+			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
+			`	"A bunch of selfish cowards, they are," says Sora disdainfully.`
+			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. We'll need to head to Peripheria to pick up Hriso and get this trip sorted out."`
+				accept
 	on complete
 		dialog
 			`As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
