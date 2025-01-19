@@ -470,6 +470,7 @@ void Audio::Step(bool isFastForward)
 			recycledSources.pop_back();
 		}
 		// Begin playing this sound.
+		alSourcef(source, AL_GAIN, Volume(it.second.category));
 		sources.emplace_back(it.first, source, it.second.category, isFastForward);
 		sources.back().Move(it.second);
 		alSourcePlay(source);
