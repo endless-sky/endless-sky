@@ -50,7 +50,7 @@ outfit "Locust Turret"
 		sound "locust blaster"
 		"hit effect" "bullet impact"
 		"inaccuracy" 5
-		"turret turn" 2
+		"turret turn" 3.7
 		"velocity" 10
 		"random velocity" 2
 		"lifetime" 40
