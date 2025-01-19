@@ -1425,7 +1425,6 @@ void MapPanel::DrawSystems()
 	// Draw the circles for the systems.
 	BatchDrawList starBatch;
 	double zoom = Zoom();
-	const float ringFade = mapIsStarry ? 1.5 - 1.25 * zoom : 1.;
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
