@@ -107,7 +107,6 @@ ship "Koryfi"
 		right
 	"steering engine" 83 -11
 		left
-
 	gun 0 -27
 	turret 0 -12
 
@@ -248,7 +247,6 @@ ship "Melodikos"
 		right
 	"steering engine" 72 1.5
 		left
-
 	gun -96 -3
 		angle -90
 	gun 96 -3
@@ -362,7 +360,6 @@ ship "Avlaki"
 		right
 	"steering engine" 83 -11
 		left
-
 	gun 0 -27
 	turret 0 -12
 
@@ -502,7 +499,6 @@ ship "Harmonikos"
 		right
 	"steering engine" 72 1.5
 		left
-
 	gun -96 -3
 		angle -90
 	gun 96 -3
@@ -724,10 +720,8 @@ ship "Polari"
 	"steering engine" 6 66
 		angle -90
 		right
-
 	turret -14 27 "Green Optical Laser"
 	turret 14 27 "Green Optical Laser"
-
 	bay "Drone" -9 -25
 	bay "Drone" 9 -25
 	bay "Fighter" 0 48
@@ -785,17 +779,6 @@ ship "Entasi"
 		"Magnetoplasma Drive" 3
 		"Hyperdrive"
 
-	bay "Fighter" 0 -30
-		over
-	bay "Fighter" 0 -30
-		under
-	bay "Drone" -18 -45
-	bay "Drone" 18 -45
-	bay "Drone" -18 -18
-	bay "Drone" 18 -18
-	bay "Drone" -18 72
-	bay "Drone" 18 72
-
 	engine -45 45
 		zoom 0.9
 	engine 45 45
@@ -852,7 +835,6 @@ ship "Entasi"
 		zoom 0.7
 		angle 90
 		left
-
 	gun -36 9
 	gun 36 9
 	gun -36 9
@@ -860,6 +842,16 @@ ship "Entasi"
 	turret -10 72 "Blue Optical Laser"
 	turret 10 72 "Blue Optical Laser"
 	turret 0 -4
+	bay "Fighter" 0 -30
+		over
+	bay "Fighter" 0 -30
+		under
+	bay "Drone" -18 -45
+	bay "Drone" 18 -45
+	bay "Drone" -18 -18
+	bay "Drone" 18 -18
+	bay "Drone" -18 72
+	bay "Drone" 18 72
 
 	leak "leak" 60 60
 	leak "flame" 60 60
@@ -937,7 +929,6 @@ ship "Undsyni"
 	"steering engine" 6 240
 		angle -90
 		right
-
 	gun 0 -213
 		over
 	gun -42 -139
@@ -949,7 +940,6 @@ ship "Undsyni"
 	turret 0 -30 "Green Optical Laser"
 	turret 0 42 "Green Optical Laser"
 	turret 0 186 "Green Optical Laser"
-
 	bay "Drone" -65.5 3
 	bay "Drone" 65.5 3
 	bay "Drone" 65.5 29
@@ -1059,7 +1049,6 @@ ship "Modified Tachytia"
 	engine 177 -426
 		angle -9
 		zoom 2
-
 	"steering engine" -6 450
 		angle 90
 		left
@@ -1072,7 +1061,6 @@ ship "Modified Tachytia"
 	"steering engine" 36 -324
 		angle -90
 		left
-
 	gun 0 -384 "Plasmadyne Scoop"
 	turret -27 162 "Blue Optical Laser"
 	turret 27 162 "Blue Optical Laser"
@@ -1083,7 +1071,6 @@ ship "Modified Tachytia"
 	turret 0 -3 "Green Optical Laser"
 	turret 0 -360 "Green Optical Laser"
 	turret 0 450 "Green Optical Laser"
-
 	bay "Drone" -18 420
 	bay "Drone" 18 420
 	bay "Drone" -18 432
@@ -1177,7 +1164,6 @@ ship "Tremoros"
 	"steering engine" 0 51
 		angle 30
 		left
-
 	gun -6.5 -18 "Speckle Coilgun"
 	gun 6.5 -18 "Speckle Coilgun"
 	gun -6.5 -18 "Speckle Coilgun"
@@ -1261,7 +1247,6 @@ ship "Prismaios"
 	"steering engine" 3 99
 		angle -90
 		right
-
 	gun 0 -111
 	gun -9 33
 		angle -90
@@ -1398,7 +1383,6 @@ ship "Interferos"
 	"steering engine" 6 99
 		angle -90
 		right
-
 	gun 0 -114
 	gun -33 -57
 		angle -60
@@ -1514,7 +1498,6 @@ ship "Diaspersi"
 	"steering engine" 6 141
 		angle -90
 		right
-
 	gun 0 -156
 	gun -18 -9
 		angle -90
@@ -1524,7 +1507,6 @@ ship "Diaspersi"
 	turret -9 9 "Green Optical Laser"
 	turret 9 9 "Green Optical Laser"
 	turret 0 51 "Speckle Turret"
-
 	bay "Fighter" 0 -63
 		over
 	bay "Fighter" -36 18
@@ -1650,7 +1632,6 @@ ship "Refraktos"
 	"steering engine" 9 162
 		angle -90
 		right
-
 	gun 0 -162
 	gun -18 -84
 	gun 18 -84
@@ -1772,7 +1753,6 @@ ship "Difraktos"
 	turret 9 -66 "Medium VLS"
 	turret 0 36 "Green Optical Laser"
 	turret 0 90 "Green Optical Laser"
-
 	bay "Drone" -21 -21
 	bay "Drone" 21 -21
 	
@@ -1851,7 +1831,6 @@ ship "Difraktos" "Difraktos (Atomic)"
 	gun "External Launch Tube"
 	gun "External Launch Tube"
 	gun "External Launch Tube"
-
 	turret "Speckle Turret"
 	turret "Speckle Turret"
 	turret
@@ -1931,7 +1910,6 @@ ship "Atenuatia"
 	"steering engine" 9 264
 		angle -120
 		right
-
 	gun 0 -288
 	gun -18 -132
 		angle -90
@@ -1949,7 +1927,6 @@ ship "Atenuatia"
 	turret 0 30 "Medium VLS"
 	turret 0 96 "Green Optical Laser"
 	turret 0 160 "Green Optical Laser"
-
 	bay "Drone" -24 -234
 	bay "Drone" 24 -234
 	bay "Drone" -42 -225
@@ -2092,7 +2069,6 @@ ship "Akoustiki"
 		angle -60
 		zoom 0.5
 		right
-
 	gun -18 -15 "Speckle Coilgun"
 	gun 18 -15
 
@@ -2163,7 +2139,6 @@ ship "Photikon"
 		angle 195
 		zoom 0.5
 		right
-
 	gun -6 -30
 	gun 0 -30
 	gun 6 -30
@@ -2248,7 +2223,6 @@ ship "Vibratia"
 		angle -90
 		zoom 0.5
 		right
-
 	gun 0 -27 "Speckle Coilgun"
 	gun 0 -27
 
@@ -2320,7 +2294,6 @@ ship "Undulon"
 		angle -15
 		zoom 0.5
 		left
-
 	gun 0 -29 "External Launch Tube"
 
 	explode "tiny explosion" 12
@@ -2422,7 +2395,6 @@ ship "Sonikis"
 		right
 	"steering engine" 39 -6
 		left
-
 	gun 0 -6
 
 	leak "leak" 30 60
