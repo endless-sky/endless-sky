@@ -38521,10 +38521,11 @@ system Symphony
 				scale 0.5
 			distance 360
 			period 48
+			offset 180
 		object
 			sprite planet/dust0
-			distance 467.152
-			period 64
+			distance 360
+			period 48
 	object
 		sprite planet/gas4-b
 		distance 6120.6

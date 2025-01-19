@@ -23,8 +23,8 @@ mission "Avgi Culture: Park Politics"
 		conversation
 			action
 				set "avgi: met wisteria"
-			`As you explore the spaceport of <origin>, you come across a small grassy park, the greenspace a welcome contrast to the otherwise industrial facilities. As the centerpiece of the park, where you'd expect a fountain or a statue in a human park, is a curious hanging windchime, made of pieces of colorful glass and various metals. It's more than a little mesmerizing, and you stop to listen as it rustles in the gentle circulation of the station's air.`
-			`	"Is this one of the humans I have heard so much about, question?" the translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of him, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
+			`As you explore the spaceport of <origin>, you come across a small grassy park, the greenspace a welcome contrast to the otherwise mechanical facilities. As the centerpiece of the park, where you'd expect a fountain or a statue in a human park, is a curious hanging windchime, made of pieces of colorful glass and various metals. It's more than a little mesmerizing, and you stop to listen as it rustles in the gentle circulation of the station's air.`
+			`	"Is this one of the humans I have heard so much about, question?" The translator tucked behind your ear suddenly speaks, responding to an Avgi voice. You turn and see an Avgi perched on a park bench behind you, his purple coloring faded with age. A board of colorful stones sits on the table in front of him, a game of some kind. He gives you an odd sort of salute with a forelimb, probably an Avgi greeting of some kind.`
 			choice
 				`	"Hello there."`
 				`	"Hi, I'm Captain <first> <last>."`
@@ -482,12 +482,12 @@ mission "Avgi Culture: Zapchannel Energy"
 				`	"Alright, I'll give it a shot."`
 
 			branch superpowers
-				random < 99
+				random < 3
 			`	You take the vial, warm to the touch, and uncork it. Nikkio gives you an expectent look, and gestures at you before you carefully tip the drink back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as your body starts to go numb. As your vision darkens, punctuated by flashes of light in the corners of your eyes, your last thought is that perhaps you shouldn't have drunk a mysterious glowing liquid given to you by a seedy alien you just met in the spaceport.`
 				die
 
 			label superpowers
-			`	You take the vial, warm to the touch, and uncork it before carefully tipping it back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in center of your chest, spreading as you start to feel somehow revitalized. After a brief, sharp pain, a suspiciously dragonfly-shaped patch of skin in the center of your skin begins to glow a vibrant blue.`
+			`	You take the vial, warm to the touch, and uncork it before carefully tipping it back. You feel a little tingly as the drink trickles down your throat, tasting vaguely of lemon and metal. This quickly intensifies into pins and needles in your chest, spreading as you start to feel somehow revitalized. After a brief, sharp pain, a suspiciously dragonfly-shaped patch of skin in the center of your chest begins to glow a vibrant blue.`
 			`	"Surprise. You surely are, ah, a worthy captain!" says Nikkio, shock evident on his face. He begins to sidle away, glancing in all directions as though he isn't sure what's going on. "Hurry. I must be on my way, goodbye for now, captain!"`
 				accept
 			label nope
@@ -524,7 +524,7 @@ mission "Avgi: Cylinder Construction"
 	on offer
 		log "People" "Gamboge" `Gamboge manages construction on the Aktina Cylinder, an immense habitat station whose construction has stalled in recent years. He is frustrated about the lack of support offered by the Assembly and believes Aktina deserves to be a higher priority.`
 		conversation
-			`You are struck by just how massive this space station is, even in its incomplete state. At three kilometers in diameter, it is only a small fraction of the size of the ones back in Avgi space, but even so it overshadows any human orbital construction. The site is an active construction zone, based on what you've heard, though you see little evidence of activity. A few Avgi lounge about in the small, temporary living quarters for the construction workers, but all of the Akoustiki Excursion Vehicles with their welding arms and nanofilament spinners are docked and powered down.`
+			`You are struck by just how massive this space station is, even in its incomplete state. At three kilometers in diameter, it is only a small fraction of the size of the cylinders back in the Twilight, but even so it overshadows any human orbital construction. The site is an active construction zone, based on what you've heard, though you see little evidence of activity. A few Avgi lounge about in the small, temporary living quarters for the construction workers, but all of the Akoustiki Excursion Vehicles with their welding arms and nanofilament spinners are docked and powered down.`
 			`	Would you like to ask what's going on?`
 			choice
 				`	(Yes.)`
@@ -586,6 +586,7 @@ mission "Avgi: Cylinder Construction"
 			`	"Consideration. A place to live, with enough space to be a real home, not just a temporary outpost with a few houseplants. You should know, we had thousands of cylinders far larger than this one back in Anax and around our other colonies. Billions of Avgi, housed not on planets but in space. This is but a pale imitation of what we once had, but it is needed all the same. Do you know the most pressing question faced by the Assembly?"`
 			choice
 				`	"No."`
+				`	"What would that be?"`
 
 			`	"Mild surprise. It is oft spoken of. The Assembly must decide the fate of the millions of Avgi in cryogenic storage, frozen during our evacuation to facilitate their transportation. A scarce few thousand are thawed every year, the best and brightest we can find among them woken to fight the Aberrant, all because we lack the food and living space to support the rest. This cylinder here, Aktina, could support them."`
 				goto questions
@@ -608,9 +609,9 @@ mission "Avgi: Cylinder Construction"
 				`	"Sorry, no."`
 					decline
 
-			`	"Gratitude. I will ensure there are items posted on nearby job boards that you might gather and transport here."`
 			action
 				set "avgi: aktina cylinder supply jobs"
+			`	"Gratitude. I will ensure there are items posted on nearby job boards that you might gather and transport here."`
 			accept
 
 
@@ -649,7 +650,7 @@ mission "Avgi: Infocourier Encounter"
 			choice
 				`	"What changed?"`
 
-			`	Hansa sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system has adapted, and now it is just that - a system. Regular. Predictable. And ultimately unexciting."`
+			`	Hansa sighs, making an odd whistling sound. "Nostalgia. Interstellar travel is much easier these days. Gone are the kilometer-long starships, the petawatt beam-pushers. I'm not complaining about it, of course - it is impossible to overstate just how incredible the hyperdrive has been. Now that interstellar journeys take days instead of decades, the courier system has adapted, and now it is just that - a system. Regular. Predictable. And ultimately unexciting." He looks a bit dejected.`
 			label couriers
 			`	"Today, we make the rounds in ships that are fast, but have the room for enough storage media to update a planet's entire network. In our heyday, before the Incursion, a courier ship would visit a world every day to upload its database, but since then we've struggled to keep each system controlled by the Consonance updated once per week."`
 			label ask
