@@ -148,7 +148,7 @@ void OrderSet::Validate(const Ship *ship, const System *playerSystem)
 		targetShipInvalid = !tShip
 			|| (!tShip->IsTargetable() && tShip->GetGovernment() != ship->GetGovernment())
 			|| (tShip->IsDisabled() && Has(ATTACK))
-			|| (ship->GetSystem() && tShip->GetSystem() != ship->GetSystem() && ship->GetSystem() != playerSystem);
+			|| (ship->GetSystem() && tShip->GetSystem() != ship->GetSystem() && tShip->GetSystem() != playerSystem);
 	}
 	if((types & (HAS_TARGET_ASTEROID | HAS_TARGET_SHIP_OR_ASTEROID)).any())
 	{
