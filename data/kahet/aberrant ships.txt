@@ -35,6 +35,10 @@ ship "Aberrant Latte"
 		"weapon capacity" 64
 		"engine capacity" 66
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -103,6 +107,10 @@ ship "Aberrant Chomper"
 		"weapon capacity" 189
 		"engine capacity" 62
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
