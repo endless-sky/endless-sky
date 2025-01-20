@@ -74,7 +74,7 @@ While sufficient versions of other dependencies are available, Ubuntu 22.04 does
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel libavif-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel libavif-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
 ```
 Additionally, if you want to build unit tests:
 ```
