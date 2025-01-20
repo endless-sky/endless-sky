@@ -266,8 +266,12 @@ planet Antipode
 planet "Antivli Station"
 	attributes avgi station uninhabited
 	landscape land/station25
-	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts.`
-	description `	Combined, the amat farms around Anax produced several tons of antimatter each year.`
+	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the thousands of solar collection satellites around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts. The discovery of the hyperdrive nearly wiped the antimatter economy out overnight, with interstellar travel now almost trivial.`
+	description `	Combined, the amat farms around Anax once produced several tons of antimatter each year. The economic crash caused by the hyperdrive brought production to its knees, but the final death of Antivli Station appears to have come at the hands of the Aberrant.`
+	spaceport `The docks once used by specialized antimatter transport ships are wrecked beyond recognition, with only a small trickle of energy available. Beyond this, the beamlines once used to produce antimatter are broken and shattered - the antimatter plant is certainly beyond recovery.`
+	spaceport `	The station's stockpile of antimatter, hundreds of tons held in reserve as antihydrogen ice plated with a thin layer of antilithium, appears to have likewise been lost to the Incursion. Whatever happened to the antimatter, it is at least certain that it did not breach its magnetic levitation containment tanks, as otherwise nothing of the station would be left but vapor.`
+	port "Amat _Plant"
+		recharges energy
 	government Uninhabited
 
 planet Aqra-Kvel-Taaq
@@ -403,8 +407,8 @@ planet Asterus
 planet Avalet
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_01
-	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the trace water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of powerful winds that ring the entire planet, producing immense cyclones capable of even pushing some clouds to the edge of space.`
-	description `	The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped in Avalet's magnetic field fueled Avgi starships until Antivili Station was built.`
+	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of winds that ring the entire planet, producing immense cyclones capable of throwing clouds to the edge of space.`
+	description `	The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped by Avalet's magnetic field fueled Avgi starships until Antivli Station was built, a fading reflection of its mythological significance.`
 	government Uninhabited
 
 planet Avalon
