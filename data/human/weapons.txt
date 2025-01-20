@@ -503,6 +503,7 @@ effect "small anti-missile"
 		"no repeat"
 		"frame rate" 3
 	sound "anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 21
 	"velocity scale" 1
 
@@ -532,6 +533,7 @@ effect "large anti-missile"
 		"no repeat"
 		"frame rate" 2
 	sound "heavy anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 
