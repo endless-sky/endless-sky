@@ -109,7 +109,7 @@ planet Alathil
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa29
 	description `Eons later, Alathil still resonates with the shocks of the supernova that reshaped the Tap system. The entire atmosphere is still in turmoil, with layers of gas upturned upon themselves. These exposed layers are the source of Alathil's vibrant coloring, which is both beautiful and deadly.`
-	description `The planet's magnetosphere is grossly deformed, distorted by Tap's own powerful field and twisted by the shocks still resonating in Alathil's metallic hydrogen core. This bends streams of deadly charged particles emitted from Tap directly into the atmosphere, scouring seemingly random bands across the planet's surface.`
+	description `	The planet's magnetosphere is grossly deformed, distorted by Tap's own powerful field and twisted by the shocks still resonating in Alathil's metallic hydrogen core. This bends streams of deadly charged particles emitted from Tap directly into the atmosphere, scouring seemingly random bands across the planet's surface.`
 	government Uninhabited
 	security 0
 
@@ -4044,7 +4044,8 @@ planet Nimbus
 planet "Nisos Cylinder"
 	attributes avgi station uninhabited urban
 	landscape land/station55
-	description `The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth's 20th century. Nisos was one of the few cylinders to be completely evacuated before the Aberrant took the Anax system, and compared to its neighbors it is relatively intact.`
+	description `The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth's 20th century. With a population of nearly twelve million, Nisos was one of nearly a thousand cylinders created by the Avgi, mostly in the Anax system, where they were together home to billions. As the Aberrant advanced across Avgi space, it was evacuated in a frenzy that saw most of its population flee to Aviskir. Compared to its neighbors, it is relatively intact, and still holds an atmosphere.`
+	description `	Located at the L5 Lagrange point of Oura, the largest gas giant in the Anax system, this habitat community had ready access to the asteroids that tended to accumulate here, which fueled the expansion and production of new cylinders.`
 	government Uninhabited
 
 planet Noluc
