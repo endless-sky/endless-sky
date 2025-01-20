@@ -109,6 +109,7 @@ planet Alathil
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa29
 	description `Eons later, Alathil still resonates with the shocks of the supernova that reshaped the Tap system. The entire atmosphere is still in turmoil, with layers of gas upturned upon themselves. These exposed layers are the source of Alathil's vibrant coloring, which is both beautiful and deadly.`
+	description `The planet's magnetosphere is grossly deformed, distorted by Tap's own powerful field and twisted by the shocks still resonating in Alathil's metallic hydrogen core. This bends streams of deadly charged particles emitted from Tap directly into the atmosphere, scouring seemingly random bands across the planet's surface.`
 	government Uninhabited
 	security 0
 
