@@ -3354,8 +3354,8 @@ planet "Mebla's Portion"
 planet Melatos
 	attributes avgi uninhabited
 	landscape land/snow36
-	description `Despite being a large rocky world, Melatos lacks all but the thinnest of atmospheres. Avgi astrogeologists have determined that some cataclysmic event only a few million years ago melted and quickly refroze the outermost layers of its crust. This rapid cooling created a world with a smooth, marble-like texture, almost like ceramic, which is crazed by deep cracks formed as the crust refroze.`
-	description `	The remelting of Melatos' crust also means that heavier elements such as metals mostly sank to the core, and are hard to find without subcrustal mining, an unattractive prospect when combined with the planet's relatively deep gravity well. As such, Melatos remains mostly undeveloped, with the settlements on its surface being almost exclusively scientific in purpose.`
+	description `Despite being a large rocky world, Melatos lacks all but the thinnest of atmospheres. Avgi astrogeologists have determined that some cataclysmic event millions of years ago melted and quickly refroze the outermost layers of its crust, coinciding with a mass extinction on Aviskir. This rapid cooling created a world with a smooth, marble-like texture, in part made from ceramic. The glassy surface is crazed by deep cracks, formed as the crust refroze and shrank as it cooled.`
+	description `	The remelting of Melatos' crust also means that heavier elements such as metals mostly sank to the core, making mining an unattractive prospect with the planet's relatively deep gravity well. As such, Melatos remains mostly undeveloped, with the settlements on its surface being almost exclusively scientific in purpose.`
 	government Uninhabited
 
 planet Melenci
