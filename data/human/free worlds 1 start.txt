@@ -1310,10 +1310,11 @@ mission "FW Pirates: Attack 1"
 			`	You plan to leave after nightfall, which should hopefully mean that Alondo doesn't realize that you've left him behind until it's too late. Now all that remains is for you to travel to <system>, defeat whatever opposition you find, and land on <planet>. Or die trying.`
 			action
 				event "battle for Greenrock"
+			``
 				accept
 			label thule
 			action
-				set "Aborted Greenrock battle"
+				set "Aborted battle for Greenrock"
 
 
 
