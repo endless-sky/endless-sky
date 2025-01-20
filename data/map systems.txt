@@ -39823,7 +39823,7 @@ system Tumble
 			distance 285
 			period 181.873
 		object Orodens
-			sprite planet/callisto
+			sprite planet/rock20
 			distance 400
 			period 209.367
 	object
