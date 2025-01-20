@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <condition_variable>
 #include <cstdint>
 #include <cstdio>
+#include <filesystem>
 #include <mutex>
 #include <string>
 #include <thread>
@@ -32,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // so the game won't freeze if the music stops for some reason.
 class Music {
 public:
-	static void Init(const std::vector<std::string> &sources);
+	static void Init(const std::vector<std::filesystem::path> &sources);
 
 
 public:
@@ -60,7 +61,7 @@ private:
 	std::vector<int16_t> current;
 
 	std::string currentSource;
-	std::string previousPath;
+	std::filesystem::path previousPath;
 	// This pointer holds the file for as long as it is owned by the main
 	// thread. When the decode thread takes possession of it, it sets this
 	// pointer to null.

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL_events.h>
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 #include <atomic>
 
@@ -122,8 +123,8 @@ public:
 	void ReadKeyboard();
 
 	// Load or save the keyboard preferences.
-	static void LoadSettings(const std::string &path);
-	static void SaveSettings(const std::string &path);
+	static void LoadSettings(const std::filesystem::path &path);
+	static void SaveSettings(const std::filesystem::path &path);
 	static void SetKey(Command command, int keycode);
 	static void SetGesture(Command command, Gesture::GestureEnum gesture);
 	static void SetControllerButton(Command command, uint8_t button);

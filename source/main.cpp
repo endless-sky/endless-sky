@@ -40,7 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PrintData.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestContext.h"
@@ -209,7 +209,7 @@ int main(int argc, char *argv[])
 		CrashState::Set(CrashState::OPENGL);
 
 		// Load global conditions:
-		DataFile globalConditions(Files::Config() + "global conditions.txt");
+		DataFile globalConditions(Files::Config() / "global conditions.txt");
 		for(const DataNode &node : globalConditions)
 			if(node.Token(0) == "conditions")
 				GameData::GlobalConditions().Load(node);
@@ -410,8 +410,14 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// the set of fingers for polling, and generate gesture events.
 			TouchScreen::Handle(event);
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_9)
+			{
 				isPaused = !isPaused;
+				if(isPaused)
+					Audio::Pause();
+				else
+					Audio::Resume();
+			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
 					&& (Command(event.key.keysym.sym).Has(Command::MENU) || event.key.keysym.sym == SDLK_AC_BACK)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
@@ -647,7 +653,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.10" << endl;
+	cerr << "Endless Sky ver. 0.10.11-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

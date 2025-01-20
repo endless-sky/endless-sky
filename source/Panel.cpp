@@ -19,15 +19,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "DelaunayTriangulation.h"
 #include "Dialog.h"
-#include "FillShader.h"
-#include "GamePad.h"
+#include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "GamePad.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "image/Sprite.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #include <SDL2/SDL.h>

@@ -162,7 +162,7 @@ bool ImageSet::IsImage(const filesystem::path &path)
 // of the source image directories, not a full filesystem path.
 string ImageSet::Name(const filesystem::path &path)
 {
-	return path.string().substr(0, NameEnd(path));
+	return path.generic_string().substr(0, NameEnd(path));
 }
 
 

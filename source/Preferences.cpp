@@ -50,7 +50,9 @@ namespace {
 	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
-	
+	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
+	int notifOptionsIndex = 0;
+
 	const double ZOOM_MAX = 2.0;
 	const double ZOOM_MIN = .0625;
 	const double ZOOM_INTERVAL = 1.25;
@@ -204,7 +206,7 @@ void Preferences::Load()
 	}
 #endif
 
-	DataFile prefs(Files::Config() + "preferences.txt");
+	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
 		if(node.Token(0) == "window size" && node.Size() >= 3)
@@ -253,6 +255,8 @@ void Preferences::Load()
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
+		else if(node.Token(0) == "notification settings")
+			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -300,7 +304,7 @@ void Preferences::Load()
 
 void Preferences::Save()
 {
-	DataWriter out(Files::Config() + "preferences.txt");
+	DataWriter out(Files::Config() / "preferences.txt");
 
 	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
@@ -312,6 +316,7 @@ void Preferences::Save()
 	out.Write("vsync", vsyncIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
+	out.Write("notification settings", notifOptionsIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
@@ -384,6 +389,30 @@ Preferences::DateFormat Preferences::GetDateFormat()
 const string &Preferences::DateFormatSetting()
 {
 	return DATEFMT_OPTIONS[dateFormatIndex];
+}
+
+
+
+void Preferences::ToggleNotificationSetting()
+{
+	if(notifOptionsIndex == static_cast<int>(NOTIF_OPTIONS.size() - 1))
+		notifOptionsIndex = 0;
+	else
+		++notifOptionsIndex;
+}
+
+
+
+Preferences::NotificationSetting Preferences::GetNotificationSetting()
+{
+	return static_cast<NotificationSetting>(notifOptionsIndex);
+}
+
+
+
+const string &Preferences::NotificationSettingString()
+{
+	return NOTIF_OPTIONS[notifOptionsIndex];
 }
 
 

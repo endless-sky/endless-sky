@@ -54,18 +54,16 @@ namespace {
 
 
 
-bool Sound::Load(const string &path, const string &name)
+bool Sound::Load(const filesystem::path &path, const string &name)
 {
-	if(path.length() < 5)
-		return false;
 	this->name = name;
 
-	isLooped = path[path.length() - 5] == '~';
+	isLooped = path.stem().string().ends_with('~');
 
 	uint32_t frequency = 0;
 	vector<char> data;
 
-	if(path.compare(path.length() - 4, 4, ".wav") == 0)
+	if(path.extension() == ".wav")
 	{
 		File in(path);
 		if(!in)
@@ -78,7 +76,7 @@ bool Sound::Load(const string &path, const string &name)
 		if(SDL_RWread(in, &data[0], 1, bytes) != bytes)
 			return false;
 	}
-	else if(path.compare(path.length() - 4, 4, ".mp3") == 0)
+	else if(path.extension() == ".mp3")
 	{
 		File in(path);
 		if(!in)

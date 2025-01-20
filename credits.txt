@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.10
+version 0.10.11-alpha
 
 The player's manual and other
 resources are available at:
@@ -44,11 +44,18 @@ Major Programming
   Frederick Goy IV
   guillochon
   Hadron1776
+  Hurleveur
+  Koranir
   kozbot
   MarcelineVQ
   NomadicVolcano
   oo13
   Peter van der Meer
+  Quyykk
+  RisingLeaf
+  tibetiroka
+  TomGoodIdea
+  warp-core
 
 Storyline & Faction Authors
   Amazinite
@@ -103,6 +110,8 @@ Artwork
   @Karirawri (CC-BY-SA-4.0)
   Gef. Taubenbrust (CC-BY-SA-4.0)
   Saugia (CC-BY-SA-4.0)
+  Rising Leaf (CC-BY-SA-4.0)
+  Unordered Sigh (CC-BY-SA-3.0)
 
 Photos from Wikimedia Commons
   Berthold Werner (CC-BY-SA-3.0)

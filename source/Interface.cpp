@@ -20,22 +20,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "RadialSelectionPanel.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "text/layout.hpp"
-#include "LineShader.h"
-#include "OutlineShader.h"
+#include "shader/LineShader.h"
+#include "shader/OutlineShader.h"
 #include "Panel.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Rectangle.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "UiRectShader.h"
 
@@ -524,7 +524,10 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame, unit);
+	{
+		int swizzle = info.GetSwizzle(name);
+		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), swizzle, frame, unit);
+	}
 }
 
 

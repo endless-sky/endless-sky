@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Shader.h"
 
-#include "Logger.h"
+#include "../Logger.h"
 
 #include "Files.h"
 

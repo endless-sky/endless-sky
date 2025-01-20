@@ -30,7 +30,7 @@ using namespace std;
 namespace {
 	Set<Plugin> plugins;
 
-	void LoadSettingsFromFile(const string &path)
+	void LoadSettingsFromFile(const filesystem::path &path)
 	{
 		DataFile prefs(path);
 		for(const DataNode &node : prefs)
@@ -197,13 +197,12 @@ bool Plugin::IsValid() const
 
 
 // Attempt to load a plugin at the given path.
-const Plugin *Plugins::Load(const string &path)
+const Plugin *Plugins::Load(const filesystem::path &path)
 {
 	// Get the name of the folder containing the plugin.
-	size_t pos = path.rfind('/', path.length() - 2) + 1;
-	string name = path.substr(pos, path.length() - 1 - pos);
+	string name = path.filename().string();
 
-	string pluginFile = path + "plugin.txt";
+	filesystem::path pluginFile = path / "plugin.txt";
 	string aboutText;
 	string version;
 	set<string> authors;
@@ -260,16 +259,16 @@ const Plugin *Plugins::Load(const string &path)
 	auto *plugin = plugins.Get(name);
 	if(plugin && plugin->IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path
+		Logger::LogError("Warning: Skipping plugin located at \"" + path.string()
 			+ "\" because another plugin with the same name has already been loaded from: \""
-			+ plugin->path + "\".");
+			+ plugin->path.string() + "\".");
 		return nullptr;
 	}
 
 	// Skip the plugin if the dependencies aren't valid.
 	if(!dependencies.IsValid())
 	{
-		Logger::LogError("Warning: Skipping plugin located at \"" + path
+		Logger::LogError("Warning: Skipping plugin located at \"" + path.string()
 			+ "\" because plugin has errors in its dependencies.");
 		return nullptr;
 	}
@@ -277,7 +276,7 @@ const Plugin *Plugins::Load(const string &path)
 	plugin->name = std::move(name);
 	plugin->path = path;
 	// Read the deprecated about.txt content if no about text was specified.
-	plugin->aboutText = aboutText.empty() ? Files::Read(path + "about.txt") : std::move(aboutText);
+	plugin->aboutText = aboutText.empty() ? Files::Read(path / "about.txt") : std::move(aboutText);
 	plugin->version = std::move(version);
 	plugin->authors = std::move(authors);
 	plugin->tags = std::move(tags);
@@ -291,9 +290,9 @@ const Plugin *Plugins::Load(const string &path)
 void Plugins::LoadSettings()
 {
 	// Global plugin settings
-	LoadSettingsFromFile(Files::Resources() + "plugins.txt");
+	LoadSettingsFromFile(Files::Resources() / "plugins.txt");
 	// Local plugin settings
-	LoadSettingsFromFile(Files::Config() + "plugins.txt");
+	LoadSettingsFromFile(Files::Config() / "plugins.txt");
 }
 
 
@@ -302,7 +301,7 @@ void Plugins::Save()
 {
 	if(plugins.empty())
 		return;
-	DataWriter out(Files::Config() + "plugins.txt");
+	DataWriter out(Files::Config() / "plugins.txt");
 
 	out.Write("state");
 	out.BeginChild();
@@ -317,11 +316,11 @@ void Plugins::Save()
 
 
 // Whether the path points to a valid plugin.
-bool Plugins::IsPlugin(const string &path)
+bool Plugins::IsPlugin(const filesystem::path &path)
 {
 	// A folder is a valid plugin if it contains one (or more) of the assets folders.
 	// (They can be empty too).
-	return Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds");
+	return Files::Exists(path / "data") || Files::Exists(path / "images") || Files::Exists(path / "sounds");
 }
 
 

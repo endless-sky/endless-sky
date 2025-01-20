@@ -244,7 +244,7 @@ void Command::ReadKeyboard()
 
 
 // Load the keyboard preferences.
-void Command::LoadSettings(const string &path)
+void Command::LoadSettings(const filesystem::path &path)
 {
 	DataFile file(path);
 
@@ -323,7 +323,7 @@ void Command::LoadSettings(const string &path)
 
 
 // Save the keyboard preferences.
-void Command::SaveSettings(const string &path)
+void Command::SaveSettings(const filesystem::path &path)
 {
 	DataWriter out(path);
 
