@@ -31849,7 +31849,7 @@ system Pinnacle
 		distance 2334.51
 		period 746.808
 	object Hespair
-		sprite planet/ocean5-b
+		sprite planet/ocean1-b
 		distance 3656.29
 		period 1463.77
 	object
