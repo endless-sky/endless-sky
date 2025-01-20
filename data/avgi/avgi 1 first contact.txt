@@ -82,20 +82,20 @@ mission "Avgi: First Contact"
 			action
 				set "avgi: fired on by planets"
 			choice
-				`	(Attempt to land regardless)`
+				`	(Attempt to land regardless.)`
 					goto explode
 					to display
 						"flagship attribute: shields" + "flagship attribute: hull" <= 9000 * 1000
-				`	(Attempt to land regardless)`
+				`	(Attempt to land regardless.)`
 					goto hit
 					to display
 						"flagship attribute: shields" + "flagship attribute: hull" > 9000 * 1000
 						"flagship attribute: shields" + "flagship attribute: hull" < 60000 * 1000
-				`	(Attempt to land regardless)`
+				`	(Attempt to land regardless.)`
 					goto scratched
 					to display
 						"flagship attribute: shields" + "flagship attribute: hull" >= 60000 * 1000
-				`	(Move to a higher orbit)`
+				`	(Move to a higher orbit.)`
 					goto orbit
 
 			label explode
@@ -206,6 +206,12 @@ mission "Avgi: First Contact"
 		"reputation: Avgi" >?= 5
 		"reputation: Avgi (Consonance)" >?= 5
 		"reputation: Avgi (Twilight Guard)" >?= 5
+
+	on enter "Arche"
+		unmark "Arche"
+
+	on enter "Ballad"
+		unmark "Ballad"
 
 	on fail
 		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
