@@ -1023,7 +1023,7 @@ planet "Deep Water"
 planet "Deka Dathnak"
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa21
-	description `For whatever reason, someone has gone through the trouble of bombarding this gas giant with thousands of nuclear warheads. Swirls of radioactive isotopes are plainly visible in the lower atmosphere, and the amount of soot floating around points towards a large amount of some material having been incinerated in the recent past. The Korath were presumably the ones who decided to drop several gigatons worth of nuclear weapons into this gas giant during their civil war, but exactly why they did so remains unknown.`
+	description `For whatever reason, someone has gone to the trouble of bombarding this gas giant with thousands of nuclear warheads. Swirls of radioactive isotopes are plainly visible in the lower atmosphere, and the amount of soot floating around points towards a large amount of some material having been incinerated in the recent past. The Korath were presumably the ones who decided to drop several gigatons worth of nuclear weapons into this gas giant during their civil war, but exactly why they did so remains unknown.`
 	description `	Unfortunately there is no eerie green radioactive glow to illuminate the layers beneath the clouds. Instead, your ship is shrouded in shadow and ash, plunging your viewports into darkness.`
 	government Uninhabited
 
