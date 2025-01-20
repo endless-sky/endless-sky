@@ -3,6 +3,7 @@ Version 0.10.11
     * Systems and planets can now have display names. (@TomGoodIdea)
     * Added a new map mode that draws star graphics instead of rings. (@Azure3141)
     * Added individual volume controls for different kinds of sounds. (@tibetiroka)
+    * Avji. (@Azure3141, whoever made the art)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Anarchist2, @ImprovidesUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
@@ -63,6 +64,8 @@ Version 0.10.11
       * Added a "Gegno Unwelcoming" mission that appears if the player manages to land on a Gegno planet (through a previously accepted mission granting clearance) while the Gegno are hostile to them. (@Saugia)
       * Created a chain of missions about saving a person named Ildico. (@SpearDane, @bene-dictator)
       * Added a culture conversation about the Korath on Far'en Lai. (@Arachi-Lover)
+      * Hai Legacy??? idk, someone else describe it (@Hurleveur)
+      * Added a culture conversation for the 300th anniversary of the Republic. (@Arachi-Lover)
     * Mission changes:
       * "FW Southern Recon 1B" now marks the systems of interest where lone Electron Beam carrying Gunboats can be found. (@TheGiraffe3)
       * The "Tarazed neutrality" event will now apply immediately when "FW Syndicate Diplomacy 1C" is offered, instead of on take off. (@Anarchist2)
@@ -76,7 +79,7 @@ Version 0.10.11
       * Modified the sprite for the "Systems Core (Tiny)" to better match the other Systems Cores. (@Anarchist2)
       * Added a collar sprite for Puny. (@Anarchist2)
     * Balance:
-      * Rebalanced and nerfed turret turn rates. (@Hecter94)
+      * Rebalanced and nerfed turret turn rates. (@Hecter94, @Quantumshark)
         * Todo: details.
       * Reduced excessively high drag values on some human freighters. (@Quantumshark)
         * Behemoth: 18.2 -> 14.6
@@ -102,6 +105,7 @@ Version 0.10.11
       * Reworded the description of Viminal to improve its readability. (@NateEag)
       * Changed wording for declining choices in the Free Worlds prologue missions to make them more direct. (@Anarchist2)
       * The Subsidurials now have their own government, and the Ka'het will no longer attack them or Author ships. (@Azure3141)
+      * Adjusted some wording in "Sheragi Archaeology: The Emerald Sword 2" to clarify the need for an additional jump drive. (@TheGiraffe3)
   * Game mechanics:
     * New mechanics:
       * Added a "cloaked ship permeability" attribute which wllows some damage to pass through a ships shields while it is cloaked. (@Quantumshark)
@@ -123,7 +127,7 @@ Version 0.10.11
     * Corrected the tooltip for "energy capacity" to refer to this outfit, instead of this ship, and otherwise improved its clarity. (@TheGiraffe3)
     * If mouse steering is enabled, the flagship will now also turn towards the cursor while reverse thrusting. (@SomeTroglodyte)
     * Replaced the text on the "Load / Save..." button on the main menu to "Manage Pilots..." (@xobes)
-    * Sound effects will now be paused when the menu is opened. (@tibetiroka)
+    * Sound effects will now be paused when panels are opened. (@tibetiroka)
     * Added a help message describing how to display help messages on demand. (@ziproot)
     * Off-world escorts will now show their own cargo instead of the player's pooled cargo in the ship info panel when landed on a planet. (@SomeTroglodyte)
     * Outfits with empty category or display names will no longer be listed in the outfit scan dialog, ship info panel, or shipyard panel. (@tibetiroka)
@@ -132,6 +136,7 @@ Version 0.10.11
     * The scan progress overlay will be dimmed when out of scan range while a scan is in progress. (@warp-core)
     * The 'k' key, or "shift+p" can now be used to park and unpark selected ships in the shipyard and outfitter. (@nickshanks)
     * The name of the selected system in the map will now by highlighted. (@Koranir)
+    * Added support for "@3x" versions of sounds which will be played while the game is in fast-forward mode. (@tibetiroka)
   * Under the hood:
     * Refactored DistanceMap. (@alextd)
     * Corrected a comment on Armament::Fire. (@TomGoodIdea)
@@ -145,8 +150,7 @@ Version 0.10.11
     * The "random" condition is now a registered derived condition, instead of being a special case in ConditionSet. (@petervdmeer)
     * Switched the Files class from using std::strings to store paths to using std::filesystem members. (@tibetiroka)
     * Removed unused "Erase" and "EraseFunction" functionality in ConditionsStore and ConditionsStore::DerivedProvider classes, respectively. (@petervdmeer)
-  * Documentation:
-    * Added a deprecation warning to scons. (@TomGoodIdea)
+    * Refactored image file name loading to improve maintainability and expanded the list of allowed jpeg file extensions. (@tibetiroka)
   * CI/CD and development environment:
     * Removed "%" characters from the names of conditions and game objects used in integration tests. (@petervdmeer)
     * Updated the version vcpkg that is used for retrieving and building dependencies. (@TomGoodIdea)
@@ -160,6 +164,8 @@ Version 0.10.11
     * Added support for integration tests to print debug messages defined in the test script. (@petervdmeer)
     * Fixed some clangd errors in cmake project files. (@Koranir)
     * Added checks for punctuation around closing parentheses to the content style checker. (@Koranir)
+    * Added a deprecation warning to scons. (@TomGoodIdea)
+    * Clarified the level of support for building on Ubuntu 22.04 in the build instructions. (@thetazero, @warp-core)
 
 Version 0.10.10
   * Big changes:
