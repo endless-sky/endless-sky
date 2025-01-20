@@ -1113,6 +1113,7 @@ ship "Mammoth" "Mammoth (Moonless)"
 		"Laser Rifle" 18
 		
 		"A250 Atomic Thruster"
+		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Scram Drive"
 

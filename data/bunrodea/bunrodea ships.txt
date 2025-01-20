@@ -27,6 +27,10 @@ ship "Kaiken"
 		"outfit space" 121
 		"weapon capacity" 35
 		"engine capacity" 45
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 40
 			"shield damage" 400
@@ -40,7 +44,8 @@ ship "Kaiken"
 		"Small Shield Relay"
 		"Shield Relay Limiter" 6
 		
-		"Chiisana Rift Thruster" 2
+		"Chiisana Rift Thruster" # Extra thruster
+		"Chiisana Rift LTC"
 		"Chiisana Rift Steering"
 	
 	engine -5.5 30.5
@@ -48,6 +53,9 @@ ship "Kaiken"
 	gun -7 -31
 	gun 7 -31
 	gun 0 -20
+	pylon 0 10
+	pylon -14 6
+	pylon 14 6
 	leak "flame" 60 80
 	explode "tiny explosion" 20
 	explode "small explosion" 15
@@ -69,11 +77,15 @@ ship "Sasumata"
 		"mass" 710
 		"drag" 7.05
 		"heat dissipation" 0.54
-		"fuel capacity" 700
+		"fuel capacity" 800
 		"cargo space" 32
-		"outfit space" 397
+		"outfit space" 430
 		"weapon capacity" 122
-		"engine capacity" 126
+		"engine capacity" 141
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"cloak" .05
 		"cloaking energy" 10
 		"cloaking fuel" .05
@@ -96,13 +108,14 @@ ship "Sasumata"
 		"Shield Relay Limiter" 10
 		
 		"Subarashii Rift Thruster"
+		"Subarashii Rift LTC"
 		"Ookii Rift Steering"
 		"Hyperdrive"
 	
 	engine -11 109
 	engine 11 109
-	gun -12.5 -110.5
-	gun 12.5 -110.5
+	pylon -12.5 -110.5
+	pylon 12.5 -110.5
 	turret -10 -5
 	turret 10 -5
 	bay "Fighter" 0 -93
@@ -131,14 +144,18 @@ ship "Tanto"
 		"hull" 3600
 		"required crew" 3
 		"bunks" 7
-		"mass" 247
+		"mass" 508
 		"drag" 3.9
 		"heat dissipation" 0.7
-		"fuel capacity" 600
+		"fuel capacity" 625
 		"cargo space" 219
-		"outfit space" 231
+		"outfit space" 242
 		"weapon capacity" 56
-		"engine capacity" 102
+		"engine capacity" 107
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 120
 			"shield damage" 1200
@@ -152,14 +169,15 @@ ship "Tanto"
 		"Small Shield Relay"
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
-		"Chiisana Rift Thruster"
+		# "Chiisana Rift Thruster" # Extra thruster
 		"Hyperdrive"
 		
 	engine -20 148
 	engine 20 148
-	gun -16.5 -135
-	gun 16.5 -135
+	pylon -16.5 -135
+	pylon 16.5 -135
 	turret 0 -74.5
 	turret 0 108
 	leak "leak" 60 50
@@ -183,14 +201,18 @@ ship "Ararebo"
 		"hull" 13600
 		"required crew" 15
 		"bunks" 43
-		"mass" 1068
+		"mass" 1780
 		"drag" 19.7
 		"heat dissipation" 0.53
-		"fuel capacity" 700
+		"fuel capacity" 1250
 		"cargo space" 414
-		"outfit space" 594
+		"outfit space" 615
 		"weapon capacity" 112
 		"engine capacity" 108
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 200
 			"shield damage" 2000
@@ -211,6 +233,7 @@ ship "Ararebo"
 		"Nanite Enhancer" 5
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
 		"Hyperdrive"
 	
@@ -250,14 +273,18 @@ ship "Tekkan"
 		"hull" 5200
 		"required crew" 6
 		"bunks" 9
-		"mass" 364
+		"mass" 500
 		"drag" 4.0
 		"heat dissipation" 0.75
 		"fuel capacity" 700
 		"cargo space" 21
-		"outfit space" 321
+		"outfit space" 342
 		"weapon capacity" 100
-		"engine capacity" 85
+		"engine capacity" 107
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 140
 			"shield damage" 1400
@@ -275,6 +302,7 @@ ship "Tekkan"
 		"Shield Relay Booster" 5
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
 		"Hyperdrive"
 	
@@ -306,14 +334,18 @@ ship "Kunai"
 		"hull" 5700
 		"required crew" 15
 		"bunks" 37
-		"mass" 603
+		"mass" 740
 		"drag" 6.8
 		"heat dissipation" 0.66
-		"fuel capacity" 700
+		"fuel capacity" 800
 		"cargo space" 28
-		"outfit space" 407
+		"outfit space" 412
 		"weapon capacity" 158
-		"engine capacity" 102
+		"engine capacity" 107
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 210
 			"shield damage" 2100
@@ -331,8 +363,9 @@ ship "Kunai"
 		"Small Nanite Fabricator"
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
-		"Chiisana Rift Steering"
+		# "Chiisana Rift Steering" # Extra steering
 		"Hyperdrive"
 	
 	engine -8 49
@@ -364,14 +397,18 @@ ship "Kama"
 		"hull" 11500
 		"required crew" 39
 		"bunks" 43
-		"mass" 1160
+		"mass" 2320
 		"drag" 12.6
 		"heat dissipation" 0.5
-		"fuel capacity" 800
+		"fuel capacity" 1475
 		"cargo space" 56
 		"outfit space" 573
 		"weapon capacity" 247
 		"engine capacity" 121
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 350
 			"shield damage" 3500
@@ -391,22 +428,29 @@ ship "Kama"
 		"Outfits Expansion" 2
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Ookii Rift Steering"
-		"Nami Rift Steering"
+		# "Nami Rift Steering" # Extra steering
 		"Hyperdrive"
 		
 	engine -11.5 132.5
 	engine 11.5 132.5
-	gun -24.5 -129 "Swarm Pod"
-	gun 24.5 -129 "Swarm Pod"
+	gun -24.5 -129
+	gun 24.5 -129
 	gun -5 -114 "Mandible Cannon"
 	gun 5 -114 "Mandible Cannon"
 	gun -14 -105.5 "Mandible Cannon"
 	gun 14 -105.5 "Mandible Cannon"
-	gun -54.5 -20 "Swarm Pod"
-	gun 54.5 -20 "Swarm Pod"
-	gun -62.5 -9.5 "Swarm Pod"
-	gun 62.5 -9.5 "Swarm Pod"
+	gun -54.5 -20
+	gun 54.5 -20
+	gun -62.5 -9.5
+	gun 62.5 -9.5
+	pylon -24.5 -129 "Swarm Pod"
+	pylon 24.5 -129 "Swarm Pod"
+	pylon -54.5 -20 "Swarm Pod"
+	pylon 54.5 -20 "Swarm Pod"
+	pylon -62.5 -9.5 "Swarm Pod"
+	pylon 62.5 -9.5 "Swarm Pod"
 	turret 0 54.5
 	leak "leak" 50 50
 	leak "flame" 80 80
@@ -431,14 +475,18 @@ ship "Chigiriki"
 		"hull" 21000
 		"required crew" 49
 		"bunks" 69
-		"mass" 1698
+		"mass" 5200
 		"drag" 16.54
 		"heat dissipation" 0.4
-		"fuel capacity" 900
+		"fuel capacity" 2800
 		"cargo space" 102
 		"outfit space" 747
 		"weapon capacity" 504
 		"engine capacity" 145
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 410
 			"shield damage" 4100
@@ -459,6 +507,7 @@ ship "Chigiriki"
 		"Outfits Expansion" 4
 		
 		"Ookii Rift Thruster"
+		"Ookii Rift LTC"
 		"Subarashii Rift Steering"
 		"Hyperdrive"
 		
@@ -473,16 +522,26 @@ ship "Chigiriki"
 	gun -14.5 -153 "Locust Blaster"
 	gun 14.5 -153 "Locust Blaster"
 	gun 0 -143 "Thorax Cannon"
-	gun -67 -26.5 "Swarm Pod"
-	gun 67 -26.5 "Swarm Pod"
-	gun -75 12.5 "Swarm Pod"
-	gun 75 12.5 "Swarm Pod"
-	gun -82.5 21.5 "Swarm Pod"
-	gun 82.5 21.5 "Swarm Pod"
-	gun -95.5 85.5 "Swarm Pod"
-	gun 95.5 85.5 "Swarm Pod"
-	gun -106.5 105.5 "Swarm Pod"
-	gun 106.5 105.5 "Swarm Pod"
+	gun -67 -26.5
+	gun 67 -26.5
+	gun -75 12.5
+	gun 75 12.5
+	gun -82.5 21.5
+	gun 82.5 21.5
+	gun -95.5 85.5
+	gun 95.5 85.5
+	gun -106.5 105.5
+	gun 106.5 105.5
+	pylon -67 -26.5 "Swarm Pod"
+	pylon 67 -26.5 "Swarm Pod"
+	pylon -75 12.5 "Swarm Pod"
+	pylon 75 12.5 "Swarm Pod"
+	pylon -82.5 21.5 "Swarm Pod"
+	pylon 82.5 21.5 "Swarm Pod"
+	pylon -95.5 85.5 "Swarm Pod"
+	pylon 95.5 85.5 "Swarm Pod"
+	pylon -106.5 105.5 "Swarm Pod"
+	pylon 106.5 105.5 "Swarm Pod"
 	turret -20.5 40
 	turret 20.5 40
 	leak "leak" 30 50

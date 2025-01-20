@@ -233,7 +233,7 @@ outfit "Ka'het EMP Deployer"
 	"mass" 18
 	"outfit space" -26
 	"weapon capacity" -26
-	"gun ports" -1
+	"missile pylons" -1
 	"emp torpedo capacity" 16
 	weapon
 		sprite "projectile/emp torpedo"
@@ -276,7 +276,7 @@ outfit "Ka'het Emergency Deployer"
 	thumbnail "outfit/ka'het mhd deployer"
 	"mass" 13
 	"outfit space" -17
-	"gun ports" -1
+	"missile pylons" -1
 	weapon
 		sprite "projectile/mhd"
 			"frame rate" 2
@@ -401,21 +401,35 @@ outfit "Maeri Engine Nacelles"
 	category "Engines"
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
+	"steering slot" -0.25
+	"thruster slot" -0.25
+	"lateral slot" -0.25
+	"engine mod space" 1.26
 	"mass" 59
 	"outfit space" -76
 	"engine capacity" -59
 	"energy consumption" 5.01
 	"heat generation" 1.1
-	"thrust" 58.08
+	"thrust" 58
 	"thrusting heat" 2.8
-	"turn" 1397.1
+	"lateral thrust" 41
+	"lateral thrusting heat" 1.9
+	"turn" 1397
 	"turning heat" 1.3
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma medium"
+	"lateral flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"lateral flare sound" "plasma medium"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
+	"reverse thrust" 5.8
+	"reverse thrusting heat" 0.28
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "The Ka'het engines are peculiar in that they continuously draw large amounts of energy, but require no additional energy to activate: while this means that less power remains available for other subsystems, it is also somewhat more efficient than most types of propulsion, and generates only a tiny amount of heat."
 
 outfit "Ka'het Sustainer Nacelles"
@@ -423,21 +437,35 @@ outfit "Ka'het Sustainer Nacelles"
 	category "Engines"
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
+	"steering slot" -0.25
+	"thruster slot" -0.25
+	"lateral slot" -0.25
+	"engine mod space" 1
 	"mass" 27
 	"outfit space" -34
 	"engine capacity" -27
 	"heat generation" 0.6
 	"energy consumption" 2.49
-	"thrust" 25.17
+	"thrust" 25
 	"thrusting heat" 1.0
-	"turn" 648.15
+	"lateral thrust" 20
+	"lateral thrusting heat" 0.8
+	"turn" 648
 	"turning heat" 0.5
 	"flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"flare sound" "plasma small"
+	"lateral flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"lateral flare sound" "plasma small"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
+	"reverse thrust" 2.5
+	"reverse thrusting heat" 0.1
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "While Ka'het vessels are already equipped with proper engines, most of them use a sustainer engine in addition to give the ship enough maneuverability to be useful in combat. Following the same design as its bigger cousins, the sustainer requires no power to function at the cost of constant energy consumption."
 
 outfit "Telis Engine Nacelles"
@@ -445,57 +473,90 @@ outfit "Telis Engine Nacelles"
 	category "Engines"
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
+	"steering slot" -0.25
+	"thruster slot" -0.25
+	"lateral slot" -0.25
+	"engine mod space" 1.36
 	"mass" 81
 	"outfit space" -101
 	"engine capacity" -81
 	"energy consumption" 6.81
 	"heat generation" 1.4
-	"thrust" 83.1
+	"thrust" 83
 	"thrusting heat" 3.5
-	"turn" 2068.8
+	"lateral thrust" 50
+	"lateral thrusting heat" 2.1
+	"turn" 2068
 	"turning heat" 1.9
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma medium"
+	"lateral flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"lateral flare sound" "plasma medium"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma medium"
+	"reverse thrust" 8.3
+	"reverse thrusting heat" 0.35
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "These nacelles used to comprise the entire engine block of a Telis'het. While their size is not impressive compared to other engines, if used in conjunction with a sustainer or two, they can be a powerful form of propulsion, combining both turning and thrusting engines in one."
 
 outfit "Vareti Engine Block"
 	category "Engines"
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
+	"steering slot" -0.5
+	"thruster slot" -0.5
+	"lateral slot" -0.5
+	"engine mod space" 1.5
 	"mass" 137
 	"outfit space" -168
 	"engine capacity" -137
 	"energy consumption" 10.90
 	"heat generation" 2.58
-	"thrust" 140.85
-	"thrusting heat" 6.7
-	"turn" 3500.85
+	"thrust" 140
+	"lateral thrust" 70
+	"turn" 3500
 	"turning heat" 3.32
 	"flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"flare sound" "plasma large"
+	"lateral flare sprite" "effect/ka'het flare/large"
+		"frame rate" 30
+	"lateral flare sound" "plasma large"
 	"steering flare sprite" "effect/ka'het flare/large"
 		"frame rate" 30
 	"steering flare sound" "plasma large"
+	"reverse thrust" 14.0
+	"reverse thrusting heat" 0.332
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "This is the largest single engine the Builders ever built, made for the most massive ships they were in control of. Due to its sheer size, it isn't as modular as its smaller equivalents, but it is more efficient and powerful as a result."
 
 outfit "Ka'het Compact Engine"
 	category "Engines"
 	"cost" 172000
 	thumbnail "outfit/ka'het compact engine"
+	"steering slot" -0.25
+	"thruster slot" -0.25
+	"lateral slot" -0.25
+	"engine mod space" 0.9
 	"mass" 21
 	"outfit space" -26
 	"engine capacity" -21
 	"heat generation" 0.3
 	"energy consumption" 0.48
-	"thrust" 19.17
+	"thrust" 20
 	"thrusting energy" 1.7
 	"thrusting heat" 1.2
-	"turn" 351.6
+	"lateral thrust" 18
+	"lateral thrusting energy" 1.5
+	"lateral thrusting heat" 1.0
+	"turn" 351
 	"turning energy" 0.42
 	"turning heat" 0.3
 	"flare sprite" "effect/ka'het flare/medium"
@@ -504,4 +565,9 @@ outfit "Ka'het Compact Engine"
 	"steering flare sprite" "effect/ka'het flare/medium"
 		"frame rate" 30
 	"steering flare sound" "plasma small"
+	"reverse thrust" 2.0
+	"reverse thrusting heat" 0.03
+	"reverse flare sprite" "effect/ka'het flare/medium"
+		"frame rate" 30
+	"reverse flare sound" "plasma small"
 	description "This tiny engine was developed as the main propulsion of the Ka'mar drones, long before the Ka'het were created and their nacelle design standardized. Improvements over time allowed it to maintain a comparable efficiency to the larger models, although unlike those, it requires some energy to activate the engines in addition to the constant energy drain that all Builder-designed engines have."
