@@ -41,13 +41,13 @@ outfit "Aberrant Spiker"
 		"firing fuel" 10
 		"firing hull" 150
 		"velocity" 15
-		"lifetime" 400
+		"lifetime" 700
 		"acceleration" 1.45
 		"drag" .21
 		"turn" 1.3
-		"homing" 2
+		"homing" 3
 		"optical tracking" 0.9
-		"hit force" -1150
+		"hit force" -1350
 		"hull damage" 730
 		"shield damage" 1270
 		"corrosion damage" 3
