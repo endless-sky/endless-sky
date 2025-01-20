@@ -375,7 +375,7 @@ planet "Ashy Reach"
 	security 0.1
 
 planet Aspar
-	attributes poisonous uninhabited
+	attributes poisonous "tangled shroud" uninhabited
 	landscape land/forest15
 	description `A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Widespread settlement has been prevented, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir.`
 	description `As a result, the native flora and fauna are mostly inedible, sometimes even poisonous, and the composition of the soil is such that imported plants tend to be stunted even if they manage to survive.`
@@ -2047,7 +2047,7 @@ planet "Gentle Rain"
 	security 0.4
 
 planet Gestli
-	attributes uninhabited
+	attributes "tangled shroud" uninhabited
 	landscape land/mountain45
 	description `Despite its smooth appearance from orbit, the surface of Gestli is a fractured mess of jagged mountains and rough hills. The tectonic activity of its moon, large enough to qualify as a binary pair, causes an almost perpetual global earthquake that can be felt by simply standing on the planet.`
 	description `The planet's parent stars offer the planet little warmth, and a thin atmosphere of nitrogen and carbon dioxide has managed to hold on to only scattered swathes of ice and snow, with far too little water or heat to support an active hydrological cycle. The anemic erosion, as a result, has done little to smooth the scars left by the influence of the tidal forces that wrack Gestli's surface.`
@@ -4019,7 +4019,7 @@ planet Nifel
 		fleet "Large Deep Security" 16
 
 planet Nilokep
-	attributes uninhabited
+	attributes "tangled shroud" uninhabited
 	landscape land/sky14
 	description `Silently orbiting its distant parent, Nilokep is a dead, airless world of stony flats and salt plains. Granite mountains jut up at the poles, but any tectonic heat this small world may have once had has long since bled away.`
 	description `Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing trace amounts of uranium, across its surface. While not economical to mine, it is thought that this is the remnant of some ancient geological system that eroded and dispersed the planet's primordial mountains.`
@@ -4199,7 +4199,7 @@ planet Oura
 	government Uninhabited
 
 planet "Outpost Alkos"
-	attributes avgi "avgi diaspora" "dissonance sympathies" station
+	attributes avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/space0
 	description `Predating the Incursion, Outpost Alkos was the first major refueling station built in the Tangled Shroud. While it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment.`
@@ -4213,7 +4213,7 @@ planet "Outpost Alkos"
 		fleet "Avgi Strike Group"
 
 planet "Outpost Enka"
-	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/station27
 	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one asteroid is also riddled with pressurized tunnels and pockets filled with farms and open green spaces.`
@@ -4241,7 +4241,7 @@ planet "Outpost Enka"
 		fleet "Large Dissonance Pirates" 9
 
 planet "Outpost Leto"
-	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/station30
 	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot an icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
@@ -4271,7 +4271,7 @@ planet "Outpost Pilos"
 		fleet "Avgi Fleetgroup" 1
 
 planet "Outpost Tekis"
-	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/station25
 	description `Outpost Tekis is a station built into an enormous asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens.`
@@ -6265,7 +6265,7 @@ planet Violetwake
 	security 0
 
 planet Viso
-	attributes frozen uninhabited
+	attributes frozen "tangled shroud" uninhabited 
 	landscape land/snow33
 	description `A world of ice and ammonia, Viso is home to a curious ecosystem of ammonia-breathing bacteria, deep red algae, and small, cold amphibians. The planet's proximity to its host star, a red dwarf, amplifies the interactions between the solar wind and Viso's magnetic field, producing auroras that often reach the equator.`
 	description `	Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
@@ -6366,7 +6366,7 @@ planet "Weir of Glubatub"
 	"required reputation" 15
 
 planet Weledos
-	attributes avgi "avgi diaspora" frontier
+	attributes avgi "avgi diaspora" frontier "tangled shroud"
 	landscape land/water3
 	description `Weledos was colonized even before the Avgi evacuated their orbital assets to the Tangled Shroud. A few brave pioneers were willing to settle within the unpredictable systems of the Shroud to escape the planetary governments of Avgi space. They are said to have surveyed and colonized the planet before most explorers had even reached the entrance to the Shroud, surprising early scouts with their presence.`
 	description `	Unfortunately, the Ensemble system is poor in metals and other natural resources, and civilization here had regressed to almost pre-spaceflight levels by the time the Incursion brought a wave of refugees here. The indefensibility of the system coupled with the hostility of the Tangled Shroud forced the Avgi diaspora to settle further beyond Ensemble, despite calls to deposit more civilians here.`
