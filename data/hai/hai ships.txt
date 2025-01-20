@@ -30,6 +30,10 @@ ship "Anomalocaris"
 		"outfit space" 533
 		"weapon capacity" 192
 		"engine capacity" 98
+		"lateral thruster slot" 1.
+		"reverse thruster slot" 1.
+		"steering slot" 1.
+		"thruster slot" 1.
 		weapon
 			"blast radius" 210
 			"shield damage" 2100
@@ -1849,7 +1853,6 @@ ship "Shield Beetle" "Shield Beetle (Tripulse Ionic Turret)"
 		"Value Detector"
 		"Hai Gorge Batteries"
 		"Boulder Reactor" 2
-		`"Basrem" Atomic Steering`
 		`"Biroo" Atomic Steering`
 		`"Bufaer" Atomic Thruster`
 		"Pulse Rifle" 85

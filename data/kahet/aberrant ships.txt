@@ -178,6 +178,10 @@ ship "Aberrant Pileup"
 		"weapon capacity" 94
 		"engine capacity" 66
 		"energy capacity" 17000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -247,6 +251,10 @@ ship "Aberrant Hugger"
 		"weapon capacity" 144
 		"engine capacity" 93
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -318,6 +326,10 @@ ship "Aberrant Longfellow"
 		"weapon capacity" 72
 		"engine capacity" 135
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -395,6 +407,10 @@ ship "Aberrant Dancer"
 		"weapon capacity" 244
 		"engine capacity" 96
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -470,6 +486,10 @@ ship "Aberrant Junior"
 		"weapon capacity" 92
 		"engine capacity" 62
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -542,6 +562,10 @@ ship "Aberrant Icebreaker"
 		"weapon capacity" 103
 		"engine capacity" 73
 		"energy capacity" 15000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -616,6 +640,10 @@ ship "Aberrant Pike"
 		"weapon capacity" 102
 		"engine capacity" 62
 		"energy capacity" 18000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -688,6 +716,10 @@ ship "Aberrant Mole"
 		"weapon capacity" 148
 		"engine capacity" 52
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -762,6 +794,10 @@ ship "Aberrant Whiskers"
 		"weapon capacity" 64
 		"engine capacity" 72
 		"energy capacity" 12000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -829,6 +865,10 @@ ship "Aberrant Trip"
 		"weapon capacity" 185
 		"engine capacity" 61
 		"energy capacity" 13000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
@@ -908,6 +948,10 @@ ship "Aberrant Triplet"
 		"weapon capacity" 266
 		"engine capacity" 92
 		"energy capacity" 23000
+		"lateral thruster slot" 1.5
+		"reverse thruster slot" 1.5
+		"steering slot" 1.5
+		"thruster slot" 1.5
 		"inscrutable" 1
 		"energy generation" 39
 		"heat generation" 32
