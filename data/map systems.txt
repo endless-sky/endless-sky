@@ -5899,13 +5899,13 @@ system Anax
 		period 9464.35
 		object Entantel
 			sprite planet/ice10
-				scale 0.5
-			distance 267.286
+				scale 0.25
+			distance 270
 			period 44
 		object
 			sprite planet/station-outpost-a0
-				scale 0.5
-			distance 340
+				scale 0.25
+			distance 300
 			period 44
 			offset 180
 	object

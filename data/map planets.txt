@@ -247,7 +247,8 @@ planet Angko
 planet Anitlos
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/mars3
-	description `The surface of Anitlos, the largest moon of Oura, is a smooth landscape of ice pierced by rocky, metallic protrusions. These surface metal deposits, brought by a late asteroid bombardment a few hundred million years ago, served as one of the largest sources of material for the cylinder habitats that clustered around Oura, its moons, and the Trojan asteroids at its Lagrange points.`
+	description `The surface of Anitlos, the largest moon of Oura, is a smooth landscape of ice pierced by rocky, metallic protrusions. These surface metal deposits, brought by a late asteroid bombardment a few hundred million years ago, served as one of the best sources of material for the cylinder habitats that clustered around Oura, its moons, and its Lagrange points.`
+	description `	The other moons of Oura, while not quite as rich as Anitlos, are nonetheless a bounty of rare materials. Notably, rare elements like boron and beryllium, only produced by cosmic ray spallation of elements like oxygen, are produced at elevated rates in the ice of certain moons due to the trapping of charged particles by Oura's magnetic field.`
 	government Uninhabited
 
 planet Antipode
@@ -1547,9 +1548,9 @@ planet "Enn Bue"
 planet Entantel
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/snow39
-	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density gives rise to a very low gravitational acceleration for its size.`
-	description `	Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system.`
-	spaceport `The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel stockpiled here to fill a few large tankers.`
+	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density results in a very low gravitational acceleration for its size.`
+	description `	Because of its shallow gravity well and abundance of volatiles, Entantel was one of the biggest exporters of water ice in the outer Anax system, where it was largely used as cheap propellant or to fill the numerous cylinder habitats with artificial lakes and rivers.`
+	spaceport `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
 	government Uninhabited
 
 planet Erabuthro
@@ -4197,7 +4198,8 @@ planet "Oup Je"
 planet Oura
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds11
-	description `Oura was the primary source of the helium-3 that fueled Avgi sublight starships. Even now, you can see aerostat collectors separating valuable isotopes from the surrounding gas, which are then launched via mass driver to orbit in pressurized vessels.`
+	description `Oura is the largest and fastest rotating gas giant in the Anax system, with an extensive system of moons rich in mineral wealth. The planet itself is immense, but has an unusually low density for a gas planet of its size. Large quantities of nitrogen, sulfides, and ammonia give it a ruddy color tinged with a blue-white glow, with wavy bands folding over each other as they ripple with the winds.`
+	description `	Oura was the primary source of the helium-3 that fueled the best of the fusion-driven Avgi sublight starships. Even now, you can see aerostat collectors floating on the wind as they separate valuable isotopes from the surrounding gas. Pressurized vessels filled with these riches are then launched to orbit, mostly via mass driver.`
 	government Uninhabited
 
 planet "Outpost Alkos"
