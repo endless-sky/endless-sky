@@ -35845,7 +35845,6 @@ system Septet
 	haze _menu/haze-red
 	link Octet
 	link Quintet
-	link Septet
 	asteroids "small metal" 1 1.027
 	asteroids "medium metal" 20 0.741
 	asteroids "large metal" 1 0.858
@@ -38159,7 +38158,6 @@ system Stream
 	link Anax
 	link Evanescence
 	link Rivulet
-	link Stream
 	link Wake
 	asteroids "small rock" 24 2.157
 	asteroids "medium rock" 12 2.222
