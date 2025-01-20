@@ -36,6 +36,7 @@ Additionally, if you want to build unit tests:
    - SDL2-devel
    - libpng-devel
    - libjpeg-turbo-devel
+   - libavif-devel
    - mesa-libGL-devel
    - glew-devel
    - openal-soft-devel
@@ -44,7 +45,6 @@ Additionally, if you want to build unit tests:
 
 Additionally, if you want to build unit tests:
    - catch2-devel
-   - libavif-devel
 
 Then, from the project root folder, simply type:
 
