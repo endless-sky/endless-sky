@@ -279,6 +279,10 @@ fleet "Avgi Twilight Guard Logistics"
 		"Sonikis" 4
 		"Tremoros" 6
 	variant 12
+		"Undsyni (Plasmadyne)"
+		"Sonikis (Tanker)" 4
+		"Tremoros" 9
+	variant 12
 		"Undsyni (Tanker)"
 		"Sonikis (Tanker)" 4
 		"Tremoros" 4
@@ -382,6 +386,9 @@ fleet "Large Avgi Merchants"
 	variant 12
 		"Undsyni (Tanker)"
 		"Sonikis (Tanker)" 4
+	variant 12
+		"Undsyni (Plasmadyne)"
+		"Sonikis (Tanker)" 6
 	variant 12
 		"Koryfi" 2
 	variant 12
