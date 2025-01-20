@@ -6265,7 +6265,7 @@ planet Violetwake
 	security 0
 
 planet Viso
-	attributes frozen "tangled shroud" uninhabited 
+	attributes frozen "tangled shroud" uninhabited
 	landscape land/snow33
 	description `A world of ice and ammonia, Viso is home to a curious ecosystem of ammonia-breathing bacteria, deep red algae, and small, cold amphibians. The planet's proximity to its host star, a red dwarf, amplifies the interactions between the solar wind and Viso's magnetic field, producing auroras that often reach the equator.`
 	description `	Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
