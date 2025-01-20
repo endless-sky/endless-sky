@@ -20,6 +20,7 @@ Use your favorite package manager to install the following (version numbers may 
    - libsdl2-dev
    - libpng-dev
    - libjpeg-dev
+   - libavif-dev
    - libgl1-mesa-dev
    - libglew-dev
    - libopenal-dev
@@ -28,7 +29,6 @@ Use your favorite package manager to install the following (version numbers may 
 
 Additionally, if you want to build unit tests:
    - catch2
-   - libavif-dev
 
 ##### RPM-based distros:
    - gcc-c++
