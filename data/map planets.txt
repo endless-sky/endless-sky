@@ -427,7 +427,7 @@ planet Aventine
 
 planet Aviskir
 	attributes "aberrant siege" avgi "avgi core" rich urban
-	landscape land/forest13
+	landscape land/water32
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
 	description `	The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
 	spaceport `With the Avgi never developing the gravity repulsor independently, the largest spaceports once boasted arrays of launch lasers and dedicated skyhooks capable of lifting cargo en masse to orbit. The flurry of vessels taking off from these points drew the attention of the Aberrant, who targeted them during their attack on Aviskir's orbital infrastructure.`
@@ -2459,7 +2459,7 @@ planet Hermes
 
 planet Hespair
 	attributes uninhabited
-	landscape land/beach18
+	landscape land/water28
 	description `Hespair was once a life-bearing world, but no longer. An unknown event several million years ago thoroughly sterilized the planet down to the last bacterium, and life has not since reemerged.`
 	description `	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere at some point in the distant future.`
 	government Uninhabited
@@ -2596,7 +2596,7 @@ planet Icelake
 planet Iconil
 	attributes frozen uninhabited
 	landscape land/snow26
-	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and visible patches of sparkling ice, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the last stretch to settle Livoula: the Avgi's first interstellar colony.`
+	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livolua nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and visible patches of sparkling ice, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the last stretch to settle Livolua: the Avgi's first interstellar colony.`
 	government Uninhabited
 
 planet Iddesato
@@ -3127,7 +3127,7 @@ planet Limejog
 
 planet Livolua
 	attributes "aberrant siege" avgi "avgi core" rich urban
-	landscape land/water32
+	landscape land/forest13
 	description `Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities.`
 	description `	While perhaps not as wealthy or comfortable as Aviskir itself, Livolua is full of younger, ambitious polities with their eyes set on growth, a dynamic that has produced a vibrant independent civilization capable of rivaling the homeworld.`
 	spaceport `The primary spaceport was built into the center of the first settlement to be established on the planet, which handled most extraplanetary traffic for decades. An especially-ambitious skyhook design would stretch down each day to retrieve or deposit a payload mounted on a kilometer-tall tower, spindly enough that it had to be reinforced with nanotube guy lines reaching the ground. Since then, the tower has grown outwards into a surprisingly wide arcology of basalt and steel, itself housing over a million Avgi.`
