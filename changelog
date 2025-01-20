@@ -135,7 +135,7 @@ Version 0.10.11
     * Selecting multiple ships of the same model in the outfitter will highlight outfit counts where not all selected ships have the same number installed. (@SomeTroglodyte)
     * The scan progress overlay will be dimmed when out of scan range while a scan is in progress. (@warp-core)
     * The 'k' key, or "shift+p" can now be used to park and unpark selected ships in the shipyard and outfitter. (@nickshanks)
-    * The name of the selected system in the map will now by highlighted. (@Koranir)
+    * The name of the selected system in the map will now be highlighted. (@Koranir)
     * Added support for "@3x" versions of sounds which will be played while the game is in fast-forward mode. (@tibetiroka)
   * Under the hood:
     * Refactored DistanceMap. (@alextd)
