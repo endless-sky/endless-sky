@@ -1835,7 +1835,7 @@ interface "map buttons" bottom right
 	active if "!is stars"
 	sprite "ui/dialog cancel"
 		from -184 -50 to -94 0
-	button a "St_ars"
+	button t "S_tars"
 		from -174 -40 to -104 -10
 	
 	active
@@ -1890,7 +1890,7 @@ interface "map buttons (small screen)" bottom right
 	active if "!is stars"
 	sprite "ui/dialog cancel"
 		from -170 -40 to -80 -90
-	button a "St_ars"
+	button t "S_tars"
 		from -160 -80 to -90 -50
 
 	active
