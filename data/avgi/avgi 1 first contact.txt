@@ -207,6 +207,12 @@ mission "Avgi: First Contact"
 		"reputation: Avgi (Consonance)" >?= 5
 		"reputation: Avgi (Twilight Guard)" >?= 5
 
+	on enter "Arche"
+		unmark "Arche"
+
+	on enter "Ballad"
+		unmark "Ballad"
+
 	on fail
 		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
 
