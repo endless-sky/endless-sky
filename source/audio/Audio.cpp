@@ -358,7 +358,9 @@ void Audio::Step(bool isFastForward)
 
 	if(pauseChangeCount > 0)
 	{
-		if(pauseCount += pauseChangeCount)
+		bool wasPaused = pauseCount;
+		pauseCount += pauseChangeCount;
+		if(pauseCount && !wasPaused)
 		{
 			ALint state;
 			for(const Source &source : sources)
