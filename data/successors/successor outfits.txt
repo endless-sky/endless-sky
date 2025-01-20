@@ -690,6 +690,7 @@ effect "tiny successor afterburner"
 		"frame rate" 20
 		"scale" 0.20
 	sound "successor afterburner tiny"
+	"sound category" "afterburner"
 	lifetime 1
 
 effect "small successor afterburner"
@@ -697,6 +698,7 @@ effect "small successor afterburner"
 		"frame rate" 20
 		"scale" 0.36
 	sound "successor afterburner small"
+	"sound category" "afterburner"
 	lifetime 1
 
 effect "medium successor afterburner"
@@ -704,10 +706,12 @@ effect "medium successor afterburner"
 		"frame rate" 20
 		"scale" 0.6
 	sound "successor afterburner medium"
+	"sound category" "afterburner"
 	lifetime 1
 
 effect "large successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
 		"frame rate" 20
 	sound "successor afterburner large"
+	"sound category" "afterburner"
 	lifetime 1

@@ -56,7 +56,7 @@ namespace {
 	// be recycled once they are no longer playing.
 	class Source {
 	public:
-		Source(const Sound *sound, unsigned source, SoundCategory category);
+		Source(const Sound *sound, unsigned source, SoundCategory category, bool isFastForward);
 
 		void Move(const QueueEntry &entry) const;
 		unsigned ID() const;
@@ -121,8 +121,8 @@ namespace {
 	// The number of Pause vs Resume requests received.
 	int pauseChangeCount = 0;
 	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
-	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
-	int pauseCount = -1;
+	// We start with -2, so when MenuPanel and PlanetPanel opens up the first time, it doesn't pause the loading sounds.
+	int pauseCount = -2;
 }
 
 
@@ -167,7 +167,7 @@ void Audio::Init(const vector<filesystem::path> &sources)
 				// folder, without the ".wav" or "~.wav" suffix.
 				string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
 				if(name.ends_with('~'))
-					name.resize(name.length() -1);
+					name.resize(name.length() - 1);
 				loadQueue[name] = path;
 			}
 		}
@@ -334,9 +334,10 @@ void Audio::Resume()
 
 
 
-// Begin playing all the sounds that have been added since the last time
-// this function was called.
-void Audio::Step()
+/// Begin playing all the sounds that have been added since the last time
+/// this function was called.
+/// If the game is in fast forward mode, the fast version of sounds is played.
+void Audio::Step(bool isFastForward)
 {
 	if(!isInitialized)
 		return;
@@ -354,6 +355,37 @@ void Audio::Step()
 					if(source.Category() == category)
 						alSourcef(source.ID(), AL_GAIN, expected);
 		}
+
+	if(pauseChangeCount > 0)
+	{
+		if(pauseCount += pauseChangeCount)
+		{
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PLAYING)
+					alSourcePause(source.ID());
+			}
+		}
+	}
+	else if(pauseChangeCount < 0)
+	{
+		// Check that the game is not paused after this request. Also don't allow the pause count to go into negatives.
+		if(pauseCount && (pauseCount += pauseChangeCount) <= 0)
+		{
+			pauseCount = 0;
+			ALint state;
+			for(const Source &source : sources)
+			{
+				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
+				if(state == AL_PAUSED)
+					alSourcePlay(source.ID());
+			}
+		}
+	}
+	pauseChangeCount = 0;
+
 
 	vector<Source> newSources;
 	// For each sound that is looping, see if it is going to continue. For other
@@ -440,7 +472,7 @@ void Audio::Step()
 		}
 		// Begin playing this sound.
 		alSourcef(source, AL_GAIN, Volume(it.second.category));
-		sources.emplace_back(it.first, source, it.second.category);
+		sources.emplace_back(it.first, source, it.second.category, isFastForward);
 		sources.back().Move(it.second);
 		alSourcePlay(source);
 	}
@@ -482,36 +514,6 @@ void Audio::Step()
 		if(state != AL_PLAYING && state != AL_PAUSED)
 			alSourcePlay(musicSource);
 	}
-
-	if(pauseChangeCount > 0)
-	{
-		if(pauseCount += pauseChangeCount)
-		{
-			ALint state;
-			for(const Source &source : sources)
-			{
-				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-				if(state == AL_PLAYING)
-					alSourcePause(source.ID());
-			}
-		}
-	}
-	else if(pauseChangeCount < 0)
-	{
-		// Check that the game is not paused after this request. Also don't allow the pause count to go into negatives.
-		if(pauseCount && (pauseCount += pauseChangeCount) <= 0)
-		{
-			pauseCount = 0;
-			ALint state;
-			for(const Source &source : sources)
-			{
-				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
-				if(state == AL_PAUSED)
-					alSourcePlay(source.ID());
-			}
-		}
-	}
-	pauseChangeCount = 0;
 }
 
 
@@ -557,6 +559,8 @@ void Audio::Quit()
 	for(const auto &it : sounds)
 	{
 		ALuint id = it.second.Buffer();
+		alDeleteBuffers(1, &id);
+		id = it.second.Buffer3x();
 		alDeleteBuffers(1, &id);
 	}
 	sounds.clear();
@@ -612,7 +616,7 @@ namespace {
 
 
 	// This is a wrapper for an OpenAL audio source.
-	Source::Source(const Sound *sound, unsigned source, SoundCategory category)
+	Source::Source(const Sound *sound, unsigned source, SoundCategory category, bool isFastForward)
 		: sound(sound), source(source), category(category)
 	{
 		// Give each source a small, random pitch variation. Otherwise, multiple
@@ -623,7 +627,7 @@ namespace {
 		alSourcef(source, AL_ROLLOFF_FACTOR, 1.);
 		alSourcef(source, AL_MAX_DISTANCE, 100.);
 		alSourcei(source, AL_LOOPING, sound->IsLooping());
-		alSourcei(source, AL_BUFFER, sound->Buffer());
+		alSourcei(source, AL_BUFFER, (isFastForward && sound->Buffer3x()) ? sound->Buffer3x() : sound->Buffer());
 	}
 
 
@@ -683,6 +687,10 @@ namespace {
 					return;
 				name = loadQueue.begin()->first;
 				path = loadQueue.begin()->second;
+
+				// @3x sounds should be merged with their regular variant here.
+				if(name.ends_with("@3x"))
+					name.resize(name.size() - 3);
 
 				// Since we need to unlock the mutex below, create the map entry to
 				// avoid a race condition when accessing sounds' size.

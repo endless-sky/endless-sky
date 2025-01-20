@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
+#include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
@@ -259,6 +260,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	commodity(commodity),
 	fromMission(fromMission)
 {
+	Audio::Pause();
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
@@ -290,6 +292,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
 	CenterOnSystem(selectedSystem, true);
+}
+
+
+
+MapPanel::~MapPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -602,7 +611,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this, false));
 	}
-	else if(key == 'a' && buttonCondition != "is stars")
+	else if(key == 't' && buttonCondition != "is stars")
 	{
 		GetUI()->Pop(this);
 		GetUI()->Push(new MapDetailPanel(*this, true));
@@ -812,7 +821,11 @@ void MapPanel::Select(const System *system)
 {
 	if(!system)
 		return;
+
 	selectedSystem = system;
+	// Update the cache to apply any visual changes needed after the selected system was changed.
+	UpdateCache();
+
 	vector<const System *> &plan = player.TravelPlan();
 	Ship *flagship = player.Flagship();
 	if(!flagship || (!plan.empty() && system == plan.front()))
@@ -878,6 +891,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = &system;
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -897,6 +911,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = planet.GetSystem();
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -1136,7 +1151,7 @@ void MapPanel::UpdateCache()
 		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
 			player.KnowsName(system) ? system.DisplayName() : "",
-			(&system == &playerSystem) ? closeNameColor : farNameColor,
+			(&system == &playerSystem || &system == selectedSystem) ? closeNameColor : farNameColor,
 			canViewSystem ? system.GetGovernment() : nullptr,
 			canViewSystem ? system.GetMapIcons() : unmappedSystem);
 	}
@@ -1452,7 +1467,7 @@ void MapPanel::DrawSystems()
 				starAngle += angularSpacing;
 				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
-					Point(0, 0), 0, sqrt(max(zoom, 0.5)) / 2, min(zoom + 0.25, 0.75));
+					Point(0, 0), 0, cbrt(zoom) * 0.6, 0.8);
 				starBatch.Add(starBody);
 			}
 		}

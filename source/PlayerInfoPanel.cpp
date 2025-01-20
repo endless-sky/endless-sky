@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -178,7 +179,15 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
 	: player(player), panelState(panelState)
 {
+	Audio::Pause();
 	SetInterruptible(false);
+}
+
+
+
+PlayerInfoPanel::~PlayerInfoPanel()
+{
+	Audio::Resume();
 }
 
 

@@ -601,7 +601,7 @@ outfit "Irate Cannon Turret"
 		"live effect" "irate smoke" 12
 		"hit effect" "tiny explosion"
 		"inaccuracy" 2
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 22
 		"lifetime" 15
 		"reload" 10
@@ -682,7 +682,7 @@ outfit "Choleric Cannon Turret"
 		"live effect" "choleric smoke" 24
 		"hit effect" "small explosion"
 		"inaccuracy" 2
-		"turret turn" 1.3
+		"turret turn" 2.2
 		"velocity" 9
 		"lifetime" 55
 		"reload" 80
@@ -826,7 +826,7 @@ outfit "Astuit Battery"
 		sound "astuit"
 		"hit effect" "astuit hit"
 		"inaccuracy" 5
-		"turret turn" 1.5
+		"turret turn" 2.6
 		"velocity" 8
 		"lifetime" 44
 		"reload" 6
@@ -865,7 +865,7 @@ outfit "Acuit Artillery"
 		"hit effect" "acuit hit"
 		sound "acuit"
 		"inaccuracy" 3
-		"turret turn" 0.7
+		"turret turn" 1
 		"velocity" 18
 		"lifetime" 60
 		"reload" 60

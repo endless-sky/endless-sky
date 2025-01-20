@@ -1380,6 +1380,7 @@ mission "Shady passenger transport 1"
 	repeat
 	infiltrating
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "near earth" "core" "urban"
 	destination
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1417,7 +1418,8 @@ mission "Shady passenger transport 2"
 	repeat
 	infiltrating
 	source
-		attributes "near earth" core urban
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "near earth" "core" "urban"
 	destination
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
 		distance 3 7
@@ -4933,6 +4935,7 @@ mission "Dangerous Games 1"
 	passengers 9
 	source
 		attributes "frontier" "pirate"
+		government "Republic" "Free Worlds" "Syndicate" "Pirate"
 	stopover "Skymoot"
 	to offer
 		random < 15

@@ -72,9 +72,10 @@ public:
 	// you have to call Resume() the same number of times to resume the sound sources.
 	static void Resume();
 
-	// Begin playing all the sounds that have been added since the last time
-	// this function was called.
-	static void Step();
+	/// Begin playing all the sounds that have been added since the last time
+	/// this function was called.
+	/// If the game is in fast forward mode, the fast version of sounds is played.
+	static void Step(bool isFastForward);
 
 	// Shut down the audio system (because we're about to quit).
 	static void Quit();

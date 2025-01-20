@@ -1632,93 +1632,6 @@ Files:
 Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
 
-Files:
- images/map/milky?way*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by NASA and Michael Zahniser.
-
-Files:
- images/map/a-dwarf-star*
- images/map/a-giant-star*
- images/map/a-large-star*
- images/map/a-small-star*
- images/map/a-star*
- images/map/a-supergiant-star*
- images/map/b-dwarf-star*
- images/map/b-giant-star*
- images/map/b-large-star*
- images/map/b-small-star*
- images/map/b-star*
- images/map/b-supergiant-star*
- images/map/f-dwarf-star*
- images/map/f-giant-star*
- images/map/f-large-star*
- images/map/f-old-star*
- images/map/f-small-star*
- images/map/f-star*
- images/map/f-supergiant-star*
- images/map/g-dwarf-star*
- images/map/g-giant-star*
- images/map/g-large-star*
- images/map/g-old-star*
- images/map/g-small-star*
- images/map/g-star*
- images/map/g-supergiant-star*
- images/map/k-dwarf-star*
- images/map/k-giant-star*
- images/map/k-large-star*
- images/map/k-old-star*
- images/map/k-small-star*
- images/map/k-star*
- images/map/k-supergiant-star*
- images/map/m-dwarf-star*
- images/map/m-giant-star*
- images/map/m-large-star*
- images/map/m-small-star*
- images/map/m-star*
- images/map/m-supergiant-star*
- images/map/o-dwarf-star*
- images/map/o-giant-star*
- images/map/o-large-star*
- images/map/o-small-star*
- images/map/o-star*
- images/map/o-supergiant-star*
- images/map/unexplored-star*
- images/planet/nebula1*
-Copyright: Azure
-License: CC-BY-SA-4.0
-
-Files:
- images/map/small-neutron-star*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by RisingLeaf.
-
-Files:
- images/map/coal-black-hole-star*
- images/map/neutron-star*
- images/map/small-black-hole-star*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by Gefüllte Taubenbrust.
-
-Files:
- images/map/black-hole-star*
- images/map/carbon-star*
- images/map/nova-old-star*
- images/map/nova-small-star*
- images/map/small-wr-star*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by Matteo "Lead" M.
-
-Files:
- images/map/nova-star*
-Copyright: Azure
-License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser.
-
 Files: sounds/*
 Copyright: Various
 License: public-domain
@@ -2082,6 +1995,9 @@ Files:
  images/outfit/swatter*
  images/outfit/thorax?cannon*
  images/outfit/*rift*
+ images/outfit/pollen?particle*
+ images/outfit/jamfruit?pod*
+ images/outfit/anomalous?mass*
  images/outfit/decoy?plating*
  images/planet/dyson1*
  images/planet/dyson2*
@@ -2100,6 +2016,88 @@ Files:
  images/scene/ringworld?debris*
  images/scene/remnant?station*
  images/scene/asteroid?scene*
+ images/planet/debris0*
+ images/planet/debris1*
+ images/planet/desert11*
+ images/planet/desert12*
+ images/planet/desert13*
+ images/planet/dust8*
+ images/planet/dust9*
+ images/planet/forest7*
+ images/planet/forest8*
+ images/planet/forest9*
+ images/planet/forest10*
+ images/planet/forest11*
+ images/planet/forest12*
+ images/planet/ice9*
+ images/planet/ice10*
+ images/planet/ice11*
+ images/planet/ice12*
+ images/planet/ocean10*
+ images/planet/rock21*
+ images/planet/gateway-active*
+ images/planet/gateway-frozen*
+ images/planet/gateway-inactive*
+ images/planet/station-accelerator-broken*
+ images/planet/station-accelerator*
+ images/planet/station-asteroid-a0*
+ images/planet/station-asteroid-a1*
+ images/planet/station-asteroid-a2*
+ images/planet/station-asteroid-a3*
+ images/planet/station-cylinder-a0-broken*
+ images/planet/station-cylinder-a0-incomplete*
+ images/planet/station-cylinder-a0*
+ images/planet/station-depot-a0*
+ images/planet/station-depot-a1*
+ images/planet/station-depot-a2*
+ images/planet/station-disk*
+ images/planet/station-outpost-a0*
+ images/planet/station-outpost-a1*
+ images/planet/station-outpost-a2*
+ images/planet/station-outpost-a3*
+ images/planet/station-platform-a0*
+ images/planet/station-platform-a1*
+ images/planet/station-platform-a2*
+ images/planet/station-platform-a3*
+ images/planet/station-platform-a4*
+ images/planet/station-reflector-a0*
+ images/planet/station-reflector-a1*
+ images/planet/station-reflector-a2*
+ images/planet/station-shipyard-a0*
+ images/planet/station-shipyard-a1*
+ images/planet/station-shipyard-a2*
+ images/planet/station-solar-a0*
+ images/planet/station-solar-a1*
+ images/planet/station-solar-a2*
+ images/planet/station-solar-a3*
+ images/planet/station-solar-a4*
+ images/planet/station-solar-a0-broken*
+ images/planet/station-solar-a1-broken*
+ images/planet/station-weapon-a0*
+ images/planet/station-weapon-a1*
+ images/planet/station-weapon-a2*
+ images/planet/station-weapon-a3*
+ images/planet/station-telescope-a0*
+ images/planet/station-telescope-a1*
+ images/projectile/avgi?laser?blue*
+ images/ship/aberrant?chomper*
+ images/ship/aberrant?dancer*
+ images/ship/aberrant?hugger*
+ images/ship/aberrant?junior*
+ images/ship/aberrant?latte*
+ images/ship/aberrant?longfellow*
+ images/ship/aberrant?mole*
+ images/ship/aberrant?pike*
+ images/ship/aberrant?pileup*
+ images/ship/aberrant?traincar*
+ images/ship/aberrant?trip*
+ images/ship/aberrant?triplet*
+ images/ship/aberrant?whiskers*
+ images/ship/bluejacket*
+ images/ship/pollen*
+ images/ship/windjammer*
+ images/effect/flotsam?pollen?particle*
+ images/effect/flotsam?jamfruit?pod*
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 
@@ -2195,6 +2193,7 @@ Files:
  images/outfit/rock?4*
  images/scene/penguinscene*
  images/ship/hai?sea?scorpion*
+ images/ship/hai?anomalocaris*
  images/ship/ibis*
  images/ship/mbactriane*
  images/ship/merganser*
@@ -2207,6 +2206,7 @@ Files:
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
  images/thumbnail/hai?sea?scorpion*
+ images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
  images/thumbnail/merganser*
  images/thumbnail/penguin*
@@ -2229,6 +2229,290 @@ Files:
 Copyright: Becca Tommaso (tommasobecca03@gmail.com)
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
+ images/map/a-dwarf-star*
+ images/map/a-giant-star*
+ images/map/a-large-star*
+ images/map/a-small-star*
+ images/map/a-star*
+ images/map/a-supergiant-star*
+ images/map/b-dwarf-star*
+ images/map/b-giant-star*
+ images/map/b-large-star*
+ images/map/b-small-star*
+ images/map/b-star*
+ images/map/b-supergiant-star*
+ images/map/f-dwarf-star*
+ images/map/f-giant-star*
+ images/map/f-large-star*
+ images/map/f-old-star*
+ images/map/f-small-star*
+ images/map/f-star*
+ images/map/f-supergiant-star*
+ images/map/g-dwarf-star*
+ images/map/g-giant-star*
+ images/map/g-large-star*
+ images/map/g-old-star*
+ images/map/g-small-star*
+ images/map/g-star*
+ images/map/g-supergiant-star*
+ images/map/k-dwarf-star*
+ images/map/k-giant-star*
+ images/map/k-large-star*
+ images/map/k-old-star*
+ images/map/k-small-star*
+ images/map/k-star*
+ images/map/k-supergiant-star*
+ images/map/m-dwarf-star*
+ images/map/m-giant-star*
+ images/map/m-large-star*
+ images/map/m-small-star*
+ images/map/m-star*
+ images/map/m-supergiant-star*
+ images/map/o-dwarf-star*
+ images/map/o-giant-star*
+ images/map/o-large-star*
+ images/map/o-small-star*
+ images/map/o-star*
+ images/map/o-supergiant-star*
+ images/map/unexplored-star*
+ images/_menu/haze-twilight*
+ images/_menu/haze-twilight-thick*
+ images/_menu/haze-twilight-thin*
+ images/_menu/haze-twilit-embers*
+ images/asteroid/integral?tree/tree*
+ images/asteroid/water?droplet/*
+ images/effect/avgi?flare/antimatter*
+ images/effect/avgi?flare/fusion*
+ images/effect/avgi?flare/remass*
+ images/effect/avgi?flare/rcs*
+ images/effect/blue?optical?laser?glare*
+ images/effect/green?optical?laser?glare*
+ images/effect/flotsam?integral?wood*
+ images/effect/flotsam?voidfish*
+ images/icon/nettle*
+ images/icon/orchid*
+ images/label/outer?limits*
+ images/label/tangled?shroud*
+ images/label/twilight*
+ images/outfit/concentrating?solar?array*
+ images/outfit/concentrating?solar?cell*
+ images/outfit/cryogenic?deuterium?tank*
+ images/outfit/integral?wood*
+ images/outfit/nettle?kkv*
+ images/outfit/nettle?magazine*
+ images/outfit/ophrys?stockpile*
+ images/outfit/optical?laser?rifle*
+ images/outfit/optical?lasing?generator*
+ images/outfit/orchid?magazine*
+ images/outfit/orchid?missile*
+ images/outfit/remass?injector*
+ images/outfit/trefoil?board*
+ images/outfit/voidfish*
+ images/planet/aviskir*
+ images/planet/nebula1*
+ images/projectile/blue?optical?laser*
+ images/projectile/nettle*
+ images/projectile/nucleolysis*
+ images/projectile/orchid?boost*
+ images/projectile/orchid?boost?stage*
+ images/projectile/orchid?coast*
+ images/projectile/orchid?divert*
+ images/projectile/orchid?divert?stage*
+ images/projectile/orchid?inactive*
+ images/projectile/orchid?terminal*
+ images/scene?trefoil?board*
+Copyright: Azure
+License: CC-BY-SA-4.0
+
+Files:
+ images/hardpoint/blue?optical?laser*
+ images/hardpoint/green?optical?laser*
+ images/hardpoint/plasmadyne?scoop*
+ images/hardpoint/speckle?turret*
+ images/hardpoint/medium?vls*
+ images/outfit/anomalous?shield?restorer*
+ images/outfit/antimatter?power?cell*
+ images/outfit/arc?fusion?torch*
+ images/outfit/blue?optical?laser*
+ images/outfit/green?optical?laser*
+ images/outfit/beam?antimatter?torch*
+ images/outfit/concealment?lamina*
+ images/outfit/deuterium?slush?tank*
+ images/outfit/diffuse?deflector*
+ images/outfit/external?launch?rail*
+ images/outfit/external?launch?tube*
+ images/outfit/heatsink?partition*
+ images/outfit/inductive?extractor*
+ images/outfit/lantern?fission?core*
+ images/outfit/magnetic?scoop*
+ images/outfit/magnetoplasma?drive*
+ images/outfit/multispectral?scanner*
+ images/outfit/nucleolysis?beam*
+ images/outfit/ophrys?torpedo*
+ images/outfit/photoelectric?lamina*
+ images/outfit/plasmadyne?scoop*
+ images/outfit/radiative?lamina*
+ images/outfit/rcs?large*
+ images/outfit/rcs?medium*
+ images/outfit/rcs?small*
+ images/outfit/spark?fusion?torch*
+ images/outfit/speck?magazine*
+ images/outfit/speck?round*
+ images/outfit/speckle?coilgun*
+ images/outfit/speckle?turret*
+ images/outfit/spectrometer?array*
+ images/outfit/specular?deflector*
+ images/outfit/telescopic?antimissile*
+ images/outfit/ultracapacitor?bank*
+ images/outfit/ultracapacitor?cell*
+ images/outfit/medium?vls*
+ images/outfit/zap?fusion?torch*
+ images/effect/flotsam?telescopic?antimissile*
+ images/effect/flotsam?nucleolysis?beam*
+ images/effect/flotsam?antimatter?power?cell*
+ images/effect/flotsam?anomalous?shield?restorer*
+ images/effect/flotsam?anomalous?mass*
+ images/planet/station0b*
+ images/projectile/aberrant?spike*
+ images/projectile/fleck*
+ images/projectile/speck*
+ images/ship/avgi?akoustiki*
+ images/ship/avgi?atenuatia*
+ images/ship/avgi?atenuatia@sw*
+ images/ship/avgi?avlaki*
+ images/ship/avgi?avlaki@sw*
+ images/ship/avgi?diaspersi*
+ images/ship/avgi?diaspersi@sw*
+ images/ship/avgi?difraktos*
+ images/ship/avgi?difraktos@sw*
+ images/ship/avgi?entasi*
+ images/ship/avgi?entasi@sw*
+ images/ship/avgi?frequentia*
+ images/ship/avgi?frequentia@sw*
+ images/ship/avgi?harmonikos*
+ images/ship/avgi?harmonikos@sw*
+ images/ship/avgi?intereros*
+ images/ship/avgi?interferos@sw*
+ images/ship/avgi?koryfi/*
+ images/ship/avgi?melodikos/*
+ images/ship/avgi?melodikos@sw*
+ images/ship/avgi?optikon*
+ images/ship/avgi?phononos*
+ images/ship/avgi?photikon*
+ images/ship/avgi?polari*
+ images/ship/avgi?polari@sw*
+ images/ship/avgi?prismaios*
+ images/ship/avgi?prismaios@sw*
+ images/ship/avgi?refraktos*
+ images/ship/avgi?refraktos@sw*
+ images/ship/avgi?sonikis*
+ images/ship/avgi?tachytia/*
+ images/ship/avgi?tachytia/tachytia@sw*
+ images/ship/avgi?tremoros*
+ images/ship/avgi?undsyni*
+ images/ship/avgi?undsyni@sw*
+ images/ship/avgi?undulon*
+ images/ship/avgi?vibratia*
+ images/thumbnail/avgi?akoustiki*
+ images/thumbnail/avgi?atenuatia*
+ images/thumbnail/avgi?atenuatia@sw
+ images/thumbnail/avgi?avlaki*
+ images/thumbnail/avgi?avlaki@sw*
+ images/thumbnail/avgi?diaspersi*
+ images/thumbnail/avgi?difraktos*
+ images/thumbnail/avgi?entasi*
+ images/thumbnail/avgi?frequentia*
+ images/thumbnail/avgi?harmonikos*
+ images/thumbnail/avgi?harmonikos@sw*
+ images/thumbnail/avgi?intereros*
+ images/thumbnail/avgi?koryfi/*
+ images/thumbnail/avgi?melodikos/*
+ images/thumbnail/avgi?melodikos@sw*
+ images/thumbnail/avgi?optikon*
+ images/thumbnail/avgi?phononos*
+ images/thumbnail/avgi?photikon*
+ images/thumbnail/avgi?polari*
+ images/thumbnail/avgi?prismaios*
+ images/thumbnail/avgi?refraktos*
+ images/thumbnail/avgi?sonikis*
+ images/thumbnail/avgi?tachytia/*
+ images/thumbnail/avgi?tremoros*
+ images/thumbnail/avgi?undsyni*
+ images/thumbnail/avgi?undulon*
+ images/thumbnail/avgi?vibratia*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso.
+
+Files:
+ images/map/milky?way*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA and Michael Zahniser.
+
+Files:
+ images/star/smoke?ring*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by RisingLeaf.
+
+Files:
+ images/land/station59*
+ images/scene/ranger?baker*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Lawrence Livermore National Laboratory.
+
+Files:
+ images/land/dokimi*
+ images/scene/dokimi?range*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by the National Nuclear Security Administration.
+
+Files:
+ images/map/small-neutron-star*
+ images/map/magnetar-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by RisingLeaf.
+
+Files:
+ images/map/coal-black-hole-star*
+ images/map/neutron-star*
+ images/map/small-black-hole-star*
+ images/map/twilight-black-hole-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Gefüllte Taubenbrust.
+
+Files:
+ images/map/black-hole-star*
+ images/map/carbon-star*
+ images/map/nova-old-star*
+ images/map/nova-small-star*
+ images/map/wr-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Matteo "Lead" M.
+
+Files:
+ images/map/nova-star*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser.
+
+Files:
+ sounds/bounce*
+ sounds/clink*
+ sounds/fusion?torch*
+ sounds/optical?laser*
+ sounds/speckle*
+Copyright: Azure
+License: CC-BY-SA-4.0
+Comment: Derived from public domain sounds taken from freesound.org.
 
 Files:
  images/outfit/*battery?hai*
@@ -2675,6 +2959,7 @@ Files:
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
+ images/star/twilight-black-hole*
  images/thumbnail/battleship*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
 License: CC-BY-SA-4.0
@@ -2860,6 +3145,7 @@ Files:
  images/projectile/strange?ray*
  images/scene/incipias?message*
  images/star/a-eater*
+ images/star/magnetar*
  images/star/neutron-small*
  images/star/proto-planetary-disk*
 Copyright: RisingLeaf (https://github.com/RisingLeaf)
@@ -3433,6 +3719,7 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/android*
+ images/outfit/collar*
  images/outfit/mug*
  images/outfit/skadetear*
 Copyright: Anarchist2
@@ -3711,13 +3998,18 @@ License: CC-BY-SA-4.0
 
 Files:
  images/outfit/cockpit?software*
+Copyright: Zitchas
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license).
+
+Files:
  images/ui/tactical/crew*
  images/ui/tactical/energy*
  images/ui/tactical/fuel*
  images/ui/tactical/thermal*
-Copyright: Zitchas
+Copyright: Michael Zahniser <mzahniser@gmail.com>
 License: CC-BY-SA-4.0
-Comment: Derived from works by Michael Zahniser (under the same license).
+Comment: Cropped and split into four new files by Zitchas (zitchas.jma@gmail.com)
 
 Files:
  images/outfit/cockpit?hyperjump?software*
@@ -3727,6 +4019,12 @@ Files:
 Copyright: Zitchas & Lia Gerty
 License: CC-BY-SA-4.0
 Comment: Derived from works by Iaz Poolar, Michael Zahniser, and Lia Gerty (under the same license).
+
+Files:
+ images/scene/cave?scene*
+Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
+License: CC-BY-SA-4.0
+Comment: Derived from works by Becca Tommaso (under the same license).
 
 Files:
  images/_menu/haze-brown*
@@ -3766,6 +4064,12 @@ Files:
 Copyright: Public Domain
 License: public-domain
  Created by two anonymous authors in 2022, donated to public domain.
+
+Files:
+ images/scene/emerging?ladybug*
+Copyright: RisingLeaf (https://github.com/RisingLeaf)
+License: CC-BY-SA-4.0
+Comment: Derived from public domain works previously submitted to Endless Sky.
 
 Files:
  images/effect/ionic?impact*
