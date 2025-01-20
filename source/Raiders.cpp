@@ -16,7 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Raiders.h"
 
 #include "DataNode.h"
+#include "Fleet.h"
 #include "GameData.h"
+#include "Government.h"
 
 #include <algorithm>
 
