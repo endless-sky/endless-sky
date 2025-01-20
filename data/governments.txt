@@ -15,6 +15,7 @@ government "Aberrant"
 	swizzle 0
 	language "Ka'het"
 	color 0.4 0.4 0.7
+	"player reputation" -1000
 
 	"default attitude" -.01
 	"attitude toward"
