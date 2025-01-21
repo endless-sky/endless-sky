@@ -1014,6 +1014,7 @@ ship "Undsyni" "Undsyni (Plasmadyne)"
 		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
+	gun "Plasmadyne Scoop"
 	turret "Speckle Turret"
 	turret "Speckle Turret"
 	turret "Green Optical Laser"
