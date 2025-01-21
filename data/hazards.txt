@@ -110,6 +110,26 @@ hazard "Neutron Star Magnetic Field"
 		"dropoff modifier" 0
 		"shield damage" 6
 
+hazard "Magnetar Magnetic Field"
+	"constant strength"
+	"range" 1800
+	weapon
+		"damage dropoff" 0 1800
+		"dropoff modifier" 0
+		"disruption damage" 0.5
+		"discharge damage" 1
+
+hazard "Magnetar Induction"
+	"constant strength"
+	"range" 900
+	weapon
+		"gravitational"
+		"damage dropoff" 0 900
+		"dropoff modifier" 0
+		"heat damage" 24
+		"slowing damage" 0.3
+		"hit force" 12
+
 
 
 hazard "Rulei Gravity Field"
@@ -124,6 +144,7 @@ hazard "Rulei Gravity Field"
 
 effect "gravity well"
 	"sound" "gravity well"
+	"sound category" "environment"
 
 
 
@@ -187,3 +208,62 @@ hazard "Predecessors Void Scar Erosion"
 		"piercing" 0.1
 		"damage dropoff" 1100
 		"target effect" "spatial hazard" 1
+
+
+
+hazard "Avgi Beamed Power"
+	"constant strength"
+	"range" 300
+	"environmental effect" "power beaming" 12
+	weapon
+		"damage dropoff" 0 300
+		"energy damage" -90
+		"target effect" "power beaming" 60
+
+effect "power beaming"
+	sprite "effect/spark"
+		"scale" 0.25
+		"frame rate" 5
+		"random start frame"
+		"rewind"
+	"lifetime" 30
+	"random lifetime" 30
+	"random angle" 180
+	"random velocity" 1
+	"random spin" 10
+	"random frame rate" 5
+
+
+
+hazard "Smoke Ring Atmosphere"
+	range 1800 3000
+	"constant strength"
+	weapon
+		"shield damage" 0.3
+		"heat damage" 3
+		"target effect" "airstream 1" 6
+		"target effect" "airstream 2" 6
+
+effect "airstream 1"
+	sprite "effect/leak big"
+		"start frame" 2
+		"no repeat"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 60
+	"random lifetime" 60
+	"random angle" 12
+	"random spin" 180
+	"velocity scale" 0
+
+effect "airstream 2"
+	sprite "effect/leak"
+		"start frame" 2
+		"no repeat"
+		"frame rate" 3
+		"scale" 0.5
+	"lifetime" 60
+	"random lifetime" 90
+	"random angle" 15
+	"random spin" 180
+	"velocity scale" 0
