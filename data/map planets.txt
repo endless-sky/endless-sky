@@ -2494,6 +2494,8 @@ planet Hilothire
 	description `While Hilothire contains an oxygen-rich atmosphere, it is almost entirely covered in icy oceans. At the poles, massive ice caps stretch nearly to the tropics. Pristine icebergs often float down to the equator, where they accumulate around the few rocky islands that peek above the waves.`
 	description `	A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
 	spaceport `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
+	port
+		recharges fuel
 	government Uninhabited
 	security 0
 
@@ -3204,6 +3206,8 @@ planet Mabatham
 	description `Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics.`
 	description `	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stubborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea.`
 	spaceport `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
+	port
+		recharges fuel
 	government Avgi
 	security 0
 
