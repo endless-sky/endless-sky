@@ -1555,6 +1555,8 @@ planet Entantel
 	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density results in a very low gravitational acceleration for its size.`
 	description `	Because of its shallow gravity well and abundance of volatiles, Entantel was one of the biggest exporters of water ice in the outer Anax system, where it was largely used as cheap propellant or to fill the numerous cylinder habitats with artificial lakes and rivers.`
 	spaceport `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
+	port
+		recharges fuel
 	government Uninhabited
 
 planet Erabuthro
