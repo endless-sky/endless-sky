@@ -4168,7 +4168,7 @@ planet Omanet
 planet Orodens
 	attributes mining moon
 	landscape land/mountain26
-	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy elements. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material off the surface, and to other systems. Rows of mass drivers were used to fire refined minerals into orbit, where they could be collected by waiting ships.`
+	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy elements. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material off the surface and to other systems. Rows of mass drivers were used to fire refined minerals into orbit, where they could be collected by waiting ships.`
 	description `	Once the largest single source of fissile elements in Avgi space, the mass drivers have been silent since the Incursion halted operations. Automated drones continue to watch over the last batch of excavated material.`
 	government Uninhabited
 	security 0
