@@ -320,7 +320,7 @@ ship "Safinat"
 			"hull damage" 2000
 			"hit force" 4500
 	outfits
-		"Rukjay Missile" 135
+		"Rukjay Missile Blueprint" 3
 		"Rukjay Missile Launcher" 3
 		"Jibauni Small Laser" 2
 		"Lilsa Anti-Missile" 2
@@ -400,7 +400,7 @@ ship "Furus"
 	outfits
 		"Jibauni Small Laser" 2
 		"Rukjay Missile Launcher"
-		"Rukjay Missile" 45
+		"Rukjay Missile Blueprint"
 
 		"Jahgir Energy Generator" 2
 		"Jamum Shield Generator"

@@ -15,7 +15,7 @@ ship "Nathar" "Nathar (Anti-Missile Missile)"
 	outfits
 		"Lilsa Anti-Missile" 5
 		"Rukjay Missile Launcher" 4
-		"Rukjay Missile" 120
+		"Rukjay Missile Blueprint" 4
 		"Jamum Shield Generator" 2
 		"Tamum Shield Generator"
 		"Daltaq Energy Generator"
@@ -97,7 +97,7 @@ ship "Furus" "Furus (Government)"
 	outfits
 		"Jibauni Small Laser" 2
 		"Rukjay Missile Launcher"
-		"Rukjay Missile" 30
+		"Rukjay Missile Blueprint"
 		"Watsaq Energy Generator"
 		"Hyperdrive"
 		"Jamum Shield Generator"
