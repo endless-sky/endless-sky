@@ -2881,6 +2881,7 @@ planet Kanlil
 	description `Kanlil, as the stopover for pilgrims wishing to visit Lamalmuq, is quite busy. It also sells luxurious goods unavailable on the pilgrims' planet, such as personal tablets and cigars. Most trading in this system naturally passes through Kanlil.`
 	description `	Surprisingly, the station is a fairly recent creation, only built two hundred years ago. Dertoy Enterprises, the original founder, went out of business soon afterwards; this contributes to the rumor that Kanlil has existed since the beginning of time as the Jibauni know it.`
 	spaceport `Most Jibauni loitering on Kanlil wear black robes; the rest wear the generic spaceport employee uniforms that permeate Jibauni space. Many ships are docked to the station, and the spaceport workers are kept busy unloading and reloading the large amounts of traffic in Hajay.`
+	spaceport `	The civilian landing area, called Qarib Najm, is the largest one of the rings composing Kanlil; apparently the other rings are reserved for military or Zaeim spacecraft. Many of them are unlighted; apparently uninhabited at present.`
 	government Jibauni
 	shipyard "Aboagye Basics"
 	shipyard "Resredi Basics"
