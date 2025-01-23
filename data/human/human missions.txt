@@ -7738,7 +7738,7 @@ mission "Syndicate Business 2"
 				`	"But I don't have a 'complete understanding and acceptance of the foregoing terms and conditions,' I need more time to look through this."`
 			label unsure
 			`	Howard lets out a hearty laugh, his grin unwavering. "Ah, I see, you're one of those detail-oriented types. Look, I appreciate thoroughness as much as the next businessperson, but let's be real here--these documents are standard boilerplate. You don't need a 'complete' understanding of every last word to recognize a golden opportunity when it's staring you in the face."`
-			`	He gestures back to the stack of papers with a casual wave of his hand. "But if you insist on taking more time to think or read through it all, let me remind you--this offer isn't going to wait forever. Opportunities like this are rare, and hesitation could mean missing out entirely. So, what's it going to be? Are you ready to  grasp the deal of a lifetime, or are you going to let this one slip through your fingers?"`
+			`	He gestures back to the stack of papers with a casual wave of his hand. "But if you insist on taking more time to think or read through it all, let me remind you--this offer isn't going to wait forever. Opportunities like this are rare, and hesitation could mean missing out entirely. So, what's it going to be? Are you ready to grasp the deal of a lifetime, or are you going to let this one slip through your fingers?"`
 			`	Howard taps his pen on the stack of documents, clearly impatient but maintaining a polished demeanor.`
 			choice
 				`	"Okay, okay, I'll sign."`
@@ -7751,9 +7751,9 @@ mission "Syndicate Business 2"
 			choice
 				`	"I'll just sign the investment."`
 					goto signed
-				`	Thanks, I'd appreciate  a recommendation.`
+				`	Thanks, I'd appreciate a recommendation.`
 				`	No thanks, I'll find someone on my own.`
-			`	Howard nods with a polished smile, already pulling a sleek datapad from behind the kiosk. With a few swift taps, he hands it to you, the screen lighting up with a carefully curated list of lawyers certified in both Syndicate and Megaparsec regulatory investment law.
+			`	Howard nods with a polished smile, already pulling a sleek datapad from behind the kiosk. With a few swift taps, he hands it to you, the screen lighting up with a carefully curated list of lawyers certified in both Syndicate and Megaparsec regulatory investment law.`
 			`	"As it happens, I've taken the liberty of compiling a list for your convenience. These are the best in the business--every single one fully certified and capable of handling a document of this caliber. Naturally, I'd recommend the first name on the list," he says, tapping the top entry, which is highlighted in green.`
 			`	You glance down at the datapad. Each lawyer's availability is color-coded: green for immediate availability, yellow for waitlists stretching a few days, orange for weeks, and red for those not currently accepting new clients. The first lawyer, Howard's recommendation, is the only one highlighted in green.`
 			`	"Efficient, thorough, and well-versed in Megaparsec investment structures," Howard continues, his tone smooth. "And, of course, ready to assist immediately. They can review the documents for you today for the modest sum of 100,295 credits. If peace of mind is what you're after, this is your best option. Alternatively, you can always trust in the integrity of this opportunity and move forward now. The choice is yours."`
