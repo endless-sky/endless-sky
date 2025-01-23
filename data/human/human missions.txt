@@ -7674,11 +7674,11 @@ mission "Syndicate Business 2"
 	passengers 1
 	source "Sunracer"
 	destination "Hephaestus"
-	blocked "Howard has offered you an investment opportunity, but mentioned that it'll cost you a million credits up front, and you'll need space on your ship to transport him elsewhere. Better come back when you have those."
+	blocked "Howard has offered you an investment opportunity, but mentioned that it'll cost you a million credits up front, and you'll need space on your ship to transport him elsewhere. Better come back when you have those, plus a bit more credits."
 	to offer
 		has "Syndicate Business 1: done"
 	to accept
-		credits > 1000000
+		credits > 1100300
 	on offer
 		conversation
 			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
@@ -7735,7 +7735,8 @@ mission "Syndicate Business 2"
 					goto signed
 				`	"I think I need a lawyer."`
 					goto lawyer
-				`	"But I don't have a 'complete understanding and acceptance of the foregoing terms and conditions,' I need more time to look through this."`
+				`	"But I don't have a 'complete understanding and acceptance of the foregoing terms and conditions,' I'm backing out."`
+					decline
 			label unsure
 			`	Howard lets out a hearty laugh, his grin unwavering. "Ah, I see, you're one of those detail-oriented types. Look, I appreciate thoroughness as much as the next businessperson, but let's be real here--these documents are standard boilerplate. You don't need a 'complete' understanding of every last word to recognize a golden opportunity when it's staring you in the face."`
 			`	He gestures back to the stack of papers with a casual wave of his hand. "But if you insist on taking more time to think or read through it all, let me remind you--this offer isn't going to wait forever. Opportunities like this are rare, and hesitation could mean missing out entirely. So, what's it going to be? Are you ready to grasp the deal of a lifetime, or are you going to let this one slip through your fingers?"`
@@ -7745,8 +7746,10 @@ mission "Syndicate Business 2"
 					goto signed
 				`	"I want a lawyer."`
 					goto lawyer
+				`	"Actually, let me take a look at the contract."`
+					got lookingthrough
 			label lawyer
-			`	Howard's smile tightens, his tone staying polite but firm. "Of course, you're entitled to seek legal counsel. However, both Syndicate and Megaparsec regulations require that any lawyer must be certified in both Syndicate and Megaparsec regulatory investment law, and pay the customary fees and dues. The going rate for such expertise is 795 credits per page reviewed, plus a base legal fee of 20,000 credits for document analysis. For this agreement-101 pages--that comes out to 100,295 credits. A small price for peace of mind, wouldn't you say?"`
+			`	Howard's smile tightens, his tone staying polite but firm. "Of course, you're entitled to seek legal counsel. However, both Syndicate and Megaparsec regulations require that any lawyer must be certified in both Syndicate and Megaparsec regulatory investment law, and pay the customary fees and dues. The going rate for such expertise is 795 credits per page reviewed, plus a base legal fee of 20,000 credits for document analysis. For this agreement--101 pages--that comes out to 100,295 credits. A small price for peace of mind, wouldn't you say?"`
 			`	Howard leans forward, lowering his voice slightly. "If you'd like, I can even recommend someone--reliable, efficient. What do you say?"`
 			choice
 				`	"I'll just sign the investment."`
@@ -7761,8 +7764,12 @@ mission "Syndicate Business 2"
 				`	"I'll just sign the investment."`
 					goto signed
 				`	"I guess I'll go with the only available lawyer".`
+					goto onlylawyer
 				`	"I'm backing out and not becoming an investor."`
 					decline
+			label onlylawyer
+			action
+				payment -100295
 			`	You select the green-highlighted lawyer on the datapad. Immediately, a floating holographic head materializes on the screen, a sharp-looking individual with neatly combed hair and a practiced smile. Their eyes dart side to side as they rapidly scan the document.`
 			`	"Thank you for choosing my services," they say in a crisp, professional tone. "This will just take a few minutes. Please hold."`
 			`	They reappear a moment later, their expression neutral but reassuring. "Thank you for waiting. I've reviewed the document, and here are the main points in plain terms."`
