@@ -7747,7 +7747,7 @@ mission "Syndicate Business 2"
 				`	"I want a lawyer."`
 					goto lawyer
 				`	"Actually, let me take a look at the contract."`
-					got lookingthrough
+					goto lookingthrough
 			label lawyer
 			`	Howard's smile tightens, his tone staying polite but firm. "Of course, you're entitled to seek legal counsel. However, both Syndicate and Megaparsec regulations require that any lawyer must be certified in both Syndicate and Megaparsec regulatory investment law, and pay the customary fees and dues. The going rate for such expertise is 795 credits per page reviewed, plus a base legal fee of 20,000 credits for document analysis. For this agreement--101 pages--that comes out to 100,295 credits. A small price for peace of mind, wouldn't you say?"`
 			`	Howard leans forward, lowering his voice slightly. "If you'd like, I can even recommend someone--reliable, efficient. What do you say?"`
