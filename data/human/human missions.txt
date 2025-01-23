@@ -7681,8 +7681,98 @@ mission "Syndicate Business 2"
 			`	"To reiterate, in order to purchase a perpetual Megaparsec Incorporated bond you will need to provide us with an up-front payment of one million credits, and sign some legal documents. Our promised returns are 20% per annum, which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
 				`	"Sure, here's the one million credits."`
+					goto signed
+				`	"I want to look through these documents before signing."`
+					goto lookingthrough
+				`	"Can I get a lawyer to review this?"`
+					goto lawyer
+				`	"I need more time to think about this."`
+					goto unsure
 				`	"No, I won't become an investor."`
 					decline
+			label lookingthrough
+			`	Howard chuckles as if your request were absurd.`
+			`	Sure, sure, feel free to peruse the first page. But, uh, let me remind you-this credit agreement is 101 pages long, over 87,000 words. Unless you've got degrees in Syndicate & Megaparsec regulatory investment law and all day to read, I suggest you focus on the highlighted parts. Time is money, my friend, and this deal won't wait forever!"`
+			`	Howard slides the cover and first page toward you and taps it impatiently with his pen.`
+			choice
+				`	(Take a look at what Howard slid over.)`
+				`	"All right, I'll sign."`
+					goto signed
+				`	"If I can't read the whole thing, I won't sign it. I refuse to become an investor."`
+					decline
+			`	You look down at the cover page of the private bond credit agreement:`
+			``
+			`	1,000,000 Credits`
+			``
+			`	PERPETUAL LOAN CREDIT AGREEMENT`
+			``
+			`		among`
+			``
+			`	MEGAPARSEC INDUSTRIAL & SYSTEMS EXTERNAL REFUELING COMPANY LIMITED,`
+			`		as the Issuer,`
+			``
+			`	The Several Investors`
+			`	from Time to Time Parties Hereto,`
+			``
+			`	MEGAPARSEC FINANCE ADMIN & COLLATERAL LLC.,`
+			`		as Administrative Agent and Collateral Agent,`
+			``
+			`	MEGAPARSEC FINANCE SECURITIES LLC.,`
+			`		as the Sole Lead Arranger and Sole Bookrunner`
+			choice
+				`	(Flip to the first page.)`
+			`	PREAMBLE: This Agreement ("Agreement") is entered into as of the Effective Date by and between Megaparsec Industrial & Systems External Refueling Company Limited, a duly organized entity under the laws of interstellar commerce within the Republic and Syndicate space ("Issuer") and the undersigned individual or entity ("Investor"). This Agreement is made in recognition of the Investor's intent to particiapte in the perpetual bond offering described herein, subject to all applicable terms, conditions, regulations, obligations, and supplementary materials explicitly or implicitly referenced throughout this document. By signing below, the Investor acknowledges receipt of the Megaparsec Bond Offer Summary and agrees to the terms and conditions set forth herein.`
+			`	ARTICLE I - TERMS AND CONDITIONS OF INVESTMENT: The Investor, by executing this Agreement, irrevocably agrees to remit an upfront and final payment of One Million (1,000,000) Credits to the Issuer as consideration for the offer of the perpetual bond, and shall be deemed fully earned by the Issuer, irrespective of any event, action, or inaction on the part of either Party. The Issuer, upon receipt of the aforementioned payment, will extend to the Investor the rights and benefits outlined in this Agreement, subject to ongoing compliance with the full range of terms, conditions, regulatory frameworks, and administrative requirements contained herein.`
+			`	The Investor acknowledges that this Agreement represents only a summary of the binding obligations they undertake and that the full scope of their responsibilities and the Issuer's rights are detailed in a comprehensive and integrated document consisting of 101 pages of material, including, but not limited to, appendices, exhibits, schedules, and technical addenda. Such materials are hereby incorporated by reference and are to be treated as essential components of this Agreement. The Investor agrees that their signature below constitutes full and unconditional acceptance of these supplementary materials, regardless of whether they have been explicitly reviewed by the Investor prior to execution.`
+			`	The Investor further agrees, represents, and warrants that compliance with all present and future legal, regulatory, and administrative requirements, as determined by the Issuer or relevant interstellar regulatory bodies including, but not limited to, the Republic, Syndicate, and Megaparsec regulatory bodies, is a fundamental and non-negotiable obligation of this Agreement. Such compliance includes, but is not limited to timely submission of all required documents, filings, and disclosures deemed necessary by the Issuer to fulfill legal or operational obligations; as well as the execution of any post-payment regulatory forms, disclosures, or ancillary agreements as requested by the Issuer, at the Issuer's sole discretion and with no prior notice required.`
+			`	The Investor further acknowledges that failure to comply with these requirements, including but not limited to the timely signing of necessary disclosures, certifications, or regulatory documents, shall result in the immediate and irrevocable forfeiture of the initial full payment. The Investor agrees that the Issuer retains sole discretion to determine compliance and enforce this provision without the need for arbitration, appeal, or further justification. The payment provided by the Investor is explicitly designated as non-refundable and irrevocable, regardless of circumstances, including but not limited to disputes arising from changes in regulatory requirements, amendments to this Agreement, or other developments. Furthermore, the Investor acknowledges and consents to the condition that their payment is forfeited upon signing of any ancillary documentation as determined necessary by the Issuer, whether such documentation is provided at the time of this Agreement's execution or subsequently requested.`
+			`	Finally, the Investor agrees and understands that this Agreement is not exhaustive but rather constitutes a high-level summary of an extensive and detailed arrangement, which includes technical schedules, detailed appendices, and provisions spanning the full length of the 101-page document. The Investor accepts that their obligations under this Agreement may be amended, supplemented, or expanded at any time to accommodate changes in legal, operational, or regulatory frameworks, with such amendments binding immediately upon issuance by the Issuer. The Investor acknowledges that they have been provided opportunity to review this Agreement in part or in full and may request a referral to legal counsel certified in Syndicate & Megaparsec regulatory investment law if desired at a standard rate of twenty thousand (20,000) credits plus seven hundred and ninety-five (795) credits per page reviewed. By signing below, the Investor confirms their complete understanding and acceptance of the foregoing terms and conditions, as well as all additional obligations described within this Agreement, regardless of their explicit enumeration in this document.`
+			choice
+				`	"I'm ready to sign!"`
+					goto signed
+				`	"I think I need a lawyer."`
+					goto lawyer
+				`	"But I don't have a 'complete understanding and acceptance of the foregoing terms and conditions,' I need more time to look through this."`
+			label unsure
+			`	Howard lets out a hearty laugh, his grin unwavering. "Ah, I see, you're one of those detail-oriented types. Look, I appreciate thoroughness as much as the next businessperson, but let's be real here--these documents are standard boilerplate. You don't need a 'complete' understanding of every last word to recognize a golden opportunity when it's staring you in the face."`
+			`	He gestures back to the stack of papers with a casual wave of his hand. "But if you insist on taking more time to think or read through it all, let me remind you--this offer isn't going to wait forever. Opportunities like this are rare, and hesitation could mean missing out entirely. So, what's it going to be? Are you ready to  grasp the deal of a lifetime, or are you going to let this one slip through your fingers?"`
+			`	Howard taps his pen on the stack of documents, clearly impatient but maintaining a polished demeanor.`
+			choice
+				`	"Okay, okay, I'll sign."`
+					goto signed
+				`	"I want a lawyer."`
+					goto lawyer
+			label lawyer
+			`	Howard's smile tightens, his tone staying polite but firm. "Of course, you're entitled to seek legal counsel. However, both Syndicate and Megaparsec regulations require that any lawyer must be certified in both Syndicate and Megaparsec regulatory investment law, and pay the customary fees and dues. The going rate for such expertise is 795 credits per page reviewed, plus a base legal fee of 20,000 credits for document analysis. For this agreement-101 pages--that comes out to 100,295 credits. A small price for peace of mind, wouldn't you say?"`
+			`	Howard leans forward, lowering his voice slightly. "If you'd like, I can even recommend someone--reliable, efficient. What do you say?"`
+			choice
+				`	"I'll just sign the investment."`
+					goto signed
+				`	Thanks, I'd appreciate  a recommendation.`
+				`	No thanks, I'll find someone on my own.`
+			`	Howard nods with a polished smile, already pulling a sleek datapad from behind the kiosk. With a few swift taps, he hands it to you, the screen lighting up with a carefully curated list of lawyers certified in both Syndicate and Megaparsec regulatory investment law.
+			`	"As it happens, I've taken the liberty of compiling a list for your convenience. These are the best in the business--every single one fully certified and capable of handling a document of this caliber. Naturally, I'd recommend the first name on the list," he says, tapping the top entry, which is highlighted in green.`
+			`	You glance down at the datapad. Each lawyer's availability is color-coded: green for immediate availability, yellow for waitlists stretching a few days, orange for weeks, and red for those not currently accepting new clients. The first lawyer, Howard's recommendation, is the only one highlighted in green.`
+			`	"Efficient, thorough, and well-versed in Megaparsec investment structures," Howard continues, his tone smooth. "And, of course, ready to assist immediately. They can review the documents for you today for the modest sum of 100,295 credits. If peace of mind is what you're after, this is your best option. Alternatively, you can always trust in the integrity of this opportunity and move forward now. The choice is yours."`
+			choice
+				`	"I'll just sign the investment."`
+					goto signed
+				`	"I guess I'll go with the only available lawyer".`
+				`	"I'm backing out and not becoming an investor."`
+					decline
+			`	You select the green-highlighted lawyer on the datapad. Immediately, a floating holographic head materializes on the screen, a sharp-looking individual with neatly combed hair and a practiced smile. Their eyes dart side to side as they rapidly scan the document.`
+			`	"Thank you for choosing my services," they say in a crisp, professional tone. "This will just take a few minutes. Please hold."`
+			`	They reappear a moment later, their expression neutral but reassuring. "Thank you for waiting. I've reviewed the document, and here are the main points in plain terms."`
+			`	"This is fairly standard for a Megaparsec private credit transaction," they explain.`
+			`	"First, the one million credits you're paying is completely non-refundable once you sign, even if the transaction falls through for any reason. That's a firm condition, but unlikely to occur from anything on their end. Second, you may be required to sign additional documents or disclosures in the future, even if they aren't specifically listed in the contract now. Refusing to sign any of those could cause the transaction to fall through, losing you that one million credits I just mentioned. However, there won't be any additional payments required after your initial investment."`
+			`	They pause for a moment before continuing. "Lastly, there's standard boilerplate stating that the terms of the agreement can be updated without notice. This is typical for a deal like this and is usually only applied to background adjustments--things like complying with new laws or if Megaparsec transfers the bond to another entity. At worst, you might be asked to sign an additional disclosure at some point, but nothing that materially impacts your rights or obligations."`
+			`	The lawyer's eyes meet yours through the screen. "It's thorough but not unusual. Happy to have been of service." The lawyer's floating head blinks off the datapad.`
+			`	Howard, who has been waiting patiently, leans forward with his ever-polished smile. "Glad to see you got that legal review. Always a wise step for an investment of this magnitude," he says, his tone smooth and encouraging. He gestures to the stack of documents on the desk. "So, now that everything's in order, are you ready to sign and secure your investment?"`
+			choice
+				`	"Yes, I'm ready to sign."`
+				`	"No, I don't want to invest in anything, I'm done."`
+					decline
+			label signed
 			`	After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. This particular investment is in partnership with Syndicated Systems, so we'll need to submit this first set of paperwork to their office and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
 				accept
 	on accept
