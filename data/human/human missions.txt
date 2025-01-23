@@ -7683,7 +7683,6 @@ mission "Syndicate Business 2"
 				`	"Sure, here's the one million credits."`
 					goto signed
 				`	"I want to look through these documents before signing."`
-					goto lookingthrough
 				`	"Can I get a lawyer to review this?"`
 					goto lawyer
 				`	"I need more time to think about this."`
