@@ -35,7 +35,7 @@ using namespace std;
 
 
 
-shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesystem::path> &sources, bool debugMode)
 {
 	progress = 0.;
 
@@ -44,13 +44,13 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<string>
 	// function (except for calling GetProgress which is safe due to the atomic).
 	return queue.Run([this, sources, debugMode]() noexcept -> void
 		{
-			vector<string> files;
-			for(const string &source : sources)
+			vector<filesystem::path> files;
+			for(const auto &source : sources)
 			{
 				// Iterate through the paths starting with the last directory given. That
 				// is, things in folders near the start of the path have the ability to
 				// override things in folders later in the path.
-				auto list = Files::RecursiveList(source + "data/");
+				auto list = Files::RecursiveList(source / "data/");
 				files.reserve(files.size() + list.size());
 				files.insert(files.end(),
 						make_move_iterator(list.begin()),
@@ -173,7 +173,7 @@ void UniverseObjects::UpdateSystems()
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
-		if(it.first.empty() || it.second.Name().empty())
+		if(it.first.empty() || it.second.TrueName().empty())
 			continue;
 		it.second.UpdateSystem(systems, neighborDistances);
 
@@ -294,7 +294,7 @@ void UniverseObjects::CheckReferences()
 			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
-		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
 	// Hazards are never serialized.
 	for(const auto &it : hazards)
@@ -302,7 +302,7 @@ void UniverseObjects::CheckReferences()
 			Warn("hazard", it.first);
 	// Wormholes are never serialized.
 	for(const auto &it : wormholes)
-		if(it.second.Name().empty())
+		if(it.second.DisplayName().empty())
 			Warn("wormhole", it.first);
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
@@ -316,15 +316,15 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const string &path, bool debugMode)
+void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
-	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
+	if(path.extension() != ".txt")
 		return;
 
 	DataFile data(path);
 	if(debugMode)
-		Logger::LogError("Parsing: " + path);
+		Logger::LogError("Parsing: " + path.string());
 
 	for(const DataNode &node : data)
 	{
@@ -421,6 +421,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 					solarPower[sprite] = child.Value(1);
 				else if(child.Token(0) == "wind" && child.Size() >= 2)
 					solarWind[sprite] = child.Value(1);
+				else if(child.Token(0) == "icon" && child.Size() >= 2)
+					starIcons[sprite] = SpriteSet::Get(child.Token(1));
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
