@@ -7672,8 +7672,10 @@ mission "Syndicate Business 2"
 	passengers 1
 	source "Sunracer"
 	destination "Hephaestus"
+	blocked "Howard has offered you an investment opportunity, but mentioned that it'll cost you a million credits up front, and you'll need space on your ship to transport him elsewhere. Better come back when you have those."
 	to offer
 		has "Syndicate Business 1: done"
+	to accept
 		credits > 1000000
 	on offer
 		conversation
