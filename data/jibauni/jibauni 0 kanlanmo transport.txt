@@ -15,31 +15,29 @@ mission "Jibauni: Kanlanmo 0"
 	name "Take Kanlanmo to <planet>"
 	description "Kanlanmo, who is a Jibauni in the shape of a Tyrannosaurus Rex, has asked to go to <planet> on your ship. He will explain more once you get there."
 	landing
-	source Baitoon
-	destination Taltahard
+	source "Baitoon"
+	destination "Taltahard"
 	on offer
 		conversation
-			branch jibauniinsider
-				has "species: Jibauni"
-			`Your landing location is a large set of old landing pads in the middle of a city. There doesn't seem to be anywhere else available for spaceships to arrive. The city is filled with dinosaurs in the shape of the mythical Tyrannosaurus Rex, although here they are smaller then in the old fables. A while after you land, one of these dinosaurs approaches your ship.`
+			`Your landing location is a large set of old landing pads in the middle of a city, as there doesn't seem to be anywhere else available for spaceships to arrive. The city is filled with dinosaurs in the shape of the mythical Tyrannosaurus Rex, although here smaller then in old Earth fables. Soon after you land, one of these dinosaurs approaches your ship.`
 			choice
 				`	(Go out and meet it.)`
 					goto meeting
 				`	(Leave now, before something bad happens.)`
 					depart
-				`	(Stay in the ship.)`
-			`	The dinosaur opens its mouth, and a moment later a growling sound rumbles through the air. Then you hear the words, "Could you come out of your ship to have a meeting?"`
+				`	(Stay in <ship>.)`
+			`	The dinosaur opens its mouth, and a moment later a growling sound rumbles through the air. Then you hear the words, "Could you exit your ship to consult with me?"`
 				to display
 					not "language: Coalition"
 				goto initialchoice1
 			action
 				set "knows the Jibauni have Heliarch translators"
-			`	The dinosaur opens its mouth to say something, and you hear a growling sound. Then you notice that it has a Coalition translator box around its neck. Before you can do anything the box says, "Could you come out of your ship to have a meeting?"`
+			`	The dinosaur opens its mouth to say something, and you hear a growling sound. Then you notice that it has a Coalition translator box around its neck. Before you can do anything the box says, "Could you exit your ship to consult with me?"`
 				to display
 					has "language: Coalition"
 			label initialchoice1
 			choice
-				`	(Go outside the <ship> and meet the strange beast.)`
+				`	(Go outside of the <ship> and meet the strange beast.)`
 					goto meeting
 				`	(Leave the planet.)`
 					defer
@@ -47,7 +45,7 @@ mission "Jibauni: Kanlanmo 0"
 			`	"Hello, fair stranger," it says. "Is there a way I may serve you on this delightful day?"`
 			label meetingquestions
 			choice
-				`	"Hello. My name is <first> <last>, and I come in peace."`
+				`	"My name is <first> <last>, and I come in peace."`
 					goto lastisknown
 				`	"How do you have a Coalition translator?"`
 					to display
@@ -61,7 +59,7 @@ mission "Jibauni: Kanlanmo 0"
 			label cotrans
 			action
 				set "asked about the Jibauni translators"
-			`	"I am not authorized to give you that information. So how may I serve you?"`
+			`	"I am not authorized to give you that information. Your questions?"`
 				goto meetingquestions
 			label lastisknown
 			`	"Yes. We know about you, <first>, Captain of the <ship>. How have you come here, for we did not detect any purple sparks?"`
@@ -77,7 +75,7 @@ mission "Jibauni: Kanlanmo 0"
 			label purple
 			`	"Oh, it does not matter. A side note, I believe. But, to rephrase my question, how did you enter our space?"`
 			choice
-				`	"This anomaly called a wormhole."`
+				`	"An anomaly. The type I went through is commonly called a wormhole."`
 					goto wormholeentry
 				`	"Just my fancy Jump Drive."`
 					goto jumpdriveentry
@@ -101,22 +99,21 @@ mission "Jibauni: Kanlanmo 0"
 			label knownalphas
 			`	"Great. But, let me ask you one question. Did you meet them on friendly terms? Or did you try to destroy their ships?"`
 			choice
-				`	"Why would I be friends with the ex-slavers of humanity?"`
-					goto hostilealpha
+				`	"Why would I be friends with the ex-enslavers of humanity?"`
 				`	"Oh, I and the Alphas are great friends. We even share technology!"`
 					goto friendlyalpha
 			label hostilealpha
 			`	"If you need something to do, I have something. I have been looking for transport to <planet> in the <system> system, but so far no Jibauni captain has wanted to take Kanlanmo, which happens to be my name. I will explain, once we get there."`
 			choice
-				`	"Why not? There's nothing else to do."`
+				`	"I'll take."`
 					accept
-				`	"In the sake of establishing a good relationship, sure!"`
-					accept
-				`	"Of course, but unfortunately I don't have space right now. I can come back later though."`
-			`	"Okay," says Kanlanmo. "Chances are, I still won't have found transport, so I will be waiting here next time you come."`
+				`	"Of course I'd be happy to, but unfortunately there's no space on <ship> right now. I can come back later though."`
+			action
+				set "jibauni: will take kanlanmo later"
+			`	"Good," says Kanlanmo. "Chances are, I still won't have found transport, so I will be waiting here next time you come."`
 				decline
 			label notseen
-			`	"Okay. In that case, I have another request for you. Can you take me to <planet> in the <system> system? I will mark it on your map, and explain more once we get there. Oh yes, and my name is Kanlanmo. Kanlanmo of the Jibauni."`
+			`	"Good. In that case, I have another request for you. Can you take me to <planet> in the <system> system? I will mark it on your map, and explain more once we get there. Oh yes, and my name is Kanlanmo. Kanlanmo of the Jibauni."`
 			choice
 				`	"Of course! You can get on the <ship> right away!"`
 					accept
@@ -132,17 +129,16 @@ mission "Jibauni: Kanlanmo 0"
 			`	At the end, he says, "Wow. That is a long story. And I take it you are not on their side?"`
 			choice
 				`	"No, of course not."`
-					goto alphasoffer
-				`	"Yes, I have been friendly with them for years."`
+				`	"Why, I've been friendly with them for years."`
 					goto friendlyalpha
 			label alphasoffer
-			`	"Good. Well, that just leaves one more matter to be wrapped up. Can you take me to <planet> in the <system> system? Kanlanmo of the Jibauni will be grateful."`
+			`	"Good. That just leaves one more matter to be wrapped up. Can you take me to <planet> in the <system> system? Kanlanmo of the Jibauni will be grateful."`
 			choice
 				`	"Of course!"`
 					accept
 				`	"Why?"`
 					goto whychoice
-				`	"Not yet, I have something I need to do first. But I'll be back shortly!"`
+				`	"Nope, I am not going to. I can't go around transporting unknowns on my ship, after all."`
 					decline
 			label rude
 			`	The alien announces, though to what you cannot see, "The stranger has been ignominiously impolite." It turns to you. "What do you say, 'weirdo'? Will you apologize? Or not, and see what happens?"`
@@ -150,19 +146,17 @@ mission "Jibauni: Kanlanmo 0"
 				`	"I apologize, and did not mean to insult you."`
 					goto rudeentry
 				`	"Why apologize to a bunch of dinky T-Rex's?"`
-					goto deathexplode
-			label deathexplode
-			`	The moment the last word is out of your mouth, the dinosaur lowers its hand. Suddenly, millions of miniature projectiles come hurtling through the air, shredding the <ship> and everything in it. It is sad that your life had to end this way.`
+			`	The moment the last word is out of your mouth, the dinosaur lowers its hand. Suddenly, millions of miniature projectiles come hurtling through the air, shredding the <ship> and everything in it.`
 				die
 			label deathshot
-			`	The moment your hand touches your sidearm, a whining noise is heard. A huge missile comes down with a shriek, followed by another and another. The <ship> behind you is obliterated in a moment, leaving it a pile of smoldering ash. You are taken to jail and imprisoned for life.`
+			`	The moment your hand touches your sidearm, you hear a whining noise. A huge missile comes down with a shriek, followed by another and another. The <ship> behind you is obliterated in a moment, leaving it a pile of smoldering ash. You are taken to jail and imprisoned for life.`
 				die
 			label friendlyalpha
 			action
 				"reputation: Jibauni" = -1000
 				"reputation: Jibauni (Civilian)" = -1000
 				"reputation: Jibauni (Rebel)" = -1000
-			`	"Really? In that case, we must ask you to leave our planet immediately and never come back. Goodbye, and don't let us see your face ever again!"`
+			`	"Really? In that case, we must ask you to leave our planet immediately and never come back. We will not destroy you this time; but do not let us see your face ever again or it will go the worse for you!"`
 				flee
 			label whychoice
 			action
@@ -170,15 +164,13 @@ mission "Jibauni: Kanlanmo 0"
 			`	"Because I have some business to transact, something about the Rebel Jibauni."`
 			choice
 				`	"Who are the Rebel Jibauni?"`
-					goto rebeljibauni
 				`	"Sounds good. I'll take you."`
 					accept
-				`	"No. If it has to do with another faction, I can't."`
+				`	"No. If it has to do with another faction, my services are unavailable."`
 					decline
-			label rebeljibauni
 			`	"They are, as the name might suggest, Jibauni who have split away from the real government. They are not very polite, and you definitely do not want to be on their side."`
 			choice
-				`	"Okay. I'll take you."`
+				`	"Good. I'll take you."`
 					accept
 				`	"That's what you think. Well, I'm joining the Rebels, whatever you may say."`
 					goto joinedrebels
@@ -190,51 +182,34 @@ mission "Jibauni: Kanlanmo 0"
 				"reputation: Jibauni (Civilian)" = -10
 				"reputation: Jibauni (Rebel)" = 10
 				set "jibauni: joined the rebels"
-			`	"Very well. Goodbye, and never land here again until you have made reparations."`
+			`	"Very well; this is a disappointing end to a first contact. Goodbye, and never land here again until you have made reparations."`
 				flee
-			label jibauniinsider
-			action
-				event "jibauni translated hails"
-				set "language: Jibauni"
-			`A Jibauni comes up to you when you walk out of the shipyard. "Could you take me to <planet> for <payment>? It is something to do with the Rebel Jibauni, and I need to have a meeting with someone. My name is Kanlanmo.`
-			choice
-				`	"If you would like."`
-					accept
-				`	"No, sorry. I can't right now."`
-					decline
 	on complete
 		payment 15000
 		set "First Contact: Jibauni: offered"
 		set "First Contact: Jibauni: done"
+		set "language: Jibauni"
 		set "license: Jibauni"
+		event "jibauni translated hails"
 		conversation
-			branch insider
-				has "species: Jibauni"
-			action
-				event "jibauni translated hails"
-				set "language: Jibauni"
 			`"Thank you for bringing me here so promptly," says Kanlanmo. "It was very kind of you. Now, I know you are burning with questions, but I have an urgent meeting. If you meet me in the spaceport soon, though, I can answer your questions. Also, here is a translator you can use, so you can talk to other Jibauni.`
 				to display
 					not "language: Coalition"
-				goto end
 			`"Thank you for bringing me here so promptly," says Kanlanmo. "It was very kind of you. Now, I know you are burning with questions, but I have an urgent meeting. If you meet me in the spaceport soon, though, I can answer your questions. Here is a translator you can use for ease of communication with other Jibauni. Yes, I am aware you have a box of the same make, but this is slightly different.`
 				to display
 					has "language: Coalition"
-				goto end
-			label insider
-			`"Thank you for bringing me here so promptly," says Kanlanmo. "It was very kind of you. Now, I know you are burning with questions, but I have an urgent meeting. If you meet me in the spaceport soon, though, I can answer your questions.`
-			label end
-			`	"Also, here is a license with which you can buy any of our smaller ships. Now, I really must be going." He goes off after handing you <payment>, and you sit back to wait until the time he specified.`
+			`	"Here is a license with which you can buy any of our smaller ships. Now, I really must be going." He goes off after handing you <payment>, and you sit back to wait until the time he specified.`
 
 mission "Jibauni: Kanlanmo (0 declined)"
 	name "Take Kanlanmo to <planet>"
-	description "Take Kanlanmo the Jibauni to <planet>. He will explain once you get there."
+	description "Take Kanlanmo the Jibauni to <destination>. He will explain once you get there."
 	passengers 1
 	landing
-	source Baitoon
-	destination Taltahard
+	source "Baitoon"
+	destination "Taltahard"
 	to offer
 		has "Jibauni: Kanlanmo 0: declined"
+		has "jibauni: will take kanlanmo later"
 	on offer
 		conversation
 			`Kanlanmo hails you as you land. "You couldn't take me to <planet> last time, but can you now?"`
@@ -247,40 +222,31 @@ mission "Jibauni: Kanlanmo (0 declined)"
 		payment 8000
 		set "First Contact: Jibauni: offered"
 		set "First Contact: Jibauni: done"
+		set "language: Jibauni"
 		set "license: Jibauni"
+		event "jibauni translated hails"
 		conversation
-			branch insider
-				has "species: Jibauni"
-			action
-				event "jibauni translated hails"
-				set "language: Jibauni"
 			`As you land Kanlanmo says, "I've got an urgent meeting to get to. Thank you for bringing me. The meeting will be over in about an hour, so if you want to hear about it, meet me in the spaceport then. Oh, and before I forget, here is <payment> and a translator for your pains."`
-			label insider
-			`As you land Kanlanmo says, "I've got an urgent meeting to get to. Thank you for bringing me. The meeting will be over in about an hour, so if you want to hear about it, meet me in the spaceport then. Oh, and before I forget, here is <payment> for your pains.`
 
 mission "Jibauni: Kanlanmo 1"
 	name "Kanlanmo to <planet>"
 	description "Kanlanmo is now interested in going to <planet>. Take him there for <payment>."
 	passengers 1
 	to offer
-		or
-			has "Jibauni: Kanlanmo 0: done"
-			has "Jibauni: Kanlanmo (0 declined): done"
-	source Taltahard
-	destination Kahbani
+		has "First Contact: Jibauni: done"
+	source "Taltahard"
+	destination "Kahbani"
 	on offer
 		log "Factions" "Jibauni" `The Jibauni are an alien race accessed by a strange anomaly in a system south of Men. They have been fighting a rebel faction of their own kind for the past seven hundred years.`
 		log "Factions" "Rebel Jibauni" `The Rebel Jibauni turned on their Jibauni friends, whom they call the Lazies, for some unknown reason. They have been fighting the normal Jibauni for the past seven hundred years.`
+		log "Found an alien faction called the Jibauni, who are at war with a splinter of their own species. Took one of them, by the name of Kanlanmo, from their home planet Baitoon to Taltahard."
 		set "kanlanmo in mission"
 		conversation
 			`When Kanlanmo gets back from his meeting, he finds you already in the cafe. "How is it going, <first>?" he asks. "And how many questions do you have? I have a lot of free time at present, so ask anything you want. But before you do, can I tell you about the Rebel Jibauni?"`
-			choice
-				`	"Sure!"`
-			label rebeljibauni
-			`	He begins, "They have been attacking us for about seven hundred years. In addition, the part that many of my people feel sorely, is the fact that they call us the Lazies. It all began a hundred years before then, when a leader suddenly declared independence and decided to rebel. Do you have any questions?"`
+			`	Without waiting for an answer, he begins. "They have been attacking us for about seven hundred years. In addition, the part that many of my people feel sorely, is the fact that they call us the Lazies. It all began a hundred years before then, when a leader suddenly declared independence and decided to rebel. Do you have any questions?"`
 				goto realchoice
 			label choice
-			`	After a suitable silence, Kanlanmo again asks, "Do you have any other questions?"`
+			`	After a brief silence, Kanlanmo again asks, "Do you have any other questions?"`
 			label realchoice
 			choice
 				`	"Why did you want to come here?"`
@@ -303,7 +269,7 @@ mission "Jibauni: Kanlanmo 1"
 					to display
 						not "jibauni knowledge: dinosaur skulls"
 					goto dinosaurskulls
-				`	"How can I buy more technology from you?"`
+				`	"How can I get a better license to buy more technology?"`
 					to display
 						not "jibauni knowledge: rebel fighter license"
 					goto rebellicense
@@ -314,7 +280,7 @@ mission "Jibauni: Kanlanmo 1"
 				set "jibauni come"
 			branch alreadycome
 				has "jibauni situation"
-			`	"The Rebel Jibauni have been getting an accession of strength, so I am gathering a fleet to make a push back and try to take their capital world."`
+			`	"The Rebel Jibauni have been gaining strength, so I am gathering a fleet to make a push back and attempt to conquer their capital world."`
 				goto choice
 			label alreadycome
 			`	"As I told you, the rebels have been building up strength. I am getting a fleet to attack them and perhaps conquer their capital world."`
@@ -324,7 +290,7 @@ mission "Jibauni: Kanlanmo 1"
 				set "jibauni situation"
 			branch alreadysit
 				has "jibauni come"
-			`	"The Rebels are gaining strength. They have an increased presence in Kateaza, and their ships have started to come into Huyya, an unfortunate omen."`
+			`	"The Rebels are gaining strength. They have an increased presence in Kateaza, and their ships have started to come into our capital system Huyya, where you first met me."`
 				goto choice
 			label alreadysit
 			`	"As I told you, they have more power now. Their ships have dared enter the home system of Huyya, and they have more ships in Kateaza than ever."`
@@ -337,30 +303,19 @@ mission "Jibauni: Kanlanmo 1"
 			`	"I would rather not tell you," he replies. "I believe it is a secret kept from less advanced races such as yours, and most of mine."`
 				goto choice
 			label jd
-			`	"There have been ships with Jump Drives here. The one that kidnapped our prophet was one, and there have been other strange ships around. Anyway, I know not much, so don't ask me more about that subject."`
+			`	"There have been ships with Jump Drives here. One kidnapped an Oracle, and there have been other strange ships around. Anyway, I know not much, so don't ask me more about that subject."`
 				goto choice
 			label language
 			action
 				set "jibauni language question"
-			branch heliarch
-				has "Coalition: First Contact: done"
-			`	"There have been strange ships appearing to mine asteroids. We disabled one of these, and they have little devices, which translate between us. I will give you one now."`
-				goto choice
-			label heliarch
-			`	"I take it you know about the Coalition? They have ships using Jump Drives coming in to mine asteroids. We finally managed to disable one and take a translation device, which type I am using. Here is one for your own use."`
+			`	"We know a more advanced species who has given us translator devices; I am using one of those right now. We hope to eventually learn your language and dispense with these boxes."` # The more advanced species is the Heliarch; the Jibauni check for Quarg in their region and receive translator devices for it.
 				goto choice
 			label dinosaurskulls
-			action
-				set "jibauni knowledge: dinosaur skulls"
-				log "Factions" "Jibauni" `There used to be other dinosaurs on the Jibauni home planet of Baitoon, which they used to hunt and eat. However, these dinosaurs were transplanted to Owiay, where they thrive on all the vegetation.`
 			`	"Long ago we had petty wars and duels on our home planet of Baitoon. When we discovered how to make vessels capable of spaceflight, we agreed to create our ships in the shape of the skulls of fallen friends.`
-			`	"The smaller interceptors are the memorials, representing fallen friends. The appearances of non-combat ships are inspired by the skull shapes of dinosaurs we used to hunt."`
+			`	"The warships are the memorials, representing fallen friends. The appearances of non-combat ships are inspired by the skull shapes of dinosaurs we used to hunt."`
 			choice
 				`	"And what happened to those other dinosaurs? Where are they now?"`
-					goto dinosaurskullsothers
 				`	(Remain silent.)`
-					goto choice
-			label dinosaurskullsothers
 			`	"Once we discovered spaceflight, we found that we could no longer treat the other poor dinosaur types who were vegetarians so poorly. Therefore, we moved them all to Owiay, where they thrive to this day."`
 				goto choice
 			label rebellicense
@@ -369,47 +324,49 @@ mission "Jibauni: Kanlanmo 1"
 			`	"I believe that for most of them, fighting the Rebel faction to the east will give you the license. I would recommend doing that if you want to 'curry favor', would it be called? For the more important one, I'll give you a call when you've assisted us enough."`
 				goto choice
 			label done
-			`	"Okay. Without more questions, I can ask if you will lend some help getting to <system>; <planet>, to be precise. Would you take me?"`
+			`	"Good. Without more questions, I can ask if you will lend some help getting to <system>; <planet>, to be precise. Would you take me?"`
 			choice
 				`	"Sure!"`
-					accept
-				`	"For being willing to answer questions, of course!"`
-					goto accept
 				`	"Not right now, sorry. But I'll come back soon."`
 					decline
-			label accept
-			branch manyquestions
-				and
+			`	"Thank you for being willing to take me. I'll be in your ship soon."`
+				to display
+					or
+						not "jibauni come"
+						not "jibauni purple"
+						not "jibauni situation"
+						not "jibauni language question"
+				accept
+			label manyquestions
+			`	"You asked many questions indeed. Also, let me thank you for being willing to take me. I'll be in your ship soon."`
+				to display
 					has "jibauni come"
 					has "jibauni purple"
 					has "jibauni situation"
 					has "jibauni language question"
-			`	"Thank you for being willing to take me. I'll be in your ship soon."`
 				accept
-			label manyquestions
-			`	"You asked many questions indeed. Also, let me thank you for being willing to take me. I'll be in your ship soon."`
-				accept
-	on complete
+	on accept
 		clear "jibauni come"
 		clear "jibauni purple"
 		clear "jibauni situation"
 		clear "jibauni language question"
+	on complete
 		event "kanlanmo ready to kanlil" 3
 		conversation
-			`"As you land, Kanlanmo gets off the <ship>. After about a hour, he comes back. "Okay. That meeting went will. In about thirty days, I'll need you to escort some ships from here to Baitoon. In the meantime, I will soon need transport to Kanlil. I have contacted the governor and arranged a meeting next week. You can't take me yet, though, so there I checked and there is a mission going to Baitoon. You could take and complete that mission and come back in time to take me to Kanlil. Will you do that?"`
+			`"As you land, Kanlanmo gets off the <ship>. After about a hour, he comes back. "That meeting went well. In about thirty days, I will need you to escort some ships from here to Baitoon. In the meantime, I will soon need transport to Kanlil. I have contacted the governor and arranged a meeting next week. You cannot take me yet, though, as I have other business here, so I checked the job board, where there is a cargo delivery to Baitoon. You could take and complete that mission and come back in time to take me to Kanlil. Will you do that?"`
 			choice
 				`	"Sure!"`
-					decline
+					goto end
 				`	"Maybe not the job..."`
 			`	"Your choice," he says. "As long as you can get back here and take me to Kanlil by seven days from now!"`
-				decline
+			label end
 
 event "kanlanmo ready to kanlil"
 
 mission "Jibauni: Kanlanmo cargo"
 	name "Cargo to <planet>"
 	description "Take these <cargo> to <planet> by <day> for <payment>."
-	cargo "Fancy cars" 1 15
+	cargo "luxury goods" 1 15
 	deadline 3
 	job
 	source Kahbani
@@ -570,7 +527,7 @@ mission "Jibauni: Kanlanmo 3"
 			`	"Anyway, thank you for offering to help fight the Rebels. It is very kind of you, a stranger, to fight in our internal conflicts. Now, one more thing. Can you take me back to <planet>? I need to report back to The Leaders."`
 				goto choicetake
 			label destination
-			`	"Okay," he says. "By later I assume you mean once we are back on <planet>? Will you take me there?"`
+			`	"Good," he says. "By later I assume you mean once we are back on <planet>? Will you take me there?"`
 				goto choicetake
 			label prechoicetake
 			`	"It is. But can you take me to <planet>? I probably have a report to make about this."`
@@ -629,7 +586,7 @@ mission "Jibauni: Kanlanmo 4"
 				goto ships
 			label ships
 			`	Kasim lights up. "Aboagye Shipyards makes quite a few ships," he says. "The only ones we do not make are the Yiyharsi, Saghir, and one or two other ships, which are made by the untrustwor-"`
-			`	Kanlanmo cuts in, "Okay. Did you want to hear about the results of the meeting?"`
+			`	Kanlanmo cuts in, "Did you want to hear about the results of the meeting?"`
 			choice
 				`	"Yes."`
 					goto meetingresults

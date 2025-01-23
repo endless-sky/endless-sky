@@ -109,7 +109,7 @@ ship "Ithquaya"
 	explode "medium explosion" 50
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-	description "The Ithquaya is the smallest ship the Diba produce, and the most common. In terms of power, the Ithquaya has the least of all hyperspace-capable Diba ships. However, it is the fastest."
+	description "The Ithquaya is the smallest ship the Diba produce, and the most common. In terms of combat ability, the Ithquaya has the least of all hyperspace-capable Diba ships. However, it is the fastest."
 
 ship "Ithquaya" "Ithquaya (Sprite Two)"
 	sprite "ship/ithquaya two"
@@ -177,7 +177,7 @@ ship "Arbquaya"
 	explode "medium explosion" 60
 	explode "large explosion" 30
 	"final explode" "final explosion medium"
-	description "The Arbquaya is an all-rounder. Carrying four turrets and a fighter, while still being fairly mobile, the Arbquaya is one of the best flagships of small Diba fleets."
+	description "The Arbquaya is an all-rounder. Carrying four turrets and a fighter, while still being fairly mobile, the Arbquaya is the best flagship of small Diba fleets, though for the larger Diba warfleets it is still dwarfed by the Tahquaya."
 
 ship "Arbquaya" "Arbquaya (Sprite Two)"
 	sprite "ship/arbquaya two"
@@ -260,7 +260,7 @@ ship "Tamquaya"
 	explode "medium explosion" 100
 	explode "large explosion" 35
 	"final explode" "final explosion large"
-	description "A medium Diba ship."
+	description "The Tamquaya's blueprint was the first of all Diba ships, but was thrown out in favor of the Tahquaya. But when the Alphas who control the Diba realized they needed a faster ship than the bulky Tahquaya, the Tamquaya was pulled out of the scrap heap and put into mass production."
 
 ship "Tamquaya" "Tamquaya (Sprite Two)"
 	sprite "ship/tamquaya two"
@@ -370,7 +370,7 @@ ship "Tahquaya"
 	explode "medium explosion" 100
 	explode "large explosion" 50
 	"final explode" "final explosion large"
-	description "The large Diba ship."
+	description "The Tahquaya is truly an imposing sight. At four times the size of the next largest Diba ship, this monstrosity was built for one purpose - to utterly annihilate any enemies."
 
 ship "Tahquaya" "Tahquaya (Sprite Two)"
 	sprite "ship/tahquaya two"

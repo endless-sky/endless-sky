@@ -382,7 +382,7 @@ mission "Jibauni: Ru-win 4"
 			label winter
 			`	"If this planet is busy, as you say, then what are the chances of us being seen? Dinosaurs roaming around, will they be received well? Somehow I doubt it," returns Ru-win. "Do you know a less busy planet?"`
 			choice
-				`	"Yes, good point. How about Solace? It's not that busy, and I believe it would adequetely suit your needs."`
+				`	"Yes, good point. How about Solace? It's not that busy, and I believe it would adequately suit your needs."`
 			label solace
 			`	"Great! Let's go, we're completely ready," says Ru-win. Her crew seem to share the sentiment, and tell you they will leave with you."`
 				accept
