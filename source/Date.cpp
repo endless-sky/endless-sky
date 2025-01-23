@@ -136,9 +136,9 @@ string Date::LongString() const
 	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();
 	string result;
 	if(dateFormat == Preferences::DateFormat::YMD || dateFormat == Preferences::DateFormat::MDY)
-		result += std::move(month) + " " + std::move(dayString);
+		result = month + " " + dayString;
 	else if(dateFormat == Preferences::DateFormat::DMY)
-		result += std::move(dayString) + " of " + std::move(month);
+		result = "the " + dayString + " of " + month;
 
 	return result;
 }
