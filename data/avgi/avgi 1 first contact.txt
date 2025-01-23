@@ -824,7 +824,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 	source "Feo Platform"
 	destination "Peripheria"
 	passengers 2
-	blocked "You'll need a free bunk on the <ship> for Darius and Sora."
+	blocked "You'll need two free bunks on the <ship> for Darius and Sora."
 	to offer
 		has "Avgi: Frontline Combat: done"
 	on offer
