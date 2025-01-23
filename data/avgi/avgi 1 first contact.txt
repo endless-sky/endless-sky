@@ -496,6 +496,8 @@ mission "Avgi: Defend Ensemble 2"
 	description "Help the Avgi in the Ensemble system hold off an Aberrant raid until help arrives."
 	source "Navigeo Yards"
 	destination "Weledos"
+	passengers 1
+	blocked "You'll need a free bunk on the <ship> to take Darius to Weledos."
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
@@ -821,6 +823,8 @@ mission "Avgi: Dissonance Outreach 0.5"
 	passengers 2
 	source "Feo Platform"
 	destination "Peripheria"
+	passengers 2
+	blocked "You'll need a free bunk on the <ship> for Darius and Sora."
 	to offer
 		has "Avgi: Frontline Combat: done"
 	on offer
