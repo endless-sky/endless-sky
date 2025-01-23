@@ -7534,7 +7534,7 @@ mission "Syndicate Business 1"
 	on enter "Moktar"
 		"reputation: Independent (Killable)" = -1000
 		conversation
-			`When you enter <waypoints>, your sensors detect a pirate Vanguard and a derelict emergency shuttle aimlessly drifting near the coordinates in the original message. Almost immediately, you receive a message from the pirate ship..`
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard and a derelict Emergency Shuttle aimlessly drifting near the coordinates in the original message. Almost immediately, you receive a message from the pirate ship..`
 			`	"You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
 			choice
 				`	"Uhhh... hand over who?"`
@@ -7601,7 +7601,7 @@ mission "Syndicate Business 1"
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork, so the deal won't be ready today, but feel free to come back to my kiosk here at the spaceport anytime afterwards to execute the purchase. Remember, you'll need to have at least one million credits for the bond purchase and to take care of a few other administrative tasks."`
+			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork. Feel free to come by my kiosk in the spaceport here later today if you're ready to invest, or another time if you need more time. Remember, you'll need to have at least one million credits for the bond purchase, and I'll need you to transport me to Hephaestus to take care of a few other administrative tasks."`
 				decline
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
