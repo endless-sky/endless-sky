@@ -18850,7 +18850,7 @@ system Gossamer
 		sprite star/f0
 		period 1
 	object
-		sprite "planet/smoke ring"
+		sprite "star/smoke ring"
 			scale 1.5
 			"frame rate" 0.15
 		period 914.299
