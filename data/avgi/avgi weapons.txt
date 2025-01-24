@@ -414,6 +414,7 @@ outfit "External Launch Tube"
 		"inaccuracy" 1.2
 		"velocity" 6
 		"lifetime" 15
+		"range override" 6000
 		"reload" 180
 		"firing energy" 60
 		"firing heat" 30
@@ -451,6 +452,7 @@ outfit "Medium VLS"
 		"inaccuracy" 360
 		"velocity" 3
 		"lifetime" 15
+		"range override" 3600
 		"reload" 15
 		"burst reload" 9
 		"burst count" 12
