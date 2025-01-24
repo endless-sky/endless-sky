@@ -497,7 +497,7 @@ mission "Avgi: Defend Ensemble 2"
 	source "Navigeo Yards"
 	destination "Weledos"
 	passengers 1
-	blocked "You'll need a free bunk on the <ship> to take Darius to Weledos."
+	blocked "You'll need a free bunk on the <ship> to take Darius to <planet>."
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
