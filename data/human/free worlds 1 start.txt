@@ -1306,12 +1306,12 @@ mission "FW Pirates: Attack 1"
 				`	(Go ahead and attack Greenrock, disobeying the Senate's orders regardless of the consequences.)`
 				`	(Give up on Tomek's scheme and follow the Senate's orders to make a diplomatic visit to Thule.)`
 					goto thule
-			`	You speak with some of the captains of the invasion fleet. Apparently Tomek has been busy visiting spaceports and giving rousing speeches about ending piracy and slavery once and for all in the South, hence the fleet being so large despite being unsanctioned by the Senate. That also explains the inclusion of a few merchant captains in the fleet, likely local captains who overheard the speeches and aren't interested in joining the Free Worlds to fight against the Navy, but are more than happy to make life easier for their freighters if this succeeds.`
-			`	You plan to leave after nightfall, which should hopefully mean that Alondo doesn't realize that you've left him behind until it's too late. Now all that remains is for you to travel to <system>, defeat whatever opposition you find, and land on <planet>. Or die trying.`
 			action
 				event "battle for Greenrock"
-			``
-				accept
+				set "fw: will attack greenrock"
+			`	You speak with some of the captains of the invasion fleet. Apparently Tomek has been busy visiting spaceports and giving rousing speeches about ending piracy and slavery once and for all in the South, hence the fleet being so large despite being unsanctioned by the Senate. That also explains the inclusion of a few merchant captains in the fleet, likely local captains who overheard the speeches and aren't interested in joining the Free Worlds to fight against the Navy, but are more than happy to make life easier for their freighters if this succeeds.`
+			`	You plan to leave after nightfall, which should hopefully mean that Alondo doesn't realize that you've left him behind until it's too late. Now all that remains is for you to travel to <system>, defeat whatever opposition you find, and land on <planet>. Or die trying.`
+				decline
 			label thule
 			action
 				set "Aborted battle for Greenrock"
@@ -1326,7 +1326,8 @@ mission "FW Pirates: Attack 2"
 	destination "Greenrock"
 	clearance
 	to offer
-		has "event: battle for Greenrock"
+		has "FW Pirates: Attack 1: done"
+		has "fw: will attack greenrock"
 	on fail
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
@@ -1546,7 +1547,8 @@ mission "FW Pirates: Diplomacy 1"
 		not "fw first chapter done"
 		not "FW Refinery 1: offered"
 	to fail
-		has "event: battle for Greenrock"
+		has "FW Pirates: Attack 1: done"
+		has "fw: will attack greenrock"
 	
 	npc accompany save
 		government "Free Worlds"
