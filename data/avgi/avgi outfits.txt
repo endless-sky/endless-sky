@@ -133,8 +133,8 @@ outfit "Multispectral Scanner"
 	thumbnail "outfit/multispectral scanner"
 	"mass" 6
 	"outfit space" -12
-	"tactical scan power" 144
-	"energy consumption" 0.3
+	"tactical scan power" 180
+	"energy consumption" 0.45
 	"heat generation" 1.8
 	description "The Multispectral Scanner is a veritable suite of instruments, including an active scanning phased array radar, a combined infrared/optical/ultraviolet telescope, an array of semiconductor gamma detectors, and a bundle of neutron-detecting helium-3 tubes. With this plethora of instruments, distant ships can be detected, ranged, and tracked, despite any attempts to hide."
 	description "To increase the sensitivity of the instruments, certain components are cryocooled to temperatures ranging in the low microkelvins. The heat pump system responsible for maintaining this requires a surprising amount of power, while also producing a significant amount of waste heat."
