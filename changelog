@@ -1,9 +1,9 @@
 Version 0.10.11
   * Big changes:
     * Added a new alien species in a group of systems that is difficult to navigate. (@Azure3141, @beccabunny)
-    * Systems and planets can now have display names. (@TomGoodIdea)
     * Added a new map mode that draws star graphics instead of rings. (@Azure3141)
     * Added individual volume controls for different kinds of sounds. (@tibetiroka)
+    * Systems and planets can now have display names. (@TomGoodIdea)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Anarchist2, @ImprovisedUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
@@ -21,8 +21,8 @@ Version 0.10.11
       * Removed a duplicate "outfits" node from the "Tractor Beam" Splinter variant and duplicate "launch effect" nodes from the Feldspar. (@TheGiraffe3)
       * Adjust the positions of some planets in Heutesl, Scija, and Zeinar to prevent overlaps. (@Saugia)
       * Prevented Hai tourism jobs from choosing Swiftsong (or other stations) as their destination. (@roadrunner56)
-      * Set the bribe value for the Old and New Houses Successor governments to 0 and reduced the reqquired reputation of "Tuur-Aasa-Kaska" from 15 to 1. (@Daeridanii1)
-      * Increased the number of "Star Tail Cell"s on the Venta to match the total ammunition capacity of all its installed outfits. (@Arachi-Lover)
+      * Set the bribe value for the Old and New Houses Successor governments to 0 and reduced the required reputation of "Tuur-Aasa-Kaska" from 15 to 1. (@Daeridanii1)
+      * Increased the number of Star Tail Cells on the Venta to match the total ammunition capacity of all its installed outfits. (@Arachi-Lover)
       * Removed an instance of the player character using the phrase "The Embers" before ever encountering a Remnant saying it. (@roadrunner56)
       * Removed incorrect uses of "has" in condition expressions with other comparisons, and corrected uses of "=" (assignment) where equality comparison is needed. (@petervdmeer, @TheGiraffe3)
       * The Wanderer tribute fleet on Kort Vek'kri will now be removed when it is taken over by the Unfettered. (@TheGiraffe3)
@@ -110,7 +110,7 @@ Version 0.10.11
       * Adjusted some wording in "Sheragi Archaeology: The Emerald Sword 2" to clarify the need for an additional jump drive. (@TheGiraffe3)
   * Game mechanics:
     * New mechanics:
-      * Added a "cloaked ship permeability" attribute which wllows some damage to pass through a ships shields while it is cloaked. (@Quantumshark)
+      * Added a "cloaked ship permeability" attribute which allows some damage to pass through a ships shields while it is cloaked. (@Quantumshark)
       * Added a new "getaway" personality which makes ships with full cargo holds flee, and gave it to Pirate and CCOR fleets. (@Anarchist2)
       * Special log entries can now be removed by mission triggers and conversation actions. (@TomGoodIdea)
       * Outfits that provide both hyperdrive and jump drive capabilities can now consume different amounts of fuel for each using the "hyperdrive fuel" and "jump drive fuel" attributes, and default fuel values will now be set on outfits that do not provide values. (@TomGoodIdea, @tibetiroka)
@@ -144,7 +144,7 @@ Version 0.10.11
     * Corrected a comment on Armament::Fire. (@TomGoodIdea)
     * Refactored Format::Credits to store some constants in an std::array<std::pair> instead of two std::vectors. (@warp-core)
     * Status overlay types now have meaningful names via an enum class instead of using numeric literals. (@warp-core)
-    * Added validation and warnings for condition, event, and missiong names. (@petervdmeer)
+    * Added validation and warnings for condition, event, and mission names. (@petervdmeer)
     * Moved the condition assignment interface to its own class. (@petervdmeer)
     * Moved the OpenGL shader source code files into their own subfolder in the source directory. (@tibetiroka)
     * Refactored the Dialog class to give meaningful names to some numeric literals. (@tibetiroka)
