@@ -1271,82 +1271,6 @@ mission "Avgi: Outpost Diplomats 3"
 		payment 9000 240
 
 
-phrase "avgi twilight guards relief complete"
-	word
-		"You drop off the "
-	word
-		"tired"
-		"exhausted"
-		"grateful"
-		"talkative"
-		"withdrawn"
-		"injured"
-		"wounded"
-	word
-		" Twilight Guardsmen"
-	word
-		" on <planet> to rest and recover."
-	word
-		" You collect <payment> in payment."
-
-mission "Avgi: Twilight Guard Relief 1"
-	job
-	repeat
-	name "Shore leave on <planet>"
-	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
-	source "Feo Platform"
-	destination
-		government "Avgi (Consonance)"
-	passengers 3 6 .6
-	to offer
-		random < 60
-	to accept
-		has "avgi: twilight guard transport jobs"
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		dialog phrase "avgi twilight guards relief complete"
-		payment 9000 240
-
-mission "Avgi: Twilight Guard Relief 2"
-	job
-	repeat
-	name "Shore leave on <planet>"
-	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
-	source "Feo Platform"
-	destination
-		government "Avgi (Consonance)"
-	passengers 3 6 .45
-	to offer
-		random < 60
-	to accept
-		has "avgi: twilight guard transport jobs"
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		dialog phrase "avgi twilight guards relief complete"
-		payment 9000 240
-
-mission "Avgi: Twilight Guard Relief 3"
-	job
-	repeat
-	name "Shore leave on <planet>"
-	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
-	source "Feo Platform"
-	destination
-		government "Avgi (Consonance)"
-	passengers 3 6 .3
-	to offer
-		random < 60
-	to accept
-		has "avgi: twilight guard transport jobs"
-	on visit
-		dialog phrase "generic passenger on visit"
-	on complete
-		dialog phrase "avgi twilight guards relief complete"
-		payment 9000 270
-
-
 phrase "avgi doctors complete"
 	word
 		"You drop off the "
@@ -1430,7 +1354,6 @@ mission "Avgi: Cylinder Materials 1"
 	cargo "Avgi Industrial" 30 6 .3
 	to offer
 		random < 15
-	to accept
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1451,7 +1374,6 @@ mission "Avgi: Cylinder Materials 2"
 	cargo "Avgi Industrial" 60 12 .3
 	to offer
 		random < 15
-	to accept
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1472,7 +1394,6 @@ mission "Avgi: Cylinder Materials 3"
 	cargo "Avgi Industrial" 60 18 .3
 	to offer
 		random < 15
-	to accept
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1493,7 +1414,6 @@ mission "Avgi: Bulk Cylinder Materials 1"
 	cargo "Avgi Megaconstruction" 60 6 .09
 	to offer
 		random < 9
-	to accept
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1514,7 +1434,6 @@ mission "Avgi: Bulk Cylinder Materials 2"
 	cargo "Avgi Megaconstruction" 60 6 .06
 	to offer
 		random < 9
-	to accept
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1535,7 +1454,6 @@ mission "Avgi: Bulk Cylinder Materials 3"
 	cargo "Avgi Megaconstruction" 60 6 .03
 	to offer
 		random < 6
-	to accept
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1562,9 +1480,8 @@ mission "Avgi: Special Nuclear Material Shipment 1"
 	deadline
 	cargo "Avgi Special Nuclear Material" 3 6 .3
 	to offer
-		not "Avgi: Fissiles Shortage"
 		random < 9
-	to accept
+		not "avgi: fissiles shortage"
 		has "avgi: nuclear material transport jobs"
 	npc
 		government "Avgi"
@@ -1599,9 +1516,8 @@ mission "Avgi: Special Nuclear Material Shipment 2"
 	deadline
 	cargo "Avgi Nuclear Weapons" 3 6 .3
 	to offer
-		not "Avgi: Fissiles Shortage"
 		random < 9
-	to accept
+		not "avgi: fissiles shortage"
 		has "avgi: nuclear material transport jobs"
 	npc
 		government "Avgi"
@@ -1636,9 +1552,8 @@ mission "Avgi: Special Nuclear Material Shipment 3"
 	deadline
 	cargo "Avgi Special Nuclear Material" 3 6 .3
 	to offer
-		not "Avgi: Fissiles Shortage"
 		random < 6
-	to accept
+		not "avgi: fissiles shortage"
 		has "avgi: nuclear material transport jobs"
 	npc
 		government "Avgi (Dissonance)"
@@ -1689,7 +1604,6 @@ mission "Avgi: Information Courier"
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
 		random < 30
-	to accept
 		has "avgi: infocourier jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1711,7 +1625,6 @@ mission "Avgi: Information Courier Rush"
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
 		random < 15
-	to accept
 		has "avgi: infocourier jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1738,7 +1651,6 @@ mission "Avgi: Twilight Guardsmen Transport"
 	passengers 3 3 .3
 	to offer
 		random < 60
-	to accept
 		has "avgi: twilight guard transport jobs"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1760,7 +1672,6 @@ mission "Avgi: Twilight Guard Officers Transport"
 	passengers 3 3 .3
 	to offer
 		random < 30
-	to accept
 		has "avgi: twilight guard transport jobs"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -1782,7 +1693,6 @@ mission "Avgi: Twilight Guard Flag Officers Transport"
 	passengers 1 3 .6
 	to offer
 		random < 15
-	to accept
 		has "avgi: twilight guard transport jobs"
 		has "outfit (installed): Luxury Accommodations"
 	on visit
@@ -1790,3 +1700,76 @@ mission "Avgi: Twilight Guard Flag Officers Transport"
 	on complete
 		payment 12000 600
 		dialog phrase "avgi twilight guards dropoff"
+
+
+phrase "avgi twilight guards relief complete"
+	word
+		"You drop off the "
+	word
+		"tired"
+		"exhausted"
+		"grateful"
+		"talkative"
+		"withdrawn"
+		"injured"
+		"wounded"
+	word
+		" Twilight Guardsmen"
+	word
+		" on <planet> to rest and recover."
+	word
+		" You collect <payment> in payment."
+
+mission "Avgi: Twilight Guard Relief 1"
+	job
+	repeat
+	name "Shore leave on <planet>"
+	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
+	source "Feo Platform"
+	destination
+		government "Avgi (Consonance)"
+	passengers 3 6 .6
+	to offer
+		random < 60
+		has "avgi: twilight guard transport jobs"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "avgi twilight guards relief complete"
+		payment 9000 240
+
+mission "Avgi: Twilight Guard Relief 2"
+	job
+	repeat
+	name "Shore leave on <planet>"
+	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
+	source "Feo Platform"
+	destination
+		government "Avgi (Consonance)"
+	passengers 3 6 .45
+	to offer
+		random < 60
+		has "avgi: twilight guard transport jobs"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "avgi twilight guards relief complete"
+		payment 9000 240
+
+mission "Avgi: Twilight Guard Relief 3"
+	job
+	repeat
+	name "Shore leave on <planet>"
+	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
+	source "Feo Platform"
+	destination
+		government "Avgi (Consonance)"
+	passengers 3 6 .3
+	to offer
+		random < 60
+		has "avgi: twilight guard transport jobs"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "avgi twilight guards relief complete"
+		payment 9000 270
