@@ -191,7 +191,7 @@ Version 0.10.10
       * The missions "Gegno Anticipation" and "Gegno Intervention" will no longer offer after the other has been offered. (@Saugia)
       * Added missing passengers to "Remnant: Cognizance 7" and "Remnant: Visit to Paradise 1". (@opusforlife2)
       * Text in "Remnant: Void Sprites 3" will now correctly account for if the player was given additional information in "Remnant: Void Sprites 1". (@warp-core)
-      * "Remnant: Shattered Light 3" will no longer remain active after "Remnant: Shattered Light 4" has started, preventing the presence of two Shatered Lights at the same time. (@warp-core)
+      * "Remnant: Shattered Light 3" will no longer remain active after "Remnant: Shattered Light 4" has started, preventing the presence of two Shattered Lights at the same time. (@warp-core)
       * Replaced deprecated "Korath Piercer Launchers" and "Korath Piercers" on some Korath variants with the newer "Piercer Missile Launchers" and "Piercer Missiles". (@Zitchas, @warp-core)
       * Updated landing messages for some star sprites to improve accuracy. (@tibetiroka)
       * Improved continuity in "Remnant: Keystone Research 7" by not repeating information the player already knows as though it is the first time they are learning it. (@mOctave)
@@ -340,7 +340,7 @@ Version 0.10.9
       * Weapons can now specify if their submunitions should spawn at the end of their lifetime, when the projectile is killed by an anti-missile, or both. (@TomGoodIdea)
       * Governments no longer assist player escorts if the player doesn't know their language. (@TomGoodIdea)
   * User interface:
-    * Player ship tooltips in the shpyard and outfitter now also indicate if the ship is parked. (@nickshanks)
+    * Player ship tooltips in the shipyard and outfitter now also indicate if the ship is parked. (@nickshanks)
     * Added a marker to player ship icons in the shipyard and outfitter to indicate if they are parked. (@nickshanks)
     * The "Extra fleet status messages" preference no longer affects messages about ship destructions, but does now hide messages about escorts collecting flotsam. (@nickshanks)
     * The message log will now display placeholder text when it is empty. (@TomGoodIdea)
