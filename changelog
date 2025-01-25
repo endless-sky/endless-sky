@@ -6,7 +6,7 @@ Version 0.10.11
     * Avji. (@Azure3141, whoever made the art)
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@Anarchist2, @ImprovidesUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
+      * Typo fixes. (@Anarchist2, @ImprovisedUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
       * Improved the handling of Dusk being unavailable (due to other missions already being in progress) in Remnant and Ka'het story missions. (@warp-core)
       * Made various other improvements to Remnant missions: (@warp-core)
         * Better continuity about whether Taely is met in the Tech Retrieval or Face to Maw missions first.
@@ -46,7 +46,7 @@ Version 0.10.11
       * Corrected a memory leak by deallocating an SDL pointer properly. (@TomGoodIdea)
   * Game content:
     * New content:
-      * Hai start. (@Hurleveur, @Anarchist2)
+      * Added a new unlockable start in Hai space. (@Hurleveur, @Anarchist2)
       * Created new Hai outfits that provide cargo and outfit scan opacity. (@UnorderedSigh)
       * Added a short culture conversation on Solace. (@TheGiraffe3)
       * Added a person ship for petervdmeer. (@Saugia, @petervdmeer)
@@ -79,7 +79,7 @@ Version 0.10.11
       * Modified the sprite for the "Systems Core (Tiny)" to better match the other Systems Cores. (@Anarchist2)
       * Added a collar sprite for Puny. (@Anarchist2)
     * Balance:
-      * Rebalanced and nerfed turret turn rates. (@Hecter94, @Quantumshark)
+      * Rebalanced turret turn rates. (@Hecter94, @Quantumshark)
         * Todo: details.
       * Reduced excessively high drag values on some human freighters. (@Quantumshark)
         * Behemoth: 18.2 -> 14.6
@@ -114,7 +114,7 @@ Version 0.10.11
       * Outfits that provide both hyperdrive and jump drive capabilities can now consume different amounts of fuel for each using the "hyperdrive fuel" and "jump drive fuel" attributes, and default fuel values will now be set on outfits that do not provide values. (@TomGoodIdea, @tibetiroka)
       * Added support for stellar objects to be hidden based on the player's distance to them. (@RisingLeaf, @tibetiroka)
       * Defined a new type of mission, "non-blocking", which, unlike all other missions, will not prevent "minor" missions from offering. (@warp-core)
-      * Added various new scanner attributes that work similarly to tactical scan, and individual attributes for each piece of data the tactical scanner provides. (@Zitchas, @VitalChip, @Hurleveur)
+      * Added various new scanner attributes that work similarly to tactical scan, and individual attributes for each piece of data the tactical scanner provides. (@Zitchas, @vitalchip, @Hurleveur)
       * Added a way for non-job missions to offer upon entering the job board, similarly to the spaceport, shipyard, and outfitter, in addition to the listed available jobs. (@Anarchist2)
     * Mechanics changes:
       * Ships will be brought to an absolute stop when their speed is very low. (@tibetiroka)
@@ -153,10 +153,10 @@ Version 0.10.11
     * Refactored image file name loading to improve maintainability and expanded the list of allowed jpeg file extensions. (@tibetiroka)
   * CI/CD and development environment:
     * Removed "%" characters from the names of conditions and game objects used in integration tests. (@petervdmeer)
-    * Updated the version vcpkg that is used for retrieving and building dependencies. (@TomGoodIdea)
+    * Updated the vcpkg repository version used for retrieving and building dependencies. (@TomGoodIdea)
     * Added some new editorconfig options to apply some C++ style in some editors (such as Visual Studio). (@alextd)
     * Removed some exclusions for the codespell GitHub Action that are no longer necessary. (@TheGiraffe3, @warp-core)
-    * Added editorconfig entries for .json and ,py files. (@warp-core)
+    * Added editorconfig entries for .json and .py files. (@warp-core)
     * Added a CI job that builds for and tests in an ARM MacOS environment. (@warp-core)
     * Added various new missions to the list of missions disabled when running integration tests. (@TheGiraffe3, @petervdmeer)
     * Expanded the code style checker to support some Doxygen style comments. (@petervdmeer, @tibetiroka)
