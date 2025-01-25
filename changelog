@@ -1210,7 +1210,7 @@ Version 0.10.1
     * Engine bugs:
       * Outfits with the "uninstallable" attribute are no longer sold alongside minables when using the "Sell All" button on the trading panel. (@TomGoodIdea)
       * The string truncation functions now properly handle inputs that would have previously hit an infinite loop check. (@warp-core)
-      * The location of outfit thumnails on the UI is now rounded to an integer, preventing blurry thumbnails. (@TomGoodIdea)
+      * The location of outfit thumbnails on the UI is now rounded to an integer, preventing blurry thumbnails. (@TomGoodIdea)
       * NPCs will no longer attempt to target flotsams that they cannot pick up. (@UnorderedSigh)
       * Surveillance ships now maintain the same target until they are finished scanning, preventing a bug where some surveillance ships would never succeed their scan. (@warp-core)
       * The shop will now properly report why it is that you can't "buy" an outfit from storage instead of saying that you can't place it into your cargo. (@alextd, @warp-core)

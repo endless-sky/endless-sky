@@ -16,6 +16,7 @@ government "Aberrant"
 	language "Ka'het"
 	color 0.4 0.4 0.7
 
+	"player reputation" -1000
 	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
@@ -230,8 +231,6 @@ government "Avgi (Wandering Fleet)"
 		system "Ballad"
 		system "Ensemble"
 		system "Prelude"
-		system "Interlude"
-		system "Demilude"
 
 government "Bad Trip"
 	swizzle 0
