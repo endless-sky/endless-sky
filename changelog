@@ -1,9 +1,9 @@
 Version 0.10.11
   * Big changes:
+    * Added a new alien species in a group of systems that is difficult to navigate. (@Azure3141, @beccabunny)
     * Systems and planets can now have display names. (@TomGoodIdea)
     * Added a new map mode that draws star graphics instead of rings. (@Azure3141)
     * Added individual volume controls for different kinds of sounds. (@tibetiroka)
-    * Avji. (@Azure3141, whoever made the art)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Anarchist2, @ImprovisedUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
@@ -65,7 +65,7 @@ Version 0.10.11
       * Added a "Gegno Unwelcoming" mission that appears if the player manages to land on a Gegno planet (through a previously accepted mission granting clearance) while the Gegno are hostile to them. (@Saugia)
       * Created a chain of missions about saving a person named Ildico. (@SpearDane, @bene-dictator)
       * Added a culture conversation about the Korath on Far'en Lai. (@Arachi-Lover)
-      * Hai Legacy??? idk, someone else describe it (@Hurleveur)
+      * Added a short chain of missions involving the Unfettered Hai and a new (to you) ship. (@Hurleveur)
       * Added a culture conversation for the 300th anniversary of the Republic. (@Arachi-Lover)
       * Added new entries to the Quarg poem news. (@Arachi-Lover)
     * Mission changes:
