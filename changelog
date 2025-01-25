@@ -79,9 +79,10 @@ Version 0.10.11
     * Graphics:
       * Modified the sprite for the "Systems Core (Tiny)" to better match the other Systems Cores. (@Anarchist2)
       * Added a collar sprite for Puny. (@Anarchist2)
+      * Added a unique sprite for the Giftbringer (@GefullteTaubenbrust2)
     * Balance:
-      * Rebalanced turret turn rates. (@Hecter94, @Quantumshark)
-        * Todo: details.
+      * Rebalanced turret turn rates for consistency. (@Hecter94, @Quantumshark)
+        * Broadly speaking, larger and/or longer-ranged turrets will now have more consistently lower rates of turn and vice versa.
       * Reduced excessively high drag values on some human freighters. (@Quantumshark)
         * Behemoth: 18.2 -> 14.6
         * Bulk Freighter: 21 -> 16.8
@@ -93,8 +94,15 @@ Version 0.10.11
         * Nest: 14.7 -> 9.8
         * Roost: 16.1 -> 10.7
         * Skein: 17.5 -> 11.6
-      * Made significant changes to the Carrier, and smaller changes to the Aerie. (@Saugia)
-        * Todo: details
+      * Made significant changes to the Carrier, and smaller changes to the Aerie. (@Saugia, @Quantumshark)
+        * Carrier:
+          * Gun Mounts: 8 -> 4
+          * Turret mounts: 4 -> 3
+          * Fighter bays: 4 -> 8
+          * Weapon space: 370 -> 240
+          * Tweaked the weapon loadout
+        * Aerie:
+          * Fighter bays: 2 -> 4
       * Reduced the missile strength of the Pug Seeker from 40 to 10 to make human anti-missiles less useless against it. (@Quantumshark)
     * Other:
       * Expanded the description of the Finisher Torpedo. (@Arachi-Lover)
