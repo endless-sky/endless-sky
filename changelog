@@ -3,7 +3,6 @@ Version 0.10.11
     * Added a new alien species in a group of systems that is difficult to navigate. (@Azure3141, @beccabunny)
     * Added a new map mode that draws star graphics instead of rings. (@Azure3141)
     * Added individual volume controls for different kinds of sounds. (@tibetiroka)
-    * Systems and planets can now have display names. (@TomGoodIdea)
   * Bug fixes:
     * Content bugs:
       * Typo fixes. (@Anarchist2, @ImprovisedUsername, @mOctave, @TheGiraffe3, @tibetiroka, @warp-core, @xobes, @Zitchas)
@@ -117,6 +116,7 @@ Version 0.10.11
       * Added support for stellar objects to be hidden based on the player's distance to them. (@RisingLeaf, @tibetiroka)
       * Defined a new type of mission, "non-blocking", which, unlike all other missions, will not prevent "minor" missions from offering. (@warp-core)
       * Added various new scanner attributes that work similarly to tactical scan, and individual attributes for each piece of data the tactical scanner provides. (@Zitchas, @vitalchip, @Hurleveur)
+      * Systems and planets can now have display names. (@TomGoodIdea)
       * Added a way for non-job missions to offer upon entering the job board, similarly to the spaceport, shipyard, and outfitter, in addition to the listed available jobs. (@Anarchist2)
     * Mechanics changes:
       * Ships will be brought to an absolute stop when their speed is very low. (@tibetiroka)
