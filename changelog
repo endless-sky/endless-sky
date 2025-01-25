@@ -44,6 +44,7 @@ Version 0.10.11
       * Fixed an issue where stopover/waypoint markers in the map would disappear if the destination system has too many markers. (@warp-core)
       * Fixed an issue where weapon jamming was being accumulated incorrectly. (@TomGoodIdea)
       * Corrected a memory leak by deallocating an SDL pointer properly. (@TomGoodIdea)
+      * Selecting a ship from the ship info panel will now select it as the target for orders as well as making it the flagship's target. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added a new unlockable start in Hai space. (@Hurleveur, @Anarchist2)
@@ -66,6 +67,7 @@ Version 0.10.11
       * Added a culture conversation about the Korath on Far'en Lai. (@Arachi-Lover)
       * Hai Legacy??? idk, someone else describe it (@Hurleveur)
       * Added a culture conversation for the 300th anniversary of the Republic. (@Arachi-Lover)
+      * Added new entries to the Quarg poem news. (@Arachi-Lover)
     * Mission changes:
       * "FW Southern Recon 1B" now marks the systems of interest where lone Electron Beam carrying Gunboats can be found. (@TheGiraffe3)
       * The "Tarazed neutrality" event will now apply immediately when "FW Syndicate Diplomacy 1C" is offered, instead of on take off. (@Anarchist2)
