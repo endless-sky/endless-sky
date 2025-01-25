@@ -37,7 +37,7 @@ mission "Avgi: Gossamer Sailors"
 		never
 	npc save
 		government "Indigenous Lifeform (Tree)"
-		personality timid uninterested mining
+		personality timid uninterested mining mute
 		system Gossamer
 		fleet
 			names tree
@@ -62,7 +62,7 @@ mission "Avgi: Gossamer Sailors"
 
 	npc save
 		government "Indigenous Lifeform (Tree Two)"
-		personality timid uninterested mining
+		personality timid uninterested mining mute
 		system Gossamer
 		fleet
 			names tree2
@@ -160,7 +160,7 @@ ship "Windjammer"
 		"cooling" 30
 		"overheat damage threshold" 0.66
 		"overheat damage rate" -0.06
-		"disabled recovery timer" 720
+		"disabled recovery time" 720
 		"thrust" 44
 		"turn" 720
 		"hull repair rate" 3
@@ -316,7 +316,7 @@ ship "Bluejacket"
 		"cooling" 30
 		"overheat damage threshold" 0.66
 		"overheat damage rate" -0.06
-		"disabled recovery timer" 720
+		"disabled recovery time" 720
 		"thrust" 22
 		"turn" 1440
 		"hull repair rate" 3
