@@ -3325,7 +3325,7 @@ mission "Republic Assassination [1]"
 			variant 2
 				"Scout"
 				"Aerie"
-				"Dagger" 2
+				"Dagger" 4
 			variant 2
 				"Flivver"
 				"Firebird"
@@ -3385,7 +3385,7 @@ mission "Republic Assassination [2]"
 			variant 2
 				"Flivver"
 				"Aerie"
-				"Dagger" 2
+				"Dagger" 4
 				"Frigate"
 			variant 4
 				"Scout"
@@ -3414,7 +3414,7 @@ mission "Republic Assassination [2]"
 			variant 1
 				"Star Queen"
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		dialog "The target has been destroyed. Return to <destination> for payment."
 	on complete
