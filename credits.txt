@@ -442,6 +442,7 @@ contributed to Endless Sky:
   TheGiraffe3
   TheMarksman-ES
   thenerdfreak
+  thetazero
   TheUnfetteredOne
   thewierdnut
   thomasballinger
