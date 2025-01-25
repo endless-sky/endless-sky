@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GamepadPanel.h"
 #include "Dialog.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "GamePad.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 
 #include "text/Font.h"

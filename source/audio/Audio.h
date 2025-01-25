@@ -78,8 +78,8 @@ public:
 	static void Quit();
 
 	// Temporarily pause all audio
-	static void Pause();
+	static void PauseProcessing();
 
 	// Resume Audio
-	static void Resume();
+	static void ResumeProcessing();
 };

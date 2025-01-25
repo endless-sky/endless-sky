@@ -232,7 +232,7 @@ void GamePad::Init()
 	// and all of the other configs to the parent directory of that folder.
 
 	// Read any mappings the user has created.
-	SDL_RWops* in = SDL_RWFromFile((Files::Config() + EXTRA_MAPPINGS_FILE).c_str(), "rb");
+	SDL_RWops* in = SDL_RWFromFile((Files::Config() / EXTRA_MAPPINGS_FILE).c_str(), "rb");
 
 	if(in)
 	{
@@ -241,7 +241,7 @@ void GamePad::Init()
 	}
 
 	// Read any additional config options.
-	in = SDL_RWFromFile((Files::Config() + CONFIG_FILE).c_str(), "rb");
+	in = SDL_RWFromFile((Files::Config() / CONFIG_FILE).c_str(), "rb");
 
 	if(in)
 	{
@@ -282,7 +282,7 @@ void GamePad::SaveMapping()
 {
 	if(g_gc)
 	{
-		const std::string MAPPING_FILE_PATH = Files::Config() + EXTRA_MAPPINGS_FILE;
+		const std::string MAPPING_FILE_PATH = Files::Config() / EXTRA_MAPPINGS_FILE;
 		char guidstr[64];
 		SDL_JoystickGetGUIDString(g_guid, guidstr, sizeof(guidstr));
 
@@ -327,7 +327,7 @@ void GamePad::SaveMapping()
 
 void GamePad::SaveConfig()
 {
-	const std::string CONFIG_FILE_PATH = Files::Config() + CONFIG_FILE;
+	const std::string CONFIG_FILE_PATH = Files::Config() / CONFIG_FILE;
 	std::shared_ptr<SDL_RWops> out(SDL_RWFromFile(CONFIG_FILE_PATH.c_str(), "wb"), [](SDL_RWops* p) { if(p) SDL_RWclose(p); });
 
 	if(out)

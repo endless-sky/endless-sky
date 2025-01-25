@@ -289,11 +289,11 @@ int EventFilter(void* userdata, SDL_Event* event)
 	// just keep playing while the game is in the background.
 	if (event->type == SDL_APP_DIDENTERBACKGROUND)
 	{
-		Audio::Pause();
+		Audio::PauseProcessing();
 	}
 	else if (event->type == SDL_APP_DIDENTERFOREGROUND)
 	{
-		Audio::Resume();
+		Audio::ResumeProcessing();
 	}
 
 	return 1;
@@ -361,7 +361,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				cursorTime = 0;
 
 			// Touch debugging hooks
-//#define TOUCH_DEBUGGING
+#define TOUCH_DEBUGGING
 #ifdef TOUCH_DEBUGGING
 			if(event.type == SDL_MOUSEBUTTONDOWN)
 			{

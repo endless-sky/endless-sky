@@ -37,6 +37,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef __ANDROID__
 #include "AndroidAsset.h"
+#include <sys/stat.h>
+#include <unistd.h>
 #endif
 
 using namespace std;
@@ -94,60 +96,43 @@ namespace {
 
 		// Does this bug need fixed?
 		char* pref_path = SDL_GetPrefPath(nullptr, "endless-sky");
-		std::string path = pref_path;
+		std::filesystem::path path = pref_path;
 		SDL_free(pref_path);
 		if(path.empty())
 			return;
-		if(path.back() == '/')
-			path.pop_back();
-		
-		auto EndsWith = [](const std::string& haystack, const std::string& needle)
-		{
-			if(needle.size() > haystack.size())
-				return false;
-			return haystack.substr(haystack.size() - needle.size()) == needle;
-		};
 
-		// Get the parent directory. This may not be a safe operation in the
-		// future, but for now it should be ok.
-		std::string parent = path.substr(0, path.rfind('/'));
-
-		if(Files::Exists(parent + "/preferences.txt"))
+		if(Files::Exists(path.parent_path() / "preferences.txt"))
 		{
-			SDL_Log("Fixing bug 96 by moving config files from %s to %s", parent.c_str(), path.c_str());
+			SDL_Log("Fixing bug 96 by moving config files from %s to %s", path.parent_path().c_str(), path.c_str());
 
 			// Yes, this needs fixed.
 			// files/*.txt needs moved to files/saves
-			Files::CreateFolder(path + "/saves");
-			for(const std::string& f: Files::List(path))
+			Files::CreateFolder(path.parent_path() / "saves");
+			for(const auto& f: Files::List(path))
 			{
-				if(EndsWith(f, ".txt"))
+				if(f.extension() == ".txt")
 				{
-					std::string path = f.substr(0, f.rfind('/'));
-					std::string filename = f.substr(f.rfind('/') + 1);
-
-					Files::Move(f, path + "/saves/" + filename);
+					Files::Move(f, f.parent_path() / "/saves/" / f.filename());
 				}
 			}
 
 			// *.txt  needs moved into files/
-			for(const std::string& f: Files::List(parent))
+			for(const auto& f: Files::List(path.parent_path()))
 			{
-				if(EndsWith(f, ".txt"))
+				if(f.extension() == ".txt")
 				{
-					std::string filename = f.substr(f.rfind('/') + 1);
-					Files::Move(f, path + "/" + filename);
+					Files::Move(f, path / f.filename());
 				}
 			}
 
 			// the plugin directory needs moved into files/
 			// Don't care if this fails
-			Files::Move(parent + "/plugins", path + "/plugins");
+			Files::Move(path.parent_path() / "plugins", path / "plugins");
 		}
 	}
 
 #ifdef __ANDROID__
-	void CrossFileSystemMove(const std::string& old_path, const std::string& new_path)
+	void CrossFileSystemMove(const std::filesystem::path &old_path, const std::filesystem::path &new_path)
 	{
 		// used in situations where rename would fail, due to crossing a
 		// filesystem boundary
@@ -163,7 +148,7 @@ namespace {
 			if(ent->d_name[0] == '.')
 				continue;
 
-			string name = old_path + ent->d_name;
+			auto name = old_path / ent->d_name;
 			// Don't assume that this operating system's implementation of dirent
 			// includes the t_type field; in particular, on Windows it will not.
 			struct stat buf;
@@ -171,36 +156,31 @@ namespace {
 
 			if(S_ISREG(buf.st_mode))
 			{
-				Files::Copy(name, new_path + ent->d_name);
-				SDL_Log("Moving %s to %s", name.c_str(), (new_path + ent->d_name).c_str());
+				Files::Copy(name, new_path / ent->d_name);
+				SDL_Log("Moving %s to %s", name.c_str(), (new_path / ent->d_name).c_str());
 				unlink(name.c_str());
 			}
 			else if(S_ISDIR(buf.st_mode))
 			{
-				const std::string recursive_path = new_path + ent->d_name + "/";
+				const auto recursive_path = new_path / ent->d_name;
 				std::filesystem::create_directories(recursive_path);
-				CrossFileSystemMove(name + "/", recursive_path);
+				CrossFileSystemMove(name, recursive_path);
 				rmdir(name.c_str());
 			}
 		}
 		closedir(dir);
 	}
 
-	void CheckBug_104(std::string old_path, std::string new_path)
+	void CheckBug_104(const std::filesystem::path &old_path, const std::filesystem::path &new_path)
 	{
 		// On android, we changed the default config path from internal private
 		// to external public storage. Copy any configs from the old to the new
 		// location.
 
-		if(Files::Exists(old_path + "/preferences.txt"))
+		if(Files::Exists(old_path / "preferences.txt"))
 		{
 			// Yes, this needs fixed.
 			SDL_Log("Fixing bug 104 by moving config files from %s to %s", old_path.c_str(), new_path.c_str());
-
-			if(old_path.back() != '/')
-				old_path += '/';
-			if(new_path.back() != '/')
-				new_path += '/';
 
 			CrossFileSystemMove(old_path, new_path);
 		}
@@ -241,9 +221,12 @@ void Files::Init(const char * const *argv)
 		else resources = "endless-sky-data"; // within assets directory
 #endif
 
+#ifndef __ANDROID__
 		if(Exists(resources))
 			resources = filesystem::canonical(resources);
+#endif
 
+		SDL_Log("canonical path = %s", resources.c_str());
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 		// Special case, for Linux: the resource files are not in the same place as
 		// the executable, but are under the same prefix (/usr or /usr/local).
@@ -406,9 +389,9 @@ vector<filesystem::path> Files::List(const filesystem::path &directory)
 			// way to tell if its a folder is to fail to open it. Depending
 			// on how slow this is, it may be worth checking for a file
 			// extension instead.
-			if (File(directory + entry))
+			if (File(directory / entry))
 			{
-				list.push_back(directory + entry);
+				list.push_back(directory / entry);
 			}
 		}
 #endif
@@ -442,9 +425,9 @@ vector<filesystem::path> Files::ListDirectories(const filesystem::path &director
 			// way to tell if its a folder is to fail to open it. Depending
 			// on how slow this is, it may be worth checking for a file
 			// extension instead.
-			if (!File(directory + entry))
+			if (!File(directory / entry))
 			{
-				list.push_back(directory + entry + "/");
+				list.push_back(directory / entry);
 			}
 		}
 #endif
@@ -469,26 +452,26 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 #if defined __ANDROID__
 		// try the asset system. We don't want to instantiate more than one
 		// AndroidAsset object, so don't recurse.
-		vector<string> directories;
+		vector<std::filesystem::path> directories;
 		directories.push_back(directory);
 		AndroidAsset aa;
 		while (!directories.empty())
 		{
-			directory = directories.back();
+			auto path = directories.back();
 			directories.pop_back();
-			for (std::string entry: aa.DirectoryList(directory))
+			for (std::string entry: aa.DirectoryList(path))
 			{
 				// Asset api doesn't have a stat or entry properties. the only
 				// way to tell if its a folder is to fail to open it. Depending
 				// on how slow this is, it may be worth checking for a file
 				// extension instead.
-				if (File(directory + entry))
+				if (File(path / entry))
 				{
-					list.push_back(directory + entry);
+					list.push_back(path / entry);
 				}
 				else
 				{
-					directories.push_back(directory + entry + "/");
+					directories.push_back(path / entry);
 				}
 			}
 		}
@@ -507,8 +490,12 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 
 bool Files::Exists(const filesystem::path &filePath)
 {
+	SDL_Log("Exists %s", filePath.c_str());
 	if (exists(filePath))
+	{
+		SDL_Log("... exists() returned true");
 		return true;
+	}
 #ifdef __ANDROID__
 	else
 	{
@@ -521,6 +508,12 @@ bool Files::Exists(const filesystem::path &filePath)
 		{
 			// check and see if it is a directory
 			exists = AndroidAsset().DirectoryExists(filePath);
+			if (exists) SDL_Log("... AndroidAsset().DirectoryExists() returned true");
+			else SDL_Log("... AndroidAsset().DirectoryExists() returned false");
+		}
+		else
+		{
+			 SDL_Log("... SDL_RWFromFile succeeded");
 		}
 		return exists;
 	}
@@ -569,7 +562,7 @@ string Files::Name(const filesystem::path &path)
 
 
 
-struct SDL_RWops *Files::Open(const string &path, bool write)
+struct SDL_RWops *Files::Open(const filesystem::path &path, bool write)
 {
 	return SDL_RWFromFile(path.c_str(), write ? "wb" : "rb");
 }

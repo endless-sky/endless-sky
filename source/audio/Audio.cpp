@@ -568,7 +568,7 @@ void Audio::Quit()
 
 
 // Temporarily pause all audio
-void Audio::Pause()
+void Audio::PauseProcessing()
 {
 	if (alcDevicePauseSOFT)
 		alcDevicePauseSOFT(device);
@@ -577,7 +577,7 @@ void Audio::Pause()
 
 
 // Resume Audio
-void Audio::Resume()
+void Audio::ResumeProcessing()
 {
 	if (alcDeviceResumeSOFT)
 		alcDeviceResumeSOFT(device);

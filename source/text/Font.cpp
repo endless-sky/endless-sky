@@ -92,9 +92,9 @@ void Font::Load(const filesystem::path &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;
-	if(!image.Read(imagePath + ".png") &&
-	   !image.Read(imagePath + "=.ktx") &&
-	   !image.Read(imagePath + ".ktx"))
+	if(!image.Read(std::string(imagePath) + ".png") &&
+	   !image.Read(std::string(imagePath) + "=.ktx") &&
+	   !image.Read(std::string(imagePath) + ".ktx"))
 		return;
 
 	LoadTexture(image);

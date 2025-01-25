@@ -85,8 +85,8 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/AsteroidField.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/audio/Audio.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/BankPanel.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/BatchDrawList.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/BatchShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/BatchDrawList.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/BatchShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Bitset.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/BoardingPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Body.cpp
@@ -99,6 +99,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Color.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Command.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ConditionSet.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/ConditionAssignments.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ConditionsStore.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Conversation.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ConversationPanel.cpp
@@ -114,7 +115,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/DistanceCalculationSettings.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/DistanceMap.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Distribution.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/DrawList.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/DrawList.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Dropdown.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Effect.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Engine.cpp
@@ -122,12 +123,12 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/EsUuid.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/File.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Files.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/FillShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/FillShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FireCommand.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Fleet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FleetCargo.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Flotsam.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/FogShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/FogShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FormationPattern.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FormationPositioner.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/FrameTimer.cpp
@@ -154,7 +155,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Interface.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ItemInfoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/image/KtxFile.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/LineShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/LineShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LoadPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LocationFilter.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/LogbookPanel.cpp
@@ -186,7 +187,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Outfit.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitInfoDisplay.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/OutfitterPanel.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/OutlineShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/OutlineShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Panel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Paragraphs.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Person.cpp
@@ -199,7 +200,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/PlayerInfoPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Plugins.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Point.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/PointerShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/PointerShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Politics.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Port.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Preferences.cpp
@@ -212,11 +213,13 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Random.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Rectangle.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/RenderBuffer.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/RingShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/RouteEdge.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/RoutePlan.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/RingShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/SavedGame.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Screen.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ScrollBar.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/Shader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/Shader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Ship.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipEvent.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipInfoDisplay.cpp
@@ -230,9 +233,9 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/SpaceportPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/image/Sprite.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/image/SpriteSet.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/SpriteShader.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/SpriteShader.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/ShipNameDialog.cpp
-   ${CMAKE_SOURCE_DIR}/../../../source/StarField.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/shader/StarField.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StartConditions.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StartConditionsPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/StellarObject.cpp

@@ -320,9 +320,11 @@ void GameData::LoadShaders()
 	RenderBuffer::Init();
 	
 	UiRectShader::Init(
-		*GameData::Colors().Get("medium"),
-		*GameData::Colors().Get("dim"),
-		*GameData::Colors().Get("bright")
+		// Race condition. Gamedata may not be available yet.
+		// *GameData::Colors().Get("medium"),
+		// *GameData::Colors().Get("dim"),
+		// *GameData::Colors().Get("bright")
+		Color(.5), Color(.25), Color(.75)
 	);
 
 	background.Init(16384, 4096);

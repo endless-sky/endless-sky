@@ -91,7 +91,7 @@ public class ESActivity extends SDLActivity
         intent.setType("application/zip");
         synchronized(zip_file_lock)
         {
-            unzip_path = path;
+            unzip_path = path + "/";
             zip_file_lock[0] = 0;
             startActivityForResult(Intent.createChooser(intent, prompt), UNZIP_PLUGIN);
             //startActivityForResult(intent, UNZIP_PLUGIN);
@@ -217,6 +217,8 @@ public class ESActivity extends SDLActivity
                     while ((e = zip.getNextEntry()) != null)
                     {
                         String path = unzipped_path + e.getName();
+                        Log.e("SDL-Debug", "Unzipping " + path);
+
                         if (e.getName().startsWith("data/") ||
                             e.getName().startsWith("images/") ||
                             e.getName().startsWith("sounds/"))
@@ -270,6 +272,8 @@ public class ESActivity extends SDLActivity
                             oldDir.renameTo(new File(unzip_path + zipfilename));
                         }
                     }
+                    Log.e("SDL-Debug", "Unzip finished");
+
                     status = 1; // success
                 }
                 catch(IOException e)

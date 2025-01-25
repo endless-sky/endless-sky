@@ -232,7 +232,7 @@ bool MenuPanel::Click(int x, int y, int clicks)
 		else if(clicks == 2)
 		{
 #ifdef __ANDROID__
-			std::string errors = Files::Read(Files::Config() + "errors.txt");
+			std::string errors = Files::Read(Files::Config() / "errors.txt");
 			AndroidFile f;
 			f.SaveFile("errors.txt", errors);
 #endif

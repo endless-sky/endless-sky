@@ -27,7 +27,7 @@ void Init(bool test)
 {
    g_is_test = test;
    g_prev_state = CrashState::INVALID;
-   std::string contents = Files::Read(Files::Config() + "/crash_state.txt");
+   std::string contents = Files::Read(Files::Config() / "crash_state.txt");
    if (!contents.empty())
    {
       try
@@ -44,7 +44,7 @@ void Init(bool test)
 void Set(State s)
 {
    g_cur_state = s;
-   Files::Write(Files::Config() + "/crash_state.txt", std::to_string(static_cast<int>(s)));
+   Files::Write(Files::Config() / "crash_state.txt", std::to_string(static_cast<int>(s)));
 }
 
 State Get()

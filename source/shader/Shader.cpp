@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Logger.h"
 
-#include "Files.h"
-
 #include <cctype>
 #include <cstring>
 #include <stdexcept>
@@ -148,12 +146,6 @@ GLuint Shader::Compile(const char *str, GLenum type)
 		glGetShaderInfoLog(object, SIZE, &length, message);
 		error += string(message, length);
 		Logger::LogError(error);
-		Files::Write(Files::Config() + "/shader_error.txt",
-			string("Shader type: ") + std::to_string(type) + '\n' +
-			reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION)) + '\n' +
-			cText + '\n' +
-			error
-		);
 		throw runtime_error("Shader compilation failed.");
 	}
 

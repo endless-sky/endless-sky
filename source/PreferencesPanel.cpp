@@ -255,12 +255,14 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	{
 		// Import plugin
 		AndroidFile af;
-		bool success = af.GetAndUnzipPlugin("Select plugin zipfile", Files::Config() + "/plugins/");
-
+		SDL_Log("Unzipping Plugin");
+		bool success = af.GetAndUnzipPlugin("Select plugin zipfile", Files::Config() / "plugins");
+		SDL_Log("Plugin unzipped: %s", success ? "true": "false");
 		if (success)
 		{
 			GetUI()->Push(new Dialog(GetUI(), &UI::Quit, "Plugin installed. Endless Sky needs to be restarted."));
 		}
+		SDL_Log("Dialog pushed");
 		// else error has already been reported
 	}
 	else if (page == 'p' && key == 'r')

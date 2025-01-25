@@ -12,7 +12,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include "Music.h"
 
-void Music::Init(const std::vector<std::string> &sources) {}
+void Music::Init(const std::vector<std::filesystem::path> &sources) {}
 
 Music::Music() {}
 Music::~Music() {}

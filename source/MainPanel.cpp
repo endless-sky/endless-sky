@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "CrashState.h"
 #include "RadialSelectionPanel.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
 #include "CoreStartData.h"

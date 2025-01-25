@@ -338,9 +338,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if ((key == 'x') && !selectedPilot.empty())
 	{
 		// export the pilot
-		SDL_Log("Export");
-		std::string path = Files::Saves() + selectedFile;
-		std::string data = Files::Read(path);
+		std::string data = Files::Read(Files::Saves() / selectedFile);
 
 		AndroidFile f;
 		f.SaveFile(selectedPilot + "_exported.txt", data);
@@ -348,7 +346,6 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if (key == 'i')
 	{
 		// import a pilot
-		SDL_Log("Import");
 		AndroidFile f;
 		std::string data = f.GetFile("Import save file");
 
@@ -372,12 +369,11 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			if (expected_keys.empty())
 			{
 				// looks good. lets write it.
-				std::string path = Files::Saves() + pilot_name + "~imported.txt";
+				std::filesystem::path path = Files::Saves() / (pilot_name + "~imported.txt");
 				int idx = 1;
 				while (Files::Exists(path))
 				{
-					path = Files::Saves() + pilot_name + "~imported-"
-												+ std::to_string(idx) + ".txt";
+					path = Files::Saves() / (pilot_name + "~imported-" + std::to_string(idx) + ".txt");
 					++idx;
 				}
 				Files::Write(path, data);

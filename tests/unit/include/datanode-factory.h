@@ -25,4 +25,4 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Method to convert text input into consumable DataNodes.
 std::vector<DataNode> AsDataNodes(const std::string &text);
 // Convert the text to a list of nodes, and return the first node.
-const DataNode AsDataNode(std::string text);
+const DataNode AsDataNode(const std::string &text);

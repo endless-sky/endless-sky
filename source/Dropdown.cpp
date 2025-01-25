@@ -14,11 +14,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "Dropdown.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"

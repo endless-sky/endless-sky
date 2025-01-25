@@ -23,9 +23,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GamePad.h"
 #include "GamepadCursor.h"
 #include "Gesture.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "Panel.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Screen.h"
 #include "TouchScreen.h"
 
