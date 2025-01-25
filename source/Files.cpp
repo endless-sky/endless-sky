@@ -490,10 +490,8 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 
 bool Files::Exists(const filesystem::path &filePath)
 {
-	SDL_Log("Exists %s", filePath.c_str());
 	if (exists(filePath))
 	{
-		SDL_Log("... exists() returned true");
 		return true;
 	}
 #ifdef __ANDROID__
@@ -508,12 +506,6 @@ bool Files::Exists(const filesystem::path &filePath)
 		{
 			// check and see if it is a directory
 			exists = AndroidAsset().DirectoryExists(filePath);
-			if (exists) SDL_Log("... AndroidAsset().DirectoryExists() returned true");
-			else SDL_Log("... AndroidAsset().DirectoryExists() returned false");
-		}
-		else
-		{
-			 SDL_Log("... SDL_RWFromFile succeeded");
 		}
 		return exists;
 	}
