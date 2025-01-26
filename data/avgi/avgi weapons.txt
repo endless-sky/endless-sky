@@ -51,11 +51,11 @@ outfit "Speckle Coilgun"
 		"sound" "speckle"
 		"ammo" "Speck Round"
 		"fire effect" "speckle fire"
-		"inaccuracy" 1.2
+		"inaccuracy" 0.9
 		"velocity" 30
 		"random velocity" 0.6
-		"reload" 20
-		"burst reload" 15
+		"reload" 18
+		"burst reload" 6
 		"burst count" 3
 		"cluster"
 		"firing energy" 36
@@ -82,9 +82,9 @@ outfit "Speckle Turret"
 		"sound" "speckle"
 		"ammo" "Speck Round" 2
 		"hardpoint sprite" "hardpoint/speckle turret"
-		"hardpoint offset" 6
+		"hardpoint offset" 9
 		"fire effect" "speckle fire"
-		"inaccuracy" 0.9
+		"inaccuracy" 1.2
 		"velocity" 30
 		"random velocity" 0.6
 		"reload" 18
@@ -414,6 +414,7 @@ outfit "External Launch Tube"
 		"inaccuracy" 1.2
 		"velocity" 6
 		"lifetime" 15
+		"range override" 6000
 		"reload" 180
 		"firing energy" 60
 		"firing heat" 30
@@ -451,6 +452,7 @@ outfit "Medium VLS"
 		"inaccuracy" 360
 		"velocity" 3
 		"lifetime" 15
+		"range override" 3600
 		"reload" 15
 		"burst reload" 9
 		"burst count" 12
