@@ -43,6 +43,9 @@ namespace {
 	const vector<string> DATEFMT_OPTIONS = {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"};
 	int dateFormatIndex = 0;
 
+	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
+	int notifOptionsIndex = 1;
+
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
 
@@ -56,6 +59,21 @@ namespace {
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
 	int cameraAccelerationIndex = 1;
+
+	const map<string, SoundCategory> VOLUME_SETTINGS = {
+		{"volume", SoundCategory::MASTER},
+		{"music volume", SoundCategory::MUSIC},
+		{"ui volume", SoundCategory::UI},
+		{"anti-missile volume", SoundCategory::ANTI_MISSILE},
+		{"weapon volume", SoundCategory::WEAPON},
+		{"engine volume", SoundCategory::ENGINE},
+		{"afterburner volume", SoundCategory::AFTERBURNER},
+		{"jump volume", SoundCategory::JUMP},
+		{"explosion volume", SoundCategory::EXPLOSION},
+		{"scan volume", SoundCategory::SCAN},
+		{"environment volume", SoundCategory::ENVIRONMENT},
+		{"alert volume", SoundCategory::ALERT}
+	};
 
 	class OverlaySetting {
 	public:
@@ -173,15 +191,15 @@ void Preferences::Load()
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
 
-	DataFile prefs(Files::Config() + "preferences.txt");
+	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
 	{
 		if(node.Token(0) == "window size" && node.Size() >= 3)
 			Screen::SetRaw(node.Value(1), node.Value(2));
 		else if(node.Token(0) == "zoom" && node.Size() >= 2)
 			Screen::SetZoom(node.Value(1));
-		else if(node.Token(0) == "volume" && node.Size() >= 2)
-			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
+		else if(VOLUME_SETTINGS.contains(node.Token(0)) && node.Size() >= 2)
+			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(node.Token(0)));
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
@@ -222,6 +240,8 @@ void Preferences::Load()
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(node.Token(0) == "alt-mouse turning")
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
+		else if(node.Token(0) == "notification settings")
+			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -261,9 +281,10 @@ void Preferences::Load()
 
 void Preferences::Save()
 {
-	DataWriter out(Files::Config() + "preferences.txt");
+	DataWriter out(Files::Config() / "preferences.txt");
 
-	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
+	for(const auto &[name, category] : VOLUME_SETTINGS)
+		out.Write(name, Audio::Volume(category) / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
@@ -273,6 +294,7 @@ void Preferences::Save()
 	out.Write("vsync", vsyncIndex);
 	out.Write("camera acceleration", cameraAccelerationIndex);
 	out.Write("date format", dateFormatIndex);
+	out.Write("notification settings", notifOptionsIndex);
 	out.Write("Show all status overlays", statusOverlaySettings[OverlayType::ALL].ToInt());
 	out.Write("Show flagship overlay", statusOverlaySettings[OverlayType::FLAGSHIP].ToInt());
 	out.Write("Show escort overlays", statusOverlaySettings[OverlayType::ESCORT].ToInt());
@@ -343,6 +365,30 @@ Preferences::DateFormat Preferences::GetDateFormat()
 const string &Preferences::DateFormatSetting()
 {
 	return DATEFMT_OPTIONS[dateFormatIndex];
+}
+
+
+
+void Preferences::ToggleNotificationSetting()
+{
+	if(notifOptionsIndex == static_cast<int>(NOTIF_OPTIONS.size() - 1))
+		notifOptionsIndex = 0;
+	else
+		++notifOptionsIndex;
+}
+
+
+
+Preferences::NotificationSetting Preferences::GetNotificationSetting()
+{
+	return static_cast<NotificationSetting>(notifOptionsIndex);
+}
+
+
+
+const string &Preferences::NotificationSettingString()
+{
+	return NOTIF_OPTIONS[notifOptionsIndex];
 }
 
 
