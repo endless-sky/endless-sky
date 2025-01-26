@@ -174,7 +174,7 @@ void Audio::Init(const vector<filesystem::path> &sources)
 
 
 // Get all the sound files in the game data and all plugins.
-void Audio::LoadSounds(const vector<string> &sources)
+void Audio::LoadSounds(const vector<filesystem::path> &sources)
 {
 	for(const auto &source : sources)
 	{
