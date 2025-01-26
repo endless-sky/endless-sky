@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageSet.h"
 
+#include "../text/Format.h"
 #include "../GameData.h"
 #include "ImageBuffer.h"
 #include "../Logger.h"
@@ -30,28 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Determine whether the given path is to an @2x image.
-	bool Is2x(const filesystem::path &path)
-	{
-		return path.stem().string().ends_with("@2x");
-	}
-
-	// Determine whether the given path is to a swizzle mask.
-	bool IsSwizzleMask(const filesystem::path &path, bool is2x)
-	{
-		string s = path.stem().string();
-		if(is2x)
-			s.resize(s.length() - 3);
-
-		return s.ends_with("@sw");
-	}
-
-	// Check if the given character is a valid blending mode.
-	bool IsBlend(char c)
-	{
-		return (c == '-' || c == '~' || c == '^' || c == '+' || c == '=');
-	}
-
 	// Determine whether the given path or name is to a sprite for which a
 	// collision mask ought to be generated.
 	bool IsMasked(const filesystem::path &path)
@@ -60,51 +39,6 @@ namespace {
 			return false;
 		filesystem::path directory = *path.begin();
 		return directory == "ship" || directory == "asteroid";
-	}
-
-	// Get the character index where the sprite name in the given path ends.
-	size_t NameEnd(const filesystem::path &path)
-	{
-		// The path always ends in a three-letter extension, ".png" or ".jpg".
-		// In addition, 3 more characters may be taken up by an @2x label or a mask label.
-		bool is2x = Is2x(path);
-		const string name = path.string();
-		size_t end = name.size() - path.extension().string().size() - (is2x ? 3 : 0) - (IsSwizzleMask(path, is2x) ? 3 : 0);
-		// This should never happen, but just in case:
-		if(!end)
-			return 0;
-
-		// Skip any numbers at the end of the name.
-		size_t pos = end;
-		while(--pos)
-			if(name[pos] < '0' || name[pos] > '9')
-				break;
-
-		// If there is not a blending mode specifier before the numbers, they
-		// are part of the sprite name, not a frame index.
-		return (IsBlend(name[pos]) ? pos : end);
-	}
-
-	// Get the frame index from the given path.
-	size_t FrameIndex(const filesystem::path &path)
-	{
-		// Get the character index where the "name" portion of the path ends.
-		// A path's format is always: <name>(<blend><frame>)(@sw)(@2x).(png|jpg)
-		size_t i = NameEnd(path);
-
-		// If the name contains a frame index, it must be separated from the name
-		// by a character indicating the additive blending mode.
-		const string name = path.string();
-		if(!IsBlend(name[i]))
-			return 0;
-
-		size_t frame = 0;
-		// The path ends in an extension, so there's no need to check for going off
-		// the end of the string in this loop; we're guaranteed to hit a non-digit.
-		for(++i; name[i] >= '0' && name[i] <= '9'; ++i)
-			frame = (frame * 10) + (name[i] - '0');
-
-		return frame;
 	}
 
 	// Add consecutive frames from the given map to the given vector. Issue warnings for missing or mislabeled frames.
@@ -151,18 +85,7 @@ namespace {
 bool ImageSet::IsImage(const filesystem::path &path)
 {
 	filesystem::path ext = path.extension();
-	if (ext == ".ktx" || ext == ".KTX") 
-		return true;
-	return (ext == ".png" || ext == ".jpg" || ext == ".PNG" || ext == ".JPG");
-}
-
-
-
-// Get the base name for the given path. The path should be relative to one
-// of the source image directories, not a full filesystem path.
-string ImageSet::Name(const filesystem::path &path)
-{
-	return path.generic_string().substr(0, NameEnd(path));
+	return ImageBuffer::ImageExtensions().contains(Format::LowerCase(ext.string()));
 }
 
 
@@ -203,13 +126,11 @@ bool ImageSet::IsEmpty() const
 
 // Add a single image to this set. Assume the name of the image has already
 // been checked to make sure it belongs in this set.
-void ImageSet::Add(filesystem::path path)
+void ImageSet::Add(ImageFileData data)
 {
 	// Determine which frame of the sprite this image will be.
-	bool is2x = Is2x(path);
-	size_t frame = FrameIndex(path);
 	// Store the requested path.
-	framePaths[is2x + (2 * IsSwizzleMask(path, is2x))][frame].swap(path);
+	framePaths[data.is2x + (2 * data.isSwizzleMask)][data.frameNumber].swap(data.path);
 }
 
 

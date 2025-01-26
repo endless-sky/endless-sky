@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 #include "text/alignment.hpp"
 #include "Angle.h"
+#include "audio/Audio.h"
+#include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
 #include "shader/FillShader.h"
@@ -38,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapShipyardPanel.h"
 #include "Mission.h"
 #include "MissionPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "shader/PointerShader.h"
@@ -71,6 +74,7 @@ namespace {
 	const std::string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const unsigned MAX_MISSION_POINTERS_DRAWN = 12;
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
+	const int MAX_STARS = 5;
 
 	// Class to track per system how many pointers are drawn and still
 	// need to be drawn.
@@ -250,14 +254,16 @@ const float MapPanel::LINK_OFFSET = 7.f;
 
 
 
-MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
+MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, bool fromMission)
 	: player(player), distance(player),
 	playerSystem(*player.GetSystem()),
 	selectedSystem(special ? special : player.GetSystem()),
 	specialSystem(special),
 	playerJumpDistance(System::DEFAULT_NEIGHBOR_DISTANCE),
-	commodity(commodity)
+	commodity(commodity),
+	fromMission(fromMission)
 {
+	Audio::Pause();
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
@@ -291,6 +297,13 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special)
 		playerJumpDistance = systemRange ? systemRange : playerRange;
 
 	CenterOnSystem(selectedSystem, true);
+}
+
+
+
+MapPanel::~MapPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -421,7 +434,7 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 
 				if(HasMultipleLandablePlanets(*hoverSystem) || t.outfits.size() > 1)
 					for(const auto &it : t.outfits)
-						tooltip += "\n - " + to_string(it.second) + " on " + it.first->Name();
+						tooltip += "\n - " + to_string(it.second) + " on " + it.first->DisplayName();
 			}
 
 			hoverText.Wrap(tooltip);
@@ -479,7 +492,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 		const System &system = *jump[i];
 		const Government *gov = system.GetGovernment();
 		Point from = system.Position() - center + drawPos;
-		const string &name = player.KnowsName(system) ? system.Name() : UNKNOWN_SYSTEM;
+		const string &name = player.KnowsName(system) ? system.DisplayName() : UNKNOWN_SYSTEM;
 		font.Draw(name, from + Point(OUTER, -.5 * font.Height()), lineColor);
 
 		// Draw the origin and destination systems, since they
@@ -606,7 +619,12 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
-		GetUI()->Push(new MapDetailPanel(*this));
+		GetUI()->Push(new MapDetailPanel(*this, false));
+	}
+	else if(key == 't' && buttonCondition != "is stars")
+	{
+		GetUI()->Pop(this);
+		GetUI()->Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'n')
 	{
@@ -620,12 +638,12 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	}
 	else if(key == SDLK_PLUS || key == SDLK_KP_PLUS || key == SDLK_EQUALS)
 	{
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min<int>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1));
 		mapZoom = pow(1.5, player.MapZoom());
 	}
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 	{
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max<int>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1));
 		mapZoom = pow(1.5, player.MapZoom());
 	}
 	else
@@ -711,9 +729,9 @@ bool MapPanel::Scroll(double dx, double dy)
 	Point anchor = mouse / Zoom() - center;
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(dy > 0.)
-		player.SetMapZoom(min(static_cast<int>(mapInterface->GetValue("max zoom")), player.MapZoom() + 1));
+		player.SetMapZoom(min<int>(mapInterface->GetValue("max zoom"), player.MapZoom() + 1));
 	else if(dy < 0.)
-		player.SetMapZoom(max(static_cast<int>(mapInterface->GetValue("min zoom")), player.MapZoom() - 1));
+		player.SetMapZoom(max<int>(mapInterface->GetValue("min zoom"), player.MapZoom() - 1));
 	mapZoom = pow(1.5, player.MapZoom());
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
@@ -945,7 +963,11 @@ void MapPanel::Select(const System *system)
 {
 	if(!system)
 		return;
+
 	selectedSystem = system;
+	// Update the cache to apply any visual changes needed after the selected system was changed.
+	UpdateCache();
+
 	vector<const System *> &plan = player.TravelPlan();
 	Ship *flagship = player.Flagship();
 	if(!flagship || (!plan.empty() && system == plan.front()))
@@ -1011,6 +1033,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = &system;
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -1030,6 +1053,7 @@ void MapPanel::Find(const string &name)
 			{
 				bestIndex = index;
 				selectedSystem = planet.GetSystem();
+				UpdateCache();
 				CenterOnSystem(selectedSystem);
 				if(!index)
 				{
@@ -1264,10 +1288,14 @@ void MapPanel::UpdateCache()
 			}
 		}
 
+		static const vector<const Sprite *> unmappedSystem = {SpriteSet::Get("map/unexplored-star")};
+
+		const bool canViewSystem = player.CanView(system);
 		nodes.emplace_back(system.Position(), color,
-			player.KnowsName(system) ? system.Name() : "",
-			(&system == &playerSystem) ? closeNameColor : farNameColor,
-			player.CanView(system) ? system.GetGovernment() : nullptr);
+			player.KnowsName(system) ? system.DisplayName() : "",
+			(&system == &playerSystem || &system == selectedSystem) ? closeNameColor : farNameColor,
+			canViewSystem ? system.GetGovernment() : nullptr,
+			canViewSystem ? system.GetMapIcons() : unmappedSystem);
 	}
 
 	// Now, update the cache of the links.
@@ -1395,7 +1423,7 @@ void MapPanel::DrawSelectedSystem()
 	if(!player.KnowsName(*selectedSystem))
 		text = "Selected system: unexplored system";
 	else
-		text = "Selected system: " + selectedSystem->Name();
+		text = "Selected system: " + selectedSystem->DisplayName();
 
 	int jumps = 0;
 	const vector<const System *> &plan = player.TravelPlan();
@@ -1553,11 +1581,38 @@ void MapPanel::DrawSystems()
 		closeGovernments.clear();
 
 	// Draw the circles for the systems.
+	BatchDrawList starBatch;
 	double zoom = Zoom();
 	for(const Node &node : nodes)
 	{
 		Point pos = zoom * (node.position + center);
-		RingShader::Draw(pos, OUTER, INNER, node.color);
+		if(commodity != SHOW_STARS)
+			RingShader::Draw(pos, OUTER, INNER, node.color);
+		else
+		{
+			// Ensures every multiple-star system has a characteristic, deterministic rotation.
+			Angle starAngle = 0;
+			Angle angularSpacing = 0;
+			Point starOffset = Point(0, 0);
+
+			const int starsToDraw = min<int>(node.mapIcons.size(), MAX_STARS);
+			if(starsToDraw > 1)
+			{
+				starAngle = node.name.length() + node.position.Length();
+				angularSpacing = 360. / starsToDraw;
+				starOffset = starsToDraw * Point(2., 2.);
+			}
+
+			// Draw the star icons.
+			for(int i = 0; i < starsToDraw; ++i)
+			{
+				starAngle += angularSpacing;
+				const Sprite *star = node.mapIcons[i];
+				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
+					Point(0, 0), 0, cbrt(zoom) * 0.6, 0.8);
+				starBatch.Add(starBody);
+			}
+		}
 
 		if(commodity == SHOW_GOVERNMENT && node.government && node.government->GetName() != "Uninhabited")
 		{
@@ -1572,6 +1627,8 @@ void MapPanel::DrawSystems()
 				it->second = min(it->second, distance);
 		}
 	}
+	starBatch.Draw();
+	starBatch.Clear();
 }
 
 

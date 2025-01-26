@@ -46,6 +46,8 @@ public:
 		const Mission *caller = nullptr, const System *system = nullptr,
 		const std::shared_ptr<Ship> &ship = nullptr, bool useTransactions = false);
 
+	virtual ~ConversationPanel() override;
+
 template <class T>
 	void SetCallback(T *t, void (T::*fun)(int));
 	void SetCallback(std::function<void(int)> fun);

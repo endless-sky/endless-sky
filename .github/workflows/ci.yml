@@ -1,0 +1,324 @@
+name: CI
+
+on:
+  push:
+    # Run for pushes to master, e.g. a PR was merged ...
+    branches:
+      - master
+    # ... and only when we've possibly changed how the game will function.
+    paths:
+    - 'source/**'
+    - 'data/**'
+    - 'tests/**'
+    - '.github/workflows/**'
+    - '.github/path-filters.yml'
+    - 'steam/**'
+    - 'CMakeLists.txt'
+    - 'CMakePresets.json'
+    - Doxyfile
+    - keys.txt
+  pull_request:
+    # Run for any push to any pull request, if it modifies source code or game text.
+    types: [opened, synchronize]
+    paths:
+    - 'source/**'
+    - 'data/**'
+    - 'tests/**'
+    - '.github/workflows/**'
+    - '.github/path-filters.yml'
+    - 'steam/**'
+    - 'CMakeLists.txt'
+    - 'CMakePresets.json'
+    - Doxyfile
+    - keys.txt
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  # Figure out what changed, so other jobs in this file can conditionally execute.
+  changed:
+    uses: ./.github/workflows/compute-changes.yml
+
+
+  build_ubuntu:
+    name: Ubuntu
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: ubuntu-${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [22.04, 24.04]
+        opengl: [GL, GLES]
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Install development dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2 libltdl-dev
+    - name: Disable VM sound card
+      run: |
+        sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /home/runner/.cache/sccache
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-sccache-refs/heads/master
+    - name: Setup sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        buildPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+    - name: Run Benchmarks
+      run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
+
+
+  build_steam:
+    name: Steam
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' || needs.changed.outputs.steam == 'true' }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.cache/sccache
+          key: ${{ runner.os }}-steam-ci-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-steam-ci-sccache-refs/heads/master
+      - name: Setup sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
+      - name: Build Endless Sky
+        run: |
+          cd steam
+          docker compose run steam-x64
+      - name: Test Endless Sky
+        run: |
+          cd steam
+          docker compose run test-steam-x64
+
+
+  build_windows:
+    name: Windows
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: windows-2025
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
+    - name: Setup sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'mingw-ci'
+        buildPreset: 'mingw-ci'
+        testPreset: 'mingw-ci'
+    - name: Run Benchmarks
+      run: ctest --preset mingw-ci-benchmark
+    - name: Upload binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: binary-windows
+        path: ./build/ci/Endless Sky.exe
+    - name: Upload DLLs
+      uses: actions/upload-artifact@v4
+      with:
+        name: windows-dlls
+        path: ./build/ci/*.dll
+
+
+  build_windows_clang:
+    name: Windows Clang
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: windows-2025
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+        key: ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-clang-${{ runner.arch }}-ci-sccache-refs/heads/master
+    - name: Setup sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'clang-cl-ci'
+        buildPreset: 'clang-cl-ci'
+        testPreset: 'clang-cl-ci'
+    - name: Run Benchmarks
+      run: ctest --preset clang-cl-ci-benchmark
+
+
+  build_macos:
+    name: MacOS
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: macos-13
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
+    - name: Setup sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
+    - name: Install pkg-config
+      run: type -P pkg-config || brew install pkg-config
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'macos-ci'
+        buildPreset: 'macos-ci'
+        testPreset: 'macos-ci'
+    - name: Run Benchmarks
+      run: ctest --preset macos-ci-benchmark
+
+
+  build_macos-arm:
+    name: MacOS-ARM
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: macos-14
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: "Endless Sky ARM CI Test"
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
+    - name: Setup sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
+    - name: Install pkg-config
+      run: type -P pkg-config || brew install pkg-config
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'macos-arm-ci'
+        buildPreset: 'macos-arm-ci'
+        testPreset: 'macos-arm-ci'
+    - name: Run Benchmarks
+      run: ctest --preset macos-arm-ci-benchmark
+
+
+  build_documentation_doxygen:
+    name: Documentation Doxygen
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.doxygen_config == 'true' || needs.changed.outputs.ci_config == 'true'}}
+    runs-on: ubuntu-24.04
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Install development dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends doxygen graphviz clang
+    - name: Run Doxygen
+      run: doxygen
+
+
+  test-parse:
+    needs: [changed, build_windows]
+    name: Data Files
+    if: ${{ (needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.ci_config == 'true') && always() }}
+    runs-on: windows-2025
+    env:
+      CONTINUOUS: EndlessSky-win64-continuous.zip
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    # If no code changes occurred then we can download the latest continuous.
+    - name: Download latest continuous
+      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' && needs.changed.outputs.ci_config != 'true' }}
+      run: gh release download -R ${{ github.repository }} continuous -p ${{ env.CONTINUOUS }}
+    - name: Extract and prepare continuous
+      if: ${{ needs.changed.outputs.game_code != 'true' && needs.changed.outputs.cmake_files != 'true' && needs.changed.outputs.ci_config != 'true' }}
+      run: |
+        Expand-Archive ${{ env.CONTINUOUS }} -DestinationPath continuous -Force
+        COPY '.\continuous\Endless Sky.exe' .
+        COPY '.\continuous\*.dll' .
+    # Otherwise download the binary from CI.
+    - name: Download game binary from CI
+      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+      uses: actions/download-artifact@v4
+      with:
+        name: binary-windows
+    - name: Download DLLs from CI
+      if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+      uses: actions/download-artifact@v4
+      with:
+        name: windows-dlls
+    - name: Parse Datafiles
+      run: "'./Endless Sky.exe' -p"
+      shell: bash
+    - name: Parse Integration Test Data
+      run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
+      shell: bash

@@ -16,12 +16,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ImageBuffer.h"
 
 #include "../File.h"
+#include "ImageFileData.h"
 #include "../Logger.h"
 
 #include <jpeglib.h>
 #include <png.h>
 
 #include <cstdio>
+#include <set>
 #include <stdexcept>
 #include <vector>
 
@@ -35,10 +37,28 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
+	const set<string> PNG_EXTENSIONS{".png"};
+	const set<string> JPG_EXTENSIONS{".jpg", ".jpeg", ".jpe"};
+	const set<string> KTX_EXTENSIONS{".ktx"};
+	const set<string> IMAGE_EXTENSIONS = []()
+	{
+		set<string> extensions(PNG_EXTENSIONS);
+		extensions.insert(JPG_EXTENSIONS.begin(), JPG_EXTENSIONS.end());
+		extensions.insert(KTX_EXTENSIONS.begin(), KTX_EXTENSIONS.end());
+		return extensions;
+	}();
+
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadKTX(const filesystem::path &path, ImageBuffer &buffer);
-	void Premultiply(ImageBuffer &buffer, int frame, int additive);
+	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode additive);
+}
+
+
+
+const set<string> &ImageBuffer::ImageExtensions()
+{
+	return IMAGE_EXTENSIONS;
 }
 
 
@@ -220,45 +240,30 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-bool ImageBuffer::Read(const filesystem::path &path, int frame)
+bool ImageBuffer::Read(const ImageFileData &data, int frame)
 {
-	// First, make sure this is a JPG or PNG file.
-	filesystem::path extension = path.extension();
-	bool isPNG = (extension == ".png" || extension == ".PNG");
-	bool isJPG = (extension == ".jpg" || extension == ".JPG");
-	bool isKTX = (extension == ".ktx" || extension == ".KTX");
+	// First, make sure this is a supported file.
+	bool isPNG = PNG_EXTENSIONS.contains(data.extension);
+	bool isJPG = JPG_EXTENSIONS.contains(data.extension);
+	bool isKTX = KTX_EXTENSIONS.contains(data.extension);
+
 	if(!isPNG && !isJPG && !isKTX)
 		return false;
 
-	if(isPNG && !ReadPNG(path, *this, frame))
+	if(isPNG && !ReadPNG(data.path, *this, frame))
 		return false;
-	if(isJPG && !ReadJPG(path, *this, frame))
+	if(isJPG && !ReadJPG(data.path, *this, frame))
 		return false;
-	if (isKTX && !ReadKTX(path, *this))
+	if (isKTX && !ReadKTX(data.path, *this))
 		return false;
 
 	if (isKTX) // KTX files are always premultiplied
 		return true;
 
-	// Check if the sprite uses additive blending. Start by getting the index of
-	// the last character before the frame number (if one is specified).
-	string name = path.stem().string();
-	size_t pos = name.length();
-	if(pos > 3 && name.ends_with("@2x"))
-		pos -= 3;
-	while(--pos)
-		if(name[pos] < '0' || name[pos] > '9')
-			break;
-	if(name[pos] == '~')
-		Logger::LogError("Warning: file '" + path.string()
-				+ "'uses legacy marker for half-additive blending mode; please use '^' instead of '~'.");
-	// Special case: if the image is already in premultiplied alpha format,
-	// there is no need to apply premultiplication here.
-	if(name[pos] != '=')
+	if(data.blendingMode != BlendingMode::PREMULTIPLIED_ALPHA)
 	{
-		int additive = (name[pos] == '+') ? 2 : (name[pos] == '~' || name[pos] == '^') ? 1 : 0;
-		if(isPNG || (isJPG && additive == 2))
-			Premultiply(*this, frame, additive);
+		if(isPNG || (isJPG && data.blendingMode == BlendingMode::ADDITIVE))
+			Premultiply(*this, frame, data.blendingMode);
 	}
 	return true;
 }
@@ -467,7 +472,7 @@ namespace {
 
 
 
-	void Premultiply(ImageBuffer &buffer, int frame, int additive)
+	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode blend)
 	{
 		assert(buffer.CompressedFormat() == 0); // can't do this for pre-compressed textures
 		for(int y = 0; y < buffer.Height(); ++y)
@@ -484,9 +489,9 @@ namespace {
 				uint64_t blue = (((value & 0xFF) * alpha) / 255) & 0xFF;
 
 				value = red | green | blue;
-				if(additive == 1)
+				if(blend == BlendingMode::HALF_ADDITIVE)
 					alpha >>= 2;
-				if(additive != 2)
+				if(blend != BlendingMode::ADDITIVE)
 					value |= (alpha << 24);
 
 				*it = static_cast<uint32_t>(value);

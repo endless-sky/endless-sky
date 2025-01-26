@@ -95,7 +95,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
-	name = node.Token(1);
+	trueName = node.Token(1);
 	isDefined = true;
 
 	// For the following keys, if this data node defines a new value for that
@@ -133,7 +133,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		if(removeAll || overwriteAll)
 		{
 			// Clear the data of the given type.
-			if(key == "government")
+			if(key == "display name")
+				displayName.clear();
+			else if(key == "government")
 				government = nullptr;
 			else if(key == "music")
 				music.clear();
@@ -364,6 +366,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 			continue;
 		}
+		else if(key == "display name" && hasValue)
+			displayName = value;
 		else if(key == "pos" && child.Size() >= 3)
 		{
 			position.Set(child.Value(valueIndex), child.Value(valueIndex + 1));
@@ -474,6 +478,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
 		belts.emplace_back(1, 1500.);
+
+	if(displayName.empty())
+		displayName = trueName;
 }
 
 
@@ -517,10 +524,14 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
 	solarWind = 0.;
+	mapIcons.clear();
 	for(const StellarObject &object : objects)
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
+		const Sprite *starIcon = GameData::StarIcon(object.GetSprite());
+		if(starIcon)
+			mapIcons.emplace_back(starIcon);
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
@@ -567,17 +578,26 @@ bool System::IsValid() const
 
 
 
-// Get this system's name.
-const string &System::Name() const
+const string &System::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
 
-void System::SetName(const std::string &name)
+void System::SetName(const string &name)
 {
-	this->name = name;
+	trueName = name;
+	if(displayName.empty())
+		displayName = trueName;
+}
+
+
+
+// Get this system's display name.
+const string &System::DisplayName() const
+{
+	return displayName;
 }
 
 
@@ -595,6 +615,14 @@ const Government *System::GetGovernment() const
 {
 	static const Government empty;
 	return government ? government : &empty;
+}
+
+
+
+// Get this system's map icons.
+const vector<const Sprite *> &System::GetMapIcons() const
+{
+	return mapIcons;
 }
 
 
@@ -1080,7 +1108,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	{
 		const System &other = it.second;
 		// Skip systems that have no name or that are inaccessible.
-		if(it.first.empty() || other.Name().empty() || other.Inaccessible())
+		if(it.first.empty() || other.TrueName().empty() || other.Inaccessible())
 			continue;
 
 		if(&other != this && other.Position().Distance(position) <= distance)

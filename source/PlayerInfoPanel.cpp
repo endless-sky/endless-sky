@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -105,7 +106,7 @@ namespace {
 			return false;
 		else if(rhs->GetSystem() == nullptr)
 			return true;
-		return lhs->GetSystem()->Name() < rhs->GetSystem()->Name();
+		return lhs->GetSystem()->DisplayName() < rhs->GetSystem()->DisplayName();
 	}
 
 	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -181,7 +182,15 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
 	: player(player), panelState(panelState)
 {
+	Audio::Pause();
 	SetInterruptible(false);
+}
+
+
+
+PlayerInfoPanel::~PlayerInfoPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -792,7 +801,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
-		table.Draw(system ? (player.KnowsName(*system) ? system->Name() : "???") : "");
+		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
 		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
 		table.Draw(shields);

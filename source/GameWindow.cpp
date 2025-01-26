@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Files.h"
 #include "image/ImageBuffer.h"
+#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -305,7 +306,7 @@ void GameWindow::SetIcon()
 
 	// Load the icon file.
 	ImageBuffer buffer;
-	if(!buffer.Read(Files::Resources() / "icon.png"))
+	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
 		return;
 	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
 		return;

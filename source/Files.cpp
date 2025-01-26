@@ -208,11 +208,11 @@ void Files::Init(const char * const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
-		char *str = SDL_GetBasePath();
-		if(str)
+		char *basePath = SDL_GetBasePath();
+		if(basePath)
 		{
-			resources = str;
-			SDL_free(str);
+			resources = basePath;
+			SDL_free(basePath);
 		}
 		// This is ok on android. we will read the resources from the assets
 #if not defined __ANDROID__
@@ -527,6 +527,12 @@ time_t Files::Timestamp(const filesystem::path &filePath)
 
 void Files::Copy(const filesystem::path &from, const filesystem::path &to)
 {
+#ifdef _WIN32
+	// Due to a mingw bug, the overwrite_existing flag is not respected on Windows.
+	// TODO: remove once it is fixed.
+	if(Exists(to))
+		Delete(to);
+#endif
 	copy(from, to, filesystem::copy_options::overwrite_existing);
 }
 

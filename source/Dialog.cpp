@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -146,6 +147,13 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 	system(system), player(&player)
 {
 	Init(text, truncate, true, true);
+}
+
+
+
+Dialog::~Dialog()
+{
+	Audio::Resume();
 }
 
 
@@ -324,7 +332,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		}
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI()->Push(new MapDetailPanel(*player, system));
+		GetUI()->Push(new MapDetailPanel(*player, system, true));
 	else
 		return false;
 
@@ -372,6 +380,7 @@ bool Dialog::Click(int x, int y, int clicks)
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
+	Audio::Pause();
 	SetInterruptible(isMission);
 
 	this->isMission = isMission;

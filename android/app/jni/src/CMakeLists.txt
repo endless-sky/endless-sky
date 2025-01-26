@@ -149,6 +149,7 @@ add_library(main SHARED
    ${CMAKE_SOURCE_DIR}/../../../source/Hazard.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/HiringPanel.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/image/ImageBuffer.cpp
+   ${CMAKE_SOURCE_DIR}/../../../source/image/ImageFileData.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/image/ImageSet.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/InfoPanelState.cpp
    ${CMAKE_SOURCE_DIR}/../../../source/Information.cpp

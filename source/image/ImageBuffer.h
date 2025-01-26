@@ -16,8 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <cstdint>
-#include <filesystem>
+#include <set>
 #include <string>
+
+class ImageFileData;
 
 
 
@@ -28,6 +30,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // on the file name, so that content creators do not have to save the images in
 // some sort of special format.
 class ImageBuffer {
+public:
+	// The supported image extensions, in lower case and with a leading period.
+	static const std::set<std::string> &ImageExtensions();
+
+
 public:
 	// When initializing a buffer, we know the number of frames but not the size
 	// of them. So, it must be Allocate()d later.
@@ -66,7 +73,7 @@ public:
 
 	// Read a single frame. Return false if an error is encountered - either the
 	// image is the wrong size, or it is not a supported image format.
-	bool Read(const std::filesystem::path &path, int frame = 0);
+	bool Read(const ImageFileData &data, int frame = 0);
 
 
 	uint32_t CompressedFormat() const { return compressed_format; }

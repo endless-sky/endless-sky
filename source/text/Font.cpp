@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Color.h"
 #include "DisplayText.h"
 #include "../image/ImageBuffer.h"
+#include "../image/ImageFileData.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
@@ -92,9 +93,9 @@ void Font::Load(const filesystem::path &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;
-	if(!image.Read(std::string(imagePath) + ".png") &&
-	   !image.Read(std::string(imagePath) + "=.ktx") &&
-	   !image.Read(std::string(imagePath) + ".ktx"))
+	if(!image.Read(ImageFileData(std::string(imagePath) + ".png")) &&
+		!image.Read(ImageFileData(std::string(imagePath) + "=.ktx")) &&
+		!image.Read(ImageFileData(std::string(imagePath) + ".ktx")))
 		return;
 
 	LoadTexture(image);

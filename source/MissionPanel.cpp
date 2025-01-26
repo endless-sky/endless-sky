@@ -262,9 +262,39 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+
+	// If a job or mission that launches the player triggers,
+	// immediately close the map.
+	if(player.ShouldLaunch())
+		GetUI()->Pop(this);
+
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
+
+	if(GetUI()->IsTop(this) && !fromMission)
+	{
+		Mission *mission = player.MissionToOffer(Mission::JOB_BOARD);
+		if(mission)
+		{
+			// Prevent dragging while a mission is offering, to make sure
+			// the screen fully pans to the destination system.
+			canDrag = false;
+
+			// Only highlight and pan to the destination if the mission is visible.
+			// Otherwise, pan to the player's current system.
+			specialSystem = mission->IsVisible() ? mission->Destination()->GetSystem() : nullptr;
+			CenterOnSystem(specialSystem ? specialSystem : player.GetSystem());
+
+			mission->Do(Mission::OFFER, player, GetUI());
+		}
+		else
+		{
+			canDrag = true;
+			specialSystem = nullptr;
+			player.HandleBlockedMissions(Mission::JOB_BOARD, GetUI());
+		}
+	}
 }
 
 
@@ -632,7 +662,7 @@ bool MissionPanel::Drag(double dx, double dy)
 			min(accepted.size() * 20. + 160. - Screen::Height(),
 				acceptedScroll - dy));
 	}
-	else
+	else if(canDrag)
 		MapPanel::Drag(dx, dy);
 
 	return true;
@@ -779,11 +809,13 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
+		UpdateCache();
 		ScrollMissionList(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
+		UpdateCache();
 		ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
 
