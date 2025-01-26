@@ -695,7 +695,7 @@ mission "Avgi: Scout Rescue"
 		has "avgi: warship intro"
 	on offer
 		conversation
-			`You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
+			`You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, displaying a map of Avgi space with some colored markings you can't read.`
 			`	"Explanation. We send scouting teams and patrols into the space controlled by the Aberrant regularly. Every expedition beyond Evanescence is essentially behind enemy lines, cut off from resupply and in many cases communication. As you might imagine, such adventures are fraught with danger, and it is unfortunately not unheard of for a scout ship to be lost."`
 			choice
 				`	"Yes, I've found that exploration is often dangerous."`
@@ -759,7 +759,7 @@ mission "Avgi: Frontline Combat"
 		has "avgi: rescue intro"
 	on offer
 		conversation
-			`You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, projecting a map of Avgi space in the air with some colored markings you can't read.`
+			`You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, displaying a map of Avgi space with some colored markings you can't read.`
 			`	"Explanation. The Aberrant are relentless, but as a rule push only lightly into the Tangled Shroud. The recent incursion excepted, of course. But Arche holds the first lines of defense, with the Feo Platform and its cannons." He points to a trinary system just outside the Shroud.`
 			`	"But, if we are to reclaim our homes, we cannot merely fight on the defensive. Thus, the front lines of this war are as of late drawn in the Quintessence system, and the triangle of systems to its north, which we are still in the process of clearing."`
 			choice

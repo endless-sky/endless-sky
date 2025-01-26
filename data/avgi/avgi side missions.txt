@@ -551,7 +551,7 @@ mission "Avgi: Cylinder Construction"
 			label whenupdate
 			action
 				set "avgi: asked about whenupdate"
-			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Napigeo Yards instead of here."`
+			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Navigeo Yards instead of here."`
 			choice
 				`	"Well, it makes sense that fighting the Aberrant would take priority."`
 				`	"Is building this station as important as fighting the Aberrant?"`
