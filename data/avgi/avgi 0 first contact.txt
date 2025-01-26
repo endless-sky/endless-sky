@@ -236,6 +236,10 @@ mission "Avgi: Humans From the Deep"
 	destination "Aktina Cylinder"
 	to offer
 		has "Avgi: First Contact: done"
+	on enter "Concerto"
+		conversation
+			`After a confusing journey through the winding hyperlanes, you finally arrive at the final system the alien marked on your map. You notice that your flight computer has failed to record the locations of most of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This region appears unaffected however, and your computer is able to chart its position as usual.`
+			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek-looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
 	on offer
 		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let you purchase civilian technology.`
 		log "Factions" "Avgi" `The Avgi are a young race of aliens resembling large, colorful dragonflies, which inhabit the Twilight Nebula in this part of the galaxy. After an overwhelming invasion by ships they call the Aberrant, most of their surviving spacecraft fled south through a maze-like region called the Tangled Shroud.`
@@ -243,35 +247,38 @@ mission "Avgi: Humans From the Deep"
 		log "People" "Asime" `Asime is one of the three First Speakers of the Consonance Assembly. While reserved, Asime appears to be defensive about the decisions made by the Consonance in response to the Aberrant incursion.`
 		log "People" "Galano" `Galano is one of the three First Speakers of the Consonance Assembly. He appears to be an elder statesman, with much pride for what the Avgi have accomplished.`
 		log "People" "Prasinos" `Prasinos is one of the three First Speakers of the Consonance Assembly. She seems to take a negative view on the Avgi history of division and fractiousness.`
+		set "avgi: met lait"
 		set "language: Avgi"
 		conversation
-			`After a confusing journey through the winding hyperlanes, you finally arrive at the final system the alien marked on your map. You notice that your flight computer has failed to record the locations of most of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This region appears unaffected however, and your computer is able to chart its position.`
-			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek-looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
 			`	Your companion speeds ahead, neatly pulling into one of the bays on the outer levels. When you attempt to follow, the fightercraft zip in front of you, herding you towards a different bay closer to the middle decks.`
 			`	The docking bay is full of activity, and you finally get your first glimpse at this new species up close. They appear to be something analogous to an Earth dragonfly, or maybe closer to a damselfly - a meter and a half long on average, and with six limbs and wings. A group of them quickly close in around your ship as you finally land in a clear space, moving precisely. These aliens have clearly been expecting you.`
 			`	None of the aliens look to be armed, but are arrayed around your ship in a clearly defensive circular pattern, both on foot and flitting about in the air. Some of them look to be wearing some kind of body armor, but they don't seem to be carrying any obvious weapons. As you step out of the <ship>, noticing the lighter gravity, a small group quickly moves forward to meet you.`
 			choice
+				`	"Hello, I'm Captain <first> <last>."`
+					goto next
 				`	"I come in peace."`
 					goto next
 				`	"Take me to your leader."`
 					goto next
-				`	"Do you speak my language?"`
-					goto next
 				`	(Shoot them.)`
+
 			`	You draw your sidearm and begin firing at the group of aliens, who scatter in all directions. Your first shot glances off alien body armor, but your second burns a hole in a wing, sending the alien tumbling. You have little time to celebrate your short-lived victory, however, before a flash of unfathomably bright blue-green light turns you into a rapidly expanding cloud of hot vapor.`
 				die
 
 			label next
-			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic, vaguely masculine voice.`
-			`	"Invitation. Welcome, visiting human. I am Kitrino of the Avgi, the one with whom you spoke earlier. I would show you to our leaders to discuss your arrival to our space."`
-			`	"I'm Captain <first> <last>," you say.`
+			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens, with a cream-colored body, seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic, vaguely masculine voice.`
+			`	"Invitation. Welcome, Captain <first> <last>. I am Lait of the Avgi, the one with whom you spoke earlier. I would show you to our leaders to discuss your arrival to our space."`
 			choice
+				`	(Follow the aliens).`
+					goto follow
 				`	"How can you speak my language?"`
 				`	"Who are those hostile aliens back toward the north?"`
 				`	"Will you tell me about your civilization?"`
 
 			`	"Reassurance. All of your questions will be answered in time, Captain <last>. Please, now follow."`
-			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corralled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. After exiting through a downward sloping ramp set in the floor, you then follow a long passageway that seems to perpetually curve upwards. You're reminded of older space stations, ones that relied on spin gravity before gravity plating became commonplace.`
+
+			label follow
+			`	You are led through the hangar, an entourage of guards separating you from curious onlookers - pilots, mechanics, or soldiers, you aren't sure. It's a bit awkward to be corralled by a group of people whose height barely comes past your knees, but you allow yourself to be escorted nonetheless. After exiting through a downward sloping ramp set in the floor, you then follow a long passageway that seems to perpetually curve upwards. You're reminded of older space stations, ones that relied on spin gravity before gravity plating became commonplace. Surprisingly, despite the short stature of your hosts, the halls and doorways seem to be more than capable of accomodating your height, a feature that makes more sense after you see multiple instances of the aliens making their way in the air, rather than on foot.`
 			`	Eventually, after a number of turns and descents, you pass through an open archway into some kind of conference room. Large and circular with a high, rounded ceiling, it is occupied by a trio of multicolored dragonfly aliens, each perched on a metal ring running around a circular table.`
 			choice
 				`	"Hello."`
@@ -891,12 +898,13 @@ mission "Avgi: Twilight Escape 1"
 		log "People" "Leon Shez" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections and could be close to uncovering a way back to human space.`
 		conversation
 			`Outpost Tekis is a large station built into an asteroid several kilometers across, with networks of tubes and habitats crisscrossing the surface. You pull the <ship> into a cramped hangar dug into the rock and disembark with Hriso, who immediately sets out for a prearranged meeting place. You notice many of the Avgi in the outpost stare at you, Darius, and Sora, likely their first glimpse of a human.`
-			`	You enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
+			`	Together, you enter a large, round conference room with walls of polished rock. Waiting there are a handful of Avgi of various ages, who immediately begin conversing with Hriso in their own language.`
+			`	One of them looks at you and says, "Displeasure. So, do you expect a show of support by the aliens to move us? We were under the impression you were here to reconsider your positions, not calcify them."`
 			choice
-				`	"What are they saying?"`
+				`	"What are they talking about?"`
 				`	(Remain silent.)`
 
-			`	Hriso turns to you. "Consideration. I suppose you might be curious about what we are discussing. The local mining guild here says they cannot sustain their operations with the low price on iron mandated by the Consonance, as we are not buying enough rarer metals like titanium to make up for it."`
+			`	"Rebuke. Captain <last> is not here on 'my' side, or any other, merely as an observer curious of our ways." Hriso turns to you. "Consideration. I suppose you might be curious about what we are discussing. The local mining guild here says they cannot sustain their operations with the low price on iron mandated by the Consonance, as we are not buying enough rarer metals like titanium to make up for it."`
 			`	"That's stupid," says Sora. "Without cheap steel we wouldn't be able to keep expanding Peripheria or build the Aktina Cylinder."`
 			`	Hriso doesn't translate that, returning to conversing with the miners. Sora pulls out a translator of her own, listening intently to the conversation, but Darius pulls you aside. "I had a talk with a few people on the way here, and they say there's someone who knows more about the first days after the Incursion. Come on."`
 			`	"What did they say?" you ask.`

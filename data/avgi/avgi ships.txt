@@ -1801,7 +1801,7 @@ ship "Difraktos"
 	explode "large explosion" 12
 	"final explode" "final explosion large"
 
-	description "The Difraktos-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between. Its powerful torch drive is used to push its heavily armored hull, rather than for speed, giving the Difraktos good survivability even in close-range brawls."
+	description "The Difraktos-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between. Its powerful torch drive is used to push a heavily armored hull, rather than relying on speed, giving the Difraktos good survivability even in close-range brawls."
 
 
 ship "Difraktos" "Difraktos (Missile)"

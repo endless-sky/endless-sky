@@ -216,7 +216,7 @@ outfit "Concentrating Solar Array"
 	"solar collection" 2.4
 	"solar heat" 1.02
 	description "This large solar generator collects sunlight, turning it into usable energy. Thin mirrors concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving its effectiveness."
-	description "While much more efficient than a single cell alone, the Solar Array also produces a disproportionate amount of heat."
+	description "While much more efficient than a single cell alone, the Concentrating Solar Array also produces a disproportionate amount of heat."
 
 
 outfit "Photoelectric Lamina"
