@@ -51,7 +51,7 @@ using namespace std;
 
 
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
-	: player(player), callback(callback),
+	: LandedOfferPanel(player, Mission::LANDING), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet"))
 {
@@ -59,6 +59,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
+	otherPanel = bank;
 
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
@@ -100,20 +101,8 @@ void PlanetPanel::Step()
 		TakeOffIfReady();
 		return;
 	}
-
-	// Handle missions for locations that aren't handled separately,
-	// treating them all as the landing location. This is mainly to
-	// handle the intro mission in the event the player moves away
-	// from the landing before buying a ship.
-	const Panel *activePanel = selectedPanel ? selectedPanel : this;
-	if(activePanel != spaceport.get() && GetUI()->IsTop(activePanel))
-	{
-		Mission *mission = player.MissionToOffer(Mission::LANDING);
-		if(mission)
-			mission->Do(Mission::OFFER, player, GetUI());
-		else
-			player.HandleBlockedMissions(Mission::LANDING, GetUI());
-	}
+	LandedOfferPanel::Step();
+	spaceportWasTop = GetUI()->WillBeTop(spaceport.get());
 }
 
 
@@ -169,6 +158,12 @@ void PlanetPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	// If a conversation or dialog just closed, there is a one frame delay before the
+	// spaceport is able to react to that, and offer more missions. Allowing the planet
+	// panel to change screens will lead to UI glitches, or missions being missed.
+	// So, we give the spaceport a one frame reprieve in which to react.
+	if(GetUI()->WillBeTop(spaceport.get()) && !spaceportWasTop)
+		return false;
 	if(player.IsDead())
 		return true;
 
