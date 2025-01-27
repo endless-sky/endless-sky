@@ -3556,7 +3556,8 @@ Point AI::TargetAim(const Ship &ship, const Body &target)
 
 
 // Aim the given ship's turrets.
-void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic, const optional<Point> &targetOverride) const
+void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
+		const optional<Point> &targetOverride) const
 {
 	// (Position, Velocity) pairs of the targets.
 	auto targets = vector<pair<Point, Point>>();
@@ -4551,7 +4552,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	}
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
-	auto targetOverride = Preferences::Has("Aim turrets with mouse") ^ activeCommands.Has(Command::AIM_TURRET_HOLD) ? optional(mousePosition) : nullopt;
+	auto targetOverride = Preferences::Has("Aim turrets with mouse") ^ activeCommands.Has(Command::AIM_TURRET_HOLD)
+		? optional(mousePosition) : nullopt;
 	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"), targetOverride);
 	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
