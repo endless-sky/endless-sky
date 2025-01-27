@@ -30,6 +30,12 @@ RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttract
 
 
 
+RaidFleet::RaidFleet()
+{
+}
+
+
+
 void RaidFleet::Load(const DataNode &node, const Fleet *fleet)
 {
 	this->fleet = fleet;
