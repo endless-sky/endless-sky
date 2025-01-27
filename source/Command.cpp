@@ -53,6 +53,7 @@ const Command Command::LEFT(ONE << 2, "Turn left");
 const Command Command::RIGHT(ONE << 3, "Turn right");
 const Command Command::BACK(ONE << 4, "Reverse");
 const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
+const Command Command::AIM_TURRET_HOLD(ONE << 37, "Turret aim override (hold)");
 const Command Command::PRIMARY(ONE << 6, "Fire primary weapon");
 const Command Command::TURRET_TRACKING(ONE << 7, "Toggle turret tracking");
 const Command Command::SECONDARY(ONE << 8, "Fire secondary weapon");
@@ -272,6 +273,7 @@ void Command::Load(const DataNode &node)
 			{"scan", Command::SCAN},
 			{"jump", Command::JUMP},
 			{"mouseturninghold", Command::MOUSE_TURNING_HOLD},
+			{"aimturrethold", Command::AIM_TURRET_HOLD},
 			{"fleet jump", Command::FLEET_JUMP},
 			{"target", Command::TARGET},
 			{"nearest", Command::NEAREST},

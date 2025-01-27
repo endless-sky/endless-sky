@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <list>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <vector>
 
@@ -151,7 +152,7 @@ private:
 	static Point TargetAim(const Ship &ship);
 	static Point TargetAim(const Ship &ship, const Body &target);
 	// Aim the given ship's turrets.
-	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false) const;
+	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false, const std::optional<Point> &targetOverride = std::nullopt) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
 	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
@@ -228,7 +229,7 @@ private:
 
 	// Command applied by the player's "autopilot."
 	Command autoPilot;
-	// Position of the cursor, for when the player is using mouse turning.
+	// Position of the cursor, for when the player is using mouse turning or manual turret aiming.
 	Point mousePosition;
 	// General firing command for ships. This is a data member to avoid
 	// thrashing the heap, since we can reuse the storage for

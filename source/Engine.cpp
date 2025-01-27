@@ -2053,7 +2053,7 @@ void Engine::HandleKeyboardInputs()
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
+		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD | Command::AIM_TURRET_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -2229,6 +2229,15 @@ void Engine::HandleMouseClicks()
 // Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
+	bool rightMouseButtonHeld = false;
+	int mousePosX;
+	int mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+	double relX = mousePosX - Screen::RawWidth() / 2.0;
+	double relY = mousePosY - Screen::RawHeight() / 2.0;
+	ai.SetMousePosition(Point(relX, relY) / zoom);
+	
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
 
@@ -2239,14 +2248,6 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	if(!isMouseTurningEnabled)
 		return;
 	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
-	bool rightMouseButtonHeld = false;
-	int mousePosX;
-	int mousePosY;
-	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
-		rightMouseButtonHeld = true;
-	double relX = mousePosX - Screen::RawWidth() / 2.0;
-	double relY = mousePosY - Screen::RawHeight() / 2.0;
-	ai.SetMousePosition(Point(relX, relY));
 
 	// Activate firing command.
 	if(isMouseTurningEnabled && rightMouseButtonHeld)
