@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Hazard.h"
 #include "Point.h"
+#include "Raiders.h"
 #include "RandomEvent.h"
 #include "Set.h"
 #include "StellarObject.h"
