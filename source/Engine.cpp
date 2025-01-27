@@ -872,73 +872,65 @@ void Engine::Step(bool isActive)
 
 			targetVector = target->Position() - center;
 
-			// Finds the range from the center of the flagship to the center of the target
 			double targetRange = target->Position().Distance(flagship->Position());
-			// Finds the range of the scan collections (tactical and strategic)
+			// Finds the range of the scan collections.
 			double tacticalRange = 100. * sqrt(flagship->Attributes().Get("tactical scan power"));
-			double strategicScanRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
-			// Finds the range of the individual information types
-			double crewScanRange = 100. * sqrt(flagship->Attributes().Get("crew scan power"));
-			double energyScanRange = 100. * sqrt(flagship->Attributes().Get("energy scan power"));
-			double fuelScanRange = 100. * sqrt(flagship->Attributes().Get("fuel scan power"));
-			double maneuverScanRange = 100. * sqrt(flagship->Attributes().Get("maneuver scan power"));
-			double accelerationScanRange = 100. * sqrt(flagship->Attributes().Get("acceleration scan power"));
-			double velocityScanRange = 100. * sqrt(flagship->Attributes().Get("velocity scan power"));
-			double thermalScanRange = 100. * sqrt(flagship->Attributes().Get("thermal scan power"));
-			double weaponScanRange = 100. * sqrt(flagship->Attributes().Get("weapon scan power"));
-			// The range display currently does not care about the distance,
-			// it is either present or not; but treating it the same makes it
-			// easy for people to change this if desired.
-			double rangeFinder = 100. * sqrt(flagship->Attributes().Get("range finder power"));
+			double strategicRange = 100. * sqrt(flagship->Attributes().Get("strategic scan power"));
+			// Finds the range of the individual information types.
+			double crewScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("crew scan power"));
+			double fuelScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("fuel scan power"));
+			double energyScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("energy scan power"));
+			double thermalScanRange = tacticalRange + 100. * sqrt(flagship->Attributes().Get("thermal scan power"));
+			double maneuverScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("maneuver scan power"));
+			double accelerationScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("acceleration scan power"));
+			double velocityScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("velocity scan power"));
+			double weaponScanRange = strategicRange + 100. * sqrt(flagship->Attributes().Get("weapon scan power"));
+			bool rangeFinder = flagship->Attributes().Get("range finder power") > 0.;
+
 			// Range information. If the player has any range finding,
 			// then calculate the range and store it. If they do not
 			// have strategic or weapon range info, use normal display.
 			// If they do, then use strategic range display.
-			if(tacticalRange || strategicScanRange || rangeFinder)
+			if(tacticalRange || strategicRange || rangeFinder)
+			{
 				info.SetString("target range", to_string(static_cast<int>(round(targetRange))));
-			if((tacticalRange || rangeFinder) && !strategicScanRange)
-				info.SetCondition("range display");
-			else if(strategicScanRange)
-				info.SetCondition("strategic range display");
+				if(strategicRange)
+					info.SetCondition("strategic range display");
+				else
+					info.SetCondition("range display");
+			}
 			// Actual information requires a scrutable target
-			// that is within the relevant scanner range.
+			// that is within the relevant scanner range, unless the target
+			// is player owned, in which case information is available regardless
+			// of range and scrutability.
 			bool scrutable = !target->Attributes().Get("inscrutable");
-			if((targetRange <= (tacticalRange + crewScanRange) && scrutable)
-				|| ((tacticalRange || crewScanRange) && target->IsYours()))
+			if((targetRange <= crewScanRange && scrutable) || (crewScanRange && target->IsYours()))
 			{
 				info.SetString("target crew", to_string(target->Crew()));
-				if(targetRange <= (strategicScanRange + accelerationScanRange)
-					|| targetRange <= (strategicScanRange + velocityScanRange)
-					|| target->IsYours())
-				{
+				if(accelerationScanRange || velocityScanRange)
 					info.SetCondition("mobility crew display");
-				}
 				else
 					info.SetCondition("target crew display");
 			}
-			if((targetRange <= (tacticalRange + energyScanRange) && scrutable)
-				|| ((tacticalRange || energyScanRange) && target->IsYours()))
+			if((targetRange <= energyScanRange && scrutable) || (energyScanRange && target->IsYours()))
 			{
 				info.SetCondition("target energy display");
 				int energy = round(target->Energy() * target->Attributes().Get("energy capacity"));
 				info.SetString("target energy", to_string(energy));
 			}
-			if((targetRange <= (tacticalRange + fuelScanRange) && scrutable)
-				|| ((tacticalRange || fuelScanRange) && target->IsYours()))
+			if((targetRange <= fuelScanRange && scrutable) || (fuelScanRange && target->IsYours()))
 			{
 				info.SetCondition("target fuel display");
 				int fuel = round(target->Fuel() * target->Attributes().Get("fuel capacity"));
 				info.SetString("target fuel", to_string(fuel));
 			}
-			if((targetRange <= (tacticalRange + thermalScanRange) && scrutable)
-				|| ((tacticalRange || thermalScanRange) && target->IsYours()))
+			if((targetRange <= thermalScanRange && scrutable) || (thermalScanRange && target->IsYours()))
 			{
 				info.SetCondition("target thermal display");
 				int heat = round(100. * target->Heat());
 				info.SetString("target heat", to_string(heat) + "%");
 			}
-			if((targetRange <= (strategicScanRange + weaponScanRange) && scrutable)
-				|| ((strategicScanRange || weaponScanRange) && target->IsYours()))
+			if((targetRange <= weaponScanRange && scrutable) || (weaponScanRange && target->IsYours()))
 			{
 				info.SetCondition("target weapon range display");
 				int turretRange = round(target->GetAICache().TurretRange());
@@ -946,37 +938,29 @@ void Engine::Step(bool isActive)
 				int gunRange = round(target->GetAICache().GunRange());
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
-			// This calculates the turn speed and selects the display position.
-			if((targetRange <= (tacticalRange + crewScanRange)
-				&& targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
-				|| ((targetRange <= (strategicScanRange + accelerationScanRange) && scrutable))
-				|| ((strategicScanRange || maneuverScanRange || velocityScanRange || accelerationScanRange)
-					&& (tacticalRange || crewScanRange) && target->IsYours()))
+			const bool mobilityScan = maneuverScanRange || velocityScanRange || accelerationScanRange;
+			if((targetRange <= crewScanRange && targetRange <= maneuverScanRange && scrutable)
+				|| (targetRange <= accelerationScanRange && scrutable)
+				|| (mobilityScan && crewScanRange && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
-			else if((targetRange >= (tacticalRange + crewScanRange)
-				&& targetRange <= (strategicScanRange + maneuverScanRange) && scrutable)
-				|| ((strategicScanRange || maneuverScanRange) && target->IsYours()
-					&& !tacticalRange && !crewScanRange))
+			else if((targetRange >= crewScanRange && targetRange <= maneuverScanRange && scrutable)
+				|| (maneuverScanRange && target->IsYours() && !tacticalRange && !crewScanRange))
 			{
 				info.SetCondition("turn while not combined");
 				int turnRate = round(60 * target->TrueTurnRate());
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
-			// This calculates the current speed
-			if((targetRange <= (strategicScanRange + accelerationScanRange) && scrutable)
-				|| ((tacticalRange || accelerationScanRange) && target->IsYours()))
+			if((targetRange <= accelerationScanRange && scrutable) || (accelerationScanRange && target->IsYours()))
 			{
 				info.SetCondition("target velocity display");
 				int presentSpeed = round(60 * target->CurrentSpeed());
 				info.SetString("target velocity", to_string(presentSpeed) + " ");
 			}
-			// This calculates the current maximum acceleration
-			if((targetRange <= (strategicScanRange + velocityScanRange) && scrutable)
-				|| ((tacticalRange || velocityScanRange) && target->IsYours()))
+			if((targetRange <= velocityScanRange && scrutable) || (velocityScanRange && target->IsYours()))
 			{
 				info.SetCondition("target acceleration display");
 				int presentAcceleration = 3600 * target->TrueAcceleration();
@@ -1586,10 +1570,10 @@ void Engine::CalculateStep()
 			// No sounds.
 		}
 		else if(jumpSounds.empty())
-			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
+			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"), SoundCategory::JUMP);
 		else
 			for(const auto &sound : jumpSounds)
-				Audio::Play(sound.first);
+				Audio::Play(sound.first, SoundCategory::JUMP);
 	}
 	// Check if the flagship just entered a new system.
 	if(flagship && playerSystem != flagship->GetSystem())
@@ -1734,17 +1718,17 @@ void Engine::CalculateStep()
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
-						Audio::Play(it.first, ship->Position());
+						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
 				}
 				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().ReverseFlareSounds())
-						Audio::Play(it.first, ship->Position());
+						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
 				}
 				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().SteeringFlareSounds())
-						Audio::Play(it.first, ship->Position());
+						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
 				}
 			}
 			else
@@ -1757,17 +1741,17 @@ void Engine::CalculateStep()
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
-				Audio::Play(it.first);
+				Audio::Play(it.first, SoundCategory::ENGINE);
 		}
 		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
-				Audio::Play(it.first);
+				Audio::Play(it.first, SoundCategory::ENGINE);
 		}
 		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
-				Audio::Play(it.first);
+				Audio::Play(it.first, SoundCategory::ENGINE);
 		}
 	}
 	// Draw the projectiles.
@@ -1843,10 +1827,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				// No sounds.
 			}
 			else if(jumpSounds.empty())
-				Audio::Play(Audio::Get(isJump ? "jump out" : "hyperdrive out"), position);
+				Audio::Play(Audio::Get(isJump ? "jump out" : "hyperdrive out"), position, SoundCategory::JUMP);
 			else
 				for(const auto &sound : jumpSounds)
-					Audio::Play(sound.first, position);
+					Audio::Play(sound.first, position, SoundCategory::JUMP);
 		}
 
 		// Did this ship just jump into the player's system?
@@ -1859,10 +1843,10 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 				// No sounds.
 			}
 			else if(jumpSounds.empty())
-				Audio::Play(Audio::Get(isJump ? "jump in" : "hyperdrive in"), position);
+				Audio::Play(Audio::Get(isJump ? "jump in" : "hyperdrive in"), position, SoundCategory::JUMP);
 			else
 				for(const auto &sound : jumpSounds)
-					Audio::Play(sound.first, position);
+					Audio::Play(sound.first, position, SoundCategory::JUMP);
 		}
 	}
 
@@ -2665,7 +2649,7 @@ void Engine::FillRadar()
 	else if(hasHostiles && !hadHostiles)
 	{
 		if(Preferences::PlayAudioAlert())
-			Audio::Play(Audio::Get("alarm"));
+			Audio::Play(Audio::Get("alarm"), SoundCategory::ALERT);
 		alarmTime = 300;
 		hadHostiles = true;
 	}
