@@ -257,6 +257,18 @@
 			}
 		},
 		{
+			"name": "mingw32-ci",
+			"displayName": "MinGW32 CI",
+			"description": "Builds with MinGW32 for CI purposes",
+			"inherits": "ci",
+			"cacheVariables": {
+				"CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
+				"CMAKE_RC_COMPILER": "windres",
+				"VCPKG_HOST_TRIPLET": "win32-release",
+				"VCPKG_TARGET_TRIPLET": "win32-release"
+			}
+		},
+		{
 			"name": "linux-release",
 			"displayName": "Linux Release",
 			"description": "Builds for Linux like an official release",
@@ -466,6 +478,12 @@
 			"name": "mingw-ci",
 			"displayName": "MinGW CI build",
 			"configurePreset": "mingw-ci",
+			"inherits": "ci"
+		},
+		{
+			"name": "mingw32-ci",
+			"displayName": "MinGW32 CI build",
+			"configurePreset": "mingw32-ci",
 			"inherits": "ci"
 		},
 		{
@@ -825,6 +843,12 @@
 			"inherits": "benchmark"
 		},
 		{
+			"name": "mingw32-integration",
+			"displayName": "Integration Tests",
+			"configurePreset": "mingw32",
+			"inherits": "integration"
+		},
+		{
 			"name": "mingw32-integration-debug",
 			"displayName": "Integration Tests (Debug)",
 			"configurePreset": "mingw32",
@@ -900,6 +924,18 @@
 			"name": "mingw-ci-benchmark",
 			"displayName": "Mingw CI Benchmarks",
 			"configurePreset": "mingw-ci",
+			"inherits": "ci-benchmark"
+		},
+		{
+			"name": "mingw32-ci",
+			"displayName": "Mingw32 CI Tests",
+			"configurePreset": "mingw32-ci",
+			"inherits": "ci-integration"
+		},
+		{
+			"name": "mingw32-ci-benchmark",
+			"displayName": "Mingw32 CI Benchmarks",
+			"configurePreset": "mingw32-ci",
 			"inherits": "ci-benchmark"
 		}
 	]
