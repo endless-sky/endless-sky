@@ -2237,7 +2237,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	double relX = mousePosX - Screen::RawWidth() / 2.0;
 	double relY = mousePosY - Screen::RawHeight() / 2.0;
 	ai.SetMousePosition(Point(relX, relY) / zoom);
-	
+
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
 
