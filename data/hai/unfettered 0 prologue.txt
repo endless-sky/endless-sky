@@ -186,12 +186,12 @@ mission "Unfettered Jump Drive 1"
 			choice
 				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
 					to display
-						not "outfit (cargo): Jump Drive"
+						"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Jump Drive" == 1
 					goto end
-				`	"You can take the jump drive from my cargo, but I don't need a hyperdrive in exchange."`
+				`	"You can take the jump drive, but I don't need a hyperdrive in exchange."`
 					to display
-						has "outfit (cargo): Jump Drive"
-					goto cargo
+						"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Jump Drive" > 1
+					goto spareJD
 				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
 					goto refuse
 			
@@ -200,8 +200,8 @@ mission "Unfettered Jump Drive 1"
 				outfit "Hyperdrive" 1
 			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
-			label cargo
-			`	The Unfettered engineers quickly retrieve the jump drive from your cargo. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
+			label spareJD
+			`	The Unfettered engineers quickly retrieve the jump drive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
 	
 	on accept
@@ -237,11 +237,12 @@ mission "Unfettered Jump Drive 2"
 				`	"Sorry, I need this jump drive right now, but I will come back later and sell it to you."`
 					defer
 				`	"Yes, I will sell you my jump drive."`
-			branch cargo
-				has "outfit (cargo): Jump Drive"
+			
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Jump Drive" > 1
 			action
 				outfit "Hyperdrive" 1
-			label cargo
+			label spareJD
 			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
 			choice
 				`	"Then I will find more, and bring them to you."`
@@ -311,11 +312,12 @@ mission "Unfettered Jump Drive 3"
 			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
 			label job
-			branch cargo
-				has "outfit (cargo): Jump Drive"
+			
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Jump Drive" > 1
 			action
 				outfit "Hyperdrive" 1
-			label cargo
+			label spareJD
 			`	"If you want to provide us with more jump drives, visit the job board from now on," says the leader. "We will have warriors ready to receive them from you for the usual pay."`
 				accept
 	
@@ -486,11 +488,11 @@ mission "Unfettered Jump Drive Trading"
 				outfit "Tripulse Shredder" 2
 			`	They order their crew to do the transfer and come to address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
 			label end
-			branch cargo
-				has "outfit (cargo): Jump Drive"
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Jump Drive" > 1
 			action
 				outfit "Hyperdrive" 1
-			label cargo
+			label spareJD
 			`	The engineer leaves and you return to your ship after being escorted out of the facility.`
 				accept
 
