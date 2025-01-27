@@ -269,7 +269,7 @@ mission "Avgi: Humans From the Deep"
 			`	The aliens hum and chirp excitedly amongst themselves, the sound reminding you of a string instrument. You notice they seem to produce sounds not from any particular vocal organs, but by rubbing their forearms or legs together akin to a cricket. One of the aliens, with a cream-colored body, seems to hush the others, flaring their wings out before returning them to a folded position on their back. They then raise a curved, black instrument reminiscent of a violin bow, drawing it over one of their forelimbs for a moment before the device begins to speak in a synthetic, vaguely masculine voice.`
 			`	"Invitation. Welcome, Captain <first> <last>. I am Lait of the Avgi, the one with whom you spoke earlier. I would show you to our leaders to discuss your arrival to our space."`
 			choice
-				`	(Follow the aliens).`
+				`	(Follow the aliens.)`
 					goto follow
 				`	"How can you speak my language?"`
 				`	"Who are those hostile aliens back toward the north?"`
