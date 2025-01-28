@@ -215,9 +215,9 @@ outfit "EMP Torpedo"
 	category "Ammunition"
 	licenses
 		Remnant
-	cost 4400
+	cost 2200
 	thumbnail "outfit/emp torpedo"
-	"mass" 1
+	"mass" .5
 	"emp torpedo capacity" -1
 	description "This torpedo can emit electromagnetic pulses, interfering with a ship's generators."
 
@@ -227,7 +227,7 @@ outfit "EMP Torpedo Storage Bay"
 		Remnant
 	cost 98000
 	thumbnail "outfit/emp rack"
-	"mass" 5
+	"mass" 8.5
 	"outfit space" -12
 	"energy capacity" 400
 	"emp torpedo capacity" 7
@@ -241,7 +241,7 @@ outfit "EMP Torpedo Bay"
 		Remnant
 	cost 583000
 	thumbnail "outfit/emp torpedo bay"
-	"mass" 9
+	"mass" 13.5
 	"outfit space" -18
 	"weapon capacity" -18
 	"gun ports" -1
@@ -287,9 +287,9 @@ outfit "Teciimach Canister"
 	category "Ammunition"
 	licenses
 		Remnant
-	cost 35500
+	cost 17750
 	thumbnail "outfit/emp torpedo"
-	"mass" 1
+	"mass" .5
 	"teciimach canister capacity" -1
 	description "This canister contains everything required to assemble a Teciimach Torpedo. These weapons emit strong electromagnetic pulses which interfere with a ship's generators and neutralize a portion of their energy."
 	description `	Unlike the previous generation of "EMP Torpedoes," the Teciimach torpedoes actively shape their emission pattern to avoid impacting their allies.`
@@ -300,7 +300,7 @@ outfit "Teciimach Canister Rack"
 		Remnant
 	cost 295000
 	thumbnail "outfit/emp rack"
-	"mass" 5
+	"mass" 4.5
 	"outfit space" -9
 	"energy capacity" 500
 	"teciimach canister capacity" 9
@@ -314,7 +314,7 @@ outfit "Teciimach Bay"
 		Remnant
 	cost 1525000
 	thumbnail "outfit/teciimach bay"
-	"mass" 9
+	"mass" 8.5
 	"outfit space" -13
 	"weapon capacity" -13
 	"gun ports" -1
@@ -364,7 +364,7 @@ outfit "Teciimach Pod"
 		Remnant
 	cost 762500
 	thumbnail "outfit/teciimach pod"
-	"mass" 3
+	"mass" 4.5
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1

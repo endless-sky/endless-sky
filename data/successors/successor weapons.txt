@@ -331,7 +331,7 @@ outfit `"Sjeja" Kinetic Lance`
 	licenses
 		"High Houses"
 	thumbnail "outfit/sjeja kinetic lance"
-	"mass" 60
+	"mass" 55
 	"outfit space" -60
 	"weapon capacity" -60
 	"energy capacity" 1900
@@ -368,9 +368,9 @@ outfit "High-Velocity Spike"
 	index 10
 	licenses
 		"High Houses"
-	cost 3500
+	cost 1750
 	thumbnail "outfit/hv spike"
-	"mass" .5
+	"mass" .25
 	"spike capacity" -1
 	description `The projectiles fired by the Sjeja Kinetic Lance are too large to be synthesized on-the-fly from the ship's reserves, and must be carried separately.`
 
@@ -382,7 +382,7 @@ outfit "High-Velocity Spike Rack"
 	licenses
 		"High Houses"
 	thumbnail "outfit/hv spike rack"
-	"mass" 7
+	"mass" 8
 	"outfit space" -12
 	"energy capacity" 800
 	"spike capacity" 16

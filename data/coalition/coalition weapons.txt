@@ -86,7 +86,7 @@ outfit "Finisher Pod"
 		Heliarch
 	cost 1370000
 	thumbnail "outfit/finisher pod"
-	"mass" 16
+	"mass" 26
 	"outfit space" -36
 	"weapon capacity" -36
 	"gun ports" -1
@@ -123,7 +123,7 @@ outfit "Finisher Maegrolain"
 		Heliarch
 	cost 7260000
 	thumbnail "outfit/finisher maegrolain"
-	"mass" 58
+	"mass" 73
 	"outfit space" -88
 	"weapon capacity" -88
 	"gun ports" -1
@@ -180,7 +180,7 @@ outfit "Finisher Storage Tube"
 	category "Ammunition"
 	cost 58800
 	thumbnail "outfit/finisher storage"
-	"mass" 4
+	"mass" 10
 	"outfit space" -15
 	"energy capacity" 120
 	"finisher capacity" 20
@@ -190,9 +190,9 @@ outfit "Finisher Storage Tube"
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
-	cost 32000
+	cost 16000
 	thumbnail "outfit/finisher"
-	"mass" .5
+	"mass" .25
 	"finisher capacity" -1
 	description `A substantial fraction of the Heliarch military complex is devoted to supervising the refining, enrichment, and breeding of nuclear fuels. Having ensured a steady supply of feedstock, they are able to produce a selective set of highly exotic fissile materials. With minuscule critical masses and favorable neutronics properties, these carefully controlled isotopes are the key to giving the miniaturized nuclear warhead in the Finisher Torpedo enough power to deter any would-be threats to the Coalition.`
 	description `	This extremely powerful but also expensive missile is ammunition for the Heliarch Finisher Pod.`

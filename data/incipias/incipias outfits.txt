@@ -93,7 +93,7 @@ effect "stagnation beam impact"
 outfit "Star Tail"
 	category "Secondary Weapons"
 	cost 320000
-	mass 48
+	mass 49
 	"outfit space" -50
 	"weapon capacity" -50
 	"gun ports" -1
@@ -159,9 +159,9 @@ effect "star tail live"
 
 outfit "Star Tail Cell"
 	category "Ammunition"
-	cost 1500
+	cost 750
 	thumbnail "outfit/star tail cell"
-	"mass" .1
+	"mass" .05
 	"star tail capacity" -1
 	licenses
 		"Hicemus Conflict"
@@ -171,7 +171,7 @@ outfit "Star Tail Storage"
 	category "Ammunition"
 	cost 6000
 	thumbnail "outfit/star tail cell storage"
-	"mass" 10
+	"mass" 9
 	"outfit space" -10
 	"star tail capacity" 20
 	licenses

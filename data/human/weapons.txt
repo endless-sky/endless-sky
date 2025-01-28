@@ -802,9 +802,9 @@ effect "flamethrower hit"
 
 outfit "Meteor Missile"
 	category "Ammunition"
-	cost 500
+	cost 250
 	thumbnail "outfit/meteor"
-	"mass" .2
+	"mass" .1
 	"meteor capacity" -1
 	description "A Meteor Missile serves as ammunition for the Meteor Missile Launcher. Each missile launcher has its own capacity; you cannot install missiles if you have not first purchased a pod, launcher, or storage to store them in."
 
@@ -813,7 +813,7 @@ outfit "Meteor Missile Box"
 	category "Ammunition"
 	cost 9000
 	thumbnail "outfit/meteor storage"
-	"mass" 2
+	"mass" 3.5
 	"outfit space" -5
 	"meteor capacity" 15
 	ammo "Meteor Missile"
@@ -823,7 +823,7 @@ outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
 	cost 15000
 	thumbnail "outfit/meteor launcher"
-	"mass" 8
+	"mass" 11
 	"outfit space" -14
 	"weapon capacity" -14
 	"gun ports" -1
@@ -859,7 +859,7 @@ outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
 	cost 5000
 	thumbnail "outfit/meteor pod"
-	"mass" 1
+	"mass" 2
 	"outfit space" -3
 	"weapon capacity" -3
 	"gun ports" -1
@@ -904,9 +904,9 @@ effect "meteor fire"
 
 outfit "Sidewinder Missile"
 	category "Ammunition"
-	cost 900
+	cost 450
 	thumbnail "outfit/sidewinder"
-	"mass" .2
+	"mass" .1
 	"sidewinder capacity" -1
 	description "The Sidewinder Missile is ammunition for the Sidewinder Missile Launcher; each launcher that you have installed can be armed with up to 45 of them, while pods can carry 4. You cannot install a missile without a pod or launcher to fire it from."
 
@@ -914,7 +914,7 @@ outfit "Sidewinder Missile Rack"
 	category "Ammunition"
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
-	"mass" 2.4
+	"mass" 4.7
 	"outfit space" -7
 	"sidewinder capacity" 23
 	ammo "Sidewinder Missile"
@@ -924,7 +924,7 @@ outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
-	"mass" 11
+	"mass" 15.5
 	"outfit space" -20
 	"weapon capacity" -20
 	"gun ports" -1
@@ -961,7 +961,7 @@ outfit "Sidewinder Missile Pod"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/sidewinder pod"
-	"mass" 2
+	"mass" 3
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
@@ -1008,9 +1008,9 @@ effect "sidewinder fire"
 
 outfit "Javelin"
 	category "Ammunition"
-	cost 50
+	cost 25
 	thumbnail "outfit/javelin"
-	"mass" .04
+	"mass" .02
 	"javelin capacity" -1
 	description "A Javelin missile is ammunition for the Javelin Pod; without a Pod to store them in you cannot purchase or use Javelins."
 
@@ -1018,7 +1018,7 @@ outfit "Javelin Storage Crate"
 	category "Ammunition"
 	cost 5000
 	thumbnail "outfit/javelin storage"
-	"mass" 2
+	"mass" 4
 	"outfit space" -6
 	"javelin capacity" 100
 	ammo "Javelin"
@@ -1028,7 +1028,7 @@ outfit "Javelin Pod"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/javelin pod"
-	"mass" 4
+	"mass" 8
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
@@ -1056,7 +1056,7 @@ outfit "Javelin Mini Pod"
 	category "Secondary Weapons"
 	cost 5000
 	thumbnail "outfit/javelin mini pod"
-	"mass" 1
+	"mass" 2
 	"outfit space" -3
 	"weapon capacity" -3
 	"gun ports" -1
@@ -1087,7 +1087,7 @@ outfit "Javelin Turret"
 	category "Secondary Weapons"
 	cost 110000
 	thumbnail "outfit/javelin turret"
-	"mass" 15
+	"mass" 23
 	"outfit space" -31
 	"weapon capacity" -31
 	"turret mounts" -1
@@ -1118,9 +1118,9 @@ outfit "Javelin Turret"
 outfit "Torpedo"
 	plural "Torpedoes"
 	category "Ammunition"
-	cost 1400
+	cost 700
 	thumbnail "outfit/torpedo"
-	"mass" .4
+	"mass" .2
 	"torpedo capacity" -1
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
@@ -1128,7 +1128,7 @@ outfit "Torpedo Storage Rack"
 	category "Ammunition"
 	cost 21000
 	thumbnail "outfit/torpedo storage"
-	"mass" 3
+	"mass" 6
 	"outfit space" -9
 	"torpedo capacity" 15
 	ammo "Torpedo"
@@ -1138,7 +1138,7 @@ outfit "Torpedo Launcher"
 	category "Secondary Weapons"
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
-	"mass" 18
+	"mass" 24
 	"outfit space" -30
 	"weapon capacity" -30
 	"gun ports" -1
@@ -1174,7 +1174,7 @@ outfit "Torpedo Pod"
 	category "Secondary Weapons"
 	cost 30000
 	thumbnail "outfit/torpedopod"
-	"mass" 5
+	"mass" 7
 	"outfit space" -8
 	"weapon capacity" -8
 	"gun ports" -1
@@ -1219,9 +1219,9 @@ effect "torpedo fire"
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
 	category "Ammunition"
-	cost 2700
+	cost 1350
 	thumbnail "outfit/typhoon"
-	"mass" .5
+	"mass" .25
 	"typhoon capacity" -1
 	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 30 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
 
@@ -1229,7 +1229,7 @@ outfit "Typhoon Storage Tube"
 	category "Ammunition"
 	cost 40500
 	thumbnail "outfit/typhoon storage"
-	"mass" 2.5
+	"mass" 5.75
 	"outfit space" -10
 	"typhoon capacity" 15
 	ammo "Typhoon Torpedo"
@@ -1239,7 +1239,7 @@ outfit "Typhoon Launcher"
 	category "Secondary Weapons"
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
-	"mass" 25
+	"mass" 32.5
 	"outfit space" -40
 	"weapon capacity" -40
 	"gun ports" -1
@@ -1275,7 +1275,7 @@ outfit "Typhoon Pod"
 	category "Secondary Weapons"
 	cost 100000
 	thumbnail "outfit/typhoonpod"
-	"mass" 6
+	"mass" 9
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
@@ -1319,9 +1319,9 @@ effect "typhoon fire"
 
 outfit "Heavy Rocket"
 	category "Ammunition"
-	cost 2000
+	cost 1000
 	thumbnail "outfit/rocket"
-	"mass" .5
+	"mass" .25
 	"rocket capacity" -1
 	description "Heavy Rockets are ammunition for the Heavy Rocket Launcher. You cannot install one unless you have first installed a launcher to fire it from. Each launcher holds up to 20 rockets."
 
@@ -1329,7 +1329,7 @@ outfit "Heavy Rocket Rack"
 	category "Ammunition"
 	cost 20000
 	thumbnail "outfit/rocket storage"
-	"mass" 2
+	"mass" 4.5
 	"outfit space" -7
 	"rocket capacity" 10
 	ammo "Heavy Rocket"
@@ -1339,7 +1339,7 @@ outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
 	cost 40000
 	thumbnail "outfit/rocket launcher"
-	"mass" 15
+	"mass" 20
 	"outfit space" -25
 	"weapon capacity" -25
 	"gun ports" -1
@@ -1372,7 +1372,7 @@ outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
 	cost 15000
 	thumbnail "outfit/rocket pod"
-	"mass" 3
+	"mass" 5
 	"outfit space" -6
 	"weapon capacity" -6
 	"gun ports" -1
@@ -1496,7 +1496,7 @@ outfit "Gatling Gun Ammo"
 	category "Ammunition"
 	cost 4
 	thumbnail "outfit/bullet"
-	"mass" .002
+	"mass" .001
 	"gatling round capacity" -1
 	description "This simple cartridge is the ammunition for the Gatling Gun, with a projectile of depleted nuclear fuel or an illuminated tracer round. Since this ammunition is primarily manufactured on pirate worlds by slave children in poor working conditions, muzzle velocity can vary by up to 30%, and tracer distribution is seldom uniform."
 
@@ -1505,7 +1505,7 @@ outfit "Bullet Boxes"
 	category "Ammunition"
 	cost 3000
 	thumbnail "outfit/bullet storage"
-	"mass" 2
+	"mass" 3.5
 	"outfit space" -5
 	"gatling round capacity" 1500
 	ammo "Gatling Gun Ammo"
@@ -1515,7 +1515,7 @@ outfit "Gatling Gun"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/gat"
-	"mass" 2
+	"mass" 5
 	"outfit space" -8
 	"weapon capacity" -8
 	"gun ports" -1
@@ -1543,7 +1543,7 @@ outfit "Gatling Turret"
 	category "Secondary Weapons"
 	cost 120000
 	thumbnail "outfit/gat turret"
-	"mass" 11
+	"mass" 17
 	"outfit space" -23
 	"weapon capacity" -23
 	"turret mounts" -1

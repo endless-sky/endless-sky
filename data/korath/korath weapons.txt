@@ -390,9 +390,9 @@ outfit "Thermal Repeater Turret"
 
 outfit "Piercer Missile"
 	category "Ammunition"
-	cost 3500
+	cost 1750
 	thumbnail "outfit/piercer"
-	"mass" .3
+	"mass" .15
 	"piercer capacity" -1
 	description "This missile is fired from a Piercer Missile Launcher."
 
@@ -400,7 +400,7 @@ outfit "Piercer Missile Rack"
 	category "Ammunition"
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
-	"mass" 2.2
+	"mass" 4.6
 	"outfit space" -7
 	"piercer capacity" 16
 	ammo "Piercer Missile"
@@ -410,7 +410,7 @@ outfit "Piercer Missile Launcher"
 	category "Secondary Weapons"
 	cost 593000
 	thumbnail "outfit/piercer launcher"
-	"mass" 18
+	"mass" 22.35
 	"outfit space" -27
 	"weapon capacity" -27
 	"energy capacity" 50
@@ -542,9 +542,9 @@ effect "detainer smoke"
 
 outfit "Cluster Mine"
 	category "Ammunition"
-	cost 3500
+	cost 1750
 	thumbnail "outfit/korath mine"
-	"mass" .7
+	"mass" .35
 	"minelayer capacity" -1
 	description "This is ammunition for a Cluster Mine Layer. Each mine splits into eleven submunitions after it is deployed."
 
@@ -552,7 +552,7 @@ outfit "Cluster Mine Rack"
 	category "Ammunition"
 	cost 31500
 	thumbnail "outfit/korath mine storage"
-	"mass" 2.7
+	"mass" 5.85
 	"outfit space" -9
 	"minelayer capacity" 9
 	ammo "Cluster Mine"
@@ -562,7 +562,7 @@ outfit "Cluster Mine Layer"
 	category "Secondary Weapons"
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
-	"mass" 36
+	"mass" 42.05
 	"outfit space" -48
 	"weapon capacity" -48
 	"energy capacity" 50
@@ -904,7 +904,7 @@ outfit "Firelight Storage Rack"
 	category "Ammunition"
 	cost 27400
 	thumbnail "outfit/firelight rack"
-	"mass" 3
+	"mass" 4.5
 	"outfit space" -6
 	"firelight missile capacity" 10
 	ammo "Firelight Missile"
@@ -912,9 +912,9 @@ outfit "Firelight Storage Rack"
 
 outfit "Firelight Missile"
 	category "Ammunition"
-	cost 7600
+	cost 3800
 	thumbnail "outfit/firelight"
-	"mass" 0.3
+	"mass" 0.15
 	"firelight missile capacity" -1
 	"energy generation" 0.02
 	"heat generation" 0.1
@@ -924,7 +924,7 @@ outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
 	cost 1937000
 	thumbnail "outfit/firelight bank"
-	"mass" 22
+	"mass" 25
 	"outfit space" -28
 	"weapon capacity" -28
 	"gun ports" -1
@@ -1048,9 +1048,9 @@ outfit "Microbot Grinder"
 outfit "Firestorm Torpedo"
 	plural "Firestorm Torpedoes"
 	category "Ammunition"
-	cost 19800
+	cost 9900
 	thumbnail "outfit/firestorm torpedo"
-	"mass" 1
+	"mass" .5
 	"firestorm torpedo capacity" -1
 	"energy generation" 0.06
 	"heat generation" 0.3
@@ -1058,9 +1058,9 @@ outfit "Firestorm Torpedo"
 
 outfit "Firestorm Torpedo Rack"
 	category "Ammunition"
-	cost "135000"
+	cost 135000
 	thumbnail "outfit/firestorm torpedo rack"
-	"mass" 7
+	"mass" 13.5
 	"outfit space" -20
 	"firestorm torpedo capacity" 13
 	ammo "Firestorm Torpedo"
@@ -1071,7 +1071,7 @@ outfit "Firestorm Battery"
 	category "Secondary Weapons"
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
-	"mass" 35
+	"mass" 41.5
 	"outfit space" -48
 	"weapon capacity" -48
 	"energy capacity" 1300

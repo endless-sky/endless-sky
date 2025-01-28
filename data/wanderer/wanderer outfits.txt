@@ -221,7 +221,7 @@ outfit "Thunderhead Launcher"
 		"Wanderer Outfits"
 	cost 450000
 	thumbnail "outfit/thunderhead launcher"
-	"mass" 14
+	"mass" 20
 	"outfit space" -26
 	"weapon capacity" -26
 	"gun ports" -1
@@ -255,9 +255,9 @@ outfit "Thunderhead Launcher"
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
-	cost 1800
+	cost 900
 	thumbnail "outfit/thunderhead"
-	mass .3
+	mass .15
 	"thunderhead capacity" -1
 	description "Thunderhead cluster munitions are long-range Wanderer missiles that split into five fast and agile submunitions when they are close to their target. Each launcher can hold up to 40 of these."
 
@@ -288,7 +288,7 @@ outfit "Thunderhead Storage Array"
 		"Wanderer Outfits"
 	cost 36000
 	thumbnail "outfit/thunderhead storage"
-	"mass" 2
+	"mass" 5
 	"outfit space" -8
 	"thunderhead capacity" 20
 	ammo "Thunderhead Missile"

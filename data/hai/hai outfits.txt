@@ -237,9 +237,9 @@ effect "ionic impact"
 outfit "Railgun Slug"
 	"display name" "Skipper Railgun Slug"
 	category "Ammunition"
-	cost 13
+	cost 7
 	thumbnail "outfit/railslug"
-	"mass" 0.003
+	"mass" 0.0015
 	"railgun slug capacity" -1
 	description "Skipper Railgun Slugs incorporate energy-discharging capacitors that deal a small amount of ion damage to their target. Although not terribly damaging, this ion damage combined with the significant recoil that each shot has turns Flea drones into effective long-range support ships."
 
@@ -248,7 +248,7 @@ outfit "Railgun Slug Rack"
 	category "Ammunition"
 	cost 15000
 	thumbnail "outfit/railslug rack"
-	"mass" 1
+	"mass" 2
 	"outfit space" -3
 	"railgun slug capacity" 500
 	ammo "Railgun Slug"
@@ -259,7 +259,7 @@ outfit "Railgun"
 	category "Secondary Weapons"
 	cost 20000
 	thumbnail "outfit/railgun"
-	"mass" 1
+	"mass" 2.5
 	"outfit space" -4
 	"weapon capacity" -4
 	"gun ports" -1
@@ -315,9 +315,9 @@ effect "rail sparks"
 
 outfit "Hai Tracker"
 	category "Ammunition"
-	cost 1000
+	cost 500
 	thumbnail "outfit/hai tracker"
-	"mass" .2
+	"mass" .1
 	"tracker capacity" -1
 	description "This is ammunition for a Tracker Pod."
 
@@ -325,7 +325,7 @@ outfit "Tracker Storage Pod"
 	category "Ammunition"
 	cost 28000
 	thumbnail "outfit/hai tracker storage"
-	"mass" 4.4
+	"mass" 7.2
 	"outfit space" -10
 	"tracker capacity" 28
 	ammo "Hai Tracker"
@@ -335,7 +335,7 @@ outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
-	"mass" 8
+	"mass" 13.4
 	"outfit space" -19
 	"weapon capacity" -19
 	"gun ports" -1

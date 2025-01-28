@@ -18,7 +18,7 @@ outfit "Speck Round"
 	category "Ammunition"
 	cost 6
 	thumbnail "outfit/speck round"
-	"mass" 0.003
+	"mass" 0.0015
 	"speck capacity" -1
 	"flotsam chance" 1
 	description "These densely-wound metallic glass slugs are capable of inflicting a good amount of kinetic damage via hypervelocity impacts, but are easily stopped by momentum-repulsion shield systems."
@@ -28,7 +28,7 @@ outfit "Speck Magazine"
 	category "Ammunition"
 	cost 12000
 	thumbnail "outfit/speck magazine"
-	"mass" 2.4
+	"mass" 4.2
 	"outfit space" -6
 	"speck capacity" 1200
 	"ammo" "Speck Round"
@@ -41,7 +41,7 @@ outfit "Speckle Coilgun"
 	category "Guns"
 	cost 32000
 	thumbnail "outfit/speckle coilgun"
-	"mass" 6.3
+	"mass" 7.65
 	"outfit space" -9
 	"weapon capacity" -9
 	"energy capacity" 90
@@ -72,7 +72,7 @@ outfit "Speckle Turret"
 	category "Turrets"
 	cost 90000
 	thumbnail "outfit/speckle turret"
-	"mass" 16.8
+	"mass" 20.4
 	"outfit space" -24
 	"weapon capacity" -24
 	"energy capacity" 180
@@ -436,7 +436,7 @@ outfit "Medium VLS"
 		"Twilight Guard"
 	cost 240000
 	thumbnail "outfit/medium vls"
-	"mass" 12
+	"mass" 27
 	"outfit space" -42
 	"weapon capacity" -42
 	"turret mounts" -1
@@ -475,9 +475,9 @@ outfit `"Nettle" KKV`
 	category "Ammunition"
 	licenses
 		"Twilight Guard"
-	cost 450
+	cost 225
 	thumbnail "outfit/nettle kkv"
-	"mass" 0.15
+	"mass" 0.075
 	"nettle capacity" -1
 	description "The Nettle missile is a cheap, single-stage kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Little more than a payload of tungsten rods, an octaazacubane thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. While only a fraction of the payload actually impacts a target, the cloud of projectiles is difficult to completely eliminate."
 	description "The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array or Nettle Magazine to store them in you cannot purchase or use Nettle KKVs."
@@ -491,7 +491,7 @@ outfit "Nettle Magazine"
 		"Twilight Guard"
 	cost 60000
 	thumbnail "outfit/nettle magazine"
-	"mass" 3
+	"mass" 7.5
 	"outfit space" -12
 	"nettle capacity" 72
 	ammo `"Nettle" KKV`
