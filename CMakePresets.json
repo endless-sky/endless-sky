@@ -327,7 +327,7 @@
 		},
 		{
 			"name": "mingw32-release",
-			"displayName": "MacOS Release",
+			"displayName": "MinGW32 Release",
 			"description": "Builds for MinGW x86 like an official release",
 			"inherits": "release",
 			"cacheVariables": {
