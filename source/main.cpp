@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
-	bool checkImages = false;
+	bool checkAssets = false;
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
 		else if(arg == "--parse-assets")
-			checkImages = true;
+			checkAssets = true;
 		else if(arg == "--test" && *++it)
 			testToRunName = *it;
 		else if(arg == "--tests")
@@ -144,11 +144,11 @@ int main(int argc, char *argv[])
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
 		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
-			isConsoleOnly || checkImages || (isTesting && !debugMode));
+			isConsoleOnly || checkAssets || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now.
-		if(isConsoleOnly || checkImages || isTesting)
+		if(isConsoleOnly || checkAssets || isTesting)
 			dataFuture.wait();
 
 		if(isTesting && !GameData::Tests().Has(testToRunName))
@@ -169,9 +169,9 @@ int main(int argc, char *argv[])
 		}
 
 		PlayerInfo player;
-		if(loadOnly || checkImages)
+		if(loadOnly || checkAssets)
 		{
-			if(checkImages)
+			if(checkAssets)
 			{
 				Audio::LoadSounds(GameData::Sources());
 				while(GameData::GetProgress() < 1.)
@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
 			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
-			if(checkImages)
+			if(checkAssets)
 				Audio::Quit();
 			return hasErrors;
 		}
