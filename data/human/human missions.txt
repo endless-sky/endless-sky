@@ -4930,7 +4930,7 @@ mission "Dangerous Games 1"
 	passengers 9
 	source
 		attributes "frontier" "pirate"
-		government "Republic" "Free Worlds" "Syndicate" "Pirate"
+		near "Hadar" 1 100
 	stopover "Skymoot"
 	to offer
 		random < 15
