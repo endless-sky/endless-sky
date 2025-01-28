@@ -86,7 +86,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<model>"] = player.Flagship()->DisplayModelName();
 	}
 
-	warningSprite = SpriteSet::Get("warning");
+	warningSprite = SpriteSet::Get("ui/error");
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.
@@ -138,6 +138,7 @@ void ConversationPanel::Draw()
 	const Color &gray = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dark = *GameData::Colors().Get("dark");
+	const Color &warning = *GameData::Colors().Get("message importance highest");
 
 	// Figure out where we should start drawing.
 	Point point(
@@ -234,11 +235,12 @@ void ConversationPanel::Draw()
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
 			++index;
 
-			if(caller->GetStoryline() != nullptr && paragraph.LeadsToDecline())
-				SpriteShader::Draw(warningSprite, point + Point(-15, 0));
-
 			font.Draw(label, point + Point(-15, 0), dim);
-			point = paragraph.Draw(point, bright);
+
+			if(caller->GetStoryline() != nullptr && paragraph.LeadsToDecline())
+				point = paragraph.Draw(point, bright, &dim);
+			else
+				point = paragraph.Draw(point, bright);
 		}
 	}
 	// Store the total height of the text.
@@ -556,7 +558,11 @@ Point ConversationPanel::Paragraph::Center() const
 
 // Draw this paragraph, and return the point that the next paragraph below it
 // should be drawn at.
-Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
+
+Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const {
+	return Draw(point, color, nullptr);
+}
+Point ConversationPanel::Paragraph::Draw(Point point, const Color &color, const Color *warningColor) const
 {
 	if(scene)
 	{
@@ -566,5 +572,17 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	}
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
+	if(warningColor != nullptr)
+	{
+		WrappedText warningWrap;
+		warningWrap.SetAlignment(Alignment::JUSTIFIED);
+		warningWrap.SetWrapWidth(WIDTH);
+		warningWrap.SetFont(FontSet::Get(14));
+
+		warningWrap.Wrap("(this choice will end this storyline)");
+
+		warningWrap.Draw(point, *warningColor);
+		point.Y() += warningWrap.Height();
+	}
 	return point;
 }

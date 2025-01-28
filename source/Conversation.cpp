@@ -242,10 +242,14 @@ void Conversation::Load(const DataNode &node)
 	// Check for choice nodes that can lead to a decline, so they can be marked clearly for the player.
 	for(int n=0; n<nodes.size(); n++)
 	{
-		Node node = nodes[n];
+		Node &node = nodes[n];
 		for(int e=0; e<node.elements.size(); e++)
 		{
-			Element element = node.elements[e];
+			// If this element got checked from a previous element's calculations, skip it
+			if (checked.contains({n, e})) {
+				continue;
+			}
+			Element &element = node.elements[e];
 			cout << name << " Checking node " << n <<", element " << e << " for declines" << endl;
 			element.leadsToDecline = LeadsToDecline(n, e, &checked);
 			if (element.leadsToDecline)
@@ -589,7 +593,7 @@ bool Conversation::ElementIsValid(int node, int element) const
 
 
 // Traverse a node's tree to determine whether it leads to a decline.
-bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int, int>> *checked) const
+bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int, int>> *checked)
 {
 	Node node = nodes[nodeIndex];
 	Element element = node.elements[elementIndex];
@@ -608,25 +612,40 @@ bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int,
 		return false;
 	}
 	// Otherwise we need to get all the elements this can lead to and test them.
-	bool leadsTo = false;
-	Node nextNode = nodes[element.next];
+	// This may have already been calculated if this node was checked for a previous node.
+	bool leadsTo;
+	Node &nextNode = nodes[element.next];
 	// If the next node is a choice node, then this only leads to a decline if all
 	// options there lead to one. Otherwise, it leads to a decline if any options do.
 	checked->insert({nodeIndex, elementIndex});
 	if(nextNode.isChoice)
+	{
+		// If it is a choice, then we assume that it will lead to a decline—and if
+		// any of its elements do not, we mark it as not.
+		leadsTo = true;
 		for(int e=0; e<nextNode.elements.size(); e++)
 		{
 			if(!checked->contains({element.next, e})) {
 				cout << name << " Checking N" << nodeIndex << "E" << elementIndex << " for and..." << endl;
-				leadsTo &= LeadsToDecline(element.next, e, checked);
+				nextNode.elements[e].leadsToDecline = LeadsToDecline(element.next, e, checked);
+			}
+			// If we've already checked this element, then we can just use the precalculated value.
+			leadsTo &= nextNode.elements[e].leadsToDecline;
 			}
 		}
 	else
+	{
+		// If it is not a choice, then we assume that it will not lead to a decline—and if
+		// any of its elements do, we mark it as declining.
+		leadsTo = false;
 		for(int e=0; e<nextNode.elements.size(); e++)
 		{
 			if(!checked->contains({element.next, e})) {
 				cout << name << " Checking N" << nodeIndex << "E" << elementIndex << " for or..." << endl;
-				leadsTo |= LeadsToDecline(element.next, e, checked);
+				nextNode.elements[e].leadsToDecline = LeadsToDecline(element.next, e, checked);
+			}
+			// If we've already checked this element, then we can just use the precalculated value.
+			leadsTo |= nextNode.elements[e].leadsToDecline;
 			}
 		}
 

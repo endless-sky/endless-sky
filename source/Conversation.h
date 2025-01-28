@@ -141,7 +141,7 @@ private:
 		// Conditions for displaying the text:
 		ConditionSet conditions;
 		// Precalculate whether this element leads inevitably to a decline.
-		bool leadsToDecline;
+		bool leadsToDecline = false;
 	};
 
 	// The conversation is a network of "nodes" that you travel between by
@@ -188,7 +188,7 @@ private:
 	// goto link set to fall through to the next node.
 	void AddNode();
 	// Traverse an element's tree to determine whether it leads to a decline.
-	bool LeadsToDecline(int nodeIndex, int elementIndex, std::set<std::pair<int, int>> *checked) const;
+	bool LeadsToDecline(int nodeIndex, int elementIndex, std::set<std::pair<int, int>> *checked);
 
 
 private:

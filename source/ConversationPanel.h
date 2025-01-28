@@ -95,6 +95,7 @@ private:
 		Point Center() const;
 		// Draw this paragraph at the given point, and return the point that the
 		// next paragraph below this one should be drawn at.
+		Point Draw(Point point, const Color &color, const Color *warningColor) const;
 		Point Draw(Point point, const Color &color) const;
 		bool LeadsToDecline() const;
 
