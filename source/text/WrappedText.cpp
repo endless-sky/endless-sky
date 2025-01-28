@@ -145,7 +145,7 @@ void WrappedText::Wrap(const char *str)
 /// With trailingBreak, include a paragraph break after the text.
 int WrappedText::Height(bool trailingBreak) const
 {
-	return height + trailingBreak * paragraphBreak;
+	return height + (height && trailingBreak) * paragraphBreak;
 }
 
 
