@@ -985,6 +985,42 @@ ship "Undsyni" "Undsyni (Tanker)"
 		"R-360 RCS Thrusters"
 		"Hyperdrive"
 
+	turret "Speckle Turret"
+	turret "Speckle Turret"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
+ship "Undsyni" "Undsyni (Plasmadyne)"
+	outfits
+		"Green Optical Laser" 3
+		"Speckle Turret" 2
+		"Speck Round" 4800
+		"Optical Laser Rifle" 24
+
+		"Lantern Fission Core" 3
+		"Ultracapacitor Bank"
+		"Ultracapacitor Cell" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Plasmadyne Scoop"
+		"Cryogenic Deuterium Tank" 18
+		"Multispectral Scanner"
+		"Spectrometer Array"
+
+		`Z-333 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector" 2
+		"R-360 RCS Thrusters"
+		"Hyperdrive"
+
+	gun "Plasmadyne Scoop"
+	turret "Speckle Turret"
+	turret "Speckle Turret"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+	turret "Green Optical Laser"
+
 
 ship "Modified Tachytia"
 	sprite "ship/avgi tachytia/tachytia"
