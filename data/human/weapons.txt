@@ -1419,7 +1419,7 @@ effect "heavy rocket hit"
 
 outfit "Nuclear Missile"
 	category "Secondary Weapons"
-	cost 1000000
+	cost 500000
 	thumbnail "outfit/nuke"
 	"mass" 10
 	"outfit space" -10

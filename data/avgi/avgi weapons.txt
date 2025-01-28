@@ -560,7 +560,7 @@ outfit `"Orchid" Nuclear Missile`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
-	cost 300000
+	cost 150000
 	thumbnail "outfit/orchid missile"
 	"mass" 9
 	"orchid capacity" -1
@@ -717,7 +717,7 @@ outfit `"Ophrys" Nuclear Torpedo`
 	category "Ammunition"
 	licenses
 		"Avgi Atomics"
-	cost 90000
+	cost 45000
 	thumbnail "outfit/ophrys torpedo"
 	"mass" 3
 	"ophrys capacity" -1
