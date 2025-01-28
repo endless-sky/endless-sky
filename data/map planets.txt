@@ -5104,7 +5104,7 @@ planet "Setar Fort"
 	attributes efret frozen korath
 	landscape land/snow5
 	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
-	spaceport `This spaceport is the only place where you have encountered Korath food that actually smells appetizing, possibly the Korath equivalent of barbeque. Any further past the spaceport, however, and the smell of animals in corrals ruins your appetite. Occasionally, as you walk by the stalls, one of the cattle will lower its head to sniff at you, horns wide enough to pass around your shoulders. The yaks seem docile enough, if a bit undernourished.`
+	spaceport `This spaceport is the only place where you have encountered Korath food that actually smells appetizing, possibly the Korath equivalent of barbecue. Any further past the spaceport, however, and the smell of animals in corrals ruins your appetite. Occasionally, as you walk by the stalls, one of the cattle will lower its head to sniff at you, horns wide enough to pass around your shoulders. The yaks seem docile enough, if a bit undernourished.`
 	outfitter "Korath Basics"
 
 planet "Shadow of Leaves"
