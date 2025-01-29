@@ -195,7 +195,7 @@ government "Avgi (Dissonance Angry)"
 	"friendly disabled hail" "friendly disabled dissonance"
 	"hostile hail" "hostile dissonance"
 	"hostile disabled hail" "hostile disabled dissonance"
-	raid "Large Dissonance Pirates"
+	raiders "Large Dissonance Pirates"
 
 
 color "governments: Wandering Fleet" 0.9 0.72 0.12

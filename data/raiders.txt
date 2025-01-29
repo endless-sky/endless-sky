@@ -19,3 +19,6 @@ raiders "Large Southern Pirates"
 
 raiders "People's Houses Raiders"
 	fleet "People's Houses Raiders"
+
+raiders "Large Dissonance Pirates"
+	fleet "Large Dissonance Pirates"
