@@ -167,7 +167,7 @@ mission "Unfettered Jump Drive 1"
 					goto more
 				`	"How will my ship leave here without my jump drive?"`
 			
-			`	"We can give you a hyperdrive in its place," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			`	"We can give you a hyperdrive in its place, if required," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
 			`	"Oh, and by the way, you will no longer be required to keep your Anomalocaris in working condition to guarantee our friendship," they add.`
 				to display
 					has "Hai Legacy 3: done"
@@ -196,6 +196,8 @@ mission "Unfettered Jump Drive 1"
 					goto refuse
 			
 			label end
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Jump Drive" > 1
 			action
 				outfit "Hyperdrive" 1
 			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
