@@ -266,5 +266,6 @@ effect "buzzer"
 		"no repeat"
 		"frame rate" 10
 	sound "buzzer am"
+	"sound category" "anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
