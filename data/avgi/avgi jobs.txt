@@ -1169,6 +1169,7 @@ mission "Avgi: Ergastirio Researchers 1"
 	name "Researchers to <planet>"
 	description "Take these <bunks> researchers to <destination> to work for a term on the laboratory station in exchange for <payment>."
 	source
+		distance 1 30
 		attributes "avgi diaspora"
 	destination "Ergastirio Station"
 	clearance
@@ -1187,6 +1188,7 @@ mission "Avgi: Ergastirio Researchers 2"
 	name "Researchers to <planet>"
 	description "Take these <bunks> researchers to <destination> to work for a term on the laboratory station in exchange for <payment>."
 	source
+		distance 1 30
 		attributes "avgi diaspora"
 	destination "Ergastirio Station"
 	clearance
@@ -1727,6 +1729,7 @@ mission "Avgi: Twilight Guard Relief 1"
 	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
 	source "Feo Platform"
 	destination
+		distance 1 30
 		government "Avgi (Consonance)"
 	passengers 3 6 .6
 	to offer
@@ -1745,6 +1748,7 @@ mission "Avgi: Twilight Guard Relief 2"
 	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
 	source "Feo Platform"
 	destination
+		distance 1 30
 		government "Avgi (Consonance)"
 	passengers 3 6 .45
 	to offer
@@ -1763,6 +1767,7 @@ mission "Avgi: Twilight Guard Relief 3"
 	description "Take these <bunks> Twilight Guards to <destination> to recover from their rotation on the front lines in exchange for <payment>."
 	source "Feo Platform"
 	destination
+		distance 1 30
 		government "Avgi (Consonance)"
 	passengers 3 6 .3
 	to offer
