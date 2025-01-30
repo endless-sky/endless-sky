@@ -912,7 +912,7 @@ outfit "Firelight Storage Rack"
 
 outfit "Firelight Missile"
 	category "Ammunition"
-	cost 3800
+	cost 7600
 	thumbnail "outfit/firelight"
 	"mass" 0.15
 	"firelight missile capacity" -1
@@ -1048,7 +1048,7 @@ outfit "Microbot Grinder"
 outfit "Firestorm Torpedo"
 	plural "Firestorm Torpedoes"
 	category "Ammunition"
-	cost 9900
+	cost 19800
 	thumbnail "outfit/firestorm torpedo"
 	"mass" .5
 	"firestorm torpedo capacity" -1
