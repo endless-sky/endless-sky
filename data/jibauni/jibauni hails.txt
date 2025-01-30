@@ -219,7 +219,7 @@ phrase "friendly jibauni civilian 2"
 
 phrase "friendly jibauni civilian 3"
 	word
-		"Meet me next time you're on "
+		"Meet me next time you are on "
 	phrase
 		"jibauni planet"
 	word
@@ -509,9 +509,9 @@ phrase "hostile jibauni military"
 
 phrase "hostile disabled jibauni civilian"
 	word
-		"Please don't shoot us! What have we done to you! We "
+		"Please do not shoot us! What have we done to you! We "
 	word
-		"didn't "
+		"did not "
 		"failed to "
 	word
 		"blow you up!"

@@ -3201,7 +3201,7 @@ planet Landalmon
 	security 0
 
 planet Laqualk
-	attributes government jibauni military "requires: Jibauni"
+	attributes government jibauni military "requires: inaccessible"
 	landscape land/nasa29
 	description `This is the Jibauni seat of government. There are projectors and unknown electronic technology in an order that looks randomly strewn about, but this electronic equipment is really the high-tech apparatus that makes this planet look like the gas giant it isn't. There is one store, and no trading buildings or job buildings. The single job board is in the store in a conspicuous position.`
 	spaceport `There are only a few buildings here, only the amount required to house the government representatives as well as fueling, repairing, and cleaning the few ships that are authorized to land as well as the knowledge. There are almost no spaceport workers, and only a few landing pads, which, however, are in the best of condition.`

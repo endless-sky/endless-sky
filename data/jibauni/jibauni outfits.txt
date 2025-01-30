@@ -653,7 +653,6 @@ outfit "Small Map"
 outfit "Jibauni Government License"
 	category "Licenses"
 	thumbnail "outfit/jibauni government license"
-	"Jibauni" 1
 	"unplunderable" 1
 	description "This is the license issued to all Jibauni who have helped the government enough. Apparently it can also be gifted to aliens."
 

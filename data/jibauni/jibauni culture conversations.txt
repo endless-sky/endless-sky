@@ -46,12 +46,12 @@ mission "Jibauni Culture: Hajay Intersystem"
 		random < 60
 	on offer
 		conversation
-			`A Quyan lands shortly after <ship> touches down, but it seems to have more Jibauni disembarking than any normal Quyan could have. Do you want to go investigate?`
+			`A Quyan lands shortly after <ship> touches down, but it seems to have more Jibauni disembarking than any normal Quyan could have. Would you like to go investigate?`
 			choice
-				`	(Why not.)`
+				`	(Yes.)`
 				`	(No.)`
 					goto no
-			`	You walk up to the Quyan, whose name you notice is "C. S. Jandon". Indeed, the number of passengers is more than usual.`
+			`	You walk up to the Quyan, whose name you notice is "C. S. Jandon". It definitely has more disembarking passengers than usual.`
 			choice
 				`	"How do you fit so many Jibauni on board?"`
 				`	(Never mind. Get out of here before the captain notices you.)`
@@ -60,19 +60,15 @@ mission "Jibauni Culture: Hajay Intersystem"
 			choice
 				`	"Why would you do that?"`
 				`	"I see."`
-			`	"I do it because the peaceful captain life is good enough for me. I don't need to go gallivanting around to strange places. I've been in Hajay my whole life, and enjoyed every bit of it. May I ask you a question?"`
+			`	"I do it because the peaceful captain life is good enough for me. I do not need to go gallivanting around to strange places; I have been in Hajay my whole life, and enjoyed every bit of it. May I ask you a question?"`
 			choice
 				`	"Sure."`
-					goto herquestion
 				`	"If you want."`
-					goto herquestion
 				`	"No thanks."`
 					goto nothanksship
-			label herquestion
 			`	"What is the name of your ship, <first>?"`
 			choice
 				`	"<ship>."`
-					goto toldship
 				`	"Wait. How do you know my name?"`
 					goto namequestion
 				`	"I thought you would know that I am Captain <first> <last> of the <ship>."`
@@ -86,45 +82,42 @@ mission "Jibauni Culture: Hajay Intersystem"
 				`	"<ship>."`
 					goto toldship
 				`	"I thought you would know that I am Captain <first> <last> of the <ship>."`
-					goto thoughtyouknew
 			label thoughtyouknew
 			`	"Nope," the Jibauni replies merrily. "We common Jibauni only know your first and last names."`
-				goto whoyou
 			label whoyou
 			`	"What is your name?" you ask. "I am surprised you would want to know," is the answer. "But I am Ru-win, daughter of Alson and Weni."`
 			choice
 				`	"Thanks. Well, I need to get going."`
 					goto finish
 				`	"That's a nice name, what does it mean?"`
-			`	"Ah, my name means 'The pilot'. The 'Ru' means 'pilot', and names ending in consonants are traditionally used for female Jibauni. Traditional male names usually end in vowels. At any rate, I have some business to attend to, so goodbye."`
-				goto finish
+			`	"Ah, my name means 'The pilot'. A very imaginative name, isn't it? The 'Ru' means 'pilot', and names ending in consonants are traditionally used for female Jibauni. Traditional male names usually end in vowels. At any rate, I have some business to attend to, so goodbye."`
 			label finish
 			branch "knows type"
 				has "Sol-Bound Shuttle: declined"
 			action
 				log "Apparently some Jibauni use their ships without hyperdrives and just shuttle people around the system of Hajay."
 			choice
-				`	"Thanks for talking with me. The non-hyperdrive part of it is a really interesting fact."`
+				`	"Thanks for talking with me. Your story is very interesting."`
 					decline
-				`	"Nice meeting you. Goodbye too."`
+				`	"Nice meeting you too."`
 					decline
 			label "knows type"
 			action
 				log "Just like in Sol, some Jibauni have no hyperdrives on their ships and instead ferry people around the system of Hajay."
 			choice
-				`	"Thanks for talking with me. That is a really interesting fact."`
+				`	"Thanks for talking with me. The fact that you don't use a hyperdrive is quite interesting."`
 					decline
-				`	"Nice meeting you. Goodbye."`
+				`	"It was nice to meet you."`
 					decline
 			label no
 			action
-				set "no jibauni hajay intersystem"
-			`	Well, who knows what was happening there. However, it doesn't concern you in the least, so you continue with your other business.`
+				set "jibauni: didn't ask about hajay intersystem"
+			`	Who knows what was happening there. However, it doesn't concern you in the least, so you continue with your other business.`
 				decline
 			label nothanksship
 			action
-				set "no jibauni hajay intersystem"
-			`	"Well, good luck to you. I have some business now, so goodbye."`
+				set "jibauni: didn't ask about hajay intersystem"
+			`	"Well, good luck to you. I have some business now."`
 				decline
 
 mission "Jibauni Culture: Steak Lovers"
@@ -133,11 +126,10 @@ mission "Jibauni Culture: Steak Lovers"
 	source
 		government "Jibauni" "Jibauni (Rebel)"
 	to offer
-		random < 1
+		random < 4
 	on offer
 		conversation
-			`Beside your ship as you touch down are a group of Jibauni children. They are digging a hole in the ground.`
-			`	As you watch, one of them finds a large box. They open it, and inside are three large pieces of meat. The Jibauni children immediately devour it, and toss the box in a nearby dumpster.`
+			`When you land on <origin>, you notice a group of smaller Jibauni, probably children, digging a hole in the ground. As you watch, one of them finds a box with three large pieces of unidentifiable meat inside. The group immediately devours the treat.`
 				decline
 
 mission "Jibauni Culture: Rebel Report"
@@ -146,25 +138,23 @@ mission "Jibauni Culture: Rebel Report"
 		government "Jibauni"
 	to offer
 		has "language: Jibauni"
-		random < 1
+		random < 2
 	on offer
 		conversation
-			`As you are passing by a restaurant, the door opens, and a small group of Jibauni come out. They are talking about politics, and as you listen, you realize that they are Rebels spying for some reason.`
+			`As you are passing by a restaurant, the door opens, and a small group of Jibauni come out. They are talking about politics, and as you listen, you realize that they are Rebel Jibauni acting as spies.`
 			choice
-				`	(Go report them to the police.)`
-					goto police
-				`	(Confront them.)`
+				`	(Find a police station to report them at.)`
+				`	(Confront them with what you heard.)`
 					goto confront
-			label police
 			action
 				payment 5000
-			`	When you tell the chief what just happened, they immediately send a force to disarm and capture the Rebels. When it turns out that your story was correct, the chief thanks you profusely and gives you a reward of <payment>.`
+			`	After a long search, you find a small police station tucked into the side of a hill. After a brief debate, you are admitted to the chief's office, where you tell them what just happened. A force is immediately dispatched to disarm and capture the Rebels. When it turns out that your story was correct, the chief thanks you profusely and gives you a reward of <payment>.`
 				decline
 			label confront
 			action
 				payment -2000
-			`	The Jibauni act as if they don't know what you are talking about. When you keep pressing claims, one of them pulls out a taser and shoots you.`
-			`	When you wake up, you find that the Jibauni have robbed you and left a message. The message tells you to not be so foolhardy next time, and that they have left the planet, so telling the police will be useless.`
+			`	The strangers act as if they don't know what you are talking about, but after leading you to a dark alley one of them pulls out a taser and zaps you.`
+			`	When you wake up, you find that the spies have robbed you and left a message, which says to not be so foolhardy next time. In addition, they seemingly have left the planet, so telling the police will be useless.`
 				decline
 
 mission "Rebel Jibauni Culture: Rude Rebel"
@@ -173,71 +163,66 @@ mission "Rebel Jibauni Culture: Rude Rebel"
 		government "Jibauni (Rebel)"
 	to offer
 		has "language: Jibauni"
-		random < 1
+		random < 6
 	on offer
 		conversation
-			`The part of the spaceport you are currently in is quite interesting, but also seems to be a slum. There are many armed Rebels standing around, and it feels rather strange seeing guns all over the place.`
-			`	A Rebel Jibauni swaggers up to you. "Is this the strange alien who doesn't know how to fight well?" it asks. "Perhaps you should be put off of our planet and all real Jibauni planets. You don't know anything, anyway."`
+			`The part of the spaceport you are currently in seems to be a slum, although some architectural aspects are fascinating. There are many armed Rebels standing around, and, compared to the relative peace of the other Jibauni faction's planets, it is strange to see such a blatant display of weaponry.`
+			`	A Rebel Jibauni swaggers up to you. "Is this the strange alien who does not know how to fight well?" it asks. "Perhaps you should be put off of our planet and all real Jibauni planets. Not that it matters; one like you is unlikely to know how to spy in the first place." Given the Jibauni emphasis on politeness, it seems likely that this Rebel Jibauni is trying to pick a fight with you.`
 			choice
 				`	"I don't think I should leave at all."`
-					goto dontthink
-				`	"You don't even know how to be polite. How rude you are."`
+				`	"I doubt you know how to be polite. How rude you are."`
 					goto rude
 				`	"I take that as a personal insult."`
 					goto Iwasinsulted
-				`	(Quietly walk away.)`
+				`	(Quietly leave.)`
 					goto walkedaway
 			label dontthink
-			`	"Well, you are wrong," replies the Jibauni. "There is nothing you will help us with, anyway."`
+			`	"Well, you are wrong," replies the Jibauni. "There is nothing you could help us with, anyway."`
 			choice
 				`	"Wrong."`
 					goto pretalkbattle
-				`	(Quietly walk away.)`
+				`	(Quietly leave.)`
 					goto walkedaway
 			label rude
 			`	"What!" yells the Rebel. "That is an insult! I cannot ignore this direct affront to my dignity!"`
 				goto talkbattle
 			label Iwasinsulted
-			`	"Who cares," remarks the Rebel. "I sure don't, for one thing. I doubt any other of us does either."`
+			`	"Who cares," remarks the Rebel. "I sure do not, for one thing, and I doubt anyone else does either."`
 				goto talkbattle
 			label pretalkbattle
-			`	"Well, I think I'm right. At any rate, you are a wicked alien scum."`
+			`	"I think I am right, oh alien, so what does your opinion matter?"`
 			label talkbattle
 			choice
-				`	"Yep. You are rude, and no one in the universe can deny it."`
-					goto yourudecantdeny
+				`	"Well, you are rude, and nothing in the universe can deny it."`
 				`	(Quietly walk away.)`
 					goto walkedaway
-			label yourudecantdeny
-			`	"Perhaps not, but I do deny it, and care nothing for any of your thoughts." The Jibauni rudely turns its back on you.`
+			`	"Perhaps not, but I do deny it, and care nothing for any of your thoughts." The Jibauni turns its back on you, another rude gesture in Jibauni culture.`
 			choice
-				`	"Nor do I."`
-					goto nordo
-				`	(Quietly walk away.)`
-				`	(Shoot the rude Rebel Jibauni and leave.)`
+				`	"Nor do I for yours."`
+				`	(Quietly leave.)`
+					goto walkedaway
+				`	(Shoot the rude Rebel and leave.)`
 					goto shot
 				`	"Nor do I. Get out of here."`
 					goto getout
-			label nordo
 			`	"Well, who cares," the Jibauni insults you again, while keeping its back turned.`
 			choice
-				`	"Get out of here."`
-					goto getout
-				`	(Quietly walk away.)`
+				`	"Leave immediately."`
+				`	(Quietly leave.)`
 					goto walkedaway
 				`	(Shoot the rude Rebel and leave.)`
 					goto shot
 			label getout
 			`	The Jibauni whips around to face you. "No. You do."`
-			`	A squad of Rebel Jibauni soldiers come around a corner and forcibly escort you to your ship, then tell you that if you don't leave they will open fire on the <ship>. You decide to leave.`
+			`	A squad of Rebel Jibauni soldiers come around a corner and forcibly escort you to your ship, then tell you that if you don't leave they will open fire.`
 				flee
 			label shot
 			action
 				"reputation: Jibauni (Rebel)" -= 1
-			`	Your shot hits the Rebel squarely in the back, killing it instaneously. You get back to the <ship> without anyone seeing you, and leave immediately.`
+			`	Your shot hits the Rebel squarely in the back, killing it instaneously. You get back to the <ship> without anyone seeing you, and launch immediately.`
 				flee
 			label walkedaway
-			`	You turn and walk away, with the Rebel Jibauni laughing at you the whole while. That did not go very well.`
+			`	You turn and walk away, with the Rebel Jibauni laughing at you the whole while.`
 				decline
 
 mission "Rebel Jibauni Culture: Fleeing Rebel"
