@@ -3643,14 +3643,14 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			targets.emplace_back(body->Position(), body->Velocity());
 	}
 	else
-		targets.emplace_back(*targetOverride, ship.Velocity());
+		targets.emplace_back(*targetOverride + ship.Position(), ship.Velocity());
 	// Each hardpoint should aim at the target that it is "closest" to hitting.
 	for(const Hardpoint &hardpoint : ship.Weapons())
 		if(hardpoint.CanAim())
 		{
 			// This is where this projectile fires from. Add some randomness
 			// based on how skilled the pilot is.
-			Point start = ship.Facing().Rotate(hardpoint.GetPoint());
+			Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 			start += ship.GetPersonality().Confusion();
 			// Get the turret's current facing, in absolute coordinates:
 			Angle aim = ship.Facing() + hardpoint.GetAngle();
@@ -3664,6 +3664,8 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			double bestAngle = 0.;
 			for(auto [p, v] : targets)
 			{
+				p -= start;
+
 				// Only take the ship's velocity into account if this weapon
 				// does not have its own acceleration.
 				if(!weapon->Acceleration())
@@ -3671,7 +3673,6 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 				// By the time this action is performed, the target will
 				// have moved forward one time step.
 				p += v;
-				p -= start;
 
 				double rendezvousTime = numeric_limits<double>::quiet_NaN();
 				double distance = p.Length();
