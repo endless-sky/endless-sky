@@ -1170,6 +1170,7 @@ mission "Avgi: Ergastirio Researchers 1"
 	description "Take these <bunks> researchers to <destination> to work for a term on the laboratory station in exchange for <payment>."
 	source
 		attributes "avgi diaspora"
+		not planet "Ergastirio Station"
 	destination "Ergastirio Station"
 	clearance
 	passengers 3 3 .45
@@ -1188,6 +1189,7 @@ mission "Avgi: Ergastirio Researchers 2"
 	description "Take these <bunks> researchers to <destination> to work for a term on the laboratory station in exchange for <payment>."
 	source
 		attributes "avgi diaspora"
+		not planet "Ergastirio Station"
 	destination "Ergastirio Station"
 	clearance
 	passengers 3 6 .36
