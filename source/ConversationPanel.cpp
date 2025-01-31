@@ -149,7 +149,7 @@ void ConversationPanel::Draw()
 		point = it.Draw(point, gray);
 
 	// Draw the storyline color bar, if applicable
-	if(caller->GetStoryline() != nullptr)
+	if(caller != nullptr && caller->GetStoryline() != nullptr)
 	{
 		Point storyLineTop(Screen::Left() + boxWidth - 3, Screen::Top() + MARGIN + scroll);
 		Point storyLineBottom(Screen::Left() + boxWidth - 3, Screen::Top() + Screen::Height() - MARGIN);

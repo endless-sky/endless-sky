@@ -383,7 +383,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	if(!logText.empty())
 	{
 		player.AddLogEntry(logText);
-		if(caller->GetStoryline() != nullptr)
+		if(caller != nullptr && caller->GetStoryline() != nullptr)
 			player.AddSpecialLog("Storylines", caller->GetStoryline()->Name(), logText);
 	}
 	for(auto &&it : specialLogText)
