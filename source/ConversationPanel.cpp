@@ -151,9 +151,22 @@ void ConversationPanel::Draw()
 	// Draw the storyline color bar, if applicable
 	if(caller != nullptr && caller->GetStoryline() != nullptr)
 	{
-		Point storyLineTop(Screen::Left() + boxWidth - 3, Screen::Top() + MARGIN + scroll);
-		Point storyLineBottom(Screen::Left() + boxWidth - 3, Screen::Top() + Screen::Height() - MARGIN);
-		LineShader::Draw(storyLineTop, storyLineBottom, 3, caller->GetStoryline()->GetColor());
+		const Color storylineColor = caller->GetStoryline()->GetColor();
+		const Color storylineColorAlpha = storylineColor.Transparent(0.75);
+		if(caller->GetStoryline()->IsMain())
+		{
+			Point mainStoryLineTop(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 224);
+			Point mainStoryLineBottom(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 224 + 132);
+			LineShader::Draw(mainStoryLineTop, mainStoryLineBottom, 3, storylineColorAlpha);
+			LineShader::Draw(mainStoryLineTop, mainStoryLineBottom, 1, storylineColor);
+		}
+		else
+		{
+			Point subStoryLineTop(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 433);
+			Point subStoryLineBottom(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 433 + 44);
+			LineShader::Draw(subStoryLineTop, subStoryLineBottom, 3, storylineColorAlpha);
+			LineShader::Draw(subStoryLineTop, subStoryLineBottom, 1, storylineColor);
+		}
 	}
 
 	// Draw whatever choices are being presented.
