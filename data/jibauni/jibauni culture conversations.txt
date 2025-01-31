@@ -35,7 +35,7 @@ mission "Jibauni Culture: Rebel Chase"
 			`	As you stand where you are, the Jibauni come racing your way, knocking you down as the chase continues. Once all of the soldiers pass, a bystander helps you up and brushes you off, telling you that scenes like this are fairly frequent in Rebel space.`
 				decline
 			label question
-			`	All of the Jibauni keep running past you, intent on what they are doing. After the traces are gone, a bystander tells you that scenes like this are fairly frequent, when a Jibauni is accused of stealing... or doing something the Governor does not like.`
+			`	All of the Jibauni keep running past you, intent on what they are doing. After the last traces of them are gone, a bystander tells you that scenes like this are fairly frequent, when a Jibauni is accused of stealing... or doing something the Governor does not like.`
 				decline
 
 mission "Jibauni Culture: Hajay Intersystem"
@@ -46,12 +46,12 @@ mission "Jibauni Culture: Hajay Intersystem"
 		random < 60
 	on offer
 		conversation
-			`A Quyan lands shortly after <ship> touches down, but it seems to have more Jibauni disembarking than any normal Quyan could have. Would you like to go investigate?`
+			`A Quyan lands shortly after <ship> touches down, but it seems to have more Jibauni disembarking than any Quyan could normally contain. Would you like to go investigate?`
 			choice
 				`	(Yes.)`
 				`	(No.)`
 					goto no
-			`	You walk up to the Quyan, whose name you notice is "C. S. Jandon". It definitely has more disembarking passengers than usual.`
+			`	You walk up to the Quyan, whose name you notice is "C. S. Jandon". It definitely has more passengers disembarking than usual.`
 			choice
 				`	"How do you fit so many Jibauni on board?"`
 				`	(Never mind. Get out of here before the captain notices you.)`
@@ -85,12 +85,14 @@ mission "Jibauni Culture: Hajay Intersystem"
 			label thoughtyouknew
 			`	"Nope," the Jibauni replies merrily. "We common Jibauni only know your first and last names."`
 			label whoyou
-			`	"What is your name?" you ask. "I am surprised you would want to know," is the answer. "But I am Ru-win, daughter of Alson and Weni."`
+			`	"What is your name?" you ask. "I am surprised you would want to know," she replies. "But I am Ru-win, daughter of Alson and Weni."`
 			choice
 				`	"Thanks. Well, I need to get going."`
 					goto finish
 				`	"That's a nice name, what does it mean?"`
 			`	"Ah, my name means 'The pilot'. A very imaginative name, isn't it? The 'Ru' means 'pilot', and names ending in consonants are traditionally used for female Jibauni. Traditional male names usually end in vowels. At any rate, I have some business to attend to, so goodbye."`
+			action
+				set "jibauni knowledge: name endings"
 			label finish
 			branch "knows type"
 				has "Sol-Bound Shuttle: declined"
@@ -154,7 +156,7 @@ mission "Jibauni Culture: Rebel Report"
 			action
 				payment -2000
 			`	The strangers act as if they don't know what you are talking about, but after leading you to a dark alley one of them pulls out a taser and zaps you.`
-			`	When you wake up, you find that the spies have robbed you and left a message, which says to not be so foolhardy next time. In addition, they seemingly have left the planet, so telling the police will be useless.`
+			`	When you wake up, you find that the spies have robbed you and left a message, which says to not be so foolhardy next time. In addition, they seemingly have left the planet, so telling the police would be useless.`
 				decline
 
 mission "Rebel Jibauni Culture: Rude Rebel"
@@ -166,7 +168,7 @@ mission "Rebel Jibauni Culture: Rude Rebel"
 		random < 6
 	on offer
 		conversation
-			`The part of the spaceport you are currently in seems to be a slum, although some architectural aspects are fascinating. There are many armed Rebels standing around, and, compared to the relative peace of the other Jibauni faction's planets, it is strange to see such a blatant display of weaponry.`
+			`This part of the spaceport seems to be a slum, although some architectural aspects are fascinating. Many armed Rebels stand around, and in contrast to the relative peace of the other Jibauni faction's planets, this blatant display of weaponry feels jarring.`
 			`	A Rebel Jibauni swaggers up to you. "Is this the strange alien who does not know how to fight well?" it asks. "Perhaps you should be put off of our planet and all real Jibauni planets. Not that it matters; one like you is unlikely to know how to spy in the first place." Given the Jibauni emphasis on politeness, it seems likely that this Rebel Jibauni is trying to pick a fight with you.`
 			choice
 				`	"I don't think I should leave at all."`
@@ -219,7 +221,7 @@ mission "Rebel Jibauni Culture: Rude Rebel"
 			label shot
 			action
 				"reputation: Jibauni (Rebel)" -= 1
-			`	Your shot hits the Rebel squarely in the back, killing it instaneously. You get back to the <ship> without anyone seeing you, and launch immediately.`
+			`	Your shot hits the Rebel squarely in the back, killing it instantly. You get back to the <ship> without anyone seeing you, and launch immediately.`
 				flee
 			label walkedaway
 			`	You turn and walk away, with the Rebel Jibauni laughing at you the whole while.`
