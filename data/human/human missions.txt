@@ -7650,7 +7650,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realize that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
 			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
-			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
+			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
 			`	He pauses, as if he's trying to remember something. "Anyways, thank you again, and know I'll never forget what you did for me."`
 			`	Timothy waves, and the video ends.`
 				decline
