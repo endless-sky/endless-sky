@@ -58,14 +58,54 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 
 const Sprite *MapOutfitterPanel::SelectedSprite() const
 {
-	return selected ? selected->Thumbnail() : nullptr;
+	if(!selected)
+		return nullptr;
+
+	const Body body = selected->ThumbnailBody();
+	const bool isAnimated = body.GetSprite() != nullptr;
+	const Sprite *thumbnail = isAnimated ? body.GetSprite() : selected->Thumbnail();
+	return thumbnail;
+}
+
+
+
+void MapOutfitterPanel::DrawSelectedSprite(const Point &corner) const
+{
+	if(!selected)
+		return;
+
+	const Body body = selected->ThumbnailBody();
+	const bool isAnimated = body.GetSprite() != nullptr;
+	const float frame = isAnimated ? body.GetFrame(step) : 0.f;
+	const Sprite *thumbnail = isAnimated ? body.GetSprite() : selected->Thumbnail();
+	DrawSprite(corner, thumbnail, SelectedSpriteSwizzle(), frame);
 }
 
 
 
 const Sprite *MapOutfitterPanel::CompareSprite() const
 {
-	return compare ? compare->Thumbnail() : nullptr;
+	if(!compare)
+		return nullptr;
+
+	const Body body = compare->ThumbnailBody();
+	const bool isAnimated = body.GetSprite() != nullptr;
+	const Sprite *thumbnail = isAnimated ? body.GetSprite() : compare->Thumbnail();
+	return thumbnail;
+}
+
+
+
+void MapOutfitterPanel::DrawCompareSprite(const Point &corner) const
+{
+	if(!compare)
+		return;
+
+	const Body body = compare->ThumbnailBody();
+	const bool isAnimated = body.GetSprite() != nullptr;
+	const float frame = isAnimated ? body.GetFrame(step) : 0.f;
+	const Sprite *thumbnail = isAnimated ? body.GetSprite() : compare->Thumbnail();
+	DrawSprite(corner, thumbnail, CompareSpriteSwizzle(), frame);
 }
 
 
@@ -259,7 +299,11 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
+
+			const Sprite *thumbnailSprite = outfit->ThumbnailBody().GetSprite();
+			const Sprite *sprite = thumbnailSprite ? thumbnailSprite : outfit->Thumbnail();
+			int frame = outfit->ThumbnailBody().GetFrame(step);
+			Draw(corner, sprite, 0, frame, isForSale, outfit == selected,
 				outfit->DisplayName(), price, info, storage_details);
 			list.push_back(outfit);
 		}
