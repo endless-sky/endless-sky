@@ -1944,15 +1944,17 @@ ship "Firebird"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Particle Cannon" 2
+		"Twin Blaster" 2
 		"Meteor Missile Launcher" 2
 		"Meteor Missile" 60
+		"Torpedo Launcher" 2
+		"Torpedo" 60
 		"Quad Blaster Turret"
 		"Anti-Missile Turret"
 		
 		"RT-I Radiothermal"
 		"nGVF-AA Fuel Cell"
-		"LP144a Battery Pack"
+		"LP072a Battery Pack"
 		"D41-HY Shield Generator"
 		"Laser Rifle" 3
 		
@@ -1963,17 +1965,17 @@ ship "Firebird"
 		
 	engine -31.5 67
 	engine 31.5 67
-	gun -27 -28 "Particle Cannon"
-	gun 27 -28 "Particle Cannon"
+	gun -27 -28 "Twin Blaster"
+	gun 27 -28 "Twin Blaster"
 	gun -38 -13
 	gun 38 -13
 	pylon -39 37 "Meteor Missile Launcher"
 		over
 	pylon 39 37 "Meteor Missile Launcher"
 		over
-	pylon -10 20
+	pylon -10 20 "Torpedo Launcher"
 		over
-	pylon 10 20
+	pylon 10 20 "Torpedo Launcher"
 		over
 	turret 0 -38 "Anti-Missile Turret"
 	turret 0 3 "Quad Blaster Turret"
@@ -2914,11 +2916,16 @@ ship "Leviathan"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Particle Cannon" 4
+		"Twin Blaster" 4
 		"Quad Blaster Turret" 3
 		"Anti-Missile Turret"
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Torpedo Launcher" 2
+		"Torpedo" 60
 		
-		"Fusion Reactor"
+		"Breeder Reactor"
+		"KP-6 Photovoltaic Panel" 2
 		"LP144a Battery Pack"
 		"D67-TM Shield Generator"
 		"Liquid Helium Cooler"
@@ -2931,20 +2938,20 @@ ship "Leviathan"
 		
 	engine -24 126
 	engine 24 126
-	gun -37.5 -31.5 "Particle Cannon"
-	gun 37.5 -31.5 "Particle Cannon"
-	gun -49 -19.5 "Particle Cannon"
-	gun 49 -19.5 "Particle Cannon"
-	pylon -43 46
+	gun -37.5 -31.5 "Twin Blaster"
+	gun 37.5 -31.5 "Twin Blaster"
+	gun -49 -19.5 "Twin Blaster"
+	gun 49 -19.5 "Twin Blaster"
+	pylon -43 46 "Torpedo Launcher"
 		angle 315
 		over
-	pylon 43 46
+	pylon 43 46 "Torpedo Launcher"
 		angle 45
 		over
-	pylon -47 56
+	pylon -47 56 "Meteor Missile Launcher"
 		angle 315
 		over
-	pylon 47 56
+	pylon 47 56 "Meteor Missile Launcher"
 		angle 45
 		over
 	turret -14 -10 "Quad Blaster Turret"
@@ -3592,10 +3599,11 @@ ship "Quicksilver"
 			"hull damage" 200
 			"hit force" 600
 	outfits
-		"Particle Cannon" 2
+		"Proton Gun" 2
 		
 		"nGVF-DD Fuel Cell"
-		"LP036a Battery Pack"
+		"LP072a Battery Pack"
+		"Small Radar Jammer"
 
 		"RC11 Reaction Reverse Thruster"
 		"RC27 Reaction Thruster"
@@ -3605,13 +3613,13 @@ ship "Quicksilver"
 		
 	engine -15.5 54
 	engine 15.5 54
-	gun -6 -39.5 "Particle Cannon"
-	gun 6 -39.5 "Particle Cannon"
+	gun -6 -39.5 "Proton Gun"
+	gun 6 -39.5 "Proton Gun"
 	leak "leak" 50 50
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	"final explode" "final explosion small"
-	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Particle Cannons. Because of its speed, reverse thrusters, and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with particle bursts until they are destroyed. The focus on its weaponry left the Quicksilver with no room for even the most basic shield generator. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
+	description "The Megaparsec Quicksilver is a warship built around a single concept: to design the smallest and fastest ship capable of carrying two Proton Guns. Because of its speed, reverse thrusters, and long weapons range, the Quicksilver can keep a safe distance from most targets and bombard them with proton bursts until they are destroyed. The focus on its weaponry left the Quicksilver with no room for even the most basic shield generator. Unfortunately the Headhunter eventually surpassed the original design intent, but the Quicksilver's better durability to cost ratio, and the existence of long-term contracts, has kept it in use with Syndicate security forces."
 
 
 

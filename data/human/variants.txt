@@ -1359,8 +1359,10 @@ ship "Corvette" "Corvette (Raider)"
 
 ship "Corvette" "Corvette (Speedy)"
 	outfits
-		"Particle Cannon" 4
+		"Proton Gun" 4
 		"Heavy Anti-Missile Turret"
+		"Meteor Missile Pod" 2
+		"Meteor Missile" 14
 		"Fusion Reactor"
 		"Supercapacitor"
 		"D41-HY Shield Generator"
@@ -2698,10 +2700,11 @@ ship "Hawk" "Hawk (Speedy)"
 
 ship "Headhunter" "Headhunter (Hai)"
 	outfits
-		"Particle Cannon" 2
+		"Proton Gun" 2
 		"Geode Reactor"
 		"Hai Chasm Batteries"
 		"Hai Corundum Regenerator"
+		"Hai Cuttlefish Jammer"
 		"Hai Williwaw Cooling"
 		"A250 Atomic Thruster"
 		"AL259 Atomic LTC"
@@ -2711,9 +2714,10 @@ ship "Headhunter" "Headhunter (Hai)"
 
 ship "Headhunter" "Headhunter (Miner A)"
 	outfits
-		"Particle Cannon" 2
+		"Proton Gun" 2
 		"NT-200 Nucleovoltaic"
 		"LP036a Battery Pack"
+		"Cooling Ducts"
 		"D14-RN Shield Generator"
 		"Asteroid Scanner"
 		"A250 Atomic Thruster"
@@ -2856,7 +2860,7 @@ ship "Leviathan" "Leviathan (CCOR)"
 
 ship "Leviathan" "Leviathan (Hai Engines)"
 	outfits
-		"Particle Cannon" 4
+		"Proton Gun" 4
 		"Quad Blaster Turret" 2
 		"Chameleon Anti-Missile" 2
 		"Boulder Reactor"
@@ -2991,9 +2995,12 @@ ship "Leviathan" "Leviathan (Particle Chaser)"
 
 ship "Manta" "Manta (Mark II)"
 	outfits
-		"Particle Cannon" 4
+		"Proton Gun" 4
 		"Sidewinder Missile Launcher"
 		"Sidewinder Missile" 45
+		"Torpedo Pod"
+		"Torpedo Storage Rack"
+		"Torpedo" 18
 		"Fission Reactor"
 		"LP072a Battery Pack"
 		"S-270 Regenerator"
@@ -3005,20 +3012,20 @@ ship "Manta" "Manta (Mark II)"
 		"A375 Atomic Steering"
 		"Hyperdrive"
 		"Ionic Afterburner"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
 	pylon "Sidewinder Missile Launcher"
 	pylon
 
 
 ship "Manta" "Manta (Nuclear)"
 	outfits
-		"Particle Cannon" 4
+		"Proton Gun" 4
 		"Nuclear Missile" 2
 		"Fission Reactor"
-		"LP072a Battery Pack"
+		"LP144a Battery Pack"
 		"S-270 Regenerator"
 		"Water Coolant System"
 		"Outfits Expansion"
@@ -3026,10 +3033,10 @@ ship "Manta" "Manta (Nuclear)"
 		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
+	gun "Proton Gun"
 	pylon "Nuclear Missile"
 	pylon "Nuclear Missile"
 
@@ -3651,14 +3658,28 @@ ship "Protector" "Protector (Tractor Beam)"
 
 ship "Quicksilver" "Quicksilver (Mark II)"
 	outfits
-		"Particle Cannon" 2
+		"Proton Gun" 2
 		"Fission Reactor"
 		"LP036a Battery Pack"
 		"S-270 Regenerator"
 		"Water Coolant System"
+		"Small Radar Jammer"
 		"A250 Atomic Thruster"
 		"AL259 Atomic LTC"
 		"A255 Atomic Steering"
+		"Hyperdrive"
+
+
+ship "Quicksilver" "Quicksilver (Particle)"
+	outfits
+		"Particle Cannon" 2
+		"RT-I Radiothermal"
+		"LP036a Battery Pack"
+		"D23-QP Shield Generator"
+		"Cooling Ducts"
+		"Greyhound Plasma Thruster"
+		"Greyhound Plasma LTC"
+		"Greyhound Plasma Steering"
 		"Hyperdrive"
 
 
@@ -3677,12 +3698,14 @@ ship "Quicksilver" "Quicksilver (Proton)"
 
 ship "Quicksilver" "Quicksilver (Scanner)"
 	outfits
-		"Particle Cannon" 2
+		"Proton Gun" 2
 		"RT-I Radiothermal"
-		"LP036a Battery Pack"
+		"LP072a Battery Pack"
 		"D23-QP Shield Generator"
 		"Cooling Ducts"
+		"Small Radar Jammer"
 		"Cargo Scanner"
+		"Outfit Scanner"
 		"Greyhound Plasma Thruster"
 		"Greyhound Plasma LTC"
 		"Greyhound Plasma Steering"
@@ -3746,24 +3769,23 @@ ship "Raven" "Raven (Afterburner)"
 
 ship "Raven" "Raven (Heavy)"
 	outfits
-		"Particle Cannon" 2
-		"Meteor Missile Launcher" 2
-		"Meteor Missile" 60
+		"Twin Modified Blaster" 4
+		"Meteor Missile Launcher"
+		"Meteor Missile Box"
+		"Meteor Missile" 45
+		"Torpedo Pod"
+		"Torpedo Storage Rack"
+		"Torpedo" 18
+		"Outfits Expansion"
 		"Fission Reactor"
-		"Supercapacitor" 3
-		"D23-QP Shield Generator"
-		"Cooling Ducts"
-		"Laser Rifle" 3
+		"LP036a Battery Pack"
+		"D41-HY Shield Generator"
+		"Water Coolant System"
+		"Laser Rifle" 6
 		"A250 Atomic Thruster"
 		"AL259 Atomic LTC"
 		"A375 Atomic Steering"
 		"Hyperdrive"
-	gun "Particle Cannon"
-	gun "Particle Cannon"
-	gun
-	gun
-	pylon "Meteor Missile Launcher"
-	pylon "Meteor Missile Launcher"
 
 
 
@@ -3962,12 +3984,15 @@ ship "Splinter" "Splinter (Laser)"
 
 ship "Splinter" "Splinter (Mark II)"
 	outfits
-		"Particle Cannon" 2
-		"Quad Blaster Turret" 3
+		"Proton Gun" 2
+		"Quad Blaster Turret" 2
+		"Meteor Missile Pod" 2
+		"Meteor Missile Box"
+		"Meteor Missile" 29
 		"Fusion Reactor"
-		"Supercapacitor"
+		"LP036a Battery Pack"
 		"S-970 Regenerator"
-		"Water Coolant System" 4
+		"Water Coolant System" 3
 		"Outfits Expansion" 2
 		"Laser Rifle" 3
 		"A250 Atomic Thruster"

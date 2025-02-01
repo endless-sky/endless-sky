@@ -335,7 +335,7 @@ fleet "Large Core Merchants"
 		"Protector (Proton)" 1
 	variant 1
 		"Container Transport (Heavy)" 2
-		"Vanguard (Particle)" 1
+		"Vanguard" 1
 	variant 1
 		"Container Transport (Heavy)" 2
 		"Vanguard (Missile)" 1
@@ -640,7 +640,7 @@ fleet "Large Northern Merchants"
 		"Headhunter" 2
 	variant 2
 		"Behemoth"
-		"Headhunter (Particle)" 2
+		"Headhunter" 2
 	variant 4
 		"Blackbird"
 		"Sparrow" 3
@@ -649,7 +649,7 @@ fleet "Large Northern Merchants"
 		"Headhunter" 2
 	variant 1
 		"Bulk Freighter"
-		"Headhunter (Particle)" 2
+		"Headhunter" 2
 	variant 5
 		"Bulk Freighter"
 		"Sparrow" 2
@@ -700,7 +700,7 @@ fleet "Large Northern Merchants"
 		"Leviathan"
 	variant 1
 		"Star Queen"
-		"Headhunter (Particle)" 3
+		"Headhunter" 3
 	variant 1
 		"Star Queen"
 		"Berserker (Strike)" 2
@@ -746,7 +746,7 @@ fleet "Large Northern Merchants"
 		"Headhunter" 2
 	variant 1
 		"Container Transport"
-		"Headhunter (Particle)" 2
+		"Headhunter" 2
 	variant 5
 		"Container Transport"
 		"Sparrow" 2
@@ -936,7 +936,7 @@ fleet "Large Human Merchants (Hai)"
 		"Leviathan"
 	variant 1
 		"Star Queen"
-		"Headhunter (Particle)" 3
+		"Headhunter" 3
 	variant 1
 		"Star Queen"
 		"Berserker (Afterburner)" 2
@@ -1564,7 +1564,7 @@ fleet "Large Deep Merchants"
 		"Headhunter" 2
 	variant 1
 		"Star Queen"
-		"Headhunter (Particle)"
+		"Headhunter"
 		"Headhunter (Strike)"
 	variant 1
 		"Star Queen"
@@ -1641,7 +1641,7 @@ fleet "Large Deep Security"
 	variant 2
 		"Headhunter (Particle)" 2
 	variant 2
-		"Headhunter (Particle)"
+		"Headhunter"
 		"Headhunter (Strike)"
 	variant 3
 		"Aerie" 2
@@ -1813,7 +1813,7 @@ fleet "Large Syndicate"
 		"Protector (Proton)"
 		"Quicksilver (Proton)" 2
 	variant 1
-		"Vanguard (Particle)"
+		"Vanguard"
 		"Quicksilver" 2
 	variant 1
 		"Vanguard"
@@ -1823,7 +1823,7 @@ fleet "Large Syndicate"
 		"Quicksilver (Proton)" 2
 	variant 1
 		"Protector"
-		"Vanguard (Particle)"
+		"Vanguard (Missile)"
 	variant 1
 		"Protector (Proton)"
 		"Vanguard"
@@ -2261,7 +2261,7 @@ fleet "Small Core Pirates"
 	variant 1
 		"Headhunter"
 	variant 1
-		"Headhunter (Particle)"
+		"Headhunter (Miner A)"
 	variant 1
 		"Headhunter (Tractor Beam)"
 	variant 1
@@ -2602,7 +2602,7 @@ fleet "pirate raid"
 	variant 1
 		"Falcon (Laser)"
 	variant 5
-		"Quicksilver (Proton)" 3
+		"Quicksilver (Particle)" 3
 	variant 2
 		"Quicksilver" 3
 	variant 3
@@ -3529,8 +3529,8 @@ fleet "Independent (Korath-Allied) Merchants"
 		"Fury (Bomber)" 3
 	variant 2
 		"Hauler III"
-		"Leviathan (Particle Chaser)"
-		"Headhunter (Particle)" 2
+		"Leviathan (Laser)"
+		"Headhunter (Strike)" 2
 	variant 2
 		"Star Queen"
 		"Protector (Proton)"
@@ -3601,7 +3601,7 @@ fleet "Independent (Korath-Allied) Defense"
 		"Protector"
 		"Firebird (Missile)"
 	variant 2
-		"Vanguard (Particle)"
+		"Vanguard (Missile)"
 		"Firebird (Plasma)"
 	variant 2
 		"Vanguard (Missile)"
@@ -3610,10 +3610,10 @@ fleet "Independent (Korath-Allied) Defense"
 		"Vanguard"
 		"Firebird (Laser)"
 	variant 3
-		"Headhunter (Particle)"
-		"Headhunter (Strike)"
+		"Headhunter"
+		"Headhunter (Strike)" 2
 	variant 2
-		"Headhunter (Particle)" 2
+		"Headhunter" 2
 		"Headhunter (Strike)"
 	variant 1
 		"Marauder Falcon"
