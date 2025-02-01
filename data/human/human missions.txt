@@ -9183,7 +9183,7 @@ mission "Timothy Radrickson 7: Monk"
 			label offer2
 			action
 				log "Found Timothy alive and well on New Tibet, living a simple, but happy life as a monk."
-				log "People" "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and has escaped to New Tibet, where, thanks to my help, he now lives as simple monk. He seems happy.`
+				log "People" "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and escaped to New Tibet, where, thanks to my help, he now lives as a simple monk. He seems happy.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
@@ -9283,7 +9283,7 @@ mission "Timothy Radrickson 7: Hospice"
 			label offer2
 			action
 				log "Found Timothy alive, but not in great shape. He is thankful for the rescue nonetheless. Can't shake the feeling that there was more that I could have done for him."
-				log "People" "Timothy Radrickson" `The once stowaway, governor, and prisoner Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
+				log "People" "Timothy Radrickson" `Once a stowaway, governor, and prisoner, Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for a hug.`
