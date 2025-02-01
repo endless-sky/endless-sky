@@ -147,15 +147,23 @@ outfit "RG15 Torch Thruster"
 		"Gegno Civilian"
 	cost 17000
 	thumbnail "outfit/small torch thruster vi"
+	"thruster slot" -1
+	"engine mod space" 1.04
 	"mass" 31
 	"outfit space" -31
 	"engine capacity" -31
-	"thrust" 17.355
+	"thrust" 17
 	"thrusting energy" 0.7
 	"thrusting heat" 1.5
 	"flare sprite" "effect/vi flare/small"
 		"frame rate" 2.5
 	"flare sound" "ion torch small"
+	"reverse thrust" 1.7
+	"reverse thrusting energy" 0.07
+	"reverse thrusting heat" 0.15
+	"reverse flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"reverse flare sound" "ion torch small"
 	description `The RG15 Ion Torch Thruster is the Gegno Vi's smallest torch thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size in exchange for using slightly less energy.`
 
 
@@ -165,10 +173,11 @@ outfit "RG15 Torch Steering"
 		"Gegno Civilian"
 	cost 15000
 	thumbnail "outfit/small torch steering vi"
+	"steering slot" -1
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 430.5
+	"turn" 430
 	"turning energy" 0.4
 	"turning heat" 0.85
 	"steering flare sprite" "effect/vi flare/small"
@@ -183,15 +192,23 @@ outfit "RG18 Torch Thruster"
 		"Gegno Civilian"
 	cost 38000
 	thumbnail "outfit/medium torch thruster vi"
+	"thruster slot" -1
+	"engine mod space" 1.2
 	"mass" 51
 	"outfit space" -51
 	"engine capacity" -51
-	"thrust" 30.6
+	"thrust" 30
 	"thrusting energy" 1.25
 	"thrusting heat" 2.9
 	"flare sprite" "effect/vi flare/medium"
 		"frame rate" 2.4
 	"flare sound" "ion torch medium"
+	"reverse thrust" 3.0
+	"reverse thrusting energy" 0.125
+	"reverse thrusting heat" 0.29
+	"reverse flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"reverse flare sound" "ion torch small"
 	description `The RG18 is a moderately large thruster used by the Gegno Vi. Ion Torch Thrusters are similar to human ion thrusters, but their explosive exhaust causes them to run hotter. However, they also require slightly less energy.`
 
 
@@ -201,10 +218,11 @@ outfit "RG18 Torch Steering"
 		"Gegno Civilian"
 	cost 32000
 	thumbnail "outfit/medium torch steering vi"
+	"steering slot" -1
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"turn" 784.5
+	"turn" 784
 	"turning energy" 0.65
 	"turning heat" 1.5
 	"steering flare sprite" "effect/vi flare/medium"
@@ -222,6 +240,8 @@ outfit "RG3 Torch Thruster"
 		"Vi Lord"
 	cost 84000
 	thumbnail "outfit/large torch thruster vi"
+	"thruster slot" -1
+	"engine mod space" 1.38
 	"mass" 83
 	"outfit space" -83
 	"engine capacity" -83
@@ -231,6 +251,12 @@ outfit "RG3 Torch Thruster"
 	"flare sprite" "effect/vi flare/large"
 		"frame rate" 2.3
 	"flare sound" "ion torch large"
+	"reverse thrust" 5.4
+	"reverse thrusting energy" 0.22
+	"reverse thrusting heat" 0.54
+	"reverse flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"reverse flare sound" "ion torch small"
 	description `Derived from the massive thrusters that powered early Gegno generation ships, RG3 Ion Torch Thrusters are the Gegno's largest thrusters and the oldest still used. Smaller ships that attempt to use these engines often end up overheating themselves.`
 
 
@@ -243,6 +269,7 @@ outfit "RG3 Torch Steering"
 		"Vi Lord"
 	cost 70000
 	thumbnail "outfit/large torch steering vi"
+	"steering slot" -1
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
@@ -264,21 +291,37 @@ outfit "SC-1 Plasma Engines"
 		"Scin Architect"
 	cost 21200
 	thumbnail "outfit/tiny plasma engines scin"
+	"steering slot" -1
+	"thruster slot" -1
+	"lateral slot" -1
+	"engine mod space" 0.92
 	"mass" 21
 	"outfit space" -21
 	"engine capacity" -21
-	"thrust" 9.825
+	"thrust" 9
 	"thrusting energy" 0.4
 	"thrusting heat" 1
 	"flare sprite" "effect/scin flare/tiny"
 		"frame rate" 0.6
 	"flare sound" "scplasma tiny"
+	"lateral thrust" 8
+	"lateral thrusting energy" 0.32
+	"lateral thrusting heat" 0.8
+	"lateral flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"lateral flare sound" "scplasma tiny"
 	"turn" 240
 	"turning energy" 0.35
 	"turning heat" 0.8
 	"steering flare sprite" "effect/scin flare/tiny"
 		"frame rate" 0.6
 	"steering flare sound" "scplasma tiny"
+	"reverse thrust" 0.9
+	"reverse thrusting energy" 0.04
+	"reverse thrusting heat" 0.1
+	"reverse flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"reverse flare sound" "scplasma tiny"
 	description `In order to power the tiny Halite frame, the Gegno Scin developed this smaller engine system. Based on their larger plasma thrusters, these engines are much more efficient than the Vi's bigger, more sluggish ion engines, which would never be compact or light enough to run on a fighter.`
 
 
@@ -289,15 +332,23 @@ outfit "SC-12 Plasma Thruster"
 		"Scin Adjutant"
 	cost 20900
 	thumbnail "outfit/small plasma thruster scin"
+	"thruster slot" -1
+	"engine mod space" 0.96
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"thrust" 20.31
+	"thrust" 20
 	"thrusting energy" 0.85
 	"thrusting heat" 2.25
 	"flare sprite" "effect/scin flare/small"
 		"frame rate" 0.5
 	"flare sound" "scplasma small"
+	"reverse thrust" 2
+	"reverse thrusting energy" 0.085
+	"reverse thrusting heat" 0.225
+	"reverse flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"reverse flare sound" "scplasma tiny"
 	description `Rather than developing on the Ion Torch design of the Vi, the Scin began work on a plasma-based thruster. They are more compact, weigh less, and produce significantly more thrust. However, since Ion Torches expel some of their heat in their thrust, the more stable and powerful SC thrusters tend to run hotter.`
 
 
@@ -308,10 +359,11 @@ outfit "SC-12 Plasma Steering"
 		"Scin Adjutant"
 	cost 17000
 	thumbnail "outfit/small plasma steering scin"
+	"steering slot" -1
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"turn" 445.5
+	"turn" 445
 	"turning energy" 0.45
 	"turning heat" 1.15
 	"steering flare sprite" "effect/scin flare/small"
@@ -327,15 +379,23 @@ outfit "SC-14 Plasma Thruster"
 		"Scin Adjutant"
 	cost 52500
 	thumbnail "outfit/medium plasma thruster scin"
+	"thruster slot" -1
+	"engine mod space" 1.18
 	"mass" 45
 	"outfit space" -45
 	"engine capacity" -45
-	"thrust" 39.6
+	"thrust" 39
 	"thrusting energy" 1.7
 	"thrusting heat" 4.95
 	"flare sprite" "effect/scin flare/med"
 		"frame rate" 0.4
 	"flare sound" "scplasma medium"
+	"reverse thrust" 3.9
+	"reverse thrusting energy" 0.17
+	"reverse thrusting heat" 0.495
+	"reverse flare sprite" "effect/scin flare/tiny"
+		"frame rate" 0.6
+	"reverse flare sound" "scplasma tiny"
 	description `SC-14 class thrusters power the Scin's average gunboat or transport, giving their ships reliable speed. They can quickly propel any medium-sized ship forward with reasonable efficiency.`
 
 
@@ -346,6 +406,7 @@ outfit "SC-14 Plasma Steering"
 		"Scin Adjutant"
 	cost 41500
 	thumbnail "outfit/medium plasma steering scin"
+	"steering slot" -1
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
@@ -367,10 +428,13 @@ outfit "SC-15 Plasma Thrusters"
 		"Scin Architect"
 	cost 170400
 	thumbnail "outfit/large plasma engines scin"
+	"reverse thruster slot" -1
+	"thruster slot" -1
+	"engine mod space" 1.45
 	"mass" 112
 	"outfit space" -112
 	"engine capacity" -112
-	"thrust" 72.9
+	"thrust" 72
 	"thrusting energy" 3.1
 	"thrusting heat" 9.5
 	"flare sprite" "effect/scin flare/large"
@@ -383,6 +447,107 @@ outfit "SC-15 Plasma Thrusters"
 		"frame rate" 0.3
 	"reverse flare sound" "scplasma large"
 	description `The Gegno Scin have taken another step forward from the SC-14 class engine system, incorporating both reverse and forward thrust into a single engine. In order to field the SC-15, the Scin had to design their largest ships around the thrusters, rather than fit it on later. The ability to reverse is especially important in engagements with the Gegno Vi's forward-heavy combat vessels.`
+
+
+# Laterals
+outfit "RG15 Torch LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 17000
+	thumbnail "outfit/small torch thruster vi"
+	"lateral slot" -1
+	"mass" 21
+	"outfit space" -21
+	"engine capacity" -21
+	"lateral thrust" 12 # 70%
+	"lateral thrusting energy" 0.5
+	"lateral thrusting heat" 1.1
+	"lateral flare sprite" "effect/vi flare/small"
+		"frame rate" 2.5
+	"lateral flare sound" "ion torch small"
+	description `The RG15 Ion Torch LTC is the Gegno Vi's smallest torch lateral thruster, found almost exclusively on the Slate. It is somewhat inefficient, weighing more and producing more heat than most thrusters of a similar size in exchange for using slightly less energy.`
+
+
+outfit "RG18 Torch LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+	cost 38000
+	thumbnail "outfit/medium torch thruster vi"
+	"lateral slot" -1
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"lateral thrust" 18
+	"lateral thrusting energy" 0.8
+	"lateral thrusting heat" 1.8
+	"lateral flare sprite" "effect/vi flare/medium"
+		"frame rate" 2.4
+	"lateral flare sound" "ion torch medium"
+	description `The RG18 is a moderately large lateral thruster used by the Gegno Vi. Ion Torch Thrusters are similar to human ion thrusters, but their explosive exhaust causes them to run hotter. However, they also require slightly less energy.`
+
+
+outfit "RG3 Torch LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Vi Evocati"
+		"Vi Centurion"
+		"Vi Lord"
+	cost 84000
+	thumbnail "outfit/large torch thruster vi"
+	"lateral slot" -1
+	"mass" 41
+	"outfit space" -41
+	"engine capacity" -41
+	"lateral thrust" 27
+	"lateral thrusting energy" 1.2
+	"lateral thrusting heat" 2.8
+	"lateral flare sprite" "effect/vi flare/large"
+		"frame rate" 2.3
+	"lateral flare sound" "ion torch large"
+	description `Derived from the massive thrusters that powered early Gegno generation ships, RG3 Ion Torch LTCs are the Gegno's largest lateral thrusters and the oldest still used. Smaller ships that attempt to use these engines often end up overheating themselves.`
+
+
+outfit "SC-12 Plasma LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 20900
+	thumbnail "outfit/small plasma thruster scin"
+	"lateral slot" -1
+	"mass" 17
+	"outfit space" -17
+	"engine capacity" -17
+	"lateral thrust" 14
+	"lateral thrusting energy" 0.6
+	"lateral thrusting heat" 1.6
+	"lateral flare sprite" "effect/scin flare/small"
+		"frame rate" 0.5
+	"lateral flare sound" "scplasma small"
+	description `Rather than developing on the Ion Torch design of the Vi, the Scin began work on a plasma-based thruster. They are more compact, weigh less, and produce significantly more lateral thrust. However, since Ion Torches expel some of their heat in their thrust, the more stable and powerful SC thrusters tend to run hotter.`
+
+
+outfit "SC-14 Plasma LTC"
+	category "Engines"
+	licenses
+		"Gegno Civilian"
+		"Scin Adjutant"
+	cost 52500
+	thumbnail "outfit/medium plasma thruster scin"
+	"lateral slot" -1
+	"mass" 27
+	"outfit space" -27
+	"engine capacity" -27
+	"lateral thrust" 24
+	"lateral thrusting energy" 1.1
+	"lateral thrusting heat" 3.0
+	"lateral flare sprite" "effect/scin flare/med"
+		"frame rate" 0.4
+	"lateral flare sound" "scplasma medium"
+	description `SC-14 class lateral thrusters power the Scin's average gunboat or transport, giving their ships reliable speed. They can quickly stabilize any medium-sized ship's lateral motion with reasonable efficiency.`
 
 # Weapons:
 

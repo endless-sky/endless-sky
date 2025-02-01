@@ -133,7 +133,7 @@ void Files::Init(const char * const *argv)
 	if(config.empty())
 	{
 		// Create the directory for the saved games, preferences, etc., if necessary.
-		char *str = SDL_GetPrefPath(nullptr, "endless-sky");
+		char *str = SDL_GetPrefPath(nullptr, "endless-sky-delta");
 		if(!str)
 			throw runtime_error("Unable to get path to config directory!");
 		config = str;

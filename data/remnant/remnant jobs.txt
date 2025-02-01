@@ -27,7 +27,7 @@ mission "Remnant: Bounty"
 			not "flagship planet: Ssil Vida"
 		random < 60
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality coward target uninterested marked waiting
 		system
 			distance 1 2
@@ -60,7 +60,7 @@ mission "Remnant: Bounty 2"
 			not "flagship planet: Ssil Vida"
 		random < 50
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
@@ -150,7 +150,7 @@ mission "Remnant: Bounty 3"
 		not "Remnant: Cognizance 4: aborted"
 		random < 40
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
@@ -180,7 +180,7 @@ mission "Remnant: Bounty 4"
 		has "Remnant: Cognizance 14: done"
 		random < 30
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target uninterested waiting marked
 		system
 			distance 1 2
@@ -213,7 +213,7 @@ mission "Remnant: Bounty 5"
 			not "flagship planet: Ssil Vida"
 		random < 5
 	npc kill
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic vindictive target marked staying
 		system
 			attributes "ember waste"
@@ -385,6 +385,7 @@ mission "Remnant: Rescue"
 ship "Rescue Dummy"
 	# sprite "ship/behemoth"
 	attributes
+		category "Game Mechanics"
 		"heat dissipation" 1
 		"hull" 1
 		"mass" 10
@@ -392,6 +393,7 @@ ship "Rescue Dummy"
 		"automaton" 1
 		"energy generation" 1
 		"thrust" 30
+		"lateral thrust" 30
 		"turn" 30
 	outfits
 		"Suicide Gun"

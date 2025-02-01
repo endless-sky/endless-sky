@@ -28,11 +28,15 @@ ship "Shale"
 		"mass" 114
 		"drag" 2
 		"heat dissipation" 0.73
-		"fuel capacity" 400
+		"fuel capacity" 325
 		"cargo space" 54
-		"outfit space" 113
+		"outfit space" 134
 		"weapon capacity" 0
-		"engine capacity" 58
+		"engine capacity" 77
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -43,6 +47,7 @@ ship "Shale"
 		"R01 Skirmish Battery"
 		
 		"RG15 Torch Thruster"
+		"RG15 Torch LTC"
 		"RG15 Torch Steering"
 		"Hyperdrive"
 	engine 0 40
@@ -51,11 +56,13 @@ ship "Shale"
 	explode "tiny explosion" 10
 	description `After the Gegno discovered hyperspace lanes and began to use them, their enormous (and expensive) generation ships became too cumbersome to use for the purpose of interstellar commerce, leading to the need for a smaller and more manageable ship such as this. The Shale is the Gegno's equivalent of a Shuttle: a small and compact transport. Whether it be cargo, trade goods, travelers, or recruits, Shales are the foundation of Gegno interstellar civilization.`
 
+
+
 ship "Dolomite"
 	sprite "ship/gegno dolomite"
 	thumbnail "thumbnail/gegno dolomite"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		licenses
 			"Gegno Civilian"
 		"cost" 2768000
@@ -63,14 +70,18 @@ ship "Dolomite"
 		"hull" 8200
 		"required crew" 9
 		"bunks" 79
-		"mass" 850
+		"mass" 2160
 		"drag" 6.7
 		"heat dissipation" 0.42
-		"fuel capacity" 500
+		"fuel capacity" 850
 		"cargo space" 200
 		"outfit space" 152
 		"weapon capacity" 0
 		"engine capacity" 81
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 72
 			"shield damage" 320
@@ -81,7 +92,8 @@ ship "Dolomite"
 		"R01 Skirmish Battery"
 		
 		"RG15 Torch Thruster"
-		"RG15 Torch Steering" 2
+		"RG15 Torch LTC"
+		"RG15 Torch Steering" # Extra steering
 		"Hyperdrive"
 	engine -22.5 158
 	engine 22.5 158
@@ -93,6 +105,8 @@ ship "Dolomite"
 	explode "tiny explosion" 10
 	"final explode" "final explosion medium"
 	description `Almost as large as a human cruiser, Dolomites are the Gegno's most common cargo vessel in service, its original design dating back to the early days of space colonization. They are used as both passenger liners and cargo vessels. Due to their popularity and continuous usage, both the Vi and Scin factions have developed on the original design for their own purposes.`
+
+
 
 ship "Conglomerate"
 	sprite "ship/gegno conglomerate"
@@ -106,14 +120,18 @@ ship "Conglomerate"
 		"hull" 10600
 		"required crew" 13
 		"bunks" 50
-		"mass" 1484
+		"mass" 3620
 		"drag" 20.9
 		"heat dissipation" 0.4
-		"fuel capacity" 500
+		"fuel capacity" 1200
 		"cargo space" 415
 		"outfit space" 253
 		"weapon capacity" 0
 		"engine capacity" 146
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 124
 			"shield damage" 960
@@ -125,9 +143,10 @@ ship "Conglomerate"
 		"R02 Battlezone Battery"
 		
 		"RG18 Torch Thruster"
-		"RG15 Torch Thruster"
+		"RG18 Torch LTC"
+		# "RG15 Torch Thruster" # Extra thruster
 		"RG18 Torch Steering"
-		"RG15 Torch Steering"
+		# "RG15 Torch Steering" # Extra steering
 		"Hyperdrive"
 	engine -34.5 220
 	engine 34.5 220
@@ -141,6 +160,8 @@ ship "Conglomerate"
 	explode "small explosion" 26
 	"final explode" "final explosion large"
 	description `Over time, the Gegno needed larger vessels to carry materials to and from new worlds - ones that would be easier to build and operate than their older, outdated generation ships, but larger than their shuttlecraft. The Conglomerate was designed to fill that exact role.`
+
+
 
 ship "Granofel"
 	sprite "ship/gegno granofel"
@@ -157,11 +178,15 @@ ship "Granofel"
 		"mass" 1367
 		"drag" 16.3
 		"heat dissipation" 0.39
-		"fuel capacity" 500
+		"fuel capacity" 775
 		"cargo space" 560
 		"outfit space" 230
 		"weapon capacity" 0
 		"engine capacity" 151
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 96
 			"shield damage" 480
@@ -171,7 +196,8 @@ ship "Granofel"
 		"C7 Brawl Cell"
 		"R02 Battlezone Battery"
 		
-		"RG18 Torch Thruster" 2
+		"RG18 Torch Thruster"
+		"RG18 Torch LTC" # Extra thruster
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	engine -36 114
@@ -189,6 +215,8 @@ ship "Granofel"
 	"final explode" "final explosion large"
 	description `Unlike many Gegno ships that are capable in a variety of roles, Granofels were designed for the sole purpose of hauling huge loads of cargo; they lack bunks for anything beyond a proper crew, and are most often found freighting massive shipments of both raw and refined ore to and from mining industries. They can also be seen paired with a mining vessel to extend the duration of a mining run due to the higher cargo capacity. Apart from mining, Granofels are also used in transporting heavy materials needed to construct other large ships.`
 
+
+
 ship "Gypsum"
 	sprite "ship/gegno gypsum"
 	thumbnail "thumbnail/gegno gypsum"
@@ -202,14 +230,18 @@ ship "Gypsum"
 		"hull" 5500
 		"required crew" 5
 		"bunks" 9
-		"mass" 540
+		"mass" 720
 		"drag" 3.9
 		"heat dissipation" 0.62
-		"fuel capacity" 600
+		"fuel capacity" 675
 		"cargo space" 160
 		"outfit space" 240
 		"weapon capacity" 42
 		"engine capacity" 120
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"drill port" 1
 		"drill lock" -1
 		weapon
@@ -219,11 +251,13 @@ ship "Gypsum"
 			"hit force" 720
 	outfits
 		"Excavator"
+		
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
 		
 		"RG18 Torch Thruster"
-		"RG15 Torch Steering"
+		"RG18 Torch LTC"
+		# "RG15 Torch Steering" # Extra Steering
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	engine 0 124
@@ -238,6 +272,8 @@ ship "Gypsum"
 	description `To fuel their increasing need for materials, the Gegno designed a new ship class for the sole purpose of mining. The resulting platform, the Gypsum, is not much more than a flying drill with cargo containers, engines, and a bridge attached behind it, making it cost-efficient and easy to manufacture.`
 	description `	Because Gegno engines are not very powerful, the Gypsum has difficulty chasing faster-moving asteroids. In order to alleviate this problem without needing to massively increase the engine space on the ship, the Gegno have instead developed the powerful Excavator Drill, which can shred asteroids in a matter of seconds, meaning the Gypsum only needs to be near an asteroid for a mere moment in order to mine it.`
 
+
+
 ship "Corundum"
 	sprite "ship/gegno corundum"
 	thumbnail "thumbnail/gegno corundum"
@@ -251,14 +287,18 @@ ship "Corundum"
 		"hull" 5400
 		"required crew" 6
 		"bunks" 9
-		"mass" 630
+		"mass" 880
 		"drag" 4.5
 		"heat dissipation" 0.64
-		"fuel capacity" 600
+		"fuel capacity" 725
 		"cargo space" 140
 		"outfit space" 316
 		"weapon capacity" 64
 		"engine capacity" 162
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"drill spar" 2
 		weapon
 			"blast radius" 84
@@ -272,7 +312,8 @@ ship "Corundum"
 		"R01 Skirmish Battery"
 		
 		"RG18 Torch Thruster"
-		"RG18 Torch Steering" 2
+		"RG18 Torch LTC"
+		"RG18 Torch Steering" # Extra Steering
 		"Hyperdrive"
 	engine 58 -58
 	engine -58 -58
@@ -294,6 +335,7 @@ ship "Corundum"
 	description `While the Gypsum has remained the most reliable mining platform for generations, the Corundum was designed for the purpose of modularity on account of the ever-growing technological potential of the Gegno. Using a similar principle to the Gypusm's design, the Corundum's structure is mostly built around not one but two adjustable drill systems that are capable of mounting more advanced mining tools.`
 	description `	Although not able to mount the powerful Excavator Drill, the Corundum's engine capacity is twice that of the Gypsum, and the modularity of the two new mounting systems grants it the ability to adapt to future technologies that the Gegno may develop.`
 
+
 ship "Corundum" "Corundum (Torch)"
 	outfits
 		"Ion Torch" 2
@@ -302,8 +344,10 @@ ship "Corundum" "Corundum (Torch)"
 		"R01 Skirmish Battery"
 		
 		"RG18 Torch Thruster"
-		"RG18 Torch Steering" 2
+		"RG18 Torch LTC"
+		"RG18 Torch Steering" # Extra steering
 		"Hyperdrive"
+
 
 ship "Corundum" "Corundum (Multi)"
 	outfits
@@ -314,8 +358,11 @@ ship "Corundum" "Corundum (Multi)"
 		"R01 Skirmish Battery"
 		
 		"RG18 Torch Thruster"
-		"RG18 Torch Steering" 2
+		"RG18 Torch LTC"
+		"RG18 Torch Steering"# Extra steering
 		"Hyperdrive"
+
+
 
 ship "Protolith"
 	sprite "ship/gegno protolith"
@@ -327,14 +374,18 @@ ship "Protolith"
 		"hull" 48600
 		"required crew" 402
 		"bunks" 4040
-		"mass" 10885
+		"mass" 37520
 		"drag" 131
 		"heat dissipation" 0.18
-		"fuel capacity" 2100
+		"fuel capacity" 34975
 		"cargo space" 1160
 		"outfit space" 942
 		"weapon capacity" 0
-		"engine capacity" 480
+		"engine capacity" 501
+		"reverse thruster slot" 1
+		"steering slot" 2 # Extra steering not removed as this sounds like verging on a superheavy that justifies it.
+		"thruster slot" 4 # Extra thruster not removed
+		"lateral thruster slot" 1
 		weapon
 			"blast radius" 360
 			"shield damage" 1860
@@ -345,7 +396,8 @@ ship "Protolith"
 		"C3 Scrap Cell" 2
 		"R03 Warforge Battery" 2
 
-		"RG3 Torch Thruster" 4
+		"RG3 Torch Thruster" 4 # This seems a bit excessive.
+		"RG3 Torch LTC" # This might not be enough.
 		"RG3 Torch Steering" 2
 	"steering engine" 87 -289 0.5
 		angle -90
@@ -373,6 +425,8 @@ ship "Protolith"
 	"final explode" "final explosion large"
 	description `A relic from another age, Protoliths are the last of the Generation ships constructed by the Gegno to colonize the stars. Now that other more easily constructed and hyperdrive-capable transport ships are commonplace, Protoliths are no longer found in service, and the very few that are still functioning are either preserved as artifacts or seldom used as hauling vessels between planets of the Gegno home system of Heutesl.`
 
+
+
 # Gegno Vi:
 
 ship "Dunite"
@@ -392,9 +446,13 @@ ship "Dunite"
 		"heat dissipation" 0.86
 		"fuel capacity" 1
 		"cargo capacity" 1
-		"outfit space" 115
+		"outfit space" 136
 		"weapon capacity" 22
-		"engine capacity" 56
+		"engine capacity" 77
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 10
 			"shield damage" 20
@@ -409,6 +467,7 @@ ship "Dunite"
 		"Savagery Pike"
 
 		"RG15 Torch Thruster"
+		"RG15 Torch LTC"
 		"RG15 Torch Steering"
 	engine 0 40
 	gun -3 -80 "Savagery Bludgeon"
@@ -418,6 +477,8 @@ ship "Dunite"
 	explode "tiny explosion" 8
 	description `Dunites are unique vessels designed by the Gegno Vi entirely for the purpose of dueling. It is a hodgepodge of parts, simply being an engine, power system, cockpit, and Irate Cannon mashed together without any regard to structural integrity. The most notable feature is a long mace-like protrusion next to the Irate Cannon which is used for jousting and ramming other duelists.`
 	description `	Being a mangled mess of machinery designed for only a single purpose, Dunites do not come equipped with nor have room for hyperdrives, and are purely intrastellar craft.`
+
+
 
 ship "Augen"
 	sprite "ship/gegno augen"
@@ -431,14 +492,18 @@ ship "Augen"
 		"hull" 167000
 		"required crew" 280
 		"bunks" 360
-		"mass" 14615
+		"mass" 30000
 		"drag" 120
 		"heat dissipation" 0.17
-		"fuel capacity" 500
+		"fuel capacity" 6775
 		"cargo space" 84
-		"outfit space" 1868
+		"outfit space" 1908
 		"weapon capacity" 1073
-		"engine capacity" 460
+		"engine capacity" 501
+		"reverse thruster slot" 1
+		"lateral thruster slot" 1
+		"steering slot" 2 # Extra steering slot added
+		"thruster slot" 4 # Extra thruster slots added due to being a superheavy
 		weapon
 			"blast radius" 450
 			"shield damage" 2000
@@ -458,6 +523,7 @@ ship "Augen"
 		"Irate Carronade" 4
 		
 		"RG3 Torch Thruster" 4
+		"RG3 Torch LTC"
 		"RG3 Torch Steering" 2
 		"Hyperdrive"
 	engine 94 302
@@ -540,6 +606,8 @@ ship "Augen"
 	description `The Augen-Class is an ancient battleship proposed by the Vi as a large weapons platform for their Ballistic Cannons. It was built in secret over many years in Enbi's canyon shipyard, and for many periods of time its construction was put on hold. The recent civil war with the Scin gave reason to complete the warship, although it is still somewhat of a relic compared to current vessels in the service of the Vi fleet.`
 	description `	This project was meant to result in two sister-ship behemoths, but the blueprints for the other design went missing early in the process, and are currently nowhere to be found.`
 
+
+
 ship "Slate"
 	sprite "ship/gegno slate"
 	thumbnail "thumbnail/gegno slate"
@@ -555,11 +623,15 @@ ship "Slate"
 		"mass" 140
 		"drag" 2.2
 		"heat dissipation" 0.73
-		"fuel capacity" 400
+		"fuel capacity" 325
 		"cargo space" 81
-		"outfit space" 122
+		"outfit space" 134
 		"weapon capacity" 0
-		"engine capacity" 58
+		"engine capacity" 77
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -571,6 +643,7 @@ ship "Slate"
 		"Savagery Pike" 1
 		
 		"RG15 Torch Thruster"
+		"RG15 Torch LTC"
 		"RG15 Torch Steering"
 		"Hyperdrive"
 	engine 0 40
@@ -579,11 +652,13 @@ ship "Slate"
 	explode "tiny explosion" 10
 	description `Designed by the Gegno Vi, the Slate is a modified Shale with a stronger hull and more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it is able to carry a few Gegno cadets, along with a decently increased cargo capacity.`
 
+
+
 ship "Schist"
 	sprite "ship/gegno schist a"
 	thumbnail "thumbnail/gegno schist a"
 	attributes
-		category "Heavy Freighter"
+		category "Medium Freighter"
 		licenses
 			"Vi Evocati"
 		"cost" 3737000
@@ -591,14 +666,18 @@ ship "Schist"
 		"hull" 10700
 		"required crew" 23
 		"bunks" 73
-		"mass" 950
+		"mass" 2240
 		"drag" 8.5
 		"heat dissipation" 0.5
-		"fuel capacity" 500
+		"fuel capacity" 875
 		"cargo space" 140
-		"outfit space" 298
+		"outfit space" 305
 		"weapon capacity" 100
-		"engine capacity" 96
+		"engine capacity" 120
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 71
 			"shield damage" 310
@@ -614,6 +693,7 @@ ship "Schist"
 		"Irate Carronade"
 		
 		"RG18 Torch Thruster"
+		"RG18 Torch LTC"
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	engine 0 153.5
@@ -638,6 +718,7 @@ ship "Schist"
 	description `Based on the Gegno's old Dolomite, the Schist is a mid-range ship used by the Vi. It can carry a decent amount of cargo, and has enough bunks to carry a whole platoon of warriors. It is the primary vessel used to transport recruits to the front lines, and veterans back to home territories.`
 	description `	Although is it lightly armed compared to other Vi ships, Schists still are mounted with a pair of forward facing cannons and a turret so they can bring some type of weaponry to any possible engagement, as well as a set of angled guns for deterring any smaller, faster ships from attempting to flank the vessel.`
 
+
 ship "Schist" "Schist (Light Load)"
 	sprite "ship/gegno schist b"
 	thumbnail "thumbnail/gegno schist b"
@@ -645,6 +726,7 @@ ship "Schist" "Schist (Light Load)"
 		"mass" 33
 		"drag" 0.15
 		"cargo space" 25
+
 
 ship "Schist" "Schist (Heavy Load)"
 	sprite "ship/gegno schist c"
@@ -654,6 +736,8 @@ ship "Schist" "Schist (Heavy Load)"
 		"mass" 57
 		"drag" 0.3
 		"cargo space" 49
+
+
 
 ship "Rhyolite"
 	sprite "ship/gegno rhyolite"
@@ -670,11 +754,15 @@ ship "Rhyolite"
 		"mass" 225
 		"drag" 4
 		"heat dissipation" 0.64
-		"fuel capacity" 400
+		"fuel capacity" 350
 		"cargo space" 30
-		"outfit space" 220
+		"outfit space" 250
 		"weapon capacity" 78
-		"engine capacity" 100
+		"engine capacity" 120
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 28
 			"shield damage" 190
@@ -688,6 +776,7 @@ ship "Rhyolite"
 		"Savagery Pike" 5
 		
 		"RG18 Torch Thruster"
+		"RG18 Torch LTC"
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	engine -28.5 61.5
@@ -704,6 +793,8 @@ ship "Rhyolite"
 	"final explode" "final explosion small"
 	description `The Rhyolite is a prototype Vi interceptor design constructed by the same shipyard that manufactures the Eclogite and Diorite. Only a few have been produced, and those that exist are currently piloted by a handful of Vi warriors either testing the vessel or owning one privately.`
 
+
+
 ship "Eclogite"
 	sprite "ship/gegno eclogite"
 	thumbnail "thumbnail/gegno eclogite"
@@ -716,14 +807,18 @@ ship "Eclogite"
 		"hull" 6900
 		"required crew" 9
 		"bunks" 12
-		"mass" 415
+		"mass" 550
 		"drag" 4.6
 		"heat dissipation" 0.56
-		"fuel capacity" 400
+		"fuel capacity" 425
 		"cargo space" 70
-		"outfit space" 285
-		"weapon capacity" 96
-		"engine capacity" 94
+		"outfit space" 305
+		"weapon capacity" 122
+		"engine capacity" 120
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 36
 			"shield damage" 210
@@ -738,6 +833,7 @@ ship "Eclogite"
 		"Savagery Pike" 9
 		
 		"RG18 Torch Thruster"
+		"RG18 Torch LTC"
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	engine 0 82
@@ -754,6 +850,8 @@ ship "Eclogite"
 	"final explode" "final explosion small"
 	description `While the style of longer battleship-esque vessels is a Gegno Vi staple, another shipyard rose to the competition for Vi warship designs. The Eclogite is one of the newest designs in the Vi fleet - a gunboat armed to the teeth with cannons, and maneuverability that the Vi's larger ships lack. It plays the role of a hit-and-run vessel, unloading volleys of shells against a target's armor in a rapid maneuver before adjusting its position for another run.`
 
+
+
 ship "Diorite"
 	sprite "ship/gegno diorite"
 	thumbnail "thumbnail/gegno diorite"
@@ -766,14 +864,18 @@ ship "Diorite"
 		"hull" 7900
 		"required crew" 14
 		"bunks" 29
-		"mass" 549
+		"mass" 952
 		"drag" 7.54
 		"heat dissipation" 0.56
-		"fuel capacity" 500
+		"fuel capacity" 625
 		"cargo space" 40
-		"outfit space" 453
+		"outfit space" 473
 		"weapon capacity" 195
-		"engine capacity" 140
+		"engine capacity" 145
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 90
 			"shield damage" 540
@@ -789,6 +891,7 @@ ship "Diorite"
 		"Irate Carronade"
 		
 		"RG18 Torch Thruster"
+		"RG18 Torch LTC"
 		"RG3 Torch Steering"
 		"Hyperdrive"
 	engine -19.5 132
@@ -809,6 +912,7 @@ ship "Diorite"
 	"final explode" "final explosion medium"
 	description `Continuing on with the design concept of the Vi's Eclogite, the Diorite is made by a separate shipyard from other larger Vi vessels. It is much more maneuverable than other Vi ships in its class, allowing it to easily keep a bead on other ships its size, and sometimes smaller ones as well.`
 
+
 ship "Diorite" "Diorite (Ballistic)"
 	outfits
 		"Ballistic Cannon" 2
@@ -817,9 +921,12 @@ ship "Diorite" "Diorite (Ballistic)"
 		"R01 Skirmish Battery"
 		
 		"RG18 Torch Thruster"
-		"RG3 Torch Steering"
+		"RG18 Torch LTC"
+		# "RG3 Torch Steering" # Extra steering
 		"RG15 Torch Steering"
 		"Hyperdrive"
+
+
 
 ship "Hornfel"
 	sprite "ship/gegno hornfel a"
@@ -833,14 +940,18 @@ ship "Hornfel"
 		"hull" 14600
 		"required crew" 32
 		"bunks" 48
-		"mass" 1489
+		"mass" 2960
 		"drag" 10.1
 		"heat dissipation" 0.38
-		"fuel capacity" 600
+		"fuel capacity" 1275
 		"cargo space" 120
-		"outfit space" 508
+		"outfit space" 530
 		"weapon capacity" 240
-		"engine capacity" 94
+		"engine capacity" 120
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 90
 			"shield damage" 600
@@ -856,6 +967,7 @@ ship "Hornfel"
 		"Irate Carronade" 2
 		
 		"RG18 Torch Thruster"
+		"RG18 Torch LTC"
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	engine -18 193
@@ -887,6 +999,7 @@ ship "Hornfel"
 	"final explode" "final explosion medium"
 	description `Hornfels are the workhorse of the Gegno Vi's military - decently sized, decently fast, and more than decently armed warships designed for the frontline of operations. Hornfels are also the most configurable ship in the Vi's fleet, lined with many mounting points to support cargo pods, allowing them to provide a secondary transport role for when the Vi require replacement supplies in war. Other variants of Hornfels are instead occasionally found with adjustments to carry a larger armament. This multi-role function is extremely valued and is the reason why the Hornfel is one of the Vi's most popular ships.`
 
+
 ship "Hornfel" "Hornfel (Light Load)"
 	sprite "ship/gegno hornfel b"
 	thumbnail "thumbnail/gegno hornfel b"
@@ -895,6 +1008,7 @@ ship "Hornfel" "Hornfel (Light Load)"
 		"drag" 0.64
 		"cargo space" 40
 
+
 ship "Hornfel" "Hornfel (Heavy Load)"
 	sprite "ship/gegno hornfel c"
 	thumbnail "thumbnail/gegno hornfel c"
@@ -902,6 +1016,7 @@ ship "Hornfel" "Hornfel (Heavy Load)"
 		"mass" 112
 		"drag" 1.12
 		"cargo space" 80
+
 
 ship "Hornfel" "Hornfel (Heavy Weapons)"
 	sprite "ship/gegno hornfel d"
@@ -922,6 +1037,7 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 		"R03 Warforge Battery"
 		
 		"RG18 Torch Thruster"
+		"RG18 Torch LTC"
 		"RG18 Torch Steering"
 		"Hyperdrive"
 	gun 18.5 -220 "Choleric Cannon"
@@ -944,6 +1060,8 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 	turret 0 -111 "Choleric Cannon Turret"
 	turret 0 -42 "Choleric Cannon Turret"
 
+
+
 ship "Gneiss"
 	plural "Gneiss"
 	sprite "ship/gegno gneiss"
@@ -957,14 +1075,18 @@ ship "Gneiss"
 		"hull" 26300
 		"required crew" 112
 		"bunks" 162
-		"mass" 2718
+		"mass" 8256
 		"drag" 24.5
 		"heat dissipation" 0.22
-		"fuel capacity" 500
+		"fuel capacity" 2200
 		"cargo space" 95
-		"outfit space" 841
+		"outfit space" 878
 		"weapon capacity" 504
-		"engine capacity" 150
+		"engine capacity" 188
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 150
 			"shield damage" 1150
@@ -980,6 +1102,7 @@ ship "Gneiss"
 		"Irate Carronade" 3
 		
 		"RG3 Torch Thruster"
+		"RG3 Torch LTC"
 		"RG3 Torch Steering"
 		"Hyperdrive"
 	engine 0 270
@@ -1017,6 +1140,8 @@ ship "Gneiss"
 	description `Gneiss battleships are the Gegno Vi's true sword and shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing three huge mounts dedicated to holding enormous Ballistic Cannons. Gneiss also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
 	description `	Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer.`
 
+
+
 ship "Granulite"
 	sprite "ship/gegno granulite"
 	thumbnail "thumbnail/gegno granulite"
@@ -1029,14 +1154,18 @@ ship "Granulite"
 		"hull" 21200
 		"required crew" 53
 		"bunks" 237
-		"mass" 2980
+		"mass" 10080
 		"drag" 44.7
 		"heat dissipation" 0.22
-		"fuel capacity" 900
+		"fuel capacity" 4750
 		"cargo space" 718
 		"outfit space" 651
 		"weapon capacity" 216
 		"engine capacity" 203
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 280
 			"shield damage" 1550
@@ -1052,9 +1181,10 @@ ship "Granulite"
 		"R03 Warforge Battery" 3
 		"Savagery Pike" 53
 		
-		"RG3 Torch Thruster"
+		# "RG3 Torch Thruster" # Extra thruster
 		"RG15 Torch Thruster"
-		"RG3 Torch Steering"
+		"RG15 Torch LTC"
+		# "RG3 Torch Steering"  # Extra Steering
 		"RG15 Torch Steering"
 		"Hyperdrive"
 	engine 0 266
@@ -1094,6 +1224,8 @@ ship "Granulite"
 	"final explode" "final explosion large"
 	description `Granulites are descendants of the Gegno's early generation ships used to colonize nearby systems before the invention of the hyperdrive. They now carry hundreds of Vi both in and out of war, and huge cargo loads to supply depots. They are not typically used as warships, but can support enough weaponry to threaten most smaller vessels, or fend off larger ships long enough for reinforcements to arrive.`
 
+
+
 # Gegno Scin:
 
 ship "Halite"
@@ -1115,6 +1247,10 @@ ship "Halite"
 		"outfit space" 78
 		"weapon capacity" 30
 		"engine capacity" 21
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 14
 			"shield damage" 160
@@ -1138,6 +1274,8 @@ ship "Halite"
 	description `	Able to bring a swarm of instant damage to slow-moving Vi warships while under protective shielding, a large number of these ships are seen aboard Scin carrier craft.`
 	description `	Fighters do not come equipped with a hyperdrive. You cannot carry a fighter unless you have a ship in your fleet with a fighter bay.`
 
+
+
 ship "Mica"
 	sprite "ship/gegno mica"
 	thumbnail "thumbnail/gegno mica"
@@ -1153,11 +1291,15 @@ ship "Mica"
 		"mass" 90
 		"drag" 1.9
 		"heat dissipation" 0.6
-		"fuel capacity" 400
+		"fuel capacity" 300
 		"cargo space" 36
 		"outfit space" 118
 		"weapon capacity" 0
-		"engine capacity" 50
+		"engine capacity" 61
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 18
 			"shield damage" 40
@@ -1169,6 +1311,7 @@ ship "Mica"
 		"Plasma Grenades"
 		
 		"SC-12 Plasma Thruster"
+		"SC-12 Plasma LTC"
 		"SC-12 Plasma Steering"
 		"Hyperdrive"
 	engine 0 40
@@ -1176,6 +1319,8 @@ ship "Mica"
 	explode "small explosion" 4
 	explode "tiny explosion" 12
 	description `The Mica is the Gegno Scin's take on a shuttlecraft, and is based on the Shale and the Vi's Slate. It is ever so slightly smaller, since the Scin aren't as large, but carries newer engine systems so it is almost twice as fast as the Shale and the Slate.`
+
+
 
 ship "Coesite"
 	sprite "ship/gegno coesite"
@@ -1189,14 +1334,18 @@ ship "Coesite"
 		"hull" 5600
 		"required crew" 8
 		"bunks" 14
-		"mass" 305
+		"mass" 460
 		"drag" 4.6
 		"heat dissipation" 0.61
-		"fuel capacity" 500
+		"fuel capacity" 475
 		"cargo space" 40
 		"outfit space" 264
 		"weapon capacity" 86
 		"engine capacity" 80
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 40
 			"shield damage" 240
@@ -1213,8 +1362,9 @@ ship "Coesite"
 		"Plasma Grenades" 2
 		
 		"SC-12 Plasma Thruster"
+		"SC-12 Plasma LTC"
 		"SC-14 Plasma Steering"
-		"SC-1 Plasma Engines"
+		# "SC-1 Plasma Engines" # Extra thruster and steering
 		"Hyperdrive"
 	engine 47 85
 	engine -47 85
@@ -1230,6 +1380,8 @@ ship "Coesite"
 	"final explode" "final explosion small"
 	description `Coesites are smaller warships that the Scin use as screening vessels during battles with the Vi. They are speedy and carry two turret mounts which allow them to always be orbiting and firing on the move. Being a smaller design, these ships are relatively easy to manufacture, and are often fielded in groups so they may overtake vessels much larger than them.`
 
+
+
 ship "Tridymite"
 	sprite "ship/gegno tridymite"
 	thumbnail "thumbnail/gegno tridymite"
@@ -1243,15 +1395,18 @@ ship "Tridymite"
 		"hull" 4000
 		"required crew" 7
 		"bunks" 29
-		"mass" 268
+		"mass" 380
 		"drag" 4.2
 		"heat dissipation" 0.59
-		"fuel capacity" 800
+		"fuel capacity" 725
 		"cargo space" 56
 		"outfit space" 200
 		"weapon capacity" 0
-		"engine capacity" 86
-
+		"engine capacity" 106
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 8
 		"cargo scan power" 6
@@ -1268,6 +1423,7 @@ ship "Tridymite"
 		"Plasma Grenades" 4
 		
 		"SC-14 Plasma Thruster"
+		"SC-14 Plasma LTC"
 		"SC-14 Plasma Steering"
 		"Hyperdrive"
 	engine 44.5 63
@@ -1283,6 +1439,8 @@ ship "Tridymite"
 	"final explode" "final explosion small"
 	description `Built upon a similar frame to the Coesite, the Tridymite serves as a small luxury transport vessel for the Gegno Scin. Tridymites are typically used as research vessels, transporting crews of scientists from one location to another, or as private vessels for top ranking Scin scientists. Additionally, Tridymites can occasionally be seen used as a scout craft by the military, equipped with an early prototype scanner system built into the frame.`
 
+
+
 ship "Felsic"
 	sprite "ship/gegno felsic"
 	thumbnail "thumbnail/gegno felsic"
@@ -1296,14 +1454,18 @@ ship "Felsic"
 		"hull" 9100
 		"required crew" 18
 		"bunks" 53
-		"mass" 920
+		"mass" 2260
 		"drag" 8.3
 		"heat dissipation" 0.5
-		"fuel capacity" 500
+		"fuel capacity" 875
 		"cargo space" 150
 		"outfit space" 322
 		"weapon capacity" 109
 		"engine capacity" 106
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 74
 			"shield damage" 340
@@ -1318,8 +1480,9 @@ ship "Felsic"
 		"Plasma Grenades" 9
 		
 		"SC-14 Plasma Thruster"
+		"SC-14 Plasma LTC"
 		"SC-14 Plasma Steering"
-		"SC-12 Plasma Steering"
+		# "SC-12 Plasma Steering" # Extra Steering
 		"Hyperdrive"
 	engine -18.5 155.5
 	engine 18.5 155.5
@@ -1335,6 +1498,8 @@ ship "Felsic"
 	"final explode" "final explosion medium"
 	description `Felsics are based on Schists, but offer many upgrades in exchange for less durability. The Scin have opted for three turret mounts, as well as expanded capacity for outfits, weapons, and engines. All this allows these ships to perform logistical duties as well as doubling as a secondary combat vessel, making up for the lack of a dedicated Scin warship.`
 
+
+
 ship "Feldspar"
 	sprite "ship/gegno feldspar"
 	thumbnail "thumbnail/gegno feldspar"
@@ -1348,14 +1513,18 @@ ship "Feldspar"
 		"hull" 20700
 		"required crew" 133
 		"bunks" 192
-		"mass" 2332
+		"mass" 8720
 		"drag" 26.2
 		"heat dissipation" 0.3
-		"fuel capacity" 600
+		"fuel capacity" 2675
 		"cargo space" 82
 		"outfit space" 566
 		"weapon capacity" 234
-		"engine capacity" 172
+		"engine capacity" 173
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 180
 			"shield damage" 1650
@@ -1370,7 +1539,8 @@ ship "Feldspar"
 		"Plasma Grenades" 66
 		
 		"SC-15 Plasma Thrusters"
-		"SC-12 Plasma Steering"
+		"SC-14 Plasma LTC"
+		# "SC-12 Plasma Steering" # Extra thruster
 		"SC-14 Plasma Steering"
 		"Hyperdrive"
 	engine 31 194
@@ -1420,6 +1590,8 @@ ship "Feldspar"
 	description `The mighty Feldspar is a Scin creation to behold. As a testbed for the new Halite fighters, Feldspars bring their own small fleets with them and overwhelm their enemy. They were also designed as a semi-experimental platform, built around a brand new multi-engine system and the latest in Gegno plasma technology.`
 	description `	Able to keep a decent stance away from a battle while putting down artillery fire, Feldspars are quite a dangerously well-rounded ship for their size. On the downside, they are more susceptible to hull damage like any other Scin warship, especially when alone. As such, they rely on their fighters to keep their enemies at a distance.`
 
+
+
 ship "Epidote"
 	sprite "ship/gegno epidote"
 	thumbnail "thumbnail/gegno epidote"
@@ -1433,14 +1605,18 @@ ship "Epidote"
 		"hull" 16900
 		"required crew" 102
 		"bunks" 170
-		"mass" 2420
+		"mass" 9168
 		"drag" 28.2
 		"heat dissipation" 0.32
-		"fuel capacity" 600
+		"fuel capacity" 2850
 		"cargo space" 430
 		"outfit space" 552
 		"weapon capacity" 166
 		"engine capacity" 182
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		weapon
 			"blast radius" 216
 			"shield damage" 1920
@@ -1458,7 +1634,8 @@ ship "Epidote"
 		"Plasma Grenades" 51
 		
 		"SC-15 Plasma Thrusters"
-		"SC-14 Plasma Steering" 2
+		"SC-14 Plasma LTC"
+		"SC-14 Plasma Steering" # Extra Steering
 		"Hyperdrive"
 	engine 64 188
 	engine -64 188
@@ -1486,6 +1663,8 @@ ship "Epidote"
 	description `Epidotes are large independent research platforms with adequately-sized cargo holds, allowing them to perform as a reliable heavy freighter for the Gegno Scin. A large number of bunks either help transport groups of Scin scientists to their project destinations, or allow for mobile on-board demonstrations and observations. Each Epidote is equipped with a rear fighter docking bay capable of carrying two Halites, typically used to ship Halite fighters around Scin space to resupply carriers. Thanks to these fighters and the Epidotes' three dorsal turrets, they can also be used as a secondary warship when needed.`
 	description `	Like other Gegno Scin ships, Epidotes themselves are an experimental test bed; they are built around the same large engine system tested on Feldspars, making them notably fast for their size.`
 
+
+
 ship "Kyanite"
 	sprite "ship/gegno kyanite"
 	thumbnail "thumbnail/gegno kyanite"
@@ -1496,14 +1675,18 @@ ship "Kyanite"
 		"hull" 13650
 		"required crew" 66
 		"bunks" 93
-		"mass" 1735
+		"mass" 5910
 		"drag" 22.6
 		"heat dissipation" 0.33
-		"fuel capacity" 400
+		"fuel capacity" 1300
 		"cargo space" 76
 		"outfit space" 380
 		"weapon capacity" 202
 		"engine capacity" 160
+		"lateral thruster slot" 1
+		"reverse thruster slot" 1
+		"steering slot" 1
+		"thruster slot" 1
 		"energy capacity" 21300
 		"energy generation" 11.3
 		"heat generation" 27.2
@@ -1523,8 +1706,9 @@ ship "Kyanite"
 		"Plasmasickle" 33
 		"Plasma Grenades" 33
 
-		"SC-14 Plasma Thruster" 2
-		"SC-14 Plasma Steering" 2
+		"SC-14 Plasma Thruster"  # Extra thruster
+		"SC-14 Plasma LTC"
+		"SC-14 Plasma Steering"  # Extra steering
 		"Hyperdrive"
 	"steering engine" -84 -100 0.5
 		angle 58.5
@@ -1553,6 +1737,7 @@ ship "Kyanite"
 	description `Kyanites are intricately-built test platforms for Gegno Scin technology, equipped with an extensive built-in power system and energy reserve able to support many types of outfits. Weapon experimentation, the most common practice of Kyanites, is recorded by various scanner instruments littering the two long structures on the front of the hull. Despite being weapon research vessels, Kyanites are not combat-capable due to how exposed their systems are and how little hull covers them. These systems are also very expensive and difficult to produce, so only a small amount of Kyanites are found in service.`
 	description `	The scanner system found on the Tridymite was originally developed and tested on Kyanite platforms, eventually becoming integrated into the hull as well.`
 
+
 ship "Kyanite" "Kyanite (Guile)"
 	outfits
 		"Guile Pulse Laser" 2
@@ -1560,8 +1745,9 @@ ship "Kyanite" "Kyanite (Guile)"
 		"Plasmasickle" 33
 		"Plasma Grenades" 33
 
-		"SC-14 Plasma Thruster" 2
-		"SC-14 Plasma Steering" 2
+		"SC-14 Plasma Thruster" # Extra thruster
+		"SC-14 Plasma LTC"
+		"SC-14 Plasma Steering" # Extra steering
 		"Hyperdrive"
 
 	gun "Guile Pulse Laser"
@@ -1571,6 +1757,7 @@ ship "Kyanite" "Kyanite (Guile)"
 	turret
 	turret
 
+
 ship "Kyanite" "Kyanite (Acumen)"
 	outfits
 		"Acumen Bolt Cannon"
@@ -1578,8 +1765,9 @@ ship "Kyanite" "Kyanite (Acumen)"
 		"Plasmasickle" 33
 		"Plasma Grenades" 33
 
-		"SC-14 Plasma Thruster" 2
-		"SC-14 Plasma Steering" 2
+		"SC-14 Plasma Thruster" # Extra thruster
+		"SC-14 Plasma LTC"
+		"SC-14 Plasma Steering" # Extra steering
 		"Hyperdrive"
 
 	gun

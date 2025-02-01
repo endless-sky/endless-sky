@@ -80,7 +80,7 @@ outfit "Pug Seeker"
 	"mass" 34
 	"outfit space" -34
 	"weapon capacity" -34
-	"gun ports" -1
+	"missile pylons" -1
 	weapon
 		sprite "projectile/seeker"
 			"frame rate" 20
@@ -244,25 +244,82 @@ outfit "Pug Akfar Thruster"
 	category "Engines"
 	"cost" 608000
 	thumbnail "outfit/pug akfar thruster"
+	"thruster slot" -1
+	"engine mod space" 1.15
 	"mass" 43
 	"outfit space" -43
 	"engine capacity" -43
-	"thrust" 48.675
+	"thrust" 48
 	"thrusting energy" 2.2
 	"thrusting heat" 3.1
 	"flare sprite" "effect/pug flare/medium"
 		"frame rate" 20
 	"flare sound" "ion medium"
+	"reverse thrust" 4.8
+	"reverse thrusting energy" 0.22
+	"reverse thrusting heat" 0.31
+	"reverse flare sprite" "effect/pug flare/medium"
+		"frame rate" 20
+	"reverse flare sound" "ion tiny"
 	description "This is a small thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
+
+outfit "Pug Cormet Thruster"
+	category "Engines"
+	"cost" 1050000
+	thumbnail "outfit/pug cormet thruster"
+	"thruster slot" -1
+	"engine mod space" 1.27
+	"mass" 60
+	"outfit space" -60
+	"engine capacity" -60
+	"thrust" 71
+	"thrusting energy" 3.3
+	"thrusting heat" 4.6
+	"flare sprite" "effect/pug flare/large"
+		"frame rate" 22
+	"flare sound" "ion large"
+	"reverse thrust" 7.1
+	"reverse thrusting energy" 0.33
+	"reverse thrusting heat" 0.46
+	"reverse flare sprite" "effect/pug flare/medium"
+		"frame rate" 20
+	"reverse flare sound" "ion tiny"
+	description "This is a medium-sized thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
+
+outfit "Pug Lohmar Thruster"
+	category "Engines"
+	"cost" 1740000
+	thumbnail "outfit/pug lohmar thruster"
+	"thruster slot" -1
+	"engine mod space" 1.39
+	"mass" 84
+	"outfit space" -84
+	"engine capacity" -84
+	"thrust" 104
+	"thrusting energy" 4.9
+	"thrusting heat" 6.9
+	"flare sprite" "effect/pug flare/huge"
+		"frame rate" 23
+	"flare sound" "ion huge"
+	"reverse thrust" 10.3
+	"reverse thrusting energy" 0.49
+	"reverse thrusting heat" 0.69
+	"reverse flare sprite" "effect/pug flare/medium"
+		"frame rate" 20
+	"reverse flare sound" "ion tiny"
+	description "This is a large thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
+
+
 
 outfit "Pug Akfar Steering"
 	category "Engines"
 	"cost" 472000
 	thumbnail "outfit/pug akfar steering"
+	"steering slot" -1
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
-	"turn" 1294.5
+	"turn" 1295
 	"turning energy" 1.3
 	"turning heat" 2.1
 	"steering flare sprite" "effect/pug flare/medium"
@@ -270,25 +327,11 @@ outfit "Pug Akfar Steering"
 	"steering flare sound" "ion medium"
 	description "This is a small steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
-outfit "Pug Cormet Thruster"
-	category "Engines"
-	"cost" 1050000
-	thumbnail "outfit/pug cormet thruster"
-	"mass" 60
-	"outfit space" -60
-	"engine capacity" -60
-	"thrust" 71.775
-	"thrusting energy" 3.3
-	"thrusting heat" 4.6
-	"flare sprite" "effect/pug flare/large"
-		"frame rate" 22
-	"flare sound" "ion large"
-	description "This is a medium-sized thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
-
 outfit "Pug Cormet Steering"
 	category "Engines"
 	"cost" 880000
 	thumbnail "outfit/pug cormet steering"
+	"steering slot" -1
 	"mass" 46
 	"outfit space" -46
 	"engine capacity" -46
@@ -300,35 +343,71 @@ outfit "Pug Cormet Steering"
 	"steering flare sound" "ion large"
 	description "This is a medium-sized steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
-outfit "Pug Lohmar Thruster"
-	category "Engines"
-	"cost" 1740000
-	thumbnail "outfit/pug lohmar thruster"
-	"mass" 84
-	"outfit space" -84
-	"engine capacity" -84
-	"thrust" 103.95
-	"thrusting energy" 4.9
-	"thrusting heat" 6.9
-	"flare sprite" "effect/pug flare/huge"
-		"frame rate" 23
-	"flare sound" "ion huge"
-	description "This is a large thruster designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
-
 outfit "Pug Lohmar Steering"
 	category "Engines"
 	"cost" 1580000
 	thumbnail "outfit/pug lohmar steering"
+	"steering slot" -1
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
-	"turn" 2932.5
+	"turn" 2932
 	"turning energy" 2.8
 	"turning heat" 4.7
 	"steering flare sprite" "effect/pug flare/huge"
 		"frame rate" 23
 	"steering flare sound" "ion huge"
 	description "This is a large steering system designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
+
+
+
+outfit "Pug Akfar LTC"
+	category "Engines"
+	"cost" 608000
+	thumbnail "outfit/pug akfar thruster"
+	"lateral thruster slot" -1
+	"mass" 34
+	"outfit space" -34
+	"engine capacity" -34
+	"lateral thrust" 39 # 80%
+	"lateral thrusting energy" 1.76
+	"lateral thrusting heat" 2.48
+	"lateral flare sprite" "effect/pug flare/medium"
+		"frame rate" 20
+	"lateral flare sound" "ion medium"
+	description "This is a small lateral thruster component designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
+
+outfit "Pug Cormet LTC"
+	category "Engines"
+	"cost" 1050000
+	thumbnail "outfit/pug cormet thruster"
+	"lateral thruster slot" -1
+	"mass" 42
+	"outfit space" -42
+	"engine capacity" -42
+	"lateral thrust" 50 # 70%
+	"lateral thrusting energy" 2.31
+	"lateral thrusting heat" 3.22
+	"lateral flare sprite" "effect/pug flare/medium"
+		"frame rate" 22
+	"lateral flare sound" "ion medium"
+	description "This is a medium-sized lateral thruster component designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
+
+outfit "Pug Lohmar LTC"
+	category "Engines"
+	"cost" 1740000
+	thumbnail "outfit/pug lohmar thruster"
+	"lateral thruster slot" -1
+	"mass" 50
+	"outfit space" -50
+	"engine capacity" -50
+	"lateral thrust" 63 # 60%
+	"lateral thrusting energy" 2.94
+	"lateral thrusting heat" 4.14
+	"lateral flare sprite" "effect/pug flare/large"
+		"frame rate" 23
+	"lateral flare sound" "ion large"
+	description "This is a large lateral thruster component designed by the Pug. It is not quite as powerful as a similarly sized atomic engine, but it makes up for that by being almost as energy efficient as ion engines."
 
 
 

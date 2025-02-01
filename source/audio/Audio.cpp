@@ -394,6 +394,7 @@ void Audio::Step(bool isFastForward)
 	}
 	pauseChangeCount = 0;
 
+
 	vector<Source> newSources;
 	// For each sound that is looping, see if it is going to continue. For other
 	// sounds, check if they are done playing.

@@ -1321,6 +1321,7 @@ ship "Hallucination"
 		"random start frame"
 	"never disabled"
 	attributes
+		category "Unclassified"
 		"hull" 1000
 		"mass" 180
 		"drag" 2.1
@@ -1331,6 +1332,7 @@ ship "Hallucination"
 		"jump drive" 1
 		"automaton" 1
 		"thrust" 30
+		"lateral thrust" 15
 		"turn" 500
 		"energy generation" 1
 	outfits
@@ -2032,6 +2034,7 @@ ship "Asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
+		category "Unclassified"
 		"fuel capacity" 1
 		"hull" 10000
 		"mass" 1000
@@ -2041,6 +2044,7 @@ ship "Asteroid"
 		"automaton" 1
 		"bunks" 0
 		"thrust" 10
+		"lateral thrust" 5
 		"turn" 100
 		"thrusting energy" 1
 		"turning energy" 1
@@ -3724,7 +3728,8 @@ ship "Vanguard" "Vanguard (Plasma Slow)"
 		"Interference Plating" 4
 		"Cargo Expansion" 3
 		"Laser Rifle" 11
-		"X3700 Ion Thruster"
+		"X2700 Ion Thruster"
+		"X3400 Ion LTC"
 		"X3200 Ion Steering"
 		"Scram Drive"
 

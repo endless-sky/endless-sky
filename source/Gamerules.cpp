@@ -140,3 +140,4 @@ Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 {
 	return fighterHitPolicy;
 }
+

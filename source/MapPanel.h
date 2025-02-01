@@ -72,7 +72,10 @@ public:
 public:
 	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION,
 		const System *special = nullptr, bool fromMission = false);
+
 	virtual ~MapPanel() override;
+
+
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -142,6 +145,7 @@ protected:
 	int recentering = 0;
 	int commodity;
 	int step = 0;
+	bool mapIsStarry = false;
 	std::string buttonCondition;
 
 	// Distance from the screen center to the nearest owned system,

@@ -19,7 +19,16 @@ tip "parked"
 
 # Outfit and ship attributes:
 tip "acceleration:"
-	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
+	`How quickly this ship gains forward speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
+
+tip "acceleration (afterburner):"
+	`How quickly this ship gains forward speed using afterburners. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
+
+tip "acceleration (reverse):"
+	`How quickly this ship gains speed going in reverse. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
+
+tip "acceleration (lateral):"
+	`How quickly this ship gains speed going side to side. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
 
 tip "acceleration multiplier:"
 	`Modifies the ship's acceleration by the given factor.`
@@ -74,6 +83,12 @@ tip "asteroid scan power:"
 
 tip "atmosphere scan:"
 	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
+
+tip "solar power sensor:"
+	`Automatically analyzes stellar objects to determine their precise solar power for display on the HUD, with combined output for multi-star systems.`
+
+tip "solar wind sensor:"
+	`Automatically analyzes stellar objects to determine their precise solar wind for display on the HUD, with combined output for multi-star systems.`
 
 tip "bunks:"
 	`The number of people (passengers or crew) your ship can hold.`
@@ -246,6 +261,12 @@ tip "engine capacity needed:"
 tip "    engine capacity:"
 	`Tons of engines this ship can hold. (To install an engine, you must also have enough total outfit space available.)`
 
+tip "engine mod space"
+	`This number indicates how much capacity the ship has for modifying its propulsion systems.`
+
+tip "engine mod space free:"
+	`This number indicates how much of a ship's capacity to modify its propulsion system is remaining.`
+
 tip "energy protection:"
 	`Protection provided against energy damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in energy damage, while a total value of 11 only results in a 10 percent reduction.`
 
@@ -260,6 +281,9 @@ tip "fuel:"
 
 tip "fuel capacity:"
 	`The amount of fuel this ship can hold. An ordinary hyperdrive jump consumes 100 fuel. Fuel is replenished for free when you land on an inhabited planet.`
+
+tip "fuel / fuel capacity:"
+	`This ship's current fuel amount as well as the amount of fuel this ship can hold.`
 
 tip "fuel consumption:"
 	`Fuel consumed per second when in flight.`
@@ -277,10 +301,10 @@ tip "fuel protection:"
 	`Protection provided against fuel damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in fuel damage, while a total value of 11 only results in a 10 percent reduction.`
 
 tip "gun ports needed:"
-	`This weapon uses up a gun port. Guns always fire straight forward; turrets fire in the direction of your currently selected target.`
+	`This weapon uses up a gun port. Guns always fire on a specified angle, which is usually forwards.`
 
 tip "gun ports free:"
-	`How many guns this ship can hold. This includes most missiles and secondary weapons that fire straight forward.`
+	`How many guns this ship can hold. This includes all primary weapons that fire in a fixed direction.`
 
 tip "heat dissipation:"
 	`How effectively this ship radiates excess heat.`
@@ -483,6 +507,9 @@ tip "mass:"
 tip "max speed:"
 	`The maximum speed of this ship when using thrusters. Excludes the effect of afterburners, unless there are no normal thrusters installed.`
 
+tip "max speed (w/AB):"
+	`The maximum speed of this ship when using thrusters, with the maximum speed including afterburners shown in parentheses.`
+
 tip "movement:"
 	`How quickly this ship can accelerate and turn.`
 
@@ -517,7 +544,7 @@ tip "outfit space needed:"
 	`Tons of general-purpose space this outfit uses up. Some outfits also use up weapon space or engine space.`
 
 tip "outfit space free:"
-	`Tons of space this ship has for outfits (including weapons and engines).`
+	`Tons of space this ship has available for outfits (including weapons and engines) and the total space available on this ship.`
 
 tip "overheat damage rate:"
 	`Hull damage taken per second when overheated. Overheat damage scales with how far past the overheat threshold the ship is.`
@@ -537,6 +564,12 @@ tip "piercing protection:"
 tip "piercing resistance:"
 	`Piercing damage resisted on all incoming projectiles, preventing damage from leaking through the shields to the hull.`
 
+tip "pylons needed:"
+	`This weapon uses up a missile pylon. Pylons always fire on a set angle, which is often forward but may be on an angle to provide counter-flanking or counter-pursuit fire.`
+
+tip "missile pylons free:"
+	`How many pylons this ship can hold. This includes all rockets, missiles, torpedoes and similar secondary weapons.`
+
 tip "radar jamming:"
 	`Reduces the ability of radar-guided missiles to track your ship. The more radar jamming is installed, the greater the distance at which missiles can be jammed, and the greater the chance that a jammed missile will fly off in a random direction.`
 
@@ -551,6 +584,12 @@ tip "required crew:"
 
 tip "reverse thrust:"
 	`Reverse thrust generated by engines. Reverse thrust allows a ship to slow down without needing to turn around.`
+
+tip "reverse thruster slots free:"
+	`Indicates how much capacity to install reverse thrusters this ship has remaining.`
+
+tip "reverse thruster slot"
+	`This value represents the capacity of the ship to install reverse thrusters, as well as how much of a ship's capacity a reverse thruster utilizes.`
 
 tip "reverse thrusting energy:"
 	`Energy consumed per second when firing reverse thrusters.`
@@ -693,6 +732,12 @@ tip "solar collection:"
 tip "solar heat:"
 	`Heat produced depending on how far this ship is from the star at the center of the system.`
 
+tip "steering slots free:"
+	`Indicates how much capacity to install steering outfits this ship has remaining.`
+
+tip "steering slot"
+	`This value represents the capacity of the ship to install steering outfits, as well as how much of a ship's capacity a steering outfit utilizes.`
+
 tip "strategic scan power:"
 	`Strategic scanners allow you to view your current target's distance from you, maximum gun range, maximum turret range, current speed, maximum acceleration, and turning speed when it is within range. The range is proportional to the square root of this value.`
 
@@ -729,9 +774,14 @@ tip "velocity scan power:"
 tip "weapon scan power:"
 	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scanner range is proportional to the square root of this value.`
 
-
 tip "thrust:"
 	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
+
+tip "thruster slots free:"
+	`Indicates how much capacity to install thrusters this ship has remaining.`
+
+tip "thruster slot"
+	`This value represents the capacity of the ship to install thrusters, as well as how much of a ship's capacity a thruster utilizes.`
 
 tip "thrusting energy:"
 	`Energy consumed per second when firing thrusters.`
@@ -821,10 +871,10 @@ tip "turning disruption:"
 	`Accumulated shield interference per second when turning.`
 
 tip "turret mounts needed:"
-	`This weapon can fire in any direction, tracking your currently selected target. It uses up one of your ship's turret mounts.`
+	`This weapon can fire in any direction, tracking your currently selected target or closest enemy ship depending on your preferences. It uses up one of your ship's turret mounts.`
 
 tip "turret mounts free:"
-	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns.`
+	`How many turrets can be mounted on this ship. Turrets fire in the direction of the currently selected target, instead of firing straight forward like guns. Some turret mounts may have a limited range of fire.`
 
 tip "weapon capacity needed:"
 	`Tons of weapon space this outfit takes up.`

@@ -85,13 +85,20 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+	// Get this things's mass.
+	const double GetMass() const;
+	// Modify or set this outfit's mass.
+	void ModifyMass(double value);
+	void SetMass(double value);
 
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
 	const std::vector<std::pair<Body, int>> &ReverseFlareSprites() const;
 	const std::vector<std::pair<Body, int>> &SteeringFlareSprites() const;
+	const std::vector<std::pair<Body, int>>& LateralFlareSprites() const;
 	const std::map<const Sound *, int> &FlareSounds() const;
 	const std::map<const Sound *, int> &ReverseFlareSounds() const;
+	const std::map<const Sound *, int> &LateralFlareSounds() const;
 	const std::map<const Sound *, int> &SteeringFlareSounds() const;
 	// Get the afterburner effect, if any.
 	const std::map<const Effect *, int> &AfterburnerEffects() const;
@@ -139,8 +146,10 @@ private:
 	std::vector<std::pair<Body, int>> flareSprites;
 	std::vector<std::pair<Body, int>> reverseFlareSprites;
 	std::vector<std::pair<Body, int>> steeringFlareSprites;
+	std::vector<std::pair<Body, int>> lateralFlareSprites;
 	std::map<const Sound *, int> flareSounds;
 	std::map<const Sound *, int> reverseFlareSounds;
+	std::map<const Sound *, int> lateralFlareSounds;
 	std::map<const Sound *, int> steeringFlareSounds;
 	std::map<const Effect *, int> afterburnerEffects;
 	std::map<const Effect *, int> jumpEffects;

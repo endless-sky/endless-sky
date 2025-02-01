@@ -224,7 +224,7 @@ outfit "Thunderhead Launcher"
 	"mass" 14
 	"outfit space" -26
 	"weapon capacity" -26
-	"gun ports" -1
+	"missile pylons" -1
 	"thunderhead capacity" 40
 	weapon
 		sprite "projectile/thunderhead"
@@ -427,16 +427,24 @@ outfit "Type 1 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 135000
 	thumbnail "outfit/tiny radiant thruster"
+	"thruster slot" -1
+	"engine mod space" 0.77
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 13.2
+	"thrust" 14
 	"thrusting energy" 0.55
 	"thrusting heat" 0.85
 	"cooling" 1.5
 	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 12
 	"flare sound" "plasma tiny"
+	"reverse thrust" 1.4
+	"reverse thrusting energy" .055
+	"reverse thrusting heat" .085
+	"reverse flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 12
+	"reverse flare sound" "plasma tiny"
 	description "This is the tiniest Wanderer engine. Like all their engines, it works in part by radiating excess heat, and as a result it doubles as a cooler for your ship."
 
 outfit "Type 2 Radiant Thruster"
@@ -445,16 +453,24 @@ outfit "Type 2 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 390000
 	thumbnail "outfit/small radiant thruster"
+	"thruster slot" -1
+	"engine mod space" 0.99
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 31.95
+	"thrust" 31
 	"thrusting energy" 1.3
 	"thrusting heat" 2.4
 	"cooling" 3.6
 	"flare sprite" "effect/wanderer flare/small"
 		"frame rate" 14
 	"flare sound" "plasma small"
+	"reverse thrust" 3.1
+	"reverse thrusting energy" .13
+	"reverse thrusting heat" .24
+	"reverse flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 12
+	"reverse flare sound" "plasma tiny"
 	description "Wanderer engines work by transferring excess heat from the ship into the exhaust plasma. When not providing thrust, the engines still serve as a cooling system."
 
 outfit "Type 3 Radiant Thruster"
@@ -463,16 +479,24 @@ outfit "Type 3 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 750000
 	thumbnail "outfit/medium radiant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.14
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"thrust" 52.92
+	"thrust" 52
 	"thrusting energy" 2.2
 	"thrusting heat" 4.3
 	"cooling" 6.5
 	"flare sprite" "effect/wanderer flare/medium"
 		"frame rate" 16
 	"flare sound" "plasma medium"
+	"reverse thrust" 5.2
+	"reverse thrusting energy" .22
+	"reverse thrusting heat" .43
+	"reverse flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 12
+	"reverse flare sound" "plasma tiny"
 	description "Most engines this size generate a considerable amount of heat, but the Wanderers have developed a way of using the engine itself to vent extra heat from a ship, generating extra propulsive force in the process."
 
 outfit "Type 4 Radiant Thruster"
@@ -481,6 +505,8 @@ outfit "Type 4 Radiant Thruster"
 		"Wanderer Outfits"
 	"cost" 1370000
 	thumbnail "outfit/large radiant thruster"
+	"thruster slot" -1
+	"engine mod space" 1.3
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
@@ -491,6 +517,12 @@ outfit "Type 4 Radiant Thruster"
 	"flare sprite" "effect/wanderer flare/large"
 		"frame rate" 18
 	"flare sound" "plasma large"
+	"reverse thrust" 8.7
+	"reverse thrusting energy" .37
+	"reverse thrusting heat" .76
+	"reverse flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 12
+	"reverse flare sound" "plasma tiny"
 	description "This is the largest engine that the Wanderers have developed. Its incredibly efficient design allows it to cool your ship even while it is firing."
 
 outfit "Type 1 Radiant Steering"
@@ -499,10 +531,11 @@ outfit "Type 1 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 115000
 	thumbnail "outfit/tiny radiant steering"
+	"steering slot" -1
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"turn" 271.5
+	"turn" 271
 	"turning energy" .3
 	"turning heat" 0.6
 	"cooling" 1.0
@@ -517,6 +550,7 @@ outfit "Type 2 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 325000
 	thumbnail "outfit/small radiant steering"
+	"steering slot" -1
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
@@ -535,10 +569,11 @@ outfit "Type 3 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 590000
 	thumbnail "outfit/medium radiant steering"
+	"steering slot" -1
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 1237.5
+	"turn" 1237
 	"turning energy" 1.2
 	"turning heat" 2.6
 	"cooling" 3.9
@@ -553,6 +588,7 @@ outfit "Type 4 Radiant Steering"
 		"Wanderer Outfits"
 	"cost" 1100000
 	thumbnail "outfit/large radiant steering"
+	"steering slot" -1
 	"mass" 47
 	"outfit space" -47
 	"engine capacity" -47
@@ -564,6 +600,90 @@ outfit "Type 4 Radiant Steering"
 		"frame rate" 18
 	"steering flare sound" "plasma large"
 	description "This is the largest steering system that the Wanderers sell."
+
+
+# Lateral Thrusters
+# Cooling was set to the matching percentage as thrust. 90% for type 1, 80% for type 2, etc. It was rounded down.
+outfit "Type 1 Radiant LTC"
+	category "Engines"
+	licenses
+		"Wanderer Outfits"
+	"cost" 135000
+	thumbnail "outfit/tiny radiant thruster"
+	"lateral thruster slot" -1
+	"mass" 10
+	"outfit space" -10
+	"engine capacity" -10
+	"lateral thrust" 13
+	"lateral thrusting energy" 0.5
+	"lateral thrusting heat" 0.85
+	"cooling" 1.
+	"lateral flare sprite" "effect/wanderer flare/tiny"
+		"frame rate" 12
+	"lateral flare sound" "plasma tiny"
+	description "This is the tiniest Wanderer lateral engine. Like all their engines, it works in part by radiating excess heat, and as a result it doubles as a cooler for your ship."
+
+
+outfit "Type 2 Radiant LTC"
+	category "Engines"
+	licenses
+		"Wanderer Outfits"
+	"cost" 390000
+	thumbnail "outfit/small radiant thruster"
+	"lateral thruster slot" -1
+	"mass" 21
+	"outfit space" -21
+	"engine capacity" -21
+	"lateral thrust" 25
+	"lateral thrusting energy" 1.1
+	"lateral thrusting heat" 2.0
+	"cooling" 2.
+	"lateral flare sprite" "effect/wanderer flare/small"
+		"frame rate" 14
+	"lateral flare sound" "plasma small"
+	description "Wanderer lateral engines work by transferring excess heat from the ship into the exhaust plasma. When not providing thrust, the engines still serve as a cooling system."
+
+
+outfit "Type 3 Radiant LTC"
+	category "Engines"
+	licenses
+		"Wanderer Outfits"
+	"cost" 750000
+	thumbnail "outfit/medium radiant thruster"
+	"lateral thruster slot" -1
+	"mass" 29
+	"outfit space" -29
+	"engine capacity" -29
+	"lateral thrust" 37
+	"lateral thrusting energy" 1.6
+	"lateral thrusting heat" 3.1
+	"cooling" 4.
+	"lateral flare sprite" "effect/wanderer flare/medium"
+		"frame rate" 16
+	"lateral flare sound" "plasma medium"
+	description "Most lateral engines this size generate a considerable amount of heat, but the Wanderers have developed a way of using the engine itself to vent extra heat from a ship, generating extra propulsive force in the process."
+
+
+outfit "Type 4 Radiant LTC"
+	category "Engines"
+	licenses
+		"Wanderer Outfits"
+	"cost" 1370000
+	thumbnail "outfit/large radiant thruster"
+	"lateral thruster slot" -1
+	"mass" 39
+	"outfit space" -39
+	"engine capacity" -39
+	"lateral thrust" 53
+	"lateral thrusting energy" 2.3
+	"lateral thrusting heat" 4.6
+	"cooling" 7.
+	"lateral flare sprite" "effect/wanderer flare/large"
+		"frame rate" 18
+	"lateral flare sound" "plasma large"
+	description "This is the largest lateral engine that the Wanderers have developed. Its incredibly efficient design allows it to cool your ship even while it is firing."
+
+
 
 outfit "Wanderer Outfits License"
 	category "Licenses"

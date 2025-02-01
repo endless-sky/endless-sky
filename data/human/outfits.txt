@@ -170,8 +170,11 @@ outfit "Hyperdrive"
 	"outfit space" -20
 	"jump speed" .2
 	"jump fuel" 100
+	"jump mass cost" 4
+	"jump base mass" 900
 	"hyperdrive" 1
 	description "This mysterious box sits quietly at the heart of your ship, thinking its own inscrutable thoughts. When it comes time to travel between the stars it sets off a nuclear fusion reaction powerful enough to level an entire city, and then somehow tucks the resulting explosion in between the folds of regular space-time like a wasp stinging an oak leaf to lay her eggs inside. Your ship rides the resulting ripple in the fabric of space."
+	description "	The fuel required to power hyperdrives varies depending on the size of the ship. So long as the ship's total mass including cargo is less than 900, then each hyperjump will cost less than 100 fuel. How much less depends on how light the ship is. Ships that have more than 900 total mass will see the fuel per jump increase significantly."
 	description "	They say that fewer than a dozen human beings alive today understand the inner workings of the hyperdrive."
 
 outfit "Scram Drive"
@@ -182,8 +185,11 @@ outfit "Scram Drive"
 	"outfit space" -30
 	"scram drive" .2
 	"jump fuel" 150
+	"jump mass cost" 6
+	"jump base mass" 900
 	"hyperdrive" 1
 	description "A scram drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
+	description "	The fuel required to power scram drives varies depending on the size of the ship. So long as the ship's total mass including cargo is less than 900, then each hyperjump will cost less than 150 fuel. How much less depends on how light the ship is. Ships that have more than 900 total mass will see the fuel per jump increase significantly."
 
 outfit "Jump Drive"
 	category "Systems"
@@ -193,6 +199,8 @@ outfit "Jump Drive"
 	"outfit space" -20
 	"jump speed" .3
 	"jump fuel" 200
+	"jump mass cost" 8
+	"jump base mass" 900
 	"jump drive" 1
 	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
 
@@ -212,7 +220,7 @@ outfit "Cargo Scanner"
 	thumbnail "outfit/cargo scanner"
 	"mass" 1
 	"outfit space" -1
-	"cargo scan power" 9
+	"cargo scan power" 12
 	"cargo scan efficiency" 5
 	description "This scanner allows you to scan the cargo holds of the ship you are currently targeting, as long as you are flying close enough to it. Patrol craft use cargo scanners to detect illegal contraband. Installing more than one increases the scan range and speed."
 
@@ -222,7 +230,7 @@ outfit "Outfit Scanner"
 	thumbnail "outfit/outfit scanner"
 	"mass" 2
 	"outfit space" -2
-	"outfit scan power" 25
+	"outfit scan power" 28
 	"outfit scan efficiency" 15
 	description "This scanner allows you to determine what outfits are installed in the ship you are currently targeting, if you are willing to risk flying close enough to it to get a reading! The Republic Navy uses these scanners to detect when ships are equipped with illegal weaponry. Installing more than one increases the scan range and speed."
 
@@ -230,19 +238,70 @@ outfit "Asteroid Scanner"
 	category "Systems"
 	cost 61000
 	thumbnail "outfit/asteroid scanner"
-	"mass" 6
-	"outfit space" -6
-	"asteroid scan power" 40
+	"mass" 5
+	"outfit space" -5
+	"asteroid scan power" 43
 	description "This highly specialized scanning system can analyze the mineral composition of nearby asteroids and identify the ones that contain valuable materials."
+
+outfit "Fuel Scanner"
+	category "Systems"
+	cost 64000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"fuel scan power" 35
+	description "Knowing how much fuel your target has available is useless to most ship captains, but can be very valuable to both law enforcement and pirates. Sometimes the occasional merchant uses one to determine if they are likely to be able to outlast someone in a long pursuit."
+
+outfit "Patrol Scanner"
+	category "Systems"
+	cost 64000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"crew scan power" 35
+	"weapon scan power" 35
+	description "Patrol ships, law enforcement, and immigration officials in the current stellar environment are generally concerned with two things: how many people are on board, and how far away does one need to be in order to stay safe. As such, these scanners are primarily found on ships who are responsible for tracking the flow of people and occasionally conducting arrests or inspections."
+
+outfit "Rangefinder Scanner"
+	category "Systems"
+	cost 24000
+	thumbnail "outfit/tactical scanner"
+	"mass" 1
+	"outfit space" -1
+	"range finder power" 1
+	description "While named a scanner for simplicity, this is more of an analysis and display module that utilizes standard system detection equipment to determine exact ranges to target ships. Once installed, the distance to the currently targeted ship will be displayed in the panel next to it."
 
 outfit "Tactical Scanner"
 	category "Systems"
 	cost 144000
 	thumbnail "outfit/tactical scanner"
-	"mass" 4
-	"outfit space" -4
-	"tactical scan power" 32
-	description "A tactical scanner allows your ship to determine the fuel, energy, heat, and crew complement of nearby targets. For centuries tactical scanners were only employed by the Navy, but recently Kraz Cybernetics has begun manufacturing them for use by militia ships."
+	"mass" 2
+	"outfit space" -2
+	"velocity scan power" 35
+	"energy scan power" 35
+	description "A tactical scanner allows your ship to analyze the current velocity and energy levels of nearby targets, giving commanders useful information on the target's current movement. For centuries tactical scanners were only employed by the Navy, but recently Kraz Cybernetics has begun manufacturing them for use by militia ships."
+
+outfit "Thermal Scanner"
+	category "Systems"
+	cost 64000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"thermal scan power" 35
+	description "While thermal signatures have always been useful as a means of identifying and tracking ships, determining a ship's effective average thermal load was functionally useless until recently. With the development of the plasma cannon and then the flamethrower, attempting to overheat a ship has become a viable combat technique. As such, engineers with the Free World have begun assembling these sensor packages to support the daring captains who choose to use this tactic."
+
+
+outfit "Astronomical Scanner"
+	category "Systems"
+	cost 18000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"energy consumption" .1
+	"solar power sensor" 1
+	"solar wind sensor" 1
+	description "An astronomical scanner provides data on the system's total solar power and wind output, allowing captains to see which systems are best for solar collection or ramscoop usage."
+
 
 outfit "Surveillance Pod"
 	category "Systems"
@@ -250,12 +309,14 @@ outfit "Surveillance Pod"
 	thumbnail "outfit/surveillance pod"
 	"mass" 5
 	"outfit space" -5
-	"outfit scan power" 16
+	"outfit scan power" 19
 	"outfit scan efficiency" 20
-	"cargo scan power" 4
+	"cargo scan power" 7
 	"cargo scan efficiency" 10
+	"crew scan power" 12
+	"energy scan power" 12
+	"fuel scan power" 12
 	"atmosphere scan" 100
-	"tactical scan power" 9
 	description "This is Navy technology, a collection of scanners designed to fit perfectly inside one of their surveillance drones. Since the outputs are fairly standard, you could connect it to your own ship's systems if you want. Installing more than one increases the scan range and speed."
 
 
