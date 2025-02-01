@@ -1183,6 +1183,7 @@ ship "Korsmanath A'awoj"
 		"outfit space" 3279
 		"weapon capacity" 1148
 		"engine capacity" 579
+		"lateral thruster slot" 2
 		"reverse thruster slot" 2
 		"steering slot" 2
 		"thruster slot" 2
@@ -1213,8 +1214,8 @@ ship "Korsmanath A'awoj"
 		"Afterburner (Stellar Class)"
 		"Reverser (Stellar Class)"
 		"Thruster (Stellar Class)"
-		"Lateral (Stellar Class)"
 		"Thruster (Planetary Class)"
+		"Lateral (Stellar Class)"
 		"Lateral (Planetary Class)"
 		"Steering (Stellar Class)"
 		"Steering (Planetary Class)"

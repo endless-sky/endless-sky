@@ -455,7 +455,6 @@ ship "'nra'ret" "'nra'ret (Crippler)"
 		"Steering (Planetary Class)"
 		"Thruster (Lunar Class)"
 		"Lateral (Lunar Class)"
-		"Lateral (Lunar Class)"
 		"Jump Drive"
 
 	gun "Korath Detainer"

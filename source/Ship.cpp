@@ -901,7 +901,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
 	// or has negative outfit, cargo, weapon, or engine capacity.
 	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity",
-		"engine mod space", "reverse thruster slot", "steering slot", "thruster slot"})
+		"engine mod space", "reverse thruster slot", "steering slot", "thruster slot", "lateral thruster slot"})
 	{
 		double val = attributes.Get(attr);
 		if(val < 0)
@@ -3749,6 +3749,230 @@ void Ship::AddOutfit(const Outfit *outfit, int count)
 		// ship's jump navigation. Hyperdrives and jump drives of the same type don't stack,
 		// so only do this if the outfit is either completely new or has been completely removed.
 		if((outfit->Get("hyperdrive") || outfit->Get("jump drive")) && (!before || !after))
+			navigation.Calibrate(*this);
+		// Navigation may still need to be recalibrated depending on the drives a ship has.
+		// Only do this for player ships as to display correct information on the map.
+		// Non-player ships will recalibrate before they jump.
+		else if(isYours)
+			navigation.Recalibrate(*this);
+	}
+}
+
+
+
+// Add or reduce an attribute. (To reduce, pass a negative number.)
+void Ship::ChangeAttribute(string targetAttribute, double modifyAmount)
+{
+	if(!targetAttribute.empty())
+	{
+		double limiter = 0.;
+		double minAttributeValue = 0.;
+		double originalBaseValue = baseAttributes.Get(targetAttribute);
+		double originalValue = attributes.Get(targetAttribute);
+		double newBaseValue = originalBaseValue + modifyAmount;
+		double newValue = originalValue + modifyAmount;
+
+		// Safety checks to ensure the new value is within parameters.
+		if(newBaseValue < 1. && newValue < 1. && targetAttribute == "hull")
+		{
+			// This means the minimum value for this attribute is 1.0
+			minAttributeValue = 1.;
+			limiter = minAttributeValue - newBaseValue;
+		}
+		else if(newBaseValue < 0.01 && (targetAttribute == "drag" || targetAttribute == "mass"))
+		{
+			// This means the minimum value for these attributes is 0.01
+			minAttributeValue = 0.01;
+			limiter = minAttributeValue - newBaseValue;
+		}
+		// Special handling for attributes that cannot be less than 0.
+		// These values can be 0, just they cannot be negative.
+		else if(newBaseValue < 0. && (targetAttribute == "outfit space" || targetAttribute == "cargo space" ||
+			targetAttribute == "weapon capacity" || targetAttribute == "engine capacity" ||
+			targetAttribute == "engine mod space" || targetAttribute == "shields" ||
+			targetAttribute == "reverse thruster slot" || targetAttribute == "steering slot" ||
+			targetAttribute == "thruster slot" || targetAttribute == "lateral thruster slot" ||
+			targetAttribute == "bunks" || targetAttribute == "fuel capacity" || targetAttribute == "required crew"))
+		{
+			if(newBaseValue < 0.)
+			{
+				minAttributeValue = 0.;
+				limiter = minAttributeValue - newBaseValue;
+			}
+		}
+
+		// Calculations take place here
+		newBaseValue += limiter;
+		newValue += limiter;
+
+		if(targetAttribute == "mass")
+		{
+			// Call the special method just for mass.
+			baseAttributes.ModifyMass(newBaseValue);
+			attributes.ModifyMass(newValue);
+		}
+		else
+		{
+			baseAttributes.Set(targetAttribute.c_str(), newBaseValue);
+			attributes.Set(targetAttribute.c_str(), newValue);
+		}
+
+		// Ensuring the current hull value is changed as well.
+		if(targetAttribute == "hull")
+		{
+			// Adds the modifyAmount and the limiter to the current hull too.
+			hull += modifyAmount + limiter;
+		}
+
+		// Ensuring the current shields value is changed as well.
+		if(targetAttribute == "shields")
+		{
+			// Adds the modifyAmount and the limiter to the current shields too.
+			shields += modifyAmount + limiter;
+		}
+
+		if(targetAttribute == "cargo space")
+		{
+			cargo.SetSize(attributes.Get("cargo space"));
+
+			// Only the player's ships make use of attraction and deterrence.
+			if(isYours)
+				attraction = CalculateAttraction();
+		}
+
+		// If the added or removed attribute is hyperdrive, scram drive, or jump drive capability, then
+		// recalibrate the navigation.
+		if((targetAttribute == "hyperdrive" || targetAttribute == "scram drive" || targetAttribute == "jump drive"))
+			navigation.Calibrate(*this);
+		// Navigation may still need to be recalibrated depending on the drives a ship has.
+		// Only do this for player ships as to display correct information on the map.
+		// Non-player ships will recalibrate before they jump.
+		else if(isYours)
+			navigation.Recalibrate(*this);
+	}
+}
+
+
+
+// Sets an attribute to a specific value. Certain values (mass, drag, space, etc.) have limits.
+void Ship::SetAttribute(string targetAttribute, double setAmount)
+{
+	if(!targetAttribute.empty())
+	{
+		double limiter = 0.;
+		double minAttributeValue = 0.;
+		double originalBaseValue = baseAttributes.Get(targetAttribute);
+		double originalValue = attributes.Get(targetAttribute);
+		// This is to account for potential differences between the value in baseAttributes & Attributes.
+		double originalDifference = originalValue - originalBaseValue;
+		double newBaseValue = setAmount;
+		double newValue = setAmount + originalDifference;
+
+		// double intermediaryValue = originalBaseValue - originalValue;
+
+		// Safety checks to ensure the new value is within parameters.
+		if(newBaseValue < 1. && targetAttribute == "hull")
+		{
+			// This means the minimum value for this attribute is 1.0
+			minAttributeValue = 1.;
+			limiter = minAttributeValue - newBaseValue;
+		}
+		else if(newValue < 1. && targetAttribute == "hull")
+		{
+			// This means the minimum value for this attribute is 1.0
+			minAttributeValue = 1.;
+			limiter = minAttributeValue - newValue;
+		}
+		else if(newBaseValue < 0.01 && targetAttribute == "drag")
+		{
+			// This means the minimum value for these attributes is 0.01
+			minAttributeValue = 0.01;
+			limiter = minAttributeValue - newBaseValue;
+		}
+		else if(newValue < 0.01 && targetAttribute == "drag")
+		{
+			// This means the minimum value for these attributes is 0.01
+			minAttributeValue = 0.01;
+			limiter = minAttributeValue - newValue;
+		}
+		// Special handling for attributes that cannot be less than 0.
+		// These values can be 0, just they cannot be negative.
+		else if(newBaseValue < 0. && (targetAttribute == "outfit space" || targetAttribute == "cargo space" ||
+			targetAttribute == "weapon capacity" || targetAttribute == "engine capacity" ||
+			targetAttribute == "engine mod space" || targetAttribute == "shields" ||
+			targetAttribute == "reverse thruster slot" || targetAttribute == "steering slot" ||
+			targetAttribute == "thruster slot" || targetAttribute == "lateral thruster slot" ||
+			targetAttribute == "bunks" || targetAttribute == "fuel capacity" || targetAttribute == "required crew"))
+		{
+			if(newBaseValue < 0.)
+			{
+				minAttributeValue = 0.;
+				limiter = minAttributeValue - newBaseValue;
+			}
+		}
+
+		// This increases the value that baseAttributes and attributes are set to if they were below the
+		// minimum value. The way the if/else if statements are setup, if for some reason the player's
+		// current value is lower than the base value, then the amount they are reduced is itself reduced
+		// sufficiently that it does not drop it below the minimum value.
+		// If they are not special values with restrictions, this limiter should just be 0 and thus no effect.
+		newBaseValue += limiter;
+		newValue += limiter;
+
+		if(targetAttribute == "mass")
+		{
+			// Call the special method just for mass.
+			double OriginalBaseMass = baseAttributes.Mass();
+			double OriginalMass = attributes.Mass();
+			double MassDif = OriginalMass - OriginalBaseMass;
+			if(setAmount < 0.01)
+			{
+				setAmount = 0.01;
+			}
+			double NewBaseMass = setAmount;
+			double NewMass = setAmount + MassDif;
+			if(NewMass < 0.01)
+			{
+				NewMass = 0.01;
+				NewBaseMass = NewMass - MassDif;
+			}
+			baseAttributes.SetMass(NewBaseMass);
+			attributes.SetMass(NewMass);
+		}
+		else
+		{
+			// These two lines are what actually sets the attributes.
+			baseAttributes.Set(targetAttribute.c_str(), newBaseValue);
+			attributes.Set(targetAttribute.c_str(), newValue);
+		}
+
+		// Ensuring the current hull value is changed as well.
+		if(targetAttribute == "hull")
+		{
+			// Adds the setAmount and the limiter to the current hull too.
+			hull += setAmount + limiter;
+		}
+
+		// Ensuring the current shields value is changed as well.
+		if(targetAttribute == "shields")
+		{
+			// Adds the setAmount and the limiter to the current hull too.
+			shields += setAmount + limiter;
+		}
+
+		// This just ensures the cargo is refreshed to be equal to the new attribute value.
+		if(targetAttribute == "cargo space")
+		{
+			cargo.SetSize(attributes.Get("cargo space"));
+
+			// Only the player's ships make use of attraction and deterrence.
+			if(isYours)
+				attraction = CalculateAttraction();
+		}
+
+		// If the added or removed attribute is hyperdrive, scram drive, or jump drive capability, then
+		// recalibrate the navigation.
+		if((targetAttribute == "hyperdrive" || targetAttribute == "scram drive" || targetAttribute == "jump drive"))
 			navigation.Calibrate(*this);
 		// Navigation may still need to be recalibrated depending on the drives a ship has.
 		// Only do this for player ships as to display correct information on the map.

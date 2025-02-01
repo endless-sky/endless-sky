@@ -1472,6 +1472,7 @@ ship "Modified Boxwing"
 		"outfit space" 350
 		"weapon capacity" 130
 		"engine capacity" 100
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 2
 		"thruster slot" 2
@@ -2048,6 +2049,7 @@ ship "Waverider"
 		"outfit space" 362
 		"weapon capacity" 120
 		"engine capacity" 75
+		"lateral thruster slot" 1
 		"reverse thruster slot" 1
 		"steering slot" 2
 		"thruster slot" 1

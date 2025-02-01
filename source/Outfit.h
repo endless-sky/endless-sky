@@ -85,6 +85,11 @@ public:
 	// Modify this outfit's attributes. Note that this cannot be used to change
 	// special attributes, like cost and mass.
 	void Set(const char *attribute, double value);
+	// Get this things's mass.
+	const double GetMass() const;
+	// Modify or set this outfit's mass.
+	void ModifyMass(double value);
+	void SetMass(double value);
 
 	// Get this outfit's engine flare sprites, if any.
 	const std::vector<std::pair<Body, int>> &FlareSprites() const;
