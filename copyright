@@ -2596,6 +2596,7 @@ License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence) and Red-57 (under the same licence).
 
 Files:
+ images/asteroid/ice/*
  images/effect/korath?afterburner*
  images/ship/chaser*
  images/ship/world-ship*
@@ -2604,6 +2605,13 @@ Files:
 Copyright: Lia Gerty (https://github.com/ravenshining)
 License: CC-BY-SA-4.0
 Comment: Derived from work by Michael Zahniser (under the same licence)
+
+Files:
+ images/outfit/harvested?ice*
+ images/effect/flotsam?ice*
+Copyright: Lia Gerty (https://github.com/ravenshining)
+License: CC-BY-SA-4.0
+Comment: Derived from work by Michael Zahniser (under the same licence) and public domain works from pxhere.com.
 
 Files:
  images/outfit/torpedopod*

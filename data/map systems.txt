@@ -37238,7 +37238,8 @@ system Sol
 	arrival 4300
 	departure 4189
 	habitable 1496
-	belt 4189 100
+	belt 4189 15
+	belt 59839 100
 	haze _menu/haze-67
 	link "Alpha Centauri"
 	link Altair
@@ -37254,6 +37255,7 @@ system Sol
 	minables aluminum 200 3
 	minables gold 20 25
 	minables silicon 300 2
+	minables ice 400 30
 	trade Clothing 282
 	trade Electronics 745
 	trade Equipment 491
@@ -37295,6 +37297,10 @@ system Sol
 		sprite planet/mars
 		distance 2281
 		period 687.001
+	object Ceres
+		sprite planet/rhea
+		distance 4140
+		period 1680
 	object Jupiter
 		sprite planet/jupiter
 		distance 7787
@@ -37352,13 +37358,23 @@ system Sol
 			distance 195
 			period -5.8
 	object Pluto
-		sprite planet/neptune
+		sprite planet/europa
 		distance 59062
 		period 90498.1
 		object Charon
 			sprite planet/tethys
 			distance 195
 			period 5.8
+	object Eris
+		sprite planet/miranda
+# Average of semi-major axis and perhelion to reduce map stretch
+		distance 79385
+		period 204199
+		object
+			sprite planet/rock7
+				scale 0.5
+			distance 373
+			period 15.8
 
 system "Sol Arach"
 	pos -711.587 649.051

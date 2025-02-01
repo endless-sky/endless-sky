@@ -77,6 +77,28 @@ outfit "Gold"
 	description "Useful for its high electrical conductivity and prized for its beauty and luxury status, gold can always find a well-paying market."
 
 
+minable "ice"
+	sprite "asteroid/ice/spin"
+	hull 150
+	"random hull" 150
+	payload "Ice" 50
+		"toughness" 1000
+	explode "puff" 40
+	explode "bolide" 20
+	explode "asteroid crunch small"
+
+outfit "Ice"
+	plural "Ice"
+	category "Minerals"
+	cost 200
+	thumbnail "outfit/harvested ice"
+	"flotsam sprite" "effect/flotsam ice"
+	"mass" 1
+	"installable" -1
+	"minable" 1
+	description "Water ice may be nearly worthless to anyone who doesn't need it, but it is the most precious thing in the universe to those who do."
+
+
 minable "iron"
 	sprite "asteroid/iron/spin"
 	hull 1440

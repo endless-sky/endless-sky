@@ -827,6 +827,16 @@ planet "Celestial Third"
 	spaceport `The constant stream of freighters passing through this spaceport is a testament to how much food is needed to feed the densely populated Kimek worlds, in particular their homeworld in the neighboring star system. The city that hosts the spaceport has also become something of a tourist destination for those with adventurous culinary tastes; restaurants here serve recipes native to each of the Coalition species, along with some dishes that blend their three cuisines in unique and sometimes surprising ways.`
 	security 0.5
 
+planet Ceres
+	attributes mining moon "near earth"
+	landscape land/snow37
+	description `Once faintly and occasionally visible from Earth, Ceres enjoyed status as a planet in the nineteenth century prior the discovery of Neptune and the asteroid belt. Its status wavered, usually considered an asteroid, until the discovery of Eris which led to its classification as a dwarf planet.`
+	description `	Ceres's clay crust over a muddy core sports brine cryovolcanoes and a tenuous water vapor atmosphere. Conveniently located in the asteroid belt and just within Sol's hyper limit, Ceres has long been a favored stopover for miners and interstellar travellers.`
+	spaceport `The landing pad looks extremely unstable, but you are assured that the low gravity will prevent your ship from sinking into the surface or setting off an eruption.`
+	spaceport `	In a lively cantina, friendly staff serve warm spelt pancakes to children listening with rapt attention to the miners trading stories with out-system travellers.`
+	outfitter "Basic Outfits"
+	outfitter "Ammo North"
+
 planet Charon
 	attributes moon "near earth"
 	landscape land/snow22
@@ -1624,6 +1634,13 @@ planet "Ergastirio Station"
 		fleet "Avgi Orbital Defense" 9
 		fleet "Avgi Strike Group" 3
 		fleet "Avgi Fleetgroup"
+
+planet Eris
+	attributes moon "near earth"
+	landscape land/snow38
+	description `Eris's brief and controversial claim to being the "tenth planet" cast the proverbial golden apple into the scientific community, condemning Pluto and itself to "dwarf planet" status. More massive than Pluto, free from orbital resonance with Neptune, and without many objects in its orbit, it could almost qualify under the new rules, if not for its extreme distance from Sol making it difficult to perturb the remaining asteroids in its path.`
+	description `	Eris is exceptionally bright, owing to its extreme cold allowing methane to condense even it its warmer regions. The atmosphere of methane and nitrogen is formed through cycles of sublimation from the surface ice.`
+	government Uninhabited
 
 planet "Esayaku Fen"
 	attributes korath
@@ -4588,7 +4605,7 @@ planet Placer
 
 planet Pluto
 	attributes moon "near earth"
-	landscape land/moon1
+	landscape land/mars3
 	description `Pluto has been the subject of significant debate over the years. Originally termed a planet, it was reclassified as a dwarf planet back at the dawn of the third millennium. Over a thousand years later, there are still some who term it the ninth planet in the Sol system. Given that most navigational systems can track everything of gravitational significance in a system, what exactly the category of an object is has become a discussion without much interest to modern spacefarers.`
 	description `	This planet is best known for its eccentric and inclined orbit that takes it inside the orbit of Neptune. This, combined with the fact that it is considered to be a binary system, as the barycenter of its orbit does not lie within it, but instead is at a point in between Pluto and Charon's surfaces.`
 	government Uninhabited
