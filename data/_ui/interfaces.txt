@@ -1172,7 +1172,7 @@ interface "hud"
 
 
 
-	# Targets.
+	# RADAR
 	anchor top left
 	visible if "red alert"
 	sprite "ui/red alert"
@@ -1188,7 +1188,6 @@ interface "hud"
 	value "radar radius" 110
 	value "radar pointer radius" 130
 	
-	# Current system.
 	sprite "ui/current system"
 		from 43 0
 		align top left
@@ -1203,7 +1202,6 @@ interface "hud"
 	sprite "ui/navigation"
 		from 195 0
 		align top left
-
 	string "navigation mode"
 		from 215 20
 		align left
@@ -1214,7 +1212,27 @@ interface "hud"
 		color "medium"
 		width 130
 		truncate back
+
+	visible if "system solar display"
+	sprite "ui/tactical/solar"
+		from 251 67
+		align top left
+	string "system solar"
+		from 269 76
+		color "medium"
+		align left
+
+	visible if "system wind display"
+	sprite "ui/tactical/wind"
+		from 256 90
+		align top left
+	string "system wind"
+		from 275 99
+		color "medium"
+		align left
 	
+	# Targets
+	visible
 	sprite "ui/target"
 		from 0 275
 		align top left

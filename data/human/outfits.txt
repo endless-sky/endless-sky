@@ -290,6 +290,19 @@ outfit "Thermal Scanner"
 	"thermal scan power" 35
 	description "While thermal signatures have always been useful as a means of identifying and tracking ships, determining a ship's effective average thermal load was functionally useless until recently. With the development of the plasma cannon and then the flamethrower, attempting to overheat a ship has become a viable combat technique. As such, engineers with the Free World have begun assembling these sensor packages to support the daring captains who choose to use this tactic."
 
+
+outfit "Astronomical Scanner"
+	category "Systems"
+	cost 18000
+	thumbnail "outfit/tactical scanner"
+	"mass" 2
+	"outfit space" -2
+	"energy consumption" .1
+	"solar power sensor" 1
+	"solar wind sensor" 1
+	description "An astronomical scanner provides data on the system's total solar power and wind output, allowing captains to see which systems are best for solar collection or ramscoop usage."
+
+
 outfit "Surveillance Pod"
 	category "Systems"
 	cost 122500

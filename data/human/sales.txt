@@ -337,7 +337,8 @@ outfitter "Deep Sky Basics"
 	"AL379 Atomic LTC"
 	"A375 Atomic Steering"
 	"AR120 Reverse Thruster"
-
+	"Astronomical Scanner"
+	
 outfitter "Deep Sky Advanced"
 	"Ramscoop"
 	"LP144a Battery Pack"
@@ -384,6 +385,7 @@ outfitter "Deep Sky Advanced"
 	"In-flight Mass Display"
 	"Hyperjump Fuel Display"
 	"Fuel Bar Hyperjump Display"
+	"Astronomical Scanner"
 
 outfitter "Lovelace Basics"
 	"Anti-Missile Turret"

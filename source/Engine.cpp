@@ -795,6 +795,20 @@ void Engine::Step(bool isActive)
 			info.SetCondition("flagship solar display");
 			info.SetString("flagship solar", to_string(flagshipSolar));
 		}
+		// Display combined Solar Power for system
+		int displaySystemPower = (flagship->DisplaySystemSolar() * 100); // Multiplied to better display decimal inputs
+		if(displaySystemPower >= 0.01 && flagship->Attributes().Get("solar power sensor"))
+		{
+			info.SetCondition("system solar display");
+			info.SetString("system solar", to_string(displaySystemPower));
+		}
+		// Display combined Solar Wind for system
+		int displaySystemWind = (flagship->DisplaySystemWind() * 100); // Multiplied to better display decimal inputs
+		if(displaySystemWind >= 0.01 && flagship->Attributes().Get("solar wind sensor"))
+		{
+			info.SetCondition("system wind display");
+			info.SetString("system wind", to_string(displaySystemWind));
+		}
 		// These check for the attribute to determine if the pilot has installed
 		// outfits that give a live display of ship mass and jump fuel costs.
 		bool flagshipMassDisplay = flagship->DisplayMass();

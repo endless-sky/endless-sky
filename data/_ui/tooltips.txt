@@ -84,6 +84,12 @@ tip "asteroid scan power:"
 tip "atmosphere scan:"
 	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
 
+tip "solar power sensor:"
+	`Automatically analyzes stellar objects to determine their precise solar power for display on the HUD, with combined output for multi-star systems.`
+
+tip "solar wind sensor:"
+	`Automatically analyzes stellar objects to determine their precise solar wind for display on the HUD, with combined output for multi-star systems.`
+
 tip "bunks:"
 	`The number of people (passengers or crew) your ship can hold.`
 
