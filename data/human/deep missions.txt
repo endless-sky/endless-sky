@@ -3695,7 +3695,7 @@ mission "Skadenga Call 5"
 		payment 27
 		conversation
 			`You receive a message from the Census and Culture Bureau of the Deep. The Deep Citizen known as Hjlod has died. The cause of death appeared to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance: <payment>.`
-			decline
+				decline
 
 
 mission "Home for Skadenga 8"
