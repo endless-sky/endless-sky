@@ -358,7 +358,9 @@ void Audio::Step(bool isFastForward)
 
 	if(pauseChangeCount > 0)
 	{
-		if(pauseCount += pauseChangeCount)
+		bool wasPaused = pauseCount;
+		pauseCount += pauseChangeCount;
+		if(pauseCount && !wasPaused)
 		{
 			ALint state;
 			for(const Source &source : sources)
@@ -381,6 +383,12 @@ void Audio::Step(bool isFastForward)
 				alGetSourcei(source.ID(), AL_SOURCE_STATE, &state);
 				if(state == AL_PAUSED)
 					alSourcePlay(source.ID());
+			}
+			for(unsigned source : endingSources)
+			{
+				alGetSourcei(source, AL_SOURCE_STATE, &state);
+				if(state == AL_PAUSED)
+					alSourcePlay(source);
 			}
 		}
 	}

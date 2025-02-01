@@ -231,8 +231,6 @@ government "Avgi (Wandering Fleet)"
 		system "Ballad"
 		system "Ensemble"
 		system "Prelude"
-		system "Interlude"
-		system "Demilude"
 
 government "Bad Trip"
 	swizzle 0
