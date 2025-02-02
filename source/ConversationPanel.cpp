@@ -250,7 +250,7 @@ void ConversationPanel::Draw()
 
 			font.Draw(label, point + Point(-15, 0), dim);
 
-			if(caller->GetStoryline() != nullptr && paragraph.LeadsToDecline())
+			if(caller->GetStoryline() != nullptr && !caller->IsStorylineOptional() && paragraph.LeadsToDecline())
 				point = paragraph.Draw(point, bright, &dim);
 			else
 				point = paragraph.Draw(point, bright);

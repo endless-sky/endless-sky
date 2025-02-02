@@ -89,6 +89,9 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	// Check if this mission is optional within its storyline: optional missions
+	// can be declined or failed without breaking the storyline.
+	bool IsStorylineOptional() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};

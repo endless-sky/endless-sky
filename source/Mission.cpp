@@ -651,6 +651,15 @@ bool Mission::IsMinor() const
 
 
 
+// Check if this mission is optional within its storyline: optional missions
+// can be declined or failed without breaking the storyline.
+bool Mission::IsStorylineOptional() const
+{
+	return storylineOptional;
+}
+
+
+
 bool Mission::IsAtLocation(Location location) const
 {
 	return (this->location == location);
