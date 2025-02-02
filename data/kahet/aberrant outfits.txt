@@ -41,13 +41,13 @@ outfit "Aberrant Spiker"
 		"firing fuel" 10
 		"firing hull" 150
 		"velocity" 15
-		"lifetime" 400
+		"lifetime" 700
 		"acceleration" 1.45
 		"drag" .21
 		"turn" 1.3
-		"homing" 2
+		"homing" 3
 		"optical tracking" 0.9
-		"hit force" -1150
+		"hit force" -1350
 		"hull damage" 730
 		"shield damage" 1270
 		"corrosion damage" 3
@@ -173,10 +173,10 @@ outfit "Anomalous Mass"
 	thumbnail "outfit/anomalous mass"
 	"flotsam sprite" "effect/flotsam anomalous mass"
 	"flotsam chance" 0.5
-	"mass" 2.72
+	"mass" 2.718
 	"outfit space" -1
-	"heat generation" 0.07
-	"drag" 0.02
-	"inertia reduction" 0.001
+	"heat generation" 0.4
+	"drag" 0.04
+	"inertia reduction" 0.03
 	"unplunderable" 1
 	description "Found with widely varying properties in different mechanisms of an Aberration, this mass of glassy, fleshy material is characterized by the very difficulty of classifying its composition. Webs of anomalous material embedded in the mass seem not to be composed of atomic matter as the Avgi know it, but by something entirely different, which resists any attempts to probe its makeup. This is thought to enable many of the Aberrants' more baffling abilities, for lack of any other explanation."

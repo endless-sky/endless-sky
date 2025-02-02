@@ -279,6 +279,10 @@ fleet "Avgi Twilight Guard Logistics"
 		"Sonikis" 4
 		"Tremoros" 6
 	variant 12
+		"Undsyni (Plasmadyne)"
+		"Sonikis (Tanker)" 4
+		"Tremoros" 9
+	variant 12
 		"Undsyni (Tanker)"
 		"Sonikis (Tanker)" 4
 		"Tremoros" 4
@@ -350,10 +354,10 @@ fleet "Large Avgi Merchants"
 	personality
 		confusion 30
 		timid coward appeasing merciful opportunistic
-	variant 12
+	variant 30
 		"Koryfi" 3
 		"Frequentia"
-	variant 12
+	variant 30
 		"Avlaki" 3
 		"Frequentia"
 	variant 12
@@ -376,12 +380,15 @@ fleet "Large Avgi Merchants"
 	variant 12
 		"Harmonikos"
 		"Tremoros" 2
-	variant 12
+	variant 6
 		"Undsyni"
 		"Sonikis" 4
-	variant 12
+	variant 6
 		"Undsyni (Tanker)"
 		"Sonikis (Tanker)" 4
+	variant 6
+		"Undsyni (Plasmadyne)"
+		"Sonikis (Tanker)" 6
 	variant 12
 		"Koryfi" 2
 	variant 12
@@ -467,27 +474,27 @@ fleet "Large Dissonance Merchants"
 	personality
 		confusion 15
 		coward timid disables secretive opportunistic
-	variant 12
+	variant 24
 		"Koryfi" 2
 		"Tremoros" 2
-	variant 12
+	variant 24
 		"Avlaki" 2
 		"Tremoros" 3
-	variant 12
+	variant 18
 		"Koryfi" 2
 		"Interferos"
-	variant 12
+	variant 18
 		"Avlaki" 2
 		"Interferos"
 	variant 12
 		"Avlaki"
 		"Frequentia"
 		"Tremoros"
-	variant 12
+	variant 6
 		"Undsyni"
 		"Sonikis" 4
 		"Frequentia"
-	variant 12
+	variant 6
 		"Undsyni"
 		"Sonikis" 4
 		"Frequentia" 2

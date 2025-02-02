@@ -109,6 +109,7 @@ planet Alathil
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/nasa29
 	description `Eons later, Alathil still resonates with the shocks of the supernova that reshaped the Tap system. The entire atmosphere is still in turmoil, with layers of gas upturned upon themselves. These exposed layers are the source of Alathil's vibrant coloring, which is both beautiful and deadly.`
+	description `	The planet's magnetosphere is grossly deformed, distorted by Tap's own powerful field and twisted by the shocks still resonating in Alathil's metallic hydrogen core. This bends streams of deadly charged particles emitted from Tap directly into the atmosphere, scouring seemingly random bands across the planet's surface.`
 	government Uninhabited
 	security 0
 
@@ -253,7 +254,8 @@ planet Angko
 planet Anitlos
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/mars3
-	description `The surface of Anitlos, the largest moon of Oura, is a smooth landscape of ice pierced by rocky, metallic protrusions. These surface metal deposits, brought by a late asteroid bombardment a few hundred million years ago, served as one of the largest sources of material for the cylinder habitats that clustered around Oura, its moons, and the Trojan asteroids at its Lagrange points.`
+	description `The surface of Anitlos, the largest moon of Oura, is a smooth landscape of ice pierced by rocky, metallic protrusions. These surface metal deposits, brought by a late asteroid bombardment a few hundred million years ago, served as one of the best sources of material for the cylinder habitats that clustered around Oura, its moons, and its Lagrange points.`
+	description `	The other moons of Oura, while not quite as rich as Anitlos, are nonetheless a bounty of rare materials. Notably, rare elements like boron and beryllium, only produced by cosmic ray spallation of elements like oxygen, are produced at elevated rates in the ice of certain moons due to the trapping of charged particles by Oura's magnetic field.`
 	government Uninhabited
 
 planet Antipode
@@ -271,8 +273,12 @@ planet Antipode
 planet "Antivli Station"
 	attributes avgi station uninhabited
 	landscape land/station25
-	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the hundreds of solar collection satellites in low orbit around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts.`
-	description `	Combined, the amat farms around Anax produced several tons of antimatter each year.`
+	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the thousands of solar collection satellites around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts. The discovery of the hyperdrive nearly wiped the antimatter economy out overnight, with interstellar travel now almost trivial.`
+	description `	Combined, the amat farms around Anax once produced several tons of antimatter each year. The economic crash caused by the hyperdrive brought production to its knees, but the final death of Antivli Station appears to have come at the hands of the Aberrant.`
+	spaceport `The docks once used by specialized antimatter transport ships are wrecked beyond recognition, with only a small trickle of energy available. Beyond this, the beamlines once used to produce antimatter are broken and shattered - the antimatter plant is certainly beyond recovery.`
+	spaceport `	The station's stockpile of antimatter, hundreds of tons held in reserve as antihydrogen ice plated with a thin layer of antilithium, appears to have likewise been lost to the Incursion. Whatever happened to the antimatter, it is at least certain that it did not breach its magnetic levitation containment tanks, as otherwise nothing of the station would be left but vapor.`
+	port "Amat _Plant"
+		recharges energy
 	government Uninhabited
 
 planet Aqra-Kvel-Taaq
@@ -382,7 +388,7 @@ planet "Ashy Reach"
 	security 0.1
 
 planet Aspar
-	attributes poisonous uninhabited
+	attributes poisonous "tangled shroud" uninhabited
 	landscape land/forest15
 	description `A rarity in the Tangled Shroud, Aspar is a habitable moon with a temperate climate and a thriving ecosystem. Widespread settlement has been prevented, however, due to the unfortunate fact that life on Aspar uses proteins with the opposite chirality to those used by life on Earth and Aviskir.`
 	description `As a result, the native flora and fauna are mostly inedible, sometimes even poisonous, and the composition of the soil is such that imported plants tend to be stunted even if they manage to survive.`
@@ -408,8 +414,8 @@ planet Asterus
 planet Avalet
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_01
-	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the trace water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of powerful winds that ring the entire planet, producing immense cyclones capable of even pushing some clouds to the edge of space.`
-	description `	The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped in Avalet's magnetic field fueled Avgi starships until Antivili Station was built.`
+	description `Avalet is a hot ice giant, similar in size to Neptune but orbiting far closer to Anax. Tidally locked, one face of the gas plant is heated to incandescence while the other experiences temperatures cold enough to freeze the water and ammonia out of its mostly hydrogen atmosphere. This drives a cycle of winds that ring the entire planet, producing immense cyclones capable of throwing clouds to the edge of space.`
+	description `	The erosion of the solar wind against Avalet produces a bright cometary tail visible from Aviskir, and in multiple Avgi mythologies the planet occupied a role of preeminence: a messenger, or a king, or even a creator. In more modern times, the antimatter trapped by Avalet's magnetic field fueled Avgi starships until Antivli Station was built, a fading reflection of its mythological significance.`
 	government Uninhabited
 
 planet Avalon
@@ -434,7 +440,7 @@ planet Aventine
 
 planet Aviskir
 	attributes "aberrant siege" avgi "avgi core" rich urban
-	landscape land/forest13
+	landscape land/water32
 	description `Aviskir is a world of sweeping mountains and sparkling oceans. It also happens to be the Avgi homeworld, bustling with nine billion members of the species. Civilization has concentrated largely around bountiful mountain valleys and fjords, many warmed by hot springs and geothermal heat. The largest cities are built around the smaller peaks, laced with slender bridges and bright skyscrapers. They stand in contrast to the rural valley settlements below, which are said to offer simpler, more traditional lives.`
 	description `	The Incursion has forced the remaining Avgi on the surface to dedicate a large part of their industry towards building defensive missile systems and banks of lasers, all in the hope of turning away the attack runs the Aberrant sometimes make on the surface.`
 	spaceport `With the Avgi never developing the gravity repulsor independently, the largest spaceports once boasted arrays of launch lasers and dedicated skyhooks capable of lifting cargo en masse to orbit. The flurry of vessels taking off from these points drew the attention of the Aberrant, who targeted them during their attack on Aviskir's orbital infrastructure.`
@@ -1592,9 +1598,11 @@ planet "Enn Bue"
 planet Entantel
 	attributes avgi frozen "ice moon" moon uninhabited
 	landscape land/snow39
-	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density gives rise to a very low gravitational acceleration for its size.`
-	description `	Because of its shallow gravity well and abundance of volatiles, Entantel is one of the biggest exporters of water ice in the outer Anax system.`
-	spaceport `The spaceport here launches most upmass via mass driver rather than starship, and despite the abundance of water, and thus deuterium, there is barely enough fuel stockpiled here to fill a few large tankers.`
+	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density results in a very low gravitational acceleration for its size.`
+	description `	Because of its shallow gravity well and abundance of volatiles, Entantel was one of the biggest exporters of water ice in the outer Anax system, where it was largely used as cheap propellant or to fill the numerous cylinder habitats with artificial lakes and rivers.`
+	spaceport `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
+	port
+		recharges fuel
 	government Uninhabited
 
 planet Erabuthro
@@ -2103,7 +2111,7 @@ planet "Gentle Rain"
 	security 0.4
 
 planet Gestli
-	attributes uninhabited
+	attributes "tangled shroud" uninhabited
 	landscape land/mountain45
 	description `Despite its smooth appearance from orbit, the surface of Gestli is a fractured mess of jagged mountains and rough hills. The tectonic activity of its moon, large enough to qualify as a binary pair, causes an almost perpetual global earthquake that can be felt by simply standing on the planet.`
 	description `The planet's parent stars offer the planet little warmth, and a thin atmosphere of nitrogen and carbon dioxide has managed to hold on to only scattered swathes of ice and snow, with far too little water or heat to support an active hydrological cycle. The anemic erosion, as a result, has done little to smooth the scars left by the influence of the tidal forces that wrack Gestli's surface.`
@@ -2515,7 +2523,7 @@ planet Hermes
 
 planet Hespair
 	attributes uninhabited
-	landscape land/beach18
+	landscape land/water28
 	description `Hespair was once a life-bearing world, but no longer. An unknown event several million years ago thoroughly sterilized the planet down to the last bacterium, and life has not since reemerged.`
 	description `	However, during their exploration of the planet, the Avgi accidentally, if inevitably, introduced bacteria from their own ships to Hespair's oceans. These motes of life are still sparse, but even if the Avgi refrain from terraforming this world, they will form the seeds of a new biosphere at some point in the distant future.`
 	government Uninhabited
@@ -2542,6 +2550,8 @@ planet Hilothire
 	description `While Hilothire contains an oxygen-rich atmosphere, it is almost entirely covered in icy oceans. At the poles, massive ice caps stretch nearly to the tropics. Pristine icebergs often float down to the equator, where they accumulate around the few rocky islands that peek above the waves.`
 	description `	A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
 	spaceport `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
+	port
+		recharges fuel
 	government Uninhabited
 	security 0
 
@@ -2652,7 +2662,7 @@ planet Icelake
 planet Iconil
 	attributes frozen uninhabited
 	landscape land/snow26
-	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livoula nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and visible patches of sparkling ice, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the last stretch to settle Livoula: the Avgi's first interstellar colony.`
+	description `The first crewed interstellar expedition launched by the Avgi entered orbit first around Iconil, rather than the tantalizingly habitable world of Livolua nearby. This seemingly unorthodox decision was made by the ship's crew because of the dwarf planet's combination of low gravity and visible patches of sparkling ice, which offered an easy way to replenish the vessel's propellant. The mission spent several months gathering resources and launching probes before finally crossing the last stretch to settle Livolua: the Avgi's first interstellar colony.`
 	government Uninhabited
 
 planet Iddesato
@@ -3269,7 +3279,7 @@ planet Limejog
 
 planet Livolua
 	attributes "aberrant siege" avgi "avgi core" rich urban
-	landscape land/water32
+	landscape land/forest13
 	description `Livolua was the first extrasolar planet to be colonized by the Avgi, through the use of multiple waves of slower than light starships over two hundred years ago. With its wide range of climates ideal for life, it boasts a population two thirds as large as Aviskir itself, and an equally impressive number of independent polities.`
 	description `	While perhaps not as wealthy or comfortable as Aviskir itself, Livolua is full of younger, ambitious polities with their eyes set on growth, a dynamic that has produced a vibrant independent civilization capable of rivaling the homeworld.`
 	spaceport `The primary spaceport was built into the center of the first settlement to be established on the planet, which handled most extraplanetary traffic for decades. An especially-ambitious skyhook design would stretch down each day to retrieve or deposit a payload mounted on a kilometer-tall tower, spindly enough that it had to be reinforced with nanotube guy lines reaching the ground. Since then, the tower has grown outwards into a surprisingly wide arcology of basalt and steel, itself housing over a million Avgi.`
@@ -3338,6 +3348,8 @@ planet Mabatham
 	description `Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics.`
 	description `	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stubborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea.`
 	spaceport `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
+	port
+		recharges fuel
 	government Avgi
 	security 0
 
@@ -3505,8 +3517,8 @@ planet "Mebla's Portion"
 planet Melatos
 	attributes avgi uninhabited
 	landscape land/snow36
-	description `Despite being a large rocky world, Melatos lacks all but the thinnest of atmospheres. Avgi astrogeologists have determined that some cataclysmic event only a few million years ago melted and quickly refroze the outermost layers of its crust. This rapid cooling created a world with a smooth, marble-like texture, almost like ceramic, which is crazed by deep cracks formed as the crust refroze.`
-	description `	The remelting of Melatos' crust also means that heavier elements such as metals mostly sank to the core, and are hard to find without subcrustal mining, an unattractive prospect when combined with the planet's relatively deep gravity well. As such, Melatos remains mostly undeveloped, with the settlements on its surface being almost exclusively scientific in purpose.`
+	description `Despite being a large rocky world, Melatos lacks all but the thinnest of atmospheres. Avgi astrogeologists have determined that some cataclysmic event millions of years ago melted and quickly refroze the outermost layers of its crust, coinciding with a mass extinction on Aviskir. This rapid cooling created a world with a smooth, marble-like texture, in part made from ceramic. The glassy surface is crazed by deep cracks, formed as the crust refroze and shrank as it cooled.`
+	description `	The remelting of Melatos' crust also means that heavier elements such as metals mostly sank to the core, making mining an unattractive prospect with the planet's relatively deep gravity well. As such, Melatos remains mostly undeveloped, with the settlements on its surface being almost exclusively scientific in purpose.`
 	government Uninhabited
 
 planet Melenci
@@ -4206,7 +4218,7 @@ planet Nifel
 		fleet "Large Deep Security" 16
 
 planet Nilokep
-	attributes uninhabited
+	attributes "tangled shroud" uninhabited
 	landscape land/sky14
 	description `Silently orbiting its distant parent, Nilokep is a dead, airless world of stony flats and salt plains. Granite mountains jut up at the poles, but any tectonic heat this small world may have once had has long since bled away.`
 	description `Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing trace amounts of uranium, across its surface. While not economical to mine, it is thought that this is the remnant of some ancient geological system that eroded and dispersed the planet's primordial mountains.`
@@ -4230,7 +4242,8 @@ planet Nimbus
 planet "Nisos Cylinder"
 	attributes avgi station uninhabited urban
 	landscape land/station55
-	description `The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth's 20th century. Nisos was one of the few cylinders to be completely evacuated before the Aberrant took the Anax system, and compared to its neighbors it is relatively intact.`
+	description `The Nisos Cylinder was once a huge habitat station, of the same type as the O'Neil Cylinder concept from Earth's 20th century. With a population of nearly twelve million, Nisos was one of nearly a thousand cylinders created by the Avgi, mostly in the Anax system, where they were together home to billions. As the Aberrant advanced across Avgi space, it was evacuated in a frenzy that saw most of its population flee to Aviskir. Compared to its neighbors, it is relatively intact, and still holds an atmosphere.`
+	description `	Located at the L5 Lagrange point of Oura, the largest gas giant in the Anax system, this habitat community had ready access to the asteroids that tended to accumulate here, which fueled the expansion and production of new cylinders.`
 	government Uninhabited
 
 planet Noluc
@@ -4354,8 +4367,8 @@ planet Omanet
 planet Orodens
 	attributes mining moon
 	landscape land/mountain26
-	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy elements. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material to orbit, where it could be shipped to other systems. Before the recent invention of the gravity repulsor, rows of mass drivers fired streams of raw material into orbit, where it would be collected by waiting ships.`
-	description `	This was once the largest single source of fissile elements in Avgi space, but since the Incursion the mass drivers have gone quiet. Automated mining drones continue to watch over the last batch of excavated material.`
+	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy elements. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material off the surface and to other systems. Rows of mass drivers were used to fire refined minerals into orbit, where they could be collected by waiting ships.`
+	description `	Once the largest single source of fissile elements in Avgi space, the mass drivers have been silent since the Incursion halted operations. Automated drones continue to watch over the last batch of excavated material.`
 	government Uninhabited
 	security 0
 
@@ -4388,11 +4401,12 @@ planet "Oup Je"
 planet Oura
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds11
-	description `Oura was the primary source of the helium-3 that fueled Avgi sublight starships. Even now, you can see aerostat collectors separating valuable isotopes from the surrounding gas, which are then launched via mass driver to orbit in pressurized vessels.`
+	description `Oura is the largest and fastest rotating gas giant in the Anax system, with an extensive system of moons rich in mineral wealth. The planet itself is immense, but has an unusually low density for a gas planet of its size. Large quantities of nitrogen, sulfides, and ammonia give it a ruddy color tinged with a blue-white glow, with wavy bands folding over each other as they ripple with the winds.`
+	description `	Oura was the primary source of the helium-3 that fueled the best of the fusion-driven Avgi sublight starships. Even now, you can see aerostat collectors floating on the wind as they separate valuable isotopes from the surrounding gas. Pressurized vessels filled with these riches are then launched to orbit, mostly via mass driver.`
 	government Uninhabited
 
 planet "Outpost Alkos"
-	attributes avgi "avgi diaspora" "dissonance sympathies" station
+	attributes avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/space0
 	description `Predating the Incursion, Outpost Alkos was the first major refueling station built in the Tangled Shroud. While it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment.`
@@ -4406,7 +4420,7 @@ planet "Outpost Alkos"
 		fleet "Avgi Strike Group"
 
 planet "Outpost Enka"
-	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/station27
 	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one asteroid is also riddled with pressurized tunnels and pockets filled with farms and open green spaces.`
@@ -4434,7 +4448,7 @@ planet "Outpost Enka"
 		fleet "Large Dissonance Pirates" 9
 
 planet "Outpost Leto"
-	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/station30
 	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot an icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
@@ -4464,7 +4478,7 @@ planet "Outpost Pilos"
 		fleet "Avgi Fleetgroup" 1
 
 planet "Outpost Tekis"
-	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station
+	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
 	music ambient/machinery
 	landscape land/station25
 	description `Outpost Tekis is a station built into an enormous asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens.`
@@ -6514,7 +6528,7 @@ planet Violetwake
 	security 0
 
 planet Viso
-	attributes frozen uninhabited
+	attributes frozen "tangled shroud" uninhabited
 	landscape land/snow33
 	description `A world of ice and ammonia, Viso is home to a curious ecosystem of ammonia-breathing bacteria, deep red algae, and small, cold amphibians. The planet's proximity to its host star, a red dwarf, amplifies the interactions between the solar wind and Viso's magnetic field, producing auroras that often reach the equator.`
 	description `	Scientific interest aside, the Avgi's interactions with Viso have been limited to harvesting the ammonia for use in fertilizer production, often being interrupted by Aberrant raids.`
@@ -6615,7 +6629,7 @@ planet "Weir of Glubatub"
 	"required reputation" 15
 
 planet Weledos
-	attributes avgi "avgi diaspora" frontier
+	attributes avgi "avgi diaspora" frontier "tangled shroud"
 	landscape land/water3
 	description `Weledos was colonized even before the Avgi evacuated their orbital assets to the Tangled Shroud. A few brave pioneers were willing to settle within the unpredictable systems of the Shroud to escape the planetary governments of Avgi space. They are said to have surveyed and colonized the planet before most explorers had even reached the entrance to the Shroud, surprising early scouts with their presence.`
 	description `	Unfortunately, the Ensemble system is poor in metals and other natural resources, and civilization here had regressed to almost pre-spaceflight levels by the time the Incursion brought a wave of refugees here. The indefensibility of the system coupled with the hostility of the Tangled Shroud forced the Avgi diaspora to settle further beyond Ensemble, despite calls to deposit more civilians here.`

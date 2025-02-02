@@ -6048,13 +6048,13 @@ system Anax
 		period 9464.35
 		object Entantel
 			sprite planet/ice10
-				scale 0.5
-			distance 267.286
+				scale 0.25
+			distance 270
 			period 44
 		object
 			sprite planet/station-outpost-a0
-				scale 0.5
-			distance 340
+				scale 0.25
+			distance 300
 			period 44
 			offset 180
 	object
@@ -19126,7 +19126,7 @@ system Gossamer
 		sprite star/f0
 		period 1
 	object
-		sprite "planet/smoke ring"
+		sprite "star/smoke ring"
 			scale 1.5
 			"frame rate" 0.15
 		period 914.299
@@ -33133,7 +33133,7 @@ system Pinnacle
 		distance 2334.51
 		period 746.808
 	object Hespair
-		sprite planet/ocean5-b
+		sprite planet/ocean1-b
 		distance 3656.29
 		period 1463.77
 	object
@@ -37624,7 +37624,6 @@ system Septet
 	haze _menu/haze-red
 	link Octet
 	link Quintet
-	link Septet
 	asteroids "small metal" 1 1.027
 	asteroids "medium metal" 20 0.741
 	asteroids "large metal" 1 0.858
@@ -40034,7 +40033,6 @@ system Stream
 	link Anax
 	link Evanescence
 	link Rivulet
-	link Stream
 	link Wake
 	asteroids "small rock" 24 2.157
 	asteroids "medium rock" 12 2.222
@@ -41819,7 +41817,7 @@ system Tumble
 			distance 285
 			period 181.873
 		object Orodens
-			sprite planet/callisto
+			sprite planet/rock20
 			distance 400
 			period 209.367
 	object
