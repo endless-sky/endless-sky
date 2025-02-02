@@ -595,7 +595,7 @@ bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int,
 		return true;
 	}
 	// Trivially false if it is not a decline, and does not lead anywhere.
-	if(element.next == nodes.size() || element.next < 0)
+	if(element.next == static_cast<int>(nodes.size()) || element.next < 0)
 	{
 		checked->insert({nodeIndex, elementIndex});
 		return false;
