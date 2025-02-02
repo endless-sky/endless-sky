@@ -157,9 +157,6 @@ private:
 	// Whether the mouse moved in the current frame.
 	bool isHovering = false;
 	Point hoverPoint;
-
-	// The sprite to draw when warning the player of a potential decline
-	const Sprite *warningSprite;
 };
 
 

@@ -86,8 +86,6 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 		subs["<model>"] = player.Flagship()->DisplayModelName();
 	}
 
-	warningSprite = SpriteSet::Get("ui/error");
-
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.
 	if(useTransactions)
@@ -138,7 +136,6 @@ void ConversationPanel::Draw()
 	const Color &gray = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dark = *GameData::Colors().Get("dark");
-	const Color &warning = *GameData::Colors().Get("message importance highest");
 
 	// Figure out where we should start drawing.
 	Point point(
