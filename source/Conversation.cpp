@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Phrase.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include <iostream>
 
 using namespace std;
 
@@ -238,22 +237,18 @@ void Conversation::Load(const DataNode &node)
 	}
 	set<pair<int, int>> checked;
 	// Check for choice nodes that can lead to a decline, so they can be marked clearly for the player.
-	for(int n=0; n<nodes.size(); n++)
+	for(long unsigned int n = 0; n < nodes.size(); n++)
 	{
 		Node &node = nodes[n];
-		for(int e=0; e<node.elements.size(); e++)
+		for(long unsigned int e = 0; e < node.elements.size(); e++)
 		{
 			// If this element got checked from a previous element's calculations, skip it
-			if (checked.contains({n, e})) {
+			if(checked.contains({n, e}))
+			{
 				continue;
 			}
 			Element &element = node.elements[e];
-			cout << name << " Checking node " << n <<", element " << e << " for declines" << endl;
 			element.leadsToDecline = LeadsToDecline(n, e, &checked);
-			if (element.leadsToDecline)
-				cout << name << " node " << n <<", element " << e << " it declines!" << endl;
-			else
-				cout << name << " node " << n <<", element " << e << " no decline found" << endl;
 		}
 	}
 
@@ -386,8 +381,6 @@ string Conversation::Validate() const
 Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	Conversation result = *this;
-	if (name == "storytest")
-		cout << "Instantiating story test" << endl;
 
 	for(Node &node : result.nodes)
 	{
@@ -598,14 +591,12 @@ bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int,
 	// Trivially true if this element is a decline.
 	if(element.next == Conversation::DECLINE)
 	{
-		cout << name << " N" << nodeIndex << "E" << elementIndex << " Trivially true." << endl;
 		checked->insert({nodeIndex, elementIndex});
 		return true;
 	}
 	// Trivially false if it is not a decline, and does not lead anywhere.
 	if(element.next == nodes.size() || element.next < 0)
 	{
-		cout << name << " N" << nodeIndex << "E" << elementIndex << " Trivially false." << endl;
 		checked->insert({nodeIndex, elementIndex});
 		return false;
 	}
@@ -618,34 +609,30 @@ bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int,
 	checked->insert({nodeIndex, elementIndex});
 	if(nextNode.isChoice)
 	{
-		// If it is a choice, then we assume that it will lead to a decline—and if
+		// If it is a choice, then we assume that it will lead to a decline--and if
 		// any of its elements do not, we mark it as not.
 		leadsTo = true;
-		for(int e=0; e<nextNode.elements.size(); e++)
+		for(long unsigned int e = 0; e < nextNode.elements.size(); e++)
 		{
-			if(!checked->contains({element.next, e})) {
-				cout << name << " Checking N" << nodeIndex << "E" << elementIndex << " for and..." << endl;
+			if(!checked->contains({element.next, e}))
 				nextNode.elements[e].leadsToDecline = LeadsToDecline(element.next, e, checked);
-			}
 			// If we've already checked this element, then we can just use the precalculated value.
 			leadsTo &= nextNode.elements[e].leadsToDecline;
-			}
 		}
+	}
 	else
 	{
 		// If it is not a choice, then we assume that it will not lead to a decline—and if
 		// any of its elements do, we mark it as declining.
 		leadsTo = false;
-		for(int e=0; e<nextNode.elements.size(); e++)
+		for(long unsigned int e = 0; e < nextNode.elements.size(); e++)
 		{
-			if(!checked->contains({element.next, e})) {
-				cout << name << " Checking N" << nodeIndex << "E" << elementIndex << " for or..." << endl;
+			if(!checked->contains({element.next, e}))
 				nextNode.elements[e].leadsToDecline = LeadsToDecline(element.next, e, checked);
-			}
 			// If we've already checked this element, then we can just use the precalculated value.
 			leadsTo |= nextNode.elements[e].leadsToDecline;
-			}
 		}
+	}
 
 	return leadsTo;
 }

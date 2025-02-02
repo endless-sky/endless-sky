@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Storyline.h"
 
 #include "DataNode.h"
-#include "GameData.h"
 #include "ExclusiveItem.h"
+#include "GameData.h"
 #include "Mission.h"
 
 using namespace std;

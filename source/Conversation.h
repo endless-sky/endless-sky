@@ -133,7 +133,8 @@ private:
 	public:
 		explicit Element(std::string text, int next)
 			: text(std::move(text)), next(next) {}
-		Element(std::string text, int next, bool leadsToDecline) : text(std::move(text)), next(next), leadsToDecline(leadsToDecline) {}
+		Element(std::string text, int next, bool leadsToDecline) : text(std::move(text)),
+			next(next), leadsToDecline(leadsToDecline) {}
 		// The text to display:
 		std::string text;
 		// The next node to visit:
