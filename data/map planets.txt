@@ -4031,6 +4031,20 @@ planet Norn
 		threshold 3000
 		fleet "Small Deep Security" 12
 
+planet O-Vasa-Oa
+	attributes successor urban wealthy
+	landscape land/hills4
+	description `This binary planet is the collective seat of what are known as the New Houses, the noble families who traveled through the wormhole to this region of space during the collapse of the Predecessors' empire. Many within the New Houses object to that moniker, arguing that their family lines are in fact the more extensive and noble and that they should be categorized by that, rather than their time of arrival.`
+	description `	Despite population surges in recent years, O-Vasa-Oa remains relatively sparsely populated. The tidal forces from its binary partner create high winds that sweep across the landscape, making settlement challenging in undeveloped areas, and expensive even in those that have the infrastructure to support it.`
+	spaceport `The spaceport is built right beside a large shipyard, allowing visitors to look on at the impressive manufacturing apparatus of the New Houses while going about their business. Despite its relatively small size, the spaceport is very busy, with ships constantly launching and landing and a general air of haste among all the Successors you see.`
+	shipyard "New Houses Light"
+	shipyard "High Houses Heavy"
+	shipyard "Successor Heavy"
+	outfitter "High Houses Light"
+	outfitter "Successor Civilian"
+	"required reputation" 1
+	bribe 0
+
 planet Oasis
 	attributes farming rim textiles
 	landscape land/dune4
