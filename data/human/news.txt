@@ -1806,7 +1806,7 @@ news "republic soldier"
 			"We arrested a fortune teller yesterday; they didn't see it coming."
 			"Pirates were entering the ship port-side. So I took an EVA suit, flew around both ships and captured their ship."
 			"So we were fighting close quarters, when suddenly that Sparrow fired its lasers on us. We're lucky to still be alive."
-			"I once arrested one of those drunk flyers, but they walked free within two hours. The paperwork took me much longer. Next time I'll just blow them to pieces."
+			"I once arrested one of those drunk flyers, but they walked free within two hours. Very frustrating, because the paperwork took me much longer."
 		word
 			`"`
 
