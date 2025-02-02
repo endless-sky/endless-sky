@@ -704,7 +704,7 @@ news "tour guide - warning"
 			`"`
 		word
 			"Be careful"
-			"Be aware"
+			"Be mindful"
 		word
 			" "
 		word
@@ -726,6 +726,8 @@ news "tour guide - warning"
 			"materials"
 			"stuff"
 			"things"
+			"snacks"
+			"foods"
 		word
 			". "
 		word
@@ -2179,8 +2181,12 @@ news "logo on ship hull"
 	message
 		word
 			"Justins Time - Just in time delivery"
-			"Francis Fries - food spacetrucker"
-			"Bobby Bughunter - extermination services"
+			"Francis Fries - Food spacetrucker"
+			"Bobby Bughunter - Extermination services"
+			"Luna Ticks – Pest control"
+			"Orion's Belts – The fashion of the future"
+			"Comet Cleaners – Brightest laundry in the galaxy" 
+			"Cosmo Joe's – Cosmic Coffee out of this world"
 
 
 
