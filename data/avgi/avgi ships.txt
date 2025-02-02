@@ -1518,9 +1518,9 @@ ship "Diaspersi"
 
 	engine 0 144
 		gimbal 6
-	"reverse engine" -6 141
+	"reverse engine" -3 141
 		angle -35
-	"reverse engine" 6 141
+	"reverse engine" 3 141
 		angle 35
 	"steering engine" -9 -135
 		angle 90
@@ -1528,10 +1528,10 @@ ship "Diaspersi"
 	"steering engine" 9 -135
 		angle -90
 		left
-	"steering engine" -6 141
+	"steering engine" -3 141
 		angle 90
 		left
-	"steering engine" 6 141
+	"steering engine" 3 141
 		angle -90
 		right
 	gun 0 -156
