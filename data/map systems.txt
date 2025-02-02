@@ -32740,7 +32740,7 @@ system Pukako
 system Quartet
 	pos -208 818
 	government Uninhabited
-	attributes "ember waste" "notable star" "nova"
+	attributes "ember waste" "twilight" "notable star" "nova"
 	arrival 500
 	ramscoop
 		universal 0
