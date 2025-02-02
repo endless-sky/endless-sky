@@ -4935,7 +4935,7 @@ mission "Dangerous Games 1"
 	passengers 9
 	source
 		attributes "frontier" "pirate"
-		government "Republic" "Free Worlds" "Syndicate" "Pirate"
+		near "Hadar" 1 100
 	stopover "Skymoot"
 	to offer
 		random < 15
@@ -5031,6 +5031,7 @@ mission "Dangerous Games 2"
 	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures." Bring Karengo and crew to <destination> for <payment>.`
 	source
 		attributes "frontier" "pirate" "rim"
+		near "Izar" 1 100
 	destination "Poseidos"
 	cargo "subpods" 6
 	passengers 6
@@ -7655,7 +7656,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realize that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
 			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
-			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
+			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
 			`	He pauses, as if he's trying to remember something. "Anyways, thank you again, and know I'll never forget what you did for me."`
 			`	Timothy waves, and the video ends.`
 				decline
@@ -9188,7 +9189,7 @@ mission "Timothy Radrickson 7: Monk"
 			label offer2
 			action
 				log "Found Timothy alive and well on New Tibet, living a simple, but happy life as a monk."
-				log "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and has escaped to New Tibet, where, thanks to my help, he now lives as simple monk. He seems happy.`
+				log "People" "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and escaped to New Tibet, where, thanks to my help, he now lives as a simple monk. He seems happy.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
@@ -9288,7 +9289,7 @@ mission "Timothy Radrickson 7: Hospice"
 			label offer2
 			action
 				log "Found Timothy alive, but not in great shape. He is thankful for the rescue nonetheless. Can't shake the feeling that there was more that I could have done for him."
-				log "Timothy Radrickson" `The once stowaway, governor, and prisoner Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
+				log "People" "Timothy Radrickson" `Once a stowaway, governor, and prisoner, Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for a hug.`
@@ -9335,7 +9336,7 @@ mission "Timothy Radrickson 7: Grave"
 			label search
 			action
 				log "Timothy is dead. It seems the plan to break him free failed."
-				log "Timothy Radrickson" `From stowaway, to governor, to prisoner, to corpse: the tale of Timothy is complete. The equipment I acquired for him failed, and what is left of his buried beneath a neat unremarkable gravestone on Oblivion.`
+				log "People" "Timothy Radrickson" `From stowaway, to governor, to prisoner, to corpse: the tale of Timothy is complete. The equipment I acquired for him failed, and his remains are buried beneath a neat unremarkable gravestone on Oblivion.`
 			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy to find Timothy's.`
 			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chiseled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C."`
 			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occurred here. Just another dead prisoner.`
