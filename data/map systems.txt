@@ -18,9 +18,6 @@ galaxy "Milky Way"
 galaxy "label arachi"
 	pos -750 615
 
-galaxy "label umbral"
-	pos 1150 -500
-
 galaxy "label core"
 	pos -136 130
 	sprite label/core
@@ -85,6 +82,9 @@ galaxy "label tangled shroud"
 
 galaxy "label twilight"
 	pos -420 750
+
+galaxy "label umbral"
+	pos 1150 -500
 
 galaxy "label wanderers"
 	pos -145 -753
@@ -1813,9 +1813,10 @@ system "9 Spring Above"
 system Aaura-Kaska
 	pos -86 1298
 	government Successor
-	attributes successor
-	arrival 1313.28
-	habitable 1313.28
+	attributes "successor"
+	arrival 1080
+	habitable 1080
+	haze _menu/haze-67
 	link Myruet-Kvelq
 	link Pelaa-Muora
 	link Stiidej-Nnesa
@@ -1843,7 +1844,6 @@ system Aaura-Kaska
 	fleet "Large New Houses" 7000
 	fleet "Old Houses Surveillance" 6000
 	fleet "New Houses Surveillance" 6000
-	haze _menu/haze-67
 	object
 		sprite star/g0
 		distance 21.316
@@ -1856,19 +1856,19 @@ system Aaura-Kaska
 	object
 		sprite planet/dust6
 		distance 317.774
-		period 62.526
+		period 68.9486
 	object
 		sprite planet/desert9
 		distance 568.214
-		period 149.503
+		period 164.860
 	object
 		sprite planet/mercury
 		distance 841.254
-		period 269.322
+		period 296.987
 	object
 		sprite planet/gas2
 		distance 1456
-		period 378.715
+		period 676.223
 		object Mosaa-Oa-Vyret
 			sprite planet/rhea
 			distance 300
@@ -1876,7 +1876,7 @@ system Aaura-Kaska
 	object
 		sprite planet/gas7
 		distance 3071.33
-		period 1878.76
+		period 2071.75
 
 system Ablodab
 	pos -854.587 592.051
@@ -3085,9 +3085,11 @@ system Aileron
 	pos -577 772
 	government Uninhabited
 	attributes "twilight"
-	ramscoop
-		multiplier 1.5
 	arrival 1675
+	ramscoop
+		universal 1
+		addend 0
+		multiplier 1.5
 	habitable 1675
 	belt 1094 6
 	belt 1907 7
@@ -3115,7 +3117,7 @@ system Aileron
 	object
 		sprite planet/rock4-b
 		distance 2140.07
-		period 967.600
+		period 967.597
 		object
 			sprite planet/miranda
 			distance 182
@@ -3130,7 +3132,7 @@ system Aileron
 		period 4188.75
 	object
 		sprite planet/gas17-b
-		distance 8804.40
+		distance 8804.4
 		period 8074.25
 		object
 			sprite planet/rhea-b
@@ -5404,6 +5406,8 @@ system Anax
 	attributes "avgi" "avgi core" "twilight"
 	arrival 2200
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 2200
 	belt 6000
@@ -5611,7 +5615,7 @@ system Anax
 	object Melatos
 		sprite planet/rock18
 		distance 1615.02
-		period 553.500
+		period 553.497
 		object
 			sprite planet/debris0
 				scale 0.25
@@ -5776,7 +5780,7 @@ system Anax
 	object Thilos
 		sprite planet/ice4
 		distance 3670.01
-		period 1896.05
+		period 1896.04
 		object
 			sprite planet/station-reflector-a0
 				scale 0.25
@@ -5896,7 +5900,7 @@ system Anax
 	object
 		sprite planet/gas2
 		distance 10719.1
-		period 9464.35
+		period 9464.24
 		object Entantel
 			sprite planet/ice10
 				scale 0.25
@@ -5911,7 +5915,7 @@ system Anax
 	object
 		sprite planet/gas1-b
 		distance 15027.4
-		period 15710.0
+		period 15709.9
 		object
 			sprite planet/ice12
 				scale 0.5
@@ -6432,9 +6436,11 @@ system Apeiron
 	pos -420 869
 	government Uninhabited
 	attributes "twilight"
-	ramscoop
-		multiplier 1.2
 	arrival 2750
+	ramscoop
+		universal 1
+		addend 0
+		multiplier 1.2
 	habitable 2750
 	belt 1990 7
 	belt 2362 9
@@ -6567,6 +6573,8 @@ system Arche
 	attributes "avgi" "avgi diaspora" "bright star" "multi-star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 24370
 	belt 1808 2
@@ -6619,7 +6627,7 @@ system Arche
 	object
 		sprite planet/gas2
 		distance 2462.78
-		period 313.164
+		period 313.163
 		object
 			sprite planet/dust4
 			distance 301
@@ -6644,7 +6652,7 @@ system Arche
 	object
 		sprite planet/gas14-b
 		distance 10896.7
-		period 2914.59
+		period 2914.57
 		object
 			sprite planet/rock17-b
 			distance 246
@@ -6851,7 +6859,7 @@ system As-75
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1315 10
 	belt 2249 8
 	"jump range" 60
@@ -6877,11 +6885,11 @@ system As-75
 	object
 		sprite planet/gas7-hot
 		distance 1068
-		period 1396.10
+		period 3121.77
 	object
 		sprite planet/gas10-b
 		distance 6172
-		period 19395.4
+		period 43369.4
 		object
 			sprite planet/ice7-b
 			distance 218
@@ -6889,7 +6897,7 @@ system As-75
 	object
 		sprite planet/saturn
 		distance 17618
-		period 93539.4
+		period 209160.
 
 system Ascella
 	pos -376 328
@@ -7315,26 +7323,26 @@ system Avasaa-Novaa
 	shrouded
 	pos 71 917.52
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 500
 	habitable 320
+	haze _menu/haze-tear
 	hazard "Predecessors Base Spatial Decay" 400
 	hazard "Predecessors Spatial Rift Weak" 10000
-	haze _menu/haze-tear
 	object
 		sprite star/m0
 	object
 		sprite planet/titan
 		distance 980
-		period 980
+		period 686
 	object
 		sprite planet/tethys-b
 		distance 1112
-		period 1112
+		period 829.167
 	object
 		sprite planet/gas2
 		distance 3502
-		period 3502
+		period 4634.03
 
 system Avior
 	pos -658 -317
@@ -7579,7 +7587,7 @@ system B-11
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1448
 	"jump range" 60
 	haze _menu/haze-tear
@@ -7607,11 +7615,11 @@ system B-11
 	object
 		sprite planet/europa-b
 		distance 911
-		period 1099.86
+		period 2459.36
 	object
 		sprite planet/gas8-b
 		distance 3246
-		period 7397.46
+		period 16541.2
 
 system Ballad
 	pos -548 1125
@@ -8829,7 +8837,7 @@ system Br-80
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1989
 	"jump range" 30
 	haze _menu/haze-tear
@@ -8857,7 +8865,7 @@ system Br-80
 	object
 		sprite planet/desert1-b
 		distance 648
-		period 659.815
+		period 1475.39
 		object
 			sprite planet/dust3-b
 			distance 181
@@ -8865,7 +8873,7 @@ system Br-80
 	object
 		sprite planet/gas14
 		distance 2645.99
-		period 5444.32
+		period 12173.8
 		object
 			sprite planet/tethys
 			distance 250
@@ -8881,7 +8889,7 @@ system Br-80
 	object
 		sprite planet/gas12
 		distance 5220.07
-		period 15086.0
+		period 33733.3
 
 system "Bright Void"
 	pos -1059.59 605.051
@@ -9143,7 +9151,7 @@ system Ca-40
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1137
 	"jump range" 45
 	haze _menu/haze-tear
@@ -9171,11 +9179,11 @@ system Ca-40
 	object
 		sprite planet/rock14
 		distance 843
-		period 979.042
+		period 2189.20
 	object
 		sprite planet/gas6-b
 		distance 4538
-		period 12228.0
+		period 27342.7
 		object
 			sprite planet/oberon
 			distance 364
@@ -9262,8 +9270,8 @@ system Caesura
 	pos -730 903
 	government Uninhabited
 	attributes "black hole" "notable star" "twilight"
-	arrival 900
-	habitable 100000
+	arrival 500
+	habitable 100
 	haze _menu/haze-twilight-thin
 	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
@@ -9359,7 +9367,7 @@ system Cantata
 	object
 		sprite planet/jupiter-b
 		distance 1281.96
-		period 865.502
+		period 865.496
 		object
 			sprite planet/rock3
 			distance 303
@@ -9371,7 +9379,7 @@ system Cantata
 	object
 		sprite planet/gas1
 		distance 3449.06
-		period 3819.49
+		period 3819.48
 		object
 			sprite planet/lava0-b
 			distance 483
@@ -10221,9 +10229,10 @@ system Chy'chra
 system Chyyra-Osolaa
 	pos -241 1365
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2560
 	habitable 2560
+	haze _menu/haze-67
 	link Luue-Saqru
 	link Myiara-Nnesa
 	link Pelaa-Muora
@@ -10247,28 +10256,27 @@ system Chyyra-Osolaa
 	fleet "People's Houses" 8000
 	fleet "People's Houses Raiders" 12000
 	fleet "Aqrabe Home" 1200
-	haze _menu/haze-67
 	object
 		sprite star/f0
 	object
 		sprite planet/lava4
 		distance 300
-		period 189
+		period 41.0791
 	object Vyraa-Viir-Kella
 		sprite planet/water1
 		distance 1800
-		period 1800
+		period 603.738
 		object
 			sprite planet/luna-b
 			distance 320
 	object
 		sprite planet/gas8
 		distance 3240
-		period 3240
+		period 1458
 	object Kasii-Cavasaa-Oa
 		sprite planet/ice4-b
 		distance 3688
-		period 3688
+		period 1770.62
 
 system Cinxia
 	pos 265.87 415.242
@@ -10407,7 +10415,7 @@ system Cl-35
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1606 5
 	belt 2416 1
 	"jump range" 30
@@ -10433,14 +10441,14 @@ system Cl-35
 	object
 		sprite planet/dust4
 		distance 853
-		period 996.514
+		period 2228.27
 
 system Clepsydra
 	pos 264 -874
 	government Uninhabited
 	attributes "bright star" "notable star"
-	arrival 4050
-	habitable 4050
+	arrival 750
+	habitable 750
 	belt 1134
 	haze _menu/haze-dark-nebula
 	link "Cura Dic"
@@ -10469,7 +10477,7 @@ system Clepsydra
 	object
 		sprite planet/rock7-b
 		distance 1391.08
-		period 757.811
+		period 757.805
 		offset 25
 	object
 		sprite planet/desert9
@@ -10482,6 +10490,8 @@ system Clip
 	attributes "avgi" "avgi core" "twilight"
 	arrival 625
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 625
 	belt 1750
@@ -10577,7 +10587,7 @@ system Clip
 	object Iconil
 		sprite planet/ice8
 		distance 1540.21
-		period 967.144
+		period 967.141
 		object
 			sprite planet/station-outpost-a1
 				scale 0.5
@@ -10599,7 +10609,6 @@ system Clip
 			sprite planet/dust7
 			distance 362
 			period 260.354
-
 
 system Coluber
 	pos 149.504 197.389
@@ -10778,7 +10787,7 @@ system Concerto
 	object
 		sprite planet/rock1
 		distance 1109.56
-		period 244.704
+		period 244.703
 		object
 			sprite planet/station-reflector-a2
 				scale 0.5
@@ -10786,7 +10795,7 @@ system Concerto
 			period 269.323
 	object
 		sprite planet/gas12
-		distance 3599.90
+		distance 3599.9
 		period 1430.04
 		object
 			sprite planet/ganymede
@@ -10829,7 +10838,7 @@ system Concerto
 	object
 		sprite planet/gas9
 		distance 10240.8
-		period 6861.52
+		period 6861.42
 		object
 			sprite planet/dust1-b
 			distance 268
@@ -10974,6 +10983,8 @@ system Corporeal
 	attributes "ringworld" "twilight"
 	arrival 700
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 700
 	belt 1263 4
@@ -11019,12 +11030,12 @@ system Corporeal
 		sprite planet/station0b
 			scale 0.5
 		distance 960
-		period 349.820
+		period 449.694
 		offset 180
 	object
 		sprite planet/gas2
 		distance 2645.54
-		period 2057.23
+		period 2057.22
 		object
 			sprite planet/oberon-b
 			distance 309
@@ -11036,7 +11047,7 @@ system Corporeal
 	object
 		sprite planet/gas11
 		distance 5270.22
-		period 5784.35
+		period 5784.34
 		object
 			sprite planet/rock17
 			distance 258
@@ -11192,7 +11203,7 @@ system "Cura Dic"
 	object
 		sprite planet/rock10-b
 		distance 3408
-		period 236.839
+		period 1277.59
 		object "Spec Inci"
 			sprite planet/rock3
 			distance 176
@@ -11200,7 +11211,7 @@ system "Cura Dic"
 	object
 		sprite planet/ocean7
 		distance 3838
-		period 425.711
+		period 1526.86
 		object "Ut Divitas"
 			sprite planet/io
 			distance 200
@@ -11211,6 +11222,8 @@ system Current
 	attributes "twilight"
 	arrival 1250
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 1250
 	belt 1923
@@ -11239,7 +11252,7 @@ system Current
 	object
 		sprite planet/gas5
 		distance 1399.64
-		period 592.420
+		period 592.419
 		object
 			sprite planet/tethys
 			distance 251
@@ -11252,7 +11265,7 @@ system Current
 	object
 		sprite planet/gas2
 		distance 3875.76
-		period 2729.86
+		period 2729.85
 		object
 			sprite planet/europa
 			distance 296
@@ -11283,19 +11296,19 @@ system Currus
 	object
 		sprite planet/rock20
 		distance 273
-		period 180.428
+		period 403.449
 	object
 		sprite planet/dust1-b
 		distance 393
-		period 311.636
+		period 696.841
 	object
 		sprite planet/io-b
 		distance 543
-		period 506.127
+		period 1131.73
 	object
 		sprite planet/gas13-b
 		distance 999
-		period 1263.01
+		period 2824.18
 
 system Cusp
 	pos -523 589
@@ -11303,6 +11316,8 @@ system Cusp
 	attributes "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 320
 	belt 1825
@@ -11333,12 +11348,12 @@ system Cusp
 		period 372.268
 	object
 		sprite planet/gas10-hot
-		distance 1141.30
-		period 862.158
+		distance 1141.3
+		period 862.153
 	object
 		sprite planet/gas10
 		distance 3846.29
-		period 5333.94
+		period 5333.93
 		object
 			sprite planet/rock20
 			distance 271
@@ -11777,6 +11792,8 @@ system Decet
 	attributes "magnetar" "neutron" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 100
 	belt 8211
@@ -11791,9 +11808,8 @@ system Decet
 		period 1
 	object
 		sprite star/magnetar
-			scale 0.5
 			"frame rate" 15
-			"rewind"
+			scale 0.5
 		period 1
 
 system "Deep Space 19K12"
@@ -12676,7 +12692,7 @@ system Demilude
 	government "Avgi (Dissonance)"
 	attributes "avgi" "avgi diaspora" "tangled shroud"
 	arrival 500
-	habitable 160
+	habitable 170
 	belt 1885 3
 	belt 2084 8
 	"jump range" 60
@@ -12714,11 +12730,11 @@ system Demilude
 	object
 		sprite planet/ganymede-b
 		distance 833.273
-		period 760.643
+		period 717.141
 	object Gestli
 		sprite planet/ice5
 		distance 1673.73
-		period 2165.36
+		period 2041.51
 		object
 			sprite planet/dust5-b
 			distance 190
@@ -12726,12 +12742,12 @@ system Demilude
 	object
 		sprite planet/gas1-b
 		distance 5456.72
-		period 12746.7
+		period 12017.6
 	object "Outpost Leto"
 		sprite planet/station-asteroid-a3
 			scale 0.25
 		distance 18387.3
-		period 78845.5
+		period 74336.2
 
 system Deneb
 	pos -348 225
@@ -13264,11 +13280,11 @@ system Dom'us
 	object
 		sprite planet/cloud6
 		distance 707.022
-		period 63.7596
+		period 206.586
 	object Redias
 		sprite planet/redias
 		distance 1536.91
-		period 204.347
+		period 662.101
 		object Pon'tes
 			sprite planet/pontes
 				scale 0.5
@@ -13486,6 +13502,8 @@ system Duet
 	attributes "ember waste" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 390
 	belt 1869 10
@@ -13616,6 +13634,7 @@ system E-4183
 	belt 1542
 	"jump range" 50
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link M-1188
 	asteroids "large rock" 3 1.32
 	asteroids "small metal" 5 1.076
@@ -13625,7 +13644,6 @@ system E-4183
 	fleet "Iije (Uninterested)" 1500
 	fleet "Iije (Swarming)" 900
 	fleet "Iije (Surveillance)" 900
-	"starfield density" .2
 	object
 		sprite star/a-giant
 		period 10
@@ -13670,6 +13688,7 @@ system E-9182
 	habitable 13720
 	belt 1387
 	haze _menu/haze-none
+	"starfield density" 0.2
 	link O-3184
 	asteroids "large rock" 1 4.29
 	asteroids "small metal" 3 3.09
@@ -13681,7 +13700,6 @@ system E-9182
 	fleet "Iije (Uninterested)" 2100
 	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 3000
-	"starfield density" .2
 	object
 		sprite star/o0
 		period 10
@@ -14673,6 +14691,8 @@ system Empyrean
 	attributes "bright star" "giant star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 7900
 	belt 1027
@@ -14974,11 +14994,11 @@ system Ensemble
 	object
 		sprite planet/water0-b
 		distance 1443.24
-		period 336.415
+		period 336.413
 	object
 		sprite planet/gas1-b
 		distance 2899.96
-		period 958.195
+		period 958.194
 		object Weledos
 			sprite planet/forest7
 				scale 0.5
@@ -15122,7 +15142,7 @@ system Equus
 	government Uninhabited
 	attributes "neutron" "notable star"
 	arrival 500
-	habitable 405
+	habitable 355
 	belt 1157 6
 	belt 2400 5
 	link Currus
@@ -15149,7 +15169,7 @@ system Equus
 	object Methuselah
 		sprite planet/gas17
 		distance 700
-		period 971.072
+		period 393.181
 
 system "Era Natta"
 	pos 129.2 -134.8
@@ -15619,16 +15639,16 @@ system Esix
 system "Eta Carinae"
 	pos -212.62 928.99
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 5000
-	habitable 36800
+	habitable 105750
+	haze _menu/haze-tear
 	asteroids "small rock" 1 4.65
 	asteroids "large rock" 1 4.237
 	asteroids "large metal" 1 2.55
-	haze _menu/haze-tear
 	object
 		sprite star/wr
-			scale 2.0
+			scale 2
 		distance 200
 		period 300
 		offset 180
@@ -15712,6 +15732,8 @@ system Evanescence
 	attributes "twilight"
 	arrival 2160
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 2160
 	belt 1990 7
@@ -15770,7 +15792,7 @@ system Evanescence
 	object
 		sprite planet/desert4
 		distance 4896.66
-		period 2949.06
+		period 2949.05
 
 system Evrae
 	pos 884.49 -475.35
@@ -16677,7 +16699,7 @@ system Feraticus
 	object
 		sprite planet/gateway-frozen
 		distance 10000
-		period 126491
+		period 89442.7
 
 system Fereti
 	pos -39 600
@@ -16949,6 +16971,8 @@ system Firmament
 	attributes "bright star" "giant star" "multi-star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 12100
 	belt 1176 5
@@ -16992,7 +17016,7 @@ system Firmament
 	object Katkradol
 		sprite planet/ice9
 		distance 18654.5
-		period 9264.98
+		period 9264.94
 
 system Flugbu
 	pos -903.587 534.051
@@ -17069,6 +17093,8 @@ system Flutter
 	attributes "notable star" "nova" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.8
 	habitable 100
 	belt 1874
@@ -17088,7 +17114,7 @@ system Flutter
 	object
 		sprite planet/ocean0
 		distance 2552.42
-		period 729.465
+		period 729.462
 		object
 			sprite planet/dust5
 			distance 186
@@ -17313,6 +17339,8 @@ system Frenzy
 	attributes "twilight"
 	arrival 1135
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 1135
 	belt 1840 6
@@ -17352,11 +17380,11 @@ system Frenzy
 	object
 		sprite planet/dust6
 		distance 1370.82
-		period 602.606
+		period 602.604
 	object Saeketer
 		sprite planet/neptune-b
 		distance 2508.67
-		period 1491.86
+		period 1491.85
 		object
 			sprite planet/dust3-b
 			distance 235
@@ -17585,10 +17613,10 @@ system G-6183
 	belt 1187
 	"jump range" 50
 	haze _menu/haze-coal
+	"starfield density" 0.05
 	minables neodymium 1 3.87
 	hazard "Small Black Hole Event Horizon" 1
 	hazard "Small Black Hole Gravity" 1
-	"starfield density" .05
 	object
 		sprite star/coal-black-hole
 		period 1
@@ -17622,12 +17650,12 @@ system G-719
 	habitable 2900
 	belt 1870
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link W-3197
 	asteroids "large metal" 1 2.22
 	fleet "Iije (Uninterested)" 2100
 	fleet "Iije (Swarming)" 3900
 	fleet "Iije (Surveillance)" 2400
-	"starfield density" .1
 	object
 		sprite star/f3
 		distance 76.28
@@ -17663,6 +17691,7 @@ system G-819
 	belt 1333
 	"jump range" 60
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link H-9187
 	link W-3197
 	asteroids "small rock" 5 1.53
@@ -17672,7 +17701,6 @@ system G-819
 	fleet "Iije (Uninterested)" 3000
 	fleet "Iije (Swarming)" 6000
 	fleet "Iije (Surveillance)" 3500
-	"starfield density" .2
 	object
 		sprite star/g3
 		period 10
@@ -17773,6 +17801,8 @@ system Gale
 	attributes "twilight"
 	arrival 1080
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 1080
 	belt 1707 5
@@ -17795,7 +17825,7 @@ system Gale
 	object
 		sprite planet/gas8
 		distance 1180.69
-		period 493.803
+		period 493.800
 		object
 			sprite planet/dust0
 			distance 219.07
@@ -17808,7 +17838,7 @@ system Gale
 	object
 		sprite planet/dust4
 		distance 3300.45
-		period 2307.86
+		period 2307.85
 
 system "Gamma Cassiopeiae"
 	pos -116 293
@@ -17992,7 +18022,7 @@ system Ge-73
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1758 6
 	belt 1846 9
 	"jump range" 30
@@ -18022,7 +18052,7 @@ system Ge-73
 	object
 		sprite planet/gas14
 		distance 3460.45
-		period 8142.53
+		period 18207.2
 
 system "Genta Bo"
 	pos 185.2 -65.9
@@ -18481,6 +18511,8 @@ system Glide
 	attributes "twilight"
 	arrival 1700
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 1700
 	belt 1057
@@ -18510,8 +18542,8 @@ system Glide
 		period 115.702
 	object
 		sprite planet/rock13-b
-		distance 1209.30
-		period 407.979
+		distance 1209.3
+		period 407.977
 		object Kalakil
 			sprite planet/cloud7-b
 				scale 0.5
@@ -18828,6 +18860,8 @@ system Gossamer
 	attributes "smoke ring" "twilight"
 	arrival 2560
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 3
 	habitable 2560
 	belt 2100
@@ -18851,14 +18885,14 @@ system Gossamer
 		period 1
 	object
 		sprite "star/smoke ring"
-			scale 1.5
 			"frame rate" 0.15
+			scale 1.5
 		period 914.299
 		offset 180
 	object Kapnos
 		sprite planet/neptune-b
 		distance 2373.73
-		period 914.298
+		period 914.296
 
 system Graffias
 	pos -784 517
@@ -19024,6 +19058,8 @@ system Gust
 	attributes "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 450
 	belt 1116
@@ -19051,11 +19087,11 @@ system Gust
 	object
 		sprite planet/lava3-b
 		distance 1644.56
-		period 1257.56
+		period 1257.55
 	object
 		sprite planet/gas17
 		distance 3541.13
-		period 3973.45
+		period 3973.43
 		object
 			sprite planet/rock3-b
 			distance 223
@@ -19128,7 +19164,7 @@ system H-1
 	object
 		sprite planet/gas9-b
 		distance 5439.39
-		period 13810.8
+		period 13810.7
 		object
 			sprite planet/desert4
 			distance 289.97
@@ -19150,6 +19186,7 @@ system H-8188
 	habitable 3650
 	belt 1254
 	haze _menu/haze-none
+	"starfield density" 0.1
 	link H-9187
 	asteroids "small rock" 1 1.32
 	asteroids "large rock" 1 1.44
@@ -19158,7 +19195,6 @@ system H-8188
 	fleet "Iije (Uninterested)" 3400
 	fleet "Iije (Swarming)" 6000
 	fleet "Iije (Surveillance)" 3000
-	"starfield density" .1
 	object
 		sprite star/a0
 		period 10
@@ -19180,6 +19216,7 @@ system H-9187
 	belt 1102
 	"jump range" 60
 	haze _menu/haze-coal
+	"starfield density" 0.3
 	link G-819
 	link H-8188
 	link L-118
@@ -19188,7 +19225,6 @@ system H-9187
 	fleet "Iije (Uninterested)" 3000
 	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 4000
-	"starfield density" .3
 	object
 		sprite star/a3
 		period 10
@@ -19519,7 +19555,7 @@ system He-4
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1514
 	"jump range" 30
 	haze _menu/haze-tear
@@ -19545,7 +19581,7 @@ system He-4
 	object
 		sprite planet/desert8-b
 		distance 661
-		period 679.770
+		period 1520.01
 		object
 			sprite planet/luna-b
 			distance 162
@@ -19553,7 +19589,7 @@ system He-4
 	object
 		sprite planet/desert4-b
 		distance 2697
-		period 5602.49
+		period 12527.5
 
 system Headwind
 	pos -283 767
@@ -19561,6 +19597,8 @@ system Headwind
 	attributes "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 320
 	belt 1856 6
@@ -19584,7 +19622,7 @@ system Headwind
 	object
 		sprite planet/ice11
 		distance 1508.34
-		period 1309.89
+		period 1309.88
 	object
 		sprite planet/gas9
 		distance 3745.21
@@ -19597,7 +19635,7 @@ system Headwind
 	object
 		sprite planet/gas0-b
 		distance 6429.94
-		period 11529.1
+		period 11529.0
 		object
 			sprite planet/rock20
 			distance 336.682
@@ -19821,7 +19859,7 @@ system Heutesl
 	object "Dueyu Eitch"
 		sprite planet/desert7-b
 		distance 820
-		period 349.481
+		period 259.504
 	object
 		sprite planet/gas4
 		distance 1300
@@ -20321,11 +20359,11 @@ system Hui'uc
 	object
 		sprite planet/ice0
 		distance 1100.09
-		period 508.649
+		period 376.213
 	object Turra
 		sprite planet/gas3
 		distance 1900.25
-		period 1593.81
+		period 854.098
 		object
 			sprite planet/dust3
 			distance 305
@@ -20678,6 +20716,61 @@ system Ik'kara'ka
 			distance 369
 			period 24.9998
 
+system Il'le
+	pos 255.933 -716.506
+	government Uninhabited
+	arrival 1715
+	habitable 1715
+	belt 1165
+	link Dom'us
+	link Hui'uc
+	asteroids "small rock" 4 1.4352
+	asteroids "medium rock" 10 2.3
+	asteroids "large rock" 3 2.0608
+	asteroids "small metal" 2 2.3
+	asteroids "large metal" 3 1.2328
+	minables platinum 2 1.43013
+	minables titanium 5 1.78627
+	minables silicon 27 0.74013
+	minables iron 18 1.55307
+	trade Clothing 354
+	trade Electronics 673
+	trade Equipment 614
+	trade Food 197
+	trade "Heavy Metals" 834
+	trade Industrial 803
+	trade "Luxury Goods" 1387
+	trade Medical 842
+	trade Metal 270
+	trade Plastic 267
+	object
+		sprite star/f5
+		period 10
+	object
+		sprite planet/rock11
+		distance 142.89
+		period 16.4979
+	object
+		sprite planet/cloud2
+		distance 492.3
+		period 105.504
+		object
+			sprite planet/lava0
+			distance 188
+			period 20.7352
+	object Occupas
+		sprite planet/gas17
+		distance 1686.91
+		period 669.215
+		object
+			sprite planet/dust0
+			distance 195
+			period 11.6339
+	object
+		sprite planet/dust4
+		distance 2030.4
+		period 883.690
+
 system Ildaria
 	pos -702 317
 	government Republic
@@ -20843,61 +20936,6 @@ system Ilirco
 		sprite planet/gas3-b
 		distance 6154
 		period 6168.55
-
-system Il'le
-	pos 255.933 -716.506
-	government Uninhabited
-	arrival 1715
-	habitable 1715
-	belt 1165
-	link Dom'us
-	link Hui'uc
-	asteroids "small rock" 4 1.4352
-	asteroids "medium rock" 10 2.3
-	asteroids "large rock" 3 2.0608
-	asteroids "small metal" 2 2.3
-	asteroids "large metal" 3 1.2328
-	minables platinum 2 1.43013
-	minables titanium 5 1.78627
-	minables silicon 27 0.74013
-	minables iron 18 1.55307
-	trade Clothing 354
-	trade Electronics 673
-	trade Equipment 614
-	trade Food 197
-	trade "Heavy Metals" 834
-	trade Industrial 803
-	trade "Luxury Goods" 1387
-	trade Medical 842
-	trade Metal 270
-	trade Plastic 267
-	object
-		sprite star/f5
-		period 10
-	object
-		sprite planet/rock11
-		distance 142.89
-		period 16.4979
-	object
-		sprite planet/cloud2
-		distance 492.3
-		period 105.504
-		object
-			sprite planet/lava0
-			distance 188
-			period 20.7352
-	object Occupas
-		sprite planet/gas17
-		distance 1686.91
-		period 445.913
-		object
-			sprite planet/dust0
-			distance 195
-			period 11.6339
-	object
-		sprite planet/dust4
-		distance 2030.4
-		period 883.690
 
 system "Imo Dep"
 	pos -56.2764 -600.1
@@ -21096,16 +21134,16 @@ system Interlude
 	object
 		sprite planet/ocean10
 		distance 1762.11
-		period 326.343
+		period 326.342
 	object "Outpost Tekis"
 		sprite planet/station-asteroid-a2
 			scale 0.25
 		distance 7555.36
-		period 2897.39
+		period 2897.38
 	object
 		sprite planet/gas16-b
 		distance 7798.24
-		period 3038.22
+		period 3038.21
 	object
 		sprite planet/gas1-b
 		distance 11685.8
@@ -22682,48 +22720,73 @@ system Kashikt
 			distance 297
 			period 13.0737
 
+system Kasi-Vasa-Novaa
+	shrouded
+	pos -149.44 989.64
+	government Uninhabited
+	attributes "predecessor" "tangled shroud"
+	arrival 500
+	habitable 10
+	haze _menu/haze-tear
+	link Kiiraj-Luue
+	hazard "Predecessors Base Spatial Decay" 600
+	object
+		sprite planet/browndwarf-l-rogue
+	object
+		sprite planet/ganymede
+		distance 800
+		period 2023.85
+	object
+		sprite planet/desert4
+		distance 1250
+		period 3952.84
+	object
+		sprite planet/dust0
+		distance 4000
+		period 22627.4
+
 system Kasii-Cavaasa
 	shrouded
 	pos -21.76 909.31
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 5000
 	habitable 17025
+	haze _menu/haze-tear
 	link Mavra-Ijsola
-	hazard "Predecessors Base Spatial Decay" 400
 	asteroids "small rock" 1 1
 	asteroids "small metal" 3 1
-	haze _menu/haze-tear
+	hazard "Predecessors Base Spatial Decay" 400
 	object
 		sprite star/b-supergiant
 	object
 		sprite planet/lava0
 		distance 2250
-		period 2000
+		period 327.182
 	object Cavaasa-Vasa-Tej
 		sprite planet/dust7-b
 		distance 3890
-		period 3000
+		period 743.773
 
 system Kasii-Sola
 	shrouded
 	pos -23 1089.98
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 500
 	habitable 320
+	haze _menu/haze-tear
 	link Vasa-Oorua
-	hazard "Predecessors Base Spatial Decay" 600
 	asteroids "small rock" 1 1.005
 	asteroids "small metal" 1 1.17
-	haze _menu/haze-tear
+	hazard "Predecessors Base Spatial Decay" 600
 	object
 		sprite star/m0
 		period 10
 	object
 		sprite planet/gas14-b
 		distance 1186.32
-		period 913.667
+		period 913.666
 		object
 			sprite planet/luna-b
 			distance 266
@@ -22735,7 +22798,7 @@ system Kasii-Sola
 	object
 		sprite planet/cloud0
 		distance 2600
-		period 2600
+		period 2964.45
 		object
 			sprite planet/desert4
 			distance 235.36
@@ -22743,7 +22806,7 @@ system Kasii-Sola
 	object
 		sprite planet/gas2
 		distance 3991.81
-		period 5639.49
+		period 5639.48
 		object
 			sprite planet/rhea
 			distance 209
@@ -22755,32 +22818,7 @@ system Kasii-Sola
 	object
 		sprite planet/rock13
 		distance 5600
-		period 10000
-
-system Kasi-Vasa-Novaa
-	shrouded
-	pos -149.44 989.64
-	government Uninhabited
-	attributes predecessor "tangled shroud"
-	arrival 500
-	habitable 10
-	link Kiiraj-Luue
-	hazard "Predecessors Base Spatial Decay" 600
-	haze _menu/haze-tear
-	object
-		sprite planet/browndwarf-l-rogue
-	object
-		sprite planet/ganymede
-		distance 800
-		period 800
-	object
-		sprite planet/desert4
-		distance 1250
-		period 2000
-	object
-		sprite planet/dust0
-		distance 4000
-		period -8000
+		period 9370.59
 
 system Kasikfar
 	pos 10.4305 -127.812
@@ -22947,9 +22985,11 @@ system "Kaus Borealis"
 system Kella-Uoasa
 	pos -359 1511
 	government "People's Houses"
-	attributes successor
+	attributes "successor"
 	arrival 5000
 	habitable 8650
+	haze _menu/haze-none
+	"starfield density" 0.7
 	link Luue-Saqru
 	link Maspa-Raaqa
 	asteroids "large metal" 58 4.5
@@ -22973,18 +23013,16 @@ system Kella-Uoasa
 	fleet "Small Successor Transport" 9000
 	fleet "People's Houses Raiders" 3000
 	fleet "Small New Houses" 15000
-	haze _menu/haze-none
-	"starfield density" 0.7
 	object
 		sprite star/o8
 	object
 		sprite planet/callisto
 		distance 2500
-		period 3000
+		period 537.603
 	object
 		sprite planet/gas0-hot
 		distance 5000
-		period 5000
+		period 1520.57
 		object Kasii-Tuur-Saqru
 			sprite "planet/station successor 2"
 			distance 180
@@ -22996,19 +23034,19 @@ system Kella-Uoasa
 	object Giiq-Sou-Kella
 		sprite planet/ocean9
 		distance 9270
-		period 10000
+		period 3838.58
 
 system Khasola-Ryuit
 	shrouded
 	pos -71.87 833.59
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 5000
-	habitable 12000
-	hazard "Predecessors Base Spatial Decay" 600
+	habitable 13175
+	haze _menu/haze-tear
 	asteroids "small metal" 2 1.5
 	asteroids "large metal" 1 1.3
-	haze _menu/haze-tear
+	hazard "Predecessors Base Spatial Decay" 600
 	object
 		sprite star/a-supergiant
 		distance 200
@@ -23020,7 +23058,7 @@ system Khasola-Ryuit
 	object
 		sprite planet/browndwarf-y
 		distance 6240
-		period 6240
+		period 1717.75
 		object
 			sprite planet/ice4
 			distance 520
@@ -23029,9 +23067,10 @@ system Khasola-Ryuit
 system Khosa-Kaska
 	pos 201 1279
 	government Successor
-	attributes successor
-	arrival 5000
-	habitable 5000
+	attributes "successor"
+	arrival 4975
+	habitable 4975
+	haze _menu/haze-67
 	link Vade-Staja
 	asteroids "small metal" 8 1.5
 	asteroids "small rock" 9 1.8
@@ -23041,7 +23080,6 @@ system Khosa-Kaska
 	fleet "Successor Miners" 2000
 	fleet "Medium Successor Freight" 4000
 	fleet "Small Successor Transport" 2000
-	haze _menu/haze-67
 	object
 		sprite star/a0
 		distance 75
@@ -23054,50 +23092,19 @@ system Khosa-Kaska
 	object
 		sprite planet/lava3
 		distance 1500
-		period 1500
+		period 329.458
 	object
 		sprite planet/lava0
 		distance 1732
-		period 2000
+		period 408.775
 	object Kuj-Sol-Nnesa
 		sprite planet/desert0-b
 		distance 4972
-		period 6000
+		period 1988.20
 		object
 			sprite planet/rock0-b
 			distance 182
 			period 71
-
-system Kiiraj-Luue
-	shrouded
-	pos -125.52 955.66
-	government Uninhabited
-	attributes predecessor "tangled shroud"
-	arrival 2560
-	habitable 2560
-	link Kasi-Vasa-Novaa
-	hazard "Predecessors Base Spatial Decay" 200
-	hazard "Predecessors Spatial Rift Weak" 10000
-	hazard "Predecessors Spatial Rift Intense" 20000
-	haze _menu/haze-tear
-	object
-		sprite star/f0
-	object
-		sprite planet/gas2
-		distance 1230
-		period 1230
-		object
-			sprite planet/luna
-			distance 350
-			period 350
-		object
-			sprite planet/ice0
-			distance 500
-			period 500
-	object
-		sprite planet/forest1
-		distance 2890
-		period 2890
 
 system "Ki War Ek"
 	pos -1106.63 368.214
@@ -23406,6 +23413,37 @@ system "Kifrana Terberah"
 		sprite planet/gas11
 		distance 5592.93
 		period 3488.63
+
+system Kiiraj-Luue
+	shrouded
+	pos -125.52 955.66
+	government Uninhabited
+	attributes "predecessor" "tangled shroud"
+	arrival 2560
+	habitable 2560
+	haze _menu/haze-tear
+	link Kasi-Vasa-Novaa
+	hazard "Predecessors Base Spatial Decay" 200
+	hazard "Predecessors Spatial Rift Weak" 10000
+	hazard "Predecessors Spatial Rift Intense" 20000
+	object
+		sprite star/f0
+	object
+		sprite planet/gas2
+		distance 1230
+		period 341.033
+		object
+			sprite planet/luna
+			distance 350
+			period 350
+		object
+			sprite planet/ice0
+			distance 500
+			period 500
+	object
+		sprite planet/forest1
+		distance 2890
+		period 1228.25
 
 system Kilema
 	pos 1039.94 -479.191
@@ -24415,7 +24453,7 @@ system Kr-84
 	object
 		sprite planet/gas14-b
 		distance 1813.59
-		period 664.726
+		period 664.724
 		object Aspar
 			sprite planet/forest11
 				scale 0.5
@@ -24633,6 +24671,7 @@ system L-118
 	belt 1724
 	"jump range" 70
 	haze _menu/haze-coal
+	"starfield density" 0.3
 	link H-9187
 	asteroids "small rock" 12 3.3
 	asteroids "medium rock" 6 2.4
@@ -24642,7 +24681,6 @@ system L-118
 	asteroids "large metal" 1 2.8
 	minables aluminum 2 4.17
 	minables iron 3 5.3
-	"starfield density" .3
 	object
 		sprite star/a8
 		period 10
@@ -24672,6 +24710,7 @@ system L-6181
 	belt 1758
 	"jump range" 40
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link M-1188
 	link MS-219
 	asteroids "small rock" 1 1.8
@@ -24682,7 +24721,6 @@ system L-6181
 	fleet "Iije (Uninterested)" 2100
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 1800
-	"starfield density" .2
 	object
 		sprite star/m8
 		distance 16.78
@@ -24916,7 +24954,7 @@ system Li-7
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 20
 	belt 1565 2
 	belt 2323 10
 	belt 2984 7
@@ -24961,7 +24999,7 @@ system Li-7
 	object
 		sprite planet/gas7-hot
 		distance 1531
-		period 2396.19
+		period 3788.72
 		object
 			sprite planet/rock3-b
 			distance 231
@@ -24969,7 +25007,7 @@ system Li-7
 	object
 		sprite planet/gas5
 		distance 3192.73
-		period 7216.12
+		period 11409.6
 		object
 			sprite planet/luna
 			distance 293
@@ -24977,7 +25015,7 @@ system Li-7
 	object
 		sprite planet/rock0
 		distance 7459.16
-		period 25768.8
+		period 40744.1
 
 system Lift
 	pos -534 930
@@ -24985,6 +25023,8 @@ system Lift
 	attributes "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 230
 	belt 1192
@@ -25474,6 +25514,8 @@ system Lumine
 	attributes "notable star" "supergiant star" "twilight"
 	arrival 5000
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 8400
 	belt 1206 1
@@ -25596,9 +25638,11 @@ system Lurata
 system Luue-Saqru
 	pos -319 1432
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 500
 	habitable 490
+	haze _menu/haze-none
+	"starfield density" 0.7
 	link Chyyra-Osolaa
 	link Kella-Uoasa
 	link Raaqa-Ryuit
@@ -25623,22 +25667,20 @@ system Luue-Saqru
 	fleet "Small New Houses" 3000
 	fleet "Successor Miners" 9000
 	fleet "Successor Miners (Well-Defended)" 6000
-	haze _menu/haze-none
-	"starfield density" 0.7
 	object
 		sprite star/k0
 	object
 		sprite planet/dust4
 		distance 1250
-		period 1200
+		period 798.595
 	object
 		sprite planet/dust0-b
 		distance 1880
-		period 1800
+		period 1472.98
 	object Chyyra-Raaqa-Tuur
 		sprite planet/ice6
 		distance 3220
-		period 3000
+		period 3301.76
 		object Vade-Osolaa-Kaska
 			sprite "planet/station successor 3"
 			distance 450
@@ -25653,6 +25695,7 @@ system M-1188
 	belt 1676
 	"jump range" 80
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link E-4183
 	link L-6181
 	link MS-219
@@ -25661,7 +25704,6 @@ system M-1188
 	fleet "Iije (Uninterested)" 1300
 	fleet "Iije (Swarming)" 1400
 	fleet "Iije (Surveillance)" 1500
-	"starfield density" .1
 	object
 		sprite star/a-dwarf
 		period 10
@@ -25691,13 +25733,13 @@ system MC-42
 	belt 1290
 	"jump range" 60
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link H-9187
 	minables platinum 1 4.2
 	minables copper 6 7.91
 	fleet "Iije (Uninterested)" 2900
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 2400
-	"starfield density" .2
 	object
 		sprite star/g5
 		period 10
@@ -25727,13 +25769,13 @@ system MS-219
 	belt 1404
 	"jump range" 70
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link L-6181
 	link M-1188
 	asteroids "large metal" 1 4.22
 	fleet "Iije (Uninterested)" 400
 	fleet "Iije (Swarming)" 700
 	fleet "Iije (Surveillance)" 500
-	"starfield density" .1
 	object
 		sprite star/o-dwarf
 		distance 33.38
@@ -26072,9 +26114,11 @@ system Markeb
 system Maspa-Cavaasa
 	pos -534 1426
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2310
 	habitable 2310
+	haze _menu/haze-none
+	"starfield density" 0.6
 	link Osolaa-Uuoru
 	asteroids "large metal" 12 1.5
 	minables lead 8 1.5
@@ -26093,8 +26137,6 @@ system Maspa-Cavaasa
 	fleet "Small Successor Transport" 3000
 	fleet "Successor Miners" 4000
 	fleet "Small New Houses" 8000
-	haze _menu/haze-none
-	"starfield density" 0.6
 	object
 		sprite star/g0-old
 		period 10
@@ -26105,19 +26147,19 @@ system Maspa-Cavaasa
 	object
 		sprite planet/gas3
 		distance 1200
-		period 323.262
+		period 345.959
 	object Kasi-Osolaa-Sossa
 		sprite planet/ocean7
 		distance 2500
-		period 680.325
+		period 1040.31
 	object Vyraa-Giiq-Sora
 		sprite planet/forest4
 		distance 3000
-		period 1011.154
+		period 1367.52
 	object
 		sprite planet/uranus
 		distance 4000
-		period 2272.498
+		period 2105.44
 		object
 			sprite planet/ice0
 			distance 250
@@ -26126,30 +26168,32 @@ system Maspa-Cavaasa
 system Maspa-Mavra
 	pos -514 1571
 	government Uninhabited
-	attributes successor
+	attributes "successor"
 	arrival 500
 	habitable 320
+	haze _menu/haze-none
+	"starfield density" 0.05
 	link Osolaa-Uuoru
 	asteroids "small metal" 1 1
 	asteroids "large metal" 1 1
 	minables gold 1 1
 	fleet "Small New Houses" 10000
 	fleet "Successor Miners" 5000
-	haze _menu/haze-none
-	"starfield density" 0.05
 	object
 		sprite star/m0
 	object Khosa-Kella-Oa
 		sprite planet/rock0-b
 		distance 1000
-		period 1000
+		period 707.106
 
 system Maspa-Raaqa
 	pos -334 1614
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 500
 	habitable 370
+	haze _menu/haze-none
+	"starfield density" 0.5
 	link Kella-Uoasa
 	asteroids "small rock" 12 8
 	asteroids "large metal" 13 3
@@ -26161,18 +26205,16 @@ system Maspa-Raaqa
 	fleet "People's Houses" 2000
 	fleet "People's Houses Raiders" 4000
 	fleet "Small New Houses" 10000
-	haze _menu/haze-none
-	"starfield density" 0.5
 	object
 		sprite star/protostar-orange
 	object Giiq-Oj-Sol
 		sprite planet/desert0
 		distance 1425
-		period 512
+		period 1118.61
 	object
 		sprite planet/gas4
 		distance 3200
-		period 1678
+		period 3764.29
 		object
 			sprite planet/mercury-b
 			distance 300
@@ -26245,14 +26287,14 @@ system Mavra-Ijsola
 	shrouded
 	pos -68.67 883.61
 	government Uninhabited
-	attributes predecessor "tangled shroud"
+	attributes "predecessor" "tangled shroud"
 	arrival 3000
 	habitable 3000
+	haze _menu/haze-tear
+	link Kasii-Cavaasa
 	hazard "Predecessors Base Spatial Decay" 200
 	hazard "Predecessors Spatial Rift Weak" 10000
 	hazard "Predecessors Spatial Rift Intense" 20000
-	link Kasii-Cavaasa
-	haze _menu/haze-tear
 	object
 		sprite star/carbon-core
 	object
@@ -26260,7 +26302,7 @@ system Mavra-Ijsola
 	object
 		sprite planet/lava3
 		distance 2300
-		period 2300
+		period 805.547
 		object
 			sprite planet/dust0
 			distance 223
@@ -26268,7 +26310,7 @@ system Mavra-Ijsola
 	object
 		sprite planet/desert10-b
 		distance 3430
-		period 3430
+		period 1467.03
 
 system Mebla
 	pos -814.587 555.051
@@ -26856,6 +26898,8 @@ system Mellow
 	attributes "avgi" "twilight"
 	arrival 1175
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.8
 	habitable 1175
 	belt 1521
@@ -26907,7 +26951,7 @@ system Mellow
 	object
 		sprite planet/gas16-b
 		distance 2409.12
-		period 1379.84
+		period 1379.83
 		object
 			sprite planet/dust5
 			distance 246
@@ -26923,7 +26967,7 @@ system Mellow
 	object Rolion
 		sprite planet/gas5
 		distance 6504.62
-		period 6121.73
+		period 6121.72
 
 system Men
 	pos -900.2 366.4
@@ -27370,7 +27414,7 @@ system Mg-24
 	object
 		sprite planet/gas8-b
 		distance 1347.34
-		period 893.676
+		period 893.671
 		object
 			sprite planet/dust5-b
 			distance 352
@@ -27378,7 +27422,7 @@ system Mg-24
 	object
 		sprite planet/gas0-b
 		distance 2934.66
-		period 2872.76
+		period 2872.75
 		object
 			sprite planet/dust5
 			distance 307
@@ -27390,7 +27434,7 @@ system Mg-24
 	object
 		sprite planet/gas2-b
 		distance 5854.28
-		period 8094.17
+		period 8094.16
 
 system Miaplacidus
 	pos -524 -69
@@ -28308,10 +28352,12 @@ system Mora
 system Mosaa-Iyra
 	pos 121 1459
 	government Successor
-	attributes successor
-	arrival 2900
-	habitable 2900
-	belt 2240 3
+	attributes "successor"
+	arrival 500
+	habitable 320
+	belt 2240
+	haze _menu/haze-none
+	"starfield density" 0.7
 	link Ojstaan-Sola
 	asteroids "small rock" 22 4
 	asteroids "large rock" 12 3
@@ -28333,14 +28379,12 @@ system Mosaa-Iyra
 	fleet "Small Successor Transport" 1500
 	fleet "Light Successor Freight" 1500
 	fleet "Small Old Houses" 2000
-	haze _menu/haze-none
-	"starfield density" 0.7
 	object
 		sprite star/m0
 	object
 		sprite planet/gas2
 		distance 800
-		period 250
+		period 505.964
 		object
 			sprite planet/mercury
 			distance 250
@@ -28352,7 +28396,7 @@ system Mosaa-Iyra
 	object
 		sprite planet/gas3-b
 		distance 2870
-		period 1678
+		period 3438.01
 		object Iyra-Ijasa-Iret
 			sprite planet/water0-b
 			distance 330
@@ -28366,10 +28410,12 @@ system Mote
 	pos -455 896
 	government Uninhabited
 	attributes "twilight"
-	ramscoop
-		multiplier 1.5
 	arrival 500
-	habitable 100
+	ramscoop
+		universal 1
+		addend 0
+		multiplier 1.5
+	habitable 10
 	belt 1416 5
 	belt 1829 6
 	haze _menu/haze-twilight
@@ -28385,11 +28431,11 @@ system Mote
 	object
 		sprite planet/dust6
 		distance 596.411
-		period 582.610
+		period 1302.75
 	object
 		sprite planet/gas16-b
-		distance 1457.40
-		period 2225.51
+		distance 1457.4
+		period 4976.37
 		object Delodir
 			sprite planet/ice12
 			distance 238
@@ -28534,10 +28580,11 @@ system Muphrid
 system Myiara-Nnesa
 	pos -247 1273
 	government "New Houses"
-	attributes successor
-	arrival 3450
-	habitable 3450
-	belt 1179 3
+	attributes "successor"
+	arrival 2300
+	habitable 2300
+	belt 1179
+	haze _menu/haze-67
 	link Chyyra-Osolaa
 	link Pelaa-Muora
 	asteroids "large metal" 10 3.062
@@ -28558,17 +28605,16 @@ system Myiara-Nnesa
 	fleet "Medium Successor Freight" 1000
 	fleet "Successor Miners" 6000
 	fleet "Seineq Home" 1000
-	haze _menu/haze-67
 	object
 		sprite star/m-giant
 		period 10
 	object
 		sprite planet/gas6-b
 		distance 1311
-		period 323.262
+		period 395.913
 	object
 		distance 2153
-		period 680
+		period 833.224
 		object Yoqqa-Vasa-Vasa
 			sprite planet/ice8
 			distance 120
@@ -28581,11 +28627,11 @@ system Myiara-Nnesa
 	object
 		sprite planet/browndwarf-t
 		distance 2804
-		period 1011.154
+		period 1238.40
 	object
 		sprite planet/neptune
 		distance 4811
-		period 2272.498
+		period 2783.23
 		object
 			sprite planet/miranda
 			distance 238
@@ -28593,7 +28639,7 @@ system Myiara-Nnesa
 	object
 		sprite planet/jupiter
 		distance 9120
-		period 5931.202
+		period 7264.20
 		object
 			sprite planet/desert4-b
 			distance 263
@@ -28601,7 +28647,7 @@ system Myiara-Nnesa
 	object
 		sprite planet/browndwarf-y
 		distance 11064
-		period 7925.354
+		period 9706.53
 		object
 			sprite planet/rock7-b
 			distance 293
@@ -28614,9 +28660,10 @@ system Myiara-Nnesa
 system Myruet-Kvelq
 	pos -104 1378
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 1715
 	habitable 1715
+	haze _menu/haze-33
 	link Aaura-Kaska
 	asteroids "small rock" 27 4.785
 	asteroids "medium rock" 67 3.924
@@ -28632,26 +28679,25 @@ system Myruet-Kvelq
 	trade Medical 480
 	trade Metal 402
 	trade Plastic 272
-	haze _menu/haze-33
 	object
 		sprite star/f5
 		period 10
 	object
 		sprite planet/cloud4
 		distance 180.84
-		period 23.489
+		period 23.4892
 	object
 		sprite planet/gas9
 		distance 1481.98
-		period 551.051
+		period 551.050
 	object Uuoru-Veldt-Stir
 		sprite planet/rock11
 		distance 1683.69
-		period 870
+		period 667.300
 	object "Successor Wormhole"
 		sprite planet/wormhole-red
 		distance 2240
-		period 1400
+		period 1024
 	object
 		sprite planet/gas1
 		distance 3735.87
@@ -29338,6 +29384,8 @@ system Nonet
 	attributes "ember waste" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 165
 	belt 1293
@@ -29533,7 +29581,7 @@ system O-16
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1487
 	"jump range" 30
 	haze _menu/haze-tear
@@ -29555,7 +29603,7 @@ system O-16
 	object
 		sprite planet/gas3-b
 		distance 3921.17
-		period 9821.62
+		period 21961.8
 		object
 			sprite planet/oberon
 			distance 317
@@ -29570,6 +29618,7 @@ system O-3184
 	belt 1119
 	"jump range" 70
 	haze _menu/haze-coal
+	"starfield density" 0.1
 	link E-9182
 	link U-5188
 	asteroids "medium rock" 7 6.75
@@ -29579,7 +29628,6 @@ system O-3184
 	fleet "Iije (Uninterested)" 700
 	fleet "Iije (Swarming)" 900
 	fleet "Iije (Surveillance)" 700
-	"starfield density" .1
 	object
 		sprite star/m3
 		period 10
@@ -29663,6 +29711,8 @@ system Octet
 	attributes "ember waste" "giant star" "notable star" "twilight"
 	arrival 3000
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 3000
 	belt 1559
@@ -29766,12 +29816,13 @@ system Oihaug
 system Ojstaan-Sola
 	pos 72 1379
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 625
 	habitable 625
+	haze _menu/haze-33
+	link Mosaa-Iyra
 	link Stiidej-Nnesa
 	link Uuoru-Kella
-	link Mosaa-Iyra
 	asteroids "small rock" 4 2.215
 	asteroids "medium rock" 32 3.553
 	asteroids "large rock" 29 3.887
@@ -29797,14 +29848,13 @@ system Ojstaan-Sola
 	fleet "Medium Successor Freight" 1200
 	fleet "Small Successor Transport" 1200
 	fleet "Myurej Home" 1000
-	haze _menu/haze-33
 	object
 		sprite star/g5
 		period 10
 	object
 		sprite planet/desert8
 		distance 264.25
-		period 68.729
+		period 68.7293
 		object
 			sprite planet/europa
 			distance 116
@@ -29812,7 +29862,7 @@ system Ojstaan-Sola
 	object Raaqa-Kvelq-Ryuit
 		sprite planet/forest2-b
 		distance 1000.41
-		period 400.255
+		period 506.275
 		object Saska-Aa-Noorr
 			sprite "planet/station successor 1"
 			distance 300
@@ -29821,7 +29871,7 @@ system Ojstaan-Sola
 	object
 		sprite planet/gas15
 		distance 2305.5
-		period 846.677
+		period 1771.20
 		object
 			sprite planet/io
 			distance 208
@@ -29829,7 +29879,7 @@ system Ojstaan-Sola
 	object
 		sprite planet/jupiter
 		distance 4488.75
-		period 2194.731
+		period 4811.80
 		object
 			sprite planet/dust7
 			distance 283
@@ -30173,12 +30223,14 @@ system Orvala
 system Osolaa-Uuoru
 	pos -446 1453
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 5000
 	habitable 13720
+	haze _menu/haze-none
+	"starfield density" 0.4
 	link Maspa-Cavaasa
-	link Raaqa-Ryuit
 	link Maspa-Mavra
+	link Raaqa-Ryuit
 	asteroids "small rock" 8 7
 	asteroids "large rock" 7 8
 	trade Clothing 284
@@ -30191,14 +30243,12 @@ system Osolaa-Uuoru
 	trade Medical 443
 	trade Metal 386
 	trade Plastic 331
-	haze _menu/haze-none
-	"starfield density" 0.4
 	object
 		sprite star/o0
 	object Maspa-Viir-Kella
 		sprite planet/ocean0
 		distance 3000
-		period 3000
+		period 561.131
 		object
 			sprite planet/callisto-b
 			distance 300
@@ -30206,7 +30256,7 @@ system Osolaa-Uuoru
 	object
 		sprite planet/dust0
 		distance 4500
-		period 4500
+		period 1030.86
 
 system Ossipago
 	pos 6.87033 429.242
@@ -30284,23 +30334,23 @@ system Ossipago
 system Oublaa-Khora
 	pos 24 1122
 	government Uninhabited
-	attributes predecessor
+	attributes "predecessor"
 	arrival 2160
 	habitable 2160
+	haze _menu/haze-tear
 	asteroids "small rock" 1 2
 	asteroids "small metal" 2 3
 	hazard "Predecessors Base Spatial Decay" 600
-	haze _menu/haze-tear
 	object
 		sprite star/g0-old
 	object Myiara-Aret-Iir
 		sprite planet/rock13
 		distance 2480
-		period 2480
+		period 1062.94
 	object
 		sprite planet/gas14-b
 		distance 5289
-		period 5289
+		period 3310.49
 		object
 			sprite planet/io
 			distance 528
@@ -30356,7 +30406,7 @@ system P-31
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1352
 	"jump range" 60
 	haze _menu/haze-tear
@@ -30378,7 +30428,7 @@ system P-31
 	object
 		sprite planet/tethys-b
 		distance 1783
-		period 3011.52
+		period 6733.98
 
 system Paeli
 	pos 129 497
@@ -30862,6 +30912,8 @@ system Peak
 	attributes "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 490
 	belt 1833
@@ -30890,7 +30942,7 @@ system Peak
 	object
 		sprite planet/gas14-b
 		distance 1394.59
-		period 941.099
+		period 941.091
 		object
 			sprite planet/rock20
 			distance 246
@@ -30898,7 +30950,7 @@ system Peak
 	object
 		sprite planet/gas12-b
 		distance 3962.86
-		period 4507.91
+		period 4507.90
 		object
 			sprite planet/dust4
 			distance 321
@@ -30937,7 +30989,7 @@ system Pearl
 	object
 		sprite planet/ice8-b
 		distance 2277.27
-		period 1229.50
+		period 1229.49
 
 system "Pedita Pri"
 	pos 207.333 -936
@@ -31007,20 +31059,21 @@ system "Pedita Sec"
 	object Treser
 		sprite planet/treser
 		distance 870
-		period 1249.98
+		period 312.339
 	object
 		sprite planet/mercury-b
 		distance 2193
-		period 363.737
+		period 1249.98
 
 system Pelaa-Muora
 	pos -168 1322
 	government Successor
-	attributes successor
-	arrival 2895
-	habitable 2895
+	attributes "successor"
+	arrival 2555
+	habitable 2555
 	belt 1841 4
 	belt 1916 3
+	haze _menu/haze-33
 	link Aaura-Kaska
 	link Chyyra-Osolaa
 	link Myiara-Nnesa
@@ -31048,36 +31101,35 @@ system Pelaa-Muora
 	fleet "Light Successor Freight" 1200
 	fleet "Successor Miners" 600
 	fleet "Small New Houses" 1400
-	haze _menu/haze-33
+	object
+		sprite star/f3
+		distance 117.026
+		period 88.77
 	object
 		sprite star/f-dwarf
 		distance 161.974
 		period 88.77
 		offset 180
 	object
-		sprite star/f3
-		distance 117.026
-		period 88.77
-	object
 		sprite planet/lava2-b
 		distance 474
-		period 36.23
+		period 81.6642
 	object
 		sprite planet/lava1
 		distance 836
-		period 84.862
+		period 191.281
 	object Shassa-Wyra-Orrou
 		sprite planet/rock13-b
 		distance 2600
-		period 137.629
+		period 1049.11
 	object
 		sprite planet/gas13
 		distance 2880
-		period 369.46
+		period 1223.07
 	object
 		sprite planet/gas1-b
 		distance 3567
-		period 685.909
+		period 1685.85
 		object Uo-Oraa-Vayya
 			sprite planet/callisto-b
 			distance 502
@@ -31085,7 +31137,7 @@ system Pelaa-Muora
 	object
 		sprite planet/gas4-b
 		distance 6701
-		period 1925.801
+		period 4340.84
 
 system Pelubta
 	pos -757.587 575.051
@@ -31823,6 +31875,8 @@ system Pinnacle
 	attributes "bright star" "notable star" "twilight"
 	arrival 3650
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 3650
 	belt 1764
@@ -31847,15 +31901,15 @@ system Pinnacle
 	object
 		sprite planet/desert3
 		distance 2334.51
-		period 746.808
+		period 746.804
 	object Hespair
 		sprite planet/ocean1-b
 		distance 3656.29
 		period 1463.77
 	object
 		sprite planet/gas1
-		distance 5725.10
-		period 2868.06
+		distance 5725.1
+		period 2868.05
 		object "Alonis Observatory"
 			sprite planet/station-telescope-a1
 				scale 0.5
@@ -32196,7 +32250,7 @@ system "Porta Terra"
 	object Aera
 		sprite planet/aera
 		distance 3050
-		period 178.762
+		period 1115.22
 		object
 			sprite planet/desert4
 			distance 300
@@ -32204,7 +32258,7 @@ system "Porta Terra"
 	object Igna
 		sprite planet/gas1-b
 		distance 3847
-		period 365.187
+		period 1579.78
 		object
 			sprite planet/ice8
 			distance 504
@@ -32376,6 +32430,8 @@ system Prelude
 	attributes "avgi" "avgi diaspora" "giant star" "notable star" "tangled shroud"
 	arrival 2300
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 2300
 	belt 1664
@@ -32431,7 +32487,7 @@ system Prelude
 	object
 		sprite planet/ice6
 		distance 2285.91
-		period 911.559
+		period 911.558
 		object "Outpost Enka"
 			sprite planet/station-asteroid-a0
 				scale 0.25
@@ -33244,7 +33300,7 @@ system Quintessence
 	object
 		sprite planet/dust1-b
 		distance 2608.52
-		period 356.862
+		period 356.860
 	object
 		sprite planet/gas10-hot
 		distance 4584.42
@@ -33300,8 +33356,8 @@ system Quintet
 			period 191.571
 	object
 		sprite planet/gas11
-		distance 2938.60
-		period 2878.55
+		distance 2938.6
+		period 2878.54
 		object
 			sprite planet/dust3
 			distance 295
@@ -33309,7 +33365,7 @@ system Quintet
 	object
 		sprite planet/gas5
 		distance 4647.79
-		period 5725.75
+		period 5725.74
 		object
 			sprite planet/dust5-b
 			distance 250
@@ -33330,9 +33386,10 @@ system Quintet
 system Raaqa-Ryuit
 	pos -338 1354
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 1080
 	habitable 1080
+	haze _menu/haze-33
 	link Chyyra-Osolaa
 	link Luue-Saqru
 	link Osolaa-Uuoru
@@ -33353,21 +33410,20 @@ system Raaqa-Ryuit
 	fleet "Small Successor Transport" 1100
 	fleet "Large New Houses" 5000
 	fleet "Kaatrij Home" 1500
-	haze _menu/haze-33
 	object
 		sprite star/g0
 	object
 		sprite planet/callisto
 		distance 600
-		period 500
+		period 178.885
 	object Raaqa-Puan-Uuoru
 		sprite planet/cloud0-b
 		distance 1000
-		period 1000
+		period 384.900
 	object
 		sprite planet/gas2-b
 		distance 2200
-		period 2200
+		period 1255.97
 		object Qasa-Sija-Iri
 			sprite planet/dust0-b
 			distance 250
@@ -33379,7 +33435,7 @@ system Raaqa-Ryuit
 	object Aqra-Kvel-Taaq
 		sprite planet/ice1
 		distance 3420
-		period 3000
+		period 2434.37
 		object
 			sprite planet/ice8-b
 			distance 380
@@ -34210,6 +34266,8 @@ system Rivulet
 	attributes "twilight"
 	arrival 2200
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 2200
 	belt 1600 5
@@ -34252,8 +34310,8 @@ system Rivulet
 		period 1832.08
 	object
 		sprite planet/browndwarf-l
-		distance 8928.20
-		period 7194.40
+		distance 8928.2
+		period 7194.39
 
 system Rota
 	pos 193.25 -1029.75
@@ -34290,10 +34348,14 @@ system Rota
 		sprite planet/ocean8
 		distance 859
 		period 119.012
+	object
+		sprite planet/browndwarf-y
+		distance 3466
+		period 964.597
 	object Vulpa
 		sprite planet/vulpa
 		distance 6978
-		period 415.855
+		period 2755.49
 		object
 			sprite planet/oberon
 			distance 244
@@ -34306,10 +34368,6 @@ system Rota
 			sprite planet/callisto-b
 			distance 571
 			period 357.085
-	object
-		sprite planet/browndwarf-y
-		distance 3466
-		period 964.597
 
 system Rouseu
 	pos 566.7 -404.133
@@ -34499,7 +34557,7 @@ system S-32
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
-	habitable 100
+	habitable 10
 	belt 1131
 	"jump range" 30
 	haze _menu/haze-tear
@@ -34530,7 +34588,7 @@ system S-32
 	object
 		sprite planet/neptune
 		distance 2461
-		period 4883.45
+		period 10919.7
 
 system Sabik
 	pos -675 379
@@ -34850,6 +34908,8 @@ system Sail
 	attributes "avgi" "twilight"
 	arrival 1310
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.8
 	habitable 1310
 	belt 1110 3
@@ -34890,7 +34950,7 @@ system Sail
 	object Araio
 		sprite planet/cloud3
 		distance 1302.73
-		period 519.645
+		period 519.644
 		object
 			sprite planet/station-outpost-a1
 				scale 0.5
@@ -34911,6 +34971,11 @@ system Sail
 		sprite planet/gas2
 		distance 3055.66
 		period 1866.73
+		object
+			sprite planet/station-outpost-a3
+				scale 0.5
+			distance 240
+			period 90
 		object Elthe
 			sprite planet/luna
 			distance 300
@@ -34928,15 +34993,10 @@ system Sail
 			sprite planet/dust0-b
 			distance 557.742
 			period 728.191
-		object
-			sprite planet/station-outpost-a3
-				scale 0.5
-			distance 240
-			period 90
 	object
 		sprite planet/gas4-b
-		distance 5258.20
-		period 4213.86
+		distance 5258.2
+		period 4213.85
 		object
 			sprite planet/station-depot-a0
 				scale 0.5
@@ -35470,7 +35530,7 @@ system Scija
 	object
 		sprite planet/saturn
 		distance 9400
-		period 4188.84
+		period 4871.44
 		object
 			sprite planet/europa
 			distance 485.167
@@ -35864,7 +35924,7 @@ system Septet
 	object
 		sprite planet/lava5
 		distance 1590.36
-		period 463.175
+		period 463.172
 	object
 		sprite planet/gas12-b
 		distance 3191.53
@@ -35880,7 +35940,7 @@ system Septet
 	object
 		sprite planet/browndwarf-l
 		distance 7204.81
-		period 4466.15
+		period 4466.14
 		object
 			sprite planet/gateway-inactive
 				scale 0.5
@@ -36055,9 +36115,11 @@ system Sextet
 	pos -218 704
 	government Uninhabited
 	attributes "ember waste" "twilight"
-	ramscoop
-		multiplier 1.5
 	arrival 745
+	ramscoop
+		universal 1
+		addend 0
+		multiplier 1.5
 	habitable 745
 	belt 1934 6
 	belt 2313 6
@@ -36101,7 +36163,7 @@ system Sextet
 	object
 		sprite planet/uranus
 		distance 3226.99
-		period 2686.45
+		period 2686.44
 		object
 			sprite planet/miranda-b
 			distance 218
@@ -36311,77 +36373,6 @@ system "Shini Bori"
 			distance 333
 			period 22.7854
 
-system Si-28
-	hidden
-	shrouded
-	pos -429 960
-	government Uninhabited
-	attributes "tangled shroud"
-	arrival 500
-	habitable 100
-	belt 1086
-	"jump range" 30
-	haze _menu/haze-tear
-	link Mg-24
-	link Prelude
-	asteroids "small rock" 3 1.994
-	asteroids "medium rock" 2 3.128
-	asteroids "large rock" 3 2.893
-	asteroids "small metal" 3 3.715
-	asteroids "large metal" 1 3.441
-	minables copper 6 5.83
-	fleet "Small Avgi Merchants" 8400
-	fleet "Large Avgi Merchants" 16800
-	fleet "Small Dissonance Merchants" 4200
-	fleet "Large Dissonance Merchants" 8400
-	fleet "Dissonance Miners" 9000
-	fleet "Small Dissonance Pirates" 36000
-	fleet "Avgi Scouts" 9000
-	fleet "Avgi Patrol" 2700
-	fleet "Avgi Strike Group" 9000
-	fleet "Avgi Twilight Guard Logistics" 9000
-	fleet "Small Aberrant" 4200
-	fleet "Large Aberrant" 8400
-	hazard "Predecessors Base Spatial Decay" 1800
-	object
-		sprite planet/browndwarf-t-rogue
-	object
-		sprite planet/ice7-b
-		distance 960.464
-		period 1190.64
-	object
-		sprite planet/gas12-b
-		distance 3120.92
-		period 6974.05
-	object
-		sprite planet/gas4-b
-		distance 4760
-		period 13136.2
-		object
-			sprite planet/desert4
-			distance 252
-			period 189.24
-		object
-			sprite planet/dust0
-			distance 374
-			period 445.453
-	object
-		sprite planet/gas9-b
-		distance 9973
-		period 39838.1
-		object
-			sprite planet/dust0-b
-			distance 235
-			period 221.869
-	object
-		sprite planet/gas11-b
-		distance 15154
-		period 74619.2
-		object
-			sprite planet/rock7
-			distance 270
-			period 209.873
-
 system Si'yak'ku
 	pos -329.235 -760.435
 	government Wanderer
@@ -36462,6 +36453,77 @@ system Si'yak'ku
 			sprite planet/desert4
 			distance 367
 			period 26.3627
+
+system Si-28
+	hidden
+	shrouded
+	pos -429 960
+	government Uninhabited
+	attributes "tangled shroud"
+	arrival 500
+	habitable 10
+	belt 1086
+	"jump range" 30
+	haze _menu/haze-tear
+	link Mg-24
+	link Prelude
+	asteroids "small rock" 3 1.994
+	asteroids "medium rock" 2 3.128
+	asteroids "large rock" 3 2.893
+	asteroids "small metal" 3 3.715
+	asteroids "large metal" 1 3.441
+	minables copper 6 5.83
+	fleet "Small Avgi Merchants" 8400
+	fleet "Large Avgi Merchants" 16800
+	fleet "Small Dissonance Merchants" 4200
+	fleet "Large Dissonance Merchants" 8400
+	fleet "Dissonance Miners" 9000
+	fleet "Small Dissonance Pirates" 36000
+	fleet "Avgi Scouts" 9000
+	fleet "Avgi Patrol" 2700
+	fleet "Avgi Strike Group" 9000
+	fleet "Avgi Twilight Guard Logistics" 9000
+	fleet "Small Aberrant" 4200
+	fleet "Large Aberrant" 8400
+	hazard "Predecessors Base Spatial Decay" 1800
+	object
+		sprite planet/browndwarf-t-rogue
+	object
+		sprite planet/ice7-b
+		distance 960.464
+		period 2662.35
+	object
+		sprite planet/gas12-b
+		distance 3120.92
+		period 15594.4
+	object
+		sprite planet/gas4-b
+		distance 4760
+		period 29373.4
+		object
+			sprite planet/desert4
+			distance 252
+			period 189.24
+		object
+			sprite planet/dust0
+			distance 374
+			period 445.453
+	object
+		sprite planet/gas9-b
+		distance 9973
+		period 89080.7
+		object
+			sprite planet/dust0-b
+			distance 235
+			period 221.869
+	object
+		sprite planet/gas11-b
+		distance 15154
+		period 166853.
+		object
+			sprite planet/rock7
+			distance 270
+			period 209.873
 
 system Sich'ka'ara
 	pos -97.1237 -831.921
@@ -36966,6 +37028,8 @@ system Soar
 	attributes "avgi" "avgi core" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 490
 	belt 2200
@@ -37018,6 +37082,12 @@ system Soar
 			distance 150
 			period 60
 		object
+			sprite planet/station-reflector-a0
+				scale 0.5
+			distance 150
+			period 30
+			offset 180
+		object
 			sprite planet/station-platform-a3
 				scale 0.25
 			distance 180
@@ -37028,12 +37098,6 @@ system Soar
 				scale 0.5
 			distance 180
 			period 60
-			offset 180
-		object
-			sprite planet/station-reflector-a0
-				scale 0.5
-			distance 150
-			period 30
 			offset 180
 		object
 			sprite planet/station-solar-a1-broken
@@ -37056,7 +37120,7 @@ system Soar
 		sprite planet/station-platform-a0
 			scale 0.25
 		distance 2079.88
-		period 1714.04
+		period 1714.03
 		offset 40
 		object
 			sprite planet/cloud5-b
@@ -37691,6 +37755,8 @@ system Span
 	attributes "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 450
 	belt 1754 10
@@ -37720,7 +37786,7 @@ system Span
 	object
 		sprite planet/gas14
 		distance 1382.43
-		period 969.216
+		period 969.211
 		object
 			sprite planet/oberon-b
 			distance 243
@@ -37736,11 +37802,11 @@ system Span
 	object
 		sprite planet/ice0
 		distance 4525.23
-		period 5740.05
+		period 5740.03
 	object
 		sprite planet/gas17
-		distance 5749.90
-		period 8221.37
+		distance 5749.9
+		period 8221.36
 		object
 			sprite planet/lava0
 			distance 277
@@ -38094,7 +38160,7 @@ system Stercutus
 system Stiidej-Nnesa
 	pos -13 1358
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 4020
 	habitable 4020
 	link Aaura-Kaska
@@ -38130,11 +38196,11 @@ system Stiidej-Nnesa
 	object
 		sprite planet/rock10
 		distance 2440
-		period 2500
+		period 760.381
 	object
 		sprite planet/gas1
 		distance 4500
-		period 4500
+		period 1904.43
 		object
 			sprite planet/callisto
 			distance 450
@@ -38150,6 +38216,8 @@ system Stream
 	attributes "bright star" "notable star" "twilight"
 	arrival 3560
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 3560
 	belt 1004 8
@@ -38187,15 +38255,15 @@ system Stream
 	object
 		sprite planet/cloud1-b
 		distance 2601.19
-		period 889.392
+		period 889.391
 	object
 		sprite planet/oberon
 		distance 3731.81
-		period 1528.32
+		period 1528.31
 	object
 		sprite planet/ice11
 		distance 6432.27
-		period 3458.45
+		period 3458.44
 		object
 			sprite planet/ice0-b
 			distance 232
@@ -38442,7 +38510,7 @@ system Supra
 	object Humo
 		sprite planet/gas7-b
 		distance 12092
-		period 235.554
+		period 4930.87
 		object
 			sprite planet/rock7-b
 			distance 253
@@ -38509,7 +38577,7 @@ system Symphony
 	object
 		sprite planet/gas8
 		distance 3668.43
-		period 4189.62
+		period 4189.61
 		object
 			sprite planet/dust0-b
 			distance 340
@@ -38560,6 +38628,8 @@ system Tailwind
 	attributes "twilight"
 	arrival 810
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 810
 	belt 1973 5
@@ -38595,7 +38665,7 @@ system Tailwind
 	object
 		sprite planet/lava6
 		distance 1228.69
-		period 605.315
+		period 605.314
 	object
 		sprite planet/gas14
 		distance 2014
@@ -38808,6 +38878,8 @@ system Tap
 	attributes "neutron" "notable star" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 100
 	belt 1482 4
@@ -39209,6 +39281,8 @@ system Thread
 	attributes "avgi" "avgi core" "twilight"
 	arrival 1215
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 1215
 	belt 2100
@@ -39258,7 +39332,7 @@ system Thread
 	object
 		sprite planet/gas4-b
 		distance 1156.74
-		period 451.469
+		period 451.466
 		object
 			sprite planet/dust3-b
 			distance 230
@@ -39401,6 +39475,8 @@ system Tide
 	attributes "bright star" "giant star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 7900
 	belt 1927
@@ -39427,11 +39503,11 @@ system Tide
 	object
 		sprite planet/gas4-hot
 		distance 1270.76
-		period 203.866
+		period 203.864
 	object
 		sprite planet/gas5-hot
 		distance 2258.79
-		period 483.128
+		period 483.125
 		object
 			sprite planet/lava0-b
 				scale 0.5
@@ -39445,7 +39521,7 @@ system Tide
 	object
 		sprite planet/gas3-hot
 		distance 3538.19
-		period 947.151
+		period 947.148
 		object
 			sprite planet/rock17
 			distance 208.383
@@ -39538,6 +39614,8 @@ system Torrent
 	attributes "bright star" "giant star" "multi-star" "notable star" "twilight"
 	arrival 3625
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.2
 	habitable 3625
 	belt 1483 5
@@ -39570,11 +39648,11 @@ system Torrent
 	object
 		sprite planet/gas9-hot
 		distance 1050.97
-		period 226.357
+		period 226.355
 	object
 		sprite planet/io-b
 		distance 1762.93
-		period 491.768
+		period 491.766
 	object
 		sprite planet/jupiter-b
 		distance 3725.26
@@ -39655,6 +39733,8 @@ system Trio
 	attributes "ember waste" "twilight"
 	arrival 950
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 950
 	belt 1813 4
@@ -39686,7 +39766,7 @@ system Trio
 	object
 		sprite planet/dust6-b
 		distance 1254.47
-		period 576.619
+		period 576.618
 	object
 		sprite planet/gas5
 		distance 1910.39
@@ -39697,8 +39777,8 @@ system Trio
 			period 202.34
 	object
 		sprite planet/gas16
-		distance 3524.80
-		period 2715.82
+		distance 3524.8
+		period 2715.81
 		object
 			sprite planet/rock7
 			distance 219
@@ -39773,6 +39853,8 @@ system Tumble
 	attributes "twilight"
 	arrival 980
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 980
 	belt 2632
@@ -39809,7 +39891,7 @@ system Tumble
 	object Noluc
 		sprite planet/desert12
 		distance 1678.59
-		period 878.754
+		period 878.747
 	object
 		sprite planet/rock4
 		distance 2768.83
@@ -39817,7 +39899,7 @@ system Tumble
 	object
 		sprite planet/gas14-b
 		distance 4283.83
-		period 3582.58
+		period 3582.57
 		object
 			sprite planet/dust3-b
 			distance 285
@@ -39829,7 +39911,7 @@ system Tumble
 	object
 		sprite planet/gas16
 		distance 7472.64
-		period 8253.89
+		period 8253.87
 		object
 			sprite planet/rock14
 			distance 236
@@ -39896,9 +39978,10 @@ system Turais
 system Tuur-Kella
 	pos -5 1269
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 5000
 	habitable 6300
+	haze _menu/haze-67
 	link Aaura-Kaska
 	link Stiidej-Nnesa
 	link Uuoru-Kella
@@ -39919,29 +40002,28 @@ system Tuur-Kella
 	fleet "Large Old Houses" 1400
 	fleet "Old Houses Surveillance" 2000
 	fleet "Chydiyi Home" 2500
-	haze _menu/haze-67
 	object
 		sprite star/b3
 	object
 		sprite planet/gas0-hot
 		distance 1200
-		period 1000
+		period 209.489
 	object
 		sprite planet/gas1-b
 		distance 3800
-		period 3000
-		object Tuur-Aasa-Kaska
-			sprite planet/rock1-b
-			distance 550
-			period 500
+		period 1180.49
 		object Tuur-Oa-Sola
 			sprite planet/io-b
 			distance 300
 			period 300
+		object Tuur-Aasa-Kaska
+			sprite planet/rock1-b
+			distance 550
+			period 500
 	object
 		sprite planet/ice8
 		distance 7500
-		period 10000
+		period 3273.26
 
 system Twirl
 	pos -602 1003
@@ -40005,6 +40087,7 @@ system U-5188
 	belt 1330
 	"jump range" 70
 	haze _menu/haze-none
+	"starfield density" 0.2
 	link O-3184
 	link V-2189
 	asteroids "small rock" 2 2.24
@@ -40014,7 +40097,6 @@ system U-5188
 	fleet "Iije (Uninterested)" 1600
 	fleet "Iije (Swarming)" 2000
 	fleet "Iije (Surveillance)" 1400
-	"starfield density" .2
 	object
 		sprite star/k5
 		period 10
@@ -40593,14 +40675,15 @@ system Uttna
 system Uuoru-Kella
 	pos 63 1317
 	government "Old Houses"
-	attributes successor
-	arrival 2300
-	habitable 2300
-	belt 1631 6
+	attributes "successor"
+	arrival 2200
+	habitable 2200
+	belt 1631
+	haze _menu/haze-67
 	link Ojstaan-Sola
-	link Valkraa-Uuoru
-	link Vade-Staja
 	link Tuur-Kella
+	link Vade-Staja
+	link Valkraa-Uuoru
 	asteroids "small metal" 14 4.805
 	asteroids "medium metal" 146 4.93
 	asteroids "large metal" 1 6.178
@@ -40621,13 +40704,12 @@ system Uuoru-Kella
 	fleet "Small Old Houses" 1000
 	fleet "Large Old Houses" 2000
 	fleet "Old Houses Surveillance" 1000
-	haze _menu/haze-67
 	object
 		sprite star/f3
 	object Aava-Aasa-Khora
 		sprite planet/cloud2
 		distance 2500
-		period 400
+		period 1066.00
 		object Kua-Oa-Aava
 			sprite planet/rock7
 			distance 300
@@ -40635,11 +40717,11 @@ system Uuoru-Kella
 	object
 		sprite planet/ocean2-b
 		distance 3940
-		period 700
+		period 2109.07
 	object
 		sprite planet/gas2-b
 		distance 6000
-		period 1000
+		period 3963.46
 		object
 			sprite planet/ice8-b
 			distance 500
@@ -40654,18 +40736,12 @@ system Uuoru-Sossa
 	shrouded
 	pos -58 976.13
 	government Uninhabited
-	attributes predecessor "tangled shroud"
-	arrival 2700
-	habitable 2700
+	attributes "predecessor" "tangled shroud"
+	arrival 2660
+	habitable 2660
+	haze _menu/haze-tear
 	hazard "Predecessors Base Spatial Decay" 100
 	hazard "Predecessors Spatial Rift Intense" 8000
-	haze _menu/haze-tear
-	object
-		sprite star/void-scar
-			scale 8.0
-		distance 2200
-		period 2000
-		hazard "Predecessors Void Scar Erosion" 6
 	object
 		sprite star/f0
 		distance 40
@@ -40675,9 +40751,15 @@ system Uuoru-Sossa
 		distance 200
 		period 80
 	object
-		sprite planet/gas5
+		sprite star/void-scar
+			scale 8
 		distance 2200
 		period 2000
+		hazard "Predecessors Void Scar Erosion" 6
+	object
+		sprite planet/gas5
+		distance 2200
+		period 800.300
 		object Kella-Uuoru-Sossa
 			sprite planet/dust6-b
 			distance 380
@@ -40689,11 +40771,11 @@ system Uuoru-Sossa
 	object
 		sprite planet/gas12
 		distance 5000
-		period 5000
+		period 2742.04
 	object
 		sprite planet/ice5
 		distance 8000
-		period 12000
+		period 5549.50
 
 system "Uwa Fahn"
 	pos 35.1585 -491.67
@@ -40815,13 +40897,13 @@ system V-2189
 	habitable 17370
 	belt 1985
 	haze _menu/haze-none
+	"starfield density" 0.1
 	link U-5188
 	asteroids "small rock" 1 5.74
 	asteroids "small metal" 6 7.4
 	asteroids "medium metal" 1 5.21
 	asteroids "large metal" 2 5.44
 	minables platinum 2 6.86
-	"starfield density" .1
 	object
 		sprite star/o0
 		distance 77.281
@@ -40867,9 +40949,10 @@ system V-2189
 system Vade-Staja
 	pos 152 1341
 	government Successor
-	attributes successor
+	attributes "successor"
 	arrival 2560
 	habitable 2560
+	haze _menu/haze-67
 	link Khosa-Kaska
 	link Uuoru-Kella
 	link Valkraa-Uuoru
@@ -40897,22 +40980,21 @@ system Vade-Staja
 	fleet "Small Old Houses" 4000
 	fleet "Old Houses Surveillance" 7500
 	fleet "Sioeora Home" 2000
-	haze _menu/haze-67
 	object
 		sprite star/f0
 		period 10
 	object
 		sprite planet/desert9
 		distance 328
-		period 28.4
+		period 46.9624
 	object
 		sprite planet/rock6
 		distance 1554
-		period 292.879
+		period 484.302
 	object Staja-Kella-Oa
 		sprite planet/cloud3
 		distance 2870
-		period 580.451
+		period 1215.52
 		object
 			sprite planet/callisto
 			distance 192
@@ -40920,7 +41002,7 @@ system Vade-Staja
 	object
 		sprite planet/gas12
 		distance 3648
-		period 967.97
+		period 1741.89
 		object
 			sprite planet/rock3
 			distance 307
@@ -40932,7 +41014,7 @@ system Vade-Staja
 	object
 		sprite planet/gas9
 		distance 4549
-		period 1466.847
+		period 2425.57
 
 system Vaiov
 	pos 631.5 -347
@@ -40975,9 +41057,10 @@ system Vaiov
 system Valkraa-Uuoru
 	pos 114 1257
 	government Successor
-	attributes successor
-	arrival 3651.37
-	habitable 3651.37
+	attributes "successor"
+	arrival 4140
+	habitable 4140
+	haze _menu/haze-67
 	link Uuoru-Kella
 	link Vade-Staja
 	trade Clothing 347
@@ -40995,24 +41078,23 @@ system Valkraa-Uuoru
 	fleet "Medium Successor Freight" 1400
 	fleet "Small Successor Transport" 2000
 	fleet "Chydiyi Home" 800
-	haze _menu/haze-67
+	object
+		sprite star/a0
+		distance 40.772
+		period 61.049
 	object
 		sprite star/k0
 		distance 155.228
 		period 61.049
 		offset 180
-	object
-		sprite star/a0
-		distance 40.772
-		period 61.049
 	object Naph-Naap-Kella
 		sprite planet/cloud0
 		distance 902
-		period 53.355
+		period 168.410
 	object
 		sprite planet/gas6-hot
 		distance 1608
-		period 426.836
+		period 400.856
 		object Khora-Uurau-Uuoru
 			sprite planet/rock14-b
 			distance 246
@@ -41020,11 +41102,11 @@ system Valkraa-Uuoru
 	object
 		sprite planet/desert4-b
 		distance 2129
-		period 650.273
+		period 610.693
 	object
 		sprite planet/gas1
-		distance 3859.251
-		period 1149.358
+		distance 3859.25
+		period 1490.43
 		object
 			sprite planet/dust7
 			distance 419.157
@@ -41036,7 +41118,7 @@ system Valkraa-Uuoru
 	object
 		sprite planet/gas12
 		distance 5626
-		period 2793.391
+		period 2623.36
 		object
 			sprite planet/ice0-b
 			distance 286
@@ -41080,26 +41162,26 @@ system Vasa-Oorua
 	shrouded
 	pos 31.3947 1014.88
 	government Uninhabited
-	attributes predecessor "tangled shroud"
-	arrival 1705
-	habitable 1705
-	link Kasii-Sola
-	hazard "Predecessors Base Spatial Decay" 400
-	hazard "Predecessors Spatial Rift Weak" 10000
+	attributes "predecessor" "tangled shroud"
+	arrival 1080
+	habitable 1080
 	haze _menu/haze-tear
+	link Kasii-Sola
 	asteroids "small rock" 2 5
 	asteroids "small metal" 1 5.5
 	minables tungsten 3 6.5
+	hazard "Predecessors Base Spatial Decay" 400
+	hazard "Predecessors Spatial Rift Weak" 10000
 	object
 		sprite star/g0
 	object
 		sprite planet/gas10
 		distance 1800
-		period 2000
+		period 929.516
 	object Osolaa-Val-Mavra
 		sprite planet/ice7
 		distance 2390
-		period 2000
+		period 1422.14
 
 system Vaticanus
 	pos 324 112
@@ -41375,6 +41457,8 @@ system Vivace
 	attributes "neutron" "notable star" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.8
 	habitable 100
 	belt 1074 5
@@ -41399,7 +41483,7 @@ system Vivace
 	object
 		sprite planet/gas0-hot
 		distance 1117.61
-		period 211.355
+		period 211.353
 	object
 		sprite planet/gas8-b
 		distance 3456.63
@@ -41468,6 +41552,8 @@ system Vorpal
 	attributes "neutron" "notable star" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 100
 	belt 2108
@@ -41580,6 +41666,7 @@ system W-3197
 	habitable 6300
 	belt 1887
 	haze _menu/haze-coal
+	"starfield density" 0.2
 	link G-719
 	link G-819
 	asteroids "small rock" 3 1
@@ -41590,7 +41677,6 @@ system W-3197
 	fleet "Iije (Uninterested)" 2000
 	fleet "Iije (Swarming)" 4000
 	fleet "Iije (Surveillance)" 2000
-	"starfield density" .2
 	object
 		sprite star/b3
 		period 10
@@ -41852,6 +41938,8 @@ system Wake
 	attributes "avgi" "twilight"
 	arrival 500
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 490
 	belt 1052 3
@@ -41911,7 +41999,7 @@ system Wake
 	object
 		sprite planet/rock20
 		distance 2659.01
-		period 2477.67
+		period 2477.66
 		object
 			sprite planet/station-weapon-a2
 				scale 0.5
@@ -42256,6 +42344,8 @@ system Whirlwind
 	attributes "twilight"
 	arrival 2750
 	ramscoop
+		universal 1
+		addend 0
 		multiplier 1.5
 	habitable 2750
 	belt 1653 6
@@ -42282,7 +42372,7 @@ system Whirlwind
 	object
 		sprite planet/cloud6-b
 		distance 2045.99
-		period 705.913
+		period 705.909
 		object
 			sprite planet/dust4-b
 			distance 190
@@ -42290,15 +42380,15 @@ system Whirlwind
 	object
 		sprite planet/gas15
 		distance 3736.69
-		period 1742.31
+		period 1742.30
 		object
 			sprite planet/rock0-b
 			distance 231
 			period 132.715
 	object
 		sprite planet/rock14-b
-		distance 5143.70
-		period 2813.89
+		distance 5143.7
+		period 2813.88
 	object
 		sprite planet/browndwarf-y
 		distance 6613.13
@@ -42310,7 +42400,7 @@ system Whirlwind
 	object
 		sprite planet/uranus-b
 		distance 10004.5
-		period 7632.91
+		period 7632.84
 		object
 			sprite planet/ice0
 			distance 267
@@ -43059,7 +43149,7 @@ system Zeinar
 	object
 		sprite planet/gas1-b
 		distance 1080
-		period 321.540
+		period 688.654
 		object Cipi
 			sprite planet/ice7-b
 			distance 411.8
