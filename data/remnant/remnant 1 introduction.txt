@@ -1682,7 +1682,7 @@ mission "Remnant: Tech Retrieval"
 			`	Taely nods "I will look forward to seeing what you find. In the meantime, I should get back to work." With that, she swings over the railing and climbs quickly down the wall in the direction of the shipyard, seemingly unconcerned about the height.`
 				accept
 			label nothelp
-			`	Taely looks at you with a blank expression, then chants in a monotone voice "If that is your choice, you are unlikely to find much of interest to do among us." With that, she vaults over the edge of the railing and drops from view. As you quickly peer over the railing, you discover that she had must have caught a handhold somehow, as she is rapidly moving down the wall in a controlled fashion with ease of a spider.`
+			`	Taely looks at you with a blank expression, then chants in a monotone voice, "If that is your choice, you are unlikely to find much of interest to do among us." With that, she vaults over the edge of the railing and drops from view. As you quickly peer over the railing, you discover that she had must have caught a handhold somehow, as she is rapidly moving down the wall in a controlled fashion with ease of a spider.`
 				decline
 	to complete
 		never
