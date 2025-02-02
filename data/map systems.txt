@@ -1814,8 +1814,8 @@ system Aaura-Kaska
 	pos -86 1298
 	government Successor
 	attributes "successor"
-	arrival 1080
-	habitable 1080
+	arrival 1310
+	habitable 1310
 	haze _menu/haze-67
 	link Myruet-Kvelq
 	link Pelaa-Muora
@@ -1849,26 +1849,26 @@ system Aaura-Kaska
 		distance 21.316
 		period 14.51
 	object
-		sprite star/m4
+		sprite star/m3
 		distance 98.684
 		period 14.51
 		offset 180
 	object
 		sprite planet/dust6
 		distance 317.774
-		period 68.9486
+		period 62.6039
 	object
 		sprite planet/desert9
 		distance 568.214
-		period 164.860
+		period 149.689
 	object
 		sprite planet/mercury
 		distance 841.254
-		period 296.987
+		period 269.659
 	object
 		sprite planet/gas2
 		distance 1456
-		period 676.223
+		period 613.997
 		object Mosaa-Oa-Vyret
 			sprite planet/rhea
 			distance 300
@@ -1876,7 +1876,7 @@ system Aaura-Kaska
 	object
 		sprite planet/gas7
 		distance 3071.33
-		period 2071.75
+		period 1881.10
 
 system Ablodab
 	pos -854.587 592.051
@@ -3087,8 +3087,6 @@ system Aileron
 	attributes "twilight"
 	arrival 1675
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 1675
 	belt 1094 6
@@ -5406,8 +5404,6 @@ system Anax
 	attributes "avgi" "avgi core" "twilight"
 	arrival 2200
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 2200
 	belt 6000
@@ -6438,8 +6434,6 @@ system Apeiron
 	attributes "twilight"
 	arrival 2750
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 2750
 	belt 1990 7
@@ -6573,8 +6567,6 @@ system Arche
 	attributes "avgi" "avgi diaspora" "bright star" "multi-star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 24370
 	belt 1808 2
@@ -9270,8 +9262,8 @@ system Caesura
 	pos -730 903
 	government Uninhabited
 	attributes "black hole" "notable star" "twilight"
-	arrival 500
-	habitable 100
+	arrival 5000
+	habitable 100000
 	haze _menu/haze-twilight-thin
 	hazard "Black Hole Accretion Disk" 1
 	hazard "Black Hole Event Horizon" 1
@@ -10447,8 +10439,8 @@ system Clepsydra
 	pos 264 -874
 	government Uninhabited
 	attributes "bright star" "notable star"
-	arrival 750
-	habitable 750
+	arrival 1750
+	habitable 1750
 	belt 1134
 	haze _menu/haze-dark-nebula
 	link "Cura Dic"
@@ -10473,16 +10465,16 @@ system Clepsydra
 	object
 		sprite planet/ganymede-b
 		distance 999.815
-		period 461.752
+		period 321.198
 	object
 		sprite planet/rock7-b
 		distance 1391.08
-		period 757.805
+		period 527.135
 		offset 25
 	object
 		sprite planet/desert9
 		distance 1728.26
-		period 1049.40
+		period 729.974
 
 system Clip
 	pos -509 712
@@ -10490,8 +10482,6 @@ system Clip
 	attributes "avgi" "avgi core" "twilight"
 	arrival 625
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 625
 	belt 1750
@@ -10983,8 +10973,6 @@ system Corporeal
 	attributes "ringworld" "twilight"
 	arrival 700
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 700
 	belt 1263 4
@@ -11222,8 +11210,6 @@ system Current
 	attributes "twilight"
 	arrival 1250
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 1250
 	belt 1923
@@ -11316,8 +11302,6 @@ system Cusp
 	attributes "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 320
 	belt 1825
@@ -11792,10 +11776,8 @@ system Decet
 	attributes "magnetar" "neutron" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
-	habitable 100
+	habitable 120
 	belt 8211
 	"jump range" 180
 	haze _menu/haze-twilit-embers
@@ -11808,8 +11790,9 @@ system Decet
 		period 1
 	object
 		sprite star/magnetar
-			"frame rate" 15
 			scale 0.5
+			"frame rate" 15
+			rewind
 		period 1
 
 system "Deep Space 19K12"
@@ -13502,8 +13485,6 @@ system Duet
 	attributes "ember waste" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 390
 	belt 1869 10
@@ -14691,8 +14672,6 @@ system Empyrean
 	attributes "bright star" "giant star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 7900
 	belt 1027
@@ -15142,7 +15121,7 @@ system Equus
 	government Uninhabited
 	attributes "neutron" "notable star"
 	arrival 500
-	habitable 355
+	habitable 435
 	belt 1157 6
 	belt 2400 5
 	link Currus
@@ -15169,7 +15148,7 @@ system Equus
 	object Methuselah
 		sprite planet/gas17
 		distance 700
-		period 393.181
+		period 152.655
 
 system "Era Natta"
 	pos 129.2 -134.8
@@ -15732,8 +15711,6 @@ system Evanescence
 	attributes "twilight"
 	arrival 2160
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 2160
 	belt 1990 7
@@ -16971,8 +16948,6 @@ system Firmament
 	attributes "bright star" "giant star" "multi-star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 12100
 	belt 1176 5
@@ -17093,8 +17068,6 @@ system Flutter
 	attributes "notable star" "nova" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.8
 	habitable 100
 	belt 1874
@@ -17339,8 +17312,6 @@ system Frenzy
 	attributes "twilight"
 	arrival 1135
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 1135
 	belt 1840 6
@@ -17801,8 +17772,6 @@ system Gale
 	attributes "twilight"
 	arrival 1080
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 1080
 	belt 1707 5
@@ -18511,8 +18480,6 @@ system Glide
 	attributes "twilight"
 	arrival 1700
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 1700
 	belt 1057
@@ -18860,8 +18827,6 @@ system Gossamer
 	attributes "smoke ring" "twilight"
 	arrival 2560
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 3
 	habitable 2560
 	belt 2100
@@ -18885,8 +18850,8 @@ system Gossamer
 		period 1
 	object
 		sprite "star/smoke ring"
-			"frame rate" 0.15
 			scale 1.5
+			"frame rate" 0.15
 		period 914.299
 		offset 180
 	object Kapnos
@@ -19058,8 +19023,6 @@ system Gust
 	attributes "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 450
 	belt 1116
@@ -19597,8 +19560,6 @@ system Headwind
 	attributes "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 320
 	belt 1856 6
@@ -22509,12 +22470,12 @@ system Kanguwa
 	pos 995.47 -329.975
 	government Uninhabited
 	attributes "neutron" "notable star" "rulei"
-	music "ambient/rulei space"
 	arrival 500
 	habitable 100
 	belt 1866
 	"jump range" 70
 	haze _menu/haze-blackbody
+	music "ambient/rulei space"
 	link Lloloi
 	link Msalbit
 	link Yranjiu
@@ -25023,8 +24984,6 @@ system Lift
 	attributes "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 230
 	belt 1192
@@ -25514,8 +25473,6 @@ system Lumine
 	attributes "notable star" "supergiant star" "twilight"
 	arrival 5000
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 8400
 	belt 1206 1
@@ -26898,8 +26855,6 @@ system Mellow
 	attributes "avgi" "twilight"
 	arrival 1175
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.8
 	habitable 1175
 	belt 1521
@@ -28412,8 +28367,6 @@ system Mote
 	attributes "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 10
 	belt 1416 5
@@ -29384,8 +29337,6 @@ system Nonet
 	attributes "ember waste" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 165
 	belt 1293
@@ -29711,8 +29662,6 @@ system Octet
 	attributes "ember waste" "giant star" "notable star" "twilight"
 	arrival 3000
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 3000
 	belt 1559
@@ -30912,8 +30861,6 @@ system Peak
 	attributes "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 490
 	belt 1833
@@ -31875,8 +31822,6 @@ system Pinnacle
 	attributes "bright star" "notable star" "twilight"
 	arrival 3650
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 3650
 	belt 1764
@@ -32430,8 +32375,6 @@ system Prelude
 	attributes "avgi" "avgi diaspora" "giant star" "notable star" "tangled shroud"
 	arrival 2300
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 2300
 	belt 1664
@@ -34266,8 +34209,6 @@ system Rivulet
 	attributes "twilight"
 	arrival 2200
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 2200
 	belt 1600 5
@@ -34908,8 +34849,6 @@ system Sail
 	attributes "avgi" "twilight"
 	arrival 1310
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.8
 	habitable 1310
 	belt 1110 3
@@ -36117,8 +36056,6 @@ system Sextet
 	attributes "ember waste" "twilight"
 	arrival 745
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 745
 	belt 1934 6
@@ -37028,8 +36965,6 @@ system Soar
 	attributes "avgi" "avgi core" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 490
 	belt 2200
@@ -37755,8 +37690,6 @@ system Span
 	attributes "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 450
 	belt 1754 10
@@ -38216,8 +38149,6 @@ system Stream
 	attributes "bright star" "notable star" "twilight"
 	arrival 3560
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 3560
 	belt 1004 8
@@ -38628,8 +38559,6 @@ system Tailwind
 	attributes "twilight"
 	arrival 810
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 810
 	belt 1973 5
@@ -38878,8 +38807,6 @@ system Tap
 	attributes "neutron" "notable star" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 100
 	belt 1482 4
@@ -39281,8 +39208,6 @@ system Thread
 	attributes "avgi" "avgi core" "twilight"
 	arrival 1215
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 1215
 	belt 2100
@@ -39475,8 +39400,6 @@ system Tide
 	attributes "bright star" "giant star" "notable star" "twilight"
 	arrival 5000
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 7900
 	belt 1927
@@ -39614,8 +39537,6 @@ system Torrent
 	attributes "bright star" "giant star" "multi-star" "notable star" "twilight"
 	arrival 3625
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.2
 	habitable 3625
 	belt 1483 5
@@ -39733,8 +39654,6 @@ system Trio
 	attributes "ember waste" "twilight"
 	arrival 950
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 950
 	belt 1813 4
@@ -39853,8 +39772,6 @@ system Tumble
 	attributes "twilight"
 	arrival 980
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 980
 	belt 2632
@@ -41457,8 +41374,6 @@ system Vivace
 	attributes "neutron" "notable star" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.8
 	habitable 100
 	belt 1074 5
@@ -41552,8 +41467,6 @@ system Vorpal
 	attributes "neutron" "notable star" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 100
 	belt 2108
@@ -41938,8 +41851,6 @@ system Wake
 	attributes "avgi" "twilight"
 	arrival 500
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 490
 	belt 1052 3
@@ -42344,8 +42255,6 @@ system Whirlwind
 	attributes "twilight"
 	arrival 2750
 	ramscoop
-		universal 1
-		addend 0
 		multiplier 1.5
 	habitable 2750
 	belt 1653 6
