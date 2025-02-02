@@ -2183,10 +2183,10 @@ news "logo on ship hull"
 			"Justins Time - Just in time delivery"
 			"Francis Fries - Food spacetrucker"
 			"Bobby Bughunter - Extermination services"
-			"Luna Ticks – Pest control"
-			"Orion's Belts – The fashion of the future"
-			"Comet Cleaners – Brightest laundry in the galaxy" 
-			"Cosmo Joe's – Cosmic Coffee out of this world"
+			"Luna Ticks - Pest control"
+			"Orion's Belts - The fashion of the future"
+			"Comet Cleaners - Brightest laundry in the galaxy"
+			"Cosmo Joe's - Cosmic Coffee out of this world"
 
 
 
