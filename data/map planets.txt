@@ -138,7 +138,6 @@ planet Alexandria
 		to display
 			"days since year start" > 35
 			"days since year start" < 55
-			
 	"required reputation" 100
 	bribe 0.1
 	tribute 1000
@@ -2844,7 +2843,6 @@ planet Kella-Uuoru-Sossa
 		description `The planet's main spaceport endures proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters above your ship, some scarred by weapons fire, others distorted by heat or radiation. One flock of small cleaning drones continually polishes the sand-worn floors, while others wander about aimlessly, devoid of purpose or direction.`
 			to display
 				has "trusted by the successors"
-	government Predecessor
 
 planet "Keneska Fek"
 	attributes korath
@@ -3514,7 +3512,6 @@ planet Mosaa-Oa-Vyret
 	spaceport `	At the edges of the port, there is a large ongoing construction project to expand it; you can count dozens of half-completed hangars each large enough for several freighters.`
 		to display
 			has "known to the successors"
-	government Successor
 	bribe 0
 
 planet "Muninn Station"
@@ -3983,8 +3980,7 @@ planet Nilokep
 	attributes "tangled shroud" uninhabited
 	landscape land/sky14
 	description `Silently orbiting its distant parent, Nilokep is a dead, airless world of stony flats and salt plains. Granite mountains jut up at the poles, but any tectonic heat this small world may have once had has long since bled away.`
-	description `Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing trace amounts of uranium, across its surface. While not economical to mine, it is thought that this is the remnant of some ancient geological system that eroded and dispersed the planet's primordial mountains.`
-	government Uninhabited
+	description `	Curiously, Nilokep has an elevanted level of ambient background radiation, largely due to the dispersion of pulverized granite, containing trace amounts of uranium, across its surface. While not economical to mine, it is thought that this is the remnant of some ancient geological system that eroded and dispersed the planet's primordial mountains.`
 
 planet Nimbus
 	attributes core fishing medical
@@ -4012,7 +4008,6 @@ planet Noluc
 	attributes desert poisonous uninhabited
 	landscape land/desert13
 	description `Even if it was something other than a lifeless, metal-poor desert planet, Noluc would have a hard time attracting settlers. The angry red-orange color that coats the planet's sandy wastes is actually created by a simple neurotoxin lethal to both humans and Avgi. While technically harmless in its dry state, any exposure to water will dissolve the dust into solution, rendering it into a potent poison capable of killing with even microscopic doses.`
-	government Uninhabited
 
 planet Norn
 	attributes deep fishing moon
@@ -4084,11 +4079,10 @@ planet Oblivion
 		threshold 3000
 		fleet "Large Militia" 8
 
-planet "Occupas"
+planet Occupas
 	attributes "requires: gaslining"
 	landscape land/occupas
 	description `There are no places to land on this planet, so you end up simply gliding through the upper layers of clouds. From time to time giant shadows appear in the deeper layers, but they never stay long. This gas giant has relatively calm weather; the winds are mild and storms do not appear very often.`
-	government Uninhabited
 
 planet Ochrescoop
 	attributes hai station
@@ -4139,7 +4133,6 @@ planet Orodens
 	landscape land/mountain26
 	description `This moon is speculated to have once been much larger, until some event stripped it of its crust and mantle. Now, only the metal-rich core remains, serving as an alluring target abundant in heavy elements. More recently, Orodens is thought to have supported a hydrological cycle for a brief period, creating rich veins of precipitated minerals. However, the high surface gravity made it costly to transport material off the surface and to other systems. Rows of mass drivers were used to fire refined minerals into orbit, where they could be collected by waiting ships.`
 	description `	Once the largest single source of fissile elements in Avgi space, the mass drivers have been silent since the Incursion halted operations. Automated drones continue to watch over the last batch of excavated material.`
-	government Uninhabited
 	security 0
 
 planet Osaeli
@@ -4163,7 +4156,6 @@ planet "Oup Je"
 	landscape land/canyon4
 	description `The many beveling formations here provide the Gegno Scin with a rich amount of materials for their cities and ships. Below are small woodlands that seem to be stripped down one way or another, with few living areas scattered about. It is apparent that this planet has been worn down over time, due to both natural and unnatural causes.`
 	spaceport `A few Scin in the spaceport are equipped with what looks like heavy mining gear instead of normal pilot attire, and are never seen boarding any spacecraft. Rather than cautious, they appear to be genuinely curious of your presence, staring at you in fascination. Presumably, these Scin spend most of their days deep in this planet's mines, so seeing anything beyond minerals or machinery, let alone foreigners, is quite astonishing to them.`
-	government "Gegno Scin"
 	"required reputation" 1
 	bribe 0
 	security 0
@@ -4177,11 +4169,10 @@ planet Oura
 
 planet "Outpost Alkos"
 	attributes avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
-	music ambient/machinery
 	landscape land/space0
+	music ambient/machinery
 	description `Predating the Incursion, Outpost Alkos was the first major refueling station built in the Tangled Shroud. While it continues to harvest deuterium and helium-3 from the gas giant below, it has largely been supplanted by smaller, less centralized ice-based deuterium refineries. This has led to a degree of neglect by the Assembly, and a posting here is generally regarded as a minor punishment.`
 	description `	As a result, the station's crew has been thoroughly penetrated by those with sympathies to the Dissonance.`
-	government "Avgi (Consonance)"
 	"required reputation" 10
 	tribute 600
 		threshold 3000
@@ -4191,12 +4182,11 @@ planet "Outpost Alkos"
 
 planet "Outpost Enka"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
-	music ambient/machinery
 	landscape land/station27
+	music ambient/machinery
 	description `Outpost Enka is a huge station built between two large asteroids, which are steadily being mined for the metals and minerals they contain. Most of the habitat is freestanding, mounted on the spar that links both asteroids, but one asteroid is also riddled with pressurized tunnels and pockets filled with farms and open green spaces.`
 	description `	Outpost Enka is a major source of nickel-iron ore, which is common in the system despite the overall metal-poor state of the Tangled Shroud. The station is rumored to be a haven for rebels and dissidents even beyond the usual Dissonance supporters.`
 	spaceport `The station's spaceport is spacious, with room for the many small drones used to harvest other asteroids in the belt. Several berths are also open to larger mining vessels, with a few occupied at the moment.`
-	government "Avgi (Dissonance)"
 	shipyard "Avgi Solar Light"
 	shipyard "Avgi Solar Heavy"
 	shipyard "Avgi Utility Ultralight"
@@ -4219,11 +4209,10 @@ planet "Outpost Enka"
 
 planet "Outpost Leto"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
-	music ambient/machinery
 	landscape land/station30
+	music ambient/machinery
 	description `Outpost Leto is one of the most recent constructions in the Tangled Shroud, built into a Kuiper belt object far from its primary. Large inflated domes, housing those unfortunate enough to be stationed here, dot an icy surface slathered in reddish tholins and chunks of frozen hydrocarbons. It is these very hydrocarbons and organic compounds that Outpost Leto was built to mine, shipping them in bulk to stations in the Outer Limits to support their environmental systems and ecosystems.`
 	spaceport `The spaceport is hosted in one of the many pressurized domes adorning the surface of the planetoid, with a large airlock in the ceiling enabling passage between the station itself and the cold black of space outside.`
-	government "Avgi (Dissonance)"
 	outfitter "Avgi General"
 	"required reputation" 10
 	tribute 600
@@ -4237,7 +4226,6 @@ planet "Outpost Pilos"
 	description `Outpost Pilos is a large early warning station set up soon after the Avgi decided to settle beyond the Tangled Shroud. Fearful of the Aberrant managing to overcome their supposed aversion to the mazelike region of space, it was quickly decided that a tripwire would be needed to warn of an incursion in the event of the fall of the Feo Platform and the infestation of the Tangled Shroud with Aberrations. However, when a large-scale attack never materialized, Outpost Pilos quickly found a second use as an intermediary waystation for the trade of minerals from the Tangled Shroud with the settlements beyond it.`
 	description `	Enormous radar arrays and infrared telescopes make up the bulk of the station, but more recent additions include several large external bays where raw resources and cargo can be transferred between ships.`
 	spaceport `The only amenities in what passes for the "spaceport" are a refueling station and small repair shop. As ships do not generally linger after refueling or transferring their cargo, a skeleton crew is the only permanent inhabitants of the station, and most accommodations are reserved for this crew.`
-	government "Avgi (Consonance)"
 	"required reputation" 15
 	security 0.5
 	tribute 300
@@ -4245,16 +4233,15 @@ planet "Outpost Pilos"
 		fleet "Avgi Core Defense" 3
 		fleet "Avgi Orbital Defense" 6
 		fleet "Avgi Strike Group" 3
-		fleet "Avgi Fleetgroup" 1
+		fleet "Avgi Fleetgroup"
 
 planet "Outpost Tekis"
 	attributes asteroid avgi "avgi diaspora" "dissonance sympathies" station "tangled shroud"
-	music ambient/machinery
 	landscape land/station25
+	music ambient/machinery
 	description `Outpost Tekis is a station built into an enormous asteroid, with tunnels and habitats throughout its entire volume. Its surface is littered with pressurized tubes and habitat domes, many of which grow massive amounts of food in farms and gardens.`
 	description `	The complex is a major exporter of titanium and other rare metals, which are otherwise very scarce in the metal-poor Tangled Shroud. A local chapter of the Dissonance movement is openly headquartered there, and is often the public face of negotiations with the Consonance's Assembly.`
 	spaceport `The spaceport is somewhat cramped, being mostly intended for the intrasystem ships used in asteroid mining. A flexible docking arm allows larger ships to be moored off the asteroid, but you are able to barely squeeze your ship into the main hangar.`
-	government "Avgi (Dissonance)"
 	shipyard "Avgi Solar Light"
 	shipyard "Avgi Solar Heavy"
 	shipyard "Avgi Utility Ultralight"
@@ -4274,21 +4261,6 @@ planet "Outpost Tekis"
 		threshold 4500
 		fleet "Small Dissonance Pirates" 9
 		fleet "Large Dissonance Pirates" 6
-
-planet O-Vasa-Oa
-	attributes successor urban wealthy
-	landscape land/hills4
-	description `This binary planet is the collective seat of what are known as the New Houses, the noble families who traveled through the wormhole to this region of space during the collapse of the Predecessors' empire. Many within the New Houses object to that moniker, arguing that their family lines are in fact the more extensive and noble and that they should be categorized by that, rather than their time of arrival.`
-	description `	Despite population surges in recent years, O-Vasa-Oa remains relatively sparsely populated. The tidal forces from its binary partner create high winds that sweep across the landscape, making settlement challenging in undeveloped areas, and expensive even in those that have the infrastructure to support it.`
-	spaceport `The spaceport is built right beside a large shipyard, allowing visitors to look on at the impressive manufacturing apparatus of the New Houses while going about their business. Despite its relatively small size, the spaceport is very busy, with ships constantly launching and landing and a general air of haste among all the Successors you see.`
-	government "New Houses"
-	shipyard "New Houses Light"
-	shipyard "High Houses Heavy"
-	shipyard "Successor Heavy"
-	outfitter "High Houses Light"
-	outfitter "Successor Civilian"
-	"required reputation" 1
-	bribe 0
 
 planet Palarei
 	attributes ka'het uninhabited
@@ -4363,7 +4335,6 @@ planet Peripheria
 	description `	The station also hosts the Assembly of Consonant Polities, a league of various nations and communities that now serves as the de-facto species-wide government.`
 	spaceport `An extensive set of docks and shipyards makes up the innermost portion of the station's disc, and you can see dozens of ships in various states of completion.`
 	spaceport `	The usual amenities often located on a station of this size fill a dense ring of shops, restaurants, and other services surrounding the spaceport, but many in the Assembly are considering expanding the spaceport outwards at their expense.`
-	government "Avgi (Consonance)"
 	shipyard "Avgi Solar Light"
 	shipyard "Avgi Solar Heavy"
 	shipyard "Avgi Utility Ultralight"
@@ -4403,7 +4374,6 @@ planet Pil
 	attributes moon uninhabited
 	landscape land/moon0
 	description `This airless moon is notable only for its rich deposits of light elements such as lithium and phosphorus. Their concentration was high enough to economically justify bringing them up out of the moon's gravity well, instead of simply mining the carbonaceous asteroids present in the system.`
-	government Uninhabited
 
 planet Pilot
 	attributes north research
@@ -5448,7 +5418,6 @@ planet Stilacrest
 	description `Stilacrest is a warm world, with its shallow freshwater seas, pleasant weather, and white limestone cliffs making it an ideal vacation world to any human. The mountain-born Avgi, however, were rather discomforted by its relatively flat landscape and sluggish winds, and permanent settlement has been sparse.`
 	description `	The oceans are rich in appetizing sea life, and Stilacrest is home to an abundance of independent fishing boats run by those seeking to build a new life away from the homeworld. The lure of the calm waves and mild weather is said to have attracted a meditative, laid-back sort of personality.`
 	spaceport `The largest spaceport is built on the edge of one of the smaller continents, with ample access to the sea. Along with the typical laser launch array, a Lofstrom launch loop stretches over the ocean and into the sky, capable of carrying spacecraft almost all the way to orbit.`
-	government Avgi
 	outfitter "Avgi General"
 	outfitter "Avgi Specialized"
 	outfitter "Avgi Engineering"
@@ -5497,10 +5466,9 @@ planet "Stronghold of Flugbu"
 	security 0.5
 
 planet "Successor Wormhole"
-	spaceport ``
 	attributes "requires: quantum keystone"
+	spaceport ``
 	wormhole "Successor Wormhole"
-	government Uninhabited
 
 wormhole "Successor Wormhole"
 	link "Myruet-Kvelq" "Oublaa-Khora"
@@ -5832,6 +5800,7 @@ planet Tuur-Aasa-Kaska
 	spaceport `As a civilian, you are directed to a smaller port off to the side of one of the larger military ones. As soon as your ship touches down, the landing pad is lowered into an underground hangar and sealed off from the violent atmosphere. While this is an effective protection against the storms, you can't help but notice how it also means that you are trapped here until traffic control decides to release you.`
 	shipyard "Successor Basics"
 	outfitter "High Houses Light"
+	government "Old Houses"
 	"required reputation" 1
 
 planet Tuur-Oa-Sola
