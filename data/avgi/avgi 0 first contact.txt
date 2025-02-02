@@ -973,7 +973,7 @@ mission "Avgi: Twilight Escape 1"
 		log `Successfully escaped the Twilight together with the humans stranded there.`
 		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
 		clear "avgi: lost in twilight"
-		"reputation: Avgi (Dissonance Aggressive)" <?= -10
+		"reputation: Avgi (Dissonance Angry)" <?= -10
 		conversation
 			`The group is quiet as you set the <ship> down on the landing pad. You notice Sora watching out a window as Darius looks into his hands. As for Leon, he has been ready to leave even before you've hit the atmosphere, pacing near the hatch until the moment you open it.`
 			`	"I'm going to get some fresh air," says Sora, stepping in front of an outraged Leon out of nowhere, a reluctant Darius dragged along with her. "We'll be in the spaceport, so try not to leave without us."`
