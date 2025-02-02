@@ -237,8 +237,6 @@ void Conversation::Load(const DataNode &node)
 		}
 	}
 	set<pair<int, int>> checked;
-	if (name == "storytest")
-		cout << "We have found our test" << endl;
 	// Check for choice nodes that can lead to a decline, so they can be marked clearly for the player.
 	for(int n=0; n<nodes.size(); n++)
 	{
