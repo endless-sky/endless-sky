@@ -622,8 +622,8 @@ bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int,
 	}
 	else
 	{
-		// If it is not a choice, then we assume that it will not lead to a decline—and if
-		// any of its elements do, we mark it as declining.
+		// If it is not a choice, then we assume that it will not lead to a decline;
+		// if any of its elements do, we mark it as declining.
 		leadsTo = false;
 		for(long unsigned int e = 0; e < nextNode.elements.size(); e++)
 		{
