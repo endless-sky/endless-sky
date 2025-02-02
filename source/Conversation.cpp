@@ -609,8 +609,8 @@ bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int,
 	checked->insert({nodeIndex, elementIndex});
 	if(nextNode.isChoice)
 	{
-		// If it is a choice, then we assume that it will lead to a decline--and if
-		// any of its elements do not, we mark it as not.
+		// If it is a choice, then we assume that it will lead to a decline;
+		// if any of its elements do not, we mark it as not.
 		leadsTo = true;
 		for(long unsigned int e = 0; e < nextNode.elements.size(); e++)
 		{
