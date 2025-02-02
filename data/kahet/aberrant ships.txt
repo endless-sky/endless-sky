@@ -156,7 +156,7 @@ ship "Aberrant Chomper" "Aberrant Chomper (Disable-able)"
 
 
 ship "Aberrant Pileup"
-	"display name" "K-IC Pileup"
+	"display name" `K-IC "Pileup"`
 	plural "Pileups"
 	sprite "ship/aberrant pileup"
 	thumbnail "ship/aberrant pileup"
