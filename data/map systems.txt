@@ -3091,6 +3091,7 @@ system Aileron
 	habitable 1675
 	belt 1094 6
 	belt 1907 7
+	"jump range" 60
 	haze _menu/haze-twilight
 	link Rivulet
 	asteroids "small rock" 3 3.363
@@ -8281,6 +8282,7 @@ system Billow
 	habitable 320
 	belt 1921 6
 	belt 2280 2
+	"jump range" 60
 	haze _menu/haze-twilight
 	link Soar
 	asteroids "large metal" 1 1.911
@@ -11212,6 +11214,7 @@ system Current
 		multiplier 1.5
 	habitable 1250
 	belt 1923
+	"jump range" 30
 	haze _menu/haze-twilit-embers
 	link Gust
 	link Torrent
@@ -17069,6 +17072,7 @@ system Flutter
 		multiplier 1.8
 	habitable 100
 	belt 1874
+	"jump range" 90
 	haze _menu/haze-twilight-thick
 	asteroids "small metal" 9 1.976
 	asteroids "medium metal" 6 1.125
@@ -18827,6 +18831,7 @@ system Gossamer
 		multiplier 3
 	habitable 2560
 	belt 2100
+	"jump range" 30
 	haze _menu/haze-twilight-thick
 	link Whirlwind
 	minables "tiny water droplet" 90 3.9
@@ -19022,6 +19027,7 @@ system Gust
 		multiplier 1.2
 	habitable 450
 	belt 1116
+	"jump range" 30
 	haze _menu/haze-twilight-thin
 	link Current
 	asteroids "small rock" 64 6.12
@@ -30859,6 +30865,7 @@ system Peak
 		multiplier 1.5
 	habitable 490
 	belt 1833
+	"jump range" 60
 	haze _menu/haze-twilight
 	link Tap
 	link Tumble
@@ -34845,6 +34852,7 @@ system Sail
 	habitable 1310
 	belt 1110 3
 	belt 1903 8
+	"jump range" 30
 	haze _menu/haze-twilight-thick
 	link Span
 	asteroids "small rock" 3 4.34
@@ -35831,6 +35839,7 @@ system Septet
 		multiplier 1.5
 	habitable 3000
 	belt 2640
+	"jump range" 60
 	haze _menu/haze-red
 	link Nonet
 	asteroids "small metal" 1 1.027
@@ -36953,6 +36962,7 @@ system Soar
 		multiplier 1.5
 	habitable 490
 	belt 2200
+	"jump range" 90
 	haze _menu/haze-twilight
 	link Anax
 	link Billow
@@ -37678,6 +37688,7 @@ system Span
 	habitable 450
 	belt 1754 10
 	belt 2266 9
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Anax
 	link Cusp
@@ -38794,6 +38805,7 @@ system Tap
 	habitable 100
 	belt 1482 4
 	belt 1983 1
+	"jump range" 60
 	haze _menu/haze-twilight-thin
 	link Peak
 	asteroids "small metal" 9 1.86
@@ -39385,6 +39397,7 @@ system Tide
 		multiplier 1.5
 	habitable 7900
 	belt 1927
+	"jump range" 30
 	haze _menu/haze-twilight
 	link Soar
 	link Span
@@ -41358,6 +41371,7 @@ system Vivace
 	habitable 100
 	belt 1074 5
 	belt 2129 4
+	"jump range" 60
 	haze _menu/haze-twilight-thick
 	asteroids "small rock" 6 2.777
 	asteroids "medium rock" 4 1.622
