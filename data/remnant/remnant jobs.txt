@@ -507,7 +507,8 @@ mission "Remnant: Rescue 2B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not near "Arculus" 3
+			near "Arculus" 3 100
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
