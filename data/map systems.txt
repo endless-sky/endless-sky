@@ -6571,6 +6571,7 @@ system Arche
 	habitable 24370
 	belt 1808 2
 	belt 2396 8
+	"jump range" 60
 	haze _menu/haze-twilight-thin
 	link H-1
 	link Quintessence
@@ -29668,6 +29669,7 @@ system Octet
 		multiplier 1.5
 	habitable 3000
 	belt 1559
+	"jump range" 30
 	haze _menu/haze-red
 	link Nonet
 	asteroids "small metal" 3 1.325
@@ -32212,7 +32214,7 @@ system "Porta Terra"
 
 system Postlude
 	shrouded
-	pos -261 951
+	pos -261 956
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
@@ -36058,6 +36060,7 @@ system Sextet
 	habitable 745
 	belt 1934 6
 	belt 2313 6
+	"jump range" 60
 	haze _menu/haze-red
 	link Nonet
 	asteroids "small metal" 8 1.312
