@@ -545,7 +545,8 @@ mission "Remnant: Rescue 3"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			not near "Arculus" 3
+			near "Arculus" 3 100
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
