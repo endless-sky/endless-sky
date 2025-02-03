@@ -116,6 +116,9 @@ phrase "jibauni untranslated"
 	word
 		"."
 		"!"
+	replace
+		"	." "."
+		"	!" "!"
 
 phrase "jibauni untranslated random word 1"
 	phrase

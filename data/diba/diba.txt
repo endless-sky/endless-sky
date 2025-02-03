@@ -65,7 +65,6 @@ outfit "Diba Anti-Missile"
 	licenses
 		Diba
 	weapon
-		"hardpoint sprite" "hardpoint/heavy anti-missile"
 		"hardpoint offset" 5.
 		"hit effect" "large anti-missile"
 		"anti-missile" 4

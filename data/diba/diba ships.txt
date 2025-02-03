@@ -95,10 +95,10 @@ ship "Ithquaya"
 			"hit force" 1200
 	outfits
 		"Diba Laser Turret" 2
-	turret 0 -97 "Diba Laser Turret" # top
+	turret 0 -34 "Diba Laser Turret" # top
 		angle 0
 		arc -30 30
-	turret 0 90 "Diba Laser Turret" # bottom
+	turret 0 34 "Diba Laser Turret" # bottom
 		angle 180
 		arc -30 30
 	leak "leak" 50 50
@@ -157,16 +157,16 @@ ship "Arbquaya"
 	engine 0 0
 	bay Fighter 0 28.5
 		over
-	turret 0 -128 "Diba Laser Turret" # top
+	turret 0 -46 "Diba Laser Turret" # top
 		angle 0
 		arc -30 30
-	turret 0 65 "Diba Laser Turret" # bottom
+	turret 0 46 "Diba Laser Turret" # bottom
 		angle 180
 		arc -30 30
-	turret -62.5 -11.5 "Diba Laser Turret" # left
+	turret -46 0 "Diba Laser Turret" # left
 		angle 270
 		arc -30 30
-	turret 75 -25 "Diba Laser Turret" # right
+	turret 46 0 "Diba Laser Turret" # right
 		angle 90
 		arc -30 30
 	leak "leak" 50 50
@@ -228,28 +228,28 @@ ship "Tamquaya"
 		over
 	bay Fighter 0 -31
 		over
-	turret 0 -103 "Diba Anti-Missile" # top
+	turret 0 -90 "Diba Anti-Missile" # top
 		angle 0
 		arc -30 30
-	turret 0 103 "Diba Anti-Missile" # bottom
+	turret 0 90 "Diba Anti-Missile" # bottom
 		angle 180
 		arc -30 30
-	turret 101.5 2.5 "Diba Laser Turret" # right
+	turret 90 0 "Diba Laser Turret" # right
 		angle 270
 		arc -30 30
-	turret -101.5 2.5 "Diba Laser Turret" # left
+	turret -90 0 "Diba Laser Turret" # left
 		angle 90
 		arc -30 30
-	turret -55 -55 "Diba Laser Turret" # top left
+	turret -60 -60 "Diba Laser Turret" # top left
 		angle 315
 		arc -30 30
-	turret 55 -55 "Diba Laser Turret" # top right
+	turret 60 -60 "Diba Laser Turret" # top right
 		angle 45
 		arc -30 30
-	turret -50 105 "Diba Laser Turret" # bottom left
+	turret -60 60 "Diba Laser Turret" # bottom left
 		angle 225
 		arc -30 30
-	turret 50 105 "Diba Laser Turret" # bottom right
+	turret 60 60 "Diba Laser Turret" # bottom right
 		angle 135
 		arc -30 30
 	leak "leak" 50 50
@@ -304,7 +304,7 @@ ship "Tahquaya"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Diba Laser Turret" 12
+		"Diba Laser Turret" 8
 	engine 0 0
 	bay Fighter 0 35.5
 		over
@@ -314,54 +314,30 @@ ship "Tahquaya"
 		over
 	bay Fighter 30 4
 		over
-	turret 0 -96 # top
+	turret 0 -100 "Diba Laser Turret" # top
 		angle 0
-		arc -30 30
-	turret 0 89 # bottom
+		arc -45 45
+	turret 0 100 "Diba Laser Turret" # bottom
 		angle 180
-		arc -30 30
-	turret -111 0 # left
+		arc -45 45
+	turret -100 0 "Diba Laser Turret" # left
 		angle 270
-		arc -30 30
-	turret 111 0 # right
+		arc -45 45
+	turret 100 0 "Diba Laser Turret" # right
 		angle 90
-		arc -30 30
-	turret -69.5 -64 # top left
+		arc -45 45
+	turret -70 -70 "Diba Laser Turret" # top left
 		angle 315
-		arc -30 30
-	turret 69 82 # bottom right
+		arc -45 45
+	turret 70 70 "Diba Laser Turret" # bottom right
 		angle 135
-		arc -30 30
-	turret -70.5 79 # bottom left
+		arc -45 45
+	turret -70 70 "Diba Laser Turret" # bottom left
 		angle 225
-		arc -30 30
-	turret 68 -68 # top right
+		arc -45 45
+	turret 70 -70 "Diba Laser Turret" # top right
 		angle 45
-		arc -30 30
-	turret -30.5 -97 # top and top left
-		angle 337.5
-		arc -30 30
-	turret 31.5 -99.5 # top and top right
-		angle 22.5
-		arc -30 30
-	turret -97.5 -32.5 # left and top left
-		angle 292.5
-		arc -30 30
-	turret 89 -37.5 # right and top right
-		angle 67.5
-		arc -30 30
-	turret -97.5 29 # left and bottom left
-		angle 247.5
-		arc -30 30
-	turret 96.5 32 # right and bottom right
-		angle 112.5
-		arc -30 30
-	turret -26.5 80 # bottom left and bottom
-		angle 202.5
-		arc -30 30
-	turret 39 83 # bottom right and bottom
-		angle 157.5
-		arc -30 30
+		arc -45 45
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
