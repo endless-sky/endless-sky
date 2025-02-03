@@ -31,6 +31,10 @@ class Ship;
 // objects in each system move slightly in their orbits.
 class StellarObject : public Body {
 public:
+	static void UsingMatchesCommand();
+
+
+public:
 	StellarObject();
 
 	// Functions provided by the Body base class:
