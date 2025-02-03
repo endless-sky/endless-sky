@@ -30,7 +30,7 @@ galaxy "label deep"
 	sprite label/deep
 
 galaxy "label diba"
-	pos -1400 690
+	pos -1370 760
 
 galaxy "label dirt belt"
 	pos -515 260
@@ -5119,7 +5119,7 @@ system "Alpha Hydri"
 		period 1185.18
 
 system Alphan
-	pos -1407 684
+	pos -1347 750
 	government Diba
 	habitable 8748.634
 	belt 1034 7
@@ -22951,7 +22951,7 @@ system Jied
 		period 2930.38
 
 system Jiggi
-	pos -1452 673
+	pos -1392 739
 	government Diba
 	habitable 14044.159
 	belt 1200 9
@@ -31031,7 +31031,7 @@ system Ojstaan-Sola
 			period 61.598
 
 system Ondelon
-	pos -1397 629
+	pos -1337 695
 	government Diba
 	habitable 625
 	belt 1020 8
@@ -35779,7 +35779,7 @@ system Rilal
 			period 122.509
 
 system Rinl
-	pos -1376 652
+	pos -1316 718
 	government Diba
 	habitable 1250
 	belt 1133
@@ -39168,7 +39168,7 @@ system "Sol Arach"
 			period 26.2104
 
 system "Sol Diba"
-	pos -1457 643
+	pos -1397 709
 	government Diba
 	habitable 1310
 	haze _menu/haze-green
