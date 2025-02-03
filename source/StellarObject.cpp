@@ -51,6 +51,13 @@ StellarObject::StellarObject()
 
 
 
+bool StellarObject::HasSprite() const
+{
+	return usingMatches || Body::HasSprite();
+}
+
+
+
 // Get the radius of this planet, i.e. how close you must be to land.
 double StellarObject::Radius() const
 {

@@ -38,7 +38,7 @@ public:
 	StellarObject();
 
 	// Functions provided by the Body base class:
-	// bool HasSprite() const;
+	bool HasSprite() const;
 	// int Width() const;
 	// int Height() const;
 	// Frame GetFrame(int step = -1) const;
