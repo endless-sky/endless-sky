@@ -4930,7 +4930,7 @@ mission "Dangerous Games 1"
 	passengers 9
 	source
 		attributes "frontier" "pirate"
-		government "Republic" "Free Worlds" "Syndicate" "Pirate"
+		near "Hadar" 1 100
 	stopover "Skymoot"
 	to offer
 		random < 15
@@ -5026,6 +5026,7 @@ mission "Dangerous Games 2"
 	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures." Bring Karengo and crew to <destination> for <payment>.`
 	source
 		attributes "frontier" "pirate" "rim"
+		near "Izar" 1 100
 	destination "Poseidos"
 	cargo "subpods" 6
 	passengers 6
@@ -7650,7 +7651,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realize that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
 			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
-			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
+			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
 			`	He pauses, as if he's trying to remember something. "Anyways, thank you again, and know I'll never forget what you did for me."`
 			`	Timothy waves, and the video ends.`
 				decline
@@ -9183,7 +9184,7 @@ mission "Timothy Radrickson 7: Monk"
 			label offer2
 			action
 				log "Found Timothy alive and well on New Tibet, living a simple, but happy life as a monk."
-				log "People" "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and has escaped to New Tibet, where, thanks to my help, he now lives as simple monk. He seems happy.`
+				log "People" "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and escaped to New Tibet, where, thanks to my help, he now lives as a simple monk. He seems happy.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
@@ -9283,7 +9284,7 @@ mission "Timothy Radrickson 7: Hospice"
 			label offer2
 			action
 				log "Found Timothy alive, but not in great shape. He is thankful for the rescue nonetheless. Can't shake the feeling that there was more that I could have done for him."
-				log "People" "Timothy Radrickson" `The once stowaway, governor, and prisoner Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
+				log "People" "Timothy Radrickson" `Once a stowaway, governor, and prisoner, Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for a hug.`
@@ -9330,7 +9331,7 @@ mission "Timothy Radrickson 7: Grave"
 			label search
 			action
 				log "Timothy is dead. It seems the plan to break him free failed."
-				log "People" "Timothy Radrickson" `From stowaway, to governor, to prisoner, to corpse: the tale of Timothy is complete. The equipment I acquired for him failed, and what is left of his buried beneath a neat unremarkable gravestone on Oblivion.`
+				log "People" "Timothy Radrickson" `From stowaway, to governor, to prisoner, to corpse: the tale of Timothy is complete. The equipment I acquired for him failed, and his remains are buried beneath a neat unremarkable gravestone on Oblivion.`
 			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy to find Timothy's.`
 			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chiseled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C."`
 			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occurred here. Just another dead prisoner.`
@@ -9581,9 +9582,7 @@ conversation "Ice Queen"
 		`	"I'll get you out of here. After that, no promises."`
 			goto comewithme
 		`	"I don't have time for wretches. You're on your own."`
-		`	"How about I kill you, and take your stuff?"`
-
-	`	Ildico, her eyes still closed, makes a swift motion with her hand and flicks her wrist toward you. Before you have a chance to react, her knife is embedded deep in your throat.`
+	`	Ildico, her eyes still closed, takes a deep breath. She opens her eyes just as she lunges at you, with a swift arm motion toward your head. Before you have a chance to react, her knife is embedded deep in your throat.`
 	`	You're on the ground now, with ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
 	`	As the world fades to black, you hear her talking, her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
 	`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
@@ -9685,18 +9684,21 @@ mission "Ice Queen 3"
 			`	The receptionist helpfully draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out six other forms first. You get to work.`
 			choice
 				`	(Fill out the forms.)`
+			`	You input your standard credentials. Full name, date of birth, location of birth, occupation, ID, social and civil information, and signature. You flip the form over, moving to the next.`
 			choice
 				`	(Fill out more forms.)`
+			`	A page straight out of an entry exam faces you. Accompanied by a set of dots representing if or how often you have caught them, are dozens of labels noting common diseases along with illnesses you thought had been eradicated. The majority of options consist of words and names you imagine must represent some serious conditions, but which you have no recollection of ever reading or hearing about. After scraping your memory as best as you can for your medical history, you eventually finish filling out the last set of dots, and sign. Sighing, you flip the form.`
 			choice
 				`	(Continue filling out forms.)`
-			
+			`	You begin to wonder how it was less bureaucratically stressful to purchase your first ship than it is to schedule an encounter with a campus professor here. When the form prompts you for your address, you scramble out of the room to research what spaceship captains should fill out in such cases. After many contradicting forums and blatantly outdated government websites, you return and put in the best answer you can think of. Then the form specifically requires you to input the institution you studied at, here on <origin>. Again you set to look for answers on how to respond when you are not even from the planet this form is from. After a few more questions, you start to zone out and just automatically input whatever seems least likely to get the form rejected, based on online tips and nebulous descriptions from government pages.`
 			`	The receptionist brings a few of the earlier forms you filled out and helpfully points out a few mistakes for you to fix.`
 			choice
 				`	(Fix the forms you already filled out.)`
+			`	As it turns out, your bank account is not compatible with the due process the forms here are a part of. You download an application to open your very own account on one of the local banks, after checking with the receptionist that this one is compatible. After a few more minutes (and a great many attempts at fitting your face in a camera shot for a mandatory facial recognition step) your new bank details are ready and filled in the forms, which you turn over with haste. Surely it must be ending soon.`
 			choice
 				`	(Fill out the final set of forms.)`
-
-			`	A few painfully tedious hours later, all the right forms have been filled out and you're met by an intern in a small vehicle.`
+			`	In this wondrous paradise of terraforming, a true testament to human ingenuity and mastery over nature, you are close to fuming with frustration at the inability of the local machinery to recognize your signature. For the better part of an hour you get to work on every form again, straining your arms as you slowly, carefully imprint your signature again, on every one of them, as identical to each other as you can.`
+			`	A few painfully tedious hours after you first arrived, all the right forms have been filled out and you're met by an intern in a small vehicle.`
 			`	She glances at her electronic clipboard. "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility." She opens the door and gestures to you two. "Please climb aboard. I know the confines are quite small, but the E.F. is only a few kilometers away."`
 			`	Ildico glares at the young woman suspiciously, then turns to you. "Can we trust her?"`
 			`	The intern looks confused and a little hurt, but says nothing.`
@@ -9877,10 +9879,10 @@ mission "Ice Queen 6"
 				launch
 
 			label arrest
-			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek. She moves, too fast for you to react, and her dagger is in your throat.`
-			`	You lay on the ground, bleeding out, dying. Ildico standing above you, a broken expression on her face. "I thought I had one friend. What a fool I was. I'll never make that mistake again."`
-			`	She leaves you to die. The world grows dim, and hazy. You remember... you remember... someone...`
-				die
+			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek. She moves fast, her arm darting and pointing a course at you, but the distance gives you just enough time to move. You barely avoid her dagger, and point your sidearm straight at her.`
+			`	As you use your communicator to call the local authorities, Ildico glares at you, a broken expression on her face. "I thought I had one friend. What a fool I was. I'll never make that mistake again," is all she says, just as the security officers arrive. After a struggle, they manage to restrain Ildico, and separate her from the baby. Her stare pierces you all the way out of the estate. The officer in charge of the arrest thanks you for the report and for keeping Ildico in place until they arrived. They assure you that Ildico will be given a fair trial, and that the baby will be handled with care.`
+			`	You watch the security vehicles take them both away, suddenly aware that you will likely never see either of them again.`
+				decline
 
 			label leave
 			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek.`
@@ -10018,7 +10020,7 @@ mission "Ice Queen 8"
 		system
 			distance 1 2
 		fleet "Marauder fleet IV"
-		dialog phrase "generic hunted bounty fleet eliminated dialog"
+		dialog `The rival pirate fleet has been destroyed. You should return to Haven now to check up on Ildico.`
 
 	on visit
 		dialog phrase "generic fleet bounty hunting on visit"
