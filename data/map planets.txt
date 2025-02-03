@@ -2254,7 +2254,7 @@ planet Greenrock
 	security 0
 	tribute 1800
 		threshold 3500
-		fleet "Large Northern Pirates" 13
+		fleet "Large Southern Pirates" 13
 
 planet Greenview
 	attributes hai "hai tourism" "hai: human presence" "human tourism" station
