@@ -37,7 +37,8 @@ class Audio {
 public:
 	// Begin loading sounds (in a separate thread).
 	static void Init(const std::vector<std::filesystem::path> &sources);
-	static void CheckReferences();
+	static void LoadSounds(const std::vector<std::filesystem::path> &sources);
+	static void CheckReferences(bool parseOnly = false);
 
 	// Report the progress of loading sounds.
 	static double GetProgress();
