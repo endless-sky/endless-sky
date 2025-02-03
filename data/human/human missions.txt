@@ -2536,7 +2536,7 @@ mission "Terraforming Field Trip 1"
 				`	(No.)`
 					decline
 			`	The poster includes small writing with contact instructions for inquiries about the terraforming process and Tundra's climate. Once you get through to a person on the other side, there is initially reluctance to put you through to anyone involved with the terraforming directly, but after verifying that you worked with them to get the process started, you are connected to Amy.`
-			`	You briefly summarize your adventures, including about the Wanderers: "Aliens with an approach to terraforming that matches your theories from when you were at the Academy of Planetary Sciences." She seems interested in learning more and agrees to meet you in the spaceport bar.`
+			`	"I've met aliens with an approach to terraforming that matches your theories from when you were at the Academy of Planetary Sciences," you say. She seems interested in learning more and agrees to meet you in the spaceport bar.`
 			`	Once she arrives, you tell her about the Wanderers: that the work of their civilization is to repair worlds left in ruin by their previous inhabitants. You explain their view that those worlds have their own identities that they must collaborate with in order for terraforming to be successful.`
 			`	Now that the Kor Mereti drones are peaceful, and the Kor Sestor drones have been eliminated, there is no longer an immediate threat to the Wanderers, and they will be focused much more on their work to repair the former Korath worlds. They would probably be happy to discuss some of that work with someone as enthused by the prospect as Amy.`
 			choice
@@ -2548,7 +2548,7 @@ mission "Terraforming Field Trip 1"
 			`	Amy's disappointment returns, but before leaving, she gives you her contact information, saying, "Well, I'd still love to come along the next time you are travelling that way."`
 				defer
 			label end
-			`	She is delighted, and explains that she will meet you at your ship later today, before leaving to attend to her work in preparation for her absence.`
+			`	She is delighted and explains that she will meet you at your ship later today, before leaving to attend to her work in preparation for her absence.`
 				accept
 			label repeat
 			`You've returned to Tundra, where Amy, the terraforming researcher who is interested in visiting the Wanderers, works. Would you like to contact her to offer her the trip now?`
@@ -2559,7 +2559,7 @@ mission "Terraforming Field Trip 1"
 				`	(No.)`
 					decline
 			`	You use the contact information Amy provided the first time you told her about the Wanderers and inform her that you are prepared to take her on the journey now.`
-			`	"I just need to tend to a few things here, in preparation for my absence, and I'll be at your ship in a few hours," she says.`
+			`	"I just need to tend to a few things here in preparation for my absence, and I'll be at your ship in a few hours," she says.`
 			`	Once she arrives, you show her to her bunk and she settles in for the journey.`
 				accept
 	on complete
@@ -2606,7 +2606,7 @@ mission "Terraforming Field Trip 3"
 			`	Amy also explains about her recent experimental terraforming. "We believe the planet used to be temperate, or even tropical millions of years ago. We used an asteroid impact to trigger a supervolcano that was close to eruption. The greenhouse gases from the eruption have already begun to warm the climate."`
 			`	Iriket thinks for a moment before responding. "Using the planet's [features, assets] to restore more habitable conditions is an [admirable?] approach." The approval buoys Amy, but she is somewhat deflated by what comes next. "However, an asteroid would not be our [preferred, first] step."`
 			`	As you conclude your sightseeing, Tema'a Iriket says your next stop should be <planet>, where she will provide Amy with more detailed records of their terraforming activities than she can provide orally.`
-			`	Once Iriket has returned to her bunk, Amy says to you, "I wonder what my professor would say about 'anthropomorphizing planets' if he saw this," she gestures towards the images of <origin> on the monitors, "and you told him they believe planets have their own identities, too."`
+			`	Once Iriket has returned to her bunk, Amy turns to you. "I wonder what my professor would say about 'anthropomorphizing planets' if he saw this," she gestures towards the images of <origin> on the monitors, "and you told him they believe planets have their own identities, too."`
 				accept
 	on complete
 		dialog "When you arrive on <planet>, Tema'a Iriket tells you to meet her in the spaceport in a few hours before heading off to prepare the data for Amy."
@@ -2636,7 +2636,7 @@ mission "Terraforming Field Trip 4"
 				`	"I'll leave you to your work here."`
 					goto done
 				`	"What did you think of the Wanderers?"`
-			`	"Terraforming for the sake of improving ecosystems, providing a place for future inhabitants, whoever they may be, is very different to most of what I saw in the Paradise worlds," she explains. "Many of the people there are only interested in terraforming for the economic opportunities for themselves, and they have little regard for anything that doesn't directly increase the value for themselves or their clients. Even the garden or 'natural' areas are artificial; forcing the whims and desires of the rich onto nature.`
+			`	"Terraforming for the sake of improving ecosystems, providing a place for future inhabitants, whoever they may be, is very different to most of what I saw in the Paradise Worlds," she explains. "Many of the people there are only interested in terraforming for the economic opportunities for themselves, and they have little regard for anything that doesn't directly increase the planet's value for themselves or their clients. Even the garden or 'natural' areas are artificial; forcing the whims and desires of the rich onto nature.`
 			`	"I've heard about a project in the Free Worlds working on affordable terraforming as well. Perhaps we should look into working with them. The Republic might not be too happy about that, though."`
 			choice
 				`	"I'm glad you had a good time."`
