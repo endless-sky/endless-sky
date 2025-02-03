@@ -361,7 +361,8 @@ mission "Remnant: Rescue"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			near "Arculus" 3 100
+			not near "Arculus" 3
+			near "Arculus" 30
 				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
@@ -429,7 +430,8 @@ mission "Remnant: Rescue 1B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			near "Arculus" 3 100
+			not near "Arculus" 3
+			near "Arculus" 30
 				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
@@ -467,7 +469,8 @@ mission "Remnant: Rescue 2"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			near "Arculus" 3 100
+			not near "Arculus" 3
+			near "Arculus" 30
 				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
@@ -507,7 +510,8 @@ mission "Remnant: Rescue 2B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			near "Arculus" 3 100
+			not near "Arculus" 3
+			near "Arculus" 30
 				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
@@ -545,7 +549,8 @@ mission "Remnant: Rescue 3"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			near "Arculus" 3 100
+			not near "Arculus" 3
+			near "Arculus" 30
 				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
@@ -583,7 +588,8 @@ mission "Remnant: Rescue 3B"
 			not attributes "inaccessible"
 			not attributes "graveyard"
 			not government "Remnant"
-			near "Arculus" 3 100
+			not near "Arculus" 3
+			near "Arculus" 30
 				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
