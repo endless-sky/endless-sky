@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DamageDealt;
 class Minable;
+class MinableDamageDealt;
 class Ship;
 class Weapon;
 
