@@ -1045,7 +1045,7 @@ trade
 		"sweetfeathers"
 		"synthetic meat"
 		"vegetables"
-		"vitamins"	
+		"vitamins"
 	# Clothing
 		"wirecloth"
 		"silk sashes"

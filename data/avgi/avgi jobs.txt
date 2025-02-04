@@ -26,7 +26,7 @@ mission "Avgi: Small Cargo 1 (Generic)"
 		distance 1 30
 	cargo random 3 6 .3
 	to offer
-		random < 30
+		random < 15
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -45,7 +45,7 @@ mission "Avgi: Small Cargo 2 (Generic)"
 		distance 1 30
 	cargo random 6 6 .6
 	to offer
-		random < 30
+		random < 15
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -64,7 +64,7 @@ mission "Avgi: Small Cargo 3 (Generic)"
 		distance 1 30
 	cargo random 3 9 .6
 	to offer
-		random < 30
+		random < 15
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -208,7 +208,7 @@ mission "Avgi: Small Cargo 1 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 3 6 .3
 	to offer
-		random < 30
+		random < 60
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -227,7 +227,7 @@ mission "Avgi: Small Cargo 2 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 6 6 .6
 	to offer
-		random < 30
+		random < 60
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -246,7 +246,7 @@ mission "Avgi: Small Cargo 3 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 3 9 .6
 	to offer
-		random < 30
+		random < 60
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -267,7 +267,7 @@ mission "Avgi: Bulk Cargo 1 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 30 6 .12
 	to offer
-		random < 15
+		random < 30
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -286,7 +286,7 @@ mission "Avgi: Bulk Cargo 2 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 30 6 .09
 	to offer
-		random < 15
+		random < 30
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -305,7 +305,7 @@ mission "Avgi: Bulk Cargo 3 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 30 6 .06
 	to offer
-		random < 15
+		random < 30
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -327,7 +327,7 @@ mission "Avgi: Rush Cargo 1 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 3 9 .6
 	to offer
-		random < 15
+		random < 30
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -348,7 +348,7 @@ mission "Avgi: Rush Cargo 2 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 3 9 .45
 	to offer
-		random < 15
+		random < 30
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -369,14 +369,13 @@ mission "Avgi: Rush Cargo 3 (Avgi Cargo)"
 		distance 1 30
 	cargo "Avgi Cargo" 3 9 .3
 	to offer
-		random < 15
+		random < 30
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
 		payment
 		payment 18000
 		dialog phrase "generic cargo delivery payment"
-
 
 
 mission "Avgi: Small Cargo 1 (Avgi Nuclear)"
@@ -625,7 +624,7 @@ mission "Avgi: Outpost Diplomats 1"
 	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	passengers 1 3 .6
 	to offer
-		random < 100
+		random < 30
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -643,7 +642,7 @@ mission "Avgi: Outpost Diplomats 2"
 	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	passengers 1 9 .9
 	to offer
-		random < 100
+		random < 30
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -661,7 +660,7 @@ mission "Avgi: Outpost Diplomats 3"
 	clearance "The diplomats have a short conversation with the spaceport operator and manage to get you permission to dock."
 	passengers 3 6 .6
 	to offer
-		random < 100
+		random < 30
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -751,7 +750,7 @@ mission "Avgi: Cylinder Materials 1"
 	destination "Aktina Cylinder"
 	cargo "Avgi Industrial" 30 6 .3
 	to offer
-		random < 15
+		random < 30
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -771,7 +770,7 @@ mission "Avgi: Cylinder Materials 2"
 	destination "Aktina Cylinder"
 	cargo "Avgi Industrial" 60 12 .3
 	to offer
-		random < 15
+		random < 30
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -791,7 +790,7 @@ mission "Avgi: Cylinder Materials 3"
 	destination "Aktina Cylinder"
 	cargo "Avgi Industrial" 60 18 .3
 	to offer
-		random < 15
+		random < 30
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -811,7 +810,7 @@ mission "Avgi: Bulk Cylinder Materials 1"
 	destination "Aktina Cylinder"
 	cargo "Avgi Megaconstruction" 60 6 .09
 	to offer
-		random < 9
+		random < 15
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -831,7 +830,7 @@ mission "Avgi: Bulk Cylinder Materials 2"
 	destination "Aktina Cylinder"
 	cargo "Avgi Megaconstruction" 60 6 .06
 	to offer
-		random < 9
+		random < 15
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -851,7 +850,7 @@ mission "Avgi: Bulk Cylinder Materials 3"
 	destination "Aktina Cylinder"
 	cargo "Avgi Megaconstruction" 60 6 .03
 	to offer
-		random < 6
+		random < 9
 		has "avgi: aktina cylinder supply jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -878,7 +877,7 @@ mission "Avgi: Special Nuclear Material Shipment 1"
 	deadline
 	cargo "Avgi Special Nuclear" 3 6 .3
 	to offer
-		random < 9
+		random < 15
 		not "avgi: fissiles shortage"
 		has "avgi: nuclear material transport jobs"
 	npc
@@ -914,7 +913,7 @@ mission "Avgi: Special Nuclear Material Shipment 2"
 	deadline
 	cargo "Avgi Nuclear Weapons" 3 6 .3
 	to offer
-		random < 9
+		random < 15
 		not "avgi: fissiles shortage"
 		has "avgi: nuclear material transport jobs"
 	npc
@@ -950,7 +949,7 @@ mission "Avgi: Special Nuclear Material Shipment 3"
 	deadline
 	cargo "Avgi Special Nuclear" 3 6 .3
 	to offer
-		random < 6
+		random < 9
 		not "avgi: fissiles shortage"
 		has "avgi: nuclear material transport jobs"
 	npc
@@ -1001,7 +1000,7 @@ mission "Avgi: Information Courier"
 	deadline
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
-		random < 30
+		random < 60
 		has "avgi: infocourier jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1022,7 +1021,7 @@ mission "Avgi: Information Courier Rush"
 	deadline 1 1
 	cargo "Avgi Storage Media" 3 6 .3
 	to offer
-		random < 15
+		random < 45
 		has "avgi: infocourier jobs"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -1148,7 +1147,7 @@ mission "Avgi: Twilight Guard Relief 2"
 		government "Avgi (Consonance)"
 	passengers 3 6 .45
 	to offer
-		random < 60
+		random < 30
 		has "avgi: twilight guard transport jobs"
 	on visit
 		dialog phrase "generic passenger on visit"
