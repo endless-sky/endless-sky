@@ -316,7 +316,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 	"mass" 333
 	"outfit space" -33
 	"engine capacity" -33
-	"thrust" 90
+	"thrust" 120
 	"thrusting energy" 9
 	"thrusting heat" 45
 	"thrusting fuel" 0.09
@@ -342,7 +342,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 	"mass" 666
 	"outfit space" -66
 	"engine capacity" -66
-	"thrust" 210
+	"thrust" 270
 	"thrusting energy" 18
 	"thrusting heat" 90
 	"thrusting fuel" 0.18
@@ -367,7 +367,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 	"mass" 999
 	"outfit space" -99
 	"engine capacity" -99
-	"thrust" 360
+	"thrust" 450
 	"thrusting energy" 27
 	"thrusting heat" 135
 	"thrusting fuel" 0.27
@@ -413,7 +413,6 @@ outfit "Remass Injector"
 	thumbnail "outfit/remass injector"
 	"mass" 6
 	"outfit space" -6
-	"engine capacity" -3
 	"afterburner thrust" 90
 	"afterburner energy" 3
 	"afterburner heat" -18
@@ -433,7 +432,6 @@ outfit "Inductive Extractor"
 	thumbnail "outfit/inductive extractor"
 	"mass" 12
 	"outfit space" -12
-	"engine capacity" -12
 	"energy generation" 1.5
 	"heat generation" 1.5
 	"thrust" -12
