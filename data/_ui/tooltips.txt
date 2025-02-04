@@ -1042,6 +1042,9 @@ tip "shots / second:"
 tip "turret turn rate:"
 	`Degrees this turret can turn per second.`
 
+tip "turret turn multiplier:"
+	`Modifies the turret turn rate on this ship by the given factor.`
+
 tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
 
