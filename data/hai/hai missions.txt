@@ -2132,6 +2132,8 @@ mission "Acorn Delights: Part 1"
 					goto gone
 				`	"Why don't you ask the authorities for help?"`
 					goto authorities
+				`	"Can't your friends help you find her?"`
+					goto friends
 				`	"Let's go find her!"`
 					goto accept
 				`	"I have other places to be."`
@@ -2140,13 +2142,16 @@ mission "Acorn Delights: Part 1"
 			`	"Well I... I don't know... I cook when I'm worried, and Anoo has been missing for three months! I've vacuum-sealed all three tons of cookies. They should last a year or two. Maybe she'll share them with her friends? She has many friends! Tons of friends! They all miss her...`
 				goto questions
 			label gone
-			`	"Anoo graduated from a medical academy on Frostmark four months ago, near the top of her class! A prominent hospital on Hai-Home needed a new trauma surgeon and said she would be perfect for the job. She accepted the position and said she would be on vacation for a few weeks.`
+			`	"Anoo graduated from a medical academy on Frostmark four months ago, near the top of her class! A prominent hospital on Hai-home needed a new trauma surgeon and said she would be perfect for the job. She accepted the position and said she would be on vacation for a few weeks.`
 			`	"A month later, she told them she won't be coming, and nobody has heard from her since.`
 				goto questions
 			label authorities
 			`	"I talked to the Central Medical Bureau, and they told me she got clearance for practicing medicine anywhere in Hai space or beyond. They've heard nothing from her since she got clearance. She has to register new prescriptions with the Bureau, so they should have heard from her.`
 			`	"The police told me that several other people have reported Anoo missing, but they refused to tell me anything else. They said I had to talk to the military, but the military won't tell me anything.`
 			`	"Maybe she's involved in something secret? Or illegal? No, she'd never do that. Where is she?`
+				goto questions
+			label friends
+			`	"I have few friends, and none of them are interested in finding a missing Hai who could be anywhere. None of my customers want to help either, and her family is all dead.`
 				goto questions
 			label accept
 			`	"She always talked about doing volunteer work for those who couldn't afford medical treatment. When she was little, her mother would take her to Stonebreak to help at local shelters. Let's start there."`
@@ -2167,7 +2172,7 @@ mission "Acorn Delights: Part 2"
 	on offer
 		log "Took a Hai lady named Eeeya to Stonebreak to help find her granddaughter, who is named Anoo."
 		conversation
-			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, women's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth.`
+			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, women's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth before her mother left.`
 			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "Since it's obvious she's not here, let's check on <destination> - she could be in the military."`
 				accept
 	on visit
@@ -2203,10 +2208,10 @@ mission "Acorn Delights: Part 3"
 				`	"Unfettered space is too dangerous for me. You will have to find another captain."`
 					decline
 			label mention
-			`	"I was afraid it would scare you away. Humans are terrified of our ships, and the Unfettered are deadly warriors. Besides, the other places were more likely."`
+			`	"I was afraid it would scare you away. Humans are terrified of our ships, and the Unfettered are deadly warriors. Besides, the other places were more likely. Her mother's family does have a tradition of joining the Unfettered, but I didn't think that would happen to her."`
 				goto questions
 			label warmonger
-			`	"Anoo was always sympathetic to the cause of the Unfettered Hai. Not their pointless war - she hated that - but she respected their drive to progress and their instinct for change. Our family tried to discourage her ideas, and we thought we succeeded, but... maybe...`
+			`	"Anoo was always sympathetic to the cause of the Unfettered Hai. Not their pointless war - she hated that - but she respected their drive to progress and their instinct for change. Her father's family tried to discourage her ideas, and we thought we succeeded, but... maybe...`
 			`	"A trauma surgeon for the Unfettered Hai? I wonder if she planned this years in advance?"`
 				goto questions
 			label accept
@@ -2235,7 +2240,7 @@ mission "Acorn Delights: Part 4"
 			`	"Please, Anoo, let's speak in the human language. <first> came all this way for me, and it's only fair that the Captain be able to understand what's going on."`
 			`	The conversation then turns to Anoo's new occupation.`
 			`	"Why did you come here, Anoo? The Unfettered hate us."`
-			`	"They don't hate us in particular, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our species is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.` # "us in particular" should be changed to "us" and italicized if/when support for that is ever implemented.
+			`	"They don't hate us in particular, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our species is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.`
 			`	"We think of them as mindless brutes, but they're not! They have scientists, doctors, musicians, and writers. Our resources dwarf theirs, but they thrive with what little they have. Soon the Unfettered will have many more planets and almost unlimited resources. The era of scarcity will be over, and they'll have the power to choose their future.`
 			`	"If enough good people join the Unfettered, we can change their minds and set them on a more productive path. They'll need good doctors."`
 			`	"But-" Eeeya objects.`
