@@ -435,13 +435,13 @@ ship "Bastion"
 	attributes
 		category "Medium Warship"
 		"cost" 3860000
-		"shields" 9000
-		"hull" 5500
+		"shields" 8600
+		"hull" 5300
 		"required crew" 17
 		"bunks" 40
-		"mass" 950
-		"drag" 12.8
-		"heat dissipation" .4
+		"mass" 1100
+		"drag" 15.5
+		"heat dissipation" .34
 		"fuel capacity" 500
 		"cargo space" 110
 		"outfit space" 470
