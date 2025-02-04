@@ -1,0 +1,374 @@
+# Copyright (c) 2023 by RisingLeaf (https://github.com/RisingLeaf)
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Ship names:
+phrase "hicemus military"
+	word
+		"HIC "
+	phrase
+		"latin name"
+	word
+		"en #"
+	phrase
+		"hex color"
+
+phrase "incipias civilian"
+	phrase
+		"vocal consonant (capitalized)" 5
+		"consonant vocal (capitalized)" 10
+	word
+		"'"
+	phrase
+		"latin name"
+	word
+		"ius"
+		"ias"
+		"ium"
+		"iam"
+	word
+		" #"
+	phrase
+		"hex color"
+
+phrase "latin name"
+	phrase
+		"vocal consonant (capitalized)" 5
+		"consonant vocal (capitalized)" 10
+	phrase
+		"vocal consonant" 10
+		"consonant vocal" 5
+	phrase
+		"vocal consonant" 5
+		"consonant vocal" 10
+
+phrase "vocal consonant"
+	phrase
+		"vocal"
+	phrase
+		"incipias consonant"
+
+phrase "consonant vocal"
+	phrase
+		"incipias consonant"
+	phrase
+		"vocal"
+
+phrase "vocal consonant (capitalized)"
+	phrase
+		"vocal (capitalized)"
+	phrase
+		"incipias consonant"
+
+phrase "consonant vocal (capitalized)"
+	phrase
+		"incipias consonant (capitalized)"
+	phrase
+		"vocal"
+
+phrase "vocal"
+	word
+		"a"
+		"e"
+		"i"
+		"o"
+		"u"
+
+phrase "vocal (capitalized)"
+	word
+		"A"
+		"E"
+		"I"
+		"O"
+		"U"
+
+phrase "incipias consonant"
+	word
+		"b"
+		"d"
+		"g"
+		"k"
+		"l"
+		"m"
+		"n"
+		"r"
+		"s"
+		"t"
+
+phrase "incipias consonant (capitalized)"
+	word
+		"B"
+		"D"
+		"G"
+		"K"
+		"L"
+		"M"
+		"N"
+		"R"
+		"S"
+		"T"
+
+phrase "hex color"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+	phrase
+		"hex digit"
+
+phrase "hex digit"
+	word
+		"0"
+		"1"
+		"2"
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
+		"a"
+		"b"
+		"c"
+		"d"
+		"e"
+		"f"
+
+fleet "Hicemus Standard Surveilance"
+	government "Hicemus"
+	names "hicemus military"
+	cargo 0
+	personality
+		heroic vindictive
+	variant 10
+		"Nimbus"
+	variant 4
+		"Nimbus" 2
+	variant 4
+		"Venta"
+
+fleet "Incipias Standard Mining"
+	government "Incipias Civilian"
+	names "incipias civilian"
+	cargo 0
+	personality
+		timid mining harvests coward
+	variant 5
+		"Nimbus (Mining)"
+	variant 5
+		"Nimbo Stratus"
+	variant 4
+		"Nimbo Stratus" 2
+	variant 1
+		"Nimbo Stratus"
+		"Nimbus (Mining)"
+
+fleet "Incipias Standard Trade"
+	government "Incipias Civilian"
+	names "incipias civilian"
+	cargo 50
+	personality
+		confusion 40
+		timid appeasing
+	variant 5
+		"Nimbo Cirrus"
+	variant 1
+		"Nimbus (Civilian)"
+	variant 4
+		"Nimbo Cirrus" 2
+	variant 3
+		"Gero"
+	variant 2
+		"Gero" 2
+	variant 2
+		"Gero"
+		"Nimbo Cirrus"
+	variant 1
+		"Nimbo Cirrus" 2
+		"Nimbus (Civilian)"
+
+outfitter "Hicemus"
+	"Plasma Discharger"
+	"Stagnation Beam"
+	"Horizon Grappler"
+	"Gas-Class Shield"
+	"Liquid-Class Shield"
+	"Metallic Hydrogen Cell"
+	"Cloud Piercer"
+
+	"MH Blue-Class Thruster"
+	"MH Blue-Class Steering"
+	"MH Green-Class Thruster"
+	"MH Green-Class Steering"
+	"MH Red-Class Thruster"
+	"MH Red-Class Steering"
+
+shipyard "Hicemus"
+	"Nimbo Cirrus"
+	"Nimbo Stratus"
+	"Nimbus"
+	"Gero"
+
+news "Incipias common"
+	location
+		government "Conlatio" "Hicemus"
+	name
+		word
+			"Incipias Captain"
+			"Incipias Crew Member"
+	message
+		phrase
+			"incipias common hard defined"
+			"incipias common praise"
+
+phrase "incipias common"
+	phrase
+		"incipias common hard defined" 1
+		"incipias common praise" 5
+		"incipias common interest" 3
+		"incipias common advise" 3
+
+phrase "incipias common hard defined"
+	word
+		"You say you left this home-system? One day, I will also see other home-systems."
+		"The before-present was a more interesting time to fly a spaceship. Nowadays, a lot of people have one."
+		"I just got my crewmember-ship-license renewed. The government controls them strictly."
+		"There is nothing more exciting than to switch to turbine mode and fly through the landscape-clouds of our origin-home."
+		"It has been some time since the last great knowledge-breakthrough has been achieved in technological research-understanding. The government promises us that they are working on something, but my guess is that they have no clue what to do."
+		"I saw a plasma discharger with a leak-crack not so long ago. The ship looked good from the outside, but the inside was a firestorm."
+		"I have never seen something like your species. Why don't you float like us?"
+		"I was on a mining mission-job not so long ago when I saw a government ship drop a small box. The box accelerated very fast in one direction and disappeared with a flash."
+
+phrase "incipias common praise"
+	word
+		"These technologies"
+		"These ships"
+		"These death-weapons"
+		"These engines"
+		"These life-shields"
+	word
+		" "
+	word
+		"of yours"
+		"you have"
+		"you have installed"
+		"of your kind"
+	word
+		" "
+	word
+		"are very impressive."
+		"are very efficient."
+		"look very stylish."
+		"seem to work with utmost efficiency."
+
+phrase "incipias common interest"
+	word
+		"What "
+	word
+		"have you seen"
+		"happened to you"
+		"did you encounter"
+		"wonders lie"
+	word
+		" "
+	word
+		"beyond our system-home"
+		"in the stars"
+		"away from safety"
+		"past our travel-borders"
+	word
+		"? "
+	word
+		"Were you impressed?"
+		"Was it fearsome?"
+		"Was it dangerous?"
+
+phrase "incipias common advise"
+	word
+		"See"
+		"Look at"
+		"Pay attention to"
+		"Light"
+	word
+		" my "
+	word
+		"advice"
+		"wisdom"
+		"call"
+		"wish"
+	word
+		": Do not "
+	word
+		"use your engines on our planet-home"
+		"fiddle with the plasma discharger"
+		"oppose the government"
+		"use your weaponry for something other than mining" 2
+	word
+		"; it would cause death-sadness."
+
+
+news "Hicemus official"
+	location
+		government "Hicemus"
+	name
+		word
+			"Hicemus Police Officer"
+			"Hicemus Executive"
+			"Hicemus Inspector"
+	message
+		word
+			"We go forward to evolve-advance. No one can stop us."
+			"Have you seen-understood our newest engines? They are much more efficient than anything before them."
+			"Our technology is superior. No one can question our authority."
+			"As long as we exist, we will progress-change."
+			"The beginning-dawn of a new age of space travel is near."
+
+
+phrase "incipias friendly disabled"
+	word
+		"Friend"
+		"Known-stranger"
+		"Fellow captain"
+	word
+		", I am "
+		", we are "
+	word
+		"in a dangerous-tense situation"
+		"in trouble"
+		"in need of repair-assistance"
+		"unable to fly"
+		"on the brink of uselessness"
+	word
+		"."
+	word
+		" Could you please "
+	word
+		"assist me"
+		"save me"
+		"perform an outstanding action-accomplishment"
+	word
+		"?"
+
+phrase "incipias hostile disabled"
+	word
+		"Would you really take-destroy our future?"
+		"Where is your honor?"
+		"What would happen to our civilization if there were more like you?"
+		"Stop your chaos-rampage!"
+		"Do you not value future-life?"

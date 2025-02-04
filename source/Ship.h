@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_H_
-#define SHIP_H_
+#pragma once
 
 #include "Body.h"
 
@@ -43,6 +42,7 @@ class DataNode;
 class DataWriter;
 class Effect;
 class Flotsam;
+class FormationPattern;
 class Government;
 class Minable;
 class Phrase;
@@ -173,6 +173,7 @@ public:
 	std::vector<std::string> FlightCheck() const;
 
 	void SetPosition(Point position);
+	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
@@ -203,8 +204,10 @@ public:
 	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
-	ShipAICache &GetAICache();
-	void UpdateCaches();
+	const ShipAICache &GetAICache() const;
+	// Updates the AI and navigation caches. If the ship's mass hasn't changed,
+	// reuses some of the previous values.
+	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -311,8 +314,12 @@ public:
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
+	// Check if this ship can transfer sufficient energy to the other ship.
+	bool CanGiveEnergy(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
+	// Give the other ship some energy.
+	double TransferEnergy(double amount, Ship *to);
 	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
@@ -353,6 +360,8 @@ public:
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
 	bool NeedsFuel(bool followParent = true) const;
+	// Checks whether this ship needs energy to function.
+	bool NeedsEnergy() const;
 	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
@@ -387,6 +396,11 @@ public:
 	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
+	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
+	double TrueAcceleration() const;
+	double TrueTurnRate() const;
+	// The ship's current speed right now
+	double CurrentSpeed() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -460,6 +474,8 @@ public:
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
 	const std::set<const Flotsam *> &GetTractorFlotsam() const;
+	// Pattern to use when flying in a formation.
+	const FormationPattern *GetFormationPattern() const;
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -473,6 +489,8 @@ public:
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
+	// Pattern to use when flying in a formation (nullptr to clear formation).
+	void SetFormationPattern(const FormationPattern *formation);
 
 	bool CanPickUp(const Flotsam &flotsam) const;
 
@@ -531,6 +549,9 @@ private:
 	// This is only useful for the player's ships.
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
+
+	// Helper function for jettisoning flotsam.
+	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
 
 private:
@@ -609,6 +630,7 @@ private:
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
+	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
 
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
@@ -698,6 +720,7 @@ private:
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
 	std::set<const Flotsam *> tractorFlotsam;
+	const FormationPattern *formationPattern = nullptr;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
@@ -705,7 +728,3 @@ private:
 
 	bool removeBays = false;
 };
-
-
-
-#endif
