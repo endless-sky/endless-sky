@@ -812,13 +812,13 @@ ship "Bulwark"
 	attributes
 		category "Medium Warship"
 		"cost" 4360000
-		"shields" 7000
-		"hull" 5600
+		"shields" 8000
+		"hull" 6500
 		"required crew" 19
 		"bunks" 31
-		"mass" 1722
-		"drag" 21
-		"heat dissipation" .27
+		"mass" 1582
+		"drag" 20.1
+		"heat dissipation" .28
 		"fuel capacity" 500
 		"cargo space" 12
 		"outfit space" 521
