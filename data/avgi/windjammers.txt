@@ -37,7 +37,7 @@ mission "Avgi: Gossamer Sailors"
 		never
 	npc save
 		government "Indigenous Lifeform (Tree)"
-		personality timid uninterested mining
+		personality timid uninterested mining mute
 		system Gossamer
 		fleet
 			names tree
@@ -62,7 +62,7 @@ mission "Avgi: Gossamer Sailors"
 
 	npc save
 		government "Indigenous Lifeform (Tree Two)"
-		personality timid uninterested mining
+		personality timid uninterested mining mute
 		system Gossamer
 		fleet
 			names tree2

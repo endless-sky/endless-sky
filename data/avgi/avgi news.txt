@@ -382,7 +382,7 @@ news "avgi astronomer"
 		not attributes "aberrant siege"
 	name
 		word
-			"Avgi"
+			"Avgi "
 		word
 			"Astronomer"
 			"Astrophysicist"
@@ -486,7 +486,7 @@ news "avgi doctor"
 		not attributes "aberrant siege"
 	name
 		word
-			"Avgi"
+			"Avgi "
 		word
 			"doctor"
 			"healer"

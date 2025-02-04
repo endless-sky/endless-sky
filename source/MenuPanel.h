@@ -32,7 +32,7 @@ class UI;
 class MenuPanel : public Panel {
 public:
 	MenuPanel(PlayerInfo &player, UI &gamePanels);
-	~MenuPanel();
+	virtual ~MenuPanel();
 
 	virtual void Step() override;
 	virtual void Draw() override;
