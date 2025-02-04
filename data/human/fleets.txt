@@ -18,6 +18,7 @@ fleet "Small Southern Merchants"
 	personality
 		confusion 40
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 60
 		"Shuttle"
 	variant 30
@@ -83,6 +84,7 @@ fleet "Large Southern Merchants"
 	personality
 		confusion 30
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 20
 		"Freighter"
 		"Hawk"
@@ -176,6 +178,7 @@ fleet "Small Core Merchants"
 	personality
 		confusion 30
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 40
 		"Shuttle"
 	variant 60
@@ -244,6 +247,7 @@ fleet "Large Core Merchants"
 	personality
 		confusion 20
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 30
 		"Freighter" 2
 		"Quicksilver" 2
@@ -415,6 +419,7 @@ fleet "Paradise Merchants"
 	personality
 		confusion 50
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 20
 		"Shuttle"
 	variant 20
@@ -485,6 +490,7 @@ fleet "Small Northern Merchants"
 	personality
 		confusion 40
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 50
 		"Shuttle"
 	variant 40
@@ -556,6 +562,7 @@ fleet "Large Northern Merchants"
 	personality
 		confusion 30
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 20
 		"Freighter" 2
 		"Firebird"
@@ -770,6 +777,7 @@ fleet "Small Human Merchants (Hai)"
 	personality
 		confusion 40
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 50
 		"Shuttle"
 	variant 40
@@ -831,6 +839,7 @@ fleet "Large Human Merchants (Hai)"
 	personality
 		confusion 30
 		timid frugal appeasing
+	formation "Delta (tailing)"
 	variant 20
 		"Freighter" 2
 		"Firebird (Hai Shields)"
@@ -1060,6 +1069,7 @@ fleet "Small Free Worlds"
 	cargo 1
 	personality
 		heroic disables frugal opportunistic
+	formation "Delta (tailing)"
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -1121,6 +1131,7 @@ fleet "Large Free Worlds"
 	cargo 1
 	personality
 		heroic disables frugal opportunistic
+	formation "Delta (tailing)"
 	variant 10
 		"Bastion"
 	variant 5
@@ -1229,6 +1240,7 @@ fleet "Small Militia"
 	personality
 		heroic frugal
 		confusion 20
+	formation "Delta (tailing)"
 	variant 8
 		"Hawk"
 		"Sparrow"
@@ -1284,6 +1296,7 @@ fleet "Large Militia"
 	personality
 		heroic frugal
 		confusion 20
+	formation "Delta (tailing)"
 	variant 10
 		"Bastion"
 	variant 5
@@ -1352,6 +1365,7 @@ fleet "Small Republic"
 	cargo 0
 	personality
 		heroic opportunistic
+	formation "Delta (tailing)"
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -1374,6 +1388,7 @@ fleet "Large Republic"
 	cargo 0
 	personality
 		heroic opportunistic
+	formation "Delta (tailing)"
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -1416,6 +1431,7 @@ fleet "Republic Logistics"
 	cargo 3
 	personality
 		heroic opportunistic
+	formation "Delta (tailing)"
 	variant 19
 		"Auxiliary"
 		"Dropship" 2
@@ -1469,6 +1485,7 @@ fleet "Navy Surveillance"
 	cargo 0
 	personality
 		surveillance opportunistic
+	formation "Delta (tailing)"
 	variant 10
 		"Cruiser"
 		"Surveillance Drone" 4
@@ -1481,6 +1498,7 @@ fleet "Small Deep Merchants"
 	cargo 0
 	personality
 		heroic
+	formation "Delta (tailing)"
 	variant 4
 		"Aerie"
 		"Dagger" 4
@@ -1515,6 +1533,7 @@ fleet "Large Deep Merchants"
 	cargo 0
 	personality
 		heroic
+	formation "Delta (tailing)"
 	variant 5
 		"Aerie"
 		"Dagger" 4
@@ -1578,6 +1597,7 @@ fleet "Small Deep Security"
 	cargo 0
 	personality
 		heroic
+	formation "Delta (tailing)"
 	variant 4
 		"Aerie"
 		"Dagger" 4
@@ -1608,6 +1628,7 @@ fleet "Large Deep Security"
 	cargo 0
 	personality
 		heroic
+	formation "Delta (tailing)"
 	variant 5
 		"Aerie"
 		"Dagger" 4
@@ -1667,6 +1688,7 @@ fleet "Small Oathkeeper"
 	cargo 0
 	personality
 		heroic opportunistic
+	formation "Delta (tailing)"
 	variant 6
 		"Rainmaker" 2
 	variant 5
@@ -1689,6 +1711,7 @@ fleet "Large Oathkeeper"
 	cargo 0
 	personality
 		heroic opportunistic
+	formation "Delta (tailing)"
 	variant 5
 		"Frigate" 2
 		"Rainmaker"
@@ -1729,6 +1752,7 @@ fleet "Small Syndicate"
 	cargo 2
 	personality
 		heroic
+	formation "Delta (tailing)"
 	variant 3
 		"Quicksilver" 3
 	variant 3
@@ -1754,6 +1778,7 @@ fleet "Large Syndicate"
 	cargo 2
 	personality
 		heroic
+	formation "Delta (tailing)"
 	variant 3
 		"Splinter"
 		"Quicksilver" 3
