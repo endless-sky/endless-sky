@@ -2270,7 +2270,10 @@ mission "Acorn Delights: Part 4"
 			label reallyjoin
 			action
 				set "acorn delights: eeeya joined"
-			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in normal Hai space before officially joining the Unfettered. Could you take me back to <planet> so that I can sell off the factory? And Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies!"`
+			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in normal Hai space before officially joining the Unfettered."`
+			choice
+				`	"Why did you change your mind so quickly?"`
+			`	"Well, even without your input, I probably would have joined the Unfettered - as I said a while ago, my son's entire family died; Anoo's family is here. Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies! And <first>, would you take me back to <planet> so that I can sell off the factory?"`
 			choice
 				`	"Sure thing. I'd be glad to take you back."`
 					accept
