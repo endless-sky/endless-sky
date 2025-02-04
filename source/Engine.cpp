@@ -2345,9 +2345,8 @@ void Engine::DoCollisions(Projectile &projectile)
 
 		const DamageProfile damage(projectile.GetInfo(range));
 
-		// If this projectile has a blast radius, find all ships within its
+		// If this projectile has a blast radius, find all ships and minables within its
 		// radius. Otherwise, only one is damaged.
-		// TODO: Also deal blast damage to minables?
 		double blastRadius = weapon.BlastRadius();
 		if(blastRadius)
 		{
@@ -2372,6 +2371,10 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
+			blastCollisions.clear();
+			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
+			for(Body *body : blastCollisions)
+				reinterpret_cast<Minable *>(body)->TakeDamage(projectile);
 		}
 		else if(hit)
 		{

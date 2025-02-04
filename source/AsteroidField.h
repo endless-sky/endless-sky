@@ -63,6 +63,8 @@ public:
 	void CollideAsteroids(const Projectile &projectile, std::vector<Collision> &result) const;
 	// Check if the given projectile collides with any minables.
 	void CollideMinables(const Projectile &projectile, std::vector<Collision> &result) const;
+	// Get a list of minables affected by an explosion with blast radius.
+	void MinablesCollisionsCircle(const Point &center, double radius, std::vector<Body *> &result) const;
 
 	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;
