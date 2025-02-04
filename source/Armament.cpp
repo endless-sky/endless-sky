@@ -225,10 +225,10 @@ set<const Outfit *> Armament::RestockableAmmo() const
 
 
 // Adjust the aim of the turrets.
-void Armament::Aim(const FireCommand &command)
+void Armament::Aim(const Ship &ship, const FireCommand &command)
 {
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
-		hardpoints[i].Aim(command.Aim(i));
+		hardpoints[i].Aim(ship, command.Aim(i));
 }
 
 
