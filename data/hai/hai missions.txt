@@ -2139,7 +2139,7 @@ mission "Acorn Delights: Part 1"
 				`	"I have other places to be."`
 					decline
 			label tons
-			`	"Well I... I don't know... I cook when I'm worried, and Anoo has been missing for three months! I've vacuum-sealed all three tons of cookies. They should last a year or two. Maybe she'll share them with her friends? She has many friends! Tons of friends! They all miss her...`
+			`	"Well, I... I don't know... I cook when I'm worried, and Anoo has been missing for three months! I've vacuum-sealed all three tons of cookies. They should last a year or two. Maybe she'll share them with her friends? She has many friends! Tons of friends! They all miss her...`
 				goto questions
 			label gone
 			`	"Anoo graduated from a medical academy on Frostmark four months ago, near the top of her class! A prominent hospital on Hai-home needed a new trauma surgeon and said she would be perfect for the job. She accepted the position and said she would be on vacation for a few weeks.`
