@@ -38,7 +38,6 @@ mission "Avgi: First Contact"
 		attributes "avgi"
 	destination "Peripheria"
 	mark "Arche"
-	mark "Ballad"
 	clearance
 	on offer
 		set "avgi: aberrant siege"
@@ -82,20 +81,20 @@ mission "Avgi: First Contact"
 			action
 				set "avgi: fired on by planets"
 			choice
-				`	(Attempt to land regardless)`
+				`	(Attempt to land regardless.)`
 					goto explode
 					to display
 						"flagship attribute: shields" + "flagship attribute: hull" <= 9000 * 1000
-				`	(Attempt to land regardless)`
+				`	(Attempt to land regardless.)`
 					goto hit
 					to display
 						"flagship attribute: shields" + "flagship attribute: hull" > 9000 * 1000
 						"flagship attribute: shields" + "flagship attribute: hull" < 60000 * 1000
-				`	(Attempt to land regardless)`
+				`	(Attempt to land regardless.)`
 					goto scratched
 					to display
 						"flagship attribute: shields" + "flagship attribute: hull" >= 60000 * 1000
-				`	(Move to a higher orbit)`
+				`	(Move to a higher orbit.)`
 					goto orbit
 
 			label explode
@@ -207,6 +206,13 @@ mission "Avgi: First Contact"
 		"reputation: Avgi (Consonance)" >?= 5
 		"reputation: Avgi (Twilight Guard)" >?= 5
 
+	on enter "Arche"
+		mark "Ballad"
+		unmark "Arche"
+
+	on enter "Ballad"
+		unmark "Ballad"
+
 	on fail
 		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
 
@@ -284,7 +290,7 @@ mission "Avgi: Humans From the Deep"
 				set "avgi: asked about avgi"
 			`	She twitches her wings slightly in what might be laughter. "Amusement. That would take a very long time to do in any detail, but I will make an attempt." Reverting back to her own language, she consults with the two other Avgi for a minute before turning back to you.`
 			`	"Pride, accomplishment. We are the Avgi. Our six systems, with seven worlds, and hundreds of orbitals each the size of a city, together a thousand polities united towards the betterment of civilization and progress-"`
-			`	Galano interrupts, his translator's voice sounding somehow aged. "Remembrance. But before all that, before the hyperdrive, we still crossed the void between stars. I was a child when the last true starship launched, but I remember. Long before we learned to surpass light, we settled the worlds beyond our home star system, at great cost and effort. We first touched space four centuries ago, and-"`
+			`	Galano interrupts, his translator's voice sounding somehow aged. "Remembrance. But before all that, before the hyperdrive, we still crossed the void between stars. I was a child when the last true starship launched, but I remember. Long before we learned to surpass light, we settled the worlds beyond our home star system, at great cost and effort. We first touched space six centuries ago, and-"`
 			`	He is cut off by Prasinos. "Rebuke. You should start from the beginning, long before we left Aviskir. Our ancestors made their homes around the springs in the valleys of the Fel Mountains, and spread across our planet for millennia. From fire to spears to the atom, our skill in turning the natural world to our will grew, and with it our ability to form civilization: groups of Avgi bound together by more than close kinship or geography, instead by ideology and heritage and religion. And with that came conflict, each polity striving with the others to-"`
 			`	Now both Asime and Galano make noises of dissent, and Galano, sounding rather hurried, interrupts. "Urgency. Perhaps we are not as united as you, the humans, and it is true that we have fought many wars among ourselves. Emphasis. But that time is long since past. We saw reason, and so the Consonance was created, governed by an Assembly of Polities to represent every division of the Avgi, small or large. From the nation-states to the ideolopoli, a consensus government of our species to resolve disputes, to prevent another Great War. And while there have still been wars fought by the foolish and shortsighted, there has not been a nuclear initiation on Aviskir's surface in more than a century. The Assembly, for all its faults, works."`
 			`	Asime adds, "Truth. And we are what the Avgi need, now that all of that could be lost to the Incursion, to the Aberrant it spawned. We need what humanity has, a united Republic to lead all of our people."`
@@ -490,6 +496,8 @@ mission "Avgi: Defend Ensemble 2"
 	description "Help the Avgi in the Ensemble system hold off an Aberrant raid until help arrives."
 	source "Navigeo Yards"
 	destination "Weledos"
+	passengers 1
+	blocked "You'll need a free bunk on the <ship> to take Darius to <planet>."
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
@@ -815,6 +823,8 @@ mission "Avgi: Dissonance Outreach 0.5"
 	passengers 2
 	source "Feo Platform"
 	destination "Peripheria"
+	passengers 2
+	blocked "You'll need two free bunks on the <ship> for Darius and Sora."
 	to offer
 		has "Avgi: Frontline Combat: done"
 	on offer
