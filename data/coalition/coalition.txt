@@ -1738,3 +1738,5 @@ trade
 		"mandible polish"
 		"anodized titanium horseshoes"
 		"stainless steel horseshoes"
+		"carapace polish"
+		"longcowboy hats"
