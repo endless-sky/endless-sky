@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weather.h"
 
 class DamageDealt;
+class Minable;
 class Ship;
 class Weapon;
 
@@ -37,14 +38,15 @@ public:
 
 	// Calculate the damage dealt to the given ship.
 	DamageDealt CalculateDamage(const Ship &ship, bool ignoreBlast = false) const;
+	MinableDamageDealt CalculateDamage(const Minable &minable) const;
 
 
 private:
 	// Calculate the shared k and rSquared variables for
 	// any ship hit by a blast.
 	void CalculateBlast();
-	// Determine the damage scale for the given ship.
-	double Scale(double scale, const Ship &ship, bool blast) const;
+	// Determine the damage scale for the given body.
+	double Scale(double scale, const Body &body, bool blast) const;
 	// Populate the given DamageDealt object with values.
 	void PopulateDamage(DamageDealt &damage, const Ship &ship) const;
 

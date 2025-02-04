@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "MinableDamageDealt.h"
 #include "Outfit.h"
 #include "pi.h"
 #include "Projectile.h"
@@ -258,10 +259,10 @@ bool Minable::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 
 // Damage this object (because a projectile collided with it).
-void Minable::TakeDamage(const Projectile &projectile)
+void Minable::TakeDamage(const MinableDamageDealt &damage)
 {
-	hull -= projectile.GetWeapon().MinableDamage() + projectile.GetWeapon().RelativeMinableDamage() * maxHull;
-	prospecting += projectile.GetWeapon().Prospecting();
+	hull -= damage.hullDamage;
+	prospecting += damage.prospecting;
 }
 
 
@@ -269,6 +270,13 @@ void Minable::TakeDamage(const Projectile &projectile)
 double Minable::Hull() const
 {
 	return min(1., hull / maxHull);
+}
+
+
+
+double Minable::MaxHull() const
+{
+	return maxHull;
 }
 
 

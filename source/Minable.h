@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class Effect;
 class Flotsam;
+class MinableDamageDealt;
 class Outfit;
 class Projectile;
 class Visual;
@@ -79,7 +80,7 @@ public:
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
 	// Damage this object (because a projectile collided with it).
-	void TakeDamage(const Projectile &projectile);
+	void TakeDamage(const MinableDamageDealt &damage);
 
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
@@ -89,6 +90,8 @@ public:
 
 	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
 	double Hull() const;
+	// Get max hull of this asteroid.
+	double MaxHull() const;
 
 
 private:

@@ -2374,7 +2374,10 @@ void Engine::DoCollisions(Projectile &projectile)
 			blastCollisions.clear();
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
 			for(Body *body : blastCollisions)
-				reinterpret_cast<Minable *>(body)->TakeDamage(projectile);
+			{
+				auto minable = reinterpret_cast<Minable *>(body);
+				minable->TakeDamage(damage.CalculateDamage(*minable));
+			}
 		}
 		else if(hit)
 		{
@@ -2385,7 +2388,10 @@ void Engine::DoCollisions(Projectile &projectile)
 					eventQueue.emplace_back(gov, shipHit, eventType);
 			}
 			else if(collisionType == CollisionType::MINABLE)
-				reinterpret_cast<Minable *>(hit)->TakeDamage(projectile);
+			{
+				auto minable = reinterpret_cast<Minable *>(hit);
+				minable->TakeDamage(damage.CalculateDamage(*minable));
+			}
 		}
 
 		if(shipHit)
