@@ -551,7 +551,7 @@ mission "Avgi: Cylinder Construction"
 			label whenupdate
 			action
 				set "avgi: asked about whenupdate"
-			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Napigeo Yards instead of here."`
+			`	He thrums with laughter. "The trillion credit question, is it not, amusement? The answer I give the Assembly is that it will be finished when they supply us with the requisite materials and workforce to do so. But the War takes precedence, as it must, and so the steel and nanofibers and ceramics that we must have before we can fill this cylinder with atmosphere are instead used to build warships, and the engineers and workers with any shred of experience are sent to the Navigeo Yards instead of here."`
 			choice
 				`	"Well, it makes sense that fighting the Aberrant would take priority."`
 				`	"Is building this station as important as fighting the Aberrant?"`
@@ -564,13 +564,13 @@ mission "Avgi: Cylinder Construction"
 				set "avgi: asked about oneil"
 			`	"A Class Two rotating cylinder habitat. Unless you use the Hekkedian classification system, in which case it is a Type One orbital habitat station. Of course, the Freosi would call it a Lieno-Drareg Cylinder, but that name hasn't been fashionable in quite some time."`
 			`	"I was more asking about what it'll look like when it's done," you say."`
-			`	"Amusement. I know, I know, I was just messing with you." He gestures out the window towards the steel skeleton of the unfinished station. "Six kilometers wide and twelve long, with two-hundred-sixty-six ribs of nickel-iron roidsteel and ninety spinal columns of carbon nanofilament. Once the base frame is complete, and it very nearly is, we will begin plating it with sheets of aerogel and graphene, with a fluorinated polymer layer coating the inside. After that my job is done, and we hand the project over to the ecosystem engineers.`
+			`	"Amusement. I know, I know, I was just messing with you." He gestures out the window towards the steel skeleton of the unfinished station. "Six kilometers wide and twelve long, with two-hundred-sixty-six ribs of nickel-iron roidsteel and ninety spinal columns of carbon nanofilament. Once the base frame is complete, and it very nearly is, we will begin plating it with sheets of aerogel and graphene, with a fluorinated polymer layer coating the inside. After that my job is done, and we hand the project over to the ecosystem engineers."`
 			choice
 				`	"What do they do?"`
 					goto nerds
 				`	"That sounds like a lot."`
 
-			`	"Appreciation. Oh, it is. Over seven hundred megatons of raw material, scraped off moons and torn from asteroids. But it will be worth it, in the end."`
+			`	"Appreciation. Oh, it is. Over seven hundred megatons of raw material, scraped off moons and torn from asteroids. But it will be worth it, in the end.`
 
 			label nerds
 			`	"Of course, the entire purpose of this is to provide enough living space for the Avgi who escaped the Aberrant. And everyone would rather live in an open environment, instead of pretending a garden in a smaller station is sufficient. Thus, the ecosystem engineers come in with their millions of tons of soil to dirty up our nice shiny metal and nanofilaments, and grow grass and trees and fungus to make this place a little less dreary. I suppose we'll make most of the soil in bulk from crushed carbonaceous asteroids, and seed it with whatever samples we have from Aviskir."`
@@ -628,7 +628,7 @@ mission "Avgi: Infocourier Encounter"
 					defer
 
 			`	You ask a few passing Avgi, and eventually one is able to answer your question.`
-			`	"Probably an infocourier ship, hauling information and databases instead of cargo. The Guard sometimes sends ships to market if they've taken a beating and aren't worth fixing up to combat standards, which is probably what happened there.`
+			`	"Probably an infocourier ship, hauling information and databases instead of cargo. The Guard sometimes sends ships to market if they've taken a beating and aren't worth fixing up to combat standards, which is probably what happened there."`
 			`	You thank the Avgi for their time, and are about to leave when you spot a pale yellow Avgi climbing on board the exact ship you've been talking about. You might as well see if he's willing to chat.`
 			`	"Hey, do you have a moment?" you ask as you jog over.`
 			`	The Avgi looks down from atop the Polari. "Invitation, I do. The name's Hansa, and you are?"`
