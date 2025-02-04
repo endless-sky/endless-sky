@@ -24,6 +24,7 @@ ship "Llama"
 		"mass" 100
 		"drag" .59
 		"diba gun ports" -1
+		"diba ship mounts" 1
 		"heat dissipation" .27
 		"outfit space" 0
 		"weapon capacity" 0
@@ -71,6 +72,7 @@ ship "Ithquaya"
 		"drag" 1.5
 		"heat dissipation" .2
 		"diba gun ports" -2
+		"diba ship mounts" 2
 		"fuel capacity" 300
 		"cargo space" 1
 		"outfit space" 0
@@ -114,6 +116,59 @@ ship "Ithquaya"
 ship "Ithquaya" "Ithquaya (Sprite Two)"
 	sprite "ship/ithquaya two"
 	thumbnail "thumbnail/ithquaya two"
+	swizzle 0
+	attributes
+		category "Interceptor"
+		"cost" 1000000
+		"shields" 2000
+		"hull" 1000
+		"automaton" 1
+		"bunks" 1
+		"mass" 150
+		"drag" 1.5
+		"heat dissipation" .2
+		"diba gun ports" -2
+		"diba ship mounts" 2
+		"fuel capacity" 300
+		"cargo space" 1
+		"outfit space" 0
+		"weapon capacity" 0
+		"thrust" 40
+		"turn" 320
+		"reverse thrust" 2
+		"hull repair" .02
+		"shield generation" .2
+		"shield delay" 4
+		"self destruct" .2
+		"scram drive" .2
+		"jump fuel" 100
+		"hyperdrive" 1
+		"energy generation" 1
+		licenses
+			Diba
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Diba Anti-Missile"
+		"Diba Laser Turret"
+	turret 0 -34 "Diba Anti-Missile" # top
+		angle 0
+		arc -30 30
+	turret 0 34 "Diba Laser Turret" # bottom
+		angle 180
+		arc -30 30
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 20
+	explode "small explosion" 50
+	explode "medium explosion" 50
+	explode "large explosion" 20
+	"final explode" "final explosion medium"
+	description "The Ithquaya is the smallest ship the Diba produce, and the most common. In terms of combat ability, the Ithquaya has the least of all hyperspace-capable Diba ships. However, it is the fastest."
 
 ship "Arbquaya"
 	sprite "ship/arbquaya one"
@@ -132,6 +187,7 @@ ship "Arbquaya"
 		"fuel capacity" 400
 		"cargo space" 2
 		"diba gun ports" -4
+		"diba ship mounts" 4
 		"outfit space" 0
 		"weapon capacity" 0
 		"thrust" 80
@@ -153,14 +209,15 @@ ship "Arbquaya"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Diba Laser Turret" 4
+		"Diba Anti-Missile"
+		"Diba Laser Turret" 3
 	engine 0 0
 	bay Fighter -2 15.5
 		over
 	turret 0 -46 "Diba Laser Turret" # top
 		angle 0
 		arc -30 30
-	turret 0 46 "Diba Laser Turret" # bottom
+	turret 0 46 "Diba Anti-Missile" # bottom
 		angle 180
 		arc -30 30
 	turret -46 0 "Diba Laser Turret" # left
@@ -196,6 +253,7 @@ ship "Arbquaya (Sprite Two)"
 		"fuel capacity" 400
 		"cargo space" 2
 		"diba gun ports" -4
+		"diba ship mounts" 4
 		"outfit space" 0
 		"weapon capacity" 0
 		"thrust" 80
@@ -217,7 +275,8 @@ ship "Arbquaya (Sprite Two)"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Diba Laser Turret" 4
+		"Diba Anti-Missile" 2
+		"Diba Laser Turret" 2
 	engine 0 0
 	bay Fighter 1 17.5
 		over
@@ -227,10 +286,10 @@ ship "Arbquaya (Sprite Two)"
 	turret 0 46 "Diba Laser Turret" # bottom
 		angle 180
 		arc -30 30
-	turret -46 0 "Diba Laser Turret" # left
+	turret -46 0 "Diba Anti-Missile" # left
 		angle 270
 		arc -30 30
-	turret 46 0 "Diba Laser Turret" # right
+	turret 46 0 "Diba Anti-Missile" # right
 		angle 90
 		arc -30 30
 	leak "leak" 50 50
@@ -260,6 +319,7 @@ ship "Tamquaya"
 		"fuel capacity" 500
 		"cargo space" 4
 		"diba gun ports" -8
+		"diba ship mounts" 8
 		"outfit space" 0
 		"weapon capacity" 0
 		"thrust" 120
@@ -339,6 +399,7 @@ ship "Tamquaya" "Tamquaya (Sprite Two)"
 		"fuel capacity" 500
 		"cargo space" 4
 		"diba gun ports" -8
+		"diba ship mounts" 8
 		"outfit space" 0
 		"weapon capacity" 0
 		"thrust" 120
@@ -360,8 +421,8 @@ ship "Tamquaya" "Tamquaya (Sprite Two)"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Diba Anti-Missile" 2
-		"Diba Laser Turret" 6
+		"Diba Anti-Missile" 4
+		"Diba Laser Turret" 4
 	engine 0 0
 	bay Fighter 0.5 -24.5
 		over
@@ -373,10 +434,10 @@ ship "Tamquaya" "Tamquaya (Sprite Two)"
 	turret 0 90 "Diba Anti-Missile" # bottom
 		angle 180
 		arc -30 30
-	turret 90 0 "Diba Laser Turret" # right
+	turret 90 0 "Diba Anti-Missile" # right
 		angle 270
 		arc -30 30
-	turret -90 0 "Diba Laser Turret" # left
+	turret -90 0 "Diba Anti-Missile" # left
 		angle 90
 		arc -30 30
 	turret -60 -60 "Diba Laser Turret" # top left
@@ -417,7 +478,8 @@ ship "Tahquaya"
 		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 8
-		"diba gun ports" -16
+		"diba gun ports" -8
+		"diba ship mounts" 8
 		"outfit space" 0
 		"weapon capacity" 0
 		"thrust" 160
@@ -499,7 +561,8 @@ ship "Tahquaya (Sprite Two)"
 		"heat dissipation" .8
 		"fuel capacity" 600
 		"cargo space" 8
-		"diba gun ports" -16
+		"diba gun ports" -8
+		"diba ship mounts" 8
 		"outfit space" 0
 		"weapon capacity" 0
 		"thrust" 160
@@ -521,7 +584,8 @@ ship "Tahquaya (Sprite Two)"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Diba Laser Turret" 8
+		"Diba Anti-Missile" 4
+		"Diba Laser Turret" 4
 	engine 0 0
 	bay Fighter 5 -33
 		over
@@ -531,16 +595,16 @@ ship "Tahquaya (Sprite Two)"
 		over
 	bay Fighter 5 31
 		over
-	turret 0 -100 "Diba Laser Turret" # top
+	turret 0 -100 "Diba Anti-Missile" # top
 		angle 0
 		arc -45 45
-	turret 0 100 "Diba Laser Turret" # bottom
+	turret 0 100 "Diba Anti-Missile" # bottom
 		angle 180
 		arc -45 45
-	turret -100 0 "Diba Laser Turret" # left
+	turret -100 0 "Diba Anti-Missile" # left
 		angle 270
 		arc -45 45
-	turret 100 0 "Diba Laser Turret" # right
+	turret 100 0 "Diba Anti-Missile" # right
 		angle 90
 		arc -45 45
 	turret -70 -70 "Diba Laser Turret" # top left
