@@ -910,6 +910,7 @@ void PlayerInfo::DoAccounting()
 		message += ".";
 		Messages::Add(message, Messages::Importance::High, true);
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+
 		if(tributeIncome)
 		{
 			// Apply reputation penalties for dominated planets.
