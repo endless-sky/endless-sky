@@ -41,7 +41,7 @@ ship "Llama"
 			"hit force" 180
 	outfits
 		"Diba Laser Turret"
-	turret 0 -21 "Diba Laser Turret"
+	turret 11.5 1 "Diba Laser Turret"
 		angle 0
 		arc -5 5
 	engine 3 36.5
@@ -155,7 +155,7 @@ ship "Arbquaya"
 	outfits
 		"Diba Laser Turret" 4
 	engine 0 0
-	bay Fighter 0 28.5
+	bay Fighter -2 15.5
 		over
 	turret 0 -46 "Diba Laser Turret" # top
 		angle 0
@@ -179,9 +179,69 @@ ship "Arbquaya"
 	"final explode" "final explosion medium"
 	description "The Arbquaya is an all-rounder. Carrying four turrets and a fighter, while still being fairly mobile, the Arbquaya is the best flagship of small Diba fleets, though for the larger Diba warfleets it is still dwarfed by the Tahquaya."
 
-ship "Arbquaya" "Arbquaya (Sprite Two)"
+ship "Arbquaya (Sprite Two)"
 	sprite "ship/arbquaya two"
 	thumbnail "thumbnail/arbquaya two"
+	swizzle 0
+	attributes
+		category "Light Warship"
+		"cost" 2000000
+		"shields" 4000
+		"hull" 2000
+		"automaton" 1
+		"bunks" 1
+		"mass" 300
+		"drag" 5
+		"heat dissipation" .4
+		"fuel capacity" 400
+		"cargo space" 2
+		"diba gun ports" -4
+		"outfit space" 0
+		"weapon capacity" 0
+		"thrust" 80
+		"turn" 440
+		"reverse thrust" 4
+		"hull repair" .04
+		"shield generation" .4
+		"shield delay" 8
+		"self destruct" .5
+		"scram drive" .4
+		"jump fuel" 100
+		"hyperdrive" 1
+		"energy generation" 1
+		licenses
+			Diba
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Diba Laser Turret" 4
+	engine 0 0
+	bay Fighter 1 17.5
+		over
+	turret 0 -46 "Diba Laser Turret" # top
+		angle 0
+		arc -30 30
+	turret 0 46 "Diba Laser Turret" # bottom
+		angle 180
+		arc -30 30
+	turret -46 0 "Diba Laser Turret" # left
+		angle 270
+		arc -30 30
+	turret 46 0 "Diba Laser Turret" # right
+		angle 90
+		arc -30 30
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 20
+	explode "small explosion" 60
+	explode "medium explosion" 60
+	explode "large explosion" 30
+	"final explode" "final explosion medium"
+	description "The Arbquaya is an all-rounder. Carrying four turrets and a fighter, while still being fairly mobile, the Arbquaya is the best flagship of small Diba fleets, though for the larger Diba warfleets it is still dwarfed by the Tahquaya."
 
 ship "Tamquaya"
 	sprite "ship/tamquaya one"
@@ -224,9 +284,9 @@ ship "Tamquaya"
 		"Diba Anti-Missile" 2
 		"Diba Laser Turret" 6
 	engine 0 0
-	bay Fighter 0 31
+	bay Fighter 0 -27.5
 		over
-	bay Fighter 0 -31
+	bay Fighter 0 25
 		over
 	turret 0 -90 "Diba Anti-Missile" # top
 		angle 0
@@ -265,6 +325,81 @@ ship "Tamquaya"
 ship "Tamquaya" "Tamquaya (Sprite Two)"
 	sprite "ship/tamquaya two"
 	thumbnail "thumbnail/tamquaya two"
+	swizzle 0
+	attributes
+		category "Medium Warship"
+		"cost" 4000000
+		"shields" 8000
+		"hull" 4000
+		"automaton" 1
+		"bunks" 1
+		"mass" 800
+		"drag" 8
+		"heat dissipation" .6
+		"fuel capacity" 500
+		"cargo space" 4
+		"diba gun ports" -8
+		"outfit space" 0
+		"weapon capacity" 0
+		"thrust" 120
+		"turn" 560
+		"reverse thrust" 8
+		"hull repair" .08
+		"shield generation" .8
+		"shield delay" 16
+		"self destruct" .7
+		"scram drive" .6
+		"jump fuel" 100
+		"hyperdrive" 1
+		"energy generation" 1
+		licenses
+			Diba
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Diba Anti-Missile" 2
+		"Diba Laser Turret" 6
+	engine 0 0
+	bay Fighter 0.5 -24.5
+		over
+	bay Fighter 0.5 22.5
+		over
+	turret 0 -90 "Diba Anti-Missile" # top
+		angle 0
+		arc -30 30
+	turret 0 90 "Diba Anti-Missile" # bottom
+		angle 180
+		arc -30 30
+	turret 90 0 "Diba Laser Turret" # right
+		angle 270
+		arc -30 30
+	turret -90 0 "Diba Laser Turret" # left
+		angle 90
+		arc -30 30
+	turret -60 -60 "Diba Laser Turret" # top left
+		angle 315
+		arc -30 30
+	turret 60 -60 "Diba Laser Turret" # top right
+		angle 45
+		arc -30 30
+	turret -60 60 "Diba Laser Turret" # bottom left
+		angle 225
+		arc -30 30
+	turret 60 60 "Diba Laser Turret" # bottom right
+		angle 135
+		arc -30 30
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 30
+	explode "small explosion" 90
+	explode "medium explosion" 100
+	explode "large explosion" 35
+	"final explode" "final explosion large"
+	description "The Tamquaya's blueprint was the first of all Diba ships, but was thrown out in favor of the Tahquaya. But when the Alphas who control the Diba realized they needed a faster ship than the bulky Tahquaya, the Tamquaya was pulled out of the scrap heap and put into mass production."
 
 ship "Tahquaya"
 	sprite "ship/tahquaya one"
@@ -306,13 +441,13 @@ ship "Tahquaya"
 	outfits
 		"Diba Laser Turret" 8
 	engine 0 0
-	bay Fighter 0 35.5
+	bay Fighter 2 -32.5
 		over
-	bay Fighter 0 -25.5
+	bay Fighter 1 33
 		over
-	bay Fighter -30 4
+	bay Fighter -31.5 0
 		over
-	bay Fighter 30 4
+	bay Fighter 33 0
 		over
 	turret 0 -100 "Diba Laser Turret" # top
 		angle 0
@@ -346,8 +481,86 @@ ship "Tahquaya"
 	explode "medium explosion" 100
 	explode "large explosion" 50
 	"final explode" "final explosion large"
-	description "The Tahquaya is truly an imposing sight. At four times the size of the next largest Diba ship, this monstrosity was built for one purpose - to utterly annihilate any enemies."
+	description "The Tahquaya is truly an imposing sight. At four times the size of the next largest Diba ship, this monstrosity was built for one purpose - to utterly annihilate any enemies. Although it has the same number of swivel gun ports as the previous Diba ship iteration, twice the bays and a wider swivel range more than make up for the non-increase in firepower."
 
-ship "Tahquaya" "Tahquaya (Sprite Two)"
+ship "Tahquaya (Sprite Two)"
 	sprite "ship/tahquaya two"
 	thumbnail "thumbnail/tahquaya two"
+	swizzle 0
+	attributes
+		category "Heavy Warship"
+		"cost" 8000000
+		"shields" 16000
+		"hull" 8000
+		"automaton" 1
+		"bunks" 1
+		"mass" 1200
+		"drag" 13
+		"heat dissipation" .8
+		"fuel capacity" 600
+		"cargo space" 8
+		"diba gun ports" -16
+		"outfit space" 0
+		"weapon capacity" 0
+		"thrust" 160
+		"turn" 680
+		"reverse thrust" 8
+		"hull repair" .08
+		"shield generation" .8
+		"shield delay" 32
+		"self destruct" .9
+		"scram drive" .4
+		"jump fuel" 100
+		"hyperdrive" 1
+		"energy generation" 1
+		licenses
+			Diba
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Diba Laser Turret" 8
+	engine 0 0
+	bay Fighter 5 -33
+		over
+	bay Fighter -26 -1
+		over
+	bay Fighter 37.5 1
+		over
+	bay Fighter 5 31
+		over
+	turret 0 -100 "Diba Laser Turret" # top
+		angle 0
+		arc -45 45
+	turret 0 100 "Diba Laser Turret" # bottom
+		angle 180
+		arc -45 45
+	turret -100 0 "Diba Laser Turret" # left
+		angle 270
+		arc -45 45
+	turret 100 0 "Diba Laser Turret" # right
+		angle 90
+		arc -45 45
+	turret -70 -70 "Diba Laser Turret" # top left
+		angle 315
+		arc -45 45
+	turret 70 70 "Diba Laser Turret" # bottom right
+		angle 135
+		arc -45 45
+	turret -70 70 "Diba Laser Turret" # bottom left
+		angle 225
+		arc -45 45
+	turret 70 -70 "Diba Laser Turret" # top right
+		angle 45
+		arc -45 45
+	leak "leak" 50 50
+	leak "flame" 50 80
+	leak "big leak" 90 30
+	explode "tiny explosion" 50
+	explode "small explosion" 50
+	explode "medium explosion" 100
+	explode "large explosion" 50
+	"final explode" "final explosion large"
+	description "The Tahquaya is truly an imposing sight. At four times the size of the next largest Diba ship, this monstrosity was built for one purpose - to utterly annihilate any enemies. Although it has the same number of swivel gun ports as the previous Diba ship iteration, twice the bays and a wider swivel range more than make up for the non-increase in firepower."
