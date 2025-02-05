@@ -109,8 +109,8 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = isStars ? -8 : player.MapColoring();
-  
-  InitTextArea();
+
+	InitTextArea();
 }
 
 

@@ -617,7 +617,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 't' && buttonCondition != "is stars")
 	{
 		GetUI()->Pop(this);
-    removeChildren();
+		removeChildren();
 		GetUI()->Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
