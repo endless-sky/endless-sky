@@ -3565,11 +3565,11 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		const optional<Point> &targetOverride) const
 {
 	// (Position, Velocity) pairs of the targets.
-	auto targets = vector<pair<Point, Point>>();
+	vector<pair<Point, Point>> targets;
 	if(!targetOverride)
 	{
 		// First, get the set of potential hostile ships.
-		auto targetBodies = vector<const Body *>();
+		vector<const Body *> targetBodies;
 		const Ship *currentTarget = ship.GetTargetShip().get();
 		if(opportunistic || !currentTarget || !currentTarget->IsTargetable())
 		{
@@ -3628,7 +3628,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 					// First, check if this turret is currently in motion. If not,
 					// it only has a small chance of beginning to move.
 					double previous = ship.FiringCommands().Aim(index);
-					if(!previous && (Random::Int(60)))
+					if(!previous && Random::Int(60))
 						continue;
 
 					// Sweep between the min and max arc.

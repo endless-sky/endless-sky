@@ -2234,8 +2234,8 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	int mousePosY;
 	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
 		rightMouseButtonHeld = true;
-	double relX = mousePosX - Screen::RawWidth() / 2.0;
-	double relY = mousePosY - Screen::RawHeight() / 2.0;
+	double relX = mousePosX - Screen::RawWidth() / 2.;
+	double relY = mousePosY - Screen::RawHeight() / 2.;
 	ai.SetMousePosition(Point(relX, relY) / zoom);
 
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
