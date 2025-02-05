@@ -1709,7 +1709,7 @@ trade
 		"ringworld keychains"
 		"hedgelion quills"
 		"arcology miniatures"
-		"arachi armor replicas"
+		"Arachi armor replicas"
 		"multipurpose gardening tools"
 		"sports goods"
 		"charity goods"
