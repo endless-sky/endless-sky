@@ -156,7 +156,7 @@ public:
 	bool IsDefending() const;
 	// The amount of reputation with this planet's government that is lost
 	// daily if the player has dominated this planet.
-	double TributeDailyPenalty() const;
+	double DailyTributePenalty() const;
 
 
 private:
@@ -192,7 +192,7 @@ private:
 	int defenseThreshold = 4000;
 	// The amount of reputation with this planet's government that is lost
 	// daily if the player has dominated this planet.
-	double tributeDailyPenalty = 0.;
+	double dailyTributePenalty = 0.;
 	mutable bool isDefending = false;
 	// The defense fleets that should be spawned (in order of specification).
 	std::vector<const Fleet *> defenseFleets;

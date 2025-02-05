@@ -917,10 +917,10 @@ void PlayerInfo::DoAccounting()
 			set<const Government *> governments;
 			for(const auto &it : tributeReceived)
 			{
-				if(it.first->TributeDailyPenalty())
+				if(it.first->DailyTributePenalty())
 				{
 					const Government *gov = it.first->GetGovernment();
-					gov->AddReputation(-it.first->TributeDailyPenalty());
+					gov->AddReputation(-it.first->DailyTributePenalty());
 					governments.insert(gov);
 				}
 			}

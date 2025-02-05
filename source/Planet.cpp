@@ -227,7 +227,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 						grand.PrintTrace("Skipping unsupported tribute fleet definition:");
 				}
 				else if(grand.Token(0) == "daily reputation penalty" && grand.Size() >= 2)
-					tributeDailyPenalty = grand.Value(1);
+					dailyTributePenalty = grand.Value(1);
 				else
 					grand.PrintTrace("Skipping unrecognized tribute attribute:");
 			}
@@ -751,7 +751,7 @@ bool Planet::IsDefending() const
 
 
 
-double Planet::TributeDailyPenalty() const
+double Planet::DailyTributePenalty() const
 {
-	return tributeDailyPenalty;
+	return dailyTributePenalty;
 }
