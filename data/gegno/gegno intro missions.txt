@@ -900,7 +900,6 @@ mission "Gegno Vi Duels"
 	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist A)"
-		names "gegno vi"
 		personality heroic unconstrained uninterested staying ramming
 		fleet
 			names "gegno vi"
@@ -910,7 +909,6 @@ mission "Gegno Vi Duels"
 	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist B)"
-		names "gegno vi"
 		personality heroic unconstrained uninterested staying ramming
 		fleet
 			names "gegno vi"
