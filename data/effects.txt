@@ -468,6 +468,19 @@ effect "scin launch"
 	sound "scin launch"
 	"sound category" "engine"
 
+effect "avgi launch"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "avgi launch"
+	"sound category" "engine"
+
+
 effect "spatial hazard"
 	sprite "effect/jump drive"
 		"no repeat"
