@@ -468,7 +468,11 @@ effect "scin launch"
 	sound "scin launch"
 	"sound category" "engine"
 
-effect "avgi launch"
+effect "avgi external"
+	sound "avgi launch external"
+	"sound category" "engine"
+
+effect "avgi internal"
 	sprite "effect/smoke"
 		"no repeat"
 		"random start frame"
@@ -477,7 +481,7 @@ effect "avgi launch"
 	"random angle" 15
 	"random spin" 360
 	"random velocity" 3
-	sound "avgi launch"
+	sound "avgi launch internal"
 	"sound category" "engine"
 
 
