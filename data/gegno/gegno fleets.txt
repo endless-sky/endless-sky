@@ -402,22 +402,6 @@ fleet "Scin Warfleet"
 		"Feldspar"
 		"Halite" 6
 		"Coesite" 2
-		
-fleet "Gegno Vi Duelist A"
-	government "Gegno Vi (Duelist A)"
-	names "gegno vi"
-	personality
-		heroic unconstrained ramming
-	variant
-		"Dunite"
-
-fleet "Gegno Vi Duelist B"
-	government "Gegno Vi (Duelist B)"
-	names "gegno vi"
-	personality
-		heroic unconstrained ramming
-	variant
-		"Dunite"
 
 fleet "Scin Science"
 	government "Gegno Scin"

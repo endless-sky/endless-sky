@@ -900,14 +900,22 @@ mission "Gegno Vi Duels"
 	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist A)"
-		personality heroic uninterested staying
-		fleet "Gegno Vi Duelist A"
+		names "gegno vi"
+		personality heroic unconstrained uninterested staying ramming
+		fleet
+			names "gegno vi"
+			variant
+				"Dunite"
 		conversation "interfered with duel"
 	npc provoke
 		system "Ookmya"
 		government "Gegno Vi (Duelist B)"
-		personality heroic uninterested staying
-		fleet "Gegno Vi Duelist B"
+		names "gegno vi"
+		personality heroic unconstrained uninterested staying ramming
+		fleet
+			names "gegno vi"
+			variant
+				"Dunite"
 		conversation "interfered with duel"
 
 conversation "interfered with duel"
