@@ -249,8 +249,10 @@ ship "Melodikos"
 		left
 	gun -96 -3
 		angle -90
+		parallel
 	gun 96 -3
 		angle 90
+		parallel
 	turret -9 -3
 	turret 9 -3
 
@@ -501,8 +503,10 @@ ship "Harmonikos"
 		left
 	gun -96 -3
 		angle -90
+		parallel
 	gun 96 -3
 		angle 90
+		parallel
 	turret -9 -3
 	turret 9 -3
 
@@ -933,8 +937,10 @@ ship "Undsyni"
 		over
 	gun -42 -139
 		angle -90
+		parallel
 	gun 42 -139
 		angle 90
+		parallel
 	turret -33 -138 "Speckle Turret"
 	turret 33 -138 "Speckle Turret"
 	turret 0 -30 "Green Optical Laser"
@@ -1044,14 +1050,14 @@ ship "Modified Tachytia"
 		"outfit space" 1800
 		"weapon capacity" 180
 		"engine capacity" 900
-		"self destruct" 0.99
+		"self destruct" 0.9
 		"spinal mount" 1
 		"anchor point" 3
 		weapon
 			"blast radius" 900
-			"shield damage" 14400
-			"hull damage" 14400
-			"hit force" 9000
+			"shield damage" 90000
+			"hull damage" 90000
+			"hit force" 90000
 	outfits
 		"Blue Optical Laser" 6
 		"Green Optical Laser" 3
@@ -1067,7 +1073,7 @@ ship "Modified Tachytia"
 		"Magnetic Scoop" 3
 		"Concealment Lamina"
 		"Radiative Lamina"
-		"Optical Laser Rifle" 600
+		"Optical Laser Rifle" 900
 		
 		`Z-3600 "Beam" Amat Torch`
 		"Inductive Extractor" 6
@@ -1132,7 +1138,7 @@ ship "Modified Tachytia"
 	explode "large explosion" 9
 	explode "huge explosion" 9
 	explode "nuke explosion" 3
-	"final explode" "nuke explosion" 3
+	"final explode" "nuke explosion" 6
 	"final explode" "nuke residue fast" 90
 
 	description "This was once an Avgi sublight starship, one of the last models built before the discovery of the hyperdrive. Most starships around this period used ram-augmented fusion drives to reach cruising speeds of up to 0.25c, but the Tachytia class was designed to reach a velocity of 0.4c with an antimatter fuel source to ignite propellant gathered with its huge ramscoop."
@@ -1286,8 +1292,10 @@ ship "Prismaios"
 	gun 0 -111
 	gun -9 33
 		angle -90
+		parallel
 	gun 9 33
 		angle 90
+		parallel
 	turret 0 -48 "Medium VLS"
 	turret -9 18 "Speckle Turret"
 	turret 9 18 "Speckle Turret"
@@ -1422,12 +1430,16 @@ ship "Interferos"
 	gun 0 -114
 	gun -33 -57
 		angle -60
+		parallel
 	gun 33 -57
 		angle 60
+		parallel
 	gun -33 -42
 		angle -60
+		parallel
 	gun 33 -42
 		angle 60
+		parallel
 	turret -21.5 -81
 	turret 21.5 -81
 	turret 0 -48 "Green Optical Laser"
@@ -1537,8 +1549,10 @@ ship "Diaspersi"
 	gun 0 -156
 	gun -18 -9
 		angle -90
+		parallel
 	gun 18 -9
 		angle 90
+		parallel
 	turret 0 -12 "Medium VLS"
 	turret -9 9 "Green Optical Laser"
 	turret 9 9 "Green Optical Laser"
@@ -1673,12 +1687,16 @@ ship "Refraktos"
 	gun 18 -84
 	gun -24 -33
 		angle -90
+		parallel
 	gun 24 -33
 		angle 90
+		parallel
 	gun -24 -9
 		angle -90
+		parallel
 	gun 24 -9
 		angle 90
+		parallel
 	turret -18 -81 "Blue Optical Laser"
 	turret 18 -81 "Blue Optical Laser"
 	turret -18 -72 "Blue Optical Laser"
@@ -1775,12 +1793,16 @@ ship "Difraktos"
 	gun 0 -156
 	gun -21 -75
 		angle -90
+		parallel
 	gun 21 -75
 		angle 90
+		parallel
 	gun -21 -63
 		angle -90
+		parallel
 	gun 21 -63
 		angle 90
+		parallel
 	turret -9 -111 "Speckle Turret"
 	turret 9 -111 "Speckle Turret"
 	turret -9 -87 "Speckle Turret"
@@ -1949,12 +1971,16 @@ ship "Atenuatia"
 	gun 0 -288
 	gun -18 -132
 		angle -90
+		parallel
 	gun 18 -132
 		angle 90
+		parallel
 	gun -15 -114
 		angle -90
+		parallel
 	gun 15 -114
 		angle 90
+		parallel
 	turret 0 -252 "Green Optical Laser"
 	turret 63 -195 "Blue Optical Laser"
 	turret -63 -195 "Blue Optical Laser"
