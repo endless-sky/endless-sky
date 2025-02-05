@@ -2120,7 +2120,7 @@ mission "Acorn Delights: Part 1"
 				`	(See what she wants.)`
 				`	(Ignore her.)`
 					decline
-			`	"My name is Eeeya, and I'm looking for my lost granddaughter, Anoo. She recently graduated from the medical school, and I was going to give her three tons of cookies, but she's gone! Please help me find her."`
+			`	"My name is Eeeya, and I'm looking for my lost granddaughter, Anoo. She just passed the medical school, and I was going to give her three tons of cookies, but she's gone! Please help me find her."`
 				goto "actual questions"
 			label questions
 			`	"So please, take me to find my granddaughter."`
@@ -2139,14 +2139,14 @@ mission "Acorn Delights: Part 1"
 				`	"I have other places to be."`
 					decline
 			label tons
-			`	"Well, I... I don't know... I cook when I'm worried, and Anoo has been missing for three months! I've vacuum-sealed all three tons of cookies. They should last a year or two. Maybe she'll share them with her friends? She has many friends! Tons of friends! They all miss her, but none are willing to help...`
+			`	"Well, I... I don't know... I cook when I'm worried, and Anoo has been missing for three months! I've sealed all three tons of cookies. They should last a year or two. Maybe she'll share them with her friends? She has many friends! Tons of friends! They all miss her, but none are willing to help...`
 				goto questions
 			label gone
-			`	"Anoo graduated from a medical academy on Frostmark four months ago, near the top of her class! A prominent hospital on the Hai-home needed a new trauma surgeon and said she would be perfect for the job. She accepted the position and said she would be on vacation for a few weeks.`
+			`	"Anoo passed medical school on the Frostmark four months ago, near the top of her class! A famous hospital on the Hai-home needed a new trauma surgeon and said she would be perfect for the job. She accepted the position and said she would be on vacation for a few weeks.`
 			`	"A month later, she told them she won't be coming, and nobody has heard from her since.`
 				goto questions
 			label authorities
-			`	"I talked to the Central Medical Bureau, and they told me she got clearance for practicing medicine anywhere in Hai space or beyond. They've heard nothing from her since she got clearance. She has to register new prescriptions with the Bureau, so they should have heard from her.`
+			`	"I talked to the Central Medical Bureau, and they told me she got approval for practicing medicine anywhere in Hai space or beyond. They've heard nothing from her since she got approval. She has to register new medicines with the Bureau, so they should have heard from her.`
 			`	"The police told me that several other people have reported Anoo missing, but they refused to tell me anything else. They said I had to talk to military, but they won't tell me anything.`
 			`	"Maybe she's involved in something secret? Or illegal? No, she'd never do that. Where is she?`
 				goto questions
@@ -2154,7 +2154,7 @@ mission "Acorn Delights: Part 1"
 			`	"I have few friends, and none of them are interested in finding a missing Hai who could be anywhere. None of my customers want to help either, and her family is all dead.`
 				goto questions
 			label accept
-			`	"She always talked about doing volunteer work for those who couldn't afford medical treatment. When she was little, her mother would take her to Stonebreak to help at local shelters. Let's start there."`
+			`	"She always talked about doing free work for those who couldn't afford medical treatment. When she was little, her mother would take her to Stonebreak to help at local shelters. Let's start there."`
 				accept
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
@@ -2173,7 +2173,7 @@ mission "Acorn Delights: Part 2"
 		log "Took a Hai lady named Eeeya to Stonebreak to help find her granddaughter, who is named Anoo."
 		conversation
 			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, women's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth before her mother left.`
-			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "Since it's obvious she's not here, let's check on <destination> - she could be in military."`
+			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "Since it's clear she's not here, let's check on <destination> - she could be in military."`
 				accept
 	on visit
 		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
@@ -2208,10 +2208,10 @@ mission "Acorn Delights: Part 3"
 				`	"Unfettered space is too dangerous for me. You will have to find another captain."`
 					decline
 			label mention
-			`	"I was afraid it would scare you away. Humans are terrified of our ships, and the Unfettered are deadly warriors. Besides, the other places were more likely. Her mother's family does have a tradition of joining the Unfettered, but I didn't think that would happen to her."`
+			`	"I was afraid it would scare you away. Humans are scared of our ships, and the Unfettered are deadly warriors. Besides, the other places were more likely. Many of her mother's family have joined the Unfettered in the past, but I didn't think that would happen to her."`
 				goto questions
 			label warmonger
-			`	"Anoo was always sympathetic to the cause of the Unfettered Hai. Not their pointless war - she hated that - but she respected their drive to progress and their instinct for change. Her father's family tried to discourage her ideas, and we thought we succeeded, but... maybe...`
+			`	"Anoo was always sympathetic to the cause of the Unfettered Hai. Not their pointless war - she hated that - but she respected their drive to progress and their gift for change. Her father's family tried to stop her ideas, and we thought we succeeded, but... maybe...`
 			`	"A trauma surgeon for the Unfettered Hai? I wonder if she planned this the years in advance?"`
 				goto questions
 			label accept
@@ -2255,7 +2255,7 @@ mission "Acorn Delights: Part 4"
 				`	"I stand by their guns. The Unfettered are honorable."`
 					goto "really join"
 			label "don't join"
-			`	"I'm sorry, Anoo, but I really think the Captain <first> is right. Fundamentally, I'm not the kind of person to be friendly with a group who starves and yet paints an exotic picture of itself. And in addition, I doubt there would be a way to support a family of two here; nuts by themselves are precious enough, let alone cookies. The hospital work here can only pay so much.`
+			`	"I'm sorry, Anoo, but I really think the Captain <first> is right. I'm not the kind of person to be friendly with a group who starves and yet paints a colorful picture of itself. And in addition, I doubt there would be a way to support a family of two here; nuts by themselves are costly enough, let alone cookies. The hospital work here can only pay so much.`
 			`	"Captain, could you take me back to the <planet> please? I'd like to sign the forms and give you some stock in my Acorn Delights factory. In the meantime, here is <payment> for what you've done so far."`
 			choice
 				`	"I'd be glad to take you back."`
@@ -2269,7 +2269,7 @@ mission "Acorn Delights: Part 4"
 			label "really join"
 			action
 				set "acorn delights: eeeya joined"
-			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to dispose of my assets in the normal Hai space before officially joining Unfettered."`
+			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to sell my factory in the normal Hai space before officially joining Unfettered."`
 			choice
 				`	"Sure thing. I'd be glad to take you back."`
 					accept
