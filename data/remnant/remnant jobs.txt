@@ -220,6 +220,7 @@ mission "Remnant: Bounty 5"
 			attributes "ember waste"
 			not attributes "graveyard"
 			not attributes "inaccessible"
+			not attributes "twilight"
 		fleet
 			names "korath"
 			cargo 3
