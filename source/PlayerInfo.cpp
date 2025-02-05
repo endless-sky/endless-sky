@@ -924,18 +924,18 @@ void PlayerInfo::DoAccounting()
 					governments.insert(gov);
 				}
 			}
-			message = "Your reputation with ";
+			message = "You have lost reputation with the ";
 			if(governments.size() == 1)
 				message += (*governments.cbegin())->GetName();
 			else
 				for(auto it = governments.cbegin(); it != governments.cend(); ++it)
 				{
 					if(it == prev(governments.cend()))
-						message += "and " + (*it)->GetName();
+						message += "and the " + (*it)->GetName();
 					else
 						message += (*it)->GetName() + ", ";
 				}
-			message += " has been severed because of your active tribute demands.";
+			message += " due to active tributes.";
 			Messages::Add(message, Messages::Importance::High);
 		}
 	}
