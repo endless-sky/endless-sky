@@ -81,6 +81,7 @@ news "jibauni speaking jibunese"
 			"Os't e peda fuz vifuz, otp's os?" # It's a nice day today, isn't it?
 			"Isme ${jibauni first name}." # Arabic, translates to "My name is ..."
 			"Nunu wain?" # Arabic, translates to "Baby where?"
+			"Ziaq qosuvat piv gop." # Your pirates not fun.
 		word
 			`"`
 
@@ -176,19 +177,18 @@ news "jibauni military captain"
 	name
 		word
 			"Military "
-			"Army "
 		word
 			"Leader"
 			"Captain"
 	location
 		government "Jibauni" "Jibauni (Rebel)"
-		not planet "Laqualk"
 	message
 		word
 			`"`
 		word
 			"Ever fought an alien ship? They are so powerful!"
 			"Those other peoples are crazy. Why do they fight us? None can stand against the weight of the Jibauni!"
+			"Top secret: we build prototypes every day. Unfortunately, hardly any of them turn out."
 		word
 			`"`
 
@@ -228,6 +228,63 @@ news "jibauni merchant"
 			"Can you sell me some of your strange alien weapons?"
 			"I sold everything on my Nathaq except for generators and bought a pair of Eimlaq Engines. The ${jibauni civilian} goes so fast now!"
 			"My name is ${jibauni first name}, Captain of the ${jibauni civilian}. Welcome to our space!"
+		word
+			`"`
+
+news "jibauni regular"
+	name
+		word
+			"Jibauni"
+	location
+		government "Jibauni"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"I wish the government would tell us more about their expeditions."
+			"A fleet went into the wormhole, but never returned."
+			"You do not happen to speak Jibunese, do you?"
+			"Ancient languages are so fascinating. Unfortunately, we have standardized."
+			"Do you know any alien languages?"
+			"Translators and toothsticks."
+			"The best way to beat the Lazy... er... normal Jibauni would be to capture Baitoon. Unfortunately the government has other plans."
+			"Aboagye Shipyards is very inefficient."
+			"If one Nathar can carry two fighters, than how many drones should a Nathat be able to carry?"
+			"Some people wonder how we prosper. Now you know."
+			"Some say the best way to win is to lose."
+			"Up for a game of chess?"
+			"I like strategy games. The best one is the new Aludi Harb A'lihia - especially because it's updated every time a new battle is fought between us and the Rebels."
+		word
+			`"`
+
+news "jibauni shipyard employee"
+	name
+		word
+			"Jibauni Shipyard "
+		word
+			"Manager"
+			"Official" 3
+			"Overseer" 4
+			"Worker" 12
+	location
+		government "Jibauni"
+	message
+		word
+			`"`
+		word
+			"Top secret: we build prototypes every day. Unfortunately, hardly any of them turn out."
+			"The most successful ship in generations has been the Nathar. I wish I was the one who came up with it."
+			"Did you know that Taltahard, the base of Aboagye Shipyards' operations, does not actually sell any of their ships? Instead, the newly produced spacecraft are shipped to Kanlil and sold. Very inefficient."
+			"I am glad that I work for Res-redi's shipyards. There are so many flaws apparent in Sayidu Aboagye's group."
+			"Everybody is always going on about how inefficient our shipyards our, but in reality Sayidu Aboagye is a modern genius."
+			"Build the ships, move the ships, sell the ships, repeat... it gets tiring."
+			"Working for a startup shipyard is exciting. Unfortunately, we are predicted to go out of business tomorrow."
+			"The best way to beat the competition is to build more ships."
+			"We have been trying to get the secret of the Muraw for years now, and still have not succeeded."
+			"If you ever join our shipyards, be careful not to offend the boss. He gets very touchy at times."
+			"We have been trying to get at the secret of the Saghir, but nobody has any idea how it is built."
+			"Win or lose, it's always best to keep the ships clean."
 		word
 			`"`
 
