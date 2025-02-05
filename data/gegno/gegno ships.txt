@@ -281,8 +281,10 @@ ship "Corundum"
 	"steering engine" -58 -58
 		right
 	gun 9 -132
+		parallel
 		over
 	gun -9 -132
+		parallel
 		over
 	leak "leak" 50 60
 	leak "flame" 70 70
@@ -297,18 +299,6 @@ ship "Corundum"
 ship "Corundum" "Corundum (Torch)"
 	outfits
 		"Ion Torch" 2
-		"C3 Scrap Cell"
-		"C7 Brawl Cell"
-		"R01 Skirmish Battery"
-		
-		"RG18 Torch Thruster"
-		"RG18 Torch Steering" 2
-		"Hyperdrive"
-
-ship "Corundum" "Corundum (Multi)"
-	outfits
-		"Ion Torch"
-		"Burrower"
 		"C3 Scrap Cell"
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
@@ -493,32 +483,46 @@ ship "Augen"
 	gun -35.5 -373.5 "Irate Cannon"
 	gun -42.5 -367.5 "Irate Cannon"
 	gun 100.5 -309 "Irate Cannon"
+		parallel
 		angle 40
 	gun -85.5 -309.5 "Irate Cannon"
+		parallel
 		angle -43
 	gun 116.5 -200.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun 116.5 -195.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun -121.5 -115.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun -121 -109.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 127 -37.5 "Irate Cannon"
+		parallel
 		angle 85
 	gun -134.5 33.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun -134.5 39 "Irate Cannon"
+		parallel
 		angle -90
 	gun -119 140.5 "Irate Cannon"
+		parallel
 		angle -115
 	gun 114 186.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun 114 192 "Irate Cannon"
+		parallel
 		angle 90
 	gun -58.5 256 "Irate Cannon"
+		parallel
 		angle -150
 	gun 88.5 334 "Irate Cannon"
+		parallel
 		angle 155
 	turret 13 -297.5 "Ballistic Cannon Turret"
 	turret 13 -212 "Ballistic Cannon Turret"
@@ -620,12 +624,16 @@ ship "Schist"
 	gun -16.5 -181.5 "Irate Cannon"
 	gun 16.5 -181.5 "Irate Cannon"
 	gun 44.5 -81 "Irate Cannon"
+		parallel
 		angle 80
 	gun -44.5 -81 "Irate Cannon"
+		parallel
 		angle -80
 	gun 56.5 30.5 "Irate Cannon"
+		parallel
 		angle 112
 	gun -56.5 30.5 "Irate Cannon"
+		parallel
 		angle -112
 	turret 0 -139.5 "Irate Cannon Turret"
 	leak "leak" 60 50
@@ -865,16 +873,22 @@ ship "Hornfel"
 	gun -24.5 -208 "Irate Cannon"
 	gun 24.5 -208 "Irate Cannon"
 	gun 29 -120 "Irate Cannon"
+		parallel
 		angle 60
 	gun -29 -107.5 "Irate Cannon"
+		parallel
 		angle -60
 	gun -38 -1.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 40.5 30 "Irate Cannon"
+		parallel
 		angle 90
 	gun -29 141.5 "Irate Cannon"
+		parallel
 		angle -135
 	gun 29 120.5 "Irate Cannon"
+		parallel
 		angle 135
 	turret 0 -111 "Choleric Cannon Turret"
 	turret 0 -42 "Choleric Cannon Turret"
@@ -929,16 +943,22 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 	gun -24.5 -208 "Irate Cannon"
 	gun 24.5 -208 "Irate Cannon"
 	gun 29 -120 "Irate Cannon"
+		parallel
 		angle 60
 	gun -29 -107.5 "Irate Cannon"
+		parallel
 		angle -60
 	gun -38 -1.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 40.5 30 "Irate Cannon"
+		parallel
 		angle 90
 	gun -29 141.5 "Irate Cannon"
+		parallel
 		angle -135
 	gun 29 120.5 "Irate Cannon"
+		parallel
 		angle 135
 	turret 0 -174 "Irate Cannon Turret"
 	turret 0 -111 "Choleric Cannon Turret"
@@ -988,20 +1008,28 @@ ship "Gneiss"
 	gun -23 -270.5 "Irate Cannon"
 	gun 23 -270.5 "Irate Cannon"
 	gun -38.5 -192.5 "Irate Cannon"
+		parallel
 		angle -60
 	gun 39 -185 "Irate Cannon"
+		parallel
 		angle 60
 	gun 46.5 -66.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun -58 -14 "Irate Cannon"
+		parallel
 		angle -40
 	gun -69.5 5.5 "Irate Cannon"
+		parallel
 		angle -95
 	gun 65.5 9.5 "Irate Cannon"
+		parallel
 		angle 45
 	gun 66 87 "Irate Cannon"
+		parallel
 		angle 135
 	gun -55.5 133.5 "Irate Cannon"
+		parallel
 		angle -135
 	turret 0 -97.5 "Ballistic Cannon Turret"
 	turret 0 -23 "Ballistic Cannon Turret"
@@ -1065,22 +1093,31 @@ ship "Granulite"
 	gun -22.5 -269 "Irate Cannon"
 	gun 22.5 -269 "Irate Cannon"
 	gun 62.5 -186.5 "Irate Cannon"
+		parallel
 		angle 45
 	gun -74 -165 "Irate Cannon"
+		parallel
 		angle -90
 	gun 93 -27.5 "Irate Cannon"
+		parallel
 		angle 100
 	gun -86.5 -60 "Irate Cannon"
+		parallel
 		angle -50
 	gun 107 -11.5 "Irate Cannon"
+		parallel
 		angle 35
 	gun -124.5 103.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 105 142 "Irate Cannon"
+		parallel
 		angle 95
 	gun -101 194.5 "Irate Cannon"
+		parallel
 		angle -125
 	gun 94.5 211 "Irate Cannon"
+		parallel
 		angle 150
 	turret 0 21 "Choleric Cannon Turret"
 	turret -69.5 21 "Irate Cannon Turret"

@@ -42,14 +42,12 @@ fleet "Gegno Miners"
 	cargo 0
 	personality
 		pacifist timid plunders mining harvests ramming
-	variant 22
+	variant 21
 		"Gypsum"
 	variant 6
 		"Corundum"
-	variant 5
+	variant 3
 		"Corundum (Torch)"
-	variant
-		"Corundum (Multi)"
 	variant
 		"Gypsum"
 		"Granofel"
