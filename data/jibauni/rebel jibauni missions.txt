@@ -56,6 +56,8 @@ mission "Rebel Jibauni: Qui-ni"
 			label notwilling
 			`	"Really? Well, you can take me to <destination> immediately and be rid of me."`
 			label end
+		on abort
+			dialog `The Jibauni looks at you in shock as you get rid of them earlier than expected.`			
 	on complete
 		"reputation: Jibauni (Rebel)" = "old reputation: Rebel Jibauni"
 		clear "old reputation: Rebel Jibauni"
@@ -89,16 +91,16 @@ mission "Rebel Jibauni: Scam Government Transportation 1"
 		random < 80
 	on offer
 		conversation
-			`A Rebel arrives panting at the door of the <ship> as it opens. "Take me to <destination>," they say. "This has been requested by Rebel Jibauni."`
+			`A Rebel Jibauni arrives panting at the door of the <ship> as it opens. "Take me to <destination>," they say. "This has been requested by Rebel Jibauni."`
 			choice
 				`	"Alright."`
 					accept
 				`	"Isn't that the wrong wording?"`
 			`	"W-wrong wording? Wha-what do you mean?" queries the Jibauni. A commotion has arisen in the spaceport behind them.`
 			choice
-				`	"Never mind. Come aboard."`
+				`	"Never mind. You can come on."`
 					accept
-				`	"Others have told me this with the words, 'This has been Requested by the Real Jibauni'."`
+				`	"Others have told me this with the words, 'This has been requested by the Real Jibauni'."`
 					goto gavethegameaway
 				`	"You gave me the wrong sequence of words. I don't think you're real."`
 			label crestfallencaught
@@ -107,7 +109,7 @@ mission "Rebel Jibauni: Scam Government Transportation 1"
 			`	"But..." The crestfallen Jibauni turns away, only to be captured by Rebel soldiers. One of them thanks you for helping to apprehend a criminal, and pays you a thousand credits.`
 				decline
 			label gavethegameaway
-			`	"Oh, right. Of course. I have no idea how I forgot that." The Jibauni chuckles, and repeats, "Take me to <destination>. This has been Requested by the Real Jibauni."`
+			`	"Oh, right. Of course. I have no idea how I forgot that." The Jibauni chuckles, and repeats, "Take me to <destination>. This has been requested by the Real Jibauni."`
 			choice
 				`	"Since you ask so nicely..."`
 					accept
