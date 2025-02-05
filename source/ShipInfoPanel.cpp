@@ -27,23 +27,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "LogbookPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipNameDialog.h"
 #include "image/Sprite.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
+#include <ranges>
 
 using namespace std;
 
@@ -323,7 +325,10 @@ void ShipInfoPanel::UpdateInfo()
 	const Ship &ship = **shipIt;
 	info.Update(ship, player);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
+	{
 		player.Flagship()->SetTargetShip(*shipIt);
+		player.SelectShip(shipIt->get(), false);
+	}
 
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
@@ -391,8 +396,16 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
 	{
 		const string &category = cat.Name();
+		if(category.empty())
+			continue;
 		auto it = outfits.find(category);
 		if(it == outfits.end())
+			continue;
+
+		auto validOutfits = std::ranges::filter_view(it->second,
+			[](const Outfit *outfit){ return outfit->IsDefined() && !outfit->DisplayName().empty(); });
+
+		if(validOutfits.empty())
 			continue;
 
 		// Skip to the next column if there is no space for this category label
@@ -408,7 +421,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		// Draw the category label.
 		table.Draw(category, bright);
 		table.Advance();
-		for(const Outfit *outfit : it->second)
+		for(const Outfit *outfit : validOutfits)
 		{
 			// Check if we've gone below the bottom of the bounds.
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
@@ -570,8 +583,9 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	Color backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
 
-	// Cargo list.
-	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
+	// Cargo list: show pooled cargo instead if the ship to display is landed together with the flagship.
+	const bool showPooled = ship.GetPlanet() == player.GetPlanet() && player.Cargo().Used();
+	const CargoHold &cargo = (showPooled ? player.Cargo() : ship.Cargo());
 	Table table;
 	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT});

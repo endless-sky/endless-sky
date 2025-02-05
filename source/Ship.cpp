@@ -890,7 +890,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!isNewInstance && targetSystem)
 	{
 		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
-			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->Name();
+			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->TrueName();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
@@ -899,7 +899,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		else if(!currentSystem->Links().contains(targetSystem)
 			&& (!navigation.JumpRange() || !currentSystem->JumpNeighbors(navigation.JumpRange()).contains(targetSystem)))
 		{
-			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->TrueName() + ".\"");
 			targetSystem = nullptr;
 		}
 	}
@@ -1128,18 +1128,18 @@ void Ship::Save(DataWriter &out) const
 		if(formationPattern)
 			out.Write("formation", formationPattern->Name());
 		if(currentSystem)
-			out.Write("system", currentSystem->Name());
+			out.Write("system", currentSystem->TrueName());
 		else
 		{
 			// A carried ship is saved in its carrier's system.
 			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
-				out.Write("system", parent->currentSystem->Name());
+				out.Write("system", parent->currentSystem->TrueName());
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
-			out.Write("destination system", targetSystem->Name());
+			out.Write("destination system", targetSystem->TrueName());
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1388,6 +1388,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	disabledRecoveryCounter = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
+	jettisonedFromBay.clear();
 	hyperspaceCount = 0;
 	forget = 1;
 	targetShip.reset();
@@ -1544,17 +1545,22 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+const ShipAICache &Ship::GetAICache() const
 {
 	return aiCache;
 }
 
 
 
-void Ship::UpdateCaches()
+void Ship::UpdateCaches(bool massLessChange)
 {
-	aiCache.Recalibrate(*this);
-	navigation.Recalibrate(*this);
+	if(massLessChange)
+		aiCache.Calibrate(*this);
+	else
+	{
+		aiCache.Recalibrate(*this);
+		navigation.Recalibrate(*this);
+	}
 }
 
 
@@ -1931,12 +1937,16 @@ int Ship::Scan(const PlayerInfo &player)
 	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
 	{
 		if(sounds.empty())
-			Audio::Play(Audio::Get("scan"), position);
+			Audio::Play(Audio::Get("scan"), position, SoundCategory::SCAN);
 		else
 			for(const auto &sound : sounds)
-				Audio::Play(sound.first, position);
+				Audio::Play(sound.first, position, SoundCategory::SCAN);
 	};
-	if(isYours || (target->isYours))
+	if(attributes.Get("silent scans"))
+	{
+		// No sounds.
+	}
+	else if(isYours || (target->isYours))
 	{
 		if(activeScanning & ShipEvent::SCAN_CARGO)
 			playScanSounds(attributes.CargoScanSounds(), position);
@@ -3035,11 +3045,25 @@ double Ship::TurnRate() const
 
 
 
+double Ship::TrueTurnRate() const
+{
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueAcceleration() const
+{
+	return Acceleration() * 1. / (1. + slowness * .05);
 }
 
 
@@ -3067,6 +3091,13 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::CurrentSpeed() const
+{
+	return Velocity().Length();
 }
 
 
@@ -3388,7 +3419,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
 	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
-		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons)
+		Jettison(make_shared<Flotsam>(commodity, (Flotsam::TONS_PER_BOX < tons)
 			? Flotsam::TONS_PER_BOX : tons, notForGov));
 }
 
@@ -3418,7 +3449,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 		? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
-		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count)
+		Jettison(make_shared<Flotsam>(outfit, (perBox < count)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
@@ -3864,6 +3895,12 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			for(shared_ptr<Flotsam> &it : jettisoned)
 				it->Place(*this);
 			flotsam.splice(flotsam.end(), jettisoned);
+			for(auto &[newFlotsam, bayIndex] : jettisonedFromBay)
+			{
+				newFlotsam->Place(*this, bayIndex);
+				flotsam.emplace_back(std::move(newFlotsam));
+			}
+			jettisonedFromBay.clear();
 
 			// Any ships that failed to launch from this ship are destroyed.
 			for(Bay &bay : bays)
@@ -4254,11 +4291,21 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 
 void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 {
+	if(forget)
+		return;
 	// Jettisoned cargo effects (only for ships in the current system).
-	if(!jettisoned.empty() && !forget)
+	if(!jettisoned.empty())
 	{
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
+		return;
+	}
+	if(!jettisonedFromBay.empty())
+	{
+		auto &[newFlotsam, bayIndex] = jettisonedFromBay.front();
+		newFlotsam->Place(*this, bayIndex);
+		flotsam.emplace_back(std::move(newFlotsam));
+		jettisonedFromBay.pop_front();
 	}
 }
 
@@ -5063,4 +5110,29 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+void Ship::Jettison(shared_ptr<Flotsam> toJettison)
+{
+	if(currentSystem)
+	{
+		jettisoned.emplace_back(toJettison);
+		return;
+	}
+	// If this ship is currently being carried by another, transfer Flotsam to be jettisoned to the carrier.
+	shared_ptr<Ship> carrier = parent.lock();
+	if(!carrier)
+		return;
+	size_t bayIndex = 0;
+	for(const auto &bay : carrier->Bays())
+	{
+		if(bay.ship.get() == this)
+		{
+			carrier->jettisonedFromBay.emplace_back(toJettison, bayIndex);
+			break;
+		}
+		++bayIndex;
+	}
 }

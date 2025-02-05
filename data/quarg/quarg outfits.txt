@@ -50,7 +50,7 @@ outfit "Quarg Skylance"
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
-		"turret turn" 4.
+		"turret turn" 2.6
 		"velocity" 500
 		"lifetime" 1
 		"reload" 1
@@ -95,6 +95,7 @@ effect "quarg anti-missile"
 		"no repeat"
 		"frame rate" 3
 	sound "quarg anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 21
 	"velocity scale" 1
 

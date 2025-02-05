@@ -1806,7 +1806,7 @@ mission "Lunarium: Combat Training 4"
 				`	"Did you manage to fight the pirates well enough?"`
 					goto pirates
 				`	"Honestly I'm surprised you didn't lose anyone. Some of the ships you bought aren't exactly made for fighting."`
-			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate shield matrixes, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
+			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate shield matrices, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
 				goto accept
 			label pirates
 			`	"Lie I will not, difficult the first few months were. Very used to the Coalition, to our equipment, we were, so forget we did many times that no hull repair capabilities of their own, the ships had." She passes her two front legs over her head a few times, as if brushing it in shame. "Lucky we were, that no casualties we had. At least, a good way to improvise mid-battle rescues, it all was." she finishes, perking up her head.`
