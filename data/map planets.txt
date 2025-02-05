@@ -268,9 +268,9 @@ planet "Antivli Station"
 	landscape land/station25
 	description `Once one of many, this was an enormous synchrotron particle accelerator several kilometers in diameter, dedicated towards the industrial production of large quantities of antimatter. With beamed power provided by the thousands of solar collection satellites around Anax, enough antimatter could be produced each year to supply both Avgi research and industrial efforts. The discovery of the hyperdrive nearly wiped the antimatter economy out overnight, with interstellar travel now almost trivial.`
 	description `	Combined, the amat farms around Anax once produced several tons of antimatter each year. The economic crash caused by the hyperdrive brought production to its knees, but the final death of Antivli Station appears to have come at the hands of the Aberrant.`
-	spaceport `The docks once used by specialized antimatter transport ships are wrecked beyond recognition, with only a small trickle of energy available. Beyond this, the beamlines once used to produce antimatter are broken and shattered - the antimatter plant is certainly beyond recovery.`
-	spaceport `	The station's stockpile of antimatter, hundreds of tons held in reserve as antihydrogen ice plated with a thin layer of antilithium, appears to have likewise been lost to the Incursion. Whatever happened to the antimatter, it is at least certain that it did not breach its magnetic levitation containment tanks, as otherwise nothing of the station would be left but vapor.`
 	port "Amat _Plant"
+		description `The docks once used by specialized antimatter transport ships are wrecked beyond recognition, with only a small trickle of energy available. Beyond this, the beamlines once used to produce antimatter are broken and shattered - the antimatter plant is certainly beyond recovery.`
+		description `	The station's stockpile of antimatter, hundreds of tons held in reserve as antihydrogen ice plated with a thin layer of antilithium, appears to have likewise been lost to the Incursion. Whatever happened to the antimatter, it is at least certain that it did not breach its magnetic levitation containment tanks, as otherwise nothing of the station would be left but vapor.`
 		recharges energy
 	government Uninhabited
 
@@ -1554,8 +1554,8 @@ planet Entantel
 	landscape land/snow39
 	description `Entantel is notable in that it is almost entirely comprised of water ice. With a diminutive rocky core, its low average density results in a very low gravitational acceleration for its size.`
 	description `	Because of its shallow gravity well and abundance of volatiles, Entantel was one of the biggest exporters of water ice in the outer Anax system, where it was largely used as cheap propellant or to fill the numerous cylinder habitats with artificial lakes and rivers.`
-	spaceport `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
-	port
+		description `The spaceport here launched most upmass via a space elevator that was destroyed in the Incursion. Enormous blocks of ice would often be shipped wholesale, with little refining done on-site, and so despite the abundance of water, there is barely enough deuterium fuel stockpiled here to fill a few large tankers.`
+	port "Fuel De_pot"
 		recharges fuel
 	government Uninhabited
 
@@ -2493,8 +2493,9 @@ planet Hilothire
 	landscape land/snow28
 	description `While Hilothire contains an oxygen-rich atmosphere, it is almost entirely covered in icy oceans. At the poles, massive ice caps stretch nearly to the tropics. Pristine icebergs often float down to the equator, where they accumulate around the few rocky islands that peek above the waves.`
 	description `	A large research outpost was once set up on one of the larger islands to study the possibility of terraforming the world and warming its climate, but after the Incursion it has since gone uncrewed. The fueling station still contains a significant amount of stored fuel, however, which could be used by a passing ship to refuel.`
-	spaceport `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
-	port
+	spaceport 
+	port "Space_port"
+		description `The landing pads are thick slabs of frigid steel sunk deep into the island's gravely terrain. A thin layer of ice slicks the surface, making it hazardous to walk about, but you are able to find a working fuel pump half-buried in snow, powered by a small radioisotope power source.`
 		recharges fuel
 	government Uninhabited
 	security 0
@@ -2884,7 +2885,7 @@ planet Kella-Uuoru-Sossa
 	description `This is the ancestral homeworld of the Successor species. The spatial anomalies that now dominate this system have scoured its surface with radiation and evaporated most of its once-extensive oceans. The great cities of the Predecessors' empire are now devoid of all organic life; many of them remain as pristine and gleaming as on the days they were abandoned. Caustic dust chokes the lower atmosphere of the planet, and your ship's sensors alert you to the presence of several sandstorms at other locations on the planet's surface. It would be wise not to get caught in one.`
 		to display
 			has "trusted by the successors"
-	port "Spaceport"
+	port "Space_port"
 		description `A massive spaceport on the surface stands proudly even after thousands of years of disuse. Grand walls and cavernous vaulted ceilings rise hundreds of meters up above your ship, some scarred by weapons fire, others distorted by heat or radiation. A couple of small cleaning drones attempt to polish the weather-worn floors, while others wander aimlessly, devoid of purpose and direction.`
 			to display
 				not "trusted by the successors"
@@ -3205,8 +3206,8 @@ planet Mabatham
 	landscape land/sky1
 	description `Mabatham teeters on the line between ocean planet and hothouse world. With a surface largely covered with water, broken only by a handful of volcanic islands, its atmosphere is thick and humid, saturated with water vapor that works to trap the heat from its two parent stars. While temperate near the poles, the equator is inhospitably warm, with constant hurricanes dwarfing anything seen on either Earth or Aviskir raging in the tropics.`
 	description `	Despite the constant rains and frequent storms, the planet's bountiful oceanic ecosystem is able to sustain a small community of particularly stubborn Avgi, who managed to eke out a life on a rocky island chain. They refused to be evacuated in the wake of the Incursion, and their outpost remains, weathering the wind and sea.`
-	spaceport `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
-	port
+	port "Space_port"
+		description `The 'spaceport' is nothing more than a stony island mostly cleared of boulders and debris, where spaceplanes could take off and land. A few small cranes and fuel tanks are strewn haphazardly along the edge, used to service the rare visitor, but there are otherwise no permanent structures.`
 		recharges fuel
 	government Avgi
 	security 0
@@ -4649,7 +4650,7 @@ planet Raaqa-Uur-Kaav
 	description `The one-time ancestral home of House Kaatrij is one of the few worlds of the Predecessors that remains relatively habitable. Its large forests have flourished even in the absence of Kaatrij's intentional ecoengineering, and the enduring remains of the moon's cities are slowly but surely being consumed by the nature that surrounds them. While the advanced materials composing them resist decay even on a timescale of thousands of years, the tender shoots of green life nonetheless quietly demonstrate their supremacy over the unmaintained artificial.`
 		to display
 			has "trusted by the successors"
-	port "Spaceport"
+	port "Space_port"
 		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
 			to display
 				not "trusted by the successors"
@@ -5965,7 +5966,7 @@ planet Vade-Osolaa-Kaska
 	description `Although briefly used as a small-scale shipyard several hundred years ago, this station was eventually abandoned by the High Houses because of its inconvenient location and altogether poor construction. There are occasional rumors about criminals using it as a bolt-hole or a place to hide contraband, but few among the Successors have the desire to go and check.`
 		to display
 			has "known to the successors"
-	port "Spaceport"
+	port "Space_port"
 		description `The spaceport here is cavernous but empty, riddled with voids where vast pieces of machinery have been removed. A layer of dust covers the ground; it is disturbed in some locations with what look like trails, suggesting that this place may not be entirely unused.`
 	government Uninhabited
 
