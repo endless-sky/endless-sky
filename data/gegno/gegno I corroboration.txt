@@ -833,7 +833,7 @@ mission "Gegno Anticipation"
 
 			action
 				set "gegno: deny dialog"
-			`	After a pause, Adrauni responds. "Contrarily, I rather believe them to be expecting of you. Do remember you must hail the planet for clearance."`
+			`	After a pause, Adrauni responds. "Contrarily, I rather believe them to be expecting of you, accounting for their exclamations of the situation."`
 				goto "epilogue b"
 
 			label "there"
