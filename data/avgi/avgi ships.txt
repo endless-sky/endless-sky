@@ -1049,7 +1049,7 @@ ship "Modified Tachytia"
 		"cargo space" 1200
 		"outfit space" 1800
 		"weapon capacity" 180
-		"engine capacity" 900
+		"engine capacity" 450
 		"self destruct" 0.9
 		"spinal mount" 1
 		"anchor point" 3
