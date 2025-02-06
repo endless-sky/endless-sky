@@ -1293,6 +1293,8 @@ mission "Remnant: Cognizance 28"
 				"Rano'erek (Ground Assault)" 4
 				"Palavret (Ember)" 6
 				"'olofez" 32
+		on kill
+			set "remnant: cleared Baianus orbit"
 
 
 
@@ -1310,7 +1312,13 @@ mission "Remnant: Cognizance 29"
 		has "Remnant: Cognizance 28: done"
 	on offer
 		conversation
+			branch "cleared orbit"
+				has "remnant: cleared Baianus orbit"
 			`Punching through the Korath blockade finds you racing across the aurora filled skies of Baianus. You quickly slide into the designated approach track and start to enter your IFF code as a barrage of anti-air fire erupts from the ground to lance over your shoulder. As you drop into evasive maneuvers you spot the wreckage of an 'olofez tumbling to the ice behind you, and a firelance beam sears the air where the <ship> had just been. Moments later you get the confirmation signal that they have accepted your ID and are tracking your position.`
+				goto landed
+			label "cleared orbit"
+			`Destroying the Korath ships blockading this system purchases some respite. However, it does not last long as some Korath ships were in the aurora filled atmosphere and, having evaded your assault in space, now move to pursue you, intent on stopping you from reaching the Remnant base. As you transmit your IFF code, you are aided by an eruption of anti-air fire from below, which sends an 'olofez tumbling to the icy surface as its last breath of fire misses the <ship>. Along with confirmation of recognizing you, the Remnant at the base ahead inform you that their timetable has not changed despite the currently lessened Korath presence in the system; more ships are already on the way.`
+			label landed
 			`	As you approach the entrance to the hidden starport, directions appear on your comm panel guiding you to a spot where a large stack of equipment surrounds the landing pad. You ease inside and have barely touched down when a technician is dropping from the ceiling onto your hull with a refueling hose and repair equipment. Meanwhile, a swarm of Remnant are prepping and moving various equipment, many with lifts and loaders. You quickly open the cargo hold doors, and the Remnant rush to load and board the <ship>.`
 			`	The Remnant move fast, but you can hear the battle approaching. Even through the <ship>'s dampeners you can feel the heavy thud of anti-air artillery. The whine of generators being pushed to the limit fills the air as the shields crackle with incoming fire. Through the cacophony the Remnant move with purpose, gesturing instructions silently through the din. Finally the last load is packed onboard, and one of them comes up to the cockpit. "Thank you for your assistance, Captain <last>. As the explosive charges have been set, I recommend we leave promptly." They nod respectfully, then strap themselves into the nearest harness.`
 			`	The shield opens one final time to allow you to leave, and you practically leap into the teeth of a Korath attack. The anti-air artillery continues its rhythmic barrage against the incoming ships, but it is evident that both it and the shields around the base are failing under the assault. As you head for orbit, the last image you see is the artillery pieces sag and collapse as they melt into the ground. Your sensors record a sudden explosion from the cavern, to which the Remnant give a sad but satisfied nod. "Take us back to Caelian please, Captain."`
