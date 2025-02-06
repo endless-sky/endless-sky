@@ -1267,8 +1267,8 @@ mission "Remnant: Cognizance 27"
 
 mission "Remnant: Cognizance 28"
 	landing
-	name "Recover equipment from Baianus."
-	description "Torza has asked you to recover 280 tons of equipment and 20 personnel from Baianus by <date>."
+	name "Recover equipment from Baianus"
+	description "Torza has asked you to recover 280 tons of equipment and 20 personnel from <destination> by <date>."
 	source "Caelian"
 	destination "Baianus"
 	blocked `Over the commlink Torza is a flurry of motion as he issues orders in several directions. "Right now, we need another ship that can evacuate 280 tons and 20 people. Return here when you have suitable capabilities."`
@@ -1300,8 +1300,8 @@ mission "Remnant: Cognizance 28"
 
 mission "Remnant: Cognizance 29"
 	landing
-	name "Recover equipment from Baianus."
-	description "Torza has asked you to recover equipment from Baianus by <date>."
+	name "Recover equipment from Baianus"
+	description "Torza has asked you to return to <destination> with recovered equipment and personnel by <date>."
 	source "Baianus"
 	destination "Caelian"
 	blocked `The scene is one of organized chaos. One Remnant signs "We need a ship that can carry <tons> of cargo and 20 passengers."`
