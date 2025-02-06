@@ -3904,6 +3904,7 @@ mission "Human to Hai Space - No Contact"
 mission "Human to Hai Space"
 	minor
 	description "Bring a human passenger to <destination> in Hai space."
+	passengers 1
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
