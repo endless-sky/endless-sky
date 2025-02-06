@@ -179,7 +179,7 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors(const System *system = nullptr) const;
-	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system);
+	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
 	void RefreshRaiding();
 
 	// Get cargo information.
@@ -411,8 +411,6 @@ private:
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
-
-	std::map<const Government *, double> raidAttraction;
 
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;

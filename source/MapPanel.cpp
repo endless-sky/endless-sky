@@ -231,7 +231,7 @@ namespace {
 	}
 
 	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
-	double DangerFleetTotal(PlayerInfo &player, const System &system, const bool withRaids)
+	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
 	{
 		double danger = system.Danger() * 60.;
 		if(withRaids)

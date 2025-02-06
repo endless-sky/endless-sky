@@ -124,6 +124,7 @@ namespace {
 			oldFirstShip->SetIsParked(true);
 		}
 	}
+	std::map<const Government *, double> raidAttraction;
 }
 
 
@@ -1423,7 +1424,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *system)
+double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *system) const
 {
 	double attraction = 0.;
 	const Fleet *raidFleet = raid.GetFleet();
