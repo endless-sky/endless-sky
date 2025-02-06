@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Fleet.h"
 #include "GameData.h"
-#include "Government.h"
 
 #include <algorithm>
 
@@ -85,8 +84,6 @@ void Raiders::Load(const DataNode &node)
 				raidFleets.clear();
 			LoadFleets(child, remove, valueIndex);
 		}
-		else if(key == "government")
-			government = GameData::Governments().Get(child.Token(valueIndex));
 		else if(key == "empty cargo attraction")
 			emptyCargoAttraction = child.Value(valueIndex);
 		else

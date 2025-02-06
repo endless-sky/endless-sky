@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class DataNode;
-class Government;
 
 
 
@@ -40,5 +39,4 @@ private:
 
 	double emptyCargoAttraction = 1.;
 	bool scoutsCargo = false;
-	const Government *government = nullptr;
 };

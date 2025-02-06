@@ -292,7 +292,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
 			if(!raiders)
 				raiders = new Raiders();
-			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex);
+			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex, true);
 		}
 		else if(key == "raiders")
 			raiders = GameData::GetRaiders().Get(child.Token(valueIndex));
