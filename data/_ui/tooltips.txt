@@ -252,6 +252,9 @@ tip "energy protection:"
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
 
+tip "flotsam chance:"
+	`The chance that this outfit will drop as flotsam when the ship it is installed on is destroyed.`
+
 tip "force protection:"
 	`Protection provided against hit force. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hit force, while a total value of 11 only results in a 10 percent reduction.`
 
