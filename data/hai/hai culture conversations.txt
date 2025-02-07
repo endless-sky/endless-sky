@@ -204,7 +204,7 @@ mission "Gambling Judgment"
 			`	"If you interpret the game as being played for the skill, without the wagering, then you clear the first and third tenet, but you have the issue that the principle skills are bluffing and manipulation, which violates the second tenet. Bluffing isn't a skill seen as having virtue, nor is manipulation."`
 			choice
 				`	"Wait, do the Hai not lie or bluff?"`
-			`	The barkeep chortles with a strange trill and says, "Oh no, the Hai do lie and bluff. We're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their lives without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
+			`	The barkeep chortles with a strange trill and says, "Oh no, the Hai do lie and bluff. We're actually very good at bluffing, evolutionarily advantageous in the wild and all that. It's just seen as very immature and base. An adult should be able to conduct their life without resorting to such primitive instincts. We learned that the hard way long ago, back before we holed up in our current borders."`
 			`	He looks at you intently before continuing, "You won't hear the tenets brought up very much, but if you look closely you'll see that the first three especially are ingrained in our society very deeply."`
 			`	With a shrug he flips open his order pad and pats his belly. "Of course, my gran always said that any of them after the tenth were more guidelines than actual rules, and I certainly have my share of disagreements with thirteen. Now, before I talk your ears off, what'll I get for you?"`
 			label end
