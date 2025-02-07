@@ -224,7 +224,7 @@ mission "Pact Questioning"
 			`	"Am I correct that you have been assisting the Southern Mutual Defense Pact?"`
 				goto start
 			label free
-			`	"Am I correct that you performed some missions for the Southern Mutual Defense Pact, back before they became the Free Worlds?"`
+			`	"Am I correct that you performed some missions for the Southern Mutual Defense Pact recently?"`
 			label start
 			`	His voice is very friendly, and he is not armed or accompanied by any other officers that you can see, so it doesn't seem like you are in trouble or in danger of being arrested - especially since your work for the Pact was perfectly legal.`
 			choice
