@@ -31,6 +31,7 @@ effect "afterburner"
 		"no repeat"
 		"frame rate" 30
 	sound "afterburner"
+	"sound category" "afterburner"
 	"lifetime" 10
 	"random angle" 30
 	"random spin" 10
@@ -57,6 +58,7 @@ effect "caldera afterburner"
 		"no repeat"
 		"frame rate" 15
 	sound "afterburner"
+	"sound category" "afterburner"
 	"lifetime" 20
 	"random angle" 30
 	"random spin" 10
@@ -85,6 +87,7 @@ effect "ionic afterburner"
 		"no repeat"
 		"frame rate" 30
 	sound "ionic afterburner"
+	"sound category" "afterburner"
 	"lifetime" 12
 	"random angle" 360
 	"random spin" 30

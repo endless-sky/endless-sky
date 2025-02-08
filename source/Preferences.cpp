@@ -44,7 +44,7 @@ namespace {
 	int dateFormatIndex = 0;
 
 	const vector<string> NOTIF_OPTIONS = {"off", "message", "both"};
-	int notifOptionsIndex = 0;
+	int notifOptionsIndex = 1;
 
 	size_t zoomIndex = 4;
 	constexpr double VOLUME_SCALE = .25;
@@ -59,6 +59,21 @@ namespace {
 
 	const vector<string> CAMERA_ACCELERATION_SETTINGS = {"off", "on", "reversed"};
 	int cameraAccelerationIndex = 1;
+
+	const map<string, SoundCategory> VOLUME_SETTINGS = {
+		{"volume", SoundCategory::MASTER},
+		{"music volume", SoundCategory::MUSIC},
+		{"ui volume", SoundCategory::UI},
+		{"anti-missile volume", SoundCategory::ANTI_MISSILE},
+		{"weapon volume", SoundCategory::WEAPON},
+		{"engine volume", SoundCategory::ENGINE},
+		{"afterburner volume", SoundCategory::AFTERBURNER},
+		{"jump volume", SoundCategory::JUMP},
+		{"explosion volume", SoundCategory::EXPLOSION},
+		{"scan volume", SoundCategory::SCAN},
+		{"environment volume", SoundCategory::ENVIRONMENT},
+		{"alert volume", SoundCategory::ALERT}
+	};
 
 	class OverlaySetting {
 	public:
@@ -183,8 +198,8 @@ void Preferences::Load()
 			Screen::SetRaw(node.Value(1), node.Value(2));
 		else if(node.Token(0) == "zoom" && node.Size() >= 2)
 			Screen::SetZoom(node.Value(1));
-		else if(node.Token(0) == "volume" && node.Size() >= 2)
-			Audio::SetVolume(node.Value(1) * VOLUME_SCALE);
+		else if(VOLUME_SETTINGS.contains(node.Token(0)) && node.Size() >= 2)
+			Audio::SetVolume(node.Value(1) * VOLUME_SCALE, VOLUME_SETTINGS.at(node.Token(0)));
 		else if(node.Token(0) == "scroll speed" && node.Size() >= 2)
 			scrollSpeed = node.Value(1);
 		else if(node.Token(0) == "boarding target")
@@ -268,7 +283,8 @@ void Preferences::Save()
 {
 	DataWriter out(Files::Config() / "preferences.txt");
 
-	out.Write("volume", Audio::Volume() / VOLUME_SCALE);
+	for(const auto &[name, category] : VOLUME_SETTINGS)
+		out.Write(name, Audio::Volume(category) / VOLUME_SCALE);
 	out.Write("window size", Screen::RawWidth(), Screen::RawHeight());
 	out.Write("zoom", Screen::UserZoom());
 	out.Write("scroll speed", scrollSpeed);
