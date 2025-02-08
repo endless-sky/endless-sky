@@ -438,7 +438,7 @@ mission "Avgi Culture: Zapchannel Energy"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		"Avgi: Twilight Escape 3: done"
+		has "Avgi: Twilight Escape 3: done"
 		random < 30
 	on offer
 		log "Minor People" "Nikkio" `Nikkio is a shifty salesman peddling "Zapchannel Ray Energy," a supposed health tonic with a suspicious glow.`
