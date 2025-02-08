@@ -4046,6 +4046,11 @@ License: public-domain
  Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
 
 Files:
+ images/ship/escape?pod*
+Copyright: mOctave
+License: CC-BY-SA-4.0
+
+Files:
  images/effect/bimodal?impact*
  images/effect/bimodal?switch?impact*
  images/effect/drag?cannon?impact*
