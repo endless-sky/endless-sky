@@ -11214,7 +11214,7 @@ system Current
 		multiplier 1.5
 	habitable 1250
 	belt 1923
-	haze _menu/haze-twilit-embers
+	haze _menu/haze-twilight-thin
 	link Gust
 	link Torrent
 	link Wave
@@ -41927,7 +41927,7 @@ system Wave
 	habitable 550
 	belt 1402 7
 	belt 1954 5
-	haze _menu/haze-black
+	haze _menu/haze-twilit-embers
 	link Current
 	link Rivulet
 	link Torrent
@@ -41949,7 +41949,7 @@ system Wave
 		distance 293
 		period 85.5421
 	object
-		sprite planet/ocean9-b
+		sprite planet/water1
 		distance 823
 		period 402.697
 	object
