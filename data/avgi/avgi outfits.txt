@@ -413,7 +413,7 @@ outfit "Remass Injector"
 	thumbnail "outfit/remass injector"
 	"mass" 6
 	"outfit space" -6
-	"engine capacity" -6
+	"engine capacity" -3
 	"afterburner thrust" 90
 	"afterburner energy" 3
 	"afterburner heat" -18
@@ -433,7 +433,7 @@ outfit "Inductive Extractor"
 	thumbnail "outfit/inductive extractor"
 	"mass" 12
 	"outfit space" -12
-	"engine capacity" -12
+	"engine capacity" -6
 	"energy generation" 1.5
 	"heat generation" 1.5
 	"thrust" -12
