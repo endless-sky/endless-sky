@@ -295,7 +295,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex, true);
 		}
 		else if(key == "raiders")
-			raiders = GameData::GetRaiders().Get(child.Token(valueIndex));
+			raiders = GameData::GetRaiders().Get(value);
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);

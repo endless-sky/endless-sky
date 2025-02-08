@@ -124,7 +124,6 @@ namespace {
 			oldFirstShip->SetIsParked(true);
 		}
 	}
-	std::map<const Government *, double> raidAttraction;
 }
 
 

@@ -411,6 +411,8 @@ private:
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
+	
+	mutable std::map<const Government *, double> raidAttraction;
 
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;
