@@ -17,7 +17,7 @@ mission "Avgi Culture: Park Politics"
 	source
 		planet "Peripheria"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 		random < 30
 	on offer
 		conversation
@@ -438,7 +438,7 @@ mission "Avgi Culture: Zapchannel Energy"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		"Avgi: Twilight Escape 3: done"
 		random < 30
 	on offer
 		log "Minor People" "Nikkio" `Nikkio is a shifty salesman peddling "Zapchannel Ray Energy," a supposed health tonic with a suspicious glow.`
@@ -516,7 +516,7 @@ mission "Avgi: Cylinder Construction"
 	source
 		planet "Aktina Cylinder"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 	on offer
 		log "People" "Gamboge" `Gamboge manages construction on the Aktina Cylinder, an immense habitat station whose construction has stalled in recent years. He is frustrated about the lack of support offered by the Assembly and believes Aktina deserves to be a higher priority.`
 		conversation
@@ -616,7 +616,7 @@ mission "Avgi: Infocourier Encounter"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 		random < 6
 	on offer
 		log "People" "Hansa" `Hansa is an Infocourier, a role that sees him transport files and records between systems in a small ship. As the Avgi never developed hyperspace comms, courier ships are necessary to communicate across interstellar distances.`
@@ -692,7 +692,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 	source
 		attributes "twilight guard"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 		random < 30
 	on offer
 		log "People" "Claret" `Claret is a member of the Twilight Guard, curious about humans and passionate about the details of tactical space combat.`
@@ -883,7 +883,7 @@ mission "Avgi: Atomics Testing 1"
 	blocked "You need <capacity> to transport Aliza and her colleagues to Dokimi."
 	passengers 3
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 	on offer
 		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of a passion for nuclear weapons, she is eager to share what she knows.`
 		conversation
