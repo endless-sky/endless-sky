@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
+#include "Storyline.h"
 #include "TextReplacements.h"
 
 #include <list>
@@ -71,6 +72,7 @@ public:
 	const EsUuid &UUID() const noexcept;
 	const std::string &Name() const;
 	const std::string &Description() const;
+	const Storyline *GetStoryline() const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
@@ -87,6 +89,9 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	// Check if this mission is optional within its storyline: optional missions
+	// can be declined or failed without breaking the storyline.
+	bool IsStorylineOptional() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
@@ -200,6 +205,8 @@ private:
 	std::string displayName;
 	std::string description;
 	std::string blocked;
+	std::string storylineName;
+	const Storyline *storyline = nullptr;
 	Location location = SPACEPORT;
 
 	EsUuid uuid;
@@ -212,6 +219,8 @@ private:
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;
+	bool storylineFailsafe = false;
+	bool storylineOptional = false;
 	int expectedJumps = 0;
 	int deadlineBase = 0;
 	int deadlineMultiplier = 0;
