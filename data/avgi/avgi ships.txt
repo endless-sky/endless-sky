@@ -723,8 +723,11 @@ ship "Polari"
 	turret -14 27 "Green Optical Laser"
 	turret 14 27 "Green Optical Laser"
 	bay "Drone" -9 -25
+		"launch effect" "avgi internal"
 	bay "Drone" 9 -25
+		"launch effect" "avgi internal"
 	bay "Fighter" 0 48
+		"launch effect" "avgi internal"
 
 	leak "leak" 30 30
 	leak "flame" 30 60
@@ -843,15 +846,29 @@ ship "Entasi"
 	turret 10 72 "Blue Optical Laser"
 	turret 0 -4
 	bay "Fighter" 0 -30
+		"launch effect" "avgi external"
 		over
 	bay "Fighter" 0 -30
+		"launch effect" "avgi external"
 		under
 	bay "Drone" -18 -45
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 18 -45
+		"launch effect" "avgi internal"
+		angle 90
 	bay "Drone" -18 -18
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 18 -18
+		"launch effect" "avgi internal"
+		angle 90
 	bay "Drone" -18 72
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 18 72
+		"launch effect" "avgi internal"
+		angle 90
 
 	leak "leak" 60 60
 	leak "flame" 60 60
@@ -941,9 +958,17 @@ ship "Undsyni"
 	turret 0 42 "Green Optical Laser"
 	turret 0 186 "Green Optical Laser"
 	bay "Drone" -65.5 3
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 65.5 3
+		"launch effect" "avgi internal"
+		angle 90
 	bay "Drone" 65.5 29
+		"launch effect" "avgi internal"
+		angle 90
 	bay "Drone" -65.5 29
+		"launch effect" "avgi internal"
+		angle 270
 
 	leak "leak" 30 90
 	leak "flame" 30 90
@@ -1108,21 +1133,37 @@ ship "Modified Tachytia"
 	turret 0 -360 "Green Optical Laser"
 	turret 0 450 "Green Optical Laser"
 	bay "Drone" -18 420
+		"launch effect" "avgi internal"
 	bay "Drone" 18 420
+		"launch effect" "avgi internal"
 	bay "Drone" -18 432
+		"launch effect" "avgi internal"
 	bay "Drone" 18 432
+		"launch effect" "avgi internal"
 	bay "Drone" -18 447
+		"launch effect" "avgi internal"
 	bay "Drone" 18 447
+		"launch effect" "avgi internal"
 	bay "Drone" -18 459
+		"launch effect" "avgi internal"
 	bay "Drone" 18 459
+		"launch effect" "avgi internal"
 	bay "Fighter" -21 432
+		"launch effect" "avgi internal"
 	bay "Fighter" 21 432
+		"launch effect" "avgi internal"
 	bay "Fighter" -21 420
+		"launch effect" "avgi internal"
 	bay "Fighter" 21 420
+		"launch effect" "avgi internal"
 	bay "Fighter" -21 447
+		"launch effect" "avgi internal"
 	bay "Fighter" 21 447
+		"launch effect" "avgi internal"
 	bay "Fighter" -21 459
+		"launch effect" "avgi internal"
 	bay "Fighter" 21 459
+		"launch effect" "avgi internal"
 
 	leak "leak" 60 15
 	leak "flame" 60 15
@@ -1544,17 +1585,32 @@ ship "Diaspersi"
 	turret 9 9 "Green Optical Laser"
 	turret 0 51 "Speckle Turret"
 	bay "Fighter" 0 -63
+		"launch effect" "avgi external"
 		over
 	bay "Fighter" -36 18
+		"launch effect" "avgi external"
 		under
 	bay "Fighter" 36 18
+		"launch effect" "avgi external"
 		under
 	bay "Drone" -21 -75
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 21 -75
+		"launch effect" "avgi internal"
+		angle 90
 	bay "Drone" -21 -54
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 21 -54
+		"launch effect" "avgi internal"
+		angle 90
 	bay "Drone" -24 -30
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 24 -30
+		"launch effect" "avgi internal"
+		angle 90
 	
 	leak "leak" 60 60
 	leak "flame" 60 90
@@ -1790,7 +1846,11 @@ ship "Difraktos"
 	turret 0 36 "Green Optical Laser"
 	turret 0 90 "Green Optical Laser"
 	bay "Drone" -21 -21
+		"launch effect" "avgi internal"
+		angle 270
 	bay "Drone" 21 -21
+		"launch effect" "avgi internal"
+		angle 90
 	
 	leak "leak" 60 60
 	leak "flame" 30 90
@@ -1964,34 +2024,76 @@ ship "Atenuatia"
 	turret 0 96 "Green Optical Laser"
 	turret 0 160 "Green Optical Laser"
 	bay "Drone" -24 -234
+		"launch effect" "avgi internal"
+		angle 160
 	bay "Drone" 24 -234
+		"launch effect" "avgi internal"
+		angle 200
 	bay "Drone" -42 -225
+		"launch effect" "avgi internal"
+		angle 160
 	bay "Drone" 42 -225
+		"launch effect" "avgi internal"
+		angle 200
 	bay "Drone" -63 -219
+		"launch effect" "avgi internal"
+		angle 160
 	bay "Drone" 63 -219
+		"launch effect" "avgi internal"
+		angle 200
 	bay "Drone" -18 -216
+		"launch effect" "avgi internal"
+		angle 260
 	bay "Drone" 18 -216
+		"launch effect" "avgi internal"
+		angle 100
 	bay "Drone" -24 -175
+		"launch effect" "avgi internal"
+		angle 160
 	bay "Drone" 24 -175
+		"launch effect" "avgi internal"
+		angle 200
 	bay "Drone" -24 -175
+		"launch effect" "avgi internal"
+		angle 160
 	bay "Drone" 24 -175
+		"launch effect" "avgi internal"
+		angle 200
 	bay "Drone" -46 -165
+		"launch effect" "avgi internal"
+		angle 160
 	bay "Drone" 46 -165
+		"launch effect" "avgi internal"
+		angle 200
 	bay "Drone" -46 -165
+		"launch effect" "avgi internal"
+		angle 160
 	bay "Drone" 46 -165
+		"launch effect" "avgi internal"
+		angle 200
 	bay "Drone" -18 -150
+		"launch effect" "avgi internal"
+		angle 260
 	bay "Drone" 18 -150
+		"launch effect" "avgi internal"
+		angle 100
 	bay "Fighter" 0 -216
+		"launch effect" "avgi external"
 		over
 	bay "Fighter" 0 -216
+		"launch effect" "avgi external"
 		under
 	bay "Fighter" 0 -150
+		"launch effect" "avgi external"
 		over
 	bay "Fighter" 0 -150
+		"launch effect" "avgi external"
 		under
 	bay "Fighter" 0 -117
+		"launch effect" "avgi external"
 		over
 	bay "Fighter" 0 -117
+		"launch effect" "avgi external"
 		under
 
 	leak "leak" 30 60
