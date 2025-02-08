@@ -18853,6 +18853,7 @@ system Gossamer
 		sprite "star/smoke ring"
 			scale 1.5
 			"frame rate" 0.15
+			"rewind"
 		period 914.299
 		offset 180
 	object Kapnos
