@@ -43,6 +43,10 @@ phrase "generic cargo on visit"
 	word
 		`You have reached <planet>, but not all of the cargo is in the system! Better depart and wait for your escorts to arrive in this star system.`
 
+phrase "generic passenger stopover pickup"
+	word
+		`Your <passengers> board your ship, ready to go to <planet>.`
+
 phrase "generic passenger dropoff payment"
 	word
 		`You wish your <passengers> the best of luck on <planet>, and collect your payment of <payment>.`
@@ -83,6 +87,14 @@ phrase "generic stopover on visit"
 phrase "generic waypoint on visit"
 	word
 		`You have reached <planet>, but you haven't visited all the systems yet! Better depart and make sure you visit <waypoints>.`
+
+phrase "generic infiltrating emancipation stopover pickup"
+	word
+		`You land in a remote location and load the <passengers>, who hurry into your ship silently.`
+
+phrase "generic emancipation pickup"
+	word
+		`You move your ship to a remote location and load the <passengers>, who are relieved to escape slavery.`
 
 
 phrase "generic hunted bounty eliminated and payment dialog"
@@ -143,3 +155,11 @@ phrase "generic completed pirate slave mission"
 phrase "generic aborted pirate slave mission"
 	word
 		`Your slaves never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
+
+phrase "generic completed emancipation mission"
+	word
+		`Local authorities thank you with joyous words and <payment>. They lead the <bunks> people you helped emancipate to their newfound freedom.`
+
+phrase "generic completed emancipation raid mission"
+	word
+		`Wounded raiders and emancipated refugees leave the ships you escorted. They're all grateful for the heroism you ensured today.`
