@@ -140,6 +140,7 @@ effect "pug anti-missile"
 		"no repeat"
 		"frame rate" 6
 	sound "pug anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
 

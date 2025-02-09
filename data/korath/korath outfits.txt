@@ -301,6 +301,7 @@ effect "korath afterburner tiny"
 		"no repeat"
 		"frame rate" 90
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 7
 	"random angle" 15
 	"random spin" 360
@@ -313,6 +314,7 @@ effect "korath afterburner small"
 		"no repeat"
 		"frame rate" 60
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 10
 	"random angle" 15
 	"random spin" 360
@@ -326,6 +328,7 @@ effect "korath afterburner medium"
 		"no repeat"
 		"frame rate" 45
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 12
 	"random angle" 15
 	"random spin" 360
@@ -339,6 +342,7 @@ effect "korath afterburner large"
 		"no repeat"
 		"frame rate" 30
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 14
 	"random angle" 15
 	"random spin" 360
@@ -352,6 +356,7 @@ effect "korath afterburner huge"
 		"no repeat"
 		"frame rate" 20
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 16
 	"random angle" 15
 	"random spin" 360

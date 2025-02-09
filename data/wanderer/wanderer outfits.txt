@@ -211,6 +211,7 @@ effect "wanderer anti-missile"
 		"no repeat"
 		"frame rate" 6
 	sound "heavy anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 

@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <ranges>
 
 using namespace std;
@@ -324,7 +325,10 @@ void ShipInfoPanel::UpdateInfo()
 	const Ship &ship = **shipIt;
 	info.Update(ship, player);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
+	{
 		player.Flagship()->SetTargetShip(*shipIt);
+		player.SelectShip(shipIt->get(), false);
+	}
 
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
