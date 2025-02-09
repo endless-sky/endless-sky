@@ -90,7 +90,7 @@ public:
 
 	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
 	double Hull() const;
-	// Get max hull of this asteroid.
+	// Get the maximum hull value of this asteroid.
 	double MaxHull() const;
 
 
