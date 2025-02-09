@@ -584,17 +584,14 @@ void LoadPanel::SnapshotCallback(const string &name)
 void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesystem::path &snapshotName)
 {
 	// Copy the autosave to a new, named file.
-	try {
-		Files::Copy(sourceFile, snapshotName);
-	}
-	catch(const filesystem::filesystem_error &)
+	if(Files::Copy(sourceFile, snapshotName))
 	{
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName.string() + "\"."));
-		return;
+		UpdateLists();
+		selectedFile = Files::Name(snapshotName);
+		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
-	UpdateLists();
-	selectedFile = Files::Name(snapshotName);
-	loadedInfo.Load(Files::Saves() / selectedFile);
+	else
+		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName.string() + "\"."));
 }
 
 
