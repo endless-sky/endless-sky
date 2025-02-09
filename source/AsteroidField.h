@@ -52,7 +52,7 @@ public:
 	// Reset the asteroid field (typically because you entered a new system).
 	void Clear();
 	void Add(const std::string &name, int count, double energy = 1.);
-	void Add(const Minable *minable, int count, double energy, const WeightedList<double> &belts);
+	void Add(const Minable *minable, int count, double energy, const WeightedList<double> &belts, int belt);
 
 	// Move all the asteroids forward one time step, and populate the asteroid and minable collision sets.
 	void Step(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam, int step);

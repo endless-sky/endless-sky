@@ -1437,7 +1437,7 @@ void Engine::EnterSystem()
 	{
 		// Check whether this is a minable or an ordinary asteroid.
 		if(a.Type())
-			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelts());
+			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelts(), a.Belt());
 		else
 			asteroids.Add(a.Name(), a.Count(), a.Energy());
 	}

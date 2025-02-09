@@ -55,8 +55,8 @@ System::Asteroid::Asteroid(const string &name, int count, double energy)
 
 
 
-System::Asteroid::Asteroid(const Minable *type, int count, double energy)
-	: type(type), count(count), energy(energy)
+System::Asteroid::Asteroid(const Minable *type, int count, double energy, int belt)
+	: type(type), count(count), energy(energy), belt(belt)
 {
 }
 
@@ -86,6 +86,13 @@ int System::Asteroid::Count() const
 double System::Asteroid::Energy() const
 {
 	return energy;
+}
+
+
+
+int System::Asteroid::Belt() const
+{
+	return belt;
 }
 
 
@@ -251,23 +258,60 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(child.Size() >= 4)
+			else if(child.Size() >= valueIndex + 3)
 				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: Expected key to have three values:");
 		}
 		else if(key == "minables")
 		{
-			const Minable *type = GameData::Minables().Get(value);
-			if(remove)
+			if(hasValue)
 			{
-				for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
-					if(it->Type() == type)
+				const Minable *type = GameData::Minables().Get(value);
+				if(remove)
+				{
+					for(auto it = asteroids.begin(); it != asteroids.end(); ++it)
+						if(it->Type() == type)
+						{
+							asteroids.erase(it);
+							break;
+						}
+				}
+				else
+				{
+					int count = (child.Size() >= valueIndex + 2) ? child.Value(valueIndex + 1) : 0;
+					double energy = (child.Size() >= valueIndex + 3) ? child.Value(valueIndex + 2) : 0.;
+					int belt = (child.Size() >= valueIndex + 4) ? child.Value(valueIndex + 3) : 0;
+					for(const DataNode &grand: child)
 					{
-						asteroids.erase(it);
-						break;
+						const string &subKey = grand.Token(0);
+						if(grand.Size() <= 0)
+							continue;
+						const double subValue = grand.Value(1);
+						if(subKey == "count")
+							count = subValue;
+						else if(subKey == "energy")
+							energy = subValue;
+						else if(subKey == "belt")
+							belt = subValue;
+						else
+							grand.PrintTrace("Warning: Expected minable sub-key to have a value:");
 					}
+					if(count <= 0)
+						child.PrintTrace("Error: minable must have a positive count:");
+					else if(energy <= 0.)
+						child.PrintTrace("Error: minable must have a positive energy:");
+					else if(!add && static_cast<size_t>(belt) > max(this->belts.size(), 1ul))
+						child.PrintTrace("Error: minable belt number out of bounds:");
+					else
+					{
+						belt--; // From 1-based to 0-based, with -1 representing random belt
+						asteroids.emplace_back(type, count, energy, belt);
+					}
+				}
 			}
-			else if(child.Size() >= 4)
-				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: Expected key to have at least one value:");
 		}
 		else if(key == "fleet")
 		{
