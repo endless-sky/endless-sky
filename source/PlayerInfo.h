@@ -178,8 +178,9 @@ public:
 	void ReorderShip(int fromIndex, int toIndex);
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
-	std::pair<double, double> RaidFleetFactors() const;
+	std::pair<double, double> RaidFleetFactors(const System *system = nullptr) const;
 	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
+	void RefreshRaiding();
 
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -323,6 +324,8 @@ public:
 	// Get depreciation information.
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
+
+	int64_t FleetStrength() const;
 
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
