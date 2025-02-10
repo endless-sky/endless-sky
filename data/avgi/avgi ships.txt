@@ -1395,10 +1395,10 @@ ship "Interferos"
 			"hit force" 900
 	outfits
 		"Green Optical Laser"
-		"Medium VLS" 2
-		`"Nettle" KKV` 432
+		"Speckle Turret" 2
+		"Speck Round" 4800
 
-		"Ultracapacitor Cell" 3
+		"Ultracapacitor Bank" 2
 		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Magnetic Scoop"
@@ -1440,8 +1440,8 @@ ship "Interferos"
 	gun 33 -42
 		angle 60
 		parallel
-	turret -21.5 -81
-	turret 21.5 -81
+	turret -21.5 -81 "Speckle Turret"
+	turret 21.5 -81 "Speckle Turret"
 	turret 0 -48 "Green Optical Laser"
 
 	leak "flame" 60 90
@@ -1451,6 +1451,28 @@ ship "Interferos"
 	"final explode" "final explosion medium"
 
 	description "The Interferos-class Frigate is an autonomous support ship, designed to be easy to build and disposable enough for mass production. To free up frontline warships from having to escort merchant convoys in the Tangles, the Consonance commissioned this design with the intent of licensing its sale to independent merchant captains. It has since become popular due to its impressively large armament, though its attrition rates leave something to be desired."
+
+
+ship "Interferos" "Interferos (KKV)"
+	outfits
+		"Green Optical Laser"
+		"Medium VLS" 2
+		`"Nettle" KKV` 432
+
+		"Ultracapacitor Cell" 3
+		"Diffuse Deflector"
+		"Optical Lasing Generator"
+		"Magnetic Scoop"
+		
+		`Z-333 "Spark" Fusion Torch`
+		"Inductive Extractor"
+		"Remass Injector"
+		"R-180 RCS Thrusters"
+		"Hyperdrive"
+
+	turret "Medium VLS"
+	turret "Medium VLS"
+	turret "Green Optical Laser"
 
 
 ship "Interferos" "Interferos (Atomic)"
@@ -1826,7 +1848,7 @@ ship "Difraktos"
 	description "The Difraktos-class Cruiser is a versatile platform capable of serving in configurations from a high-performance kinetic weapon battlecruiser to a guided missile cruiser, or anything in between. Its powerful torch drive is used to push a heavily armored hull, rather than relying on speed, giving the Difraktos good survivability even in close-range brawls."
 
 
-ship "Difraktos" "Difraktos (Missile)"
+ship "Difraktos" "Difraktos (KKV)"
 	outfits
 		"Green Optical Laser" 2
 		"Speckle Turret" 2
