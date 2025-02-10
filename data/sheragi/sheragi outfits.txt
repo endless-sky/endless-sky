@@ -264,7 +264,7 @@ outfit "Particle Waveform Turret"
 		"fire effect" "lightning flare"
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
-		"turret turn" 0.8
+		"turret turn" 1.2
 		"velocity" 50
 		"lifetime" 18
 		"reload" 60
