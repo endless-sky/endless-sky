@@ -1104,7 +1104,7 @@ mission "Avgi: Atomics Testing 2"
 				`	"Sounds like you could use some help with security."`
 				`	"Is there a way I could help escort those shipments?"`
 
-			`	Yinmn thinkss for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
+			`	Yinmn thinks for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
 			action
 				set "avgi: nuclear material transport jobs"
 			choice

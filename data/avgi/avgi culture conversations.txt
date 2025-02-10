@@ -194,7 +194,7 @@ mission "Avgi Culture: Criminal Mischief"
 		random < 3
 	on offer
 		conversation
-			`A bright green Avgi wearing a black scarf darts above you towards one of the spaceport terminal gates, a comically oversized burlap sack dangling behind her. A trio of Avgi dressed in bright yellow force their way through a confused crowd in mid-air, waving batons. "Attention! Stop, thief!"`
+			`A bright green Avgi wearing a black scarf darts above you towards one of the spaceport terminal gates, a comically oversized burlap sack dangling behind her. A trio of Avgi dressed in bright yellow force their way through a confused crowd in midair, waving batons. "Attention! Stop, thief!"`
 			`	"Taunt! You'll never catch me alive!" the thief shouts, before promptly running into a wall. You shake your head as she's led away in restraints.`
 				decline
 

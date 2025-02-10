@@ -123,7 +123,7 @@ outfit "Pollen"
 	"installable" -1
 	"minable" 1
 	"flotsam chance" 0.6
-	description "This granule of exotic Windjammer pollen is not only replete with nutritous proteins, but also appears to contain valuable platinum group elements bound in organic molecules. This includes a collection of complex enzymes, which appear to be capable of catalyzing many difficult reactions with ease."
+	description "This granule of exotic Windjammer pollen is not only replete with nutritious proteins, but also appears to contain valuable platinum group elements bound in organic molecules. This includes a collection of complex enzymes, which appear to be capable of catalyzing many difficult reactions with ease."
 	description "	Achoo!"
 
 
