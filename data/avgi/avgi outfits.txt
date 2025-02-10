@@ -216,7 +216,7 @@ outfit "Concentrating Solar Array"
 	"solar collection" 2.4
 	"solar heat" 1.02
 	description "This large solar generator collects sunlight, turning it into usable energy. Thin mirrors concentrate sunlight onto a small number of highly efficient film solar cells, reducing weight and improving its effectiveness."
-	description "While much more efficient than a single cell alone, the Solar Array also produces a disproportionate amount of heat."
+	description "While much more efficient than a single cell alone, the Concentrating Solar Array also produces a disproportionate amount of heat."
 
 
 outfit "Photoelectric Lamina"
@@ -316,7 +316,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 	"mass" 333
 	"outfit space" -33
 	"engine capacity" -33
-	"thrust" 90
+	"thrust" 120
 	"thrusting energy" 9
 	"thrusting heat" 45
 	"thrusting fuel" 0.09
@@ -342,7 +342,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 	"mass" 666
 	"outfit space" -66
 	"engine capacity" -66
-	"thrust" 210
+	"thrust" 270
 	"thrusting energy" 18
 	"thrusting heat" 90
 	"thrusting fuel" 0.18
@@ -367,7 +367,7 @@ outfit `Z-999 "Arc" Fusion Torch`
 	"mass" 999
 	"outfit space" -99
 	"engine capacity" -99
-	"thrust" 360
+	"thrust" 450
 	"thrusting energy" 27
 	"thrusting heat" 135
 	"thrusting fuel" 0.27
@@ -433,7 +433,7 @@ outfit "Inductive Extractor"
 	thumbnail "outfit/inductive extractor"
 	"mass" 12
 	"outfit space" -12
-	"engine capacity" -12
+	"engine capacity" -6
 	"energy generation" 1.5
 	"heat generation" 1.5
 	"thrust" -12

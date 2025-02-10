@@ -112,18 +112,20 @@ fleet "Large Aberrant"
 		confusion 40
 		hunting coward vindictive harvests mining secretive
 	variant 10
+		"Aberrant Hugger" 2
+	variant 5
 		"Aberrant Hugger"
-	variant 5
 		"Aberrant Hugger (Disable-able)"
-	variant 15
+	variant 10
+		"Aberrant Longfellow" 2
+	variant 5
 		"Aberrant Longfellow"
-	variant 5
 		"Aberrant Longfellow (Disable-able)"
-	variant 5
+	variant 3
 		"Aberrant Trip"
-	variant 10
+	variant 5
 		"Aberrant Trip (Disable-able)"
-	variant 2
-		"Aberrant Triplet"
 	variant 10
+		"Aberrant Triplet"
+	variant 5
 		"Aberrant Triplet (Disable-able)"
