@@ -3030,7 +3030,7 @@ const Depreciation &PlayerInfo::StockDepreciation() const
 int64_t PlayerInfo::FleetStrength() const
 {
 	int64_t strength = 0;
-	for(auto ship : ships)
+	for(auto &ship : ships)
 		strength += ship->Strength();
 	return strength;
 }
