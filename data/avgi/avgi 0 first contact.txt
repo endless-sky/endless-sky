@@ -693,7 +693,7 @@ mission "Avgi: Scout Rescue"
 	description "Find and evacuate the crew of the <npc>, which was last seen in the Twirl system, but could be anywhere in the local star cluster."
 	source "Weledos"
 	destination "Peripheria"
-	waypoint "Twirl"
+	mark "Twirl"
 	passengers 12
 	blocked "You'll need <capacity> to complete this mission."
 	to offer
@@ -721,6 +721,10 @@ mission "Avgi: Scout Rescue"
 				accept
 	on accept
 		log `Agreed to help Kokkino by trying to rescue the crew of an Avgi scout ship that failed to report in from a mission in the Twilight.`
+
+	on enter "Twirl"
+		unmark "Twirl"
+		dialog `You've reached the Twirl system, but there is no sign of the Silver Albedo. Perhaps you should check the rest of this star cluster.`
 
 	npc assist
 		government "Avgi"
