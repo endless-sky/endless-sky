@@ -41,6 +41,7 @@ ship "Aberrant Latte"
 		"shield heat" 3.4
 		"shield generation" 1.2
 		"hull repair rate" 0.6
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -109,6 +110,7 @@ ship "Aberrant Chomper"
 		"shield heat" 3.4
 		"shield generation" 1.2
 		"hull repair rate" 0.6
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -184,6 +186,7 @@ ship "Aberrant Pileup"
 		"shield heat" 3.4
 		"shield generation" 1.2
 		"hull repair rate" 0.6
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -253,6 +256,7 @@ ship "Aberrant Hugger"
 		"shield heat" 3.4
 		"shield generation" 1.2
 		"hull repair rate" 0.6
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -324,6 +328,7 @@ ship "Aberrant Longfellow"
 		"shield heat" 3.4
 		"shield generation" 1.2
 		"hull repair rate" 0.6
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -401,6 +406,7 @@ ship "Aberrant Dancer"
 		"shield heat" 3.4
 		"shield generation" 1.2
 		"hull repair rate" 0.6
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 500
@@ -476,6 +482,7 @@ ship "Aberrant Junior"
 		"shield heat" 3.4
 		"shield generation" 0.6
 		"hull repair rate" 1.2
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -548,6 +555,7 @@ ship "Aberrant Icebreaker"
 		"shield heat" 3.4
 		"shield generation" 0.6
 		"hull repair rate" 1.2
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -622,6 +630,7 @@ ship "Aberrant Pike"
 		"shield heat" 3.4
 		"shield generation" 0.6
 		"hull repair rate" 1.2
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -694,6 +703,7 @@ ship "Aberrant Mole"
 		"shield heat" 3.4
 		"shield generation" 0.6
 		"hull repair rate" 1.2
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -768,6 +778,7 @@ ship "Aberrant Whiskers"
 		"shield heat" 3.4
 		"shield generation" 0.6
 		"hull repair rate" 1.2
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 300
@@ -835,6 +846,7 @@ ship "Aberrant Trip"
 		"shield heat" 7.6
 		"shield generation" 0.9
 		"hull repair rate" 0.2
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 600
@@ -914,6 +926,7 @@ ship "Aberrant Triplet"
 		"shield heat" 6.6
 		"shield generation" 1.8
 		"hull repair rate" 1.4
+		"quantum keystone" 1
 		"ka'sei" 1
 		weapon
 			"blast radius" 600
