@@ -11308,6 +11308,7 @@ system Cusp
 		multiplier 1.2
 	habitable 320
 	belt 1825
+	"jump range" 30
 	haze _menu/haze-twilight-thin
 	link Span
 	asteroids "small rock" 8 1.9
