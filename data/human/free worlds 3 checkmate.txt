@@ -1111,13 +1111,13 @@ mission "FWC Pug 1"
 	npc evade
 		personality entering disables heroic
 		government Pug
-		fleet 2
+		fleet
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet 3
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
