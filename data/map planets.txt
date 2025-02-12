@@ -973,7 +973,7 @@ planet "Cold Horizon"
 	spaceport `The spaceport on Cold Horizon is only a tiny village; most of the natives prefer to stay as far as possible from the bustle and confusion of interstellar life. The spaceport is also a railway hub, with trains departing from here to bring tourists to and from the larger population centers in the forest, on the shore, and far up in the mountains.`
 	"required reputation" 15
 	bribe 0
-	securit 0.3
+	security 0.3
 
 planet "Cool Forest"
 	attributes saryd shipping urban
