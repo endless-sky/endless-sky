@@ -57,7 +57,7 @@ outfit "Magnetic Scoop"
 	"mass" 9
 	"outfit space" -9
 	"ramscoop" 6
-	"fuel generation" 0.045
+	"fuel generation" 0.03
 	"energy consumption" 1.2
 	"solar heat" 2.4
 	description "To the Avgi, a reliable supply of fuel and reaction mass aboard their starships is critical. Even before inventing the hyperdrive, Magnetic Scoops gave their starships superior endurance and performance, allowing them to travel the gulf between the stars at speeds that would have otherwise been impossible. Now, even with faster-than-light travel available, ramscoops are just as critical as before, allowing the Avgi to ply the hyperlanes between the many systems where no fuel depots have been built."
