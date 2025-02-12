@@ -7595,7 +7595,7 @@ mission "Timothy Radrickson 1a: Accepted"
 	description "You found a man named Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He would like you to bring him to <destination>, where he can find work."
 	destination "Rand"
 	to offer
-		has "Timothy Radrickson 1: Stowaway: active"
+		has "timothy radrickson: agreed"
 	on abort
 		fail "Timothy Radrickson 1: Stowaway"
 
