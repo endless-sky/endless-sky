@@ -7573,6 +7573,8 @@ mission "Timothy Radrickson 1: Stowaway"
 				decline
 
 			label somewhere
+			action
+				set "timothy radrickson: agreed"
 			`	Timothy looks at you, his eyes wide and full of tears. "Rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
 			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
 			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you..." he mumbles over and over again.`
