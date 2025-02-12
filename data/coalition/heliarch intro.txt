@@ -17,11 +17,10 @@ mission "Heliarch Investigation 1"
 	description "Bring <bunks> Heliarch agents to <destination>."
 	passengers 3
 	source
-		near "Quaru" 4 10
+		near "Quaru" 2 10
 	destination "Ring of Friendship"
 	to offer
 		random < 65
-		"coalition jobs" >= 70
 		has "license: Coalition"
 		not "joined the lunarium"
 		not "assisting lunarium"
@@ -557,7 +556,6 @@ mission "Heliarch Recon 1"
 	destination "Ring of Wisdom"
 	to offer
 		"reputation: Quarg" >= 0
-		"coalition jobs" >= 55
 		has "outfit: Jump Drive"
 		has "visited planet: Lagrange"
 		has "visited planet: Alta Hai"
@@ -809,7 +807,6 @@ mission "Heliarch Recon 3-A"
 		has "event: rim archaeology results"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		"coalition jobs" >= 65
 	on offer
 		conversation
 			`Upon landing, you're contacted by the Heliarch agents who have had you scan Quarg worlds and ships. "Hello again, Captain <last>!" the Kimek greets you. "Thank you again, we must, for your latest service. Much more detailed than what we had, your scans are."`
@@ -1286,15 +1283,14 @@ mission "Heliarch Containment 1"
 	cargo "military supplies" 25
 	deadline
 	source
-		near "3 Spring Rising" 2 5
+		near "3 Spring Rising" 1 5
 	destination "Fourth Shadow"
 	to offer
 		has "license: Coalition"
 		has "main plot completed"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		"coalition jobs" >= 60
-		random > 25
+		random < 75
 	on offer
 		conversation
 			`The spaceport on <origin> is in quite a lot of turmoil, as dozens of Heliarch agents march around at an accelerated pace. Some prepare to board their own ships, and others speak with some of the captains here. It's no different with you, as a Kimek agent approaches you after noticing you watching.`
@@ -1344,7 +1340,7 @@ mission "Heliarch Containment 2"
 	name "Pick Up Injured Soldiers"
 	description "Land on <stopovers>, to pick up the <bunks> Heliarch soldiers in need of medical attention, and transport them to <destination> by <date>."
 	source
-		near "Bloptab" 1 3
+		near "Bloptab" 1 4
 	stopover "Delve of Bloptab"
 	destination "Ahr"
 	passengers 21
@@ -1353,7 +1349,7 @@ mission "Heliarch Containment 2"
 		has "Heliarch Containment 1: done"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		random > 35
+		random < 65
 	on offer
 		conversation
 			`You're stopped by a group of Heliarch agents as you enter the spaceport, most of them Arachi.`
@@ -1620,7 +1616,7 @@ mission "Heliarch Drills 1"
 		has "license: Coalition"
 		not "joined the lunarium"
 		not "assisting lunarium"
-		random < 11
+		random < 15
 		"combat rating" >= 8104
 	on offer
 		conversation
@@ -2062,10 +2058,10 @@ mission "Heliarch License 1"
 		or
 			"assisted heliarch" >= 5
 			and
-				"coalition jobs" >= 90
+				"coalition jobs" >= 70
 				"assisted heliarch" == 4
 			and
-				"coalition jobs" >= 120
+				"coalition jobs" >= 100
 				"assisted heliarch" == 3
 		not "joined the lunarium"
 		not "assisting heliarchy"
