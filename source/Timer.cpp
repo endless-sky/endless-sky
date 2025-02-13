@@ -153,7 +153,7 @@ void Timer::Save(DataWriter &out) const
 			out.Write("time", waitTime);
 		out.Write("elapsed", timeElapsed);
 		if(system)
-			out.Write("system", system->Name());
+			out.Write("system", system->TrueName());
 		else if(!systems.IsEmpty())
 		{
 			out.Write("system");
@@ -188,7 +188,7 @@ void Timer::Save(DataWriter &out) const
 			if(!closeTo)
 				distance = "far";
 			if(proximityCenter)
-				out.Write("proximity", proximityCenter->Name());
+				out.Write("proximity", proximityCenter->TrueName());
 			else if(!proximityCenters.IsEmpty())
 			{
 				out.Write("proximity");
