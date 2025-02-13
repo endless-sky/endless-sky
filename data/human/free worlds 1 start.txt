@@ -1363,7 +1363,7 @@ mission "FW Pirates: Attack 2"
 		fleet
 			names "civilian"
 			variant
-				"Leviathan"
+				"Firebird"
 				"Behemoth"
 				"Modified Argosy"
 				"Clipper (Speedy)"
@@ -1377,23 +1377,24 @@ mission "FW Pirates: Attack 2"
 			variant
 				"Falcon (Heavy)"
 				"Clipper (Heavy)"
-		fleet
-			government "Pirate"
-			names "pirate"
-			variant
-				"Bastion"
 				"Modified Argosy"
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
+				"Bastion"
+				"Modified Argosy" 2
+		fleet
+			government "Pirate"
+			names "pirate"
+			variant
+				"Bastion"
 				"Sparrow (Gatling)" 3
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
 				"Splinter (Proton)"
-				"Quicksilver (Proton)"
 		fleet
 			government "Pirate"
 			names "pirate"
@@ -1405,9 +1406,14 @@ mission "FW Pirates: Attack 2"
 			government "Pirate"
 			names "pirate"
 			variant
-				"Aerie"
+				"Hawk"
+				"Hawk (Heavy)"
+		fleet
+			government "Pirate"
+			names "pirate"
+			variant
 				"Mule (Heavy)"
-				"Dagger" 5
+				"Dagger"
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
