@@ -35,9 +35,9 @@ test "Timer - Simple 10 seconds timer"
 		call "Land"
 		call "Depart"
 		apply
-			"test: steps to wait" = 30 * 60
+			"test: steps to wait" = 20 * 60
 		label "floating"
-		# An empty input to make 30 seconds pass.
+		# An empty input to make 20 seconds pass.
 		input
 		apply
 			"test: steps to wait" = "test: steps to wait" - 1
