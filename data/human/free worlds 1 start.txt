@@ -2011,9 +2011,9 @@ mission "FW Early Warning 4"
 		fleet
 			names "free worlds capital"
 			variant
-				"Bastion (Heavy)" 2
-				"Argosy (Blaster)" 4
-				"Fury" 6
+				"Bastion (Heavy)"
+				"Argosy (Blaster)" 3
+				"Fury" 4
 	npc
 		government "Free Worlds"
 		personality heroic disables entering escort
@@ -2043,12 +2043,12 @@ mission "FW Early Warning 4"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8
-				"Frigate" 2
+				"Frigate"
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
 			variant
-				"Protector (Quad Blaster)" 2
+				"Protector (Quad Blaster)"
 				"Frigate" 2
 				"Gunboat"
 		fleet
