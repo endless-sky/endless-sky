@@ -53,7 +53,8 @@ mission "Liberate Kornephoros"
 			names "free worlds capital"
 			variant
 				"Falcon"
-				"Osprey" 2
+				"Osprey"
+				"Osprey (Missile)"				
 	npc
 		government "Free Worlds"
 		personality heroic disables
@@ -61,6 +62,7 @@ mission "Liberate Kornephoros"
 		fleet
 			names "free worlds capital"
 			variant
+				"Osprey"
 				"Falcon (Heavy)"
 				"Hawk" 2
 		fleet
@@ -76,22 +78,17 @@ mission "Liberate Kornephoros"
 		fleet
 			names "free worlds capital"
 			variant
-				"Osprey"
-				"Osprey (Missile)"
-		fleet
-			names "free worlds capital"
-			variant
 				"Falcon"
-				"Osprey"
 				"Osprey (Laser)"
-				"Hawk" 3
-				"Sparrow" 5
+				"Hawk"
+				"Hawk (Rocket)"
+				"Sparrow" 3
 		fleet
 			names "free worlds capital"
 			variant
 				"Bastion (Heavy)" 2
-				"Argosy (Blaster)" 4
-				"Fury" 6
+				"Argosy (Blaster)" 3
+				"Fury" 3
 	npc evade
 		government "Republic"
 		personality staying heroic
@@ -103,7 +100,6 @@ mission "Liberate Kornephoros"
 			variant
 				"Cruiser (Heavy)" 2
 				"Combat Drone" 8
-				"Frigate" 2
 				"Rainmaker" 2
 		fleet
 			names "republic capital"
@@ -112,18 +108,16 @@ mission "Liberate Kornephoros"
 			variant
 				"Cruiser (Heavy)"
 				"Combat Drone" 4
-				"Frigate" 2
+				"Frigate"
 				"Gunboat" 2
 		fleet
 			names "republic capital"
 			fighters
 				names "republic fighter"
 			variant
-				"Cruiser (Heavy)"
-				"Combat Drone" 4
 				"Gunboat" 2
-				"Frigate" 2
-				"Rainmaker" 2
+				"Frigate"
+				"Rainmaker"
 	
 	on visit
 		dialog `There are still Navy ships patrolling overhead. Staying on <planet> while your allies are dying in orbit would be a very bad idea.`
@@ -1333,27 +1327,20 @@ mission "FW Pirates: Attack 2"
 		fleet
 			names "free worlds capital"
 			variant
-				"Falcon (Laser)" 2
+				"Falcon (Laser)"
 				"Bastion (Laser)"
 		fleet
 			names "free worlds capital"
 			variant
-				"Falcon (Laser)"
-				"Bastion (Heavy)"
 				"Osprey"
-		fleet
-			names "free worlds capital"
-			variant
-				"Osprey (Laser)"
-				"Osprey (Missile)" 2
+				"Osprey (Missile)"
 		fleet
 			names "free worlds capital"
 			fighters
 				names "free worlds fighters"
 			variant
 				"Skein"
-				"Roost"
-				"Finch" 10
+				"Finch" 6
 		fleet
 			names "free worlds small"
 			variant
@@ -1365,7 +1352,7 @@ mission "FW Pirates: Attack 2"
 			names "free worlds small"
 			variant
 				"Fury (Missile)" 2
-				"Fury (Bomber)" 2
+				"Fury (Bomber)"
 		fleet
 			names "free worlds small"
 			variant
@@ -1384,7 +1371,7 @@ mission "FW Pirates: Attack 2"
 		government "Pirate"
 		personality plunders staying
 		system "Shaula"
-		fleet
+		fleet 
 			government "Pirate"
 			names "pirate"
 			variant
@@ -1400,43 +1387,27 @@ mission "FW Pirates: Attack 2"
 			government "Pirate"
 			names "pirate"
 			variant
-				"Sparrow (Gatling)" 5
+				"Sparrow (Gatling)" 3
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
-				"Protector (Proton)"
-				"Headhunter (Particle)"
-		fleet
-			government "Pirate"
-			names "pirate"
-			variant
-				"Splinter (Proton)" 2
+				"Splinter (Proton)"
 				"Quicksilver (Proton)"
-		fleet
-			government "Pirate"
-			names "pirate"
-			variant
-				"Vanguard (Particle)"
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
 				"Firebird (Plasma)"
 				"Corvette (Speedy)"
-		fleet
-			government "Pirate"
-			names "pirate"
-			variant
-				"Raven (Afterburner)" 2
 				"Scout (Speedy)"
 		fleet
 			government "Pirate"
 			names "pirate"
 			variant
-				"Aerie" 2
+				"Aerie"
 				"Mule (Heavy)"
-				"Dagger" 9
+				"Dagger" 5
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
@@ -1772,34 +1743,58 @@ mission "FW Early Warning 1"
 		government "Republic"
 		personality staying heroic
 		system "Wei"
-		fleet "Small Republic" 2
+		fleet
+			names "republic capital"
+			variant
+				"Frigate"
+				"Gunboat" 3
+				"Rainmaker"
+
 	npc
 		government "Republic"
 		personality staying heroic
 		system "Seginus"
-		fleet "Large Republic"
-		fleet "Small Republic"
+		fleet
+			names "republic capital"
+			variant
+				"Frigate" 2
+				"Gunboat" 2
+				"Rainmaker"
+		fleet
+			names "republic capital"
+			variant
+				"Protector (Quad Blaster)"
+
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Alphecca"
+		fleet
+			names "republic capital"
+			variant
+				"Frigate" 2
+				"Gunboat" 2
+				"Rainmaker"
+		fleet
+			names "republic capital"
+			variant
+				"Frigate"
+				"Gunboat" 2
+
+	npc
+		government "Republic"
+		personality staying heroic
+		system "Alioth"
+		fleet
+			names "republic capital"
+			variant
+				"Gunboat"
+				"Rainmaker" 2
 		fleet
 			names "republic capital"
 			variant
 				"Protector (Quad Blaster)"
 				"Protector"
-	npc
-		government "Republic"
-		personality staying heroic
-		system "Alphecca"
-		fleet "Large Republic" 2
-		fleet "Small Republic" 2
-	npc
-		government "Republic"
-		personality staying heroic
-		system "Alioth"
-		fleet "Large Republic"
-		fleet "Small Republic" 2
-		fleet
-			names "republic capital"
-			variant
-				"Protector (Quad Blaster)"
 	
 	on visit
 		dialog phrase "generic waypoint on visit"
@@ -1986,7 +1981,7 @@ mission "FW Early Warning 4"
 			names "free worlds capital"
 			variant
 				"Falcon"
-				"Osprey" 2
+				"Osprey"
 		fleet
 			names "free worlds capital"
 			variant
@@ -2004,7 +1999,6 @@ mission "FW Early Warning 4"
 			names "free worlds capital"
 			variant
 				"Falcon"
-				"Osprey"
 				"Osprey (Laser)"
 				"Hawk" 3
 				"Sparrow" 5
@@ -2055,7 +2049,7 @@ mission "FW Early Warning 4"
 			names "republic capital"
 			variant
 				"Protector (Quad Blaster)" 2
-				"Frigate" 2
+				"Frigate"
 				"Rainmaker" 2
 	
 	on visit
