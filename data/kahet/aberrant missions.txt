@@ -17,6 +17,7 @@ mission "Disabled Aberrant"
 	invisible
 	source
 		government "Aberrant"
+	destination "Earth"
 	on offer
 		conversation
 
