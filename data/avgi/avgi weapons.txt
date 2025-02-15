@@ -736,7 +736,7 @@ outfit "Ophrys Stockpile"
 	"mass" 6
 	"outfit space" -24
 	"cargo space" -18
-	"crew requirement" 3
+	"required crew" 3
 	"ophrys capacity" 12
 	ammo `"Ophrys" Nuclear Torpedo`
 	description "This remotely operated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Ophrys Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
