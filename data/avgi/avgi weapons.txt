@@ -62,7 +62,7 @@ outfit "Speckle Coilgun"
 		"firing force" 12
 		"submunition" "Speck"
 	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
-	description "Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
+	description "	Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
 	
 
 outfit "Speckle Turret"
@@ -99,7 +99,7 @@ outfit "Speckle Turret"
 		"submunition" "Speck"
 			"offset" 3 0
 	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
-	description "Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
+	description "	Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
 
 
 outfit "Speck"
@@ -144,7 +144,7 @@ outfit "Optical Lasing Generator"
 	"outfit space" -30
 	"lasing power" 3
 	description "A monolithic slab of semiconductor diode is used to efficiently pump a spool of doped optical fiber. Hundreds of kilometers long, the coiled fibers serve as a lasing medium with the power needed to produce an intense beam of light, and can be gain-switched to pulse at a variety of frequencies. The produced laser light, which can be converted to a number of wavelengths, can be easily tapped and routed via optical fibers or mirrors to a number of turrets on a ship, eliminating the need for the heavy lasing generator to be anywhere near the turret itself."
-	description "The wavelength of light produced in the coil can altered by swapping the diodes and fiber dopants, allowing the Optical Lasing Generator to support up to three Green Optical Lasers or a single Blue Optical Laser."
+	description "	The wavelength of light produced in the coil can altered by swapping the diodes and fiber dopants, allowing the Optical Lasing Generator to support up to three Green Optical Lasers or a single Blue Optical Laser."
 
 
 outfit "Green Optical Laser"
@@ -173,7 +173,7 @@ outfit "Green Optical Laser"
 		"firing energy" 6
 		"firing heat" 12
 	description "This lightweight turret can be fed a beam of light from a lasing generator, which is then combined and focused to produce an intense beam suitable for targeting and destroying missiles. Unlike a typical pulsed-shot human antimissile system, this turret's precise optics seems designed to hold a beam on target at an extreme distance for a longer period of time, making it better suited for defending and supporting other ships from afar."
-	description "The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
+	description "	The turret itself only contains the optics needed to synthesize, focus, and target the beam, allowing the laser light to be produced elsewhere. Because of this, an Optical Lasing Generator is needed to run this turret, providing enough power to support three Green Lasers."
 
 effect "green laser glare"
 	sprite "effect/green optical laser glare"
@@ -465,7 +465,7 @@ outfit "Medium VLS"
 		"missile strength" 9
 		"submunition" "Nettle Active"
 	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
-	description "Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
+	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
 
 
 outfit `"Nettle" KKV`
@@ -479,7 +479,7 @@ outfit `"Nettle" KKV`
 	"mass" 0.15
 	"nettle capacity" -1
 	description "The Nettle missile is a cheap, single-stage kinetic kill vehicle designed for situations where a nuclear warhead would be unnecessary. Little more than a payload of tungsten rods, an octaazacubane thruster package, and a nose mounted sensor array, they can be manufactured in bulk at minimal cost. Upon closing in on a target, the missile unwraps into dozens of thin tungsten rods to create a cone-shaped area of effect. While only a fraction of the payload actually impacts a target, the cloud of projectiles is difficult to completely eliminate."
-	description "The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array or Nettle Magazine to store them in you cannot purchase or use Nettle KKVs."
+	description "	The Nettle KKV is ammunition for the Vertical Launch Array; without a Vertical Launch Array or Nettle Magazine to store them in you cannot purchase or use Nettle KKVs."
 
 
 outfit "Nettle Magazine"
@@ -564,8 +564,8 @@ outfit `"Orchid" Nuclear Missile`
 	"mass" 9
 	"orchid capacity" -1
 	description "Unlike humanity, the Avgi do not have a strong taboo against the use of nuclear weapons in space. To them, nuclear weapons are simply another tool, albeit one with a particularly high energy density, to be used when the occasion calls for it. They have been the Avgi's trump card against the Aberrant, the one weapon they have capable of reliably breaking their advanced shields and atomizing their armor."
-	description "This particular missile carries a powerful thermonuclear warhead, a staged device with a far higher yield to weight ratio than anything humanity has developed. It seems to be the product of centuries of development of nuclear devices, as opposed to humanity's long abstentation from nuclear weapons research."
-	description "The Orchid Missile is ammunition for the External Launch Tube; without a External Launch Tube or Orchid Magazine to store them in you cannot purchase or use Orchid Missiles."
+	description "	This particular missile carries a powerful thermonuclear warhead, a staged device with a far higher yield to weight ratio than anything humanity has developed. It seems to be the product of centuries of development of nuclear devices, as opposed to humanity's long abstentation from nuclear weapons research."
+	description "	The Orchid Missile is ammunition for the External Launch Tube; without a External Launch Tube or Orchid Magazine to store them in you cannot purchase or use Orchid Missiles."
 
 
 outfit "Orchid Magazine"
@@ -721,8 +721,8 @@ outfit `"Ophrys" Nuclear Torpedo`
 	"mass" 3
 	"ophrys capacity" -1
 	description "The Ophrys is a minimally-guided nuclear torpedo derived from the Orchid Nuclear Missile. Little more than the Orchid's terminal stage with a layer of ablative armor added to the front, it allows even small drones to pose a credible threat to a capital warship."
-	description "Unlike the nuclear missiles employed by the Avgi, the Ophrys carries only enough propellant to make small adjustments to its trajectory. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for enough armor to improve the odds of surviving antimissile fire during its terminal path."
-	description "The Ophrys Torpedo is ammunition for the External Launch Rail; without a External Launch Rail or Ophrys Stockpile to store them in you cannot purchase or use Ophrys Torpedoes."
+	description "	Unlike the nuclear missiles employed by the Avgi, the Ophrys carries only enough propellant to make small adjustments to its trajectory. It instead relies on the speed of the bomber carrying it, trading an independent propulsive capability for enough armor to improve the odds of surviving antimissile fire during its terminal path."
+	description "	The Ophrys Torpedo is ammunition for the External Launch Rail; without a External Launch Rail or Ophrys Stockpile to store them in you cannot purchase or use Ophrys Torpedoes."
 
 
 outfit "Ophrys Stockpile"
@@ -740,7 +740,7 @@ outfit "Ophrys Stockpile"
 	"ophrys capacity" 12
 	ammo `"Ophrys" Nuclear Torpedo`
 	description "This remotely operated reloading bay, intended for use on carriers, can quickly replenish a docked fighter or drone with Ophrys Torpedoes. A generous stockpile of torpedoes allows a carrier to support multiple sorties before needing to resupply."
-	description "The restocking system requires oversight by a small team of specialists to ensure no accidents occur during the loading process."
+	description "	The restocking system requires oversight by a small team of specialists to ensure no accidents occur during the loading process."
 
 
 outfit "Ophrys Terminal"
