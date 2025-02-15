@@ -22,12 +22,12 @@ mission "Disabled Aberrant"
 		conversation
 
 			branch "boarded ka'het"
-				has "Disabled Ka'Het: offered"
+				has "Disabled Ka'het: offered"
 
 			action
 				log `Successfully boarded an Aberrant. A strange presence seemed to watch you as you investigated it, one that gave you a sense of foreboding. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton.`
 
-			`You draw the <ship> alongside this strange entity, which, despite its lack of motion, seems to exdue an ominious presence. Something feels fundamentally wrong with this ship as you approach a hole in a vulnerable part of its hull, which seems to be some kind of shell encasing a large, slug-like creature. Exposed to weapons fire, the creature seems to be dead, but you feel almost as if something is watching you.`
+			`You draw the <ship> alongside this strange entity, which, despite its lack of motion, seems to exude an ominous presence. Something feels fundamentally wrong with this ship as you approach a hole in a vulnerable part of its hull, which seems to be some kind of shell encasing a large, slug-like creature. Exposed to weapons fire, the creature seems to be dead, but you feel almost as if something is watching you.`
 			`	You have no troubles docking with what seems to be its "exoskeleton," trying to decide what to do next. While the Aberrant is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
 				goto end
 
@@ -35,9 +35,8 @@ mission "Disabled Aberrant"
 			action
 				log `Successfully boarded an Aberrant. It appears to strongly resemble a Ka'het, yet one that has been twisted into a new form, one that feels fundamentally wrong.`
 
-			`You draw the <ship> alongside this strange, yet almost-familiar entity, which, despite its lack of motion, seems to exdue an ominious presence. Something feels fundamentally wrong with this ship, which superficially resembles a Ka'het, yet is clearly not one- perhaps a distant relation, or a Ka'het that has been irrevocably changed by something else. You approach a hole in a vulnerable part of its hull, where a 'het slug appears dead, but you feel almost as if it still watches you.`
+			`You draw the <ship> alongside this strange, yet almost-familiar entity, which, despite its lack of motion, seems to exude an ominous presence. Something feels fundamentally wrong with this ship, which superficially resembles a Ka'het, yet is clearly not one - perhaps a distant relation, or a Ka'het that has been irrevocably changed by something else. You approach a hole in a vulnerable part of its hull, where a 'het slug appears dead, but you feel almost as if it still watches you.`
 			`	You have no troubles docking with its "exoskeleton," trying to decide what to do next. While the Aberrant is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
-				goto end
 
 			label end
 
