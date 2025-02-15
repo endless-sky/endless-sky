@@ -29374,8 +29374,8 @@ system Nonet
 			sprite planet/tethys
 			distance 160
 			period 124.645
-	object Ashkelon
-		sprite planet/rock10
+	object Silwan
+		sprite planet/cloud1-b
 		distance 1051
 		period 1061.01
 		object
@@ -33292,8 +33292,8 @@ system Quintet
 		sprite planet/dust1-b
 		distance 211
 		period 55.3841
-	object Silwan
-		sprite planet/cloud1-b
+	object Ashkelon
+		sprite planet/rock10
 		distance 522.156
 		period 215.606
 		object
