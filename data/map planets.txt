@@ -1499,6 +1499,16 @@ wormhole "Ember Threshold"
 	link Terminus Cardea
 	color "wormholes: Ember Waste"
 
+planet "Ember Twilight"
+	attributes "requires: quantum keystone"
+	wormhole "Ember Twilight"
+
+wormhole "Ember Twilight"
+	mappable
+	link Quartet Sextet
+	link Sextet Quartet
+	color "wormholes: Ember Waste"
+
 planet "Ember Wormhole"
 	attributes "requires: quantum keystone"
 	spaceport ``
