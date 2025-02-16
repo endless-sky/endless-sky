@@ -469,6 +469,19 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
+	for(const pair<const Outfit *, double> &it : outfit.GetResuppliedAmmo())
+	{
+		attributeLabels.emplace_back("resupplies:");
+		attributeValues.emplace_back(it.first->DisplayName());
+		attributesHeight += 20;
+		if(it.second != 1)
+		{
+			attributeLabels.emplace_back("resupply cost:");
+			attributeValues.emplace_back(Format::Number(outfit.Ammo()->Cost() * it.second));
+			attributesHeight += 20;
+		}
+	}
+
 	if(!outfit.IsWeapon())
 		return;
 

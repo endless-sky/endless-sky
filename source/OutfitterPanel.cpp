@@ -74,6 +74,33 @@ namespace {
 		}
 		return toRefill;
 	}
+
+	bool CanResupplyAmmo(const Ship &ship, const Outfit *ammo) noexcept
+	{
+		bool canResupply = false;
+		for(auto &&it : ship.Outfits())
+		{
+			const Outfit *outfit = it.first;
+			if(outfit->AmmoResupplied(ammo))
+			{
+				canResupply = true;
+				continue;
+			}
+		}
+		return canResupply;
+	}
+
+	double ResupplyCostMultiplier(const Ship &ship, const Outfit *ammo) noexcept
+	{
+		std::optional<double> minimumMultiplier;
+		for(auto &&it : ship.Outfits())
+		{
+			const Outfit *outfit = it.first;
+			if(outfit->GetResupplyCostMultiplier(ammo) < minimumMultiplier || !minimumMultiplier)
+				minimumMultiplier = outfit->GetResupplyCostMultiplier(ammo);
+		}
+		return minimumMultiplier.value_or(1.);
+	}
 }
 
 
@@ -916,7 +943,9 @@ void OutfitterPanel::CheckRefill()
 	checkedRefill = true;
 
 	int count = 0;
-	map<const Outfit *, int> needed;
+	map<const Outfit *, int> neededAvailable;
+	map<const Outfit *, int> neededResupply;
+	int64_t cost = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
 	{
 		// Skip ships in other systems and those that were unable to land in-system.
@@ -930,16 +959,20 @@ void OutfitterPanel::CheckRefill()
 			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
 			if(amount > 0)
 			{
-				bool available = outfitter.Has(outfit) || player.Stock(outfit) > 0;
-				available = available || player.Cargo().Get(outfit) || player.Storage().Get(outfit);
-				if(available)
-					needed[outfit] += amount;
+				bool isAvailable = outfitter.Has(outfit) || player.Stock(outfit) > 0;
+				isAvailable = isAvailable || player.Cargo().Get(outfit) || player.Storage().Get(outfit);
+				if(isAvailable)
+					neededAvailable[outfit] += amount;
+				bool resupplyAvailable = (ship->GetPlanet()->HasOutfitter() && CanResupplyAmmo(*ship, outfit));
+				if(resupplyAvailable)
+					neededResupply[outfit] += (amount - neededAvailable[outfit]);
 			}
 		}
+		// Apply cost multiplier of resupply outfits here, since we need to access the outfits installed on your ships.
+		for(auto &it : neededResupply)
+			cost += it.first->Cost() * ResupplyCostMultiplier(*ship, it.first) * it.second;
 	}
-
-	int64_t cost = 0;
-	for(auto &it : needed)
+	for(auto &it : neededAvailable)
 	{
 		// Don't count cost of anything installed from cargo or storage.
 		it.second = max(0, it.second - player.Cargo().Get(it.first) - player.Storage().Get(it.first));
@@ -947,7 +980,7 @@ void OutfitterPanel::CheckRefill()
 			it.second = min(it.second, max(0, player.Stock(it.first)));
 		cost += player.StockDepreciation().Value(it.first, day, it.second);
 	}
-	if(!needed.empty() && cost < player.Accounts().Credits())
+	if((!neededAvailable.empty() || !neededResupply.empty()) && cost < player.Accounts().Credits())
 	{
 		string message = "Do you want to reload all the ammunition for your ship";
 		message += (count == 1) ? "?" : "s?";
@@ -980,14 +1013,24 @@ void OutfitterPanel::Refill()
 				const int fromCargo = player.Cargo().Remove(outfit, neededAmmo);
 				neededAmmo -= fromCargo;
 				// Then, buy at reduced (or full) price.
-				int available = outfitter.Has(outfit) ? neededAmmo : min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
+				int available = outfitter.Has(outfit)
+					? neededAmmo : min<int>(neededAmmo, max<int>(0, player.Stock(outfit)));
+				int64_t price = 0;
+				int fromResupply = 0;
 				if(neededAmmo && available > 0)
 				{
-					int64_t price = player.StockDepreciation().Value(outfit, day, available);
+					price = player.StockDepreciation().Value(outfit, day, available);
 					player.Accounts().AddCredits(-price);
 					player.AddStock(outfit, -available);
 				}
-				ship->AddOutfit(outfit, available + fromStorage + fromCargo);
+				// Then, use resupply outfits.
+				else if(neededAmmo && CanResupplyAmmo(*ship, outfit))
+				{
+					price = outfit->Cost() * ResupplyCostMultiplier(*ship, outfit) * (neededAmmo - available);
+					player.Accounts().AddCredits(-price);
+					fromResupply = (neededAmmo - available);
+				}
+				ship->AddOutfit(outfit, available + fromStorage + fromCargo + fromResupply);
 			}
 		}
 	}
