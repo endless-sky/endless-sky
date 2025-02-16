@@ -111,7 +111,7 @@ public:
 
 	const std::vector<std::pair<const Outfit *, double>> GetResuppliedAmmo() const;
 	bool AmmoResupplied(const Outfit *ammo) const;
-	const double GetResupplyCostMultiplier(const Outfit *ammo) const;
+	double GetResupplyCostMultiplier(const Outfit *ammo) const;
 	// A pair representing ammo that can be reloaded at any outfitter and the
 	// multiplier applied to its purchase cost.
 	std::vector<std::pair<const Outfit *, double>> resuppliedAmmo;

@@ -41,7 +41,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <limits>
 #include <memory>
-#include <optional>
 
 using namespace std;
 
@@ -86,15 +85,20 @@ namespace {
 
 	double ResupplyCostMultiplier(const Ship &ship, const Outfit *ammo) noexcept
 	{
-		optional<double> minimumMultiplier;
+		double minimumMultiplier = 0;
+		int index = 0;
 		for(auto &&it : ship.Outfits())
 		{
 			const Outfit *outfit = it.first;
 			double minOutfitMultiplier = outfit->GetResupplyCostMultiplier(ammo);
-			if(minOutfitMultiplier < minimumMultiplier || !minimumMultiplier)
+			if(index == 0)
 				minimumMultiplier = minOutfitMultiplier;
+			else if(minOutfitMultiplier < minimumMultiplier)
+				minimumMultiplier = minOutfitMultiplier;
+
+		index += 1;
 		}
-		return minimumMultiplier.value_or(1.);
+		return minimumMultiplier;
 	}
 }
 
