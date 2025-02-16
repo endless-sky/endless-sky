@@ -1159,7 +1159,7 @@ void Engine::Draw() const
 	draw[currentDrawBuffer].Draw();
 	batchDraw[currentDrawBuffer].Draw();
 
-	for(Gunsight gunsight : gunsights)
+	for(const Gunsight &gunsight : gunsights)
 	{
 		Point end1 = gunsight.start + gunsight.angle.Rotate(Point(gunsight.spread, -gunsight.range));
 		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
