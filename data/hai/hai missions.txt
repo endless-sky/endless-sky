@@ -2120,7 +2120,7 @@ mission "Acorn Delights: Part 1"
 				`	(See what she wants.)`
 				`	(Ignore her.)`
 					decline
-			`	"My name is Eeeya, and I'm looking for my lost granddaughter, Anoo. She just passed the medical school, and I was going to give her three tons of cookies, but she's gone! Please help me find her." Her soft voice has a chittering edge much stronger than other Hai you've spoken with. She also hesitates before certain words, as if unsure whether to add an a or a the, giving her speech a unusual rhythm.`
+			`	"My name is Eeeya, and I'm looking for my lost granddaughter, Anoo. She just passed the medical school, and I was going to give her three tons of cookies, but she's gone! Please help me find her." Her soft voice has a chittering edge much stronger than other Hai you've spoken with. She also hesitates before certain words, as if unsure which article to add, giving her speech a unusual rhythm.`
 				goto "actual questions"
 			label questions
 			`	"So please, take me to find my granddaughter."`
