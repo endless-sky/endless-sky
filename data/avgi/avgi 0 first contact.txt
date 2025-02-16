@@ -1014,7 +1014,7 @@ mission "Avgi: Twilight Escape 2"
 
 	on accept
 		log `Agreed to take Sora to her parents' farm on Memory, as she has nowhere else to go.`
-		log "People" "Darius Caldwell" `Despite escaping the Twilight, Darius still feels guilty over his crewmembers that lost their lives to the Aberrant.`
+		log "People" "Darius Caldwell" `Despite escaping the Twilight, Darius still feels guilty over his crew members that lost their lives to the Aberrant.`
 
 
 mission "Avgi: Twilight Escape 3"
