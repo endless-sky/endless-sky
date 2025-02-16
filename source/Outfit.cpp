@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 
 #include <algorithm>
+#include <optional>
 #include <cmath>
 #include <cstring>
 
@@ -737,13 +738,14 @@ bool Outfit::AmmoResupplied(const Outfit *ammo) const
 
 const double Outfit::GetResupplyCostMultiplier(const Outfit *ammo) const
 {
-	std::optional<double> minimumMultiplier = 1000.;
-	for(const std::pair<const Outfit *, double> &resupplied : GetResuppliedAmmo())
+	optional<double> minimumMultiplier = 1000;
+	for(const auto &[resuppliedAmmo, costMultiplier] : GetResuppliedAmmo())
 	{
-		const Outfit *resuppliedAmmo = resupplied.first;
-		double costMultiplier = resupplied.second;
-		if(ammo == resuppliedAmmo && (costMultiplier < minimumMultiplier || minimumMultiplier == 0.))
-			minimumMultiplier = costMultiplier;
+		if(ammo == resuppliedAmmo)
+		{
+			if(costMultiplier < minimumMultiplier || !minimumMultiplier)
+				minimumMultiplier = costMultiplier;
+		}
 	}
 	return minimumMultiplier.value_or(1.);
 }
