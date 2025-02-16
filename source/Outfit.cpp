@@ -741,8 +741,8 @@ double Outfit::GetResupplyCostMultiplier(const Outfit *ammo) const
 		{
 			if(index == 0 || costMultiplier < minimumMultiplier)
 				minimumMultiplier = costMultiplier;
+			index += 1;
 		}
-		index += 1;
 	}
 	return minimumMultiplier;
 }
