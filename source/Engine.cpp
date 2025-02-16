@@ -75,7 +75,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 #include "text/WrappedText.h"
 
-
 #include <algorithm>
 #include <cmath>
 #include <string>
