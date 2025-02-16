@@ -280,8 +280,8 @@ void Outfit::Load(const DataNode &node)
 			// of blocking the sale of the outfit until the ammo is sold first.
 			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
 		}
-		else if(child.Token(0) == "resupplies ammo" && child.Size() >= 2)
-			resuppliedAmmo.push_back(make_pair(GameData::Outfits().Get(child.Token(1)), child.Value(2)));
+		else if(child.Token(0) == "resupplies ammo" && child.Size() >= 3)
+			resuppliedAmmo.emplace_back(GameData::Outfits().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
@@ -715,7 +715,7 @@ const Sprite *Outfit::FlotsamSprite() const
 
 
 
-const std::vector<std::pair<const Outfit *, double>> Outfit::GetResuppliedAmmo() const
+const vector<pair<const Outfit *, double>> Outfit::GetResuppliedAmmo() const
 {
 	return resuppliedAmmo;
 }
@@ -724,14 +724,10 @@ const std::vector<std::pair<const Outfit *, double>> Outfit::GetResuppliedAmmo()
 
 bool Outfit::AmmoResupplied(const Outfit *ammo) const
 {
-	bool isResupplied = false;
-	for(const std::pair<const Outfit *, double> &refilled : GetResuppliedAmmo())
-	{
-		const Outfit *refilledAmmo = refilled.first;
-		if(ammo == refilledAmmo)
-			isResupplied = true;
-	}
-	return isResupplied;
+	for(const pair<const Outfit *, double> &refilled : resuppliedAmmo)
+		if(ammo == refilled.first)
+			return true;
+	return false;
 }
 
 

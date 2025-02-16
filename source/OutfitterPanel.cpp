@@ -78,17 +78,10 @@ namespace {
 
 	bool CanResupplyAmmo(const Ship &ship, const Outfit *ammo) noexcept
 	{
-		bool canResupply = false;
 		for(auto &&it : ship.Outfits())
-		{
-			const Outfit *outfit = it.first;
-			if(outfit->AmmoResupplied(ammo))
-			{
-				canResupply = true;
-				continue;
-			}
-		}
-		return canResupply;
+			if(it.first->AmmoResupplied(ammo))
+				return true;
+		return false;
 	}
 
 	double ResupplyCostMultiplier(const Ship &ship, const Outfit *ammo) noexcept
@@ -961,13 +954,13 @@ void OutfitterPanel::CheckRefill()
 			int amount = ship->Attributes().CanAdd(*outfit, numeric_limits<int>::max());
 			if(amount > 0)
 			{
-				bool isAvailable = outfitter.Has(outfit) || player.Stock(outfit) > 0;
-				isAvailable = isAvailable || player.Cargo().Get(outfit) || player.Storage().Get(outfit);
+				bool isAvailable = outfitter.Has(outfit) || player.Stock(outfit) > 0
+					|| player.Cargo().Get(outfit) || player.Storage().Get(outfit);
 				if(isAvailable)
 					neededAvailable[outfit] += amount;
-				bool resupplyAvailable = (ship->GetPlanet()->HasOutfitter() && CanResupplyAmmo(*ship, outfit));
+				bool resupplyAvailable = ship->GetPlanet()->HasOutfitter() && CanResupplyAmmo(*ship, outfit);
 				if(resupplyAvailable)
-					neededResupply[outfit] += (amount - neededAvailable[outfit]);
+					neededResupply[outfit] += amount - neededAvailable[outfit];
 			}
 		}
 		// Apply cost multiplier of resupply outfits here, since we need to access the outfits installed on your ships.
@@ -1030,7 +1023,7 @@ void OutfitterPanel::Refill()
 				{
 					price = outfit->Cost() * ResupplyCostMultiplier(*ship, outfit) * (neededAmmo - available);
 					player.Accounts().AddCredits(-price);
-					fromResupply = (neededAmmo - available);
+					fromResupply = neededAmmo - available;
 				}
 				ship->AddOutfit(outfit, available + fromStorage + fromCargo + fromResupply);
 			}
