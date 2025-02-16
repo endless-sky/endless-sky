@@ -60,6 +60,17 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.12" date="2025-2-22">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <ul>
+          <li></li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the ??? people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.12/changelog</url>
+    </release>
     <release version="0.10.11" date="2025-1-25" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
