@@ -745,7 +745,7 @@ mission "Hai Reveal: Meet the Team: Sayari 1"
 mission "Hai Reveal: Meet the Team: Sayari 2"
 	landing
 	name "Important Message"
-	description "Return to <destination>"
+	description "Return to <destination>."
 	source "Earth"
 	destination "Hai-home"
 	clearance
