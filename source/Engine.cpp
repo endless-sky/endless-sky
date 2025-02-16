@@ -75,7 +75,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Wormhole.h"
 #include "text/WrappedText.h"
 
-#include "opengl.h"
 
 #include <algorithm>
 #include <cmath>
@@ -1105,6 +1104,44 @@ void Engine::Step(bool isActive)
 			GetMinablePointerColor(true),
 			3
 		});
+
+	gunsights.clear();
+	if(flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power")
+		|| !flagship->IsDestroyed())
+	{
+		for(shared_ptr<Ship> &ship : ships)
+		{
+			double gunsightRange = 100. * sqrt(flagship->Attributes().Get("gunsight scan power"));
+			bool isValidTarget = ship->GetSystem() == flagship->GetSystem() && !ship->IsDestroyed() && !ship->IsDisabled()
+				&& ship->IsTargetable() && !ship->Attributes().Get("inscrutable");
+			bool withinRange = ship->Position().Distance(flagship->Position()) < gunsightRange;
+			bool playerHasTarget = ship->IsYours() && (ship->GetTargetShip() || ship->GetTargetAsteroid());
+			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+
+			if(isValidTarget && (playerHasTarget || (withinRange && isYourTarget)))
+			{
+				const Color &gunsightColor = GetGunsightColor(*ship);
+
+				for(const Hardpoint &hardpoint : ship->Weapons())
+					if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
+					{
+						Point gunsightStart = ship->Position() - center + (ship->Facing().Rotate(hardpoint.GetPoint()));
+						Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
+						double gunsightRange = hardpoint.GetOutfit()->Range();
+						double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
+
+						gunsights.push_back({
+							ship,
+							gunsightAngle,
+							gunsightStart,
+							gunsightRange,
+							gunsightSpread,
+							gunsightColor
+							});
+					}
+			}
+		}
+	}
 }
 
 
@@ -1159,7 +1196,7 @@ void Engine::Draw() const
 	draw[currentDrawBuffer].Draw();
 	batchDraw[currentDrawBuffer].Draw();
 
-	for(Gunsight gunsight : gunsights)
+	for(const Gunsight &gunsight : gunsights)
 	{
 		Point end1 = gunsight.start + gunsight.angle.Rotate(Point(gunsight.spread, -gunsight.range));
 		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
@@ -1777,46 +1814,6 @@ void Engine::CalculateStep()
 		{
 			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
 				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-	}
-
-
-
-	gunsights.clear();
-	if(flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power")
-		|| !flagship->IsDestroyed())
-	{
-		for(shared_ptr<Ship> &ship : ships)
-		{
-			double gunsightRange = 100. * sqrt(flagship->Attributes().Get("gunsight scan power"));
-			bool isValidTarget = ship->GetSystem() == playerSystem && !ship->IsDestroyed() && !ship->IsDisabled()
-				&& ship->IsTargetable() && !ship->Attributes().Get("inscrutable");
-			bool withinRange = ship->Position().Distance(flagship->Position()) < gunsightRange;
-			bool playerHasTarget = ship->IsYours() && (ship->GetTargetShip() || ship->GetTargetAsteroid());
-			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
-
-			if(isValidTarget && (playerHasTarget || (withinRange && isYourTarget)))
-			{
-				const Color &gunsightColor = GetGunsightColor(*ship);
-
-				for(const Hardpoint &hardpoint : ship->Weapons())
-					if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
-					{
-						Point gunsightStart = ship->Position() - newCenter + (ship->Facing().Rotate(hardpoint.GetPoint()));
-						Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
-						double gunsightRange = hardpoint.GetOutfit()->Range();
-						double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
-
-						gunsights.push_back({
-							ship,
-							gunsightAngle,
-							gunsightStart,
-							gunsightRange,
-							gunsightSpread,
-							gunsightColor
-							});
-					}
-			}
 		}
 	}
 
