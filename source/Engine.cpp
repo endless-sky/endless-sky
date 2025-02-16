@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "shader/LineShader.h"
 #include "Logger.h"
 #include "MapPanel.h"
 #include "image/Mask.h"
@@ -47,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "shader/OutlineShader.h"
 #include "Person.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlanetLabel.h"
 #include "PlayerInfo.h"
@@ -72,6 +74,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weather.h"
 #include "Wormhole.h"
 #include "text/WrappedText.h"
+
+#include "opengl.h"
 
 #include <algorithm>
 #include <cmath>
@@ -242,6 +246,16 @@ namespace {
 		newVelocity = killVelocity ? baseVelocity : newVelocity.Lerp(baseVelocity, pow(influence, .5));
 
 		return make_pair(newCenter, newVelocity);
+	}
+
+	const Color &GetGunsightColor(const Ship &ship)
+	{
+		if(ship.IsYours())
+			return *GameData::Colors().Get("gunsight friendly");
+		else if(ship.GetTargetShip()->IsYours())
+			return *GameData::Colors().Get("gunsight hostile");
+		else
+			return *GameData::Colors().Get("gunsight neutral");
 	}
 }
 
@@ -1161,6 +1175,16 @@ void Engine::Draw() const
 	draw[currentDrawBuffer].Draw();
 	batchDraw[currentDrawBuffer].Draw();
 
+	for(Gunsight gunsight : gunsights)
+	{
+		Point end1 = gunsight.start + (gunsight.angle).Rotate(Point(gunsight.spread, -gunsight.range));
+		Point end2 = gunsight.start + (gunsight.angle).Rotate(Point(-gunsight.spread, -gunsight.range));
+
+		LineShader::Draw(gunsight.start * zoom, end1 * zoom, 1., gunsight.color);
+		LineShader::Draw(gunsight.start * zoom, end2 * zoom, 1., gunsight.color);
+		LineShader::Draw(end1 * zoom, end2 * zoom, 1., gunsight.color);
+	}
+
 	for(const auto &it : statuses)
 	{
 		static const Color color[16] = {
@@ -1770,6 +1794,41 @@ void Engine::CalculateStep()
 				Audio::Play(it.first, SoundCategory::ENGINE);
 		}
 	}
+
+
+
+	gunsights.clear();
+	if(flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power") || !flagship->IsDestroyed())
+	{
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			double gunsightRange = 100. * sqrt(flagship->Attributes().Get("gunsight scan power"));
+
+			if(ship->GetSystem() == playerSystem && !ship->IsDestroyed())
+			{
+				const Color &gunsightColor = GetGunsightColor(*ship);
+
+				for(const Hardpoint &hardpoint : &ship->Weapons())
+					if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
+					{
+						Point gunsightStart = ship->Position() - newCenter + (ship->Facing().Rotate(hardpoint.GetPoint()));
+						Angle gunsightAngle = hardpoint.GetAngle() + ship->Facing();
+						double gunsightRange = hardpoint.GetOutfit()->Range();
+						double gunsightSpread = gunsightRange * tan(hardpoint.GetOutfit()->Inaccuracy() * PI / 180);
+
+						gunsights.push_back({
+							ship,
+							gunsightAngle,
+							gunsightStart,
+							gunsightRange,
+							gunsightSpread,
+							gunsightColor
+							});
+					}
+			}
+		}
+	}
+
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
 		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());

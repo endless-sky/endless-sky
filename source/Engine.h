@@ -163,6 +163,16 @@ private:
 		double modifier = 1.;
 	};
 
+	class Gunsight {
+	public:
+		const std::shared_ptr<Ship> &ship;
+		Angle angle;
+		Point start;
+		double range;
+		double spread;
+		const Color &color;
+	};
+
 
 private:
 	void EnterSystem();
@@ -245,6 +255,7 @@ private:
 	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
+	std::vector<Gunsight> gunsights;
 	// Represents the state of the currently targeted ship when it was last seen,
 	// so the target display does not show updates to its state the player should not be aware of.
 	int lastTargetType = 0;

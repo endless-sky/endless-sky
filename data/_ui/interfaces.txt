@@ -82,6 +82,10 @@ color "cloak highlight" .45 0. 0. .65
 
 color "drag select" .2 1. 0. 0.
 
+color "gunsight friendly" .3 .4 .85 .95
+color "gunsight neutral" .6 .6 .6 .95
+color "gunsight hostile" .75 .15 .1 .95
+
 # Colors used for drawing mission or job pointers on the map,
 # to indicate where the player should go.
 color "available job" .9 .6 0. 1.
