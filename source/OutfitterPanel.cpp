@@ -83,6 +83,7 @@ namespace {
 		return false;
 	}
 
+	// Searches the outfits on a ship to find the lowest resupply cost multiplier.
 	double ResupplyCostMultiplier(const Ship &ship, const Outfit *ammo) noexcept
 	{
 		double minimumMultiplier = 0;
@@ -91,9 +92,7 @@ namespace {
 		{
 			const Outfit *outfit = it.first;
 			double minOutfitMultiplier = outfit->GetResupplyCostMultiplier(ammo);
-			if(index == 0)
-				minimumMultiplier = minOutfitMultiplier;
-			else if(minOutfitMultiplier < minimumMultiplier)
+			if(index == 0 || minOutfitMultiplier < minimumMultiplier)
 				minimumMultiplier = minOutfitMultiplier;
 
 		index += 1;
