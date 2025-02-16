@@ -252,7 +252,7 @@ namespace {
 	{
 		if(ship.IsYours())
 			return *GameData::Colors().Get("gunsight friendly");
-		else if(ship.GetTargetShip()->IsYours())
+		else if(ship.GetTargetShip() && (ship.GetTargetShip()->IsYours() || ship.GetGovernment()->IsEnemy()))
 			return *GameData::Colors().Get("gunsight hostile");
 		else
 			return *GameData::Colors().Get("gunsight neutral");
@@ -1792,6 +1792,7 @@ void Engine::CalculateStep()
 			bool withinRange = ship->Position().Distance(flagship->Position()) < gunsightRange;
 			bool targetingPlayer = ship->GetGovernment()->IsEnemy() && ship->GetTargetShip() && ship->GetTargetShip()->IsYours();
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+
 			if(isValidTarget && (ship->IsYours() || (withinRange && (targetingPlayer || isYourTarget))))
 			{
 				const Color &gunsightColor = GetGunsightColor(*ship);
