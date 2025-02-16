@@ -1784,15 +1784,19 @@ void Engine::CalculateStep()
 	gunsights.clear();
 	if(flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power") || !flagship->IsDestroyed())
 	{
-		for(const shared_ptr<Ship> &ship : ships)
+		for(shared_ptr<Ship> &ship : ships)
 		{
 			double gunsightRange = 100. * sqrt(flagship->Attributes().Get("gunsight scan power"));
-
-			if(ship->GetSystem() == playerSystem && !ship->IsDestroyed())
+			bool isValidTarget = ship->GetSystem() == playerSystem && !ship->IsDestroyed() && !ship->IsDisabled()
+				&& ship->IsTargetable() && !ship->Attributes().Get("inscrutable");
+			bool withinRange = ship->Position().Distance(flagship->Position()) < gunsightRange;
+			bool targetingPlayer = ship->GetGovernment()->IsEnemy() && ship->GetTargetShip() && ship->GetTargetShip()->IsYours();
+			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
+			if(isValidTarget && (ship->IsYours() || (withinRange && (targetingPlayer || isYourTarget))))
 			{
 				const Color &gunsightColor = GetGunsightColor(*ship);
 
-				for(const Hardpoint &hardpoint : &ship->Weapons())
+				for(const Hardpoint &hardpoint : ship->Weapons())
 					if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.IsHoming())
 					{
 						Point gunsightStart = ship->Position() - newCenter + (ship->Facing().Rotate(hardpoint.GetPoint()));
