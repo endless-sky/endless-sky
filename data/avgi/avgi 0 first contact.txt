@@ -757,7 +757,7 @@ mission "Avgi: Scout Rescue"
 
 mission "Avgi: Frontline Combat"
 	name "Hunt the Aberrant"
-	description "Help the Avgi clear the systems north of Quintessence of Aberrant to free up defensive resources, then return to the <destination>"
+	description "Help the Avgi clear the systems north of Quintessence of Aberrant to free up defensive resources, then return to the <destination>."
 	source "Weledos"
 	destination "Feo Platform"
 	waypoint "Corporeal"
