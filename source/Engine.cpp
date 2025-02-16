@@ -1161,12 +1161,13 @@ void Engine::Draw() const
 
 	for(Gunsight gunsight : gunsights)
 	{
-		Point end1 = gunsight.start + (gunsight.angle).Rotate(Point(gunsight.spread, -gunsight.range));
-		Point end2 = gunsight.start + (gunsight.angle).Rotate(Point(-gunsight.spread, -gunsight.range));
+		Point end1 = gunsight.start + gunsight.angle.Rotate(Point(gunsight.spread, -gunsight.range));
+		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
+		Point width = gunsight.angle.Rotate(Point(1., 0.));
 
-		LineShader::Draw(gunsight.start * zoom, end1 * zoom, 1., gunsight.color);
-		LineShader::Draw(gunsight.start * zoom, end2 * zoom, 1., gunsight.color);
-		LineShader::Draw(end1 * zoom, end2 * zoom, 1., gunsight.color);
+		LineShader::Draw(gunsight.start * zoom, end1 * zoom, width.Length(), gunsight.color);
+		LineShader::Draw(gunsight.start * zoom, end2 * zoom, width.Length(), gunsight.color);
+		LineShader::Draw(end1 * zoom - width, end2 * zoom + width, width.Length(), gunsight.color);
 	}
 
 	for(const auto &it : statuses)
