@@ -1783,7 +1783,8 @@ void Engine::CalculateStep()
 
 
 	gunsights.clear();
-	if(flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power") || !flagship->IsDestroyed())
+	if(flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power")
+		|| !flagship->IsDestroyed())
 	{
 		for(shared_ptr<Ship> &ship : ships)
 		{
@@ -1791,10 +1792,10 @@ void Engine::CalculateStep()
 			bool isValidTarget = ship->GetSystem() == playerSystem && !ship->IsDestroyed() && !ship->IsDisabled()
 				&& ship->IsTargetable() && !ship->Attributes().Get("inscrutable");
 			bool withinRange = ship->Position().Distance(flagship->Position()) < gunsightRange;
-			bool targetingPlayer = ship->GetGovernment()->IsEnemy() && ship->GetTargetShip() && ship->GetTargetShip()->IsYours();
+			bool playerHasTarget = ship->IsYours() && (ship->GetTargetShip() || ship->GetTargetAsteroid());
 			bool isYourTarget = (flagship && ship == flagship->GetTargetShip());
 
-			if(isValidTarget && (ship->IsYours() || (withinRange && (targetingPlayer || isYourTarget))))
+			if(isValidTarget && (playerHasTarget || (withinRange && isYourTarget)))
 			{
 				const Color &gunsightColor = GetGunsightColor(*ship);
 
