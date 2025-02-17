@@ -730,7 +730,7 @@ mission "Avgi: Scout Rescue"
 		government "Avgi"
 		personality derelict mute pacifist target
 		system Whirlwind
-		ship "Polari (Derelict)" "Silver Albedo"
+		ship "Polari" "Silver Albedo"
 		conversation
 			`You maneuver alongside the Silver Albedo, which is covered in scorch marks and other signs of damage. After transmitting a code given to you by Captain Kokkino, you wait for any signs of life. After a few minutes you receive a response, which you pass through your translator.`
 			`	"Caution. Unfamiliar vessel, how did you obtain Consonance identification codes?"`

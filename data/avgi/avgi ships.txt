@@ -743,10 +743,6 @@ ship "Polari"
 	description "Despite this versatility, the contested battlespace of the post-Incursion Avgi cluster is one in which the Polari is simply not as capable in. As science crews are increasingly asked to lead risky scouting expeditions back to the Avgi homeworld, demands for a newer, more survivable science ship routinely make their way to the Twilight Guard."
 
 
-ship "Polari" "Polari (Derelict)"
-	outfits
-
-
 ship "Entasi"
 	sprite "ship/avgi entasi"
 	thumbnail "thumbnail/avgi entasi"
