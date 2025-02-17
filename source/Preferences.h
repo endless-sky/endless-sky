@@ -15,7 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Gamerules.h"
+
 #include <cstdint>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -196,4 +199,32 @@ public:
 	static bool DoAlertHelper(AlertIndicator toDo);
 
 	static int GetPreviousSaveCount();
+
+	/// Gamerule override settings.
+	
+	static void ToggleGameruleRamscoop();
+	static void ToggleGameruleRamscoopValue();
+	static std::optional<bool> GetGameruleRamscoop();
+	static const std::string &GameruleRamscoopSetting();
+
+	static const std::optional<int> &GetGamerulePersonPeriod();
+
+	static const std::optional<int> &GetGamerulePersonWeight();
+
+	static const std::optional<int> &GetGameruleMiningTime();
+
+	static const std::optional<double> &GetGameruleFrugalThreshold();
+
+	static void ToggleGameruleFighters();
+	static void ToggleGameruleFightersValue();
+	static std::optional<Gamerules::FighterDodgePolicy> GetGameruleFighters();
+	static const std::string &GameruleFightersSetting();
+
+	static const std::optional<double> &GetGameruleDepreciationMin();
+
+	static const std::optional<int> &GetGameruleDepreciationGracePeriod();
+
+	static const std::optional<double> &GetGameruleDepreciationDaily();
+
+	static const std::optional<int> &GetGameruleDepreciationMaxAge();
 };
