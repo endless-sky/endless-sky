@@ -45,7 +45,6 @@ public:
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
-	FighterDodgePolicy FightersHitWhenDisabled() const;
 
 
 private:
@@ -58,5 +57,4 @@ private:
 	double depreciationDaily = 0.997;
 	int depreciationGracePeriod = 7;
 	int depreciationMaxAge = 1000;
-	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
 };
