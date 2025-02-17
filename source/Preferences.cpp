@@ -245,7 +245,7 @@ void Preferences::Load()
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else if(node.Token(0) == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
-		else if(node.Token(0) == "Disabled fighters avoid projectiles")
+		else if(node.Token(0) == "Disabled fighter immunity")
 			disabledFighterIndex = max<int>(0, min<int>(node.Value(1), DISABLED_FIGHTER_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
