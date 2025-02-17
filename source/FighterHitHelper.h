@@ -15,8 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "GameData.h"
-#include "Gamerules.h"
+#include "Preferences.h"
 #include "Ship.h"
 
 
@@ -29,11 +28,11 @@ public:
 	{
 		if(!ship->CanBeCarried() || !ship->IsDisabled())
 			return true;
-		switch(GameData::GetGamerules().FightersHitWhenDisabled())
+		switch(Preferences::FightersHitWhenDisabled())
 		{
-			case Gamerules::FighterDodgePolicy::ALL: return false;
-			case Gamerules::FighterDodgePolicy::NONE: return true;
-			case Gamerules::FighterDodgePolicy::ONLY_PLAYER: return !ship->IsYours();
+			case Preferences::FighterDodgePolicy::ALL: return false;
+			case Preferences::FighterDodgePolicy::NONE: return true;
+			case Preferences::FighterDodgePolicy::ONLY_PLAYER: return !ship->IsYours();
 		}
 		return false;
 	}
