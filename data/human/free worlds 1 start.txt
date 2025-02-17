@@ -1308,7 +1308,7 @@ mission "FW Pirates: Attack 2"
 	
 	on offer
 		conversation
-			`When you land on <origin>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a couple of carriers, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
+			`When you land on <origin>, you find the fleet that Tomek mentioned: a few militia heavy and medium warships, a makeshift carrier ship, three squadrons of interceptors, and even four merchant ships of varying sizes. In total the fleet is nearly as large as one of the fleets that defended Sabik or Kornephoros, but as you survey the motley mix of grizzled militia veterans, young, naive interceptor pilots, and eager merchant captains, you can't help but wonder if a fleet of this size has a good chance against the strongest pirate world in Southern space.`
 			`	The Navy failed to conquer Longjump. Why would a fleet of a similar size be capable of conquering Greenrock? Perhaps the Senate was right in suggesting a diplomatic solution. Or perhaps luck will be in your favor.`
 			choice
 				`	(Go ahead and attack Greenrock, disobeying the Senate's orders regardless of the consequences.)`
