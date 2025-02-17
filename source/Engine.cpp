@@ -1105,8 +1105,7 @@ void Engine::Step(bool isActive)
 		});
 
 	gunsights.clear();
-	if(flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power")
-		|| !flagship->IsDestroyed())
+	if(flagship && (flagship->Attributes().Get("gunsight") || flagship->Attributes().Get("gunsight scan power")))
 	{
 		for(shared_ptr<Ship> &ship : ships)
 		{
