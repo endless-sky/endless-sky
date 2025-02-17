@@ -1407,7 +1407,7 @@ mission "FW Pirates: Attack 2"
 			names "pirate"
 			variant
 				"Hawk"
-				"Hawk (Heavy)"
+				"Hawk (Rocket)"
 		fleet
 			government "Pirate"
 			names "pirate"
