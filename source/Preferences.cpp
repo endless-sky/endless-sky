@@ -162,6 +162,9 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
+
+	const vector<string> DISABLED_FIGHTER_SETTING = {"off", "player", "on"};
+	int disabledFighterIndex = 2;
 }
 
 
@@ -190,6 +193,7 @@ void Preferences::Load()
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
+	settings["Disabled fighters avoid projectiles"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
