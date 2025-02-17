@@ -732,7 +732,7 @@ void Preferences::ToggleFighterDodgePolicy()
 	disabledFighterIndex = (disabledFighterIndex + 1) % DISABLED_FIGHTER_SETTINGS.size();
 }
 
-Preferences::FighterDodgePolicy Preferences::FightersHitWhenDisabled() const
+Preferences::FighterDodgePolicy Preferences::FightersHitWhenDisabled()
 {
 	return static_cast<FighterDodgePolicy>(disabledFighterIndex);
 }
