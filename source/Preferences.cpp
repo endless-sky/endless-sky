@@ -163,7 +163,7 @@ namespace {
 
 	int previousSaveCount = 3;
 
-	const vector<string> DISABLED_FIGHTER_SETTINGS = {"always", "never", "player only"};
+	const vector<string> DISABLED_FIGHTER_SETTINGS = {"always", "never", "player"};
 	int disabledFighterIndex = 0;
 }
 

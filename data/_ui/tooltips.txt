@@ -1455,7 +1455,7 @@ tip "Alert indicator"
 	`Indicate when hostile ships enter your current system. Audio plays a siren. Visual displays an alert icon by the in-system radar.`
 
 tip "Disabled fighter immunity"
-	`Controls which fighters, when disabled, will not be hit by projectiles unless they are directly targeted. "Player only" means that this setting applies to only the player's fighters.`
+	`Controls which fighters, when disabled, will not be hit by projectiles unless they are directly targeted. The "player" option makes this setting apply to only the player's fighters.`
 
 tip "Extra fleet status messages"
 	`Display extra status messages about escorts in your fleet, such as when they are under-crewed or collect flotsam.`
