@@ -194,7 +194,7 @@ public:
 
 	// Disabled fighter setting, "NONE", "ONLY_PLAYER", or "ALL".
 	static void ToggleFighterDodgePolicy();
-	static FighterDodgePolicy FightersHitWhenDisabled() const;
+	static FighterDodgePolicy FightersHitWhenDisabled();
 	static const std::string &DisabledFighterSetting();
 
 	/// Red alert siren and symbol
