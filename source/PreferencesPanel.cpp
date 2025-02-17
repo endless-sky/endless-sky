@@ -753,7 +753,8 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		DATE_FORMAT,
 		"Show parenthesis",
-		NOTIFY_ON_DEST
+		NOTIFY_ON_DEST,
+		"Disabled fighters avoid projectiles"
 	};
 
 	bool isCategory = true;
