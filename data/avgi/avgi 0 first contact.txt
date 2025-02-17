@@ -831,7 +831,6 @@ mission "Avgi: Dissonance Outreach 0.5"
 	landing
 	name "Return to Peripheria"
 	description "Return to <destination> to collect Hriso, a Consonance Assemblyman."
-	passengers 2
 	source "Feo Platform"
 	destination "Peripheria"
 	passengers 2
