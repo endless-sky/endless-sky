@@ -81,6 +81,7 @@ namespace {
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+	const string FIGHTER_DODGE_POLICY = "Disabled fighters dodge projectiles";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -754,7 +755,7 @@ void PreferencesPanel::DrawSettings()
 		DATE_FORMAT,
 		"Show parenthesis",
 		NOTIFY_ON_DEST,
-		"Disabled fighters avoid projectiles"
+		FIGHTER_DODGE_POLICY
 	};
 
 	bool isCategory = true;
@@ -967,6 +968,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == FIGHTER_DODGE_POLICY)
+		{
+			isOn = Preferences::FighterDodgePolicy() != Preferences::FighterDodgePolicy::NONE;
+			text = Preferences::DisabledFighterSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1310,6 +1316,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == FIGHTER_DODGE_POLICY)
+		Preferences::ToggleFighterDodgePolicy();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
