@@ -163,9 +163,7 @@ namespace {
 
 	int previousSaveCount = 3;
 
-
-	// These were the exact strings used by the old gamerule
-	const vector<string> DISABLED_FIGHTER_SETTINGS = {"ALL", "NONE", "ONLY_PLAYER"};
+	const vector<string> DISABLED_FIGHTER_SETTINGS = {"always", "never", "player only"};
 	int disabledFighterIndex = 0;
 }
 
@@ -735,6 +733,12 @@ void Preferences::ToggleFighterDodgePolicy()
 }
 
 Preferences::FighterDodgePolicy Preferences::FightersHitWhenDisabled() const
+{
+	return DISABLED_FIGHTER_SETTINGS[disabledFighterIndex];
+}
+
+
+const std::string &Preferences::DisabledFighterSetting()
 {
 	return DISABLED_FIGHTER_SETTINGS[disabledFighterIndex];
 }
