@@ -852,8 +852,8 @@ outfit "Meteor Missile Launcher"
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
-		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
+		"missile strength" 18
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are equipped with only the most basic of guidance systems, and their infrared tracking systems have even more trouble homing in on targets with low heat levels. Nevertheless, their simple construction is surprisingly robust, making them a credible threat to even well-defended targets if the missiles are fired in great numbers."
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
@@ -890,8 +890,8 @@ outfit "Meteor Missile Pod"
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
-		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
+		"missile strength" 18
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are equipped with only the most basic of guidance systems, and their infrared tracking systems have even more trouble homing in on targets with low heat levels. Nevertheless, their simple construction is surprisingly robust, making them a credible threat to even well-defended targets if the missiles are fired in great numbers."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "meteor fire"
@@ -950,10 +950,10 @@ outfit "Sidewinder Missile Launcher"
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
-		"shield damage" 260
-		"hull damage" 180
+		"shield damage" 185
+		"hull damage" 120
 		"hit force" 255
-		"missile strength" 18
+		"missile strength" 6
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 
@@ -989,10 +989,10 @@ outfit "Sidewinder Missile Pod"
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
-		"shield damage" 260
-		"hull damage" 180
+		"shield damage" 185
+		"hull damage" 120
 		"hit force" 255
-		"missile strength" 18
+		"missile strength" 6
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
@@ -1071,8 +1071,6 @@ outfit "Javelin Mini Pod"
 		"velocity" 10
 		"lifetime" 60
 		"reload" 40
-		"burst count" 30
-		"burst reload" 15
 		"firing energy" .2
 		"firing heat" 12
 		"shield damage" 48
@@ -1120,7 +1118,7 @@ outfit "Torpedo"
 	category "Ammunition"
 	cost 1400
 	thumbnail "outfit/torpedo"
-	"mass" .4
+	"mass" .6
 	"torpedo capacity" -1
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
@@ -1130,7 +1128,7 @@ outfit "Torpedo Storage Rack"
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
 	"outfit space" -9
-	"torpedo capacity" 15
+	"torpedo capacity" 10
 	ammo "Torpedo"
 	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
 
@@ -1142,7 +1140,7 @@ outfit "Torpedo Launcher"
 	"outfit space" -30
 	"weapon capacity" -30
 	"gun ports" -1
-	"torpedo capacity" 30
+	"torpedo capacity" 20
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -1156,7 +1154,7 @@ outfit "Torpedo Launcher"
 		"inaccuracy" 5
 		"velocity" 7
 		"lifetime" 900
-		"reload" 150
+		"reload" 225
 		"firing energy" 2
 		"firing heat" 45
 		"acceleration" .15
@@ -1178,7 +1176,7 @@ outfit "Torpedo Pod"
 	"outfit space" -8
 	"weapon capacity" -8
 	"gun ports" -1
-	"torpedo capacity" 3
+	"torpedo capacity" 2
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -1193,8 +1191,8 @@ outfit "Torpedo Pod"
 		"velocity" 7
 		"lifetime" 900
 		"reload" 320
-		"burst count" 3
-		"burst reload" 150
+		"burst count" 2
+		"burst reload" 225
 		"firing energy" 2
 		"firing heat" 45
 		"acceleration" .15
@@ -1221,7 +1219,7 @@ outfit "Typhoon Torpedo"
 	category "Ammunition"
 	cost 2700
 	thumbnail "outfit/typhoon"
-	"mass" .5
+	"mass" .75
 	"typhoon capacity" -1
 	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 30 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
 
@@ -1231,7 +1229,7 @@ outfit "Typhoon Storage Tube"
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
 	"outfit space" -10
-	"typhoon capacity" 15
+	"typhoon capacity" 10
 	ammo "Typhoon Torpedo"
 	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
 
@@ -1243,7 +1241,7 @@ outfit "Typhoon Launcher"
 	"outfit space" -40
 	"weapon capacity" -40
 	"gun ports" -1
-	"typhoon capacity" 30
+	"typhoon capacity" 20
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1257,7 +1255,7 @@ outfit "Typhoon Launcher"
 		"inaccuracy" 5
 		"velocity" 6
 		"lifetime" 1100
-		"reload" 120
+		"reload" 180
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .1
@@ -1279,7 +1277,7 @@ outfit "Typhoon Pod"
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
-	"typhoon capacity" 3
+	"typhoon capacity" 2
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1293,9 +1291,9 @@ outfit "Typhoon Pod"
 		"inaccuracy" 5
 		"velocity" 6
 		"lifetime" 1100
-		"reload" 252
-		"burst count" 3
-		"burst reload" 120
+		"reload" 360
+		"burst count" 2
+		"burst reload" 180
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .1
