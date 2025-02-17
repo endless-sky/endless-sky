@@ -1769,7 +1769,6 @@ mission "FW Early Warning 1"
 			names "republic capital"
 			variant
 				"Protector (Quad Blaster)"
-
 	npc
 		government "Republic"
 		personality staying heroic
