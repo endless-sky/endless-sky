@@ -734,7 +734,7 @@ void Preferences::ToggleFighterDodgePolicy()
 
 Preferences::FighterDodgePolicy Preferences::FightersHitWhenDisabled() const
 {
-	return DISABLED_FIGHTER_SETTINGS[disabledFighterIndex];
+	return static_cast<FighterDodgePolicy>(disabledFighterIndex);
 }
 
 
