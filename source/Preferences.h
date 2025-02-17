@@ -201,7 +201,7 @@ public:
 	static int GetPreviousSaveCount();
 
 	/// Gamerule override settings.
-	
+
 	static void ToggleGameruleRamscoop();
 	static void ToggleGameruleRamscoopValue();
 	static std::optional<bool> GetGameruleRamscoop();
