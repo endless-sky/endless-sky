@@ -109,7 +109,9 @@ public:
 	};
 
 	enum class FighterDodgePolicy {
-		ALL, NONE, ONLY_PLAYER
+		ALL = 0, 
+		NONE,
+		ONLY_PLAYER
 	};
 
 public:
