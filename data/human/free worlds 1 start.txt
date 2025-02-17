@@ -54,7 +54,7 @@ mission "Liberate Kornephoros"
 			variant
 				"Falcon"
 				"Osprey"
-				"Osprey (Missile)"				
+				"Osprey (Missile)"
 	npc
 		government "Free Worlds"
 		personality heroic disables
@@ -1371,7 +1371,7 @@ mission "FW Pirates: Attack 2"
 		government "Pirate"
 		personality plunders staying
 		system "Shaula"
-		fleet 
+		fleet
 			government "Pirate"
 			names "pirate"
 			variant
