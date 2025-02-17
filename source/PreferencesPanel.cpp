@@ -81,7 +81,7 @@ namespace {
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
-	const string FIGHTER_DODGE_POLICY = "Disabled fighters dodge projectiles";
+	const string FIGHTER_DODGE_POLICY = "Disabled fighters avoid projectiles";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
