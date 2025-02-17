@@ -1454,7 +1454,7 @@ tip "Clickable radar display"
 tip "Alert indicator"
 	`Indicate when hostile ships enter your current system. Audio plays a siren. Visual displays an alert icon by the in-system radar.`
 
-tip "Disabled fighters dodge projectiles"
+tip "Disabled fighters avoid projectiles"
 	`Controls which fighters, when disabled, will not be hit by projectiles unless they are directly targeting. "Player only" means that this setting applies to only the player's fighters.`
 
 tip "Extra fleet status messages"
