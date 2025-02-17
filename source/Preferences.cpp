@@ -162,9 +162,6 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
-
-	const vector<string> DISABLED_FIGHTER_SETTING = {"off", "player", "on"};
-	int disabledFighterIndex = 2;
 }
 
 
