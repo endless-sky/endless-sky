@@ -162,6 +162,11 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
+
+
+	// These were the exact strings used by the old gamerule
+	const vector<string> DISABLED_FIGHTER_SETTINGS = {"NONE", "ONLY_PLAYER", "ALL"};
+	int disabledFighterIndex = 2;
 }
 
 
@@ -190,7 +195,6 @@ void Preferences::Load()
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
-	settings["Disabled fighters avoid projectiles"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)
@@ -243,6 +247,8 @@ void Preferences::Load()
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else if(node.Token(0) == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
+		else if(node.Token(0) == "Disabled fighters avoid projectiles")
+			disabledFighterIndex = max<int>(0, min<int>(node.Value(1), DISABLED_FIGHTER_SETTINGS.size() - 1));
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -723,7 +729,15 @@ const string &Preferences::FlotsamSetting()
 	return FLOTSAM_SETTINGS[flotsamIndex];
 }
 
+void Preferences::ToggleFighterDodgePolicy()
+{
+	disabledFighterIndex = (disabledFighterIndex + 1) % DISABLED_FIGHTER_SETTINGS.size();
+}
 
+Preferences::FighterDodgePolicy Preferences::FightersHitWhenDisabled() const
+{
+	return DISABLED_FIGHTER_SETTINGS[disabledFighterIndex];
+}
 
 void Preferences::ToggleAlert()
 {
