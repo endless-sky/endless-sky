@@ -108,6 +108,9 @@ public:
 		BOTH
 	};
 
+	enum class FighterDodgePolicy {
+		ALL, NONE, ONLY_PLAYER
+	};
 
 public:
 	static void Load();
@@ -186,6 +189,10 @@ public:
 	static void ToggleFlotsam();
 	static FlotsamCollection GetFlotsamCollection();
 	static const std::string &FlotsamSetting();
+
+	// Disabled fighter setting, "NONE", "ONLY_PLAYER", or "ALL".
+	static void ToggleFighterDodgePolicy();
+	static FighterDodgePolicy FightersHitWhenDisabled() const;
 
 	/// Red alert siren and symbol
 	static void ToggleAlert();
