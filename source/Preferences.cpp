@@ -165,8 +165,8 @@ namespace {
 
 
 	// These were the exact strings used by the old gamerule
-	const vector<string> DISABLED_FIGHTER_SETTINGS = {"NONE", "ONLY_PLAYER", "ALL"};
-	int disabledFighterIndex = 2;
+	const vector<string> DISABLED_FIGHTER_SETTINGS = {"ALL", "NONE", "ONLY_PLAYER"};
+	int disabledFighterIndex = 0;
 }
 
 
