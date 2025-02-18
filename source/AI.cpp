@@ -1502,6 +1502,7 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		maxStrength = 2 * strengthIt->second;
 
 	// Get a list of all targetable, hostile ships in this system.
+	// DO STUFF HERE
 	const auto enemies = GetShipsList(ship, true);
 	for(const auto &foe : enemies)
 	{
@@ -1538,6 +1539,19 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		if((person.Disables() || (!person.IsNemesis() && foe != oldTarget.get()))
 				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
 			continue;
+
+		list<Ship *> targetingList = foe->GetShipsTargetingThis();
+		double targeterStrength = 0;
+		if(!targetingList.empty())
+			for(Ship *targeter : targetingList)
+			{
+				if(targeter != nullptr)
+				{
+					targeterStrength += targeter->Strength();
+					range += sqrt(targeterStrength - foe->Strength());
+				}
+			}
+
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
 		if(!canPlunder)

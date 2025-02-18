@@ -50,6 +50,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <cmath>
 #include <limits>
+#include <list>
 #include <sstream>
 
 using namespace std;
@@ -2492,6 +2493,9 @@ void Ship::Disable()
 // Mark a ship as destroyed.
 void Ship::Destroy()
 {
+	// If this ship had a target, remove it from the target's list of targeting ships.
+	if(GetTargetShip())
+		GetTargetShip()->targetingList.remove(this);
 	hull = -1.;
 }
 
@@ -3706,9 +3710,19 @@ void Ship::SetFleeing(bool fleeing)
 // Set this ship's targets.
 void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 {
-	if(ship != GetTargetShip())
+	const shared_ptr<Ship> oldTarget = GetTargetShip();
+
+	if(ship != oldTarget)
 	{
 		targetShip = ship;
+
+		// Remove this ship from the list of ships targeting the previous target.
+		oldTarget->targetingList.remove(this);
+
+		// Add this ship to the list of ships targeting the target if it is an enemy.
+		if(government->IsEnemy(ship->government))
+			ship->targetingList.push_back(this);
+
 		// When you change targets, clear your scanning records.
 		cargoScan = 0.;
 		outfitScan = 0.;
@@ -3771,6 +3785,13 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 void Ship::SetFormationPattern(const FormationPattern *formationToSet)
 {
 	formationPattern = formationToSet;
+}
+
+
+
+std::list<Ship *> Ship::GetShipsTargetingThis() const
+{
+	return targetingList;
 }
 
 
