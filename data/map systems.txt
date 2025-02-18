@@ -34831,6 +34831,7 @@ system "Sagittarius A*"
 	government Uninhabited
 	attributes "black hole" "notable star"
 	arrival 5000
+	departure 2500
 	habitable 100000
 	belt 1500
 	haze _menu/haze-full
