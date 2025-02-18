@@ -251,6 +251,8 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				"Are you sure you want to jettison all of this ship's cargo?"));
 		}
 	}
+	else if(hoverIndex >= 0 && key >= '0' && key <= '9')
+		(*shipIt)->SetHardpointGroup(hoverIndex, key - '0');
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
@@ -509,7 +511,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	int index = 0;
 	const double centerX = bounds.Center().X();
 	const double labelCenter[2] = {centerX - .5 * LABEL_WIDTH - LABEL_DX, centerX + LABEL_DX + .5 * LABEL_WIDTH};
-	const double fromX[2] = { centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
+	const double fromX[2] = {centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
 	static const double LINE_HEIGHT = 20.;
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
@@ -517,7 +519,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
-	auto layout = Layout(static_cast<int>(LABEL_WIDTH), Truncate::BACK);
+	Layout layout{static_cast<int>(LABEL_WIDTH), Truncate::BACK};
+	Layout textLayout{layout.width - 20, layout.truncate};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
@@ -531,7 +534,9 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
 		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
-		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
+		textLayout.align = layout.align;
+		font.Draw({'(' + to_string(hardpoint.GetGroup()) + ')', layout}, Point(x, y + TEXT_OFF), bright);
+		font.Draw({name, textLayout}, Point(isRight ? x + 20. : x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 

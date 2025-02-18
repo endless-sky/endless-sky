@@ -52,7 +52,7 @@ public:
 public:
 	// Constructor. Hardpoints may or may not specify what weapon is in them.
 	Hardpoint(const Point &point, const BaseAttributes &attributes,
-		bool isTurret, bool isUnder, const Outfit *outfit = nullptr);
+		bool isTurret, bool isUnder, const Outfit *outfit = nullptr, int group = 0);
 
 	// Get the weapon installed in this hardpoint (or null if there is none).
 	const Outfit *GetOutfit() const;
@@ -114,6 +114,9 @@ public:
 	// Get the attributes that can be used as a parameter of the constructor when cloning this.
 	const BaseAttributes &GetBaseAttributes() const;
 
+	void SetGroup(int group);
+	int GetGroup() const;
+
 
 private:
 	// Check whether a projectile or flotsam is within the range of the anti-missile
@@ -156,4 +159,7 @@ private:
 	int burstCount = 0;
 	bool isFiring = false;
 	bool wasFiring = false;
+
+	// A weapon group that can be assigned by the player.
+	int group;
 };

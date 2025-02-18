@@ -40,7 +40,16 @@ public:
 	static const Command AUTOSTEER;
 	static const Command BACK;
 	static const Command MOUSE_TURNING_HOLD;
-	static const Command PRIMARY;
+	static const Command PRIMARY_0;
+	static const Command PRIMARY_1;
+	static const Command PRIMARY_2;
+	static const Command PRIMARY_3;
+	static const Command PRIMARY_4;
+	static const Command PRIMARY_5;
+	static const Command PRIMARY_6;
+	static const Command PRIMARY_7;
+	static const Command PRIMARY_8;
+	static const Command PRIMARY_9;
 	static const Command TURRET_TRACKING;
 	static const Command SECONDARY;
 	static const Command SELECT;

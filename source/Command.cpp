@@ -37,7 +37,9 @@ namespace {
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
 	// to display a warning to the player.
-	map<int, int> keycodeCount;
+	// The booleans handle the "fire primary weapon" commands as they are intended to
+	// be able to share the same keybind.
+	map<int, tuple<int, bool, bool>> keycodeCount;
 	// Need a uint64_t 1 to generate Commands.
 	const uint64_t ONE = 1;
 }
@@ -53,37 +55,46 @@ const Command Command::LEFT(ONE << 2, "Turn left");
 const Command Command::RIGHT(ONE << 3, "Turn right");
 const Command Command::BACK(ONE << 4, "Reverse");
 const Command Command::MOUSE_TURNING_HOLD(ONE << 5, "Mouse turning (hold)");
-const Command Command::PRIMARY(ONE << 6, "Fire primary weapon");
-const Command Command::TURRET_TRACKING(ONE << 7, "Toggle turret tracking");
-const Command Command::SECONDARY(ONE << 8, "Fire secondary weapon");
-const Command Command::SELECT(ONE << 9, "Select secondary weapon");
-const Command Command::LAND(ONE << 10, "Land on planet / station");
-const Command Command::BOARD(ONE << 11, "Board selected ship");
-const Command Command::HAIL(ONE << 12, "Talk to selected ship");
-const Command Command::SCAN(ONE << 13, "Scan selected ship");
-const Command Command::JUMP(ONE << 14, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(ONE << 15, "");
-const Command Command::TARGET(ONE << 16, "Select next ship");
-const Command Command::NEAREST(ONE << 17, "Select nearest hostile ship");
-const Command Command::NEAREST_ASTEROID(ONE << 18, "Select nearest asteroid");
-const Command Command::DEPLOY(ONE << 19, "Deploy / recall fighters");
-const Command Command::AFTERBURNER(ONE << 20, "Fire afterburner");
-const Command Command::CLOAK(ONE << 21, "Toggle cloaking device");
-const Command Command::MAP(ONE << 22, "View star map");
-const Command Command::INFO(ONE << 23, "View player info");
-const Command Command::MESSAGE_LOG(ONE << 24, "View message log");
-const Command Command::FULLSCREEN(ONE << 25, "Toggle fullscreen");
-const Command Command::FASTFORWARD(ONE << 26, "Toggle fast-forward");
-const Command Command::HELP(ONE << 27, "Show help");
-const Command Command::FIGHT(ONE << 28, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 29, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 30, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 31, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 32, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 33, "Auto steer");
-const Command Command::WAIT(ONE << 34, "");
-const Command Command::STOP(ONE << 35, "");
-const Command Command::SHIFT(ONE << 36, "");
+const Command Command::PRIMARY_0(ONE << 6, "Fire primary weapons 0");
+const Command Command::PRIMARY_1(ONE << 7, "Fire primary weapons 1");
+const Command Command::PRIMARY_2(ONE << 8, "Fire primary weapons 2");
+const Command Command::PRIMARY_3(ONE << 9, "Fire primary weapons 3");
+const Command Command::PRIMARY_4(ONE << 10, "Fire primary weapons 4");
+const Command Command::PRIMARY_5(ONE << 11, "Fire primary weapons 5");
+const Command Command::PRIMARY_6(ONE << 12, "Fire primary weapons 6");
+const Command Command::PRIMARY_7(ONE << 13, "Fire primary weapons 7");
+const Command Command::PRIMARY_8(ONE << 14, "Fire primary weapons 8");
+const Command Command::PRIMARY_9(ONE << 15, "Fire primary weapons 9");
+const Command Command::TURRET_TRACKING(ONE << 16, "Toggle turret tracking");
+const Command Command::SECONDARY(ONE << 17, "Fire secondary weapon");
+const Command Command::SELECT(ONE << 18, "Select secondary weapon");
+const Command Command::LAND(ONE << 19, "Land on planet / station");
+const Command Command::BOARD(ONE << 20, "Board selected ship");
+const Command Command::HAIL(ONE << 21, "Talk to selected ship");
+const Command Command::SCAN(ONE << 22, "Scan selected ship");
+const Command Command::JUMP(ONE << 23, "Initiate hyperspace jump");
+const Command Command::FLEET_JUMP(ONE << 24, "");
+const Command Command::TARGET(ONE << 25, "Select next ship");
+const Command Command::NEAREST(ONE << 26, "Select nearest hostile ship");
+const Command Command::NEAREST_ASTEROID(ONE << 27, "Select nearest asteroid");
+const Command Command::DEPLOY(ONE << 28, "Deploy / recall fighters");
+const Command Command::AFTERBURNER(ONE << 29, "Fire afterburner");
+const Command Command::CLOAK(ONE << 30, "Toggle cloaking device");
+const Command Command::MAP(ONE << 31, "View star map");
+const Command Command::INFO(ONE << 32, "View player info");
+const Command Command::MESSAGE_LOG(ONE << 33, "View message log");
+const Command Command::FULLSCREEN(ONE << 34, "Toggle fullscreen");
+const Command Command::FASTFORWARD(ONE << 35, "Toggle fast-forward");
+const Command Command::HELP(ONE << 36, "Show help");
+const Command Command::FIGHT(ONE << 37, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 38, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 39, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 40, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 41, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 42, "Auto steer");
+const Command Command::WAIT(ONE << 43, "");
+const Command Command::STOP(ONE << 44, "");
+const Command Command::SHIFT(ONE << 45, "");
 
 
 
@@ -160,7 +171,22 @@ void Command::LoadSettings(const filesystem::path &path)
 	for(const auto &it : keycodeForCommand)
 	{
 		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		auto &[count, hasPrimary, hasOther] = keycodeCount[it.second];
+		if(it.first.Has(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+			| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+			| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9))
+		{
+			if(!hasPrimary)
+			{
+				++count;
+				hasPrimary = true;
+			}
+		}
+		else
+		{
+			++count;
+			hasOther = true;
+		}
 	}
 }
 
@@ -195,7 +221,22 @@ void Command::SetKey(Command command, int keycode)
 	for(const auto &it : keycodeForCommand)
 	{
 		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
+		auto &[count, hasPrimary, hasOther] = keycodeCount[it.second];
+		if(it.first.Has(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+			| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+			| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9))
+		{
+			if(!hasPrimary)
+			{
+				++count;
+				hasPrimary = true;
+			}
+		}
+		else
+		{
+			++count;
+			hasOther = true;
+		}
 	}
 }
 
@@ -246,7 +287,14 @@ bool Command::HasConflict() const
 		return false;
 
 	auto cit = keycodeCount.find(it->second);
-	return (cit != keycodeCount.end() && cit->second > 1);
+	if(cit == keycodeCount.end())
+		return false;
+
+	const auto &[count, hasPrimary, hasOther] = cit->second;
+	return Has(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+		| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+		| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9)
+		? hasOther : count > 1;
 }
 
 
@@ -263,7 +311,16 @@ void Command::Load(const DataNode &node)
 			{"left", Command::LEFT},
 			{"right", Command::RIGHT},
 			{"back", Command::BACK},
-			{"primary", Command::PRIMARY},
+			{"primary 0", Command::PRIMARY_0},
+			{"primary 1", Command::PRIMARY_1},
+			{"primary 2", Command::PRIMARY_2},
+			{"primary 3", Command::PRIMARY_3},
+			{"primary 4", Command::PRIMARY_4},
+			{"primary 5", Command::PRIMARY_5},
+			{"primary 6", Command::PRIMARY_6},
+			{"primary 7", Command::PRIMARY_7},
+			{"primary 8", Command::PRIMARY_8},
+			{"primary 9", Command::PRIMARY_9},
 			{"secondary", Command::SECONDARY},
 			{"select", Command::SELECT},
 			{"land", Command::LAND},

@@ -101,7 +101,8 @@ help "multiple ships"
 
 help "ship info"
 	`The ship info tab lets you view detailed information about ships in your fleet at any time. This includes any information you could see at a shipyard or outfitter, as well as the cargo and passengers distributed among each ship.`
-	`Ships can be renamed in this panel by clicking on the ship's name. While landed on a planet, you are able to change how guns and turrets are arranged by dragging the name of a weapon to another gun or turret location. While in flight, you are able to jettison individual pieces of cargo by clicking on the name of the cargo.`
+	`Ships can be renamed in this panel by clicking on the ship's name. While landed on a planet, you are able to change how guns and turrets are arranged by dragging the name of a weapon to another gun or turret location. The numbers next to your weapons indicate the groups they are assigned to. To reassign a weapon to a different group, hover over its name, and press the number you want to use. Groups can have multiple weapons assigned, and you do not need to be landed to modify them. Anti-missile systems, tractor beams, and secondary weapons operate differently, and assigning them does not change their behavior.`
+	`While in flight, you are able to jettison individual pieces of cargo by clicking on the name of the cargo.`
 
 help "multiple ship controls"
 	`Once you're in space with multiple ships that you own, you can give orders to those escorts. Orders will be given to all selected escorts, or if no escorts are selected then all your escorts will receive the order. Escorts can be selected by either clicking on them in space, clicking the ship icon at the bottom left of the screen, or by clicking and dragging to select a group of escorts in space. The list of escort order keys can be found in the preferences panel.`

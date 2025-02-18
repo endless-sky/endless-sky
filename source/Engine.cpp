@@ -2052,8 +2052,10 @@ void Engine::HandleKeyboardInputs()
 		Command::FORWARD | Command::LEFT | Command::RIGHT;
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
-	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
+	activeCommands |= keyHeld.And(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+		| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+		| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9 | Command::SECONDARY
+		| Command::SCAN | maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -2250,7 +2252,9 @@ void Engine::HandleMouseInput(Command &activeCommands)
 
 	// Activate firing command.
 	if(isMouseTurningEnabled && rightMouseButtonHeld)
-		activeCommands.Set(Command::PRIMARY);
+		activeCommands.Set(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+			| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+			| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9);
 }
 
 

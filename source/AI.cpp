@@ -4569,16 +4569,36 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				command.SetTurn(TurnBackward(ship));
 		}
 
-		if(activeCommands.Has(Command::PRIMARY))
+		auto fireGroup = [this, &ship](int group)
 		{
 			int index = 0;
 			for(const Hardpoint &hardpoint : ship.Weapons())
 			{
-				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon())
+				if(hardpoint.IsReady() && !hardpoint.GetOutfit()->Icon() && hardpoint.GetGroup() == group)
 					firingCommands.SetFire(index);
 				++index;
 			}
-		}
+		};
+		if(activeCommands.Has(Command::PRIMARY_0))
+			fireGroup(0);
+		if(activeCommands.Has(Command::PRIMARY_1))
+			fireGroup(1);
+		if(activeCommands.Has(Command::PRIMARY_2))
+			fireGroup(2);
+		if(activeCommands.Has(Command::PRIMARY_3))
+			fireGroup(3);
+		if(activeCommands.Has(Command::PRIMARY_4))
+			fireGroup(4);
+		if(activeCommands.Has(Command::PRIMARY_5))
+			fireGroup(5);
+		if(activeCommands.Has(Command::PRIMARY_6))
+			fireGroup(6);
+		if(activeCommands.Has(Command::PRIMARY_7))
+			fireGroup(7);
+		if(activeCommands.Has(Command::PRIMARY_8))
+			fireGroup(8);
+		if(activeCommands.Has(Command::PRIMARY_9))
+			fireGroup(9);
 		if(activeCommands.Has(Command::SECONDARY))
 		{
 			int index = 0;
@@ -4597,7 +4617,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			autoPilot = activeCommands;
 	}
 	bool shouldAutoAim = false;
-	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
+	bool isFiring = activeCommands.Has(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
+		| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
+		| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9 | Command::SECONDARY);
 	if(activeCommands.Has(Command::AUTOSTEER) && !command.Turn() && !ship.IsBoarding()
 			&& !autoPilot.Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD))
 	{
