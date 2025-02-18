@@ -139,7 +139,7 @@ ship "Nathas"
 			"hull damage" 200
 			"hit force" 600
 	outfits
-		"Ruksay Missile" 30
+		"Ruksay Missile" 28
 		"Ruksay Missile Launcher"
 		"Lilsa Anti-Missile"
 
@@ -197,7 +197,7 @@ ship "Nathaq"
 			"hull damage" 650
 			"hit force" 2100
 	outfits
-		"Ruksay Missile" 60
+		"Ruksay Missile" 58
 		"Ruksay Missile Launcher" 2
 		"Lilsa Anti-Missile" 2
 
@@ -455,7 +455,7 @@ ship "Saghir"
 	outfits
 		"Jibauni Small Laser"
 		"Ruksay Missile Launcher"
-		"Ruksay Missile" 30
+		"Ruksay Missile" 29
 
 		"Watsaq Energy Generator"
 		"Jamum Shield Generator"
@@ -511,7 +511,7 @@ ship "Yiyharsi"
 			"hull damage" 360
 			"hit force" 1080
 	outfits
-		"Ruksay Missile" 60
+		"Ruksay Missile" 54
 		"Ruksay Missile Launcher" 2
 		"Jibauni Small Laser" 2
 		"Lilsa Anti-Missile"
@@ -631,7 +631,7 @@ ship "Nathar"
 			"hull damage" 1350
 			"hit force" 3900
 	outfits
-		"Ruksay Missile" 60
+		"Ruksay Missile" 58
 		"Ruksay Missile Launcher" 2
 		"Jibauni Medium Laser" 2
 		"Zarwal Laser Turret"

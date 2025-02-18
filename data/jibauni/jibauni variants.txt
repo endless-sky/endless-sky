@@ -88,7 +88,7 @@ ship "Yiyharsi" "Yiyharsi (Government)"
 		"Jamum Shield Generator"
 		"Wasita Steering"
 		"Wasita Thrusters"
-		"Ruksay Missile" 60
+		"Ruksay Missile" 55
 		"Ruksay Missile Launcher" 2
 		"Jibauni Small Laser" 2
 		"Jibauni Government License"
@@ -123,7 +123,7 @@ ship "Nathaq" "Nathaq (Government)"
 		"Jamum Shield Generator"
 		"Eimlaq Steering"
 		"Eimlaq Thrusters"
-		"Ruksay Missile" 60
+		"Ruksay Missile" 50
 		"Ruksay Missile Launcher" 2
 		"Jibauni Government License"
 
@@ -138,7 +138,7 @@ ship "Nathar" "Nathar (Government)"
 		"Tamum Shield Generator"
 		"Eimlaq Steering"
 		"Eimlaq Thrusters"
-		"Ruksay Missile" 60
+		"Ruksay Missile" 59
 		"Ruksay Missile Launcher" 2
 		"Jibauni Medium Laser" 2
 		"Jibauni Government License"
@@ -188,7 +188,7 @@ ship "Yiyharsi" "Yiyharsi (Rebel)"
 
 ship "Nathar" "Nathar (Rebel)"
 	outfits
-		"Ruksay Missile" 60
+		"Ruksay Missile" 45
 		"Ruksay Missile Launcher" 2
 		"Jibauni Medium Laser" 2
 		"Aljaraar Tractor Beam"
