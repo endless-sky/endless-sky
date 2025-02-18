@@ -568,7 +568,7 @@ outfit "Optical Laser Rifle"
 
 
 outfit "Trefoil Board"
-	category "Hand to Hand"
+	category "Unique"
 	cost 69000
 	thumbnail "outfit/trefoil board"
 	"capture attack" 0.3
