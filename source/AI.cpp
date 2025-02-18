@@ -1551,7 +1551,10 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				}
 			}
 
-		range += sqrt(targeterStrength - foe->Strength());
+		if(targeterStrength && targeterStrength >= 2. * foe->Strength())
+			range += 2000;
+
+		Messages::Add(to_string(range), Messages::Importance::High, true);
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
 		if(!canPlunder)
