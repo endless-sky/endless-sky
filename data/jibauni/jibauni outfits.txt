@@ -344,7 +344,7 @@ outfit "Rukjay Missile Blueprint"
 	"disabled damage" 1
 	"rukjay capacity" -1
 	thumbnail "outfit/rukjay missile"
-	description "The Rukjay Missile Launcher will automatically construct Rukjay Missiles for you if the Rukjay Missile Blueprint is installed on that ship. Unfortunately, each blueprint can only provide instructions for one launcher, meaning that you must install one per launcher you possess."
+	description "The Rukjay Missile Launcher will automatically construct Rukjay Missiles for you if the Rukjay Missile Blueprint is installed on that ship. Unfortunately, each blueprint can only provide instructions for one launcher, meaning that you must install one for each launcher you possess."
 
 outfit "Ruksay Missile"
 	cost 525
