@@ -1525,7 +1525,8 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		double range = (foe->Position() + 60. * foe->Velocity()).Distance(
 			ship.Position() + 60. * ship.Velocity());
 		// Prefer the previous target, or the parent's target, if they are nearby.
-		if(foe == oldTarget.get() || foe == parentTarget.get())
+		bool preferredTarget = foe == oldTarget.get() || foe == parentTarget.get();
+		if(preferredTarget)
 			range -= 500.;
 
 		// Unless this ship is "daring", it should not chase much stronger ships.
@@ -1550,14 +1551,12 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		int targeterCount = foe->GetShipsTargetingThis().size();
 
 		// Deprioritize this if more than a quarter of your allies are already attacking.
-		if(targeterStrength >= 0.25 * alliedStrength && targeterCount > 1)
-			range += 3000;
+		if(targeterStrength >= 0.25 * alliedStrength && targeterCount > 2 && !preferredTarget)
+			range += 500;
 
 		// Deprioritize this more than twice its strength and multiple ships are already attacking it.
-		if(targeterStrength >= 2. * foe->Strength() && targeterCount > 1)
-			range += 2000;
-
-		Messages::Add(to_string(range), Messages::Importance::High, true);
+		if(targeterStrength >= 2. * foe->Strength() && targeterCount > 2 && !preferredTarget)
+			range += 500;
 
 		// Ships that don't (or can't) plunder strongly prefer active targets.
 		if(!canPlunder)

@@ -3806,7 +3806,7 @@ const double Ship::GetTargeterStrength() const
 
 double Ship::UpdateTargeterStrength()
 {
-	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.1;
+	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.05;
 
 	for(Ship *targeter : targetingList)
 		if(targeter != nullptr)
