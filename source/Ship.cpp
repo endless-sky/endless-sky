@@ -3797,6 +3797,26 @@ std::list<Ship *> Ship::GetShipsTargetingThis() const
 
 
 
+const double Ship::GetTargeterStrength() const
+{
+	return targeterStrength;
+}
+
+
+
+double Ship::UpdateTargeterStrength()
+{
+	targeterStrength = targeterStrength < 1. ? 0 : targeterStrength / 1.1;
+
+	for(Ship *targeter : targetingList)
+		if(targeter != nullptr)
+			targeterStrength += targeter->Strength();
+
+	return targeterStrength;
+}
+
+
+
 bool Ship::CanPickUp(const Flotsam &flotsam) const
 {
 	if(this == flotsam.Source())

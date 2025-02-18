@@ -1448,6 +1448,11 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 	if(!gov || ship.GetPersonality().IsPacifist())
 		return FindNonHostileTarget(ship);
 
+	auto ait = allyStrength.find(ship.GetGovernment());
+	auto eit = enemyStrength.find(ship.GetGovernment());
+	int64_t alliedStrength = ait->second;
+	int64_t enemyStrength = ait->second;
+
 	bool isYours = ship.IsYours();
 	if(isYours)
 	{
@@ -1540,18 +1545,16 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 				&& foe->IsDisabled() && (!canPlunder || Has(ship, foe->shared_from_this(), ShipEvent::BOARD)))
 			continue;
 
-		list<Ship *> targetingList = foe->GetShipsTargetingThis();
-		double targeterStrength = 0;
-		if(!targetingList.empty())
-			for(Ship *targeter : targetingList)
-			{
-				if(targeter != nullptr)
-				{
-					targeterStrength += targeter->Strength();
-				}
-			}
+		foe->UpdateTargeterStrength();
+		double targeterStrength = foe->GetTargeterStrength();
+		int targeterCount = foe->GetShipsTargetingThis().size();
 
-		if(targeterStrength && targeterStrength >= 2. * foe->Strength())
+		// Deprioritize this if more than a quarter of your allies are already attacking.
+		if(targeterStrength >= 0.25 * alliedStrength && targeterCount > 1)
+			range += 3000;
+
+		// Deprioritize this more than twice its strength and multiple ships are already attacking it.
+		if(targeterStrength >= 2. * foe->Strength() && targeterCount > 1)
 			range += 2000;
 
 		Messages::Add(to_string(range), Messages::Importance::High, true);

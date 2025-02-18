@@ -479,6 +479,8 @@ public:
 
 	// Get a list of ships targeting this one.
 	std::list<Ship *> GetShipsTargetingThis() const;
+	const double GetTargeterStrength() const;
+	double UpdateTargeterStrength();
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -731,6 +733,7 @@ private:
 
 	// List of enemy ships targeting this one.
 	std::list<Ship *> targetingList;
+	double targeterStrength;
 
 	bool removeBays = false;
 };
