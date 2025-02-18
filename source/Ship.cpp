@@ -3714,10 +3714,11 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 
 	if(ship != oldTarget)
 	{
-		targetShip = ship;
-
 		// Remove this ship from the list of ships targeting the previous target.
-		oldTarget->targetingList.remove(this);
+		if(!targetShip.expired())
+			oldTarget->targetingList.remove(this);
+
+		targetShip = ship;
 
 		// Add this ship to the list of ships targeting the target if it is an enemy.
 		if(government->IsEnemy(ship->government))
