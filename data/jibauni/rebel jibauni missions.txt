@@ -57,7 +57,7 @@ mission "Rebel Jibauni: Qui-ni"
 			`	"Really? Well, you can take me to <destination> immediately and be rid of me."`
 			label end
 	on abort
-		dialog `The Jibauni looks at you in shock as you get rid of them earlier than expected.`			
+		dialog `The Jibauni looks at you in shock as you get rid of them earlier than expected.`
 	on complete
 		"reputation: Jibauni (Rebel)" = "old reputation: Rebel Jibauni"
 		clear "old reputation: Rebel Jibauni"
