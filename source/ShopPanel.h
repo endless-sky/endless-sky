@@ -222,4 +222,6 @@ private:
 	std::string shipName;
 	std::string warningType;
 	int hoverCount = 0;
+
+	bool checkedHelp = false;
 };

@@ -115,10 +115,12 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
-	// If the player has acquired a second ship for the first time, explain to
-	// them how to reorder the ships in their fleet.
-	if(player.Ships().size() > 1)
-		DoHelp("multiple ships");
+	if(!checkedHelp)
+		// Use short-circuiting to only display one help message at a time.
+		// (The first valid condition encountered will make us skip the others.)
+		if((player.Ships().size() > 1 && (DoHelp("multiple ships") || DoHelp("shop with multiple ships"))) || true)
+			// Either a help message was freshly displayed, or all of them have already been seen.
+			checkedHelp = true;
 }
 
 
