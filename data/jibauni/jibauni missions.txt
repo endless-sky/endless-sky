@@ -105,7 +105,7 @@ mission "Jibauni: An-lo and Re-sop 1"
 		random < 20
 	on offer
 		conversation
-			`Upon exiting your <ship model>, you notice two Jibauni who seem to be on the older side standing deferentially near the door. Many trunks and suitcases are scattered around them.`
+			`Upon exiting your <ship model>, you notice two older Jibauni standing deferentially near the door. Many trunks and suitcases are scattered around them.`
 			choice
 				`	(Walk up to them.)`
 				`	(Ignore them.)`
@@ -115,6 +115,8 @@ mission "Jibauni: An-lo and Re-sop 1"
 				`	"Are you pilgrims?"`
 				`	"Sure, I'll take you."`
 					goto accepting
+				`	"No."`
+					goto declining
 				`	"I'm sorry, but I don't understand. The answer is no though."`
 					goto declining
 			`	"Yes, we are," replies the second Jibauni immediately. "Please take us to <planet>, where we hope to start living."`
@@ -125,7 +127,7 @@ mission "Jibauni: An-lo and Re-sop 1"
 			label accepting
 			action
 				payment 1000
-			`	Both Jibauni perk up when they hear you say this. As they move to lift their many pieces of luggage aboard, a crew of dock workers appears from nowhere and takes it onto the ship for them. One of them presses a thousand credits into your palm with a word of thanks, and mentions that couple's names are An-lo and Re-sop.`
+			`	Both Jibauni perk up at your response. As they move to lift their many pieces of luggage aboard, a crew of dock workers appears and carries their belongings onto the ship. One of the spaceport employees presses a thousand credits into your palm with a word of thanks, and mentions that couple's names are An-lo and Re-sop.`
 				accept
 			label declining
 			`	The Jibauni seem disappointed, but do not press the matter, and soon drift off with the help of some dockworkers. You return to your business.`
@@ -185,21 +187,23 @@ mission "Jibauni: Ru-win 0"
 					goto stay
 				`	(Leave.)`
 					decline
-			`	You walk toward the Jibauni, and ask, "What is happening?" As you notice that it's Ru-win, she gives a start and replies, "At last! The human captain, <first>! There you are! Come with me over here to a more quiet place, I need to ask you something." She pushes you over to a bench.`
+			`	You approach the Jibauni and immediately recognize Ru-win. She gives a start and says, "At last! The human captain, <first>! There you are! Come with me over here to a more quiet place, I need to ask you something." She pushes you over to a bench.`
 				goto question
 			label stay
-			`	After a bit longer of looking around, the Jibauni heads your way, and you notice she is Ru-win. "Captain <last>! I need to ask you something! Come over to this seating area with me?" She pushes you over to a bench.`
+			`	After a bit longer of looking around, the Jibauni heads your way, and you recognize Ru-win. "Captain <last>! I need to ask you something! Come over to this seating area with me?" She pushes you over to a bench.`
 			label question
 			`	As you sit down, she says, "The thing I am looking for help with is transport to Baitoon. I need to get there and buy a ship, fast, before I run out of... well, let me tell you the story from the beginning. A while after you saw me, on Kanlil, my ship ran into snags. When I took it to the repair shop, they said they could not fix it. I sold it to them for a mere trifle."`
 			`	"So, what do you say? Will you take me to Baitoon? Do realize that I do not currently have the money to pay you though."`
 			choice
 				`	"Sure, I'll take you."`
-				`	"No, sorry. I don't go around giving rides to random strangers."`
+				`	"Apologies, but I can't work without pay."`
+					goto decline
+				`	"No, sorry. I would prefer not to go around giving rides to random strangers."`
 					goto decline
 			`	"Great! Thank you so much. I'll be at your ship shortly."`
 				accept
 			label decline
-			`	"Really? Well, at any rate, best of luck to you wherever you go." Ru-win makes what you assume to be the equivalent of a sigh and disappears into the spaceport.`
+			`	"Really? Well, at any rate, best of luck to you wherever you go." Ru-win makes what you assume to be the Jibauni equivalent of a sigh and disappears into the spaceport.`
 				decline
 	on complete
 		event "jibauni: second ruwin mission" 10 45
@@ -272,7 +276,7 @@ mission "Jibauni: Ru-win 3"
 		has "Jibauni: Ru-win 2: done"
 	on offer
 		conversation
-			`Ru-win approaches your ship as you land, acting excited. However, the only explanation you get is, "Come with me for a moment please, Captain <last>." Following her, you are led to a restricted part of the spaceport. The guard seems unwilling to let you in, but when Ru-win flashes some sort of badge you are speedily admitted. Finally, the two of you reach a bastion of the Jibauni military, a Nathar.`
+			`Ru-win excitely approaches your ship as you land. However, the only explanation you get is, "Come with me for a moment please, Captain." Following her, you are led to a restricted part of the spaceport. The guard seems unwilling to let you in, but when Ru-win flashes some sort of badge you are speedily admitted. Finally, the two of you reach a bastion of the Jibauni military, a Nathar.`
 			`	"Well, what do you think, <first>? How do you like this spacecraft?" asks Ru-win.`
 			choice
 				`	"Wow! Who is the pilot?"`
