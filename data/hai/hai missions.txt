@@ -2300,7 +2300,7 @@ mission "Acorn Delights: Part 5"
 			`	"These will set you up with about a twentieth of the stock in my company; you'll receive the one hundred credits daily." As you sign the documents, she continues. "I'd just like to thank you again for helping me find Anoo. It means a lot to me." You check that the stocks have been transferred to your account, and Eeeya heads off.`
 				decline
 			label uhai
-			`Eeeya heads off to sell Acorn Delights' shop while you finish the landing procedure. Soon, she is back. "Well, there was a Hai who paid thirty million credits for that small place. I wonder why he thought it was worth so much - I sure don't. But I won't argue with that nutty person." She seems much merrier now that Anoo has been found. "I'll be ready to go when you are."`
+			`Eeeya heads off to sell Acorn Delights' shop while you check in with spaceport security. Soon, she is back. "Well, there was a Hai who paid thirty million credits for that small place. I wonder why he thought it was worth so much - I sure don't. But I won't argue with that nutty person." She seems much merrier now that Anoo has been found. "I'll be ready to go when you are."`
 				accept
 	on complete
 		payment 500000
