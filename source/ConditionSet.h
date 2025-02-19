@@ -1,5 +1,5 @@
 /* ConditionSet.h
-Copyright (c) 2014 by Michael Zahniser
+Copyright (c) 2014-2024 by Michael Zahniser and others
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONDITION_SET_H_
-#define CONDITION_SET_H_
+#pragma once
 
 #include <cstdint>
 #include <map>
@@ -28,10 +27,11 @@ class DataWriter;
 
 
 
-// A condition set is a collection of operations on the player's set of named
-// "conditions". This includes "test" operations that just check the values of
-// those conditions, and other operations that can be "applied" to change the
-// values.
+// A condition set is a collection of operations on the player's set of named "conditions"; "test" operations that just
+// check the values of those conditions, and in the future "evaluation" operations that can calculate an int64_t value
+// based on the conditions.
+// Operations that can be "applied" to change the values were historically also here, but are being moved to
+// ConditionAssignments.
 class ConditionSet {
 public:
 	ConditionSet() = default;
@@ -45,9 +45,22 @@ public:
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
 
+	// Change this condition to always be false.
+	void MakeNever();
+
 	// Check if there are any entries in this set.
 	bool IsEmpty() const;
 
+	// Check if the given condition values satisfy this set of expressions. First applies
+	// all assignment expressions to create any temporary conditions, then evaluates.
+	bool Test(const ConditionsStore &conditions) const;
+
+	// Get the names of the conditions that are modified by this ConditionSet.
+	std::set<std::string> RelevantConditions() const;
+
+
+
+private:
 	// Read a single condition from a data node.
 	void Add(const DataNode &node);
 	bool Add(const std::string &firstToken, const std::string &secondToken);
@@ -55,24 +68,6 @@ public:
 	bool Add(const std::string &name, const std::string &op, const std::string &value);
 	// Add complex conditions having multiple operators, including parentheses.
 	bool Add(const std::vector<std::string> &lhs, const std::string &op, const std::vector<std::string> &rhs);
-
-	// Check if the given condition values satisfy this set of expressions. First applies
-	// all assignment expressions to create any temporary conditions, then evaluates.
-	bool Test(const ConditionsStore &conditions) const;
-	// Modify the given set of conditions with this ConditionSet.
-	// (Order of operations is like the order of specification: all sibling
-	// expressions are applied, then any and/or nodes are applied.)
-	void Apply(ConditionsStore &conditions) const;
-
-	// Get the names of the conditions that are modified by this ConditionSet.
-	std::set<std::string> RelevantConditions() const;
-
-
-private:
-	// Compare this set's expressions and the union of created and supplied conditions.
-	bool TestSet(const ConditionsStore &conditions, const ConditionsStore &created) const;
-	// Evaluate this set's assignment expressions and store the result in "created" (for use by TestSet).
-	void TestApply(const ConditionsStore &conditions, ConditionsStore &created) const;
 
 
 private:
@@ -96,9 +91,8 @@ private:
 		bool IsTestable() const;
 
 		// Functions to use this expression:
-		bool Test(const ConditionsStore &conditions, const ConditionsStore &created) const;
-		void Apply(ConditionsStore &conditions, ConditionsStore &created) const;
-		void TestApply(const ConditionsStore &conditions, ConditionsStore &created) const;
+		bool Test(const ConditionsStore &conditions) const;
+		void Apply(ConditionsStore &conditions) const;
 
 
 	private:
@@ -119,7 +113,7 @@ private:
 			bool IsEmpty() const;
 
 			// Substitute numbers for any string values and then compute the result.
-			int64_t Evaluate(const ConditionsStore &conditions, const ConditionsStore &created) const;
+			int64_t Evaluate(const ConditionsStore &conditions) const;
 
 
 		private:
@@ -177,8 +171,7 @@ private:
 	std::vector<Expression> expressions;
 	// Nested sets of conditions to be tested.
 	std::vector<ConditionSet> children;
+
+	// Let the assignment class call internal functions and parsers.
+	friend class ConditionAssignments;
 };
-
-
-
-#endif

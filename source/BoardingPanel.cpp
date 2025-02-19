@@ -16,11 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BoardingPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -38,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <utility>
 
 using namespace std;
@@ -62,6 +64,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
 	attackOdds(*you, *victim), defenseOdds(*victim, *you)
 {
+	Audio::Pause();
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
 
@@ -113,6 +116,13 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
+}
+
+
+
+BoardingPanel::~BoardingPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -295,7 +305,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		messages.push_back("The airlock blasts open. Combat has begun!");
 		messages.push_back("(It will end if you both choose to \"defend.\")");
 	}
-	else if((key == 'a' || key == 'd') && CanAttack())
+	else if((key == 'a' || key == 'd' || key == 'D') && CanAttack())
 	{
 		int yourStartCrew = you->Crew();
 		int enemyStartCrew = victim->Crew();
@@ -305,6 +315,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// to your ship in peace. That is to allow the player to "cancel" if
 		// they did not really mean to try to capture the ship.
 		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
+		if(key == 'a' && !youAttack)
+			return true;
 		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
 		if(isFirstCaptureAction && !youAttack)
 			enemyAttacks = false;
@@ -318,10 +330,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		else
 		{
-			if(youAttack)
-				messages.push_back("You attack. ");
-			else if(enemyAttacks)
-				messages.push_back("You defend. ");
+			unsigned int yourCasualties = 0;
+			unsigned int enemyCasualties = 0;
 
 			// To speed things up, have multiple rounds of combat each time you
 			// click the button, if you started with a lot of crew.
@@ -333,26 +343,64 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!yourCrew || !enemyCrew)
 					break;
 
-				// Your chance of winning this round is equal to the ratio of
-				// your power to the enemy's power.
-				double yourPower = (youAttack ?
-					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
-				double enemyPower = (enemyAttacks ?
-					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew));
+				if(youAttack)
+				{
+					// Your chance of winning this round is equal to the ratio of
+					// your power to the enemy's power.
+					double yourAttackPower = attackOdds.AttackerPower(yourCrew);
+					double total = yourAttackPower + attackOdds.DefenderPower(enemyCrew);
 
-				double total = yourPower + enemyPower;
-				if(!total)
-					break;
+					if(total)
+					{
+						if(Random::Real() * total >= yourAttackPower)
+						{
+							++yourCasualties;
+							you->AddCrew(-1);
+							if(you->Crew() <= 1)
+								break;
+						}
+						else
+						{
+							++enemyCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
+					}
+				}
+				if(enemyAttacks)
+				{
+					double yourDefensePower = defenseOdds.DefenderPower(yourCrew);
+					double total = defenseOdds.AttackerPower(enemyCrew) + yourDefensePower;
 
-				if(Random::Real() * total >= yourPower)
-					you->AddCrew(-1);
-				else
-					victim->AddCrew(-1);
+					if(total)
+					{
+						if(Random::Real() * total >= yourDefensePower)
+						{
+							++yourCasualties;
+							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
+						}
+						else
+						{
+							++enemyCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
+					}
+				}
 			}
 
-			// Report how many casualties each side suffered.
-			int yourCasualties = yourStartCrew - you->Crew();
-			int enemyCasualties = enemyStartCrew - victim->Crew();
+			// Report what happened and how many casualties each side suffered.
+			if(youAttack && enemyAttacks)
+				messages.push_back("You both attack. ");
+			else if(youAttack)
+				messages.push_back("You attack. ");
+			else if(enemyAttacks)
+				messages.push_back("They attack. ");
+
 			if(yourCasualties && enemyCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties)
 					+ " crew; they lose " + to_string(enemyCasualties) + ".";

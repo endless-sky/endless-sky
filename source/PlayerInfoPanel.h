@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLAYER_INFO_PANEL_H_
-#define PLAYER_INFO_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -38,6 +37,7 @@ class PlayerInfoPanel : public Panel {
 public:
 	explicit PlayerInfoPanel(PlayerInfo &player);
 	explicit PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState);
+	virtual ~PlayerInfoPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -101,7 +101,3 @@ private:
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
 };
-
-
-
-#endif

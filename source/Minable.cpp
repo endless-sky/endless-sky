@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Projectile.h"
 #include "Random.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <algorithm>
@@ -77,10 +77,13 @@ void Minable::Load(const DataNode &node)
 			displayName = child.Token(1);
 		else if(key == "noun")
 			noun = child.Token(1);
-		// A full sprite definition (frame rate, etc.) is not needed, because
-		// the frame rate will be set randomly and it will always be looping.
 		else if(key == "sprite")
-			SetSprite(SpriteSet::Get(child.Token(1)));
+		{
+			LoadSprite(child);
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "frame rate" || grand.Token(0) == "frame time")
+					useRandomFrameRate = false;
+		}
 		else if(key == "hull")
 			hull = child.Value(1);
 		else if(key == "random hull")
@@ -180,7 +183,8 @@ void Minable::Place(double energy, double beltRadius)
 	// Start the object off with a random facing angle and spin rate.
 	angle = Angle::Random();
 	spin = Angle::Random(energy) - Angle::Random(energy);
-	SetFrameRate(Random::Real() * 4. * energy + 5.);
+	if(useRandomFrameRate)
+		SetFrameRate(Random::Real() * 4. * energy + 5.);
 	// Choose a random direction for the angle of periapsis.
 	rotation = Random::Real() * 2. * PI;
 

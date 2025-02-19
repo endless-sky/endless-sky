@@ -189,6 +189,7 @@ namespace {
 		{"overheat damage threshold", 3},
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
+		{"cloaked shield permeability", 3},
 		{"acceleration multiplier", 3},
 		{"turn multiplier", 3},
 
@@ -229,7 +230,7 @@ namespace {
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."},
 		{"unique", "This item is unique."},
-		{"cloaked afterburner", "You may use your afterburner when cloaked"},
+		{"cloaked afterburner", "You may use your afterburner when cloaked."},
 		{"cloaked boarding", "You may board even when cloaked."},
 		{"cloaked communication", "You may make hails when cloaked."},
 		{"cloaked deployment", "You may deploy drones and fighters without revealing your location."},

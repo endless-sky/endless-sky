@@ -108,19 +108,19 @@ SCENARIO("A unit of playing time is to be made human-readable", "[Format][PlayTi
 SCENARIO("A player-entered quantity can be parsed to a number", "[Format][Parse]") {
 	GIVEN( "The string 123.45" ) {
 		THEN( "parses to 123.45" ) {
-			CHECK( Format::Parse("123.45") == Approx(123.45) );
+			CHECK_THAT( Format::Parse("123.45"), Catch::Matchers::WithinAbs(123.45, 0.0001) );
 		}
 	}
 
 	GIVEN( "The string 1,234K" ) {
 		THEN( "parses to 1234000" ) {
-			CHECK( Format::Parse("1,234K") == Approx(1234000.) );
+			CHECK_THAT( Format::Parse("1,234K"), Catch::Matchers::WithinAbs(1234000., 0.0001) );
 		}
 	}
 
 	GIVEN( "The string 1 523 004" ) {
 		THEN( "parses to 1523004" ) {
-			CHECK( Format::Parse("1 523 004") == Approx(1523004.) );
+			CHECK_THAT( Format::Parse("1 523 004"), Catch::Matchers::WithinAbs(1523004., 0.0001) );
 		}
 	}
 }
@@ -267,6 +267,14 @@ TEST_CASE( "Format::Number", "[Format][Number]") {
 		CHECK( Format::Number(107.09) == "107.09" );
 		CHECK( Format::Number(0.0123) == "0.01" );
 	}
+	SECTION( "Large numbers" ) {
+		CHECK( Format::Number(1e15) == "1,000,000,000,000,000" );
+		CHECK( Format::Number(1e15 + 1) == "1e+15" );
+		CHECK( Format::Number(1e19) == "1e+19" );
+		CHECK( Format::Number(-1e19) == "-1e+19" );
+		CHECK( Format::Number(9223372036854775807.) == "9.22e+18" ); // Maximum and minimum values of 64-bit integers
+		CHECK( Format::Number(-9223372036854775808.) == "-9.22e+18" );
+	}
 }
 
 TEST_CASE( "Format::Credits", "[Format][Credits]") {
@@ -375,6 +383,402 @@ TEST_CASE( "Format::CargoString", "[Format][CargoString]") {
 	SECTION( "Fractional mass" ) {
 		CHECK( Format::CargoString(2.5, "cargo") == "2.5 tons of cargo" );
 		CHECK( Format::CargoString(0.1, "cargo") == "0.1 tons of cargo" );
+	}
+}
+
+TEST_CASE( "Format::AmmoCount", "[Format][AmmoCount]") {
+	SECTION( "Less than 10000 ammo." ) {
+		CHECK( Format::AmmoCount(0) == "0" );
+		CHECK( Format::AmmoCount(5) == "5" );
+		CHECK( Format::AmmoCount(10) == "10" );
+		CHECK( Format::AmmoCount(15) == "15" );
+		CHECK( Format::AmmoCount(19) == "19" );
+		CHECK( Format::AmmoCount(20) == "20" );
+		CHECK( Format::AmmoCount(50) == "50" );
+		CHECK( Format::AmmoCount(99) == "99" );
+		CHECK( Format::AmmoCount(100) == "100" );
+		CHECK( Format::AmmoCount(101) == "101" );
+		CHECK( Format::AmmoCount(571) == "571" );
+		CHECK( Format::AmmoCount(999) == "999" );
+		CHECK( Format::AmmoCount(1000) == "1000" );
+		CHECK( Format::AmmoCount(1050) == "1050" );
+		CHECK( Format::AmmoCount(1785) == "1785" );
+		CHECK( Format::AmmoCount(3500) == "3500" );
+		CHECK( Format::AmmoCount(9099) == "9099" );
+		CHECK( Format::AmmoCount(9999) == "9999" );
+	}
+	SECTION( "Between 10000 and 1000000 ammo." ) {
+		CHECK( Format::AmmoCount(10000) == "10.0k" );
+		CHECK( Format::AmmoCount(10009) == "10.0k" );
+		CHECK( Format::AmmoCount(10010) == "10.0k" );
+		CHECK( Format::AmmoCount(10100) == "10.1k" );
+		CHECK( Format::AmmoCount(12000) == "12.0k" );
+		CHECK( Format::AmmoCount(23500) == "23.5k" );
+		CHECK( Format::AmmoCount(57000) == "57.0k" );
+		CHECK( Format::AmmoCount(90000) == "90.0k" );
+		CHECK( Format::AmmoCount(99000) == "99.0k" );
+		CHECK( Format::AmmoCount(99090) == "99.0k" );
+		CHECK( Format::AmmoCount(99100) == "99.1k" );
+		CHECK( Format::AmmoCount(99900) == "99.9k" );
+		CHECK( Format::AmmoCount(99999) == "99.9k" );
+		CHECK( Format::AmmoCount(100000) == "100k" );
+		CHECK( Format::AmmoCount(100001) == "100k" );
+		CHECK( Format::AmmoCount(100010) == "100k" );
+		CHECK( Format::AmmoCount(100100) == "100k" );
+		CHECK( Format::AmmoCount(100900) == "100k" );
+		CHECK( Format::AmmoCount(101000) == "101k" );
+		CHECK( Format::AmmoCount(101100) == "101k" );
+		CHECK( Format::AmmoCount(101900) == "101k" );
+		CHECK( Format::AmmoCount(110000) == "110k" );
+		CHECK( Format::AmmoCount(110900) == "110k" );
+		CHECK( Format::AmmoCount(111000) == "111k" );
+		CHECK( Format::AmmoCount(111100) == "111k" );
+		CHECK( Format::AmmoCount(111900) == "111k" );
+		CHECK( Format::AmmoCount(578200) == "578k" );
+		CHECK( Format::AmmoCount(789000) == "789k" );
+		CHECK( Format::AmmoCount(900900) == "900k" );
+		CHECK( Format::AmmoCount(901000) == "901k" );
+		CHECK( Format::AmmoCount(901900) == "901k" );
+		CHECK( Format::AmmoCount(910000) == "910k" );
+		CHECK( Format::AmmoCount(910900) == "910k" );
+		CHECK( Format::AmmoCount(990900) == "990k" );
+		CHECK( Format::AmmoCount(991000) == "991k" );
+		CHECK( Format::AmmoCount(999000) == "999k" );
+		CHECK( Format::AmmoCount(999900) == "999k" );
+		CHECK( Format::AmmoCount(999999) == "999k" );
+	}
+	SECTION( "Between 1000000 and 1000000000 ammo." ) {
+		CHECK( Format::AmmoCount(1000000) == "1.00M" );
+		CHECK( Format::AmmoCount(1000100) == "1.00M" );
+		CHECK( Format::AmmoCount(1001000) == "1.00M" );
+		CHECK( Format::AmmoCount(1009000) == "1.00M" );
+		CHECK( Format::AmmoCount(1010000) == "1.01M" );
+		CHECK( Format::AmmoCount(1019000) == "1.01M" );
+		CHECK( Format::AmmoCount(1090000) == "1.09M" );
+		CHECK( Format::AmmoCount(1099000) == "1.09M" );
+		CHECK( Format::AmmoCount(1100000) == "1.10M" );
+		CHECK( Format::AmmoCount(1109000) == "1.10M" );
+		CHECK( Format::AmmoCount(1110000) == "1.11M" );
+		CHECK( Format::AmmoCount(1119000) == "1.11M" );
+		CHECK( Format::AmmoCount(2861000) == "2.86M" );
+		CHECK( Format::AmmoCount(3750000) == "3.75M" );
+		CHECK( Format::AmmoCount(9000000) == "9.00M" );
+		CHECK( Format::AmmoCount(9009000) == "9.00M" );
+		CHECK( Format::AmmoCount(9010000) == "9.01M" );
+		CHECK( Format::AmmoCount(9019000) == "9.01M" );
+		CHECK( Format::AmmoCount(9090000) == "9.09M" );
+		CHECK( Format::AmmoCount(9100000) == "9.10M" );
+		CHECK( Format::AmmoCount(9109000) == "9.10M" );
+		CHECK( Format::AmmoCount(9110000) == "9.11M" );
+		CHECK( Format::AmmoCount(9119000) == "9.11M" );
+		CHECK( Format::AmmoCount(9900000) == "9.90M" );
+		CHECK( Format::AmmoCount(9990000) == "9.99M" );
+		CHECK( Format::AmmoCount(9999000) == "9.99M" );
+		CHECK( Format::AmmoCount(9999900) == "9.99M" );
+		CHECK( Format::AmmoCount(10000000) == "10.0M" );
+		CHECK( Format::AmmoCount(10001000) == "10.0M" );
+		CHECK( Format::AmmoCount(10010000) == "10.0M" );
+		CHECK( Format::AmmoCount(10090000) == "10.0M" );
+		CHECK( Format::AmmoCount(10100000) == "10.1M" );
+		CHECK( Format::AmmoCount(10190000) == "10.1M" );
+		CHECK( Format::AmmoCount(10900000) == "10.9M" );
+		CHECK( Format::AmmoCount(10990000) == "10.9M" );
+		CHECK( Format::AmmoCount(11000000) == "11.0M" );
+		CHECK( Format::AmmoCount(11090000) == "11.0M" );
+		CHECK( Format::AmmoCount(11100000) == "11.1M" );
+		CHECK( Format::AmmoCount(11190000) == "11.1M" );
+		CHECK( Format::AmmoCount(28610000) == "28.6M" );
+		CHECK( Format::AmmoCount(37500000) == "37.5M" );
+		CHECK( Format::AmmoCount(90000000) == "90.0M" );
+		CHECK( Format::AmmoCount(90090000) == "90.0M" );
+		CHECK( Format::AmmoCount(90100000) == "90.1M" );
+		CHECK( Format::AmmoCount(90190000) == "90.1M" );
+		CHECK( Format::AmmoCount(90900000) == "90.9M" );
+		CHECK( Format::AmmoCount(91000000) == "91.0M" );
+		CHECK( Format::AmmoCount(91090000) == "91.0M" );
+		CHECK( Format::AmmoCount(91100000) == "91.1M" );
+		CHECK( Format::AmmoCount(91190000) == "91.1M" );
+		CHECK( Format::AmmoCount(99000000) == "99.0M" );
+		CHECK( Format::AmmoCount(99900000) == "99.9M" );
+		CHECK( Format::AmmoCount(99990000) == "99.9M" );
+		CHECK( Format::AmmoCount(99999000) == "99.9M" );
+		CHECK( Format::AmmoCount(100000000) == "100M" );
+		CHECK( Format::AmmoCount(100010000) == "100M" );
+		CHECK( Format::AmmoCount(100100000) == "100M" );
+		CHECK( Format::AmmoCount(100900000) == "100M" );
+		CHECK( Format::AmmoCount(101000000) == "101M" );
+		CHECK( Format::AmmoCount(101900000) == "101M" );
+		CHECK( Format::AmmoCount(109000000) == "109M" );
+		CHECK( Format::AmmoCount(109900000) == "109M" );
+		CHECK( Format::AmmoCount(110000000) == "110M" );
+		CHECK( Format::AmmoCount(110900000) == "110M" );
+		CHECK( Format::AmmoCount(111000000) == "111M" );
+		CHECK( Format::AmmoCount(111900000) == "111M" );
+		CHECK( Format::AmmoCount(286100000) == "286M" );
+		CHECK( Format::AmmoCount(375000000) == "375M" );
+		CHECK( Format::AmmoCount(900000000) == "900M" );
+		CHECK( Format::AmmoCount(900900000) == "900M" );
+		CHECK( Format::AmmoCount(901000000) == "901M" );
+		CHECK( Format::AmmoCount(901900000) == "901M" );
+		CHECK( Format::AmmoCount(909000000) == "909M" );
+		CHECK( Format::AmmoCount(910000000) == "910M" );
+		CHECK( Format::AmmoCount(910900000) == "910M" );
+		CHECK( Format::AmmoCount(911000000) == "911M" );
+		CHECK( Format::AmmoCount(911900000) == "911M" );
+		CHECK( Format::AmmoCount(990000000) == "990M" );
+		CHECK( Format::AmmoCount(999000000) == "999M" );
+		CHECK( Format::AmmoCount(999900000) == "999M" );
+		CHECK( Format::AmmoCount(999990000) == "999M" );
+	}
+	SECTION( "Between 1000000000 and 1000000000000 ammo." ) {
+		CHECK( Format::AmmoCount(1000000000) == "1.00B" );
+		CHECK( Format::AmmoCount(1000100000) == "1.00B" );
+		CHECK( Format::AmmoCount(1001000000) == "1.00B" );
+		CHECK( Format::AmmoCount(1009000000) == "1.00B" );
+		CHECK( Format::AmmoCount(1010000000) == "1.01B" );
+		CHECK( Format::AmmoCount(1019000000) == "1.01B" );
+		CHECK( Format::AmmoCount(1090000000) == "1.09B" );
+		CHECK( Format::AmmoCount(1099000000) == "1.09B" );
+		CHECK( Format::AmmoCount(1100000000) == "1.10B" );
+		CHECK( Format::AmmoCount(1109000000) == "1.10B" );
+		CHECK( Format::AmmoCount(1110000000) == "1.11B" );
+		CHECK( Format::AmmoCount(1119000000) == "1.11B" );
+		CHECK( Format::AmmoCount(2861000000) == "2.86B" );
+		CHECK( Format::AmmoCount(3750000000) == "3.75B" );
+		CHECK( Format::AmmoCount(9000000000) == "9.00B" );
+		CHECK( Format::AmmoCount(9009000000) == "9.00B" );
+		CHECK( Format::AmmoCount(9010000000) == "9.01B" );
+		CHECK( Format::AmmoCount(9019000000) == "9.01B" );
+		CHECK( Format::AmmoCount(9090000000) == "9.09B" );
+		CHECK( Format::AmmoCount(9100000000) == "9.10B" );
+		CHECK( Format::AmmoCount(9109000000) == "9.10B" );
+		CHECK( Format::AmmoCount(9110000000) == "9.11B" );
+		CHECK( Format::AmmoCount(9119000000) == "9.11B" );
+		CHECK( Format::AmmoCount(9900000000) == "9.90B" );
+		CHECK( Format::AmmoCount(9990000000) == "9.99B" );
+		CHECK( Format::AmmoCount(9999000000) == "9.99B" );
+		CHECK( Format::AmmoCount(9999900000) == "9.99B" );
+		CHECK( Format::AmmoCount(10000000000) == "10.0B" );
+		CHECK( Format::AmmoCount(10001000000) == "10.0B" );
+		CHECK( Format::AmmoCount(10010000000) == "10.0B" );
+		CHECK( Format::AmmoCount(10090000000) == "10.0B" );
+		CHECK( Format::AmmoCount(10100000000) == "10.1B" );
+		CHECK( Format::AmmoCount(10190000000) == "10.1B" );
+		CHECK( Format::AmmoCount(10900000000) == "10.9B" );
+		CHECK( Format::AmmoCount(10990000000) == "10.9B" );
+		CHECK( Format::AmmoCount(11000000000) == "11.0B" );
+		CHECK( Format::AmmoCount(11090000000) == "11.0B" );
+		CHECK( Format::AmmoCount(11100000000) == "11.1B" );
+		CHECK( Format::AmmoCount(11190000000) == "11.1B" );
+		CHECK( Format::AmmoCount(28610000000) == "28.6B" );
+		CHECK( Format::AmmoCount(37500000000) == "37.5B" );
+		CHECK( Format::AmmoCount(90000000000) == "90.0B" );
+		CHECK( Format::AmmoCount(90090000000) == "90.0B" );
+		CHECK( Format::AmmoCount(90100000000) == "90.1B" );
+		CHECK( Format::AmmoCount(90190000000) == "90.1B" );
+		CHECK( Format::AmmoCount(90900000000) == "90.9B" );
+		CHECK( Format::AmmoCount(91000000000) == "91.0B" );
+		CHECK( Format::AmmoCount(91090000000) == "91.0B" );
+		CHECK( Format::AmmoCount(91100000000) == "91.1B" );
+		CHECK( Format::AmmoCount(91190000000) == "91.1B" );
+		CHECK( Format::AmmoCount(99000000000) == "99.0B" );
+		CHECK( Format::AmmoCount(99900000000) == "99.9B" );
+		CHECK( Format::AmmoCount(99990000000) == "99.9B" );
+		CHECK( Format::AmmoCount(99999000000) == "99.9B" );
+		CHECK( Format::AmmoCount(100000000000) == "100B" );
+		CHECK( Format::AmmoCount(100010000000) == "100B" );
+		CHECK( Format::AmmoCount(100100000000) == "100B" );
+		CHECK( Format::AmmoCount(100900000000) == "100B" );
+		CHECK( Format::AmmoCount(101000000000) == "101B" );
+		CHECK( Format::AmmoCount(101900000000) == "101B" );
+		CHECK( Format::AmmoCount(109000000000) == "109B" );
+		CHECK( Format::AmmoCount(109900000000) == "109B" );
+		CHECK( Format::AmmoCount(110000000000) == "110B" );
+		CHECK( Format::AmmoCount(110900000000) == "110B" );
+		CHECK( Format::AmmoCount(111000000000) == "111B" );
+		CHECK( Format::AmmoCount(111900000000) == "111B" );
+		CHECK( Format::AmmoCount(286100000000) == "286B" );
+		CHECK( Format::AmmoCount(375000000000) == "375B" );
+		CHECK( Format::AmmoCount(900000000000) == "900B" );
+		CHECK( Format::AmmoCount(900900000000) == "900B" );
+		CHECK( Format::AmmoCount(901000000000) == "901B" );
+		CHECK( Format::AmmoCount(901900000000) == "901B" );
+		CHECK( Format::AmmoCount(909000000000) == "909B" );
+		CHECK( Format::AmmoCount(910000000000) == "910B" );
+		CHECK( Format::AmmoCount(910900000000) == "910B" );
+		CHECK( Format::AmmoCount(911000000000) == "911B" );
+		CHECK( Format::AmmoCount(911900000000) == "911B" );
+		CHECK( Format::AmmoCount(990000000000) == "990B" );
+		CHECK( Format::AmmoCount(999000000000) == "999B" );
+		CHECK( Format::AmmoCount(999900000000) == "999B" );
+		CHECK( Format::AmmoCount(999990000000) == "999B" );
+	}
+	SECTION( "Between 1000000000000 and 1e15 ammo." ) {
+		CHECK( Format::AmmoCount(1000000000000) == "1.00T" );
+		CHECK( Format::AmmoCount(1000100000000) == "1.00T" );
+		CHECK( Format::AmmoCount(1001000000000) == "1.00T" );
+		CHECK( Format::AmmoCount(1009000000000) == "1.00T" );
+		CHECK( Format::AmmoCount(1010000000000) == "1.01T" );
+		CHECK( Format::AmmoCount(1019000000000) == "1.01T" );
+		CHECK( Format::AmmoCount(1090000000000) == "1.09T" );
+		CHECK( Format::AmmoCount(1099000000000) == "1.09T" );
+		CHECK( Format::AmmoCount(1100000000000) == "1.10T" );
+		CHECK( Format::AmmoCount(1109000000000) == "1.10T" );
+		CHECK( Format::AmmoCount(1110000000000) == "1.11T" );
+		CHECK( Format::AmmoCount(1119000000000) == "1.11T" );
+		CHECK( Format::AmmoCount(2861000000000) == "2.86T" );
+		CHECK( Format::AmmoCount(3750000000000) == "3.75T" );
+		CHECK( Format::AmmoCount(9000000000000) == "9.00T" );
+		CHECK( Format::AmmoCount(9009000000000) == "9.00T" );
+		CHECK( Format::AmmoCount(9010000000000) == "9.01T" );
+		CHECK( Format::AmmoCount(9019000000000) == "9.01T" );
+		CHECK( Format::AmmoCount(9090000000000) == "9.09T" );
+		CHECK( Format::AmmoCount(9100000000000) == "9.10T" );
+		CHECK( Format::AmmoCount(9109000000000) == "9.10T" );
+		CHECK( Format::AmmoCount(9110000000000) == "9.11T" );
+		CHECK( Format::AmmoCount(9119000000000) == "9.11T" );
+		CHECK( Format::AmmoCount(9900000000000) == "9.90T" );
+		CHECK( Format::AmmoCount(9990000000000) == "9.99T" );
+		CHECK( Format::AmmoCount(9999000000000) == "9.99T" );
+		CHECK( Format::AmmoCount(9999900000000) == "9.99T" );
+		CHECK( Format::AmmoCount(10000000000000) == "10.0T" );
+		CHECK( Format::AmmoCount(10001000000000) == "10.0T" );
+		CHECK( Format::AmmoCount(10010000000000) == "10.0T" );
+		CHECK( Format::AmmoCount(10090000000000) == "10.0T" );
+		CHECK( Format::AmmoCount(10100000000000) == "10.1T" );
+		CHECK( Format::AmmoCount(10190000000000) == "10.1T" );
+		CHECK( Format::AmmoCount(10900000000000) == "10.9T" );
+		CHECK( Format::AmmoCount(10990000000000) == "10.9T" );
+		CHECK( Format::AmmoCount(11000000000000) == "11.0T" );
+		CHECK( Format::AmmoCount(11090000000000) == "11.0T" );
+		CHECK( Format::AmmoCount(11100000000000) == "11.1T" );
+		CHECK( Format::AmmoCount(11190000000000) == "11.1T" );
+		CHECK( Format::AmmoCount(28610000000000) == "28.6T" );
+		CHECK( Format::AmmoCount(37500000000000) == "37.5T" );
+		CHECK( Format::AmmoCount(90000000000000) == "90.0T" );
+		CHECK( Format::AmmoCount(90090000000000) == "90.0T" );
+		CHECK( Format::AmmoCount(90100000000000) == "90.1T" );
+		CHECK( Format::AmmoCount(90190000000000) == "90.1T" );
+		CHECK( Format::AmmoCount(90900000000000) == "90.9T" );
+		CHECK( Format::AmmoCount(91000000000000) == "91.0T" );
+		CHECK( Format::AmmoCount(91090000000000) == "91.0T" );
+		CHECK( Format::AmmoCount(91100000000000) == "91.1T" );
+		CHECK( Format::AmmoCount(91190000000000) == "91.1T" );
+		CHECK( Format::AmmoCount(99000000000000) == "99.0T" );
+		CHECK( Format::AmmoCount(99900000000000) == "99.9T" );
+		CHECK( Format::AmmoCount(99990000000000) == "99.9T" );
+		CHECK( Format::AmmoCount(99999000000000) == "99.9T" );
+		CHECK( Format::AmmoCount(100000000000000) == "100T" );
+		CHECK( Format::AmmoCount(100010000000000) == "100T" );
+		CHECK( Format::AmmoCount(100100000000000) == "100T" );
+		CHECK( Format::AmmoCount(100900000000000) == "100T" );
+		CHECK( Format::AmmoCount(101000000000000) == "101T" );
+		CHECK( Format::AmmoCount(101900000000000) == "101T" );
+		CHECK( Format::AmmoCount(109000000000000) == "109T" );
+		CHECK( Format::AmmoCount(109900000000000) == "109T" );
+		CHECK( Format::AmmoCount(110000000000000) == "110T" );
+		CHECK( Format::AmmoCount(110900000000000) == "110T" );
+		CHECK( Format::AmmoCount(111000000000000) == "111T" );
+		CHECK( Format::AmmoCount(111900000000000) == "111T" );
+		CHECK( Format::AmmoCount(286100000000000) == "286T" );
+		CHECK( Format::AmmoCount(375000000000000) == "375T" );
+		CHECK( Format::AmmoCount(900000000000000) == "900T" );
+		CHECK( Format::AmmoCount(900900000000000) == "900T" );
+		CHECK( Format::AmmoCount(901000000000000) == "901T" );
+		CHECK( Format::AmmoCount(901900000000000) == "901T" );
+		CHECK( Format::AmmoCount(909000000000000) == "909T" );
+		CHECK( Format::AmmoCount(910000000000000) == "910T" );
+		CHECK( Format::AmmoCount(910900000000000) == "910T" );
+		CHECK( Format::AmmoCount(911000000000000) == "911T" );
+		CHECK( Format::AmmoCount(911900000000000) == "911T" );
+		CHECK( Format::AmmoCount(990000000000000) == "990T" );
+		CHECK( Format::AmmoCount(999000000000000) == "999T" );
+		CHECK( Format::AmmoCount(999900000000000) == "999T" );
+		CHECK( Format::AmmoCount(999990000000000) == "999T" );
+	}
+	SECTION( "1e15 or more ammo." ) {
+		CHECK( Format::AmmoCount(1000000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1000100000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1001000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1009000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1010000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1019000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1090000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1099000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1100000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1109000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1110000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(1119000000000000) == "1e+15" );
+		CHECK( Format::AmmoCount(2861000000000000) == "3e+15" );
+		CHECK( Format::AmmoCount(3750000000000000) == "4e+15" );
+		CHECK( Format::AmmoCount(9000000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9009000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9010000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9019000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9090000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9100000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9109000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9110000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9119000000000000) == "9e+15" );
+		CHECK( Format::AmmoCount(9900000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(9990000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(9999000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(9999900000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10000000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10001000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10010000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10090000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10100000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10190000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10900000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(10990000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(11000000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(11090000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(11100000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(11190000000000000) == "1e+16" );
+		CHECK( Format::AmmoCount(28610000000000000) == "3e+16" );
+		CHECK( Format::AmmoCount(37500000000000000) == "4e+16" );
+		CHECK( Format::AmmoCount(90000000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(90090000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(90100000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(90190000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(90900000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(91000000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(91090000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(91100000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(91190000000000000) == "9e+16" );
+		CHECK( Format::AmmoCount(99000000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(99900000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(99990000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(99999000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(100000000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(100010000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(100100000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(100900000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(101000000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(101900000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(109000000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(109900000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(110000000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(110900000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(111000000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(111900000000000000) == "1e+17" );
+		CHECK( Format::AmmoCount(286100000000000000) == "3e+17" );
+		CHECK( Format::AmmoCount(375000000000000000) == "4e+17" );
+		CHECK( Format::AmmoCount(900000000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(900900000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(901000000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(901900000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(909000000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(910000000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(910900000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(911000000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(911900000000000000) == "9e+17" );
+		CHECK( Format::AmmoCount(990000000000000000) == "1e+18" );
+		CHECK( Format::AmmoCount(999000000000000000) == "1e+18" );
+		CHECK( Format::AmmoCount(999900000000000000) == "1e+18" );
+		CHECK( Format::AmmoCount(999990000000000000) == "1e+18" );
+		CHECK( Format::AmmoCount(1000000000000000000) == "1e+18" );
 	}
 }
 

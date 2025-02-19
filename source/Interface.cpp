@@ -18,22 +18,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "text/layout.hpp"
-#include "LineShader.h"
-#include "OutlineShader.h"
+#include "shader/LineShader.h"
+#include "shader/OutlineShader.h"
 #include "Panel.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Rectangle.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -159,7 +159,7 @@ void Interface::Draw(const Information &info, Panel *panel) const
 // Check if a named point exists.
 bool Interface::HasPoint(const string &name) const
 {
-	return points.count(name);
+	return points.contains(name);
 }
 
 
@@ -503,7 +503,10 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 		OutlineShader::Draw(sprite, rect.Center(), rect.Dimensions(), color, unit, frame);
 	}
 	else
-		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), 0, frame, unit);
+	{
+		int swizzle = info.GetSwizzle(name);
+		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), swizzle, frame, unit);
+	}
 }
 
 
@@ -536,7 +539,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	// This function will call ParseLine() for any line it does not recognize.
 	Load(node, globalAnchor);
 
-	// Fill in any undefined state colors. By default labels are "medium", strings
+	// Fill in any undefined state colors. By default, labels are "medium", strings
 	// are "bright", and button brightness depends on its activation state.
 	if(!color[Element::ACTIVE] && !buttonKey)
 		color[Element::ACTIVE] = GameData::Colors().Get(isDynamic ? "bright" : "medium");
@@ -711,6 +714,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		if(reversed)
 			dimensions *= -1.;
 		double length = dimensions.Length();
+		Point unit = dimensions.Unit();
 
 		// We will have (segments - 1) gaps between the segments.
 		double empty = segments ? (width / length) : 0.;
@@ -725,7 +729,13 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			Point to = start + min(v, value) * dimensions;
 			v += empty;
 
-			LineShader::Draw(from, to, width, *color);
+			// Rounded lines have a bit of padding, so account for that here.
+			float d = (to - from).Length() / 2.;
+			float twidth = d < width ? width * d / 2. : width;
+			from += unit * twidth;
+			to -= unit * twidth;
+
+			LineShader::Draw(from, to, twidth, *color);
 		}
 	}
 }
