@@ -3198,7 +3198,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			`	"Anything. A translation device we have, so translate the human language into our own, we are able to. As for the topic, a great story about dictatorships and brave battles, tyrants and rebels, we want. Histories of humanity's resistance movements, we seek, but not anti-Heliarch, must they be."`
 			label decision
 			choice
-				`	"Why do you want this knowledge? What is your group about?"
+				`	"Why do you want this knowledge? What is your group about?"`
 					goto groupquestion
 					to display
 						not "coalition: asked about kachachee"
@@ -3222,7 +3222,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			action
 				set "coalition: asked about kachachee"
 			`	"A group who likes to together read books, we are. Sci-fi, believe I the word is, especially."`
-				goto decision 
+				goto decision
 			label "don't have"
 			`	Rumor has it that on <destination> there is a library with complete copies of all human history. You return to your ship and prepare for the journey there to confirm this.`
 				accept
