@@ -279,7 +279,7 @@ void Outfit::Load(const DataNode &node)
 			// of blocking the sale of the outfit until the ammo is sold first.
 			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
 		}
-		else if(child.Token(0) == "resupplies ammo" && child.Size() >= 3)
+		else if(child.Token(0) == "ammo resupply" && child.Size() >= 3)
 			resuppliedAmmo.emplace_back(GameData::Outfits().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
