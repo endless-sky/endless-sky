@@ -77,6 +77,8 @@ namespace {
 
 	bool CanResupplyAmmo(const Ship &ship, const Outfit *ammo) noexcept
 	{
+		if(ammo->Get("resupplies"))
+			return true;
 		for(auto &&it : ship.Outfits())
 			if(it.first->AmmoResupplied(ammo))
 				return true;

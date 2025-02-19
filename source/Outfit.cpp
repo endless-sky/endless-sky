@@ -730,10 +730,10 @@ bool Outfit::AmmoResupplied(const Outfit *ammo) const
 }
 
 
-// Searches an outfit for the lowest resupply modifier for a particular outfit.
+// Searches an outfit for the lowest resupply modifier for a particular ammo outfit.
 double Outfit::GetResupplyCostMultiplier(const Outfit *ammo) const
 {
-	double minimumMultiplier = INFINITY;
+	double minimumMultiplier = ammo->Get("resupplies") ? ammo->Get("resupplies") : INFINITY;
 	int index = 0;
 	for(const auto &[resuppliedAmmo, costMultiplier] : resuppliedAmmo)
 	{
