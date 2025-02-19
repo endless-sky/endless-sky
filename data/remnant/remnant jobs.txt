@@ -119,6 +119,8 @@ mission "Remnant: Expanded Horizons Astral job"
 	waypoint
 		not attributes "pleiades"
 		not attributes "inaccessible"
+		not attributes "twilight"
+		not attributes "tangled shroud"
 	to offer
 		has "Remnant: Expanded Horizons Astral 2: done"
 		random < 50
@@ -360,6 +362,8 @@ mission "Remnant: Rescue"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -427,6 +431,8 @@ mission "Remnant: Rescue 1B"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -464,6 +470,8 @@ mission "Remnant: Rescue 2"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -503,6 +511,8 @@ mission "Remnant: Rescue 2B"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
@@ -540,6 +550,8 @@ mission "Remnant: Rescue 3"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality derelict timid plunders
 		government "Remnant"
 		fleet
@@ -577,6 +589,8 @@ mission "Remnant: Rescue 3B"
 			not attributes "graveyard"
 			not government "Remnant"
 			not near "Arculus" 3
+			near "Arculus" 30
+				"all wormholes"
 		personality staying heroic nemesis unconstrained
 		government "Test Dummy"
 		fleet
