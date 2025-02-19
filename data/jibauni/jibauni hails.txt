@@ -117,8 +117,8 @@ phrase "jibauni untranslated"
 		"."
 		"!"
 	replace
-		"	." "."
-		"	!" "!"
+		"%	." "."
+		"%	!" "!"
 
 phrase "jibauni untranslated random word 1"
 	phrase
@@ -138,6 +138,8 @@ phrase "jibauni untranslated random word 1"
 	phrase
 		"consonant uncapitalized" 2
 		"empty"
+	word
+		"%"
 
 phrase "jibauni untranslated random word 2"
 	phrase
@@ -159,6 +161,8 @@ phrase "jibauni untranslated random word 2"
 	phrase
 		"empty"
 		"vocal"
+	word
+		"%"
 
 phrase "empty"
 	word
