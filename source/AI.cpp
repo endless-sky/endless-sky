@@ -1547,11 +1547,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		double targeterStrength = foe->GetTargeterStrength();
 		int targeterCount = foe->GetShipsTargetingThis().size();
 
-		// Deprioritize this if more than a quarter of your allies are already attacking.
+		// The next two checks only apply if more than two ships are attacking the foe, as well as
+		// if it has not already been selected as a target recently.
+		// Deprioritize this if more than a quarter of your allies' strength is already attacking.
 		if(targeterStrength >= 0.25 * alliedStrength && targeterCount > 2 && !preferredTarget)
 			range += 500;
 
-		// Deprioritize this more than twice its strength and multiple ships are already attacking it.
+		// Deprioritize this if more than twice its strength are already attacking it.
 		if(targeterStrength >= 2. * foe->Strength() && targeterCount > 2 && !preferredTarget)
 			range += 500;
 

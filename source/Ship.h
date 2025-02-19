@@ -479,6 +479,7 @@ public:
 
 	// Get a list of ships targeting this one.
 	std::list<Ship *> GetShipsTargetingThis() const;
+	// Get and update the total ship strength targeting this ship.
 	const double GetTargeterStrength() const;
 	double UpdateTargeterStrength();
 
