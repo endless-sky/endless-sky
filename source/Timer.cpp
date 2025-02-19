@@ -68,11 +68,11 @@ void Timer::Load(const DataNode &node)
 		else if(child.Token(0) == "idle")
 		{
 			requireIdle = true;
-			// We square the max speed value here, so it can be conveniently
-			// compared to the flagship's squared velocity length below.
 			if(child.Size() > 1)
 			{
 				idleMaxSpeed = child.Value(1);
+				// We square the max speed value here, so it can be conveniently
+				// compared to the flagship's squared velocity length below.
 				idleMaxSpeed *= idleMaxSpeed;
 			}
 		}
@@ -97,13 +97,8 @@ void Timer::Load(const DataNode &node)
 		else if(child.Token(0) == "proximity settings" && child.Size() > 1)
 		{
 			proximity = child.Value(1);
-			if(child.Size() > 2)
-			{
-				if(child.Token(2) == "close")
-					closeTo = true;
-				else if(child.Token(2) == "far")
-					closeTo = false;
-			}
+			if(child.Size() > 2 && child.Token(2) == "far")
+				closeTo = false;
 		}
 		else if(child.Token(0) == "uncloaked")
 			requireUncloaked = true;
@@ -174,17 +169,15 @@ void Timer::Save(DataWriter &out) const
 		if(resetCondition != ResetCondition::PAUSE)
 		{
 			static const map<ResetCondition, string> resets = {
-				{Timer::ResetCondition::NONE, "none"},
-				{Timer::ResetCondition::LEAVE_SYSTEM, "leave system"},
-				{Timer::ResetCondition::LEAVE_ZONE, "leave zone"}
+				{ResetCondition::NONE, "none"},
+				{ResetCondition::LEAVE_SYSTEM, "leave system"},
+				{ResetCondition::LEAVE_ZONE, "leave zone"}
 			};
-			auto it = resets.find(resetCondition);
-			if(it != resets.end())
-				out.Write("reset", it->second);
+			out.Write("reset", resets.at(resetCondition));
 		}
 		if(proximity > 0.)
 		{
-			string distance = "close";
+			string distance;
 			if(!closeTo)
 				distance = "far";
 			if(proximityCenter)
@@ -286,12 +279,12 @@ void Timer::ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Missi
 	bool reset = cond == resetCondition;
 	// If the reset condition being passed in is LEAVE_ZONE (ie, the player is no longer in proximity),
 	// then we also reset if the timer's reset condition is PAUSE (ie, player no longer meets the criteria).
-	reset |= (cond == Timer::ResetCondition::LEAVE_ZONE && resetCondition == Timer::ResetCondition::PAUSE);
+	reset |= (cond == ResetCondition::LEAVE_ZONE && resetCondition == ResetCondition::PAUSE);
 	// If the reset condition being passed in is LEAVE_SYSTEM, then we also reset if either of the other two
 	// conditions is specified for the timer, since we are then necessarily outside the zone, and thus the
 	// clock is stopped.
-	reset |= (cond == Timer::ResetCondition::LEAVE_SYSTEM && (resetCondition == Timer::ResetCondition::PAUSE
-				|| resetCondition == Timer::ResetCondition::LEAVE_ZONE));
+	reset |= (cond == ResetCondition::LEAVE_SYSTEM && (resetCondition == ResetCondition::PAUSE
+		|| resetCondition == ResetCondition::LEAVE_ZONE));
 	if(isActive && reset)
 	{
 		timeElapsed = 0;
@@ -327,7 +320,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	if((system && flagship->GetSystem() != system) ||
 		(!systems.IsEmpty() && !systems.Matches(flagship->GetSystem())))
 	{
-		ResetOn(Timer::ResetCondition::LEAVE_SYSTEM, player, ui, mission);
+		ResetOn(ResetCondition::LEAVE_SYSTEM, player, ui, mission);
 		return;
 	}
 
@@ -337,14 +330,14 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	{
 		bool shipIdle = true;
 		if(requireIdle)
-			shipIdle = (!flagship->IsThrusting() && !flagship->IsSteering()
-				&& !flagship->IsReversing() && flagship->Velocity().LengthSquared() < idleMaxSpeed);
+			shipIdle = !flagship->IsThrusting() && !flagship->IsSteering()
+				&& !flagship->IsReversing() && flagship->Velocity().LengthSquared() < idleMaxSpeed;
 		if(requirePeaceful)
-			for(const Hardpoint &weapon : flagship->Weapons())
-				shipIdle &= !weapon.WasFiring();
+			for(const Hardpoint &hardpoint : flagship->Weapons())
+				shipIdle &= !hardpoint.WasFiring();
 		if(!shipIdle)
 		{
-			ResetOn(Timer::ResetCondition::PAUSE, player, ui, mission);
+			ResetOn(ResetCondition::PAUSE, player, ui, mission);
 			return;
 		}
 	}
@@ -352,10 +345,9 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	// Then we check if the flagship is required to be uncloaked.
 	if(requireUncloaked)
 	{
-		double cloak = flagship->Cloaking();
-		if(cloak != 0.)
+		if(flagship->Cloaking())
 		{
-			ResetOn(Timer::ResetCondition::PAUSE, player, ui, mission);
+			ResetOn(ResetCondition::PAUSE, player, ui, mission);
 			return;
 		}
 	}
@@ -374,7 +366,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 			}
 		if(!inProximity)
 		{
-			ResetOn(Timer::ResetCondition::LEAVE_ZONE, player, ui, mission);
+			ResetOn(ResetCondition::LEAVE_ZONE, player, ui, mission);
 			return;
 		}
 	}

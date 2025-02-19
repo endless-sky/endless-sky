@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef TIMER_H_
-#define TIMER_H_
+#pragma once
 
 #include "MissionAction.h"
 #include "System.h"
@@ -37,8 +36,8 @@ class UI;
 // a certain object), but may be reset by various actions the player takes.
 class Timer {
 public:
+	// The possible triggers for actions on this timer.
 	enum class TimerTrigger {
-		// The possible triggers for actions on this timer.
 		TIMEUP,
 		RESET
 	};
@@ -89,15 +88,15 @@ private:
 	bool optional = false;
 	// Whether the timer requires the player to be idle.
 	bool requireIdle = false;
-	// The speed threshold the player's flagship must be under to count as "idle".
+	// The square of the speed threshold the player's flagship must be under to count as "idle".
 	double idleMaxSpeed = 25.;
 	// Whether the timer requires the player to not be firing.
 	bool requirePeaceful = false;
-	// Whether the timer requires the player to be uncloaked to advance.
+	// Whether the timer requires the player to be uncloaked.
 	bool requireUncloaked = false;
 	// What circumstances will reset the timer: leaving the system,
 	// leaving the proximity zone (if applicable), or any circumstance that stops the timer.
-	ResetCondition resetCondition = Timer::ResetCondition::PAUSE;
+	ResetCondition resetCondition = ResetCondition::PAUSE;
 	// If proximity is specified, this determines whether the timer will only advance while
 	// close to or far from the specified center; default is close to.
 	bool closeTo = true;
@@ -116,7 +115,7 @@ private:
 	bool resetFired = false;
 
 	// Used for holding the current timer value when it's actually active.
-	int timeElapsed = 0.;
+	int timeElapsed = 0;
 	// Set to true once the timer has run to completion so we don't keep trying to save or run it.
 	bool isComplete = false;
 	// Set to true when all the conditions are met for the timer to count down.
@@ -125,7 +124,3 @@ private:
 	// A place to cache the proximity object(s) so we don't have to test for them every time.
 	std::set<const StellarObject *> proximityCache;
 };
-
-
-
-#endif
