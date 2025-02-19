@@ -556,7 +556,10 @@ tip "required crew:"
 	`Changes the number of crew members this ship requires by this amount.`
 	
 tip "resupplies:"
-	`Allows this ammo outfit to be resupplied at an outfitter, even if it does not normally sell it.`
+	`Allows the following ammo outfit to be resupplied at an outfitter, even if it does not normally sell it.`
+
+tip "resupplies for:"
+	`Allows this ammo outfit to be resupplied at an outfitter for this many credits.`
 
 tip "resupply cost:"
 	`The cost to resupply each unit of ammunition at an outfitter that does not sell it.`
