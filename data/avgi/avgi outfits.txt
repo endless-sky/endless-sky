@@ -437,7 +437,7 @@ outfit "Inductive Extractor"
 	"energy generation" 1.5
 	"heat generation" 1.5
 	"thrust" -12
-	"thrusting energy" -30
+	"thrusting energy" -24
 	"thrusting heat" 6
 	"magnetic nozzle" -1
 	description "A reinforced pair of superconducting loops, a large rectifier diode, and a power conditioning unit allows a significant amount of power to be inductively extracted from a fusion torch's plasma exhaust as it expands against the field produced by the magnetic nozzle. This removes some energy from the exhaust plume and reduces its produced thrust, but the liberated energy is great enough that this is the primary means by which high performance Avgi starships generate power."
