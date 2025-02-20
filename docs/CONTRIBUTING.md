@@ -11,11 +11,11 @@ The [issues page](https://github.com/endless-sky/endless-sky/issues) on GitHub i
 * Choose the correct issue template and fill it out to the best of your ability.
 * Do not use the issues page for things other than what match the provided issue templates. Use the [discussions page](https://github.com/endless-sky/endless-sky/discussions) instead. Examples of what the discussion pages would be used for include topics that are not looking for a resolution (as the point of an issue is to have it be resolved) or topics that are extremely broad and not befitting of an issue because there is no single resolution to the topic.
 
-If requesting a new feature, first ask yourself: will this make the game more fun or interesting within the existing scope of the game? Remember that this is not a simulator game; while you may find such games fun or interesting, that is not the type of game that Endless Sky is trying to be.
+If requesting a new feature, first ask yourself: will this make the game more fun or interesting within the existing scope of the game? While features in other games may be fun or interesting, they may not fit Endless Sky. Be sure to check the game's [overall vision](https://github.com/endless-sky/endless-sky/wiki/Endless-Sky's-Vision) to get an idea of what our design values are.
 
 ### Closing issues
 
-If you believe your issue has been resolved, you can close the issue yourself. If your issue gets closed because a PR was merged, and you are not satisfied, please do not reopen your issue. Please open a new issue and explain the gap that you feel still needs to be addressed.
+If you believe your issue has been resolved, you can close the issue yourself. If your issue gets closed because a PR was merged, and you are not satisfied, please do not comment on the old issue. Open a new issue and explain the gap that you feel still needs to be addressed.
 
 ## Pull requests
 
