@@ -74,7 +74,9 @@ ship "Sasumata"
 		"outfit space" 397
 		"weapon capacity" 122
 		"engine capacity" 126
-		"cloak" .04
+		"cloak" .05
+		"cloaking shield delay" 1
+		"cloaking repair delay" 1
 		"cloaking energy" 10
 		"cloaking fuel" .05
 		weapon
