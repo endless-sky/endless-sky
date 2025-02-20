@@ -1982,7 +1982,7 @@ news "pirate"
 			"I kill people for money, but you are nice, so I'll kill you for free."
 			"Stop looking at me, or I will totally kill you dead."
 			"Join me, and together we can rule the galaxy as godfather and adjutant. Me the godfather, obviously."
-			"The competition is killing here. They really are."
+			"The competition is killing here. It really is."
 		word
 			`"`
 
@@ -2138,6 +2138,7 @@ news "sticker on ship"
 		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
 	name
 		word
+			"Bumper sticker on ship"
 			"Sticker on ship"
 	message
 		word
