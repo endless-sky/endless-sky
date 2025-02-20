@@ -346,20 +346,20 @@ mission "Jibauni: Ru-win 4"
 					goto destroyedairplane
 				`	(Ignore it.)`
 					goto jibaunireported
-			`	"Quickly, everyone. Get back into the <npc>!" you call. "There is an airplane approaching that could be trouble!"`
+			`	"Quickly, everyone. Get back into the <npc>!" you call. "We don't want to be seen!"`
 			`	You and the Jibauni are able to hide before anybody or anything spots you. Safe for now.`
-			`	Soon, everyone is back out of hiding. Ru-win requests that you escort her ship back to <destination> immediately.`
+			`	Once the plane is gone, Ru-win requests that you escort her ship back to <destination> immediately.`
 				launch
 			label destroyedairplane
 			action
 				"reputation: Merchant" -= 1000 # This does not affect reputation with the major human governments such as FW or Republic; if the player is also doing their storyline at the time there could be trouble.
 				event "ruwin: merchant reputation back to normal" 3
-			`	A well-placed shot from the <ship>'s weapon placements sends the plane crashing to the ground. You realize that this could be trouble later.`
+			`	A well-placed shot from the <ship> sends the plane crashing to the ground as you realize that this could be trouble later.`
 			`	A member of Ru-win's crew tells you that they are ready to go. Soon you leave <planet stopovers>, hoping that nobody will find out what has happened.`
 				launch
 			label jibaunireported
-			`	After a while longer observing the flora and fauna in <planet stopovers>'s forests, you hear a loudspeaker in the direction of the <ship>; apparently people are approaching. Ru-win comes up to you requesting that you escort her and her crew back to <destination> immediately, before the humans arrive. You agree.`
-			`	The Jibauni and you barely make it back to your respective ships, leaving just after a search party breaks out of the woods into the clearing the <ship> and the <npc> are landed in.`
+			`	After some time observing the flora and fauna in <planet stopovers>'s forests, you hear a loudspeaker in the direction of the <ship>; apparently people are approaching. Ru-win hurries up to you and requests that you escort her and her crew back to <destination> immediately, before the humans arrive. You agree.`
+			`	The Jibauni and you make it back to your respective ships in the nick of time, leaving moments before a search party breaks out of the woods and into the clearing the <ship> and the <npc> were landed in.`
 				launch
 	on visit
 		dialog `You have landed on <planet>, but the <npc> has not yet arrived! You should take off and wait for it before landing again.`
@@ -396,28 +396,28 @@ mission "Jibauni: Ji-wi"
 		random < 15
 	on offer
 		conversation
-			`You notice a Jibauni running between captains, every now and then pausing to ask something. You notice the Jibauni turn towards you and approach at a resolute pace.`
+			`You notice a Jibauni running between captains, every now and then pausing to ask something. After a moment the Jibauni turns towards you and approaches at a resolute pace.`
 			choice
 				`	(Wait for the Jibauni to reach you.)`
 				`	(Leave the area.)`
 					decline
-			`	As you wait, you see the Jibauni pause to speak to other captains. But nothing comes of those encounters, and the Jibauni finally gets close to you.`
+			`	As you wait, you see the Jibauni pause to speak to other captains. But nothing comes of those encounters, and the Jibauni finally approaches you.`
 			choice
 				`	(Wait for it to say something.)`
 				`	"My name is <first> of the <ship>. How's it going?"`
-			`	"My name is Ji-wi," announces the Jibauni. "Can you take me to <stopovers> and then bring me back here? I will pay you <payment>."`
+			`	"I am called Ji-wi," announces the Jibauni. "Can you take me to <stopovers> and then bring me back here? I will pay you <payment>."`
 			choice
 				`	"I'd be happy to take you."`
 				`	"Sorry, no deal."`
 					decline
-			`	"Good! I will be ready and at your ship by the time you get back to it," says Ji-wi. He then leaves.`
+			`	"Good! I will be ready and at your ship by the time you get back to it," says Ji-wi. He then promptly leaves.`
 				accept
 	on stopover
 		dialog `Ji-wi is only gone for a moment before returning and asking that you go back to <planet> soon.`
 	on complete
 		payment 1500
 		conversation
-			`"Thank you for transporting me to the capital and back," says Ji-wi, paying you <payment>. He then walks off into the spaceport of <origin>, answering no questions whatsoever about this trip.`
+			`"Thank you for transporting me to the capital and back," says Ji-wi, paying you <payment>. He then hurries off into the <origin>'s spaceport, having answered no questions whatsoever about this trip.`
 
 
 mission "Jibauni: Dran-lin 0"
@@ -434,7 +434,7 @@ mission "Jibauni: Dran-lin 0"
 		not "event: jibauni rebel jibauni peace"
 	on offer
 		conversation
-			`As you are walking through the spaceport, you collide with a younger Jibauni. He immediately stands up and apologizes, then notices who you are. "Oh, the strange alien! Hello! May I ask of you a favor?"`
+			`As you are walking through the spaceport, a young Jibauni nearly collides with you. He profusely apologizes, before stopping to stare at you; recognition dawns on his face. "Oh, the strange alien! Hello! May I ask of you a favor?"`
 			choice
 				`	"I guess."`
 				`	"Sorry for bumping into you. Sure you can ask!"`
@@ -442,6 +442,8 @@ mission "Jibauni: Dran-lin 0"
 					goto decline
 			`	"Would you be willing to transport me, Dran-lin, to the planet of <planet>? I would be interested in seeing the Rebel Jibauni and how they operate. I may end up joining them, or else I will ask you to take me back to a Jibauni planet."`
 			choice
+				`	"As long as I am not responsible for any occurences, I'll take you."`
+					accept
 				`	"You know, the Rebel Jibauni are bad creatures. Are you sure you want to go?"`
 					goto rebelsbad
 				`	"The wonderful Rebel Jibauni? Sure, I'll take you immediately!"`
@@ -459,7 +461,7 @@ mission "Jibauni: Dran-lin 0"
 			choice
 				`	"Alright, I'll take you."`
 					accept
-				`	"Anyway, I need to do something else, so I'm not going to take you after all."`
+				`	"On second thought, I've changed my mind. I don't want to get involved; find someone else to take you."`
 			label decline
 			`	The Jibauni drifts off disappointedly.`
 				decline
@@ -467,7 +469,7 @@ mission "Jibauni: Dran-lin 0"
 		payment
 		event "jibauni: dran-lin gone" 1
 		conversation
-			`Dran-lin says, "I am going to explore the spaceport. Could you meet me at the main hotel in a few hours? If you do not, I will assume you do not want to take me back."`
+			`Dran-lin says, "I am going to explore the spaceport. Could you meet me at the main hotel in a few hours? If you do not, I will try to find other means of transportation."`
 
 event "jibauni: dran-lin gone"
 
@@ -498,14 +500,14 @@ mission "Jibauni: Dran-lin 1"
 			choice
 				`	"Oh, whatever. I'll take you to <planet>."`
 					accept
-				`	"My word is my word. Goodbye."`
+				`	"I meant what I said. Goodbye."`
 			action
 				"reputation: Jibauni" -= 3
-			`	Dran-lin continues to protest, until you leave, slamming the door behind you. The Jibauni may or may not be happy about this.`
+			`	Dran-lin continues to protest, until you leave, slamming the door behind you.`
 				decline
 	on complete
 		conversation
-			`Dran-lin leaves the <ship> for a scouting run. "I will be back soon," he promises.`
+			`Dran-lin leaves the <ship> to scout out the area. "I will be back soon," he promises.`
 			branch "dran-lin put in jail"
 				random < 3
 			choice
@@ -519,7 +521,7 @@ mission "Jibauni: Dran-lin 1"
 			label "dran-lin dislikes"
 			action
 				event "jibauni: dran-lin abandoned" 1
-			`	He is back soon. "I really do not like this place," he announces. "It is even worse than <origin>, and that is saying a lot. Please meet me in the spaceport at the Indon-alo in an hour. I am going to the capital to ask a few questions. I mean, I guess I can stay if you do not come, but it would really be much appreciated if you do."`
+			`	Dran-lin returns shortly. "I really do not like this place," he announces. "It is even worse than <origin>, and that is saying a lot. Please meet me in the spaceport at the Indon-alo in an hour. I am going to the capital to ask a few questions. I mean, I guess I can stay if you do not come, but it would really be much appreciated if you do."`
 			branch "dran-lin put in jail"
 				random < 15
 			`	You head to the Indon-alo to wait for Dran-lin.`
@@ -528,24 +530,34 @@ mission "Jibauni: Dran-lin 1"
 			action
 				payment 5000
 				set "jibauni: dran-lin stays with the rebels"
-			`	He arrives back at your ship soon. "You know, Captain, I think I like this place. Thanks for bringing me! Here is a payment of <payment> for that." He disappears into the spaceport again.`
+			`	Dran-lin promptly arrives back. "You know, Captain, I think I like this place. Thanks for bringing me! Here is a payment of <payment> for that." He turns and disappears into the spaceport.`
 				goto end
 			label "dran-lin likes with input"
 			action
 				payment 5000
 				set "jibauni: dran-lin stays with the rebels"
-			`	Dran-lin is soon back. "<last>, thanks for bringing me here! It is a really great place - you were right when you said the Rebel Jibauni were good. Or should I say Real Jibauni?" He trails off, and soon leaves, after giving you <payment> in chips of a credit each.`
+			`	Dran-lin returns shortly. "<last>, thanks for bringing me here! It really is a great place - you were right when you said the Rebel Jibauni were good. Or should I say Real Jibauni?" He trails off, and soon leaves, after giving you <payment> in chips of a credit each.`
 				goto end
 			label "dran-lin put in jail"
-			`	He doesn't come. After hours of waiting, you decide that you will go and try to find Dran-lin. After a few hours of asking around, government officials tell you that he's been put in jail, though they won't give you a reason. "It will cost five thousand credits to get him out of there," they say.`
+			`	Dran-lin doesn't return for hours.`
+			choice
+				`	(Look for him.)`
+				`	(Leave him behind.)`
+					decline
+			`	After a few hours of asking around, government officials tell you that he's been put in jail, though they won't give you a reason. "It will cost five thousand credits to get him out of there," they say.`
 			choice
 				`	"I'll pay that."`
 				`	"Of course not! That's outrageous! He can stay there for all I care."`
 					goto dranlinimprisoned
 			action
 				payment -5000
+			branch leaveimmediately
+				random < 65
 			`	Dran-lin is released immediately. "Thank you," he says when he learns who paid for the release. "I have one more thing to wrap up, but then meet me in the spaceport. I am going home."`
 				goto end
+			label leaveimmediately
+			`	Dran-lin is released immediately. "Thank you," he says when he learns who paid for the release. "I do not like this place. Let us leave immediately."`
+				launch
 			label dranlinimprisoned
 			action
 				set "jibauni: dran-lin stays with the rebels"
@@ -576,4 +588,4 @@ mission "Jibauni: Dran-lin 2"
 		payment
 		payment 750
 		conversation
-			`"Thank you for transporting me all over the galaxy," says Dran-lin as the <ship> touches down. "It is very kind of you. Especially helping me escape from the Rebels! Here is <payment> for that." He walks into the spaceport, clearly much relieved that he survived this ordeal.`
+			`"Thank you for transporting me all over the galaxy," says Dran-lin as the <ship> touches down. "It is very kind of you. Especially helping me escape from the Rebels! Here is <payment> for that." He walks away into the spaceport, clearly much relieved to have survived this ordeal.`
