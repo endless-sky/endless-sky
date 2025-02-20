@@ -951,7 +951,7 @@ outfit "Firelight Missile Bank"
 		"homing" 4
 		"blast radius" 48
 		"hit force" 150
-		"missile strength" 30
+		"missile strength" 33
 		submunition "Firelight Turning"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
@@ -997,7 +997,7 @@ outfit "Firelight Activated"
 		"burn damage" 10
 		"corrosion damage" 2
 		"hit force" 600
-		"missile strength" 36
+		"missile strength" 33
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"
