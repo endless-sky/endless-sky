@@ -112,7 +112,7 @@ ship "Archon" "Archon (Cloaked)"
 		"frame rate" 0.87
 	"never disabled"
 	add attributes
-		"cloak" .04
+		"cloak" .05
 		"cloaked communication" 1
 		"cloak phasing" 1
 		"cloaked scanning" 1
@@ -123,7 +123,10 @@ ship "Archon" "Archon (Hyperdrive Cloaked)"
 		"frame rate" 0.87
 	"never disabled"
 	add attributes
-		"cloak" .04
+		"cloak" .05
+		"cloaked communication" 1
+		"cloak phasing" 1
+		"cloaked scanning" 1
 		"jump speed" 1
 		"hyperdrive" 1
 		"silent jumps" 1
