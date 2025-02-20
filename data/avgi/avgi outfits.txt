@@ -256,7 +256,7 @@ outfit "Ultracapacitor Cell"
 	"energy capacity" 1500
 	"ion protection" -0.01
 	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together, flexing as charge builds up. While not the most efficient in their use of volumetric outfit space, this capacitor cell is extraordinarily energy dense for its mass, a legacy design choice from the days of sublight interstellar travel when every gram counted."c
-	"description" "	Unfortunately, the internal structure of the capacitor is quite delicate, and is prone to potential discharge when exposed to external currents and ionization. Thankfully, resilient grounding and safety interlocks can prevent this discharge from becoming catastrophic."
+	description "	Unfortunately, the internal structure of the capacitor is quite delicate, and is prone to potential discharge when exposed to external currents and ionization. Thankfully, resilient grounding and safety interlocks can prevent this discharge from becoming catastrophic."
 	
 	
 outfit "Ultracapacitor Bank"
