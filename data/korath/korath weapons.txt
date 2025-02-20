@@ -938,7 +938,7 @@ outfit "Firelight Missile Bank"
 		"hit effect" "firelight ring" 20
 		"die effect" "piercer fire"
 		"velocity" 4
-		"velocity override" 16
+		"velocity override" 13
 		"lifetime" 10
 		"reload" 120
 		"burst reload" 30
@@ -992,7 +992,7 @@ outfit "Firelight Activated"
 		"turn" 1.7
 		"homing" 4
 		"optical tracking" .7
-		"trigger radius" 24
+		"trigger radius" 20
 		"blast radius" 48
 		"shield damage" 950
 		"hull damage" 950
@@ -1099,7 +1099,6 @@ outfit "Firestorm Battery"
 		"drag" .12
 		"turn" 1.6
 		"homing" 4
-		"infrared tracking" .7
 		"optical tracking" .9
 		"trigger radius" 40
 		"blast radius" 95
