@@ -949,8 +949,7 @@ outfit "Firelight Missile Bank"
 		"drag" .1
 		"optical tracking" .9
 		"homing" 4
-		"trigger radius" 30
-		"blast radius" 60
+		"blast radius" 48
 		"hit force" 150
 		"missile strength" 30
 		submunition "Firelight Turning"
@@ -970,8 +969,8 @@ outfit "Firelight Turning"
 		"turn" 4.6
 		"homing" 4
 		"tracking" .9
-		"trigger radius" 30
-		"blast radius" 60
+		"trigger radius" 20
+		"blast radius" 48
 		"hit force" 90
 		"missile strength" 30
 		"submunition" "Firelight Activated"
