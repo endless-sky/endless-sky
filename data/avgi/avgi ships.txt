@@ -21,7 +21,7 @@ ship "Koryfi"
 	attributes
 		category "Transport"
 		"cost" 600000
-		"shields" 600
+		"shields" 300
 		"hull" 1800
 		"required crew" 2
 		"bunks" 24
@@ -129,7 +129,7 @@ ship "Melodikos"
 	attributes
 		category "Space Liner"
 		"cost" 1200000
-		"shields" 1200
+		"shields" 600
 		"hull" 2400
 		"required crew" 6
 		"bunks" 144
@@ -275,7 +275,7 @@ ship "Avlaki"
 	attributes
 		category "Light Freighter"
 		"cost" 450000
-		"shields" 600
+		"shields" 300
 		"hull" 1800
 		"required crew" 2
 		"bunks" 6
@@ -382,7 +382,7 @@ ship "Harmonikos"
 	attributes
 		category "Heavy Freighter"
 		"cost" 900000
-		"shields" 1200
+		"shields" 600
 		"hull" 2400
 		"required crew" 6
 		"bunks" 12
