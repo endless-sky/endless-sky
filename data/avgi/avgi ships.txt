@@ -1075,10 +1075,10 @@ ship "Modified Tachytia"
 		"spinal mount" 1
 		"anchor point" 3
 		weapon
-			"blast radius" 900
-			"shield damage" 90000
-			"hull damage" 90000
-			"hit force" 90000
+			"blast radius" 1200
+			"shield damage" 42000
+			"hull damage" 24000
+			"hit force" 12000
 	outfits
 		"Blue Optical Laser" 6
 		"Green Optical Laser" 3
