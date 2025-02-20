@@ -244,6 +244,7 @@ ship "Embershade"
 		"energy generation" 6
 		"hull repair rate" 3
 		"cloak" .02
+		"cloaked firing"
 		"cloaking energy" 5
 		"hyperdrive" 1
 		"jump speed" .1
