@@ -169,7 +169,7 @@ outfit "Antimatter Power Cell"
 outfit "Anomalous Mass"
 	plural "Anomalous Masses"
 	category "Special"
-	cost 900000
+	cost 800000
 	thumbnail "outfit/anomalous mass"
 	"flotsam sprite" "effect/flotsam anomalous mass"
 	"flotsam chance" 0.4
