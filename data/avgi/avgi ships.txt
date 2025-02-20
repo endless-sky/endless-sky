@@ -43,7 +43,6 @@ ship "Koryfi"
 			"hit force" 240
 	outfits
 		"Ultracapacitor Cell" 3
-		"Diffuse Deflector"
 		"Luxury Accommodations"
 		"Multispectral Scanner"
 		"Optical Laser Rifle" 2
@@ -154,7 +153,6 @@ ship "Melodikos"
 		"Green Optical Laser" 2
 
 		"Ultracapacitor Bank"
-		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Luxury Accommodations"
 		"Multispectral Scanner"
@@ -299,7 +297,6 @@ ship "Avlaki"
 			"hit force" 240
 	outfits
 		"Ultracapacitor Bank"
-		"Diffuse Deflector"
 		"Multispectral Scanner"
 		"Optical Laser Rifle" 2
 
@@ -409,7 +406,6 @@ ship "Harmonikos"
 		"Green Optical Laser" 2
 
 		"Ultracapacitor Bank"
-		"Diffuse Deflector"
 		"Optical Lasing Generator"
 		"Multispectral Scanner"
 		"Optical Laser Rifle" 6
