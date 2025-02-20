@@ -209,7 +209,7 @@ mission "Successors: Bold Tourists Round Trip"
 	job
 	repeat
 	name "Extreme sightseeing on <planet stopovers>"
-	description "These <bunks> sightseers will pay you <payment> to bring them and their safety equipment to <stopovers> and back home by <date>."
+	description "These <bunks> sightseers will pay you <payment> to bring them and their safety equipment to <stopovers> and back home to <destination> by <date>."
 	deadline
 	cargo "Isolation Suits" 1
 	passengers 2 4 .5
@@ -237,7 +237,7 @@ mission "Successors: Tourist Expedition"
 	job
 	repeat
 	name "Sightseeing expedition"
-	description "These <bunks> sightseers will pay you <payment> to take them to <stopovers> before returning them home by <date>."
+	description "These <bunks> sightseers will pay you <payment> to take them to <stopovers> before returning them home to <destination> by <date>."
 	deadline
 	deadline 4
 	passengers 2 5 .5
@@ -666,6 +666,9 @@ mission "Successors: Researchers Out 1"
 	source
 		attributes "successor"
 		attributes "education"
+	"distance calculation settings"
+		"all wormholes"
+		"assumes jump drive"
 	stopover
 		government "Predecessor"
 	on stopover
@@ -692,6 +695,9 @@ mission "Successors: Large Researchers Out 1"
 	source
 		attributes "successor"
 		attributes "education"
+	"distance calculation settings"
+		"all wormholes"
+		"assumes jump drive"
 	stopover
 		government "Predecessor"
 	on stopover
@@ -777,6 +783,7 @@ mission "Successors: Old Houses Rush Delivery"
 		attributes "successor"
 	destination
 		government "Old Houses" "House Chydiyi" "House Myurej" "House Sioeora"
+		distance 2 20
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -804,6 +811,7 @@ mission "Successors: New Houses Rush Delivery"
 		attributes "successor"
 	destination
 		government "New Houses" "House Kaatrij" "House Seineq" "House Aqrabe"
+		distance 2 20
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete

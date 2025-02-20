@@ -204,7 +204,7 @@ mission "Successors: First Contact 1"
 				clear "Successors: house"
 				clear "Successors: language"
 				clear "Successors: ripped"
-			`	Sieasej translates this question to the uniformed officer, who conveys a detailed response accompanied by a series of color and texture displays on their skin. Overhead, a buzzing flock of interceptors fly past and land on a set of landing pads closer to the center of the spaceport complex. Eventually, Sieasej responds, and does so even more slowly and carefully than previously. "The noble scions o'House Sioeora have made it known t'others of the High Houses that thou'rt guest within their space and shalt proceed with their protection. Thou may'st explore those of our worlds of ours which offer thee their grace. 'Thout our tongue, though, thou shalt find few but few chances to do more than to observe. As to that," Sieasej continues, "our noble scions're set to start their meeting here in eight days time. And as it is that thou hast aroused their close attentions, 'tis expected that thou shalt receive a summons to their union."`
+			`	Sieasej translates this question to the uniformed officer, who conveys a detailed response accompanied by a series of color and texture displays on their skin. Overhead, a buzzing flock of interceptors fly past and land on a set of landing pads closer to the center of the spaceport complex. Eventually, Sieasej responds, and does so even more slowly and carefully than previously. "The noble scions o'House Sioeora have made it known t'others of the High Houses that thou'rt guest within their space and shalt proceed with their protection. Thou may'st explore those of our worlds which offer thee their grace. 'Thout our tongue, though, thou shalt find but few chances to do more than to observe. As to that," Sieasej continues, "our noble scions're set to start their meeting here in eight days time. And as it is that thou hast aroused their close attentions, 'tis expected that thou shalt receive a summons to their union."`
 			`	With that, Sieasej and some of the others depart, leaving you along on the pad with your ship and the ring of guards, who remain silent and at attention.`
 
 mission "Successors: First Contact 2 Prompt"
@@ -218,9 +218,9 @@ mission "Successors: First Contact 2 Prompt"
 	destination "Staja-Kella-Oa"
 	to offer
 		has "event: successors: first contact wait"
+		not "Successors: First Contact 2: offered"
 	to fail
 		has "Successors: Unified Defense: offered"
-		has "Successors: First Contact 2: offered"
 	on offer
 		event "successors: tardy for sioeora" 14
 		conversation
@@ -332,6 +332,7 @@ mission "Successors: First Contact 3"
 	description `The scions of House Sioeora have instructed you to visit the planet <planet stopovers> and capture a "Kijra-riitaa" to safely return to them at <planet>. Return by <date> or they will consider you to have kidnapped Sieasej.`
 	source "Staja-Kella-Oa"
 	to offer
+		has "event: successors: first contact wait"
 		not "Successors: First Contact 2: rejected"
 	to fail
 		has "Successors: Unified Defense: offered"
@@ -890,7 +891,7 @@ mission "Successors: Trusted"
 	destination "Aava-Aasa-Khora"
 	to offer
 		has "language: Successor"
-		has "successor jobs" >= 10
+		"successor jobs" >= 10
 	to fail
 		has "Successors: Unified Defense: offered"
 	substitutions
@@ -927,7 +928,7 @@ mission "Successors: Trusted"
 			`	"Captain! Well-met again! Thou hast arrived at a fortunate hour, for there's still some minutes 'fore this day's meetings are scheduled to begin."`
 			label questions
 			choice
-				`	"We'd better get started then.`
+				`	"We'd better get started, then."`
 					goto start
 				`	"Can you explain what's going on here?"`
 					to display

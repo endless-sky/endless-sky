@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Angle.h"
 #include "audio/Audio.h"
 #include "Color.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "UI.h"
 
 
@@ -27,7 +27,7 @@ MenuAnimationPanel::MenuAnimationPanel()
 {
 	SetTrapAllEvents(false);
 
-	Audio::Play(Audio::Get("landing"));
+	Audio::Play(Audio::Get("landing"), SoundCategory::UI);
 }
 
 

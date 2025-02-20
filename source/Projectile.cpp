@@ -72,6 +72,10 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+
+	// Set an intial confusion turn direction.
+	if(weapon->Homing())
+		confusionDirection = Random::Int(2) ? -1 : 1;
 }
 
 
@@ -98,6 +102,10 @@ Projectile::Projectile(const Projectile &parent, const Point &offset, const Angl
 	// If a random lifetime is specified, add a random amount up to that amount.
 	if(weapon->RandomLifetime())
 		lifetime += Random::Int(weapon->RandomLifetime() + 1);
+
+	// Set an intial confusion turn direction.
+	if(weapon->Homing())
+		confusionDirection = Random::Int(2) ? -1 : 1;
 }
 
 
@@ -159,7 +167,14 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 	double accel = weapon->Acceleration();
 	int homing = weapon->Homing();
 	if(target && homing && !Random::Int(30))
+	{
 		CheckLock(*target);
+		CheckConfused(*target);
+	}
+	// Update the confusion direction after the projectile turns about
+	// 180 degrees away from its target.
+	if(!Random::Int(ceil(180 / turn)))
+		confusionDirection = Random::Int(2) ? -1 : 1;
 	if(target && homing && hasLock)
 	{
 		// Vector d is the direction we want to turn towards.
@@ -217,43 +232,9 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 			}
 		}
 	}
-	// Homing weapons that have lost their lock have a chance to get confused
-	// and turn in a random direction ("go haywire"). Each tracking method has
-	// a different haywire condition. Weapons with multiple tracking methods
-	// only go haywire if all of the tracking methods have gotten confused.
-	else if(target && homing)
-	{
-		bool infraredConfused = true;
-		bool opticalConfused = true;
-		bool radarConfused = true;
-
-		// Infrared: proportional to tracking quality.
-		if(weapon->InfraredTracking())
-			infraredConfused = Random::Real() > weapon->InfraredTracking();
-
-		// Optical and Radar: If the target has no jamming, then proportional to tracking
-		// quality. If the target does have jamming, then it's proportional to
-		// tracking quality, the strength of target's jamming, and the distance
-		// to the target (jamming power attenuates with distance).
-		double distance = position.Distance(target->Position());
-		if(weapon->OpticalTracking())
-		{
-			double opticalTracking = weapon->OpticalTracking();
-			double opticalJamming = target->Attributes().Get("optical jamming");
-			opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
-				opticalJamming, distance);
-		}
-
-		if(weapon->RadarTracking())
-		{
-			double radarTracking = weapon->RadarTracking();
-			double radarJamming = target->Attributes().Get("radar jamming");
-			radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
-				radarJamming, distance);
-		}
-		if(infraredConfused && opticalConfused && radarConfused)
-			turn = Random::Real() - min(.5, turn);
-	}
+	// Turn in a random direction if this weapon is confused.
+	else if(target && homing && isConfused)
+		turn *= confusionDirection;
 	// If a weapon is homing but has no target, do not turn it.
 	else if(homing)
 		turn = 0.;
@@ -458,6 +439,56 @@ void Projectile::CheckLock(const Ship &target)
 		double probability = weapon->RadarTracking() / (1. + radarJamming);
 		hasLock |= Check(probability, base);
 	}
+}
+
+
+
+// Homing weapons that have lost their lock have a chance to get confused
+// and turn in a random direction ("go haywire"). Each tracking method has
+// a different haywire condition. Weapons with multiple tracking methods
+// only go haywire if all of the tracking methods have gotten confused.
+void Projectile::CheckConfused(const Ship &target)
+{
+	if(hasLock)
+	{
+		isConfused = false;
+		return;
+	}
+
+	bool trackingConfused = true;
+	bool infraredConfused = true;
+	bool opticalConfused = true;
+	bool radarConfused = true;
+
+	// Tracking and Infrared: proportional to tracking quality.
+	if(weapon->Tracking())
+		trackingConfused = Random::Real() > weapon->Tracking();
+
+	if(weapon->InfraredTracking())
+		infraredConfused = Random::Real() > weapon->InfraredTracking();
+
+	// Optical and Radar: If the target has no jamming, then proportional to tracking
+	// quality. If the target does have jamming, then it's proportional to
+	// tracking quality, the strength of target's jamming, and the distance
+	// to the target (jamming power attenuates with distance).
+	double distance = position.Distance(target.Position());
+	if(weapon->OpticalTracking())
+	{
+		double opticalTracking = weapon->OpticalTracking();
+		double opticalJamming = target.Attributes().Get("optical jamming");
+		opticalConfused = ConfusedTracking(opticalTracking, weapon->Range(),
+			opticalJamming, distance);
+	}
+
+	if(weapon->RadarTracking())
+	{
+		double radarTracking = weapon->RadarTracking();
+		double radarJamming = target.Attributes().Get("radar jamming");
+		radarConfused = ConfusedTracking(radarTracking, weapon->Range(),
+			radarJamming, distance);
+	}
+
+	isConfused = trackingConfused && infraredConfused && opticalConfused && radarConfused;
 }
 
 
