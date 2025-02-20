@@ -417,7 +417,7 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double probability = weapon->InfraredTracking() * max(0., min(1., (target.Heat() - .05) * multiplier));
+		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
 		hasLock |= Check(probability, base);
 	}
 
