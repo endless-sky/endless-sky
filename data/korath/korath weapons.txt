@@ -947,7 +947,6 @@ outfit "Firelight Missile Bank"
 		"firing heat" 151
 		"acceleration" 0.6
 		"drag" .1
-		"infrared tracking" .7
 		"optical tracking" .9
 		"homing" 4
 		"trigger radius" 30
@@ -970,8 +969,7 @@ outfit "Firelight Turning"
 		"acceleration" -0.1
 		"turn" 4.6
 		"homing" 4
-		"infrared tracking" .7
-		"optical tracking" .9
+		"tracking" .9
 		"trigger radius" 30
 		"blast radius" 60
 		"hit force" 90
