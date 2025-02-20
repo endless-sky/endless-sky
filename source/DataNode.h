@@ -13,9 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DATA_NODE_H_
-#define DATA_NODE_H_
+#pragma once
 
+#include <cstdint>
 #include <list>
 #include <string>
 #include <vector>
@@ -43,6 +43,8 @@ public:
 	int Size() const noexcept;
 	// Get all the tokens in this node as an iterable vector.
 	const std::vector<std::string> &Tokens() const noexcept;
+	// Add tokens to the node.
+	void AddToken(const std::string &token);
 	// Get the token at the given index. No bounds checking is done internally.
 	// DataFile loading guarantees index 0 always exists.
 	const std::string &Token(int index) const;
@@ -62,7 +64,11 @@ public:
 	// as a string.
 	bool IsBool(int index) const;
 	static bool IsBool(const std::string &token);
+	// Check if the token can be used as name for a condition.
+	static bool IsConditionName(const std::string &token);
 
+	// Add a new child. The child's parent must be this node.
+	void AddChild(const DataNode &child);
 	// Check if this node has any children. If so, the iterator functions below
 	// can be used to access them.
 	bool HasChildren() const noexcept;
@@ -91,7 +97,3 @@ private:
 	// Allow DataFile to modify the internal structure of DataNodes.
 	friend class DataFile;
 };
-
-
-
-#endif

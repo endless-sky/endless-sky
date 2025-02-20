@@ -49,7 +49,7 @@ line_include = {re.compile(regex): description for regex, description in {
 	"\\s+$": "trailing whitespace at end of line",
 	# Matches any number of operators that have no leading whitespace,
 	# except if preceded by '(', '[' or '{', or inside a 'case' constant expression.
-	"(?<!^case\\s.*)([^([{\\s" + std_op + "](?<!^.*[^\\w0-9]?operator))[" + std_op + "]+([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator"
+	"(?<!^case\\s.*)([^([{\\s" + std_op + "](?<!^.*[^\\w0-9]?operator))[" + std_op + "]+(?<!(->|::|\\.)\\*)([^.\\)" + std_op + "]|$)(?!\\.\\.\\.)": "missing whitespace before operator"
 }.items()}
 # Dict of patterns for selecting potential formatting issues in a full segment.
 # (a segment is a part of a line that is between any strings, chars or comments)
@@ -106,6 +106,7 @@ segment_exclude = [re.compile(regex) for regex in [
 after_comment = re.compile("[^\\s#]")
 whitespace_only = re.compile("^\\s*$")
 whitespaces = re.compile("\\s+")
+singleLineComment = re.compile("^//(/<?)?")
 
 # List of "" and <> includes to be treated as the other type;
 # that is, any listed "" include should be grouped with <> includes,
@@ -177,7 +178,7 @@ def check_code_style(file, lines):
 # Appends the lists in the second tuple to the lists in the first tuple. Parameters:
 # first: the tuple where the lists are expanded
 # second: the tuple where the lists are not expanded
-# Returns the second tuple for re-use.
+# Returns the second tuple for reuse.
 def join(first, second):
 	for (list1, list2) in zip(first, second):
 		list1 += list2
@@ -239,13 +240,15 @@ def sanitize(lines, skip_checks=False):
 					i += 1
 					start_index = i + 1
 				continue
-			if (not is_string) and first_two == "//":
+			commentMatch = re.search(singleLineComment, line[i:i + 4])
+			if (not is_string and commentMatch):
 				segments.append(line[start_index:i].rstrip())
 				if not skip_checks:
+					cLen = commentMatch.end()
 					# Checking for space after comment
-					if len(line) > i + 2:
-						if re.search(after_comment, line[i + 2:i + 3]):
-							errors.append(Error(line[i:i + 3], line_count,
+					if len(line) > (i + cLen):
+						if re.search(after_comment, line[i + cLen:i + cLen + 1]):
+							errors.append(Error(line[i:i + cLen + 1], line_count,
 												"missing space after beginning of single-line comment"))
 				break
 			elif (not is_string) and first_two == "/*":
@@ -560,7 +563,7 @@ def check_include(sanitized_lines, original_lines, file):
 				group_lines[i] = line
 		for i in range(len(group) - 1):
 			if group_lines[i].lower() > group_lines[i + 1].lower():
-				warnings.append(Warning(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
+				errors.append(Error(group_lines[i], group[i] + 1, "includes are not in alphabetical order"))
 	return errors, warnings
 
 

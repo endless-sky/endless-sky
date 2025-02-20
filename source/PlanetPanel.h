@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_PANEL_H_
-#define PLANET_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -38,6 +37,7 @@ class System;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
+	virtual ~PlanetPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -51,7 +51,8 @@ protected:
 private:
 	void TakeOffIfReady();
 	void CheckWarningsAndTakeOff();
-	void TakeOff();
+	void WarningsDialogCallback(bool isOk);
+	void TakeOff(bool distributeCargo);
 
 
 private:
@@ -77,7 +78,3 @@ private:
 	// Cache flight checks to not calculate them twice before each takeoff.
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> flightChecks;
 };
-
-
-
-#endif

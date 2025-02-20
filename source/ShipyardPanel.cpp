@@ -31,12 +31,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "ShipNameDialog.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -47,41 +47,8 @@ class System;
 using namespace std;
 
 namespace {
-	// The name entry dialog should include a "Random" button to choose a random
-	// name using the civilian ship name generator.
-	class NameDialog : public Dialog {
-	public:
-		NameDialog(ShipyardPanel *panel, void (ShipyardPanel::*fun)(const string &), const string &message)
-			: Dialog(panel, fun, message) {}
-
-		virtual void Draw() override
-		{
-			Dialog::Draw();
-
-			randomPos = cancelPos - Point(80., 0.);
-			SpriteShader::Draw(SpriteSet::Get("ui/dialog cancel"), randomPos);
-
-			const Font &font = FontSet::Get(14);
-			static const string label = "Random";
-			Point labelPos = randomPos - .5 * Point(font.Width(label), font.Height());
-			font.Draw(label, labelPos, *GameData::Colors().Get("medium"));
-		}
-
-	protected:
-		virtual bool Click(int x, int y, int clicks) override
-		{
-			Point off = Point(x, y) - randomPos;
-			if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
-			{
-				input = GameData::Phrases().Get("civilian")->Get();
-				return true;
-			}
-			return Dialog::Click(x, y, clicks);
-		}
-
-	private:
-		Point randomPos;
-	};
+	// Label for the description field of the detail pane.
+	const string DESCRIPTION = "description";
 }
 
 
@@ -105,6 +72,8 @@ void ShipyardPanel::Step()
 {
 	ShopPanel::Step();
 	ShopPanel::CheckForMissions(Mission::SHIPYARD);
+	if(GetUI()->IsTop(this))
+		DoHelp("shipyard");
 }
 
 
@@ -112,18 +81,6 @@ void ShipyardPanel::Step()
 int ShipyardPanel::TileSize() const
 {
 	return SHIP_SIZE;
-}
-
-
-
-int ShipyardPanel::DrawPlayerShipInfo(const Point &point)
-{
-	shipInfo.Update(*playerShip, player, collapsed.count("description"));
-	shipInfo.DrawAttributes(point, true);
-	const int attributesHeight = shipInfo.GetAttributesHeight(true);
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
 }
 
 
@@ -136,10 +93,10 @@ bool ShipyardPanel::HasItem(const string &name) const
 
 
 
-void ShipyardPanel::DrawItem(const string &name, const Point &point, int scrollY)
+void ShipyardPanel::DrawItem(const string &name, const Point &point)
 {
 	const Ship *ship = GameData::Ships().Get(name);
-	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship, scrollY);
+	zones.emplace_back(point, Point(SHIP_SIZE, SHIP_SIZE), ship);
 	if(point.Y() + SHIP_SIZE / 2 < Screen::Top() || point.Y() - SHIP_SIZE / 2 > Screen::Bottom())
 		return;
 
@@ -157,86 +114,76 @@ int ShipyardPanel::DividerOffset() const
 
 int ShipyardPanel::DetailWidth() const
 {
-	return 3 * shipInfo.PanelWidth();
+	return 3 * ItemInfoDisplay::PanelWidth();
 }
 
 
 
-int ShipyardPanel::DrawDetails(const Point &center)
+double ShipyardPanel::DrawDetails(const Point &center)
 {
 	string selectedItem = "No Ship Selected";
 	const Font &font = FontSet::Get(14);
-	const Color &bright = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("medium");
-	const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
 
-	int heightOffset = 20;
+	double heightOffset = 20.;
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.count("description"));
+		shipInfo.Update(*selectedShip, player, collapsed.contains(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
+		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
+		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
 		const Sprite *background = SpriteSet::Get("ui/shipyard selected");
-		const Sprite *shipSprite = selectedShip->GetSprite();
-		float spriteScale = shipSprite
-			? min(1.f, (INFOBAR_WIDTH - 20.f) / max(shipSprite->Width(), shipSprite->Height()))
-			: 1.f;
-
-		int swizzle = selectedShip->CustomSwizzle() >= 0
-			? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-
-		Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
-		Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + TileSize());
-
-		double descriptionOffset = 35.;
-		Point descCenter(Screen::Right() - SIDE_WIDTH + INFOBAR_WIDTH / 2, startPoint.Y() + 20.);
-
-		// Maintenance note: This can be replaced with collapsed.contains() in C++20
-		if(!collapsed.count("description"))
-		{
-			descriptionOffset = shipInfo.DescriptionHeight();
-			shipInfo.DrawDescription(startPoint);
-		}
-		else
-		{
-			std::string label = "description";
-			font.Draw(label, startPoint + Point(35., 12.), dim);
-			SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
-		}
-
-		// Calculate the new ClickZone for the description.
-		Point descDimensions(INFOBAR_WIDTH, descriptionOffset + 10.);
-		ClickZone<std::string> collapseDescription = ClickZone<std::string>(
-			descCenter, descDimensions, std::string("description"));
-
-		// Find the old zone, and replace it with the new zone.
-		for(auto it = categoryZones.begin(); it != categoryZones.end(); ++it)
-		{
-			if(it->Value() == "description")
-			{
-				categoryZones.erase(it);
-				break;
-			}
-		}
-		categoryZones.emplace_back(collapseDescription);
-
-		Point attrPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		Point outfPoint(startPoint.X(), attrPoint.Y() + shipInfo.AttributesHeight());
-
 		SpriteShader::Draw(background, spriteCenter);
+
+		const Sprite *shipSprite = selectedShip->GetSprite();
 		if(shipSprite)
+		{
+			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
+			const int swizzle = selectedShip->CustomSwizzle() >= 0
+				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+		}
 
-		shipInfo.DrawAttributes(attrPoint);
-		shipInfo.DrawOutfits(outfPoint);
+		const bool hasDescription = shipInfo.DescriptionHeight();
 
-		heightOffset = outfPoint.Y() + shipInfo.OutfitsHeight();
+		double descriptionOffset = hasDescription ? 40. : 0.;
+
+		if(hasDescription)
+		{
+			if(!collapsed.contains(DESCRIPTION))
+			{
+				descriptionOffset = shipInfo.DescriptionHeight();
+				shipInfo.DrawDescription(startPoint);
+			}
+			else
+			{
+				const Color &dim = *GameData::Colors().Get("medium");
+				font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
+				const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+				SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
+			}
+
+			// Calculate the ClickZone for the description and add it.
+			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
+			const ClickZone<string> collapseDescription = ClickZone<string>(
+				descriptionCenter, descriptionDimensions, DESCRIPTION);
+			categoryZones.emplace_back(collapseDescription);
+		}
+
+		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
+		const Point outfitsPoint(startPoint.X(), attributesPoint.Y() + shipInfo.AttributesHeight());
+		shipInfo.DrawAttributes(attributesPoint);
+		shipInfo.DrawOutfits(outfitsPoint);
+
+		heightOffset = outfitsPoint.Y() + shipInfo.OutfitsHeight();
 	}
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel
-	Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
-	font.Draw({selectedItem, {INFOBAR_WIDTH - 20, Alignment::CENTER, Truncate::MIDDLE}},
+	const Color &bright = *GameData::Colors().Get("bright");
+	const Point selectedPoint(center.X() - INFOBAR_WIDTH / 2, center.Y());
+	font.Draw({selectedItem, {INFOBAR_WIDTH, Alignment::CENTER, Truncate::MIDDLE}},
 		selectedPoint, bright);
 
 	return heightOffset;
@@ -307,7 +254,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 	else
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
-	GetUI()->Push(new NameDialog(this, &ShipyardPanel::BuyShip, message));
+	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
 }
 
 
@@ -325,7 +272,13 @@ void ShipyardPanel::Sell(bool toStorage)
 
 	int count = playerShips.size();
 	int initialCount = count;
-	string message = "Sell the ";
+	string message;
+	if(!toStorage)
+		message = "Sell the ";
+	else if(count == 1)
+		message = "Sell the hull of the ";
+	else
+		message = "Sell the hulls of the ";
 	if(count == 1)
 		message += playerShip->Name();
 	else if(count <= MAX_LIST)
@@ -358,10 +311,17 @@ void ShipyardPanel::Sell(bool toStorage)
 	vector<shared_ptr<Ship>> toSell;
 	for(const auto &it : playerShips)
 		toSell.push_back(it->shared_from_this());
-	int64_t total = player.FleetDepreciation().Value(toSell, day);
+	int64_t total = player.FleetDepreciation().Value(toSell, day, toStorage);
 
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
-	GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShip, message, Truncate::MIDDLE));
+
+	if(toStorage)
+	{
+		message += " Any outfits will be placed in storage.";
+		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
+	}
+	else
+		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
 }
 
 
@@ -400,14 +360,29 @@ void ShipyardPanel::BuyShip(const string &name)
 	playerShip = &*player.Ships().back();
 	playerShips.clear();
 	playerShips.insert(playerShip);
+	CheckSelection();
 }
 
 
 
-void ShipyardPanel::SellShip()
+void ShipyardPanel::SellShipAndOutfits()
+{
+	SellShip(false);
+}
+
+
+
+void ShipyardPanel::SellShipChassis()
+{
+	SellShip(true);
+}
+
+
+
+void ShipyardPanel::SellShip(bool toStorage)
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship);
+		player.SellShip(ship, toStorage);
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -418,5 +393,24 @@ void ShipyardPanel::SellShip()
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
-	player.UpdateCargoCapacities();
+}
+
+int ShipyardPanel::FindItem(const string &text) const
+{
+	int bestIndex = 9999;
+	int bestItem = -1;
+	auto it = zones.begin();
+	for(unsigned int i = 0; i < zones.size(); ++i, ++it)
+	{
+		const Ship *ship = it->GetShip();
+		int index = Format::Search(ship->DisplayModelName(), text);
+		if(index >= 0 && index < bestIndex)
+		{
+			bestIndex = index;
+			bestItem = i;
+			if(!index)
+				return i;
+		}
+	}
+	return bestItem;
 }

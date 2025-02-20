@@ -15,17 +15,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Information.h"
 
-#include "Sprite.h"
+#include "image/Sprite.h"
 
 using namespace std;
 
 
 
-void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, float frame)
+void Information::SetRegion(const Rectangle &rect)
+{
+	region = rect;
+	hasCustomRegion = true;
+}
+
+
+
+const Rectangle &Information::GetCustomRegion() const
+{
+	return region;
+}
+
+
+
+bool Information::HasCustomRegion() const
+{
+	return hasCustomRegion;
+}
+
+
+
+void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, float frame, int swizzle)
 {
 	sprites[name] = sprite;
 	spriteUnits[name] = unit;
 	spriteFrames[name] = frame;
+	spriteSwizzles[name] = swizzle;
 }
 
 
@@ -54,6 +77,14 @@ float Information::GetSpriteFrame(const string &name) const
 {
 	auto it = spriteFrames.find(name);
 	return (it == spriteFrames.end()) ? 0.f : it->second;
+}
+
+
+
+int Information::GetSwizzle(const string &name) const
+{
+	auto it = spriteSwizzles.find(name);
+	return it == spriteSwizzles.end() ? 0 : it->second;
 }
 
 
@@ -116,7 +147,7 @@ bool Information::HasCondition(const string &condition) const
 	if(condition.front() == '!')
 		return !HasCondition(condition.substr(1));
 
-	return conditions.count(condition);
+	return conditions.contains(condition);
 }
 
 

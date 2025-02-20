@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_WRAPPEDTEXT_H_
-#define ES_TEXT_WRAPPEDTEXT_H_
+#pragma once
 
 #include "alignment.hpp"
 #include "DisplayText.h"
@@ -68,8 +67,12 @@ public:
 	void Wrap(const std::string &str);
 	void Wrap(const char *str);
 
-	// Get the height of the wrapped text.
-	int Height() const;
+	/// Get the height of the wrapped text.
+	/// With trailingBreak, include a paragraph break after the text.
+	int Height(bool trailingBreak = true) const;
+
+	// Return the width of the longest line of the wrapped text.
+	int LongestLineWidth() const;
 
 	// Draw the text.
 	void Draw(const Point &topLeft, const Color &color) const;
@@ -114,8 +117,6 @@ private:
 	std::string text;
 	std::vector<Word> words;
 	int height = 0;
+
+	int longestLineWidth = 0;
 };
-
-
-
-#endif

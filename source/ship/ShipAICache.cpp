@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipAICache.h"
 
+#include "../Armament.h"
 #include "../Outfit.h"
 #include "../pi.h"
 #include "../Ship.h"
@@ -34,6 +35,8 @@ void ShipAICache::Calibrate(const Ship &ship)
 	double totalDPS = 0.;
 	double splashDPS = 0.;
 	double artilleryDPS = 0.;
+	turretRange = 0.;
+	gunRange = 0.;
 
 	shortestRange = 4000.;
 	shortestArtillery = 4000.;
@@ -42,7 +45,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Outfit *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		if(weapon && !hardpoint.IsSpecial())
 		{
 			hasWeapons = true;
 			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
@@ -54,8 +57,8 @@ void ShipAICache::Calibrate(const Ship &ship)
 			// Calculate the damage per second,
 			// ignoring any special effects. (could be improved to account for those, maybe be based on cost instead)
 			double DPS = (weapon->ShieldDamage() + weapon->HullDamage()
-				+ (weapon->RelativeShieldDamage() * ship.Attributes().Get("shields"))
-				+ (weapon->RelativeHullDamage() * ship.Attributes().Get("hull")))
+				+ (weapon->RelativeShieldDamage() * ship.MaxShields())
+				+ (weapon->RelativeHullDamage() * ship.MaxHull()))
 				/ weapon->Reload();
 			totalDPS += DPS;
 
@@ -100,11 +103,23 @@ void ShipAICache::Calibrate(const Ship &ship)
 		useArtilleryAI = (artilleryDPS > totalDPS * .75
 			&& (ship.MaxReverseVelocity() || maxTurningRadius < 0.2 * shortestArtillery));
 
-		// Don't try to avoid your own splash damage if it means you whould be losing out
+		// Don't try to avoid your own splash damage if it means you would be losing out
 		// on a lot of DPS. Helps with ships with very slow turning and not a lot of splash
 		// weapons being overly afraid of dying.
 		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > maxTurningRadius))
 			minSafeDistance = 0.;
+	}
+	// Get the weapon ranges for this ship, so the AI can call it.
+	for(const auto &hardpoint : ship.Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(!weapon || hardpoint.IsSpecial() || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
+			continue;
+		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
+		if(hardpoint.IsTurret())
+			turretRange = max(turretRange, weaponRange);
+		else
+			gunRange = max(gunRange, weaponRange);
 	}
 }
 

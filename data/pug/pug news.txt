@@ -13,8 +13,8 @@
 
 news "artist on post-fw Deneb"
 	location
-		government Neutral
-		system Deneb
+		government "Neutral"
+		system "Deneb"
 	name
 		word
 			"Writer"
@@ -61,8 +61,8 @@ news "artist on post-fw Deneb"
 
 news "tourist on post-fw Deneb"
 	location
-		government Neutral
-		system Deneb
+		government "Neutral"
+		system "Deneb"
 	name
 		word
 			"Tourist"
@@ -115,8 +115,8 @@ news "tourist on post-fw Deneb"
 
 news "conspiracy theorist on post-fw Deneb"
 	location
-		government Neutral
-		system Deneb
+		government "Neutral"
+		system "Deneb"
 	name
 		word
 			"Conspiracy theorist"
@@ -173,8 +173,8 @@ news "conspiracy theorist on post-fw Deneb"
 
 news "reporter on post-fw Deneb"
 	location
-		government Neutral
-		system Deneb
+		government "Neutral"
+		system "Deneb"
 	name
 		word
 			"Reporter"
@@ -233,8 +233,8 @@ news "reporter on post-fw Deneb"
 
 news "merchant on post-fw Deneb"
 	location
-		government Neutral
-		system Deneb
+		government "Neutral"
+		system "Deneb"
 	name
 		phrase
 			"merchant names"
@@ -298,8 +298,8 @@ news "merchant on post-fw Deneb"
 
 news "worker on pug-occupied planet after fw"
 	location
-		neighbor system Deneb
-		not government Pug
+		neighbor system "Deneb"
+		not government "Pug"
 	name
 		word
 			"Dock worker"
@@ -352,9 +352,8 @@ news "worker on pug-occupied planet after fw"
 
 news "pug on pug planets during fw"
 	location
-		government Pug
-		near Deneb
-		near Vega
+		government "Pug"
+		not attributes "uninhabited"
 	name
 		word
 			"Pug"

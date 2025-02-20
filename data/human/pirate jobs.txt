@@ -15,6 +15,7 @@ mission "Cargo Smuggling [0]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 40000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -26,7 +27,7 @@ mission "Cargo Smuggling [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 6
+		distance 4 6
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -43,6 +44,7 @@ mission "Cargo Smuggling [1]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 50000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -55,7 +57,7 @@ mission "Cargo Smuggling [1]"
 	source
 		government "Pirate"
 	destination
-		distance 3 8
+		distance 4 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -72,6 +74,7 @@ mission "Cargo Smuggling [2]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 64000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -101,6 +104,7 @@ mission "Cargo Smuggling [3]"
 	name "Smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 5 2 .1
 	illegal 80000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -132,6 +136,7 @@ mission "Drug Running [0]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 75000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -143,7 +148,7 @@ mission "Drug Running [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 10
+		distance 4 10
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -160,6 +165,7 @@ mission "Drug Running [1]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination>. If law enforcement catches you, you will be fined 46,000 credits. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 92000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -189,6 +195,7 @@ mission "Drug Running [2]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 110000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -218,6 +225,7 @@ mission "Drug Running [3]"
 	name "Drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 5 2 .1
 	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -249,6 +257,7 @@ mission "Bulk Cargo Smuggling [0]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 47000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -261,7 +270,7 @@ mission "Bulk Cargo Smuggling [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 8
+		distance 4 8
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -278,6 +287,7 @@ mission "Bulk Cargo Smuggling [1]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 130000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -290,7 +300,7 @@ mission "Bulk Cargo Smuggling [1]"
 	source
 		government "Pirate"
 	destination
-		distance 3 12
+		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -307,6 +317,7 @@ mission "Bulk Cargo Smuggling [2]"
 	name "Bulk smuggling to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Smuggle <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Cargo" 25 2 .1
 	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -338,6 +349,7 @@ mission "Bulk Drug Running [0]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 172000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -367,6 +379,7 @@ mission "Bulk Drug Running [1]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 200000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -396,6 +409,7 @@ mission "Bulk Drug Running [2]"
 	name "Bulk drug run to <planet>"
 	job
 	repeat
+	infiltrating
 	description "Run <cargo> to <destination> without being scanned or caught by planetary law enforcement. Payment is <payment>."
 	cargo "Illegal Substances" 25 2 .1
 	illegal 240000 `In addition to the fine, your illegal cargo is confiscated. The pirates won't be happy to hear about this.`
@@ -719,7 +733,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		government "Pirate"
 		attributes "south pirate"
 	destination
-		distance 3 12
+		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
@@ -1142,7 +1156,7 @@ mission "Stealth Drug Running (South) [0]"
 		government "Pirate"
 		attributes "south pirate"
 	destination
-		distance 3 12
+		distance 4 12
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
@@ -1273,6 +1287,7 @@ mission "Wanted Passenger [0]"
 	name "Wanted individual to <planet>"
 	job
 	repeat
+	infiltrating
 	description "This wanted individual wishes to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 1
 	cargo "battle trophies" 1
@@ -1302,6 +1317,7 @@ mission "Wanted Passengers [1]"
 	name "Wanted individuals to <planet>"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "credit chips" 1
@@ -1331,6 +1347,7 @@ mission "Wanted Passengers [2]"
 	name "Wanted individuals to <planet>"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "customized weapons" 1
@@ -1360,6 +1377,7 @@ mission "Wanted Passengers [3]"
 	name "Wanted individuals to <planet>"
 	job
 	repeat
+	infiltrating
 	description "These <bunks> wanted individuals wish to reach <destination> without being caught by local law enforcement. They also wish to bring with them <cargo>. Payment is <payment>."
 	passengers 2 10 .9
 	cargo "aged wine" 1
@@ -1665,6 +1683,7 @@ mission "Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
@@ -1677,8 +1696,13 @@ mission "Slave Transport [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1689,6 +1713,7 @@ mission "Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
@@ -1701,8 +1726,13 @@ mission "Slave Transport [1]"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1713,6 +1743,7 @@ mission "Slave Transport [2]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 2 10 .9
 	illegal -1
@@ -1725,8 +1756,13 @@ mission "Slave Transport [2]"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1739,6 +1775,7 @@ mission "Bulk Slave Transport [0]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
@@ -1751,8 +1788,13 @@ mission "Bulk Slave Transport [0]"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1763,6 +1805,7 @@ mission "Bulk Slave Transport [1]"
 	name "Transfer slaves to <planet>"
 	job
 	repeat
+	infiltrating
 	description "A pirate on <planet> has bought slaves from a local warlord. Transfer these <bunks> slaves in secure cells to <destination> for <payment>. Slavery is punishable by death throughout the galaxy, so this may be a dangerous job to take."
 	passengers 10 4 .1
 	illegal -1
@@ -1775,8 +1818,13 @@ mission "Bulk Slave Transport [1]"
 	source
 		government "Pirate"
 	destination
-		distance 3 30
+		distance 4 30
 		government "Pirate"
+	on abort
+		"reputation: Pirate" -= 9
+		dialog phrase "generic aborted pirate slave mission"
+	on fail
+		"reputation: Pirate" -= 9
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1850,10 +1898,10 @@ mission "Escort Illegal Cargo (Large, North, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes frontier north "north pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "north pirate"
+		distance 3 6
 	npc
 		government Republic
 		personality staying
@@ -1923,9 +1971,7 @@ mission "Escort Stolen Vessel (Extra Large, North, Dangerous Path)"
 			variant 4
 				"Leviathan (Heavy)"
 				"Freighter"
-			variant 1
-				"Bactrian"
-				"Shuttle"
+
 	on complete
 		payment 375000
 		dialog phrase "generic safe escort completion dialog"
@@ -1991,10 +2037,10 @@ mission "Escort Illegal Cargo (Large, Core, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes core "core pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "core pirate"
+		distance 3 6
 	npc
 		government Syndicate
 		personality staying
@@ -2134,10 +2180,12 @@ mission "Escort Illegal Cargo (Large, South, Dangerous Path)"
 	source
 		government Republic "Free Worlds" Syndicate Neutral Pirate
 		attributes south "south pirate"
-		distance 3 6
 	destination
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
+		distance 4 6
 	npc
 		government Militia
 		personality staying
@@ -2183,7 +2231,9 @@ mission "Escort Stolen Vessel (Extra Large, South, Dangerous Path)"
 	destination
 		government "Pirate"
 		attributes "south pirate"
-		distance 3 6
+		neighbor
+			not government "Pirate"
+		distance 4 6
 	npc
 		government Militia
 		personality staying
@@ -2236,7 +2286,7 @@ mission "Eliminating Law Enforcement (North, Small)"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 3
 		fleet "Small Republic" 2
@@ -2260,7 +2310,7 @@ mission "Eliminating Law Enforcement (North, Large)"
 		attributes "north pirate"
 	npc kill
 		government "Republic"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 3
 		fleet "Large Republic"
@@ -2285,9 +2335,11 @@ mission "Eliminating Law Enforcement (Core, Small)"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 3
+			neighbor
+				not government "Pirate"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
@@ -2309,9 +2361,11 @@ mission "Eliminating Law Enforcement (Core, Large)"
 		attributes "core pirate"
 	npc kill
 		government "Syndicate"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 3
+			neighbor
+				not government "Pirate"
 		fleet "Large Syndicate"
 		fleet "Small Syndicate" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2332,11 +2386,15 @@ mission "Eliminating Law Enforcement (South, Small)"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Militia"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet "Small Militia" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
 	on complete
@@ -2356,11 +2414,15 @@ mission "Eliminating Law Enforcement (South, Large)"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Militia"
-		personality heroic staying target
+		personality heroic marked staying target
 		system
 			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet "Large Militia"
 		fleet "Small Militia" 2
 		dialog "The fleet has been eliminated. You can claim the bounty payment by returning to <destination>."
@@ -2385,7 +2447,7 @@ mission "Eliminating Competition (North, Small)"
 		attributes "north pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Small Northern Pirates" 4
@@ -2410,7 +2472,7 @@ mission "Eliminating Competition (North, Large)"
 		attributes "north pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Large Northern Pirates" 2
@@ -2436,7 +2498,7 @@ mission "Eliminating Competition (Core, Small)"
 		attributes "core pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Small Core Pirates" 4
@@ -2461,7 +2523,7 @@ mission "Eliminating Competition (Core, Large)"
 		attributes "core pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Large Core Pirates" 2
@@ -2487,7 +2549,7 @@ mission "Eliminating Competition (South, Small)"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Small Southern Pirates" 4
@@ -2512,7 +2574,7 @@ mission "Eliminating Competition (South, Large)"
 		attributes "south pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Large Southern Pirates" 2
@@ -2537,7 +2599,7 @@ mission "Eliminating Competition (Marauders, Small)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I" 2
@@ -2562,7 +2624,7 @@ mission "Eliminating Competition (Marauders, Medium)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I"
@@ -2588,7 +2650,7 @@ mission "Eliminating Competition (Marauders, Large)"
 		government "Pirate"
 	npc kill
 		government "Pirate (Rival)"
-		personality heroic staying target marked
+		personality heroic marked staying target
 		system
 			distance 1 2
 		fleet "Marauder I" 2
@@ -2626,6 +2688,8 @@ mission "Raid on Merchants (North)"
 		personality heroic staying target
 		system
 			distance 1 3
+			neighbor
+				not government "Pirate"
 		fleet "Small Northern Merchants" 2
 		fleet "Large Northern Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
@@ -2683,6 +2747,8 @@ mission "Raid on Merchants (South)"
 		government "Merchant"
 		system
 			distance 1 3
+			neighbor
+				not government "Pirate"
 		fleet "Small Southern Merchants" 2
 		fleet "Large Southern Merchants"
 		dialog "The merchants have been eliminated. Return to <destination> for your cut of the loot."
@@ -2830,6 +2896,8 @@ mission "Southern Pirate Defense"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc evade
 		government "Militia"
 		personality heroic staying waiting
@@ -2857,6 +2925,8 @@ mission "Southern Pirate Defense [Unpaid]"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc evade
 		government "Militia"
 		personality heroic staying waiting
@@ -2974,11 +3044,15 @@ mission "Cargo Theft (South)"
 	source
 		government Pirate
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc
 		government "Merchant"
 		personality staying heroic target
 		system
 			distance 1 2
+			neighbor
+				not government "Pirate"
 		fleet
 			names "civilian"
 			variant
@@ -3013,6 +3087,8 @@ mission "FW Assassination [1]"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Free Worlds"
 		personality staying target
@@ -3056,6 +3132,8 @@ mission "FW Assassination [2]"
 	source
 		government "Pirate"
 		attributes "south pirate"
+		neighbor
+			not government "Pirate"
 	npc kill
 		government "Free Worlds"
 		personality staying target
@@ -3236,7 +3314,7 @@ mission "Republic Assassination [1]"
 			variant 2
 				"Scout"
 				"Aerie"
-				"Dagger" 2
+				"Dagger" 4
 			variant 2
 				"Flivver"
 				"Firebird"
@@ -3296,7 +3374,7 @@ mission "Republic Assassination [2]"
 			variant 2
 				"Flivver"
 				"Aerie"
-				"Dagger" 2
+				"Dagger" 4
 				"Frigate"
 			variant 4
 				"Scout"
@@ -3325,7 +3403,7 @@ mission "Republic Assassination [2]"
 			variant 1
 				"Star Queen"
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		dialog "The target has been destroyed. Return to <destination> for payment."
 	on complete

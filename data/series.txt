@@ -1,0 +1,46 @@
+# Copyright (c) 2023 warp-core
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+category "series"
+	# Weapons
+	"Avgi: Beams" 600
+	"Avgi: Kinetics" 610
+	"Avgi: Missiles" 620
+	# Systems
+	"Avgi: Shields" 630
+	"Avgi: Fuel" 640
+	"Avgi: Laminae" 650
+	"Avgi: Sensors" 660
+	# Guns
+	"Guns: Successors" 800
+	# Turrets
+	"Turrets: Successors" 800
+	# Ammunition
+	"Ammunition: Successors" 800
+	# Systems
+	"Shields: Successors" 800
+	"Cooling: Successors" 810
+	"Scanners: Successors" 820
+	"Ramscoops: Successors" 830
+	"Special Systems: Successors" 840
+	# Power
+	"Power: Successors" 800
+	# Engines
+	"Human: Ion" 110
+	"Human: Plasma" 120
+	"Human: Atomic" 130
+	"Human: Afterburners" 140
+	"Avgi: Thrusters" 670
+	"Engines: Successors" 800
+	# Licenses
+	"Licenses: Successors" 800

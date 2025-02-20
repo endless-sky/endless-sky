@@ -16,12 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "BoardingPanel.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -34,9 +35,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #if defined _WIN32
@@ -61,21 +62,28 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
-	: player(player), useTransactions(useTransactions), conversation(conversation),
+	const Mission *caller, const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
+	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
-	PATH_LENGTH = Files::Saves().size();
+	PATH_LENGTH = Files::Saves().string().size();
 #endif
+	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(ship)
+	{
 		subs["<ship>"] = ship->Name();
+		subs["<model>"] = ship->DisplayModelName();
+	}
 	else if(player.Flagship())
+	{
 		subs["<ship>"] = player.Flagship()->Name();
+		subs["<model>"] = player.Flagship()->DisplayModelName();
+	}
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
 	// from recording partial results.
@@ -84,6 +92,13 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 	// Begin at the start of the conversation.
 	Goto(0);
+}
+
+
+
+ConversationPanel::~ConversationPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -111,17 +126,7 @@ void ConversationPanel::Draw()
 		Point(boxWidth, Screen::Height()),
 		back);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		// If the screen is high enough, the edge sprite should repeat.
-		double spriteHeight = edgeSprite->Height();
-		Point pos(
-			Screen::Left() + boxWidth + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
 	// Get the font and colors we'll need for drawing everything.
 	const Font &font = FontSet::Get(14);
@@ -238,7 +243,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	// fields are currently active. The name text entry fields are active if
 	// choices is empty and we aren't at the end of the conversation.
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
-		GetUI()->Push(new MapDetailPanel(player, system));
+		GetUI()->Push(new MapDetailPanel(player, system, true));
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
@@ -399,7 +404,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
 			// and more. They are not allowed to spawn additional UI elements.
-			conversation.GetAction(node).Do(player, nullptr);
+			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
 		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
 		{

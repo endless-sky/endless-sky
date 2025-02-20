@@ -18,19 +18,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
-#include "text/FontSet.h"
-#include "ImageSet.h"
 #include "Information.h"
 #include "Logger.h"
-#include "MaskManager.h"
-#include "Music.h"
-#include "PlayerInfo.h"
-#include "Politics.h"
-#include "Random.h"
-#include "Sprite.h"
-#include "SpriteQueue.h"
-#include "SpriteSet.h"
-#include "StarField.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "TaskQueue.h"
 
 #include <algorithm>
 #include <iterator>
@@ -43,51 +35,22 @@ using namespace std;
 
 
 
-namespace {
-	// TODO (C++14): make these 3 methods generic lambdas visible only to the CheckReferences method.
-	// Log a warning for an "undefined" class object that was never loaded from disk.
-	void Warn(const string &noun, const string &name)
-	{
-		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
-	}
-	// Class objects with a deferred definition should still get named when content is loaded.
-	template <class Type>
-	bool NameIfDeferred(const set<string> &deferred, pair<const string, Type> &it)
-	{
-		if(deferred.count(it.first))
-			it.second.SetName(it.first);
-		else
-			return false;
-
-		return true;
-	}
-	// Set the name of an "undefined" class object, so that it can be written to the player's save.
-	template <class Type>
-	void NameAndWarn(const string &noun, pair<const string, Type> &it)
-	{
-		it.second.SetName(it.first);
-		Warn(noun, it.first);
-	}
-}
-
-
-
-future<void> UniverseObjects::Load(const vector<string> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesystem::path> &sources, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return async(launch::async, [this, sources, debugMode]() noexcept -> void
+	return queue.Run([this, sources, debugMode]() noexcept -> void
 		{
-			vector<string> files;
-			for(const string &source : sources)
+			vector<filesystem::path> files;
+			for(const auto &source : sources)
 			{
 				// Iterate through the paths starting with the last directory given. That
 				// is, things in folders near the start of the path have the ability to
 				// override things in folders later in the path.
-				auto list = Files::RecursiveList(source + "data/");
+				auto list = Files::RecursiveList(source / "data/");
 				files.reserve(files.size() + list.size());
 				files.insert(files.end(),
 						make_move_iterator(list.begin()),
@@ -210,7 +173,7 @@ void UniverseObjects::UpdateSystems()
 	for(auto &it : systems)
 	{
 		// Skip systems that have no name.
-		if(it.first.empty() || it.second.Name().empty())
+		if(it.first.empty() || it.second.TrueName().empty())
 			continue;
 		it.second.UpdateSystem(systems, neighborDistances);
 
@@ -229,6 +192,27 @@ void UniverseObjects::UpdateSystems()
 // planets) are written to the player's save and need a name to prevent data loss.
 void UniverseObjects::CheckReferences()
 {
+	// Log a warning for an "undefined" class object that was never loaded from disk.
+	auto Warn = [](const string &noun, const string &name)
+	{
+		Logger::LogError("Warning: " + noun + " \"" + name + "\" is referred to, but not fully defined.");
+	};
+	// Class objects with a deferred definition should still get named when content is loaded.
+	auto NameIfDeferred = [](const set<string> &deferred, auto &it)
+	{
+		if(deferred.contains(it.first))
+			it.second.SetName(it.first);
+		else
+			return false;
+
+		return true;
+	};
+	// Set the name of an "undefined" class object, so that it can be written to the player's save.
+	auto NameAndWarn = [=](const string &noun, auto &it)
+	{
+		it.second.SetName(it.first);
+		Warn(noun, it.first);
+	};
 	// Parse all GameEvents for object definitions.
 	auto deferred = map<string, set<string>>{};
 	for(auto &&it : events)
@@ -262,7 +246,7 @@ void UniverseObjects::CheckReferences()
 		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
 		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
 		it.second.RemoveInvalidVariants();
-		if(!it.second.IsValid() && !deferred["fleet"].count(it.first))
+		if(!it.second.IsValid() && !deferred["fleet"].contains(it.first))
 			Warn("fleet", it.first);
 	}
 	// Government names are used in mission NPC blocks and LocationFilters.
@@ -287,7 +271,7 @@ void UniverseObjects::CheckReferences()
 			NameAndWarn("outfit", it);
 	// Outfitters are never serialized.
 	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].count(it.first))
+		if(it.second.empty() && !deferred["outfitter"].contains(it.first))
 			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
@@ -306,11 +290,11 @@ void UniverseObjects::CheckReferences()
 		}
 	// Shipyards are never serialized.
 	for(const auto &it : shipSales)
-		if(it.second.empty() && !deferred["shipyard"].count(it.first))
+		if(it.second.empty() && !deferred["shipyard"].contains(it.first))
 			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
-		if(it.second.Name().empty() && !NameIfDeferred(deferred["system"], it))
+		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
 	// Hazards are never serialized.
 	for(const auto &it : hazards)
@@ -318,9 +302,8 @@ void UniverseObjects::CheckReferences()
 			Warn("hazard", it.first);
 	// Wormholes are never serialized.
 	for(const auto &it : wormholes)
-		if(it.second.Name().empty())
+		if(it.second.DisplayName().empty())
 			Warn("wormhole", it.first);
-
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
 		if(it.second.Name().empty())
@@ -333,15 +316,15 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const string &path, bool debugMode)
+void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
-	if(path.length() < 4 || path.compare(path.length() - 4, 4, ".txt"))
+	if(path.extension() != ".txt")
 		return;
 
 	DataFile data(path);
 	if(debugMode)
-		Logger::LogError("Parsing: " + path);
+		Logger::LogError("Parsing: " + path.string());
 
 	for(const DataNode &node : data)
 	{
@@ -438,6 +421,8 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 					solarPower[sprite] = child.Value(1);
 				else if(child.Token(0) == "wind" && child.Size() >= 2)
 					solarWind[sprite] = child.Value(1);
+				else if(child.Token(0) == "icon" && child.Size() >= 2)
+					starIcons[sprite] = SpriteSet::Get(child.Token(1));
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -492,7 +477,7 @@ void UniverseObjects::LoadFile(const string &path, bool debugMode)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
 			const string &category = node.Token(1);
-			if(canDisable.count(category))
+			if(canDisable.contains(category))
 			{
 				if(node.HasChildren())
 					for(const DataNode &child : node)

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_H_
-#define SHIP_H_
+#pragma once
 
 #include "Body.h"
 
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Personality.h"
 #include "Point.h"
+#include "Port.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
@@ -42,6 +42,7 @@ class DataNode;
 class DataWriter;
 class Effect;
 class Flotsam;
+class FormationPattern;
 class Government;
 class Minable;
 class Phrase;
@@ -104,6 +105,7 @@ public:
 
 		double zoom;
 		Angle facing;
+		Angle gimbal;
 	};
 
 
@@ -161,7 +163,7 @@ public:
 	int64_t Cost() const;
 	int64_t ChassisCost() const;
 	int64_t Strength() const;
-	// Get the attraction and deterrance of this ship, for pirate raids.
+	// Get the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double Attraction() const;
 	double Deterrence() const;
@@ -171,6 +173,7 @@ public:
 	std::vector<std::string> FlightCheck() const;
 
 	void SetPosition(Point position);
+	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
@@ -201,8 +204,10 @@ public:
 	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
-	ShipAICache &GetAICache();
-	void UpdateCaches();
+	const ShipAICache &GetAICache() const;
+	// Updates the AI and navigation caches. If the ship's mass hasn't changed,
+	// reuses some of the previous values.
+	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -226,12 +231,18 @@ public:
 	double CargoScanFraction() const;
 	double OutfitScanFraction() const;
 
-	// Fire any weapons that are ready to fire. If an anti-missile is ready,
-	// instead of firing here this function returns true and it can be fired if
-	// collision detection finds a missile in range.
-	bool Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
-	// Fire an anti-missile. Returns true if the missile was killed.
+	// Fire any primary or secondary weapons that are ready to fire. Determines
+	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
+	// The firing of special weapons is handled separately.
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	// Return true if any anti-missile or tractor beam systems are ready to fire.
+	bool HasAntiMissile() const;
+	bool HasTractorBeam() const;
+	// Fire an anti-missile at the given missile. Returns true if the missile was killed.
 	bool FireAntiMissile(const Projectile &projectile, std::vector<Visual> &visuals);
+	// Fire tractor beams at the given flotsam. Returns a Point representing the net
+	// pull on the flotsam from this ship's tractor beams.
+	Point FireTractorBeam(const Flotsam &flotsam, std::vector<Visual> &visuals);
 
 	// Get the system this ship is in. Set to nullptr if the ship is being carried.
 	const System *GetSystem() const;
@@ -250,20 +261,32 @@ public:
 	bool IsFleeing() const;
 	// Check if this ship is currently able to begin landing on its target.
 	bool CanLand() const;
+	// What kind of action this is we are trying to do.
+	enum class ActionType {AFTERBURNER, BOARD, COMMUNICATION, FIRE, PICKUP, SCAN};
 	// Check if some condition is keeping this ship from acting. (That is, it is
-	// landing, hyperspacing, cloaking, disabled, or under-crewed.)
-	bool CannotAct() const;
-	// Get the degree to which this ship is cloaked. 1 means invisible and
-	// impossible to hit or target; 0 means fully visible.
+	// landing, hyperspacing, cloaking without "cloaked ActionType", disabled, or under-crewed.)
+	bool CannotAct(ActionType actionType) const;
+	// Get the degree to which this ship is cloaked. 1 means fully cloaked; 0 means fully visible.
+	// Depending on its "cloaking ..." attributes the ship will be unable to shoot, will not be seen on radar...
 	double Cloaking() const;
+	bool IsCloaked() const;
+	// The amount of cloaking this ship can do, per frame.
+	double CloakingSpeed() const;
+	// If this ship should be immune to the next damage caused.
+	bool Phases(Projectile &projectile) const;
 	// Check if this ship is entering (rather than leaving) hyperspace.
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
+	int GetHyperspacePercentage() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Check if this ship is currently able to enter hyperspace to it target.
 	bool IsReadyToJump(bool waitingIsReady = false) const;
+	// Check if this ship is allowed to land on this planet, accounting for its personality.
+	bool IsRestrictedFrom(const Planet &planet) const;
+	// Check if this ship is allowed to enter this system, accounting for its personality.
+	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	int CustomSwizzle() const;
 
@@ -288,11 +311,15 @@ public:
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
-	void Recharge(bool atSpaceport = true);
+	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
 	bool CanRefuel(const Ship &other) const;
+	// Check if this ship can transfer sufficient energy to the other ship.
+	bool CanGiveEnergy(const Ship &other) const;
 	// Give the other ship enough fuel for it to jump.
 	double TransferFuel(double amount, Ship *to);
+	// Give the other ship some energy.
+	double TransferEnergy(double amount, Ship *to);
 	// Mark this ship as property of the given ship. Returns the number of crew transferred from the capturer.
 	int WasCaptured(const std::shared_ptr<Ship> &capturer);
 	// Clear all orders and targets this ship has (after capture or transfer of control).
@@ -310,6 +337,9 @@ public:
 	double Health() const;
 	// Get the hull fraction at which this ship is disabled.
 	double DisabledHull() const;
+	// Get the maximum shield and hull values of the ship, accounting for multipliers.
+	double MaxShields() const;
+	double MaxHull() const;
 	// Get the actual shield level of the ship.
 	double ShieldLevel() const;
 	// Get how disrupted this ship's shields are.
@@ -318,6 +348,8 @@ public:
 	// ship becomes disabled. Returns 0 if the ships hull is already below the
 	// disabled threshold.
 	double HullUntilDisabled() const;
+	// Returns the remaining damage timer, for the damage overlay.
+	int DamageOverlayTimer() const;
 	// Get this ship's jump navigation, which contains information about how
 	// much it costs for this ship to jump, how far it can jump, and its possible
 	// jump methods.
@@ -328,6 +360,8 @@ public:
 	// If followParent is false, this ship will not follow the parent.
 	int JumpsRemaining(bool followParent = true) const;
 	bool NeedsFuel(bool followParent = true) const;
+	// Checks whether this ship needs energy to function.
+	bool NeedsEnergy() const;
 	// Get the amount of fuel missing for the next jump (smart refueling)
 	double JumpFuelMissing() const;
 	// Get the heat level at idle.
@@ -338,8 +372,11 @@ public:
 	double MaximumHeat() const;
 	// Calculate the multiplier for cooling efficiency.
 	double CoolingEfficiency() const;
-	// Calculate the ship's drag after accounting for drag reduction.
+	// Calculate the drag on this ship. The drag can be no greater than the mass.
 	double Drag() const;
+	// Calculate the drag force that this ship experiences. The drag force is the drag
+	// divided by the mass, up to a value of 1.
+	double DragForce() const;
 
 	// Access how many crew members this ship has or needs.
 	int Crew() const;
@@ -356,9 +393,14 @@ public:
 	double InertialMass() const;
 	double TurnRate() const;
 	double Acceleration() const;
-	double MaxVelocity() const;
+	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
+	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
+	double TrueAcceleration() const;
+	double TrueTurnRate() const;
+	// The ship's current speed right now
+	double CurrentSpeed() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -418,7 +460,7 @@ public:
 	// energy, ammo, and fuel to fire it).
 	bool CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
-	// and add whatever heat it generates. Assume that CanFire() is true.
+	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
 
 	// Each ship can have a target system (to travel to), a target planet (to
@@ -431,6 +473,9 @@ public:
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
+	const std::set<const Flotsam *> &GetTractorFlotsam() const;
+	// Pattern to use when flying in a formation.
+	const FormationPattern *GetFormationPattern() const;
 
 	// Mark this ship as fleeing.
 	void SetFleeing(bool fleeing = true);
@@ -444,6 +489,8 @@ public:
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
+	// Pattern to use when flying in a formation (nullptr to clear formation).
+	void SetFormationPattern(const FormationPattern *formation);
 
 	bool CanPickUp(const Flotsam &flotsam) const;
 
@@ -498,10 +545,13 @@ private:
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount);
 	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount);
 
-	// Calculate the attraction and deterrance of this ship, for pirate raids.
+	// Calculate the attraction and deterrence of this ship, for pirate raids.
 	// This is only useful for the player's ships.
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
+
+	// Helper function for jettisoning flotsam.
+	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
 
 private:
@@ -551,8 +601,9 @@ private:
 	int customSwizzle = -1;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
-	// Cached values for figuring out when anti-missile is in range.
+	// Cached values for figuring out when anti-missiles or tractor beams are in range.
 	double antiMissileRange = 0.;
+	double tractorBeamRange = 0.;
 	double weaponRadius = 0.;
 	// Cargo and outfit scanning takes time.
 	double cargoScan = 0.;
@@ -579,6 +630,7 @@ private:
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
+	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
 
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
@@ -614,6 +666,10 @@ private:
 	// Delays for shield generation and hull repair.
 	int shieldDelay = 0;
 	int hullDelay = 0;
+	// Timer for a disabled ship to repair itself.
+	int disabledRecoveryCounter = 0;
+	// Number of frames the damage overlay should be displayed, if any.
+	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 
@@ -663,6 +719,8 @@ private:
 	const System *targetSystem = nullptr;
 	std::weak_ptr<Minable> targetAsteroid;
 	std::weak_ptr<Flotsam> targetFlotsam;
+	std::set<const Flotsam *> tractorFlotsam;
+	const FormationPattern *formationPattern = nullptr;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;
@@ -670,7 +728,3 @@ private:
 
 	bool removeBays = false;
 };
-
-
-
-#endif

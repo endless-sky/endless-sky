@@ -86,7 +86,7 @@ mission "Hai Leaks Response 3"
 			`	Mr. Yang responds, "On that, I'm afraid I may have some bad news." He taps on his screen as he says, 'bad news,' and the holoprojector begins showing a series of charts.`
 			label charts
 			`	"One of the things I brought with me was Republic Intelligence's estimate of the effectiveness of various information containment measures."`
-			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as 'artifact penetration'. "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
+			`	You're not an expert at data analysis, but the highlighted percentages ranging from 4% to 39% do not look promising. The final graphic is a map of stages of what is labeled as "artifact penetration." "Artifact penetration is the point at which a government cannot reasonably attempt to pretend something is anything but the truth, at least not while still holding to the claim of being a representative government," explains Mr. Yang.`
 			`	He checks the date. "Our most optimistic estimates suggest the Republic will be forced to acknowledge the existence of the Hai within three months, or we would lose so much credibility as to compromise electoral stability. The actual time limit is probably sooner."`
 			choice
 				`	"Would that be so bad?"`
@@ -165,7 +165,7 @@ mission "Hai Leaks Response 4"
 		event "waypoint pirates vanquished"
 		event "hai ladybug available"
 		event "humans adopt ladybugs" 20 30
-		log `Defeated the "Black Lich". They had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. Rewarded well.`
+		log `Defeated the "Black Lich." They had managed to kidnap a number of Hai straight off the planet with a combination of trickery and speed. Rewarded well.`
 		conversation
 			branch "saved geocoris"
 				has "ship model (all): Geodesic Geocoris"
@@ -177,7 +177,7 @@ mission "Hai Leaks Response 4"
 			`You have defeated the Black Lich and also successfully reclaimed the Geocoris and, in doing so, rescued the kidnapped Hai! On your way back to <planet> the crew you sent across to fly it home reported that something is different about it... It appears that it has been modified with systems of some kind, which are not of Hai design. It also appears that perhaps not everything about those systems is working wholly as intended.`
 			`	As you disembark you spot the Hai quartermaster checking on the Hai disembarking from the Geocoris, and after a short while he approaches you. "Captain <last>, I cannot thank you enough for your rescue of our kidnapped people. You're a hero to them. The Allhome government has also authorized a reward of <payment> for helping to relieve the pirate problem," he explains while handing you the credits.`
 			`	"Lucky for you, the merchant who owned the Geocoris has already filed the insurance claim, so you get to keep the ship as a trophy.`
-			`	"I do need to do a full security scan of it to complete all the incident paperwork before I let it go, though, so if you have any business on-world here, please take your time."`
+			`	"I do need to do a full security scan of it to complete all the incident paperwork before I let it go, though, so if you have any business on-world here, please take your time.`
 			label end
 			`	"In any event, let's hope a more permanent solution can be devised soon. In the meantime, the local dealers have decided to start selling the Ladybugs again. I hear it's something about a spike in interest among the humans here, so feel free to have a look at them. I shouldn't get too distracted though, I'm sure they'll be waiting for you back on Hai-home."`
 			branch "saved geocoris2"
@@ -335,7 +335,7 @@ ship "Geodesic Geocoris" "Geodesic Geocoris (Phylactery)"
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
 	turret "Electron Turret"
-	description "This modified Geocoris has identical cargo capacity, but is the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings, and some kind of integrated system core which seems to have something of a life of its own. As such, some systems are built-in and unable to be removed. Nevertheless it is significantly more survivable than a traditional Geocoris and at least as useful."
+	description "This modified Geocoris has identical cargo capacity, but is the result of an alien technology being merged with a hybrid Human-Hai operating system. It has additional shield emitters in a geodesic pattern over its main cargo wings, and some kind of integrated system core which seems to have something of a life of its own. As such, some systems are built-in and unable to be removed. Nevertheless, it is significantly more survivable than a traditional Geocoris and at least as useful."
 
 
 # The spike in interest leads to ladybugs appearing in the Hai Merchant (Human) fleets.
@@ -444,14 +444,14 @@ mission "Hai Leaks Response 6"
 		# Hai like you a lot now, and as a result, you have permanent access to Hai-home:
 		"reputation: Hai" >?= 100
 		fail "Hai Leaks Response 5B"
-		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act for the cover story that they're making a big budget movie to target fans of the popular franchise 'Our Fuzzy Paradise'. The presence of Hai who won't take off their costumes has been attributed to a 'fan community' that have been hired on as a focus group to be there as part of the production. Despite all this, it is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
+		log `The working solution to the secrecy crisis for now is to have the Hai post a number of ships on the other side of the wormhole to play-act for the cover story that they're making a big budget movie to target fans of the popular franchise "Our Fuzzy Paradise." The presence of Hai who won't take off their costumes has been attributed to a "fan community" that have been hired on as a focus group to be there as part of the production. Despite all this, it is only a short-term solution. Asked by Sayari to look into a rumor about more kidnapped Hai. She does not consider it to be a particularly likely scenario, but her contacts insist.`
 		conversation
 			`Arriving at the secure landing area on Hai-home, you are met by a group of relieved diplomats. Of all of them, Alondo seems to be the least tired and takes the time to let you know what's been going on. "Captain <last>! You've missed quite the palaver. Still, I doubt you lost much. We've spent four hours trying to explain to Sayari what a 'furry' is."`
 			choice
 				`	"What? That could've been entertaining."`
 				`	"Hmm. No, I probably didn't miss much."`
 				`	"Oh, I could have told her all about it..."`
-			`	He chuckles. "Anyway, I have a hunch that we'll need you again before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part', as it were. We've got a plan now but there's some work to pull it off. There's some older counter-propaganda that we're leveraging to pass things off as a big budget movie production."`
+			`	He chuckles. "Anyway, I have a hunch that we'll need you again before too long, but for now they're putting some Hai patrols out on the other side of the wormhole with a couple of Navy observers on board to 'play the part,' as it were. We've got a plan now but there's some work to pull it off. There's some older counter-propaganda that we're leveraging to pass things off as a big budget movie production."`
 			choice
 				`	"Sounds good. What's next?"`
 					goto next
@@ -460,7 +460,7 @@ mission "Hai Leaks Response 6"
 				`	"Am I allowed to know more?"`
 			`	Alondo gives you a quizzical look. "Of course you are, <last>."`
 			label about
-			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise', which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones."`
+			`	He pulls out a hand tablet and shows you a title screen which doesn't automatically look familiar. As he talks he flicks through a series of reference images. "There's an older TV show franchise with a cult following called 'Our Fuzzy Paradise,' which has had a few different reboots and iterations over the decades. In case you haven't guessed, it features a whole cast of anthropomorphic squirrels. Most recently we had a seven season series run subtitled 'Fellowship is Glamorous' which was one of the more successful ones."`
 			choice
 				`	"That sounds... interesting. Tell me more."`
 				`	"Never mind. It sounds like you have that under control. What's next?"`
@@ -482,7 +482,7 @@ mission "Hai Leaks Response 6"
 			`	"A very sweet friend of mine, who is much too enthusiastic and perhaps led by the vagaries of youth but nonetheless quite astute, keeps harping on to me about this theory of hers that some kind of smuggling ring is kidnapping Hai and transporting them into human space with the quiet support of one of your legal entities.`
 			`	"Of course, a thorough investigation has occurred on our side, and no admissible evidence of such things has turned up, but...`
 			`	"Well, you see we cannot investigate your space openly or easily. I have paid it little mind, written it off as one of her eccentricities, but things are very tense right now. The Council of Elders wants to maintain our secrecy and the human diplomats are willing to accommodate us, but we sense their governments grow tired of maintaining the fiction. We are well aware that human intelligence services are highly competent, and motivated by many different factors. It worries me that one of your factions may not be wholly honest, and may have knowledge they intend to use as ammunition if things don't work out well for them."`
-			`	You have not had much exposure to this elected "Council of Elders", but it seems they must hold some kind of final authority over decisions.`
+			`	You have not had much exposure to this elected "Council of Elders," but it seems they must hold some kind of final authority over decisions.`
 			choice
 				`	"But what should I do about it?"`
 					goto dothings
@@ -495,13 +495,13 @@ mission "Hai Leaks Response 6"
 				"hai slave prereq" >= 1
 			choice
 				`	"Sure, I can have a look around."`
-			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+			`	She gives you a little smile and nods. "If you come across someone and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh.'"`
 				goto mean
 			label aboutthat
 			`	"Well, about that," you say, "I think I might have already come across some potential evidence of this before."`
 			`	Sayari's hood nearly slips off as she looks up at you with a horrified expression. "Surely not?!"`
 			`	You rush to reassure her. "Nothing concrete, of course. I can go and look to be sure."`
-			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh'."`
+			`	She gives you a very serious look and nods. "If you come across any others and have difficulty getting them to trust you, try telling them 'Luf e ow, vai, luf e eh.'"`
 			label mean
 			choice
 				`	"Thank you, I will."`

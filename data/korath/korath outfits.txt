@@ -219,7 +219,7 @@ outfit "Afterburner (Asteroid Class)"
 	"engine capacity" -5
 	"fuel capacity" 100
 	"ramscoop" 0.25
-	"afterburner thrust" 15.4
+	"afterburner thrust" 23.1
 	"afterburner energy" 0.6
 	"afterburner heat" 6.25
 	"afterburner fuel" 0.0375
@@ -235,7 +235,7 @@ outfit "Afterburner (Comet Class)"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"afterburner thrust" 62.4
+	"afterburner thrust" 93.6
 	"afterburner energy" 2.25
 	"afterburner heat" 22.75
 	"afterburner fuel" 0.125
@@ -251,7 +251,7 @@ outfit "Afterburner (Lunar Class)"
 	"mass" 32
 	"outfit space" -32
 	"engine capacity" -32
-	"afterburner thrust" 119.0
+	"afterburner thrust" 178.5
 	"afterburner energy" 3.9
 	"afterburner heat" 41.65
 	"afterburner fuel" 0.225
@@ -267,7 +267,7 @@ outfit "Afterburner (Planetary Class)"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"afterburner thrust" 230.4
+	"afterburner thrust" 345.6
 	"afterburner energy" 7.1
 	"afterburner heat" 79.45
 	"afterburner fuel" 0.4
@@ -284,7 +284,7 @@ outfit "Afterburner (Stellar Class)"
 	"mass" 94
 	"outfit space" -94
 	"engine capacity" -94
-	"afterburner thrust" 441.6
+	"afterburner thrust" 662.4
 	"afterburner energy" 12.65
 	"afterburner heat" 148
 	"afterburner fuel" 0.725
@@ -301,6 +301,7 @@ effect "korath afterburner tiny"
 		"no repeat"
 		"frame rate" 90
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 7
 	"random angle" 15
 	"random spin" 360
@@ -313,6 +314,7 @@ effect "korath afterburner small"
 		"no repeat"
 		"frame rate" 60
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 10
 	"random angle" 15
 	"random spin" 360
@@ -326,6 +328,7 @@ effect "korath afterburner medium"
 		"no repeat"
 		"frame rate" 45
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 12
 	"random angle" 15
 	"random spin" 360
@@ -339,6 +342,7 @@ effect "korath afterburner large"
 		"no repeat"
 		"frame rate" 30
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 14
 	"random angle" 15
 	"random spin" 360
@@ -352,6 +356,7 @@ effect "korath afterburner huge"
 		"no repeat"
 		"frame rate" 20
 	sound "korath afterburner"
+	"sound category" "afterburner"
 	"lifetime" 16
 	"random angle" 15
 	"random spin" 360
@@ -368,10 +373,10 @@ outfit "Engine (Meteor Class)"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"thrust" 9
+	"thrust" 15.75
 	"thrusting energy" 1.35
 	"thrusting heat" 2.9
-	"turn" 240
+	"turn" 360
 	"turning energy" 0.65
 	"turning heat" 1.95
 	"flare sprite" "effect/korath flare/tiny"
@@ -391,10 +396,10 @@ outfit "Bow Drive (Meteor Class)"
 	"outfit space" -18
 	"engine capacity" -15
 	"weapon capacity" -3
-	"turn" 240
+	"turn" 360
 	"turning energy" 0.65
 	"turning heat" 1.95
-	"reverse thrust" 9
+	"reverse thrust" 15.75
 	"reverse thrusting energy" 1.35
 	"reverse thrusting heat" 2.9
 	"steering flare sprite" "effect/korath flare/tiny"
@@ -414,7 +419,7 @@ outfit "Reverser (Asteroid Class)"
 	"outfit space" -14
 	"engine capacity" -7
 	"weapon capacity" -7
-	"reverse thrust" 11.2
+	"reverse thrust" 20.76
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 3.4
 	"reverse flare sprite" "effect/korath flare/tiny"
@@ -432,7 +437,7 @@ outfit "Reverser (Comet Class)"
 	"outfit space" -24
 	"engine capacity" -12
 	"weapon capacity" -12
-	"reverse thrust" 21.8
+	"reverse thrust" 37.53
 	"reverse thrusting energy" 2.8
 	"reverse thrusting heat" 6.5
 	"reverse flare sprite" "effect/korath flare/small"
@@ -450,13 +455,13 @@ outfit "Reverser (Lunar Class)"
 	"outfit space" -40
 	"engine capacity" -20
 	"weapon capacity" -20
-	"reverse thrust" 41.2
+	"reverse thrust" 66.195
 	"reverse thrusting energy" 4.9
 	"reverse thrusting heat" 11.9
 	"reverse flare sprite" "effect/korath flare/medium"
 		"frame rate" 7
 	"reverse flare sound" "plasma medium"
-	description "Dwarfing any reversers in human space, this engine provides a considerable amount of reverse thrust for medium sized Korath ships, where it is most commonly found."
+	description "Dwarfing any reversers in human space, this engine provides a considerable amount of reverse thrust for medium-sized Korath ships, where it is most commonly found."
 	description "	This Korath engine has been modified to be partially installed in a ship's weapon space, allowing it to push the ship in reverse."
 
 outfit "Reverser (Planetary Class)"
@@ -468,7 +473,7 @@ outfit "Reverser (Planetary Class)"
 	"outfit space" -68
 	"engine capacity" -34
 	"weapon capacity" -34
-	"reverse thrust" 80.0
+	"reverse thrust" 120.0
 	"reverse thrusting energy" 8.9
 	"reverse thrusting heat" 22.7
 	"reverse flare sprite" "effect/korath flare/large"
@@ -486,7 +491,7 @@ outfit "Reverser (Stellar Class)"
 	"outfit space" -118
 	"engine capacity" -59
 	"weapon capacity" -59
-	"reverse thrust" 153.4
+	"reverse thrust" 224.1
 	"reverse thrusting energy" 15.8
 	"reverse thrusting heat" 42.6
 	"reverse flare sprite" "effect/korath flare/huge"
@@ -504,7 +509,7 @@ outfit "Thruster (Asteroid Class)"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"thrust" 11.2
+	"thrust" 20.76
 	"thrusting energy" 1.5
 	"thrusting heat" 3.4
 	"flare sprite" "effect/korath flare/tiny"
@@ -520,7 +525,7 @@ outfit "Thruster (Comet Class)"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"thrust" 21.8
+	"thrust" 37.53
 	"thrusting energy" 2.8
 	"thrusting heat" 6.5
 	"flare sprite" "effect/korath flare/small"
@@ -536,7 +541,7 @@ outfit "Thruster (Lunar Class)"
 	"mass" 40
 	"outfit space" -40
 	"engine capacity" -40
-	"thrust" 41.2
+	"thrust" 66.195
 	"thrusting energy" 4.9
 	"thrusting heat" 11.9
 	"flare sprite" "effect/korath flare/medium"
@@ -552,7 +557,7 @@ outfit "Thruster (Planetary Class)"
 	"mass" 68
 	"outfit space" -68
 	"engine capacity" -68
-	"thrust" 80.0
+	"thrust" 120.0
 	"thrusting energy" 8.9
 	"thrusting heat" 22.7
 	"flare sprite" "effect/korath flare/large"
@@ -568,7 +573,7 @@ outfit "Thruster (Stellar Class)"
 	"mass" 118
 	"outfit space" -118
 	"engine capacity" -118
-	"thrust" 153.4
+	"thrust" 224.1
 	"thrusting energy" 15.8
 	"thrusting heat" 42.6
 	"flare sprite" "effect/korath flare/huge"
@@ -584,7 +589,7 @@ outfit "Steering (Asteroid Class)"
 	"mass" 10
 	"outfit space" -10
 	"engine capacity" -10
-	"turn" 280.0
+	"turn" 420.0
 	"turning energy" 0.7
 	"turning heat" 2.1
 	"steering flare sprite" "effect/korath flare/tiny"
@@ -600,7 +605,7 @@ outfit "Steering (Comet Class)"
 	"mass" 18
 	"outfit space" -18
 	"engine capacity" -18
-	"turn" 568.8
+	"turn" 853.2
 	"turning energy" 1.4
 	"turning heat" 4.1
 	"steering flare sprite" "effect/korath flare/small"
@@ -616,7 +621,7 @@ outfit "Steering (Lunar Class)"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 1056.0
+	"turn" 1584.0
 	"turning energy" 2.5
 	"turning heat" 7.4
 	"steering flare sprite" "effect/korath flare/medium"
@@ -632,7 +637,7 @@ outfit "Steering (Planetary Class)"
 	"mass" 52
 	"outfit space" -52
 	"engine capacity" -52
-	"turn" 2069.6
+	"turn" 3104.4
 	"turning energy" 4.6
 	"turning heat" 14.2
 	"steering flare sprite" "effect/korath flare/large"
@@ -648,7 +653,7 @@ outfit "Steering (Stellar Class)"
 	"mass" 89
 	"outfit space" -89
 	"engine capacity" -89
-	"turn" 4005.0
+	"turn" 6007.5
 	"turning energy" 8.2
 	"turning heat" 26.7
 	"steering flare sprite" "effect/korath flare/huge"
@@ -663,7 +668,7 @@ outfit "Arkrof GP Hybrid Thruster"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"thrust" 16.5
+	"thrust" 28.95
 	"thrusting energy" 2.6
 	"thrusting heat" 3
 	"flare sprite" "effect/efreti flare/tiny"
@@ -678,7 +683,7 @@ outfit "Farves GP Hybrid Thruster"
 	"mass" 33
 	"outfit space" -33
 	"engine capacity" -33
-	"thrust" 32.5
+	"thrust" 53.1
 	"thrusting energy" 5.05
 	"thrusting heat" 5.9
 	"flare sprite" "effect/efreti flare/small"
@@ -693,7 +698,7 @@ outfit "Gaktem GP Hybrid Thruster"
 	"mass" 57
 	"outfit space" -57
 	"engine capacity" -57
-	"thrust" 63.5
+	"thrust" 97.425
 	"thrusting energy" 9.1
 	"thrusting heat" 11.05
 	"flare sprite" "effect/efreti flare/medium"
@@ -708,7 +713,7 @@ outfit "Nelmeb GP Hybrid Thruster"
 	"mass" 86
 	"outfit space" -86
 	"engine capacity" -86
-	"thrust" 105
+	"thrust" 156.9
 	"thrusting energy" 14
 	"thrusting heat" 18
 	"flare sprite" "effect/efreti flare/large"
@@ -724,7 +729,7 @@ outfit "Arkrof GP Hybrid Steering"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"turn" 345
+	"turn" 517.5
 	"turning energy" 1.25
 	"turning heat" 1.3
 	"steering flare sprite" "effect/efreti flare/tiny"
@@ -739,7 +744,7 @@ outfit "Farves GP Hybrid Steering"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
-	"turn" 800
+	"turn" 1200
 	"turning energy" 2.7
 	"turning heat" 2.95
 	"steering flare sprite" "effect/efreti flare/small"
@@ -755,7 +760,7 @@ outfit "Gaktem GP Hybrid Steering"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"turn" 1590
+	"turn" 2385
 	"turning energy" 4.9
 	"turning heat" 5.85
 	"steering flare sprite" "effect/efreti flare/medium"
@@ -771,7 +776,7 @@ outfit "Nelmeb GP Hybrid Steering"
 	"mass" 67
 	"outfit space" -67
 	"engine capacity" -67
-	"turn" 2800
+	"turn" 4200
 	"turning energy" 7.85
 	"turning heat" 10
 	"steering flare sprite" "effect/efreti flare/large"
@@ -795,7 +800,7 @@ outfit "Microbot Defense Station"
 	thumbnail "outfit/microbot defense station"
 	mass 2
 	"outfit space" -3
-	"capture defense" 45
+	"capture defense" 18
 	illegal 10000000
 	"energy consumption" 0.01
 	"heat generation" 0.1

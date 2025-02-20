@@ -282,6 +282,8 @@ news "remnant incomprehensible"
 
 
 news "remnant cafeteria"
+	location
+		government "Remnant"
 	name
 		word
 			"Spaceport"

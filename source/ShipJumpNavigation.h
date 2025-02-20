@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_JUMP_NAVIGATION_H_
-#define SHIP_JUMP_NAVIGATION_H_
+#pragma once
 
 #include "JumpTypes.h"
 
@@ -29,12 +28,6 @@ class System;
 // A class representing the jump capabilities of a ship. Calculates and caches a ship's
 // jump methods, costs, and distances.
 class ShipJumpNavigation {
-public:
-	static const double DEFAULT_HYPERDRIVE_COST;
-	static const double DEFAULT_SCRAM_DRIVE_COST;
-	static const double DEFAULT_JUMP_DRIVE_COST;
-
-
 public:
 	ShipJumpNavigation() = default;
 
@@ -59,6 +52,9 @@ public:
 	std::pair<JumpType, double> GetCheapestJumpType(const System *destination) const;
 	// Get the cheapest jump method between the two given systems.
 	std::pair<JumpType, double> GetCheapestJumpType(const System *from, const System *to) const;
+
+	// Get if this ship can make a hyperspace or jump drive jump directly from one system to the other.
+	bool CanJump(const System *from, const System *to) const;
 
 	// Check what jump methods this ship has.
 	bool HasHyperdrive() const;
@@ -93,7 +89,3 @@ private:
 	bool hasJumpDrive = false;
 	bool hasJumpMassCost = false;
 };
-
-
-
-#endif

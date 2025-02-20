@@ -40,23 +40,9 @@ void ConditionsStore::DerivedProvider::SetGetFunction(function<int64_t(const str
 
 
 
-void ConditionsStore::DerivedProvider::SetHasFunction(function<bool(const string &)> newHasFun)
-{
-	hasFunction = std::move(newHasFun);
-}
-
-
-
 void ConditionsStore::DerivedProvider::SetSetFunction(function<bool(const string &, int64_t)> newSetFun)
 {
 	setFunction = std::move(newSetFun);
-}
-
-
-
-void ConditionsStore::DerivedProvider::SetEraseFunction(function<bool(const string &)> newEraseFun)
-{
-	eraseFunction = std::move(newEraseFun);
 }
 
 
@@ -171,7 +157,11 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
+	{
+		if(!DataNode::IsConditionName(child.Token(0)))
+			child.PrintTrace("Invalid condition during savegame-load:");
 		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+	}
 }
 
 
@@ -180,19 +170,19 @@ void ConditionsStore::Save(DataWriter &out) const
 {
 	out.Write("conditions");
 	out.BeginChild();
-	for(auto it = storage.begin(); it != storage.end(); ++it)
+	for(const auto &it : storage)
 	{
 		// We don't need to save derived conditions that have a provider.
-		if(it->second.provider)
+		if(it.second.provider)
 			continue;
 		// If the condition's value is 0, don't write it at all.
-		if(!it->second.value)
+		if(!it.second.value)
 			continue;
 		// If the condition's value is 1, don't bother writing the 1.
-		if(it->second.value == 1)
-			out.Write(it->first);
+		if(it.second.value == 1)
+			out.Write(it.first);
 		else
-			out.Write(it->first, it->second.value);
+			out.Write(it.first, it.second.value);
 	}
 	out.EndChild();
 }
@@ -212,41 +202,6 @@ int64_t ConditionsStore::Get(const string &name) const
 		return ce->value;
 
 	return ce->provider->getFunction(name);
-}
-
-
-
-bool ConditionsStore::Has(const string &name) const
-{
-	const ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return false;
-
-	if(!ce->provider)
-		return true;
-
-	return ce->provider->hasFunction(name);
-}
-
-
-
-// Returns a pair where the boolean indicates if the game has this condition set,
-// and an int64_t which contains the value if the condition was set.
-pair<bool, int64_t> ConditionsStore::HasGet(const string &name) const
-{
-	const ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return make_pair(false, 0);
-
-	if(!ce->provider)
-		return make_pair(true, ce->value);
-
-	bool has = ce->provider->hasFunction(name);
-	int64_t val = 0;
-	if(has)
-		val = ce->provider->getFunction(name);
-
-	return make_pair(has, val);
 }
 
 
@@ -278,24 +233,6 @@ bool ConditionsStore::Set(const string &name, int64_t value)
 		return true;
 	}
 	return ce->provider->setFunction(name, value);
-}
-
-
-
-// Erase a condition completely, either the local value or by performing
-// an erase on the provider.
-bool ConditionsStore::Erase(const string &name)
-{
-	ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return true;
-
-	if(!(ce->provider))
-	{
-		storage.erase(name);
-		return true;
-	}
-	return ce->provider->eraseFunction(name);
 }
 
 
@@ -387,10 +324,10 @@ void ConditionsStore::Clear()
 int64_t ConditionsStore::PrimariesSize() const
 {
 	int64_t result = 0;
-	for(auto it = storage.begin(); it != storage.end(); ++it)
+	for(const auto &it : storage)
 	{
 		// We only count primary conditions; conditions that don't have a provider.
-		if(it->second.provider)
+		if(it.second.provider)
 			continue;
 		++result;
 	}
@@ -419,7 +356,7 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 	--it;
 	// The entry is matching if we have an exact string match.
-	if(!name.compare(it->first))
+	if(name == it->first)
 		return &(it->second);
 
 	// The entry is also matching when we have a prefix entry and the prefix part in the provider matches.
