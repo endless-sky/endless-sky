@@ -986,22 +986,21 @@ outfit "Firelight Activated"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
-		"lifetime" 140
+		"lifetime" 168
 		"acceleration" 1.6
-		"drag" .1
+		"drag" .12
 		"turn" 1.7
 		"homing" 4
-		"infrared tracking" .5
 		"optical tracking" .7
-		"trigger radius" 30
-		"blast radius" 60
+		"trigger radius" 24
+		"blast radius" 48
 		"shield damage" 950
 		"hull damage" 950
 		"heat damage" 1800
 		"burn damage" 10
 		"corrosion damage" 2
 		"hit force" 600
-		"missile strength" 30
+		"missile strength" 36
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"
