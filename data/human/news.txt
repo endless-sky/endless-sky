@@ -1230,7 +1230,7 @@ news "museum curator"
 			"Every so often, we get contacted by someone shady wishing to donate something to our museum."
 			"Much of human technological progress has been driven by a desire to more effectively induce entropy in one's opponents."
 			"Did you know Cleopatra lived closer in time to the invention of the hyperdrive than the building of the pyramids?"
-			"We bought an ancient shuttle called 'The Theseus,' but the engines, the hull, the power systems and every other part of it was replaced since its construction. Is it still an ancient shuttle when every part was replaced?"
+			"We bought an ancient shuttle called 'The Theseus,' but the engines, the hull, the power systems and every other part of it have been replaced since its construction. Is it still an ancient shuttle when every part has been replaced?"
 		word
 			`"`
 
