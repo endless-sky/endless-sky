@@ -728,7 +728,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				goto next
 
 			label confirm
-			`	"Amusment. That was rhetorical." She takes a sip from her own drink.`
+			`	"Amusement. That was rhetorical." She takes a sip from her own drink.`
 
 			label next
 			action
@@ -751,11 +751,11 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	"Dismissive. Of course, everyone is singing your praises. Except for the ones who claim you aren't one of those 'humans' at all, and are secretly an Aberrant in the shape of one waiting for the perfect moment to strike and eat our children." Claret gives you a serious look. "You aren't, right?"`
 			choice
 				`	"Not last I checked."`
+					goto gossip
 				`	"Nope."`
+					goto gossip
 				`	"Well, you've caught me."`
-					goto caught
 
-			label caught
 			`	"Oh no." she says in a completely flat voice. "I am absolutely terrified." She takes a deep drink before sighing contentedly.`
 
 			label gossip
@@ -765,7 +765,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 					goto believe
 				`	"Very contradictory rumors."`
 
-			`	She gives you an incredulous look. "Scorn. When are they not? I don't know about you humans, but ask three Avgi the same question and you'll get six different answers. We are a fractious lot, us Avgi, and that will be true until the stars burn out and the moons fall from the sky."`
+			`	She gives you an incredulous look. "Scorn. When are they not? I don't know about you humans, but ask three Avgi the same question and you'll get six different answers. We are a fractious lot, us Avgi, and that will be true until the stars burn out and the moons fall from the sky.`
 				goto humans
 
 			label believe
@@ -781,11 +781,11 @@ mission "Avgi Culture: Twilight Tavern Guard"
 					to display
 						has "event: war begins"
 
-			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either - they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use."`
+			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either - they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use.`
 				goto humans
 
 			label exploit
-			`	"Perhaps. But I don't think so, not from what I've seen of you. Your stranded fellows, they dedicated themselves to helping us as soon as they realized they couldn't go home. I didn't like that short fellow though, all he did was complain." She smirks. "Reminded me of an ensign back in school."`
+			`	"Perhaps. But I don't think so, not from what I've seen of you. Your stranded fellows, they dedicated themselves to helping us as soon as they realized they couldn't go home. I didn't like that short fellow though, all he did was complain." She smirks. "Reminded me of an ensign back in school.`
 				goto humans
 
 			label accurate
