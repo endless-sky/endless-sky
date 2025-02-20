@@ -1806,7 +1806,7 @@ mission "Lunarium: Combat Training 4"
 				`	"Did you manage to fight the pirates well enough?"`
 					goto pirates
 				`	"Honestly I'm surprised you didn't lose anyone. Some of the ships you bought aren't exactly made for fighting."`
-			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate shield matrixes, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
+			`	She clicks her mandibles quickly. "Neither are ours. Coalition ships, I mean. Of weaker materials, our civilian vessels are made, with less intricate shield matrices, less space for weaponry. With that knowledge, intentionally choose ships on the more fragile side for this training, I did. Focused on fighting heavier human ships, we were, to simulate that difference in durability and firepower," she explains. "Of course, with Heliarch ships, much greater the gap is, but a useful experience it has been regardless."`
 				goto accept
 			label pirates
 			`	"Lie I will not, difficult the first few months were. Very used to the Coalition, to our equipment, we were, so forget we did many times that no hull repair capabilities of their own, the ships had." She passes her two front legs over her head a few times, as if brushing it in shame. "Lucky we were, that no casualties we had. At least, a good way to improvise mid-battle rescues, it all was." she finishes, perking up her head.`
@@ -1905,33 +1905,54 @@ mission "Lunarium: Quarg Interview"
 			label questions
 			choice
 				`	"What are you all going to do if you do manage to take down the Heliarchs?"`
+					to display
+						not "lunarium questions: takedown"
 				`	"You'll need to fight the Heliarchs at some point. Are you capable of doing that?"`
+					to display
+						not "lunarium questions: fightthem"
 					goto fight
 				`	"Am I the only outsider helping you?"`
+					to display
+						not "lunarium questions: outsider"
 					goto outsiders
 				`	"How do you pay for all this?"`
+					to display
+						not "lunarium questions: money"
 					goto pay
 				`	"I'm fine for now. What about this task you need me for?"`
 					goto task
+			action
+				set "lunarium questions: takedown"
 			`	"Rebuild, first we will need to," Chiree responds. "Fight tooth and nail to remain in power, they will, so a great deal of damage to the Coalition, we expect."`
 			`	"Once back in order, everything is, focus on reassuring the populace we should. A change for the better, it will be, and help in making sure everyone realizes that, House Bebliss will," Lobmab jumps in. "Earn back what they took from us, we will."`
 			`	Once the head of House Bebliss is done, Chiree continues. "Pointless, our fight will have been, if corrupted in those rings again, our successors thousands of years from now become. Set up transparency measures and means to ensure that absolute power, the consuls do not have, we will."`
 				goto questions
 			label fight
+			action
+				set "lunarium questions: fightthem"
 			`	"Try and fool you, I will not. At a tremendous disadvantage, to say the least, we are," Pyakri answers. "Weaker, our ships are, and far less powerful weapons, we boast. Mostly human designs. Due to being simpler, easier to produce in what factories we have, they are. Also lack experience, the troops do..."`
 			`	The mood around the table quickly dims as she goes on listing the ways the Lunarium is lacking in comparison to your opponents. Elirom stands up, putting both hands on the table to draw attention. "Smarter than us, they are not. Assure you of that, I can. Wanting in many areas we are, yes, but only because hoard our best materials, they do. Already preparing some deadlier weapons, we are. Finished, the blueprints have been. Only lacking the right materials, we are. When secured those, we have, move on to reforming our arsenal we can, and maybe get some better ships produced, too."`
 			`	"And suppose I do that, intend to tell me where to attack for such materials, you do?" Pyakri asks as she stands up herself. "Caught by 'the unforeseen' will my men again be? By an Arach battalion you forgot to mention, again?"`
 			`	Caught off-guard by the question, apparently, Elirom looks at her for a few seconds, then resigns himself to sit back down.`
 				goto questions
 			label outsiders
+			action
+				set "lunarium questions: outsider"
 			`	For a few seconds, they simply exchange looks at your question, until Lobmab speaks up. "Transmissions and messages from some source, Bebliss has received for centuries now. Told us they have of Heliarch activity, fleet movements, training drills, propaganda plans. Always exactly right in their predictions, the messages were. Also pointed us to equipment caches - caches with outfits previously found nowhere in the Coalition - they have. Human weaponry, blueprints, factory parts..."`
 			`	"Aware of the identity of whoever does it, we are not," Elirom says. "An arbiter I was, and though a great deal I knew, still kept from me, some critical information was. Possible, it is, that from one of the consuls, the information comes. Though, difficult to steal a jump drive to bring in the weapons, it would be, even for a consul." He pauses, a dead stare in his eyes as he bites lightly on a finger. "Also received word of... experiments, we have from the messages. Some manner of procedure to take over bodies... stop whatever it is being done in the rings, we must."`
 				goto questions
 			label pay
+			action
+				set "lunarium questions: money"
 			`	The rest of the table look to Lobmab at the same time, prompting her explanation. "Amassed great fortune over our history, House Bebliss has. As part of our gracious help to the Lunarium, providing nearly everything in financial terms we have been."`
 			`	She stops, with the others still looking at her, as if expecting something more. She remains silent, so Chiree looks back at you, continuing, "Also taken some loans from House Plumtab in our stead, Houses Bebliss and Idriss have. Not terribly passionate for our cause, Plumtab's bankers are, but share our interest in booting the Heliarchs, they do, even if meet or talk with us, they never do."`
 				goto questions
 			label task
+			action
+				clear "lunarium questions: fightthem"
+				clear "lunarium questions: money"
+				clear "lunarium questions: outsider"
+				clear "lunarium questions: takedown"
 			`	Tummug goes around the table, handing copies of some documents to the other leaders before answering. "One of the centerpoints of Heliarch propaganda, the fear of the Quarg is. Served to justify their budget, and their obsession with hoarding the military, for millennia it has. Thought up a way to mitigate the effect that has on the populace, Oobat has."`
 			`	With this cue, Oobat goes further into the plan. "Not seen in Coalition space in over six thousand years, a Quarg ship has been. Most likely moved on from our war, they have, unlike the Heliarchs. If proof of the Quarg's lack of interest in waging war against us, we had, spread it to the people, we could. Given the Captain's resourcefulness, and possession of a jump drive, think we did that the best way to acquire that proof, meeting up with the Quarg is." She grabs one of the documents, pointing to it. "For you all to review these questions, I would like. Careful we should be, with regard to their wording. Once done, we are, board Captain <last>'s ship, I will. Meet with the Quarg in human space, we must," she says the last part looking at you. "Met with the Quarg before, have you, Captain?"`
 			branch metquarg
@@ -1987,7 +2008,7 @@ mission "Lunarium: Join"
 			`	The Quarg gazes at you two for a few seconds, before squatting down to your level. "Very well. What questions do you have?"`
 			`	She hands you the camera, turning it on and asking that you keep it as still as you can once you're positioned to get a good angle. She then connects her translator to it remotely, so that the audio picks up the Quarg's translated responses. "Well, begin then we shall. Regarding the very reason for the Coalition's formation, intending to fight us again, are you?"`
 			`	It thinks for a moment, then answers, "No. We never intended to fight. It was the Saryds, Kimek and Arachi of old who fought us. We are not a warring people."`
-			`	Seemingly satisfied with the answer, Oobat moves on to the next. She questions the Quarg for about ten minutes on their activities outside the Coalition and their relation with the humans and other species. She even has you move the camera around for a bit to show the local human-Quarg interactions, as the Quarg compares dealing with humanity to dealing with the Coalition species. Oobat moves from question from question as if in a checklist, until she arrives at the last one. "About finished, we are. Thankful for your answers I am. Just one last thing, to appease the people back home. Interested in returning to take back the rings, are you?"`
+			`	Seemingly satisfied with the answer, Oobat moves on to the next. She questions the Quarg for about ten minutes on their activities outside the Coalition and their relation with the humans and other species. She even has you move the camera around for a bit to show the local human-Quarg interactions, as the Quarg compares dealing with humanity to dealing with the Coalition species. Oobat moves from question to question as if in a checklist, until she arrives at the last one. "About finished, we are. Thankful for your answers I am. Just one last thing, to appease the people back home. Interested in returning to take back the rings, are you?"`
 			`	"Of course," it says without hesitation. "The rings are our homes. My home." Clearly not expecting that answer, Oobat looks at you in confusion.`
 			choice
 				`	"It's been thousands of years. You're still lingering on those rings?"`
