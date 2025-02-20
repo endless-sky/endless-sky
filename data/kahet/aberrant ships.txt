@@ -31,7 +31,7 @@ ship "Aberrant Latte"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 82
-		"outfit space" 202
+		"outfit space" 232
 		"weapon capacity" 64
 		"engine capacity" 66
 		"energy capacity" 12000
@@ -176,7 +176,7 @@ ship "Aberrant Pileup"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 123
-		"outfit space" 229
+		"outfit space" 269
 		"weapon capacity" 94
 		"engine capacity" 66
 		"energy capacity" 17000
@@ -246,7 +246,7 @@ ship "Aberrant Hugger"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 82
-		"outfit space" 275
+		"outfit space" 305
 		"weapon capacity" 144
 		"engine capacity" 93
 		"energy capacity" 12000
@@ -545,7 +545,7 @@ ship "Aberrant Icebreaker"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 293
+		"outfit space" 313
 		"weapon capacity" 103
 		"engine capacity" 73
 		"energy capacity" 15000
@@ -571,7 +571,6 @@ ship "Aberrant Icebreaker"
 		"Ka'het MHD Generator"
 		"Ka'het Reserve Accumulator"
 		"Anomalous Shield Restorer"
-		"Anomalous Mass" 22
 
 		"Ka'het Compact Engine" 2
 		"Hyperdrive"
@@ -620,7 +619,7 @@ ship "Aberrant Pike"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 281
+		"outfit space" 291
 		"weapon capacity" 102
 		"engine capacity" 62
 		"energy capacity" 18000
@@ -693,7 +692,7 @@ ship "Aberrant Mole"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 308
+		"outfit space" 318
 		"weapon capacity" 148
 		"engine capacity" 52
 		"energy capacity" 12000
@@ -768,7 +767,7 @@ ship "Aberrant Whiskers"
 		"fuel capacity" 300
 		"ramscoop" 0.2
 		"cargo space" 66
-		"outfit space" 245
+		"outfit space" 265
 		"weapon capacity" 64
 		"engine capacity" 72
 		"energy capacity" 12000
