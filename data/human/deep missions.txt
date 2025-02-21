@@ -5899,7 +5899,7 @@ mission "Hroar's Haulers 15"
 				`	"No deal."`
 					goto nodeal
 				`	"Sure, I'll sign it. Anything to get out of here."`
-			`	Yngvar glares at you, "Kid, I won't dress you down in front of company, but you've fouled this up real bad. I'll be awaitin' on your ship when you're done selling our future."`
+			`	Yngvar glares at you, "Kid, I won't dress you down in front of mixed company, but you've fouled this up real bad. I'll be awaitin' on your ship when you're done selling our future."`
 			`	The old spacer turns and leaves.`
 			`	Leland claps and the holding doors open up behind him. The formerly incarcerated Haulers begin making their way back to their ships.`
 			action
@@ -6112,7 +6112,6 @@ mission "Hroar's Haulers 16"
 	to offer
 		has "Hroar's Haulers 11: active"
 		has "Yngvar Interlude: declined"
-		has "Hroar's Haulers 15: declined"
 	on offer
 		conversation
 			`The Long Haul convoy kicks up a flurry of agitated sand as they descend upon the energetic concrete pads outside Rand's spaceport. There's a small fleet of loading vehicles, and an army of workers, all awaiting your arrival.`
@@ -6130,12 +6129,12 @@ mission "Hroar's Haulers 17"
 		conversation
 			`You find Yngvar in the large unadorned building labeled "Trade". He's surrounded by a swarm of officials and representatives from Rand.`
 			`	"No transport? What am I supposed to tell them? They've been waiting for weeks!" One of the officials yells.`
-			`	"Wait for the next fleet! Hrodny will be able to move most of 'em next time she comes through." Yngvar's voice rages back.`
+			`	"Wait for the next fleet!" Yngvar shouts back," Hrodny will be able to move most of 'em next time she comes through."`
 			`	"Whose going to pay for that? They need Discounts! Refunds!"`
 			`	"Enough!" Yngvar holds out his thick hands, and the room quiets, "No discounts. The trip costs what the trip costs. If they want refunds, fine. But that won't get them to Humanika any faster."`
 			`	A few of the more agitated officials seem to calm at that.`
 			`	"Now." Yngvar continues, "We still got plenty of ships that need seeing too. The faster you get your goods loaded, the faster they'll get to Lagrange, and we all get paid."`
-			`	At that the crowd thinned, though a few people stayed back, clearly intending to falk to Yngvar further. Yngvar ignores them and instead approaches you.`
+			`	At that the crowd thinned, though a few people linger, giving Yngvar hard stares. Yngvar ignores them and instead approaches you.`
 			`	"Captain <last>." He says, "As you can see we're not the only folk fouled up by Solvi and his fleet getting locked up. Feels like half the planet was hoping to hitch a ride with us."`
 			label yngvarchat
 			choice
@@ -6154,7 +6153,7 @@ mission "Hroar's Haulers 17"
 				`	"Looks like you're all good here."`
 					goto allgood
 				`	(Say nothing.)`
-			`	Yngvar narrows his eyes and then shrugs, "Fair enough. Ain't much to say. Just wish by Hel we had those ships. Don't much like upsetting folks of Rand. We do big business here. Anyways, there's not much else for you to do here. I gotta do a bit more talkin', but I'll see ya back on the <ship>."`
+			`	Yngvar narrows his eyes and then shrugs, "Fair enough. Ain't much to say. Just wish by Hel we had those ships. Don't much like upsetting the good folks of Rand. We do big business here. Anyways, there's not much else for you. I gotta do a bit more talkin', but I'll see ya back on the <ship>."`
 			`	He turns from you and signals to the lurking representatives that they can approach him. A flurry of chatter about deadlines and goods trails after Yngvar.`
 			action
 				clear "lagrange"
@@ -6166,10 +6165,10 @@ mission "Hroar's Haulers 17"
 			action
 				set "lagrange"
 			`	"The folk ain't headed for Lagrange, it's Humanika they got their eye on. Spend some time on Rand, working for megacorps and hyper-capitalists, and a'fore long you'll find yourself pining for some alien overlords of your own." Yngvar gives you half mischievous grin.`
-			`	"Least, that's what I reckon is going on here. News likes to make it sound different, like folks are afraid of alien rulers, but down here in the south, it's the human ones you gotta keep your eye one." He points to his one good eye.`
+			`	"Least, that's what I reckon is going on. News likes to make it sound different, like folks are afraid of alien rulers, but down here in the south, it's the human ones you gotta keep your eye one." He points to his one good eye.`
 			`	"Now, need anything else?"`
 				goto yngvarchat
-			
+
 			label whyhere
 			action
 				set "whyhere"
@@ -6194,12 +6193,12 @@ mission "Hroar's Haulers 17"
 			label niece
 			action 
 				set "niece"
-				`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling shots."`
+				`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
 				goto hrodnychat
 			label southernfleet
 			action
 				set "sfleet"
-			`	"Now, I know you've seen a starmap or two in your day, so this should come as no surprise. This region is flush in resources, and places that need 'em. We'd have to be a star short of constellation to not want a piece of that pie. So, we have a permenent fleet down here doing the work. We'll rotate ships evert so often, as folks tend to miss the Deep."`
+			`	"Now, I know you've seen a starmap or two in your day, so this should come as no surprise. This region is flush in resources, and places that need 'em. We'd have to be a star short of constellation not to want a piece of that action. So, we have a permenent fleet down here doing the work. We rotate ships evert so often, as folks tend to miss clean living in the Deep." He laughs as though he just told a joke.`
 			goto hrodnychat
 
 			label hrodnydone
@@ -6214,7 +6213,7 @@ mission "Hroar's Haulers 17"
 				clear "lagrange"
 				clear "whyhere"
 				clear "hrodny"
-			`	Yngvar nods, "Yeah, little rowdier than normal, but nothing like trouble we had back on Maker. I should be good to finish getting this all sorted out. We should be all loaded up in no time and ready to head for Lagrange. I'll meetchya back at the <ship>."`
+			`	Yngvar nods, "Yeah, little rowdier than normal, but nothing like trouble we had back on Maker. I should be good to finish getting this all sorted out. We'll be all loaded up in no time and ready to head for Lagrange. I'll meetchya back at the <ship>."`
 			`	He turns from you to engage with the remaining representatives.`
 				decline
 
@@ -6229,7 +6228,117 @@ mission "Hroar's Haulers 17b"
 	on offer
 		conversation
 			`You find Yngvar in the Trade building, surrounded by a swarm of officials and representatives from Rand.`
-			`	`
+			`	"Slow down!" Yngvar holds out his thick hands, and the room quiets. "As I said, we got enough room to fullfil your orders, you won't be needing to wait on Hrodny's fleet.`
+			`	"Now." Yngvar continues, "We still got plenty of ships that need seeing too. The faster you get your goods loaded, the faster they'll get to Lagrange, and we all get paid."`
+			`	At that the crowd thinned, though a few people linger, giving Yngvar hard stares. Yngvar ignores them and instead approaches you.`
+			`	"Captain <last>." He says, "As you can see the Rand folk are pretty eager to get their goods off the ground in the gap."`
+			label yngvarchat
+			choice
+				`	"What are we doing here."`
+					goto whyhere
+					to display
+						not "whyhere"
+				`	"Who is Hrodny?"`
+					goto Hrodny
+					to display
+						not "hrodny"
+				` "What do you need to do?"`
+			`	Yngvar nods toward the exit, "Head over to the Labor building and see how Solvi is getting on. We need those folks loaded up right quick. I gotta do a bit more talkin' here, but I'll see ya back on the <ship>."`
+			`	He turns from you and signals to the lurking representatives that they can approach him. A flurry of chatter about deadlines and goods trails after Yngvar.`
+			choice
+				`	(Head over to the Labor building.)`
+					goto labor
+				`	(Stay and listen to the Yngvar's conversations).`
+			`	An angry red-faced man rushes up to Yngvar, "By the dust, I swear you told me I had 1000 tons of sapce to fill on this haul."`
+			`	"Check your records, Swinton." Yngvar responds, "You only agreed to 500. You can't fudge the numbers just because you got lucky."`
+			`	"But what am I supposed to do? Do you know what storage costs me? You got all those ships, you telling me you can't find room for a few hundred extra tons of prime cargo. I'll pay a premium."`
+			`	Yngvar shakes his head, "You ain't gotta wave carrots in front of me like I'm your hog, Swinton. I'm tellin' ya, there just ain't room. You know how carefully we prepare for the Long Haul. You think we'd just leave 500 tons free?"`
+			choice
+				`	"I could find a way to carry an additional 500 tons."`
+					goto offer500
+				`	(Say nothing.)`
+			`	Yngvar puts a calming hand on Swinton's shoulder. "Just wait for Hrodny. She'll be making her runs through here soon enough. Offload it on her."`
+			`	Swinton grumbles, but nods, and stalks away.`
+			`	Yngvar's continues discussing various trade agreements and storage conflicts with other members of the group. Nothing of real interest occurs.`
+			`	(Head over to the Labor building.)`
+				goto labor
+
+			label offer500
+			`	Yngvar turns, surprised to see you still there, and frowns. "Hold on a minute, hirthr, I know you mean well. But, if you start making exceptions others won't be too pleased to here."`
+			`	"Now wait a minute, if this Captain of yours wants-", Swinton starts, but Yngvar cuts him off.`
+			`	"This here room is full of greedy folks who forgot their ink-bound oaths and are looking for special favor. The moment we grant it to one, and not the others, we put our very reputation at stake."`
+			`	Yngvar's one good eye bores into you, "You understand me, Captain <last>?"`
+			choice
+				`	"Aye. I understand. Sorry for the misunderstanding."`
+				`	"Sure. Whatever."`
+				`	(Glare silently at Yngvar).`
+					goto sureokay
+				`	"I can do what I want with my ship."`
+			`	Yngvar's scarred face scrunches up, and then he turns to look at the grinning Swinton, "You put cargo on this Captain's ship, and Hroar's Haulers will never haul for you again."`
+			`	Swinton's face drops, "Oh. Oh. It's not really... I meant no offense... I think we're good here."`
+			`	The red-faced Swinton quickly scurries away.`
+			`	Yngvar turns to face you, and says behind clenched teeth, "Captain Unferth is waiting."`
+			choice
+				`	(Head over to the Labor building.)`
+					goto labor
+
+			label sureokay
+			`	Yngvar nods, "Good. Now, please, go check on Captain Solvi."`
+			`	He glances toward the exit.`
+			choice
+				`	(Head over to the Labor building.)`
+					goto labor
+
+			label labor
+			`	You cross the spaceport to the large building with Labor written across it.`
+
+			label whyhere
+			action
+				set "whyhere"
+			`	"It's not much different from Maker. We're dropping off the last of our quality mining equipment, and filling our hulls to absolute max with their cheap raw materials. Maximizing our profits for when we hit Lagrange. We're also filling our bunks with migrant workers eager to get off this world."`
+			goto yngvarchat
+			label Hrodny
+			action
+				set "hrodny"
+			`	"That'd be Captain Hrodny Hildasdottir, Hroar's niece. She maintains a permenent Haulers fleet down here in the south. You can find 'em all over these parts, but she's headquartered on Wayfarer. We might see her on our way out."`
+			label hrodnychat
+			choice
+				`	"Hroar's niece?"`
+					goto niece
+					to display
+						not "niece"
+				`	"Why do you need a permenent southern fleet?"`
+					goto southernfleet
+					to display
+						not "sfleet"
+				`	"Thanks, I have no more questions about her."`
+					goto hrodnydone
+			label niece
+			action 
+				set "niece"
+				`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
+				goto hrodnychat
+			label southernfleet
+			action
+				set "sfleet"
+			`	"Now, I know you've seen a starmap or two in your day, so this should come as no surprise. This region is flush in resources, and places that need 'em. We'd have to be a star short of constellation not to want a piece of that action. So, we have a permenent fleet down here doing the work. We rotate ships evert so often, as folks tend to miss clean living in the Deep." He laughs as though he just told a joke.`
+			goto hrodnychat
+
+			label hrodnydone
+			action
+				clear "niece"
+				clear "sfleet"
+			`	"Good, anything else you need?"`
+				goto yngvarchat
+
+			label allgood
+			action
+				clear "lagrange"
+				clear "whyhere"
+				clear "hrodny"
+			`	Yngvar nods, "Yeah, little rowdier than normal, but nothing like trouble we had back on Maker. I should be good to finish getting this all sorted out. We'll be all loaded up in no time and ready to head for Lagrange. I'll meetchya back at the <ship>."`
+			`	He turns from you to engage with the remaining representatives.`
+				decline
 
 
 
