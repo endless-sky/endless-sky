@@ -53,7 +53,8 @@ void Music::Init(const vector<filesystem::path> &sources)
 			if(Format::LowerCase(path.extension().string()) != ".mp3")
 				continue;
 
-			paths[(path.parent_path() / path.stem()).generic_string()] = path;
+			string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
+			paths[name] = path;
 		}
 	}
 }

@@ -41,6 +41,8 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	this->name = name;
 
 	isLooped = path.stem().string().ends_with('~');
+	bool isFast = isLooped ? path.stem().string().ends_with("@3x~") : path.stem().string().ends_with("@3x");
+	unsigned &buf = isFast ? buffer3x : buffer;
 
 	shared_ptr<iostream> in = Files::Open(path);
 	if(!in)
@@ -53,9 +55,9 @@ bool Sound::Load(const filesystem::path &path, const string &name)
 	vector<char> data(bytes);
 	in->read(data.data(), bytes);
 
-	if(!buffer)
-		alGenBuffers(1, &buffer);
-	alBufferData(buffer, AL_FORMAT_MONO16, data.data(), bytes, frequency);
+	if(!buf)
+		alGenBuffers(1, &buf);
+	alBufferData(buf, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
 
 	return true;
 }
@@ -72,6 +74,13 @@ const string &Sound::Name() const
 unsigned Sound::Buffer() const
 {
 	return buffer;
+}
+
+
+
+unsigned Sound::Buffer3x() const
+{
+	return buffer3x;
 }
 
 

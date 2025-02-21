@@ -53,7 +53,7 @@ public:
 
 	static bool Exists(const std::filesystem::path &filePath);
 	static std::filesystem::file_time_type Timestamp(const std::filesystem::path &filePath);
-	static void Copy(const std::filesystem::path &from, const std::filesystem::path &to);
+	static bool Copy(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Move(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Delete(const std::filesystem::path &filePath);
 
