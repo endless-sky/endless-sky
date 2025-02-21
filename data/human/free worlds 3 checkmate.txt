@@ -1437,7 +1437,7 @@ mission "FWC Pug 3"
 			label links
 			`	Alondo says, "That's what Freya was working on. As soon as your fleet disappeared, she began investigating, and she went to <planet> to set up something she called a 'graviton detector' pointed towards Vega. Right before that system was taken, she sent us a message that she had found some sort of residual trace of the link, maybe a way to reopen it."`
 			`	"Wait," says Katya, "what do you mean, 'right before the system was taken'? By whom?"`
-			`	"The Navy," says Alondo. "They think the Free Worlds is behind the disappearance of those systems. And with your fleet gone, we didn't have enough ships left to resist them. Freya could have evacuated, but she stayed behind to finish her research. I believe her exact words were, 'To hell with your war, this is more important.'" If she's still there, she may be our best hope for figuring this out.`
+			`	"The Navy," says Alondo. "They think the Free Worlds are behind the disappearance of those systems. And with your fleet gone, we didn't have enough ships left to resist them. Freya could have evacuated, but she stayed behind to finish her research. I believe her exact words were, 'To hell with your war, this is more important.'" If she's still there, she may be our best hope for figuring this out.`
 				goto next
 			
 			label next
