@@ -772,8 +772,6 @@ mission "Wanderers: Unfettered Diplomacy 1B"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
-		"cargo settings"
-			cargo 0
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 fleet "Unfettered Tribute"
