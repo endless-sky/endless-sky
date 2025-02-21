@@ -1,5 +1,5 @@
-/* Sound.h
-Copyright (c) 2014 by Michael Zahniser
+/* MusicPlayer.h
+Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,32 +15,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "supplier/AudioSupplier.h"
-
-#include <filesystem>
-#include <memory>
-#include <string>
+#include "AudioPlayer.h"
 
 
 
-// This is a sound that can be played. The sound's file name will determine
-// whether it is looping (ends in '~') or not.
-class Sound {
+/// Music players are audio players that are always centered, and can't be paused/resumed.
+class MusicPlayer : public AudioPlayer {
 public:
-	bool Load(const std::filesystem::path &path, const std::string &name);
+	/// Creates a new audio player with the given audio.
+	/// Please note that the audio isn't loaded from the supplier until the Play() call.
+	explicit MusicPlayer(std::unique_ptr<AudioSupplier> audioSupplier);
 
-	const std::string &Name() const;
+	void Move(double x, double y, double z) const override;
 
-	unsigned Buffer() const;
-	unsigned Buffer3x() const;
-	bool IsLooping() const;
-
-	std::unique_ptr<AudioSupplier> CreateSupplier() const;
+	void Pause() const override;
+	void Play() const override;
 
 
-private:
-	std::string name;
-	unsigned buffer = 0;
-	unsigned buffer3x = 0;
-	bool isLooped = false;
+protected:
+	void ConfigureSource() override;
 };

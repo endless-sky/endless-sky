@@ -15,16 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <condition_variable>
-#include <cstdint>
-#include <cstdio>
+#include "supplier/AudioDataSupplier.h"
+
 #include <filesystem>
-#include <mutex>
-#include <string>
-#include <thread>
-#include <vector>
-
-
+#include <memory>
 
 // The Music class streams mp3 audio from a file and delivers it to the program
 // on "block" at a time, so it never needs to hold the entire decoded file in
@@ -35,41 +29,7 @@ class Music {
 public:
 	static void Init(const std::vector<std::filesystem::path> &sources);
 
+	static std::unique_ptr<AudioDataSupplier> CreateSupplier(const std::string &name);
 
-public:
-	Music();
-	~Music();
-
-	// Set the source of music. If the path is empty, this music will be silent.
-	void SetSource(const std::string &name = "");
-	// Get the name of the current music source playing.
-	const std::string &GetSource() const;
-	// Get the next audio buffer to play.
-	const std::vector<int16_t> &NextChunk();
-
-
-private:
-	// This is the entry point for the decoding thread.
-	void Decode();
-
-
-private:
-	// Buffers for storing the decoded audio sample. The "silence" buffer holds
-	// a block of silence to be returned if nothing was read from the file.
-	std::vector<int16_t> silence;
-	std::vector<int16_t> next;
-	std::vector<int16_t> current;
-
-	std::string currentSource;
-	std::filesystem::path previousPath;
-	// This pointer holds the file for as long as it is owned by the main
-	// thread. When the decode thread takes possession of it, it sets this
-	// pointer to null.
-	FILE *nextFile = nullptr;
-	bool hasNewFile = false;
-	bool done = false;
-
-	std::thread thread;
-	std::mutex decodeMutex;
-	std::condition_variable condition;
+	Music() = delete;
 };

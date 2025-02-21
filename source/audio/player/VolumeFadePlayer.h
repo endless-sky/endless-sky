@@ -1,5 +1,5 @@
-/* Sound.h
-Copyright (c) 2014 by Michael Zahniser
+/* VolumeFadePlayer.h
+Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,32 +15,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "supplier/AudioSupplier.h"
+#include "AudioPlayer.h"
 
-#include <filesystem>
-#include <memory>
-#include <string>
-
-
-
-// This is a sound that can be played. The sound's file name will determine
-// whether it is looping (ends in '~') or not.
-class Sound {
+class VolumeFadePlayer : public AudioPlayer {
 public:
-	bool Load(const std::filesystem::path &path, const std::string &name);
+	VolumeFadePlayer(SoundCategory category, std::unique_ptr<AudioSupplier> audioSupplier);
 
-	const std::string &Name() const;
+	void Update() override;
 
-	unsigned Buffer() const;
-	unsigned Buffer3x() const;
-	bool IsLooping() const;
-
-	std::unique_ptr<AudioSupplier> CreateSupplier() const;
-
+	void FadeOut();
 
 private:
-	std::string name;
-	unsigned buffer = 0;
-	unsigned buffer3x = 0;
-	bool isLooped = false;
+	static constexpr float VOLUME_DECREASE = 0.05;
+
+	bool isFading = false;
 };

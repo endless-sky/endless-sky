@@ -1,5 +1,5 @@
-/* Sound.h
-Copyright (c) 2014 by Michael Zahniser
+/* WavSupplier.h
+Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,32 +15,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "supplier/AudioSupplier.h"
+#include "AudioSupplier.h"
 
-#include <filesystem>
-#include <memory>
-#include <string>
+class Sound;
 
-
-
-// This is a sound that can be played. The sound's file name will determine
-// whether it is looping (ends in '~') or not.
-class Sound {
+/// A buffered supplier for waveform files. The audio is supplied in a single chunk.
+class WavSupplier : public AudioSupplier {
 public:
-	bool Load(const std::filesystem::path &path, const std::string &name);
+	WavSupplier(const Sound& sound, bool is3x, bool looping = false);
 
-	const std::string &Name() const;
-
-	unsigned Buffer() const;
-	unsigned Buffer3x() const;
-	bool IsLooping() const;
-
-	std::unique_ptr<AudioSupplier> CreateSupplier() const;
-
+	// Inherited pure virtual methods
+	ALsizei MaxChunkCount() const override;
+	int AvailableChunks() const override;
+	bool IsSynchronous() const override;
+	bool NextChunk(ALuint buffer) override;
+	ALuint AwaitNextChunk() override;
+	void ReturnBuffer(ALuint buffer) override;
 
 private:
-	std::string name;
-	unsigned buffer = 0;
-	unsigned buffer3x = 0;
-	bool isLooped = false;
+	const Sound& sound;
+	const bool looping;
+	bool wasBufferGiven;
 };
