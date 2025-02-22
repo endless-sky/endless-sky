@@ -60,7 +60,10 @@ void AudioPlayer::Update()
 		ALint buffersQueued = 0;
 		alGetSourcei(alSource, AL_BUFFERS_QUEUED, &buffersQueued);
 
-		if(buffersDone == buffersQueued)
+		ALint state;
+		alGetSourcei(alSource, AL_SOURCE_STATE, &state);
+
+		if(buffersDone == buffersQueued && state == AL_STOPPED)
 		{
 			// All queued buffers finished, and we don't have any others left. Playback has finished.
 			// Unqueue all buffers and return them, then release the source.
