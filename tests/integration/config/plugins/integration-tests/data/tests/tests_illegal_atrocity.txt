@@ -1,3 +1,16 @@
+# Copyright (c) 2022 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "quarg rescue save"
 	category "savegame"
 	contents
@@ -45,12 +58,12 @@ test-data "quarg rescue save"
 			history
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
+		"available mission" "TEST: Wardragon Scanning You!"
+			name "TEST: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
 			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
+				"TEST: SCANNING ILLEGALS" != 0
 			destination Ruin
 			npc
 				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
@@ -71,7 +84,7 @@ test-data "quarg rescue save"
 						"heat dissipation" 0.5
 						hull 50000
 						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -86,7 +99,7 @@ test-data "quarg rescue save"
 					"You must be scanned or be killed."
 						accept
 		conditions
-			"%TEST%: SCANNING ILLEGALS"
+			"TEST: SCANNING ILLEGALS"
 
 test-data "quarg scanning save"
 	category "savegame"
@@ -144,12 +157,12 @@ test-data "quarg scanning save"
 				remove "enforces"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
+		"available mission" "TEST: Wardragon Scanning You!"
+			name "TEST: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
 			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
+				"TEST: SCANNING ILLEGALS" != 0
 			destination Ruin
 			npc
 				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
@@ -170,7 +183,7 @@ test-data "quarg scanning save"
 						"heat dissipation" 0.5
 						hull 50000
 						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -185,7 +198,7 @@ test-data "quarg scanning save"
 					"You must be scanned or be killed."
 						accept
 		conditions
-			"%TEST%: SCANNING ILLEGALS"
+			"TEST: SCANNING ILLEGALS"
 
 
 test-data "quarg atrocity save"
@@ -244,12 +257,12 @@ test-data "quarg atrocity save"
 				remove "death sentence"
 		visited "Terra Incognita"
 		"visited planet" Ruin
-		"available mission" "%TEST%: Wardragon Scanning You!"
-			name "%TEST%: Wardragon Scanning You!"
+		"available mission" "TEST: Wardragon Scanning You!"
+			name "TEST: Wardragon Scanning You!"
 			uuid 9ba505d8-e565-4632-8c7a-c74072b85b5a
 			priority
 			to offer
-				"%TEST%: SCANNING ILLEGALS" != 0
+				"TEST: SCANNING ILLEGALS" != 0
 			destination Ruin
 			npc
 				uuid 01a921d2-b477-4d80-a19e-11aefb2a6464
@@ -270,7 +283,7 @@ test-data "quarg atrocity save"
 						"heat dissipation" 0.5
 						hull 50000
 						"outfit scan power" 1e+09
-						"outfit scan speed" 1e+09
+						"outfit scan efficiency" 1e+09
 						"energy generation" 10
 						shields 160000
 					fuel 0
@@ -285,16 +298,16 @@ test-data "quarg atrocity save"
 					"You must be scanned or be killed."
 						accept
 		conditions
-			"%TEST%: SCANNING ILLEGALS"
+			"TEST: SCANNING ILLEGALS"
 
 # just so the mission actually works
-mission "%TEST%: Wardragon Scanning You!"
+mission "TEST: Wardragon Scanning You!"
 
 test "Launch Quarg Scanning Mission And Board"
 	status partial
-	description "Starts the mission, accepts it and then boards the quarg ship to repair it."
+	description "Starts the mission, accepts it, boards the quarg ship to repair it and skips the dialog."
 	sequence
-		# launch and accept the mission
+		# accept the mission and launch
 		input
 			key p
 		input
@@ -303,32 +316,13 @@ test "Launch Quarg Scanning Mission And Board"
 		# board the ship so we're sure we get close to it to get scanned
 		input
 			command board
-		# wait for 5 seconds so it should be repaired and have scanned us
-		apply
-			"test: steps to wait" = 10 * 30
 		label "floating"
-		# empty input to make time pass
-		input
-		apply
-			"test: steps to wait" = "test: steps to wait" - 1
+		# wait for it to become hostile from the scanning
 		branch "floating"
-			"test: steps to wait" > 0
+			"reputation: Quarg" >= 0
+			"unpaid fines" == 0
 		input
 			key "return"
-
-test "Boarding Test - Repair Friendly Ship"
-	status active
-	description "Test if you can repair a disabled Quarg ship trough an assist derelict mission."
-	sequence
-		inject "quarg rescue save"
-		call "Load First Savegame"
-		watchdog 6000
-		call "Launch Quarg Scanning Mission And Board"
-		assert
-			"%TEST%: Wardragon Scanning You!: active" == 1
-		call "Land"
-		assert
-			"%TEST%: Wardragon Scanning You!: done" == 1
 
 test "Illegal Test - Ignore and New Illegal"
 	status active
@@ -336,11 +330,12 @@ test "Illegal Test - Ignore and New Illegal"
 	sequence
 		inject "quarg scanning save"
 		call "Load First Savegame"
-		watchdog 6000
 		assert
 			"unpaid fines" == 0
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with a fine of 1 for the hyperdrive, nothing from the gas
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		# copy the test-data in the temporary conditions for debugging when an issue happens
 		assert
@@ -352,11 +347,12 @@ test "Atrocity Test - New Atrocity"
 	sequence
 		inject "quarg atrocity save"
 		call "Load First Savegame"
-		watchdog 6000
 		assert
 			"reputation: Quarg" == 1000
 		call "Launch Quarg Scanning Mission And Board"
 		# land back with atrocity having been in effect (should nuke the reputation?)
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		assert
 			# it'll be 0 from the atrocity and then minus whatever the atrocity reputation hit it

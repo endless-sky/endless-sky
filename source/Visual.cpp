@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Visual.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Effect.h"
 #include "Random.h"
 
@@ -46,7 +46,7 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 		velocity += angle.Unit() * Random::Real() * effect.randomVelocity;
 
 	if(effect.sound)
-		Audio::Play(effect.sound, position);
+		Audio::Play(effect.sound, position, effect.soundCategory);
 
 	if(effect.randomFrameRate)
 		AddFrameRate(effect.randomFrameRate * Random::Real());

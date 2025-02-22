@@ -2,6 +2,7 @@
 root = true
 
 [*]
+end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
@@ -13,9 +14,23 @@ indent_style = tab
 # Code files
 [{*.{cpp,h,rc,hpp}, SConstruct, SConscript}]
 indent_style = tab
-# Except any third-party libraries
-[catch.hpp]
-indent_style = unset
+cpp_space_pointer_reference_alignment = right
+cpp_space_after_keywords_in_control_flow_statements = false
+
+# Changelog file
+[changelog]
+indent_style = space
+indent_size = 2
+
+# Copyright file
+[copyright]
+indent_style = space
+indent_size = 1
+
+# Credits file
+[credits.txt]
+indent_style = space
+indent_size = 2
 
 # Markdown
 [*.md]
@@ -26,6 +41,9 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
+[*.py]
+indent_style = tab
+
 [*.xml]
 indent_style = space
 indent_size = 2
@@ -33,3 +51,6 @@ indent_size = 2
 [*.{yml,yaml}]
 indent_size = 2
 indent_style = space
+
+[*.json]
+indent_style = tab

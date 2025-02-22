@@ -15,31 +15,32 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "DataNode.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Screen.h"
 #include "shift.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #include <cmath>
+#include <utility>
 
 using namespace std;
 
 namespace {
-	const int WIDTH = 250;
-
 	// Map any conceivable numeric keypad keys to their ASCII values. Most of
 	// these will presumably only exist on special programming keyboards.
 	const map<SDL_Keycode, char> KEY_MAP = {
@@ -82,6 +83,49 @@ namespace {
 		{SDLK_KP_SPACE, ' '},
 		{SDLK_KP_VERTICALBAR, '|'}
 	};
+
+	// The width of the margin on the right/left sides of the dialog. This area is part of the sprite,
+	// but shouldn't have any text or other graphics rendered over it. (It's mostly transparent.)
+	constexpr double LEFT_MARGIN = 20;
+	constexpr double RIGHT_MARGIN = 20;
+	constexpr double HORIZONTAL_MARGIN = LEFT_MARGIN + RIGHT_MARGIN;
+	// The margin on the right/left sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	constexpr double BUTTON_LEFT_MARGIN = 10;
+	constexpr double BUTTON_RIGHT_MARGIN = 10;
+	constexpr double BUTTON_HORIZONTAL_MARGIN = BUTTON_LEFT_MARGIN + BUTTON_RIGHT_MARGIN;
+	// The margin on the top/bottom sides of the button sprite. The bottom segment also includes a button
+	// that uses the same value.
+	constexpr double BUTTON_TOP_MARGIN = 10;
+	constexpr double BUTTON_BOTTOM_MARGIN = 10;
+	constexpr double BUTTON_VERTICAL_MARGIN = BUTTON_TOP_MARGIN + BUTTON_BOTTOM_MARGIN;
+	// The width of the padding used on the left/right sides of each segment, in pixels.
+	constexpr double LEFT_PADDING = 10;
+	constexpr double RIGHT_PADDING = 10;
+	constexpr double HORIZONTAL_PADDING = RIGHT_PADDING + LEFT_PADDING;
+	// The height of the padding used by the top/bottom segment, in pixels.
+	constexpr double TOP_PADDING = 10;
+	constexpr double BOTTOM_PADDING = 10;
+	constexpr double VERTICAL_PADDING = TOP_PADDING + BOTTOM_PADDING;
+	// The width of the padding at the beginning/end of an input field.
+	constexpr double INPUT_LEFT_PADDING = 5;
+	constexpr double INPUT_RIGHT_PADDING = 5;
+	constexpr double INPUT_HORIZONTAL_PADDING = INPUT_LEFT_PADDING + INPUT_RIGHT_PADDING;
+	// The height of the padding at the top/bottom of an input field.
+	constexpr double INPUT_TOP_PADDING = 2;
+	constexpr double INPUT_BOTTOM_PADDING = 2;
+	constexpr double INPUT_VERTICAL_PADDING = INPUT_TOP_PADDING + INPUT_BOTTOM_PADDING;
+	// The height of an input field in pixels.
+	constexpr double INPUT_HEIGHT = 20;
+}
+
+
+
+Dialog::Dialog(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel, bool okIsActive)
+	: voidFun(okFunction)
+{
+	Init(message, truncate, canCancel, false);
+	this->okIsActive = okIsActive;
 }
 
 
@@ -107,20 +151,26 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 
+Dialog::~Dialog()
+{
+	Audio::Resume();
+}
+
+
+
 // Draw this panel.
 void Dialog::Draw()
 {
 	DrawBackdrop();
 
-	const Sprite *top = SpriteSet::Get("ui/dialog top");
-	const Sprite *middle = SpriteSet::Get("ui/dialog middle");
-	const Sprite *bottom = SpriteSet::Get("ui/dialog bottom");
+	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
 	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
 
-	// Get the position of the top of this dialog, and of the text and input.
-	Point pos(0., (top->Height() + height * middle->Height() + bottom->Height()) * -.5f);
-	Point textPos(WIDTH * -.5 + 10., pos.Y() + 20.);
-	Point inputPos = Point(0., -70.) - pos;
+	// Get the position of the top of this dialog, and of the input.
+	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5);
+	Point inputPos = Point(0., -(cancel->Height() + INPUT_HEIGHT)) - pos;
 
 	// Draw the top section of the dialog box.
 	pos.Y() += top->Height() * .5;
@@ -128,7 +178,7 @@ void Dialog::Draw()
 	pos.Y() += top->Height() * .5;
 
 	// The middle section is duplicated depending on how long the text is.
-	for(int i = 0; i < height; ++i)
+	for(int i = 0; i < extensionCount; ++i)
 	{
 		pos.Y() += middle->Height() * .5;
 		SpriteShader::Draw(middle, pos);
@@ -139,46 +189,44 @@ void Dialog::Draw()
 	const Font &font = FontSet::Get(14);
 	pos.Y() += bottom->Height() * .5;
 	SpriteShader::Draw(bottom, pos);
-	pos.Y() += bottom->Height() * .5 - 25.;
+	pos.Y() += (bottom->Height() - cancel->Height()) * .5;
 
 	// Draw the buttons, including optionally the cancel button.
 	const Color &bright = *GameData::Colors().Get("bright");
 	const Color &dim = *GameData::Colors().Get("medium");
 	const Color &back = *GameData::Colors().Get("faint");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	if(canCancel)
-	{
-		string cancelText = isMission ? "Decline" : "Cancel";
-		cancelPos = pos + Point(10., 0.);
-		SpriteShader::Draw(cancel, cancelPos);
-		Point labelPos(
-			cancelPos.X() - .5 * font.Width(cancelText),
-			cancelPos.Y() - .5 * font.Height());
-		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
-	}
-	string okText = isMission ? "Accept" : "OK";
-	okPos = pos + Point(90., 0.);
+	const string okText = isMission ? "Accept" : "OK";
+	okPos = pos + Point((top->Width() - RIGHT_MARGIN - cancel->Width()) * .5, 0.);
 	Point labelPos(
 		okPos.X() - .5 * font.Width(okText),
 		okPos.Y() - .5 * font.Height());
 	font.Draw(okText, labelPos, isOkDisabled ? inactive : (okIsActive ? bright : dim));
-
-	// Draw the text.
-	text.Draw(textPos, dim);
+	if(canCancel)
+	{
+		string cancelText = isMission ? "Decline" : "Cancel";
+		cancelPos = pos + Point(okPos.X() - cancel->Width() + BUTTON_RIGHT_MARGIN, 0.);
+		SpriteShader::Draw(cancel, cancelPos);
+		labelPos = {
+				cancelPos.X() - .5 * font.Width(cancelText),
+				cancelPos.Y() - .5 * font.Height()};
+		font.Draw(cancelText, labelPos, !okIsActive ? bright : dim);
+	}
 
 	// Draw the input, if any.
 	if(!isMission && (intFun || stringFun))
 	{
-		FillShader::Fill(inputPos, Point(WIDTH - 20., 20.), back);
+		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
 
 		Point stringPos(
-			inputPos.X() - (WIDTH - 20) * .5 + 5.,
+			inputPos.X() - (Width() - HORIZONTAL_PADDING) * .5 + INPUT_LEFT_PADDING,
 			inputPos.Y() - .5 * font.Height());
-		const auto inputText = DisplayText(input, {WIDTH - 30, Truncate::FRONT});
+		const auto inputText = DisplayText(input, {static_cast<int>(Width() - HORIZONTAL_PADDING - INPUT_HORIZONTAL_PADDING),
+				Truncate::FRONT});
 		font.Draw(inputText, stringPos, bright);
 
-		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + 2., inputPos.Y());
-		FillShader::Fill(barPos, Point(1., 16.), dim);
+		Point barPos(stringPos.X() + font.FormattedWidth(inputText) + INPUT_TOP_PADDING, inputPos.Y());
+		FillShader::Fill(barPos, Point(1., INPUT_HEIGHT - INPUT_VERTICAL_PADDING), dim);
 	}
 }
 
@@ -254,7 +302,12 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			okIsActive = true;
 		if(key == 'd' || (canCancel && isCloseRequest))
 			okIsActive = false;
-		if(okIsActive || isMission)
+		if(boolFun)
+		{
+			DoCallback(okIsActive);
+			GetUI()->Pop(this);
+		}
+		else if(okIsActive || isMission)
 		{
 			// If the OK button is disabled (because the input failed the validation),
 			// don't execute the callback.
@@ -268,7 +321,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI()->Push(new MapDetailPanel(*player, system));
+		GetUI()->Push(new MapDetailPanel(*player, system, true));
 	else
 		return false;
 
@@ -281,8 +334,12 @@ bool Dialog::Click(int x, int y, int clicks)
 {
 	Point clickPos(x, y);
 
+	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");
+	const double toleranceX = (sprite->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
+	const double toleranceY = (sprite->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
+
 	Point ok = clickPos - okPos;
-	if(fabs(ok.X()) < 40. && fabs(ok.Y()) < 20.)
+	if(fabs(ok.X()) < toleranceX && fabs(ok.Y()) < toleranceY)
 	{
 		okIsActive = true;
 		return DoKey(SDLK_RETURN);
@@ -291,7 +348,7 @@ bool Dialog::Click(int x, int y, int clicks)
 	if(canCancel)
 	{
 		Point cancel = clickPos - cancelPos;
-		if(fabs(cancel.X()) < 40. && fabs(cancel.Y()) < 20.)
+		if(fabs(cancel.X()) < toleranceX && fabs(cancel.Y()) < toleranceY)
 		{
 			okIsActive = false;
 			return DoKey(SDLK_RETURN);
@@ -306,34 +363,80 @@ bool Dialog::Click(int x, int y, int clicks)
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
+	Audio::Pause();
 	SetInterruptible(isMission);
 
 	this->isMission = isMission;
 	this->canCancel = canCancel;
 	okIsActive = true;
+	isWide = false;
 
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(WIDTH - 20);
-	text.SetFont(FontSet::Get(14));
-	text.SetTruncate(truncate);
+	Point textRectSize(Width() - HORIZONTAL_PADDING, 0);
+	text = std::make_shared<TextArea>();
+	text->SetAlignment(Alignment::JUSTIFIED);
+	text->SetRect(Rectangle(Point(), textRectSize));
+	text->SetFont(FontSet::Get(14));
+	text->SetTruncate(truncate);
+	text->SetText(message);
+	AddChild(text);
 
-	text.Wrap(message);
+	const Sprite *top = SpriteSet::Get("ui/dialog top");
+	// If the dialog is too tall, then switch to wide mode.
+	int maxHeight = Screen::Height() * 3 / 4;
+	if(text->GetTextHeight(false) > maxHeight)
+	{
+		textRectSize.Y() = maxHeight;
+		isWide = true;
+		// Re-wrap with the new width
+		textRectSize.X() = Width() - HORIZONTAL_PADDING;
+		text->SetRect(Rectangle(Point{}, textRectSize));
 
-	// The dialog with no extenders is 80 pixels tall. 10 pixels at the top and
-	// bottom are "padding," but text.Height() over-reports the height by about
-	// 5 pixels because it includes its own padding at the bottom. If there is a
-	// text input, we need another 20 pixels for it and 10 pixels padding.
-	height = 10 + (text.Height() - 5) + 10 + 30 * (!isMission && (intFun || stringFun));
-	// Determine how many 40-pixel extension panels we need.
-	if(height <= 80)
-		height = 0;
+		if(text->GetLongestLineWidth() <= top->Width() - HORIZONTAL_MARGIN - HORIZONTAL_PADDING)
+		{
+			// Formatted text is long and skinny (e.g. scan result dialog). Go back
+			// to using the default width, since the wide width doesn't help.
+			isWide = false;
+			textRectSize.X() = Width() - HORIZONTAL_PADDING;
+			text->SetRect(Rectangle(Point{}, textRectSize));
+		}
+	}
 	else
-		height = (height - 40) / 40;
+		textRectSize.Y() = text->GetTextHeight(false);
+
+	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");
+	const Sprite *bottom = SpriteSet::Get(isWide ? "ui/dialog bottom wide" : "ui/dialog bottom");
+	const Sprite *cancel = SpriteSet::Get("ui/dialog cancel");
+	// The height of the bottom sprite without the included button's height.
+	const int realBottomHeight = bottom->Height() - cancel->Height();
+
+	int height = TOP_PADDING + textRectSize.Y() + BOTTOM_PADDING +
+			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+	// Determine how many extension panels we need.
+	if(height <= realBottomHeight + top->Height())
+		extensionCount = 0;
+	else
+		extensionCount = (height - middle->Height()) / middle->Height();
+
+	// Now that we know how big we want to render the text, position the text
+	// area and add it to the UI.
+
+	// Get the position of the top of this dialog, and of the text and input.
+	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
+	Point textPos(Width() * -.5 + LEFT_PADDING, pos.Y() + VERTICAL_PADDING);
+	// Resize textRectSize to match the visual height of the dialog, which will
+	// be rounded up from the actual text height by the number of panels that
+	// were added. This helps correctly position the TextArea scroll buttons.
+	textRectSize.Y() = (top->Height() + realBottomHeight - VERTICAL_PADDING) + extensionCount * middle->Height() -
+			(realBottomHeight - BOTTOM_PADDING) * (!isMission && (intFun || stringFun));
+
+	Rectangle textRect = Rectangle::FromCorner(textPos, textRectSize);
+	text->SetRect(textRect);
 }
 
 
 
-void Dialog::DoCallback() const
+void Dialog::DoCallback(const bool isOk) const
 {
 	if(isMission)
 	{
@@ -360,4 +463,15 @@ void Dialog::DoCallback() const
 
 	if(voidFun)
 		voidFun();
+
+	if(boolFun)
+		boolFun(isOk);
+}
+
+
+
+int Dialog::Width() const
+{
+	const Sprite *top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
+	return top->Width() - HORIZONTAL_MARGIN;
 }

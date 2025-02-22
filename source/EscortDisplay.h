@@ -13,17 +13,16 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ESCORT_DISPLAY_H_
-#define ESCORT_DISPLAY_H_
+#pragma once
 
-#include "Point.h"
+#include "Rectangle.h"
 
 #include <cstdint>
 #include <list>
 #include <string>
 #include <vector>
 
-class Rectangle;
+class Interface;
 class Ship;
 class Sprite;
 
@@ -34,7 +33,7 @@ class Sprite;
 class EscortDisplay {
 public:
 	void Clear();
-	void Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
+	void Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected);
 
 	// Draw as many escort icons as will fit in the given bounding box.
 	void Draw(const Rectangle &bounds) const;
@@ -47,7 +46,8 @@ public:
 private:
 	class Icon {
 	public:
-		Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected);
+		Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
+				int basicHeight, int systemLabelHeight);
 
 		// Sorting operator.
 		bool operator<(const Icon &other) const;
@@ -56,6 +56,7 @@ private:
 		void Merge(const Icon &other);
 
 		const Sprite *sprite;
+		bool isDisabled;
 		bool isHere;
 		bool isHostile;
 		bool notReadyToJump;
@@ -66,6 +67,7 @@ private:
 		std::vector<double> low;
 		std::vector<double> high;
 		std::vector<const Ship *> ships;
+		int height = 0;
 	};
 
 
@@ -76,9 +78,9 @@ private:
 private:
 	mutable std::list<Icon> icons;
 	mutable std::vector<std::vector<const Ship *>> stacks;
-	mutable std::vector<Point> zones;
+	mutable std::vector<Rectangle> zones;
+
+	const Interface *element = nullptr;
+	int basicHeight = 0;
+	int systemLabelHeight = 0;
 };
-
-
-
-#endif

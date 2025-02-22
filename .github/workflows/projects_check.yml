@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -17,67 +17,70 @@ jobs:
     uses: ./.github/workflows/compute-changes.yml
 
 
-  check-codeblocks:
-    name: CodeBlocks
-    needs: changed
-    if: ${{ needs.changed.outputs.codeblocks_files || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 1
-    - name: Validate Code::Blocks project files
-      run: ./utils/check_codeblocks.sh
-
-
   check_cmake:
     name: CMake
     needs: changed
-    if: ${{ needs.changed.outputs.cmake || needs.changed.outputs.game_code || needs.changed.outputs.unit_tests }}
+    if: ${{ needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - name: Validate CMake project files
       run: ./utils/check_cmake.sh
-
 
 
   validate_copyright:
     name: Copyright
     needs: changed
-    if: ${{ needs.changed.outputs.copyright == 'true' }}
+    if: ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
-        fetch-depth: 1
+        show-progress: false
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
     - name: Install dependencies
-      run: python3 -m pip install --user python-debian
-    - name: Validate copyright file
+      run: pip install --break-system-packages python-debian
+    - name: Validate copyright file with python-debian
       run: python3 ./utils/check_copyright.py
+    - name: Validate copyright file with debian-control-linter
+      uses: tibetiroka/debian-control-linter-action@v1
+      with:
+        type: 'debian/copyright'
+        file: 'copyright'
+        preset: 'strict'
+        enable: 'trailingSpace,upstreamContactStyle,urlForceHttps,fieldNameCapitalization,maintainerNameFullStop,urlExists,copyrightSourceStyle'
 
 
   spellcheck:
     name: Spelling
-    needs: [changed]
-    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' }}
+    needs: changed
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.changelog == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.head.sha }}
+        show-progress: false
     - uses: codespell-project/actions-codespell@master
       with:
         builtin: clear,en-GB_to_en-US
-        path: data/
+        path: changelog data/
         exclude_file: .codespell.exclude
+        ignore_words_file: .codespell.words.exclude
 
 
   style_check:
     name: Style
+    needs: changed
+    if: ${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
     - uses: editorconfig-checker/action-editorconfig-checker@main
     - run: editorconfig-checker
 
@@ -85,15 +88,17 @@ jobs:
   check_coding_style:
     name: Code Style
     needs: changed
-    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' }}
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.code_style_check == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install regex
+      run: pip install --break-system-packages regex
     - name: Run style checker
       run: python ./utils/check_code_style.py
 
@@ -101,14 +106,16 @@ jobs:
   check_content_style:
     name: Content Style
     needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' }}
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.content_style_check == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.content_style_script == 'true' || needs.changed.outputs.projects_check_config == 'true' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install regex
+      run: pip install --break-system-packages regex
     - name: Run style checker
       run: python ./utils/check_content_style.py

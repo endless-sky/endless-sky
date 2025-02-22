@@ -17,7 +17,7 @@
 
 mission "Hai Building Mountaintop [1] Construction Fleet"
 	name "Escort construction fleet to Ultima Thule"
-	description "Meet a construction fleet at <stopovers> and escort them to to <destination> to prevent a confrontation."
+	description "Meet a construction fleet at <stopovers> and escort them to <destination> to prevent a confrontation."
 	autosave
 	landing
 	source "Hai-home"
@@ -33,7 +33,7 @@ mission "Hai Building Mountaintop [1] Construction Fleet"
 				has "Building Mountaintop Deferred"
 			`	"I am very glad to see you returned, Captain <last>. Sayari said you were away on an important errand, but I've been hoping for a day now that you would reappear. I think you might be the solution to the current impasse."`
 			`	"You see," says Sayari, "while you've been away it's been decided that a 'tourist trap type theme park destination' is a critical part of the cover story." Despite her Hai inflections, you can still hear the air quotes around that phrase in the tone of her voice. "So far it seems the movie cover has been circulating quite successfully, so we're leaning into it.`
-			`	"This means we need a station, on your side of the wormhole in Ultima Thule. It also means we need it fast, much faster than your people could ever hope to assemble it. The Hai can build it much quicker than humanity can; we actually considered the possibility of needing to raise a station quickly a while back. The alien look that the station will have if we build it has been considered just another favorable aspect of the movie and it provides a long-term commercial justification for the whole idea; the, uh, 'tourist trap'."`
+			`	"This means we need a station, on your side of the wormhole in Ultima Thule. It also means we need it fast, much faster than your people could ever hope to assemble it. The Hai can build it much quicker than humanity can; we actually considered the possibility of needing to raise a station quickly a while back. The alien look that the station will have if we build it has been considered just another favorable aspect of the movie and it provides a long-term commercial justification for the whole idea; the, uh, 'tourist trap.'"`
 			choice
 				`	"It would help if I oversaw the construction, wouldn't it?"`
 					goto oversee
@@ -303,13 +303,13 @@ mission "Hai Building Mountaintop [2] Recruits"
 			choice
 				`	"And that is?"`
 				`	"What's the deal then?"`
-			`	Terry crosses her arms and leans back against the bulkhead. "We need a recruitment campaign. We need to attract Hai who've lived in shared urban environments with humans enough to be able to fake being humans pretending to be Hai. Which means we need a human touch to this; it can't just come from the Hai's own advertising networks, and we need some star power. Oh, and if you haven't guessed already, you're the one to do it. The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I'll obviously stage manage your image, and will have promotional material ready inside of 3 hours."`
+			`	Terry crosses her arms and leans back against the bulkhead. "We need a recruitment campaign. We need to attract Hai who've lived in shared urban environments with humans enough to be able to fake being humans pretending to be Hai. Which means we need a human touch to this; it can't just come from the Hai's own advertising networks, and we need some star power. Oh, and if you haven't guessed already, you're the one to do it. The Syndicate will offer you a sum of 10,000,000 credits to visit every planet in Hai space and do glossies. I'll obviously stage-manage your image, and will have promotional material ready inside of 3 hours."`
 			choice
 				`	"That's it? Straight into it?"`
 			`	She stares you down. "Right now you are the linchpin. Potentially the only human in the entire galaxy that stands between peace and crisis... and we're already behind schedule."`
 			choice
 				`	"I don't really have a choice in this matter, do I?"`
-			`	Terry's answering grin is best described as "predatory".`
+			`	Terry's answering grin is best described as "predatory."`
 				accept
 	on stopover
 		set "hai dog and pony final stop"
@@ -399,7 +399,7 @@ mission "Hai Building Mountaintop [3] Furnishings"
 		payment 300000
 		event "role-play station active" 12
 		event "ladybug surveillance" 32 42
-		event "news: hai video clip debunked"
+		# event "news: hai video clip debunked"
 		log `Of all the hilariously mundane things that could trip up a deception, it turned out to be Hai-made furniture. Acquired a large shipment of human-made furniture from Prime in order to complete the station.`
 		conversation
 			`By the time you return, you are shocked to notice that the station seems to be rapidly approaching a completed state. Some four thousand people have already arrived, though some are still on board ships docked at the station. Once you register your delivery amidst the station chaos, it's only a few minutes later that you get a "thank you" message from Sayari.`
@@ -441,81 +441,6 @@ event "role-play station active"
 		security 0.7
 		"required reputation" -10
 
-
-
-# This begins with a P instead of an H so it will happen after the other Hai Reveal mission's dialog.
-mission "Pirates with Hai Weapons 1: Katya's Message"
-	landing
-	name "Pirates with Hai Weapons"
-	description "Katya wants you to find out if the Hai government is arming pirates, and if they are, to stop them. Don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
-	source Hai-home
-	destination Hai-home
-	to offer
-		has "Hai Building Mountaintop [1b] Return: done"
-	to complete
-		has "Hai Reveal [A05] Take Teeneep to Hai-home: done"
-	on offer
-		conversation
-			`Before you leave, Alondo finds you in a hallway. "Captain <last>, come with me. We need to have a quick conference." You follow him to an unusual room with strange padding on all sides. He plugs a device with an attached keyboard into a wall-mounted monitor and types for a few seconds. Soon after, you see the familiar face of Katya.`
-			`	"The transmission is secure," Alondo says. "This room has good soundproofing and some signal dampening. You can talk freely."`
-			choice
-				`	"What is it, Katya?"`
-					goto whaizzit
-				`	"You've taken a lot of precautions for this call."`
-			`	"Yes," she says. "This is a sensitive matter.`
-			label whaizzit
-			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
-				to display
-					not "FW Bounty 3: done"
-			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world.`
-				to display
-					has "FW Bounty 3: done"
-			`	"Such a vast supply is unlikely to have come from individual smugglers, so we must assume it's the result of a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a councilor, I can tell you the Republic will not be so understanding.`
-			`	"You must find out if the Hai government is arming the pirates and, if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it, and whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
-			label loop
-			choice
-				`	"A diplomat called Sayari told me she has a friend looking into 'interactions between Hai and pirates' who should contact me soon."`
-					goto byname
-					to display
-						not "Pirates with Hai Weapons 1: Katya's Message: explained"
-				`	"A trusted Hai contact of mine has friends that can help with the investigation. She also asked for discretion."`
-					goto discrete
-					to display
-						not "Pirates with Hai Weapons 1: Katya's Message: explained"
-				`	"That's worrying news. I'll look into it."`
-					goto acceptable
-					to display
-						not "Pirates with Hai Weapons 1: Katya's Message: explained"
-				`	"Don't worry. I'll stop the Hai from arming pirates."`
-					goto acceptable
-					to display
-						not "Pirates with Hai Weapons 1: Katya's Message: explained"
-				`	"I'll pursue that lead and see where it takes me."`
-					goto acceptable
-					to display
-						has "Pirates with Hai Weapons 1: Katya's Message: explained"
-				`	"If you vouch for her, then I'll trust her too."`
-					goto acceptable
-					to display
-						has "Pirates with Hai Weapons 1: Katya's Message: Katya vouched for Sayari"
-			label discrete
-			action
-				set "Pirates with Hai Weapons 1: Katya's Message: explained"
-			`	You explain about the note from a diplomat who also asked for "discretion."`
-			`	"A lead already! That sounds promising," says Katya.`
-				goto loop
-			label byname
-			action
-				set "Pirates with Hai Weapons 1: Katya's Message: explained"
-				set "Pirates with Hai Weapons 1: Katya's Message: Katya vouched for Sayari"
-			`	You explain about the note from Sayari who also asked for "discretion."`
-			`	Katya seems surprised. "Sayari! Can you describe her?"`
-			`	You explain Sayari's appearance to Katya and she responds, "Sayari has a long history of keeping peace between Hai and humans, longer than I've been alive. If she knows there are weapon deals, then I expect she wants to stop them. Still, be careful."`
-				goto loop
-			label acceptable
-			`	After a few goodbyes, you head out to search for answers.`
-				accept
-
 # Now that more ships are involved elsewhere, Ladybugs start getting used to take up the slack in surveillance security fleets.
 event "ladybug surveillance"
 	fleet "Hai Surveillance"
@@ -548,3 +473,89 @@ event "ladybug surveillance"
 		add variant 3
 			"Grasshopper (Surveillance)" 3
 			"Ladybug" 2
+
+
+
+# This begins with a P instead of an H so it will happen after the other Hai Reveal mission's dialog.
+mission "Pirates with Hai Weapons 1: Katya's Message"
+	landing
+	name "Pirates with Hai Weapons"
+	description "You need to find out if the Hai are arming pirates and, if they are, stop them. Be patient for an opportunity, don't tell the Hai that the Free Worlds sent you, and make sure the Republic doesn't find out."
+	source Hai-home
+	destination Hai-home
+	to offer
+		has "Hai Building Mountaintop [1b] Return: done"
+	to complete
+		has "Hai Reveal [A05] Take Teeneep to Hai-home: done"
+	on offer
+		conversation
+			`Before you leave, Alondo finds you in a hallway. "Captain <last>, come with me. We need to have a quick conference." You follow him to an unusual room with strange padding on all sides. He plugs a device with an attached keyboard into a wall-mounted monitor and types for a few seconds. Soon after, you see the familiar face of Katya.`
+			`	"The transmission is secure," Alondo says. "This room has good soundproofing and some signal dampening. You can talk freely."`
+			choice
+				`	"What is it, Katya?"`
+					goto whaizzit
+				`	"You've taken a lot of precautions for this call."`
+			`	"Yes," she says. "This is a sensitive matter.`
+			label whaizzit
+			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. Most weapons were on ships, but recently we've found a large stock in a warehouse on an anarchist world.`
+				to display
+					not "FW Bounty 3: done"
+			`	"There's a problem I need you to solve... discreetly. The Free Worlds have seen pirates with Hai weapons for quite a while. I know you fought the pirate ship Silverhawk back before the war. We know now that it had Hai outfits. Recently we've found a large stock in a warehouse on an anarchist world.`
+				to display
+					has "FW Bounty 3: done"
+			`	"Such a vast supply is unlikely to have come from individual smugglers, so we must assume it's the result of a large-scale operation. I'm worried the Hai government may be arming pirates. If they are, I hope the weapons are just misguided tribute payments. In the south, we well know how useful bounties and tributes are when dealing with pirates, but from my time as a councilor, I can tell you the Republic will not be so understanding.`
+			`	"You must discreetly find out if the Hai government is arming the pirates and, if they are, put a stop to it. Don't tell them the Free Worlds asked you to do it, and whatever you do, don't let the Republic know. It could lead to an explosive diplomatic incident."`
+			label loop
+			choice
+				`	"A diplomat called Sayari told me she has a friend looking into 'interactions between Hai and pirates' who should contact me soon."`
+					goto byname
+					to display
+						not "Pirates with Hai Weapons 1: Katya's Message: explained"
+				`	"A trusted Hai contact of mine has friends that can help with the investigation. She also asked for discretion."`
+					goto discrete
+					to display
+						not "Pirates with Hai Weapons 1: Katya's Message: explained"
+				`	"That's worrying news. I'll look into it."`
+					goto acceptable
+					to display
+						not "Pirates with Hai Weapons 1: Katya's Message: explained"
+				`	"Don't worry. I'll stop the Hai from arming pirates."`
+					goto acceptable
+					to display
+						not "Pirates with Hai Weapons 1: Katya's Message: explained"
+				`	"I'll pursue that lead and see where it takes me."`
+					goto acceptable
+					to display
+						has "Pirates with Hai Weapons 1: Katya's Message: explained"
+				`	"If you vouch for her, then I'll trust her too."`
+					goto acceptable
+					to display
+						has "Pirates with Hai Weapons 1: Katya's Message: Katya vouched for Sayari"
+				`	"Don't worry, I'm good for this secret agent stuff."`
+					goto goodagent
+					to display
+						has "Pirates with Hai Weapons 1: Katya's Message: explained"
+			label discrete
+			action
+				set "Pirates with Hai Weapons 1: Katya's Message: explained"
+			`	You explain about the note from a diplomat who also asked for "discretion."`
+			`	"A lead already! That sounds promising," says Katya.`
+				goto loop
+			label byname
+			action
+				set "Pirates with Hai Weapons 1: Katya's Message: explained"
+				set "Pirates with Hai Weapons 1: Katya's Message: Katya vouched for Sayari"
+			`	You explain about the note from Sayari who also asked for "discretion."`
+			`	Katya seems surprised. "Sayari! Can you describe her?"`
+			`	You explain Sayari's appearance to Katya and she responds, "Sayari has a long history of keeping peace between Hai and humans, longer than I've been alive. If she knows there are weapon deals, then I expect she wants to stop them. Still, be careful."`
+				goto loop
+			label acceptable
+			`	"Thank you," says Alondo, "Just remember this is a secret mission. Go about your business normally and look for your opportunity. You may have to be quite patient to get this done."`
+				goto end
+			label goodagent
+			action
+				set "self-declared good agent"
+			`	Alondo chuckles. "You're full of surprises, aren't you? Good to know you're confident in your skills though."`
+			label end
+			`	After a few goodbyes, you head out to search for answers.`
+				accept

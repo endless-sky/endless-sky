@@ -19,148 +19,203 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "Government.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "pi.h"
 #include "Planet.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "Rectangle.h"
+#include "shader/RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Wormhole.h"
 
 #include <algorithm>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
 namespace {
-	const double LINE_ANGLE[4] = {60., 120., 300., 240.};
-	const double LINE_LENGTH = 60.;
-	const double INNER_SPACE = 10.;
-	const double LINE_GAP = 1.7;
-	const double GAP = 6.;
-	const double MIN_DISTANCE = 30.;
+	// Label offset angles, in order of preference (non-negative only).
+	constexpr double LINE_ANGLES[] = {60., 120., 300., 240., 30., 150., 330., 210., 90., 270., 0., 180.};
+	constexpr double LINE_LENGTH = 60.;
+	constexpr double INNER_SPACE = 10.;
+	constexpr double LINE_GAP = 1.7;
+	constexpr double GAP = 6.;
+	constexpr double MIN_DISTANCE = 30.;
+	constexpr double BORDER = 2.;
 
-	// Check if the given label for the given stellar object and direction overlaps
-	// with any other stellar object in the system.
-	bool Overlaps(const System &system, const StellarObject &object, double zoom, double width, int direction)
+	// Find the intersection of a ray and a rectangle, both centered on the origin.
+	Point GetOffset(const Point &unit, const Point &dimensions)
 	{
-		Point start = zoom * (object.Position() +
-			(object.Radius() + INNER_SPACE + LINE_GAP + LINE_LENGTH) * Angle(LINE_ANGLE[direction]).Unit());
-		// Offset the label correctly depending on its location relative to the stellar object.
-		Point unit(LINE_ANGLE[direction] > 180. ? -1. : 1., 0.);
-		Point end = start + unit * width;
+		// Rectangle ranges from (-width/2, -height/2) to (width/2, height/2).
+		const Point box = dimensions * .5;
 
-		for(const StellarObject &other : system.Objects())
-		{
-			if(&other == &object)
-				continue;
+		// Check to avoid division by zero.
+		if(unit.X() == 0.)
+			return Point(0., copysign(box.Y(), unit.Y()));
 
-			double minDistance = (other.Radius() + MIN_DISTANCE) * zoom;
+		const double slope = unit.Y() / unit.X();
 
-			Point otherPos = other.Position() * zoom;
-			double startDistance = otherPos.Distance(start);
-			double endDistance = otherPos.Distance(end);
-			if(startDistance < minDistance || endDistance < minDistance)
-				return true;
+		// Left and right sides.
+		const double y = fabs(box.X() * slope);
+		if(y <= box.Y())
+			return Point(copysign(box.X(), unit.X()), copysign(y, unit.Y()));
 
-			// Check overlap with the middle of the label, when the end and/or start might not overlap.
-			double projection = (otherPos - start).Dot(unit);
-			if(projection > 0. && projection < width)
-			{
-				double distance = sqrt(startDistance * startDistance - projection * projection);
-				if(distance < minDistance)
-					return true;
-			}
-		}
-
-		return false;
+		// Top and bottom sides.
+		const double x = box.Y() / slope;
+		return Point(copysign(x, unit.X()), copysign(box.Y(), unit.Y()));
 	}
 }
 
 
 
-PlanetLabel::PlanetLabel(const Point &position, const StellarObject &object, const System *system, double zoom)
-	: position(position * zoom), radius(object.Radius() * zoom)
+PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system, const StellarObject &object)
+	: object(&object)
 {
 	const Planet &planet = *object.GetPlanet();
-	name = planet.Name();
+	name = planet.DisplayName();
 	if(planet.IsWormhole())
 		color = *planet.GetWormhole()->GetLinkColor();
 	else if(planet.GetGovernment())
 	{
 		government = "(" + planet.GetGovernment()->GetName() + ")";
-		color = planet.GetGovernment()->GetColor();
-		color = Color(color.Get()[0] * .5f + .3f, color.Get()[1] * .5f + .3f, color.Get()[2] * .5f + .3f);
+		color = Color::Combine(.5f, planet.GetGovernment()->GetColor(), 1.f, Color(.3f));
 		if(!planet.CanLand())
 			hostility = 3 + 2 * planet.GetGovernment()->IsEnemy();
 	}
 	else
 	{
-		color = Color(.3f, .3f, .3f, 1.f);
 		government = "(No government)";
+		color = Color(.3f);
 	}
-	float alpha = static_cast<float>(min(.5, max(0., .6 - (position.Length() - object.Radius()) * .001 * zoom)));
-	color = Color(color.Get()[0] * alpha, color.Get()[1] * alpha, color.Get()[2] * alpha, 0.);
 
-	if(!system)
-		return;
+	// Figure out how big the label is.
+	const Font &font = FontSet::Get(14);
+	const Font &bigFont = FontSet::Get(18);
+	const double labelWidth = max(bigFont.Width(name), font.Width(government));
+	const double nameHeight = bigFont.Height();
+	const double labelHeight = nameHeight + (government.empty() ? 0. : 1. + font.Height());
+	const Point labelDimensions = {labelWidth + BORDER * 2., labelHeight + BORDER * 2.};
 
-	// Figure out how big the label has to be.
-	double width = max(FontSet::Get(18).Width(name), FontSet::Get(14).Width(government)) + 8.;
-
-	// Try to find a label direction that not overlapping under any zoom.
-	for(int d = 0; d < 4; ++d)
-		if(!Overlaps(*system, object, Preferences::MinViewZoom(), width, d)
-				&& !Overlaps(*system, object, Preferences::MaxViewZoom(), width, d))
+	// Try to find a label direction that is not overlapping under any zoom.
+	const vector<double> &allZooms = Preferences::Zooms();
+	for(const double angle : LINE_ANGLES)
+	{
+		SetBoundingBox(labelDimensions, angle);
+		if(none_of(allZooms.begin(), allZooms.end(),
+				[&](const double zoom)
+				{
+					return HasOverlaps(labels, system, object, zoom);
+				}))
 		{
-			direction = d;
-			return;
+			innerAngle = angle;
+			break;
 		}
+	}
 
-	// If we can't find a suitable direction, then try to find a direction under the current
-	// zoom that is not overlapping.
-	for(int d = 0; d < 4; ++d)
-		if(!Overlaps(*system, object, zoom, width, d))
-		{
-			direction = d;
-			return;
-		}
+	// No non-overlapping choices, so set this to the default.
+	if(innerAngle < 0.)
+	{
+		innerAngle = LINE_ANGLES[0];
+		SetBoundingBox(labelDimensions, innerAngle);
+	}
+
+	// Cache the offsets for both labels; center labels.
+	const Point offset = GetOffset(Angle(innerAngle).Unit(), labelDimensions) - labelDimensions * .5;
+	const double nameX = (labelDimensions.X() - bigFont.Width(name)) * .5;
+	nameOffset = Point(offset.X() + nameX, offset.Y() + BORDER);
+	const double governmentX = (labelDimensions.X() - font.Width(government)) * .5;
+	governmentOffset = Point(offset.X() + governmentX, nameOffset.Y() + nameHeight + 1.);
+}
+
+
+
+void PlanetLabel::Update(const Point &center, const double zoom)
+{
+	drawCenter = center;
+	position = (object->Position() - center) * zoom;
+	radius = object->Radius() * zoom;
 }
 
 
 
 void PlanetLabel::Draw() const
 {
-	// Draw any active planet labels.
-	const Font &font = FontSet::Get(14);
-	const Font &bigFont = FontSet::Get(18);
+	// Don't draw if too far away from the center of the screen.
+	const double offset = position.Length() - radius;
+	const double objectDistanceAlpha = object->DistanceAlpha(drawCenter);
+	if(offset >= 600. || objectDistanceAlpha == 0.)
+		return;
+
+	// Fade label as we get farther from the center of the screen.
+	const Color labelColor = color.Additive(min(.5, .6 - offset * .001) * objectDistanceAlpha);
 
 	// The angle of the outer ring should be reduced by just enough that the
-	// circumference is reduced by 6 pixels.
-	double innerAngle = LINE_ANGLE[direction];
-	double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
-	Point unit = Angle(innerAngle).Unit();
-	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, color, 0.f, innerAngle);
-	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, color, 0.f, outerAngle);
+	// circumference is reduced by GAP pixels.
+	const double outerAngle = innerAngle - 360. * GAP / (2. * PI * radius);
+	RingShader::Draw(position, radius + INNER_SPACE, 2.3f, .9f, labelColor, 0.f, innerAngle);
+	RingShader::Draw(position, radius + INNER_SPACE + GAP, 1.3f, .6f, labelColor, 0.f, outerAngle);
 
-	if(!name.empty())
-	{
-		Point from = position + (radius + INNER_SPACE + LINE_GAP) * unit;
-		Point to = from + LINE_LENGTH * unit;
-		LineShader::Draw(from, to, 1.3f, color);
-
-		double nameX = to.X() + (direction < 2 ? 2. : -bigFont.Width(name) - 2.);
-		bigFont.DrawAliased(name, nameX, to.Y() - .5 * bigFont.Height(), color);
-
-		double governmentX = to.X() + (direction < 2 ? 4. : -font.Width(government) - 4.);
-		font.DrawAliased(government, governmentX, to.Y() + .5 * bigFont.Height() + 1., color);
-	}
+	const double barbRadius = radius + 25.;
 	Angle barbAngle(innerAngle + 36.);
 	for(int i = 0; i < hostility; ++i)
 	{
-		barbAngle += Angle(800. / (radius + 25.));
-		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, radius + 25., color);
+		barbAngle += Angle(800. / barbRadius);
+		PointerShader::Draw(position, barbAngle.Unit(), 15.f, 15.f, barbRadius, labelColor);
 	}
+
+	// Draw planet name label, if any.
+	if(!name.empty())
+	{
+		const Point unit = Angle(innerAngle).Unit();
+		const Point from = position + unit * (radius + INNER_SPACE + LINE_GAP);
+		const Point to = from + unit * LINE_LENGTH;
+		LineShader::Draw(from, to, 1.3f, labelColor);
+
+		// Use non-rounding version to prevent labels from jittering.
+		FontSet::Get(18).DrawAliased(name, to.X() + nameOffset.X(),
+			to.Y() + nameOffset.Y(), labelColor);
+		FontSet::Get(14).DrawAliased(government, to.X() + governmentOffset.X(),
+			to.Y() + governmentOffset.Y(), labelColor);
+	}
+}
+
+
+
+void PlanetLabel::SetBoundingBox(const Point &labelDimensions, const double angle)
+{
+	const Point unit = Angle(angle).Unit();
+	zoomOffset = object->Position() + unit * object->Radius();
+	box = Rectangle(unit * (INNER_SPACE + LINE_GAP + LINE_LENGTH) + GetOffset(unit, labelDimensions),
+		labelDimensions);
+}
+
+
+
+Rectangle PlanetLabel::GetBoundingBox(const double zoom) const
+{
+	return box + zoomOffset * zoom;
+}
+
+
+
+// Check if the label for the given stellar object overlaps
+// with any existing label or any other stellar object in the system.
+bool PlanetLabel::HasOverlaps(const vector<PlanetLabel> &labels, const System &system,
+		const StellarObject &object, const double zoom) const
+{
+	const Rectangle boundingBox = GetBoundingBox(zoom);
+
+	for(const PlanetLabel &label : labels)
+		if(boundingBox.Overlaps(label.GetBoundingBox(zoom)))
+			return true;
+
+	for(const StellarObject &other : system.Objects())
+		if(&other != &object && boundingBox.Overlaps(other.Position() * zoom,
+				other.Radius() * zoom + MIN_DISTANCE))
+			return true;
+
+	return false;
 }

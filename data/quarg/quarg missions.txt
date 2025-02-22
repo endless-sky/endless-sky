@@ -14,7 +14,7 @@
 mission "First Contact: Quarg"
 	landing
 	source
-		attributes "quarg"
+		attributes "hai quarg" "human quarg"
 	on offer
 		log "Factions" "Quarg" `The Quarg are tall, thin, inscrutable aliens who evolved on a very small planet and can live comfortably on worlds with atmosphere so thin that a human being could not breathe it. They discovered spaceflight millions of years ago. Many of them live on artificially constructed ringworlds, including one in human space. They live at peace with most sentient species and claim to be in communication with an even older species named the Drak.`
 		log "Factions" "Drak" `The Drak are supposedly the oldest living species in the galaxy. The Quarg say that the Drak act as something like galactic peacekeepers or police, and will intervene if a species invents a weapon so terrible that it could drive that species to extinction.`
@@ -164,7 +164,7 @@ mission "Quarg Satellites"
 	on enter "Kappa Centauri"
 		dialog "You open your cargo hold, and let a Quarg scanner drift out to the void."
 	on enter "Graffias"
-		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why decided to help with surveillance."
+		dialog "Looking at the former slave-colony planet here as you deploy their scanner, you wonder if the Quarg heard about Poisonwood's history, and that's why they decided to help with surveillance."
 	on enter "Antares"
 		dialog "You set a Quarg scanner free, and let it leave your ship."
 	on enter "Han"
@@ -221,7 +221,7 @@ mission "Lagrange Ring: Cargo"
 		payment 953000
 		conversation
 			`Much like your own ship, several other human freighters and convoys are arriving, and the cargo being meticulously checked by the Quarg, as they use their own machinery to unload what must be tens of thousands of tons from all the ships.`
-			`	About halfway through the unload of your own cargo, a Quarg comes up to you and hands you <payment>.`
+			`	About halfway through the unloading of your own cargo, a Quarg comes up to you and hands you <payment>.`
 
 
 
@@ -230,11 +230,10 @@ mission "Ask Quarg About Coalition Early"
 	to offer
 		has "First Contact: Quarg: offered"
 		has "Coalition: First Contact: done"
-		not "assisted heliarch"
-		not "Heliarch Recon 1: offered"
-		not "Resistance: Introductions: offered"
+		not "joined the lunarium"
+		not "joined the heliarchs"
 	source
-		attributes "quarg"
+		attributes "hai quarg" "human quarg"
 		attributes "station"
 	on offer
 		conversation
@@ -262,15 +261,207 @@ mission "Ask Quarg About Coalition Early"
 
 
 
-mission "Quarg Ships Atrocity"
+mission "Quarg Pug Arfecta Warning"
+	minor
 	landing
-	invisible
 	source
-		government "Quarg"
+		attributes "hai quarg" "human quarg"
+		attributes "ringworld"
+	to offer
+		has "First Contact: Quarg: offered"
+		has "ship model: Pug Arfecta"
+	on offer
+		conversation
+			branch flagship
+				has "flagship model: Pug Arfecta"
+			`As soon as you land, you see a crowd of Quarg gathering around one of your escorts, the Pug Arfecta. The captain of the ship looks shaken as the Quarg surround them, seemingly being questioned by a rather tall Quarg, even by Quarg standards. The captain looks around and, seeing you, points in your direction, causing the Quarg to come your way. The tall Quarg towers over you and gives you a piercing stare.`
+				goto choice
+			label flagship
+			`As soon as you land your ship, a crowd of Quarg start to gather around. As you go to disembark, you find a rather imposing Quarg blocking the exit. Tall even by Quarg standards, it towers over you and gives you a piercing stare.`
+			label choice
+			`	"It is as though a baby in swaddling has tamed a dragon and now rides it through the sky spewing fire with reckless abandon," it says while not breaking its gaze, unblinking.`
+			choice
+				`	"It's a long story..."`
+					goto evasive
+				`	"It was an act of righteous defiance."`
+					goto righteous
+				`	"The Pug fancy themselves gods, but since God is dead..."`
+					goto anarchy
+				`	"I saw something I liked, so I made it mine."`
+					goto greedy
+			label evasive
+			`	It scoffs, "It matters not how it happened.`
+				goto end
+			label righteous
+			`	"You fancy yourself a savior or a revolutionary then?" the Quarg says with what you assume is a sarcastic tone.`
+				goto end
+			label anarchy
+			`	"So you deign to prove them wrong?" the Quarg says with an almost amused, or perhaps incredulous tone.`
+				goto end
+			label greedy
+			`	"A baby in swaddling, indeed...`
+				goto end
+			label end
+			`	"We give you a warning. You know not what you have, human - what weapon you wield.`
+			`	"We have seen its power. We have felt it, and learned from it. But you and your kind know nothing of the burdens and dangers that follow it. Be careful that you are the one who directs this power, and not it you.`
+			`	"Know well that we have learned how to overcome it."`
+			`	The Quarg takes one last long look at your ship, then makes a curt farewell motion, leaving you to your business. The crowd, too, starts to disperse, with only a few staying behind to gawk at the ship.`
+			`	As you make your way through the ring, you notice occasional glares from the Quarg onboard the ring.`
+				decline
+
+
+
+mission "Ask Quarg About Coalition Late"
+	invisible
+	landing
+	source
+		attributes "quarg"
+		attributes "station"
 	to offer
 		or
-			has "ship model: Quarg Skylark"
-			has "ship model: Quarg Wardragon"
+			has "joined the heliarchs"
+			has "joined the lunarium"
 	on offer
-		conversation "quarg imprisonment"
-
+		conversation
+			branch heliarch
+				has "joined the heliarchs"
+			branch lunarium
+				has "joined the lunarium"
+			label heliarch
+			`You've obtained the rank of Heliarch, the group who to this day remain hostile to the Quarg. Despite that, you were allowed to land here on <origin> - you don't know whether that's because the Quarg simply don't know that you've joined the Heliarchs, or don't care enough to stop you from coming to their rings. Would you like to ask the Quarg for their side of the story, in light of what you've learned from the Heliarchs?`
+			choice
+				`	(Yes.)`
+					goto yes
+				`	(Not now.)`
+					defer
+				`	(No, I'm not interested.)`
+					decline
+			label lunarium
+			`You've joined the Lunarium in Coalition space, and even served as a messenger to bring the Quarg some information about the Lunarium itself, in the hopes that they might provide some help. Would you like to ask the Quarg for their side of the story, in light of what you've learned from the Lunarium and from your visit to the Quarg with Oobat?`
+			choice
+				`	(Yes.)`
+					goto yes
+				`	(Not now.)`
+					defer
+				`	(No, I'm not interested.)`
+					decline
+			label yes
+			`	You're never quite sure who to speak with when it comes to the Quarg, but this time you're drawn to one that easily stands out. You judge it to be an older member of their species; its thin scales cover its fingers, and the more bony parts of its head have turned to a bright, silvery shade. Unlike most Quarg you've seen, it is wearing a pale, faded white robe, with patches of red-colored chains (that somehow perfectly transition into fabric again) becoming more and more prominent closer to the top, culminating in a firm, crimson hood covering its head. Most surprising of all for a Quarg, however, is the large scar taking up much of the left side of its face, completely covering where its left eye should be.`
+			`	It is completely static, with a lost gaze focused on the ceiling until you approach it. It doesn't squat down to meet your eye level. Instead it says nothing, simply gazing at you with its one eye, colored a bright gold.`
+			choice
+				`	"Hello, I'm <first> <last>. What can you tell me about the Coalition?"`
+				`	"Hello. Is it true that the Heliarchs defeated you and stole your ringworlds?"`
+			`	It continues to stare at you for a while, without as much as blinking. It looks over to a bench in one of the quieter areas of the spaceport, and gestures for you to follow. As you two sit down, you notice it pauses mid-breath. After a few seconds of adjusting itself in the seat, the Quarg finally speaks up.`
+			`	"Those three species arose in relative rapid succession, all in close proximity, compared to how other species tend to be separated by long periods of time, and longer still their distances." Its voice, while still sharing the buzzing, deep hums you've grown to expect from the Quarg, is broken up every other word by something like a crack - or a creak - as if certain vocal cords have grown sore, with an uncomfortable sound akin to an out of tune cello mixing its way into the Quarg's words. "So large are the gaps, that one might never learn of those that came before. But, that was not the case for the three. The first of them, the Saryds, were in many ways much like us Quarg in our younger days, and we perhaps were much too lenient because of that..." It stops, and brings one hand over its head, and then the other, closing its eye as if in a sudden headache. Your eyes almost instinctively go to its scales, expecting them to change like other Quarg you've seen. But, their colors remain unaltered, the same pale gray and silver shades. A few seconds pass, and it brings down its hands back to its lap, opening its eye as it continues. "The Kimek, traumatized by the billions fallen in their famines, sought help to make sure they would never face such a crisis again, and were eager to establish friendly relations with the Saryds. The Arachi, in a way, parallel humanity's development, though they were less keen on letting their inner conflicts be made public. They were the last of the three, and upon meeting their two seniors, invested heavily in research to catch up."`
+			`	It pauses again, taking a look around the spaceport. It fixates on you for a bit, then on the ships landing and departing here. "In the intersecting point of their territories, we built our ringworlds. Seven thousand Earth years ago, the three species of the Coalition sought to take over those rings. After centuries... no, a millennium of fighting, we left that part of the galaxy."`
+			choice
+				`	"Why did they decide to start attacking you and your rings?"`
+				`	"Even now you're more advanced than them, aren't you? How come you lost thousands of years ago, when they were weaker?"`
+					goto lost
+			`	"Whatever reasons they had, whatever drove them to attack us, we cannot quite comprehend... No." It stops, not sighing or showing much emotion, its scales still showing no sign of changing. It looks at the ceiling again, then back at you. "No. You are tired of hearing this same story from us Quarg, are you not? That the foolish and young species warred for no good reason." It pauses again, contemplating its words. "That war was not the first instance where we lost a ring of ours, but never did any of us wish for any ring to be lost in the first place. With three rings there, with the living space for over three trillion Quarg being constructed, we got awfully... protective of that region, in order to prevent outside interference from causing us trouble again. Our relations with the Kimek and Arachi were a far cry from the initial success and amicability we enjoyed with the Saryds, and when an Arach ship first showed signs of technology that repaired its hull platings mid-flight, an achievement even the Saryds were yet to make, we... jumped to conclusions."`
+			choice
+				`	"You 'jumped to conclusions'? What do you mean?"`
+				`	"Even now you're more advanced than them, aren't you? How come you lost thousands of years ago, when they were weaker?"`
+					goto lost
+				`	"That's all. Thank you for speaking with me."`
+					goto end
+			`	It slowly turns its head over to face you, with its eye gazing into your own. An uncomfortable minute passes at a snail's pace, as you seem to struggle keeping eye contact with the Quarg, while at the same time finding it difficult to look elsewhere.`
+			`	"We had gone there to protect the three species. To guide them. To observe them. We failed the latter, losing track of wisdom and reason in favor of fearing past shames. In that, our guidance became compromised, for they trusted us no longer. We were no longer seen as protectors, but as those they had to protect themselves against."`
+			choice
+				`	"Even now you're more advanced than them, aren't you? How come you lost thousands of years ago, when they were weaker?"`
+				`	"That's all. Thank you for speaking with me."`
+					goto end
+			label lost
+			`	"Are we so horribly powerful indeed, or is our might mere consequence of being elders in this galaxy littered with the premature deaths of other species?" it asks. "No... forgive me, I did not answer your question. We... many of our young ones and veterans alike vowed to never allow another ring to be lost. We do not kill for sport, but it has become as natural for a Quarg to defend a ring as it would be for a human to defend their family.`
+			`	"By the billions, defenders arose, ignoring our ways of peace, what social customs we were expected to follow, and... what you may call 'orders.' After a few centuries, those that tolerated, or were forced to tolerate the request for a ceasefire, were evacuated from the rings, and then it was only a matter of time before those of us that remained were overrun by the Coalition."`
+			`	It once again starts looking at the ceiling, remaining like that for a minute or so.`
+			branch "heliarch 2"
+				has "joined the heliarchs"
+			branch "lunarium 2"
+				has "joined the lunarium"
+			label "heliarch 2"
+			`	It then turns to face you once more. "We have of course noticed that headpiece the Heliarchs have provided you with. Though you have officially joined their ranks, you are human. You are not bound to that area of space. There is no need for you to obey their orders. You do not need to ever return there. There is no need for you and us Quarg to be enemies."`
+			label "heliarch ask"
+			branch end
+				has "ask quarg coalition late: threat"
+				has "ask quarg coalition late: aid"
+			choice
+				`	"Is that a threat?"`
+					goto threat
+					to display
+						not "ask quarg coalition late: threat"
+				`	"What if I do want to aid the Heliarchs?"`
+					goto aid
+					to display
+						not "ask quarg coalition late: aid"
+			label threat
+			action
+				set "ask quarg coalition late: threat"
+			`	"No. It is advice. Though you have joined them, you are still welcome at our rings, for the time being. But, the Heliarchs are a group formed and bound by their distrust and revulsion for our kind. Should you continue to follow the Heliarchs, sooner or later they are sure to put you against us, at which point I can no longer guarantee you will retain safe passage through our systems, or will be granted landing clearance on our worlds still."`
+				goto "heliarch ask"
+			label aid
+			action
+				set "ask quarg coalition late: aid"
+			`	"Your motives are your own, but if you were captivated by your own obsessions, then I can only hope you will come to see reason before you too are lost to their path."`
+				goto "heliarch ask"
+			label "lunarium 2"
+			`	It then turns to face you again, saying, "I am aware that you brought one from the Coalition to us, for a conversation. One belonging to a group that seeks to overthrow the Heliarchs. Do be careful, human, they might not be as technologically advanced as us Quarg, but they are very strong still, and duty-bound unlike most others. You and your allies are bound to face tremendous hardship, if you are to oppose them."`
+			label "lunarium ask"
+			branch end
+				has "ask quarg coalition late: help"
+				has "ask quarg coalition late: tips"
+			choice
+				`	"Will the Quarg help us fight the Heliarchs?"`
+					goto help
+					to display
+						not "ask quarg coalition late: help"
+				`	"Any tips on how to fight them?"`
+					goto tips
+					to display
+						not "ask quarg coalition late: tips"
+			label help
+			action
+				set "ask quarg coalition late: help"
+			`	"We agreed to that conversation, that 'interview' of yours. Beyond that, we cannot help much without provoking war, I fear. We seek not to strike fear into the hearts of those of the Coalition, we never did. It would burden your cause to have us take part in the fighting."`
+				goto "lunarium ask"
+			label tips
+			action
+				set "ask quarg coalition late: tips"
+			`	"Do not be arrogant. Do not underestimate them. Do not take victory for granted, no matter how cornered they may seem, lest you shall be cornered yourself."`
+				goto "lunarium ask"
+			label end
+			action
+				clear "ask quarg coalition late: help"
+				clear "ask quarg coalition late: tips"
+				clear "ask quarg coalition late: threat"
+				clear "ask quarg coalition late: aid"
+			`	You get up and are just about to leave when it says, "<first> <last>." The Quarg's gaze pierces you, its eye on the same level as your own. "Where is your home?"`
+			choice
+				`	"I come from New Boston, on the Dirt Belt."`
+					to display
+						has "human space start"
+					goto planet
+				`	"I come from Greenwater, in Hai space."`
+					to display
+						has "hai space start"
+					goto planet
+				`	"My ship is my home."`
+					goto ship
+				`	"I don't really have a home."`
+			`	Your response seems to have struck something in it, as it brings one hand over its scar, glancing downwards. "A harrowing sensation, is it not?"`
+				goto name
+			label planet
+			`	It acknowledges your answer with the faintest of nods. "Sparse were my own visits to the rocky worlds inhabited by other species. They are unlike our own. So different, so... complete." Its eye darts around, looking at your surroundings, other Quarg here, then finally its own hands and arms. "But us Quarg must make do."`
+				goto name
+			label ship
+			`	After staring you down for a few seconds, it fixates upon the ceiling again. "I suppose others such as you may imagine that our own lives in our ringworlds are similar to your own within a ship or simple space station." It pauses again, for nearly a minute this time. "Considering the circumstances, that may be a reasonable conclusion on your part."`
+			label name
+			`	It faces you again, and asks, "Have you any more questions for me, Captain?"`
+			choice
+				`	"Who are you?"`
+			action
+				log "People" "Gohl" `Full name Gohl Salyi Memt-Wrik Laz. It is an old, odd Quarg that is more open than its species tends to be in answering questions about rather sensitive topics.`
+			`	"I am called Gohl Salyi Memt-Wrik Laz. An old Quarg. Too old for my own good."`
+			`	You thank it for its time, and see it get up to leave. As soon as it steps away from the bench, you notice a dozen heavily armored Quarg begin to follow it, some coming from the sides of the bench, others seemingly having materalized from the very walls and flooring. They follow Gohl in a machine-like formation, and never so much as acknowledge you.`
+			`	When you last glance back at it before entering your ship again, you see the distinct reflection of Gohl's eye glancing at you from a distance, before being followed by the armorclad Quarg deeper into the station.`
+				decline

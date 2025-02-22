@@ -85,6 +85,10 @@ phrase "generic waypoint on visit"
 		`You have reached <planet>, but you haven't visited all the systems yet! Better depart and make sure you visit <waypoints>.`
 
 
+phrase "generic hunted bounty eliminated and payment dialog"
+	word
+		`The <npc> has been eliminated. Shortly afterwards, the government of <planet> sends you <payment> along with a message of gratitude.`
+
 phrase "generic hunted bounty eliminated dialog"
 	word
 		`The <npc> has been eliminated. You can claim the bounty payment by returning to <destination>.`
@@ -97,6 +101,10 @@ phrase "generic bounty hunting on visit"
 phrase "generic bounty hunting boarding on visit"
 	word
 		`You've landed on <planet>, but you have not boarded the <npc> yet. Hunt it down and board it before returning.`
+
+phrase "generic hunted bounty fleet eliminated and payment dialog"
+	word
+		`The <npc> and their fleet have been eliminated. Shortly afterwards, the government of <planet> sends you <payment> along with a message of gratitude.`
 
 phrase "generic hunted bounty fleet eliminated dialog"
 	word
@@ -122,7 +130,7 @@ phrase "generic completed highly illegal pirate cargo mission"
 
 phrase "generic aborted pirate passenger mission"
 	word
-		`Your passenger never arrived at <destination>. This doesn't help to establish your reputation as reliable, no-questions-asked transporter.`
+		`Your passenger never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`
 
 phrase "generic aborted pirate cargo mission"
 	word
@@ -131,3 +139,7 @@ phrase "generic aborted pirate cargo mission"
 phrase "generic completed pirate slave mission"
 	word
 		`After landing on <planet>, the pirates move the <bunks> slaves from your ship and pay you <payment>.`
+
+phrase "generic aborted pirate slave mission"
+	word
+		`Your slaves never arrived at <destination>. This doesn't help to establish your reputation as a reliable, no-questions-asked transporter.`

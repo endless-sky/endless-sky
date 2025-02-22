@@ -19,7 +19,7 @@ outfit "Nanotech Battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 60000
-	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being less than a third the size."
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
 
 outfit "Antimatter Core"
 	category "Power"
@@ -30,7 +30,7 @@ outfit "Antimatter Core"
 	"energy generation" 80
 	"heat generation" 20
 	"unplunderable" 1
-	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient antimatter core, producing extreme amounts of energy with surprisingly little waste heat."
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
 	
 
 outfit "Quarg Skylance"
@@ -50,7 +50,7 @@ outfit "Quarg Skylance"
 		sound "skylance"
 		"hit effect" "skylance impact"
 		"inaccuracy" .4
-		"turret turn" 4.
+		"turret turn" 2.6
 		"velocity" 500
 		"lifetime" 1
 		"reload" 1
@@ -95,6 +95,7 @@ effect "quarg anti-missile"
 		"no repeat"
 		"frame rate" 3
 	sound "quarg anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 21
 	"velocity scale" 1
 
@@ -103,7 +104,7 @@ outfit "Intrusion Countermeasures"
 	plural "Intrusion Countermeasures"
 	category "Hand to Hand"
 	thumbnail "outfit/quarg countermeasures"
-	"capture defense" 60
+	"capture defense" 24
 	"unplunderable" 1
 	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
 
@@ -114,7 +115,7 @@ outfit "Medium Graviton Thruster"
 	"mass" 70
 	"outfit space" -70
 	"engine capacity" -70
-	"thrust" 80
+	"thrust" 120
 	"thrusting energy" 20
 	"thrusting heat" 2
 	"force protection" 0.15
@@ -130,7 +131,7 @@ outfit "Medium Graviton Steering"
 	"mass" 50
 	"outfit space" -50
 	"engine capacity" -50
-	"turn" 1600
+	"turn" 2400
 	"turning energy" 10
 	"turning heat" 1
 	"force protection" 0.15

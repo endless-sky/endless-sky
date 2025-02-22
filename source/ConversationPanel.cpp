@@ -16,12 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConversationPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "BoardingPanel.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -34,9 +35,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "shift.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #if defined _WIN32
@@ -61,23 +62,43 @@ namespace {
 
 // Constructor.
 ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &conversation,
-	const System *system, const shared_ptr<Ship> &ship)
-	: player(player), conversation(conversation), scroll(0.), system(system), ship(ship)
+	const Mission *caller, const System *system, const shared_ptr<Ship> &ship, bool useTransactions)
+	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
+	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
-	PATH_LENGTH = Files::Saves().size();
+	PATH_LENGTH = Files::Saves().string().size();
 #endif
+	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
 	subs["<last>"] = player.LastName();
 	if(ship)
+	{
 		subs["<ship>"] = ship->Name();
+		subs["<model>"] = ship->DisplayModelName();
+	}
 	else if(player.Flagship())
+	{
 		subs["<ship>"] = player.Flagship()->Name();
+		subs["<model>"] = player.Flagship()->DisplayModelName();
+	}
+
+	// Start a PlayerInfo transaction to prevent saves during the conversation
+	// from recording partial results.
+	if(useTransactions)
+		player.StartTransaction();
 
 	// Begin at the start of the conversation.
 	Goto(0);
+}
+
+
+
+ConversationPanel::~ConversationPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -105,17 +126,7 @@ void ConversationPanel::Draw()
 		Point(boxWidth, Screen::Height()),
 		back);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		// If the screen is high enough, the edge sprite should repeat.
-		double spriteHeight = edgeSprite->Height();
-		Point pos(
-			Screen::Left() + boxWidth + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
 	// Get the font and colors we'll need for drawing everything.
 	const Font &font = FontSet::Get(14);
@@ -123,6 +134,7 @@ void ConversationPanel::Draw()
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &gray = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &dark = *GameData::Colors().Get("dark");
 
 	// Figure out where we should start drawing.
 	Point point(
@@ -153,6 +165,7 @@ void ConversationPanel::Draw()
 		for(int side = 0; side < 2; ++side)
 		{
 			Point center = point + Point(side ? 420 : 190, 7);
+			Point unselected = point + Point(side ? 190 : 420, 7);
 			// Handle mouse clicks in whatever field is not selected.
 			if(side != choice)
 			{
@@ -160,8 +173,12 @@ void ConversationPanel::Draw()
 				continue;
 			}
 
-			// Fill in whichever entry box is active right now.
-			FillShader::Fill(center, fieldSize, selectionColor);
+			// Color selected text box, or flicker if user attempts an error.
+			FillShader::Fill(center, fieldSize, (flickerTime % 6 > 3) ? dim : selectionColor);
+			if(flickerTime)
+				--flickerTime;
+			// Fill non-selected text box with dimmer color.
+			FillShader::Fill(unselected, fieldSize, dark);
 			// Draw the text cursor.
 			center.X() += font.FormattedWidth({choice ? lastName : firstName, layout}) - 67;
 			FillShader::Fill(center, Point(1., 16.), dim);
@@ -226,7 +243,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	// fields are currently active. The name text entry fields are active if
 	// choices is empty and we aren't at the end of the conversation.
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
-		GetUI()->Push(new MapDetailPanel(player, system));
+		GetUI()->Push(new MapDetailPanel(player, system, true));
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
@@ -261,11 +278,15 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 #endif
 			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
+			else
+				flickerTime = 18;
 		}
 		else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !name.empty())
 			name.erase(name.size() - 1);
 		else if(key == '\t' || ((key == SDLK_RETURN || key == SDLK_KP_ENTER) && otherName.empty()))
 			choice = !choice;
+		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && (firstName.empty() || lastName.empty()))
+			flickerTime = 18;
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
 		{
 			// Display the name the player entered.
@@ -291,11 +312,11 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), MapChoice(choice));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), MapChoice(key - '1'));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), MapChoice(key - SDLK_KP_1));
+		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
 	else
 		return false;
 
@@ -335,6 +356,12 @@ bool ConversationPanel::Hover(int x, int y)
 // The player just selected the given choice.
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
+	const ConditionsStore &conditions = player.Conditions();
+	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
+	{
+		return conditions.Get(str.substr(start, length));
+	};
+
 	if(index)
 	{
 		// Add the chosen option to the text.
@@ -377,13 +404,13 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// Action nodes are able to perform various actions, e.g. changing
 			// the player's conditions, granting payments, triggering events,
 			// and more. They are not allowed to spawn additional UI elements.
-			conversation.GetAction(node).Do(player, nullptr);
+			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
 		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
 		{
 			// This is an ordinary conversation node which should be displayed.
 			// Perform any necessary text replacement, and add the text to the display.
-			string altered = Format::Replace(conversation.Text(node), subs);
+			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node), subs), getter);
 			text.emplace_back(altered, conversation.Scene(node), text.empty());
 		}
 		else
@@ -399,7 +426,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	for(int i = 0; i < conversation.Choices(node); ++i)
 		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 		{
-			string altered = Format::Replace(conversation.Text(node, i), subs);
+			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
 			choices.emplace_back(Paragraph(altered), i);
 		}
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
@@ -415,6 +442,10 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 // Exit this panel and do whatever needs to happen next.
 void ConversationPanel::Exit()
 {
+	// Finish the PlayerInfo transaction so any changes get saved again.
+	if(useTransactions)
+		player.FinishTransaction();
+
 	GetUI()->Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
@@ -453,7 +484,7 @@ void ConversationPanel::ClickName(int side)
 // The player just clicked on a conversation choice.
 void ConversationPanel::ClickChoice(int index)
 {
-	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), MapChoice(index));
+	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
 }
 
 

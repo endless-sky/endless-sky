@@ -15,57 +15,60 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameData.h"
 
-#include "Audio.h"
-#include "BatchShader.h"
+#include "audio/Audio.h"
+#include "shader/BatchShader.h"
+#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "Conversation.h"
-#include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Effect.h"
 #include "Files.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "Fleet.h"
-#include "FogShader.h"
+#include "shader/FogShader.h"
 #include "text/FontSet.h"
 #include "FormationPattern.h"
 #include "Galaxy.h"
 #include "GameEvent.h"
 #include "Government.h"
 #include "Hazard.h"
-#include "ImageSet.h"
+#include "image/ImageSet.h"
 #include "Interface.h"
-#include "LineShader.h"
-#include "MaskManager.h"
+#include "shader/LineShader.h"
+#include "image/MaskManager.h"
 #include "Minable.h"
 #include "Mission.h"
-#include "Music.h"
+#include "audio/Music.h"
 #include "News.h"
 #include "Outfit.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "PointerShader.h"
+#include "Plugins.h"
+#include "shader/PointerShader.h"
 #include "Politics.h"
-#include "Random.h"
-#include "RingShader.h"
+#include "RenderBuffer.h"
+#include "shader/RingShader.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteQueue.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
-#include "StarField.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
+#include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "Test.h"
-#include "TestData.h"
+#include "TaskQueue.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "UniverseObjects.h"
 
 #include <algorithm>
+#include <atomic>
 #include <iostream>
+#include <queue>
 #include <utility>
 #include <vector>
 
@@ -87,10 +90,7 @@ namespace {
 
 	StarField background;
 
-	map<string, string> plugins;
-	SpriteQueue spriteQueue;
-
-	vector<string> sources;
+	vector<filesystem::path> sources;
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	map<const Sprite *, int> preloaded;
 
@@ -100,43 +100,146 @@ namespace {
 	map<const System *, map<string, int>> purchases;
 
 	ConditionsStore globalConditions;
+
+	bool preventSpriteUpload = false;
+
+	// Tracks the progress of loading the sprites when the game starts.
+	std::atomic<bool> queuedAllImages = false;
+	std::atomic<int> spritesLoaded = 0;
+	std::atomic<int> totalSprites = 0;
+
+	// List of image sets that are waiting to be uploaded to the GPU.
+	mutex imageQueueMutex;
+	queue<shared_ptr<ImageSet>> imageQueue;
+
+	// Loads a sprite and queues it for upload to the GPU.
+	void LoadSprite(TaskQueue &queue, const shared_ptr<ImageSet> &image)
+	{
+		queue.Run([image] { image->Load(); },
+			[image] { image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload); });
+	}
+
+	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image);
+	// Loads a sprite from the image queue, recursively.
+	void LoadSpriteQueued(TaskQueue &queue)
+	{
+		if(imageQueue.empty())
+			return;
+
+		// Start loading the next image in the list.
+		// This is done to save memory on startup.
+		LoadSpriteQueued(queue, imageQueue.front());
+		imageQueue.pop();
+	}
+
+	// Loads a sprite from the given image, with progress tracking.
+	// Recursively loads the next image in the queue, if any.
+	void LoadSpriteQueued(TaskQueue &queue, const shared_ptr<ImageSet> &image)
+	{
+		queue.Run([image] { image->Load(); },
+			[image, &queue]
+			{
+				image->Upload(SpriteSet::Modify(image->Name()), !preventSpriteUpload);
+				++spritesLoaded;
+
+				// Start loading the next image in the queue, if any.
+				lock_guard lock(imageQueueMutex);
+				LoadSpriteQueued(queue);
+			});
+	}
+
+	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
+	{
+		const auto *plugin = Plugins::Load(path);
+		if(!plugin)
+			return;
+
+		if(plugin->enabled)
+			sources.push_back(path);
+
+		// Load the icon for the plugin, if any.
+		auto icon = make_shared<ImageSet>(plugin->name);
+
+		// Try adding all the possible icon variants.
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			filesystem::path iconPath = path / ("icon" + extension);
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(iconPath);
+				break;
+			}
+		}
+		for(const string &extension : ImageBuffer::ImageExtensions())
+		{
+			filesystem::path iconPath = path / ("icon@2x" + extension);
+			if(Files::Exists(iconPath))
+			{
+				icon->Add(iconPath);
+				break;
+			}
+		}
+
+		if(!icon->IsEmpty())
+		{
+			icon->ValidateFrames();
+			LoadSprite(queue, icon);
+		}
+	}
 }
 
 
 
-future<void> GameData::BeginLoad(bool onlyLoadData, bool debugMode)
+shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
 {
+	preventSpriteUpload = preventUpload;
+
 	// Initialize the list of "source" folders based on any active plugins.
-	LoadSources();
+	LoadSources(queue);
 
 	if(!onlyLoadData)
 	{
-		// Now, read all the images in all the path directories. For each unique
-		// name, only remember one instance, letting things on the higher priority
-		// paths override the default images.
-		map<string, shared_ptr<ImageSet>> images = FindImages();
+		queue.Run([&queue] {
+			// Now, read all the images in all the path directories. For each unique
+			// name, only remember one instance, letting things on the higher priority
+			// paths override the default images.
+			map<string, shared_ptr<ImageSet>> images = FindImages();
 
-		// From the name, strip out any frame number, plus the extension.
-		for(const auto &it : images)
-		{
-			// This should never happen, but just in case:
-			if(!it.second)
-				continue;
+			// From the name, strip out any frame number, plus the extension.
+			for(auto &it : images)
+			{
+				// This should never happen, but just in case:
+				if(!it.second)
+					continue;
 
-			// Reduce the set of images to those that are valid.
-			it.second->ValidateFrames();
-			// For landscapes, remember all the source files but don't load them yet.
-			if(ImageSet::IsDeferred(it.first))
-				deferred[SpriteSet::Get(it.first)] = it.second;
-			else
-				spriteQueue.Add(it.second);
-		}
+				// Reduce the set of images to those that are valid.
+				it.second->ValidateFrames();
+				// For landscapes, remember all the source files but don't load them yet.
+				if(ImageSet::IsDeferred(it.first))
+					deferred[SpriteSet::Get(it.first)] = std::move(it.second);
+				else
+				{
+					lock_guard lock(imageQueueMutex);
+					imageQueue.push(std::move(std::move(it.second)));
+					++totalSprites;
+				}
+			}
+			queuedAllImages = true;
 
-		// Generate a catalog of music files.
-		Music::Init(sources);
+			// Launch the tasks to actually load the images, making sure not to exceed the amount
+			// of tasks the main thread can handle in a single frame to limit peak memory usage.
+			{
+				lock_guard lock(imageQueueMutex);
+				for(int i = 0; i < TaskQueue::MAX_SYNC_TASKS; ++i)
+					LoadSpriteQueued(queue);
+			}
+
+			// Generate a catalog of music files.
+			Music::Init(sources);
+		});
 	}
 
-	return objects.Load(sources, debugMode);
+	return objects.Load(queue, sources, debugMode);
 }
 
 
@@ -167,14 +270,19 @@ void GameData::CheckReferences()
 
 
 
-void GameData::LoadShaders(bool useShaderSwizzle)
+void GameData::LoadSettings()
 {
-	FontSet::Add(Files::Images() + "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() + "font/ubuntu18r.png", 18);
-
 	// Load the key settings.
-	Command::LoadSettings(Files::Resources() + "keys.txt");
-	Command::LoadSettings(Files::Config() + "keys.txt");
+	Command::LoadSettings(Files::Resources() / "keys.txt");
+	Command::LoadSettings(Files::Config() / "keys.txt");
+}
+
+
+
+void GameData::LoadShaders()
+{
+	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
 
 	FillShader::Init();
 	FogShader::Init();
@@ -182,8 +290,9 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 	OutlineShader::Init();
 	PointerShader::Init();
 	RingShader::Init();
-	SpriteShader::Init(useShaderSwizzle);
+	SpriteShader::Init();
 	BatchShader::Init();
+	RenderBuffer::Init();
 
 	background.Init(16384, 4096);
 }
@@ -192,16 +301,15 @@ void GameData::LoadShaders(bool useShaderSwizzle)
 
 double GameData::GetProgress()
 {
-	// Cache progress completion seen, so clients are
-	// isolated from the loading implementation details.
-	static bool initiallyLoaded = false;
-	if(initiallyLoaded)
-		return 1.;
-
-	double val = min(min(spriteQueue.GetProgress(), Audio::GetProgress()), objects.GetProgress());
-	if(val >= 1.)
-		initiallyLoaded = true;
-	return val;
+	double spriteProgress = 0.;
+	if(queuedAllImages)
+	{
+		if(!totalSprites)
+			spriteProgress = 1.;
+		else
+			spriteProgress = static_cast<double>(spritesLoaded) / totalSprites;
+	}
+	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
 }
 
 
@@ -215,7 +323,7 @@ bool GameData::IsLoaded()
 
 // Begin loading a sprite that was previously deferred. Currently this is
 // done with all landscapes to speed up the program's startup.
-void GameData::Preload(const Sprite *sprite)
+void GameData::Preload(TaskQueue &queue, const Sprite *sprite)
 {
 	// Make sure this sprite actually is one that uses deferred loading.
 	auto dit = deferred.find(sprite);
@@ -239,14 +347,14 @@ void GameData::Preload(const Sprite *sprite)
 	// This sprite is not currently preloaded. Check to see whether we already
 	// have the maximum number of sprites loaded, in which case the oldest one
 	// must be unloaded to make room for this one.
-	const string &name = sprite->Name();
 	pit = preloaded.begin();
 	while(pit != preloaded.end())
 	{
 		++pit->second;
 		if(pit->second >= 20)
 		{
-			spriteQueue.Unload(name);
+			// Unloading needs to be queued on the main thread.
+			queue.Run({}, [name = pit->first->Name()] { SpriteSet::Modify(name)->Unload(); });
 			pit = preloaded.erase(pit);
 		}
 		else
@@ -255,28 +363,13 @@ void GameData::Preload(const Sprite *sprite)
 
 	// Now, load all the files for this sprite.
 	preloaded[sprite] = 0;
-	spriteQueue.Add(dit->second);
-}
-
-
-
-void GameData::ProcessSprites()
-{
-	spriteQueue.UploadSprites();
-}
-
-
-
-// Wait until all pending sprite uploads are completed.
-void GameData::FinishLoadingSprites()
-{
-	spriteQueue.Finish();
+	LoadSprite(queue, dit->second);
 }
 
 
 
 // Get the list of resource sources (i.e. plugin folders).
-const vector<string> &GameData::Sources()
+const vector<filesystem::path> &GameData::Sources()
 {
 	return sources;
 }
@@ -367,12 +460,12 @@ void GameData::WriteEconomy(DataWriter &out)
 			using Purchase = pair<const System *const, map<string, int>>;
 			WriteSorted(purchases,
 				[](const Purchase *lhs, const Purchase *rhs)
-					{ return lhs->first->Name() < rhs->first->Name(); },
+					{ return lhs->first->TrueName() < rhs->first->TrueName(); },
 				[&out](const Purchase &pit)
 				{
 					// Write purchases for all systems, even ones from removed plugins.
 					for(const auto &cit : pit.second)
-						out.Write(pit.first->Name(), cit.first, cit.second);
+						out.Write(pit.first->TrueName(), cit.first, cit.second);
 				});
 			out.EndChild();
 		}
@@ -388,7 +481,7 @@ void GameData::WriteEconomy(DataWriter &out)
 			if(!sit.second.IsValid() && !sit.second.HasTrade())
 				continue;
 
-			out.WriteToken(sit.second.Name());
+			out.WriteToken(sit.second.TrueName());
 			for(const auto &cit : GameData::Commodities())
 				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
 			out.Write();
@@ -510,7 +603,6 @@ const Set<Effect> &GameData::Effects()
 
 
 
-
 const Set<GameEvent> &GameData::Events()
 {
 	return objects.events;
@@ -564,7 +656,6 @@ const Set<Minable> &GameData::Minables()
 {
 	return objects.minables;
 }
-
 
 
 
@@ -694,7 +785,6 @@ const vector<Trade::Commodity> &GameData::Commodities()
 
 
 
-
 const vector<Trade::Commodity> &GameData::SpecialCommodities()
 {
 	return objects.trade.SpecialCommodities();
@@ -705,7 +795,7 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 // Custom messages to be shown when trying to land on certain stellar objects.
 bool GameData::HasLandingMessage(const Sprite *sprite)
 {
-	return objects.landingMessages.count(sprite);
+	return objects.landingMessages.contains(sprite);
 }
 
 
@@ -736,6 +826,15 @@ double GameData::SolarWind(const Sprite *sprite)
 
 
 
+// Get the map icon of the given stellar object sprite.
+const Sprite *GameData::StarIcon(const Sprite *sprite)
+{
+	const auto it = objects.starIcons.find(sprite);
+	return (it == objects.starIcons.end() ? nullptr : it->second);
+}
+
+
+
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
@@ -750,8 +849,8 @@ const string &GameData::Rating(const string &type, int level)
 
 
 
-// Strings for ship, bay type, and outfit categories.
-const vector<string> &GameData::Category(const CategoryType type)
+// Collections for ship, bay type, outfit, and other categories.
+const CategoryList &GameData::GetCategory(const CategoryType type)
 {
 	return objects.categories[type];
 }
@@ -803,13 +902,6 @@ const map<string, string> &GameData::HelpTemplates()
 
 
 
-const map<string, string> &GameData::PluginAboutText()
-{
-	return plugins;
-}
-
-
-
 MaskManager &GameData::GetMaskManager()
 {
 	return maskManager;
@@ -824,55 +916,27 @@ const TextReplacements &GameData::GetTextReplacements()
 
 
 
-void GameData::LoadSources()
+const Gamerules &GameData::GetGamerules()
+{
+	return objects.gamerules;
+}
+
+
+
+void GameData::LoadSources(TaskQueue &queue)
 {
 	sources.clear();
 	sources.push_back(Files::Resources());
 
-	vector<string> globalPlugins = Files::ListDirectories(Files::Resources() + "plugins/");
-	for(const string &path : globalPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			sources.push_back(path);
-	}
+	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
+		if(Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
 
-	vector<string> localPlugins = Files::ListDirectories(Files::Config() + "plugins/");
-	for(const string &path : localPlugins)
-	{
-		if(Files::Exists(path + "data") || Files::Exists(path + "images") || Files::Exists(path + "sounds"))
-			sources.push_back(path);
-	}
-
-	// Load the plugin data, if any.
-	for(auto it = sources.begin() + 1; it != sources.end(); ++it)
-	{
-		// Get the name of the folder containing the plugin.
-		size_t pos = it->rfind('/', it->length() - 2) + 1;
-		string name = it->substr(pos, it->length() - 1 - pos);
-
-		// Load the about text and the icon, if any.
-		plugins[name] = Files::Read(*it + "about.txt");
-
-		// Create an image set for the plugin icon.
-		auto icon = make_shared<ImageSet>(name);
-
-		// Try adding all the possible icon variants.
-		if(Files::Exists(*it + "icon.png"))
-			icon->Add(*it + "icon.png");
-		else if(Files::Exists(*it + "icon.jpg"))
-			icon->Add(*it + "icon.jpg");
-
-		if(Files::Exists(*it + "icon@2x.png"))
-			icon->Add(*it + "icon@2x.png");
-		else if(Files::Exists(*it + "icon@2x.jpg"))
-			icon->Add(*it + "icon@2x.jpg");
-
-		if(!icon->IsEmpty())
-		{
-			icon->ValidateFrames();
-			spriteQueue.Add(icon);
-		}
-	}
+	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
+	for(const auto &path : localPlugins)
+		if(Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
 }
 
 
@@ -880,23 +944,22 @@ void GameData::LoadSources()
 map<string, shared_ptr<ImageSet>> GameData::FindImages()
 {
 	map<string, shared_ptr<ImageSet>> images;
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		string directoryPath = source + "images/";
-		size_t start = directoryPath.size();
+		filesystem::path directoryPath = source / "images/";
 
-		vector<string> imageFiles = Files::RecursiveList(directoryPath);
-		for(string &path : imageFiles)
+		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
+		for(auto &path : imageFiles)
 			if(ImageSet::IsImage(path))
 			{
-				string name = ImageSet::Name(path.substr(start));
+				ImageFileData data(path, directoryPath);
 
-				shared_ptr<ImageSet> &imageSet = images[name];
+				shared_ptr<ImageSet> &imageSet = images[data.name];
 				if(!imageSet)
-					imageSet.reset(new ImageSet(name));
-				imageSet->Add(std::move(path));
+					imageSet.reset(new ImageSet(data.name));
+				imageSet->Add(std::move(data));
 			}
 	}
 	return images;

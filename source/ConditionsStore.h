@@ -13,9 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONDITIONS_STORE_H_
-#define CONDITIONS_STORE_H_
+#pragma once
 
+#include <cstdint>
 #include <functional>
 #include <initializer_list>
 #include <map>
@@ -51,12 +51,10 @@ public:
 	public:
 		// Functions to set the lambda functions for accessing the conditions.
 		void SetGetFunction(std::function<int64_t(const std::string &)> newGetFun);
-		void SetHasFunction(std::function<bool(const std::string &)> newHasFun);
 		void SetSetFunction(std::function<bool(const std::string &, int64_t)> newSetFun);
-		void SetEraseFunction(std::function<bool(const std::string &)> newEraseFun);
 
 	public:
-		// This is intented as a private constructor, only to be called from within
+		// This is intended as a private constructor, only to be called from within
 		// ConditionsStore. But we need to keep it public because of how the
 		// DerivedProviders are emplaced in the providers-map-variable.
 		DerivedProvider(const std::string &name, bool isPrefixProvider);
@@ -68,14 +66,12 @@ public:
 		// Lambda functions for accessing the derived conditions, with some sensible
 		// default implementations;
 		std::function<int64_t(const std::string &)> getFunction = [](const std::string &name) { return 0; };
-		std::function<bool(const std::string &)> hasFunction = [](const std::string &name) { return true; };
 		std::function<bool(const std::string &, int64_t)> setFunction = [](const std::string &name, int64_t value) {
 			return false; };
-		std::function<bool(const std::string &)> eraseFunction = [](const std::string &name) { return false; };
 	};
 
 
-	// Storage entry for a condition. Can act as a int64_t proxy when operator[] is used for access
+	// Storage entry for a condition. Can act as an int64_t proxy when operator[] is used for access
 	// to conditions in the ConditionsStore.
 	class ConditionEntry {
 		friend ConditionsStore;
@@ -100,56 +96,13 @@ public:
 	};
 
 
-	// Input_iterator helper class to iterate over primary conditions.
-	// This can be used when saving primary conditions to savegames and/or
-	// for displaying some data based on primary conditions.
-	class PrimariesIterator {
-		using CondMapItType = std::map<std::string, ConditionEntry>::const_iterator;
-
-	public:
-		PrimariesIterator(CondMapItType it, CondMapItType endIt);
-
-		// Iterator traits
-		using iterator_category = std::input_iterator_tag;
-		using value_type = std::pair<const std::string, int64_t>;
-		using difference_type = void;
-		// TODO: this should point to something that actually works.
-		using pointer = const std::pair<const std::string, int64_t> *;
-		// TODO: this should be a reference.
-		using reference = std::pair<const std::string, int64_t>;
-
-		// Default input_iterator operations.
-		std::pair<std::string, int64_t> operator*() const;
-		const std::pair<std::string, int64_t> *operator->();
-		PrimariesIterator &operator++();
-		PrimariesIterator operator++(int);
-		bool operator==(const PrimariesIterator &rhs) const;
-		bool operator!=(const PrimariesIterator &rhs) const;
-
-
-	public:
-		// Helper function to ensure that the primary-conditions iterator points
-		// to a primary (value) condition or to the end-iterator value.
-		void MoveToValueCondition();
-
-
-	private:
-		// The operator->() requires a return value that is a pointer, but in this
-		// case there is no original pair-object to point to, so we generate a
-		// virtual object on the fly while iterating.
-		std::pair<std::string, int64_t> itVal;
-		CondMapItType condMapIt;
-		CondMapItType condMapEnd;
-	};
-
-
 
 public:
 	// Constructors to initialize this class.
 	ConditionsStore() = default;
-	ConditionsStore(const DataNode &node);
-	ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
-	ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
+	explicit ConditionsStore(const DataNode &node);
+	explicit ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
+	explicit ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
 
 	// Serialization support for this class.
 	void Load(const DataNode &node);
@@ -158,22 +111,14 @@ public:
 	// Retrieve a "condition" flag from this store (directly or from the
 	// connected provider).
 	int64_t Get(const std::string &name) const;
-	bool Has(const std::string &name) const;
-	std::pair<bool, int64_t> HasGet(const std::string &name) const;
 
-	// Add a value to a condition, set a value for a condition or erase a
-	// condition completely. Returns true on success, false on failure.
+	// Add a value to a condition or set a value for a condition.
+	// Returns true on success, false on failure.
 	bool Add(const std::string &name, int64_t value);
 	bool Set(const std::string &name, int64_t value);
-	bool Erase(const std::string &name);
 
 	// Direct access to a specific condition (using the ConditionEntry as proxy).
 	ConditionEntry &operator[](const std::string &name);
-
-	// Direct (read-only) access to the stored primary conditions.
-	PrimariesIterator PrimariesBegin() const;
-	PrimariesIterator PrimariesEnd() const;
-	PrimariesIterator PrimariesLowerBound(const std::string &key) const;
 
 	// Builds providers for derived conditions based on prefix and name.
 	DerivedProvider &GetProviderPrefixed(const std::string &prefix);
@@ -181,6 +126,9 @@ public:
 
 	// Helper to completely remove all data and linked condition-providers from the store.
 	void Clear();
+
+	// Helper for testing; check how many primary conditions are registered.
+	int64_t PrimariesSize() const;
 
 
 private:
@@ -198,7 +146,3 @@ private:
 	std::map<std::string, ConditionEntry> storage;
 	std::map<std::string, DerivedProvider> providers;
 };
-
-
-
-#endif

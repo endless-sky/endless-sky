@@ -35,18 +35,7 @@ namespace { // test namespace
 using Conditions = std::map<std::string, int64_t>;
 // #region mock data
 
-int primarySize(const ConditionsStore &store)
-{
-	// TODO: use std::distance instead of the while loop
-	int size = 0;
-	auto it = store.PrimariesBegin();
-	while(it != store.PrimariesEnd())
-	{
-		++it;
-		++size;
-	}
-	return size;
-}
+
 
 // #endregion mock data
 
@@ -79,7 +68,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 }
 
 SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
-	const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
+
 	OutputSink warnings(std::cerr);
 
 	GIVEN( "an empty ConditionSet" ) {
@@ -87,22 +76,25 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 		REQUIRE( set.IsEmpty() );
 
 		THEN( "no expressions are added from empty nodes" ) {
-			set.Add(DataNode{});
+			const std::string validationWarning = "Error: Loading empty (sub)condition:\ntoplevel\n\n";
+			set.Load(AsDataNode("toplevel"));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
 				REQUIRE( warnings.Flush() == validationWarning );
 			}
 		}
 		THEN( "no expressions are added from invalid nodes" ) {
-			const std::string invalidNodeText = "has";
-			set.Add(AsDataNode(invalidNodeText));
+			const std::string validationWarning = "Error: An expression must either perform a comparison or assign a value:\n";
+			const std::string invalidNodeText = "and\n\thas";
+			const std::string invalidNodeTextInWarning = "and\nL2:   has";
+			set.Load(AsDataNode(invalidNodeText));
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
-				REQUIRE( warnings.Flush() == validationWarning + invalidNodeText + '\n' + '\n');
+				REQUIRE( warnings.Flush() == validationWarning + invalidNodeTextInWarning + '\n' + '\n');
 			}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
-			set.Add(AsDataNode("never"));
+			set.Load(AsDataNode("and\n\tnever"));
 			REQUIRE_FALSE( set.IsEmpty() );
 			REQUIRE( warnings.Flush() == "" );
 		}
@@ -144,56 +136,6 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 	}
 }
 
-SCENARIO( "Applying changes to conditions", "[ConditionSet][Usage]" ) {
-	auto store = ConditionsStore{};
-	REQUIRE( primarySize(store) == 0 );
-
-	GIVEN( "an empty ConditionSet" ) {
-		const auto emptySet = ConditionSet{};
-		REQUIRE( emptySet.IsEmpty() );
-
-		THEN( "no conditions are added via Apply" ) {
-			emptySet.Apply(store);
-			REQUIRE( primarySize(store) == 0 );
-
-			store.Set("event: war begins", 1);
-			REQUIRE( primarySize(store) == 1 );
-			emptySet.Apply(store);
-			REQUIRE( primarySize(store) == 1 );
-		}
-	}
-	GIVEN( "a ConditionSet with only comparison expressions" ) {
-		std::string compareExpressions = "and\n"
-			"\thas \"event: war begins\"\n"
-			"\tnot b\n"
-			"\tc >= random\n";
-		const auto compareSet = ConditionSet{AsDataNode(compareExpressions)};
-		REQUIRE_FALSE( compareSet.IsEmpty() );
-
-		THEN( "no conditions are added via Apply" ) {
-			compareSet.Apply(store);
-			REQUIRE( primarySize(store) == 0 );
-
-			store.Set("event: war begins", 1);
-			REQUIRE( primarySize(store) == 1 );
-			compareSet.Apply(store);
-			REQUIRE( primarySize(store) == 1 );
-		}
-	}
-	GIVEN( "a ConditionSet with an assignable expression" ) {
-		const auto applySet = ConditionSet{AsDataNode("and\n\tyear = 3013")};
-		REQUIRE_FALSE( applySet.IsEmpty() );
-
-		THEN( "the condition list is updated via Apply" ) {
-			applySet.Apply(store);
-			REQUIRE_FALSE( primarySize(store) == 0 );
-
-			auto inserted = store.PrimariesLowerBound("year");
-			REQUIRE( inserted != store.PrimariesEnd() );
-			CHECK( inserted->second == 3013 );
-		}
-	}
-}
 // #endregion unit tests
 
 

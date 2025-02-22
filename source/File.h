@@ -13,11 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_FILE_H_
-#define ES_FILE_H_
+#pragma once
 
 #include <cstdio>
-#include <string>
+#include <filesystem>
 
 
 
@@ -25,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class File {
 public:
 	File() noexcept = default;
-	explicit File(const std::string &path, bool write = false);
+	explicit File(const std::filesystem::path &path, bool write = false);
 	File(const File &) = delete;
 	File(File &&other) noexcept;
 	~File() noexcept;
@@ -35,13 +34,9 @@ public:
 	// Move assignment is OK though.
 	File &operator=(File &&) noexcept;
 
-	operator bool() const;
+	explicit operator bool() const;
 	operator FILE*() const;
 
 private:
 	FILE *file = nullptr;
 };
-
-
-
-#endif

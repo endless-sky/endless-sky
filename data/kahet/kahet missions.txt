@@ -114,7 +114,7 @@ mission "First Contact: Ka'het: Remnant 1B"
 				`	"Wait, why did you call them 'shells' and not ships?"`
 					goto shells
 			label tech
-			`	"Back then we found large numbers of their EMP torpedoes, most of which were in nearly pristine condition; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We couldn't do the same with the other surviving systems in the shells, but their tech has been a source of inspiration for centuries."`
+			`	"Back then we found large numbers of their EMP Torpedoes, most of which were in nearly pristine condition; their internal mechanisms were also simple enough that we were able to reproduce them perfectly. We couldn't do the same with the other surviving systems in the shells, but their tech has been a source of inspiration for centuries."`
 			choice
 				`	"Wait, why did you call them 'shells' and not ships?"`
 			label shells
@@ -162,8 +162,8 @@ event "graveyard insights"
 		add description `	Soon after the beginning the invasion, an attack on some sort of advanced nuclear facility started a meltdown; the fallout quickly spread across most of the planet, leaving all Builder settlements uninhabitable.`
 
 mission "Ringworld Debris"
-	invisible
 	landing
+	invisible
 	on enter "Queri"
 		set "ringworld debris"
 		conversation
@@ -177,8 +177,9 @@ mission "Ringworld Debris"
 		never
 
 mission "Ringworld Debris: Remnant"
-	invisible
+	minor
 	landing
+	invisible
 	source
 		government "Remnant"
 	to offer
@@ -197,8 +198,9 @@ mission "Ringworld Debris: Remnant"
 				decline
 
 mission "Ringworld Debris: Hai"
-	invisible
+	minor
 	landing
+	invisible
 	source
 		government "Hai"
 	to offer
@@ -218,8 +220,9 @@ mission "Ringworld Debris: Hai"
 				decline
 
 mission "Ringworld Debris: Coalition"
-	invisible
+	minor
 	landing
+	invisible
 	source
 		government "Coalition" "Heliarch"
 	to offer
@@ -239,11 +242,12 @@ mission "Ringworld Debris: Coalition"
 				decline
 
 mission "Ringworld Debris: Quarg"
-	invisible
+	minor
 	landing
-	deadline 1
+	invisible
 	source
-		attributes "quarg"
+		attributes "human quarg" "hai quarg"
+		attributes "ringworld"
 	to offer
 		has "ringworld debris"
 		has "First Contact: Quarg: offered"
@@ -256,6 +260,8 @@ mission "Ringworld Debris: Quarg"
 					defer
 			action
 				clear "ringworld debris"
+				log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
+				log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
 			`	Walking down the principal, alien-looking hall, you decide to stop one of the few Quarg you see there. "Hello, human. How may I be of service?" the Quarg says. You show it the piece of debris, and ask what it knows about it. It is momentarily stunned when you show the dark piece of technology, calmly taking it into its own hands after recovering. "A fragment of our ships, is what it is. A remnant of part of our equipment. Thank you for returning it to us."`
 			`	You continue by telling it about your travels in the section of the galaxy where you found the debris, and asking what it knows of the place and the hostiles that inhabit it.`
 			`	"Ah, you encountered the remains of the Builders. Millennia ago, they were a flourishing and thoughtful empire, but hostile contacts forced them to grow fearful and hawkish. Although they never did attack us, they always refrained from accepting our aid, and attempted to relocate a greater distance from us and our ringworld there, in worlds easier to maintain than ones they were closer to."`
@@ -267,37 +273,18 @@ mission "Ringworld Debris: Quarg"
 			choice
 				`	"What happened after that?"`
 			label ka'het
-			`	The Quarg stops for a few seconds before continuing, as if it was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het', as they named them, turned on their creators shortly after they were complete.`
+			`	The Quarg stops for a few seconds before continuing, as if it was reflecting on something. "For many millennia they grew, developing brilliant pieces of technology. Then, compelled by their past experiences, they began creating weapons not only to defend themselves, but also to retaliate; these 'Ka'het,' as they named them, turned on their creators shortly after they were complete.`
 			`	"For a few more centuries the Builders lasted, before falling under their very own hubris. Their space is still populated by the Ka'het they gave birth to through the immense facilities they assembled, a being that does not yet possess a vast intelligence." The Quarg bows, still holding on to the piece of debris, and seems to be preparing to walk away.`
-			branch pug
-				has "main plot completed"
 			choice
 				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
 				`	(Let the Quarg walk away.)`
 					decline
+			action
+				log "Asked the Quarg about the history of the Graveyard, and have learned about the previous inhabitants of the region, the Builders."
 			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
-			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in a war, millennia after the Builders had perished."`
+			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost, millennia after the Builders had perished."`
 			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
 				decline
-			label pug
-			choice
-				`	"What happened to your ringworld in the Graveyard? Was it in the system I found that thing?"`
-				`	(Let the Quarg walk away.)`
-					decline
-			`	For the briefest moment, you see patches of skin all over the Quarg's body radically shift from the usual gray to red and blue, some spots mixing into purple, and you could have sworn you saw some part of the iris on its eyes "open" very slightly.`
-			`	After coming back to normal, it ponders for a second, then says, "It was in that system, and it was lost in our war with the despicable Pug. When we tried to resist them. By then, the Builders had been gone for millennia."`
-			`	It doesn't seem too inclined on answering any more questions, and swiftly walks away.`
-				accept
-	on decline
-		fail "Ringworld Debris"
-		log "Asked the Quarg about the history of the Graveyard, and have learned about the previous inhabitants of the region, the Builders."
-		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
-		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
-	on accept
-		fail "Ringworld Debris"
-		log "Asked the Quarg about the history of the Graveyard. Was told that the ringworld the Quarg had there was lost in their war with the Pug, and have learned about the previous inhabitants of the region, the Builders."
-		log "Factions" "Builders" `The Builders inhabited the Graveyard millennia ago, but have since become extinct. They developed some sort of weapon, called the "Ka'het," which stopped obeying their orders and rebelled against them.`
-		log "Factions" "Ka'het" `According to the Quarg, the Ka'het were initially a weapon created by the Builders, which then rebelled and led them to extinction. Even in the millennia that passed, they are still being produced in the Graveyard.`
 
 mission "Ka'het: Patir Reveal"
 	invisible
@@ -345,7 +332,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"What's the purpose of that satellite?"`
 			`	"She is a beauty, is she not? The discovery of the star systems beyond Postverta spurred a large request for exploration probes, more than we've had in decades. This one was my own proposal: she is going to make precise LIDAR scans of the four planets most similar to the worlds we found alien settlements on, searching for relics and ancient artifacts! It is unbelievably exciting to see an idea that you came up with become reality right in front of you."`
 			`	She pauses to stare at the probe with pride.`
-			`	"Funny you mention Posverta," you say. "A new black hole has just appeared near the Graveyard, the same way Ssil Vida did."`
+			`	"Funny you mention Postverta," you say. "A new black hole has just appeared near the Graveyard, the same way Ssil Vida did."`
 			label talk
 			`	You try to explain the system and its inhabitants as best you can. Taely looks intrigued. "Can you show me what your ship recorded of that system?" she asks. After spending a few minutes checking your ship's registers, she appears even more astonished than before. "This is incredible! It opens so many questions. What if it was the Builders who built Ssil Vida? We thought they never left the Graveyard, but this could change everything. And look at the gravitational slipstreams: this system has no hyperlane connections, at least for the moment. We need to know more." She pauses for a second to think. "Come with me, <first>."`
 			`	You follow Taely into a large elevator at the other end of the building. After a short trip, you find yourself in a large underground hangar, full of oddly shaped dishes and complex pieces of machinery. "We use these old shelters to store the parts we do not need anymore. Sometimes they are still handy for replacing broken machinery, so instead of disassembling them we keep them here for a few years. And this," she says, pointing at an array of cylindrical objects, "is the reason we are here."`
@@ -360,7 +347,7 @@ mission "Ka'het: Patir Mystery 1"
 				`	"How did the attempt at tracking the Ka'het go?"`
 				`	"Sorry, but I can't help you this time. You're going to have to find somebody else."`
 					decline
-			`	"Oh, the scanner is working perfectly. But the Ka'het seem to follow no pattern whatsoever, not even the most basic ones. I guess you could compare them to simple animals, searching for food and fighting each other for their territory. They seem to have some sort of "imprinting" towards the stations that breeds them, but other than that, they have not shown any other particular behavior yet."`
+			`	"Oh, the scanner is working perfectly. But the Ka'het seem to follow no pattern whatsoever, not even the most basic ones. I guess you could compare them to simple animals, searching for food and fighting each other for their territory. They seem to have some sort of 'imprinting' towards the stations that breeds them, but other than that, they have not shown any other particular behavior yet."`
 			choice
 				`	"Alright, let's mount the scanner!"`
 				`	"Sorry, but I can't help you this time. You're going to have to find somebody else."`
@@ -386,7 +373,7 @@ mission "Ka'het: Patir Mystery 1"
 			`	"That is the oddest part; it was not. We knew about the existence of the stars beyond Postverta as they could be observed from our own systems; they just were not reachable with a jump drive. But, from what I can tell from these readings, Patir did not exist until a short time ago.`
 			`	"Do you have anything on why this system appeared?" you ask.`
 			label how
-			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomena right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
+			`	"I only have theories for now, none of which can be confirmed. People more knowledgeable than me in the subject are examining the phenomenon right now. But look at this," she says, opening a star map on a holographic projector. "This white dot is Postverta, and we are here. When Ssil Vida first appeared, it released a strong burst of ionizing radiation, and when we were able to calculate its velocity, we found it was going much faster than the speed of light. It is gradually slowing down, so it will not go much further, but exactly the same day that the energy burst was supposed to arrive here, Patir appeared! It would be an incredible coincidence if the two events were not connected.`
 			`	"We have even less information about how this system disappeared. If I may venture a guess, I would say that the black hole is involved. The Builders never seemed to possess the ability to make a system disappear, and we have seen in the past that some black holes can render any hyperlane they are connected to inaccessible given enough time. Perhaps a young, non-rotating black hole like this one can do even more. There is a part of me that thinks this system could disappear again any moment, but if anything that motivates me to find as much as we can about it in the time we have," she says with a wink.`
 			choice
 				`	"Wait, are we in danger?"`
@@ -404,34 +391,33 @@ mission "Ka'het: Patir Mystery 1"
 			`Upon your return to <planet>, Taely immediately begins browsing through several images on her console that were compiled by the sensors.`
 			`	"Look at these, <first>. What do you see?" The first image shows a ship like the others you've seen in Patir working on some kind of small structure. In the following pictures, presumably depicting different iterations of the same ship, the structure becomes gradually bigger and more complex until the last one, where a Ka'het-like slug is shown growing inside this shell.`
 			`	"The ships, the Fetri'sei, are Von Neumann probes," she says. "Self replicating spacecraft. Unlike the Ka'het, which we found to be unable to reproduce and can only be created in a factory, the Ka'sei can duplicate their own structure with the material harvested from the local asteroids. The process probably takes years, or more, but it is still an incredible achievement."`
+			label questions
 			choice
 				`	"If they can duplicate themselves, why aren't there more Ka'sei?"`
+					to display
+						not "patir: asked about ka'sei"
 					goto kasei
 				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
+					to display
+						not "patir: asked about ka'het"
 					goto kahet
 				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
 					goto jumpdrive
 				`	"Why aren't they in other systems?"`
 					goto jumpdrive
 			label kasei
+			action
+				set "patir: asked about ka'sei"
 			`	"I imagine the problem would be with their lifespan. The Ka'het can survive for a few hundred years once they become operational; these could potentially last for a much shorter time. Another important factor is that we do not know what happened here in the millennia the system was hidden. Perhaps the Ka'sei went into hibernation waiting for the system to appear again."`
-			choice
-				`	"If the Builders were able to make self replicating spacecrafts, why aren't the Ka'het like that as well?"`
-					goto kahet
-				`	"If they were able to get to Patir, does this suggest they have jump drives?"`
-					goto jumpdrive
-				`	"Why aren't they in other systems?"`
-					goto jumpdrive
+				goto questions
 			label kahet
+			action
+				set "patir: asked about ka'het"
 			`	Taely looks towards the console again. On the screen a tactical view of the Fetri'sei appears. "Well, consider that the Ka'het are true battleships, heavily shielded and always with their weapons ready. These are more akin to reconnaissance and mining probes. Their structure is extremely weak, and they do not have any weapons except the equipment necessary to mine asteroids. I imagine it would take decades for even just a Maeri'het to replicate itself.`
 			`	"There is also the tactical problem: forcing a Ka'het to spend such a long time building copies of itself makes them vulnerable to enemy attacks and unable to effectively fight back, making them ill-suited for the job."`
-			choice
-				`	"If they can duplicate themselves, why aren't there more Ka'sei here?"`
-					goto kasei
-				`	"If they were able to get here, does this suggest they have Jump Drives?"`
-				`	"Why aren't they in other systems?"`
+				goto questions
 			label jumpdrive
-			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible.`
+			`	"They do not have any drives on board, not even a hyperdrive. Limited to sub-light velocity, they would need hundreds of years to pass from one system to another, which is a testament to the Builders' patience. Most species we have encountered abandon any form of sub-light transportation between star systems immediately after developing hyperdrive technology. For all we know, the Ember Waste could have been visited by these Fetri'sei or some other Ka'sei, but they had to leave for some reason we are not aware of. The last Builder died almost 100,000 years ago - so long that having a clear idea of what happened is impossible."`
 			choice
 				`	"What's the difference between Ka'sei and Fetri'sei?"`
 			`	"Well, there is no difference," Taely responds, "not in this case at least. The naming scheme the Builders used is a bit odd: we know that 'Ka,' in their language, has a meaning close to the one of 'group,' 'team,' and sometimes even 'ring,' although it can never be used without a name next to it. So we have 'group mar,' 'group het,' and so on. These are not limited to spaceships: the Ka'het, for example, includes both the biological spacecrafts around the Graveyard and the stations that constructs them, while until now we thought that the Ka'sei included only a handful of large scale construction projects. We know 'Fetri' to be a sort of spaceship sub-classification, but we are not aware of its exact meaning. So the Fetri'sei, or 'ship sei' are a part of the Ka'sei, or 'group sei.' To put it simply, it is similar to how all squares are rectangles, but not all rectangles are squares. It just so happens that everything in this system is classified as a Fetri'sei, so we can use either interchangeably.`
@@ -603,12 +589,12 @@ mission "Ka'het: Patir Mystery 5"
 	on offer
 		"reputation: Ka'sei" = -10
 		conversation
-			`As you approach the structure, Dusk stops preparing the equipment to observe it from the window. "It is a fascinating structure. I've only seen a small number of Builder buildings, but this looks different from anything I have seen. Perhaps it is more structurally similar to their stations than their outposts given the almost negligible gravity, or they had other asteroid colonies that have been gradually lost over time. It would be worth doing a serious exploration of the asteroid belts in the Graveyard at some point.`
+			`As you approach the structure, Dusk stops preparing the equipment to observe it from the window. "It is a fascinating structure. I've only seen a small number of Builder buildings, but this looks different from anything I have seen. Perhaps it is more structurally similar to their stations than their outposts given the almost negligible gravity, or they had other asteroid colonies that have been gradually lost over time. It would be worth doing a serious exploration of the asteroid belts in the Graveyard at some point."`
 			choice
 				`	"You have been on Builder planets?"`
 					goto planets
 				`	"How far have the Remnant explored the Graveyard?"`
-				`	"Do you have have all the equipment ready?"`
+				`	"Do you have all the equipment ready?"`
 					goto skip
 			
 			`	"I presume Taely already told you about the troubled beginnings we had in exploring the area; as a consequence of that, we had to reevaluate the procedures for exploring the nearby systems and species, especially beyond the Ossipago wormhole. Every scout ship entering the area has to always remain cloaked to prevent attacks from the countless Ka'het patrolling the area; this means that the further we need to travel to reach the destination, the more fuel we have to spend to return home, which considerably impacts the time we can spend cloaked in the destination. Some of the systems at the other end of the Graveyard have seen very few Starlings, most of them staying for less than a day.`
@@ -636,7 +622,7 @@ mission "Ka'het: Patir Mystery 5"
 			label danger
 			`	"There is no way to be certain, but this is the only possible way to get in without destroying half of the complex.`
 			label open
-			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors. The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly though it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
+			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors. The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly through it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
 			choice
 				`	"How long do you think it will it take?"`
 				`	"Would it be safe to remove our helmets after that?"`
@@ -663,7 +649,7 @@ mission "Ka'het: Patir Mystery 5"
 				die
 			
 			label still
-			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the the door, and after a second, the door begins to glow.`
+			`	After another short silence, the Ka'sei starts emitting a loud siren. You hear the screech of Ravager fire as an angry energy beam sears through the air to your left, just barely missing you. Both you and Dusk jump back to the airlock, slamming the door closed. You can still feel the crackle of the Ravager cannons from the other side the door, and after a second, the door begins to glow.`
 			choice
 				`	(Open the exit door, even with the airlock full of air.)`
 					goto blast

@@ -11,6 +11,94 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+fleet "Gegno Basic"
+	government Gegno
+	names "gegno scin"
+	cargo 2
+	personality
+		timid
+	variant 6
+		"Shale"
+	variant 3
+		"Dolomite"
+	variant 3
+		"Shale" 2
+	variant
+		"Shale" 3
+	variant
+		"Dolomite"
+		"Shale"
+	variant
+		"Dolomite" 2
+	variant
+		"Conglomerate"
+	variant
+		"Conglomerate"
+		"Shale"
+
+fleet "Gegno Miners"
+	government Gegno
+	names "gegno scin"
+	cargo 0
+	personality
+		pacifist timid plunders mining harvests ramming
+	variant 22
+		"Gypsum"
+	variant 6
+		"Corundum"
+	variant 5
+		"Corundum (Torch)"
+	variant
+		"Corundum (Multi)"
+	variant
+		"Gypsum"
+		"Granofel"
+	variant
+		"Corundum"
+		"Granofel"
+	variant
+		"Gypsum" 2
+	variant
+		"Corundum"
+		"Corundum (Torch)"
+
+fleet "Gegno Cargo"
+	government Gegno
+	names "gegno vi"
+	cargo 0
+	personality
+		timid
+	variant 8
+		"Dolomite" 2
+	variant 6
+		"Conglomerate"
+	variant 4
+		"Granofel"
+	variant 2
+		"Dolomite"
+		"Granofel"
+	variant 2
+		"Conglomerate"
+		"Dolomite"
+	variant 2
+		"Conglomerate"
+		"Granofel"
+	variant
+		"Granofel" 2
+		"Gypsum"
+	variant
+		"Granofel"
+		"Corundum"
+
+fleet "Gegno Old"
+	government Gegno
+	names "gegno vi"
+	cargo 2
+	personality
+		timid lingering
+	variant
+		"Protolith"
+
 fleet "Small Vi"
 	government "Gegno Vi"
 	names "gegno vi"
@@ -146,7 +234,7 @@ fleet "Vi Cargo"
 		"Granulite"
 		"Schist (Heavy Load)"
 
-fleet "Vi Small II"
+fleet "Small Vi II"
 	government "Gegno Vi"
 	names "gegno vi"
 	cargo 2
@@ -159,8 +247,6 @@ fleet "Vi Small II"
 		"Diorite"
 	variant
 		"Diorite"
-	variant
-		"Diorite" 2
 	variant
 		"Eclogite" 2
 		"Diorite"
@@ -237,7 +323,6 @@ fleet "Scin Transport"
 	variant
 		"Epidote"
 		"Halite"
-		"Coesite"
 	variant
 		"Tridymite"
 
@@ -247,46 +332,47 @@ fleet "Scin Cargo"
 	cargo 4
 	personality
 		timid
-	variant 4
+	variant 5
 		"Felsic"
+	variant 3
+		"Felsic"
+		"Coesite"
 	variant 2
 		"Felsic"
+		"Mica"
 		"Coesite"
 	variant
 		"Felsic" 2
 		"Mica"
-	variant 2
-		"Felsic"
-		"Mica"
-		"Coesite"
-	variant
-		"Epidote" 2
-		"Halite" 2
 	variant
 		"Epidote"
 		"Halite"
+	variant
+		"Epidote"
+		"Halite"
+		"Coesite"
 
 fleet "Vi Warfleet"
 	government "Gegno Vi"
 	names "gegno vi"
 	cargo 0
 	personality
-		heroic vindictive opportunistic
-	variant 5
+		heroic vindictive opportunistic harvests
+	variant 7
+		"Eclogite" 2
+	variant 4
 		"Hornfel"
 		"Eclogite" 2
-	variant 3
-		"Eclogite" 3
 	variant 2
 		"Hornfel"
 		"Hornfel (Light Load)"
 	variant
 		"Gneiss"
-		"Eclogite" 2
+		"Eclogite"
 	variant
 		"Gneiss"
 		"Eclogite"
-		"Hornfel (Heavy Load)" 2
+		"Hornfel (Heavy Load)"
 	variant
 		"Gneiss"
 		"Hornfel (Heavy Weapons)"
@@ -296,69 +382,34 @@ fleet "Scin Warfleet"
 	names "gegno scin"
 	cargo 0
 	personality
-		vindictive opportunistic
-	variant 5
+		vindictive opportunistic harvests
+	variant 6
 		"Felsic"
 		"Coesite" 3
 	variant 4
-		"Felsic" 2
+		"Felsic"
 		"Coesite" 2
+	variant
+		"Felsic" 2
+		"Coesite"
 	variant
 		"Feldspar" 2
 		"Halite" 12
 	variant
 		"Feldspar"
 		"Halite" 6
-		"Coesite" 2
+		"Coesite"
 		"Felsic"
 	variant
 		"Feldspar"
 		"Halite" 6
 		"Coesite" 2
-	variant
-		"Felsic" 3
-
-fleet "Gegno Basic"
-	government Gegno
-	names "gegno scin"
-	cargo 2
-	personality
-		timid
-	variant 6
-		"Shale"
-	variant 3
-		"Dolomite"
-	variant 3
-		"Shale" 2
-	variant
-		"Shale" 3
-	variant
-		"Dolomite"
-		"Shale"
-	variant
-		"Dolomite" 2
-	variant
-		"Conglomerate"
-	variant
-		"Conglomerate"
-		"Shale"
-
-fleet "Gegno Miners"
-	government Gegno
-	names "gegno scin"
-	cargo 0
-	personality
-		pacifist timid plunders frugal mining harvests
-	variant 14
-		"Gypsum"
-	variant
-		"Gypsum" 2
 		
 fleet "Gegno Vi Duelist A"
 	government "Gegno Vi (Duelist A)"
 	names "gegno vi"
 	personality
-		heroic unconstrained
+		heroic unconstrained ramming
 	variant
 		"Dunite"
 
@@ -366,6 +417,20 @@ fleet "Gegno Vi Duelist B"
 	government "Gegno Vi (Duelist B)"
 	names "gegno vi"
 	personality
-		heroic unconstrained
+		heroic unconstrained ramming
 	variant
 		"Dunite"
+
+fleet "Scin Science"
+	government "Gegno Scin"
+	names "gegno scin"
+	cargo 4
+	personality
+		mining harvests
+	variant
+		"Kyanite"
+		"Tridymite"
+	variant
+		"Kyanite (Guile)"
+		"Tridymite"
+

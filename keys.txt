@@ -2,6 +2,7 @@
 "Forward thrust" 1073741906
 "Turn left" 1073741904
 "Turn right" 1073741903
+"Auto steer" 101
 "Reverse" 1073741905
 "Fire primary weapon" 9
 "Fire secondary weapon" 113
@@ -13,15 +14,19 @@
 "Initiate hyperspace jump" 106
 "Select next ship" 110
 "Select nearest hostile ship" 114
+"Select nearest asteroid" 118
 "Deploy / recall fighters" 100
 "Fire afterburner" 97
 "Toggle cloaking device" 99
 "View star map" 109
 "View player info" 105
+"View message log" 47
 "Toggle fullscreen" 1073741892
 "Toggle fast-forward" 1073741881
+"Show help" 1073741882
 "Fleet: Fight my target" 102
 "Fleet: Gather around me" 103
 "Fleet: Hold position" 104
 "Fleet: Toggle ammo usage" 117
-"Toggle mouse-turning" 1073742050
+"Fleet: Harvest flotsam" 122
+"Mouse turning (hold)" 1073742050
