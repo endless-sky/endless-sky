@@ -17,7 +17,7 @@ mission "Avgi Culture: Park Politics"
 	source
 		planet "Peripheria"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 		random < 30
 	on offer
 		conversation
@@ -438,7 +438,7 @@ mission "Avgi Culture: Zapchannel Energy"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 		random < 30
 	on offer
 		log "Minor People" "Nikkio" `Nikkio is a shifty salesman peddling "Zapchannel Ray Energy," a supposed health tonic with a suspicious glow.`
@@ -516,7 +516,7 @@ mission "Avgi: Cylinder Construction"
 	source
 		planet "Aktina Cylinder"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 	on offer
 		log "People" "Gamboge" `Gamboge manages construction on the Aktina Cylinder, an immense habitat station whose construction has stalled in recent years. He is frustrated about the lack of support offered by the Assembly and believes Aktina deserves to be a higher priority.`
 		conversation
@@ -616,7 +616,7 @@ mission "Avgi: Infocourier Encounter"
 	source
 		government "Avgi (Consonance)"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 		random < 6
 	on offer
 		log "People" "Hansa" `Hansa is an Infocourier, a role that sees him transport files and records between systems in a small ship. As the Avgi never developed hyperspace comms, courier ships are necessary to communicate across interstellar distances.`
@@ -692,7 +692,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 	source
 		attributes "twilight guard"
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 		random < 30
 	on offer
 		log "People" "Claret" `Claret is a member of the Twilight Guard, curious about humans and passionate about the details of tactical space combat.`
@@ -728,7 +728,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 				goto next
 
 			label confirm
-			`	"Amusment. That was rhetorical." She takes a sip from her own drink.`
+			`	"Amusement. That was rhetorical." She takes a sip from her own drink.`
 
 			label next
 			action
@@ -751,11 +751,11 @@ mission "Avgi Culture: Twilight Tavern Guard"
 			`	"Dismissive. Of course, everyone is singing your praises. Except for the ones who claim you aren't one of those 'humans' at all, and are secretly an Aberrant in the shape of one waiting for the perfect moment to strike and eat our children." Claret gives you a serious look. "You aren't, right?"`
 			choice
 				`	"Not last I checked."`
+					goto gossip
 				`	"Nope."`
+					goto gossip
 				`	"Well, you've caught me."`
-					goto caught
 
-			label caught
 			`	"Oh no." she says in a completely flat voice. "I am absolutely terrified." She takes a deep drink before sighing contentedly.`
 
 			label gossip
@@ -765,7 +765,7 @@ mission "Avgi Culture: Twilight Tavern Guard"
 					goto believe
 				`	"Very contradictory rumors."`
 
-			`	She gives you an incredulous look. "Scorn. When are they not? I don't know about you humans, but ask three Avgi the same question and you'll get six different answers. We are a fractious lot, us Avgi, and that will be true until the stars burn out and the moons fall from the sky."`
+			`	She gives you an incredulous look. "Scorn. When are they not? I don't know about you humans, but ask three Avgi the same question and you'll get six different answers. We are a fractious lot, us Avgi, and that will be true until the stars burn out and the moons fall from the sky.`
 				goto humans
 
 			label believe
@@ -781,11 +781,11 @@ mission "Avgi Culture: Twilight Tavern Guard"
 					to display
 						has "event: war begins"
 
-			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either - they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use."`
+			`	"Perhaps. I wouldn't hold out hope, though. Like I said, it would be too easy, either if you were out to get us or in to save us. And I don't know how you would fare against the Aberrant either - they might even invade you too, if they could. Your technology may be better than ours, but I've heard quiet rumors it's not that much better, certainly not as good as what the Aberrant use.`
 				goto humans
 
 			label exploit
-			`	"Perhaps. But I don't think so, not from what I've seen of you. Your stranded fellows, they dedicated themselves to helping us as soon as they realized they couldn't go home. I didn't like that short fellow though, all he did was complain." She smirks. "Reminded me of an ensign back in school."`
+			`	"Perhaps. But I don't think so, not from what I've seen of you. Your stranded fellows, they dedicated themselves to helping us as soon as they realized they couldn't go home. I didn't like that short fellow though, all he did was complain." She smirks. "Reminded me of an ensign back in school.`
 				goto humans
 
 			label accurate
@@ -883,7 +883,7 @@ mission "Avgi: Atomics Testing 1"
 	blocked "You need <capacity> to transport Aliza and her colleagues to Dokimi."
 	passengers 3
 	to offer
-		not "avgi: lost in twilight"
+		has "Avgi: Twilight Escape 3: done"
 	on offer
 		log "People" "Aliza" `Alizarin, or Aliza, is a scientist working on Ergastirio Station. She specializes in nuclear weapons design and testing, specifically in shockwave dynamics and accelerator testing. With a bit of a passion for nuclear weapons, she is eager to share what she knows.`
 		conversation
@@ -1104,7 +1104,7 @@ mission "Avgi: Atomics Testing 2"
 				`	"Sounds like you could use some help with security."`
 				`	"Is there a way I could help escort those shipments?"`
 
-			`	Yinmn thinkss for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
+			`	Yinmn thinks for a moment. "Consideration. Well, we usually have the Twilight Guard escort them, but with how thin they've been stretched lately, with those latest Aberrant incursions into the Tangled Shroud, any kind of relief would go a long way. I could look into whether you could be eligible to help with escort duties - as one of only a few aliens we've ever met, you could ironically be more trustworthy than just another random Avgi captain. Be on the lookout for opportunities on the job board, if I can make this work out."`
 			action
 				set "avgi: nuclear material transport jobs"
 			choice
