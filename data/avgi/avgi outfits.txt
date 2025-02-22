@@ -540,6 +540,7 @@ outfit `Z-3600 "Beam" Amat Torch`
 	"thrusting fuel" 0.3
 	"drag reduction" 9
 	"flare sprite" "effect/avgi flare/antimatter"
+		"scale" 0.25
 		"frame rate" 15
 	"flare sound" "fusion torch"
 	"turn" 6000
