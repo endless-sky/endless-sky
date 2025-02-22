@@ -27,6 +27,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Animate.h
 	Armament.cpp
 	Armament.h
+	Asteroid.cpp
+	Asteroid.h
 	AsteroidField.cpp
 	AsteroidField.h
 	BankPanel.cpp

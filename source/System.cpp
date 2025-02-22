@@ -48,55 +48,6 @@ const double System::DEFAULT_NEIGHBOR_DISTANCE = 100.;
 
 
 
-System::Asteroid::Asteroid(const string &name, int count, double energy)
-	: name(name), count(count), energy(energy)
-{
-}
-
-
-
-System::Asteroid::Asteroid(const Minable *type, int count, double energy, int belt)
-	: type(type), count(count), energy(energy), belt(belt)
-{
-}
-
-
-
-const string &System::Asteroid::Name() const
-{
-	return name;
-}
-
-
-
-const Minable *System::Asteroid::Type() const
-{
-	return type;
-}
-
-
-
-int System::Asteroid::Count() const
-{
-	return count;
-}
-
-
-
-double System::Asteroid::Energy() const
-{
-	return energy;
-}
-
-
-
-int System::Asteroid::Belt() const
-{
-	return belt;
-}
-
-
-
 // Load a system's description.
 void System::Load(const DataNode &node, Set<Planet> &planets)
 {
@@ -949,7 +900,7 @@ bool System::HasOutfitter() const
 
 
 // Get the specification of how many asteroids of each type there are.
-const vector<System::Asteroid> &System::Asteroids() const
+const vector<Asteroid> &System::Asteroids() const
 {
 	return asteroids;
 }

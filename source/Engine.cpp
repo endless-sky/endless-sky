@@ -1433,7 +1433,7 @@ void Engine::EnterSystem()
 	}
 
 	asteroids.Clear();
-	for(const System::Asteroid &a : system->Asteroids())
+	for(const Asteroid &a : system->Asteroids())
 	{
 		// Check whether this is a minable or an ordinary asteroid.
 		if(a.Type())
