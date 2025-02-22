@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sound;
 
-/// A buffered supplier for waveform files. The audio is supplied in a single chunk.
+/// A sync buffered supplier for waveform files. The audio is supplied in a single chunk.
 class WavSupplier : public AudioSupplier {
 public:
 	WavSupplier(const Sound& sound, bool is3x, bool looping = false);

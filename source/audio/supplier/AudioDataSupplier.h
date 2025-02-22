@@ -24,13 +24,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 /// All data suppliers use the same chunk size for easier post-processing.
 class AudioDataSupplier : public AudioSupplier {
 public:
+	/// Gets the next, fixed-size chunk of audio samples.
 	virtual std::vector<int16_t> NextDataChunk() = 0;
 
 
 protected:
-	// How many samples to put in each output block. Because the output is in
-	// stereo, the duration of the sample is half this amount, divided by the sample rate:
+	/// How many samples to put in each output chunk. Because the output is in
+	/// stereo, the duration of the sample is half this amount, divided by the sample rate.
 	static constexpr size_t OUTPUT_CHUNK = 32768;
-	// How many bytes to read from a file at a time:
+	/// How many bytes to read from a file at a time
 	static constexpr size_t INPUT_CHUNK = sizeof(int16_t) * 65536;
 };

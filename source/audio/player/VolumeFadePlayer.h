@@ -17,15 +17,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AudioPlayer.h"
 
+/// A specialized audio player that can fade out the audio gradually before ending.
+/// This fade effect is implemented with volume changes, unlike the cross-fade effect in Fade.
 class VolumeFadePlayer : public AudioPlayer {
 public:
 	VolumeFadePlayer(SoundCategory category, std::unique_ptr<AudioSupplier> audioSupplier);
 
 	void Update() override;
 
+	/// Begins fading out the audio. The player stops when the volume reaches 0.
 	void FadeOut();
 
 private:
+	/// How much to decrease the volume per frame.
 	static constexpr float VOLUME_DECREASE = 0.05;
 
 	bool isFading = false;

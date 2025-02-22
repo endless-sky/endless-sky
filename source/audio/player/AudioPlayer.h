@@ -42,13 +42,15 @@ public:
 	/// and should not be stored.
 	bool IsFinished() const;
 
-	/// The volume of the playback, or 0 if the player has not started yet.
+	/// The volume of the playback, or 0 if the player is not initialized.
 	double Volume() const;
-	///
+	/// Sets the volume of the player, if it is initialized.
 	void SetVolume(double level) const;
 
+	/// Moves the sound to the specified point in 3D. Ignored if the player is not initialized.
 	virtual void Move(double x, double y, double z) const;
 
+	/// The category of the sound being played
 	SoundCategory Category() const;
 
 	virtual void Pause() const;
@@ -60,29 +62,38 @@ public:
 	/// Until the player is marked finished, calling this function with 'false' can undo its effect.
 	void Stop(bool stop = true);
 
+	/// The supplier of the player. Never null.
 	AudioSupplier *Supplier();
 
 
 protected:
+	/// Acquires a new source, if there isn't one already.
 	bool ClaimSource();
+	/// Releases the current source, making it available for other audio players.
 	void ReleaseSource();
 
+	/// Configures a source for the first time after being claimed.
 	virtual void ConfigureSource();
 
 
 protected:
+	/// The maximum number of buffers to queue up synchronously when the player is initialized
 	static constexpr int MAX_INITIAL_BUFFERS = 3;
 
 	SoundCategory category;
 
 	/// The configured source, or 0
 	ALuint alSource = 0;
+	/// The data supplier; never null
 	std::unique_ptr<AudioSupplier> audioSupplier;
 
+	/// Whether the player has terminated
 	bool done = false;
+	/// Whether the player should stop queueing up more buffers (and terminate, once they all run out)
 	bool shouldStop = false;
 
 
 private:
+	/// The currently unclaimed OpenAL sources for reuse.
 	static std::vector<ALuint> availableSources;
 };

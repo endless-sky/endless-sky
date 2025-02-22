@@ -46,8 +46,11 @@ private:
 
 
 private:
+	/// The number of samples to fade over; smaller values mean faster fade
 	static constexpr size_t MAX_FADE = 65536;
 
+	/// The fading sources, with their fade values
 	std::vector<std::pair<std::unique_ptr<AudioDataSupplier>, size_t>> fadeProgress;
+	/// The primary source; this one is not faded out by itself, but can be cross-faded with the other sources.
 	std::unique_ptr<AudioDataSupplier> primarySource;
 };

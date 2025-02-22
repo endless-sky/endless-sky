@@ -26,8 +26,10 @@ public:
 	/// Please note that the audio isn't loaded from the supplier until the Play() call.
 	explicit MusicPlayer(std::unique_ptr<AudioSupplier> audioSupplier);
 
+	/// Music is always centered on the listener; it can't be moved.
 	void Move(double x, double y, double z) const override;
 
+	/// Music is always playing; it can't be paused.
 	void Pause() const override;
 
 

@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <thread>
 
+/// Streams audio from an MP3 file. This is an async data supplier.
 class Mp3Supplier : public AudioDataSupplier {
 public:
 	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
@@ -39,15 +40,16 @@ public:
 
 
 private:
-	// This is the entry point for the decoding thread.
+	/// This is the entry point for the decoding thread.
 	void Decode();
 
 private:
-	// The number of chunks to queue up in the buffer
+	/// The number of chunks to queue up in the buffer
 	static constexpr size_t BUFFER_CHUNK_SIZE = 2;
-	// The decoded data
+	/// The decoded data
 	std::vector<int16_t> buffer;
 
+	/// The MP3 input stream
 	std::shared_ptr<std::iostream> data;
 
 	bool done = false;
