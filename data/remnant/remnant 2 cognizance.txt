@@ -1193,7 +1193,7 @@ mission "Remnant: Cognizance 25"
 	on offer
 		event "remnant: ssil vida inhabited"
 		conversation
-			`You have barely had a chance to finish your pre-flight checks on <ship> before Gavriil is tapping on your airlock. "Setting up a new environment is always an interesting challenge," Gavriil gestures. "But to the task at hand: Could you do a quick patrol through this collection of newly accessible systems? We have scouts en route with surveillance satellites to place in each of them, but I picked up the signature of a Palavret that was here recently, and I want to be sure that it left no surprises." They pause, then make a gesture you have come to recognize as meaning the accompanying message is intended as a summary. "So, visit each of the systems in this sector, and make sure that the Palavret did not leave anything behind." Their gestures switch to a tone of finality. "Can you help with this?"`
+			`You have barely had a chance to finish your pre-flight checks on <ship> before Gavriil is tapping on your airlock. "Setting up a new environment is always an interesting challenge," Gavriil gestures. "But to the task at hand: Could you do a quick patrol through this collection of newly accessible systems? We have scouts en route with surveillance satellites to place in each of them, but I picked up the signature of a Palavret that was here recently, and I want to be sure that it left no surprises." Hesitating, they clarify, "The Palavret bore orange markings, so it may be wise to avoid provoking them." They pause, then make a gesture you have come to recognize as meaning the accompanying message is intended as a summary. "So, visit each of the systems in this sector, and make sure to disable anything the Palavret left behind." Their gestures switch to a tone of finality. "Can you help with this?"`
 			choice
 				`	"Yes."`
 					accept
@@ -1210,7 +1210,10 @@ mission "Remnant: Cognizance 25"
 			outfitters "Korath Basics" "Korath Exiles"
 			variant
 				"'olofez" 3
-		dialog "You have destroyed the ships that the Palavret left behind."
+		dialog "You have disabled the ships that the Palavret left behind."
+		on kill
+			set "Remnant: Cognizance 25: killed"
+			dialog "Oops! You destroyed the ships the Palavret left behind instead of disabling them. Hopefully Gavriil won't mind." 
 	on waypoint
 		dialog "You have patrolled all six systems."
 	on enter Egeria
@@ -1220,9 +1223,15 @@ mission "Remnant: Cognizance 25"
 	on complete
 		event "korath rescue: egeria tiny"
 		event "korath rescue: egeria tiny end" 14
-		payment 250000
 		conversation
-			`Back on Ssil Vida, you check in with Gavriil and report the destruction of three 'olofezes that you located. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
+			branch "killed"
+				has "Remnant: Cognizance 25: killed"
+				payment 250000
+				`Back on Ssil Vida, you check in with Gavriil and report the three 'olofezes that you located and disabled. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
+			label "killed"
+				payment 200000
+				`Back on Ssil Vida, you check in with Gavriil and report the three 'olofezes that you destroyed. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. It is regrettable that they were destroyed, but 'olofezes are probably not much to worry about. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
+
 
 
 
