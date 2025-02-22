@@ -11,6 +11,7 @@ Version 0.10.12
       * The "Carrier (Alpha)" variant now has the correct number of bays, insated of inheriting the updated bay configuration of the base Carrier. (@Saugia)
       * Coalition ship and planets can no longer be bribed. (@Arachi-Lover)
       * Fixed an issue where the mission to transport Timothy Radrickson to Rand could appear before the player becomes aware of the stowaway aborad their ship. (@warp-core)
+      * Reduced the size of the Z-3600's sprite to prevent visual impairment. (@Saugia)
     * Engine bugs:
       * Fixed an issue where player escorts could start jumping around independently of the flagship. (@warp-core)
       * Tooltip boxes will no longer be drawn for items without tooltip text in ship and outfit info displays. (@warp-core)
