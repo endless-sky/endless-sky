@@ -22,7 +22,6 @@ Version 0.10.12
   * Game content:
     * New content:
       * Added launch sounds and angles to bays on Avgi ships. (@Saugia)
-    * Mission changes:
     * Balance:
       * Buffed the health and mobility of the Bastion and Bulwark. (@ziproot)
         * Bastion:
@@ -57,7 +56,6 @@ Version 0.10.12
       * Adjusted some systems in the Twilight to conform to the rest of the Ember Wastes correctly. (@Azure3141)
       * Expanded the conversation in "Remnant: Cognizance 29" to account for the total destruction of the Korath fleet waiting in the system in the previous mission. (@warp-core)
       * Updated "FW Syndicate Capture 1B" to account for the Aerie's two new fighter bays. (@TheGiraffe3)
-  * Game mechanics:
   * User interface:
     * Added a tooltip for the "automaton" attribute. (@TomGoodIdea)
     * The unexplored system rings in the map now use a named color, defined in the interfaces file. (@TomGoodIdea)
