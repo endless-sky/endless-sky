@@ -7773,7 +7773,7 @@ mission "Syndicate Business 5"
 				`		Investor Relations Manager, Megaparsec Incorporated`
 	on complete
 		"reputation: Independent (Killable)" = 0
-		event "10m investment done" 180
+		event "syndicate business 10m investment done" 180
 		payment 25000
 		conversation
 			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a nod, and you quickly ascend to the eighth floor.`
@@ -7939,7 +7939,7 @@ mission "Syndicate Business 5"
 				clear "heardplanb"
 				clear "heardplanc"
 
-event "10m investment done"
+event "syndicate business 10m investment done"
 
 mission "Timothy Radrickson 1: Stowaway"
 	invisible
