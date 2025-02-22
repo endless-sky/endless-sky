@@ -15733,60 +15733,6 @@ system Epo'kor
 			distance 327
 			period 223.52302
 
-system "Prima Hyadum"
-	pos -213.33334 7.6666689
-	government Syndicate
-	attributes core
-	link Maia
-	link Electra
-	asteroids "small rock" 30 5.0232
-	asteroids "medium rock" 34 5.2052
-	asteroids "large rock" 11 1.82
-	asteroids "small metal" 4 4.6228
-	asteroids "medium metal" 199 2.4024
-	asteroids "large metal" 46 4.4044
-	minables iron 61 3.64072
-	haze _menu/haze-133
-	fleet "Small Syndicate" 1600
-	fleet "Small Core Pirates" 2000
-	fleet "Large Core Pirates" 4000
-	arrival 500
-	habitable 28.8
-	belt 1130
-	trade Clothing 310
-	trade Electronics 750
-	trade Equipment 673
-	trade Food 174
-	trade "Heavy Metals" 860
-	trade Industrial 774
-	trade "Luxury Goods" 1013
-	trade Medical 671
-	trade Metal 292
-	trade Plastic 376
-	object
-		sprite star/g-dwarf
-		period 10
-	object
-		sprite planet/rock1
-		distance 253
-		period 670.70189
-	object
-		sprite planet/ice7
-		distance 686
-		period 2994.5731
-	object
-		sprite planet/miranda
-		distance 1866
-		period 13434.336
-	object
-		sprite planet/gas6-b
-		distance 3197
-		period 30127.473
-	object
-		sprite planet/gas10-b
-		distance 5841
-		period 74401.135
-
 system "Epsilon Leonis"
 	pos -619 -229
 	government Republic
@@ -16384,6 +16330,68 @@ system "Eta Carinae"
 		sprite star/o-giant
 		distance 400
 		period 300
+
+system "Eta Normae"
+	pos -160.77778 39.888889
+	government Syndicate
+	link Ain
+	link Noitakt
+	asteroids "large rock" 1 3.876
+	asteroids "small metal" 7 2.958
+	asteroids "medium metal" 172 4.233
+	asteroids "large metal" 1 3.366
+	minables tungsten 5 5.5887299
+	minables aluminum 32 6.6162542
+	minables platinum 8 5.1710371
+	haze _menu/haze-133
+	fleet "Small Core Merchants" 2000
+	fleet "Large Core Merchants" 3600
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2200
+	arrival 500
+	habitable 200
+	belt 1529
+	object
+		sprite planet/browndwarf-y-rogue
+		distance 226
+		period 169.87625
+	object
+		sprite planet/browndwarf-t-rogue
+		distance 226
+		period 169.87625
+		offset 180
+	object
+		sprite planet/cloud5
+		distance 698
+		period 325.9929
+	object
+		sprite planet/fog0
+		distance 1289
+		period 818.09622
+	object
+		sprite planet/jupiter-b
+		distance 1914
+		period 1480.2597
+	object
+		sprite planet/gas13
+		distance 3200
+		period 3200
+		object
+			sprite planet/rock17
+			distance 302
+			period 323.22487
+	object
+		sprite planet/gas7-b
+		distance 5580
+		period 7368.4529
+		object
+			sprite planet/dust5-b
+			distance 287
+			period 127.24492
+		object
+			sprite planet/rock20
+			distance 438
+			period 346.50682
 
 system Eteron
 	pos -330 33
@@ -18226,68 +18234,6 @@ system Fscher
 		sprite planet/gas0-hot
 		distance 15894
 		period 10098.0
-
-system "Eta Normae"
-	pos -160.77778 39.888889
-	government Syndicate
-	link Ain
-	link Noitakt
-	asteroids "large rock" 1 3.876
-	asteroids "small metal" 7 2.958
-	asteroids "medium metal" 172 4.233
-	asteroids "large metal" 1 3.366
-	minables tungsten 5 5.5887299
-	minables aluminum 32 6.6162542
-	minables platinum 8 5.1710371
-	haze _menu/haze-133
-	fleet "Small Core Merchants" 2000
-	fleet "Large Core Merchants" 3600
-	fleet "Small Core Pirates" 1000
-	fleet "Large Core Pirates" 2200
-	arrival 500
-	habitable 200
-	belt 1529
-	object
-		sprite planet/browndwarf-y-rogue
-		distance 226
-		period 169.87625
-	object
-		sprite planet/browndwarf-t-rogue
-		distance 226
-		period 169.87625
-		offset 180
-	object
-		sprite planet/cloud5
-		distance 698
-		period 325.9929
-	object
-		sprite planet/fog0
-		distance 1289
-		period 818.09622
-	object
-		sprite planet/jupiter-b
-		distance 1914
-		period 1480.2597
-	object
-		sprite planet/gas13
-		distance 3200
-		period 3200
-		object
-			sprite planet/rock17
-			distance 302
-			period 323.22487
-	object
-		sprite planet/gas7-b
-		distance 5580
-		period 7368.4529
-		object
-			sprite planet/dust5-b
-			distance 287
-			period 127.24492
-		object
-			sprite planet/rock20
-			distance 438
-			period 346.50682
 
 system Fumalsamakah
 	pos -962.334 301.805
@@ -23527,47 +23473,6 @@ system Kaliptari
 			distance 316
 			period 29.5684
 
-system "Oneldiam"
-	pos -67.361112 124.41667
-	government Syndicate
-	link Acrab
-	asteroids "small rock" 4 2.604
-	asteroids "large rock" 7 3.069
-	asteroids "small metal" 9 3.069
-	asteroids "medium metal" 9 4.1385
-	asteroids "large metal" 2 4.278
-	minables aluminum 1 5.7519675
-	minables lead 7 6.190245
-	haze _menu/haze-133
-	fleet "Small Core Pirates" 3600
-	fleet "Small Core Merchants" 3000
-	arrival 3276.8
-	habitable 3276.8
-	belt 1478
-	object
-		sprite star/o0
-		period 10
-	object
-		sprite planet/rock11-b
-		distance 362
-		period 107.6175
-	object
-		sprite planet/rock8-b
-		distance 700
-		period 289.37905
-	object
-		sprite planet/gas15
-		distance 2080
-		period 1482.2281
-	object
-		sprite planet/browndwarf-t
-		distance 3363
-		period 3047.2657
-		object
-			sprite planet/ice0-b
-			distance 305
-			period 201.34942
-
 system Kanguwa
 	pos 995.47 -329.975
 	government Uninhabited
@@ -28604,72 +28509,6 @@ system Merak
 		distance 2504.4
 		period 1501.33
 
-system Noitakt
-	pos -134.19489 23.601667
-	government Syndicate
-	attributes core
-	link Sheliak
-	link "Eta Normae"
-	link Maia
-	link Sheratan
-	asteroids "small rock" 30 5.0232
-	asteroids "medium rock" 34 5.2052
-	asteroids "large rock" 11 1.82
-	asteroids "small metal" 4 4.6228
-	asteroids "medium metal" 199 2.4024
-	asteroids "large metal" 46 4.4044
-	minables iron 61 3.64072
-	haze _menu/haze-133
-	fleet "Small Core Merchants" 800
-	fleet "Large Core Merchants" 1000
-	fleet "Small Syndicate" 1600
-	fleet "Large Syndicate" 2500
-	fleet "Small Core Pirates" 2000
-	fleet "Large Core Pirates" 4000
-	fleet "Human Miners" 2000
-	arrival 500
-	habitable 37.25
-	belt 1130
-	trade Clothing 310
-	trade Electronics 750
-	trade Equipment 673
-	trade Food 174
-	trade "Heavy Metals" 860
-	trade Industrial 774
-	trade "Luxury Goods" 1013
-	trade Medical 671
-	trade Metal 292
-	trade Plastic 376
-	object
-		sprite star/m-dwarf
-		distance 69.97047
-		period 126.1696
-		offset 180
-	object
-		sprite star/g-dwarf
-		distance 20.52953
-		period 126.1696
-	object
-		sprite planet/water0
-		distance 234
-		period 524.57265
-	object
-		sprite planet/gas2-b
-		distance 840
-		period 3567.8023
-		object
-			sprite planet/desert4-b
-			distance 290
-			period 233.61936
-	object
-		sprite planet/gas17-b
-		distance 1731
-		period 10554.252
-	object
-		sprite planet/luna
-		distance 2762
-		period 21272.443
-
 system Mesuket
 	pos 220.431 -409.812
 	government Uninhabited
@@ -30731,6 +30570,72 @@ system Nocte
 		distance 2260.97
 		period 3701.13
 
+system Noitakt
+	pos -134.19489 23.601667
+	government Syndicate
+	attributes core
+	link Sheliak
+	link "Eta Normae"
+	link Maia
+	link Sheratan
+	asteroids "small rock" 30 5.0232
+	asteroids "medium rock" 34 5.2052
+	asteroids "large rock" 11 1.82
+	asteroids "small metal" 4 4.6228
+	asteroids "medium metal" 199 2.4024
+	asteroids "large metal" 46 4.4044
+	minables iron 61 3.64072
+	haze _menu/haze-133
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 1000
+	fleet "Small Syndicate" 1600
+	fleet "Large Syndicate" 2500
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	fleet "Human Miners" 2000
+	arrival 500
+	habitable 37.25
+	belt 1130
+	trade Clothing 310
+	trade Electronics 750
+	trade Equipment 673
+	trade Food 174
+	trade "Heavy Metals" 860
+	trade Industrial 774
+	trade "Luxury Goods" 1013
+	trade Medical 671
+	trade Metal 292
+	trade Plastic 376
+	object
+		sprite star/m-dwarf
+		distance 69.97047
+		period 126.1696
+		offset 180
+	object
+		sprite star/g-dwarf
+		distance 20.52953
+		period 126.1696
+	object
+		sprite planet/water0
+		distance 234
+		period 524.57265
+	object
+		sprite planet/gas2-b
+		distance 840
+		period 3567.8023
+		object
+			sprite planet/desert4-b
+			distance 290
+			period 233.61936
+	object
+		sprite planet/gas17-b
+		distance 1731
+		period 10554.252
+	object
+		sprite planet/luna
+		distance 2762
+		period 21272.443
+
 system Fulu
 	pos -129.13889 225.41667
 	government Syndicate
@@ -31351,6 +31256,47 @@ system Ojstaan-Sola
 			sprite planet/ice7
 			distance 727
 			period 61.598
+
+system "Oneldiam"
+	pos -67.361112 124.41667
+	government Syndicate
+	link Acrab
+	asteroids "small rock" 4 2.604
+	asteroids "large rock" 7 3.069
+	asteroids "small metal" 9 3.069
+	asteroids "medium metal" 9 4.1385
+	asteroids "large metal" 2 4.278
+	minables aluminum 1 5.7519675
+	minables lead 7 6.190245
+	haze _menu/haze-133
+	fleet "Small Core Pirates" 3600
+	fleet "Small Core Merchants" 3000
+	arrival 3276.8
+	habitable 3276.8
+	belt 1478
+	object
+		sprite star/o0
+		period 10
+	object
+		sprite planet/rock11-b
+		distance 362
+		period 107.6175
+	object
+		sprite planet/rock8-b
+		distance 700
+		period 289.37905
+	object
+		sprite planet/gas15
+		distance 2080
+		period 1482.2281
+	object
+		sprite planet/browndwarf-t
+		distance 3363
+		period 3047.2657
+		object
+			sprite planet/ice0-b
+			distance 305
+			period 201.34942
 
 system Ookmya
 	pos 633.6 -610.17
@@ -34140,6 +34086,60 @@ system Prelude
 			sprite planet/rhea-b
 			distance 320
 			period 178.034
+
+system "Prima Hyadum"
+	pos -213.33334 7.6666689
+	government Syndicate
+	attributes core
+	link Maia
+	link Electra
+	asteroids "small rock" 30 5.0232
+	asteroids "medium rock" 34 5.2052
+	asteroids "large rock" 11 1.82
+	asteroids "small metal" 4 4.6228
+	asteroids "medium metal" 199 2.4024
+	asteroids "large metal" 46 4.4044
+	minables iron 61 3.64072
+	haze _menu/haze-133
+	fleet "Small Syndicate" 1600
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	arrival 500
+	habitable 28.8
+	belt 1130
+	trade Clothing 310
+	trade Electronics 750
+	trade Equipment 673
+	trade Food 174
+	trade "Heavy Metals" 860
+	trade Industrial 774
+	trade "Luxury Goods" 1013
+	trade Medical 671
+	trade Metal 292
+	trade Plastic 376
+	object
+		sprite star/g-dwarf
+		period 10
+	object
+		sprite planet/rock1
+		distance 253
+		period 670.70189
+	object
+		sprite planet/ice7
+		distance 686
+		period 2994.5731
+	object
+		sprite planet/miranda
+		distance 1866
+		period 13434.336
+	object
+		sprite planet/gas6-b
+		distance 3197
+		period 30127.473
+	object
+		sprite planet/gas10-b
+		distance 5841
+		period 74401.135
 
 system Procyon
 	pos -411 23
