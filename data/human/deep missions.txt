@@ -5452,6 +5452,8 @@ mission "Hroar's Haulers 15"
 					goto followyngvar
 
 			label yngvar
+			action 
+				set "metbolverka"
 			`	Yngvar nods to you as you approach the quiet table he shares with Bolverka in the back. Bolverka looks about middle aged, older than Unferth and Gunhilda, but quite a bit younger than Yngvar. She has close cropped brown hair and dark brown eyes. She watches you curiously as you take your seat.`
 			`	"Smart thinking, <last>." Yngvar says, "You'll go deaf or blind from the music and drink with the crowd at the bar. Safer back here with us."`
 			`	Bolverka laughs, "Don't let old Yngvar fool you, if he wasn't the logistics officer he'd be right there with them."`
@@ -5486,6 +5488,8 @@ mission "Hroar's Haulers 15"
 			`	Both Yngvar and Bolverka give you unflattering frowns. "Fine," Yngvar says, "I thought you could do with a little culture, but if that's the case you're free to go."`
 			choice
 				`	(Get up and leave.)`
+			action
+				set "werelame"
 			`	As you make your way to the exit you hear the singing suddenly cut off and some sort of fight break out.`
 			`	Yngvar's voice suddenly rings through the estblishment, "Haulers, out!"`
 			`	You find yourself suddenly in the middle a large group of Haulers who've followed you outside. A moment later Yngvar joins you.`
@@ -5522,7 +5526,7 @@ mission "Hroar's Haulers 15"
 				clear "generationship"
 			`	Yngvar sighs, "It's a bit more complicated than that. Three of the earliest generation ships were sent to the Deep. It was a private affair using... let's say untested technology."`
 			`	Bolverka snorts, but says nothing else."`
-			`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they would be the survivors."`
+			`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they'd be the Folly's survivors."`
 			`	"And how exactly did one generation ship, without FTL technology, manage to seed half a dozen systems with these survivors?" Bolverka says sharply.`
 			`	"Wormholes? I don't know, woman, I don't have all the answers. But it makes more sense then elves!"`
 			`	Bolverka rolls her eyes, "Anyways, back to the topic at hand, we 'stoners' have just as much fun as anyone else, and you know it, Yng. Besides, you're practically one yourself so stop acting all superior."`
@@ -5543,9 +5547,9 @@ mission "Hroar's Haulers 15"
 			`	Bolverka grins, "Oh, you'll love this. You see each spacer takes a piece of the first ship they served on, usually their family's..."`
 			`	"Hold on now!" Yngvar interjects, "I'm the spacer here, let me tell it."`
 			`	Bolverka holds up both hands in surrender, "Fine, fine. Tell your story, old man."`
-			`	"Haulers are a figurative, and often times literal, marriage of miners and spacers from the Caravan days. I'll admit after near 300 years, the differences between the two groups have gotten more than a little muddled. These days most Haulers are a mix of both, they spend some time mining and some time spacing. But there's still a few of us, who to stick to one trade and one tradition."`
+			`	"Haulers are a figurative, and often times literal, marriage of miners and spacers from the Caravan days. I'll admit after near 300 years, the differences 'tween the two groups have gotten more than a little muddled. These days most Haulers are a mix of both, they spend some time mining and some time spacing. But there's still a few of us, who to stick to one trade and one tradition."`
 			`	Bolverka yawns.`
-			`	Yngvar pointedly ignores her, "I was born on the Hauler's old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family had served on it for centuries."`
+			`	Yngvar pointedly ignores her, "I was born on the Hauler's old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family served on it for centuries."`
 			`	"She was a beauty, what I wouldn't do to see her like fly again," Yngvar's clear eye sparkles, "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and keep with it with us for all our days. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to the Old Station where it's laid to rest."`
 			`	"So just like our stones." Bolverka says brightly.`
 			`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the Old Station they'll last forever. It's different, better, and more refined."`
@@ -5553,6 +5557,8 @@ mission "Hroar's Haulers 15"
 				goto cairntalk
 
 			label samething
+			action
+				set "yngvarstoner"
 			`	Bolverka beams, "Yngvar the space-stoner, maybe that's the song we oughta to be singing?"`
 			`	"Bah, what does <last> know about it anyways." Yngvar glares unhappily at Bolverka.`
 			`	As Bolverka and Yngvar continue to bicker you notice the singing near the bar pick up;`
@@ -5561,10 +5567,12 @@ mission "Hroar's Haulers 15"
 			`	Yngvar, hearing it, scowls. Bolverka puts her hand on his.`
 			`	"Let them have their fun." She says softly to Yngvar.`
 			`	"Hrut, that damned fool." Yngvar growls and then holds up his radiation-burnt hand, "If he'd a just listened to me we could have saved so many, he could have been..."`
-			`	Yngvar stops talking as the singing abruptly dies out. He stands up and peers across the bar. You look and notice multiple people in riot gear have surrounded Captain Unferth and those nearest him.`
+			`	The singing abruptly dies out. Yngvar abandons whatever he was going to say next as worry takes over his face. He stands up and peers across the bar. You look and notice multiple people in riot gear have surrounded Captain Unferth and those nearest him.`
 				goto yngvarswears
 
 			label shipnotstone
+			action
+				set "yngvarspacer"
 			`	"Ha!" Yngvar exclaims triumphantly, "I told you. It's different. It's more technical, more nuanced, more rational, more..."`
 			`	"...of the same." Bolverka interrupts.`
 			`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look, "Who knows what winning could cost you?"`
@@ -6214,8 +6222,9 @@ mission "Hroar's Haulers 17"
 			`	He turns from you to engage with the remaining representatives.`
 				accept
 	on complete
-		dialog
-			`	`
+		conversation
+			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparsion to the ringworld, it still puts anything in human space to shame. Unusual looking prehensile tubes, like the myrid heads of hungry hydras, quickly swarm your ship and begin the process of finally unloading the cargo you've been carrying since Muspel.`
+			`	Yngvar busy communicating one of the station's sub-routines, pauses to hollar to you before you leave the ship, "Meet me in the spaceport later."`
 
 
 mission "Hroar's Haulers 17b"
@@ -6402,16 +6411,73 @@ mission "Hroar's Haulers 17b"
 				clear "sfleet"
 			`	"Good, anything else you need?"`
 				goto yngvarchat
+	on complete
+		conversation
+			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparsion to the ringworld, it still puts anything in human space to shame. Unusual looking prehensile tubes, like the myrid heads of hungry hydras, quickly swarm your ship and begin the process of finally unloading the cargo you've been carrying since Muspel.`
+			`	Yngvar busy communicating one of the station's sub-routines, pauses to hollar to you before you leave the ship, "Meet me in the spaceport later."`
 
 mission "Hroar's Haulers 18"
 	name "The Long Haul"
-	source "Rand"
+	source "Lagrange"
 	to offer
-		has "Hroar's Haulers 17: declined"
+		has "Hroar's Haulers 17: done"
 	on offer
 		conversation
+			`You make your way past the throngs of humans tourists, and indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
+			choice
+				`	(Join them.)`
+					goto bolverkaagain
+					to display
+						has "metbolverka"
+				`	(Look around the spaceport some more.)`
+					goto bolverkacalls
+					to display
+						has "metbolverka"
+				`	(Join them.)`
+					to display
+						not "metbolverka"
+				`	(Look around the spaceport some more.)`
+					to display
+						not "metbolverka"
+			label bolverkaagain
+			`	"Captain <last>!" You recognize Captain Bolverka's voice as you near the assembled haulers, "Welcome to Lagrange!"`
+			`	She waves you over to her table, and she rewards you with a friendly smile and a nod toward an empty chair.`
+			`	"Yng will be here soon enough." She faintly shakes her head, "Stones know he likes to gab with station, or the tubes, or whatever manages the cargo logistics. Never heard of anyone else able to get more then a few simple directions from the things. But that's Yng for you."`
+			`	"But enough that old codger. You're due a little celebration! It's your first Lagrange port-of-call in a Long Haul! Why you're halfway done!"" I am sure this station wasn't scurbbed clean 12 times a day, there'd be some old rusted panel with a few thousand Hauler "`
+			choice
+				`	"What do you mean only halfway?"`
+					goto laststop
+				`	"I thought Lagrange was our last stop?"`
+					goto laststop
+				`	"Halfway already? I was hoping it'd never end."`
+				`	"So, what's next then?"`
+			
+			label laststop
+			`	She gives you an empathetic smile, "Hon, we still have to get back to Muspel."`
+			`	"With a profit too," Yngvar grunts as he pulls up a chair. "Especially with the loss of Captain Solvi's revenue."`
+			`	"The Long Haul will still make a profit, even without them," Bolverka continues. "Besides Hroar will get it figured out."`
+			`	Yngvar grumbles, "Hartha-Hroar's good, but he's not a miracle worker."`
+			`	Bolverka turns back to you, "Anyways, like I was saying, we still have to make our way back to Muspel."`
+			`	"Wayfarer, New Washington, Earth and Muspel." Yngvar says, "That's our route for the way back."`
+			choice
+				`	"Wayfarer? Next door? What we pick up there?"`
+					goto wayfarer
+				`	"New Washington? I didn't know they had anything of value."`
+				`	"Earth? Again?"`
+				`	"Sounds good. When do we leave?"`
+			`	"We need a little breather after all the traveling we've done. Need to give our ships a good once over, and tune up after before heading out again." Yngvar begins.`
+			`	"And some well earned R&R for the crews." Bolverka interjects.`
+			`	"Yeah, and that, I reckon." Yngvar nods.`
 
+			
 
+mission "Hroar's Haulers 18b"
+	name "The Long Haul"
+	source "Lagrange"
+	to offer
+		has "Hroar's Haulers 17b: done"
+	on offer
+		conversation
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
