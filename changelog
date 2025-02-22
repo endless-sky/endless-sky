@@ -17,6 +17,7 @@ Version 0.10.12
       * When determining if there are sufficient resources to fire a weapon, only the values of resources firing the weapon actually consumes will be considered. (@warp-core)
       * Exceptions thrown when copying files will now be caught, instead of crashing the game. (@TomGoodIdea)
       * Audio will now remain paused when switching from the player info to ship info panel. (@TomGoodIdea)
+      * The fuel bar will no longer disappear when the player has a lot of fuel. (@warp-core)
   * Game content:
     * New content:
       * Added launch sounds and angles to bays on Avgi ships. (@Saugia)
