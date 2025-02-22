@@ -2189,69 +2189,6 @@ system Acnanjo
 		distance 3314.9
 		period 1199.60
 
-system Titawin
-	pos -298.084 172.935
-	government Syndicate
-	link Fomalhaut
-	link Markab
-	link Marfik
-	asteroids "small rock" 40 4.224
-	asteroids "large rock" 32 6.27
-	asteroids "medium metal" 9 5.61
-	asteroids "large metal" 4 4.158
-	minables aluminum 3 10.167916
-	minables iron 7 9.6900905
-	fleet "Small Core Merchants" 800
-	fleet "Large Core Merchants" 1000
-	fleet "Small Syndicate" 1200
-	fleet "Large Syndicate" 2000
-	fleet "Human Miners" 3000
-	fleet "Republic Logistics" 3600
-	fleet "Small Core Pirates" 1200
-	fleet "Small Core Merchants" 600
-	arrival 500
-	habitable 151.25
-	belt 1453
-	object
-		sprite star/m8
-		period 10
-	object
-		sprite planet/rock5-b
-		distance 255
-		period 296.14716
-	object
-		sprite planet/browndwarf-t-rogue
-		distance 1226
-		period 3122.0008
-	object
-		sprite planet/gas5-b
-		distance 2379
-		period 8438.9607
-		object
-			sprite planet/rock7
-			distance 281
-			period 222.82879
-	object
-		sprite planet/gas7-hot
-		distance 5165
-		period 26996.21
-		object
-			sprite planet/rock7-b
-			distance 184
-			period 118.06973
-	object
-		sprite planet/europa-b
-		distance 6651
-		period 39448.248
-	object
-		sprite planet/gas11-b
-		distance 9870
-		period 71313.71
-		object
-			sprite planet/luna
-			distance 272
-			period 169.57193
-
 system Acrux
 	pos -808 192
 	government Republic
@@ -12976,68 +12913,70 @@ system "Elabi Choati"
 		distance 2183.75
 		period 745.253
 
-system "Gamma Ceti"
-	pos -275.778 73.1111
+system Electra
+	pos -168.19488 -53.953889
 	government Syndicate
-	link "Alpha Scuti"
-	link Syrma
-	link Jabbah
-	asteroids "small rock" 9 3.4362
-	asteroids "medium rock" 8 3.4362
-	asteroids "large rock" 3 2.07
-	asteroids "small metal" 5 2.898
-	asteroids "medium metal" 6 2.4426
-	asteroids "large metal" 3 2.1114
-	minables silver 7 4.3545762
-	minables copper 8 5.7354391
+	attributes core
+	link "Prima Hyadum"
+	link Menkar
+	link Zaurak
+	asteroids "small rock" 30 5.0232
+	asteroids "medium rock" 34 5.2052
+	asteroids "large rock" 11 1.82
+	asteroids "small metal" 4 4.6228
+	asteroids "medium metal" 199 2.4024
+	asteroids "large metal" 46 4.4044
+	minables iron 61 3.64072
 	haze _menu/haze-133
-	fleet "Small Core Pirates" 1000
-	fleet "Large Core Pirates" 2500
-	fleet "Small Core Merchants" 1800
-	arrival 5000
-	habitable 42560
-	belt 1607
+	fleet "Small Core Merchants" 800
+	fleet "Large Core Merchants" 1000
+	fleet "Small Syndicate" 1600
+	fleet "Large Syndicate" 2500
+	fleet "Small Core Pirates" 2000
+	fleet "Large Core Pirates" 4000
+	fleet "Human Miners" 2000
+	arrival 3161
+	habitable 3161
+	belt 1130
+	trade Clothing 310
+	trade Electronics 750
+	trade Equipment 673
+	trade Food 174
+	trade "Heavy Metals" 860
+	trade Industrial 774
+	trade "Luxury Goods" 1013
+	trade Medical 671
+	trade Metal 292
+	trade Plastic 376
 	object
-		sprite star/o-supergiant
-		distance 358
-		period 338.68389
+		sprite star/k8
+		distance 85.63135
+		period 54.596953
 	object
-		sprite star/a-supergiant
-		distance 358
-		period 338.68389
+		sprite star/a8
+		distance 61.86865
+		period 54.596953
 		offset 180
 	object
-		sprite planet/gas10
-		distance 976
-		period 539.01362
+		sprite planet/ice6
+		distance 333
+		period 185.20245
 	object
-		sprite planet/gas9-b
-		distance 1882
-		period 1443.2928
+		sprite planet/tethys
+		distance 621
+		period 471.64776
+	object
+		sprite planet/gas10-b
+		distance 1275
+		period 1387.5405
+	object
+		sprite planet/gas16-b
+		distance 2282
+		period 3322.4147
 		object
-			sprite planet/ice7-b
-			distance 265
-			period 112.89805
-	object
-		sprite planet/gas12-b
-		distance 3088
-		period 3033.4787
-	object
-		sprite planet/browndwarf-y
-		distance 3828
-		period 4186.8066
-		object
-			sprite planet/dust3-b
-			distance 294
-			period 190.55556
-	object
-		sprite planet/gas3-b
-		distance 6621
-		period 9523.8028
-		object
-			sprite planet/rock20
-			distance 325
-			period 221.47548
+			sprite planet/miranda-b
+			distance 230
+			period 165.00746
 
 system Elifennka
 	pos 990.5 -728.2
@@ -16403,6 +16342,69 @@ system "Gamma Cassiopeiae"
 			sprite planet/io-b
 			distance 425
 			period 21.1965
+
+system "Gamma Ceti"
+	pos -275.778 73.1111
+	government Syndicate
+	link "Alpha Scuti"
+	link Syrma
+	link Jabbah
+	asteroids "small rock" 9 3.4362
+	asteroids "medium rock" 8 3.4362
+	asteroids "large rock" 3 2.07
+	asteroids "small metal" 5 2.898
+	asteroids "medium metal" 6 2.4426
+	asteroids "large metal" 3 2.1114
+	minables silver 7 4.3545762
+	minables copper 8 5.7354391
+	haze _menu/haze-133
+	fleet "Small Core Pirates" 1000
+	fleet "Large Core Pirates" 2500
+	fleet "Small Core Merchants" 1800
+	arrival 5000
+	habitable 42560
+	belt 1607
+	object
+		sprite star/o-supergiant
+		distance 358
+		period 338.68389
+	object
+		sprite star/a-supergiant
+		distance 358
+		period 338.68389
+		offset 180
+	object
+		sprite planet/gas10
+		distance 976
+		period 539.01362
+	object
+		sprite planet/gas9-b
+		distance 1882
+		period 1443.2928
+		object
+			sprite planet/ice7-b
+			distance 265
+			period 112.89805
+	object
+		sprite planet/gas12-b
+		distance 3088
+		period 3033.4787
+	object
+		sprite planet/browndwarf-y
+		distance 3828
+		period 4186.8066
+		object
+			sprite planet/dust3-b
+			distance 294
+			period 190.55556
+	object
+		sprite planet/gas3-b
+		distance 6621
+		period 9523.8028
+		object
+			sprite planet/rock20
+			distance 325
+			period 221.47548
 
 system "Gamma Corvi"
 	pos -906 64
@@ -35539,70 +35541,68 @@ system Tarazed
 			distance 228
 			period 16.9693
 
-system Electra
-	pos -168.19488 -53.953889
+system Titawin
+	pos -298.084 172.935
 	government Syndicate
-	attributes core
-	link "Prima Hyadum"
-	link Menkar
-	link Zaurak
-	asteroids "small rock" 30 5.0232
-	asteroids "medium rock" 34 5.2052
-	asteroids "large rock" 11 1.82
-	asteroids "small metal" 4 4.6228
-	asteroids "medium metal" 199 2.4024
-	asteroids "large metal" 46 4.4044
-	minables iron 61 3.64072
-	haze _menu/haze-133
+	link Fomalhaut
+	link Markab
+	link Marfik
+	asteroids "small rock" 40 4.224
+	asteroids "large rock" 32 6.27
+	asteroids "medium metal" 9 5.61
+	asteroids "large metal" 4 4.158
+	minables aluminum 3 10.167916
+	minables iron 7 9.6900905
 	fleet "Small Core Merchants" 800
 	fleet "Large Core Merchants" 1000
-	fleet "Small Syndicate" 1600
-	fleet "Large Syndicate" 2500
-	fleet "Small Core Pirates" 2000
-	fleet "Large Core Pirates" 4000
-	fleet "Human Miners" 2000
-	arrival 3161
-	habitable 3161
-	belt 1130
-	trade Clothing 310
-	trade Electronics 750
-	trade Equipment 673
-	trade Food 174
-	trade "Heavy Metals" 860
-	trade Industrial 774
-	trade "Luxury Goods" 1013
-	trade Medical 671
-	trade Metal 292
-	trade Plastic 376
+	fleet "Small Syndicate" 1200
+	fleet "Large Syndicate" 2000
+	fleet "Human Miners" 3000
+	fleet "Republic Logistics" 3600
+	fleet "Small Core Pirates" 1200
+	fleet "Small Core Merchants" 600
+	arrival 500
+	habitable 151.25
+	belt 1453
 	object
-		sprite star/k8
-		distance 85.63135
-		period 54.596953
+		sprite star/m8
+		period 10
 	object
-		sprite star/a8
-		distance 61.86865
-		period 54.596953
-		offset 180
+		sprite planet/rock5-b
+		distance 255
+		period 296.14716
 	object
-		sprite planet/ice6
-		distance 333
-		period 185.20245
+		sprite planet/browndwarf-t-rogue
+		distance 1226
+		period 3122.0008
 	object
-		sprite planet/tethys
-		distance 621
-		period 471.64776
-	object
-		sprite planet/gas10-b
-		distance 1275
-		period 1387.5405
-	object
-		sprite planet/gas16-b
-		distance 2282
-		period 3322.4147
+		sprite planet/gas5-b
+		distance 2379
+		period 8438.9607
 		object
-			sprite planet/miranda-b
-			distance 230
-			period 165.00746
+			sprite planet/rock7
+			distance 281
+			period 222.82879
+	object
+		sprite planet/gas7-hot
+		distance 5165
+		period 26996.21
+		object
+			sprite planet/rock7-b
+			distance 184
+			period 118.06973
+	object
+		sprite planet/europa-b
+		distance 6651
+		period 39448.248
+	object
+		sprite planet/gas11-b
+		distance 9870
+		period 71313.71
+		object
+			sprite planet/luna
+			distance 272
+			period 169.57193
 
 system Tebuteb
 	pos -615.587 710.051
