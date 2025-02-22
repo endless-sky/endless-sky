@@ -4439,7 +4439,7 @@ mission "Emancipation Raid Escort [0]"
 	name "Emancipation escort: <planet stopovers>"
 	job
 	repeat
-	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. The Syndicate and bounty hunters will attack you, but you will have a passcode for landing clearance."
+	description "Escort a Nighthawk to <stopovers> for an emancipation raid, then back to <planet> for <payment>. Bounty hunters may attack you. You will have a passcode for clearance if the Syndicate refuses to let you land."
 	clearance "You provide a passcode given to you on <origin> and the authorities give you landing coordinates."
 	to offer
 		"combat rating" > 50

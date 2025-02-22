@@ -2024,7 +2024,7 @@ government "Remnant"
 		"Kor Alaji" -.1
 		"Alpha" -.05
 		"Remnant (Research)" 1
-		"Korath (Civilian)" 0.02
+		"Korath (Civilian)" 0.05
 	"penalty for"
 		assist -0.25
 		disable 1

@@ -3080,7 +3080,7 @@ planet "La'ab Bamen"
 	# The fish within are from the New Tortuga Korath fish trade. You're looking at the
 	# juvenile and adult forms, swimming in the extremely specific environment they require
 	# to survive.
-	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There's several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains precise conditions, including typical ocean temperatures and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
+	description `This moon is only a few kilometers in diameter, and it has been hollowed out and turned into an aquarium. There are several cubic kilometers of salt water inside, with numerous creatures that look like small translucent glowing dolphins, and a few that look like a hybrid of an ankylorhiza and a giant squid. A machine at the moon's center maintains precise conditions, including typical ocean temperatures and a slow electric current. There are corridors throughout this asteroid aquarium, lit by a glow from the water itself.`
 	description `	At the surface of the asteroid, there are hidden hangar doors disguised as craters, leading to bays designed for ships larger than anything the human race has ever produced. The facility looks like it was constructed from human technology, but at an impossibly large scale.`
 	spaceport `This spaceport is tightly compartmentalized, with zones carefully marked out for certain purposes. Each zone can only be accessed by an elevator-like system that moves both horizontally and vertically. With this setup, it is nearly impossible for one group of visitors to see another inside the spaceport. The only shared area is the gigantic hangar bays, which are few in number, but those too seem to be divided by purpose.`
 	government "Independent (Korath-Allied) Restricted"
@@ -4686,7 +4686,7 @@ planet Raaqa-Uur-Kaav
 	government Predecessor
 
 planet "Rabasot Pa'ah"
-	attributes fishing korath "korath exiles" ocean uninhabited
+	attributes fishing korath "korath exile" ocean uninhabited
 	landscape land/rough-seas
 	description `This tectonically active ocean world has unpredictable weather, frequent tsunamis, and unusual electrical activity. Although there are a few islands, the terrain is so harsh that it is nearly impossible to land, and the atmosphere is bathed in radiation from Kor Ak'Mari's death throes. There is almost no vegetation in sight, but the sea is filled with microscopic lifeforms. It seems the violent conditions on this planet have held back evolution.`
 	government Uninhabited
