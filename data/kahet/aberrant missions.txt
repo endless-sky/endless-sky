@@ -25,7 +25,7 @@ mission "Disabled Aberrant"
 				has "Disabled Ka'het: offered"
 
 			action
-				log `Successfully boarded an Aberrant. A strange presence seemed to watch you as you investigated it, one that gave you a sense of foreboding. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton.`
+				log `Successfully boarded an Aberrant. A strange presence seemed to watch during the investigation, one that gave a sense of foreboding. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton.`
 
 			`You draw the <ship> alongside this strange entity, which, despite its lack of motion, seems to exude an ominous presence. Something feels fundamentally wrong with this ship as you approach a hole in a vulnerable part of its hull, which seems to be some kind of shell encasing a large, slug-like creature. Exposed to weapons fire, the creature seems to be dead, but you feel almost as if something is watching you.`
 			`	You have no troubles docking with what seems to be its "exoskeleton," trying to decide what to do next. While the Aberrant is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
