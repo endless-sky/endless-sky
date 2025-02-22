@@ -42,6 +42,7 @@ void MusicPlayer::ConfigureSource()
 	alSourcef(alSource, AL_REFERENCE_DISTANCE, 1.);
 	alSourcef(alSource, AL_ROLLOFF_FACTOR, 1.);
 	alSourcef(alSource, AL_MAX_DISTANCE, 100.);
+	AudioPlayer::Move(0, 0, 0);
 }
 
 

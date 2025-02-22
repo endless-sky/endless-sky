@@ -296,7 +296,6 @@ void Audio::PlayMusic(const string &name)
 		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioDataSupplier>{fade}));
 		musicPlayer->Init();
 		musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
-		musicPlayer->Move(0., 0., 0.);
 		musicPlayer->Play();
 		players.emplace_back(musicPlayer);
 	}
