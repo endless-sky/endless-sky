@@ -7136,7 +7136,7 @@ system Aspidiske
 
 system Atik
 	pos -66 -52
-	government "Independent (Korath-Allied) Restricted"
+	government Uninhabited
 	attributes "bright star" "core" "giant star" "multi-star" "notable star"
 	arrival 1800
 	habitable 1800

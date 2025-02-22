@@ -162,4 +162,4 @@ phrase "generic completed emancipation mission"
 
 phrase "generic completed emancipation raid mission"
 	word
-		`Wounded raiders and emancipated refugees leave the ships you escorted. They're all grateful for the heroism you ensured today.`
+		`Wounded raiders and emancipated refugees leave the ships you escorted. They're all grateful for your heroism today.`

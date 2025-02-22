@@ -2649,17 +2649,19 @@ ship "Manta" "Manta (Proton)"
 
 ship "Manta" "Manta (Miner)"
 	outfits
+		"Heavy Laser" 4
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+	
 		"Cargo Expansion"
 		"D23-QP Shield Generator"
-		"Heavy Laser" 4
 		Hyperdrive
+		"Laser Rifle"
 		"LP036a Battery Pack"
 		"LP072a Battery Pack"
-		"Laser Rifle"
-		"Meteor Missile" 60
-		"Meteor Missile Launcher" 2
 		"NT-200 Nucleovoltaic"
 		Supercapacitor 4
+
 		"X1700 Ion Thruster"
 		"X3200 Ion Steering"
 		"X3700 Ion Thruster"

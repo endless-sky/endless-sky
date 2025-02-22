@@ -3557,7 +3557,9 @@ fleet "Independent (Korath-Allied) Miners"
 	variant
 		"Modified Argosy (Blaster)"
 	variant
-		"Splinter (Laser)"
+		"Sunder (Heavy)"
+		"Mining Drone" 2
+		"Modified Argosy"
 
 # The odd combination of defense comes from the association with
 # pirates and marauders; and their varied shipyard.
