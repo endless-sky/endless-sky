@@ -223,6 +223,9 @@ interface "map detail panel"
 	value "trade height" 120
 	value "arrow x offset" 3
 	value "arrow y offset" 10
+	value "description x offset" 240
+	value "description width" 500
+	value "description height" 240
 
 
 

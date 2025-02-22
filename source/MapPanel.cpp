@@ -581,6 +581,7 @@ bool MapPanel::AllowsFastForward() const noexcept
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	// When changing the map mode, explicitly close all child panels (for example, scrollable text boxes).
 	auto removeChildren = [this]()
 	{
 		for(auto &child : GetChildren())

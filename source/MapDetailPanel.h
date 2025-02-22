@@ -98,4 +98,5 @@ private:
 
 	std::shared_ptr<TextArea> description = nullptr;
 	bool descriptionVisible = false;
+	int descriptionXOffset;
 };

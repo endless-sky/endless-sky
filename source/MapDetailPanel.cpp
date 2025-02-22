@@ -86,10 +86,6 @@ namespace {
 		// Return the angle, plus the length as a tie-breaker.
 		return make_pair(angle, length);
 	}
-
-	constexpr int DESCRIPTION_X_OFFSET = 240;
-	constexpr int DESCRIPTION_WIDTH = 500;
-	constexpr int DESCRIPTION_HEIGHT = 240;
 }
 
 double MapDetailPanel::planetPanelHeight = 0.;
@@ -511,9 +507,12 @@ void MapDetailPanel::InitTextArea()
 	description->SetFont(FontSet::Get(14));
 	description->SetColor(*GameData::Colors().Get("medium"));
 	description->SetAlignment(Alignment::JUSTIFIED);
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	descriptionXOffset = mapInterface->GetValue("description x offset");
+	int descriptionWidth = mapInterface->GetValue("description width");
 	description->SetRect(Rectangle::FromCorner(
-		Point(Screen::Right() - DESCRIPTION_X_OFFSET - DESCRIPTION_WIDTH, Screen::Top() + 20),
-		Point(DESCRIPTION_WIDTH - 20, DESCRIPTION_HEIGHT)
+		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
+		Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
 	));
 }
 
@@ -864,7 +863,7 @@ void MapDetailPanel::DrawInfo()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - DESCRIPTION_X_OFFSET - .5f * panelSprite->Width(),
+		Point pos(Screen::Right() - descriptionXOffset - .5f * panelSprite->Width(),
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
