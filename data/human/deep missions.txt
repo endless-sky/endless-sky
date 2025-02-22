@@ -570,7 +570,7 @@ mission "Deep: Mystery Cubes 4"
 			variant
 				"Carrier"
 				"Combat Drone" 6
-				"Dagger" 4
+				"Dagger" 8
 	npc
 		government "Merchant"
 		personality staying vindictive
@@ -602,7 +602,7 @@ mission "Deep: Mystery Cubes 4"
 				names "deep fighter"
 			variant
 				"Aerie" 2
-				"Dagger" 4
+				"Dagger" 8
 				"Corvette (Speedy)"
 	npc
 		government "Republic"
@@ -616,7 +616,7 @@ mission "Deep: Mystery Cubes 4"
 				"Carrier"
 				"Cruiser" 2
 				"Combat Drone" 14
-				"Lance" 4
+				"Lance" 8
 				"Frigate" 2
 	npc evade
 		government "Pirate"
@@ -2208,7 +2208,7 @@ mission "Deep: Scientist Rescue 1: Escorts"
 				names "deep fighter"
 			variant
 				"Aerie"
-				"Dagger" 2
+				"Dagger" 4
 
 
 
@@ -2665,7 +2665,7 @@ mission "Stone of our Fathers 4"
 			`	Helm ties up the ship at a makeshift dock and you follow him toward a dour gray building not far away. You realize this entire algae island, as small as it is, must belong to a single individual or family.`
 			`	When you arrive at the hardy and sea-stained wooden door, Helm knocks thunderously upon it and calls out, "Thorleif, open up!"`
 			`	After a brief wait the door opens ponderously, revealing a large, red-bearded, middle aged man who looks like a younger and much healthier Skaldgar. You realize that you must be standing before the man's son. A wide and open grin forms on his face when he sees Helm, and he gives the man a warm embrace. "Ah cousin! It's been too long, what brings you to my humble home?"`
-			`	Thorlief then notices you and frowns. "And who have you brought with you?"`
+			`	Thorleif then notices you and frowns. "And who have you brought with you?"`
 			choice
 				`	(Answer for myself.)`
 				`	(Let Helm answer for me.)`
@@ -2821,6 +2821,7 @@ mission "Stone of our Fathers 5"
 	on visit
 		dialog `You have reached <planet>, but your escort with the space reserved for Thorleif and Ragnhild has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
+		event "stone waiting most" 30
 		payment 500000
 		conversation
 			`The trip back to Norn was restful.`
@@ -3139,12 +3140,12 @@ mission "Home for Skadenga 1"
 			`	In the light of early day, the village looks stranger than you remember. Carved wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough, the effect does not clash, but instead gives off an impression of seamless artistry. To the south, there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an unusual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure, you feel unnaturally chilly.`
 			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more. Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk, and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
 			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
-			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that The Ondurdis leaves you.`
+			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that, the Ondurdis leaves you.`
 			choice
 				`	(Head to the shuttle.)`
 					goto shuttle
-				`	(Take a moment to investigate Goddess-Stone.)`
-			`	You walk toward the park filled with stone cairns, wooden pillars and Goddess-Stone.`
+				`	(Take a moment to investigate the Goddess-Stone.)`
+			`	You walk toward the park filled with stone cairns, wooden pillars, and the Goddess-Stone.`
 			`	At this distance, you can see that the cairns have name-plates at their bases. Some are so faded and worn you cannot make out the names. Others are easier to read and appear to be family names. Myrlinga, Baning, and Amalung are the few you can read.`
 			`	Beyond the cairns are the well-carved wooden pillars, or Setstokkr as the Ondurdis called them. They are each over 10 meters tall, and all covered entirely in runic script, images, and patterns. A few have unshorn branches that include their own carvings as well, while most are limbless. On one Setstokkr, you notice that a frequent carving within its entwined animals is similar in shape to the burn on your arm.`
 			`	Finally, you reach the massive Goddess-Stone itself. You see now almost no part of the wide surface is bare. There are images within images, letters within letters. These exotic letters bear no relationship to the runes found on the Setstokkr. These are truly alien.`
@@ -3157,7 +3158,7 @@ mission "Home for Skadenga 1"
 			`	"I just vant to thank you." Hjlod's gray-blue eyes glitter in the morning light. "I alvays say Hjlod keep tourist safe. But yesterday you save Hjlod. I vill not forgot, know this."`
 				goto lopsided
 			label threefingers
-			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "Stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
+			`	A lone figure stands next to the idling shuttle. As you draw closer, you recognize Hjlod. "You see," she says, "stick with Hjlod, and you live, probably." She holds up a bandaged, three-fingered hand and shrugs. "Mostly."`
 			label lopsided
 			`	Hjlod offers one of her lopsided grins and then leaves you alone with the shuttle. It is time to go.`
 				accept
@@ -3382,13 +3383,13 @@ mission "Home for Skadenga 4"
 			`	You answer, "On Asgard, there is a great market built around their God-Stone, and many new homes in need of people to fill them. The people there have lost their way and they need the Skadenga to remind them of who they were."`
 			`	Hjlod nods. "The Skadenga have alvays been guides, pathfinders. I vill tell Ondurdis.`
 			label end
-			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Onderduis told me to tell you."`
+			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Ondurdis told me to tell you."`
 			`	You frown and ask, "Did she provide money?"`
 			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you." She turns and leaves.`
 				accept
 	on complete
 		conversation
-			`	Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
+			`Outside your ship, you are met by a representative of the Transport Union. "We have been expecting you, Captain <last>." They escort you to an elevator and up to the penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
 			scene "scene/tower"
 			`	Three youngish men adorned in trending clothes smile as you enter. "Ah, Captain <last>, what a pleasure to finally meet you. I am Kaiden, and these are my associates Braiden and Grayden. We are executives of the Transport Union. Obviously, we were made aware you would be coming and are looking forward toward creating a lasting and beneficial relationship with you and your... clients.`
 			`	"We've heard that you have this inspiring idea to transport an entire backwater community from one world to another," Kaiden says.`
@@ -3399,7 +3400,7 @@ mission "Home for Skadenga 4"
 			branch asgard
 				has "Asgard"
 			choice
-				`	"That's fantastic news! The Skakenga will need transport to Windblain."`
+				`	"That's fantastic news! The Skadenga will need transport to Windblain."`
 				`	"They need to go to Windblain."`
 			`	A hush falls over the room, and both Braiden and Grayden look to Kaiden with confused expressions on their faces.`
 			`	"Wind. Blain." Kaiden says slowly. "Wiiiindblaaain. Are you sure that is the world these simple people wish to travel to? Maybe you got an invoice mixed up? Perhaps wrote the wrong name down?" Braiden and Grayden both silently nod.`
@@ -3409,12 +3410,12 @@ mission "Home for Skadenga 4"
 			`	"That changes things, then." Kaiden turns to Grayden. "Are there even incentives?"`
 			`	Grayden is busy scanning through a tablet. "No re-urbanization kickbacks, no university-study grants, not even a housing development utilization bonus. The entire thing will probably still be a tax write off, but the Census and Culture Bureau won't be happy. Plus, obviously, no finder's fee from them."`
 			`	Kaiden then looks to Braiden who shakes his head. "Public Relations for people moving to... Windblain? No one who is anyone lives on Windblain, and no one else cares about those people."`
-			`	"Yeah, we're sorry, but this isn't going to work for us." Kaiden puts on a pained face. "This just isn't the kind of project we are willing to take on at the moment." They all stand in near unison. "In the future, try not to waste our time." Kaiden says as the three of them exit the room.`
+			`	"Yeah, we're sorry, but this isn't going to work for us." Kaiden puts on a pained face. "This just isn't the kind of project we are willing to take on at the moment." They all stand in near unison. "In the future, try not to waste our time," Kaiden says as the three of them exit the room.`
 			`	Your escort reappears. "I've been instructed to inform you that there is no one else in the Deep capable of moving the amount of people you want to move. When you're ready to be practical, contact us and we'll be more than happy to help. Now, follow me out of the building." You ride the long elevator down to the lobby and are shown the door. As you leave, another employee follows you out. As he passes you, he quietly says, "Meet me in the spaceport."`
 				decline
 			label asgard
 			choice
-				`	"That's fantastic news! The Skakenga will need transport to Asgard."`
+				`	"That's fantastic news! The Skadenga will need transport to Asgard."`
 				`	"They need to go to Asgard."`
 			`	Kaiden beams. "Brilliant. Just brilliant. I was just telling my colleagues here about what a great place Asgard would be for this tribe. The publicity will be huge. The universities will probably want to run various studies. There will be all sorts of government programs and initiatives there to help them accept the proper Deep culture and become productive citizens like the rest of us."`
 			`	Grayden, Braiden and Kaiden all start shaking each others' hands and congratulating each other on being part of something so inspirational. After their celebration is over, Kaiden turns back to you. "Our transport fleet is at your disposal. They are being refitted at Mani in the Avior system."`
@@ -3694,7 +3695,7 @@ mission "Skadenga Call 5"
 		payment 27
 		conversation
 			`You receive a message from the Census and Culture Bureau of the Deep. The Deep Citizen known as Hjlod has died. The cause of death appeared to be related to heavy substance abuse. The Bureau has determined that you are her closest relation and has forwarded you her entire inheritance: <payment>.`
-			decline
+				decline
 
 
 mission "Home for Skadenga 8"
@@ -3942,7 +3943,7 @@ mission "Home for Skadenga 13"
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
 			scene "outfit/skadetear"
-			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Midgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
+			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Asgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
 			choice
 				`	"You honor me. Thank you."`
 					goto honor
@@ -3952,24 +3953,54 @@ mission "Home for Skadenga 13"
 				decline
 			label honor
 			`	"No, it is you who honor us. We will not forget this. Now, I told you when we met I would answer question. What would you like to know?"`
+			label answers
 			choice
 				`	"How old are you?"`
+					goto age
+					to display
+						not "ages"
 				`	"Who were the elves?"`
 					goto elves
+					to display
+						not "elf"
 				`	"Why were the Skadenga making amends?"`
 					goto amends
+					to display
+						not "amending"
+				`	"This Tear of Skade, I've seen something like it before. Might you know more about these enigmatic stones?"`
+					goto enigmatic
+					to display
+						has "Ice Queen 6: done"
+						not "tears"
 				`	"No. I am done here."`
 					goto done
+			label age
+			action
+				set "ages"
 			`	The Ondurdis' eyes sparkle mischievously. "Too old. Suffice to say, my name is Eymani, and I was Pathfinder who discovered cure to Rigellian plague. As to how I am so old, or all that I have seen: I cannot say more, for it is not my story to tell."`
-				goto done
+				goto answers
 			label elves
+			action
+				set "elf"
 			`	"Elves is broad term. Many creatures over long ages have been called elves. But, here, in Deep, I believe there are two kinds. First, there are alfar, known by many. They were ones who transported us here from Earth. I do not know why they did this, but I do know that it was not out of kindness. They are devious, and they are opaque."`
 			`	The Ondurdis lowers her voice and leans in. "But there is another kind of elf here. The Hudulfolk, the Hidden. They served makers of God-Stones. They are rare, and mostly dormant. I do not think even alfar are aware of them. They cannot be trusted, for no alien can be, but are not devious. Each Hidden is different, but all are connected to natural world. When Skadenga were new upon Nifel, we had some small dealing with them before they returned to sleep of eons."`
-				goto done
+				goto answers
 			label amends
+			action
+				set "amending"
 			`	The Ondurdis nods slowly. "On Earth, before alfar, or elves, came to us, we had forsaken Skade. Men of Book had persuaded us to abandon old ways and embrace their new religion. We deserted our temples, forsook our trees, and thought ourselves the better for it."`
 			`	Her old face scrunches up in anger at the memory. "When we were brought to Deep, when we saw Goddess-Stone, we realized our folly. We would atone, and we would be strong." She looks up at you, her eyes bright and her face firm. "And strong we have been."`
+			label enigmatic
+			action
+				set "tears"
+			`	"Less than I would like," she says softly. "Longer I live, more I learn how little I know. Before ships came, when we knew only ways of stone, there was different kind of power here. Fragile, gentle, stone-magic. Then came endless colonists, men from stars with ships that sailed night. Stone-magic failed and secret ways shut."`
+			`	She looks at you sadly. "These stones are relics from lost age. Stolen age." She pauses. "More I cannot tell, but if you bring me such stone I will look for you, and see if more I might know."`
+				goto answers
 			label done
+			action
+				clear "ages"
+				clear "elf"
+				clear "amending"
 			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
 			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your clothes.`
@@ -3995,8 +4026,8 @@ mission "Homecoming to Skadenga"
 				`	(Don't visit Hrithfjall.)`
 					decline
 			`	It's a short journey to the outskirts of Hrithfjall. You are evidently spotted from afar, as someone is waiting for you.`
-			`	Hjlod's lopsided smile is warm and refreshing. "<first>!" She says with genuine joy. "You did not say goodbye! How can I forgive?" You hug her. You walk together along the shore toward Hrithfjall. She tells you all about the growing village - how the Skadenga are thriving here, and how they've gotten along with the Ran-Folk.`
-			`	She points to a small wooden craft up ahead. "I built her." She says with pride. "No more Ice-Crawler for Hjlod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hjlod will take care of you."`
+			`	Hjlod's lopsided smile is warm and refreshing. "<first>!" She says with genuine joy. "You did not say goodbye! How can I forgive?" You hug her. You walk together along the shore toward Hrithfjall. She tells you all about the growing village - how the Skadenga are thriving here, and how they've gotten along with the Ranfolk.`
+			`	She points to a small wooden craft up ahead. "I built her," she says with pride. "No more Ice-Crawler for Hjlod. I am sailor now. I take curious tourist out now and again. Much safer than Ice-Crawler, except when we capsize." She shrugs and grins. "Perhaps someday you'll be my tourist again. This time, I promise no accidents. Also, there are no Ice-Slugs to worry about." She pauses for a moment. "There are Shark-Kraken though. But don't worry. Hjlod vill take care of you."`
 			`	You spend the afternoon in Hrithfjall, where you are treated like a guest of honor. The Ondurdis seems younger than you remember, and also appears quite fond of old Aldfrith. You eat strange fish, listen to unlikely stories, and laugh at outrageous jokes.`
 			`	As the sun sinks in the sky, you announce that you should be heading back. "Wait," the Ondurdis says. "I have task for you. If you are interested."`
 			choice
@@ -4073,7 +4104,7 @@ mission "Stones of Skadenga 2"
 			`A group of eight Skadenga approach you. They ask if you'd be willing to take them to <stopovers> so that they can return their loved-one's stones to their Family-Cairns, offering <payment> for their transportation.`
 	on stopover
 		dialog
-			`The eight Skadenga solmenly make their way off your ship and into the icy lands of Nifel. After a few hours they return, cold, and eager to return home to Windblaine.`
+			`The eight Skadenga solmenly make their way off your ship and into the icy lands of Nifel. After a few hours they return, cold, and eager to return home to Windblain.`
 	on complete
 		dialog
 			`The Skadenga are happy to be home. The churning seas of <planet> lift their spirits, and they head out into the sea-sweet air after paying you <payment>.`
