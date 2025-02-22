@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPlanetCard.h"
 #include "Point.h"
+#include "ScrollBar.h"
+#include "ScrollVar.h"
 
 #include <map>
 #include <vector>
@@ -35,15 +37,15 @@ class System;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
-	explicit MapDetailPanel(const MapPanel &panel);
+	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr, bool fromMission = false);
+	explicit MapDetailPanel(const MapPanel &panel, bool isStars);
 
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	double GetScroll() const;
 
 public:
-	static double GetScroll();
 	static double PlanetPanelHeight();
 
 
@@ -68,8 +70,6 @@ private:
 
 	// Set the commodity coloring, and update the player info as well.
 	void SetCommodity(int index);
-	// Set the scroll, and make sure it does not become a negative value.
-	void SetScroll(double newScroll);
 
 
 private:
@@ -78,10 +78,10 @@ private:
 
 	// Which panel is being hovered over and should be affected by up and down keys.
 	bool isPlanetViewSelected = false;
+	bool isStars = false;
 
-	// Maximum scrolling possible with the current amount of planets being displayed.
-	double maxScroll = 0.;
-	static double scroll;
+	ScrollVar<double> scroll;
+	ScrollBar scrollbar;
 
 	// Default display scaling for orbits within the currently displayed system.
 	double scale = .03;
