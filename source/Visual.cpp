@@ -24,8 +24,8 @@ using namespace std;
 
 
 // Generate a visual based on the given Effect.
-Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity, double zoom)
-	: Body(effect, pos, vel, effect.hasAbsoluteAngle ? effect.absoluteAngle : facing, zoom),
+Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity, double engineZoom)
+	: Body(effect, pos, vel, effect.hasAbsoluteAngle ? effect.absoluteAngle : facing),
 	lifetime(effect.lifetime)
 {
 	if(effect.randomLifetime > 0)
@@ -50,6 +50,9 @@ Visual::Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point h
 
 	if(effect.randomFrameRate)
 		AddFrameRate(effect.randomFrameRate * Random::Real());
+
+	if(effect.respectsEngineZoom)
+		scale *= engineZoom;
 }
 
 
