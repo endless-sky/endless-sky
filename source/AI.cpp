@@ -3154,9 +3154,12 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 
 		// Don't chase anything that will take more than 10 seconds to reach.
 		double bestTime = 600.;
-		// We used 800 compared to p.Length() before - so escorts had fixed flotsam detection range.
-		// That old value is now the minimum without any asteroid scan capability.
-		double scanRangeMetric = 10000. * max(64., ship.Attributes().Get("asteroid scan power"));
+
+		// For backwards compatibility, default the flotsam scan power to 64, but allow explicit values to be less.
+		double scanRangeMetric = ship.Attributes().Get("flotsam scan power");
+		if (scanRangeMetric <= 0) scanRangeMetric = GameData::GetGamerules().MinimumFlotsamScanPower();
+		scanRangeMetric *= 10000.;
+
 		for(const shared_ptr<Flotsam> &it : flotsam)
 		{
 			if(!ship.CanPickUp(*it) || avoid.contains(it.get()))
