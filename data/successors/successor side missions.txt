@@ -16,11 +16,12 @@ mission "Successors: Predecessor Research 1"
 	landing
 	name "Assist Predecessor Research"
 	description "Transport these <bunks> scholars researching the Predecessors to <planet stopovers> and back home to <destination> by <date>."
+	clearance
 	passengers 7
 	deadline 30
 	to offer
 		has "trusted by the successors"
-		has "flagship attribute: quantum keystone" > 0
+		"flagship attribute: quantum keystone" > 0
 		random < 40
 	to fail
 		has "Successors: Unified Defense: offered"
@@ -100,7 +101,7 @@ mission "Successors: Predecessor Research 1"
 			label who
 			action
 				set "Successors: who"
-			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many and their bloodlines died as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
+			`	"Our Predecessors were our now-gone ancestors. Until the time of fifteen hundred years ago, they ruled this space and much beyond as part of their own empire. Many perished along with their bloodlines as much of the empire fell to ruin, but some made passage through the wormhole to the cluster that we, as their Successors, now call our home."`
 				goto questions
 			label collapse
 			action
@@ -120,6 +121,7 @@ mission "Successors: Predecessor Research 1"
 			`	"Glorious and beautiful, it was; as much a sort of art as of engineering. Our Predecessors' works were envied even by the Quarg, whose mastery of art and science only few may equal. T'were exotic in their natures and unique in applications; living metal grown in stars, subtle points to pierce space itself. We have descriptions, enough to make rudimentary imitations of their processes, but even if we had a perfect understanding of wha'twas, the space of our new systems seems unsuitable to manifest that mastery. We fail even to replicate the heirlooms kept by the High Houses; the materials and techniques they use are always out of reach."`
 				goto questions
 			label end
+			`	You leave the researchers to study their findings.`
 			action
 				clear "Successors: who"
 				clear "Successors: collapse"
@@ -205,6 +207,7 @@ mission "Successors: Biology Research 1"
 			`	"Thou asks at a fortuitous time! This planet, and the life that lives upon it, may provide to us a better answer to that question. Many of the stars here are hot and young and therefore harsh to nascent life, and yet thou hast surely seen the verdant worlds that orbit them! While some of this results from early settlement during the old empire, much of it does not and therefore remains a vexing point. How could life develop here? If we can track the path taken by the life of this planet, we may find the answer both you and I seek."`
 				goto questions
 			label end
+			`	You leave Katiiora to their business and make your preparations to take off when ready.`
 			action
 				clear "Successors: successor"
 				clear "Successors: predecessor"
@@ -287,9 +290,17 @@ mission "Successors: Stargazing 1"
 			`	"From where on the map dost thou hail, captain?" Nnesa roughly gestures to an area of their map that you recognize as human space.`
 			choice
 				`	(Indicate Rutilicus.)`
+					to display
+						has "human space start"
 					goto rutilicus
 				`	(Indicate Sol.)`
+					to display
+						has "human space start"
 					goto sol
+				`	(Indicate Fah Soom.)`
+					to display
+						has "hai space start"
+					goto "fah soom"
 				`	(Gesture broadly to the expanse of space depicted on the map.)`
 			`	"Oh!" says Nnesa, "Thou art a scion of the constellations, first and foremost to the stars? 'Tis fair. Thou hast a galaxy to wander, a nearly endless sky. The things that there must be to see-"`
 				goto interrupt
@@ -297,17 +308,23 @@ mission "Successors: Stargazing 1"
 			`	"Oh!" says Nnesa, "I am not sure I know the name for that one, captain. What dost thou call thy home?"`
 			choice
 				`	"Rutilicus."`
-			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
-				goto interrupt
+					goto "novel name"
 			label sol
 			`	"Oh!" says Nnesa, "Sol." They quietly sound their way through the word a couple times, trying to get it right. "Our name for it is Saaqa-Viirja. 'Twas one of the northernmost extents of our Predecessors' voyages. Ah. But thou know'st this already, for sure."`
+				goto interrupt
+			label "fah soom"
+			`	"Oh!" says Nnesa. "That far to the north? Thy kind must have spread far for thee to have such a place as thy home. What dost thou call it?"`
+			choice
+				`	"Fah Soom."`
+			label "novel name"
+			`	Nnesa asks you to repeat the word a second time, slowly working their way through your pronunciation and transcribing a short sequence of flowing letters on their map. "'Tis a pleasant name," they say.`
 			label interrupt
 			`	The two of you are interrupted by Jaasora, who needs Nnesa's help to pack the now-deflating tent back in its cart, and once that is done they indicate that they are ready to return home.`
 	on complete
 		"successor jobs" += 2
 		payment 78000
 		conversation
-			`	Nnesa and Jaasora have continued to marvel at the stars on the way back home, in addition to spending a substantial amount of time poring over their mutual collection of photos, drawings, and maps from Maspa-Mavra. "Our deepest thanks, captain," Jaasora says to you once you have landed in the spaceport as Nnesa wrestles with the tent and cart. "'Twas a true and joyful voyage." Nnesa calls them over; the tent clearly requires at least two to handle. Jaasora presents you with your payment of <payment> and goes to help, and the two of them maneuver their equipment out of your cargo bay before shouting a hasty but good-humored farewell.`
+			`Nnesa and Jaasora have continued to marvel at the stars on the way back home, in addition to spending a substantial amount of time poring over their mutual collection of photos, drawings, and maps from Maspa-Mavra. "Our deepest thanks, captain," Jaasora says to you once you have landed in the spaceport as Nnesa wrestles with the tent and cart. "'Twas a true and joyful voyage." Nnesa calls them over; the tent clearly requires at least two to handle. Jaasora presents you with your payment of <payment> and goes to help, and the two of them maneuver their equipment out of your cargo bay before shouting a hasty but good-humored farewell.`
 
 mission "Successors: People's Houses: First Contact"
 	landing
@@ -433,6 +450,7 @@ mission "Successors: Unified Defense"
 			`	A wave of bristling black runs over the Successor's body before they end the transmission.`
 			label end
 			branch "uninhabited end"
+				has "flagship planet attribute: uninhabited"
 			`	Your landing permission is revoked and the contingent of officers train their weapons on your ship. As several interceptors begin to hover over your landing pad, weapons ready, you are forced to take off.`
 				flee
 			label "uninhabited end"
