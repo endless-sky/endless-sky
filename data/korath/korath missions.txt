@@ -667,12 +667,11 @@ mission "First Contact: Korath Exiles"
 					goto wait
 
 			label add
-			# MZ wrote the parts about spiders, long before the Coalition was added to the game, the spiders are Archons. (so saith ravenshining)
 			`	Near the southern end of human space, you draw a dot with a partial ring around it: the Quarg ringworld, under construction. The Korath respond by both beginning to draw more rings, spread out all over the galaxy, some broken, some complete. Then they draw spiders, also spread out all over the galaxy, sprinkling sand over the spiders so they are barely visible.`
 
 			label wait
 			`	The Korath pause for a minute and look at you, then begin drawing again. "Korath," says one of them, and draws another outline of one of their warships, but much larger, on the northern side of the galactic core. Then they brush away the outline of that big ship and draw several smaller ones, facing each other. "Korath," they say again, "no'lai en vas, certu forgu, mik'lak'nal torq." They rake their fingers through the sand, erasing the outlines of the three ships.`
-			`	Their companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." They draw a bunch of small spiders, surrounding the Korath ships, then gather the sand from that part of the map and toss it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
+			`	Their companion picks up the story. "Vas, certu vas. Minli ka Korath torq. Kem'lor ka forli, ka merru, ka plee. Teka korma ka draki, rekki korath, marre fa long." They draw a bunch of small scorpions, surrounding the Korath ships, then gather the sand from that part of the map and toss it onto the place where the first Korath ship was drawn. "Tarre ta fo'lu korath."`
 			`	The other one says, "Far'en lai, soru ka'lai en ka korath. Soti far'en lai ko forei lak'far." They point to the gun at the front of their fighter, then makes a gesture, hands turned downward toward the ground. "Far'en lai ka let'mari nik lak'mal." They point to a few places, hundreds of meters away, where you see green plants growing. "Nik lak'mal." Then they point to you. "Humani ka Korath nik lak'mal."`
 			`	To emphasize the point, on a blank part of the sand they draw a large circle with lots of dots on it, pointing to the plants as they make each dot. They then draw an outline of all three of your ships inside the circle, pointing towards each other. Finally, one picks up the sand they just used to make your ship, and tosses it back onto the map of human space, while the other picks up the sand that makes up their ships and likewise tosses it onto the map of their own space.`
 			choice
@@ -696,7 +695,7 @@ mission "First Contact: Korath Exiles"
 
 			label together
 			`	They stare at you for another few awkward seconds.`
-			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. On one side of the ships, they draw a teardrop shape, facing away. On the other, they draw a spider facing in the other direction. After a brief pause, they give the spider heads on both sides of its body, and give the teardrop a second point. Again, they point to the drawing of your double-ended ships, then to the now ominous-looking collection of ships and fire, and then to you.`
+			`	Then, in front of your three ships, they slowly and carefully draw a large fire, larger than the three of your ships put together. On one side of the ships, they draw a teardrop shape, facing away. On the other, they draw a scorpion facing in the other direction. After a brief pause, they give the scorpion stingers and claws on both sides of its body, and give the teardrop a second point. Again, they point to the drawing of your double-ended ships, then to the now ominous-looking collection of ships and fire, and then to you.`
 			choice
 				`	(Point again to the ominous collection of ships and fire, with the three ships flying together.)`
 					goto fire
