@@ -9,7 +9,7 @@ Version 0.10.12
       * Changed the description of the Tractor Beam to refer to "attractor" rather than "repulsor" technology. (@mOctave)
       * The locations for distressed ships in Remnant rescue jobs one through three are now restricted to systems connected by hyperlane or wormhole to Arculus, so the objective ships can always make it back home. (@warp-core)
       * The "Carrier (Alpha)" variant now has the correct number of bays, insated of inheriting the updated bay configuration of the base Carrier. (@Saugia)
-      * Coaltion ship and planets can no longer be bribed. (@Arachi-Lover)
+      * Coalition ship and planets can no longer be bribed. (@Arachi-Lover)
       * Fixed an issue where the mission to transport Timothy Radrickson to Rand could appear before the player becomes aware of the stowaway aborad their ship. (@warp-core)
     * Engine bugs:
       * Fixed an issue where player escorts could start jumping around independently of the flagship. (@warp-core)
@@ -53,7 +53,7 @@ Version 0.10.12
       * Removed a "Sidewinder Missile Rack", and the 23 "Sidewinder Missiles" it provided space for, from the Lance. (@Saugia)
     * Other:
       * Slightly changed some wording in the "Saving Ildico" mission chain. (@Arachi-Lover)
-      * Avgi map tweaks? What did he change? (@Azure3141)
+      * Adjusted some systems in the Twilight to conform to the rest of the Ember Wastes correctly. (@Azure3141)
       * Expanded the conversation in "Remnant: Cognizance 29" to account for the total destruction of the Korath fleet waiting in the system in the previous mission. (@warp-core)
       * Updated "FW Syndicate Capture 1B" to account for the Aerie's two new fighter bays. (@TheGiraffe3)
   * Game mechanics:
