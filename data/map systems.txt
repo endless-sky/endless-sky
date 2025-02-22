@@ -22248,7 +22248,7 @@ system "Kor Men"
 		period 1346.18
 
 system "Kor Nor'peli"
-	pos 12 105
+	pos 20 116
 	government Korath
 	attributes "korath" "warm"
 	arrival 585
@@ -22323,7 +22323,7 @@ system "Kor Nor'peli"
 			period 12.7057
 
 system "Kor Tar'bei"
-	pos -39 35
+	pos -36 39
 	government Korath
 	attributes "korath" "warm"
 	arrival 500
@@ -29745,7 +29745,7 @@ system Polerius
 			period 28.7798
 
 system Poli'kor
-	pos -26.888889 116.33333
+	pos -26 105
 	government Korath
 	attributes korath warm
 	asteroids "small rock" 2 2.079
