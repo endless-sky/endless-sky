@@ -317,7 +317,7 @@ void ShipyardPanel::Sell(bool toStorage)
 
 	if(toStorage)
 	{
-		message += " Any outfits will be placed in storage.";
+		message += " Outfits that can be moved to storage will be placed there.";
 		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipChassis, message, Truncate::MIDDLE));
 	}
 	else
