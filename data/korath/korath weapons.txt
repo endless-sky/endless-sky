@@ -938,7 +938,7 @@ outfit "Firelight Missile Bank"
 		"hit effect" "firelight ring" 20
 		"die effect" "piercer fire"
 		"velocity" 4
-		"velocity override" 16
+		"velocity override" 13
 		"lifetime" 10
 		"reload" 120
 		"burst reload" 30
@@ -947,13 +947,11 @@ outfit "Firelight Missile Bank"
 		"firing heat" 151
 		"acceleration" 0.6
 		"drag" .1
-		"infrared tracking" .7
-		"optical tracking" .9
-		"homing" 4
-		"trigger radius" 30
-		"blast radius" 60
+		"optical tracking" .7
+		"homing" 3
+		"blast radius" 48
 		"hit force" 150
-		"missile strength" 30
+		"missile strength" 33
 		submunition "Firelight Turning"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
@@ -970,10 +968,9 @@ outfit "Firelight Turning"
 		"acceleration" -0.1
 		"turn" 4.6
 		"homing" 4
-		"infrared tracking" .7
-		"optical tracking" .9
-		"trigger radius" 30
-		"blast radius" 60
+		"tracking" .9
+		"trigger radius" 20
+		"blast radius" 48
 		"hit force" 90
 		"missile strength" 30
 		"submunition" "Firelight Activated"
@@ -986,22 +983,21 @@ outfit "Firelight Activated"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
-		"lifetime" 140
+		"lifetime" 168
 		"acceleration" 1.6
-		"drag" .1
+		"drag" .12
 		"turn" 1.7
-		"homing" 4
-		"infrared tracking" .5
+		"homing" 3
 		"optical tracking" .7
-		"trigger radius" 30
-		"blast radius" 60
+		"trigger radius" 20
+		"blast radius" 48
 		"shield damage" 950
 		"hull damage" 950
 		"heat damage" 1800
 		"burn damage" 10
 		"corrosion damage" 2
 		"hit force" 600
-		"missile strength" 30
+		"missile strength" 33
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"
@@ -1100,7 +1096,6 @@ outfit "Firestorm Battery"
 		"drag" .12
 		"turn" 1.6
 		"homing" 4
-		"infrared tracking" .7
 		"optical tracking" .9
 		"trigger radius" 40
 		"blast radius" 95
