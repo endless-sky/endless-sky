@@ -4,7 +4,7 @@ Version 0.10.12
       * Typo fixes. (@imverybadatnames, @reticent-rem, @TheGiraffe3, @tibetiroka, @TomGoodIdea, @warp-core)
       * The job "Paradise Job: Wilderness Retreat" will no longer select a station as its destination. (@TheGiraffe3)
       * The "Dangerous Games" missions will now only offer from planets within 100 hyperspace links of their destinations, instead of potentially in disconnected regions. (@warp-core)
-      * Fixed some log entry actions for Tim the stowaway that were malformed. (@warp-core)
+      * Fixed some log entry actions for the 'Tim the Stowaway' mission set that were malformed. (@warp-core)
       * Added a missing passenger to the "Human to Hai Space - No Contact" mission. (@TheGiraffe3)
       * Changed the description of the Tractor Beam to refer to "attractor" rather than "repulsor" technology. (@mOctave)
       * The locations for distressed ships in Remnant rescue jobs one through three are now restricted to systems connected by hyperlane or wormhole to Arculus, so the objective ships can always make it back home. (@warp-core)
