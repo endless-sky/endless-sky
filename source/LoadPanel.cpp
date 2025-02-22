@@ -65,7 +65,7 @@ namespace {
 		}
 	}
 
-	// Convert a time_t to a human-readable time and date.
+	// Convert a file_time_type to a human-readable time and date.
 	string TimestampString(filesystem::file_time_type time)
 	{
 		// TODO: Replace with chrono formatting when it is properly supported.
