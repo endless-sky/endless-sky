@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
+class DataNode;
 class Minable;
 
 
@@ -25,8 +26,8 @@ class Minable;
 // Note: Not to be confused with AsteroidField::Asteroid.
 class Asteroid {
 public:
-	Asteroid(const std::string &name, int count, double energy);
-	Asteroid(const Minable *type, int count, double energy, int belt);
+	Asteroid(const std::string &name, const DataNode &node, int valueIndex);
+	Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount);
 
 	const std::string &Name() const;
 	const Minable *Type() const;
@@ -37,7 +38,10 @@ public:
 private:
 	std::string name;
 	const Minable *type = nullptr;
-	int count;
-	double energy;
-	int belt;
+	int count = 0;
+	double energy = 0.;
+	int belt = 0;
+
+	// Load an asteroids/minables description. Note the node is the one holding the "[add] (asteroids|minables)" tokens.
+	void Load(const DataNode &node, int valueIndex, std::size_t beltCount);
 };

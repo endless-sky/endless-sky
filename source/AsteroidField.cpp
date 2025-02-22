@@ -77,7 +77,7 @@ void AsteroidField::Add(const Minable *minable, int count, double energy, const 
 	for(int i = 0; i < count; ++i)
 	{
 		minables.emplace_back(new Minable(*minable));
-		minables.back()->Place(energy, belt < 0 ? belts.Get() : belts.Get(belt));
+		minables.back()->Place(energy, belt == 0 ? belts.Get() : belts.Get(belt - 1));
 	}
 }
 

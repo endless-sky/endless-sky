@@ -15,20 +15,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Asteroid.h"
 
+#include "DataNode.h"
+
 using namespace std;
 
 
 
-Asteroid::Asteroid(const string &name, int count, double energy)
-		: name(name), count(count), energy(energy)
+Asteroid::Asteroid(const std::string &name, const DataNode &node, int valueIndex)
+		: name(name)
 {
+	Load(node, valueIndex, 0ul);
 }
 
 
 
-Asteroid::Asteroid(const Minable *type, int count, double energy, int belt)
-		: type(type), count(count), energy(energy), belt(belt)
+Asteroid::Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount)
+		: type(type)
 {
+	Load(node, valueIndex, max(beltCount, 1ul));
 }
 
 
@@ -64,4 +68,43 @@ double Asteroid::Energy() const
 int Asteroid::Belt() const
 {
 	return belt;
+}
+
+
+
+void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
+{
+	const bool isMinable = beltCount > 0;
+
+	if(node.Size() >= valueIndex + 2)
+		count = node.Value(valueIndex + 1);
+	if(node.Size() >= valueIndex + 3)
+		energy = node.Value(valueIndex + 2);
+	if(isMinable && node.Size() >= valueIndex + 4)
+		belt = node.Value(valueIndex + 3);
+
+	for(const DataNode &child : node)
+	{
+		if(child.Size() < 1)
+			continue;
+		const string &subKey = child.Token(0);
+		const double subValue = child.Value(1);
+		if(child.Size() < 2)
+			child.PrintTrace("Warning: Expected asteroid/minable sub-key to have a value:");
+		else if(subKey == "count")
+			count = subValue;
+		else if(subKey == "energy")
+			energy = subValue;
+		else if(isMinable && subKey == "belt")
+			belt = subValue;
+		else
+			child.PrintTrace("Warning: Unrecognized asteroid/minable sub-key:");
+	}
+
+	if(count <= 0)
+		node.PrintTrace("Error: asteroid/minable must have a positive count:");
+	else if(energy <= 0.)
+		node.PrintTrace("Error: asteroid/minable must have a positive energy:");
+	else if(valueIndex == 1 && static_cast<size_t>(belt) > beltCount)
+		node.PrintTrace("Error: minable belt number out of bounds:");
 }
