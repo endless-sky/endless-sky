@@ -129,7 +129,7 @@ namespace {
 
 				// Skip any further bytes in this chunk.
 				if(subchunkSize > 16)
-					in->seekg(subchunkSize - 16, iostream::cur);
+					in->seekg(subchunkSize - 16, ios::cur);
 
 				if(audioFormat != 1)
 					return 0;
@@ -149,7 +149,7 @@ namespace {
 				return subchunkSize;
 			}
 			else
-				in->seekg(subchunkSize, iostream::cur);
+				in->seekg(subchunkSize, ios::cur);
 		}
 	}
 

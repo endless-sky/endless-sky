@@ -215,7 +215,7 @@ void Music::Decode()
 			file->read(reinterpret_cast<char *>(input.data() + remainder), INPUT_CHUNK - remainder);
 			// If you get the end of the file, loop around to the beginning.
 			if(file->eof())
-				file->seekg(0, iostream::beg);
+				file->seekg(0, ios::beg);
 			// If there is nothing to decode, return to the top of this loop.
 			if(!(remainder || !file->eof()))
 				continue;

@@ -194,9 +194,9 @@ bool ImageBuffer::Read(const ImageFileData &data, int frame)
 
 
 namespace {
-	void ReadPNGInput(png_structp png_ptr, png_bytep outBytes, png_size_t byteCountToRead)
+	void ReadPNGInput(png_structp pngStruct, png_bytep outBytes, png_size_t byteCountToRead)
 	{
-		static_cast<iostream *>(png_get_io_ptr(png_ptr))->read(reinterpret_cast<char *>(outBytes), byteCountToRead);
+		static_cast<iostream *>(png_get_io_ptr(pngStruct))->read(reinterpret_cast<char *>(outBytes), byteCountToRead);
 	}
 
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
@@ -299,7 +299,7 @@ namespace {
 
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		std::string data = Files::Read(path);
+		string data = Files::Read(path);
 		if(data.empty())
 			return false;
 

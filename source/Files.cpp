@@ -338,8 +338,8 @@ string Files::Name(const filesystem::path &path)
 shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 {
 	if(write)
-		return shared_ptr<iostream>{new fstream(path, fstream::out | fstream::binary)};
-	return shared_ptr<iostream>{new fstream(path, fstream::in | fstream::binary)};
+		return shared_ptr<iostream>{new fstream{path, ios::out | ios::binary}};
+	return shared_ptr<iostream>{new fstream{path, ios::in | ios::binary}};
 }
 
 
@@ -355,7 +355,7 @@ string Files::Read(shared_ptr<iostream> file)
 {
 	if(!file)
 		return "";
-	return string{std::istreambuf_iterator<char>(*file), {}};
+	return string{istreambuf_iterator<char>{*file}, {}};
 }
 
 
@@ -421,5 +421,4 @@ void Files::LogErrorToFile(const string &message)
 
 	Write(errorLog, message);
 	*errorLog << endl;
-	errorLog->flush();
 }
