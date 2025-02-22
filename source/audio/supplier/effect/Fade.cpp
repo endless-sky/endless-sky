@@ -29,6 +29,18 @@ void Fade::AddSource(unique_ptr<AudioDataSupplier> source, size_t fade)
 }
 
 
+
+void Fade::Set3x(bool is3x)
+{
+	AudioSupplier::Set3x(is3x);
+	if(primarySource)
+		primarySource->Set3x(is3x);
+	for(const auto &[source, fade] : fadeProgress)
+		source->Set3x(is3x);
+}
+
+
+
 ALsizei Fade::MaxChunkCount() const
 {
 	int count = primarySource ? primarySource->MaxChunkCount() : 1;

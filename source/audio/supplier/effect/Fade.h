@@ -32,6 +32,8 @@ public:
 
 	void AddSource(std::unique_ptr<AudioDataSupplier> source, size_t fade = MAX_FADE);
 
+	void Set3x(bool is3x) override;
+
 	// Inherited pure virtual methods
 	ALsizei MaxChunkCount() const override;
 	int AvailableChunks() const override;

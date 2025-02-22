@@ -44,7 +44,7 @@ public:
 	virtual int AvailableChunks() const = 0;
 
 	/// Configures 3x audio playback. Some suppliers may choose to ignore this setting.
-	void Set3x(bool is3x);
+	virtual void Set3x(bool is3x);
 
 	/// Whether the preferred chunk acquisition is AwaitNextChunk() or NextChunk().
 	virtual bool IsSynchronous() const = 0;
