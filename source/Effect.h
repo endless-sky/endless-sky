@@ -47,6 +47,8 @@ public:
 
 	void Load(const DataNode &node);
 
+	bool RespectsEngineZoom() const;
+
 
 private:
 	std::string name;
@@ -70,6 +72,9 @@ private:
 
 	int lifetime = 0;
 	int randomLifetime = 0;
+
+	// If set, this effect scales with the zoom of the ship engines bay that placed it.
+	bool respectsEngineZoom = false;
 
 	// Allow the Visual class to access all these private members.
 	friend class Visual;

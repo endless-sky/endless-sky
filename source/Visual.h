@@ -29,7 +29,8 @@ class Effect;
 class Visual : public Body {
 public:
 	Visual() = default;
-	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point());
+	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point(),
+		double zoom = 1.);
 
 	// Functions provided by the Body base class:
 	// Frame GetFrame(int step = -1) const;

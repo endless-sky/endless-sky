@@ -62,6 +62,8 @@ void Effect::Load(const DataNode &node)
 	{
 		if(child.Token(0) == "sprite")
 			LoadSprite(child);
+		else if(child.Token(0) == "zooms")
+			respectsEngineZoom = true;
 		else if(child.Token(0) == "sound" && child.Size() >= 2)
 			sound = Audio::Get(child.Token(1));
 		else if(child.Token(0) == "sound category" && child.Size() >= 2)
@@ -98,4 +100,11 @@ void Effect::Load(const DataNode &node)
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
+}
+
+
+
+bool Effect::RespectsEngineZoom() const
+{
+	return respectsEngineZoom;
 }
