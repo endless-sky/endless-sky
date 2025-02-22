@@ -6212,7 +6212,10 @@ mission "Hroar's Haulers 17"
 				clear "hrodny"
 			`	Yngvar nods, "Yeah, little rowdier than normal, but nothing like trouble we had back on Maker. I should be good to finish getting this all sorted out. We'll be all loaded up in no time and ready to head for Lagrange. I'll meetchya back at the <ship>."`
 			`	He turns from you to engage with the remaining representatives.`
-				decline
+				accept
+	on complete
+		dialog
+			`	`
 
 
 mission "Hroar's Haulers 17b"
@@ -6404,9 +6407,7 @@ mission "Hroar's Haulers 18"
 	name "The Long Haul"
 	source "Rand"
 	to offer
-		has "Hroar's Haulers 11: active"
-		has "Yngvar Interlude: declined"
-		has "Hroar's Haulers 15: declined"
+		has "Hroar's Haulers 17: declined"
 	on offer
 		conversation
 
