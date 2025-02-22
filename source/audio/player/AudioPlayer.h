@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 
+
 /// Audio players can play audio from a single supplier at a varying volume, supporting pause/resume functionality.
 /// This class contains a base implementation suitable for playback of sound effects;
 /// it is meant to be inherited by specialized classes for other purposes.

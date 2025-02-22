@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Files.h"
 #include "../Logger.h"
 #include "../Point.h"
-#include "../Random.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -34,7 +33,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cmath>
 #include <map>
 #include <mutex>
-#include <set>
 #include <stdexcept>
 #include <thread>
 #include <vector>

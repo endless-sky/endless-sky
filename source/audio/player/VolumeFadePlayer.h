@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AudioPlayer.h"
 
+
+
 /// A specialized audio player that can fade out the audio gradually before ending.
 /// This fade effect is implemented with volume changes, unlike the cross-fade effect in Fade.
 class VolumeFadePlayer : public AudioPlayer {

@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Sound;
 
+
+
 /// A sync buffered supplier for waveform files. The audio is supplied in a single chunk.
 class WavSupplier : public AudioSupplier {
 public:

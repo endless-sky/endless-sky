@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <vector>
 
+
+
 /// An audio data supplier can provide the raw samples as well as the OpenAL buffers.
 /// All data suppliers use the same chunk size for easier post-processing.
 class AudioDataSupplier : public AudioSupplier {

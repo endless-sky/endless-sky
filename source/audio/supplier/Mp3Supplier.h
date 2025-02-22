@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <thread>
 
+
+
 /// Streams audio from an MP3 file. This is an async data supplier.
 class Mp3Supplier : public AudioDataSupplier {
 public:

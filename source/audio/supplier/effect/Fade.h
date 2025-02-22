@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <vector>
 
+
+
 /// Cross-fades any number of sources into a single source.
 /// There is usually a "primary" source that is not being faded,
 /// which then gets replaced by another source. That's when they are
