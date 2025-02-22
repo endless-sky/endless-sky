@@ -1,18 +1,22 @@
 Version 0.10.12
   * Bug fixes:
     * Content bugs:
-      * Typo fixes. (@reticent-rem, @TheGiraffe3, @tibetiroka, @TomGoodIdea, @warp-core)
+      * Typo fixes. (@imverybadatnames, @reticent-rem, @TheGiraffe3, @tibetiroka, @TomGoodIdea, @warp-core)
       * The job "Paradise Job: Wilderness Retreat" will no longer select a station as its destination. (@TheGiraffe3)
       * The "Dangerous Games" missions will now only offer from planets within 100 hyperspace links of their destinations, instead of potentially in disconnected regions. (@warp-core)
       * Fixed some log entry actions for Tim the stowaway that were malformed. (@warp-core)
       * Added a missing passenger to the "Human to Hai Space - No Contact" mission. (@TheGiraffe3)
       * Changed the description of the Tractor Beam to refer to "attractor" rather than "repulsor" technology. (@mOctave)
       * The locations for distressed ships in Remnant rescue jobs one through three are now restricted to systems connected by hyperlane or wormhole to Arculus, so the objective ships can always make it back home. (@warp-core)
+      * The "Carrier (Alpha)" variant now has the correct number of bays, insated of inheriting the updated bay configuration of the base Carrier. (@Saugia)
+      * Coaltion ship and planets can no longer be bribed. (@Arachi-Lover)
+      * Fixed an issue where the mission to transport Timothy Radrickson to Rand could appear before the player becomes aware of the stowaway aborad their ship. (@warp-core)
     * Engine bugs:
       * Fixed an issue where player escorts could start jumping around independently of the flagship. (@warp-core)
       * Tooltip boxes will no longer be drawn for items without tooltip text in ship and outfit info displays. (@warp-core)
       * When determining if there are sufficient resources to fire a weapon, only the values of resources firing the weapon actually consumes will be considered. (@warp-core)
       * Exceptions thrown when copying files will now be caught, instead of crashing the game. (@TomGoodIdea)
+      * Audio will now remain paused when switching from the player info to ship info panel. (@TomGoodIdea)
   * Game content:
     * New content:
       * Added launch sounds and angles to bays on Avgi ships. (@Saugia)
@@ -32,10 +36,25 @@ Version 0.10.12
           * Drag: 21 -> 20.1
           * Heat dissipation: 0.27 -> 0.28
       * Korath ships raiding human space now have the "frugal" personality. (@Quantumshark)
+      * Adjusted the Firelight Missile Bank. (@ravenshining)
+        * Removed "infrared tracking".
+        * Optical tracking (first stage): 0.9 -> 0.7
+        * The second stage now uses injammable "tracking" of 0.9.
+        * Lifetime (final stage): 140 -> 168
+        * Drag (final stage): 0.1 -> 0.12
+        * Homing: 4 -> 3
+        * The first stage no longer has a trigger radius.
+        * Trigger radius (final stage): 30 -> 20
+        * Blast radius: 60 -> 48
+        * Missile strength: 30 -> 33
+      * Removed "infrared tracking" from the Firestorm Battery. (@ravenshining)
+      * The "Cruiser (Jump)" variant now has four Particle Cannons instead of two Typhoon Launchers and two Sidewinder Missile Launchers. (@Saugia)
+      * Removed a "Sidewinder Missile Rack", and the 23 "Sidewinder Missiles" it provided space for, from the Lance. (@Saugia)
     * Other:
       * Slightly changed some wording in the "Saving Ildico" mission chain. (@Arachi-Lover)
       * Avgi map tweaks? What did he change? (@Azure3141)
       * Expanded the conversation in "Remnant: Cognizance 29" to account for the total destruction of the Korath fleet waiting in the system in the previous mission. (@warp-core)
+      * Updated "FW Syndicate Capture 1B" to account for the Aerie's two new fighter bays. (@TheGiraffe3)
   * Game mechanics:
   * User interface:
     * Added a tooltip for the "automaton" attribute. (@TomGoodIdea)
@@ -44,6 +63,7 @@ Version 0.10.12
   * Under the hood:
     * Added some missing #includes required by some C++ STL implementations. (@Koranir)
   * CI/CD and development environment:
+    * Endless Sky can now perform checks on image and sound files, as well as data, with the "--parse-assets" command line argument, which is now also used in CI checks. (@warp-core)
 
 Version 0.10.11
   * Big changes:
