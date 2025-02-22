@@ -49,3 +49,7 @@ The type of pull request you open will also influence when it is eligible to be 
 * During the development of a stable release, we typically only accept bug fixes and minor content tweaks. Stable releases are typically developed over the course of two to six weeks and with even version numbers (e.g. v0.10.2).
 
 If you have opened a new feature pull request during a stable release development cycle, it is unlikely to be merged until the stable release is finished. Similarly, if you open a large pull request toward the end of an unstable release, it will likely have to wait until the next unstable release development cycle has begun before people will begin reviewing it and it has a chance to be merged. This is because the time it would take to appropriately review the pull request is longer than the time until the next release, and Developers and Reviewers near the end of a release cycle are often focused on a priority list determined in advance closer to the release date.
+
+### Reviewing a pull request
+
+Reviewing pull requests is an important part of maintaining Endless Sky and the main way that new content is ultimately added to the game. Your feedback helps contributors improve their work and ensures that new content is the best it can be.
