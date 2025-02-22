@@ -5056,9 +5056,6 @@ mission "Hroar's Haulers 11"
 	on visit
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
-	on complete
-		dialog
-			`The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo-trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the Local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 
 
 
@@ -6309,7 +6306,7 @@ mission "Hroar's Haulers 17b"
 			`	"Sorry about that," Captain Unferth says as he leads you behind a large weathered desk where his officers are processing the passengers. "Out here civilization runs a bit thin. Probably something to do with the endless months of labor on a barely inhabited dust ball." He shrugs.`
 			`	The Captain pauses and then flashes you a wide grin, "By the elves, <name>, I know Yngvar probably dressed you down - but what happened on Maker was legendary. It was like old days, back in Hel-Hrut's time, when Haulers took no gruff from anyone."`
 			to display
-				has "savedsolvi"
+				not "jerktosolvi"
 				has "makerhero"
 			`	The Captain pauses and then gives you a serious nod, "For the briefest moment back there on Maker it felt like the old days. Back in Hel-Hrut's time when Haulers took no gruff from anyone. It felt good to fight back for once and not just lick Syndie boots for the honor of working for them. I almost wish we didn't stop, that we rallied the Haulers and clobbered the lot of them." He sighs, "Probably woulda been a mistake though. Still."`
 			to display
@@ -6319,6 +6316,7 @@ mission "Hroar's Haulers 17b"
 			to display
 				not "savedsolvi"
 				not "jerktosolvi"
+				not "makerhero"
 			`	Loud arguging erupts back toward the desk, and Captain Unferth frowns. "Mayhap not the best timing for a social call. Any specific reason you stopped by? Or you just wanted to see Rand's famous Labor building for yerself?"`
 			choice
 				`	"Yngvar sent me to see if you needed any help."`
@@ -6347,10 +6345,21 @@ mission "Hroar's Haulers 17b"
 					has "jerktosolvi"
 			label jerkforlife
 			 `	Captain Unferth sucks his teeth, and then gives you a withering look, "Sorry to be seein' you made the trouble to come all the way here for nothing, your majesty. But I am full up on problems that need fixin' and none of them involve you. So if you could please kindly go back the way you came, I'd be most appreciative."`
-			 `	He abruptly straightens up and heads back toward the crowd of passengers. There's nothing for you to do, but head back toward your ship and wait on Yngvar. He'll likely be itching to get to Lagrange.`
+			 `	He abruptly straightens up and heads back toward the crowd of passengers. There's nothing for you to do but head back to your ship and wait on Yngvar. He'll likely be itching to get to Lagrange.`
 			 	accept
+			
+			label bored
+			`	Solvi Unferth rolls his eyes, "Sorry, we aren't in the middle of some space battle for the soul of the Republic, or what not. Haulers haul," he leans in, smirking, and says with emphasis, "it's in name."`
+			`	More angry shouts can be heard from the line. Solvi frowns.`
+			`	"Anyhows, you'll have to go get your kicks elsewhere, some of us have work to do." He straighens up and makes to head back toward the passengers, "Oh, next time we get a little R&R, after Humanika, find me. I owe you a beer, or seven."`
+			`	He nods and saunters back toward the crowd of passengers. There's nothing for you to do but head back to your ship and wait on Yngvar. He'll likely be itching to get to Lagrange.`
+				accept
 
 			label yngvarsent
+			`	"That'll be Yngvar, alright, double checking every well greased wheel." He shakes his head, "I might be full up on problems that need fixin', but none we can't manage. Just gotta process a whole hurdle of less-than-civil passengers in the time it takes the rest of the ships to gather rocks."`
+			`	More angry shouts can be heard from the line.`
+			`	"Anyhows, I best get back to it. Thanks again for all you've done." He straighens up and makes to head back toward the passengers, "Oh, next time we get a little R&R, after Humanika, find me. I owe you a beer, or seven."`
+			`	He nods and saunters back toward the crowd of passengers. There's nothing for you to do but head back to your ship and wait on Yngvar. He'll likely be itching to get to Lagrange.`
 
 			label whyhere
 			action
@@ -6391,14 +6400,16 @@ mission "Hroar's Haulers 17b"
 			`	"Good, anything else you need?"`
 				goto yngvarchat
 
-			label allgood
-			action
-				clear "lagrange"
-				clear "whyhere"
-				clear "hrodny"
-			`	Yngvar nods, "Yeah, little rowdier than normal, but nothing like trouble we had back on Maker. I should be good to finish getting this all sorted out. We'll be all loaded up in no time and ready to head for Lagrange. I'll meetchya back at the <ship>."`
-			`	He turns from you to engage with the remaining representatives.`
-				decline
+mission "Hroar's Haulers 18"
+	name "The Long Haul"
+	source "Rand"
+	to offer
+		has "Hroar's Haulers 11: active"
+		has "Yngvar Interlude: declined"
+		has "Hroar's Haulers 15: declined"
+	on offer
+		conversation
+
 
 
 
