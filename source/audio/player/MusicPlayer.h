@@ -29,7 +29,6 @@ public:
 	void Move(double x, double y, double z) const override;
 
 	void Pause() const override;
-	void Play() const override;
 
 
 protected:

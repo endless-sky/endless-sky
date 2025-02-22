@@ -28,7 +28,7 @@ WavSupplier::WavSupplier(const Sound &sound, bool is3x, bool looping)
 ALsizei WavSupplier::MaxChunkCount() const
 {
 	if(looping)
-		return 1;
+		return 2;
 	return !wasBufferGiven;
 }
 

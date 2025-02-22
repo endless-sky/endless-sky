@@ -53,7 +53,7 @@ ALsizei Mp3Supplier::MaxChunkCount() const
 	if(done && buffer.size() < OUTPUT_CHUNK)
 		return 0;
 
-	return AvailableChunks();
+	return max(2, AvailableChunks());
 }
 
 
@@ -79,6 +79,7 @@ bool Mp3Supplier::NextChunk(ALuint alBuffer)
 		lock_guard<mutex> lock(decodeMutex);
 		alBufferData(alBuffer, FORMAT, buffer.data(), sizeof(int16_t) * OUTPUT_CHUNK, SAMPLE_RATE);
 		buffer.erase(buffer.begin(), buffer.begin() + OUTPUT_CHUNK);
+		condition.notify_all();
 		return true;
 	}
 	else
@@ -97,6 +98,7 @@ vector<int16_t> Mp3Supplier::NextDataChunk()
 
 		vector<int16_t> temp{buffer.begin(), buffer.begin() + OUTPUT_CHUNK};
 		buffer.erase(buffer.begin(), buffer.begin() + OUTPUT_CHUNK);
+		condition.notify_all();
 		return temp;
 	}
 	else
@@ -172,7 +174,7 @@ void Mp3Supplier::Decode()
 		// If you get the end of the file, loop around to the beginning.
 		if(data->eof() && looping)
 			data->seekg(0, iostream::beg);
-		else
+		else if(data->eof())
 		{
 			done = true;
 			// Make sure there are full chunks of data available

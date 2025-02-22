@@ -82,7 +82,7 @@ vector<int16_t> Fade::NextDataChunk()
 		{
 			vector<int16_t> other = fadeProgress[i].first->NextDataChunk();
 			CrossFade(faded, other, fadeProgress[i - 1].second);
-			faded = other;
+			faded = std::move(other);
 		}
 
 		// Get the foreground data
@@ -126,7 +126,7 @@ void Fade::CrossFade(const vector<int16_t> &fadeOut, vector<int16_t> &fadeIn, si
 {
 	for(size_t i = 0; i < fadeIn.size() && fade; ++i)
 	{
-		fadeIn[i] = (fadeOut[i] * fade + (fadeIn[i] * (MAX_FADE - fade))) / fade;
+		fadeIn[i] = (fadeOut[i] * fade + (fadeIn[i] * (MAX_FADE - fade))) / MAX_FADE;
 		--fade;
 	}
 }

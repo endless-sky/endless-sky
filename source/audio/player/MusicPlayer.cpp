@@ -36,12 +36,6 @@ void MusicPlayer::Pause() const
 
 
 
-void MusicPlayer::Play() const
-{
-}
-
-
-
 void MusicPlayer::ConfigureSource()
 {
 	alSourcef(alSource, AL_PITCH, 1.);

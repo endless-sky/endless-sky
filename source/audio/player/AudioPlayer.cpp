@@ -52,6 +52,9 @@ void AudioPlayer::Update()
 	ALint buffersDone = 0;
 	alGetSourcei(alSource, AL_BUFFERS_PROCESSED, &buffersDone);
 
+	if(!buffersDone)
+		return;
+
 	if(!audioSupplier->MaxChunkCount() || shouldStop) // no chunks left to play
 	{
 		ALint buffersQueued = 0;
@@ -61,8 +64,8 @@ void AudioPlayer::Update()
 		{
 			// All queued buffers finished, and we don't have any others left. Playback has finished.
 			// Unqueue all buffers and return them, then release the source.
-			std::vector<ALuint> buffers(buffersQueued);
-			alSourceUnqueueBuffers(alSource, buffersQueued, buffers.data());
+			std::vector<ALuint> buffers(buffersDone);
+			alSourceUnqueueBuffers(alSource, buffers.size(), buffers.data());
 
 			for(ALuint buffer : buffers)
 				audioSupplier->ReturnBuffer(buffer);
@@ -72,14 +75,14 @@ void AudioPlayer::Update()
 			done = true;
 		}
 	}
-	else
+	else if(audioSupplier->AvailableChunks())
 	{
 		// Queue as many buffers as possible.
-		for(int i = 0; i < buffersDone && audioSupplier->AvailableChunks(); i++)
-		{
-			ALuint buffer = 0;
-			alSourceUnqueueBuffers(alSource, 1, &buffer);
+		vector<ALuint> buffers(min(buffersDone, audioSupplier->AvailableChunks()));
+		alSourceUnqueueBuffers(alSource, buffers.size(), buffers.data());
 
+		for(ALuint &buffer : buffers)
+		{
 			if(audioSupplier->IsSynchronous())
 			{
 				audioSupplier->ReturnBuffer(buffer);
@@ -89,9 +92,8 @@ void AudioPlayer::Update()
 			{
 				audioSupplier->NextChunk(buffer);
 			}
-
-			alSourceQueueBuffers(alSource, 1, &buffer);
 		}
+		alSourceQueueBuffers(alSource, buffers.size(), buffers.data());
 	}
 }
 
@@ -176,12 +178,12 @@ void AudioPlayer::Init()
 
 	int bufferCount = clamp(audioSupplier->MaxChunkCount(), 1, MAX_INITIAL_BUFFERS);
 
-	std::vector<ALuint> realBuffers(bufferCount);
+	std::vector<ALuint> buffers;
 	for(int i = 0; i < bufferCount; ++i)
-		realBuffers.emplace_back(audioSupplier->AwaitNextChunk());
+		buffers.emplace_back(audioSupplier->AwaitNextChunk());
 
 	// Queue the actual audio buffers
-	alSourceQueueBuffers(alSource, realBuffers.size(), realBuffers.data());
+	alSourceQueueBuffers(alSource, buffers.size(), buffers.data());
 }
 
 

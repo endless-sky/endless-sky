@@ -288,11 +288,11 @@ void Audio::PlayMusic(const string &name)
 	// by the main thread.
 	currentTrack = name;
 	if(musicPlayer && !musicPlayer->IsFinished())
-		reinterpret_cast<Fade *>(musicPlayer->Supplier())->AddSource(Music::CreateSupplier(name));
+		reinterpret_cast<Fade *>(musicPlayer->Supplier())->AddSource(Music::CreateSupplier(name, true));
 	else
 	{
 		Fade *fade = new Fade();
-		fade->AddSource(Music::CreateSupplier(name));
+		fade->AddSource(Music::CreateSupplier(name, true));
 		musicPlayer = shared_ptr<AudioPlayer>(new MusicPlayer(unique_ptr<AudioDataSupplier>{fade}));
 		musicPlayer->Init();
 		musicPlayer->SetVolume(Volume(SoundCategory::MUSIC));
@@ -335,7 +335,10 @@ void Audio::Step(bool isFastForward)
 			cachedVolume[category] = expected;
 			if(category == SoundCategory::MASTER)
 				alListenerf(AL_GAIN, expected);
-
+			else
+				for(const auto &player : players)
+					if(player->Category() == category)
+						player->SetVolume(expected);
 		}
 
 	if(pauseChangeCount > 0)

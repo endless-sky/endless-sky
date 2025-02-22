@@ -53,12 +53,12 @@ void Music::Init(const vector<filesystem::path> &sources)
 
 
 
-unique_ptr<AudioDataSupplier> Music::CreateSupplier(const string &name)
+unique_ptr<AudioDataSupplier> Music::CreateSupplier(const string &name, bool looping)
 {
 	// TODO: After Files is refactored with std::iostream, just use Files::Open() to get the stream.
 	if(paths.contains(name))
 		return unique_ptr<AudioDataSupplier>{
 				new Mp3Supplier(shared_ptr<iostream>{
-						new fstream(paths[name], fstream::in | fstream::binary)})};
+						new fstream(paths[name], fstream::in | fstream::binary)}, looping)};
 	return {};
 }

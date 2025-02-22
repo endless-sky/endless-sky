@@ -29,7 +29,7 @@ class Music {
 public:
 	static void Init(const std::vector<std::filesystem::path> &sources);
 
-	static std::unique_ptr<AudioDataSupplier> CreateSupplier(const std::string &name);
+	static std::unique_ptr<AudioDataSupplier> CreateSupplier(const std::string &name, bool looping);
 
 	Music() = delete;
 };
