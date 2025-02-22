@@ -66,7 +66,7 @@
         <ul>
           <li>Fixed an issue where player escorts could start jumping around independently of the flagship.</li>
           <li>Audio will now remain paused when switching from the player info to ship info panel.</li>
-          <li>Coalition ship and planets can no longer be bribed.</li>
+          <li>Coalition ships and planets can no longer be bribed.</li>
           <li>Buffed the health and mobility of the Bastion.</li>
           <li>Adjusted the Firelight Missile Bank.</li>
         </ul>
