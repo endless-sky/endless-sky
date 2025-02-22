@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "AudioSupplier.h"
 #include "AudioDataSupplier.h"
 
 #include <condition_variable>

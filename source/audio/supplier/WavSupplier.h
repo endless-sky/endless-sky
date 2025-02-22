@@ -24,7 +24,7 @@ class Sound;
 /// A sync buffered supplier for waveform files. The audio is supplied in a single chunk.
 class WavSupplier : public AudioSupplier {
 public:
-	WavSupplier(const Sound& sound, bool is3x, bool looping = false);
+	WavSupplier(const Sound &sound, bool is3x, bool looping = false);
 
 	// Inherited pure virtual methods
 	ALsizei MaxChunkCount() const override;
@@ -35,7 +35,7 @@ public:
 	void ReturnBuffer(ALuint buffer) override;
 
 private:
-	const Sound& sound;
+	const Sound &sound;
 	const bool looping;
 	bool wasBufferGiven;
 };

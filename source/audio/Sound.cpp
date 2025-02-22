@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Sound.h"
 
 #include "supplier/WavSupplier.h"
-#include "supplier/effect/Fade.h"
 
 #include "../File.h"
 
