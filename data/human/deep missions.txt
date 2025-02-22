@@ -5162,7 +5162,7 @@ mission "Hroar's Haulers 15"
 			label unferthjerk
 			`	Captain Unferth's eyes narrow when he sees you approach, "Thought you were too good to mingle with us lowly dust-hounds. S'posing I should be thanking you for deigning to grace us with your presence?"`
 			`	Gunhilda sighs, "Don't mind him. We're all happy to have you keeping an eye on our oversized convoy."`
-			`	Unferth gulps down a shot, "Mayhaps. You might be a curr, but Hartha-Hroar has an eye for talent. I'll work with anyone that man tells me to. Just be remembering whose side you're on when pirates show up."`
+			`	Unferth gulps down a shot, "Mayhaps. You might be a curr, but Hartha-Hroar has an eye for talent. I'll work with anyone that man tells me to. Just be remembering whose side you're on when the pirates show up."`
 			choice
 				`	"Good. Glad you know your place."`
 					goto knowyourplace
@@ -5182,10 +5182,10 @@ mission "Hroar's Haulers 15"
 
 			label unferth
 			`	Captain Unferth's eyes light up when he sees you approach, "Why if it isn't the greenhorn, Captain <last>!" He slaps you on the back, "'Bout time you joined us!"`
-			`	Gunhilda shakes her head, "Don't mind him. We're all happy to have you keeping an eye on our oversized convoy."`
+			`	Gunhilda grins, "We're all happy to have you keeping an eye on our oversized convoy."`
 			`	Unferth gulps down a shot, "Aint that the truth! You might be green, but Hartha-Hroar has an eye for talent. Glad you're on our side."`
 			label nicesolvi
-			`	He then slaps his glass down and offers you his hand, "I am Captain Unferth to my crew, but among fellow captains my first name will do, call me Solvi."`
+			`	He then slams his glass down and offers you his hand, "I am Captain Unferth to my crew, but among fellow captains my first name will do, call me Solvi."`
 			choice
 				`	(Shake his hand.)`
 					goto shake
@@ -5327,7 +5327,7 @@ mission "Hroar's Haulers 15"
 			`	Solvi laughs and holds up his hands, "Alright! Alright! The Ballad of Hel-Hrut it is!"`
 			`	Solvi launches, alone, into song, "Before the rust, when we nearly went bust, and the contracts sank, and bank went blank - who should appear and show no fear, but..."`
 			`	"Hel-Hruty!" The crowd, larger now, roars.`
-			`	Captain Unferth continued, "When the lanes went dark, and the stars wouldn't spark, and the Syndies came and took our mark - who stood tall and refused to fall, but..."`
+			`	Captain Unferth continues, "When the lanes went dark, and the stars wouldn't spark, and the Syndies came and took our mark - who stood tall and refused to fall, but..."`
 			choice
 				`	"Hel-Hruty!"`
 				`	(Say nothing.)`
@@ -6095,7 +6095,7 @@ mission "Yngvar Interlude"
 			`	Yngvar paces angerily around the bridge for several uncomfortable moments before finally stopping before you, "Naught can be done about it now. The Long Haul still comes first." He turns and storms out.`
 				decline
 			label sortagood
-			`	"I am sure you're thinking you're somethin' special. The other Haulers probably already writin' a song about your deeds. The Brawler of Maker or some skitr." Yngvar shakes his head gravely, "But you ain't a hero, and when those Haulers are struggling for work because you just cost us our most lucrative contract - they won't think so either."`
+			`	"I am sure you're thinking you're somethin' special. The other Haulers probably already writin' a ballad about your deeds. The Brawler of Maker or some skitr." Yngvar shakes his head gravely, "But you ain't a hero, and when those Haulers are struggling for work because you just cost us our most lucrative contract - they won't think so either."`
 			`	Yngvar taps his scarred skull, "Being a hirthr, a leader, is about being above the fray. Making the smart calls, even when they feel wrong." He points out toward black space beyond your ship, "The Gap don't care about songs, or who deserved what, only who is smart enough to suvive. Next time try thinking."`
 			`	He pasues, looks at you disappointingly, and then leaves the bridge.`
 				decline
@@ -6248,6 +6248,8 @@ mission "Hroar's Haulers 17b"
 			choice
 				`	(Head over to the Labor building.)`
 					goto labor
+				`	(Go back to your ship instead.)`
+					goto backtoship
 				`	(Stay and listen to the Yngvar's conversations).`
 			`	An angry red-faced man rushes up to Yngvar, "By the dust, I swear you told me I had 1000 tons of sapce to fill on this haul."`
 			`	"Check your records, Swinton." Yngvar responds, "You only agreed to 500. You can't fudge the numbers just because you got lucky."`
@@ -6262,6 +6264,8 @@ mission "Hroar's Haulers 17b"
 			`	Yngvar's continues discussing various trade agreements and storage conflicts with other members of the group. Nothing of real interest occurs.`
 			`	(Head over to the Labor building.)`
 				goto labor
+				`	(Go back to your ship instead.)`
+					goto backtoship
 
 			label offer500
 			`	Yngvar turns, surprised to see you still there, and frowns. "Hold on a minute, hirthr, I know you mean well. But, if you start making exceptions others won't be too pleased to here."`
@@ -6277,10 +6281,12 @@ mission "Hroar's Haulers 17b"
 			`	Yngvar's scarred face scrunches up, and then he turns to look at the grinning Swinton, "You put cargo on this Captain's ship, and Hroar's Haulers will never haul for you again."`
 			`	Swinton's face drops, "Oh. Oh. It's not really... I meant no offense... I think we're good here."`
 			`	The red-faced Swinton quickly scurries away.`
-			`	Yngvar turns to face you, and says behind clenched teeth, "Captain Unferth is waiting."`
+			`	Yngvar turns to face you, and says slowly, "I will not risk the Hauler's reputation. Now, Captain Unferth is waiting."`
 			choice
 				`	(Head over to the Labor building.)`
 					goto labor
+				`	(Go back to your ship instead.)`
+					goto backtoship
 
 			label sureokay
 			`	Yngvar nods, "Good. Now, please, go check on Captain Solvi."`
@@ -6288,9 +6294,63 @@ mission "Hroar's Haulers 17b"
 			choice
 				`	(Head over to the Labor building.)`
 					goto labor
+				`	(Go back to your ship instead.)`
+					goto backtoship
+			label backtoship
+			`	Ignoring Yngvar's request you instead go back to your ship. A little while later Yngvar shows up. "I suppose Solvi had it under control. Just take us to Lagrange."`
+			`	He leaves you alone.`
+				decline
 
 			label labor
-			`	You cross the spaceport to the large building with Labor written across it.`
+			`	You cross the spaceport to the large building with a crooked 'Labor' sign out front. There's lines upon lines of people wrapping around the structure and out into the dry dusty landscape beyond. Crewmembers from Captain Unferth's fleet can be seen ushering sporadic groups of people to their ships waiting on the pads.`
+			`	Once inside you struggled to make any forward progress in the packed crowds. You are greeted with angry words as you push past many of the waiting passengers. They keep mistaking you for one of them, due to your lack of a Red-Brown Hauler jacket. Eventually a few very unpleasent, and unshowered men attempt to block your way; demanding you return to end of the line.`
+			`	Captain Unferth suddenly appears, "He's with us. Let'em through if you want a berth!"`
+			`	The men melt back into the crowd and you make the rest of the way in without incident.`
+			`	"Sorry about that," Captain Unferth says as he leads you behind a large weathered desk where his officers are processing the passengers. "Out here civilization runs a bit thin. Probably something to do with the endless months of labor on a barely inhabited dust ball." He shrugs.`
+			`	The Captain pauses and then flashes you a wide grin, "By the elves, <name>, I know Yngvar probably dressed you down - but what happened on Maker was legendary. It was like old days, back in Hel-Hrut's time, when Haulers took no gruff from anyone."`
+			to display
+				has "savedsolvi"
+				has "makerhero"
+			`	The Captain pauses and then gives you a serious nod, "For the briefest moment back there on Maker it felt like the old days. Back in Hel-Hrut's time when Haulers took no gruff from anyone. It felt good to fight back for once and not just lick Syndie boots for the honor of working for them. I almost wish we didn't stop, that we rallied the Haulers and clobbered the lot of them." He sighs, "Probably woulda been a mistake though. Still."`
+			to display
+				has "savedsolvi"
+				not "makerhero"
+			`	The Captain pauses and then sighs, "I really do appreciate what you did back there on Maker, for all of us, but sometimes I just get tired licking Syndie boot and thanking them for the opportunity. Suns treat comets better than they be treating us. Sometimes I wish it were like the old days, back in Hel-Hrut's time, when Hauler's weren't afraid to stand up for themselves, proper like. Fight our way out, instead of bribing it. You know?"`
+			to display
+				not "savedsolvi"
+				not "jerktosolvi"
+			`	Loud arguging erupts back toward the desk, and Captain Unferth frowns. "Mayhap not the best timing for a social call. Any specific reason you stopped by? Or you just wanted to see Rand's famous Labor building for yerself?"`
+			choice
+				`	"Yngvar sent me to see if you needed any help."`
+				goto yngvarsent
+				to display
+					not "jerktosolvi"
+				`	"The old man wanted me to check on you."`
+				goto yngvarsent
+				to display
+					not "jerktosolvi"
+				`	"Just bored."`
+				goto bored
+				to display
+					not "jerktosolvi"
+				`	"Yngvar sent me to see if you needed any help."`
+				goto jerkforlife
+				to display
+					has "jerktosolvi"
+				`	"The old man wanted to be check on you."`
+				goto jerkforlife
+				to display
+					has "jerktosolvi"
+				`	"Just bored."`
+				goto jerkforlife
+				to display
+					has "jerktosolvi"
+			label jerkforlife
+			 `	Captain Unferth sucks his teeth, and then gives you a withering look, "Sorry to be seein' you made the trouble to come all the way here for nothing, your majesty. But I am full up on problems that need fixin' and none of them involve you. So if you could please kindly go back the way you came, I'd be most appreciative."`
+			 `	He abruptly straightens up and heads back toward the crowd of passengers. There's nothing for you to do, but head back toward your ship and wait on Yngvar. He'll likely be itching to get to Lagrange.`
+			 	accept
+
+			label yngvarsent
 
 			label whyhere
 			action
