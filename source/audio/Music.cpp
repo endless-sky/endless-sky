@@ -217,7 +217,7 @@ void Music::Decode()
 			if(file->eof())
 				file->seekg(0, ios::beg);
 			// If there is nothing to decode, return to the top of this loop.
-			if(!(remainder || !file->eof()))
+			if(!remainder && file->eof())
 				continue;
 
 			// Hand the input to the stream decoder.
