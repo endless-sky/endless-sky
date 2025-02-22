@@ -1432,9 +1432,12 @@ void Engine::EnterSystem()
 		}
 	}
 
+	ConditionsStore &conditions = player.Conditions();
 	asteroids.Clear();
 	for(const Asteroid &a : system->Asteroids())
 	{
+		if(!a.ShouldSpawn(conditions))
+			continue;
 		// Check whether this is a minable or an ordinary asteroid.
 		if(a.Type())
 			asteroids.Add(a.Type(), a.Count(), a.Energy(), system->AsteroidBelts(), a.Belt());
@@ -1449,7 +1452,6 @@ void Engine::EnterSystem()
 	// Place five seconds worth of fleets and weather events. Check for
 	// undefined fleets by not trying to create anything with no
 	// government set.
-	ConditionsStore &conditions = player.Conditions();
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())

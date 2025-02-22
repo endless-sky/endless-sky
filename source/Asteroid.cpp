@@ -88,15 +88,16 @@ void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
 		if(child.Size() < 1)
 			continue;
 		const string &subKey = child.Token(0);
-		const double subValue = child.Value(1);
 		if(child.Size() < 2)
 			child.PrintTrace("Warning: Expected asteroid/minable sub-key to have a value:");
 		else if(subKey == "count")
-			count = subValue;
+			count = child.Value(1);
 		else if(subKey == "energy")
-			energy = subValue;
+			energy = child.Value(1);
 		else if(isMinable && subKey == "belt")
-			belt = subValue;
+			belt = child.Value(1);
+		else if(subKey == "to" && child.Token(1) == "spawn")
+			toSpawn.Load(child);
 		else
 			child.PrintTrace("Warning: Unrecognized asteroid/minable sub-key:");
 	}
@@ -107,4 +108,11 @@ void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
 		node.PrintTrace("Error: asteroid/minable must have a positive energy:");
 	else if(valueIndex == 1 && static_cast<size_t>(belt) > beltCount)
 		node.PrintTrace("Error: minable belt number out of bounds:");
+}
+
+
+
+bool Asteroid::ShouldSpawn(const ConditionsStore &conditionsStore) const
+{
+	return toSpawn.Test(conditionsStore);
 }
