@@ -2457,7 +2457,7 @@ news "ccor gendarme"
 		word
 			`"`
 		word
-			"Report any signs of guerilla or pirate activity to us."
+			"Report any signs of guerrilla or pirate activity to us."
 			"Move along, now."
 			"If you see any defacement of local insignia, tell us and we'll have it sorted."
 			"We are here to keep the peace in this spaceport."
@@ -2663,7 +2663,7 @@ news "betelgeuse stolen ship advisory"
 		word
 			" "
 		word
-			"has the time-tested quality that Betelgeuse is known for"
+			"has the longevity that Betelgeuse is known for"
 			"will live up to your high expectations"
 			"is the genuine article"
 		word
