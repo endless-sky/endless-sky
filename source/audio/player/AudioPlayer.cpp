@@ -92,9 +92,7 @@ void AudioPlayer::Update()
 				buffer = audioSupplier->AwaitNextChunk();
 			}
 			else
-			{
 				audioSupplier->NextChunk(buffer);
-			}
 		}
 		alSourceQueueBuffers(alSource, buffers.size(), buffers.data());
 	}
@@ -174,10 +172,8 @@ void AudioPlayer::Init()
 		return;
 
 	if(!alSource)
-	{
 		if(!ClaimSource())
 			return;
-	}
 
 	int bufferCount = clamp(audioSupplier->MaxChunkCount(), 1, MAX_INITIAL_BUFFERS);
 

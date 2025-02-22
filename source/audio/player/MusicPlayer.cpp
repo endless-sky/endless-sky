@@ -38,6 +38,9 @@ void MusicPlayer::Pause() const
 
 void MusicPlayer::ConfigureSource()
 {
+	if(!alSource)
+		return;
+
 	alSourcef(alSource, AL_PITCH, 1.);
 	alSourcef(alSource, AL_REFERENCE_DISTANCE, 1.);
 	alSourcef(alSource, AL_ROLLOFF_FACTOR, 1.);

@@ -99,7 +99,7 @@ bool Sound::IsLooping() const
 
 unique_ptr<AudioSupplier> Sound::CreateSupplier() const
 {
-	return unique_ptr<AudioSupplier>{new WavSupplier(*this, false,IsLooping())};
+	return unique_ptr<AudioSupplier>{new WavSupplier(*this, false, IsLooping())};
 }
 
 
