@@ -52,6 +52,7 @@ color "logbook line" .2 .2 .2 1.
 color "message log background" .125 .125 .125 1.
 color "item selected" 0. 0. 0. .3
 color "outfitter difference highlight" 1. .5 0. 1.
+color "volume bar background" .0937 .0937 .0937 1.
 
 # Colors used to draw certain HUD elements in-flight.
 color "shields" .43 .55 .85 .8
@@ -198,6 +199,7 @@ color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
 color "map system ring" .4 .4 .4 .6
+color "map system ring unexplored" .1 .1 .1 0.
 
 # Colors used for the routing issue text in the map panel when
 # a route to the selected system cannot be determined.
@@ -491,6 +493,11 @@ interface "controls"
 		dimensions 90 30
 		color medium
 		hover bright
+	button a "_Audio"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	visible if "multiple controls pages"
 	sprite "ui/dialog cancel"
 		center -115 210
@@ -521,6 +528,11 @@ interface "settings"
 		color bright
 	button p "_Plugins"
 		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	button a "_Audio"
+		center -300 -110
 		dimensions 90 30
 		color medium
 		hover bright
@@ -558,6 +570,11 @@ interface "plugins"
 		center -300 -150
 		dimensions 90 30
 		color bright
+	button a "_Audio"
+		center -300 -110
+		dimensions 90 30
+		color medium
+		hover bright
 	button o "_Open Plugins"
 		center -195 210
 		dimensions 120 30
@@ -581,15 +598,391 @@ interface "plugins"
 
 
 
+interface "audio"
+	sprite "ui/settings panel"
+		center -20 -20
+	button c "_Controls"
+		center -300 -230
+		dimensions 90 30
+		color medium
+		hover bright
+	button s "_Settings"
+		center -300 -190
+		dimensions 90 30
+		color medium
+		hover bright
+	button p "_Plugins"
+		center -300 -150
+		dimensions 90 30
+		color medium
+		hover bright
+	button a "_Audio"
+		center -300 -110
+		dimensions 90 30
+		color bright
+	value "volume bar size" 195
+
+	label "Music"
+		center -129.5 -228
+		color bright
+	line
+		center -117.5 -208.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "music volume"
+		center -117.5 -208.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "music volume box"
+		center -117.5 -208.5
+		dimensions 215 25
+	visible if "music volume none"
+	sprite "ui/audio none"
+		center -238 -208
+	visible if "music volume low"
+	sprite "ui/audio low"
+		center -238 -208
+	visible if "music volume medium"
+	sprite "ui/audio medium"
+		center -238 -208
+	visible if "music volume max"
+	sprite "ui/audio max"
+		center -238 -208
+
+	visible
+	label "UI"
+		center -129.5 -168
+		color bright
+	line
+		center -117.5 -148.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "ui volume"
+		center -117.5 -148.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "ui volume box"
+		center -117.5 -148.5
+		dimensions 215 25
+	visible if "ui volume none"
+	sprite "ui/audio none"
+		center -238 -148
+	visible if "ui volume low"
+	sprite "ui/audio low"
+		center -238 -148
+	visible if "ui volume medium"
+	sprite "ui/audio medium"
+		center -238 -148
+	visible if "ui volume max"
+	sprite "ui/audio max"
+		center -238 -148
+
+	visible
+	label "Anti-Missiles"
+		center -129.5 -108
+		color bright
+	line
+		center -117.5 -88.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "anti-missile volume"
+		center -117.5 -88.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "anti-missile volume box"
+		center -117.5 -88.5
+		dimensions 215 25
+	visible if "anti-missile volume none"
+	sprite "ui/audio none"
+		center -238 -88
+	visible if "anti-missile volume low"
+	sprite "ui/audio low"
+		center -238 -88
+	visible if "anti-missile volume medium"
+	sprite "ui/audio medium"
+		center -238 -88
+	visible if "anti-missile volume max"
+	sprite "ui/audio max"
+		center -238 -88
+
+	visible
+	label "Weapons"
+		center -129.5 -48
+		color bright
+	line
+		center -117.5 -28.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "weapon volume"
+		center -117.5 -28.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "weapon volume box"
+		center -117.5 -28.5
+		dimensions 215 25
+	visible if "weapon volume none"
+	sprite "ui/audio none"
+		center -238 -28
+	visible if "weapon volume low"
+	sprite "ui/audio low"
+		center -238 -28
+	visible if "weapon volume medium"
+	sprite "ui/audio medium"
+		center -238 -28
+	visible if "weapon volume max"
+	sprite "ui/audio max"
+		center -238 -28
+
+	visible
+	label "Engines"
+		center -129.5 12
+		color bright
+	line
+		center -117.5 32.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "engine volume"
+		center -117.5 32.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "engine volume box"
+		center -117.5 32.5
+		dimensions 215 25
+	visible if "engine volume none"
+	sprite "ui/audio none"
+		center -238 32
+	visible if "engine volume low"
+	sprite "ui/audio low"
+		center -238 32
+	visible if "engine volume medium"
+	sprite "ui/audio medium"
+		center -238 32
+	visible if "engine volume max"
+	sprite "ui/audio max"
+		center -238 32
+
+	visible
+	label "Afterburners"
+		center -129.5 72
+		color bright
+	line
+		center -117.5 92.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "afterburner volume"
+		center -117.5 92.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "afterburner volume box"
+		center -117.5 92.5
+		dimensions 215 25
+	visible if "afterburner volume none"
+	sprite "ui/audio none"
+		center -238 92
+	visible if "afterburner volume low"
+	sprite "ui/audio low"
+		center -238 92
+	visible if "afterburner volume medium"
+	sprite "ui/audio medium"
+		center -238 92
+	visible if "afterburner volume max"
+	sprite "ui/audio max"
+		center -238 92
+
+	visible
+	label "Hyperdrives"
+		center -129.5 132
+		color bright
+	line
+		center -117.5 152.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "jump volume"
+		center -117.5 152.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "jump volume box"
+		center -117.5 152.5
+		dimensions 215 25
+	visible if "jump volume none"
+	sprite "ui/audio none"
+		center -238 152
+	visible if "jump volume low"
+	sprite "ui/audio low"
+		center -238 152
+	visible if "jump volume medium"
+	sprite "ui/audio medium"
+		center -238 152
+	visible if "jump volume max"
+	sprite "ui/audio max"
+		center -238 152
+
+	visible
+	label "Explosions"
+		center 129.5 -228
+		color bright
+	line
+		center 117.5 -208.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "explosion volume"
+		center 117.5 -208.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "explosion volume box"
+		center 117.5 -208.5
+		dimensions 215 25
+	visible if "explosion volume none"
+	sprite "ui/audio none"
+		center 238 -208
+	visible if "explosion volume low"
+	sprite "ui/audio low"
+		center 238 -208
+	visible if "explosion volume medium"
+	sprite "ui/audio medium"
+		center 238 -208
+	visible if "explosion volume max"
+	sprite "ui/audio max"
+		center 238 -208
+
+	visible
+	label "Scans"
+		center 129.5 -168
+		color bright
+	line
+		center 117.5 -148.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "scan volume"
+		center 117.5 -148.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "scan volume box"
+		center 117.5 -148.5
+		dimensions 215 25
+	visible if "scan volume none"
+	sprite "ui/audio none"
+		center 238 -148
+	visible if "scan volume low"
+	sprite "ui/audio low"
+		center 238 -148
+	visible if "scan volume medium"
+	sprite "ui/audio medium"
+		center 238 -148
+	visible if "scan volume max"
+	sprite "ui/audio max"
+		center 238 -148
+
+	visible
+	label "Environment"
+		center 129.5 -108
+		color bright
+	line
+		center 117.5 -88.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "environment volume"
+		center 117.5 -88.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "environment volume box"
+		center 117.5 -88.5
+		dimensions 215 25
+	visible if "environment volume none"
+	sprite "ui/audio none"
+		center 238 -88
+	visible if "environment volume low"
+	sprite "ui/audio low"
+		center 238 -88
+	visible if "environment volume medium"
+	sprite "ui/audio medium"
+		center 238 -88
+	visible if "environment volume max"
+	sprite "ui/audio max"
+		center 238 -88
+
+	visible
+	label "Alerts"
+		center 129.5 -48
+		color bright
+	line
+		center 117.5 -28.5
+		dimensions 210 10.5
+		color "volume bar background"
+	bar "alert volume"
+		center 117.5 -28.5
+		dimensions 195 0
+		color "energy"
+		size 2
+		reversed
+	box "alert volume box"
+		center 117.5 -28.5
+		dimensions 215 25
+	visible if "alert volume none"
+	sprite "ui/audio none"
+		center 238 -28
+	visible if "alert volume low"
+	sprite "ui/audio low"
+		center 238 -28
+	visible if "alert volume medium"
+	sprite "ui/audio medium"
+		center 238 -28
+	visible if "alert volume max"
+	sprite "ui/audio max"
+		center 238 -28
+
+
+
 interface "preferences"
 	button b "_Back to Menu..."
 		center 195 210
 		dimensions 120 30
+	value "master volume bar size" 220
+	line
+		center 280.5 -97
+		dimensions 10.5 235
+		color "volume bar background"
 	bar "volume"
-		from 280.5 15
-		dimensions 0 -200
+		center 280.5 -97
+		dimensions 0 220
 		color "energy"
 		size 2
+	box "volume box"
+		center 280.5 -97
+		dimensions 20.5 265
+
+	visible if "volume none"
+	sprite "ui/audio none"
+		center 281 35
+	visible if "volume low"
+	sprite "ui/audio low"
+		center 281 35
+	visible if "volume medium"
+	sprite "ui/audio medium"
+		center 281 35
+	visible if "volume max"
+	sprite "ui/audio max"
+		center 281 35
 
 
 
@@ -1443,7 +1836,7 @@ interface "map buttons" bottom right
 	active if "!is stars"
 	sprite "ui/dialog cancel"
 		from -184 -50 to -94 0
-	button a "St_ars"
+	button t "S_tars"
 		from -174 -40 to -104 -10
 	
 	active
@@ -1498,7 +1891,7 @@ interface "map buttons (small screen)" bottom right
 	active if "!is stars"
 	sprite "ui/dialog cancel"
 		from -170 -40 to -80 -90
-	button a "St_ars"
+	button t "S_tars"
 		from -160 -80 to -90 -50
 
 	active

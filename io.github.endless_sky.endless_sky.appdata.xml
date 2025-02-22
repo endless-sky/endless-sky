@@ -60,6 +60,28 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.11" date="2025-1-25" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>There's lots of new content, and some noticeable balance changes to existing content:</p>
+        <ul>
+          <li>A new group of difficult to navigate systems, inhabited by new aliens.</li>
+          <li>Several new chains of missions and culture conversations in various regions of space.</li>
+          <li>A new, unlockable start that places the player in Hai space as they begin their interstellar journey.</li>
+          <li>Turret turn rates have been rebalanced to make bigger and longer-range turrets generally and more consistently slower than smaller or shorter-range ones.</li>
+          <li>The Carrier has seen an overhaul making it rely more heavily on its fighters for combat, rather than also being the strongest ship in human space on its own, as well as giving the Aerie some more bays.</li>
+        </ul>
+        <p>As well as changes to various game mechanics:</p>
+        <ul>
+          <li>Planets and systems can now have display names.</li>
+          <li>Stellar objects can be made invisible when the player is far from them.</li>
+          <li>Fleets and hazards can be given condition sets that control whether or not they can be spawned.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 37 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.11/changelog</url>
+    </release>
     <release version="0.10.10" date="2024-10-26">
       <description>
         <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
