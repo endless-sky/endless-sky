@@ -1181,7 +1181,7 @@ news "reporter"
 			"Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'"
 			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, never mind."
 			"'11 signs that you are dealing with a corporate executive.' Read my blog to protect yourself from those psychopaths!"
-			"Do you know Betteridge's law of headlines? Any headline that ends in a question mark can be answered by the word no."
+			"Do you know Betteridge's law of headlines? Any headline that ends in a question mark can be answered by the word 'no.'"
 		word
 			`"`
 
@@ -2011,7 +2011,7 @@ news "merchant in pirate space"
 			"I flew around half the galaxy to pick up a wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
 			"The optimist has the glass half full, the pessimist has the glass half empty, but here you are already lucky if the glass doesn't get shot, stolen, or broken before you take your first sip."
 			"It's very silent here. Like the silence just before a huge thunderstorm hits."
-			"The average life expectancy of a pirate is fifteen years. It is actually pretty sad."
+			"The average life expectancy of a pirate is fifteen years. It's actually pretty sad."
 		word
 			`"`
 
@@ -2126,7 +2126,7 @@ news "player's crew member"
 			`"`
 		word
 			"I'm serving on board the '<ship>,' but I've never met the captain. Can you imagine that?"
-			"Hey captain, good to see you here. I'm looking forward to the next trip, and, of course, my 100 credits a day."
+			"Hey Captain, good to see you here. I'm looking forward to the next trip, and, of course, my 100 credits a day."
 			"You look like a poor excuse for a captain. I'm serving onboard the '<ship>' and I'm sure that my captain is far better dressed than you."
 		word
 			`"`
@@ -2181,7 +2181,7 @@ news "logo on ship hull"
 			"Print on a spaceship"
 	message
 		word
-			"Justins Time - Just in time delivery"
+			"Justin Time - Just in time delivery"
 			"Francis Fries - Food spacetrucker"
 			"Bobby Bughunter - Extermination services"
 			"Luna Ticks - Pest control"
