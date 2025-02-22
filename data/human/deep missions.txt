@@ -6450,26 +6450,90 @@ mission "Hroar's Haulers 18"
 				`	"I thought Lagrange was our last stop?"`
 					goto laststop
 				`	"Halfway already? I was hoping it'd never end."`
+					goto neverend
 				`	"So, what's next then?"`
-			
+			`	"Glad you asked." Yngvar says as he saddles up next to Captain Bolverka, "No sense in flying a fleet of empty ships from Lagrange to Musepl. So we'll be making a few stops along the way. Our profit margins on this leg won't be nearly as big as what we just got from Quargs, but it'll cover our expenses plus some."`
+			`	He frowns slightly, "Plus help cover the loss of Solvi's revenue."`
+			`	Wayfarer, New Washington, Earth and Muspel." Bolverka says brightly, "That's our route back home."`
+			`	Yngvar gives her a look, "I was getting to it!"`
+			`	"Yng, dear, you're about as direct as the dusty torus around blackhole."`
+			`	"Hey, that's my line." He says with mock outrage.`
+			`	Bolverka only laughs, "Been around you too long, old man."`
+			`	"Good. You could do with a little culture." He winks at her, and turns back to you, "But she's got the right of it. That's our way back, starting with Wayfarer."`
+				goto route
+
+			label neverend
+			`	Bolverka gives you an earnest smile, "Hon, all good things come to an end."`
+			`	"Bad ones too." Yngvar grunts as he pulls up a chair, "We need make up for losing Solvi's fleet."`
+				goto profit
+
 			label laststop
 			`	She gives you an empathetic smile, "Hon, we still have to get back to Muspel."`
 			`	"With a profit too," Yngvar grunts as he pulls up a chair. "Especially with the loss of Captain Solvi's revenue."`
+			label profit
 			`	"The Long Haul will still make a profit, even without them," Bolverka continues. "Besides Hroar will get it figured out."`
 			`	Yngvar grumbles, "Hartha-Hroar's good, but he's not a miracle worker."`
 			`	Bolverka turns back to you, "Anyways, like I was saying, we still have to make our way back to Muspel."`
 			`	"Wayfarer, New Washington, Earth and Muspel." Yngvar says, "That's our route for the way back."`
+			label route
 			choice
-				`	"Wayfarer? Next door? What we pick up there?"`
+				`	"Wayfarer? Next door? What do we pick up there?"`
 					goto wayfarer
+					to display
+						not "wayfarer"
 				`	"New Washington? I didn't know they had anything of value."`
+					goto NewWashington
+					to display
+						not "newwashington"
 				`	"Earth? Again?"`
+					goto Earth
+					to display
+						not "earthreason"
 				`	"Sounds good. When do we leave?"`
-			`	"We need a little breather after all the traveling we've done. Need to give our ships a good once over, and tune up after before heading out again." Yngvar begins.`
+			`	"We need a little breather after all the traveling we've done. Give the ships a good once over before heading out again." Yngvar begins.`
 			`	"And some well earned R&R for the crews." Bolverka interjects.`
-			`	"Yeah, and that, I reckon." Yngvar nods.`
+			`	"Yeah, and that, I reckon," Yngvar nods. "Everyone will make their own way to Wayfarer for a refit and rotation. I'm figuring we won't be leaving for about a week. So, like everyone else, you got a little time off, Captain <last>."`
+			choice
+				`	"Okay. I'll see you on Wayfarer in a week."`
+				`	"I am not in any hurry. Mind if I sit with you for a bit."`
+				`	(Nod, and leave.)`
 
-			
+			label wayfarer
+			action
+				set "wayfarer"
+			`	"Captain Hrodny's southern Hauler fleet is stationed there. She's got a few bays set aside for repairs and the like. Plus we'll rotate out some of her crew and ours."`
+			`	Bolverka adds, "And we'll pick up the... uh.. equipment." She pauses and looks to Yngvar.`
+			`	"It's fine, Captain <last>'s made it all the way Lagrange, they've got as much right to know as anyone."`
+			`	Bolverka smiles, and looks a little relieved, "Wayfarer's a hotbed of xeno-tech research. It's also pretty distant from the Deep. Lot's of people back home are always hungry for the newest findings from Wayfarer."`
+			`	"Specs, prototypes, and the like." Yngvar adds. "A lot of it isn't strickly legal, and more often not those who buy the gear from us aren't exactly upstanding citizens either."`
+			`	"If you're thinking pirates, it's even worse," Bolverka says dourly. "One of our chief buyers for this stuff is the Deep government." She grimaces.`
+			`	Yngvar chuckles, "And they certainly don't want that getting out. But, yes, I hope that answers question. That's why Wayfarer."`
+				goto route
+
+			label NewWashington
+			action
+				set "newwashington"
+			`	"The backwter of backwaters." Yngvar says with a laugh.`
+			`	"It's not that bad!" Bolverka says. "There are plenty worse places. It just... doesn't have a lot going on is all."`
+			`	"Which makes it ideal for purposes." Yngvar picks up, "They're desperate for our business, keeps 'em honest. Plus their extraction is all owned and done local. No offworld megacorps driving up the prices to pay for their executive's palatial villas on Hestia."`
+			`	Bolverka laughs, "Their prices really aren't that different. Yngvar just likes the people there."`
+			`	"Good folk." Yngvar grunts in agreement.`
+				goto route
+
+			label Earth
+			action
+				set "earthreason"
+			`	Yngvar sighs, "Well, if Solvi was with us we'd be picking up a whole slew of new guest-workers for Helheim. But with him gone those folks will have to wait for other transport. Won't be great for mines."`
+			`	"That's not the only reason we go there though, Yng." Bolverka chides lightly, "Stop being so melodramatic."`
+			`	"Yeah, yeah, just not looking forward to tellin' Hartha-Hroar we lost a third of the Long Haul." He frowns. "But, you were asking about Earth. With their surplus population and low standard of living they produce a lot of cheap products that folks in the Deep are keen to buy."`
+			`	"And we can always pick up tons of historical artifacts they've lost interest in." Bolverka adds. "Earth's lousy in history."`
+			`	"Can't take two steps without tripping over it." Yngvar says with a laugh, "And the Deep is full of ravenous museums, eager to show off a piece of that precious earth history."`
+			choice
+				`	"Like Alexandria?"`
+				`	"Is that legal?"`
+				`	(Say nothing.)`
+			`	"I am sure you've heard of Alexandria" Yngvar continues. "But that's just the tip of the curatorial iceberg. Not to mention those old blowhards, the Soggy society."`
+
 
 mission "Hroar's Haulers 18b"
 	name "The Long Haul"
