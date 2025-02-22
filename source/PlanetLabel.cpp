@@ -19,13 +19,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "Government.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "pi.h"
 #include "Planet.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "Rectangle.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Wormhole.h"
@@ -75,7 +75,7 @@ PlanetLabel::PlanetLabel(const vector<PlanetLabel> &labels, const System &system
 	: object(&object)
 {
 	const Planet &planet = *object.GetPlanet();
-	name = planet.Name();
+	name = planet.DisplayName();
 	if(planet.IsWormhole())
 		color = *planet.GetWormhole()->GetLinkColor();
 	else if(planet.GetGovernment())

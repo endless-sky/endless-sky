@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PreferencesPanel.h"
 #include "Ship.h"
 #include "image/Sprite.h"
-#include "StarField.h"
+#include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
@@ -64,7 +64,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	{
 		for(const auto &source : GameData::Sources())
 		{
-			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
+			auto credit = Format::Split(Files::Read(source / "credits.txt"), "\n");
 			if((credit.size() > 1) || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());
@@ -127,7 +127,7 @@ void MenuPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 	GameData::Background().Draw(Point(), Point());
 
-	info.ClearConditions();
+	Information info;
 	if(player.IsLoaded() && !player.IsDead())
 	{
 		info.SetCondition("pilot loaded");
@@ -139,9 +139,9 @@ void MenuPanel::Draw()
 			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->Name());
+			info.SetString("system", player.GetSystem()->DisplayName());
 		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->Name());
+			info.SetString("planet", player.GetPlanet()->DisplayName());
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));

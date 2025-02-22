@@ -606,7 +606,7 @@ mission "FW Escort 0"
 				`	"Sorry, but that's not the type of work I'm looking for."`
 					decline
 			
-			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacturing of new ships. The Free Worlds is looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
+			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacturing of new ships. The Free Worlds are looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
 			choice
 				`	"Well, then I'd be glad to help."`
 				`	"Sorry, but that's not the type of work I'm looking for."`
@@ -694,7 +694,7 @@ mission "FW Escort 1"
 		has "chosen sides"
 	on offer
 		conversation
-			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevalent piracy is in this region and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds is capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
+			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevalent piracy is in this region and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds are capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
 			`	Shortly after you arrive, the convoy is ready to go and charts a course for <destination>.`
 				accept
 	
@@ -1972,11 +1972,11 @@ mission "FW Katya 7"
 				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
 					decline
 			
-			`	"The plan hasn't changed," Eyes responds. "We find where the testing occurred, and that will lead us to the culprits. Even if it turns out that someone connected to the Free Worlds is responsible, they'll be turned over to the Republic."`
-			`	"I pray that no one within the Free Worlds is a part of this, though," Katya says quietly. "I'm almost hoping we find nothing."`
+			`	"The plan hasn't changed," Eyes responds. "We find where the testing occurred, and that will lead us to the culprits. Even if it turns out that someone connected to the Free Worlds are responsible, they'll be turned over to the Republic."`
+			`	"I pray that no one within the Free Worlds are a part of this, though," Katya says quietly. "I'm almost hoping we find nothing."`
 			choice
 				`	"Fair enough. Let's give it a try."`
-				`	"The Free Worlds is looking guiltier the more we look. I'm out of here."`
+				`	"The Free Worlds are looking guiltier the more we look. I'm out of here."`
 					decline
 			
 			label agree
@@ -2052,10 +2052,10 @@ mission "FW Katya 7C"
 			choice
 				`	"What do we do now that we've found the test site?"`
 					goto now
-				`	"So the Free Worlds is behind this! This is one of your planets!"`
+				`	"So the Free Worlds are behind this! This is one of your planets!"`
 			
-			`	"Yes, this a Free planet, but this evidence is far too blatant," Eyes responds. "Just because we found a match here doesn't mean this is where all the testing happened. I'm only detecting enough isotopes to account for one explosion, and you wouldn't just test once. If anything, this shows that the Free Worlds is being framed by someone, and they used one nuke here before bombing Geminus and Martini to make it look like it was the Free Worlds who did it."`
-			`	"I swear before God when I say that the Free Worlds has nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
+			`	"Yes, this a Free planet, but this evidence is far too blatant," Eyes responds. "Just because we found a match here doesn't mean this is where all the testing happened. I'm only detecting enough isotopes to account for one explosion, and you wouldn't just test once. If anything, this shows that the Free Worlds are being framed by someone, and they used one nuke here before bombing Geminus and Martini to make it look like it was the Free Worlds who did it."`
+			`	"I swear before God when I say that the Free Worlds have nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
 			
 			label now
 			`	Katya thinks for a moment. "Captain, is the outpost reporting any job openings?"`
@@ -2285,7 +2285,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3
@@ -2300,7 +2300,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3

@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -156,7 +156,7 @@ void BoardingPanel::Draw()
 	}
 
 	// Set which buttons are active.
-	info.ClearConditions();
+	Information info;
 	if(CanExit())
 		info.SetCondition("can exit");
 	if(CanTake())
@@ -295,7 +295,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		messages.push_back("The airlock blasts open. Combat has begun!");
 		messages.push_back("(It will end if you both choose to \"defend.\")");
 	}
-	else if((key == 'a' || key == 'd') && CanAttack())
+	else if((key == 'a' || key == 'd' || key == 'D') && CanAttack())
 	{
 		int yourStartCrew = you->Crew();
 		int enemyStartCrew = victim->Crew();
@@ -305,6 +305,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// to your ship in peace. That is to allow the player to "cancel" if
 		// they did not really mean to try to capture the ship.
 		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
+		if(key == 'a' && !youAttack)
+			return true;
 		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
 		if(isFirstCaptureAction && !youAttack)
 			enemyAttacks = false;
