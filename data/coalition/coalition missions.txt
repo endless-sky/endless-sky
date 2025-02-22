@@ -3443,7 +3443,7 @@ mission "Coalition: Struggling Author 3"
 			label published
 			`	"I want to get my book published here."`
 			label company
-			`	"Have you found a publishing company yet?" you ask. "No." Anna then begins complaining about how it was extremely difficult for her to communicate with both the restaurant staff and the publishing companies, who did not have a translation box.`
+			`	"Have you found a publishing company yet?" you ask. "No." Anna then begins complaining about how it was extremely difficult for her to communicate with the restaurant staff, who did not have a translation box.`
 			choice
 				`	"I can get you a translator. It shouldn't cost anything."`
 				`	"I'd be happy to help obtain a translator. I'm guessing we can get one for free."`
@@ -3637,7 +3637,7 @@ mission "Coalition: Struggling Author 5A"
 		not "Coalition: Struggling Author 5B: offered"
 	on offer
 		conversation
-			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder from your computer.`
+			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder.`
 			`	You read it, and recall that you had helped an author named Anna Fangvin get her book, 'Beyond the Hyperdrive,' published about half a year ago in Coalition space. You should return to <destination> and check on her.`
 				accept
 	on complete
@@ -3676,7 +3676,7 @@ conversation "anna invites you to book signing"
 		`	"I'd be happy to!"`
 	`	"Great! Let's walk to the bookstore and get ready! The staff have already prepared seats for both of us."`
 	`	You and Anna walk into the massive bookstore at the spaceport. There are already several Heliarchs present, their Enforcer Riot Staffs in place for crowd control.`
-	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out a loudspeaker with multiple handholds and begins announcing the release of 'Beyond the Hyperdrive'. Within minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Anna signs every copy brought to her by Kimek.`
+	`	A Kimek, dressed in what looks like the bookstore's uniform, takes out a loudspeaker with multiple handholds and begins announcing the release of 'Beyond the Hyperdrive'. Within minutes, the bookstore has become crowded, with a long queue forming between the cashiers and your table, as Anna signs every copy brought to her.`
 	`	Occasionally, Anna alternates between her left and right hand to sign books whenever the other is tired. For hours, this continues. You tried to keep count of how many copies she signed, but gave up when it reached six hundred.`
 	choice
 		`	(Say nothing.)`
@@ -3687,7 +3687,7 @@ conversation "anna invites you to book signing"
 	`	The signing continues for several more hours. Eventually, the same Kimek in the bookstore uniform announces that the store is closing soon.`
 	`	As the store closes and the queue shortens, Anna signs the last Kimek's copy. With that, the event is over. Anna walks with you back to your ship to say goodbye.`
 	`	"My book succeeded beyond my wildest dreams, and it was all because of you, <first>!" she says, almost in a teary voice. She pulls out a credit chip. "Here, <payment>. You've done so much for me and my career, and you deserve it. Additionally, you will be receiving a salary of 100 credits daily, a small but significant portion of my royalties."`
-	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version sold in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
+	`	Anna then takes out another copy of "Beyond the Hyperdrive", which she signs in front of you. It is the Coalition edition of the book, but translated to your language. Quickly reading through it, you realize that the book has been significantly altered from the version you read in human space. "Here, take it. A special copy just for you, as a thank you for all you've done."`
 	choice
 		`	"Why is this book so different from the one in human space?"`
 		`	"Did you make any changes to it?"`
