@@ -28,6 +28,7 @@
 			},
 			"cacheVariables": {
 				"CMAKE_BUILD_TYPE": "Release",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
 				"CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
 				"ES_USE_VCPKG": "ON",
 				"ES_USE_SYSTEM_LIBRARIES": "OFF"
@@ -261,6 +262,7 @@
 			"description": "Builds for Linux like an official release",
 			"inherits": "release",
 			"cacheVariables": {
+				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
 				"VCPKG_HOST_TRIPLET": "linux64-release",
 				"VCPKG_TARGET_TRIPLET": "linux64-release"
 			}
@@ -272,6 +274,7 @@
 			"inherits": "release",
 			"cacheVariables": {
 				"ES_CREATE_BUNDLE": "ON",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
 				"VCPKG_HOST_TRIPLET": "macos64-release",
 				"VCPKG_TARGET_TRIPLET": "macos64-release",
 				"CMAKE_OSX_ARCHITECTURES": "x86_64",
@@ -289,6 +292,7 @@
 			},
 			"cacheVariables": {
 				"ES_CREATE_BUNDLE": "ON",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
 				"VCPKG_HOST_TRIPLET": "macos64-release",
 				"VCPKG_TARGET_TRIPLET": "macos-arm64-release",
 				"CMAKE_OSX_ARCHITECTURES": "arm64",
@@ -302,6 +306,7 @@
 			"inherits": "release",
 			"cacheVariables": {
 				"ES_CREATE_BUNDLE": "ON",
+				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
 				"CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
 				"CMAKE_RC_COMPILER": "windres",
 				"VCPKG_HOST_TRIPLET": "win64-release",

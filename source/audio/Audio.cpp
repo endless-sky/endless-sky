@@ -144,20 +144,6 @@ void Audio::Init(const vector<filesystem::path> &sources)
 	alDopplerFactor(0.);
 
 	LoadSounds(sources);
-
-	// Create the music-streaming threads.
-	currentTrack.reset(new Music());
-	previousTrack.reset(new Music());
-	alGenSources(1, &musicSource);
-	alGenBuffers(MUSIC_BUFFERS, musicBuffers);
-	for(unsigned buffer : musicBuffers)
-	{
-		// Queue up blocks of silence to start out with.
-		const vector<int16_t> &chunk = currentTrack->NextChunk();
-		alBufferData(buffer, AL_FORMAT_STEREO16, &chunk.front(), 2 * chunk.size(), 44100);
-	}
-	alSourceQueueBuffers(musicSource, MUSIC_BUFFERS, musicBuffers);
-	alSourcePlay(musicSource);
 }
 
 
