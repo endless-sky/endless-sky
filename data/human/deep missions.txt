@@ -6223,6 +6223,7 @@ mission "Hroar's Haulers 17"
 			`	Yngvar nods, "Yeah, little rowdier than normal, but nothing like trouble we had back on Maker. I should be good to finish getting this all sorted out. We'll be all loaded up in no time and ready to head for Lagrange. I'll meetchya back at the <ship>."`
 			`	He turns from you to engage with the remaining representatives.`
 				accept
+
 	on complete
 		conversation
 			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparsion to the ringworld, it still puts anything in human space to shame. Unusual looking prehensile tubes, like the myrid heads of hungry hydras, quickly swarm your ship and begin the process of finally unloading the cargo you've been carrying since Muspel.`
@@ -6413,6 +6414,21 @@ mission "Hroar's Haulers 17b"
 				clear "sfleet"
 			`	"Good, anything else you need?"`
 				goto yngvarchat
+
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Leviathan" "H.H.H. Red Ruin"
+		ship "Hogshead" "H.H.H. Twilit Hope"
+		ship "Mule" "H.H.H. Cardinal Winsome"
+		ship "Star Queen" "H.H.H. Land of Plenty"
+		ship "Star Queen" "H.H.H. Red Roamer"
+		ship "Mule" "H.H.H. Dirty Destiny"
+	
+	on visit
+		dialog
+			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
+
 	on complete
 		conversation
 			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparsion to the ringworld, it still puts anything in human space to shame. Unusual looking prehensile tubes, like the myrid heads of hungry hydras, quickly swarm your ship and begin the process of finally unloading the cargo you've been carrying since Muspel.`
@@ -6838,12 +6854,82 @@ event "eight days"
 mission "Hroar's Haulers 18b"
 	name "The Long Haul"
 	source "Lagrange"
+	destination "Humanika"
 	to offer
 		has "Hroar's Haulers 17b: done"
 	on offer
+		event "Nineteen days" 19
+		event "Twenty three days" 23
 		conversation
 			`You make your way past the throngs of humans tourists, indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
-			`	Yngvar `
+			`	It seems you took an indirect route as Yngvar seperates from the red-brown mass and strides toward you.`
+			choice
+				`	"How'd you beat me here? I left you back on the ship."`
+					goto fastvar
+				`	"Howdy Yngvar."`
+				`	"What do you next for me?"`
+			`	He gives you a brisk nod, "One last thing for this half of the Long Haul. I need you to escort Solvi's fleet to Humanika. They only have minimal non-folk cargo, so their about done off-loading already. Get back to your ship and see it through."`
+				goto thechoice
+			label fastvar
+			`	Yngvar laughs, "Most folks don't have the proper feel for the place. The way the paths and corridors work, it's not really meant for the likes of us. The way we think, ya know. I'm just a bit more acclimated than most is all."`
+			`	"But we don't have the time for waxing right poetic at the moment. I need you to escort Solvi's fleet to Humanika. They only have minimal non-folk cargo, so their about done off-loading already. I'll be sticking around here. Get back to your ship and see it through."`
+			label thechoice
+			choice
+				`	"Okay. I'll escort them to Humanika."`
+					goto done
+				`	"Is that really necessary? You really think pirates will attack in Quarg space?"`
+			`	The old spacer shrugs, "Best to see it through. I reckon a black hole's more likely to burp than human pirates showing up on the Quarg's doorstep. But Solvi is carrying folk, not minerals, and you never know what folks might be getting up to. Best if you just went a long."`
+			choice
+				`	"Alright. I'll take them to Humanika."`
+				`	(Nod.)`
+			`	"Ya know, making it to Lagrange on your first Long Haul means something. We're not home yet, but the green is starting to rub off on ya, and the red show through." He puts a strong hand on your shoulder, and then heads back toward the gathered haulers.`
+				accept
+
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Leviathan" "H.H.H. Red Ruin"
+		ship "Hogshead" "H.H.H. Twilit Hope"
+		ship "Mule" "H.H.H. Cardinal Winsome"
+		ship "Star Queen" "H.H.H. Land of Plenty"
+		ship "Star Queen" "H.H.H. Red Roamer"
+		ship "Mule" "H.H.H. Dirty Destiny"
+	
+	on visit
+		dialog
+			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
+
+	on complete
+		conversation
+			`	The shining Quarg tower pierces the low hanging clouds, and your ship careens toward it like a moth toward the flame. The towers automated systems take over and direct yourship into the appropiate platform. You see many of the other Hauler ships being ushered in similar routes. Drones hover around your ship, and almost seem disappointed by your lack of marked cargo for them.`
+			`	A light blinks near your console and see you've recieved a new message from Yngvar.`
+			choice
+				`	(Play the message.)`
+			`	Yngvar's scarred face appears on screen. "Thanks for seeing after Solvi's fleet. I'll be heading to Wayfarer with the rest of the caravan here. We're going take three weeks to do some needed maintance and give the crew some time to unwind. So, we're clear and all, we're gonna need you back on Wayfarer in 21 days. We won't waiting on ya, so don't be late. Yngvar out."`
+			`	The screen goes blank, and you notice you've recieved a text-only message: Meet me in the spaceport - Solvi.`
+				to display
+					has "savedsolvi"
+			`	The screen goes blank, and notice you've recieved a text-only message: We'll take it from here. See you at Wayfarer. - Solvi.`
+				to display
+					not "savedsolvi"
+					not "savedgunhilda"
+			`	The screen goes blank. You notice you've recieved a text-only message: Meet me in the spaceport - Gunhilda.`
+				to display
+					has "savedgunhilda"
+
+event "Nineteen days" 
+event "Twenty three days" 
+
+mission "Hroar's Haulers Gunhilda"
+	name "Gunhilda"
+	source "Humanika"
+	destination "Grakhord"
+	to offer
+		has "Hroar's Haulers 17b: done"
+		has "savedgunhilda"
+	on offer
+		conversation
+
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
