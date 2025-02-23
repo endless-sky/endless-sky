@@ -32,8 +32,7 @@ class DataWriter;
 class ConditionAssignments {
 public:
 	/// Possible assignment operators.
-	enum class AssignOp
-	{
+	enum class AssignOp {
 		ASSIGN, /// Used for =, set (with 1 as expression), clear ((with 0 as expression)
 		ADD, /// Used for +=, ++ (with 1 as expression)
 		SUB, /// Used for -=, -- (with 1 as expression)
