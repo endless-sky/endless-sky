@@ -3484,7 +3484,7 @@ fleet "Human Wormhole Guards"
 	variant 5
 		"Rainmaker (Mark II Old Weapons)"
 
-# The New Tortugans have access to Syndicate hulls, and any Pirate tech,
+# The New Tortugans have access to Syndicate hulls, any pirate tech,
 # and more varied objectives, so their ships are a quite a mix.
 fleet "Independent (Korath-Allied) Merchants"
 	government "Independent (Korath-Allied)"
