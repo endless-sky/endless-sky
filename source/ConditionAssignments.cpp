@@ -28,13 +28,13 @@ using namespace std;
 
 namespace {
 	const auto ASSIGN_OP_TO_TEXT = map<ConditionAssignments::AssignOp, const string> {
-		{ConditionAssignments::AssignOp::AO_ASSIGN, "="},
-		{ConditionAssignments::AssignOp::AO_ADD, "+="},
-		{ConditionAssignments::AssignOp::AO_SUB, "-="},
-		{ConditionAssignments::AssignOp::AO_MUL, "*="},
-		{ConditionAssignments::AssignOp::AO_DIV, "/="},
-		{ConditionAssignments::AssignOp::AO_LT, "<?="},
-		{ConditionAssignments::AssignOp::AO_GT, ">?="},
+		{ConditionAssignments::AssignOp::ASSIGN, "="},
+		{ConditionAssignments::AssignOp::ADD, "+="},
+		{ConditionAssignments::AssignOp::SUB, "-="},
+		{ConditionAssignments::AssignOp::MUL, "*="},
+		{ConditionAssignments::AssignOp::DIV, "/="},
+		{ConditionAssignments::AssignOp::LT, "<?="},
+		{ConditionAssignments::AssignOp::GT, ">?="},
 	};
 }
 
@@ -100,25 +100,25 @@ void ConditionAssignments::Apply(ConditionsStore &conditions) const
 		int64_t newValue = assignment.expressionToEvaluate.Evaluate(conditions);
 		switch(assignment.assignOperator)
 		{
-			case AssignOp::AO_ASSIGN:
+			case AssignOp::ASSIGN:
 				ce = newValue;
 				break;
-			case AssignOp::AO_ADD:
+			case AssignOp::ADD:
 				ce += newValue;
 				break;
-			case AssignOp::AO_SUB:
+			case AssignOp::SUB:
 				ce -= newValue;
 				break;
-			case AssignOp::AO_MUL:
+			case AssignOp::MUL:
 				ce = static_cast<int64_t>(ce) * newValue;
 				break;
-			case AssignOp::AO_DIV:
+			case AssignOp::DIV:
 				ce = newValue ? static_cast<int64_t>(ce) / newValue : numeric_limits<int64_t>::max();
 				break;
-			case AssignOp::AO_LT:
+			case AssignOp::LT:
 				ce = min(static_cast<int64_t>(ce), newValue);
 				break;
-			case AssignOp::AO_GT:
+			case AssignOp::GT:
 				ce = max(static_cast<int64_t>(ce), newValue);
 				break;
 		}
@@ -143,7 +143,7 @@ set<string> ConditionAssignments::RelevantConditions() const
 
 void ConditionAssignments::AddSetCondition(const std::string &name)
 {
-	assignments.emplace_back(name, AssignOp::AO_ASSIGN, ConditionSet(1));
+	assignments.emplace_back(name, AssignOp::ASSIGN, ConditionSet(1));
 }
 
 
@@ -157,7 +157,7 @@ void ConditionAssignments::Add(const DataNode &node)
 			node.PrintTrace("Parse error; " + node.Token(0) + " keyword requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back(node.Token(1), AssignOp::AO_ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
+		assignments.emplace_back(node.Token(1), AssignOp::ASSIGN, ConditionSet(node.Token(0) == "set" ? 1 : 0));
 	}
 	else if(node.Size() == 2 && (node.Token(1) == "++" || node.Token(1) == "--"))
 	{
@@ -166,13 +166,13 @@ void ConditionAssignments::Add(const DataNode &node)
 			node.PrintTrace("Parse error; " + node.Token(1) + " operator requires a single valid condition:");
 			return;
 		}
-		assignments.emplace_back(node.Token(0), node.Token(1) == "++" ? AssignOp::AO_ADD : AssignOp::AO_SUB,
+		assignments.emplace_back(node.Token(0), node.Token(1) == "++" ? AssignOp::ADD : AssignOp::SUB,
 			ConditionSet(1));
 	}
 	else if(node.Size() >= 3)
 	{
 		// Parse the assignment operator.
-		AssignOp ao = AssignOp::AO_ASSIGN;
+		AssignOp ao = AssignOp::ASSIGN;
 		const string assignOpString = node.Token(1);
 		auto it = find_if(ASSIGN_OP_TO_TEXT.begin(), ASSIGN_OP_TO_TEXT.end(),
 			[&assignOpString](const std::pair<AssignOp, const string> &e) {

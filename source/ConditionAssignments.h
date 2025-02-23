@@ -31,6 +31,20 @@ class DataWriter;
 // "conditions" to modify them.
 class ConditionAssignments {
 public:
+	/// Possible assignment operators.
+	enum class AssignOp
+	{
+		ASSIGN, /// Used for =, set (with 1 as expression), clear ((with 0 as expression)
+		ADD, /// Used for +=, ++ (with 1 as expression)
+		SUB, /// Used for -=, -- (with 1 as expression)
+		MUL, /// Used for *=
+		DIV, /// Used for /= (integer division)
+		LT,  /// Used for <?=
+		GT  /// Used for >?=
+	};
+
+
+public:
 	ConditionAssignments() = default;
 
 	// Construct and Load() at the same time.
@@ -57,20 +71,6 @@ public:
 
 	// Add an extra condition assignment from a data node.
 	void Add(const DataNode &node);
-
-
-public:
-	/// Possible assignment operators.
-	enum class AssignOp
-	{
-		AO_ASSIGN, /// Used for =, set (with 1 as expression), clear ((with 0 as expression)
-		AO_ADD, /// Used for +=, ++ (with 1 as expression)
-		AO_SUB, /// Used for -=, -- (with 1 as expression)
-		AO_MUL, /// Used for *=
-		AO_DIV, /// Used for /= (integer division)
-		AO_LT,  /// Used for <?=
-		AO_GT  /// Used for >?=
-	};
 
 
 private:
