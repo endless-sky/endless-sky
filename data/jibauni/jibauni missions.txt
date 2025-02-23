@@ -330,7 +330,7 @@ mission "Jibauni: Ru-win 4"
 				`	"I think Winter. It's a busy planet with a lot of people on it."`
 				`	"I'll take you to Solace. It's a forest planet with some people but not too many."`
 					goto solace
-			`	"If this planet is busy, as you say, then what are the chances of us being seen? Dinosaurs roaming around, will they be received well? Somehow I doubt it," returns Ru-win. "Do you know of a less busy planet?"`
+			`	"If this planet is busy, as you say, then what are the chances of us being seen? Strange aliens roaming around, will they be received well? Somehow I doubt it," returns Ru-win. "Do you know of a less busy planet?"`
 			choice
 				`	"How about Solace? It's not that busy, and I believe it would adequately suit your needs."`
 			label solace
@@ -347,18 +347,18 @@ mission "Jibauni: Ru-win 4"
 				`	(Ignore it.)`
 					goto jibaunireported
 			`	"Quickly, everyone. Get back into the <npc>!" you call. "We don't want to be seen!"`
-			`	You and the Jibauni are able to hide before anybody or anything spots you. Safe for now.`
+			`	You and the Jibauni are able to hide before anybody or anything spots you - the speed of the aliens is almost frightening, given their bulk.`
 			`	Once the plane is gone, Ru-win requests that you escort her ship back to <destination> immediately.`
 				launch
 			label destroyedairplane
 			action
-				"reputation: Merchant" -= 1000 # This does not affect reputation with the major human governments such as FW or Republic; if the player is also doing their storyline at the time there could be trouble.
+				"reputation: Merchant" -= 1000 # This does not affect reputation with the major human governments such as FW or Republic; if the player is also doing their storyline at the time there could be compatibility trouble.
 				event "ruwin: merchant reputation back to normal" 3
 			`	A well-placed shot from the <ship> sends the plane crashing to the ground as you realize that this could be trouble later.`
 			`	A member of Ru-win's crew tells you that they are ready to go. Soon you leave <planet stopovers>, hoping that nobody will find out what has happened.`
 				launch
 			label jibaunireported
-			`	After some time observing the flora and fauna in <planet stopovers>'s forests, you hear a loudspeaker in the direction of the <ship>; apparently people are approaching. Ru-win hurries up to you and requests that you escort her and her crew back to <destination> immediately, before the humans arrive. You agree.`
+			`	After some time observing the flora and fauna of <planet stopovers>'s forests, you hear a loudspeaker in the direction of the <ship>; apparently people are approaching. Ru-win hurries up to you and requests that you escort her and her crew back to <destination> immediately, before the humans arrive. You agree.`
 			`	The Jibauni and you make it back to your respective ships in the nick of time, leaving moments before a search party breaks out of the woods and into the clearing the <ship> and the <npc> were landed in.`
 				launch
 	on visit

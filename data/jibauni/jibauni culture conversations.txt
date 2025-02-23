@@ -131,7 +131,7 @@ mission "Jibauni Culture: Steak Lovers"
 		random < 4
 	on offer
 		conversation
-			`When you land on <origin>, you notice a group of smaller Jibauni, probably children, digging a hole in the ground. As you watch, one of them finds a box with three large pieces of unidentifiable meat inside. The group immediately devours the treat.`
+			`When you land on <origin>, you notice a group of smaller Jibauni, probably children, digging a hole in the ground. As you watch, one of them finds a box with three large pieces of unidentifiable meat inside and roars with delight. The group immediately devours the treat.`
 				decline
 
 mission "Jibauni Culture: Rebel Report"
@@ -186,7 +186,7 @@ mission "Rebel Jibauni Culture: Rude Rebel"
 				`	(Quietly leave.)`
 					goto walkedaway
 			label rude
-			`	"What!" yells the Rebel. "That is an insult! I cannot ignore this direct affront to my dignity!"`
+			`	"What!" roars the Rebel. "That is an insult! I cannot ignore this direct affront to my dignity!"`
 				goto talkbattle
 			label Iwasinsulted
 			`	"Who cares," remarks the Rebel. "I sure do not, for one thing, and I doubt anyone else does either."`

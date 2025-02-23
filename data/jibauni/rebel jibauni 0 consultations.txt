@@ -13,7 +13,7 @@
 
 mission "First Contact: Rebel Jibauni"
 	name "Travel to <planet>"
-	description `Travel to <destination> to meet up with the leaders of this "Rebel Jibauni" faction.`
+	description `Travel to <destination> to meet up with the leaders of the "Rebel Jibauni" faction.`
 	landing
 	source
 		government "Jibauni (Rebel)"
@@ -98,11 +98,9 @@ mission "Rebel Jibauni: Landed on Andwerfen"
 			`A long wait ensues after you land on <origin>. The Rebel Jibauni seem to be trying to find someone you can speak your language. Feeling bored, you wonder about going to see what's happening.`
 			choice
 				`	(Hey, it's better then staying here the rest of the day.)`
-					goto explore
 				`	(You have no idea what this world is about, and don't want to wander unbidden.)`
 					goto stay
-			label explore
-			`	Wandering around the spaceport of <origin>, the people do not seem very happy, and make way for you without being asked. But at last, you run into a Jibauni who has something around its neck. It gives an exclamation of surprise, and then asks in a language that you can easily understand, "Why have you not come before? I will take you to the government building." It drags you through the city, and then down a side alley. After a long climp up a ramp, you enter a room which has a congregation of dinosaurs.`
+			`	As you wander around the spaceport of <origin>, you notice the unhappy residents make way, even in the thickest crowds, without being asked. At last, you run into a Jibauni who has something around its neck. It gives an exclamation of surprise, and then asks in a language that you can easily understand, "Why have you not come before? I will take you to the government building." It drags you through the city, and then down a side alley. After a long climp up a ramp, you enter a room which has a congregation of dinosaurs.`
 				goto conversation
 			label stay
 			`	After a few more hours, a Rebel comes rushing up, full of apologies. "I am so sorry. The leaders had different things to do, and the person supposed to find you was ambushed. Come with me now though for a consultation." It pulls you, with remarkable speed, through the streets of the city. Finally, after ducking down a side alley and going up a wide stairway, you are led into a room with a congregation of dinosaurs in it.`
@@ -144,7 +142,6 @@ mission "Rebel Jibauni: Landed on Andwerfen"
 			`	Do you want to leave? They are threatening, but may not actually mean it.`
 			choice
 				`	(No. They are surely joking.)`
-					goto joking
 				`	(Get out of here, now.)`
 					goto nowleave
 			label joking

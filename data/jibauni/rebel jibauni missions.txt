@@ -14,7 +14,7 @@
 mission "Rebel Jibauni: Qui-ni"
 	minor
 	name "Rebel Jibauni transport"
-	description "You bumped into a Rebel Jibauni in <origin>'s spaceport and agreed to take it to <destination>."
+	description "You bumped into a Rebel Jibauni in <origin>'s spaceport and agreed to take him to <destination>."
 	source
 		government "Jibauni (Rebel)"
 	destination Kanlil

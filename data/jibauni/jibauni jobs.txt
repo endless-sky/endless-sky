@@ -252,6 +252,28 @@ mission "Jibauni Passengers [2]"
 		payment 2000
 		dialog "As the group of Jibauni go out of your ship, they each hand you 1/<bunks>th of <payment>."
 
+mission "Jibauni Clumsy Passengers"
+	name "Passengers to <planet>"
+	description "Take these <bunks> passengers to <planet> for <payment>."
+	job
+	repeat
+	passengers 2 30
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	to offer
+		has "language: Jibauni"
+		random < 8
+		not "Jibauni Clumsy Passengers: active"
+	destination
+		distance 1 4
+		not planet Laqualk
+	on enter
+	on enter
+		dialog "During the jump to this system, one of the Jibauni bumped into a bulkhead."
+	on complete
+		payment
+		dialog "The <bunks> passengers get off your ship to do whatever they wanted to go here for, but not before they pay you <payment>."
+
 mission "Jibauni Rush Delivery [0]"
 	name "Rush to <planet>"
 	description "A character on <planet> is in dire need of <cargo> before <day>. Get it there by then for the reward of <payment>."

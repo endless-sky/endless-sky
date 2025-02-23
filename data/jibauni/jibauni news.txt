@@ -231,7 +231,7 @@ news "jibauni merchant"
 		word
 			`"`
 
-news "jibauni regular"
+news "regular jibauni"
 	name
 		word
 			"Jibauni"
@@ -255,6 +255,8 @@ news "jibauni regular"
 			"Some say the best way to win is to lose."
 			"Up for a game of chess?"
 			"I like strategy games. The best one is the new Aludi Harb A'lihia - especially because it's updated every time a new battle is fought between us and the Rebels."
+			"Some of the racers here go up to thousands of meters a second. How do they go so fast?"
+			"Y'know, the best way to win a race is to frighten opponents by roaring."
 		word
 			`"`
 

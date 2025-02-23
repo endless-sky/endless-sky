@@ -436,7 +436,7 @@ mission "Jibauni: Kanlanmo books elsewhere"
 		not "Jibauni: Kanlanmo 3: offered"
 	on offer
 		conversation
-			`A call comes in from Kanlanmo the moment you get reception. He sounds quite angry as he yells, "You were supposed to meet me in the spaceport of <destination>! I am late for an important meeting now!"`
+			`A call comes in from Kanlanmo the moment you get reception. He roars angrily, "You were supposed to meet me in the spaceport of <destination>! I am late for an important meeting now!"`
 			choice
 				`	"I had other things to do."`
 				`	"Does it really matter?"`
@@ -444,7 +444,6 @@ mission "Jibauni: Kanlanmo books elsewhere"
 					goto rude
 				`	(Cut off the call.)`
 					goto cutoff
-			label doesntmatter
 			`	"So? It matters very deeply; no matter what else needed to happen, this takes priority. A small Rebel Furus? Preposterous compared to what is going on here!"`
 				goto end
 			label rude
@@ -452,16 +451,16 @@ mission "Jibauni: Kanlanmo books elsewhere"
 				goto end
 			label cutoff
 			action
-				log `Got in big trouble for being rude to Kanlanmo. Work for the Jibauni seems to have stopped.`
+				log `Got in big trouble for being rude to Kanlanmo; the Jibauni government doesn't seem to want to hire anymore.`
 				"reputation: Jibauni" = -1000
 				"reputation: Jibauni (Civilian)" = -1000
-				"reputation: Jibauni (Rebel)" = 0
+				"reputation: Jibauni (Rebel)" = 5
 			`	As soon as you end the call, a Jibauni arrives in front of your ship and calls out, "You have dishonored one of our leaders. You shall leave now."`
 			`	You see the defense mechanisms of <origin> preparing to open fire on the <ship> and decide to leave before anything else happens. Perhaps the Rebel Jibauni will take you in.`
 				flee
 			label end
 			action
-				log `Refrained from meeting Kanlanmo in the spaceport of Kahbani, and got told off by him for not doing so. The Jibauni don't love that and have restricted access to all worlds.`
+				log `Refrained from meeting Kanlanmo in the spaceport of Kahbani, and got told off by him for not doing so. The Jibauni disliked that and restricted access to all worlds.`
 				"reputation: Jibauni" = 0
 				"reputation: Jibauni (Civilian)" = 0
 				"reputation: Jibauni (Rebel)" += 10
@@ -485,12 +484,9 @@ mission "Jibauni: Kanlanmo 3"
 				`	(Ask what is wrong.)`
 					goto question
 				`	(Leave him alone, he has enough problems already.)`
-					goto leavehim
-			label leavehim
 			`	Kanlanmo greets you as he comes in, then heads toward his cabin. He then appears to change his mind, and comes back toward you.`
 			choice
 				`	"What happened?"`
-					goto question
 				`	"I'm kind of busy, can we talk later?"`
 					goto destination
 			label question
@@ -509,7 +505,7 @@ mission "Jibauni: Kanlanmo 3"
 					goto singleship
 				`	"That's sad."`
 					goto prechoicetake
-			`	"Great," he says. "I have seen your big fleet, and it does look powerful."`
+			`	"Great," he says. "I have seen your fleet, and it does look powerful."`
 				goto thanksoffer
 			label fleetsmall
 			`	"Good! Because do you know what? Every little bit counts, and your fleet is not insignificant."`
@@ -517,7 +513,7 @@ mission "Jibauni: Kanlanmo 3"
 			label singleship
 			`	"Thanks. Even if <ship> could not hurt a fly, the Rebel Jibauni would not like the idea of an alien fighting on our side."`
 			label thanksoffer
-			`	"Anyway, thank you for offering to help fight the Rebels. It is very kind of you, a stranger, to fight in our internal conflicts. Now, one more thing. Can you take me back to <planet>? I need to report back to The Leaders."`
+			`	He continues, "Anyway, thank you for offering to help fight the Rebels. It is very kind of you, a stranger, to fight in our internal conflicts. Now, one more thing. Can you take me back to <planet>? I need to report back to The Leaders."`
 				goto choicetake
 			label destination
 			`	"Good," he says. "By later I assume you mean once we are back on <planet>? Will you take me there?"`
@@ -527,12 +523,9 @@ mission "Jibauni: Kanlanmo 3"
 			label choicetake
 			choice
 				`	"Of course!"`
-					goto accept
 				`	"Why not?"`
-					goto accept
 				`	"No, I have had enough of working with the Jibauni."`
 					decline
-			label accept
 			`	"Thank you for all your hard work, <first>. It really means a lot to us."`
 				accept
 	on accept
@@ -568,7 +561,7 @@ mission "Jibauni: Kanlanmo 4"
 				`	"Pleased to meet you."`
 				`	"What ships does he make?"`
 					goto ships
-				`	(Nod.)`
+				`	(Nod to him.)`
 					goto nod
 			`	He reaches out his hand, and you shake it. "What ships do your shipyards make?" you ask.`
 				goto ships
@@ -582,7 +575,7 @@ mission "Jibauni: Kanlanmo 4"
 					goto meetingresults
 				`	"Kasim, what are the one or two other ships you do not make?"`
 			`	"To be specific, the Daybal and the Muraw. The Daybal is a not-great cargo carrying drone, but the Muraw has a turret mount on a fighter. Those crazy people of Res-redi's Sh-"`
-			`	"The results of the meeting," Kanlanmo says icily, "are that the leaders are very pleased. They did not expect Hajay to contribute any ships at all, so the few promised are a great boon to them. Well, now you know. Anything else?"`
+			`	Kanlanmo interrupts with a roar. "The results of the meeting are that the leaders are very pleased. They did not expect Hajay to contribute any ships at all, so the few promised are a great boon to them. Well, now you know. Anything else?"`
 				goto ok
 			label meetingresults
 			`	"The leaders are very pleased. They did not expect Hajay to contribute any ships at all, so the few promised are a great boon to them. Well, now you know. Anything else?"`
