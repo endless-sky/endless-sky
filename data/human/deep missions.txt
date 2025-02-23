@@ -6226,7 +6226,7 @@ mission "Hroar's Haulers 17"
 	on complete
 		conversation
 			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparsion to the ringworld, it still puts anything in human space to shame. Unusual looking prehensile tubes, like the myrid heads of hungry hydras, quickly swarm your ship and begin the process of finally unloading the cargo you've been carrying since Muspel.`
-			`	Yngvar busy communicating one of the station's sub-routines, pauses to hollar to you before you leave the ship, "Meet me in the spaceport later."`
+			`	Yngvar busy communicating one of the station's sub-routines, pauses to hollar to you before you leave the ship, "I'll meet you in the spaceport."`
 
 
 mission "Hroar's Haulers 17b"
@@ -6416,7 +6416,7 @@ mission "Hroar's Haulers 17b"
 	on complete
 		conversation
 			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparsion to the ringworld, it still puts anything in human space to shame. Unusual looking prehensile tubes, like the myrid heads of hungry hydras, quickly swarm your ship and begin the process of finally unloading the cargo you've been carrying since Muspel.`
-			`	Yngvar busy communicating one of the station's sub-routines, pauses to hollar to you before you leave the ship, "Meet me in the spaceport later."`
+			`	Yngvar busy communicating one of the station's sub-routines, pauses to hollar to you before you leave the ship, "I'll meet you in the spaceport."`
 
 mission "Hroar's Haulers 18"
 	name "The Long Haul"
@@ -6424,8 +6424,10 @@ mission "Hroar's Haulers 18"
 	to offer
 		has "Hroar's Haulers 17: done"
 	on offer
+		event "Six Days" 6
+		event "Eight days" 8
 		conversation
-			`You make your way past the throngs of humans tourists, and indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
+			`You make your way past the throngs of humans tourists, indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
 			choice
 				`	(Join them.)`
 					goto bolverkaagain
@@ -6505,19 +6507,20 @@ mission "Hroar's Haulers 18"
 			`	"And some well earned R&R for the crews." Bolverka interjects.`
 			`	"Yeah, and that, I reckon," Yngvar nods. "Everyone will make their own way to Wayfarer for a refit and rotation. I'm figuring we won't be leaving for about a week. So, like everyone else, you got a little time off, Captain <last>."`
 			choice
-				`	"I am not in any hurry. Mind if I sit with you for a bit."`
-					goto sitforabit
-					to display
-						has "metbolverka"
-				`	"I am not in any hurry. Mind if I sit with you for a bit."`
-					goto sitforabit
-					to display
-						has "metbolverka"
 				`	"Okay. I'll see you on Wayfarer in a week."`
 				`	(Nod, and leave.)`
-			`	 They both wave to you as you make your leave and head back into spaceport at large.`
+			`	They both wave to you as you make your leave and head back into spaceport at large.`
 			`	Yngvar shouts after you, "Seven days! Don't be late, or we'll leave without you!"`
+			action
+				clear "wayfarer"
+				clear "newwashington"
+				clear "earthreason"
+				clear "soggymention"
+				clear "kormaktale"
+				clear "cairn"
+				clear "stonerquestions"
 				decline
+
 
 			label wayfarer
 			action
@@ -6644,7 +6647,7 @@ mission "Hroar's Haulers 18"
 				`	"Stoner?"`
 					goto stoner
 				`	(Say nothing.)`
-			`	"You know, Yng, if you ever bothered to listen to one of your stories you'd realize just how fun they were. Besides, who are you to tease of us? You're practically a "stoner" yourself." Bolverka says with more affection than venom.`
+			`	"You know, Yng, if you ever bothered to listen to one of your stories you'd realize just how interesting they were. Besides, who are you to tease of us? You're practically a "stoner" yourself." Bolverka says with more affection than venom.`
 			label yngcont
 			`	"I'm a spacer, not a stoner! There ain't no stones with my life memories scribbled on them under my bed!" Yngvar retorts, and you suddenly feel like you're in the middle of an argument they've had a hundred times before.`
 			`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old station is about as stoner as it gets, with only the mildest of tweaks."`
@@ -6719,8 +6722,6 @@ mission "Hroar's Haulers 18"
 				goto cairntalk
 
 			label samething
-			action
-				set "yngvarstoner"
 			`	Bolverka beams, "Yngvar the space-stoner, maybe that's the song we oughta to be singing?"`
 			`	"Bah, what does <last> know about it anyways." Yngvar glares unhappily at Bolverka. "How about we get a little more productive and talk business."`
 			`	"Sure thing, hon." Bolverka says as she grins from ear to ear.`
@@ -6730,8 +6731,6 @@ mission "Hroar's Haulers 18"
 				goto profit
 
 			label shipnotstone
-			action
-				set "yngvarspacer"
 			`	"Ha!" Yngvar exclaims triumphantly, "I told you. It's different. It's more technical, more nuanced, more rational, more..."`
 			`	"...of the same." Bolverka interrupts.`
 			`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look, "Who knows what winning could cost you?"`
@@ -6832,6 +6831,9 @@ mission "Hroar's Haulers 18"
 			`	She takes a deep breath and quickly wipes her eyes. "I appreciate you being honest with me, Captain <last>. It's good to know."`
 				goto yngvarjoins
 
+event "six days"
+event "eight days"
+
 
 mission "Hroar's Haulers 18b"
 	name "The Long Haul"
@@ -6840,7 +6842,8 @@ mission "Hroar's Haulers 18b"
 		has "Hroar's Haulers 17b: done"
 	on offer
 		conversation
-
+			`You make your way past the throngs of humans tourists, indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
+			`	Yngvar `
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
