@@ -1213,7 +1213,7 @@ mission "Remnant: Cognizance 25"
 		dialog "You have disabled the ships that the Palavret left behind."
 		on kill
 			set "Remnant: Cognizance 25: killed"
-			dialog "Oops! You destroyed the ships the Palavret left behind instead of disabling them. Hopefully Gavriil won't mind." 
+			dialog "Oops! You destroyed the ships the Palavret left behind instead of disabling them. Hopefully Gavriil won't mind."
 	on waypoint
 		dialog "You have patrolled all six systems."
 	on enter Egeria
@@ -1226,12 +1226,13 @@ mission "Remnant: Cognizance 25"
 		conversation
 			branch "killed"
 				has "Remnant: Cognizance 25: killed"
-				payment 250000
+				action
+					payment 250000
 				`Back on Ssil Vida, you check in with Gavriil and report the three 'olofezes that you located and disabled. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
 			label "killed"
-				payment 200000
+				action
+					payment 200000
 				`Back on Ssil Vida, you check in with Gavriil and report the three 'olofezes that you destroyed. "Three?" They sign quizzically. "That is an odd number. Palavrets only carry two at most. It is regrettable that they were destroyed, but 'olofezes are probably not much to worry about. I will report this right away. But in the meantime, come take a look at what I have set up." They lead you off toward the spaceport.`
-
 
 
 
