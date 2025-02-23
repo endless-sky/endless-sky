@@ -737,6 +737,7 @@ mission "Korath [F00]: A Fishy Planet"
 				decline
 
 mission "Korath [F01]: A Fishy Deal"
+	priority
 	name "A fishy proposition"
 	description "Transport <cargo> to <planet> by <date>. After a return trip, you'll be paid 140,000 credits. Don't get caught."
 	cargo "live fish" 15
