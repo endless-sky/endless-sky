@@ -3333,6 +3333,8 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license) and 1010todd (under the same license). Incorporating texture made with JSPlacement by WindMillArt <https://windmillart.net/>.
 
 Files:
+ sounds/avgi?launch?external*
+ sounds/avgi?launch?internal*
  sounds/bunrodea?am*
  sounds/coalition?launch*
  sounds/drill*

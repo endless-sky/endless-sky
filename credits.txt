@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.11-alpha
+version 0.10.13-alpha
 
 The player's manual and other
 resources are available at:
@@ -60,6 +60,7 @@ Major Programming
 Storyline & Faction Authors
   Amazinite
   Arachi-Lover
+  Azure3141
   beccabunny
   Daeridanii
   Lia Gerty
@@ -199,9 +200,11 @@ contributed to Endless Sky:
   Brick63
   captain0xff
   ChamEV
+  chrisandreae
   comnom
   corecontingency
   Corraban2
+  cresslank
   CyberShadow
   czartrak
   Daeridanii1
@@ -261,6 +264,7 @@ contributed to Endless Sky:
   gunqqer
   Hacklin
   Hadron1776
+  HangryBear
   Hannah-E-M
   har9862
   Hatrask
@@ -272,6 +276,8 @@ contributed to Endless Sky:
   Hurleveur
   Hyugat
   implicitfield
+  ImprovisedUsername
+  imverybadatnames
   InfiniteDonuts
   infinitewarp
   ItsNickBarry
@@ -302,7 +308,6 @@ contributed to Endless Sky:
   Koranir
   kozbot
   Kryes-Omega
-  lantzk
   LazerLit
   leklachu
   leowongcanto
@@ -334,12 +339,14 @@ contributed to Endless Sky:
   mike-f1
   MillerNerd
   mimirzero
+  mixx99
   mOctave
   moonliiiqhte
   mootootwo
   Mr-L-oof
   naehc
   Nams-2
+  NateEag
   nathan-b
   Nescio0
   neurotrope
@@ -437,6 +444,7 @@ contributed to Endless Sky:
   TheGiraffe3
   TheMarksman-ES
   thenerdfreak
+  thetazero
   TheUnfetteredOne
   thewierdnut
   thomasballinger
@@ -474,6 +482,7 @@ contributed to Endless Sky:
   wjbotham
   wjp
   Wrzlprnft
+  xobes
   xxxyyyqqq12345
   YellowApple
   yjhn
