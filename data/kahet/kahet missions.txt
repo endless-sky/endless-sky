@@ -1687,7 +1687,6 @@ ship "Fetri'sei" "Fetri'sei (Patir 12A)"
 
 ship "Asteroid Large 1" "Asteroid Large (Patir 12A)"
 	sprite "ship/asteroid adult"
-	thumbnail "thumbnail/asteroid adult"
 	attributes
 		category "Transport"
 		"cost" 1350000000
