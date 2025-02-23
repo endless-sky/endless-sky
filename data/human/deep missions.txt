@@ -6434,13 +6434,16 @@ mission "Hroar's Haulers 18"
 					to display
 						has "metbolverka"
 				`	(Join them.)`
+					goto newoldfriends
 					to display
 						not "metbolverka"
 				`	(Look around the spaceport some more.)`
+					goto newoldfriendscall
 					to display
 						not "metbolverka"
 			label bolverkaagain
 			`	"Captain <last>!" You recognize Captain Bolverka's voice as you near the assembled haulers, "Welcome to Lagrange!"`
+			label sithere
 			`	She waves you over to her table, and she rewards you with a friendly smile and a nod toward an empty chair.`
 			`	"Yng will be here soon enough." She faintly shakes her head, "Stones know he likes to gab with station, or the tubes, or whatever manages the cargo logistics. Never heard of anyone else able to get more then a few simple directions from the things. But that's Yng for you."`
 			`	"But enough that old codger. You're due a little celebration! It's your first Lagrange port-of-call in a Long Haul! Why you're halfway done!"" I am sure this station wasn't scurbbed clean 12 times a day, there'd be some old rusted panel with a few thousand Hauler "`
@@ -6494,14 +6497,25 @@ mission "Hroar's Haulers 18"
 					to display
 						has "soggymention"
 						has "Tavish and Kormak 2: done"
+						not "kormaktale"
 				`	"Sounds good. When do we leave?"`
 			`	"We need a little breather after all the traveling we've done. Give the ships a good once over before heading out again." Yngvar begins.`
 			`	"And some well earned R&R for the crews." Bolverka interjects.`
 			`	"Yeah, and that, I reckon," Yngvar nods. "Everyone will make their own way to Wayfarer for a refit and rotation. I'm figuring we won't be leaving for about a week. So, like everyone else, you got a little time off, Captain <last>."`
 			choice
-				`	"Okay. I'll see you on Wayfarer in a week."`
 				`	"I am not in any hurry. Mind if I sit with you for a bit."`
+					goto sitforabit
+					to display
+						has "metbolverka"
+				`	"I am not in any hurry. Mind if I sit with you for a bit."`
+					goto sitforabit
+					to display
+						has "metbolverka"
+				`	"Okay. I'll see you on Wayfarer in a week."`
 				`	(Nod, and leave.)`
+			`	 They both wave to you as you make your leave and head back into spaceport at large.`
+			`	Yngvar shouts after you, "Seven days! Don't be late, or we'll leave without you!"`
+				decline
 
 			label wayfarer
 			action
@@ -6562,7 +6576,168 @@ mission "Hroar's Haulers 18"
 				goto route
 
 			label Kormak
-			`	Bolverka tilts her, "Why, yes! What a small universe. `
+			action
+				set "kormaktale"
+			`	Bolverka tilts her and looks at you in mild surprise, "Why, yes! I've had the honor of making the good Dr. Gluniairn mac Kormak's acquaintance."`
+			`	Yngvar barks out an unhappy laugh, "Bah, if he's a Doctor than I'm a Quarg!"`
+			`	The old spacer suddenly glances around, as though he just realized where he was.`
+			`	Bolverka laughs lightly, "I doubt you offended our hosts. Anyways," She turns back to you, "don't mind Yng, he's just jealous."`
+			`	Yngvar's face turns red, "If I was a few decades younger..."`
+			`	"Dr. Kormak and his partner, I forget his name, have from time to time sought out the Haulers for work." She says to you, clearly ignoring Yngvar, "They're more open minded then more established academics in the Deep, and have also been involved in some Elf archaeology."`
+			`	Yngvar groans, "More nonsense. Half the time they don't pay us, but Hartha-Hroar and Bolverka here have taken a shine to their outlandish ideas. Other than that really ain't nothing else to say about 'em. So how about we move on."`
+			`	Bolverka pats Yngvar's hand, "You got nothing to be jealous about, Yng."`
+			`	That only makes Yngvar's face redder.`
+				goto route
+
+			label bolverkacalls
+			`	"Captain <last>!" You recognize Captain Bolverka's voice coming from the assembled haulers, "Stop gawking like a tourist and get over here!"`
+				goto sithere
+
+			label newoldfriendscall
+			`	"Captain <last>!" 	An unfamiliar voice coming from the assembled haulers, "Please, join me."`
+			`	As you get nearer you realize the person calling you is none other than Captain Bolverka of the Iron Siren. You've seen her around but hadn't had a chance to talk to her yet. She smiles and waves you toward her table. `
+				goto sitherefriend
+
+			label newoldfriends
+			`	"Captain <last>!" An unfamilar voice calls from the one of the tables. You look and realize it's coming from Captain Bolverka of the Iron Siren. You've seen her around but hadn't had a chance to talk to her yet. She smiles and waves you toward her table.`
+			label sitherefriend
+			`	She nods toward an empty chair next to her. She looks about middle aged, older than Unferth and Gunhilda, but quite a bit younger than Yngvar. She has close cropped brown hair and dark brown eyes. She watches you curiously as you take your seat.`
+			`	"Finally, a chance to speak with our illustrious hirthr, Captain <last>." She beams at you. "Can't believe we made it all the way to Lagrange without exchanging pleasenties."`
+			`	She leans over the table and offers you her hand, "Captain Matasuintha Bolverka."`
+			choice
+				`	(Shake her hand.)`
+					goto shake
+				`	(Refuse to shake her hand.)`
+			`	She withdraws her hand and nods slowly, "One of those germaphobes, right? Understandable, though I doubt you could catch anything on a station as clean as this one."`
+			`	She sits back down, "I know - my name's a bit of a handful, clearly my parents had it out for me. Most people just call me Bolverka."`
+				goto skadestuff
+
+			label shake
+			`	Her grip is strong and her shake enthuasiastic, "I know - my name's a bit of a handful, clearly my parents had it out for me. Most people just call me Bolverka."`
+			`	She release your hand and slips back into her seat.`
+			label skadestuff
+			`	She looks you over carefully, "I have to say, I heard what what happened with the Skadenga. I was wondering if you could answer a few questions for me?"`
+			choice
+				`	"Sure.`
+					goto yesskade
+				`	"I'd love to."`
+					goto yesskade
+				`	"I'd prefer not to talk about it."`
+					goto noskade
+				`	"No."`
+					goto noskade
+				`	"What kind of questions?"`
+			`	"Oh, nothing untoward. I follow the old ways myself. Have my very own stone stashed at home. It's why I am so curious, really." She gives you an earnest look, "Against all the odds the Skadenga held onto to all our old traditions. So much has been forgotten. I just want to hear about them."`
+			choice
+				`	"Alright, what do you want to know."`
+					goto yesskade
+				`	"I don't want to talk about them."`
+			label noskade
+			`	Bolverka looks disappointed, but nods, "Okay. I understand."`
+			`	The chair beside you screeches suddenly as Yngvar yanks it back and takes a seat.`
+			`	"Ah, I see you've met our resident stoner. Hopefully she's not boring you with pious tales about rocks!"`
+			label stonertalk
+			choice
+				`	"Stoner?"`
+					goto stoner
+				`	(Say nothing.)`
+			`	"You know, Yng, if you ever bothered to listen to one of your stories you'd realize just how fun they were. Besides, who are you to tease of us? You're practically a "stoner" yourself." Bolverka says with more affection than venom.`
+			label yngcont
+			`	"I'm a spacer, not a stoner! There ain't no stones with my life memories scribbled on them under my bed!" Yngvar retorts, and you suddenly feel like you're in the middle of an argument they've had a hundred times before.`
+			`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old station is about as stoner as it gets, with only the mildest of tweaks."`
+			`	Yngvar frowns, "A piece of high technology is as different from a stone as a dwarf planet from a sun."`
+			`	This time Bolverka rolls her eyes, "It's the symbolism that matters, not the... you know what? How about we ask the hirthr? Let them weigh in on the matter. They have some experience with us 'stoners'."`
+			`	"Fine." Yngvar grumbles, "What do you say, <last>? Are they the same thing? Or different?"`
+			label cairntalk
+			choice
+				`	"So there's a cairn of spacer stories, but instead of stones you use a piece of your ship?"`
+					goto cairn
+					to display
+						not "cairn"
+				`	"Your first ship, or your first stone, sounds like the same thing to me."`
+					goto samething
+				`	"A ship is not a stone. I'm with Yngvar on this one."`
+					goto shipnotstone
+				`	"Pass. I don't want to particpate in this."`
+			`	Both Yngvar and Bolverka give you unflattering frowns. "Fine," Yngvar says, "I thought you could do with a little culture, but if that's the case let's move onto business.`
+			`	He folds his thick arms, "We're halfway done with the Long Haul, congrats by the way on making it this far."`
+			`	Bolverka gives you an encouraging smile.`
+			`	"But now we gotta head back to Muspel. This side of the run isn't nearly as lucrative, but there's no sense in flying an empty fleet across the entirety of human space. 'Speciallyy after losing a third of it on Maker." He frowns at the memory.`
+				goto profit
+
+			label stoner
+			`	Yngvar chuckles, "Buncha stone-worshipping fools who think elves brought 'em to the Deep."`
+			`	"Yng, dear, you know that isn't the whole story." Bolverka says with mild exhasperation.`
+			`	"Listen, I ain't never seen no elf. But I've sure as Schwarzschild seen a lot of ships. You stoners are just the children of a lost generation ship who reverted to their primal natures is all."`
+			`	Bolverka sighs and taps her fingers on the table, "Generation ships? The ones that couldn't have possibly traveled to the Deep in the time you claim they did? That's nearly as outlandish as any story about elves."`
+			`	She pauses and then turns back to you, "Stoners is just what some folk in the Deep call those of us who follow the old ways. We don't necessarily believe it was elves that brought us here, but something did."`
+			`	"Generation ships." Yngvar grumbles."`
+			branch nogenerationshipchoice
+				not "generationship"
+
+			choice
+				`	"You think the same ships that brought your family here, also brought the stoners here?"`
+					goto genshipask
+				`	(Say nothing.)`
+			label nogenerationshipchoice
+			`	"Anyways, back to the topic at hand, Yng. You spacers are hardly any different from us so stop acting all superior." Bolverka says with more affection than venom.`
+				goto yngcont
+
+			label genshipask
+			action
+				set "generationship2"
+				clear "generationship"
+			`	Yngvar sighs, "It's a bit more complicated than that. Three of the earliest generation ships were sent to the Deep. It was a private affair using... let's say untested technology."`
+			`	Bolverka snorts, but says nothing else."`
+			`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they'd be the Folly's survivors."`
+			`	"And how exactly did one generation ship, without FTL technology, manage to seed half a dozen systems with these survivors?" Bolverka says sharply.`
+			`	"Wormholes? I don't know, woman, I don't have all the answers. But it makes more sense then elves!"`
+			`	Bolverka rolls her eyes, ""Anyways, back to the topic at hand, Yng. You spacers are hardly any different from us so stop acting all superior."`
+				goto yngcont
+
+			label cairn
+			action
+				set "cairn"
+			`	Bolverka grins, "Oh, you'll love this. You see each spacer takes a piece of the very first ship they served on, usually their family's..."`
+			`	"Hold on now!" Yngvar interjects, "I'm the spacer here, let me tell it."`
+			`	Bolverka holds up both hands in surrender, "Fine, fine. Tell your story, old man."`
+			`	"Haulers are a figurative, and often times literal, marriage of miners and spacers from the Caravan days. I'll admit after near 300 years, the differences 'tween the two groups have gotten more than a little muddled. These days most Haulers are a mix of both, they spend some time mining and some time spacing. But there's still a few of us, who to stick to one trade and one tradition."`
+			`	Bolverka yawns.`
+			`	Yngvar pointedly ignores her, "I was born on the Hauler's old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family served on it for centuries."`
+			`	"She was a beauty, what I wouldn't do to see her like fly again," Yngvar's clear eye sparkles, "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and keep with it with us for all our days. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to the Old Station where it's laid to rest."`
+			`	"So just like our stones." Bolverka says brightly.`
+			`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the Old Station they'll last forever. It's different, better, and more refined."`
+			`	"Sure, Yng," Bolverka turns her attention back to you, "So what do you say, greenhorn? Same thing, right?"`
+				goto cairntalk
+
+			label samething
+			action
+				set "yngvarstoner"
+			`	Bolverka beams, "Yngvar the space-stoner, maybe that's the song we oughta to be singing?"`
+			`	"Bah, what does <last> know about it anyways." Yngvar glares unhappily at Bolverka. "How about we get a little more productive and talk business."`
+			`	"Sure thing, hon." Bolverka says as she grins from ear to ear.`
+			`	Yngvar folds his thick arms, "We're halfway done with the Long Haul, congrats by the way on making it this far."`
+			`	Bolverka gives you an encouraging nod, "You made it all the way to Lagrange."`
+			`	"But now we gotta head back to Muspel. This side of the run isn't nearly as lucrative, but there's no sense in flying an empty fleet across the entirety of human space. 'Specially after losing a third of it on Maker." He frowns at the memory.`
+				goto profit
+
+			label shipnotstone
+			action
+				set "yngvarspacer"
+			`	"Ha!" Yngvar exclaims triumphantly, "I told you. It's different. It's more technical, more nuanced, more rational, more..."`
+			`	"...of the same." Bolverka interrupts.`
+			`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look, "Who knows what winning could cost you?"`
+			`	"I, uh..." Yngvar stammers and gropes unsuccessfully for words.`
+			`	Bolverka laughs, "Oh, Yng, we'll have plenty of time on Wayfarer for you to make it up to me. But, that's probably enough of that in front of the hirthr."`
+			`	"Right." Yngvar says, red-faced, "Let's get, uh, get back to business."`
+			`	Yngvar folds his thick arms, "We're halfway done with the Long Haul, congrats by the way on making it this far."`
+			`	Bolverka gives you an encouraging nod, "You made it all the way to Lagrange."`
+			`	"But now we gotta head back to Muspel. This side of the run isn't nearly as lucrative, but there's no sense in flying an empty fleet across the entirety of human space. 'Specially after losing a third of it on Maker." He frowns at the memory.`
+				goto profit
+
+			label yesskade
+			`	She looks relieved, "Oh, thank you. I'll restrict myself to just a few questions."`
+			`	`
 
 
 mission "Hroar's Haulers 18b"
