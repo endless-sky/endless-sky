@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DisplayText.h"
 #include "../GameData.h"
 #include "../image/ImageBuffer.h"
+#include "../image/ImageFileData.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
@@ -50,7 +51,7 @@ void Font::Load(const filesystem::path &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;
-	if(!image.Read(imagePath))
+	if(!image.Read(ImageFileData(imagePath)))
 		return;
 
 	LoadTexture(image);

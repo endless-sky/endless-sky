@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstring>
 #include <ctime>
 #include <functional>
 #include <iterator>
@@ -1523,7 +1524,7 @@ void PlayerInfo::Land(UI *ui)
 
 	if(!freshlyLoaded)
 	{
-		Audio::Play(Audio::Get("landing"));
+		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
 		Audio::PlayMusic(planet->MusicName());
 	}
 
@@ -1669,7 +1670,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 		return false;
 
 	shouldLaunch = false;
-	Audio::Play(Audio::Get("takeoff"));
+	Audio::Play(Audio::Get("takeoff"), SoundCategory::ENGINE);
 
 	// Jobs are only available when you are landed.
 	availableJobs.clear();
