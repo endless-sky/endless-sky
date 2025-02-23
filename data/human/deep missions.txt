@@ -2708,6 +2708,8 @@ mission "Stone of our Fathers 4"
 				`	(Ask about the elves.)`
 				`	(Ask about lost treasure.)`
 					goto treasure
+			action
+				set "askedThor"
 			`	The idea of Elves, or Alfar as they call them, intrigues you, and you ask what they know of them.`
 			`	"The Alfar," Thorleif begins, "are said to have been a great help to us in the early days. Some say they spared us from plagues and protected us from monsters. Many still offer sacrifices and prayers to them, so that they remember us and know that we are friends and allies still."`
 			`	Thorleif shrugs. "This may be true, and good at that, but others think the Alfar, for all their apparent good works, cannot be trusted. Their minds are unknowable and filled with mischief, and their aims are not ours. This is the belief that our family holds to. They should be respected, but also feared. We must look to each other for support and strength, and trust not in the deeds of strangers."`
@@ -6737,7 +6739,48 @@ mission "Hroar's Haulers 18"
 
 			label yesskade
 			`	She looks relieved, "Oh, thank you. I'll restrict myself to just a few questions."`
-			`	`
+			`	"Did they tell you how they think they got here? Did they say it was elves?"`
+			choice
+				`	The Ondurdis, a sort of village chieftess, told me the elves, or alfar, brought them here."`
+					goto alfar
+					to display
+						has "Home for Skadenga 13: offered"
+				`	"I didn't ask."`
+					goto nonews
+					to display
+						not "Home for Skadenga 13: offered"
+				`	"They didn't tell me. But I did speak to a rustic islander on Norn who believed strongly in the old ways. He told me the alfar brought them here."`
+					goto nornfun
+					to display
+						not "Home for Skadenga 13: offered"
+						has "askedThor"
+				`	"I don't really remember."`
+			`	She frowns, "Suppose I shouldn't have gotten my hopes up."`
+			`	Bolverka takes a breath, "Okay, what about this; did they have any stones or talismen that had unusual properties?"`
+			label questiontwo
+			choice
+				`	"Yes. I was gifted a Tear of Skade. It appears to have no energy source, but is always cold."`
+					goto tear
+					to display
+						has "outfit (all): Tear of Skade"
+				`	"Not from them. However, a scion of the Deep gifted me red stone called the Blood of Surtr. It appears to have no energy source, but radiates warmth and power."`
+					goto blood
+					to display
+						has "outfit (all): Blood of Surtr"
+						not "outfit (all): Tear of Skade"
+				`	"I never saw anything like that."`
+					to display
+						not "outfit (all): Blood of Surtr"
+						not "outfit (all): Tear of Skade"
+
+			label alfar
+			`	Her eyes go wide, "They said this? Did-did they say anything else about these alfar?"`
+			choice
+				`	"That they couldn't be trusted."`
+				`	"That there was an another group, the Huldufolk who were related to the Elf-Stones."`
+				`	"No. Nothing else."`
+			` She nods vigoruously," Still, that is enough. Okay, next question; did they have any stones or talismen that had unusual properties?"`
+
 
 
 mission "Hroar's Haulers 18b"
