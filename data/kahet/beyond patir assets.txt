@@ -1575,121 +1575,76 @@ outfit "Asteroid Jump Drive"
 # The "ajump drive" effect doesn't exist, but serve to reduce the number of effects spawned: as it always shows the same overall number, by showing empty ones it effectively reduces the visual bloat during the jump
 
 effect "jump drive 1"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 2"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 3"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 4"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 5"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 6"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 7"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 8"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 9"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 10"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 11"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 12"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 13"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 14"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
 
 effect "jump drive 15"
-	sprite "effect/ajump drive"
-		"no repeat"
-		"frame rate" 12
 	"lifetime" 10
 	"random angle" 180
 	"velocity scale" 0.
@@ -2490,10 +2445,6 @@ outfit "Asteroid Weapon Super"
 
 outfit "asteroid fragment"
 	weapon
-		sprite "projectile/lotus"
-			"frame time" 10
-			"start frame" 0
-			"no repeat"
 		"submunition" "spin1 print right"
 		"submunition" "spin1 print left"
 		"inaccuracy" 360
