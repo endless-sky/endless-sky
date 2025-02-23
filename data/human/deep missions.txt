@@ -6489,11 +6489,11 @@ mission "Hroar's Haulers 18"
 					goto Earth
 					to display
 						not "earthreason"
-				`	"Kormak?"`
+				`	"Wait, you know Kormak?"`
 					goto Kormak
 					to display
 						has "soggymention"
-						has ""
+						has "Tavish and Kormak 2: done"
 				`	"Sounds good. When do we leave?"`
 			`	"We need a little breather after all the traveling we've done. Give the ships a good once over before heading out again." Yngvar begins.`
 			`	"And some well earned R&R for the crews." Bolverka interjects.`
@@ -6561,7 +6561,8 @@ mission "Hroar's Haulers 18"
 			`	"Anyways, that's what why we're making a pistop at Earth."`
 				goto route
 
-
+			label Kormak
+			`	Bolverka tilts her, "Why, yes! What a small universe. `
 
 
 mission "Hroar's Haulers 18b"
