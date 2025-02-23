@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BoardingPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
@@ -38,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <utility>
 
 using namespace std;
@@ -62,6 +64,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
 	attackOdds(*you, *victim), defenseOdds(*victim, *you)
 {
+	Audio::Pause();
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
 
@@ -113,6 +116,13 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
+}
+
+
+
+BoardingPanel::~BoardingPanel()
+{
+	Audio::Resume();
 }
 
 

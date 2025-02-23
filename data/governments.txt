@@ -11,6 +11,29 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+government "Aberrant"
+	swizzle 0
+	language "Ka'het"
+	color 0.4 0.4 0.7
+
+	"player reputation" -1000
+	"default attitude" -.01
+	"attitude toward"
+		"Author" 0
+		"Drak" 0
+		"Indigenous Lifeform (Subsidurial)" 0
+		"Indigenous Lifeform (Tree)" 0
+		"Indigenous Lifeform (Tree Two)" 0
+		"Ka'sei" 0
+
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
 government "Alpha"
 	swizzle 1
 	"crew attack" 1.5
@@ -24,6 +47,190 @@ government "Author"
 	"bribe" 0
 	"friendly disabled hail" "friendly disabled"
 	"hostile disabled hail" "hostile disabled"
+
+color "governments: Avgi" 0 0.72 0.84
+
+government "Avgi"
+	swizzle 15
+	language "Avgi"
+	color "governments: Avgi"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi (Consonance)" 0.5
+		"Avgi (Twilight Guard)" 0.5
+		"Avgi (Dissonance)" 0.01
+		"Avgi (Dissonance Angry)" -0.05
+		"Aberrant" -0.1
+
+	"penalty for"
+		atrocity 0
+
+	bribe 0.3
+	fine 0
+
+	"friendly hail" "friendly avgi"
+	"friendly disabled hail" "friendly disabled avgi"
+	"hostile hail" "hostile avgi"
+	"hostile disabled hail" "hostile disabled avgi"
+
+government "Avgi (Consonance)"
+	"display name" "Consonance"
+	swizzle 15
+	language "Avgi"
+	color "governments: Avgi"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Dissonance)" 0.1
+		"Avgi (Dissonance Angry)" -0.05
+		"Aberrant" -0.1
+
+	"penalty for"
+		disable 0.3
+		board 0.2
+		capture 3
+		destroy 2
+		atrocity 0
+
+	bribe 0.3
+	fine 0
+
+	"friendly hail" "friendly avgi"
+	"friendly disabled hail" "friendly disabled avgi"
+	"hostile hail" "hostile avgi"
+	"hostile disabled hail" "hostile disabled avgi"
+
+color "governments: Twilight Guard" 0.12 0.18 0.69
+
+government "Avgi (Twilight Guard)"
+	"display name" "Twilight Guard"
+	swizzle 12
+	language "Avgi"
+	color "governments: Twilight Guard"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance)" 1
+		"Avgi (Dissonance)" 0.1
+		"Avgi (Dissonance Angry)" -0.05
+		"Aberrant" -0.1
+
+	"penalty for"
+		disable 0.3
+		board 0.2
+		capture 3
+		destroy 2
+		provoke 0.1
+		atrocity 0
+
+	bribe 0
+	fine 0
+
+	"friendly hail" "friendly twilight guard"
+	"friendly disabled hail" "friendly disabled twilight guard"
+	"hostile hail" "hostile twilight guard"
+	"hostile disabled hail" "hostile disabled twilight guard"
+
+
+color "governments: Dissonance" 1 0 0.588
+
+government "Avgi (Dissonance)"
+	"display name" "Dissonance"
+	swizzle 1
+	language "Avgi"
+	color "governments: Dissonance"
+
+	"player reputation" 1
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance)" 0.01
+		"Avgi (Twilight Guard)" 0.01
+		"Avgi (Dissonance Angry)" 0.01
+		"Aberrant" -0.01
+
+	"penalty for"
+		atrocity 0
+
+	"custom penalties for"
+		"Avgi (Dissonance Angry)"
+			disable 0
+			board 0.1
+			capture 1
+			destroy 1
+			provoke 0
+			atrocity 0
+
+	bribe 0.3
+	fine 0
+
+	"friendly hail" "friendly dissonance"
+	"friendly disabled hail" "friendly disabled dissonance"
+	"hostile hail" "hostile dissonance"
+	"hostile disabled hail" "hostile disabled dissonance"
+
+government "Avgi (Dissonance Angry)"
+	"display name" "Dissonance"
+	swizzle 1
+	language "Avgi"
+	color "governments: Dissonance"
+	"player reputation" 0
+
+	"attitude toward"
+		"Avgi" -0.01
+		"Avgi (Consonance)" -0.05
+		"Avgi (Twilight Guard)" -0.05
+		"Avgi (Dissonance)" 1
+		"Aberrant" -0.01
+
+	"penalty for"
+		atrocity 0
+
+	bribe 0.3
+	fine 0
+
+	"friendly hail" "friendly dissonance"
+	"friendly disabled hail" "friendly disabled dissonance"
+	"hostile hail" "hostile dissonance"
+	"hostile disabled hail" "hostile disabled dissonance"
+	raid "Large Dissonance Pirates"
+
+
+color "governments: Wandering Fleet" 0.9 0.72 0.12
+
+government "Avgi (Wandering Fleet)"
+	"display name" "Wandering Fleet"
+	swizzle 22
+	language "Avgi"
+	color "governments: Wandering Fleet"
+
+	"player reputation" 0
+	"attitude toward"
+		"Avgi" 1
+		"Avgi (Consonance)" 0.01
+		"Avgi (Twilight Guard)" 0.01
+		"Avgi (Dissonance)" 0.01
+		"Aberrant" -0.1
+
+	"penalty for"
+		disable 1
+		board 1
+		capture 3
+		destroy 2
+		provoke 0.1
+		scan 0.01
+		atrocity 0
+
+	bribe 0
+	fine 0
+
+	"travel restrictions"
+		system "Arche"
+		system "Ballad"
+		system "Ensemble"
+		system "Prelude"
 
 government "Bad Trip"
 	swizzle 0
@@ -173,6 +380,7 @@ government "Coalition"
 	"crew defense" 3
 	language "Coalition"
 	"player reputation" 1
+	"bribe" 0
 	"attitude toward"
 		"Heliarch" 1
 	"friendly hail" "friendly coalition"
@@ -677,6 +885,20 @@ government "Hai (Unfettered)"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
 
+government "Hai (Unfettered Challenger)"
+	"display name" "Hai (Unfettered)"
+	swizzle 5
+	"crew attack" 1.4
+	"crew defense" 2.2
+
+	"player reputation" -1000
+	"bribe" .02
+	"fine" 0
+	"friendly hail" "friendly unfettered"
+	"friendly disabled hail" "friendly disabled unfettered"
+	"hostile hail" "hostile unfettered"
+	"hostile disabled hail" "hostile disabled unfettered"
+
 government "Hai (Unfettered Wanderer Tribute)"
 	swizzle 4
 	"display name" "Hai (Unfettered)"
@@ -733,6 +955,7 @@ government "Heliarch"
 	"crew attack" 1.3
 	"crew defense" 2.8
 	"player reputation" 1
+	"bribe" 0
 	"friendly hail" "friendly heliarch"
 	"friendly disabled hail" "friendly disabled heliarch"
 	"hostile hail" "hostile heliarch"
@@ -970,11 +1193,63 @@ government "Indigenous Lifeform (Astral)"
 		destroy 0
 		atrocity 0
 
+government "Indigenous Lifeform (Tree)"
+	"display name" "Indigenous Lifeform"
+	"bribe" 0
+	swizzle 26
+
+	# Nothing you do permanently angers indigenous creatures, because they are
+	# not sentient and do not remember you as an individual.
+	"player reputation" 1
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
+government "Indigenous Lifeform (Tree Two)"
+	"display name" "Indigenous Lifeform"
+	"bribe" 0
+	swizzle 14
+
+	# Nothing you do permanently angers indigenous creatures, because they are
+	# not sentient and do not remember you as an individual.
+	"player reputation" 1
+	
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
+government "Indigenous Lifeform (Subsidurial)"
+	# This indigenous gov is specifically for the Subsidurial, so that nothing in the game tries to hurt the poor thing.
+	"player reputation" 1
+	"display name" "Indigenous Lifeform"
+	"bribe" 0
+	"fine" 0
+
+	"penalty for"
+		assist 0
+		disable 0
+		board 0
+		capture 0
+		destroy 0
+		atrocity 0
+
 government "Ka'het"
 	swizzle 0
 	language "Ka'het"
 
 	"default attitude" -.01
+	"attitude toward"
+		"Author" 0
+		"Indigenous Lifeform (Subsidurial)" 0
 	
 	"player reputation" -1
 
@@ -985,6 +1260,9 @@ government "Ka'het (Infighting)"
 	language "Ka'het"
 
 	"default attitude" -.01
+	"attitude toward"
+		"Author" 0
+		"Indigenous Lifeform (Subsidurial)" 0
 	
 	"player reputation" -1
 
@@ -1104,6 +1382,7 @@ government "Lunarium"
 	"crew defense" 2.7
 	language "Coalition"
 	"player reputation" 1
+	"bribe" 0
 	"friendly hail" "friendly lunarium"
 	"friendly disabled hail" "friendly disabled lunarium"
 	"hostile hail" "hostile lunarium"
@@ -1120,6 +1399,7 @@ government "Lunarium (Hidden)"
 	"crew defense" 2.7
 	language "Coalition"
 	"player reputation" 1
+	"bribe" 0
 	"friendly hail" "friendly lunarium"
 	"friendly disabled hail" "friendly disabled lunarium"
 	"hostile hail" "hostile lunarium"

@@ -42,7 +42,7 @@ namespace {
 
 MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
 		const MapDetailPanel *parent)
-	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.Name())
+	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.DisplayName())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasServices();
