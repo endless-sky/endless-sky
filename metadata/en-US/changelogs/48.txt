@@ -1,0 +1,2 @@
+* Update to 0.10.12
+* Add fleet jump button
