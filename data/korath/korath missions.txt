@@ -734,7 +734,7 @@ mission "Korath [F00]: A Fishy Planet"
 		conversation
 			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they are ten meters thick, made of an unfamiliar brown material. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
 			`	Spaceport authorities direct you to bay 23X-5. As you run through your post-flight check, an odd ship comes in behind you and hastily settles down onto the next pad. It resembles an old-fashioned jet aircraft, whose four jet engines have been replaced with small ion engines. From the gold pipes on the tail, it appears to have a hyperdrive built into the hull. You make a mental note to ask about it when its captain is available.`
-		decline
+				decline
 
 mission "Korath [F01]: A Fishy Deal"
 	name "A fishy proposition"
