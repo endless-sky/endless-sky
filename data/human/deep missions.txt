@@ -6636,6 +6636,7 @@ mission "Hroar's Haulers 18"
 				`	"I don't want to talk about them."`
 			label noskade
 			`	Bolverka looks disappointed, but nods, "Okay. I understand."`
+			label yngvarjoins
 			`	The chair beside you screeches suddenly as Yngvar yanks it back and takes a seat.`
 			`	"Ah, I see you've met our resident stoner. Hopefully she's not boring you with pious tales about rocks!"`
 			label stonertalk
@@ -6673,6 +6674,11 @@ mission "Hroar's Haulers 18"
 			`	"Listen, I ain't never seen no elf. But I've sure as Schwarzschild seen a lot of ships. You stoners are just the children of a lost generation ship who reverted to their primal natures is all."`
 			`	Bolverka sighs and taps her fingers on the table, "Generation ships? The ones that couldn't have possibly traveled to the Deep in the time you claim they did? That's nearly as outlandish as any story about elves."`
 			`	She pauses and then turns back to you, "Stoners is just what some folk in the Deep call those of us who follow the old ways. We don't necessarily believe it was elves that brought us here, but something did."`
+				to display
+					not "stonerquestions"
+			`	She pauses and then turns back to you, "As you've probably guessed from my questions about the Skadenga; 'stoners' is just what some folk in the Deep call those of us who follow the old ways."`
+				to display
+					has "stonerquestions"
 			`	"Generation ships." Yngvar grumbles."`
 			branch nogenerationshipchoice
 				not "generationship"
@@ -6763,24 +6769,68 @@ mission "Hroar's Haulers 18"
 					goto tear
 					to display
 						has "outfit (all): Tear of Skade"
-				`	"Not from them. However, a scion of the Deep gifted me red stone called the Blood of Surtr. It appears to have no energy source, but radiates warmth and power."`
-					goto blood
+				`	"Not from them. However, a scion of the Deep gifted me a red stone called the Blood of Surtr. It appears to have no energy source, but radiates warmth and power."`
+					goto tear
 					to display
 						has "outfit (all): Blood of Surtr"
 						not "outfit (all): Tear of Skade"
 				`	"I never saw anything like that."`
-					to display
-						not "outfit (all): Blood of Surtr"
-						not "outfit (all): Tear of Skade"
+			`	She looks slightly downcast, "Of course, the Deep stones were just outlandish rumors. Unlikely to ever really be true."`
+			`	"Okay, one last question. What did you think of the Skadenga? Were they... believeable? Or just... misguided?"`
+			label lastquestion
+			action
+				set "stonerquestions"
+			choice
+				`	"There was truth there. More then what I found in the so called civilized places of wealth and power."`
+					goto believe
+				`	"I believed them. Yes."`
+					goto believe
+				`	"They were well meaning, but utterly confused."`
+					goto heresy
+				`	"Misguded savages, the lot of them."`
+					goto heresy
+				`	"I'd rather not say."`
+			`	"Yes. Yes. We each have to find our own way to truth. I shouldn't be asking for yours. You're right of course." `
+			`	She clears her thought, "Ahem, Thank you for indulging me."`
+				goto yngvarjoins
 
 			label alfar
 			`	Her eyes go wide, "They said this? Did-did they say anything else about these alfar?"`
 			choice
 				`	"That they couldn't be trusted."`
-				`	"That there was an another group, the Huldufolk who were related to the Elf-Stones."`
+					goto trusted
+				`	"That there was an another group, the Hudulfolk, who were related to the Elf-Stones."`
+					goto hidden
 				`	"No. Nothing else."`
 			` She nods vigoruously," Still, that is enough. Okay, next question; did they have any stones or talismen that had unusual properties?"`
+				goto questiontwo
+			
+			label trusted
+			`	"That makes sense. Our earliest folklore always warns against trusting elves."`
+			`	"Okay, one last question. What did you think of the Skadenga? Were they... believeable? Or just... misguided?"`
+				goto lastquestion
 
+			label hidden
+			`	"The Hudulfolk." She says the word slowly, carefully, revently. "The Elf-Stones have always been mystery; it never crossed my mind that they could have been built by a different species than those who brought us here."`
+			`	"Okay, one last question. What did you think of the Skadenga? Were they... believeable? Or just... misguided?"`
+				goto lastquestion
+
+			label tear
+			`	"A Deep stone." She whispers to herself, "They were only legends. Rumors of legends. Myths."`
+			`	She shakes her head, "That's amazing, truly. For most of us we only have our faith to guide us, but you have the real thing."`
+			`	"A final question then." She swollows, "What about the Skadenga themselves? Did they feel authentic... beleivable? A shade of what things were before and could be today? Or were they just... misguided? Disconnected? Cultish?"`
+				goto lastquestion
+			
+			label believe
+			`	Bolverka's breathing heavily, "I knew it. I knew it was true." She says in a whisper to herself.`
+			`	"All these years I knew the old ways weren't just some confused tradition." She looks elated.`
+			`	"Thank you, <last>. Thank you for sharing that with me. You don't know what it means."`
+				goto yngvarjoins
+
+			label heresy
+			`	Bolverka nearly chokes, "I...I suppose it makes sense. I mean, do they even have written records? It's unlikely anything could have been remembered, retained, from so long ago."`
+			`	She takes a deep breath and quickly wipes her eyes. "I appreciate you being honest with me, Captain <last>. It's good to know."`
+				goto yngvarjoins
 
 
 mission "Hroar's Haulers 18b"
