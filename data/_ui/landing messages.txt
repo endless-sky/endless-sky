@@ -91,6 +91,8 @@
 "landing message" "You cannot land on a black hole!"
 	"star/black-hole"
 	"star/black-hole-core"
+	"star/small-black-hole"
+	"star/coal-black-hole"
 
 "landing message" "You cannot land on this part of the Dyson sphere."
 	"planet/dyson1"
@@ -104,3 +106,10 @@
 	"planet/browndwarf-t-rogue"
 	"planet/browndwarf-y"
 	"planet/browndwarf-y-rogue"
+
+"landing message" "This environment is too hostile for your ship to land in."
+	"star/nova-small"
+	"star/nova"
+	"star/nova-old"
+	"star/nova-core"
+	"star/nova-old-core"

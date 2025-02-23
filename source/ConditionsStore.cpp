@@ -47,13 +47,6 @@ void ConditionsStore::DerivedProvider::SetSetFunction(function<bool(const string
 
 
 
-void ConditionsStore::DerivedProvider::SetEraseFunction(function<bool(const string &)> newEraseFun)
-{
-	eraseFunction = std::move(newEraseFun);
-}
-
-
-
 ConditionsStore::ConditionEntry::operator int64_t() const
 {
 	if(!provider)
@@ -164,7 +157,11 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
+	{
+		if(!DataNode::IsConditionName(child.Token(0)))
+			child.PrintTrace("Invalid condition during savegame-load:");
 		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+	}
 }
 
 
@@ -236,24 +233,6 @@ bool ConditionsStore::Set(const string &name, int64_t value)
 		return true;
 	}
 	return ce->provider->setFunction(name, value);
-}
-
-
-
-// Erase a condition completely, either the local value or by performing
-// an erase on the provider.
-bool ConditionsStore::Erase(const string &name)
-{
-	ConditionEntry *ce = GetEntry(name);
-	if(!ce)
-		return true;
-
-	if(!(ce->provider))
-	{
-		storage.erase(name);
-		return true;
-	}
-	return ce->provider->eraseFunction(name);
 }
 
 

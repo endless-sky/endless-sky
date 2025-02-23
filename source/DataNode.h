@@ -64,6 +64,8 @@ public:
 	// as a string.
 	bool IsBool(int index) const;
 	static bool IsBool(const std::string &token);
+	// Check if the token can be used as name for a condition.
+	static bool IsConditionName(const std::string &token);
 
 	// Add a new child. The child's parent must be this node.
 	void AddChild(const DataNode &child);
