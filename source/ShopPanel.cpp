@@ -1232,13 +1232,45 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 					playerShips.insert(itShip);
 			}
 	}
-	else if(playerShips.contains(ship))
+	else
 	{
-		playerShips.erase(ship);
-		if(playerShip == ship)
-			playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
-		CheckSelection();
-		return;
+		if(clicks > 1)
+		{
+			vector<Ship *> similarShips;
+			// If the ship isn't selected now, it was selected at the beginning of the whole "double click" action,
+			// because the first click was handled normally.
+			bool unselect = !playerShips.contains(ship);
+			for(const shared_ptr<Ship> &it : player.Ships())
+			{
+				Ship *itShip = it.get();
+				if(itShip != ship && itShip->Immitates(*ship))
+				{
+					similarShips.push_back(itShip);
+					unselect &= playerShips.contains(itShip);
+				}
+			}
+			for(Ship *it : similarShips)
+			{
+				if(unselect)
+					playerShips.erase(it);
+				else
+					playerShips.insert(it);
+			}
+			if(unselect && find(similarShips.begin(), similarShips.end(), playerShip) != similarShips.end())
+			{
+				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+				CheckSelection();
+				return;
+			}
+		}
+		else if(playerShips.contains(ship))
+		{
+			playerShips.erase(ship);
+			if(playerShip == ship)
+				playerShip = playerShips.empty() ? nullptr : *playerShips.begin();
+			CheckSelection();
+			return;
+		}
 	}
 
 	playerShip = ship;
