@@ -275,11 +275,18 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		{
 			double radius = child.Value(valueIndex);
 			if(remove)
-				erase(belts, radius);
+			{
+				for(auto it = belts.begin(); it != belts.end(); ++it)
+					if(it->Radius() == radius)
+					{
+						belts.erase(it, it);
+						break;
+					}
+			}
 			else
 			{
 				int weight = (child.Size() >= valueIndex + 2) ? max<int>(1, child.Value(valueIndex + 1)) : 1;
-				belts.emplace_back(weight, radius);
+				belts.emplace_back(weight, radius, child);
 			}
 		}
 		else if(key == "object")
@@ -769,13 +776,13 @@ double System::HabitableZone() const
 // Get the radius of an asteroid belt.
 double System::AsteroidBeltRadius() const
 {
-	return belts.Get();
+	return belts.Get().Radius();
 }
 
 
 
 // Get the list of asteroid belts.
-const WeightedList<double> &System::AsteroidBelts() const
+const WeightedList<AsteroidBelt> &System::AsteroidBelts() const
 {
 	return belts;
 }

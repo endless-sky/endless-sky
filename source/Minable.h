@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class AsteroidBelt;
 class DataNode;
 class Effect;
 class Flotsam;
@@ -71,7 +72,7 @@ public:
 
 	// Place a minable object with up to the given energy level, on a random
 	// orbit and a random position along that orbit.
-	void Place(double energy, double beltRadius);
+	void Place(double energy, const AsteroidBelt &belt);
 
 	// Move the object forward one step. If it has been reduced to zero hull, it
 	// will "explode" instead of moving, creating flotsam and explosion effects.
