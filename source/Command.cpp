@@ -73,7 +73,7 @@ const Command Command::BOARD(ONE << 20, "Board selected ship");
 const Command Command::HAIL(ONE << 21, "Talk to selected ship");
 const Command Command::SCAN(ONE << 22, "Scan selected ship");
 const Command Command::JUMP(ONE << 23, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(ONE << 24, "");
+const Command Command::FLEET_JUMP(ONE << 24, "Initiate fleet jump");
 const Command Command::TARGET(ONE << 25, "Select next ship");
 const Command Command::NEAREST(ONE << 26, "Select nearest hostile ship");
 const Command Command::NEAREST_ASTEROID(ONE << 27, "Select nearest asteroid");
