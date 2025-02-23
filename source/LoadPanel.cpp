@@ -651,8 +651,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesystem::path &snapshotName)
 {
 	// Copy the autosave to a new, named file.
-	Files::Copy(sourceFile, snapshotName);
-	if(Files::Exists(snapshotName))
+	if(Files::Copy(sourceFile, snapshotName))
 	{
 		UpdateLists();
 		selectedFile = Files::Name(snapshotName);

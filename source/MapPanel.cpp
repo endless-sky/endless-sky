@@ -947,7 +947,7 @@ Color MapPanel::UninhabitedColor()
 
 Color MapPanel::UnexploredColor()
 {
-	return Color(.1, 0.);
+	return *GameData::Colors().Get("map system ring unexplored");
 }
 
 

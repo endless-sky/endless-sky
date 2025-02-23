@@ -913,6 +913,11 @@ void AI::Step(Command &activeCommands)
 					|| shipToAssist->GetGovernment()->IsEnemy(gov)
 					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel() && !shipToAssist->NeedsEnergy()))
 			{
+				if(target == shipToAssist)
+				{
+					target.reset();
+					it->SetTargetShip(nullptr);
+				}
 				shipToAssist.reset();
 				it->SetShipToAssist(nullptr);
 			}
