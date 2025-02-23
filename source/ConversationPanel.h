@@ -86,7 +86,8 @@ private:
 	// may also include "scene" images.
 	class Paragraph {
 	public:
-		explicit Paragraph(const std::string &text, const Sprite *scene = nullptr, bool isFirst = false);
+		explicit Paragraph(const std::string &text, const Sprite *scene = nullptr, bool isFirst = false,
+			bool leadsToDecline = false);
 
 		// Get the height of this paragraph.
 		int Height() const;
@@ -95,7 +96,9 @@ private:
 		Point Center() const;
 		// Draw this paragraph at the given point, and return the point that the
 		// next paragraph below this one should be drawn at.
+		Point Draw(Point point, const Color &color, const Color *warningColor) const;
 		Point Draw(Point point, const Color &color) const;
+		bool LeadsToDecline() const;
 
 	private:
 		const Sprite *scene = nullptr;
@@ -103,6 +106,7 @@ private:
 		// Special case: if this is the very first paragraph and it begins with
 		// a "scene" image, there is no need for padding above the image.
 		bool isFirst = false;
+		bool leadsToDecline = false;
 	};
 
 
