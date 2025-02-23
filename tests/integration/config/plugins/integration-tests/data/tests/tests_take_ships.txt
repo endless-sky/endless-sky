@@ -108,12 +108,12 @@ test-data "Checking For A Gifted Ship Test Save"
 test-data "Checking For A Gifted Ship Test Missions"
 	category mission
 	contents
-		mission "%TEST%: Check sparrow"
+		mission "TEST: Check sparrow"
 			landing
 			on offer
 				take ship "Sparrow" "The Sparrow"
 					id "ship: sparrow"
-		mission "%TEST%: Switch"
+		mission "TEST: Switch"
 			landing
 			on offer
 				take ship "Star Barge"
@@ -138,8 +138,8 @@ test "Checking For A Gifted Ship"
 			"ship model: Heavy Shuttle" == 1
 			"ship model: Star Barge" == 0
 			"ship model: Sparrow" == 1
-			"%TEST%: Switch: offered" == 1
-			"%TEST%: Check sparrow: offered" == 0
+			"TEST: Switch: offered" == 1
+			"TEST: Check sparrow: offered" == 0
 		# Reload this to make sure the UUID is well stored into the savefile.
 		call "Open Menu"
 		call "Load First Savegame"
@@ -151,8 +151,8 @@ test "Checking For A Gifted Ship"
 			"ship model: Heavy Shuttle" == 1
 			"ship model: Star Barge" == 0
 			"ship model: Sparrow" == 0
-			"%TEST%: Switch: offered" == 1
-			"%TEST%: Check sparrow: offered" == 1
+			"TEST: Switch: offered" == 1
+			"TEST: Check sparrow: offered" == 1
 
 
 test-data "Taking Ship With Outfits And Unconstrained Test Save"
@@ -249,19 +249,19 @@ test-data "Taking Ship With Outfits And Unconstrained Test Save"
 test-data "Taking Ship With Outfits And Unconstrained Test Missions"
 	category mission
 	contents
-		mission "%TEST%: Switch"
+		mission "TEST: Switch"
 			landing
 			on offer
 				# the ship is not here
 				take ship "Star Barge (Armed)"
 					"require outfits"
-		mission "%TEST%: Switch 2"
+		mission "TEST: Switch 2"
 			landing
 			on offer
 				# incorrect ship name
 				take ship "Star Barge (Armed)" "Well defended"
 					unconstrained
-		mission "%TEST%: Switch 3"
+		mission "TEST: Switch 3"
 			landing
 			on offer
 				# correct, takes the other ship
@@ -287,6 +287,6 @@ test "Taking Ship With Outfits And Unconstrained"
 		assert
 			"flagship model: Star Barge" == 1
 			"ship model (all): Star Barge" == 1
-			"%TEST%: Switch: offered" == 0
-			"%TEST%: Switch 2: offered" == 0
-			"%TEST%: Switch 3: offered" == 1
+			"TEST: Switch: offered" == 0
+			"TEST: Switch 2: offered" == 0
+			"TEST: Switch 3: offered" == 1
