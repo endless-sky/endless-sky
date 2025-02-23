@@ -770,7 +770,8 @@ mission "Korath [F01]: A Fishy Deal"
 					goto yup
 					to display
 						has "Korath [F01]: A Fishy Deal: mission"
-				`	"I wish I could help, but I have urgent matters of my own."`
+				`	"I wish I could help, but I do not want to get involved with this."`
+					decline
 					to display
 						or
 							has "Korath [F01]: A Fishy Deal: ship"
