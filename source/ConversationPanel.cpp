@@ -260,7 +260,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
 		// Don't allow characters that can't be used in a file name.
-		static constexpr string FORBIDDEN = "/\\?*:|\"<>~";
+		static constexpr string FORBIDDEN{"/\\?*:|\"<>~"};
 		// Prevent the name from being so large that it cannot be saved.
 		// Most path components can be at most 255 bytes.
 		size_t MAX_NAME_LENGTH = 250;
