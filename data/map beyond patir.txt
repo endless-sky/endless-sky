@@ -37,6 +37,22 @@ system Athiri
 		period 1
 		offset 35
 
+system Balnii
+	pos 10268.3 -359.3
+	haze _menu/haze-sarifa
+	arrival 1100
+	habitable 360
+	belt 1497
+	fleet "Magic Asteroid" 900
+	hazard "Balnii Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 2
+	object
+		sprite "star/big black hole core"
+		period 1
+	object
+		sprite "star/big black hole"
+		period 1
+
 system Chanai
 	pos 9883.5 -34.5
 	haze _menu/haze-chanai
@@ -161,22 +177,6 @@ system Thepa
 		period 1
 	object
 		sprite "star/black hole 6"
-		period 1
-
-system Balnii
-	pos 10268.3 -359.3
-	haze _menu/haze-sarifa
-	arrival 1100
-	habitable 360
-	belt 1497
-	fleet "Magic Asteroid" 900
-	hazard "Balnii Black Hole Event Horizon" 1
-	hazard "Black Hole Gravity" 2
-	object
-		sprite "star/big black hole core"
-		period 1
-	object
-		sprite "star/big black hole"
 		period 1
 
 planet "One-Way Wormhole Entrance"

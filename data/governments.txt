@@ -978,8 +978,9 @@ government "Ka'het"
 	
 	"player reputation" -1
 
-# A government used to cause infighting between fleets that both appear to be the Ka'het government.
+
 government "Ka'het (Infighting)"
+	# A government used to cause infighting between fleets that both appear to be the Ka'het government.
 	"display name" "Ka'het"
 	swizzle 0
 	language "Ka'het"
@@ -999,10 +1000,10 @@ government "Ka'sei"
 		capture 0
 	"player reputation" 1
 
-color "governments: Korath Exiles" .8 .5 .1
 
-# Used only by the Patir Mystery mission in question
+
 government "Ka'sei (12A)"
+	# Used only by the Patir Mystery mission in question
 	"display name" "Ka'sei"
 	swizzle 0
 	language "Ka'het"
@@ -1017,6 +1018,9 @@ government "Ka'sei (12A)"
 	"friendly disabled hail" "friendly disabled ka'het"
 	"hostile hail" "hostile ka'het"
 	"hostile disabled hail" "hostile disabled ka'het"
+
+color "governments: Korath Exiles" .8 .5 .1
+
 
 government "Korath"
 	swizzle 0
