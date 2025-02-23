@@ -442,7 +442,7 @@ mission "Jibauni: Dran-lin 0"
 					goto decline
 			`	"Would you be willing to transport me, Dran-lin, to the planet of <planet>? I would be interested in seeing the Rebel Jibauni and how they operate. I may end up joining them, or else I will ask you to take me back to a Jibauni planet."`
 			choice
-				`	"As long as I am not responsible for any occurences, I'll take you."`
+				`	"As long as I am not responsible for anything that happens there, I'll take you."`
 					accept
 				`	"You know, the Rebel Jibauni are bad creatures. Are you sure you want to go?"`
 					goto rebelsbad
