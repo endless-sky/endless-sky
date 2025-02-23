@@ -168,9 +168,7 @@ shipyard "Independent (Korath-Allied)"
 	# Pirate modifications of standard ships:
 	"Marauder Bounder"
 	"Nighthawk (New Tortuga)"
-	"Valkyrie"
 	"Cutthroat"
-	"Mammoth"
 
 
 # See note above about capabilities and limitations of "Independent (Korath-Allied)"
