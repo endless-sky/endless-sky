@@ -207,6 +207,49 @@ mission "Ask the Hai about the Unfettered"
 
 
 
+mission "Hai Waypoint Warning"
+	landing
+	invisible
+	to offer
+		has "hai space start"
+	to complete
+		never
+	on enter "Waypoint"
+		fail
+		conversation
+			`As the <ship> drops out of hyperspace, your dashboard is filled with an array of warning lights. It isn't hard to find the cause; even from this distance, the light of the wormhole is as clear as crystal, tinting everything around it a pale purple. The arms of the vortex rotate seemingly lethargically, but you know that, close up, the bands of energy that make it up must be moving several orders of magnitude faster than the top speed of your ship.`
+			`	Your sightseeing is interrupted by a hail on an encrypted frequency. You open it and are met with what you vaguely recognize as a short greeting in the Hai language.`
+			choice
+				`	"Could you repeat that?"`
+				`	"Sorry, I don't speak Hai."`
+			`	You receive a reply in the form of a hearty chuckle. "My bad, friend," the Hai hailing you says. "Used to be that anyone who grew up in Hai space knew Hai, but I guess that isn't really true anymore, what with Greenwater and such.`
+			`	"Anyway, back on topic. You've probably heard this a hundred times, but it bears repeating: Unless you're certain that the other person already knows, don't talk about the Hai, Hai space, or any Hai technology. Got it?"`
+			choice
+				`	"Got it."`
+					goto easy
+				`	"Why do I have to lie?"`
+			`	The Hai lets out another laugh, this time more nervous. "You know, there's some people out there who'd be able to say what you just did with a straight face."`
+			choice
+				`	"Alright, I'll be on my way."`
+					goto easy
+				`	"I'm serious."`
+			`	While you can't see your conversation partner over the commlink, you get the feeling that they'd be pinching the bridge of their nose right now. "A few decades ago, you'd be hard-pressed to find a captain who'd even consider revealing the existence of the Hai. Nowadays, it feels like even Hai are clamoring to go public, regardless of the turmoil it would bring.`
+			`	"But this isn't just about protecting Hai space. There are groups who have more than enough motive and ability to cover up any attempts of stirring chaos in human space, including anybody looking to expose the existence of a yet-unknown sapient species.`
+			`	"Anyway, stay safe out there." The hail cuts off.`
+				decline
+			label easy
+			`	"Glad to hear it. See you around, Captain." The hail cuts off.`
+	npc
+		government Hai
+		personality staying uninterested
+		system "Waypoint"
+		fleet
+			names "hai"
+			variant
+				"Lightning Bug"
+
+
+
 mission "Hai Sympathizer Warning"
 	invisible
 	source
@@ -215,6 +258,7 @@ mission "Hai Sympathizer Warning"
 	to offer
 		"reputation: Hai Merchant (Sympathizers)" < 0
 		not "warned about hai merchant politics"
+		not "hai space start"
 	on offer
 		log `Got spoken to by a Hai merchant at a spaceport bar after a firefight. Was warned about the factions among Hai merchants and the danger of getting in trouble if sympathizers to the Unfettered get caught in the cross-fire when fighting the Unfettered themselves. Learned that, as an outsider, "self-defense" is not an adequate argument where the deaths of Hai citizens are involved.`
 		set "warned about hai merchant politics"
@@ -295,6 +339,8 @@ mission "Returning Home"
 		random < 40
 	on offer
 		conversation
+			branch insider
+				has "hai space start"
 			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You're from the outside, aren't you?"`
 			choice
 				`	"Yes, I am."`
@@ -304,9 +350,30 @@ mission "Returning Home"
 			`	"Outside of Hai space. You don't look quite like most humans who live here, unless there's some new fashion trend going on that I don't know about."`
 			choice
 				`	"Oh, yes. I do come from outside."`
+					goto outsider
+			
+			label insider
+			`You are stopped by a human in the marketplace of <origin>. He takes off his hat and asks, "You wouldn't happen to be a captain from the outside, would you?"`
+			choice
+				`	"No, I grew up here."`
+				`	"Why? Do you need to go somewhere?"`
+					goto somewhere
+			
+			`	He sighs. "I figured as such. You can usually tell when people aren't from here by their clothing."`
+			`	The man thinks for a moment. "Would it be too much of a hassle for you to take a trip to human space?"`
+			choice
+				`	"I'd be happy to take you there."`
+				`	"Sorry, but no. You'll have to find another captain."`
+					goto decline
 			
 			label outsider
 			`	"Good. My name is Elliot." You introduce yourself to Elliot and shake hands.`
+				goto offer
+			
+			label somewhere
+			`	"I do. My name is Elliot." You introduce yourself to Elliot and shake hands.`
+			
+			label offer
 			`	"Can you take me to <destination>?" Elliot asks.`
 			`	"That's all the way in the Dirt Belt," you say. "Why do you want to go that far?"`
 			`	Elliot looks down at the ground for a second and takes a deep breath while gripping his hat in his hands. "You see, I haven't lived here all my life. I was born on <planet> to a poor farming family. Most of my days were spent working on the farm, which I hated with a passion. One day I just got fed up with things and I ran away.`
@@ -2032,3 +2099,213 @@ mission "Hai Pilgrimage"
 			`Hareek was quite tight-lipped about what he planned to do once on <planet>. The most you could get out of him was more stories about his past as a military pilot. Once you land, Hareek jumps off your ship, moving surprisingly fast for his age.`
 			`"Thank you, Captain, for making this journey. I apologize for not telling you more about me; the work I do is not something that I can reveal to any human who asks." He hands you <payment> and moves away. The surrounding Unfettered appear almost awed by his presence and consequentially give you a wide berth.`
 		log "Minor People" "Hareek" `An old Hai who claims to foresee the future. Dropped him off in Unfettered space so he could spread his message there. He appears to be well-respected amongst the Unfettered.`
+
+
+
+mission "Acorn Delights: Part 1"
+	minor
+	name "Acorns for Anoo"
+	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
+	source "Allhome"
+	destination "Stonebreak"
+	passengers 1
+	cargo "acorn cookies" 3
+	to offer
+		random < 35
+		has "First Contact: Unfettered: offered"
+	on offer
+		conversation
+			`As you pass by a kitchen supply store in the spaceport, a dishevelled elderly Hai looks towards you with a face of deep concern. She waves you down.`
+			choice
+				`	(See what she wants.)`
+				`	(Ignore her.)`
+					decline
+			`	"My name is Eeeya, and I'm looking for my lost granddaughter, Anoo. She just passed the medical school, and I was going to give her three tons of cookies, but she's gone! Please help me find her." Her soft voice has a chittering edge much stronger than other Hai you've spoken with. She also hesitates before certain words, as if unsure which article to add, giving her speech a unusual rhythm.`
+				goto "actual questions"
+			label questions
+			`	"So please, take me to find my granddaughter."`
+			label "actual questions"
+			choice
+				`	"Three tons of cookies!?"`
+					goto tons
+				`	"She's gone?"`
+					goto gone
+				`	"Why don't you ask the authorities for help?"`
+					goto authorities
+				`	"Can't your friends help you find her?"`
+					goto friends
+				`	"Let's go find her!"`
+					goto accept
+				`	"I have other places to be."`
+					decline
+			label tons
+			`	"Well, I... I don't know... I cook when I'm worried, and Anoo has been missing for three months! I've sealed all three tons of cookies. They should last a year or two. Maybe she'll share them with her friends? She has many friends! Tons of friends! They all miss her, but none are willing to help...`
+				goto questions
+			label gone
+			`	"Anoo passed medical school on the Frostmark four months ago, near the top of her class! A famous hospital on the Hai-home needed a new trauma surgeon and said she would be perfect for the job. She accepted the position and said she would be on vacation for a few weeks.`
+			`	"A month later, she told them she won't be coming, and nobody has heard from her since.`
+				goto questions
+			label authorities
+			`	"I talked to the Central Medical Bureau, and they told me she got approval for practicing medicine anywhere in Hai space or beyond. They've heard nothing from her since she got approval. She has to register new medicines with the Bureau, so they should have heard from her.`
+			`	"The police told me that several other people have reported Anoo missing, but they refused to tell me anything else. They said I had to talk to military, but they won't tell me anything.`
+			`	"Maybe she's involved in something secret? Or illegal? No, she'd never do that. Where is she?`
+				goto questions
+			label friends
+			`	"I have few friends, and none of them are interested in finding a missing Hai who could be anywhere. None of my customers want to help either, and her family is all dead.`
+				goto questions
+			label accept
+			`	"She always talked about doing free work for those who couldn't afford medical treatment. When she was little, her mother would take her to Stonebreak to help at local shelters. Let's start there."`
+				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
+
+mission "Acorn Delights: Part 2"
+	landing
+	name "Acorns for Anoo"
+	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
+	source "Stonebreak"
+	destination "Cloudfire"
+	passengers 1
+	cargo "acorn cookies" 3
+	to offer
+		has "Acorn Delights: Part 1: done"
+	on offer
+		log "Took a Hai lady named Eeeya to Stonebreak to help find her granddaughter, who is named Anoo."
+		conversation
+			`You spend several hours flying Eeeya between the massive communities of Stonebreak. She checks every homeless shelter, volunteer ward, women's shelter, and low-income hospital. The story is always the same: Anoo hasn't been seen in years, though some remember the energetic little girl in her youth before her mother left.`
+			`	After a few moments of crushing despair, Eeeya's ears perk up, and she says, "Since it's clear she's not here, let's check on <destination> - she could be in military."`
+				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
+
+mission "Acorn Delights: Part 3"
+	landing
+	name "Acorns for Anoo"
+	description "Bring Eeeya to <destination> to deliver <cargo> to her missing granddaughter."
+	clearance `After hearing the name Eeeya, the Darkcloak flight controller excitedly responds, "Acorn Delights!" and you're granted landing clearance.`
+	source "Cloudfire"
+	destination "Darkcloak"
+	passengers 1
+	cargo "acorn cookies" 3
+	to offer
+		has "Acorn Delights: Part 2: done"
+	on offer
+		conversation
+			`Eeeya takes you to the visitor's office and asks to see the Cloudfire military commander. Upon refusal, Eeeya throws a fit; after an hour of her panic they agree to let her speak with the commander.`
+			`	After a few minutes, she comes back looking despondent, and you lead her back to <ship>.`
+			`	"They said she doesn't work for them. I think they know where she is, but they won't tell me anything.`
+			`	"There's one more place we can try, but I don't think you're going to like it. She may have joined Unfettered Hai."`
+			label questions
+			choice
+				`	"Why didn't you mention this earlier?"`
+					goto mention
+				`	"Why would a doctor join a band of warmongers?"`
+					goto warmonger
+				`	"As the honorable Captain <first> <last>, I say let's go find her!"`
+					goto accept
+				`	"I'd be happy to help."`
+					goto accept
+				`	"Unfettered space is too dangerous for me. You will have to find another captain."`
+					decline
+			label mention
+			`	"I was afraid it would scare you away. Humans are scared of our ships, and the Unfettered are deadly warriors. Besides, the other places were more likely. Many of her mother's family have joined the Unfettered in the past, but I didn't think that would happen to her."`
+				goto questions
+			label warmonger
+			`	"Anoo was always sympathetic to the cause of the Unfettered Hai. Not their pointless war - she hated that - but she respected their drive to progress and their gift for change. Her father's family tried to stop her ideas, and we thought we succeeded, but... maybe...`
+			`	"A trauma surgeon for the Unfettered Hai? I wonder if she planned this the years in advance?"`
+				goto questions
+			label accept
+			`	"If Anoo went anywhere, it would be the Darkcloak. The largest Unfettered hospital is there. Many soldiers come back from raids injured on Darkcloak. A trauma surgeon would have a lot of work to do."`
+				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
+
+mission "Acorn Delights: Part 4"
+	landing
+	name "Acorn Delights"
+	description "Take Eeeya to <destination> to finalize some paperwork regarding the Acorn Delights shop."
+	source "Darkcloak"
+	destination "Allhome"
+	passengers 1
+	to offer
+		has "Acorn Delights: Part 3: done"
+	on offer
+		payment 3000
+		log "Finally found Anoo. It turns out she joined the Unfettered. I am supposed to take Eeeya to <destination> now."
+		conversation
+			`You're ushered from the landing platform to a nearby hospital, where Eeeya finally manages to convey your intent. A few Unfettered Hai nearby are muttering in their language, and you keep hearing the Hai word for "cookies" as they watch Eeeya. Along the way, you notice an odd contrast of squalor and advanced machinery. Unlike their southern brethren, it seems the Unfettered value function and progress over aesthetics and comfort.`
+			`	As you rise through the main tower of the hospital, you're surprised at how advanced it is. Despite their willingness to die in battle, the Unfettered seem to value the lives of the survivors. Perhaps this hospital is to heal them quickly so that they can fight again as soon as possible.`
+			`	You reach a high floor filled with personal offices. Eeeya knocks on each door, apologizing when the Unfettered inside aren't who she's looking for, until you finally reach the very last room.`
+			`	Eeeya opens this door, and runs to the Hai inside it - Anoo. They begin to speak in Hai, then remember that you are in the room.`
+			`	"Please, Anoo, let's speak in the human language. <first> came all this way for me, and it's only fair that Captain be able to understand what's going on."`
+			`	The conversation then turns to Anoo's new occupation.`
+			`	"Why did you come here, Anoo? The Unfettered hate us."`
+			`	"They don't hate us in particular, grandma. They hate what we've become: frivolous, uninventive, and self-important. Our species is fading into history through a slow death of mediocrity. Most Unfettered see warfare as our only salvation.`
+			`	"We think of them as mindless brutes, but they're not! They have scientists, doctors, musicians, and writers. Our resources dwarf theirs, but they thrive with what little they have. Soon the Unfettered will have many more planets and almost unlimited resources. The era of scarcity will be over, and they'll have the power to choose their future.`
+			`	"If enough good people join the Unfettered, we can change their minds and set them on a more productive path. They'll need good doctors."`
+			`	"But-" Eeeya objects.`
+			choice
+				`	"Anoo is right; the Unfettered are a noble people. I would recommend joining them."`
+				`	"There's no good reason to join the Unfettered. What have they ever done except kill innocent Hai?"`
+					goto "don't join"
+			label "join unfettered"
+			`	"Well... I really don't know..."`
+			choice
+				`	"Never mind, you're right. Joining the Unfettered is a bad idea after all."`
+				`	"I stand by their guns. The Unfettered are honorable."`
+					goto "really join"
+			label "don't join"
+			`	"I'm sorry, Anoo, but I really think the Captain <first> is right. I'm not the kind of person to be friendly with a group who starves and yet paints such a romantic picture of itself. And in addition, I doubt there would be a way to support a family of two here; nuts by themselves are costly enough, let alone cookies. The hospital work here can only pay so much.`
+			`	"Captain, could you take me back to the <planet> please? I'd like to sign the forms and give you some stock in my Acorn Delights factory. In the meantime, here is <payment> for what you've done so far."`
+			choice
+				`	"I'd be glad to take you back."`
+				`	"I'll take you, but I'll notice that you haven't mentioned what we came so far for."`
+			`	Eeeya smiles at her granddaughter. "Before I leave, I was just reminded about a present I have for you." She leads you and Anoo back to <ship>. "Captain, could you open the cargo hold and take us inside?" Anoo is astonished at the tons of acorn cookies waiting for her inside. "Thank you so much, grandma!"`
+			choice
+				`	"We should get going."`
+			`	Eeeya turns to you and says, "You're right, we should. Thank you so much for reuniting us." She gives Anoo one last hug, and boards your ship.`
+				accept
+
+			label "really join"
+			action
+				set "acorn delights: eeeya joined"
+			`	"No pun intended, of course," Anoo laughs. Eeeya chuckles, and says, "Captain, I still need to sell my factory in the normal Hai space before officially joining Unfettered."`
+			choice
+				`	"Sure thing. I'd be glad to take you back."`
+					accept
+				`	"Why did you change your mind so quickly?"`
+			`	"Well, even without your input, I probably would have joined the Unfettered - as I said a while ago, my son's entire family died; Anoo's family is here. Anoo, I've got a surprise for you, still on the Captain's ship: 3 tons of acorn cookies! And <first>, would you take me back to <planet> so that I can sell off the factory?"`
+				accept
+	on visit
+		dialog "You forgot Eeeya or some of her mountains of cookies. Maybe they're in one of your escorts?"
+
+mission "Acorn Delights: Part 5"
+	landing
+	name "Eeeya to Anoo"
+	description "Bring Eeeya to <destination> to join the Unfettered and be near her granddaughter."
+	clearance `The Darkcloak flight controller lets you land when they hear that Eeeya is joining the Unfettered.`
+	source "Allhome"
+	destination "Darkcloak"
+	passengers 1
+	to offer
+		has "Acorn Delights: Part 4: done"
+	on offer
+		conversation
+			branch uhai
+				has "acorn delights: eeeya joined"
+			action
+				"salary: Acorn Delights" = 100
+				log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. After a long journey, we found her - she had gone to help the Unfettered as a trauma surgeon. Eeeya wasn't interested in joining the Unfettered, so brought her back home and received stocks for a one hundred credit salary for my efforts.`
+			`Eeeya immediately gets off the ship and goes to check on the acorn cookie shop. A few minutes later, she is back with documents for you to sign.`
+			`	"These will set you up with about a twentieth of the stock in my company; you'll receive the one hundred credits daily." As you sign the documents, she continues. "I'd just like to thank you again for helping me find Anoo. It means a lot to me." You check that the stocks have been transferred to your account, and Eeeya heads off.`
+				decline
+			label uhai
+			`Eeeya heads off to sell Acorn Delights' shop while you check in with spaceport security. Soon, she is back. "Well, there was a Hai who paid thirty million credits for that small place. I wonder why he thought it was worth so much - I sure don't. But I won't argue with that nutty person." She seems much merrier now that Anoo has been found. "I'll be ready to go when you are."`
+				accept
+	on complete
+		payment 500000
+		log "Minor People" "Eeeya and Anoo" `Helped Eeeya, who runs a cookie shop called Acorn Delights, find her missing granddaughter Anoo. After a long journey, we found her - she had gone to help the Unfettered as a trauma surgeon. Brought Eeeya back to <origin> so she could sell the shop, but both Hai are together on <destination> now. Received a total of five hundred thousand credits for my efforts.`
+		conversation
+			`Eeeya leaves to go to the hospital, after paying you five hundred thousand credits and thanking you for the third time.`
+	on visit
+		dialog "Eeeya is not in the system. Maybe she's in one of your escorts?"
