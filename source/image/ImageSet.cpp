@@ -187,13 +187,14 @@ void ImageSet::Load() noexcept(false)
 	// to be in separate locations on the disk. Create masks if needed.
 	for(size_t i = 0; i < frames; ++i)
 	{
+		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!buffer[0].Read(paths[0][i], i))
-			Logger::LogError("Failed to read image data for \"" + name + "\" frame #" + to_string(i));
+			Logger::LogError("Failed to read image data for " + fileName);
 		else if(makeMasks)
 		{
-			masks[i].Create(buffer[0], i);
+			masks[i].Create(buffer[0], i, fileName);
 			if(!masks[i].IsLoaded())
-				Logger::LogError("Failed to create collision mask for \"" + name + "\" frame #" + to_string(i));
+				Logger::LogError("Failed to create collision mask for " + fileName);
 		}
 	}
 
