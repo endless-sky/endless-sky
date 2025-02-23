@@ -6489,6 +6489,11 @@ mission "Hroar's Haulers 18"
 					goto Earth
 					to display
 						not "earthreason"
+				`	"Kormak?"`
+					goto Kormak
+					to display
+						has "soggymention"
+						has ""
 				`	"Sounds good. When do we leave?"`
 			`	"We need a little breather after all the traveling we've done. Give the ships a good once over before heading out again." Yngvar begins.`
 			`	"And some well earned R&R for the crews." Bolverka interjects.`
@@ -6527,12 +6532,36 @@ mission "Hroar's Haulers 18"
 			`	"That's not the only reason we go there though, Yng." Bolverka chides lightly, "Stop being so melodramatic."`
 			`	"Yeah, yeah, just not looking forward to tellin' Hartha-Hroar we lost a third of the Long Haul." He frowns. "But, you were asking about Earth. With their surplus population and low standard of living they produce a lot of cheap products that folks in the Deep are keen to buy."`
 			`	"And we can always pick up tons of historical artifacts they've lost interest in." Bolverka adds. "Earth's lousy in history."`
-			`	"Can't take two steps without tripping over it." Yngvar says with a laugh, "And the Deep is full of ravenous museums, eager to show off a piece of that precious earth history."`
+			`	"Can't take two steps without tripping over it." Yngvar says with a laugh, "And the Deep is full of ravenous museums, eager to show off a piece of that precious Earth history."`
 			choice
 				`	"Like Alexandria?"`
+					goto alexandria
 				`	"Is that legal?"`
+					goto legal
 				`	(Say nothing.)`
+			action
+				set "soggymention"
 			`	"I am sure you've heard of Alexandria" Yngvar continues. "But that's just the tip of the curatorial iceberg. Not to mention those old blowhards, the Soggy society."`
+			`	"They're not that bad." Bolverka says, "I've met a few that were quite charming really. There was this one huge fellow, you could tell he came from old stones. Handsome, stoic..."`
+			`	Yngvar coughs, "Point being. That's why we're making a pitstop at Earth."`
+				goto route
+
+			label alexandria
+			action
+				set "soggymention"
+			`	"Exactly." Yngvar says agreeably, "But that's just the tip of the curatorial iceberg. Every city on every world has their own museums, and each one of those wants a piece of Earth. And that's not even mentioning those old blowhards, the Soggy society."`
+			`	"They're not that bad." Bolverka says, "I've met a few that were quite charming really. There was this one huge fellow, you could tell he came from old stones. Handsome, stoic..."`
+			`	Yngvar clears his throat, "Point being. That's why we're making a pitstop at Earth."`
+				goto route
+
+			label legal
+			`	Yngvar gives you an uneven shrug, "I am not exactly an expert on Earth laws. But, most the museums in the Deep are willing to look the other way. Figure it's safer in their care than rotting uncared for on Old Earth. Every so often one of our Haulers get a fine. Or there's some high profile scandel that makes the news. But for the most part it's just part of our trade."`
+			`	"We're not smugglers, exactly." Bolverka adds, "Haulers aren't actively trying to break the law..."`
+			`	Yngvar's scarred face bunches up into a smile, "What folks don't know doesn't hurt them any, is all."`
+			`	"Anyways, that's what why we're making a pistop at Earth."`
+				goto route
+
+
 
 
 mission "Hroar's Haulers 18b"
