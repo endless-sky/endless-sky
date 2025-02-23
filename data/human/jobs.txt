@@ -5015,6 +5015,7 @@ mission "Banned Syndicate Items [0]"
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
 	cargo "Syndicate-banned items" 2 5 0.8
 	illegal 50000
+	infiltrating
 	to offer
 		random < 50
 	source "New Tortuga"
@@ -5026,7 +5027,7 @@ mission "Banned Syndicate Items [0]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 40000 170
-		dialog phrase "generic passenger dropoff payment"
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Banned Syndicate Items [1]"
 	name "Banned items to <planet>"
@@ -5034,7 +5035,8 @@ mission "Banned Syndicate Items [1]"
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
 	cargo "Syndicate-banned items" 4 7 0.8
-	illegal 50000
+	illegal 60000
+	infiltrating
 	to offer
 		random < 50
 		"cargo space" > 3
@@ -5047,7 +5049,7 @@ mission "Banned Syndicate Items [1]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 40000 170
-		dialog phrase "generic passenger dropoff payment"
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Banned Syndicate Items [2]"
 	name "Banned items to <planet>"
@@ -5055,7 +5057,8 @@ mission "Banned Syndicate Items [2]"
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
 	cargo "Syndicate-banned items" 7 20 0.8
-	illegal 50000
+	illegal 70000
+	infiltrating
 	to offer
 		random < 50
 		"cargo space" > 5
@@ -5068,7 +5071,7 @@ mission "Banned Syndicate Items [2]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 40000 170
-		dialog phrase "generic passenger dropoff payment"
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Banned Syndicate Items [3]"
 	name "Banned items to <planet>"
@@ -5076,7 +5079,8 @@ mission "Banned Syndicate Items [3]"
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
 	cargo "Syndicate-banned items" 16 40 0.8
-	illegal 50000
+	illegal 80000
+	infiltrating
 	to offer
 		random < 40
 		"cargo space" > 20
@@ -5089,7 +5093,7 @@ mission "Banned Syndicate Items [3]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 40000 170
-		dialog phrase "generic passenger dropoff payment"
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Banned Syndicate Items [4]"
 	name "Banned items to <planet>"
@@ -5097,7 +5101,8 @@ mission "Banned Syndicate Items [4]"
 	repeat
 	description `Anti-Syndicate activists will pay <payment> for delivery of <cargo> on <planet>, in violation of the law. Take care not to get caught.`
 	cargo "Syndicate-banned items" 35 100 0.8
-	illegal 50000
+	illegal 90000
+	infiltrating
 	to offer
 		random < 40
 		"cargo space" > 40
@@ -5110,7 +5115,7 @@ mission "Banned Syndicate Items [4]"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 40000 170
-		dialog phrase "generic passenger dropoff payment"
+		dialog phrase "generic completed pirate cargo mission"
 
 mission "Mineral Shortages (Silicon)"
 	name "Harvested silicon to <planet>"
