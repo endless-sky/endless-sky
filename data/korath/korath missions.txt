@@ -730,6 +730,7 @@ mission "Korath [F00]: A Fishy Planet"
 	landing
 	source "New Tortuga"
 	destination "Stormhold"
+	priority
 	on offer
 		conversation
 			`Flying through the atmosphere of New Tortuga, you pass over a typhoon, overfly a tsunami, and take a short detour around a supercell thunderstorm. After a half hour of delicate flying, you approach doors more than a hundred meters tall. As they open, you can see they are ten meters thick, made of an unfamiliar brown material. Two layers of shields shut down in anticipation of your entry, each strong enough to stop a Navy Carrier. To the left and right, there are turrets with heat signatures higher than a Breeder Reactor. Whoever built this place values their safety... and has the funds and technology to secure it.`
