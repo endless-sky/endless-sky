@@ -59,21 +59,6 @@ Minable::Payload::Payload(const DataNode &node)
 
 
 
-Minable::LiveEffect::LiveEffect(const DataNode &node)
-{
-	interval = (node.Size() == 2 ? 1 : node.Value(2));
-	effect = GameData::Effects().Get(node.Token(1));
-	for(const DataNode &child : node)
-	{
-		if(child.Token(0) == "relative to system center")
-			relativeToSystem = true;
-		else
-			child.PrintTrace("Skipping unrecognized attribute:");
-	}
-}
-
-
-
 // Load a definition of a minable object.
 void Minable::Load(const DataNode &node)
 {
@@ -302,4 +287,19 @@ const vector<Minable::Payload> &Minable::GetPayload() const
 const int64_t &Minable::GetValue() const
 {
 	return value;
+}
+
+
+
+Minable::LiveEffect::LiveEffect(const DataNode &node)
+{
+	interval = (node.Size() == 2 ? 1 : node.Value(2));
+	effect = GameData::Effects().Get(node.Token(1));
+	for(const DataNode &child : node)
+	{
+		if(child.Token(0) == "relative to system center")
+			relativeToSystem = true;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
 }

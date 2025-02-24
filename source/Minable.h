@@ -51,18 +51,6 @@ public:
 		double toughness = 1.;
 	};
 
-	class LiveEffect {
-	public:
-		LiveEffect(const DataNode &node);
-
-		const Effect *effect;
-		// Average interval between instances of the effect, in frames.
-		unsigned interval = 1;
-		// If set to true, the effect behaves like a comet tail,
-		// always facing away from the system center.
-		bool relativeToSystem = false;
-	};
-
 
 public:
 	// Inherited from Body:
@@ -101,6 +89,20 @@ public:
 
 	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
 	double Hull() const;
+
+
+private:
+	class LiveEffect {
+	public:
+		LiveEffect(const DataNode &node);
+
+		const Effect *effect;
+		// Average interval between instances of the effect, in frames.
+		unsigned interval = 1;
+		// If set to true, the effect behaves like a comet tail,
+		// always facing away from the system center.
+		bool relativeToSystem = false;
+	};
 
 
 private:
