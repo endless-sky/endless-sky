@@ -117,7 +117,7 @@ void ShopPanel::Step()
 {
 	if(!checkedHelp && GetUI()->IsTop(this) && player.Ships().size() > 1)
 	{
-		if(DoHelp("multiple ships")
+		if(DoHelp("multiple ships"))
 		{
 			// Nothing to do here, just don't want to execute the other branch.
 		}
