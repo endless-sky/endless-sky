@@ -5204,8 +5204,13 @@ mission "Hroar's Haulers 15"
 			`	She gives you an impish grin, her large gray eyes taking you in, and says, "You're not like the rest of us. Your aura dances in hues of royal purple and deep dreaming blues."`
 			`	She leans a little a closer to you, the alcohol thick on her breath, "So, what's a royal dreamer such as yourself doing amongst us lowly rusty-brown haulers?"`
 			choice
-				`	(Tell her your story.)`
-			`	She slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the Skadenga, the littlest of them all."`
+				`	(Tell her about the Skadenga.)`
+				`	(Tell her about the Free Worlds.)`
+					goto freeworlds
+					to display
+						has "free worlds plot completed"
+			`	Gunhilda slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the Skadenga, the littlest of them all."`
+			label gunstale
 			`	She sips her beer, "As with most haulers, I was born on the red, and spent my life sifting through Muspel's depths, or flittering between stars in the yawning Gap. We are interwoven, we haulers, like strands of hair in the wind; both miner and spacer, both family and business, all tangled up into one off-red whole."`
 			`	Her eyes twinkle, "In other words, we're really just one large dysnfunctional family."`
 			choice
@@ -5216,7 +5221,7 @@ mission "Hroar's Haulers 15"
 				`	"So you're all related?"`
 			`	She laughs and pushes a strand of thick black hair back behind her ear, "Why, Captain <last>, it's a little early to be meeting my mom, isn't it?"`
 			`	Gunhilda downs her glass, her face flush with effects of alcohol, "Don't be so serious, my royal dreamer, I only kid. To answer your question; yes and no. It's all about your beginnings, you see."`
-			`	She holds up two fingers, "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Then there are those born strangers who hear the call of the earth below, and Gap above. The poor souls on overcrowded worlds, trapped in beige tinted lives, that find their way to one of our mines on Muspel or Helheim. Those guest workers who work there up and into our red-tangled tribe."`
+			`	She holds up two fingers, "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Then there are those born strangers who hear the call of the earth below, and Gap above. The poor souls on overcrowded worlds, trapped in beige tinted lives, that find their way to one of our mines on Muspel or Helheim. Those guest workers who work up and into our red-tangled tribe."`
 			`	"However," she pauses to gulp down some of her refilled beverage, "it's not long before the new Haulers marry the old Haulers, and we're back to where we started, one big cosmic family."`
 				goto gunext
 
@@ -5229,6 +5234,10 @@ mission "Hroar's Haulers 15"
 			
 			`	Gunhilda lifts her drink to her lips, her face flush with effects of alcohol, "It's all just a matter of perspective."`
 				goto gunext
+
+			label freeworlds
+			`	She slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the dust-forgotten Free World folks."`
+				goto gunstale
 
 			label red
 			`	"My, Hroar really does like his greenhorns tender. Here you are leading us around without knowing the first thing about us." She knocks back another drink, "To most it simply means being born, or raised a Hauler. Whether that be in the mines, or on the Haul. But it is more than that, it's about letting the red into your soul."`
@@ -5920,7 +5929,7 @@ mission "Hroar's Haulers 15"
 				to display
 					not "savedsolvi"
 					has "jerktosolvi"
-			`	"My Royal Dreamer," Gunhilda says musically as she steps out of the holding cell with a few other members of her crew, "How gallant." She favors you with a broad honest smile as she continues on toward her ship.`
+			`	"My royal dreamer," Gunhilda says musically as she steps out of the holding cell with a few other members of her crew, "How gallant." She favors you with a broad honest smile as she continues on toward her ship.`
 				to display
 					not "savedgunhilda"
 			`	"An absolute pleasure doing business with you, Captain <last>." He practically purrs.`
@@ -6921,14 +6930,161 @@ event "Nineteen days"
 event "Twenty three days" 
 
 mission "Hroar's Haulers Gunhilda"
-	name "Gunhilda"
+	name "Alien Mines"
 	source "Humanika"
-	destination "Grakhord"
+	description "Captain Runa Gunhilda has asked you to take her to <destination> to see mines delved by aliens."
+	destination "Forpelog"
+	passengers 1
 	to offer
-		has "Hroar's Haulers 17b: done"
+		has "Hroar's Haulers 18b: done"
 		has "savedgunhilda"
 	on offer
 		conversation
+			`As you work your way through the light crowds of Humanika's spaceport, you can't help but notice there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabited. They seemed quieter, more demure, less bright, flashy and boisterous than the humanity you were familiar with from scores of worlds you've seen. Against this backdrop of human pastel echoes, it's easy to spot the vibrant Gunhilda. Her dark black hair tied in a clusmy ponytail, her uncleanable brown-red hauler's jacket, even the swift unapologetic way she moved seemed at odds with the meekness of the spaceport's regulars.`
+			`	"<first>!" She hollars across the room, causing more than a few judgemental glances to be cast her way, "I knew you'd come!"`
+			`	Ignoring the various side eyes, she jogs over to you, "You got Yngvar's message, yeah? We've got some time off!`
+			choice
+				`	"Yeah, I heard, Gunhilda." `
+				`	"Wait, Gunhilda, how did you get here? Shouldn't you be taking your ship to Wayfarer?"`
+				`	"Hello to you too, Gunhilda!"`
+			`	The Hauler captain rolls her eyes, "<first>, call me Runa. It's what my friends and other illuminaries call me."`
+			`	"I knew we'd be up for some downtime, so I caught a ride on one of Solvi's ships and left the Iron Siren in the care of my crew." She shrugs, "Between you and me, I've seen enough of Wayfarer for one lifetime"`
+			choice
+				`	"So you came to here?"`
+				`	"Humanika wouldn't be my first choice for a vaction."`
+				`	"What will you do now?"`
+			`	A conspiratorial smile erupts on her face, "I may have been a little deep into my cups, but I think made it clear last we spoke, royal dreamer. My soul is dirt and sky, and I've had my fill of sky for the time being. I've come to see some dirt."`
+			choice
+				`	"You're here for dirt?"`
+				`	"What?"`
+				`	"We're so high up I haven't really had a chance to scope out the local dirt options."`
+			`	"Mines!" She says with mock exhasperation, "I've seen my share of human dug mines in my life. Hope turned into holes, and then turned back into hope again. But alien mines? What would could they look like? What would they feel like? I don't know, but I intend to find out. And I was wondering if you wanted to tag along."`
+			choice
+				`	"Sure. I've got nothing better to do."`
+					goto minetime
+				`	"I'd love to."`
+					goto minetime
+				`	"A hole is a hole. I don't think it matters who dug it."`
+					goto hole
+				`	"No, thanks, I've got my own plans.`
+			label nofun
+			`	Runa frowns and slumps a little, "Well, that's too bad. Exploring holes is always better with friends. Maybe I'll see you back on Wayfarer."`
+			`	She turns and leaves, not quite as unapologetic as before.`
+				decline
+			label hole
+			`	Runa laughs, "And I suppose a ship is just a ship? Indulge me, <first>, maybe I'll change your mind."`
+			choice
+				`	"Okay. I'll join you."`
+					goto minetime
+				`	"No, not interested."`
+					goto nofun
+			label minetime
+			`	She beams, "I knew you'd agree! It can see it in your hues, you're sensative inquisitive nature."`
+			choice
+				`	"I don't think that's true."`
+					goto disagree
+				`	"You're right thats me; sensative and inquisitive!"`
+					goto agree
+				`	"Right, well, where we do start? Find transport down to Humanika?"`
+					goto whynothere
+				`	(Say nothing.)`
+			label firstthing
+			`"So first thing is first. I need you to fly us to <destination>."`
+			label destiny
+			choice
+				`	"But we're already on Humanika, why not start here?"`
+					goto whydestiny
+					to display
+						not "humanika"
+				`	"Why <destination>?"`
+					goto whythough
+					to display
+						not "whythough"
+				`	"Okay. Let's head out."`
+			`	"I can't wait." Runa says, and starts walking toward the platform your ship is parked at.`
+			action
+				clear "humanika"
+				clear "whythough"
+				accept
+
+			label disagree
+			`	"That's just the modesty in the dreaming blues of your aura speaking." She gives you a knowing look, "Exactly what I'd expect you to say."`
+			`	"But enough about the swirling colors of your soul, and back to the more pressing matter of holes in the ground."`
+				goto firstthing
+
+			label agree
+			`	"Ah, the royal purple in your aura speaks, that confidence and assurity." She gives you a knowing look, "Exactly what I'd expect you to say."`
+			`	"But enough about the swirling colors of your soul, and back to the more pressing matter of holes in the ground."`
+				goto firstthing
+			label whynothere
+			action
+				set "humanika"
+			`	"Humanika? Here? Oh no. No. No. No." She waves a finger at you, "It's terrible start a journey when you're already at the destination. No, I need you to fly me to <destination> first."`
+				goto destiny
+
+			label whydestiny
+			`	"Humanika? Here? Oh no. No. No. No." She waves a finger at you, "It's terrible start a journey when you're already at the destination."`
+				goto destiny
+
+			label whythough
+			action
+				set "whythough"
+			`	"I want to see alien mines, and where better to see them then on a moon where they mine? Stop worrying so much and embrace the serendipity!"`
+				goto destiny
+
+	on complete
+		conversation
+			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlikely anything you've on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and bold. Growing to percarious heights, and what should be unstable directions. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, and yet nothing happens, and none of the towering denzeins of this worldlet seem concerned.`
+			`	"It's beautiful, but also wrong. You feel it too, don't you?" Runa whispers to you.`
+			choice
+				`	"We're just not used to seeing cultivated plants that evolved on low gravity worlds is all."`
+					goto math
+				`	"I don't think it's wrong, but I do think it's beautiful."`
+					goto math
+				`	"You're right. It does feel wrong."`
+			`	"There is nothing in this dome for us." Runa says quietly, "They don't mine in here. Let's head to the spaceport and see if we can find transport out onto the moon's surface."`
+
+			label math
+			`	"No. It's deeper than that. It's the color of the plants. There's something... I don't know. Let's just... move on. We didn't come for the dome anyway, they don't mine in here.  Let's head to the spaceport and see if we can find transport out onto the moon's surface."`
+
+mission "Hroar's Haulers Gunhilda 2"
+	name "Alien Mines"
+	source "Forpelog"
+	description "Captain Runa Gunhilda has asked you to take her to <destination> to see mines delved by aliens."
+	destination "Grakhord"
+	passengers 1
+	to offer
+		has "Hroar's Haulers Gunhilda: done"
+	on offer
+		conversation
+			`	There are no other humans here, and the two of you stick out like sore thumbs, however the Quarg in their serene way, seem to hardly notice either of you. Runa, uncharacteristically, becomes sollen and withdrawn.`
+			`	Eventually, after a few polite interactions with helpful Quarg, who are indistinguishable from any others, you are able to procure an automated transport vehicle and a rudimentry map of the moon's surface. It doesn't take much longer before the two of you are exiting the dome in the small impossibly immaculate vehicle.`
+			`	Runa is quiet and hadn't spoken in a long time.`
+			choice
+				`	"So, where on the map should we go?"`
+					goto wheremap
+				`	"You know the last time I went on a terrestial field trip I ended up in a bit of a survival situation."`
+					goto fishtale
+				`	"Are you okay?"`
+			`	"I'm fine." She says after a few moments of silence, "Something about that place just got to me. The Quarg... their auras are all the same. Like small black holes. It normally doesn't bother me on Lagrange, but here... I don't know."`
+			`	She takes a deep breath, "But we've out on the moon now. And I am feeling better already."`
+			`	Runa pulls up the map and starts skimming it. "We can't go to any active mines, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
+			`	Before you have a chance to check it out, she leans over and inputs the coordinates. "Seeing some dirt will get me over this spell of melancholy."`
+
+			label wheremap
+			`	She turns and blankly stares at you, "What was that? The Map? Oh. Right."`
+			`	Without much enthusiasm she pulls it up, "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
+			`	"I..." Runa gives you a conflicted look, "I am sorry about how I've been. Something about that place. The auras of the Quarg. It just made my insides churn. It was different from Lagrange. I just... I am just glad we're away from ther now. I feel better out here."`
+			`	She leans over and inputs the coordinates to the abandoned mine she found. "Seeing some dirt will get me over this spell of melancholy."`
+
+			label fishtale
+			`	She turns and blankly stares at you, "Sorry, I wasn't really listening. Did you say you were part of a revival?"`
+			choice
+				`	"No, survival. I was a passenger in an Ice-Crawler that got hit by an avalance."`
+
+
+
+
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
