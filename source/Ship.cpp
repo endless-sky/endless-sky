@@ -2028,7 +2028,7 @@ double Ship::OutfitScanFraction() const
 // Fire any primary or secondary weapons that are ready to fire. Determines
 // if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 // The firing of special weapons is handled separately.
-void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, bool isFlagship)
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector<int> *emptySoundsTimer)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2072,9 +2072,13 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, bool i
 				}
 			}
 		}
-		else if(isFlagship && canFire == CanFireResult::NO_AMMO
-				&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
-			Audio::Play(weapon->EmptySound());
+		else if(emptySoundsTimer && !emptySoundsTimer[i]
+			&& (canFire == CanFireResult::NO_AMMO || canFire == CanFireResult::NO_FUEL)
+			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
+		{
+			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
+			emptySoundsTimer[i] = 30;
+		}
 	}
 
 	armament.Step(*this);
@@ -3573,27 +3577,27 @@ Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 
 	if(weapon->ConsumesEnergy()
 			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
-		return CanFireResult::NO_RESOURCES;
+		return CanFireResult::NO_ENERGY;
 	if(weapon->ConsumesFuel()
 			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
-		return CanFireResult::NO_RESOURCES;
+		return CanFireResult::NO_FUEL;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
 	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
-		return CanFireResult::NO_RESOURCES;
+		return CanFireResult::NO_HULL;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
-		return CanFireResult::NO_RESOURCES;
+		return CanFireResult::NO_HEAT;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
-		return CanFireResult::NO_RESOURCES;
+		return CanFireResult::NO_ION;
 	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
-		return CanFireResult::NO_RESOURCES;
+		return CanFireResult::NO_DISRUPTION;
 	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
-		return CanFireResult::NO_RESOURCES;
+		return CanFireResult::NO_SLOWING;
 
 	return CanFireResult::CAN_FIRE;
 }

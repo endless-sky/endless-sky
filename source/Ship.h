@@ -111,7 +111,13 @@ public:
 	enum class CanFireResult {
 		INVALID,
 		NO_AMMO,
-		NO_RESOURCES,
+		NO_ENERGY,
+		NO_FUEL,
+		NO_HULL,
+		NO_HEAT,
+		NO_ION,
+		NO_DISRUPTION,
+		NO_SLOWING,
 		CAN_FIRE
 	};
 
@@ -241,7 +247,7 @@ public:
 	// Fire any primary or secondary weapons that are ready to fire. Determines
 	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 	// The firing of special weapons is handled separately.
-	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, bool isFlagship = false);
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, std::vector<int> *emptySoundsTimer);
 	// Return true if any anti-missile or tractor beam systems are ready to fire.
 	bool HasAntiMissile() const;
 	bool HasTractorBeam() const;

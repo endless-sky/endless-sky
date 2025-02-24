@@ -1554,7 +1554,13 @@ void Engine::CalculateStep()
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// First, move the player's flagship.
 	if(flagship)
+	{
+		emptySoundsTimer.resize(flagship->Weapons().size());
+		for(auto &it : emptySoundsTimer)
+			if(it > 0)
+				--it;
 		MoveShip(player.FlagshipPtr());
+	}
 	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
 	bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
 	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
@@ -1880,7 +1886,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Launch(newShips, newVisuals);
 
 	// Fire weapons.
-	ship->Fire(newProjectiles, newVisuals, ship.get() == flagship);
+	ship->Fire(newProjectiles, newVisuals, ship.get() == flagship ? emptySoundsTimer : nullptr);
 
 	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
 	// Track which ships have at least one such system ready to fire.
