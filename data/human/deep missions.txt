@@ -7030,18 +7030,18 @@ mission "Hroar's Haulers Gunhilda"
 
 	on complete
 		conversation
-			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlikely anything you've on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and bold. Growing to percarious heights, and what should be unstable directions. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, and yet nothing happens, and none of the towering denzeins of this worldlet seem concerned.`
-			`	"It's beautiful, but also wrong. You feel it too, don't you?" Runa whispers to you.`
+			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlikely anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to percarious heights with a disconcering amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disater that keeps not occuring, meanwhile the the towering denzeins of this worldlet contuinue on their way, unaware of the looming danger all around them.`
+			`	"It feel wrong. Dark." Runa whispers to you," You feel it too, don't you?"`
 			choice
 				`	"We're just not used to seeing cultivated plants that evolved on low gravity worlds is all."`
 					goto math
 				`	"I don't think it's wrong, but I do think it's beautiful."`
 					goto math
 				`	"You're right. It does feel wrong."`
-			`	"There is nothing in this dome for us." Runa says quietly, "They don't mine in here. Let's head to the spaceport and see if we can find transport out onto the moon's surface."`
+			`	"There is nothing in this dome for us." Runa says quietly, "Let's head to the spaceport and see if we can find transport out onto the moon's surface."`
 
 			label math
-			`	"No. It's deeper than that. It's the color of the plants. There's something... I don't know. Let's just... move on. We didn't come for the dome anyway, they don't mine in here.  Let's head to the spaceport and see if we can find transport out onto the moon's surface."`
+			`	"No. It's deeper than that. It's the color of the plant's souls - their auras. There's something... I don't know. Let's just... move on. We didn't come for the dome anyway. Let's head to the spaceport and see if we can find transport out onto the moon's surface."`
 
 mission "Hroar's Haulers Gunhilda 2"
 	name "Alien Mines"
@@ -7202,16 +7202,18 @@ mission "Hroar's Haulers Gunhilda 2"
 
 	on complete
 		dialog
-			``
+			`	Unlike Forpelog, Grakhod is entirely terraformed. There's no lush doom for a world's denziens to huddle beneath. Yet, there is no sprawling settlements here either, instead the Quarg, adapted to their low gravity, prefer to build tall. Impossible skycrapers and teetering towers bunch together surrounded by alien walled gardens.`
+			`	Also, unlike Forpelog, there are a few humans here. Some of them gracefully bound across the terrtain, as naturally as you would walk on a 1g world, while others awkwardly flonder from uneven step to the next. Likely the difference between those who make this moon their home, and those, like you, who are just stopping by. Thankfully, all your traveling has given you some experience in light gravity, and you are able to carry yourself with some dignity. Runa, however, takes to it like a fish in water, and you struggle to keep up with her elegant strides.`
+			`	"Let's go to the spaceport!" She calls back to you.`
 
 mission "Hroar's Haulers Gunhilda 3"
 	name "Alien Mines"
-	source "Forpelog"
+	source "Grakhord"
 	description "Captain Runa Gunhilda has asked you to take her to <destination> to see mines delved by aliens."
-	destination "Grakhord"
+	destination "Humanika"
 	passengers 1
 	to offer
-		has "Hroar's Haulers Gunhilda: done"
+		has "Hroar's Haulers Gunhilda 2: done"
 	on offer
 		conversation
 
