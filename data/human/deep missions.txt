@@ -7163,7 +7163,16 @@ mission "Hroar's Haulers Gunhilda 2"
 			choice
 				`	(Join Runa on the ledge.)`
 			label ledge
-			`	Despite having suffered some errosion, the cliff edge is still remarkably smooth. As you approach you realize the ledge is part of the rim of an enmorous perfectly sculpted bowl.`
+			`	Despite having suffered some errosion, the cliff edge is still remarkably smooth. As you approach you realize the ledge is part of the rim of an enmorous perfectly sculpted bowl. The bowl's floor, which must be a kilometer below you, is riddled with huge holes, making the whole thing appear bizarelly polka dotted.`
+			`	"The mine like they build." Runa's voice filters into your suit, "Monumentally."`
+			`	She reaches out her hand and indicates the holes all around you, "Did you see the automated tubes on Lagrange? Like greedy vines trying to suck the life out of our ships. I think a version of that is what made the little holes."`
+			`	Runa's arm shifts and she points now to the giant crater sized openings at the base of the great bowl, "But those... imagine how large the vines, the robotic serpents, must have been to dig those. They could swallow entire city ships with ease."`
+			`	For long moments she is quiet, until she peels herself away from the ledge and turns back toward you, "Mining is messy, destructive work. That's the truth. But just because it's ugly doesn't mean there's not character there too. There's not...life? I don't know... it's hard to put what I am feeling into words. It's just this place, this place doesn't feel like a mine. It feel's like a tomb. Like a... sterile operating table. Like...like... nothing."`
+			`	You hear her breathing, "Let's go. I am done here."`
+			choice
+				`	"Okay. Let's go."`
+				`	"Where to next?"`
+				`	"Like, done done?"`
 
 
 
