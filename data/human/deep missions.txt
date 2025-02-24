@@ -5209,6 +5209,8 @@ mission "Hroar's Haulers 15"
 					goto freeworlds
 					to display
 						has "free worlds plot completed"
+			action
+				set "gunskade"
 			`	Gunhilda slowly shakes her head, "Like a jewled moon on a dark world, you rise to the occasion. You know, you remind me of Hroar, you're both cosmic heroes in your own way. Doing right by the little people; like the Skadenga, the littlest of them all."`
 			label gunstale
 			`	She sips her beer, "As with most haulers, I was born on the red, and spent my life sifting through Muspel's depths, or flittering between stars in the yawning Gap. We are interwoven, we haulers, like strands of hair in the wind; both miner and spacer, both family and business, all tangled up into one off-red whole."`
@@ -5499,8 +5501,6 @@ mission "Hroar's Haulers 15"
 			`	Both Yngvar and Bolverka give you unflattering frowns. "Fine," Yngvar says, "I thought you could do with a little culture, but if that's the case you're free to go."`
 			choice
 				`	(Get up and leave.)`
-			action
-				set "werelame"
 			`	As you make your way to the exit you hear the singing suddenly cut off and some sort of fight break out.`
 			`	Yngvar's voice suddenly rings through the estblishment, "Haulers, out!"`
 			`	You find yourself suddenly in the middle a large group of Haulers who've followed you outside. A moment later Yngvar joins you.`
@@ -5568,8 +5568,6 @@ mission "Hroar's Haulers 15"
 				goto cairntalk
 
 			label samething
-			action
-				set "yngvarstoner"
 			`	Bolverka beams, "Yngvar the space-stoner, maybe that's the song we oughta to be singing?"`
 			`	"Bah, what does <last> know about it anyways." Yngvar glares unhappily at Bolverka.`
 			`	As Bolverka and Yngvar continue to bicker you notice the singing near the bar pick up;`
@@ -5582,8 +5580,6 @@ mission "Hroar's Haulers 15"
 				goto yngvarswears
 
 			label shipnotstone
-			action
-				set "yngvarspacer"
 			`	"Ha!" Yngvar exclaims triumphantly, "I told you. It's different. It's more technical, more nuanced, more rational, more..."`
 			`	"...of the same." Bolverka interrupts.`
 			`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look, "Who knows what winning could cost you?"`
@@ -7066,23 +7062,77 @@ mission "Hroar's Haulers Gunhilda 2"
 				`	"You know the last time I went on a terrestial field trip I ended up in a bit of a survival situation."`
 					goto fishtale
 				`	"Are you okay?"`
+			label okay
 			`	"I'm fine." She says after a few moments of silence, "Something about that place just got to me. The Quarg... their auras are all the same. Like small black holes. It normally doesn't bother me on Lagrange, but here... I don't know."`
 			`	She takes a deep breath, "But we've out on the moon now. And I am feeling better already."`
 			`	Runa pulls up the map and starts skimming it. "We can't go to any active mines, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
 			`	Before you have a chance to check it out, she leans over and inputs the coordinates. "Seeing some dirt will get me over this spell of melancholy."`
+				goto letsgo
 
 			label wheremap
 			`	She turns and blankly stares at you, "What was that? The Map? Oh. Right."`
 			`	Without much enthusiasm she pulls it up, "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
 			`	"I..." Runa gives you a conflicted look, "I am sorry about how I've been. Something about that place. The auras of the Quarg. It just made my insides churn. It was different from Lagrange. I just... I am just glad we're away from ther now. I feel better out here."`
 			`	She leans over and inputs the coordinates to the abandoned mine she found. "Seeing some dirt will get me over this spell of melancholy."`
+				goto letsgo
 
 			label fishtale
 			`	She turns and blankly stares at you, "Sorry, I wasn't really listening. Did you say you were part of a revival?"`
 			choice
-				`	"No, survival. I was a passenger in an Ice-Crawler that got hit by an avalance."`
+				`	"No, survival. I was a passenger in an Ice-Crawler that got hit by an avalanche."`
+					goto avalanche
+					to display
+						has "gunskade"
+				`	"No, survival. I was a passenger in an Ice-Crawler that got hit by an avalanche."`
+					goto skadevanche
+					to display
+						not "gunskade"
+				`	"Uh, nevermind. It doesn't matter."`
+					goto skadeconversation
+				`	"Are you okay?"`
+					goto okay
 
+			label avalanche
+			`	She blinks, "Oh, yes, of course. Your time with those people from that freezing world."`
+			label skadeend
+			`	"I am sorry... I didn't realize this might be traumatic for you. I know I've been a little bit... distant." She chews her lip, "It's just that place, and the Quarg in the dome, and the plants...it doesn't matter. It all felt awful to me. But, I'm fine now."`
+			`	"However," She takes a breath, "If you want we can turn back, I'll just wait in your ship while you drop off the vehicle. I am not going to have you take us somewhere you're uncomfortable going."`
+			choice
+				`	"Oh, it's fine. I am not worried. I was just making conversation."`
+					goto skadeconversation
+				`	"Thank you. Yes, let's go back. I don't want to get stuck again."`
+			`	"No problem at all." She says with a little more warmth.`
+			`	You have the vehicle turn around and back toward the dome. Since the vehicle is capable of full automation, you merely have it return back to where you got it after both of you disembark outside your ship.`
+			`	"I think I've changed my mind about alien mines." <first> Runa says outside your ship. "Just take me to Wayfarer please."`
+				decline
+			label skadeconversation
+			`	"Ah, yes." She looks down for a second, "I realize I haven't been great company." She gives you a smile, "I appreciate the effort though. With that awful dome behind us, I really do feel much better. Let's take a look at our options."`
+			`	Runa pulls up the map and scans it for a moment,  "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
+			`	She leans over and inputs the coordinates to the abandoned mine she found. "Let's go seem some dirt!"`
+			label letsgo
+			choice
+				`	(Press the activation key that will send the vehicle to Runa's coordinates.)`
+					goto offyougo
+				`	(Do nothing.)`
+			`	Runa waits for a moment and then leans over you and presses the activation key herself, "Look who'se out of it now!"`
+				goto themine
 
+			label skadevanche
+			`	She perks up, "Wait what happened to you?"`
+			choice
+				`	(Tell her about the ordeal on Nifel.)`
+					goto skadetale
+				`	"Ah, it's nothing. I was just trying to make conversation.`
+					goto skadeconversation
+			label skadetale
+			action
+				set "gunskade"
+			`	"Oh, that's terrible! And those poor people on that freezing world." She frowns and looks as though she's struggling to put something into words.`
+				goto skadeend
+
+			label themine
+			`	The rugged and unforigiving wasteland streches on as far as they eye can see. Yet your Quarg vehicle effortlessly plows through the desolate and uninviting terrain. It's certainly significant upgrade over Nifel's Ice-Crawler.`
+			`	You make good time and before long you're nearing the region the map `
 
 
 
