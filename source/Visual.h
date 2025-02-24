@@ -30,7 +30,7 @@ class Visual : public Body {
 public:
 	Visual() = default;
 	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point(),
-		double engineZoom = 1.);
+		double inheritedZoom = 1.);
 
 	// Functions provided by the Body base class:
 	// Frame GetFrame(int step = -1) const;

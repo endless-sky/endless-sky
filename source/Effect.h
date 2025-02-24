@@ -47,8 +47,6 @@ public:
 
 	void Load(const DataNode &node);
 
-	bool RespectsEngineZoom() const;
-
 
 private:
 	std::string name;
@@ -75,7 +73,7 @@ private:
 
 	// If set, this effect's scale can be modified based on the "zoom" of the object it is used on.
 	// For example, engine points for afterburner effects.
-	bool respectsEngineZoom = false;
+	bool inheritsZoom = false;
 
 	// Allow the Visual class to access all these private members.
 	friend class Visual;
