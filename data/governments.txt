@@ -1250,6 +1250,9 @@ government "Ka'het"
 	"attitude toward"
 		"Author" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Merchant" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
@@ -1263,6 +1266,9 @@ government "Ka'het (Infighting)"
 	"attitude toward"
 		"Author" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Merchant" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
