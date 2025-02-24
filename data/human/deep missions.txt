@@ -7201,7 +7201,7 @@ mission "Hroar's Haulers Gunhilda 2"
 				accept
 
 	on complete
-		dialog
+		conversation
 			`	Unlike Forpelog, Grakhod is entirely terraformed. There's no lush doom for a world's denziens to huddle beneath. Yet, there is no sprawling settlements here either, instead the Quarg, adapted to their low gravity, prefer to build tall. Impossible skycrapers and teetering towers bunch together surrounded by alien walled gardens.`
 			`	Also, unlike Forpelog, there are a few humans here. Some of them gracefully bound across the terrtain, as naturally as you would walk on a 1g world, while others awkwardly flonder from uneven step to the next. Likely the difference between those who make this moon their home, and those, like you, who are just stopping by. Thankfully, all your traveling has given you some experience in light gravity, and you are able to carry yourself with some dignity. Runa, however, takes to it like a fish in water, and you struggle to keep up with her elegant strides.`
 			`	"Let's go to the spaceport!" She calls back to you.`
@@ -7216,6 +7216,61 @@ mission "Hroar's Haulers Gunhilda 3"
 		has "Hroar's Haulers Gunhilda 2: done"
 	on offer
 		conversation
+			`	You're able to find a human information kiosk, likely set up to avoid human tourists and captains from bombarding the Quarg with questions. Unfortunately, you're informed mutiple times that mining sites are off limits to human tourists for safety reason. Instead, numerous outreach and education media are recommended.`
+			`	Runa sighs loudly, "That's disappointing. I've half a mind to convince you to sneak us to one of their mines."`
+			`	She looks as you quizzically, as though testing the waters.`
+		choice
+			`	"We can still watch one of these educational projections about the mines here. That's something."`
+				goto education
+			`	"I mean, a computer error could force us into an unusual landing trajectory, where we accidently fly right over one of the mines."`
+				goto sneakyship
+			`	"We could always take a wrong turn while exploring the moon."`
+				goto sneakydrive
+			`	"Sorry. Looks like a deadend. Where next?"`
+		`	Runa almost looks dispondent, "I guess thats fair." She glances around quickly, "There is a kind of music here though, in the colors, maybe... maybe I'll come back some time. On my own."`
+		`	"But let's go to Humanika. We end where we began. Like all things."`
+			accept
+
+		label education
+		`	Runa looks less than thrilled as she agrees to watch the program.`
+		`	"The legendary mines of Grakhord are known throughout the galaxy for their..."`
+		`	"...which were first discovered not long after first contact with the Quarg..."`
+		`	"...and that is why it's important to always to wash your footwear thouroughly..."`
+		`	"Finally," Runa says as the projection shows a recording of an actual mining operation.`
+		`	"Through careful husbandry of the ecosystem and the mining sites, the Quarg engineers peel and replace layers of the moon's surface, without distrupting the life cycles of the vibrant flora and fauna that inhabit Grokhord. Including humans!"`
+		`	The scene than shifts to images of the lofty towers bunched towers, "Which is why Grakhord is a haven to human and Quarg alike. Thank you for watching, and remember to keep your footwear clean!"`
+		`	Runa shrugs, "Well, I guess that was something." She glances around quickly, "There is a kind of music here though, in the colors, maybe... maybe I'll come back some time. On my own."`
+		`	"But let's go to Humanika. We end where we began. Like all things."`
+			accept
+
+		label sneakyship
+		action
+			set "minewatchers"
+		`	Runa perks up, "Oh, yes. A marvelous idea, a golden idea, even. Let's do it."`
+		`	The two of you return quickly to your ship, and you prepare to launch and then land you ship back on Grokhand, but this time at an eccentric angle.`
+			launch
+
+		label sneakydrive
+		`	Runa gives you a mischevious grin, "Oh, <first>, I never thought you'd offer to take me on a spendid tour of this rainbow world. Let's go!"`
+		`	You rent a vehicle and have it take you to location just outside the nearest mine. You then tell it to turn down a restricted road, and it refuses.`
+		choice
+			`	(Attempt to hack the operating system.)`
+				goto manual
+			`	(Try to take manual control.)`
+				goto manual
+			`	(Give up.)`
+		`	Runa sighs, "I appreciate you trying. I suppose our next stop, and our last stop, is Humanika."`
+		`	You turn the vehicle around and head back to your ship.`
+			accept
+
+		label manual
+		`	You endeavor to override the automatic controls, but quickly find yourself locked out of the operating system entirely.`
+		`	"We apologize for the inconvience," a soothing voice buzz through the speaekers, "For your safety, this vehicle will be returning for maintance. Please stand by."`
+		`	Sudden everything lurches to the side as the vehicle turns around and heads back the way you came. Upon returning you learn that you've been locked out of renting anymore at this time.`
+		`	Runa just laughs, "It's fine. I appreciate the effort. Probably a little silly of us to imagine we could outsmart the Quarg like that. We gave it a try, and that'll have to be good enough for now."`
+		`	She starts walking toward your ship, "Come on. Let's get to Humanika. We can end where we began. Like most things."`
+			accept
+
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
