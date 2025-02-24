@@ -7132,7 +7132,38 @@ mission "Hroar's Haulers Gunhilda 2"
 
 			label themine
 			`	The rugged and unforigiving wasteland streches on as far as they eye can see. Yet your Quarg vehicle effortlessly plows through the desolate and uninviting terrain. It's certainly significant upgrade over Nifel's Ice-Crawler.`
-			`	You make good time and before long you're nearing the region the map `
+			`	Gradually the landscape changes, the large black boulders get smaller and then disappear all together. The ground becomes first level and then begins slant at an increasing incline.`
+			`	"By the stars." Gunhilda whispers, "Are you seeing this?"`
+			`	The even ground suddenly turns to swiss cheese beneath your treads. Somehow the Quarg engineering compenstates for it, as you drive over an endless expanse of holes, most of which are barely wide enough to fit your forearm into it.`
+			`	With more than a kilometer to go to your destination, the ground comes to an abrupt halt at a sheer cliff. You stop the vehicle just a few meters from the ledge. Runa is already doning her EV Suit.`
+			choice
+				`	(Stay inside.)`
+				`	(Suit up and join her.)`
+			`	You're careful to avoid one of the many holes as you step out of the vehicle in your EV suit. Runa has moved to the edge of cliff and is looking out beyond it.`
+			label nowwhat
+			choice
+				`	(Investigate one of the holes.)`
+					goto holetime
+				`	(Join Runa on the ledge.)`
+					goto ledge
+				`	(Check your vehicle for wear.)`
+					to display
+						not "checkbuggy"
+			action
+				set "checkbuggy"
+			`	The badlands of Forpelog have failed to even scratch the Quarg buggy. It looks as pristine as it did when you picked up.`
+				goto nowwhat
+			label holetime
+			`	You kneel down and peer into one the countless holes. At a glance they all appear to be uniform. Roughly 30 centimeters across. You illuminate the nearest hole using the light on your EV suit, but you can't see the bottom. They're deep. On closer inspection you see regular serrations around along the sides of the hole. Like a long pole or tube slid down inside them.`
+			choice
+				`	(Join Runa on the ledge.)`
+					goto ledge
+				`	(Stick your arm in a hole.)`
+			`	For some reason you stick your arm into the hole. You already know it's far deeper than you can reach, and there is nothing to grab onto, but you do it anyway. You push all the way down until your shoulder is lodged against the opening. Your gloved fingers wiggle in the thin air. Nothing else happens.`
+			choice
+				`	(Join Runa on the ledge.)`
+			label ledge
+			`	Despite having suffered some errosion, the cliff edge is still remarkably smooth. As you approach you realize the ledge is part of the rim of an enmorous perfectly sculpted bowl.`
 
 
 
