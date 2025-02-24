@@ -279,7 +279,7 @@ ship "Heavy Gust"
 		"outfit space" 534
 		"weapon capacity" 224
 		"engine capacity" 132
-		"tactical scan power" 50
+		"tactical scan power" 75
 		weapon
 			"blast radius" 220
 			"shield damage" 2200
