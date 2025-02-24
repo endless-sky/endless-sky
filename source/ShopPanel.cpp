@@ -115,12 +115,29 @@ ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
 
 void ShopPanel::Step()
 {
-	if(!checkedHelp)
-		// Use short-circuiting to only display one help message at a time.
-		// (The first valid condition encountered will make us skip the others.)
-		if((player.Ships().size() > 1 && (DoHelp("multiple ships") || DoHelp("shop with multiple ships"))) || true)
-			// Either a help message was freshly displayed, or all of them have already been seen.
-			checkedHelp = true;
+	if(!checkedHelp && GetUI()->IsTop(this) && player.Ships().size() > 1)
+	{
+		if(DoHelp("multiple ships")
+		{
+			// Nothing to do here, just don't want to execute the other branch.
+		}
+		else if(!Preferences::Has("help: shop with multiple ships"))
+		{
+			set<string> modelNames;
+			for(const auto &it : player.Ships())
+			{
+				if(!CanShowInSidebar(*it, player.GetPlanet()))
+					continue;
+				if(modelNames.contains(it->DisplayModelName())
+				{
+					DoHelp("shop with multiple ships");
+					break;
+				}
+				modelNames.insert(it->DisplayModelName());
+			}
+		}
+		checkedHelp = true;
+	}
 }
 
 
