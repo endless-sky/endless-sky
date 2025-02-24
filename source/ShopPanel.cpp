@@ -128,7 +128,7 @@ void ShopPanel::Step()
 			{
 				if(!CanShowInSidebar(*it, player.GetPlanet()))
 					continue;
-				if(modelNames.contains(it->DisplayModelName())
+				if(modelNames.contains(it->DisplayModelName()))
 				{
 					DoHelp("shop with multiple ships");
 					break;
