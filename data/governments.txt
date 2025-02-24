@@ -25,7 +25,7 @@ government "Aberrant"
 		"Indigenous Lifeform (Tree)" 0
 		"Indigenous Lifeform (Tree Two)" 0
 		"Ka'het" 0
-		"Ka'het (Infighting)"
+		"Ka'het (Infighting)" 0
 		"Ka'sei" 0
 		"Marauder" 0
 		"Merchant" 0
@@ -1253,7 +1253,7 @@ government "Ka'het"
 
 	"default attitude" -.01
 	"attitude toward"
-		"Aberrant"
+		"Aberrant" 0
 		"Author" 0
 		"Indigenous Lifeform (Subsidurial)" 0
 		"Marauder" 0
