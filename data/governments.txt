@@ -24,11 +24,8 @@ government "Aberrant"
 		"Indigenous Lifeform (Subsidurial)" 0
 		"Indigenous Lifeform (Tree)" 0
 		"Indigenous Lifeform (Tree Two)" 0
-		"Ka'het" 0
-		"Ka'het (Infighting)" 0
 		"Ka'sei" 0
 		"Marauder" 0
-		"Merchant" 0
 		"Parrot" 0
 
 	"penalty for"
