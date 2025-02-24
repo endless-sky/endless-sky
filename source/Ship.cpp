@@ -2072,12 +2072,12 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 				}
 			}
 		}
-		else if(emptySoundsTimer && !*emptySoundsTimer[i]
+		else if(emptySoundsTimer && !(*emptySoundsTimer)[i]
 			&& (canFire == CanFireResult::NO_AMMO || canFire == CanFireResult::NO_FUEL)
 			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
 		{
 			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
-			*emptySoundsTimer[i] = 30;
+			(*emptySoundsTimer)[i] = 30;
 		}
 	}
 
