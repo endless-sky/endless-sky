@@ -73,7 +73,8 @@ private:
 	int lifetime = 0;
 	int randomLifetime = 0;
 
-	// If set, this effect scales with the zoom of the ship engines bay that placed it.
+	// If set, this effect's scale can be modified based on the "zoom" of the object it is used on.
+	// For example, engine points for afterburner effects.
 	bool respectsEngineZoom = false;
 
 	// Allow the Visual class to access all these private members.
