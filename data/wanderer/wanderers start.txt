@@ -735,6 +735,9 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
+		"cargo settings"
+			cargo 4
+			commodities "Food"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 
