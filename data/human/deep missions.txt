@@ -7064,16 +7064,16 @@ mission "Hroar's Haulers Gunhilda 2"
 				`	"Are you okay?"`
 			label okay
 			`	"I'm fine." She says after a few moments of silence, "Something about that place just got to me. The Quarg... their auras are all the same. Like small black holes. It normally doesn't bother me on Lagrange, but here... I don't know."`
-			`	She takes a deep breath, "But we've out on the moon now. And I am feeling better already."`
+			`	She takes a deep breath, "But I am now out on the open and glittering moon with my friend. The shadows recede and color returns."`
 			`	Runa pulls up the map and starts skimming it. "We can't go to any active mines, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
-			`	Before you have a chance to check it out, she leans over and inputs the coordinates. "Seeing some dirt will get me over this spell of melancholy."`
+			`	Before you have a chance to check it out, she leans over and inputs the coordinates. "Let's go see some glorious dirt."`
 				goto letsgo
 
 			label wheremap
 			`	She turns and blankly stares at you, "What was that? The Map? Oh. Right."`
 			`	Without much enthusiasm she pulls it up, "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
-			`	"I..." Runa gives you a conflicted look, "I am sorry about how I've been. Something about that place. The auras of the Quarg. It just made my insides churn. It was different from Lagrange. I just... I am just glad we're away from ther now. I feel better out here."`
-			`	She leans over and inputs the coordinates to the abandoned mine she found. "Seeing some dirt will get me over this spell of melancholy."`
+			`	"I..." Runa gives you a conflicted look, "I am sorry about how I've been. Something about that place. The black auras of the Quarg. It just made my insides churn. It was different from Lagrange. I just... I am just glad we're away. I feel better out here."`
+			`	She leans over and inputs the coordinates to the abandoned mine. "Let's go see glorious some dirt."`
 				goto letsgo
 
 			label fishtale
@@ -7093,28 +7093,38 @@ mission "Hroar's Haulers Gunhilda 2"
 					goto okay
 
 			label avalanche
-			`	She blinks, "Oh, yes, of course. Your time with those people from that freezing world."`
+			`	She blinks, "Oh, yes, of course. Your time with those blue tattooed people from that freezing world."`
 			label skadeend
-			`	"I am sorry... I didn't realize this might be traumatic for you. I know I've been a little bit... distant." She chews her lip, "It's just that place, and the Quarg in the dome, and the plants...it doesn't matter. It all felt awful to me. But, I'm fine now."`
-			`	"However," She takes a breath, "If you want we can turn back, I'll just wait in your ship while you drop off the vehicle. I am not going to have you take us somewhere you're uncomfortable going."`
+			`	"I am sorry... I didn't realize this might be traumatic for you. I know I've been a little bit... distant." She chews her lip, "It's just that place, and the Quarg in the dome, and the plants... their black auras... it-it doesn't matter. It felt awful to me. But, I'm fine now. Out here the color returns."`
+			`	"However," She takes a breath, "If you want we can turn back. I won't force you headlong into your own personal darkness. I wouldn't do that to anyone."`
 			choice
 				`	"Oh, it's fine. I am not worried. I was just making conversation."`
 					goto skadeconversation
 				`	"Thank you. Yes, let's go back. I don't want to get stuck again."`
 			`	"No problem at all." She says with a little more warmth.`
 			`	You have the vehicle turn around and back toward the dome. Since the vehicle is capable of full automation, you merely have it return back to where you got it after both of you disembark outside your ship.`
-			`	"I think I've changed my mind about alien mines." <first> Runa says outside your ship. "Just take me to Wayfarer please."`
+			`	"To me... the auras of this place... it's like looking into black lidless eyes... but, I am not ready to give up." Runa says outside your ship. "Take me to <destination>, please."`
+			choice
+				`	"Alright."`
+					goto prettycool
+				`	"No. I am done with whatever this is. Find your own way there."`
+			`	Emotions wash over Runa's face. First surprise, than hurt, and finally stubborn anger.`
+			` 	"Do not let your royal dreams become tyrannical nightmares." She says tersely, befeore leaving you.`
 				decline
+			label prettycool
+			`	"Let us leave, then, before the blackness of this place stains your royal dreams."`
+				accept
+
 			label skadeconversation
-			`	"Ah, yes." She looks down for a second, "I realize I haven't been great company." She gives you a smile, "I appreciate the effort though. With that awful dome behind us, I really do feel much better. Let's take a look at our options."`
+			`	"Ah, yes." She looks down for a second, "I realize I haven't been great company." She gives you a smile, "I appreciate the effort though. With that awful dome behind us, with its rotten auras, I am beginning to see color again."`
 			`	Runa pulls up the map and scans it for a moment,  "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
-			`	She leans over and inputs the coordinates to the abandoned mine she found. "Let's go seem some dirt!"`
+			`	She leans over and inputs the coordinates. "Let's go seem some glorious dirt!"`
 			label letsgo
 			choice
 				`	(Press the activation key that will send the vehicle to Runa's coordinates.)`
 					goto offyougo
 				`	(Do nothing.)`
-			`	Runa waits for a moment and then leans over you and presses the activation key herself, "Look who'se out of it now!"`
+			`	Runa waits for a moment and then leans over you and presses the activation key herself.`
 				goto themine
 
 			label skadevanche
@@ -7131,13 +7141,14 @@ mission "Hroar's Haulers Gunhilda 2"
 				goto skadeend
 
 			label themine
-			`	The rugged and unforigiving wasteland streches on as far as they eye can see. Yet your Quarg vehicle effortlessly plows through the desolate and uninviting terrain. It's certainly significant upgrade over Nifel's Ice-Crawler.`
+			`	The rugged and unforigiving wasteland streches on as far as the eye can see. Yet your Quarg vehicle effortlessly plows through the desolate and uninviting terrain. It's certainly a significant upgrade over Nifel's Ice-Crawler.`
 			`	Gradually the landscape changes, the large black boulders get smaller and then disappear all together. The ground becomes first level and then begins slant at an increasing incline.`
-			`	"By the stars." Gunhilda whispers, "Are you seeing this?"`
-			`	The even ground suddenly turns to swiss cheese beneath your treads. Somehow the Quarg engineering compenstates for it, as you drive over an endless expanse of holes, most of which are barely wide enough to fit your forearm into it.`
-			`	With more than a kilometer to go to your destination, the ground comes to an abrupt halt at a sheer cliff. You stop the vehicle just a few meters from the ledge. Runa is already doning her EV Suit.`
+			`	"By the stones." Gunhilda whispers, "Are you seeing this?"`
+			`	The even ground suddenly turns to swiss cheese beneath your treads. Somehow the Quarg engineering compenstates for it, and you drive over an endless expanse of holes, most of which are barely wide enough to fit your forearm into it.`
+			`	With more than a kilometer to go to your destination, the terrain comes to an abrupt halt at a sheer cliff. You stop the vehicle just a few meters from the ledge. Runa is already donning her EV Suit.`
 			choice
 				`	(Stay inside.)`
+					goto stayinside
 				`	(Suit up and join her.)`
 			`	You're careful to avoid one of the many holes as you step out of the vehicle in your EV suit. Runa has moved to the edge of cliff and is looking out beyond it.`
 			label nowwhat
@@ -7151,10 +7162,10 @@ mission "Hroar's Haulers Gunhilda 2"
 						not "checkbuggy"
 			action
 				set "checkbuggy"
-			`	The badlands of Forpelog have failed to even scratch the Quarg buggy. It looks as pristine as it did when you picked up.`
+			`	The badlands of Forpelog have failed to even scratch the Quarg buggy. It looks as pristine as it did when you picked it up.`
 				goto nowwhat
 			label holetime
-			`	You kneel down and peer into one the countless holes. At a glance they all appear to be uniform. Roughly 30 centimeters across. You illuminate the nearest hole using the light on your EV suit, but you can't see the bottom. They're deep. On closer inspection you see regular serrations around along the sides of the hole. Like a long pole or tube slid down inside them.`
+			`	You kneel down and peer into one the countless holes. At a glance they all appear to be uniform. Roughly 30 centimeters across. You illuminate the nearest hole using the light on your EV suit, but you can't see the bottom. They're deep. On closer inspection you see regular striations along the sides of the hole. Like a long pole or tube slid down them.`
 			choice
 				`	(Join Runa on the ledge.)`
 					goto ledge
@@ -7163,18 +7174,46 @@ mission "Hroar's Haulers Gunhilda 2"
 			choice
 				`	(Join Runa on the ledge.)`
 			label ledge
-			`	Despite having suffered some errosion, the cliff edge is still remarkably smooth. As you approach you realize the ledge is part of the rim of an enmorous perfectly sculpted bowl. The bowl's floor, which must be a kilometer below you, is riddled with huge holes, making the whole thing appear bizarelly polka dotted.`
-			`	"The mine like they build." Runa's voice filters into your suit, "Monumentally."`
-			`	She reaches out her hand and indicates the holes all around you, "Did you see the automated tubes on Lagrange? Like greedy vines trying to suck the life out of our ships. I think a version of that is what made the little holes."`
+			`	Despite having suffered some errosion, the cliff edge is still remarkably smooth. As you approach the ledge you realize you're standing on the rim of an enormous perfectly sculpted bowl. The bowl's floor, which must be at least kilometer down, is riddled with massive holes, making the whole thing appear bizarelly polka dotted.`
+			`	"They mine like they build." Runa's voice filters into your suit, "Monumentally."`
+			`	She reaches out her hand and indicates the smaller holes all around you, "Did you see the automated cargo tubes on Lagrange? Like greedy vines trying to suck the life out of our ships. I think a burrowing version of that is what made these."`
 			`	Runa's arm shifts and she points now to the giant crater sized openings at the base of the great bowl, "But those... imagine how large the vines, the robotic serpents, must have been to dig those. They could swallow entire city ships with ease."`
-			`	For long moments she is quiet, until she peels herself away from the ledge and turns back toward you, "Mining is messy, destructive work. That's the truth. But just because it's ugly doesn't mean there's not character there too. There's not...life? I don't know... it's hard to put what I am feeling into words. It's just this place, this place doesn't feel like a mine. It feel's like a tomb. Like a... sterile operating table. Like...like... nothing."`
+			`	For long moments she is quiet, until she peels herself away from the ledge and turns back toward you, "Mining is messy, destructive work. That's the truth. But just because it's ugly doesn't mean there's not character there too. But here it feels different. There's not...life? I don't know... it's hard to put what I am feeling into words. It's just this place, this place doesn't feel like a mine. It feel's like a tomb. Like a... sterile operating table. Like...like... nothing."`
 			`	You hear her breathing, "Let's go. I am done here."`
 			choice
-				`	"Okay. Let's go."`
 				`	"Where to next?"`
+					goto wherenext
 				`	"Like, done done?"`
+			`	She laughs, "No. If I let a few clouds and dark souls stop me, I never would have gotten anywhere. You know that better than most, royal dreamer. I won't let this world and it's sterile gods put an end to my journey. There might be music yet, beyond the next bend. So, instead, take me to <destination>."`
+			`	Runa pushes past you and climbs back in the vehicle. You follow after you, and before long you're both on your way back to your ship, and the stars above.`
+				accept
+			
+			label wherenext
+			`	"<destination>. Maybe there is music there, or rainbows, or glittering mines into the depths of once still moon. Who knows, but surely it'll be better than this place."`
+			`	Runa pushes past you and climbs back in the vehicle. You follow after you, and before long you're both on your way back to your ship, and the stars above.`
+				accept
 
+			label stayinside
+			`	You watch Runa step to the very edge of the cliff, and then stand there, unmoving, for the better part of half an hour. Eventually, she peels herself away from the ledge and returns to the vehicle with you.`
+			`	"Mining is messy, destructive work. That's the truth. But just because it's ugly doesn't mean there's not character there too. But here it feels different. There's not...life? I don't know... it's hard to put what I am feeling into words. It's just this place, this place doesn't feel like a mine. It feel's like a tomb. Like a... sterile operating table. Like...like... nothing."`
+			`	"None of it what I expected," she continues, " The black-souled Quarg, the dark impossible flora, and now the mine that feels like the afterthought of a sterile god. But I am not ready to be done either. Maybe we'll find that music we're missing on the next moon.`
+			`	She alters the Quarg vehicle's navigation and tells it to return both of you to the <ship>, "Next stop <destination>."`
+				accept
 
+	on complete
+		dialog
+			``
+
+mission "Hroar's Haulers Gunhilda 3"
+	name "Alien Mines"
+	source "Forpelog"
+	description "Captain Runa Gunhilda has asked you to take her to <destination> to see mines delved by aliens."
+	destination "Grakhord"
+	passengers 1
+	to offer
+		has "Hroar's Haulers Gunhilda: done"
+	on offer
+		conversation
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
