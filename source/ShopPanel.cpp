@@ -1259,11 +1259,12 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 			bool unselect = !playerShips.contains(ship);
 			for(const shared_ptr<Ship> &it : player.Ships())
 			{
-				Ship *itShip = it.get();
-				if(itShip != ship && itShip->Immitates(*ship))
+				if(!CanShowInSidebar(*it, player.GetPlanet())
+					continue;
+				if(it.get() != ship && it->Immitates(*ship))
 				{
-					similarShips.push_back(itShip);
-					unselect &= playerShips.contains(itShip);
+					similarShips.push_back(it.get());
+					unselect &= playerShips.contains(it.get());
 				}
 			}
 			for(Ship *it : similarShips)
