@@ -6863,8 +6863,8 @@ mission "Hroar's Haulers 18b"
 	to offer
 		has "Hroar's Haulers 17b: done"
 	on offer
-		event "Nineteen days" 19
-		event "Twenty three days" 23
+		event "Six Days" 6
+		event "Eight days" 8
 		conversation
 			`You make your way past the throngs of humans tourists, indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
 			`	It seems you took an indirect route as Yngvar seperates from the red-brown mass and strides toward you.`
@@ -6906,11 +6906,11 @@ mission "Hroar's Haulers 18b"
 
 	on complete
 		conversation
-			`	The shining Quarg tower pierces the low hanging clouds, and your ship careens toward it like a moth toward the flame. The towers automated systems take over and direct yourship into the appropiate platform. You see many of the other Hauler ships being ushered in similar routes. Drones hover around your ship, and almost seem disappointed by your lack of marked cargo for them.`
+			`	The shining Quarg tower pierces the low hanging clouds, and your ship careens toward it like a moth to the flame. The towers automated systems take over and direct your ship into the appropiate platform. You see many of the other Hauler ships being ushered in similar routes. Drones hover around you, and almost seem disappointed by your lack of marked cargo for them.`
 			`	A light blinks near your console and see you've recieved a new message from Yngvar.`
 			choice
 				`	(Play the message.)`
-			`	Yngvar's scarred face appears on screen. "Thanks for seeing after Solvi's fleet. I'll be heading to Wayfarer with the rest of the caravan here. We're going take three weeks to do some needed maintance and give the crew some time to unwind. So, we're clear and all, we're gonna need you back on Wayfarer in 21 days. We won't waiting on ya, so don't be late. Yngvar out."`
+			`	Yngvar's scarred face appears on screen. "Thanks for seeing after Solvi's fleet. I'll be heading to Wayfarer with the rest of the caravan here. We're going take seven days to do some needed maintance and give the crew some time to unwind. So, we're clear and all, we're gonna need you back on Wayfarer in seven days. We won't be waiting on ya, so be on time. Yngvar out."`
 			`	The screen goes blank, and you notice you've recieved a text-only message: Meet me in the spaceport - Solvi.`
 				to display
 					has "savedsolvi"
@@ -6922,8 +6922,8 @@ mission "Hroar's Haulers 18b"
 				to display
 					has "savedgunhilda"
 
-event "Nineteen days" 
-event "Twenty three days" 
+event "six days"
+event "eight days"
 
 mission "Hroar's Haulers Gunhilda"
 	name "Alien Mines"
@@ -7270,6 +7270,15 @@ mission "Hroar's Haulers Gunhilda 3"
 		`	Runa just laughs, "It's fine. I appreciate the effort. Probably a little silly of us to imagine we could outsmart the Quarg like that. We gave it a try, and that'll have to be good enough for now."`
 		`	She starts walking toward your ship, "Come on. Let's get to Humanika. We can end where we began. Like most things."`
 			accept
+	on complete
+		conversation
+			`	The Quarg tower on Humanika easily swallows up your ship. Runa is waiting by your hatch.`
+			`	"Thanks, <first>. I realize playing tourist to some old mines probably isn't exactly exciting for someone like you. But I appreciate your company all the same, and I had a wonderful time."`
+			`	She opens the hatch and pauses to look back, "I'll see you on Wayfarer, royal dreamer."`
+			`	A moment later she is gone.`
+
+	to complete
+		not "minewatchers"
 
 mission "Hroar's Haulers Gunhilda secret"
 	invisible
@@ -7298,7 +7307,42 @@ mission "Hroar's Haulers Gunhilda secret"
 		`	The Grakhord authorities are less than convinced. A few moments later Quarg rescue vessels launch toward you, their powerful tractor beams latching onto the <ship>, and steering your toward the moon's main spaceport. Gently they set you down.`
 		`	The next few hours are taken up by various inquests about the state of your ship, the sort of malfunction you had, and any damage you sustained. Eventually you're able they either buy your story about the malfunction, or give up on hounding you about it, and you're finally left alone with Runa.`
 		`	She pulls open a file that she smuggled off your systems before the officials arrived and puts it on screen, "We got it!" She says triumphantly. "You were amazing, by the way, just seeing you in action, your whole soul lit up like an iridescent kaleidoscope. It was incredible. You have shades in you that I've never seen before."`
-		`	The screen loads a series of images, videos and other readings; you see a huge bore hole, 30 kilometers across  `
+		`	The screen loads a series of images, videos and other readings; you see a huge bore hole, 30 kilometers across, covered in smaller holes that must run deeper into the moon.`
+		choice
+			`	"See anything?"`
+			`	(Say nothing.)`
+		`	"It's impressive, the operation, there's interesting data here, but nothing earth-shattering." She pauses to look at you, seeing if you got her joke.`
+		choice
+			`	(Groan.)`
+			`	(Laugh.)`
+				goto laugh
+			`	(Say nothing.)`
+		`	She shurgs, "I thought it was funny."`
+			goto next
+
+		label laugh
+		`	She rewards you with a quick smile.`
+		label next
+		action
+			clear "minewatchers"
+		`	"But what I was really hoping for was a chance get inside one of their mines. To let feel the heavy hues of its history thick around me. You, however, your cacaphony of colors, that was the real show."`
+		`	Runa closes out the display, and turns to face you, "The red in you, the little spec I saw back on Maker, it's grown. But you're also so much more than that small piece of the Haulers. A royal dreamer, like you, is the kind of person who changes the universe."`
+		`	She goes quiet for a few moments and then says abruptly, "Now, let's go back to Humanika. To where we began this joruney, and finish it!"`
+			decline
+
+mission "Hroar's Haulers Gunhilda secret 2"
+	invisible
+	landing
+	source "Humanika"
+	to offer
+		has "minewatchers"
+	on offer
+		conversation
+			`	"What are we doing back on Humanika?" Runa asks, "You said you were going to try and fly close to one Grakhord's mines."`
+			decline
+
+
+
 
 
 
