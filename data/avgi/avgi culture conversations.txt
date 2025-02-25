@@ -159,7 +159,7 @@ mission "Avgi Culture: Doomed Korath"
 	minor
 	invisible
 	source
-		attributes "avgi siege"
+		attributes "aberrant siege"
 	to offer
 		not "avgi: lost in twilight"
 		random < 3
@@ -173,7 +173,7 @@ mission "Avgi Culture: General Ripper"
 	minor
 	invisible
 	source
-		attributes "avgi siege"
+		attributes "aberrant siege"
 	to offer
 		not "avgi: lost in twilight"
 		random < 3
