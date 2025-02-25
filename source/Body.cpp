@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <optional>
 
 using namespace std;
 
@@ -249,7 +250,7 @@ void Body::LoadSprite(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(scale != Point(1, 1))
+	if(!(scale.X() == 1 && scale.Y() == 1))
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
 
@@ -268,7 +269,7 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
-		if(scale != Point(1, 1))
+		if(!(scale.X() == 1 && scale.Y() == 1))
 			out.Write("scale", scale.X(), scale.Y());
 		if(randomize)
 			out.Write("random start frame");
