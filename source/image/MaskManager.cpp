@@ -123,3 +123,10 @@ const std::vector<Mask> &MaskManager::GetMasks(const Sprite *sprite, Point scale
 	}
 	return EMPTY;
 }
+
+
+
+bool MaskManager::Cmp::operator()(const Point &a, const Point &b) const noexcept
+{
+	return a.LengthSquared() < b.LengthSquared();
+}

@@ -91,13 +91,6 @@ bool Point::operator!=(const Point &other) const noexcept
 
 
 
-bool Point::operator<(const Point &other) const noexcept
-{
-	return LengthSquared() < other.LengthSquared();
-}
-
-
-
 Point Point::operator+(const Point &point) const
 {
 #ifdef __SSE3__

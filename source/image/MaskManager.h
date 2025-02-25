@@ -45,7 +45,11 @@ public:
 
 
 private:
-	std::map<const Sprite *, std::map<Point, std::vector<Mask>>> spriteMasks;
+	struct Cmp {
+		bool operator()(const Point &a, const Point &b) const noexcept;
+	};
+
+	std::map<const Sprite *, std::map<Point, std::vector<Mask>, Cmp>> spriteMasks;
 
 	// Mutex to make sure different threads don't modify the masks at the same time.
 	std::mutex spriteMutex;

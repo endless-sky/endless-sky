@@ -39,9 +39,6 @@ public:
 
 	bool operator==(const Point &other) const noexcept;
 	bool operator!=(const Point &other) const noexcept;
-	// Purely because std::map needs a less-than operator.
-	// Checks if the length of the point is less than the other point's.
-	bool operator<(const Point &other) const noexcept;
 
 	Point operator+(const Point &point) const;
 	Point &operator+=(const Point &point);
