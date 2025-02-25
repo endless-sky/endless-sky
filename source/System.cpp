@@ -232,7 +232,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						}
 				}
 				else
-					asteroids.emplace_back(type, child, valueIndex, belts.size());
+					asteroids.emplace_back(type, child, valueIndex, static_cast<int>(belts.size()));
 			}
 			else
 				child.PrintTrace("Error: Expected key to have at least one value:");

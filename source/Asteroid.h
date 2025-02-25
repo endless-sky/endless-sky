@@ -29,7 +29,7 @@ class Minable;
 class Asteroid {
 public:
 	Asteroid(const std::string &name, const DataNode &node, int valueIndex);
-	Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount);
+	Asteroid(const Minable *type, const DataNode &node, int valueIndex, int beltCount);
 
 	const std::string &Name() const;
 	const Minable *Type() const;
@@ -49,5 +49,5 @@ private:
 	ConditionSet toSpawn;
 
 	// Load an asteroids/minables description. Note the node is the one holding the "[add] (asteroids|minables)" tokens.
-	void Load(const DataNode &node, int valueIndex, std::size_t beltCount);
+	void Load(const DataNode &node, int valueIndex, int beltCount);
 };

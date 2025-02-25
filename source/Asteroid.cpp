@@ -24,15 +24,15 @@ using namespace std;
 Asteroid::Asteroid(const std::string &name, const DataNode &node, int valueIndex)
 		: name(name)
 {
-	Load(node, valueIndex, 0ul);
+	Load(node, valueIndex, 0);
 }
 
 
 
-Asteroid::Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount)
+Asteroid::Asteroid(const Minable *type, const DataNode &node, int valueIndex, int beltCount)
 		: type(type)
 {
-	Load(node, valueIndex, max(beltCount, 1ul));
+	Load(node, valueIndex, max(beltCount, 1));
 }
 
 
@@ -72,7 +72,7 @@ int Asteroid::Belt() const
 
 
 
-void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
+void Asteroid::Load(const DataNode &node, int valueIndex, int beltCount)
 {
 	const bool isMinable = beltCount > 0;
 
@@ -106,7 +106,7 @@ void Asteroid::Load(const DataNode &node, int valueIndex, std::size_t beltCount)
 		node.PrintTrace("Error: asteroid/minable must have a positive count:");
 	else if(energy <= 0.)
 		node.PrintTrace("Error: asteroid/minable must have a positive energy:");
-	else if(valueIndex == 1 && static_cast<size_t>(belt) > beltCount)
+	else if(valueIndex == 1 && static_cast<unsigned>(belt) > static_cast<unsigned>(beltCount))
 		node.PrintTrace("Error: minable belt number out of bounds:");
 }
 
