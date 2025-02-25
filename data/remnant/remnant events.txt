@@ -136,7 +136,7 @@ event "remnant: lab availability"
 # Depreciated
 event "korath hunting"
 
-# Patch for old saves with "korath hunting" 
+# Patch for old saves with "korath hunting"
 event "korath hunting reset"
 	government "Korath"
 		"attitude toward"
