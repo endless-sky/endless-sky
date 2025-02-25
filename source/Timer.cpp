@@ -180,12 +180,11 @@ void Timer::Save(DataWriter &out) const
 			string distance;
 			if(!closeTo)
 				distance = "far";
-			if(proximityCenter)
-				out.Write("proximity", proximityCenter->TrueName());
-			else if(!proximityCenters.IsEmpty())
+			if(proximityCache.size() > 0)
 			{
 				out.Write("proximity");
-				proximityCenters.Save(out);
+				for(const StellarObject *proximityObject : proximityCache)
+					out.Write(proximityObject->GetPlanet()->TrueName());
 			}
 			out.Write("proximity settings", proximity, distance);
 		}
@@ -206,17 +205,14 @@ Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs
 	Timer result;
 	result.requireIdle = requireIdle;
 	result.requireUncloaked = requireUncloaked;
+	result.requirePeaceful = requirePeaceful;
 	result.system = system;
 	result.systems = systems;
-	result.proximity = proximity;
-	result.proximityCenter = proximityCenter;
-	result.proximityCenters = proximityCenters;
 	result.closeTo = closeTo;
 	result.resetCondition = resetCondition;
 	result.repeatReset = repeatReset;
 	result.resetFired = resetFired;
 	result.idleMaxSpeed = idleMaxSpeed;
-	result.requirePeaceful = requirePeaceful;
 
 	// Validate all the actions attached to the timer, and if they're all valid, instantiate them too.
 	string reason;
@@ -364,6 +360,11 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 				if(inProximity)
 					break;
 			}
+		else
+		{
+			double dist = flagship->Position().Distance(Point(0.,0.));
+			inProximity = closeTo ? dist <= proximity : dist >= proximity;
+		}
 		if(!inProximity)
 		{
 			ResetOn(ResetCondition::LEAVE_ZONE, player, ui, mission);
