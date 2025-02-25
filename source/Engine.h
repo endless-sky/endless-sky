@@ -93,7 +93,6 @@ public:
 	void RClick(const Point &point);
 	void MClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
-	void ClickLog(std::string_view fmt, const Point &point);
 
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
