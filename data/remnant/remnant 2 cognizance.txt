@@ -130,18 +130,18 @@ mission "Remnant: Cognizance 2"
 
 
 mission "Korath hunting patch"
-    landing
-    invisible
-    to offer
-        has "event: korath hunting"
-	not "Remnant: Cognizance 4: active"
-	not "Remnant: Cognizance 5: active"
-	not "Remnant: Cognizance 7: active"
-	not "Remnant: Cognizance 8: active"
-	not "Remnant: Cognizance 18: active"
-    on offer
-        event "korath hunting reset"
-        fail
+	landing
+	invisible
+	to offer
+		has "event: korath hunting"
+		not "Remnant: Cognizance 4: active"
+		not "Remnant: Cognizance 5: active"
+		not "Remnant: Cognizance 7: active"
+		not "Remnant: Cognizance 8: active"
+		not "Remnant: Cognizance 18: active"
+	on offer
+		event "korath hunting reset"
+		fail
 
 
 
