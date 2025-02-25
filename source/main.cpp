@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
+	bool checkAssets = false;
 	bool printTests = false;
 	bool printData = false;
 	bool noTestMute = false;
@@ -120,6 +121,8 @@ int main(int argc, char *argv[])
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
 			loadOnly = true;
+		else if(arg == "--parse-assets")
+			checkAssets = true;
 		else if(arg == "--test" && *++it)
 			testToRunName = *it;
 		else if(arg == "--tests")
@@ -141,11 +144,11 @@ int main(int argc, char *argv[])
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
 		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
-			isConsoleOnly || (isTesting && !debugMode));
+			isConsoleOnly || checkAssets || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
 		// all data now.
-		if(isConsoleOnly || isTesting)
+		if(isConsoleOnly || checkAssets || isTesting)
 			dataFuture.wait();
 
 		if(isTesting && !GameData::Tests().Has(testToRunName))
@@ -166,8 +169,25 @@ int main(int argc, char *argv[])
 		}
 
 		PlayerInfo player;
-		if(loadOnly)
+		if(loadOnly || checkAssets)
 		{
+			if(checkAssets)
+			{
+				Audio::LoadSounds(GameData::Sources());
+				while(GameData::GetProgress() < 1.)
+				{
+					queue.ProcessSyncTasks();
+					std::this_thread::yield();
+				}
+				if(GameData::IsLoaded())
+				{
+					// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,
+					// e.g. due to capitalization errors or other typos.
+					SpriteSet::CheckReferences();
+					Audio::CheckReferences(true);
+				}
+			}
+
 			// Set the game's initial internal state.
 			GameData::FinishLoading();
 
@@ -176,6 +196,8 @@ int main(int argc, char *argv[])
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
 			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
+			if(checkAssets)
+				Audio::Quit();
 			return hasErrors;
 		}
 		assert(!isConsoleOnly && "Attempting to use UI when only data was loaded!");
@@ -210,7 +232,7 @@ int main(int argc, char *argv[])
 		Audio::Init(GameData::Sources());
 
 		if(isTesting && !noTestMute)
-			Audio::SetVolume(0);
+			Audio::SetVolume(0, SoundCategory::MASTER);
 
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
@@ -292,7 +314,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(event.type == SDL_MOUSEMOTION)
 				cursorTime = 0;
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_9)
+			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
 				isPaused = !isPaused;
 				if(isPaused)
@@ -402,7 +424,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				}
 			}
 
-			Audio::Step();
+			Audio::Step(isFastForward);
 
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
@@ -462,7 +484,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			if(!isHeadless)
 			{
-				Audio::Step();
+				Audio::Step(isFastForward);
 
 				// Events in this frame may have cleared out the menu, in which case
 				// we should draw the game panels instead:
@@ -495,6 +517,8 @@ void PrintHelp()
 	cerr << "    -c, --config <path>: save user's files to given directory." << endl;
 	cerr << "    -d, --debug: turn on debugging features (e.g. Caps Lock slows down instead of speeds up)." << endl;
 	cerr << "    -p, --parse-save: load the most recent saved game and inspect it for content errors." << endl;
+	cerr << "    --parse-assets: load all game data, images, and sounds,"
+		" and the latest save game, and inspect data for errors." << endl;
 	cerr << "    --tests: print table of available tests, then exit." << endl;
 	cerr << "    --test <name>: run given test from resources directory." << endl;
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
@@ -510,7 +534,7 @@ void PrintHelp()
 void PrintVersion()
 {
 	cerr << endl;
-	cerr << "Endless Sky ver. 0.10.11-alpha" << endl;
+	cerr << "Endless Sky ver. 0.10.13-alpha" << endl;
 	cerr << "License GPLv3+: GNU GPL version 3 or later: <https://gnu.org/licenses/gpl.html>" << endl;
 	cerr << "This is free software: you are free to change and redistribute it." << endl;
 	cerr << "There is NO WARRANTY, to the extent permitted by law." << endl;

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -50,7 +51,7 @@ namespace {
 
 	// Draw a list of (string, value) pairs.
 	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
-		int maxCount = 0, bool drawValues = true)
+		int64_t titleValue, int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -71,7 +72,7 @@ namespace {
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
 		table.Draw(title, *GameData::Colors().Get("bright"));
-		table.Advance();
+		table.Draw(titleValue, dim);
 		table.DrawGap(5);
 
 		for(const auto &it : list)
@@ -177,7 +178,15 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
 	: player(player), panelState(panelState)
 {
+	Audio::Pause();
 	SetInterruptible(false);
+}
+
+
+
+PlayerInfoPanel::~PlayerInfoPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -665,19 +674,19 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	for(const auto &it : player.Accounts().SalariesIncome())
 		salary.emplace_back(it.second, it.first);
 	sort(salary.begin(), salary.end(), std::greater<>());
-	DrawList(salary, table, "salary:", 4);
+	DrawList(salary, table, "salary:", player.Accounts().SalariesIncomeTotal(), 4);
 
 	vector<pair<int64_t, string>> tribute;
 	for(const auto &it : player.GetTribute())
 		tribute.emplace_back(it.second, it.first->TrueName());
 	sort(tribute.begin(), tribute.end(), std::greater<>());
-	DrawList(tribute, table, "tribute:", 4);
+	DrawList(tribute, table, "tribute:", player.GetTributeTotal(), 4);
 
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
 	vector<pair<int64_t, string>> licenses;
 	for(const auto &it : player.Licenses())
 		licenses.emplace_back(1, it);
-	DrawList(licenses, table, "licenses:", maxRows, false);
+	DrawList(licenses, table, "licenses:", licenses.size(), maxRows, false);
 }
 
 

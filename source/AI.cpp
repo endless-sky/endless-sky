@@ -921,6 +921,11 @@ void AI::Step(Command &activeCommands)
 					|| shipToAssist->GetGovernment()->IsEnemy(gov)
 					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel() && !shipToAssist->NeedsEnergy()))
 			{
+				if(target == shipToAssist)
+				{
+					target.reset();
+					it->SetTargetShip(nullptr);
+				}
 				shipToAssist.reset();
 				it->SetShipToAssist(nullptr);
 			}
@@ -4192,7 +4197,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			Messages::Add(message, Messages::Importance::Info);
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
-				Audio::Play(Audio::Get("fail"));
+				Audio::Play(Audio::Get("fail"), SoundCategory::ALERT);
 		}
 		// If any destination was found, find the corresponding stellar object
 		// and set it as your ship's target planet.
@@ -4409,7 +4414,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		if(target)
 			message.clear();
 		else if(!message.empty())
-			Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 
 		Messages::Importance messageImportance = Messages::Importance::High;
 
@@ -4432,7 +4437,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				message = "The authorities on this " + next->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				messageImportance = Messages::Importance::Highest;
-				Audio::Play(Audio::Get("fail"));
+				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 			}
 			else if(next != target)
 				message = "Switching landing targets. Now landing on " + next->DisplayName() + ".";
@@ -4472,14 +4477,14 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			{
 				message = "There are no planets in this system that you can land on.";
 				messageImportance = Messages::Importance::Highest;
-				Audio::Play(Audio::Get("fail"));
+				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 			}
 			else if(!target->GetPlanet()->CanLand())
 			{
 				message = "The authorities on this " + target->GetPlanet()->Noun() +
 					" refuse to clear you to land here.";
 				messageImportance = Messages::Importance::Highest;
-				Audio::Play(Audio::Get("fail"));
+				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 			}
 			else if(!types.empty())
 			{
@@ -4689,25 +4694,25 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		{
 			Messages::Add("You do not have a hyperdrive installed.", Messages::Importance::Highest);
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 		}
 		else if(!ship.JumpNavigation().JumpFuel(ship.GetTargetSystem()))
 		{
 			Messages::Add("You cannot jump to the selected system.", Messages::Importance::Highest);
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 		}
 		else if(!ship.JumpsRemaining() && !ship.IsEnteringHyperspace())
 		{
 			Messages::Add("You do not have enough fuel to make a hyperspace jump.", Messages::Importance::Highest);
 			autoPilot.Clear();
-			Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 		}
 		else if(ship.IsLanding())
 		{
 			Messages::Add("You cannot jump while landing.", Messages::Importance::Highest);
 			autoPilot.Clear(Command::JUMP);
-			Audio::Play(Audio::Get("fail"));
+			Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 		}
 		else
 		{
