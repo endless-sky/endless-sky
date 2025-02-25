@@ -866,7 +866,7 @@ mission "Little Vienna in New Austria"
 				`	(Accept the ticket.)`
 				`	(Politely decline.)`
 					goto declined
-			`	You graciously accept the invitation and follow her to the intimate concert hall. Despite its modest size, the hall houses a full orchestra. Once you're comfortably seated, the composer steps forward, clears his throat, and in a measured tone declares:`
+			`	You graciously accept the invitation and follow her to the intimate concert hall. Despite its modest size, the hall houses a full orchestra. Once you're comfortably seated, the conductor steps forward, clears his throat, and in a measured tone declares:`
 			`	"Willkommen im ehrwuerdigen Bach Collegium Konzertsaal! Wir sind Lichtjahre von Mozarts Heimat entfernt, aber auch im Zentrum von Kleinwean! Geniessen Sie das Konzert!"`
 			`	The words hang in the air as you notice the conductor's smile, strikingly familiar from the newspaper photograph. With his invitation to lose yourself in the performance still echoing, the orchestra begins a stirring rendition of Mozart. The notes dance through the air with crystalline clarity, and you even recognize one or two of the melodies, each serving as a comforting bridge to the Old Vienna of Earth.`
 			`	Even after the performance, you feel the sound of music resonate in your bones as you glance back one more time at New Austria's hidden cultural enclave.`
