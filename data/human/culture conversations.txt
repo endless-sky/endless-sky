@@ -853,7 +853,7 @@ mission "Little Vienna in New Austria"
 		random < 10
 	on offer
 		conversation
-			`As you walk from the spaceport's landing pads towards the center of the village, your attention is caught by a worn-down sign pointing you to the "Kleinwean Bezirk". `
+			`As you walk from the spaceport's landing pads towards the center of the village, your attention is caught by a worn-down sign pointing you to the "Kleinwean Bezirk."`
 			choice
 				`	(Follow the sign.)`
 				`	(Ignore the sign and keep walking.)`
