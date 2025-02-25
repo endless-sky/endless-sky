@@ -23,7 +23,6 @@ phrase "Essential Unfettered Mission Fail If Killed"
 
 # using <, > so we can have an empty name
 substitutions
-	"<uhai>" "Triumph of the True Hai"
 	"<, unfettered title>" ", monkey"
 	"<, unfettered title>" ", space-monkey"
 		has "Unfettered Jump Drive 1: offered"

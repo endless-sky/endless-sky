@@ -547,7 +547,7 @@ mission "Unfettered Jump Drive Trading"
 
 
 
-mission "<uhai> 0: Bring Hai"
+mission "True Hai Triumph 0: Bring Hai"
 	name `Bring True Hai`
 	description `Bring <bunks> Hai from <stopovers> to <origin>.`
 	source "Firelode"
@@ -715,18 +715,18 @@ mission "<uhai> 0: Bring Hai"
 
 
 
-mission "<uhai> 1: Bring Medicine Notification"
+mission "True Hai Triumph 1: Bring Medicine Notification"
 	landing
 	name `Need for medical supplies`
 	description `An Unfettered Chief told you to come help the hospitals on <destination> that desperately need supplies.`
 	source "Firelode"
 	destination "Darkcloak"
 	to offer
-		has "<uhai> 0: Bring Hai: done"
+		has "True Hai Triumph 0: Bring Hai: done"
 
 
 
-mission "<uhai> 1: Bring Medicine"
+mission "True Hai Triumph 1: Bring Medicine"
 	landing
 	name `Bring medical supplies to <planet>`
 	description `The Unfettered hospitals on <origin> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
@@ -736,7 +736,7 @@ mission "<uhai> 1: Bring Medicine"
 	blocked `You need <tons> of cargo space available to carry the medical supplies.`
 	deadline 9
 	to offer
-		has "<uhai> 0: Bring Hai: done"
+		has "True Hai Triumph 0: Bring Hai: done"
 	substitutions
 		<prioritymessage> `Unfortunately, because it's in Hai, you can only guess at the meaning of it, but it is clearly important. You can see the Hai word for "Unfettered" repeated several times, as well as numbers in the hundreds.`
 			not "language: Hai"
@@ -837,7 +837,7 @@ event "unfettered: access to Mera's lab"
 
 
 
-mission "<uhai> 2: Prove Your Strength"
+mission "True Hai Triumph 2: Prove Your Strength"
 	autosave
 	repeat
 	deadline 2
@@ -846,18 +846,18 @@ mission "<uhai> 2: Prove Your Strength"
 	source "Darkcloak"
 	to offer
 		or
-			has "<uhai> 2: Prove Your Strength: deferred"
+			has "True Hai Triumph 2: Prove Your Strength: deferred"
 			has "Wanderers: Defend Vara Ke'sok: aborted"
 			random < "Unfettered Jump Drive 1: offered" * 20 + "Unfettered Jump Drive 2: offered" * 25 + "Unfettered Jump Drive 3: offered" * 30 + "Unfettered Jump Drive 4: failed" * 25
 		# 3 is what a default built Sea Scorpion has
 		"armament deterrence" >= 3
-		not "<uhai> 2: Prove Your Strength: done"
+		not "True Hai Triumph 2: Prove Your Strength: done"
 	on offer
 		conversation
 			branch waiting
 				or
-					has "<uhai> 2: Prove Your Strength: deferred"
-					has "<uhai> 2: Prove Your Strength: offered"
+					has "True Hai Triumph 2: Prove Your Strength: deferred"
+					has "True Hai Triumph 2: Prove Your Strength: offered"
 			`You start wandering through the spaceport, noticing just how much everything around you here is simple, efficient, and ordered - unlike the world of Firelode.`
 				to display
 					has "visited planet: Firelode"
@@ -930,11 +930,11 @@ mission "<uhai> 2: Prove Your Strength"
 			`	(The Unfettered captain will only show up if you have a small enough fleet for the duel to be fair; you are currently bringing too many ships.)`
 			`	(To park ships press "I", and then select "Park All" or manually select the ships you want to park. For this fight, you are limited to a single heavy warship, or a small group of lighter vessels.)`
 			action
-				"<uhai> 2: Prove Your Strength: deferred" ++
+				"True Hai Triumph 2: Prove Your Strength: deferred" ++
 			`	Land again when you meet those specifications.`
 				defer
 	on enter
-		clear "<uhai> 2: Prove Your Strength: deferred"
+		clear "True Hai Triumph 2: Prove Your Strength: deferred"
 		conversation
 			branch "cheating bugger"
 				"ships: Space Liner" * 2 + "ships: Transport" * 4 + "ships: Light Freighter" * 2 + "ships: Heavy Freighter" * 4 + "ships: Utility" * 6 + "ships: Interceptor" * 2 + "ships: Light Warship" * 3 + "ships: Medium Warship" * 6 + "ships: Heavy Warship" * 12 + "ships: Superheavy" * 18 > 12
@@ -947,7 +947,7 @@ mission "<uhai> 2: Prove Your Strength"
 			label "cheating bugger"
 			`The captain hails you, "That is too big of a fleet, ye monkey! This challenge be sunk. Come back to me again when ye 'r ready to do it by the code! It'll cost ye <fine> for wasting my time."`
 			action
-				fail "<uhai> 2: Prove Your Strength"
+				fail "True Hai Triumph 2: Prove Your Strength"
 				fine 25000
 	on disabled
 		dialog `The Captain hails you, "Full of holes so soon, matey? No matter, I get me fee of 250 thousand credits! When ye're ready to fight like a Heshi, come to the 'port to see if I'm on the deck! In the meantime I can repair ye for a lil' purse's worth, but be sure to give it in a private hail and then hail me ship again to ask for help, for me first mate must not know about it or I could have a mutiny on my hands for not sharing!"`
@@ -1073,7 +1073,7 @@ mission "<uhai> 2: Prove Your Strength"
 			branch death live
 				not "Unfettered Small Medicals Rush: done"
 				not "Unfettered Big Medicals Rush: done"
-				not "<uhai> 1: Bring Medicine: done"
+				not "True Hai Triumph 1: Bring Medicine: done"
 			label death
 			`	You never wake up. The final words you hear before all is truly dark speak of an ongoing medical crisis taking priority.`
 				die
@@ -1102,7 +1102,7 @@ event "cerberus revealed"
 	government "Cerberus"
 		remove "display name"
 
-mission "<uhai> 3: Recover Jump Drives"
+mission "True Hai Triumph 3: Recover Jump Drives"
 	name `Recover the jump drives`
 	description `Go to the pirate world of <stopovers> and recover 4 jump drives from a vault.`
 	source "Darkcloak"
@@ -1180,7 +1180,7 @@ mission "<uhai> 3: Recover Jump Drives"
 	on fail
 		dialog phrase "Essential Unfettered Mission Fail"
 	to complete
-		has "<uhai> 3: Jump Drive Vault: offered"
+		has "True Hai Triumph 3: Jump Drive Vault: offered"
 	on complete
 		outfit "Jump Drive" -4
 		payment 2000000
@@ -1195,11 +1195,11 @@ mission "<uhai> 3: Recover Jump Drives"
 					goto leave
 				`	"I heard you say a name, 'Cerberus', I believe."`
 					to display
-						has "<uhai> 3: Jump Drive Vault: Attracted Attention: offered"
+						has "True Hai Triumph 3: Jump Drive Vault: Attracted Attention: offered"
 					goto cerberus
 				`	"Who were these pirates attacking us?"`
 					to display
-						not "<uhai> 3: Jump Drive Vault: Attracted Attention: offered"
+						not "True Hai Triumph 3: Jump Drive Vault: Attracted Attention: offered"
 					goto pirates
 				`	"Could I keep a jump drive for myself?"`
 					to display
@@ -1207,7 +1207,7 @@ mission "<uhai> 3: Recover Jump Drives"
 			action
 				set "unfettered: asked a jump drive from Si-Ra"
 			branch listened
-				not "<uhai> 3: Jump Drive Vault: Attracted Attention: offered"
+				not "True Hai Triumph 3: Jump Drive Vault: Attracted Attention: offered"
 			`	"Clearly ye have enough already, since ye saw fit to flaunt it for all the pirates."`
 				goto choice
 			label listened
@@ -1242,13 +1242,13 @@ mission "<uhai> 3: Recover Jump Drives"
 
 
 
-mission "<uhai> 3: Jump Drive Vault"
+mission "True Hai Triumph 3: Jump Drive Vault"
 	landing
 	invisible
 	source "Freedom"
 	destination "Darkcloak"
 	to offer
-		has "<uhai> 3: Recover Jump Drives: active"
+		has "True Hai Triumph 3: Recover Jump Drives: active"
 	on offer
 		conversation
 			`You park your ship close to the hidden depot at a less-used auxiliary spaceport, as suggested by the captain. Often used by those seeking a degree of discretion, auxiliary spaceports tend to still be close enough to the main hubs to not draw the same types of unwanted attention as landing fully off-grid. Your crew should be close enough to intervene should anything go wrong.`
@@ -1306,7 +1306,7 @@ mission "<uhai> 3: Jump Drive Vault"
 				die
 			label outside
 			action
-				fail "<uhai> 3: Recover Jump Drives"
+				fail "True Hai Triumph 3: Recover Jump Drives"
 			`	It may have felt like the right thing to do at the time, but you quickly realize splitting up and then staying here in the open was not very intelligent. No longer impressed by your now-missing armored friend, a local pirate attacks - you attempt to fight him off, but you only end up stabbed. You see that his bloody knife has a snake on it before losing consciousness.`
 			`	When you wake up, everything is blurry. All you can see is a powerful, almost divine, light.`
 			`	Coming back to your senses, you notice you are in what must be a hospital, half naked. The captain is staring at you. "The Gods of Battle have judged ye, <first>. And they found you wanting." It seems clear that you will not be able to continue missions with the Unfettered.`
@@ -1357,13 +1357,13 @@ mission "<uhai> 3: Jump Drive Vault"
 		fleet "Large Northern Pirates"
 
 # Additional ships will spawn if you brought a JD with you.
-mission "<uhai> 3: Jump Drive Vault: Attracted Attention"
+mission "True Hai Triumph 3: Jump Drive Vault: Attracted Attention"
 	landing
 	invisible
 	source "Freedom"
 	destination "Darkcloak"
 	to offer
-		has "<uhai> 3: Recover Jump Drives: active"
+		has "True Hai Triumph 3: Recover Jump Drives: active"
 		has "outfit (installed): Jump Drive"
 	on enter "Almaaz"
 		"unfettered rep: Si-Ra" -= 2
@@ -1398,7 +1398,7 @@ ship "Geocoris" "Geocoris (Keystones)"
 		outfits
 			"Quantum Keystone" 123
 
-mission "<uhai> 4: Scan Geocoris"
+mission "True Hai Triumph 4: Scan Geocoris"
 	name `Scan the Geocoris`
 	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Value Detector, then return to <destination> with the scanner logs. You may abort this, at a cost.`
 	source "Firelode"
@@ -1521,7 +1521,7 @@ mission "<uhai> 4: Scan Geocoris"
 			label "didn't listen"
 			`You have scanned the Geocoris, but you did not use a Value Detector to do so. The scans will be of no value to Mera. You have failed the mission.`
 			action
-				fail "<uhai> 4: Scan Geocoris"
+				fail "True Hai Triumph 4: Scan Geocoris"
 	npc
 		government "Hai"
 		to spawn
@@ -1543,13 +1543,13 @@ mission "<uhai> 4: Scan Geocoris"
 		dialog `You send the scans to the Unfettered government and receive a payment of <payment>. They tell you Mera will take a while to analyze the scans, and advise you not to wait for it. They ask you to check the job board for other ways to assist the 'True Hai' in the meantime.`
 		event "unfettered: analyzed the scans" 10 20
 
-mission "<uhai> 4: Geocoris Arrival"
+mission "True Hai Triumph 4: Geocoris Arrival"
 	landing
 	invisible
 	source
 		system "Ya Hai"
 	to offer
-		has "<uhai> 4: Scan Geocoris: active"
+		has "True Hai Triumph 4: Scan Geocoris: active"
 	on offer
 		conversation
 			`Shortly after you land, you see the Geocoris signature on your radar. You take off immediately.`
