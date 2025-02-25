@@ -154,8 +154,10 @@ ship "Nathas"
 	engine 0 0
 	gun 5 0 "Ruksay Missile Launcher"
 	turret 0 0 "Lilsa Anti-Missile"
-	bay Drone 0 0
-	bay Drone 0 0
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -214,10 +216,14 @@ ship "Nathaq"
 	gun 0 -5 "Ruksay Missile Launcher"
 	turret 0 0 "Lilsa Anti-Missile"
 	turret 5 0 "Lilsa Anti-Missile"
-	bay Drone 0 0
-	bay Drone 0 0
-	bay Drone 0 0
-	bay Drone 0 0
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -349,14 +355,22 @@ ship "Safinat"
 	turret 0 0 "Zarhal Laser Turret"
 	turret 0 5 "Zarhal Laser Turret"
 	turret 5 0 "Zarhal Laser Turret"
-	bay Fighter 0 0
-	bay Fighter 0 0
-	bay Fighter 0 0
-	bay Drone 0 0
-	bay Drone 0 0
-	bay Drone 0 0
-	bay Drone 0 0
-	bay Drone 0 0
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -582,16 +596,26 @@ ship "Nakil"
 		
 	engine 0 0
 	turret 0 0 "Lilsa Anti-Missile"
-	bay Fighter 0 0
-	bay Drone 0 0
-	bay Fighter 0 0
-	bay Drone 0 0
-	bay Fighter 0 0
-	bay Drone 0 0
-	bay Fighter 0 0
-	bay Drone 0 0
-	bay Fighter 0 0
-	bay Fighter 0 0
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Drone" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -657,8 +681,10 @@ ship "Nathar"
 	turret 0 0 "Zarwal Laser Turret"
 	turret 0 5 "Zarhal Laser Turret"
 	turret 5 0 "Zarhal Laser Turret"
-	bay Fighter 0 0
-	bay Fighter 0 0
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
+	bay "Fighter" 0 0
+		"launch effect" "jibauni internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30

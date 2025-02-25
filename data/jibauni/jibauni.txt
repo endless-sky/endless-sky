@@ -193,3 +193,49 @@ phrase "jibauni got rid of bounty"
 		" gives"
 	word
 		" you <payment>."
+
+# effects
+
+effect "jibauni internal"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "jibauni launch"
+	"sound category" "engine"
+
+effect "jibauni external"
+	sprite "effect/smoke"
+		"no repeat"
+		"random start frame"
+		"frame rate" 8
+	"lifetime" 30
+	"random angle" 15
+	"random spin" 360
+	"random velocity" 3
+	sound "jibauni external launch"
+	"sound category" "engine"
+
+effect "flak impact"
+	sprite "effect/bullet impact"
+		"no repeat"
+		"frame rate" 60
+	"lifetime" 8
+	"random angle" 40
+	"velocity scale" -.05
+
+effect "jibauni missile hit"
+	sprite "effect/explosion/medium"
+		"no repeat"
+		"frame rate" 15
+	sound "jibauni missile hit"
+	"lifetime" 28
+	"random angle" 360
+	"random velocity" .6
+	"random spin" 3
+	"random frame rate" 5
+	"velocity scale" .4

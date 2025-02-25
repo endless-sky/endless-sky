@@ -104,14 +104,6 @@ outfit "flak launcher submunition"
 		"hit force" 3
 		"hit effect" "bullet impact"
 
-effect "flak impact"
-	sprite "effect/bullet impact"
-		"no repeat"
-		"frame rate" 60
-	"lifetime" 8
-	"random angle" 40
-	"velocity scale" -.05
-
 
 outfit "Altaedin Laser"
 	cost 200000
@@ -322,19 +314,6 @@ outfit "Ruksay Missile Launcher"
 		"phasing"
 	description "Ruksay missiles are not as good at tracking and don't do splash damage the way Rukjay missiles do, but some captains regard the nonexistence of heat creation as worth it for the lessening of defenses."
 	description "	In addition, many Jibauni captains appreciate the fact that it's hard to destroy disabled ships with Ruksay missiles."
-
-
-effect "jibauni missile hit"
-	sprite "effect/explosion/medium"
-		"no repeat"
-		"frame rate" 15
-	sound "jibauni missile hit"
-	"lifetime" 28
-	"random angle" 360
-	"random velocity" .6
-	"random spin" 3
-	"random frame rate" 5
-	"velocity scale" .4
 
 
 outfit "Rukjay Missile Blueprint"
