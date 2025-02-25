@@ -7298,7 +7298,7 @@ mission "Hroar's Haulers Gunhilda secret"
 		`	The Grakhord authorities are less than convinced. A few moments later Quarg rescue vessels launch toward you, their powerful tractor beams latching onto the <ship>, and steering your toward the moon's main spaceport. Gently they set you down.`
 		`	The next few hours are taken up by various inquests about the state of your ship, the sort of malfunction you had, and any damage you sustained. Eventually you're able they either buy your story about the malfunction, or give up on hounding you about it, and you're finally left alone with Runa.`
 		`	She pulls open a file that she smuggled off your systems before the officials arrived and puts it on screen, "We got it!" She says triumphantly. "You were amazing, by the way, just seeing you in action, your whole soul lit up like an iridescent kaleidoscope. It was incredible. You have shades in you that I've never seen before."`
-		`	The screen loads a series of images, videos and other readings, describing, a  `
+		`	The screen loads a series of images, videos and other readings; you see a huge bore hole, 30 kilometers across  `
 
 
 
