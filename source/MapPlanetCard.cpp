@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPlanetCard.h"
 
 #include "Color.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -25,9 +25,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "Planet.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Screen.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "text/WrappedText.h"
@@ -40,8 +40,9 @@ namespace {
 
 
 
-MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited)
-	: number(number), hasVisited(hasVisited), planetName(object.Name())
+MapPlanetCard::MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited,
+		const MapDetailPanel *parent)
+	: parent(parent), number(number), hasVisited(hasVisited), planetName(object.DisplayName())
 {
 	planet = object.GetPlanet();
 	hasSpaceport = planet->HasServices();
@@ -293,7 +294,7 @@ void MapPlanetCard::Highlight(double availableSpace) const
 double MapPlanetCard::AvailableTopSpace() const
 {
 	const double height = Height();
-	return min(height, max(0., (number + 1) * height - MapDetailPanel::GetScroll()));
+	return min(height, max(0., (number + 1) * height - parent->GetScroll()));
 }
 
 

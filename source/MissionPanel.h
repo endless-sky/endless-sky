@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_PANEL_H_
-#define MISSION_PANEL_H_
+#pragma once
 
 #include "MapPanel.h"
 
@@ -91,12 +90,10 @@ private:
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
 
+	bool canDrag = true;
+
 	int dragSide = 0;
 	int hoverSortCount = 0;
 	int hoverSort = -1; // 0 to 3 for each UI element
 	WrappedText wrap;
 };
-
-
-
-#endif

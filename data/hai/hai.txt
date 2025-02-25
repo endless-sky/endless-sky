@@ -164,6 +164,9 @@ outfitter "Hai Advanced"
 	"Cargo Scanner"
 	"Sand Cell"
 
+outfitter "Hai-home Only"
+	"Holovid Zone"
+
 outfitter "Hai Security"
 	"Hai Tracker"
 	"Hai Tracker Pod"
@@ -205,6 +208,7 @@ outfitter "Unfettered Basics"
 	"Pulse Rifle"
 	"Asteroid Scanner"
 	"Outfit Scanner"
+	"Phantom Pallet"
 
 # For ships, stations, or corporations.
 phrase "hai"
@@ -450,6 +454,15 @@ phrase "friendly hai"
 		"harmony."
 		"concord."
 		"cooperation."
+
+phrase "friendly hai"
+	word
+		"Do you have any of your human ship cooling systems to trade? Many of us consider them to be more fashionable and exotic than our Williwaws."
+		"Our tenets forbid gambling, but there are a few that fail to resist the temptation."
+		"Please be respectful when handling our quantum keystones. They are a vital cultural treasure of the Hai."
+		"We extol the diversity of human spaceship technology. Some of your more primitive engines, however, must try your patience."
+		"We understand that different species have different diets. However, it is still unnerving to know some humans eat squirrels."
+		"Zero-g cricket is a fascinating human sport. Although, we have found it is much more entertaining to play than to watch."
 
 phrase "friendly disabled hai"
 	word

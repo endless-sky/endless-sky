@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef STELLAR_OBJECT_H_
-#define STELLAR_OBJECT_H_
+#pragma once
 
 #include "Body.h"
 #include "Hazard.h"
@@ -53,7 +52,7 @@ public:
 	const Planet *GetPlanet() const;
 
 	// Only planets that you can land on have names.
-	const std::string &Name() const;
+	const std::string &DisplayName() const;
 	// If it is impossible to land on this planet, get the message
 	// explaining why (e.g. too hot, too cold, etc.).
 	const std::string &LandingMessage() const;
@@ -91,7 +90,3 @@ private:
 	// Let System handle setting all the values of an Object.
 	friend class System;
 };
-
-
-
-#endif

@@ -18,6 +18,8 @@ mission "Intro [0]"
 	passengers 1
 	source "New Boston"
 	destination "New Greenland"
+	to offer
+		not "hai space start"
 	
 	on offer
 		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
@@ -402,7 +404,7 @@ mission "Intro [2 Interceptor]"
 				`	"Got it."`
 					accept
 				`	"I really shouldn't try to fight?"`
-			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And one Heavy Rocket hit could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recognize what your enemy's strengths and weaknesses are, as well as your own."`
+			`	"It just isn't feasible," he says. "If a ship has turrets, your Sparrow can't get close enough to hit it with your guns without being damaged, and then it's just a matter of whose weapons and shields are stronger. And two Heavy Rocket hits could nearly disable you. Also, if it has anti-missile turrets, you can't count on hanging back and bombarding it with missiles from long distances, or at least not with weapons that can fit in a Sparrow. So, don't risk it. It's like rock paper scissors; recognize what your enemy's strengths and weaknesses are, as well as your own."`
 				accept
 	
 	on complete
@@ -517,7 +519,7 @@ mission "Intro [3 Interceptor]"
 				`	"Sure."`
 				`	"No thanks."`
 					goto end
-			`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on New Boston.`
+			`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on <starting planet>.`
 			label end
 			`	"Anyway," says James, "would you be willing to take me on one more journey? It's time for me to head for that retirement home."`
 			choice

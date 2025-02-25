@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageProfile.h"
 
 #include "DamageDealt.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "Weapon.h"
@@ -128,13 +128,13 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 			- attributes.Get("piercing resistance")));
 		double highPermeability = attributes.Get("high shield permeability");
 		double lowPermeability = attributes.Get("low shield permeability");
-		double permeability = 0.;
+		double permeability = ship.Cloaking() * attributes.Get("cloaked shield permeability");
 		if(highPermeability || lowPermeability)
 		{
 			// Determine what portion of its maximum shields the ship is currently at.
 			// Only do this if there is nonzero permeability involved, otherwise don't.
 			double shieldPortion = shields / ship.MaxShields();
-			permeability = max((highPermeability * shieldPortion) +
+			permeability += max((highPermeability * shieldPortion) +
 				(lowPermeability * (1. - shieldPortion)), 0.);
 		}
 		shieldFraction = (1. - min(piercing + permeability, 1.)) /
@@ -142,7 +142,8 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 
 		damage.shieldDamage = (weapon.ShieldDamage()
 			+ weapon.RelativeShieldDamage() * ship.MaxShields())
-			* ScaleType(0., 0., attributes.Get("shield protection"));
+			* ScaleType(0., 0., attributes.Get("shield protection")
+			+ (ship.IsCloaked() ? attributes.Get("cloak shield protection") : 0.));
 		if(damage.shieldDamage > shields)
 			shieldFraction = min(shieldFraction, shields / damage.shieldDamage);
 	}
@@ -152,9 +153,11 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
 	damage.shieldDamage *= shieldFraction;
+	double totalHullProtection = (ScaleType(1., 0., attributes.Get("hull protection") +
+		(ship.IsCloaked() ? attributes.Get("cloak hull protection") : 0.)));
 	damage.hullDamage = (weapon.HullDamage()
 		+ weapon.RelativeHullDamage() * ship.MaxHull())
-		* ScaleType(1., 0., attributes.Get("hull protection"));
+		* totalHullProtection;
 	double hull = ship.HullUntilDisabled();
 	if(damage.hullDamage > hull)
 	{
@@ -162,7 +165,7 @@ void DamageProfile::PopulateDamage(DamageDealt &damage, const Ship &ship) const
 		damage.hullDamage *= hullFraction;
 		damage.hullDamage += (weapon.DisabledDamage()
 			+ weapon.RelativeDisabledDamage() * ship.MaxHull())
-			* ScaleType(1., 0., attributes.Get("hull protection"))
+			* totalHullProtection
 			* (1. - hullFraction);
 	}
 	damage.energyDamage = (weapon.EnergyDamage()

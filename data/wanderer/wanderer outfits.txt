@@ -66,7 +66,7 @@ outfit "Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact"
 		"inaccuracy" .2
-		"turret turn" 1.3
+		"turret turn" 1.8
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -96,7 +96,7 @@ outfit "Dual Sunbeam Turret"
 		sound "sunbeam"
 		"hit effect" "sunbeam impact" 2
 		"inaccuracy" .2
-		"turret turn" 1.0
+		"turret turn" 1
 		"velocity" 540
 		"lifetime" 1
 		"reload" 1
@@ -171,7 +171,7 @@ outfit "Moonbeam Turret"
 		"fire effect" "moonbeam fleck"
 		"hit effect" "moonbeam impact"
 		"inaccuracy" 2.0
-		"turret turn" 3.6
+		"turret turn" 2.2
 		"velocity" 490
 		"lifetime" 1
 		# A full cycle is 36 frames. Beam is active 83% of the time.
@@ -211,6 +211,7 @@ effect "wanderer anti-missile"
 		"no repeat"
 		"frame rate" 6
 	sound "heavy anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 
@@ -278,7 +279,7 @@ outfit "Thunderhead"
 		"radar tracking" .6
 		"shield damage" 110
 		"hull damage" 80
-		"hit force" 150
+		"hit force" 225
 		"missile strength" 3
 
 outfit "Thunderhead Storage Array"
@@ -429,7 +430,7 @@ outfit "Type 1 Radiant Thruster"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 8.8
+	"thrust" 13.2
 	"thrusting energy" 0.55
 	"thrusting heat" 0.85
 	"cooling" 1.5
@@ -447,7 +448,7 @@ outfit "Type 2 Radiant Thruster"
 	"mass" 27
 	"outfit space" -27
 	"engine capacity" -27
-	"thrust" 21.3
+	"thrust" 31.95
 	"thrusting energy" 1.3
 	"thrusting heat" 2.4
 	"cooling" 3.6
@@ -465,7 +466,7 @@ outfit "Type 3 Radiant Thruster"
 	"mass" 42
 	"outfit space" -42
 	"engine capacity" -42
-	"thrust" 35.28
+	"thrust" 52.92
 	"thrusting energy" 2.2
 	"thrusting heat" 4.3
 	"cooling" 6.5
@@ -483,7 +484,7 @@ outfit "Type 4 Radiant Thruster"
 	"mass" 65
 	"outfit space" -65
 	"engine capacity" -65
-	"thrust" 58
+	"thrust" 87
 	"thrusting energy" 3.7
 	"thrusting heat" 7.6
 	"cooling" 11.7
@@ -501,7 +502,7 @@ outfit "Type 1 Radiant Steering"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
-	"turn" 181
+	"turn" 271.5
 	"turning energy" .3
 	"turning heat" 0.6
 	"cooling" 1.0
@@ -519,7 +520,7 @@ outfit "Type 2 Radiant Steering"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"turn" 476
+	"turn" 714
 	"turning energy" .7
 	"turning heat" 1.5
 	"cooling" 2.1
@@ -537,7 +538,7 @@ outfit "Type 3 Radiant Steering"
 	"mass" 30
 	"outfit space" -30
 	"engine capacity" -30
-	"turn" 825
+	"turn" 1237.5
 	"turning energy" 1.2
 	"turning heat" 2.6
 	"cooling" 3.9
@@ -555,7 +556,7 @@ outfit "Type 4 Radiant Steering"
 	"mass" 47
 	"outfit space" -47
 	"engine capacity" -47
-	"turn" 1466
+	"turn" 2199
 	"turning energy" 2.0
 	"turning heat" 4.5
 	"cooling" 6.7

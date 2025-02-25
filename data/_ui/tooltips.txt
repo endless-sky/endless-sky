@@ -11,6 +11,12 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# Fleet management:
+tip "parked"
+	`(parked)`
+
+
+
 # Outfit and ship attributes:
 tip "acceleration:"
 	`How quickly this ship gains speed. The higher a ship's mass (including the mass of any cargo or fighters it is carrying), the slower it accelerates.`
@@ -69,6 +75,9 @@ tip "asteroid scan power:"
 tip "atmosphere scan:"
 	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
 
+tip "automaton:"
+	`A ship with this attribute does not need any crew to operate, even if it has outfits that normally require additional crew. However, you cannot use it as your flagship in this state.`
+
 tip "bunks:"
 	`The number of people (passengers or crew) your ship can hold.`
 
@@ -118,7 +127,10 @@ tip "cargo space needed:"
 	`Tons of cargo space this outfit uses up.`
 
 tip "cloak:"
-	`Allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked.`
+	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked, except if they have the related "cloaked firing" attribute.`
+
+tip "cloak by mass:"
+	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking for a ship with 1000 mass. The higher a ship's mass, the slower the cloak works, the lower its mass, the faster the cloak works. Ships cannot fire while cloaked, except if they have the related "cloaked firing" attribute.`
 
 tip "cloaking energy:"
 	`Energy consumed per second when cloaked.`
@@ -128,6 +140,33 @@ tip "cloaking fuel:"
 	
 tip "cloaking heat:"
 	`Heat generated per second when cloaked.`
+
+tip "cloaking shields:"
+	`Shields consumed per second while cloaked.`
+
+tip "cloaking shield delay:"
+	`This ship is unable to regenerate shields whilst cloaked, instead its shield regeneration will suffer a delay that will grow the longer it is cloaked`
+
+tip "cloaking hull:"
+	`Hull consumed per second while cloaked.`
+
+tip "cloaking repair delay:"
+	`This ship is unable to regenerate hull whilst cloaked, instead its hull regeneration will suffer a delay that will grow the longer it is cloaked.`
+
+tip "cloak hull protection:"
+	`Protection against weapons that do hull damage when the cloak is active. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hull damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "cloak shield protection:"
+	`Protection against weapons that do shield damage when the cloak is active. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "cloak phasing:"
+	`When cloaked, weapons cannot affect this ship, and pass right through.`
+
+tip "cloaked firing:"
+	`This device is so efficient at hiding you that you may shoot when cloaking, losing this amount of cloaking in the process, before being cloaked again. A negative value means shooting does not even hinder your cloak.`
+
+tip "cloak hull threshold:"
+	`If you have hull lower than this value (seen as a % between 0 and 1) the cloaking device can no longer operate.`
 
 tip "cooling:"
 	`Heat dissipated per second. This is for when your ship's built-in heat dissipation is not sufficient to keep it from overheating.`
@@ -196,7 +235,7 @@ tip "drone bays:"
 	`The number of ships from the "Drone" category that this ship can carry.`
 
 tip "energy capacity:"
-	`The amount of energy this ship can store. This allows you to temporarily use more power than your generators produce.`
+	`The amount of energy this outfit adds to your ship's energy capacity. This allows you to temporarily use more power than your generators produce.`
 
 tip "energy consumption:"
 	`Energy consumed per second while in flight.`
@@ -215,6 +254,9 @@ tip "energy protection:"
 
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
+
+tip "flotsam chance:"
+	`The chance that this outfit will drop as flotsam when the ship it is installed on is destroyed.`
 
 tip "force protection:"
 	`Protection provided against hit force. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hit force, while a total value of 11 only results in a 10 percent reduction.`
@@ -267,17 +309,26 @@ tip "hull:"
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
 
+tip "delayed hull energy:"
+	`Additional energy consumed per second when repairing the hull after the repair delay period.`
+
 tip "hull energy multiplier:"
 	`Modifies the energy consumed when repairing the hull by the given factor.`
 
 tip "hull fuel:"
 	`Fuel consumed per second when repairing the hull.`
 
+tip "delayed hull fuel:"
+	`Additional fuel consumed per second when repairing the hull after the repair delay period.`
+
 tip "hull fuel multiplier:"
 	`Modifies the fuel consumed when repairing the hull by the given factor.`
 
 tip "hull heat:"
 	`Heat produced per second when repairing the hull.`
+
+tip "delayed hull heat:"
+	`Additional heat produced per second when repairing the hull after the repair delay period.`
 
 tip "hull heat multiplier:"
 	`Modifies the heat produced when repairing the hull by the given factor.`
@@ -288,11 +339,50 @@ tip "hull multiplier:"
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
 
+tip "delayed hull repair rate:"
+	`Additional hull strength that can be repaired per second after the repair delay period.`
+
 tip "repair delay:"
-	`The number of seconds it takes for hull repairs to begin after taking hull damage.`
+	`The number of seconds it takes for additional hull repairs to begin after taking hull damage.`
 
 tip "disabled repair delay:"
 	`The number of seconds it takes for hull repairs to begin after being disabled.`
+	
+tip "disabled recovery time:"
+	`The number of seconds it takes for a disabled ship to repair itself.`
+	
+tip "disabled recovery energy:"
+	`The energy cost required for a disabled ship to repair itself.`
+
+tip "disabled recovery fuel:"
+	`The fuel cost required for a disabled ship to repair itself.`
+	
+tip "disabled recovery heat:"
+	`The heat applied when a disabled ship repairs itself.`
+
+tip "disabled recovery ionization:"
+	`The ion damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery scrambling:"
+	`The scrambling damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery disruption:"
+	`The disruption damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery slowing:"
+	`The slowing damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery discharge:"
+	`The discharge damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery corrosion:"
+	`The corrosion damage applied when a disabled ship repairs itself.`
+
+tip "disabled recovery leak:"
+	`The leak damage applied when a disabled ship repairs itself.`
+	
+tip "disabled recovery burning:"
+	`The burning damage applied when a disabled ship repairs itself.`
 
 tip "absolute threshold:"
 	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
@@ -354,8 +444,11 @@ tip "scramble resistance heat:"
 tip "jump speed:"
 	`The maximum velocity the ship can jump at.`
 
-tip "jump fuel:"
-	`Fuel consumed when jumping between systems using this drive.`
+tip "hyperdrive fuel:"
+	`Fuel consumed when jumping between systems using this hyperdrive.`
+
+tip "jump drive fuel:"
+	`Fuel consumed when jumping between systems using this jump drive.`
 
 tip "jump range:"
 	`The maximum distance this drive can jump.`
@@ -519,11 +612,17 @@ tip "sells for:"
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
+tip "delayed shield energy:"
+	`Additional energy consumed per second when recharging shields after the shield delay period.`
+
 tip "shield energy multiplier:"
 	`Modifies the energy consumed when recharging shields by the given factor.`
 
 tip "shield fuel:"
 	`Fuel consumed per second when recharging shields.`
+
+tip "delayed shield fuel:"
+	`Additional fuel consumed per second when recharging shields after the shield delay period.`
 
 tip "shield fuel multiplier:"
 	`Modifies the fuel consumed when recharging shields by the given factor.`
@@ -531,11 +630,17 @@ tip "shield fuel multiplier:"
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
+tip "delayed shield heat:"
+	`Additional heat produced per second when recharging shields after the shield delay period.`
+
 tip "shield heat multiplier:"
 	`Modifies the heat produced when recharging shields by the given factor.`
 
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "delayed shield generation:"
+	`Additional shield points recharged per second after the shield delay period.`
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
@@ -545,6 +650,9 @@ tip "high shield permeability:"
 
 tip "low shield permeability:"
 	`This percentage of all incoming damage will bypass shields and apply directly to the hull as shields approach zero.`
+
+tip "cloaked shield permeability:"
+	`This percentage of all incoming damage will bypass shields and apply directly to the hull while you are cloaked.`
 
 tip "shields (charge):"
 	`Total shield strength and regeneration rate per second.`
@@ -556,13 +664,19 @@ tip "shield multiplier:"
 	`Modifies the ship's total shield strength by the given factor.`
 
 tip "shield delay:"
-	`The number of seconds it takes for shield generation to begin after taking shield damage.`
+	`The number of seconds it takes for additional shield generation to begin after taking shield damage.`
 
 tip "depleted shield delay:"
-	`The number of seconds it takes for shield generation to begin after your shields have been depleted.`
+	`The number of seconds it takes for additional shield generation to begin after your shields have been depleted.`
 
 tip "shield protection:"
 	`Protection against shield damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in shield damage, while a total value of 11 only results in a 10 percent reduction.`
+
+tip "silent jumps:"
+	`Prevents a ship from making hyperdrive or jump drive sounds when entering or leaving a system.`
+
+tip "silent scans:"
+	`Prevents a ship from emitting scan sounds.`
 
 tip "slowing protection:"
 	`Protection against slowing damage. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in slowing damage, while a total value of 11 only results in a 10 percent reduction.`
@@ -585,8 +699,42 @@ tip "solar collection:"
 tip "solar heat:"
 	`Heat produced depending on how far this ship is from the star at the center of the system.`
 
+tip "strategic scan power:"
+	`Strategic scanners allow you to view your current target's distance from you, maximum gun range, maximum turret range, current speed, maximum acceleration, and turning speed when it is within range. The range is proportional to the square root of this value.`
+
 tip "tactical scan power:"
-	`Allows viewing your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
+	`Tactical scanners allow you to view your current target's crew complement, fuel, heat, and energy levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "acceleration scan power:"
+	`Mobility scanners allow you to view your current target's current maximum acceleration when it is within range. The range is proportional to the square root of this value.`
+
+tip "crew scan power:"
+	`Crew scanners allow you to view your current target's crew complement when it is within range. The range is proportional to the square root of this value.`
+
+tip "energy scan power:"
+	`Energy scanners allow you to view your current target's energy levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "fuel scan power:"
+	`Fuel scanners allow you to view your current target's fuel levels when it is within range. The range is proportional to the square root of this value.`
+
+tip "maneuver scan power:"
+	`Maneuver scanners allow you to view your current target's current maximum turn speed when it is within range. The range is proportional to the square root of this value.`
+
+tip "mobility scan power:"
+	`Mobility scanners allow you to view your current target's current speed and maximum acceleration when it is within range. The range is proportional to the square root of this value.`
+
+tip "range finder power:"
+	`Range finders allow you to view the distance from the center of your ship to the center of your current target. There is no range limit.`
+
+tip "thermal scan power:"
+	`Thermal scanners allow you to view your current target's thermal level when it is within range. The range is proportional to the square root of this value.`
+
+tip "velocity scan power:"
+	`Mobility scanners allow you to view your current target's current speed when it is within range. The range is proportional to the square root of this value.`
+
+tip "weapon scan power:"
+	`Weapon scanners allow you to view your current target's weapons' maximum range when it is within scanner range. Specifically, it shows the longest range of all weapons in a gun hardpoint; and the longest range of all weapons in a turret hardpoint. These ranges include the weapon offset and thus show the maximum range from the center of the ship its shots can reach. The scanner range is proportional to the square root of this value.`
+
 
 tip "thrust:"
 	`Thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
@@ -865,7 +1013,7 @@ tip "firing slowing / second:"
 	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
 
 tip "firing disruption / second:"
-	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
+	`Disrupts the ship's shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
 
 tip "firing discharge / second:"
 	`Reduces shields for some time after this weapon is fired.`
@@ -899,6 +1047,9 @@ tip "shots / second:"
 
 tip "turret turn rate:"
 	`Degrees this turret can turn per second.`
+
+tip "arc:"
+	`The angular range of protection provided by this weapon, in degrees.`
 
 tip "homing:"
 	`This projectile's ability to track its target. Weapons with better homing can adjust to the target's speed to plot a more effective intercept course.`
@@ -1164,6 +1315,9 @@ tip "Scan selected ship"
 tip "Fire primary weapon"
 	`Fire all of your flagship's primary weapons. The "automatic firing" setting will fire only those weapons that are within your target's range.`
 
+tip "Toggle turret tracking"
+	`Toggle the "Turret tracking" setting.`
+
 tip "Select secondary weapon"
 	`Cycle to your flagship's next secondary weapon. After cycling through all secondary weapons individually, selects every secondary weapon at once, then selects no weapons.`
 
@@ -1199,9 +1353,10 @@ tip "Fleet: Fight my target"
 
 tip "Fleet: Gather around me"
 	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. You can also command escorts to gather around another ship by right clicking on a friendly ship.`
+	`With <shift>, change the formation pattern in your fleet.`
 
 tip "Fleet: Hold position"
-	`Command your fleet to gather around your flagship. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
+	`Command your fleet to hold its current position. If only some escorts are selected, only sends the command to those escorts. This command can also be sent by right clicking on empty space.`
 
 tip "Fleet: Toggle ammo usage"
 	`Toggle the "Escorts expend ammo" setting.`
@@ -1223,6 +1378,9 @@ tip "Screen mode"
 
 tip "VSync"
 	`Toggle vsync between off, on, and adaptive (should your computer support it).`
+
+tip "Camera acceleration"
+	`Determines whether the screen center is fixed on, trails behind, or speeds ahead of the flagship while accelerating.`
 
 tip "Show CPU / GPU load"
 	`Display the CPU and GPU load at the top of the screen while in flight. Loads are presented as a percentage of a frame (1/60th of a second) that it takes to calculate or draw each frame. >100% load (or >33% when fast-forward is active) means the game will run slower.`
@@ -1250,6 +1408,12 @@ tip "Extended jump effects"
 
 tip "Ship outlines in shops"
 	`Controls the display of your fleet ship icons when in the shipyard or outfitter. When fancy, applies a sobel filter to all ships. (This can result in high GPU load for large fleets.) When fast, just uses the ship's sprite.`
+
+tip "Ship outlines in HUD"
+	`Controls the display of your flagship and target ship icons in the HUD. When fancy, applies a sobel filter to the sprites. (This can result in high GPU load for some ships on very old or low performance computers.) When fast, just uses the ship's sprite.`
+
+tip "Cloaked ship outlines"
+	`Controls the display of cloaked escorts. When fancy, causes the ship to become transparent and applies a red outline. When fast, simply shifts the ship to being red.`
 
 tip "Show status overlays"
 	`Display status overlays over top of all ships when in flight. Status overlays display a ship's shields and hull. If the damaged option is chosen, overlays only appear on ships that have taken damage.`
@@ -1291,7 +1455,7 @@ tip "Alert indicator"
 	`Indicate when hostile ships enter your current system. Audio plays a siren. Visual displays an alert icon by the in-system radar.`
 
 tip "Extra fleet status messages"
-	`Display extra status messages about escorts in your fleet, such as when they are destroyed or scanned.`
+	`Display extra status messages about escorts in your fleet, such as when they are under-crewed or collect flotsam.`
 
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
@@ -1326,6 +1490,9 @@ tip "Fighters transfer cargo"
 tip "Rehire extra crew when lost"
 	`Rehires extra crew whenever you land if you lost additional (non-required) crew while in flight.`
 
+tip "Automatically unpark flagship"
+	`Automatically unpark a ship dragged to the first position in the ship list, and make it your flagship.`
+	
 tip "Deadline blink by distance"
 	`For rush missions, subtract the distance to the destination from the deadline to determine how fast to blink the map marker.`
 
@@ -1358,3 +1525,9 @@ tip "Scroll speed"
 
 tip "Date format"
 	`The format that dates in the game are displayed in.`
+
+tip "Show parenthesis"
+	`Toggle parenthesis around the trade prices in the ports map mode.`
+
+tip "Notify on destination"
+	`If you enter a system with a planet you must land on for a mission, plays a notification sound.`

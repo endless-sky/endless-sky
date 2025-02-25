@@ -30,17 +30,19 @@ using namespace std;
 
 
 // Add a gun hardpoint (fixed-direction weapon).
-void Armament::AddGunPort(const Point &point, const Angle &angle, bool isParallel, bool isUnder, const Outfit *outfit)
+void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
+	bool isUnder, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, angle, false, isParallel, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, false, isUnder, outfit);
 }
 
 
 
-// Add a turret hardpoint (omnidirectional weapon).
-void Armament::AddTurret(const Point &point, bool isUnder, const Outfit *outfit)
+// Add a turret hardpoint.
+void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
+	bool isUnder, const Outfit *outfit)
 {
-	hardpoints.emplace_back(point, Angle(0.), true, false, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, true, isUnder, outfit);
 }
 
 
@@ -231,8 +233,7 @@ void Armament::Aim(const FireCommand &command)
 
 
 
-// Fire the given weapon, if it is ready. If it did not fire because it is
-// not ready, return false.
+// Fire the given weapon, if it is ready.
 void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
 	// Don't check if the hardpoint jammed here, as the weapon may not even

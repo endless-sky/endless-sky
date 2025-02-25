@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_DATA_H_
-#define GAME_DATA_H_
+#pragma once
 
 #include "CategoryTypes.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"
 
+#include <filesystem>
 #include <future>
 #include <map>
 #include <memory>
@@ -59,6 +59,7 @@ class Sprite;
 class StarField;
 class StartConditions;
 class System;
+class TaskQueue;
 class Test;
 class TestData;
 class TextReplacements;
@@ -75,7 +76,7 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::future<void> BeginLoad(bool onlyLoadData, bool debugMode, bool preventUpload);
+	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
@@ -86,13 +87,10 @@ public:
 	static bool IsLoaded();
 	// Begin loading a sprite that was previously deferred. Currently this is
 	// done with all landscapes to speed up the program's startup.
-	static void Preload(const Sprite *sprite);
-	static void ProcessSprites();
-	// Wait until all pending sprite uploads are completed.
-	static void FinishLoadingSprites();
+	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
-	static const std::vector<std::string> &Sources();
+	static const std::vector<std::filesystem::path> &Sources();
 
 	// Get a reference to the UniverseObjects object.
 	static UniverseObjects &Objects();
@@ -158,6 +156,7 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	static const Sprite *StarIcon(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
@@ -182,10 +181,6 @@ public:
 
 
 private:
-	static void LoadSources();
+	static void LoadSources(TaskQueue &queue);
 	static std::map<std::string, std::shared_ptr<ImageSet>> FindImages();
 };
-
-
-
-#endif

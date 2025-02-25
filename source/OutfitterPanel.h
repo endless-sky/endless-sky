@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFITTER_PANEL_H_
-#define OUTFITTER_PANEL_H_
+#pragma once
 
 #include "ShopPanel.h"
 
@@ -94,7 +93,6 @@ private:
 
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
+
+	int shipsHere = 0;
 };
-
-
-#endif
