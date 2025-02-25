@@ -3598,7 +3598,7 @@ planet Moonshake
 		fleet "Large Syndicate" 7
 
 planet Mordente-Bridi
-	attributes ccor frontier military pirate south "south pirate" station urban
+	attributes ccor frontier military pirate south "south pirate" station urban "slavery ban"
 	landscape land/station48
 	music ambient/machinery
 	description `A testament to the ingenuity of the engineering corps of the now defunct Confederated Councils of the Outer Rim, the massive Mordente-Bridi Station is one of the largest in human space. Twin cylinders Mordente and Bridi make up the station's hull, built from the strongest alloy the CCOR could manufacture at scale. Bridi Cylinder is pressurized and contains crew quarters and logistical infrastructure amounting to that of a sizable city, while Mordente Cylinder contains what was the Outer Rim's main shipyard.`
