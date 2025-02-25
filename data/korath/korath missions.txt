@@ -747,6 +747,10 @@ mission "Korath [F01]: A Fishy Deal"
 	clearance "The authorities do not respond, but a concealed hangar bay door opens. The meaning is clear: land here."
 	source "New Tortuga"
 	destination "La'ab Bamen"
+	to offer
+		or
+			not "Korath [F01]: A Fishy Deal: offered"
+			random < 30
 	on offer
 		conversation
 			`You see the strange plane you saw earlier parked next to your ship. Several packages are now being unloaded. A woman is waving her arms, perhaps with anger, as she walks from the cockpit into the spaceport.`
