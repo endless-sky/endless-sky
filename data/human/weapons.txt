@@ -1118,7 +1118,7 @@ outfit "Torpedo"
 	category "Ammunition"
 	cost 1400
 	thumbnail "outfit/torpedo"
-	"mass" .6
+	"mass" .4
 	"torpedo capacity" -1
 	description "Torpedoes are ammunition for the Torpedo Launcher. Each Torpedo Launcher can hold 30 of them. You cannot install torpedoes unless you have also installed a launcher to fire them from."
 
@@ -1128,7 +1128,7 @@ outfit "Torpedo Storage Rack"
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
 	"outfit space" -9
-	"torpedo capacity" 10
+	"torpedo capacity" 15
 	ammo "Torpedo"
 	description "The Torpedo Storage Rack is used to store extra ammunition for Torpedo Launchers."
 
@@ -1140,7 +1140,7 @@ outfit "Torpedo Launcher"
 	"outfit space" -30
 	"weapon capacity" -30
 	"gun ports" -1
-	"torpedo capacity" 20
+	"torpedo capacity" 30
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -1152,15 +1152,16 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 7
+		"velocity" 0
+		"velocity override" 6
 		"lifetime" 900
-		"reload" 225
+		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .15
-		"drag" .025
-		"turn" 1.5
-		"homing" 3
+		"acceleration" .12
+		"drag" .02
+		"turn" .9
+		"homing" 1
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
@@ -1176,7 +1177,7 @@ outfit "Torpedo Pod"
 	"outfit space" -8
 	"weapon capacity" -8
 	"gun ports" -1
-	"torpedo capacity" 2
+	"torpedo capacity" 3
 	weapon
 		sprite "projectile/torpedo"
 			"frame rate" 2
@@ -1191,14 +1192,14 @@ outfit "Torpedo Pod"
 		"velocity" 7
 		"lifetime" 900
 		"reload" 320
-		"burst count" 2
-		"burst reload" 225
+		"burst count" 3
+		"burst reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .15
-		"drag" .025
-		"turn" 1.5
-		"homing" 3
+		"acceleration" .12
+		"drag" .02
+		"turn" .9
+		"homing" 1
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
@@ -1219,7 +1220,7 @@ outfit "Typhoon Torpedo"
 	category "Ammunition"
 	cost 2700
 	thumbnail "outfit/typhoon"
-	"mass" .75
+	"mass" .5
 	"typhoon capacity" -1
 	description "Typhoon Torpedoes are ammunition for the Typhoon Launcher. Each launcher can hold 30 of them. You cannot install Typhoon Torpedoes unless you have also installed a launcher to fire them from."
 
@@ -1229,7 +1230,7 @@ outfit "Typhoon Storage Tube"
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
 	"outfit space" -10
-	"typhoon capacity" 10
+	"typhoon capacity" 15
 	ammo "Typhoon Torpedo"
 	description "The Typhoon Storage Tube is used to store extra ammunition for Typhoon Launchers."
 
@@ -1241,7 +1242,7 @@ outfit "Typhoon Launcher"
 	"outfit space" -40
 	"weapon capacity" -40
 	"gun ports" -1
-	"typhoon capacity" 20
+	"typhoon capacity" 30
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1255,13 +1256,13 @@ outfit "Typhoon Launcher"
 		"inaccuracy" 5
 		"velocity" 6
 		"lifetime" 1100
-		"reload" 180
+		"reload" 120
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .1
 		"drag" .02
-		"turn" 1.5
-		"homing" 4
+		"turn" .9
+		"homing" 2
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
@@ -1277,7 +1278,7 @@ outfit "Typhoon Pod"
 	"outfit space" -12
 	"weapon capacity" -12
 	"gun ports" -1
-	"typhoon capacity" 2
+	"typhoon capacity" 3
 	weapon
 		sprite "projectile/typhoon"
 			"frame rate" 4
@@ -1291,15 +1292,15 @@ outfit "Typhoon Pod"
 		"inaccuracy" 5
 		"velocity" 6
 		"lifetime" 1100
-		"reload" 360
-		"burst count" 2
-		"burst reload" 180
+		"reload" 252
+		"burst count" 3
+		"burst reload" 120
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .1
 		"drag" .02
-		"turn" 1.5
-		"homing" 4
+		"turn" .9
+		"homing" 2
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
