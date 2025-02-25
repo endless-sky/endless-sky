@@ -3288,6 +3288,11 @@ system Albaldah
 			sprite planet/luna
 			distance 235
 			period 14.5337
+		object "Gardena Station"
+			sprite planet/station8
+				scale 0.5
+			distance 201
+			period 12.6652
 
 system Albireo
 	pos -270 503

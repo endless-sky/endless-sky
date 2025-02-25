@@ -4903,7 +4903,7 @@ mission "Hroar's Haulers 10"
 				accept
 
 			label nicehello
-			`	Captain Unferth, who Yngvar seems to call Solvi, tips his hat to you. "I know better than to quaral to Hroar. Glad to have you on the Long Haul."`
+			`	Captain Unferth, who Yngvar seems to call Solvi, tips his hat to you. "I know better than to quarrel with Hroar. Glad to have you on the Long Haul."`
 			`	He then glances at the lines of workers beyond, "Anyways, I got to get back to it. Like I said, we're nearly ready to go. If you want to bring us in to Muspel that's fine, not like we really need the escort though."`
 			`	Yngvar waves as the Captain marches off and then turns back to you, "He's a bit busy at the moment, but overall he's a good kid. His fleet is mostly made up of people movers. He's the one gonna be hauling the folks I mentioned before."`
 				goto points
@@ -4994,14 +4994,14 @@ mission "Hroar's Haulers 11"
 					goto theend
 			label headed
 			`	"A right pertinent question." The gray spacer nods, "Our final destination, and ultimate goal is Lagrange Station in the Enif System. Long before Hroar was an ornery egg in his ma's basket, the Long Haulers of Muspel have been making the Adhara-Enif run. In our day it's barely a milk run, despite the distance, but in the past it was nothing to laugh about. Slower ships, hostile governments, dangerous mauraders, malfunctioning drives. It was the kind of run most traders balked at. But the Quarg, they pay good for a bulk run like this, and it's been our life blood ever since the first Hauler struck out generations ago."`
-			`	Yngvar gets a glossly look in his eye as he waxes about bygone space-ages, "Anyways, it's that top dollar that keeps us independent. Keeps us flush. Keeps the blue caps from absorbing us. But it's not the only stop. It'd be a waste of resources, time, and opportunity if we didn't make calls at other ports along the way. So we'll also be stopping at Earth, Maker, and Rand. Earth, in the Sol system, being our first stop. I'm sure you've heard of it; it's blue and marlbe like."`
+			`	Yngvar gets a glossly look in his eye as he waxes about bygone space-ages, "Anyways, it's that top dollar that keeps us independent. Keeps us flush. Keeps the blue caps from absorbing us. But it's not the only stop. It'd be a waste of resources, time, and opportunity if we didn't make calls at other ports along the way. So we'll also be stopping at Earth, Maker, and Rand. Earth, in the Sol system, being our first stop. I'm sure you've heard of it; it's blue and marble like."`
 				goto whatisthis
 			label escorts
 			`	The old man strokes his gray-white beard, "Any hauler worth their dust knows its best to travel together, especially on a Long Haul. The other ships have some supplies intended for the primary destination in the Enif System, but they also have cargo and contracts for systems we will be passing through on our way to Enif. Captain Unferth's fleet is transporting guest-workers to Earth, Maker and Rand. Meawnhile Captain Gunhilda has quality mining and extraction equipment for Maker and Rand. I'll get in more detail at each port if you have more questions. It's all about maximizing profits, and protection."`
 				goto whatisthis
 			label gap
 			`	"Ah, I sometimes forget you didn't come up on the red like the rest of us." He glances up toward the ceiling, as though he can see through it, past the weak athmosphere, and out into the black space beyond. "The Gap is just what we call the darkness between the stars. Interstellar space. It comes from an old word, the Ginnungagap, the 'yawning gap', the primoridal darkness at the beginning of time. Truth is, we hardly go there anymore, not like it was in the Caravan Era, not like it was with the Generation Ships. We flit from star to star, avoiding the true Gap. These days the Gap just means space in general. Anywhere beyond the atmosphere. But trust me, these star-lit islands where we huddle, they are nothing like the true Gap. Where the darkness clings to the very soul and drives folk mad."`
-			`	His stern face gives way to a hint of mirth, "But don't you be worrying none about an old sailor's fables. You now know why we call it the Gap, and that's more than most can say. We'll make you a red jacket yet."`
+			`	His stern face gives way to a hint of mirth, "But don't you be worrying none about an old spacer's fables. You now know why we call it the Gap, and that's more than most can say. We'll make you a red jacket yet."`
 				goto whatisthis
 			label theend
 			`	"Good. We got places to be." He turns toward the exit. "I'll be waiting for you on your ship, Captain <last>. It'll be good to get back on the float."`
@@ -5176,7 +5176,7 @@ mission "Hroar's Haulers 15"
 				goto nicesolvi
 			
 			label knowyourplace
-			`	Unferth shrugs and takes another shot, and wabbles away from you in disgust. He finds his way to four equally tipsy Haulers who have launched into an impromptu drinking song. Unferth joins them with reckless vocal gusto.`
+			`	Unferth shrugs and takes another shot, and stumbles away from you in disgust. He finds his way to four equally tipsy Haulers who have launched into an impromptu drinking song. Unferth joins them with reckless vocal gusto.`
 				goto gunhilda
 
 			label unferth
@@ -6936,7 +6936,7 @@ mission "Hroar's Haulers Gunhilda"
 		has "savedgunhilda"
 	on offer
 		conversation
-			`As you work your way through the light crowds of Humanika's spaceport, you can't help but notice there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabited. They seemed quieter, more demure, less bright, flashy and boisterous than the humanity you were familiar with from scores of worlds you've seen. Against this backdrop of human pastel echoes, it's easy to spot the vibrant Gunhilda. Her dark black hair tied in a clusmy ponytail, her uncleanable brown-red hauler's jacket, even the swift unapologetic way she moved seemed at odds with the meekness of the spaceport's regulars.`
+			`As you work your way through the light crowds of Humanika's spaceport, you can't help but notice there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of these pastel human echoes, it's easy to spot the vibrant Gunhilda. Her dark black hair tied in a clusmy ponytail, her uncleanable brown-red hauler's jacket, even the swift unapologetic way she moved seemed at odds with the meekness of the spaceport's regulars.`
 			`	"<first>!" She hollars across the room, causing more than a few judgemental glances to be cast her way, "I knew you'd come!"`
 			`	Ignoring the various side eyes, she jogs over to you, "You got Yngvar's message, yeah? We've got some time off!`
 			choice
@@ -7341,8 +7341,23 @@ mission "Hroar's Haulers Gunhilda secret 2"
 			`	"What are we doing back on Humanika?" Runa asks, "You said you were going to try and fly close to one Grakhord's mines."`
 			decline
 
-
-
+mission "Hroar's Haulers Unferth"
+	name "Gardena Station"
+	source "Humanika"
+	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
+	destination "Gardena Station"
+	passengers 1
+	to offer
+		has "Hroar's Haulers 18b: done"
+		has "savedsolvi"
+	on offer
+		conversation
+		`As you work your way through the light crowds of Humanika's spaceport, you can't help but notice there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of pastel echoes of humanity, it's easy to spot the animated Solvi. His weathered rust-brown jacket and proud captain's hat, his over expressive face, open friendly demeanor are all sharp odds with the inherent meekness of the spaceport's regulars.`
+			`	"<first>." He says as he walks up to you and claps your hand, "I knew you'd come."`
+		choice
+			`	"Good to see you, Solvi."`
+			`	"Of course I'd come!"`
+			`	(Say nothing.)`
 
 
 

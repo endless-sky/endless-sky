@@ -1760,6 +1760,17 @@ planet "Garden Empyreal"
 	"required reputation" 20
 	security 0.4
 
+planet "Gardena Station"
+	attributes south station
+	landscape land/sivael7
+	music ambient/machinery
+	description `Wyvern Station was once one of the end destinations for the merchant caravans traveling along the Rim, back in the days before the Republic existed when most systems were not policed and the only way to avoid being plundered by pirates was for ships to travel in large convoys. It has also been a continuously operating hyperspace fuel refinery for more than three centuries.`
+	spaceport `This station is old, and some parts are dirty and in need of repair, but it is at least structurally sound, and the workers here seem optimistic and energetic. The cafeteria is loud and raucous, and the repair shop is more than willing to work on starships as a break from the tedium of repairing the harvester drones that dip into the planet's atmosphere to bring back pressurized tanks full of hydrogen gas.`
+	security 0.2
+	tribute 200
+		threshold 3500
+		fleet "Large Militia" 6
+
 planet Geminus
 	attributes factory military mining paradise
 	landscape land/mountain18-harro
