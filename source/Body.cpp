@@ -27,7 +27,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
-#include <optional>
 
 using namespace std;
 
@@ -35,7 +34,8 @@ using namespace std;
 
 // Constructor, based on a Sprite.
 Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
-	: position(position), velocity(velocity), angle(facing), scale(scale), zoom(zoom), alpha(alpha), sprite(sprite), randomize(true)
+	: position(position), velocity(velocity), angle(facing), scale(scale), zoom(zoom),
+	alpha(alpha), sprite(sprite), randomize(true)
 {
 }
 
