@@ -893,7 +893,7 @@ fleet "Unfettered Hai Space Raid"
 	names "hai"
 	cargo 1
 	personality
-		disables plunders coward harvests
+		coward disables harvests plunders
 	variant 10
 		"Lightning Bug (Pulse)" 5
 	variant 5
