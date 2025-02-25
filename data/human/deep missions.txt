@@ -7271,6 +7271,36 @@ mission "Hroar's Haulers Gunhilda 3"
 		`	She starts walking toward your ship, "Come on. Let's get to Humanika. We can end where we began. Like most things."`
 			accept
 
+mission "Hroar's Haulers Gunhilda secret"
+	invisible
+	landing
+	source "Grakhord"
+	destination "Humanika"
+	to offer
+		has "minewatchers"
+	on offer
+		conversation
+		`	As you bring your ship down into the alien moon's atmosphere, you make it look like one of your thrusters suffers a malfunction, which forces your ship to come in lower and at a incline than any normal approach would allow. Your ship's computer alerts you to passive repsulor buoys set up to keep out of control ships, or unwanted ships, from divating from the perscripted flight path. You're forced to carefully weave around the buoy's anti-gravity safety nets, while still making it look as though your ship is suffereing from a malfunction. It is no easy task.`
+		`	You recieve a message from the Grakhord spaceport asking if you need assistance.`
+		choice
+			`	"Negative. I have it under control."`
+				goto undercontrol
+			`	"Yes. Please send help."`
+			`	(Say nothing.)`
+		`	Quarg rescue vessels launch toward you, and powerful tractor beams latch onto the <ship>. They steer you away from the course you had plotted, and help you land gently at the spaceport.`
+		`	Unfortunately, they reached you before you had a chance to fly over the mine. Your chance to get a good look at their operation lost.`
+		`	It takes a few hours before you can convince the authorities that they do not need to check your ship for repairs, and that you have solved the rare unaccounted for problem that caused your thrust to fail.`
+		`	"You sure know how to show a girl a good time!" Runa laughs, after everyone else has left, "Don't feel too bad about not getting the pictures. I got to see you in action, and your soul lit up like a kaleidoscope. It was incredible. You have shades in you that I've never seen before. That was worth more than any mine."`
+		`	"Now, let's get back to Humanika before anyone more officials come snooping around."`
+			accept
+
+		label undercontrol
+		`	The Grakhord authorities are less than convinced. A few moments later Quarg rescue vessels launch toward you, their powerful tractor beams latching onto the <ship>, and steering your toward the moon's main spaceport. Gently they set you down.`
+		`	The next few hours are taken up by various inquests about the state of your ship, the sort of malfunction you had, and any damage you sustained. Eventually you're able they either buy your story about the malfunction, or give up on hounding you about it, and you're finally left alone with Runa.`
+		`	She pulls open a file that she smuggled off your systems before the officials arrived and puts it on screen, "We got it!" She says triumphantly. "You were amazing, by the way, just seeing you in action, your whole soul lit up like an iridescent kaleidoscope. It was incredible. You have shades in you that I've never seen before."`
+		`	The screen loads a series of images, videos and other readings, describing, a  `
+
+
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
