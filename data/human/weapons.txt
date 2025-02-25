@@ -1189,7 +1189,8 @@ outfit "Torpedo Pod"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 7
+		"velocity" 0
+		"velocity override" 6
 		"lifetime" 900
 		"reload" 320
 		"burst count" 3
