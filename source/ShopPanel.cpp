@@ -1244,9 +1244,10 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 		if(clicks > 1)
 			for(const shared_ptr<Ship> &it : player.Ships())
 			{
-				Ship *itShip = it.get();
-				if(itShip != ship && itShip->Immitates(*ship))
-					playerShips.insert(itShip);
+				if(!CanShowInSidebar(*it, player.GetPlanet()))
+					continue;
+				if(it.get() != ship && it->Immitates(*ship))
+					playerShips.insert(it.get());
 			}
 	}
 	else
