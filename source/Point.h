@@ -37,8 +37,6 @@ public:
 	explicit operator bool() const noexcept;
 	bool operator!() const noexcept;
 
-	// Try not to use any of these, because comparisons with doubles are inherently
-	// unsafe due to the possibility of rounding errors and imprecision.
 	bool operator==(const Point &other) const noexcept;
 	bool operator!=(const Point &other) const noexcept;
 	// Purely because std::map needs a less-than operator.
