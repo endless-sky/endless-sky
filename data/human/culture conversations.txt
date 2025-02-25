@@ -858,8 +858,8 @@ mission "Little Vienna in New Austria"
 				`	(Follow the sign.)`
 				`	(Ignore the sign and keep walking.)`
 					decline
-			`	Curious, you decide to investigate, turning into a narrow street that feels like an echo of Old Vienna. A handful of historic-looking buildings line the cobblestone path, their facades adorned with dramatic stonework and flowery tilework. A small concert hall, labeled "Bach Collegium", hums with the faint sound of string instruments tuning. Nearby, the aroma of rich, chocolatey coffee drifts from a small coffeehouse.`
-			`	Outside the coffehouse, a man at a marble table sips his coffee while reading a local newspaper. You can see the front page with the headline: "Mitreibender Mozart mit dem Bach Collegium New Austria", featuring a photograph of a smiling conductor at the center of a small orchestra. On his plate rests a bright pink sponge cake, its color fitting right in with the rich tones of the street.`
+			`	Curious, you decide to investigate, turning into a narrow street that feels like an echo of Old Vienna. A handful of historic-looking buildings line the cobblestone path, their facades adorned with dramatic stonework and flowery tilework. A small concert hall, labeled "Bach Collegium Konzertsaal", hums with the faint sound of string instruments tuning. Nearby, the aroma of rich, chocolatey coffee drifts from a small coffeehouse.`
+			`	Outside the coffehouse, a man at a marble table sips his coffee while reading a local newspaper. You can see the front page with the headline: "Mitreibender Mozart mit dem Bach Collegium Konzertsaal", featuring a photograph of a smiling conductor at the center of a small orchestra. On his plate rests a bright pink sponge cake, its color fitting right in with the rich tones of the street.`
 			`	As you linger, a well-dressed older woman approaches. Her voice, imbued with a musical rhythm, greets you with a hearty, "Gruess Gott!"`
 			`	"Not many offworld visit Kleinwean, which is a shame, as you can see it's quite the New Austrian 'gem'," she remarks with a wink. "I was on my way to the concert -- my husband is sick -- and I would hate for his ticket to go to waste. Would you do me the honor of taking it?"`
 			choice
@@ -867,7 +867,7 @@ mission "Little Vienna in New Austria"
 				`	(Politely decline.)`
 					goto declined
 			`	You graciously accept the invitation and follow her to the intimate concert hall. Despite its modest size, the hall houses a full orchestra. Once you're comfortably seated, the composer steps forward, clears his throat, and in a measured tone declares:`
-			`	"Willkommen im ehrwuerdigen Bach Collegium! Wir sind Lichtjahre von Mozarts Heimat entfernt, aber auch im Zentrum von Kleinwean! Geniessen Sie das Konzert!"`
+			`	"Willkommen im ehrwuerdigen Bach Collegium Konzertsaal! Wir sind Lichtjahre von Mozarts Heimat entfernt, aber auch im Zentrum von Kleinwean! Geniessen Sie das Konzert!"`
 			`	The words hang in the air as you notice the conductor's smile, strikingly familiar from the newspaper photograph. With his invitation to lose yourself in the performance still echoing, the orchestra begins a stirring rendition of Mozart. The notes dance through the air with crystalline clarity, and you even recognize one or two of the melodies, each serving as a comforting bridge to the Old Vienna of Earth.`
 			`	Even after the performance, you feel the sound of music resonate in your bones as you glance back one more time at New Austria's hidden cultural enclave.`
 				goto backtoship
