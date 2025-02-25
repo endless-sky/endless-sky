@@ -11,11 +11,12 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-ship "Quarg Skylark"
-	sprite "ship/skylark"
-	thumbnail "thumbnail/skylark"
+
+ship "Quarg Lindwyrm"
+	sprite "ship/quarg lindwyrm"
+	thumbnail "thumbnail/quarg lindwyrm"
 	attributes
-		category "Heavy Warship"
+		category "Heavy Freighter"
 		"cost" 5900000
 		"shields" 120000
 		"hull" 70000
@@ -50,12 +51,63 @@ ship "Quarg Skylark"
 		"Medium Graviton Steering"
 		"Jump Drive"
 		
-	engine -15 117
-	engine 15 117
-	turret -12 -80 "Quarg Skylance"
-	turret 12 -80 "Quarg Skylance"
-	turret -34 24 "Quarg Anti-Missile"
-	turret 34 24 "Quarg Anti-Missile"
+	engine -29 125
+	engine 29 125
+	turret -19.5 -88.5 "Quarg Skylance"
+	turret 19.5 -88.5 "Quarg Skylance"
+	turret -29.5 69 "Quarg Anti-Missile"
+	turret 29.5 69 "Quarg Anti-Missile"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+	description "The Skylark is used by the Quarg as a freighter and warship."
+
+
+ship "Quarg Guivre"
+	sprite "ship/quarg guivre"
+	thumbnail "thumbnail/quarg guivre"
+	attributes
+		category "Utility"
+		"cost" 5900000
+		"shields" 120000
+		"hull" 70000
+		"required crew" 120
+		"bunks" 210
+		"mass" 990
+		"drag" 18.5
+		"heat dissipation" .47
+		"fuel capacity" 1000
+		"cargo space" 200
+		"outfit space" 600
+		"weapon capacity" 200
+		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
+		"ramscoop" 10
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Quarg Anti-Missile" 2
+		
+		"Antimatter Core"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 120
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
+		
+	engine -25.5 144
+	engine 25.5 144
+	turret -70 61 "Quarg Anti-Missile"
+	turret 70 61 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
@@ -66,10 +118,10 @@ ship "Quarg Skylark"
 
 
 ship "Quarg Wardragon"
-	sprite "ship/wardragon"
-	thumbnail "thumbnail/wardragon"
+	sprite "ship/quarg wardragon"
+	thumbnail "thumbnail/quarg wardragon"
 	attributes
-		category "Heavy Warship"
+		category "Light Warship"
 		"cost" 5900000
 		"shields" 160000
 		"hull" 50000
@@ -104,12 +156,12 @@ ship "Quarg Wardragon"
 		"Medium Graviton Steering"
 		"Jump Drive"
 		
-	engine -14 47
-	engine 14 47
-	turret -9 -14 "Quarg Anti-Missile"
-	turret 9 -14 "Quarg Anti-Missile"
-	turret -28 7 "Quarg Skylance"
-	turret 28 7 "Quarg Skylance"
+	engine -17 76.5
+	engine 17 76.5
+	turret -13 -18.5 "Quarg Anti-Missile"
+	turret 13 -18.5 "Quarg Anti-Missile"
+	turret -44 0.5 "Quarg Skylance"
+	turret 44 0.5 "Quarg Skylance"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
@@ -117,3 +169,119 @@ ship "Quarg Wardragon"
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
 	description "The Wardragon is used by the Quarg as a light warship."
+
+
+ship "Quarg Wyvern"
+	sprite "ship/quarg wyvern"
+	thumbnail "thumbnail/quarg wyvern"
+	attributes
+		category "Medium Warship"
+		"cost" 5900000
+		"shields" 120000
+		"hull" 70000
+		"required crew" 120
+		"bunks" 210
+		"mass" 990
+		"drag" 18.5
+		"heat dissipation" .47
+		"fuel capacity" 1000
+		"cargo space" 200
+		"outfit space" 600
+		"weapon capacity" 200
+		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
+		"ramscoop" 10
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile"
+		"Quarg Culverin" 2
+		
+		"Antimatter Core"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 120
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
+		
+	engine -23 121
+	engine 23 121
+	gun -17.5 -123 "Quarg Culverin"
+	gun 17.5 -123 "Quarg Culverin"
+	turret -38 -74 "Quarg Skylance"
+	turret 38 -74 "Quarg Skylance"
+	turret 0 6.5 "Quarg Anti-Missile"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+	description "The Skylark is used by the Quarg as a freighter and warship."
+
+
+ship "Quarg Hydra"
+	sprite "ship/quarg hydra"
+	thumbnail "thumbnail/quarg hydra"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 120000
+		"hull" 70000
+		"required crew" 120
+		"bunks" 210
+		"mass" 990
+		"drag" 18.5
+		"heat dissipation" .47
+		"fuel capacity" 1000
+		"cargo space" 200
+		"outfit space" 600
+		"weapon capacity" 200
+		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
+		"ramscoop" 10
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Quarg Ranseur" 3
+		"Quarg Culverin" 2
+		"Quarg Anti-Missile" 2
+		"Quarg Ribault"
+		
+		"Antimatter Core"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 120
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
+	
+	engine -23.5 135
+	engine 23.5 135
+	gun -38 -168 "Quarg Ranseur"
+	gun 38 -168 "Quarg Ranseur"
+	gun -78 -129 "Quarg Culverin"
+	gun 78 -129 "Quarg Culverin"
+	gun 0 -130 "Quarg Ranseur"
+	turret -52 -71.5 "Quarg Anti-Missile"
+	turret 52 -71.5 "Quarg Anti-Missile"
+	turret 0 7.5 "Quarg Ribault"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+	description "The Skylark is used by the Quarg as a freighter and warship."

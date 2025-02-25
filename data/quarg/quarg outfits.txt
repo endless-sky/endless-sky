@@ -100,6 +100,184 @@ effect "quarg anti-missile"
 	"velocity scale" 1
 
 
+outfit "Quarg Culverin Original"
+	category "Guns"
+	cost 10000000
+	thumbnail "outfit/quarg culverin"
+	"mass" 100
+	"outfit space" -100
+	"weapon capacity" -100
+	"required crew" 5
+	"gun ports" -1
+	"active cooling" 25
+	"cooling energy" 5
+	weapon
+		sprite "projectile/detainer"
+			"frame rate" 20
+			"random start frame"
+		sound "pewtest9"
+		"hit effect" "culverin hit" 20
+		"die effect" "culverin die"
+		"phasing"
+		"inaccuracy" 3
+		"velocity" 3
+		"lifetime" 75
+		"reload" 150
+		"firing energy" 2400
+		"firing heat" 1900
+		"acceleration" 10
+		"drag" .5
+		"turn" 3
+		"homing" 5
+		"tracking" .3
+		"shield damage" 3900
+		"hull damage" 3300
+		"fuel damage" 600
+		"piercing" .2
+		"hit force" 3
+		"missile strength" 600
+	description "Rarely employed, this massive weapon fires an energy blast that gains speed the more it travels through the vaccuum of space, before dissipating."
+	description "	Aside from the punch it packs, the Culverin is designed to deplete a target of it's fuel reserves, making it impossible for it to run... or cloak."
+
+
+outfit "Quarg Culverin"
+	category Guns
+	cost 7800000
+	mass 46
+	thumbnail outfit/culverin
+	"gun ports" -1
+	"outfit space" -46
+	"weapon capacity" -46
+	weapon
+		sprite projectile/culverin
+			"frame rate" 60
+			"random start frame"
+			rewind
+		sound "culverin"
+		"hit effect" "culverin hit" 20
+		"die effect" "culverin die"
+		lifetime 90
+		reload 24
+		homing 4
+		velocity 10
+		acceleration 0.4
+		drag 0.04
+		turn 60
+		inaccuracy 12
+		tracking 1
+		"firing energy" 123
+		"firing heat" 92.4
+		"hull damage" 125.25
+		"slowing damage" 7
+		"discharge damage" 2.184
+		"hit force" -186
+	description "The most coveted of Mata weapons. Through unfathomable means, this weapon tangles the fabric of spacetime in such extreme ways that it forms closed time-like curves, along with chaotic gravitational forces and fascinating relativistic effects that slows the target down. Solid matter bends and crumbles under the chaos, and shield matrices are forced to interact with themselves, with catastrophic results. As if fulfilling their own intended destiny, the projectiles are slightly drawn to their target as well. Relic advises that attempting to tinker with this weapon to create a time machine voids warranty, and often results in certain death."
+
+effect "culverin hit"
+	sprite "effect/skylance impact"
+		"frame rate" 30
+		"no repeat"
+	lifetime 2
+	"random lifetime" 4
+	"velocity scale" 0
+	"random angle" 180
+	"random velocity" 8
+
+effect "culverin die"
+	sprite "effect/jump drive"
+		"frame rate" 30
+		"no repeat"
+	lifetime 5
+	"velocity scale" 0.4
+
+
+outfit "Quarg Ranseur"
+	category Guns
+	cost 5500000
+	mass 38
+	thumbnail outfit/ranseur
+	"gun ports" -1
+	"outfit space" -38
+	"weapon capacity" -38
+	weapon
+		sound "ranseur"
+		"fire effect" "ranseur"
+		"hit effect" "jump drive"
+		"hit effect" "disruptor impact" 10
+		lifetime 1
+		reload 100
+		velocity 600
+		"firing energy" 675
+		"firing heat" 30
+		"shield damage" 528
+		"hull damage" 840
+		"hit force" 1200
+		piercing 0.2
+	description "The technology behind this weapon is incomprehensibly complex, even for ancient Mata standards. With a pulse of negative energy, it creates a linear rift in spacetime, generating extreme negative gravitational forces in its path that splits matter apart as if it wasn't there, going right through. While it is capable of piercing shields just as well, inside them, the interference from the matrix disrupts the beam and lowers the damage, so Relic recommends pairing it with their own Chronovortex weapons to weaken shields first."
+
+effect "ranseur"
+	sprite effect/ranseur
+		"frame rate" 30
+		"no repeat"
+	lifetime 11
+
+
+outfit "Quarg Ribault"
+	category "Turrets"
+	cost 9000000
+	thumbnail "outfit/quarg ribault"
+	"mass" 47
+	"outfit space" -47
+	"weapon capacity" -47
+	"required crew" 1
+	"turret mounts" -1
+	"active cooling" 11.75
+	"cooling energy" 2.35
+	weapon
+		"hardppoint sprite" "hardpoint/quarg ribault"
+		"hardpoint offset" 10.
+		"hit effect" "ribault impact"
+		sound "ribault"
+		"inaccuracy" 13
+		"turret turn" 2.5
+		"velocity" 13
+		"reload" 17
+		"burst reload" 2
+		"burst count" 19
+		"firing energy" 82
+		"firing heat" 41
+		"submunition" "ribault unguided" 2
+	description "The rapid flurries shot by this turret cover a wide area at a long range, while dealing very high damage at point blank, should all shots hit their target."
+
+outfit "ribault unguided"
+	weapon
+		sprite "projectile/ribault"
+			"frame rate" 10
+			"random start frame"
+		"hit effect" "ribault impact"
+		"inaccuracy" 11
+		"lifetime" 20
+		"shield damage" 93
+		"hull damage" 68
+		"submunition" "ribault guided"
+
+outfit "ribault guided"
+	weapon
+		sprite "projectile/ribault"
+			"frame rate" 10
+			"random start frame"
+		"hit effect" "ribault impact"
+		"inaccuracy" 11
+		"lifetime" 30
+		"fade out" 5
+		"turn" 5
+		"homing" 4
+		"acceleration" 1
+		"drag" .1
+		"shield damage" 93
+		"hull damage" 68
+
+
 outfit "Intrusion Countermeasures"
 	plural "Intrusion Countermeasures"
 	category "Hand to Hand"
