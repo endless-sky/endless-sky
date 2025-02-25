@@ -164,7 +164,7 @@ private:
 		double modifier = 1.;
 	};
 
-	enum MouseButton { Left, Right, Middle };
+	enum class MouseButton { Left, Right, Middle };
 
 
 private:
@@ -199,7 +199,7 @@ private:
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
 		Status::Type type, double cloak);
 
-	void AltClick(const Point &point, MouseButton button);
+	void RightOrMiddleClick(const Point &point, MouseButton button);
 
 private:
 	PlayerInfo &player;
@@ -294,7 +294,7 @@ private:
 	bool doClick = false;
 	bool hasShift = false;
 	bool hasControl = false;
-	MouseButton mouseButton = Left;
+	MouseButton mouseButton = MouseButton::Left;
 	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
