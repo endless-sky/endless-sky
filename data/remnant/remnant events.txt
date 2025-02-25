@@ -138,10 +138,10 @@ event "korath hunting"
 
 # Patch for old saves with "korath hunting" 
 event "korath hunting reset"
-    government "Korath"
-        "attitude toward"
-            "Indigenous Lifeform" 0
-            "Ember Waste" 0
+	government "Korath"
+		"attitude toward"
+		"Indigenous Lifeform" 0
+		"Ember Waste" 0
 
 
 
