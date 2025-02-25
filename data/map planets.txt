@@ -1768,7 +1768,7 @@ planet "Gardena Station"
 	spaceport `The old station is poorly lit, and filled with unnerving creaks, and tremors. It'd be easy to believe the entire place had been abandoned and left to the ghosts. But then, softly, you hear a melody in the distance, and laughter. Somewhere, beyond the unkept bulkheads, life persists, even here.`
 	security 0
 	tribute 10
-		threshold 3500
+		threshold 2000
 
 planet Geminus
 	attributes factory military mining paradise
