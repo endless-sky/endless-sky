@@ -1,6 +1,6 @@
 # Contributing to Endless Sky
 
-As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to contribute are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. Those who prefer to use Steam can use its [discussion rooms](https://steamcommunity.com/app/404410/discussions/) as well, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions). 
+As a free and open source game, Endless Sky is the product of many people's work. Contributions of artwork, storylines, and other writing are most in-demand, though there is a loosely defined [roadmap](https://github.com/endless-sky/endless-sky/wiki/DevelopmentRoadmap). Those who wish to contribute are encouraged to review the [wiki](https://github.com/endless-sky/endless-sky/wiki), and to post in the [community-run Discord](https://discord.gg/ZeuASSx) beforehand. There are also [discussion rooms](https://steamcommunity.com/app/404410/discussions/) for those who prefer to use Steam, or GitHub's [discussion zone](https://github.com/endless-sky/endless-sky/discussions). 
 
 We are always excited to welcome new contributors! Below are some guidelines and resources to help get involved.
 
@@ -56,4 +56,4 @@ If you have opened a new feature pull request during a stable release developmen
 
 ### Reviewing a pull request
 
-Reviewing pull requests is an important part of maintaining Endless Sky and the main way that new content is added to the game. Your feedback helps contributors improve their work and ensures that new content is the best it can be.
+Reviewing pull requests is an important part of maintaining Endless Sky and the main way that new content is added to the game. Your feedback helps contributors improve their work and ensures that new content is the best it can be. For more information, see the [wiki page](https://github.com/endless-sky/endless-sky/wiki/ReviewingPRs).
