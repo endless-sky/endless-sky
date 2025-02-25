@@ -72,6 +72,7 @@ mission "Hai Vacation [1]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -96,6 +97,7 @@ mission "Hai Vacation [2]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -120,6 +122,7 @@ mission "Hai Vacation [3]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -144,6 +147,7 @@ mission "Hai Vacation [4]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -222,12 +226,21 @@ mission "Hai Festival [1]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -248,12 +261,21 @@ mission "Hai Festival [2]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -274,12 +296,21 @@ mission "Hai Festival [3]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -1483,7 +1514,7 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
+	description "A group of Hai want to experience what it's like to be human criminals. Transport the <bunks> of them to <planet> in a brig. Payment is <payment>."
 	passengers 3 20
 	to offer
 		random < 5
@@ -2072,4 +2103,3 @@ mission "Superstitious Hai [12]"
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "generic passenger dropoff payment"
-

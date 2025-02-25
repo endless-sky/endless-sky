@@ -60,6 +60,100 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="0.10.12" date="2025-2-22">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <ul>
+          <li>Fixed an issue where player escorts could start jumping around independently of the flagship.</li>
+          <li>Audio will now remain paused when switching from the player info to the ship info panel.</li>
+          <li>Coalition ships and planets can no longer be bribed.</li>
+          <li>Buffed the health and mobility of the Bastion.</li>
+          <li>Adjusted the Firelight Missile Bank.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 14 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.12/changelog</url>
+    </release>
+    <release version="0.10.11" date="2025-1-25" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>There's lots of new content, and some noticeable balance changes to existing content:</p>
+        <ul>
+          <li>A new group of difficult to navigate systems, inhabited by new aliens.</li>
+          <li>Several new chains of missions and culture conversations in various regions of space.</li>
+          <li>A new, unlockable start that places the player in Hai space as they begin their interstellar journey.</li>
+          <li>Turret turn rates have been rebalanced to make bigger and longer-range turrets generally and more consistently slower than smaller or shorter-range ones.</li>
+          <li>The Carrier has seen an overhaul making it rely more heavily on its fighters for combat, rather than also being the strongest ship in human space on its own, as well as giving the Aerie some more bays.</li>
+        </ul>
+        <p>As well as changes to various game mechanics:</p>
+        <ul>
+          <li>Planets and systems can now have display names.</li>
+          <li>Stellar objects can be made invisible when the player is far from them.</li>
+          <li>Fleets and hazards can be given condition sets that control whether or not they can be spawned.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 37 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.11/changelog</url>
+    </release>
+    <release version="0.10.10" date="2024-10-26">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <ul>
+          <li>The biggest change this release is the removal of the "hold fire" command, added in 0.10.9, because of bugs associated with it that could not be adequately resolved prior to this release.</li>
+          <li>We hope to have addressed those issues for the next release in a few months.</li>
+        </ul>
+        <p>This release brings one new feature:</p>
+        <ul>
+          <li>The addition of the "silent jumps" and "silent scans" attributes, which allow ships to jump and scan without playing any sounds, not even the default ones.</li>
+        </ul>
+        <p>Some other changes are:</p>
+        <ul>
+          <li>Particularly large capture defense values on some outfits were reduced, to work better with changes to capturing mechanics in 0.10.9.</li>
+          <li>Fixes and improvements to various Incipias, Remnant, and Successor missions.</li>
+          <li>Updated landing messages for some star sprites to improve accuracy.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 18 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.10/changelog</url>
+    </release>
+    <release version="0.10.9" date="2024-9-28" type="development" urgency="low">
+      <description>
+        <p>This is an unstable release, containing big changes that may introduce new bugs.</p>
+        <p>This release includes two new groups of systems, each with their own faction:</p>
+        <ul>
+          <li>The Incipias, who live in gas giants and have not yet achieved faster than light travel.</li>
+          <li>The Successors, in the south, an amphibious race.</li>
+        </ul>
+        <p>Some other notable additions and changes to content and mechanics are:</p>
+        <ul>
+          <li>Formation flying for fleets and escorts.</li>
+          <li>A new mission chain for the Gegno.</li>
+          <li>Changed boarding mechanics to better balance boarding attack and defense.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>A special thanks to the 35 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.9/changelog</url>
+    </release>
+    <release version="0.10.8" date="2024-6-22">
+      <description>
+        <p>This is a stable release, focused on fixing bugs and making some other small improvements.</p>
+        <p>These changes include:</p>
+        <ul>
+          <li>Fixed various crashes, including ones that could occur when sorting ships or when using the flagship outline or new cloaked settings.</li>
+          <li>The flagship will no longer move through wormholes ahead of escorts when using fleet jumping.</li>
+          <li>Reduced the difficulty of the battle in "Wanderers: Mind 6".</li>
+          <li>Added a gamerule for controlling the disabled fighter projectile collision behavior introduced in v0.10.7.</li>
+          <li>Illegal mission passengers can now be detected by planetary security. Previously, missions with only illegal passengers could never result in a fine.</li>
+        </ul>
+        <p>You can find out more in the changelog.</p>
+        <p>Special thanks to the 13 people who contributed to this release!</p>
+      </description>
+      <url>https://github.com/endless-sky/endless-sky/blob/v0.10.8/changelog</url>
+    </release>
     <release version="0.10.7" date="2024-5-25" type="development" urgency="low">
       <description>
         <p>This is an unstable release, containing big changes that may introduce new bugs.</p>

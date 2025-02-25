@@ -13,10 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_EVENT_H_
-#define GAME_EVENT_H_
+#pragma once
 
-#include "ConditionSet.h"
+#include "ConditionAssignments.h"
 #include "DataNode.h"
 #include "Date.h"
 
@@ -73,6 +72,8 @@ public:
 
 	const std::list<DataNode> &Changes() const;
 
+	// Comparison operator, based on the date of the event.
+	bool operator<(const GameEvent &other) const;
 
 private:
 	Date date;
@@ -80,14 +81,10 @@ private:
 	bool isDisabled = false;
 	bool isDefined = false;
 
-	ConditionSet conditionsToApply;
+	ConditionAssignments conditionsToApply;
 	std::list<DataNode> changes;
 	std::vector<const System *> systemsToVisit;
 	std::vector<const Planet *> planetsToVisit;
 	std::vector<const System *> systemsToUnvisit;
 	std::vector<const Planet *> planetsToUnvisit;
 };
-
-
-
-#endif

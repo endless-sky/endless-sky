@@ -1,23 +1,25 @@
 cmake_minimum_required(VERSION 3.16...3.29)
 
 include(CMakeDependentOption)
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT ES_STEAM)
 	option(ES_USE_VCPKG "Use vcpkg to get dependencies." OFF)
 else()
 	option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 endif()
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
-cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON APPLE OFF)
+cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
 
-# Use C++17 without any compiler specific extensions.
-set(CMAKE_CXX_STANDARD 17 CACHE STRING "")
+# Use C++20 without any compiler specific extensions.
+set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+# We don't use modules, so avoid using unrecognised compiler-specific commands that cmake produces when they are enabled.
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 # Use LTO for Release builds only.
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
@@ -43,6 +45,10 @@ endif()
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+	# Add the testing libraries
+	if(NOT APPLE OR CMAKE_OSX_DEPLOYMENT_TARGET VERSION_GREATER_EQUAL 10.12)
+		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
+	endif()
 endif()
 
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
@@ -55,7 +61,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.8
+project("Endless Sky" VERSION 0.10.13
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -108,6 +114,16 @@ add_subdirectory(source)
 # Create an interface library that contains common libraries for the game and unit tests.
 add_library(ExternalLibraries INTERFACE)
 target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
+
+# Enable sanitizers on debug builds, depending on platform support.
+if(NOT WIN32)
+	set(SANITIZER_OPTS "-g" "-fsanitize=address,undefined,pointer-compare,pointer-subtract,unreachable,builtin,integer-divide-by-zero,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,pointer-overflow")
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		list(APPEND SANITIZER_OPTS "-fno-omit-frame-pointer" "-fsanitize=leak,vptr")
+	endif()
+endif()
+target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
+target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
 
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)
@@ -213,7 +229,8 @@ if(APPLE AND ES_CREATE_BUNDLE)
 	set_target_properties(EndlessSky PROPERTIES
 		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/resources/EndlessSky-Info.plist"
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
-	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
+	set(OUTPUT_NAME "Endless Sky")
+	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 elseif(WIN32)
 	add_executable(EndlessSky WIN32 source/main.cpp source/WinApp.rc)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")

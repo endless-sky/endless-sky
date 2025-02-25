@@ -783,11 +783,11 @@ mission "Sheragi Archaeology: The Box 3"
 			label bad
 			`	"The bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
 			`	"And the worse news?" you ask.`
-			`	"Well... Some people invaded my lab during the night and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+			`	"Well... some people invaded my lab during the night and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
 				goto whatnow
 			label worse
-			`	"Well... Some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
-			`	"And the bad news?" you ask`
+			`	"Well... some people invaded my lab during the night, and stole a lot of the things I was working on. Thankfully my insurance covers most of it, and I still have most of my heavy expensive equipment, but the box... it's gone."`
+			`	"And the bad news?" you ask.`
 			`	"The less bad news is that this is a lot more complicated than I thought. I found out that the data in the box has survived, and can still be recovered after all this time, but it will need some specialized hardware and knowledge that we don't have yet."`
 			label whatnow
 			`	Your heart sinks. "What do we do now? Do you have any idea where to find the box? Did you contact law enforcement?"`
@@ -1318,7 +1318,7 @@ mission "Sheragi Archaeology: The Emerald Sword 2"
 			`	"You sold it?" she replies incredulously. "How can you sell such a priceless piece of technology? Well, I hope there is a way to get more of them without having one, because we're going to need two for the next stage. One for your ship, and another one for the Emerald Sword, if its remains are still there."`
 			label return
 			`	"What do I get in return?" you ask.`
-			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get us a jump drive. Come back to us once you have it."`
+			`	"Fame and fortune, my friend. And if the ship is still there, I think you deserve to keep it," Albert responds. "You've helped me so much, and you went to hell and back to get this black box decoded. Give us some time to assemble a crew to survey the system and help refurbish the ship, and in the meantime, go get a jump drive for the Emerald Sword. Come back to us once you have it."`
 			choice
 				`	"You're just going to let me have it? Isn't this something of a priceless historical artifact?"`
 					goto askkeepship
@@ -1380,7 +1380,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 			choice
 				`	"Who are you?"`
 					goto who
-				`	"What... What is this feeling?"`
+				`	"What... what is this feeling?"`
 			`	There is a pause. The feeling of being watched becomes intense, as if you're being studied intently.`
 			`	"A human would call it... dread. Regret. Loss. You are standing in the last untouched graveyard of a lost civilization.`
 			label who
@@ -1600,6 +1600,7 @@ mission "Sheragi Archaeology: Epilogue"
 	description "Return to Zug."
 	source "Valley of the Damned"
 	destination "Zug"
+	passengers 150
 	cargo "Outfitting Equipment" 25
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 3: done"

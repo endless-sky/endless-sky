@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Hardpoint.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Body.h"
 #include "Effect.h"
 #include "Flotsam.h"
@@ -325,6 +325,7 @@ void Hardpoint::Jam()
 	// Reset the reload count.
 	reload += outfit->Reload();
 	burstReload += outfit->BurstReload();
+	--burstCount;
 }
 
 
@@ -457,7 +458,7 @@ void Hardpoint::Fire(Ship &ship, const Point &start, const Angle &aim)
 	// Anti-missile sounds can be specified either in the outfit itself or in
 	// the effect they create.
 	if(outfit->WeaponSound())
-		Audio::Play(outfit->WeaponSound(), start);
+		Audio::Play(outfit->WeaponSound(), start, IsSpecial() ? SoundCategory::ANTI_MISSILE : SoundCategory::WEAPON);
 	// Apply any "kick" from firing this weapon.
 	double force = outfit->FiringForce();
 	if(force)
