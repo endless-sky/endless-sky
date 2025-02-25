@@ -54,7 +54,7 @@ mission "First Contact: Wanderer"
 			`	This species is birdlike, but with bodies nearly as large as yours, and with wings that tower above you. They come swooping down from the sky, circle your ship to inspect it, and then land near the hatch and wait for you to open it. They do not appear to be armed, but their talons are eight or nine centimeters long.`
 			`	Hesitantly, you open your hatch and greet them. One of the aliens speaks to you: a chirping, clicking noise. You have no idea what it is saying.`
 			branch normal
-				not "True Hai Triumph 18: Hai Language: active"
+				not "Unfettered 18: Hai Language: active"
 			`	It seems like they do not trust you; they are very hesitant to come your way. They probably somehow know that you've worked with the Unfettered.`
 			choice
 				`	"I come to learn more about you, on behalf of the Unfettered."`
@@ -80,7 +80,7 @@ mission "First Contact: Wanderer"
 				`	"Are there any Hai here?"`
 			`	The same alien speaks again, pantomiming your ship flying into the sky and then returning, and then points to your airlock and mimics your rodent-ear gesture for the Hai. You think they are telling you to go find one of the Hai who can serve as an interpreter, and bring them back here.`
 			branch accept
-				not "True Hai Triumph 18: Hai Language: active"
+				not "Unfettered 18: Hai Language: active"
 			`	You should probably go back to the Unfettered and speak to them about the need for a diplomat, or any way to understand these aliens. He-Yi should be able to help you with this.`
 			`	Alternatively, you could go to the Hai and ask them for a translator instead, although He-Yi will probably respect you less for it.`
 				accept
@@ -113,7 +113,7 @@ mission "Wanderers: Unfettered Diplomat"
 		not "unfettered know of wanderers"
 		not "Wanderers: Hai Diplomat: offered"
 		not "Wanderers: Diplomacy: offered"
-		not "True Hai Triumph 18: Hai Language: active"
+		not "Unfettered 18: Hai Language: active"
 		not "language: Hai"
 	on offer
 		conversation
