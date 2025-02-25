@@ -279,6 +279,8 @@ void Outfit::Load(const DataNode &node)
 			// of blocking the sale of the outfit until the ammo is sold first.
 			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
 		}
+		else if(child.Token(0) == "ammo resupply" && child.Size() >= 3)
+			resuppliedAmmo.emplace_back(GameData::Outfits().Get(child.Token(1)), child.Value(2));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 		{
 			description += child.Token(1);
@@ -708,6 +710,41 @@ const map<const Sound *, int> &Outfit::OutfitScanSounds() const
 const Sprite *Outfit::FlotsamSprite() const
 {
 	return flotsamSprite;
+}
+
+
+
+const vector<pair<const Outfit *, double>> Outfit::GetResuppliedAmmo() const
+{
+	return resuppliedAmmo;
+}
+
+
+
+bool Outfit::AmmoResupplied(const Outfit *ammo) const
+{
+	for(const pair<const Outfit *, double> &refilled : resuppliedAmmo)
+		if(ammo == refilled.first)
+			return true;
+	return false;
+}
+
+
+// Searches an outfit for the lowest resupply modifier for a particular ammo outfit.
+double Outfit::GetResupplyCostMultiplier(const Outfit *ammo) const
+{
+	double minimumMultiplier = ammo->Get("resupplies") ? ammo->Get("resupplies") : INFINITY;
+	int index = 0;
+	for(const auto &[resuppliedAmmo, costMultiplier] : resuppliedAmmo)
+	{
+		if(ammo == resuppliedAmmo)
+		{
+			if(index == 0 || costMultiplier < minimumMultiplier)
+				minimumMultiplier = costMultiplier;
+			index += 1;
+		}
+	}
+	return minimumMultiplier;
 }
 
 
