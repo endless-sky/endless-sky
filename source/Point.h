@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Point {
 public:
 	Point() noexcept;
+	Point(double xy) noexcept;
 	Point(double x, double y) noexcept;
 
 	// Check if the point is anything but (0, 0).

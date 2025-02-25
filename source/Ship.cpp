@@ -49,6 +49,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstdint>
+#include <iostream>
 #include <limits>
 #include <sstream>
 
@@ -3095,30 +3097,9 @@ double Ship::MaxReverseVelocity() const
 
 
 
-const uint_fast8_t Ship::ThrustHeldFrames() const
+uint8_t Ship::ThrustHeldFrames(Ship::ThrustKind kind) const
 {
-	return thrusterHeldFrames;
-}
-
-
-
-const uint_fast8_t Ship::ReverseHeldFrames() const
-{
-	return reverseHeldFrames;
-}
-
-
-
-const uint_fast8_t Ship::TurnRightHeldFrames() const
-{
-	return turnRightHeldFrames;
-}
-
-
-
-const uint_fast8_t Ship::TurnLeftHeldFrames() const
-{
-	return turnLeftHeldFrames;
+	return thrustHeldFrames[static_cast<size_t>(kind)];
 }
 
 
@@ -4678,14 +4659,9 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
 
-	if(thrusterHeldFrames > 0)
-		thrusterHeldFrames--;
-	if(reverseHeldFrames > 0)
-		reverseHeldFrames--;
-	if(turnRightHeldFrames > 0)
-		turnRightHeldFrames--;
-	if(turnLeftHeldFrames > 0)
-		turnLeftHeldFrames--;
+	for(uint8_t &heldFrame : thrustHeldFrames)
+		if(heldFrame > 0)
+			--heldFrame;
 
 	if(isDisabled)
 		velocity *= 1. - dragForce;
@@ -4718,10 +4694,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			{
 				isSteering = true;
 				steeringDirection = commands.Turn();
-				if(steeringDirection < 0.)
-					turnLeftHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(turnLeftHeldFrames + 2));
-				else
-					turnRightHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(turnRightHeldFrames + 2));
+				ThrustKind direction = (steeringDirection < 0.) ? ThrustKind::LEFT : ThrustKind::RIGHT;
+				IncrementThrusterHeld(direction);
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -4782,10 +4756,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 
-				if(isReversing)
-					reverseHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(reverseHeldFrames + 2));
-				else
-					thrusterHeldFrames = min(Ship::MaximumThrusterHeldframes(), static_cast<uint_fast8_t>(thrusterHeldFrames + 2));
+				ThrustKind direction = isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD;
+				IncrementThrusterHeld(direction);
 
 				if(thrust)
 				{
@@ -5159,6 +5131,14 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+void Ship::IncrementThrusterHeld(Ship::ThrustKind kind)
+{
+	uint8_t &heldFrame = thrustHeldFrames[static_cast<size_t>(kind)];
+	heldFrame = min(MAX_THRUST_HELD_FRAMES, static_cast<uint8_t>(heldFrame + 2));
 }
 
 
