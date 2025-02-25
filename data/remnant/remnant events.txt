@@ -131,7 +131,8 @@ event "remnant: lab availability"
 	outfitter "Remnant Core"
 		add "Research Laboratory"
 
-
+# Depreciated
+event "korath hunting"
 
 event "korath rescue: nenia small"
 	system Nenia
