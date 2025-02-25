@@ -33,8 +33,26 @@ mission "Disabled Ka'het"
 	on offer
 		log "Successfully boarded a Ka'het. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton."
 		conversation
+
+			branch "boarded aberrant"
+				has "Disabled Aberrant: offered"
+
+			action
+				log `Successfully boarded a Ka'het. It appears to be a single, ship-sized organism that can travel in space using a special exoskeleton.`
+
 			`Your ship slowly approaches the <origin>, now floating lifeless near you. As you move closer, you spot a massive hole in the hull of the ship, revealing what appears to be a large, slug-like being. While most of the ship's machinery doesn't seem to have received heavy damage, weapons fire must have hit the slug's vital organs, killing it, after which point the ship seems to have stopped working.`
 			`	You have no troubles docking with what seems to be its "exoskeleton," trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
+				goto end
+
+			label "boarded aberrant"
+			action
+				log "Successfully boarded a Ka'het. Like the Aberrant, it appears to be a single, ship-sized organism that can travel in space using a special exoskeleton, but does not seem to induce the same ominous feeling."
+
+			`Your ship slowly approaches the <origin>, now floating lifelessly near you. As you move closer, you spot a massive hole in the hull of the ship, revealing what appears to be a large, slug-like being, very similar to what you found inside the Aberrant. While most of the ship's machinery doesn't seem to have received heavy damage, weapons fire must have hit the slug's vital organs, killing it, after which point the ship seems to have stopped working. Unlike with the Aberrant, you feel no strange presence or ominous feelings as you approach - it is merely a dead animal.`
+			`	You have no troubles docking with its "exoskeleton," trying to decide what to do next. While the Ka'het is too different from a normal ship for you to command it, it's safe to say that you can now loot its outfits.`
+
+			label end
+
 				decline
 
 conversation "ka'het: remnant"
@@ -246,8 +264,8 @@ mission "Ringworld Debris: Quarg"
 	landing
 	invisible
 	source
-		attributes "quarg"
-		not attributes "gegno quarg"
+		attributes "human quarg" "hai quarg"
+		attributes "ringworld"
 	to offer
 		has "ringworld debris"
 		has "First Contact: Quarg: offered"
@@ -622,7 +640,7 @@ mission "Ka'het: Patir Mystery 5"
 			label danger
 			`	"There is no way to be certain, but this is the only possible way to get in without destroying half of the complex.`
 			label open
-			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors. The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly though it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
+			`	"This," Dusk says as he presses a switch in the middle of the panel, "is what we were looking for." Soon after, the door in front of you opens, revealing a small room with another door at the opposite end. You follow Dusk inside, where he takes out the scanner again to look for another control panel. Once that is open, another switch allows him to close the door. Only the lights on your helmet keep you from being submerged in complete darkness. Looking around, you notice that the architecture is distinctly alien, with rounded angles on every side of the room and buttresses on either side of the doors. The ring itself is too small for you to pass through it standing upright, but the low gravity of the asteroid lets you almost fly through it without much trouble. "We now have to wait for the room to pressurize," he tells you.`
 			choice
 				`	"How long do you think it will it take?"`
 				`	"Would it be safe to remove our helmets after that?"`

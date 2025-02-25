@@ -164,6 +164,9 @@ outfitter "Hai Advanced"
 	"Cargo Scanner"
 	"Sand Cell"
 
+outfitter "Hai-home Only"
+	"Holovid Zone"
+
 outfitter "Hai Security"
 	"Hai Tracker"
 	"Hai Tracker Pod"
@@ -206,6 +209,7 @@ outfitter "Unfettered Basics"
 	"Pulse Rifle"
 	"Asteroid Scanner"
 	"Outfit Scanner"
+	"Phantom Pallet"
 
 
 outfitter "Mera's Lab"
