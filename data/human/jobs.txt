@@ -4279,7 +4279,7 @@ mission "Rescue Slaves [0]"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 		attributes spaceport
 		distance 5 16
 	on visit
@@ -4307,7 +4307,7 @@ mission "Rescue Slaves [1]"
 		random < 50
 		"passenger space" > 5
 	source
-		attributes "slavery ban"
+		attributes "slavery ban" "ccor"
 	stopover
 		government "Pirate"
 		not attributes "slavery ban"
@@ -4341,7 +4341,7 @@ mission "Rescue Slaves [2]"
 		attributes "slavery ban"
 	stopover
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 		attributes spaceport
 		distance 5 16
 	on visit
@@ -4368,7 +4368,7 @@ mission "Escaped Slaves [0]"
 		random < 60
 	source
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 	destination
 		attributes "slavery ban"
 	on visit
@@ -4394,7 +4394,7 @@ mission "Escaped Slaves [1]"
 		"passenger space" > 5
 	source
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 	destination
 		attributes "slavery ban"
 	on visit
@@ -4420,7 +4420,7 @@ mission "Escaped Slaves [2]"
 		"passenger space" > 10
 	source
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 	destination
 		attributes "slavery ban"
 	on visit
@@ -4447,7 +4447,7 @@ mission "Emancipation Raid Escort [0]"
 	source "New Tortuga"
 	stopover
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 		attributes spaceport
 		distance 5 16
 	on visit
@@ -4489,7 +4489,7 @@ mission "Emancipation Raid Escort [1]"
 	source "New Tortuga"
 	stopover
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 		attributes spaceport
 		distance 5 16
 	on visit
@@ -4531,7 +4531,7 @@ mission "Emancipation Raid Escort [2]"
 	source "New Tortuga"
 	stopover
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 		attributes spaceport
 		distance 5 16
 	on visit
@@ -4579,7 +4579,7 @@ mission "Emancipation Raid Escort [3]"
 	source "New Tortuga"
 	stopover
 		government "Pirate"
-		not attributes "slavery ban"
+		not attributes "slavery ban" "ccor"
 		attributes spaceport
 		distance 5 16
 	on stopover
