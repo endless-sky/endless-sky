@@ -1459,7 +1459,7 @@ void MapPanel::DrawSystems()
 				starAngle += angularSpacing;
 				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
-					Point(0, 0), 0, cbrt(zoom) * 0.6, 0.8);
+					Point(0, 0), 0, cbrt(zoom) * 0.6, Point(1, 1), 0.8);
 				starBatch.Add(starBody);
 			}
 		}
