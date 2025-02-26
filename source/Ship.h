@@ -506,6 +506,9 @@ public:
 	// The AI wants the ship to linger for one AI step.
 	void Linger();
 
+	// Check if this ship looks the same as another, based on model display names and outfits.
+	bool Immitates(const Ship &other) const;
+
 
 private:
 	// Various steps of Ship::Move:
