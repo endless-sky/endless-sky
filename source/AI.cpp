@@ -2824,7 +2824,10 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	// use them to reach the target more quickly.
 	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
-	// This isn't perfect, but it works well enough.
+	// Only apply thrust if either:
+	// This ship is within 90° degrees of facing towards its target and far enough away not to overshoot
+	// if it accelerates while needing to turn further, or:
+	// This ship is moving away from its target but facing mostly towards it.
 	else if((facing >= 0. && direction.Length() > diameter)
 			|| (ship.Velocity().Dot(direction) < 0. && facing >= .9))
 		command |= Command::FORWARD;
