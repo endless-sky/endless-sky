@@ -859,8 +859,8 @@ mission "Little Vienna in New Austria"
 				`	(Ignore the sign and keep walking.)`
 					decline
 			`	Curious, you decide to investigate, turning into a narrow street that feels like an echo of Old Vienna. A handful of historic-looking buildings line the cobblestone path, their facades adorned with dramatic stonework and flowery tilework. A small concert hall, labeled "Bach Collegium Konzertsaal", hums with the faint sound of string instruments tuning. Nearby, the aroma of rich, chocolatey coffee drifts from a small coffeehouse.`
-			`	Outside the coffehouse, a man at a marble table sips his coffee while reading a local newspaper. You can see the front page with the headline: "Mitreibender Mozart mit dem Bach Collegium Konzertsaal", featuring a photograph of a smiling conductor at the center of a small orchestra. On his plate rests a bright pink sponge cake, its color fitting right in with the rich tones of the street.`
-			`	As you linger, a well-dressed older woman approaches. Her voice, imbued with a musical rhythm, greets you with a hearty, "Gruess Gott!"`
+			`	Outside the coffeehouse, a man at a marble table sips his coffee while reading a local newspaper. You can see the front page with the headline: "Mitreibender Mozart mit dem Bach Collegium Konzertsaal", featuring a photograph of a smiling conductor at the center of a small orchestra. On the reader's plate rests a bright pink sponge cake, its color fitting right in with the rich tones of the street.`
+			`	As you linger, a well-dressed older woman approaches. Her voice, imbued with a musical rhythm, greets you with a hearty "Gruess Gott!`
 			`	"Not many offworld visit Kleinwean, which is a shame, as you can see it's quite the New Austrian 'gem'," she remarks with a wink. "I was on my way to the concert -- my husband is sick -- and I would hate for his ticket to go to waste. Would you do me the honor of taking it?"`
 			choice
 				`	(Accept the ticket.)`
