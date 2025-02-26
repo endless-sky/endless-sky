@@ -45,9 +45,9 @@ namespace {
 
 // Constructor.
 Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
-	bool isTurret, bool isUnder, const Outfit *outfit)
+	bool isTurret, bool isUnder, const Outfit *outfit, int group)
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
-	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
+	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder), group(group)
 {
 	UpdateArc();
 }
@@ -391,6 +391,20 @@ void Hardpoint::Uninstall()
 const Hardpoint::BaseAttributes &Hardpoint::GetBaseAttributes() const
 {
 	return baseAttributes;
+}
+
+
+
+void Hardpoint::SetGroup(int group)
+{
+	this->group = group;
+}
+
+
+
+int Hardpoint::GetGroup() const
+{
+	return group;
 }
 
 

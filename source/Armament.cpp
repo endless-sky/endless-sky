@@ -31,18 +31,18 @@ using namespace std;
 
 // Add a gun hardpoint (fixed-direction weapon).
 void Armament::AddGunPort(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+	bool isUnder, const Outfit *outfit, int group)
 {
-	hardpoints.emplace_back(point, attributes, false, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, false, isUnder, outfit, group);
 }
 
 
 
 // Add a turret hardpoint.
 void Armament::AddTurret(const Point &point, const Hardpoint::BaseAttributes &attributes,
-	bool isUnder, const Outfit *outfit)
+	bool isUnder, const Outfit *outfit, int group)
 {
-	hardpoints.emplace_back(point, attributes, true, isUnder, outfit);
+	hardpoints.emplace_back(point, attributes, true, isUnder, outfit, group);
 }
 
 
@@ -153,6 +153,13 @@ void Armament::UninstallAll()
 {
 	for(Hardpoint &hardpoint : hardpoints)
 		hardpoint.Uninstall();
+}
+
+
+
+void Armament::SetHardpointGroup(unsigned index, int group)
+{
+	hardpoints[index].SetGroup(group);
 }
 
 

@@ -1312,8 +1312,35 @@ tip "Select nearest asteroid"
 tip "Scan selected ship"
 	`Scan the selected ship, if you have outfit or cargo scanners installed.`
 
-tip "Fire primary weapon"
-	`Fire all of your flagship's primary weapons. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+tip "Fire primary weapons 0"
+	`Fire your flagship's primary weapons assigned to group 0. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 1"
+	`Fire your flagship's primary weapons assigned to group 1. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 2"
+	`Fire your flagship's primary weapons assigned to group 2. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 3"
+	`Fire your flagship's primary weapons assigned to group 3. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 4"
+	`Fire your flagship's primary weapons assigned to group 4. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 5"
+	`Fire your flagship's primary weapons assigned to group 5. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 6"
+	`Fire your flagship's primary weapons assigned to group 6. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 7"
+	`Fire your flagship's primary weapons assigned to group 7. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 8"
+	`Fire your flagship's primary weapons assigned to group 8. The "automatic firing" setting will fire only those weapons that are within your target's range.`
+
+tip "Fire primary weapons 9"
+	`Fire your flagship's primary weapons assigned to group 9. The "automatic firing" setting will fire only those weapons that are within your target's range.`
 
 tip "Toggle turret tracking"
 	`Toggle the "Turret tracking" setting.`

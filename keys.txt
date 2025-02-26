@@ -4,7 +4,16 @@
 "Turn right" 1073741903
 "Auto steer" 101
 "Reverse" 1073741905
-"Fire primary weapon" 9
+"Fire primary weapons 0" 9
+"Fire primary weapons 1" 9
+"Fire primary weapons 2" 9
+"Fire primary weapons 3" 9
+"Fire primary weapons 4" 9
+"Fire primary weapons 5" 9
+"Fire primary weapons 6" 9
+"Fire primary weapons 7" 9
+"Fire primary weapons 8" 9
+"Fire primary weapons 9" 9
 "Fire secondary weapon" 113
 "Select secondary weapon" 119
 "Land on planet / station" 108
