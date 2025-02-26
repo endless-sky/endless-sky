@@ -218,6 +218,27 @@ fleet "Korath Raid"
 		"Palavret (Blaze)"
 		"'olofez" 2
 
+fleet "Kor Isaha Raid"
+	government "Kor Isaha"
+	names "korath"
+	fighters
+		names "korath"
+	cargo 1
+	personality
+		disables plunders opportunistic harvests
+	variant 12
+		"Palavret"
+		"'olofez" 2
+	variant 6
+		"Palavret (Ember Blaze)"
+		"'olofez" 2
+	variant 1
+		"Rano'erek"
+		"'olofez" 4
+	variant 2
+		"Rano'erek (Heaver)"
+		"'olofez" 4
+
 fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
@@ -237,12 +258,36 @@ fleet "Korath Ember Waste Raid"
 	variant 3
 		"Palavret (Ember Shunt)"
 		"'olofez" 2
-	variant 2
+	variant 3
 		"Rano'erek"
 		"'olofez" 4
-	variant 2
+	variant 1
 		"Rano'erek (Shunt)"
 		"'olofez" 4
+
+fleet "Kor Alaji Raid"
+	government "Kor Alaji"
+	names "korath"
+	fighters
+		names "korath"
+	cargo 1
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Korath Exiles Remnant Donations"
+	personality
+		disables plunders opportunistic harvests
+	variant 6
+		"Palavret (Ember)"
+		"'olofez" 2
+	variant 15
+		"Palavret (Ember Shunt)"
+		"'olofez" 2
+	variant 1
+		"Rano'erek"
+		"'olofez" 4
+	variant 3
+		"Rano'erek (Shunt)"
+		"'olofez" 4
+
 
 fleet "Korath Miners"
 	government "Korath"
@@ -305,6 +350,60 @@ fleet "Korath Defense"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
+	variant 4
+		"Ra'gru Ik 618"
+	variant 4
+		"Ra'at Ik 621"
+		"'olofez" 9
+	variant 2
+		"Rano'erek (Shunt)"
+		"'olofez" 2
+		"'olofez (Expeller)" 2
+	variant 1
+		"Rano'erek (Heaver)"
+		"'olofez" 4
+	variant 3
+		"Palavret" 3
+		"'olofez" 6
+	variant 2
+		"Palavret" 2
+		"Palavret (Blaze)" 2
+		"'olofez" 8
+	variant 2
+		"Palavret (Ember Shunt)" 3
+		"'olofez" 6
+	variant 1
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 4
+		"'olofez (Expeller)" 2
+	variant 2
+		"Ra'gru Ik 618 (Grab)"
+	variant 1
+		"Ra'gru Ik 618 (Storm)"
+	variant 1
+		"Ra'gru Ik 618"
+		"Palavret" 3
+		"'olofez" 6
+	variant 1
+		"Ra'at Ik 621 (Storm)"
+		"Palavret" 3
+		"'olofez" 11
+		"'olofez (Expeller)" 4
+	variant 1
+		"Rano'erek"
+		"Palavret (Blaze)"
+		"'olofez" 4
+		"'olofez (Expeller)" 2
+
+fleet "Korath Tribute Response (Humanika Rafeki)"
+	government "Korath"
+	names "korath"
+	fighters
+		names "korath"
+	cargo 0
+	personality
+		disables plunders opportunistic harvests hunting staying unconstrained
 	variant 4
 		"Ra'gru Ik 618"
 	variant 4
@@ -462,6 +561,30 @@ fleet "Korath Civilian Large"
 		"'olofez (World-Ship)"
 	variant 1
 		"Ikatila'ej"
+	variant 2
+		"Rai'alorej"
+		"'olofez (Expeller)" 2
+
+fleet "Korath Civilian Delivery"
+	government "Korath (Civilian)"
+	names "korath"
+	fighters
+		names "korath"
+	cargo 3
+	personality
+		frugal opportunistic disables forbearing
+	variant 8
+		"Rano'erek"
+		"'olofez (Expeller)" 4
+	variant 8
+		"Rano'erek"
+		"'olofez (Digger)" 4
+	variant 4
+		"Lor'kas Ik 577 (Jump)"
+		"'olofez (Expeller)" 3
+	variant 4
+		"Kas'lor Ik 582 (Jump)"
+		"'olofez (Expeller)" 3
 	variant 2
 		"Rai'alorej"
 		"'olofez (Expeller)" 2
@@ -919,20 +1042,28 @@ outfitter "Korath Exiles"
 
 outfitter "Korath Exiles Remnant Donations"
 	"Banisher Grav-Turret"
-	"Fire-Lance"
-	"Grab-Strike Turret"
+	"Expeller Grav-Ray"
+	"Digger Mining Turret"
+	"Digger Mining Beam"
 	"Warder Anti-Missile"
+	"Firelight Storage Rack"
+	"Firestorm Torpedo Rack"
 	"Steering (Asteroid Class)"
+	"Steering (Comet Class)"
 	"Steering (Lunar Class)"
 	"Steering (Planetary Class)"
 	"Thruster (Asteroid Class)"
 	"Thruster (Comet Class)"
+	"Thruster (Lunar Class)"
 	"Thruster (Planetary Class)"
+	"Reverser (Asteroid Class)"
+	"Reverser (Comet Class)"
+	"Reverser (Lunar Class)"
+	"Engine (Meteor Class)"
+	"Bow Drive (Meteor Class)"
+	"Afterburner (Asteroid Class)"
+	"Afterburner (Comet Class)"
+	"Generator (Candle Class)"
 	"Generator (Furnace Class)"
-	"Triple Plasma Core"
-	"Small Heat Shunt"
-	"Large Heat Shunt"
+	"Generator (Inferno Class)"
 	"Fuel Processor"
-	"Systems Core (Small)"
-	"Systems Core (Medium)"
-	"Systems Core (Large)"
