@@ -27972,7 +27972,7 @@ system Mirzam
 
 system Misam
 	pos -9 -80
-	government "Independent (Korath-Allied) Port"
+	government Pirate
 	attributes "core" "multi-star" "notable star"
 	arrival 3835
 	habitable 3835
