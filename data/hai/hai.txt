@@ -32,7 +32,7 @@ shipyard "Mon Ki o'Uden Advanced"
 	"Sea Scorpion"
 	"Shield Beetle (Unfettered Shipyards)"
 	# Has "Solifuge" and "Violin Spider" added by event.
-	# Technically has the specs for the "Ladybug" but not the resources to build it.
+	# Technically has the specs for the "Ladybug" but not the resources or interest to build it.
 
 
 # Mon Ki i'Hiya Consortium (loyalist) shipyards:
@@ -184,6 +184,7 @@ outfitter "Hai Security"
 	"Quantum Keystone"
 	"Pulse Rifle"
 
+
 outfitter "Unfettered Basics"
 	"Pulse Cannon"
 	"Hai Tracker"
@@ -209,6 +210,25 @@ outfitter "Unfettered Basics"
 	"Asteroid Scanner"
 	"Outfit Scanner"
 	"Phantom Pallet"
+
+
+outfitter "Mera's Lab"
+	"Hai Tracker"
+	"Chameleon Anti-Missile"
+	"Outfits Expansion"
+	"Cargo Expansion"
+	"Hai Octopus Jammer"
+	"Value Detector"
+	"Outfit Scanner"
+	"Cargo Scanner"
+	"Hyperdrive"
+	"Hai Williwaw Cooling"
+	"Pebble Core"
+	"Supercapacitor"
+	"Pulse Rifle"
+	"Asteroid Scanner"
+	"Fuel Pod"
+
 
 # For ships, stations, or corporations.
 phrase "hai"
