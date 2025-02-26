@@ -1190,7 +1190,7 @@ mission "Lunarium: Evacuation 5"
 	to offer
 		random < 80
 		has "Lunarium: Evacuation 4: done"
-		has "outfit: Jump Drive"
+		has "flagship attribute: jump drive"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -1603,7 +1603,7 @@ mission "Lunarium: Combat Training 1"
 	destination "Zug"
 	to offer
 		random < 20
-		has "outfit: Jump Drive"
+		has "flagship attribute: jump drive"
 		or
 			has "Lunarium: Propaganda 4: done"
 			has "Lunarium: Evacuation 6: done"
@@ -1843,7 +1843,7 @@ mission "Lunarium: Questions"
 		not planet "Remote Blue"
 	destination "Remote Blue"
 	to offer
-		has "outfit: Jump Drive"
+		has "flagship attribute: jump drive"
 		or
 			"assisted lunarium" >= 5
 			and
