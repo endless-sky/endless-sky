@@ -7360,12 +7360,29 @@ mission "Hroar's Haulers Unferth"
 			`	(Say nothing.)`
 		`	"I am sure you heard by now that ol' Yngvar gave us a week or so of convalescence." He leans in a little closer to you, "Now, I don't like speaking poorly of decent folk, but I am not looking forward to spending a week or more in the shadow of the Quarg."`
 		`	"Something's off about the natvies here," he says quietly," like they lost their fire, or somesuch."`
-		`	"So," he says brightly, after straightening up, "I figured this was a perfect chance to pay my respects at The Last Lantern. And was hankering for some good company, and... maybe a ride."`
+		`	"So," he says brightly, after straightening up, "I figured this was a perfect chance to pay my respects at The Last Blush. And was hankering for some good company, and... maybe a ride."`
 		choice
 			`	"Sure, I'll come."`
+				goto sure
 			`	"Don't you have your own ship?"`
-			`	"The Last Beacon?"`
-		`	"As you know, we haulers trace our beginnings back to the caravan era. In those dark days 'fore the Republic, when travel 'tween stars took weeks, and the Gap was rife with danger. The Long Haul back then was only possible via one perilous route. The Blyskan way. "`
+				goto ship
+			`	"The Last Blush?"`
+		`	"As you know, we haulers trace our beginnings back to the caravan era. In those dark days 'fore the Republic, when travel 'tween stars took weeks, and the Gap was rife with danger; the Long Haul was only possible via one perilous route. The Blyskan way. It was made up of four waystations, which they called Blushes. First Blush, Second Blush, Third Blush and Final Blush."`
+		`	Solvi drew his index finger through the air, as though he was carving out a map, "We don't take that route anymore, just no sense to it, but some of those old waystations remain, and for us spacers they are kinda like, well, shrines I s'pose."`
+		`	He drops his hand and his attention focusing back on you, "Final Blush ain't too far from here, and I'd like to pay my respects. Be good for you too. Being as this is part of your culture now and all that."`
+		`	He slaps you on the back, "I mean, you just made it to Lagrange on your first Long Haul. That's 'bout as authentic as it gets. Leastwise in my book."`
+		`	"So, the official name of the Final Blush is <destination>, and you'll find it in the <system> system." He pauses," Now, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta down time, and I am not looking to be left behind by own ship and fleet."`
+
+		label sure
+			`	"Ah, now that's what I like aboutchya." Solvi favors you with a wide smile, "Jump first, ask questions later."`
+			`	"Blushes is what the Carvaneers used to call their waystations, and the Last Blush, well, that was the last one of 'em 'fore gettin' to Lagrange. Obviously, we ain't using them anymore, haven't in centuries, but they are kinda like shrines to us old spacers. Now, the official name of the Last Blush is <destination> in the <system> system."`
+			`	"So, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta down time, and I am not looking to be left behind by own ship and fleet."`
+				accept
+		
+		label ship
+		`	`
+
+
 		`	He pauses, 
 		"Say so long to steady stars, 
 		the home we know,
