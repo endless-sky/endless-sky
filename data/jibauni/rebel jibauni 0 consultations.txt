@@ -328,7 +328,7 @@ mission "Rebel Jibauni: Bring Them Back"
 			label alreadyanswer
 			action
 				"reputation: Jibauni (Rebel)" = -100 # I would like to make this so that you have a two-day time limit before the Rebels become hostile, but that doesn't seem possible.
-			`	"As you please. Guards," and the Rebel snaps its fingers. You are escorted back to the <ship> and warned that no mercy will be shown when you take off. You are also informed that you are taking off now.`
+			`	"As you please. Guards," and the Rebel snaps its fingers. You are escorted back to the <ship> and warned that they will show you no mercy. You take off immediately, given the threat.`
 				flee
 	on stopover
 		dialog `All of the Rebel Jibauni are on your ship. Now return to Andwerfen for the reward.`
