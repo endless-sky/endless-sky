@@ -237,9 +237,9 @@ planet Anatrefo
 planet Andwerfen
 	attributes capital jibauni "rebel jibauni" "res-redi shipyards" "seat of government"
 	landscape land/andwerfen
-	description `Obviously, Andwerfen is occupied by the Rebel Jibauni government. Fortified buildings and bunkers dot the whole city, in readiness to shoot invaders, and planetary defenses jut out of the landscape everywhere - even on the tops of buildings.`
+	description `The Rebel Jibauni government obviously occupies Andwerfen. Fortified buildings and bunkers dot the whole city, in readiness to shoot invaders, and planetary defenses jut out of the landscape everywhere - even on the tops of buildings.`
 	description `	Wahlkin, a Jibauni once a peaceful planet-dweller, was inspired by stories of new spacecraft and heroic feats of flight. Eventually he started exploring, and subsequently started the colony of Andwerfen, now grown into a full-fledged military academy.`
-	spaceport `The spaceport is filled by armed patrols keeping an eye out for any sign of rebellion. Every Jibauni you see wears a frightened expression, and many wish to escape back to normal Jibauni space.`
+	spaceport `Armed patrols, keeping an eye out for any sign of rebellion, roam the spaceport. Every Jibauni you see wears a frightened expression, and many wish to escape back to normal Jibauni space.`
 
 planet Angko
 	attributes bunrodea factory manufacturing
@@ -486,11 +486,11 @@ planet Bailey
 planet Baitoon
 	attributes homeworld jibauni "res-redi shipyards"
 	landscape land/baitoon
-	description `Baitoon is the planet where the Jibauni were created, and presumably where the seat of the Normal Jibauni government convenes. Many Jibauni move about in long, narrow passageways between the landing pads, many of which, old and cracked, have received no maintenance for generations.`
+	description `The Jibauni came into existence on Baitoon, and the planet presumably also seats the Jibauni government. Many Jibauni move about in long, narrow passageways between the landing pads, many of which, old and cracked, have received no maintenance for generations.`
 	description `	Other dinosaurs used to live on this planet, but the Jibauni have transplanted them to a different planet, Owiay, where they thrive and grow much better then they would in a land of T. Rexes.`
 		to display
 			has "jibauni knowledge: dinosaur skulls"
-	spaceport `This is the oldest existing spaceport in Jibauni space, and is filled with many different sizes of hangars and pads to compensate for the large amounts of traffic this planet gets as the third tourist destination in all of Jibauni space. Every building here is old, many small and close together.`
+	spaceport `The oldest existing spaceport in Jibauni space, Baitoon's spaceport consists entirely of many different sizes of hangars and pads to compensate for the large amounts of traffic Baitoon receives as the third tourist destination in all of Jibauni space. Many buildings huddle together, old and small.`
 	government Jibauni
 	shipyard "Aboagye Basics"
 	shipyard "Resredi Advanced"
@@ -835,7 +835,7 @@ planet Cavaasa-Vasa-Tej
 planet Caya
 	attributes uninhabited
 	landscape land/canyon15
-	description `"Stunning" is the only way to describe the natural beauty of Caya. Rock and tree and bare land combine here to make a wonderful picture. The world is dark because of the large cloudbanks, but the most of the planet's features are still visible.`
+	description `The only description for the natural beauty of Caya lies in the word "stunning". Rock and tree and bare land combine here to make a wonderful picture. The large cloudbanks mean that the world mostly lies in darkness, though many of it's features are still visible.`
 
 planet "Ceaseless Toil"
 	attributes factory saryd uninhabited
@@ -1281,9 +1281,9 @@ planet "Devru Kaska"
 planet "Diba Station"
 	attributes diba robot station
 	landscape "land/diba station"
-	description `This is the nicest station the Diba possess. The parts that you have access to are spick and span, polished with the labor of countless helper bots. It appears that this is where the rulers of the Diba live, and also, though you can't find the exact location, where the robots that are the terror of Diba space are produced.`
+	description `The Diba possess this station as their nicest. The parts that you have access to are spick and span, polished with the labor of countless helper bots. It appears that the rulers of the Diba live here, and, though you can't find the exact location, where the robots that are the terror of Diba space are produced.`
 	port "Robot Housing"
-		description `The robots here do not acknowledge your presence, and nothing exists here to refuel your type of ship. It is easy to imagine hostile eyes watching you from within buildings.`
+		description `The robots here do not acknowledge your presence, and nothing exists here to refuel your type of ship. It's easy to imagine hostile eyes watching you from within buildings.`
 	"required reputation" 20
 	outfitter Diba
 	shipyard Diba
@@ -2862,8 +2862,8 @@ planet Kaeyin
 planet Kahbani
 	attributes jibauni "kasim shipyards"
 	landscape land/kahbani
-	description `Kahbani: the farming world that feeds the entirety of Jibauni space. Not a single other planet has such large crop yields, and it just so happens that the food growable here is the best for the Jibauni - that is, when they're not eating meat.`
-	description `	This planet is in the first system discovered by the Jibauni. The official story was that government ships found it after long periods of trying to make hyperdrives, but popular tradition contradicts with the idea that a captain named Rindil Jibson discovered it just a few hundred years after the Jibauni were created - and years before the hyperdrive was invented.`
+	description `Kahbani: the farming world that feeds the entirety of Jibauni space. Not a single other planet has such large crop yields, and it just so happens that the easiest food to grow here provides the most nutrition for the Jibauni - that is, when they're not eating meat.`
+	description `	The first system discovered by the Jibauni contains this planet. The official story was that government ships found it after long periods of trying to make hyperdrives, but popular tradition contradicts with the idea that a captain named Rindil Jibson discovered it just a few hundred years after the Jibauni were created - and years before the hyperdrive was invented.`
 	spaceport `Little passenger service lies in the spaceport in the only city on Kahbani. A few immigrants are scattered preparing to officially enter the planet, but the vast majority of Kahbani's facilities carry cargo; another portion to feed Baitoon, one to go to Lamalmuq; it seems that plants fill the whole of the small spaceport.`
 	government Jibauni
 	outfitter "Jibauni Basics"
@@ -2888,10 +2888,10 @@ planet Kalbai
 planet Kanlil
 	attributes jibauni "kasim shipyards" station tourism
 	landscape land/station13
-	description `Kanlil, as the stopover for pilgrims wishing to visit Lamalmuq, is quite busy. It also sells luxurious goods unavailable on the pilgrims' planet, such as personal tablets and cigars. Most trading in this system naturally passes through Kanlil.`
-	description `	Surprisingly, the station is a fairly recent creation, only built two hundred years ago. Dertoy Enterprises, the original founder, went out of business soon afterwards; this contributes to the rumor that Kanlil has existed since the beginning of time as the Jibauni know it.`
+	description `Busy Kanlil, the stopover for pilgrims wishing to visit Lamalmuq. The station sells luxurious goods unavailable on the pilgrims' planet, such as personal tablets and cigars; most trading in this system passes through Kanlil.`
+	description `	A fairly recent creation, the station was only built two hundred years ago. Dertoy Enterprises, the original founder, went out of business soon afterwards; this contributes to the rumor that Kanlil has existed since the beginning of time as the Jibauni know it.`
 	spaceport `Most Jibauni loitering on Kanlil wear black robes; the rest wear the generic spaceport employee uniforms that permeate Jibauni space. Many ships are docked to the station, and the spaceport workers are kept busy unloading and reloading the large amounts of traffic in Hajay.`
-	spaceport `	The civilian landing area, called Qarib Najm, is the largest one of the rings composing Kanlil; apparently the other rings are reserved for military or Zaeim spacecraft. Many of them are unlighted; apparently uninhabited at present.`
+	spaceport `	The largest one of the rings composing Kanlil, called Qarib Najm, comprises the civilian landing area; apparently the other rings are reserved for military or Zaeim spacecraft. Many of them are unlighted; apparently uninhabited at present.`
 	government Jibauni
 	shipyard "Aboagye Basics"
 	shipyard "Aboagye Advanced"
@@ -3011,7 +3011,7 @@ planet "Kessel Sepret"
 planet Khariq
 	attributes uninhabited
 	landscape land/khariq
-	description `A lava world, sweltering with heat and smoke. Poisonous gases rise out of many volcanos, and magma is seeping over the rocky ground. Your ship's sensors are giving warnings, indicating that melting is possible for those who stay in the heat. It is best to not stay on the planet for too long.`
+	description `A lava world, sweltering with heat and smoke. Poisonous gases rise out of many volcanos, and magma seeps over the rocky ground. Your ship's sensors give warnings, indicating the possibility of melting for those who stay in the heat. Better to not stay on the planet for too long.`
 
 planet Khora-Uurau-Uuoru
 	attributes successor uninhabited
@@ -3192,10 +3192,10 @@ planet "Laki Nemparu"
 planet Lamalmuq
 	attributes jibauni pilgrims tourism
 	landscape land/lamalmuq
-	description `Lamalmuq is the center of Jibauni religion. Many Jibauni roam on the surface, wearing simple black robes. There also are many religious buildings and none of the pubs and bars that would be expected on a normal planet. Billboards are posted everywhere advertising something impossible to read.`
-	description `	This is the planet of the gods to the Jibauni. Their ancient legends tell of a place where the rulers of the universe lived, and where all was quiet and peaceful.`
-	description `	This, they believe, is that planet, and so have been very careful not to spoil it.`
-	spaceport `Compared to other Jibauni planets, and the station of Kanlil nearby, Lamalmuq is quite sparsely populated in the matter of spacecraft. Most of the ships are built for the sole purpose of passenger transport. One city exists on the surface; every other continent is untouched by any Jibauni methods.`
+	description `The center of Jibauni religion lies on Lamalmuq. Many Jibauni roam on the surface, wearing simple black robes, between many religious buildings but none of the other establishments expected on a normal planet. Billboards are posted everywhere advertising something impossible to read.`
+	description `	Lamalmuq - the planet of the gods to the Jibauni. Their ancient legends tell of a place where the rulers of the universe lived, and where all was quiet and peaceful.`
+	description `	They believe Lamalmuq is that planet, and so have been very careful not to spoil it.`
+	spaceport `Compared to other Jibauni planets, and the station of Kanlil nearby, Lamalmuq is quite sparsely populated in the matter of spacecraft. Most of the ships are built for the sole purpose of passenger transport. One city exists on the surface; untouched by Jibauni methods lies every other continent.`
 	government Jibauni
 	outfitter Lamalmuq
 	"required reputation" 10
