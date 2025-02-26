@@ -6248,7 +6248,7 @@ mission "Hroar's Haulers 17b"
 			`	"Slow down!" Yngvar holds out his thick hands, and the room quiets. "As I said, we got enough room to fullfil your orders, you won't be needing to wait on Hrodny's fleet.`
 			`	"Now." Yngvar continues, "We still got plenty of ships that need seeing too. The faster you get your goods loaded, the faster they'll get to Lagrange, and we all get paid."`
 			`	At that the crowd thinned, though a few people linger, giving Yngvar hard stares. Yngvar ignores them and instead approaches you.`
-			`	"Captain <last>." He says, "As you can see the Rand folk are pretty eager to get their goods off the ground in the gap."`
+			`	"Captain <last>." He says, "As you can see the Rand folk are pretty eager to get their goods off the ground in the Gap."`
 			label yngvarchat
 			choice
 				`	"What are we doing here."`
@@ -7352,12 +7352,29 @@ mission "Hroar's Haulers Unferth"
 		has "savedsolvi"
 	on offer
 		conversation
-		`As you work your way through the light crowds of Humanika's spaceport, you can't help but notice there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of pastel echoes of humanity, it's easy to spot the animated Solvi. His weathered rust-brown jacket and proud captain's hat, his over expressive face, open friendly demeanor are all sharp odds with the inherent meekness of the spaceport's regulars.`
-			`	"<first>." He says as he walks up to you and claps your hand, "I knew you'd come."`
+		`As you work your way through Humanika's sparsely populated spaceport, you can't help but notice that there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of pastel human echoes, it's easy to spot the animated Solvi. His weathered rust-brown jacket and proud captain's hat, his over expressive face, open friendly demeanor are all at sharp odds with the inherent meekness of the spaceport's regulars.`
+			`	"<first>." He says as he walks up to you and claps your hand, "I knew you'd be come."`
 		choice
 			`	"Good to see you, Solvi."`
 			`	"Of course I'd come!"`
 			`	(Say nothing.)`
+		`	"I am sure you heard by now that ol' Yngvar gave us a week or so of convalescence." He leans in a little closer to you, "Now, I don't like speaking poorly of decent folk, but I am not looking forward to spending a week or more in the shadow of the Quarg."`
+		`	"Something's off about the natvies here," he says quietly," like they lost their fire, or somesuch."`
+		`	"So," he says brightly, "I thought I'd take a short pilgrimage to an old caravan shrine. And was hankering for some good company, and... maybe a ride."`
+		choice
+			`	"Sure, I'll come."`
+			`	"Don't you have your own ship?"`
+			`	"What do you mean caravan shrine?"`
+		`	"As you know, we haulers trace our beginnings back to the caravan era. In those dark centuries before the Republic, when travel between stars took weeks, and the Gap was filled with danger. In those days there was only one treacherous route that could get us from the Deep all the way to Lagrange."`
+		`	He pauses, 
+		"Say so long to steady stars, 
+		the home we know,
+		the light that's ours.
+		Into the Gap glad we go,
+		What dark whispers,
+		Best not to know.
+		`
+		
 
 
 
