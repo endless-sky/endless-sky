@@ -34,6 +34,12 @@ Point::Point() noexcept
 
 
 
+Point::Point(double xy) noexcept
+	: Point(xy, xy)
+{}
+
+
+
 Point::Point(double x, double y) noexcept
 #ifdef __SSE3__
 	: v(_mm_set_pd(y, x))
@@ -59,6 +65,28 @@ bool Point::operator!() const noexcept
 	return (!val.x & !val.y);
 #else
 	return (!x & !y);
+#endif
+}
+
+
+
+bool Point::operator==(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return (val.x == other.val.x) && (val.y == other.val.y);
+#else
+	return (x == other.x) && (y == other.y);
+#endif
+}
+
+
+
+bool Point::operator!=(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return !((val.x == other.val.x) && (val.y == other.val.y));
+#else
+	return !((x == other.x) && (y == other.y));
 #endif
 }
 

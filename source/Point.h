@@ -30,15 +30,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Point {
 public:
 	Point() noexcept;
+	Point(double xy) noexcept;
 	Point(double x, double y) noexcept;
 
 	// Check if the point is anything but (0, 0).
 	explicit operator bool() const noexcept;
 	bool operator!() const noexcept;
 
-	// No comparison operators are provided because I never expect to use them
-	// and because comparisons with doubles are inherently unsafe due to the
-	// possibility of rounding errors and imprecision.
+	bool operator==(const Point &other) const noexcept;
+	bool operator!=(const Point &other) const noexcept;
 
 	Point operator+(const Point &point) const;
 	Point &operator+=(const Point &point);
