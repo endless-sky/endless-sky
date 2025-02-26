@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "MessageLogPanel.h"
 #include "Messages.h"
@@ -70,6 +70,10 @@ void MainPanel::Step()
 	// Depending on what UI element is on top, the game is "paused." This
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
+
+	// If the player is dead, don't show anything.
+	if(player.IsDead())
+		show = Command::NONE;
 
 	// Display any requested panels.
 	if(show.Has(Command::MAP))
@@ -203,6 +207,9 @@ Engine &MainPanel::GetEngine()
 // Only override the ones you need; the default action is to return false.
 bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	if(player.IsDead())
+		return true;
+
 	if(command.Has(Command::MAP | Command::INFO | Command::MESSAGE_LOG | Command::HAIL | Command::HELP))
 		show = command;
 	else if(command.Has(Command::TURRET_TRACKING))
@@ -359,7 +366,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const auto &it : target->Outfits())
 		{
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			if(it.first->IsDefined() && !it.first->Category().empty() && !outfitNameForDisplay.empty())
+				outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)
 		{
@@ -424,7 +432,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
-	else if(flagship->Cloaking() == 1.)
+	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
 		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
 	else if(target)
 	{
@@ -432,7 +440,7 @@ bool MainPanel::ShowHailPanel()
 		// because the player has no way of telling if it's presently jumping or
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
-				|| target->Cloaking() == 1.)
+				|| target->IsCloaked())
 			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
 		else if(target->IsEnteringHyperspace())
 			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PROJECTILE_H_
-#define PROJECTILE_H_
+#pragma once
 
 #include "Body.h"
 
@@ -23,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <memory>
+#include <set>
 #include <vector>
 
 class Government;
@@ -104,9 +104,15 @@ public:
 	// detection is run.
 	bool ShouldExplode() const;
 
+	// Once the projectile has come into contact with a phasing device, it
+	// will be decided if it should completely phase through or make contact.
+	bool Phases(const Ship &ship) const;
+	void SetPhases(const Ship *ship);
+
 
 private:
 	void CheckLock(const Ship &target);
+	void CheckConfused(const Ship &target);
 
 
 private:
@@ -121,12 +127,18 @@ private:
 	// relative to the firing ship.
 	Point dV;
 	double clip = 1.;
+	// A positive value means the projectile is alive, -100 means it was killed
+	// by an anti-missile system, and -1000 means it exploded in a collision.
 	int lifetime = 0;
 	double distanceTraveled = 0.;
 	uint16_t hitsRemaining = 1U;
 	bool hasLock = true;
+	bool isConfused = false;
+	// A positive value means this projectile will turn to the right;
+	// a negative value means this projectile will turn left.
+	int confusionDirection = 0;
+
+	// This is safe to keep even if the ships die, because we don't actually call the ship,
+	// we just compare this pointer to other ship pointers.
+	const Ship *phasedShip;
 };
-
-
-
-#endif

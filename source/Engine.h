@@ -13,17 +13,17 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENGINE_H_
-#define ENGINE_H_
+#pragma once
 
 #include "AI.h"
 #include "AlertLabel.h"
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
-#include "BatchDrawList.h"
+#include "shader/BatchDrawList.h"
 #include "CollisionSet.h"
+#include "Color.h"
 #include "Command.h"
-#include "DrawList.h"
+#include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "PlanetLabel.h"
@@ -100,6 +100,21 @@ public:
 
 
 private:
+	class Outline {
+	public:
+		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
+			const float frame, const Color &color)
+			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
+		{
+		}
+
+		const Sprite *sprite;
+		const Point position;
+		const Point unit;
+		const float frame;
+		const Color color;
+	};
+
 	class Target {
 	public:
 		Point center;
@@ -111,8 +126,19 @@ private:
 
 	class Status {
 	public:
+		enum class Type {
+			FLAGSHIP,
+			FRIENDLY,
+			HOSTILE,
+			NEUTRAL,
+			SCAN,
+			SCAN_OUT_OF_RANGE,
+			COUNT // This item should always be the last in this list.
+		};
+
+	public:
 		constexpr Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, float alpha, double angle = 0.)
+			double disabled, double radius, Type type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
 				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
 
@@ -121,7 +147,7 @@ private:
 		double inner;
 		double disabled;
 		double radius;
-		int type;
+		Type type;
 		float alpha;
 		double angle;
 	};
@@ -167,7 +193,8 @@ private:
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
 	void CreateStatusOverlays();
-	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
+		Status::Type type, double cloak);
 
 
 private:
@@ -218,17 +245,20 @@ private:
 	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
+	// Represents the state of the currently targeted ship when it was last seen,
+	// so the target display does not show updates to its state the player should not be aware of.
+	int lastTargetType = 0;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
+	std::vector<Outline> outlines;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
-	const Sprite *highlightSprite = nullptr;
-	Point highlightUnit;
-	float highlightFrame = 0.f;
+	// Flagship's hyperspace percentage converted to a [0, 1] double.
+	double hyperspacePercentage = 0.;
 
 	int step = 0;
 
@@ -279,7 +309,3 @@ private:
 	int loadCount = 0;
 	double loadSum = 0.;
 };
-
-
-
-#endif

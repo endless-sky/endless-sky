@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DISTRIBUTION_H_
-#define DISTRIBUTION_H_
+#pragma once
 
 #include <utility>
 
@@ -40,7 +39,3 @@ public:
 	// when combined with hardpoint aim.
 	static Angle GenerateInaccuracy(double value, std::pair<Type, bool> distribution);
 };
-
-
-
-#endif

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MINABLE_H_
-#define MINABLE_H_
+#pragma once
 
 #include "Body.h"
 
@@ -93,6 +92,20 @@ public:
 
 
 private:
+	class LiveEffect {
+	public:
+		LiveEffect(const DataNode &node);
+
+		const Effect *effect;
+		// Average interval between instances of the effect, in frames.
+		unsigned interval = 1;
+		// If set to true, the effect behaves like a comet tail,
+		// always facing away from the system center.
+		bool relativeToSystem = false;
+	};
+
+
+private:
 	std::string name;
 	std::string displayName;
 	std::string noun;
@@ -127,12 +140,10 @@ private:
 	double prospecting = 0.;
 	// Material released when this object is destroyed.
 	std::vector<Payload> payload;
+	std::vector<LiveEffect> liveEffects;
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
 	int64_t value = 0.;
+	bool useRandomFrameRate = true;
 };
-
-
-
-#endif

@@ -150,7 +150,7 @@ outfit "RG15 Torch Thruster"
 	"mass" 31
 	"outfit space" -31
 	"engine capacity" -31
-	"thrust" 11.57
+	"thrust" 17.355
 	"thrusting energy" 0.7
 	"thrusting heat" 1.5
 	"flare sprite" "effect/vi flare/small"
@@ -168,7 +168,7 @@ outfit "RG15 Torch Steering"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"turn" 287
+	"turn" 430.5
 	"turning energy" 0.4
 	"turning heat" 0.85
 	"steering flare sprite" "effect/vi flare/small"
@@ -186,7 +186,7 @@ outfit "RG18 Torch Thruster"
 	"mass" 51
 	"outfit space" -51
 	"engine capacity" -51
-	"thrust" 20.4
+	"thrust" 30.6
 	"thrusting energy" 1.25
 	"thrusting heat" 2.9
 	"flare sprite" "effect/vi flare/medium"
@@ -204,7 +204,7 @@ outfit "RG18 Torch Steering"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"turn" 523
+	"turn" 784.5
 	"turning energy" 0.65
 	"turning heat" 1.5
 	"steering flare sprite" "effect/vi flare/medium"
@@ -225,7 +225,7 @@ outfit "RG3 Torch Thruster"
 	"mass" 83
 	"outfit space" -83
 	"engine capacity" -83
-	"thrust" 36
+	"thrust" 54
 	"thrusting energy" 2.2
 	"thrusting heat" 5.4
 	"flare sprite" "effect/vi flare/large"
@@ -246,7 +246,7 @@ outfit "RG3 Torch Steering"
 	"mass" 64
 	"outfit space" -64
 	"engine capacity" -64
-	"turn" 1004
+	"turn" 1506
 	"turning energy" 1.15
 	"turning heat" 2.8
 	"steering flare sprite" "effect/vi flare/large"
@@ -267,13 +267,13 @@ outfit "SC-1 Plasma Engines"
 	"mass" 21
 	"outfit space" -21
 	"engine capacity" -21
-	"thrust" 6.55
+	"thrust" 9.825
 	"thrusting energy" 0.4
 	"thrusting heat" 1
 	"flare sprite" "effect/scin flare/tiny"
 		"frame rate" 0.6
 	"flare sound" "scplasma tiny"
-	"turn" 160
+	"turn" 240
 	"turning energy" 0.35
 	"turning heat" 0.8
 	"steering flare sprite" "effect/scin flare/tiny"
@@ -292,7 +292,7 @@ outfit "SC-12 Plasma Thruster"
 	"mass" 25
 	"outfit space" -25
 	"engine capacity" -25
-	"thrust" 13.54
+	"thrust" 20.31
 	"thrusting energy" 0.85
 	"thrusting heat" 2.25
 	"flare sprite" "effect/scin flare/small"
@@ -311,7 +311,7 @@ outfit "SC-12 Plasma Steering"
 	"mass" 19
 	"outfit space" -19
 	"engine capacity" -19
-	"turn" 297
+	"turn" 445.5
 	"turning energy" 0.45
 	"turning heat" 1.15
 	"steering flare sprite" "effect/scin flare/small"
@@ -330,7 +330,7 @@ outfit "SC-14 Plasma Thruster"
 	"mass" 45
 	"outfit space" -45
 	"engine capacity" -45
-	"thrust" 26.4
+	"thrust" 39.6
 	"thrusting energy" 1.7
 	"thrusting heat" 4.95
 	"flare sprite" "effect/scin flare/med"
@@ -349,7 +349,7 @@ outfit "SC-14 Plasma Steering"
 	"mass" 34
 	"outfit space" -34
 	"engine capacity" -34
-	"turn" 638
+	"turn" 957
 	"turning energy" 1
 	"turning heat" 2.95
 	"steering flare sprite" "effect/scin flare/med"
@@ -370,7 +370,7 @@ outfit "SC-15 Plasma Thrusters"
 	"mass" 112
 	"outfit space" -112
 	"engine capacity" -112
-	"thrust" 48.6
+	"thrust" 72.9
 	"thrusting energy" 3.1
 	"thrusting heat" 9.5
 	"flare sprite" "effect/scin flare/large"
@@ -411,7 +411,7 @@ outfit "Irate Cannon"
 		"firing heat" 9
 		"shield damage" 6
 		"hull damage" 16
-		"hit force" 40
+		"hit force" 60
 	description `Irate Cannons are a rudimentary cannon technology that fire explosive projectiles made out of condensed scrap metal, making them effective against armor. They fire decently fast, but one cannon alone is barely enough to output any sort of meaningful damage, which is why they are often found clustered together in numbers.`
 
 
@@ -436,7 +436,7 @@ outfit "Irate Cannon Turret"
 		"live effect" "irate smoke" 12
 		"hit effect" "tiny explosion"
 		"inaccuracy" 2
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 22
 		"lifetime" 15
 		"reload" 10
@@ -444,7 +444,7 @@ outfit "Irate Cannon Turret"
 		"firing heat" 9
 		"shield damage" 6
 		"hull damage" 16
-		"hit force" 40
+		"hit force" 60
 	description `While the Irate Cannon Turret originally saw little use due to Vi ships having enough space to field larger caliber weapons in their turret mounts, this turret has become more popular as the Vi produce smaller ships with more limited weapon space. To offset the lack of raw firepower from a single cannon, the turret boasts two mounted on a rotating platform, doubling its rate of fire in a single mount.`
 
 effect "irate fire"
@@ -491,7 +491,7 @@ outfit "Choleric Cannon"
 		"firing heat" 222
 		"shield damage" 106
 		"hull damage" 311
-		"hit force" 180
+		"hit force" 270
 	description `A higher caliber than the Irate Cannon, Choleric Cannons fire larger, slower rounds that do a noticeable chunk of damage to a ship's hull. However, due to the nature of the cannon, it is, along with other Gegno weaponry, very ineffective against any sort of shielding.`
 
 
@@ -517,7 +517,7 @@ outfit "Choleric Cannon Turret"
 		"live effect" "choleric smoke" 24
 		"hit effect" "small explosion"
 		"inaccuracy" 2
-		"turret turn" 1.2
+		"turret turn" 2.2
 		"velocity" 9
 		"lifetime" 55
 		"reload" 80
@@ -525,7 +525,7 @@ outfit "Choleric Cannon Turret"
 		"firing heat" 222
 		"shield damage" 106
 		"hull damage" 311
-		"hit force" 180
+		"hit force" 270
 	description `Mounted on a turret, a Choleric Cannon is much more devastating without the need to keep a target in front of the ship to land shots. It can consistently put out damage to a target's hull, and with multiple turrets, any shieldless vessel is forced to retreat after a decent enough bombardment lest they be destroyed.`
 	
 effect "choleric fire"
@@ -573,7 +573,7 @@ outfit "Ballistic Cannon"
 		"firing heat" 566
 		"shield damage" 181
 		"hull damage" 970
-		"hit force" 360
+		"hit force" 540
 		"stream"
 		"missile strength" 18
 	description `The Gegno Vi Ballistic Cannon tops its sister cannons as the highest caliber weapon that the Gegno field. Each cannon round can inflict tremendous damage to a target's exposed hull. Due to the size and power of these cannons, their shells have a slow reload time and travel speed. As such, they can often be dodged by faster or smaller craft, but if able to be equipped in numbers, they can create a deadly wall of fire.`
@@ -602,7 +602,7 @@ outfit "Ballistic Cannon Turret"
 		"live effect" "ballistic smoke" 36
 		"hit effect" "ballistic hit"
 		"inaccuracy" 3
-		"turret turn" 0.6
+		"turret turn" 0.4
 		"velocity" 8
 		"lifetime" 100
 		"reload" 100
@@ -610,7 +610,7 @@ outfit "Ballistic Cannon Turret"
 		"firing heat" 537
 		"shield damage" 181
 		"hull damage" 970
-		"hit force" 360
+		"hit force" 540
 		"missile strength" 18
 	description `As the largest caliber cannon in the Gegno Vi's arsenal, Ballistic Cannons require a lot of work to be fitted on even the largest of ships. A huge, self-sustaining base with its own vent ports is necessary for one of these cannons to even be fitted on a turret mount, provided there are crew to operate it. Combining destructive force with adjustable aim, Ballistic Cannon Turrets are the deadliest weapons of Vi warships.`
 
@@ -661,7 +661,7 @@ outfit "Astuit Battery"
 		sound "astuit"
 		"hit effect" "astuit hit"
 		"inaccuracy" 5
-		"turret turn" 2.2
+		"turret turn" 2.6
 		"velocity" 8
 		"lifetime" 44
 		"reload" 6
@@ -700,7 +700,7 @@ outfit "Acuit Artillery"
 		"hit effect" "acuit hit"
 		sound "acuit"
 		"inaccuracy" 3
-		"turret turn" 1.3
+		"turret turn" 1
 		"velocity" 18
 		"lifetime" 60
 		"reload" 60
@@ -708,7 +708,7 @@ outfit "Acuit Artillery"
 		"firing heat" 306
 		"shield damage" 195
 		"hull damage" 332
-		"hit force" 40
+		"hit force" 60
 	description `With a better grasp on plasma and energy weaponry, the Gegno Scin developed a larger blaster weapon to mount on the Feldspar Carrier as a counter to the Gegno Vi's huge cannon weaponry. Acuit Artillery turrets outrange most weapons in Gegno space, while having a higher rate of fire as well, making them very efficient bombardment weapons.`
 
 effect "acuit hit"
@@ -744,7 +744,7 @@ outfit "Acumen Bolt Cannon"
 		"firing heat" 66
 		"shield damage" 46
 		"hull damage" 60
-		"hit force" 86
+		"hit force" 129
 	description `Further progressing their research in energy weaponry, the Gegno Scin recently designed the Acumen Bolt Cannon - a proof-of-concept neutron cannon that fires dangerous balls of plasma capable of dealing decent damage to armor and shielding alike.`
 	description `	Although more powerful than Astuit blaster projectiles, Acumen plasma bolts are harder to fire accurately, travel much slower, and require more energy to fire.`
 
@@ -818,8 +818,8 @@ outfit "Excavator"
 		"hull damage" 14
 		"minable damage" 104
 		"prospecting" 145
-		"hit force" -4
-	description `Excavator Drills are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
+		"hit force" -6
+	description `Excavators are large drills designed by the Gegno that rip materials out of asteroids in an efficient manner. These types of drill systems are only found on ships specifically designed around them as they require substantial infrastructure to be functional.`
 
 effect "excavate"
 	sprite "effect/smoke"
@@ -862,7 +862,7 @@ outfit "Burrower"
 		"hull damage" 6
 		"minable damage" 3
 		"prospecting" 10.5
-		"hit force" 4
+		"hit force" 6
 	description `Burrower Drills are longer, thinner, and more precise than the larger Excavator Drill system, although they are nowhere near as powerful. Burrowers can mine asteroids more carefully, preserving more materials in the process. Rather than constructing the spaceship around the base system, these drills are more compact and are mounted on self-sustaining drill spars, resulting in lower required internal space and machinery.`
 	description `	This mining outfit requires a drill spar port, in addition to a gun port, in order to be mounted.`
 
@@ -891,7 +891,7 @@ outfit "Ion Torch"
 	"weapon capacity" -32
 	"gun ports" -1
 	"drill spar" -1
-	"reverse thrust" 4.6
+	"reverse thrust" 6.9
 	"reverse thrusting energy" 0.4
 	"reverse thrusting heat" 0.9
 	weapon
@@ -937,7 +937,7 @@ outfit "Savagery Bludgeon"
 		"reload" 40
 		"shield damage" 8
 		"hull damage" 40
-		"hit force" 500
+		"hit force" 750
 	description `A Savagery Bludgeon is a mace-like weapon found jammed into the Gegno Vi's Dunite duelist ships. They are used as melee weapons for close-quarter rams and jousts during duels. However, they have hardly any use as a weapon outside of this as they merely scratch larger ship's hulls and barely put a dent into anything shielded.`
 	
 effect "bludgeon impact"

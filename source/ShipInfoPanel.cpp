@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "Command.h"
@@ -27,22 +28,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "LogbookPanel.h"
 #include "Messages.h"
 #include "MissionPanel.h"
-#include "OutlineShader.h"
+#include "shader/OutlineShader.h"
 #include "PlayerInfo.h"
 #include "PlayerInfoPanel.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "SpriteShader.h"
+#include "ShipNameDialog.h"
+#include "image/Sprite.h"
+#include "shader/SpriteShader.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
+#include <ranges>
 
 using namespace std;
 
@@ -60,6 +64,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	: player(player), panelState(std::move(state))
 {
 	shipIt = this->panelState.Ships().begin();
+	Audio::Pause();
 	SetInterruptible(false);
 
 	// If a valid ship index was given, show that ship.
@@ -74,6 +79,13 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	}
 
 	UpdateInfo();
+}
+
+
+
+ShipInfoPanel::~ShipInfoPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -162,7 +174,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-		GetUI()->Push(new Dialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
+		GetUI()->Push(new ShipNameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
@@ -322,7 +334,10 @@ void ShipInfoPanel::UpdateInfo()
 	const Ship &ship = **shipIt;
 	info.Update(ship, player);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
+	{
 		player.Flagship()->SetTargetShip(*shipIt);
+		player.SelectShip(shipIt->get(), false);
+	}
 
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
@@ -390,8 +405,16 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 	for(const auto &cat : GameData::GetCategory(CategoryType::OUTFIT))
 	{
 		const string &category = cat.Name();
+		if(category.empty())
+			continue;
 		auto it = outfits.find(category);
 		if(it == outfits.end())
+			continue;
+
+		auto validOutfits = std::ranges::filter_view(it->second,
+			[](const Outfit *outfit){ return outfit->IsDefined() && !outfit->DisplayName().empty(); });
+
+		if(validOutfits.empty())
 			continue;
 
 		// Skip to the next column if there is no space for this category label
@@ -407,7 +430,7 @@ void ShipInfoPanel::DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds)
 		// Draw the category label.
 		table.Draw(category, bright);
 		table.Advance();
-		for(const Outfit *outfit : it->second)
+		for(const Outfit *outfit : validOutfits)
 		{
 			// Check if we've gone below the bottom of the bounds.
 			if(table.GetRowBounds().Bottom() > bounds.Bottom())
@@ -494,8 +517,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 
 	int index = 0;
 	const double centerX = bounds.Center().X();
-	const double labelCenter[2] = {-.5 * LABEL_WIDTH - LABEL_DX, LABEL_DX + .5 * LABEL_WIDTH};
-	const double fromX[2] = {-LABEL_DX + LABEL_PAD, LABEL_DX - LABEL_PAD};
+	const double labelCenter[2] = {centerX - .5 * LABEL_WIDTH - LABEL_DX, centerX + LABEL_DX + .5 * LABEL_WIDTH};
+	const double fromX[2] = { centerX - LABEL_DX + LABEL_PAD, centerX + LABEL_DX - LABEL_PAD};
 	static const double LINE_HEIGHT = 20.;
 	static const double TEXT_OFF = .5 * (LINE_HEIGHT - font.Height());
 	static const Point LINE_SIZE(LABEL_WIDTH, LINE_HEIGHT);
@@ -569,8 +592,9 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	Color backColor = *GameData::Colors().Get("faint");
 	const Ship &ship = **shipIt;
 
-	// Cargo list.
-	const CargoHold &cargo = (player.Cargo().Used() ? player.Cargo() : ship.Cargo());
+	// Cargo list: show pooled cargo instead if the ship to display is landed together with the flagship.
+	const bool showPooled = ship.GetPlanet() == player.GetPlanet() && player.Cargo().Used();
+	const CargoHold &cargo = (showPooled ? player.Cargo() : ship.Cargo());
 	Table table;
 	table.AddColumn(0, {COLUMN_WIDTH, Alignment::LEFT});
 	table.AddColumn(COLUMN_WIDTH, {COLUMN_WIDTH, Alignment::RIGHT});
@@ -667,10 +691,10 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 	Color black(0.f, 1.f);
 	Point mid(to.X(), from.Y());
 
-	LineShader::Draw(from, mid, 3.5f, black);
-	LineShader::Draw(mid, to, 3.5f, black);
-	LineShader::Draw(from, mid, 1.5f, color);
-	LineShader::Draw(mid, to, 1.5f, color);
+	LineShader::Draw(from, mid, 2.f, black);
+	LineShader::Draw(mid, to, 2.f, black);
+	LineShader::Draw(from, mid, 1.f, color);
+	LineShader::Draw(mid, to, 1.f, color);
 }
 
 

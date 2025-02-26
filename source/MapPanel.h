@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_PANEL_H_
-#define MAP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -51,6 +50,7 @@ public:
 	static const int SHOW_GOVERNMENT = -5;
 	static const int SHOW_REPUTATION = -6;
 	static const int SHOW_DANGER = -7;
+	static const int SHOW_STARS = -8;
 
 	static const float OUTER;
 	static const float INNER;
@@ -70,7 +70,9 @@ public:
 
 
 public:
-	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION, const System *special = nullptr);
+	explicit MapPanel(PlayerInfo &player, int commodity = SHOW_REPUTATION,
+		const System *special = nullptr, bool fromMission = false);
+	virtual ~MapPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -165,6 +167,8 @@ protected:
 	// else gets in the way of its default position.
 	int selectedSystemOffset = 0;
 
+	bool fromMission = false;
+
 private:
 	void DrawTravelPlan();
 	// Display the name of and distance to the selected system.
@@ -177,7 +181,7 @@ private:
 	void DrawSystems();
 	void DrawNames();
 	void DrawMissions();
-	void DrawPointer(const System *system, unsigned &systemCount, const Color &color, bool bigger = false);
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
 	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
 		bool drawBack = true, bool bigger = false);
 
@@ -189,14 +193,16 @@ private:
 	class Node {
 	public:
 		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government)
-			: position(position), color(color), name(name), nameColor(nameColor), government(government) {}
+			const Color &nameColor, const Government *government, const std::vector<const Sprite *> &mapIcons)
+			: position(position), color(color), name(name), nameColor(nameColor),
+			government(government), mapIcons(mapIcons) {}
 
 		Point position;
 		Color color;
 		std::string name;
 		Color nameColor;
 		const Government *government;
+		std::vector<const Sprite *> mapIcons;
 	};
 	std::vector<Node> nodes;
 
@@ -211,7 +217,3 @@ private:
 	};
 	std::vector<Link> links;
 };
-
-
-
-#endif

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
 #include "ConversationPanel.h"
@@ -62,7 +63,6 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(480);
-	text.Wrap(planet.Description());
 
 	// Since the loading of landscape images is deferred, make sure that the
 	// landscapes for this system are loaded before showing the planet panel.
@@ -70,12 +70,29 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	GameData::Preload(queue, planet.Landscape());
 	queue.Wait();
 	queue.ProcessSyncTasks();
+
+	Audio::Pause();
+}
+
+
+
+PlanetPanel::~PlanetPanel()
+{
+	Audio::Resume();
 }
 
 
 
 void PlanetPanel::Step()
 {
+	// If the player is dead, pop the planet panel.
+	if(player.IsDead())
+	{
+		player.SetPlanet(nullptr);
+		GetUI()->Pop(this);
+		return;
+	}
+
 	// If the previous mission callback resulted in a "launch", take off now.
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship() && (player.ShouldLaunch() || requestedLaunch))
@@ -103,9 +120,6 @@ void PlanetPanel::Step()
 
 void PlanetPanel::Draw()
 {
-	if(player.IsDead())
-		return;
-
 	Information info;
 	info.SetSprite("land", planet.Landscape());
 
@@ -144,10 +158,8 @@ void PlanetPanel::Draw()
 	{
 		Rectangle box = ui.GetBox("content");
 		if(box.Width() != text.WrapWidth())
-		{
 			text.SetWrapWidth(box.Width());
-			text.Wrap(planet.Description());
-		}
+		text.Wrap(planet.Description().ToString(player.Conditions()));
 		text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 	}
 }
@@ -157,6 +169,9 @@ void PlanetPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	if(player.IsDead())
+		return true;
+
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
@@ -349,7 +364,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		};
 		for(const auto &result : flightChecks)
 			for(const auto &warning : result.second)
-				if(jumpWarnings.count(warning))
+				if(jumpWarnings.contains(warning))
 				{
 					++nonJumpCount;
 					break;
@@ -433,6 +448,9 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 			out << " that you do not have space for.";
 		}
 		out << "\nAre you sure you want to continue?";
+		// Pool cargo together, so that the cargo number on the trading panel
+		// is still accurate while the popup is active.
+		player.PoolCargo();
 		GetUI()->Push(new Dialog(this, &PlanetPanel::WarningsDialogCallback, out.str()));
 		return;
 	}
@@ -447,9 +465,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 void PlanetPanel::WarningsDialogCallback(const bool isOk)
 {
 	if(isOk)
-		TakeOff(false);
-	else
-		player.PoolCargo();
+		TakeOff(true);
 }
 
 

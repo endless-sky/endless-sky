@@ -79,8 +79,11 @@ mission "Pact Recon 0"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 25000
+		event "pact recon 0" 1
 		dialog `When you land on <planet>, you're approached by Freya Winters. She gives you <payment> in exchange for your scanner logs of the Southern systems. "Thank you, Captain. I pray the pirates didn't give you too much trouble," she says. "I'll be in touch when we've got a new assignment for you, assuming you're still interested."`
 
+
+event "pact recon 0"
 
 
 mission "Pact Recon 1"
@@ -97,7 +100,7 @@ mission "Pact Recon 1"
 	waypoint "Wei"
 	to offer
 		random < 40
-		has "Pact Recon 0: done"
+		has "event: pact recon 0"
 		not "event: war begins"
 	
 	on offer
@@ -107,8 +110,11 @@ mission "Pact Recon 1"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 35000
+		event "pact recon 1" 1
 		dialog `You transfer your sensor logs to Freya. She thanks you for your work and pays you <payment>. "I'll let you know when we need your services again," she says.`
 
+
+event "pact recon 1"
 
 
 mission "Pact Recon 2"
@@ -125,7 +131,7 @@ mission "Pact Recon 2"
 	waypoint "Shaula"
 	to offer
 		random < 40
-		has "Pact Recon 1: done"
+		has "event: pact recon 1"
 		not "event: war begins"
 	
 	on offer
@@ -135,27 +141,29 @@ mission "Pact Recon 2"
 		dialog phrase "generic waypoint on visit"
 	on complete
 		payment 70000
+		event "pact recon 2" 1
 		dialog `Freya Winters meets up with you in person soon after you land. "Glad to see you're still in one piece. I pray you didn't have much trouble," she says, as she hands you a credit chip for <payment>. "You've been a great help to us. I'll be sure to contact you next time we need a scout."`
 
+
+event "pact recon 2"
 
 
 mission "Pact Recon 3"
 	landing
 	name "Pirate Reconnaissance"
-	description "Fly through the <waypoints> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> when you are done."
+	description "Fly through the <marks> systems, searching for a gathering pirate fleet. Report to the Pact on <destination> once you have located them."
 	source
 		attributes "dirt belt" "near earth" "rim" "south"
 		not government "Pirate"
 	destination "Glaze"
-	waypoint "Boral"
-	waypoint "Hintar"
-	waypoint "Naper"
-	waypoint "Orvala"
+	mark "Boral"
+	mark "Hintar"
+	mark "Naper"
+	mark "Orvala"
 	to offer
 		random < 40
-		has "Pact Recon 2: done"
+		has "event: pact recon 2"
 		not "event: war begins"
-	
 	on offer
 		dialog `Once again, you receive a message from Freya Winters. "We have another mission for you," she says, "this one a bit more dangerous. We've heard rumors of a pirate fleet amassing in one of the seldom-visited systems in the Dirt Belt, and we need to know where they are. Interested in helping to track them down? As before, you don't need to fight, just observe them."`
 	
@@ -165,10 +173,26 @@ mission "Pact Recon 3"
 		system "Naper"
 		fleet "Small Southern Pirates" 3
 		fleet "Large Northern Pirates"
-	
+
+	on enter "Boral"
+		unmark "Boral"
+	on enter "Hintar"
+		unmark "Hintar"
+	on enter "Orvala"
+		unmark "Orvala"
+	on enter "Naper"
+		unmark "Boral"
+		unmark "Hintar"
+		unmark "Orvala"
+		unmark "Naper"
+		set "fw located pirate fleet"
+		dialog `You have located the pirate fleet. Time to head back to <planet> to report to Freya what you found.`
 	on visit
-		dialog phrase "generic waypoint on visit"
+		dialog `You have reached <planet>, but you haven't located the pirate fleet yet! Better depart and make sure you have checked <marks>.`
+	to complete
+		has "fw located pirate fleet"
 	on complete
+		clear "fw located pirate fleet"
 		payment 80000
 		dialog `You report to Freya that you found a sizable pirate fleet in the Naper system, as well as spotting some pirates elsewhere. She thanks you, and pays you <payment>. "Thank you for your assistance," she says. "Again, I'll be in touch if we need you."`
 
@@ -280,12 +304,12 @@ mission "FW Recon 0"
 				`	"Are you connected to the Free Worlds?"`
 			`	"Yes, I'm an officer in their militia." The man takes a half step back. "Is that a problem?"`
 			choice
-				`	"Sorry, I really don't want to assist the rebels."`
-					decline
 				`	"No problem at all. I'd be glad to help with your cause!"`
 					accept
 				`	"Not a problem, but I'm afraid I don't have space for you right now."`
 					defer
+				`	"I don't help rebels. Find someone else."`
+					decline
 	
 	on visit
 		dialog `You land on <planet>, but you realize that the militia officer is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
@@ -309,24 +333,22 @@ mission "FW Recon 1"
 			`When you walk into the spaceport bar, a man in a militia uniform flags you down, and says, "Captain <last>. One of my officers told me to keep an eye out for you. Would you be willing to do another small service for the Free Worlds?"`
 			choice
 				`	"Perhaps. What do you want me to do?"`
-				`	"Sorry, I want no part in your rebellion."`
+				`	"I only agreed to a transport job. I want no part in your rebellion."`
 					decline
 			`	"It's a rather simple matter," he says. "Most of the Republic ships that have come through this system seem to be outfitted for surveillance, not combat. But there is one in orbit right now, the <npc>, that seems to be equipped as a warship. Would you be willing to scan its outfits and report to us what you find? The outfitter stocks scanners if you don't have one, though you might want to install a few of them to improve performance. We will pay <payment>."`
 			choice
 				`	"Sure, that sounds simple enough."`
 					accept
 				`	"Why can't you scan the ship yourself?"`
-				`	"Sorry, I don't want to assist rebels."`
-					decline
 			`	"I'm sure you understand the... tensions between the Free Worlds and the Republic at the moment. We're just trying to look out for ourselves, but we don't want to provoke anything with the Navy. It'd be much simpler if we could get a sympathetic merchant to scan the ship for us."`
 			choice
 				`	"Sounds reasonable enough. I'll do it."`
 					accept
-				`	"Sorry, but that sounds too risky for me to get involved in."`
+				`	"If shady jobs like this are what constitute 'helping the Free Worlds,' then count me out."`
 					decline
 	
 	on accept
-		log "Volunteered to do some recon work for the Free Worlds, as long as there is nothing illegal involved."
+		log "Volunteered to do some recon work for the Free Worlds."
 	
 	npc "scan outfits"
 		government "Republic"
@@ -380,7 +402,7 @@ mission "FW Recon 2"
 			choice
 				`	"Sure, I'd be glad to do that."`
 					accept
-				`	"Sorry, after the way this last captain responded to me scanning him, I'm not sure I want to risk it again."`
+				`	"Sorry. After the way the last captain responded to me scanning him, I'm not risking my head for the Free Worlds again."`
 					decline
 	
 	npc "scan outfits"
@@ -424,8 +446,8 @@ mission "FW Recon 3"
 			choice
 				`	"Okay, I'll do it."`
 					accept
-				`	"Sorry, I've decided I don't really want to side with the Free Worlds."`
-			`	"I'm really sorry to hear that," says JJ. "We had high hopes for you."`
+				`	"This is too far. I'm not trespassing on Navy property for you."`
+			`	"I'm really sorry to hear that," says JJ. "We had high hopes for you." He leaves the bar.`
 				decline
 
 
@@ -582,7 +604,7 @@ mission "FW Escort 0"
 				`	"Sorry, but that's not the type of work I'm looking for."`
 					decline
 			
-			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacturing of new ships. The Free Worlds is looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
+			`	"Outfits, weapons, and other miscellaneous materials needed for the manufacturing of new ships. The Free Worlds are looking to bolster its forces, and we're already using as much of our local industry as we can, so we've begun importing materials from companies that aren't concerned with dealing with what the Republic labels a 'terrorist organization,'" Tomek says with a smirk.`
 			choice
 				`	"Well, then I'd be glad to help."`
 				`	"Sorry, but that's not the type of work I'm looking for."`
@@ -594,17 +616,18 @@ mission "FW Escort 0"
 
 
 
+# Deprecated in v0.10.11. This event is preserved in case an older version of the mission "FW Escort 1B" is already active upon updating.
+event "fw escorts abandon timer"
+
+
+
 mission "FW Escort: Escorts"
 	landing
 	invisible
 	to offer
 		has "FW Escort 0: done"
 	to fail
-		or
-			has "chosen sides"
-			and
-				has "event: fw escorts abandon timer"
-				not "FW Escort 2: offered"
+		has "chosen sides"
 	to complete
 		never
 	npc
@@ -669,7 +692,7 @@ mission "FW Escort 1"
 		has "chosen sides"
 	on offer
 		conversation
-			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevalent piracy is in this region and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds is capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
+			`You meet up with the convoy on <origin> in the spaceport: six freighters with an escort of... seven interceptors. Given how prevalent piracy is in this region and how strong some pirate fleets can be, you would have expected a larger escort, but it seems that this is all the Free Worlds are capable of mustering at the moment. It's no wonder they're asking merchant captains such as yourself to lend a hand.`
 			`	Shortly after you arrive, the convoy is ready to go and charts a course for <destination>.`
 				accept
 	
@@ -773,36 +796,32 @@ mission "FW Escort 1B"
 		dialog `You have reached <planet>, but you left part of the convoy behind! Better depart and wait for them to arrive in this star system.`
 	on complete
 		payment 400000
-		event "fw escorts abandon timer"
-		dialog `Upon returning with the freighters, you are once again met by Tomek. He thanks you and the other escort captains for your service, and pays you each <payment>. "The convoy is heading out again immediately," he says, "so meet me in the spaceport if you are willing to volunteer for escort duty again. Same pay."`
-
-
-
-event "fw escorts abandon timer"
 
 
 
 mission "FW Escort 2"
 	autosave
+	landing
 	name "Free Worlds Escort"
 	description "Escort a Free Worlds supply convoy safely to <destination>."
 	source "Longjump"
 	destination "Wayfarer"
 	to offer
 		has "FW Escort 1B: done"
-		not "event: fw escorts abandon timer"
 	to fail
 		has "chosen sides"
 	
 	on offer
 		conversation
-			`A few of the escort pilots, yourself included, have stuck around for another mission, and luckily a few new faces have joined in as well. Tomek meets you in the spaceport and says, "You know the drill. Escort the freighters to <planet> and back. 400,000 credits for your troubles. Plus, please believe that all of you are known to the Council, and your bravery will not be forgotten. We can't afford to lose any of these freighters. Who's willing to help escort them?"`
+			`Tomek is waiting in <origin>'s spaceport to receive the freighters. After double-checking that the cargo is all intact, he turns to you and the rest of the escort captains and says, "All of you have done a great service for the Free Worlds." He walks over and personally presents a credit chip to each captain.`
+			`	After handing over your payment, Tomek announces, "The convoy is heading back to <planet> immediately. Same deal as before: 400,000 credits for the safe return of the freighters, their crew, and their cargo. And I swear your courage will never be forgotten by the Council or the Free Worlds. If you're willing to volunteer a second time, please stay here."`
+			`	Tomek leaves, presumably to gather replacements for the captains who have already run off.`
 			choice
 				`	(Volunteer.)`
-				`	(Go find some other work to do.)`
+				`	(Ditch the escort group.)`
 					decline
 			
-			`	"Great!" says Tomek. "Good luck to all of you, and I pray to see you all safely back here in a couple of weeks."`
+			`	You stick around with a few of the other escort pilots and watch as most of the others wander away. Soon Tomek returns, luckily with some new faces in tow. "You know the drill," he says. "We can't afford to lose any of these freighters. Good luck to all of you, and I pray to see you all safely back here in a couple of weeks."`
 				accept
 	
 	on decline
@@ -900,12 +919,12 @@ mission "FW Escort 2B"
 	on complete
 		fail "FW Escort: Escorts"
 		payment 400000
-		dialog `Again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each <payment>. Then, he pulls you aside and says, "Captain <last>, if you're interested in helping us further, please meet me in the spaceport bar."`
 
 
 
 mission "FW Escort 3"
 	autosave
+	landing
 	name "Stranded Freighter"
 	description "Repair the <npc>, which is stranded in the <waypoints> system, and escort it safely back to <destination>."
 	source "Longjump"
@@ -917,10 +936,11 @@ mission "FW Escort 3"
 	
 	on offer
 		conversation
-			`When you walk into the bar, Tomek looks very glad to see you. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by pirates. Do you think you're up to the task?"`
+			`Once again, Tomek Voigt meets you and the rest of the convoy at the spaceport, thanks you all for your courage and dedication, and pays you each 400,000 credits. Afterwards, he pulls you aside and says, "Captain <last>, please follow me."`
+			`	Tomek brings you to one of the spaceport bars, exchanging greetings with the patrons before sitting at the counter. "Here's the deal," he says. "One of our freighters, the <npc>, was just disabled in the <waypoints> system. We need you to fly there immediately, repair it, and bring it back here before it can be captured by pirates. Do you think you're up to the task?"`
 			choice
 				`	"Sure!"`
-				`	"Sorry, I'm just a merchant captain. The Free Worlds shouldn't be asking me to do combat missions."`
+				`	"Sorry, no. I'm a merchant captain with bills to pay. I'm not going to go search for your missing ships in the middle of nowhere."`
 					decline
 		
 			`	"Glad to hear it," he says. "The crew of that freighter is depending on you. I know I don't have to tell you what will happen to them if pirates board them before you get there, so get moving quickly."`
@@ -1035,7 +1055,7 @@ mission "FW Bounty 1"
 				`	"How powerful of a fleet do these pirates have?"`
 				`	"How much will you be paying me to take out this fleet?"`
 					goto payment
-				`	"Sorry, I don't want to have anything to do with the Free Worlds."`
+				`	"I don't want to have anything to do with the Free Worlds."`
 					decline
 			
 			`	"Well they aren't exactly a powerful fleet. They're just a collection of interceptors, but they're numerous and swift enough that we've had trouble taking them down before they can run or swarm our larger ships. We can pay you <payment> if you can take them out."`
@@ -1252,7 +1272,7 @@ mission "FW Katya 1"
 			choice
 				`	"That sounds fair. I'll hear you out."`
 					goto more
-				`	"Fair enough, but I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns. Find someone else to do this job for you."`
+				`	"I don't like working with people who start conversations by pointing guns at my head. Even unloaded guns. Find someone else to do this job for you."`
 					decline
 			
 			label terrorists
@@ -1447,13 +1467,13 @@ mission "FW Katya Alt 2"
 			`As you are walking through the spaceport, someone calls out, "Captain <last>!" A Free Worlds officer is approaching you; you recognize her as the same woman who pulled a gun on you earlier as a way to "test" you. "I apologize for pulling that trick on you before," she says. "My name is Katya Reynolds. I've heard really good things about you from some other members of the Free Worlds Council, and I'm hoping you'd reconsider working with me."`
 			choice
 				`	"Okay, as long as you don't point any more guns at me."`
-				`	"Sorry, I just really don't like you. Or the Free Worlds."`
+				`	"No. I just don't like you. Or the Free Worlds."`
 					decline
 			`	"Great," she says. "Here's the deal. I have a friend named Mr. Eyes, who needs a lift from <destination>. For his safety, I'd rather not tell you anything about his work, but I assure you he's an upstanding citizen. A little unpopular with big corporations and certain corrupt local governments, though. Can you give him a lift?"`
 			choice
 				`	"Sure, I would be glad to."`
 					accept
-				`	"Sorry, this sounds a bit too shady to me."`
+				`	"This sounds too shady. Find someone else to help you."`
 					decline
 	
 	on visit
@@ -1625,15 +1645,17 @@ mission "FW Katya 3"
 				`	"That sounds like a terrible idea."`
 					goto terrible
 			
-			`	Eyes laughs, spitting out his milkshake in the process. "We won't be asking you to do anything of that sort," Katya responds somewhat aggressively. "Look, if we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones, and you're the one with a ship unconnected to the Free Worlds. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't do anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
+			`	Eyes laughs, spitting out his milkshake in the process. "We won't be asking you to do anything of that sort," Katya responds somewhat aggressively. "Look, if we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones, and you're the one with a ship unconnected to the Free Worlds. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't do anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and the Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
 				goto decision
 			
 			label terrible
-			`	"Are you saying we're going to need to find a different captain to work with?" says Katya. "That would be a big disappointment."`
+			`	"Are you saying we're going to need to find a different captain to work with?" says Katya. "If we want to track down who dropped those bombs then we need to get our hands on better scanning equipment, equipment that the Navy has on their unmanned surveillance drones. All you need to do is find a lone surveillance drone to plunder. Legally the Navy can't do anything about it, and no one will be hurt in the process. If we succeed in finding who's responsible for the bombings, we could prevent war between the Republic and the Free Worlds, saving thousands or even potentially millions of lives. So are you with us or not?"`
 			label decision
 			choice
 				`	"Fine, I'll do it. But I still think it's an unwise idea."`
-				`	"I'm sorry, but this is a bit farther than I'm willing to go. Count me out."`
+				`	"Even still, that doesn't justify destroying Navy property. Count me out."`
+					decline
+				`	"If this is the sort of reasoning the Free Worlds runs on, then you can kiss goodbye to working with me ever again."`
 					decline
 			
 			label agree
@@ -1661,6 +1683,10 @@ mission "FW Katya 4"
 	destination "Oblivion"
 	passengers 2
 	blocked `You need bunks for both Katya and Eyes in order to continue this mission.`
+	substitutions
+		"<dirt belt origin>" ""
+		"<dirt belt origin>" " like yourself,"
+			has "human space start"
 	to offer
 		has "FW Katya 3: done"
 	to fail
@@ -1671,7 +1697,7 @@ mission "FW Katya 4"
 		conversation
 			`You join Katya and Mr. Eyes in the restaurant, and order your meals. They are both in high spirits. While you are waiting for the food to arrive, Mr. Eyes raises his glass of wine and says, "A toast, to Captain <last> and our marvelous new toy. May it bring us good information and swift justice."`
 			`	"We're thinking that while we're in the area, we should stop on <planet> next," says Katya, "and then work our way toward the Rim."`
-			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native like yourself, from a planet named Hope. "No longer settled," she explains. "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
+			`	Your meals arrive. The food is excellent, and you spend a relaxed evening sharing stories of your childhoods. Katya turns out to be a Dirt Belt native<dirt belt origin> from a planet named Hope. "No longer settled," she explains. "Supervolcano. It was a cold planet to start out with, and the eruption sent it into an ice age that could last for millennia. My home town is under thirty meters of glacier by now."`
 			choice
 				`	"Was anyone killed?"`
 				`	"How did you escape?"`
@@ -1858,14 +1884,14 @@ mission "FW Katya 6"
 				`	"Sure, I definitely want to help solve this case!"`
 					goto sure
 				`	"Why these worlds specifically? Why not check worlds in Free space if the Republic thinks you did it?"`
-				`	"Sorry, I'm through with helping the Free Worlds. I don't think we have a chance of beating the Navy to the punch."`
+				`	"I'm through with helping the Free Worlds. I don't think we have a chance of beating the Navy to the punch."`
 					decline
 			
 			`	"I suppose that showing a lack of evidence for nuclear testing done on Free planets would be circumstantial evidence for us," Eyes says, "but we're specifically hunting for the culprit, so these are our best bets as far as nearby mining worlds go. And searching these three worlds would be quicker than searching all of Free space."`
 			`	"Another thing we have to keep in mind is that we may not be able to operate outside of Free space forever," Katya responds. "I pray that we find answers before it comes to it, but war between the Free Worlds and Republic would cut us off from freely searching most of the galaxy."`
 			choice
 				`	"Okay, I'll help you search these worlds."`
-				`	"Sorry, but I don't think this is the best course of action. You'll have to find someone else to help you with this."`
+				`	"I don't think this is the best course of action. You'll have to find someone else to help you with this."`
 					decline
 			
 			label sure
@@ -1943,14 +1969,14 @@ mission "FW Katya 7"
 				`	"Sounds like a good possibility. Let's give it a try!"`
 					goto agree
 				`	"But <planet> is part of the Free Worlds. What happens if we do find evidence there?"`
-				`	"Sorry, I've got some other missions I need to run instead of continuing this wild goose chase."`
+				`	"I've got other missions I need to run instead of continuing this wild goose chase."`
 					decline
 			
-			`	"The plan hasn't changed," Eyes responds. "We find where the testing occurred, and that will lead us to the culprits. Even if it turns out that someone connected to the Free Worlds is responsible, they'll be turned over to the Republic."`
-			`	"I pray that no one within the Free Worlds is a part of this, though," Katya says quietly. "I'm almost hoping we find nothing."`
+			`	"The plan hasn't changed," Eyes responds. "We find where the testing occurred, and that will lead us to the culprits. Even if it turns out that someone connected to the Free Worlds are responsible, they'll be turned over to the Republic."`
+			`	"I pray that no one within the Free Worlds are a part of this, though," Katya says quietly. "I'm almost hoping we find nothing."`
 			choice
 				`	"Fair enough. Let's give it a try."`
-				`	"The Free Worlds is looking guiltier the more we look. I'm out of here."`
+				`	"The Free Worlds are looking guiltier the more we look. I'm out of here."`
 					decline
 			
 			label agree
@@ -2026,10 +2052,10 @@ mission "FW Katya 7C"
 			choice
 				`	"What do we do now that we've found the test site?"`
 					goto now
-				`	"So the Free Worlds is behind this! This is one of your planets!"`
+				`	"So the Free Worlds are behind this! This is one of your planets!"`
 			
-			`	"Yes, this a Free planet, but this evidence is far too blatant," Eyes responds. "Just because we found a match here doesn't mean this is where all the testing happened. I'm only detecting enough isotopes to account for one explosion, and you wouldn't just test once. If anything, this shows that the Free Worlds is being framed by someone, and they used one nuke here before bombing Geminus and Martini to make it look like it was the Free Worlds who did it."`
-			`	"I swear before God when I say that the Free Worlds has nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
+			`	"Yes, this a Free planet, but this evidence is far too blatant," Eyes responds. "Just because we found a match here doesn't mean this is where all the testing happened. I'm only detecting enough isotopes to account for one explosion, and you wouldn't just test once. If anything, this shows that the Free Worlds are being framed by someone, and they used one nuke here before bombing Geminus and Martini to make it look like it was the Free Worlds who did it."`
+			`	"I swear before God when I say that the Free Worlds have nothing to do with this, Captain," Katya says. "But we'll find whoever is responsible and bring them to justice."`
 			
 			label now
 			`	Katya thinks for a moment. "Captain, is the outpost reporting any job openings?"`
@@ -2259,7 +2285,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3
@@ -2274,7 +2300,7 @@ mission "Defend Sabik"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 2
 				"Gunboat" 3

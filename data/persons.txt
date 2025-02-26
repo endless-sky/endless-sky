@@ -29,9 +29,9 @@ person "Michael Zahniser"
 			"hull" 40000
 			"required crew" 400
 			"bunks" 500
-			"mass" 740
-			"drag" 12.5
-			"heat dissipation" 0.45
+			"mass" 2270
+			"drag" 18.75
+			"heat dissipation" 0.3
 			"fuel capacity" 500
 			"cargo space" 200
 			"outfit space" 2400
@@ -242,9 +242,9 @@ ship "Marauder Fury"
 		"hull" 600
 		"required crew" 1
 		"bunks" 3
-		"mass" 100
-		"drag" 1.9
-		"heat dissipation" .85
+		"mass" 278
+		"drag" 2.85
+		"heat dissipation" .57
 		"fuel capacity" 500
 		"cargo space" 15
 		"outfit space" 256
@@ -360,9 +360,9 @@ person "Captain Nate"
 			"hull" 8000
 			"required crew" 23
 			"bunks" 45
-			"mass" 500
-			"drag" 8
-			"heat dissipation" .6
+			"mass" 1357.5
+			"drag" 12
+			"heat dissipation" .4
 			"fuel capacity" 400
 			"cargo space" 50
 			"outfit space" 1215
@@ -472,9 +472,9 @@ ship "Lampyrid-Class Transport"
 		"hull" 4400
 		"required crew" 5
 		"bunks" 23
-		"mass" 240
-		"drag" 8.5
-		"heat dissipation" .7
+		"mass" 490
+		"drag" 12.75
+		"heat dissipation" .47
 		"fuel capacity" 700
 		"cargo space" 160
 		"outfit space" 260
@@ -548,8 +548,7 @@ person "Power of the People"
 			"Take it from me: "
 			"A word of caution: "
 			"A piece of advice: "
-			""
-			""
+			"" 2
 		word
 			"If you think the other guy might have a blaster hidden under the table... bring two blasters."
 			"I'm a team player. As long as the rest of the team stays behind me."
@@ -622,9 +621,9 @@ ship "Modified Osprey"
 		"hull repair rate" 10
 		"required crew" 189
 		"bunks" 240
-		"mass" 220
-		"drag" 15.1
-		"heat dissipation" .6
+		"mass" 1416
+		"drag" 22.65
+		"heat dissipation" .4
 		"fuel capacity" 625
 		"cargo space" 80
 		"outfit space" 2172
@@ -794,13 +793,13 @@ ship "Ursa Polaris"
 		hull 27000
 		"required crew" 559
 		"bunks" 972
-		"mass" 1839
-		"drag" 12
-		"heat dissipation" .9
+		"mass" 2758.5
+		"drag" 18
+		"heat dissipation" .6
 		"fuel capacity" 600
 		"solar collection" 15
-		"afterburner thrust" 200
-		"turn" 4005.0
+		"afterburner thrust" 300
+		"turn" 6007.5
 		"ramscoop" 20
 		"hull repair rate" 7
 		"energy generation" 200
@@ -872,7 +871,7 @@ outfit "LG Gridfire Turret"
 		"turret turn" 20
 		"firing energy" 800
 		"firing heat" 400
-		"firing force" 150
+		"firing force" 225
 		"shield damage" 600
 		"hull damage" 600
 		"blast radius" 40
@@ -881,7 +880,7 @@ outfit "LG Gridfire Turret"
 
 
 person "Subsidurial"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Subsidurial)"
 	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests mute
@@ -997,18 +996,18 @@ ship "Shooting Star"
 		"automaton" 200
 		"cost" -49500000
 		"energy capacity" 100
-		"mass" 450
-		"drag" 3.9
-		"heat dissipation" 10
+		"mass" 839.5
+		"drag" 5.75
+		"heat dissipation" 6.7
 		"fuel capacity" 200
 		"outfit space" 329
 		"weapon capacity" 156
 		"cargo space" 10
 		"hull repair" 3
-		"thrust" 15.6
+		"thrust" 23.4
 		"reverse thrust" 15.6
 		"flare sound" "ion medium"
-		"turn" 1089.2
+		"turn" 2453.7
 		"jump speed" .2
 		"jump fuel" 50
 		"hyperdrive" 1
@@ -1070,8 +1069,8 @@ outfit "Floating Crystal"
 		"velocity" 250
 		"lifetime" 3
 		"reload" 4
-		"firing force" -93
-		"hit force" -81
+		"firing force" -139.5
+		"hit force" -121.5
 	description "The real core of the Shooting Star, this floating crystal uses the effects of space-time to reduce the distance between a ship and its target. Legend has it this is no different from a thruster, but conventional engines don't bring your enemy closer."
 	description "	It also takes up a spinal mount slot to be installed, although you aren't sure why."
 
@@ -1115,7 +1114,7 @@ outfit "Hexagonal Crystal"
 		"reload" 30
 		"piercing" 1
 		"firing force" 2700
-		"hit force" 3500
+		"hit force" 5250
 		"hull damage" 2160
 	description "'Any sufficiently advanced technology is indistinguishable from magic,' Arthur C. Clarke said. This is sufficiently advanced technology."
 
@@ -1227,9 +1226,9 @@ ship "Marauder Bactrian"
 		"hull" 12000
 		"required crew" 70
 		"bunks" 93
-		"mass" 650
-		"drag" 15
-		"heat dissipation" 0.4
+		"mass" 1738
+		"drag" 22.5
+		"heat dissipation" 0.33
 		"fuel capacity" 800
 		"cargo space" 80
 		"outfit space" 1526
@@ -1429,9 +1428,9 @@ ship "Modified Boxwing"
 		"hull" 8000
 		"required crew" 1
 		"bunks" 3
-		"mass" 60
-		"drag" 2.59
-		"heat dissipation" .27
+		"mass" 90
+		"drag" 3.875
+		"heat dissipation" .18
 		"fuel capacity" 500
 		"cargo space" 80
 		"outfit space" 350
@@ -1535,9 +1534,9 @@ ship "Modified Battleship"
 		"hull" 26000
 		"required crew" 160
 		"bunks" 212
-		"mass" 1010
-		"drag" 19.4
-		"heat dissipation" .35
+		"mass" 1515
+		"drag" 29.1
+		"heat dissipation" .24
 		"fuel capacity" 1000
 		"cargo space" 30
 		"outfit space" 1152
@@ -1642,7 +1641,7 @@ outfit "Prototype Fusion Cannon"
 		"hull damage" 330
 		"piercing" 0.2
 		"disruption damage" 5
-		"hit force" 100
+		"hit force" 150
 		"missile strength" 10
 	description "This is a personally obtained prototype Fusion Cannon, a deadly, massive spinal weapon. Where it came from, nobody knows except the owner, and those who wish to ask are too afraid of being on the receiving end."
 	
@@ -1776,9 +1775,9 @@ ship "Modified Ladybug"
 		
 		"required crew" 16
 		"bunks" 33
-		"mass" 280
-		"drag" 5.4
-		"heat dissipation" .85
+		"mass" 740
+		"drag" 8.1
+		"heat dissipation" .58
 		"fuel capacity" 900
 		"cargo space" 91
 		"outfit space" 647
@@ -1991,9 +1990,9 @@ ship "Waverider"
 		"hull" 7000
 		"required crew" 1
 		"bunks" 1
-		"mass" 150
-		"drag" 1.5
-		"heat dissipation" 1
+		"mass" 398
+		"drag" 2.25
+		"heat dissipation" .67
 		"fuel capacity" 1000
 		"cargo space" 100
 		"outfit space" 346
@@ -2036,3 +2035,184 @@ outfit "Emotional Baggage"
 	thumbnail "outfit/unknown"
 	description `The physical embodiment of everything that makes the Reviewers who they are today.`
 	description `	Unfortunately, it's not for sale.`
+
+
+
+person "Danau"
+	government "Author"
+	frequency 100
+	personality
+		heroic unconstrained opportunistic
+	formation "Vic"
+	phrase
+		word
+			"When you want to stop your ship, press shift and reverse."
+			"Your hyperdrive doesn't work? Have you tried turning it off and on again?"
+	phrase
+		word
+			"Change the orientation of your"
+		word
+			" "
+		word
+			"drone"
+			"interceptor"
+			"fighter"
+		word
+			" "
+		word
+			"bays"
+			"docking ports"
+		word
+			" "
+		word
+			"just for the fun of it."
+			"for faster deployments."
+			"on your new Marauder ship."
+			"to improve atmospheric handling."
+	phrase
+		word
+			"I have a delivery for"
+			"I'm looking for"
+		word
+			" "
+		word
+			"Arrakis"
+			"Caladan"
+			"the Eaxaw"
+			"the Gyisache"
+			"the Happy Birthday"
+			"the Laenfa"
+			"the Muursh"
+			"the Ourbools"
+			"Tycho Magnetic Anomaly 2"
+		word
+			"; "
+		word
+			"is this the right game?"
+	phrase
+		word
+			"The Hauler VI is a nice ship, "
+		word
+			"as long as you don't activate the cargo refrigeration systems."
+			"but it hasn't gotten beyond the prototype stage yet."
+			"but it is not for sale on the regular market."
+			"but using two Hauler IIIs is probably more economical."
+	phrase
+		word
+			"Automate"
+			"Extend"
+			"Improve"
+			"Streamline"
+		word
+			" "
+		word
+			"our"
+			"the ES"
+			"your"
+		word
+			" "
+		word
+			"builds"
+			"builds and tests"
+			"CI jobs"
+			"coding style checks"
+			"integration processes"
+			"merge process"
+			"software tests"
+			"test and integration processes"
+			"test processes"
+			"tests"
+		word
+			"."
+			"!"
+		word
+			" "
+		word
+			"Avoid game crashes!"
+			"Improve the quality of our codebase!"
+			"Get new features into the game faster!"
+			"Have more time for good reviews!"
+			"Have more time for playing the game!"
+			"Prevent bugs!"
+
+	ship "Modified Hauler VI" "Bouldered Sea"
+		"never disabled"
+	ship "Hauler III" "Gravelly Reservoir"
+		"never disabled"
+	ship "Hauler III" "Stony Mere"
+		"never disabled"
+	ship "Hauler II" "Rocky Lake"
+		"never disabled"
+	ship "Hauler II" "Shingly Loch"
+		"never disabled"
+	ship "Hauler" "Craggy Tarn"
+		"never disabled"
+	ship "Hauler" "Pebbly Pond"
+		"never disabled"
+
+
+
+ship "Modified Hauler VI"
+	sprite "ship/hauler vi"
+	thumbnail "thumbnail/hauler vi"
+	attributes
+		category "Heavy Freighter"
+		"shields" 13200
+		"hull" 26800
+		"required crew" 3
+		"bunks" 12
+		"mass" 1240
+		"drag" 21.7
+		"heat dissipation" .43
+		"fuel capacity" 800
+		"cargo space" 780
+		"outfit space" 900
+		"weapon capacity" 430
+		"engine capacity" 160
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 180
+		"Point Defense Turret" 2
+		"Bombardment Turret" 6
+
+		"Fusion Reactor"
+		"S3 Thermionic"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
+		"Hyperdrive"
+
+	engine -83.5 196.5
+	engine 83.5 196.5
+	engine 0 196.5
+	gun -14.5 -168
+	gun 14.5 -168
+	gun -35 -128
+	gun 35 -128
+	turret -21 -124.5
+	turret 21 -124.5 "Point Defense Turret"
+	turret -32.5 -102.5
+	turret 32.5 -102.5
+	turret -22 154 "Point Defense Turret"
+	turret 22 154
+	turret -60 154
+	turret 60 154
+	leak "leak" 70 50
+	leak "flame" 40 80
+	leak "big leak" 90 40
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Hauler cargo ships are considered by many to be outdated, and it is unclear if upgrading the cargo space to six containers is sufficient to make this Hauler ship popular. It certainly doesn't help that the Hauler VI is more expensive than four Hauler IIIs."
