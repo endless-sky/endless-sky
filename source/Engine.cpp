@@ -150,29 +150,25 @@ namespace {
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
 			Angle flareAngle = ship.Facing() + point.facing + gimbal;
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			// If multiple engines with the same flare are installed, draw up to
-			// three copies of the flare sprite.
+			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](auto it, auto scale)
+			{
+				// If multiple engines with the same flare are installed, draw up to
+				// three copies of the flare sprite.
+				for(int i = 0; i < it.second && i < 3; ++i)
+				{
+					Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
+					draw.Add(sprite, ship.Cloaking());
+				}
+			};
 			for(const auto &it : flareSprites)
 				if(point.side == side)
 				{
 					if(point.steering == Ship::EnginePoint::NONE)
-						for(int i = 0; i < it.second && i < 3; ++i)
-						{
-							Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
-							draw.Add(sprite, ship.Cloaking());
-						}
+						DrawFlares(it, scale);
 					else if(point.steering == Ship::EnginePoint::LEFT && ship.ThrustHeldFrames(Ship::ThrustKind::LEFT))
-						for(int i = 0; i < it.second && i < 3; ++i)
-						{
-							Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, leftTurnScale);
-							draw.Add(sprite, ship.Cloaking());
-						}
+						DrawFlares(it, leftTurnScale);
 					else if(point.steering == Ship::EnginePoint::RIGHT && ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-						for(int i = 0; i < it.second && i < 3; ++i)
-						{
-							Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, rightTurnScale);
-							draw.Add(sprite, ship.Cloaking());
-						}
+						DrawFlares(it, rightTurnScale);
 				}
 		}
 	}
