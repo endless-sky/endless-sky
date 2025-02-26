@@ -41,8 +41,21 @@ mission "FWC Scouting 1"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet "Large Republic" 5
-
+		fleet 2
+			names "republic capital"
+			fighters
+				names "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 8
+				"Combat Drone" 6
+		fleet 3
+			names "republic capital"
+			fighters
+				names "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
 
 
 mission "FWC Attack Kaus Borealis"
@@ -222,9 +235,8 @@ mission "FWC Cebalrai 1"
 			fighters
 				names "republic fighter"
 			variant
-				"Carrier (Mark II)"
-				"Lance" 8
-				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
 				"Gunboat (Mark II)" 2
 
 
@@ -313,7 +325,7 @@ mission "FWC Cebalrai 1B"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
-				"Frigate" 2
+				"Frigate"
 
 
 
@@ -736,7 +748,7 @@ mission "FWC Checkmate 1"
 				"Carrier (Mark II)"
 				"Lance" 8
 				"Combat Drone" 6
-		fleet 2
+		fleet
 			names "republic capital"
 			fighters
 				names "republic fighter"
@@ -766,7 +778,7 @@ mission "FWC Checkmate 1"
 	
 	npc
 		personality heroic
-		system Pherkad
+		system Alniyat
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
