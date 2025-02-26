@@ -28,15 +28,22 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev fuse
+          sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libfuse2
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.cache/sccache
+          key: ${{ runner.os }}-cd-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-cd-sccache-refs/heads/master
       - name: Setup sccache
-        uses: ./.github/sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'linux-release'
@@ -51,7 +58,7 @@ jobs:
 
   cd_windows_x64:
     name: Windows
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       OUTPUT: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -59,15 +66,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           show-progress: false
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runneradmin\AppData\Local\Mozilla\sccache\cache
+          key: ${{ runner.os }}-cd-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-cd-sccache-refs/heads/master
       - name: Setup sccache
-        uses: ./.github/sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'mingw-release'
@@ -92,14 +106,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           show-progress: false
+      - name: Setup cached directories
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/Library/Caches/Mozilla.sccache
+          key: ${{ runner.os }}-${{ runner.arch }}-cd-sccache-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-cd-sccache-refs/heads/master
       - name: Setup sccache
-        uses: ./.github/sccache
+        uses: Mozilla-Actions/sccache-action@v0.0.5
       - name: Install pkg-config
         run: type -P pkg-config || brew install pkg-config
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
-          vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+          vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
       - uses: lukka/run-cmake@v10
         with:
           configurePreset: 'macos-release'

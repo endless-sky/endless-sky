@@ -379,7 +379,7 @@ string NPC::Validate(bool asTemplate) const
 		// A null system reference is allowed, since it will be set during
 		// instantiation if not given explicitly.
 		if(system && !system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 
 		// A planet is optional, but if given must be valid.
 		if(planet && !planet->IsValid())
@@ -632,7 +632,7 @@ bool NPC::HasFailed() const
 
 // Create a copy of this NPC but with the fleets replaced by the actual
 // ships they represent, wildcards in the conversation text replaced, etc.
-NPC NPC::Instantiate(const ConditionsStore &conditions, map<string, string> &subs, const System *origin,
+NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const System *origin,
 		const System *destination, int jumps, int64_t payload) const
 {
 	NPC result;
@@ -665,7 +665,7 @@ NPC NPC::Instantiate(const ConditionsStore &conditions, map<string, string> &sub
 		return result;
 	}
 	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(conditions, subs, origin, jumps, payload);
+		result.npcActions[it.first] = it.second.Instantiate(player.Conditions(), subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -682,14 +682,17 @@ NPC NPC::Instantiate(const ConditionsStore &conditions, map<string, string> &sub
 	{
 		// This ship is being defined from scratch.
 		result.ships.push_back(make_shared<Ship>(*ship));
-		result.ships.back()->FinishLoading(true);
+		ship->FinishLoading(true);
 	}
 	auto shipIt = stockShips.begin();
 	auto nameIt = shipNames.begin();
+	map<string, string> playerSubs;
+	player.AddPlayerSubstitutions(playerSubs);
 	for( ; shipIt != stockShips.end() && nameIt != shipNames.end(); ++shipIt, ++nameIt)
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
-		result.ships.back()->SetName(*nameIt);
+		result.ships.back()->SetName(Format::Replace(Format::Replace(
+			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);

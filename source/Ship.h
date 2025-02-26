@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_H_
-#define SHIP_H_
+#pragma once
 
 #include "Body.h"
 
@@ -174,6 +173,7 @@ public:
 	std::vector<std::string> FlightCheck() const;
 
 	void SetPosition(Point position);
+	void SetVelocity(Point velocity);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetName(const std::string &name);
@@ -204,8 +204,10 @@ public:
 	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.
-	ShipAICache &GetAICache();
-	void UpdateCaches();
+	const ShipAICache &GetAICache() const;
+	// Updates the AI and navigation caches. If the ship's mass hasn't changed,
+	// reuses some of the previous values.
+	void UpdateCaches(bool massLessChange = false);
 
 	// Set the commands for this ship to follow this timestep.
 	void SetCommands(const Command &command);
@@ -394,6 +396,11 @@ public:
 	double MaxVelocity(bool withAfterburner = false) const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
+	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
+	double TrueAcceleration() const;
+	double TrueTurnRate() const;
+	// The ship's current speed right now
+	double CurrentSpeed() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -499,6 +506,9 @@ public:
 	// The AI wants the ship to linger for one AI step.
 	void Linger();
 
+	// Check if this ship looks the same as another, based on model display names and outfits.
+	bool Immitates(const Ship &other) const;
+
 
 private:
 	// Various steps of Ship::Move:
@@ -542,6 +552,9 @@ private:
 	// This is only useful for the player's ships.
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
+
+	// Helper function for jettisoning flotsam.
+	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
 
 private:
@@ -620,6 +633,7 @@ private:
 	std::map<const Outfit *, int> outfits;
 	CargoHold cargo;
 	std::list<std::shared_ptr<Flotsam>> jettisoned;
+	std::list<std::pair<std::shared_ptr<Flotsam>, size_t>> jettisonedFromBay;
 
 	std::vector<Bay> bays;
 	// Cache the mass of carried ships to avoid repeatedly recomputing it.
@@ -717,7 +731,3 @@ private:
 
 	bool removeBays = false;
 };
-
-
-
-#endif

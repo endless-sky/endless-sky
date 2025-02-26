@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_H_
-#define OUTFIT_H_
+#pragma once
 
 #include "Weapon.h"
 
@@ -43,6 +42,11 @@ class Outfit : public Weapon {
 public:
 	// These are all the possible category strings for outfits.
 	static const std::vector<std::string> CATEGORIES;
+
+	static constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
+	static constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
+	static constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
+
 
 public:
 	// An "outfit" can be loaded from an "outfit" node or from a ship's
@@ -156,7 +160,3 @@ private:
 // These get called a lot, so inline them for speed.
 inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }
-
-
-
-#endif

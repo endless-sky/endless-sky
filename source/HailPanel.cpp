@@ -16,8 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "HailPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Dialog.h"
-#include "DrawList.h"
+#include "shader/DrawList.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -30,7 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -47,6 +48,7 @@ using namespace std;
 HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<void(const Government *)> bribeCallback)
 	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)), facing(ship->Facing())
 {
+	Audio::Pause();
 	SetInterruptible(false);
 
 	const Government *gov = ship->GetGovernment();
@@ -134,11 +136,12 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	: player(player), object(object), planet(object->GetPlanet()), facing(object->Facing())
 {
+	Audio::Pause();
 	SetInterruptible(false);
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
-		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->Name() + "\":";
+		header = gov->GetName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
 	// If the player is hailing a planet, determine if a mission grants them clearance before checking
@@ -171,6 +174,13 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 				SetMessage("I'm afraid we can't permit you to land here.");
 		}
 	}
+}
+
+
+
+HailPanel::~HailPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -392,7 +402,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			else
 			{
 				planet->Bribe();
-				Messages::Add("You bribed the authorities on " + planet->Name() + " "
+				Messages::Add("You bribed the authorities on " + planet->DisplayName() + " "
 					+ Format::CreditString(bribe) + " to permit you to land."
 						, Messages::Importance::High);
 			}

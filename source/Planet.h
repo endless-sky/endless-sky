@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_H_
-#define PLANET_H_
+#pragma once
 
 #include "Paragraphs.h"
 #include "Port.h"
@@ -61,14 +60,14 @@ public:
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
 
-	// Get the name of the planet (all wormholes use the same name).
-	// When saving missions or writing the player's save, the reference name
+	// Get the name used for this planet in the data files.
+	// When saving missions or writing the player's save, the true name
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
-	const std::string &Name() const;
-	void SetName(const std::string &name);
-	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
+	void SetName(const std::string &name);
+	// Get the display name of the planet (all wormholes use the same name).
+	const std::string &DisplayName() const;
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.
@@ -159,7 +158,8 @@ public:
 
 private:
 	bool isDefined = false;
-	std::string name;
+	std::string trueName;
+	std::string displayName;
 	Paragraphs description;
 	Port port;
 	const Sprite *landscape = nullptr;
@@ -198,7 +198,3 @@ private:
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;
 };
-
-
-
-#endif
