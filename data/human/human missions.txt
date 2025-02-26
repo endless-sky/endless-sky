@@ -3904,6 +3904,7 @@ mission "Human to Hai Space - No Contact"
 mission "Human to Hai Space"
 	minor
 	description "Bring a human passenger to <destination> in Hai space."
+	passengers 1
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
@@ -7572,6 +7573,8 @@ mission "Timothy Radrickson 1: Stowaway"
 				decline
 
 			label somewhere
+			action
+				set "timothy radrickson: agreed"
 			`	Timothy looks at you, his eyes wide and full of tears. "Rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
 			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
 			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you..." he mumbles over and over again.`
@@ -7583,7 +7586,7 @@ mission "Timothy Radrickson 1: Stowaway"
 		log `Discovered Timothy, a stowaway, in my ship, and decided to take him where he needed to go. Never learned what Timothy had been fleeing, who he had been, or what he had done that lead him to such dire straits.`
 		event "timothy radrickson: on rand" 340
 		conversation
-			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
+			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand.`
 			`	"I mean it, from the bottom of my heart. You've saved my life, and given me hope. I won't forget this; or you. I could never thank you enough."`
 			`	His eyes glistening, Timothy turns from you and exits your ship.`
 
@@ -7594,7 +7597,7 @@ mission "Timothy Radrickson 1a: Accepted"
 	description "You found a man named Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He would like you to bring him to <destination>, where he can find work."
 	destination "Rand"
 	to offer
-		has "Timothy Radrickson 1: Stowaway: active"
+		has "timothy radrickson: agreed"
 	on abort
 		fail "Timothy Radrickson 1: Stowaway"
 
