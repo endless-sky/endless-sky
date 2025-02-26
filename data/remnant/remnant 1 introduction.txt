@@ -1029,13 +1029,13 @@ mission "Remnant: Deep Surveillance"
 				`	"I discovered that a group of scientists are researching the wormhole in Terminus."`
 			
 			`	"Do they know how to enter it?" Torza asks, not sounding concerned with this new information.`
-			`	"No," you say. "But they know, or at least think, that it is a wormhole, and they are attempting to learn how to enter it."`
+			`	"No," you say. "But they know, or at least think, that it is a wormhole, and are attempting to learn how to enter it."`
 			`	"Well, it is unlikely that they will ever learn. The only way to stabilize the wormholes is by using a Key Stone, but I have never heard of one being found in Ancestral space. Learning what these scientists know would still be helpful, though. Would you be able to get us a copy of their findings?"`
 			choice
 				`	"I'll try. The lead scientist told me where his office is."`
 					goto accept
 				`	"I'm sorry, but I don't believe I'll be able to."`
-			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. I do not expect anything to come of this for now, but should anything occur, we can be more prepared than we otherwise would have been." Torza gets up from the bench and shows you out. "May the Embers burn bright for you."`
+			`	"This is unfortunate," Torza responds. "But thank you for informing us about this. I do not expect anything to come of this for now, but, should anything occur, we can be more prepared than we otherwise would have been." Torza gets up from the bench and shows you out. "May the Embers burn bright for you."`
 				decline
 			
 			label accept
@@ -1049,7 +1049,7 @@ mission "Remnant: Deep Surveillance"
 				`	(Don't update the Remnant.)`
 					decline
 			
-			`	You approach a spaceport information desk and ask to see Prefect Torza, whom you spoke to the last time you informed the Remnant about the Deep researching the wormhole. Luckily, Torza is on-world at the moment, and you are told to meet him in the cafeteria. When you arrive, you find that Torza has just finished a meal and was about to leave.`
+			`	You approach a spaceport information desk and ask to see Prefect Torza, whom you spoke to the last time you informed the Remnant about the Deep researching the wormhole. Luckily, Torza is on-world at the moment, and you are told to meet him in the cafeteria. When you arrive, you find that Torza has just finished a meal and is about to leave.`
 			`	"Ah, Captain. I was told you were looking for me. We should find a private place to talk."`
 			`	You follow Torza to a similar armory as before. "Is there an update to the research on the Threshold that the Deep are doing?" he asks after sitting down.`
 			choice
@@ -1261,7 +1261,7 @@ mission "Remnant: Deep Surveillance"
 			branch "retrieved before"
 				"retrieved information" == 2
 			
-			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus, and you find that it is in a building just outside the spaceport - just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it is rather brutalistic.`
+			`	You look up the location of Ivan's office that he gave you back when you helped him save the science drone in Terminus and find that it is in a building just outside the spaceport - just one room among many in a massive office complex. The complex looks pristine by Dirt Belt standards, but when compared to architecture you've seen elsewhere in the Deep, it is rather brutalistic.`
 			branch gone
 				has "Deep: Remnant Research: offered"
 			
@@ -1320,11 +1320,11 @@ mission "Remnant: Deep Surveillance"
 			`	Ivan opens the door with a big smile on his face. "Captain <last>! So great to see you here. Please, have a seat." He ushers you inside his office, a large room with a window wall overseeing a scenic courtyard. You sit down in a plush chair on the opposite side of a desk, leaning back to get comfortable. "I know the chairs are cozy," Ivan says with a chuckle. "Don't fall asleep on me, though."`
 			branch second
 				"retrieved information" == 2
-			`	He then takes a seat on his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. The discoveries we were making finally attracted the attention of the Deep government, and they immediately had my office moved from that dingy complex it used to be in to here. I have you to thank for much of that work.`
+			`	He then takes a seat on his own cushioned chair. "Welcome to my office. This is miles above what I'm used to. The discoveries we were making finally attracted the attention of the Deep government, and they immediately had my office moved from the dingy complex it used to be in to here. I have you to thank for much of that work.`
 				goto reason
 			
 			label second
-			`	He then takes a seat on his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? The discoveries we were making finally attracted the attention of the Deep government, and they immediately had my office moved from that dingy complex it used to be in to here. I have you to thank for much of that work.`
+			`	He then takes a seat on his own cushioned chair. "Welcome to my office. Much better than the old place, isn't it? The discoveries we were making finally attracted the attention of the Deep government, and they immediately had my office moved from the dingy complex it used to be in to here. I have you to thank for much of that work.`
 			
 			label reason
 			`	"So. What brings you here, Captain?" he asks.`
@@ -1406,11 +1406,11 @@ mission "Remnant: Deep Surveillance"
 			branch cubes
 				has "Deep: Remnant Surveillance: done"
 			`	"Ah. Well, there's quite a bit to talk about." Ivan reclines in his chair.`
-			`	Ivan pulls out a schematic showing the engines you brought. "The engines you brought us are very interesting. We already mentioned to you how they're rather powerful for their size - more so than even atomic engines of a similar size - while not producing very much heat at all. Their major downside, though, seems to be the immense amount of energy they draw. The energy drain is not surprising given that they seem to be improved ion engines, but the fact that ion engines could ever become more powerful for their size than atomic engines is something spectacular. The thrusters also seem to have the ability to provide reverse thrust, making any ship with them rather maneuverable."`
+			`	Ivan pulls out a schematic showing the engines you brought. "The engines you brought us are very interesting. We already mentioned to you how they're rather powerful for their size, more so than even atomic engines of a similar size, while not producing very much heat at all. Their major downside, though, seems to be the immense amount of energy they draw. The energy drain is not surprising given that they seem to be improved ion engines, but the fact that ion engines could ever become more powerful for their size than atomic engines is something spectacular. The thrusters also seem to have the ability to provide reverse thrust, making any ship with them rather maneuverable."`
 			
 			branch skip
 				not "Deep: Remnant: Generators: done"
-			`	He pulls out a schematic showing the generator. "The generator on the other hand wasn't all too interesting. Little more than an improved generator of the type you might find down in the Rim. It is somewhat interesting that it doesn't produce much energy when compared to something like a fusion reactor, given the energy requirement of their engines, but I suppose this people are concerned more with keeping their ships running cool than with having extra power output. Another interesting characteristic we discovered is that the generator seemed to ameliorate the effects of ionization, like that which the Hai Ion Cannons apply, much better than normal. It seemed to be an intentional aspect of the generator's design."`
+			`	He pulls out a schematic showing the generator. "The generator, on the other hand, wasn't all too interesting. Little more than an improved generator of the type you might find down in the Rim. It is somewhat interesting that it doesn't produce much energy when compared to something like a fusion reactor, given the energy requirement of their engines, but I suppose this people are concerned more with keeping their ships running cool than with having extra power output. Another interesting characteristic we discovered is that the generator seemed to ameliorate the effects of ionization, like that which the Hai Ion Cannons apply, much better than normal. It seemed to be an intentional aspect of the generator's design."`
 			
 			branch skip
 				not "Deep: Remnant: Inhibitor Cannon: done"
@@ -1469,7 +1469,7 @@ mission "Remnant: Deep Surveillance"
 			label three
 			action
 				set "remnant: got old deep research"
-			`	He hesitates for a moment, looks up at you, and then presses a button on the desk while still looking into your eyes. "Abigail, could you please make a copy of the encrypted folders... 'TAI-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
+			`	He hesitates for a moment, looks up at you, then presses a button on the desk while still looking into your eyes. "Abigail, could you please make a copy of the encrypted folders... 'TAI-RP' on the Institute network under my name and bring them to my office in a data chip? Thank you."`
 			`	"So, you said you knew of the Remnant before working with me, right?" he asks you.`
 			choice
 				`	"Yeah. Why do you ask?"`
@@ -1489,7 +1489,7 @@ mission "Remnant: Deep Surveillance"
 			label four
 			action
 				set "remnant: got no deep research"
-			`	He reaches for a button on his desk but then pulls away from it and turns his chair toward the courtyard. "Never mind. I can't give you a copy. That research is classified."`
+			`	He reaches for a button on his desk, then pulls away from it and turns his chair toward the courtyard. "Never mind. I can't give you a copy. That research is classified."`
 			choice
 				`	"Okay. I'll just head out then."`
 					goto leave
@@ -1554,7 +1554,7 @@ mission "Remnant: Deep Surveillance"
 					goto "surveillance copy"
 			`	Ivan laughs as he reclines in his chair. "Oh, it's absolutely fascinating what I've been able to find.`
 			label ramble
-			`	"With a cube in each of the Remnant systems, I was able to track all of their fleet movements, and I've discovered some interesting things. For one, ships either make trips between the three systems, or they leave the cluster entirely for significant amounts of time, often at least for a month. There weren't very many ships or fleets that took shorter trips out of the cluster, say only one or two weeks in length. It seems like they're sending people on rather lengthy missions.`
+			`	"With a cube in each of the Remnant systems, I was able to track all of their fleet movements, and I've discovered some interesting things. For one, ships either make trips between the three systems, or they leave the cluster entirely for significant amounts of time, often for at least a month. There weren't very many ships or fleets that took shorter trips out of the cluster, say only one or two weeks in length. It seems like they're sending people on rather lengthy missions.`
 			`	"Aside from fleet movements, the number of ships was also of note. The cubes track the number of unique ships seen, and they rarely tracked the same ship more than a handful of times. The Remnant seem to have an incredible number of ships, more than perhaps Deep Security and the Navy combined. Certainly impressive for a group consisting of only three star systems. The cubes are also able to make low quality scans of any ships in the system. While each individual scan provides less than what an outfit scan would render, given enough scans, one can get a clearer picture of the ship's composition. These ship scan results were... interesting, though. There seemed to be very few ships like the ones you scanned. Perhaps those were their most advanced ships, but the rest of what I was able to see didn't seem more powerful than your average merchant ship."`
 			`	"I actually lost connection to the cubes a few weeks ago now, but I'd gathered enough information already."`
 			`	"Do you think I could get a copy of your research?" you ask.`
