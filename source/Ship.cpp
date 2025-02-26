@@ -49,8 +49,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
-#include <cstdint>
-#include <iostream>
 #include <limits>
 #include <sstream>
 
@@ -4694,8 +4692,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			{
 				isSteering = true;
 				steeringDirection = commands.Turn();
-				ThrustKind direction = (steeringDirection < 0.) ? ThrustKind::LEFT : ThrustKind::RIGHT;
-				IncrementThrusterHeld(direction);
+				IncrementThrusterHeld(steeringDirection < 0. ? ThrustKind::LEFT : ThrustKind::RIGHT);
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -4756,8 +4753,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
 
-				ThrustKind direction = isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD;
-				IncrementThrusterHeld(direction);
+				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 
 				if(thrust)
 				{

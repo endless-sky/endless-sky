@@ -227,9 +227,10 @@ void Body::LoadSprite(const DataNode &node)
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() == 2 && child.Value(1) > 0.)
-			scale = Point(child.Value(1), child.Value(1));
-		else if(child.Token(0) == "scale" && child.Size() >= 3 && child.Value(1) > 0. && child.Value(2) > 0.)
-			scale = Point(child.Value(1), child.Value(2));
+		{
+			double scaleY = (child.Size() >= 3 && child.Value(2) > 0.) ? child.Value(2) : child.Value(1);
+			scale = Point(child.Value(1), scaleY);
+		}
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));

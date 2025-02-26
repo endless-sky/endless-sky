@@ -22,6 +22,7 @@ using namespace std;
 #endif
 
 
+
 Point::Point() noexcept
 #ifdef __SSE3__
 	: v(_mm_setzero_pd())

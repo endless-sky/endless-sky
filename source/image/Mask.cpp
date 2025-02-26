@@ -437,7 +437,7 @@ const vector<vector<Point>> &Mask::Outlines() const
 Mask Mask::operator*(Point scale) const
 {
 	Mask newMask = *this;
-	newMask.radius = 0.0;
+	newMask.radius = 0.;
 	for(auto &outline : newMask.outlines)
 	{
 		for(Point &p : outline)

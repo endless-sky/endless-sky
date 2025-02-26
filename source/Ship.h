@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipJumpNavigation.h"
 
 #include <array>
-#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
@@ -110,6 +109,16 @@ public:
 		Angle gimbal;
 	};
 
+	enum class ThrustKind {
+		LEFT = 0,
+		RIGHT = 1,
+		FORWARD = 2,
+		REVERSE = 3,
+	};
+
+public:
+	static constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
+	static constexpr double THRUST_HELD_FRAMES_RECIP = 1.0 / MAX_THRUST_HELD_FRAMES;
 
 public:
 	// Functions provided by the Body base class:
@@ -404,14 +413,6 @@ public:
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
-	enum class ThrustKind {
-		LEFT = 0,
-		RIGHT = 1,
-		FORWARD = 2,
-		REVERSE = 3,
-	};
-	static constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
-	static constexpr double THRUST_HELD_FRAMES_RECIP = 1.0 / MAX_THRUST_HELD_FRAMES;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;
 
 	// This ship just got hit by a weapon. Take damage according to the

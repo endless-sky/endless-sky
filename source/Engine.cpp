@@ -138,11 +138,10 @@ namespace {
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side, Point scale)
 	{
-		const auto maxHeldReciprocal = 1. / Ship::MAX_THRUST_HELD_FRAMES;
-		Point leftTurnScale = scale * Point(ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) * maxHeldReciprocal,
-			FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) * maxHeldReciprocal));
-		Point rightTurnScale = scale * Point(ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT) * maxHeldReciprocal,
-			FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT) * maxHeldReciprocal));
+		Point leftTurnScale = scale * Point(ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) * Ship::THRUST_HELD_FRAMES_RECIP,
+			FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) * Ship::THRUST_HELD_FRAMES_RECIP));
+		Point rightTurnScale = scale * Point(ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT) * Ship::THRUST_HELD_FRAMES_RECIP,
+			FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT) * Ship::THRUST_HELD_FRAMES_RECIP));
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
 			* -ship.Commands().Turn();
 

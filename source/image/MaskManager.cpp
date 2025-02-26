@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	static const Point DEFAULT = Point(1., 1.);
+	const Point DEFAULT = Point(1., 1.);
 	map<const Sprite *, bool> warned;
 
 	string PrintScale(Point s)
