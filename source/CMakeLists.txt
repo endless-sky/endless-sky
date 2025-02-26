@@ -330,6 +330,21 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Sound.cpp
 	audio/Sound.h
 	audio/SoundCategory.h
+    audio/player/AudioPlayer.cpp
+    audio/player/AudioPlayer.h
+    audio/player/MusicPlayer.cpp
+    audio/player/MusicPlayer.h
+    audio/player/VolumeFadePlayer.cpp
+    audio/player/VolumeFadePlayer.h
+    audio/supplier/AudioDataSupplier.h
+    audio/supplier/AudioSupplier.cpp
+    audio/supplier/AudioSupplier.h
+    audio/supplier/Mp3Supplier.cpp
+    audio/supplier/Mp3Supplier.h
+    audio/supplier/WavSupplier.cpp
+    audio/supplier/WavSupplier.h
+    audio/supplier/effect/Fade.cpp
+    audio/supplier/effect/Fade.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
