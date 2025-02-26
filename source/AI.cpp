@@ -2828,11 +2828,12 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	else if((facing >= 0. && direction.Length() > diameter)
 			|| (ship.Velocity().Dot(direction) < 0. &&
 				facing) >= .9)
+	{
 		command |= Command::FORWARD;
-
-	// Use an equipped afterburner if possible.
-	if(command.Has(Command::FORWARD) && direction.Length() < 1000. && ShouldUseAfterburner(ship))
-		command |= Command::AFTERBURNER;
+		// Use afterburner, if applicable.
+		if(direction.Length() > 600. && ShouldUseAfterburner(ship))
+			command |= Command::AFTERBURNER;
+	}
 }
 
 
