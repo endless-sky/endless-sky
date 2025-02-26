@@ -7360,19 +7360,19 @@ mission "Hroar's Haulers Unferth"
 			`	(Say nothing.)`
 		`	"I am sure you heard by now that ol' Yngvar gave us a week or so of convalescence." He leans in a little closer to you, "Now, I don't like speaking poorly of decent folk, but I am not looking forward to spending a week or more in the shadow of the Quarg."`
 		`	"Something's off about the natvies here," he says quietly," like they lost their fire, or somesuch."`
-		`	"So," he says brightly, "I thought I'd take a short pilgrimage to an old caravan shrine. And was hankering for some good company, and... maybe a ride."`
+		`	"So," he says brightly, after straightening up, "I figured this was a perfect chance to pay my respects at The Last Lantern. And was hankering for some good company, and... maybe a ride."`
 		choice
 			`	"Sure, I'll come."`
 			`	"Don't you have your own ship?"`
-			`	"What do you mean caravan shrine?"`
-		`	"As you know, we haulers trace our beginnings back to the caravan era. In those dark centuries before the Republic, when travel between stars took weeks, and the Gap was filled with danger. In those days there was only one treacherous route that could get us from the Deep all the way to Lagrange."`
+			`	"The Last Beacon?"`
+		`	"As you know, we haulers trace our beginnings back to the caravan era. In those dark days 'fore the Republic, when travel 'tween stars took weeks, and the Gap was rife with danger. The Long Haul back then was only possible via one perilous route. The Blyskan way. "`
 		`	He pauses, 
 		"Say so long to steady stars, 
 		the home we know,
 		the light that's ours.
 		Into the Gap glad we go,
-		What dark whispers,
-		Best not to know.
+		What the dark whispers,
+		Only we know.
 		`
 		
 
