@@ -749,8 +749,8 @@ mission "Korath [F01]: A Fishy Deal"
 	destination "La'ab Bamen"
 	to offer
 		or
-			not "Korath [F01]: A Fishy Deal: offered"
-			random < 30
+			"Korath [F01]: A Fishy Deal: timer" < "days since start"
+			random < 50
 	on offer
 		conversation
 			`You see the strange plane you saw earlier parked next to your ship. Several packages are now being unloaded. A woman is waving her arms, perhaps with anger, as she walks from the cockpit into the spaceport.`
@@ -791,6 +791,7 @@ mission "Korath [F01]: A Fishy Deal"
 			label ship
 			action
 				set "Korath [F01]: A Fishy Deal: ship"
+				clear "Korath [F01]: A Fishy Deal: timer"
 				log "Minor People" "Jenny Jetmaster" "Latest in a family line that has operated and maintained a replica of an ancient jet aircraft and made money on airshows. She is now on the run from the Syndicate for rescuing her persecuted uncle from Tinker."
 			`	You see her expression brighten as she walks towards you. "It's an heirloom," she says proudly, gesturing widely at the ship, "which has been in the family for centuries. My distant ancestor got a military surplus cargo plane and refurbished it. They used it as a personal craft. Each generation added to it; every piece has been repaired or replaced over the last thousand years. It's more of a replica now.`
 			`	"The whole thing has been modernized - about a dozen times. There's a hyperdrive built into the hull itself, and those ion engines aren't of Syndicate design. They're custom-built, with ion propulsion, steering, and atmospheric anti-grav, in one assembly. The design was once called a Jetmaster, and my family have taken the Jetmaster name as our own.`
@@ -842,6 +843,8 @@ mission "Korath [F01]: A Fishy Deal"
 				clear "Korath [F01]: A Fishy Deal: mission"
 				clear "Korath [F01]: A Fishy Deal: spicy"
 			branch decline
+	on defer
+		"Korath [F01]: A Fishy Deal: timer" = ( 1 + "days since start" )
 	on enter Atik
 		dialog "It seems you do not have automatic clearance to <planet>. If you talk to the planet, the authorities will probably let you land."
 	on visit
