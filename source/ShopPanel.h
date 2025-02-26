@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHOP_PANEL_H_
-#define SHOP_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -23,6 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "ScrollBar.h"
+#include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
 
 #include <map>
@@ -82,7 +83,7 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) = 0;
 	virtual int DividerOffset() const = 0;
 	virtual int DetailWidth() const = 0;
-	virtual int DrawDetails(const Point &center) = 0;
+	virtual double DrawDetails(const Point &center) = 0;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
 	virtual void Buy(bool onlyOwned = false) = 0;
 	virtual bool CanSell(bool toStorage = false) const = 0;
@@ -106,7 +107,6 @@ protected:
 
 	void DoFind(const std::string &text);
 	virtual int FindItem(const std::string &text) const = 0;
-	static int Search(const std::string &str, const std::string &sub);
 
 	int64_t LicenseCost(const Outfit *outfit, bool onlyOwned = false) const;
 
@@ -134,12 +134,14 @@ protected:
 
 
 protected:
-	static const int SIDEBAR_WIDTH = 250;
-	static const int INFOBAR_WIDTH = 300;
-	static const int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
-	static const int BUTTON_HEIGHT = 70;
-	static const int SHIP_SIZE = 250;
-	static const int OUTFIT_SIZE = 183;
+	static constexpr int SIDEBAR_PADDING = 5;
+	static constexpr int SIDEBAR_CONTENT = 250;
+	static constexpr int SIDEBAR_WIDTH = SIDEBAR_CONTENT + SIDEBAR_PADDING;
+	static constexpr int INFOBAR_WIDTH = 300;
+	static constexpr int SIDE_WIDTH = SIDEBAR_WIDTH + INFOBAR_WIDTH;
+	static constexpr int BUTTON_HEIGHT = 70;
+	static constexpr int SHIP_SIZE = 250;
+	static constexpr int OUTFIT_SIZE = 183;
 
 
 protected:
@@ -164,17 +166,15 @@ protected:
 	const Outfit *selectedOutfit = nullptr;
 	// (It may be worth moving the above pointers into the derived classes in the future.)
 
-	double mainScroll = 0.;
-	double mainSmoothScroll = 0;
-	double sidebarScroll = 0.;
-	double sidebarSmoothScroll = 0.;
-	double infobarScroll = 0.;
-	double infobarSmoothScroll = 0.;
-	double maxMainScroll = 0.;
-	double maxSidebarScroll = 0.;
-	double maxInfobarScroll = 0.;
+	ScrollVar<double> mainScroll;
+	ScrollVar<double> sidebarScroll;
+	ScrollVar<double> infobarScroll;
 	ShopPane activePane = ShopPane::Main;
 	char hoverButton = '\0';
+
+	ScrollBar mainScrollbar;
+	ScrollBar sidebarScrollbar;
+	ScrollBar infobarScrollbar;
 
 	double previousX = 0.;
 
@@ -189,9 +189,6 @@ protected:
 	ShipInfoDisplay shipInfo;
 	OutfitInfoDisplay outfitInfo;
 
-	mutable Point warningPoint;
-	mutable std::string warningType;
-
 
 private:
 	void DrawShipsSidebar();
@@ -201,11 +198,11 @@ private:
 
 	int DrawPlayerShipInfo(const Point &point);
 
-	bool DoScroll(double dy);
+	bool DoScroll(double dy, int steps = 5);
 	bool SetScrollToTop();
 	bool SetScrollToBottom();
 	void SideSelect(int count);
-	void SideSelect(Ship *ship);
+	void SideSelect(Ship *ship, int clicks = 1);
 	void MainAutoScroll(const std::vector<Zone>::const_iterator &selected);
 	void MainLeft();
 	void MainRight();
@@ -220,8 +217,11 @@ private:
 
 private:
 	bool delayedAutoScroll = false;
+
+	Point hoverPoint;
+	std::string shipName;
+	std::string warningType;
+	int hoverCount = 0;
+
+	bool checkedHelp = false;
 };
-
-
-
-#endif

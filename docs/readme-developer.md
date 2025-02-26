@@ -26,6 +26,9 @@ Use your favorite package manager to install the following (version numbers may 
    - libmad0-dev
    - uuid-dev
 
+Additionally, if you want to build unit tests:
+   - catch2
+
 ##### RPM-based distros:
    - gcc-c++
    - scons
@@ -37,6 +40,9 @@ Use your favorite package manager to install the following (version numbers may 
    - openal-soft-devel
    - libmad-devel
    - libuuid-devel
+
+Additionally, if you want to build unit tests:
+   - catch2-devel
 
 Then, from the project root folder, simply type:
 
@@ -60,8 +66,6 @@ More information on unit tests can be found in the project's "tests" directory, 
 
 
 ## Windows
-
-Two methods of building the game on Windows are supported. The official build is done on the command-line with the Scons program, but the game may also be built using the Code::Blocks IDE. Both require a MinGW toolchain and the precompiled libraries linked below.
 
 MinGW provides the tools used to compile the source code into the game's executable. For most cases, you should download the [MinGW-W64 Online Installer](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe). When installing, use the following settings:
 
@@ -90,27 +94,6 @@ From there, restart your command line if you had one open, and simply `cd` to yo
 
 **IMPORTANT:** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
 
-
-### Building with Code::Blocks
-
-If you instead want to build the game with a visual IDE, then you can use [Code::Blocks](https://codeblocks.org/downloads/26), the main supported IDE for Endless Sky on Windows. As you have already installed a compiler via MinGW, you should select a version without one.
-
-After you install it, Code::Blocks will likely detect a "GNU GCC Compiler" from MinGW. Select this as your compiler, then take these steps to configure it:
-
-- Go to Settings > Compiler > Global Compiler Settings > Toolchain Executables. Set the **Compiler's installation directory** to `C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin`, if you followed the default MinGW installation process above.
-- Modify **Linker for static libs** from `ar.exe` to `gcc-ar.exe`.
-
-After this, the game should be ready to compile. Use Code::Blocks to open the "EndlessSky.workspace" (**not EndlessSky.cbp**) file in the directory where you've cloned the game's code. This workspace consists of three projects: one for the majority of source code, one for the game binary, and one for the unit tests. As with most IDE-based projects, you must explicitly add new files to the respective project for them to be compiled.
-
-With the workspace open, you can double-click a project in the left-hand menu to activate that project, binding the toolbar & keyboard shortcuts for "Build," "Run,", "Build & Run," etc. to it, no matter which file is being edited.
-
-For example, when making lots of changes to the game, you will generally have the "endless-sky-lib" project active, so that you can ensure changes compile without needing to fully link things together into the actual game binary. After making changes, you would then activate the "EndlessSky" project and use the "Build & Run" option with the "Release" target, which will fully link the compiled code into the small, performant executable.
-
-You can continue making tweaks to files that belong to the "endless-sky-lib" project without reactivating it, so that "Build & Run" will still launch the game with your latest tweaks. Should you experience some show-stopper bug in your modified game, you would then change to the "Debug" build target to help determine the source(s) of the issue.
-
-**IMPORTANT:** Before the game will run the first time, you will need to skip down to the instructions at **Running the game** below.
-
-
 ### Building with other IDEs
 
 Refer to the build pipeline files under `.github\` to tailor the build process to your chosen IDE.
@@ -125,5 +108,4 @@ For Endless Sky to run on Windows, it needs various .dll files included in the b
 Once all the libraries in place, the game is ready to run! You have three options depending on how you built it:
 
 - If you built the game via Scons, open a terminal to the base Endless Sky directory, then run `bin\pkgd\release\endless-sky.exe`.
-- If you built the game via Code::Blocks, double click *EndlessSky* in the file panel on the left, then either click the green arrow on top, or hit Control+F10.
 - If you want to run the game manually, use one of the methods above to build the game, then copy an executable from under the `bin\` folder to your base directory, then open the game.

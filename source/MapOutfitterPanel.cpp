@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -130,7 +130,7 @@ void MapOutfitterPanel::Compare(int index)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(*system))
+	if(!system || !player.CanView(*system))
 		return numeric_limits<double>::quiet_NaN();
 
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
@@ -224,7 +224,7 @@ void MapOutfitterPanel::DrawItems()
 
 			bool isForSale = true;
 			unsigned storedInSystem = 0;
-			if(player.HasVisited(*selectedSystem))
+			if(player.CanView(*selectedSystem))
 			{
 				isForSale = false;
 				const auto &storage = player.PlanetaryStorage();
@@ -274,11 +274,11 @@ void MapOutfitterPanel::Init()
 	catalog.clear();
 	set<const Outfit *> seen;
 
-	// Add all outfits sold by outfitters of visited planets.
+	// Add all outfits sold by outfitters of planets from viewable systems.
 	for(auto &&it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
-				if(!seen.count(outfit))
+				if(!seen.contains(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
@@ -288,7 +288,7 @@ void MapOutfitterPanel::Init()
 	for(const auto &it : player.PlanetaryStorage())
 		if(it.first->HasOutfitter())
 			for(const auto &oit : it.second.Outfits())
-				if(!seen.count(oit.first))
+				if(!seen.contains(oit.first))
 				{
 					catalog[oit.first->Category()].push_back(oit.first);
 					seen.insert(oit.first);
@@ -296,7 +296,7 @@ void MapOutfitterPanel::Init()
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())
-		if(!seen.count(it.second))
+		if(!seen.contains(it.second))
 		{
 			catalog[it.second->Category()].push_back(it.second);
 			seen.insert(it.second);

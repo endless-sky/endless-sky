@@ -379,7 +379,7 @@ mission "FW Syndicate Diplomacy 1B"
 				goto remington
 			
 			label stand
-			`	You take a step into Remington's path as Alondo boards your ship. Remington stops face-to-face with you. "What, a guy can't talk to an old friend?" he says while looking over your shoulder`
+			`	You take a step into Remington's path as Alondo boards your ship. Remington stops face-to-face with you. "What, a guy can't talk to an old friend?" he says while looking over your shoulder.`
 			label remington
 			choice
 				`	"He's clearly not interested."`
@@ -442,7 +442,7 @@ mission "FW Syndicate Diplomacy 1C"
 		dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 	
 	on offer
-		event "Tarazed neutrality"
+		event "Tarazed neutrality" 0
 		log "The extra Syndicate supplies have begun arriving at Tarazed, and they include weaponry and outfits not normally shipped to the South. Spoke with Emily Lane, the CEO of the Tarazed Corporation. She is suspicious of this supposed gesture of good will from the Syndicate, and suggests remaining vigilant of the Syndicate's actions."
 		conversation
 			`When you arrive at <origin>, you find that there are already some Syndicate ships here unloading cargo that must have been sent ahead of you. You catch a glimpse of some of the crates and see large amounts of ship materials, as well as crates of blasters, Proton Guns, and other Syndicate products.`
@@ -952,7 +952,7 @@ mission "FW Supply Convoy 1"
 
 mission "FW Pirates 1"
 	name "Pirate Reconnaissance"
-	description "Scout out all the pirate systems on the southern fringe of human space, then report back to Tomek on <planet>."
+	description "Scout out four pirate systems on the southern fringe of human space, then report back to Tomek on <planet>."
 	source "Longjump"
 	waypoint "Antares"
 	waypoint "Men"
@@ -980,6 +980,19 @@ mission "FW Pirates 1"
 			
 			label agree
 			`	"So, here's the plan," he says. "These four systems belong to the pirates." He points to them on the map. "We want you to scout out all four systems. Just a quick fly-through, no need to land on their planets. Then report back to us, and we'll decide what our next step will be."`
+			choice
+				`	"Sounds good."`
+					goto leave
+				`	"What about the pirate systems to the north of Men?"`
+			`	Tomek shrugs. "Simply put, those worlds aren't a threat to us right now. From what we can gather, most of the factions there are focused on internal power struggles at the moment rather than piracy in the Rim. Those CCOR guerrillas are more than enough to keep any pirate warlords there busy for the immediate future."`
+			choice
+				`	"CCOR?"`
+					goto ccor
+				`	"Understood."`
+					goto leave
+			label ccor
+			`	Tomek looks surprised. "I assumed you knew. The Confederated Councils of the Outer Rim was a government that tried to practice its own particular flavor of communism outside of the Republic's influence. They fell around 50 years ago, and their former planets are now under the control of either pirate gangs or guerrilla groups trying to restore the CCOR. I wouldn't worry about the guerrillas too much - at this point, they're little more than a pirate gang themselves."`
+			label leave
 			`	As you are about to leave, he says, "Oh, one other thing: you've been approved for a salary raise to 2,100 credits. We figure that helping you maintain a slightly larger ship is a worthwhile investment. Congratulations, Captain."`
 				accept
 	
@@ -1423,7 +1436,7 @@ mission "FW Pirates: Attack 2"
 			variant
 				"Aerie" 2
 				"Mule (Heavy)"
-				"Dagger" 5
+				"Dagger" 9
 	
 	on visit
 		dialog `You've landed on <planet>, but there are still pirates defending the system. All pirates in the system must be eliminated before <planet> can be taken.`
@@ -1874,7 +1887,7 @@ mission "FW Early Warning 3"
 			`	"Lieutenant Commander Jean-Jacques Soleau, in the flesh before my very eyes," Hines says, wiping the edges of his mouth. "I never imagined I'd be seeing you again after you so unceremoniously left the Navy."`
 			`	"I'm not here to discuss the past, Commander," JJ responds. "I'm here to prevent more bloodshed in this pointless war."`
 			`	"As am I, Soleau, as am I. Although I might ask, were the lives lost in your attacks on Geminus and Martini pointless, or were those necessary losses."`
-			`	"The Free Worlds is not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
+			`	"The Free Worlds are not responsible for those bombings," says JJ, sounding somewhat shaken. "We maintain our innocence, and were seeking to uncover who was responsible before the Republic ordered the Navy to take Kornephoros from us."`
 			`	"There was no 'taking,' Soleau. Kornephoros is rightfully Republic territory. We were simply enacting a police action on one of our own worlds, and arresting the terrorists who-"`
 			`	"So did you only come here to insult me and the Free Worlds or are you here to discuss peace as I asked?" JJ says, cutting Hines off. "As I said, I'm here to prevent more bloodshed. The deaths of those on Geminus and Martini as well as those in Kornephoros and Sabik were enough already. Continued bloodshed will not satisfy either side in this war."`
 			`	"Continued bloodshed like what occurred on Greenrock only days ago?" Hines quips. "I'm sure you are aware that the Navy cannot bring its full force upon the 'Free Worlds.' We have borders to patrol and piracy to tend to. You, on the other hand, have just shattered the biggest hub of piracy in the region, and I have no doubt that this has freed up many resources. It would appear to me that you yourselves are consolidating your forces for an offensive and further bloodshed despite your insistence to the opposite."`
@@ -2114,7 +2127,7 @@ mission "FW Senate Hearing"
 		event "wolf pack reveal" 30
 		event "fw stripped of service"
 		set "fw first chapter done"
-		log "Officially censured by the Free Worlds Senate for launching an attack on a pirate world rather than obeying their instructions to seek a diplomatic solution. It may be a while before any further work for the Free Worlds is available."
+		log "Officially censured by the Free Worlds Senate for launching an attack on a pirate world rather than obeying their instructions to seek a diplomatic solution. It may be a while before any further work for the Free Worlds are available."
 		log "People" "Tomek Voigt" `Tomek was removed from the Council and placed under house arrest by the Senate after he disobeyed their orders and captured the pirate world of Greenrock rather than pursue the diplomatic solution that the Senate preferred.`
 		conversation
 			`With some trepidation, you enter the Senate building and introduce yourself to the receptionist. He says, "Please wait here. Someone will come for you when they are ready."`
@@ -2249,8 +2262,9 @@ mission "FW Rogue Elements"
 		has "event: wolf pack reveal"
 	on offer
 		event "navy occupying the south" 45
+		event "memorial on Deep"
 		conversation
-			`After you land, you notice that a sizeable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
+			`After you land, you notice that a sizable crowd has gathered around a video screen near the edge of the <origin> spaceport. You approach to find out what's going on. You're about to ask someone what's happening when you overhear Tomek's voice coming from screen. You look up to see a video of Tomek standing atop a Free Worlds warship and addressing an unseen crowd.`
 			`	"For generations we have been neglected by the Republic!" he shouts. "Our grievances were ignored! Our pain and suffering was ignored! Our needs were ignored! We cried out for help, and yet the Republic did nothing, allowing our planets to be ravaged by piracy while continuing to tax our credits for services we were not provided. And as the years have gone on the pirates have only become more and more emboldened.`
 			`	"We tried our best, even with the system stacked against us. Councilor Katya Reynolds and others like her spoke on the behalf of billions within the South, Rim, and Dirt Belt. On behalf of us. On behalf of our brothers and sisters, our fathers and mothers, our sons and daughters. And they spat in her face! And when they did that, they spat in our faces!`
 			`	"And so we banded together. Friends and family locked in arms, doing that which the Republic would not. We looked out for each other, and raised our own defenses against the piracy that we so feared. And then we stood up together and told the Republic that we would take their neglect no longer. We shouted that the system does not work, and so we will create our own! We, with the sweat, blood, and tears of generations, birthed these Free Worlds!`

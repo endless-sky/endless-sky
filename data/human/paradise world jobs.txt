@@ -546,7 +546,7 @@ mission "Paradise Job: Pirate Retirees (Illegal)"
 		dialog phrase "generic passenger on visit"
 	on complete
 		payment 15000 300
-		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anyonymous source."
+		dialog "You bid goodbye to the self-proclaimed retirees, who were somewhat prone to spilling drinks or irritating you whilst attempting to do work. They were otherwise extremely polite, if raucous, and full of highly amusing, though often morally questionable, anecdotes. Once the last of their belongings have been safely unloaded your accounts receive the payment of <payment> from an anonymous source."
 
 
 mission "Paradise Job: Pirate Retirees (Legal)"
@@ -591,6 +591,7 @@ mission "Paradise Job: Wilderness Retreat"
 	destination
 		distance 6 20
 		attributes "frontier" "rim" "forest" "fishing"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -607,10 +608,8 @@ mission "Gemini Shipyards Shipment [0]"
 	to offer
 		random < 15
 		or
-			not "war begins"
-			and
-				has "war begins"
-				has "geminus rebuilt"
+			not "event: war begins"
+			has "event: geminus rebuilt"
 	source
 		near Castor 2 10
 		attributes factory
@@ -630,10 +629,8 @@ mission "Gemini Shipyards Shipment [1]"
 	to offer
 		random < 15
 		or
-			not "war begins"
-			and
-				has "war begins"
-				has "geminus rebuilt"
+			not "event: war begins"
+			has "event: geminus rebuilt"
 	source
 		near Castor 2 10
 		attributes factory

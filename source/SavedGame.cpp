@@ -19,20 +19,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Date.h"
 #include "text/Format.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 using namespace std;
 
 
 
-SavedGame::SavedGame(const string &path)
+SavedGame::SavedGame(const filesystem::path &path)
 {
 	Load(path);
 }
 
 
 
-void SavedGame::Load(const string &path)
+void SavedGame::Load(const filesystem::path &path)
 {
 	Clear();
 	DataFile file(path);
@@ -80,7 +80,7 @@ void SavedGame::Load(const string &path)
 
 
 
-const string &SavedGame::Path() const
+const filesystem::path &SavedGame::Path() const
 {
 	return path;
 }

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef UNIVERSE_OBJECTS_H_
-#define UNIVERSE_OBJECTS_H_
+#pragma once
 
 #include "CategoryTypes.h"
 #include "Sale.h"
@@ -42,14 +41,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "Test.h"
-#include "TestData.h"
+#include "test/Test.h"
+#include "test/TestData.h"
 #include "TextReplacements.h"
 #include "Trade.h"
 #include "Wormhole.h"
 
+#include <atomic>
+#include <filesystem>
 #include <future>
 #include <map>
+#include <mutex>
 #include <set>
 #include <string>
 #include <vector>
@@ -57,6 +59,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Panel;
 class Sprite;
+class TaskQueue;
 
 
 
@@ -68,7 +71,8 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::future<void> Load(const std::vector<std::string> &sources, bool debugMode = false);
+	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::filesystem::path> &sources,
+		bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
@@ -89,7 +93,7 @@ public:
 
 
 private:
-	void LoadFile(const std::string &path, bool debugMode = false);
+	void LoadFile(const std::filesystem::path &path, bool debugMode = false);
 
 
 private:
@@ -132,6 +136,7 @@ private:
 	std::map<const Sprite *, std::string> landingMessages;
 	std::map<const Sprite *, double> solarPower;
 	std::map<const Sprite *, double> solarWind;
+	std::map<const Sprite *, const Sprite *> starIcons;
 	std::map<CategoryType, CategoryList> categories;
 
 	std::map<std::string, std::string> tooltips;
@@ -142,7 +147,3 @@ private:
 	mutable std::mutex menuBackgroundMutex;
 	Interface menuBackgroundCache;
 };
-
-
-
-#endif

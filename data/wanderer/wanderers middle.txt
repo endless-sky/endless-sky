@@ -1004,7 +1004,7 @@ mission "Wanderers: Mind Escorts"
 			variant
 				"Hurricane" 2
 				"Derecho" 3
-				"Tempest" 4
+				"Tempest" 5
 
 mission "Wanderers: Mind 4"
 	landing
@@ -1127,9 +1127,9 @@ mission "Wanderers: Mind 6"
 			variant
 				"Model 512" 3
 				"Model 256" 4
-				"Model 128" 5
-				"Model 64" 6
-				"Model 32" 8
+				"Model 128" 4
+				"Model 64" 5
+				"Model 32" 7
 				"Model 16" 12
 		dialog `The last of the hostile Kor Mereti drones are destroyed; the remaining drones are not attacking the Wanderers. It is not entirely clear what has happened, but hopefully the Wanderers back on <planet> will have gained some information through the backdoor connection to their AI.`
 	npc
@@ -1139,10 +1139,10 @@ mission "Wanderers: Mind 6"
 			names "kor mereti"
 			variant
 				"Model 256" 1
-				"Model 128" 2
+				"Model 128" 1
 				"Model 64" 3
 				"Model 32" 5
-				"Model 16" 8
+				"Model 16" 10
 	on visit
 		dialog `You've landed on <planet>, but there are still hostile Kor Mereti drones in the Chimitarp system. Better depart and make sure they've been taken care of.`
 
@@ -1676,9 +1676,9 @@ mission "Wanderers: Sestor Attack"
 			fighters
 				names "kor sestor fighter"
 			variant
-				"Tek Far 109" 3
-				"Far Lek 14" 27
-				"Far Osk 27" 21
+				"Tek Far 109" 2
+				"Far Lek 14" 18
+				"Far Osk 27" 14
 		fleet
 			names "kor sestor"
 			fighters
@@ -1706,16 +1706,14 @@ mission "Wanderers: Sestor Attack"
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf"
+				"Autumn Leaf" 3
 	npc
 		government "Wanderer"
 		personality heroic
 		fleet
 			names "wanderer"
 			variant
-				"Autumn Leaf"
-				"Summer Leaf" 3
+				"Autumn Leaf" 4
 		fleet
 			names "wanderer"
 			variant
@@ -1725,13 +1723,20 @@ mission "Wanderers: Sestor Attack"
 	npc
 		government "Kor Mereti"
 		personality heroic
-		system "Faronektu"
+		system "Mekislepti"
 		fleet
 			names "kor mereti"
 			variant
 				"Model 512"
 				"Model 256"
 				"Model 64"
+	npc
+		government "Kor Mereti"
+		personality heroic staying
+		fleet
+			names "kor mereti"
+			variant
+				"Model 16" 2
 				
 
 
@@ -2050,7 +2055,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2075,7 +2080,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2097,7 +2102,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 
@@ -2247,7 +2252,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2269,7 +2274,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser"
 				"Combat Drone" 4
@@ -2291,7 +2296,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate (Mark II)" 3
 	npc evade
@@ -2750,7 +2755,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2772,7 +2777,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 				"Gunboat" 3
@@ -3137,7 +3142,7 @@ mission "Wanderers: Sestor: Factory 1"
 				`	"Are you sure that they really want peace? They aren't trying to trick you?"`
 			`	Rek says, "It is hard to be sure. Their culture is very different from the Kor Efret; even some of their language and gestures are new to me. But they have behaved peacefully toward us so far; we must hope that their peacefulness continues."`
 			label next
-			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you." He gestures with a wing towards a number of Wanderer vessels being loaded with supplies and prepared for battle. You notice a type of weapon you don't recognize mounted on some of them.`
+			`	Tele'ek says, "You must bring the [exile, outcast] ships to <planet> and keep them from being destroyed by the drones [along the way?]. There, they will [attempt, accomplish] what they have promised, and shut down the factories. Your only role will be to [shield, protect] them, and we will give you some of our warships to [assist, accompany] you." He gestures with a straggly, slightly misshapen wing towards a number of Wanderer vessels being loaded with supplies and prepared for battle. You notice a type of weapon you don't recognize mounted on some of them.`
 			choice
 				`	"Are those ships carrying a new type of weapon?"`
 				`	"Sounds like a good plan. Let's get going!"`
@@ -3417,7 +3422,7 @@ mission "Wanderers: Sestor: Final: Patched"
 	on offer
 		event "wanderers: exiles hostile" 4
 		conversation
-			`When you meet with the Wanderer leaders, Sobari Tele'ek tells you, "We have received word from our [scouts, observers] that the Sestor drones are [dwindling, reducing] in numbers and will soon be no more. We owe you our [gratitude, thanks]. But, the Mereti tell us a more worrisome [tale, story]."`
+			`When you meet with the Wanderer leaders, Sobari Tele'ek tells you, "We have received word from our [scouts, observers] that the Sestor drones are [dwindling, reducing] in numbers and will soon be no more. We owe you our [gratitude, thanks]. But, the Mereti tell us a more worrisome [tale, story]." You notice that although he has grown larger, he appears to be having trouble standing upright, and hence his head is at roughly the same height as yours.`
 			`	Meto Pa'aret says, "The Mereti [contacted, communicated with] me and said that one of their stations was [raided, infiltrated] by the Korath exiles, and some of their [machinery, equipment] was stolen. The Mereti did not [fight, attack] the exiles because they thought they were [friends, allies]. Captain <last>, can you bring Rek to visit the [exiles, outcasts] and learn what their plans are?"`
 			choice
 				`	"Sure, I would be glad to."`
@@ -3476,6 +3481,7 @@ event "wanderers: sestor planets unrestricted"
 	planet "Sestor Ikfar"
 		"required reputation" 0
 		spaceport clear
+		description `This dry, hot world is home to almost no native life, but is ideal for the Korath automata because of its abundant solar energy. In the places where the Korath cities once were, the Kor Sestor have built massive factories with buildings sometimes close to a kilometer in height. In other places the land remains undeveloped, and now that the factories have been shut down it seems likely that it will stay that way for a very long time.`
 	planet "Devru Kaska"
 		"required reputation" 0
 		spaceport clear
@@ -3488,6 +3494,7 @@ event "wanderers: sestor planets unrestricted"
 	planet "Sopi Lefarkata"
 		"required reputation" 0
 		spaceport clear
+		description `This is a cold and mountainous world, and most of its oceans are covered in ice. A handful of giant craters gouged out from the sides of mountains are the only sign that there were once Korath settlements here. The Kor Sestor robots began building settlements of their own, in caverns deep under the mountains where they are safe from orbital bombardment, but now these settlements are falling into disrepair. Where the last set of Kor Mereti attacks collapsed one of the access tunnels, a handful of robots have gathered, trying in vain to dig them out.`
 
 event "wanderers taking jobs from kor efreti"
 	system "Sumprast"

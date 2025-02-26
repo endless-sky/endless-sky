@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipAICache.h"
 
+#include "../Armament.h"
 #include "../Outfit.h"
 #include "../pi.h"
 #include "../Ship.h"
@@ -34,6 +35,8 @@ void ShipAICache::Calibrate(const Ship &ship)
 	double totalDPS = 0.;
 	double splashDPS = 0.;
 	double artilleryDPS = 0.;
+	turretRange = 0.;
+	gunRange = 0.;
 
 	shortestRange = 4000.;
 	shortestArtillery = 4000.;
@@ -42,7 +45,7 @@ void ShipAICache::Calibrate(const Ship &ship)
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		const Outfit *weapon = hardpoint.GetOutfit();
-		if(weapon && !hardpoint.IsAntiMissile())
+		if(weapon && !hardpoint.IsSpecial())
 		{
 			hasWeapons = true;
 			bool lackingAmmo = (weapon->Ammo() && weapon->AmmoUsage() && !ship.OutfitCount(weapon->Ammo()));
@@ -105,6 +108,18 @@ void ShipAICache::Calibrate(const Ship &ship)
 		// weapons being overly afraid of dying.
 		if(minSafeDistance && !(useArtilleryAI || shortestRange * (splashDPS / totalDPS) > maxTurningRadius))
 			minSafeDistance = 0.;
+	}
+	// Get the weapon ranges for this ship, so the AI can call it.
+	for(const auto &hardpoint : ship.Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetOutfit();
+		if(!weapon || hardpoint.IsSpecial() || (weapon->Ammo() && !ship.OutfitCount(weapon->Ammo())) || !weapon->DoesDamage())
+			continue;
+		double weaponRange = weapon->Range() + hardpoint.GetPoint().Length();
+		if(hardpoint.IsTurret())
+			turretRange = max(turretRange, weaponRange);
+		else
+			gunRange = max(gunRange, weaponRange);
 	}
 }
 

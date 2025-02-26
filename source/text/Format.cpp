@@ -19,11 +19,106 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cctype>
 #include <cmath>
+#include <cstring>
+#include <functional>
 #include <sstream>
+#include <unordered_set>
 
 using namespace std;
 
 namespace {
+	// The greatest number displayed without switching to scientific notation.
+	constexpr int64_t SCIENTIFIC_THRESHOLD = 1e15;
+	constexpr int64_t K = 1000;
+	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
+		{ "quintillion", K * K * K * K * K * K },
+		{ "quadrillion", K * K * K * K * K },
+		{ "trillion", K * K * K * K },
+		{ "billion", K * K * K },
+		{ "million", K * K },
+		{ "thousand", K }
+	};
+	static const vector<const char *> ONES_NAMES = {
+		"zero ", "one ", "two ", "three ", "four ", "five ",
+		"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
+		"twelve ", "thirteen ", "fourteen ", "fifteen ",
+		"sixteen ", "seventeen ", "eighteen ", "nineteen "
+	};
+	static const vector<const char *> TENS_NAMES = {
+		"error", "error", "twenty", "thirty", "forty",
+		"fifty", "sixty", "seventy", "eighty", "ninety"
+	};
+
+	// This struct exists just to allow the operator<< below.
+	struct Wrapped {
+		int64_t value;
+	};
+
+	// Implementation of WordForm. Outputs the word form of the wrapped number,
+	// followed by a space.
+	ostream &operator<< (ostream &o, const Wrapped &num)
+	{
+
+		if(num.value < 0)
+			return o << "negative " << Wrapped { -num.value };
+
+		Wrapped remaining { num };
+
+		if(remaining.value >= 1000)
+			for(auto &nameValue : WORD_NUMBERS)
+				if(remaining.value >= nameValue.second)
+				{
+					Wrapped above { remaining.value / nameValue.second };
+					remaining.value %= nameValue.second;
+					o << above << nameValue.first;
+					if(!remaining.value)
+						return o;
+					o << ' ';
+				}
+
+		if(remaining.value >= 100)
+		{
+			o << ONES_NAMES[(remaining.value / 100) % 10] << "hundred ";
+			remaining.value %= 100;
+			if(!remaining.value)
+				return o;
+		}
+
+		if(remaining.value < 20)
+			return o << ONES_NAMES[remaining.value];
+
+		o << TENS_NAMES[remaining.value / 10];
+		int64_t ones = remaining.value % 10;
+		if(ones)
+			return o << '-' << ONES_NAMES[ones];
+		return o << ' ';
+	}
+
+	string MLAShorthand(int64_t value)
+	{
+		bool negative = value < 0;
+		if(negative)
+			value = -value;
+		for(size_t magnitude = 0; magnitude < WORD_NUMBERS.size() - 1; ++magnitude)
+		{
+			int64_t above = value / WORD_NUMBERS[magnitude + 1].second;
+			int64_t below = value % WORD_NUMBERS[magnitude + 1].second;
+			if(above < 1000)
+				continue;
+			if(above >= 1000000 || !(above % 1000))
+				break;
+			if(below)
+				continue;
+			const size_t BUFLEN = 100;
+			char buf[BUFLEN] = { 0 };
+			snprintf(buf, BUFLEN, "%s%.3f %s",
+				negative ? "negative " : "", above / 1000.0, WORD_NUMBERS[magnitude].first);
+			buf[BUFLEN - 1] = '\0';
+			return string(buf);
+		}
+		return string();
+	}
+
 	// Format an integer value, inserting its digits into the given string in
 	// reverse order and then reversing the string.
 	void FormatInteger(int64_t value, bool isNegative, string &result)
@@ -44,9 +139,89 @@ namespace {
 		reverse(result.begin(), result.end());
 	}
 
+	string StringSubstituter(const string &source,
+			function<const string *(const string &)> SubstitutionFor)
+	{
+		string target;
+		target.reserve(source.length());
+
+		string key;
+		size_t start = 0;
+		size_t search = start;
+		while(search < source.length())
+		{
+			size_t left = source.find('<', search);
+			if(left == string::npos)
+				break;
+
+			size_t right = source.find('>', left);
+			if(right == string::npos)
+				break;
+
+			++right;
+			size_t length = right - left;
+			key.assign(source, left, length);
+			const string *sub = SubstitutionFor(key);
+			if(sub)
+			{
+				target.append(source, start, left - start);
+				target.append(*sub, 0, string::npos);
+				start = right;
+				search = start;
+			}
+			else
+				search = left + 1;
+		}
+
+		target.append(source, start, source.length() - start);
+		return target;
+	}
+
+	// Helper function for Format::Expand, to recursively expand one key,
+	// detecting cycles in the graph (and thus avoiding infinite recursion).
+	void ExpandInto(const string &key, const string &oldValue, const map<string, string> &source,
+			map<string, string> &result, unordered_set<string> &keysBeingExpanded)
+	{
+		// Optimization for a common case: no substitutions in the substitution.
+		if(oldValue.find('<') == string::npos)
+		{
+			result.emplace(key, oldValue);
+			return;
+		}
+
+		// Declare our intention to process this key so a later attempt will
+		// detect recursion.
+		auto inserted = keysBeingExpanded.insert(key);
+
+		auto SubstitutionFor = [&](const string &request) -> const string *
+		{
+			auto hasResult = result.find(request);
+			// Already finished this one.
+			if(hasResult != result.end())
+				return &hasResult->second;
+			// Refuse to traverse a cycle in the graph.
+			if(keysBeingExpanded.find(request) != keysBeingExpanded.end())
+				return nullptr;
+			auto hasSource = source.find(request);
+			// Undefined key.
+			if(hasSource == source.end())
+				return nullptr;
+			// This key-value pair has not been expanded yet.
+			ExpandInto(request, hasSource->second, source, result, keysBeingExpanded);
+			hasResult = result.find(request);
+			return hasResult == result.end() ? nullptr : &hasResult->second;
+		};
+
+		string newValue = StringSubstituter(oldValue, SubstitutionFor);
+
+		// Success! Indicate we're done expanding this key, and provide its value.
+		keysBeingExpanded.erase(inserted.first);
+		result.emplace(key, newValue);
+	}
+
 	// Helper function for ExpandConditions.
 	//
-	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc)
+	// source.substr(formatStart, formatSize) contains the format (credits, mass, etc.)
 	// source.substr(conditionStart, conditionSize) contains the condition name
 	//
 	// If formatStart or formatSize are string::npos, then there is no formatting.
@@ -75,6 +250,18 @@ namespace {
 			result.append(Format::MassString(value)); // X tons or X ton
 		else if(IsFormat("playtime"))
 			result.append(Format::PlayTime(value)); // 3d 19h 24m 8s
+		else if(IsFormat("chicago"))
+			result.append(Format::ChicagoForm(value, false)); // thirty-three or 101
+		else if(IsFormat("Chicago"))
+			result.append(Format::ChicagoForm(value, true)); // Thirty-three or One hundred one
+		else if(IsFormat("mla"))
+			result.append(Format::MLAForm(value, false)); // thirty-three or 101
+		else if(IsFormat("Mla"))
+			result.append(Format::MLAForm(value, true)); // Thirty-three or One hundred one
+		else if(IsFormat("words"))
+			result.append(Format::WordForm(value, false)); // thirty-three or one hundred one
+		else if(IsFormat("Words"))
+			result.append(Format::WordForm(value, true)); // Thirty-three or One hundred one
 		else
 			// "number" or unsupported format
 			result.append(Format::Number(value));
@@ -89,10 +276,9 @@ namespace {
 string Format::Credits(int64_t value)
 {
 	bool isNegative = (value < 0);
-	int64_t absolute = abs(value);
 
 	// If the value is above one quadrillion, show it in scientific notation.
-	if(absolute > 1000000000000000ll)
+	if(fabs(value) > SCIENTIFIC_THRESHOLD)
 	{
 		ostringstream out;
 		out.precision(3);
@@ -104,21 +290,26 @@ string Format::Credits(int64_t value)
 	string result;
 	result.reserve(8);
 
+	int64_t absolute = abs(value);
+
 	// Handle numbers bigger than a million.
-	static const vector<char> SUFFIX = {'T', 'B', 'M'};
-	static const vector<int64_t> THRESHOLD = {1000000000000ll, 1000000000ll, 1000000ll};
-	for(size_t i = 0; i < SUFFIX.size(); ++i)
-		if(absolute > THRESHOLD[i])
+	static constexpr array<pair<int64_t, char>, 3> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute > threshold)
 		{
-			result += SUFFIX[i];
-			int decimals = (absolute / (THRESHOLD[i] / 1000)) % 1000;
+			result += suffix;
+			int decimals = (absolute / (threshold / 1000)) % 1000;
 			for(int d = 0; d < 3; ++d)
 			{
 				result += static_cast<char>('0' + decimals % 10);
 				decimals /= 10;
 			}
 			result += '.';
-			absolute /= THRESHOLD[i];
+			absolute /= threshold;
 			break;
 		}
 
@@ -189,6 +380,70 @@ string Format::PlayTime(double timeVal)
 
 
 
+// Convert an ammo count into a short string for use in the ammo display.
+// Only the absolute value of a negative number is considered.
+string Format::AmmoCount(int64_t value)
+{
+	if(fabs(value) >= SCIENTIFIC_THRESHOLD)
+	{
+		if(abs(value) == SCIENTIFIC_THRESHOLD)
+			return "1e+15";
+		ostringstream out;
+		out.precision(1);
+		out << static_cast<double>(value);
+		return out.str();
+	}
+
+	int64_t absolute = abs(value);
+
+	if(absolute < 10000)
+		return to_string(value);
+
+	string result;
+	result.reserve(5);
+
+	// Handle numbers bigger than a thousand.
+	static constexpr array<pair<int64_t, char>, 4> THRESHOLD_SUFFIX = {{
+		{1000000000000ll, 'T'},
+		{1000000000ll, 'B'},
+		{1000000ll, 'M'},
+		{1000ll, 'k'}
+	}};
+	for(const auto &[threshold, suffix] : THRESHOLD_SUFFIX)
+		if(absolute >= threshold)
+		{
+			int head = absolute / threshold;
+			int64_t tail = absolute % threshold;
+			do {
+				result += '0' + head % 10;
+				head /= 10;
+			} while(head > 0);
+			reverse(result.begin(), result.end());
+			switch(result.length())
+			{
+				case 1:
+					tail /= threshold / 100;
+					result += '.';
+					result += '0' + tail / 10;
+					result += '0' + tail % 10;
+					break;
+				case 2:
+					tail /= threshold / 10;
+					result += '.';
+					result += '0' + tail;
+					break;
+				default:
+					break;
+			}
+			result += suffix;
+			break;
+		}
+
+	return result;
+}
+
+
+
 // Convert the given number to a string, with a reasonable number of decimal
 // places. (This is primarily for displaying ship and outfit attributes.)
 string Format::Number(double value)
@@ -199,6 +454,14 @@ string Format::Number(double value)
 		return "???";
 	else if(std::isinf(value))
 		return value > 0. ? "infinity" : "-infinity";
+	else if(fabs(value) > SCIENTIFIC_THRESHOLD)
+	{
+		// Use scientific notation for excessively large numbers.
+		ostringstream out;
+		out.precision(3);
+		out << value;
+		return out.str();
+	}
 
 	string result;
 	bool isNegative = (value < 0.);
@@ -259,6 +522,74 @@ string Format::Decimal(double value, int places)
 
 
 
+string Format::WordForm(int64_t value, bool startOfSentence)
+{
+	ostringstream o;
+	o << Wrapped { value };
+	string result = o.str();
+	if(result.size() > 0 && result[result.size() - 1] == ' ')
+		result.resize(result.size() - 1);
+	if(!result.empty() && startOfSentence && result[0] >= 'a' && result[0] <= 'z')
+		result[0] -= 32;
+	return result;
+}
+
+
+
+// Chicago manual of style
+string Format::ChicagoForm(int64_t value, bool startOfSentence)
+{
+	if(startOfSentence)
+		return WordForm(value, true);
+	if(value < 1000 && value > -1000 && ! (value % 100))
+		return WordForm(value, startOfSentence);
+	int64_t above = value, below = 0;
+	for(int i = 0; above && i < 6; i++)
+	{
+		if(below)
+			break;
+		else if(above < 100 && above > -100)
+			return WordForm(value, startOfSentence);
+		else if(above < 1000 && above > -1000 && !(above % 100))
+			return WordForm(value, startOfSentence);
+		below = above % 1000;
+		above /= 1000;
+	}
+	return Format::Number(value);
+}
+
+
+
+// MLA Handbook style
+string Format::MLAForm(int64_t value, bool startOfSentence)
+{
+	if(startOfSentence)
+		return WordForm(value, true);
+	if(value >= -99 && value <= 99)
+		return WordForm(value, startOfSentence);
+
+	// 21350000 => 21.35 million
+	string shorthand = MLAShorthand(value);
+	if(!shorthand.empty())
+		return shorthand;
+
+	int64_t above = value, below = 0;
+	for(int i = 0; above && i < 6; i++)
+	{
+		if(below)
+			break;
+		else if(above <= 10 && above >= -10)
+			return WordForm(value, startOfSentence);
+		else if(above < 100 && above > -100 && !(above % 10))
+			return WordForm(value, startOfSentence);
+		below = above % 1000;
+		above /= 1000;
+	}
+	return Format::Number(value);
+}
+
+
+
 // Convert a string into a number. As with the output of Number(), the
 // string can have suffixes like "M", "B", etc.
 // It can also contain spaces or "," as separators like 1,000 or 1 000.
@@ -315,41 +646,25 @@ double Format::Parse(const string &str)
 
 string Format::Replace(const string &source, const map<string, string> &keys)
 {
-	string result;
-	result.reserve(source.length());
-
-	size_t start = 0;
-	size_t search = start;
-	while(search < source.length())
+	auto SubstitutionFor = [&](const string &key) -> const string *
 	{
-		size_t left = source.find('<', search);
-		if(left == string::npos)
-			break;
+		auto found = keys.find(key);
+		return (found == keys.end()) ? nullptr : &found->second;
+	};
 
-		size_t right = source.find('>', left);
-		if(right == string::npos)
-			break;
+	return StringSubstituter(source, SubstitutionFor);
+}
 
-		bool matched = false;
-		++right;
-		size_t length = right - left;
-		for(const auto &it : keys)
-			if(!source.compare(left, length, it.first))
-			{
-				result.append(source, start, left - start);
-				result.append(it.second);
-				start = right;
-				search = start;
-				matched = true;
-				break;
-			}
 
-		if(!matched)
-			search = left + 1;
-	}
 
-	result.append(source, start, source.length() - start);
-	return result;
+void Format::Expand(map<string, string> &keys)
+{
+	map<string, string> newKeys;
+	unordered_set<string> keysBeingExpanded;
+	for(auto it = keys.begin(); it != keys.end(); ++it)
+		if(newKeys.find(it->first) == newKeys.end())
+			ExpandInto(it->first, it->second, keys, newKeys, keysBeingExpanded);
+	keys.swap(newKeys);
 }
 
 
@@ -389,12 +704,12 @@ string Format::Capitalize(const string &str)
 	bool first = true;
 	for(char &c : result)
 	{
-		if(isspace(c))
+		if(isspace(static_cast<unsigned char>(c)))
 			first = true;
 		else
 		{
-			if(first && islower(c))
-				c = toupper(c);
+			if(first && islower(static_cast<unsigned char>(c)))
+				c = toupper(static_cast<unsigned char>(c));
 			first = false;
 		}
 	}
@@ -407,7 +722,7 @@ string Format::LowerCase(const string &str)
 {
 	string result = str;
 	for(char &c : result)
-		c = tolower(c);
+		c = tolower(static_cast<unsigned char>(c));
 	return result;
 }
 
@@ -549,6 +864,6 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 int Format::Search(const string &str, const string &sub)
 {
 	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](char a, char b) { return toupper(a) == toupper(b); });
+		[](unsigned char a, unsigned char b) { return toupper(a) == toupper(b); });
 	return (it == str.end() ? -1 : it - str.begin());
 }

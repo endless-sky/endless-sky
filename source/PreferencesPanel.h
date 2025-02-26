@@ -13,18 +13,22 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PREFERENCES_PANEL_H_
-#define PREFERENCES_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
 #include "ClickZone.h"
 #include "Command.h"
 #include "Point.h"
+#include "ScrollVar.h"
 #include "text/WrappedText.h"
 
+#include <memory>
 #include <string>
 #include <vector>
+
+class RenderBuffer;
+struct Plugin;
 
 
 
@@ -32,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class PreferencesPanel : public Panel {
 public:
 	PreferencesPanel();
+	virtual ~PreferencesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -43,6 +48,7 @@ protected:
 	virtual bool Click(int x, int y, int clicks) override;
 	virtual bool Hover(int x, int y) override;
 	virtual bool Scroll(double dx, double dy) override;
+	virtual bool Drag(double dx, double dy) override;
 
 	virtual void EndEditing() override;
 
@@ -51,6 +57,8 @@ private:
 	void DrawControls();
 	void DrawSettings();
 	void DrawPlugins();
+	void RenderPluginDescription(const std::string &pluginName);
+	void RenderPluginDescription(const Plugin &plugin);
 
 	void DrawTooltips();
 
@@ -61,6 +69,9 @@ private:
 	void HandleUp();
 	void HandleDown();
 	void HandleConfirm();
+
+	// Scroll the plugin list until the selected plugin is visible.
+	void ScrollSelectedPlugin();
 
 
 private:
@@ -80,6 +91,7 @@ private:
 	std::string tooltip;
 	WrappedText hoverText;
 
+	int currentControlsPage = 0;
 	int currentSettingsPage = 0;
 
 	std::string selectedPlugin;
@@ -87,8 +99,10 @@ private:
 	std::vector<ClickZone<Command>> zones;
 	std::vector<ClickZone<std::string>> prefZones;
 	std::vector<ClickZone<std::string>> pluginZones;
+
+	std::unique_ptr<RenderBuffer> pluginListClip;
+	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
+	ScrollVar<double> pluginListScroll;
+	ScrollVar<double> pluginDescriptionScroll;
+	int pluginListHeight = 0;
 };
-
-
-
-#endif

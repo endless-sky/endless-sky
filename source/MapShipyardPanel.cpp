@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -138,7 +138,7 @@ void MapShipyardPanel::Compare(int index)
 
 double MapShipyardPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(*system))
+	if(!system || !player.CanView(*system))
 		return numeric_limits<double>::quiet_NaN();
 
 	// If there is a shipyard with parked ships, the order of precedence is
@@ -216,7 +216,7 @@ void MapShipyardPanel::DrawItems()
 
 			bool isForSale = true;
 			unsigned parkedInSystem = 0;
-			if(player.HasVisited(*selectedSystem))
+			if(player.CanView(*selectedSystem))
 			{
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
@@ -264,9 +264,9 @@ void MapShipyardPanel::Init()
 	catalog.clear();
 	set<const Ship *> seen;
 	for(const auto &it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				if(!seen.count(ship))
+				if(!seen.contains(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
@@ -278,7 +278,7 @@ void MapShipyardPanel::Init()
 		{
 			const Ship *model = GameData::Ships().Get(it->TrueModelName());
 			++parkedShips[it->GetSystem()][model];
-			if(!seen.count(model))
+			if(!seen.contains(model))
 			{
 				catalog[model->Attributes().Category()].push_back(model);
 				seen.insert(model);

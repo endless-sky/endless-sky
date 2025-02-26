@@ -38,10 +38,10 @@ outfit "Inhibitor Cannon"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
 	description `	Although the Remnant appreciated the original weapon, they were disappointed that it was too big to fit on most of their ships. Instead of letting their effort go to waste, they instead opted to put their newfound knowledge to use creating a weapon suitable for their more nimble craft. Thus, the Inhibitor is excellent at controlling engagement distances, keeping targets at range by both pushing them backward with the impact of each shot while also slowing their approach by interfering with their engines.`
@@ -76,7 +76,7 @@ outfit "Inhibitor Turret"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
-		"turret turn" 3.5
+		"turret turn" 3.6
 		"velocity" 36
 		"random velocity" .5
 		"lifetime" 24
@@ -84,10 +84,10 @@ outfit "Inhibitor Turret"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
 	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
@@ -152,7 +152,7 @@ outfit "Thrasher Turret"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
-		"turret turn" 2.4
+		"turret turn" 2
 		"velocity" 10
 		"lifetime" 36
 		"reload" 5
@@ -191,7 +191,7 @@ effect "point defense fire"
 		"frame rate" 17
 		"no repeat"
 	sound "point defense"
-
+	"sound category" "anti-missile"
 	lifetime 10
 	"velocity scale" .5
 
@@ -277,7 +277,7 @@ outfit "EMP Torpedo Bay"
 		"hull damage" 100
 		"ion damage" 48
 		"scrambling damage" 48
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 
@@ -353,7 +353,7 @@ outfit "Teciimach Bay"
 		"ion damage" 65
 		"scrambling damage" 65
 		"energy damage" 2000
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 95
 	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
@@ -405,7 +405,7 @@ outfit "Teciimach Pod"
 		"ion damage" 60
 		"scrambling damage" 60
 		"energy damage" 2000
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
 	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
@@ -467,7 +467,7 @@ outfit "Ember Tear"
 		"safe"
 		"lifetime" 1
 		"reload" 1
-		"firing force" 1
+		"firing force" 1.5
 		"blast radius" 150
 		"firing energy" 230
 		"firing fuel" 10
@@ -611,7 +611,7 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 1.25
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	description `The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their "gills," which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded.`
 
 outfit "NDR-114 Android"
 	category "Unique"
@@ -675,13 +675,13 @@ outfit "Bellows-Class Afterburner"
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
 	"mass" 8
-	"outfit space" -7
-	"engine capacity" -7
+	"outfit space" -11
+	"engine capacity" -11
 	"slowing resistance" 0.01
-	"afterburner thrust" 125.0
-	"afterburner fuel" 0.65
-	"afterburner energy" 6.0
-	"afterburner heat" 8.0
+	"afterburner thrust" 187.5
+	"afterburner fuel" 1.3
+	"afterburner energy" 6
+	"afterburner heat" 18
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
 	description "	The Bellows-Class Afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
@@ -690,6 +690,7 @@ effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
 		"frame rate" 10
 	sound "remnant afterburner"
+	"sound category" "afterburner"
 
 
 
@@ -702,13 +703,13 @@ outfit "Anvil-Class Engine"
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 13.8
+	"thrust" 20.7
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 369.6
+	"turn" 554.4
 	"turning energy" 1.05
 	"turning heat" 1.1
-	"reverse thrust" 10.3
+	"reverse thrust" 15.45
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 1.45
 	"slowing resistance" 0.02
@@ -732,10 +733,10 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 16.55
+	"thrust" 24.825
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
-	"reverse thrust" 12.4
+	"reverse thrust" 18.6
 	"reverse thrusting energy" 1.6
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
@@ -756,10 +757,10 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 34
+	"thrust" 51
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
-	"reverse thrust" 25.5
+	"reverse thrust" 38.25
 	"reverse thrusting energy" 3.3
 	"reverse thrusting heat" 3.2
 	"slowing resistance" 0.024
@@ -780,10 +781,10 @@ outfit "Smelter-Class Thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 71.1
+	"thrust" 106.65
 	"thrusting energy" 9.5
 	"thrusting heat" 9.6
-	"reverse thrust" 53.3
+	"reverse thrust" 79.95
 	"reverse thrusting energy" 7.1
 	"reverse thrusting heat" 7.2
 	"slowing resistance" 0.048
@@ -804,7 +805,7 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 456
+	"turn" 684
 	"turning energy" 1.32
 	"turning heat" 1.4
 	"slowing resistance" 0.008
@@ -822,7 +823,7 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 995
+	"turn" 1492.5
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -840,7 +841,7 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 2123
+	"turn" 3184.5
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032

@@ -13,45 +13,44 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ENGINE_H_
-#define ENGINE_H_
+#pragma once
 
 #include "AI.h"
+#include "AlertLabel.h"
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
-#include "BatchDrawList.h"
+#include "shader/BatchDrawList.h"
 #include "CollisionSet.h"
+#include "Color.h"
 #include "Command.h"
-#include "DrawList.h"
+#include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
+#include "PlanetLabel.h"
 #include "Point.h"
 #include "Preferences.h"
+#include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "TaskQueue.h"
 
 #include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
-#include <thread>
 #include <utility>
 #include <vector>
 
-class AlertLabel;
 class Flotsam;
 class Government;
 class NPC;
 class Outfit;
-class PlanetLabel;
 class PlayerInfo;
-class Projectile;
 class Ship;
 class ShipEvent;
 class Sprite;
 class Visual;
 class Weather;
-
 
 
 // Class representing the game engine: its job is to track all of the objects in
@@ -101,6 +100,21 @@ public:
 
 
 private:
+	class Outline {
+	public:
+		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
+			const float frame, const Color &color)
+			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
+		{
+		}
+
+		const Sprite *sprite;
+		const Point position;
+		const Point unit;
+		const float frame;
+		const Color color;
+	};
+
 	class Target {
 	public:
 		Point center;
@@ -112,8 +126,19 @@ private:
 
 	class Status {
 	public:
+		enum class Type {
+			FLAGSHIP,
+			FRIENDLY,
+			HOSTILE,
+			NEUTRAL,
+			SCAN,
+			SCAN_OUT_OF_RANGE,
+			COUNT // This item should always be the last in this list.
+		};
+
+	public:
 		constexpr Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, float alpha, double angle = 0.)
+			double disabled, double radius, Type type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
 				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
 
@@ -122,7 +147,7 @@ private:
 		double inner;
 		double disabled;
 		double radius;
-		int type;
+		Type type;
 		float alpha;
 		double angle;
 	};
@@ -142,7 +167,6 @@ private:
 private:
 	void EnterSystem();
 
-	void ThreadEntryPoint();
 	void CalculateStep();
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
@@ -169,7 +193,8 @@ private:
 	void DoGrudge(const std::shared_ptr<Ship> &target, const Government *attacker);
 
 	void CreateStatusOverlays();
-	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting, int value);
+	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
+		Status::Type type, double cloak);
 
 
 private:
@@ -188,14 +213,14 @@ private:
 	std::list<std::shared_ptr<Flotsam>> newFlotsam;
 	std::vector<Visual> newVisuals;
 
-	// Track which ships currently have anti-missiles ready to fire.
+	// Track which ships currently have anti-missiles or
+	// tractor beams ready to fire.
 	std::vector<Ship *> hasAntiMissile;
+	std::vector<Ship *> hasTractorBeam;
 
 	AI ai;
 
-	std::thread calcThread;
-	std::condition_variable condition;
-	std::mutex swapMutex;
+	TaskQueue queue;
 
 	// ES uses a technique called double buffering to calculate the next frame and render the current one simultaneously.
 	// To facilitate this, it uses two buffers for each list of things to draw - one for the next frame's calculations and
@@ -203,12 +228,10 @@ private:
 	// currently rendering buffer.
 	size_t currentCalcBuffer = 0;
 	size_t currentDrawBuffer = 0;
-	bool hasFinishedCalculating = true;
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
 
-	bool terminate = false;
 	bool wasActive = false;
 	bool isMouseHoldEnabled = false;
 	bool isMouseTurningEnabled = false;
@@ -222,17 +245,20 @@ private:
 	Point targetVector;
 	Point targetUnit;
 	int targetSwizzle = -1;
+	// Represents the state of the currently targeted ship when it was last seen,
+	// so the target display does not show updates to its state the player should not be aware of.
+	int lastTargetType = 0;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
+	std::vector<Outline> outlines;
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
-	const Sprite *highlightSprite = nullptr;
-	Point highlightUnit;
-	float highlightFrame = 0.f;
+	// Flagship's hyperspace percentage converted to a [0, 1] double.
+	double hyperspacePercentage = 0.;
 
 	int step = 0;
 
@@ -283,7 +309,3 @@ private:
 	int loadCount = 0;
 	double loadSum = 0.;
 };
-
-
-
-#endif

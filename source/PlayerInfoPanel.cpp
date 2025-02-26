@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfoPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -50,7 +51,7 @@ namespace {
 
 	// Draw a list of (string, value) pairs.
 	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
-		int maxCount = 0, bool drawValues = true)
+		int64_t titleValue, int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
 			return;
@@ -59,7 +60,7 @@ namespace {
 
 		if(otherCount > 0 && maxCount > 0)
 		{
-			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " Others)";
+			list[maxCount - 1].second = "(" + to_string(otherCount + 1) + " others)";
 			while(otherCount--)
 			{
 				list[maxCount - 1].first += list.back().first;
@@ -71,7 +72,7 @@ namespace {
 		table.DrawGap(10);
 		table.DrawUnderline(dim);
 		table.Draw(title, *GameData::Colors().Get("bright"));
-		table.Advance();
+		table.Draw(titleValue, dim);
 		table.DrawGap(5);
 
 		for(const auto &it : list)
@@ -101,7 +102,7 @@ namespace {
 			return false;
 		else if(rhs->GetSystem() == nullptr)
 			return true;
-		return lhs->GetSystem()->Name() < rhs->GetSystem()->Name();
+		return lhs->GetSystem()->DisplayName() < rhs->GetSystem()->DisplayName();
 	}
 
 	bool CompareShields(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
@@ -177,7 +178,15 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
 	: player(player), panelState(panelState)
 {
+	Audio::Pause();
 	SetInterruptible(false);
+}
+
+
+
+PlayerInfoPanel::~PlayerInfoPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -361,7 +370,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 			}
 			else if(shift)
 			{
-				if(panelState.AllSelected().count(selectedIndex))
+				if(panelState.AllSelected().contains(selectedIndex))
 					panelState.Deselect(panelState.SelectedIndex());
 				if(isValidIndex)
 					panelState.SetSelectedIndex(selectedIndex);
@@ -522,7 +531,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 	if(panelState.CanEdit() && (shift || control || clicks < 2))
 	{
 		// If the control+click was on an already selected ship, deselect it.
-		if(control && panelState.AllSelected().count(hoverIndex))
+		if(control && panelState.AllSelected().contains(hoverIndex))
 			panelState.Deselect(hoverIndex);
 		else
 		{
@@ -536,7 +545,7 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 				panelState.SelectMany(start, end + 1);
 				panelState.SetSelectedIndex(hoverIndex);
 			}
-			else if(panelState.AllSelected().count(hoverIndex))
+			else if(panelState.AllSelected().contains(hoverIndex))
 			{
 				// If the click is on an already selected line, start dragging
 				// but do not change the selection.
@@ -664,20 +673,20 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	vector<pair<int64_t, string>> salary;
 	for(const auto &it : player.Accounts().SalariesIncome())
 		salary.emplace_back(it.second, it.first);
-	sort(salary.begin(), salary.end());
-	DrawList(salary, table, "salary:", 4);
+	sort(salary.begin(), salary.end(), std::greater<>());
+	DrawList(salary, table, "salary:", player.Accounts().SalariesIncomeTotal(), 4);
 
 	vector<pair<int64_t, string>> tribute;
 	for(const auto &it : player.GetTribute())
 		tribute.emplace_back(it.second, it.first->TrueName());
-	sort(tribute.begin(), tribute.end());
-	DrawList(tribute, table, "tribute:", 4);
+	sort(tribute.begin(), tribute.end(), std::greater<>());
+	DrawList(tribute, table, "tribute:", player.GetTributeTotal(), 4);
 
 	int maxRows = static_cast<int>(250. - 30. - table.GetPoint().Y()) / 20;
 	vector<pair<int64_t, string>> licenses;
 	for(const auto &it : player.Licenses())
 		licenses.emplace_back(1, it);
-	DrawList(licenses, table, "licenses:", maxRows, false);
+	DrawList(licenses, table, "licenses:", licenses.size(), maxRows, false);
 }
 
 
@@ -741,7 +750,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		// Check if this row is selected.
 		if(panelState.SelectedIndex() == index)
 			table.DrawHighlight(selectedBack);
-		else if(panelState.AllSelected().count(index))
+		else if(panelState.AllSelected().contains(index))
 			table.DrawHighlight(back);
 
 		// Find out if the mouse is hovering over the ship
@@ -771,7 +780,7 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 		table.Draw(ship.DisplayModelName());
 
 		const System *system = ship.GetSystem();
-		table.Draw(system ? system->Name() : "");
+		table.Draw(system ? (player.KnowsName(*system) ? system->DisplayName() : "???") : "");
 
 		string shields = to_string(static_cast<int>(100. * max(0., ship.Shields()))) + "%";
 		table.Draw(shields);
@@ -814,6 +823,9 @@ void PlayerInfoPanel::DrawFleet(const Rectangle &bounds)
 // Sorts the player's fleet given a comparator function (based on column).
 void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 {
+	if(panelState.Ships().empty())
+		return;
+
 	// Clicking on a sort column twice reverses the comparison.
 	if(panelState.CurrentSort() == shipComparator)
 		shipComparator = GetReverseCompareFrom(*shipComparator);
@@ -842,7 +854,12 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 		shipComparator
 	);
 
+	// Ships are now sorted.
+	panelState.SetCurrentSort(shipComparator);
+
 	// Load the same selected ships from before the sort.
+	if(selectedShips.empty())
+		return;
 	auto it = selectedShips.begin();
 	for(size_t i = 0; i < panelState.Ships().size(); ++i)
 		if(panelState.Ships()[i] == *it)
@@ -856,9 +873,6 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 			if(it == selectedShips.end())
 				break;
 		}
-
-	// Ships are now sorted.
-	panelState.SetCurrentSort(shipComparator);
 }
 
 
