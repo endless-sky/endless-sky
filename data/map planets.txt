@@ -4035,6 +4035,7 @@ planet "New Tortuga"
 	description `	Underneath the surface resides a diverse culture of former slaves and Syndicate dissidents. Their economy is mostly self-sufficient, smuggling high-value manufactured goods to pay for niche needs and luxuries. The Syndicate often destroys pirate factories at their borders, but they cannot strike as deep as New Tortuga. Here, shipyards, factories, and outfitters provide a continuous supply of goods and services. Rumors abound of shadowy research groups advancing unknown objectives.`
 	spaceport `As you walk through the spaceport, scattered amidst the bars and black-markets, you notice a surprising number of religious buildings. There are a variety of churches, synagogues, mosques, temples, and others you can't quite remember the names of. Most of the shops are run not by pirates, but by ordinary folk, many wearing religious garb. The citizens here interact with pirates with friendliness and warmth, rather than the hostility and fear you see on other pirate worlds.`
 	spaceport `	The relative peace is frequently broken by a pirate band wandering through the spaceport. While perhaps an auditory nuisance, the pirates here are generally more obedient and disciplined than those seen on other planets. Their ships are more advanced too, judging by the armaments and engines you noticed in the hangar.`
+	government "Independent (Korath-Allied)"
 	shipyard "Basic Ships"
 	shipyard "Core Pirates"
 	shipyard "Advanced Core Pirates"
