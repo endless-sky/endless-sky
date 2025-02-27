@@ -227,7 +227,8 @@ mission "Rebel Jibauni: Government Transportation 1"
 		not "jibauni: disliked by the rebels"
 	on offer
 		conversation
-			`A Rebel Jibauni comes up and growls something in its native tongue. Your translator converts it to: "Take me to <planet> for our leaders and the good of the Rebel Jibauni. Do not dare refuse. This has been 'Requested by the Real Jibauni'."`				accept
+			`A Rebel Jibauni comes up and growls something in its native tongue. Your translator converts it to: "Take me to <planet> for our leaders and the good of the Rebel Jibauni. Do not dare refuse. This has been 'Requested by the Real Jibauni'."`
+				accept
 	on complete
 		event "rebel jibauni: first transportation done and second ready to offer" 2 14
 		conversation
