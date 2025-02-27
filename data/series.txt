@@ -29,15 +29,6 @@
 # 99xxx : Other
 
 category "series"
-	# Weapons
-	"Avgi: Beams" 600
-	"Avgi: Kinetics" 610
-	"Avgi: Missiles" 620
-	# Systems
-	"Avgi: Shields" 630
-	"Avgi: Fuel" 640
-	"Avgi: Laminae" 650
-	"Avgi: Sensors" 660
 	# Guns
 	"Guns" 100
 	# Turrets

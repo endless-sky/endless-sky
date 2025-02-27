@@ -16,6 +16,8 @@
 
 outfit "Aberrant Spiker"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 05020
 	cost 1370000
 	thumbnail "outfit/unknown"
 	"mass" 23
@@ -80,6 +82,8 @@ effect "spiker impact"
 
 outfit "Nucleolysis Beam"
 	category "Guns"
+	series "Guns"
+	index 05040
 	cost 1900000
 	thumbnail "outfit/nucleolysis beam"
 	"flotsam sprite" "effect/flotsam nucleolysis beam"
@@ -111,6 +115,8 @@ outfit "Nucleolysis Beam"
 
 outfit "Telescopic Antimissile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 05010
 	cost 16000000
 	thumbnail "outfit/telescopic antimissile"
 	"flotsam sprite" "effect/flotsam telescopic antimissile"
@@ -136,6 +142,8 @@ outfit "Telescopic Antimissile"
 
 outfit "Anomalous Shield Restorer"
 	category "Systems"
+	series "Shields"
+	index 05030
 	cost 22000000
 	thumbnail "outfit/anomalous shield restorer"
 	"flotsam sprite" "effect/flotsam anomalous shield restorer"
@@ -152,6 +160,8 @@ outfit "Anomalous Shield Restorer"
 
 outfit "Antimatter Power Cell"
 	category "Power"
+	series "Generators"
+	index 05020
 	cost 11000000
 	thumbnail "outfit/antimatter power cell"
 	"flotsam sprite" "effect/flotsam antimatter power cell"

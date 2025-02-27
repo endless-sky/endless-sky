@@ -16,9 +16,9 @@
 
 outfit "Radiative Lamina"
 	plural "Radiative Laminae"
-	series "Avgi: Laminae"
-	index 10
 	category "Systems"
+	series "Special Systems"
+	index 07010
 	cost 120000
 	thumbnail "outfit/radiative lamina"
 	"mass" 12
@@ -31,9 +31,9 @@ outfit "Radiative Lamina"
 
 outfit "Concealment Lamina"
 	plural "Concealment Laminae"
-	series "Avgi: Laminae"
-	index 20
 	category "Systems"
+	series "Special Systems"
+	index 07020
 	licenses
 		"Twilight Guard"
 	cost 3000000
@@ -49,9 +49,9 @@ outfit "Concealment Lamina"
 
 
 outfit "Magnetic Scoop"
-	series "Avgi: Fuel"
-	index 10
 	category "Systems"
+	series "Ramscoops"
+	index 07010
 	cost 720000
 	thumbnail "outfit/magnetic scoop"
 	"mass" 9
@@ -65,9 +65,9 @@ outfit "Magnetic Scoop"
 
 
 outfit "Plasmadyne Scoop"
-	series "Avgi: Fuel"
-	index 20
 	category "Systems"
+	series "Ramscoops"
+	index 07020
 	cost 30000000
 	thumbnail "outfit/plasmadyne scoop"
 	"mass" 60
@@ -86,9 +86,9 @@ outfit "Plasmadyne Scoop"
 
 
 outfit "Deuterium Slush Tank"
-	series "Avgi: Fuel"
-	index 30
 	category "Systems"
+	series "Fuel"
+	index 07010
 	cost 240000
 	thumbnail "outfit/deuterium slush tank"
 	"mass" 3
@@ -100,9 +100,9 @@ outfit "Deuterium Slush Tank"
 
 
 outfit "Cryogenic Deuterium Tank"
-	series "Avgi: Fuel"
-	index 40
 	category "Systems"
+	series "Fuel"
+	index 07020
 	cost 120000
 	thumbnail "outfit/cryogenic deuterium tank"
 	"mass" 12
@@ -113,9 +113,9 @@ outfit "Cryogenic Deuterium Tank"
 
 
 outfit "Heatsink Partition"
-	series "Avgi: Fuel"
-	index 50
 	category "Systems"
+	series "Fuel"
+	index 07030
 	cost 60000
 	thumbnail "outfit/heatsink partition"
 	"mass" 9
@@ -126,9 +126,9 @@ outfit "Heatsink Partition"
 
 
 outfit "Multispectral Scanner"
-	series "Avgi: Sensors"
-	index 10
 	category "Systems"
+	series "Scanners"
+	index 07010
 	cost 360000
 	thumbnail "outfit/multispectral scanner"
 	"mass" 6
@@ -141,9 +141,9 @@ outfit "Multispectral Scanner"
 
 
 outfit "Spectrometer Array"
-	series "Avgi: Sensors"
-	index 20
 	category "Systems"
+	series "Scanners"
+	index 07020
 	cost 450000
 	thumbnail "outfit/spectrometer array"
 	"mass" 9
@@ -160,9 +160,9 @@ outfit "Spectrometer Array"
 
 
 outfit "Diffuse Deflector"
-	series "Avgi: Shields"
-	index 10
 	category "Systems"
+	series "Shields"
+	index 07010
 	cost 450000
 	thumbnail "outfit/diffuse deflector"
 	"mass" 48
@@ -177,9 +177,9 @@ outfit "Diffuse Deflector"
 
 
 outfit "Specular Deflector"
-	series "Avgi: Shields"
-	index 20
 	category "Systems"
+	series "Shields"
+	index 07020
 	cost 1200000
 	thumbnail "outfit/specular deflector"
 	"mass" 72
@@ -198,6 +198,8 @@ outfit "Specular Deflector"
 
 outfit "Concentrating Solar Cell"
 	category "Power"
+	series "Solar"
+	index 07010
 	cost 12000
 	thumbnail "outfit/concentrating solar cell"
 	"mass" 1
@@ -209,6 +211,8 @@ outfit "Concentrating Solar Cell"
 
 outfit "Concentrating Solar Array"
 	category "Power"
+	series "Solar"
+	index 07020
 	cost 90000
 	thumbnail "outfit/concentrating solar array"
 	"mass" 3
@@ -221,9 +225,9 @@ outfit "Concentrating Solar Array"
 
 outfit "Photoelectric Lamina"
 	plural "Photoelectric Laminae"
-	series "Avgi: Laminae"
-	index 30
 	category "Power"
+	series "Solar"
+	index 07030
 	cost 420000
 	thumbnail "outfit/photoelectric lamina"
 	"mass" 24
@@ -236,6 +240,8 @@ outfit "Photoelectric Lamina"
 
 outfit "Lantern Fission Core"
 	category "Power"
+	series "Generators"
+	index 07010
 	cost 1500000
 	thumbnail "outfit/lantern fission core"
 	"mass" 24
@@ -249,6 +255,8 @@ outfit "Lantern Fission Core"
 
 outfit "Ultracapacitor Cell"
 	category "Power"
+	series "Batteries"
+	index 07010
 	cost 14400
 	thumbnail "outfit/ultracapacitor cell"
 	"mass" 1
@@ -261,6 +269,8 @@ outfit "Ultracapacitor Cell"
 	
 outfit "Ultracapacitor Bank"
 	category "Power"
+	series "Batteries"
+	index 07020
 	cost 72000
 	thumbnail "outfit/ultracapacitor bank"
 	"mass" 6
@@ -274,9 +284,9 @@ outfit "Ultracapacitor Bank"
 # Engines:
 
 outfit "Magnetoplasma Drive"
-	series "Avgi: Thrusters"
-	index 40
 	category "Engines"
+	series "Engines"
+	index 07010
 	"cost" 27000
 	thumbnail "outfit/magnetoplasma drive"
 	"mass" 12
@@ -307,8 +317,8 @@ outfit "Magnetoplasma Drive"
 
 outfit `Z-333 "Spark" Fusion Torch`
 	category "Engines"
-	series "Avgi: Thrusters"
-	index 50
+	series "Engines"
+	index 07021
 	licenses
 		"Avgi Torch"
 	"cost" 1800000
@@ -333,8 +343,8 @@ outfit `Z-333 "Spark" Fusion Torch`
 
 outfit `Z-666 "Zap" Fusion Torch`
 	category "Engines"
-	series "Avgi: Thrusters"
-	index 60
+	series "Engines"
+	index 07031
 	licenses
 		"Avgi Torch"
 	"cost" 3900000
@@ -358,8 +368,8 @@ outfit `Z-666 "Zap" Fusion Torch`
 
 outfit `Z-999 "Arc" Fusion Torch`
 	category "Engines"
-	series "Avgi: Thrusters"
-	index 70
+	series "Engines"
+	index 07041
 	licenses
 		"Avgi Torch"
 	"cost" 6000000
@@ -404,9 +414,9 @@ effect "large remass injection"
 
 
 outfit "Remass Injector"
-	series "Avgi: Thrusters"
-	index 100
 	category "Engines"
+	series "Engines"
+	index 07099
 	licenses
 		"Avgi Torch"
 	"cost" 90000
@@ -424,9 +434,9 @@ outfit "Remass Injector"
 
 
 outfit "Inductive Extractor"
-	series "Avgi: Thrusters"
-	index 90
 	category "Engines"
+	series "Engines"
+	index 07098
 	licenses
 		"Avgi Torch"
 	"cost" 120000
@@ -446,9 +456,9 @@ outfit "Inductive Extractor"
 
 outfit "R-180 RCS Thrusters"
 	plural "R-180 RCS Thrusters"
-	series "Avgi: Thrusters"
-	index 10
 	category "Engines"
+	series "Engines"
+	index 07020
 	"cost" 54000
 	thumbnail "outfit/rcs small"
 	"mass" 18
@@ -473,9 +483,9 @@ outfit "R-180 RCS Thrusters"
 
 outfit "R-360 RCS Thrusters"
 	plural "R-360 RCS Thrusters"
-	series "Avgi: Thrusters"
-	index 20
 	category "Engines"
+	series "Engines"
+	index 07030
 	"cost" 126000
 	thumbnail "outfit/rcs medium"
 	"mass" 36
@@ -500,9 +510,9 @@ outfit "R-360 RCS Thrusters"
 
 outfit "R-720 RCS Thrusters"
 	plural "R-720 RCS Thrusters"
-	series "Avgi: Thrusters"
-	index 30
 	category "Engines"
+	series "Engines"
+	index 07040
 	"cost" 270000
 	thumbnail "outfit/rcs large"
 	"mass" 72
@@ -528,8 +538,8 @@ outfit "R-720 RCS Thrusters"
 # Flare sprite temporarily scaled down due to visual impairment concerns.
 outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
-	series "Avgi: Thrusters"
-	index 80
+	series "Engines"
+	index 07051
 	"cost" 300000000
 	thumbnail "outfit/beam antimatter torch"
 	"mass" 3600
@@ -560,6 +570,8 @@ outfit `Z-3600 "Beam" Amat Torch`
 
 outfit "Optical Laser Rifle"
 	category "Hand to Hand"
+	series "H2H"
+	index 07010
 	cost 12000
 	thumbnail "outfit/optical laser rifle"
 	"capture attack" 0.9
@@ -571,6 +583,8 @@ outfit "Optical Laser Rifle"
 
 outfit "Trefoil Board"
 	category "Unique"
+	series "Functional Unique"
+	index 07010
 	cost 69000
 	thumbnail "outfit/trefoil board"
 	"capture attack" 0.3
@@ -591,6 +605,8 @@ outfit "Damselflyman"
 
 outfit "Lancet Adamant"
 	category "Unique"
+	series "Functional Unique"
+	index 07020
 	cost 3000000
 	thumbnail "outfit/unknown"
 	"capture attack" 3
@@ -601,12 +617,18 @@ outfit "Lancet Adamant"
 
 outfit "Twilight Guard License"
 	category "Licenses"
+	series "Licenses"
+	index 07010
 	thumbnail "outfit/unknown"
 
 outfit "Avgi Torch License"
 	category "Licenses"
+	series "Licenses"
+	index 07020
 	thumbnail "outfit/unknown"
 
 outfit "Avgi Atomics License"
 	category "Licenses"
+	series "Licenses"
+	index 07020
 	thumbnail "outfit/unknown"
