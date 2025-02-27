@@ -8297,7 +8297,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Walk inside.)`
 
 			`	The woman before you is middle-aged and unusually gaunt, she has the hollowed out appearance of a person whose lived too long in Rand's frail gravity. She's attractive though, and there is something very familiar about her face. You've met her before...`
-			`	"Captain <last>!" She says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
+			`	"Captain <last>!" she says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
 			`	She glances down at herself as if recognizing her body's transformation from offworld solid to Rander waif. "I dare say the world has changed me now that I'm away from the gravity generators.`
 			`	"Although I am no longer a secretary, I am Union-Colonel Wynnfrith, one of the leaders of the Underground Workers Union!" Her eyes sparkle and her words ring with a deadly seriousness.`
 			`	She tilts her head slightly. "But that's enough about me. What possible reason could you have for coming here?" Her face is open and friendly, but she casually rests her hand on her side arm.`
