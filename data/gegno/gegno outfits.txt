@@ -16,8 +16,8 @@
 outfit "R01 Skirmish Battery"
 	plural "R01 Skirmish Batteries"
 	category "Power"
-	series "Batteries: Gegno"
-	index 10
+	series "Batteries"
+	index 06010
 	licenses
 		"Gegno Civilian"
 	cost 5900
@@ -31,8 +31,8 @@ outfit "R01 Skirmish Battery"
 outfit "R02 Battlezone Battery"
 	plural "R02 Battlezone Batteries"
 	category "Power"
-	series "Batteries: Gegno"
-	index 20
+	series "Batteries"
+	index 06020
 	licenses
 		"Gegno Civilian"
 	cost 12600
@@ -46,8 +46,8 @@ outfit "R02 Battlezone Battery"
 outfit "R03 Warforge Battery"
 	plural "R03 Warforge Batteries"
 	category "Power"
-	series "Batteries: Gegno"
-	index 30
+	series "Batteries"
+	index 06030
 	licenses
 		"Gegno Civilian"
 	cost 27800
@@ -61,8 +61,8 @@ outfit "R03 Warforge Battery"
 outfit "R04 Crusade Battery"
 	plural "R04 Crusade Batteries"
 	category "Power"
-	series "Batteries: Gegno"
-	index 40
+	series "Batteries"
+	index 06040
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -78,8 +78,8 @@ outfit "R04 Crusade Battery"
 
 outfit "C3 Scrap Cell"
 	category "Power"
-	series "Generators: Gegno"
-	index 10
+	series "Generators"
+	index 06010
 	licenses
 		"Gegno Civilian"
 	cost 47000
@@ -93,8 +93,8 @@ outfit "C3 Scrap Cell"
 
 outfit "C7 Brawl Cell"
 	category "Power"
-	series "Generators: Gegno"
-	index 20
+	series "Generators"
+	index 06020
 	licenses
 		"Gegno Civilian"
 	cost 64000
@@ -108,8 +108,8 @@ outfit "C7 Brawl Cell"
 
 outfit "C17 Warzone Core"
 	category "Power"
-	series "Generators: Gegno"
-	index 30
+	series "Generators"
+	index 06030
 	licenses
 		"Gegno Civilian"
 	cost 1620000
@@ -123,8 +123,8 @@ outfit "C17 Warzone Core"
 
 outfit "C27 Campaign Core"
 	category "Power"
-	series "Generators: Gegno"
-	index 40
+	series "Generators"
+	index 06040
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -141,8 +141,8 @@ outfit "C27 Campaign Core"
 
 outfit "I70 Ameliorate Cell"
 	category "Power"
-	series "Generators: Gegno"
-	index 50
+	series "Generators"
+	index 06050
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -161,8 +161,8 @@ outfit "I70 Ameliorate Cell"
 
 outfit "RG15 Torch Thruster"
 	category "Engines"
-	series "Engines: Gegno"
-	index 11
+	series "Engines"
+	index 06011
 	licenses
 		"Gegno Civilian"
 	cost 17000
@@ -181,8 +181,8 @@ outfit "RG15 Torch Thruster"
 
 outfit "RG15 Torch Steering"
 	category "Engines"
-	series "Engines: Gegno"
-	index 10
+	series "Engines"
+	index 06010
 	licenses
 		"Gegno Civilian"
 	cost 15000
@@ -201,8 +201,8 @@ outfit "RG15 Torch Steering"
 
 outfit "RG18 Torch Thruster"
 	category "Engines"
-	series "Engines: Gegno"
-	index 21
+	series "Engines"
+	index 06021
 	licenses
 		"Gegno Civilian"
 	cost 38000
@@ -221,8 +221,8 @@ outfit "RG18 Torch Thruster"
 
 outfit "RG18 Torch Steering"
 	category "Engines"
-	series "Engines: Gegno"
-	index 20
+	series "Engines"
+	index 06020
 	licenses
 		"Gegno Civilian"
 	cost 32000
@@ -241,8 +241,8 @@ outfit "RG18 Torch Steering"
 
 outfit "RG3 Torch Thruster"
 	category "Engines"
-	series "Engines: Gegno"
-	index 31
+	series "Engines"
+	index 06031
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -264,8 +264,8 @@ outfit "RG3 Torch Thruster"
 
 outfit "RG3 Torch Steering"
 	category "Engines"
-	series "Engines: Gegno"
-	index 30
+	series "Engines"
+	index 06030
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -288,8 +288,8 @@ outfit "RG3 Torch Steering"
 outfit "SC-1 Plasma Engines"
 	plural "SC-1 Plasma Engines"
 	category "Engines"
-	series "Engines: Gegno"
-	index 40
+	series "Engines"
+	index 06040
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -316,8 +316,8 @@ outfit "SC-1 Plasma Engines"
 
 outfit "SC-12 Plasma Thruster"
 	category "Engines"
-	series "Engines: Gegno"
-	index 51
+	series "Engines"
+	index 06051
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -337,8 +337,8 @@ outfit "SC-12 Plasma Thruster"
 
 outfit "SC-12 Plasma Steering"
 	category "Engines"
-	series "Engines: Gegno"
-	index 50
+	series "Engines"
+	index 06050
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -358,8 +358,8 @@ outfit "SC-12 Plasma Steering"
 
 outfit "SC-14 Plasma Thruster"
 	category "Engines"
-	series "Engines: Gegno"
-	index 61
+	series "Engines"
+	index 06061
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -379,8 +379,8 @@ outfit "SC-14 Plasma Thruster"
 
 outfit "SC-14 Plasma Steering"
 	category "Engines"
-	series "Engines: Gegno"
-	index 60
+	series "Engines"
+	index 06060
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -400,8 +400,8 @@ outfit "SC-14 Plasma Steering"
 
 outfit "SC-15 Plasma Thrusters"
 	plural "SC-15 Plasma Thrusters"
-	series "Engines: Gegno"
-	index 70
+	series "Engines"
+	index 06070
 	category "Engines"
 	licenses
 		"Gegno Civilian"
@@ -430,8 +430,8 @@ outfit "SC-15 Plasma Thrusters"
 
 outfit "Irate Cannon"
 	category "Guns"
-	series "Guns: Gegno"
-	index 10
+	series "Guns"
+	index 06010
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -461,8 +461,8 @@ outfit "Irate Cannon"
 
 outfit "Irate Cannon Turret"
 	category "Turrets"
-	series "Turrets: Gegno"
-	index 10
+	series "Turrets"
+	index 06010
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -513,8 +513,8 @@ effect "irate smoke"
 
 outfit "Choleric Cannon"
 	category "Guns"
-	series "Guns: Gegno"
-	index 20
+	series "Guns"
+	index 06020
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -545,8 +545,8 @@ outfit "Choleric Cannon"
 
 outfit "Choleric Cannon Turret"
 	category "Turrets"
-	series "Turrets: Gegno"
-	index 20
+	series "Turrets"
+	index 06020
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -598,8 +598,8 @@ effect "choleric smoke"
 
 outfit "Ballistic Cannon"
 	category "Guns"
-	series "Guns: Gegno"
-	index 30
+	series "Guns"
+	index 06030
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -633,8 +633,8 @@ outfit "Ballistic Cannon"
 
 outfit "Ballistic Cannon Turret"
 	category "Turrets"
-	series "Turrets: Gegno"
-	index 30
+	series "Turrets"
+	index 06030
 	licenses
 		"Gegno Civilian"
 		"Vi Evocati"
@@ -699,8 +699,8 @@ effect "ballistic smoke"
 
 outfit "Astuit Battery"
 	category "Turrets"
-	series "Turrets: Gegno"
-	index 40
+	series "Turrets"
+	index 06040
 	licenses
 		"Gegno Civilian"
 		"Scin Adjutant"
@@ -738,8 +738,8 @@ effect "astuit hit"
 outfit "Acuit Artillery"
 	plural "Acuit Artillery"
 	category "Turrets"
-	series "Turrets: Gegno"
-	index 50
+	series "Turrets"
+	index 06050
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -779,8 +779,8 @@ effect "acuit hit"
 
 outfit "Acumen Bolt Cannon"
 	category "Guns"
-	series "Guns: Gegno"
-	index 40
+	series "Guns"
+	index 06040
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -823,8 +823,8 @@ effect "neutron explosion"
 
 outfit "Guile Pulse Laser"
 	category "Guns"
-	series "Guns: Gegno"
-	index 50
+	series "Guns"
+	index 06050
 	licenses
 		"Gegno Civilian"
 		"Scin Hoplologist"
@@ -856,8 +856,8 @@ outfit "Guile Pulse Laser"
 
 outfit "Excavator"
 	category "Guns"
-	series "Guns: Gegno"
-	index 60
+	series "Guns"
+	index 06060
 	licenses
 		"Gegno Civilian"
 	cost 500000
@@ -899,8 +899,8 @@ effect "excavate"
 
 outfit "Burrower"
 	category "Guns"
-	series "Guns: Gegno"
-	index 70
+	series "Guns"
+	index 06070
 	licenses
 		"Gegno Civilian"
 		"Gegno Driller"
@@ -947,8 +947,8 @@ effect "burrow"
 
 outfit "Ion Torch"
 	category "Guns"
-	series "Guns: Gegno"
-	index 80
+	series "Guns"
+	index 06080
 	licenses
 		"Gegno Civilian"
 		"Gegno Driller"
@@ -988,8 +988,8 @@ outfit "Ion Torch"
 
 outfit "Savagery Bludgeon"
 	category "Guns"
-	series "Guns: Gegno"
-	index 90
+	series "Guns"
+	index 06090
 	cost 10000
 	licenses
 		"Vi Evocati"
@@ -1019,8 +1019,8 @@ effect "bludgeon impact"
 
 outfit "Savagery Pike"
 	category "Hand to Hand"
-	series "H2H: Gegno"
-	index 10
+	series "H2H"
+	index 06010
 	licenses
 		"Vi Evocati"
 		"Vi Centurion"
@@ -1033,8 +1033,8 @@ outfit "Savagery Pike"
 
 outfit "Irate Carronade"
 	category "Hand to Hand"
-	series "Fortifications: Gegno"
-	index 10
+	series "Fortifications"
+	index 06010
 	licenses
 		"Vi Centurion"
 	cost 39000
@@ -1047,8 +1047,8 @@ outfit "Irate Carronade"
 	
 outfit "Plasmasickle"
 	category "Hand to Hand"
-	series "H2H: Gegno"
-	index 20
+	series "H2H"
+	index 06020
 	licenses
 		"Scin Hoplologist"
 	cost 11000
@@ -1061,8 +1061,8 @@ outfit "Plasmasickle"
 outfit "Plasma Grenades"
 	plural "Plasma Grenades"
 	category "Hand to Hand"
-	series "H2H: Gegno"
-	index 30
+	series "H2H"
+	index 06030
 	licenses
 		"Scin Hoplologist"
 	cost 60000
@@ -1078,56 +1078,56 @@ outfit "Plasma Grenades"
 
 outfit "Gegno Civilian License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 10
+	series "Licenses"
+	index 06010
 	thumbnail "outfit/unknown"
 	description "You have been accepted as a titular Gegno citizen who provides benefits for the Gegno race, and have been awarded access to their civilian technology."
 
 outfit "Gegno Driller License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 20
+	series "Licenses"
+	index 06020
 	thumbnail "outfit/unknown"
 	description "The Gegno now acknowledge your resourcefulness and ability to deliver more than acceptable results of work. You have been bestowed the right of access to their mining technology."
 
 outfit "Vi Lord License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 50
+	series "Licenses"
+	index 06050
 	thumbnail "outfit/unknown"
 	description "A majority of the Vi's military hierarchy recognizes you as a respectable foe and invaluable asset for their ambitions. The responsibility of maintaining the largest of Vi vessels is now within your grasp."
 	
 outfit "Vi Centurion License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 40
+	series "Licenses"
+	index 06040
 	thumbnail "outfit/unknown"
 	description "Amongst the Vi's Evocati you have proven yourself as a powerful leader in combat and a successful user of judgment. Access to a portion of the Vi's military arsenal awaits your interests."
 
 outfit "Vi Evocati License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 30
+	series "Licenses"
+	index 06030
 	thumbnail "outfit/unknown"
 	description "The Gegno Vi have recognized you as a committed warrior to their cause, and see usefulness in you. Low level Vi technology now becomes accessible for your leisure."
 
 outfit "Scin Hoplologist License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 70
+	series "Licenses"
+	index 06070
 	thumbnail "outfit/unknown"
 	description "Your intelligence is most desirable in the eyes of the Gegno Scin, and your reward is the usage of advanced Scin weaponry."
 
 outfit "Scin Architect License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 80
+	series "Licenses"
+	index 06080
 	thumbnail "outfit/unknown"
 	description "Showing that you are advantageous to the Scin's constructive efforts, you are now given permission to operate their most advanced vessels."
 
 outfit "Scin Adjutant License"
 	category "Licenses"
-	series "Licenses: Gegno"
-	index 60
+	series "Licenses"
+	index 06060
 	thumbnail "outfit/unknown"
 	description "Productive acts perpetrated by you have raised the interests of the Gegno Scin, and they authorize you to purchase their most basic technology."
