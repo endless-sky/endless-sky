@@ -13,23 +13,23 @@
 
 outfit "Successor License"
 	category "Licenses"
-	series "Licenses: Successors"
-	index 10
+	series "Licenses"
+	index 11010
 	thumbnail "outfit/successor license"
 	description "Presented to you by the High Houses in council, this small blue and white pin is an emblem of Successor diplomacy. Given to an alien such as yourself, it communicates their trust and confidence, and with it, their willingness to sell you their civilian-grade technology."
 
 outfit "High Houses License"
 	category "Licenses"
-	series "Licenses: Successors"
-	index 20
+	series "Licenses"
+	index 11020
 	thumbnail "outfit/successor license"
 	description "The High Houses produce most of the advanced technology present in Successor space, and restrict its purchase to only those individuals and groups who support their interests. By aligning yourself with one of the houses, you have earned the right to purchase this exclusive technology."
 
 
 outfit `"Byiaa" Shield Cortex`
 	category "Systems"
-	series "Shields: Successors"
-	index 10
+	series "Shields"
+	index 11010
 	licenses
 		"Successor"
 	cost 225000
@@ -44,8 +44,8 @@ outfit `"Byiaa" Shield Cortex`
 
 outfit `"Ej" Shield Cortex`
 	category "Systems"
-	series "Shields: Successors"
-	index 20
+	series "Shields"
+	index 11020
 	licenses
 		"Successor"
 	cost 565000
@@ -60,8 +60,8 @@ outfit `"Ej" Shield Cortex`
 
 outfit `"Jaase" Shield Cortex`
 	category "Systems"
-	series "Shields: Successors"
-	index 30
+	series "Shields"
+	index 11030
 	licenses
 		"High Houses"
 	cost 3550000
@@ -76,8 +76,8 @@ outfit `"Jaase" Shield Cortex`
 
 outfit `"Jorv" Shield Cortex`
 	category "Systems"
-	series "Shields: Successors"
-	index 40
+	series "Shields"
+	index 11040
 	cost 8250000
 	thumbnail "outfit/large successor shield"
 	licenses
@@ -94,8 +94,8 @@ outfit "Shield Cortex Interface"
 	category "Systems"
 	cost 250000
 	thumbnail "outfit/shield cortex interface"
-	series "Shields: Successors"
-	index 99
+	series "Shields"
+	index 11099
 	licenses
 		"Successor"
 	mass 3
@@ -108,8 +108,8 @@ outfit "Shield Cortex Interface"
 
 outfit `1-"Uurau" Betavoltaic Cell`
 	category "Power"
-	series "Generators: Successors"
-	index 10
+	series "Generators"
+	index 11010
 	licenses
 		Successor
 	cost 120000
@@ -123,8 +123,8 @@ outfit `1-"Uurau" Betavoltaic Cell`
 
 outfit `OC-"Mavra" Betavoltaic Cell`
 	category "Power"
-	series "Generators: Successors"
-	index 40
+	series "Generators"
+	index 11040
 	licenses
 		Successor
 	cost 540000
@@ -138,8 +138,8 @@ outfit `OC-"Mavra" Betavoltaic Cell`
 
 outfit `3-"Kaska" Betavoltaic Cell`
 	category "Power"
-	series "Generators: Successors"
-	index 20
+	series "Generators"
+	index 11020
 	licenses
 		Successor
 	cost 455000
@@ -153,8 +153,8 @@ outfit `3-"Kaska" Betavoltaic Cell`
 
 outfit `6-"Ruuv" Betavoltaic Cell`
 	category "Power"
-	series "Generators: Successors"
-	index 30
+	series "Generators"
+	index 11030
 	licenses
 		Successor
 	cost 950000
@@ -169,8 +169,8 @@ outfit `6-"Ruuv" Betavoltaic Cell`
 
 outfit "Auxiliary Power Reserve"
 	category "Power"
-	series "Batteries: Successors"
-	index 10
+	series "Batteries"
+	index 11010
 	cost 60000
 	thumbnail "outfit/small successor battery"
 	licenses
@@ -183,8 +183,8 @@ outfit "Auxiliary Power Reserve"
 
 outfit "Primary Power Reserve"
 	category "Power"
-	series "Batteries: Successors"
-	index 10
+	series "Batteries"
+	index 11010
 	cost 320000
 	thumbnail "outfit/large successor battery"
 	licenses
@@ -198,8 +198,8 @@ outfit "Primary Power Reserve"
 
 outfit `"Nnesa" Fusion Core`
 	category "Power"
-	series "Generators: Successors"
-	index 50
+	series "Generators"
+	index 11050
 	cost 4754000
 	thumbnail "outfit/small successor reactor"
 	licenses
@@ -214,8 +214,8 @@ outfit `"Nnesa" Fusion Core`
 
 outfit `"Ryuit" Fusion Core`
 	category "Power"
-	series "Generators: Successors"
-	index 60
+	series "Generators"
+	index 11060
 	cost 12250000
 	thumbnail "outfit/medium successor reactor"
 	licenses
@@ -231,8 +231,8 @@ outfit `"Ryuit" Fusion Core`
 
 outfit `"Uoret" Fusion Core`
 	category "Power"
-	series "Generators: Successors"
-	index 70
+	series "Generators"
+	index 11070
 	cost 17754000
 	thumbnail "outfit/large successor reactor"
 	licenses
@@ -248,8 +248,8 @@ outfit `"Uoret" Fusion Core`
 
 outfit "Successor Cooling"
 	category "Systems"
-	series "Cooling: Successors"
-	index 10
+	series "Cooling"
+	index 11010
 	cost 94000
 	thumbnail "outfit/successor cooling"
 	licenses
@@ -264,8 +264,8 @@ outfit "Successor Cooling"
 
 outfit "Successor Fuel Sail"
 	category "Systems"
-	series "Ramscoops: Successors"
-	index 10
+	series "Ramscoops"
+	index 11010
 	cost 112000
 	thumbnail "outfit/fuel sail"
 	licenses
@@ -280,8 +280,8 @@ outfit "Successor Fuel Sail"
 
 outfit `"Veldt" Combat Scanner`
 	category "Systems"
-	series "Scanners: Successors"
-	index 20
+	series "Scanners"
+	index 11020
 	cost 220000
 	thumbnail "outfit/veldt combat scanner"
 	licenses
@@ -297,8 +297,8 @@ outfit `"Veldt" Combat Scanner`
 
 outfit `"Tuur" Scanning Suite`
 	category "Systems"
-	series "Scanners: Successors"
-	index 10
+	series "Scanners"
+	index 11010
 	cost 220000
 	thumbnail "outfit/tuur scanning suite"
 	licenses
@@ -315,8 +315,8 @@ outfit `"Tuur" Scanning Suite`
 outfit `"Niis" Inductive Engines`
 	plural `"Niis" Inductive Engines`
 	category "Engines"
-	series "Engines: Successors"
-	index 10
+	series "Engines"
+	index 11010
 	"cost" 255000
 	thumbnail "outfit/successor engines tiny"
 	licenses
@@ -344,8 +344,8 @@ outfit `"Niis" Inductive Engines`
 
 outfit `"Aqra" Inductive Thruster`
 	category "Engines"
-	series "Engines: Successors"
-	index 21
+	series "Engines"
+	index 11021
 	"cost" 150000
 	thumbnail "outfit/small successor thruster"
 	licenses
@@ -368,8 +368,8 @@ outfit `"Aqra" Inductive Thruster`
 
 outfit `"Aqra" Inductive Steering`
 	category "Engines"
-	series "Engines: Successors"
-	index 20
+	series "Engines"
+	index 11020
 	"cost" 120000
 	thumbnail "outfit/small successor steering"
 	licenses
@@ -388,8 +388,8 @@ outfit `"Aqra" Inductive Steering`
 
 outfit `"Aqra" Inductive Reverser`
 	category "Engines"
-	series "Engines: Successors"
-	index 22
+	series "Engines"
+	index 11022
 	"cost" 140000
 	thumbnail "outfit/small successor reverse"
 	licenses
@@ -409,8 +409,8 @@ outfit `"Aqra" Inductive Reverser`
 
 outfit `"Chyyra" Inductive Thruster`
 	category "Engines"
-	series "Engines: Successors"
-	index 31
+	series "Engines"
+	index 11031
 	"cost" 680000
 	thumbnail "outfit/medium successor thruster"
 	licenses
@@ -433,8 +433,8 @@ outfit `"Chyyra" Inductive Thruster`
 
 outfit `"Chyyra" Inductive Steering`
 	category "Engines"
-	series "Engines: Successors"
-	index 30
+	series "Engines"
+	index 11030
 	"cost" 560000
 	thumbnail "outfit/medium successor steering"
 	licenses
@@ -453,8 +453,8 @@ outfit `"Chyyra" Inductive Steering`
 
 outfit `"Chyyra" Inductive Reverser`
 	category "Engines"
-	series "Engines: Successors"
-	index 32
+	series "Engines"
+	index 11032
 	"cost" 590000
 	thumbnail "outfit/medium successor reverse"
 	licenses
@@ -474,8 +474,8 @@ outfit `"Chyyra" Inductive Reverser`
 
 outfit `"Veusa" Inductive Thruster`
 	category "Engines"
-	series "Engines: Successors"
-	index 41
+	series "Engines"
+	index 11041
 	"cost" 3550000
 	thumbnail "outfit/large successor thruster"
 	licenses
@@ -498,8 +498,8 @@ outfit `"Veusa" Inductive Thruster`
 
 outfit `"Veusa" Inductive Steering`
 	category "Engines"
-	series "Engines: Successors"
-	index 40
+	series "Engines"
+	index 11040
 	"cost" 2925000
 	thumbnail "outfit/large successor steering"
 	licenses
@@ -518,8 +518,8 @@ outfit `"Veusa" Inductive Steering`
 
 outfit `"Veusa" Inductive Reverser`
 	category "Engines"
-	series "Engines: Successors"
-	index 42
+	series "Engines"
+	index 11042
 	"cost" 3050000
 	thumbnail "outfit/large successor reverse"
 	licenses
@@ -540,8 +540,8 @@ outfit `"Veusa" Inductive Reverser`
 
 outfit "Multimodal Armor: Heavy"
 	category "Systems"
-	series "Special Systems: Successors"
-	index 10
+	series "Special Systems"
+	index 11010
 	thumbnail "outfit/successor armor heavy"
 	licenses
 		"High Houses"
@@ -553,8 +553,8 @@ outfit "Multimodal Armor: Heavy"
 
 outfit "Multimodal Armor: Keystone"
 	category "Systems"
-	series "Special Systems: Successors"
-	index 40
+	series "Special Systems"
+	index 11040
 	thumbnail "outfit/successor armor keystone"
 	licenses
 		"High Houses"
@@ -568,8 +568,8 @@ outfit "Multimodal Armor: Keystone"
 
 outfit "Multimodal Armor: Regen"
 	category "Systems"
-	series "Special Systems: Successors"
-	index 20
+	series "Special Systems"
+	index 11020
 	thumbnail "outfit/successor armor regen"
 	licenses
 		"High Houses"
@@ -581,8 +581,8 @@ outfit "Multimodal Armor: Regen"
 
 outfit "Multimodal Armor: Resilient"
 	category "Systems"
-	series "Special Systems: Successors"
-	index 30
+	series "Special Systems"
+	index 11030
 	thumbnail "outfit/successor armor resilient"
 	licenses
 		"High Houses"
@@ -596,8 +596,8 @@ outfit "Multimodal Armor: Resilient"
 
 outfit "Kinetic Rail Rifle"
 	category "Hand to Hand"
-	series "H2H: Successors"
-	index 10
+	series "H2H"
+	index 11010
 	thumbnail "outfit/railgun h2h"
 	licenses "High Houses"
 	cost 72000

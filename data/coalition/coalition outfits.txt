@@ -13,8 +13,8 @@
 
 outfit "Small Collector Module"
 	category "Power"
-	series "Solar: Coalition"
-	index 10
+	series "Solar"
+	index 08010
 	licenses
 		Coalition
 	cost 60000
@@ -27,8 +27,8 @@ outfit "Small Collector Module"
 
 outfit "Large Collector Module"
 	category "Power"
-	series "Solar: Coalition"
-	index 20
+	series "Solar"
+	index 08020
 	licenses
 		Coalition
 	cost 300000
@@ -41,8 +41,8 @@ outfit "Large Collector Module"
 
 outfit "Small Reactor Module"
 	category "Power"
-	series "Generators: Coalition"
-	index 30
+	series "Generators"
+	index 08030
 	licenses
 		Heliarch
 	cost 5497000
@@ -56,8 +56,8 @@ outfit "Small Reactor Module"
 
 outfit "Large Reactor Module"
 	category "Power"
-	series "Generators: Coalition"
-	index 40
+	series "Generators"
+	index 08040
 	licenses
 		Heliarch
 	cost 17754000
@@ -71,8 +71,8 @@ outfit "Large Reactor Module"
 
 outfit "Small Cogeneration Module"
 	category "Power"
-	series "Generators: Coalition"
-	index 10
+	series "Generators"
+	index 08010
 	licenses
 		Coalition
 	cost 176000
@@ -86,8 +86,8 @@ outfit "Small Cogeneration Module"
 
 outfit "Large Cogeneration Module"
 	category "Power"
-	series "Generators: Coalition"
-	index 20
+	series "Generators"
+	index 08020
 	licenses
 		Coalition
 	cost 799000
@@ -100,8 +100,8 @@ outfit "Large Cogeneration Module"
 
 outfit "Small Battery Module"
 	category "Power"
-	series "Batteries: Coalition"
-	index 10
+	series "Batteries"
+	index 08010
 	licenses
 		Coalition
 	cost 22000
@@ -113,8 +113,8 @@ outfit "Small Battery Module"
 
 outfit "Large Battery Module"
 	category "Power"
-	series "Batteries: Coalition"
-	index 20
+	series "Batteries"
+	index 08020
 	licenses
 		Coalition
 	cost 170000
@@ -127,8 +127,8 @@ outfit "Large Battery Module"
 
 outfit "Small Shield Module"
 	category "Systems"
-	series "Shields: Coalition"
-	index 10
+	series "Shields"
+	index 08010
 	licenses
 		Coalition
 	cost 84000
@@ -142,8 +142,8 @@ outfit "Small Shield Module"
 
 outfit "Large Shield Module"
 	category "Systems"
-	series "Shields: Coalition"
-	index 20
+	series "Shields"
+	index 08020
 	licenses
 		Coalition
 	cost 553000
@@ -157,8 +157,8 @@ outfit "Large Shield Module"
 
 outfit "Overcharged Shield Module"
 	category "Systems"
-	series "Shields: Coalition"
-	index 30
+	series "Shields"
+	index 08030
 	licenses
 		Heliarch
 	cost 1216000
@@ -173,8 +173,8 @@ outfit "Overcharged Shield Module"
 
 outfit "Small Repair Module"
 	category "Systems"
-	series "Repair: Coalition"
-	index 10
+	series "Repair"
+	index 08010
 	licenses
 		Coalition
 	cost 64000
@@ -188,8 +188,8 @@ outfit "Small Repair Module"
 
 outfit "Large Repair Module"
 	category "Systems"
-	series "Repair: Coalition"
-	index 20
+	series "Repair"
+	index 08020
 	licenses
 		Coalition
 	cost 553000
@@ -203,8 +203,8 @@ outfit "Large Repair Module"
 
 outfit "Overclocked Repair Module"
 	category "Systems"
-	series "Repair: Coalition"
-	index 30
+	series "Repair"
+	index 08030
 	licenses
 		Heliarch
 	cost 1126000
@@ -219,8 +219,8 @@ outfit "Overclocked Repair Module"
 
 outfit "Cooling Module"
 	category "Systems"
-	series "Cooling: Coalition"
-	index 10
+	series "Cooling"
+	index 08010
 	licenses
 		Coalition
 	cost 160000
@@ -234,7 +234,7 @@ outfit "Cooling Module"
 outfit "Fuel Module"
 	category "Systems"
 	series "Fuel"
-	index 20
+	index 08020
 	licenses
 		Coalition
 	cost 270000
@@ -248,8 +248,8 @@ outfit "Fuel Module"
 
 outfit "Decoy Plating"
 	category "Systems"
-	series "Jammers: Coalition"
-	index 10
+	series "Jammers"
+	index 08010
 	cost 93000
 	thumbnail "outfit/decoy plating"
 	"mass" 7
@@ -262,7 +262,7 @@ outfit "Decoy Plating"
 outfit "Refueling Module"
 	category "Systems"
 	series "Fuel"
-	index 30
+	index 08030
 	cost 822000
 	thumbnail "outfit/refueling module"
 	"mass" 10
@@ -275,8 +275,8 @@ outfit "Refueling Module"
 
 outfit "Shield Refactor Module"
 	category "Systems"
-	series "Shields: Coalition"
-	index 40
+	series "Shields"
+	index 08040
 	cost 3248000
 	thumbnail "outfit/shield refactor module"
 	"mass" 7
@@ -291,8 +291,8 @@ outfit "Shield Refactor Module"
 
 outfit "Small Recovery Module"
 	category "Systems"
-	series "Shields: Coalition"
-	index 50
+	series "Shields"
+	index 08050
 	cost 625000
 	thumbnail "outfit/small recovery module"
 	"mass" 25
@@ -307,8 +307,8 @@ outfit "Small Recovery Module"
 
 outfit "Scanning Module"
 	category "Systems"
-	series "Scanners: Coalition"
-	index 10
+	series "Scanners"
+	index 08010
 	licenses
 		Heliarch
 	cost 453600
@@ -324,8 +324,8 @@ outfit "Scanning Module"
 
 outfit "Outskirts Gauger"
 	category "Systems"
-	series "Scanners: Coalition"
-	index 20
+	series "Scanners"
+	index 08020
 	cost 1406000
 	thumbnail "outfit/outskirts gauger"
 	"mass" 8
@@ -338,8 +338,8 @@ outfit "Outskirts Gauger"
 
 outfit "Small Thrust Module"
 	category "Engines"
-	series "Engines: Coalition"
-	index 11
+	series "Engines"
+	index 08011
 	licenses
 		Coalition
 	"cost" 66000
@@ -357,8 +357,8 @@ outfit "Small Thrust Module"
 
 outfit "Large Thrust Module"
 	category "Engines"
-	series "Engines: Coalition"
-	index 21
+	series "Engines"
+	index 08021
 	licenses
 		Coalition
 	"cost" 292000
@@ -376,8 +376,8 @@ outfit "Large Thrust Module"
 
 outfit "Small Reverse Module"
 	category "Engines"
-	series "Engines: Coalition"
-	index 12
+	series "Engines"
+	index 08012
 	licenses
 		Coalition
 	"cost" 66000
@@ -396,8 +396,8 @@ outfit "Small Reverse Module"
 
 outfit "Large Reverse Module"
 	category "Engines"
-	series "Engines: Coalition"
-	index 22
+	series "Engines"
+	index 08022
 	licenses
 		Coalition
 	"cost" 292000
@@ -416,8 +416,8 @@ outfit "Large Reverse Module"
 
 outfit "Small Steering Module"
 	category "Engines"
-	series "Engines: Coalition"
-	index 10
+	series "Engines"
+	index 08010
 	licenses
 		Coalition
 	"cost" 60000
@@ -435,8 +435,8 @@ outfit "Small Steering Module"
 
 outfit "Large Steering Module"
 	category "Engines"
-	series "Engines: Coalition"
-	index 20
+	series "Engines"
+	index 08020
 	licenses
 		Coalition
 	"cost" 269000
@@ -454,8 +454,8 @@ outfit "Large Steering Module"
 
 outfit "Enforcer Confrontation Gear"
 	category "Hand to Hand"
-	series "H2H: Coalition"
-	index 20
+	series "H2H"
+	index 08020
 	licenses
 		Heliarch
 	cost 369000
@@ -467,8 +467,8 @@ outfit "Enforcer Confrontation Gear"
 
 outfit "Enforcer Riot Staff"
 	category "Hand to Hand"
-	series "H2H: Coalition"
-	index 10
+	series "H2H"
+	index 08010
 	licenses
 		Heliarch
 	cost 97000
@@ -480,8 +480,8 @@ outfit "Enforcer Riot Staff"
 
 outfit "Anti-Materiel Gun"
 	category "Hand to Hand"
-	series "H2H: Coalition"
-	index 30
+	series "H2H"
+	index 08030
 	cost 257200
 	thumbnail "outfit/anti-materiel gun"
 	"capture attack" 3.4
@@ -491,15 +491,15 @@ outfit "Anti-Materiel Gun"
 
 outfit "Coalition License"
 	category "Licenses"
-	series "Licenses: Coalition"
-	index 10
+	series "Licenses"
+	index 08010
 	thumbnail "outfit/coalition license"
 	description "A digital chip in the form of a stylized badge, this document signifies the permission of the owner to browse, employ and deal in transactions involving civilian Coalition technology."
 	description "	There is a history of controversy surrounding this license, as throughout the millennia several Heliarch laws have been in a back and forth regarding the conditions that need to be met for someone to obtain a license. This argument started with the third Civil Goods and Fares Act, created just a few decades after the War of Independence. It has continued all the way to the relatively recent twenty-sixth addendum to the second article of the Ninth Rectification on Commerce and Traffic, passed two hundred years ago, which made the acquisition requirements much more flexible."
 
 outfit "Heliarch License"
 	category "Licenses"
-	series "Licenses: Coalition"
-	index 20
+	series "Licenses"
+	index 08020
 	thumbnail "outfit/heliarch license"
 	description "An ornate circlet of gold and platinum, it serves as both a symbol of rank and as a license to access exclusive Heliarch facilities. Custom-made to fit a human's head, it's surprisingly light and comfortable."

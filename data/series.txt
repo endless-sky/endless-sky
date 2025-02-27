@@ -11,321 +11,58 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+# 01xxx : Human
+# 02xxx : Hai
+# 03xxx : Remnant
+# 04xxx : Korath
+# 05xxx : Ka'het
+# 06xxx : Gegno
+# 07xxx : Avgi
+# 08xxx : Coalition
+# 09xxx : Wanderers
+# 10xxx : Bunrodea
+# 11xxx : Successors
+# 12xxx : Incipias
+# 13xxx : Sheragi
+# 14xxx : Pug
+# 15xxx : Quarg
+# 99xxx : Other
+
 category "series"
 	# Guns
-	"Guns: Human" 0
-	"Guns: Hai" 1
-	"Guns: Remnant" 2
-	"Guns: Korath" 3
-	"Guns: Ka'het" 4
-	"Guns: Gegno" 5
-	"Guns: Coalition" 6
-	"Guns: Wanderers" 7
-	"Guns: Bunrodea" 8
-	"Guns: Successors" 9
-	"Guns: Incipias" 10
-	"Guns: Sheragi" 11
-	"Guns: Pug" 12
-	"Guns: Quarg" 13
-	"Guns: Other" 99
+	"Guns" 100
 	# Turrets
-	"Turrets: Human" 100
-	"Turrets: Hai" 101
-	"Turrets: Remnant" 102
-	"Turrets: Korath" 103
-	"Turrets: Ka'het" 104
-	"Turrets: Gegno" 105
-	"Turrets: Coalition" 106
-	"Turrets: Wanderers" 107
-	"Turrets: Bunrodea" 108
-	"Turrets: Successors" 109
-	"Turrets: Incipias" 110
-	"Turrets: Sheragi" 111
-	"Turrets: Pug" 112
-	"Turrets: Quarg" 113
-	"Turrets: Other" 199
-	"Anti-Missile: Human" 200
-	"Anti-Missile: Hai" 201
-	"Anti-Missile: Remnant" 202
-	"Anti-Missile: Korath" 203
-	"Anti-Missile: Ka'het" 204
-	"Anti-Missile: Gegno" 205
-	"Anti-Missile: Coalition" 206
-	"Anti-Missile: Wanderers" 207
-	"Anti-Missile: Bunrodea" 208
-	"Anti-Missile: Successors" 209
-	"Anti-Missile: Incipias" 210
-	"Anti-Missile: Sheragi" 211
-	"Anti-Missile: Pug" 212
-	"Anti-Missile: Quarg" 213
-	"Anti-Missile: Other" 299
+	"Turrets" 100
+	"Anti-Missile" 200
 	"Tractor Beams" 300
 	# Secondary Weapons
-	"Secondary Weapons: Human" 0
-	"Secondary Weapons: Hai" 1
-	"Secondary Weapons: Remnant" 2
-	"Secondary Weapons: Korath" 3
-	"Secondary Weapons: Ka'het" 4
-	"Secondary Weapons: Gegno" 5
-	"Secondary Weapons: Coalition" 6
-	"Secondary Weapons: Wanderers" 7
-	"Secondary Weapons: Bunrodea" 8
-	"Secondary Weapons: Successors" 9
-	"Secondary Weapons: Incipias" 10
-	"Secondary Weapons: Sheragi" 11
-	"Secondary Weapons: Pug" 12
-	"Secondary Weapons: Quarg" 13
-	"Secondary Weapons: Other" 99
+	"Secondary Weapons" 100
 	# Ammunition
-	"Ammunition: Human" 0
-	"Ammunition: Hai" 1
-	"Ammunition: Remnant" 2
-	"Ammunition: Korath" 3
-	"Ammunition: Ka'het" 4
-	"Ammunition: Gegno" 5
-	"Ammunition: Coalition" 6
-	"Ammunition: Wanderers" 7
-	"Ammunition: Bunrodea" 8
-	"Ammunition: Successors" 9
-	"Ammunition: Incipias" 10
-	"Ammunition: Sheragi" 11
-	"Ammunition: Pug" 12
-	"Ammunition: Quarg" 13
-	"Ammunition: Other" 99
+	"Ammunition" 100
 	# Systems
 	"Drives" 100
-	"Shields: Human" 200
-	"Shields: Hai" 201
-	"Shields: Remnant" 202
-	"Shields: Korath" 203
-	"Shields: Ka'het" 204
-	"Shields: Gegno" 205
-	"Shields: Coalition" 206
-	"Shields: Wanderers" 207
-	"Shields: Bunrodea" 208
-	"Shields: Successors" 209
-	"Shields: Incipias" 210
-	"Shields: Sheragi" 211
-	"Shields: Pug" 212
-	"Shields: Quarg" 213
-	"Shields: Other" 299
-	"Repair: Human" 300
-	"Repair: Hai" 301
-	"Repair: Remnant" 302
-	"Repair: Korath" 303
-	"Repair: Ka'het" 304
-	"Repair: Gegno" 305
-	"Repair: Coalition" 306
-	"Repair: Wanderers" 307
-	"Repair: Bunrodea" 308
-	"Repair: Successors" 309
-	"Repair: Incipias" 310
-	"Repair: Sheragi" 311
-	"Repair: Pug" 312
-	"Repair: Quarg" 313
-	"Repair: Other" 399
-	"Cooling: Human" 400
-	"Cooling: Hai" 401
-	"Cooling: Remnant" 402
-	"Cooling: Korath" 403
-	"Cooling: Ka'het" 404
-	"Cooling: Gegno" 405
-	"Cooling: Coalition" 406
-	"Cooling: Wanderers" 407
-	"Cooling: Bunrodea" 408
-	"Cooling: Successors" 409
-	"Cooling: Incipias" 410
-	"Cooling: Sheragi" 411
-	"Cooling: Pug" 412
-	"Cooling: Quarg" 413
-	"Cooling: Other" 499
-	"Scanners: Human" 500
-	"Scanners: Hai" 501
-	"Scanners: Remnant" 502
-	"Scanners: Korath" 503
-	"Scanners: Ka'het" 504
-	"Scanners: Gegno" 505
-	"Scanners: Coalition" 506
-	"Scanners: Wanderers" 507
-	"Scanners: Bunrodea" 508
-	"Scanners: Successors" 509
-	"Scanners: Incipias" 510
-	"Scanners: Sheragi" 511
-	"Scanners: Pug" 512
-	"Scanners: Quarg" 513
-	"Scanners: Other" 599
-	"Jammers: Human" 600
-	"Jammers: Hai" 601
-	"Jammers: Remnant" 602
-	"Jammers: Korath" 603
-	"Jammers: Ka'het" 604
-	"Jammers: Gegno" 605
-	"Jammers: Coalition" 606
-	"Jammers: Wanderers" 607
-	"Jammers: Bunrodea" 608
-	"Jammers: Successors" 609
-	"Jammers: Incipias" 610
-	"Jammers: Sheragi" 611
-	"Jammers: Pug" 612
-	"Jammers: Quarg" 613
-	"Jammers: Other" 699
-	"Ramscoops: Human" 700
-	"Ramscoops: Hai" 701
-	"Ramscoops: Remnant" 702
-	"Ramscoops: Korath" 703
-	"Ramscoops: Ka'het" 704
-	"Ramscoops: Gegno" 705
-	"Ramscoops: Coalition" 706
-	"Ramscoops: Wanderers" 707
-	"Ramscoops: Bunrodea" 708
-	"Ramscoops: Successors" 709
-	"Ramscoops: Incipias" 710
-	"Ramscoops: Sheragi" 711
-	"Ramscoops: Pug" 712
-	"Ramscoops: Quarg" 713
-	"Ramscoops: Other" 799
-	"Special Systems: Human" 800
-	"Special Systems: Hai" 801
-	"Special Systems: Remnant" 802
-	"Special Systems: Korath" 803
-	"Special Systems: Ka'het" 804
-	"Special Systems: Gegno" 805
-	"Special Systems: Coalition" 806
-	"Special Systems: Wanderers" 807
-	"Special Systems: Bunrodea" 808
-	"Special Systems: Successors" 809
-	"Special Systems: Incipias" 810
-	"Special Systems: Sheragi" 811
-	"Special Systems: Pug" 812
-	"Special Systems: Quarg" 813
-	"Special Systems: Other" 899
+	"Shields" 200
+	"Repair" 300
+	"Cooling" 400
+	"Scanners" 500
+	"Jammers" 600
+	"Special Systems" 700
+	"Ramscoops" 800
 	"Fuel" 900
 	"Passenger" 1000
-	"Utility" 9999
+	"Expansions" 9999
 	# Power
-	"Generators: Human" 100
-	"Generators: Hai" 101
-	"Generators: Remnant" 102
-	"Generators: Korath" 103
-	"Generators: Ka'het" 104
-	"Generators: Gegno" 105
-	"Generators: Coalition" 106
-	"Generators: Wanderers" 107
-	"Generators: Bunrodea" 108
-	"Generators: Successors" 109
-	"Generators: Incipias" 110
-	"Generators: Sheragi" 111
-	"Generators: Pug" 112
-	"Generators: Quarg" 113
-	"Generators: Other" 199
-	"Batteries: Human" 200
-	"Batteries: Hai" 201
-	"Batteries: Remnant" 202
-	"Batteries: Korath" 203
-	"Batteries: Ka'het" 204
-	"Batteries: Gegno" 205
-	"Batteries: Coalition" 206
-	"Batteries: Wanderers" 207
-	"Batteries: Bunrodea" 208
-	"Batteries: Successors" 209
-	"Batteries: Incipias" 210
-	"Batteries: Sheragi" 211
-	"Batteries: Pug" 212
-	"Batteries: Quarg" 213
-	"Batteries: Other" 299
-	"Solar: Human" 300
-	"Solar: Hai" 301
-	"Solar: Remnant" 302
-	"Solar: Korath" 303
-	"Solar: Ka'het" 304
-	"Solar: Gegno" 305
-	"Solar: Coalition" 306
-	"Solar: Wanderers" 307
-	"Solar: Bunrodea" 308
-	"Solar: Successors" 309
-	"Solar: Incipias" 310
-	"Solar: Sheragi" 311
-	"Solar: Pug" 312
-	"Solar: Quarg" 313
-	"Solar: Other" 399
+	"Generators" 100
+	"Batteries" 200
+	"Solar" 300
 	# Engines
-	"Engines: Human" 100
-	"Engines: Hai" 101
-	"Engines: Remnant" 102
-	"Engines: Korath" 103
-	"Engines: Ka'het" 104
-	"Engines: Gegno" 105
-	"Engines: Coalition" 106
-	"Engines: Wanderers" 107
-	"Engines: Bunrodea" 108
-	"Engines: Successors" 109
-	"Engines: Incipias" 110
-	"Engines: Sheragi" 111
-	"Engines: Pug" 112
-	"Engines: Quarg" 113
-	"Engines: Other" 199
-	"Afterburners: Human" 200
-	"Afterburners: Hai" 201
-	"Afterburners: Remnant" 202
-	"Afterburners: Korath" 203
-	"Afterburners: Ka'het" 204
-	"Afterburners: Gegno" 205
-	"Afterburners: Coalition" 206
-	"Afterburners: Wanderers" 207
-	"Afterburners: Bunrodea" 208
-	"Afterburners: Successors" 209
-	"Afterburners: Incipias" 210
-	"Afterburners: Sheragi" 211
-	"Afterburners: Pug" 212
-	"Afterburners: Quarg" 213
-	"Afterburners: Other" 299
+	"Engines" 100
+	"Afterburners" 200
 	# Hand to Hand
-	"H2H: Human" 100
-	"H2H: Hai" 101
-	"H2H: Remnant" 102
-	"H2H: Korath" 103
-	"H2H: Ka'het" 104
-	"H2H: Gegno" 105
-	"H2H: Coalition" 106
-	"H2H: Wanderers" 107
-	"H2H: Bunrodea" 108
-	"H2H: Successors" 109
-	"H2H: Incipias" 110
-	"H2H: Sheragi" 111
-	"H2H: Pug" 112
-	"H2H: Quarg" 113
-	"H2H: Other" 199
-	"Fortifications: Human" 200
-	"Fortifications: Hai" 201
-	"Fortifications: Remnant" 202
-	"Fortifications: Korath" 203
-	"Fortifications: Ka'het" 204
-	"Fortifications: Gegno" 205
-	"Fortifications: Coalition" 206
-	"Fortifications: Wanderers" 207
-	"Fortifications: Bunrodea" 208
-	"Fortifications: Successors" 209
-	"Fortifications: Incipias" 210
-	"Fortifications: Sheragi" 211
-	"Fortifications: Pug" 212
-	"Fortifications: Quarg" 213
-	"Fortifications: Other" 299
+	"H2H" 100
+	"Fortifications" 200
 	# Unique
 	"Functional Unique" 100
 	"Non-Functional Unique" 200
 	# Licenses
-	"Licenses: Human" 0
-	"Licenses: Hai" 1
-	"Licenses: Remnant" 2
-	"Licenses: Korath" 3
-	"Licenses: Ka'het" 4
-	"Licenses: Gegno" 5
-	"Licenses: Coalition" 6
-	"Licenses: Wanderers" 7
-	"Licenses: Bunrodea" 8
-	"Licenses: Successors" 9
-	"Licenses: Incipias" 10
-	"Licenses: Sheragi" 11
-	"Licenses: Pug" 12
-	"Licenses: Quarg" 13
-	"Licenses: Other" 99
+	"Licenses" 100

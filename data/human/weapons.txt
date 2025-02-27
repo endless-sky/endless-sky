@@ -13,8 +13,8 @@
 
 outfit "Energy Blaster"
 	category "Guns"
-	series "Guns: Human"
-	index 10
+	series "Guns"
+	index 01010
 	cost 16000
 	thumbnail "outfit/blaster"
 	"mass" 5
@@ -37,8 +37,8 @@ outfit "Energy Blaster"
 
 outfit "Twin Blaster"
 	category "Guns"
-	series "Guns: Human"
-	index 30
+	series "Guns"
+	index 01030
 	cost 40000
 	thumbnail "outfit/twin blaster"
 	"mass" 12
@@ -74,8 +74,8 @@ outfit "Blaster Submunition"
 
 outfit "Blaster Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 10
+	series "Turrets"
+	index 01010
 	cost 100000
 	thumbnail "outfit/blaster turret"
 	"mass" 15
@@ -102,8 +102,8 @@ outfit "Blaster Turret"
 
 outfit "Quad Blaster Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 30
+	series "Turrets"
+	index 01030
 	cost 230000
 	thumbnail "outfit/quad blaster turret"
 	"mass" 25
@@ -139,8 +139,8 @@ effect "blaster impact"
 
 outfit "Modified Blaster"
 	category "Guns"
-	series "Guns: Human"
-	index 20
+	series "Guns"
+	index 01020
 	cost 35000
 	thumbnail "outfit/mod blaster"
 	"mass" 6
@@ -163,8 +163,8 @@ outfit "Modified Blaster"
 
 outfit "Twin Modified Blaster"
 	category "Guns"
-	series "Guns: Human"
-	index 40
+	series "Guns"
+	index 01040
 	cost 84000
 	thumbnail "outfit/twin mod blaster"
 	"mass" 14
@@ -200,8 +200,8 @@ outfit "Modified Blaster Submunition"
 
 outfit "Modified Blaster Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 20
+	series "Turrets"
+	index 01020
 	cost 170000
 	thumbnail "outfit/mod blaster turret"
 	"mass" 18
@@ -229,8 +229,8 @@ outfit "Modified Blaster Turret"
 
 outfit "Beam Laser"
 	category "Guns"
-	series "Guns: Human"
-	index 50
+	series "Guns"
+	index 01050
 	cost 29000
 	thumbnail "outfit/laser"
 	"mass" 8
@@ -254,8 +254,8 @@ outfit "Beam Laser"
 
 outfit "Laser Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 40
+	series "Turrets"
+	index 01040
 	cost 140000
 	thumbnail "outfit/laser turret"
 	"mass" 22
@@ -293,8 +293,8 @@ effect "beam laser impact"
 
 outfit "Heavy Laser"
 	category "Guns"
-	series "Guns: Human"
-	index 60
+	series "Guns"
+	index 01060
 	cost 60000
 	thumbnail "outfit/heavy laser"
 	"mass" 15
@@ -318,8 +318,8 @@ outfit "Heavy Laser"
 
 outfit "Heavy Laser Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 50
+	series "Turrets"
+	index 01050
 	cost 320000
 	thumbnail "outfit/heavy laser turret"
 	"mass" 40
@@ -357,8 +357,8 @@ effect "heavy laser impact"
 
 outfit "Mining Laser"
 	category "Guns"
-	series "Guns: Human"
-	index 80
+	series "Guns"
+	index 01080
 	cost 38000
 	thumbnail "outfit/mining laser"
 	"mass" 12
@@ -386,8 +386,8 @@ outfit "Mining Laser"
 
 outfit "Mining Laser Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 70
+	series "Turrets"
+	index 01070
 	cost 66000
 	thumbnail "outfit/mining laser turret"
 	"mass" 18
@@ -448,8 +448,8 @@ effect "tractor beam"
 
 outfit "Electron Beam"
 	category "Guns"
-	series "Guns: Human"
-	index 70
+	series "Guns"
+	index 01070
 	cost 170000
 	thumbnail "outfit/electron beam"
 	"mass" 21
@@ -473,8 +473,8 @@ outfit "Electron Beam"
 
 outfit "Electron Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 60
+	series "Turrets"
+	index 01060
 	cost 720000
 	thumbnail "outfit/electron turret"
 	"mass" 54
@@ -512,8 +512,8 @@ effect "electron impact"
 
 outfit "Anti-Missile Turret"
 	category "Turrets"
-	series "Anti-Missile: Human"
-	index 10
+	series "Anti-Missile"
+	index 01010
 	cost 60000
 	thumbnail "outfit/anti-missile"
 	"mass" 16
@@ -543,8 +543,8 @@ effect "small anti-missile"
 
 outfit "Heavy Anti-Missile Turret"
 	category "Turrets"
-	series "Anti-Missile: Human"
-	index 20
+	series "Anti-Missile"
+	index 01020
 	cost 150000
 	thumbnail "outfit/heavy anti-missile"
 	"mass" 30
@@ -574,8 +574,8 @@ effect "large anti-missile"
 
 outfit "Particle Cannon"
 	category "Guns"
-	series "Guns: Human"
-	index 90
+	series "Guns"
+	index 01090
 	cost 220000
 	thumbnail "outfit/particle cannon"
 	"mass" 30
@@ -611,8 +611,8 @@ effect "particle impact"
 
 outfit "Proton Gun"
 	category "Guns"
-	series "Guns: Human"
-	index 100
+	series "Guns"
+	index 01100
 	cost 150000
 	thumbnail "outfit/proton gun"
 	"mass" 28
@@ -656,8 +656,8 @@ effect "proton impact"
 
 outfit "Proton Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 80
+	series "Turrets"
+	index 01080
 	cost 260000
 	thumbnail "outfit/proton turret"
 	"mass" 34
@@ -685,8 +685,8 @@ outfit "Proton Turret"
 
 outfit "Plasma Cannon"
 	category "Guns"
-	series "Guns: Human"
-	index 110
+	series "Guns"
+	index 01110
 	cost 190000
 	thumbnail "outfit/plasma cannon"
 	"mass" 25
@@ -712,8 +712,8 @@ outfit "Plasma Cannon"
 
 outfit "Plasma Turret"
 	category "Turrets"
-	series "Turrets: Human"
-	index 90
+	series "Turrets"
+	index 01090
 	cost 520000
 	thumbnail "outfit/plasma turret"
 	"mass" 60
@@ -743,8 +743,8 @@ outfit "Plasma Turret"
 
 outfit "Plasma Repeater"
 	category "Guns"
-	series "Guns: Human"
-	index 120
+	series "Guns"
+	index 01120
 	cost 274000
 	thumbnail "outfit/plasma repeater"
 	"mass" 32
@@ -783,8 +783,8 @@ effect "plasma explosion"
 
 outfit "Flamethrower"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 160
+	series "Secondary Weapons"
+	index 01160
 	cost 190000
 	thumbnail "outfit/flamethrower"
 	"mass" 9
@@ -850,8 +850,8 @@ effect "flamethrower hit"
 
 outfit "Meteor Missile"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 20
+	series "Ammunition"
+	index 01020
 	cost 500
 	thumbnail "outfit/meteor"
 	"mass" .2
@@ -860,8 +860,8 @@ outfit "Meteor Missile"
 
 outfit "Meteor Missile Box"
 	plural "Meteor Missile Boxes"
-	series "Ammunition: Human"
-	index 21
+	series "Ammunition"
+	index 01021
 	category "Ammunition"
 	cost 9000
 	thumbnail "outfit/meteor storage"
@@ -873,8 +873,8 @@ outfit "Meteor Missile Box"
 
 outfit "Meteor Missile Launcher"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 50
+	series "Secondary Weapons"
+	index 01050
 	cost 15000
 	thumbnail "outfit/meteor launcher"
 	"mass" 8
@@ -911,8 +911,8 @@ outfit "Meteor Missile Launcher"
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 40
+	series "Secondary Weapons"
+	index 01040
 	cost 5000
 	thumbnail "outfit/meteor pod"
 	"mass" 1
@@ -960,8 +960,8 @@ effect "meteor fire"
 
 outfit "Sidewinder Missile"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 30
+	series "Ammunition"
+	index 01030
 	cost 900
 	thumbnail "outfit/sidewinder"
 	"mass" .2
@@ -970,8 +970,8 @@ outfit "Sidewinder Missile"
 
 outfit "Sidewinder Missile Rack"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 31
+	series "Ammunition"
+	index 01031
 	cost 20000
 	thumbnail "outfit/sidewinder storage"
 	"mass" 2.4
@@ -982,8 +982,8 @@ outfit "Sidewinder Missile Rack"
 
 outfit "Sidewinder Missile Launcher"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 70
+	series "Secondary Weapons"
+	index 01070
 	cost 60000
 	thumbnail "outfit/sidewinder launcher"
 	"mass" 11
@@ -1021,8 +1021,8 @@ outfit "Sidewinder Missile Launcher"
 
 outfit "Sidewinder Missile Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 60
+	series "Secondary Weapons"
+	index 01060
 	cost 20000
 	thumbnail "outfit/sidewinder pod"
 	"mass" 2
@@ -1072,8 +1072,8 @@ effect "sidewinder fire"
 
 outfit "Javelin"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 10
+	series "Ammunition"
+	index 01010
 	cost 50
 	thumbnail "outfit/javelin"
 	"mass" .04
@@ -1082,8 +1082,8 @@ outfit "Javelin"
 
 outfit "Javelin Storage Crate"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 11
+	series "Ammunition"
+	index 01011
 	cost 5000
 	thumbnail "outfit/javelin storage"
 	"mass" 2
@@ -1094,8 +1094,8 @@ outfit "Javelin Storage Crate"
 
 outfit "Javelin Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 20
+	series "Secondary Weapons"
+	index 01020
 	cost 20000
 	thumbnail "outfit/javelin pod"
 	"mass" 4
@@ -1124,8 +1124,8 @@ outfit "Javelin Pod"
 
 outfit "Javelin Mini Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 10
+	series "Secondary Weapons"
+	index 01010
 	cost 5000
 	thumbnail "outfit/javelin mini pod"
 	"mass" 1
@@ -1157,8 +1157,8 @@ outfit "Javelin Mini Pod"
 
 outfit "Javelin Turret"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 30
+	series "Secondary Weapons"
+	index 01030
 	cost 110000
 	thumbnail "outfit/javelin turret"
 	"mass" 15
@@ -1191,8 +1191,8 @@ outfit "Javelin Turret"
 
 outfit "Torpedo"
 	plural "Torpedoes"
-	series "Ammunition: Human"
-	index 50
+	series "Ammunition"
+	index 01050
 	category "Ammunition"
 	cost 1400
 	thumbnail "outfit/torpedo"
@@ -1202,8 +1202,8 @@ outfit "Torpedo"
 
 outfit "Torpedo Storage Rack"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 51
+	series "Ammunition"
+	index 01051
 	cost 21000
 	thumbnail "outfit/torpedo storage"
 	"mass" 3
@@ -1214,8 +1214,8 @@ outfit "Torpedo Storage Rack"
 
 outfit "Torpedo Launcher"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 110
+	series "Secondary Weapons"
+	index 01110
 	cost 80000
 	thumbnail "outfit/torpedo launcher"
 	"mass" 18
@@ -1252,8 +1252,8 @@ outfit "Torpedo Launcher"
 
 outfit "Torpedo Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 100
+	series "Secondary Weapons"
+	index 01100
 	cost 30000
 	thumbnail "outfit/torpedopod"
 	"mass" 5
@@ -1300,8 +1300,8 @@ effect "torpedo fire"
 
 outfit "Typhoon Torpedo"
 	plural "Typhoon Torpedoes"
-	series "Ammunition: Human"
-	index 60
+	series "Ammunition"
+	index 01060
 	category "Ammunition"
 	cost 2700
 	thumbnail "outfit/typhoon"
@@ -1311,8 +1311,8 @@ outfit "Typhoon Torpedo"
 
 outfit "Typhoon Storage Tube"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 61
+	series "Ammunition"
+	index 01061
 	cost 40500
 	thumbnail "outfit/typhoon storage"
 	"mass" 2.5
@@ -1323,8 +1323,8 @@ outfit "Typhoon Storage Tube"
 
 outfit "Typhoon Launcher"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 130
+	series "Secondary Weapons"
+	index 01130
 	cost 260000
 	thumbnail "outfit/typhoon launcher"
 	"mass" 25
@@ -1361,8 +1361,8 @@ outfit "Typhoon Launcher"
 
 outfit "Typhoon Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 120
+	series "Secondary Weapons"
+	index 01120
 	cost 100000
 	thumbnail "outfit/typhoonpod"
 	"mass" 6
@@ -1409,8 +1409,8 @@ effect "typhoon fire"
 
 outfit "Heavy Rocket"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 40
+	series "Ammunition"
+	index 01040
 	cost 2000
 	thumbnail "outfit/rocket"
 	"mass" .5
@@ -1419,8 +1419,8 @@ outfit "Heavy Rocket"
 
 outfit "Heavy Rocket Rack"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 41
+	series "Ammunition"
+	index 01041
 	cost 20000
 	thumbnail "outfit/rocket storage"
 	"mass" 2
@@ -1431,8 +1431,8 @@ outfit "Heavy Rocket Rack"
 
 outfit "Heavy Rocket Launcher"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 90
+	series "Secondary Weapons"
+	index 01090
 	cost 40000
 	thumbnail "outfit/rocket launcher"
 	"mass" 15
@@ -1466,8 +1466,8 @@ outfit "Heavy Rocket Launcher"
 
 outfit "Heavy Rocket Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 80
+	series "Secondary Weapons"
+	index 01080
 	cost 15000
 	thumbnail "outfit/rocket pod"
 	"mass" 3
@@ -1517,8 +1517,8 @@ effect "heavy rocket hit"
 
 outfit "Nuclear Missile"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 170
+	series "Secondary Weapons"
+	index 01170
 	cost 1000000
 	thumbnail "outfit/nuke"
 	"mass" 10
@@ -1594,8 +1594,8 @@ effect "nuke residue slow"
 outfit "Gatling Gun Ammo"
 	plural "Gatling Gun Ammo"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 70
+	series "Ammunition"
+	index 01070
 	cost 4
 	thumbnail "outfit/bullet"
 	"mass" .002
@@ -1605,8 +1605,8 @@ outfit "Gatling Gun Ammo"
 outfit "Bullet Boxes"
 	plural "Bullet Boxes"
 	category "Ammunition"
-	series "Ammunition: Human"
-	index 71
+	series "Ammunition"
+	index 01071
 	cost 3000
 	thumbnail "outfit/bullet storage"
 	"mass" 2
@@ -1617,8 +1617,8 @@ outfit "Bullet Boxes"
 
 outfit "Gatling Gun"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 140
+	series "Secondary Weapons"
+	index 01140
 	cost 20000
 	thumbnail "outfit/gat"
 	"mass" 2
@@ -1647,8 +1647,8 @@ outfit "Gatling Gun"
 
 outfit "Gatling Turret"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Human"
-	index 150
+	series "Secondary Weapons"
+	index 01150
 	cost 120000
 	thumbnail "outfit/gat turret"
 	"mass" 11

@@ -13,8 +13,8 @@
 
 outfit "Bombardment Cannon"
 	category "Guns"
-	series "Guns: Coalition"
-	index 10
+	series "Guns"
+	index 08010
 	licenses
 		Heliarch
 	cost 437000
@@ -42,8 +42,8 @@ outfit "Bombardment Cannon"
 
 outfit "Bombardment Turret"
 	category "Turrets"
-	series "Turrets: Coalition"
-	index 10
+	series "Turrets"
+	index 08010
 	licenses
 		Heliarch
 	cost 1845000
@@ -86,8 +86,8 @@ effect "bombardment impact"
 
 outfit "Finisher Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Coalition"
-	index 10
+	series "Secondary Weapons"
+	index 08010
 	licenses
 		Heliarch
 	cost 1370000
@@ -125,8 +125,8 @@ outfit "Finisher Pod"
 
 outfit "Finisher Maegrolain"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Coalition"
-	index 20
+	series "Secondary Weapons"
+	index 08020
 	licenses
 		Heliarch
 	cost 7260000
@@ -186,8 +186,8 @@ outfit "Active Finisher"
 
 outfit "Finisher Storage Tube"
 	category "Ammunition"
-	series "Ammunition: Coalition"
-	index 11
+	series "Ammunition"
+	index 08011
 	cost 58800
 	thumbnail "outfit/finisher storage"
 	"mass" 4
@@ -200,8 +200,8 @@ outfit "Finisher Storage Tube"
 outfit "Finisher Torpedo"
 	plural "Finisher Torpedoes"
 	category "Ammunition"
-	series "Ammunition: Coalition"
-	index 10
+	series "Ammunition"
+	index 08010
 	cost 32000
 	thumbnail "outfit/finisher"
 	"mass" .5
@@ -250,8 +250,8 @@ effect "finisher fragment"
 
 outfit "Heliarch Attractor"
 	category "Turrets"
-	series "Turrets: Coalition"
-	index 30
+	series "Turrets"
+	index 08030
 	licenses
 		Heliarch
 	cost 2187000
@@ -295,8 +295,8 @@ effect "attractor impact"
 
 outfit "Heliarch Repulsor"
 	category "Turrets"
-	series "Turrets: Coalition"
-	index 40
+	series "Turrets"
+	index 08040
 	licenses
 		Heliarch
 	cost 2549000
@@ -341,8 +341,8 @@ effect "repulsor impact"
 
 outfit "Ion Hail Turret"
 	category "Turrets"
-	series "Turrets: Coalition"
-	index 20
+	series "Turrets"
+	index 08020
 	licenses
 		Heliarch
 	cost 1268000
@@ -386,8 +386,8 @@ outfit "ion hail"
 
 outfit "Ion Rain Gun"
 	category "Guns"
-	series "Guns: Coalition"
-	index 20
+	series "Guns"
+	index 08020
 	licenses
 		Heliarch
 	cost 798000
@@ -430,8 +430,8 @@ effect "ion rain impact"
 
 outfit "MCS Extractor"
 	category "Guns"
-	series "Guns: Coalition"
-	index 30
+	series "Guns"
+	index 08030
 	licenses
 		Coalition
 	cost 106000

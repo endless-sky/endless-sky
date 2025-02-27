@@ -16,8 +16,8 @@
 outfit "Small EM Battery"
 	plural "Small EM Batteries"
 	category "Power"
-	series "Batteries: Sheragi"
-	index 10
+	series "Batteries"
+	index 13010
 	cost 200000
 	thumbnail "outfit/small embattery"
 	"mass" 14
@@ -32,8 +32,8 @@ outfit "Small EM Battery"
 outfit "Large EM Battery"
 	plural "Large EM Batteries"
 	category "Power"
-	series "Batteries: Sheragi"
-	index 20
+	series "Batteries"
+	index 13020
 	cost 1000000
 	thumbnail "outfit/embattery"
 	"mass" 150
@@ -47,8 +47,8 @@ outfit "Large EM Battery"
 
 outfit "Small Hybrid Cooling"
 	category "Systems"
-	series "Cooling: Sheragi"
-	index 10
+	series "Cooling"
+	index 13010
 	cost 200000
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
@@ -61,8 +61,8 @@ outfit "Small Hybrid Cooling"
 
 outfit "Large Hybrid Cooling"
 	category "Systems"
-	series "Cooling: Sheragi"
-	index 20
+	series "Cooling"
+	index 13020
 	cost 1000000
 	thumbnail "outfit/sheragicooling"
 	"mass" 40
@@ -76,8 +76,8 @@ outfit "Large Hybrid Cooling"
 
 outfit "Fission Drive"
 	category "Engines"
-	series "Engines: Sheragi"
-	index 10
+	series "Engines"
+	index 13010
 	cost 2650000
 	thumbnail "outfit/fissiondrive"
 	"mass" 71
@@ -104,8 +104,8 @@ outfit "Fission Drive"
 
 outfit "Fusion Drive"
 	category "Engines"
-	series "Engines: Sheragi"
-	index 20
+	series "Engines"
+	index 13020
 	cost 80000000
 	thumbnail "outfit/fusiondrive"
 	"mass" 480
@@ -142,8 +142,8 @@ outfit "Fusion Drive"
 
 outfit "Electronic Warfare System"
 	category "Systems"
-	series "Scanners: Sheragi"
-	index 10
+	series "Scanners"
+	index 13010
 	cost 3400000
 	thumbnail "outfit/sheragi ews"
 	"mass" 6
@@ -159,8 +159,8 @@ outfit "Electronic Warfare System"
 
 outfit "Dragonflame Cannon"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Sheragi"
-	index 20
+	series "Secondary Weapons"
+	index 13020
 	cost 150000000
 	thumbnail "outfit/dragonflame"
 	"mass" 156
@@ -233,8 +233,8 @@ effect "dragonflame debris"
 
 outfit "Sheragi Anti-Missile"
 	category "Turrets"
-	series "Anti-Missile: Sheragi"
-	index 10
+	series "Anti-Missile"
+	index 13010
 	cost 845000
 	thumbnail "outfit/sheragiam"
 	"mass" 35
@@ -264,8 +264,8 @@ effect "sheragiam"
 
 outfit "Particle Waveform Turret"
 	category "Turrets"
-	series "Turrets: Sheragi"
-	index 10
+	series "Turrets"
+	index 13010
 	cost 1650000
 	thumbnail "outfit/pwave turret"
 	"mass" 47
@@ -314,8 +314,8 @@ effect "pwave impact"
 
 outfit "Shard Fabricator"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Sheragi"
-	index 10
+	series "Secondary Weapons"
+	index 13010
 	cost 330000
 	thumbnail "outfit/shard"
 	"mass" 10
@@ -375,8 +375,8 @@ effect "shard impact"
 
 outfit "Heavy Ion Cyclotron"
 	category "Guns"
-	series "Guns: Sheragi"
-	index 10
+	series "Guns"
+	index 13010
 	cost 1650000
 	thumbnail "outfit/hion"
 	"mass" 33

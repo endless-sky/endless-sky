@@ -16,8 +16,8 @@
 
 outfit "Inhibitor Cannon"
 	category "Guns"
-	series "Guns: Remnant"
-	index 10
+	series "Guns"
+	index 03010
 	licenses
 		Remnant
 	cost 471000
@@ -60,8 +60,8 @@ effect "inhibitor impact"
 
 outfit "Inhibitor Turret"
 	category "Turrets"
-	series "Turrets: Remnant"
-	index 10
+	series "Turrets"
+	index 03010
 	licenses
 		Remnant
 	cost 1371000
@@ -99,8 +99,8 @@ outfit "Inhibitor Turret"
 
 outfit "Thrasher Cannon"
 	category "Guns"
-	series "Guns: Remnant"
-	index 20
+	series "Guns"
+	index 03020
 	licenses
 		Remnant
 	cost 218000
@@ -139,8 +139,8 @@ effect "thrasher impact"
 
 outfit "Thrasher Turret"
 	category "Turrets"
-	series "Turrets: Remnant"
-	index 20
+	series "Turrets"
+	index 03020
 	licenses
 		Remnant
 	cost 980000
@@ -173,8 +173,8 @@ outfit "Thrasher Turret"
 
 outfit "Point Defense Turret"
 	category "Turrets"
-	series "Anti-Missile: Remnant"
-	index 10
+	series "Anti-Missile"
+	index 03010
 	licenses
 		Remnant
 	cost 1120000
@@ -223,8 +223,8 @@ effect "point defense die"
 outfit "EMP Torpedo"
 	plural "EMP Torpedoes"
 	category "Ammunition"
-	series "Ammunition: Remnant"
-	index 10
+	series "Ammunition"
+	index 03010
 	licenses
 		Remnant
 	cost 4400
@@ -235,8 +235,8 @@ outfit "EMP Torpedo"
 
 outfit "EMP Torpedo Storage Bay"
 	category "Ammunition"
-	series "Ammunition: Remnant"
-	index 11
+	series "Ammunition"
+	index 03011
 	licenses
 		Remnant
 	cost 98000
@@ -251,8 +251,8 @@ outfit "EMP Torpedo Storage Bay"
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Remnant"
-	index 10
+	series "Secondary Weapons"
+	index 03010
 	licenses
 		Remnant
 	cost 583000
@@ -301,8 +301,8 @@ outfit "EMP Torpedo Bay"
 
 outfit "Teciimach Canister"
 	category "Ammunition"
-	series "Ammunition: Remnant"
-	index 20
+	series "Ammunition"
+	index 03020
 	licenses
 		Remnant
 	cost 35500
@@ -314,8 +314,8 @@ outfit "Teciimach Canister"
 
 outfit "Teciimach Canister Rack"
 	category "Ammunition"
-	series "Ammunition: Remnant"
-	index 21
+	series "Ammunition"
+	index 03021
 	licenses
 		Remnant
 	cost 295000
@@ -330,8 +330,8 @@ outfit "Teciimach Canister Rack"
 
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Remnant"
-	index 30
+	series "Secondary Weapons"
+	index 03030
 	licenses
 		Remnant
 	cost 1525000
@@ -382,8 +382,8 @@ outfit "Teciimach Bay"
 
 outfit "Teciimach Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Remnant"
-	index 20
+	series "Secondary Weapons"
+	index 03020
 	licenses
 		Remnant
 	cost 762500
@@ -468,8 +468,8 @@ effect "emp spark"
 
 outfit "Ember Tear"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Remnant"
-	index 40
+	series "Secondary Weapons"
+	index 03040
 	licenses
 		"Remnant Capital"
 	cost 270000000
@@ -557,8 +557,8 @@ effect "ember tear vortex"
 
 outfit "Crystal Capacitor"
 	category "Power"
-	series "Batteries: Remnant"
-	index 10
+	series "Batteries"
+	index 03010
 	licenses
 		Remnant
 	cost 57000
@@ -575,8 +575,8 @@ outfit "Crystal Capacitor"
 
 outfit "Millennium Cell"
 	category "Power"
-	series "Generators: Remnant"
-	index 10
+	series "Generators"
+	index 03010
 	licenses
 		Remnant
 	cost 553000
@@ -592,8 +592,8 @@ outfit "Millennium Cell"
 
 outfit "Epoch Cell"
 	category "Power"
-	series "Generators: Remnant"
-	index 20
+	series "Generators"
+	index 03020
 	licenses
 		Remnant
 	cost 2123000
@@ -609,8 +609,8 @@ outfit "Epoch Cell"
 
 outfit "Aeon Cell"
 	category "Power"
-	series "Generators: Remnant"
-	index 30
+	series "Generators"
+	index 03030
 	licenses
 		Remnant
 	cost 4384000
@@ -626,8 +626,8 @@ outfit "Aeon Cell"
 
 outfit "Thermoelectric Cooler"
 	category "Systems"
-	series "Cooling: Remnant"
-	index 10
+	series "Cooling"
+	index 03010
 	licenses
 		Remnant
 	cost 100000
@@ -640,8 +640,8 @@ outfit "Thermoelectric Cooler"
 
 outfit "Emergency Ramscoop"
 	category "Systems"
-	series "Ramscoops: Remnant"
-	index 10
+	series "Ramscoops"
+	index 03010
 	licenses
 		Remnant
 	cost 72000
@@ -666,8 +666,8 @@ outfit "NDR-114 Android"
 
 outfit "Research Laboratory"
 	category "Systems"
-	series "Scanners: Remnant"
-	index 20
+	series "Scanners"
+	index 03020
 	licenses
 		Remnant
 	cost 500000
@@ -698,8 +698,8 @@ outfit "Quantum Key Stone"
 
 outfit "Salvage Scanner"
 	category "Systems"
-	series "Scanners: Remnant"
-	index 10
+	series "Scanners"
+	index 03010
 	licenses
 		Remnant
 	cost 410000
@@ -718,8 +718,8 @@ outfit "Salvage Scanner"
 
 outfit "Bellows-Class Afterburner"
 	category "Engines"
-	series "Afterburners: Remnant"
-	index 10
+	series "Afterburners"
+	index 03010
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
 	"mass" 8
@@ -743,8 +743,8 @@ effect "remnant afterburner"
 
 outfit "Anvil-Class Engine"
 	category "Engines"
-	series "Engines: Remnant"
-	index 10
+	series "Engines"
+	index 03010
 	licenses
 		Remnant
 	"cost" 290000
@@ -775,8 +775,8 @@ outfit "Anvil-Class Engine"
 
 outfit "Crucible-Class Thruster"
 	category "Engines"
-	series "Engines: Remnant"
-	index 21
+	series "Engines"
+	index 03021
 	licenses
 		Remnant
 	"cost" 200000
@@ -801,8 +801,8 @@ outfit "Crucible-Class Thruster"
 
 outfit "Forge-Class Thruster"
 	category "Engines"
-	series "Engines: Remnant"
-	index 31
+	series "Engines"
+	index 03031
 	licenses
 		Remnant
 	"cost" 441000
@@ -827,8 +827,8 @@ outfit "Forge-Class Thruster"
 
 outfit "Smelter-Class Thruster"
 	category "Engines"
-	series "Engines: Remnant"
-	index 41
+	series "Engines"
+	index 03041
 	licenses
 		Remnant
 	"cost" 984000
@@ -853,8 +853,8 @@ outfit "Smelter-Class Thruster"
 
 outfit "Crucible-Class Steering"
 	category "Engines"
-	series "Engines: Remnant"
-	index 20
+	series "Engines"
+	index 03020
 	licenses
 		Remnant
 	"cost" 172000
@@ -873,8 +873,8 @@ outfit "Crucible-Class Steering"
 
 outfit "Forge-Class Steering"
 	category "Engines"
-	series "Engines: Remnant"
-	index 30
+	series "Engines"
+	index 03030
 	licenses
 		Remnant
 	"cost" 393000
@@ -893,8 +893,8 @@ outfit "Forge-Class Steering"
 
 outfit "Smelter-Class Steering"
 	category "Engines"
-	series "Engines: Remnant"
-	index 40
+	series "Engines"
+	index 03040
 	licenses
 		Remnant
 	"cost" 880000
@@ -917,8 +917,8 @@ outfit "Smelter-Class Steering"
 
 outfit "Tuning Rifle"
 	category "Hand to Hand"
-	series "H2H: Remnant"
-	index 10
+	series "H2H"
+	index 03010
 	licenses
 		Remnant
 	cost 22000
@@ -972,14 +972,14 @@ outfit "Void Sprite Parts"
 
 outfit "Remnant License"
 	category "Licenses"
-	series "Licenses: Remnant"
-	index 10
+	series "Licenses"
+	index 03010
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
 
 outfit "Remnant Capital License"
 	category "Licenses"
-	series "Licenses: Remnant"
-	index 20
+	series "Licenses"
+	index 03020
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."

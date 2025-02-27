@@ -13,8 +13,8 @@
 
 outfit "Phantom Pallet"
 	category "Systems"
-	series "Special Systems: Hai"
-	index 20
+	series "Special Systems"
+	index 02020
 	cost 12000
 	thumbnail "outfit/phantom pallet"
 	"mass" 0.2
@@ -28,8 +28,8 @@ outfit "Phantom Pallet"
 
 outfit "Holovid Zone"
 	category "Systems"
-	series "Special Systems: Hai"
-	index 30
+	series "Special Systems"
+	index 02030
 	cost 320000
 	thumbnail "outfit/holovid zone"
 	"mass" 20
@@ -46,8 +46,8 @@ outfit "Holovid Zone"
 
 outfit "Pulse Cannon"
 	category "Guns"
-	series "Guns: Hai"
-	index 10
+	series "Guns"
+	index 02010
 	cost 130000
 	thumbnail "outfit/pulse cannon"
 	"mass" 13
@@ -70,8 +70,8 @@ outfit "Pulse Cannon"
 
 outfit "Pulse Turret"
 	category "Turrets"
-	series "Turrets: Hai"
-	index 10
+	series "Turrets"
+	index 02010
 	cost 590000
 	thumbnail "outfit/pulse turret"
 	"mass" 34
@@ -98,8 +98,8 @@ outfit "Pulse Turret"
 
 outfit "Tripulse Shredder"
 	category "Guns"
-	series "Guns: Hai"
-	index 20
+	series "Guns"
+	index 02020
 	cost 520000
 	thumbnail "outfit/tripulse shredder"
 	"mass" 42
@@ -136,8 +136,8 @@ effect "pulse impact"
 
 outfit "Ion Cannon"
 	category "Guns"
-	series "Guns: Hai"
-	index 30
+	series "Guns"
+	index 02030
 	cost 490000
 	thumbnail "outfit/ion cannon"
 	"mass" 47
@@ -177,8 +177,8 @@ effect "ion impact"
 
 outfit "Ionic Blaster Prototype"
 	category "Guns"
-	series "Guns: Hai"
-	index 40
+	series "Guns"
+	index 02040
 	cost 530000
 	thumbnail "outfit/hai ionic blaster"
 	"mass" 19
@@ -206,8 +206,8 @@ outfit "Ionic Blaster Prototype"
 
 outfit "Ionic Turret Prototype"
 	category "Turrets"
-	series "Turrets: Hai"
-	index 20
+	series "Turrets"
+	index 02020
 	cost 1260000
 	thumbnail "outfit/hai ionic turret"
 	"mass" 58
@@ -253,8 +253,8 @@ effect "ionic impact"
 outfit "Railgun Slug"
 	"display name" "Skipper Railgun Slug"
 	category "Ammunition"
-	series "Ammunition: Hai"
-	index 20
+	series "Ammunition"
+	index 02020
 	cost 13
 	thumbnail "outfit/railslug"
 	"mass" 0.003
@@ -264,8 +264,8 @@ outfit "Railgun Slug"
 outfit "Railgun Slug Rack"
 	"display name" "Skipper Slug Rack"
 	category "Ammunition"
-	series "Ammunition: Hai"
-	index 21
+	series "Ammunition"
+	index 02021
 	cost 15000
 	thumbnail "outfit/railslug rack"
 	"mass" 1
@@ -277,8 +277,8 @@ outfit "Railgun Slug Rack"
 outfit "Railgun"
 	"display name" "Skipper Railgun"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Hai"
-	index 20
+	series "Secondary Weapons"
+	index 02020
 	cost 20000
 	thumbnail "outfit/railgun"
 	"mass" 1
@@ -337,8 +337,8 @@ effect "rail sparks"
 
 outfit "Hai Tracker"
 	category "Ammunition"
-	series "Ammunition: Hai"
-	index 10
+	series "Ammunition"
+	index 02010
 	cost 1000
 	thumbnail "outfit/hai tracker"
 	"mass" .2
@@ -347,8 +347,8 @@ outfit "Hai Tracker"
 
 outfit "Tracker Storage Pod"
 	category "Ammunition"
-	series "Ammunition: Hai"
-	index 11
+	series "Ammunition"
+	index 02011
 	cost 28000
 	thumbnail "outfit/hai tracker storage"
 	"mass" 4.4
@@ -359,8 +359,8 @@ outfit "Tracker Storage Pod"
 
 outfit "Hai Tracker Pod"
 	category "Secondary Weapons"
-	series "Secondary Weapons: Hai"
-	index 10
+	series "Secondary Weapons"
+	index 02010
 	cost 150000
 	thumbnail "outfit/hai tracker pod"
 	"mass" 8
@@ -431,8 +431,8 @@ effect "tracker cloud"
 
 outfit "Bullfrog Anti-Missile"
 	category "Turrets"
-	series "Anti-Missile: Hai"
-	index 10
+	series "Anti-Missile"
+	index 02010
 	cost 55000
 	thumbnail "outfit/anti-missile hai"
 	"mass" 10
@@ -455,8 +455,8 @@ outfit "Bullfrog Anti-Missile"
 
 outfit "Chameleon Anti-Missile"
 	category "Turrets"
-	series "Anti-Missile: Hai"
-	index 20
+	series "Anti-Missile"
+	index 02020
 	cost 140000
 	thumbnail "outfit/heavy anti-missile hai"
 	"mass" 22
@@ -480,8 +480,8 @@ outfit "Chameleon Anti-Missile"
 
 outfit "Hai Cuttlefish Jammer"
 	category "Systems"
-	series "Jammers: Hai"
-	index 10
+	series "Jammers"
+	index 02010
 	cost 260000
 	thumbnail "outfit/hai jammer"
 	"mass" 10
@@ -492,8 +492,8 @@ outfit "Hai Cuttlefish Jammer"
 
 outfit "Hai Octopus Jammer"
 	category "Systems"
-	series "Jammers: Hai"
-	index 20
+	series "Jammers"
+	index 02020
 	cost 350000
 	thumbnail "outfit/hai jammer overclocked"
 	"mass" 10
@@ -505,8 +505,8 @@ outfit "Hai Octopus Jammer"
 
 outfit "Hai Corundum Regenerator"
 	category "Systems"
-	series "Shields: Hai"
-	index 10
+	series "Shields"
+	index 02010
 	cost 300000
 	thumbnail "outfit/small regenerator hai"
 	"mass" 16
@@ -519,8 +519,8 @@ outfit "Hai Corundum Regenerator"
 
 outfit "Hai Diamond Regenerator"
 	category "Systems"
-	series "Shields: Hai"
-	index 20
+	series "Shields"
+	index 02020
 	cost 1150000
 	thumbnail "outfit/large regenerator hai"
 	"mass" 49
@@ -533,8 +533,8 @@ outfit "Hai Diamond Regenerator"
 
 outfit "Hai Williwaw Cooling"
 	category "Systems"
-	series "Cooling: Hai"
-	index 10
+	series "Cooling"
+	index 02010
 	cost 15000
 	thumbnail "outfit/hai williwaw"
 	"mass" 8
@@ -556,8 +556,8 @@ outfit "Quantum Keystone"
 
 outfit "Value Detector"
 	category "Systems"
-	series "Scanners: Hai"
-	index 10
+	series "Scanners"
+	index 02010
 	cost 260000
 	thumbnail "outfit/value detector"
 	"mass" 5
@@ -571,8 +571,8 @@ outfit "Value Detector"
 outfit "Hai Chasm Batteries"
 	plural "Hai Chasm Batteries"
 	category "Power"
-	series "Batteries: Hai"
-	index 10
+	series "Batteries"
+	index 02010
 	cost 7000
 	thumbnail "outfit/tiny battery hai"
 	"mass" 5
@@ -583,8 +583,8 @@ outfit "Hai Chasm Batteries"
 outfit "Hai Fissure Batteries"
 	plural "Hai Fissure Batteries"
 	category "Power"
-	series "Batteries: Hai"
-	index 20
+	series "Batteries"
+	index 02020
 	cost 11000
 	thumbnail "outfit/small battery hai"
 	"mass" 15
@@ -595,8 +595,8 @@ outfit "Hai Fissure Batteries"
 outfit "Hai Gorge Batteries"
 	plural "Hai Gorge Batteries"
 	category "Power"
-	series "Batteries: Hai"
-	index 30
+	series "Batteries"
+	index 02030
 	cost 25000
 	thumbnail "outfit/medium battery hai"
 	"mass" 30
@@ -607,8 +607,8 @@ outfit "Hai Gorge Batteries"
 outfit "Hai Ravine Batteries"
 	plural "Hai Ravine Batteries"
 	category "Power"
-	series "Batteries: Hai"
-	index 40
+	series "Batteries"
+	index 02040
 	cost 47000
 	thumbnail "outfit/large battery hai"
 	"mass" 50
@@ -619,8 +619,8 @@ outfit "Hai Ravine Batteries"
 outfit "Hai Valley Batteries"
 	plural "Hai Valley Batteries"
 	category "Power"
-	series "Batteries: Hai"
-	index 50
+	series "Batteries"
+	index 02050
 	cost 74000
 	thumbnail "outfit/huge battery hai"
 	"mass" 70
@@ -631,8 +631,8 @@ outfit "Hai Valley Batteries"
 
 outfit "Boulder Reactor"
 	category "Power"
-	series "Generators: Hai"
-	index 40
+	series "Generators"
+	index 02040
 	cost 5750000
 	thumbnail "outfit/hai boulder"
 	"mass" 90
@@ -643,8 +643,8 @@ outfit "Boulder Reactor"
 
 outfit "Geode Reactor"
 	category "Power"
-	series "Generators: Hai"
-	index 30
+	series "Generators"
+	index 02030
 	cost 1750000
 	thumbnail "outfit/hai geode"
 	"mass" 58
@@ -655,8 +655,8 @@ outfit "Geode Reactor"
 
 outfit "Pebble Core"
 	category "Power"
-	series "Generators: Hai"
-	index 20
+	series "Generators"
+	index 02020
 	cost 1050000
 	thumbnail "outfit/hai pebble core"
 	"mass" 32
@@ -667,8 +667,8 @@ outfit "Pebble Core"
 
 outfit "Sand Cell"
 	category "Power"
-	series "Generators: Hai"
-	index 10
+	series "Generators"
+	index 02010
 	cost 45000
 	thumbnail "outfit/fuel cell hai"
 	"mass" 24
@@ -681,8 +681,8 @@ outfit "Sand Cell"
 outfit `"Baellie" Atomic Engines`
 	plural `"Baellie" Atomic Engines`
 	category "Engines"
-	series "Engines: Hai"
-	index 10
+	series "Engines"
+	index 02010
 	"cost" 230000
 	thumbnail "outfit/tiny atomic engines hai"
 	"mass" 22
@@ -704,8 +704,8 @@ outfit `"Baellie" Atomic Engines`
 
 outfit `"Basrem" Atomic Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 21
+	series "Engines"
+	index 02021
 	"cost" 150000
 	thumbnail "outfit/tiny atomic thruster hai"
 	"mass" 18
@@ -721,8 +721,8 @@ outfit `"Basrem" Atomic Thruster`
 
 outfit `"Benga" Atomic Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 31
+	series "Engines"
+	index 02031
 	"cost" 300000
 	thumbnail "outfit/small atomic thruster hai"
 	"mass" 28
@@ -738,8 +738,8 @@ outfit `"Benga" Atomic Thruster`
 
 outfit `"Biroo" Atomic Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 41
+	series "Engines"
+	index 02041
 	"cost" 610000
 	thumbnail "outfit/medium atomic thruster hai"
 	"mass" 44
@@ -755,8 +755,8 @@ outfit `"Biroo" Atomic Thruster`
 
 outfit `"Bondir" Atomic Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 51
+	series "Engines"
+	index 02051
 	"cost" 1100000
 	thumbnail "outfit/large atomic thruster hai"
 	"mass" 63
@@ -772,8 +772,8 @@ outfit `"Bondir" Atomic Thruster`
 
 outfit `"Bufaer" Atomic Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 61
+	series "Engines"
+	index 02061
 	"cost" 2400000
 	thumbnail "outfit/huge atomic thruster hai"
 	"mass" 104
@@ -789,8 +789,8 @@ outfit `"Bufaer" Atomic Thruster`
 
 outfit `"Basrem" Reverse Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 22
+	series "Engines"
+	index 02022
 	"cost" 150000
 	thumbnail "outfit/tiny atomic reverse hai"
 	"mass" 18
@@ -806,8 +806,8 @@ outfit `"Basrem" Reverse Thruster`
 
 outfit `"Benga" Reverse Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 32
+	series "Engines"
+	index 02032
 	"cost" 300000
 	thumbnail "outfit/small atomic reverse hai"
 	"mass" 28
@@ -823,8 +823,8 @@ outfit `"Benga" Reverse Thruster`
 
 outfit `"Biroo" Reverse Thruster`
 	category "Engines"
-	series "Engines: Hai"
-	index 42
+	series "Engines"
+	index 02042
 	"cost" 610000
 	thumbnail "outfit/medium atomic reverse hai"
 	"mass" 44
@@ -840,8 +840,8 @@ outfit `"Biroo" Reverse Thruster`
 
 outfit `"Basrem" Atomic Steering`
 	category "Engines"
-	series "Engines: Hai"
-	index 20
+	series "Engines"
+	index 02020
 	"cost" 120000
 	thumbnail "outfit/tiny atomic steering hai"
 	"mass" 12
@@ -857,8 +857,8 @@ outfit `"Basrem" Atomic Steering`
 
 outfit `"Benga" Atomic Steering`
 	category "Engines"
-	series "Engines: Hai"
-	index 30
+	series "Engines"
+	index 02030
 	"cost" 250000
 	thumbnail "outfit/small atomic steering hai"
 	"mass" 20
@@ -874,8 +874,8 @@ outfit `"Benga" Atomic Steering`
 
 outfit `"Biroo" Atomic Steering`
 	category "Engines"
-	series "Engines: Hai"
-	index 40
+	series "Engines"
+	index 02040
 	"cost" 530000
 	thumbnail "outfit/medium atomic steering hai"
 	"mass" 32
@@ -891,8 +891,8 @@ outfit `"Biroo" Atomic Steering`
 
 outfit `"Bondir" Atomic Steering`
 	category "Engines"
-	series "Engines: Hai"
-	index 50
+	series "Engines"
+	index 02050
 	"cost" 950000
 	thumbnail "outfit/large atomic steering hai"
 	"mass" 49
@@ -908,8 +908,8 @@ outfit `"Bondir" Atomic Steering`
 
 outfit `"Bufaer" Atomic Steering`
 	category "Engines"
-	series "Engines: Hai"
-	index 60
+	series "Engines"
+	index 02060
 	"cost" 2100000
 	thumbnail "outfit/huge atomic steering hai"
 	"mass" 76
@@ -926,8 +926,8 @@ outfit `"Bufaer" Atomic Steering`
 
 outfit "Pulse Rifle"
 	category "Hand to Hand"
-	series "H2H: Hai"
-	index 10
+	series "H2H"
+	index 02010
 	cost 11000
 	thumbnail "outfit/hai rifle"
 	"capture attack" .7
@@ -949,8 +949,8 @@ outfit "Shield Beetle Pendant"
 
 outfit "Failed Control System"
 	category "Systems"
-	series "Special Systems: Hai"
-	index 10
+	series "Special Systems"
+	index 02010
 	cost 0
 	thumbnail "outfit/control transceiver"
 	"mass" 1

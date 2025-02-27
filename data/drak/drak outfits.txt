@@ -13,8 +13,8 @@
 
 outfit "Drak Distancer"
 	category "Turrets"
-	series "Turrets: Other"
-	index 20
+	series "Turrets"
+	index 99020
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 64
@@ -42,8 +42,8 @@ effect "distancer flare"
 
 outfit "Drak Draining Field"
 	category "Turrets"
-	series "Turrets: Other"
-	index 30
+	series "Turrets"
+	index 99030
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 84
@@ -74,8 +74,8 @@ outfit "Drak Draining Field"
 
 outfit "Drak Draining Field (Augmented)"
 	category "Turrets"
-	series "Turrets: Other"
-	index 31
+	series "Turrets"
+	index 99031
 	cost 100000000
 	thumbnail "outfit/unknown"
 	"mass" 84
@@ -108,8 +108,8 @@ outfit "Drak Draining Field (Augmented)"
 
 outfit "Drak Anti-Missile Field"
 	category "Turrets"
-	series "Anti-Missile: Other"
-	index 10
+	series "Anti-Missile"
+	index 99010
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 66
@@ -129,8 +129,8 @@ outfit "Drak Anti-Missile Field"
 
 outfit "Drak Anti-Missile Field (Augmented)"
 	category "Turrets"
-	series "Anti-Missile: Other"
-	index 11
+	series "Anti-Missile"
+	index 99011
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 66
@@ -152,8 +152,8 @@ outfit "Drak Anti-Missile Field (Augmented)"
 
 outfit "Drak Turret"
 	category "Turrets"
-	series "Turrets: Other"
-	index 10
+	series "Turrets"
+	index 99010
 	cost 1000000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -181,8 +181,8 @@ outfit "Drak Turret"
 
 outfit "Drak Turret (Augmented)"
 	category "Turrets"
-	series "Turrets: Other"
-	index 11
+	series "Turrets"
+	index 99011
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 48
@@ -222,8 +222,8 @@ effect "drak bolt impact"
 
 outfit "Drak Antimatter Cannon"
 	category "Guns"
-	series "Guns: Other"
-	index 10
+	series "Guns"
+	index 99010
 	cost 10000000
 	thumbnail "outfit/unknown"
 	"mass" 96
@@ -250,8 +250,8 @@ outfit "Drak Antimatter Cannon"
 
 outfit "Drak Antimatter Cannon (Augmented)"
 	category "Guns"
-	series "Guns: Other"
-	index 11
+	series "Guns"
+	index 99011
 	cost 100000000
 	thumbnail "outfit/unknown"
 	"mass" 96
