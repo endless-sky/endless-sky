@@ -293,7 +293,7 @@ outfit "Quarg Culverin"
 			"frame rate" 60
 			"random start frame"
 			rewind
-		sound "culverin b"
+		sound "culverin"
 		"hit effect" "culverin hit" 20
 		"die effect" "culverin die"
 		lifetime 110
