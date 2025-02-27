@@ -7511,7 +7511,7 @@ mission "Timothy Radrickson 1: Stowaway"
 		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
 	destination "Rand"
 	to offer
-		has "remembrance day"
+		has "event: remembrance day"
 		random < 2
 	on enter
 
