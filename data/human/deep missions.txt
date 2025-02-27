@@ -7342,7 +7342,7 @@ mission "Hroar's Haulers Gunhilda secret 2"
 			decline
 
 mission "Hroar's Haulers Unferth"
-	name "Gardena Station"
+	name "The Final Blush"
 	source "Humanika"
 	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
 	destination "Gardena Station"
@@ -7361,26 +7361,64 @@ mission "Hroar's Haulers Unferth"
 		`	"I am sure you heard by now that ol' Yngvar gave us a week or so of convalescence." He leans in a little closer to you, "Now, I don't like speaking poorly of decent folk, but I am not looking forward to spending a week or more in the shadow of the Quarg."`
 		`	"Something's off about the natvies here," he says quietly," like they lost their fire, or somesuch."`
 		`	"So," he says brightly, after straightening up, "I figured this was a perfect chance to pay my respects at The Last Blush. And was hankering for some good company, and... maybe a ride."`
+		label Sovischoice
 		choice
-			`	"Sure, I'll come."`
+			`	"Sure."`
 				goto sure
 			`	"Don't you have your own ship?"`
+				to display
+					not "Solvship"
 				goto ship
 			`	"The Last Blush?"`
 		`	"As you know, we haulers trace our beginnings back to the caravan era. In those dark days 'fore the Republic, when travel 'tween stars took weeks, and the Gap was rife with danger; the Long Haul was only possible via one perilous route. The Blyskan way. It was made up of four waystations, which they called Blushes. First Blush, Second Blush, Third Blush and Final Blush."`
 		`	Solvi drew his index finger through the air, as though he was carving out a map, "We don't take that route anymore, just no sense to it, but some of those old waystations remain, and for us spacers they are kinda like, well, shrines I s'pose."`
 		`	He drops his hand and his attention focusing back on you, "Final Blush ain't too far from here, and I'd like to pay my respects. Be good for you too. Being as this is part of your culture now and all that."`
 		`	He slaps you on the back, "I mean, you just made it to Lagrange on your first Long Haul. That's 'bout as authentic as it gets. Leastwise in my book."`
-		`	"So, the official name of the Final Blush is <destination>, and you'll find it in the <system> system." He pauses," Now, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta down time, and I am not looking to be left behind by own ship and fleet."`
+		choice
+			`	"Alright. I'll take you."`
+				goto takeyou
+			`	"No. I got my own plans."`
+		`	The young space frowns. "S'pose you're busy Captain and all that. Still, us haulres oughta be sticking together."`
+		`	He takes a step back from you, "Take care, <last>. Mayhaps I'll be seein' ya on Wayfarer."`
+		`	Solvi leaves you alone with Humanika's strange spaceport and stranger inhabitants.`
+			decline
+
+		label takeyou
+		`	"Now that's what I like to hear. Haulers stickin' together and going on adventures and the like."`
+		`	"The official name of the Final Blush is <destination>, and you'll find it in the <system> system." He pauses," Now, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own ship and fleet."`
+			accept
 
 		label sure
 			`	"Ah, now that's what I like aboutchya." Solvi favors you with a wide smile, "Jump first, ask questions later."`
-			`	"Blushes is what the Carvaneers used to call their waystations, and the Last Blush, well, that was the last one of 'em 'fore gettin' to Lagrange. Obviously, we ain't using them anymore, haven't in centuries, but they are kinda like shrines to us old spacers. Now, the official name of the Last Blush is <destination> in the <system> system."`
-			`	"So, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta down time, and I am not looking to be left behind by own ship and fleet."`
-				accept
+			`	"A Blush is what the Carvaneers used to call their waystations, and the Last Blush, well, that was the last one of 'em 'fore gettin' to Lagrange. Obviously, we ain't using them anymore, haven't in centuries, but they are kinda like shrines to us spacers. 'Course you wouldn't be finding Last Blush on any map, no, but you would be finding <destination> in the <system> system. Ya, know, Tomotato-Potato, as the Earthers say."`
+			`	"So, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own ship and fleet."`
+			accept
 		
 		label ship
-		`	`
+		action
+			set "Solviship"
+		`	"Well, you heard Yngvar, didn't ya? The fleets due for a refit and, well, my ship's a part of that fleet. My crew is taking her back to Wayfarer right now. Now, I could find a ride, alright, so I am not stranded or nothing. Traveling with strangers is fine, but I'd much rather travel with a friend. And then there you were." He gives you a wink.`
+		`	"So, whatdya say? Ya willing to give a fella a ride to the historic Last Blush?"`
+			goto Sovischoice
+
+	on complete
+		conversation
+			`	Landing on this old dilapidated station is more than a little complicated. Between the lack of any sort of trafic control, the amount of trashed or inoperable bays, and the jagged floating refuse around more then a few corners, it's a miracle you land unscathed.`
+			`	Once inside, it doesn't get any better, the state of the station makes it easy to believe the entire thing could apart at the seems at any moment. Solvi, however, is undeterred.`
+			`	"She's in better shape than she looks," He says, "They bult these old girls to last; she's a Blush after all. 'Sides I reckon they just dirty her up a bit to keep the tourists away, ya know. Hostile architecture and all that."`
+			`	He trudges on toward what was once the spaceport, "Come on, it's this way."`
+
+mission "Hroar's Haulers Unferth 2"
+	name "The Final Blush"
+	source "Gardena Station"
+	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
+	destination "Wayfarer"
+	passengers 1
+	to offer
+		has "Hroar's Haulers 18b: done"
+	on offer
+		conversation
+
 
 
 		`	He pauses, 
