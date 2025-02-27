@@ -13,8 +13,8 @@
 
 outfit `"Ojet" Bimodal Coilgun`
 	category "Guns"
-	series "Guns: Successors"
-	index 10
+	series "Guns"
+	index 11010
 	cost 1370000
 	thumbnail "outfit/bimodal coilgun"
 	licenses
@@ -57,8 +57,8 @@ outfit `"Ojet" Bimodal Coilgun`
 
 outfit "Bimodal Coilgun Turret"
 	category "Turrets"
-	series "Turrets: Successors"
-	index 10
+	series "Turrets"
+	index 11010
 	cost 2950000
 	thumbnail "outfit/bimodal coilgun turret"
 	licenses
@@ -125,8 +125,8 @@ effect "bimodal switch impact"
 
 outfit "Drag Cannon"
 	category "Guns"
-	series "Guns: Successors"
-	index 20
+	series "Guns"
+	index 11020
 	cost 455000
 	thumbnail "outfit/drag cannon"
 	licenses
@@ -177,8 +177,8 @@ effect "drag cannon impact"
 
 outfit "Successor Pulse Laser"
 	category "Guns"
-	series "Guns: Successors"
-	index 30
+	series "Guns"
+	index 11030
 	cost 69000
 	thumbnail "outfit/successor pulse laser"
 	licenses
@@ -208,8 +208,8 @@ outfit "Successor Pulse Laser"
 
 outfit "Pulse Laser Turret"
 	category "Turrets"
-	series "Turrets: Successors"
-	index 20
+	series "Turrets"
+	index 11020
 	cost 145000
 	thumbnail "outfit/successor pulse laser turret"
 	licenses
@@ -250,8 +250,8 @@ effect "successor pulse laser impact"
 
 outfit "Overcharged Pulse Laser"
 	category "Guns"
-	series "Guns: Successors"
-	index 40
+	series "Guns"
+	index 11040
 	cost 84000
 	thumbnail "outfit/overcharged pulse laser"
 	licenses
@@ -283,8 +283,8 @@ outfit "Overcharged Pulse Laser"
 
 outfit "Overcharged Laser Turret"
 	category "Turrets"
-	series "Turrets: Successors"
-	index 30
+	series "Turrets"
+	index 11030
 	cost 136000
 	thumbnail "outfit/overcharged pulse laser turret"
 	licenses
@@ -327,8 +327,8 @@ effect "overcharged pulse laser impact"
 
 outfit `"Sjeja" Kinetic Lance`
 	category "Secondary Weapons"
-	series "Secondary Weapons: Successors"
-	index 10
+	series "Secondary Weapons"
+	index 11010
 	cost 3500000
 	licenses
 		"High Houses"
@@ -366,8 +366,8 @@ outfit `"Sjeja" Kinetic Lance`
 
 outfit "High-Velocity Spike"
 	category "Ammunition"
-	series "Ammunition: Successors"
-	index 10
+	series "Ammunition"
+	index 11010
 	licenses
 		"High Houses"
 	cost 3500
@@ -378,8 +378,8 @@ outfit "High-Velocity Spike"
 
 outfit "High-Velocity Spike Rack"
 	category "Ammunition"
-	series "Ammunition: Successors"
-	index 20
+	series "Ammunition"
+	index 11020
 	cost 350000
 	licenses
 		"High Houses"
