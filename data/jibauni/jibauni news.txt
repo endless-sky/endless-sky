@@ -370,6 +370,7 @@ news "laqualk"
 	name
 		word
 			"Authorized "
+			"Blue-cloaked "
 		word
 			"individual"
 			"government leader"

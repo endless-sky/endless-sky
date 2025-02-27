@@ -40,7 +40,7 @@ mission "Jibauni Pilgrims [0]"
 		"pilgrim help" --
 		"left pilgrims" ++
 
-mission "Jibauni Kasim Cargo (pre-war)"
+mission "Jibauni Kasim Cargo"
 	name "Cargo to <planet>"
 	description "Take these <cargo> to <planet> for Kasim Aboagye, a wealthy businessman. Payment will be <payment>."
 	job
@@ -53,32 +53,13 @@ mission "Jibauni Kasim Cargo (pre-war)"
 	to offer
 		has "language: Jibauni"
 		not "event: jibauni rebel jibauni peace"
-		random < 33
+		random < 12
 	on complete
 		payment
 		payment 250
 		dialog phrase "generic jibauni shipyard delivery"
 
-mission "Jibauni Kasim Cargo (post-war)"
-	name "Cargo to <planet>"
-	description "Take these <cargo> to <planet> for Kasim Aboagye, a wealthy businessman. Payment will be <payment>, which is one thousand extra because of you knowing Kasim."
-	job
-	repeat
-	cargo "Aboagye Shipyards Parts" 1 30
-	source
-		government "Jibauni" "Jibauni (Rebel)"
-	destination
-		attributes "kasim shipyards"
-	to offer
-		has "language: Jibauni"
-		random < 25
-		has "event: jibauni rebel jibauni peace"
-	on complete
-		payment
-		payment 1250
-		dialog phrase "generic jibauni shipyard delivery"
-
-mission "Jibauni Res-redi Cargo (pre-war)"
+mission "Jibauni Res-redi Cargo"
 	name "Cargo to <planet>"
 	description "Take these <cargo> to <planet> for the Shipyards of Res-redi, one of the most influential conpanies in history. When you complete the hauling, you will be paid <payment>."
 	job
@@ -91,28 +72,9 @@ mission "Jibauni Res-redi Cargo (pre-war)"
 	to offer
 		has "language: Jibauni"
 		not "event: jibauni rebel jibauni peace"
-		random < 33
+		random < 12
 	on complete
 		payment
-		dialog phrase "generic jibauni shipyard delivery"
-
-mission "Jibauni Res-redi Cargo (post-war)"
-	name "Cargo to <planet>"
-	description "Take these <cargo> to <planet> for the Shipyards of Res-redi, one of the most influential conpanies in history. When you complete the hauling, you will be paid <payment>, an additional 1500 credits for knowing Res-redi."
-	job
-	repeat
-	cargo "Res-redi Shipyards Parts" 1 30
-	source
-		government "Jibauni" "Jibauni (Rebel)"
-	destination
-		attributes "res-redi shipyards"
-	to offer
-		has "language: Jibauni"
-		has "event: jibauni rebel jibauni peace"
-		random < 25
-	on complete
-		payment
-		payment 1500
 		dialog phrase "generic jibauni shipyard delivery"
 
 mission "Jibauni Rebel Bounty Small"
@@ -234,7 +196,7 @@ mission "Jibauni Passengers [1]"
 
 mission "Jibauni Passengers [2]"
 	name "Jibauni to <planet>"
-	description "Take these large group of <bunks> passengers to <planet>. They are many, and so will collectively pay you <payment>."
+	description "Take a large group of <bunks> passengers to <planet>. The group will collectively pay you <payment>."
 	job
 	repeat
 	passengers 20 120
@@ -262,7 +224,7 @@ mission "Jibauni Clumsy Passengers"
 		government "Jibauni" "Jibauni (Rebel)"
 	to offer
 		has "language: Jibauni"
-		random < 8
+		random < 6
 		not "Jibauni Clumsy Passengers: active"
 	destination
 		distance 1 4
@@ -276,7 +238,7 @@ mission "Jibauni Clumsy Passengers"
 
 mission "Jibauni Rush Delivery [0]"
 	name "Rush to <planet>"
-	description "A character on <planet> is in dire need of <cargo> before <day>. Get it there by then for the reward of <payment>."
+	description "A Jibauni on <planet> is in dire need of <cargo> before <day>. Get it there by then for the reward of <payment>."
 	job
 	repeat
 	cargo random 2 10
@@ -293,7 +255,7 @@ mission "Jibauni Rush Delivery [0]"
 	on complete
 		payment
 		payment 100
-		dialog "The cargo is speedily unloaded from your ship, and you are paid <payment> as the trolley leaves."
+		dialog "After speedily unloading the cargo, a hurrying dockworker pays you <payment>."
 
 mission "Jibauni Rush Delivery [1]"
 	name "Rush to <planet>"
@@ -376,36 +338,3 @@ mission "Jibauni Bulk Delivery [1]"
 		payment
 		payment 3000
 		dialog "You take the cargo to a huge unloading facility, whence it is sent to the warehouses."
-
-trade
-	commodity "Aboagye Shipyards Parts"
-#		"parts of a Nathar"
-#		"parts of a Nakil"
-#		"parts of a Quyan"
-#		"parts of a Nathaq"
-#		"parts of a Nathas"
-#		"parts of a Larajal"
-#		"parts of a Latbaliday"
-#		"parts of a Duntay"
-#		"parts of a Qudaw"
-#		"parts of a Furus"
-		"Furus parts"
-		"Larajal parts"
-		"Qudaw parts"
-		"Latbaliday parts"
-		"Nathas parts"
-		"Nathaq parts"
-		"Quyan parts"
-		"Nakil parts"
-		"Nathar parts"
-
-trade
-	commodity "Res-redi Shipyards Parts"
-		"Yiyharsi parts"
-		"Saghir parts"
-		"Daybal parts"
-		"Muraw parts"
-#		"parts of a Muraw"
-#		"parts of a Daybal"
-#		"parts of a Saghir"
-#		"parts of a Yiyharsi"

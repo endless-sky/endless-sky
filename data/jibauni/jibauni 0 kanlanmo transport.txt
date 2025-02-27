@@ -19,7 +19,7 @@ mission "Jibauni: Kanlanmo 0"
 	destination "Taltahard"
 	on offer
 		conversation
-			`Your landing location is a large set of old landing pads in the middle of a city, as there doesn't seem to be anywhere else available for spaceships to arrive. The city is filled with dinosaurs in the shape of the mythical Tyrannosaurus Rex, although here smaller then in old Earth fables. Soon after you land, one of these dinosaurs approaches your ship.`
+			`Your landing location is a large set of old landing pads in the middle of a city, as there doesn't seem to be anywhere else available for spaceships to arrive. The city is filled with dinosaurs in the shape of the mythical Tyrannosaurus Rex, although here smaller then in old Earth fables. Soon after you land, one of these dinosaurs, wearing a dark green cloak, approaches your ship.`
 			choice
 				`	(Go out and meet it.)`
 					goto meeting
@@ -31,10 +31,8 @@ mission "Jibauni: Kanlanmo 0"
 					not "language: Coalition"
 				goto initialchoice1
 			action
-				set "knows the Jibauni have Heliarch translators"
+				set "jibauni knowledge: the Jibauni have Heliarch translators"
 			`	The dinosaur opens its mouth to say something, and you hear a growling sound. Then you notice that it has a Coalition translator box around its neck. Before you can do anything the box says, "Could you exit your ship to consult with me?"`
-				to display
-					has "language: Coalition"
 			label initialchoice1
 			choice
 				`	(Go outside of the <ship> and meet the strange beast.)`
@@ -49,7 +47,7 @@ mission "Jibauni: Kanlanmo 0"
 					goto lastisknown
 				`	"How do you have a Coalition translator?"`
 					to display
-						has "knows the Jibauni have Heliarch translators"
+						has "jibauni knowledge: the Jibauni have Heliarch translators"
 						not "asked about the Jibauni translators"
 					goto cotrans
 				`	"Hi, weirdo. What's up?"`
@@ -184,6 +182,10 @@ mission "Jibauni: Kanlanmo 0"
 				set "jibauni: joined the rebels"
 			`	"Very well; this is a disappointing end to a first contact. Goodbye, and never land here again until you have made reparations."`
 				flee
+	on accept
+		clear "asked about the Jibauni translators"
+	on decline
+		clear "asked about the Jibauni translators"
 	on complete
 		payment 15000
 		set "First Contact: Jibauni: offered"
@@ -273,6 +275,10 @@ mission "Jibauni: Kanlanmo 1"
 					to display
 						not "jibauni knowledge: rebel fighter license"
 					goto rebellicense
+				`	"Why are all the Jibauni wearing different shades of green, yellow, or blue?"`
+					to display
+						not "jibauni knowledge: cloak colors"
+					goto cloaks
 				`	"I have no more questions."`
 					goto done
 			label come
@@ -322,6 +328,11 @@ mission "Jibauni: Kanlanmo 1"
 			action
 				set "jibauni knowledge: rebel fighter license"
 			`	"I believe that for most of them, fighting the Rebel faction to the east will give you the license. I would recommend doing that if you want to curry favor', would it be called? For the more important one, I will give you a call when you have assisted us enough."`
+				goto choice
+			label cloaks
+			action
+				set "jibauni knowledge: cloak colors"
+			`	"Ah, indeed a good question you have asked. The explanation in full would be long, but suffice it to say that those who work for the government wear cloaks of yellow; Oracles and religious workers wear blue. The darker the shade, the more important the Jibauni." He does not mention the fact that his cloak is a very dark green.`
 				goto choice
 			label done
 			`	"Good. Without more questions, I can ask if you will lend some help getting to <system>; <planet>, to be precise. Would you take me?"`
@@ -479,7 +490,7 @@ mission "Jibauni: Kanlanmo 3"
 		not "event: kanlanmo books elsewhere"
 	on offer
 		conversation
-			`Kanlanmo comes back to your ship, looking rather discouraged. You consider talking to him.`
+			`Kanlanmo comes back to your ship, looking rather discouraged.`
 			choice
 				`	(Ask what is wrong.)`
 					goto question
@@ -555,7 +566,7 @@ mission "Jibauni: Kanlanmo 4"
 	on offer
 		clear "kanlanmo in mission"
 		conversation
-			`When you get to the cafe, you see Kanlanmo already there, in earnest conversation with another Jibauni. As you walk up, the other Jibauni looks around. "Should I go?" he inquires of Kanlanmo.`
+			`When you get to the cafe, you see Kanlanmo already there, in earnest conversation with another chartreuse-cloaked Jibauni. As you walk up, the other Jibauni looks around. "Shall I go?" he inquires of Kanlanmo.`
 			`	"No," says Kanlanmo. "You should meet Captain <last>. <first>, this is Kasim Aboagye. His company makes most of our fighters and warships."`
 			choice
 				`	"Pleased to meet you."`

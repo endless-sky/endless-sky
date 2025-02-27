@@ -105,7 +105,7 @@ mission "Jibauni: An-lo and Re-sop 1"
 		random < 20
 	on offer
 		conversation
-			`Upon exiting your <ship model>, you notice two older Jibauni standing deferentially near the door. Many trunks and suitcases are scattered around them.`
+			`Upon exiting your <ship model>, you notice two older Jibauni wearing forest green standing deferentially near the door. Many trunks and suitcases are scattered around them.`
 			choice
 				`	(Walk up to them.)`
 				`	(Ignore them.)`
@@ -180,7 +180,7 @@ mission "Jibauni: Ru-win 0"
 		random < 16
 	on offer
 		conversation
-			`As you walk into the spaceport, one Jibauni catches your eye. They seem to be looking for someone, and are glancing all over the place.`
+			`As you walk into the spaceport, one yellow-cloaked Jibauni catches your eye. They seem to be looking for someone, and are glancing all over the place.`
 			choice
 				`	(Go and see what is going on.)`
 				`	(Stay here.)`
@@ -396,7 +396,7 @@ mission "Jibauni: Ji-wi"
 		random < 15
 	on offer
 		conversation
-			`You notice a Jibauni running between captains, every now and then pausing to ask something. After a moment the Jibauni turns towards you and approaches at a resolute pace.`
+			`You notice a Jibauni wearing bright green running between captains, every now and then pausing to ask something. After a moment the Jibauni turns towards you and approaches at a resolute pace.`
 			choice
 				`	(Wait for the Jibauni to reach you.)`
 				`	(Leave the area.)`
@@ -434,7 +434,7 @@ mission "Jibauni: Dran-lin 0"
 		not "event: jibauni rebel jibauni peace"
 	on offer
 		conversation
-			`As you are walking through the spaceport, a young Jibauni nearly collides with you. He profusely apologizes, before stopping to stare at you; recognition dawns on his face. "Oh, the strange alien! Hello! May I ask of you a favor?"`
+			`As you are walking through the spaceport, a young Jibauni wearing bright green nearly collides with you. He profusely apologizes, before stopping to stare at you; recognition dawns on his face. "Oh, the strange alien! Hello! May I ask of you a favor?"`
 			choice
 				`	"I guess."`
 				`	"Sorry for bumping into you. Sure you can ask!"`

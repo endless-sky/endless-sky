@@ -56,7 +56,7 @@ mission "Jibauni Culture: Hajay Intersystem"
 				`	"How do you fit so many Jibauni on board?"`
 				`	(Never mind. Get out of here before the captain notices you.)`
 					goto no
-			`	"Oh," the captain says. "I removed my hyperdrive. Simple, easy, and it lets you fit four more passengers for nothing."`
+			`	"Oh," the light green-cloaked captain says. "I removed my hyperdrive. Simple, easy, and it lets you fit four more passengers for nothing."`
 			choice
 				`	"Why would you do that?"`
 				`	"I see."`
@@ -143,7 +143,7 @@ mission "Jibauni Culture: Rebel Report"
 		random < 2
 	on offer
 		conversation
-			`As you are passing by a restaurant, the door opens, and a small group of Jibauni come out. They are talking about politics, and as you listen, you realize that they are Rebel Jibauni acting as spies.`
+			`As you are passing by a restaurant, the door opens, and a small group of yellow-cloaked Jibauni come out. They are talking about politics, and as you listen, you realize that they are Rebel Jibauni acting as spies.`
 			choice
 				`	(Find a police station to report them at.)`
 				`	(Confront them with what you heard.)`

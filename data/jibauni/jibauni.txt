@@ -239,3 +239,24 @@ effect "jibauni missile hit"
 	"random spin" 3
 	"random frame rate" 5
 	"velocity scale" .4
+
+# commodities
+
+trade
+	commodity "Aboagye Shipyards Parts"
+		"Furus parts"
+		"Larajal parts"
+		"Qudaw parts"
+		"Latbaliday parts"
+		"Nathas parts"
+		"Nathaq parts"
+		"Quyan parts"
+		"Nakil parts"
+		"Nathar parts"
+
+trade
+	commodity "Res-redi Shipyards Parts"
+		"Yiyharsi parts"
+		"Saghir parts"
+		"Daybal parts"
+		"Muraw parts"
