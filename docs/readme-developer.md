@@ -20,6 +20,7 @@ Use your favorite package manager to install the following (version numbers may 
    - libsdl2-dev
    - libpng-dev
    - libjpeg-dev
+   - libavif-dev
    - libgl1-mesa-dev
    - libglew-dev
    - libopenal-dev
@@ -35,6 +36,7 @@ Additionally, if you want to build unit tests:
    - SDL2-devel
    - libpng-devel
    - libjpeg-turbo-devel
+   - libavif-devel
    - mesa-libGL-devel
    - glew-devel
    - openal-soft-devel
