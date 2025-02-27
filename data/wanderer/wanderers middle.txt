@@ -466,7 +466,7 @@ mission "Wanderers: Quarg Assistance 2"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -481,7 +481,7 @@ mission "Wanderers: Quarg Defenders"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -788,7 +788,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 3
+				"Quarg Wardragon"
+				"Quarg Wyvern" 2
 	npc
 		government "Quarg (Kor Efret)"
 		personality heroic
@@ -796,7 +797,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 5
+				"Quarg Wardragon" 3
+				"Quarg Wyvern" 2				
 
 
 

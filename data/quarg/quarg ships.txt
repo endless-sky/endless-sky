@@ -102,7 +102,6 @@ ship "Quarg Guivre"
 	engine -25.5 144
 	engine 25.5 144
 	gun 0 -40
-		under
 	turret -70 61 "Quarg Anti-Missile"
 	turret 70 61 "Quarg Anti-Missile"
 	explode "tiny explosion" 12

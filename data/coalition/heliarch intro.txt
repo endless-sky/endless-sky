@@ -730,7 +730,7 @@ mission "Heliarch Recon 2-B"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Skylark"
+				"Quarg Lindwyrm"
 				"Quarg Wardragon"
 	on accept
 		"assisting heliarchy" ++

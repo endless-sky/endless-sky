@@ -3743,6 +3743,7 @@ system Aleit
 	trade Plastic 410
 	fleet "Quarg (Gegno)" 1100
 	fleet "Large Quarg (Gegno)" 1600
+	fleet "Quarg Utility (Gegno)" 3000
 	fleet "Gegno Basic" 1000
 	fleet "Gegno Cargo" 6000
 	object
@@ -13138,6 +13139,7 @@ system Dokdobaru
 	trade Plastic 317
 	fleet "Quarg (Kor Efret)" 600
 	fleet "Large Quarg (Kor Efret)" 800
+	fleet "Quarg Utility (Kor Efret)" 2000
 	fleet "Kor Efret Home" 750
 	object
 		sprite star/g3
@@ -19865,6 +19867,7 @@ system "Hevru Hai"
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet "Quarg (Hai)" 600
+	fleet "Quarg Utility (Hai)" 2500
 	object
 		sprite star/g3
 		period 10
