@@ -17,44 +17,41 @@ ship "Quarg Lindwyrm"
 	thumbnail "thumbnail/quarg lindwyrm"
 	attributes
 		category "Heavy Freighter"
-		"cost" 5900000
-		"shields" 120000
-		"hull" 70000
-		"required crew" 120
-		"bunks" 210
-		"mass" 990
-		"drag" 18.5
-		"heat dissipation" .47
+#		"cost" 5900000
+		"shields" 95000
+		"hull" 55000
+		"required crew" 35
+		"bunks" 40
+		"mass" 840
+		"drag" 11.5
+		"heat dissipation" .5
 		"fuel capacity" 1000
-		"cargo space" 200
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"hull repair rate" 5
-		"hull energy" 5
-		"ramscoop" 10
-		weapon
+		"cargo space" 400
+		"outfit space" 460
+		"weapon capacity" 140
+		"engine capacity" 100
+#		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Quarg Skylance" 2
+		"Quarg Skydagger" 2
 		"Quarg Anti-Missile" 2
 		
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 120
-		
-		"Medium Graviton Thruster"
+		"Intrusion Countermeasures" 35
+
+		"Small Graviton Thruster"
 		"Medium Graviton Steering"
 		"Jump Drive"
 		
 	engine -29 125
 	engine 29 125
-	turret -19.5 -88.5 "Quarg Skylance"
-	turret 19.5 -88.5 "Quarg Skylance"
+	turret -19.5 -88.5 "Quarg Skydagger"
+	turret 19.5 -88.5 "Quarg Skydagger"
 	turret -29.5 69 "Quarg Anti-Missile"
 	turret 29.5 69 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
@@ -72,40 +69,40 @@ ship "Quarg Guivre"
 	attributes
 		category "Utility"
 		"cost" 5900000
-		"shields" 120000
-		"hull" 70000
-		"required crew" 120
-		"bunks" 210
-		"mass" 990
-		"drag" 18.5
-		"heat dissipation" .47
-		"fuel capacity" 1000
-		"cargo space" 200
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"hull repair rate" 5
-		"hull energy" 5
-		"ramscoop" 10
-		weapon
+		"shields" 185000
+		"hull" 115000
+		"required crew" 165
+		"bunks" 180
+		"mass" 2800
+		"drag" 29
+		"heat dissipation" .3
+		"fuel capacity" 2000
+		"cargo space" 300
+		"outfit space" 720
+		"weapon capacity" 280
+		"engine capacity" 140
+#		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
 			"hit force" 1500
 	outfits
+		"Quarg Tractor Beam"
 		"Quarg Anti-Missile" 2
 		
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 120
-		
+		"Intrusion Countermeasures" 165
+
 		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
+		"Large Graviton Steering"
 		"Jump Drive"
 		
 	engine -25.5 144
 	engine 25.5 144
+	gun 0 -40
+		under
 	turret -70 61 "Quarg Anti-Missile"
 	turret 70 61 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
@@ -122,23 +119,20 @@ ship "Quarg Wardragon"
 	thumbnail "thumbnail/quarg wardragon"
 	attributes
 		category "Light Warship"
-		"cost" 5900000
-		"shields" 160000
-		"hull" 50000
-		"required crew" 160
-		"bunks" 185
-		"mass" 840
-		"drag" 14
-		"heat dissipation" .34
+#		"cost" 5900000
+		"shields" 105000
+		"hull" 30000
+		"required crew" 30
+		"bunks" 40
+		"mass" 600
+		"drag" 8.5
+		"heat dissipation" .6
 		"fuel capacity" 800
-		"cargo space" 50
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"hull repair rate" 5
-		"hull energy" 5
-		"ramscoop" 10
-		weapon
+		"cargo space" 30
+		"outfit space" 500
+		"weapon capacity" 180
+		"engine capacity" 100
+#		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
@@ -150,9 +144,9 @@ ship "Quarg Wardragon"
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 160
-		
-		"Medium Graviton Thruster"
+		"Intrusion Countermeasures" 30
+
+		"Small Graviton Thruster"
 		"Medium Graviton Steering"
 		"Jump Drive"
 		
@@ -176,47 +170,44 @@ ship "Quarg Wyvern"
 	thumbnail "thumbnail/quarg wyvern"
 	attributes
 		category "Medium Warship"
-		"cost" 5900000
-		"shields" 120000
-		"hull" 70000
-		"required crew" 120
-		"bunks" 210
-		"mass" 990
-		"drag" 18.5
-		"heat dissipation" .47
+#		"cost" 5900000
+		"shields" 155000
+		"hull" 45000
+		"required crew" 50
+		"bunks" 60
+		"mass" 750
+		"drag" 9
+		"heat dissipation" .55
 		"fuel capacity" 1000
-		"cargo space" 200
-		"outfit space" 600
-		"weapon capacity" 200
+		"cargo space" 20
+		"outfit space" 560
+		"weapon capacity" 250
 		"engine capacity" 120
-		"hull repair rate" 5
-		"hull energy" 5
-		"ramscoop" 10
-		weapon
+#		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Quarg Skylance" 2
+		"Quarg Ranseur" 2
+		"Quarg Ribault" 2
 		"Quarg Anti-Missile"
-		"Quarg Culverin" 2
 		
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
-		"Intrusion Countermeasures" 120
-		
+		"Intrusion Countermeasures" 50
+
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Jump Drive"
 		
 	engine -23 121
 	engine 23 121
-	gun -17.5 -123 "Quarg Culverin"
-	gun 17.5 -123 "Quarg Culverin"
-	turret -38 -74 "Quarg Skylance"
-	turret 38 -74 "Quarg Skylance"
+	gun -17.5 -123 "Quarg Ranseur"
+	gun 17.5 -123 "Quarg Ranseur"
+	turret -38 -74 "Quarg Ribault"
+	turret 38 -74 "Quarg Ribault"
 	turret 0 6.5 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
@@ -232,23 +223,20 @@ ship "Quarg Hydra"
 	thumbnail "thumbnail/quarg hydra"
 	attributes
 		category "Heavy Warship"
-		"cost" 5900000
-		"shields" 120000
-		"hull" 70000
+#		"cost" 5900000
+		"shields" 310000
+		"hull" 80000
 		"required crew" 120
-		"bunks" 210
-		"mass" 990
-		"drag" 18.5
-		"heat dissipation" .47
-		"fuel capacity" 1000
-		"cargo space" 200
-		"outfit space" 600
-		"weapon capacity" 200
-		"engine capacity" 120
-		"hull repair rate" 5
-		"hull energy" 5
-		"ramscoop" 10
-		weapon
+		"bunks" 140
+		"mass" 2300
+		"drag" 19
+		"heat dissipation" .4
+		"fuel capacity" 800
+		"cargo space" 80
+		"outfit space" 840
+		"weapon capacity" 370
+		"engine capacity" 170
+#		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
@@ -258,14 +246,14 @@ ship "Quarg Hydra"
 		"Quarg Culverin" 2
 		"Quarg Anti-Missile" 2
 		"Quarg Ribault"
-		
+		       
 		"Antimatter Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Intrusion Countermeasures" 120
-		
-		"Medium Graviton Thruster"
-		"Medium Graviton Steering"
+
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
 		"Jump Drive"
 	
 	engine -23.5 135

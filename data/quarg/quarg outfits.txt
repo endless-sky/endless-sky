@@ -11,6 +11,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+# Power
+
 outfit "Nanotech Battery"
 	plural "Nanotech Batteries"
 	category "Power"
@@ -31,7 +34,144 @@ outfit "Antimatter Core"
 	"heat generation" 20
 	"unplunderable" 1
 	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
+
+
+# Engines
+
+outfit "Small Graviton Thruster"
+    category "Engines"
+    "cost" 12000000
+    thumbnail "outfit/small quarg thruster"
+    "mass" 50
+    "outfit space" -50
+    "engine capacity" -50
+    "thrust" 80
+    "thrusting energy" 7
+    "thrusting heat" 1.5
+    "force protection" 0.1
+    "inertia reduction" 0.1
+	"flare sprite" "effect/graviton flare"
+		"scale" .75
+
+outfit "Small Graviton Steering"
+    category "Engines"
+    "cost" 9000000
+    thumbnail "outfit/small quarg steering"
+    "mass" 30
+    "outfit space" -30
+    "engine capacity" -30
+    "turn" 1200
+    "turning energy" 3
+    "turning heat" .75
+    "force protection" 0.1
+    "inertia reduction" 0.1
+
+
+outfit "Medium Graviton Thruster"
+    category "Engines"
+    "cost" 20000000
+    thumbnail "outfit/medium quarg thruster"
+    "mass" 70
+    "outfit space" -70
+    "engine capacity" -70
+    "thrust" 120
+    "thrusting energy" 10
+    "thrusting heat" 2
+    "force protection" 0.15
+    "inertia reduction" 0.15
+	"flare sprite" "effect/graviton flare"
+	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy."
+	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
+
+
+outfit "Medium Graviton Steering"
+    category "Engines"
+    "cost" 16000000
+    thumbnail "outfit/medium quarg steering"
+    "mass" 50
+    "outfit space" -50
+    "engine capacity" -50
+    "turn" 2400
+    "turning energy" 5
+    "turning heat" 1
+    "force protection" 0.15
+    "inertia reduction" 0.15
+	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
+	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
+
+
+outfit "Large Graviton Thruster"
+    category "Engines"
+    "cost" 32000000
+    thumbnail "outfit/large quarg thruster"
+    "mass" 100
+    "outfit space" -100
+    "engine capacity" -100
+    "thrust" 185
+    "thrusting energy" 15
+    "thrusting heat" 3
+    "force protection" 0.2
+    "inertia reduction" 0.2
+	"flare sprite" "effect/graviton flare"
+		"scale" 1.25
+ 
+ 
+outfit "Large Graviton Steering"
+    category "Engines"
+    "cost" 25000000
+    thumbnail "outfit/large quarg steering"
+    "mass" 70
+    "outfit space" -70
+    "engine capacity" -70
+    "turn" 3600
+    "turning energy" 7.5
+    "turning heat" 1.5
+    "force protection" 0.2
+    "inertia reduction" 0.2
+ 
+ 
+outfit "Quantum Shield Generator"
+	category "Systems"
+	cost 30000000
+	thumbnail "outfit/quarg quantum shield generator"
+	"mass" 120
+	"outfit space" -120
+	"shield generation" 10
+	"shield energy" 10
+	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
 	
+
+# Weapons
+
+outfit "Quarg Skydagger"
+	category "Turrets"
+	cost 6000000
+	thumbnail "outfit/quarg skydagger"
+	"mass" 23
+	"outfit space" -23
+	"weapon capacity" -23
+	"turret mounts" -1
+	"required crew" 1
+	"active cooling" 5.75
+	"cooling energy" 1.15
+	weapon
+		sprite "projectile/skydagger"
+			"frame rate" 1
+		"hardpoint sprite" "hardpoint/quarg skydagger"
+		"hardpoint offset" 7
+		sound "skylance"
+		"hit effect" "skylance impact"
+		"inaccuracy" .6
+		"turret turn" 3.1
+		"velocity" 430
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 4.6
+		"firing heat" 1.5
+		"shield damage" 7.7
+		"hull damage" 6.1
+		"ion damage" .03
+	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 outfit "Quarg Skylance"
 	category "Turrets"
@@ -144,7 +284,7 @@ outfit "Quarg Culverin"
 	category Guns
 	cost 7800000
 	mass 46
-	thumbnail outfit/culverin
+	thumbnail "outfit/quarg culverin"
 	"gun ports" -1
 	"outfit space" -46
 	"weapon capacity" -46
@@ -153,24 +293,26 @@ outfit "Quarg Culverin"
 			"frame rate" 60
 			"random start frame"
 			rewind
-		sound "culverin"
+		sound "culverin b"
 		"hit effect" "culverin hit" 20
 		"die effect" "culverin die"
-		lifetime 90
+		lifetime 110
 		reload 24
 		homing 4
 		velocity 10
-		acceleration 0.4
-		drag 0.04
+		acceleration 0.6
+		drag 0.05
 		turn 60
 		inaccuracy 12
+		"stream"
 		tracking 1
 		"firing energy" 123
 		"firing heat" 92.4
-		"hull damage" 125.25
+		"shield damage" 400
+		"hull damage" 160
 		"slowing damage" 7
-		"discharge damage" 2.184
-		"hit force" -186
+		"hit force" -400
+		"missile strength" 600
 	description "The most coveted of Mata weapons. Through unfathomable means, this weapon tangles the fabric of spacetime in such extreme ways that it forms closed time-like curves, along with chaotic gravitational forces and fascinating relativistic effects that slows the target down. Solid matter bends and crumbles under the chaos, and shield matrices are forced to interact with themselves, with catastrophic results. As if fulfilling their own intended destiny, the projectiles are slightly drawn to their target as well. Relic advises that attempting to tinker with this weapon to create a time machine voids warranty, and often results in certain death."
 
 effect "culverin hit"
@@ -195,7 +337,7 @@ outfit "Quarg Ranseur"
 	category Guns
 	cost 5500000
 	mass 38
-	thumbnail outfit/ranseur
+	thumbnail "outfit/quarg ranseur"
 	"gun ports" -1
 	"outfit space" -38
 	"weapon capacity" -38
@@ -209,10 +351,11 @@ outfit "Quarg Ranseur"
 		velocity 600
 		"firing energy" 675
 		"firing heat" 30
-		"shield damage" 528
-		"hull damage" 840
-		"hit force" 1200
-		piercing 0.2
+		"shield damage" 1500
+		"hull damage" 1300
+		"hit force" 600
+		"discharge damage" 5
+		piercing 0.3
 	description "The technology behind this weapon is incomprehensibly complex, even for ancient Mata standards. With a pulse of negative energy, it creates a linear rift in spacetime, generating extreme negative gravitational forces in its path that splits matter apart as if it wasn't there, going right through. While it is capable of piercing shields just as well, inside them, the interference from the matrix disrupts the beam and lowers the damage, so Relic recommends pairing it with their own Chronovortex weapons to weaken shields first."
 
 effect "ranseur"
@@ -234,9 +377,11 @@ outfit "Quarg Ribault"
 	"active cooling" 11.75
 	"cooling energy" 2.35
 	weapon
-		"hardppoint sprite" "hardpoint/quarg ribault"
+		sprite "projectile/ribault"
+		"hardpoint sprite" "hardpoint/quarg ribault"
 		"hardpoint offset" 10.
-		"hit effect" "ribault impact"
+		"fire effect" "ribault flare"
+		"hit effect" "electron impact"
 		sound "ribault"
 		"inaccuracy" 13
 		"turret turn" 2.5
@@ -246,19 +391,21 @@ outfit "Quarg Ribault"
 		"burst count" 19
 		"firing energy" 82
 		"firing heat" 41
+		"fuel damage" 1
+		"shield damage" 130
+		"hull damage" 50
 		"submunition" "ribault unguided" 2
 	description "The rapid flurries shot by this turret cover a wide area at a long range, while dealing very high damage at point blank, should all shots hit their target."
 
 outfit "ribault unguided"
 	weapon
 		sprite "projectile/ribault"
-			"frame rate" 10
-			"random start frame"
 		"hit effect" "ribault impact"
 		"inaccuracy" 11
 		"lifetime" 20
-		"shield damage" 93
-		"hull damage" 68
+		"fuel damage" 1
+		"shield damage" 130
+		"hull damage" 50
 		"submunition" "ribault guided"
 
 outfit "ribault guided"
@@ -269,14 +416,57 @@ outfit "ribault guided"
 		"hit effect" "ribault impact"
 		"inaccuracy" 11
 		"lifetime" 30
-		"fade out" 5
+		"fade out" 7
 		"turn" 5
 		"homing" 4
 		"acceleration" 1
 		"drag" .1
-		"shield damage" 93
-		"hull damage" 68
+		"fuel damage" 1
+		"shield damage" 130
+		"hull damage" 50
 
+effect "ribault flare"
+	sprite "effect/distancer"
+		"frame rate" 1.2
+	"lifetime" 0
+	"velocity scale" .1
+
+effect "ribault impact"
+	sprite "effect/electron impact"
+		"no repeat"
+		"frame rate" 30
+	"lifetime" 5
+	"random angle" 2
+	"random spin" 1
+	"velocity scale" -.003
+
+
+outfit "Quarg Tractor Beam"
+	category "Guns"
+	cost 18000000
+	thumbnail "outfit/quarg skylance"
+	"mass" 60
+	"outfit space" -60
+	"weapon capacity" -60
+	"gun ports" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/quarg tractor beam/tractorbeam"
+			"frame rate" 20
+		sound "quarg tractor beam"
+		"inaccuracy" .1
+		"velocity" 500
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 30
+		"firing heat" 10
+		"firing force" 25
+		"hit force" -550
+		"slowing damage" 2
+	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
+
+
+# Special
 
 outfit "Intrusion Countermeasures"
 	plural "Intrusion Countermeasures"
@@ -285,45 +475,3 @@ outfit "Intrusion Countermeasures"
 	"capture defense" 24
 	"unplunderable" 1
 	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
-
-outfit "Medium Graviton Thruster"
-	category "Engines"
-	"cost" 20000000
-	thumbnail "outfit/medium quarg thruster"
-	"mass" 70
-	"outfit space" -70
-	"engine capacity" -70
-	"thrust" 120
-	"thrusting energy" 20
-	"thrusting heat" 2
-	"force protection" 0.15
-	"inertia reduction" 0.15
-	"flare sprite" "effect/medium graviton flare"
-	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy."
-	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
-
-outfit "Medium Graviton Steering"
-	category "Engines"
-	"cost" 16000000
-	thumbnail "outfit/medium quarg steering"
-	"mass" 50
-	"outfit space" -50
-	"engine capacity" -50
-	"turn" 2400
-	"turning energy" 10
-	"turning heat" 1
-	"force protection" 0.15
-	"inertia reduction" 0.15
-	"steering flare sprite" "effect/medium graviton flare"
-	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
-	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
-
-outfit "Quantum Shield Generator"
-	category "Systems"
-	cost 30000000
-	thumbnail "outfit/quarg quantum shield generator"
-	"mass" 120
-	"outfit space" -120
-	"shield generation" 10
-	"shield energy" 10
-	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
