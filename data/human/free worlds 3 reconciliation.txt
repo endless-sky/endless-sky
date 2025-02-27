@@ -534,12 +534,17 @@ mission "FW Embassy 1B"
 	
 	on offer
 		conversation
+			branch starqueen
+				has "ship model: Star Queen"
 			branch luxury
 				has "outfit (flagship installed): Luxury Accommodations"
 			`Unfortunately, the Republic ambassadors turn out to match all your worst stereotypes of Republic diplomats: dressed in gaudy, impractical clothing, and carrying an absurd amount of luggage. At first you are worried about whether you have enough space for them, but one of them explains that they would not dream of traveling in your dirty old ship; they will be traveling in style, in a Star Queen luxury liner, and your only duty is to ensure their safety. You have little choice but to acquiesce, even though you think they would be far safer on your own ship.`
 				accept
 			label luxury
 			`Unfortunately, the Republic ambassadors turn out to match all your worst stereotypes of Republic diplomats: dressed in gaudy, impractical clothing, and carrying an absurd amount of luggage. At first you are worried about whether you have enough space for them, but one of them explains that they would not dream of traveling in your dirty old ship; they will be traveling in style, in a Star Queen luxury liner, and your only duty is to ensure their safety. Despite boasting state-of-the-art facilities, you have little choice but to acquiesce. Perhaps they'd rather travel with a Republic-staffed crew, even if they would be far safer on your own ship.`
+				accept
+			label starqueen
+			`Unfortunately, the Republic ambassadors turn out to match all your worst stereotypes of Republic diplomats: dressed in gaudy, impractical clothing, and carrying an absurd amount of luggage. At first you are worried about whether you have enough space for them, but one of them explains that they would not dream of traveling in your dirty old ship; they will be traveling in style, in a Star Queen luxury liner, and your only duty is to ensure their safety. Despite boasting your own Star Queen luxury liner, you have little choice but to acquiesce. Perhaps they'd rather travel with a Republic-staffed crew, even if they would be far safer on your own ship.`
 				accept
 	
 	npc accompany save
