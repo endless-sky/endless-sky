@@ -233,6 +233,7 @@ outfit "Asteroid Scanner"
 	"mass" 6
 	"outfit space" -6
 	"asteroid scan power" 40
+	"flotsam scan power" 40
 	description "This highly specialized scanning system can analyze the mineral composition of nearby asteroids and identify the ones that contain valuable materials."
 
 outfit "Tactical Scanner"
