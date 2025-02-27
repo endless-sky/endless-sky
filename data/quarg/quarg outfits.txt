@@ -460,9 +460,8 @@ outfit "Quarg Tractor Beam"
 		"reload" 1
 		"firing energy" 30
 		"firing heat" 10
-		"firing force" 25
-		"hit force" -550
-		"slowing damage" 2
+		"firing force" -40
+		"hit force" -400
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 
