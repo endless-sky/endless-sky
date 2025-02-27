@@ -318,7 +318,7 @@ outfit "Magnetoplasma Drive"
 outfit `Z-333 "Spark" Fusion Torch`
 	category "Engines"
 	series "Engines"
-	index 07021
+	index 07050
 	licenses
 		"Avgi Torch"
 	"cost" 1800000
@@ -344,7 +344,7 @@ outfit `Z-333 "Spark" Fusion Torch`
 outfit `Z-666 "Zap" Fusion Torch`
 	category "Engines"
 	series "Engines"
-	index 07031
+	index 07060
 	licenses
 		"Avgi Torch"
 	"cost" 3900000
@@ -369,7 +369,7 @@ outfit `Z-666 "Zap" Fusion Torch`
 outfit `Z-999 "Arc" Fusion Torch`
 	category "Engines"
 	series "Engines"
-	index 07041
+	index 07070
 	licenses
 		"Avgi Torch"
 	"cost" 6000000
@@ -539,7 +539,7 @@ outfit "R-720 RCS Thrusters"
 outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
 	series "Engines"
-	index 07051
+	index 07080
 	"cost" 300000000
 	thumbnail "outfit/beam antimatter torch"
 	"mass" 3600
