@@ -1764,8 +1764,9 @@ planet "Gardena Station"
 	attributes south station
 	landscape land/sivael7
 	music ambient/machinery
-	description `Gardena Station was once an important link in the chain of stations and waypoints used by merchant caravans long before the Repbulic existed. It was the last stop caravaners would take before making for the final run to Lagrange in the Enif system, where the Quarg were eager for materials to feed their growing ringworld. Decades ago the station ceased to function as a hyperspace fuel refinery, and was left abandoned by governments and corporations alike. However, it is not entirely uninhabited, as a small community of former workers lives here and continues to maintain some of the machinery.`
-	spaceport `The old station is poorly lit, and filled with unnerving creaks, and tremors. It'd be easy to believe the entire place had been abandoned and left to the ghosts. But then, softly, you hear a melody in the distance, and laughter. Somewhere, beyond the unkept bulkheads, life persists, even here.`
+	description `Gardena Station was once an important link in the chain of stations and waypoints used by merchant caravans long before the Repbulic existed. It was the last stop caravaners would take before making for the final run to Lagrange in the Enif system, where the Quarg were eager for materials to feed their growing ringworld.`
+	description `Decades ago the station ceased to function as a hyperspace fuel refinery, and was left abandoned by governments and corporations alike. However, it is not entirely uninhabited, as a small community of former workers lives here and continues to maintain some of the machinery.`
+	spaceport ` The old station is poorly lit, and filled with unnerving creaks, and tremors. It'd be easy to believe the entire place had been abandoned and left to the ghosts. But then, softly, you hear a melody playing in the distance, and laughter. Somewhere, beyond the unkept bulkheads, life persists, even here.`
 	security 0
 	tribute 10
 		threshold 2000
