@@ -1250,12 +1250,14 @@ mission "Gegno Asteroid Mining Prologue"
 				defer
 
 			label "returned"
-			`	Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
+			`Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
 			choice
 				`	(Yes.)`
 					goto accept
 				`	(No.)`
 					defer
+	on defer
+		set "Gegno Asteroid Mining Prologue: deferred"
 	on visit
 		dialog "You've returned to <origin>, but do not have 5 tons of iron mined and in your ship. Make sure to mine 5 tons of iron and collect it into your cargo before you land."
 	on complete
