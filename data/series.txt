@@ -24,8 +24,8 @@
 # 11xxx : Successors
 # 12xxx : Incipias
 # 13xxx : Sheragi
-# 14xxx : Pug
-# 15xxx : Quarg
+# 90xxx : Pug
+# 91xxx : Quarg
 # 99xxx : Other
 
 category "series"

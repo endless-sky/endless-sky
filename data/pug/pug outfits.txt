@@ -14,7 +14,7 @@
 outfit "Pug Zapper"
 	category "Guns"
 	series "Guns"
-	index 14020
+	index 90020
 	cost 290000
 	thumbnail "outfit/pug zapper"
 	"mass" 25
@@ -41,7 +41,7 @@ outfit "Pug Zapper"
 outfit "Pug Zapper Turret"
 	category "Turrets"
 	series "Turrets"
-	index 14010
+	index 90010
 	cost 860000
 	thumbnail "outfit/pug zapper turret"
 	"mass" 66
@@ -80,7 +80,7 @@ effect "zapper impact"
 outfit "Pug Seeker"
 	category "Guns"
 	series "Guns"
-	index 14010
+	index 90010
 	cost 540000
 	thumbnail "outfit/pug seeker"
 	"mass" 34
@@ -124,7 +124,7 @@ effect "seeker impact"
 outfit "Pug Anti-Missile"
 	category "Turrets"
 	series "Anti-Missile"
-	index 14010
+	index 90010
 	cost 350000
 	thumbnail "outfit/pug anti-missile"
 	"mass" 41
@@ -156,7 +156,7 @@ effect "pug anti-missile"
 outfit "Tier 3 Anti-Missile"
 	category "Turrets"
 	series "Anti-Missile"
-	index 14020
+	index 90020
 	cost 12000000
 	thumbnail "outfit/t3 anti missile"
 	"mass" 67
@@ -196,7 +196,7 @@ effect "tier 3 anti-missile die"
 outfit "Pug Gridfire Turret"
 	category "Turrets"
 	series "Turrets"
-	index 14020
+	index 90020
 	cost 24000000
 	thumbnail "outfit/pug gridfire turret"
 	"mass" 83
@@ -255,7 +255,7 @@ effect "gridfire cloud"
 outfit "Pug Akfar Thruster"
 	category "Engines"
 	series "Engines"
-	index 14011
+	index 90011
 	"cost" 608000
 	thumbnail "outfit/pug akfar thruster"
 	"mass" 43
@@ -272,7 +272,7 @@ outfit "Pug Akfar Thruster"
 outfit "Pug Akfar Steering"
 	category "Engines"
 	series "Engines"
-	index 14010
+	index 90010
 	"cost" 472000
 	thumbnail "outfit/pug akfar steering"
 	"mass" 33
@@ -289,7 +289,7 @@ outfit "Pug Akfar Steering"
 outfit "Pug Cormet Thruster"
 	category "Engines"
 	series "Engines"
-	index 14021
+	index 90021
 	"cost" 1050000
 	thumbnail "outfit/pug cormet thruster"
 	"mass" 60
@@ -306,7 +306,7 @@ outfit "Pug Cormet Thruster"
 outfit "Pug Cormet Steering"
 	category "Engines"
 	series "Engines"
-	index 14020
+	index 90020
 	"cost" 880000
 	thumbnail "outfit/pug cormet steering"
 	"mass" 46
@@ -323,7 +323,7 @@ outfit "Pug Cormet Steering"
 outfit "Pug Lohmar Thruster"
 	category "Engines"
 	series "Engines"
-	index 14031
+	index 90031
 	"cost" 1740000
 	thumbnail "outfit/pug lohmar thruster"
 	"mass" 84
@@ -340,7 +340,7 @@ outfit "Pug Lohmar Thruster"
 outfit "Pug Lohmar Steering"
 	category "Engines"
 	series "Engines"
-	index 14030
+	index 90030
 	"cost" 1580000
 	thumbnail "outfit/pug lohmar steering"
 	"mass" 64
@@ -360,7 +360,7 @@ outfit "Pug Biodefenses"
 	plural "Pug Biodefenses"
 	category "Hand to Hand"
 	series "Fortifications"
-	index 14020
+	index 90020
 	cost 100000
 	thumbnail "outfit/pug biodefenses"
 	"capture defense" 100
@@ -371,7 +371,7 @@ outfit "Pug Peacekeeping Staff"
 	plural "Pug Peacekeeping Staves"
 	category "Hand to Hand"
 	series "H2H"
-	index 14010
+	index 90010
 	cost 123456
 	thumbnail "outfit/pug staff"
 	"capture attack" 2.3
