@@ -514,6 +514,8 @@ outfit "Tear of Skade"
 
 outfit "Blood of Surtr"
 	category "Unique"
+	series "Functional Unique"
+	index 21
 	thumbnail "outfit/surtrblood"
 	"energy generation" 2
 	"heat generation" 4
