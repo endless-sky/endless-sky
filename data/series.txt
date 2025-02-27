@@ -26,6 +26,7 @@
 # 13xxx : Sheragi
 # 90xxx : Pug
 # 91xxx : Quarg
+# 92xxx : Spaceborne life
 # 99xxx : Other
 
 category "series"

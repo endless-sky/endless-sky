@@ -55,8 +55,8 @@ ship "Vyrmeid"
 
 outfit "Plankton Mouth"
 	category "Guns"
-	series "Guns: Other"
-	index 70
+	series "Guns"
+	index 92030
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
@@ -110,8 +110,8 @@ ship "Vyrmeid" "Vyrmeid (B)"
 
 outfit "Boomerang Organ"
 	category "Turrets"
-	series "Turrets: Other"
-	index 70
+	series "Turrets"
+	index 92020
 	cost 0
 	thumbnail "outfit/unknown"
 	"mass" 10
@@ -239,8 +239,8 @@ ship "Astral Cetacean"
 
 outfit "Astral Mouth"
 	category "Guns"
-	series "Guns: Other"
-	index 60
+	series "Guns"
+	index 92040
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
