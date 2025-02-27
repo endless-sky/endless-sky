@@ -82,7 +82,7 @@ outfit "Bimodal Coilgun Turret"
 		"velocity" 30
 		"lifetime" 15
 		"range override" 900
-		"turret turn" 1.6
+		"turret turn" 1
 		"burst count" 24
 		"burst reload" 3
 		"reload" 15
@@ -229,7 +229,7 @@ outfit "Pulse Laser Turret"
 		"hit effect" "successor pulse laser impact"
 		"inaccuracy" 0.4
 		"velocity" 490
-		"turret turn" 2.5
+		"turret turn" 2.6
 		"lifetime" 1
 		"burst count" 9
 		"burst reload" 1
@@ -306,7 +306,7 @@ outfit "Overcharged Laser Turret"
 		"inaccuracy" 5.5
 		"velocity" 490
 		"lifetime" 1
-		"turret turn" 3.5
+		"turret turn" 3
 		"burst count" 4
 		"burst reload" 1
 		"reload" 7

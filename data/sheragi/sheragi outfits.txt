@@ -112,6 +112,7 @@ outfit "Fusion Drive"
 	"outfit space" -480
 	"engine capacity" -230
 	"unique" 1
+	"jump fuel" 100
 	"jump speed" 0.2
 	"hyperdrive" 1
 	"energy generation" 54
@@ -283,7 +284,7 @@ outfit "Particle Waveform Turret"
 		"fire effect" "lightning flare"
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
-		"turret turn" 1.8
+		"turret turn" 1.2
 		"velocity" 50
 		"lifetime" 18
 		"reload" 60

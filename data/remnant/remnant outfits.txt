@@ -80,7 +80,7 @@ outfit "Inhibitor Turret"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
-		"turret turn" 3.5
+		"turret turn" 3.6
 		"velocity" 36
 		"random velocity" .5
 		"lifetime" 24
@@ -160,7 +160,7 @@ outfit "Thrasher Turret"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
-		"turret turn" 2.4
+		"turret turn" 2
 		"velocity" 10
 		"lifetime" 36
 		"reload" 5
@@ -201,7 +201,7 @@ effect "point defense fire"
 		"frame rate" 17
 		"no repeat"
 	sound "point defense"
-
+	"sound category" "anti-missile"
 	lifetime 10
 	"velocity scale" .5
 
@@ -738,6 +738,7 @@ effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
 		"frame rate" 10
 	sound "remnant afterburner"
+	"sound category" "afterburner"
 
 
 

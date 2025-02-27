@@ -61,7 +61,7 @@ jobs:
     - name: Install development dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2
+        sudo apt-get install -y --no-install-recommends libxmu-dev libxi-dev libgl-dev libglu1-mesa-dev libgles2-mesa-dev libwayland-dev libxkbcommon-dev libegl1-mesa-dev libosmesa6 mesa-utils libglvnd-dev x11-utils catch2 libltdl-dev
     - name: Disable VM sound card
       run: |
         sudo sh -c 'echo "pcm.!default { type plug slave.pcm \"null\" }"  >> /etc/asound.conf'
@@ -77,7 +77,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -121,7 +121,7 @@ jobs:
     name: Windows
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -140,7 +140,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'mingw-ci'
@@ -164,7 +164,7 @@ jobs:
     name: Windows Clang
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -183,7 +183,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'clang-cl-ci'
@@ -218,7 +218,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'
@@ -226,6 +226,42 @@ jobs:
         testPreset: 'macos-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
+
+
+  build_macos-arm:
+    name: MacOS-ARM
+    needs: changed
+    if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
+    runs-on: macos-14
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: "Endless Sky ARM CI Test"
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Setup cached directories
+      uses: actions/cache@v4
+      with:
+        path: /Users/runner/Library/Caches/Mozilla.sccache
+        key: ${{ runner.os }}-${{ runner.arch }}-ci-sccache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-ci-sccache-refs/heads/master
+    - name: Setup sccache
+      uses: Mozilla-Actions/sccache-action@v0.0.5
+    - name: Install pkg-config
+      run: type -P pkg-config || brew install pkg-config
+    - uses: lukka/get-cmake@latest
+    - uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: '2cf957350da28ad032178a974607f59f961217d9'
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'macos-arm-ci'
+        buildPreset: 'macos-arm-ci'
+        testPreset: 'macos-arm-ci'
+    - name: Run Benchmarks
+      run: ctest --preset macos-arm-ci-benchmark
 
 
   build_documentation_doxygen:
@@ -251,7 +287,7 @@ jobs:
     needs: [changed, build_windows]
     name: Data Files
     if: ${{ (needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.ci_config == 'true') && always() }}
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       CONTINUOUS: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -285,4 +321,7 @@ jobs:
       shell: bash
     - name: Parse Integration Test Data
       run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
+      shell: bash
+    - name: Parse All Resources
+      run: "'./Endless Sky.exe' --parse-assets"
       shell: bash

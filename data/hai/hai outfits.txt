@@ -86,7 +86,7 @@ outfit "Pulse Turret"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
-		"turret turn" 2.3
+		"turret turn" 2.6
 		"velocity" 15
 		"lifetime" 30
 		"reload" 10
@@ -224,7 +224,7 @@ outfit "Ionic Turret Prototype"
 		sound "ion"
 		"hit effect" "ionic impact" 5
 		"inaccuracy" 2
-		"turret turn" 2.4
+		"turret turn" 1.4
 		"velocity" 12
 		"lifetime" 70
 		"reload" 70

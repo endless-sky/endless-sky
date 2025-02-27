@@ -890,7 +890,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!isNewInstance && targetSystem)
 	{
 		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
-			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->Name();
+			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->TrueName();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
@@ -899,7 +899,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		else if(!currentSystem->Links().contains(targetSystem)
 			&& (!navigation.JumpRange() || !currentSystem->JumpNeighbors(navigation.JumpRange()).contains(targetSystem)))
 		{
-			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->TrueName() + ".\"");
 			targetSystem = nullptr;
 		}
 	}
@@ -1128,18 +1128,18 @@ void Ship::Save(DataWriter &out) const
 		if(formationPattern)
 			out.Write("formation", formationPattern->Name());
 		if(currentSystem)
-			out.Write("system", currentSystem->Name());
+			out.Write("system", currentSystem->TrueName());
 		else
 		{
 			// A carried ship is saved in its carrier's system.
 			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
-				out.Write("system", parent->currentSystem->Name());
+				out.Write("system", parent->currentSystem->TrueName());
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
-			out.Write("destination system", targetSystem->Name());
+			out.Write("destination system", targetSystem->TrueName());
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1545,17 +1545,22 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+const ShipAICache &Ship::GetAICache() const
 {
 	return aiCache;
 }
 
 
 
-void Ship::UpdateCaches()
+void Ship::UpdateCaches(bool massLessChange)
 {
-	aiCache.Recalibrate(*this);
-	navigation.Recalibrate(*this);
+	if(massLessChange)
+		aiCache.Calibrate(*this);
+	else
+	{
+		aiCache.Recalibrate(*this);
+		navigation.Recalibrate(*this);
+	}
 }
 
 
@@ -1932,10 +1937,10 @@ int Ship::Scan(const PlayerInfo &player)
 	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
 	{
 		if(sounds.empty())
-			Audio::Play(Audio::Get("scan"), position);
+			Audio::Play(Audio::Get("scan"), position, SoundCategory::SCAN);
 		else
 			for(const auto &sound : sounds)
-				Audio::Play(sound.first, position);
+				Audio::Play(sound.first, position, SoundCategory::SCAN);
 	};
 	if(attributes.Get("silent scans"))
 	{
@@ -3040,11 +3045,25 @@ double Ship::TurnRate() const
 
 
 
+double Ship::TrueTurnRate() const
+{
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueAcceleration() const
+{
+	return Acceleration() * 1. / (1. + slowness * .05);
 }
 
 
@@ -3072,6 +3091,13 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::CurrentSpeed() const
+{
+	return Velocity().Length();
 }
 
 
@@ -3539,26 +3565,28 @@ bool Ship::CanFire(const Weapon *weapon) const
 			return false;
 	}
 
-	if(energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
+	if(weapon->ConsumesEnergy()
+			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
 		return false;
-	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
+	if(weapon->ConsumesFuel()
+			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
+	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
+	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
 		return false;
 	// Repeat this for various effects which shouldn't drop below 0.
-	if(ionization < -weapon->FiringIon())
+	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
 		return false;
-	if(disruption < -weapon->FiringDisruption())
+	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
 		return false;
-	if(slowness < -weapon->FiringSlowing())
+	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
 		return false;
 
 	return true;
@@ -3782,6 +3810,13 @@ int Ship::GetLingerSteps() const
 void Ship::Linger()
 {
 	++lingerSteps;
+}
+
+
+
+bool Ship::Immitates(const Ship &other) const
+{
+	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }
 
 
@@ -4912,7 +4947,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 			Point effectVelocity = velocity - 6. * afterburnerAngle.Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle);
+					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle, Point{}, point.zoom);
 		}
 	}
 }

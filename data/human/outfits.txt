@@ -498,7 +498,7 @@ outfit "Puny"
 	series "Non-Functional Unique"
 	index 10
 	"display name" `"Puny"`
-	thumbnail "outfit/unknown"
+	thumbnail "outfit/collar"
 	"unique" 1
 	description `A poodle you rescued from a dubious racing complex on Freedom. She appears to have formed a strong bond with you, willing to stick by your side.`
 	description `	Her history matches with Pookie's, but Pookie's owner claimed that Puny was not hers. Puny is also vastly less urine-prone; you suspect that the race organizers may have toilet-trained her.`
@@ -511,6 +511,14 @@ outfit "Tear of Skade"
 	"cooling" 4
 	"unique" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
+
+outfit "Blood of Surtr"
+	category "Unique"
+	thumbnail "outfit/surtrblood"
+	"energy generation" 2
+	"heat generation" 4
+	"unique" 1
+	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
 
 
 outfit "Local Map"
