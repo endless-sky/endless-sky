@@ -798,7 +798,7 @@ mission "Wanderers: Kor Efret 3"
 			names "quarg"
 			variant
 				"Quarg Wardragon" 3
-				"Quarg Wyvern" 2				
+				"Quarg Hydra"
 
 
 

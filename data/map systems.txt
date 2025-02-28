@@ -13139,7 +13139,6 @@ system Dokdobaru
 	trade Plastic 317
 	fleet "Quarg (Kor Efret)" 600
 	fleet "Large Quarg (Kor Efret)" 800
-	fleet "Quarg Utility (Kor Efret)" 2000
 	fleet "Kor Efret Home" 750
 	object
 		sprite star/g3
@@ -14863,6 +14862,7 @@ system Enif
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet Quarg 600
+	fleet "Quarg Utility" 2000
 	object
 		sprite star/g3
 		period 10

@@ -111,26 +111,11 @@ fleet "Quarg Utility"
 		"Quarg Wardragon"
 	variant 2
 		"Quarg Guivre"
-		"Quarg Wardragon" 3
+		"Quarg Wardragon" 2
 	variant 2
 		"Quarg Guivre"
-		"Quarg Wyvern"
-		"Quarg Lindwyrm"
-	variant
-		"Quarg Guivre"
-		"Quarg Wyvern" 2
-	variant
-		"Quarg Guivre"
-		"Quarg Wyvern" 2
-		"Quarg Wardragon"		
-	variant
-		"Quarg Guivre"
-		"Quarg Wyvern" 2
-		"Quarg Wardragon"
-	variant
-		"Quarg Guivre"
-		"Quarg Wardragon" 2
-		"Quarg Hydra"
+		"Quarg Lindwyrm" 2
+
 
 # Hai Quarg
 
@@ -220,53 +205,18 @@ fleet "Large Quarg (Kor Efret)"
 	personality
 		forbearing opportunistic
 	variant 2
-		"Quarg Lindwyrm" 2
-		"Quarg Wardragon"
-	variant 2
-		"Quarg Wardragon" 2
-		"Quarg Lindwyrm"
-	variant
-		"Quarg Lindwyrm" 2
-		"Quarg Wardragon" 2
-	variant
-		"Quarg Wardragon" 3
-		"Quarg Lindwyrm"
-	variant
-		"Quarg Lindwyrm" 3
-		"Quarg Wardragon"
-
-fleet "Quarg Utility (Kor Efret)"
-	government "Quarg (Kor Efret)"
-	names "quarg"
-	cargo 1
-	personality
-		forbearing opportunistic
-	variant 3
-		"Quarg Guivre"
-		"Quarg Lindwyrm"
-		"Quarg Wardragon"
-	variant 2
-		"Quarg Guivre"
 		"Quarg Wardragon" 3
 	variant 2
-		"Quarg Guivre"
+		"Quarg Wardragon" 2
 		"Quarg Wyvern"
-		"Quarg Lindwyrm"
 	variant
-		"Quarg Guivre"
-		"Quarg Wyvern" 2
+		"Quarg Wardragon" 4
 	variant
-		"Quarg Guivre"
-		"Quarg Wyvern" 2
-		"Quarg Wardragon"		
-	variant
-		"Quarg Guivre"
-		"Quarg Wyvern" 2
-		"Quarg Wardragon"
-	variant
-		"Quarg Guivre"
 		"Quarg Wardragon" 2
-		"Quarg Hydra"
+		"Quarg Wyvern" 2
+	variant
+		"Quarg Wyvern" 3
+
 
 # Gegno Quarg
 
