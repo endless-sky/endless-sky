@@ -7427,15 +7427,58 @@ mission "Hroar's Haulers Unferth 2"
 				`	(Say nothing.)`
 			`	Solvi gropes around the wall for several moments before finding a water-damaged panel. He presses it into structure, and what little lights there are, suddenly go dark.`
 			`	The feral, claustrophobic total darkness of the station seems to tighten around you. Instinctively you reach for your gear, but there's something about the dark that makes you think, impossibly, that no light could pierce this void.`
-			`	Suddenly, clear and disembodied words ring out all around you;`
-
+			choice
+				`	"Solvi?"`
+				`	"Let's go back."`
+				`	(Listen.)`
+			`	Suddenly, you hear Solvi's clear and disembodied voice ringing out all around you;`
+			``
 			`	Say so long to steady stars `
 			`	the home we know,`
 			`	the light that's ours.`
 			`	We close our eyes,`
-			`	entrust our souls`
-			`	to the Blush`
+			`	forsake our souls`
+			`	into the Gap`
 			`	and where it goes`
+			``
+			`	There is a long silence, as the last echoes of Solvi's words fade away into the forgotten station.`
+			`	Then a single clang can be heard behind the door,this is followed by a loud mechanical whirring noise, and blastdoor begins to creek.`
+			`	Light spills into the growing back as the huge door swings open before you. As your eyes struggle to adjust you make out black shape in the midst of the doorway.`
+			`	"Dinnae fert the gloam, caravaner, for yer in the Bloosh, noo." An old husky voice says, "Come inside, wull ye?"`
+			`	Solvi steps into the light, and turns back to face you, "This way, <first>."`
+			choice
+				`	(Follow Solvi.)`
+					goto follow
+				`	"What exactly is this?"`
+					goto whatisthis
+				`	"I am going back to the ship."`
+			label nope
+			action
+				set "werefert"
+			`	Although your eyes haven't fully adjusted, you can still make out Solvi's frown. "I...I understand. I won't be long. Wait for me."`
+			`	He pushes into the light, and a moment later the door slams shut. The dim flickering lights of the station turn back on, and your return to your ship.`
+			`	A few hours later Solvi shows up. He seems a little withdrawn and all he says is, "Drop me off at Wayfarer, please."`
+				accept
+
+			label whatisthis
+			`	Solvi pauses in the light, "The Blush, the shrine I toldja about, remember? The folks that maintain it are little odd, I'll give ya that, but they're good folk. Think of it like a monastery, but much more fun. Trust me, nothing untoward will happen to ya in there. I gotchyer back."`
+			choice
+				`	"Alright, I trust you." (Follow Solvi.)`
+					goto follow
+				`	"No thanks. I am headed back."`
+					goto nope
+			
+			label follow
+			`	It feels like you've been transported to a completely different station. The corridors are well lit and clean, if heavily worn, and the machines all appear to be mostly functional. Happy children run past as you as your old guide leads you deeper into the station.`
+			`	"No mony caravan fowk come here noodays," the old man is dressed in what looks like a handstitched facsimile of an ancient station uniform, "Ye fae Muspel, richt? Rid-born hauler?"`
+			`	"Uh, yes Blush-Master," Solvi indicates toward his red-brown jacket. "We're Haulers, from the red of Muspel. I reckon we're the only sort to be visiting you anymore."`
+			`	"A few stane fowk find there way here fae time tae time." He says to Solvi as he leads you both around a corner and in front of two a large door adorned in the glittering colored glass, "Here we are, laddie. Tak yer time."`
+			`	Solvi opens the door, and waits for you to enter.`
+			choice
+				`	(Step inside.)`
+				`	"This far enough for me. I'll just wait here."`
+
+
 
 
 		`Into the Gap glad we go,
