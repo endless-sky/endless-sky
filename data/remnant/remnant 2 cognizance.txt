@@ -663,8 +663,8 @@ mission "Remnant: Cognizance 18"
 		event "remnant: pantica void sprites"
 		event "remnant: cognizance timer" 30
 		conversation
-			`Moments later a ping comes in on the commlink, and Prefect Chilia and Plume appear on screen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
-			`	"In the meantime," continues Chilia. "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
+			`Moments later a ping comes in on the commlink, and Prefects Chilia and Plume appear on screen. "Thank you for your work, Captain. It is unclear what the results of this effort will be, but for now, we wait and see. Hopefully the void sprites settle in," concludes Plume.`
+			`	"In the meantime," continues Chilia, "We are allocating you a daily stipend from our resources to cover some of your ongoing crew, maintenance, and upgrading costs. A larger one-time allotment has already been credited to your account with the shipyard facilities to help cover costs incurred during this mission."`
 
 
 
@@ -746,7 +746,7 @@ mission "Remnant: Cognizance 20"
 			`	"Because we are in the midst of war, and located in an actively hazardous part of the galaxy. We, as a people, need to make countless thousands of on-the-spot decisions every day. If we had to reach a consensus for every troop movement, expedition, or resource allocation we would be overwhelmed within days." She stops speaking, and another Remnant picks up the explanation.`
 			`	"By the same token, prefects can be killed, or overloaded. Having as much decision making as possible handled by the Remnant as a group reduces our vulnerability to assassination strikes, and helps protect our prefects from burning out under the responsibility. On the flip side, it also protects our society from becoming an autocracy where one powerful person or small group makes all the decisions."`
 			label missionchoice
-			`	The Remnant still and look at you. "So, will you take this mission?"`
+			`	The Remnant still look at you. "So, will you take this mission?"`
 			choice
 				`	"Yes."`
 				`	"Later."`
