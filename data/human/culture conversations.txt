@@ -845,3 +845,41 @@ mission "Republic 300 Year Anniversary"
 			label "sestor beaten at farpoint"
 			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
 				goto end
+
+mission "Exotic Animals - Glaze"
+	minor
+	source Glaze
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step to the edge of the mesa from the spaceport, the wind blowing as you take in the view. The canyons stretch out before you, a maze of red and gold stone, their depths lost in shadow. Far in the distance, something moves -- small figures, barely more than specks, making their way through one of the ravines. You squint, but the details remain elusive.`
+			`	Nearby, a weathered set of credit-operated binoculars stands bolted to the ground, a faded sign above them reading: 5 credits per use.`
+			choice
+				`	(Take a closer look for 5 credits.)`
+					to display
+						credits >= 5
+				`	(Ignore the specks and return to your ship.)`
+					to display
+						credits >= 5
+					goto closing
+				`	(Pat your empty pockets. Return to your ship as you can't even afford the 5 credits.)`
+					to display
+						credits < 5
+					goto closing
+			action
+				payment -5			
+			branch norareapes
+				random > 20
+			`	The binoculars hum as you focus in on the figures, expecting hikers. But what you see is something else entirely. A small group of shaggy, long-limbed creatures moves carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
+			`	One of them stops near a boulder, kneeling to scoop up a handful of dust and let it run through its fingers, as if testing the wind. Another lingers behind the rest, turning its head slightly, as if listening for something. There are no signs of tools or fire, certainly nothing to suggest the 'canyon people' of local legend -- but there's an undeniable sense of awareness in the way they move and seem to belong to the landscape itself.`
+			`	After a long moment, they disappear behind a ridge, blending so seamlessly into the terrain that it's hard to tell if they were ever there at all. You step back from the binoculars, the last glimpse of them lingering in your mind.`
+			choice
+				`	(Return to your ship.)`
+					goto closing
+			label norareapes
+			`	Curiosity gets the better of you, and you pay 5 credits to the machine. The binoculars whir softly as they adjust, bringing the distant canyon into focus. A group of brightly dressed tourists walks along a winding trail, pointing at rock formations and stopping to take photos. One of them waves excitedly at something -- maybe an unseen guide explaining the landscape.`
+			`	Just another tour group exploring the canyons. You step back from the binoculars with a small chuckle.`
+			label closing
+			`	You walk back to your ship from the binoculars.`
+				decline
