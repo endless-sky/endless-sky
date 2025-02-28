@@ -7404,7 +7404,7 @@ mission "Hroar's Haulers Unferth"
 	on complete
 		conversation
 			`	Landing on this old dilapidated station is more than a little complicated. Between the lack of any sort of trafic control, the amount of trashed or inoperable bays, and the jagged floating refuse around more then a few corners, it's a miracle you land unscathed.`
-			`	Once inside, it doesn't get any better, the state of the station makes it easy to believe the entire thing could apart at the seems at any moment. Solvi, however, is undeterred.`
+			`	Once inside, it doesn't get any better, the state of the station makes it easy to believe the entire thing could come apart at the seams at any moment. Solvi, however, is undeterred.`
 			`	"She's in better shape than she looks," He says, "They bult these old girls to last; she's a Blush after all. 'Sides I reckon they just dirty her up a bit to keep the tourists away, ya know. Hostile architecture and all that."`
 			`	He trudges on toward what was once the spaceport, "Come on, it's this way."`
 
@@ -7418,15 +7418,28 @@ mission "Hroar's Haulers Unferth 2"
 		has "Hroar's Haulers 18b: done"
 	on offer
 		conversation
+			`You hurdle a few rusty railings, climb over an upturned bench, and slide around a large puddle of industrial mystery waste, before approaching a large heavily reinforced blast door that appears to have rusted into the station's walls.`
+			`	In the uneven light of the abandoned station a stray beam catches Solvi's face and his eyes glitter in the dark.`
+			`	"This way." he says, as he stands before the immobile rustbound hatch.`
+			choice
+				`	"Looks like a dead end."`
+				`	"How do you expect to open that?"`
+				`	(Say nothing.)`
+			`	Solvi gropes around the wall for several moments before finding a water-damaged panel. He presses it into structure, and what little lights there are, suddenly go dark.`
+			`	The feral, claustrophobic total darkness of the station seems to tighten around you. Instinctively you reach for your gear, but there's something about the dark that makes you think, impossibly, that no light could pierce this void.`
+			`	Suddenly, clear and disembodied words ring out all around you;`
+
+			`	Say so long to steady stars `
+			`	the home we know,`
+			`	the light that's ours.`
+			`	We close our eyes,`
+			`	entrust our souls`
+			`	to the Blush`
+			`	and where it goes`
 
 
-
-		`	He pauses, 
-		"Say so long to steady stars, 
-		the home we know,
-		the light that's ours.
-		Into the Gap glad we go,
-		What the dark whispers,
+		`Into the Gap glad we go,
+		What dark whispers,
 		Only we know.
 		`
 		
