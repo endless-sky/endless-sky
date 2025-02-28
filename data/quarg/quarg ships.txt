@@ -39,9 +39,10 @@ ship "Quarg Lindwyrm"
 		"Quarg Skydagger" 2
 		"Quarg Anti-Missile" 2
 		
-		"Antimatter Core"
+		"Tachyon Core"
 		"Nanotech Battery"
-		"Quantum Shield Generator"
+		"Fluxion Shield Generator"
+		"Peripheral Repair Hub"
 		"Intrusion Countermeasures" 35
 
 		"Small Graviton Thruster"
@@ -87,12 +88,13 @@ ship "Quarg Guivre"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Quarg Tractor Beam"
+		"Quarg Graviton Projector"
 		"Quarg Anti-Missile" 2
 		
-		"Antimatter Core"
+		"Singularity Core"
 		"Nanotech Battery"
-		"Quantum Shield Generator"
+		"Infimum Shield Generator"
+		"Central Repair Hub"
 		"Intrusion Countermeasures" 165
 
 		"Medium Graviton Thruster"
@@ -128,7 +130,7 @@ ship "Quarg Wardragon"
 		"heat dissipation" .6
 		"fuel capacity" 800
 		"cargo space" 30
-		"outfit space" 500
+		"outfit space" 510
 		"weapon capacity" 180
 		"engine capacity" 100
 #		weapon
@@ -142,7 +144,8 @@ ship "Quarg Wardragon"
 		
 		"Antimatter Core"
 		"Nanotech Battery"
-		"Quantum Shield Generator"
+		"Infimum Shield Generator"
+		"Peripheral Repair Hub"
 		"Intrusion Countermeasures" 30
 
 		"Small Graviton Thruster"
@@ -179,7 +182,7 @@ ship "Quarg Wyvern"
 		"heat dissipation" .55
 		"fuel capacity" 1000
 		"cargo space" 20
-		"outfit space" 560
+		"outfit space" 575
 		"weapon capacity" 250
 		"engine capacity" 120
 #		weapon
@@ -194,7 +197,8 @@ ship "Quarg Wyvern"
 		
 		"Antimatter Core"
 		"Nanotech Battery"
-		"Quantum Shield Generator"
+		"Fluxion Shield Generator"
+		"Peripheral Repair Hub"
 		"Intrusion Countermeasures" 50
 
 		"Medium Graviton Thruster"
@@ -227,13 +231,13 @@ ship "Quarg Hydra"
 		"hull" 80000
 		"required crew" 120
 		"bunks" 140
-		"mass" 2300
-		"drag" 19
+		"mass" 2600
+		"drag" 25
 		"heat dissipation" .4
 		"fuel capacity" 800
 		"cargo space" 80
-		"outfit space" 840
-		"weapon capacity" 370
+		"outfit space" 875
+		"weapon capacity" 380
 		"engine capacity" 170
 #		weapon
 			"blast radius" 250
@@ -241,14 +245,15 @@ ship "Quarg Hydra"
 			"hull damage" 500
 			"hit force" 1500
 	outfits
-		"Quarg Ranseur" 3
-		"Quarg Culverin" 2
+		"Quarg Ranseur" 2
+		"Quarg Culverin" 3
 		"Quarg Anti-Missile" 2
 		"Quarg Ribault"
 		       
-		"Antimatter Core"
+		"Singularity Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
+		"Central Repair Hub"
 		"Intrusion Countermeasures" 120
 
 		"Large Graviton Thruster"
@@ -261,7 +266,7 @@ ship "Quarg Hydra"
 	gun 38 -168 "Quarg Ranseur"
 	gun -78 -129 "Quarg Culverin"
 	gun 78 -129 "Quarg Culverin"
-	gun 0 -130 "Quarg Ranseur"
+	gun 0 -130 "Quarg Culverin"
 	turret -52 -71.5 "Quarg Anti-Missile"
 	turret 52 -71.5 "Quarg Anti-Missile"
 	turret 0 7.5 "Quarg Ribault"

@@ -12,30 +12,6 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 
-# Power
-
-outfit "Nanotech Battery"
-	plural "Nanotech Batteries"
-	category "Power"
-	cost 3000000
-	thumbnail "outfit/quarg nanotech battery"
-	"mass" 50
-	"outfit space" -50
-	"energy capacity" 60000
-	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
-
-outfit "Antimatter Core"
-	category "Power"
-	cost 100000000
-	thumbnail "outfit/quarg antimatter core"
-	"mass" 80
-	"outfit space" -80
-	"energy generation" 80
-	"heat generation" 20
-	"unplunderable" 1
-	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
-
-
 # Engines
 
 outfit "Small Graviton Thruster"
@@ -128,58 +104,153 @@ outfit "Large Graviton Steering"
     "turning heat" 1.5
     "force protection" 0.2
     "inertia reduction" 0.2
- 
- 
-outfit "Quantum Shield Generator"
-	category "Systems"
-	cost 30000000
-	thumbnail "outfit/quarg quantum shield generator"
-	"mass" 120
+
+
+# Power
+
+outfit "Nanotech Battery"
+	plural "Nanotech Batteries"
+	category "Power"
+	cost 3000000
+	thumbnail "outfit/quarg nanotech battery"
+	"mass" 50
+	"outfit space" -50
+	"energy capacity" 60000
+    "active cooling" 25
+    "cooling energy" 1.25
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
+
+
+outfit "Tachyon Core"
+	category "Power"
+	cost 20000000
+	thumbnail "outfit/quarg tachyon core"
+	"mass" 50
+	"outfit space" -50
+	"energy generation" 12
+	"heat generation" 10
+	description ""
+
+
+outfit "Antimatter Core"
+	category "Power"
+	cost 50000000
+	thumbnail "outfit/quarg antimatter core"
+	"mass" 80
+	"outfit space" -80
+	"energy generation" 22
+	"heat generation" 20
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
+
+
+outfit "Singularity Core"
+	category "Power"
+	cost 100000000
+	thumbnail "outit/quarg singularity core"
+	"mass" 160
 	"outfit space" -120
-	"shield generation" 10
-	"shield energy" 10
+	"energy generation" 37.5
+	"heat generation" 35
+	description ""
+
+
+# Systems
+
+outfit "Fluxion Shield Generator"
+    category "Systems"
+    cost 10000000
+    "mass" 40
+    "outfit space" -40
+    "shield generation" 3.2
+    "shield energy" 1.6
+    "disruption protection" .4
+    "piercing protection" .2
+
+
+outfit "Infimum Shield Generator"
+    category "Systems"
+    cost 20000000
+    "mass" 55
+    "outfit space" -55
+    "shield generation" 5
+    "shield energy" 2.5
+    "disruption protection" .6
+    "piercing protection" .3
+	description "In addition to being able to recover their shields more quickly and efficiently than any other technology of considerable size, Quarg shield generators also provide an impressive degree of protection against weapons designed to bypass shields entirely."
+
+
+outfit "Quantum Shield Generator"
+    category "Systems"
+    cost 30000000
+    "mass" 80
+    "outfit space" -80
+    "shield generation" 8
+    "shield energy" 4
+    "disruption protection" 1
+    "piercing protection" .5
 	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
-	
+
+
+outfit "Peripheral Repair Hub"
+    category "Systems"
+    cost 10000000
+    thumbnail "outfit/quarg peripheral repair hub"
+    "mass" 25
+    "outfit space" -25
+    "hull repair rate" 1
+    "hull energy" .5
+    description ""
+
+
+outfit "Central Repair Hub"
+    category "Systems"
+    cost 10000000
+    thumbnail "outfit/quarg central repair hub"
+    "mass" 55
+    "outfit space" -55
+    "hull repair rate" 2.5
+    "hull energy" 1.25
+    description "Though still far from a weakness compared to the technology of most other species, the hull repair systems employed by the Quarg are not as powerful as one might expect. Evidently they prefer to rely on their exceptionally powerful shield generators, and it isn't hard to see why this tactic has yet to fail them."
+
 
 # Weapons
 
 outfit "Quarg Skydagger"
 	category "Turrets"
-	cost 6000000
+	cost 8500000
 	thumbnail "outfit/quarg skydagger"
-	"mass" 23
-	"outfit space" -23
-	"weapon capacity" -23
+	"mass" 25
+	"outfit space" -25
+	"weapon capacity" -25
 	"turret mounts" -1
 	"required crew" 1
-	"active cooling" 5.75
-	"cooling energy" 1.15
 	weapon
 		sprite "projectile/skydagger"
 			"frame rate" 1
 		"hardpoint sprite" "hardpoint/quarg skydagger"
 		"hardpoint offset" 7
-		sound "skylance"
+		sound "skydagger"
 		"hit effect" "skylance impact"
 		"inaccuracy" .6
 		"turret turn" 3.1
-		"velocity" 430
+		"velocity" 350
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 4.6
-		"firing heat" 1.5
-		"shield damage" 7.7
-		"hull damage" 6.1
-		"ion damage" .03
+		"firing energy" 4
+		"firing heat" .5
+		"shield damage" 7.5
+		"hull damage" 6
+		"ion damage" .05
+		"scrambling damage" .05
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 outfit "Quarg Skylance"
 	category "Turrets"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
-	"mass" 60
-	"outfit space" -60
-	"weapon capacity" -60
+	"mass" 50
+	"outfit space" -50
+	"weapon capacity" -50
 	"turret mounts" -1
 	"required crew" 1
 	weapon
@@ -194,10 +265,10 @@ outfit "Quarg Skylance"
 		"velocity" 500
 		"lifetime" 1
 		"reload" 1
-		"firing energy" 30
-		"firing heat" 10
-		"shield damage" 50
-		"hull damage" 40
+		"firing energy" 8
+		"firing heat" 1
+		"shield damage" 15
+		"hull damage" 12
 		"ion damage" .1
 		"scrambling damage" .1
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
@@ -213,7 +284,7 @@ effect "skylance impact"
 
 outfit "Quarg Anti-Missile"
 	category "Turrets"
-	cost 6000000
+	cost 9000000
 	thumbnail "outfit/quarg anti missile"
 	"mass" 40
 	"outfit space" -40
@@ -227,7 +298,7 @@ outfit "Quarg Anti-Missile"
 		"velocity" 500
 		"lifetime" 1
 		"reload" 10
-		"firing energy" 50
+		"firing energy" 40
 	description "Quarg anti-missile defenses can target projectiles from considerable range compared to human technology, ensuring that only the most powerful missiles are capable of even getting near a Quarg ship."
 
 effect "quarg anti-missile"
@@ -240,54 +311,45 @@ effect "quarg anti-missile"
 	"velocity scale" 1
 
 
-outfit "Quarg Culverin Original"
-	category "Guns"
-	cost 10000000
-	thumbnail "outfit/quarg culverin"
-	"mass" 100
-	"outfit space" -100
-	"weapon capacity" -100
-	"required crew" 5
+outfit "Quarg Ranseur"
+	category Guns
+	cost 40000000
+	mass 65
+	thumbnail "outfit/quarg ranseur"
 	"gun ports" -1
-	"active cooling" 25
-	"cooling energy" 5
+	"outfit space" -65
+	"weapon capacity" -65
 	weapon
-		sprite "projectile/detainer"
-			"frame rate" 20
-			"random start frame"
-		sound "pewtest9"
-		"hit effect" "culverin hit" 20
-		"die effect" "culverin die"
-		"phasing"
-		"inaccuracy" 3
-		"velocity" 3
-		"lifetime" 75
-		"reload" 150
-		"firing energy" 2400
-		"firing heat" 1900
-		"acceleration" 10
-		"drag" .5
-		"turn" 3
-		"homing" 5
-		"tracking" .3
-		"shield damage" 3900
-		"hull damage" 3300
-		"fuel damage" 600
-		"piercing" .2
-		"hit force" 3
-		"missile strength" 600
-	description "Rarely employed, this massive weapon fires an energy blast that gains speed the more it travels through the vaccuum of space, before dissipating."
-	description "	Aside from the punch it packs, the Culverin is designed to deplete a target of it's fuel reserves, making it impossible for it to run... or cloak."
+		sound "ranseur"
+		"fire effect" "ranseur"
+		"hit effect" "jump drive"
+		"hit effect" "disruptor impact" 10
+		lifetime 1
+		reload 100
+		velocity 600
+		"firing energy" 900
+		"firing heat" 30
+		"shield damage" 2100
+		"hull damage" 1500
+		"hit force" 600
+		"penetration count" 5
+	description "The technology behind this weapon is incomprehensibly complex, even for ancient Mata standards. With a pulse of negative energy, it creates a linear rift in spacetime, generating extreme negative gravitational forces in its path that splits matter apart as if it wasn't there, going right through. While it is capable of piercing shields just as well, inside them, the interference from the matrix disrupts the beam and lowers the damage, so Relic recommends pairing it with their own Chronovortex weapons to weaken shields first."
+
+effect "ranseur"
+	sprite effect/ranseur
+		"frame rate" 30
+		"no repeat"
+	lifetime 11
 
 
 outfit "Quarg Culverin"
 	category Guns
-	cost 7800000
-	mass 46
+	cost 22000000
+	mass 45
 	thumbnail "outfit/quarg culverin"
 	"gun ports" -1
-	"outfit space" -46
-	"weapon capacity" -46
+	"outfit space" -45
+	"weapon capacity" -45
 	weapon
 		sprite projectile/culverin
 			"frame rate" 60
@@ -297,7 +359,7 @@ outfit "Quarg Culverin"
 		"hit effect" "culverin hit" 20
 		"die effect" "culverin die"
 		lifetime 110
-		reload 24
+		reload 36
 		homing 4
 		velocity 10
 		acceleration 0.6
@@ -306,12 +368,12 @@ outfit "Quarg Culverin"
 		inaccuracy 12
 		"stream"
 		tracking 1
-		"firing energy" 123
-		"firing heat" 92.4
-		"shield damage" 400
-		"hull damage" 160
-		"slowing damage" 7
-		"hit force" -400
+		"firing energy" 180
+		"firing heat" 22.5
+		"shield damage" 300
+		"hull damage" 225
+		"slowing damage" 4.5
+		"hit force" -600
 		"missile strength" 600
 	description "The most coveted of Mata weapons. Through unfathomable means, this weapon tangles the fabric of spacetime in such extreme ways that it forms closed time-like curves, along with chaotic gravitational forces and fascinating relativistic effects that slows the target down. Solid matter bends and crumbles under the chaos, and shield matrices are forced to interact with themselves, with catastrophic results. As if fulfilling their own intended destiny, the projectiles are slightly drawn to their target as well. Relic advises that attempting to tinker with this weapon to create a time machine voids warranty, and often results in certain death."
 
@@ -333,49 +395,15 @@ effect "culverin die"
 	"velocity scale" 0.4
 
 
-outfit "Quarg Ranseur"
-	category Guns
-	cost 5500000
-	mass 38
-	thumbnail "outfit/quarg ranseur"
-	"gun ports" -1
-	"outfit space" -38
-	"weapon capacity" -38
-	weapon
-		sound "ranseur"
-		"fire effect" "ranseur"
-		"hit effect" "jump drive"
-		"hit effect" "disruptor impact" 10
-		lifetime 1
-		reload 100
-		velocity 600
-		"firing energy" 675
-		"firing heat" 30
-		"shield damage" 1500
-		"hull damage" 1300
-		"hit force" 600
-		"discharge damage" 5
-		piercing 0.3
-	description "The technology behind this weapon is incomprehensibly complex, even for ancient Mata standards. With a pulse of negative energy, it creates a linear rift in spacetime, generating extreme negative gravitational forces in its path that splits matter apart as if it wasn't there, going right through. While it is capable of piercing shields just as well, inside them, the interference from the matrix disrupts the beam and lowers the damage, so Relic recommends pairing it with their own Chronovortex weapons to weaken shields first."
-
-effect "ranseur"
-	sprite effect/ranseur
-		"frame rate" 30
-		"no repeat"
-	lifetime 11
-
-
 outfit "Quarg Ribault"
 	category "Turrets"
-	cost 9000000
+	cost 15000000
 	thumbnail "outfit/quarg ribault"
-	"mass" 47
-	"outfit space" -47
-	"weapon capacity" -47
+	"mass" 35
+	"outfit space" -35
+	"weapon capacity" -35
 	"required crew" 1
 	"turret mounts" -1
-	"active cooling" 11.75
-	"cooling energy" 2.35
 	weapon
 		sprite "projectile/ribault"
 		"hardpoint sprite" "hardpoint/quarg ribault"
@@ -389,11 +417,8 @@ outfit "Quarg Ribault"
 		"reload" 17
 		"burst reload" 2
 		"burst count" 19
-		"firing energy" 82
-		"firing heat" 41
-		"fuel damage" 1
-		"shield damage" 130
-		"hull damage" 50
+		"firing energy" 120
+		"firing heat" 5
 		"submunition" "ribault unguided" 2
 	description "The rapid flurries shot by this turret cover a wide area at a long range, while dealing very high damage at point blank, should all shots hit their target."
 
@@ -403,9 +428,6 @@ outfit "ribault unguided"
 		"hit effect" "ribault impact"
 		"inaccuracy" 11
 		"lifetime" 20
-		"fuel damage" 1
-		"shield damage" 130
-		"hull damage" 50
 		"submunition" "ribault guided"
 
 outfit "ribault guided"
@@ -421,9 +443,9 @@ outfit "ribault guided"
 		"homing" 4
 		"acceleration" 1
 		"drag" .1
-		"fuel damage" 1
-		"shield damage" 130
-		"hull damage" 50
+		"fuel damage" 5
+		"shield damage" 100
+		"hull damage" 35
 
 effect "ribault flare"
 	sprite "effect/distancer"
@@ -441,13 +463,13 @@ effect "ribault impact"
 	"velocity scale" -.003
 
 
-outfit "Quarg Tractor Beam"
+outfit "Quarg Graviton Projector"
 	category "Guns"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
-	"mass" 60
-	"outfit space" -60
-	"weapon capacity" -60
+	"mass" 200
+	"outfit space" -200
+	"weapon capacity" -200
 	"gun ports" -1
 	"required crew" 1
 	weapon
@@ -459,9 +481,10 @@ outfit "Quarg Tractor Beam"
 		"lifetime" 1
 		"reload" 1
 		"firing energy" 30
-		"firing heat" 10
-		"firing force" -40
+		"firing heat" 2
 		"hit force" -400
+		"shield damage" 30
+		"penetration count" 0
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 
