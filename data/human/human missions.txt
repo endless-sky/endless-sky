@@ -8238,7 +8238,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles down outside the mine's entrance.`
 			choice
 				`	(Leave your ship.)`
-			`	It's dark and dusty outside. The planet's gravity makes you feel languid, and the air uncomfortably light in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`
+			`	It's dark and dusty outside. The planet's low gravity makes you feel languid, and the air uncomfortably light in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`
 			`	"Don't move, or we will end you!" comes a shout from within the darkness of the mine. "Identify yourself, now!"`
 			choice
 				`	"I'm Captain <last>, veteran of the human civil war!"`
