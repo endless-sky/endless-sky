@@ -868,7 +868,7 @@ mission "Exotic Animals - Glaze"
 						credits < 5
 					goto closing
 			action
-				payment -5			
+				payment -5
 			branch norareapes
 				random > 20
 			`	The binoculars hum as you focus in on the figures, expecting hikers. But what you see is something else entirely. A small group of shaggy, long-limbed creatures moves carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
