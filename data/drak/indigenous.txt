@@ -125,7 +125,7 @@ ship "Void Sprite" "Void Sprite (Infant)"
 	thumbnail "thumbnail/void sprite infant"
 	"never disabled"
 	attributes
-		category "Unclassified Minor"
+		category "Unclassified"
 		"hull" 2800
 		"required crew" 2
 		"bunks" 2
