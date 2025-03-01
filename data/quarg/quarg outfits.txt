@@ -137,8 +137,8 @@ outfit "Singularity Core"
 	thumbnail "outfit/quarg singularity core"
 	"mass" 80
 	"outfit space" -80
-	"energy generation" 22
-	"heat generation" 20
+	"energy generation" 23.5
+	"heat generation" 22.5
 	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
 
 
@@ -284,8 +284,7 @@ effect "skylance impact"
 	"velocity scale" 0.
 
 
-outfit "Quarg Anti-Missile"
-	"display name" "Stratospear"
+outfit "Stratospear"
 	category "Turrets"
 	cost 9000000
 	thumbnail "outfit/quarg anti missile"
@@ -494,8 +493,7 @@ outfit "Graviton Slipstream Projector"
 
 # Special
 
-outfit "Intrusion Countermeasures"
-	"display name" "Phalanx System"
+outfit "Phalanx System"
 	category "Hand to Hand"
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
