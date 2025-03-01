@@ -37,13 +37,13 @@ ship "Quarg Lindwyrm"
 			"hit force" 2250
 	outfits
 		"Skydagger" 2
-		"Stratospear" 2
+		"Quarg Anti-Missile" 2
 		
 		"Antimatter Core"
 		"Quantum Vacuum Battery"
 		"Aspis Shield Generator"
 		"Peripheral Repair Hub"
-		"Phalanx System" 40
+		"Intrusion Countermeasures" 40
 
 		"Small Graviton Thruster"
 		"Medium Graviton Steering"
@@ -53,8 +53,8 @@ ship "Quarg Lindwyrm"
 	engine 29 125
 	turret -19.5 -88.5 "Skydagger"
 	turret 19.5 -88.5 "Skydagger"
-	turret -29.5 69 "Stratospear"
-	turret 29.5 69 "Stratospear"
+	turret -29.5 69 "Quarg Anti-Missile"
+	turret 29.5 69 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
@@ -89,13 +89,13 @@ ship "Quarg Guivre"
 			"hit force" 4500
 	outfits
 		"Graviton Slipstream Projector"
-		"Stratospear" 2
+		"Quarg Anti-Missile" 2
 		
 		"Quasar Core"
 		"Quantum Vacuum Battery"
 		"Ancile Shield Generator"
 		"Central Repair Hub"
-		"Phalanx System" 180
+		"Intrusion Countermeasures" 180
 
 		"Medium Graviton Thruster"
 		"Large Graviton Steering"
@@ -104,8 +104,8 @@ ship "Quarg Guivre"
 	engine -25.5 144
 	engine 25.5 144
 	gun 0 -40
-	turret -70 61 "Stratospear"
-	turret 70 61 "Stratospear"
+	turret -70 61 "Quarg Anti-Missile"
+	turret 70 61 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
@@ -139,14 +139,14 @@ ship "Quarg Wardragon"
 			"hull damage" 6750
 			"hit force" 2025
 	outfits
-		"Skylance" 2
-		"Stratospear" 2
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
 		
 		"Singularity Core"
 		"Quantum Vacuum Battery"
 		"Ancile Shield Generator"
 		"Peripheral Repair Hub"
-		"Phalanx System" 40
+		"Intrusion Countermeasures" 40
 
 		"Small Graviton Thruster"
 		"Medium Graviton Steering"
@@ -154,10 +154,10 @@ ship "Quarg Wardragon"
 		
 	engine -17 76.5
 	engine 17 76.5
-	turret -13 -18.5 "Stratospear"
-	turret 13 -18.5 "Stratospear"
-	turret -44 0.5 "Skylance"
-	turret 44 0.5 "Skylance"
+	turret -13 -18.5 "Quarg Anti-Missile"
+	turret 13 -18.5 "Quarg Anti-Missile"
+	turret -44 0.5 "Quarg Skylance"
+	turret 44 0.5 "Quarg Skylance"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
@@ -193,13 +193,13 @@ ship "Quarg Wyvern"
 	outfits
 		"Empyrean Ranseur" 2
 		"Astral Ribault" 2
-		"Stratospear"
+		"Quarg Anti-Missile"
 		
 		"Singularity Core"
 		"Quantum Vacuum Battery"
 		"Aspis Shield Generator"
 		"Peripheral Repair Hub"
-		"Phalanx System" 60
+		"Intrusion Countermeasures" 60
 
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
@@ -211,7 +211,7 @@ ship "Quarg Wyvern"
 	gun 17.5 -123 "Empyrean Ranseur"
 	turret -38 -74 "Astral Ribault"
 	turret 38 -74 "Astral Ribault"
-	turret 0 6.5 "Stratospear"
+	turret 0 6.5 "Quarg Anti-Missile"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
@@ -247,14 +247,14 @@ ship "Quarg Hydra"
 	outfits
 		"Empyrean Ranseur" 2
 		"Celestial Culverin" 3
-		"Stratospear" 2
+		"Quarg Anti-Missile" 2
 		"Astral Ribault"
 
 		"Quasar Core"
 		"Quantum Vacuum Battery"
 		"Aegis Shield Generator"
 		"Central Repair Hub"
-		"Phalanx System" 140
+		"Intrusion Countermeasures" 140
 
 		"Large Graviton Thruster"
 		"Large Graviton Steering"
@@ -267,8 +267,8 @@ ship "Quarg Hydra"
 	gun -78 -129 "Celestial Culverin"
 	gun 78 -129 "Celestial Culverin"
 	gun 0 -130 "Celestial Culverin"
-	turret -52 -71.5 "Stratospear"
-	turret 52 -71.5 "Stratospear"
+	turret -52 -71.5 "Quarg Anti-Missile"
+	turret 52 -71.5 "Quarg Anti-Missile"
 	turret 0 7.5 "Astral Ribault"
 	explode "tiny explosion" 12
 	explode "small explosion" 16

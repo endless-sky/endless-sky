@@ -243,7 +243,8 @@ outfit "Skydagger"
 		"scrambling damage" .05
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
-outfit "Skylance"
+outfit "Quarg Skylance"
+	"display name" "Skylance"
 	category "Turrets"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
@@ -281,7 +282,8 @@ effect "skylance impact"
 	"velocity scale" 0.
 
 
-outfit "Stratospear"
+outfit "Quarg Anti-Missile"
+	"display name" "Stratospear"
 	category "Turrets"
 	cost 9000000
 	thumbnail "outfit/quarg anti missile"
@@ -490,7 +492,8 @@ outfit "Graviton Slipstream Projector"
 
 # Special
 
-outfit "Phalanx System"
+outfit "Intrusion Countermeasures"
+	"display name" "Phalanx System"
 	category "Hand to Hand"
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
