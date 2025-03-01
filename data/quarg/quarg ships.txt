@@ -245,7 +245,7 @@ ship "Quarg Hydra"
 			"hull damage" 19500
 			"hit force" 5850
 	outfits
-		"Empyrean Ranseur" 2
+		"Elysian Ranseur" 2
 		"Celestial Culverin" 3
 		"Stratospear" 2
 		"Astral Ribault"
@@ -262,8 +262,8 @@ ship "Quarg Hydra"
 	
 	engine -23.5 135
 	engine 23.5 135
-	gun -38 -168 "Empyrean Ranseur"
-	gun 38 -168 "Empyrean Ranseur"
+	gun -38 -168 "Elysian Ranseur"
+	gun 38 -168 "Elysian Ranseur"
 	gun -78 -129 "Celestial Culverin"
 	gun 78 -129 "Celestial Culverin"
 	gun 0 -130 "Celestial Culverin"

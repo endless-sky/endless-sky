@@ -24,6 +24,9 @@ outfit "Small Graviton Thruster"
 	"thrust" 80
 	"thrusting energy" 7
 	"thrusting heat" 1.5
+	"reverse thrust" 40
+	"reverse thrusting energy" 3.5
+	"reverse thrusting heat" .75
 	"force protection" 0.1
 	"inertia reduction" 0.1
 	"flare sprite" "effect/graviton flare"
@@ -53,6 +56,9 @@ outfit "Medium Graviton Thruster"
 	"thrust" 120
 	"thrusting energy" 10
 	"thrusting heat" 2
+	"reverse thrust" 60
+	"reverse thrusting energy" 5
+	"reverse thrusting heat" 1
 	"force protection" 0.15
 	"inertia reduction" 0.15
 	"flare sprite" "effect/graviton flare"
@@ -86,6 +92,9 @@ outfit "Large Graviton Thruster"
 	"thrust" 185
 	"thrusting energy" 15
 	"thrusting heat" 3
+	"reverse thrust" 92.5
+	"reverse thrusting energy" 7.5
+	"reverse thrusting heat" 1.5
 	"force protection" 0.2
 	"inertia reduction" 0.2
 	"flare sprite" "effect/graviton flare"
