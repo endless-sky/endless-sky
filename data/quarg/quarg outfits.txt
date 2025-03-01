@@ -135,7 +135,7 @@ outfit "Singularity Core"
 	category "Power"
 	cost 50000000
 	thumbnail "outfit/quarg singularity core"
-	"mass" 80
+	"mass" 110
 	"outfit space" -80
 	"energy generation" 23.5
 	"heat generation" 22.5
