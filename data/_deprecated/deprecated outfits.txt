@@ -652,7 +652,7 @@ outfit "Quarg Skylance"
 outfit "Quarg Anti-Missile"
 	category "Turrets"
 	cost 6000000
-	thumbnail "outfit/quarg anti missile"
+	thumbnail "outfit/quarg stratospear"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
