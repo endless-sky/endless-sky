@@ -782,7 +782,7 @@ mission "Remnant: Cognizance 21"
 		government "Remnant"
 		attributes "remnant primary"
 	stopover "Ssil Vida"
-	blocked "You need 10 free space and a Research Laboratory for this mission."
+	blocked "You need 10 free space, five free bunks, and a Research Laboratory for this mission."
 	passengers 5
 	cargo "supplies" 10
 	to offer
