@@ -847,6 +847,7 @@ mission "Republic 300 Year Anniversary"
 				goto end
 
 mission "Exotic Life: Glaze"
+	repeat
 	minor
 	source Glaze
 	to offer
@@ -854,6 +855,8 @@ mission "Exotic Life: Glaze"
 		or
 			not "chosen sides"
 			has "main plot completed"
+		and
+			not "exotic life: seen glaze apes"
 	on offer
 		conversation
 			`You step to the edge of the mesa from the spaceport, the wind blowing as you take in the view. The canyons stretch out before you, a maze of red and gold stone, their depths lost in shadow. Far in the distance, something moves - small figures, barely more than specks, making their way through one of the ravines. You squint, but the details remain elusive.`
@@ -873,9 +876,11 @@ mission "Exotic Life: Glaze"
 			action
 				payment -1
 			branch norareapes
-				random > 20
+				random < 20
 			`	The binoculars hum as you focus in on the figures, expecting hikers. But what you see is something else entirely. A small group of shaggy, long-limbed creatures moves carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
 			`	One of them stops near a boulder, kneeling to scoop up a handful of dust and let it run through its fingers, as if testing the wind. Another lingers behind the rest, turning its head slightly, as if listening for something. There are no signs of tools or fire, certainly nothing to suggest the 'canyon people' of local legend -- but there's an undeniable sense of awareness in the way they move and seem to belong to the landscape itself.`
+			action
+					set "exotic life: seen glaze apes"
 			`	After a long moment, they disappear behind a ridge, blending so seamlessly into the terrain that it's hard to tell if they were ever there at all. You step back from the binoculars, the last glimpse of them lingering in your mind.`
 			choice
 				`	(Return to your ship.)`
