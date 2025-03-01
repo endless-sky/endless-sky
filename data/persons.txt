@@ -137,7 +137,7 @@ person "Cap'n Pester"
 			
 			"Antimatter Core"
 			"Nanotech Battery"
-			"Quantum Shield Generator"
+			"Ancile Shield Generator"
 			"Intrusion Countermeasures" 160
 			"Cargo Scanner"
 			"Outfit Scanner"
