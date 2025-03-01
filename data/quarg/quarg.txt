@@ -175,7 +175,7 @@ fleet "Quarg Utility (Hai)"
 	variant
 		"Quarg Guivre"
 		"Quarg Wyvern" 2
-		"Quarg Wardragon"		
+		"Quarg Wardragon"
 	variant
 		"Quarg Guivre"
 		"Quarg Wyvern" 2
@@ -276,7 +276,7 @@ fleet "Quarg Utility (Gegno)"
 	variant
 		"Quarg Guivre"
 		"Quarg Wyvern" 2
-		"Quarg Wardragon"		
+		"Quarg Wardragon"
 	variant
 		"Quarg Guivre"
 		"Quarg Wyvern" 2

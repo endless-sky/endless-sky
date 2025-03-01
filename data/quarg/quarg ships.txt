@@ -249,7 +249,7 @@ ship "Quarg Hydra"
 		"Quarg Culverin" 3
 		"Quarg Anti-Missile" 2
 		"Quarg Ribault"
-		       
+
 		"Singularity Core"
 		"Nanotech Battery"
 		"Quantum Shield Generator"

@@ -15,95 +15,95 @@
 # Engines
 
 outfit "Small Graviton Thruster"
-    category "Engines"
-    "cost" 12000000
-    thumbnail "outfit/small quarg thruster"
-    "mass" 50
-    "outfit space" -50
-    "engine capacity" -50
-    "thrust" 80
-    "thrusting energy" 7
-    "thrusting heat" 1.5
-    "force protection" 0.1
-    "inertia reduction" 0.1
+	category "Engines"
+	"cost" 12000000
+	thumbnail "outfit/small quarg thruster"
+	"mass" 50
+	"outfit space" -50
+	"engine capacity" -50
+	"thrust" 80
+	"thrusting energy" 7
+	"thrusting heat" 1.5
+	"force protection" 0.1
+	"inertia reduction" 0.1
 	"flare sprite" "effect/graviton flare"
 		"scale" .75
 
 outfit "Small Graviton Steering"
-    category "Engines"
-    "cost" 9000000
-    thumbnail "outfit/small quarg steering"
-    "mass" 30
-    "outfit space" -30
-    "engine capacity" -30
-    "turn" 1200
-    "turning energy" 3
-    "turning heat" .75
-    "force protection" 0.1
-    "inertia reduction" 0.1
+	category "Engines"
+	"cost" 9000000
+	thumbnail "outfit/small quarg steering"
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"turn" 1200
+	"turning energy" 3
+	"turning heat" .75
+	"force protection" 0.1
+	"inertia reduction" 0.1
 
 
 outfit "Medium Graviton Thruster"
-    category "Engines"
-    "cost" 20000000
-    thumbnail "outfit/medium quarg thruster"
-    "mass" 70
-    "outfit space" -70
-    "engine capacity" -70
-    "thrust" 120
-    "thrusting energy" 10
-    "thrusting heat" 2
-    "force protection" 0.15
-    "inertia reduction" 0.15
+	category "Engines"
+	"cost" 20000000
+	thumbnail "outfit/medium quarg thruster"
+	"mass" 70
+	"outfit space" -70
+	"engine capacity" -70
+	"thrust" 120
+	"thrusting energy" 10
+	"thrusting heat" 2
+	"force protection" 0.15
+	"inertia reduction" 0.15
 	"flare sprite" "effect/graviton flare"
 	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy."
 	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
 
 
 outfit "Medium Graviton Steering"
-    category "Engines"
-    "cost" 16000000
-    thumbnail "outfit/medium quarg steering"
-    "mass" 50
-    "outfit space" -50
-    "engine capacity" -50
-    "turn" 2400
-    "turning energy" 5
-    "turning heat" 1
-    "force protection" 0.15
-    "inertia reduction" 0.15
+	category "Engines"
+	"cost" 16000000
+	thumbnail "outfit/medium quarg steering"
+	"mass" 50
+	"outfit space" -50
+	"engine capacity" -50
+	"turn" 2400
+	"turning energy" 5
+	"turning heat" 1
+	"force protection" 0.15
+	"inertia reduction" 0.15
 	description "Quarg steering engines are as similarly impressive as their thrusters in how much energy they consume. The Quarg don't seem to be bothered by this cost though, given the unmatched strength of their reactors."
 	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
 
 
 outfit "Large Graviton Thruster"
-    category "Engines"
-    "cost" 32000000
-    thumbnail "outfit/large quarg thruster"
-    "mass" 100
-    "outfit space" -100
-    "engine capacity" -100
-    "thrust" 185
-    "thrusting energy" 15
-    "thrusting heat" 3
-    "force protection" 0.2
-    "inertia reduction" 0.2
+	category "Engines"
+	"cost" 32000000
+	thumbnail "outfit/large quarg thruster"
+	"mass" 100
+	"outfit space" -100
+	"engine capacity" -100
+	"thrust" 185
+	"thrusting energy" 15
+	"thrusting heat" 3
+	"force protection" 0.2
+	"inertia reduction" 0.2
 	"flare sprite" "effect/graviton flare"
 		"scale" 1.25
  
  
 outfit "Large Graviton Steering"
-    category "Engines"
-    "cost" 25000000
-    thumbnail "outfit/large quarg steering"
-    "mass" 70
-    "outfit space" -70
-    "engine capacity" -70
-    "turn" 3600
-    "turning energy" 7.5
-    "turning heat" 1.5
-    "force protection" 0.2
-    "inertia reduction" 0.2
+	category "Engines"
+	"cost" 25000000
+	thumbnail "outfit/large quarg steering"
+	"mass" 70
+	"outfit space" -70
+	"engine capacity" -70
+	"turn" 3600
+	"turning energy" 7.5
+	"turning heat" 1.5
+	"force protection" 0.2
+	"inertia reduction" 0.2
 
 
 # Power
@@ -333,7 +333,7 @@ outfit "Quarg Ranseur"
 		"hull damage" 1500
 		"hit force" 600
 		"penetration count" 5
-	description "The technology behind this weapon is incomprehensibly complex, even for ancient Mata standards. With a pulse of negative energy, it creates a linear rift in spacetime, generating extreme negative gravitational forces in its path that splits matter apart as if it wasn't there, going right through. While it is capable of piercing shields just as well, inside them, the interference from the matrix disrupts the beam and lowers the damage, so Relic recommends pairing it with their own Chronovortex weapons to weaken shields first."
+	description ""
 
 effect "ranseur"
 	sprite effect/ranseur
@@ -375,7 +375,7 @@ outfit "Quarg Culverin"
 		"slowing damage" 4.5
 		"hit force" -600
 		"missile strength" 600
-	description "The most coveted of Mata weapons. Through unfathomable means, this weapon tangles the fabric of spacetime in such extreme ways that it forms closed time-like curves, along with chaotic gravitational forces and fascinating relativistic effects that slows the target down. Solid matter bends and crumbles under the chaos, and shield matrices are forced to interact with themselves, with catastrophic results. As if fulfilling their own intended destiny, the projectiles are slightly drawn to their target as well. Relic advises that attempting to tinker with this weapon to create a time machine voids warranty, and often results in certain death."
+	description ""
 
 effect "culverin hit"
 	sprite "effect/skylance impact"
