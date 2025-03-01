@@ -2998,7 +2998,7 @@ int Ship::RequiredCrew() const
 
 int Ship::PreferredCrew() const
 {
-	// Fall back to crew value for games saved before the preferredCrew attribute was added.
+	// Fall back to crew value for ships that never have been given a preferred value.
 	return preferredCrew ? preferredCrew : crew;
 }
 

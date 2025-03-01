@@ -670,7 +670,7 @@ private:
 
 	int crew = 0;
 	// The preferred crew that the player has set, so we can re-hire that number even after landing on a planet without
-	// hiring service (PlayerInfo.desiredCrew was set from Crew() before, leading to a decreasing crew count).
+	// hiring service.
 	int preferredCrew = 0;
 	int pilotError = 0;
 	int pilotOkay = 0;
