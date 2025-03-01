@@ -108,8 +108,7 @@ outfit "Large Graviton Steering"
 
 # Power
 
-outfit "Nanotech Battery"
-	plural "Nanotech Batteries"
+outfit "Quantum Vacuum Battery"
 	category "Power"
 	cost 3000000
 	thumbnail "outfit/quarg nanotech battery"
@@ -282,7 +281,7 @@ effect "skylance impact"
 	"velocity scale" 0.
 
 
-outfit "Quarg Anti-Missile"
+outfit "Quarg Stratospear"
 	category "Turrets"
 	cost 9000000
 	thumbnail "outfit/quarg anti missile"
@@ -311,7 +310,7 @@ effect "quarg anti-missile"
 	"velocity scale" 1
 
 
-outfit "Quarg Ranseur"
+outfit "Quarg Exalted Ranseur"
 	category Guns
 	cost 40000000
 	mass 65
@@ -342,7 +341,7 @@ effect "ranseur"
 	lifetime 11
 
 
-outfit "Quarg Culverin"
+outfit "Quarg Empyrean Culverin"
 	category Guns
 	cost 22000000
 	mass 45
@@ -395,7 +394,7 @@ effect "culverin die"
 	"velocity scale" 0.4
 
 
-outfit "Quarg Ribault"
+outfit "Quarg Exalted Ribault"
 	category "Turrets"
 	cost 15000000
 	thumbnail "outfit/quarg ribault"
@@ -464,7 +463,7 @@ effect "ribault impact"
 	"velocity scale" -.003
 
 
-outfit "Quarg Graviton Projector"
+outfit "Quarg Slipstream Projector"
 	category "Guns"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
@@ -486,13 +485,12 @@ outfit "Quarg Graviton Projector"
 		"hit force" -400
 		"shield damage" 30
 		"penetration count" 0
-	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
+	description "Something something peak Graviton."
 
 
 # Special
 
-outfit "Intrusion Countermeasures"
-	plural "Intrusion Countermeasures"
+outfit "Phalanx Countermeasure System"
 	category "Hand to Hand"
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
