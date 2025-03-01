@@ -18,7 +18,7 @@ ship "Archon"
 	thumbnail "thumbnail/archon"
 	"never disabled"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		"cost" 1000000000
 		"shields" 4000000
 		"hull" 1000000

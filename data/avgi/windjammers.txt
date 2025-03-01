@@ -146,7 +146,7 @@ ship "Windjammer"
 	thumbnail "ship/windjammer"
 	"uncapturable"
 	attributes
-		category "Space Liner"
+		category "Unclassified"
 		"cost" 1111000
 		"hull" 6900
 		"required crew" 1
@@ -182,112 +182,112 @@ ship "Windjammer"
 		"Jamfruit" 60
 
 	gun 0 -84.5 "Pinecone Launcher"
-	bay Fighter -14.5 -125
+	bay "Unclassified Minor" -14.5 -125
 		under
 		"launch effect" "basic launch"
-	bay Fighter 14.5 -125
+	bay "Unclassified Minor" 14.5 -125
 		under
 		"launch effect" "basic launch"
-	bay Fighter -32 -126
+	bay "Unclassified Minor" -32 -126
 		under
 		"launch effect" "basic launch"
-	bay Fighter 32 -126
+	bay "Unclassified Minor" 32 -126
 		under
 		"launch effect" "basic launch"
-	bay Fighter -49 -128
+	bay "Unclassified Minor" -49 -128
 		under
 		"launch effect" "basic launch"
-	bay Fighter 49 -128
+	bay "Unclassified Minor" 49 -128
 		under
 		"launch effect" "basic launch"
-	bay Fighter -91.5 -190.5
+	bay "Unclassified Minor" -91.5 -190.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 91.5 -190.5
+	bay "Unclassified Minor" 91.5 -190.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -106 -201.5
+	bay "Unclassified Minor" -106 -201.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 106 -201.5
+	bay "Unclassified Minor" 106 -201.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -123 -205.5
+	bay "Unclassified Minor" -123 -205.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 123 -205.5
+	bay "Unclassified Minor" 123 -205.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -141 -201
+	bay "Unclassified Minor" -141 -201
 		under
 		"launch effect" "basic launch"
-	bay Fighter 141 -201
+	bay "Unclassified Minor" 141 -201
 		under
 		"launch effect" "basic launch"
-	bay Fighter -156 -190.5
+	bay "Unclassified Minor" -156 -190.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 156 -190.5
+	bay "Unclassified Minor" 156 -190.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -164 -174
+	bay "Unclassified Minor" -164 -174
 		under
 		"launch effect" "basic launch"
-	bay Fighter 164 -174
+	bay "Unclassified Minor" 164 -174
 		under
 		"launch effect" "basic launch"
-	bay Fighter -163.5 -155
+	bay "Unclassified Minor" -163.5 -155
 		under
 		"launch effect" "basic launch"
-	bay Fighter 163.5 -155
+	bay "Unclassified Minor" 163.5 -155
 		under
 		"launch effect" "basic launch"
-	bay Fighter -156 -138.5
+	bay "Unclassified Minor" -156 -138.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 156 -138.5
+	bay "Unclassified Minor" 156 -138.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -141 -127.5
+	bay "Unclassified Minor" -141 -127.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 141 -127.5
+	bay "Unclassified Minor" 141 -127.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -121.5 -122
+	bay "Unclassified Minor" -121.5 -122
 		under
 		"launch effect" "basic launch"
-	bay Fighter 121.5 -122
+	bay "Unclassified Minor" 121.5 -122
 		under
 		"launch effect" "basic launch"
-	bay Fighter -104 -118
+	bay "Unclassified Minor" -104 -118
 		under
 		"launch effect" "basic launch"
-	bay Fighter 104 -118
+	bay "Unclassified Minor" 104 -118
 		under
 		"launch effect" "basic launch"
-	bay Fighter -86 -114.5
+	bay "Unclassified Minor" -86 -114.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 86 -114.5
+	bay "Unclassified Minor" 86 -114.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -68 -110.5
+	bay "Unclassified Minor" -68 -110.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 68 -110.5
+	bay "Unclassified Minor" 68 -110.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -24.5 -13
+	bay "Unclassified Minor" -24.5 -13
 		under
 		"launch effect" "basic launch"
-	bay Fighter 24.5 -13
+	bay "Unclassified Minor" 24.5 -13
 		under
 		"launch effect" "basic launch"
-	bay Fighter -24.5 5
+	bay "Unclassified Minor" -24.5 5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 24.5 5
+	bay "Unclassified Minor" 24.5 5
 		under
 		"launch effect" "basic launch"
 
@@ -302,7 +302,7 @@ ship "Bluejacket"
 	thumbnail "ship/bluejacket"
 	"uncapturable"
 	attributes
-		category "Space Liner"
+		category "Unclassified"
 		"cost" 1212100
 		"hull" 3200
 		"required crew" 1
@@ -338,76 +338,76 @@ ship "Bluejacket"
 		"Jamfruit" 90
 
 	gun 0 -84.5 "Pinecone Launcher"
-	bay Fighter -14.5 -46
+	bay "Unclassified Minor" -14.5 -46
 		under
 		"launch effect" "basic launch"
-	bay Fighter 14.5 -46
+	bay "Unclassified Minor" 14.5 -46
 		under
 		"launch effect" "basic launch"
-	bay Fighter -32 -49
+	bay "Unclassified Minor" -32 -49
 		under
 		"launch effect" "basic launch"
-	bay Fighter 32 -49
+	bay "Unclassified Minor" 32 -49
 		under
 		"launch effect" "basic launch"
-	bay Fighter -49 -54.5
+	bay "Unclassified Minor" -49 -54.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 49 -54.5
+	bay "Unclassified Minor" 49 -54.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -65.5 -60
+	bay "Unclassified Minor" -65.5 -60
 		under
 		"launch effect" "basic launch"
-	bay Fighter 65.5 -60
+	bay "Unclassified Minor" 65.5 -60
 		under
 		"launch effect" "basic launch"
-	bay Fighter -82.5 -66.5
+	bay "Unclassified Minor" -82.5 -66.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 82.5 -66.5
+	bay "Unclassified Minor" 82.5 -66.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -99 -72
+	bay "Unclassified Minor" -99 -72
 		under
 		"launch effect" "basic launch"
-	bay Fighter 99 -72
+	bay "Unclassified Minor" 99 -72
 		under
 		"launch effect" "basic launch"
-	bay Fighter -118.5 -29
+	bay "Unclassified Minor" -118.5 -29
 		under
 		"launch effect" "basic launch"
-	bay Fighter 118.5 -29
+	bay "Unclassified Minor" 118.5 -29
 		under
 		"launch effect" "basic launch"
-	bay Fighter -119 -11
+	bay "Unclassified Minor" -119 -11
 		under
 		"launch effect" "basic launch"
-	bay Fighter 119 -11
+	bay "Unclassified Minor" 119 -11
 		under
 		"launch effect" "basic launch"
-	bay Fighter -110.5 5.5
+	bay "Unclassified Minor" -110.5 5.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter 110.5 5.5
+	bay "Unclassified Minor" 110.5 5.5
 		under
 		"launch effect" "basic launch"
-	bay Fighter -94.5 16
+	bay "Unclassified Minor" -94.5 16
 		under
 		"launch effect" "basic launch"
-	bay Fighter 94.5 16
+	bay "Unclassified Minor" 94.5 16
 		under
 		"launch effect" "basic launch"
-	bay Fighter -76.5 19
+	bay "Unclassified Minor" -76.5 19
 		under
 		"launch effect" "basic launch"
-	bay Fighter 76.5 19
+	bay "Unclassified Minor" 76.5 19
 		under
 		"launch effect" "basic launch"
-	bay Fighter -55.5 17
+	bay "Unclassified Minor" -55.5 17
 		under
 		"launch effect" "basic launch"
-	bay Fighter 55.5 17
+	bay "Unclassified Minor" 55.5 17
 		under
 		"launch effect" "basic launch"
 
@@ -422,7 +422,7 @@ ship "Pollen"
 	sprite "ship/pollen"
 	thumbnail "ship/pollen"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 126000
 		"hull" 200
 		"required crew" 1
@@ -455,7 +455,7 @@ ship "Sprout"
 	thumbnail "ship/pollen"
 	"uncapturable"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 126000
 		"hull" 200
 		"required crew" 1
