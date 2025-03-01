@@ -246,8 +246,7 @@ outfit "Skydagger"
 		"scrambling damage" .05
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
-outfit "Quarg Skylance"
-	"display name" "Skylance"
+outfit "Skylance"
 	category "Turrets"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
