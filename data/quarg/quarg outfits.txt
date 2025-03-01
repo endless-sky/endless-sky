@@ -441,6 +441,7 @@ outfit "ribault guided"
 		"fade out" 7
 		"turn" 5
 		"homing" 4
+		"tracking" 1
 		"acceleration" 1
 		"drag" .1
 		"fuel damage" 5
