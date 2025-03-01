@@ -111,7 +111,7 @@ outfit "Large Graviton Steering"
 outfit "Quantum Vacuum Battery"
 	category "Power"
 	cost 3000000
-	thumbnail "outfit/quarg nanotech battery"
+	thumbnail "outfit/quarg quantum battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 60000
@@ -123,7 +123,7 @@ outfit "Quantum Vacuum Battery"
 outfit "Antimatter Core"
 	category "Power"
 	cost 20000000
-	thumbnail "outfit/quarg tachyon core"
+	thumbnail "outfit/quarg antimatter core"
 	"mass" 50
 	"outfit space" -50
 	"energy generation" 12
@@ -134,7 +134,7 @@ outfit "Antimatter Core"
 outfit "Singularity Core"
 	category "Power"
 	cost 50000000
-	thumbnail "outfit/quarg antimatter core"
+	thumbnail "outfit/quarg singularity core"
 	"mass" 80
 	"outfit space" -80
 	"energy generation" 22
@@ -145,7 +145,7 @@ outfit "Singularity Core"
 outfit "Quasar Core"
 	category "Power"
 	cost 100000000
-	thumbnail "outfit/quarg singularity core"
+	thumbnail "outfit/quarg quasar core"
 	"mass" 160
 	"outfit space" -120
 	"energy generation" 37.5
@@ -158,6 +158,7 @@ outfit "Quasar Core"
 outfit "Aspis Shield Generator"
 	category "Systems"
 	cost 10000000
+	thumbnail "outfit/quarg aspis shield generator"
 	"mass" 40
 	"outfit space" -40
 	"shield generation" 3.2
@@ -169,6 +170,7 @@ outfit "Aspis Shield Generator"
 outfit "Ancile Shield Generator"
 	category "Systems"
 	cost 20000000
+	thumbnail "outfit/quarg ancile shield generator"
 	"mass" 55
 	"outfit space" -55
 	"shield generation" 5
@@ -181,6 +183,7 @@ outfit "Ancile Shield Generator"
 outfit "Aegis Shield Generator"
 	category "Systems"
 	cost 30000000
+	thumbnail "outfit/quarg aegis shield generator"
 	"mass" 80
 	"outfit space" -80
 	"shield generation" 8
