@@ -30,11 +30,11 @@ ship "Quarg Lindwyrm"
 		"outfit space" 460
 		"weapon capacity" 140
 		"engine capacity" 100
-#		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+		weapon
+			"blast radius" 150
+			"shield damage" 15000
+			"hull damage" 7500
+			"hit force" 2250
 	outfits
 		"Quarg Skydagger" 2
 		"Quarg Anti-Missile" 2
@@ -43,7 +43,7 @@ ship "Quarg Lindwyrm"
 		"Nanotech Battery"
 		"Fluxion Shield Generator"
 		"Peripheral Repair Hub"
-		"Intrusion Countermeasures" 35
+		"Intrusion Countermeasures" 40
 
 		"Small Graviton Thruster"
 		"Medium Graviton Steering"
@@ -83,10 +83,10 @@ ship "Quarg Guivre"
 		"weapon capacity" 280
 		"engine capacity" 140
 		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+			"blast radius" 300
+			"shield damage" 30000
+			"hull damage" 15000
+			"hit force" 4500
 	outfits
 		"Quarg Graviton Projector"
 		"Quarg Anti-Missile" 2
@@ -95,7 +95,7 @@ ship "Quarg Guivre"
 		"Nanotech Battery"
 		"Infimum Shield Generator"
 		"Central Repair Hub"
-		"Intrusion Countermeasures" 165
+		"Intrusion Countermeasures" 180
 
 		"Medium Graviton Thruster"
 		"Large Graviton Steering"
@@ -134,10 +134,10 @@ ship "Quarg Wardragon"
 		"weapon capacity" 180
 		"engine capacity" 100
 #		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+			"blast radius" 135
+			"shield damage" 13500
+			"hull damage" 6750
+			"hit force" 2025
 	outfits
 		"Quarg Skylance" 2
 		"Quarg Anti-Missile" 2
@@ -146,7 +146,7 @@ ship "Quarg Wardragon"
 		"Nanotech Battery"
 		"Infimum Shield Generator"
 		"Peripheral Repair Hub"
-		"Intrusion Countermeasures" 30
+		"Intrusion Countermeasures" 40
 
 		"Small Graviton Thruster"
 		"Medium Graviton Steering"
@@ -185,11 +185,11 @@ ship "Quarg Wyvern"
 		"outfit space" 575
 		"weapon capacity" 250
 		"engine capacity" 120
-#		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+		weapon
+			"blast radius" 200
+			"shield damage" 20000
+			"hull damage" 10000
+			"hit force" 3000
 	outfits
 		"Quarg Ranseur" 2
 		"Quarg Ribault" 2
@@ -199,7 +199,7 @@ ship "Quarg Wyvern"
 		"Nanotech Battery"
 		"Fluxion Shield Generator"
 		"Peripheral Repair Hub"
-		"Intrusion Countermeasures" 50
+		"Intrusion Countermeasures" 60
 
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
@@ -239,11 +239,11 @@ ship "Quarg Hydra"
 		"outfit space" 875
 		"weapon capacity" 380
 		"engine capacity" 170
-#		weapon
-			"blast radius" 250
-			"shield damage" 1000
-			"hull damage" 500
-			"hit force" 1500
+		weapon
+			"blast radius" 390
+			"shield damage" 39000
+			"hull damage" 19500
+			"hit force" 5850
 	outfits
 		"Quarg Ranseur" 2
 		"Quarg Culverin" 3
@@ -254,7 +254,7 @@ ship "Quarg Hydra"
 		"Nanotech Battery"
 		"Quantum Shield Generator"
 		"Central Repair Hub"
-		"Intrusion Countermeasures" 120
+		"Intrusion Countermeasures" 140
 
 		"Large Graviton Thruster"
 		"Large Graviton Steering"
