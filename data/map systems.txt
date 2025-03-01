@@ -3082,7 +3082,7 @@ system "Aik Kamgatake"
 		period 5701.88
 
 system Aileron
-	pos -577 772
+	pos -581 768
 	government Uninhabited
 	attributes "twilight"
 	ramscoop
@@ -6572,6 +6572,7 @@ system Arche
 	habitable 24370
 	belt 1808 2
 	belt 2396 8
+	"jump range" 60
 	haze _menu/haze-twilight-thin
 	link H-1
 	link Quintessence
@@ -11207,7 +11208,7 @@ system "Cura Dic"
 			distance 200
 
 system Current
-	pos -633 833
+	pos -651 821
 	government Uninhabited
 	attributes "twilight"
 	arrival 1250
@@ -11215,6 +11216,7 @@ system Current
 		multiplier 1.5
 	habitable 1250
 	belt 1923
+	"jump range" 30
 	haze _menu/haze-twilit-embers
 	link Gust
 	link Torrent
@@ -11773,7 +11775,7 @@ system Debrugt
 			period 23.3095
 
 system Decet
-	pos -149 612
+	pos -156 610
 	government Uninhabited
 	attributes "magnetar" "neutron" "twilight"
 	arrival 500
@@ -11783,7 +11785,7 @@ system Decet
 	belt 8211
 	"jump range" 180
 	haze _menu/haze-twilit-embers
-	link Octet
+	link Nonet
 	minables tungsten 48 6.199
 	hazard "Magnetar Magnetic Field" 1
 	hazard "Magnetar Induction" 1
@@ -13482,7 +13484,7 @@ system "Due Yoot"
 			period 31.1257
 
 system Duet
-	pos -249 778
+	pos -266 737
 	government Uninhabited
 	attributes "ember waste" "twilight"
 	arrival 500
@@ -16946,7 +16948,7 @@ system Fingol
 		period 4209.36
 
 system Firmament
-	pos -312 788
+	pos -304 800
 	government Uninhabited
 	attributes "bright star" "giant star" "multi-star" "notable star" "twilight"
 	arrival 5000
@@ -17310,7 +17312,7 @@ system "Four Pillars"
 			period 13.5106
 
 system Frenzy
-	pos -397 677
+	pos -398 680
 	government Uninhabited
 	attributes "twilight"
 	arrival 1135
@@ -18825,7 +18827,7 @@ system Gorvi
 			period 32.1366
 
 system Gossamer
-	pos -820 797
+	pos -838 785
 	government Uninhabited
 	attributes "smoke ring" "twilight"
 	arrival 2560
@@ -18855,6 +18857,7 @@ system Gossamer
 		sprite "star/smoke ring"
 			scale 1.5
 			"frame rate" 0.15
+			"rewind"
 		period 914.299
 		offset 180
 	object Kapnos
@@ -19021,7 +19024,7 @@ system Gupta
 		period 1077.08
 
 system Gust
-	pos -672 805
+	pos -690 793
 	government Uninhabited
 	attributes "twilight"
 	arrival 500
@@ -19558,7 +19561,7 @@ system He-4
 		period 5602.49
 
 system Headwind
-	pos -283 767
+	pos -299 755
 	government Uninhabited
 	attributes "twilight"
 	arrival 500
@@ -19570,7 +19573,6 @@ system Headwind
 	haze _menu/haze-twilight-thin
 	link Duet
 	link Tailwind
-	link Trio
 	asteroids "large metal" 1 1.04
 	fleet "Small Aberrant" 1900
 	fleet "Large Aberrant" 3900
@@ -26854,7 +26856,7 @@ system Mekislepti
 			period 30.4733
 
 system Mellow
-	pos -384 645
+	pos -386 644
 	government Avgi
 	attributes "avgi" "twilight"
 	arrival 1175
@@ -29336,7 +29338,7 @@ system Nona
 			period 15.6474
 
 system Nonet
-	pos -158 630
+	pos -178 672
 	government Uninhabited
 	attributes "ember waste" "twilight"
 	arrival 500
@@ -29345,7 +29347,10 @@ system Nonet
 	habitable 165
 	belt 1293
 	haze _menu/haze-twilit-embers
+	link Decet
 	link Octet
+	link Septet
+	link Sextet
 	asteroids "small metal" 6 1.142
 	asteroids "medium metal" 2 1.535
 	asteroids "large metal" 1 3.499
@@ -29372,8 +29377,8 @@ system Nonet
 			sprite planet/tethys
 			distance 160
 			period 124.645
-	object Ashkelon
-		sprite planet/rock10
+	object Silwan
+		sprite planet/cloud1-b
 		distance 1051
 		period 1061.01
 		object
@@ -29661,7 +29666,7 @@ system Oblate
 		period 2449.85
 
 system Octet
-	pos -203 646
+	pos -106 583
 	government Uninhabited
 	attributes "ember waste" "giant star" "notable star" "twilight"
 	arrival 3000
@@ -29669,10 +29674,9 @@ system Octet
 		multiplier 1.5
 	habitable 3000
 	belt 1559
-	haze _menu/haze-twilit-embers
-	link Decet
+	"jump range" 30
+	haze _menu/haze-red
 	link Nonet
-	link Septet
 	asteroids "small metal" 3 1.325
 	asteroids "medium metal" 8 1.728
 	asteroids "large metal" 6 2.542
@@ -31821,7 +31825,7 @@ system Pik'ro'iyak
 		period 4936.71
 
 system Pinnacle
-	pos -251 694
+	pos -248 672
 	government Uninhabited
 	attributes "bright star" "notable star" "twilight"
 	arrival 3650
@@ -32215,7 +32219,7 @@ system "Porta Terra"
 
 system Postlude
 	shrouded
-	pos -261 951
+	pos -261 956
 	government Uninhabited
 	attributes "tangled shroud"
 	arrival 500
@@ -32741,9 +32745,9 @@ system Pukako
 			period 463.83
 
 system Quartet
-	pos -208 818
+	pos -210 820
 	government Uninhabited
-	attributes "ember waste" "notable star" "nova"
+	attributes "ember waste" "twilight" "notable star" "nova"
 	arrival 500
 	ramscoop
 		universal 0
@@ -32752,7 +32756,7 @@ system Quartet
 	habitable 100
 	belt 1217 8
 	belt 1952 10
-	haze _menu/haze-red
+	haze _menu/haze-twilit-embers
 	link Trio
 	asteroids "small metal" 11 1.8
 	asteroids "medium metal" 4 1.56
@@ -32785,8 +32789,8 @@ system Quartet
 			sprite planet/oberon
 			distance 256
 			period 252.263
-	object
-		sprite planet/gas17
+	object "Ember Twilight"
+		sprite planet/wormhole-red
 		distance 3890
 		period 1372.45
 
@@ -33264,7 +33268,7 @@ system Quintessence
 			period 226.069
 
 system Quintet
-	pos -186 757
+	pos -197 735
 	government Uninhabited
 	attributes "ember waste" "twilight"
 	arrival 500
@@ -33274,9 +33278,7 @@ system Quintet
 		multiplier 1.5
 	habitable 490
 	belt 1669
-	haze _menu/haze-red
-	link Septet
-	link Sextet
+	haze _menu/haze-twilit-embers
 	link Trio
 	asteroids "medium metal" 7 1.322
 	asteroids "large metal" 2 1.43
@@ -33293,8 +33295,8 @@ system Quintet
 		sprite planet/dust1-b
 		distance 211
 		period 55.3841
-	object Silwan
-		sprite planet/cloud1-b
+	object Ashkelon
+		sprite planet/rock10
 		distance 522.156
 		period 215.606
 		object
@@ -34208,7 +34210,7 @@ system Ritilas
 			period 26.1475
 
 system Rivulet
-	pos -539 805
+	pos -544 804
 	government Uninhabited
 	attributes "twilight"
 	arrival 2200
@@ -35846,8 +35848,7 @@ system Septet
 	belt 2640
 	"jump range" 60
 	haze _menu/haze-red
-	link Octet
-	link Quintet
+	link Nonet
 	asteroids "small metal" 1 1.027
 	asteroids "medium metal" 20 0.741
 	asteroids "large metal" 1 0.858
@@ -36055,7 +36056,7 @@ system Sevrelect
 			period 15.4601
 
 system Sextet
-	pos -218 704
+	pos -127 663
 	government Uninhabited
 	attributes "ember waste" "twilight"
 	ramscoop
@@ -36064,8 +36065,9 @@ system Sextet
 	habitable 745
 	belt 1934 6
 	belt 2313 6
-	haze _menu/haze-twilit-embers
-	link Quintet
+	"jump range" 60
+	haze _menu/haze-red
+	link Nonet
 	asteroids "small metal" 8 1.312
 	asteroids "medium metal" 6 1.516
 	minables copper 12 1.344
@@ -36113,14 +36115,10 @@ system Sextet
 		sprite planet/gas8-b
 		distance 4956
 		period 5113.03
-	object
-		sprite planet/gas7
+	object "Ember Twilight"
+		sprite planet/wormhole-red
 		distance 7161
 		period 8880.60
-		object
-			sprite planet/dust0-b
-			distance 244
-			period 234.736
 
 system Shaula
 	pos -460 527
@@ -38148,7 +38146,7 @@ system Stiidej-Nnesa
 			period 900
 
 system Stream
-	pos -491 793
+	pos -491 790
 	government Uninhabited
 	attributes "bright star" "notable star" "twilight"
 	arrival 3560
@@ -39653,7 +39651,7 @@ system Tortor
 			period 37.3803
 
 system Trio
-	pos -223 741
+	pos -218 760
 	government Uninhabited
 	attributes "ember waste" "twilight"
 	arrival 950
@@ -39664,7 +39662,6 @@ system Trio
 	belt 2160 10
 	haze _menu/haze-twilit-embers
 	link Duet
-	link Headwind
 	link Quartet
 	link Quintet
 	asteroids "medium metal" 15 1.246
@@ -41850,7 +41847,7 @@ system "Wah Yoot"
 			period 24.4001
 
 system Wake
-	pos -526 758
+	pos -525 753
 	government Avgi
 	attributes "avgi" "twilight"
 	arrival 500
@@ -41929,7 +41926,7 @@ system Wave
 	habitable 550
 	belt 1402 7
 	belt 1954 5
-	haze _menu/haze-black
+	haze _menu/haze-twilit-embers
 	link Current
 	link Rivulet
 	link Torrent
@@ -41951,7 +41948,7 @@ system Wave
 		distance 293
 		period 85.5421
 	object
-		sprite planet/ocean9-b
+		sprite planet/water1
 		distance 823
 		period 402.697
 	object
@@ -42254,7 +42251,7 @@ system Wezen
 			period 38.9601
 
 system Whirlwind
-	pos -722 856
+	pos -740 844
 	government Uninhabited
 	attributes "twilight"
 	arrival 2750
