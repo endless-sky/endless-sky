@@ -862,7 +862,7 @@ mission "Exotic Life: Glaze"
 			`You step to the edge of the mesa from the spaceport, the wind blowing as you take in the view. The canyons stretch out before you, a maze of red and gold stone, their depths lost in shadow. Far in the distance, something moves - small figures, barely more than specks, making their way through one of the ravines. You squint, but the details remain elusive.`
 			`	Nearby, a weathered set of credit-operated binoculars stands bolted to the ground, a faded sign above them reading: 1 credit per use.`
 			choice
-				`	(Take a closer look for 1 credits.)`
+				`	(Take a closer look for 1 credit.)`
 					to display
 						credits >= 1
 				`	(Ignore the specks and return to your ship.)`
