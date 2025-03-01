@@ -34,12 +34,6 @@ Point::Point() noexcept
 
 
 
-Point::Point(double xy) noexcept
-	: Point(xy, xy)
-{}
-
-
-
 Point::Point(double x, double y) noexcept
 #ifdef __SSE3__
 	: v(_mm_set_pd(y, x))
