@@ -41,7 +41,7 @@ ship "Quarg Lindwyrm"
 		
 		"Tachyon Core"
 		"Nanotech Battery"
-		"Fluxion Shield Generator"
+		"Aspis Shield Generator"
 		"Peripheral Repair Hub"
 		"Intrusion Countermeasures" 40
 
@@ -93,7 +93,7 @@ ship "Quarg Guivre"
 		
 		"Singularity Core"
 		"Nanotech Battery"
-		"Infimum Shield Generator"
+		"Ancile Shield Generator"
 		"Central Repair Hub"
 		"Intrusion Countermeasures" 180
 
@@ -144,7 +144,7 @@ ship "Quarg Wardragon"
 		
 		"Antimatter Core"
 		"Nanotech Battery"
-		"Infimum Shield Generator"
+		"Ancile Shield Generator"
 		"Peripheral Repair Hub"
 		"Intrusion Countermeasures" 40
 
@@ -197,7 +197,7 @@ ship "Quarg Wyvern"
 		
 		"Antimatter Core"
 		"Nanotech Battery"
-		"Fluxion Shield Generator"
+		"Aspis Shield Generator"
 		"Peripheral Repair Hub"
 		"Intrusion Countermeasures" 60
 
@@ -252,7 +252,7 @@ ship "Quarg Hydra"
 
 		"Singularity Core"
 		"Nanotech Battery"
-		"Quantum Shield Generator"
+		"Aegis Shield Generator"
 		"Central Repair Hub"
 		"Intrusion Countermeasures" 140
 
