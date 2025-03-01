@@ -39,7 +39,7 @@ ship "Quarg Lindwyrm"
 		"Skydagger" 2
 		"Stratospear" 2
 		
-		"Antimatter Core"
+		"Singularity Core"
 		"Quantum Vacuum Battery"
 		"Aspis Shield Generator"
 		"Peripheral Repair Hub"
