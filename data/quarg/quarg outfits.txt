@@ -163,8 +163,8 @@ outfit "Fluxion Shield Generator"
 	"outfit space" -40
 	"shield generation" 3.2
 	"shield energy" 1.6
-	"disruption protection" .4
-	"piercing protection" .2
+	"disruption protection" .2
+	"piercing protection" .4
 
 
 outfit "Infimum Shield Generator"
@@ -174,8 +174,8 @@ outfit "Infimum Shield Generator"
 	"outfit space" -55
 	"shield generation" 5
 	"shield energy" 2.5
-	"disruption protection" .6
-	"piercing protection" .3
+	"disruption protection" .3
+	"piercing protection" .6
 	description "In addition to being able to recover their shields more quickly and efficiently than any other technology of considerable size, Quarg shield generators also provide an impressive degree of protection against weapons designed to bypass shields entirely."
 
 
@@ -186,8 +186,8 @@ outfit "Quantum Shield Generator"
 	"outfit space" -80
 	"shield generation" 8
 	"shield energy" 4
-	"disruption protection" 1
-	"piercing protection" .5
+	"disruption protection" .5
+	"piercing protection" 1
 	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
 
 
