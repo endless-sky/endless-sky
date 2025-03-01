@@ -88,7 +88,7 @@ ship "Quarg Guivre"
 			"hull damage" 15000
 			"hit force" 4500
 	outfits
-		"Graviton Slipstream Projector"
+		"Slipstream Projector"
 		"Stratospear" 2
 		
 		"Quasar Core"
