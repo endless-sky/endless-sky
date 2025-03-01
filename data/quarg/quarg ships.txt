@@ -82,7 +82,7 @@ ship "Quarg Guivre"
 		"outfit space" 720
 		"weapon capacity" 280
 		"engine capacity" 140
-#		weapon
+		weapon
 			"blast radius" 250
 			"shield damage" 1000
 			"hull damage" 500
