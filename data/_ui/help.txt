@@ -193,3 +193,4 @@ help "control ship with mouse"
 	`<Reverse> is used to thrust reverse.`
 	`Right mouse click will fire primary weapons.`
 	`<Mouse turning (hold)> will toggle mouse turning while it is held.`
+	`The "go to and hold" command is remapped from the right mouse button to the middle one.`

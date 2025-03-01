@@ -82,6 +82,7 @@ protected:
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
 	virtual bool Click(int x, int y, int clicks);
 	virtual bool RClick(int x, int y);
+	virtual bool MClick(int x, int y);
 	virtual bool Hover(int x, int y);
 	virtual bool Drag(double dx, double dy);
 	virtual bool Release(int x, int y);
@@ -138,6 +139,7 @@ private:
 	bool DoKeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress);
 	bool DoClick(int x, int y, int clicks);
 	bool DoRClick(int x, int y);
+	bool DoMClick(int x, int y);
 	bool DoHover(int x, int y);
 	bool DoDrag(double dx, double dy);
 	bool DoRelease(int x, int y);

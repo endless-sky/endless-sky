@@ -56,14 +56,16 @@ bool UI::Handle(const SDL_Event &event)
 		{
 			int x = Screen::Left() + event.button.x * 100 / Screen::Zoom();
 			int y = Screen::Top() + event.button.y * 100 / Screen::Zoom();
-			if(event.button.button == 1)
+			if(event.button.button == SDL_BUTTON_LEFT)
 			{
 				handled = (*it)->ZoneClick(Point(x, y));
 				if(!handled)
 					handled = (*it)->DoClick(x, y, event.button.clicks);
 			}
-			else if(event.button.button == 3)
+			else if(event.button.button == SDL_BUTTON_RIGHT)
 				handled = (*it)->DoRClick(x, y);
+			else if(event.button.button == SDL_BUTTON_MIDDLE)
+				handled = (*it)->DoMClick(x, y);
 		}
 		else if(event.type == SDL_MOUSEBUTTONUP)
 		{
