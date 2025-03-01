@@ -90,8 +90,8 @@ outfit "Large Graviton Thruster"
 	"inertia reduction" 0.2
 	"flare sprite" "effect/graviton flare"
 		"scale" 1.25
- 
- 
+
+
 outfit "Large Graviton Steering"
 	category "Engines"
 	"cost" 25000000
@@ -116,8 +116,8 @@ outfit "Nanotech Battery"
 	"mass" 50
 	"outfit space" -50
 	"energy capacity" 60000
-    "active cooling" 25
-    "cooling energy" 1.25
+	"active cooling" 25
+	"cooling energy" 1.25
 	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
 
 
@@ -157,60 +157,60 @@ outfit "Singularity Core"
 # Systems
 
 outfit "Fluxion Shield Generator"
-    category "Systems"
-    cost 10000000
-    "mass" 40
-    "outfit space" -40
-    "shield generation" 3.2
-    "shield energy" 1.6
-    "disruption protection" .4
-    "piercing protection" .2
+	category "Systems"
+	cost 10000000
+	"mass" 40
+	"outfit space" -40
+	"shield generation" 3.2
+	"shield energy" 1.6
+	"disruption protection" .4
+	"piercing protection" .2
 
 
 outfit "Infimum Shield Generator"
-    category "Systems"
-    cost 20000000
-    "mass" 55
-    "outfit space" -55
-    "shield generation" 5
-    "shield energy" 2.5
-    "disruption protection" .6
-    "piercing protection" .3
+	category "Systems"
+	cost 20000000
+	"mass" 55
+	"outfit space" -55
+	"shield generation" 5
+	"shield energy" 2.5
+	"disruption protection" .6
+	"piercing protection" .3
 	description "In addition to being able to recover their shields more quickly and efficiently than any other technology of considerable size, Quarg shield generators also provide an impressive degree of protection against weapons designed to bypass shields entirely."
 
 
 outfit "Quantum Shield Generator"
-    category "Systems"
-    cost 30000000
-    "mass" 80
-    "outfit space" -80
-    "shield generation" 8
-    "shield energy" 4
-    "disruption protection" 1
-    "piercing protection" .5
+	category "Systems"
+	cost 30000000
+	"mass" 80
+	"outfit space" -80
+	"shield generation" 8
+	"shield energy" 4
+	"disruption protection" 1
+	"piercing protection" .5
 	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
 
 
 outfit "Peripheral Repair Hub"
-    category "Systems"
-    cost 10000000
-    thumbnail "outfit/quarg peripheral repair hub"
-    "mass" 25
-    "outfit space" -25
-    "hull repair rate" 1
-    "hull energy" .5
-    description ""
+	category "Systems"
+	cost 10000000
+	thumbnail "outfit/quarg peripheral repair hub"
+	"mass" 25
+	"outfit space" -25
+	"hull repair rate" 1
+	"hull energy" .5
+	description ""
 
 
 outfit "Central Repair Hub"
-    category "Systems"
-    cost 10000000
-    thumbnail "outfit/quarg central repair hub"
-    "mass" 55
-    "outfit space" -55
-    "hull repair rate" 2.5
-    "hull energy" 1.25
-    description "Though still far from a weakness compared to the technology of most other species, the hull repair systems employed by the Quarg are not as powerful as one might expect. Evidently they prefer to rely on their exceptionally powerful shield generators, and it isn't hard to see why this tactic has yet to fail them."
+	category "Systems"
+	cost 10000000
+	thumbnail "outfit/quarg central repair hub"
+	"mass" 55
+	"outfit space" -55
+	"hull repair rate" 2.5
+	"hull energy" 1.25
+	description "Though still far from a weakness compared to the technology of most other species, the hull repair systems employed by the Quarg are not as powerful as one might expect. Evidently they prefer to rely on their exceptionally powerful shield generators, and it isn't hard to see why this tactic has yet to fail them."
 
 
 # Weapons
