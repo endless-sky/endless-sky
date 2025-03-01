@@ -313,7 +313,7 @@ effect "quarg anti-missile"
 	"velocity scale" 1
 
 
-outfit "Empyrean Ranseur"
+outfit "Elysian Ranseur"
 	category Guns
 	cost 40000000
 	mass 65
@@ -466,7 +466,7 @@ effect "ribault impact"
 	"velocity scale" -.003
 
 
-outfit "Graviton Slipstream Projector"
+outfit "Slipstream Projector"
 	category "Guns"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
@@ -476,9 +476,9 @@ outfit "Graviton Slipstream Projector"
 	"gun ports" -1
 	"required crew" 1
 	weapon
-		sprite "projectile/quarg tractor beam/tractorbeam"
+		sprite "projectile/slipstream projector/slipstream"
 			"frame rate" 20
-		sound "quarg tractor beam"
+		sound "slipstream projector"
 		"inaccuracy" .1
 		"velocity" 500
 		"lifetime" 1

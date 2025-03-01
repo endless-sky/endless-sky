@@ -620,6 +620,62 @@ outfit "Nanotech Battery"
 	"energy capacity" 60000
 	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
 
+outfit "Quarg Skylance"
+	category "Turrets"
+	cost 18000000
+	thumbnail "outfit/quarg skylance"
+	"mass" 60
+	"outfit space" -60
+	"weapon capacity" -60
+	"turret mounts" -1
+	"required crew" 1
+	weapon
+		sprite "projectile/skylance"
+			"frame rate" 1
+		"hardpoint sprite" "hardpoint/quarg skylance"
+		"hardpoint offset" 10
+		sound "skylance"
+		"hit effect" "skylance impact"
+		"inaccuracy" .4
+		"turret turn" 2.6
+		"velocity" 500
+		"lifetime" 1
+		"reload" 1
+		"firing energy" 30
+		"firing heat" 10
+		"shield damage" 50
+		"hull damage" 40
+		"ion damage" .1
+		"scrambling damage" .1
+	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
+
+outfit "Quarg Anti-Missile"
+	category "Turrets"
+	cost 6000000
+	thumbnail "outfit/quarg anti missile"
+	"mass" 40
+	"outfit space" -40
+	"weapon capacity" -40
+	"turret mounts" -1
+	weapon
+		"hit effect" "quarg anti-missile"
+		"hardpoint sprite" "hardpoint/quarg anti missile"
+		"hardpoint offset" 4
+		"anti-missile" 25
+		"velocity" 500
+		"lifetime" 1
+		"reload" 10
+		"firing energy" 50
+	description "Quarg anti-missile defenses can target projectiles from considerable range compared to human technology, ensuring that only the most powerful missiles are capable of even getting near a Quarg ship."
+
+outfit "Intrusion Countermeasures"
+	plural "Intrusion Countermeasures"
+	category "Hand to Hand"
+	thumbnail "outfit/quarg countermeasures"
+	"capture defense" 24
+	"unplunderable" 1
+	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
+
 outfit "Quantum Shield Generator"
 	category "Systems"
 	cost 30000000
