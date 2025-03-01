@@ -296,7 +296,7 @@ effect "skylance impact"
 outfit "Stratospear"
 	category "Turrets"
 	cost 9000000
-	thumbnail "outfit/quarg anti missile"
+	thumbnail "outfit/quarg stratospear"
 	"mass" 40
 	"outfit space" -40
 	"weapon capacity" -40
