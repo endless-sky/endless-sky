@@ -126,6 +126,7 @@ person "Cap'n Pester"
 		phrase
 			"friendly author"
 	ship "Quarg Wardragon" "Quarg Wardragon"
+		sprite "ship/wardragon"
 		"never disabled"
 		add attributes
 			"outfit space" 40
