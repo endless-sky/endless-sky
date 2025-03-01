@@ -609,3 +609,24 @@ outfit "Korath Repeater Rifle"
 	"capture defense" 2.4
 	"unplunderable" 1
 	description "This rifle is commonplace among the Korath, predating the creation of the Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
+
+outfit "Nanotech Battery"
+	plural "Nanotech Batteries"
+	category "Power"
+	cost 3000000
+	thumbnail "outfit/quarg nanotech battery"
+	"mass" 50
+	"outfit space" -50
+	"energy capacity" 60000
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
+
+outfit "Antimatter Core"
+	category "Power"
+	cost 100000000
+	thumbnail "outfit/quarg antimatter core"
+	"mass" 80
+	"outfit space" -80
+	"energy generation" 80
+	"heat generation" 20
+	"unplunderable" 1
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."

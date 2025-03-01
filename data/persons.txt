@@ -137,7 +137,7 @@ person "Cap'n Pester"
 			
 			"Antimatter Core"
 			"Nanotech Battery"
-			"Ancile Shield Generator"
+			"Quantum Shield Generator"
 			"Intrusion Countermeasures" 160
 			"Cargo Scanner"
 			"Outfit Scanner"
@@ -146,7 +146,12 @@ person "Cap'n Pester"
 			"Medium Graviton Thruster"
 			"Medium Graviton Steering"
 			"Scram Drive"
-
+		engine -14 47
+		engine 14 47
+		turret -9 -14 "Quarg Anti-Missile"
+		turret 9 -14 "Quarg Anti-Missile"
+		turret -28 7 "Quarg Skylance"
+		turret 28 7 "Quarg Skylance"
 
 
 person "Marauding Max"
