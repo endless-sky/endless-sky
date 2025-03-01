@@ -845,3 +845,83 @@ mission "Republic 300 Year Anniversary"
 			label "sestor beaten at farpoint"
 			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
 				goto end
+
+mission "Exotic Life: Delve"
+	minor
+	source Delve
+	to offer
+		random < 20
+	on offer
+		conversation
+			`The air in Delve's spaceport is thick with the scent of fuel, damp stone, and something acrid--chemical, artificial. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
+			choice
+				`	(Ask them what they're doing.)`
+				`	(Ignore them and continue on your way.)`
+					decline
+				`	"Shipworm outbreak?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	You approach a pair of workers as they finish spraying down a Bulk Freighter. One of them, a grizzled veteran with deep lines around his eyes, barely glances at you. "Shipworms," he mutters, already moving to the next ship.`
+			`	The other, a younger worker practically bouncing in his boots, grins behind his respirator. "Yeah! Little metal-chewing pests. They're native to Delve, infest the mines, the shipyards -- anywhere there's metal to sink their teeth into. If we didn't spray every ship before takeoff, they'd be all over the galaxy by now." The veteran sighs. "They already are all over the galaxy. Because people aren't careful enough."`
+			`	The rookie ignores him. "They start as tiny worms, barely bigger than your pinky, but once they find metal, they melt into it, make a cocoon that looks just like part of the ship! Bombacle, we call 'em. Then BAM! A few months later, the casing bursts open like a bomb! Bombacle"`
+			`	The veteran shakes his head. "What he means is, they're an invasive hazard if they get off-world. That's why we spray. No Shipworms, no problems."`
+			`	The rookie gives his sprayer an enthusiastic shake. "And I get to torch every last one I find. You ever see one pop under a high-heat blast? Satisfying as hell." The veteran just mutters, "You'd think the novelty would wear off."`
+			`	With another look at the freshly sprayed Bulk Freighter, you make a mental note to give your own ship a once-over before takeoff.`
+				goto ending
+			label known
+			`	The veteran lets out a long-suffering sigh. "Great. At least this one actually knows what they are." The rookie, on the other hand, practically lights up. "Right? They're like space barnacles--until they hatch into flying knives! I was just telling him how fun it is to fry 'em!"`
+			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan Shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That’s why every ship gets fumigated before takeoff--to keep 'em from spreading even more than they already have."`
+			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade -- it's wild!" The veteran just rubs his face. "Why do I even bother?"`
+			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
+			label ending
+			`	You give the fumigation teams a final glance and make your way back to your ship, mindful of what might be lurking in the metal unseen.`
+			action
+				set "exotic animals: delvan shipworm known"
+
+mission "Exotic Life: Ada"
+	minor
+	source Ada
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You make your way through a dimly lit section of the spaceport, where the usual hum of activity is dampened by an eerie stillness. Large, sealed tarps stretch across the area, some draped over cargo crates, others covering entire sections of the corridor. One enormous tarp seems to be covering a whole ship. Each one bears the same stark warning in bold lettering: 'DELVAN SHIPWORM FUMIGATION.' The air has a faint chemical tang to it, and ahead, two figures move methodically between the tarps.`
+			`	They are covered head to toe in protective suits, thick gloves, and respirators obscuring their faces. One carries a handheld sprayer, releasing a fine mist into the air, while the other checks a monitor strapped to their arm. Their boots crunch softly against the floor as they pass.`
+			choice
+				`	(Ask them what's going on.)`
+				`	(Ignore them and continue on your way.)`
+					decline
+				`	"Space barnacle outbreak?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	Curiosity gets the better of you, and you ask what this is all about, gesturing at the tarps. One of them pauses, their voice muffled by the respirator. "Delvan Shipworm outbreak. Nasty infestation. We're exterminating them before they spread to other ships or the city." You can see small scorch marks on the floor nearby--signs of something being burned away.`
+			choice
+				`	"What's a Delvan Shipworm?"`
+				`	"Nasty bombacles, aren't they?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+				`	"Well, good luck with that. I must be on my way."`
+					decline
+			`	The worker with the monitor barely hesitates before responding. "Delvan Shipworms are an invasive species from Delve. They start as larvae, tiny grubs-"`
+			`	"Bombacles!" the one with the sprayer interjects, voice distorted through the respirator. "They latch on ships, grow into barnacles, then they're bombs!"`
+			`	The first worker exhales, shaking their head. "They're more than that. The larvae attach to metal -- usually ship hulls, but it can be mining equipment or anything really, and secrete an enzyme that corrodes the surface, breaking it down so they can form a cocoon around themselves. This builds up a high-pressure gas, so the outer shell hardens to compensate, blending in with the surrounding metal."`
+			`	"Yeah, until -- BOOM! Three months later, it blasts open like a grenade and out come a dozen disgusting worms!"`
+			`	"You make it sound like a horror movie."`
+			`	"It is a horror movie if you're next to one when it hatches." The sprayer worker turns back to you. "Hand-sized, wings like razors, and they leave a hole the size of your palm in whatever they break out of. Plenty of ships have lost pressure 'cause of them."`
+			`	The first worker sighs. "That's why we're dealing with it now. We don't let them spread, we don't get people vented into space."`
+			`	Your gaze drifts back to the tarps, imagining what might be skittering beneath them. You nod in thanks and step away, making a mental note to double-check your ship's hull before takeoff.`
+				action
+					set "exotic animals: delvan shipworm known"
+				goto ending
+			label known
+			`	The worker with the sprayer perks up. "Finally, someone who gets it!" they say, shaking their sprayer for emphasis.`
+			`	The other groans. "They are not barnacles and they are not bombs. They are a highly adaptive invasive species with a complex--"`
+			`	"Yeah, yeah, they're still bombacles," the sprayer worker cuts in. "Point is, we kill 'em before they kill ships. And cities. And people."`
+			`	The monitor worker exhales but gives you a nod. "At least you understand how important this is. Most folks just walk by without a second thought." The sprayer worker waves you along. "Anyway, let us work before one of these things chews through something vital."`
+			`	Satisfied, you leave them to their job, making a mental note to check your own hull before takeoff.`
+			label ending
+			`	With one last glance at the fumigation tarps, you head back to your ship, suddenly aware of how fragile a metal hull can be in the wrong circumstances.`
+				decline
