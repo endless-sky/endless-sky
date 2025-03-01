@@ -214,7 +214,7 @@ outfit "Central Repair Hub"
 
 # Weapons
 
-outfit "Quarg Skydagger"
+outfit "Skydagger"
 	category "Turrets"
 	cost 8500000
 	thumbnail "outfit/quarg skydagger"
@@ -243,7 +243,7 @@ outfit "Quarg Skydagger"
 		"scrambling damage" .05
 	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
-outfit "Quarg Skylance"
+outfit "Skylance"
 	category "Turrets"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
@@ -281,7 +281,7 @@ effect "skylance impact"
 	"velocity scale" 0.
 
 
-outfit "Quarg Stratospear"
+outfit "Stratospear"
 	category "Turrets"
 	cost 9000000
 	thumbnail "outfit/quarg anti missile"
@@ -310,7 +310,7 @@ effect "quarg anti-missile"
 	"velocity scale" 1
 
 
-outfit "Quarg Exalted Ranseur"
+outfit "Empyrean Ranseur"
 	category Guns
 	cost 40000000
 	mass 65
@@ -341,7 +341,7 @@ effect "ranseur"
 	lifetime 11
 
 
-outfit "Quarg Empyrean Culverin"
+outfit "Celestial Culverin"
 	category Guns
 	cost 22000000
 	mass 45
@@ -394,7 +394,7 @@ effect "culverin die"
 	"velocity scale" 0.4
 
 
-outfit "Quarg Exalted Ribault"
+outfit "Astral Ribault"
 	category "Turrets"
 	cost 15000000
 	thumbnail "outfit/quarg ribault"
@@ -463,7 +463,7 @@ effect "ribault impact"
 	"velocity scale" -.003
 
 
-outfit "Quarg Slipstream Projector"
+outfit "Graviton Slipstream Projector"
 	category "Guns"
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
