@@ -17,7 +17,7 @@ ship "Quarg Lindwyrm"
 	thumbnail "thumbnail/quarg lindwyrm"
 	attributes
 		category "Heavy Freighter"
-#		"cost" 5900000
+		"cost" 20000000
 		"shields" 95000
 		"hull" 55000
 		"required crew" 35
@@ -69,7 +69,7 @@ ship "Quarg Guivre"
 	thumbnail "thumbnail/quarg guivre"
 	attributes
 		category "Utility"
-		"cost" 5900000
+		"cost" 75000000
 		"shields" 185000
 		"hull" 115000
 		"required crew" 165
@@ -120,7 +120,7 @@ ship "Quarg Wardragon"
 	thumbnail "thumbnail/quarg wardragon"
 	attributes
 		category "Light Warship"
-#		"cost" 5900000
+		"cost" 15000000
 		"shields" 105000
 		"hull" 30000
 		"required crew" 30
@@ -172,7 +172,7 @@ ship "Quarg Wyvern"
 	thumbnail "thumbnail/quarg wyvern"
 	attributes
 		category "Medium Warship"
-#		"cost" 5900000
+		"cost" 27000000
 		"shields" 155000
 		"hull" 45000
 		"required crew" 50
@@ -226,7 +226,7 @@ ship "Quarg Hydra"
 	thumbnail "thumbnail/quarg hydra"
 	attributes
 		category "Heavy Warship"
-#		"cost" 5900000
+		"cost" 65000000
 		"shields" 310000
 		"hull" 80000
 		"required crew" 120
