@@ -322,7 +322,7 @@ mission "Incipias: Help The Stranded 2"
 	passengers 5
 	source Turra
 	destination "Pon'tes"
-	blocked "You have landed on Turra, but you don't have enough passenger space for the stranded Incipia!  How embarrasing."
+	blocked "You have landed on Turra, but you don't have enough passenger space for the stranded Incipia! How embarrassing."
 	to offer
 		has "Incipias: Help The Stranded 1: done"
 	on offer
