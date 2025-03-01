@@ -490,7 +490,7 @@ outfit "Graviton Slipstream Projector"
 
 # Special
 
-outfit "Phalanx Countermeasure System"
+outfit "Phalanx System"
 	category "Hand to Hand"
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
