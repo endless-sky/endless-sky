@@ -871,7 +871,7 @@ mission "Exotic Life: Delve"
 				goto ending
 			label known
 			`	The veteran lets out a long-suffering sigh. "Great. At least this one actually knows what they are." The rookie, on the other hand, practically lights up. "Right? They're like space barnacles - until they hatch into flying knives! I was just telling him how fun it is to fry 'em!"`
-			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan Shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That’s why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
+			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan Shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
 			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face. "Why do I even bother?"`
 			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
 			label ending
@@ -912,9 +912,9 @@ mission "Exotic Life: Ada"
 			`	"You make it sound like a horror movie."`
 			`	"It is a horror movie if you're next to one when it hatches." The sprayer worker turns back to you. "Writhing wrigglers that leave a hole the size of your palm in whatever they break out of. Plenty of ships have lost pressure 'cause of them."`
 			`	The first worker sighs. "That's why we're dealing with it now. We don't let them spread, we don't get people vented into space."`
-			`	Your gaze drifts back to the tarps, imagining what might be skittering beneath them. You nod in thanks and step away, making a mental note to double-check your ship's hull before takeoff.`
-				action
+			action
 					set "exotic animals: delvan shipworm known"
+			`	Your gaze drifts back to the tarps, imagining what might be skittering beneath them. You nod in thanks and step away, making a mental note to double-check your ship's hull before takeoff.`
 				goto ending
 			label known
 			`	The worker with the sprayer perks up. "Finally, someone who gets it!" they say, shaking their sprayer for emphasis.`
