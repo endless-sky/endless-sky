@@ -129,7 +129,7 @@ person "Cap'n Pester"
 		"never disabled"
 		add attributes
 			"outfit space" 40
-			"engine space" 40
+			"engine capacity" 20
 		outfits
 			"Quarg Skylance" 2
 			"Quarg Anti-Missile" 2
