@@ -156,7 +156,7 @@ outfit "Singularity Core"
 
 # Systems
 
-outfit "Fluxion Shield Generator"
+outfit "Aspis Shield Generator"
 	category "Systems"
 	cost 10000000
 	"mass" 40
@@ -167,7 +167,7 @@ outfit "Fluxion Shield Generator"
 	"piercing protection" .4
 
 
-outfit "Infimum Shield Generator"
+outfit "Ancile Shield Generator"
 	category "Systems"
 	cost 20000000
 	"mass" 55
@@ -179,7 +179,7 @@ outfit "Infimum Shield Generator"
 	description "In addition to being able to recover their shields more quickly and efficiently than any other technology of considerable size, Quarg shield generators also provide an impressive degree of protection against weapons designed to bypass shields entirely."
 
 
-outfit "Quantum Shield Generator"
+outfit "Aegis Shield Generator"
 	category "Systems"
 	cost 30000000
 	"mass" 80
