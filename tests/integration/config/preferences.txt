@@ -36,6 +36,7 @@
 "help: outfitter with multiple ships" 1
 "help: ship info" 1
 "help: shipyard" 1
+"help: shop with multiple ships" 1
 "help: stranded" 1
 "help: trading" 1
 "help: try out fighters transfer cargo" 1

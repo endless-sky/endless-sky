@@ -3565,26 +3565,28 @@ bool Ship::CanFire(const Weapon *weapon) const
 			return false;
 	}
 
-	if(energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
+	if(weapon->ConsumesEnergy()
+			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
 		return false;
-	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
+	if(weapon->ConsumesFuel()
+			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
+	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
+	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
 		return false;
 	// Repeat this for various effects which shouldn't drop below 0.
-	if(ionization < -weapon->FiringIon())
+	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
 		return false;
-	if(disruption < -weapon->FiringDisruption())
+	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
 		return false;
-	if(slowness < -weapon->FiringSlowing())
+	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
 		return false;
 
 	return true;
@@ -3808,6 +3810,13 @@ int Ship::GetLingerSteps() const
 void Ship::Linger()
 {
 	++lingerSteps;
+}
+
+
+
+bool Ship::Immitates(const Ship &other) const
+{
+	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }
 
 
@@ -4938,7 +4947,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 			Point effectVelocity = velocity - 6. * afterburnerAngle.Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle);
+					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle, Point{}, point.zoom);
 		}
 	}
 }
