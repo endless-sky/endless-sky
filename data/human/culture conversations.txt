@@ -870,7 +870,7 @@ mission "Exotic Life: Delve"
 			`	With another look at the freshly sprayed Bulk Freighter, you make a mental note to give your own ship a once-over before takeoff.`
 				goto ending
 			label known
-			`	The veteran lets out a long-suffering sigh. "Great. At least this one actually knows what they are." The rookie, on the other hand, practically lights up. "Right? They're like space barnacles - until they hatch into flying knives! I was just telling him how fun it is to fry 'em!"`
+			`	The veteran lets out a long-suffering sigh. "Great. At least this one actually knows what they are." The rookie, on the other hand, practically lights up. "They're like space barnacles - until they hatch into wormy bombs! I was just telling him how fun it is to fry 'em!"`
 			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan Shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
 			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face. "Why do I even bother?"`
 			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
@@ -905,7 +905,7 @@ mission "Exotic Life: Ada"
 					goto known
 				`	"Well, good luck with that. I must be on my way."`
 					decline
-			`	The worker with the monitor barely hesitates before responding. "Delvan Shipworms are an invasive species from Delve. They start as larvae, tiny grubs-"`
+			`	The worker with the monitor barely hesitates before responding. "Delvan Shipworms are an invasive species from Delve. They start as larvae, tiny worms-"`
 			`	"Bombacles!" the one with the sprayer interjects, voice distorted through the respirator. "They latch on ships, grow into barnacles, then they're bombs!"`
 			`	The first worker exhales, shaking their head. "They're more than that. The larvae attach to metal - usually ship hulls, but it can be mining equipment or anything really, and secrete an enzyme that corrodes the surface, breaking it down so they can form a cocoon around themselves. This builds up a high-pressure gas, so the outer shell hardens to compensate, blending in with the surrounding metal."`
 			`	"Yeah, until - BOOM! Three months later, it blasts open like a grenade and out come a dozen disgusting worms!"`
