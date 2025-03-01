@@ -128,7 +128,8 @@ person "Cap'n Pester"
 	ship "Quarg Wardragon" "Quarg Wardragon"
 		"never disabled"
 		add attributes
-			"outfit space" 10
+			"outfit space" 40
+			"engine space" 20
 		outfits
 			"Quarg Skylance" 2
 			"Quarg Anti-Missile" 2
