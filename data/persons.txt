@@ -125,12 +125,11 @@ person "Cap'n Pester"
 	phrase
 		phrase
 			"friendly author"
-	ship "Quarg Wardragon" "Quarg Wardragon"
+	ship "Wardragon" "Wardragon"
 		sprite "ship/wardragon"
 		"never disabled"
 		add attributes
-			"outfit space" 80
-			"engine capacity" 20
+			"outfit space" 10
 		outfits
 			"Quarg Skylance" 2
 			"Quarg Anti-Missile" 2
@@ -146,12 +145,59 @@ person "Cap'n Pester"
 			"Medium Graviton Thruster"
 			"Medium Graviton Steering"
 			"Scram Drive"
-		engine -14 47
-		engine 14 47
-		turret -9 -14 "Quarg Anti-Missile"
-		turret 9 -14 "Quarg Anti-Missile"
-		turret -28 7 "Quarg Skylance"
-		turret 28 7 "Quarg Skylance"
+
+ship "Wardragon"
+	sprite "ship/wardragon"
+	thumbnail "thumbnail/wardragon"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 160000
+		"hull" 50000
+		"required crew" 160
+		"bunks" 185
+		"mass" 840
+		"drag" 14
+		"heat dissipation" .34
+		"fuel capacity" 800
+		"cargo space" 50
+		"outfit space" 600
+		"weapon capacity" 200
+		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
+		"ramscoop" 10
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
+		
+		"Antimatter Core"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 160
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
+		
+	engine -14 47
+	engine 14 47
+	turret -9 -14 "Quarg Anti-Missile"
+	turret 9 -14 "Quarg Anti-Missile"
+	turret -28 7 "Quarg Skylance"
+	turret 28 7 "Quarg Skylance"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+
 
 
 person "Marauding Max"
