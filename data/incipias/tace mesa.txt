@@ -46,7 +46,7 @@ ship "Tace Mesa"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Interceptor"
+		category "Unclassified"
 		cost 500000
 		"mass" 525
 		"outfit space" 45

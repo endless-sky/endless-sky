@@ -146,7 +146,7 @@ ship "Windjammer"
 	thumbnail "ship/windjammer"
 	"uncapturable"
 	attributes
-		category "Space Liner"
+		category "Unclassified"
 		"cost" 1111000
 		"hull" 6900
 		"required crew" 1
@@ -302,7 +302,7 @@ ship "Bluejacket"
 	thumbnail "ship/bluejacket"
 	"uncapturable"
 	attributes
-		category "Space Liner"
+		category "Unclassified"
 		"cost" 1212100
 		"hull" 3200
 		"required crew" 1
@@ -422,7 +422,7 @@ ship "Pollen"
 	sprite "ship/pollen"
 	thumbnail "ship/pollen"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 126000
 		"hull" 200
 		"required crew" 1
@@ -455,7 +455,7 @@ ship "Sprout"
 	thumbnail "ship/pollen"
 	"uncapturable"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 126000
 		"hull" 200
 		"required crew" 1

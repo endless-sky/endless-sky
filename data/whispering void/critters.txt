@@ -24,7 +24,7 @@ ship "Pincer Beast"
 	sprite "ship/pincer beast"
 	thumbnail "thumbnail/pincer beast"
 	attributes
-		category "Light Freighter"
+		category "Unclassified"
 		"hull" 14300
 		"self destruct" 1.0
 		"automaton" 1
