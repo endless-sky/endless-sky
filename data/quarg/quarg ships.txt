@@ -191,7 +191,7 @@ ship "Quarg Wyvern"
 			"hull damage" 10000
 			"hit force" 3000
 	outfits
-		"Empyrean Ranseur" 2
+		"Elysian Ranseur" 2
 		"Astral Ribault" 2
 		"Stratospear"
 		
@@ -207,8 +207,8 @@ ship "Quarg Wyvern"
 		
 	engine -23 121
 	engine 23 121
-	gun -17.5 -123 "Empyrean Ranseur"
-	gun 17.5 -123 "Empyrean Ranseur"
+	gun -17.5 -123 "Elysian Ranseur"
+	gun 17.5 -123 "Elysian Ranseur"
 	turret -38 -74 "Astral Ribault"
 	turret 38 -74 "Astral Ribault"
 	turret 0 6.5 "Stratospear"
