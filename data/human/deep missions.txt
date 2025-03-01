@@ -7347,12 +7347,13 @@ mission "Hroar's Haulers Unferth"
 	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
 	destination "Gardena Station"
 	passengers 1
+	cargo "Solvi's Pallet" 1
 	to offer
 		has "Hroar's Haulers 18b: done"
 		has "savedsolvi"
 	on offer
 		conversation
-		`As you work your way through Humanika's sparsely populated spaceport, you can't help but notice that there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of pastel human echoes, it's easy to spot the animated Solvi. His weathered rust-brown jacket and proud captain's hat, his over expressive face, open friendly demeanor are all at sharp odds with the inherent meekness of the spaceport's regulars.`
+		`As you work your way through Humanika's sparsely populated spaceport, you can't help but notice that there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of pastel human echoes, it's easy to spot the animated Solvi. His weathered rust-brown jacket and proud captain's hat, his over expressive face, and open, friendly demeanor are all at sharp odds with the inherent meekness of the spaceport's regulars.`
 			`	"<first>." He says as he walks up to you and claps your hand, "I knew you'd be come."`
 		choice
 			`	"Good to see you, Solvi."`
@@ -7380,17 +7381,18 @@ mission "Hroar's Haulers Unferth"
 			`	"No. I got my own plans."`
 		`	The young space frowns. "S'pose you're busy Captain and all that. Still, us haulres oughta be sticking together."`
 		`	He takes a step back from you, "Take care, <last>. Mayhaps I'll be seein' ya on Wayfarer."`
-		`	Solvi leaves you alone with Humanika's strange spaceport and stranger inhabitants.`
+		`	Solvi leaves you alone in Humanika's strange spaceport and with it's stranger inhabitants.`
 			decline
 
 		label takeyou
-		`	"Now that's what I like to hear. Haulers stickin' together and going on adventures and the like."`
-		`	"The official name of the Final Blush is <destination>, and you'll find it in the <system> system." He pauses," Now, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own ship and fleet."`
+		`	"Now that's what I like to hear. Haulers stickin' together and going on adventures and the like." He gives you an approving nod, "I've also got a one ton pallet of supplies, a sort of offering, if ya will. I'll have it loaded up on your ship."`
+		`	"As for where we're headed, well, the official name of the Final Blush is <destination>, and you'll find it in the <system> system." He pauses," Now, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own ship and fleet."`
 			accept
 
 		label sure
 			`	"Ah, now that's what I like aboutchya." Solvi favors you with a wide smile, "Jump first, ask questions later."`
-			`	"A Blush is what the Carvaneers used to call their waystations, and the Last Blush, well, that was the last one of 'em 'fore gettin' to Lagrange. Obviously, we ain't using them anymore, haven't in centuries, but they are kinda like shrines to us spacers. 'Course you wouldn't be finding Last Blush on any map, no, but you would be finding <destination> in the <system> system. Ya, know, Tomotato-Potato, as the Earthers say."`
+			`	His grin turns a little sheepish, "I've also got a one ton pallet of supplies, a sort of offering, if ya will. I'll have it loaded up on your ship. You'll hardly notice it"`
+			`	"As for where we're headed; a Blush is what the Carvaneers used to call their waystations, and the Last Blush, well, that was the last one of 'em 'fore gettin' to Lagrange. Obviously, we ain't using them anymore, haven't in centuries, but they are kinda like shrines to us spacers. 'Course you wouldn't be finding Last Blush on any map, no, but you would be finding <destination> in the <system> system. Ya, know, Tomotato-Potato, as the Earthers say."`
 			`	"So, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own ship and fleet."`
 			accept
 		
@@ -7403,10 +7405,11 @@ mission "Hroar's Haulers Unferth"
 
 	on complete
 		conversation
-			`	Landing on this old dilapidated station is more than a little complicated. Between the lack of any sort of trafic control, the amount of trashed or inoperable bays, and the jagged floating refuse around more then a few corners, it's a miracle you land unscathed.`
-			`	Once inside, it doesn't get any better, the state of the station makes it easy to believe the entire thing could come apart at the seams at any moment. Solvi, however, is undeterred.`
+			`	Landing on this old dilapidated station is more than a little complicated. Between the lack of any sort of traffic control, the amount of trashed or inoperable bays, and the jagged floating refuse around more then a few corners, it's a miracle you land unscathed.`
+			`	Once inside, it doesn't get any better, the state of the station makes it easy to believe the entire place could come apart at the seams at any moment. Solvi, however, is undeterred.`
 			`	"She's in better shape than she looks," He says, "They bult these old girls to last; she's a Blush after all. 'Sides I reckon they just dirty her up a bit to keep the tourists away, ya know. Hostile architecture and all that."`
-			`	He trudges on toward what was once the spaceport, "Come on, it's this way."`
+			`	He unloads the one ton pallet next to your ship. "I figure they'll come collect this later, when they have a mind." He says before trudging off in the direction of what was once the spaceport.`
+			`	"Come on," he says without looking back, "it's this way."`
 
 mission "Hroar's Haulers Unferth 2"
 	name "The Final Blush"
@@ -7444,7 +7447,7 @@ mission "Hroar's Haulers Unferth 2"
 			`	There is a long silence, as the last echoes of Solvi's words fade away into the forgotten station.`
 			`	Then a single clang can be heard behind the door,this is followed by a loud mechanical whirring noise, and blastdoor begins to creek.`
 			`	Light spills into the growing back as the huge door swings open before you. As your eyes struggle to adjust you make out black shape in the midst of the doorway.`
-			`	"Dinnae fert the gloam, caravaner, for yer in the Bloosh, noo." An old husky voice says, "Come inside, wull ye?"`
+			`	"Dinnae fert the gloam, caravaner, fur yer in the Bloosh, noo." An old husky voice says, "Come inside, wull ye?"`
 			`	Solvi steps into the light, and turns back to face you, "This way, <first>."`
 			choice
 				`	(Follow Solvi.)`
@@ -7469,14 +7472,62 @@ mission "Hroar's Haulers Unferth 2"
 					goto nope
 			
 			label follow
-			`	It feels like you've been transported to a completely different station. The corridors are well lit and clean, if heavily worn, and the machines all appear to be mostly functional. Happy children run past as you as your old guide leads you deeper into the station.`
-			`	"No mony caravan fowk come here noodays," the old man is dressed in what looks like a handstitched facsimile of an ancient station uniform, "Ye fae Muspel, richt? Rid-born hauler?"`
-			`	"Uh, yes Blush-Master," Solvi indicates toward his red-brown jacket. "We're Haulers, from the red of Muspel. I reckon we're the only sort to be visiting you anymore."`
-			`	"A few stane fowk find there way here fae time tae time." He says to Solvi as he leads you both around a corner and in front of two a large door adorned in the glittering colored glass, "Here we are, laddie. Tak yer time."`
+			`	It feels like you've been transported to a completely different station. The corridors are well lit and clean, if heavily worn, and the machines all appear to be mostly functional. Happy children race past you as your elderly guide leads you deeper into the station.`
+			`	The old man is dressed in what looks like a handstitched facsimile of an ancient station uniform, "No mony caravan fowk come here noodays," he says to Solvi midstride, "Ye fae Muspel, richt? Rid-born hauler?"`
+			`	"Uh, yes Blush-Gutcher," Solvi indicates toward his red-brown jacket. "We're Haulers, from the red of Muspel. I reckon we're the only sort that stop by anymore."`
+			`	"A few stane fowk find there way here fae time tae time." He says as stops in front of a large smooth black door, "Here wi are, laddie. Tak yer time."`
 			`	Solvi opens the door, and waits for you to enter.`
 			choice
 				`	(Step inside.)`
 				`	"This far enough for me. I'll just wait here."`
+			`	Solvi shrugs, "I'll only be a minute." And enters the room.`
+			`	The old man turns to look at you, his face heavy with deep wrinkles, "Ma neem is Goraid, Bloosh-Gutcher ae this here Bloosh. Are ye ane ae Hel-Hrut's caravaners too?"`
+			choice
+				`	"I am a Hauler for Hroar, not Hel-Hrut."`
+					goto nothrut
+				`	"I am sorry, I don't understand."`
+					goto nospeak
+				`	"Yes."`
+					goto liar
+				`	(Say nothing.)"`
+			`	The old man narrows his slightly milky eyes at you, "Ye fair puggled, bairn? Or ye tongue tackit?"`
+			`	He sighs loudly, "Wull, tell yer frein fae his gift wi be thankit."`
+				goto byedude
+			`	He then turns and leaves you by yourself.`
+				goto hidude
+			`	A few moments later Solvi the black door swings over and a solmn looking Solvi steps out.`
+			`	"Ah, shoulda come with me, <first>. It's something else in there." he says quietly.`
+			`	He looks around, "That's what we came for, so I guess best we moved on."`
+			`	Together you make your way back to your ship.`
+				accept
+
+			label nothrut
+			`	Goraid's face briefly disappears into his wrinkles as he laughs, "O that's richt. Hel-Hrut's wain grawn up. Whaur's the time gae?"`
+			`	"Ah best be going noo. Cannae spend aw day staunding wie ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+				goto byedude
+
+			label nospeak
+			`	The old man shakes his head, and is about to say something than stops himself.`
+			`	He pauses for a bit and then says slowly, "Tell yer frein fae his gift wi be thankit."`
+			`	He peers closely at you with his milky eyes, searching your face cor comprehension, before sighing and walking away.`
+				goto hidide
+			
+			label liar
+			`	"Hel-Hrut is a guid man. Ayewis be kind tae the Bloosh-fowk. Hinnae seen him in some time. He awricht?"`
+			choice
+				`	"He's fine. Just busy is all."`
+					goto doubleliar
+				`	"I don't know a Hel-Hrut. Just Hroar."`
+					goto nothrut
+				`	"I think he's dead."`
+			`	Goraid frowns, and then nods, "Wis supposing that wad the trowth ae the matter.`
+			`	He sighs to himself, and then says, "Ah best be going noo. Cannae spend aw day staunding wie ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+				goto byedude
+			
+			label doubleliar
+			`	"Next time you be seeing him, tell him that Goraid says hello, and that he should pay us a visit. Been too long."`
+			
+
 
 
 
