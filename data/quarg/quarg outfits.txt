@@ -146,7 +146,7 @@ outfit "Antimatter Core"
 outfit "Singularity Core"
 	category "Power"
 	cost 100000000
-	thumbnail "outit/quarg singularity core"
+	thumbnail "outfit/quarg singularity core"
 	"mass" 160
 	"outfit space" -120
 	"energy generation" 37.5
