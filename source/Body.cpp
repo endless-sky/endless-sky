@@ -226,7 +226,7 @@ void Body::LoadSprite(const DataNode &node)
 			frameRate = 1. / child.Value(1);
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
-		else if(child.Token(0) == "scale" && child.Size() == 2 && child.Value(1) > 0.)
+		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
 		{
 			double scaleY = (child.Size() >= 3 && child.Value(2) > 0.) ? child.Value(2) : child.Value(1);
 			scale = Point(child.Value(1), scaleY);

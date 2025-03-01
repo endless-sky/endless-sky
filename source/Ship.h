@@ -116,9 +116,11 @@ public:
 		REVERSE = 3,
 	};
 
+
 public:
 	static constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
 	static constexpr double THRUST_HELD_FRAMES_RECIP = 1.0 / MAX_THRUST_HELD_FRAMES;
+
 
 public:
 	// Functions provided by the Body base class:
@@ -692,7 +694,7 @@ private:
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 	// The amount of time in frames that an engine has been on for.
-	std::array<uint8_t, 4> thrustHeldFrames = {0, 0, 0 ,0};
+	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
 	int pilotError = 0;

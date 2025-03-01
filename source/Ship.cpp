@@ -1649,6 +1649,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoJettison(flotsam);
 	DoCloakDecision();
 
+	for(uint8_t &held : thrustHeldFrames)
+		if(held > 0)
+			--held;
+
 	bool isUsingAfterburner = false;
 
 	// Don't let the ship do anything else if it is being destroyed.
@@ -4663,10 +4667,6 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	double mass = InertialMass();
 	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + slowness * .05);
-
-	for(uint8_t &heldFrame : thrustHeldFrames)
-		if(heldFrame > 0)
-			--heldFrame;
 
 	if(isDisabled)
 		velocity *= 1. - dragForce;
