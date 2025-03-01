@@ -7425,9 +7425,12 @@ mission "Hroar's Haulers Unferth 2"
 			`	In the uneven light of the abandoned station a stray beam catches Solvi's face and his eyes glitter in the dark.`
 			`	"This way." he says, as he stands before the immobile rustbound hatch.`
 			choice
+				`	"Have you been here before?"`
+					goto beenhere
 				`	"Looks like a dead end."`
 				`	"How do you expect to open that?"`
 				`	(Say nothing.)`
+			label grope
 			`	Solvi gropes around the wall for several moments before finding a water-damaged panel. He presses it into structure, and what little lights there are, suddenly go dark.`
 			`	The feral, claustrophobic total darkness of the station seems to tighten around you. Instinctively you reach for your gear, but there's something about the dark that makes you think, impossibly, that no light could pierce this void.`
 			choice
@@ -7463,8 +7466,13 @@ mission "Hroar's Haulers Unferth 2"
 			`	A few hours later Solvi shows up. He seems a little withdrawn and all he says is, "Drop me off at Wayfarer, please."`
 				accept
 
+			label beenhere
+			`	Solvi pauses, and turns to look at you, "Not exactly, no. I was given trustworthy directions from an old spacer who used to come here with Hel-Hrut. He wouldn't lead me wrong. Just follow my lead."`
+			`	He turns back to face the hatch.`
+				goto grope
+
 			label whatisthis
-			`	Solvi pauses in the light, "The Blush, the shrine I toldja about, remember? The folks that maintain it are little odd, I'll give ya that, but they're good folk. Think of it like a monastery, but much more fun. Trust me, nothing untoward will happen to ya in there. I gotchyer back."`
+			`	Solvi pauses in the light, "The Blush, the shrine I toldja about, remember? The folks that maintain it are little odd, I'll give ya that, but I've heard they're good folk. Think of it like a monastery. Trust me, nothing untoward will happen to ya in there. I gotchyer back."`
 			choice
 				`	"Alright, I trust you." (Follow Solvi.)`
 					goto follow
@@ -7479,6 +7487,7 @@ mission "Hroar's Haulers Unferth 2"
 			`	Solvi opens the door, and waits for you to enter.`
 			choice
 				`	(Step inside.)`
+					goto inside
 				`	"This far enough for me. I'll just wait here."`
 			`	Solvi shrugs, "I'll only be a minute." And enters the room.`
 			`	The old man turns to look at you, his face heavy with deep wrinkles, "Ma neem is Goraid, Bloosh-Gutcher ae this here Bloosh. Are ye ane ae Hel-Hrut's caravaners too?"`
@@ -7492,10 +7501,10 @@ mission "Hroar's Haulers Unferth 2"
 				`	(Say nothing.)"`
 			`	The old man narrows his slightly milky eyes at you, "Ye fair puggled, bairn? Or ye tongue tackit?"`
 			`	He sighs loudly, "Wull, tell yer frein fae his gift wi be thankit."`
-				goto byedude
+			label byedude
 			`	He then turns and leaves you by yourself.`
 				goto hidude
-			`	A few moments later Solvi the black door swings over and a solmn looking Solvi steps out.`
+			`	A few moments later the black door swings over and a solmn looking Solvi steps out.`
 			`	"Ah, shoulda come with me, <first>. It's something else in there." he says quietly.`
 			`	He looks around, "That's what we came for, so I guess best we moved on."`
 			`	Together you make your way back to your ship.`
@@ -7503,7 +7512,7 @@ mission "Hroar's Haulers Unferth 2"
 
 			label nothrut
 			`	Goraid's face briefly disappears into his wrinkles as he laughs, "O that's richt. Hel-Hrut's wain grawn up. Whaur's the time gae?"`
-			`	"Ah best be going noo. Cannae spend aw day staunding wie ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+			`	"Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
 				goto byedude
 
 			label nospeak
@@ -7521,13 +7530,17 @@ mission "Hroar's Haulers Unferth 2"
 					goto nothrut
 				`	"I think he's dead."`
 			`	Goraid frowns, and then nods, "Wis supposing that wad the trowth ae the matter.`
-			`	He sighs to himself, and then says, "Ah best be going noo. Cannae spend aw day staunding wie ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+			`	He sighs to himself, and then says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
 				goto byedude
 			
 			label doubleliar
-			`	"Next time you be seeing him, tell him that Goraid says hello, and that he should pay us a visit. Been too long."`
-			
+			`	"Niest time ye be seeing him, tell him that Goraid sez hello, an' that he shoid pey us a veesit. Bin tae lang."`
+			`	 Goraid pauses, and then nods to himself and says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+				goto byedude
 
+			label inside
+			`	The spacious room is covered in a sprawling multicolored mosiac. On closer inspection you recognize the individual pieces of the mosiac as coming from heat tiles, optical cylinders, control circuits, and other eccletic pieces of ancient ships.`
+			`	The vast majority of is a burnt `
 
 
 
