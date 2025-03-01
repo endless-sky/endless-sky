@@ -2150,10 +2150,10 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	npc accompany save
 		government "Quarg (Hai)"
 		personality heroic waiting escort
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Kor Sestor"
 		personality heroic staying
@@ -2241,10 +2241,10 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	npc
 		government "Quarg (Hai)"
 		personality heroic staying
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic staying
