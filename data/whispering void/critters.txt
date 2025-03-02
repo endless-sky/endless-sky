@@ -82,6 +82,8 @@ fleet "Pincer Beast"
 
 outfit "Pincer"
 	category "Guns"
+	series "Guns"
+	index 92050
 	"gun ports" -1
 	weapon
 		sound "pincer hit"
