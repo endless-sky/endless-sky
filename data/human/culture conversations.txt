@@ -914,7 +914,7 @@ mission "Exotic Life: Ada"
 			`	"It is a horror movie if you're next to one when it hatches." The sprayer worker turns back to you. "Writhing wrigglers that leave a hole the size of your palm in whatever they break out of. Plenty of ships have lost pressure 'cause of them."`
 			`	The first worker sighs. "That's why we're dealing with it now. We don't let them spread, we don't get people vented into space."`
 			action
-					set "exotic animals: delvan shipworm known"
+				set "exotic animals: delvan shipworm known"
 			`	Your gaze drifts back to the tarps, imagining what might be skittering beneath them. You nod in thanks and step away, making a mental note to double-check your ship's hull before takeoff.`
 				goto ending
 			label known
