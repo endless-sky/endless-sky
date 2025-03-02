@@ -10206,5 +10206,7 @@ mission "Patch Stone Waiting"
 	landing
 	to offer
 		has "Stone of our Fathers 5: done"
+		not "stone waiting most: triggered"
 	on offer
 		event "stone waiting most" 14
+		fail
