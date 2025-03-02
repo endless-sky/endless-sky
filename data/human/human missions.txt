@@ -10202,8 +10202,8 @@ mission "Stone to Hope: Thanks"
 
 # For compatibility with saves that completed Stones of our Fathers 5, but didn't get the new event connected to it.
 mission "Patch Stone Waiting"
-	invisible
 	landing
+	invisible
 	to offer
 		has "Stone of our Fathers 5: done"
 		not "stone waiting most: triggered"
