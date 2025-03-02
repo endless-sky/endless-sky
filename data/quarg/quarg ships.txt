@@ -164,7 +164,7 @@ ship "Quarg Wardragon"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "The Wardragon is used by the Quarg as a light warship. It is a older design within the Quarg's fleets, supposedly less intimidating compared to their larger warships and thus more suitable for dealings with particularly nascent species."
+	description "The Wardragon is used by the Quarg as a light warship. It is an older design within the Quarg's fleets, supposedly less intimidating compared to their larger warships and thus more suitable for dealings with particularly nascent species."
 
 
 ship "Quarg Wyvern"
