@@ -1416,6 +1416,7 @@ mission "Arachi Cartoonist 2"
 		payment 75940
 		conversation
 			branch leviathan
+				has "ship model: Leviathan"
 			`Drugub is excitedly waiting for you when you return. However simple a piece of paper it may seem to you, he grabs the flyer as if it's some scroll of knowledge.`
 			`	He hands you your payment of <payment> and spends some time with you still, asking you all the questions he can think of about each ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
