@@ -43,7 +43,7 @@ ship "Quarg Lindwyrm"
 		"Quantum Vacuum Battery"
 		"Aspis Shield Generator"
 		"Peripheral Repair Hub"
-		"Intrusion Countermeasures" 40
+		"Phalanx System" 40
 
 		"Small Graviton Thruster"
 		"Medium Graviton Steering"
@@ -95,7 +95,7 @@ ship "Quarg Guivre"
 		"Quantum Vacuum Battery"
 		"Ancile Shield Generator"
 		"Central Repair Hub"
-		"Intrusion Countermeasures" 180
+		"Phalanx System" 180
 
 		"Medium Graviton Thruster"
 		"Large Graviton Steering"
@@ -147,7 +147,7 @@ ship "Quarg Drake"
 		"Quantum Vacuum Battery"
 		"Ancile Shield Generator"
 		"Peripheral Repair Hub"
-		"Intrusion Countermeasures" 40
+		"Phalanx System" 40
 
 		"Small Graviton Thruster"
 		"Small Graviton Steering"
@@ -199,7 +199,7 @@ ship "Quarg Wardragon"
 		"Quantum Vacuum Battery"
 		"Ancile Shield Generator"
 		"Peripheral Repair Hub"
-		"Intrusion Countermeasures" 40
+		"Phalanx System" 40
 
 		"Small Graviton Thruster"
 		"Medium Graviton Steering"
@@ -252,7 +252,7 @@ ship "Quarg Wyvern"
 		"Quantum Vacuum Battery"
 		"Aspis Shield Generator"
 		"Peripheral Repair Hub"
-		"Intrusion Countermeasures" 60
+		"Phalanx System" 60
 
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
@@ -307,7 +307,7 @@ ship "Quarg Hydra"
 		"Quantum Vacuum Battery"
 		"Aegis Shield Generator"
 		"Central Repair Hub"
-		"Intrusion Countermeasures" 140
+		"Phalanx System" 140
 
 		"Large Graviton Thruster"
 		"Large Graviton Steering"
