@@ -7999,7 +7999,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 		has "Timothy Radrickson 3c: Escort the Convoy: done"
 	on complete
 		conversation
-			`Instead of Regina you are met by Timothy's executive secretary, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
+			`Instead of Regina you are met by Timothy's executive secretary, Wynnafrith. She is clearly a little uncomfortable in Rand's low gravity, but is doing her best to push through it.`
 			`	"Captain <last>! You're the talk of the world! The savior of Rand." She gives you an open and earnest smile.`
 			`	"I've been sent by the Governor to drive you straight to his estate. Please come with me."`
 			choice
