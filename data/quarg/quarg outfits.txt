@@ -126,7 +126,7 @@ outfit "Quantum Vacuum Battery"
 	"energy capacity" 60000
 	"active cooling" 25
 	"cooling energy" 1.25
-	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller."
+	description "Human engineers who first came into contact with the Quarg were astonished by the sheer efficiency of their technology. The energy density of Quarg batteries is unparalleled, storing nearly a third more energy than the best human batteries while being over a third smaller, on top of providing efficient cooling as a secondary function."
 
 
 outfit "Antimatter Core"
@@ -137,7 +137,7 @@ outfit "Antimatter Core"
 	"outfit space" -50
 	"energy generation" 12
 	"heat generation" 10
-	description ""
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
 
 
 outfit "Singularity Core"
@@ -148,7 +148,7 @@ outfit "Singularity Core"
 	"outfit space" -80
 	"energy generation" 23.5
 	"heat generation" 22.5
-	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
+	description ""
 
 
 outfit "Quasar Core"
@@ -174,6 +174,7 @@ outfit "Aspis Shield Generator"
 	"shield energy" 1.6
 	"disruption protection" .2
 	"piercing protection" .4
+	description "Even the smallest example of Quarg shield generation displays a defense more immense that what humans would normally consider to be sufficient."
 
 
 outfit "Ancile Shield Generator"
@@ -199,7 +200,7 @@ outfit "Aegis Shield Generator"
 	"shield energy" 4
 	"disruption protection" .5
 	"piercing protection" 1
-	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, and the Quarg aren't interested in giving up their secrets."
+	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, providing an astounding amount of protection, and the Quarg aren't interested in giving up the secrets behind it."
 
 
 outfit "Peripheral Repair Hub"
@@ -210,7 +211,7 @@ outfit "Peripheral Repair Hub"
 	"outfit space" -25
 	"hull repair rate" 1
 	"hull energy" .5
-	description ""
+	description "While the defense of Quarg shielding is not to be trifled with, their weaker ship hulls value automated repairs. These systems help maintain the armor in the unlikely event that the shields should fall."
 
 
 outfit "Central Repair Hub"
@@ -253,7 +254,7 @@ outfit "Skydagger"
 		"hull damage" 6
 		"ion damage" .05
 		"scrambling damage" .05
-	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
+	description "Where an allmighty force is not necessary, these beam weapons are used in place of more powerful weapons to simply provide defense to non-combatants, however, they remain a danger not to be taken lightly."
 
 outfit "Skylance"
 	category "Turrets"
@@ -282,7 +283,7 @@ outfit "Skylance"
 		"hull damage" 12
 		"ion damage" .1
 		"scrambling damage" .1
-	description "These immensely powerful beam weapons are used by Quarg warships to strike fear into the hearts of all who dare oppose them."
+	description "Over their many years in the galaxy, these powerful beam weapons have been used by Quarg warships to strike fear into the hearts of all who dare oppose them."
 
 effect "skylance impact"
 	sprite "effect/skylance impact"
@@ -310,7 +311,7 @@ outfit "Stratospear"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 40
-	description "Quarg anti-missile defenses can target projectiles from considerable range compared to human technology, ensuring that only the most powerful missiles are capable of even getting near a Quarg ship."
+	description "Quarg anti-missile defenses fire pinpoint bursts of energy that can target projectiles from considerable range compared to human technology, leaving room for only the most powerful of missiles to be capable of even getting near a Quarg ship."
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
@@ -344,7 +345,8 @@ outfit "Elysian Ranseur"
 		"hull damage" 1500
 		"hit force" 600
 		"penetration count" 5
-	description ""
+	description "The technology behind this weapon is incomprehensibly complex, creating pulses of energy that bend spacetime itself. Powerful gravitatonal forces through the opening, piercing through shielding with ease and delivering dangerous blows. How the weapon is able to do any of this is only known to the Quarg."
+
 
 effect "ranseur"
 	sprite effect/ranseur
@@ -386,7 +388,7 @@ outfit "Celestial Culverin"
 		"slowing damage" 4.5
 		"hit force" -600
 		"missile strength" 600
-	description ""
+	description "This weapon tangles with spacetime in ways beyond understanding, resulting in gravitational forces that slow the target down. As if fulfilling their own intended destiny, the projectiles are guided to their target, and then draw the target back to the Quarg, aiding them in locking down more distant enemies."
 
 effect "culverin hit"
 	sprite "effect/skylance impact"
@@ -431,7 +433,7 @@ outfit "Astral Ribault"
 		"firing energy" 120
 		"firing heat" 5
 		"submunition" "ribault unguided" 2
-	description "The rapid flurries shot by this turret cover a wide area at a long range, while dealing very high damage at point blank, should all shots hit their target."
+	description "The rapid flurries shot by this turret cover a wide area at a long range, while dealing very high damage at point blank, should all shots hit their target. Any target caught by the storm of projectiles suffers damage to its fuel systems, allowing the Quarg to keep aggressors in check."
 
 outfit "ribault unguided"
 	weapon
@@ -497,7 +499,7 @@ outfit "Slipstream Projector"
 		"hit force" -400
 		"shield damage" 30
 		"penetration count" 0
-	description "Something something peak Graviton."
+	description "."
 
 
 # Special
@@ -507,4 +509,4 @@ outfit "Phalanx System"
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
 	"unplunderable" 1
-	description "Quarg ships are outfitted with special systems for repelling boarders. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
+	description "Quarg ships are outfitted with special systems for repelling boarders in a manner that could be considered beyond deadly. However, because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."
