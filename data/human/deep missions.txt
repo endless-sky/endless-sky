@@ -6445,8 +6445,9 @@ mission "Hroar's Haulers 18"
 	to offer
 		has "Hroar's Haulers 17: done"
 	on offer
-		event "six days" 6
-		event "eight days" 8
+		event "lh six days" 6
+		event "lh eight days" 8
+		event "lh seventeen days" 17
 		conversation
 			`You make your way past the throngs of humans tourists, indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
 			choice
@@ -6852,8 +6853,9 @@ mission "Hroar's Haulers 18"
 			`	She takes a deep breath and quickly wipes her eyes. "I appreciate you being honest with me, Captain <last>. It's good to know."`
 				goto yngvarjoins
 
-event "six days"
-event "eight days"
+event "lh six days"
+event "lh eight days"
+event "lh seventeen days"
 
 
 mission "Hroar's Haulers 18b"
@@ -6863,8 +6865,9 @@ mission "Hroar's Haulers 18b"
 	to offer
 		has "Hroar's Haulers 17b: done"
 	on offer
-		event "six days" 6
-		event "eight days" 8
+		event "lh six days" 6
+		event "lh eight days" 8
+		event "lh seventeen days" 17
 		conversation
 			`You make your way past the throngs of humans tourists, indecipherable Quarg, and through the clean, steel, and pasteel colored halls, until you see a huddled mass of red-brown coats, like a tumor in the otherwise prestine station.`
 			`	It seems you took an indirect route as Yngvar seperates from the red-brown mass and strides toward you.`
@@ -6922,8 +6925,9 @@ mission "Hroar's Haulers 18b"
 				to display
 					has "savedgunhilda"
 
-event "six days"
-event "eight days"
+event "lh six days"
+event "lh eight days"
+event "lh seventeen days"
 
 mission "Hroar's Haulers Gunhilda"
 	name "Alien Mines"
@@ -7649,23 +7653,47 @@ mission "Hroar's Haulers Unferth 2"
 			`	Solvi points up at the relics on the otherside of the transparent ceiling, "Most Yngvar's ancestor's stories are up there. This Blush is where is where his family has been going since the First one was lost. He's how I knew the words to get us into this place."`
 				goto brassoptions
 	to complete
-		not "event: eight days"
+		not "event: lh eight days"
 	on complete
 		conversation
 			`	You've barely have time to land before Solvi is out the hatch, and making his way to where his own fleet is preparing for the next leg of the Long Haul. Yngvar's probably waiting for you in the spaceport.`
 
+mission "Hroar's Haulers Late"
+	name "The Long Haul"
+	source "Wayfarer"
+	landing
+	to offer
+		has "Hroar's Haulers 18: declined"
+		has "event: lh eight days"
+		not "Hroar's Hauler 19: offered"
+		not "event: lh seventeen days"
+	on offer
+		conversation
+		`It doesn't take long to discover the Long Haul fleet has left without you.`
+		choice
+			`	(Look for someone associated with the Haulers.)`
+				goto look
+			`	(Give up.)`
+		`	Rather then attempt to make things right, you give up.`
+			decline
+		label look
+		`	After making a few inquries you're able to find your way to the small trailer, just outside the spaceport, used as the official landed headquarters of the southern hauler fleet.`
+		`	Inside is a small, young woman`
+
+
+
 mission "Hroar's Haulers 19"
 	name "The Long Haul"
-	source "Lagrange"
+	source "Wayfarer"
 	stopover "New Washington"
 	stopover "Earth"
-	destination "New Washington"
+	destination "Muspel"
 	description "Protect the Hauler Fleet as it finishes the Long Haul."
 	passengers 1
 	to offer
 		has "Hroar's Haulers 18: declined"
-		has "event: six days"
-		not "event: eight days"
+		has "event: lh six days"
+		not "event: lh eight days"
 	on offer
 		conversation
 			`	`
