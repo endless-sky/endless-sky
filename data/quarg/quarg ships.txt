@@ -115,6 +115,58 @@ ship "Quarg Guivre"
 	description "The Quarg employ these unusual craft as one of their primary tools for building and maintaining their ringworlds, each one operating continuously for hundreds or thousands of years on its planet-scale tasks. Each Guivre is equipped with a graviton slipstream projector, similar in usage to human-built tractor beams, but capable of shifting much, much larger objects with uncanny elegance and precision."
 
 
+ship "Quarg Drake"
+	sprite "ship/quarg drake"
+	thumbnail "thumbnail/quarg drake"
+	attributes
+		category "Light Warship"
+		"cost" 15000000
+		"shields" 105000
+		"hull" 30000
+		"required crew" 30
+		"bunks" 40
+		"mass" 600
+		"drag" 8.5
+		"heat dissipation" .6
+		"fuel capacity" 800
+		"cargo space" 30
+		"outfit space" 510
+		"weapon capacity" 180
+		"engine capacity" 100
+		weapon
+			"blast radius" 135
+			"shield damage" 13500
+			"hull damage" 6750
+			"hit force" 2025
+	outfits
+		"Skylance" 2
+		"Stratospear" 2
+		
+		"Singularity Core"
+		"Quantum Vacuum Battery"
+		"Ancile Shield Generator"
+		"Peripheral Repair Hub"
+		"Intrusion Countermeasures" 40
+
+		"Small Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
+		
+	engine -17 76.5
+	engine 17 76.5
+	turret -13 -18.5 "Stratospear"
+	turret 13 -18.5 "Stratospear"
+	turret -44 0.5 "Skylance"
+	turret 44 0.5 "Skylance"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+	description "The Wardragon is used by the Quarg as a light warship. It is an older design within the Quarg's fleets, supposedly less intimidating compared to their larger warships and thus more suitable for dealings with particularly nascent species."
+
+
 ship "Quarg Wardragon"
 	sprite "ship/quarg wardragon"
 	thumbnail "thumbnail/quarg wardragon"
