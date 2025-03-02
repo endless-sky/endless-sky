@@ -1336,7 +1336,7 @@ bool AI::CanPursue(const Ship &ship, const Ship &target) const
 
 	if(isKiting && !(canChase || canOutrange))
 		return false;
-		
+
 	// If this ship does not care about the "invisible fence", it can always pursue.
 	if(ship.GetPersonality().IsUnconstrained())
 		return true;
