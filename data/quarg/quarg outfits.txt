@@ -137,7 +137,7 @@ outfit "Antimatter Core"
 	"outfit space" -50
 	"energy generation" 12
 	"heat generation" 10
-	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to the Quarg. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing compared to what this device is capable of. The Quarg can produce enough antimatter to outfit every ship with an extremely efficient Antimatter Core, producing extreme amounts of energy with surprisingly little waste heat."
 
 
 outfit "Singularity Core"
@@ -345,7 +345,7 @@ outfit "Elysian Ranseur"
 		"hull damage" 1500
 		"hit force" 600
 		"penetration count" 5
-	description "The technology behind this weapon is incomprehensibly complex, creating pulses of energy that bend spacetime itself. Powerful gravitatonal forces through the opening, piercing through shielding with ease and delivering dangerous blows. How the weapon is able to do any of this is only known to the Quarg."
+	description "The technology behind this weapon is incomprehensibly complex, creating pulses of energy that bend spacetime itself. Powerful gravitational pulses are forced through the fold, piercing through shielding with ease and delivering dangerous blows. How the weapon is able to do any of this is only known to the Quarg."
 
 
 effect "ranseur"
