@@ -109,7 +109,7 @@ public:
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
-	const std::vector<std::pair<const Outfit *, double>> GetResuppliedAmmo() const;
+	const std::vector<std::pair<const Outfit *, double>> &GetResuppliedAmmo() const;
 	bool AmmoResupplied(const Outfit *ammo) const;
 	double GetResupplyCostMultiplier(const Outfit *ammo) const;
 	// A pair representing ammo that can be reloaded at any outfitter and the
