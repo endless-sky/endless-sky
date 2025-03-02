@@ -499,7 +499,7 @@ outfit "Slipstream Projector"
 		"hit force" -400
 		"shield damage" 30
 		"penetration count" 0
-	description "While the exact workings of Graviton tech are a wonder, it's no secret that this device manipulates gravity in such a wondrous way that it even bends the massive archiceture of ringworlds to its whim. While the force is not enough to harm the delicate structure, the negative energy is powerful enough to rip off the shielding of a ship in a noticably short period of time."
+	description "While the exact workings of Graviton tech are a wonder, it's no secret that this device manipulates gravity in such a wondrous way that it even bends the massive archiceture of ringworlds to its whim. While the force is not enough to harm the delicate structure, the negative energy is powerful enough to rip off the shielding of a ship in a noticeably short period of time."
 
 
 # Special
