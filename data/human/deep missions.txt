@@ -7649,7 +7649,9 @@ mission "Hroar's Haulers Unferth 2"
 			`	Solvi points up at the relics on the otherside of the transparent ceiling, "Most Yngvar's ancestor's stories are up there. This Blush is where is where his family has been going since the First one was lost. He's how I knew the words to get us into this place."`
 				goto brassoptions
 
-		
+	on complete
+		conversation
+			`	`
 
 
 
