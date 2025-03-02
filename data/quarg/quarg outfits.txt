@@ -174,7 +174,7 @@ outfit "Aspis Shield Generator"
 	"shield energy" 2
 	"disruption protection" .2
 	"piercing protection" .4
-	description "Even the smallest example of Quarg shield generation displays a defense more immense that what humans would normally consider to be sufficient."
+	description "Even the smallest example of Quarg shield generation displays defensive powers greater than what humans would normally consider to be sufficient."
 
 
 outfit "Ancile Shield Generator"
@@ -311,7 +311,7 @@ outfit "Stratospear"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 40
-	description "Quarg anti-missile defenses fire pinpoint bursts of energy that can target projectiles from considerable range compared to human technology, leaving room for only the most powerful of missiles to be capable of even getting near a Quarg ship."
+	description "Quarg anti-missile defenses fire pinpoint bursts of energy that can target projectiles from considerable range compared to human technology, leaving room for only the most powerful of missiles to have the capability of getting near a Quarg ship."
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"
@@ -430,7 +430,7 @@ outfit "Astral Ribault"
 		"reload" 17
 		"burst reload" 2
 		"burst count" 19
-		"firing energy" 120
+		"firing energy" 80
 		"firing heat" 5
 		"submunition" "ribault unguided" 2
 	description "The rapid flurries shot by this turret cover a wide area at a long range, while dealing very high damage at point blank, should all shots hit their target. Any target caught by the storm of projectiles suffers damage to its fuel systems, allowing the Quarg to keep aggressors in check."
@@ -498,7 +498,7 @@ outfit "Slipstream Projector"
 		"firing heat" 2
 		"hit force" -400
 		"shield damage" 30
-		"penetration count" 0
+		"penetration count" 100
 	description "While the exact workings of Graviton tech are a wonder, it's no secret that this device manipulates gravity in such a wondrous way that it even bends the massive architecture of ringworlds to its whim. While the force is not enough to harm the delicate structure, the negative energy is powerful enough to rip off the shielding of a ship in a remarkably short period of time."
 
 
