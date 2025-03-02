@@ -7661,49 +7661,96 @@ mission "Hroar's Haulers Unferth 2"
 mission "Hroar's Haulers Late"
 	name "The Long Haul"
 	source "Wayfarer"
+	destination "Earth"
+	description "You were late for the rendezvous with Yngvar on <source>, however if you head to Earth you should be able to catch up with him."
 	landing
 	to offer
-		has "Hroar's Haulers 18: declined"
 		has "event: lh eight days"
 		not "Hroar's Hauler 19: offered"
 		not "event: lh seventeen days"
 	on offer
 		conversation
-		`It doesn't take long to discover the Long Haul fleet has left without you.`
-		choice
-			`	(Look for someone associated with the Haulers.)`
+			`It doesn't take long to discover the Long Haul fleet has left without you.`
+			choice
+				`	(Look for someone associated with the Haulers.)`
 				goto look
-			`	(Give up.)`
-		`	Rather then attempt to make things right, you give up.`
+				`	(Give up.)`
+			`	Rather then attempt to make things right, you give up.`
 			decline
-		label look
-		`	After making a few inquries you're able to find your way to the small trailer, just outside the spaceport, used as the official landed headquarters of the southern hauler fleet.`
-		`	Inside is a  young woman with a Hroar's Hauler's captain's hat and a very serious gaze.`
-		choice
-			`	"Hrodny! I haven't seen you since that trouble on Rand."`
-				goto timhrod
-				to display
-					has "Timothy Radrickson 3c: Escort the Convoy: done"
-			`	"Hello, I was the hirthr for the Long Haul Fleet and seem to have been left behind."`
-				goto hirthr
-			`	"I'm Captain <last>. Where's Yngvar?"`
-		`	She gives you a hard look, "Half way to Muspel, most like. I know who you are, greenhorn, do you always make trauncy your buisness?"`
-		choice
-			`	"Sorry, I lost track of time."`
-			`	"This was one mistake, and I'll make it right."`
-			`	"My business is whatever I want it to be."`
-			`	(Say nothing.)`
+			label look
+			`	After making a few inquries you're able to find your way to the small trailer, just outside the spaceport, used as the official landed headquarters of the southern hauler fleet.`
+			`	Inside is a  young woman with a Hroar's Hauler's captain's hat and a very serious gaze.`
+			choice
+				`	"Hrodny! I haven't seen you since that trouble on Rand."`
+					goto timhrod
+					to display
+						has "Timothy Radrickson 3c: Escort the Convoy: done"
+				`	"Hello, I was the hirthr for the Long Haul Fleet and seem to have been left behind."`
+					goto hirthr
+				`	"I'm Captain <last>. Where's Yngvar?"`
+			`	She gives you a hard look, "Half way to Muspel, most like. I know who you are, greenhorn, do you always make trauncy your buisness?"`
+			choice
+				`	"Sorry, I lost track of time."`
+					goto sorry
+				`	"This was one mistake, and I'll make it right."`
+					goto sorry
+				`	"My business is whatever I want it to be."`
+					goto whateveriwant
+				`	(Say nothing.)`
+			`	"If I was generous woman I'd take your silence as a reflection of your contrition, and not stubborn obstinance." Her glare is withering, "I am is turns out, not a generous woman."`
+			`	"So, <last>, why don't you just go ahead make your kin proud by stringin' a few words together for me. Like telling me if you want to make this right, or if you plumb don't care, huh? Can you do that for me?"`
+				goto doyoucare
 
-		label hirthr
-		`	"Damn straight you're the hirthr, and you abandoned your flock." Her eyebrow twitches, "The question is; do you want to make it right? Or do you just not care?"`
-		choice
-			`	"I want to make it right."`
-			`	"I don't care."`
-		`	She barks a harsh laugh, "Hroar must be getting soft in old age. Sending skitr pilots like you to protect our Long Hauls."`
-		`	Hrodny leans over and begins typing something and then abruptly looks back up to you, "I've transfered some money to your account. It should cover your expenses and some pay. Us Haulers know how to keep a deal, even when those we work with don't."`
-		`	She points to the door, "Now kindly get the Hel outta here."`
-		action
-			
+			label whateveriwant
+			`	She gives you a feral grin, "So I guess in that case you chose to show up late for the rendezvous with your fleet. Which means you chose to let Yngvar, Hroar, and everyone else who put a lick of faith in you down."`
+			`	Hrodny leans in radiating barely controlled anger,  "Which means you chose to be a useless skitr to all involved. In which case I am supposing it is now my business to tell you to get the Hel outta my office. The Haulers are done with you, ser."`
+			`	Her white teeth bared she points to the door.`
+				decline
+
+			label sorry
+			`	Hrodny leans back in her chair, tension in her easing up, "If there's one thing we Haulers know well, it's that there's no guarantees when travelin' the Gap."`
+			`	The Hauler captain looks you over for a long moment and then nods, to herself, "Listen, Capt'n, if you make for Earth right now, you should be able to catch up with Yngvar and the like."`
+			`	She points to the door, "Hurry, and don't let us down again."`
+				accept
+
+			label hirthr
+			`	"Damn straight you're the hirthr, and you abandoned your flock." Her eyebrow twitches, "The question is; do you want to make it right? Or do you just not care?"`
+			label doyoucare
+			choice
+				`	"I want to make it right."`
+					goto sorry
+				`	"I don't care."`
+			`	She barks a harsh laugh, "Hroar must be getting soft in his old age. Sending skitr pilots like you to protect our Long Hauls."`
+			`	Hrodny leans over her console and quickly types something, she then looks back up at you, "I've transfered some money to your account. It should cover your expenses and some pay. Us Haulers know how to keep a deal, even when those we work with don't."`
+			`	She points to the door, "Now kindly get the Hel outta here."`
+			action
+			payment 375000
+				decline
+
+			label timhrod
+			`	"Well, hot damn, when I saw the name of the truant hirthr I thought it musta been a different Capt'n <last>!" she gives you a welcoming smile.`
+			`	"It ain't no good being late like this, 'specially when a Long Haul is dependin' on ya. But seein' as how I owe ya, I'll do what I can for ya"`
+			`	She pulls up a star map on her console display, "There's late, and then there is LATE. Lucky for you, you're just late. If you make a B-line for Earth you should be able to catch up to Yngvar and the rest of the Long Haul. But ya gotta hurry."`
+				accept
+
+		on complete
+			`	`
+
+mission "Hroar's Haulers Late 2"
+	name "The Long Haul"
+	source "Wayfarer"
+	destination "Earth"
+	landing
+	to offer
+		has "event: lh eight days"
+		not "Hroar's Hauler 19: offered"
+		has "event: lh seventeen days"
+	on offer
+		dialog
+			`	The Long Haul Fleet left without you some time ago. None of the Haulers stationed here seem interested in helping you. It seems you are just too late.`
+			decline
+
+		
 
 mission "Hroar's Haulers 19"
 	name "The Long Haul"
