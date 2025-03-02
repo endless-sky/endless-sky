@@ -7504,8 +7504,8 @@ mission "Hroar's Haulers Unferth 2"
 			label byedude
 			`	He then turns and leaves you by yourself.`
 				goto hidude
-			`	A few moments later the black door swings over and a solmn looking Solvi steps out.`
-			`	"Ah, shoulda come with me, <first>. It's something else in there." he says quietly.`
+			`	A few moments later the black door swings over and a solemn looking Solvi steps out.`
+			`	"Shoulda come with me, <first>. It's something else in there." he says quietly.`
 			`	He looks around, "That's what we came for, so I guess best we moved on."`
 			`	Together you make your way back to your ship.`
 				accept
@@ -7522,7 +7522,7 @@ mission "Hroar's Haulers Unferth 2"
 				goto hidide
 			
 			label liar
-			`	"Hel-Hrut is a guid man. Ayewis be kind tae the Bloosh-fowk. Hinnae seen him in some time. He awricht?"`
+			`	"Hel-Hrut is a guid man. Ayewis wad kind tae the Bloosh-fowk. Hinnae seen him in some time. He awricht?"`
 			choice
 				`	"He's fine. Just busy is all."`
 					goto doubleliar
@@ -7543,23 +7543,112 @@ mission "Hroar's Haulers Unferth 2"
 			`	The other side of the room is a kaleidoscope of competing colors. It takes a moment for you to see the subtle patterns in the mix of colors and tiles, but slowly you're able to recognize the outlines of ancient ship designs within the cacaphony of color.`
 			`	The floor and the ceiling are both transparent, with the compartent beyond them filled with what looks like small scraps of innumerable ships. A center of the room is a brass column, covered in crude etchings, with a small opening at it's center.`
 			`	Solvi pulls a small metalic item from his jacket pocket and approaches the brass column.`
+			label mosoptions
 			choice
 				`	(Approach Solvi.)`
+					goto brass
 				`	(Inspect the dark mosaic.)`
 					goto darkmosaic
+					to display
+						not "darkmos"
 				`	(Inspect the colorful mosaic.)`
-				`	(Wait for Solvi to finish).`
+					goto lightmosaic
+					to display
+						not "lightmos"
+				`	(Stick to the back of the room and wait for Solvi to finish).`
+			`	He places the metalic item into the brass column and withdraws his hand. The opening snaps shut and the item is shunted upward joining the endless ship fragments above you.`
+				goto youwaited
 			label darkmosaic
-			`On closer inspection you recognize the individual pieces of the mosiac as coming from heat tiles, optical cylinders, control circuits, and other eccletic pieces of ancient ships.`
-			`	The vast majority of is a burnt `
+			action
+				set "darkmos"
+			`	On closer inspection you realize the individual pieces the mosaic are the fragments of old ships. The black metalic chips that make up the dark sky are made from burnt heat tiles, and the glittering red and orange glass that the red stars are made of are from shattered optical lenses.`
+			`	Beneath each of the four red stars there is a label written in an irregular script, they read; Furist Blisk, Twoth Blisk, Thrith Blisk, Endly Blisk.`
+				goto mosoptions
 
+			label lightmosaic
+			action
+				set "lightmos"
+			`	It's hard to tell where and what the color shards that make up this half of the mosaic come from. Some of them, however, you recognize as broken fragments of ship materials. It's likely the entire thing is made up of pieces of anicent past ships.`
+			`	The three largest vessels appear to be aproximations of early generation ships. There is a label beneath each one of them: Thorismund's Folly, Stiensson's Faith, and The Kinship.`
+			`	Thorimund's Folly is rendered in darker colors than the other two.`
+			`	The name is familiar and you remember Yngvar mentioning it to you once. This wall appears to be in honor of the first three generation ships to arrive in the Deep.`
+				to display
+					has "generationship2"
+			`	You don't recognize the names, but wonder if perhaps these three ships represent the ones Yngvar told you about. The first three generation ships that settled the Deep.`
+				to display
+					has "generationship"
+				goto mosoptions
 
+			label brass
+			`	Solvi holds up the object in his hand for you to see, it looks like a panel from a ship, "My sister's. It's an old spacer custom. We keep a little momento from our first posting, and then inscribe little bits of our story on it.`
+			`	He places it in the brass column and withdraws his hand. The opening snaps shut and the panel is shunted upward joining the endless ship fragments above you.`
+			`	"Pirates got her few months back. My job to bring story here."`
+			label brassoptions
+			choice
+				`	"Sorry for your loss."`
+					goto sorry
+					to display
+						not "sorrysolvi"
+				`	"Sounds a lot like stone cairn customs."`
+					goto cairncustoms
+					to display
+						not "metbolverkat"
+						not "cairnstuff"
+				`	"Wait, all the haulers have someone come here when they die?"`
+					goto whythisplace
+					to display
+						not "whythisplacesolvi"
+				`	"Yngvar mentioned something like this to me."`
+					goto yngvarsaid
+					to display
+						has "metbolverka"
+						not "yngvarstuff"
+				`	"Ready to go?"`
+			label youwaited
+			`	He puts his hand on the brass column, and then looks up at the celing for a long moment before turning to face you, "Yeah I am ready. Let's go."`
+			`	Solvi steps away from the column and heads for the entrance, "Hey, <first>, I am glad you came here with me. It means it a lot not to do this alone."`
+			`	He opens the black door and steps back into the station's corridor.`
+			choice
+				`	"It's what friends are for." (Follow him out.)`
+				`	(Say nothing and follow him out.)`
+			`	The elder is gone, but a small boy in a purple cloak is waiting for both of you, "The Gutcher had tae gae. But he tellt me tae tell ye that fae yer gift wi be thankit. That yer walcome here ae time."`
+			`	The boy pushes a wadded up piece of paper in Solvi's hand, then gives you both strange salute, before scampering off down the corridor.`
+			`	Solvi uncrumples the paper and takes a look at it, "Ah now that's interesting. This here is a map to an alterate route out of part of the station. Along with some instructions on how to dock next time. That's downright homely of 'em!"`
+			`	"See, toldja they were decent folk," Solvi beams, as uses the map to lead you both back to your ship.`
+			`	Once there he stops outside, looking satisfied that the pallet he brought of supplies is gone. "Let's head back to Wayfarer, wouldn't want to be late for last leg of your first Long Haul, would we?"`
+			action
+				clear "sorrysolvi"
+				clear "cairnstuff"
+				clear "whythisplacesolvi"
+				clear "yngvarstuff"
+				clear "darkmos"
+				clear "lightmos"
+				accept
 
+			label sorry
+			action
+				set "sorrysolvi"
+			`	He takes a deep breath, "Yeah, me too, <first>. Me too."`
+				goto brassoptions
 
-		`Into the Gap glad we go,
-		What dark whispers,
-		Only we know.
-		`
+			label cairncustoms
+			action
+				set "cairnstuff"
+			`	"Never thought about it like that. S'pose you've got the right of it though. There's always been a bit stoner in us haulers."`
+				goto brassoptions
+
+			label whythisplace
+			action
+				set "whythisplacesolvi"
+			`	Solvi manages to chuckle, "Oh, no, not at all. Only spacers bring relics to the Blush, and we're a small minority of haulers these days. Also, almost no one comes to the Final Blush anymore. The 2nd and 3rd Blush are where most folk go."`
+				goto brassoptions
+
+			label yngvarsaid
+			action
+				set "yngvarstuff"
+			`	Solvi points up at the relics on the otherside of the transparent ceiling, "Most Yngvar's ancestor's stories are up there. This Blush is where is where his family has been going since the First one was lost. He's how I knew the words to get us into this place."`
+				goto brassoptions
+
 		
 
 
