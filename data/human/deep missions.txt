@@ -7657,8 +7657,10 @@ mission "Hroar's Haulers Unferth 2"
 mission "Hroar's Haulers 19"
 	name "The Long Haul"
 	source "Lagrange"
+	stopover "New Washington"
+	stopover "Earth"
 	destination "New Washington"
-	description "Lead the Hauler Fleet to <destination> in the <system> system."
+	description "Protect the Hauler Fleet as it finishes the Long Haul."
 	passengers 1
 	to offer
 		has "Hroar's Haulers 18: declined"
@@ -7668,7 +7670,25 @@ mission "Hroar's Haulers 19"
 		conversation
 			`	`
 
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Behemoth" "H.H.H. Fimbulvintr"
+		ship "Bulk Freighter" "H.H.H. Rustberth"
+		ship "Hauler II" "H.H.H. Fixed Income"
+		ship "Hauler" "H.H.H. Red Dawn"
+		ship "Mule" "H.H.H. Breadbasket"
+		ship "Mule" "H.H.H. Rock Skipper"
+		ship "Saber" "H.H.H. Iron Siren"
+		ship "Bulk Freighter" "H.H.H. Oath Fulfilled"
+		ship "Bulk Freighter" "H.H.H. Coyote Meal"
+		ship "Mule" "H.H.H. Grit"
+		ship "Hauler III" "H.H.H. Unstoppable Force"
+		ship "Mule" "H.H.H. Red Socks"
 
+	on visit
+		dialog
+			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
