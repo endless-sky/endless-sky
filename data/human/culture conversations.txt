@@ -878,6 +878,7 @@ mission "Exotic Life: Delve"
 			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
 			label ending
 			`	You give the fumigation teams a final glance and make your way back to your ship, mindful of what might be lurking in the metal unseen.`
+				decline
 
 mission "Exotic Life: Ada"
 	minor
