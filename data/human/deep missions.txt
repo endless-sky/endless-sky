@@ -7733,8 +7733,9 @@ mission "Hroar's Haulers Late"
 			`	She pulls up a star map on her console display, "There's late, and then there is LATE. Lucky for you, you're just late. If you make a B-line for Earth you should be able to catch up to Yngvar and the rest of the Long Haul. But ya gotta hurry."`
 				accept
 
-		on complete
-			`	`
+	on complete
+		dialog
+			`	During your landing sequence you are able to spot the Hauler Fleet docked on the other side of the spaceport. You can probably find Yngvar in there.`
 
 mission "Hroar's Haulers Late 2"
 	name "The Long Haul"
