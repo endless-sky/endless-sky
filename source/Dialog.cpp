@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 
 #include "audio/Audio.h"
+#include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -263,19 +264,9 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if(stringFun && (mod & KMOD_CTRL) && (key == 'c' || key == 'v'))
+	if(stringFun && Clipboard::KeyDown(input, key, mod))
 	{
-		if(key == 'c')
-			SDL_SetClipboardText(input.c_str());
-		else if(SDL_HasClipboardText())
-		{
-			char *clipboardText = SDL_GetClipboardText();
-			int n = 0;
-			for(auto cp = clipboardText; *cp && n < 120; cp++, n++)
-				if(*cp >= ' ' && *cp <= '~')
-					input += *cp;
-			SDL_free(clipboardText);
-		}
+		// Input handled by Clipboard.
 	}
 	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
