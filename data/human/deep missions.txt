@@ -2822,8 +2822,7 @@ mission "Stone of our Fathers 5"
 		dialog `You have reached <planet>, but your escort with the space reserved for Thorleif and Ragnhild has not arrived! Better depart and wait for your escorts to arrive in this star system.`
 	on complete
 		event "stone waiting most" 30
-		action
-			set "stone waiting most: triggered"
+		set "stone waiting most: triggered"
 		payment 500000
 		conversation
 			`The trip back to Norn was restful.`
