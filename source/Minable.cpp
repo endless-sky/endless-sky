@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Minable.h"
 
+#include "AsteroidBelt.h"
 #include "DataNode.h"
 #include "Effect.h"
 #include "Flotsam.h"
@@ -141,7 +142,7 @@ const string &Minable::Noun() const
 
 // Place a minable object with up to the given energy level, on a random
 // orbit and a random position along that orbit.
-void Minable::Place(double energy, double beltRadius)
+void Minable::Place(double energy, const AsteroidBelt &belt)
 {
 	// Note: there's no closed-form equation for orbital position as a function
 	// of time, so either I need to use Newton's method to get high precision
@@ -158,7 +159,7 @@ void Minable::Place(double energy, double beltRadius)
 
 	// Generate random orbital parameters. Limit eccentricity so that the
 	// objects do not spend too much time far away and moving slowly.
-	eccentricity = Random::Real() * .6;
+	eccentricity = Random::Real() * belt.MaxEccentricity();
 
 	// Since an object is moving slower at apoapsis than at periapsis, it is
 	// more likely to start out there. So, rather than a uniform distribution of
@@ -173,9 +174,9 @@ void Minable::Place(double energy, double beltRadius)
 	// apoapsis distance (scale / (1 - e)) is no farther than 4.: scale <= 4. * (1 - e)
 	// periapsis distance is no farther than 1.3: scale <= 1.3 * (1 + e)
 	// apoapsis distance is no closer than .8: scale >= .8 * (1 - e)
-	double sMin = max(.4 * (1. + eccentricity), .8 * (1. - eccentricity));
-	double sMax = min(4. * (1. - eccentricity), 1.3 * (1. + eccentricity));
-	orbitScale = (sMin + Random::Real() * (sMax - sMin)) * beltRadius;
+	double sMin = max(belt.ScaleFactorMinLow() * (1. + eccentricity), belt.ScaleFactorMinHigh() * (1. - eccentricity));
+	double sMax = min(belt.ScaleFactorMaxHigh() * (1. - eccentricity), belt.ScaleFactorMaxLow() * (1. + eccentricity));
+	orbitScale = (sMin + Random::Real() * (sMax - sMin)) * belt.Radius();
 
 	// At periapsis, the object should have this velocity:
 	double maximumVelocity = (Random::Real() + 2. * eccentricity) * .5 * energy;
