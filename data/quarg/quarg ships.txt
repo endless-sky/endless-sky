@@ -139,25 +139,26 @@ ship "Quarg Drake"
 			"hull damage" 6750
 			"hit force" 2025
 	outfits
-		"Skylance" 2
-		"Stratospear" 2
+		"Skydagger" 2
+		"Skylance"
+		"Stratospear"
 		
-		"Singularity Core"
+		"Antimatter Core"
 		"Quantum Vacuum Battery"
 		"Ancile Shield Generator"
 		"Peripheral Repair Hub"
 		"Intrusion Countermeasures" 40
 
 		"Small Graviton Thruster"
-		"Medium Graviton Steering"
+		"Small Graviton Steering"
 		"Jump Drive"
 		
-	engine -17 76.5
-	engine 17 76.5
-	turret -13 -18.5 "Stratospear"
-	turret 13 -18.5 "Stratospear"
-	turret -44 0.5 "Skylance"
-	turret 44 0.5 "Skylance"
+	engine -14 59.5
+	engine 14 59.5
+	turret 0 -29 "Skylance"
+	turret -43.5 4.5 "Skydagger"
+	turret 43.5 4.5 "Skydagger"
+	turret 0 8.5 "Stratospear"
 	explode "tiny explosion" 12
 	explode "small explosion" 16
 	explode "medium explosion" 30
