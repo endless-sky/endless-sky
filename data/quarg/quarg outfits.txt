@@ -480,7 +480,7 @@ effect "ribault impact"
 outfit "Slipstream Projector"
 	category "Guns"
 	cost 18000000
-	thumbnail "outfit/quarg skylance"
+	thumbnail "outfit/unknown"
 	"mass" 200
 	"outfit space" -200
 	"weapon capacity" -200
