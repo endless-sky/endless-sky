@@ -61,7 +61,7 @@ ship "Quarg Lindwyrm"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "The Skylark is used by the Quarg as a freighter and warship."
+	description `The Quarg use the Lindwyrm as a heavy freighter, transporting in its ample cargo bays items both mundane and fantastical. In the days before the advent of modern cargo scanners revealed some measure of their contents, "the inside of a Quarg cargo hold" was slang used to describe any thing or place thought to be unknowable.`
 
 
 ship "Quarg Guivre"
@@ -164,7 +164,7 @@ ship "Quarg Wardragon"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "The Wardragon is used by the Quarg as a light warship."
+	description "The Wardragon is used by the Quarg as a light warship. It is a older design within the Quarg's fleets, supposedly less intimidating compared to their larger warships and thus more suitable for dealings with particularly nascent species."
 
 
 ship "Quarg Wyvern"
@@ -218,7 +218,7 @@ ship "Quarg Wyvern"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "The Skylark is used by the Quarg as a freighter and warship."
+	description "When humans first encountered Quarg vessels with their bizarre, scaly-looking hulls and alien forms, the comparisons to dragons of different sorts rapidly proliferated. The Wyvern is a midsize warship of the Quarg, though that distinction between the Quarg's warship classes is insignificant to all but the most powerful forces in the galaxy."
 
 
 ship "Quarg Hydra"
@@ -276,4 +276,4 @@ ship "Quarg Hydra"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "The Skylark is used by the Quarg as a freighter and warship."
+	description "The many-headed mythological Hydra was supposedly venomous enough to kill mortals with nothing but the scent of its breath or a single drop of its blood. Any captain foolish enough to arouse the fury of the Quarg's heavy warships would no doubt quickly come to understand the exact significance of this part of the Hydra's legend."
