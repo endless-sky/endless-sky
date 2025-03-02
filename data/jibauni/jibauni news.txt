@@ -1,0 +1,756 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+phrase "jibauni male first name"
+	word
+		"Res-redi "
+		"Mi-bala "
+		"Jena-fasti "
+		"Gian-ni "
+		"Skel-hani "
+		"Ba-facro "
+		"Zalk-ho "
+		"Ska-wanni "
+		"Devonn-ro "
+		"Zin-ni "
+		"Alin-zo "
+		"Mihal-Guwaka "
+		"Lil-lil-ni "
+		"And-fi "
+
+phrase "jibauni female first name"
+	word
+		"Nar-yusin "
+		"Narn-phanal "
+		"Lys-tanil "
+		"Dan-ciap "
+		"Y-wontam "
+		"Sed-minshal "
+		"Gil-zicod "
+		"Juf-danat "
+		"Sin-sinip "
+		"Lin-son "
+		"Fric-ol "
+		"Lulu-win "
+		"Bzan-flue-nag "
+		"Weson-leson "
+
+phrase "jibauni first name"
+	phrase
+		"jibauni female first name"
+		"jibauni male first name"
+
+news "jibauni speaking jibunese"
+	name
+		word
+			"Jibauni"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Je." # Hi
+			"Jamku." # Hello
+			"Hqiavepr." # Greetings
+			"Xambuna." # Welcome
+			"Hiuf." # Good
+			"Jamn!" # Help
+			"Tumuen." # Salaam (Arabic, translates to "Peace")
+			`Nu'tumunu.` # Ma'salama (Arabic, translates to "Goodbye")
+			"Ekeulol." # Alaikum (Arabic, translates to "be with you")
+			"Tumuen Ekeulol." # Salaam Alaikum (Arabic, translates to "Peace be with you")
+			`Jix'r os hiomh?` # How's it going?
+			"Peda vi nais zia!" # Nice to meet you!
+			"Hav uov ud vgi xuz!" # Get out of the way!
+			"Em ekoam!" # An alien!
+			"Jix fi zia fi?" # How do you do?
+			"Jix fi zia fi, ekoam?" # How do you do, alien?
+			"Xedjic tssupas!" # Wicked stranger!
+			"Os't e peda fuz vifuz, otp's os?" # It's a nice day today, isn't it?
+			"Isme ${jibauni first name}." # Arabic, translates to "My name is ..."
+			"Nunu wain?" # Arabic, translates to "Baby where?"
+			"Ziaq qosuvat piv gop." # Your pirates not fun.
+		word
+			`"`
+
+news "hired jibauni assassin male"
+	name
+		word
+			"Hired "
+			"Trained "
+		word
+			"Assassin"
+			"Killer"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Have you heard of "
+		word
+			"${jibauni male first name} ${family names}" 150
+			"Kasim Aboagye"
+		word
+			"? Do you know where he lives? I have a job there."
+		word
+			`"`
+
+news "hired jibauni assassin female"
+	name
+		word
+			"Hired "
+			"Trained "
+		word
+			"Assassin"
+			"Killer"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Have you heard of "
+		word
+			"${jibauni female first name} ${family names}"
+		word
+			"? Do you know where she lives? I have a job there."
+		word
+			`"`
+
+news "jibauni thief"
+	name
+		word
+			"Shady "
+			"Suspicious "
+		word
+			"Jibauni"
+			"Character" 3
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Can I borrow your ship? I will definitely give it back!" 3
+			"Let me sell you this prime cut of sansod. Only two thousand credits!" 3
+			"The Jibauni are fools. Get me off this planet."
+			"How many escorts do you have? Not enough? Oh well, someone else maybe."
+		word
+			`"`
+
+news "jibauni chef"
+	name
+		word
+			"Chef"
+			"Cook"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Know how to cook sealinet? It is terribly hard!"
+			"Any idea what the way is to bake ginedfut? I have no clue!"
+			"I used to be able to cook anything. Now I have lost my skill."
+			"Bring me food, and I will cook it. What do they have in your home space?"
+		word
+			`"`
+
+news "jibauni military captain"
+	name
+		word
+			"Military "
+		word
+			"Leader"
+			"Captain"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+	message
+		word
+			`"`
+		word
+			"Ever fought an alien ship? They are so powerful!"
+			"Those other peoples are crazy. Why do they fight us? None can stand against the weight of the Jibauni!"
+			"Top secret: we build prototypes every day. Unfortunately, hardly any of them turn out."
+		word
+			`"`
+
+news "jibauni mechanic"
+	name
+		word
+			"Mechanic"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Any clue on the way the Yiyharsi's engines work?"
+			"The Nathar's power generators make no sense at all!"
+			"How on Baitoon are the Saghir's weapons powered? I can not figure it out!"
+		word
+			`"`
+
+news "jibauni merchant"
+	name
+		word
+			"Merchant "
+			"Freelance "
+		word
+			"Captain"
+			"Pilot"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"I was flying through Kateaza when suddenly some Rebels jumped me. How do their Furuses go so fast?"
+			"Can you sell me some of your strange alien weapons?"
+			"I sold everything on my Nathaq except for generators and bought a pair of Eimlaq Engines. The ${jibauni civilian} goes so fast now!"
+			"My name is ${jibauni first name}, Captain of the ${jibauni civilian}. Welcome to our space!"
+		word
+			`"`
+
+news "regular jibauni"
+	name
+		word
+			"Jibauni"
+	location
+		government "Jibauni"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"I wish the government would tell us more about their expeditions."
+			"A fleet went into the wormhole, but never returned."
+			"You do not happen to speak Jibunese, do you?"
+			"Ancient languages are so fascinating. Unfortunately, we have standardized."
+			"Do you know any alien languages?"
+			"Translators and toothsticks."
+			"The best way to beat the Lazy... er... normal Jibauni would be to capture Baitoon. Unfortunately the government has other plans."
+			"Aboagye Shipyards is very inefficient."
+			"If one Nathar can carry two fighters, than how many drones should a Nathat be able to carry?"
+			"Some people wonder how we prosper. Now you know."
+			"Some say the best way to win is to lose."
+			"Up for a game of chess?"
+			"I like strategy games. The best one is the new Aludi Harb A'lihia - especially because it's updated every time a new battle is fought between us and the Rebels."
+			"Some of the racers here go up to thousands of meters a second. How do they go so fast?"
+			"Y'know, the best way to win a race is to frighten opponents by roaring."
+		word
+			`"`
+
+news "jibauni shipyard employee"
+	name
+		word
+			"Jibauni Shipyard "
+		word
+			"Manager"
+			"Official" 3
+			"Overseer" 4
+			"Worker" 12
+	location
+		government "Jibauni"
+	message
+		word
+			`"`
+		word
+			"Top secret: we build prototypes every day. Unfortunately, hardly any of them turn out."
+			"The most successful ship in generations has been the Nathar. I wish I was the one who came up with it."
+			"Did you know that Taltahard, the base of Aboagye Shipyards' operations, does not actually sell any of their ships? Instead, the newly produced spacecraft are shipped to Kanlil and sold. Very inefficient."
+			"I am glad that I work for Res-redi's shipyards. There are so many flaws apparent in Sayidu Aboagye's group."
+			"Everybody is always going on about how inefficient our shipyards our, but in reality Sayidu Aboagye is a modern genius."
+			"Build the ships, move the ships, sell the ships, repeat... it gets tiring."
+			"Working for a startup shipyard is exciting. Unfortunately, we are predicted to go out of business tomorrow."
+			"The best way to beat the competition is to build more ships."
+			"We have been trying to get the secret of the Muraw for years now, and still have not succeeded."
+			"If you ever join our shipyards, be careful not to offend the boss. He gets very touchy at times."
+			"We have been trying to get at the secret of the Saghir, but nobody has any idea how it is built."
+			"Win or lose, it's always best to keep the ships clean."
+		word
+			`"`
+
+news "unemployed jibauni"
+	name
+		word
+			"Unemployed Youth"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Get me off this dump. No, why do you think I can pay you?"
+			"There is one way out, joining the Military! I will command all!"
+			"A Furus costs so much! Can you give me a loan to buy one?"
+			"Any idea how much it would cost to get off this planet? I have an entire 300 credits saved!"
+			"The Rebel Jibauni have a noble cause. Take me to Andwerfen. The leaders there might pay you for your time."
+		word
+			`"`
+
+news "jibauni shipyard captain"
+	name
+		word
+			"Shipyard "
+		word
+			"Worker"
+			"Builder"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"Wow those alien, umm, "
+		word
+			"Sparrows "
+			"Furies "
+			"Hawks "
+		word
+			"are so cool! How does your species build such things?"
+		word
+			`"`
+
+phrase "1-10"
+	word
+		"1"
+		"2"
+		"3"
+		"4"
+		"5"
+		"6"
+		"7"
+		"8"
+		"9"
+		"10"
+
+news "jibauni shipyard captain"
+	name
+		word
+			"Shipyard "
+		word
+			"Worker"
+			"Builder"
+	location
+		government "Jibauni" "Jibauni (Rebel)"
+		not planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"The Military has been selling me captured alien ships. Can you buy me some?"
+			"There have been many red alien ships invading in the past ${1-10} years. Do you know who they are allied with?"
+			"How many Sparrows can destroy an, umm, Argosy in your space?"
+		word
+			`"`
+
+news "laqualk"
+	name
+		word
+			"Authorized "
+			"Blue-cloaked "
+		word
+			"individual"
+			"government leader"
+			"spacecraft captain"
+	location
+		planet "Laqualk"
+	message
+		word
+			`"`
+		word
+			"We look courageously into the future."
+			"There are rumors of aliens coming through the wormhole."
+			"Rumor has it that you are of the species that arrives through the wormhole."
+			"There are unexplored systems to the south and west. We will be sending an expedition as soon as possible."
+			"Welcome to the planet of Laqualk, captain."
+			"Laqualk is the only planet in Jibauni space without billboards everywhere."
+			"I am glad that there are no advertising billboards on this planet, even if they are everywhere else."
+			"I have got a top scoop from the most recent consultation series; we plan on meeting someone tomorrow."
+			"The assumption is that you know of the Rebels."
+			"Only a few captains have explored the mysterious areas to the west and south."
+			"You are not allowed to hear of the mysterious aliens who visit our space every year. Wait, did I give something away?"
+			"I do not know who figured out the disguise technology, but it sure is handy."
+			"Tribute to the Zon-il company for figuring out the gas giant disguise technology that disguises this planet."
+			"I am not sure if you have met him, but rumor says Kanlanmo is on the High Council."
+			"Kanlanmo - the most important Jibauni in the universe, or the most infamous?"
+			"Aboagye apparently has access to this planet the same way I and you do."
+			"For some strange reason, even the prominent citizen Res-redi is not allowed on this planet."
+			"I have to keep this job top secret, even from my loved ones."
+			"I have to keep this job top secret. Luckily, my parents and family also work here, so I am not deprived of their company."
+		word
+			`"`
+
+phrase "aboagye shipyards advertising"
+	word
+		"in "
+	word
+		"the galaxy"
+		"the universe"
+		"space"
+	word
+		"! Just a few credits from the "
+	word
+		"trusty "
+		"honorable "
+	word
+		"Aboagye Shipyards!"
+
+news "aboagye advertising"
+	name
+		word
+			"Spaceport "
+			"Large "
+			"Small "
+			"Advertising "
+		word
+			"Billboard"
+	location
+		government "Jibauni"
+		not planet "Laqualk"
+	message
+		word
+			"Buy "
+			"Get "
+		word
+			"a "
+			"your "
+		word
+			"Nathaq "
+		word
+			"now! "
+			"right away! "
+			"right now! "
+		word
+			"The "
+		word
+			"best "
+			"biggest "
+		word
+			"cargo "
+		word
+			"hauler "
+			"carrier "
+			"mover "
+		phrase
+			"aboagye shipyards advertising"
+	message
+		word
+			"Buy "
+			"Get "
+		word
+			"a "
+			"your "
+		word
+			"Nathas "
+		word
+			"now! "
+			"right away! "
+			"right now! "
+		word
+			"The "
+		word
+			"cheapest practical "
+			"smallest practical "
+		word
+			"cargo "
+		word
+			"hauler "
+			"carrier "
+			"mover "
+		phrase
+			"aboagye shipyards advertising"
+	message
+		word
+			"Buy "
+			"Get "
+		word
+			"a "
+			"your "
+		word
+			"Furus "
+		word
+			"now! "
+			"right now! "
+			"right away! "
+		word
+			"The "
+		word
+			"fastest "
+			"speediest "
+		word
+			"warship "
+			"destroyer of enemies "
+			"annihilator "
+		phrase
+			"aboagye shipyards advertising"
+	message
+		word
+			"Buy "
+			"Get "
+		word
+			"a "
+			"your "
+		word
+			"Nathar "
+		word
+			"now! "
+			"right now! "
+			"right away! "
+		word
+			"The "
+		word
+			"biggest "
+			"largest "
+			"best "
+			"most efficient "
+		word
+			"warship "
+			"destroyer of enemies "
+			"annihilator "
+		phrase
+			"aboagye shipyards advertising"
+	message
+		word
+			"Buy "
+			"Get "
+		word
+			"a "
+			"your "
+		word
+			"Duntay "
+		word
+			"now! "
+			"right now! "
+			"right away! "
+		word
+			"The "
+		word
+			"best at fighting "
+			"smallest "
+			"fastest "
+		word
+			"drone "
+			"unmanned fighter "
+		phrase
+			"aboagye shipyards advertising"
+		word
+			" DISCLAIMER: It is the only fighting drone in "
+		word
+			"the galaxy"
+			"the universe"
+			"space"
+		word
+			"."
+	message
+		word
+			"Buy "
+			"Get "
+		word
+			"a "
+			"your "
+		word
+			"Larajal "
+		word
+			"now! "
+			"right now! "
+			"right away! "
+		word
+			"The "
+		word
+			"most efficient "
+		word
+			"fighter "
+			"tiny destroyer "
+			"blower up of hostiles "
+		phrase
+			"aboagye shipyards advertising"
+	message
+		word
+			"Buy "
+			"Get "
+		word
+			"a "
+			"your "
+		word
+			"Latbaliday "
+		word
+			"now! "
+			"right now! "
+			"right away! "
+		word
+			"The "
+		word
+			"best "
+			"most resilient "
+		word
+			"fighter "
+			"tiny destroyer "
+			"blower up of hostiles "
+		phrase
+			"aboagye shipyards advertising"
+
+phrase "resredi shipyards advertising"
+	word
+		"What is more"
+		"In addition"
+	word
+		", it is "
+	word
+		"made "
+		"produced "
+	word
+		"by the Shipyards of Res-redi,"
+	word
+		" one of "
+		" "
+	word
+		"the "
+	word
+		"best "
+		"most perfect "
+	word
+		"manufacturers "
+		"shipbuilders "
+	word
+		"in the "
+	word
+		"universe"
+		"galaxy"
+		"cosmos"
+	word
+		"."
+		"!"
+
+news "resredi advertising"
+	name
+		word
+			"Spaceport "
+			"Large "
+			"Small "
+			"Advertising "
+		word
+			"Billboard"
+	location
+		government "Jibauni"
+		not planet "Laqualk"
+	message
+		word
+			"Have you ever "
+		word
+			"wished to have "
+			"wanted "
+		word
+			"a "
+		word
+			"small warship"
+			"fighter"
+			"attacker"
+		word
+			"? "
+		word
+			"Look no further, there is one "
+			"Do not look longer, there is one "
+			"There is one right here "
+		word
+			"named "
+			"called "
+		word
+			"the Yiyharsi! "
+		phrase
+			"resredi shipyards advertising"
+	message
+		word
+			"Have you ever "
+		word
+			"wished to have "
+			"wanted "
+		word
+			"a "
+		word
+			"interceptor"
+			"fighter"
+			"attacker"
+		word
+			"? "
+		word
+			"Look no further, there is one "
+			"Do not look longer, there is one "
+			"There is one right here "
+		word
+			"named "
+			"called "
+		word
+			"the Saghir! "
+		phrase
+			"resredi shipyards advertising"
+	message
+		word
+			"Have you ever "
+		word
+			"wished to have "
+			"wanted "
+		word
+			"a "
+		word
+			"fighter with a turret"
+			"turreted attacker"
+		word
+			"? "
+		word
+			"Look no further, there is one "
+			"Do not look longer, there is one "
+			"There is one right here "
+		word
+			"named "
+			"called "
+		word
+			"the Muraw! "
+		phrase
+			"resredi shipyards advertising"
+	message
+		word
+			"Have you ever "
+		word
+			"wished to have "
+			"wanted "
+		word
+			"a "
+		word
+			"cargo drone"
+			"drone that carries cargo"
+		word
+			"? "
+		word
+			"Look no further, there is one "
+			"Do not look longer, there is one "
+			"There is one right here "
+		word
+			"named "
+			"called "
+		word
+			"the Daybal! "
+		phrase
+			"resredi shipyards advertising"
