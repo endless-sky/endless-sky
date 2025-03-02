@@ -3743,7 +3743,7 @@ system Aleit
 	trade Plastic 410
 	fleet "Quarg (Gegno)" 1100
 	fleet "Large Quarg (Gegno)" 1600
-	fleet "Quarg Utility (Gegno)" 3000
+	fleet "Quarg Utility (Gegno)" 7000
 	fleet "Gegno Basic" 1000
 	fleet "Gegno Cargo" 6000
 	object
@@ -14864,7 +14864,7 @@ system Enif
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet Quarg 600
-	fleet "Quarg Utility" 2000
+	fleet "Quarg Utility" 9000
 	object
 		sprite star/g3
 		period 10
@@ -19869,7 +19869,7 @@ system "Hevru Hai"
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet "Quarg (Hai)" 600
-	fleet "Quarg Utility (Hai)" 2500
+	fleet "Quarg Utility (Hai)" 8000
 	object
 		sprite star/g3
 		period 10
