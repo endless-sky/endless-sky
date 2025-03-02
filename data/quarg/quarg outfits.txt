@@ -22,10 +22,10 @@ outfit "Small Graviton Thruster"
 	"outfit space" -50
 	"engine capacity" -50
 	"thrust" 80
-	"thrusting energy" 7
+	"thrusting energy" 5.6
 	"thrusting heat" 1.5
 	"reverse thrust" 40
-	"reverse thrusting energy" 3.5
+	"reverse thrusting energy" 2.8
 	"reverse thrusting heat" .75
 	"force protection" 0.1
 	"inertia reduction" 0.1
@@ -40,7 +40,7 @@ outfit "Small Graviton Steering"
 	"outfit space" -30
 	"engine capacity" -30
 	"turn" 1200
-	"turning energy" 3
+	"turning energy" 2.4
 	"turning heat" .75
 	"force protection" 0.1
 	"inertia reduction" 0.1
@@ -54,10 +54,10 @@ outfit "Medium Graviton Thruster"
 	"outfit space" -70
 	"engine capacity" -70
 	"thrust" 120
-	"thrusting energy" 10
+	"thrusting energy" 8
 	"thrusting heat" 2
 	"reverse thrust" 60
-	"reverse thrusting energy" 5
+	"reverse thrusting energy" 4
 	"reverse thrusting heat" 1
 	"force protection" 0.15
 	"inertia reduction" 0.15
@@ -74,7 +74,7 @@ outfit "Medium Graviton Steering"
 	"outfit space" -50
 	"engine capacity" -50
 	"turn" 2400
-	"turning energy" 5
+	"turning energy" 4
 	"turning heat" 1
 	"force protection" 0.15
 	"inertia reduction" 0.15
@@ -90,10 +90,10 @@ outfit "Large Graviton Thruster"
 	"outfit space" -100
 	"engine capacity" -100
 	"thrust" 185
-	"thrusting energy" 15
+	"thrusting energy" 12
 	"thrusting heat" 3
 	"reverse thrust" 92.5
-	"reverse thrusting energy" 7.5
+	"reverse thrusting energy" 6
 	"reverse thrusting heat" 1.5
 	"force protection" 0.2
 	"inertia reduction" 0.2
@@ -109,7 +109,7 @@ outfit "Large Graviton Steering"
 	"outfit space" -70
 	"engine capacity" -70
 	"turn" 3600
-	"turning energy" 7.5
+	"turning energy" 6
 	"turning heat" 1.5
 	"force protection" 0.2
 	"inertia reduction" 0.2
@@ -170,8 +170,8 @@ outfit "Aspis Shield Generator"
 	thumbnail "outfit/quarg aspis shield generator"
 	"mass" 40
 	"outfit space" -40
-	"shield generation" 3.2
-	"shield energy" 1.6
+	"shield generation" 4
+	"shield energy" 2
 	"disruption protection" .2
 	"piercing protection" .4
 	description "Even the smallest example of Quarg shield generation displays a defense more immense that what humans would normally consider to be sufficient."
@@ -183,8 +183,8 @@ outfit "Ancile Shield Generator"
 	thumbnail "outfit/quarg ancile shield generator"
 	"mass" 55
 	"outfit space" -55
-	"shield generation" 5
-	"shield energy" 2.5
+	"shield generation" 6.25
+	"shield energy" 3.125
 	"disruption protection" .3
 	"piercing protection" .6
 	description "In addition to being able to recover their shields more quickly and efficiently than any other technology of considerable size, Quarg shield generators also provide an impressive degree of protection against weapons designed to bypass shields entirely."
@@ -196,8 +196,8 @@ outfit "Aegis Shield Generator"
 	thumbnail "outfit/quarg aegis shield generator"
 	"mass" 80
 	"outfit space" -80
-	"shield generation" 8
-	"shield energy" 4
+	"shield generation" 10
+	"shield energy" 5
 	"disruption protection" .5
 	"piercing protection" 1
 	description "The first humans who met the Quarg thought that their technology worked on magic, and many even think so to this day. The mechanism by which this Quarg shield generator works is completely unknown to humanity, providing an astounding amount of protection, and the Quarg aren't interested in giving up the secrets behind it."
@@ -254,7 +254,7 @@ outfit "Skydagger"
 		"hull damage" 6
 		"ion damage" .05
 		"scrambling damage" .05
-	description "Where an allmighty force is not necessary, these beam weapons are used in place of more powerful weapons to simply provide defense to non-combatants, however, they remain a danger not to be taken lightly."
+	description "Where an almighty force is not necessary, these beam weapons are used in place of more powerful weapons to simply provide defense to non-combatants. However, they remain a danger not to be taken lightly."
 
 outfit "Skylance"
 	category "Turrets"
@@ -499,7 +499,7 @@ outfit "Slipstream Projector"
 		"hit force" -400
 		"shield damage" 30
 		"penetration count" 0
-	description "While the exact workings of Graviton tech are a wonder, it's no secret that this device manipulates gravity in such a wondrous way that it even bends the massive archiceture of ringworlds to its whim. While the force is not enough to harm the delicate structure, the negative energy is powerful enough to rip off the shielding of a ship in a noticeably short period of time."
+	description "While the exact workings of Graviton tech are a wonder, it's no secret that this device manipulates gravity in such a wondrous way that it even bends the massive architecture of ringworlds to its whim. While the force is not enough to harm the delicate structure, the negative energy is powerful enough to rip off the shielding of a ship in a remarkably short period of time."
 
 
 # Special

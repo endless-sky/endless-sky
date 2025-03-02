@@ -218,7 +218,7 @@ ship "Quarg Wyvern"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "When humans first encountered Quarg vessels with their bizarre, scaly-looking hulls and alien forms, the comparisons to dragons of different sorts rapidly proliferated. The Wyvern is a midsize warship of the Quarg, though that distinction between the Quarg's warship classes is insignificant to all but the most powerful forces in the galaxy."
+	description "When humans first encountered Quarg vessels with their bizarre, scaly-looking hulls and alien forms, the comparisons to dragons of different sorts rapidly proliferated. The Wyvern is a midsize warship of the Quarg, though the distinction between the Quarg warship classes is insignificant to all but the most powerful forces in the galaxy."
 
 
 ship "Quarg Hydra"
