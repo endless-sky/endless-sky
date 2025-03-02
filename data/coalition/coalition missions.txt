@@ -1378,8 +1378,8 @@ mission "Arachi Cartoonist 1"
 				"coalition jobs" += 2
 				payment 75940
 			`Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck.`
-			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go."`
-			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided to him is far more substantial than any secondhand reference could possibly provide. He spends a while examining the ship up close before hopping down, proceeding to take pictures from every concievable angle.`
+			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go!"`
+			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided to him is far more substantial than any secondhand reference could possibly provide. He spends a while examining the ship up close before hopping down, proceeding to take many pictures, as well as draw a few quick sketches, from every conceivable angle.`
 			`	Once he's finished, he hands you your payment of <payment> and spends some time with you still, asking you all the questions he can think of about the ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
 			`	He spends some more minutes listening to you after he asks that you describe how your ship performs, thanks you again, and prepares to leave.`
@@ -1433,8 +1433,8 @@ mission "Arachi Cartoonist 2"
 				accept
 			label leviathan
 			`Drugub is excitedly waiting for you when you return. Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck when you mention you brought back a ship matching what he described.`
-			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go."`
-			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided to him is far more substantial than any secondhand reference could possibly provide. He spends a while examining the ship up close before hopping down, proceeding to take pictures from every concievable angle.`
+			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go!"`
+			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided to him is far more substantial than any secondhand reference could possibly provide. He spends a while examining the ship up close before hopping down, proceeding to take many pictures, as well as draw a few quick sketches, from every conceivable angle.`
 			`	Once he's finished, he hands you your payment of <payment> and spends some time with you still, asking you all the questions he can think of about the ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
 			`	He spends some more minutes listening to you after he asks that you describe how your ship performs, thanks you again, and prepares to leave.`
