@@ -230,11 +230,11 @@ namespace {
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."},
 		{"unique", "This item is unique."},
-		{"cloaked afterburner", "You may use your afterburner when cloaked."},
+		{"cloaked afterburner", "You may afterburn when cloaked."},
 		{"cloaked boarding", "You may board even when cloaked."},
 		{"cloaked communication", "You may make hails when cloaked."},
-		{"cloaked deployment", "You may deploy drones and fighters without revealing your location."},
-		{"cloaked pickup", "You may pickup items with this cloak."},
+		{"cloaked deployment", "You may deploy when cloaked."},
+		{"cloaked pickup", "You may pick up flotsam when cloaked."},
 		{"cloaked scanning", "You may scan other ships when cloaked."}
 	};
 
