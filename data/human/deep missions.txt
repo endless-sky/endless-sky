@@ -7539,7 +7539,18 @@ mission "Hroar's Haulers Unferth 2"
 				goto byedude
 
 			label inside
-			`	The spacious room is covered in a sprawling multicolored mosiac. On closer inspection you recognize the individual pieces of the mosiac as coming from heat tiles, optical cylinders, control circuits, and other eccletic pieces of ancient ships.`
+			`	You enter a spacious round room covered in a sprawling multicolored mosaic. One side of the room's mosaic is mostly made up of dark black tiles, with the darkness puncuated by four resplendent red stars. The four Blushes.`
+			`	The other side of the room is a kaleidoscope of competing colors. It takes a moment for you to see the subtle patterns in the mix of colors and tiles, but slowly you're able to recognize the outlines of ancient ship designs within the cacaphony of color.`
+			`	The floor and the ceiling are both transparent, with the compartent beyond them filled with what looks like small scraps of innumerable ships. A center of the room is a brass column, covered in crude etchings, with a small opening at it's center.`
+			`	Solvi pulls a small metalic item from his jacket pocket and approaches the brass column.`
+			choice
+				`	(Approach Solvi.)`
+				`	(Inspect the dark mosaic.)`
+					goto darkmosaic
+				`	(Inspect the colorful mosaic.)`
+				`	(Wait for Solvi to finish).`
+			label darkmosaic
+			`On closer inspection you recognize the individual pieces of the mosiac as coming from heat tiles, optical cylinders, control circuits, and other eccletic pieces of ancient ships.`
 			`	The vast majority of is a burnt `
 
 
