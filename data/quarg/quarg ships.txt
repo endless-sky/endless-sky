@@ -120,24 +120,24 @@ ship "Quarg Drake"
 	thumbnail "thumbnail/quarg drake"
 	attributes
 		category "Light Warship"
-		"cost" 15000000
-		"shields" 105000
-		"hull" 30000
-		"required crew" 30
-		"bunks" 40
-		"mass" 600
-		"drag" 8.5
-		"heat dissipation" .6
+#		"cost" 12000000
+		"shields" 95000
+		"hull" 25000
+		"required crew" 20
+		"bunks" 30
+		"mass" 480
+		"drag" 6
+		"heat dissipation" .65
 		"fuel capacity" 800
-		"cargo space" 30
-		"outfit space" 510
-		"weapon capacity" 180
-		"engine capacity" 100
+		"cargo space" 20
+		"outfit space" 460
+		"weapon capacity" 140
+		"engine capacity" 80
 		weapon
-			"blast radius" 135
-			"shield damage" 13500
-			"hull damage" 6750
-			"hit force" 2025
+			"blast radius" 120
+			"shield damage" 12000
+			"hull damage" 6000
+			"hit force" 1800
 	outfits
 		"Skydagger" 2
 		"Skylance"
@@ -147,7 +147,7 @@ ship "Quarg Drake"
 		"Quantum Vacuum Battery"
 		"Ancile Shield Generator"
 		"Peripheral Repair Hub"
-		"Phalanx System" 40
+		"Phalanx System" 30
 
 		"Small Graviton Thruster"
 		"Small Graviton Steering"
