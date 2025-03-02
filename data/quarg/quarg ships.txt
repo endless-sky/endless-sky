@@ -120,17 +120,17 @@ ship "Quarg Drake"
 	thumbnail "thumbnail/quarg drake"
 	attributes
 		category "Light Warship"
-#		"cost" 12000000
+		"cost" 12000000
 		"shields" 95000
 		"hull" 25000
 		"required crew" 20
 		"bunks" 30
-		"mass" 480
-		"drag" 6
+		"mass" 440
+		"drag" 5.7
 		"heat dissipation" .65
 		"fuel capacity" 800
 		"cargo space" 20
-		"outfit space" 460
+		"outfit space" 450
 		"weapon capacity" 140
 		"engine capacity" 80
 		weapon
