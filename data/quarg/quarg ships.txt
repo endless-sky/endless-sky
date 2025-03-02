@@ -289,7 +289,7 @@ ship "Quarg Hydra"
 		"heat dissipation" .4
 		"fuel capacity" 800
 		"cargo space" 80
-		"outfit space" 875
+		"outfit space" 925
 		"weapon capacity" 380
 		"engine capacity" 170
 		weapon
@@ -304,6 +304,7 @@ ship "Quarg Hydra"
 		"Astral Ribault"
 
 		"Quasar Core"
+		"Antimatter Core"
 		"Quantum Vacuum Battery"
 		"Aegis Shield Generator"
 		"Central Repair Hub"
