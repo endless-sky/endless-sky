@@ -2495,7 +2495,7 @@ void Ship::Destroy()
 {
 	// If this ship had a target, remove it from the target's list of targeting ships.
 	if(GetTargetShip())
-		GetTargetShip()->targetingList.remove(this);
+		erase(targetingList, this);
 	hull = -1.;
 }
 
@@ -3716,7 +3716,7 @@ void Ship::SetTargetShip(const shared_ptr<Ship> &ship)
 	{
 		// Remove this ship from the list of ships targeting the previous target.
 		if(oldTarget)
-			oldTarget->targetingList.remove(this);
+			erase(oldTarget->targetingList, this);
 
 		targetShip = ship;
 
@@ -3790,7 +3790,7 @@ void Ship::SetFormationPattern(const FormationPattern *formationToSet)
 
 
 
-std::list<Ship *> Ship::GetShipsTargetingThis() const
+const vector<Ship *> &Ship::GetShipsTargetingThis() const
 {
 	return targetingList;
 }
