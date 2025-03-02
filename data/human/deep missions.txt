@@ -7678,9 +7678,32 @@ mission "Hroar's Haulers Late"
 			decline
 		label look
 		`	After making a few inquries you're able to find your way to the small trailer, just outside the spaceport, used as the official landed headquarters of the southern hauler fleet.`
-		`	Inside is a small, young woman`
+		`	Inside is a  young woman with a Hroar's Hauler's captain's hat and a very serious gaze.`
+		choice
+			`	"Hrodny! I haven't seen you since that trouble on Rand."`
+				goto timhrod
+				to display
+					has "Timothy Radrickson 3c: Escort the Convoy: done"
+			`	"Hello, I was the hirthr for the Long Haul Fleet and seem to have been left behind."`
+				goto hirthr
+			`	"I'm Captain <last>. Where's Yngvar?"`
+		`	She gives you a hard look, "Half way to Muspel, most like. I know who you are, greenhorn, do you always make trauncy your buisness?"`
+		choice
+			`	"Sorry, I lost track of time."`
+			`	"This was one mistake, and I'll make it right."`
+			`	"My business is whatever I want it to be."`
+			`	(Say nothing.)`
 
-
+		label hirthr
+		`	"Damn straight you're the hirthr, and you abandoned your flock." Her eyebrow twitches, "The question is; do you want to make it right? Or do you just not care?"`
+		choice
+			`	"I want to make it right."`
+			`	"I don't care."`
+		`	She barks a harsh laugh, "Hroar must be getting soft in old age. Sending skitr pilots like you to protect our Long Hauls."`
+		`	Hrodny leans over and begins typing something and then abruptly looks back up to you, "I've transfered some money to your account. It should cover your expenses and some pay. Us Haulers know how to keep a deal, even when those we work with don't."`
+		`	She points to the door, "Now kindly get the Hel outta here."`
+		action
+			
 
 mission "Hroar's Haulers 19"
 	name "The Long Haul"
