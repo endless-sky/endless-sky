@@ -867,6 +867,8 @@ mission "Exotic Life: Delve"
 			`	The rookie ignores him. "They start as tiny worms, barely bigger than your pinky, but once they find metal, they melt into it, make a cocoon that looks just like part of the ship! Bombacle, we call 'em. Then BAM! A few months later, the casing bursts open like a bomb! Bombacle!"`
 			`	The veteran shakes his head. "What he means is, they're an invasive hazard if they get off-world. That's why we spray. No Shipworms, no problems."`
 			`	The rookie gives his sprayer an enthusiastic shake. "And I get to torch every last one I find. You ever see one pop under a high-heat blast? Satisfying as hell." The veteran just mutters, "You'd think the novelty would wear off."`
+			action
+				set "exotic animals: delvan shipworm known"
 			`	With another look at the freshly sprayed Bulk Freighter, you make a mental note to give your own ship a once-over before takeoff.`
 				goto ending
 			label known
