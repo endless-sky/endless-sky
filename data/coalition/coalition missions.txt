@@ -1363,12 +1363,10 @@ mission "Arachi Cartoonist 1"
 				`	"In that case, I'll head to their home shipyard and see what I can bring back for you."`
 					goto end
 				`	"Alright, it's a bit of a long trip to <planet>, but if you're sure, let's head to my ship and I'll show you your bunk."`
-					goto itsalongtrip
 				`	"I happen to own a ship matching that description, a Betelgeuse Leviathan. Would you like to see it?"`
 					goto hasleviathan
 					to display
 						has "ship model: Leviathan"
-			label itsalongtrip
 			`	"Oh, leave I cannot. Whether far away or not this <planet> you speak of is, allowed to leave Coalition space, we are not," he says. "Go on without me you must, Captain."`
 			label end
 			`	He thanks you and wishes you safe travels on your journey to <planet>.`
@@ -1380,7 +1378,7 @@ mission "Arachi Cartoonist 1"
 			`	Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck.`
 			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go!"`
 			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided to him is far more substantial than any secondhand reference could possibly provide. He spends a while examining the ship up close before hopping down and taking many pictures from every conceivable angle -- as well as drawing a few quick sketches.`
-			`	Once he's finished, he hands you your payment of <payment> and spends some more time with you, asking you all the questions he can think of about the ship.`
+			`	Once he's finished, he hands you a payment of <payment> and spends some more time with you, asking you all the questions he can think of about the ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
 			`	He spends some more minutes listening to you after he asks that you describe how your ship performs, thanks you again, and prepares to leave.`
 			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan,' may I? Just as a small thank you."`
@@ -1391,7 +1389,7 @@ mission "Arachi Cartoonist 1"
 			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
 				decline
 			label noship
-			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
+			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again, Captain."`
 				decline
 
 
