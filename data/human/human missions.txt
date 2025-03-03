@@ -10201,3 +10201,14 @@ mission "Stone to Hope: Thanks"
 			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but a good deed is its own reward, isn't it?`
 			`	"At least that's what I believe," he says more to himself than to you.`
 				decline
+
+# For compatibility with saves that completed Stones of our Fathers 5, but didn't get the new event connected to it.
+mission "Patch Stone Waiting"
+	landing
+	invisible
+	to offer
+		has "Stone of our Fathers 5: done"
+		not "stone waiting most: triggered"
+	on offer
+		event "stone waiting most" 14
+		fail
