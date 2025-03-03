@@ -173,7 +173,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			action
 				set "WR: Captains: opposite"
 			`	"Well, Rain went off to Earth to join the Navy Academy years ago," says Captain Fiona.`
-			`	"And Fiona stayed on Longjump and joined the local militia before the Free Worlds was formed," says Captain Rain. "It's not that we wanted to fight each other, but we both believed in our own sides."`
+			`	"And Fiona stayed on Longjump and joined the local militia before the Free Worlds were formed," says Captain Rain. "It's not that we wanted to fight each other, but we both believed in our own sides."`
 				goto questions
 
 

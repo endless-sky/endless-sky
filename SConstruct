@@ -1,3 +1,5 @@
+print('WARNING: Support for using SCons to build Endless Sky is deprecated and will be removed in the future. See "docs/readme-cmake.md" for instructions on configuring CMake.')
+
 import os
 import platform
 from SCons.Node.FS import Dir

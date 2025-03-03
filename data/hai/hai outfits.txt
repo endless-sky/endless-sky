@@ -11,6 +11,35 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+outfit "Phantom Pallet"
+	category "Systems"
+	cost 12000
+	thumbnail "outfit/phantom pallet"
+	"mass" 0.2
+	"unplunderable" 1
+	"energy consumption" 0.015
+	"heat generation" 0.03
+	# Replacing 30% of your cargo bay with these triples your cargo scan time.
+	"cargo space" -1
+	"cargo scan opacity" 15
+	description `Hai holographic outfits are made up of a set of individual "holopads" which work together to create a larger scene. The Phantom Pallet is an Unfettered variation of these holopads, durable enough to survive a firefight and easily hidden under floors, in walls, or in ceilings while remaining undetected. An enterprising privateer might pad their cargo bay with these and project fake cargo as sensor ghosts, confusing scanners into scanning empty space instead of contraband; that extra time has been known to make the difference between seized cargo and delivering needed supplies.`
+
+outfit "Holovid Zone"
+	category "Systems"
+	cost 320000
+	thumbnail "outfit/holovid zone"
+	"mass" 20
+	"outfit space" -20
+	"unplunderable" 1
+	"holographic entertainment" 1
+	"energy consumption" 0.5
+	"heat generation" 1.0
+	"cargo scan opacity" 150
+	"outfit scan opacity" 150
+	description "Hai holographic technology far exceeds the comparable human equivalents, and nowhere is this best exemplified than in the Holovid Zone. Its holographic projectors and textured force fields present lifelike visuals, while phase array speakers emanate sounds from anywhere in the room."
+	description "	For the Hai, such technology is commonplace, being used to create 3D conference rooms, holovid theaters, gaming arcades, and more. In the past, Hai captains used to install Holovid Zones on their command deck, allowing them to generate tactical evaluations of battles in real-time."
+	description "	The possibilities are endless... especially for a sly captain who misuses the device. Should authorities seek contraband or illegal outfits, a Holovid Zone may fool them long enough for a smuggler to escape. Deathsticks are hard to find in a ship with fifty tons of holographic straw."
+
 outfit "Pulse Cannon"
 	category "Guns"
 	cost 130000
@@ -49,7 +78,7 @@ outfit "Pulse Turret"
 		sound "pulse"
 		"hit effect" "pulse impact"
 		"inaccuracy" 1
-		"turret turn" 2.3
+		"turret turn" 2.6
 		"velocity" 15
 		"lifetime" 30
 		"reload" 10
@@ -179,7 +208,7 @@ outfit "Ionic Turret Prototype"
 		sound "ion"
 		"hit effect" "ionic impact" 5
 		"inaccuracy" 2
-		"turret turn" 2.4
+		"turret turn" 1.4
 		"velocity" 12
 		"lifetime" 70
 		"reload" 70

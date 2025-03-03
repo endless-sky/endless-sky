@@ -214,6 +214,8 @@ void MissionAction::SaveBody(DataWriter &out) const
 		// LocationFilter indentation is handled by its Save method.
 		systemFilter.Save(out);
 	}
+	if(runsWhenFailed)
+		out.Write("can trigger after failure");
 	if(!dialogText.empty())
 	{
 		out.Write("dialog");
@@ -273,7 +275,7 @@ const string &MissionAction::DialogText() const
 // if it takes away money or outfits that the player does not have.
 bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const shared_ptr<Ship> &boardingShip) const
 {
-	if(isFailed && !runsWhenFailed)
+	if(isFailed && !runsWhenFailed && trigger != "fail")
 		return false;
 	if(player.Accounts().Credits() < -Payment())
 		return false;

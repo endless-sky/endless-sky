@@ -59,8 +59,14 @@ In addition to the below dependencies, you will also need CMake 3.16 or newer, h
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev catch2
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
 ```
+Additionally, if you want to build unit tests:
+```
+catch2
+```
+While sufficient versions of other dependencies are available, Ubuntu 22.04 does not provide an up to date version of catch2 (3.0 or newer is required), so this will need to be built from source if unit tests are desired.
+
 
 </details>
 
@@ -68,7 +74,11 @@ g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev li
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel catch2-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
+```
+Additionally, if you want to build unit tests:
+```
+catch2-devel
 ```
 
 </details>
@@ -82,11 +92,12 @@ gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL
 Here's a summary of every command you will need for development:
 
 ```bash
-$ cmake --preset <preset>                     # configure project (only needs to be done once)
-$ cmake --build --preset <preset>-debug       # build Endless Sky (as well as any tests)
-$ ctest --preset <preset>-test                # run the unit tests
-$ ctest --preset <preset>-benchmark           # run the benchmarks
-$ ctest --preset <preset>-integration         # run the integration tests (Linux only)
+$ cmake --preset <preset>                                       # configure project (only needs to be done once)
+$ cmake --build --preset <preset>-debug                         # build Endless Sky and all tests
+$ cmake --build --preset <preset>-debug --target EndlessSky     # build only the game
+$ ctest --preset <preset>-test                                  # run the unit tests
+$ ctest --preset <preset>-benchmark                             # run the benchmarks
+$ ctest --preset <preset>-integration                           # run the integration tests (Linux only)
 ```
 
 The executable will be located in `build/<preset>/Debug/`. If you'd like to debug a specific integration test (on any OS), you can do so as follows:

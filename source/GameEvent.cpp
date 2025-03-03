@@ -88,7 +88,10 @@ void GameEvent::Load(const DataNode &node)
 	if(node.Size() >= 2)
 	{
 		name = node.Token(1);
-		conditionsToApply.Add("set", "event: " + name);
+		if(!DataNode::IsConditionName(name))
+			node.PrintTrace("Invalid event/condition name:");
+
+		conditionsToApply.AddSetCondition("event: " + name);
 	}
 	isDefined = true;
 
@@ -138,12 +141,12 @@ void GameEvent::Save(DataWriter &out) const
 		conditionsToApply.Save(out);
 
 		for(auto &&system : systemsToUnvisit)
-			out.Write("unvisit", system->Name());
+			out.Write("unvisit", system->TrueName());
 		for(auto &&planet : planetsToUnvisit)
 			out.Write("unvisit planet", planet->TrueName());
 
 		for(auto &&system : systemsToVisit)
-			out.Write("visit", system->Name());
+			out.Write("visit", system->TrueName());
 		for(auto &&planet : planetsToVisit)
 			out.Write("visit planet", planet->TrueName());
 
@@ -199,8 +202,8 @@ string GameEvent::IsValid() const
 
 	for(auto &&systems : {systemsToVisit, systemsToUnvisit})
 		for(auto &&system : systems)
-			if(!system->IsValid() && !deferred["system"].contains(system->Name()))
-				return "contains invalid system \"" + system->Name() + "\".";
+			if(!system->IsValid() && !deferred["system"].contains(system->TrueName()))
+				return "contains invalid system \"" + system->TrueName() + "\".";
 	for(auto &&planets : {planetsToVisit, planetsToUnvisit})
 		for(auto &&planet : planets)
 			if(!planet->IsValid() && !deferred["planet"].contains(planet->TrueName()))
@@ -250,4 +253,12 @@ list<DataNode> GameEvent::Apply(PlayerInfo &player)
 const list<DataNode> &GameEvent::Changes() const
 {
 	return changes;
+}
+
+
+
+// Date comparison.
+bool GameEvent::operator<(const GameEvent &other) const
+{
+	return date < other.date;
 }

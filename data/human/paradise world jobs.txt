@@ -591,6 +591,7 @@ mission "Paradise Job: Wilderness Retreat"
 	destination
 		distance 6 20
 		attributes "frontier" "rim" "forest" "fishing"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete

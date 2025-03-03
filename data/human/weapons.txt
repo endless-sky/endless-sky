@@ -84,7 +84,7 @@ outfit "Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 3.7
+		"turret turn" 3.6
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 6
@@ -110,7 +110,7 @@ outfit "Quad Blaster Turret"
 		sound "blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 3
-		"turret turn" 3.2
+		"turret turn" 2.6
 		"velocity" 10.625
 		"lifetime" 48
 		"reload" 3
@@ -202,7 +202,7 @@ outfit "Modified Blaster Turret"
 		sound "mod blaster"
 		"hit effect" "blaster impact"
 		"inaccuracy" 4
-		"turret turn" 3.5
+		"turret turn" 3.6
 		"velocity" 10
 		"lifetime" 48
 		"reload" 6
@@ -253,7 +253,7 @@ outfit "Laser Turret"
 		sound "laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .5
-		"turret turn" 4.0
+		"turret turn" 4
 		"velocity" 300
 		"lifetime" 1
 		"reload" 1
@@ -377,7 +377,7 @@ outfit "Mining Laser Turret"
 		sound "mining laser"
 		"hit effect" "beam laser impact"
 		"inaccuracy" .35
-		"turret turn" 3.8
+		"turret turn" 4.4
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
@@ -410,7 +410,7 @@ outfit "Tractor Beam"
 		"reload" 1
 		"firing energy" 2.1
 		"firing heat" .8
-	description "The anti-gravity properties of repulsor engines started a revolution in human spaceflight during the 24th century, and it was not long before this technology was put to use elsewhere. Tractor beams utilize repulsor technology to allow ships to attract space debris to them, be that the ores from a recently mined asteroid, or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
+	description "The anti-gravity properties of repulsor engines started a revolution in human spaceflight during the 24th century, but it was only relatively recently that engineers began experimenting with gravitational attraction. Tractor beams utilize rudimentary attractor technology to allow ships to attract space debris, be that the ores from a recently mined asteroid, or the dumped cargo from a merchant ship fleeing for its life. This has led to tractor beams being a popular outfit among asteroid miners and pirates alike."
 
 effect "tractor beam"
 	sprite "effect/tractor beam"
@@ -458,7 +458,7 @@ outfit "Electron Turret"
 		sound "electron beam"
 		"hit effect" "electron impact"
 		"inaccuracy" .3
-		"turret turn" 1.4
+		"turret turn" 1.2
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -503,6 +503,7 @@ effect "small anti-missile"
 		"no repeat"
 		"frame rate" 3
 	sound "anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 21
 	"velocity scale" 1
 
@@ -532,6 +533,7 @@ effect "large anti-missile"
 		"no repeat"
 		"frame rate" 2
 	sound "heavy anti-missile"
+	"sound category" "anti-missile"
 	"lifetime" 31
 	"velocity scale" 1
 
@@ -630,7 +632,7 @@ outfit "Proton Turret"
 		sound "proton"
 		"hit effect" "proton impact" 3
 		"inaccuracy" 4
-		"turret turn" 2.0
+		"turret turn" 2.4
 		"submunition" "Proton Fragment" 3
 		"velocity" 24
 		"lifetime" 2
@@ -683,7 +685,7 @@ outfit "Plasma Turret"
 		sound "plasma"
 		"hit effect" "plasma explosion"
 		"inaccuracy" 2
-		"turret turn" 1.2
+		"turret turn" 1.6
 		"velocity" 12
 		"lifetime" 40
 		"reload" 9
@@ -1100,7 +1102,7 @@ outfit "Javelin Turret"
 		icon "icon/javelin turret"
 		"hit effect" "tiny explosion"
 		"inaccuracy" 4
-		"turret turn" 2
+		"turret turn" 3.6
 		"velocity" 10
 		"lifetime" 60
 		"reload" 7.5
@@ -1561,7 +1563,7 @@ outfit "Gatling Turret"
 		ammo "Gatling Gun Ammo" 2
 		icon "icon/gat turret"
 		"inaccuracy" 2
-		"turret turn" 3.4
+		"turret turn" 3.6
 		"velocity" 16
 		"lifetime" 1
 		"reload" 3

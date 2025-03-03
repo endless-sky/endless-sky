@@ -81,12 +81,15 @@ public:
 	// are available, no others will be shown at landing or in the spaceport.
 	// This is to be used for missions that are part of a series.
 	bool HasPriority() const;
+	// Check if this mission is a "non-blocking" mission.
+	// Such missions will not prevent minor missions from being offered alongside them.
+	bool IsNonBlocking() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
-	// offered if no other missions (minor or otherwise) are being offered.
+	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
@@ -204,6 +207,7 @@ private:
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+	bool isNonBlocking = false;
 	bool isMinor = false;
 	bool autosave = false;
 	bool overridesCapture = false;

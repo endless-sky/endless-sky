@@ -125,7 +125,7 @@ mission "First Contact: Gegno Vi"
 			choice
 				`	(Stand up and approach the alien.)`
 				`	(Get up and run to your ship.)`
-			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surround their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
+			`	Before you can collect yourself, you realize the Vi warrior is now much closer to you. Within a matter of moments, the alien stands before you, giving you a much better look at them. They are much taller than both you and the other Gegno you've seen, extremely bulky, and slightly hunched over. Heavy-looking metal surrounds their body, and in any exposed areas are rough-looking patches of skin and hair. Thick facial hair covers their face, and above their human-like eyes are a pair of horns curved inward towards you.`
 			`	While the Gegno are known to dislike outsiders, this particular Gegno seems to at the very least acknowledge you. After a period of awkward and what seems to be judgmental silence, the Vi looks you up and down in an unenthused manner. They emit a very deep grumble, and with a loud snort, reach into a crevice in their armor to grab something. Pulling out what looks to be some sort of star map, they point to a location on it, gesture to themselves, then lower the device slowly to you. It seems they want to be taken to one of the Gegno's planets.`
 			choice
 				`	(Accept their request.)`
@@ -170,6 +170,8 @@ mission "First Contact: Gegno Vi"
 	
 	on defer
 		set "First Contact: Gegno Vi: deferred"
+
+	on abort
 
 	to fail
 		"reputation: Gegno" < -100
@@ -747,6 +749,9 @@ mission "Gegno Genocide Defense"
 		fail "First Contact: Gegno Vi"
 		fail "Visit Quarg in Gegno Space"
 		fail "Vi Augen"
+		fail "Gegno Anticipation"
+		fail "Gegno Intervention"
+		fail "Acquiescence"
 		"reputation: Gegno" = -1000
 		"reputation: Gegno Vi" = -1000
 		"reputation: Gegno Scin" = -1000
@@ -799,6 +804,27 @@ mission "Gegno Genocide Defense"
 		personality heroic vindictive staying
 		system "Heutesl"
 		ship "Augen" "Vytii Yrrlausei"
+
+
+# Mission for if the player has clearance on a Gegno world despite having provoked civilians.
+
+mission "Gegno Unwelcoming"
+	landing
+	invisible
+	source
+		government "Gegno" "Gegno Vi" "Gegno Scin"
+	to offer
+		"reputation: Gegno" < 0
+	on offer
+		conversation
+			`You are greeted by a large force of aliens on the surface of the planet, though they don't seem too happy to welcome you on their world - in fact, several squads in numbers you can't quickly determine rush towards you, equipped with advanced looking combat gear and weapons. As they do, countless ships begin to descend in formations from the sky above.`
+				to display
+					not "Giaru Gegno: Quarg Contact: offered"
+			`You are greeted by a large group of Gegno on the surface of the planet, though they don't seem too happy to welcome you on their world - in fact, several squads in numbers you can't quickly determine rush towards you, equipped with advanced looking combat gear and weapons. As they do, countless ships belonging to both the Vi and Scin factions begin to descend in formations from the sky above.`
+				to display
+					has "Giaru Gegno: Quarg Contact: offered"
+			`	It probably wasn't the smartest plan to purposefully land here after assaulting civilians. There's no room for talk as they immediately begin to attack, and you do your best to fight as many off as you can. While you are able to fend off several with your pistol, you are eventually overwhelmed, and the last thing you experience is a cold, sharp pain through your upper body.`
+				die
 
 
 # Gegno Hunter Fleets
