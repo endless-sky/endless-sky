@@ -157,7 +157,7 @@ outfit "Singularity Core"
 	"heat generation" 22.5
 	"inertia reduction" 0.15
 	description "According to little more than vague allusions by the Quarg, these generators contain a minuscule black hole, spewing radiation as it is fed a trickle of mass. This black hole is small enough to output a truly staggering amount of energy via Hawking radiation, which grows in power as a black hole shrinks, something that suggests the black hole within the Singularity Core is truly microscopic."
-	description "	Further wild guesses by scientists and conspiracy theorists alike allege that the Quarg are able to somehow trick the laws of physics themselves to make this black hole weigh far less than it otherwise should, bringing its mass from that of a small moon to something a ship could have a hope of moving. "
+	description "	Further wild guesses by scientists and conspiracy theorists alike allege that the Quarg are able to somehow trick the laws of physics themselves to make this black hole weigh far less than it otherwise should, bringing its mass from that of a small moon to something a ship could have a hope of moving."
 
 
 outfit "Quasar Core"
