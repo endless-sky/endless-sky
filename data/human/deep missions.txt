@@ -7880,7 +7880,7 @@ mission "Hroar's Haulers 22"
 	name "The Long Haul"
 	source "New Washington"
 	to offer
-		has "Hroar's Haulers 20: accepted"
+		has "Hroar's Haulers 21: declined"
 	on offer
 		conversation
 			``
