@@ -60,6 +60,17 @@ hazard "Black Hole Event Horizon"
 		"relative hull damage" .0009
 		"piercing" 10
 
+hazard "Balnii Black Hole Event Horizon"
+	"constant strength"
+	"range" 150
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 0 180
+		"dropoff modifier" 0
+		"relative hull damage" .0003
+		"fuel damage" -0.2
+		"piercing" 10
+
 hazard "Black Hole Gravity"
 	"constant strength"
 	"range" 2500
