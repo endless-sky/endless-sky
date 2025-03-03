@@ -294,7 +294,7 @@ outfit "Skylance"
 		"hull damage" 12
 		"ion damage" .1
 		"scrambling damage" .1
-	description "Despite being among the oldest and least powerful of Quarg weaponry, these immensely powerful beam weapons strike fear into the hearts of all who dare oppose them. With a design that has survived longer than all of human civilization, the Skylance is an elegant weapon, one from a more civilized age."
+	description "Despite being among the oldest and least specialized of Quarg weaponry, these immensely powerful beam weapons strike fear into the hearts of all who dare oppose them. With a design that has survived longer than all of human civilization, the Skylance is an elegant weapon, one from a more civilized age."
 
 effect "skylance impact"
 	sprite "effect/skylance impact"
@@ -356,7 +356,7 @@ outfit "Elysian Ranseur"
 		"hull damage" 1500
 		"hit force" 600
 		"penetration count" 5
-	description "The technology behind this weapon is incomprehensibly complex, creating pulses of energy that bend spacetime itself. Powerful gravitational pulses are forced through the fold, piercing through shielding with ease and delivering dangerous blows. How the weapon is able to do any of this is only known to the Quarg."
+	description "The technology behind this weapon is incomprehensibly complex, creating pulses of energy that bend spacetime itself. Powerful gravitational pulses are forced through the fold, penetrating through multiple targets with ease and delivering dangerous blows to those along the path. How the weapon is able to do any of this is only known to the Quarg."
 
 
 effect "ranseur"
