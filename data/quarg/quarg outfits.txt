@@ -31,6 +31,8 @@ outfit "Small Graviton Thruster"
 	"inertia reduction" 0.1
 	"flare sprite" "effect/graviton flare"
 		"scale" .75
+	description "How exactly Quarg thrusters work is unknown, but the mechanism that powers even this small set of engines consumes more energy than some human warships. Though, where all this energy goes is a complete mystery."
+	description "	These engines also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships equipped with them accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
 
 outfit "Small Graviton Steering"
 	category "Engines"
