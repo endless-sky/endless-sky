@@ -2555,7 +2555,7 @@ bool PlayerInfo::HasMapped(int mapSize, bool mapMinables) const
 			return false;
 
 		if(mapMinables)
-			for(const auto outfit : system->Payloads())
+			for(const Outfit *outfit : system->Payloads())
 				if(!harvested.contains(make_pair(system, outfit)))
 					return false;
 	}
@@ -2574,7 +2574,7 @@ void PlayerInfo::Map(int mapSize, bool mapMinables)
 			Visit(*system);
 
 		if(mapMinables)
-			for(const auto outfit : system->Payloads())
+			for(const Outfit *outfit : system->Payloads())
 				harvested.insert(make_pair(system, outfit));
 	}
 }
