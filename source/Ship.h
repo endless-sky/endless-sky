@@ -119,7 +119,7 @@ public:
 
 public:
 	static constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
-	static constexpr double THRUST_HELD_FRAMES_RECIP = 1.0 / MAX_THRUST_HELD_FRAMES;
+	static constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES;
 
 
 public:
