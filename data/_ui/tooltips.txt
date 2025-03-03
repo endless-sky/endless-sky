@@ -1531,3 +1531,15 @@ tip "Show parenthesis"
 
 tip "Notify on destination"
 	`If you enter a system with a planet you must land on for a mission, plays a notification sound.`
+
+tip `Override "universal ramscoop"`
+	`Replace the "universal ramscoop" gamerule provided by the game and plugins with a custom value.`
+
+tip `"universal ramscoop" value`
+	`The value replacing the default "universal ramscoop" gamerule.`
+
+tip `Override "disabled fighters..."`
+	`Replace the "disabled fighters avoid projectiles" gamerule provided by the game and plugins with a custom value.`
+
+tip `"disabled fighters..." value`
+	`The value replacing the default "disabled fighters avoid projectiles" gamerule.`

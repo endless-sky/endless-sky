@@ -81,6 +81,10 @@ namespace {
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
+	const string GAMERULE_RAMSCOOP = "Override \"universal ramscoop\"";
+	const string GAMERULE_RAMSCOOP_VALUE = "\"universal ramscoop\" value";
+	const string GAMERULE_FIGHTERS = "Override \"disabled fighters...\"";
+	const string GAMERULE_FIGHTERS_VALUE = "\"disabled fighters...\" value";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -753,7 +757,13 @@ void PreferencesPanel::DrawSettings()
 		SCROLL_SPEED,
 		DATE_FORMAT,
 		"Show parenthesis",
-		NOTIFY_ON_DEST
+		NOTIFY_ON_DEST,
+		"",
+		"Gamerules",
+		GAMERULE_RAMSCOOP,
+		GAMERULE_RAMSCOOP_VALUE,
+		GAMERULE_FIGHTERS,
+		GAMERULE_FIGHTERS_VALUE
 	};
 
 	bool isCategory = true;
@@ -966,6 +976,26 @@ void PreferencesPanel::DrawSettings()
 		{
 			isOn = Preferences::GetAlertIndicator() != Preferences::AlertIndicator::NONE;
 			text = Preferences::AlertSetting();
+		}
+		else if(setting == GAMERULE_RAMSCOOP)
+		{
+			isOn = Preferences::GetGameruleRamscoop().has_value();
+			text = isOn ? "on" : "off";
+		}
+		else if(setting == GAMERULE_RAMSCOOP_VALUE)
+		{
+			isOn = Preferences::GetGameruleRamscoop().has_value();
+			text = Preferences::GameruleRamscoopSetting();
+		}
+		else if(setting == GAMERULE_FIGHTERS)
+		{
+			isOn = Preferences::GetGameruleFighters().has_value();
+			text = isOn ? "on" : "off";
+		}
+		else if(setting == GAMERULE_FIGHTERS_VALUE)
+		{
+			isOn = Preferences::GetGameruleFighters().has_value();
+			text = Preferences::GameruleFightersSetting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1309,6 +1339,14 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
+	else if(str == GAMERULE_RAMSCOOP)
+		Preferences::ToggleGameruleRamscoop();
+	else if(str == GAMERULE_RAMSCOOP_VALUE)
+		Preferences::ToggleGameruleRamscoopValue();
+	else if(str == GAMERULE_FIGHTERS)
+		Preferences::ToggleGameruleFighters();
+	else if(str == GAMERULE_FIGHTERS_VALUE)
+		Preferences::ToggleGameruleFightersValue();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
