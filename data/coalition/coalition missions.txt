@@ -1377,10 +1377,10 @@ mission "Arachi Cartoonist 1"
 			action
 				"coalition jobs" += 2
 				payment 75940
-			`Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck.`
+			`	Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck.`
 			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go!"`
 			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided to him is far more substantial than any secondhand reference could possibly provide. He spends a while examining the ship up close before hopping down and taking many pictures from every conceivable angle -- as well as drawing a few quick sketches.`
-			`	Once he's finished, he hands you your payment of <payment> and spends some time with you still, asking you all the questions he can think of about the ship.`
+			`	Once he's finished, he hands you your payment of <payment> and spends some more time with you, asking you all the questions he can think of about the ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
 			`	He spends some more minutes listening to you after he asks that you describe how your ship performs, thanks you again, and prepares to leave.`
 			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan,' may I? Just as a small thank you."`
@@ -1435,7 +1435,7 @@ mission "Arachi Cartoonist 2"
 			`Drugub is excitedly waiting for you when you return. Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck when you mention you brought back a ship matching what he described.`
 			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go!"`
 			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided to him is far more substantial than any secondhand reference could possibly provide. He spends a while examining the ship up close before hopping down and taking many pictures from every conceivable angle -- as well as drawing a few quick sketches.`
-			`	Once he's finished, he hands you your payment of <payment> and spends some time with you still, asking you all the questions he can think of about the ship.`
+			`	Once he's finished, he hands you your payment of <payment> and spends some more time with you, asking you all the questions he can think of about the ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
 			`	He spends some more minutes listening to you after he asks that you describe how your ship performs, thanks you again, and prepares to leave.`
 			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan,' may I? Just as a small thank you."`
