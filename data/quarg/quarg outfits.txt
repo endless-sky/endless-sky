@@ -149,22 +149,26 @@ outfit "Singularity Core"
 	category "Power"
 	cost 50000000
 	thumbnail "outfit/quarg singularity core"
-	"mass" 110
+	"mass" 400
 	"outfit space" -80
 	"energy generation" 23.5
 	"heat generation" 22.5
-	description ""
+	"inertia reduction" 0.15
+	description "According to little more than vague allusions by the Quarg, these generators contain a minuscule black hole, spewing radiation as it is fed a trickle of mass. This black hole is small enough to output a truly staggering amount of energy via Hawking radiation, which grows in power as a black hole shrinks, something that suggests the black hole within the Singularity Core is truly microscopic."
+	description "	Further wild guesses by scientists and conspiracy theorists alike allege that the Quarg are able to somehow trick the laws of physics themselves to make this black hole weigh far less than it otherwise should, bringing its mass from that of a small moon to something a ship could have a hope of moving. "
 
 
 outfit "Quasar Core"
 	category "Power"
 	cost 100000000
 	thumbnail "outfit/quarg quasar core"
-	"mass" 160
+	"mass" 600
 	"outfit space" -120
 	"energy generation" 37.5
 	"heat generation" 35
-	description ""
+	"inertia reduction" 0.15
+	description "This larger generator appears similar to the Singularity Core, only even more powerful. Little is known about its exact function, but purely based on its name, some have speculated that the Quasar Core's increased output is the result of the black hole at its core being fed enough mass to form a small accretion disk, releasing light and heat as it is falls towards the event horizon and is compressed to an unimaginable degree."
+	description "	While this process should be far less fuel-efficient than simply capturing the Hawking radiation emitted by the black hole alone, the staggering power density of this generator appears to be evidence it was worth the trade."
 
 
 # Systems
