@@ -435,6 +435,14 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
 			continue;
 
+		if(static_cast<string>(it.first) == "resupplies")
+		{
+			attributeLabels.emplace_back("resupplies for");
+			attributeValues.emplace_back(Format::Number(outfit.Cost() * it.second));
+			attributesHeight += 20;
+			continue;
+		}
+
 		// Only show positive values here, with some exceptions.
 		// Negative values are usually handled as a "requirement"
 		if(static_cast<string>(it.first) == "required crew")
@@ -467,6 +475,19 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
+	}
+
+	for(const pair<const Outfit *, double> &it : outfit.GetResuppliedAmmo())
+	{
+		attributeLabels.emplace_back("resupplies:");
+		attributeValues.emplace_back(it.first->DisplayName());
+		attributesHeight += 20;
+		if(it.second != 1)
+		{
+			attributeLabels.emplace_back("resupply cost:");
+			attributeValues.emplace_back(Format::Number(outfit.Ammo()->Cost() * it.second));
+			attributesHeight += 20;
+		}
 	}
 
 	if(!outfit.IsWeapon())
