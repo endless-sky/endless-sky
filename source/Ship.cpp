@@ -352,6 +352,7 @@ void Ship::Load(const DataNode &node)
 			attributes.baseAngle = Angle(0.);
 			attributes.isParallel = false;
 			attributes.isOmnidirectional = true;
+			attributes.turnMultiplier = 0.;
 			bool drawUnder = (key == "gun");
 			if(child.HasChildren())
 			{
@@ -376,6 +377,8 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
+					else if(grand.Token(0) == "turret turn multiplier")
+						attributes.turnMultiplier = grand.Value(1);
 					else if(grand.Token(0) == "under")
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
@@ -1081,6 +1084,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				if(attributes.turnMultiplier)
+					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
 					out.Write("under");
 				else
@@ -1666,7 +1671,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		// Move the turrets.
 		if(!isDisabled)
-			armament.Aim(firingCommands);
+			armament.Aim(*this, firingCommands);
 
 		DoInitializeMovement();
 		StepPilot();
