@@ -1245,7 +1245,7 @@ void AI::SetMousePosition(Point position)
 
 
 // Get the in-system strength of each government's allies and enemies.
-int64_t AI::AllyStrength(const Government *government)
+int64_t AI::AllyStrength(const Government *government) const
 {
 	auto it = allyStrength.find(government);
 	return (it == allyStrength.end() ? 0 : it->second);
@@ -1253,7 +1253,7 @@ int64_t AI::AllyStrength(const Government *government)
 
 
 
-int64_t AI::EnemyStrength(const Government *government)
+int64_t AI::EnemyStrength(const Government *government) const
 {
 	auto it = enemyStrength.find(government);
 	return (it == enemyStrength.end() ? 0 : it->second);
@@ -2035,7 +2035,14 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(ship.GetTargetStellar())
 	{
-		MoveToPlanet(ship, command);
+		// If our allies are clearly stronger than our enemies in this system,
+		// then move at more civilized speeds when going to a planet.
+		// A negative cruising speed indicates the ship should move as quickly as possible.
+		double cruiseSpeed = -1.;
+		if(AllyStrength(ship.GetGovernment()) > EnemyStrength(ship.GetGovernment()) * 2)
+			cruiseSpeed = ship.CruiseVelocity();
+
+		MoveToPlanet(ship, command, cruiseSpeed);
 		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
@@ -2408,20 +2415,20 @@ double AI::TurnToward(const Ship &ship, const Point &vector, const double precis
 
 
 
-bool AI::MoveToPlanet(Ship &ship, Command &command)
+bool AI::MoveToPlanet(Ship &ship, Command &command, double cruiseSpeed)
 {
 	if(!ship.GetTargetStellar())
 		return false;
 
 	const Point &target = ship.GetTargetStellar()->Position();
-	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1.);
+	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1., cruiseSpeed);
 }
 
 
 
 // Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
 bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
-	const Point &targetVelocity, double radius, double slow)
+	const Point &targetVelocity, double radius, double slow, double cruiseSpeed)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
@@ -2438,9 +2445,24 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
 
-	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
+	// Calculate target vector required to get where we want to be.
+	Point tv = dp;
+	bool hasCruiseSpeed = (cruiseSpeed > 0.);
+	if(hasCruiseSpeed)
+	{
+		// The ship prefers a velocity at cruise-speed towards the target, so we need
+		// to compare this preferred velocity to the current velocity and apply the
+		// delta to get to the preferred velocity.
+		tv = (dp.Unit() * cruiseSpeed) - velocity;
+		// If we are moving close to our preferred velocity, then face towards the target.
+		if(tv.LengthSquared() < .01)
+			tv = dp;
+	}
+
+	bool isFacing = (tv.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
+		command.SetTurn(TurnToward(ship, tv));
+
 	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
 	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
 	// In order for a ship to use their afterburner, they must also have the forward
@@ -2449,7 +2471,13 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
 	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
 			|| dp.Unit().Dot(velocity.Unit()) < .95))
-		command |= Command::FORWARD;
+	{
+		// We set full forward power when we don't have a cruise-speed, when we are below
+		// cruise-speed or when we need to do course corrections.
+		bool movingTowardsTarget = (velocity.Unit().Dot(dp.Unit()) > .95);
+		if(!hasCruiseSpeed || !movingTowardsTarget || velocity.Length() < cruiseSpeed)
+			command |= Command::FORWARD;
+	}
 	else if(shouldReverse)
 	{
 		command.SetTurn(TurnToward(ship, velocity));
@@ -4661,7 +4689,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			autoPilot.Clear(Command::LAND | Command::JUMP | Command::FLEET_JUMP);
 		else
 		{
-			MoveToPlanet(ship, command);
+			// Autopilot will promote traveling as a fleet, and the player can self-pilot if they wish to go faster.
+			MoveToPlanet(ship, command, ship.CruiseVelocity());
 			command |= Command::LAND;
 		}
 	}
