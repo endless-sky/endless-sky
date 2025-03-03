@@ -144,7 +144,7 @@ outfit "Antimatter Core"
 	"outfit space" -50
 	"energy generation" 12
 	"heat generation" 10
-	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing next to the output of this device. The Quarg can produce enough antimatter to outfit even civilian ships with an extremely compact Antimatter Core, releasing extreme amounts of energy in a simple, elegant package, all while producing surprisingly little waste heat."
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing next to the output of the Quarg, who can produce enough antimatter to outfit even civilian ships with an extremely compact Antimatter Core. This device releases extreme amounts of energy in a simple, elegant package, all while producing surprisingly little waste heat."
 
 
 outfit "Singularity Core"
