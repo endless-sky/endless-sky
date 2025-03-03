@@ -484,6 +484,13 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	accessibleLinks.clear();
 	neighbors.clear();
 
+
+	payloads.clear();
+	for(const auto &asteroid : asteroids)
+		if(asteroid.Type())
+			for(const auto &payload : asteroid.Type()->GetPayload())
+				payloads.insert(payload.outfit);
+
 	// Some systems in the game may be considered inaccessible. If this system is inaccessible,
 	// then it shouldn't have accessible links or jump neighbors.
 	if(inaccessible)
@@ -883,14 +890,8 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 // Get a list of all unique payload outfits from minables in this system.
-const set<const Outfit *> System::Payloads() const
+const set<const Outfit *> &System::Payloads() const
 {
-	set<const Outfit *> payloads;
-	for(const auto &asteroid : asteroids)
-		if(asteroid.Type())
-			for(const auto &payload : asteroid.Type()->GetPayload())
-				payloads.insert(payload.outfit);
-
 	return payloads;
 }
 
