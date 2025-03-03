@@ -40,11 +40,11 @@ namespace {
 	{
 		// Maps are not transferrable; they represent the player's spatial awareness.
 		int mapSize = outfit->Get("map");
-		bool mapMinable = outfit->Get("map minable");
+		bool mapMinables = outfit->Get("map minables");
 		if(mapSize > 0)
 		{
-			if(!player.HasMapped(mapSize, mapMinable))
-				player.Map(mapSize, mapMinable);
+			if(!player.HasMapped(mapSize, mapMinables))
+				player.Map(mapSize, mapMinables);
 			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}

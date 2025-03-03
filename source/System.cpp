@@ -882,7 +882,7 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
-// Get a list of all unique payload outfits in this system.
+// Get a list of all unique payload outfits from minables in this system.
 const set<const Outfit *> System::Payloads() const
 {
 	set<const Outfit *> payloads;

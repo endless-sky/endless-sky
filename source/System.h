@@ -152,7 +152,7 @@ public:
 
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
-	// Get a list of all unique payload outfits in this system.
+	// Get a list of all unique payload outfits from minables in this system.
 	const std::set<const Outfit *> Payloads() const;
 	// Get the background haze sprite for this system.
 	const Sprite *Haze() const;

@@ -2546,7 +2546,7 @@ void PlayerInfo::Unvisit(const Planet &planet)
 
 
 
-bool PlayerInfo::HasMapped(int mapSize, bool mapMinable) const
+bool PlayerInfo::HasMapped(int mapSize, bool mapMinables) const
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
@@ -2554,7 +2554,7 @@ bool PlayerInfo::HasMapped(int mapSize, bool mapMinable) const
 		if(!HasVisited(*system))
 			return false;
 
-		if(mapMinable)
+		if(mapMinables)
 			for(const auto outfit : system->Payloads())
 				if(!harvested.contains(make_pair(system, outfit)))
 					return false;
@@ -2565,7 +2565,7 @@ bool PlayerInfo::HasMapped(int mapSize, bool mapMinable) const
 
 
 
-void PlayerInfo::Map(int mapSize, bool mapMinable)
+void PlayerInfo::Map(int mapSize, bool mapMinables)
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
@@ -2573,7 +2573,7 @@ void PlayerInfo::Map(int mapSize, bool mapMinable)
 		if(!HasVisited(*system))
 			Visit(*system);
 
-		if(mapMinable)
+		if(mapMinables)
 			for(const auto outfit : system->Payloads())
 				harvested.insert(make_pair(system, outfit));
 	}
