@@ -833,3 +833,58 @@ ship "Korath World-Ship" "Korath World-Ship C (Jump)"
 	turret 70 53 "Banisher Grav-Turret"
 	turret -91 286 "Banisher Grav-Turret"
 	turret 91 286 "Warder Anti-Missile"
+
+
+
+ship "Quarg Skylark"
+	sprite "ship/skylark"
+	thumbnail "thumbnail/skylark"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 120000
+		"hull" 70000
+		"required crew" 120
+		"bunks" 210
+		"mass" 990
+		"drag" 18.5
+		"heat dissipation" .47
+		"fuel capacity" 1000
+		"cargo space" 200
+		"outfit space" 600
+		"weapon capacity" 200
+		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
+		"ramscoop" 10
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
+		
+		"Antimatter Core"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 120
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Jump Drive"
+		
+	engine -15 117
+	engine 15 117
+	turret -12 -80 "Quarg Skylance"
+	turret 12 -80 "Quarg Skylance"
+	turret -34 24 "Quarg Anti-Missile"
+	turret 34 24 "Quarg Anti-Missile"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+	description "The Skylark is used by the Quarg as a freighter and warship."
