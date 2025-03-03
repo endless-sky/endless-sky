@@ -4945,7 +4945,8 @@ mission "Hroar's Haulers X"
 		ship "Star Queen" "H.H.H. Red Roamer"
 		ship "Mule" "H.H.H. Dirty Destiny"
 
-
+	to complete
+		has "Hroar's Haulers 13: declined"
 
 
 mission "Hroar's Haulers 11"
@@ -7760,7 +7761,6 @@ mission "Hroar's Haulers 19"
 	source "Wayfarer"
 	landing
 	to offer
-		has "Hroar's Haulers 18: declined"
 		has "event: lh six days"
 		not "event: lh eight days"
 	on offer
@@ -7768,6 +7768,28 @@ mission "Hroar's Haulers 19"
 			`	It feels like Wayfarer's transit district has been taking over by Haulers. They are everywhere as they rush to get everything ready for the fleet's return. Yngvar is probably waiting for you in the spaceport.`
 				decline
 
+mission "Hroar's Haulers X2"
+	invisible
+	landing
+	source "Wayfarer"
+	to offer
+		has "Hroar's Haulers 18b: done"
+		has "event: lh six days"
+		not "event: lh eight days"
+	destination "Muspel"
+
+	npc accompany save
+		government "Merchant"
+		personality timid escort
+		ship "Leviathan" "H.H.H. Red Ruin"
+		ship "Hogshead" "H.H.H. Twilit Hope"
+		ship "Mule" "H.H.H. Cardinal Winsome"
+		ship "Star Queen" "H.H.H. Land of Plenty"
+		ship "Star Queen" "H.H.H. Red Roamer"
+		ship "Mule" "H.H.H. Dirty Destiny"
+
+	to complete
+		has "Hroar's Hauler 20: done"
 
 
 mission "Hroar's Haulers 20"
