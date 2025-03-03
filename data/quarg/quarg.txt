@@ -233,12 +233,10 @@ fleet "Large Quarg (Kor Efret)"
 	personality
 		forbearing opportunistic
 	variant 2
-		"Quarg Wardragon" 3
-	variant 2
-		"Quarg Wardragon" 2
-		"Quarg Wyvern"
-	variant
 		"Quarg Wardragon" 4
+	variant 2
+		"Quarg Wardragon" 3
+		"Quarg Wyvern"
 	variant
 		"Quarg Wardragon" 2
 		"Quarg Wyvern" 2
@@ -249,7 +247,7 @@ fleet "Large Quarg (Kor Efret)"
 		"Quarg Drake" 3
 	variant
 		"Quarg Wyvern" 2
-		"Quarg Drake" 5
+		"Quarg Drake" 4
 
 # Gegno Quarg
 
