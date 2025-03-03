@@ -612,6 +612,7 @@ effect "tiny successor afterburner"
 	sound "successor afterburner tiny"
 	"sound category" "afterburner"
 	lifetime 1
+	zooms
 
 effect "small successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
@@ -620,6 +621,7 @@ effect "small successor afterburner"
 	sound "successor afterburner small"
 	"sound category" "afterburner"
 	lifetime 1
+	zooms
 
 effect "medium successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
@@ -628,6 +630,7 @@ effect "medium successor afterburner"
 	sound "successor afterburner medium"
 	"sound category" "afterburner"
 	lifetime 1
+	zooms
 
 effect "large successor afterburner"
 	sprite "effect/successor flare/afterburner/afterburner"
@@ -635,3 +638,4 @@ effect "large successor afterburner"
 	sound "successor afterburner large"
 	"sound category" "afterburner"
 	lifetime 1
+	zooms
