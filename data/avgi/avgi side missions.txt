@@ -501,10 +501,12 @@ mission "Avgi Culture: Zapchannel Energy"
 
 mission "Damselflyman Abilities"
 	landing
+	invisible
+	non-blocking
 	repeat
 	to offer
 		has "damselflyman"
-		not "outfit: Damselflyman"
+		not "outfit (flagship installed): Damselflyman"
 	on offer
 		outfit "Damselflyman" 1
 		fail
