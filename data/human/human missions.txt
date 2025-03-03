@@ -5975,6 +5975,11 @@ mission "Argosy Hijacking"
 	to offer
 		"combat rating" > 200
 		random < 5
+		or
+			and
+				not "FW Pug 1: offered"
+				not "FWC Pug 1: offered"
+			has "main plot completed"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
