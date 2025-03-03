@@ -144,7 +144,7 @@ outfit "Antimatter Core"
 	"outfit space" -50
 	"energy generation" 12
 	"heat generation" 10
-	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing next to the output of the Quarg. The Quarg can produce enough antimatter to outfit even civilian ships with an extremely compact Antimatter Core, releasing extreme amounts of energy in a simple, elegant package, all while producing surprisingly little waste heat."
+	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing next to the output of this device. The Quarg can produce enough antimatter to outfit even civilian ships with an extremely compact Antimatter Core, releasing extreme amounts of energy in a simple, elegant package, all while producing surprisingly little waste heat."
 
 
 outfit "Singularity Core"
@@ -399,7 +399,7 @@ outfit "Celestial Culverin"
 		"slowing damage" 4.5
 		"fuel damage" 9
 		"missile strength" 600
-	description "This weapon tangles with spacetime in ways beyond understanding, resulting in gravitational forces that slow the target down. As if fulfilling their own intended destiny, the projectiles are guided to their target, and then draw the target back to the Quarg, aiding them in locking down more distant enemies."
+	description "This weapon tangles with spacetime in ways beyond understanding, resulting in gravitational forces that slow the target down. As if fulfilling their own intended destiny, the projectiles are guided to their target, disrupting their fuel systems as well, allowing the weapon to lock down the Quarg's more distant enemies."
 
 effect "culverin hit"
 	sprite "effect/skylance impact"
@@ -444,7 +444,7 @@ outfit "Astral Ribault"
 		"firing energy" 80
 		"firing heat" 5
 		"submunition" "ribault unguided" 2
-	description "The rapid flurries shot by this turret cover a wide area at a long range, while dealing very high damage at point blank, should all shots hit their target. Any target caught by the storm of projectiles suffers damage to its fuel systems, allowing the Quarg to keep aggressors in check."
+	description "The rapid flurries shot by this turret cover a wide area at a long range, firing a storm of negative energy particles. Attractive forces guide them towards their target, dealing very high damage to enemies within the immediate vicinity, while keeping those that flee within the Quarg's reach."
 
 outfit "ribault unguided"
 	weapon
