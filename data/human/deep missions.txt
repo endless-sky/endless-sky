@@ -3801,6 +3801,7 @@ mission "Home for Skadenga 10"
 		not planet "Muspel"
 	destination "Muspel"
 	on offer
+		event "hroars deal"
 		conversation
 			`Your inbox blinks with a new message from Hroar on <planet>.`
 			``
@@ -3810,7 +3811,7 @@ mission "Home for Skadenga 10"
 			`			We're an unstoppable force that has never met an immovable object!`
 				accept
 
-
+event "hroars deal" 90
 
 mission "Home for Skadenga 11"
 	name "Evacuate Nifel"
@@ -3907,6 +3908,7 @@ mission "Home for Skadenga Captain"
 	to offer
 		has "refusedhroar"
 	on offer
+		event "nohroar" 90
 		conversation
 			`Your fleet touches down just outside of the crowded village of Udainsakr. The landscape is filled with the gathered Skadenga.`
 			`	The Ondurdis approaches you. "Leaving is difficult, but all winters must come to end." She looks curiously at your fleet. "This I did not expect. These are not Transport Union. These are yours? You brought your own fleet to help us?"`
@@ -3921,6 +3923,7 @@ mission "Home for Skadenga Captain"
 		event "skadenga life" 367
 		conversation "land at windblain"
 
+event "nohroar"
 
 
 event "skadenga life"
@@ -4295,7 +4298,7 @@ mission "Hroar's Haulers: No Deal"
 	name "Becoming a Hauler"
 	description "Travel to <destination> to pick up cargo for Hroar."
 	to offer
-		has "event: hroars offer"
+		has "event: nohroar"
 	source "Muspel"
 	destination "Bivrost"
 	on offer
@@ -7799,7 +7802,15 @@ mission "Hroar's Haulers 20"
 
 			label randhrod
 			`	"Well, hot damn, if it ain't Captain <last>! Been a minute since you pulled our butts outta the fire." She slaps you on the back, "How exactly did Hroar convince you to babysit our rusty assets?"`
-			`	Yngvar clears his throat, "Didn't realize you two were aquainted. `
+			choice
+				`	"Pay me enough, I'll babysit anyone's assets."`
+				`	"I owed Hroar a favor."`
+					goto favor
+					to display
+						has "event: hroars deal"
+				`	"Looking for adventure."`
+			`	Yngvar clears his throat, "Didn't realize you two were aquainted. We may have to save the full reunion for another time, our ships are loaded and reasdy to go."`
+			`	Hrodny rolls her eyes, "`
 
 
 	npc accompany save
