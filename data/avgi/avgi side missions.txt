@@ -506,7 +506,7 @@ mission "Damselflyman Abilities"
 	repeat
 	to offer
 		has "damselflyman"
-		not "outfit: Damselflyman"
+		not "outfit (flagship installed): Damselflyman"
 	on offer
 		outfit "Damselflyman" 1
 		fail
