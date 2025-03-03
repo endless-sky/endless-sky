@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
+#include <array>
 #include <list>
 #include <map>
 #include <memory>
@@ -107,6 +108,18 @@ public:
 		Angle facing;
 		Angle gimbal;
 	};
+
+	enum class ThrustKind {
+		LEFT = 0,
+		RIGHT = 1,
+		FORWARD = 2,
+		REVERSE = 3,
+	};
+
+
+public:
+	static constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
+	static constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES;
 
 
 public:
@@ -402,6 +415,8 @@ public:
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
+	uint8_t ThrustHeldFrames(ThrustKind kind) const;
+
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
 	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
@@ -553,6 +568,9 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
+	// Increment the duration a thruster direction has been held.
+	void IncrementThrusterHeld(ThrustKind kind);
+
 	// Helper function for jettisoning flotsam.
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
@@ -675,6 +693,8 @@ private:
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// The amount of time in frames that an engine has been on for.
+	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
 	int pilotError = 0;
