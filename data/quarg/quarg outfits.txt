@@ -66,7 +66,7 @@ outfit "Medium Graviton Thruster"
 	"force protection" 0.15
 	"inertia reduction" 0.15
 	"flare sprite" "effect/graviton flare"
-	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy. The mechanism by which they produce thrust is unknown, but it is rumored that the passing of a Quarg ship wreaks havoc on every gravitational wave antenna in a system."
+	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy. The mechanism by which they produce thrust is unknown, but it is rumored that the passing of a Quarg ship wreaks havoc on every gravitational wave antenna in the system."
 	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect given the thrust of their engines, while also taking less impact from external forces."
 
 
@@ -322,7 +322,7 @@ outfit "Stratospear"
 		"lifetime" 1
 		"reload" 10
 		"firing energy" 40
-	description "While those who can directly match the power of Quarg energy weapons are rare, some foolish younger races have attempted oppose the Quarg with missile-based nuclear weapons, hoping for their destructive power to even the playing field. These Quarg anti-missile defenses, firing pinpoint beams of energy, have often dashed these hopes, targeting projectiles from considerable range and ensuring that only the most powerful missiles are capable of even getting near a Quarg ship."
+	description "While those who can directly match the power of Quarg energy weapons are rare, some foolish younger races have attempted to oppose the Quarg with missile-based nuclear weapons, hoping for their destructive power to even the playing field. These Quarg anti-missile defenses, firing pinpoint beams of energy, have often dashed these hopes, targeting projectiles from considerable range and ensuring that only the most powerful missiles are capable of getting near a Quarg ship."
 
 effect "quarg anti-missile"
 	sprite "effect/quarg anti missile"

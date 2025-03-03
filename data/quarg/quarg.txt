@@ -75,7 +75,7 @@ fleet "Quarg"
 	variant
 		"Quarg Lindwyrm"
 	variant
-		"Quarg Drake"
+		"Quarg Drake" 2
 	variant
 		"Quarg Wardragon"
 
@@ -143,7 +143,7 @@ fleet "Quarg (Hai)"
 	variant
 		"Quarg Wardragon"
 	variant
-		"Quarg Drake"
+		"Quarg Drake" 2
 
 fleet "Large Quarg (Hai)"
 	government "Quarg (Hai)"
@@ -224,7 +224,7 @@ fleet "Quarg (Kor Efret)"
 	variant
 		"Quarg Wardragon"
 	variant
-		"Quarg Drake"
+		"Quarg Drake" 2
 
 fleet "Large Quarg (Kor Efret)"
 	government "Quarg (Kor Efret)"
@@ -264,7 +264,7 @@ fleet "Quarg (Gegno)"
 	variant
 		"Quarg Wardragon"
 	variant
-		"Quarg Drake"
+		"Quarg Drake" 2
 
 fleet "Large Quarg (Gegno)"
 	government "Quarg (Gegno)"
