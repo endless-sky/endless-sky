@@ -7797,20 +7797,29 @@ mission "Hroar's Haulers 20"
 			`	Yngvar chuckles, "I'd guess you're a ready as the rest of us to put this Long Haul behind you, <last>. We've got the last of the cargo from Wayfarer loaded up, so how about get this show on the road, huh?"`
 			`	The old spacer rests his hand on Hrodny's shoulder, "Always good to see you, Hrodny. I'll pass your concerns onto your uncle, and also let that ornery curr know you're doing right proper job out here."`
 			`	"Don't be a stranger, Yng." She says, and then nods at you, "Good luck. I hope Uncle Hroar's faith in you is well-placed. We could use a spot of luck about now."`
-			`	Captain Hrodny walks out of the hanger with a few of her officers. Yngvar climbs back aboard your ship, "Take us to New Washington, <last>."`
+			`	Captain Hrodny walks out of the hanger with a few of her officers in tow. Yngvar starts heading to your ship, "Take us to New Washington, <last>."`
 				accept
 
 			label randhrod
 			`	"Well, hot damn, if it ain't Captain <last>! Been a minute since you pulled our butts outta the fire." She slaps you on the back, "How exactly did Hroar convince you to babysit our rusty assets?"`
 			choice
-				`	"Pay me enough, I'll babysit anyone's assets."`
+				`	"Pay me enough, and I'll babysit anyone's assets."`
 				`	"I owed Hroar a favor."`
-					goto favor
 					to display
 						has "event: hroars deal"
-				`	"Looking for adventure."`
+				`	"I go where adventure takes me."`
+				`	(Shrug.)`
 			`	Yngvar clears his throat, "Didn't realize you two were aquainted. We may have to save the full reunion for another time, our ships are loaded and reasdy to go."`
-			`	Hrodny rolls her eyes, "`
+			`	Hrodny rolls her eyes, "Poor <last>, stuck with Yngvar Fun-Killer for the entire Long Haul."`
+			`	"We might be a down-right chummy sort, but we ain't no social club. We're haulers and it's time to haul." The old man folds his arms.`
+			`	Hrodny gives Yngvar a lackluster salute, "Always a pleasure, old man. You make my uncle get's the message."`
+			`	"That I will." Yngvar says, as Hrodny and some of the officers move to leave, "I also let that ornery curr know you're doing a good job out here."`
+			`	"Ha, then he'd never believe anything else you ever told 'em." Hrodny laughs, "Don't be a stranger Yng, or you either <last>. Whatever your reasons, I am glad you're with us."`
+			`	Captain Hrodny stides out of the hanger with a few of her officers in tow. Yngvar starts heading to your ship, "Take us to New Washington, <last>."`
+				accept
+
+	on complete
+		conversation
 
 
 	npc accompany save
@@ -7832,6 +7841,28 @@ mission "Hroar's Haulers 20"
 	on visit
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
+
+mission "Hroar's Haulers 21"
+	name "The Long Haul"
+	source "New Washington"
+	landing
+	to offer
+		has "Hroar's Haulers 20: accepted"
+	on offer
+		conversation
+			`	The perpetually twilit settlement of New Washington is overran by sprawling Long Haul Fleet. Initialy, you catch glimpses of furtive natives retreating from the freshly landed haulers. Only to see them return with their more of them dressed in festive garb. You realize that the hauler presence here isn't an invasion, but a cause for celebration.`
+			`	Yngvar heads out to meet with thier leader, "Meet us in the spaceport. Folks here like a bit of pagentry, but be here long."`
+				decline
+
+mission "Hroar's Haulers 22"
+	name "The Long Haul"
+	source "New Washington"
+	to offer
+		has "Hroar's Haulers 20: accepted"
+	on offer
+		conversation
+			``
+
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
