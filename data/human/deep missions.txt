@@ -7342,7 +7342,7 @@ mission "Hroar's Haulers Gunhilda secret 2"
 		has "minewatchers"
 	on offer
 		conversation
-			`	"What are we doing back on Humanika?" Runa asks, "You said you were going to try and fly close to one Grakhord's mines."`
+			`	"What are we doing back on Humanika?" Runa asks, "You said you were going to try and fly close to one of Grakhord's mines."`
 			decline
 
 mission "Hroar's Haulers Unferth"
@@ -7748,12 +7748,26 @@ mission "Hroar's Haulers Late 2"
 		has "event: lh seventeen days"
 	on offer
 		dialog
-			`	The Long Haul Fleet left without you some time ago. None of the Haulers stationed here seem interested in helping you. It seems you are just too late.`
+			`	The Long Haul Fleet left without you some time ago. None of the Haulers stationed here seem interested in helping you. You are just too late.`
 			decline
 
 		
-
 mission "Hroar's Haulers 19"
+	name "The Long Haul"
+	source "Wayfarer"
+	landing
+	to offer
+		has "Hroar's Haulers 18: declined"
+		has "event: lh six days"
+		not "event: lh eight days"
+	on offer
+		dialog
+			`	It feels like Wayfarer's transit district has been taking over by Haulers. They are everywhere as they rush to get everything ready for the fleet's return. Yngvar is probably waiting for you in the spaceport.`
+				decline
+
+
+
+mission "Hroar's Haulers 20"
 	name "The Long Haul"
 	source "Wayfarer"
 	stopover "New Washington"
@@ -7762,12 +7776,31 @@ mission "Hroar's Haulers 19"
 	description "Protect the Hauler Fleet as it finishes the Long Haul."
 	passengers 1
 	to offer
-		has "Hroar's Haulers 18: declined"
-		has "event: lh six days"
-		not "event: lh eight days"
+		has "Hroar's Haulers 19: declined"
 	on offer
 		conversation
-			`	`
+			`There's a cluster of captains and officers near the back of the Hauler's permenent hanger here. You recognize Yngvar's scarred head among them.`
+			`	Yngvar gives you a steady smile as you approach. "Glad you made it back in time. Been more than a few greenhorns who got themselves lost right before muster."`
+			`	He nods to a young red haired woman in a captain's cap standing next to him, "<last>, I'd like to introduce you to Hrodny Hildasdottir. She runs the Hauler operations in the south.`
+			choice
+				`	"Hrodny! I haven't seen you since that trouble on Rand."`
+					goto randhrod
+					to display
+						has "Timothy Radrickson 3c: Escort the Convoy: done"
+				`	"Pleasure to meet you, Hrodny."`
+				`	"Sure, whatever, we going leaving or what?"`
+				`	(Say nothing.)`
+			`	Hrodny smirks at you, "Not much of a talker, huh? Ain't nothing wrong with that, could use a few less Haulers who knew how control their tongues." She glares at some of the officers near her.`
+			`	Yngvar chuckles, "I'd guess you're a ready as the rest of us to put this Long Haul behind you, <last>. We've got the last of the cargo from Wayfarer loaded up, so how about get this show on the road, huh?"`
+			`	The old spacer rests his hand on Hrodny's shoulder, "Always good to see you, Hrodny. I'll pass your concerns onto your uncle, and also let that ornery curr know you're doing right proper job out here."`
+			`	"Don't be a stranger, Yng." She says, and then nods at you, "Good luck. I hope Uncle Hroar's faith in you is well-placed. We could use a spot of luck about now."`
+			`	Captain Hrodny walks out of the hanger with a few of her officers. Yngvar climbs back aboard your ship, "Take us to New Washington, <last>."`
+				accept
+
+			label randhrod
+			`	"Well, hot damn, if it ain't Captain <last>! Been a minute since you pulled our butts outta the fire." She slaps you on the back, "How exactly did Hroar convince you to babysit our rusty assets?"`
+			`	Yngvar clears his throat, "Didn't realize you two were aquainted. `
+
 
 	npc accompany save
 		government "Merchant"
