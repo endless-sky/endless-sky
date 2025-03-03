@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "Storyline.h"
 #include "System.h"
 #include "test/Test.h"
 #include "test/TestData.h"
@@ -120,6 +121,7 @@ private:
 	Set<Phrase> phrases;
 	Set<Planet> planets;
 	Set<Ship> ships;
+	Set<Storyline> storylines;
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
