@@ -165,7 +165,7 @@ ship "Quarg Drake"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-	description "The Wardragon is used by the Quarg as a light warship. It is an older design within the Quarg's fleets, supposedly less intimidating compared to their larger warships and thus more suitable for dealings with particularly nascent species."
+	description "The Drake is an older ship used by the Quarg for reconnaissance and initial contact with emerging spacefaring species. A popular legend states that what was likely a Drake surveyed Sol while humans began to discover spaceflight."
 
 
 ship "Quarg Wardragon"
