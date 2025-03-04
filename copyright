@@ -3346,7 +3346,6 @@ Files:
  sounds/human?launch?external*
  sounds/ion?rain*
  sounds/ion?torch*
- sounds/sjeja?lance*
  sounds/korath?afterburner*
  sounds/korath?launch*
  sounds/korath?launch?external*
@@ -3360,6 +3359,7 @@ Files:
  sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/sjeja?lance*
  sounds/stagnation?beam*
  sounds/star?tail*
  sounds/*successor?afterburner*
