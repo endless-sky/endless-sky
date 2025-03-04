@@ -169,7 +169,7 @@ outfit "Quasar Core"
 	"energy generation" 37.5
 	"heat generation" 35
 	"inertia reduction" 0.15
-	description "This larger generator appears similar to the Singularity Core, only even more powerful. Little is known about its exact function, but purely based on its name, some have speculated that the Quasar Core's increased output is the result of the black hole at its core being fed enough mass to form a small accretion disk, releasing light and heat as it is falls towards the event horizon and is compressed to an unimaginable degree."
+	description "This larger generator appears similar to the Singularity Core, only even more powerful. Little is known about its exact function, but purely based on its name, some have speculated that the Quasar Core's increased output is the result of the black hole at its core being fed enough mass to form a small accretion disk, releasing light and heat as it falls towards the event horizon and is compressed to an unimaginable degree."
 	description "	While this process should be far less fuel-efficient than simply capturing the Hawking radiation emitted by the black hole alone, the staggering power density of this generator appears to be evidence it was worth the trade."
 
 
@@ -399,7 +399,7 @@ outfit "Celestial Culverin"
 		"slowing damage" 4.5
 		"fuel damage" 9
 		"missile strength" 600
-	description "This weapon tangles with spacetime in ways beyond understanding, resulting in gravitational forces that slow the target down. As if fulfilling their own intended destiny, the projectiles are guided to their target, disrupting their fuel systems. This utility, on top of being almost unavoidable, allows the weapon to lock down the Quarg's more distant enemies."
+	description "This weapon tangles with spacetime in ways beyond understanding, producing gravitational forces that slow the target down. As if fulfilling their own intended destiny, the projectiles are guided to their target, disrupting their fuel systems. This utility, on top of being almost unavoidable, allows the weapon to lock down the Quarg's more distant enemies."
 
 effect "culverin hit"
 	sprite "effect/skylance impact"
@@ -444,7 +444,7 @@ outfit "Astral Ribault"
 		"firing energy" 80
 		"firing heat" 5
 		"submunition" "ribault unguided" 2
-	description "The rapid flurries shot by this turret cover a wide area at a long range, firing a storm of negative energy particles. Attractive forces guide them towards their target, dealing very high damage to enemies within the immediate vicinity, while keeping those that flee within the Quarg's reach."
+	description "The rapid flurries shot by this turret cover a wide area at a long range, firing a storm of negative energy particles. Attractive forces guide these particles towards their target, dealing very high damage to enemies within the immediate vicinity while keeping those that flee within the Quarg's reach."
 
 outfit "ribault unguided"
 	weapon
@@ -510,7 +510,7 @@ outfit "Slipstream Projector"
 		"hit force" -400
 		"shield damage" 30
 		"penetration count" 100
-	description "While the exact workings of graviton tech are a wonder, it's no secret that this device manipulates gravity in such a wondrous way that it even bends the massive architecture of ringworlds to its whim. While the force is not enough to harm the delicate structure, the negative energy is powerful enough to rip off the shielding of a ship in a remarkably short period of time."
+	description "While the exact workings of graviton tech are a mystery, it's no secret that this device manipulates gravity in such a wondrous way that it even bends the massive architecture of ringworlds to its whim. While the force is not enough to harm the delicate structure, the negative energy is powerful enough to rip off the shielding of a ship in a remarkably short period of time."
 
 
 # Special
