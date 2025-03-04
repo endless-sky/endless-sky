@@ -177,7 +177,7 @@ outfit "Quasar Core"
 
 outfit "Aspis Shield Generator"
 	category "Systems"
-	cost 10000000
+	cost 5000000
 	thumbnail "outfit/quarg aspis shield generator"
 	"mass" 40
 	"outfit space" -40
@@ -190,7 +190,7 @@ outfit "Aspis Shield Generator"
 
 outfit "Ancile Shield Generator"
 	category "Systems"
-	cost 20000000
+	cost 7500000
 	thumbnail "outfit/quarg ancile shield generator"
 	"mass" 55
 	"outfit space" -55
@@ -203,7 +203,7 @@ outfit "Ancile Shield Generator"
 
 outfit "Aegis Shield Generator"
 	category "Systems"
-	cost 30000000
+	cost 12500000
 	thumbnail "outfit/quarg aegis shield generator"
 	"mass" 80
 	"outfit space" -80
@@ -216,7 +216,7 @@ outfit "Aegis Shield Generator"
 
 outfit "Peripheral Repair Hub"
 	category "Systems"
-	cost 10000000
+	cost 2000000
 	thumbnail "outfit/quarg peripheral repair hub"
 	"mass" 25
 	"outfit space" -25
@@ -227,7 +227,7 @@ outfit "Peripheral Repair Hub"
 
 outfit "Central Repair Hub"
 	category "Systems"
-	cost 10000000
+	cost 5000000
 	thumbnail "outfit/quarg central repair hub"
 	"mass" 55
 	"outfit space" -55
