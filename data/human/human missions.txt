@@ -5975,6 +5975,11 @@ mission "Argosy Hijacking"
 	to offer
 		"combat rating" > 200
 		random < 5
+		or
+			and
+				not "FW Pug 1: offered"
+				not "FWC Pug 1: offered"
+			has "main plot completed"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -10201,3 +10206,14 @@ mission "Stone to Hope: Thanks"
 			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but a good deed is its own reward, isn't it?`
 			`	"At least that's what I believe," he says more to himself than to you.`
 				decline
+
+# For compatibility with saves that completed Stones of our Fathers 5, but didn't get the new event connected to it.
+mission "Patch Stone Waiting"
+	landing
+	invisible
+	to offer
+		has "Stone of our Fathers 5: done"
+		not "stone waiting most: triggered"
+	on offer
+		event "stone waiting most" 14
+		fail
