@@ -399,7 +399,7 @@ outfit "Celestial Culverin"
 		"slowing damage" 4.5
 		"fuel damage" 9
 		"missile strength" 600
-	description "This weapon tangles with spacetime in ways beyond understanding, resulting in gravitational forces that slow the target down. As if fulfilling their own intended destiny, the projectiles are guided to their target, disrupting their fuel systems as well, allowing the weapon to lock down the Quarg's more distant enemies."
+	description "This weapon tangles with spacetime in ways beyond understanding, resulting in gravitational forces that slow the target down. As if fulfilling their own intended destiny, the projectiles are guided to their target, disrupting their fuel systems. This utility, on top of being almost unavoidable, allows the weapon to lock down the Quarg's more distant enemies."
 
 effect "culverin hit"
 	sprite "effect/skylance impact"
