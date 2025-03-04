@@ -197,7 +197,7 @@ ship "Wardragon"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion medium"
-
+	description "The origin of this Wardragon is shrouded in mystery. It was said that the Quarg once used this ship as a powerful light warship. Other sources suggest that it was used as a front-line heavy warship. One thing is for certain though, and that's its design is far different than any Quarg ship that exists today, and one can only question where it came from."
 
 
 person "Marauding Max"
