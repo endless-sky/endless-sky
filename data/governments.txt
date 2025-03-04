@@ -380,6 +380,7 @@ government "Coalition"
 	"crew defense" 3
 	language "Coalition"
 	"player reputation" 1
+	"bribe" 0
 	"attitude toward"
 		"Heliarch" 1
 	"friendly hail" "friendly coalition"
@@ -954,6 +955,7 @@ government "Heliarch"
 	"crew attack" 1.3
 	"crew defense" 2.8
 	"player reputation" 1
+	"bribe" 0
 	"friendly hail" "friendly heliarch"
 	"friendly disabled hail" "friendly disabled heliarch"
 	"hostile hail" "hostile heliarch"
@@ -1380,6 +1382,7 @@ government "Lunarium"
 	"crew defense" 2.7
 	language "Coalition"
 	"player reputation" 1
+	"bribe" 0
 	"friendly hail" "friendly lunarium"
 	"friendly disabled hail" "friendly disabled lunarium"
 	"hostile hail" "hostile lunarium"
@@ -1396,6 +1399,7 @@ government "Lunarium (Hidden)"
 	"crew defense" 2.7
 	language "Coalition"
 	"player reputation" 1
+	"bribe" 0
 	"friendly hail" "friendly lunarium"
 	"friendly disabled hail" "friendly disabled lunarium"
 	"hostile hail" "hostile lunarium"

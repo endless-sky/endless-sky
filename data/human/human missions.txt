@@ -1321,6 +1321,7 @@ ship "Hallucination"
 		"random start frame"
 	"never disabled"
 	attributes
+		category "Unclassified"
 		"hull" 1000
 		"mass" 180
 		"drag" 2.1
@@ -2032,6 +2033,7 @@ ship "Asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
+		category "Unclassified"
 		"fuel capacity" 1
 		"hull" 10000
 		"mass" 1000
@@ -5973,6 +5975,11 @@ mission "Argosy Hijacking"
 	to offer
 		"combat rating" > 200
 		random < 5
+		or
+			and
+				not "FW Pug 1: offered"
+				not "FWC Pug 1: offered"
+			has "main plot completed"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -7573,6 +7580,8 @@ mission "Timothy Radrickson 1: Stowaway"
 				decline
 
 			label somewhere
+			action
+				set "timothy radrickson: agreed"
 			`	Timothy looks at you, his eyes wide and full of tears. "Rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
 			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
 			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you..." he mumbles over and over again.`
@@ -7584,7 +7593,7 @@ mission "Timothy Radrickson 1: Stowaway"
 		log `Discovered Timothy, a stowaway, in my ship, and decided to take him where he needed to go. Never learned what Timothy had been fleeing, who he had been, or what he had done that lead him to such dire straits.`
 		event "timothy radrickson: on rand" 340
 		conversation
-			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
+			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand.`
 			`	"I mean it, from the bottom of my heart. You've saved my life, and given me hope. I won't forget this; or you. I could never thank you enough."`
 			`	His eyes glistening, Timothy turns from you and exits your ship.`
 
@@ -7595,7 +7604,7 @@ mission "Timothy Radrickson 1a: Accepted"
 	description "You found a man named Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He would like you to bring him to <destination>, where he can find work."
 	destination "Rand"
 	to offer
-		has "Timothy Radrickson 1: Stowaway: active"
+		has "timothy radrickson: agreed"
 	on abort
 		fail "Timothy Radrickson 1: Stowaway"
 
@@ -10197,3 +10206,14 @@ mission "Stone to Hope: Thanks"
 			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but a good deed is its own reward, isn't it?`
 			`	"At least that's what I believe," he says more to himself than to you.`
 				decline
+
+# For compatibility with saves that completed Stones of our Fathers 5, but didn't get the new event connected to it.
+mission "Patch Stone Waiting"
+	landing
+	invisible
+	to offer
+		has "Stone of our Fathers 5: done"
+		not "stone waiting most: triggered"
+	on offer
+		event "stone waiting most" 14
+		fail
