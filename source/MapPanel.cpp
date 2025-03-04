@@ -391,8 +391,8 @@ void MapPanel::FinishDrawing(const string &buttonCondition)
 		info.SetCondition("max zoom");
 	if(player.MapZoom() <= static_cast<int>(mapInterface->GetValue("min zoom")))
 		info.SetCondition("min zoom");
-	const Interface *mapButtonUi = GameData::Interfaces().Get(Screen::Width() < 1380
-		? "map buttons (small screen)" : "map buttons");
+	// Always use small screen layout for android
+	const Interface *mapButtonUi = GameData::Interfaces().Get("map buttons (small screen)");
 	mapButtonUi->Draw(info, this);
 
 	// Draw the tooltips.
