@@ -22989,7 +22989,7 @@ system Kella-Uoasa
 		period 5000
 		object Kasii-Tuur-Saqru
 			sprite "planet/station successor 2"
-			distance 500
+			distance 464
 			period 64
 		object
 			sprite planet/ice8
