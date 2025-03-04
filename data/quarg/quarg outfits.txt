@@ -46,7 +46,7 @@ outfit "Small Graviton Steering"
 	"turning heat" .75
 	"force protection" 0.1
 	"inertia reduction" 0.1
-	description "Despite their small size, these Quarg steering engines can turn their ships on a dime. It is rumored that, unlike human steering thrusters, the Quarg do not care where on the hull these are installed, producing the same rotation moment even if directly in line with the ship's center of mass."
+	description "Despite their small size, these Quarg steering engines can turn their ships on a dime. It is rumored that, unlike human steering thrusters, the Quarg do not care where on the hull these are installed, producing the same rotational moment even if directly in line with the ship's center of mass."
 	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect, while also taking less impact from external forces."
 
 
@@ -103,7 +103,7 @@ outfit "Large Graviton Thruster"
 	"inertia reduction" 0.2
 	"flare sprite" "effect/graviton flare"
 		"scale" 1.25
-	description "This large set of Quarg thrusters is both powerful and subtle, leaving behind no bright exhaust trail nor emitting any detectable radiation aside from a faint violet glow. This is juxtaposed by the extreme amount of energy these engines consume, enough to power entire stations."
+	description "This large set of Quarg thrusters is both powerful and subtle, leaving behind no bright exhaust trail nor emitting any detectable radiation aside from a faint violet glow. This is juxtaposed with the extreme amount of energy these engines consume, enough to power entire stations."
 	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect, while also taking less impact from external forces."
 
 
