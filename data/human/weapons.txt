@@ -1257,7 +1257,7 @@ outfit "Typhoon Launcher"
 		"inaccuracy" 5
 		"velocity" 4
 		"lifetime" 1600
-		"reload" 120
+		"reload" 150
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .15
@@ -1293,9 +1293,9 @@ outfit "Typhoon Pod"
 		"inaccuracy" 5
 		"velocity" 4
 		"lifetime" 1600
-		"reload" 252
+		"reload" 320
 		"burst count" 3
-		"burst reload" 120
+		"burst reload" 150
 		"firing energy" 4
 		"firing heat" 50
 		"acceleration" .15
