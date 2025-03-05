@@ -1260,10 +1260,10 @@ outfit "Typhoon Launcher"
 		"reload" 120
 		"firing energy" 4
 		"firing heat" 50
-		"acceleration" .1
-		"drag" .02
-		"turn" .9
-		"homing" 2
+		"acceleration" .15
+		"drag" .04
+		"turn" 1.5
+		"homing" 4
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
@@ -1298,10 +1298,10 @@ outfit "Typhoon Pod"
 		"burst reload" 120
 		"firing energy" 4
 		"firing heat" 50
-		"acceleration" .1
-		"drag" .02
-		"turn" .9
-		"homing" 2
+		"acceleration" .15
+		"drag" .04
+		"turn" 1.5
+		"homing" 4
 		"optical tracking" .9
 		"shield damage" 1050
 		"hull damage" 1050
