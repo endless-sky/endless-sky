@@ -44,8 +44,7 @@ ship "Quyan" "Quyan (Inter-system)"
 		"Watsaq Energy Generator"
 		"Wasita Steering"
 		"Eimlaq Thrusters"
-		"Large Bunk Room"
-		"Small Bunk Room"
+		"Bunk Room" 2
 
 ship "Latbaliday" "Latbaliday (Bunks)"
 	outfits
@@ -68,8 +67,7 @@ ship "Yiyharsi" "Yiyharsi (Bunks)"
 		"Tawasitaq Energy Generator"
 		"Hyperdrive"
 		"Outfits Expansion"
-		"Large Bunk Room" 2
-		"Small Bunk Room"
+		"Bunk Room" 4
 
 ship "Nathaq" "Nathaq (Bunks)"
 	outfits
@@ -77,8 +75,7 @@ ship "Nathaq" "Nathaq (Bunks)"
 		"Eimlaq Steering"
 		"Eimlaq Thrusters"
 		"Daltaq Energy Generator"
-		"Large Bunk Room" 7
-		"Small Bunk Room"
+		"Bunk Room" 14
 
 ship "Yiyharsi" "Yiyharsi (Government)"
 	outfits
@@ -280,14 +277,12 @@ ship "Furus" "Furus (Religious Leader)"
 		"Eimlaq Thrusters"
 		"Hyperdrive"
 		"Jahgir Energy Generator" 2
-		"Jibauni Ramscoop" 5
 		"Wasita Steering"
 
 ship "Nathas" "Nathas (Religious Leader)"
 	outfits
 		"Eimlaq Steering"
 		"Hyperdrive"
-		"Jibauni Ramscoop" 4
 		"Lilsa Anti-Missile"
 		"Tawasitaq Energy Generator"
 		"Wasita Thrusters"
@@ -296,7 +291,6 @@ ship "Quyan" "Quyan (Religious Leader)"
 	outfits
 		"Eimlaq Thrusters"
 		"Hyperdrive"
-		"Jibauni Ramscoop" 2
 		"Lilsa Anti-Missile"
 		"Tawasitaq Energy Generator"
 		"Wasita Steering"

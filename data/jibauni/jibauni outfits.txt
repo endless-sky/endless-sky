@@ -260,9 +260,9 @@ outfit "Rukjay Missile Launcher"
 		"firing fuel" 1.3
 		"turn" 3
 		"homing" 4
-		"infrared tracking" .05
-		"radar tracking" .85
-		"tracking" .11
+		"infrared tracking" .15
+		"radar tracking" .15
+		"tracking" .15
 		"shield damage" 500
 		"hull damage" 215
 		"hit force" 170
@@ -377,41 +377,6 @@ outfit "Tamum Shield Generator"
 	description "The Tamum Shield Generator is not the most efficient reshielder the Jibauni possess, but it does have the greatest integrated fuel capacity."
 
 
-outfit "Alwaqud Fuel Pod"
-	category "Systems"
-	thumbnail "outfit/jibauni fuel pod"
-	"cost" 10000
-	"mass" 8
-	"outfit space" -5
-	"fuel capacity" 65
-	description "Given Jibauni ships' dependence on fuel to survive, what a small amount the Alwaqud pod adds is a little unnerving."
-
-outfit "Jibauni Ramscoop"
-	category "Systems"
-	thumbnail "outfit/jibauni ramscoop"
-	"cost" 62000
-	"mass" 15
-	"outfit space" -10
-	"ramscoop" 1.1
-	description "Nothing astounding resides in the personage of this ramscoop, unless it's the fact that the Jibauni need fuel so much and the ramscoop provides so little."
-
-
-outfit "Almash Scanner"
-	category "Systems"
-	cost 55000
-	thumbnail "outfit/almash scanner"
-	"mass" 2
-	"outfit space" -2
-	"outfit scan power" 5
-	"outfit scan efficiency" 6
-	"outfit scan sound" "jibauni scanner"
-	"cargo scan power" 1
-	"cargo scan efficiency" 2
-	"cargo scan sound" "jibauni scanner"
-	"tactical scan power" 3
-	"atmosphere scan" 100
-	description "This Jibauni scanner is not powerful, but it is cheap and takes up hardly any space. If you install more than one the scan range and speed is increased."
-
 outfit "Tashwish Radar Jammer"
 	cost 140000
 	category "Systems"
@@ -420,18 +385,6 @@ outfit "Tashwish Radar Jammer"
 	"outfit space" -16
 	"radar jamming" 14
 	description "Wonderful for its radar jamming purposes, the Tashwish nevertheless takes up large amounts of space when compared to other non-Jibauni jammers."
-
-
-outfit "Large Bunk Room"
-	category "Systems"
-	cost 90000
-	thumbnail "outfit/giant bunk room"
-	"mass" 15
-	"bunks" 8
-	"outfit space" -36
-	"unplunderable" 1
-	description "If you really want to make space for another eight passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
-
 
 
 outfit "Jahgir Energy Generator"
