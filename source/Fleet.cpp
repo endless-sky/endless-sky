@@ -16,11 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 
 #include "DataNode.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
 #include "Phrase.h"
-#include "pi.h"
 #include "Planet.h"
 #include "Random.h"
 #include "Ship.h"
@@ -45,104 +45,6 @@ namespace {
 		// Since it is sensible that ships would be nearer to the object of
 		// interest on average, do not apply the sqrt(rand) correction.
 		return (Random::Real() + minimumOffset) * 400. + 2. * center.second;
-	}
-
-	// Construct a list of all outfits for sale in this system and its linked neighbors.
-	Sale<Outfit> GetOutfitsForSale(const System *here)
-	{
-		auto outfits = Sale<Outfit>();
-		if(here)
-		{
-			for(const StellarObject &object : here->Objects())
-			{
-				const Planet *planet = object.GetPlanet();
-				if(planet && planet->IsValid() && planet->HasOutfitter())
-					outfits.Add(planet->Outfitter());
-			}
-		}
-		return outfits;
-	}
-
-	// Construct a list of varying numbers of outfits that were either specified for
-	// this fleet directly, or are sold in this system or its linked neighbors.
-	vector<const Outfit *> OutfitChoices(const set<const Sale<Outfit> *> &outfitters, const System *hub, int maxSize)
-	{
-		auto outfits = vector<const Outfit *>();
-		if(maxSize > 0)
-		{
-			auto choices = Sale<Outfit>();
-			// If no outfits were directly specified, choose from those sold nearby.
-			if(outfitters.empty() && hub)
-			{
-				choices = GetOutfitsForSale(hub);
-				for(const System *other : hub->Links())
-					choices.Add(GetOutfitsForSale(other));
-			}
-			else
-				for(const auto outfitter : outfitters)
-					choices.Add(*outfitter);
-
-			if(!choices.empty())
-			{
-				for(const auto outfit : choices)
-				{
-					double mass = outfit->Mass();
-					// Avoid free outfits, massless outfits, and those too large to fit.
-					if(mass > 0. && mass < maxSize && outfit->Cost() > 0)
-					{
-						// Also avoid outfits that add space (such as Outfits / Cargo Expansions)
-						// or modify bunks.
-						// TODO: Specify rejection criteria in datafiles as ConditionSets or similar.
-						const auto &attributes = outfit->Attributes();
-						if(attributes.Get("outfit space") > 0.
-								|| attributes.Get("cargo space") > 0.
-								|| attributes.Get("bunks"))
-							continue;
-
-						outfits.push_back(outfit);
-					}
-				}
-			}
-		}
-		// Sort this list of choices ascending by mass, so it can be easily trimmed to just
-		// the outfits that fit as the ship's free space decreases.
-		sort(outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b)
-			{ return a->Mass() < b->Mass(); });
-		return outfits;
-	}
-
-	// Add a random commodity from the list to the ship's cargo.
-	void AddRandomCommodity(Ship &ship, int freeSpace, const vector<string> &commodities)
-	{
-		int index = Random::Int(GameData::Commodities().size());
-		if(!commodities.empty())
-		{
-			// If a list of possible commodities was given, pick one of them at
-			// random and then double-check that it's a valid commodity name.
-			const string &name = commodities[Random::Int(commodities.size())];
-			for(const auto &it : GameData::Commodities())
-				if(it.name == name)
-				{
-					index = &it - &GameData::Commodities().front();
-					break;
-				}
-		}
-
-		const Trade::Commodity &commodity = GameData::Commodities()[index];
-		int amount = Random::Int(freeSpace) + 1;
-		ship.Cargo().Add(commodity.name, amount);
-	}
-
-	// Add a random outfit from the list to the ship's cargo.
-	void AddRandomOutfit(Ship &ship, int freeSpace, const vector<const Outfit *> &outfits)
-	{
-		if(outfits.empty())
-			return;
-		int index = Random::Int(outfits.size());
-		const Outfit *picked = outfits[index];
-		int maxQuantity = floor(static_cast<double>(freeSpace) / picked->Mass());
-		int amount = Random::Int(maxQuantity) + 1;
-		ship.Cargo().Add(picked, amount);
 	}
 }
 
@@ -185,24 +87,31 @@ void Fleet::Load(const DataNode &node)
 			government = GameData::Governments().Get(child.Token(1));
 		else if(key == "names" && hasValue)
 			names = GameData::Phrases().Get(child.Token(1));
-		else if(key == "fighters" && hasValue)
-			fighterNames = GameData::Phrases().Get(child.Token(1));
-		else if(key == "cargo" && hasValue)
-			cargo = static_cast<int>(child.Value(1));
-		else if(key == "commodities" && hasValue)
+		else if(key == "fighters" && (hasValue || child.HasChildren()))
 		{
-			commodities.clear();
-			for(int i = 1; i < child.Size(); ++i)
-				commodities.push_back(child.Token(i));
+			if(hasValue)
+				fighterNames = GameData::Phrases().Get(child.Token(1));
+			for(const DataNode &grand : child)
+			{
+				const string &fighterKey = grand.Token(0);
+				if(fighterKey == "names" && grand.Size() >= 2)
+					fighterNames = GameData::Phrases().Get(grand.Token(1));
+				else if(fighterKey == "personality")
+					fighterPersonality.Load(grand);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
-		else if(key == "outfitters" && hasValue)
-		{
-			outfitters.clear();
-			for(int i = 1; i < child.Size(); ++i)
-				outfitters.insert(GameData::Outfitters().Get(child.Token(i)));
-		}
+		else if(key == "cargo settings" && child.HasChildren())
+			cargo.Load(child);
+		// Allow certain individual cargo settings to be direct children
+		// of Fleet for backwards compatibility.
+		else if(key == "cargo" || key == "commodities" || key == "outfitters")
+			cargo.LoadSingle(child);
 		else if(key == "personality")
 			personality.Load(child);
+		else if(key == "formation" && hasValue)
+			formation = GameData::Formations().Get(child.Token(1));
 		else if(key == "variant" && !remove)
 		{
 			if(resetVariants && !add)
@@ -294,6 +203,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	Point position;
 	double radius = 1000.;
 
+	// The chosen stellar object the fleet will depart from, if any.
+	const StellarObject *object = nullptr;
 	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
@@ -318,6 +229,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			if(ship->JumpNavigation().HasHyperdrive())
 				hasHyper = true;
 		}
+		const bool unrestricted = personality.IsUnrestricted();
 		// Don't try to make a fleet "enter" from another system if none of the
 		// ships have jump drives.
 		if(hasJump || hasHyper)
@@ -325,6 +237,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 			bool isWelcomeHere = !system.GetGovernment()->IsEnemy(government);
 			for(const System *neighbor : (hasJump ? system.JumpNeighbors(jumpDistance) : system.Links()))
 			{
+				if(!unrestricted && government->IsRestrictedFrom(*neighbor))
+					continue;
 				// If this ship is not "welcome" in the current system, prefer to have
 				// it enter from a system that is friendly to it. (This is for realism,
 				// so attack fleets don't come from what ought to be a safe direction.)
@@ -336,23 +250,26 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		}
 
 		// Find all the inhabited planets this fleet could take off from.
-		vector<const Planet *> planetVector;
+		vector<const StellarObject *> stellarVector;
 		if(!personality.IsSurveillance())
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport()
+				if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited()
+						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
 						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-					planetVector.push_back(object.GetPlanet());
+					stellarVector.push_back(&object);
 
 		// If there is nowhere for this fleet to come from, don't create it.
-		size_t options = linkVector.size() + planetVector.size();
+		size_t options = linkVector.size() + stellarVector.size();
 		if(!options)
 		{
 			// Prefer to launch from inhabited planets, but launch from
 			// uninhabited ones if there is no other option.
 			for(const StellarObject &object : system.Objects())
-				if(object.HasValidPlanet() && !object.GetPlanet()->GetGovernment()->IsEnemy(government))
-					planetVector.push_back(object.GetPlanet());
-			options = planetVector.size();
+				if(object.HasValidPlanet()
+						&& (unrestricted || !government->IsRestrictedFrom(*object.GetPlanet()))
+						&& !object.GetPlanet()->GetGovernment()->IsEnemy(government))
+					stellarVector.push_back(&object);
+			options = stellarVector.size();
 			if(!options)
 				return;
 		}
@@ -363,7 +280,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// If a planet is chosen, also pick a system to travel to after taking off.
 		if(choice >= linkVector.size())
 		{
-			planet = planetVector[choice - linkVector.size()];
+			object = stellarVector[choice - linkVector.size()];
+			planet = object->GetPlanet();
 			if(!linkVector.empty())
 				target = linkVector[Random::Int(linkVector.size())];
 		}
@@ -378,19 +296,34 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	for(auto &ship : placed)
 		PlaceFighter(ship, placed);
 
-	// Find the stellar object for this planet, and place the ships there.
+	// Find the stellar object for this planet if necessary, and place the ships there.
 	if(planet)
 	{
-		const StellarObject *object = system.FindStellar(planet);
 		if(!object)
 		{
-			// Log this error.
-			Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
-				+ planet->TrueName() + "\" in system \"" + system.Name() + "\"");
-			return;
+			// Search the stellar object associated with the given planet.
+			// If there are many possible candidates (for example for ringworlds),
+			// then choose a random one.
+			vector<const StellarObject *> stellarObjects;
+			for(const auto &object : system.Objects())
+				if(object.GetPlanet() == planet)
+					stellarObjects.push_back(&object);
+
+			// If the source planet isn't in the source for some reason, bail out.
+			if(stellarObjects.empty())
+			{
+				// Log this error.
+				Logger::LogError("Fleet::Enter: Unable to find valid stellar object for planet \""
+					+ planet->TrueName() + "\" in system \"" + system.TrueName() + "\"");
+				return;
+			}
+
+			object = stellarObjects[Random::Int(stellarObjects.size())];
 		}
+
+
 		// To take off from the planet, all non-carried ships must be able to access it.
-		else if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
+		if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
 				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
 		{
 			position = object->Position();
@@ -438,7 +371,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		else
 			flagship = ship;
 
-		SetCargo(&*ship);
+		cargo.SetCargo(&*ship);
 	}
 }
 
@@ -446,7 +379,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 
 // Place one of the variants in the given system, already "in action." If the carried flag is set,
 // only uncarried ships will be added to the list (as any carriables will be stored in bays).
-void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried) const
+void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carried, bool addCargo) const
 {
 	if(variants.empty())
 		return;
@@ -485,7 +418,8 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 		else
 			flagship = ship;
 
-		SetCargo(&*ship);
+		if(addCargo)
+			cargo.SetCargo(&*ship);
 	}
 }
 
@@ -494,7 +428,14 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	if(system.Links().empty() || (source && !system.Links().count(source)))
+	bool canEnter = (source != nullptr || any_of(system.Links().begin(), system.Links().end(),
+		[&ship](const System *link) noexcept -> bool
+		{
+			return !ship.IsRestrictedFrom(*link);
+		}
+	));
+
+	if(!canEnter || system.Links().empty() || (source && !system.Links().contains(source)))
 	{
 		Place(system, ship);
 		return &system;
@@ -503,8 +444,12 @@ const System *Fleet::Enter(const System &system, Ship &ship, const System *sourc
 	// Choose which system this ship is coming from.
 	if(!source)
 	{
-		auto it = system.Links().cbegin();
-		advance(it, Random::Int(system.Links().size()));
+		vector<const System *> validSystems;
+		for(const System *link : system.Links())
+			if(!ship.IsRestrictedFrom(*link))
+				validSystems.emplace_back(link);
+		auto it = validSystems.cbegin();
+		advance(it, Random::Int(validSystems.size()));
 		source = *it;
 	}
 
@@ -548,7 +493,7 @@ pair<Point, double> Fleet::ChooseCenter(const System &system)
 {
 	auto centers = vector<pair<Point, double>>();
 	for(const StellarObject &object : system.Objects())
-		if(object.HasValidPlanet() && object.GetPlanet()->HasSpaceport())
+		if(object.HasValidPlanet() && object.GetPlanet()->IsInhabited())
 			centers.emplace_back(object.Position(), object.Radius());
 
 	if(centers.empty())
@@ -566,7 +511,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// At least one of this variant's ships is valid, but we should avoid spawning any that are not defined.
 		if(!model->IsValid())
 		{
-			Logger::LogError("Warning: Skipping invalid ship model \"" + model->ModelName()
+			Logger::LogError("Warning: Skipping invalid ship model \"" + model->TrueModelName()
 				+ "\" in fleet \"" + fleetName + "\".");
 			continue;
 		}
@@ -574,11 +519,16 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		// Copy the model instance into a new instance.
 		auto ship = make_shared<Ship>(*model);
 
-		const Phrase *phrase = ((ship->CanBeCarried() && fighterNames) ? fighterNames : names);
+		bool canBeCarried = ship->CanBeCarried();
+		const Phrase *phrase = ((canBeCarried && fighterNames) ? fighterNames : names);
 		if(phrase)
 			ship->SetName(phrase->Get());
 		ship->SetGovernment(government);
-		ship->SetPersonality(personality);
+		if(canBeCarried && fighterPersonality.IsDefined())
+			ship->SetPersonality(fighterPersonality);
+		else
+			ship->SetPersonality(personality);
+		ship->SetFormationPattern(formation);
 
 		placed.push_back(ship);
 	}
@@ -597,48 +547,4 @@ bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &pla
 			return true;
 
 	return false;
-}
-
-
-
-// Choose the cargo associated with this ship in the fleet.
-// If outfits were specified, but not commodities, do not pick commodities.
-// If commodities were specified, but not outfits, do not pick outfits.
-// If neither or both were specified, choose commodities more often..
-void Fleet::SetCargo(Ship *ship) const
-{
-	const bool canChooseOutfits = commodities.empty() || !outfitters.empty();
-	const bool canChooseCommodities = outfitters.empty() || !commodities.empty();
-	// Populate the possible outfits that may be chosen.
-	int free = ship->Cargo().Free();
-	auto outfits = OutfitChoices(outfitters, ship->GetSystem(), free);
-
-	// Choose random outfits or commodities to transport.
-	for(int i = 0; i < cargo; ++i)
-	{
-		if(free <= 0)
-			break;
-		// Remove any outfits that do not fit into remaining cargo.
-		if(canChooseOutfits && !outfits.empty())
-			outfits.erase(remove_if(outfits.begin(), outfits.end(),
-					[&free](const Outfit *a) { return a->Mass() > free; }),
-				outfits.end());
-
-		if(canChooseCommodities && canChooseOutfits)
-		{
-			if(Random::Real() < .8)
-				AddRandomCommodity(*ship, free, commodities);
-			else
-				AddRandomOutfit(*ship, free, outfits);
-		}
-		else if(canChooseCommodities)
-			AddRandomCommodity(*ship, free, commodities);
-		else
-			AddRandomOutfit(*ship, free, outfits);
-
-		free = ship->Cargo().Free();
-	}
-	int extraCrew = ship->Attributes().Get("bunks") - ship->RequiredCrew();
-	if(extraCrew > 0)
-		ship->AddCrew(Random::Int(extraCrew + 1));
 }

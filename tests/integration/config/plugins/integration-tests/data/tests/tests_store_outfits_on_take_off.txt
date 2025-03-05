@@ -1,4 +1,17 @@
-test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
+# Copyright (c) 2022 by warp-core
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+test-data "Outfit Take Off Storage Save"
 	category "savegame"
 	contents
 		pilot Billy Bughunter
@@ -121,7 +134,7 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Prime"
 		"visited planet" Prime
 
 
-test-data "A Sparrow and a Shuttle and a Shield Generator on Winter"
+test-data "Outfit Take Off Selling Save"
 	category "savegame"
 	contents
 		pilot Billy Bughunter
@@ -246,27 +259,30 @@ test-data "A Sparrow and a Shuttle and a Shield Generator on Winter"
 
 test "Store Outfit On Take Off"
 	status active
-	description "Test the automatic storing of a an outfit in cargo that cannot fit in any ships after taking off."
+	description "Test the automatic storing of an outfit in cargo that cannot fit in any ships after taking off."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "A Sparrow and a Shuttle and a Shield Generator on Prime"
+		inject "Outfit Take Off Storage Save"
 		call "Load First Savegame"
 		# Check startup conditions.
 		assert
 			and
+				"flagship planet: Prime" > 0
 				"credits" == 100
 				"outfit: D23-QP Shield Generator" == 1
 				"outfit (cargo): D23-QP Shield Generator" == 1
 				"outfit (storage): D23-QP Shield Generator" == 0
-		call "Depart"
+		call "Depart and Ignore Warning Message"
 		# Re-check startup conditions.
 		assert
 			and
+				"flagship landed" == 0
 				"credits" == 0
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 1
-		watchdog 90000
+		navigate
+			"travel destination" Winter
 		call "Land"
 		assert
 			and
@@ -281,24 +297,27 @@ test "Sell Outfit On Take Off"
 	description "Test the automatic selling of an outfit in cargo that cannot fit in any ships after taking off from a planet with no outfitter."
 	sequence
 		# Create/inject the savegame and load it.
-		inject "A Sparrow and a Shuttle and a Shield Generator on Winter"
+		inject "Outfit Take Off Selling Save"
 		call "Load First Savegame"
 		# Check startup conditions.
 		assert
 			and
+				"flagship planet: Winter" > 0
 				"credits" == 0
 				"outfit: D23-QP Shield Generator" == 1
 				"outfit (cargo): D23-QP Shield Generator" == 1
 				"outfit (storage): D23-QP Shield Generator" == 0
-		call "Depart"
+		call "Depart and Ignore Warning Message"
 		# Re-check startup conditions.
 		assert
 			and
+				"flagship planet: Winter" < 1
 				"credits" > 0
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
 				"outfit (storage): D23-QP Shield Generator" == 0
-		watchdog 90000
+		navigate
+			"travel destination" Winter
 		call "Land"
 		assert
 			and
@@ -306,4 +325,30 @@ test "Sell Outfit On Take Off"
 				"credits" > 0
 				"outfit: D23-QP Shield Generator" == 0
 				"outfit (cargo): D23-QP Shield Generator" == 0
+				"outfit (storage): D23-QP Shield Generator" == 0
+
+
+test "Abort Take Off On Excess Outfits In Cargo Warning"
+	status active
+	description "Test that it is possible to abort take off when warning about excess outfits in cargo."
+	sequence
+		# Create/inject the savegame and load it.
+		inject "Outfit Take Off Selling Save"
+		call "Load First Savegame"
+		# Check startup conditions.
+		assert
+			and
+				"flagship planet: Winter" > 0
+				"credits" == 0
+				"outfit: D23-QP Shield Generator" == 1
+				"outfit (cargo): D23-QP Shield Generator" == 1
+				"outfit (storage): D23-QP Shield Generator" == 0
+		call "Depart and Abort on Warning Message"
+		# Re-check startup conditions.
+		assert
+			and
+				"flagship planet: Winter" > 0
+				"credits" == 0
+				"outfit: D23-QP Shield Generator" == 1
+				"outfit (cargo): D23-QP Shield Generator" == 1
 				"outfit (storage): D23-QP Shield Generator" == 0

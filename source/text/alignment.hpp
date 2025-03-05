@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_TEXT_ALIGNMENT_H_
-#define ES_TEXT_ALIGNMENT_H_
+#pragma once
 
 // Ways in which text may be aligned.
 enum class Alignment : int {
@@ -23,7 +22,3 @@ enum class Alignment : int {
 	RIGHT,
 	JUSTIFIED,
 };
-
-
-
-#endif

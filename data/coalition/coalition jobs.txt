@@ -385,7 +385,7 @@ mission "Coalition: Peacekeepers 1"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Lunarium activity. Payment is <payment>."
 	passengers 10 10 .2
 	to offer
 		has "known to the heliarchs"
@@ -406,7 +406,7 @@ mission "Coalition: Peacekeepers 2"
 	job
 	repeat
 	name "Peacekeepers to <planet>"
-	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Resistance activity. Payment is <payment>."
+	description "Transport this corps of <bunks> peacekeepers to <destination> to investigate reports of Lunarium activity. Payment is <payment>."
 	passengers 10 5 .1
 	to offer
 		has "known to the heliarchs"
@@ -644,7 +644,7 @@ mission "Coalition: Tourists Out 1"
 		has "known to the heliarchs"
 		random < 40
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -669,7 +669,7 @@ mission "Coalition: Tourists Out 2"
 		has "known to the heliarchs"
 		random < 30
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -694,7 +694,7 @@ mission "Coalition: Tourists Out 3"
 		has "known to the heliarchs"
 		random < 20
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 	destination
@@ -724,7 +724,7 @@ mission "Coalition: Tourists Home 1"
 		has "known to the heliarchs"
 		random < 40
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -749,7 +749,7 @@ mission "Coalition: Tourists Home 2"
 		has "known to the heliarchs"
 		random < 30
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -774,7 +774,7 @@ mission "Coalition: Tourists Home 3"
 		has "known to the heliarchs"
 		random < 20
 	to accept
-		has "outfit: Luxury Accommodations"
+		has "outfit (installed): Luxury Accommodations"
 	source
 		government "Coalition"
 		attributes "tourism"
@@ -1328,3 +1328,480 @@ mission "Coalition: From Games 3"
 		payment
 		payment 25000
 		dialog phrase "coalition games dialog"
+
+
+mission "Heliarchs Buy Jump Drive Job 1"
+	job
+	name "Sell Jump Drive"
+	"apparent payment" 5000000
+	description "Sell a jump drive to the Heliarchs for <payment>."
+	source
+		government "Heliarch"
+	to offer
+		not "Coalition: Lost: Offer: active"
+		has "Heliarchs Buy Jump Drive Mission: declined"
+		has "outfit (cargo): Jump Drive"
+	on accept
+		conversation
+			`The Heliarchs thank you profusely when they see you've taken them up on their offer, and soon enough several of their ships have landed near your own. Apparently they've learned of your change of mind and are excited to see the exchange, leaving their ships and surrounding yours. Soon enough, they make space for an army of engineers to come and remove the spare jump drive from your ship. Still watching the scene, only now in formations, the Heliarch agents whisper among themselves, rarely shifting their eyes, as if looking at a spectacle.`
+			`	Once the drive is out of your ship, it is secured in an excessively reinforced container and transported to a restricted section of the ring, under the guard of hundreds of armed soldiers. One of the Heliarchs who seem to be in charge of the procedure, an Arach, personally comes to you, thanking you again and handing you <payment>. "Honor us you do with such generosity, Captain. Though made great progress in studying jump drives and their mechanisms, we have, still incapable of creating our own, we are, and means of acquiring new copies we have not. Tremendously valuable, each and every drive you could bring us is. If interested in selling any more jump drives, you are, continue to offer you such jobs, we will."`
+			branch license
+				"coalition jobs" < 30
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive.`
+				accept
+			label license
+			action
+				"reputation: Coalition" += 10
+				"reputation: Heliarch" += 10
+				set "license: Coalition"
+				log "Sold a jump drive to the Heliarchs and received permission to purchase Coalition civilian technology and ships."
+				log "Factions" "Saryds" `Saryds are an alien species who look suspiciously similar to the centaurs found in early human mythology. They prefer to live on worlds with as much green space as possible, and even their major cities are full of parks and gardens. Most Saryds live in small communes with up to a few dozen of them per house.`
+				log "Factions" "Kimek" `The Kimek are large insectoid aliens, and are members of the Coalition. They discovered spaceflight after the Saryds, but before the Arachi. They are intensely social creatures, preferring to live together in massive buildings with thousands of inhabitants, and many of their worlds have populations in the tens of billions, far more than any human world.`
+				log "Factions" "Arachi" `The spider-like Arachi were the last of the three Coalition species to discover interstellar travel. Most members of their society owe allegiance to one of the great Arach "Houses," organizations that are somewhat similar to guilds and that each specialize in one particular form of industry or technology.`
+			`	She thanks you yet again, salutes, and leaves to follow the entourage guarding the newly purchased jump drive. Not a minute after she has left, three more Heliarchs arrive at your ship, a delegation consisting of a member of each of the three Coalition species, all wearing golden circlets denoting their rank and authority. "A most unexpected, but greatly value contribution this is," the Saryd says, "to think that so eager would our visitor be to prove their diligence and commitment."`
+			`	The Kimek says, "As aided you have our society in breaking free of the Quarg's cages, with our society's technology may you be trusted."`
+			`	"But," says the Arach, "like all civilians, even citizens, to you our weapons and warships we still cannot sell."`
+			choice
+				`	"Thank you."`
+					goto end
+				`	"Why don't you allow civilians to purchase weapons or warships?"`
+			`	"For the sake of peace it is," says the Saryd. "The Heliarch military, well-trained to use weapons only for defense and only for justice, they are. And to place the needs of the Coalition over the ambitions of their own native species, each one committed is. No such discipline do civilians have, even you. But as a respectful guest you are, to maintain your weapons we shall allow."`
+			label end
+			`	Apparently nothing is for sale here, but they assure you that many Coalition worlds will now grant you access to their shipyards and outfitters. The three Heliarchs all express their deep gratitude for your generosity with providing them a fresh jump drive, and wish you well.`
+				accept
+		"coalition jobs" >?= 30
+		outfit "Jump Drive" -1
+		payment 5000000
+		fail
+
+mission "Heliarchs Buy Jump Drive Job 2"
+	job
+	repeat
+	name "Sell Jump Drive"
+	"apparent payment" 5000000
+	description "Sell a jump drive to the Heliarchs for <payment>."
+	source
+		government "Heliarch"
+	to offer
+		not "Coalition: Lost: Offer: active"
+		has "outfit (cargo): Jump Drive"
+		has "Heliarchs Buy Jump Drive Mission: offered"
+		or
+			not "Heliarchs Buy Jump Drive Mission: declined"
+			has "Heliarchs Buy Jump Drive Job 1: offered"
+	on accept
+		dialog "A team of Heliarch engineers carefully removes the spare jump drive from your ship and brings it to a restricted section of the ring. You're approached by the Heliarch who supervised the procedure, who thanks you for bringing in another drive, and hands you the pay of <payment>."
+		"coalition jobs" += 2
+		outfit "Jump Drive" -1
+		payment 5000000
+		fail
+
+
+mission "Heliarch Contain True"
+	job
+	repeat
+	name `Contain Criminals`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site. Payment is <payment>.`
+	deadline
+	passengers 16 58
+	to offer
+		random < 3
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	destination
+		distance 2 10
+		not attributes "coalition station"
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 70000
+		dialog `You and the other agents converge on the marked area and quickly move to cut off any exits. After a brief firefight, the criminals surrender and a Heliarch ship swoops in to pick them up. You bid your Heliarch colleagues farewell and return to your ship, where you are happy to see that <payment> have already been transferred to your account.`
+
+mission "Heliarch Contain Fail"
+	job
+	repeat
+	name `Contain Criminals`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on site. Payment is <payment>.`
+	deadline
+	passengers 16 58
+	"apparent payment" 70000
+	to offer
+		random < 15
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	destination
+		distance 2 10
+		not attributes "coalition station"
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `You and the other agents head to the marked area, but when you arrive it becomes evident that whoever occupied the place has managed to escape. You bring the other agents to the spaceport as they lament the failed job.`
+
+mission "Heliarch Contain Fake"
+	job
+	repeat
+	name `Contain Criminals`
+	description `Fly to <destination> by <date> so that you and <bunks> other Heliarch agents can combat criminals on the site. Payment is <payment>.`
+	deadline
+	passengers 16 58
+	to offer
+		random < 45
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	destination
+		distance 2 10
+		not attributes "coalition station"
+	on offer
+		require "Enforcer Confrontation Gear"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 55000
+		dialog `Your team pounces and catches the targets entirely by surprise. They offer no resistance, relinquishing their weapons immediately. You call for a Heliarch ship to pick them up and then bid the other agents farewell as you leave. An extra <payment> is already waiting in your account when you return to your ship.`
+
+
+mission "Heliarch Prisoner Transport"
+	job
+	repeat
+	name `Transport Prisoners`
+	description `Bring <bunks> criminals, who were arrested on <origin>, to <destination>. Payment is <payment>.`
+	passengers 3 11
+	to offer
+		random < 15
+		has "license: Heliarch"
+	source
+		government "Coalition"
+	destination
+		government "Heliarch"
+	on offer
+		require "Enforcer Riot Staff"
+		require "Brig"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 45000
+		dialog `When you land on <destination>, Heliarch agents help you move the prisoners out of your ship. Once the last prisoner leaves you're handed <payment>.`
+
+
+mission "Heliarch Investigate"
+	job
+	repeat
+	name `Investigate signs of criminal activity`
+	description `Land on <stopovers>, where you and <bunks> other Heliarch agents will investigate an area where suspicious activity was reported. When you've finished, return to <origin> to receive <payment>.`
+	passengers 6 11
+	to offer
+		random < 60
+		has "license: Heliarch"
+	source
+		government "Heliarch"
+	stopover
+		distance 5 10
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on stopover
+		dialog `You and the other agents head to the reported area looking for anything out of place. You don't find anything prominent, but there are clear signs that the place was recently used. You spend a few hours collecting evidence before heading back to your ship.`
+	on complete
+		payment
+		payment 40000
+		dialog `The agents thank you for transporting them in your ship, wish you safe travels, and head off to deliver the findings to their superiors. You're transferred <payment> a few moments later.`
+
+
+mission "Evacuate Lunarium True"
+	job
+	repeat
+	name "Rescue Lunarium Members"
+	description "Pick up <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
+	deadline
+	to offer
+		random < 10
+		has "Lunarium: Evacuation 6: done"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	passengers 24 65
+	source
+		government "Coalition"
+	stopover
+		government "Coalition"
+		distance 2 4
+	destination
+		government "Coalition"
+		distance 5 6
+	on stopover
+		dialog `The Lunarium members rush to your ship once it touches down on the hangars, and you swiftly open your hatch for them to come in. One of the calmer members asks that you head to <destination> as soon as possible.`
+	on visit
+		dialog phrase "generic missing stopover or passengers"
+	on complete
+		payment
+		payment 33000
+		dialog `Each of the Lunarium members comes to thank you before they leave your ship, expressing their gratitude. The last one hands you <payment>, and heads off with the others.`
+
+mission "Evacuate Lunarium Fail"
+	job
+	repeat
+	name "Rescue Lunarium Members"
+	description "Pick up the <bunks> Lunarium members on <stopovers>, then bring them to <destination> by <date>."
+	deadline
+	to offer
+		random < 5
+		has "Lunarium: Evacuation 6: done"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	passengers 24 65
+	source
+		government "Coalition"
+	stopover
+		government "Coalition"
+		distance 2 4
+	destination
+		government "Coalition"
+		distance 5 6
+	on stopover
+		dialog `You touch down on the hangars, and wait for a few minutes for the Lunarium members. Many minutes pass, however, and none arrive. Instead the docks become increasingly filled with Heliarch agents. A message appears on your monitor, saying that the Heliarchs got to the members here first, but thanking you for your efforts anyway.`
+		fail
+
+
+mission "Lunarium: Armageddon Core Delivery"
+	job
+	repeat
+	name "Armageddon Core Delivery"
+	description "The Lunarium is offering <payment> for you to deliver an Armageddon Core to <destination>."
+	to offer
+		random < 4
+		has "Lunarium: Smuggling: Reactors: done"
+		not "Lunarium: Armageddon Core Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 5 12
+		not government "Heliarch"
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Armageddon Core" -1
+		payment 13500000
+		dialog `Some Lunarium members unload the Armageddon Core after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+
+mission "Lunarium: Fusion Reactor Delivery"
+	job
+	repeat
+	name "Fusion Reactor Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Fusion Reactor to <destination>."
+	to offer
+		random < 7
+		has "Lunarium: Smuggling: Reactors: done"
+		not "Lunarium: Fusion Reactor Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 3 8
+		not government "Heliarch"
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Fusion Reactor" -1
+		payment 7500000
+		dialog `Some Lunarium members unload the Fusion Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+
+mission "Lunarium: Breeder Reactor Delivery"
+	job
+	repeat
+	name "Breeder Reactor Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Breeder Reactor to <destination>."
+	to offer
+		random < 10
+		has "Lunarium: Smuggling: Reactors: done"
+		not "Lunarium: Breeder Reactor Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 3 6
+		not government "Heliarch"
+		not attributes "coalition station"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Breeder Reactor" -1
+		payment 3250000
+		dialog `Some Lunarium members unload the Breeder Reactor after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the reactor away.`
+
+mission "Lunarium: Torpedo Delivery"
+	job
+	repeat
+	name "Torpedo Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Torpedo Launcher, complete with 30 torpedoes, to <destination>."
+	to offer
+		random < 12
+		has "Lunarium: Smuggling: Torpedoes: done"
+		not "Lunarium: Torpedo Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 6 12
+		not government "Heliarch"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		outfit "Torpedo Launcher" -1
+		outfit "Torpedo" -30
+		payment 183000
+		dialog `Some Lunarium members unload the Torpedo Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
+
+mission "Lunarium: Typhoon Delivery"
+	job
+	repeat
+	name "Typhoon Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Typhoon Launcher, complete with 30 Typhoon Torpedoes, to <destination>."
+	to offer
+		random < 7
+		has "Lunarium: Smuggling: Torpedoes: done"
+		not "Lunarium: Typhoon Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 6 12
+		not government "Heliarch"
+	on complete
+		outfit "Typhoon Launcher" -1
+		outfit "Typhoon Torpedo" -30
+		payment 511500
+		dialog `Some Lunarium members unload the Typhoon Launcher and its ammunition after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the cargo away.`
+
+mission "Lunarium: Plasma Delivery"
+	job
+	repeat
+	name "Plasma Turret Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Plasma Turret to <destination>."
+	to offer
+		random < 6
+		has "Lunarium: Smuggling: Heat: done"
+		not "Lunarium: Plasma Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 4 9
+		not government "Heliarch"
+	on complete
+		outfit "Plasma Turret" -1
+		payment 780000
+		dialog `Some Lunarium members unload the Plasma Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`
+
+mission "Lunarium: Flamethrower Delivery"
+	job
+	repeat
+	name "Flamethrower Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a pair of Flamethrowers to <destination>."
+	to offer
+		random < 8
+		has "Lunarium: Smuggling: Heat: done"
+		not "Lunarium: Flamethrower Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 2 6
+		not government "Heliarch"
+	on complete
+		outfit "Flamethrower" -2
+		payment 570000
+		dialog `Some Lunarium members unload the Flamethrowers after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the Flamethrowers away.`
+
+mission "Lunarium: Grenade Delivery"
+	job
+	repeat
+	name "Grenade Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a dozen Fragmentation Grenades to <destination>."
+	to offer
+		random < 11
+		has "Lunarium: Smuggling: Grenades: done"
+		not "Lunarium: Grenade Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 7 13
+		not government "Heliarch"
+	on complete
+		outfit "Fragmentation Grenades" -12
+		payment 306000
+		dialog `Some Lunarium members unload the Fragmentation Grenades after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the grenades away.`
+
+mission "Lunarium: Anti-Missile Delivery"
+	job
+	repeat
+	name "Anti-Missile Delivery"
+	description "The Lunarium is offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
+	to offer
+		random < 10
+		has "Lunarium: Smuggling: AM: done"
+		not "Lunarium: Anti-Missile Delivery: active"
+		not "Heliarch Investigation 2: active"
+		not "joined the heliarchs"
+	to fail
+		has "Heliarch Investigation 2: active"
+		has "joined the heliarchs"
+	source
+		government "Coalition"
+	destination
+		distance 9 14
+		not government "Heliarch"
+	on complete
+		outfit "Heavy Anti-Missile Turret" -1
+		payment 225000
+		dialog `Some Lunarium members unload the Heavy Anti-Missile Turret after you land on an isolated part of <planet> as instructed. They hand you <payment> before quietly transporting the turret away.`

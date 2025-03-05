@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONVERSATION_H_
-#define CONVERSATION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
@@ -37,60 +36,6 @@ class Sprite;
 // killed. A conversation can also branch based on various condition flags that
 // are set for the player, or even trigger various changes to the game's state.
 class Conversation {
-private:
-	// This serves multiple purposes:
-	// - In a regular text node, there's exactly one of these. It contains the
-	//   text data, the index of the next node to unconditionally visit, and,
-	//   optionally, a condition set which, if not met, prevents the text from
-	//   being displayed (without affecting which node is processed next).
-	// - In a choice node, there's one of these for each possible choice,
-	//   containing the text to display, the node the choice leads to, and,
-	//   optionally, the conditions under which to offer the choice.
-	// - In a branch node, there's two of these. The first one contains the
-	//   condition for the branch. If the condition is met, the "next" member
-	//   of the first element is followed. If it's not met, it's the second
-	//   element whose "next" member is followed.
-	class Element {
-	public:
-		explicit Element(std::string text, int next)
-			: text(std::move(text)), next(next) {}
-		// The text to display:
-		std::string text;
-		// The next node to visit:
-		int next;
-		// Conditions for displaying the text:
-		ConditionSet conditions;
-	};
-
-
-	// The conversation is a network of "nodes" that you travel between by
-	// making choices (or by automatic branches that depend on the condition
-	// variable values for the current player).
-	class Node {
-	public:
-		// Construct a new node. Each paragraph of conversation that involves no
-		// choice can be merged into what came before it, to simplify things.
-		explicit Node(bool isChoice = false) noexcept : isChoice(isChoice), canMergeOnto(!isChoice) {}
-
-		// The condition expressions that determine the next node to load, or
-		// whether to display.
-		ConditionSet conditions;
-		// Tasks performed when this node is reached.
-		GameAction actions;
-		// See Element's comment above for what this actually entails.
-		std::vector<Element> elements;
-		// This distinguishes "choice" nodes from "branch" or text nodes. If
-		// this value is false, a one-element node is considered text, and a
-		// node with more than one element is considered is considered a
-		// "branch".
-		bool isChoice;
-		// Keep track of whether it's possible to merge future nodes onto this.
-		bool canMergeOnto;
-
-		// Image that should be shown along with this text.
-		const Sprite *scene = nullptr;
-	};
-
 public:
 	// The possible outcomes of a conversation:
 	static const int ACCEPT = -1;
@@ -114,9 +59,9 @@ public:
 public:
 	Conversation() = default;
 	// Construct and Load() at the same time.
-	Conversation(const DataNode &node, const std::string &missionName = "");
+	Conversation(const DataNode &node);
 	// Read or write to files.
-	void Load(const DataNode &node, const std::string &missionName = "");
+	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 	// Check if any data is loaded in this conversation object.
 	bool IsEmpty() const noexcept;
@@ -171,6 +116,59 @@ public:
 
 
 private:
+	// This serves multiple purposes:
+	// - In a regular text node, there's exactly one of these. It contains the
+	//   text data, the index of the next node to unconditionally visit, and,
+	//   optionally, a condition set which, if not met, prevents the text from
+	//   being displayed (without affecting which node is processed next).
+	// - In a choice node, there's one of these for each possible choice,
+	//   containing the text to display, the node the choice leads to, and,
+	//   optionally, the conditions under which to offer the choice.
+	// - In a branch node, there's two of these. The first one contains the
+	//   condition for the branch. If the condition is met, the "next" member
+	//   of the first element is followed. If it's not met, it's the second
+	//   element whose "next" member is followed.
+	class Element {
+	public:
+		explicit Element(std::string text, int next)
+			: text(std::move(text)), next(next) {}
+		// The text to display:
+		std::string text;
+		// The next node to visit:
+		int next;
+		// Conditions for displaying the text:
+		ConditionSet conditions;
+	};
+
+	// The conversation is a network of "nodes" that you travel between by
+	// making choices (or by automatic branches that depend on the condition
+	// variable values for the current player).
+	class Node {
+	public:
+		// Construct a new node. Each paragraph of conversation that involves no
+		// choice can be merged into what came before it, to simplify things.
+		explicit Node(bool isChoice = false) noexcept : isChoice(isChoice), canMergeOnto(!isChoice) {}
+
+		// The condition expressions that determine the next node to load, or
+		// whether to display.
+		ConditionSet conditions;
+		// Tasks performed when this node is reached.
+		GameAction actions;
+		// See Element's comment above for what this actually entails.
+		std::vector<Element> elements;
+		// This distinguishes "choice" nodes from "branch" or text nodes. If
+		// this value is false, a one-element node is considered text, and a
+		// node with more than one element is considered a "branch".
+		bool isChoice;
+		// Keep track of whether it's possible to merge future nodes onto this.
+		bool canMergeOnto;
+
+		// Image that should be shown along with this text.
+		const Sprite *scene = nullptr;
+	};
+
+
+private:
 	// Parse the children of the given node to see if they contain any "gotos"
 	// or "conditions." If so, link them up properly. Return true if gotos or
 	// conditions were found.
@@ -196,7 +194,3 @@ private:
 	// The actual conversation data:
 	std::vector<Node> nodes;
 };
-
-
-
-#endif

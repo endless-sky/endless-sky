@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Random.h"
 #include "Ship.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 #include "Visual.h"
 
 #include <cmath>
@@ -63,6 +63,17 @@ void Flotsam::Place(const Ship &source)
 {
 	this->source = &source;
 	Place(source, Angle::Random().Unit() * (2. * Random::Real()) - 2. * source.Unit());
+}
+
+
+
+// Place this flotsam with its starting position at the specified bay of the source ship,
+// instead of the center of the ship.
+void Flotsam::Place(const Ship &source, size_t bayIndex)
+{
+	Place(source);
+	if(source.Bays().size() > bayIndex)
+		position += source.Facing().Rotate(source.Bays()[bayIndex].point);
 }
 
 
@@ -118,6 +129,13 @@ void Flotsam::Move(vector<Visual> &visuals)
 
 
 
+void Flotsam::SetVelocity(Point velocity)
+{
+	this->velocity = velocity;
+}
+
+
+
 // This is the one ship that cannot pick up this flotsam.
 const Ship *Flotsam::Source() const
 {
@@ -162,6 +180,13 @@ int Flotsam::Count() const
 double Flotsam::UnitSize() const
 {
 	return outfit ? outfit->Mass() : 1.;
+}
+
+
+
+double Flotsam::Mass() const
+{
+	return Count() * UnitSize();
 }
 
 

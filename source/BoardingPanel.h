@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BOARDING_PANEL_H_
-#define BOARDING_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -37,6 +36,7 @@ class Ship;
 class BoardingPanel : public Panel {
 public:
 	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
+	virtual ~BoardingPanel() override;
 
 	virtual void Draw() override;
 
@@ -129,8 +129,7 @@ private:
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
 	std::vector<std::string> messages;
+
+	// Whether or not the ship can be captured.
+	bool canCapture = false;
 };
-
-
-
-#endif

@@ -13,13 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CLICK_ZONE_H_
-#define CLICK_ZONE_H_
+#pragma once
 
 #include "Point.h"
 #include "Rectangle.h"
 
-#include <cmath>
 #include <utility>
 
 
@@ -65,7 +63,3 @@ Type ClickZone<Type>::Value() const noexcept
 {
 	return value;
 }
-
-
-
-#endif

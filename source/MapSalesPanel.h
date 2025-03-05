@@ -13,11 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAP_SALES_PANEL_H_
-#define MAP_SALES_PANEL_H_
+#pragma once
 
 #include "MapPanel.h"
 
+#include "CategoryList.h"
 #include "ClickZone.h"
 
 #include <set>
@@ -87,8 +87,9 @@ protected:
 	double scroll = 0.;
 	double maxScroll = 0.;
 
-	const std::vector<std::string> &categories;
+	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
+	bool onlyShowStorageHere = false;
 
 
 private:
@@ -102,7 +103,3 @@ private:
 	int selected = -1;
 	int compare = -1;
 };
-
-
-
-#endif

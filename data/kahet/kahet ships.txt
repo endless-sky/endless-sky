@@ -23,9 +23,9 @@ ship "Maeri'het"
 		"hull" 23100
 		"required crew" 1
 		"bunks" 1
-		"mass" 390
-		"drag" 3.8
-		"heat dissipation" .4
+		"mass" 620
+		"drag" 5.0
+		"heat dissipation" .31
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.3
 		"fuel capacity" 800
@@ -126,9 +126,9 @@ ship "Telis'het"
 		"hull" 21300
 		"required crew" 1
 		"bunks" 1
-		"mass" 820
-		"drag" 6.9
-		"heat dissipation" .35
+		"mass" 1570
+		"drag" 10.3
+		"heat dissipation" .24
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.2
 		"fuel capacity" 800
@@ -265,9 +265,9 @@ ship "Vareti'het"
 		"hull" 25800
 		"required crew" 1
 		"bunks" 1
-		"mass" 1520
-		"drag" 11.9
-		"heat dissipation" 0.3
+		"mass" 3220
+		"drag" 20.2
+		"heat dissipation" 0.18
 		"overheat damage threshold" 0.2
 		"overheat damage rate" 1.4
 		"fuel capacity" 700
@@ -307,12 +307,12 @@ ship "Vareti'het"
 	engine -23.5 132 0.8
 	engine 23.5 132 0.8
 	gun 0 -141 "Ka'het Nullifier"
-	gun -72.5 -61.5 "Ka'het Annihilator"
-	gun 72.5 -61.5 "Ka'het Annihilator"
-	gun -72.5 -61.5 "Ka'het Annihilator"
-	gun 72.5 -61.5 "Ka'het Annihilator"
 	gun -52.5 -122 "Ka'het Ravager Beam"
 	gun 52.5 -122 "Ka'het Ravager Beam"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
+	gun -72.5 -61.5 "Ka'het Annihilator"
+	gun 72.5 -61.5 "Ka'het Annihilator"
 	turret -14 -24.5 "Ka'het Annihilator Turret"
 	turret 14 -24.5 "Ka'het Annihilator Turret"
 	turret -14 -4 "Ka'het Ravager Turret"
@@ -348,19 +348,19 @@ ship "Vareti'het" "Vareti'het (EMP)"
 		"Vareti Engine Block"
 		"Hyperdrive"
 
-	gun 0 -141 "Ka'het Nullifier"
-	gun -72.5 -61.5 "Ka'het EMP Deployer"
-	gun 72.5 -61.5 "Ka'het EMP Deployer"
-	gun -72.5 -61.5 "Ka'het Ravager Beam"
-	gun 72.5 -61.5 "Ka'het Ravager Beam"
-	gun -52.5 -122 "Ka'het Ravager Beam"
-	gun 52.5 -122 "Ka'het Ravager Beam"
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4 "Ka'het Annihilator Turret"
-	turret 14 -4 "Ka'het Annihilator Turret"
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5
+	gun "Ka'het Nullifier"
+	gun "Ka'het Ravager Beam"
+	gun "Ka'het Ravager Beam"
+	gun "Ka'het EMP Deployer"
+	gun "Ka'het EMP Deployer"
+	gun "Ka'het Ravager Beam"
+	gun "Ka'het Ravager Beam"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Ravager Turret"
+	turret
 
 ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
 	"uncapturable"
@@ -381,19 +381,19 @@ ship "Vareti'het" "Vareti'het (EMP, Disable-able)"
 		"Vareti Engine Block"
 		"Hyperdrive"
 
-	gun 0 -141 "Ka'het Nullifier"
-	gun -72.5 -61.5 "Ka'het EMP Deployer"
-	gun 72.5 -61.5 "Ka'het EMP Deployer"
-	gun -72.5 -61.5 "Ka'het Ravager Beam"
-	gun 72.5 -61.5 "Ka'het Ravager Beam"
-	gun -52.5 -122 "Ka'het Ravager Beam"
-	gun 52.5 -122 "Ka'het Ravager Beam"
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4 "Ka'het Annihilator Turret"
-	turret 14 -4 "Ka'het Annihilator Turret"
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5
+	gun "Ka'het Nullifier"
+	gun "Ka'het Ravager Beam"
+	gun "Ka'het Ravager Beam"
+	gun "Ka'het EMP Deployer"
+	gun "Ka'het EMP Deployer"
+	gun "Ka'het Ravager Beam"
+	gun "Ka'het Ravager Beam"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Ravager Turret"
+	turret
 
 ship "Vareti'het" "Vareti'het (Strong)"
 	"never disabled"
@@ -411,19 +411,19 @@ ship "Vareti'het" "Vareti'het (Strong)"
 		"Vareti Engine Block"
 		"Hyperdrive"
 
-	gun 0 -141 "Ka'het Nullifier"
-	gun -72.5 -61.5 "Ka'het Annihilator"
-	gun 72.5 -61.5 "Ka'het Annihilator"
-	gun -72.5 -61.5 "Ka'het Annihilator"
-	gun 72.5 -61.5 "Ka'het Annihilator"
-	gun -52.5 -122 "Ka'het Annihilator"
-	gun 52.5 -122 "Ka'het Annihilator"
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4
-	turret 14 -4
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5 "Ka'het Ravager Turret"
+	gun "Ka'het Nullifier"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret
+	turret
+	turret "Ka'het Ravager Turret"
+	turret "Ka'het Ravager Turret"
 
 ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
 	"uncapturable"
@@ -441,19 +441,19 @@ ship "Vareti'het" "Vareti'het (Strong, Disable-able)"
 		"Vareti Engine Block"
 		"Hyperdrive"
 
-	gun 0 -141 "Ka'het Nullifier"
-	gun -72.5 -61.5 "Ka'het Annihilator"
-	gun 72.5 -61.5 "Ka'het Annihilator"
-	gun -72.5 -61.5 "Ka'het Annihilator"
-	gun 72.5 -61.5 "Ka'het Annihilator"
-	gun -52.5 -122 "Ka'het Annihilator"
-	gun 52.5 -122 "Ka'het Annihilator"
-	turret -14 -24.5 "Ka'het Annihilator Turret"
-	turret 14 -24.5 "Ka'het Annihilator Turret"
-	turret -14 -4
-	turret 14 -4
-	turret -13.5 16.5 "Ka'het Ravager Turret"
-	turret 13.5 16.5 "Ka'het Ravager Turret"
+	gun "Ka'het Nullifier"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	gun "Ka'het Annihilator"
+	turret "Ka'het Annihilator Turret"
+	turret "Ka'het Annihilator Turret"
+	turret
+	turret
+	turret "Ka'het Ravager Turret"
+	turret "Ka'het Ravager Turret"
 
 ship "Selii'mar"
 	sprite "ship/selii'mar"
@@ -494,9 +494,9 @@ ship "Faes'mar"
 		"cost" 1180000
 		"shields" 200
 		"hull" 1900
-		"mass" 46
-		"drag" .7
-		"heat dissipation" 1.05
+		"mass" 54
+		"drag" .73
+		"heat dissipation" 1
 		"cargo space" 102
 		"outfit space" 113
 		"engine capacity" 21
@@ -540,18 +540,18 @@ ship "Fetri'sei"
 		"hull" 7200
 		"required crew" 1
 		"bunks" 1
-		"mass" 210
-		"drag" 2.9
-		"heat dissipation" .5
+		"mass" 330
+		"drag" 3.5
+		"heat dissipation" .42
 		"fuel capacity" 100
 		"ramscoop" 0.13
 		"cargo space" 62
-		"outfit space" 383
-		"weapon capacity" 184
-		"engine capacity" 86
-		"energy capacity" 10000
-		"energy generation" 23.3
-		"heat generation" 32
+		"outfit space" 173
+		"weapon capacity" 54
+		"engine capacity" 46
+		"energy capacity" 6000
+		"energy generation" 16.6
+		"heat generation" 24
 		"shield heat" 3.4
 		"hull repair rate" 0.3
 		"ka'sei" 1

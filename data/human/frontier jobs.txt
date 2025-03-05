@@ -237,16 +237,16 @@ mission "Instruct Novice Pilot"
 
 
 mission "Small Pirate gambling"
-	description "Survive the pirate attack!"
+	invisible
 	minor
-	repeat
 	to offer
 		random < 3
-		"reputation: Pirates" < 0
+		"reputation: Pirate" < 0
 		"combat rating" < 200
 		credits > 14357
 	source
 		attributes "dirt belt" "south" "rim" "pirate" "frontier"
+	deadline 1
 	on offer
 		conversation
 			`You're having a drink in a dimly lit spaceport bar when you notice a group of young men in crimson leather outfits gambling in a dark corner. The barman eyes them warily. One of them raises his drink and waves you over, beckoning to join their game.`
@@ -262,6 +262,8 @@ mission "Small Pirate gambling"
 				random < 30
 
 			label "good luck"
+			action
+				payment 23974
 			`	Fortunately, you're able to outsmart them anyway and win the game, winding up with a sizable pile of credit chips. They don't look too happy about it, but do not bother you as you quickly leave. You thank your lucky stars: you're nearly 25,000 credits richer and still in one piece after a face-to-face encounter with pirates.`
 				accept
 
@@ -274,6 +276,8 @@ mission "Small Pirate gambling"
 					goto lose
 
 			label lose
+			action
+				payment -14357
 			`	You grit your teeth and lose hand after hand before the game finally ends. The pirates gloat over their "winnings" of almost 15,000 credits as you leave.`
 				decline
 
@@ -297,6 +301,8 @@ mission "Small Pirate gambling"
 				die
 
 			label "shoot and run"
+			action
+				payment 23974
 			`	Grateful that you never leave your ship unarmed, your hand flies toward the pistol at your thigh. You draw the weapon and fire at the pirate who just threatened you. The slug punches a hole in the center of his chest, and he collapses to the ground. His shocked comrades fumble in horror for their weapons, but you've taken them by surprise and quickly gun down another before deciding it's time to escape. You grab some of the credits on the table on the way out!`
 			`	You dash toward the hangar bay and blast off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, the remaining two pirates hurl obscenities over the comms from their own ships, which are in hot pursuit.`
 				launch
@@ -310,24 +316,17 @@ mission "Small Pirate gambling"
 				die
 
 			label "grab and run"
+			action
+				payment 23974
 			`	You grab the pot and make a break for it! The ruffians howl and draw their guns. You run towards the door in a zigzag motion as bullets fly past you and tear chips out of the walls. You glance backwards just in time to see the barkeep reduce one of the ruffians to hamburger meat with an enormous shotgun. The remaining three chase after you.`
 			`	You dash toward the hangar bay and blast off in a hurry. You quickly count your spoils and see that you're nearly 25,000 credits richer! Halfway out of the atmosphere, you receive a message from the port authorities warning you that while they apprehended two of the pirates, the remaining two made it to their ships and are in hot pursuit.`
 				launch
 
-	on decline
-		payment -14357
-		fail
-
-	on accept
-		payment 23974
-		fail
+	to complete
+		never
 
 	npc
-		personality
-			launching
-			heroic
-			plunders
-			vindictive
+		personality launching heroic plunders vindictive nemesis
 			confusion 20
 		government "Pirate"
 		fleet

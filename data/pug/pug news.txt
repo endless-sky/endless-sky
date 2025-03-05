@@ -1,0 +1,362 @@
+# Copyright (c) 2023 by tibetiroka
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+news "artist on post-fw Deneb"
+	location
+		government "Neutral"
+		system "Deneb"
+	name
+		word
+			"Writer"
+			"Painter"
+			"Artist"
+			"Sculptor"
+			"Designer"
+			"Photographer"
+			"Composer"
+	message
+		word
+			"This "
+		word
+			"planet"
+			"city"
+			"building"
+		word
+			"'s "
+		word
+			"alien"
+			"extraterrestrial"
+			"unique"
+			"Pug"
+		word
+			" origin is so "
+		word
+			"inspiring"
+			"intriguing"
+			"thrilling"
+			"exciting"
+		word
+			"! I'm "
+		word
+			"full of"
+			"bristling with"
+		word
+			" "
+		word
+			"ideas"
+			"creativity"
+			"energy"
+		word
+			"!"
+
+news "tourist on post-fw Deneb"
+	location
+		government "Neutral"
+		system "Deneb"
+	name
+		word
+			"Tourist"
+			"Sightseer"
+			"Traveler"
+	message
+		word
+			"Can you imagine"
+			"Did you know"
+		word
+			" that "
+		word
+			"this entire"
+			"this whole"
+			"every part of this"
+		word
+			" "
+		word
+			"city"
+			"building"
+		word
+			" was "
+		word
+			"constructed"
+			"created"
+			"built"
+			"made"
+		word
+			" by "
+		word
+			"an alien species"
+			"aliens"
+			"insectoid aliens"
+			"another race"
+		word
+			"? "
+		word
+			"That's"
+			"I find that"
+		word
+			" "
+			" so "
+		word
+			"inspiring"
+			"incredible"
+			"exciting"
+			"fascinating"
+		word
+			"!"
+
+news "conspiracy theorist on post-fw Deneb"
+	location
+		government "Neutral"
+		system "Deneb"
+	name
+		word
+			"Conspiracy theorist"
+			"Critical thinker"
+			"Truth seeker"
+	message
+		word
+			"Do you really"
+			"How can you"
+		word
+			" "
+		word
+			"believe"
+			"still think"
+			"accept"
+			"trust"
+		word
+			" that this "
+		word
+			"city"
+			"spaceport"
+			"building"
+			"place"
+		word
+			" was "
+		word
+			"created"
+			"made"
+			"inhabited"
+		word
+			" by "
+		word
+			"another species"
+			"aliens"
+			"a different race"
+		word
+			"? "
+		word
+			"This was "
+		word
+			"clearly"
+			"obviously"
+			"without a doubt"
+		word
+			" built for humans, by humans. "
+		word
+			"You will eventually realize that"
+			"You will come to see that"
+			"I'm gathering evidence for a public trial"
+			"I can provide you with all the proof you need"
+			"This is all just a stunt by the Republic and the Free Worlds"
+		word
+			"."
+
+news "reporter on post-fw Deneb"
+	location
+		government "Neutral"
+		system "Deneb"
+	name
+		word
+			"Reporter"
+			"Journalist"
+			"Correspondent"
+	message
+		word
+			"I don't think there is anything"
+			"I don't find anything to be"
+			"There isn't anything"
+		word
+			" "
+		word
+			"special"
+			"unique"
+			"different"
+		word
+			" about this "
+		word
+			"planet"
+			"place"
+		word
+			", but "
+		word
+			"the people"
+			"my viewers"
+		word
+			" "
+		word
+			"believe otherwise"
+			"always love when I report from here"
+			"still love to see me here"
+			"want me here, so here I am"
+			"find it fascinating"
+		word
+			". Anyway, I"
+		word
+			" have to go now"
+			"'m off to the studio"
+			" have to get going"
+			" stayed too long already"
+			" shouldn't be chatting with you"
+		word
+			", "
+		word
+			"the show"
+			"my segment"
+		word
+			" "
+		word
+			"is about to begin"
+			"starts in three minutes"
+			"is going live in a minute"
+		word
+			"."
+
+news "merchant on post-fw Deneb"
+	location
+		government "Neutral"
+		system "Deneb"
+	name
+		phrase
+			"merchant names"
+	message
+		word
+			"You wouldn't believe"
+			"I didn't imagine"
+		word
+			" the "
+		word
+			"kind"
+			"amount"
+			"sort"
+			"sheer volume"
+		word
+			" of "
+		word
+			"ships"
+			"traffic"
+			"traders"
+		word
+			" passing through"
+		word
+			" here"
+			" this system"
+			""
+		word
+			". This is a shortcut between "
+		word
+			"the Free Worlds"
+			"the Dirt Belt"
+			"the South"
+			"Tarazed"
+		word
+			" and the Syndicate. "
+		word
+			"Just yesterday"
+			"A couple days ago"
+			"When I arrived"
+		word
+			" "
+		word
+			"I had to wait"
+			"I was delayed"
+			"they put me on hold"
+			"they kept telling me there wasn't a free landing pad"
+		word
+			" for "
+		word
+			""
+			"like "
+			"what seemed like "
+			"about "
+			"nearly "
+		word
+			"four hours"
+			"half a day"
+			"ninety minutes"
+		word
+			"!"
+
+news "worker on pug-occupied planet after fw"
+	location
+		neighbor system "Deneb"
+		not government "Pug"
+	name
+		word
+			"Dock worker"
+			"Worker"
+	message
+		word
+			"I "
+		word
+			"was"
+			"was working"
+			"happened to be"
+			"had a contract"
+		word
+			" here "
+		word
+			"during the occupation"
+			"during the Pug war"
+			"when the Pug attacked us"
+		word
+			". "
+		word
+			"For the weird aliens they are"
+			"Even when provoked"
+			"For the most part"
+		word
+			", they "
+		word
+			"didn't really cause trouble"
+			"didn't cause much damage"
+			"just left us alone"
+		word
+			". "
+		word
+			"Unlike some "
+		word
+			"politicians"
+			"pencil pushers"
+			"people"
+			"bureaucrats"
+		word
+			" "
+		word
+			"back home"
+			"on Earth"
+			"I know"
+			"here"
+			"we get these days"
+		word
+			"."
+
+news "pug on pug planets during fw"
+	location
+		government "Pug"
+		not attributes "uninhabited"
+	name
+		word
+			"Pug"
+	message
+		phrase
+			"friendly pug"

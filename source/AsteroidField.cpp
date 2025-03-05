@@ -15,13 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AsteroidField.h"
 
-#include "DrawList.h"
-#include "Mask.h"
+#include "Collision.h"
+#include "CollisionType.h"
+#include "shader/DrawList.h"
+#include "image/Mask.h"
 #include "Minable.h"
 #include "Projectile.h"
 #include "Random.h"
 #include "Screen.h"
-#include "SpriteSet.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -39,7 +41,8 @@ namespace {
 
 // Constructor, to set up the collision set parameters.
 AsteroidField::AsteroidField()
-	: asteroidCollisions(CELL_SIZE, CELL_COUNT), minableCollisions(CELL_SIZE, CELL_COUNT)
+	: asteroidCollisions(CELL_SIZE, CELL_COUNT, CollisionType::ASTEROID),
+	minableCollisions(CELL_SIZE, CELL_COUNT, CollisionType::MINABLE)
 {
 }
 
@@ -121,12 +124,10 @@ void AsteroidField::Draw(DrawList &draw, const Point &center, double zoom) const
 
 
 
-// Check if the given projectile collides with any asteroids.
-Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
+// Check if the given projectile collides with any asteroids. This excludes minables.
+void AsteroidField::CollideAsteroids(const Projectile &projectile, vector<Collision> &result) const
 {
-	Body *hit = nullptr;
-
-	// First, check for collisions with ordinary asteroids, which are tiled.
+	// Check for collisions with ordinary asteroids, which are tiled.
 	// Rather than tiling the collision set, tile the projectile.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
@@ -147,22 +148,16 @@ Body *AsteroidField::Collide(const Projectile &projectile, double *closestHit)
 		for(int x = 0; x < tileX; ++x)
 		{
 			Point offset = Point(x, y) * WRAP;
-			Body *body = asteroidCollisions.Line(from + offset, to + offset, closestHit);
-			if(body)
-				hit = body;
+			asteroidCollisions.Line(from + offset, to + offset, result);
 		}
+}
 
-	// Now, check for collisions with minable asteroids. Because this is the
-	// very last collision check to be done, if a minable asteroid is the
-	// closest hit, it really is what the projectile struck - that is, we are
-	// not going to later find a ship or something else that is closer.
-	Body *body = minableCollisions.Line(projectile, closestHit);
-	if(body)
-	{
-		hit = body;
-		reinterpret_cast<Minable *>(body)->TakeDamage(projectile);
-	}
-	return hit;
+
+
+// Check if the given projectile collides with any minables.
+void AsteroidField::CollideMinables(const Projectile &projectile, vector<Collision> &result) const
+{
+	minableCollisions.Line(projectile, result);
 }
 
 

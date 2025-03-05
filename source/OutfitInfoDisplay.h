@@ -13,17 +13,16 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OUTFIT_INFO_DISPLAY_H_
-#define OUTFIT_INFO_DISPLAY_H_
+#pragma once
 
 #include "ItemInfoDisplay.h"
 
 #include <string>
 #include <vector>
 
+class Outfit;
 class PlayerInfo;
 class Point;
-class Outfit;
 
 
 
@@ -33,10 +32,11 @@ class Outfit;
 class OutfitInfoDisplay : public ItemInfoDisplay {
 public:
 	OutfitInfoDisplay() = default;
-	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
+	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
+			bool canSell = false, bool descriptionCollapsed = true);
 
 	// Call this every time the ship changes.
-	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false);
+	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false, bool descriptionCollapsed = true);
 
 	// Provided by ItemInfoDisplay:
 	// int PanelWidth();
@@ -52,7 +52,8 @@ public:
 
 
 private:
-	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell);
+	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed);
+	void AddRequirementAttribute(std::string label, double value);
 	void UpdateAttributes(const Outfit &outfit);
 
 
@@ -61,7 +62,3 @@ private:
 	std::vector<std::string> requirementValues;
 	int requirementsHeight = 0;
 };
-
-
-
-#endif

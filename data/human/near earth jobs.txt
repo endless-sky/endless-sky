@@ -15,7 +15,7 @@ mission "Historical field trip to <planet>"
 	job
 	repeat
 	description `These <bunks> school students need to reach <destination> by <date> for a historical field trip. The school will pay you <payment>.`
-	passengers 20 100
+	passengers 15 5 .1
 	deadline
 	to offer
 		random < 10
@@ -53,6 +53,7 @@ mission "To Earth Day celebration [0]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source
@@ -87,6 +88,7 @@ mission "To Earth Day celebration [1]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source
@@ -98,6 +100,42 @@ mission "To Earth Day celebration [1]"
 	on complete
 		payment 1000 180
 		dialog `Spaceport workers already festively dressed for Earth Day remove the cargo of <commodity> from your ship and hand you your payment of <payment>.`
+
+
+mission "To Earth Day celebration [2]"
+	name `Earth Day celebration`
+	job
+	repeat
+	description `Bring <fare> to <destination> by <date> for the Earth Day celebration on April 22nd. Payment is <payment>.`
+	passengers 15 5 .1
+	deadline 0 2
+	to offer
+		random < ( "passenger space" - 30 ) * 2
+		or
+			and
+				random < 60
+				month == 2
+				day >= 6
+			and
+				random < 80
+				month == 3
+			and
+				random < 20
+				month == 4
+				day < 22
+		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
+	to fail
+		month * 100 + day >= 422
+	source
+		near "Sol" 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	destination "Earth"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 1000 120
+		dialog "You wish your <passengers> the best of luck on <planet>. After collecting your payment of <payment>, your <passengers> put on their Earth Day hats and leave with their belongings."
 
 
 mission "From Earth Day celebration [0]"
@@ -162,6 +200,37 @@ mission "From Earth Day celebration [1]"
 		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
 
 
+mission "From Earth Day celebration [2]"
+	name `Return from Earth Day`
+	job
+	repeat
+	description `Bring <fare> home to <destination> after the Earth Day celebration. Payment is <payment>.`
+	passengers 15 5 .1
+	to offer
+		random < ( "passenger space" - 30 ) * 2
+		or
+			and
+				random < 50
+				month == 4
+				day > 22
+			and
+				random < 30
+				month == 5
+			and
+				random < 10
+				month == 6
+				day <= 22
+	source "Earth"
+	destination
+		distance 1 15
+		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 1000 100
+		dialog `Your passengers thank you for returning them to <planet>, and you collect your payment of <payment>.`
+
+
 mission "Transport farmers to Mars"
 	job
 	repeat
@@ -176,7 +245,7 @@ mission "Transport farmers to Mars"
 	on complete
 		payment
 		payment 2000
-		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish the farmers the best of luck on <planet>, and collect your payment of <payment>."
 
 
 mission "Transport tourists to Luna"
@@ -193,7 +262,7 @@ mission "Transport tourists to Luna"
 	on complete
 		payment
 		payment 2000
-		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+		dialog "You wish the tourists the best of luck on <planet>, and collect your payment of <payment>."
 
 mission "Transport seasonal workers to Earth"
 	job
@@ -210,3 +279,58 @@ mission "Transport seasonal workers to Earth"
 		payment
 		payment 2000
 		dialog "You wish the workers the best of luck on <planet>, and collect your payment of <payment>."
+
+
+mission "Tycho Crater Shipyards Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Sol 2 10
+		attributes factory
+	destination Luna
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tycho Crater Shipyards Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Sol 2 10
+		attributes factory mining
+	destination Luna
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Tycho Crater Shipyards Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
+	cargo "Ship Systems" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		near Sol 2 10
+		attributes factory
+	destination Luna
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"

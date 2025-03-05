@@ -1,0 +1,105 @@
+# Copyright (c) 2023 by Michael Zahniser
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Betelgeuse Shipment [0]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Betelgeuse Shipyards, a well-respected ship manufacturer in the region. Payment is <payment>."
+	cargo "weapons" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		not government Pirate
+		near Betelgeuse 2 10
+		attributes core factory
+	destination Prime
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Northern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Betelgeuse Shipment [1]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Betelgeuse Shipyards, a well-respected ship manufacturer in the region. Payment is <payment>."
+	cargo "Ship Alloys" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		not government Pirate
+		near Betelgeuse 2 10
+		attributes core factory mining
+	destination Prime
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Northern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Betelgeuse Shipment [2]"
+	name "Shipment to <planet>"
+	description "Deliver <cargo> to <planet>, the home of Betelgeuse Shipyards, a well-respected ship manufacturer in the region. Payment is <payment>."
+	cargo "minerals" 5 2 .1
+	job
+	repeat
+	to offer
+		random < 10
+	source
+		not government Pirate
+		near Betelgeuse 2 10
+		attributes "far north" core
+	destination Prime
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		fleet "Small Northern Pirates"
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 0 160
+		dialog phrase "generic cargo delivery payment"
+
+mission "Navy resupply [0]"
+	name "Resupply Navy base on <planet>"
+	description "The Navy base on <destination> is running low on equipment, but Navy supply ships are currently held up elsewhere and cannot assist. Deliver <cargo> to <planet> by <date>, for <payment>."
+	cargo Military 5 2 .1
+	job
+	repeat
+	deadline
+	to offer
+		random < 2
+	source
+		government "Republic" "Syndicate"
+		attributes outfitter factory
+	destination
+		government "Republic"
+		distance 2 10
+		attributes north
+		attributes military outfitter
+		not attributes rich
+	on visit
+		dialog phrase "generic cargo on visit"
+	on complete
+		payment 5000 160
+		dialog phrase "generic cargo delivery payment"

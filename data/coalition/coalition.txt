@@ -14,7 +14,8 @@
 fleet "Heliarch"
 	government "Heliarch"
 	names "heliarch"
-	fighters "heliarch fighter"
+	fighters
+		names "heliarch fighter"
 	cargo 1
 	personality
 		heroic opportunistic
@@ -394,6 +395,22 @@ outfitter "Heliarch"
 	"Ion Rain Gun"
 	"Local Map"
 
+outfitter "Heliarch Basics"
+	"Ion Rain Gun"
+	"Ion Hail Turret"
+	"Brig"
+	"Scanning Module"
+	"Enforcer Confrontation Gear"
+	"Enforcer Riot Staff"
+	"Local Map"
+
+outfitter "Lunarium Basics"
+	"Refueling Module"
+	"Decoy Plating"
+	"Shield Refactor Module"
+	"Small Recovery Module"
+	"Anti-Materiel Gun"
+	"Local Map"
 
 shipyard "Arach"
 	"Arach Courier"
@@ -949,7 +966,7 @@ phrase "friendly heliarch"
 		" "
 	word
 		"to enrich ourselves"
-		"for our own wellbeing"
+		"for our own well-being"
 		"for our own benefit"
 		"for our own glory"
 		"for glory or power"
@@ -1199,3 +1216,482 @@ phrase "hostile disabled heliarch"
 		"You can only wonder what they're saying"
 	word
 		".)"
+
+phrase "heliarch test dummy"
+	word
+		"Best of luck, I wish you for this battle."
+		"Focus on the battle you must, Captain."
+		"Distract me from the fight, you must not."
+		"Helping me learn, your unique fighting style is."
+		"New to your alien weaponry, I am."
+		"Useful for future combat, this experience is."
+
+phrase "disabled heliarch test dummy"
+	word
+		"Bested us, you have."
+		"Defeated me, you have."
+		"A good fight, it was."
+		"A tough opponent, you were."
+	word
+		" "
+	word
+		"Impressive, your combat skills are."
+		"Work on my tactics, I must."
+		"Congratulations, captain!"
+		"Attack me further, you should not. Make you an enemy of the Heliarchs, destroying me would."
+		"Put to good use as a Heliarch, your combat skills would be."
+
+phrase "friendly coalition"
+	word
+		"The Coalition Games"
+		"A longcow ranch"
+		"Gentle Rain's rainforests"
+		"Saros' moons"
+		"Refuge of Belugt"
+		"Cold Horizon"
+		"Second Cerulean"
+		"Deep Treasure's coral reefs"
+		"Celestial Third's farms"
+		"Second Viridian's arcologies"
+	word
+		", "
+	word
+		"last year I did"
+		"I'd like to"
+		"one day I will"
+	word
+		" "
+	word
+		"visit"
+		"travel to"
+		"see"
+		"spectate"
+		"watch"
+		"observe"
+	word
+		"."
+
+phrase "friendly coalition"
+	word
+		"Sponsored by"
+		"Courtesy of"
+		"A gift from"
+		"Funded by"
+		"Patronized by"
+	word
+		" "
+	word
+		"House Mallob"
+		"House Ablomab"
+		"House Debdo"
+		"House Idriss"
+		"House Garbarag"
+		"House Chamgar"
+		"House Bebliss"
+	word
+		", "
+	word
+		"my ship is"
+		"my fleet is"
+		"this vessel is"
+		"my last ship was"
+		"my first ship was"
+		"my brother's ship is"
+		"my sister's ship is"
+	word
+		"."
+
+phrase "friendly coalition"
+	word
+		"In a longcow ranch"
+		"On ringworld construction"
+		"On station maintenance"
+		"In a Kimek farm"
+		"In an Arach mine"
+		"In a Saryd laboratory"
+		"In a Kimek hunger tower"
+		"In a Saryd retirement home"
+		"In an Arach resort"
+	word
+		", "
+	word
+		"I used to work"
+		"my family works"
+		"my parents worked"
+		"my co-pilot worked"
+	word
+		"."
+
+phrase "hostile coalition"
+	word
+		"Regret this"
+		"Pay for this"
+		"Be chastised for this"
+		"Wish you'd never done that"
+	word
+		", "
+	word
+		"you will"
+	word
+		", "
+	word
+		""
+		"you "
+	word
+		"pitiful"
+		"foolish"
+		"detestable"
+		"despicable"
+		"lousy"
+		"deplorable"
+	word
+		" "
+	word
+		"human"
+		"outsider"
+		"raider"
+		"pirate"
+		"criminal"
+		"lowlife"
+		"bully"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled coalition"
+	word
+		"("
+	word
+		"The Coalition ship hails you, speaking in a language you do not understand."
+		"The ship's captain yells at you in an alien language."
+	word
+		" "
+	word
+		"You can only wonder what they're saying"
+	word
+		".)"
+
+phrase "friendly lunarium"
+	word
+		"To"
+	word
+		" "
+	word
+		"free"
+		"liberate"
+		"unchain"
+		"emancipate"
+		"release"
+		"rescue"
+		"save"
+		"unshackle"
+	word
+		" "
+	word
+		"our"
+	word
+		" "
+	word
+		"great"
+		"noble"
+		"good"
+		"grand"
+		"honorable"
+		"righteous"
+	word
+		" "
+	word
+		"Coalition"
+		"union"
+	word
+		", "
+	word
+		"we"
+	word
+		" "
+	word
+		"fight for"
+		"must"
+		"strive for"
+	word
+		"."
+		"!"
+
+phrase "friendly lunarium"
+	word
+		"To"
+	word
+		" "
+	word
+		"overthrow"
+		"defeat"
+		"eliminate"
+		"destroy"
+		"topple"
+		"depose"
+		"unseat"
+	word
+		" "
+	word
+		"the"
+	word
+		" "
+	word
+		"oppressors"
+		"Heliarchs"
+		"unjust rulers"
+		"Tyrant House"
+		"overlords"
+	word
+		" "
+	word
+		"we"
+	word
+		" "
+	word
+		"fight for"
+		"must"
+		"strive for"
+		"struggle for"
+	word
+		"."
+		"!"
+
+phrase "friendly disabled lunarium"
+	word
+		"Repairs, we do need"
+		"Disabled, our ship has become"
+		"Disabled, our ship is"
+	word
+		". "
+	word
+		"Board our ship, you must"
+		"Help, you must"
+		"Appreciated, assistance would be"
+	word
+		"."
+
+phrase "hostile lunarium"
+	word
+		"Attacked"
+		"Opposed"
+		"Betrayed"
+		"Countered"
+		"Violated"
+	word
+		" "
+	word
+		"the"
+	word
+		" "
+	word
+		"Coalition's freedom"
+		"freedom of the Coalition"
+		"hope of the Coalition"
+		"good of the Coalition"
+		"Coalition's hope"
+	word
+		", "
+	word
+		"you have"
+	word
+		"."
+		"!"
+	word
+		" "
+	word
+		"Fight"
+		"Battle"
+		"Struggle"
+		"Clash"
+		"Duel"
+	word
+		"to the end"
+		"to the last"
+		"until our deaths"
+		"until our ends"
+	word
+		", "
+	word
+		"we will"
+		"we must"
+	word
+		"."
+		"!"
+
+phrase "hostile lunarium"
+	word
+		"Sided with"
+		"Allied yourself with"
+		"Aligned yourself with"
+	word
+		" "
+	word
+		"injustice"
+		"oppression"
+		"the oppressors"
+		"unjust rulers"
+		"the Tyrant House"
+		"the Heliarchs"
+	word
+		", "
+	word
+		"you have"
+	word
+		". "
+	word
+		"For"
+		"To preserve"
+		"To ensure"
+	word
+		" "
+	word
+		"the good of"
+		"the future of"
+		"the freedom of"
+	word
+		" "
+	word
+		"the Coalition"
+		"our Coalition"
+		"our society"
+		"our people"
+	word
+		", "
+	word
+		"oppose"
+		"fight"
+		"defeat"
+		"destroy"
+	word
+		" "
+	word
+		"you"
+	word
+		", "
+	word
+		"I"
+		"we"
+	word
+		" "
+	word
+		"must"
+		"shall"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled lunarium"
+	word
+		"("
+	word
+		"The Lunarium ship hails you, speaking in a language you do not understand."
+		"The Lunarium yell at you in an alien language."
+	word
+		" "
+	word
+		"Their translation device must be broken"
+		"You can only wonder what they're saying"
+	word
+		".)"
+
+phrase "hostile disabled lunarium"
+	word
+		"Live on"
+		"Continue"
+		"Persist"
+		"Carry on"
+		"Cling on"
+	word
+		", "
+	word
+		"our"
+	word
+		" "
+	word
+		"fight"
+		"struggle"
+		"battle"
+		"cause"
+	word
+		" "
+	word
+		"will"
+		"shall"
+	word
+		", "
+	word
+		"even after"
+	word
+		" "
+	word
+		"gone"
+		"destroyed"
+		"dead"
+		"eliminated"
+	word
+		" "
+	word
+		"I am"
+		"we are"
+	word
+		"."
+		"!"
+
+phrase "hostile disabled lunarium"
+	word
+		"To"
+	word
+		" "
+	word
+		"know that"
+		"understand that"
+	word
+		" "
+	word
+		"you"
+		"the Heliarchs"
+		"the oppressors"
+		"the tyrants"
+		"the Tyrant House"
+		"your hunger for power"
+	word
+		" "
+	word
+		"will"
+	word
+		" "
+	word
+		"inevitably"
+		"necessarily"
+		"unavoidably"
+		"surely"
+	word
+		" "
+	word
+		"fall"
+		"be defeated"
+		"be overthrown"
+	word
+		", "
+	word
+		"my"
+		"our"
+	word
+		" "
+	word
+		"only"
+		"final"
+	word
+		" "
+	word
+		"solace"
+		"hope"
+		"comfort"
+		"consolation"
+		"relief"
+	word
+		"is"
+	word
+		"."
+		"!"
