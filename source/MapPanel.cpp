@@ -192,7 +192,7 @@ namespace {
 				if(Preferences::Has("Deadline blink by distance"))
 				{
 					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(*mission.Destination()->GetSystem()))
+					if(distance.HasRoute(*mission.Destination().GetSystem()))
 					{
 						set<const System *> toVisit;
 						for(const Planet *stopover : mission.Stopovers())
@@ -220,7 +220,7 @@ namespace {
 							distance = DistanceMap(player, closest);
 							toVisit.erase(closest);
 						}
-						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
+						daysLeft -= distance.Days(*mission.Destination().GetSystem());
 					}
 				}
 				int blinkFactor = min(6, max(1, daysLeft));
