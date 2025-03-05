@@ -26,17 +26,17 @@ using namespace std;
 
 namespace {
 	// Trace out outlines from an image frame.
-	void Trace(const ImageBuffer &image, int frame, vector<vector<Point>> &raw)
+	void Trace(const ImageBuffer &image, int frame, vector<vector<Point>> &raw, const string &fileName)
 	{
 		const uint32_t on = 0xFF000000;
 		const int width = image.Width();
 		const int height = image.Height();
 		const int numPixels = width * height;
 		const uint32_t *begin = image.Pixels() + frame * numPixels;
-		auto LogError = [width, height](string reason)
+		auto LogError = [width, height, fileName](string reason)
 		{
 			Logger::LogError("Unable to create mask for " + to_string(width) + "x" + to_string(height)
-				+ " px image: " + std::move(reason));
+				+ " px image " + fileName + ": " + std::move(reason));
 		};
 		raw.clear();
 
@@ -281,13 +281,13 @@ namespace {
 
 
 // Construct a mask from the alpha channel of an RGBA-formatted image.
-void Mask::Create(const ImageBuffer &image, int frame)
+void Mask::Create(const ImageBuffer &image, int frame, const string &fileName)
 {
 	outlines.clear();
 	radius = 0.;
 
 	vector<vector<Point>> raw;
-	Trace(image, frame, raw);
+	Trace(image, frame, raw, fileName);
 	if(raw.empty())
 		return;
 
