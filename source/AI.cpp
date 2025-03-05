@@ -2081,7 +2081,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
 	// Check if the parent already landed, or has a target planet that is in the parent's system.
-	const Planet *parentPlanet = (parent.GetPlanet() ? parent.GetPlanet() : (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr));
+	const Planet *parentPlanet = (parent.GetPlanet() ? parent.GetPlanet() :
+		(parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr));
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
 
