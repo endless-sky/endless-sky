@@ -233,7 +233,7 @@ namespace {
 		{"cloaked afterburner", "You may use afterburners while cloaked."},
 		{"cloaked boarding", "You may board while cloaked."},
 		{"cloaked communication", "You may make hails while cloaked."},
-		{"cloaked deployment", "You may deploy carried ships while cloaked."},
+		{"cloaked deployment", "You may deploy from bays while cloaked."},
 		{"cloaked pickup", "You may pick up flotsam while cloaked."},
 		{"cloaked scanning", "You may scan other ships while cloaked."}
 	};
