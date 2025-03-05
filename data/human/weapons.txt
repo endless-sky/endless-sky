@@ -1255,8 +1255,8 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 6
-		"lifetime" 1100
+		"velocity" 4
+		"lifetime" 1600
 		"reload" 120
 		"firing energy" 4
 		"firing heat" 50
@@ -1291,8 +1291,8 @@ outfit "Typhoon Pod"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 6
-		"lifetime" 1100
+		"velocity" 4
+		"lifetime" 1600
 		"reload" 252
 		"burst count" 3
 		"burst reload" 120
