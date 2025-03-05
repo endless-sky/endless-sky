@@ -2061,6 +2061,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
+void AI::MoveWithParent(Ship &ship, Command &command, const Ship &parent)
+{
+	if(ship.GetFormationPattern())
+		MoveInFormation(ship, command);
+	else
+		KeepStation(ship, command, parent);
+}
+
+
+
 // TODO: Function should be const, but formation flying needed write access to the FormationPositioner.
 void AI::MoveEscort(Ship &ship, Command &command)
 {
@@ -2070,8 +2080,8 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	bool needsFuel = ship.NeedsFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
-	// Check if the parent has a target planet that is in the parent's system.
-	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
+	// Check if the parent already landed, or has a target planet that is in the parent's system.
+	const Planet *parentPlanet = (parent.GetPlanet() ? parent.GetPlanet() : (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr));
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
 
@@ -2172,9 +2182,13 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		{
 			ship.SetTargetSystem(nullptr);
 			ship.SetTargetStellar(parent.GetTargetStellar());
-			MoveToPlanet(ship, command);
 			if(parent.IsLanding())
+			{
+				MoveToPlanet(ship, command);
 				command |= Command::LAND;
+			}
+			else
+				MoveWithParent(ship, command, parent);
 		}
 		else if(parentPlanet->IsWormhole())
 		{
@@ -2198,19 +2212,15 @@ void AI::MoveEscort(Ship &ship, Command &command)
 				MoveTo(ship, command, Point(), Point(), 40., 0.1);
 			else
 				// This ship has no route to the parent's destination system, so protect it until it jumps away.
-				KeepStation(ship, command, parent);
+				MoveWithParent(ship, command, parent);
 		}
-		else if(ship.GetFormationPattern())
-			MoveInFormation(ship, command);
 		else
-			KeepStation(ship, command, parent);
+			MoveWithParent(ship, command, parent);
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
 		Stop(ship, command, .2);
-	else if(ship.GetFormationPattern())
-		MoveInFormation(ship, command);
 	else
-		KeepStation(ship, command, parent);
+		MoveWithParent(ship, command, parent);
 }
 
 
