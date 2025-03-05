@@ -1361,7 +1361,7 @@ outfit "Heavy Rocket Launcher"
 		"acceleration" .8
 		"drag" .1
 		"trigger radius" 20
-		"blast radius" 90
+		"blast radius" 150
 		"shield damage" 790
 		"hull damage" 670
 		"hit force" 900
@@ -1396,7 +1396,7 @@ outfit "Heavy Rocket Pod"
 		"acceleration" .8
 		"drag" .1
 		"trigger radius" 20
-		"blast radius" 90
+		"blast radius" 150
 		"shield damage" 790
 		"hull damage" 670
 		"hit force" 900
