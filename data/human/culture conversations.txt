@@ -853,7 +853,7 @@ mission "Exotic Life: Delve"
 		random < 20
 	on offer
 		conversation
-			`The air in Delve's spaceport is thick with the scent of fuel, damp stone, and something acrid - chemical, artificial. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
+			`The air in Delve's spaceport is thick with the scent of fuel, damp stone, and an acrid tang from industrial cleaners lingering in the recirculated ventilation. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
 			choice
 				`	(Ask them what they're doing.)`
 				`	(Ignore them and continue on your way.)`
