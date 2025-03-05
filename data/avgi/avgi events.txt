@@ -67,9 +67,9 @@ mission "Avgi: Initial Wandering Fleet"
 	npc save
 		government "Avgi (Wandering Fleet)"
 		personality coward quiet secretive timid fleeing unconstrained uninterested restricted
-		system Kr-84
+		system Ne-20
 		ship "Modified Tachytia" "Prudent Voyager"
-		ship "Undsyni (Tanker)" "Vitrified Carbon"
+		ship "Undsyni (Plasmadyne)" "Vitrified Carbon"
 		ship "Polari" "Forward Waves"
 		ship "Optikon" "Oki-101"
 		ship "Optikon" "Oki-102"
