@@ -741,7 +741,7 @@ private:
 		std::vector<std::weak_ptr<Ship>> list;
 		// Cached data from escorts to determine the cruise speed for landing.
 		std::weak_ptr<const Ship> slowest;
-		double cruiseVelocity = -1.;
+		double cruiseVelocity = 0.;
 	} escorts;
 
 	bool removeBays = false;

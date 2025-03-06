@@ -4977,7 +4977,7 @@ void Ship::RemoveEscort(const Ship &ship)
 	const bool findSlowest = (!slowest || (&ship == slowest.get()));
 	if(findSlowest)
 	{
-		escorts.cruiseVelocity = -1.;
+		escorts.cruiseVelocity = 0.;
 		escorts.slowest.reset();
 	}
 
@@ -5012,7 +5012,7 @@ void Ship::TuneForEscorts()
 	if(slowest && !slowest->IsDestroyed() && government == slowest->GetGovernment())
 		return;
 
-	escorts.cruiseVelocity = -1.;
+	escorts.cruiseVelocity = 0.;
 	escorts.slowest.reset();
 
 	for(const auto &it : escorts.list)
