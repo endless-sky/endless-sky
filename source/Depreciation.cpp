@@ -167,7 +167,14 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool chassisOnly)
 {
 	// First, add records for all outfits the ship is carrying.
-	if(!chassisOnly)
+	if(chassisOnly)
+	{
+		for(const auto &it : ship.Outfits())
+			if(it.first->Attributes().Get("no storage"))
+				for(int i = 0; i < it.second; ++i)
+					Buy(it.first, day, source);
+	}
+	else
 		for(const auto &it : ship.Outfits())
 			for(int i = 0; i < it.second; ++i)
 				Buy(it.first, day, source);
@@ -255,11 +262,19 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 
 
 // Get the value of a ship, along with all its outfits.
-int64_t Depreciation::Value(const Ship &ship, int day) const
+// If storeOutfits is set to true, only outfits that can't be stored are accounted for.
+int64_t Depreciation::Value(const Ship &ship, int day, bool storeOutfits) const
 {
 	int64_t value = Value(&ship, day);
-	for(const auto &it : ship.Outfits())
-		value += Value(it.first, day, it.second);
+	if(storeOutfits)
+	{
+		for(const auto &it : ship.Outfits())
+			if(it.first->Attributes().Get("no storage"))
+				value += Value(it.first, day, it.second);
+	}
+	else
+		for(const auto &it : ship.Outfits())
+			value += Value(it.first, day, it.second);
 	return value;
 }
 

@@ -1243,14 +1243,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 		if(it->get() == selected)
 		{
 			int day = date.DaysSinceEpoch();
-			int64_t cost;
-
-			// Passing a pointer to Value gets only the hull cost. Passing a reference
-			// gets hull and outfit costs.
-			if(storeOutfits)
-				cost = depreciation.Value(selected, day);
-			else
-				cost = depreciation.Value(*selected, day);
+			int64_t cost = depreciation.Value(*selected, day);
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation, storeOutfits);
@@ -1258,7 +1251,12 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 			{
 				CargoHold &storage = Storage();
 				for(const auto &it : selected->Outfits())
-					storage.Add(it.first, it.second);
+				{
+					if(it.first->Attributes().Get("no storage"))
+						stock[it.first] += it.second;
+					else
+						storage.Add(it.first, it.second);
+				}
 			}
 			else
 			{
