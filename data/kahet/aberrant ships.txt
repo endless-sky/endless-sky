@@ -43,8 +43,8 @@ ship "Aberrant Latte"
 		"hull repair rate" 0.6
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -114,8 +114,8 @@ ship "Aberrant Chomper"
 		"hull repair rate" 0.6
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -192,8 +192,8 @@ ship "Aberrant Pileup"
 		"hull repair rate" 0.6
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -264,8 +264,8 @@ ship "Aberrant Hugger"
 		"hull repair rate" 0.6
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -338,8 +338,8 @@ ship "Aberrant Longfellow"
 		"hull repair rate" 0.6
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -418,8 +418,8 @@ ship "Aberrant Dancer"
 		"hull repair rate" 0.6
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 500
 			"shield damage" 11400
@@ -496,8 +496,8 @@ ship "Aberrant Junior"
 		"hull repair rate" 1.2
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -571,8 +571,8 @@ ship "Aberrant Icebreaker"
 		"hull repair rate" 1.2
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -647,8 +647,8 @@ ship "Aberrant Pike"
 		"hull repair rate" 1.2
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -722,8 +722,8 @@ ship "Aberrant Mole"
 		"hull repair rate" 1.2
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -799,8 +799,8 @@ ship "Aberrant Whiskers"
 		"hull repair rate" 1.2
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 300
 			"shield damage" 6400
@@ -869,8 +869,8 @@ ship "Aberrant Trip"
 		"hull repair rate" 0.2
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 600
 			"shield damage" 12400
@@ -951,8 +951,8 @@ ship "Aberrant Triplet"
 		"hull repair rate" 1.4
 		"quantum keystone" 1
 		"ka'sei" 1
-		"overheat damage threshold" 0.2
-		"overheat damage rate" 1
+		"overheat damage threshold" 0.7
+		"overheat damage rate" 0.7
 		weapon
 			"blast radius" 600
 			"shield damage" 12400
