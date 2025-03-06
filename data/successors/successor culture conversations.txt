@@ -203,3 +203,44 @@ mission "Successors: Graffiti"
 			label fooled
 			`	Upon returning from the spaceport some time later, you find that the "repair crew" has covered an area on the side of the <ship> in their colorful and noxious solution. The pattern forms some words in the Successor script placed alongside a rather crude depiction of your face. The translation device struggles to interpret the non-standard glyphs, but it eventually resolves the text as "'Erjn'-Fool! No quills, no brain!" The defacement takes several hours for the spaceport crews to sufficiently scour off, but a small degree of discoloration remains permanently bonded to the hull plating for the foreseeable future.`
 				decline
+
+mission "Successors: Sosrue"
+	minor
+	source
+		attributes "successor"
+		not attributes "crime" "quiet" "uninhabited"
+	to offer
+		has "trusted by the successors"
+		random < 5
+	on offer
+		conversation
+			`Soon after you disembark your ship, you spot two Successors eyeing you from across the spaceport; the younger one pulls at the arms of the larger one several times until eventually the two of them move over to you. The larger one splays their arms in greeting. "My child wanted me to ask of thee, alien - in thy travels, hast thou met a Sosrue?`
+			choice
+				`	"A what?"`
+					goto what
+				`	"Maybe, but I wouldn't know it by that name if I had."`
+					goto name
+				`	"I don't have time for this."`
+			`	The adult affects what might be a disappointed shade of red, but nonetheless collects their child and leaves you alone to your business.`
+				decline
+			label what
+			`	The child bursts into sound. "Beware the Sosrue, cloaked in black, its teeth and claws - !" before their parent interrupts them.`
+			label name
+			`	"I'm sorry," says the adult. "It's a monster, from a children's poem. This little's favorite. So tell them and I, also - hast thou, among the wider breadth of stars, met some creature long of arm, discerning of ear, and many of tooth, that dwells in every manner of the stellar deep?" Their skin runs with thin golden lines as they say this, shivering with each syllable.`
+			choice
+				`	"No, but I've met some interesting aliens."`
+					goto truth
+				`	"I once wrestled one deep in a nebula."`
+					goto play
+				`	"That's an awfully dark story for a child."`
+			`	The child undulates gently, burbling with strange laughter. "'Tis not real," says their parent. "Why would my child be afeared by it?"`
+			`	With this, the two Successors glide back into the spaceport, chatting with each other as they go.`
+				decline
+			label truth
+			`	The child wriggles gently as if laughing, turning a pastel shade of pink. "So serious, thou art," their parent says. "Perhaps thy alien companions did all the Sosrue-seeing before thou came. They must be witty ones to have escaped with their lives!"`
+			`	With this, the two depart back into the spaceport, clearly having fulfilled whatever impulse towards amusement they came to you for.`
+				decline
+			label play
+			`	"Thy wounds!" the child cries, "and by this, half thy arms have been divorced from thee!" The child wiggles happily, and their parent continues, the golden lines from before bursting into splashes of color all over their body. "Thou must have been a witty one to have escaped this. No doubt thy foe remains in wait, now knowing of thy might. Thou must be twice as clever should you ever meet again!"`
+			`	With this final note, the parent once again splays their arms to you and the two Successors glide back into the spaceport, the child murmuring more of the poem as they go.`
+				decline
