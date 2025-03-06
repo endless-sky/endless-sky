@@ -311,7 +311,7 @@ namespace {
 		jpeg_create_decompress(&cinfo);
 #pragma GCC diagnostic pop
 
-		jpeg_mem_src(&cinfo, reinterpret_cast<const unsigned char *>(data.c_str()), data.size() + 1);
+		jpeg_mem_src(&cinfo, reinterpret_cast<const unsigned char *>(data.data()), data.size());
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 
