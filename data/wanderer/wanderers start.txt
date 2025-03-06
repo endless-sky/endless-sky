@@ -34,9 +34,9 @@ mission "First Contact: Wanderer (Before Hai)"
 
 
 mission "First Contact: Wanderer"
+	landing
 	name "Hai Interpreter?"
 	description "The aliens north of Hai space seem to speak the Hai language. If you can find one of the Hai who is willing to interpret, perhaps you can communicate with them."
-	landing
 	source
 		attributes "wanderer"
 	to offer
@@ -147,8 +147,9 @@ mission "Wanderers: Unfettered Diplomat"
 
 
 mission "Wanderers: Hai Diplomat"
-	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	landing
+	name "Hai Diplomat"
+	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
 	source
 		not planet "Hai-home"
 		attributes "hai"
@@ -182,8 +183,9 @@ mission "Wanderers: Hai Diplomat"
 
 
 mission "Wanderers: Diplomacy"
-	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	landing
+	name "Wanderer Diplomacy"
+	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	source "Hai-home"
 	destination "Vara K'chrai"
 	clearance
@@ -218,8 +220,9 @@ mission "Wanderers: Diplomacy"
 
 
 mission "Wanderers: Translation Machine"
-	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
 	landing
+	name "Translation Machine"
+	description "Sayari, the Hai ambassador, suggested that you visit <destination>, where Hai technologists are working on translation machines."
 	source "Vara K'chrai"
 	destination "Greenwater"
 	to offer
@@ -314,8 +317,8 @@ conversation "eruk cultural data"
 
 
 mission "Human Cultural Archives"
-	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
 	landing
+	description "Eruk, the Hai technologist on <origin>, has agreed to give you a translation machine if you can somehow get him a copy of the human cultural data from <destination>."
 	source "Greenwater"
 	destination "Alexandria"
 	to offer
@@ -334,8 +337,8 @@ mission "Human Cultural Archives"
 
 
 mission "Cultural Data to Greenwater"
-	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
 	landing
+	description "Bring a copy of the human cultural archives to <destination> in exchange for a translation machine."
 	source "Alexandria"
 	destination "Greenwater"
 	to offer
@@ -348,8 +351,8 @@ mission "Cultural Data to Greenwater"
 
 
 mission "Visit Wanderers Again"
-	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
 	landing
+	description "Return to the Wanderer homeworld of <destination> with a device that will allow you to converse with them more freely."
 	source "Greenwater"
 	destination "Vara K'chrai"
 	to offer
@@ -555,8 +558,9 @@ mission "Wanderers: Defend Vara Ke'sok Hint"
 
 
 mission "Wanderers: Defend Vara Ke'sok"
-	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	landing
+	name "Defend <planet>"
+	description "Defend <planet> from an Unfettered attack by driving off or destroying the Hai ships."
 	source "Vara Ke'sok"
 	to offer
 		has "Wanderers Conversation: offered"
@@ -579,7 +583,7 @@ mission "Wanderers: Defend Vara Ke'sok"
 				`	"I will help drive the Unfettered away."`
 					goto yes
 				`	"Why do I need to help? I only accepted a transport mission."`
-			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failure] if you do not help. Will you aid us now?"`
+			`	The Wanderer seems slightly taken aback by your response. "Imminent [danger, aggression]. The Unfettered bring [devastation, destruction]. Many [losses, crop failures] if you do not help. Will you aid us now?"`
 			label choice
 			choice
 				`	"Yes, I will help drive the Unfettered away."`
@@ -731,6 +735,9 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
+		"cargo settings"
+			cargo 4
+			commodities "Food"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 
@@ -1164,6 +1171,11 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 
 
 ship "Carrier" "Carrier (Alpha)"
+	"display name" "Modified Carrier"
+	sprite "ship/modified carrier"
+	thumbnail "thumbnail/modified carrier"
+	add attributes
+		"weapon capacity" 120
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
@@ -1183,18 +1195,36 @@ ship "Carrier" "Carrier (Alpha)"
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun
-	gun
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
+	gun -17 -179 "Ion Cannon"
+	gun 17 -179 "Ion Cannon"
+	gun -25 -168 "Hai Tracker Pod"
+	gun 25 -168 "Hai Tracker Pod"
+	gun -32.5 -163.5 "Hai Tracker Pod"
+	gun 32.5 -163.5 "Hai Tracker Pod"
+	turret 0 -49 "Shield Disruptor Turret"
+	turret 0 14 "Husk-Slice Turret"
+	turret -22 22 "Shield Disruptor Turret"
+	turret 22 22 "Husk-Slice Turret"
+	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
+	bay "Fighter" 50 40.5
+		"launch effect" "human internal"
+	bay "Drone" -71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" 71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" -115 55
+		"launch effect" "human internal"
+	bay "Drone" 115 55
+		"launch effect" "human internal"
+	bay "Drone" -85 55
+		"launch effect" "human internal"
+	bay "Drone" 85 55
+		"launch effect" "human internal"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
@@ -2453,6 +2483,21 @@ event "battle for sich'ka'ara ends"
 	planet "Kort Vek'kri"
 		attributes "unfettered"
 		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`
+		remove tribute
+
+# Patch mission for players who got these missions before 0.10.11 and didn't get tribute from Kort Vek'kri cleared.
+mission "Wanderers: Kort Vek'kri Tribute Patch"
+	landing
+	invisible
+	to offer
+		has "event: battle for sich'ka'ara ends"
+	on offer
+		event "kort vek'kri tribute clear"
+		fail
+
+event "kort vek'kri tribute clear"
+	planet "Kort Vek'kri"
+		remove tribute
 	
 event "solifuge deployment"
 	shipyard "Mon Ki o'Uden Advanced"

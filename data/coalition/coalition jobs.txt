@@ -1786,7 +1786,7 @@ mission "Lunarium: Anti-Missile Delivery"
 	job
 	repeat
 	name "Anti-Missile Delivery"
-	description "The Lunarium is are offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
+	description "The Lunarium is offering <payment> for you to deliver a Heavy Anti-Missile Turret to <destination>."
 	to offer
 		random < 10
 		has "Lunarium: Smuggling: AM: done"

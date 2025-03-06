@@ -26,6 +26,9 @@ Use your favorite package manager to install the following (version numbers may 
    - libmad0-dev
    - uuid-dev
 
+Additionally, if you want to build unit tests:
+   - catch2
+
 ##### RPM-based distros:
    - gcc-c++
    - scons
@@ -37,6 +40,9 @@ Use your favorite package manager to install the following (version numbers may 
    - openal-soft-devel
    - libmad-devel
    - libuuid-devel
+
+Additionally, if you want to build unit tests:
+   - catch2-devel
 
 Then, from the project root folder, simply type:
 

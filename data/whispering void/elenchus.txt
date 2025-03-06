@@ -12,14 +12,14 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 shipyard "Elenctic Commune Basic"
-	# Simple, old, designs from Hai and humans
+	# Simple, old designs from Hai and humans.
 	"Aphid"
 	"Grasshopper"
 	"Shuttle"
 	"Scout"
 	"Sparrow"
 #	"Firebird"
-# They can build the firebird but it'd have to be a variant in here.
+# They can build the Firebird but it'd have to be a variant in here.
 
 outfitter "Elenctic Commune Basic"
 	"Fuel Pod"
@@ -73,6 +73,11 @@ event "liberated elenchus"
 		add fleet "Elenctic Commune Miners" 5000
 	planet "Elenchus"
 		description `Over the past century, a cubic kilometer of this moon has been hollowed out and filled with corridors and cavernous rooms. There is a city of nearly a hundred thousand people whose lives have been focused on science since their ancestors were first brought here a hundred twenty years ago. Now humans, Hai, and even some Korath, live here working side-by-side. Once they were slaves to a succession of criminal organizations, and their story brought the Hai and humans to the brink of war. Fortunately, a resourceful pilot from New Boston averted catastrophe and freed Elenctic Commune.`
+			to display
+				has "human space start"
+		description `Over the past century, a cubic kilometer of this moon has been hollowed out and filled with corridors and cavernous rooms. There is a city of nearly a hundred thousand people whose lives have been focused on science since their ancestors were first brought here a hundred twenty years ago. Now humans, Hai, and even some Korath, live here working side-by-side. Once they were slaves to a succession of criminal organizations, and their story brought the Hai and humans to the brink of war. Fortunately, a resourceful pilot from Greenwater averted catastrophe and freed Elenctic Commune.`
+			to display
+				has "hai space start"
 		spaceport `The spaceport is a distinct structure separate from the larger underground settlements. It has both hangar and ventilation access to the surface with a massive air processor that is the primary supply of breathable air to the population. This once allowed the city to be controlled by pirate groups despite being vastly outnumbered by those they ruled. A disused fighting ring, empty mounts for battle trophies, and bloody spikes that once held pirate victims are all still features baked into the construction. A thick access tunnel with supplementary corridors and vents leads downward from the spaceport to the main settlement. There is still extensive damage from the invasion, but the denizens are slowly cleaning it up.`
 		outfitter "Elenctic Commune Basic"
 		shipyard "Elenctic Commune Basic"
@@ -150,4 +155,3 @@ fleet "Elenctic Commune Miners"
 	variant 5
 		"Firebird (Laser)"
 		"Grasshopper"
-	

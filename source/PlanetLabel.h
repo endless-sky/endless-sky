@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_LABEL_H_
-#define PLANET_LABEL_H_
+#pragma once
 
 #include "Color.h"
 #include "Point.h"
@@ -46,8 +45,9 @@ private:
 
 
 private:
-	Point objectPosition;
-	double objectRadius = 0.;
+	const StellarObject *object;
+
+	Point drawCenter;
 
 	// Used for overlap detection during label creation.
 	Rectangle box;
@@ -65,7 +65,3 @@ private:
 	int hostility = 0;
 	double innerAngle = -1.;
 };
-
-
-
-#endif

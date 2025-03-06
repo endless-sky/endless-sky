@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef VISUAL_H_
-#define VISUAL_H_
+#pragma once
 
 #include "Body.h"
 
@@ -30,7 +29,8 @@ class Effect;
 class Visual : public Body {
 public:
 	Visual() = default;
-	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point());
+	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point(),
+		double inheritedZoom = 1.);
 
 	// Functions provided by the Body base class:
 	// Frame GetFrame(int step = -1) const;
@@ -48,7 +48,3 @@ private:
 	Angle spin;
 	int lifetime = 0;
 };
-
-
-
-#endif

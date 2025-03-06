@@ -15,9 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "RenderBuffer.h"
 
+#include "GameWindow.h"
 #include "Logger.h"
 #include "Screen.h"
-#include "Shader.h"
+#include "shader/Shader.h"
 
 #include "opengl.h"
 
@@ -165,8 +166,10 @@ RenderBuffer::RenderBuffer(const Point &dimensions)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+	multiplier = Point(GameWindow::DrawWidth() / Screen::RawWidth(), GameWindow::DrawHeight() / Screen::RawHeight());
+
 	// Attach a blank image to the texture.
-	const Point scaledSize = size * Screen::Zoom() / 100.0;
+	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, scaledSize.X(), scaledSize.Y(), 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
 	// Attach the texture to the frame buffer.
@@ -209,7 +212,7 @@ RenderBuffer::RenderTargetGuard RenderBuffer::SetTarget()
 	glGetIntegerv(GL_VIEWPORT, lastViewport);
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
 
-	const Point scaledSize = size * Screen::Zoom() / 100.0;
+	const Point scaledSize = size * multiplier * Screen::Zoom() / 100.0;
 	glViewport(0, 0, scaledSize.X(), scaledSize.Y());
 
 	static const float CLEAR[] = {0, 0, 0, 0};

@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef FRAME_TIMER_H_
-#define FRAME_TIMER_H_
+#pragma once
 
 #include <chrono>
 
@@ -53,7 +52,3 @@ private:
 	std::chrono::steady_clock::duration step;
 	std::chrono::steady_clock::duration maxLag;
 };
-
-
-
-#endif

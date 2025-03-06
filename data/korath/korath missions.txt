@@ -102,7 +102,7 @@ mission "Setar Fort Heating"
 					goto decline
 			
 			label payment
-			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... Yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagerie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
+			`	The Wanderer shudders slightly, almost like it had hoped you wouldn't ask that. "Well... yes, it is low. The rest of the Kor Efreti's payment was used to [purchase, acquire] the supplies, and it seemed they could not afford to pay much more than they already had. Given their situation, we found it [reasonable, justifiable] to accept the lower payment, as the cargo is a [collection, menagerie] of equipment to help with the cooling climate on <planet>, and without it the Kor Efreti might... [perish? expire?]."`
 			choice
 				`	"I understand, and the money isn't a huge problem. I was just curious. Load it up onto my ship, and I'll be ready to go."`
 					goto agree
@@ -191,7 +191,7 @@ mission "Korath Livestock"
 			`	You hear the shuffling of feet behind you and turn around. Three towering Korath wearing similar heavy clothing have stepped out of a nearby doorway and are making their way toward you. The bleating noise returns, and you turn again, only to see the original Kor Efret has returned from around the corner. Whatever chance you had of getting out of this is gone now.`
 			`	The one in front turns back to where it came from, and the Korath behind you hisses and gestures forward. It looks like you should follow. You brace yourself and turn the corner to see... animals?`
 			`	The rusting buildings have given way to a massive abandoned plaza, and the entire space is taken up by a mix of large livestock and supplies. They remind you of sheep, but they're around five times larger, have six legs, and come in a variety of brown-black colors. Each has a full coat of fur and an additional blanket made of their own wool-like fabric on them. It's the same material these Korath are wearing. Even with their extra blanket, the "sheep" are huddled in small groups and look uncomfortably cold. They occasionally bleat loudly whenever a cold wind rushes through the plaza. Fortunately for you, these Kor Efreti look to be farmers, not muggers. This must have been the only place near the spaceport where they could keep their entire herd together.`
-			`	The one who led you here, who also seems to be the leader, gestures for you to come over to it. It has opened a paper map - a rare sight in the era of interstellar travel. When you take a look, you realize it's not of the local area, but space; it seems to show the surroundings systems. The Korath points to one, pauses and gestures broadly at the mix of livestock and supplies, then draws its finger to another system and says something that sounds roughly like <planet>. "<planet>?" you confirm, and the Korath hisses in approval. It looks like they want transportation there. You wager the livestock and supplies will take up roughly <tons>, and there are <bunks> Korath farmers in the group.`
+			`	The one who led you here, who also seems to be the leader, gestures for you to come over to it. It has opened a paper map - a rare sight in the era of interstellar travel. When you take a look, you realize it's not of the local area, but space; it seems to show the surrounding systems. The Korath points to one, pauses and gestures broadly at the mix of livestock and supplies, then draws its finger to another system and says something that sounds roughly like <planet>. "<planet>?" you confirm, and the Korath hisses in approval. It looks like they want transportation there. You wager the livestock and supplies will take up roughly <tons>, and there are <bunks> Korath farmers in the group.`
 			`	It pulls a stack of 200 credits from its pocket and sets it on the ground before drawing a circle around it with a piece of chalk. It then draws four more, makes a large circle around the five total smaller ones, then draws nine additional large circles. Your best guess is it's offering 10,000 credits for their transport.`
 			choice
 				`	(Agree to take them.)`
@@ -273,7 +273,7 @@ mission "Efreti: Distress Call 1"
 	to offer
 		not "event: wanderers: kor mereti friendly"
 		has "First Contact: Karek Fornati: offered"
-		has "First Contact: Hai: declined"
+		has "First Contact: Hai: offered"
 		has "visited system: Fah Soom"
 		random < 30
 		"combat rating" > 250
@@ -439,7 +439,7 @@ mission "Efreti: Distress Call 5"
 	destination "Greenwater"
 	landing
 	passengers 66
-	blocked `You need <bunks> available to carry the salvage team.`
+	blocked `You need <bunks> available bunks to carry the salvage team.`
 	
 	to offer
 		has "Efreti: Distress Call 4: done"
@@ -576,4 +576,3 @@ mission "Efreti: Distress Call 8"
 			`	You approach one of the Quarg in the spaceport and request assistance with the data chip. It stops and acknowledges you, but doesn't speak. It pauses for a few moments after you make your request, but then holds out its hand. Taking the data chip, it slots it into a communicator of some sort, slowly nods to itself, and hands it back to you.`
 			`	You return to your ship and try plugging the chip into your systems again, which now displays two files: one in the Korath language, and one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
 			`	You carefully store the chip in a safe place.`
-

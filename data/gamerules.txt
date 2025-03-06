@@ -24,9 +24,9 @@ gamerules
 	"universal ramscoop" true
 	
 	# An attempt to spawn a person ship happens on average every this many frames.
-	# DEFAULT: 36000 frames (ten minutes)
+	# DEFAULT: 72000 frames (twenty minutes)
 	# ALLOWABLE VALUES: any integer >= 1
-	"person spawn period" 36000
+	"person spawn period" 72000
 	
 	# While an attempt to spawn a person ship is made on average every number of frames specified
 	# above, a person ship may still not spawn. Each person ship has a "weight" associated with them
@@ -50,6 +50,11 @@ gamerules
 	# DEFAULT: .75 (75 percent)
 	# ALLOWABLE VALUES: any value between 0. and 1.
 	"universal frugal threshold" 0.75
+
+	# Controls which fighters, when disabled, will not be hit by projectiles unless they are directly targeting.
+	# DEFAULT: all
+	# ALLOWABLE VALUES: all, none, only player
+	"disabled fighters avoid projectiles" "all"
 
 	# Depreciation related game rules:
 

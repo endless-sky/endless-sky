@@ -1,3 +1,5 @@
+print('WARNING: Support for using SCons to build Endless Sky is deprecated and will be removed in the future. See "docs/readme-cmake.md" for instructions on configuring CMake.')
+
 import os
 import platform
 from SCons.Node.FS import Dir
@@ -60,7 +62,7 @@ Help(opts.GenerateHelpText(env))
 #   $ CXXFLAGS=-msse3 scons
 #   $ CXXFLAGS=-march=native scons
 # or modify the `flags` variable:
-flags = ["-std=c++17", "-Wall", "-pedantic-errors", "-Wold-style-cast", "-fno-rtti"]
+flags = ["-std=c++20", "-Wall", "-pedantic-errors", "-Wold-style-cast", "-fno-rtti"]
 if env["mode"] != "debug":
 	flags += ["-Werror", "-O3", "-flto"]
 	env.Append(LINKFLAGS = ["-O3", "-flto"])

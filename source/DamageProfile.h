@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DAMAGE_PROFILE_H_
-#define DAMAGE_PROFILE_H_
+#pragma once
 
 #include "Point.h"
 #include "Projectile.h"
@@ -68,5 +67,3 @@ private:
 	double k = 0.;
 	double rSquared = 0.;
 };
-
-#endif
