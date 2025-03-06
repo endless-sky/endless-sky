@@ -1687,10 +1687,12 @@ government "Pug (Wanderer)"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
 
+color "governments: Quarg" .88 .77 0
+
 # Quarg are split up to their respective areas, and an overall one is kept for missions or other use.
 government "Quarg"
 	swizzle 0
-	color .88 .77 0
+	color "governments: Quarg"
 	
 	"player reputation" 1
 	"attitude toward"
@@ -1723,7 +1725,7 @@ government "Quarg"
 
 government "Quarg (Hai)"
 	swizzle 0
-	color .88 .77 0
+	color "governments: Quarg"
 	"display name" "Quarg"
 
 	"player reputation" 1
@@ -1755,7 +1757,7 @@ government "Quarg (Hai)"
 
 government "Quarg (Incipias)"
 	swizzle 0
-	color .88 .77 0
+	color "governments: Quarg"
 	"display name" "Quarg"
 
 	"player reputation" 1
@@ -1797,7 +1799,7 @@ government "Quarg (Incipias)"
 
 government "Quarg (Kor Efret)"
 	swizzle 0
-	color .88 .77 0
+	color "governments: Quarg"
 	"display name" "Quarg"
 
 	"player reputation" 1
@@ -1828,7 +1830,7 @@ government "Quarg (Kor Efret)"
 
 government "Quarg (Gegno)"
 	swizzle 0
-	color .88 .77 0
+	color "governments: Quarg"
 	"display name" "Quarg"
 
 	"player reputation" 1
