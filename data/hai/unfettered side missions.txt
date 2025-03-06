@@ -98,7 +98,7 @@ mission "Hai Legacy 1"
 			`	"My associates and I have a lucrative business proposition for you. It will require your undivided attention, so you would do well to finish any ongoing business first. If you are interested, come find us at these coordinates."`
 			`	Glancing over at your fleet on the nearby landing pad, they add, "It's a solitary affair -- make sure you can park most of your ships."`
 				to display
-					has "total ships" > 1
+					"total ships" > 1
 			`	Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
 			branch continue
 				"credits" >= 10000000
