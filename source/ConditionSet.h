@@ -32,6 +32,39 @@ class DataWriter;
 // conditions.
 class ConditionSet {
 public:
+	enum class ExpressionOp {
+		INVALID, ///< Expression is invalid.
+
+		// Direct access operators
+		VAR, ///< Direct access to condition variable, no other operations.
+		LIT, ///< Direct access to literal, no other operations).
+
+		// Arithmetic operators
+		ADD, ///< Adds ( + ) the values from all sub-expressions.
+		SUB, ///< Subtracts ( - ) all later sub-expressions from the first one.
+		MUL, ///< Multiplies ( * ) all sub-expressions with each-other.
+		DIV, ///< (Integer) Divides ( / ) the first sub-expression by all later ones.
+		MOD, ///< Modulo ( % ) by the second and later sub-expressions on the first one.
+
+		// Boolean equality operators, return 0 or 1
+		EQ, ///< Tests for equality ( == ).
+		NE, ///< Tests for not equal to ( != ).
+		LE, ///< Tests for less than or equal to ( <= ).
+		GE, ///< Tests for greater than or equal to ( >= ).
+		LT, ///< Tests for less than ( < ).
+		GT, ///< Tests for greater than ( > ).
+
+		// Boolean combination operators, return 0 or 1
+		AND, ///< Boolean 'and' operator; returns 0 on first 0 subcondition, value of first sub-condition otherwise.
+		OR, ///< Boolean 'or' operator; returns value of first non-zero sub-condition, or zero if all are zero.
+
+		// Single boolean operators
+		NOT, ///< Single boolean 'not' operator.
+		HAS ///< Single boolean 'has' operator.
+	};
+
+
+public:
 	ConditionSet() = default;
 	ConditionSet(const ConditionSet &) = default;
 
@@ -77,56 +110,19 @@ public:
 	std::set<std::string> RelevantConditions() const;
 
 
-public:
-	enum class ExpressionOp
-	{
-		OP_INVALID, ///< Expression is invalid.
-
-		// Direct access operators
-		OP_VAR, ///< Direct access to condition variable, no other operations.
-		OP_LIT, ///< Direct access to literal, no other operations).
-
-		// Arithmetic operators
-		OP_ADD, ///< Adds ( + ) the values from all sub-expressions.
-		OP_SUB, ///< Subtracts ( - ) all later sub-expressions from the first one.
-		OP_MUL, ///< Multiplies ( * ) all sub-expressions with each-other.
-		OP_DIV, ///< (Integer) Divides ( / ) the first sub-expression by all later ones.
-		OP_MOD, ///< Modulo ( % ) by the second and later sub-expressions on the first one.
-
-		// Boolean equality operators, return 0 or 1
-		OP_EQ, ///< Tests for equality ( == ).
-		OP_NE, ///< Tests for not equal to ( != ).
-		OP_LE, ///< Tests for less than or equal to ( <= ).
-		OP_GE, ///< Tests for greater than or equal to ( >= ).
-		OP_LT, ///< Tests for less than ( < ).
-		OP_GT, ///< Tests for greater than ( > ).
-
-		// Boolean combination operators, return 0 or 1
-		OP_AND, ///< Boolean 'and' operator; returns 0 on first 0 subcondition, value of first sub-condition otherwise.
-		OP_OR, ///< Boolean 'or' operator; returns value of first non-zero sub-condition, or zero if all are zero.
-
-		// Single boolean operators
-		OP_NOT, ///< Single boolean 'not' operator.
-		OP_HAS ///< Single boolean 'has' operator.
-	};
-
-
 private:
 	/// Parse a node completely into this expression; all tokens on the line and all children if there are any.
 	bool ParseNode(const DataNode &node);
 
-
 	/// Parse the children under 'and'-nodes, 'or'-nodes, or the toplevel-node (which acts as and-node). The
 	/// expression-operator should already have been set before calling this function.
 	bool ParseBooleanChildren(const DataNode &node);
-
 
 	/// Parse a minimal complete expression from the tokens into the (empty) expression.
 	///
 	/// @param node The node to report parse-errors on, if any occur.
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
 	bool ParseMini(const DataNode &node, int &tokenNr);
-
 
 	/// Helper function to parse an infix operator and the subexpression after it.
 	/// Should be called on ConditionSets that already have at least 1 sub-expression in them.
@@ -135,7 +131,6 @@ private:
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
 	bool ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp);
 
-
 	/// Push sub-expressions and the operator from the current expression one level down into a new single
 	/// sub-expression.
 	///
@@ -143,22 +138,19 @@ private:
 	/// @param node Node on which to report the failures (using node.PrintTrace()).
 	bool PushDownFull(const DataNode &node);
 
-
 	/// Push the last sub-expression from the current expression one level down into a new sub-expression.
 	///
 	/// To be used when the next infix-operator has precedence over the current operators being processed.
 	/// @param node Node on which to report the failures (using node.PrintTrace()).
 	bool PushDownLast(const DataNode &node);
 
-
 	/// Handles a failure in parsing of lower-level nodes, for higher-level nodes;
-	/// - Clears the sub-expressions and sets the operator to OP_INVALID.
+	/// - Clears the sub-expressions and sets the operator to INVALID.
 	bool FailParse();
-
 
 	/// Handles a failure in parsing;
 	/// - Reports the failure using PrintTrace() in the given DataNode.
-	/// - Clears the sub-expressions and sets the operator to OP_INVALID.
+	/// - Clears the sub-expressions and sets the operator to INVALID.
 	///
 	/// @param node Node on which to report the failures (using node.PrintTrace()).
 	/// @param failText The reason why parsing is failing. (Will be used as output for node.PrintTrace()).
@@ -171,7 +163,7 @@ private:
 	/// combined using the expression operator that determines how the nested
 	/// sets are to be combined.
 	/// Using an `and`-operator with no sub-expressions as safe initial value.
-	ExpressionOp expressionOperator = ExpressionOp::OP_AND;
+	ExpressionOp expressionOperator = ExpressionOp::AND;
 	/// Literal part of the expression, if this is a literal terminal.
 	int64_t literal = 0;
 	/// Condition variable that is used in this expression, if this is a condition variable.
