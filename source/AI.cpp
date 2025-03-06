@@ -2037,8 +2037,8 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	{
 		// If our allies are clearly stronger than our enemies in this system,
 		// then move at more civilized speeds when going to a planet.
-		// A negative cruising speed indicates the ship should move as quickly as possible.
-		double cruiseSpeed = -1.;
+		// A zero or negative cruising speed indicates the ship should move as quickly as possible.
+		double cruiseSpeed = 0.;
 		if(AllyStrength(ship.GetGovernment()) > EnemyStrength(ship.GetGovernment()) * 2)
 			cruiseSpeed = ship.CruiseVelocity();
 
