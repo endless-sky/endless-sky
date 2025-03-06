@@ -75,7 +75,7 @@ ship "Nathaq" "Nathaq (Bunks)"
 		"Eimlaq Steering"
 		"Eimlaq Thrusters"
 		"Daltaq Energy Generator"
-		"Bunk Room" 14
+		"Bunk Room" 13
 
 ship "Yiyharsi" "Yiyharsi (Government)"
 	outfits
