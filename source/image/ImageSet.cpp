@@ -209,7 +209,7 @@ void ImageSet::Load() noexcept(false)
 	for(size_t i = 0; i < paths[0].size(); ++i)
 	{
 		int loadedFrames = buffer[0].Read(paths[0][i], i);
-    const string fileName = "\"" + name + "\" frame #" + to_string(i);
+		const string fileName = "\"" + name + "\" frame #" + to_string(i);
 		if(!loadedFrames)
 		{
 			Logger::LogError("Failed to read image data for \"" + fileName);
