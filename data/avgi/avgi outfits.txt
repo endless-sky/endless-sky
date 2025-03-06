@@ -386,24 +386,24 @@ effect "small remass injection"
 	sprite "effect/avgi flare/remass"
 		"frame rate" 30
 		"scale" 0.75
+	zooms
 	sound "flamethrower"
 	"sound category" "afterburner"
-	zooms
 
 effect "medium remass injection"
 	sprite "effect/avgi flare/remass"
 		"frame rate" 30
+	zooms
 	sound "flamethrower"
 	"sound category" "afterburner"
-	zooms
 
 effect "large remass injection"
 	sprite "effect/avgi flare/remass"
 		"frame rate" 30
 		"scale" 2
+	zooms
 	sound "flamethrower"
 	"sound category" "afterburner"
-	zooms
 
 
 outfit "Remass Injector"
