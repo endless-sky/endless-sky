@@ -877,7 +877,7 @@ mission "Exotic Life: Delve"
 			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face. "Why do I even bother?"`
 			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
 			label ending
-			`	You give the fumigation teams a final glance and make your way back to your ship, mindful of what might be lurking in the metal unseen.`
+			`	You give the fumigation teams a final glance and make your way back to your ship. The metallic surfaces around you now hint at unseen creatures lurking.`
 				decline
 
 mission "Exotic Life: Ada"
@@ -904,7 +904,7 @@ mission "Exotic Life: Ada"
 					to display
 						has "exotic animals: delvan shipworm known"
 					goto known
-				`	"Well, good luck with that. I must be on my way."`
+				`	"Well, good luck with that. I should get going."`
 					decline
 			`	The worker with the monitor barely hesitates before responding. "Delvan Shipworms are an invasive species from Delve. They start as larvae, tiny worms-"`
 			`	"Bombacles!" the one with the sprayer interjects, voice distorted through the respirator. "They latch on ships, grow into barnacles, then they're bombs!"`
