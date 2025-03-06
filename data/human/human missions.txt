@@ -7574,7 +7574,7 @@ mission "Syndicate Business 1"
 		on kill
 			dialog "You watch as the Emergency Shuttle you're racing to save explodes into a cloud of debris, all hope snuffed out in an instant."
 		conversation
-			`You board the Emergency Shuttle to see its desperate and nearly incoherent occupant: "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to <destination>! I'm with Megaparsec, I can make it worth your while!"`
+			`You board the Emergency Shuttle to see its desperate and nearly incoherent occupant: "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to my office on <planet>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
 					decline
