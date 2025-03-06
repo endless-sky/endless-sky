@@ -494,7 +494,6 @@ planet Baitoon
 		to display
 			has "jibauni knowledge: dinosaur skulls"
 	spaceport `The oldest existing spaceport in Jibauni space, Baitoon's spaceport consists entirely of many different sizes of hangars and pads to compensate for the large amounts of traffic Baitoon receives as the third tourist destination in all of Jibauni space. Many buildings huddle together, old and small.`
-	government Jibauni
 	shipyard "Aboagye Basics"
 	shipyard "Resredi Advanced"
 	shipyard "Resredi Basics"
