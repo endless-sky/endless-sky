@@ -92,10 +92,9 @@ jobs:
           show-progress: false
       - name: Setup sccache
         uses: Mozilla-Actions/sccache-action@v0.0.5
-      - name: Install x86 MinGW
+      - name: Add Mingw to PATH
         run: |
-          choco install mingw --forcex86 --force
-          echo (Join-Path C: ProgramData mingw64 mingw32 bin) >> $env:GITHUB_PATH
+          echo (Join-Path C: mingw32 bin) >> $env:GITHUB_PATH
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
