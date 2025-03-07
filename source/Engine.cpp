@@ -141,8 +141,8 @@ namespace {
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
 		const vector<pair<Body, int>> &flareSprites, uint8_t side, Point scale)
 	{
-		Point leftTurnScale = scale * FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) * Ship::THRUST_HELD_FRAMES_RECIP);
-		Point rightTurnScale = scale * FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT) * Ship::THRUST_HELD_FRAMES_RECIP);
+		Point leftTurnScale = FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) * Ship::THRUST_HELD_FRAMES_RECIP);
+		Point rightTurnScale = FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT) * Ship::THRUST_HELD_FRAMES_RECIP);
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
 			* -ship.Commands().Turn();
 
@@ -167,9 +167,9 @@ namespace {
 					if(point.steering == Ship::EnginePoint::NONE)
 						DrawFlares(it, scale);
 					else if(point.steering == Ship::EnginePoint::LEFT && ship.ThrustHeldFrames(Ship::ThrustKind::LEFT))
-						DrawFlares(it, leftTurnScale);
+						DrawFlares(it, scale * leftTurnScale);
 					else if(point.steering == Ship::EnginePoint::RIGHT && ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-						DrawFlares(it, rightTurnScale);
+						DrawFlares(it, scale * rightTurnScale);
 				}
 		}
 	}
