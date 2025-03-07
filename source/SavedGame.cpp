@@ -55,14 +55,14 @@ void SavedGame::Load(const filesystem::path &path)
 		{
 			system = node.Token(1);
 			const System *savedSystem = GameData::Systems().Find(system);
-			if(savedSystem)
+			if(savedSystem && savedSystem->IsValid())
 				system = savedSystem->DisplayName();
 		}
 		else if(node.Token(0) == "planet" && node.Size() >= 2)
 		{
 			planet = node.Token(1);
 			const Planet *savedPlanet = GameData::Planets().Find(planet);
-			if(savedPlanet)
+			if(savedPlanet && savedPlanet->IsValid())
 				planet = savedPlanet->DisplayName();
 		}
 		else if(node.Token(0) == "playtime" && node.Size() >= 2)
