@@ -734,14 +734,12 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		while(v < value)
 		{
 			Color nFromColor = Color::Combine((1 - v), *fromColor, v, *toColor);
-			cerr << v << ", "; 
 			Point from = start + v * dimensions;
 			v += filled;
-			cerr << v << ", "; 
-			Point to = start + min(v, value) * dimensions;
-			Color nToColor = Color::Combine((1 - v), *fromColor, v, *toColor);
+			double lim = min(v, value);
+			Point to = start + lim * dimensions;
+			Color nToColor = Color::Combine(1 - lim, *fromColor, lim, *toColor);
 			v += empty;
-			cerr << v << ".\n"; 
 
 			// Rounded lines have a bit of padding, so account for that here.
 			float d = (to - from).Length() / 2.;
