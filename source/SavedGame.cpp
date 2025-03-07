@@ -52,7 +52,12 @@ void SavedGame::Load(const filesystem::path &path)
 		else if(node.Token(0) == "date" && node.Size() >= 4)
 			date = Date(node.Value(1), node.Value(2), node.Value(3)).ToString();
 		else if(node.Token(0) == "system" && node.Size() >= 2)
+		{
 			system = node.Token(1);
+			const System *savedSystem = GameData::Systems().Find(system);
+			if(savedSystem)
+				system = savedSystem->DisplayName();
+		}
 		else if(node.Token(0) == "planet" && node.Size() >= 2)
 			planet = node.Token(1);
 		else if(node.Token(0) == "playtime" && node.Size() >= 2)
