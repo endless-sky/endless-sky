@@ -1350,7 +1350,7 @@ void OutfitterPanel::DrawButtons()
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	
+
 	auto DrawButton = [&](const string &name, const Point &center, bool isactive, bool hovering)
 	{
 		// Draw the first row of buttons.
