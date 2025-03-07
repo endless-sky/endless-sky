@@ -30,6 +30,7 @@ outfit "Small Graviton Thruster"
 	"force protection" 0.1
 	"inertia reduction" 0.1
 	"flare sprite" "effect/graviton flare/graviton flare"
+		"frame rate" 5
 		"scale" .75
 	description "How exactly Quarg thrusters work is unknown, but the mechanism that powers even this small set of engines consumes more energy than some human warships. Where all this energy goes is a complete mystery."
 	description "	These engines also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships equipped with them accelerate faster under their own power than one would expect, while also taking less impact from external forces."
@@ -66,6 +67,7 @@ outfit "Medium Graviton Thruster"
 	"force protection" 0.15
 	"inertia reduction" 0.15
 	"flare sprite" "effect/graviton flare/graviton flare"
+		"frame rate" 5
 	description "Quarg thrusters are quite powerful for their size and produce very little heat, but at the cost of consuming immense amounts of energy. The mechanism by which they produce thrust is unknown, but it is rumored that the passing of a Quarg ship wreaks havoc on every gravitational wave antenna in the system."
 	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect, while also taking less impact from external forces."
 
@@ -102,6 +104,7 @@ outfit "Large Graviton Thruster"
 	"force protection" 0.2
 	"inertia reduction" 0.2
 	"flare sprite" "effect/graviton flare/graviton flare"
+		"frame rate" 5
 		"scale" 1.25
 	description "This large set of Quarg thrusters is both powerful and subtle, leaving behind no bright exhaust trail nor emitting any detectable radiation aside from a faint violet glow. This is juxtaposed with the extreme amount of energy these engines consume, enough to power entire stations."
 	description "	They also have strange capabilities which seem to violate the laws of physics as humanity understands them. Ships with these engines accelerate faster under their own power than one would expect, while also taking less impact from external forces."
