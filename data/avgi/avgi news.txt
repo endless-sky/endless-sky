@@ -20,12 +20,12 @@ news "avgi siege civilian"
 		attributes "aberrant siege"
 	name
 		word
-			"Avgi "
+			"Avgi"
 		word
-			"civilian"
-			"citizen"
-			"bystander"
-			"onlooker"
+			" civilian"
+			" citizen"
+			" bystander"
+			" onlooker"
 			""
 	message
 		word
@@ -208,6 +208,8 @@ news "avgi safety advisory"
 			`Missing fleet reported; suspected lost in the Tangled Shroud."`
 			`The defensive cordon at Arche is not impenetrable. Remain vigilant."`
 			`Report all Aberration sightings as soon as possible."`
+	message
+		word
 			"The message board chirps in an Avgi language your translator does not appear to be compatible with."
 
 
@@ -382,7 +384,7 @@ news "avgi astronomer"
 		not attributes "aberrant siege"
 	name
 		word
-			"Avgi"
+			"Avgi "
 		word
 			"Astronomer"
 			"Astrophysicist"
@@ -486,7 +488,7 @@ news "avgi doctor"
 		not attributes "aberrant siege"
 	name
 		word
-			"Avgi"
+			"Avgi "
 		word
 			"doctor"
 			"healer"

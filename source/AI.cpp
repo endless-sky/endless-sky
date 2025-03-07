@@ -921,6 +921,11 @@ void AI::Step(Command &activeCommands)
 					|| shipToAssist->GetGovernment()->IsEnemy(gov)
 					|| (!shipToAssist->IsDisabled() && !shipToAssist->NeedsFuel() && !shipToAssist->NeedsEnergy()))
 			{
+				if(target == shipToAssist)
+				{
+					target.reset();
+					it->SetTargetShip(nullptr);
+				}
 				shipToAssist.reset();
 				it->SetShipToAssist(nullptr);
 			}
@@ -2819,10 +2824,12 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	// use them to reach the target more quickly.
 	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
-	// This isn't perfect, but it works well enough.
+	// Only apply thrust if either:
+	// This ship is within 90 degrees of facing towards its target and far enough away not to overshoot
+	// if it accelerates while needing to turn further, or:
+	// This ship is moving away from its target but facing mostly towards it.
 	else if((facing >= 0. && direction.Length() > diameter)
-			|| (ship.Velocity().Dot(direction) < 0. &&
-				facing) >= .9)
+			|| (ship.Velocity().Dot(direction) < 0. && facing >= .9))
 		command |= Command::FORWARD;
 
 	// Use an equipped afterburner if possible.
@@ -3565,7 +3572,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 		// Find the maximum range of any of this ship's turrets.
 		double maxRange = 0.;
 		for(const Hardpoint &weapon : ship.Weapons())
-			if(weapon.CanAim())
+			if(weapon.CanAim(ship))
 				maxRange = max(maxRange, weapon.GetOutfit()->Range());
 		// If this ship has no turrets, bail out.
 		if(!maxRange)
@@ -3598,19 +3605,19 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	if(targets.empty() && !opportunistic)
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
-			if(hardpoint.CanAim())
+			if(hardpoint.CanAim(ship))
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
 				double offset = (hardpoint.GetIdleAngle() - hardpoint.GetAngle()).Degrees();
-				command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+				command.SetAim(index, offset / hardpoint.TurnRate(ship));
 			}
 		return;
 	}
 	if(targets.empty())
 	{
 		for(const Hardpoint &hardpoint : ship.Weapons())
-			if(hardpoint.CanAim())
+			if(hardpoint.CanAim(ship))
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
@@ -3633,7 +3640,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 	}
 	// Each hardpoint should aim at the target that it is "closest" to hitting.
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.CanAim())
+		if(hardpoint.CanAim(ship))
 		{
 			// This is where this projectile fires from. Add some randomness
 			// based on how skilled the pilot is.
@@ -3713,9 +3720,9 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 					}
 					degrees = (angleToPoint - minArc).AbsDegrees() - (aim - minArc).AbsDegrees();
 				}
-				double turnTime = fabs(degrees) / weapon->TurretTurn();
+				double turnTime = fabs(degrees) / hardpoint.TurnRate(ship);
 				// Always prefer targets that you are able to hit.
-				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
+				double score = turnTime + (180. / hardpoint.TurnRate(ship)) * rendezvousTime;
 				if(score < bestScore)
 				{
 					bestScore = score;
@@ -3726,7 +3733,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic) 
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				command.SetAim(index, bestAngle / weapon->TurretTurn());
+				command.SetAim(index, bestAngle / hardpoint.TurnRate(ship));
 			}
 		}
 }
@@ -4611,7 +4618,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	{
 		// Check if this ship has any forward-facing weapons.
 		for(const Hardpoint &weapon : ship.Weapons())
-			if(!weapon.CanAim() && !weapon.IsTurret() && weapon.GetOutfit())
+			if(!weapon.CanAim(ship) && !weapon.IsTurret() && weapon.GetOutfit())
 			{
 				shouldAutoAim = true;
 				break;
