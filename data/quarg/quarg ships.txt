@@ -15,6 +15,7 @@
 ship "Quarg Lindwyrm"
 	sprite "ship/quarg lindwyrm"
 	thumbnail "thumbnail/quarg lindwyrm"
+	swizzle 0
 	attributes
 		category "Heavy Freighter"
 		"cost" 20000000
@@ -65,6 +66,7 @@ ship "Quarg Lindwyrm"
 ship "Quarg Guivre"
 	sprite "ship/quarg guivre"
 	thumbnail "thumbnail/quarg guivre"
+	swizzle 0
 	attributes
 		category "Utility"
 		"cost" 75000000
@@ -115,6 +117,7 @@ ship "Quarg Guivre"
 ship "Quarg Drake"
 	sprite "ship/quarg drake"
 	thumbnail "thumbnail/quarg drake"
+	swizzle 0
 	attributes
 		category "Light Warship"
 		"cost" 12000000
@@ -167,6 +170,7 @@ ship "Quarg Drake"
 ship "Quarg Wardragon"
 	sprite "ship/quarg wardragon"
 	thumbnail "thumbnail/quarg wardragon"
+	swizzle 0
 	attributes
 		category "Light Warship"
 		"cost" 15000000
@@ -218,6 +222,7 @@ ship "Quarg Wardragon"
 ship "Quarg Wyvern"
 	sprite "ship/quarg wyvern"
 	thumbnail "thumbnail/quarg wyvern"
+	swizzle 0
 	attributes
 		category "Medium Warship"
 		"cost" 27000000
@@ -270,6 +275,7 @@ ship "Quarg Wyvern"
 ship "Quarg Hydra"
 	sprite "ship/quarg hydra"
 	thumbnail "thumbnail/quarg hydra"
+	swizzle 0
 	attributes
 		category "Heavy Warship"
 		"cost" 65000000
