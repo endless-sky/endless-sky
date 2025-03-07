@@ -1046,7 +1046,7 @@ interface "hud"
 	bar "heat"
 		from -13.5 403
 		dimensions 0 -192
-		color "heat"
+		color "heat" "overheat"
 		size 2
 	bar "overheat"
 		from -13.5 403

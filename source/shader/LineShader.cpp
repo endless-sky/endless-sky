@@ -30,7 +30,8 @@ namespace {
 	GLint startI;
 	GLint endI;
 	GLint widthI;
-	GLint colorI;
+	GLint fromColorI;
+	GLint toColorI;
 	GLint capI;
 
 	GLuint vao;
@@ -53,14 +54,19 @@ void LineShader::Init()
 		"uniform float width;\n"
 		"uniform int cap;\n"
 
+		"uniform vec4 startColor;\n"
+		"uniform vec4 endColor;\n"
+
 		"in vec2 vert;\n"
 		"out vec2 pos;\n"
+		"out vec4 color;\n"
 
 		"void main() {\n"
 		// Construct a rectangle around the line that can accommodate a line of width "width".
 		"    vec2 unit = normalize(end - start);\n"
 		// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
 		"    highp vec2 origin = vert.y > 0.0 ? start : end;\n"
+		"    color = vert.y > 0.0 ? startColor : endColor;\n"
 		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
 		"    float widthOffset = width + 1.;\n"
 		// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
@@ -86,10 +92,10 @@ void LineShader::Init()
 		"uniform highp vec2 start;\n"
 		"uniform highp vec2 end;\n"
 		"uniform float width;\n"
-		"uniform vec4 color;\n"
 		"uniform int cap;\n"
 
 		"in vec2 pos;\n"
+		"in vec4 color;\n"
 		"out vec4 finalColor;\n"
 
 		// From https://iquilezles.org/articles/distfunctions2d/ - functions to get the distance from a point to a shape.
@@ -129,7 +135,8 @@ void LineShader::Init()
 	startI = shader.Uniform("start");
 	endI = shader.Uniform("end");
 	widthI = shader.Uniform("width");
-	colorI = shader.Uniform("color");
+	fromColorI = shader.Uniform("startColor");
+	toColorI = shader.Uniform("endColor");
 	capI = shader.Uniform("cap");
 
 	// Generate the vertex data for drawing sprites.
@@ -159,31 +166,7 @@ void LineShader::Init()
 
 void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap)
 {
-	if(!shader.Object())
-		throw runtime_error("LineShader: Draw() called before Init().");
-
-	glUseProgram(shader.Object());
-	glBindVertexArray(vao);
-
-	GLfloat scale[2] = {static_cast<GLfloat>(Screen::Width()), static_cast<GLfloat>(Screen::Height())};
-	glUniform2fv(scaleI, 1, scale);
-
-	GLfloat start[2] = {static_cast<float>(from.X()), static_cast<float>(from.Y())};
-	glUniform2fv(startI, 1, start);
-
-	GLfloat end[2] = {static_cast<float>(to.X()), static_cast<float>(to.Y())};
-	glUniform2fv(endI, 1, end);
-
-	glUniform1f(widthI, width);
-
-	glUniform4fv(colorI, 1, color.Get());
-
-	glUniform1i(capI, static_cast<GLint>(roundCap));
-
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-	glBindVertexArray(0);
-	glUseProgram(0);
+	DrawGradient(from, to, width, color, color);
 }
 
 
@@ -206,4 +189,36 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 		Draw(from + unit * ((i * length) / segments + spaceLength + capOffset),
 			from + unit * (((i + 1) * length) / segments - spaceLength - capOffset),
 			width, color, roundCap);
+}
+
+
+
+void LineShader::DrawGradient(const Point &from, const Point &to, float width, const Color &fromColor, const Color &toColor, bool roundCap)
+{
+	if(!shader.Object())
+		throw runtime_error("LineShader: Draw() called before Init().");
+
+	glUseProgram(shader.Object());
+	glBindVertexArray(vao);
+
+	GLfloat scale[2] = {static_cast<GLfloat>(Screen::Width()), static_cast<GLfloat>(Screen::Height())};
+	glUniform2fv(scaleI, 1, scale);
+
+	GLfloat start[2] = {static_cast<float>(from.X()), static_cast<float>(from.Y())};
+	glUniform2fv(startI, 1, start);
+
+	GLfloat end[2] = {static_cast<float>(to.X()), static_cast<float>(to.Y())};
+	glUniform2fv(endI, 1, end);
+
+	glUniform1f(widthI, width);
+
+	glUniform4fv(fromColorI, 1, fromColor.Get());
+	glUniform4fv(toColorI, 1, toColor.Get());
+
+	glUniform1i(capI, static_cast<GLint>(roundCap));
+
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+	glBindVertexArray(0);
+	glUseProgram(0);
 }
