@@ -82,7 +82,7 @@ jobs:
 
   release_windows_x86:
     name: Windows x86
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       OUTPUT: EndlessSky-win32-${{ inputs.release_version }}.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
