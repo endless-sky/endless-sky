@@ -19,7 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Date.h"
 #include "text/Format.h"
+#include "GameData.h"
+#include "Planet.h"
 #include "image/SpriteSet.h"
+#include "System.h"
 
 using namespace std;
 
