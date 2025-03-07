@@ -323,9 +323,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			shouldPlaySound = false;
 			GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
-					"If you load this snapshot, it will overwrite your current game. "
-					"Any progress will be lost, unless you have saved other snapshots. "
-					"Are you sure you want to do that?"));
+				"If you load this snapshot, it will overwrite your current game. "
+				"Any progress will be lost, unless you have saved other snapshots. "
+				"Are you sure you want to do that?"));
 		}
 	}
 	else if(key == 'o')
