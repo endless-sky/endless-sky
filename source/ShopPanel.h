@@ -42,6 +42,13 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
+	enum class UninstallAction {
+		Uninstall,
+		Store,
+		Sell,
+	};
+
+public:
 	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
 
 	void Step() override;
@@ -93,7 +100,7 @@ protected:
 	virtual void BuyIntoCargo();
 	virtual TransactionResult CanDoBuyButton() const;
 	virtual void DoBuyButton();
-	virtual TransactionResult CanSellOrUninstall(const std::string &verb) const;
+	virtual TransactionResult CanUninstall(UninstallAction action) const;
 	virtual void Sell(bool storeOutfits) = 0;
 	virtual TransactionResult CanInstall() const;
 	virtual void Install();

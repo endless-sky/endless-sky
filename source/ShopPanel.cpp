@@ -274,7 +274,7 @@ void ShopPanel::DoBuyButton()
 
 
 
-ShopPanel::TransactionResult ShopPanel::CanSellOrUninstall(const std::string &verb) const
+ShopPanel::TransactionResult ShopPanel::CanUninstall(ShopPanel::UninstallAction action) const
 {
 	return false;
 }
@@ -471,13 +471,10 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// In the Shipyard: Sell selected ships and outfits.
 		// In the Outfitter: Sell <modifier> of the selected outfit from each selected ship.
 		if(isOutfitter)
-		{
-			result = CanSellOrUninstall("sell");
-		}
+			result = CanUninstall(UninstallAction::Sell);
 		else
-		{
 			result = playerShip;
-		}
+
 		if(result)
 			Sell(false);
 	}
@@ -488,14 +485,12 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// of the selected ships.
 		if(isOutfitter)
 		{
-			result = CanSellOrUninstall("store");
+			result = CanUninstall(UninstallAction::Store);
 			if(result)
 				RetainInStorage();
 		}
 		else if(playerShip)
-		{
 			Sell(true);
-		}
 	}
 	else if(key == 'c' && isOutfitter)
 	{
@@ -504,9 +499,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// Note: If the outfit is not able to be moved from storage or bought into cargo, give an error based on the buy
 		// condition.
 		if(CanMoveToCargoFromStorage())
-		{
 			MoveToCargoFromStorage();
-		}
 		else
 		{
 			// Selected outfit cannot be moved from storage, try buying:
@@ -532,32 +525,24 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			// else move up to <multiple> outfits from cargo into storage.
 			// Note: If the outfit is not able to be uninstalled or moved from cargo, give an error based on the
 			// uninstall condition.
-			result = CanSellOrUninstall("uninstall");
+			result = CanUninstall(UninstallAction::Uninstall);
 			if(result)
-			{
 				Uninstall();
-			}
-			else if(CanSellOrUninstall("store"))
+			else if(CanUninstall(UninstallAction::Store))
 			{
 				RetainInStorage();
 				result = true;
 			}
 		}
 		else if(playerShip)
-		{
 			// Shipyard, old behavior, treat 'u' the same as 'r': Sell ship and retain the outfits in storage.
 			Sell(true);
-		}
 	}
 	else
-	{
 		return false;
-	}
 
 	if(result.HasMessage())
-	{
 		GetUI()->Push(new Dialog(result.Message()));
-	}
 	else if(isOutfitter)
 	{
 		// Ship-based updates to cargo are handled when leaving.

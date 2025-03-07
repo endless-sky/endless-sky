@@ -53,17 +53,13 @@ namespace {
 	constexpr int checkboxSpacing = 20;
 
 	// Button size/placement info:
-	constexpr double BUTTON_ROW_PAD = 10.;
-	constexpr double BUTTON_COL_PAD = 10.;
+	constexpr double BUTTON_ROW_START_PAD = 4;
+	constexpr double BUTTON_COL_START_PAD = 4;
+	constexpr double BUTTON_ROW_PAD = 6.;
+	constexpr double BUTTON_COL_PAD = 6.;
 	// These button widths need to add up to 200 with the current right panel
 	// width and column padding (above):
-	constexpr double BUTTON_1_WIDTH = 35.;
-	constexpr double BUTTON_2_WIDTH = 70.;
-	constexpr double BUTTON_3_WIDTH = 50.;
-	constexpr double BUTTON_4_WIDTH = 50.;
-
-	constexpr char SELL = 's';
-	constexpr char UNINSTALL = 'u';
+	constexpr double BUTTON_WIDTH = 56.;
 
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
@@ -109,6 +105,23 @@ namespace {
 	string LicenseRoot(const string &name)
 	{
 		return name.substr(0, name.length() - LICENSE.length());
+	}
+
+
+
+	string UninstallActionName(ShopPanel::UninstallAction action)
+	{
+		switch(action)
+		{
+		case ShopPanel::UninstallAction::Uninstall:
+			return "uninstall";
+		case ShopPanel::UninstallAction::Store:
+			return "store";
+		case ShopPanel::UninstallAction::Sell:
+			return "sell";
+		}
+
+		throw "unreachable";
 	}
 }
 
@@ -303,7 +316,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, static_cast<bool>(CanSellOrUninstall("sell")),
+		outfitInfo.Update(*selectedOutfit, player, static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Sell)),
 			collapsed.contains(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
@@ -534,7 +547,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanBeInstalled() const
 // Used in the "sell", "uninstall", and "store" to storage contexts. Are we able to remove Outfits from
 // the selected ships ("sell"/"uninstall") or from cargo ("store") to storage?
 // If not, return the reasons why not.
-ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &verb) const
+ShopPanel::TransactionResult OutfitterPanel::CanUninstall(ShopPanel::UninstallAction action) const
 {
 	if(!planet || !selectedOutfit)
 		return "No outfit selected.";
@@ -542,7 +555,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 	if(!playerShip)
 		return "No ship selected.";
 
-	if(verb == "sell")
+	if(action == ShopPanel::UninstallAction::Sell)
 	{
 		// Can sell things in Cargo.
 		if(player.Cargo().Get(selectedOutfit))
@@ -552,7 +565,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 		if(player.Storage().Get(selectedOutfit))
 			return true;
 	}
-	else if(verb == "store")
+	else if(action == ShopPanel::UninstallAction::Store)
 	{
 		// If we have one in cargo, we'll move that one.
 		if(player.Cargo().Get(selectedOutfit))
@@ -560,10 +573,10 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 	}
 
 	if(selectedOutfit->Get("map"))
-		return "You cannot " + verb + " maps. Once you buy one, it is yours permanently.";
+		return "You cannot " + UninstallActionName(action) + " maps. Once you buy one, it is yours permanently.";
 
 	if(HasLicense(selectedOutfit->TrueName()))
-		return "You cannot " + verb + " licenses. Once you obtain one, it is yours permanently.";
+		return "You cannot " + UninstallActionName(action) + " licenses. Once you obtain one, it is yours permanently.";
 
 	for(const Ship *ship : playerShips)
 		if(ShipCanRemove(ship, selectedOutfit))
@@ -580,7 +593,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 		}
 
 	if(!hasOutfit)
-		return "You don't have any of these outfits to " + verb + ".";
+		return "You don't have any of these outfits to " + UninstallActionName(action) + ".";
 
 	// At least one of the outfit is installed on at least one of the selected ships.
 	// Create a complete summary of reasons why none of this outfit were able to be <verb>'d:
@@ -612,14 +625,14 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 	if(dependentOutfitErrors.empty())
 		return true;
 
-	string errorMessage = "You cannot " + verb + " this from " +
+	string errorMessage = "You cannot " + UninstallActionName(action) + " this from " +
 		((playerShips.size() > 1) ? "any of the selected ships" : "your ship") + " because:\n";
 	int i = 1;
 	for(const auto &[shipName, errors] : dependentOutfitErrors)
 	{
 		if(playerShips.size() > 1)
 		{
-			errorMessage += to_string(i++) + ". You cannot " + verb + " this outfit from \"";
+			errorMessage += to_string(i++) + ". You cannot " + UninstallActionName(action) + " this outfit from \"";
 			errorMessage += shipName + "\" because:\n";
 		}
 		for(const string &error : errors)
@@ -633,7 +646,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanSellOrUninstall(const string &ve
 // Uninstall outfits from selected ships, redeem credits if it was a sale.
 // This also handles ammo dependencies.
 // Note: This will remove one outfit from each selected ship which has the outfit.
-void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
+void OutfitterPanel::Uninstall(bool sell) const
 {
 	// Key:
 	//   's' - Sell
@@ -656,7 +669,7 @@ void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
 			ship->Recharge();
 
 			// If the context is sale:
-			if(contextKey == 's')
+			if(sell)
 			{
 				// Do the sale.
 				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
@@ -684,7 +697,7 @@ void OutfitterPanel::SellOrUninstallOne(SDL_Keycode contextKey) const
 					ship->AddOutfit(ammo, -mustUninstall);
 
 					// If the context is sale:
-					if(contextKey == 's')
+					if(sell)
 					{
 						// Do the sale.
 						int64_t price = player.FleetDepreciation().Value(ammo, day, mustUninstall);
@@ -872,8 +885,8 @@ void OutfitterPanel::Sell(bool /* storeOutfits */)
 	// And lastly, sell from the selected Ships, if any.
 	// Get the ships that have the most of this outfit installed.
 	else if(!GetShipsToOutfit().empty())
-		for(int i = 0; i < modifier && CanSellOrUninstall("sell"); ++i)
-			SellOrUninstallOne(SELL);
+		for(int i = 0; i < modifier && CanUninstall(ShopPanel::UninstallAction::Sell); ++i)
+			Uninstall(true);
 }
 
 
@@ -940,11 +953,9 @@ void OutfitterPanel::Uninstall()
 {
 	int modifier = Modifier();
 	// If installed on ship
-	if(CanSellOrUninstall("uninstall"))
-	{
-		for(int i = 0; i < modifier && CanSellOrUninstall("uninstall"); ++i)
-			SellOrUninstallOne(UNINSTALL);
-	}
+	if(CanUninstall(ShopPanel::UninstallAction::Uninstall))
+		for(int i = 0; i < modifier && CanUninstall(ShopPanel::UninstallAction::Uninstall); ++i)
+			Uninstall(false);
 	// Otherwise, move up to <modifier> of the selected outfit from fleet cargo to storage.
 	else
 	{
@@ -1018,8 +1029,8 @@ void OutfitterPanel::RetainInStorage()
 	// Otherwise, uninstall and move up to <modifier> selected outfits to storage from each
 	// selected ship:
 	else
-		for(int i = 0; i < modifier && CanSellOrUninstall("store"); ++i)
-			SellOrUninstallOne(UNINSTALL);
+		for(int i = 0; i < modifier && CanUninstall(ShopPanel::UninstallAction::Store); ++i)
+			Uninstall(false);
 }
 
 
@@ -1036,9 +1047,9 @@ bool OutfitterPanel::ShouldHighlight(const Ship *ship)
 	if(hoverButton == 'i')
 		return CanInstall() && ShipCanAdd(ship, selectedOutfit);
 	if(hoverButton == 's')
-		return CanSellOrUninstall("sell") && ShipCanRemove(ship, selectedOutfit);
+		return CanUninstall(ShopPanel::UninstallAction::Sell) && ShipCanRemove(ship, selectedOutfit);
 	if(hoverButton == 'u')
-		return CanSellOrUninstall("uninstall") && ShipCanRemove(ship, selectedOutfit);
+		return CanUninstall(ShopPanel::UninstallAction::Uninstall) && ShipCanRemove(ship, selectedOutfit);
 
 	return false;
 }
@@ -1298,14 +1309,11 @@ void OutfitterPanel::DrawButtons()
 	// There will be two rows of buttons:
 	//  [ Buy  ] [  Install  ] [ Cargo ]
 	//  [ Sell ] [ Uninstall ] [ Keep  ] [ Leave ]
-	// Calculate row locations from bottom to top:
-	const double rowTwoY = Screen::BottomRight().Y() - .5 * BUTTON_HEIGHT - BUTTON_ROW_PAD;
-	const double rowOneY = rowTwoY - BUTTON_HEIGHT - BUTTON_ROW_PAD;
-	// Calculate button positions from right to left:
-	const double buttonFourX = Screen::BottomRight().X() - .5 * BUTTON_4_WIDTH - BUTTON_COL_PAD;
-	const double buttonThreeX = buttonFourX - (.5 * BUTTON_4_WIDTH + .5 * BUTTON_3_WIDTH) - BUTTON_COL_PAD;
-	const double buttonTwoX = buttonThreeX - (.5 * BUTTON_3_WIDTH + .5 * BUTTON_2_WIDTH) - BUTTON_COL_PAD;
-	const double buttonOneX = buttonTwoX - (.5 * BUTTON_2_WIDTH + .5 * BUTTON_1_WIDTH) - BUTTON_COL_PAD;
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 1.5 * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double buttonBaseX = Screen::BottomRight().X() - buttonOffsetX * 3.5 - BUTTON_COL_START_PAD;
+	const Point buttonSize = Point(BUTTON_WIDTH, BUTTON_HEIGHT);
 
 	// Draw the button panel (shop side panel footer).
 	const Point buttonPanelSize(SIDEBAR_WIDTH, ButtonPanelHeight());
@@ -1342,81 +1350,35 @@ void OutfitterPanel::DrawButtons()
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	const Color *textColor = &inactive;
-	const Point buttonOneSize = Point(BUTTON_1_WIDTH, BUTTON_HEIGHT);
-	const Point buttonTwoSize = Point(BUTTON_2_WIDTH, BUTTON_HEIGHT);
-	const Point buttonThreeSize = Point(BUTTON_3_WIDTH, BUTTON_HEIGHT);
-	const Point buttonFourSize = Point(BUTTON_4_WIDTH, BUTTON_HEIGHT);
 	const Point buttonBorderOffset = Point(2, 2);
 
-	// Draw the first row of buttons.
-	static const string BUY = "_Buy";
-	const Point buyCenter = Point(buttonOneX, rowOneY);
-	textColor = !CanDoBuyButton() ? &inactive : (hoverButton == 'b') ? &hover : &active;
-	FillShader::Fill(buyCenter, buttonOneSize + buttonBorderOffset, *textColor);
-	FillShader::Fill(buyCenter, buttonOneSize, back);
-	bigFont.Draw(BUY,
-		buyCenter - .5 * Point(bigFont.Width(BUY), bigFont.Height()),
-		*textColor);
+	auto DrawButton = [&](const string &name, const Point &center, bool isactive, bool hovering)
+	{
+		// Draw the first row of buttons.
+		const Color *textColor = !isactive ? &inactive : hovering ? &hover : &active;
+		FillShader::Fill(center, buttonSize + buttonBorderOffset, *textColor);
+		FillShader::Fill(center, buttonSize, back);
+		bigFont.Draw(name, center - .5 * Point(bigFont.Width(name),
+			bigFont.Height()), *textColor);
+	};
 
-	static const string INSTALL = "_Install";
-	const Point installCenter = Point(buttonTwoX, rowOneY);
-	textColor = !CanInstall() ? &inactive : (hoverButton == 'i') ? &hover : &active;
-	FillShader::Fill(installCenter, buttonTwoSize + buttonBorderOffset, *textColor);
-	FillShader::Fill(installCenter, buttonTwoSize, back);
-	bigFont.Draw(INSTALL,
-		installCenter - .5 * Point(bigFont.Width(INSTALL), bigFont.Height()),
-		*textColor);
-
-	static const string CARGO = "_Cargo";
-	const Point cargoCenter = Point(buttonThreeX, rowOneY);
-	textColor = !(CanMoveToCargoFromStorage() || CanBuyToCargo()) ? &inactive : (hoverButton == 'c') ? &hover : &active;
-	FillShader::Fill(cargoCenter, buttonThreeSize + buttonBorderOffset, *textColor);
-	FillShader::Fill(cargoCenter, buttonThreeSize, back);
-	bigFont.Draw(CARGO,
-		cargoCenter - .5 * Point(bigFont.Width(CARGO), bigFont.Height()),
-		*textColor);
-
-	// Draw the second row of buttons.
-	static const string SELL = "_Sell";
-	const Point sellCenter = Point(buttonOneX, rowTwoY);
-	textColor = !CanSellOrUninstall("sell") ? &inactive : hoverButton == 's' ? &hover : &active;
-	FillShader::Fill(sellCenter, buttonOneSize + buttonBorderOffset, *textColor);
-	FillShader::Fill(sellCenter, buttonOneSize, back);
-	// The `Sell` text was too far right, hence the adjustment.
-	bigFont.Draw(SELL,
-		sellCenter - .5 * Point(bigFont.Width(SELL) + 2, bigFont.Height()),
-		*textColor);
-
-	static const string UNINSTALL = "_Uninstall";
-	const Point uninstallCenter = Point(buttonTwoX, rowTwoY);
+	DrawButton("_Buy", Point(buttonBaseX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0),
+		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b');
+	DrawButton("_Install", Point(buttonBaseX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0),
+		static_cast<bool>(CanInstall()), hoverButton == 'i');
+	DrawButton("_Cargo", Point(buttonBaseX + buttonOffsetX * 2, rowBaseY + rowOffsetY * 0),
+		(CanMoveToCargoFromStorage() || CanBuyToCargo()), hoverButton == 'c');
+	DrawButton("_Sell", Point(buttonBaseX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1),
+		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Sell)), hoverButton == 's');
+	DrawButton("_Uninst", Point(buttonBaseX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1),
+		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Uninstall)), hoverButton == 'u');
 	// CanSellOrUninstall("store") is here intentionally to support U moving items from Cargo to Storage.
 	// CanSellOrUninstall("store") is wholly inclusive of CanSellOrUninstall("uninstall"), no need to check both here,
 	// otherwise this would check if we can "store" or "uninstall".
-	textColor = !CanSellOrUninstall("store") ? &inactive : (hoverButton == 'u') ? &hover : &active;
-	FillShader::Fill(uninstallCenter, buttonTwoSize + buttonBorderOffset, *textColor);
-	FillShader::Fill(uninstallCenter, buttonTwoSize, back);
-	bigFont.Draw(UNINSTALL,
-		uninstallCenter - .5 * Point(bigFont.Width(UNINSTALL), bigFont.Height()),
-		*textColor);
-
-	static const string STORE = "Sto_re";
-	const Point storageCenter = Point(buttonThreeX, rowTwoY);
-	textColor = !CanSellOrUninstall("store") ? &inactive : (hoverButton == 'r') ? &hover : &active;
-	FillShader::Fill(storageCenter, buttonThreeSize + buttonBorderOffset, *textColor);
-	FillShader::Fill(storageCenter, buttonThreeSize, back);
-	// The `Sto_re` text was too far right, hence the adjustment.
-	bigFont.Draw(STORE,
-		storageCenter - .5 * Point(bigFont.Width(STORE) + 1, bigFont.Height()),
-		*textColor);
-
-	static const string LEAVE = "_Leave";
-	const Point leaveCenter = Point(buttonFourX, rowTwoY);
-	FillShader::Fill(leaveCenter, buttonFourSize + buttonBorderOffset, *textColor);
-	FillShader::Fill(leaveCenter, buttonFourSize, back);
-	bigFont.Draw(LEAVE,
-		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
-		hoverButton == 'l' ? hover : active);
+	DrawButton("Sto_re", Point(buttonBaseX + buttonOffsetX * 2, rowBaseY + rowOffsetY * 1),
+		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Store)), hoverButton == 'r');
+	DrawButton("_Leave", Point(buttonBaseX + buttonOffsetX * 3, rowBaseY + rowOffsetY * 1),
+		true, hoverButton == 'l');
 
 	// Draw the Find button.
 	const Point findCenter = Screen::BottomRight() - Point(580, 20);
@@ -1432,12 +1394,10 @@ void OutfitterPanel::DrawButtons()
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		font.Draw(mod, buyCenter + Point(-.5 * modWidth, 10.), dim);
-		font.Draw(mod, sellCenter + Point(-.5 * modWidth, 10.), dim);
-		font.Draw(mod, installCenter + Point(-.5 * modWidth, 10.), dim);
-		font.Draw(mod, uninstallCenter + Point(-.5 * modWidth, 10.), dim);
-		font.Draw(mod, cargoCenter + Point(-.5 * modWidth, 10.), dim);
-		font.Draw(mod, storageCenter + Point(-.5 * modWidth, 10.), dim);
+		for(int i = 0; i < 3; i++)
+			font.Draw(mod, Point(buttonBaseX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0) + Point(-.5 * modWidth, 10.), dim);
+		for(int i = 0; i < 4; i++)
+			font.Draw(mod, Point(buttonBaseX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1) + Point(-.5 * modWidth, 10.), dim);
 	}
 
 	// Draw tooltips for the button being hovered over:
@@ -1470,6 +1430,11 @@ void OutfitterPanel::DrawButtons()
 // letter of the button (or ' ' if it's not on a button).
 char OutfitterPanel::CheckButton(int x, int y)
 {
+	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 2. * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	const double buttonBaseX = Screen::BottomRight().X() - buttonOffsetX * 4. - BUTTON_COL_START_PAD;
+
 	// Check the Find button.
 	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
 		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
@@ -1478,41 +1443,32 @@ char OutfitterPanel::CheckButton(int x, int y)
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
 		return '\0';
 
-	// Calculate the tops of the button rows, from bottom to top.
-	const double rowTwoTop = Screen::Bottom() - BUTTON_HEIGHT - BUTTON_ROW_PAD;
-	const double rowOneTop = rowTwoTop - BUTTON_HEIGHT - BUTTON_ROW_PAD;
-	// Calculate the left side of the buttons, from right to left.
-	const double buttonFourLeft = Screen::Right() - BUTTON_4_WIDTH - BUTTON_COL_PAD;
-	const double buttonThreeLeft = buttonFourLeft - (.5 * BUTTON_4_WIDTH + .5 * BUTTON_3_WIDTH) - BUTTON_COL_PAD;
-	const double buttonTwoLeft = buttonThreeLeft - (.5 * BUTTON_3_WIDTH + .5 * BUTTON_2_WIDTH) - BUTTON_COL_PAD;
-	const double buttonOneLeft = buttonTwoLeft - (.5 * BUTTON_2_WIDTH + .5 * BUTTON_1_WIDTH) - BUTTON_COL_PAD;
-
-	if(rowOneTop < y && y <= rowOneTop + BUTTON_HEIGHT)
+	if(rowBaseY < y && y <= rowBaseY + BUTTON_HEIGHT)
 	{
 		// Check if it's the _Buy button.
-		if(buttonOneLeft <= x && x < buttonOneLeft + BUTTON_1_WIDTH)
+		if(buttonBaseX + buttonOffsetX * 0 <= x && x < buttonBaseX + buttonOffsetX * 1)
 			return 'b';
 		// Check if it's the _Install button.
-		if(buttonTwoLeft <= x && x < buttonTwoLeft + BUTTON_2_WIDTH)
+		if(buttonBaseX + buttonOffsetX * 1 <= x && x < buttonBaseX + buttonOffsetX * 2)
 			return 'i';
 		// Check if it's the _Cargo button.
-		if(buttonThreeLeft <= x && x < buttonThreeLeft + BUTTON_3_WIDTH)
+		if(buttonBaseX + buttonOffsetX * 2 <= x && x < buttonBaseX + buttonOffsetX * 3)
 			return 'c';
 	}
 
-	if(rowTwoTop < y && y <= rowTwoTop + BUTTON_HEIGHT)
+	if(rowBaseY + rowOffsetY < y && y <= rowBaseY + rowOffsetY + BUTTON_HEIGHT)
 	{
 		// Check if it's the _Sell button:
-		if(buttonOneLeft <= x && x < buttonOneLeft + BUTTON_1_WIDTH)
+		if(buttonBaseX + buttonOffsetX * 0 <= x && x < buttonBaseX + buttonOffsetX * 1)
 			return 's';
 		// Check if it's the _Uninstall button.
-		if(buttonTwoLeft <= x && x < buttonTwoLeft + BUTTON_2_WIDTH)
+		if(buttonBaseX + buttonOffsetX * 1 <= x && x < buttonBaseX + buttonOffsetX * 2)
 			return 'u';
 		// Check if it's the Sto_re button.
-		if(buttonThreeLeft <= x && x < buttonThreeLeft + BUTTON_3_WIDTH)
+		if(buttonBaseX + buttonOffsetX * 2 <= x && x < buttonBaseX + buttonOffsetX * 3)
 			return 'r';
 		// Check if it's the _Leave button.
-		if(buttonFourLeft <= x && x < buttonFourLeft + BUTTON_4_WIDTH)
+		if(buttonBaseX + buttonOffsetX * 3 <= x && x < buttonBaseX + buttonOffsetX * 4)
 			return 'l';
 	}
 

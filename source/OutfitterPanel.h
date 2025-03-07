@@ -56,7 +56,7 @@ protected:
 	void BuyIntoCargo() override;
 	TransactionResult CanDoBuyButton() const override;
 	void DoBuyButton() override;
-	TransactionResult CanSellOrUninstall(const std::string &verb) const override;
+	TransactionResult CanUninstall(ShopPanel::UninstallAction action) const override;
 	void Sell(bool storeOutfits) override;
 	TransactionResult CanInstall() const override;
 	void Install() override;
@@ -87,7 +87,7 @@ private:
 	TransactionResult CanBeInstalled() const;
 	TransactionResult CanFitInCargo(bool returnReason = false) const;
 	void BuyFromShopAndInstall() const;
-	void SellOrUninstallOne(SDL_Keycode contextKey) const;
+	void Uninstall(bool sell) const;
 
 	// The visibility filter key is only displayed in the OutfitterPanel.
 	void ToggleForSale();
