@@ -234,11 +234,11 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 
 
 
-void ShipyardPanel::Buy(bool onlyOwned)
+bool ShipyardPanel::Buy(bool onlyOwned)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
 	if(licenseCost < 0)
-		return;
+		return false;
 
 	modifier = Modifier();
 	string message;
@@ -255,6 +255,7 @@ void ShipyardPanel::Buy(bool onlyOwned)
 		message += selectedShip->PluralModelName() + "! (Or leave it blank to use randomly chosen names.)";
 
 	GetUI()->Push(new ShipNameDialog(this, &ShipyardPanel::BuyShip, message));
+	return true;
 }
 
 
@@ -266,7 +267,7 @@ bool ShipyardPanel::CanSell(bool toStorage) const
 
 
 
-void ShipyardPanel::Sell(bool toStorage)
+bool ShipyardPanel::Sell(bool toStorage)
 {
 	static const int MAX_LIST = 20;
 
@@ -322,6 +323,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	}
 	else
 		GetUI()->Push(new Dialog(this, &ShipyardPanel::SellShipAndOutfits, message, Truncate::MIDDLE));
+	return true;
 }
 
 

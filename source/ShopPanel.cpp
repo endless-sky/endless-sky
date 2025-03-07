@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShopPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "CategoryTypes.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -241,8 +242,9 @@ void ShopPanel::CheckForMissions(Mission::Location location)
 
 
 
-void ShopPanel::FailSell(bool toStorage) const
+bool ShopPanel::FailSell(bool toStorage) const
 {
+	return false;
 }
 
 
@@ -315,6 +317,7 @@ void ShopPanel::ToggleCargo()
 // Only override the ones you need; the default action is to return false.
 bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shouldPlaySound = true;
 	bool toStorage = planet && planet->HasOutfitter() && (key == 'r' || key == 'u');
 	if(key == 'l' || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -325,6 +328,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(command.Has(Command::HELP))
 	{
+		shouldPlaySound = false;
 		if(player.Ships().size() > 1)
 		{
 			if(isOutfitter)
@@ -350,7 +354,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		const auto result = CanBuy(key == 'i' || key == 'c');
 		if(result)
 		{
-			Buy(key == 'i' || key == 'c');
+			shouldPlaySound = !Buy(key == 'i' || key == 'c');
 			// Ship-based updates to cargo are handled when leaving.
 			// Ship-based selection changes are asynchronous, and handled by ShipyardPanel.
 			if(isOutfitter)
@@ -359,18 +363,24 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				CheckSelection();
 			}
 		}
-		else if(result.HasMessage())
-			GetUI()->Push(new Dialog(result.Message()));
+		else
+		{
+			shouldPlaySound = false;
+			if(result.HasMessage())
+				GetUI()->Push(new Dialog(result.Message()));
+			else
+				Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+		}
 	}
 	else if(key == 's' || toStorage)
 	{
 		if(!CanSell(toStorage))
-			FailSell(toStorage);
+			shouldPlaySound = !FailSell(toStorage);
 		else
 		{
 			int modifier = CanSellMultiple() ? Modifier() : 1;
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
-				Sell(toStorage);
+				shouldPlaySound = !Sell(toStorage);
 			if(isOutfitter)
 			{
 				player.UpdateCargoCapacities();
@@ -470,10 +480,15 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(key == SDLK_TAB)
 		activePane = (activePane == ShopPane::Main ? ShopPane::Sidebar : ShopPane::Main);
 	else if(key == 'f')
+	{
+		shouldPlaySound = false;
 		GetUI()->Push(new Dialog(this, &ShopPanel::DoFind, "Search for:"));
+	}
 	else
 		return false;
 
+	if(shouldPlaySound)
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -529,6 +544,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 				else
 					collapsed.erase(it);
 			}
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 
@@ -543,6 +559,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 
 			previousX = zone.Center().X();
 
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 
@@ -560,6 +577,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 					break;
 				}
 
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 

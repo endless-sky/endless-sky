@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StartConditionsPanel.h"
 
+#include "audio/Audio.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
@@ -167,10 +168,12 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 			player, startIt->GetConversation());
 		GetUI()->Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
+		return true;
 	}
 	else
 		return false;
 
+	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -190,6 +193,7 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 		{
 			if(startIt != it.Value())
 				Select(it.Value());
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 

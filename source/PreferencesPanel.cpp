@@ -217,6 +217,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	if(static_cast<unsigned>(editing) < zones.size())
 	{
 		Command::SetKey(zones[editing].Value(), key);
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		EndEditing();
 		return true;
 	}
@@ -275,6 +276,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	else
 		return false;
 
+	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -299,12 +301,16 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
+		{
 			editing = selected = index;
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
 		{
 			HandleSettingsString(zone.Value(), point);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			break;
 		}
 
@@ -323,6 +329,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					selectedPlugin = zone.Value();
 					selected = index;
 					RenderPluginDescription(selectedPlugin);
+					Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 					break;
 				}
 				index++;
@@ -1044,7 +1051,11 @@ void PreferencesPanel::DrawPlugins()
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
-			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds, [&]()
+			{
+				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+				Plugins::TogglePlugin(plugin.name);
+			});
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else

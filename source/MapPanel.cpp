@@ -623,6 +623,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else
 		return false;
 
+	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -639,6 +640,7 @@ bool MapPanel::Click(int x, int y, int clicks)
 				&& (player.HasSeen(system) || &system == specialSystem))
 		{
 			Select(&system);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			break;
 		}
 	}

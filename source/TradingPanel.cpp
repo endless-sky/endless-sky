@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "TradingPanel.h"
 
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "shader/FillShader.h"
@@ -224,8 +225,12 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shouldPlaySound = true;
 	if(command.Has(Command::HELP))
+	{
+		shouldPlaySound = false;
 		DoHelp("trading", true);
+	}
 	else if(key == SDLK_UP)
 		player.SetMapColoring(max(0, player.MapColoring() - 1));
 	else if(key == SDLK_DOWN)
@@ -277,6 +282,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else
 		return false;
 
+	if(shouldPlaySound)
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -294,9 +301,15 @@ bool TradingPanel::Click(int x, int y, int clicks)
 	{
 		player.SetMapColoring((y - FIRST_Y - 25) / 20);
 		if(x >= MIN_X + BUY_X && x < MIN_X + SELL_X)
+		{
 			Buy(1);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+		}
 		else if(x >= MIN_X + SELL_X && x < MIN_X + HOLD_X)
+		{
 			Buy(-1);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+		}
 	}
 	else
 		return false;

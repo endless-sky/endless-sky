@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapSalesPanel.h"
 
+#include "audio/Audio.h"
 #include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
@@ -92,8 +93,12 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shouldPlaySound = true;
 	if(command.Has(Command::HELP))
+	{
+		shouldPlaySound = false;
 		DoHelp("map advanced shops", true);
+	}
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
@@ -116,11 +121,16 @@ bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		ScrollTo(selected);
 	}
 	else if(key == 'f')
+	{
+		shouldPlaySound = false;
 		GetUI()->Push(new Dialog(
-			this, &MapSalesPanel::DoFind, "Search for:"));
+				this, &MapSalesPanel::DoFind, "Search for:"));
+	}
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
+	if(shouldPlaySound)
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -138,14 +148,19 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		{
 			Select(selected = -1);
 			Compare(compare = -1);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
 		{
 			Select(selected = zone->Value());
 			Compare(compare = -1);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 		else if(zone->Value() != selected)
+		{
 			Compare(compare = zone->Value());
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+		}
 	}
 	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
 	{
@@ -154,16 +169,19 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = false;
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 		else if(y < Screen::Top() + 62)
 		{
 			onlyShowSoldHere = !onlyShowSoldHere;
 			onlyShowStorageHere = false;
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 		else
 		{
 			onlyShowSoldHere = false;
 			onlyShowStorageHere = !onlyShowStorageHere;
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 	}
 	else

@@ -197,6 +197,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else
 		return false;
 
+	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
