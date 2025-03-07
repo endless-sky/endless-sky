@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Angle.h"
 #include "../Point.h"
 
+#include <string>
 #include <vector>
 
 class ImageBuffer;
@@ -32,7 +33,7 @@ class ImageBuffer;
 class Mask {
 public:
 	// Construct a mask from the alpha channel of an RGBA-formatted image.
-	void Create(const ImageBuffer &image, int frame = 0);
+	void Create(const ImageBuffer &image, int frame, const std::string &fileName);
 
 	// Check whether a mask was successfully generated from the image.
 	bool IsLoaded() const;
