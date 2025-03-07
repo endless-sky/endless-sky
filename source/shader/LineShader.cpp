@@ -193,7 +193,8 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 
 
 
-void LineShader::DrawGradient(const Point &from, const Point &to, float width, const Color &fromColor, const Color &toColor, bool roundCap)
+void LineShader::DrawGradient(const Point &from, const Point &to, float width,
+		const Color &fromColor, const Color &toColor, bool roundCap)
 {
 	if(!shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
