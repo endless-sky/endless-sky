@@ -133,7 +133,8 @@ namespace {
 
 	double FlareCurve(double x)
 	{
-		return x * x * x;
+		double x2 = x * x;
+		return 3 * x2 - 2 * x2 * x;
 	}
 
 	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
