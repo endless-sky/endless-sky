@@ -391,7 +391,7 @@ outfit "Celestial Culverin"
 		turn 60
 		inaccuracy 12
 		"stream"
-		tracking 1
+		tracking .7
 		"firing energy" 180
 		"firing heat" 22.5
 		"shield damage" 300
@@ -465,7 +465,7 @@ outfit "ribault guided"
 		"fade out" 7
 		"turn" 5
 		"homing" 4
-		"tracking" 1
+		"tracking" .6
 		"acceleration" 1
 		"drag" .1
 		"hit force" -120
