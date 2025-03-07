@@ -1350,13 +1350,11 @@ void OutfitterPanel::DrawButtons()
 	const Color &hover = *GameData::Colors().Get("hover");
 	const Color &active = *GameData::Colors().Get("active");
 	const Color &inactive = *GameData::Colors().Get("inactive");
-	const Point buttonBorderOffset = Point(2, 2);
-
+	
 	auto DrawButton = [&](const string &name, const Point &center, bool isactive, bool hovering)
 	{
 		// Draw the first row of buttons.
 		const Color *textColor = !isactive ? &inactive : hovering ? &hover : &active;
-		FillShader::Fill(center, buttonSize + buttonBorderOffset, *textColor);
 		FillShader::Fill(center, buttonSize, back);
 		bigFont.Draw(name, center - .5 * Point(bigFont.Width(name),
 			bigFont.Height()), *textColor);
