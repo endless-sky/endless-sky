@@ -59,7 +59,12 @@ void SavedGame::Load(const filesystem::path &path)
 				system = savedSystem->DisplayName();
 		}
 		else if(node.Token(0) == "planet" && node.Size() >= 2)
+		{
 			planet = node.Token(1);
+			const Planet *savedPlanet = GameData::Planets().Find(planet);
+			if(savedPlanet)
+				planet = savedPlanet->DisplayName();
+		}
 		else if(node.Token(0) == "playtime" && node.Size() >= 2)
 			playTime = Format::PlayTime(node.Value(1));
 		else if(node.Token(0) == "flagship index" && node.Size() >= 2)
