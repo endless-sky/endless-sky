@@ -2077,7 +2077,7 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
 		{
 			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
-			(*emptySoundsTimer)[i] = 30;
+			(*emptySoundsTimer)[i] = weapon->Reload();
 		}
 	}
 

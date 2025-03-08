@@ -1498,6 +1498,7 @@ void Engine::EnterSystem()
 	newVisuals.clear();
 	newFlotsam.clear();
 
+	emptySoundsTimer.clear();
 
 	center = flagship->Center();
 
