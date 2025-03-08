@@ -633,6 +633,7 @@ outfit "Research Laboratory"
 	"mass" 11
 	"outfit space" -6
 	"asteroid scan power" 84
+	"flotsam scan power" 84
 	"cargo scan power" 20
 	"cargo scan efficiency" 6
 	"atmosphere scan" 100
