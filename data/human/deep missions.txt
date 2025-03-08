@@ -5072,7 +5072,7 @@ mission "Hroar's Haulers 12"
 	to offer
 		has "Hroar's Haulers 11: active"
 	on offer
-		conversation
+		dialog
 			`The Long Haul convoy sets down in one of Earth's sprawling mega-cities. Most of the fleet focuses on refueling and minor repairs, while Captain Unferth's ships begin the unboarding process. Yngvar tells you to meet him in the spaceport.`
 				decline
 
@@ -7883,32 +7883,53 @@ mission "Hroar's Haulers 22"
 		has "Hroar's Haulers 21: declined"
 	on offer
 		conversation
-			`	As you push through the growing crowd of locals, you realize the spaceport doubles as the main social hall and community center on New Washington. You pass scores of tables, each covered with homemade dishes, and many haulers eagerly digging in.`
-			`	Yngvar is settled near the back of the action when a cluster of older residents who seem to be haggling prices for rare minerals.`
-			`	"I'll buy twice that amount if you bring the price down 10%" Yngvar says to a rotund man.`
-			`	"Mr. Var, you'd clear me out." the rotund man says quietly.`
+			`	As you push through the growing crowd of locals, you realize the spaceport doubles as the main social hall on New Washington. You pass scores of tables, each covered with homemade dishes, surrounded by eager haulers digging in.`
+			`	Yngvar is seated near the back haggling with a plump man for rare minerals.`
+			`	"How about this; I'll buy twice that amount if you bring the price down 10%" Yngvar says to a rotund man.`
+			`	"Mr. Var, you'd clear me out." the rotund man says.`
 			`	"That a problem?" Yngvar responds languidly.`
-			`	"Why, uh, no. I'll go get the order right away." The man hurridly slips away.`
-			`	"Ah, Captain <last>." Yngvar says as his eye falls on you. "It's too bad we can't spend more time here. As you can, New Washington rolls out the red carpet for us."`
+			`	The man pauses, thinking, then shrugs and shakes his head, "No problem at all. Pleasure doing business as always. I'll tell the boys to start loading it." The man slips away.`
+			`	"Ah, Captain <last>." Yngvar says as his eye falls on you. "It's a dog-gone shame we can't spend more time here. As you can, New Washington really knows how to treat a guest."`
 			choice
 				`	"What's going on?"`
 				`	"Do you normally stop here?"`
 				`	(Nod.)`
 			`	"New Washington's a bit unique. It's not just the way the sun don't quite seem to ever set either. Folks here own and operate their owning extraction equipment. The result of some sort of philanthropic initative a century or two ago. Point is, there's no offworld corporations here. It's all local."`
-			`	He leans forward, "Now, that sounds nice and all, but because of it no mega-corp is willing to purchas any contracts from here. They rather extract from planets where they own a piece of the action. Means New Washington is on no major trade routes, and is only served intermittenly by indepdent traders."`
-			`	"In otherwords, they're isolated, and us showing up is the biggest thing that happens to them." He points to many of the mingling locals and haulers, "It's not just trade either, or least trade in commerical goods."`
+			`	He leans forward, "Now, that sounds nice and all, but it means no mega-corp is willing to purchas any of their contracts. They rather extract from planets where they own a piece of the action. 'Cuz of that New Washington is on no major trade routes. It's only served intermittenly by indepdent traders."`
+			`	"In otherwords, they're isolated, and us showing up's about as big as the top side of a quasar for 'em." He points to many of the mingling locals and haulers, "It's not just trade either, or least trade in commerical goods."`
 			`	He smiles and gives you a wink with his one good eye, "Normally we'd stay longer, but we gotta be moving on. Maybe next time you'll get a chance to chat up some local."`
-			`	Yngvar stands up, "I'm gonna go around and let the other captain's know we'll be leaving shortly. I'll see ya back aboard the <ship>. Next up is Earth."`
+			`	Yngvar stands up, "I'm gonna go around and let the other captain's know we gotta be moving on. I'll see ya back aboard the <ship>. Remember, next stop is Earth."`
 				decline
 
 mission "Hroar's Haulers 23"
 	name "The Long Haul"
 	source "Earth"
+	landing
 	to offer
 		has "Hroar's Haulers 22: declined"
 	on offer
+		dialog
+		`	The Long Haul convoy sets down in a different mega-city from last time. Though it looks much the same. Most of the fleet focuses on loading up the waiting cargo. There's also a mass of people waiting on Unferth's passenger fleet. Yngvar tells you to meet him in the spaceport.`
+			decline
+
+mission "Hroar's Haulers 24"
+	name "The Long Haul"
+	source "Earth"
+	to offer
+		has "Hroar's Haulers 23: declined"
+		not "Hroar's Haulers 18: declined"
+	on offer
 		conversation
-		`	`
+			`	`
+
+mission "Hroar's Haulers 24b"
+	name "The Long Haul"
+	source "Earth"
+	to offer
+		has "Hroar's Haulers 23: declined"
+		not "Hroar's Haulers 18b: accepted"
+		conversation
+			`	`
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
