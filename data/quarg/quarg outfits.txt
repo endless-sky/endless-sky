@@ -14,6 +14,8 @@
 outfit "Nanotech Battery"
 	plural "Nanotech Batteries"
 	category "Power"
+	series "Batteries"
+	index 91010
 	cost 3000000
 	thumbnail "outfit/quarg nanotech battery"
 	"mass" 50
@@ -23,6 +25,8 @@ outfit "Nanotech Battery"
 
 outfit "Antimatter Core"
 	category "Power"
+	series "Generators"
+	index 91010
 	cost 100000000
 	thumbnail "outfit/quarg antimatter core"
 	"mass" 80
@@ -35,6 +39,8 @@ outfit "Antimatter Core"
 
 outfit "Quarg Skylance"
 	category "Turrets"
+	series "Turrets"
+	index 91010
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
 	"mass" 60
@@ -73,6 +79,8 @@ effect "skylance impact"
 
 outfit "Quarg Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 91010
 	cost 6000000
 	thumbnail "outfit/quarg anti missile"
 	"mass" 40
@@ -103,6 +111,8 @@ effect "quarg anti-missile"
 outfit "Intrusion Countermeasures"
 	plural "Intrusion Countermeasures"
 	category "Hand to Hand"
+	series "Fortifications"
+	index 91010
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
 	"unplunderable" 1
@@ -110,6 +120,8 @@ outfit "Intrusion Countermeasures"
 
 outfit "Medium Graviton Thruster"
 	category "Engines"
+	series "Engines"
+	index 91011
 	"cost" 20000000
 	thumbnail "outfit/medium quarg thruster"
 	"mass" 70
@@ -126,6 +138,8 @@ outfit "Medium Graviton Thruster"
 
 outfit "Medium Graviton Steering"
 	category "Engines"
+	series "Engines"
+	index 91010
 	"cost" 16000000
 	thumbnail "outfit/medium quarg steering"
 	"mass" 50
@@ -142,6 +156,8 @@ outfit "Medium Graviton Steering"
 
 outfit "Quantum Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 91010
 	cost 30000000
 	thumbnail "outfit/quarg quantum shield generator"
 	"mass" 120
