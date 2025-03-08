@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "ScrollBar.h"
@@ -108,10 +108,10 @@ void TextArea::SetTruncate(Truncate t)
 
 
 
-int TextArea::GetTextHeight()
+int TextArea::GetTextHeight(bool trailingBreak)
 {
 	Validate();
-	return wrappedText.Height();
+	return wrappedText.Height(trailingBreak);
 }
 
 

@@ -41,8 +41,21 @@ mission "FWC Scouting 1"
 		personality staying heroic
 		system "Kaus Borealis"
 		government "Republic"
-		fleet "Large Republic" 5
-
+		fleet 2
+			names "republic capital"
+			fighters
+				names "republic fighter"
+			variant
+				"Carrier (Mark II)"
+				"Lance" 8
+				"Combat Drone" 6
+		fleet 3
+			names "republic capital"
+			fighters
+				names "republic fighter"
+			variant
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
 
 
 mission "FWC Attack Kaus Borealis"
@@ -132,7 +145,7 @@ mission "FWC Attack Kaus Borealis"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
@@ -222,9 +235,8 @@ mission "FWC Cebalrai 1"
 			fighters
 				names "republic fighter"
 			variant
-				"Carrier (Mark II)"
-				"Lance" 4
-				"Combat Drone" 6
+				"Cruiser (Mark II)"
+				"Combat Drone" 4
 				"Gunboat (Mark II)" 2
 
 
@@ -289,7 +301,7 @@ mission "FWC Cebalrai 1B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate (Mark II)" 2
 		fleet
@@ -313,7 +325,7 @@ mission "FWC Cebalrai 1B"
 			variant
 				"Cruiser"
 				"Combat Drone" 4
-				"Frigate" 2
+				"Frigate"
 
 
 
@@ -578,7 +590,7 @@ mission "FWC Diplomacy 1C"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
@@ -598,7 +610,7 @@ mission "FWC Diplomacy 1C"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
@@ -694,7 +706,7 @@ mission "FWC Checkmate 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
@@ -714,7 +726,7 @@ mission "FWC Checkmate 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 3
 			names "republic capital"
@@ -734,9 +746,9 @@ mission "FWC Checkmate 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
-		fleet 2
+		fleet
 			names "republic capital"
 			fighters
 				names "republic fighter"
@@ -766,7 +778,7 @@ mission "FWC Checkmate 1"
 	
 	npc
 		personality heroic
-		system Pherkad
+		system Alniyat
 		government "Free Worlds"
 		fleet
 			names "free worlds capital"
@@ -907,7 +919,7 @@ mission "FWC Checkmate 1B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 		fleet 2
 			names "republic capital"
@@ -1111,13 +1123,13 @@ mission "FWC Pug 1"
 	npc evade
 		personality entering disables heroic
 		government Pug
-		fleet 2
+		fleet
 			names "pug"
 			variant
 				"Pug Maboro"
 				"Pug Enfolta"
 				"Pug Zibruka" 2
-		fleet 3
+		fleet 2
 			names "pug"
 			variant
 				"Pug Enfolta"
@@ -1437,7 +1449,7 @@ mission "FWC Pug 3"
 			label links
 			`	Alondo says, "That's what Freya was working on. As soon as your fleet disappeared, she began investigating, and she went to <planet> to set up something she called a 'graviton detector' pointed towards Vega. Right before that system was taken, she sent us a message that she had found some sort of residual trace of the link, maybe a way to reopen it."`
 			`	"Wait," says Katya, "what do you mean, 'right before the system was taken'? By whom?"`
-			`	"The Navy," says Alondo. "They think the Free Worlds is behind the disappearance of those systems. And with your fleet gone, we didn't have enough ships left to resist them. Freya could have evacuated, but she stayed behind to finish her research. I believe her exact words were, 'To hell with your war, this is more important.'" If she's still there, she may be our best hope for figuring this out.`
+			`	"The Navy," says Alondo. "They think the Free Worlds are behind the disappearance of those systems. And with your fleet gone, we didn't have enough ships left to resist them. Freya could have evacuated, but she stayed behind to finish her research. I believe her exact words were, 'To hell with your war, this is more important.'" If she's still there, she may be our best hope for figuring this out.`
 				goto next
 			
 			label next
@@ -1695,7 +1707,7 @@ mission "FWC Pug 3D: Reinforcements"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc kill
@@ -1715,7 +1727,7 @@ mission "FWC Pug 3D: Reinforcements"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat" 2
 	npc kill
@@ -2106,7 +2118,7 @@ mission "FWC Pug 5"
 			variant
 				"Carrier (Jump)"
 				"Combat Drone" 6
-				"Dagger" 4
+				"Dagger" 8
 	
 	npc evade
 		personality disables heroic staying
@@ -2168,7 +2180,7 @@ mission "FWC Pug 5B"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2211,7 +2223,7 @@ mission "FWC Pug 5C"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2263,7 +2275,7 @@ mission "FWC Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2288,7 +2300,7 @@ mission "FWC Pug 6"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Gunboat (Mark II)" 3
 	npc

@@ -29,7 +29,7 @@ const string DataWriter::space = " ";
 
 
 // Constructor, specifying the file to save.
-DataWriter::DataWriter(const string &path)
+DataWriter::DataWriter(const filesystem::path &path)
 	: DataWriter()
 {
 	this->path = path;
@@ -56,7 +56,7 @@ DataWriter::~DataWriter()
 
 
 // Save the contents to a file.
-void DataWriter::SaveToPath(const std::string &filepath)
+void DataWriter::SaveToPath(const filesystem::path &filepath)
 {
 	Files::Write(filepath, out.str());
 }

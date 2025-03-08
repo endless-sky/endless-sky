@@ -11,6 +11,92 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+ship "Anomalocaris"
+	plural "Anomalocarises"
+	sprite "ship/hai anomalocaris"
+	thumbnail "thumbnail/hai anomalocaris"
+	attributes
+		category "Medium Warship"
+		"cost" 7400000
+		"shields" 14200
+		"hull" 6800
+		"required crew" 20
+		"bunks" 26
+		"mass" 970
+		"drag" 9.3
+		"heat dissipation" .49
+		"fuel capacity" 400
+		"cargo space" 121
+		"outfit space" 533
+		"weapon capacity" 192
+		"engine capacity" 98
+		weapon
+			"blast radius" 210
+			"shield damage" 2100
+			"hull damage" 1050
+			"hit force" 3150
+	outfits
+		"Ion Cannon"
+		"Pulse Cannon"
+		"Pulse Turret" 2
+		"Chameleon Anti-Missile" 2
+		"Boulder Reactor"
+		"Pebble Core"
+		"Hai Ravine Batteries"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 3
+		"Quantum Keystone"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		Hyperdrive
+	gun -24 -89.5
+	gun 24 -89.5
+	turret 0 -32.5 "Pulse Turret"
+	turret -40 -28
+	turret 40 -28
+	turret 0 60 "Pulse Turret"
+	engine -50 15
+	engine 50 15
+	"steering engine" -50 15
+		zoom 0.5
+		right
+	"steering engine" 50.5 15
+		zoom 0.5
+		left
+	leak "leak" 40 50
+	leak "flame" 40 30
+	explode "tiny explosion" 24
+	explode "small explosion" 50
+	explode "medium explosion" 30
+	explode "large explosion" 14
+	"final explode" "final explosion medium"
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy and able to take larger amounts of damage."
+
+ship "Anomalocaris" "Anomalocaris (Venerable)"
+	add attributes
+		"threshold percentage" 0.4
+	outfits
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Thermal Repeater Turret" 2
+		"Chameleon Anti-Missile"
+		"Hai Diamond Regenerator"
+		"Hai Williwaw Cooling" 4
+		"Value Detector"
+		"Hai Valley Batteries"
+		"Boulder Reactor"
+		"Pulse Rifle" 20
+		`"Biroo" Atomic Thruster`
+		`"Bondir" Atomic Steering`
+		"Afterburner (Asteroid Class)"
+		"Hyperdrive"
+	turret "Pulse Turret"
+	turret "Thermal Repeater Turret"
+	turret "Thermal Repeater Turret"
+	turret "Chameleon Anti-Missile"
+	description "First created during the Hai's initial conflicts with the Sheragi, the Anomalocaris was supposedly one of the most versatile Hai warships of its time. Its high cargo capacity and low engine space suggest the original purpose of the ship was for mining or hauling, though it could also have found use in looting enemy ships and carrying ammunition. Vessels from the time were manufactured out of more expensive materials, making the Anomalocaris more sturdy, although this one has accrued damage after being submerged underwater for a long period of time."
+
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
@@ -275,7 +361,7 @@ ship "Cicada"
 	explode "large explosion" 16
 	explode "huge explosion" 4
 	"final explode" "final explosion medium"
-	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated Cicadas that have outlived not just one pilot, but in many cases multiple whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life."`
+	description `A design nearly as old as the Aphid, practically no new Cicadas have been built in recent memory; it is so reliable that the second-hand market is saturated with Cicadas that have outlived not just one pilot, but in many cases whole lineages of Hai that have owned one and passed it down through the generations. This feature is likely the main factor which has kept the popularity of the Scarab in check as well as defining the Yeer e Ki shipyard's motto: "Service for Life."`
 
 
 
@@ -1013,20 +1099,22 @@ ship "Sea Scorpion" "Sea Scorpion (Ion)"
 		"Hyperdrive"
 		"Pulse Rifle" 15
 
-ship "Sea Scorpion" "Sea Scorpion (Ionic)"
+# These variants don't spawn normally and have larger crew counts to represent experimentation with ionic weapons.
+ship "Sea Scorpion" "Sea Scorpion (Ionic Blasters)"
+	crew 30
 	outfits
 		`"Biroo" Atomic Steering`
 		`"Bondir" Atomic Thruster`
 		"Boulder Reactor"
-		"Chameleon Anti-Missile"
+		"Hai Williwaw Cooling" 2
 		"Hai Corundum Regenerator"
 		"Hai Diamond Regenerator"
 		"Hai Valley Batteries"
 		"Hyperdrive"
-		"Ion Cannon"
-		"Ionic Blaster Prototype" 2
-		"Ionic Turret Prototype"
-		"Pulse Rifle" 15
+		"Value Detector"
+		"Ionic Blaster Prototype" 4
+		"Pulse Turret" 2
+		"Pulse Rifle" 36
 
 ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 	outfits
@@ -1480,6 +1568,30 @@ ship "Shield Beetle" "Shield Beetle (Tracker)"
 		`"Bondir" Atomic Thruster`
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
+
+ship "Shield Beetle" "Shield Beetle (Tripulse Ionic Turret)"
+	crew 80
+	outfits
+		"Ion Cannon" 2
+		"Pulse Cannon" 2
+		"Pulse Turret"
+		"Tripulse Shredder" 2
+		"Hai Tracker" 112
+		"Hai Tracker Pod" 2
+		"Chameleon Anti-Missile" 2
+		"Bullfrog Anti-Missile"
+		"Hai Diamond Regenerator"
+		"Hai Octopus Jammer"
+		"Hai Williwaw Cooling" 2
+		Hyperdrive
+		"Quantum Keystone"
+		"Value Detector"
+		"Hai Gorge Batteries"
+		"Boulder Reactor" 2
+		`"Basrem" Atomic Steering`
+		`"Biroo" Atomic Steering`
+		`"Bufaer" Atomic Thruster`
+		"Pulse Rifle" 85
 
 
 

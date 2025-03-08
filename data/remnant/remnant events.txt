@@ -66,10 +66,11 @@ event "remnant: puffin"
 
 
 
-# Replaced by the "remnant: puffin" event but the listed here so older versions of the "Remnant: Void Sprites 3" mission in their save file when they update do not have issues with this event being undefined.
+# Replaced by the "remnant: puffin" event but still listed here so older versions of the "Remnant: Void Sprites 3" mission already instantiated in save file when
+# players update do not have issues with this event being undefined.
 # The actual content of the event is not strictly necessary, since a patch mission already exists that applies the new event if the condition for this event is present.
 # But the event still needs to be declared so it can be considered "defined" by the game, otherwise, it will disable the mission referring to it.
-# If we ever do something that makes save files from an older version of the game incompatible, this can be removed.
+# TODO: This can be safely removed if we ever stop supporting save files from older versions of the game.
 event "remnant: gascraft"
 
 
