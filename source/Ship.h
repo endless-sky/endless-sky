@@ -401,7 +401,6 @@ public:
 	double TrueTurnRate() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
-	double CruiseVelocity() const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,

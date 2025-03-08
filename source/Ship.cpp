@@ -2651,7 +2651,6 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			bay.ship->WasCaptured(capturer);
-
 	// If a flagship is captured, its escorts become independent.
 	for(const auto &it : escorts)
 	{
