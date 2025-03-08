@@ -4974,6 +4974,8 @@ void Ship::RemoveEscort(const Ship &ship)
 			it = escorts.erase(it);
 			return;
 		}
+		else
+			++it;
 	}
 }
 
