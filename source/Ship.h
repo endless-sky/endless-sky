@@ -540,11 +540,6 @@ private:
 	// Add or remove a ship from this ship's list of escorts.
 	void AddEscort(Ship &ship);
 	void RemoveEscort(const Ship &ship);
-	// Cache relevant data for all escorts or the given escort.
-	void TuneForEscorts();
-	void TuneForEscort(const Ship &ship);
-	// Let the parent re-check if all cached data for its escorts still is valid.
-	void TuneParent();
 	// Get the hull amount at which this ship is disabled.
 	double MinimumHull() const;
 	// Create one of this ship's explosions, within its mask. The explosions can
@@ -732,17 +727,8 @@ private:
 	const FormationPattern *formationPattern = nullptr;
 
 	// Links between escorts and parents.
+	std::vector<std::weak_ptr<Ship>> escorts;
 	std::weak_ptr<Ship> parent;
-	struct Escorts {
-	public:
-		~Escorts();
-	public:
-		// The actual list of escorts.
-		std::vector<std::weak_ptr<Ship>> list;
-		// Cached data from escorts to determine the cruise speed for landing.
-		std::weak_ptr<const Ship> slowest;
-		double cruiseVelocity = 0.;
-	} escorts;
 
 	bool removeBays = false;
 };

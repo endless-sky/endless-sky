@@ -2493,7 +2493,6 @@ void Ship::Disable()
 void Ship::Destroy()
 {
 	hull = -1.;
-	TuneParent();
 }
 
 
@@ -2652,9 +2651,16 @@ int Ship::WasCaptured(const shared_ptr<Ship> &capturer)
 	for(const Bay &bay : bays)
 		if(bay.ship)
 			bay.ship->WasCaptured(capturer);
-	// If a flagship is captured, its escorts become independent and
-	// this ship should not care about its now-unallied escorts.
-	escorts = Escorts{};
+
+	// If a flagship is captured, its escorts become independent.
+	for(const auto &it : escorts)
+	{
+		shared_ptr<Ship> escort = it.lock();
+		if(escort)
+			escort->parent.reset();
+	}
+	// This ship should not care about its now-unallied escorts.
+	escorts.clear();
 
 	return transfer;
 }
@@ -3090,16 +3096,6 @@ double Ship::MaxReverseVelocity() const
 
 
 
-// The optimal speed for this ship when not moving in a hurry.
-// If the ship has escorts, then the speed returned will allow for all
-// non-carried escorts to catch up with this ship.
-double Ship::CruiseVelocity() const
-{
-	return escorts.cruiseVelocity > 0. ? min(MaxVelocity(), escorts.cruiseVelocity) : MaxVelocity();
-}
-
-
-
 double Ship::CurrentSpeed() const
 {
 	return Velocity().Length();
@@ -3169,7 +3165,6 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 	if(!wasDestroyed && IsDestroyed())
 	{
 		type |= ShipEvent::DESTROY;
-		TuneParent();
 
 		if(IsYours())
 			Messages::Add("Your " + DisplayModelName() +
@@ -3273,7 +3268,7 @@ bool Ship::CanCarry(const Ship &ship) const
 	if(!free)
 		return false;
 
-	for(const auto &it : escorts.list)
+	for(const auto &it : escorts)
 	{
 		auto escort = it.lock();
 		if(!escort)
@@ -3801,7 +3796,7 @@ shared_ptr<Ship> Ship::GetParent() const
 
 const vector<weak_ptr<Ship>> &Ship::GetEscorts() const
 {
-	return escorts.list;
+	return escorts;
 }
 
 
@@ -4565,7 +4560,7 @@ bool Ship::DoLandingLogic()
 			else if(!isSpecial || personality.IsFleeing())
 			{
 				bool escortsLanded = true;
-				for(const auto &it : GetEscorts())
+				for(const auto &it : escorts)
 				{
 					const auto escort = it.lock();
 					// Check if escorts are also landed, or destroyed.
@@ -4964,95 +4959,23 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 // cues and try to stay with it when it lands or goes into hyperspace.
 void Ship::AddEscort(Ship &ship)
 {
-	escorts.list.push_back(ship.shared_from_this());
-	TuneForEscort(ship);
+	escorts.push_back(ship.shared_from_this());
 }
 
 
 
 void Ship::RemoveEscort(const Ship &ship)
 {
-	// When removing the slowest escort, we need to determine the new "speed limit."
-	shared_ptr<const Ship> slowest = escorts.slowest.lock();
-	const bool findSlowest = (!slowest || (&ship == slowest.get()));
-	if(findSlowest)
-	{
-		escorts.cruiseVelocity = 0.;
-		escorts.slowest.reset();
-	}
-
-	auto it = escorts.list.begin();
-	while(it != escorts.list.end())
+	auto it = escorts.begin();
+	while(it != escorts.end())
 	{
 		auto escort = it->lock();
 		if(escort.get() == &ship)
 		{
-			it = escorts.list.erase(it);
-			// If we are not removing the slowest escort, then we don't
-			// need to finish the loop to tune all other escorts.
-			if(!findSlowest)
-				return;
-		}
-		else
-		{
-			if(escort && findSlowest)
-				TuneForEscort(*escort);
-			++it;
+			it = escorts.erase(it);
+			return;
 		}
 	}
-}
-
-
-
-// (Re)Register escorts, for example because some escort got destroyed.
-void Ship::TuneForEscorts()
-{
-	// If the cached slowest escort is still ours, we don't need to re-find one.
-	shared_ptr<const Ship> slowest = escorts.slowest.lock();
-	if(slowest && !slowest->IsDestroyed() && government == slowest->GetGovernment())
-		return;
-
-	escorts.cruiseVelocity = 0.;
-	escorts.slowest.reset();
-
-	for(const auto &it : escorts.list)
-	{
-		auto escort = it.lock();
-		if(escort)
-			TuneForEscort(*escort);
-	}
-}
-
-
-
-// Cache the maximum speed that the parent should stay below to keep
-// all escorts together.
-void Ship::TuneForEscort(const Ship &ship)
-{
-	// We don't cache the speeds of carried ships, since they are often
-	// docked and the carrier waits for them during docking already.
-	if(!ship.CanBeCarried() && !ship.IsDestroyed() && government == ship.GetGovernment())
-	{
-		double eV = ship.MaxVelocity() * 0.9;
-		// We don't cache the speeds of escorts that have 0 velocity to avoid
-		// having the parent get stuck when one of the escorts doesn't have
-		// regular thrust.
-		if(eV > 0. && (escorts.cruiseVelocity <= 0. || (eV < escorts.cruiseVelocity)))
-		{
-			escorts.cruiseVelocity = eV;
-			escorts.slowest = ship.shared_from_this();
-		}
-	}
-}
-
-
-
-// Let the parent re-check if all cached data for its escorts still is valid.
-void Ship::TuneParent()
-{
-	shared_ptr<Ship> oldParent = parent.lock();
-	if(oldParent)
-		oldParent->TuneForEscorts();
 }
 
 
@@ -5200,18 +5123,6 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
-}
-
-
-
-Ship::Escorts::~Escorts()
-{
-	for(const auto &it : list)
-	{
-		shared_ptr<Ship> escort = it.lock();
-		if(escort)
-			escort->parent.reset();
-	}
 }
 
 

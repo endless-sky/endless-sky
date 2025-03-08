@@ -2035,14 +2035,7 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 	}
 	else if(ship.GetTargetStellar())
 	{
-		// If our allies are clearly stronger than our enemies in this system,
-		// then move at more civilized speeds when going to a planet.
-		// A zero or negative cruising speed indicates the ship should move as quickly as possible.
-		double cruiseSpeed = 0.;
-		if(AllyStrength(ship.GetGovernment()) > EnemyStrength(ship.GetGovernment()) * 2)
-			cruiseSpeed = ship.CruiseVelocity();
-
-		MoveToPlanet(ship, command, cruiseSpeed);
+		MoveToPlanet(ship, command);
 		if(!shouldStay && ship.Attributes().Get("fuel capacity") && ship.GetTargetStellar()->HasSprite()
 				&& ship.GetTargetStellar()->GetPlanet() && ship.GetTargetStellar()->GetPlanet()->CanLand(ship))
 			command |= Command::LAND;
@@ -4700,8 +4693,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			autoPilot.Clear(Command::LAND | Command::JUMP | Command::FLEET_JUMP);
 		else
 		{
-			// Autopilot will promote traveling as a fleet, and the player can self-pilot if they wish to go faster.
-			MoveToPlanet(ship, command, ship.CruiseVelocity());
+			MoveToPlanet(ship, command);
 			command |= Command::LAND;
 		}
 	}
