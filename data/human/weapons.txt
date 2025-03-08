@@ -358,7 +358,7 @@ effect "heavy laser impact"
 outfit "Mining Laser"
 	category "Guns"
 	series "Guns"
-	index 01080
+	index 01070
 	cost 38000
 	thumbnail "outfit/mining laser"
 	"mass" 12
@@ -387,7 +387,7 @@ outfit "Mining Laser"
 outfit "Mining Laser Turret"
 	category "Turrets"
 	series "Turrets"
-	index 01070
+	index 01060
 	cost 66000
 	thumbnail "outfit/mining laser turret"
 	"mass" 18
@@ -449,7 +449,7 @@ effect "tractor beam"
 outfit "Electron Beam"
 	category "Guns"
 	series "Guns"
-	index 01070
+	index 01080
 	cost 170000
 	thumbnail "outfit/electron beam"
 	"mass" 21
@@ -474,7 +474,7 @@ outfit "Electron Beam"
 outfit "Electron Turret"
 	category "Turrets"
 	series "Turrets"
-	index 01060
+	index 01070
 	cost 720000
 	thumbnail "outfit/electron turret"
 	"mass" 54
