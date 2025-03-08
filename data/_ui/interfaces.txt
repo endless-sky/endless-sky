@@ -199,6 +199,7 @@ color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
 color "map system ring" .4 .4 .4 .6
+color "map system ring unexplored" .1 .1 .1 0.
 
 # Colors used for the routing issue text in the map panel when
 # a route to the selected system cannot be determined.
@@ -1250,6 +1251,7 @@ interface "hud"
 	box "messages"
 		from 120 0 bottom left
 		to -110 -200 bottom right
+	value "messages reversed" 0
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right

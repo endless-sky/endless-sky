@@ -296,7 +296,7 @@ time_t Files::Timestamp(const filesystem::path &filePath)
 
 
 
-void Files::Copy(const filesystem::path &from, const filesystem::path &to)
+bool Files::Copy(const filesystem::path &from, const filesystem::path &to)
 {
 #ifdef _WIN32
 	// Due to a mingw bug, the overwrite_existing flag is not respected on Windows.
@@ -304,7 +304,14 @@ void Files::Copy(const filesystem::path &from, const filesystem::path &to)
 	if(Exists(to))
 		Delete(to);
 #endif
-	copy(from, to, filesystem::copy_options::overwrite_existing);
+	try {
+		copy(from, to, filesystem::copy_options::overwrite_existing);
+	}
+	catch(...)
+	{
+		return false;
+	}
+	return true;
 }
 
 

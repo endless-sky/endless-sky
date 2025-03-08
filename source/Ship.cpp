@@ -352,6 +352,7 @@ void Ship::Load(const DataNode &node)
 			attributes.baseAngle = Angle(0.);
 			attributes.isParallel = false;
 			attributes.isOmnidirectional = true;
+			attributes.turnMultiplier = 0.;
 			bool drawUnder = (key == "gun");
 			if(child.HasChildren())
 			{
@@ -376,6 +377,8 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
+					else if(grand.Token(0) == "turret turn multiplier")
+						attributes.turnMultiplier = grand.Value(1);
 					else if(grand.Token(0) == "under")
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
@@ -1081,6 +1084,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				if(attributes.turnMultiplier)
+					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
 					out.Write("under");
 				else
@@ -1666,7 +1671,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		// Move the turrets.
 		if(!isDisabled)
-			armament.Aim(firingCommands);
+			armament.Aim(*this, firingCommands);
 
 		DoInitializeMovement();
 		StepPilot();
@@ -3565,26 +3570,28 @@ bool Ship::CanFire(const Weapon *weapon) const
 			return false;
 	}
 
-	if(energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
+	if(weapon->ConsumesEnergy()
+			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
 		return false;
-	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
+	if(weapon->ConsumesFuel()
+			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
 		return false;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
+	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
 		return false;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
+	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
 		return false;
 	// Repeat this for various effects which shouldn't drop below 0.
-	if(ionization < -weapon->FiringIon())
+	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
 		return false;
-	if(disruption < -weapon->FiringDisruption())
+	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
 		return false;
-	if(slowness < -weapon->FiringSlowing())
+	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
 		return false;
 
 	return true;
@@ -3808,6 +3815,13 @@ int Ship::GetLingerSteps() const
 void Ship::Linger()
 {
 	++lingerSteps;
+}
+
+
+
+bool Ship::Immitates(const Ship &other) const
+{
+	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }
 
 
@@ -4938,7 +4952,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 			Point effectVelocity = velocity - 6. * afterburnerAngle.Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle);
+					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle, Point{}, point.zoom);
 		}
 	}
 }
