@@ -49,6 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstring>
 #include <ctime>
 #include <functional>
 #include <iterator>
@@ -2126,10 +2127,12 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
-			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
+			if(it->IsFailed(*this))
+				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
