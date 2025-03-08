@@ -1160,7 +1160,7 @@ outfit "Torpedo Launcher"
 		"firing heat" 45
 		"acceleration" .12
 		"drag" .02
-		"turn" .9
+		"turn" 1.5
 		"homing" 1
 		"optical tracking" .8
 		"shield damage" 820
@@ -1199,7 +1199,7 @@ outfit "Torpedo Pod"
 		"firing heat" 45
 		"acceleration" .12
 		"drag" .02
-		"turn" .9
+		"turn" 1.5
 		"homing" 1
 		"optical tracking" .8
 		"shield damage" 820
