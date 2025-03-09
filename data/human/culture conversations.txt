@@ -865,7 +865,7 @@ mission "Exotic Life: Delve"
 			`	You approach a pair of workers as they finish spraying down a Bulk Freighter and ask what they're doing. One of them, a grizzled veteran with deep lines around his eyes, barely glances at you. "Shipworms," he mutters, already moving to the next ship.`
 			`	The other, a younger worker practically bouncing in his boots, grins behind his respirator. "Yeah! Little metal-chewing pests. They're native to Delve, infest the mines, the shipyards - anywhere there's metal to sink their teeth into. If we didn't spray every ship before takeoff, they'd be all over the galaxy by now." The veteran sighs. "They already are all over the galaxy. Because people aren't careful enough."`
 			`	The rookie ignores him. "They start as tiny worms, barely bigger than your pinky, but once they find metal, they melt into it, make a cocoon that looks just like part of the ship! Bombacle, we call 'em. Then BAM! A few months later, the casing bursts open like a bomb! Bombacle!"`
-			`	The veteran shakes his head. "What he means is, they're an invasive hazard if they get off-world. That's why we spray. No Shipworms, no problems."`
+			`	The veteran shakes his head. "What he means is, they're an invasive hazard if they get off-world. That's why we spray. No shipworms, no problems."`
 			`	The rookie gives his sprayer an enthusiastic shake. "And I get to torch every last one I find. You ever see one pop under a high-heat blast? Satisfying as hell." The veteran just mutters, "You'd think the novelty would wear off."`
 			action
 				set "exotic animals: delvan shipworm known"
@@ -873,7 +873,7 @@ mission "Exotic Life: Delve"
 				goto ending
 			label known
 			`	The veteran lets out a long-suffering sigh. "Great. At least this one actually knows what they are." The rookie, on the other hand, practically lights up. "They're like space barnacles - until they hatch into wormy bombs! I was just telling him how fun it is to fry 'em!"`
-			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan Shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
+			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
 			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face. "Why do I even bother?"`
 			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
 			label ending
@@ -897,16 +897,16 @@ mission "Exotic Life: Ada"
 					to display
 						has "exotic animals: delvan shipworm known"
 					goto known
-			`	Curiosity gets the better of you, and you ask what this is all about, gesturing at the tarps. One of them pauses, their voice muffled by the respirator. "Delvan Shipworm outbreak. Nasty infestation. We're exterminating them before they spread to other ships or the city." You can see small scorch marks on the floor nearby - signs of something being burned away.`
+			`	Curiosity gets the better of you, and you ask what this is all about, gesturing at the tarps. One of them pauses, their voice muffled by the respirator. "Delvan shipworm outbreak. Nasty infestation. We're exterminating them before they spread to other ships or the city." You can see small scorch marks on the floor nearby - signs of something being burned away.`
 			choice
-				`	"What's a Delvan Shipworm?"`
+				`	"What's a Delvan shipworm?"`
 				`	"Nasty bombacles, aren't they?"`
 					to display
 						has "exotic animals: delvan shipworm known"
 					goto known
 				`	"Well, good luck with that. I should get going."`
 					decline
-			`	The worker with the monitor barely hesitates before responding. "Delvan Shipworms are an invasive species from Delve. They start as larvae, tiny worms-"`
+			`	The worker with the monitor barely hesitates before responding. "Delvan shipworms are an invasive species from Delve. They start as larvae, tiny worms-"`
 			`	"Bombacles!" the one with the sprayer interjects, voice distorted through the respirator. "They latch on ships, grow into barnacles, then they're bombs!"`
 			`	The first worker exhales, shaking their head. "They're more than that. The larvae attach to metal - usually ship hulls, but it can be mining equipment or anything really, and secrete an enzyme that corrodes the surface, breaking it down so they can form a cocoon around themselves. This builds up a high-pressure gas, so the outer shell hardens to compensate, blending in with the surrounding metal."`
 			`	"Yeah, until - BOOM! Three months later, it blasts open like a grenade and out come a dozen disgusting worms!"`
