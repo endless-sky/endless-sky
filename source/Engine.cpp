@@ -747,7 +747,17 @@ void Engine::Step(bool isActive)
 			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
 		else
 			info.SetBar("fuel", flagship->Fuel());
+		const double scale = .2 + 1.8 / (.001 * flagship->Position().Length() + 1);
+		const double ramscoop = flagship->Attributes().Get("ramscoop");
+		if(ramscoop > 0.)
+		{
+			const double maxRamscoopFuel = flagship->GetSystem()->RamscoopFuel(ramscoop, 2.);
+			const double currentRamscoopFuel = flagship->GetSystem()->RamscoopFuel(ramscoop, scale);
+			info.SetBar("fuel collection", currentRamscoopFuel / maxRamscoopFuel);
+		}
 		info.SetBar("energy", flagship->Energy());
+		if(flagship->Attributes().Get("solar collection"))
+			info.SetBar("energy collection", .5 * scale);
 		double heat = flagship->Heat();
 		info.SetBar("heat", min(1., heat));
 		// If heat is above 100%, draw a second overlaid bar to indicate the
