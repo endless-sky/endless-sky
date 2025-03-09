@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ASTEROID_FIELD_H_
-#define ASTEROID_FIELD_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -61,9 +60,11 @@ public:
 	void Draw(DrawList &draw, const Point &center, double zoom) const;
 
 	// Check if the given projectile collides with any asteroids. This excludes minables.
-	const std::vector<Collision> &CollideAsteroids(const Projectile &projectile) const;
+	void CollideAsteroids(const Projectile &projectile, std::vector<Collision> &result) const;
 	// Check if the given projectile collides with any minables.
-	const std::vector<Collision> &CollideMinables(const Projectile &projectile) const;
+	void CollideMinables(const Projectile &projectile, std::vector<Collision> &result) const;
+	// Get a list of minables affected by an explosion with blast radius.
+	void MinablesCollisionsCircle(const Point &center, double radius, std::vector<Body *> &result) const;
 
 	// Get the list of minable asteroids.
 	const std::list<std::shared_ptr<Minable>> &Minables() const;
@@ -91,11 +92,4 @@ private:
 
 	CollisionSet asteroidCollisions;
 	CollisionSet minableCollisions;
-
-	// Vector for returning the result of CollideAsteroids.
-	mutable std::vector<Collision> result;
 };
-
-
-
-#endif

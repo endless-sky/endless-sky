@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SYSTEM_H_
-#define SYSTEM_H_
+#pragma once
 
 #include "Hazard.h"
 #include "Point.h"
@@ -78,12 +77,15 @@ public:
 	void Unlink(System *other);
 
 	bool IsValid() const;
-	// Get this system's name and position (in the star map).
-	const std::string &Name() const;
+	const std::string &TrueName() const;
 	void SetName(const std::string &name);
+	// Get this system's name and position (in the star map).
+	const std::string &DisplayName() const;
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
+	// Get this system's map icons.
+	const std::vector<const Sprite *> &GetMapIcons() const;
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
 
@@ -204,10 +206,12 @@ private:
 private:
 	bool isDefined = false;
 	bool hasPosition = false;
+	std::string trueName;
 	// Name and position (within the star map) of this system.
-	std::string name;
+	std::string displayName;
 	Point position;
 	const Government *government = nullptr;
+	std::vector<const Sprite *> mapIcons;
 	std::string music;
 
 	// All possible hyperspace links to other systems.
@@ -274,7 +278,3 @@ private:
 	// Attributes, for use in location filters.
 	std::set<std::string> attributes;
 };
-
-
-
-#endif

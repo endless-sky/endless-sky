@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MESSAGE_LOG_PANEL_H_
-#define MESSAGE_LOG_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
@@ -26,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class MessageLogPanel : public Panel {
 public:
 	MessageLogPanel();
+	virtual ~MessageLogPanel() override;
 
 	virtual void Draw() override;
 
@@ -46,7 +46,3 @@ private:
 	double scroll = 0.;
 	double maxScroll = 0.;
 };
-
-
-
-#endif

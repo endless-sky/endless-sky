@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dictionary.h"
 
+#include "StringInterner.h"
+
 #include <cstring>
 #include <mutex>
 #include <set>
@@ -46,18 +48,6 @@ namespace {
 		}
 		return make_pair(low, false);
 	}
-
-	// String interning: return a pointer to a character string that matches the
-	// given string but has static storage duration.
-	const char *Intern(const char *key)
-	{
-		static set<string> interned;
-		static mutex m;
-
-		// Just in case this function is accessed from multiple threads:
-		lock_guard<mutex> lock(m);
-		return interned.insert(key).first->c_str();
-	}
 }
 
 
@@ -68,7 +58,7 @@ double &Dictionary::operator[](const char *key)
 	if(pos.second)
 		return data()[pos.first].second;
 
-	return insert(begin() + pos.first, make_pair(Intern(key), 0.))->second;
+	return insert(begin() + pos.first, make_pair(StringInterner::Intern(key), 0.))->second;
 }
 
 

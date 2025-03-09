@@ -13,10 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_ACTION_H_
-#define GAME_ACTION_H_
+#pragma once
 
-#include "ConditionSet.h"
+#include "ConditionAssignments.h"
 #include "ShipManager.h"
 
 #include <cstdint>
@@ -90,6 +89,7 @@ private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<ShipManager> giftShips;
@@ -110,9 +110,5 @@ private:
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
 
-	ConditionSet conditions;
+	ConditionAssignments conditions;
 };
-
-
-
-#endif

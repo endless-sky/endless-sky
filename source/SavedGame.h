@@ -13,9 +13,9 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SAVED_GAME_H_
-#define SAVED_GAME_H_
+#pragma once
 
+#include <filesystem>
 #include <string>
 
 class Sprite;
@@ -30,10 +30,10 @@ class Sprite;
 class SavedGame {
 public:
 	SavedGame() = default;
-	explicit SavedGame(const std::string &path);
+	explicit SavedGame(const std::filesystem::path &path);
 
-	void Load(const std::string &path);
-	const std::string &Path() const;
+	void Load(const std::filesystem::path &path);
+	const std::filesystem::path &Path() const;
 	bool IsLoaded() const;
 	void Clear();
 
@@ -50,7 +50,7 @@ public:
 
 
 private:
-	std::string path;
+	std::filesystem::path path;
 
 	std::string name;
 	std::string credits;
@@ -63,7 +63,3 @@ private:
 	const Sprite *shipSprite = nullptr;
 	std::string shipName;
 };
-
-
-
-#endif

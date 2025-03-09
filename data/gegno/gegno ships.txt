@@ -281,8 +281,10 @@ ship "Corundum"
 	"steering engine" -58 -58
 		right
 	gun 9 -132
+		parallel
 		over
 	gun -9 -132
+		parallel
 		over
 	leak "leak" 50 60
 	leak "flame" 70 70
@@ -297,18 +299,6 @@ ship "Corundum"
 ship "Corundum" "Corundum (Torch)"
 	outfits
 		"Ion Torch" 2
-		"C3 Scrap Cell"
-		"C7 Brawl Cell"
-		"R01 Skirmish Battery"
-		
-		"RG18 Torch Thruster"
-		"RG18 Torch Steering" 2
-		"Hyperdrive"
-
-ship "Corundum" "Corundum (Multi)"
-	outfits
-		"Ion Torch"
-		"Burrower"
 		"C3 Scrap Cell"
 		"C7 Brawl Cell"
 		"R01 Skirmish Battery"
@@ -419,7 +409,6 @@ ship "Dunite"
 	description `Dunites are unique vessels designed by the Gegno Vi entirely for the purpose of dueling. It is a hodgepodge of parts, simply being an engine, power system, cockpit, and Irate Cannon mashed together without any regard to structural integrity. The most notable feature is a long mace-like protrusion next to the Irate Cannon which is used for jousting and ramming other duelists.`
 	description `	Being a mangled mess of machinery designed for only a single purpose, Dunites do not come equipped with nor have room for hyperdrives, and are purely intrastellar craft.`
 
-
 ship "Augen"
 	sprite "ship/gegno augen"
 	thumbnail "thumbnail/gegno augen"
@@ -494,32 +483,46 @@ ship "Augen"
 	gun -35.5 -373.5 "Irate Cannon"
 	gun -42.5 -367.5 "Irate Cannon"
 	gun 100.5 -309 "Irate Cannon"
+		parallel
 		angle 40
 	gun -85.5 -309.5 "Irate Cannon"
+		parallel
 		angle -43
 	gun 116.5 -200.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun 116.5 -195.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun -121.5 -115.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun -121 -109.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 127 -37.5 "Irate Cannon"
+		parallel
 		angle 85
 	gun -134.5 33.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun -134.5 39 "Irate Cannon"
+		parallel
 		angle -90
 	gun -119 140.5 "Irate Cannon"
+		parallel
 		angle -115
 	gun 114 186.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun 114 192 "Irate Cannon"
+		parallel
 		angle 90
 	gun -58.5 256 "Irate Cannon"
+		parallel
 		angle -150
 	gun 88.5 334 "Irate Cannon"
+		parallel
 		angle 155
 	turret 13 -297.5 "Ballistic Cannon Turret"
 	turret 13 -212 "Ballistic Cannon Turret"
@@ -578,7 +581,7 @@ ship "Slate"
 	leak "leak" 60 50
 	explode "small explosion" 5
 	explode "tiny explosion" 10
-	description `Designed by the Gegno Vi, the Slate is a modified Shale with a stronger hull and more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it is able to carry several Gegno cadets along with a small cargo load.`
+	description `Designed by the Gegno Vi, the Slate is a modified Shale with a stronger hull and more space, a prime characteristic of Vi vessels. Slightly larger than other shuttle ships to suit the Vi's stature, it is able to carry a few Gegno cadets, along with a decently increased cargo capacity.`
 
 ship "Schist"
 	sprite "ship/gegno schist a"
@@ -621,12 +624,16 @@ ship "Schist"
 	gun -16.5 -181.5 "Irate Cannon"
 	gun 16.5 -181.5 "Irate Cannon"
 	gun 44.5 -81 "Irate Cannon"
+		parallel
 		angle 80
 	gun -44.5 -81 "Irate Cannon"
+		parallel
 		angle -80
 	gun 56.5 30.5 "Irate Cannon"
+		parallel
 		angle 112
 	gun -56.5 30.5 "Irate Cannon"
+		parallel
 		angle -112
 	turret 0 -139.5 "Irate Cannon Turret"
 	leak "leak" 60 50
@@ -655,6 +662,55 @@ ship "Schist" "Schist (Heavy Load)"
 		"mass" 57
 		"drag" 0.3
 		"cargo space" 49
+
+ship "Rhyolite"
+	sprite "ship/gegno rhyolite"
+	thumbnail "thumbnail/gegno rhyolite"
+	attributes
+		category "Interceptor"
+		licenses
+			"Vi Centurion"
+		"cost" 1165000
+		"shields" 0
+		"hull" 4000
+		"required crew" 5
+		"bunks" 9
+		"mass" 225
+		"drag" 4
+		"heat dissipation" 0.64
+		"fuel capacity" 400
+		"cargo space" 30
+		"outfit space" 220
+		"weapon capacity" 78
+		"engine capacity" 100
+		weapon
+			"blast radius" 28
+			"shield damage" 190
+			"hull damage" 360
+			"hit force" 330
+	outfits
+		"Irate Cannon" 4
+		
+		"C7 Brawl Cell"
+		"R02 Battlezone Battery"
+		"Savagery Pike" 5
+		
+		"RG18 Torch Thruster"
+		"RG18 Torch Steering"
+		"Hyperdrive"
+	engine -28.5 61.5
+	engine 28.5 61.5
+	gun -43.5 -15 "Irate Cannon"
+	gun 43.5 -15 "Irate Cannon"
+	gun -52 -11 "Irate Cannon"
+	gun 52 -11 "Irate Cannon"
+	leak "leak" 50 40
+	leak "flame" 40 70
+	explode "medium explosion" 10
+	explode "small explosion" 15
+	explode "tiny explosion" 10
+	"final explode" "final explosion small"
+	description `The Rhyolite is a prototype Vi interceptor design constructed by the same shipyard that manufactures the Eclogite and Diorite. Only a few have been produced, and those that exist are currently piloted by a handful of Vi warriors either testing the vessel or owning one privately.`
 
 ship "Eclogite"
 	sprite "ship/gegno eclogite"
@@ -817,16 +873,22 @@ ship "Hornfel"
 	gun -24.5 -208 "Irate Cannon"
 	gun 24.5 -208 "Irate Cannon"
 	gun 29 -120 "Irate Cannon"
+		parallel
 		angle 60
 	gun -29 -107.5 "Irate Cannon"
+		parallel
 		angle -60
 	gun -38 -1.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 40.5 30 "Irate Cannon"
+		parallel
 		angle 90
 	gun -29 141.5 "Irate Cannon"
+		parallel
 		angle -135
 	gun 29 120.5 "Irate Cannon"
+		parallel
 		angle 135
 	turret 0 -111 "Choleric Cannon Turret"
 	turret 0 -42 "Choleric Cannon Turret"
@@ -881,16 +943,22 @@ ship "Hornfel" "Hornfel (Heavy Weapons)"
 	gun -24.5 -208 "Irate Cannon"
 	gun 24.5 -208 "Irate Cannon"
 	gun 29 -120 "Irate Cannon"
+		parallel
 		angle 60
 	gun -29 -107.5 "Irate Cannon"
+		parallel
 		angle -60
 	gun -38 -1.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 40.5 30 "Irate Cannon"
+		parallel
 		angle 90
 	gun -29 141.5 "Irate Cannon"
+		parallel
 		angle -135
 	gun 29 120.5 "Irate Cannon"
+		parallel
 		angle 135
 	turret 0 -174 "Irate Cannon Turret"
 	turret 0 -111 "Choleric Cannon Turret"
@@ -940,20 +1008,28 @@ ship "Gneiss"
 	gun -23 -270.5 "Irate Cannon"
 	gun 23 -270.5 "Irate Cannon"
 	gun -38.5 -192.5 "Irate Cannon"
+		parallel
 		angle -60
 	gun 39 -185 "Irate Cannon"
+		parallel
 		angle 60
 	gun 46.5 -66.5 "Irate Cannon"
+		parallel
 		angle 90
 	gun -58 -14 "Irate Cannon"
+		parallel
 		angle -40
 	gun -69.5 5.5 "Irate Cannon"
+		parallel
 		angle -95
 	gun 65.5 9.5 "Irate Cannon"
+		parallel
 		angle 45
 	gun 66 87 "Irate Cannon"
+		parallel
 		angle 135
 	gun -55.5 133.5 "Irate Cannon"
+		parallel
 		angle -135
 	turret 0 -97.5 "Ballistic Cannon Turret"
 	turret 0 -23 "Ballistic Cannon Turret"
@@ -966,7 +1042,7 @@ ship "Gneiss"
 	explode "small explosion" 40
 	explode "tiny explosion" 80
 	"final explode" "final explosion large"
-	description `Gneiss battleships are the Gegno Vi's true sword and shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing three huge mounts dedicated to holding enormous Ballistic Cannons. Gniess also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
+	description `Gneiss battleships are the Gegno Vi's true sword and shield in war. They are slightly older than the Hornfels and Schists, but carry the heaviest armament, bearing three huge mounts dedicated to holding enormous Ballistic Cannons. Gneiss also have extremely strong armor plating, and can take a hefty beating while firing threatening broadsides at the opposing force.`
 	description `	Unfortunately, in exchange for huge firepower and defensive armor, they lack speed and maneuverability, even when fitted with the largest engine systems the Vi have to offer.`
 
 ship "Granulite"
@@ -1017,22 +1093,31 @@ ship "Granulite"
 	gun -22.5 -269 "Irate Cannon"
 	gun 22.5 -269 "Irate Cannon"
 	gun 62.5 -186.5 "Irate Cannon"
+		parallel
 		angle 45
 	gun -74 -165 "Irate Cannon"
+		parallel
 		angle -90
 	gun 93 -27.5 "Irate Cannon"
+		parallel
 		angle 100
 	gun -86.5 -60 "Irate Cannon"
+		parallel
 		angle -50
 	gun 107 -11.5 "Irate Cannon"
+		parallel
 		angle 35
 	gun -124.5 103.5 "Irate Cannon"
+		parallel
 		angle -90
 	gun 105 142 "Irate Cannon"
+		parallel
 		angle 95
 	gun -101 194.5 "Irate Cannon"
+		parallel
 		angle -125
 	gun 94.5 211 "Irate Cannon"
+		parallel
 		angle 150
 	turret 0 21 "Choleric Cannon Turret"
 	turret -69.5 21 "Irate Cannon Turret"
@@ -1357,7 +1442,6 @@ ship "Feldspar"
 		"launch effect" "scin launch"
 		angle -180
 		over
-		"launch effect" "scin launch"
 	bay "Fighter" 65.5 120
 		"launch effect" "scin launch"
 		angle -180

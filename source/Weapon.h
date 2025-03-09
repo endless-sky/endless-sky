@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef WEAPON_H_
-#define WEAPON_H_
+#pragma once
 
 #include "Angle.h"
 #include "Body.h"
@@ -53,6 +52,9 @@ public:
 		Angle facing;
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
+
+		bool spawnOnNaturalDeath = true;
+		bool spawnOnAntiMissileDeath = false;
 	};
 
 
@@ -193,6 +195,14 @@ public:
 	// Check if this weapon does damage. If not, attacking a ship with this
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
+
+	bool ConsumesHull() const;
+	bool ConsumesFuel() const;
+	bool ConsumesHeat() const;
+	bool ConsumesEnergy() const;
+	bool ConsumesIonization() const;
+	bool ConsumesDisruption() const;
+	bool ConsumesSlowing() const;
 
 	double Piercing() const;
 
@@ -467,8 +477,12 @@ inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
 
+inline bool Weapon::ConsumesHull() const { return FiringHull() > 0. || RelativeFiringHull() > 0.; }
+inline bool Weapon::ConsumesFuel() const { return FiringFuel() > 0. || RelativeFiringFuel() > 0.; }
+inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() > 0.; }
+inline bool Weapon::ConsumesEnergy() const { return FiringEnergy() > 0. || RelativeFiringEnergy() > 0.; }
+inline bool Weapon::ConsumesIonization() const { return FiringIon() < 0.; }
+inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.; }
+inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
+
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
-
-
-
-#endif

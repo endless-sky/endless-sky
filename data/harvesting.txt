@@ -417,3 +417,198 @@ minable "unknown"
 	explode "bolide" 20
 	explode "blood" 10
 	explode "final explosion medium"
+	
+
+
+# Gossamer Smoke Ring Minables
+
+minable "tiny water droplet"
+	"display name" "Tiny"
+	noun "Water Droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 0.125
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 60
+	"random hull" 60
+	explode "droplet burst"
+
+minable "small water droplet"
+	"display name" "Small"
+	noun "Water Droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 0.25
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 180
+	"random hull" 180
+	payload "Voidfish" 3
+		"toughness" 540
+	explode "droplet burst" 3
+
+minable "medium water droplet"
+	"display name" "Medium"
+	noun "Water Droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 0.5
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 600
+	"random hull" 600
+	payload "Voidfish" 15
+		"toughness" 1800
+	explode "droplet burst" 6
+
+minable "large water droplet"
+	"display name" "Large"
+	noun "Water Droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 0.75
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 1800
+	"random hull" 1800
+	payload "Voidfish" 45
+		"toughness" 4500
+	explode "droplet burst" 12
+
+minable "huge water droplet"
+	"display name" "Huge"
+	noun "Water Droplet"
+	sprite "asteroid/water droplet/droplet"
+		scale 1
+		"frame rate" 12
+		"rewind"
+		"random start frame"
+	hull 3600
+	"random hull" 3600
+	payload "Voidfish" 120
+		"toughness" 10800
+	explode "droplet burst" 36
+
+outfit "Voidfish"
+	category "Minerals"
+	plural "Voidfish"
+	cost 2400
+	thumbnail "outfit/voidfish"
+	"flotsam sprite" "effect/flotsam voidfish"
+	"mass" 1
+	"installable" -1
+	"minable" 1
+	description "These are a collection of numerous species of voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze-dried, they are surprisingly appetizing, and equally nourishing."
+
+
+effect "droplet burst"
+	sprite "effect/puff"
+		"frame rate" 12
+		"no repeat"
+		"scale" 0.5
+	sound "bombardment"
+	"random angle" 360
+	"random spin" 3
+	"lifetime" 15
+	"random lifetime" 15
+	"random velocity" 9
+	"velocity scale" 0
+
+
+
+
+minable "integral tree a"
+	"display name" "Wizened Integral"
+	noun "Tree"
+	sprite "asteroid/integral tree/tree a"
+	hull 7200
+	"random hull" 3600
+	payload "Integral Wood" 120
+		"toughness" 43200
+		"drop rate" 0.6
+	explode "timber" 30
+
+minable "integral tree b"
+	"display name" Integral
+	noun "Tree"
+	sprite "asteroid/integral tree/tree b"
+		scale 0.75
+	hull 2400
+	"random hull" 1200
+	payload "Integral Wood" 30
+		"toughness" 14400
+		"drop rate" 0.6
+	explode "timber" 6
+
+minable "integral tree c"
+	"display name" "Integral"
+	noun "Tree"
+	sprite "asteroid/integral tree/tree c"
+		scale 0.75
+	hull 3600
+	"random hull" 1800
+	payload "Integral Wood" 30
+		"toughness" 21600
+		"drop rate" 0.6
+	explode "timber" 6
+
+minable "integral tree d"
+	"display name" "Frosted Integral"
+	noun "Tree"
+	sprite "asteroid/integral tree/tree d"
+		scale 0.75
+	hull 4800
+	"random hull" 2400
+	payload "Integral Wood" 60
+		"toughness" 28800
+		"drop rate" 0.6
+	payload "Platinum" 120
+		"toughness" 10800
+	explode "timber" 12
+
+minable "integral tree e"
+	"display name" "Amber Integral"
+	noun "Tree"
+	sprite "asteroid/integral tree/tree e"
+		scale 0.75
+	hull 4800
+	"random hull" 2400
+	payload "Integral Wood" 60
+		"toughness" 28800
+		"drop rate" 0.6
+	payload "Gold" 120
+		"toughness" 10800
+	explode "timber" 12
+
+minable "integral tree f"
+	"display name" "Dead Integral"
+	noun "Tree"
+	sprite "asteroid/integral tree/tree f"
+		scale 0.75
+	hull 600
+	"random hull" 1200
+	payload "Integral Wood" 120
+		"toughness" 1800
+		"drop rate" 0.3
+	explode "timber" 30
+
+effect "timber"
+	sprite "effect/flotsam integral wood"
+	sound "crunch"
+	"random angle" 180
+	"random lifetime" 120
+	"random velocity" 3
+	"velocity scale" 0.3
+
+outfit "Integral Wood"
+	category "Minerals"
+	plural "Integral Wood"
+	cost 12000
+	thumbnail "outfit/integral wood"
+	"flotsam sprite" "effect/flotsam integral wood"
+	"mass" 0.3
+	"installable" -1
+	"minable" 1
+	description "Wood harvested from an integral tree is exquisitely lightweight, strong, and radiation resistant - it also fetches extraordinary prices on the market for exotic goods."
+	description "	Some claim it would even be the material of choice for a wooden starship, as ridiculous as the idea would be."

@@ -72,6 +72,7 @@ mission "Hai Vacation [1]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -96,6 +97,7 @@ mission "Hai Vacation [2]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -120,6 +122,7 @@ mission "Hai Vacation [3]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -144,6 +147,7 @@ mission "Hai Vacation [4]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -222,12 +226,21 @@ mission "Hai Festival [1]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -248,12 +261,21 @@ mission "Hai Festival [2]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -274,12 +296,21 @@ mission "Hai Festival [3]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -1483,7 +1514,7 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
+	description "A group of Hai want to experience what it's like to be human criminals. Transport the <bunks> of them to <planet> in a brig. Payment is <payment>."
 	passengers 3 20
 	to offer
 		random < 5
@@ -1514,7 +1545,7 @@ mission "Swiftsong Business Convention [1]"
 	passengers 4 2 .1
 	cargo "office supplies" 1 2
 	to offer
-		random < 10
+		random < 8
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1522,7 +1553,7 @@ mission "Swiftsong Business Convention [1]"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `During the trip, your passengers appeared to be practicing a presentation for the convention. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
 
@@ -1536,7 +1567,7 @@ mission "Swiftsong Business Convention [2]"
 	passengers 4 4 .1
 	cargo "office supplies" 1 3
 	to offer
-		random < 5
+		random < 2
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1544,7 +1575,7 @@ mission "Swiftsong Business Convention [2]"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `During the trip, your passengers appeared to be practicing a presentation for the convention. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
 
@@ -1557,7 +1588,7 @@ mission "Swiftsong Film Festival [1]"
 	description "A group of <bunks> Hai movie buffs will pay you <payment> in exchange for transporting them to <planet>, where a film festival is taking place."
 	passengers 4 2 .1
 	to offer
-		random < 10
+		random < 8
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1565,7 +1596,7 @@ mission "Swiftsong Film Festival [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Some of the movie plots they discussed during the trip were bewildering.`
 
@@ -1578,7 +1609,7 @@ mission "Swiftsong Film Festival [2]"
 	description "A group of <bunks> Hai movie buffs will pay you <payment> in exchange for transporting them to <planet>, where a large film festival is taking place."
 	passengers 4 4 .1
 	to offer
-		random < 5
+		random < 3
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1586,7 +1617,7 @@ mission "Swiftsong Film Festival [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Some of the movie plots they discussed during the trip were bewildering.`
 
@@ -1599,7 +1630,7 @@ mission "Swiftsong Music Festival [1]"
 	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a music festival is taking place."
 	passengers 4 2 .1
 	to offer
-		random < 10
+		random < 8
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1607,7 +1638,7 @@ mission "Swiftsong Music Festival [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. You can hear the music blasting all the way from the spaceport.`
 
@@ -1620,7 +1651,7 @@ mission "Swiftsong Music Festival [2]"
 	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large music festival is taking place."
 	passengers 4 4 .1
 	to offer
-		random < 5
+		random < 3
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1628,7 +1659,7 @@ mission "Swiftsong Music Festival [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. You can hear the music blasting all the way from the spaceport.`
 
@@ -1641,7 +1672,7 @@ mission "Swiftsong Computer Security Conference [1]"
 	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a computer security conference is taking place."
 	passengers 4 2 .1
 	to offer
-		random < 10
+		random < 8
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1649,7 +1680,7 @@ mission "Swiftsong Computer Security Conference [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Your passengers' conversations went mostly over your head, but they were otherwise pleasant the entire trip.`
 
@@ -1662,7 +1693,7 @@ mission "Swiftsong Computer Security Conference [2]"
 	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large computer security conference is taking place."
 	passengers 4 4 .1
 	to offer
-		random < 5
+		random < 3
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1670,7 +1701,7 @@ mission "Swiftsong Computer Security Conference [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Your passengers' conversations went mostly over your head, but they were otherwise pleasant the entire trip.`
 
@@ -1682,7 +1713,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a science fiction convention is taking place."
 	passengers 4 2 .1
 	to offer
-		random < 10
+		random < 8
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1690,7 +1721,7 @@ mission "Swiftsong Science Fiction Convention [1]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 50
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, one of them gives you a hand gesture that you recognize from an old human sci-fi program.`
 
@@ -1703,7 +1734,7 @@ mission "Swiftsong Science Fiction Convention [2]"
 	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large science fiction convention is taking place."
 	passengers 4 4 .1
 	to offer
-		random < 5
+		random < 3
 	source
 		government "Hai"
 		not planet "Swiftsong"
@@ -1711,7 +1742,7 @@ mission "Swiftsong Science Fiction Convention [2]"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
-		payment 10000 150
+		payment 10000 100
 		"reputation: Hai" += 3
 		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, one of them gives you a hand gesture that you recognize from an old human sci-fi program.`
 
@@ -2072,4 +2103,3 @@ mission "Superstitious Hai [12]"
 		"reputation: Hai Merchant (Human)" += 3
 		"reputation: Hai Merchant (Sympathizers)" += 3
 		dialog phrase "generic passenger dropoff payment"
-

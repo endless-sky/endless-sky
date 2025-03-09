@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIP_MANAGER_H_
-#define SHIP_MANAGER_H_
+#pragma once
 
 #include <map>
 #include <memory>
@@ -38,7 +37,8 @@ public:
 	bool CanBeDone(const PlayerInfo &player) const;
 	// Give or take the ships.
 	void Do(PlayerInfo &player) const;
-
+	// Expands phrases and substitutions in the ship name, into a new copy of this ShipManager
+	ShipManager Instantiate(const std::map<std::string, std::string> &subs) const;
 	// The model of the concerned ship.
 	const Ship *ShipModel() const;
 	// The identifier that the given/taken ship will have.
@@ -61,7 +61,3 @@ private:
 	bool requireOutfits = false;
 	bool takeOutfits = false;
 };
-
-
-
-#endif

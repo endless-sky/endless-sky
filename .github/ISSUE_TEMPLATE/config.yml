@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Wiki (on GitHub)
+    url: https://github.com/endless-sky/endless-sky-wiki/issues/
+    about: Please report issues with the GitHub wiki here.
   - name: Endless Sky Mobile
     url: https://github.com/thewierdnut/endless-mobile/issues/
-    about: Please report bugs any issues related to the mobile port here.
+    about: Please report any issues related to the mobile port here.

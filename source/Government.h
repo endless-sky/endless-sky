@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GOVERNMENT_H_
-#define GOVERNMENT_H_
+#pragma once
 
 #include "Color.h"
 #include "ExclusiveItem.h"
@@ -31,17 +30,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Conversation;
 class DataNode;
 class Fleet;
+class Outfit;
 class Phrase;
 class Planet;
 class PlayerInfo;
-class Outfit;
 class Ship;
 class System;
 
 
 
 // Class representing a government. Each ship belongs to some government, and
-// attacking that ship will provoke its ally governments and reduce your
+// attacking that ship will provoke its allied governments and reduce your
 // reputation with them, but increase your reputation with that ship's enemies.
 // The ships for each government are identified by drawing them with a different
 // color "swizzle." Some government's ships can also be easier or harder to
@@ -183,10 +182,6 @@ private:
 	bool provokedOnScan = false;
 	// If a government appears in this set, and the reputation with this government is affected by actions,
 	// and events performed against that government, use the penalties that government applies for the
-	// action instead of this governments own penalties.
+	// action instead of this government's own penalties.
 	std::set<unsigned> useForeignPenaltiesFor;
 };
-
-
-
-#endif
