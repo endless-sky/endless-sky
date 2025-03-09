@@ -16,6 +16,8 @@
 
 outfit "Small Graviton Thruster"
 	category "Engines"
+	series "Engines"
+	index 91011
 	"cost" 12000000
 	thumbnail "outfit/small quarg thruster"
 	"mass" 50
@@ -37,6 +39,8 @@ outfit "Small Graviton Thruster"
 
 outfit "Small Graviton Steering"
 	category "Engines"
+	series "Engines"
+	index 91010
 	"cost" 9000000
 	thumbnail "outfit/small quarg steering"
 	"mass" 30
@@ -53,6 +57,8 @@ outfit "Small Graviton Steering"
 
 outfit "Medium Graviton Thruster"
 	category "Engines"
+	series "Engines"
+	index 91021
 	"cost" 20000000
 	thumbnail "outfit/medium quarg thruster"
 	"mass" 70
@@ -74,6 +80,8 @@ outfit "Medium Graviton Thruster"
 
 outfit "Medium Graviton Steering"
 	category "Engines"
+	series "Engines"
+	index 91020
 	"cost" 16000000
 	thumbnail "outfit/medium quarg steering"
 	"mass" 50
@@ -90,6 +98,8 @@ outfit "Medium Graviton Steering"
 
 outfit "Large Graviton Thruster"
 	category "Engines"
+	series "Engines"
+	index 91031
 	"cost" 32000000
 	thumbnail "outfit/large quarg thruster"
 	"mass" 100
@@ -112,6 +122,8 @@ outfit "Large Graviton Thruster"
 
 outfit "Large Graviton Steering"
 	category "Engines"
+	series "Engines"
+	index 91030
 	"cost" 25000000
 	thumbnail "outfit/large quarg steering"
 	"mass" 70
@@ -129,6 +141,8 @@ outfit "Large Graviton Steering"
 
 outfit "Quantum Vacuum Battery"
 	category "Power"
+	series "Batteries"
+	index 91010
 	cost 3000000
 	thumbnail "outfit/quarg quantum battery"
 	"mass" 50
@@ -141,6 +155,8 @@ outfit "Quantum Vacuum Battery"
 
 outfit "Antimatter Core"
 	category "Power"
+	series "Generators"
+	index 91010
 	cost 20000000
 	thumbnail "outfit/quarg antimatter core"
 	"mass" 50
@@ -152,6 +168,8 @@ outfit "Antimatter Core"
 
 outfit "Singularity Core"
 	category "Power"
+	series "Generators"
+	index 91020
 	cost 50000000
 	thumbnail "outfit/quarg singularity core"
 	"mass" 400
@@ -165,6 +183,8 @@ outfit "Singularity Core"
 
 outfit "Quasar Core"
 	category "Power"
+	series "Generators"
+	index 91030
 	cost 100000000
 	thumbnail "outfit/quarg quasar core"
 	"mass" 600
@@ -180,6 +200,8 @@ outfit "Quasar Core"
 
 outfit "Aspis Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 91010
 	cost 5000000
 	thumbnail "outfit/quarg aspis shield generator"
 	"mass" 40
@@ -193,6 +215,8 @@ outfit "Aspis Shield Generator"
 
 outfit "Ancile Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 91020
 	cost 7500000
 	thumbnail "outfit/quarg ancile shield generator"
 	"mass" 55
@@ -206,6 +230,8 @@ outfit "Ancile Shield Generator"
 
 outfit "Aegis Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 91030
 	cost 12500000
 	thumbnail "outfit/quarg aegis shield generator"
 	"mass" 80
@@ -219,6 +245,8 @@ outfit "Aegis Shield Generator"
 
 outfit "Peripheral Repair Hub"
 	category "Systems"
+	series "Repair"
+	index 91010
 	cost 2000000
 	thumbnail "outfit/quarg peripheral repair hub"
 	"mass" 25
@@ -230,6 +258,8 @@ outfit "Peripheral Repair Hub"
 
 outfit "Central Repair Hub"
 	category "Systems"
+	series "Repair"
+	index 91020
 	cost 5000000
 	thumbnail "outfit/quarg central repair hub"
 	"mass" 55
@@ -243,6 +273,8 @@ outfit "Central Repair Hub"
 
 outfit "Skydagger"
 	category "Turrets"
+	series "Turrets"
+	index 91010
 	cost 8500000
 	thumbnail "outfit/quarg skydagger"
 	"mass" 25
@@ -272,6 +304,8 @@ outfit "Skydagger"
 
 outfit "Skylance"
 	category "Turrets"
+	series "Turrets"
+	index 91020
 	cost 18000000
 	thumbnail "outfit/quarg skylance"
 	"mass" 50
@@ -310,6 +344,8 @@ effect "skylance impact"
 
 outfit "Stratospear"
 	category "Turrets"
+	series "Anti-Missile"
+	index 91010
 	cost 9000000
 	thumbnail "outfit/quarg stratospear"
 	"mass" 40
@@ -339,6 +375,8 @@ effect "quarg anti-missile"
 
 outfit "Elysian Ranseur"
 	category Guns
+	series "Guns"
+	index 91010
 	cost 40000000
 	mass 65
 	thumbnail "outfit/quarg ranseur"
@@ -371,6 +409,8 @@ effect "ranseur"
 
 outfit "Celestial Culverin"
 	category Guns
+	series "Guns"
+	index 91020
 	cost 22000000
 	mass 45
 	thumbnail "outfit/quarg culverin"
@@ -424,6 +464,8 @@ effect "culverin die"
 
 outfit "Astral Ribault"
 	category "Turrets"
+	series "Turrets"
+	index 91030
 	cost 15000000
 	thumbnail "outfit/quarg ribault"
 	"mass" 35
@@ -493,6 +535,8 @@ effect "ribault impact"
 
 outfit "Slipstream Projector"
 	category "Guns"
+	series "Guns"
+	index 91030
 	cost 18000000
 	thumbnail "outfit/unknown"
 	"mass" 200
@@ -520,6 +564,8 @@ outfit "Slipstream Projector"
 
 outfit "Phalanx System"
 	category "Hand to Hand"
+	series "Fortifications"
+	index 91010
 	thumbnail "outfit/quarg countermeasures"
 	"capture defense" 24
 	"unplunderable" 1
