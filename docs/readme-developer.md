@@ -129,6 +129,23 @@ Replace `<preset>` with one of the following presets:
 
 You can list all of available presets with `cmake --list-presets`.
 
+<details>
+<summary>Alternative linkers</summary>
+
+The default linker on many systems is slow and may take multiple seconds to link the final executable, and has to be run every time any source files are changed. For faster iteration while developing, you can use an alternative linker for your platform:
+
+- Windows: lld (supports clang-cl and mingw)
+- MacOS: lld
+- Linux: mold
+
+The feature is available with cmake versions 3.29 and above through the `CMAKE_LINKER_TYPE` variable, while performing the project configuration step (the build folder has to be deleted for changes to apply properly):
+
+```sh
+cmake --preset <preset> -DCMAKE_LINKER_TYPE=<LLD,MOLD>
+```
+
+</details>
+
 ### Using an IDE
 
 Most IDEs have CMake support, and can be used to build the game. We recommend using [Visual Studio Code](#visual-studio-code).
