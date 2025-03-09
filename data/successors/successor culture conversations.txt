@@ -94,7 +94,7 @@ mission "Successors: First Contact Exploration: Mosaa-Oa-Vyret"
 				not "Successors: First Contact 2: done"
 			and
 				has "Successors: First Contact 2: done"
-				random < 10
+				random < 3
 	on offer
 		conversation
 			`Near to your landing pad in the spaceport here, you see a large circular pool with several Successors milling about in it. Some relax against the edges while others appear deep in conversation; one trio of individuals is followed by a small salamander-like animal that swims behind them and plays between and around their arms, making soft splashing noises as it jumps in and out of the water.`
@@ -315,4 +315,30 @@ mission "Successors: Derelict Station Toy"
 			`	You drop the toy shortly after picking it up when a sharp edge on the propeller slices through your hand. You hurry back to your ship while clutching the stinging wound.`
 				decline
 			`	The toy proves remarkably durable - your assault on it does little more than scuff its paint, while you are forced to limp back to the <ship> with a bruised foot.`
+				decline
+
+mission "Successors: Pet Commemoration"
+	minor
+	source
+		attributes "successor"
+		not attributes "uninhabited" "quiet"
+	to offer
+		has "known to the successors"
+		random < 3
+	on offer
+		conversation
+			`A screen on one of the walls displays a commemorative message: a picture of a small salamander-like creature cradled in a Successor's arms, with some text below it:`
+			`	Mirja-Mirja, the most loyal of friends and gentlest of animals. Such stuff as dreams are made on.`
+				decline
+
+mission "Successors: Armor Reconfiguration"
+	minor
+	source
+		government "Old Houses" "New Houses" "House Aqrabe" "House Chydiyi" "House Kaatrij" "House Myurej" "House Seineq" "House Sioeora"
+	to offer
+		has "known to the successors"
+		random < 3
+	on offer
+		conversation
+			`	As you look around the spaceport here, a High Houses warship comes in for a landing, proceeding into a smaller outfitting bay off to the side that is at least partially visible to civilian viewers. Enormous mechanical arms fold down from the top of the bay, first calibrating themselves against the vessels's shape and position before starting to scan over the warship's armor; closely enough that it looks like they are almost touching. The metal writhes as the arms pass over it - goopy, liquid-looking protrusions form and collapse in their wake, splashing into themselves like raindrops into water, dewy and soft. Once the rippling stops, the texture of the hull looks somehow changed: a little rougher, perhaps, or maybe a slightly different shade of grey. The ship takes off not long after.`
 				decline
