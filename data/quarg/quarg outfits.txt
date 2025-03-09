@@ -157,7 +157,7 @@ outfit "Antimatter Core"
 	category "Power"
 	series "Generators"
 	index 91010
-	cost 100000000
+	cost 20000000
 	thumbnail "outfit/quarg antimatter core"
 	"mass" 50
 	"outfit space" -50
