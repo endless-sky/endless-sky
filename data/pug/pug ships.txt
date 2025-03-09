@@ -32,8 +32,9 @@ ship "Pug Zibruka"
 		"energy capacity" 1000
 		"energy generation" 10
 		"heat generation" 20
-		"shield generation" 6
-		"shield energy" 6
+		"delayed shield generation" 6
+		"delayed shield energy" 6
+		"shield delay" 15
 		weapon
 			"blast radius" 100
 			"shield damage" 400
@@ -82,8 +83,9 @@ ship "Pug Enfolta"
 		"energy capacity" 2000
 		"energy generation" 22
 		"heat generation" 32
-		"shield generation" 8
-		"shield energy" 8
+		"delayed shield generation" 8
+		"delayed shield energy" 8
+		"shield delay" 15
 		weapon
 			"blast radius" 180
 			"shield damage" 720
@@ -137,8 +139,9 @@ ship "Pug Maboro"
 		"energy capacity" 4000
 		"energy generation" 32
 		"heat generation" 48
-		"shield generation" 10
-		"shield energy" 10
+		"delayed shield generation" 10
+		"delayed shield energy" 10
+		"shield delay" 15
 		weapon
 			"blast radius" 300
 			"shield damage" 1200
