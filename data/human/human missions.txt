@@ -7634,9 +7634,9 @@ event "end of independent violence"
 		"attitude toward"
 			"Independent (Killable)" 0
 
-# Feel free to change this escape pod to a different ship once escape pod mechanics are implemented.
+# Feel free to change this escape shuttle to a different ship once escape pod mechanics are implemented.
 ship "Emergency Shuttle"
-	sprite "ship/escape pod"
+	sprite "ship/escape shuttle"
 	attributes
 		category "Utility"
 		"cost" 45000
