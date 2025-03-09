@@ -78,7 +78,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	for(const auto &sub : subsToSave)
 	{
 		const auto it = subs.find(sub);
-		if(it != subs.end() && !it.second.empty())
+		if(it != subs.end() && !it->second.empty())
 			savedSubs.emplace(*it);
 	}
 	player.AddPlayerSubstitutions(subs);
