@@ -7630,7 +7630,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			label evilchoicesec2
 			`	A serious accident at the Crossroads refueling station resulted in injuries to two dozen employees and one fatality. While the legal ramifications are being addressed, the station's outsized returns have more than compensated for the legal fees incurred due to this unfortunate and unpredictable occurrence. Financial projections remain strong, with returns far exceeding expectations.`
 			label reportend
-			`	That marks the end of where the report covers your investment. You wonder what upcoming "investment opportunity" Howard has in mind.`
+			`	That marks the end of where the report covers your investment.`
 				decline
 
 
