@@ -341,7 +341,7 @@ mission "Hai Legacy 3"
 				"total ships" > 1
 			branch anomaly
 				not "flagship model: Anomalocaris"
-			`As you leave the planet's atmosphere, you receive a short message. "We are waiting for you in Ehma Ti today, do not disapoint us."`
+			`As you leave the planet's atmosphere, you receive a short message. "We are waiting for you in Ehma Ti today, do not disappoint us."`
 				accept
 			label fleeing
 			action
