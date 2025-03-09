@@ -914,6 +914,7 @@ ship "Merganser"
 		"shield energy" .6
 		"delayed shield generation" 1.4
 		"delayed shield energy" 1.2
+		"shield delay" 210
 		"hull repair rate" 0.9
 		"hull energy" 0.6
 		"cloak" .03
