@@ -893,7 +893,7 @@ mission "Exotic Life: Ada"
 				`	(Ask them what's going on.)`
 				`	(Ignore them and continue on your way.)`
 					decline
-				`	"Nasty little wrigglers, aren't they?"`
+				`	"Nasty little bombacles, aren't they?"`
 					to display
 						has "exotic animals: delvan shipworm known"
 					goto known
