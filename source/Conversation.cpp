@@ -160,7 +160,10 @@ void Conversation::Load(const DataNode &node)
 			// Don't merge "branch" nodes with any other nodes.
 			nodes.emplace_back();
 			nodes.back().canMergeOnto = false;
-			nodes.back().conditions.Load(child);
+			// Maintenance note: empty conditions might have to be removed in the future,
+			// so their support is unofficial.
+			if(child.HasChildren())
+				nodes.back().conditions.Load(child);
 			// A branch should always specify what node to go to if the test is
 			// true, and may also specify where to go if it is false.
 			for(int i = 1; i <= 2; ++i)
@@ -554,8 +557,8 @@ bool Conversation::ElementIsValid(int node, int element) const
 
 
 
-// Parse the children of the given node to see if then contain any "gotos," or
-// "to shows." If so, link them up properly. Return true if gotos or
+// Parse the children of the given node to see if then contain any "goto" or
+// "to display" nodes. If so, link them up properly. Return true if gotos or
 // conditions were found.
 bool Conversation::LoadDestinations(const DataNode &node)
 {
@@ -597,7 +600,7 @@ bool Conversation::LoadDestinations(const DataNode &node)
 				}
 			}
 			else
-				child.PrintTrace("Warning: Expected goto, to show, or endpoint in conversation, found this:");
+				child.PrintTrace("Warning: Expected goto, to display, or endpoint in conversation, found this:");
 		}
 	}
 	return hasGoto || hasCondition;

@@ -4402,7 +4402,7 @@ phrase "friendly free worlds 7"
 		"! "
 	word
 		"Free forces are here"
-		"The might of the Free Worlds is here"
+		"The might of the Free Worlds are here"
 		"The ships of the Free Worlds are here"
 		"The forces of the Free Worlds are here"
 		"You cannot break our resolve"
@@ -5287,7 +5287,7 @@ phrase "hostile disabled"
 		"!"
 
 # Shakespearean insults.
-phrase "disabled hostile"
+phrase "hostile disabled"
 	word
 		"You piece of"
 	word
@@ -7256,7 +7256,7 @@ phrase "hostile free worlds"
 		"! "
 	word
 		"Free forces are here"
-		"The might of the Free Worlds is here"
+		"The might of the Free Worlds are here"
 		"The ships of the Free Worlds are here"
 		"The forces of the Free Worlds are here"
 		"You cannot break our resolve"

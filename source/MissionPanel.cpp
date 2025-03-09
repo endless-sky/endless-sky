@@ -22,25 +22,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -197,9 +197,39 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 void MissionPanel::Step()
 {
 	MapPanel::Step();
+
+	// If a job or mission that launches the player triggers,
+	// immediately close the map.
+	if(player.ShouldLaunch())
+		GetUI()->Pop(this);
+
 	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced");
 	DoHelp("jobs");
+
+	if(GetUI()->IsTop(this) && !fromMission)
+	{
+		Mission *mission = player.MissionToOffer(Mission::JOB_BOARD);
+		if(mission)
+		{
+			// Prevent dragging while a mission is offering, to make sure
+			// the screen fully pans to the destination system.
+			canDrag = false;
+
+			// Only highlight and pan to the destination if the mission is visible.
+			// Otherwise, pan to the player's current system.
+			specialSystem = mission->IsVisible() ? mission->Destination()->GetSystem() : nullptr;
+			CenterOnSystem(specialSystem ? specialSystem : player.GetSystem());
+
+			mission->Do(Mission::OFFER, player, GetUI());
+		}
+		else
+		{
+			canDrag = true;
+			specialSystem = nullptr;
+			player.HandleBlockedMissions(Mission::JOB_BOARD, GetUI());
+		}
+	}
 }
 
 
@@ -216,11 +246,11 @@ void MissionPanel::Draw()
 	const Color &routeColor = *colors.Get("mission route");
 	const Ship *flagship = player.Flagship();
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
-	const System *previous = nullptr;
-	const System *next = selectedSystem;
-	for(; distance.Days(next) > 0; next = previous)
+	const System *previous = player.GetSystem();
+	const vector<const System *> plan = distance.Plan(*selectedSystem);
+	for(auto it = plan.rbegin(); it != plan.rend(); ++it)
 	{
-		previous = distance.Route(next);
+		const System *next = *it;
 
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
@@ -239,6 +269,8 @@ void MissionPanel::Draw()
 			LineShader::DrawDashed(from, to, unit, 3.f, routeColor, 11., 4.);
 		else
 			LineShader::Draw(from, to, 3.f, routeColor);
+
+		previous = next;
 	}
 
 	const Color &availableColor = *colors.Get("available back");
@@ -555,7 +587,7 @@ bool MissionPanel::Drag(double dx, double dy)
 			min(accepted.size() * 20. + 160. - Screen::Height(),
 				acceptedScroll - dy));
 	}
-	else
+	else if(canDrag)
 		MapPanel::Drag(dx, dy);
 
 	return true;
@@ -616,11 +648,13 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	if(availableIt != available.end())
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
+		UpdateCache();
 		ScrollMissionList(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
 		selectedSystem = acceptedIt->Destination()->GetSystem();
+		UpdateCache();
 		ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
 

@@ -29,12 +29,6 @@ class System;
 // jump methods, costs, and distances.
 class ShipJumpNavigation {
 public:
-	static const double DEFAULT_HYPERDRIVE_COST;
-	static const double DEFAULT_SCRAM_DRIVE_COST;
-	static const double DEFAULT_JUMP_DRIVE_COST;
-
-
-public:
 	ShipJumpNavigation() = default;
 
 	// Calibrate this ship's jump navigation information, caching its jump costs, range, and capabilities.
