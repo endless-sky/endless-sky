@@ -333,6 +333,13 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 
+	if(outfit.Get("resupplies"))
+	{
+		requirementLabels.push_back("resupplies for:");
+		requirementValues.push_back(Format::Credits(outfit.Cost() * outfit.Get("resupplies")));
+		requirementsHeight += 20;
+	}
+
 	if(outfit.Mass())
 	{
 		requirementLabels.emplace_back("mass:");
@@ -435,14 +442,6 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
 			continue;
 
-		if(static_cast<string>(it.first) == "resupplies")
-		{
-			attributeLabels.emplace_back("resupplies for");
-			attributeValues.emplace_back(Format::Number(outfit.Cost() * it.second));
-			attributesHeight += 20;
-			continue;
-		}
-
 		// Only show positive values here, with some exceptions.
 		// Negative values are usually handled as a "requirement"
 		if(static_cast<string>(it.first) == "required crew")
@@ -477,17 +476,24 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	for(const pair<const Outfit *, double> &it : outfit.GetResuppliedAmmo())
+	// Create a table for resupplied ammo.
+	if(!outfit.GetResuppliedAmmo().empty())
 	{
-		attributeLabels.emplace_back("resupplies:");
-		attributeValues.emplace_back(it.first->DisplayName());
+		// Pad the table. The padding height is only separate for readability.
+		attributeLabels.emplace_back();
+		attributeValues.emplace_back();
+		attributesHeight += 10;
+
+		attributeLabels.emplace_back("resupplies ammo:");
+		attributeValues.emplace_back("resupply cost:");
+		attributesHeight += 20;
+	}
+	for(auto it : outfit.GetResuppliedAmmo())
+	{
+		attributeLabels.emplace_back(it.first->DisplayName());
 		attributesHeight += 20;
 		if(it.second != 1)
-		{
-			attributeLabels.emplace_back("resupply cost:");
-			attributeValues.emplace_back(Format::Number(outfit.Ammo()->Cost() * it.second));
-			attributesHeight += 20;
-		}
+			attributeValues.emplace_back(Format::Number(it.first->Cost() * it.second));
 	}
 
 	if(!outfit.IsWeapon())
