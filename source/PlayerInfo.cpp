@@ -910,6 +910,34 @@ void PlayerInfo::DoAccounting()
 		message += ".";
 		Messages::Add(message, Messages::Importance::High, true);
 		accounts.AddCredits(salariesIncome + tributeIncome + balance.assetsReturns);
+
+		if(tributeIncome)
+		{
+			// Apply reputation penalties for dominated planets.
+			set<const Government *> governments;
+			for(const auto &it : tributeReceived)
+			{
+				if(it.first->DailyTributePenalty())
+				{
+					const Government *gov = it.first->GetGovernment();
+					gov->AddReputation(-it.first->DailyTributePenalty());
+					governments.insert(gov);
+				}
+			}
+			message = "You have lost reputation with the ";
+			if(governments.size() == 1)
+				message += (*governments.cbegin())->GetName();
+			else
+				for(auto it = governments.cbegin(); it != governments.cend(); ++it)
+				{
+					if(it == prev(governments.cend()))
+						message += "and the " + (*it)->GetName();
+					else
+						message += (*it)->GetName() + ", ";
+				}
+			message += " due to active tributes.";
+			Messages::Add(message, Messages::Importance::High);
+		}
 	}
 
 	// For accounting, keep track of the player's net worth. This is for
