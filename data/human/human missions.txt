@@ -7588,7 +7588,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			`		Megaparsec Performance Vehicles is one of the leading suppliers of military and commercial aviation and repulsor solutions in all of Syndicate and Republic space. This segment includes Megaparsec jets, racing hovercraft, utility vehicles, and various repulsor solutions tailored for personal, commercial, and military use. Through its commercial business, Megaparsec Performance Vehicles is a leading supplier of commercially certified aviation and hovercraft support to corporate, on-world petroleum exploration and development, utility, charter, police, fire, rescue, and emergency medical hovercraft operators. Our commitment to the development of high-performance, lightweight vehicles that maximize efficiency and agility while delivering superior speed and operational excellence drives innovation within this segment, allowing us to capture a growing market of discerning consumers. Revenues from this segment contributed approximately 30% of our total revenue, reflecting our success in attracting new customers.`
 			`		For both its military programs and its commercial products, Megaparsec Performance Vehicles provides post-sale support and service for its installed base of millions of vehicles. This is accomplished through a network of Megaparsec Performance Vehicles-owned service sites, service and parts facilities co-located with Megaparsec Shipyards, thousands of independent service centers and sixteen logistics hubs that are located across the galaxy. Collectively, these service sites offer a complete range of logistics support, including parts, support equipment, technical data, training devices, pilot and maintenance training, component repair and overhaul, engine repair and overhaul, aircraft modifications, aircraft customizing, accessory manufacturing, contractor maintenance, field service and product support engineering.`
 			`		Megaparsec is able to leverage its specialization to control a majority of several of the aforementioned markets with relatively inelastic demand, providing significantly higher margins in the police, fire, rescue, and emergency medical segments.`
-			`		Megaparsec Performance Vehicles competes against a number of competitors based in the Syndicate and Republic for its performance vehicles business, and its parts and support business competes against numerous competitors. Competition is based primarily on price, product quality and reliability, product support, performance and reputation.`
+			`		Megaparsec Performance Vehicles competes against a number of competitors based in the Syndicate and the Republic for its performance vehicles business, and its parts and support business competes against numerous other companies. Competition is based primarily on price, product quality and reliability, product support, performance, and reputation.`
 			choice
 				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
 					goto sectionmarked
@@ -7598,7 +7598,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			`	Megaparsec Industrial and Systems Segment`
 			`		Megaparsec Industrial and Systems focuses on providing comprehensive solutions for various industries, including energy, construction, and logistics. We manufacture industrial equipment, fuel systems, functional components, and other systems designed to enhance productivity and reduce operational costs. This segment also covers miscellaneous lines such as Megaparsec's external refueling sales, logistics services, mission support, and others. This segment has seen steady growth, contributing around 20% of our overall revenue as we continue to expand our market presence and capitalize on emerging opportunities.`
 			`		Our strategic partnerships with external regions that have favorable regulatory environments help minimize disruption from labor or environmental concerns, enabling us to maximize productivity at the lowest possible cost.`
-			`		Our Industrial and Systems Segment has a number of competitors across the galaxy. Competition typically is based on a number of factors including price, product quality and reliability, prior experience and available manufacturing capacity.`
+			`		Our Industrial and Systems Segment has a number of competitors across the galaxy. Competition typically is based on a number of factors including price, product quality and reliability, prior experience, and available manufacturing capacity.`
 			choice
 				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
 					goto sectionmarked
@@ -7632,6 +7632,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			label reportend
 			`	That marks the end of where the report covers your investment. You wonder what upcoming "investment opportunity" Howard has in mind.`
 				decline
+
 
 mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 	to offer
