@@ -7574,7 +7574,7 @@ mission "Syndicate Business 1"
 		on kill
 			dialog "You watch as the Emergency Shuttle you're supposed to save explodes into a cloud of debris, all hope snuffed out in an instant."
 		conversation
-			`You board the Emergency Shuttle to see its desperate and nearly incoherent occupant: "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to my office on <planet>! I'm with Megaparsec, I can make it worth your while!"`
+			`You board the Emergency Shuttle to see its desperate and nearly incoherent occupant. "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to my office on <planet>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
 				`	"Sounds good."`
 					decline
@@ -7688,7 +7688,7 @@ mission "Syndicate Business 2"
 		credits > 1100300
 	on offer
 		conversation
-			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a bond of Megaparsec Incorporated.`
+			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a Megaparsec bond.`
 			`	"To reiterate, in order to purchase a perpetual Megaparsec Incorporated bond you will need to provide us with an up-front payment of one million credits, and sign some legal documents. Our promised returns are 20% per annum, which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
 				`	"Sure, here's the one million credits."`
