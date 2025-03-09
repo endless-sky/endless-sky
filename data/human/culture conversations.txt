@@ -853,7 +853,7 @@ mission "Exotic Life: Delve"
 		random < 20
 	on offer
 		conversation
-			`The air in Delve's spaceport is thick with the scent of fuel, damp stone, and an acrid tang from industrial cleaners lingering in the recirculated ventilation. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
+			`The air in Delve's spaceport is crisp, carrying the mineral tang of weathered stone alongside occasional whiffs of fuel and lingering industrial cleaners. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
 			choice
 				`	(Ask them what they're doing.)`
 				`	(Ignore them and continue on your way.)`
@@ -872,7 +872,7 @@ mission "Exotic Life: Delve"
 			`	With another look at the freshly sprayed Bulk Freighter, you make a mental note to give your own ship a once-over before takeoff.`
 				goto ending
 			label known
-			`	The veteran lets out a long-suffering sigh. "Great. At least this one actually knows what they are." The rookie, on the other hand, practically lights up. "They're like space barnacles - until they hatch into wormy bombs! I was just telling him how fun it is to fry 'em!"`
+			`	One of them, a seasoned veteran with weary eyes, lets out a long-suffering sigh. "Great. At least this one actually knows what they are." In contrast, the other - a fresh-faced worker brimming with energy - practically lights up. "They're like space barnacles - until they hatch into wormy bombs! I was just telling him how fun it is to fry 'em!"`
 			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
 			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face. "Why do I even bother?"`
 			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
