@@ -138,6 +138,8 @@ The default linker on many systems is slow and may take multiple seconds to link
 - MacOS: lld
 - Linux: mold
 
+Above are the generally best performing linkers on each platform, for all options see the full list in the [cmake docs](https://cmake.org/cmake/help/latest/variable/CMAKE_LINKER_TYPE.html).
+
 This feature is available in cmake versions 3.29 and above through adding the `CMAKE_LINKER_TYPE` variable while performing the project configuration step (the build folder has to be deleted for changes to apply properly):
 
 ```sh
