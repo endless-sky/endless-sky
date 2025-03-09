@@ -666,13 +666,8 @@ bool Interface::BarElement::ParseLine(const DataNode &node)
 {
 	if(node.Token(0) == "color" && node.Size() >= 2)
 	{
-		if(node.Size() >= 3)
-		{
-			fromColor = GameData::Colors().Get(node.Token(1));
-			toColor = GameData::Colors().Get(node.Token(2));
-		}
-		else
-			fromColor = toColor = GameData::Colors().Get(node.Token(1));
+		fromColor = GameData::Colors().Get(node.Token(1));
+		toColor = node.Size() >= 3 ? GameData::Colors().Get(node.Token(2)) : fromColor;
 	}
 	else if(node.Token(0) == "size" && node.Size() >= 2)
 		width = node.Value(1);
@@ -732,7 +727,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		double v = 0.;
 		while(v < value)
 		{
-			Color nFromColor = Color::Combine((1 - v), *fromColor, v, *toColor);
+			Color nFromColor = Color::Combine(1 - v, *fromColor, v, *toColor);
 			Point from = start + v * dimensions;
 			v += filled;
 			double lim = min(v, value);

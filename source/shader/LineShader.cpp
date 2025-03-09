@@ -172,7 +172,7 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 
 void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
-		const Color &color, const double dashLength, double spaceLength, bool roundCap)
+	const Color &color, const double dashLength, double spaceLength, bool roundCap)
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
@@ -186,15 +186,15 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 	spaceLength /= 2.;
 	float capOffset = roundCap ? width : 0.;
 	for(int i = 0; i < segments; ++i)
-		Draw(from + unit * ((i * length) / segments + spaceLength + capOffset),
-			from + unit * (((i + 1) * length) / segments - spaceLength - capOffset),
+		Draw(from + unit * (i * length / segments + spaceLength + capOffset),
+			from + unit * ((i + 1) * length / segments - spaceLength - capOffset),
 			width, color, roundCap);
 }
 
 
 
 void LineShader::DrawGradient(const Point &from, const Point &to, float width,
-		const Color &fromColor, const Color &toColor, bool roundCap)
+	const Color &fromColor, const Color &toColor, bool roundCap)
 {
 	if(!shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
@@ -242,12 +242,12 @@ void LineShader::DrawGradientDashed(const Point &from, const Point &to, const Po
 	float capOffset = roundCap ? width : 0.;
 	for(int i = 0; i < segments; ++i)
 	{
-		float p  = static_cast<float>(i) / segments;
+		float p = static_cast<float>(i) / segments;
 		Color mixed = Color::Combine(1. - p, fromColor, p, toColor);
-		float pv  = static_cast<float>(i + 1) / segments;
+		float pv = static_cast<float>(i + 1) / segments;
 		Color mixed2 = Color::Combine(1. - pv, fromColor, pv, toColor);
-		DrawGradient(from + unit * ((i * length) / segments + spaceLength + capOffset),
-			from + unit * (((i + 1) * length) / segments - spaceLength - capOffset),
+		DrawGradient(from + unit * (i * length / segments + spaceLength + capOffset),
+			from + unit * ((i + 1) * length / segments - spaceLength - capOffset),
 			width, mixed, mixed2, roundCap);
 	}
 }
