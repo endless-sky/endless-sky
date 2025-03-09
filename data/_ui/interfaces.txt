@@ -1038,11 +1038,31 @@ interface "hud"
 		dimensions 0 -192
 		color "fuel"
 		size 2
+	bar "fuel collection"
+		from -58.5 425
+		dimensions 0 -192
+		color "fuel"
+		size 1
+	bar "fuel collection"
+		from -48.5 425
+		dimensions 0 -192
+		color "fuel"
+		size 1
 	bar "energy"
 		from -33.5 415
 		dimensions 0 -192
 		color "energy"
 		size 2
+	bar "energy collection"
+		from -38.5 415
+		dimensions 0 -192
+		color "energy"
+		size 1
+	bar "energy collection"
+		from -28.5 415
+		dimensions 0 -192
+		color "energy"
+		size 1
 	bar "heat"
 		from -13.5 403
 		dimensions 0 -192
