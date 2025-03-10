@@ -230,12 +230,12 @@ namespace {
 		{"minable", "This item is mined from asteroids."},
 		{"atrocity", "This outfit is considered an atrocity."},
 		{"unique", "This item is unique."},
-		{"cloaked afterburner", "You may use your afterburner when cloaked."},
-		{"cloaked boarding", "You may board even when cloaked."},
-		{"cloaked communication", "You may make hails when cloaked."},
-		{"cloaked deployment", "You may deploy drones and fighters without revealing your location."},
-		{"cloaked pickup", "You may pickup items with this cloak."},
-		{"cloaked scanning", "You may scan other ships when cloaked."}
+		{"cloaked afterburner", "You may use afterburners while cloaked."},
+		{"cloaked boarding", "You may board while cloaked."},
+		{"cloaked communication", "You may make hails while cloaked."},
+		{"cloaked deployment", "You may deploy from bays while cloaked."},
+		{"cloaked pickup", "You may pick up flotsam while cloaked."},
+		{"cloaked scanning", "You may scan other ships while cloaked."}
 	};
 
 	bool IsNotRequirement(const string &label)

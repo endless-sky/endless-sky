@@ -20,21 +20,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Dialog.h"
 #include "Files.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "Plugins.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
-#include "StarField.h"
+#include "shader/SpriteShader.h"
+#include "shader/StarField.h"
 #include "text/Table.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -74,6 +74,7 @@ namespace {
 	const string FIGHTER_REPAIR = "Repair fighters in";
 	const string SHIP_OUTLINES = "Ship outlines in shops";
 	const string DATE_FORMAT = "Date format";
+	const string NOTIFY_ON_DEST = "Notify on destination";
 	const string BOARDING_PRIORITY = "Boarding target priority";
 	const string TARGET_ASTEROIDS_BASED_ON = "Target asteroid based on";
 	const string BACKGROUND_PARALLAX = "Parallax background";
@@ -86,6 +87,21 @@ namespace {
 	const int SETTINGS_PAGE_COUNT = 2;
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
+
+	const map<string, SoundCategory> volumeBars = {
+		{"volume", SoundCategory::MASTER},
+		{"music volume", SoundCategory::MUSIC},
+		{"ui volume", SoundCategory::UI},
+		{"anti-missile volume", SoundCategory::ANTI_MISSILE},
+		{"weapon volume", SoundCategory::WEAPON},
+		{"engine volume", SoundCategory::ENGINE},
+		{"afterburner volume", SoundCategory::AFTERBURNER},
+		{"jump volume", SoundCategory::JUMP},
+		{"explosion volume", SoundCategory::EXPLOSION},
+		{"scan volume", SoundCategory::SCAN},
+		{"environment volume", SoundCategory::ENVIRONMENT},
+		{"alert volume", SoundCategory::ALERT}
+	};
 }
 
 
@@ -139,7 +155,21 @@ void PreferencesPanel::Draw()
 	GameData::Background().Draw(Point(), Point());
 
 	Information info;
-	info.SetBar("volume", Audio::Volume());
+
+	for(const auto &[bar, category] : volumeBars)
+	{
+		double volume = Audio::Volume(category);
+		info.SetBar(bar, volume);
+		if(volume > .75)
+			info.SetCondition(bar + " max");
+		else if(volume > .5)
+			info.SetCondition(bar + " medium");
+		else if(volume > .25)
+			info.SetCondition(bar + " low");
+		else
+			info.SetCondition(bar + " none");
+	}
+
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
@@ -155,7 +185,7 @@ void PreferencesPanel::Draw()
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
+	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "audio");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
@@ -174,6 +204,10 @@ void PreferencesPanel::Draw()
 	}
 	else if(page == 'p')
 		DrawPlugins();
+	else if(page == 'a')
+	{
+		// The entire audio panel is defined in interfaces, so this is a dummy.
+	}
 }
 
 
@@ -195,7 +229,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
-	else if(key == 'c' || key == 's' || key == 'p')
+	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
 	{
 		page = key;
 		hoverItem.clear();
@@ -250,14 +284,19 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 {
 	EndEditing();
 
-	if(x >= 265 && x < 295 && y >= -220 && y < 70)
+	Point point(x, y);
+	const Interface *preferencesUI = GameData::Interfaces().Get("preferences");
+	Rectangle volumeBox = preferencesUI->GetBox("volume box");
+	if(volumeBox.Contains(point))
 	{
-		Audio::SetVolume((17 - y) / 200.);
-		Audio::Play(Audio::Get("warder"));
+		double barSize = preferencesUI->GetValue("master volume bar size");
+		double volume = (volumeBox.Center().Y() - point.Y()) / barSize + .5;
+
+		Audio::SetVolume(volume, SoundCategory::MASTER);
+		Audio::Play(Audio::Get("warder"), SoundCategory::MASTER);
 		return true;
 	}
 
-	Point point(x, y);
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
 			editing = selected = index;
@@ -287,6 +326,25 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					break;
 				}
 				index++;
+			}
+		}
+	}
+	else if(page == 'a')
+	{
+		const Interface *audioUI = GameData::Interfaces().Get("audio");
+		double barSize = audioUI->GetValue("volume bar size");
+		for(const auto &[name, category] : volumeBars)
+		{
+			if(category != SoundCategory::MASTER)
+			{
+				Rectangle barZone = audioUI->GetBox(name + " box");
+				if(barZone.Contains(point))
+				{
+					double volume = (point.X() - barZone.Center().X()) / barSize + .5;
+					Audio::SetVolume(volume, category);
+					Audio::Play(Audio::Get("warder"), category);
+					return true;
+				}
 			}
 		}
 	}
@@ -694,7 +752,8 @@ void PreferencesPanel::DrawSettings()
 		"Landing zoom",
 		SCROLL_SPEED,
 		DATE_FORMAT,
-		"Show parenthesis"
+		"Show parenthesis",
+		NOTIFY_ON_DEST
 	};
 
 	bool isCategory = true;
@@ -816,6 +875,11 @@ void PreferencesPanel::DrawSettings()
 		{
 			text = Preferences::DateFormatSetting();
 			isOn = true;
+		}
+		else if(setting == NOTIFY_ON_DEST)
+		{
+			text = Preferences::NotificationSettingString();
+			isOn = text != "off";
 		}
 		else if(setting == FLOTSAM_SETTING)
 		{
@@ -1153,7 +1217,7 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
-	Command::SaveSettings(Files::Config() + "keys.txt");
+	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	GetUI()->Pop(this);
 }
@@ -1241,6 +1305,8 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 	}
 	else if(str == DATE_FORMAT)
 		Preferences::ToggleDateFormat();
+	else if(str == NOTIFY_ON_DEST)
+		Preferences::ToggleNotificationSetting();
 	else if(str == ALERT_INDICATOR)
 		Preferences::ToggleAlert();
 	// All other options are handled by just toggling the boolean state.

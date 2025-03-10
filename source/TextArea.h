@@ -47,7 +47,7 @@ public:
 	void SetAlignment(Alignment a);
 	void SetTruncate(Truncate t);
 
-	int GetTextHeight();
+	int GetTextHeight(bool trailingBreak = true);
 	int GetLongestLineWidth();
 
 

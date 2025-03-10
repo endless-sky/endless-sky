@@ -77,7 +77,7 @@ private:
 	// destination system or the maximum count is reached.
 	void Init(const Ship *ship = nullptr);
 	// Add the given links to the map. Return false if an end condition is hit.
-	bool Propagate(RouteEdge edge, bool useJump);
+	bool Propagate(const RouteEdge &curEdge);
 	// Check if we already have a better path to the given system.
 	bool HasBetter(const System &to, const RouteEdge &edge);
 	// Add the given path to the record.
@@ -85,7 +85,7 @@ private:
 	// Check whether the given link is travelable. If no player was given in the
 	// constructor then this is always true; otherwise, the player must know
 	// that the given link exists.
-	bool CheckLink(const System &from, const System &to, bool useJump) const;
+	bool CheckLink(const System &from, const System &to, bool linked, bool useJump, double &fuelCost) const;
 
 
 private:
@@ -105,12 +105,8 @@ private:
 	int maxDays = -1;
 	const System *destination = nullptr;
 	WormholeStrategy wormholeStrategy = WormholeStrategy::ALL;
-	// How much fuel is used for travel. If either value is zero, it means that
-	// the ship does not have that type of drive.
-	// Defaults are set for hyperlane usage only. Using a ship overrides these.
-	int hyperspaceFuel = 100;
-	int jumpFuel = 0;
-	double jumpRange = 0.;
+
+	double jumpRangeMax = 0.;
 	const Ship *ship = nullptr;
 
 	friend class RoutePlan;

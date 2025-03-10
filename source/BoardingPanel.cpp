@@ -16,11 +16,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BoardingPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -38,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <utility>
 
 using namespace std;
@@ -62,6 +64,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
 	attackOdds(*you, *victim), defenseOdds(*victim, *you)
 {
+	Audio::Pause();
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
 
@@ -113,6 +116,13 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 	// Sort the plunder by price per ton.
 	sort(plunder.begin(), plunder.end());
+}
+
+
+
+BoardingPanel::~BoardingPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -295,7 +305,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		messages.push_back("The airlock blasts open. Combat has begun!");
 		messages.push_back("(It will end if you both choose to \"defend.\")");
 	}
-	else if((key == 'a' || key == 'd') && CanAttack())
+	else if((key == 'a' || key == 'd' || key == 'D') && CanAttack())
 	{
 		int yourStartCrew = you->Crew();
 		int enemyStartCrew = victim->Crew();
@@ -305,6 +315,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// to your ship in peace. That is to allow the player to "cancel" if
 		// they did not really mean to try to capture the ship.
 		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
+		if(key == 'a' && !youAttack)
+			return true;
 		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
 		if(isFirstCaptureAction && !youAttack)
 			enemyAttacks = false;
