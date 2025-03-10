@@ -887,7 +887,7 @@ mission "Exotic Life: Ada"
 		random < 10
 	on offer
 		conversation
-      `You make your way through a dimly lit section of the spaceport to a near-empty hangar, where the usual hum of activity is dampened by an eerie stillness. The back of the hangar has a reinforced glass cargo door cracked open, perhaps by mistake. You peer inside to see large, sealed tarps stretched across the area, some draped over cargo crates, others covering entire sections. One enormous tarp appears big enough to be covering a whole ship. Each one bears the same stark warning in bold lettering: "DELVAN SHIPWORM FUMIGATION." The air has a faint chemical tang to it, and ahead, two figures move methodically between the tarps towards the door.`
+      			`You make your way through a dimly lit section of the spaceport to a near-empty hangar, where the usual hum of activity is dampened by an eerie stillness. The back of the hangar has a reinforced glass cargo door cracked open, perhaps by mistake. You peer inside to see large, sealed tarps stretched across the area, some draped over cargo crates, others covering entire sections. One enormous tarp appears big enough to be covering a whole ship. Each one bears the same stark warning in bold lettering: "DELVAN SHIPWORM FUMIGATION." The air has a faint chemical tang to it, and ahead, two figures move methodically between the tarps towards the door.`
 			`	They are covered head to toe in protective suits, thick gloves, and respirators obscuring their faces. One carries a handheld sprayer, releasing a fine mist into the air, while the other checks a monitor strapped to their arm. Their boots crunch softly against the floor as they pass.`
 			choice
 				`	(Ask them what's going on.)`
