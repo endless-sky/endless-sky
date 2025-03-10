@@ -1,0 +1,249 @@
+# Copyright (c) 2021 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "Small Trajectile Assembler"
+	category "Ammunition"
+	cost 2000000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 12
+	"outfit space" 24
+	"assembly line" 1
+	description "The Small Trajectile Assembler has 1 assembly line space for a trajectile template to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+
+outfit "Medium Trajectile Assembler"
+	category "Ammunition"
+	cost 2000000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 22
+	"outfit space" 44
+	"assembly line" 2
+	description "The Medium Trajectile Assembler has 2 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+
+outfit "Large Trajectile Assembler"
+	category "Ammunition"
+	cost 2000000
+	thumbnail "outfit/sidewinder storage"
+	"mass" 40
+	"outfit space" 80
+	"assembly line" 4
+	description "The Large Trajectile Assembler has 4 assembly lines of space for trajectile templates to be loaded. A trajectile, which is much like a missile, is produced on demand by this machine from fuel with components and base resources contained in the template plug-in."
+
+outfit "Terpenoid Trajectile Template"
+	category "Ammunition"
+	cost 450000
+	thumbnail "outfit/terpenoidtemp"
+	"mass" 12
+	"assembly line" -1
+	"terpenoid assembly" 1
+	description "The Terpenoid Template is the plug-in assembly apparatus for a Xapleaux Trajectile Assembler to support the Terpenoid Launcher. It allows an assembler to build the Terpenoid Trajectile and contains enough parts to have functionally unlimited availability for the duration of any likely conflict. It is easily restocked with base materials at any port."
+
+
+outfit "Terpenoid Trajectile Launcher"
+	category "Secondary Weapons"
+	cost 95000
+	thumbnail "outfit/terpenoid launcher"
+	"mass" 8
+	"outfit space" -12
+	"weapon capacity" -12
+	"gun ports" -1
+	"terpenoid assembly" -1
+	weapon
+		sprite "projectile/terpenoid"
+			"frame rate" 4
+		sound "terpenoid"
+		ammo "Terpenoid Trajectile Template" 0
+		icon "icon/terpenoid"
+		"fire effect" "tracker fire"
+		"hit effect" "emp spark" 20
+		"hit effect" "tracker impact"
+		"hit effect" "tracker cloud"
+		"hit effect" "seeker impact"
+		"die effect" "medium explosion"
+		"inaccuracy" 2
+		"velocity" 24
+		"lifetime" 600
+		"reload" 30
+		"firing energy" 5
+		"firing heat" 15
+		"firing fuel" 5
+		"acceleration" 1.2
+		"drag" .1
+		"turn" 4
+		"homing" 5
+		"tracking" .98
+		"disruption damage" 55
+		"shield damage" 80
+		"hull damage" 220
+		"hit force" 5
+		"missile strength" 18
+	description "The Terpenoid Trajectile was developed after brief exposure to the Korath Disruptor before the Korath stopped bothering to raid Xapleaux space. The secrets of how the disruptor worked were never understood, but under the right circumstances fuel mixed with certain volatiles can be stimulated to produce a similar effect. Once assembled and fired the concoction will naturally decay explosively after a period of time."
+	description "	Although not a powerful missile, it is very fast and very hard to dodge, and capable of rendering the shields of an enemy vessel thoroughly obsolete under repeated bombardment. The explosive cocktail it carries is not particularly damaging to shields, despite its disruptive effect, but is quite destructive against most hull materials."
+
+outfit "Quininoid Trajectile Template"
+	category "Ammunition"
+	cost 379000
+	thumbnail "outfit/terpenoidtemp"
+	"mass" 12
+	"assembly line" -1
+	"quininoid assembly" 1
+	description "The Quininoid Template is the plug-in assembly apparatus for a Xapleaux Trajectile Assembler to support the Quininoid Launcher. It allows an assembler to build the Quininoid Trajectile and contains enough parts to have functionally unlimited availability for the duration of any likely conflict. It is easily restocked with base materials at any port."
+
+
+outfit "Quininoid Trajectile Launcher"
+	category "Secondary Weapons"
+	cost 73000
+	thumbnail "outfit/quininoid launcher"
+	"mass" 6
+	"outfit space" -10
+	"weapon capacity" -10
+	"gun ports" -1
+	"quininoid assembly" -1
+	weapon
+		sprite "projectile/quininoid"
+		sound "quininoid"
+		ammo "Quininoid Trajectile Template" 0
+		"phasing"
+		"stream"
+		icon "icon/quininoid"
+		"fire effect" "minelayer fire"
+		"hit effect" "large explosion"
+		"velocity" 2
+		"lifetime" 30
+		"reload" 20
+		"firing energy" 2
+		"firing heat" 10
+		"acceleration" 0.2
+		"turn" 8
+		"radar tracking" 1
+		"optical tracking" .9
+		"velocity override" 20
+		"homing" 5
+		"missile strength" 60
+		"submunition" "Quininoid Active"
+	description "Functionally the oldest weapon in the Xapleaux arsenal, this three stage weapon launches a Quininoid package - a missile casing with five warheads inside. In its first phase it is slow but incredibly mobile, able to safely position and orient on its target. In its second phase it engages the primary burner and loses most ability to home in on a target as it accelerates with enormous speed before bursting apart in its third phase where it releases five warheads in a purely ballistic scattering effect."
+	description "	An individual warhead for this weapon is very low yield, but the rate of fire is the key feature. A ship carrying several of these can flood the space between it and the target with an impenetrable wall of projectiles that are particularly effective at keeping swarms of small craft (or wildlife) at bay."
+
+outfit "Quininoid Active"
+	weapon
+		sprite "projectile/quininoid active"
+			"frame rate" 30
+		"hit effect" "missile hit"
+		"die effect" "missile death"
+		"velocity" 1
+		"lifetime" 100
+		"acceleration" 0.3
+		"turn" 5
+		"homing" 1
+		"radar tracking" 1
+		"split range" 200
+		"piercing" .2
+		"shield damage" 100
+		"hull damage" 125
+		"hit force" 400
+		"missile strength" 60
+		"submunition" "Quin" 5
+
+outfit "Quin"
+	weapon
+		sprite "projectile/quin"
+		"hit effect" "tiny explosion"
+		"die effect" "tiny explosion"
+		"velocity" 3
+		"lifetime" 60
+		"shield damage" 20
+		"hull damage" 25
+		"leak damage" .1
+		"hit force" 80
+		"inaccuracy" 25
+		"missile strength" 12
+
+
+outfit "Repulsor Wave Turret"
+	category "Turrets"
+	cost 1838000
+	thumbnail "outfit/repulsor wave turret"
+	"mass" 56
+	"outfit space" -56
+	"weapon capacity" -56
+	"required crew" 1
+	"turret mounts" -1
+	weapon
+		sprite "projectile/repulsor wave"
+			"frame rate" 8
+			"no repeat"
+		"hardpoint sprite" "hardpoint/repulsor wave turret"
+		"hardpoint offset" 9.
+		sound "repulsor wave"
+		"inaccuracy" 4
+		"turret turn" 7
+		"velocity" 10
+		"lifetime" 14
+		"reload" 15
+		"firing energy" 4
+		"firing heat" 1.4
+		"hit force" 10
+		"split range" 1
+		"submunition" "Repulsor Split" 10
+	description "This pulse wave turret imparts functionally no damage on a target but is very effective at keeping fauna native to The Brilliance from posing a hazard to civilian ships. As it does no damage it is not a military weapon at all, but does avoid angering swarms or otherwise breaking apart hazardous objects. As such it is frequently deployed by both military and civilians alike for general security purposes."
+
+outfit "Repulsor Split"
+	weapon
+		sprite "projectile/repulsor split"
+			"frame rate" 3
+			"no repeat"
+			# "scale" 0.8
+		"lifetime" 34
+		"hit force" 10
+		"inaccuracy" 15
+		"split range" 1
+		"submunition" "Repulsor Fade" 10
+		
+outfit "Repulsor Fade"
+	weapon
+		sprite "projectile/repulsor fade"
+			"frame rate" 2
+			"no repeat"
+			"scale" 0.8
+		"lifetime" 40
+		"hit force" 10
+		"inaccuracy" 10
+
+
+outfit "Xapleaux Anti-Missile"
+	category "Turrets"
+	cost 845000
+	thumbnail "outfit/warder"
+	"mass" 28
+	"outfit space" -28
+	"weapon capacity" -28
+	"energy capacity" 50
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/warder"
+		"hardpoint offset" 3.
+		"hit effect" "xapleaux am"
+		"anti-missile" 10
+		"velocity" 400
+		"lifetime" 1
+		"reload" 8
+		"firing energy" 24
+		"firing heat" 10
+	description "This anti-missile system helps defend Xapleaux warships from long-range attacks."
+
+effect "xapleaux am"
+	sprite "effect/xapleaux am"
+		"no repeat"
+		"frame rate" 6
+	sound "xapleaux am"
+	"lifetime" 11
+	"velocity scale" 1

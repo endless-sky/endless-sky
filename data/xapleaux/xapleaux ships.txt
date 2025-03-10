@@ -1,0 +1,269 @@
+# Copyright (c) 2021 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+ship Ascomy
+	sprite ship/ascomy
+	thumbnail thumbnail/ascomy
+	uncapturable
+	attributes
+		category "Heavy Warship"
+		cost 42140000
+		mass 945
+		bunks 138
+		"cargo space" 104
+		drag 22.3
+		"engine capacity" 44
+		"fuel capacity" 600
+		"heat dissipation" 0.82
+		hull 93800
+		"outfit space" 982
+		ramscoop 3
+		"required crew" 42
+		shields 32800
+		"solar collection" 88.4
+		"weapon capacity" 385
+		"X Ring Cradle" 1
+		"H Ring Cradle" 1
+		"Spar Core Shaft" 1
+		weapon
+			"blast radius" 450
+			"shield damage" 6400
+			"hull damage" 3200
+			"hit force" 9600
+	outfits
+		"Large Trajectile Assembler"
+		"Terpenoid Trajectile Template" 4
+		"Terpenoid Trajectile Launcher" 4
+		"Control Transceiver"
+		"Quininoid Trajectile Template" 4
+		"Quininoid Trajectile Launcher" 4
+		"Repulsor Wave Turret" 4
+		"Xapleaux Anti-Missile" 2
+		"Large Heat Shunt" 4
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"String Drive"
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		`Type X "Coleo" Engine`
+	engine -157 46
+	engine 157 46
+	"reverse engine" -157 -56
+		angle -360
+	"reverse engine" 157 -56
+		angle -360
+	"steering engine" 157 -56
+		angle -180
+		right
+	"steering engine" -157 -46
+		angle -180
+		left
+	"steering engine" -157 56
+		right
+	"steering engine" 157 46
+		left
+	turret -106 -44 "Repulsor Wave Turret"
+	turret 106 -44 "Repulsor Wave Turret"
+	turret -62 -44 "Repulsor Wave Turret"
+	turret 62 -44 "Repulsor Wave Turret"
+	turret 84 68 "Xapleaux Anti-Missile"
+	turret -84 68 "Xapleaux Anti-Missile"
+	gun -119.5 -46 "Quininoid Trajectile Launcher"
+	gun 119.5 -46 "Quininoid Trajectile Launcher"
+	gun -92.5 -46 "Quininoid Trajectile Launcher"
+	gun 92.5 -46 "Quininoid Trajectile Launcher"
+	gun -75.5 -46 "Terpenoid Trajectile Launcher"
+	gun 75.5 -46 "Terpenoid Trajectile Launcher"
+	gun -48.5 -46 "Terpenoid Trajectile Launcher"
+	gun 48.5 -46 "Terpenoid Trajectile Launcher"
+	explode "huge explosion" 15
+	explode "large explosion" 50
+	explode "medium explosion" 70
+	explode "small explosion" 60
+	explode "tiny explosion" 120
+	"final explode" "final explosion large"
+	description `The mainline security vessel of the Xapleaux, the Ascomy was designed to hold enough passengers as to allow a sense of community to form among the crew. While the ship itself can be run by a moderate crew, there are plenty of bunks to facilitate the efficiency gains from having crew to oversee various standard outfits that the Ascomy is typically equipped with.`
+	description `	All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment. Security ships are equipped with enough fuel to respond to events at the opposite end of the Brilliance without having to waste time refueling, as a lesson learned from their encounter with Korath raids.`
+
+ship Blastoc
+	sprite ship/blastoc
+	thumbnail "thumbnail/blastoc"
+	uncapturable
+	attributes
+		category "Heavy Freighter"
+		cost 42140000
+		mass 945
+		bunks 58
+		"cargo space" 1269
+		drag 22.3
+		"engine capacity" 54
+		"fuel capacity" 600
+		"heat dissipation" 0.82
+		hull 93800
+		"outfit space" 982
+		ramscoop 3
+		"required crew" 42
+		shields 32800
+		"solar collection" 88.4
+		"weapon capacity" 385
+		"I Ring Cradle" 1
+		"H Ring Cradle" 1
+		"Spar Core Shaft" 2
+		weapon
+			"blast radius" 450
+			"shield damage" 6400
+			"hull damage" 3200
+			"hit force" 9600
+	outfits
+		"Control Transceiver"
+		"Repulsor Wave Turret" 2
+		"Xapleaux Anti-Missile"
+		"Large Heat Shunt" 4
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"String Drive"
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		`Type I "Lepido" Engine`
+	engine -100.5 128.5
+	engine 100.5 128.5
+	"reverse engine" -100.5 -130.5
+	"reverse engine" 100.5 -130.5
+	"steering engine" 100.5 -130.5
+		angle -180
+		right
+	"steering engine" -100.5 -130.5
+		angle -180
+		left
+	"steering engine" -100.5 128.5
+		right
+	"steering engine" 100.5 128.5
+		left
+	turret -60.5 -3 "Repulsor Wave Turret"
+	turret 60.5 -3 "Repulsor Wave Turret"
+	turret 0 -111.5 "Xapleaux Anti-Missile"
+	explode "huge explosion" 15
+	explode "large explosion" 50
+	explode "medium explosion" 70
+	explode "small explosion" 60
+	explode "tiny explosion" 120
+	"final explode" "final explosion large"
+	description `The Blastoc is an awkward clash between a cargo ship's ability to run with few crew and the Xapleaux being uncomfortable with solitude in space: the standard crew complement of 42 is roughly the minimum required for psychological wellbeing. Despite having extra bunks for odd passenger jobs, it is a rare captain who can run a Blastoc on minimum crew long-term. More commonly the extra bunks are filled out with traveling entertainers, counselors, and any Xapleaux who want a controlled environment to work on creative projects, and can afford to book a bunk long-term. This niche intersection of functions has resulted in it being the sole Xapleaux vessel used for moving freight.`
+	description `	All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment.`
+
+ship Basidio
+	sprite ship/basidio
+	thumbnail thumbnail/basidio
+	uncapturable
+	attributes
+		category Transport
+		cost 42140000
+		mass 945
+		bunks 138
+		"cargo space" 104
+		drag 22.3
+		"engine capacity" 54
+		"fuel capacity" 600
+		"heat dissipation" 0.82
+		hull 93800
+		"outfit space" 982
+		ramscoop 3
+		"required crew" 42
+		shields 32800
+		"solar collection" 88.4
+		"weapon capacity" 385
+		"I Ring Cradle" 1
+		"H Ring Cradle" 1
+		"Spar Core Shaft" 1
+		weapon
+			"blast radius" 450
+			"shield damage" 6400
+			"hull damage" 3200
+			"hit force" 9600
+	outfits
+		"Control Transceiver"
+		"Repulsor Wave Turret" 2
+		"Large Heat Shunt" 4
+		"Plasma Core"
+		"Small Heat Shunt" 2
+		"String Drive"
+		"Systems Core (Large)"
+		"Triple Plasma Core"
+		`Type I "Lepido" Engine`
+	engine -140.5 132
+	engine 140.5 132
+	"reverse engine" -140.5 -134.5
+	"reverse engine" 140.5 -134.5
+	"steering engine" 109.5 -134.5
+		angle -180
+		right
+	"steering engine" -140.5 -134.5
+		angle -180
+		left
+	"steering engine" -140.5 132
+		right
+	"steering engine" 140.5 132
+		left
+	turret -56 -7.5 "Repulsor Wave Turret"
+	turret 56 -7.5 "Repulsor Wave Turret"
+	explode "huge explosion" 15
+	explode "large explosion" 50
+	explode "medium explosion" 70
+	explode "small explosion" 60
+	explode "tiny explosion" 120
+	"final explode" "final explosion large"
+	description `If you replace every part of a ship, is it still the same ship? If that ship is a Basidio, then the Xapleaux will tell you it is. Although there is always one standard Basidio design that carries the official designation, a Basidio is truly any passenger vessel which has two hulls that are able to be fully isolated from each other in a disaster and still allow full control of the ship. This was the only style of ship to survive a past crisis, and the deep scar in their racial memory has ensured that it remains the most popular design philosophy for Xapleaux transports.`
+	description `	All Xapleaux ships have substantial solar collection and heat dissipation capabilities to enable long-term operations in the brilliant core environment.`
+
+ship "Neocalli"
+	sprite "ship/neocalli"
+	thumbnail "thumbnail/neocalli"
+	attributes
+		category "Fighter"
+		"cost" 83000
+		"hull" 700
+		"bunks" 4
+		"required crew" 1
+		"mass" 2000
+		"drag" .59
+		"heat dissipation" .9
+		"outfit space" 140
+		"weapon capacity" 60
+		"engine capacity" 28
+		weapon
+			"blast radius" 5
+			"shield damage" 50
+			"hull damage" 25
+			"hit force" 75
+	outfits
+		"Repulsor Wave Turret"
+		
+		"Generator (Candle Class)"
+		"Systems Core (Small)"
+		
+		`Type V "Strepsip" Engine`
+	engine -20.5 12
+		angle 29
+	engine 20.5 12
+		angle 331
+	"steering engine" -20.5 12
+		angle 29
+		right
+	"steering engine" 20.5 12
+		angle 331
+		left
+	gun 0 -14
+	turret 0 10
+	explode "tiny explosion" 15
+	description `The purpose of the Neocalli is quite simple: to keep unpleasant things away from more valuable assets while less valuable assets deal with the problem. By default they are deployed against flocks of space fauna which occasionally wander too close to an inhabited world and disrupt traffic, where large numbers of Neocalli can use their standard Repulsor Wave Turret to gently shepherd them away safely. They can also be equipped with an anti-missile turret, allowing them to act as screens for larger ships if their systems are threatened once more.`
+	description `	Drones do not come equipped with a hyperdrive. You cannot carry a drone unless you have a ship in your fleet with a drone bay.`

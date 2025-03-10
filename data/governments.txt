@@ -2258,6 +2258,13 @@ government "Wanderer"
 	"hostile hail" "wanderer untranslated"
 	"hostile disabled hail" "wanderer untranslated"
 
+
+government "Xapleaux"
+	swizzle 0
+	color 1 1 1
+	"player reputation" 1
+	language "Xapleaux"
+
 # A dummy government used to prevent Hai from entering the wormhole in Waypoint/Ultima Thule, but allowing human merchants and other governments to enter.
 government "Wormhole Alpha"
 	"bribe" 0
