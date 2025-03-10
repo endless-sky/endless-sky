@@ -747,7 +747,7 @@ void Engine::Step(bool isActive)
 			info.SetBar("fuel", flagship->Fuel(), fuelCap * .01);
 		else
 			info.SetBar("fuel", flagship->Fuel());
-		const double scale = .2 + 1.8 / (.001 * flagship->Position().Length() + 1);
+		const double scale = flagship->SolarDistanceScale();
 		const double ramscoop = flagship->Attributes().Get("ramscoop");
 		if(ramscoop > 0.)
 		{
