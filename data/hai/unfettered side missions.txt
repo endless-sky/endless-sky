@@ -363,7 +363,7 @@ mission "Hai Legacy 3"
 			`As you enter the system you can see your challenger is indeed waiting for you, and they promptly send you a hail. "Show us what you've got, monkey! Show us that you control your weapons well, as any warrior should! Prove to us that you have the strength to disable our ships, yet still have the restraint not to destroy them!"`
 				accept
 			label "too many ships"
-			`As you take off to join your fleet in orbit, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
+			`As you arrive with your fleet in this system, you receive a hail from the Unfettered. "If you can't even count how many ships you have, you're not worthy of our time, monkey! Dishonor will get you nowhere with us True Hai!"`
 				goto failed
 			label anomaly
 			`You are hailed by the Unfettered as soon as you reach orbit. "You think us blind, monkey? That is not the relic! You're not even worth a launch sequence."`
