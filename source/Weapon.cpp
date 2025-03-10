@@ -293,6 +293,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[HEAT_DAMAGE] = value;
 			else if(key == "energy damage")
 				damage[ENERGY_DAMAGE] = value;
+			else if(key == "cloak damage")
+				damage[CLOAK_DAMAGE] = value;
 			else if(key == "ion damage")
 				damage[ION_DAMAGE] = value;
 			else if(key == "scrambling damage")
@@ -309,6 +311,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 				damage[LEAK_DAMAGE] = value;
 			else if(key == "burn damage")
 				damage[BURN_DAMAGE] = value;
+			else if(key == "dispersion damage")
+				damage[DISPERSION_DAMAGE] = value;
 			else if(key == "relative shield damage")
 				damage[RELATIVE_SHIELD_DAMAGE] = value;
 			else if(key == "relative hull damage")
