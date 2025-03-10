@@ -7909,7 +7909,7 @@ mission "Hroar's Haulers 23"
 		has "Hroar's Haulers 22: declined"
 	on offer
 		dialog
-		`	The Long Haul convoy sets down in a different mega-city from last time. Though it looks much the same. Most of the fleet focuses on loading up the waiting cargo. There's also a mass of people waiting on Unferth's passenger fleet. Yngvar tells you to meet him in the spaceport.`
+		`	The Long Haul convoy sets down in a different sprawling Earth mega-city from last time. Though it looks much the same. Most of the fleet focuses on loading up the waiting cargo. There's also a mass of people waiting on Unferth's passenger fleet. Yngvar tells you to meet him in the spaceport.`
 			decline
 
 mission "Hroar's Haulers 24"
@@ -7920,7 +7920,45 @@ mission "Hroar's Haulers 24"
 		not "Hroar's Haulers 18: declined"
 	on offer
 		conversation
-			`	`
+			`Angry shouts echo throughout the crowded spaceport as the would-be passangers learn that their trip to the Deep has been delayed.`
+			`	"...can't afford to sit around waiting for the next ship..."`
+			`	"...how do they just lose a third of their fleet?!"`
+			`	"...this is supposed to be my last season before can be come a full hauler..."`
+			`	You push past the grumbling crowd and eventually find Yngvar alone a few stories up, looking over the loading operation.`
+			`	"<last>." He doesn't turn as you approach and continues to scan the operation going on below him, "how's it feel to be at your last port of call?"`
+			choice
+				`	"Great. Glad it's nearly over."`
+					goto great
+				`	"Sad. Sorry to see the adventure ending."`
+					goto sad
+				`	(Shrug.)`
+			`	"Ain't that the truth." He chuckles softly, "Ambivalence is a wry and common companion on hauls like these."`
+			label lipstick
+			`	Yngvar exhales slowly, "I won't dress it up none; this has been a rough haul. 'Specially what went down on maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time went different, and I fear it's just the beginning."`
+			`	The old spacer takes a long thoughtful pause, his head turning toward the departing crowds of unhappy passangers, "You did the best you could, and I ain't saying anyone would hold it against ya, but I do sorely wish things woulda gone a little different."`
+			`	Yngvar goes quiet. He just stands there, next to you, watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all moving scuttling around beneah you both.`
+			choice
+				`	(Stay a while with Yngvar.)`
+					goto stay
+				`	(Head back to your ship.)`
+			`	Quietly you turn and leave the old man to his thoughts.`
+				decline
+
+			label stay
+			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
+			`	Together you watch the world ever so slighty change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
+			` 	Finally, Yngvar turns to you and nods, "Looks like they are about ready, Captain. How about ya take us home?"`
+				decline
+
+			label great
+			`	"To each their own, I say." He chuckles, "You get some fellas who can't wait to be back on the red, and then you get others who never want to see that dustball again."`
+			`	He shrugs, "I feel it's got more to do with who you take with ya, and who you got waiting back for ya. As for what's waiting for us, I reckon Hartha-Hroar will might have a few colorful words for us."`
+				goto lipstick
+
+			label sad
+			`	"Spoken like a true spacer." He nods approvingly. "Dirt and light don't make a place more real or special. Only place that matters is where you are right now."`
+			`	He points at the <ship> next to the other Hauler vessels below you both, "That's home enough for folks like us I wager."`
+				goto lipstick
 
 mission "Hroar's Haulers 24b"
 	name "The Long Haul"
