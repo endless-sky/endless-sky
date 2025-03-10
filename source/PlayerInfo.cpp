@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Port.h"
 #include "Preferences.h"
-#include "RaidFleet.h"
+#include "Raiders.h"
 #include "Random.h"
 #include "SavedGame.h"
 #include "Ship.h"
@@ -358,6 +358,9 @@ void PlayerInfo::Load(const filesystem::path &path)
 			availableMissions.emplace_back(child);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
+		else if(child.Token(0) == "raid attraction")
+			for(const DataNode &grand : child)
+				raidAttraction[GameData::Governments().Get(grand.Token(0))] = grand.Value(1);
 		else if(child.Token(0) == "gifted ships" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
@@ -1398,16 +1401,21 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 
 // Find out how attractive the player's fleet is to pirates. Aside from a
 // heavy freighter, no single ship should attract extra pirate attention.
-pair<double, double> PlayerInfo::RaidFleetFactors() const
+pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 {
 	double attraction = 0.;
 	double deterrence = 0.;
+	bool defaultAttraction = !system || !system->GetRaiders() || !system->GetRaiders()->ScoutsCargo();
+	double emptyCargoAttraction = defaultAttraction ? 1. : system->GetRaiders()->EmptyCargoAttraction();
 	for(const shared_ptr<Ship> &ship : Ships())
 	{
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		attraction += ship->Attraction();
+		if(defaultAttraction)
+			attraction += ship->Attraction();
+		else
+			attraction += ship->Attraction() * emptyCargoAttraction * ship->Cargo().Free() / ship->Cargo().Size();
 		deterrence += ship->Deterrence();
 	}
 
@@ -1423,6 +1431,7 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 	const Government *raidGov = raidFleet ? raidFleet->GetGovernment() : nullptr;
 	if(raidGov && raidGov->IsEnemy())
 	{
+		double &govAttraction = raidAttraction[raidGov];
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
@@ -1431,6 +1440,9 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 			return 0;
 
 		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
+		double capAttraction = raid.CapAttraction();
+		if(capAttraction)
+			attraction = min(attraction, capAttraction);
 		// Then we consider the strength of other fleets in the system.
 		int64_t raidStrength = raidFleet->Strength();
 		if(system && raidStrength)
@@ -1449,8 +1461,29 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
 				}
 			}
+		// If the player's fleet is attractive enough but too well guarded for the current raids, stack them up more.
+		if(attraction > 1. + govAttraction)
+		{
+			if(raidStrength * attraction * 10. < FleetStrength())
+			{
+				govAttraction += max(.15, sqrt(attraction - 1.) * .3);
+				return 0.;
+			}
+		}
+		// When the fleet is big enough to hit, or
+		// if the current attraction became lower than what it used to be, adjust it, and use the new one as maximum.
+		else
+			govAttraction -= attraction;
 	}
-	return max(0., min(1., attraction));
+	return max(0., attraction);
+}
+
+
+
+void PlayerInfo::RefreshRaiding()
+{
+	for(auto &it : raidAttraction)
+		it.second = max(0., it.second - .1);
 }
 
 
@@ -2996,6 +3029,16 @@ const Depreciation &PlayerInfo::StockDepreciation() const
 
 
 
+int64_t PlayerInfo::FleetStrength() const
+{
+	int64_t strength = 0;
+	for(auto &ship : ships)
+		strength += ship->Strength();
+	return strength;
+}
+
+
+
 void PlayerInfo::Harvest(const Outfit *type)
 {
 	if(type && system)
@@ -4510,6 +4553,18 @@ void PlayerInfo::Save(DataWriter &out) const
 
 	// Save any "primary condition" flags that are set.
 	conditions.Save(out);
+
+	// Save raid fleets as they get stacked up.
+	if(!raidAttraction.empty())
+	{
+		out.Write("raid attraction");
+		out.BeginChild();
+		{
+			for(const auto &it : raidAttraction)
+				out.Write(it.first->GetTrueName(), it.second);
+		}
+		out.EndChild();
+	}
 
 	// Save the UUID of any ships given to the player with a specified name, and ship class.
 	if(!giftedShips.empty())

@@ -195,7 +195,7 @@ government "Avgi (Dissonance Angry)"
 	"friendly disabled hail" "friendly disabled dissonance"
 	"hostile hail" "hostile dissonance"
 	"hostile disabled hail" "hostile disabled dissonance"
-	raid "Large Dissonance Pirates"
+	raiders "Large Dissonance Pirates"
 
 
 color "governments: Wandering Fleet" 0.9 0.72 0.12
@@ -530,7 +530,7 @@ government "Free Worlds"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile free worlds"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Free Worlds that won't enter wormhole"
 	"display name" "Free Worlds"
@@ -551,7 +551,7 @@ government "Free Worlds that won't enter wormhole"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile free worlds"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 
 government "Gegno"
@@ -1008,7 +1008,7 @@ government "House Aqrabe"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Chydiyi"
 	swizzle 5
@@ -1026,7 +1026,7 @@ government "House Chydiyi"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Kaatrij"
 	swizzle 3
@@ -1044,7 +1044,7 @@ government "House Kaatrij"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Myurej"
 	swizzle 5
@@ -1062,7 +1062,7 @@ government "House Myurej"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Seineq"
 	swizzle 3
@@ -1080,7 +1080,7 @@ government "House Seineq"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "House Sioeora"
 	swizzle 5
@@ -1098,7 +1098,7 @@ government "House Sioeora"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "Incipias Civilian"
 	swizzle 0
@@ -1127,7 +1127,7 @@ government "Independent"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
-	raid "Large Southern Pirates"
+	raiders "Large Southern Pirates"
 
 # A government used for "Independent" ships that the player is allowed to kill without consequences.
 government "Independent (Killable)"
@@ -1500,7 +1500,7 @@ government "Neutral"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 color "governments: New Houses" .8 0 0.4
 
@@ -1521,7 +1521,7 @@ government "New Houses"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 color "governments: Old Houses" 0.375 0.316 1
 
@@ -1542,7 +1542,7 @@ government "Old Houses"
 	"hostile hail" "high houses hostile hail"
 	"hostile disabled hail" "high houses hostile disabled hail"
 	language "Successor"
-	raid "People's Houses Raiders"
+	raiders "People's Houses Raiders"
 
 government "Parrot"
 	swizzle 2
@@ -1603,7 +1603,7 @@ government "Pirate"
 	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Pirate (Devil-Run Gang)"
 	swizzle 6
@@ -1646,7 +1646,7 @@ government "Pirate (Rival)"
 	"friendly disabled hail" "friendly disabled pirate"
 	"hostile hail" "hostile pirate"
 	"hostile disabled hail" "hostile disabled pirate"
-	raid "pirate raid"
+	raiders "pirates"
 
 government Predecessor
 	color .7 .7 .7
@@ -2021,7 +2021,7 @@ government "Republic"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Republic Intelligence"
 	swizzle 0
@@ -2057,7 +2057,7 @@ government "Republic that won't enter wormhole"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Republic (Friendly)"
 	"display name" "Republic"
@@ -2181,7 +2181,7 @@ government "Syndicate"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile syndicate"
 	"hostile disabled hail" "hostile disabled"
-	raid "pirate raid"
+	raiders "pirates"
 
 government "Syndicate (Extremist)"
 	swizzle 1
