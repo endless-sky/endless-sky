@@ -24,7 +24,7 @@ mission "Frontier delivery [0]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -56,7 +56,7 @@ mission "Frontier delivery [1]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -88,7 +88,7 @@ mission "Frontier delivery [2]"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		distance 2 10
 		attributes "frontier"
 	npc
@@ -116,7 +116,7 @@ mission "Frontier Emigration [0]"
 	to offer
 		random < 30
 	source
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
@@ -137,7 +137,7 @@ mission "Frontier Emigration [1]"
 	to offer
 		random < 25
 	source
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
@@ -158,7 +158,7 @@ mission "Frontier Emigration [2]"
 	to offer
 		random < 20
 	source
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "frontier"
 		not planet "Shangri-La"
 	destination
@@ -183,7 +183,7 @@ mission "Disaster Relief"
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not attributes "frontier"
 	destination
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		distance 2 10
 		attributes "frontier"
 		not planet "Shangri-La"
@@ -203,7 +203,7 @@ mission "Instruct Novice Pilot"
 		government "Republic" "Free Worlds" "Neutral" "Independent"
 		attributes "frontier" "dirt belt" "rim" "north" "south" "mining" "farming"
 	stopover
-		not government "Pirate"
+		not government "Pirate" "Independent (Korath-Allied) Port"
 		attributes "frontier"
 		attributes "outfitter"
 		attributes "spaceport"
