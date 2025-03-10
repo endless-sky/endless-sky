@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/alignment.hpp"
 #include "Angle.h"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "CoreStartData.h"
@@ -200,9 +201,12 @@ bool MapDetailPanel::Scroll(double dx, double dy)
 // Only override the ones you need; the default action is to return false.
 bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shouldPlaySound = true;
+
 	const double planetCardHeight = MapPlanetCard::Height();
 	if(command.Has(Command::HELP))
 	{
+		shouldPlaySound = false;
 		DoHelp("map advanced danger", true);
 		DoHelp("map advanced ports", true);
 		DoHelp("map advanced stars", true);
@@ -353,6 +357,8 @@ bool MapDetailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else
 		return MapPanel::KeyDown(key, mod, command, isNewPress);
 
+	if(shouldPlaySound)
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -378,6 +384,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			// The player clicked on a tradable commodity. Color the map by its price.
 			isStars = false;
 			SetCommodity((y - tradeY) / 20);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 		// Clicking the system name activates the view of the player's reputation with various governments.
@@ -387,6 +394,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 			isStars = false;
 			SetCommodity(x < Screen::Left() + mapInterface->GetValue("text margin") ?
 				SHOW_DANGER : SHOW_REPUTATION);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 
 		// Clicking the government name activates the view of system / planet ownership.
@@ -394,6 +402,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		{
 			isStars = false;
 			SetCommodity(SHOW_GOVERNMENT);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 
 	}
@@ -407,6 +416,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				isStars = false;
 				GetUI()->Pop(this);
 				GetUI()->Push(new MapShipyardPanel(*this, true));
+				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 				break;
 			}
 			else if(clickAction == MapPlanetCard::ClickAction::GOTO_OUTFITTER)
@@ -414,11 +424,13 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 				isStars = false;
 				GetUI()->Pop(this);
 				GetUI()->Push(new MapOutfitterPanel(*this, true));
+				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 				break;
 			}
 			// Then this is the planet selected.
 			else if(clickAction != MapPlanetCard::ClickAction::NONE)
 			{
+				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 				selectedPlanet = card.GetPlanet();
 				if(selectedPlanet && player.Flagship())
 					player.SetTravelDestination(selectedPlanet);
@@ -456,6 +468,7 @@ bool MapDetailPanel::Click(int x, int y, int clicks)
 		if(selectedPlanet && player.Flagship())
 			player.SetTravelDestination(selectedPlanet);
 
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		return true;
 	}
 
@@ -490,7 +503,10 @@ bool MapDetailPanel::RClick(int x, int y)
 		else if(!player.CanView(*selectedSystem))
 			GetUI()->Push(new Dialog("You must visit this system before you can send your fleet there."));
 		else
+		{
 			player.SetEscortDestination(selectedSystem, uiClick / scale);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+		}
 	}
 
 	return true;

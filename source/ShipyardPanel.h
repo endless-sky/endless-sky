@@ -47,9 +47,9 @@ protected:
 	virtual int DetailWidth() const override;
 	virtual double DrawDetails(const Point &center) override;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual void Buy(bool onlyOwned = false) override;
+	virtual bool Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
-	virtual void Sell(bool toStorage = false) override;
+	virtual bool Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
 	virtual int FindItem(const std::string &text) const override;
 

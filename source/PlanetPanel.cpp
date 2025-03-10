@@ -175,6 +175,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
+	bool shouldPlaySound = true;
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -182,7 +183,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'l')
+	{
+		shouldPlaySound = selectedPanel;
 		selectedPanel = nullptr;
+	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
@@ -203,16 +207,19 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 's' && hasAccess && planet.HasShipyard())
 	{
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		GetUI()->Push(new ShipyardPanel(player));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
 	{
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		GetUI()->Push(new OutfitterPanel(player));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		GetUI()->Push(new MissionPanel(player));
 		return true;
 	}
@@ -223,16 +230,19 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::MAP))
 	{
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		GetUI()->Push(new MapDetailPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::INFO))
 	{
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
@@ -244,6 +254,8 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
 
+	if(shouldPlaySound)
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
