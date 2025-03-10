@@ -26,11 +26,11 @@ mission "Lunarium: Smuggling: Charity 1"
 	minor
 	cargo "charity supplies" 22
 	source
-		near "3 Spring Rising" 2 6
+		near "3 Spring Rising" 1 6
 		not government "Heliarch"
 	destination "Fourth Shadow"
 	to offer
-		random < 40
+		random < 55
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
@@ -96,10 +96,10 @@ mission "Lunarium: Smuggling: Charity 2"
 	passengers 5
 	cargo "charity supplies" 39
 	source
-		near "5 Winter Above" 1 3
+		near "5 Winter Above" 1 4
 	destination "Into White"
 	to offer
-		random < 50
+		random < 60
 		has "Lunarium: Smuggling: Charity 1: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
@@ -156,10 +156,10 @@ mission "Lunarium: Smuggling: Charity 3"
 	description "Bring <cargo> to <destination>"
 	cargo "charity supplies" 46
 	source
-		near "14 Pole" 3 5
+		near "14 Pole" 3 7
 	destination "Remote Blue"
 	to offer
-		random < 70
+		random < 80
 		has "Lunarium: Smuggling: Charity 2: done"
 		not "joined the heliarchs"
 		not "Lunarium: Questions: active"
@@ -284,7 +284,7 @@ mission "Lunarium: Smuggling: AM"
 	destination "Fourth Shadow"
 	to offer
 		has "Lunarium: Smuggling: Grenades: done"
-		random < 15 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 25 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -329,7 +329,7 @@ mission "Lunarium: Smuggling: Torpedoes"
 	to offer
 		has "Lunarium: Smuggling: AM: done"
 		has "event: deep sky tech available"
-		random < 20 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 30 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -380,7 +380,7 @@ mission "Lunarium: Smuggling: Heat"
 	to offer
 		has "Lunarium: Smuggling: Torpedoes: done"
 		has "event: flamethrower available"
-		random < 25 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 30 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -436,7 +436,7 @@ mission "Lunarium: Smuggling: Reactors"
 	destination "Mebla's Portion"
 	to offer
 		has "Lunarium: Smuggling: Heat: done"
-		random < 40 + 3 * "assisted lunarium" * "assisted lunarium"
+		random < 40 + 4 * "assisted lunarium" * "assisted lunarium"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
 	on offer
@@ -487,7 +487,7 @@ mission "House Bebliss 1-A"
 	description "Head to <destination>, where members of House Bebliss wish to discuss a job offer."
 	minor
 	to offer
-		random < 10
+		random < 15
 		has "license: Coalition"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -539,7 +539,7 @@ mission "House Bebliss 1-B"
 	name "Meet with House Bebliss"
 	description "Head to <destination>, where representatives from an Arach House that supports the Lunarium wish to discuss a job offer."
 	to offer
-		random < 40
+		random < 75
 		has "House Bebliss 1-A: declined"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -938,10 +938,11 @@ mission "Lunarium: Evacuation 1"
 	passengers 35
 	"apparent payment" 386730
 	source
-		near "3 Spring Rising" 1 4
+		not government "Heliarch"
+		near "3 Spring Rising" 1 5
 	destination "Fourth Shadow"
 	to offer
-		random < 40
+		random < 55
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -1060,10 +1061,10 @@ mission "Lunarium: Evacuation 3"
 	"apparent payment" 748300
 	source
 		not government "Heliarch"
-		near "Silver Bell" 2 3
+		near "Silver Bell" 1 4
 	destination "Chosen Nexus"
 	to offer
-		random < 50
+		random < 60
 		has "Lunarium: Evacuation 2: done"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -1185,10 +1186,10 @@ mission "Lunarium: Evacuation 5"
 	passengers 116
 	landing
 	source
-		near "Ablub"
+		near "Ablub" 1 3
 	destination "Cool Forest"
 	to offer
-		random < 80
+		random < 85
 		has "Lunarium: Evacuation 4: done"
 		has "outfit: Jump Drive"
 		not "joined the heliarchs"
@@ -1329,10 +1330,10 @@ mission "Lunarium: Propaganda 1"
 	passengers 1
 	cargo "promotional posters" 1
 	source
-		near "Ancient Hope" 2 4
+		near "Ancient Hope" 2 5
 	destination "Bright Echo"
 	to offer
-		random < 25
+		random < 50
 		has "Coalition: First Contact: done"
 		not "joined the heliarchs"
 		not "assisting heliarchy"
@@ -1602,7 +1603,7 @@ mission "Lunarium: Combat Training 1"
 		attributes arach
 	destination "Zug"
 	to offer
-		random < 20
+		random < 65
 		has "outfit: Jump Drive"
 		or
 			has "Lunarium: Propaganda 4: done"
@@ -1847,10 +1848,10 @@ mission "Lunarium: Questions"
 		or
 			"assisted lunarium" >= 5
 			and
-				"coalition jobs" >= 80
+				"coalition jobs" >= 70
 				"assisted lunarium" == 4
 			and
-				"coalition jobs" >= 110
+				"coalition jobs" >= 100
 				"assisted lunarium" == 3
 		"reputation: Quarg" >= 0
 		not "joined the heliarchs"
