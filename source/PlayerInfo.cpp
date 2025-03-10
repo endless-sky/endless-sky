@@ -2141,9 +2141,9 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 
 
 // Look at the list of available missions and see if any of them can be offered
-// right now, in the given location (landing or spaceport). If there are no
+// right now, in the given location (landing, spaceport, or entering). If there are no
 // missions that can be accepted, return a null pointer.
-Mission *PlayerInfo::MissionToOffer(Mission::Location location)
+Mission *PlayerInfo::MissionToOffer(Mission::Setting setting)
 {
 	if(ships.empty())
 		return nullptr;
@@ -2151,7 +2151,7 @@ Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 	// If a mission can be offered right now, move it to the start of the list
 	// so we know what mission the callback is referring to, and return it.
 	for(auto it = availableMissions.begin(); it != availableMissions.end(); ++it)
-		if(it->IsAtLocation(location) && it->CanOffer(*this) && it->CanAccept(*this))
+		if(it->IsAtSetting(setting) && it->CanOffer(*this) && it->CanAccept(*this))
 		{
 			availableMissions.splice(availableMissions.begin(), availableMissions, it);
 			return &availableMissions.front();
@@ -2174,12 +2174,12 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	// "boardingMissions" is emptied by MissionCallback, but to be sure:
 	boardingMissions.clear();
 
-	Mission::Location location = (ship->GetGovernment()->IsEnemy()
+	Mission::Setting setting = (ship->GetGovernment()->IsEnemy()
 			? Mission::BOARDING : Mission::ASSISTING);
 
 	// Check for available boarding or assisting missions.
 	for(const auto &it : GameData::Missions())
-		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
+		if(it.second.IsAtSetting(setting) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));
 			if(boardingMissions.back().IsFailed(*this))
@@ -2223,14 +2223,14 @@ void PlayerInfo::ClearActiveBoardingMission()
 // If one of your missions cannot be offered because you do not have enough
 // space for it, and it specifies a message to be shown in that situation,
 // show that message.
-void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
+void PlayerInfo::HandleBlockedMissions(Mission::Setting setting, UI *ui)
 {
 	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
 		return;
 
 	for(auto &it : missionList)
-		if(it.IsAtLocation(location) && it.CanOffer(*this) && !it.CanAccept(*this))
+		if(it.IsAtSetting(setting) && it.CanOffer(*this) && !it.CanAccept(*this))
 		{
 			string message = it.BlockedMessage(*this);
 			if(!message.empty())
@@ -2280,7 +2280,7 @@ void PlayerInfo::MissionCallback(int response)
 		// If this is a mission offered in-flight, expose a pointer to it
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
-		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING))
+		if(mission.IsAtSetting(Mission::BOARDING) || mission.IsAtSetting(Mission::ASSISTING))
 			activeBoardingMission = &*--spliceIt;
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
@@ -2354,6 +2354,29 @@ void PlayerInfo::HandleEvent(const ShipEvent &event, UI *ui)
 			static const int64_t maxRating = 2000000000;
 			rating = min(maxRating, rating + (event.Target()->Cost() + 250000) / 500000);
 		}
+
+	// If we're jumping to a new system, see if any new missions should offer upon entering.
+	// Jump events are only created for the player's flagship.
+	if((event.Type() & ShipEvent::JUMP) && event.Actor())
+	{
+		for(auto &it : GameData::Missions())
+		{
+			if(!it.second.IsAtSetting(Mission::ENTERING))
+				continue;
+
+			if(it.second.CanOffer(*this))
+			{
+				list<Mission> &missions = availableMissions;
+
+				missions.push_back(it.second.Instantiate(*this));
+				if(missions.back().IsFailed(*this))
+					missions.pop_back();
+			}
+		}
+		Mission *mission = MissionToOffer(Mission::ENTERING);
+		if(mission && mission->HasSpace(*flagship))
+			mission->Do(Mission::OFFER, *this, ui);
+	}
 
 	for(Mission &mission : missions)
 		mission.Do(event, *this, ui);
@@ -2495,7 +2518,7 @@ bool PlayerInfo::HasSeen(const System &system) const
 		for(auto &&p : m.Stopovers())
 			if(p->IsInSystem(&system))
 				return true;
-		return m.Destination()->IsInSystem(&system);
+		return m.Destination().GetSystem() == &system;
 	};
 	if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
 		return true;
@@ -2554,11 +2577,11 @@ bool PlayerInfo::KnowsName(const System &system) const
 		return true;
 
 	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->IsInSystem(&system))
+		if(mission.Destination().GetSystem() == &system)
 			return true;
 
 	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
+		if(mission.IsVisible() && mission.Destination().GetSystem() == &system)
 			return true;
 
 	return false;
@@ -3092,7 +3115,7 @@ void PlayerInfo::ApplyChanges()
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
 		{
-			mission.Destination()->Bribe(mission.HasFullClearance());
+			mission.Destination().GetPlanet()->Bribe(mission.HasFullClearance());
 			for(const Planet *planet : mission.Stopovers())
 				planet->Bribe(mission.HasFullClearance());
 		}
@@ -3995,20 +4018,21 @@ void PlayerInfo::CreateMissions()
 	unsigned nonBlockingMissions = 0;
 	for(const auto &it : GameData::Missions())
 	{
-		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
+		if(it.second.IsAtSetting(Mission::BOARDING) || it.second.IsAtSetting(Mission::ASSISTING)
+				|| it.second.IsAtSetting(Mission::ENTERING))
 			continue;
-		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
+		if(skipJobs && it.second.IsAtSetting(Mission::JOB))
 			continue;
 
 		if(it.second.CanOffer(*this))
 		{
 			list<Mission> &missions =
-				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
+				it.second.IsAtSetting(Mission::JOB) ? availableJobs : availableMissions;
 
 			missions.push_back(it.second.Instantiate(*this));
 			if(missions.back().IsFailed(*this))
 				missions.pop_back();
-			else if(!it.second.IsAtLocation(Mission::JOB))
+			else if(!it.second.IsAtSetting(Mission::JOB))
 			{
 				hasPriorityMissions |= missions.back().HasPriority();
 				nonBlockingMissions += missions.back().IsNonBlocking();
@@ -4023,10 +4047,10 @@ void PlayerInfo::CreateMissions()
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{
-			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
-				|| it->IsAtLocation(Mission::SHIPYARD)
-				|| it->IsAtLocation(Mission::OUTFITTER)
-				|| it->IsAtLocation(Mission::JOB_BOARD);
+			bool hasLowerPriorityLocation = it->IsAtSetting(Mission::SPACEPORT)
+				|| it->IsAtSetting(Mission::SHIPYARD)
+				|| it->IsAtSetting(Mission::OUTFITTER)
+				|| it->IsAtSetting(Mission::JOB_BOARD);
 			if(hasLowerPriorityLocation && !it->HasPriority())
 				it = availableMissions.erase(it);
 			else
@@ -4065,8 +4089,8 @@ void PlayerInfo::SortAvailable()
 		{
 			if(mission.IsVisible())
 			{
-				destinations.insert(mission.Destination());
-				destinations.insert(mission.Destination()->GetSystem());
+				destinations.insert(mission.Destination().GetPlanet());
+				destinations.insert(mission.Destination().GetSystem());
 
 				for(const Planet *stopover : mission.Stopovers())
 				{
@@ -4105,8 +4129,10 @@ void PlayerInfo::SortAvailable()
 				// Sorting by "convenience" means you already have a mission to a
 				// planet. Missions at the same planet are sorted higher.
 				// 0 : No convenient mission; 1: same system; 2: same planet (because both system+planet means 1+1 = 2)
-				const int lConvenient = destinations.count(lhs.Destination()) + destinations.count(lhs.Destination()->GetSystem());
-				const int rConvenient = destinations.count(rhs.Destination()) + destinations.count(rhs.Destination()->GetSystem());
+				const int lConvenient = destinations.count(lhs.Destination().GetPlanet())
+						+ destinations.count(lhs.Destination().GetSystem());
+				const int rConvenient = destinations.count(rhs.Destination().GetPlanet())
+						+ destinations.count(rhs.Destination().GetSystem());
 				if(lConvenient < rConvenient)
 					return true;
 				if(lConvenient > rConvenient)
@@ -4215,7 +4241,7 @@ void PlayerInfo::StepMissions(UI *ui)
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
-		else if(mission.Destination() == GetPlanet() && !freshlyLoaded)
+		else if(mission.Destination().GetPlanet() == GetPlanet() && !freshlyLoaded)
 		{
 			mission.Do(Mission::VISIT, *this, ui);
 			if(mission.IsUnique() || !mission.IsVisible())
@@ -4653,7 +4679,7 @@ void PlayerInfo::Fine(UI *ui)
 	// Planets should not fine you if you have mission clearance or are infiltrating.
 	for(const Mission &mission : missions)
 		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
-					(mission.Destination() == planet || mission.Stopovers().contains(planet))))
+					(mission.Destination().GetPlanet() == planet || mission.Stopovers().contains(planet))))
 			return;
 
 	// The planet's government must have the authority to enforce laws.
