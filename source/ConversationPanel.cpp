@@ -44,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #endif
 
+#include <array>
 #include <iterator>
 
 using namespace std;
@@ -73,7 +74,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display. Some substitutions already in the map
 	// should not be overwritten.
-	static const set<string> subsToSave = {"<system>", "<date>", "<day>"};
+	static const array<string, 3> subsToSave = {"<system>", "<date>", "<day>"};
 	map<string, string> savedSubs;
 	for(const auto &sub : subsToSave)
 	{
