@@ -1008,13 +1008,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	substitutions.Substitutions(subs, player.Conditions());
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
-	if(flagship)
-	{
-		subs["<ship>"] = flagship->Name();
-		subs["<model>"] = flagship->DisplayModelName();
-	}
+	player.AddPlayerSubstitutions(subs);
 
 	const auto &playerConditions = player.Conditions();
 	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
