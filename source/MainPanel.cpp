@@ -270,6 +270,15 @@ bool MainPanel::RClick(int x, int y)
 
 
 
+bool MainPanel::MClick(int x, int y)
+{
+	engine.MClick(Point(x, y));
+
+	return true;
+}
+
+
+
 bool MainPanel::Drag(double dx, double dy)
 {
 	if(!canDrag)
