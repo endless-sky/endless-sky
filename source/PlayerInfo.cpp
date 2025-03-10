@@ -1467,7 +1467,7 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 			if(raidStrength * attraction * 10. < FleetStrength())
 			{
 				govAttraction += max(.15, sqrt(attraction - 1.) * .3);
-				return 0;
+				return 0.;
 			}
 		}
 		// When the fleet is big enough to hit, or

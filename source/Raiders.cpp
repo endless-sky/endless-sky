@@ -35,15 +35,12 @@ void Raiders::LoadFleets(const DataNode &node, bool remove, int valueIndex, bool
 		};
 		raidFleets.erase(remove_if(raidFleets.begin(), raidFleets.end(), fleetMatcher), raidFleets.end());
 	}
+	else if(deprecated)
+		raidFleets.emplace_back(fleet,
+			node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,
+			node.Size() > (valueIndex + 2) ? node.Value(valueIndex + 2) : 0.);
 	else
-	{
-		if(deprecated)
-			raidFleets.emplace_back(fleet,
-				node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,
-				node.Size() > (valueIndex + 2) ? node.Value(valueIndex + 2) : 0.);
-		else
-			raidFleets.emplace_back().Load(node, fleet);
-	}
+		raidFleets.emplace_back().Load(node, fleet);
 }
 
 

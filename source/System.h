@@ -33,7 +33,6 @@ class Fleet;
 class Government;
 class Minable;
 class Planet;
-class Raiders;
 class RaidFleet;
 class Ship;
 class Sprite;

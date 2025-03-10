@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Hazard.h"
 #include "Minable.h"
 #include "Planet.h"
-#include "Raiders.h"
 #include "Random.h"
 #include "image/SpriteSet.h"
 
