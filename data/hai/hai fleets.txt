@@ -910,7 +910,7 @@ fleet "Unfettered Hai Space Raid"
 		"Lightning Bug (Pulse)" 2
 	variant
 		"Sea Scorpion (Shredder)"
-		"Sea Scorpion (Ionic)"
+		"Sea Scorpion (Ion)"
 		"Shield Beetle (Pulse)"
 		"Shield Beetle"
 
