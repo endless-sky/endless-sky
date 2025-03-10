@@ -4228,7 +4228,11 @@ void Ship::DoGeneration()
 		if(currentSystem)
 		{
 			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
-			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
+			double totalRamscoop = attributes.Get("ramscoop");
+			totalRamscoop += IsHyperspacing() ? 0. : (attributes.Get("velocity ramscoop") * velocity.Length() / 100.);
+			fuel += currentSystem->RamscoopFuel(totalRamscoop, scale);
+			heat += scale * currentSystem->SolarWind() * attributes.Get("ramscoop heat");
+			energy -= scale * currentSystem->SolarWind() * attributes.Get("ramscoop energy");
 
 			double solarScaling = currentSystem->SolarPower() * scale;
 			energy += solarScaling * attributes.Get("solar collection");
