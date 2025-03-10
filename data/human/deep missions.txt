@@ -4123,7 +4123,7 @@ mission "Stones of Skadenga 3"
 	on offer
 		conversation
 			`You're surprised to see the Ondurdis walking toward you.`
-			`	She nods politely before speaking. "<first>, I just wanted to thank you for ferrying our Stone-Bearers to <planet> and back. I have added this task to the job board so you can more easily assist in the future. I've also let them know they need enough money to pay for a return trip." The Ondurdis touches your shoulder, and then walks away.`
+			`	She nods politely before speaking. "<first>, I just wanted to thank you for ferrying our Stone-Bearers to Nifel and back. I have added this task to the job board so you can more easily assist in the future. I've also let them know they need enough money to pay for a return trip." The Ondurdis touches your shoulder, and then walks away.`
 				decline
 
 
