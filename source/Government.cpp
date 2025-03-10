@@ -32,31 +32,57 @@ using namespace std;
 
 namespace {
 	// Load ShipEvent strings and corresponding numerical values into a map.
-	void PenaltyHelper(const DataNode &node, map<int, double> &penalties)
+	void PenaltyHelper(const DataNode &node, map<int, Government::PenaltyEffect> &penalties)
 	{
+		auto loadPenalty = [&penalties](const DataNode &child, int eventType) -> void
+		{
+			double amount = child.Value(1);
+			Government::SpecialPenalty specialPenalty = Government::SpecialPenalty::NONE;
+			if(child.Size() >= 3)
+			{
+				const string &effect = child.Token(2);
+				if(effect == "none")
+					specialPenalty = Government::SpecialPenalty::NONE;
+				else if(effect == "provoke")
+					specialPenalty = Government::SpecialPenalty::PROVOKE;
+				else if(effect == "atrocity")
+				{
+					specialPenalty = Government::SpecialPenalty::ATROCITY;
+					if(amount <= 0.)
+					{
+						child.PrintTrace("Warning: the \"atrocity\" effect will not work"
+							" with no reputation effect (\'0\') associated, defaulting to 0.1:");
+						amount = .1;
+					}
+				}
+				else
+					child.PrintTrace("Skipping unrecognized reputation effect:");
+			}
+			penalties[eventType] = Government::PenaltyEffect(amount, specialPenalty);
+		};
 		for(const DataNode &child : node)
 			if(child.Size() >= 2)
 			{
 				const string &key = child.Token(0);
 				if(key == "assist")
-					penalties[ShipEvent::ASSIST] = child.Value(1);
+					loadPenalty(child, ShipEvent::ASSIST);
 				else if(key == "disable")
-					penalties[ShipEvent::DISABLE] = child.Value(1);
+					loadPenalty(child, ShipEvent::DISABLE);
 				else if(key == "board")
-					penalties[ShipEvent::BOARD] = child.Value(1);
+					loadPenalty(child, ShipEvent::BOARD);
 				else if(key == "capture")
-					penalties[ShipEvent::CAPTURE] = child.Value(1);
+					loadPenalty(child, ShipEvent::CAPTURE);
 				else if(key == "destroy")
-					penalties[ShipEvent::DESTROY] = child.Value(1);
+					loadPenalty(child, ShipEvent::DESTROY);
 				else if(key == "scan")
 				{
-					penalties[ShipEvent::SCAN_OUTFITS] = child.Value(1);
-					penalties[ShipEvent::SCAN_CARGO] = child.Value(1);
+					loadPenalty(child, ShipEvent::SCAN_OUTFITS);
+					loadPenalty(child, ShipEvent::SCAN_CARGO);
 				}
 				else if(key == "provoke")
-					penalties[ShipEvent::PROVOKE] = child.Value(1);
+					loadPenalty(child, ShipEvent::PROVOKE);
 				else if(key == "atrocity")
-					penalties[ShipEvent::ATROCITY] = child.Value(1);
+					loadPenalty(child, ShipEvent::ATROCITY);
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -65,13 +91,18 @@ namespace {
 	}
 
 	// Determine the penalty for the given ShipEvent based on the values in the given map.
-	double PenaltyHelper(int eventType, const map<int, double> &penalties)
+	Government::PenaltyEffect PenaltyHelper(int eventType, const map<int, Government::PenaltyEffect> &penalties)
 	{
 		double penalty = 0.;
+		Government::SpecialPenalty specialPenalty = Government::SpecialPenalty::NONE;
 		for(const auto &it : penalties)
 			if(eventType & it.first)
-				penalty += it.second;
-		return penalty;
+			{
+				penalty += it.second.reputationChange;
+				if(it.second.specialPenalty > specialPenalty)
+					specialPenalty = it.second.specialPenalty;
+			}
+		return {penalty, specialPenalty};
 	}
 
 	unsigned nextID = 0;
@@ -83,15 +114,15 @@ namespace {
 Government::Government()
 {
 	// Default penalties:
-	penaltyFor[ShipEvent::ASSIST] = -0.1;
-	penaltyFor[ShipEvent::DISABLE] = 0.5;
-	penaltyFor[ShipEvent::BOARD] = 0.3;
-	penaltyFor[ShipEvent::CAPTURE] = 1.;
-	penaltyFor[ShipEvent::DESTROY] = 1.;
-	penaltyFor[ShipEvent::SCAN_OUTFITS] = 0.;
-	penaltyFor[ShipEvent::SCAN_CARGO] = 0.;
-	penaltyFor[ShipEvent::PROVOKE] = 0.;
-	penaltyFor[ShipEvent::ATROCITY] = 10.;
+	penaltyFor[ShipEvent::ASSIST] = PenaltyEffect(-.1);
+	penaltyFor[ShipEvent::DISABLE] = PenaltyEffect(.5);
+	penaltyFor[ShipEvent::BOARD] = PenaltyEffect(.3);
+	penaltyFor[ShipEvent::CAPTURE] = PenaltyEffect(1.);
+	penaltyFor[ShipEvent::DESTROY] = PenaltyEffect(1.);
+	penaltyFor[ShipEvent::SCAN_OUTFITS] = PenaltyEffect();
+	penaltyFor[ShipEvent::SCAN_CARGO] = PenaltyEffect();
+	penaltyFor[ShipEvent::PROVOKE] = PenaltyEffect(0., SpecialPenalty::PROVOKE);
+	penaltyFor[ShipEvent::ATROCITY] = PenaltyEffect(10., SpecialPenalty::ATROCITY);
 
 	id = nextID++;
 }
@@ -481,7 +512,7 @@ double Government::InitialPlayerReputation() const
 // Get the amount that your reputation changes for the given offense against the given government.
 // The given value should be a combination of one or more ShipEvent values.
 // Returns 0 if the Government is null.
-double Government::PenaltyFor(int eventType, const Government *other) const
+Government::PenaltyEffect Government::PenaltyFor(int eventType, const Government *other) const
 {
 	if(!other)
 		return 0.;
@@ -496,7 +527,7 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 	if(it == customPenalties.end())
 		return PenaltyHelper(eventType, penalties);
 
-	map<int, double> tempPenalties = penalties;
+	map<int, PenaltyEffect> tempPenalties = penalties;
 	for(const auto &penalty : it->second)
 		tempPenalties[penalty.first] = penalty.second;
 	return PenaltyHelper(eventType, tempPenalties);
