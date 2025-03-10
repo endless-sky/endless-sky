@@ -323,9 +323,12 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
+		string abortWarning = "Abort mission \"" + acceptedIt->Name() + "\"?";
+		if(acceptedIt->GetStoryline() != nullptr)
+			abortWarning += "\n*WARNING* This will end the " + acceptedIt->GetStoryline()->Name() + " storyline!";
 		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
 			GetUI()->Push(new Dialog(this, &MissionPanel::AbortMission,
-				"Abort mission \"" + acceptedIt->Name() + "\"?"));
+				abortWarning));
 		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())

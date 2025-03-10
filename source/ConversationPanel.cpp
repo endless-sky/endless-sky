@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Format.h"
 #include "GameData.h"
 #include "Government.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -144,6 +145,27 @@ void ConversationPanel::Draw()
 	for(const Paragraph &it : text)
 		point = it.Draw(point, gray);
 
+	// Draw the storyline color bar, if applicable
+	if(caller != nullptr && caller->GetStoryline() != nullptr)
+	{
+		const Color storylineColor = caller->GetStoryline()->GetColor();
+		const Color storylineColorAlpha = storylineColor.Transparent(0.75);
+		if(caller->GetStoryline()->IsMain())
+		{
+			Point mainStoryLineTop(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 224);
+			Point mainStoryLineBottom(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 224 + 132);
+			LineShader::Draw(mainStoryLineTop, mainStoryLineBottom, 3, storylineColorAlpha);
+			LineShader::Draw(mainStoryLineTop, mainStoryLineBottom, 1, storylineColor);
+		}
+		else
+		{
+			Point subStoryLineTop(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 433);
+			Point subStoryLineBottom(Screen::Left() + boxWidth + 13, Screen::Top() + MARGIN + 433 + 44);
+			LineShader::Draw(subStoryLineTop, subStoryLineBottom, 3, storylineColorAlpha);
+			LineShader::Draw(subStoryLineTop, subStoryLineBottom, 1, storylineColor);
+		}
+	}
+
 	// Draw whatever choices are being presented.
 	if(node < 0)
 	{
@@ -224,7 +246,11 @@ void ConversationPanel::Draw()
 			++index;
 
 			font.Draw(label, point + Point(-15, 0), dim);
-			point = paragraph.Draw(point, bright);
+
+			if(caller->GetStoryline() != nullptr && !caller->IsStorylineOptional() && paragraph.LeadsToDecline())
+				point = paragraph.Draw(point, bright, &dim);
+			else
+				point = paragraph.Draw(point, bright);
 		}
 	}
 	// Store the total height of the text.
@@ -427,7 +453,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
 		{
 			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
-			choices.emplace_back(Paragraph(altered), i);
+			choices.emplace_back(Paragraph(altered, nullptr, false, conversation.WillDecline(node, i)), i);
 		}
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
 	if(choices.empty() && conversation.Choices(node) != 0)
@@ -502,14 +528,21 @@ int ConversationPanel::MapChoice(int n) const
 
 
 // Paragraph constructor.
-ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
-	: scene(scene), isFirst(isFirst)
+ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst, bool leadsToDecline)
+	: scene(scene), isFirst(isFirst), leadsToDecline(leadsToDecline)
 {
 	wrap.SetAlignment(Alignment::JUSTIFIED);
 	wrap.SetWrapWidth(WIDTH);
 	wrap.SetFont(FontSet::Get(14));
 
 	wrap.Wrap(text);
+}
+
+
+
+bool ConversationPanel::Paragraph::LeadsToDecline() const
+{
+	return leadsToDecline;
 }
 
 
@@ -535,7 +568,11 @@ Point ConversationPanel::Paragraph::Center() const
 
 // Draw this paragraph, and return the point that the next paragraph below it
 // should be drawn at.
-Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
+
+Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const {
+	return Draw(point, color, nullptr);
+}
+Point ConversationPanel::Paragraph::Draw(Point point, const Color &color, const Color *warningColor) const
 {
 	if(scene)
 	{
@@ -545,5 +582,17 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	}
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
+	if(warningColor != nullptr)
+	{
+		WrappedText warningWrap;
+		warningWrap.SetAlignment(Alignment::JUSTIFIED);
+		warningWrap.SetWrapWidth(WIDTH);
+		warningWrap.SetFont(FontSet::Get(14));
+
+		warningWrap.Wrap("(this choice will end this storyline)");
+
+		warningWrap.Draw(point, *warningColor);
+		point.Y() += warningWrap.Height();
+	}
 	return point;
 }
