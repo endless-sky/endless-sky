@@ -219,7 +219,7 @@ mission "Successors: Stage Play"
 				`	"Why not? Can you show me where it is?"`
 				`	"I'm not that interested in theater."`
 					decline
-			`	"Thou wouldt surely be an treated guest," the Successor says. "Follow me, and we shan't be late."`
+			`	"Thou wouldt surely be a treated guest," the Successor says. "Follow me, and we shan't be late."`
 			`	They lead you to one of the smaller transport gates at the spaceport, where a compact train snakes away from the city and into a remarkably pristine countryside. Eventually your guide leads you off the train; the station overlooks a large coastal depression where thousands of other Successors have gathered on semicircular benches around a central tank situated at the edge of the sea. Several of the benches have been built up into small but richly adorned boxes where, presumably, the wealthiest members of the audience can enjoy the show in privacy.`
 			`	You sit down, and after several minutes there is a brief introduction that begins with thanking the local House for funding the event and then continues into naming and introducing each of the lead actors, followed by a curious ritual in which each of them is given a small decorative token by the show's organizer. The actors thread these onto long strings that they carry - several of them already have highly-adorned strings that they loop several times over their bodies.`
 			`	"Myiara! How long we've been unseeing of thy tender face among our number! Return, and grace us so," cries a player within the tank, their voice amplified for the audience. Several others gyre around them, each wearing detailed, colorful masks, each one echoing "Myiara!" as the first speaker continues. Still more players enter from apertures in the tank's bottom, swimming up to the very top, where they pop into the air with acrobatic elegance before landing on the tank's clear top.`
@@ -269,7 +269,7 @@ mission "Successors: Sosrue"
 			`	The adult affects what might be a disappointed shade of red, but nonetheless collects their child and leaves you alone to your business.`
 				decline
 			label what
-			`	The child bursts into speech. "Beware the Sosrue, cloaked in black, its teeth and claws - !" before their parent interrupts them.`
+			`	The child bursts into speech. "Beware the Sosrue, cloaked in black, its teeth and claws!" before their parent interrupts them.`
 			label name
 			`	"I'm sorry," says the adult. "It's a monster, from a children's poem. This little's favorite. So tell them and I, also - hast thou, among the wider breadth of stars, met some creature long of arm, discerning of ear, and many of tooth, that dwells in every manner of the stellar deep?" Their skin runs with thin golden lines as they say this, shivering with each syllable.`
 			choice
@@ -304,11 +304,11 @@ mission "Successors: Derelict Station Toy"
 		conversation
 			`Although the spaceport here is as quiet and lifeless as always, when you disembark for a moment, you spy a strange, colorful object lying a short distance away in the gloom. It's hard to tell what exactly it is at first glance, but on closer inspection, it appears to be a small metal model of a Kvelqde shuttle, painted in bright and oily-looking colors. A tiny, well-worn propeller emerges from its rear.`
 			choice
-					`	(Leave it be.)`
-						goto leave
-					`	(Take it.)`
-						goto take
-					`	(Stomp on it.)`
+				`	(Leave it be.)`
+					goto leave
+				`	(Take it.)`
+					goto take
+				`	(Stomp on it.)`
 			`	The toy proves remarkably durable - your assault on it does little more than scuff its paint, while you are forced to limp back to the <ship> with a bruised foot.`
 				decline
 			label leave
