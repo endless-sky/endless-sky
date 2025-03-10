@@ -214,7 +214,7 @@ mission "Successors: Stage Play"
 		random < 5
 	on offer
 		conversation
-			`Walking through the spaceport, you notice several posters have been put up to advertise some sort of performance, each one showing an outstretched Successor standing atop a brilliant blue sphere that swirls with octopoid forms. "Deathless Myiara," reads the title. As you look at the poster, a passing Successor takes notice and greets you, splaying their arms in the traditional manner. "The honored alien!" they say, "Does the play arouse tonight thy interest? 'Tis a good company that puts it on."`
+			`Walking through the spaceport, you notice several posters have been put up to advertise some sort of performance, each one showing an outstretched Successor standing atop a brilliant blue sphere that swirls with octopoid forms. "Deathless Myiara," reads the title. As you look at the poster, a passing Successor takes notice and greets you, splaying their arms in the traditional manner. "The honored alien!" they say, "Doth the play arouse tonight thy interest? 'Tis a good company that puts it on."`
 			choice
 				`	"Why not? Can you show me where it is?"`
 				`	"I'm not that interested in theater."`
@@ -230,7 +230,7 @@ mission "Successors: Stage Play"
 				`	(Let your mind wander.)`
 					goto bored
 				`	(Leave early.)`
-			`	You stay until the first intermission - still an uncomfortably long wait, and as far as you can tell, the story was nowhere near complete at that point. The performance was distinctly alien, with masks and acrobatics and even a stunning moment midway through the first act where one of the characters conjures up a storm to afflict another, and huge globs of water suspended in clear spheres are lifted behind the stage by some sort of repulsor mechanism.`
+			`	You stay until the first intermission - still an uncomfortably long wait, and as far as you can tell, the story was nowhere near complete at that point. The performance was distinctly alien, with masks, acrobatics, and a stunning moment midway through the first act where one of the characters conjures up a storm to afflict another. Huge globs of water, suspended in clear spheres, were lifted behind the stage by some sort of repulsor mechanism.`
 			`	The train silently arrives after only a few minutes of waiting and takes you back to the spaceport without issue.`
 				decline
 			label attentive
@@ -329,7 +329,7 @@ mission "Successors: Pet Commemoration"
 	on offer
 		conversation
 			`A screen on one of the walls displays a commemorative message: a picture of a small salamander-like creature cradled in a Successor's arms, with some text below it:`
-			`	Mirja-Mirja, the most loyal of friends and gentlest of animals. Such stuff as dreams are made on.`
+			`	"Mirja-Mirja, the most loyal of friends and gentlest of animals. Such stuff as dreams are made on."`
 				decline
 
 mission "Successors: Armor Reconfiguration"
