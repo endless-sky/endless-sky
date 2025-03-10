@@ -7589,7 +7589,7 @@ mission "Timothy Radrickson 1: Stowaway"
 				accept
 
 	on complete
-		log "People" "Timothy Radickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		log `Discovered Timothy, a stowaway, in my ship, and decided to take him where he needed to go. Never learned what Timothy had been fleeing, who he had been, or what he had done that lead him to such dire straits.`
 		event "timothy radrickson: on rand" 340
 		conversation
@@ -8074,7 +8074,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 
 			label mingle
 			action
-				log "People" "Timothy Radickson" `Timothy has since become the governor of Rand.`
+				log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
 				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget my help. Was invited to a lavish celebration and named the Hero of Rand.`
 				"salary: Hero of Rand" = 200
 				payment 1000000
@@ -8156,7 +8156,7 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 	deadline 1
 	invisible
 	on offer
-		log "People" "Timothy Radickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
 		log `Oblivion had not been kind to Timothy. The last time he had been seen alive he was dying the slow, toxic death that world is famed for. Asked me to help him.`
 		conversation
 			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
@@ -9094,7 +9094,7 @@ mission "Timothy Radrickson 6: News of Death"
 		has "Timothy Radrickson 5e: Back to Oblivion: offered"
 		random < 15
 	on offer
-		log "People" "Timothy Radickson" `Tried to help Timothy escape from his prison sentence there.`
+		log "People" "Timothy Radrickson" `Tried to help Timothy escape from his prison sentence there.`
 		log "Timothy is dead - or at least that is what's being reported in the news. Perhaps the plot to break him free really did work."
 		event "timothy radrickson forever"
 		conversation
@@ -9117,7 +9117,7 @@ mission "Timothy Radrickson 7: Monk"
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
-			`	"Are you Captain <last>?" they ask.`
+			`	"Are you Captain <last>?" he asks.`
 			choice
 				`	"Why?"`
 					goto why
@@ -9214,7 +9214,7 @@ mission "Timothy Radrickson 7: Hospice"
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
-			`	"Are you Captain <last>?" They ask.`
+			`	"Are you Captain <last>?" he asks.`
 			choice
 				`	"Why?"`
 					goto why
