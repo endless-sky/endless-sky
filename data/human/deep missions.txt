@@ -7925,7 +7925,7 @@ mission "Hroar's Haulers 24"
 			`	"...how do they just lose a third of their fleet?!"`
 			`	"...this is supposed to be my last season before can be come a full hauler..."`
 			`	You push past the grumbling crowd and eventually find Yngvar alone a few stories up, looking over the loading operation.`
-			`	"<last>." He doesn't turn as you approach and continues to scan the operation going on below him, "how's it feel to be at your last port of call?"`
+			`	"<last>." He doesn't turn as you approach and continues to scan the operation below him, "how's it feel to be at your last port of call?"`
 			choice
 				`	"Great. Glad it's nearly over."`
 					goto great
@@ -7934,9 +7934,9 @@ mission "Hroar's Haulers 24"
 				`	(Shrug.)`
 			`	"Ain't that the truth." He chuckles softly, "Ambivalence is a wry and common companion on hauls like these."`
 			label lipstick
-			`	Yngvar exhales slowly, "I won't dress it up none; this has been a rough haul. 'Specially what went down on maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time went different, and I fear it's just the beginning."`
+			`	Yngvar exhales slowly, "I won't dress it up none; this has been a rough haul. 'Specially what went down on maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time things went different, and I fear it's just the beginning."`
 			`	The old spacer takes a long thoughtful pause, his head turning toward the departing crowds of unhappy passangers, "You did the best you could, and I ain't saying anyone would hold it against ya, but I do sorely wish things woulda gone a little different."`
-			`	Yngvar goes quiet. He just stands there, next to you, watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all moving scuttling around beneah you both.`
+			`	Yngvar goes quiet. He just stands there, next to you, watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all scuttling around beneah you both.`
 			choice
 				`	(Stay a while with Yngvar.)`
 					goto stay
@@ -7967,7 +7967,49 @@ mission "Hroar's Haulers 24b"
 		has "Hroar's Haulers 23: declined"
 		not "Hroar's Haulers 18b: accepted"
 		conversation
-			`	`
+			`Endless lines of eager passengers make their way through the crowded spaceport to Solvi's waiting fleet.`
+			`	"...can't wait for my first paycheck..."`
+			`	"...work's hard but good, better than what I was doing back on Maker..."`
+			`	"...hear if you stick around can actually become a Hauler. Imagine living in the Deep..."`
+			`	You push past the excited crowd and eventually find Yngvar alone a few stories up overseeing the entire operation from above.`
+			`	"<last>." He doesn't turn as you approach and continues to scan the operation below him, "how's it feel to be at your last port of call?"`
+			choice
+				`	"Great. Glad it's nearly over."`
+					goto great
+				`	"Sad. Sorry to see the adventure ending."`
+					goto sad
+				`	(Shrug.)`
+			`	"Ain't that the truth." He chuckles softly, "Ambivalence is a wry and common companion on hauls like these."`
+			label nopig
+			`	Yngvar exhales slowly, "I won't dress it up none; this has been a rough haul. 'Specially what went down on maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time things went different, and I fear it's just the beginning."`
+			`	The old spacer takes a long thoughtful pause, his good eye lingering on the long lines of expectant passengers below, "I know I was a bit sore about how you handled things back there, but I've had some time to consider it and recognize there were no easy answers. The crews will love you for it, though. I hope you live up to your new reputation."`
+				to display
+					has "makerhero"
+			`	The old spacer takes a long thoughtful pause, his good eye lingering on the long lines of expectant passengers below, "We all appreciate you puttin' your purse on the line like that for us. Means an awful lot. Too many folks worried about commerce and not the person standing beside 'em."`
+				to display
+					not "makerhero"
+			`	Yngvar stands there watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all scuttling around beneah you both.`
+			`	"Interestin' times are on the horizion, <last>. I worry I'm gettin' too old for the tiller. Everything moves so fast these days; just don't seem like there's any place for old spacers like me."`
+			`	He sighs, "There's no generation ships, and even the caravans get to their destinations in a matter of days. No ones wrestles with the Gap, it's just a brief inconvience."`
+			`	At that he goes silent.`
+			choice
+				`	"Tell me more about spacers."`
+				`	"You're alright Yngvar."`
+				`	"The old have to make way for the young. It's the way of things."`
+				`	(Stay awhile and keep Yngvar company in his silence.)`
+				`	(Head back your ship.)`
+
+
+			label great
+			`	"To each their own, I say." He chuckles, "You get some fellas who can't wait to be back on the red, and then you get others who never want to see that dust ball again."`
+			`	He shrugs, "I feel it's got more to do with who you take with ya, and who you got waiting back for ya."`
+				goto nopig
+
+			label sad
+			`	"Spoken like a true spacer." He nods approvingly. "Dirt and light don't make a place more real or special. Only place that matters is where you are right now."`
+			`	He points at the <ship> next to the other Hauler vessels below you both, "That's home enough for folks like us I wager."`
+				goto nopig
+
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
