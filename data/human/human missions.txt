@@ -8357,7 +8357,6 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
 			action
 				log `Met Union-Colonel Wynnfrith, Timothy Radrickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. Showed her Timothy's list, and she said I could find a survival suit on Dancer, the medication on New Britain, and a fake ID on Shaula. Provided me with the gun and bomb Timothy asked for.`
-				set "timothy radrickson 5 log entry correct"
 
 
 
