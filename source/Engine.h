@@ -164,7 +164,7 @@ private:
 		double modifier = 1.;
 	};
 
-	enum class MouseButton { Left, Right, Middle };
+	enum class MouseButton { LEFT, RIGHT, MIDDLE };
 
 
 private:
@@ -294,7 +294,7 @@ private:
 	bool doClick = false;
 	bool hasShift = false;
 	bool hasControl = false;
-	MouseButton mouseButton = MouseButton::Left;
+	MouseButton mouseButton = MouseButton::LEFT;
 	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
