@@ -83,6 +83,7 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 			savedSubs.emplace(*it);
 	}
 	player.AddPlayerSubstitutions(subs);
+	// Restore substitutions that need to be preserved.
 	for(auto &it : savedSubs)
 		subs[it.first].swap(it.second);
 	if(ship)
