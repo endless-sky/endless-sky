@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LogbookPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
@@ -58,6 +59,7 @@ namespace {
 LogbookPanel::LogbookPanel(PlayerInfo &player)
 	: player(player)
 {
+	Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 	SetInterruptible(false);
 	if(!player.Logbook().empty())
 	{
@@ -165,17 +167,21 @@ void LogbookPanel::Draw()
 
 bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shouldPlaySound = true;
+
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		GetUI()->Pop(this);
 	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		double direction = (key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN);
 		Drag(0., (Screen::Height() - 100.) * direction);
+		shouldPlaySound = false;
 	}
 	else if(key == SDLK_HOME || key == SDLK_END)
 	{
 		double direction = (key == SDLK_HOME) - (key == SDLK_END);
 		Drag(0., maxScroll * direction);
+		shouldPlaySound = false;
 	}
 	else if(key == SDLK_UP || key == SDLK_DOWN)
 	{
@@ -185,7 +191,10 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			if(contents[i] == selectedName)
 				break;
 		if(i == contents.size())
+		{
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
+		}
 
 		if(key == SDLK_DOWN)
 		{
@@ -222,7 +231,10 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 					break;
 
 			if(i == contents.size())
+			{
+				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 				return true;
+			}
 
 			// Check if it's too far down or up
 			int position = i * LINE_HEIGHT - categoryScroll;
@@ -234,7 +246,11 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			categoryScroll = max(categoryScroll, 0.);
 		}
 	}
+	else
+		shouldPlaySound = false;
 
+	if(shouldPlaySound)
+		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -255,6 +271,7 @@ bool LogbookPanel::Click(int x, int y, int clicks)
 			// If selecting a different year, select the first month in that
 			// year.
 			Update(false);
+			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		}
 	}
 	else if(x > WIDTH)
@@ -272,6 +289,7 @@ bool LogbookPanel::Drag(double dx, double dy)
 	else
 		categoryScroll = max(0., min(maxCategoryScroll, categoryScroll - dy));
 
+	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
