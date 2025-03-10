@@ -970,14 +970,14 @@ mission "Exotic Life: Glaze"
 			label closing
 			`	You walk back to your ship from the binoculars.`
 				decline
-        
+
 mission "Little Vienna in New Austria"
 	minor
 	source "New Austria"
 	to offer
 		random < 10
 	on offer
-		conversation  
+		conversation
 			`As you walk from the spaceport's landing pads towards the center of the village, your attention is caught by a worn-down sign pointing you to the "Kleinwean Bezirk."`
 			choice
 				`	(Follow the sign.)`
