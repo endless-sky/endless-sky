@@ -2033,10 +2033,10 @@ phrase "friendly civilian"
 	word
 		" and "
 	word
-		"witnessed a Quarg Wardragon jump in with one of their jump drives?"
+		"witnessed a Quarg Lindwyrm jump in with one of their jump drives?"
 		"looked over one of the Quarg's sleek Drakes?"
 		"seen a Quarg Wardragon up close?"
-		"seen the Quarg's Skylances in action?"
+		"seen the Quarg's Skydaggers in action?"
 		"seen how the Quarg decimate pirates with their Skylances?"
 		"seen how powerful those Quarg Skylances are?"
 	word
