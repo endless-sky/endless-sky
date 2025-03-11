@@ -249,7 +249,7 @@ mission "Avgi Culture: Fencing"
 			`	A short walk later, you find yourself in a large open-air room, similar to a gymnasium but much taller. Rows of rails that look like they came from a skate park make up bleachers the whole way around the cylindrical area, packed to the brim with perched Avgi. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other.`
 				goto start
 			label language
-			`	A short walk later, you find yourself in a large open-air room, similar to that of a gymnasium albeit much taller. Rows of skate park-like rails make up what appear to be bleachers the whole way around this cylindrical room, packed to the brim with Avgi perched atop them. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other. One sign in particular states "ZOMP TO STOMP THEM LIKE THE ASSEMBLY!"`
+			`	A short walk later, you find yourself in a large open-air room, similar to a gymnasium but much taller. Rows of rails that look like they came from a skate park make up bleachers the whole way around the cylindrical area, packed to the brim with perched Avgi. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other. One sign in particular states "ZOMP TO STOMP THEM LIKE THE ASSEMBLY!"`
 			label start
 			action
 				set "avgi: watch zomp win fencing"
