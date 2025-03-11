@@ -963,7 +963,7 @@ mission "Saryd Students 1"
 	on visit
 		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The rum's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
-		log "Reminders" "Coalition Rum" `Was asked to return to Weir of Glubatub in the Glubatub system with 2 tons of free cargo space in order to pick up some rum for students at Starlit University.` 
+		log "Reminders" "Coalition Rum" `Was asked to return to Weir of Glubatub in the Glubatub system with 2 tons of free cargo space in order to pick up some rum for students at Starlit University.`
 		payment -11284
 
 
