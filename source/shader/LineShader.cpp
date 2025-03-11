@@ -166,7 +166,7 @@ void LineShader::Init()
 
 void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap)
 {
-	DrawGradient(from, to, width, color, color);
+	DrawGradient(from, to, width, color, color, roundCap);
 }
 
 
@@ -176,7 +176,7 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
-	int segments = static_cast<int>(length / patternLength);
+	int segments = length / patternLength;
 	// If needed, scale pattern down so we can draw at least two of them over length.
 	if(segments < 2)
 	{
@@ -231,7 +231,7 @@ void LineShader::DrawGradientDashed(const Point &from, const Point &to, const Po
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
-	int segments = static_cast<int>(length / patternLength);
+	int segments = length / patternLength;
 	// If needed, scale pattern down so we can draw at least two of them over length.
 	if(segments < 2)
 	{
