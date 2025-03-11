@@ -93,7 +93,7 @@ void Raiders::Load(const DataNode &node)
 				resetFleets = false;
 				raidFleets.clear();
 			}
-			LoadFleets(child, remove, valueIndex);
+			LoadFleets(child, remove, valueIndex, false);
 		}
 		else if(key == "empty cargo attraction")
 			emptyCargoAttraction = child.Value(valueIndex);
