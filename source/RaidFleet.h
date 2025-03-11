@@ -26,7 +26,7 @@ class Fleet;
 class RaidFleet {
 public:
 	RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
-	RaidFleet();
+	RaidFleet(const DataNode &node, const Fleet *fleet);
 	void Load(const DataNode &node, const Fleet *fleet);
 	const Fleet *GetFleet() const;
 	double MinAttraction() const;
@@ -38,7 +38,7 @@ public:
 private:
 	const Fleet *fleet = nullptr;
 	double minAttraction = 0.;
-	double maxAttraction;
-	double capAttraction;
+	double maxAttraction = std::numeric_limits<double>::max();
+	double capAttraction = std::numeric_limits<double>::max();
 	double fleetCap = 10.;
 };

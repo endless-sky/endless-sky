@@ -30,8 +30,9 @@ RaidFleet::RaidFleet(const Fleet *fleet, double minAttraction, double maxAttract
 
 
 
-RaidFleet::RaidFleet()
+RaidFleet::RaidFleet(const DataNode &node, const Fleet *fleet)
 {
+	Load(node, fleet);
 }
 
 
@@ -82,7 +83,7 @@ double RaidFleet::MaxAttraction() const
 
 double RaidFleet::CapAttraction() const
 {
-	return capAttraction ? capAttraction : maxAttraction;
+	return capAttraction;
 }
 
 

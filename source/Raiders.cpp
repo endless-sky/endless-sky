@@ -40,13 +40,17 @@ void Raiders::LoadFleets(const DataNode &node, bool remove, int valueIndex, bool
 			node.Size() > (valueIndex + 1) ? node.Value(valueIndex + 1) : 2.,
 			node.Size() > (valueIndex + 2) ? node.Value(valueIndex + 2) : 0.);
 	else
-		raidFleets.emplace_back().Load(node, fleet);
+		raidFleets.emplace_back(RaidFleet(node, fleet));
 }
 
 
 
 void Raiders::Load(const DataNode &node)
 {
+	// If Load() has already been called once, any subsequent
+	// calls will replace the fleets instead of adding to them.
+	bool resetFleets = !raidFleets.empty();
+
 	for(const DataNode &child : node)
 	{
 		bool remove = child.Token(0) == "remove";
@@ -77,8 +81,11 @@ void Raiders::Load(const DataNode &node)
 			child.PrintTrace("Error: Expected key to have a value:");
 		else if(key == "fleet")
 		{
-			if(!add)
+			if(resetFleets && !add)
+			{
+				resetFleets = false;
 				raidFleets.clear();
+			}
 			LoadFleets(child, remove, valueIndex);
 		}
 		else if(key == "empty cargo attraction")
