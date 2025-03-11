@@ -271,7 +271,7 @@ mission "Successors: Sosrue"
 			label what
 			`	The child bursts into speech. "Beware the Sosrue, cloaked in black, its teeth and claws!" before their parent interrupts them.`
 			label name
-			`	"I'm sorry," says the adult. "It's a monster, from a children's poem. This little's favorite. So tell them and I, also - hast thou, among the wider breadth of stars, met some creature long of arm, discerning of ear, and many of tooth, that dwells in every manner of the stellar deep?" Their skin runs with thin golden lines as they say this, shivering with each syllable.`
+			`	"I'm sorry," says the adult. "It's a monster, from a children's poem. This little's favorite. So tell my child and I, also - hast thou, among the wider breadth of stars, met some creature long of arm, discerning of ear, and many of tooth, that dwells in every manner of the stellar deep?" Their skin runs with thin golden lines as they say this, shivering with each syllable.`
 			choice
 				`	"No, but I've met some interesting aliens."`
 					goto truth
