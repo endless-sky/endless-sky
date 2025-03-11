@@ -103,7 +103,7 @@ void StartConditions::Load(const DataNode &node)
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 			else if(key == "conditions")
-				conditions = ConditionSet();
+				conditions = ConditionAssignments();
 			else
 				child.PrintTrace("Skipping unsupported use of \"remove\":");
 		}
@@ -188,8 +188,8 @@ void StartConditions::FinishLoading()
 	// may now be invalid, meaning the CoreStartData would actually send the start to New Boston instead
 	// of what was displayed.
 	StartInfo &unlocked = infoByState[StartState::UNLOCKED];
-	unlocked.planet = GetPlanet().Name();
-	unlocked.system = GetSystem().Name();
+	unlocked.planet = GetPlanet().DisplayName();
+	unlocked.system = GetSystem().DisplayName();
 	unlocked.date = GetDate();
 	unlocked.credits = Format::Credits(GetAccounts().Credits());
 	unlocked.debt = Format::Credits(GetAccounts().TotalDebt());
@@ -226,7 +226,7 @@ bool StartConditions::IsValid() const
 
 
 
-const ConditionSet &StartConditions::GetConditions() const noexcept
+const ConditionAssignments &StartConditions::GetConditions() const noexcept
 {
 	return conditions;
 }

@@ -164,7 +164,7 @@ mission "Remnant: Celebration 1"
 		has "event: remnant: cognizance calm"
 		has "license: Remnant Capital"
 		random < 50
-		"day" = 7
+		"day" == 7
 	on offer
 		conversation
 			`You stop by the starport just in time to see a large group of Remnant departing. A few of the nearest notice your interest and begin gesturing recognition or various invitations to accompany them, but before you are able to respond, Taely appears from the stream of people and approaches you.`

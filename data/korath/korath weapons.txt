@@ -14,6 +14,8 @@
 
 outfit "Grab-Strike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04040
 	cost 821000
 	thumbnail "outfit/grab-strike"
 	"mass" 52
@@ -32,7 +34,7 @@ outfit "Grab-Strike Turret"
 		"hit effect" "grab-strike impact"
 		"die effect" "grab-strike impact"
 		"inaccuracy" 1
-		"turret turn" 1
+		"turret turn" 1.6
 		"velocity" 10
 		"lifetime" 100
 		"reload" 20
@@ -59,6 +61,8 @@ effect "grab-strike impact"
 
 outfit "Shunt-Strike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04080
 	cost 821000
 	thumbnail "outfit/shunt-strike"
 	"mass" 42
@@ -78,7 +82,7 @@ outfit "Shunt-Strike Turret"
 		"hit effect" "shunt-strike hit"
 		"die effect" "shunt-strike sparkle"
 		"inaccuracy" 1
-		"turret turn" 1.5
+		"turret turn" 2.6
 		"velocity" 10
 		"lifetime" 81
 		"reload" 30
@@ -117,6 +121,8 @@ effect "shunt-strike sparkle"
 
 outfit "Banisher Grav-Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04050
 	cost 943000
 	thumbnail "outfit/banisher"
 	"mass" 41
@@ -132,7 +138,7 @@ outfit "Banisher Grav-Turret"
 		sound "banisher"
 		"hit effect" "banisher impact"
 		"inaccuracy" .4
-		"turret turn" 1.8
+		"turret turn" 3.2
 		"velocity" 590
 		"lifetime" 1
 		"reload" 1
@@ -145,6 +151,8 @@ outfit "Banisher Grav-Turret"
 
 outfit "Expeller Grav-Ray"
 	category "Guns"
+	series "Guns"
+	index 04030
 	cost 819000
 	thumbnail "outfit/expeller"
 	"mass" 20
@@ -177,6 +185,8 @@ effect "banisher impact"
 
 outfit "Warder Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 04010
 	cost 845000
 	thumbnail "outfit/warder"
 	"mass" 28
@@ -201,12 +211,15 @@ effect "korath warder"
 		"no repeat"
 		"frame rate" 6
 	sound "warder"
+	"sound category" "anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
 
 
 outfit "Fire-Lance"
 	category "Guns"
+	series "Guns"
+	index 04020
 	cost 697000
 	thumbnail "outfit/fire-lance"
 	"mass" 22
@@ -241,6 +254,8 @@ effect "fire-lance impact"
 
 outfit "Blaze-Pike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04020
 	cost 1970000
 	thumbnail "outfit/blaze-pike"
 	"mass" 57
@@ -255,7 +270,7 @@ outfit "Blaze-Pike Turret"
 		sound "blaze-pike"
 		"hit effect" "blaze-pike hit"
 		"inaccuracy" 0.45
-		"turret turn" 0.8
+		"turret turn" 1.2
 		"velocity" 450
 		"lifetime" 1
 		"reload" 1
@@ -279,6 +294,8 @@ effect "blaze-pike hit"
 
 outfit "Korath Inferno"
 	category "Turrets"
+	series "Turrets"
+	index 04030
 	cost 2670000
 	thumbnail "outfit/korath inferno"
 	"mass" 86
@@ -293,7 +310,7 @@ outfit "Korath Inferno"
 		sound "korath inferno"
 		"hit effect" "korath inferno hit"
 		"inaccuracy" 0.5
-		"turret turn" 0.6
+		"turret turn" 0.8
 		"velocity" 550
 		"lifetime" 1
 		"reload" 1
@@ -318,6 +335,8 @@ effect "korath inferno hit"
 
 outfit "Thermal Repeater"
 	category "Guns"
+	series "Guns"
+	index 04010
 	cost 306000
 	thumbnail "outfit/repeater"
 	"mass" 11
@@ -356,6 +375,8 @@ effect "repeater impact"
 
 outfit "Thermal Repeater Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04010
 	cost 874000
 	thumbnail "outfit/repeater turret"
 	"mass" 29
@@ -372,7 +393,7 @@ outfit "Thermal Repeater Turret"
 		sound "repeater"
 		"hit effect" "repeater impact"
 		"inaccuracy" 3
-		"turret turn" 1.5
+		"turret turn" 2.6
 		"velocity" 13
 		"lifetime" 40
 		"reload" 5
@@ -389,6 +410,8 @@ outfit "Thermal Repeater Turret"
 
 outfit "Piercer Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 04030
 	cost 3500
 	thumbnail "outfit/piercer"
 	"mass" .3
@@ -397,6 +420,8 @@ outfit "Piercer Missile"
 
 outfit "Piercer Missile Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04031
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
@@ -407,6 +432,8 @@ outfit "Piercer Missile Rack"
 
 outfit "Piercer Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04030
 	cost 593000
 	thumbnail "outfit/piercer launcher"
 	"mass" 18
@@ -479,6 +506,8 @@ effect "piercer explosion"
 
 outfit "Korath Detainer"
 	category "Guns"
+	series "Guns"
+	index 04060
 	cost 1340000
 	thumbnail "outfit/detainer"
 	"mass" 76
@@ -541,6 +570,8 @@ effect "detainer smoke"
 
 outfit "Cluster Mine"
 	category "Ammunition"
+	series "Ammunition"
+	index 04040
 	cost 3500
 	thumbnail "outfit/korath mine"
 	"mass" .7
@@ -549,6 +580,8 @@ outfit "Cluster Mine"
 
 outfit "Cluster Mine Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04041
 	cost 31500
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
@@ -559,6 +592,8 @@ outfit "Cluster Mine Rack"
 
 outfit "Cluster Mine Layer"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04040
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
 	"mass" 36
@@ -639,6 +674,8 @@ effect "minelayer split"
 
 outfit "Shield Disruptor Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04070
 	cost 983000
 	thumbnail "outfit/disruptor"
 	"mass" 35
@@ -654,7 +691,7 @@ outfit "Shield Disruptor Turret"
 		sound "disruptor"
 		"hit effect" "disruptor impact"
 		"inaccuracy" 1
-		"turret turn" 1
+		"turret turn" 1.6
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -678,6 +715,8 @@ effect "disruptor impact"
 
 outfit "Husk-Slice"
 	category "Guns"
+	series "Guns"
+	index 04040
 	cost 832000
 	thumbnail "outfit/slicer"
 	"mass" 46
@@ -703,6 +742,8 @@ outfit "Husk-Slice"
 
 outfit "Husk-Slice Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04060
 	cost 1473000
 	thumbnail "outfit/slicer turret"
 	"mass" 59
@@ -718,7 +759,7 @@ outfit "Husk-Slice Turret"
 		sound "slicer"
 		"hit effect" "slicer impact"
 		"inaccuracy" 0
-		"turret turn" 1.5
+		"turret turn" 2.6
 		"velocity" 520
 		"lifetime" 1
 		"reload" 1.62
@@ -743,6 +784,8 @@ effect "slicer impact"
 
 outfit "Digger Mining Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04090
 	cost 509000
 	thumbnail "outfit/korath digger turret"
 	"mass" 16
@@ -758,7 +801,7 @@ outfit "Digger Mining Turret"
 		sound "korath digger"
 		"hit effect" "korath digger hit"
 		"inaccuracy" 1.5
-		"turret turn" 2.4
+		"turret turn" 4.4
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -773,6 +816,8 @@ outfit "Digger Mining Turret"
 
 outfit "Digger Mining Beam"
 	category "Guns"
+	series "Guns"
+	index 04070
 	cost 419000
 	thumbnail "outfit/korath digger"
 	"mass" 10
@@ -809,6 +854,8 @@ effect "korath digger hit"
 
 outfit "Langrage Hyper-Heaver"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04050
 	cost 3450000
 	thumbnail "outfit/korath heaver"
 	"mass" 46
@@ -826,7 +873,7 @@ outfit "Langrage Hyper-Heaver"
 		icon "icon/korath heaver"
 		"hit effect" "heaver hyperspace hit"
 		"inaccuracy" 0.5
-		"turret turn" 1.3
+		"turret turn" 2.2
 		velocity 30
 		lifetime 8
 		"reload" 40
@@ -901,6 +948,8 @@ effect "heaver splinter hit"
 
 outfit "Firelight Storage Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04011
 	cost 27400
 	thumbnail "outfit/firelight rack"
 	"mass" 3
@@ -911,6 +960,8 @@ outfit "Firelight Storage Rack"
 
 outfit "Firelight Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 04010
 	cost 7600
 	thumbnail "outfit/firelight"
 	"mass" 0.3
@@ -921,6 +972,8 @@ outfit "Firelight Missile"
 
 outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04010
 	cost 1937000
 	thumbnail "outfit/firelight bank"
 	"mass" 22
@@ -937,7 +990,7 @@ outfit "Firelight Missile Bank"
 		"hit effect" "firelight ring" 20
 		"die effect" "piercer fire"
 		"velocity" 4
-		"velocity override" 16
+		"velocity override" 13
 		"lifetime" 10
 		"reload" 120
 		"burst reload" 30
@@ -946,13 +999,11 @@ outfit "Firelight Missile Bank"
 		"firing heat" 151
 		"acceleration" 0.6
 		"drag" .1
-		"infrared tracking" .7
-		"optical tracking" .9
-		"homing" 4
-		"trigger radius" 30
-		"blast radius" 60
+		"optical tracking" .7
+		"homing" 3
+		"blast radius" 48
 		"hit force" 150
-		"missile strength" 30
+		"missile strength" 33
 		submunition "Firelight Turning"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
@@ -969,10 +1020,9 @@ outfit "Firelight Turning"
 		"acceleration" -0.1
 		"turn" 4.6
 		"homing" 4
-		"infrared tracking" .7
-		"optical tracking" .9
-		"trigger radius" 30
-		"blast radius" 60
+		"tracking" .9
+		"trigger radius" 20
+		"blast radius" 48
 		"hit force" 90
 		"missile strength" 30
 		"submunition" "Firelight Activated"
@@ -985,22 +1035,21 @@ outfit "Firelight Activated"
 		"hit effect" "firelight ring" 20
 		"die effect" "small explosion"
 		"velocity" 3
-		"lifetime" 140
+		"lifetime" 168
 		"acceleration" 1.6
-		"drag" .1
+		"drag" .12
 		"turn" 1.7
-		"homing" 4
-		"infrared tracking" .5
+		"homing" 3
 		"optical tracking" .7
-		"trigger radius" 30
-		"blast radius" 60
+		"trigger radius" 20
+		"blast radius" 48
 		"shield damage" 950
 		"hull damage" 950
 		"heat damage" 1800
 		"burn damage" 10
 		"corrosion damage" 2
 		"hit force" 600
-		"missile strength" 30
+		"missile strength" 33
 
 effect "firelight ring"
 	sprite "effect/firestorm ring"
@@ -1016,6 +1065,8 @@ effect "firelight ring"
 
 outfit "Microbot Grinder"
 	category "Guns"
+	series "Guns"
+	index 04080
 	thumbnail "outfit/unknown"
 	"mass" 182
 	"outfit space" -212
@@ -1047,6 +1098,8 @@ outfit "Microbot Grinder"
 outfit "Firestorm Torpedo"
 	plural "Firestorm Torpedoes"
 	category "Ammunition"
+	series "Ammunition"
+	index 04020
 	cost 19800
 	thumbnail "outfit/firestorm torpedo"
 	"mass" 1
@@ -1057,6 +1110,8 @@ outfit "Firestorm Torpedo"
 
 outfit "Firestorm Torpedo Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04021
 	cost "135000"
 	thumbnail "outfit/firestorm torpedo rack"
 	"mass" 7
@@ -1068,6 +1123,8 @@ outfit "Firestorm Torpedo Rack"
 outfit "Firestorm Battery"
 	plural "Firestorm Batteries"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04020
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
 	"mass" 35
@@ -1084,7 +1141,7 @@ outfit "Firestorm Battery"
 		"hardpoint sprite" "hardpoint/firestorm battery"
 		sound "firestorm"
 		ammo "Firestorm Torpedo"
-		"turret turn" 1.5
+		"turret turn" 2.6
 		icon "icon/firestorm torpedo"
 		"hit effect" "firestorm ring" 40
 		"die effect" "small explosion"
@@ -1099,7 +1156,6 @@ outfit "Firestorm Battery"
 		"drag" .12
 		"turn" 1.6
 		"homing" 4
-		"infrared tracking" .7
 		"optical tracking" .9
 		"trigger radius" 40
 		"blast radius" 95

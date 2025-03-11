@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -168,6 +168,9 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &highlight = *GameData::Colors().Get("outfitter difference highlight");
+
+	bool highlightDifferences = false;
 	if(playerShip || isLicense || mapSize)
 	{
 		int minCount = numeric_limits<int>::max();
@@ -178,8 +181,16 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 			minCount = maxCount = player.HasMapped(mapSize);
 		else
 		{
+			highlightDifferences = true;
+			string firstModelName;
 			for(const Ship *ship : playerShips)
 			{
+				// Highlight differences in installed outfit counts only when all selected ships are of the same model.
+				string modelName = ship->TrueModelName();
+				if(firstModelName.empty())
+					firstModelName = modelName;
+				else
+					highlightDifferences &= (modelName == firstModelName);
 				int count = ship->OutfitCount(outfit);
 				minCount = min(minCount, count);
 				maxCount = max(maxCount, count);
@@ -189,13 +200,19 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(maxCount)
 		{
 			string label = "installed: " + to_string(minCount);
+			Color color = bright;
 			if(maxCount > minCount)
+			{
 				label += " - " + to_string(maxCount);
+				if(highlightDifferences)
+					color = highlight;
+			}
 
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
-			font.Draw(label, labelPos, bright);
+			font.Draw(label, labelPos, color);
 		}
 	}
+
 	// Don't show the "in stock" amount if the outfit has an unlimited stock.
 	int stock = 0;
 	if(!outfitter.Has(outfit))
@@ -385,36 +402,42 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		int64_t credits = player.Accounts().Credits();
 
 		if(cost > credits)
-			errors.push_back("You do not have enough money to buy this outfit, you need a further " +
+			errors.push_back("You do not have enough money to buy this outfit. You need a further " +
 				Format::CreditString(cost - credits));
 
 		// Add the cost to buy the required license.
 		else if(cost + licenseCost > credits)
-			errors.push_back("You do not have enough money to buy this outfit because you also need to buy a "
-				"license for it. You need a further " +
-				Format::CreditString(licenseCost - credits));
+			errors.push_back("You do not have enough money to buy this outfit because you also need "
+				"to buy a license for it. You need a further " +
+				Format::CreditString(cost + licenseCost - credits));
 	}
 
-	// Check if the outfit will fit
+	bool anyShipCanInstall = true;
+	// Check if the outfit will fit.
 	if(!playerShip)
 	{
 		// Buying into cargo, so check cargo space vs mass.
 		double mass = selectedOutfit->Mass();
 		double freeCargo = player.Cargo().FreePrecise();
-		if(!mass || freeCargo >= mass)
-			return true;
-
-		errors.push_back("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
-			+ Format::CargoString(mass, "mass") + " and your fleet has "
-			+ Format::CargoString(freeCargo, "cargo space") + " free.");
+		if(mass && freeCargo < mass)
+			errors.push_back("You cannot " + string(onlyOwned ? "load" : "buy") + " this outfit, because it takes up "
+				+ Format::CargoString(mass, "mass") + " and your fleet has "
+				+ Format::CargoString(freeCargo, "cargo space") + " free.");
 	}
 	else
 	{
+		anyShipCanInstall = false;
 		// Find if any ship can install the outfit.
 		for(const Ship *ship : playerShips)
 			if(ShipCanBuy(ship, selectedOutfit))
-				return true;
+			{
+				anyShipCanInstall = true;
+				break;
+			}
+	}
 
+	if(!anyShipCanInstall)
+	{
 		// If no selected ship can install the outfit,
 		// report error based on playerShip.
 		double outfitNeeded = -selectedOutfit->Get("outfit space");
@@ -464,8 +487,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 		// For unhandled outfit requirements, show a catch-all error message.
 		if(errors.empty())
-		errors.push_back("You cannot install this outfit in your ship, "
-			"because it would reduce one of your ship's attributes to a negative amount. "
+			errors.push_back("You cannot install this outfit in your ship, "
+				"because it would reduce one of your ship's attributes to a negative amount. "
 				"For example, it may use up more cargo space than you have left.");
 	}
 
@@ -475,7 +498,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return errors[0];
 	else
 	{
-		string errorMessage = "There are several reasons why you cannot buy this outfit:\n";
+		string errorMessage = "There are several reasons why you cannot " +
+			string(onlyOwned ? "install" : "buy") + " this outfit:\n";
 		for(size_t i = 0; i < errors.size(); ++i)
 			errorMessage += "- " + errors[i] + "\n";
 		return errorMessage;

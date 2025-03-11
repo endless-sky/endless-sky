@@ -125,26 +125,65 @@ person "Cap'n Pester"
 	phrase
 		phrase
 			"friendly author"
-	ship "Quarg Wardragon" "Quarg Wardragon"
+	ship "Wardragon" "Wardragon"
+		sprite "ship/wardragon"
 		"never disabled"
-		add attributes
-			"outfit space" 10
-		outfits
-			"Quarg Skylance" 2
-			"Quarg Anti-Missile" 2
-			
-			"Antimatter Core"
-			"Nanotech Battery"
-			"Quantum Shield Generator"
-			"Intrusion Countermeasures" 160
-			"Cargo Scanner"
-			"Outfit Scanner"
-			"Wanderer Ramscoop"
-			
-			"Medium Graviton Thruster"
-			"Medium Graviton Steering"
-			"Scram Drive"
 
+ship "Wardragon"
+	sprite "ship/wardragon"
+	thumbnail "thumbnail/wardragon"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 160000
+		"hull" 50000
+		"required crew" 160
+		"bunks" 185
+		"mass" 840
+		"drag" 14
+		"heat dissipation" .34
+		"fuel capacity" 800
+		"cargo space" 50
+		"outfit space" 610
+		"weapon capacity" 200
+		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
+		"ramscoop" 10
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
+		
+		"Antimatter Core"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 160
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Wanderer Ramscoop"
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Scram Drive"
+		
+	engine -14 47
+	engine 14 47
+	turret -9 -14 "Quarg Anti-Missile"
+	turret 9 -14 "Quarg Anti-Missile"
+	turret -28 7 "Quarg Skylance"
+	turret 28 7 "Quarg Skylance"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+	description "The origin of this Wardragon is shrouded in mystery. It was said that the Quarg once used this ship as a powerful light warship. Other sources suggest that it was used as a front-line heavy warship. One thing is for certain though, and that's its design is far different than any Quarg ship that exists today, and one can only question where it came from."
 
 
 person "Marauding Max"
@@ -787,7 +826,7 @@ ship "Ursa Polaris"
 	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		cost 142857
 		shields 39000
 		hull 27000
@@ -880,7 +919,7 @@ outfit "LG Gridfire Turret"
 
 
 person "Subsidurial"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Subsidurial)"
 	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests mute

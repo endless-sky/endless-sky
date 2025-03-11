@@ -168,6 +168,9 @@ mission "Unfettered Jump Drive 1"
 				`	"How will my ship leave here without my jump drive?"`
 			
 			`	"We can give you a hyperdrive in its place," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			`	"Oh, and by the way, you will no longer be required to keep your Anomalocaris in working condition to guarantee our friendship," they add.`
+				to display
+					has "Hai Legacy 3: done"
 			choice
 				`	"Okay, I accept your generous offer."`
 					goto end

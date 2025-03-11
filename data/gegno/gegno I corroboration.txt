@@ -351,7 +351,7 @@ mission "Gegno Suspicions"
 	landing
 	source "Giaru Gegno"
 	to offer
-		"gegno: encounters" >= 3
+		has "gegno: encounters"
 		"gegno: encounters" < 6
 		not "Gegno Intervention: offered"
 		not "Gegno Genocide Defense: offered"
@@ -833,7 +833,7 @@ mission "Gegno Anticipation"
 
 			action
 				set "gegno: deny dialog"
-			`	After a pause, Adrauni responds. "Contrarily, I rather believe them to be expecting of you. Do remember you must hail the planet for clearance."`
+			`	After a pause, Adrauni responds. "Contrarily, I rather believe them to be expecting of you, accounting for their exclamations of the situation."`
 				goto "epilogue b"
 
 			label "there"
@@ -1016,6 +1016,7 @@ mission "Acquiescence"
 			has "Gegno Intervention: offered"
 		not "Gegno Anticipation: failed"
 		not "Gegno Intervention: failed"
+		not "Gegno Genocide Defense: offered"
 
 	destination "Tschyss"
 	on offer
@@ -1249,12 +1250,14 @@ mission "Gegno Asteroid Mining Prologue"
 				defer
 
 			label "returned"
-			`	Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
+			`Despite previously leaving the station, you're given clearance to land again. Would you like to go to the job facility and try to accept one of the listings?`
 			choice
 				`	(Yes.)`
 					goto accept
 				`	(No.)`
 					defer
+	on defer
+		set "Gegno Asteroid Mining Prologue: deferred"
 	on visit
 		dialog "You've returned to <origin>, but do not have 5 tons of iron mined and in your ship. Make sure to mine 5 tons of iron and collect it into your cargo before you land."
 	on complete
