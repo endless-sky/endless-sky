@@ -389,6 +389,8 @@ mission "Avgi: Humans From the Deep"
 		clear "avgi: asked about avgi"
 		clear "avgi: asked about humans"
 		clear "avgi: asked about aberrant"
+	on complete
+		log "Reminders" "Avgi" `Come back to Aktina Cylinder in the Concerto system when you have a free bunk to take Darius off the station.`
 
 
 
@@ -403,6 +405,7 @@ mission "Avgi: Defend Ensemble 1"
 	to offer
 		has "Avgi: Humans From the Deep: done"
 	on offer
+		remove log "Reminders" "Avgi"
 		log "People" "Darius Caldwell" `Darius was a Deep Security captain, who led an expedition sponsored by the Deep to learn more about Quarg technology. While on the return trip, he ordered his crew to investigate an anomalous extra hyperlane leading south of human space. After becoming trapped in Avgi space, the Deep crew sought refuge with the Consonance. Darius seems to blame himself for his crew's situation.`
 		conversation
 			`From afar, the Aktina Cylinder looks like a titanic skeletal tube, with ribs of graphene and a metallic spine. Following the instructions of the station's control authority, you fly through the station's open frame to its small pressurized area, which houses the construction workers and maintenance crews.`
@@ -495,6 +498,8 @@ mission "Avgi: Defend Ensemble 1"
 			`	You sit together in silence for a few more minutes, when Darius seems to receive a message on his communicator. "I get patched in to the emergency alert system," he explains as he reads it. Suddenly, he pales. "A scout is reporting a massive invasion headed towards the Ensemble system. Dozens of Aberrations, flying straight through the Shroud." He looks up at you. "They don't normally try to go too deep in the Shroud. Something about it spooks them, I think, but Ensemble is shallow enough that they've attacked it before. Nothing of this scale though, and... damn, Sora's on Weledos, the moon in the Ensemble system."`
 			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around the Navigeo Yards, their big shipyard not too far from here. Come on, let's join it."`
 				accept
+	on complete
+		log "Reminders" "Avgi" `Come back to Navigeo Yards in the Symphony system when you have a free bunk to transport Darius to Weledos.`
 
 
 mission "Avgi: Defend Ensemble 2"
@@ -508,6 +513,7 @@ mission "Avgi: Defend Ensemble 2"
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
+		remove log "Reminders" "Avgi"
 		log `Agreed to help the Twilight Guard defend the Ensemble system from an Aberrant raid inside the Tangled Shroud. The Avgi appear to enthusiastically use nuclear weapons, contrary to the taboo most humans place on them.`
 		log "Factions" "Twilight Guard" `The Twilight Guard is the military arm of the Avgi Consonance, a unified command created in response to the Aberrant incursion.`
 		log "Factions" "Avgi" `Notably, the Avgi appear to have no taboo around nuclear weapons, and use them freely against the Aberrant.`
@@ -658,6 +664,7 @@ mission "Avgi: Defend Ensemble 2"
 				`	"No, the <ship> isn't made for combat."`
 			action
 				set "avgi: rescue intro"
+				log "Reminders" "Avgi" `You have a mission to wrap up on Weledos in the Ensemble system that requires 12 bunks.`
 			`	"Consideration. But, are you still willing to help us in a way that takes advantage of your ship's ability to bypass the starways, question?"`
 			choice
 				`	"Yes, of course."`
@@ -668,6 +675,7 @@ mission "Avgi: Defend Ensemble 2"
 			label warship
 			action
 				set "avgi: warship intro"
+				log "Reminders" "Avgi" `You have a mission to wrap up on Weledos in the Ensemble system.`
 			`	"Excellent. I am unsurprised, given its performance in the battle, but for all we know your alien vessel could be a simple freighter and yet still be formidable in our eyes. Are you willing to assist us with your warship's strength, question?"`
 			choice
 				`	"Yes, of course."`
@@ -701,6 +709,7 @@ mission "Avgi: Scout Rescue"
 	to fail
 		has "avgi: warship intro"
 	on offer
+		remove log "Reminders" "Avgi"
 		conversation
 			`You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, displaying a map of Avgi space with some colored markings you can't read.`
 			`	"Explanation. We send scouting teams and patrols into the space controlled by the Aberrant regularly. Every expedition beyond Evanescence is essentially behind enemy lines, cut off from resupply and in many cases communication. As you might imagine, such adventures are fraught with danger, and it is unfortunately not unheard of for a scout ship to be lost."`
@@ -747,6 +756,7 @@ mission "Avgi: Scout Rescue"
 				depart
 
 	on complete
+		log "Reminders" "Avgi" `Darius asked you to meet him in the spaceport bar on Peripheria in the Concerto system in order to help resolve a political dispute and meet one of his friends. You will need 3 bunks.`
 		conversation
 			`You receive a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crew members are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
 			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
@@ -769,6 +779,7 @@ mission "Avgi: Frontline Combat"
 	to fail
 		has "avgi: rescue intro"
 	on offer
+		remove log "Reminders" "Avgi"
 		conversation
 			`You follow Kokkino's instructions to a prefab building in the spaceport, which looks to be some kind of command center. Kokkino is waiting for you by a table in the middle, which lights up, displaying a map of Avgi space with some colored markings you can't read.`
 			`	"Explanation. The Aberrant are relentless, but as a rule push only lightly into the Tangled Shroud. The recent incursion excepted, of course. But Arche holds the first lines of defense, with the Feo Platform and its cannons." He points to a trinary system just outside the Shroud.`
@@ -781,6 +792,9 @@ mission "Avgi: Frontline Combat"
 				accept
 	on accept
 		log `Agreed to help Kokkino by clearing out Aberrant stragglers infesting a cluster of systems behind the front lines.`
+
+	on complete
+		log "Reminders" "Avgi" `Come back to Feo Platform in the Arche system when you have 2 bunks to transport Darius and Sora.`
 
 	npc kill
 		government "Aberrant"
@@ -838,6 +852,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 	to offer
 		has "Avgi: Frontline Combat: done"
 	on offer
+		remove log "Reminders" "Avgi"
 		conversation
 			`You receive a hero's welcome back on the Feo Platform from the Twilight Guards stationed there. After a short celebration and many expressions of praise toward you, an alien stranger, you find Darius and Sora waiting by the <ship> to speak with you.`
 			`	"<first>, I think we have a golden opportunity," Darius says. "I was just talking to an Assemblyman, Hriso, who's worried about the political situation in the eastern branch of the Tangled Shroud."`
@@ -845,6 +860,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. We'll need to head to Peripheria to pick up Hriso and get this trip sorted out."`
 				accept
 	on complete
+		log "Reminders" "Avgi" `Darius wants you to meet him and Hriso in the Peripheria spaceport in the Concerto system. You will need 3 bunks.`
 		dialog
 			`As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
 
@@ -862,6 +878,7 @@ mission "Avgi: Dissonance Outreach"
 			has "Avgi: Scout Rescue: done"
 			has "Avgi: Frontline Combat: done"
 	on offer
+		remove log "Reminders" "Avgi"
 		log "People" "Hriso" `Hriso is an Avgi diplomat, who negotiates with dissenters unhappy with Consonance rule. While loyal to the Consonance, he seems to have some sympathy for the Dissonance movement and its views.`
 		log "People" "Sora Kun" `Sora takes a negative view on the Dissonance, and those who she sees as not contributing to the war effort against the Aberrant.`
 		log "Factions" "Avgi Consonance" `Membership in the Consonance varies widely between the various Avgi polities, and a significant portion of the Avgi that escaped the Aberrant do not recognize its legitimacy.`
@@ -883,6 +900,8 @@ mission "Avgi: Dissonance Outreach"
 
 	on accept
 		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help you escape the Twilight.`
+	on complete
+		log "Reminders" "Avgi" `Come back to Outpost Tekis in the Interlude system when you have 3 bunks.`
 
 
 mission "Avgi: Twilight Escape 1"
@@ -896,6 +915,7 @@ mission "Avgi: Twilight Escape 1"
 	to offer
 		has "Avgi: Dissonance Outreach: done"
 	on offer
+		remove log "Reminders" "Avgi"
 		log `Heard of a potential way out of the Twilight. Apparently, the Aberrant invaded through a chain of systems stretching to the East, and while no Avgi ships have been able to explore the area since the Incursion, Leon thinks there could be a way back to human space from there.`
 		log "Factions" "Avgi Dissonance" `Independent miners, collectives, and corporations alike are unhappy with the price controls the Consonance has placed on minerals mined from asteroids. While the Consonance claims they are necessary due to the austere war economy and the need for raw materials, the artificially low prices make it hard to survive and make a living.`
 		log "People" "Leon Shez" `Leon was a scientist aboard Darius' ship when it became trapped in the Twilight. Unlike Sora, he definitely does blame Darius for having been trapped with the Avgi. While somewhat rude, he appears to have made several valuable connections and could be close to uncovering a way back to human space.`
@@ -973,6 +993,7 @@ mission "Avgi: Twilight Escape 1"
 			`	"<first>," says Darius in a shaky voice. "Take us to the Deep, please. I need to see my home. And my wife."`
 			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
+		log "Reminders" "Avgi" `Remember to pick up Darius and Sora in the Vinci spaceport in the Miaplacidus system before you take off. You will need 2 bunks.`
 		log `Successfully escaped the Twilight together with the humans stranded there.`
 		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
 		clear "avgi: lost in twilight"
@@ -999,6 +1020,7 @@ mission "Avgi: Twilight Escape 2"
 	to offer
 		has "Avgi: Twilight Escape 1: done"
 	on offer
+		remove log "Reminders" "Avgi"
 		conversation
 			`You find Darius and Sora sitting outside a cafe, sipping coffee. "Been a long time since we've had a good cup," explains Sora, pulling a chair out for you.`
 			`	"What, no coffee in Avgi space?" you joke.`
@@ -1014,6 +1036,8 @@ mission "Avgi: Twilight Escape 2"
 	on accept
 		log `Agreed to take Sora to her parents' farm on Memory, as she has nowhere else to go.`
 		log "People" "Darius Caldwell" `Despite escaping the Twilight, Darius still feels guilty over his crew members that lost their lives to the Aberrant.`
+	on complete
+		log "Reminders" "Avgi" `Come back to Memory in the Zosma system when you have a free bunk to transport Darius.`
 
 
 mission "Avgi: Twilight Escape 3"
@@ -1027,6 +1051,7 @@ mission "Avgi: Twilight Escape 3"
 	to offer
 		has "Avgi: Twilight Escape 2: done"
 	on offer
+		remove log "Reminders" "Avgi"
 		log "People" "Darius Caldwell" `Darius is extremely devoted to his wife Katrina, but worries that she may have moved on in the six years he's been missing.`
 		conversation
 			`Memory is a dry world, covered in sands and shrubland. From the spaceport, the three of you catch a shuttle bus that heads out into the countryside, passing miles of cacti and dry plants that abruptly turn into greener fields of crops, probably irrigated by aquifers. It is one of these farms you finally arrive at, the one Sora says belongs to her parents. Traffic must be rare here, because only a few minutes after the bus stops the door to the well-maintained farmhouse opens, a middle-aged couple peering out.`
