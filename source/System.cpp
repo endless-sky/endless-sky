@@ -1028,7 +1028,7 @@ const vector<RaidFleet> &System::RaidFleets() const
 {
 	static const vector<RaidFleet> EMPTY;
 	// If the system defines its own raid fleets then those are used in lieu of the government's fleets.
-	return noRaids ? EMPTY : raiders && !raiders->RaidFleets().empty()
+	return noRaids ? EMPTY : !raiders->RaidFleets().empty()
 		? raiders->RaidFleets() : GetGovernment()->RaidFleets();
 }
 
@@ -1036,7 +1036,7 @@ const vector<RaidFleet> &System::RaidFleets() const
 
 const Raiders *System::GetRaiders() const
 {
-	return noRaids ? nullptr : raiders ? raiders : GetGovernment()->GetRaiders();
+	return noRaids ? nullptr : !raiders->RaidFleets().empty() ? &*raiders : GetGovernment()->GetRaiders();
 }
 
 
