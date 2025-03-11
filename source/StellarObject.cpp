@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	std::atomic<bool> usingMatches = false;
+	bool usingMatches = false;
 }
 
 
