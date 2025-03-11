@@ -224,12 +224,12 @@ mission "Avgi Culture: Fencing"
 		random < 3
 	on offer
 		conversation
-			`While walking through the spaceport on <planet>, you spot a pair of Avgi moving somewhere with a purpose holding long, thin rapiers.`
+			`While walking through the spaceport on <planet>, you spot a pair of Avgi moving somewhere with a purpose holding what look like long, thin rapiers.`
 			choice
 				`	(Approach them.)`
 				`	(Ignore them.)`
 					goto ignore
-			`	One of the Avgi speaks up, "Invitation. Human, are you perhaps, interested in witnessing the ancient Avgi sport of fencing?"`
+			`	One of the Avgi speaks up, "Invitation. Human, are you perhaps, interested in witnessing the ancient Avgi sport of fencing, question?"`
 			choice
 				`	"Fencing? Like the human sport?"`
 				`	"Sure, I'm willing to watch."`
@@ -245,16 +245,16 @@ mission "Avgi Culture: Fencing"
 			label accept
 			branch language
 				has "language: Avgi (Written)"
-			`	A short walk later, you find yourself in a large open-air room, similar to that of a gymnasium albeit much taller. Rows of skate park-like rails make up what appear to be bleachers the whole way around this cylindrical room, packed to the brim with Avgi perched atop them. Many are holding up signs that appear to be in favor of one participant or the other.`
+			`	A short walk later, you find yourself in a large open-air room, similar to that of a gymnasium albeit much taller. Rows of skate park-like rails make up what appear to be bleachers the whole way around this cylindrical room, packed to the brim with Avgi perched atop them. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other.`
 					goto start
 			label language
 			`	A short walk later, you find yourself in a large open-air room, similar to that of a gymnasium albeit much taller. Rows of skate park-like rails make up what appear to be bleachers the whole way around this cylindrical room, packed to the brim with Avgi perched atop them. Many are holding up signs that appear to be in favor of one participant or the other. One sign in particular states "ZOMP TO STOMP THEM LIKE THE CONSONANCE!"`
 			label start
 			`	Soon after, the two Avgi you approached earlier walk out of a small door on the bottom level. The Avgi in the arena erupt with a flurry of wing flapping in what seems to be a loud cheer. Your translator picks up "Excitement" and "Anticipation" among other moods dozens of times. The fencers' wings appear to be kitted out with thin copper wires, and they're carrying the same rapiers you saw them with before. They hop up onto small pedestals located on each edge of the arena.`
-			`	A booming voice is heard over the many speakers present in the room. "Proclamation. Are you ready to witness this enthralling battle between challenger Zomp and our reigning champion Razmatazz?"`
-			`	The arena once more hums to life with the flutter of wings. "Drama. Then let the duel... begin."`
-			`	With the announcers word, the duelists leap into the air with incredible speed, circling around each other and clashing blades. The two spiral upwards into the far upper areas of the arena, and quickly drop back down, darting in and out of each others' reach multiple times per second. About 15 seconds later, you hear a loud ding, and one participant falls to the floor with its wing collapsed. The crowd, who hadn't stopped buzzing the entire duel, erupts with even louder wing fluttering.`
-			`	"Astonishment. Zomp wins Round 1." the announcer states. "Repose. Shall we begin round two?"`
+			`	A booming voice is heard over the many speakers present in the room. "Proclamation. Here we have our reigning champion, Razmatazz, and upstart challenger Zomp! Are you ready to witness this enthralling battle between these two paragons of the blade, question?"`
+			`	The arena once more hums to life with the flutter of wings. "Anticipation. Then let the duel... begin."`
+			`	With the announcers word, the duelists leap into the air with incredible speed, circling around each other and clashing blades. The two spiral upwards into the far upper areas of the arena, and quickly drop back down, darting in and out of each others' reach multiple times per second. Less than a minute later, you hear a loud ding, and one of the duelists falls to the floor with their wing collapsed. The crowd, who hadn't stopped buzzing the entire duel, erupts with even louder wing fluttering.`
+			`	"Astonishment. Zomp wins round one." the announcer states, seeming surprised at the result. "Repose. Shall we begin round two?"`
 			`	Once more the contestants line up and spring into the air in a duel of eye-watering speed and agility. And once more, Zomp wins to the adoration of the crowd.`
 			`	After the hubbub and celebration die down, you find no issue leaving the crowded arena as most Avgi simply fly over your head.`
 				decline
