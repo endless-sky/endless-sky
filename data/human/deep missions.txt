@@ -8146,17 +8146,17 @@ mission "Hroar's Haulers 25"
 	source "Muspel"
 	to offer
 		has "Hroar's Haulers 24: declined"
-		not "Hroar's Haulers 20: done"
+		has "Hroar's Haulers 20: done"
 	on offer
 		conversation
 			`	`
 
-mission "Hroar's Haulers 25"
+mission "Hroar's Haulers 25b"
 	name "The Long Haul"
 	source "Muspel"
 	to offer
 		has "Hroar's Haulers 24b: declined"
-		not "Hroar's Haulers 20: done"
+		has "Hroar's Haulers 20: done"
 	on offer
 		conversation
 			`	`
