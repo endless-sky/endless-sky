@@ -7846,9 +7846,9 @@ mission "Hroar's Haulers 20"
 
 	to complete
 		has "Hroar's Haulers 22: declined"
-			or
-				has "Hroar's Haulers 24: declined"
-				has "Hroar's Haulers 24b: declined"
+		or
+			has "Hroar's Haulers 24: declined"
+			has "Hroar's Haulers 24b: declined"
 
 
 	npc
