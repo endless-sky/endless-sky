@@ -1412,10 +1412,14 @@ pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 		if(ship->IsParked() || ship->IsDestroyed())
 			continue;
 
-		if(defaultAttraction)
+		if(defaultAttraction || !ship->Cargo().Size())
 			attraction += ship->Attraction();
 		else
-			attraction += ship->Attraction() * emptyCargoAttraction * ship->Cargo().Free() / ship->Cargo().Size();
+		{
+			// How much the raiders care about empty cargo.
+			double emptyCargoRatio = 1. - (ship->Cargo().Free() / ship->Cargo().Size());
+			attraction += ship->Attraction() * (1. - emptyCargoRatio + emptyCargoAttraction * emptyCargoRatio);
+		}
 		deterrence += ship->Deterrence();
 	}
 

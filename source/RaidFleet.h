@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <limits>
 #include <vector>
 
 class DataNode;
