@@ -26,8 +26,11 @@ class DataNode;
 // Class containing and managing raid fleets.
 class Raiders {
 public:
+	Raiders() = default;
+	// Direct call for deprecated "raid"
+	Raiders(const DataNode &node, bool remove, int valueIndex);
 	// Helper function to load a single fleet and support the deprecated syntax.
-	void LoadFleets(const DataNode &node, bool remove, int valueIndex, bool deprecated = false);
+	void LoadFleets(const DataNode &node, bool remove, int valueIndex, bool deprecated);
 	void Load(const DataNode &node);
 	const std::vector<RaidFleet> &RaidFleets() const;
 	double EmptyCargoAttraction() const;

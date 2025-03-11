@@ -153,7 +153,7 @@ void Government::Load(const DataNode &node)
 				}
 			}
 			else if(key == "raiders" || key == "raid")
-				raiders = nullptr;
+				raiders = {};
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -201,9 +201,7 @@ void Government::Load(const DataNode &node)
 		if(key == "raid")
 		{
 			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
-			if(!raiders)
-				raiders = new Raiders();
-			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex, true);
+			raiders = ExclusiveItem<Raiders>(Raiders(child, remove, valueIndex, true));
 		}
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
@@ -403,7 +401,7 @@ void Government::Load(const DataNode &node)
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "raiders")
-			raiders = GameData::GetRaiders().Get(child.Token(valueIndex));
+			raiders = ExclusiveItem<Raiders>(GameData::GetRaiders().Get(child.Token(valueIndex)));
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();

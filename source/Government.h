@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
+#include "Raiders.h"
 
 #include <limits>
 #include <map>
@@ -33,7 +34,6 @@ class Outfit;
 class Phrase;
 class Planet;
 class PlayerInfo;
-class Raiders;
 class RaidFleet;
 class Ship;
 class System;
@@ -178,7 +178,7 @@ private:
 	const Phrase *hostileDisabledHail = nullptr;
 	std::string language;
 	bool sendUntranslatedHails = false;
-	const Raiders *raiders = nullptr;
+	ExclusiveItem<Raiders> raiders;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
 	bool provokedOnScan = false;

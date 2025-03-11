@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ExclusiveItem.h"
 #include "Hazard.h"
 #include "Point.h"
 #include "Raiders.h"
@@ -256,7 +257,7 @@ private:
 	double starfieldDensity = 1.;
 	int minimumFleetPeriod = 0;
 
-	const Raiders *raiders;
+	ExclusiveItem<Raiders> raiders;
 	bool noRaids = false;
 
 	// The amount of additional distance that ships will arrive away from the

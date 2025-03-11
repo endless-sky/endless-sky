@@ -25,6 +25,13 @@ using namespace std;
 
 
 
+Raiders::Raiders(const DataNode &node, bool remove, int valueIndex)
+{
+	LoadFleets(node, remove, valueIndex, true);
+}
+
+
+
 void Raiders::LoadFleets(const DataNode &node, bool remove, int valueIndex, bool deprecated)
 {
 	const Fleet *fleet = GameData::Fleets().Get(node.Token(valueIndex));

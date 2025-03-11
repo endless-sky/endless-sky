@@ -164,7 +164,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			else if(key == "belt")
 				belts.clear();
 			else if(key == "raiders" || key == "raid")
-				raiders = nullptr;
+				raiders = {};
 			else if(key == "object")
 			{
 				// Make sure any planets that were linked to this system know
@@ -289,12 +289,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		else if(key == "raid")
 		{
 			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
-			if(!raiders)
-				raiders = new Raiders();
-			const_cast<Raiders *>(raiders)->LoadFleets(child, remove, valueIndex, true);
+			raiders = ExclusiveItem<Raiders>(Raiders(child, remove, valueIndex));
 		}
 		else if(key == "raiders")
-			raiders = GameData::GetRaiders().Get(value);
+			raiders = ExclusiveItem<Raiders>(GameData::GetRaiders().Get(value));
 		else if(key == "hazard")
 		{
 			const Hazard *hazard = GameData::Hazards().Get(value);
