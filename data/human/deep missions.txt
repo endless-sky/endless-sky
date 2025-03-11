@@ -7842,7 +7842,7 @@ mission "Hroar's Haulers 20"
 
 	on complete
 		dialog
-			`	The familar rugged red landscape of Muspel rushes to meet you as your ship hurdles toward the familiar port. The Haulers wave you and into your accustomed dock, and then focus on getting the rest of the oversized fleet secured. Yngvar looks a little more presentable than normal and nods toward the hatch, "To the Red Rock Saloon, then."`
+			`	The familar red rugged landscape of Muspel rushes to meet you as your ship hurdles toward the familiar port. The Haulers excitedly wave you into your accustomed dock, and then focus on getting the rest of the oversized fleet secured. Yngvar appears, little more presentable than normal, and nods toward the hatch, "To the Red Rock Saloon, then."`
 
 	to complete
 		has "Hroar's Haulers 22: declined"
