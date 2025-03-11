@@ -237,7 +237,7 @@ mission "Avgi Culture: Fencing"
 				`	"I'm good, thanks."`
 					goto ignore
 			`	The other chimes in, "Assurance. Avgi have surely partaken in this most daring dance far longer than humans. I implore you to attend."
-			`	The first Avgi continues, "Reinforcement. Considering our... differences in agility, this will surely be a spectacle to you, compared to human sports that is."
+			`	The first Avgi continues, "Reinforcement. Considering our... differences in agility, this will surely be a spectacle to you, compared to human sports that is."`
 			choice
 				`	"Sure, sounds like fun!"`
 				`	"I'll pass, thanks."`
