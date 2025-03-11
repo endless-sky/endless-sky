@@ -201,7 +201,7 @@ void Government::Load(const DataNode &node)
 		if(key == "raid")
 		{
 			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
-			raiders = ExclusiveItem<Raiders>(Raiders(child, remove, valueIndex, true));
+			raiders = ExclusiveItem<Raiders>(Raiders(child, remove, valueIndex));
 		}
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
@@ -601,15 +601,14 @@ bool Government::SendUntranslatedHails() const
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
 const vector<RaidFleet> &Government::RaidFleets() const
 {
-	static const vector<RaidFleet> EMPTY;
-	return raiders ? raiders->RaidFleets() : EMPTY;
+	return raiders->RaidFleets();
 }
 
 
 
 const Raiders *Government::GetRaiders() const
 {
-	return raiders;
+	return &*raiders;
 }
 
 
