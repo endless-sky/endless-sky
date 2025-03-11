@@ -262,7 +262,7 @@ mission "Avgi Culture: Fencing"
 			`	"Astonishment. Zomp wins round one." the announcer states. "Repose. Shall we begin round two?"`
 			`	Once more the contestants line up and spring into the air in a duel of eye-watering speed and agility. And once more, Zomp wins to the thunderous applause of the crowd.`
 			`	"Bewilderment. It seems as though Zomp has defeated our reigning champion!" the announcer proclaims.`
-			`	"Hysteria. I knew he would win! I'm up 10 to 1 on this bet!" A nearby Avgi says with exuberance as they buzz around you wildly, holding various pink papers in their many arms.`
+			`	"Hysteria. I knew he would win! I'm up 10 to 1 on this bet!" a nearby Avgi says with exuberance as they buzz around you wildly, holding various pink papers in their many arms.`
 			`	Across the arena you hear a shout from a pink Avgi, "Adoration! I love you Zomp!"`
 			`	The entire arena appears to be in a chaos of cheers, boos and rumbling wing flapping for minutes after the match has ended. You can't remember a single instance of fencing back in human space having this much passion and energy within the crowd.`
 			`	After the hubbub and celebration die down, you find no issue leaving the crowded arena - most Avgi simply fly over your head.`
