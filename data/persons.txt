@@ -166,7 +166,7 @@ ship "Wardragon"
 		"Cargo Scanner"
 		"Outfit Scanner"
 		"Wanderer Ramscoop"
-			
+		
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
 		"Scram Drive"
