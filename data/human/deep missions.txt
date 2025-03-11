@@ -7842,7 +7842,36 @@ mission "Hroar's Haulers 20"
 
 	on complete
 		conversation
+			`	`
 
+	to complete
+		has "Hroar's Haulers 22: declined"
+
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Procyon"
+		fleet "Large Northern Pirates" 2
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Altair"
+		fleet "Small Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis staying
+		system "Ascella"
+		fleet "Large Northern Pirates" 2
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Sirius"
+		fleet "Large Northern Pirates"
+	npc
+		government "Pirate"
+		personality nemesis
+		system "Cebalrai"
+		fleet "Small Northern Pirates"
 
 	npc accompany save
 		government "Merchant"
@@ -7947,7 +7976,7 @@ mission "Hroar's Haulers 24"
 			label stay
 			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
 			`	Together you watch the world ever so slighty change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
-			` 	Finally, Yngvar turns to you and nods, "Looks like they are about ready, Captain. How about ya take us home?"`
+			` 	Finally, Yngvar turns to you and nods, "Looks like they are about ready, Captain. How about ya take us back to Hroar?"`
 				decline
 
 			label great
@@ -7992,13 +8021,44 @@ mission "Hroar's Haulers 24b"
 			`	"Interestin' times are on the horizion, <last>. I worry I'm gettin' too old for the tiller. Everything moves so fast these days; just don't seem like there's any place for old spacers like me."`
 			`	He sighs, "There's no generation ships, and even the caravans get to their destinations in a matter of days. No ones wrestles with the Gap, it's just a brief inconvience."`
 			`	At that he goes silent.`
+			label silent
 			choice
 				`	"Tell me more about spacers."`
-				`	"You're alright Yngvar."`
-				`	"The old have to make way for the young. It's the way of things."`
+					goto spacers
+					to display
+						not "Yngspacer"
 				`	(Stay awhile and keep Yngvar company in his silence.)`
+					goto stay
 				`	(Head back your ship.)`
+			`	Quietly you turn and leave the old man to his thoughts.`
+			action
+				clear "Yngspacer"
+				decline
+			label spacers
+			action
+				set "Yngspacer"
+			`	"Ain't nothing formal about it, really." He shrugs, "We're both spacers. Ya know, just the sorta folk who call the Gap home."`
+			`	He nods to himself as he continues, "Now, within the parlance of the Haulers 'spacer' takes on a slightly more specific connotation. For us it means somehow who embraces the culture and ethos of the old generation ship crews, and their caravan successors. Sometimes, like me, we got family going all the way back to those times. But sometimes we don't."`
+			`	"Linage got less to do about it than character, and practice. Hel, I suspect most them 'stoners' come from a lost generation ship, and few of them would consider themselves spacers."`
+			choice
+				`	"Stoner?"`
+					goto stoner
+					to display
+						not "metbolverka"
+				`	"This have something to with the Blushes?"`
+					goto blush
+					to display
+						has "Hroar's Haulers Unferth 2: done"
+				`	"Thanks, makes more sense now."`
+					goto silent
 
+			label stay
+			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
+			`	Together you watch the world ever so slighty change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
+			` 	Finally, Yngvar turns to you and nods, "Looks like they are about ready, Captain. How about ya take us back to Hroar?"`
+			action
+				clear "Yngspacer"
+				decline
 
 			label great
 			`	"To each their own, I say." He chuckles, "You get some fellas who can't wait to be back on the red, and then you get others who never want to see that dust ball again."`
@@ -8009,6 +8069,76 @@ mission "Hroar's Haulers 24b"
 			`	"Spoken like a true spacer." He nods approvingly. "Dirt and light don't make a place more real or special. Only place that matters is where you are right now."`
 			`	He points at the <ship> next to the other Hauler vessels below you both, "That's home enough for folks like us I wager."`
 				goto nopig
+
+			label stoner
+			`	Yngvar shakes his head, "Buncha stone-worshipping fools who think elves brought 'em to the Deep. It's all hogwash, though, they're just the children of a lost generation ship who reverted to their primal natures."`
+			label hogwash
+			choice
+				`	"Wait, you think the same ships that brought your ancestors to the Deep, also brought the stoners there?"`
+					goto generations
+					to display
+						has "generationship"
+				`	"Generation ship?"` 
+					goto generationship
+					to display
+						not "generationship"
+						not "generationship2"
+				`	"Thanks for clearing that up."`
+					goto silent
+
+			label generations
+			action
+				set "generationship2"
+				clear "generationship"
+			`	Yngvar sighs, "It's a bit more complicated than that. Three of the earliest generation ships were sent to the Deep. It was a private affair using... let's say untested technology."`
+			`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they'd be the Folly's survivors."`
+			`	"Not quite sure how the survivors got on multiple words, but still makes a lot more sense than elf-stories."`
+				goto silent
+
+			label generationship
+				action
+				set "generationship"
+			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. Four generations of my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs.`
+			`	Yngvar's eye glosses over as he talks, "Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes, eh? Ah, we could never quite kick the knack for it after that. Always felt most at home 'tween worlds. Which is one of the reasons why we became Haulers."`
+			`	The old man shakes his head, "Sometimes I wonder if they be better times than these`
+			`	His eye strays back toward embarking guest-workers.`
+				goto hogwash
+
+			label blush
+			`	Yngvar's one extant eyebrow shoots up in surprise, "How'd you come to hear about the Blushes? That's uncommon knowledge for an outsider."`
+			choice
+				`	"I traveled to one with Solvi."`
+					goto solvi
+				`	"I have my ways."`
+				`	(Shrug.)`
+			`	"I suppose the how don't matter so much." Yngvar says slowly, "But, yes, they're apart of our culture. The lonely waystations in the caravan days."`
+			label blush2
+			`	He sighs to himself, "I try to get to 'em when I can. But they don't see many pilgrims these days. Old ways are dying, but I'm supposing that's just the way of old ways."`
+			choice
+				`	"Why exactly are they called Blushes?"`
+					goto whyblush
+				`	"Thanks, I figured they were related."`
+					goto silent
+
+			label solvi
+			`	"Ah, Solvi's always been a good lad. One of the few from his generation that keeps to the traditions." Yngvar pauses in thought and than a wide grin spreads across his scarred face, "I'm thinking he took you to the Last Blush."`
+			`	He looks at you nods, "He did! Ha. I bet you caught a little whiplash from that experience. Their a little more insular to most."`
+			`	"Good folk though, and it's where my ma's relic is housed, and where I hope mine goes someday."`
+			`	"But, back to your question, yes, they're an important part of our culture. Those lonely waystations from the caravan days."`
+				goto blush2
+
+			label whyblush
+			`	Yngvar laughs, "I am not rightly sure. I have my suspicions though."`
+			`	He points up far above the laboring loaders below and toward the sky. "Those Caravaneers, plunging into the empty Gap, would see lights all around them. Flickering stars and like."`
+			`	The old man holds up thick finger, "But it'weren't like nowadays. Those stars were all empty. Beacons to nowhere. Emenating their cold lifeless light. But a Blush, well, that's a warmer light, ain't it? That's the glow of life, of hearth, of friendship. Out in the Gap you weren't holding out for light, but for a Blush."`
+			`	He smiles at you and then shrugs, "That's my thinking on the matter anyways. Maybe one of the old Blush-Gutchers might know rightly."`
+			`	"I think though," he says glancing back outside, "we oughta get moving. Looks like they're about all loaded up. Time to bring the fleet back to Hroar!"`
+			action
+				clear "Yngspacer"
+				decline
+
+
+
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
