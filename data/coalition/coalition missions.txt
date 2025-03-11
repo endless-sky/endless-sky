@@ -347,6 +347,7 @@ mission "Coalition Yottrite 3"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the yottrite samples hasn't entered the system yet. Better depart and wait for it.`
 	on complete
+		log "Reminders" "Coalition Yottrite" `Was asked to meet an Arach in the Delve of Bloptab spaceport in the Bloptab system.`
 		conversation
 			`Though on <origin> you weren't greeted by him, the same Arach from the other trips now contacts you as you prepare to land on <planet>.`
 			`	"Captain <last>! Forgive me for my absence in our latest deal, you must. Sort out some business here, I had to," he says.`
@@ -364,6 +365,7 @@ mission "Coalition Yottrite 4"
 	source "Delve of Bloptab"
 	destination "Shadowed Valley"
 	on offer
+		remove log "Reminders" "Coalition Yottrite"
 		conversation
 			`You wait around the spaceport for some minutes before finally spotting the Arach. He invites you to his office.`
 			`	"Responsible for overseeing deliveries of such exotic materials to the warehouses here, I also am. For the inconvenience and bureaucracy, I apologize," he says. "Forget to properly introduce myself, I often do. Lugglop, I am called."`
@@ -377,6 +379,7 @@ mission "Coalition Yottrite 4"
 				`	"Sorry, I'm not one to take passenger jobs."`
 					decline
 	on complete
+		log "Reminders" "Coalition Yottrite" `Was asked to meet Lugglop and his friends in the Shadowed Valley spaceport in the Fallen Leaf system. Will need 2 bunks to take on the mission.`
 		dialog `When you land on <planet>, Lugglop contacts you and informs you that he has already told his friends about you. He says they will be waiting in the spaceport.`
 
 
@@ -391,6 +394,7 @@ mission "Coalition Yottrite 5"
 	source "Shadowed Valley"
 	destination "Delve of Bloptab"
 	on offer
+		remove log "Reminders" "Coalition Yottrite"
 		conversation
 			`A Saryd wearing their version of a lab coat is waiting for you when you enter the spaceport.`
 			`	"Working with Lugglop, you are?" He asks, and you nod. "Nasilor, my name is. Packing up our belongings, my sister is. Bring you to our laboratory, I shall."`
@@ -421,6 +425,8 @@ mission "Coalition Yottrite 6"
 			`	He shows you to his map again, this time pointing to a nearby Arach world. "Once cracked some aspects of yottrite, the twins have, an expert in ship making, we will need," he says. "On <destination>, prepared one of their representatives, House Mallob has. Bring them here, you must."`
 			`	You're about to head back to your ship when he hands you 200,000 credits. "Nearly forgot to pay you for this last service, I did."`
 				accept
+	on complete
+		log "Reminders" "Coalition Yottrite" `Was asked to come back to Market of Gupta in the Gupta system when I have a free bunk.`
 
 
 
@@ -435,6 +441,7 @@ mission "Coalition Yottrite 7"
 	source "Market of Gupta"
 	destination "Delve of Bloptab"
 	on offer
+		remove log "Reminders" "Coalition Yottrite"
 		conversation
 			`You're immediately hailed by House Mallob when your ship is entering the atmosphere of <origin>. They guide you through the planet, bringing you to what looks like a massive, castle-like structure, which appears to be made out of a similar material to that of Arach ships, sitting at the base of a mountain.`
 			`	You land on a large docking area, where some other ships are also conducting business. Stepping off of your ship you're greeted by what is unmistakably an outfitter, and as you look around you spot some other large buildings dotting the surrounding area, with members of the Coalition going to and from them. The atmosphere feels like that of a small village turned into an outdoor shopping mall.`
@@ -502,6 +509,7 @@ mission "Coalition Yottrite 8"
 			`	He thanks you and says he and the rest of the team will be waiting in <destination>. "Moved here about halfway through the project, we did, to make use of the station's facilities."`
 				accept
 	on complete
+		log "Reminders" "Coalition Yottrite" `Was asked to meet Lugglop and his compatriots in the Pelubta Station spaceport in the Pelubta system with 6 free bunks.`
 		outfit "Yottrite" -1
 		payment 400000
 		dialog `Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
@@ -519,6 +527,7 @@ mission "Coalition Yottrite 9"
 	source "Pelubta Station"
 	destination "Ring of Wisdom"
 	on offer
+		remove log "Reminders" "Coalition Yottrite"
 		conversation
 			`You meet Lugglop in the spaceport and follow him to meet with Nasilor, Alituri, and Pichiie, who are overseeing some workers place a few sealed metal crates inside a container and the yottrite sample you just brought here into another. They detail how they have prepared all the material they needed and now just need a transport to the <destination>.`
 			`	"If with us, you come, Captain, perhaps a better detailed description of the systems where the yottrite was found, you could provide," Nasilor says.`
@@ -779,6 +788,7 @@ mission "Coalition Outbreak 1"
 	on visit
 		dialog `You've reached <planet>, but the doctors and the medical supplies haven't arrived yet. Depart and wait for the ships carrying them.`
 	on complete
+		log "Reminders" "Coalition Outbreak" `Was asked to meet some medical workers in the Celestial Third spaceport in the 1 Axis system to help with an outbreak. Will need 80 tons of cargo space.`
 		payment 768540
 		"coalition jobs" += 2
 		dialog `The medical workers exit your ship just as quickly as they entered it and head off to different sections of the city, directed by some emergency workers. After the <cargo> are also taken off your ship, a worker hands you <payment> and says you could look for more ways to help with the outbreak by looking for their colleagues in the spaceport.`
@@ -797,6 +807,7 @@ mission "Coalition Outbreak 2"
 	stopover "Secret Sky"
 	destination "Ki Patek Ka"
 	on offer
+		remove log "Reminders" "Coalition Outbreak"
 		conversation
 			`As before, the spaceport is completely dominated by doctors and nurses. You don't find the person who told you to come here, but as you ask one of the other emergency workers, they direct you to a makeshift office set up next to a few trading panels.`
 			`	"Fairly new to us, this virus is," the Kimek manning the stand says. "But finally developed an initial batch of vaccines for it, the researchers on Secret Sky thankfully have."`
@@ -816,6 +827,7 @@ mission "Coalition Outbreak 2"
 	on visit
 		dialog `You've reached <planet>, but the vaccines aren't here yet. Once you've picked them up, make sure all ships that are carrying them arrive in this system.`
 	on complete
+		log "Reminders" "Coalition Outbreak" `Medical workers are waiting in the Ki Patek Ka spaceport in the Sol Kimek system to give more tasks to deal with a viral outbreak. These tasks require 80 tons of cargo space.`
 		payment 943720
 		"coalition jobs" += 2
 		conversation
@@ -830,6 +842,7 @@ mission "Coalition Outbreak 3"
 	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral outbreak, then return to <destination> by <date>."
 	deadline
 	cargo "vaccines" 80
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition Outbreak 2: done"
 	source "Ki Patek Ka"
@@ -842,6 +855,7 @@ mission "Coalition Outbreak 3"
 	stopover "Second Viridian"
 	stopover "Remote Blue"
 	on offer
+		remove log "Reminders" "Coalition Outbreak"
 		conversation
 			`This time you're expected and are brought to a large conference room where many Saryds, and the occasional Arach, are waiting. A Kimek that is part of the team organizing the containment procedures comes in and says you will once again be transporting vaccines.`
 			`	"In a few hours, fully replicated, the vaccine samples will be. Load them onto your ships, we will. Deliver them to <stopovers>, you must."`
@@ -949,6 +963,7 @@ mission "Saryd Students 1"
 	on visit
 		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The rum's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
+		log "Reminders" "Coalition Rum" `Was asked to return to Weir of Glubatub in the Glubatub system with 2 tons of free cargo space in order to pick up some rum for students at Starlit University.` 
 		payment -11284
 
 
@@ -965,6 +980,7 @@ mission "Saryd Students 2"
 	source "Weir of Glubatub"
 	destination "Shadow of Leaves"
 	on offer
+		remove log "Reminders" "Coalition Rum"
 		conversation
 			`You ask around and are directed to a large refinery on one of the more populated cities here. Apparently it's the original building where the Arach rum was first produced.`
 			`	You ask for two tons, avoiding giving the exact details of what it's for, as you do not wish to be held accountable for whatever some drunken Saryds may do, and pay the price for all the rum: 11,284 credits.`
@@ -1015,6 +1031,7 @@ mission "Saryd Census 1"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the census workers hasn't entered the system yet. Better depart and wait for it.`
 	on complete
+		log "Reminders" "Coalition Census" `Was asked to check the Flowing Fields spaceport in the Four Pillars system by night in order to continue to help some Saryds take a census. Will need 17 bunks.`
 		"coalition jobs" ++
 		payment 342000
 		dialog `You're paid <payment> for transporting the Saryds here, and they leave your ship, ready to get to work and ask around. They say that they'll probably all be back in the spaceport by night time, so you should check there later if you want to help them further.`
@@ -1098,6 +1115,7 @@ mission "Saryd Couple 1"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Aunaris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
+		log "Reminders" "Coalition Couple" `Two Saryds, Inturi and Aunaris, are saving up funds in Shadow of Leaves in the Hunter system, in order to buy a house. Will likely be ready to buy the house in a few months, at which point they will offer payment. Will need to have 2 bunks free if the house is not on the same planet.`
 		"coalition jobs" ++
 		event "saryd couple has money" 42 86
 		dialog `Aunaris thanks you for bringing her here, and apologizes for not being able to pay you right away, but promises once she and Inturi have figured out their home, they will work hard to pay you. "Stay here for a few months, I probably will, before the remaining funds I have acquired," she says before saying goodbye and taking a cable car to her new workplace.`
@@ -1117,6 +1135,7 @@ mission "Saryd Couple 2"
 	source "Shadow of Leaves"
 	destination "Far Garden"
 	on offer
+		remove log "Reminders" "Coalition Couple"
 		conversation
 			`You're met with two familiar faces in the spaceport: the Saryd couple you met some time ago, Inturi and Aunaris, who were working on acquiring the funding needed to build their own home.`
 			`	"Worked for a week in another ship, I did, until landed here we had," Inturi says, joking about his way of catching a ride on a ship without paying a transport fee.`
@@ -1934,6 +1953,7 @@ mission "Coalition: Pilgrimage 5"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Vellorae hasn't entered the system yet. Better depart and wait for it.`
 	on complete
+		log "Reminders" "Coalition Pilgrimage" `Was asked to meet Vellorae in the Cold Horizon spaceport in the Fell Omen system to take her back home. Will need a free bunk.`
 		"coalition jobs" ++
 		payment 80000
 		conversation
@@ -1969,11 +1989,13 @@ mission "Coalition: Pilgrimage 6"
 	name "Pilgrimage's End"
 	description "Bring Vellorae back to her home on <destination>."
 	passengers 1
+	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Coalition: Pilgrimage 5: done"
 	source "Cold Horizon"
 	destination "Bright Echo"
 	on offer
+		remove log "Reminders" "Coalition Pilgrimage"
 		conversation
 			`You find Vellorae in a snack shop, finishing up a hot drink. "Apologize for the wait I must, Captain. Ready to leave, I was not."`
 			choice
