@@ -7888,7 +7888,6 @@ mission "Hroar's Haulers 20"
 			has "Hroar's Haulers 24: declined"
 			has "Hroar's Haulers 24b: declined"
 
-
 	npc
 		government "Pirate"
 		personality nemesis staying
