@@ -221,7 +221,7 @@ mission "Avgi Culture: Fencing"
 		government "Avgi (Dissonance)"
 	to offer
 		not "avgi: lost in twilight"
-		random < 3
+		random < 15
 	on offer
 		conversation
 			`While walking through the spaceport on <planet>, you spot a pair of Avgi moving toward a large building. They are holding what look like long, thin rapiers.`
