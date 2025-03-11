@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <cstdio>
-#include <string>
+#include <filesystem>
 
 
 
@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class File {
 public:
 	File() noexcept = default;
-	explicit File(const std::string &path, bool write = false);
+	explicit File(const std::filesystem::path &path, bool write = false);
 	File(const File &) = delete;
 	File(File &&other) noexcept;
 	~File() noexcept;

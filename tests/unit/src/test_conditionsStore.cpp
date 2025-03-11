@@ -59,11 +59,6 @@ public:
 			verifyAndStripPrefix(prefix, name);
 			return false;
 		});
-		conditionsProvider.SetEraseFunction([prefix](const std::string &name)
-		{
-			verifyAndStripPrefix(prefix, name);
-			return false;
-		});
 		conditionsProvider.SetGetFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
@@ -79,12 +74,6 @@ public:
 			values[name] = value;
 			return true;
 		});
-		conditionsProvider.SetEraseFunction([this, prefix](const std::string &name)
-		{
-			verifyAndStripPrefix(prefix, name);
-			values.erase(name);
-			return true;
-		});
 		conditionsProvider.SetGetFunction([this, prefix](const std::string &name)
 		{
 			verifyAndStripPrefix(prefix, name);
@@ -95,11 +84,6 @@ public:
 	{
 		auto &&conditionsProvider = store.GetProviderNamed(named);
 		conditionsProvider.SetSetFunction([named](const std::string &name, int64_t value)
-		{
-			verifyName(named, name);
-			return false;
-		});
-		conditionsProvider.SetEraseFunction([named](const std::string &name)
 		{
 			verifyName(named, name);
 			return false;
@@ -117,12 +101,6 @@ public:
 		{
 			verifyName(named, name);
 			values[name] = value;
-			return true;
-		});
-		conditionsProvider.SetEraseFunction([this, named](const std::string &name)
-		{
-			verifyName(named, name);
-			values.erase(name);
 			return true;
 		});
 		conditionsProvider.SetGetFunction([this, named](const std::string &name)
@@ -219,7 +197,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 	}
 }
 
-SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]" )
+SCENARIO( "Setting conditions", "[ConditionStore][ConditionSetting]" )
 {
 	GIVEN( "An empty conditionsStore" )
 	{
@@ -235,18 +213,20 @@ SCENARIO( "Setting and erasing conditions", "[ConditionStore][ConditionSetting]"
 				REQUIRE( store.Get("myFirstVar") == 10 );
 				REQUIRE( store["myFirstVar"] == 10 );
 			}
-			THEN( "erasing the condition will make it disappear again" )
+			THEN( "the condition can be set to another value" )
 			{
-				REQUIRE( store.Get("myFirstVar") );
-				REQUIRE( store.PrimariesSize() == 1 );
 				REQUIRE( store.Get("myFirstVar") == 10 );
 				REQUIRE( store.PrimariesSize() == 1 );
-				REQUIRE( store.Erase("myFirstVar") );
-				REQUIRE_FALSE( store.Get("myFirstVar") );
-				REQUIRE( store.PrimariesSize() == 0 );
+				REQUIRE( store.Set("myFirstVar", 2000) );
+				REQUIRE( store.Get("myFirstVar") == 2000 );
+			}
+
+			THEN( "the condition can be set to zero" )
+			{
+				REQUIRE( store.Get("myFirstVar") == 10 );
+				REQUIRE( store.PrimariesSize() == 1 );
+				REQUIRE( store.Set("myFirstVar", 0) );
 				REQUIRE( store.Get("myFirstVar") == 0 );
-				REQUIRE_FALSE( store.Get("myFirstVar") );
-				REQUIRE( store.PrimariesSize() == 0 );
 			}
 		}
 		WHEN( "non-existing conditions are queried" )
@@ -412,10 +392,14 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.Get("named1") == -60 );
 				REQUIRE( store.Get("myFirstVar") == 10 );
 			}
-			THEN( "readonly providers should not perform erase actions" )
+			THEN( "readonly providers should not perform any set actions" )
 			{
 				mockProvNamed.SetRONamedProvider(store, "named1");
-				REQUIRE_FALSE( store.Erase("named1") );
+				REQUIRE_FALSE( store.Set("named1", 0) );
+				REQUIRE( mockProvNamed.values.size() == 1 );
+				REQUIRE( mockProvNamed.values["named1"] == -60 );
+				REQUIRE( mockProvPrefixA.values.size() == 1 );
+				REQUIRE_FALSE( store.Set("named1", 40) );
 				REQUIRE( mockProvNamed.values.size() == 1 );
 				REQUIRE( mockProvNamed.values["named1"] == -60 );
 				REQUIRE( mockProvPrefixA.values.size() == 1 );
@@ -465,20 +449,6 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 				REQUIRE( store.Get("prefixA: test") == -60 );
 				REQUIRE( store.Get("myFirstVar") == 10 );
 			}
-			THEN( "read-only prefixed provider should reject erase" )
-			{
-				mockProvPrefixA.SetROPrefixProvider(store, "prefixA: ");
-				REQUIRE_FALSE( store.Erase("prefixA: test") );
-				REQUIRE( mockProvPrefixA.values.size() == 1 );
-				REQUIRE( mockProvPrefixA.values["prefixA: test"] == -60 );
-				REQUIRE( mockProvNamed.values.size() == 1 );
-				REQUIRE( store.Get("prefixA: test") == -60 );
-				REQUIRE( store.Get("myFirstVar") == 10 );
-				REQUIRE( store.Get("prefixA: test") );
-				REQUIRE_FALSE( store.Get("prefixA: t") );
-				REQUIRE_FALSE( store.Get("prefixA: ") );
-				REQUIRE_FALSE( store.Get("prefixA:") );
-			}
 			THEN( "prefixed values from within provider should be available" )
 			{
 				mockProvPrefixA.values["prefixA: "] = 22;
@@ -513,7 +483,7 @@ SCENARIO( "Providing derived conditions", "[ConditionStore][DerivedConditions]" 
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 					REQUIRE( store.Get("prefixA: test") == -30 );
 					REQUIRE( store.Get("myFirstVar") == 10 );
-					REQUIRE_FALSE( store.Erase("prefixA: test") );
+					REQUIRE_FALSE( store.Set("prefixA: test", 0) );
 					REQUIRE( mockProvPrefixA.values.size() == 1 );
 					REQUIRE( mockProvPrefixA.values["prefixA: test"] == -30 );
 					REQUIRE( store.Get("prefixA: test") == -30 );
