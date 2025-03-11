@@ -237,8 +237,8 @@ mission "Avgi Culture: Fencing"
 					goto accept
 				`	"I'm good, thanks."`
 					goto ignore
-			`	The other, colored a bright blue and purple sheen, chimes in. "Assurance. Avgi have surely partaken in this most daring dance far longer than humans. I implore you to attend."`
-			`	The first Avgi continues, "Addendum. Considering our... differences in agility, this will surely be a spectacle to you, compared to human sports that is."`
+			`	The other, colored a bright blue and purple sheen, chimes in. "Assurance. While we as a species are unlikely to have preceded you in a sport such as this, I still implore you to attend."`
+			`	The first Avgi continues, "Addendum. Considering our... differences in agility, this will surely be a spectacle to you, compared to the human sport that is."`
 			choice
 				`	"Sure, sounds like fun!"`
 				`	"I'll pass, thanks."`
