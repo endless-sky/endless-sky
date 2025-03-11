@@ -4928,6 +4928,7 @@ mission "Hroar's Haulers 10"
 		dialog phrase "generic passenger on visit"
 
 mission "Hroar's Haulers X"
+	deadline 40
 	invisible
 	landing
 	source "Muspel"
@@ -4952,6 +4953,7 @@ mission "Hroar's Haulers X"
 mission "Hroar's Haulers 11"
 	name "The Long Haul"
 	passengers 1
+	deadline 40
 	cargo "Long Haul Cargo" 430
 	source "Muspel"
 	to offer
@@ -5058,7 +5060,11 @@ mission "Hroar's Haulers 11"
 		system "Tarazed"
 		fleet "Large Northern Pirates"
 		fleet "Small Northern Pirates"
-	
+
+	on fail
+		dialog
+			` Yngvar finds his way to a different ship, and the Hauler Fleet moves on without you. They've wasted enough time with you.`
+
 	on visit
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
@@ -5126,6 +5132,18 @@ mission "Hroar's Haulers 14"
 	on offer
 		conversation
 			`The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder, "We're meetin' at the local Watering Hole, it's in the spaceport. See you there." The old spacer exits your ship.`
+				decline
+
+mission "Hroar's Haulers 14b"
+	landing
+	name "The Long Haul"
+	source "Maker"
+	to offer
+		has "Hroar's Haulers 11: active"
+		not "Hroar's Haulers 13: declined"
+	on offer
+		dialog
+			`Yngvar approaches you sourly. "<Last>," he says with strained politeness, "Our first stop is Earth. Not Maker. The fleet isn't ready for Maker. Take us to Earth."`
 				decline
 
 
@@ -6119,6 +6137,18 @@ mission "Yngvar Interlude"
 			`	Yngvar's face is stern and unhappy, "With all the bluster we blow about the Syndies you'd likely 'spect what happened back there was just another Tuesday." He shakes his head, "'Cept it wasn't. We have our disagreements but we also have our understandings. A few drunken Haulers at the Watering Hole is about as regular as a pulsar and they always let us be."`
 			`	The old spacer paces thoughtfully around your bridge, "No, this was different. Somethin' is up. I they they were trying to get us to break their contract. But, I'm not sure why. It's a big contract for us, keeps a lot of Hauler's solvent, but for the Syndicate it's small potatoes."`
 			`	He shakes his head, "Figurin' that out will have to wait. We gotta stay focused on the Long Haul. Not having Solvi's passanger fleet will hurt, but it won't break us is either. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it."`
+				decline
+
+mission "Hroar's Haulers 16b"
+	landing
+	name "The Long Haul"
+	source "Rand"
+	to offer
+		has "Hroar's Haulers 11: active"
+		not "Hroar's Haulers 15: offered"
+	on offer
+		dialog
+			`"Kid." Yngvar says tersely, "You never seen a map before? Each stop needs to happen sequentially. Earth, Maker, Rand and then Lagrange in that order."`
 				decline
 
 mission "Hroar's Haulers 16"
@@ -7769,6 +7799,7 @@ mission "Hroar's Haulers 19"
 				decline
 
 mission "Hroar's Haulers X2"
+	deadline 40
 	invisible
 	landing
 	source "Wayfarer"
@@ -7799,6 +7830,7 @@ mission "Hroar's Haulers 20"
 	stopover "Earth"
 	destination "Muspel"
 	description "Protect the Hauler Fleet as it finishes the Long Haul."
+	deadline 40
 	passengers 1
 	to offer
 		has "Hroar's Haulers 19: declined"
@@ -7844,8 +7876,14 @@ mission "Hroar's Haulers 20"
 		dialog
 			`	The familar red rugged landscape of Muspel rushes to meet you as your ship hurdles toward the familiar port. The Haulers excitedly wave you into your accustomed dock, and then focus on getting the rest of the oversized fleet secured. Yngvar appears, little more presentable than normal, and nods toward the hatch, "To the Red Rock Saloon, then."`
 
+	on fail
+		dialog
+			`	Yngvar finds his way to a different ship, and the Hauler Fleet moves on without you. They couldn't wait on you any longer.`
+
 	to complete
-		has "Hroar's Haulers 22: declined"
+		or
+			has "Hroar's Haulers 22: declined"
+			has "Hroar's Haulers Late: done"
 		or
 			has "Hroar's Haulers 24: declined"
 			has "Hroar's Haulers 24b: declined"
@@ -7934,6 +7972,19 @@ mission "Hroar's Haulers 22"
 			`	Yngvar stands up, "I'm gonna go around and let the other captain's know we gotta be moving on. I'll see ya back aboard the <ship>. Remember, next stop is Earth."`
 				decline
 
+
+mission "Hroar's Haulers 22b"
+	landing
+	source "Earth"
+	to offer
+		has "Hroar's Haulers 20: active"
+		not "Hroar's Haulers 21: declined"
+	on offer
+		dialog
+			`"Come on, <Captain>." Yngvar's belabored voice fills the cockpit, "You know the drill by now. We need to visit these worlds in order. New Washington, Earth, and then Muspel."`
+				decline
+
+
 mission "Hroar's Haulers 23"
 	name "The Long Haul"
 	source "Earth"
@@ -7949,8 +8000,10 @@ mission "Hroar's Haulers 24"
 	name "The Long Haul"
 	source "Earth"
 	to offer
-		has "Hroar's Haulers 23: declined"
 		not "Hroar's Haulers 18: declined"
+		or
+			has "Hroar's Haulers 23: declined"
+			has "Hroar's Haulers Late: done"
 	on offer
 		conversation
 			`Angry shouts echo throughout the crowded spaceport as the would-be passangers learn that their trip to the Deep has been delayed.`
@@ -7997,8 +8050,10 @@ mission "Hroar's Haulers 24b"
 	name "The Long Haul"
 	source "Earth"
 	to offer
-		has "Hroar's Haulers 23: declined"
 		not "Hroar's Haulers 18b: accepted"
+		or
+			has "Hroar's Haulers 23: declined"
+			has "Hroar's Haulers Late: done"
 		conversation
 			`Endless lines of eager passengers make their way through the crowded spaceport to Solvi's waiting fleet.`
 			`	"...can't wait for my first paycheck..."`
