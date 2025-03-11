@@ -257,8 +257,6 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	if(choices.empty())
 	{
-		// Allow editing the text. The tab key toggles to the other entry field,
-		// as does the return key if the other field is still empty.
 		// Don't allow characters that can't be used in a file name.
 		static const string FORBIDDEN = "/\\?*:|\"<>~";
 		// Prevent the name from being so large that it cannot be saved.
@@ -271,6 +269,8 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		// Right now we're asking the player to enter their name.
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
+		// Allow editing the text. The tab key toggles to the other entry field,
+		// as does the return key if the other field is still empty.
 		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, FORBIDDEN))
 		{
 			// Input handled by Clipboard.
