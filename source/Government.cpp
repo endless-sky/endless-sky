@@ -92,16 +92,15 @@ namespace {
 	// Determine the penalty for the given ShipEvent based on the values in the given map.
 	Government::PenaltyEffect PenaltyHelper(int eventType, const map<int, Government::PenaltyEffect> &penalties)
 	{
-		double penalty = 0.;
-		Government::SpecialPenalty specialPenalty = Government::SpecialPenalty::NONE;
+		Government::PenaltyEffect penalty;
 		for(const auto &it : penalties)
 			if(eventType & it.first)
 			{
-				penalty += it.second.reputationChange;
-				if(it.second.specialPenalty > specialPenalty)
-					specialPenalty = it.second.specialPenalty;
+				penalty.reputationChange += it.second.reputationChange;
+				if(it.second.specialPenalty > penalty.specialPenalty)
+					penalty.specialPenalty = it.second.specialPenalty;
 			}
-		return {penalty, specialPenalty};
+		return penalty;
 	}
 
 	unsigned nextID = 0;
