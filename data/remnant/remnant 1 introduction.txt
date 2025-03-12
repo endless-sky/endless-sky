@@ -721,11 +721,43 @@ mission "Remnant: Void Sprites 3"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+		to spawn
+			or
+				has "flagship model: Heron"
+				has "flagship model: Merganser"
+				has "flagship model: Penguin"
+				has "flagship model: Peregrine"
+				has "flagship model: Petrel"
+				has "flagship model: Puffin"
+				has "flagship model: Tern"
+	npc
+		government "Drak"
+		system "Nenia"
+		personality decloaked staying heroic nemesis frugal uninterested
+		ship "Archon (Cloaked)" "Lifted Lorax"
+		to spawn
+			not "flagship model: Heron"
+			not "flagship model: Merganser"
+			not "flagship model: Penguin"
+			not "flagship model: Peregrine"
+			not "flagship model: Petrel"
+			not "flagship model: Puffin"
+			not "flagship model: Tern"
 	on stopover
 		conversation
 			`You have dodged the Archon and landed on the second of the two gas giants where the void sprites live. The hull of your tiny ship creaks and groans under the high atmospheric pressure, but seems to be holding together. Its sensors pick up flocks of void sprites floating between the planet's cloud layers, presumably feeding on airborne creatures too small to detect from this range.`
+				to display
+					has "flagship model: Puffin"
+			`You have landed on the second of the two gas giants where the void sprites live. The hull of your ship creaks and groans under the high atmospheric pressure, but seems to be holding together. Its sensors pick up flocks of void sprites floating between the planet's cloud layers, presumably feeding on airborne creatures too small to detect from this range.`
+				to display
+					not "flagship model: Puffin"
 			`	You also observe some void sprites leaving the planet, soaring upward on thermal updrafts. As they rise, their bodies swell to several times their original size, like an aerostat balloon gaining altitude. But clearly they have another form of propulsion as well, something akin to the antigravity repulsors that human ships use to travel from a planet's surface into orbit.`
 			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will calm down once it sees that you have not attacked or disturbed the Sprites on either of these planets.`
+				to display
+					has "flagship model: Puffin"
+			`	After collecting some atmospheric samples for good measure, you prepare to return to <planet>. Hopefully the Archon will not be angry as you have not attacked or disturbed the Sprites on either of these planets.`
+				to display
+					not "flagship model: Puffin"
 	on visit
 		dialog phrase "generic missing stopover or cargo"
 	on complete
@@ -2062,6 +2094,28 @@ mission "Remnant: Return the Samples"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+		to spawn
+			or
+				has "flagship model: Heron"
+				has "flagship model: Merganser"
+				has "flagship model: Penguin"
+				has "flagship model: Peregrine"
+				has "flagship model: Petrel"
+				has "flagship model: Puffin"
+				has "flagship model: Tern"
+	npc
+		government "Drak"
+		system "Nenia"
+		personality staying heroic nemesis frugal uninterested
+		ship "Archon (Cloaked)" "Lifted Lorax"
+		to spawn
+			not "flagship model: Heron"
+			not "flagship model: Merganser"
+			not "flagship model: Penguin"
+			not "flagship model: Peregrine"
+			not "flagship model: Petrel"
+			not "flagship model: Puffin"
+			not "flagship model: Tern"
 	on accept
 		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the void sprites and a leading expert in non-carbon based lifeforms.`
 	on stopover
