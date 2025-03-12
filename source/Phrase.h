@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "WeightedList.h"
 
 #include <functional>
@@ -30,7 +32,7 @@ class DataNode;
 class Phrase {
 public:
 	// Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-	static std::string ExpandPhrases(const std::string &source);
+	static std::string ExpandPhrases(const std::string &source, const ConditionsStore *vars);
 
 
 public:
@@ -44,7 +46,9 @@ public:
 	bool IsEmpty() const;
 
 	const std::string &Name() const;
-	std::string Get() const;
+
+	// Get a possible value. "to use" will be checked if vars is not null.
+	std::string Get(const ConditionsStore *vars) const;
 
 
 private:
@@ -81,6 +85,8 @@ private:
 	// An individual definition associated with a Phrase name.
 	class Sentence : private std::vector<Part> {
 	public:
+		ConditionSet toUse;
+
 		Sentence(const DataNode &node, const Phrase *parent);
 		void Load(const DataNode &node, const Phrase *parent);
 

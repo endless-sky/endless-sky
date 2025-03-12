@@ -123,7 +123,7 @@ bool News::Matches(const Planet *planet, const ConditionsStore &conditions) cons
 // Get the speaker's name.
 string News::Name() const
 {
-	return names.Get();
+	return names.Get(nullptr);
 }
 
 
@@ -139,5 +139,5 @@ const Sprite *News::Portrait() const
 // Get the speaker's message, chosen randomly.
 string News::Message() const
 {
-	return messages.Get();
+	return messages.Get(nullptr);
 }

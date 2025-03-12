@@ -136,7 +136,7 @@ void ShipManager::Do(PlayerInfo &player) const
 ShipManager ShipManager::Instantiate(const map<string, string> &subs) const
 {
 	ShipManager result = *this;
-	result.name = Format::Replace(Phrase::ExpandPhrases(name), subs);
+	result.name = Format::Replace(Phrase::ExpandPhrases(name, nullptr), subs);
 	return result;
 }
 

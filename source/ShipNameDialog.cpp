@@ -50,7 +50,7 @@ bool ShipNameDialog::Click(int x, int y, int clicks)
 	if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
 	{
 		// TODO: always chooses human names even for alien ships
-		input = GameData::Phrases().Get("civilian")->Get();
+		input = GameData::Phrases().Get("civilian")->Get(nullptr);
 		return true;
 	}
 	return Dialog::Click(x, y, clicks);

@@ -457,7 +457,7 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 		if(loadTimeScan)
 			return dialogText;
 		else
-			return Format::Replace(Phrase::ExpandPhrases(dialogText), *subs);
+			return Format::Replace(Phrase::ExpandPhrases(dialogText, nullptr), *subs);
 	}
 
 	string resultText;
@@ -479,11 +479,11 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 		else if(item.dialogPhrase.IsStock() && item.dialogPhrase->IsEmpty())
 			content = "stock phrase";
 		else
-			content = item.dialogPhrase->Get();
+			content = item.dialogPhrase->Get(nullptr);
 
 		// Expand any ${phrases} and <substitutions>
 		if(!loadTimeScan)
-			content = Format::Replace(Phrase::ExpandPhrases(content), *subs);
+			content = Format::Replace(Phrase::ExpandPhrases(content, nullptr), *subs);
 
 		// Concatenated lines should start with a tab and be preceeded by end-of-line.
 		if(!resultText.empty())

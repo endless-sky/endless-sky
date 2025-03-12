@@ -350,7 +350,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		// multiple ships, append a number to the given ship name.
 		string shipName = name;
 		if(name.empty())
-			shipName = GameData::Phrases().Get("civilian")->Get();
+			shipName = GameData::Phrases().Get("civilian")->Get(nullptr);
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 

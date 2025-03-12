@@ -560,7 +560,7 @@ const Conversation *Government::DeathSentence() const
 
 // Get a hail message (which depends on whether this is an enemy government
 // and if the ship is disabled).
-string Government::GetHail(bool isDisabled) const
+string Government::GetHail(bool isDisabled, const ConditionsStore *vars) const
 {
 	const Phrase *phrase = nullptr;
 
@@ -569,7 +569,7 @@ string Government::GetHail(bool isDisabled) const
 	else
 		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
 
-	return phrase ? phrase->Get() : "";
+	return phrase ? phrase->Get(vars) : "";
 }
 
 

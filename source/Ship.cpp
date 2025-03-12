@@ -1537,9 +1537,9 @@ void Ship::SetHailPhrase(const Phrase &phrase)
 
 
 
-string Ship::GetHail(map<string, string> &&subs) const
+string Ship::GetHail(map<string, string> &&subs, const ConditionsStore *vars) const
 {
-	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	string hailStr = hail ? hail->Get(vars) : government ? government->GetHail(isDisabled, vars) : "";
 
 	if(hailStr.empty())
 		return hailStr;

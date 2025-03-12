@@ -200,7 +200,7 @@ public:
 	// object is given the government's default will be used.
 	const Phrase *GetHailPhrase() const;
 	void SetHailPhrase(const Phrase &phrase);
-	std::string GetHail(std::map<std::string, std::string> &&subs) const;
+	std::string GetHail(std::map<std::string, std::string> &&subs, const ConditionsStore *vars) const;
 	bool CanSendHail(const PlayerInfo &player, bool allowUntranslated = false) const;
 
 	// Access the ship's AI cache, containing the range and expected AI behavior for this ship.

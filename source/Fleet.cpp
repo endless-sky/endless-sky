@@ -522,7 +522,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		bool canBeCarried = ship->CanBeCarried();
 		const Phrase *phrase = ((canBeCarried && fighterNames) ? fighterNames : names);
 		if(phrase)
-			ship->SetName(phrase->Get());
+			ship->SetName(phrase->Get(nullptr));
 		ship->SetGovernment(government);
 		if(canBeCarried && fighterPersonality.IsDefined())
 			ship->SetPersonality(fighterPersonality);
