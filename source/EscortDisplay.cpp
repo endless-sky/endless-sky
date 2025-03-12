@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "System.h"
 
 #include <algorithm>
@@ -44,9 +44,9 @@ void EscortDisplay::Clear()
 
 
 
-void EscortDisplay::Add(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected)
+void EscortDisplay::Add(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected)
 {
-	icons.emplace_back(ship, isHere, fleetIsJumping, isSelected, basicHeight, systemLabelHeight);
+	icons.emplace_back(ship, isHere, systemNameKnown, fleetIsJumping, isSelected, basicHeight, systemLabelHeight);
 }
 
 
@@ -73,8 +73,6 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 	const Color &notReadyToJumpColor = *colors.Get("escort not ready");
 	const Color &hereColor = *colors.Get("escort present");
 	const Color &hostileColor = *colors.Get("escort hostile");
-
-	const Point iconZoneOffset = element->GetBox("icon click zone").Center();
 
 	for(const Icon &escort : icons)
 	{
@@ -121,7 +119,11 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 		// Figure out what scale should be applied to the ship sprite.
 		info.SetSprite("icon", escort.sprite);
 		info.SetOutlineColor(color);
-		zones.push_back(corner + iconZoneOffset);
+		const Point dimensions(width, escort.Height());
+		const Point center(corner + dimensions / 2.);
+		const Rectangle region(center, dimensions);
+		const Rectangle zone = region + Point(0., -5.);
+		zones.emplace_back(zone);
 		stacks.push_back(escort.ships);
 		// Draw the number of ships in this stack.
 		if(escort.ships.size() > 1)
@@ -144,10 +146,8 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 			info.SetBar(levels[i][1], escort.low[i]);
 		}
 
-		const Point dimensions(width, escort.Height());
-		const Point center(corner + dimensions / 2.);
-
 		info.SetRegion(Rectangle(center, dimensions));
+		info.SetRegion(region);
 
 		element->Draw(info);
 	}
@@ -160,7 +160,7 @@ void EscortDisplay::Draw(const Rectangle &bounds) const
 const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 {
 	for(unsigned i = 0; i < zones.size(); ++i)
-		if(point.Distance(zones[i]) < 15.)
+		if(zones[i].Contains(point))
 			return stacks[i];
 
 	static const vector<const Ship *> empty;
@@ -169,7 +169,7 @@ const vector<const Ship *> &EscortDisplay::Click(const Point &point) const
 
 
 
-EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bool isSelected,
+EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, bool fleetIsJumping, bool isSelected,
 		int basicHeight, int systemLabelHeight)
 	: sprite(ship.GetSprite()),
 	isDisabled(ship.IsDisabled()),
@@ -179,8 +179,8 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool fleetIsJumping, bo
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),
-	system((!isHere && ship.GetSystem()) ? ship.GetSystem()->Name() : ""),
-	low{ship.Shields(), ship.Hull(), ship.Energy(), ship.Heat(), ship.Fuel()},
+	system((!isHere && ship.GetSystem()) ? (systemNameKnown ? ship.GetSystem()->DisplayName() : "???") : ""),
+	low{ship.Shields(), ship.Hull(), ship.Energy(), min(ship.Heat(), 1.), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
 {
@@ -240,7 +240,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
+			if(!unstackable.contains(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 
 			height += icon.Height();

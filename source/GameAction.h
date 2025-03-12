@@ -13,14 +13,14 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GAME_ACTION_H_
-#define GAME_ACTION_H_
+#pragma once
 
-#include "ConditionSet.h"
+#include "ConditionAssignments.h"
 #include "ShipManager.h"
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <utility>
@@ -33,6 +33,7 @@ class Mission;
 class Outfit;
 class PlayerInfo;
 class Ship;
+class System;
 class UI;
 
 
@@ -75,9 +76,20 @@ public:
 
 
 private:
+	struct Debt {
+		Debt(int64_t amount) : amount(amount) {}
+
+		int64_t amount = 0;
+		std::optional<double> interest;
+		int term = 365;
+	};
+
+
+private:
 	bool isEmpty = true;
 	std::string logText;
 	std::map<std::string, std::map<std::string, std::string>> specialLogText;
+	std::map<std::string, std::vector<std::string>> specialLogClear;
 
 	std::map<const GameEvent *, std::pair<int, int>> events;
 	std::vector<ShipManager> giftShips;
@@ -86,15 +98,17 @@ private:
 	int64_t payment = 0;
 	int64_t paymentMultiplier = 0;
 	int64_t fine = 0;
+	std::vector<Debt> debt;
+
+	std::optional<std::string> music;
+
+	std::set<const System *> mark;
+	std::set<const System *> unmark;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
 	// When this action is performed, the mission that called this action is failed.
 	bool failCaller = false;
 
-	ConditionSet conditions;
+	ConditionAssignments conditions;
 };
-
-
-
-#endif

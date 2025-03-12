@@ -173,7 +173,7 @@ mission "War Reactions: Navy and Free Worlds Captains"
 			action
 				set "WR: Captains: opposite"
 			`	"Well, Rain went off to Earth to join the Navy Academy years ago," says Captain Fiona.`
-			`	"And Fiona stayed on Longjump and joined the local militia before the Free Worlds was formed," says Captain Rain. "It's not that we wanted to fight each other, but we both believed in our own sides."`
+			`	"And Fiona stayed on Longjump and joined the local militia before the Free Worlds were formed," says Captain Rain. "It's not that we wanted to fight each other, but we both believed in our own sides."`
 				goto questions
 
 
@@ -223,10 +223,10 @@ mission "War Reactions: Syndicate Orphan"
 				`	"I blew up my share of Pug ships."`
 					goto blew
 				`	"Actually, I led the battle."`
-			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device.' After some typing and swiping, he declares, "You're Captain <first> <last>! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled "Syndicate Childcare Device." After some typing and swiping, he declares, "You're Captain <first> <last>! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
 				goto next
 			label me
-			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled 'Syndicate Childcare Device'. After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
+			`	"Oh, hold on," he says, pulling out a durable-looking data pad labeled "Syndicate Childcare Device." After some typing and swiping, he declares, "You led the attack! Wow! It's an honor to meet you. Can I shake your hand?" He puts out his hand, and you shake it.`
 				goto next
 			label blew
 			`	"I bet you did! I wish I was on one of our warships, bravely defending us all. Blowing up Pugs, getting paid. It sounds amazing!"`

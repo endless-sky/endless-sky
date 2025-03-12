@@ -141,10 +141,21 @@ void WrappedText::Wrap(const char *str)
 
 
 
-// Get the height of the wrapped text.
-int WrappedText::Height() const
+/// Get the height of the wrapped text.
+/// With trailingBreak, include a paragraph break after the text.
+int WrappedText::Height(bool trailingBreak) const
 {
-	return height;
+	if(!height)
+		return 0;
+	return height + trailingBreak * paragraphBreak;
+}
+
+
+
+// Return the width of the longest line of the wrapped text.
+int WrappedText::LongestLineWidth() const
+{
+	return longestLineWidth;
 }
 
 
@@ -205,6 +216,8 @@ void WrappedText::SetText(const char *it, size_t length)
 void WrappedText::Wrap()
 {
 	height = 0;
+	longestLineWidth = 0;
+
 	if(text.empty() || !font)
 		return;
 
@@ -303,7 +316,9 @@ void WrappedText::Wrap()
 	// Adjust the spacing of words in the final line of text.
 	AdjustLine(lineBegin, lineWidth, true);
 
-	height = word.y;
+	// We have over-calculated the actual height by an extra paragraph break,
+	// so subtract that.
+	height = max(0, word.y - paragraphBreak);
 }
 
 
@@ -312,6 +327,9 @@ void WrappedText::AdjustLine(size_t &lineBegin, int &lineWidth, bool isEnd)
 {
 	int wordCount = static_cast<int>(words.size() - lineBegin);
 	int extraSpace = wrapWidth - lineWidth;
+
+	if(lineWidth > longestLineWidth)
+		longestLineWidth = lineWidth;
 
 	// Figure out how much space is left over. Depending on the alignment, we
 	// will add that space to the left, to the right, to both sides, or to the

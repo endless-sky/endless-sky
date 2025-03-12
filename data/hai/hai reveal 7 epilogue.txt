@@ -589,7 +589,7 @@ mission "Hai Reveal [D12] Escort Free World Outfitters"
 event "mooncreek main outfitters"
 	planet Mooncreek
 		add outfitter "Lovelace Security"
-		add outfitter "Syndicate Security"
+		add outfitter "Syndicated Security"
 		add outfitter "Hai Security"
 		security 0.8
 

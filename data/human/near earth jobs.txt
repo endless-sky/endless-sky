@@ -53,6 +53,7 @@ mission "To Earth Day celebration [0]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source
@@ -87,6 +88,7 @@ mission "To Earth Day celebration [1]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source
@@ -122,6 +124,7 @@ mission "To Earth Day celebration [2]"
 				month == 4
 				day < 22
 		"days until year end" - 2 * "hyperjumps to system: Sol" > 253
+		has "landing access: Earth"
 	to fail
 		month * 100 + day >= 422
 	source
@@ -298,7 +301,7 @@ mission "Tycho Crater Shipyards Shipment [0]"
 
 mission "Tycho Crater Shipyards Shipment [1]"
 	name "Shipment to <planet>"
-	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent shipbuilding company of the Republic Navy Yard and the main shipyard of Sol. Payment is <payment>."
+	description "Deliver <cargo> to <destination>, the home of Tycho Crater Shipyards, a constituent of the Republic Navy Yard. Payment is <payment>."
 	cargo "Ship Alloys" 5 2 .1
 	job
 	repeat

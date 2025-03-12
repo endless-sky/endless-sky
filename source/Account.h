@@ -13,13 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ACCOUNT_H_
-#define ACCOUNT_H_
+#pragma once
 
 #include "Mortgage.h"
 
 #include <cstdint>
 #include <map>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -47,7 +47,7 @@ public:
 	// Structural income.
 	const std::map<std::string, int64_t> &SalariesIncome() const;
 	int64_t SalariesIncomeTotal() const;
-	void SetSalaryIncome(std::string name, int64_t amount);
+	void SetSalaryIncome(const std::string &name, int64_t amount);
 
 	// Overdue crew salaries:
 	int64_t CrewSalariesOwed() const;
@@ -60,13 +60,15 @@ public:
 	const std::vector<Mortgage> &Mortgages() const;
 	void AddMortgage(int64_t principal);
 	void AddFine(int64_t amount);
+	void AddDebt(int64_t amount, std::optional<double> interest, int term);
 	int64_t Prequalify() const;
 	// Assets:
 	int64_t NetWorth() const;
 
 	// Find out the player's credit rating.
 	int CreditScore() const;
-	// Get the total amount owed for "Mortgage", "Fine", or both.
+	// Get the total amount owed for a specific type of mortgage, or all
+	// mortgages if a blank string is provided.
 	int64_t TotalDebt(const std::string &type = "") const;
 
 
@@ -91,7 +93,3 @@ private:
 	// daily income, which is used to calculate how big a mortgage you can afford.
 	std::vector<int64_t> history;
 };
-
-
-
-#endif

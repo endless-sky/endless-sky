@@ -101,7 +101,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 		WriteSorted(ships,
 			[](const ShipElement *lhs, const ShipElement *rhs)
 				{ return lhs->first->TrueModelName() < rhs->first->TrueModelName(); },
-			[=, &out](const ShipElement &sit)
+			[=, this, &out](const ShipElement &sit)
 			{
 				out.Write("ship", sit.first->TrueModelName());
 				out.BeginChild();
@@ -120,7 +120,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 		WriteSorted(outfits,
 			[](const OutfitElement *lhs, const OutfitElement *rhs)
 				{ return lhs->first->TrueName() < rhs->first->TrueName(); },
-			[=, &out](const OutfitElement &oit)
+			[=, this, &out](const OutfitElement &oit)
 			{
 				out.Write("outfit", oit.first->TrueName());
 				out.BeginChild();
@@ -164,12 +164,13 @@ void Depreciation::Init(const vector<shared_ptr<Ship>> &fleet, int day)
 
 
 // Add a ship, and all its outfits, to the depreciation record.
-void Depreciation::Buy(const Ship &ship, int day, Depreciation *source)
+void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool chassisOnly)
 {
 	// First, add records for all outfits the ship is carrying.
-	for(const auto &it : ship.Outfits())
-		for(int i = 0; i < it.second; ++i)
-			Buy(it.first, day, source);
+	if(!chassisOnly)
+		for(const auto &it : ship.Outfits())
+			for(int i = 0; i < it.second; ++i)
+				Buy(it.first, day, source);
 
 	// Then, check the base day for the ship chassis itself.
 	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
@@ -228,7 +229,7 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 // Get the value of an entire fleet.
-int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) const
+int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool chassisOnly) const
 {
 	map<const Ship *, int> shipCount;
 	map<const Outfit *, int> outfitCount;
@@ -238,8 +239,9 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day) cons
 		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
 		++shipCount[base];
 
-		for(const auto &it : ship->Outfits())
-			outfitCount[it.first] += it.second;
+		if(!chassisOnly)
+			for(const auto &it : ship->Outfits())
+				outfitCount[it.first] += it.second;
 	}
 
 	int64_t value = 0;
@@ -297,7 +299,7 @@ int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 
 // "Sell" an item, removing it from the given record and returning the base
 // day for its depreciation.
-int Depreciation::Sell(map<int, int> &record)
+int Depreciation::Sell(map<int, int> &record) const
 {
 	// If we're a planet, we start by selling the oldest, cheapest thing.
 	auto it = (isStock ? record.begin() : --record.end());

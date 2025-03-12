@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "Color.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -26,9 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -92,17 +92,7 @@ void LogbookPanel::Draw()
 		Point(1., Screen::Height()),
 		lineColor);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		// If the screen is high enough, the edge sprite should repeat.
-		double spriteHeight = edgeSprite->Height();
-		Point pos(
-			Screen::Left() + WIDTH + .5 * edgeSprite->Width(),
-			Screen::Top() + .5 * spriteHeight);
-		for( ; pos.Y() - .5 * spriteHeight < Screen::Bottom(); pos.Y() += spriteHeight)
-			SpriteShader::Draw(edgeSprite, pos);
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);
 
 	// Colors to be used for drawing the log.
 	const Font &font = FontSet::Get(14);

@@ -16,6 +16,8 @@
 
 outfit "Inhibitor Cannon"
 	category "Guns"
+	series "Guns"
+	index 03010
 	licenses
 		Remnant
 	cost 471000
@@ -38,10 +40,10 @@ outfit "Inhibitor Cannon"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `Nearly a century ago, a Remnant scout exploring space north of the Ember Waste came under fire from an alien fleet armed with weapons that interfered with the scout's engines. The story says that the Remnant captain calmly told her crew, "We aren't going home until we steal that weapon." That alien technology became the basis of the Inhibitor Cannon.`
 	description `	Although the Remnant appreciated the original weapon, they were disappointed that it was too big to fit on most of their ships. Instead of letting their effort go to waste, they instead opted to put their newfound knowledge to use creating a weapon suitable for their more nimble craft. Thus, the Inhibitor is excellent at controlling engagement distances, keeping targets at range by both pushing them backward with the impact of each shot while also slowing their approach by interfering with their engines.`
@@ -58,6 +60,8 @@ effect "inhibitor impact"
 
 outfit "Inhibitor Turret"
 	category "Turrets"
+	series "Turrets"
+	index 03010
 	licenses
 		Remnant
 	cost 1371000
@@ -76,7 +80,7 @@ outfit "Inhibitor Turret"
 		sound "inhibitor"
 		"hit effect" "inhibitor impact" 3
 		"inaccuracy" .5
-		"turret turn" 3.5
+		"turret turn" 3.6
 		"velocity" 36
 		"random velocity" .5
 		"lifetime" 24
@@ -84,10 +88,10 @@ outfit "Inhibitor Turret"
 		"cluster"
 		"firing energy" 26
 		"firing heat" 45.5
-		"firing force" 13
+		"firing force" 19.5
 		"shield damage" 26
 		"hull damage" 19.5
-		"hit force" 39
+		"hit force" 58.5
 		"slowing damage" .5
 	description `While cannons that can interfere with a ship's engines are useful in any situation, the Remnant quickly decided that it would be even more useful as a turret that their ships could use to impede those chasing after them. These small Inhibitor Turrets are typically found primarily on Pelicans trying to outrun opponents rather than defeat them.`
 	description `Although these turrets are unremarkable in terms of performance, the comparatively recent perfection of a technique of installing the bulk of the weapon itself externally on the turret mount instead of under the base has resulted in a weapon that takes comparatively little outfit space. It does, however, still add quite a bit more to the mass of the ship.`
@@ -95,6 +99,8 @@ outfit "Inhibitor Turret"
 
 outfit "Thrasher Cannon"
 	category "Guns"
+	series "Guns"
+	index 03020
 	licenses
 		Remnant
 	cost 218000
@@ -133,6 +139,8 @@ effect "thrasher impact"
 
 outfit "Thrasher Turret"
 	category "Turrets"
+	series "Turrets"
+	index 03020
 	licenses
 		Remnant
 	cost 980000
@@ -152,7 +160,7 @@ outfit "Thrasher Turret"
 		sound "thrasher"
 		"hit effect" "thrasher impact"
 		"inaccuracy" 6
-		"turret turn" 2.4
+		"turret turn" 2
 		"velocity" 10
 		"lifetime" 36
 		"reload" 5
@@ -165,6 +173,8 @@ outfit "Thrasher Turret"
 
 outfit "Point Defense Turret"
 	category "Turrets"
+	series "Anti-Missile"
+	index 03010
 	licenses
 		Remnant
 	cost 1120000
@@ -191,7 +201,7 @@ effect "point defense fire"
 		"frame rate" 17
 		"no repeat"
 	sound "point defense"
-
+	"sound category" "anti-missile"
 	lifetime 10
 	"velocity scale" .5
 
@@ -213,6 +223,8 @@ effect "point defense die"
 outfit "EMP Torpedo"
 	plural "EMP Torpedoes"
 	category "Ammunition"
+	series "Ammunition"
+	index 03010
 	licenses
 		Remnant
 	cost 4400
@@ -223,6 +235,8 @@ outfit "EMP Torpedo"
 
 outfit "EMP Torpedo Storage Bay"
 	category "Ammunition"
+	series "Ammunition"
+	index 03011
 	licenses
 		Remnant
 	cost 98000
@@ -237,6 +251,8 @@ outfit "EMP Torpedo Storage Bay"
 
 outfit "EMP Torpedo Bay"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03010
 	licenses
 		Remnant
 	cost 583000
@@ -277,7 +293,7 @@ outfit "EMP Torpedo Bay"
 		"hull damage" 100
 		"ion damage" 48
 		"scrambling damage" 48
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 
@@ -285,6 +301,8 @@ outfit "EMP Torpedo Bay"
 
 outfit "Teciimach Canister"
 	category "Ammunition"
+	series "Ammunition"
+	index 03020
 	licenses
 		Remnant
 	cost 35500
@@ -296,6 +314,8 @@ outfit "Teciimach Canister"
 
 outfit "Teciimach Canister Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 03021
 	licenses
 		Remnant
 	cost 295000
@@ -310,6 +330,8 @@ outfit "Teciimach Canister Rack"
 
 outfit "Teciimach Bay"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03030
 	licenses
 		Remnant
 	cost 1525000
@@ -353,13 +375,15 @@ outfit "Teciimach Bay"
 		"ion damage" 65
 		"scrambling damage" 65
 		"energy damage" 2000
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 95
 	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
 
 outfit "Teciimach Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03020
 	licenses
 		Remnant
 	cost 762500
@@ -405,7 +429,7 @@ outfit "Teciimach Pod"
 		"ion damage" 60
 		"scrambling damage" 60
 		"energy damage" 2000
-		"hit force" 90
+		"hit force" 135
 		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
 	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
@@ -444,6 +468,8 @@ effect "emp spark"
 
 outfit "Ember Tear"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 03040
 	licenses
 		"Remnant Capital"
 	cost 270000000
@@ -467,7 +493,7 @@ outfit "Ember Tear"
 		"safe"
 		"lifetime" 1
 		"reload" 1
-		"firing force" 1
+		"firing force" 1.5
 		"blast radius" 150
 		"firing energy" 230
 		"firing fuel" 10
@@ -531,6 +557,8 @@ effect "ember tear vortex"
 
 outfit "Crystal Capacitor"
 	category "Power"
+	series "Batteries"
+	index 03010
 	licenses
 		Remnant
 	cost 57000
@@ -547,6 +575,8 @@ outfit "Crystal Capacitor"
 
 outfit "Millennium Cell"
 	category "Power"
+	series "Generators"
+	index 03010
 	licenses
 		Remnant
 	cost 553000
@@ -562,6 +592,8 @@ outfit "Millennium Cell"
 
 outfit "Epoch Cell"
 	category "Power"
+	series "Generators"
+	index 03020
 	licenses
 		Remnant
 	cost 2123000
@@ -577,6 +609,8 @@ outfit "Epoch Cell"
 
 outfit "Aeon Cell"
 	category "Power"
+	series "Generators"
+	index 03030
 	licenses
 		Remnant
 	cost 4384000
@@ -592,6 +626,8 @@ outfit "Aeon Cell"
 
 outfit "Thermoelectric Cooler"
 	category "Systems"
+	series "Cooling"
+	index 03010
 	licenses
 		Remnant
 	cost 100000
@@ -604,6 +640,8 @@ outfit "Thermoelectric Cooler"
 
 outfit "Emergency Ramscoop"
 	category "Systems"
+	series "Ramscoops"
+	index 03010
 	licenses
 		Remnant
 	cost 72000
@@ -611,10 +649,12 @@ outfit "Emergency Ramscoop"
 	"mass" 4
 	"outfit space" -4
 	"ramscoop" 1.25
-	description "The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their 'gills', which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded."
+	description `The Ember Waste is the sort of place where only a very foolish captain would travel without some sort of device for replenishing hyperspace fuel. While this risk is non-existent in Remnant ships due to their "gills," which are effectively built-in ramscoops, some captains prefer to speed up the process by adding additional capacity. For the rare captain braving the area in non-Remnant ships, this ramscoop is not particularly powerful, but it allows a ship to explore without fear of getting stranded.`
 
 outfit "NDR-114 Android"
 	category "Unique"
+	series "Functional Unique"
+	index 40
 	cost 120000
 	thumbnail "outfit/android"
 	"required crew" -1
@@ -626,6 +666,8 @@ outfit "NDR-114 Android"
 
 outfit "Research Laboratory"
 	category "Systems"
+	series "Scanners"
+	index 03020
 	licenses
 		Remnant
 	cost 500000
@@ -643,6 +685,8 @@ outfit "Research Laboratory"
 
 outfit "Quantum Key Stone"
 	category "Systems"
+	series "Drives"
+	index 60
 	licenses
 		Remnant
 	cost 240000
@@ -654,6 +698,8 @@ outfit "Quantum Key Stone"
 
 outfit "Salvage Scanner"
 	category "Systems"
+	series "Scanners"
+	index 03010
 	licenses
 		Remnant
 	cost 410000
@@ -672,16 +718,18 @@ outfit "Salvage Scanner"
 
 outfit "Bellows-Class Afterburner"
 	category "Engines"
+	series "Afterburners"
+	index 03010
 	"cost" 640000
 	thumbnail "outfit/remnant afterburner"
 	"mass" 8
-	"outfit space" -7
-	"engine capacity" -7
+	"outfit space" -11
+	"engine capacity" -11
 	"slowing resistance" 0.01
-	"afterburner thrust" 125.0
-	"afterburner fuel" 0.65
-	"afterburner energy" 6.0
-	"afterburner heat" 8.0
+	"afterburner thrust" 187.5
+	"afterburner fuel" 1.3
+	"afterburner energy" 6
+	"afterburner heat" 18
 	"afterburner effect" "remnant afterburner"
 	description "The Remnant live in an environment where the raw materials for fuel are relatively common on the winds of the nebula. As such, their ships incorporate significant built-in ramscoop technology, and while they are reluctant to waste fuel, they aren't afraid of using it when needed. Far more important is the ability for their ships to quickly and efficiently enter or exit combat as needed. At the end of the day, it is continued life that is paramount."
 	description "	The Bellows-Class Afterburner embodies this philosophy by providing captains with a tool that allows them to make great leaps of acceleration, typically during evasive maneuvers or to catch up with a fleeing target. Due to their enormous fuel usage, only the most specialized of ships have enough fuel to use these for more than a few seconds at a time before completely running out of fuel."
@@ -690,11 +738,14 @@ effect "remnant afterburner"
 	sprite "effect/remnant afterburner/remnant afterburner"
 		"frame rate" 10
 	sound "remnant afterburner"
+	"sound category" "afterburner"
 
 
 
 outfit "Anvil-Class Engine"
 	category "Engines"
+	series "Engines"
+	index 03010
 	licenses
 		Remnant
 	"cost" 290000
@@ -702,13 +753,13 @@ outfit "Anvil-Class Engine"
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
-	"thrust" 13.8
+	"thrust" 20.7
 	"thrusting energy" 2.05
 	"thrusting heat" 1.95
-	"turn" 369.6
+	"turn" 554.4
 	"turning energy" 1.05
 	"turning heat" 1.1
-	"reverse thrust" 10.3
+	"reverse thrust" 15.45
 	"reverse thrusting energy" 1.5
 	"reverse thrusting heat" 1.45
 	"slowing resistance" 0.02
@@ -725,6 +776,8 @@ outfit "Anvil-Class Engine"
 
 outfit "Crucible-Class Thruster"
 	category "Engines"
+	series "Engines"
+	index 03021
 	licenses
 		Remnant
 	"cost" 200000
@@ -732,10 +785,10 @@ outfit "Crucible-Class Thruster"
 	"mass" 20
 	"outfit space" -20
 	"engine capacity" -20
-	"thrust" 16.55
+	"thrust" 24.825
 	"thrusting energy" 2.1
 	"thrusting heat" 2.0
-	"reverse thrust" 12.4
+	"reverse thrust" 18.6
 	"reverse thrusting energy" 1.6
 	"reverse thrusting heat" 1.5
 	"slowing resistance" 0.012
@@ -749,6 +802,8 @@ outfit "Crucible-Class Thruster"
 
 outfit "Forge-Class Thruster"
 	category "Engines"
+	series "Engines"
+	index 03031
 	licenses
 		Remnant
 	"cost" 441000
@@ -756,10 +811,10 @@ outfit "Forge-Class Thruster"
 	"mass" 39
 	"outfit space" -39
 	"engine capacity" -39
-	"thrust" 34
+	"thrust" 51
 	"thrusting energy" 4.4
 	"thrusting heat" 4.25
-	"reverse thrust" 25.5
+	"reverse thrust" 38.25
 	"reverse thrusting energy" 3.3
 	"reverse thrusting heat" 3.2
 	"slowing resistance" 0.024
@@ -773,6 +828,8 @@ outfit "Forge-Class Thruster"
 
 outfit "Smelter-Class Thruster"
 	category "Engines"
+	series "Engines"
+	index 03041
 	licenses
 		Remnant
 	"cost" 984000
@@ -780,10 +837,10 @@ outfit "Smelter-Class Thruster"
 	"mass" 76
 	"outfit space" -76
 	"engine capacity" -76
-	"thrust" 71.1
+	"thrust" 106.65
 	"thrusting energy" 9.5
 	"thrusting heat" 9.6
-	"reverse thrust" 53.3
+	"reverse thrust" 79.95
 	"reverse thrusting energy" 7.1
 	"reverse thrusting heat" 7.2
 	"slowing resistance" 0.048
@@ -797,6 +854,8 @@ outfit "Smelter-Class Thruster"
 
 outfit "Crucible-Class Steering"
 	category "Engines"
+	series "Engines"
+	index 03020
 	licenses
 		Remnant
 	"cost" 172000
@@ -804,7 +863,7 @@ outfit "Crucible-Class Steering"
 	"mass" 14
 	"outfit space" -14
 	"engine capacity" -14
-	"turn" 456
+	"turn" 684
 	"turning energy" 1.32
 	"turning heat" 1.4
 	"slowing resistance" 0.008
@@ -815,6 +874,8 @@ outfit "Crucible-Class Steering"
 
 outfit "Forge-Class Steering"
 	category "Engines"
+	series "Engines"
+	index 03030
 	licenses
 		Remnant
 	"cost" 393000
@@ -822,7 +883,7 @@ outfit "Forge-Class Steering"
 	"mass" 28
 	"outfit space" -28
 	"engine capacity" -28
-	"turn" 995
+	"turn" 1492.5
 	"turning energy" 2.64
 	"turning heat" 3.0
 	"slowing resistance" 0.016
@@ -833,6 +894,8 @@ outfit "Forge-Class Steering"
 
 outfit "Smelter-Class Steering"
 	category "Engines"
+	series "Engines"
+	index 03040
 	licenses
 		Remnant
 	"cost" 880000
@@ -840,7 +903,7 @@ outfit "Smelter-Class Steering"
 	"mass" 55
 	"outfit space" -55
 	"engine capacity" -55
-	"turn" 2123
+	"turn" 3184.5
 	"turning energy" 5.21
 	"turning heat" 6.2
 	"slowing resistance" 0.032
@@ -855,6 +918,8 @@ outfit "Smelter-Class Steering"
 
 outfit "Tuning Rifle"
 	category "Hand to Hand"
+	series "H2H"
+	index 03010
 	licenses
 		Remnant
 	cost 22000
@@ -870,6 +935,8 @@ outfit "Tuning Rifle"
 
 outfit "Void Rifle"
 	category "Unique"
+	series "Functional Unique"
+	index 50
 	licenses
 		Remnant
 	cost 1000000
@@ -887,6 +954,8 @@ outfit "Void Rifle"
 outfit "Void Sprite Parts"
 	plural "Void Sprite Parts"
 	category "Unique"
+	series "Non-Functional Unique"
+	index 20
 	cost 500
 	thumbnail "outfit/void sprite parts"
 	"flotsam sprite" "effect/void sprite parts/void sprite parts"
@@ -904,10 +973,14 @@ outfit "Void Sprite Parts"
 
 outfit "Remnant License"
 	category "Licenses"
+	series "Licenses"
+	index 03010
 	thumbnail "outfit/remnant license"
 	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
 
 outfit "Remnant Capital License"
 	category "Licenses"
+	series "Licenses"
+	index 03020
 	thumbnail "outfit/remnant capital license"
 	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."

@@ -16,29 +16,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameLoadingPanel.h"
 
 #include "Angle.h"
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "GameData.h"
-#include "MaskManager.h"
+#include "image/MaskManager.h"
 #include "MenuAnimationPanel.h"
 #include "MenuPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Ship.h"
-#include "SpriteSet.h"
-#include "StarField.h"
+#include "image/SpriteSet.h"
+#include "shader/StarField.h"
 #include "System.h"
+#include "TaskQueue.h"
 #include "UI.h"
 
 #include "opengl.h"
 
 
 
-GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, const Conversation &conversation,
+GameLoadingPanel::GameLoadingPanel(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 	UI &gamePanels, bool &finishedLoading)
-	: player(player), conversation(conversation), gamePanels(gamePanels),
+	: player(player), queue(queue), conversation(conversation), gamePanels(gamePanels),
 		finishedLoading(finishedLoading), ANGLE_OFFSET(360. / MAX_TICKS)
 {
 	SetIsFullScreen(true);
@@ -50,8 +51,7 @@ void GameLoadingPanel::Step()
 {
 	progress = static_cast<int>(GameData::GetProgress() * MAX_TICKS);
 
-	// While the game is loading, upload sprites to the GPU.
-	GameData::ProcessSprites();
+	queue.ProcessSyncTasks();
 	if(GameData::IsLoaded())
 	{
 		// Now that we have finished loading all the basic sprites and sounds, we can look for invalid file paths,

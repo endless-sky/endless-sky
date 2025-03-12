@@ -31,7 +31,7 @@ news "anonymous quarg"
 		word
 			"a merchant"
 			"a merchant captain"
-			"a travelling merchant"
+			"a traveling merchant"
 			"a captain"
 		word
 			"?"
@@ -467,8 +467,7 @@ news "quarg anywhere"
 news "ringworld quarg"
 	location
 		attributes "quarg"
-		attributes "station"
-		not planet "Lagrange"
+		attributes "ringworld"
 	name
 		word
 			"Quarg"
@@ -483,7 +482,7 @@ phrase "ringworld quarg phrases"
 		`A Quarg is standing uncomfortably close to the walls, tapping it slowly with both palms. You observe it for a few minutes, until it stops abruptly and goes about its business like the others.`
 		`Usual activity in the ringworld is stopped by a few dozen Quarg in heavily armored suits moving at a quick pace and escorting a large, tube-like container which floats to accompany them. Other Quarg are quick to make way for the group, allowing themselves a great distance from the armored Quarg.`
 		`Some Quarg scientists are dragging along a whole train of linked lab carts, packed fully with utensils, chemicals, components, and reagents. It takes nearly half an hour before you see the last of the carts pass by.`
-		`Hundreds of Quarg are blocking most of one of the largest, widest corridors in the ring. They're all sitting down on the floor, staring down blankly in complete silence, with a scarce few seldom glancing up to the ceiling only to move their gaze downwards once again. You notice that Quarg who witness the scene stop all conversation and move elsewhere.`
+		`Hundreds of Quarg are blocking one of the largest, widest corridors in the ring. They're all sitting down on the floor, staring down blankly in complete silence, with a scarce few seldom glancing up to the ceiling only to move their gaze downwards once again. You notice that Quarg who witness the scene stop all conversation and move elsewhere.`
 		`One Quarg walks up to you, and stares down into your eyes. It stays there in silence, just looking at you, before finally blinking once and moving along, disappearing into the ring's hallways.`
 		`A Quarg is overseeing the unloading of dozens of ship-sized cargo containers that have arrived in the ring. It seems to mentally count the cargo as it's moved out in perfectly identical sets. After what must've been thousands of cargo tons, it clicks off one of dozens of small dots on a data pad and begins counting again.`
 		`Two Quarg ships land at the same time a few hangar bays away from one another. They open their hatches, and what must be the ships' entire crews come out. Without a hitch the crew of each ship boards the other's ship and depart.`
@@ -506,3 +505,7 @@ phrase "quarg poems on species"
 		"Make strongest neighbor / See through the guise / Let none forget / The curse of the wise"
 		"With skin of stone / Might, meek, guile / Abilities to hone / And wars to pile"
 		"Twice-blessed pilgrims / Myths of the past / Masses preserve / The royal caste"
+		"Adrift by the clouds / Under watchful eyes / Begin now a journey / To the greatest skies"
+		"Behind wuthering waves / Forgotten tales of yore / Whether decadence or wonder / Claim back forevermore"
+		"Ghosts beyond the grave / Machinations of the mind / Wrath of suns lights the path / To home left behind"
+		"Wrenched whispers / Of stars torn / Estranged twins / Our souls unborn"

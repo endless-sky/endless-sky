@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SHIPYARD_PANEL_H_
-#define SHIPYARD_PANEL_H_
+#pragma once
 
 #include "ShopPanel.h"
 
@@ -46,17 +45,20 @@ protected:
 	virtual void DrawItem(const std::string &name, const Point &point) override;
 	virtual int DividerOffset() const override;
 	virtual int DetailWidth() const override;
-	virtual int DrawDetails(const Point &center) override;
+	virtual double DrawDetails(const Point &center) override;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
 	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
 	virtual void Sell(bool toStorage = false) override;
 	virtual bool CanSellMultiple() const override;
+	virtual int FindItem(const std::string &text) const override;
 
 
 private:
 	void BuyShip(const std::string &name);
-	void SellShip();
+	void SellShipAndOutfits();
+	void SellShipChassis();
+	void SellShip(bool toStorage);
 
 
 private:
@@ -64,6 +66,3 @@ private:
 
 	Sale<Ship> shipyard;
 };
-
-
-#endif
