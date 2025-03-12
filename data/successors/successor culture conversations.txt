@@ -214,7 +214,14 @@ mission "Successors: Stage Play"
 		random < 5
 	on offer
 		conversation
-			`Walking through the spaceport, you notice several posters have been put up to advertise some sort of performance, each one showing an outstretched Successor standing atop a brilliant blue sphere that swirls with octopoid forms. "Deathless Myiara," reads the title. As you look at the poster, a passing Successor takes notice and greets you, splaying their arms in the traditional manner. "The honored alien!" they say, "Doth the play arouse tonight thy interest? 'Tis a good company that puts it on."`
+			branch "myiara system"
+				has "flagship system: Myiara-Nnesa"
+			`Walking through the spaceport, you notice several posters have been put up to advertise some sort of performance, each one showing an outstretched Successor standing atop a brilliant blue sphere that swirls with octopoid forms. "Deathless Myiara," reads the title.`
+				goto decide
+			label "myiara system"
+			`Walking through the spaceport, you notice several posters have been put up to advertise some sort of performance, each one showing an outstretched Successor standing atop a brilliant blue sphere that swirls with octopoid forms. "Deathless Myiara," reads the title, the word "Myiara" curiously echoing the name of this star system.`
+			label decide
+			`	As you look at the poster, a passing Successor takes notice and greets you, splaying their arms in the traditional manner. "The honored alien!" they say, "Doth the play arouse tonight thy interest? 'Tis a good company that puts it on."`
 			choice
 				`	"Why not? Can you show me where it is?"`
 				`	"I'm not that interested in theater."`
