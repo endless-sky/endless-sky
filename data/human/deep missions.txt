@@ -1980,7 +1980,7 @@ mission "Deep: Scientist Rescue 0"
 					decline
 			
 			label situation
-			`	"A number of scientists have been kidnapped during a venture to the Far North. Their intent was to research the Wolf-Rayet star in the Gorvi system. Due to this system's proximity to the anarchist worlds, very little research has been conducted on it. Pierre, Hannah, and... and Laura were all aboard the Star Queen which contained the scientists. Since you know them I only thought it fair that you should know about the situation.`
+			`	"A number of scientists have been kidnapped during a venture to the Far North. Their intent was to research the Wolf-Rayet star in the Gorvi system. Due to this system's proximity to the anarchist worlds, very little research has been conducted on it. Pierre, Hannah, and... and Laura were all aboard the Star Queen which contained the scientists. Since you know them I only thought it fair that you should know about the situation."`
 			`	"It was yesterday that we were informed of the kidnapping. The Star Queen and its escorts were preparing to refuel on Prime in the Betelgeuse system when a large pirate fleet entered the system. The Star Queen's escorts were swiftly destroyed, and she was captured. We lost all communications with the vessel after that. Would you be willing to help us locate the Star Queen while we prepare a rescue force?"`
 			choice
 				`	"I would be glad to help. I'll prepare my ship immediately."`
