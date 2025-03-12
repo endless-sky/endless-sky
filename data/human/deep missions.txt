@@ -8282,16 +8282,40 @@ mission "Hroar's Haulers 25"
 				`	(Shrug.)`
 			`	"Fair enough." He nods and shouts, "Havi!"`
 			label havi
-			`	The bartender saunters over with a tablet in hand.`
-			`	"Obviously, the pay is less than it woulda been due to the loss of Solvi's fleet. That's a cost every single one of us is gonna eat. Still your percentage as the hirthr comes out to... what is it Havi?"`
+			`	The bartender saunters over with a tablet in hand. The swinging doors creek and you notice Haulers entering the saloon.`
+			`	"Obviously, the pay is less than it woulda been due to the loss of Solvi's fleet. That's a cost every single one of us is gonna eat. Still your cut as the hirthr comes out to... what is it Havi?"`
 			`	Havi carefully scans the tablet, "787,411 credits."`
-			`	"Transfer it over it, Havi." Hroar says.`
+			`	"787,411 credits!" Hroar says brightly. "I toldja you'd see some coin eventually. Transfer it over, Havi."`
 			`	"Aye, boss." Havi's non-prosthetic fingers flick over the pad, "Done."`
-			`	"See," Hroar says good naturedly, "I toldja you'd see some coin eventually. But listen, <first>, I got work to do sorting out the returned fleet. So, take your money, buy something shiney, and keep an ear out. I'll be calling you back here real soon. There's tradiions that need respectin'`
-			`	Yngvar nods to you as you start rise, "Just keep an our inbox."`
+			`	The din of conversation fills the bar Haulers continue to fill the it.`
+			`	"I'm thinking it's about time, Hartha-Hroar." Yngvar's deep voice rumbles.`
+			`	Hroar scans the bar, "That it is." He slides out of the booth and approaches the bar.`
+			`	Yngvar gestures after him, "Slide over, <last>. Let me out."`
 			action
 				payment 787411
-				decline
+			choice
+				`	(Slide out of the booth.)`
+			`	Yngvar pushes past you makes his way to the back of the room. Hroar climbs ontop of the bar. The room is now filled with Haulers.`
+			`	Hroar roars above the din, "Well ain't this a sight for sore eyes! Been too long since we've had the Saloon filled to the brim with moon-faced Long Haulers stinking of the Gap!"`
+			`	The crowd roars back its approval.`
+			`	"Before ya'll get too skitr-faced to stand, or stumble off into some dust-caked brothel, we got some critical clerical work to see to; aint that right fellas?"`
+			`	The crowd again roars its affirmation.`
+			`	"Now, as you all know, you ain't a Hauler 'till you've hauled long, and we've got crew here ready to turn in their green horns for red jackets!"`
+			`	Yngvar suddenly appears beneath Hroar and slaps a pile of red Hauler jackets on the bar.`
+			`	Hroar begins announcing names in no discernable order, while newly christened Haulers march up among their cheering peers and grab their very own Hauler jacket.`
+			`	"And let's not forget Captain <last>, the hirthr who herded the fleet through the Gap!"`
+			choice
+				`	(Grab your jacket.)`
+					goto jacket
+				`	(Try to say a few words.)`
+			`	You attempt to speak but are quickly drawn out by jovial haulers. This isn't the team for speeches. This is the time to grab your jacket.`
+			choice
+				`	(Grab your jacket)`
+			label jacket
+			`	`
+
+
+
 
 			label best
 			`	Hroar nods slowly, "Can't say I wish it weren't a little better, but I hear ya. Some things are outta our hands. Well, let's see about paying, huh? Maybe that'll put a sparkle back in those formely greenhorn eyes of yours."`
@@ -8299,7 +8323,7 @@ mission "Hroar's Haulers 25"
 				goto havi
 
 			label payme
-			`	Hroar frowns, "I s'pose it. Despite the bumps, I do appreciate your work, <first>, and I am a man of my word."`
+			`	Hroar frowns, "I s'pose it is. Despite the bumps, I do appreciate your work, <first>, and I am a man of my word."`
 			`	"Havi!" Hroar hollars toward the bar.`
 				goto havi
 
