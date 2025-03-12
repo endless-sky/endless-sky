@@ -50,7 +50,7 @@ namespace {
 					if(amount <= 0.)
 					{
 						child.PrintTrace("Warning: the \"atrocity\" effect will not work"
-							" with no reputation effect (\'0\') associated, defaulting to 0.1:");
+							" without a positive, non-zero penalty to reputation, defaulting to 0.1:");
 						amount = .1;
 					}
 				}
