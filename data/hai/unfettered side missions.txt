@@ -400,7 +400,7 @@ mission "Hai Legacy 3"
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
 			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
-		dialog `You receive a message from the Unfettered ship. "We surrender. If you land now, you will receive your reward."`
+		dialog `You receive a message from the Unfettered ship. "We surrender. Land on Firelode to receive your reward."`
 	npc disable
 		government "Hai (Unfettered Challenger)"
 		to spawn
@@ -415,7 +415,7 @@ mission "Hai Legacy 3"
 			dialog `You receive a hail from Mera, who sounds quite angry. "Destroying the ship can only be due to either incompetence or evil intent, and we will not tolerate either!"`
 			"reputation: Hai (Unfettered)" = "old reputation: Hai (Unfettered)"
 			fail
-		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land and claim your reward.`
+		dialog `You have managed to defeat the Unfettered challenger. Now it's time to land on Firelode and claim your reward.`
 	npc
 		government "Hai (Unfettered)"
 		to spawn
