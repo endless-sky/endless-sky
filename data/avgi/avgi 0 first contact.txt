@@ -390,7 +390,7 @@ mission "Avgi: Humans From the Deep"
 		clear "avgi: asked about humans"
 		clear "avgi: asked about aberrant"
 	on complete
-		log "Reminders" "Avgi" `Come back to Aktina Cylinder in the Concerto system when you have a free bunk to take Darius off the station.`
+		log "Reminders" "Avgi" `Going to return to <destination> with a free bunk to take Darius off the station.`
 
 
 
@@ -499,7 +499,7 @@ mission "Avgi: Defend Ensemble 1"
 			`	He looks at you, hopeful. "We've got to do something. The Avgi are assembling a relief force around the Navigeo Yards, their big shipyard not too far from here. Come on, let's join it."`
 				accept
 	on complete
-		log "Reminders" "Avgi" `Come back to Navigeo Yards in the Symphony system when you have a free bunk to transport Darius to Weledos.`
+		log "Reminders" "Avgi" `Going to <destination> with a free bunk to transport Darius to Weledos.`
 
 
 mission "Avgi: Defend Ensemble 2"
@@ -664,7 +664,7 @@ mission "Avgi: Defend Ensemble 2"
 				`	"No, the <ship> isn't made for combat."`
 			action
 				set "avgi: rescue intro"
-				log "Reminders" "Avgi" `You have a mission to wrap up on Weledos in the Ensemble system that requires 12 bunks.`
+				log "Reminders" "Avgi" `Going to wrap up a mission on <destination> that requires 12 bunks.`
 			`	"Consideration. But, are you still willing to help us in a way that takes advantage of your ship's ability to bypass the starways, question?"`
 			choice
 				`	"Yes, of course."`
@@ -675,7 +675,7 @@ mission "Avgi: Defend Ensemble 2"
 			label warship
 			action
 				set "avgi: warship intro"
-				log "Reminders" "Avgi" `You have a mission to wrap up on Weledos in the Ensemble system.`
+				log "Reminders" "Avgi" `Going to wrap up a mission on <destination>.`
 			`	"Excellent. I am unsurprised, given its performance in the battle, but for all we know your alien vessel could be a simple freighter and yet still be formidable in our eyes. Are you willing to assist us with your warship's strength, question?"`
 			choice
 				`	"Yes, of course."`
@@ -756,7 +756,7 @@ mission "Avgi: Scout Rescue"
 				depart
 
 	on complete
-		log "Reminders" "Avgi" `Darius asked you to meet him in the spaceport bar on Peripheria in the Concerto system in order to help resolve a political dispute and meet one of his friends. You will need 3 bunks.`
+		log "Reminders" "Avgi" `Going to meet Darius in <destination spaceport> with 3 bunks in order to help resolve a political dispute and meet one of his friends.`
 		conversation
 			`You receive a warm welcome back on Peripheria Station, as the former crew of the Silver Albedo disembarks. Some of the more badly injured crew members are carried out on hammock-like stretchers, but most are able to walk or fly out of the <ship> on their own power.`
 			`	After a short celebration and many expressions of deep gratitude toward you, you find Darius and Sora waiting by the <ship> to speak with you.`
@@ -794,7 +794,7 @@ mission "Avgi: Frontline Combat"
 		log `Agreed to help Kokkino by clearing out Aberrant stragglers infesting a cluster of systems behind the front lines.`
 
 	on complete
-		log "Reminders" "Avgi" `Come back to Feo Platform in the Arche system when you have 2 bunks to transport Darius and Sora.`
+		log "Reminders" "Avgi" `Going to return to <destination> with 2 bunks to transport Darius and Sora.`
 
 	npc kill
 		government "Aberrant"
@@ -860,7 +860,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 			`	"Something about the miners grumbling about price controls on nickel-iron," Darius says after a moment, "but he wants to know if you could use your jump drive to take him there for some outreach to the miners without needing to spend weeks wandering through the mess of twisted hyperlanes. It's the perfect chance to meet my friend and ask him some questions. We'll need to head to Peripheria to pick up Hriso and get this trip sorted out."`
 				accept
 	on complete
-		log "Reminders" "Avgi" `Darius wants you to meet him and Hriso in the Peripheria spaceport in the Concerto system. You will need 3 bunks.`
+		log "Reminders" "Avgi" `Going to meet Darius and Hriso in <destination spaceport> with 3 bunks.`
 		dialog
 			`As you take the <ship> in for a landing in one of the hangars, Darius says, "I'll get in contact with Hriso and have him meet us in the spaceport."`
 
@@ -901,7 +901,7 @@ mission "Avgi: Dissonance Outreach"
 	on accept
 		log `Agreed to transport Hriso to a Dissonance mining station in the Tangled Shroud, while Darius and Sora investigate a lead that could potentially help you escape the Twilight.`
 	on complete
-		log "Reminders" "Avgi" `Come back to Outpost Tekis in the Interlude system when you have 3 bunks.`
+		log "Reminders" "Avgi" `Going to return to <destination> with 3 bunks.`
 
 
 mission "Avgi: Twilight Escape 1"
@@ -993,7 +993,7 @@ mission "Avgi: Twilight Escape 1"
 			`	"<first>," says Darius in a shaky voice. "Take us to the Deep, please. I need to see my home. And my wife."`
 			`	"Drop me off on Vinci first," interjects Leon. "I need to get my life in order again, and there's someone there I need to talk to about all this. It's on the way to the Deep, anyway."`
 	on complete
-		log "Reminders" "Avgi" `Remember to pick up Darius and Sora in the Vinci spaceport in the Miaplacidus system before you take off. You will need 2 bunks.`
+		log "Reminders" "Avgi" `Going to pick up Darius and Sora in <destination spaceport> with 2 bunks before taking off.`
 		log `Successfully escaped the Twilight together with the humans stranded there.`
 		log "People" "Leon Shez" `Leon is extremely grateful to you for helping him return to Avgi space. He wants to tell a contact on Vinci about the Avgi, and asks you to stay in touch.`
 		clear "avgi: lost in twilight"
@@ -1037,7 +1037,7 @@ mission "Avgi: Twilight Escape 2"
 		log `Agreed to take Sora to her parents' farm on Memory, as she has nowhere else to go.`
 		log "People" "Darius Caldwell" `Despite escaping the Twilight, Darius still feels guilty over his crew members that lost their lives to the Aberrant.`
 	on complete
-		log "Reminders" "Avgi" `Come back to Memory in the Zosma system when you have a free bunk to transport Darius.`
+		log "Reminders" "Avgi" `Going to return to to <destination> with a free bunk to transport Darius.`
 
 
 mission "Avgi: Twilight Escape 3"
