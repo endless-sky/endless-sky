@@ -217,7 +217,7 @@ mission "Avgi: First Contact"
 		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
 
 	on visit
-		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to to properly introduce you.`
+		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to properly introduce you.`
 
 	on complete
 		"reputation: Avgi" += 10
@@ -1037,7 +1037,7 @@ mission "Avgi: Twilight Escape 2"
 		log `Agreed to take Sora to her parents' farm on Memory, as she has nowhere else to go.`
 		log "People" "Darius Caldwell" `Despite escaping the Twilight, Darius still feels guilty over his crew members that lost their lives to the Aberrant.`
 	on complete
-		log "Reminders" "Avgi" `Going to return to to <destination> with a free bunk to transport Darius.`
+		log "Reminders" "Avgi" `Going to return to <destination> with a free bunk to transport Darius.`
 
 
 mission "Avgi: Twilight Escape 3"
