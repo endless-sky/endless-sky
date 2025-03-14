@@ -565,9 +565,11 @@ mission "Syndicated Shipyards Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -587,9 +589,11 @@ mission "Syndicated Shipyards Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core mining
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -609,9 +613,11 @@ mission "Syndicated Shipyards Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -631,9 +637,11 @@ mission "Syndicated Shipyards Shipment [3]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Foundry"
 	source
 		near Achernar 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Foundry
 	npc
 		government Pirate
@@ -653,9 +661,11 @@ mission "Syndicated Systems Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Hephaestus"
 	source
 		near Markab 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Hephaestus
 	npc
 		government Pirate
@@ -675,9 +685,11 @@ mission "Syndicated Systems Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Hephaestus"
 	source
 		near Markab 2 10
 		attributes core mining factory
+		not government "Pirate"
 	destination Hephaestus
 	npc
 		government Pirate
@@ -697,6 +709,7 @@ mission "Megaparsec Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Sunracer"
 	source
 		near Mirfak 2 10
 		attributes core factory
@@ -719,6 +732,7 @@ mission "Megaparsec Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Sunracer"
 	source
 		near Mirfak 2 10
 		attributes core mining factory
@@ -741,6 +755,7 @@ mission "Megaparsec Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Sunracer"
 	source
 		near Mirfak 2 10
 		attributes core mining factory
