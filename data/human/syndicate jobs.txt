@@ -713,6 +713,7 @@ mission "Megaparsec Shipment [0]"
 	source
 		near Mirfak 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Sunracer
 	npc
 		government Pirate
@@ -736,6 +737,7 @@ mission "Megaparsec Shipment [1]"
 	source
 		near Mirfak 2 10
 		attributes core mining factory
+		not government "Pirate"
 	destination Sunracer
 	npc
 		government Pirate
@@ -759,6 +761,7 @@ mission "Megaparsec Shipment [2]"
 	source
 		near Mirfak 2 10
 		attributes core mining factory
+		not government "Pirate"
 	destination Sunracer
 	npc
 		government Pirate
