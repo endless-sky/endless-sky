@@ -47,14 +47,19 @@ void Swizzle::Load(const DataNode &node)
 			{"blue", 2},
 			{"alpha", 3}
 		}};
+		bool wasChannel = false;
 		for(auto channel : channels)
 			if(key == channel.first)
 			{
 				for(int i = 0; i < child.Size() - 1; i++)
 					matrix[channel.second * STRIDE + i] = child.Value(i + 1);
+				wasChannel = true;
 				continue;
 			}
-		if(key == "override")
+		if(wasChannel)
+		{
+		}
+		else if(key == "override")
 			overrideMask = true;
 		else
 			child.PrintTrace("Unrecognised attribute in swizzle definition");
