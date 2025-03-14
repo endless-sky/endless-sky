@@ -232,7 +232,7 @@ private:
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
-	float frameTime[2];
+	float frameTime[2] = {0., 0.};
 
 	bool wasActive = false;
 	bool isMouseHoldEnabled = false;
