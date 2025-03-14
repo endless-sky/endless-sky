@@ -1,0 +1,76 @@
+# Copyright (c) 2024 by Arachi-Lover
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Korath Far'en Lai Prayer"
+	minor
+	invisible
+	to offer
+		day >= 13
+		day < 18
+		random < 35
+	source
+		attributes "efret"
+		not attributes "station"
+	on offer
+		conversation
+			`The gloomy feel of the local spaceport appears to be somehow even more pronounced today. Very few Korath are doing anything but the most basic maintenance of the local facilities, as if they all had their attention elsewhere. It doesn't take you long to notice the gathering of a considerable number of Korath by one large, blackened side of an abandoned building, which seems to be the reason for the drop in the local morale.`
+			`	As you approach the group, you notice a few Korath children running their hands over the dark wall, scratching it carefully with what must be something akin to crayons, or some material that could perform the same function. After they play around for a while, you notice all their drawings seem to take a similar shape: a beige or brownish circle, with some shy spots of blue, and rare bits of green. Contrasted by the onyx background of the building wall, you easily make it out to be a planet.`
+			`	Up close, you see many adult and elderly Korath, gathered as if in a prayer group around a shrine of sorts, just a few steps away from the building. They are mostly silent but for a few brief gasps. The shrine seems to be simply a pile of common crates and boxes, hidden by a dusty canvas that's not large enough to cover all of the cubic components of the pyramid-like structure.`
+			`	At the bottom of the shrine, the Korath seem to have deposited a plethora of personal belongings - clothing pieces, tools, pictures and coins, books and crystals, large fragments of cracked eggshells, flasks of oils or other substances, small jewelry pieces, and all manner of beads. The items seem to pile on and on endlessly, as every passing Korath in the spaceport makes a point to pass by the shrine and leave something as an offering.`
+			`	On the first level of crates, you first see a number of wooden, stone, and metal slabs, with various scratch marks over them. Upon closer inspection, you see that from certain angles, the marks combine to form shapes like those of the planet drawn by the children. The marks also form many other planets, with clearly defined oceans and continents. There are stars, systems, symbols you can't recognize, and a great number of tablets with nothing but writing.`
+			`	One of the oldest Korath in the gathering, who had been shivering with his head in his hands since before you approached, lets out an agonizing, bark-like yelp in a frayed voice. He looks up to the top of the shrine. Standing at navel height, one lone crate supports only a few items. A large, colorful feather, an amazingly complex seashell, and a mysteriously beautiful flower sit on the top crate, all surrounding one single, lone candle, which looks as if it's been burning for hours on end.`
+			`	You wonder how this one candle could be burning for so long out in the open, and think that perhaps the Korath simply relight it whenever it is put out by a passing gust. Only at that thought do you notice that, today, there is no wind whatsoever on <origin>.`
+			`	Seemingly only taking notice of you now, one of the younger Korath sitting by the shrine slowly rises, making her way over to you, and briefly holds up her hands with both palms facing you. She speaks quickly, and you cannot understand most of it, but you do recognize the words "humani efreti" at the end of what you guess was a question.`
+			choice
+				`	"What exactly is all of this?"`
+				`	(Gesture inquisitively at the shrine.)`
+				`	"Sorry, I didn't mean to interrupt. I'll be on my way."`
+					goto end
+			`	Either due to somehow having understood your meaning, or simply having correctly guessed the reason for your curiosity, the Korath begins to attempt to explain the gathering. She grabs some of the crayon-like objects and beckons you a little closer to the wall, where she begins to draw many spiral arms in white, converging in what looks like a large maw at the center. She repeatedly jabs the crayon at a point close to the center, then at you, then at herself. "<origin>," she says.`
+			`	She then draws on the wall with a different crayon of a light-green coloring. The green seems to make a path to another dot, closer to the maw, though she takes great care to draw something like a barrier around the position - as if shielding it from the center of her spiral map. She stares at the dot thoughtfully for a few seconds, as if in disbelief of what she had just drawn herself. "Far'en Lai," she finally says, her voice cracking slightly, still facing the dot. Then, she looks back and points directly at the burning candle. "Far'en Lai," she says again, before looking back at you.`
+			`	Reaching in her garments, she pulls out what looks to be some form of communication device. She considers it briefly, then gestures for you to follow her back to the shrine, where she carefully places the object down onto the pile of offerings. She then looks at you, as if wondering if you would follow the gesture.`
+			choice
+				`	(Offer 100 credits.)`
+					to display
+						"credits" >= 100
+					goto "small credits"
+				`	(Offer 10,000 credits.)`
+					to display
+						"credits" >= 10000
+					goto "medium credits"
+				`	(Offer 10,000,000 credits.)`
+					to display
+						"credits" >= 10000000
+					goto "large credits"
+				`	(Offer a picture of my home planet.)`
+				`	"I'm sorry, but I have nothing to offer. Goodbye."`
+					goto end
+			`	You remember the picture of your hometown back in <starting planet> you tend to carry around, and start searching for it. Sure enough, you find it inside your back pocket, straighten it out as best as you can, and go to add it to the pile. However, the Korath stops you, holding your arm and stretching her hand carefully as if asking for the picture. You hand it to her, and she brings it very close to her eyes. The elderly Korath who wailed before appears beside her, and she shows him the picture. He seems to stare at it for minutes on end, and you begin to wonder if you somehow offended them with your choice. Then, he hands her back the picture, and seems to nod slightly. She heads close to the shrine and places the picture at the top level, with the feather, shell, and flower. The elderly Korath faces you, looking deeply into your eyes, then raises his palms toward you, letting out a faint bark. You notice all other Korath around the shrine are doing the same. When they've all acknowledged your contribution, the Korath who drew the spiral arms comes to you again, looking thoroughly impressed.`
+				goto end
+			label "small credits"
+			action
+				payment -100
+			`	You add the credit chip to the objects by the shrine, and she seems to nod approvingly before looking at you once more, seemingly satisfied with your understanding of the gesture.`
+				goto end
+			label "medium credits"
+			action
+				payment -10000
+			`	You add the credit chips to the objects by the shrine, and she and a few of the other Korath seem to bow lightly to you. She turns to you once more, looking satisfied with your understanding of the gesture.`
+				goto end
+			label "large credits"
+			action
+				payment -10000000
+			`	You attempt to carefully place the credit chips onto the pile of objects by the shrine, but despite your efforts a few end up slipping out and dropping down rather noisily. The Korath, however, seem in shock rather than disturbed at your addition. Many of them raise their hands up, their palms to you in greeting or in thanks. You look back at the Korath who drew the spiral arms, who seems to be beaming.`
+			label end
+			`	She raises her hands up towards you again, as if bidding you farewell, as you head away from the shrine. You notice many of the Korath around the spaceport take a few glances at you, but still seem focused entirely on the shrine regardless of what activity they may be performing.`
+				decline

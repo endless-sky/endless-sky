@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Dialog.h"
 
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -150,6 +151,13 @@ Dialog::Dialog(const string &text, PlayerInfo &player, const System *system, Tru
 
 
 
+Dialog::~Dialog()
+{
+	Audio::Resume();
+}
+
+
+
 // Draw this panel.
 void Dialog::Draw()
 {
@@ -255,7 +263,21 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
+	if(stringFun && (mod & KMOD_CTRL) && (key == 'c' || key == 'v'))
+	{
+		if(key == 'c')
+			SDL_SetClipboardText(input.c_str());
+		else if(SDL_HasClipboardText())
+		{
+			char *clipboardText = SDL_GetClipboardText();
+			int n = 0;
+			for(auto cp = clipboardText; *cp && n < 120; cp++, n++)
+				if(*cp >= ' ' && *cp <= '~')
+					input += *cp;
+			SDL_free(clipboardText);
+		}
+	}
+	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
@@ -313,7 +335,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 			GetUI()->Pop(this);
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI()->Push(new MapDetailPanel(*player, system));
+		GetUI()->Push(new MapDetailPanel(*player, system, true));
 	else
 		return false;
 
@@ -355,6 +377,7 @@ bool Dialog::Click(int x, int y, int clicks)
 // Common code from all three constructors:
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
+	Audio::Pause();
 	SetInterruptible(isMission);
 
 	this->isMission = isMission;
@@ -374,7 +397,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 	const Sprite *top = SpriteSet::Get("ui/dialog top");
 	// If the dialog is too tall, then switch to wide mode.
 	int maxHeight = Screen::Height() * 3 / 4;
-	if(text->GetTextHeight() > maxHeight)
+	if(text->GetTextHeight(false) > maxHeight)
 	{
 		textRectSize.Y() = maxHeight;
 		isWide = true;
@@ -392,7 +415,7 @@ void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool
 		}
 	}
 	else
-		textRectSize.Y() = text->GetTextHeight();
+		textRectSize.Y() = text->GetTextHeight(false);
 
 	top = SpriteSet::Get(isWide ? "ui/dialog top wide" : "ui/dialog top");
 	const Sprite *middle = SpriteSet::Get(isWide ? "ui/dialog middle wide" : "ui/dialog middle");

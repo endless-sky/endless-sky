@@ -214,6 +214,8 @@ void MissionAction::SaveBody(DataWriter &out) const
 		// LocationFilter indentation is handled by its Save method.
 		systemFilter.Save(out);
 	}
+	if(runsWhenFailed)
+		out.Write("can trigger after failure");
 	if(!dialogText.empty())
 	{
 		out.Write("dialog");

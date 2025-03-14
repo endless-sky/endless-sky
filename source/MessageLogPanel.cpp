@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MessageLogPanel.h"
 
 #include "text/alignment.hpp"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "shader/FillShader.h"
@@ -44,7 +45,15 @@ namespace {
 MessageLogPanel::MessageLogPanel()
 	: messages(Messages::GetLog()), width(GameData::Interfaces().Get("message log")->GetValue("width"))
 {
+	Audio::Pause();
 	SetInterruptible(false);
+}
+
+
+
+MessageLogPanel::~MessageLogPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -82,6 +91,9 @@ void MessageLogPanel::Draw()
 	Point pos = Screen::BottomLeft() + Point(PAD, scroll);
 	for(const auto &it : messages)
 	{
+		if(importantOnly && (it.second == Messages::Importance::Low || it.second == Messages::Importance::High))
+			continue;
+
 		messageLine.Wrap(it.first);
 		pos.Y() -= messageLine.Height();
 		if(pos.Y() >= Screen::Top() - 3 * font.Height())
@@ -89,6 +101,19 @@ void MessageLogPanel::Draw()
 	}
 
 	maxScroll = max(0., scroll - pos.Y() + Screen::Top());
+
+	// Draw the filter box.
+	const Sprite *filterBack = SpriteSet::Get("ui/message log key");
+	pos = Screen::BottomLeft() + Point(width + 40., 0.);
+	SpriteShader::Draw(filterBack, pos + Point(.5 * filterBack->Width(), -.5 * filterBack->Height()));
+	const Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
+	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
+	pos += Point(30., -30.);
+	SpriteShader::Draw(box[importantOnly], pos);
+	Point off = Point(10., -.5 * font.Height());
+	font.Draw("Hide less _important", pos + off, color[importantOnly]);
+	font.Draw("messages", pos + off + Point(0., 20.), color[importantOnly]);
+	AddZone(Rectangle(pos + Point(64., 10.), Point(140., 40.)), [this](){ importantOnly = !importantOnly; });
 }
 
 
@@ -113,18 +138,8 @@ bool MessageLogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 		double direction = (key == SDLK_UP) - (key == SDLK_DOWN);
 		Drag(0., LINE_HEIGHT * direction);
 	}
-
-	return true;
-}
-
-
-
-bool MessageLogPanel::Click(int x, int y, int clicks)
-{
-	x -= Screen::Left();
-
-	if(x > width)
-		GetUI()->Pop(this);
+	else if(key == 'i')
+		importantOnly = !importantOnly;
 
 	return true;
 }

@@ -33,8 +33,8 @@ using namespace std;
 
 
 // Constructor, based on a Sprite.
-Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
-	: position(position), velocity(velocity), angle(facing), zoom(zoom), sprite(sprite), randomize(true)
+Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, double alpha)
+	: position(position), velocity(velocity), angle(facing), zoom(zoom), alpha(alpha), sprite(sprite), randomize(true)
 {
 }
 

@@ -68,6 +68,14 @@
 						"correction": {
 							"replaceWith": "\\1\\2"
 						}
+					},
+					{
+						"description": "trailing punctuation after a paranthesized paragraph",
+						"regex": "([`\"])(\\s*)\\((.*)\\)([.!?,]+)\\1",
+						"except": [],
+						"correction": {
+							"replaceWith": "\\1\\2(\\3\\4)\\1"
+						}
 					}
 				]
 			},

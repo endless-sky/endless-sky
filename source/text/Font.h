@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../opengl.h"
 
+#include <filesystem>
 #include <string>
 
 class Color;
@@ -35,9 +36,9 @@ class Point;
 class Font {
 public:
 	Font() noexcept = default;
-	explicit Font(const std::string &imagePath);
+	explicit Font(const std::filesystem::path &imagePath);
 
-	void Load(const std::string &imagePath);
+	void Load(const std::filesystem::path &imagePath);
 
 	// Draw a text string, subject to the given layout and truncation strategy.
 	void Draw(const DisplayText &text, const Point &point, const Color &color) const;

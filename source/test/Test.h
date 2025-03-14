@@ -62,6 +62,8 @@ public:
 			BRANCH,
 			// Step that calls another test to handle some generic common actions.
 			CALL,
+			// Step that prints a debug-message to the output.
+			DEBUG,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
 			// Step that performs input (key, mouse, command). Does cause the game to step (to process the inputs).

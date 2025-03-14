@@ -121,7 +121,7 @@ jobs:
     name: Windows
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -164,7 +164,7 @@ jobs:
     name: Windows Clang
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -287,7 +287,7 @@ jobs:
     needs: [changed, build_windows]
     name: Data Files
     if: ${{ (needs.changed.outputs.game_code == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.data == 'true' || needs.changed.outputs.integration_tests == 'true' || needs.changed.outputs.ci_config == 'true') && always() }}
-    runs-on: windows-2022
+    runs-on: windows-2025
     env:
       CONTINUOUS: EndlessSky-win64-continuous.zip
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -321,4 +321,7 @@ jobs:
       shell: bash
     - name: Parse Integration Test Data
       run: "'./Endless Sky.exe' -p --config 'tests/integration/config'"
+      shell: bash
+    - name: Parse All Resources
+      run: "'./Endless Sky.exe' --parse-assets"
       shell: bash

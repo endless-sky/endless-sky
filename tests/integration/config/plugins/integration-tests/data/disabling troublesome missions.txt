@@ -1,3 +1,6 @@
+disable mission "Avgi: Gossamer Sailors"
+disable mission "Avgi: Initial Wandering Fleet"
+disable mission "Avgi: Lost in Twilight"
 disable mission "Conversation on Sayaiban"
 disable mission "Drak guarding Incipias space"
 disable mission "Drak guarding Korath space"
