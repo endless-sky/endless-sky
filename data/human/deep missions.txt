@@ -8392,8 +8392,6 @@ mission "Hroar's Haulers 25"
 		`	"Thanks, and don't worry. We'll be in touch." Hroar says.`
 			goto byebye
 
-
-
 			label best
 			`	Hroar nods slowly, "Can't say I wish it weren't a little better, but I hear ya. Some things are outta our hands. Well, let's see about paying, huh? Maybe that'll put a sparkle back in those formely greenhorn eyes of yours."`
 			`	"Havi" Hroar suddenly shouts.`
