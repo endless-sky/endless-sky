@@ -4971,12 +4971,17 @@ void Ship::AddEscort(Ship &ship)
 void Ship::RemoveEscort(const Ship &ship)
 {
 	auto it = escorts.begin();
-	for( ; it != escorts.end(); ++it)
-		if(it->lock().get() == &ship)
+	while(it != escorts.end())
+	{
+		auto escort = it->lock();
+		if(escort.get() == &ship)
 		{
-			escorts.erase(it);
+			it = escorts.erase(it);
 			return;
 		}
+		else
+			++it;
+	}
 }
 
 
