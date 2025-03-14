@@ -41,6 +41,10 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
+# OpenGL shaders
+[*.{frag,vert}]
+indent_style = tab
+
 [*.py]
 indent_style = tab
 
