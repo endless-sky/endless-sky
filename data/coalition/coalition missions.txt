@@ -347,7 +347,7 @@ mission "Coalition Yottrite 3"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the yottrite samples hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		log "Reminders" "Coalition Yottrite" `Going to meet an Arach in the Delve of Bloptab spaceport in the Bloptab system.`
+		log "Reminders" "Coalition Yottrite" `Going to meet an Arach in <destination spaceport>.`
 		conversation
 			`Though on <origin> you weren't greeted by him, the same Arach from the other trips now contacts you as you prepare to land on <planet>.`
 			`	"Captain <last>! Forgive me for my absence in our latest deal, you must. Sort out some business here, I had to," he says.`
@@ -379,7 +379,7 @@ mission "Coalition Yottrite 4"
 				`	"Sorry, I'm not one to take passenger jobs."`
 					decline
 	on complete
-		log "Reminders" "Coalition Yottrite" `Going to meet Lugglop and his friends in the Shadowed Valley spaceport in the Fallen Leaf system. Will need 2 bunks to take on the mission.`
+		log "Reminders" "Coalition Yottrite" `Going to meet Lugglop and his friends in <destination spaceport> with 2 bunks.`
 		dialog `When you land on <planet>, Lugglop contacts you and informs you that he has already told his friends about you. He says they will be waiting in the spaceport.`
 
 
@@ -426,7 +426,7 @@ mission "Coalition Yottrite 6"
 			`	You're about to head back to your ship when he hands you 200,000 credits. "Nearly forgot to pay you for this last service, I did."`
 				accept
 	on complete
-		log "Reminders" "Coalition Yottrite" `Going to come back to Market of Gupta in the Gupta system when I have a free bunk.`
+		log "Reminders" "Coalition Yottrite" `Going to come back to <destination> when I have a free bunk.`
 
 
 
@@ -509,7 +509,7 @@ mission "Coalition Yottrite 8"
 			`	He thanks you and says he and the rest of the team will be waiting in <destination>. "Moved here about halfway through the project, we did, to make use of the station's facilities."`
 				accept
 	on complete
-		log "Reminders" "Coalition Yottrite" `Going to meet Lugglop and his compatriots in the Pelubta Station spaceport in the Pelubta system with 6 free bunks.`
+		log "Reminders" "Coalition Yottrite" `Going to meet Lugglop and his compatriots in <destination spaceport> with 6 free bunks.`
 		outfit "Yottrite" -1
 		payment 400000
 		dialog `Lugglop pays you <payment> as you deliver the yottrite, accompanied by a Heliarch agent. "Finish preparing our presentation, we now must. If to help us further you wish, in the spaceport meet us you must."`
@@ -788,7 +788,7 @@ mission "Coalition Outbreak 1"
 	on visit
 		dialog `You've reached <planet>, but the doctors and the medical supplies haven't arrived yet. Depart and wait for the ships carrying them.`
 	on complete
-		log "Reminders" "Coalition Outbreak" `Going to meet some medical workers in the Celestial Third spaceport in the 1 Axis system to help with an outbreak. Will need 80 tons of cargo space.`
+		log "Reminders" "Coalition Outbreak" `Going to meet some medical workers in <destination spaceport> with 80 tons of cargo space to help with an outbreak.`
 		payment 768540
 		"coalition jobs" += 2
 		dialog `The medical workers exit your ship just as quickly as they entered it and head off to different sections of the city, directed by some emergency workers. After the <cargo> are also taken off your ship, a worker hands you <payment> and says you could look for more ways to help with the outbreak by looking for their colleagues in the spaceport.`
@@ -827,7 +827,7 @@ mission "Coalition Outbreak 2"
 	on visit
 		dialog `You've reached <planet>, but the vaccines aren't here yet. Once you've picked them up, make sure all ships that are carrying them arrive in this system.`
 	on complete
-		log "Reminders" "Coalition Outbreak" `Going to the Ki Patek Ka spaceport in the Sol Kimek system to help deal with a viral outbreak. Will need 80 tons of cargo space.`
+		log "Reminders" "Coalition Outbreak" `Going to <destination spaceport> with 80 tons of cargo space to help deal with a viral outbreak.`
 		payment 943720
 		"coalition jobs" += 2
 		conversation
@@ -963,7 +963,7 @@ mission "Saryd Students 1"
 	on visit
 		dialog `You ask around and are directed to a large refinery on one of the more populated cities here. The rum's price is impressive indeed, 5,642 credits per ton, but what is more impressive is how you worried about the students' irresponsibility when they asked you to buy this when you yourself aren't responsible enough to have a bit over ten thousand credits to spend. Go earn some money, then return here.`
 	on complete
-		log "Reminders" "Coalition Rum" `Going to return to Weir of Glubatub in the Glubatub system with 2 tons of free cargo space in order to pick up some rum for students at Starlit University.`
+		log "Reminders" "Coalition Rum" `Going to return to <destination> with 2 tons of cargo space in order to pick up some rum for students at Starlit University.`
 		payment -11284
 
 
@@ -1031,7 +1031,7 @@ mission "Saryd Census 1"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying the census workers hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		log "Reminders" "Coalition Census" `Going to check the Flowing Fields spaceport in the Four Pillars system by night in order to continue to help some Saryds take a census. Will need 17 bunks.`
+		log "Reminders" "Coalition Census" `Going to check <destination spaceport>, by night, with 17 bunks, in order to continue to help some Saryds take a census.`
 		"coalition jobs" ++
 		payment 342000
 		dialog `You're paid <payment> for transporting the Saryds here, and they leave your ship, ready to get to work and ask around. They say that they'll probably all be back in the spaceport by night time, so you should check there later if you want to help them further.`
@@ -1115,7 +1115,7 @@ mission "Saryd Couple 1"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Aunaris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		log "Reminders" "Coalition Couple" `Going to return to Shadow of Leaves in the Hunter system in a few months in order to collect payment from two Saryds, Inturi and Aunaris, who are saving up funds in order to buy a house. Will need to have 2 bunks free, just in case the house is not on the same planet.`
+		log "Reminders" "Coalition Couple" `Going to return to <destination> in a few months in order to collect payment from two Saryds, Inturi and Aunaris, who are saving up funds in order to buy a house, with 2 bunks free, just in case the house is not on the same planet.`
 		"coalition jobs" ++
 		event "saryd couple has money" 42 86
 		dialog `Aunaris thanks you for bringing her here, and apologizes for not being able to pay you right away, but promises once she and Inturi have figured out their home, they will work hard to pay you. "Stay here for a few months, I probably will, before the remaining funds I have acquired," she says before saying goodbye and taking a cable car to her new workplace.`
@@ -1953,7 +1953,7 @@ mission "Coalition: Pilgrimage 5"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Vellorae hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		log "Reminders" "Coalition Pilgrimage" `Going to meet Vellorae in the Cold Horizon spaceport in the Fell Omen system to take her back home. Will need a free bunk.`
+		log "Reminders" "Coalition Pilgrimage" `Going to meet Vellorae in <destination spaceport> to take her back home. Will need a free bunk.`
 		"coalition jobs" ++
 		payment 80000
 		conversation
@@ -2276,7 +2276,7 @@ mission "Coalition: Submarines 1"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Apri'ie hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		log "Reminders" "Coalition Submarines" `Going to meet Apri'ie in the Market of Gupta spaceport in the Gupta system to transport 60 tons of submarines. Will also need one bunk free.`
+		log "Reminders" "Coalition Submarines" `Going to meet Apri'ie in <destination spaceport> with a free bunk to transport 60 tons of submarines.`
 		"coalition jobs" ++
 		payment 90000
 		conversation
@@ -2320,7 +2320,7 @@ mission "Coalition: Submarines 2"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Apri'ie and the unmanned submarines hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		log "Reminders" "Coalition Submarines" `Going to meet Apri'ie in the Inmost Blue spaceport in the 4 Winter Rising system. Will need 60 tons of cargo space and a free bunk.`
+		log "Reminders" "Coalition Submarines" `Going to meet Apri'ie in <destination spaceport> with 60 tons of cargo space and a free bunk.`
 		"coalition jobs" ++
 		payment 210000
 		conversation
@@ -2451,7 +2451,7 @@ mission "Coalition: Expeditions Past 1"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Sedlitaris hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-		log "Reminders" "Coalition Expedition" `Going to the Ring of Friendship spaceport in the Quaru system to wait for Sedlatiris and start a scouting expedition for the Coalition. Will need 6 bunks.`
+		log "Reminders" "Coalition Expedition" `Going to <destination spaceport> with 6 bunks to wait for Sedlatiris and start a scouting expedition for the Coalition.`
 		payment 100000
 		conversation
 			`Sedlitaris gives you your payment of <payment> before you open your hatch for her to leave. "Take a few hours, this might, so wait for me in the spaceport, you can. Know the layout well, I do, so find you without issue, I will."`
@@ -3043,7 +3043,7 @@ mission "Coalition: Long Lost Property 3"
 			branch money
 				"credits" > 1000000
 			action
-				log "Reminders" "Coalition Probe" `Going to return to Greenrock in the Shaula system once 1,000,000 credits have been accumulated in order to purchase information on the location of a Coalition probe.`
+				log "Reminders" "Coalition Probe" `Going to return to <destination> once 1,000,000 credits have been accumulated in order to purchase information on the location of a Coalition probe.`
 			`	They come back alone, saying, "Boss has looked you up, and found your pockets a bit empty. If you want that kind of information, come back when you're ready to pay."`
 				defer
 			label money
@@ -3124,7 +3124,7 @@ mission "Coalition: Long Lost Property 3"
 	to complete
 		has "idriss probe recovered"
 	on complete
-		log "Reminders" "Coalition Probe" `Going to meet Flopug and the other Arachi in the Ablub's Invention spaceport in the Ablub spaceport once they have finished collecting the data.`
+		log "Reminders" "Coalition Probe" `Going to meet Flopug and the other Arachi in <destination spaceport> once they have finished collecting the data.`
 		clear "idriss probe recovered"
 		payment 500000
 		conversation
@@ -3152,7 +3152,7 @@ mission "Coalition: Long Lost Property 4"
 	on enter "Alnasl"
 		dialog `One of your monitors brings up various sets of data written in the Arach language when you enter the system, and your scanners begin gathering the data House Idriss wants. A few minutes pass until a loading bar comes up. When it reaches the end, another one appears, and the process repeats a few more times. After about an hour, your monitor goes back to normal.`
 	on complete
-		log "Reminders" "Coalition Probe" `Going to head back to Ablub's Invention in the Ablub system once the new scanning equipment has been developed in a few months.`
+		log "Reminders" "Coalition Probe" `Going to head back to <destination> once the new scanning equipment has been developed in a few months.`
 		event "outskirts gauger ready" 157 342
 		payment 250000
 		conversation
