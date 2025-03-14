@@ -162,6 +162,30 @@ namespace {
 	int alertIndicatorIndex = 3;
 
 	int previousSaveCount = 3;
+
+	bool gameruleRamscoop = false;
+	const vector<string> GAMERULE_RAMSCOOP_SETTINGS = {"true", "false"};
+	int gameruleRamscoopIndex = 0;
+
+	optional<int> gamerulePersonPeriod;
+
+	optional<int> gamerulePersonWeight;
+
+	optional<int> gameruleMiningTime;
+
+	optional<double> gameruleFrugalThreshold;
+
+	bool gameruleFighters = false;
+	const vector<string> GAMERULE_FIGHTERS_SETTINGS = {"all", "none", "only player"};
+	int gameruleFightersIndex = 0;
+
+	optional<double> gameruleDepreciationMin;
+
+	optional<int> gameruleDepreciationGracePeriod;
+
+	optional<double> gameruleDepreciationDaily;
+
+	optional<int> gameruleDepreciationMaxAge;
 }
 
 
@@ -242,6 +266,57 @@ void Preferences::Load()
 			settings["Control ship with mouse"] = (node.Size() == 1 || node.Value(1));
 		else if(node.Token(0) == "notification settings")
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
+		else if(node.Token(0) == "universal ramscoop")
+		{
+			gameruleRamscoop = node.BoolValue(1);
+			gameruleRamscoopIndex = clamp<int>(node.Value(2), 0, GAMERULE_RAMSCOOP_SETTINGS.size() - 1);
+		}
+		else if(node.Token(0) == "person spawn period")
+		{
+			if(node.BoolValue(1))
+				gamerulePersonPeriod = max<int>(1, node.Value(2));
+		}
+		else if(node.Token(0) == "no person spawn weight")
+		{
+			if(node.BoolValue(1))
+				gamerulePersonWeight = max<int>(0, node.Value(2));
+		}
+		else if(node.Token(0) == "npc max mining time")
+		{
+			if(node.BoolValue(1))
+				gameruleMiningTime = max<int>(0, node.Value(2));
+		}
+		else if(node.Token(0) == "universal frugal threshold")
+		{
+			if(node.BoolValue(1))
+				gameruleFrugalThreshold = clamp(node.Value(2), 0., 1.);
+		}
+		else if(node.Token(0) == "disabled fighters avoid projectiles")
+		{
+			gameruleFighters = node.BoolValue(1);
+			gameruleFightersIndex = clamp<int>(node.Value(2), 0, GAMERULE_FIGHTERS_SETTINGS.size() - 1);
+		}
+
+		else if(node.Token(0) == "depreciation min")
+		{
+			if(node.BoolValue(1))
+				gameruleDepreciationMin = clamp(node.Value(2), 0., 1.);
+		}
+		else if(node.Token(0) == "depreciation grace period")
+		{
+			if(node.BoolValue(1))
+				gameruleDepreciationGracePeriod = max<int>(0, node.Value(2));
+		}
+		else if(node.Token(0) == "depreciation daily")
+		{
+			if(node.BoolValue(1))
+				gameruleDepreciationDaily = clamp(node.Value(2), 0., 1.);
+		}
+		else if(node.Token(0) == "depreciation max age")
+		{
+			if(node.BoolValue(1))
+				gameruleDepreciationMaxAge = max<int>(0, node.Value(2));
+		}
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -306,6 +381,18 @@ void Preferences::Save()
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
+	out.Write("universal ramscoop", gameruleRamscoop, gameruleRamscoopIndex);
+	out.Write("person spawn period", gamerulePersonPeriod.has_value(), gamerulePersonPeriod.value_or(72000));
+	out.Write("no person spawn weight", gamerulePersonWeight.has_value(), gamerulePersonWeight.value_or(1000));
+	out.Write("npc max mining time", gameruleMiningTime.has_value(), gameruleMiningTime.value_or(3600));
+	out.Write("universal frugal threshold", gameruleFrugalThreshold.has_value(), gameruleFrugalThreshold.value_or(.75));
+	out.Write("disabled fighters avoid projectiles", gameruleFighters, gameruleFightersIndex);
+	out.Write("depreciation min", gameruleDepreciationMin.has_value(), gameruleDepreciationMin.value_or(.25));
+	out.Write("depreciation grace period", gameruleDepreciationGracePeriod.has_value(),
+		gameruleDepreciationGracePeriod.value_or(7));
+	out.Write("depreciation daily", gameruleDepreciationDaily.has_value(), gameruleDepreciationDaily.value_or(.997));
+	out.Write("depreciation max age", gameruleDepreciationMaxAge.has_value(),
+		gameruleDepreciationMaxAge.value_or(1000));
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -775,4 +862,117 @@ bool Preferences::DoAlertHelper(Preferences::AlertIndicator toDo)
 int Preferences::GetPreviousSaveCount()
 {
 	return previousSaveCount;
+}
+
+
+
+void Preferences::ToggleGameruleRamscoop()
+{
+	gameruleRamscoop = !gameruleRamscoop;
+}
+
+
+
+void Preferences::ToggleGameruleRamscoopValue()
+{
+	gameruleRamscoopIndex = !gameruleRamscoopIndex;
+}
+
+
+
+optional<bool> Preferences::GetGameruleRamscoop()
+{
+	return gameruleRamscoop ? optional<bool>{gameruleRamscoopIndex} : nullopt;
+}
+
+
+
+const string &Preferences::GameruleRamscoopSetting()
+{
+	return GAMERULE_RAMSCOOP_SETTINGS[gameruleRamscoopIndex];
+}
+
+
+
+const optional<int> &Preferences::GetGamerulePersonPeriod()
+{
+	return gamerulePersonPeriod;
+}
+
+
+
+const optional<int> &Preferences::GetGamerulePersonWeight()
+{
+	return gamerulePersonWeight;
+}
+
+
+
+const optional<int> &Preferences::GetGameruleMiningTime()
+{
+	return gameruleMiningTime;
+}
+
+
+
+const optional<double> &Preferences::GetGameruleFrugalThreshold()
+{
+	return gameruleFrugalThreshold;
+}
+
+
+
+void Preferences::ToggleGameruleFighters()
+{
+	gameruleFighters = !gameruleFighters;
+}
+
+
+
+void Preferences::ToggleGameruleFightersValue()
+{
+	if(++gameruleFightersIndex >= static_cast<int>(GAMERULE_FIGHTERS_SETTINGS.size()))
+		gameruleFightersIndex = 0;
+}
+
+
+
+optional<Gamerules::FighterDodgePolicy> Preferences::GetGameruleFighters()
+{
+	return gameruleFighters ? optional{static_cast<Gamerules::FighterDodgePolicy>(gameruleFightersIndex)} : nullopt;
+}
+
+
+
+const std::string &Preferences::GameruleFightersSetting()
+{
+	return GAMERULE_FIGHTERS_SETTINGS[gameruleFightersIndex];
+}
+
+
+
+const optional<double> &Preferences::GetGameruleDepreciationMin()
+{
+	return gameruleDepreciationMin;
+}
+
+
+
+const optional<int> &Preferences::GetGameruleDepreciationGracePeriod()
+{
+	return gameruleDepreciationGracePeriod;
+}
+
+
+
+const optional<double> &Preferences::GetGameruleDepreciationDaily()
+{
+	return gameruleDepreciationDaily;
+}
+
+
+
+const optional<int> &Preferences::GetGameruleDepreciationMaxAge()
+{
+	return gameruleDepreciationMaxAge;
 }
