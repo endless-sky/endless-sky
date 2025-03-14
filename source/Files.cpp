@@ -101,7 +101,7 @@ void Files::Init(const char * const *argv)
 		// Special case, for Linux: the resource files are not in the same place as
 		// the executable, but are under the same prefix (/usr or /usr/local).
 		// When used as an iterator, a trailing / will create an empty item at
-		// the end, so parent paths not include it
+		// the end, so parent paths do not include it.
 		static const filesystem::path LOCAL_PATH = "/usr/local";
 		static const filesystem::path STANDARD_PATH = "/usr";
 		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
