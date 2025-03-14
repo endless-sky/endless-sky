@@ -1,0 +1,168 @@
+// 0 red + yellow markings (republic)
+swizzle ""
+r
+g
+b
+a
+// 1 red + magenta markings
+swizzle ""
+r
+b
+g
+a
+// 2 green + yellow (free worlds)
+swizzle ""
+g
+r
+b
+a
+// 3 green + cyan
+swizzle ""
+b
+r
+g
+a
+// 4 blue + magenta (syndicate)
+swizzle ""
+g
+b
+r
+a
+// 5 blue + cyan (merchant)
+swizzle ""
+b
+g
+r
+a
+// 6 red and black (pirate)
+swizzle ""
+g
+b
+b
+a
+// 7 pure red
+swizzle ""
+r
+b
+b
+a
+// 8 faded red
+swizzle ""
+r
+g
+g
+a
+// 9 pure black
+swizzle ""
+b
+b
+b
+a
+// 10 faded black
+swizzle ""
+g
+g
+g
+a
+// 11 pure white
+swizzle ""
+r
+r
+r
+a
+// 12 darkened blue
+swizzle ""
+b
+b
+g
+a
+// 13 pure blue
+swizzle ""
+b
+b
+r
+a
+// 14 faded blue
+swizzle ""
+g
+g
+r
+a
+// 15 darkened cyan
+swizzle ""
+b
+g
+g
+a
+// 16 pure cyan
+swizzle ""
+b
+r
+r
+a
+// 17 faded cyan
+swizzle ""
+g
+r
+r
+a
+// 18 darkened green
+swizzle ""
+b
+g
+b
+a
+// 19 pure green
+swizzle ""
+b
+r
+b
+a
+// 20 faded green
+swizzle ""
+g
+r
+g
+a
+// 21 darkened yellow
+swizzle ""
+g
+g
+b
+a
+// 22 pure yellow
+swizzle ""
+r
+r
+b
+a
+// 23 faded yellow
+swizzle ""
+r
+r
+g
+a
+// 24 darkened magenta
+swizzle ""
+g
+b
+g
+a
+// 25 pure magenta
+swizzle ""
+r
+b
+r
+a
+// 26 faded magenta
+swizzle ""
+r
+g
+r
+a
+
+
+// 27 red only (cloaked)
+"      swizzleColor = vec4(color.b, 0.f, 0.f, color.a);\n"
+// 28 black only (outline)
+"      swizzleColor = vec4(0.f, 0.f, 0.f, color.a);\n"

@@ -808,7 +808,7 @@ void Engine::Step(bool isActive)
 				player.Harvest(payload.outfit);
 	}
 	if(!target)
-		targetSwizzle = -1;
+		targetSwizzle = nullptr;
 	if(!target && !targetAsteroid)
 		info.SetString("target name", "no target");
 	else if(!target)
@@ -1262,7 +1262,7 @@ void Engine::Draw() const
 	}
 
 	// Draw the faction markers.
-	if(targetSwizzle >= 0 && hud->HasPoint("faction markers"))
+	if(targetSwizzle && hud->HasPoint("faction markers"))
 	{
 		int width = font.Width(info.GetString("target government"));
 		Point center = hud->GetPoint("faction markers");
@@ -2708,7 +2708,8 @@ void Engine::DrawShipSprites(const Ship &ship)
 		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
 		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, fancyCloak ? 9 : 27, fancyCloak ? 0.5 : 0.25);
+			itemsToDraw.AddSwizzled(body, fancyCloak
+				? GameData::Swizzles().Get("9") : GameData::Swizzles().Get("27"), fancyCloak ? 0.5 : 0.25);
 		itemsToDraw.Add(body, cloak);
 	};
 

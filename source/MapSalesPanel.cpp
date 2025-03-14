@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryTypes.h"
 #include "Command.h"
 #include "Dialog.h"
+#include "Swizzle.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
@@ -208,16 +209,16 @@ bool MapSalesPanel::Scroll(double dx, double dy)
 
 
 
-int MapSalesPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapSalesPanel::SelectedSpriteSwizzle() const
 {
-	return 0;
+	return Swizzle::None();
 }
 
 
 
-int MapSalesPanel::CompareSpriteSwizzle() const
+const Swizzle *MapSalesPanel::CompareSpriteSwizzle() const
 {
-	return 0;
+	return Swizzle::None();
 }
 
 
@@ -346,7 +347,7 @@ bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 
 
 
-void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const
+void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle *swizzle) const
 {
 	if(sprite)
 	{
@@ -354,7 +355,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 
 		// No swizzle was specified, so default to the player swizzle.
-		if(swizzle == -1)
+		if(swizzle == nullptr)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}
@@ -362,7 +363,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 
 
 
-void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
+void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale,
 		bool isSelected, const string &name, const string &price, const string &info,
 		const std::string &storage)
 {

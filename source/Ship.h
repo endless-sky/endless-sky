@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Personality.h"
 #include "Point.h"
 #include "Port.h"
+#include "Swizzle.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
@@ -288,7 +289,7 @@ public:
 	// Check if this ship is allowed to enter this system, accounting for its personality.
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
-	int CustomSwizzle() const;
+	const Swizzle *CustomSwizzle() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -601,7 +602,7 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	int customSwizzle = -1;
+	const Swizzle *customSwizzle = nullptr;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.

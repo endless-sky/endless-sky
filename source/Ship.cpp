@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
+#include "Swizzle.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
@@ -275,7 +276,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
-			customSwizzle = child.Value(1);
+			customSwizzle = GameData::Swizzles().Get(child.Token(1));
 		else if(key == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
@@ -631,7 +632,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
-		if(customSwizzle == -1)
+		if(!customSwizzle)
 			customSwizzle = base->CustomSwizzle();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
@@ -943,8 +944,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle >= 0)
-			out.Write("swizzle", customSwizzle);
+		if(customSwizzle)
+			out.Write("swizzle", customSwizzle->Name());
 
 		out.Write("uuid", uuid.ToString());
 
@@ -1405,14 +1406,14 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
 	if(government && isDeparting)
 	{
-		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
+		auto swizzle = customSwizzle ? customSwizzle : government->GetSwizzle();
 		SetSwizzle(swizzle);
 
 		// Set swizzle for any carried ships too.
 		for(const auto &bay : bays)
 		{
 			if(bay.ship)
-				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
+				bay.ship->SetSwizzle(bay.ship->customSwizzle ? bay.ship->customSwizzle : swizzle);
 		}
 	}
 }
@@ -1447,7 +1448,7 @@ void Ship::SetPlanet(const Planet *planet)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+		SetSwizzle(customSwizzle ? customSwizzle : government->GetSwizzle());
 	this->government = government;
 }
 
@@ -2425,7 +2426,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 
 // Get this ship's custom swizzle.
-int Ship::CustomSwizzle() const
+const Swizzle *Ship::CustomSwizzle() const
 {
 	return customSwizzle;
 }
