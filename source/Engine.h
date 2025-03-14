@@ -77,6 +77,7 @@ public:
 	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
+	float FrameTime();
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);
@@ -231,6 +232,7 @@ private:
 	DrawList draw[2];
 	BatchDrawList batchDraw[2];
 	Radar radar[2];
+	float frameTime[2];
 
 	bool wasActive = false;
 	bool isMouseHoldEnabled = false;
@@ -304,8 +306,4 @@ private:
 	Zoom zoom;
 	// Tracks the next zoom change so that objects aren't drawn at different zooms in a single frame.
 	Zoom nextZoom;
-
-	double load = 0.;
-	int loadCount = 0;
-	double loadSum = 0.;
 };
