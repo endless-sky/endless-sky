@@ -273,7 +273,7 @@ void LoadPanel::Draw()
 
 bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool shouldPlaySound = true;
+	UI::UISound sound = UI::UISound::NORMAL;
 
 	if(key == 'n')
 	{
@@ -284,7 +284,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'd' && !selectedPilot.empty())
 	{
-		shouldPlaySound = false;
+		sound = UI::UISound::NONE;
 		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
 			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
@@ -297,7 +297,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
 			return false;
 
-		shouldPlaySound = false;
+		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
@@ -306,7 +306,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'R' && !selectedFile.empty())
 	{
-		shouldPlaySound = false;
+		sound = UI::UISound::NONE;
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
 		if(!(fileName == selectedPilot + ".txt"))
 			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
@@ -321,7 +321,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			LoadCallback();
 		else
 		{
-			shouldPlaySound = false;
+			sound = UI::UISound::NONE;
 			GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
 				"If you load this snapshot, it will overwrite your current game. "
 				"Any progress will be lost, unless you have saved other snapshots. "
@@ -414,8 +414,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else
 		return false;
 
-	if(shouldPlaySound)
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -438,7 +437,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 				selectedPilot = it.first;
 				selectedFile = it.second.front().first;
 				centerScroll = 0;
-				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::NORMAL);
 			}
 	}
 	else if(snapshotBox.Contains(click))

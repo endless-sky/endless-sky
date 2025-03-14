@@ -15,13 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "HiringPanel.h"
 
-#include "audio/Audio.h"
 #include "Command.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
+#include "UI.h"
 
 #include <algorithm>
 
@@ -133,6 +133,6 @@ bool HiringPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else
 		return false;
 
-	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }

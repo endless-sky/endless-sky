@@ -261,7 +261,6 @@ bool Dialog::AllowsFastForward() const noexcept
 
 bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool shouldPlaySound = true;
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
 	if(stringFun && (mod & KMOD_CTRL) && (key == 'c' || key == 'v'))
@@ -280,7 +279,6 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 	}
 	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
-		shouldPlaySound = false;
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
 		// Caps lock should shift letters, but not any other keys.
@@ -300,7 +298,6 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 	}
 	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
 	{
-		shouldPlaySound = false;
 		input.erase(input.length() - 1);
 		if(validateFun)
 			isOkDisabled = !validateFun(input);
@@ -339,14 +336,11 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 	}
 	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
 	{
-		shouldPlaySound = false;
 		GetUI()->Push(new MapDetailPanel(*player, system, true));
 	}
 	else
 		return false;
 
-	if(shouldPlaySound)
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -386,7 +380,6 @@ bool Dialog::Click(int x, int y, int clicks)
 void Dialog::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
 {
 	Audio::Pause();
-	Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 	SetInterruptible(isMission);
 
 	this->isMission = isMission;

@@ -54,10 +54,10 @@ protected:
 	virtual int DetailWidth() const override;
 	virtual double DrawDetails(const Point &center) override;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const override;
-	virtual bool Buy(bool onlyOwned = false) override;
+	virtual void Buy(bool onlyOwned = false) override;
 	virtual bool CanSell(bool toStorage = false) const override;
-	virtual bool Sell(bool toStorage = false) override;
-	virtual bool FailSell(bool toStorage = false) const override;
+	virtual void Sell(bool toStorage = false) override;
+	virtual void FailSell(bool toStorage = false) const override;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual void ToggleForSale() override;

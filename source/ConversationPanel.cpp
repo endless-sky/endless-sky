@@ -70,7 +70,6 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	PATH_LENGTH = Files::Saves().string().size();
 #endif
 	Audio::Pause();
-	Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display.
 	subs["<first>"] = player.FirstName();
@@ -240,13 +239,13 @@ void ConversationPanel::Draw()
 // Handle key presses.
 bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool shouldPlaySound = true;
+	UI::UISound sound = UI::UISound::NORMAL;
 	// Map popup happens when you press the map key, unless the name text entry
 	// fields are currently active. The name text entry fields are active if
 	// choices is empty and we aren't at the end of the conversation.
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
 	{
-		shouldPlaySound = false;
+		sound = UI::UISound::NONE;
 		GetUI()->Push(new MapDetailPanel(player, system, true));
 	}
 	if(node < 0)
@@ -254,7 +253,6 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		// If the conversation has ended, the only possible action is to exit.
 		if(isNewPress && (key == SDLK_RETURN || key == SDLK_KP_ENTER || key == 'd'))
 		{
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			Exit();
 			return true;
 		}
@@ -326,8 +324,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else
 		return false;
 
-	if(shouldPlaySound)
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(sound);
 	return true;
 }
 

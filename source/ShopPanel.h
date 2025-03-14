@@ -85,10 +85,10 @@ protected:
 	virtual int DetailWidth() const = 0;
 	virtual double DrawDetails(const Point &center) = 0;
 	virtual BuyResult CanBuy(bool onlyOwned = false) const = 0;
-	virtual bool Buy(bool onlyOwned = false) = 0;
-	virtual bool CanSell(bool toStorage = false) const = 0; ///< Returns whether a new panel was pushed
-	virtual bool Sell(bool toStorage = false) = 0;
-	virtual bool FailSell(bool toStorage = false) const;
+	virtual void Buy(bool onlyOwned = false) = 0;
+	virtual bool CanSell(bool toStorage = false) const = 0;
+	virtual void Sell(bool toStorage = false) = 0;
+	virtual void FailSell(bool toStorage = false) const;
 	virtual bool CanSellMultiple() const;
 	virtual bool IsAlreadyOwned() const;
 	virtual bool ShouldHighlight(const Ship *ship);

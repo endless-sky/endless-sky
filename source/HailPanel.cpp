@@ -49,7 +49,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)), facing(ship->Facing())
 {
 	Audio::Pause();
-	Audio::Play(Audio::Get("fail"), SoundCategory::UI);
+	UI::PlaySound(UI::UISound::SOFT);
 	SetInterruptible(false);
 
 	const Government *gov = ship->GetGovernment();
@@ -138,7 +138,6 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 	: player(player), object(object), planet(object->GetPlanet()), facing(object->Facing())
 {
 	Audio::Pause();
-	Audio::Play(Audio::Get("fail"), SoundCategory::UI);
 	SetInterruptible(false);
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
@@ -329,7 +328,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				Truncate::NONE, true, false));
 		else
 			SetMessage(planet->DemandTribute(player));
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+		UI::PlaySound(UI::UISound::NORMAL);
 		return true;
 	}
 	else if(key == 'h' && hasLanguage && ship && canAssistPlayer)
@@ -414,7 +413,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			SetMessage("I do not want your money.");
 	}
 
-	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 

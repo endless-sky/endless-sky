@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionPanel.h"
 
 #include "text/alignment.hpp"
-#include "audio/Audio.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
@@ -312,17 +311,16 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	bool shouldPlaySound = true;
+	UI::UISound sound = UI::UISound::NORMAL;
 	if(command.Has(Command::HELP))
 	{
-		shouldPlaySound = false;
+		sound = UI::UISound::NONE;
 		DoHelp("jobs", true);
 		DoHelp("map advanced", true);
 	}
 	else if(key == 'a' && CanAccept())
 	{
 		Accept((mod & KMOD_CTRL));
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		return true;
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
@@ -395,8 +393,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	// mission list, update the selected system, and pan the map.
 	SetSelectedScrollAndCenter();
 
-	if(shouldPlaySound)
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -434,7 +431,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				}
 				else if(hoverSort == 3)
 					player.ToggleSortAscending();
-				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+				UI::PlaySound(UI::UISound::NORMAL);
 				return true;
 			}
 			return false;
@@ -455,7 +452,6 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				return true;
 			}
 			SetSelectedScrollAndCenter();
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 	}
@@ -477,11 +473,9 @@ bool MissionPanel::Click(int x, int y, int clicks)
 			if(lastAcceptedIt == acceptedIt)
 			{
 				CycleInvolvedSystems(*acceptedIt);
-				Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 				return true;
 			}
 			SetSelectedScrollAndCenter();
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 	}
@@ -499,7 +493,6 @@ bool MissionPanel::Click(int x, int y, int clicks)
 	if(system)
 	{
 		Select(system);
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 		int options = available.size() + accepted.size();
 		// If you just aborted your last mission, it is possible that neither
 		// iterator is valid. In that case, start over from the beginning.

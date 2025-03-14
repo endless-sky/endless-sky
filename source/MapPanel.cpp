@@ -261,6 +261,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	fromMission(fromMission)
 {
 	Audio::Pause();
+	UI::PlaySound(UI::UISound::NORMAL);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
@@ -623,7 +624,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else
 		return false;
 
-	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 
@@ -640,7 +641,6 @@ bool MapPanel::Click(int x, int y, int clicks)
 				&& (player.HasSeen(system) || &system == specialSystem))
 		{
 			Select(&system);
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			break;
 		}
 	}

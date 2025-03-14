@@ -173,7 +173,7 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 	else
 		return false;
 
-	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 
@@ -193,7 +193,7 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 		{
 			if(startIt != it.Value())
 				Select(it.Value());
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+			UI::PlaySound(UI::UISound::NORMAL);
 			return true;
 		}
 

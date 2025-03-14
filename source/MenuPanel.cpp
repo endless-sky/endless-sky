@@ -174,6 +174,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		gamePanels.CanSave(true);
 		GetUI()->PopThrough(this);
+		return true;
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
@@ -187,7 +188,10 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), nullptr));
 	}
 	else if(key == 'q')
+	{
 		GetUI()->Quit();
+		return true;
+	}
 	else if(key == ' ')
 		scrollingPaused = !scrollingPaused;
 	else if(key == SDLK_DOWN)
@@ -197,7 +201,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else
 		return false;
 
-	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 

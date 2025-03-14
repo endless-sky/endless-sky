@@ -508,7 +508,7 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 
 
-bool OutfitterPanel::Buy(bool onlyOwned)
+void OutfitterPanel::Buy(bool onlyOwned)
 {
 	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
 	if(licenseCost)
@@ -525,7 +525,7 @@ bool OutfitterPanel::Buy(bool onlyOwned)
 	{
 		player.Map(mapSize);
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
-		return false;
+		return;
 	}
 
 	// Special case: licenses.
@@ -533,7 +533,7 @@ bool OutfitterPanel::Buy(bool onlyOwned)
 	{
 		player.AddLicense(LicenseRoot(selectedOutfit->TrueName()));
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
-		return false;
+		return;
 	}
 
 	int modifier = Modifier();
@@ -568,7 +568,7 @@ bool OutfitterPanel::Buy(bool onlyOwned)
 		for(Ship *ship : shipsToOutfit)
 		{
 			if(!CanBuy(onlyOwned))
-				return false;
+				return;
 
 			if(player.Cargo().Get(selectedOutfit))
 				player.Cargo().Remove(selectedOutfit);
@@ -589,7 +589,6 @@ bool OutfitterPanel::Buy(bool onlyOwned)
 			ship->Recharge();
 		}
 	}
-	return false;
 }
 
 
@@ -614,7 +613,7 @@ bool OutfitterPanel::CanSell(bool toStorage) const
 
 
 
-bool OutfitterPanel::Sell(bool toStorage)
+void OutfitterPanel::Sell(bool toStorage)
 {
 	CargoHold &storage = player.Storage();
 
@@ -633,7 +632,7 @@ bool OutfitterPanel::Sell(bool toStorage)
 			player.Accounts().AddCredits(price);
 			player.AddStock(selectedOutfit, 1);
 		}
-		return false;
+		return;
 	}
 
 	// Get the ships that have the most of this outfit installed.
@@ -692,7 +691,7 @@ bool OutfitterPanel::Sell(bool toStorage)
 				}
 			}
 		}
-		return false;
+		return;
 	}
 
 	if(!toStorage && storage.Get(selectedOutfit))
@@ -702,16 +701,15 @@ bool OutfitterPanel::Sell(bool toStorage)
 		player.Accounts().AddCredits(price);
 		player.AddStock(selectedOutfit, 1);
 	}
-	return false;
 }
 
 
 
-bool OutfitterPanel::FailSell(bool toStorage) const
+void OutfitterPanel::FailSell(bool toStorage) const
 {
 	const string &verb = toStorage ? "uninstall" : "sell";
 	if(!planet || !selectedOutfit)
-		return false;
+		return;
 	else if(selectedOutfit->Get("map"))
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->TrueName()))
@@ -742,18 +740,17 @@ bool OutfitterPanel::FailSell(bool toStorage) const
 									"\" value to be reduced to less than zero. "
 									"To " + verb + " this outfit, you must " + verb + " the " +
 									sit.first->DisplayName() + " outfit first."));
-								return true;
+								return;
 							}
 						GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
 							"because that would cause your ship's \"" + it.first +
 							"\" value to be reduced to less than zero."));
-						return true;
+						return;
 					}
 			GetUI()->Push(new Dialog("You cannot " + verb + " this outfit, "
 				"because something else in your ship depends on it."));
 		}
 	}
-	return true;
 }
 
 

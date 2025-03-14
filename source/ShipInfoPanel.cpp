@@ -148,8 +148,6 @@ void ShipInfoPanel::Draw()
 
 bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool /* isNewPress */)
 {
-	bool shouldPlaySound = true;
-
 	bool control = (mod & (KMOD_CTRL | KMOD_GUI));
 	bool shift = (mod & KMOD_SHIFT);
 	if(key == 'd' || key == SDLK_ESCAPE || (key == 'w' && control))
@@ -176,10 +174,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI()->Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
 	else if(key == 'R' || (key == 'r' && shift))
-	{
-		shouldPlaySound = false;
 		GetUI()->Push(new ShipNameDialog(this, &ShipInfoPanel::Rename, "Change this ship's name?", (*shipIt)->Name()));
-	}
 	else if(panelState.CanEdit() && (key == 'P' || (key == 'p' && shift) || key == 'k'))
 	{
 		if(shipIt->get() != player.Flagship() || (*shipIt)->IsParked())
@@ -223,13 +218,11 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				}
 			}
 
-			shouldPlaySound = false;
 			GetUI()->Push(new Dialog(this, &ShipInfoPanel::Disown, message));
 		}
 	}
 	else if(key == 'c' && CanDump())
 	{
-		shouldPlaySound = false;
 		int commodities = (*shipIt)->Cargo().CommoditiesSize();
 		int amount = (*shipIt)->Cargo().Get(selectedCommodity);
 		int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
@@ -270,15 +263,10 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
-	{
-		shouldPlaySound = false;
 		GetUI()->Push(new LogbookPanel(player));
-	}
 	else
 		return false;
 
-	if(shouldPlaySound)
-		Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -298,16 +286,10 @@ bool ShipInfoPanel::Click(int x, int y, int /* clicks */)
 	Point point(x, y);
 	for(const auto &zone : commodityZones)
 		if(zone.Contains(point))
-		{
 			selectedCommodity = zone.Value();
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
-		}
 	for(const auto &zone : plunderZones)
 		if(zone.Contains(point))
-		{
 			selectedPlunder = zone.Value();
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
-		}
 
 	return true;
 }

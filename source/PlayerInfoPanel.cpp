@@ -509,7 +509,6 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else
 		return false;
 
-	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
@@ -523,7 +522,6 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 		if(zone.Contains(mouse))
 		{
 			SortShips(*zone.Value());
-			Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 			return true;
 		}
 
@@ -571,7 +569,6 @@ bool PlayerInfoPanel::Click(int x, int y, int clicks)
 		}
 	}
 
-	Audio::Play(Audio::Get("warder"), SoundCategory::UI);
 	return true;
 }
 
