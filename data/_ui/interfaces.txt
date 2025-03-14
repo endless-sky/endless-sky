@@ -2078,14 +2078,14 @@ interface "message log"
 
 	sprite "ui/message log key"
 		center 710 -30 bottom left
-	visible if "!important only"
+	visible if "!important messages only"
 	sprite "ui/unchecked"
 		center 640 -30 bottom left
-	visible if "important only"
+	visible if "important messages only"
 	sprite "ui/checked"
 		center 640 -30 bottom left
 	visible
-	active if "important only"
+	active if "important messages only"
 	button i ""
 		center 706 -20 bottom left
 		dimensions 142 40

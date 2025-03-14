@@ -101,7 +101,7 @@ void MessageLogPanel::Draw()
 	}
 
 	if(importantOnly)
-		info.SetCondition("important only");
+		info.SetCondition("important messages only");
 
 	GameData::Interfaces().Get("message log")->Draw(info, this);
 }
