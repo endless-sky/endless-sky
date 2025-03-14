@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
-#include "Swizzle.h"
 #include "shader/BatchDrawList.h"
 #include "CollisionSet.h"
 #include "Color.h"
@@ -33,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "Swizzle.h"
 #include "TaskQueue.h"
 
 #include <condition_variable>

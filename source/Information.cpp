@@ -43,7 +43,8 @@ bool Information::HasCustomRegion() const
 
 
 
-void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit, float frame, const Swizzle *swizzle)
+void Information::SetSprite(const string &name, const Sprite *sprite, const Point &unit,
+	float frame, const Swizzle *swizzle)
 {
 	sprites[name] = sprite;
 	spriteUnits[name] = unit;

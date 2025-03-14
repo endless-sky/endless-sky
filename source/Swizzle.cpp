@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 #include "DataNode.h"
+
 #include <array>
 #include <string>
 #include <utility>

@@ -27,9 +27,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Personality.h"
 #include "Point.h"
 #include "Port.h"
-#include "Swizzle.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
+#include "Swizzle.h"
 
 #include <list>
 #include <map>
