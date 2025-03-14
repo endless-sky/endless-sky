@@ -217,7 +217,6 @@ outfit "Pug Gridfire Turret"
 		"turret turn" 20
 		"firing energy" 400
 		"firing heat" 200
-		"firing force" 120
 		"shield damage" 300
 		"hull damage" 300
 		"blast radius" 40
