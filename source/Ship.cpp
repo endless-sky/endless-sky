@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
-#include "Swizzle.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
@@ -43,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "StellarObject.h"
+#include "Swizzle.h"
 #include "System.h"
 #include "Visual.h"
 #include "Wormhole.h"
