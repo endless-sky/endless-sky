@@ -235,6 +235,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "link")
 		{
+			if(value == trueName)
+			{
+				child.PrintTrace("Error: systems cannot link to themselves.");
+				continue;
+			}
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
 			else
