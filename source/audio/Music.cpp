@@ -177,7 +177,7 @@ void Music::Decode()
 
 			// The new file now belongs to us, and it's our job to close it.
 			file = nextFile;
-			nextFile = nullptr;
+			nextFile.reset();
 			hasNewFile = false;
 		}
 
