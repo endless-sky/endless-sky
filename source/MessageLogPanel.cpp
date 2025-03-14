@@ -74,46 +74,36 @@ void MessageLogPanel::Draw()
 
 	Information info;
 	if(messages.empty())
-	{
 		info.SetCondition("empty");
-		GameData::Interfaces().Get("message log")->Draw(info, nullptr);
-		return;
-	}
-
-	const Font &font = FontSet::Get(14);
-
-	// Parameters for drawing messages:
-	WrappedText messageLine(font);
-	messageLine.SetAlignment(Alignment::LEFT);
-	messageLine.SetWrapWidth(width - 2. * PAD);
-
-	// Draw messages.
-	Point pos = Screen::BottomLeft() + Point(PAD, scroll);
-	for(const auto &it : messages)
+	else
 	{
-		if(importantOnly && (it.second == Messages::Importance::Low || it.second == Messages::Importance::High))
-			continue;
+		const Font &font = FontSet::Get(14);
 
-		messageLine.Wrap(it.first);
-		pos.Y() -= messageLine.Height();
-		if(pos.Y() >= Screen::Top() - 3 * font.Height())
-			messageLine.Draw(pos, *Messages::GetColor(it.second, true));
+		// Parameters for drawing messages:
+		WrappedText messageLine(font);
+		messageLine.SetAlignment(Alignment::LEFT);
+		messageLine.SetWrapWidth(width - 2. * PAD);
+
+		// Draw messages.
+		Point pos = Screen::BottomLeft() + Point(PAD, scroll);
+		for(const auto &it : messages)
+		{
+			if(importantOnly && (it.second == Messages::Importance::Low || it.second == Messages::Importance::High))
+				continue;
+
+			messageLine.Wrap(it.first);
+			pos.Y() -= messageLine.Height();
+			if(pos.Y() >= Screen::Top() - 3 * font.Height())
+				messageLine.Draw(pos, *Messages::GetColor(it.second, true));
+		}
+
+		maxScroll = max(0., scroll - pos.Y() + Screen::Top());
 	}
 
-	maxScroll = max(0., scroll - pos.Y() + Screen::Top());
+	if(importantOnly)
+		info.SetCondition("important messages only");
 
-	// Draw the filter box.
-	const Sprite *filterBack = SpriteSet::Get("ui/message log key");
-	pos = Screen::BottomLeft() + Point(width + 40., 0.);
-	SpriteShader::Draw(filterBack, pos + Point(.5 * filterBack->Width(), -.5 * filterBack->Height()));
-	const Color color[2] = {*GameData::Colors().Get("medium"), *GameData::Colors().Get("bright")};
-	const Sprite *box[2] = {SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked")};
-	pos += Point(30., -30.);
-	SpriteShader::Draw(box[importantOnly], pos);
-	Point off = Point(10., -.5 * font.Height());
-	font.Draw("Hide less _important", pos + off, color[importantOnly]);
-	font.Draw("messages", pos + off + Point(0., 20.), color[importantOnly]);
-	AddZone(Rectangle(pos + Point(64., 10.), Point(140., 40.)), [this](){ importantOnly = !importantOnly; });
+	GameData::Interfaces().Get("message log")->Draw(info, this);
 }
 
 
