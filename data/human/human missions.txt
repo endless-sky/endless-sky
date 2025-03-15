@@ -10230,7 +10230,7 @@ mission "Tavish and Kormak 1"
 			`	"Most serendipitous to find a captain of your caliber in this obscure port of call," the shorter man says, and tips his hat to you. "I am Dr. Julius Theodore Eustice Tavish and my affable comrade is the loquacious Dr. Gluniairn mac Kormakr. Don't worry, our friends just call us Tavish and Kormak..."`
 			`	"Kormak and Tavish," Kormak states flatly behind his stony inscrutable face.`
 			`	"... and you, my good fellow, have the look of someone who is just about to become of one our friends." Tavish flashes you a wide smile.`
-			`	"You see, me and my fellow scholar are in desperate need of your eminent services. We are on the very cusp of a monumental discovery here in the untamed wilds of New India." Tavish leans in and gestures wildly with his hands. "The sort of discovery certain to rewrite the entire history of this sector! Why, science as we know it will never be the same."`
+			`	"You see, I and my fellow scholar are in desperate need of your eminent services. We are on the very cusp of a monumental discovery here in the untamed wilds of <origin>." Tavish leans in and gestures wildly with his hands. "The sort of discovery certain to rewrite the entire history of this sector! Why, science as we know it will never be the same."`
 			`	"Never be the same," Kormak's gruff voice echos.`
 			`	"Yes! Yes! But first we need a capable captain such as yourself to ferry us over to <destination> to pick up our equipment and bring us back here. A most trivial request for one of your talents, so trivial in fact you might even be inspired to waive your normal fee and do it pro bono; for science that is."`
 			`	"For science," Kormak echoes blandly.`
