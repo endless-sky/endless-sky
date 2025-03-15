@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Files.h"
 
-#include "File.h"
 #include "Logger.h"
 
 #include <SDL2/SDL.h>
@@ -29,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #endif
 
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <mutex>
 #include <stdexcept>
@@ -47,7 +47,7 @@ namespace {
 	filesystem::path globalPluginPath;
 	filesystem::path testPath;
 
-	File errorLog;
+	shared_ptr<iostream> errorLog;
 
 	// Open the given folder in a separate window.
 	void OpenFolder(const filesystem::path &path)
@@ -288,12 +288,9 @@ bool Files::Exists(const filesystem::path &filePath)
 
 
 
-time_t Files::Timestamp(const filesystem::path &filePath)
+filesystem::file_time_type Files::Timestamp(const filesystem::path &filePath)
 {
-	auto time = last_write_time(filePath);
-	auto systemTime = time_point_cast<chrono::system_clock::duration>(time - chrono::file_clock::now()
-			+ chrono::system_clock::now());
-	return chrono::system_clock::to_time_t(systemTime);
+	return last_write_time(filePath);
 }
 
 
@@ -340,67 +337,44 @@ string Files::Name(const filesystem::path &path)
 
 
 
-FILE *Files::Open(const filesystem::path &path, bool write)
+shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 {
-#if defined _WIN32
-	FILE *file = nullptr;
-	_wfopen_s(&file, path.c_str(), write ? L"w" : L"rb");
-	return file;
-#else
-	return fopen(path.c_str(), write ? "wb" : "rb");
-#endif
+	if(write)
+		return shared_ptr<iostream>{new fstream{path, ios::out | ios::binary}};
+	return shared_ptr<iostream>{new fstream{path, ios::in | ios::binary}};
 }
 
 
 
 string Files::Read(const filesystem::path &path)
 {
-	File file(path);
-	return Read(file);
+	return Read(Open(path));
 }
 
 
 
-string Files::Read(FILE *file)
+string Files::Read(shared_ptr<iostream> file)
 {
-	string result;
 	if(!file)
-		return result;
-
-	// Find the remaining number of bytes in the file.
-	size_t start = ftell(file);
-	fseek(file, 0, SEEK_END);
-	size_t size = ftell(file) - start;
-	// Reserve one extra byte because DataFile appends a '\n' to the end of each
-	// file it reads, and that's the most common use of this function.
-	result.reserve(size + 1);
-	result.resize(size);
-	fseek(file, start, SEEK_SET);
-
-	// Read the file data.
-	size_t bytes = fread(&result[0], 1, result.size(), file);
-	if(bytes != result.size())
-		throw runtime_error("Error reading file!");
-
-	return result;
+		return "";
+	return string{istreambuf_iterator<char>{*file}, {}};
 }
 
 
 
 void Files::Write(const filesystem::path &path, const string &data)
 {
-	File file(path, true);
-	Write(file, data);
+	Write(Open(path, true), data);
 }
 
 
 
-void Files::Write(FILE *file, const string &data)
+void Files::Write(shared_ptr<iostream> file, const string &data)
 {
 	if(!file)
 		return;
-
-	fwrite(&data[0], 1, data.size(), file);
+	*file << data;
+	file->flush();
 }
 
 
@@ -438,7 +412,7 @@ void Files::LogErrorToFile(const string &message)
 {
 	if(!errorLog)
 	{
-		errorLog = File(config / "errors.txt", true);
+		errorLog = Open(config / "errors.txt", true);
 		if(!errorLog)
 		{
 			cerr << "Unable to create \"errors.txt\" " << (config.empty()
@@ -448,6 +422,5 @@ void Files::LogErrorToFile(const string &message)
 	}
 
 	Write(errorLog, message);
-	fwrite("\n", 1, 1, errorLog);
-	fflush(errorLog);
+	*errorLog << endl;
 }
