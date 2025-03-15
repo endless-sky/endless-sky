@@ -11441,7 +11441,7 @@ mission "Weland"
 					goto agreetoweland
 				`	(Refuse to leave the artifact with Weland.)`
 			`	Weland shrugs. "If that's how you feel. Well, before you go, any chance I could offer you some premium cords at crazy discount prices?"`
-			`	Weland then launches into another sales pitch on the utility of many of his useless cords. You politely nod, and edge toward the door, before promising him you'll come to him first should ever need a cord, and promptly leave.`
+			`	Weland then launches into another sales pitch on the utility of many of his useless cords. You politely nod, and edge toward the door, before promising him you'll come to him first should you ever need a cord, and promptly leave.`
 				decline
 			label agreetoweland
 			action
