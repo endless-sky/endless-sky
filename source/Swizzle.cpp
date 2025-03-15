@@ -123,7 +123,7 @@ Color Swizzle::Apply(const Color &to) const
 
 Swizzle *Swizzle::None()
 {
-	static Swizzle IDENTITY_SWIZZLE{
+	static Swizzle IDENTITY_SWIZZLE {
 		true,
 		true,
 		true,
