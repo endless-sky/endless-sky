@@ -1556,7 +1556,7 @@ void Engine::CalculateStep()
 	else
 		CalculateUnpaused(flagship, playerSystem);
 
-  // Draw the objects. Start by figuring out where the view should be centered:
+	// Draw the objects. Start by figuring out where the view should be centered:
 	Point newCenter = center;
 	Point newCenterVelocity;
 	if(flagship)

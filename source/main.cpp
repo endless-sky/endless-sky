@@ -315,7 +315,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				cursorTime = 0;
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
-      {
+			{
 				isDebugPaused = !isDebugPaused;
 				if(isDebugPaused)
 					Audio::Pause();
