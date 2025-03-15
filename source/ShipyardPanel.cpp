@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 
 #include "text/alignment.hpp"
+#include "ConditionContext.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
@@ -350,7 +351,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		// multiple ships, append a number to the given ship name.
 		string shipName = name;
 		if(name.empty())
-			shipName = GameData::Phrases().Get("civilian")->Get(nullptr);
+			shipName = GameData::Phrases().Get("civilian")->Get(nullptr, DEFAULT_CONDITION_CONTEXT);
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 

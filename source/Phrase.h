@@ -32,7 +32,7 @@ class DataNode;
 class Phrase {
 public:
 	// Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-	static std::string ExpandPhrases(const std::string &source, const ConditionsStore *vars);
+	static std::string ExpandPhrases(const std::string &source, const ConditionsStore *vars, const ConditionContext &context);
 
 
 public:
@@ -48,7 +48,7 @@ public:
 	const std::string &Name() const;
 
 	// Get a possible value. "to use" will be checked if vars is not null.
-	std::string Get(const ConditionsStore *vars) const;
+	std::string Get(const ConditionsStore *vars, const ConditionContext &context) const;
 
 
 private:

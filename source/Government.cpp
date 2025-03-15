@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Government.h"
 
+#include "ConditionContext.h"
 #include "Conversation.h"
 #include "DataNode.h"
 #include "Fleet.h"
@@ -560,7 +561,7 @@ const Conversation *Government::DeathSentence() const
 
 // Get a hail message (which depends on whether this is an enemy government
 // and if the ship is disabled).
-string Government::GetHail(bool isDisabled, const ConditionsStore *vars) const
+string Government::GetHail(bool isDisabled, const Ship &hailingShip, const ConditionsStore *vars) const
 {
 	const Phrase *phrase = nullptr;
 
@@ -569,7 +570,7 @@ string Government::GetHail(bool isDisabled, const ConditionsStore *vars) const
 	else
 		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
 
-	return phrase ? phrase->Get(vars) : "";
+	return phrase ? phrase->Get(vars, ConditionContextHailing(hailingShip)) : "";
 }
 
 

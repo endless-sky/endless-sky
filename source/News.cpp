@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "News.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "Random.h"
 #include "image/SpriteSet.h"
@@ -115,7 +116,7 @@ bool News::Matches(const Planet *planet, const ConditionsStore &conditions) cons
 	// used to create news items that are never shown until an event "activates"
 	// them by specifying their location.
 	// Similarly, by updating a news item with "remove location", it can be deactivated.
-	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test(conditions));
+	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test(conditions, DEFAULT_CONDITION_CONTEXT));
 }
 
 
@@ -123,7 +124,7 @@ bool News::Matches(const Planet *planet, const ConditionsStore &conditions) cons
 // Get the speaker's name.
 string News::Name() const
 {
-	return names.Get(nullptr);
+	return names.Get(nullptr, DEFAULT_CONDITION_CONTEXT);
 }
 
 
@@ -139,5 +140,5 @@ const Sprite *News::Portrait() const
 // Get the speaker's message, chosen randomly.
 string News::Message() const
 {
-	return messages.Get(nullptr);
+	return messages.Get(nullptr, DEFAULT_CONDITION_CONTEXT);
 }

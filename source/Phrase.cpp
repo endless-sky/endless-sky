@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Phrase.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -24,7 +25,7 @@ using namespace std;
 
 
 // Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-std::string Phrase::ExpandPhrases(const std::string &source, const ConditionsStore *vars)
+std::string Phrase::ExpandPhrases(const std::string &source, const ConditionsStore *vars, const ConditionContext &context)
 {
 	string result;
 	size_t next = 0;
@@ -41,7 +42,7 @@ std::string Phrase::ExpandPhrases(const std::string &source, const ConditionsSto
 		++next;
 		string phraseName = string{source, var + 2, next - var - 3};
 		const Phrase *phrase = GameData::Phrases().Find(phraseName);
-		result.append(phrase ? phrase->Get(vars) : phraseName);
+		result.append(phrase ? phrase->Get(vars, context) : phraseName);
 	}
 	// Optimization for most common case: no phrase in string:
 	if(!next)
@@ -99,11 +100,11 @@ const string &Phrase::Name() const
 
 
 // Get a random sentence's text.
-string Phrase::Get(const ConditionsStore *vars) const
+string Phrase::Get(const ConditionsStore *vars, const ConditionContext &context) const
 {
 	std::vector<const Sentence *> matchingSentences;
 	for(const auto &sentence : this->sentences)
-		if(sentence.toUse.Test(*vars))
+		if(sentence.toUse.Test(*vars, context))
 			matchingSentences.emplace_back(&sentence);
 
 	string result;
@@ -116,7 +117,7 @@ string Phrase::Get(const ConditionsStore *vars) const
 		{
 			const auto &choice = part.choices.Get();
 			for(const auto &element : choice)
-				result += element.second ? element.second->Get(vars) : element.first;
+				result += element.second ? element.second->Get(vars, context) : element.first;
 		}
 		else if(!part.replacements.empty())
 			for(const auto &pair : part.replacements)

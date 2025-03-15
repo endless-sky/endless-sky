@@ -92,12 +92,12 @@ bool ConditionAssignments::IsEmpty() const
 
 
 // Modify the given set of conditions.
-void ConditionAssignments::Apply(ConditionsStore &conditions) const
+void ConditionAssignments::Apply(ConditionsStore &conditions, const ConditionContext &context) const
 {
 	for(const Assignment &assignment : assignments)
 	{
 		auto &ce = conditions[assignment.conditionToAssignTo];
-		int64_t newValue = assignment.expressionToEvaluate.Evaluate(conditions);
+		int64_t newValue = assignment.expressionToEvaluate.Evaluate(conditions, context);
 		switch(assignment.assignOperator)
 		{
 			case AssignOp::ASSIGN:

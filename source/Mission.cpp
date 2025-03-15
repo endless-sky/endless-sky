@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Mission.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -824,10 +825,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 	}
 
 	const auto &playerConditions = player.Conditions();
-	if(!toOffer.Test(playerConditions))
+	if(!toOffer.Test(playerConditions, DEFAULT_CONDITION_CONTEXT))
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
+	if(!toFail.IsEmpty() && toFail.Test(playerConditions, DEFAULT_CONDITION_CONTEXT))
 		return false;
 
 	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
@@ -858,7 +859,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
 	const auto &playerConditions = player.Conditions();
-	if(!toAccept.Test(playerConditions))
+	if(!toAccept.Test(playerConditions, DEFAULT_CONDITION_CONTEXT))
 		return false;
 
 	bool isFailed = IsFailed(player);
@@ -911,7 +912,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 		return false;
 
 	// Test the completion conditions for this mission.
-	if(!toComplete.Test(player.Conditions()))
+	if(!toComplete.Test(player.Conditions(), DEFAULT_CONDITION_CONTEXT))
 		return false;
 
 	// Determine if any fines or outfits that must be transferred, can.
@@ -949,7 +950,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 bool Mission::IsFailed(const PlayerInfo &player) const
 {
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test(player.Conditions(), DEFAULT_CONDITION_CONTEXT))
 		return true;
 
 	for(const NPC &npc : npcs)
@@ -1006,12 +1007,12 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	}
 
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-	substitutions.Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions(), DEFAULT_CONDITION_CONTEXT);
+	substitutions.Substitutions(subs, player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 	player.AddPlayerSubstitutions(subs);
 
 	const auto &playerConditions = player.Conditions();
-	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
+	subs["<conditions>"] = toAccept.Test(playerConditions, DEFAULT_CONDITION_CONTEXT) ? "meet" : "do not meet";
 
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -1025,7 +1026,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	subs["<capacity>"] = out.str();
 
 	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second, nullptr);
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second, nullptr, DEFAULT_CONDITION_CONTEXT);
 	Format::Expand(subs);
 
 	string message = Format::Replace(blocked, subs);
@@ -1366,7 +1367,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
-		const string expandedCargo = Phrase::ExpandPhrases(cargo, nullptr);
+		const string expandedCargo = Phrase::ExpandPhrases(cargo, nullptr, DEFAULT_CONDITION_CONTEXT);
 		const Trade::Commodity *commodity = nullptr;
 		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
@@ -1412,7 +1413,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	result.paymentApparent = paymentApparent;
 	result.fine = fine;
-	result.fineMessage = Phrase::ExpandPhrases(fineMessage, nullptr);
+	result.fineMessage = Phrase::ExpandPhrases(fineMessage, nullptr, DEFAULT_CONDITION_CONTEXT);
 	result.failIfDiscovered = failIfDiscovered;
 
 	result.distanceCalcSettings = distanceCalcSettings;
@@ -1433,8 +1434,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Generate the substitutions map.
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-	substitutions.Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions(), DEFAULT_CONDITION_CONTEXT);
+	substitutions.Substitutions(subs, player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = Format::MassString(result.cargoSize);
 	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
@@ -1495,7 +1496,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Done making subs, so expand the phrases and recursively substitute.
 	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second, nullptr);
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second, nullptr, DEFAULT_CONDITION_CONTEXT);
 	Format::Expand(subs);
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
@@ -1563,10 +1564,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			player.Conditions(), subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
-	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName, nullptr), subs);
-	result.description = Format::Replace(Phrase::ExpandPhrases(description, nullptr), subs);
-	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance, nullptr), subs);
-	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked, nullptr), subs);
+	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
+	result.description = Format::Replace(Phrase::ExpandPhrases(description, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
+	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
+	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 

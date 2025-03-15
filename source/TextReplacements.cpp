@@ -84,14 +84,14 @@ void TextReplacements::Revert(TextReplacements &other)
 // Add new text replacements to the given map after evaluating all possible replacements.
 // This text replacement will overwrite the value of any existing keys in the given map
 // if the map and this TextReplacements share a key.
-void TextReplacements::Substitutions(map<string, string> &subs, const ConditionsStore &conditions) const
+void TextReplacements::Substitutions(map<string, string> &subs, const ConditionsStore &conditions, const ConditionContext &context) const
 {
 	for(const auto &sub : substitutions)
 	{
 		const string &key = sub.first;
 		const ConditionSet &toSub = sub.second.first;
 		const string &replacement = sub.second.second;
-		if(toSub.Test(conditions))
+		if(toSub.Test(conditions, context))
 			subs[key] = replacement;
 	}
 }

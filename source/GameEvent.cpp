@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameEvent.h"
 
+#include "ConditionContext.h"
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Planet.h"
@@ -229,7 +230,7 @@ list<DataNode> GameEvent::Apply(PlayerInfo &player)
 		return {};
 
 	// Apply this event's ConditionSet to the player's conditions.
-	conditionsToApply.Apply(player.Conditions());
+	conditionsToApply.Apply(player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(*system);

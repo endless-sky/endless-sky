@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 
 #include "CargoHold.h"
+#include "ConditionContext.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -382,7 +383,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	else if(!dialogText.empty() && ui)
 	{
 		map<string, string> subs;
-		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+		GameData::GetTextReplacements().Substitutions(subs, player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 		player.AddPlayerSubstitutions(subs);
 		string text = Format::Replace(dialogText, subs);
 
@@ -457,7 +458,7 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 		if(loadTimeScan)
 			return dialogText;
 		else
-			return Format::Replace(Phrase::ExpandPhrases(dialogText, nullptr), *subs);
+			return Format::Replace(Phrase::ExpandPhrases(dialogText, nullptr, DEFAULT_CONDITION_CONTEXT), *subs);
 	}
 
 	string resultText;
@@ -469,7 +470,7 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 			return string();
 
 		// Skip text that is disabled.
-		if(!item.condition.IsEmpty() && !item.condition.Test(*store))
+		if(!item.condition.IsEmpty() && !item.condition.Test(*store, DEFAULT_CONDITION_CONTEXT))
 			continue;
 
 		// Evaluate the phrase if we have one, otherwise copy the prepared text.
@@ -479,11 +480,11 @@ string MissionAction::CollapseDialog(const ConditionsStore *store, const map<str
 		else if(item.dialogPhrase.IsStock() && item.dialogPhrase->IsEmpty())
 			content = "stock phrase";
 		else
-			content = item.dialogPhrase->Get(nullptr);
+			content = item.dialogPhrase->Get(nullptr, DEFAULT_CONDITION_CONTEXT);
 
 		// Expand any ${phrases} and <substitutions>
 		if(!loadTimeScan)
-			content = Format::Replace(Phrase::ExpandPhrases(content, nullptr), *subs);
+			content = Format::Replace(Phrase::ExpandPhrases(content, nullptr, DEFAULT_CONDITION_CONTEXT), *subs);
 
 		// Concatenated lines should start with a tab and be preceeded by end-of-line.
 		if(!resultText.empty())

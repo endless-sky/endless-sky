@@ -89,7 +89,7 @@ public:
 
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
-	std::string GetHail(bool isDisabled, const ConditionsStore *vars) const;
+	std::string GetHail(bool isDisabled, const Ship &hailingShip, const ConditionsStore *vars) const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipManager.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "EsUuid.h"
@@ -136,7 +137,7 @@ void ShipManager::Do(PlayerInfo &player) const
 ShipManager ShipManager::Instantiate(const map<string, string> &subs) const
 {
 	ShipManager result = *this;
-	result.name = Format::Replace(Phrase::ExpandPhrases(name, nullptr), subs);
+	result.name = Format::Replace(Phrase::ExpandPhrases(name, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
 	return result;
 }
 

@@ -15,12 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionSet.h"
 
+#include "ConditionContext.h"
 #include "ConditionsStore.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Logger.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <limits>
 #include <numeric>
@@ -120,6 +122,31 @@ namespace
 		// If nothing matches, then we get the default INVALID value.
 		return ConditionSet::ExpressionOp::INVALID;
 	}
+
+	const string INVALID_FILTER_AGAINST_STRING = "invalid";
+
+	const auto FILTER_AGAINST_CONVERSION = map<const string, ConditionSet::FilterAgainst>{
+		{ "hailingShip", ConditionSet::FilterAgainst::HAILING_SHIP },
+		{ INVALID_FILTER_AGAINST_STRING, ConditionSet::FilterAgainst::INVALID }
+	};
+
+	const string& getFilterAgainstStringRepresentation(ConditionSet::FilterAgainst filterAgainst)
+	{
+		for (auto &pair : FILTER_AGAINST_CONVERSION)
+			if (pair.second == filterAgainst)
+				return pair.first;
+
+		return INVALID_FILTER_AGAINST_STRING;
+	}
+
+	const ConditionSet::FilterAgainst getFilterAgainstFromStringRepresentation(const string &filterAgainstString)
+	{
+		auto it = FILTER_AGAINST_CONVERSION.find(filterAgainstString);
+		if (it != FILTER_AGAINST_CONVERSION.end())
+			return it->second;
+
+		return ConditionSet::FilterAgainst::INVALID;
+	}
 }
 
 
@@ -157,6 +184,11 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 	literal = other.literal;
 	conditionName = std::move(other.conditionName);
 	children = std::move(other.children);
+	if (filter != nullptr)
+		filter = new LocationFilter(*filter);
+	else
+		filter = nullptr;
+	filterAgainst = filterAgainst;
 
 	return *this;
 }
@@ -179,6 +211,8 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 	literal = other.literal;
 	conditionName = other.conditionName;
 	children = other.children;
+	filter = other.filter;
+	filterAgainst = filterAgainst;
 
 	return *this;
 }
@@ -292,6 +326,16 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 		out.WriteToken(opTxt);
 		SaveChild(0, out);
 		break;
+	case ExpressionOp::FILTER:
+	{
+		assert(filter != nullptr && "Filter not defined!");
+		const string &filterAgainstText = getFilterAgainstStringRepresentation(filterAgainst);
+		out.WriteToken("filter");
+		out.WriteToken(filterAgainstText);
+		out.Write();
+		filter->Save(out);
+		break;
+	}
 	default:
 		out.WriteToken("never");
 		break;
@@ -331,14 +375,14 @@ bool ConditionSet::IsValid() const
 
 
 // Check if the given condition values satisfy this set of conditions.
-bool ConditionSet::Test(const ConditionsStore &conditions) const
+bool ConditionSet::Test(const ConditionsStore &conditions, const ConditionContext &context) const
 {
-	return Evaluate(conditions);
+	return Evaluate(conditions, context);
 }
 
 
 
-int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
+int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore, const ConditionContext &context) const
 {
 	switch(expressionOperator)
 	{
@@ -355,7 +399,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 			int64_t result = 0;
 			for(const ConditionSet &child : children)
 			{
-				int64_t childResult = child.Evaluate(conditionsStore);
+				int64_t childResult = child.Evaluate(conditionsStore, context);
 				if(!childResult)
 					return 0;
 				// Assign the first non-zero result to the result variable.
@@ -367,12 +411,29 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 		case ExpressionOp::OR:
 			for(const ConditionSet &child : children)
 			{
-				int64_t childResult = child.Evaluate(conditionsStore);
+				int64_t childResult = child.Evaluate(conditionsStore, context);
 				// Return the first non-zero result.
 				if(childResult)
 					return childResult;
 			}
 			return 0;
+		case ExpressionOp::FILTER:
+			assert(filter != nullptr && "Filter not defined!");
+			switch(filterAgainst)
+			{
+				// Test against the currently hailing ship (if any).
+				case FilterAgainst::HAILING_SHIP:
+				{
+					const Ship *hailingShip = context.getHailingShip();
+					if (hailingShip == nullptr)
+						return 0;
+					else
+						return filter->Matches(*hailingShip);
+				}
+				case FilterAgainst::INVALID:
+				default:
+					return 0;
+			}
 		default:
 			break;
 	}
@@ -380,9 +441,9 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 	// If we have an accumulator function and children, then let's use the accumulator on the children.
 	BinFun accumulatorOp = Op(expressionOperator);
 	if(accumulatorOp != nullptr && !children.empty())
-		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(conditionsStore),
-			[&accumulatorOp, &conditionsStore](int64_t accumulated, const ConditionSet &b) -> int64_t {
-				return accumulatorOp(accumulated, b.Evaluate(conditionsStore));
+		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(conditionsStore, context),
+			[&accumulatorOp, &conditionsStore, &context](int64_t accumulated, const ConditionSet &b) -> int64_t {
+				return accumulatorOp(accumulated, b.Evaluate(conditionsStore, context));
 		});
 
 	// If we don't have an accumulator function, or no children, then return the default value.
@@ -421,6 +482,19 @@ bool ConditionSet::ParseNode(const DataNode &node)
 			expressionOperator = ExpressionOp::OR;
 			return ParseBooleanChildren(node);
 		}
+	}
+
+	// This won’t cause any incompatibility with previously valid code.
+	// Variable condition could only be 1 or 3 element of size (if first part was "filter")
+	if(node.Size() == 2 && node.Token(0) == "filter")
+	{
+		filterAgainst = getFilterAgainstFromStringRepresentation(node.Token(1));
+		if (filterAgainst == ConditionSet::FilterAgainst::INVALID)
+			return FailParse(node, "unrecognized or invalid filter target");
+
+		expressionOperator = ExpressionOp::FILTER;
+		filter = new LocationFilter(node);
+		return true;
 	}
 
 	// Nodes beyond this point should not have children.
@@ -542,6 +616,7 @@ bool ConditionSet::Optimize(const DataNode &node)
 		case ExpressionOp::NOT:
 		case ExpressionOp::LIT:
 		case ExpressionOp::VAR:
+		case ExpressionOp::FILTER:
 		case ExpressionOp::INVALID:
 			break;
 	}

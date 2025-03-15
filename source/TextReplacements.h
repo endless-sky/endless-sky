@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionContext.h"
+
 #include <map>
 #include <string>
 #include <vector>
@@ -42,7 +44,7 @@ public:
 	// Add new text replacements to the given map after evaluating all possible replacements.
 	// This TextReplacements will overwrite the value of any existing keys in the given map
 	// if the map and this TextReplacements share a key.
-	void Substitutions(std::map<std::string, std::string> &subs, const ConditionsStore &conditions) const;
+	void Substitutions(std::map<std::string, std::string> &subs, const ConditionsStore &conditions, const ConditionContext &context) const;
 
 
 private:

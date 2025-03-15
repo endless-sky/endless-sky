@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipNameDialog.h"
 
+#include "ConditionContext.h"
 #include "Color.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -50,7 +51,7 @@ bool ShipNameDialog::Click(int x, int y, int clicks)
 	if(fabs(off.X()) < 40. && fabs(off.Y()) < 20.)
 	{
 		// TODO: always chooses human names even for alien ships
-		input = GameData::Phrases().Get("civilian")->Get(nullptr);
+		input = GameData::Phrases().Get("civilian")->Get(nullptr, DEFAULT_CONDITION_CONTEXT);
 		return true;
 	}
 	return Dialog::Click(x, y, clicks);

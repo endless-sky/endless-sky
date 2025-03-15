@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
+#include "ConditionContext.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -1539,7 +1540,7 @@ void Ship::SetHailPhrase(const Phrase &phrase)
 
 string Ship::GetHail(map<string, string> &&subs, const ConditionsStore *vars) const
 {
-	string hailStr = hail ? hail->Get(vars) : government ? government->GetHail(isDisabled, vars) : "";
+	string hailStr = hail ? hail->Get(vars, ConditionContextHailing(*this)) : government ? government->GetHail(isDisabled, *this, vars) : "";
 
 	if(hailStr.empty())
 		return hailStr;

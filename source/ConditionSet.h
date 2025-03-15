@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "LocationFilter.h"
+
 #include <cstdint>
 #include <map>
 #include <set>
@@ -24,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class ConditionContext;
 
 
 
@@ -60,7 +63,14 @@ public:
 
 		// Single boolean operators
 		NOT, ///< Single boolean 'not' operator.
-		HAS ///< Single boolean 'has' operator.
+		HAS, ///< Single boolean 'has' operator.
+		FILTER, ///< Apply a LocationFilter to a named object
+	};
+
+	enum class FilterAgainst {
+		INVALID, ///< Context is invalid/unset
+
+		HAILING_SHIP, ///< Filter against the ship that is performing the hailing
 	};
 
 
@@ -95,10 +105,10 @@ public:
 	bool IsValid() const;
 
 	// Check if the given condition values satisfy this set of expressions.
-	bool Test(const ConditionsStore &conditions) const;
+	bool Test(const ConditionsStore &conditions, const ConditionContext &context) const;
 
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)
-	int64_t Evaluate(const ConditionsStore &conditionsStore) const;
+	int64_t Evaluate(const ConditionsStore &conditionsStore, const ConditionContext &context) const;
 
 	/// Parse the remainder of a node into this expression.
 	bool ParseNode(const DataNode &node, int &tokenNr);
@@ -170,6 +180,9 @@ private:
 	std::string conditionName;
 	/// Nested sets of conditions to be tested.
 	std::vector<ConditionSet> children;
+	/// Filter for filter operation (a reference to reduce memory usage when not used)
+	LocationFilter *filter = nullptr;
+	FilterAgainst filterAgainst = FilterAgainst::INVALID;
 
 	// Let the assignment class call internal functions and parsers.
 	friend class ConditionAssignments;

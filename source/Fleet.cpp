@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Fleet.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "FormationPattern.h"
 #include "GameData.h"
@@ -522,7 +523,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 		bool canBeCarried = ship->CanBeCarried();
 		const Phrase *phrase = ((canBeCarried && fighterNames) ? fighterNames : names);
 		if(phrase)
-			ship->SetName(phrase->Get(nullptr));
+			ship->SetName(phrase->Get(nullptr, DEFAULT_CONDITION_CONTEXT));
 		ship->SetGovernment(government);
 		if(canBeCarried && fighterPersonality.IsDefined())
 			ship->SetPersonality(fighterPersonality);

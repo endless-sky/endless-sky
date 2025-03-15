@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameAction.h"
 
 #include "audio/Audio.h"
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -463,7 +464,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 
 	// Check if applying the conditions changes the player's reputations.
-	conditions.Apply(player.Conditions());
+	conditions.Apply(player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 }
 
 

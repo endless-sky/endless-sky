@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Conversation.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
@@ -365,7 +366,7 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 	for(Node &node : result.nodes)
 	{
 		for(Element &element : node.elements)
-			element.text = Format::Replace(Phrase::ExpandPhrases(element.text, nullptr), subs);
+			element.text = Format::Replace(Phrase::ExpandPhrases(element.text, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}
@@ -403,7 +404,7 @@ bool Conversation::HasAnyChoices(const ConditionsStore &vars, int node) const
 	{
 		if(data.conditions.IsEmpty())
 			return true;
-		if(data.conditions.Test(vars))
+		if(data.conditions.Test(vars, DEFAULT_CONDITION_CONTEXT))
 			return true;
 	}
 
@@ -527,7 +528,7 @@ bool Conversation::ShouldDisplayNode(const ConditionsStore &vars, int node, int 
 	const auto &data = nodes[node].elements[element];
 	if(data.conditions.IsEmpty())
 		return true;
-	return data.conditions.Test(vars);
+	return data.conditions.Test(vars, DEFAULT_CONDITION_CONTEXT);
 }
 
 
