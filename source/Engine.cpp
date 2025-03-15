@@ -1465,152 +1465,7 @@ void Engine::CalculateStep()
 		HandleMouseClicks();
 	}
 	else
-	{
-		// Now, all the ships must decide what they are doing next.
-		ai.Step(activeCommands);
-
-		// Clear the active players commands, they are all processed at this point.
-		activeCommands.Clear();
-
-		// Perform actions for all the game objects. In general this is ordered from
-		// bottom to top of the draw stack, but in some cases one object type must
-		// "act" before another does.
-
-		// The only action stellar objects perform is to launch defense fleets.
-		for(const StellarObject &object : playerSystem->Objects())
-			if(object.HasValidPlanet())
-				object.GetPlanet()->DeployDefense(newShips);
-
-		// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
-		bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
-		bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
-		// First, move the player's flagship.
-		if(flagship)
-			MoveShip(player.FlagshipPtr());
-		const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
-		bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
-		bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
-		// Then, move the other ships.
-		for(const shared_ptr<Ship> &it : ships)
-		{
-			if(it == player.FlagshipPtr())
-				continue;
-			bool wasUntargetable = !it->IsTargetable();
-			MoveShip(it);
-			bool isTargetable = it->IsTargetable();
-			if(flagshipSystem == it->GetSystem()
-				&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
-				&& isTargetable && flagshipIsTargetable)
-					eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
-		}
-		// If the flagship just began jumping, play the appropriate sound.
-		if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
-		{
-			bool isJumping = flagship->IsUsingJumpDrive();
-			const map<const Sound *, int> &jumpSounds = isJumping
-				? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
-			if(jumpSounds.empty())
-				Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
-			else
-				for(const auto &sound : jumpSounds)
-					Audio::Play(sound.first);
-		}
-		// Check if the flagship just entered a new system.
-		if(flagship && playerSystem != flagship->GetSystem())
-		{
-			bool wormholeEntry = false;
-			// Wormhole travel: mark the wormhole "planet" as visited.
-			if(!wasHyperspacing)
-				for(const auto &it : playerSystem->Objects())
-					if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
-							&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
-					{
-						wormholeEntry = true;
-						player.Visit(*it.GetPlanet());
-					}
-
-			player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
-				flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
-				SystemEntry::HYPERDRIVE);
-			doFlash = Preferences::Has("Show hyperspace flash");
-			playerSystem = flagship->GetSystem();
-			player.SetSystem(*playerSystem);
-			EnterSystem();
-		}
-		Prune(ships);
-
-		// Move the asteroids. This must be done before collision detection. Minables
-		// may create visuals or flotsam.
-		asteroids.Step(newVisuals, newFlotsam, step);
-
-		// Move the flotsam. This must happen after the ships move, because flotsam
-		// checks if any ship has picked it up.
-		for(const shared_ptr<Flotsam> &it : flotsam)
-			it->Move(newVisuals);
-		Prune(flotsam);
-
-		// Move the projectiles.
-		for(Projectile &projectile : projectiles)
-			projectile.Move(newVisuals, newProjectiles);
-		Prune(projectiles);
-
-		// Step the weather.
-		for(Weather &weather : activeWeather)
-			weather.Step(newVisuals, flagship ? flagship->Position() : center);
-		Prune(activeWeather);
-
-		// Move the visuals.
-		for(Visual &visual : visuals)
-			visual.Move();
-		Prune(visuals);
-
-		// Perform various minor actions.
-		SpawnFleets();
-		SpawnPersons();
-		GenerateWeather();
-		SendHails();
-		HandleMouseClicks();
-
-		// Now, take the new objects that were generated this step and splice them
-		// on to the ends of the respective lists of objects. These new objects will
-		// be drawn this step (and the projectiles will participate in collision
-		// detection) but they should not be moved, which is why we put off adding
-		// them to the lists until now.
-		ships.splice(ships.end(), newShips);
-		Append(projectiles, newProjectiles);
-		flotsam.splice(flotsam.end(), newFlotsam);
-		Append(visuals, newVisuals);
-
-		// Decrement the count of how long it's been since a ship last asked for help.
-		if(grudgeTime)
-			--grudgeTime;
-
-		// Populate the collision detection lookup sets.
-		FillCollisionSets();
-
-		// Perform collision detection.
-		for(Projectile &projectile : projectiles)
-			DoCollisions(projectile);
-		// Now that collision detection is done, clear the cache of ships with anti-
-		// missile systems ready to fire.
-		hasAntiMissile.clear();
-
-		// Damage ships from any active weather events.
-		for(Weather &weather : activeWeather)
-			DoWeather(weather);
-
-		// Check for flotsam collection (collisions with ships).
-		for(const shared_ptr<Flotsam> &it : flotsam)
-			DoCollection(*it);
-
-		// Now that flotsam collection is done, clear the cache of ships with
-		// tractor beam systems ready to fire.
-		hasTractorBeam.clear();
-
-		// Check for ship scanning.
-		for(const shared_ptr<Ship> &it : ships)
-			DoScanning(it);
-	}
+		CalculateUnpaused(flagship, playerSystem);
 
 	// Draw the objects. Start by figuring out where the view should be centered:
 	Point newCenter = center;
@@ -1713,6 +1568,157 @@ void Engine::CalculateStep()
 		loadSum = 0.;
 		loadCount = 0;
 	}
+}
+
+
+
+// Calculate things that require the engine not to be paused.
+void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
+{
+	// Now, all the ships must decide what they are doing next.
+	ai.Step(activeCommands);
+
+	// Clear the active players commands, they are all processed at this point.
+	activeCommands.Clear();
+
+	// Perform actions for all the game objects. In general this is ordered from
+	// bottom to top of the draw stack, but in some cases one object type must
+	// "act" before another does.
+
+	// The only action stellar objects perform is to launch defense fleets.
+	for(const StellarObject &object : playerSystem->Objects())
+		if(object.HasValidPlanet())
+			object.GetPlanet()->DeployDefense(newShips);
+
+	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
+	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
+	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
+	// First, move the player's flagship.
+	if(flagship)
+		MoveShip(player.FlagshipPtr());
+	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
+	bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
+	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
+	// Then, move the other ships.
+	for(const shared_ptr<Ship> &it : ships)
+	{
+		if(it == player.FlagshipPtr())
+			continue;
+		bool wasUntargetable = !it->IsTargetable();
+		MoveShip(it);
+		bool isTargetable = it->IsTargetable();
+		if(flagshipSystem == it->GetSystem()
+			&& ((wasUntargetable && isTargetable) || flagshipBecameTargetable)
+			&& isTargetable && flagshipIsTargetable)
+				eventQueue.emplace_back(player.FlagshipPtr(), it, ShipEvent::ENCOUNTER);
+	}
+	// If the flagship just began jumping, play the appropriate sound.
+	if(!wasHyperspacing && flagship && flagship->IsEnteringHyperspace())
+	{
+		bool isJumping = flagship->IsUsingJumpDrive();
+		const map<const Sound *, int> &jumpSounds = isJumping
+			? flagship->Attributes().JumpSounds() : flagship->Attributes().HyperSounds();
+		if(jumpSounds.empty())
+			Audio::Play(Audio::Get(isJumping ? "jump drive" : "hyperdrive"));
+		else
+			for(const auto &sound : jumpSounds)
+				Audio::Play(sound.first);
+	}
+	// Check if the flagship just entered a new system.
+	if(flagship && playerSystem != flagship->GetSystem())
+	{
+		bool wormholeEntry = false;
+		// Wormhole travel: mark the wormhole "planet" as visited.
+		if(!wasHyperspacing)
+			for(const auto &it : playerSystem->Objects())
+				if(it.HasValidPlanet() && it.GetPlanet()->IsWormhole() &&
+						&it.GetPlanet()->GetWormhole()->WormholeDestination(*playerSystem) == flagship->GetSystem())
+				{
+					wormholeEntry = true;
+					player.Visit(*it.GetPlanet());
+				}
+
+		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
+			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
+			SystemEntry::HYPERDRIVE);
+		doFlash = Preferences::Has("Show hyperspace flash");
+		playerSystem = flagship->GetSystem();
+		player.SetSystem(*playerSystem);
+		EnterSystem();
+	}
+	Prune(ships);
+
+	// Move the asteroids. This must be done before collision detection. Minables
+	// may create visuals or flotsam.
+	asteroids.Step(newVisuals, newFlotsam, step);
+
+	// Move the flotsam. This must happen after the ships move, because flotsam
+	// checks if any ship has picked it up.
+	for(const shared_ptr<Flotsam> &it : flotsam)
+		it->Move(newVisuals);
+	Prune(flotsam);
+
+	// Move the projectiles.
+	for(Projectile &projectile : projectiles)
+		projectile.Move(newVisuals, newProjectiles);
+	Prune(projectiles);
+
+	// Step the weather.
+	for(Weather &weather : activeWeather)
+		weather.Step(newVisuals, flagship ? flagship->Position() : center);
+	Prune(activeWeather);
+
+	// Move the visuals.
+	for(Visual &visual : visuals)
+		visual.Move();
+	Prune(visuals);
+
+	// Perform various minor actions.
+	SpawnFleets();
+	SpawnPersons();
+	GenerateWeather();
+	SendHails();
+	HandleMouseClicks();
+
+	// Now, take the new objects that were generated this step and splice them
+	// on to the ends of the respective lists of objects. These new objects will
+	// be drawn this step (and the projectiles will participate in collision
+	// detection) but they should not be moved, which is why we put off adding
+	// them to the lists until now.
+	ships.splice(ships.end(), newShips);
+	Append(projectiles, newProjectiles);
+	flotsam.splice(flotsam.end(), newFlotsam);
+	Append(visuals, newVisuals);
+
+	// Decrement the count of how long it's been since a ship last asked for help.
+	if(grudgeTime)
+		--grudgeTime;
+
+	// Populate the collision detection lookup sets.
+	FillCollisionSets();
+
+	// Perform collision detection.
+	for(Projectile &projectile : projectiles)
+		DoCollisions(projectile);
+	// Now that collision detection is done, clear the cache of ships with anti-
+	// missile systems ready to fire.
+	hasAntiMissile.clear();
+
+	// Damage ships from any active weather events.
+	for(Weather &weather : activeWeather)
+		DoWeather(weather);
+
+	// Check for flotsam collection (collisions with ships).
+	for(const shared_ptr<Flotsam> &it : flotsam)
+		DoCollection(*it);
+
+	// Now that flotsam collection is done, clear the cache of ships with
+	// tractor beam systems ready to fire.
+	hasTractorBeam.clear();
+
+	// Check for ship scanning.
+	for(const shared_ptr<Ship> &it : ships)
+		DoScanning(it);
 }
 
 

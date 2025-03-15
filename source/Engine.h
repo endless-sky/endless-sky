@@ -160,6 +160,8 @@ private:
 	void EnterSystem();
 
 	void CalculateStep();
+	// Calculate things that require the engine not to be paused.
+	void CalculateUnpaused(const Ship *flagship, const System *playerSystem);
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
 
