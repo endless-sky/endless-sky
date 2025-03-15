@@ -96,7 +96,7 @@ mission "Hai Legacy 1"
 			label first
 			`As you're browsing the shipyard, you are discreetly approached by a hooded figure. When you stop to see what they want to say, they grab and pull on your arm to follow them. "Keep walking," the stranger hisses. After pointing at and commenting on random ships, as if to mimic the actions of a regular passerby, they address you again.`
 			`	"My associates and I have a lucrative business proposition for you. It will require your undivided attention, so you would do well to finish any ongoing business first. If you are interested, come find us at these coordinates."`
-			`	"We note you operate multiple ships, however, this is a solitary affair; make sure you can park most of your ships."`
+			`	"We note you operate multiple ships. However, this is a solitary affair; make sure you can park most of your ships."`
 				to display
 					"total ships" > 1
 			`	Without waiting for a response, they fold a piece of paper into your hand before quickly fading into the crowd. It lists only a location, and if you cross-reference it with the local maps, it appears to point towards a beach on the other side of the planet.`
