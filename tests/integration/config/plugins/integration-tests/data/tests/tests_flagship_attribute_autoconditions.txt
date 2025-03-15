@@ -64,7 +64,6 @@ test-data "Flagship Attribute Autoconditions Save"
 				"Bellows-Class Afterburner"
 				"Crucible-Class Thruster"
 				"Crystal Capacitor" 2
-				Hyperdrive
 				"Inhibitor Cannon" 5
 				"Jump Drive"
 				"NDR-114 Android" 5
@@ -162,13 +161,11 @@ test "Flagship Attribute Autoconditions"
 			"flagship base attribute: turret mounts" == 2000
 			"flagship base attribute: weapon capacity" == 220000
 			"flagship base attribute: heat generation" == 0
-			"flagship attribute: cost" == 56584000
-			"flagship attribute: mass" == 902100
+			"flagship attribute: cost" == 56534000
+			"flagship attribute: mass" == 882100
 			"flagship attribute: drag" == 4300
-			"flagship attribute: engine capacity" == 13000
+			"flagship attribute: engine capacity" == 9000
 			"flagship attribute: gun ports" == 0
 			"flagship attribute: heat generation" == 32300
-			"flagship attribute: outfit space" == 0
+			"flagship attribute: outfit space" == 16000
 			"flagship attribute: weapon capacity" == 58000
-
-

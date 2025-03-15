@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MISSION_H_
-#define MISSION_H_
+#pragma once
 
 #include "ConditionSet.h"
 #include "Date.h"
@@ -82,12 +81,15 @@ public:
 	// are available, no others will be shown at landing or in the spaceport.
 	// This is to be used for missions that are part of a series.
 	bool HasPriority() const;
+	// Check if this mission is a "non-blocking" mission.
+	// Such missions will not prevent minor missions from being offered alongside them.
+	bool IsNonBlocking() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
-	// offered if no other missions (minor or otherwise) are being offered.
+	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
@@ -103,8 +105,8 @@ public:
 	void Unmark(const System *system) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
-	int IllegalCargoFine() const;
-	std::string IllegalCargoMessage() const;
+	int Fine() const;
+	std::string FineMessage() const;
 	bool FailIfDiscovered() const;
 	int Passengers() const;
 	int64_t DisplayedPayment() const;
@@ -205,6 +207,7 @@ private:
 	bool hasFailed = false;
 	bool isVisible = true;
 	bool hasPriority = false;
+	bool isNonBlocking = false;
 	bool isMinor = false;
 	bool autosave = false;
 	bool overridesCapture = false;
@@ -224,8 +227,8 @@ private:
 	// Parameters for generating random cargo amounts:
 	int cargoLimit = 0;
 	double cargoProb = 0.;
-	int illegalCargoFine = 0;
-	std::string illegalCargoMessage;
+	int fine = 0;
+	std::string fineMessage;
 	bool failIfDiscovered = false;
 	int passengers = 0;
 	// Parameters for generating random passenger amounts:
@@ -271,7 +274,3 @@ private:
 	// Track which `on enter` MissionActions have triggered.
 	std::set<const MissionAction *> didEnter;
 };
-
-
-
-#endif

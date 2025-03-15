@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ES_UUID_H_
-#define ES_UUID_H_
+#pragma once
 
 #include <memory>
 #include <string>
@@ -104,7 +103,3 @@ struct UUIDComparator {
 	// No comparator for collections of T, as std containers generally perform copy operations
 	// and copying this class will eventually be disabled.
 };
-
-
-
-#endif

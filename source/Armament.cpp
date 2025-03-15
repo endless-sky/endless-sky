@@ -225,16 +225,15 @@ set<const Outfit *> Armament::RestockableAmmo() const
 
 
 // Adjust the aim of the turrets.
-void Armament::Aim(const FireCommand &command)
+void Armament::Aim(const Ship &ship, const FireCommand &command)
 {
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
-		hardpoints[i].Aim(command.Aim(i));
+		hardpoints[i].Aim(ship, command.Aim(i));
 }
 
 
 
-// Fire the given weapon, if it is ready. If it did not fire because it is
-// not ready, return false.
+// Fire the given weapon, if it is ready.
 void Armament::Fire(unsigned index, Ship &ship, vector<Projectile> &projectiles, vector<Visual> &visuals, bool jammed)
 {
 	// Don't check if the hardpoint jammed here, as the weapon may not even

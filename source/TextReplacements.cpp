@@ -31,7 +31,7 @@ void TextReplacements::Load(const DataNode &node)
 	// Check for reserved keys. Only some hardcoded replacement keys are
 	// reserved, as these ones are done on the fly after all other replacements
 	// have been done.
-	const set<string> reserved = {"<first>", "<last>", "<ship>"};
+	const set<string> reserved = {"<first>", "<last>", "<ship>", "<model>"};
 
 	for(const DataNode &child : node)
 	{
@@ -57,13 +57,15 @@ void TextReplacements::Load(const DataNode &node)
 			key += ">";
 			child.PrintTrace("Warning: text replacements must be suffixed by \">\":");
 		}
-		if(reserved.count(key))
+		if(reserved.contains(key))
 		{
 			child.PrintTrace("Skipping reserved substitution key:");
 			continue;
 		}
 
-		ConditionSet toSubstitute(child);
+		ConditionSet toSubstitute;
+		if(child.HasChildren())
+			toSubstitute.Load(child);
 		substitutions.emplace_back(key, make_pair(std::move(toSubstitute), child.Token(1)));
 	}
 }

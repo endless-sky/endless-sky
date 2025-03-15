@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef DISTANCE_CALCULATION_OPTIONS_H_
-#define DISTANCE_CALCULATION_OPTIONS_H_
+#pragma once
 
 #include "WormholeStrategy.h"
 
@@ -39,7 +38,3 @@ private:
 	enum WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
 	bool assumesJumpDrive = false;
 };
-
-
-
-#endif
