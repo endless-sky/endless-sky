@@ -18,30 +18,25 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "DataNode.h"
 
-#include <array>
-#include <string>
 #include <utility>
 
 using namespace std;
 
-
-
-Swizzle::Swizzle()
-{
+namespace {
+	constexpr int STRIDE = 4;
 }
 
 
 
 void Swizzle::Load(const DataNode &node)
 {
-	if(node.Size() < 2)
-		node.PrintTrace("swizzle without a name");
-	else
-		name = node.Token(1);
+	name = node.Token(1);
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
 
+		// The corresponding row of the matrix for each channel name.
 		static const array<pair<string, int>, 4> channels = {{
 			{"red", 0},
 			{"green", 1},
@@ -52,20 +47,24 @@ void Swizzle::Load(const DataNode &node)
 		for(auto channel : channels)
 			if(key == channel.first)
 			{
+				// Fill in the row of the matrix for the channel.
+				// We subtract one to account for the name being in the node.
 				for(int i = 0; i < child.Size() - 1; i++)
 					matrix[channel.second * STRIDE + i] = child.Value(i + 1);
 				wasChannel = true;
 				continue;
 			}
+		// Skip the unrecognised attribute check, C++ doesn't support nested continues.
 		if(wasChannel)
 		{
 		}
 		else if(key == "override")
 			overrideMask = true;
 		else
-			child.PrintTrace("Unrecognized attribute in swizzle definition");
+			child.PrintTrace("Unrecognized attribute in swizzle definition:");
 	}
 
+	// Special-case flag for when applying a swizzle would do nothing at all.
 	identity = matrix == IDENTITY_MATRIX;
 	loaded = true;
 }
@@ -110,7 +109,9 @@ const float *Swizzle::MatrixPtr() const
 Color Swizzle::Apply(const Color &to) const
 {
 	const float *colorPtr = to.Get();
-	array<double, 4> newColor = {0, 0, 0, 0};
+	array<float, 4> newColor = {0, 0, 0, 0};
+
+	// Manual matrix multiply into newColor.
 	for(int i = 0; i < 4; i++)
 		for(int j = 0; j < 4; j++)
 			newColor[i] += colorPtr[j] * matrix[i * STRIDE + j];
@@ -122,7 +123,7 @@ Color Swizzle::Apply(const Color &to) const
 
 Swizzle *Swizzle::None()
 {
-	static Swizzle IDENTITY_SWIZZLE = Swizzle {
+	static Swizzle IDENTITY_SWIZZLE{
 		true,
 		true,
 		true,

@@ -25,17 +25,9 @@ class DataNode;
 
 
 class Swizzle {
-private:
-	static constexpr inline int STRIDE = 4;
-	static constexpr inline std::array<float, 16> IDENTITY_MATRIX = {
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		0, 0, 0, 1
-	};
-
 public:
-	Swizzle();
+	Swizzle() = default;
+
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
 
@@ -49,10 +41,19 @@ public:
 
 	static Swizzle *None();
 
+
 private:
 	explicit Swizzle(bool identity, bool loaded, bool overrideMask, std::array<float, 16> matrix);
 
+
 private:
+	static constexpr inline std::array<float, 16> IDENTITY_MATRIX = {
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	};
+
 	std::string name;
 	// Special case for when a swizzle does not actually need to be calculated.
 	bool identity = true;
