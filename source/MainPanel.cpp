@@ -156,19 +156,15 @@ void MainPanel::Draw()
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		auto &font = FontSet::Get(14);
+		const Font &font = FontSet::Get(14);
 		const Color &color = *GameData::Colors().Get("medium");
 
-		{
-			float sec = loadTimer.Time();
-			string loadString = to_string(lround(sec * 1000.)) + "ms GPU";
-			font.Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
-		}
+		float sec = loadTimer.Time();
+		string loadString = to_string(lround(sec * 1000.)) + "ms GPU";
+		font.Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 
-		{
-			string loadString = to_string(lround(frameTime * 1000.)) + "ms CPU";
-			font.Draw(loadString, Point(-10. - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
-		}
+		loadString = to_string(lround(frameTime * 1000.)) + "ms CPU";
+		font.Draw(loadString, Point(-10. - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
 	}
 }
 
