@@ -2190,6 +2190,15 @@ const Planet *Ship::GetPlanet() const
 }
 
 
+// Get a "scale" value, ranging from 0.2 to 2.0, based on the distance this
+// ship is from the center of its system.
+// Used for ramscoop and solar energy collection calculations.
+double Ship::SolarDistanceScale() const
+{
+	return .2 + 1.8 / (.001 * position.Length() + 1);
+}
+
+
 
 bool Ship::IsCapturable() const
 {
@@ -4227,7 +4236,7 @@ void Ship::DoGeneration()
 		// Carried fighters can't collect fuel or energy this way.
 		if(currentSystem)
 		{
-			double scale = .2 + 1.8 / (.001 * position.Length() + 1);
+			double scale = SolarDistanceScale();
 			fuel += currentSystem->RamscoopFuel(attributes.Get("ramscoop"), scale);
 
 			double solarScaling = currentSystem->SolarPower() * scale;
