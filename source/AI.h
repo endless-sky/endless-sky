@@ -74,6 +74,8 @@ template <class Type>
 	void ClearOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(Command &activeCommands);
+	// Process commands for the player only, called by Step in non-paused mode.
+	void MovePlayer(Ship &ship, Command &activeCommands);
 
 	// Set the mouse position for turning the player's flagship.
 	void SetMousePosition(Point position);
@@ -162,8 +164,6 @@ private:
 	// target's relative position and velocity and the velocity of the
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
-
-	void MovePlayer(Ship &ship, Command &activeCommands);
 
 	// True if found asteroid.
 	bool TargetMinable(Ship &ship) const;
