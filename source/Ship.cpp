@@ -302,7 +302,7 @@ void Ship::Load(const DataNode &node)
 
 			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
 				(reverse ? reverseEnginePoints : steeringEnginePoints);
-			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
+			editPoints.emplace_back(0.5 * child.Value(1) * Scale().X(), 0.5 * child.Value(2) * Scale().Y(),
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
 			if(reverse)
@@ -339,7 +339,7 @@ void Ship::Load(const DataNode &node)
 			Point hardpoint;
 			if(child.Size() >= 3)
 			{
-				hardpoint = Point(child.Value(1), child.Value(2));
+				hardpoint = Point(child.Value(1), child.Value(2)) * Scale();
 				if(child.Size() >= 4)
 					outfit = GameData::Outfits().Get(child.Token(3));
 			}
@@ -1653,6 +1653,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoPassiveEffects(visuals, flotsam);
 	DoJettison(flotsam);
 	DoCloakDecision();
+
+	for(uint8_t &held : thrustHeldFrames)
+		if(held > 0)
+			--held;
 
 	bool isUsingAfterburner = false;
 
@@ -3096,6 +3100,13 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+uint8_t Ship::ThrustHeldFrames(Ship::ThrustKind kind) const
+{
+	return thrustHeldFrames[static_cast<size_t>(kind)];
 }
 
 
@@ -4693,6 +4704,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			{
 				isSteering = true;
 				steeringDirection = commands.Turn();
+				IncrementThrusterHeld(steeringDirection < 0. ? ThrustKind::LEFT : ThrustKind::RIGHT);
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -4752,6 +4764,9 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+
+				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
+
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
@@ -5129,6 +5144,14 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+void Ship::IncrementThrusterHeld(Ship::ThrustKind kind)
+{
+	uint8_t &heldFrame = thrustHeldFrames[static_cast<size_t>(kind)];
+	heldFrame = min(MAX_THRUST_HELD_FRAMES, static_cast<uint8_t>(heldFrame + 2));
 }
 
 
