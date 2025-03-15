@@ -10237,7 +10237,6 @@ mission "Tavish and Kormak 1"
 			choice
 				`	"I'll do it, but not for free."`
 				`	"Surely you have some money."`
-					goto cashmoney
 				`	"Fine, I'll do it for free."`
 					goto forscience
 				`	"For science!"`
