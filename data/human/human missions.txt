@@ -7589,9 +7589,10 @@ mission "Timothy Radrickson 1: Stowaway"
 				accept
 
 	on complete
-		log "People" "Timothy Radickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		log `Discovered Timothy, a stowaway, in my ship, and decided to take him where he needed to go. Never learned what Timothy had been fleeing, who he had been, or what he had done that lead him to such dire straits.`
 		event "timothy radrickson: on rand" 340
+		set "timothy radrickson 1 log entry correct"
 		conversation
 			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand.`
 			`	"I mean it, from the bottom of my heart. You've saved my life, and given me hope. I won't forget this; or you. I could never thank you enough."`
@@ -7649,9 +7650,10 @@ mission "Timothy Radrickson 2: Good Interlude"
 	to offer
 		has "event: timothy radrickson: on rand"
 	on offer
-		log "People" "Timothy Radickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
 		log `Despite starting over with nothing, Timothy has sent credits for that passage I gave him over a year ago.`
 		payment 50000
+		set "timothy radrickson 2 log entry correct"
 		event "timothy radrickson: governor" 3600
 		conversation
 			`After your ship touches down you notice a light blinking on your dashboard. You have a cached message waiting for you to play.`
@@ -8065,6 +8067,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget my help. Was invited to a lavish celebration and named the Hero of Rand.`
 				"salary: Hero of Rand" = 200
 				payment 1000000
+				set "timothy radrickson 3 log entry correct"
 				event "timothy radrickson imprisoned" 400
 			`	You excuse yourself from the table and duck into the first empty room you find. You sit in one of the comfortable chairs; you notice a large wooden desk covered in screens and ledgers. You can still hear the muffled sounds of laughter, speeches, and general chatter from behind the walls. You sit for a while in a dark meditative silence.`
 			`	After a while, a gentle knock on the door and Timothy pushes his way into the room.`
@@ -8074,7 +8077,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 
 			label mingle
 			action
-				log "People" "Timothy Radickson" `Timothy has since become the governor of Rand.`
+				log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
 				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget my help. Was invited to a lavish celebration and named the Hero of Rand.`
 				"salary: Hero of Rand" = 200
 				payment 1000000
@@ -8156,8 +8159,9 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 	deadline 1
 	invisible
 	on offer
-		log "People" "Timothy Radickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
 		log `Oblivion had not been kind to Timothy. The last time he had been seen alive he was dying the slow, toxic death that world is famed for. Asked me to help him.`
+		set "timothy radrickson 4 log entry correct"
 		conversation
 			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
 			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
@@ -8352,7 +8356,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	Without looking your way she continues, "It was a pleasure to see you again, Captain <last>, but it's time you were leaving. The governor needs you, and my own glorious revolution needs some attention."`
 			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
 			action
-				log `Met Union-Colonel Wynnfrith, Timothy Radickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. Showed her Timothy's list, and she said I could find a survival suit on Dancer, the medication on New Britain, and a fake ID on Shaula. Provided me with the gun and bomb Timothy asked for.`
+				log `Met Union-Colonel Wynnfrith, Timothy Radrickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. Showed her Timothy's list, and she said I could find a survival suit on Dancer, the medication on New Britain, and a fake ID on Shaula. Provided me with the gun and bomb Timothy asked for.`
 
 
 
@@ -9094,8 +9098,9 @@ mission "Timothy Radrickson 6: News of Death"
 		has "Timothy Radrickson 5e: Back to Oblivion: offered"
 		random < 15
 	on offer
-		log "People" "Timothy Radickson" `Tried to help Timothy escape from his prison sentence there.`
+		log "People" "Timothy Radrickson" `Tried to help Timothy escape from his prison sentence there.`
 		log "Timothy is dead - or at least that is what's being reported in the news. Perhaps the plot to break him free really did work."
+		set "timothy radrickson 6 log entry correct"
 		event "timothy radrickson forever"
 		conversation
 			`A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, and a familiar name leaps out at you. Your attention piqued, you turn to watch.`
@@ -9117,7 +9122,7 @@ mission "Timothy Radrickson 7: Monk"
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
-			`	"Are you Captain <last>?" they ask.`
+			`	"Are you Captain <last>?" he asks.`
 			choice
 				`	"Why?"`
 					goto why
@@ -9214,7 +9219,7 @@ mission "Timothy Radrickson 7: Hospice"
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
-			`	"Are you Captain <last>?" They ask.`
+			`	"Are you Captain <last>?" he asks.`
 			choice
 				`	"Why?"`
 					goto why
@@ -9355,6 +9360,80 @@ mission "Timothy Radrickson 7: Grave"
 			label end
 			`	The shadows turn a darker shade of purple as you leave the graveyard of the forgotten dead for the familiar confines of your ship.`
 				decline
+
+
+mission "Timothy Radrickson: Log Fix 1"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 1: Stowaway: done"
+		not "Timothy Radrickson 2: Good Interlude: offered"
+		not "timothy radrickson 1 log entry correct"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 2"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 2: Good Interlude: offered"
+		not "Timothy Radrickson 3d: Return to Rand: done"
+		not "timothy radrickson 2 log entry correct"
+		not "Timothy Radrickson: Log Fix 1: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 3"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 3d: Return to Rand: done"
+		not "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "timothy radrickson 3 log entry correct"
+		not "Timothy Radrickson: Log Fix 2: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 4"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 5a: Timshank Redemption: offered"
+		not "timothy radrickson 4 log entry correct"
+		not "Timothy Radrickson: Log Fix 3: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
+		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 6"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 5a: Timshank Redemption: offered"
+		not "timothy radrickson 6 log entry correct"
+		not "Timothy Radrickson: Log Fix 4: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
+		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		log "People" "Timothy Radrickson" `Tried to help Timothy escape from his prison sentence there.`
+		fail
 
 
 
@@ -9852,7 +9931,7 @@ mission "Ice Queen 6"
 			`	The raven-haired woman laughs, as she cleans off her bloody dagger, and takes a step toward a figure cowering in the corner. The man you recognize as her father.`
 			`	"Wh-what have you done? You've ruined everything. I was so close. I would have had it all." Deoric blinks, his face sets in hard, and he straightens up, he looks as if he just remembered who he is.`
 			`	"You stupid, selfish, arrogant brat. You just needed to do as you were told. To play your pathetic part. You couldn't, could you? You were always worthless. If only your brother had survived." Deoric picks up a broken furniture leg and confidently wields it like a club.`
-			`	At this Ildico's wicked grin widens deeper. "My brother? Dear Hogne. Father, I killed him. He couldn't handle the ice, the isolation, the hopelessness of Hope. He lost his mind. He tried to make me his wife. And mother? She cracked long before that. An entitled debutant like her had no chance in that hellhole, and I? I needed to eat."`
+			`	At this Ildico's wicked grin widens deeper. "My brother? Dear Hogne. Father, I killed him. He couldn't handle the ice, the isolation, the hopelessness of Hope. He lost his mind. He tried to make me his wife. And mother? She cracked long before that. An entitled debutante like her had no chance in that hellhole, and I? I needed to eat."`
 			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."`
 			`	Deoric lunges at Ildico, but before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
 			`	Ildico stands over him. "You are a coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. He tries to speak as his dying body squirms, but no words materialize and he goes still.`
