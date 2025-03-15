@@ -56,7 +56,6 @@ public:
 	static const Command DEPLOY;
 	static const Command AFTERBURNER;
 	static const Command CLOAK;
-	static const Command PAUSE;
 	// UI controls:
 	static const Command MAP;
 	static const Command INFO;
@@ -64,6 +63,7 @@ public:
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
 	static const Command HELP;
+	static const Command PAUSE;
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;
