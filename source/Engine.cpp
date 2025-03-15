@@ -1578,7 +1578,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(activeCommands);
 
-	// Clear the active players commands, they are all processed at this point.
+	// Clear the active player's commands, because they are all processed at this point.
 	activeCommands.Clear();
 
 	// Perform actions for all the game objects. In general this is ordered from
@@ -1590,7 +1590,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		if(object.HasValidPlanet())
 			object.GetPlanet()->DeployDefense(newShips);
 
-	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
+	// Keep track of the flagship to see if it jumps or enters a wormhole this frame.
 	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// First, move the player's flagship.
