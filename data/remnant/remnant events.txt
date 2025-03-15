@@ -84,6 +84,10 @@ event "remnant: sign studies complete"
 
 
 event "remnant: return the samples timer"
+	government "Remnant"
+		remove "travel restrictions"
+	government "Remnant (Research)"
+		remove "travel restrictions"
 
 
 
