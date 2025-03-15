@@ -10226,7 +10226,7 @@ mission "Tavish and Kormak 1"
 			choice
 				`	(Check the menu.)`
 
-			`	Before you can make your order, the two men seat themselves directly in front of you. One of them is short and wiry with bright twitchy eyes and a dark mustache, and other is a looming giant with a trimmed red beard and hair pulled back into a tight pony tail. Both men look overdressed in fine, three-piece suits and bowler hats.`
+			`	Before you can make your order, the two men seat themselves directly in front of you. One of them is short and wiry with bright twitchy eyes and a dark mustache, and other is a looming giant with a trimmed red beard and hair pulled back into a tight ponytail. Both men look overdressed in fine, three-piece suits and bowler hats.`
 			`	"Most serendipitous to find a captain of your caliber in this obscure port of call," the shorter man says, and tips his hat to you. "I am Dr. Julius Theodore Eustice Tavish and my affable comrade is the loquacious Dr. Gluniairn mac Kormakr. Don't worry, our friends just call us Tavish and Kormak..."`
 			`	"Kormak and Tavish," Kormak states flatly behind his stony inscrutable face.`
 			`	"... and you, my good fellow, have the look of someone who is just about to become of one our friends." Tavish flashes you a wide smile.`
