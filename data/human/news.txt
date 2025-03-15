@@ -72,6 +72,10 @@ news "merchant anywhere"
 			"Having both feet firmly on the ground doesn't make you take one step to completing your missions."
 			"The darkest hour is just before the departure."
 			"Don't look a gift shuttle in the engine outlets."
+			"Getting there is half the fun. Getting paid is the other half."
+			"Being a pilot isn't all fun and games. We have angry customers, hostile pirates, and asteroids to deal with."
+			"We're always at risk of being killed by faulty equipment, solar storms, asteroids, pirates or angry customers. Ever wonder why you didn't just take a desk job?"
+			"You think highly of that boat of yours? My ship is ten times larger."
 		word
 			`"`
 
@@ -212,6 +216,7 @@ news "sailor"
 			"The sea is a harsh mistress. Moons too, I expect."
 			"No, that's impossibly deep - you'd be out the other side of the planet and then some. Oh, you meant across the surface! Aye, I reckon I've travelled at least twenty thousand leagues."
 			"Seize the carp!"
+			"A smooth sea never made a skilled sailor."
 		word
 			`"`
 
@@ -234,6 +239,7 @@ news "textile worker"
 			"I'm just working here until I can save up enough money to buy my own spaceship, just like yours!"
 			"Almost everyone else here can't wait to get out, but I'm proud of the work I do. Without people like me, you wouldn't have anything to wear!"
 			"You should check the spaceport often. I might not be able to afford transport right now, but I'll need to leave this dirtball when I get enough money for college."
+			"When I was young, I was poor. Now I'm no longer young."
 		word
 			`"`
 
@@ -287,6 +293,7 @@ news "factory worker"
 			"I love working at the Syndicate. The small company where I worked before didn't have showers, so all people that came to office by foot smelled bad throughout the day."
 			"Moving to this planet was the best thing I did; my commute changed from 3 hours spaceflight to just 15 minutes walking."
 			"My boss is great. If we suffer, then he makes sure he takes the heat as well."
+			"Measure once, produce two million times!"
 		word
 			`"`
 
@@ -588,6 +595,8 @@ news "housekeeper"
 			"I just got fired. The dog of one of the kids died and the missus asked me to fly to Earth and buy a new identical one. When I returned she was screaming that she didn't need two dead dogs."
 			"There's one law for the rich and another law for the poor. One small mistake by me and I'm back to the horrible place I emigrated from."
 			"I don't know what part of 'no' those spoiled kids didn't understand, but I'm not cooking 5 course dinners every day when they eat almost nothing."
+			"I wanted to order one salt shaker, but things are apparently measured in tons when shipping stuff, so I got a ton of salt shakers. You want one? Or ten?"
+			"My employer wanted to donate some out-of-fashion dresses to starving people, but now she's angry because I said that three starving people would fit in one of her dresses."
 		word
 			`"`
 
@@ -678,6 +687,71 @@ news "tour guide"
 			"Looking for some company for tonight? No questions asked, no strings attached. Just contact me if you need anything."
 			"Burn the candle at both ends. Sign up for our romantic zero-gravity dinner!"
 			"Friends, fellow planetmen, and travellers. Welcome to today's tour of this wonderful spaceport."
+		word
+			`"`
+
+
+
+news "tour guide - warning"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "tourism"
+	name
+		word
+			"Tour guide"
+	message
+		word
+			`"`
+		word
+			"Be careful"
+			"Be mindful"
+		word
+			" "
+		word
+			"not to carry"
+			"not to touch"
+			"when carrying"
+		word
+			" "
+		word
+			"metallic"
+			"salty"
+			"savory"
+			"sour"
+			"spicy"
+			"sweet"
+		word
+			" "
+		word
+			"materials"
+			"stuff"
+			"things"
+			"snacks"
+			"foods"
+		word
+			". "
+		word
+			"They attract"
+		word
+			" "
+		word
+			"nasty"
+			"smelly"
+			"stinging"
+			"venomous"
+		word
+			" "
+		word
+			"birds"
+			"bugs"
+			"creatures"
+			"insects"
+			"snakes"
+		word
+			" "
+		word
+			"here."
+			"on this planet."
 		word
 			`"`
 
@@ -775,6 +849,7 @@ news "hyperspace scientist"
 			"The field of hyperspace lane destruction is filled with misunderstanding and pseudoscience. If there was a method to remove hyperspace lanes, though, whoever discovered it would effectively control human space."
 			"Many a hyperspace-based weapon has been tested, but due to the dynamics of entering hyperspace while not aligned with a hyperspace lane, all of them have failed. Thankfully."
 			"Our field is not rocket science. We deal with actually hard problems."
+			"Can you imagine that people once thought that nothing could go faster than the speed of light? And here we are now with our hyperspace lanes."
 		word
 			`"`
 
@@ -800,6 +875,26 @@ news "geological engineer"
 			`"`
 
 
+
+news "electrical engineer"
+	location
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	name
+		word
+			"Electrical engineer"
+			"Power networks expert"
+	message
+		word
+			`"`
+		word
+			"Earth has a weird power-distribution network, where the polarity of home outlets changes 50 or 60 times per second. Every other planet just uses a positive and negative polarity for outlets."
+			"Earth has a beautiful power-distribution network, where the polarity of home outlets changes 50 or 60 times per second. Other planets use DC current and need to add measures to ensure that polarity is matched, but on Earth the outlets are symmetrical by default."
+			"Voltage conversion from DC power to DC power works extremely well on every planet except Earth, whose ancient power network still uses AC power for distribution."
+			"Most equipment works from 100 volt to 500 volt power, but be sure to check compatibility before connecting your equipment."
+			"I'm so happy that I'm certified to work on the Paradise Planets. Both pay and climate are much better there."
+			"I caused a power outage affecting more than half of the planet. Could you transport me to some place far from here?"
+		word
+			`"`
 
 news "agricultural scientist"
 	location
@@ -851,6 +946,7 @@ news "athlete"
 			"I'm hoping to get a sponsorship, but nobody here wants to partner with me. Could you recommend a planet where I might find better results?"
 			"I don't expect everyone to be as fit as I am, but do remember to get up and exercise a little every once in a while!"
 			"I once went to a sports event on Dancer in the Rastaban system, but never again! All activities were indoors because of the horrible weather the planet has."
+			"You want to sponsor me? I've never lost a race! How many have I won? Well..."
 		word
 			`"`
 
@@ -1085,6 +1181,7 @@ news "reporter"
 			"Look at this! 'Five Reasons Why Captains Should Check Spaceports More Often - Number Two Will Make You Cry!'"
 			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, never mind."
 			"'11 signs that you are dealing with a corporate executive.' Read my blog to protect yourself from those psychopaths!"
+			"Do you know Betteridge's law of headlines? Any headline that ends in a question mark can be answered by the word 'no.'"
 		word
 			`"`
 
@@ -1133,6 +1230,7 @@ news "museum curator"
 			"Every so often, we get contacted by someone shady wishing to donate something to our museum."
 			"Much of human technological progress has been driven by a desire to more effectively induce entropy in one's opponents."
 			"Did you know Cleopatra lived closer in time to the invention of the hyperdrive than the building of the pyramids?"
+			"The museum bought an ancient shuttle called 'The Theseus,' but the engines, the hull, the power systems and every other part of it have been replaced since its construction. Is it still an ancient shuttle when every part has been replaced?"
 		word
 			`"`
 
@@ -1503,6 +1601,22 @@ news "student"
 			"After graduation, I think I'd like to work in industry somewhere, but my advisor is encouraging me to go on and get my master's degree. What do you think?"
 			"Sorry, no time to chat. My master's thesis is already late and I'm hiding from my advisor."
 			"This is the life! I'm only in like 3 classes, so my days are totally open! I know it'll end in a few years, but I'm going to enjoy it while I can. After you graduate, it's just work work work until you're dead."
+			"My parents are sending me money each month, assuming that I'm studying. But I'm actually playing a space-trading game every day, all day long. Wonder how long I can keep this up."
+		word
+			`"`
+
+
+
+news "philosopher"
+	name
+		word
+			"Philosopher"
+	message
+		word
+			`"`
+		word
+			"If I take a grain of sand away from a heap, one at a time, then when does the heap stop being a heap?"
+			"What if we could look at ships going into hyperspace? Would they appear to be moving backwards because they are moving faster than light?"
 		word
 			`"`
 
@@ -1690,6 +1804,9 @@ news "republic soldier"
 			`We recently went to full alert, because somebody screamed "It's scrambled!" Turns out some rookie in the galley was enthusiastic about making scrambled eggs.`
 			"Curiosity killed the cat. Yes, the R.N.S. Curiosity landed right on top of the poor creature."
 			"We arrested a fortune teller yesterday; they didn't see it coming."
+			"Pirates were entering the ship port-side. So I took an EVA suit, flew around both ships and captured their ship."
+			"So we were fighting close quarters, when suddenly that Sparrow fired its lasers on us. We're lucky to still be alive."
+			"I once arrested one of those drunk flyers, but they walked free within two hours. Very frustrating, because the paperwork took me much longer."
 		word
 			`"`
 
@@ -1750,6 +1867,9 @@ news "lawyer"
 			"I'm reviewing a case on the destruction of an abandoned drone. The owner argues it was a personal hyperspace relay, which exempts it from salvage law."
 			"My client is accused of destroying a landing pad and flooding the surrounding area with leaked reactor plasma. Really, it's the spaceport's fault for not verifying whether he had a pilot's license in the first place."
 			"I was involved in a case of an out-of-spec Syndicate nuclear reactor. Allegedly, the Syndicate threatened the inspector to prevent him from publishing his results, but he didn't give in."
+			"Laws on different planets sometimes conflict. For example, Farseer requires job openings to be posted publicly immediately, while Pilot requires job openings to be posted internally first. Companies operating on both planets cannot hire people without breaking some law."
+			"Breaking the law is not always a problem. If you break a law that nobody cares about, then nobody takes you to court over it."
+			"I love 'essentially contested concepts'. Their ambiguity has helped me to win many cases."
 		word
 			`"`
 
@@ -1861,6 +1981,8 @@ news "pirate"
 			"Me a pirate? Come on! Do I look like the type of person that kills twenty-one colonists on a Corvette in Eltanin? Chops them up? Sells their remains as meat to local restaurants? And then goes and dines in one of those restaurants?"
 			"I kill people for money, but you are nice, so I'll kill you for free."
 			"Stop looking at me, or I will totally kill you dead."
+			"Join me, and together we can rule the galaxy as godfather and adjutant. Me the godfather, obviously."
+			"The competition is killing here. It really is."
 		word
 			`"`
 
@@ -1889,6 +2011,7 @@ news "merchant in pirate space"
 			"I flew around half the galaxy to pick up a wedding banquet, but it wasn't here and they stole my cargo instead! The cake was a lie!"
 			"The optimist has the glass half full, the pessimist has the glass half empty, but here you are already lucky if the glass doesn't get shot, stolen, or broken before you take your first sip."
 			"It's very silent here. Like the silence just before a huge thunderstorm hits."
+			"The average life expectancy of a pirate is fifteen years. It's actually pretty sad."
 		word
 			`"`
 
@@ -1987,6 +2110,84 @@ news "conspiracy theorist"
 			" Break the conditioning!"
 		word
 			`"`
+
+
+
+news "player's crew member"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
+	to show
+		"flagship crew" > 40
+	name
+		word
+			"Crew member"
+	message
+		word
+			`"`
+		word
+			"I'm serving on board the '<ship>,' but I've never met the captain. Can you imagine that?"
+			"Hey Captain, good to see you here. I'm looking forward to the next trip, and, of course, my 100 credits a day."
+			"You look like a poor excuse for a captain. I'm serving onboard the '<ship>' and I'm sure that my captain is far better dressed than you."
+		word
+			`"`
+
+
+
+news "sticker on ship"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
+	name
+		word
+			"Bumper sticker on ship"
+			"Sticker on ship"
+	message
+		word
+			"I brake for asteroid snails."
+			"Student pilot."
+			"Babe onboard."
+			"Baby onboard."
+			"There's no place like [insert home planet here]."
+			"This is not a bumper sticker, this is a rust retardant patch."
+			"Air leak seal, do not remove."
+
+
+
+news "label on ship"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
+	name
+		word
+			"Label on ship"
+			"Warning label on ship"
+	message
+		word
+			"Angles morts - Blind spots from cockpit."
+			"Stay clear of ramscoop intake."
+			"Stay out of thruster exhaust stream."
+			"Stay away from thruster outlets during takeoff."
+			"Door opens outwards."
+			"Remove red ribbons before flight."
+			"Nuclear reactor compartment: certification is required for servicing this part of the ship."
+			"Compartiment du reacteur nucleaire: certification requise pour l'entretien de cette partie du navire."
+
+
+
+news "logo on ship hull"
+	location
+		government "Republic" "Free Worlds" "Neutral" "Independent" "Syndicate"
+	name
+		word
+			"Logo on the hull of a ship"
+			"Print on a spaceship"
+	message
+		word
+			"Justin Time - Just in time delivery"
+			"Francis Fries - Food spacetrucker"
+			"Bobby Bughunter - Extermination services"
+			"Luna Ticks - Pest control"
+			"Orion's Belts - The fashion of the future"
+			"Comet Cleaners - Brightest laundry in the galaxy"
+			"Cosmo Joe's - Cosmic Coffee out of this world"
 
 
 
