@@ -63,7 +63,7 @@ void Swizzle::Load(const DataNode &node)
 		else if(key == "override")
 			overrideMask = true;
 		else
-			child.PrintTrace("Unrecognised attribute in swizzle definition");
+			child.PrintTrace("Unrecognized attribute in swizzle definition");
 	}
 
 	identity = matrix == IDENTITY_MATRIX;

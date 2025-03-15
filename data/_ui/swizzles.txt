@@ -209,7 +209,6 @@ swizzle "27"
 	blue  0 0 0 0
 	alpha 0 0 0 1
 
-
 # 28 black only (outline)
 swizzle "28"
 	override
