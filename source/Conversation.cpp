@@ -104,6 +104,9 @@ void Conversation::Load(const DataNode &node)
 	if(node.Token(0) != "conversation")
 		return;
 
+	if(node.Size() >= 2)
+		name = node.Token(1);
+
 	// Free any previously loaded data.
 	nodes.clear();
 
@@ -230,6 +233,22 @@ void Conversation::Load(const DataNode &node)
 				nodes.clear();
 				return;
 			}
+		}
+	}
+	set<pair<int, int>> checked;
+	// Check for choice nodes that can lead to a decline, so they can be marked clearly for the player.
+	for(long unsigned int n = 0; n < nodes.size(); n++)
+	{
+		Node &node = nodes[n];
+		for(long unsigned int e = 0; e < node.elements.size(); e++)
+		{
+			// If this element got checked from a previous element's calculations, skip it
+			if(checked.contains({n, e}))
+			{
+				continue;
+			}
+			Element &element = node.elements[e];
+			element.leadsToDecline = LeadsToDecline(n, e, &checked);
 		}
 	}
 
@@ -362,6 +381,7 @@ string Conversation::Validate() const
 Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int payload) const
 {
 	Conversation result = *this;
+
 	for(Node &node : result.nodes)
 	{
 		for(Element &element : node.elements)
@@ -481,6 +501,12 @@ const string &Conversation::Text(int node, int element) const
 }
 
 
+bool Conversation::WillDecline(int node, int element) const
+{
+	return nodes[node].elements[element].leadsToDecline;
+}
+
+
 
 // Get the scene image, if any, associated with the given node.
 const Sprite *Conversation::Scene(int node) const
@@ -553,6 +579,62 @@ bool Conversation::ElementIsValid(int node, int element) const
 	else if(element < 0)
 		return false;
 	return static_cast<unsigned>(element) < nodes[node].elements.size();
+}
+
+
+
+// Traverse a node's tree to determine whether it leads to a decline.
+bool Conversation::LeadsToDecline(int nodeIndex, int elementIndex, set<pair<int, int>> *checked)
+{
+	Node node = nodes[nodeIndex];
+	Element element = node.elements[elementIndex];
+	// Trivially true if this element is a decline.
+	if(element.next == Conversation::DECLINE)
+	{
+		checked->insert({nodeIndex, elementIndex});
+		return true;
+	}
+	// Trivially false if it is not a decline, and does not lead anywhere.
+	if(element.next == static_cast<int>(nodes.size()) || element.next < 0)
+	{
+		checked->insert({nodeIndex, elementIndex});
+		return false;
+	}
+	// Otherwise we need to get all the elements this can lead to and test them.
+	// This may have already been calculated if this node was checked for a previous node.
+	bool leadsTo;
+	Node &nextNode = nodes[element.next];
+	// If the next node is a choice node, then this only leads to a decline if all
+	// options there lead to one. Otherwise, it leads to a decline if any options do.
+	checked->insert({nodeIndex, elementIndex});
+	if(nextNode.isChoice)
+	{
+		// If it is a choice, then we assume that it will lead to a decline;
+		// if any of its elements do not, we mark it as not.
+		leadsTo = true;
+		for(long unsigned int e = 0; e < nextNode.elements.size(); e++)
+		{
+			if(!checked->contains({element.next, e}))
+				nextNode.elements[e].leadsToDecline = LeadsToDecline(element.next, e, checked);
+			// If we've already checked this element, then we can just use the precalculated value.
+			leadsTo &= nextNode.elements[e].leadsToDecline;
+		}
+	}
+	else
+	{
+		// If it is not a choice, then we assume that it will not lead to a decline;
+		// if any of its elements do, we mark it as declining.
+		leadsTo = false;
+		for(long unsigned int e = 0; e < nextNode.elements.size(); e++)
+		{
+			if(!checked->contains({element.next, e}))
+				nextNode.elements[e].leadsToDecline = LeadsToDecline(element.next, e, checked);
+			// If we've already checked this element, then we can just use the precalculated value.
+			leadsTo |= nextNode.elements[e].leadsToDecline;
+		}
+	}
+
+	return leadsTo;
 }
 
 
