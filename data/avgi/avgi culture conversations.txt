@@ -159,7 +159,7 @@ mission "Avgi Culture: Doomed Korath"
 	minor
 	invisible
 	source
-		attributes "avgi siege"
+		attributes "aberrant siege"
 	to offer
 		not "avgi: lost in twilight"
 		random < 3
@@ -173,7 +173,7 @@ mission "Avgi Culture: General Ripper"
 	minor
 	invisible
 	source
-		attributes "avgi siege"
+		attributes "aberrant siege"
 	to offer
 		not "avgi: lost in twilight"
 		random < 3
@@ -211,4 +211,61 @@ mission "Avgi Culture: False Alarm"
 		conversation
 			`The spaceport is lit up by flashing yellow lights as a robotic voice proclaims its message. "Command. Radiation danger, seek prompt shelter. Command. Radiation danger, seek prompt shelter."`
 			`	The crowd has only barely had time to panic before the voice is cut off with a squeal of static. "Abashment. Apologies, false alert. Mindaro dropped his drink on the console, there is no radiation danger."`
+				decline
+
+
+mission "Avgi Culture: Fencing"
+	minor
+	invisible
+	source
+		government "Avgi (Dissonance)"
+	to offer
+		not "avgi: lost in twilight"
+		random < 15
+	on offer
+		conversation
+			`While walking through the spaceport on <planet>, you spot a pair of Avgi moving toward a large building. They are holding what look like long, thin rapiers.`
+			choice
+				`	(Approach them.)`
+				`	(Ignore them.)`
+					goto ignore
+			`	As you walk over to the two vibrantly colored Avgi, they glance in your direction. One of them, colored a muted teal, speaks up. "Invitation. Human, are you perhaps interested in witnessing the ancient Avgi sport of fencing, question?"`
+			choice
+				`	"Fencing? Like the human sport?"`
+				`	"Sure, I'm willing to watch."`
+					goto accept
+				`	"I'm good, thanks."`
+					goto ignore
+			`	The other, colored a bright blue and purple sheen, chimes in. "Assurance. While we as a species are unlikely to have preceded you in a sport such as this, I still implore you to attend."`
+			`	The first Avgi continues, "Addendum. Considering our... differences in agility, this will surely be a spectacle to you. Compared to the human sport, that is."`
+			choice
+				`	"Sure, sounds like fun!"`
+				`	"I'll pass, thanks."`
+					goto ignore
+			label accept
+			branch language
+				has "language: Avgi (Written)"
+			`	A short walk later, you find yourself in a large open-air room, similar to a gymnasium but much taller. Rows of rails that look like they came from a skate park make up bleachers the whole way around the cylindrical area, packed to the brim with perched Avgi. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other.`
+				goto start
+			label language
+			`	A short walk later, you find yourself in a large open-air room, similar to a gymnasium but much taller. Rows of rails that look like they came from a skate park make up bleachers the whole way around the cylindrical area, packed to the brim with perched Avgi. Many are holding up signs with colorful lettering that appear to be in favor of one participant or the other. One sign in particular states "ZOMP TO STOMP THEM LIKE THE ASSEMBLY!"`
+			label start
+			action
+				set "avgi: watched zomp win at fencing"
+				log "Minor People" "Zomp" `Zomp is a muted teal Avgi who defeated the reigning champion Razmatazz in a fencing match.`
+				log `Watched a fencing match between two Avgi onboard a Dissonance station with an extremely rowdy and excitable crowd. Witnessed an upset as an Avgi named Zomp defeated the reigning champion.`
+			`	Soon after, the familiar muted teal and glistening purple Avgi walk out of a small door on the bottom level. The spectators in the arena erupt with a flurry of wing flapping in what seems to be a loud cheer; your translator picks up "Excitement" and "Anticipation", among other moods, dozens of times. The fencers' wings appear to be kitted out with thin copper wires, and they're carrying the same rapiers you saw them with before. They hop up onto small pedestals located on each edge of the arena.`
+			`	A voice booms over the many speakers present in the room. "Proclamation. Here we have our reigning champion, Razmatazz, and the upstart challenger Zomp! Are you ready to witness this enthralling battle between these two paragons of the blade, question?"`
+			`	The arena once more hums to life with the flutter of wings. "Anticipation. Then let the duel... begin."`
+			`	At the announcer's word, the duelists leap into the air with incredible speed, circling around each other and clashing blades. The two spiral upwards into the far upper areas of the arena, and quickly drop back down, darting in and out of each others' reach multiple times per second. Less than a minute later, you hear a loud ding, and one of the duelists falls to the floor with their wing collapsed. The crowd, who hadn't stopped buzzing the entire duel, erupts with even louder wing fluttering.`
+			`	"Astonishment. Zomp wins round one," the announcer states. "Repose. Shall we begin round two?"`
+			`	Once more the contestants line up and spring into the air in a duel of eye-watering speed and agility. And once more, Zomp wins to the thunderous applause of the crowd.`
+			`	"Bewilderment. It seems as though Zomp has defeated our reigning champion!" the announcer proclaims.`
+			`	"Hysteria. I knew he would win! I'm up 10 to 1 on this bet!" a nearby Avgi says with exuberance as they buzz around you wildly, holding various pink papers in their many arms.`
+			`	Across the arena you hear a shout from a pink Avgi, "Adoration! I love you, Zomp!"`
+			`	The entire arena appears to be in a chaos of cheers, boos and rumbling wing flapping for minutes after the match has ended. You can't remember a single instance of fencing back in human space having this much passion and energy within the crowd.`
+			`	After the hubbub and celebration die down, you find no issue leaving the crowded arena - most Avgi simply fly over your head.`
+				decline
+			label ignore
+			`	You let the two fly away, continuing on your own business.`
 				decline

@@ -162,6 +162,14 @@ void AsteroidField::CollideMinables(const Projectile &projectile, vector<Collisi
 
 
 
+// Get a list of minables affected by an explosion with blast radius.
+void AsteroidField::MinablesCollisionsCircle(const Point &center, double radius, vector<Body *> &result) const
+{
+	minableCollisions.Circle(center, radius, result);
+}
+
+
+
 // Get the list of minable asteroids.
 const list<shared_ptr<Minable>> &AsteroidField::Minables() const
 {

@@ -845,3 +845,159 @@ mission "Republic 300 Year Anniversary"
 			label "sestor beaten at farpoint"
 			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
 				goto end
+
+mission "Exotic Life: Delve"
+	minor
+	source Delve
+	to offer
+		random < 20
+	on offer
+		conversation
+			`The air in Delve's spaceport is crisp, carrying the mineral tang of weathered stone alongside occasional whiffs of fuel and lingering industrial cleaners. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
+			choice
+				`	(Ask them what they're doing.)`
+				`	(Ignore them and continue on your way.)`
+					decline
+				`	"Shipworm outbreak?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	You approach a pair of workers as they finish spraying down a Bulk Freighter and ask what they're doing. One of them, a grizzled veteran with deep lines around his eyes, barely glances at you. "Shipworms," he mutters, already moving to the next ship.`
+			`	The other, a younger worker practically bouncing in his boots, grins behind his respirator. "Yeah! Little metal-chewing pests. They're native to Delve, infest the mines, the shipyards - anywhere there's metal to sink their teeth into. If we didn't spray every ship before takeoff, they'd be all over the galaxy by now." The veteran sighs. "They already are all over the galaxy. Because people aren't careful enough."`
+			`	The rookie ignores him. "They start as tiny worms, barely bigger than your pinky, but once they find metal, they melt into it, make a cocoon that looks just like part of the ship! Bombacle, we call 'em. Then BAM! A few months later, the casing bursts open like a bomb! Bombacle!"`
+			`	The veteran shakes his head. "What he means is, they're an invasive hazard if they get off-world. That's why we spray. No shipworms, no problems."`
+			`	The rookie gives his sprayer an enthusiastic shake. "And I get to torch every last one I find. You ever see one pop under a high-heat blast? Satisfying as hell." The veteran just mutters, "You'd think the novelty would wear off."`
+			action
+				set "exotic animals: delvan shipworm known"
+			`	With another look at the freshly sprayed Bulk Freighter, you make a mental note to give your own ship a once-over before takeoff.`
+				goto ending
+			label known
+			`	One of them, a seasoned veteran with weary eyes, lets out a long-suffering sigh. "Great. At least this one actually knows what they are." In contrast, the other - a fresh-faced worker brimming with energy - practically lights up. "They're like space barnacles - until they hatch into wormy bombs! I was just telling him how fun it is to fry 'em!"`
+			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
+			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face.`
+			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
+			label ending
+			`	You give the fumigation teams a final glance and make your way back to your ship. The metallic surfaces around you now hint at unseen creatures lurking.`
+				decline
+
+mission "Exotic Life: Ada"
+	minor
+	source Ada
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You make your way through a dimly lit section of the spaceport to a near-empty hangar, where the usual hum of activity is dampened by an eerie stillness. The back of the hangar has a reinforced glass cargo door cracked open, perhaps by mistake. You peer inside to see large, sealed tarps stretched across the area, some draped over cargo crates, others covering entire sections. One enormous tarp appears big enough to be covering a whole ship. Each one bears the same stark warning in bold lettering: "DELVAN SHIPWORM FUMIGATION." The air has a faint chemical tang to it, and ahead, two figures move methodically between the tarps towards the door.`
+			`	They are covered head to toe in protective suits, thick gloves, and respirators obscuring their faces. One carries a handheld sprayer, releasing a fine mist into the air, while the other checks a monitor strapped to their arm. Their boots crunch softly against the floor as they pass.`
+			choice
+				`	(Ask them what's going on.)`
+				`	(Ignore them and continue on your way.)`
+					decline
+				`	"Nasty little bombacles, aren't they?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	Curiosity gets the better of you, and you ask what this is all about, gesturing at the tarps. One of them pauses, their voice muffled by the respirator. "Delvan shipworm outbreak. Nasty infestation. We're exterminating them before they spread to other ships or the city." You can see small scorch marks on the floor nearby - signs of something being burned away.`
+			choice
+				`	"What's a Delvan shipworm?"`
+				`	"Nasty bombacles, aren't they?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+				`	"Well, good luck with that. I should get going."`
+					decline
+			`	The worker with the monitor barely hesitates before responding. "Delvan shipworms are an invasive species from Delve. They start as larvae, tiny worms-"`
+			`	"Bombacles!" the one with the sprayer interjects, voice distorted through the respirator. "They latch on ships, grow into barnacles, then they're bombs!"`
+			`	The first worker exhales, shaking their head. "They're more than that. The larvae attach to metal - usually ship hulls, but it can be mining equipment, or anything, really - and secrete an enzyme that corrodes the surface, breaking it down so they can form a cocoon around themselves. This builds up a high-pressure gas, so the outer shell hardens to compensate, blending in with the surrounding metal."`
+			`	"Yeah, until - BOOM! Three months later, it blasts open like a grenade and out come a dozen disgusting worms!"`
+			`	"You make it sound like a horror movie."`
+			`	"It is a horror movie if you're next to one when it hatches." The sprayer-wielding worker turns back to you. "Writhing wrigglers that leave a hole the size of your palm in whatever they break out of. Plenty of ships have lost pressure 'cause of them."`
+			`	The first worker sighs. "That's why we're dealing with it now. We don't let them spread, we don't get people vented into space."`
+			action
+				set "exotic animals: delvan shipworm known"
+			`	Your gaze drifts back to the tarps, imagining what might be skittering beneath them. You nod in thanks and step away, making a mental note to double-check your ship's hull before takeoff.`
+				goto ending
+			label known
+			`	The worker with the sprayer perks up. "Finally, someone who gets it!" they say, shaking their sprayer for emphasis.`
+			`	The other groans. "They are not barnacles and they are not bombs. They are a highly adaptive invasive species with a complex-"`
+			`	"Yeah, yeah, they're still bombacles," the sprayer worker cuts in. "Point is, we kill 'em before they kill ships. And cities. And people."`
+			`	The monitor worker exhales but gives you a nod. "At least you understand how important this is. Most folks just walk by without a second thought." The sprayer worker waves you along. "Anyway, let us work before one of these things chews through something vital."`
+			`	Satisfied, you leave them to their job, making a mental note to check your own hull before takeoff.`
+			label ending
+			`	With one last glance at the fumigation tarps, you head back to your ship, suddenly aware of how fragile a metal hull can be in the wrong circumstances.`
+
+mission "Exotic Life: Glaze"
+	repeat
+	minor
+	source Glaze
+	to offer
+		random < 10
+		or
+			not "chosen sides"
+			has "main plot completed"
+		not "exotic life: seen glaze apes"
+	on offer
+		conversation
+			`You step to the edge of the mesa from the spaceport, the wind blowing as you take in the view. The canyons stretch out before you, a maze of red and gold stone, their depths lost in shadow. Far in the distance, something moves - small figures, barely more than specks, making their way through one of the ravines. You squint, but the details remain elusive.`
+			`	Nearby, a weathered set of credit-operated binoculars stands bolted to the ground, a faded sign above them reading: 1 credit per use.`
+			choice
+				`	(Take a closer look for 1 credit.)`
+					to display
+						credits >= 1
+				`	(Ignore the specks and return to my ship.)`
+					to display
+						credits >= 1
+					goto closing
+				`	(Pat my empty pockets and return to my ship as I can't even afford the 1 credit fee.)`
+					to display
+						credits < 1
+					goto closing
+			action
+				payment -1
+			branch norareapes
+				random < 20
+			`	The binoculars hum as you focus in on the figures, expecting hikers. But what you see is something else entirely. A small group of shaggy, long-limbed creatures moves carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
+			`	One of them stops near a boulder, kneeling to scoop up a handful of dust and let it run through its fingers, as if testing the wind. Another lingers behind the rest, turning its head slightly, perhaps listening for something. There are no signs of tools or fire, certainly nothing to suggest the "canyon people" of local legend - but there's an undeniable sense of awareness in the way they move and seem to belong to the landscape itself.`
+			action
+				set "exotic life: seen glaze apes"
+			`	After a long moment, they disappear behind a ridge, blending so seamlessly into the terrain that it's hard to tell if they were ever there at all. You step back from the binoculars, the last glimpse of them lingering in your mind.`
+			choice
+				`	(Return to your ship.)`
+					goto closing
+			label norareapes
+			`	Curiosity gets the better of you, and you pay a credit to the machine. The binoculars whir softly as they adjust, bringing the distant canyon into focus. A group of brightly dressed tourists walks along a winding trail, pointing at rock formations and stopping to take photos. One of them waves excitedly at something -- maybe an unseen guide explaining the landscape.`
+			`	Just another tour group exploring the canyons. You step back from the binoculars with a small chuckle.`
+			label closing
+			`	You walk back to your ship from the binoculars.`
+				decline
+
+mission "Little Vienna in New Austria"
+	minor
+	source "New Austria"
+	to offer
+		random < 10
+	on offer
+		conversation
+			`As you walk from the spaceport's landing pads towards the center of the village, your attention is caught by a worn-down sign pointing you to the "Kleinwean Bezirk."`
+			choice
+				`	(Follow the sign.)`
+				`	(Ignore the sign and keep walking.)`
+					decline
+			`	Curious, you decide to investigate, turning into a narrow street that feels like an echo of Old Vienna. A handful of historic-looking buildings line the cobblestone path, their facades adorned with dramatic stonework and flowery tilework. A small concert hall, labeled "Bach Collegium Konzertsaal", hums with the faint sound of string instruments tuning. Nearby, the aroma of rich, chocolatey coffee drifts from a small coffeehouse.`
+			`	Outside the coffeehouse, a man at a marble table sips his coffee while reading a local newspaper. You can see the front page with the headline: "Mitreibender Mozart mit dem Bach Collegium Konzertsaal", featuring a photograph of a smiling conductor at the center of a small orchestra. On the reader's plate rests a bright pink sponge cake, its color fitting right in with the rich tones of the street.`
+			`	As you linger, a well-dressed older woman approaches. Her voice, imbued with a musical rhythm, greets you with a hearty "Gruess Gott!`
+			`	"Not many offworld visit Kleinwean, which is a shame, as you can see it's quite the New Austrian 'gem'," she remarks with a wink. "I was on my way to the concert - my husband is sick - and I would hate for his ticket to go to waste. Would you do me the honor of taking it?"`
+			choice
+				`	(Accept the ticket.)`
+				`	(Politely decline.)`
+					goto declined
+			`	You graciously accept the invitation and follow her to the intimate concert hall. Despite its modest size, the hall houses a full orchestra. Once you're comfortably seated, the conductor steps forward, clears his throat, and in a measured tone declares:`
+			`	"Willkommen im ehrwuerdigen Bach Collegium Konzertsaal! Wir sind Lichtjahre von Mozarts Heimat entfernt, aber auch im Zentrum von Kleinwean! Geniessen Sie das Konzert!"`
+			`	The words hang in the air as you notice the conductor's smile, strikingly familiar from the newspaper photograph. With his invitation to lose yourself in the performance still echoing, the orchestra begins a stirring rendition of Mozart. The notes dance through the air with crystalline clarity, and you even recognize one or two of the melodies, each serving as a bridge to the Old Vienna of Earth.`
+			`	Even after the performance, you feel the sound of music resonate in your bones as you glance back one more time at New Austria's hidden cultural enclave.`
+				goto backtoship
+			label declined
+			`	You thank her kindly but explain that you're not in the mood for a concert. She nods understandingly, her eyes softening with disappointed yet gracious acceptance. You finish your exploration of the "Kleinwean Bezirk", absorbing the ambiance of the cobblestone street as the scents of coffee mingle with the sound of music.`
+			label backtoship
+			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
+

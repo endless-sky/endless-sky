@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <set>
 #include <string>
+#include <vector>
 
 class ConditionsStore;
 class DataNode;
@@ -29,6 +30,19 @@ class DataWriter;
 // Condition assignments is a collection of assignment operations that can be applied on the player's set of named
 // "conditions" to modify them.
 class ConditionAssignments {
+public:
+	/// Possible assignment operators.
+	enum class AssignOp {
+		ASSIGN, /// Used for =, set (with 1 as expression), clear ((with 0 as expression)
+		ADD, /// Used for +=, ++ (with 1 as expression)
+		SUB, /// Used for -=, -- (with 1 as expression)
+		MUL, /// Used for *=
+		DIV, /// Used for /= (integer division)
+		LT,  /// Used for <?=
+		GT  /// Used for >?=
+	};
+
+
 public:
 	ConditionAssignments() = default;
 
@@ -59,5 +73,19 @@ public:
 
 
 private:
-	ConditionSet setToEvaluate;
+	// Class that supports a single assignment
+	class Assignment {
+	public:
+		Assignment(std::string conditionToAssignTo, AssignOp assignOperator, ConditionSet expressionToEvaluate);
+
+
+	public:
+		std::string conditionToAssignTo;
+		AssignOp assignOperator;
+		ConditionSet expressionToEvaluate;
+	};
+
+
+private:
+	std::vector<Assignment> assignments;
 };

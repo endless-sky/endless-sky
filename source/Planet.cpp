@@ -128,7 +128,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "security")
 				security = 0.;
 			else if(key == "tribute")
+			{
 				tribute = 0;
+				defenseThreshold = 4000;
+				defenseFleets.clear();
+				ResetDefense();
+			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
 

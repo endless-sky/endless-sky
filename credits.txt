@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.10.12-alpha
+version 0.10.13-alpha
 
 The player's manual and other
 resources are available at:
@@ -204,6 +204,7 @@ contributed to Endless Sky:
   comnom
   corecontingency
   Corraban2
+  cresslank
   CyberShadow
   czartrak
   Daeridanii1
@@ -276,6 +277,7 @@ contributed to Endless Sky:
   Hyugat
   implicitfield
   ImprovisedUsername
+  imverybadatnames
   InfiniteDonuts
   infinitewarp
   ItsNickBarry
@@ -306,7 +308,6 @@ contributed to Endless Sky:
   Koranir
   kozbot
   Kryes-Omega
-  lantzk
   LazerLit
   leklachu
   leowongcanto

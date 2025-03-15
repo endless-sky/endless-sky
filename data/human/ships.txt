@@ -435,13 +435,13 @@ ship "Bastion"
 	attributes
 		category "Medium Warship"
 		"cost" 3860000
-		"shields" 7500
-		"hull" 4700
+		"shields" 8600
+		"hull" 5300
 		"required crew" 17
 		"bunks" 40
-		"mass" 1210
-		"drag" 16.5
-		"heat dissipation" .32
+		"mass" 1100
+		"drag" 15.5
+		"heat dissipation" .34
 		"fuel capacity" 500
 		"cargo space" 110
 		"outfit space" 470
@@ -812,13 +812,13 @@ ship "Bulwark"
 	attributes
 		category "Medium Warship"
 		"cost" 4360000
-		"shields" 7000
-		"hull" 5600
+		"shields" 8000
+		"hull" 6500
 		"required crew" 19
 		"bunks" 31
-		"mass" 1722
-		"drag" 21
-		"heat dissipation" .27
+		"mass" 1582
+		"drag" 20.1
+		"heat dissipation" .28
 		"fuel capacity" 500
 		"cargo space" 12
 		"outfit space" 521
@@ -2479,8 +2479,7 @@ ship "Lance"
 	outfits
 		"Energy Blaster"
 		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile Rack"
-		"Sidewinder Missile" 35
+		"Sidewinder Missile" 12
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor" 4

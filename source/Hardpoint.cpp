@@ -125,6 +125,16 @@ Angle Hardpoint::HarmonizedAngle() const
 
 
 
+double Hardpoint::TurnRate(const Ship &ship) const
+{
+	if(!outfit)
+		return 0.;
+	return outfit->TurretTurn()
+		* (1. + ship.Attributes().Get("turret turn multiplier") + baseAttributes.turnMultiplier);
+}
+
+
+
 // Find out if this is a turret hardpoint (whether or not it has a turret installed).
 bool Hardpoint::IsTurret() const
 {
@@ -171,9 +181,9 @@ bool Hardpoint::IsSpecial() const
 
 
 
-bool Hardpoint::CanAim() const
+bool Hardpoint::CanAim(const Ship &ship) const
 {
-	return outfit && outfit->TurretTurn();
+	return TurnRate(ship);
 }
 
 
@@ -227,12 +237,12 @@ void Hardpoint::Step()
 
 // Adjust this weapon's aim by the given amount, relative to its maximum
 // "turret turn" rate. Up to its angle limit.
-void Hardpoint::Aim(double amount)
+void Hardpoint::Aim(const Ship &ship, double amount)
 {
 	if(!outfit)
 		return;
 
-	const double add = outfit->TurretTurn() * amount;
+	const double add = TurnRate(ship) * amount;
 	if(isOmnidirectional)
 		angle += add;
 	else

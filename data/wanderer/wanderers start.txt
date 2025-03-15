@@ -735,6 +735,9 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
+		"cargo settings"
+			cargo 4
+			commodities "Food"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 
@@ -1168,6 +1171,7 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 
 
 ship "Carrier" "Carrier (Alpha)"
+	"display name" "Modified Carrier"
 	sprite "ship/modified carrier"
 	thumbnail "thumbnail/modified carrier"
 	add attributes
@@ -1201,6 +1205,26 @@ ship "Carrier" "Carrier (Alpha)"
 	turret 0 14 "Husk-Slice Turret"
 	turret -22 22 "Shield Disruptor Turret"
 	turret 22 22 "Husk-Slice Turret"
+	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
+	bay "Fighter" 50 40.5
+		"launch effect" "human internal"
+	bay "Drone" -71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" 71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" -115 55
+		"launch effect" "human internal"
+	bay "Drone" 115 55
+		"launch effect" "human internal"
+	bay "Drone" -85 55
+		"launch effect" "human internal"
+	bay "Drone" 85 55
+		"launch effect" "human internal"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
