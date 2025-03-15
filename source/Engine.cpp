@@ -2141,7 +2141,13 @@ void Engine::HandleKeyboardInputs()
 		activeCommands |= Command::AUTOSTEER;
 
 	if(keyDown.Has(Command::PAUSE))
+	{
 		timePaused = !timePaused;
+		if(timePaused)
+			Audio::Pause();
+		else
+			Audio::Resume();
+	}
 }
 
 
