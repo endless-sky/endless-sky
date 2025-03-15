@@ -195,6 +195,7 @@ mission "Sketchy Passenger [0]"
 	destination
 		distance 2 10
 		attributes "south"
+		not attributes "station"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
 	on visit
@@ -216,6 +217,7 @@ mission "Sketchy Passenger [1]"
 	destination
 		distance 2 10
 		attributes "south"
+		not attributes "station"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
 	on visit
