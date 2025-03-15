@@ -1106,6 +1106,13 @@ void Engine::Go()
 
 
 
+float Engine::FrameTime()
+{
+	return frameTime[currentCalcBuffer];
+}
+
+
+
 // Give a command on behalf of the player, used for integration tests.
 void Engine::GiveCommand(const Command &command)
 {
@@ -1283,14 +1290,6 @@ void Engine::Draw() const
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
-
-	if(Preferences::Has("Show CPU / GPU load"))
-	{
-		string loadString = to_string(lround(load * 100.)) + "% CPU";
-		Color color = *colors.Get("medium");
-		font.Draw(loadString,
-			Point(-10 - font.Width(loadString), Screen::Height() * -.5 + 5.), color);
-	}
 }
 
 
@@ -1774,14 +1773,7 @@ void Engine::CalculateStep()
 	for(const Visual &visual : visuals)
 		batchDraw[currentCalcBuffer].AddVisual(visual);
 
-	// Keep track of how much of the CPU time we are using.
-	loadSum += loadTimer.Time();
-	if(++loadCount == 60)
-	{
-		load = loadSum;
-		loadSum = 0.;
-		loadCount = 0;
-	}
+	frameTime[currentCalcBuffer] = loadTimer.Time();
 }
 
 
