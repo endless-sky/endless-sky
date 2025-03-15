@@ -10218,7 +10218,7 @@ mission "Tavish and Kormak 1"
 					goto seat
 				`	(Head back to your ship.)`
 
-			`	You see no reason to stick around this rudimentary spaceport so you make your way back to your ship.`
+			`	You see no reason to stick around this rudimentary spaceport, so you make your way back to your ship.`
 				defer
 
 			label seat
