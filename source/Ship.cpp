@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
+#include "WeightedList.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
@@ -1549,17 +1550,19 @@ string Ship::GetHail(map<string, string> &&subs, const ConditionsStore &vars) co
 	}
 	else
 	{
-		std::vector<const Hail *> matchingHails;
+		WeightedList<const Hail *> matchingHails;
 		for(const auto &hail : GameData::Hails())
 		{
+			if(hail.second.getWeight() == 0) // Can’t have 0-weight elment in WeightedSet
+				continue;
 			if(hail.second.Matches(vars, *this))
 			{
-				matchingHails.push_back(&hail.second);
+				matchingHails.emplace_back(hail.second.getWeight(), &hail.second);
 			}
 
 		}
 		if(!matchingHails.empty())
-			hailStr = matchingHails[Random::Int(matchingHails.size())]->Message(vars, *this);
+			hailStr = matchingHails.Get()->Message(vars, *this);
 	}
 
 	if(hailStr.empty())

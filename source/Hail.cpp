@@ -27,6 +27,8 @@ void Hail::Load(const DataNode &node)
 			toHail.Load(child);
 		else if(child.Size() == 2 && child.Token(0) == "hailing" && child.Token(1) == "ship")
 			filterHailingShip.Load(child);
+		else if(child.Token(0) == "weight")
+			weight = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -34,6 +36,8 @@ void Hail::Load(const DataNode &node)
 
 bool Hail::Matches(const ConditionsStore &conditions, const Ship &hailingShip) const
 {
+	if(weight == 0)
+		return false;
 	if(!filterHailingShip.Matches(hailingShip))
 		return false;
 	return toHail.Test(conditions, ConditionContextHailing(hailingShip));
@@ -42,4 +46,9 @@ bool Hail::Matches(const ConditionsStore &conditions, const Ship &hailingShip) c
 std::string Hail::Message(const ConditionsStore &conditions, const Ship &hailingShip) const
 {
 	return messages.Get(&conditions, ConditionContextHailing(hailingShip));
+}
+
+int Hail::getWeight() const
+{
+	return weight;
 }

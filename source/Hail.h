@@ -36,9 +36,13 @@ public:
 	// Generate a message. The condition and hailing ship will not be used to filter among the hail, but allow
 	// conditional phrases.
 	std::string Message(const ConditionsStore &conditions, const Ship &hailingShip) const;
+
+	int getWeight() const;
 private:
 	ConditionSet toHail;
 	Phrase messages;
+	// Might be 0, in which case this will never be displayed
+	int weight = 100;
 	LocationFilter filterHailingShip;
 
 	friend UniverseObjects;
