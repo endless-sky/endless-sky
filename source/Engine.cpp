@@ -2251,6 +2251,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	ai.SetMousePosition(relPos / zoom);
 
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
+	activeCommands.Clear(Command::MOUSE_TURNING_HOLD);
 
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
