@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UniverseObjects.h"
 
+#include "ConditionSet.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
@@ -539,19 +540,25 @@ void UniverseObjects::MigrateHails() {
 
 		Phrase *sourcePhrase = phrases.Get(singlePhraseForHail.first);
 		newHail->messages = *sourcePhrase;
+		newHail->toHail = ConditionSet();
+		newHail->toHail.expressionOperator = ConditionSet::ExpressionOp::OR;
 
+
+		// There will always be at least element looped on
 		for(auto specificHailInfo : singlePhraseForHail.second)
 		{
-			newHail->filterHailingShip.governments.insert(governments.Get(std::get<0>(specificHailInfo)));
+			LocationFilter *filter = new LocationFilter();
+
+			filter->governments.insert(governments.Get(std::get<0>(specificHailInfo)));
 
 			if(std::get<1>(specificHailInfo))
-				newHail->filterHailingShip.checkDisabled = true;
+				filter->checkDisabled = true;
 			else
 			{
 				LocationFilter notFilterDisabled = LocationFilter();
 				notFilterDisabled.checkDisabled = true;
 				notFilterDisabled.isEmpty = false;
-				newHail->filterHailingShip.notFilters.push_back(notFilterDisabled);
+				filter->notFilters.push_back(notFilterDisabled);
 			}
 
 
@@ -562,11 +569,13 @@ void UniverseObjects::MigrateHails() {
 				LocationFilter notFilterEnemy = LocationFilter();
 				notFilterEnemy.checkHostile = true;
 				notFilterEnemy.isEmpty = false;
-				newHail->filterHailingShip.notFilters.push_back(notFilterEnemy);
+				filter->notFilters.push_back(notFilterEnemy);
 			}
 
-			newHail->filterHailingShip.isEmpty = false;
-		}
+			filter->isEmpty = false;
 
+			ConditionSet condSetForThisEntry = ConditionSet(filter, ConditionSet::FilterAgainst::HAILING_SHIP);
+			newHail->toHail.children.push_back(condSetForThisEntry);
+		}
 	}
 }

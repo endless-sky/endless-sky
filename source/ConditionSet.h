@@ -27,6 +27,7 @@ class ConditionsStore;
 class DataNode;
 class DataWriter;
 class ConditionContext;
+class UniverseObjects;
 
 
 
@@ -67,6 +68,7 @@ public:
 		FILTER, ///< Apply a LocationFilter to a named object
 	};
 
+public:
 	enum class FilterAgainst {
 		INVALID, ///< Context is invalid/unset
 
@@ -86,6 +88,11 @@ public:
 
 	// Construct a terminal with a literal value.
 	explicit ConditionSet(int64_t newLiteral);
+
+	// Construct a terminal with a LocationFilter
+	// It is assumed the filter pointer will stay valid for the duration
+	// of this object
+	explicit ConditionSet(LocationFilter *newFilter, FilterAgainst against);
 
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if the conditions cannot be parsed from the node.
@@ -186,4 +193,6 @@ private:
 
 	// Let the assignment class call internal functions and parsers.
 	friend class ConditionAssignments;
+	// For the Hail migration
+	friend class UniverseObjects;
 };

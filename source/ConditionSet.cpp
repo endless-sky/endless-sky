@@ -167,6 +167,15 @@ ConditionSet::ConditionSet(int64_t newLiteral)
 
 
 
+ConditionSet::ConditionSet(LocationFilter *newFilter, FilterAgainst against)
+{
+	expressionOperator = ExpressionOp::FILTER;
+	filter = newFilter;
+	filterAgainst = against;
+}
+
+
+
 ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 {
 	// Guard against self-assignment as per C++ conventions.
