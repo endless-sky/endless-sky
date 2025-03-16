@@ -1246,7 +1246,7 @@ void AI::SetMousePosition(Point position)
 
 
 // Get the in-system strength of each government's allies and enemies.
-int64_t AI::AllyStrength(const Government *government)
+int64_t AI::AllyStrength(const Government *government) const
 {
 	auto it = allyStrength.find(government);
 	return (it == allyStrength.end() ? 0 : it->second);
@@ -1254,7 +1254,7 @@ int64_t AI::AllyStrength(const Government *government)
 
 
 
-int64_t AI::EnemyStrength(const Government *government)
+int64_t AI::EnemyStrength(const Government *government) const
 {
 	auto it = enemyStrength.find(government);
 	return (it == enemyStrength.end() ? 0 : it->second);
@@ -2055,6 +2055,16 @@ void AI::MoveIndependent(Ship &ship, Command &command) const
 
 
 
+void AI::MoveWithParent(Ship &ship, Command &command, const Ship &parent)
+{
+	if(ship.GetFormationPattern())
+		MoveInFormation(ship, command);
+	else
+		KeepStation(ship, command, parent);
+}
+
+
+
 // TODO: Function should be const, but formation flying needed write access to the FormationPositioner.
 void AI::MoveEscort(Ship &ship, Command &command)
 {
@@ -2064,8 +2074,9 @@ void AI::MoveEscort(Ship &ship, Command &command)
 	bool needsFuel = ship.NeedsFuel();
 	bool isStaying = ship.GetPersonality().IsStaying() || !hasFuelCapacity;
 	bool parentIsHere = (currentSystem == parent.GetSystem());
-	// Check if the parent has a target planet that is in the parent's system.
-	const Planet *parentPlanet = (parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr);
+	// Check if the parent already landed, or has a target planet that is in the parent's system.
+	const Planet *parentPlanet = (parent.GetPlanet() ? parent.GetPlanet() :
+		(parent.GetTargetStellar() ? parent.GetTargetStellar()->GetPlanet() : nullptr));
 	bool planetIsHere = (parentPlanet && parentPlanet->IsInSystem(parent.GetSystem()));
 	bool systemHasFuel = hasFuelCapacity && currentSystem->HasFuelFor(ship);
 
@@ -2166,9 +2177,13 @@ void AI::MoveEscort(Ship &ship, Command &command)
 		{
 			ship.SetTargetSystem(nullptr);
 			ship.SetTargetStellar(parent.GetTargetStellar());
-			MoveToPlanet(ship, command);
 			if(parent.IsLanding())
+			{
+				MoveToPlanet(ship, command);
 				command |= Command::LAND;
+			}
+			else
+				MoveWithParent(ship, command, parent);
 		}
 		else if(parentPlanet->IsWormhole())
 		{
@@ -2192,19 +2207,15 @@ void AI::MoveEscort(Ship &ship, Command &command)
 				MoveTo(ship, command, Point(), Point(), 40., 0.1);
 			else
 				// This ship has no route to the parent's destination system, so protect it until it jumps away.
-				KeepStation(ship, command, parent);
+				MoveWithParent(ship, command, parent);
 		}
-		else if(ship.GetFormationPattern())
-			MoveInFormation(ship, command);
 		else
-			KeepStation(ship, command, parent);
+			MoveWithParent(ship, command, parent);
 	}
 	else if(parent.Commands().Has(Command::BOARD) && parent.GetTargetShip().get() == &ship)
 		Stop(ship, command, .2);
-	else if(ship.GetFormationPattern())
-		MoveInFormation(ship, command);
 	else
-		KeepStation(ship, command, parent);
+		MoveWithParent(ship, command, parent);
 }
 
 
@@ -2409,20 +2420,20 @@ double AI::TurnToward(const Ship &ship, const Point &vector, const double precis
 
 
 
-bool AI::MoveToPlanet(Ship &ship, Command &command)
+bool AI::MoveToPlanet(Ship &ship, Command &command, double cruiseSpeed)
 {
 	if(!ship.GetTargetStellar())
 		return false;
 
 	const Point &target = ship.GetTargetStellar()->Position();
-	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1.);
+	return MoveTo(ship, command, target, Point(), ship.GetTargetStellar()->Radius(), 1., cruiseSpeed);
 }
 
 
 
 // Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
 bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
-	const Point &targetVelocity, double radius, double slow)
+	const Point &targetVelocity, double radius, double slow, double cruiseSpeed)
 {
 	const Point &position = ship.Position();
 	const Point &velocity = ship.Velocity();
@@ -2439,9 +2450,24 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	bool shouldReverse = false;
 	dp = targetPosition - StoppingPoint(ship, targetVelocity, shouldReverse);
 
-	bool isFacing = (dp.Unit().Dot(angle.Unit()) > .95);
+	// Calculate target vector required to get where we want to be.
+	Point tv = dp;
+	bool hasCruiseSpeed = (cruiseSpeed > 0.);
+	if(hasCruiseSpeed)
+	{
+		// The ship prefers a velocity at cruise-speed towards the target, so we need
+		// to compare this preferred velocity to the current velocity and apply the
+		// delta to get to the preferred velocity.
+		tv = (dp.Unit() * cruiseSpeed) - velocity;
+		// If we are moving close to our preferred velocity, then face towards the target.
+		if(tv.LengthSquared() < .01)
+			tv = dp;
+	}
+
+	bool isFacing = (tv.Unit().Dot(angle.Unit()) > .95);
 	if(!isClose || (!isFacing && !shouldReverse))
-		command.SetTurn(TurnToward(ship, dp));
+		command.SetTurn(TurnToward(ship, tv));
+
 	// Drag is not applied when not thrusting, so stop thrusting when close to max speed
 	// to save energy. Work with a slightly lower maximum velocity to avoid border cases.
 	// In order for a ship to use their afterburner, they must also have the forward
@@ -2450,7 +2476,13 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 	double maxVelocity = ship.MaxVelocity(ShouldUseAfterburner(ship)) * .99;
 	if(isFacing && (velocity.LengthSquared() <= maxVelocity * maxVelocity
 			|| dp.Unit().Dot(velocity.Unit()) < .95))
-		command |= Command::FORWARD;
+	{
+		// We set full forward power when we don't have a cruise-speed, when we are below
+		// cruise-speed or when we need to do course corrections.
+		bool movingTowardsTarget = (velocity.Unit().Dot(dp.Unit()) > .95);
+		if(!hasCruiseSpeed || !movingTowardsTarget || velocity.Length() < cruiseSpeed)
+			command |= Command::FORWARD;
+	}
 	else if(shouldReverse)
 	{
 		command.SetTurn(TurnToward(ship, velocity));
@@ -2825,10 +2857,12 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 	// use them to reach the target more quickly.
 	if(facing < -.75 && ship.Attributes().Get("reverse thrust"))
 		command |= Command::BACK;
-	// This isn't perfect, but it works well enough.
+	// Only apply thrust if either:
+	// This ship is within 90 degrees of facing towards its target and far enough away not to overshoot
+	// if it accelerates while needing to turn further, or:
+	// This ship is moving away from its target but facing mostly towards it.
 	else if((facing >= 0. && direction.Length() > diameter)
-			|| (ship.Velocity().Dot(direction) < 0. &&
-				facing) >= .9)
+			|| (ship.Velocity().Dot(direction) < 0. && facing >= .9))
 		command |= Command::FORWARD;
 
 	// Use an equipped afterburner if possible.
@@ -3576,7 +3610,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			// Find the maximum range of any of this ship's turrets.
 			double maxRange = 0.;
 			for(const Hardpoint &weapon : ship.Weapons())
-				if(weapon.CanAim())
+				if(weapon.CanAim(ship))
 					maxRange = max(maxRange, weapon.GetOutfit()->Range());
 			// If this ship has no turrets, bail out.
 			if(!maxRange)
@@ -3609,7 +3643,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		if(targetBodies.empty() && !opportunistic)
 		{
 			for(const Hardpoint &hardpoint : ship.Weapons())
-				if(hardpoint.CanAim())
+				if(hardpoint.CanAim(ship))
 				{
 					// Get the index of this weapon.
 					int index = &hardpoint - &ship.Weapons().front();
@@ -3621,7 +3655,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		if(targetBodies.empty())
 		{
 			for(const Hardpoint &hardpoint : ship.Weapons())
-				if(hardpoint.CanAim())
+				if(hardpoint.CanAim(ship))
 				{
 					// Get the index of this weapon.
 					int index = &hardpoint - &ship.Weapons().front();
@@ -3651,7 +3685,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 		targets.emplace_back(*targetOverride + ship.Position(), ship.Velocity());
 	// Each hardpoint should aim at the target that it is "closest" to hitting.
 	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.CanAim())
+		if(hardpoint.CanAim(ship))
 		{
 			// This is where this projectile fires from. Add some randomness
 			// based on how skilled the pilot is.
@@ -3731,9 +3765,9 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 					}
 					degrees = (angleToPoint - minArc).AbsDegrees() - (aim - minArc).AbsDegrees();
 				}
-				double turnTime = fabs(degrees) / weapon->TurretTurn();
+				double turnTime = fabs(degrees) / hardpoint.TurnRate(ship);
 				// Always prefer targets that you are able to hit.
-				double score = turnTime + (180. / weapon->TurretTurn()) * rendezvousTime;
+				double score = turnTime + (180. / hardpoint.TurnRate(ship)) * rendezvousTime;
 				if(score < bestScore)
 				{
 					bestScore = score;
@@ -3744,7 +3778,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 			{
 				// Get the index of this weapon.
 				int index = &hardpoint - &ship.Weapons().front();
-				command.SetAim(index, bestAngle / weapon->TurretTurn());
+				command.SetAim(index, bestAngle / hardpoint.TurnRate(ship));
 			}
 		}
 }
@@ -4631,7 +4665,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	{
 		// Check if this ship has any forward-facing weapons.
 		for(const Hardpoint &weapon : ship.Weapons())
-			if(!weapon.CanAim() && !weapon.IsTurret() && weapon.GetOutfit())
+			if(!weapon.CanAim(ship) && !weapon.IsTurret() && weapon.GetOutfit())
 			{
 				shouldAutoAim = true;
 				break;

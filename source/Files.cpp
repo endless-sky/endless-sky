@@ -100,8 +100,10 @@ void Files::Init(const char * const *argv)
 #if defined __linux__ || defined __FreeBSD__ || defined __DragonFly__
 		// Special case, for Linux: the resource files are not in the same place as
 		// the executable, but are under the same prefix (/usr or /usr/local).
-		static const filesystem::path LOCAL_PATH = "/usr/local/";
-		static const filesystem::path STANDARD_PATH = "/usr/";
+		// When used as an iterator, a trailing / will create an empty item at
+		// the end, so parent paths do not include it.
+		static const filesystem::path LOCAL_PATH = "/usr/local";
+		static const filesystem::path STANDARD_PATH = "/usr";
 		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
 
 		const auto IsParent = [](const auto parent, const auto child) -> bool {
@@ -296,7 +298,7 @@ time_t Files::Timestamp(const filesystem::path &filePath)
 
 
 
-void Files::Copy(const filesystem::path &from, const filesystem::path &to)
+bool Files::Copy(const filesystem::path &from, const filesystem::path &to)
 {
 #ifdef _WIN32
 	// Due to a mingw bug, the overwrite_existing flag is not respected on Windows.
@@ -304,7 +306,14 @@ void Files::Copy(const filesystem::path &from, const filesystem::path &to)
 	if(Exists(to))
 		Delete(to);
 #endif
-	copy(from, to, filesystem::copy_options::overwrite_existing);
+	try {
+		copy(from, to, filesystem::copy_options::overwrite_existing);
+	}
+	catch(...)
+	{
+		return false;
+	}
+	return true;
 }
 
 
