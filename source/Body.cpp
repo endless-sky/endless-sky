@@ -50,7 +50,7 @@ Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, dou
 	this->angle = facing;
 	this->zoom = zoom;
 	this->scale = scale * sprite.Scale();
-	this->alpha = alpha;
+	this->alpha = alpha * sprite.alpha;
 }
 
 
