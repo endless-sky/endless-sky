@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
+#include "MinableDamageDealt.h"
 #include "Mission.h"
 #include "NPC.h"
 #include "shader/OutlineShader.h"
@@ -215,7 +216,7 @@ namespace {
 	}
 
 	const double RADAR_SCALE = .025;
-	const double MAX_FUEL_DISPLAY = 5000.;
+	const double MAX_FUEL_DISPLAY = 3000.;
 
 	const double CAMERA_VELOCITY_TRACKING = 0.1;
 	const double CAMERA_POSITION_CENTERING = 0.01;
@@ -1202,18 +1203,30 @@ void Engine::Draw() const
 	const Font &font = FontSet::Get(14);
 	const vector<Messages::Entry> &messages = Messages::Get(step);
 	Rectangle messageBox = hud->GetBox("messages");
+	bool messagesReversed = hud->GetValue("messages reversed");
 	WrappedText messageLine(font);
 	messageLine.SetWrapWidth(messageBox.Width());
 	messageLine.SetParagraphBreak(0.);
-	Point messagePoint = Point(messageBox.Left(), messageBox.Bottom());
+	Point messagePoint{messageBox.Left(), messagesReversed ? messageBox.Top() : messageBox.Bottom()};
 	for(auto it = messages.rbegin(); it != messages.rend(); ++it)
 	{
 		messageLine.Wrap(it->message);
-		messagePoint.Y() -= messageLine.Height();
-		if(messagePoint.Y() < messageBox.Top())
-			break;
+		int height = messageLine.Height();
+		if(messagesReversed)
+		{
+			if(messagePoint.Y() + height > messageBox.Bottom())
+				break;
+		}
+		else
+		{
+			messagePoint.Y() -= height;
+			if(messagePoint.Y() < messageBox.Top())
+				break;
+		}
 		float alpha = (it->step + 1000 - step) * .001f;
 		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
+		if(messagesReversed)
+			messagePoint.Y() += height;
 	}
 
 	// Draw crosshairs around anything that is targeted.
@@ -2345,9 +2358,8 @@ void Engine::DoCollisions(Projectile &projectile)
 
 		const DamageProfile damage(projectile.GetInfo(range));
 
-		// If this projectile has a blast radius, find all ships within its
+		// If this projectile has a blast radius, find all ships and minables within its
 		// radius. Otherwise, only one is damaged.
-		// TODO: Also deal blast damage to minables?
 		double blastRadius = weapon.BlastRadius();
 		if(blastRadius)
 		{
@@ -2372,6 +2384,13 @@ void Engine::DoCollisions(Projectile &projectile)
 				if(eventType)
 					eventQueue.emplace_back(gov, ship->shared_from_this(), eventType);
 			}
+			blastCollisions.clear();
+			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
+			for(Body *body : blastCollisions)
+			{
+				auto minable = reinterpret_cast<Minable *>(body);
+				minable->TakeDamage(damage.CalculateDamage(*minable));
+			}
 		}
 		else if(hit)
 		{
@@ -2382,7 +2401,10 @@ void Engine::DoCollisions(Projectile &projectile)
 					eventQueue.emplace_back(gov, shipHit, eventType);
 			}
 			else if(collisionType == CollisionType::MINABLE)
-				reinterpret_cast<Minable *>(hit)->TakeDamage(projectile);
+			{
+				auto minable = reinterpret_cast<Minable *>(hit);
+				minable->TakeDamage(damage.CalculateDamage(*minable));
+			}
 		}
 
 		if(shipHit)

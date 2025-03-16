@@ -17,11 +17,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DamageDealt.h"
 #include "image/Mask.h"
+#include "Minable.h"
+#include "MinableDamageDealt.h"
 #include "Outfit.h"
 #include "Ship.h"
 #include "Weapon.h"
 
 using namespace std;
+
+
 
 DamageProfile::DamageProfile(Projectile::ImpactInfo info)
 	: weapon(info.weapon), position(std::move(info.position)), isBlast(weapon.BlastRadius() > 0.)
@@ -57,6 +61,15 @@ DamageDealt DamageProfile::CalculateDamage(const Ship &ship, bool ignoreBlast) c
 
 
 
+MinableDamageDealt DamageProfile::CalculateDamage(const Minable &minable) const
+{
+	double scale = Scale(inputScaling, minable, isBlast);
+	return {scale * (weapon.MinableDamage() + weapon.RelativeMinableDamage() * minable.MaxHull()),
+		scale * weapon.Prospecting()};
+}
+
+
+
 // Calculate the value of certain variables necessary for determining
 // the impact of an explosion that are shared across all ships that
 // this hazard could impact.
@@ -77,8 +90,8 @@ void DamageProfile::CalculateBlast()
 
 
 
-// Determine the damage scale for the given ship.
-double DamageProfile::Scale(double scale, const Ship &ship, bool blast) const
+// Determine the damage scale for the given body.
+double DamageProfile::Scale(double scale, const Body &body, bool blast) const
 {
 	// Now that we have a specific ship, we can finish the blast damage
 	// calculations.
@@ -86,7 +99,7 @@ double DamageProfile::Scale(double scale, const Ship &ship, bool blast) const
 	{
 		// Rather than exactly compute the distance between the explosion and
 		// the closest point on the ship, estimate it using the mask's Radius.
-		double distance = max(0., position.Distance(ship.Position()) - ship.GetMask().Radius());
+		double distance = max(0., position.Distance(body.Position()) - body.GetMask().Radius());
 		double finalR = distance * distance * rSquared;
 		scale *= k / ((1. + finalR * finalR) * (1. + finalR * finalR));
 	}
@@ -94,7 +107,7 @@ double DamageProfile::Scale(double scale, const Ship &ship, bool blast) const
 	// position for each ship influences the distance used for the damage dropoff.
 	if(isHazard && weapon.HasDamageDropoff())
 	{
-		double distance = max(0., position.Distance(ship.Position()) - ship.GetMask().Radius());
+		double distance = max(0., position.Distance(body.Position()) - body.GetMask().Radius());
 		scale *= weapon.DamageDropoff(distance);
 	}
 

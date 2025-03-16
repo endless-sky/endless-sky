@@ -150,12 +150,12 @@ ship "Autumn Leaf"
 		"shields" 18700
 		"hull" 7400
 		"required crew" 8
-		"bunks" 16
+		"bunks" 13
 		"mass" 228
 		"drag" 3.5
 		"heat dissipation" .67
-		"fuel capacity" 1000
-		"cargo space" 45
+		"fuel capacity" 800
+		"cargo space" 35
 		"outfit space" 361
 		"weapon capacity" 103
 		"engine capacity" 117
