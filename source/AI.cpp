@@ -3648,7 +3648,7 @@ void AI::AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic,
 					// Get the index of this weapon.
 					int index = &hardpoint - &ship.Weapons().front();
 					double offset = (hardpoint.GetIdleAngle() - hardpoint.GetAngle()).Degrees();
-					command.SetAim(index, offset / hardpoint.GetOutfit()->TurretTurn());
+					command.SetAim(index, offset / hardpoint.TurnRate(ship));
 				}
 			return;
 		}
