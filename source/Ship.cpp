@@ -302,7 +302,7 @@ void Ship::Load(const DataNode &node)
 
 			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
 				(reverse ? reverseEnginePoints : steeringEnginePoints);
-			editPoints.emplace_back(0.5 * child.Value(1) * Scale().X(), 0.5 * child.Value(2) * Scale().Y(),
+			editPoints.emplace_back(Point(child.Value(1), child.Value(2)) * 0.5,
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
 			if(reverse)
@@ -339,7 +339,7 @@ void Ship::Load(const DataNode &node)
 			Point hardpoint;
 			if(child.Size() >= 3)
 			{
-				hardpoint = Point(child.Value(1), child.Value(2)) * Scale();
+				hardpoint = Point(child.Value(1), child.Value(2));
 				if(child.Size() >= 4)
 					outfit = GameData::Outfits().Get(child.Token(3));
 			}

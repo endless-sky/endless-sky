@@ -93,7 +93,7 @@ public:
 
 	class EnginePoint : public Point {
 	public:
-		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		EnginePoint(Point pos, double zoom) : Point(pos), zoom(zoom) {}
 
 		uint8_t side = 0;
 		static const uint8_t UNDER = 0;

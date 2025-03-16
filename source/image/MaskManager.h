@@ -45,6 +45,7 @@ public:
 
 
 private:
+	// Comparison helper to make spriteMask valid, *not* a total comparison function.
 	struct Cmp {
 		bool operator()(const Point &a, const Point &b) const noexcept;
 	};
