@@ -9350,6 +9350,7 @@ mission "Timothy Radrickson 7: Grave"
 				decline
 
 
+
 event "stone waiting most"
 
 
@@ -10246,7 +10247,7 @@ mission "Tavish and Kormak 1"
 			label cashmoney
 			`	Tavish glances at Kormak and then back to you. A hint of sweat appears on his brow as he says, "Ahem, my esteemed colleague and I have run into to some trouble, of the financial variety. You see, we uh, well, already paid another very charming captain to pick up our equipment on Clark, and they never returned. We then paid another captain to take us there, but when we went to meet them at their ship we discovered the most unwelcome news that there was no ship at all, and they were nowhere to be found."`
 			`	"We are broke," Kormak helpfully adds.`
-			`	"It is true," Tavish sighs. "Our circumstances are most unfortunate; we are stranded here without money, and have yet to find anyone capable of setting aside their normal preoccuption with short-sighted material gains and instead recognize the more noble pursuit of pure scientific discovery!"`
+			`	"It is true," Tavish sighs. "Our circumstances are most unfortunate; we are stranded here without money, and have yet to find anyone capable of setting aside their normal preoccupation with short-sighted material gains and instead recognize the more noble pursuit of pure scientific discovery!"`
 			`	"We asked everyone," Kormak says.`
 			`	"And yet we are not the least bit perturbed about our perilous predicament!" Tavish continues. "For such setbacks are to be expected in the pursuit of discovery. And now that we've found you, the famous captain, Captain... Mayflower? We're sure our fortunes are about to change! So what do you say, my good fellow? Are you ready join us on our grand adventure and ferry us to the hardscrabble world of Clark?"`
 			branch mayflower
@@ -10310,9 +10311,9 @@ mission "Tavish and Kormak 1"
 			label forscience
 			`	Tavish breaks into a wide grin and mock punches the air just above his head, "Huzzah, my good chap! Yes, that is the pioneering spirit! Just the news we needed to hear, for I must admit to you, that my esteemed colleague and I have run into to some trouble of the financial variety. We paid another very charming captain to pick up our equipment on Clark, and they never returned. We then paid another captain to take us there, but when we went to meet them at their ship we discovered the most unwelcome news that they in fact were not its owner."`
 			`	"We are broke," Kormak helpfully adds.`
-			`	"Ah yes," Tavish sighs. "Our most unfortunate circumstance, we are stranded here without money, and have yet to find anyone capable of setting aside their normal preoccuption with short-sighted material gains and instead recognize the more noble pursuit of pure scientific discovery!"`
+			`	"Ah yes," Tavish sighs. "Our most unfortunate circumstance, we are stranded here without money, and have yet to find anyone capable of setting aside their normal preoccupation with short-sighted material gains and instead recognize the more noble pursuit of pure scientific discovery!"`
 			`	"We asked everyone." Kormak says.`
-			`	"And yet we are not the least bit perturbed about our perilous predicament!" Tavish continues. "For such setbacks are to be expected in the pursuit of discovery. And now that we've found you, the famous captain, Captain... Mayflower? Our fortunes are already changing for the better! When you are ready escort us to your venerable dirigible and we shall commence with our grand adventure to the hardscabble world of Clark!"`
+			`	"And yet we are not the least bit perturbed about our perilous predicament!" Tavish continues. "For such setbacks are to be expected in the pursuit of discovery. And now that we've found you, the famous captain, Captain... Mayflower? Our fortunes are already changing for the better! When you are ready escort us to your venerable dirigible, we shall then commence with our grand adventure to the hardscrabble world of Clark!"`
 			branch mayflower2
 				or
 					has "first name: Mayflower"
@@ -10474,7 +10475,7 @@ mission "Tavish and Kormak 2"
 					goto equipment1
 					to display
 						not "equipment1"
-				`	"I have no more questions. But from now on I'm in charge. Now, let's go to Deadman's Cove."`
+				`	"I am done. But from now on I'm in charge. Now, let's go to Deadman's Cove."`
 					goto end
 
 			label who1
@@ -10680,6 +10681,10 @@ mission "Tavish and Kormak 3"
 		clear "tav1"
 		clear "tav2"
 
+	on accept
+		clear "tav1"
+		clear "tav2"
+
 	npc board
 		government "Bounty (Disguised)"
 		system "Persian"
@@ -10870,23 +10875,7 @@ mission "Tavish and Kormak 4"
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 
-	on complete
-		conversation
-			`Your ship comes to a landing in a crowded spaceport. Some sort of commencement ceremony is going on and the place is packed with off-world family and friends who have come to watch the graduation.`
-			`	It's obvious Tavish is uncomfortable here, but he does his best not to show it. He informs you that you'll need to get to the commuter rail deeper in the New Port spaceport to meet Dr. Hullen-Freeze.`
-
-
-mission "Tavish Interlude"
-	name "A chat"
-	invisible
-	landing
-	source "Hephaestus"
-	destination "Chiron"
-	to offer
-		has "Tavish and Kormak 3: done"
 	on enter
-
-	# You will see this conversation after the first jump you make.
 	on enter
 		conversation
 			`Tavish approaches you on the bridge. "Captain <last>, I'd like a word."`
@@ -10949,6 +10938,11 @@ mission "Tavish Interlude"
 			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following his footsteps."`
 			`	Tavish pauses. "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
 				goto options
+
+	on complete
+		conversation
+			`Your ship comes to a landing in a crowded spaceport. Some sort of commencement ceremony is going on and the place is packed with off-world family and friends who have come to watch the graduation.`
+			`	It's obvious Tavish is uncomfortable here, but he does his best not to show it. He informs you that you'll need to get to the commuter rail deeper in the New Port spaceport to meet Dr. Hullen-Freeze.`
 
 
 mission "Tavish and Kormak 5"
@@ -11077,6 +11071,7 @@ mission "Tavish and Kormak 5"
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
+				clear "tavgirl"
 			`	Tavish wilts when he hears your command, but he does not argue. Humbly he nods to you, "It's my problem to resolve."`
 			`	Tavish's cheeks are wet as he drops to his knees. With painful awkward slowness he starts to bend over as to be on all fours.`
 			`	Before he is on his hands and knees, he is stopped by Kormak who pulls his companion to his feet.`
@@ -11115,6 +11110,7 @@ mission "Tavish and Kormak 5"
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
+				clear "tavgirl"
 			`	Kormak doesn't hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
 			`	"Better without him," Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
 			`	The three of you leave together and head back to the spaceport. Once there, you finally pick up the scientific research equipment for the New India expedition.`
@@ -11125,6 +11121,7 @@ mission "Tavish and Kormak 5"
 			action
 				clear "tavtalk"
 				clear "payme"
+				clear "tavgirl"
 				clear "tavgirl"
 			`	Kormak grabs his jacket and finds Starla waiting for him just outside the office. She'd seen the whole thing.`
 			`	"Wh-what's that smell?" she asks quietly.`
@@ -11333,6 +11330,7 @@ event "Tavish and Kormak Expedition"
 
 mission "Tavish and Kormak 7"
 	landing
+	landing
 	name "Alexandria awaits"
 	description "Transport Tavish and Kormak and their cargo to <planet>."
 	to offer
@@ -11374,7 +11372,7 @@ mission "Tavish and Kormak 7"
 			`	With that everything and everyone is on board.`
 			`	"Hup! Hup! To Alexandria!" Tavish shouts with obvious excitement.`
 			`	Kormak cracks his knuckles and grins, "Finally."`
-				flee
+				launch
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
