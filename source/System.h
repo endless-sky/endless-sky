@@ -183,7 +183,7 @@ public:
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
-	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false);
+	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false) const;
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
