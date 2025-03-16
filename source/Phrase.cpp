@@ -25,7 +25,11 @@ using namespace std;
 
 
 // Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-std::string Phrase::ExpandPhrases(const std::string &source, const ConditionsStore *vars, const ConditionContext &context)
+std::string Phrase::ExpandPhrases(
+	const std::string &source,
+	const ConditionsStore *vars,
+	const ConditionContext &context
+)
 {
 	string result;
 	size_t next = 0;
@@ -57,6 +61,16 @@ std::string Phrase::ExpandPhrases(const std::string &source, const ConditionsSto
 Phrase::Phrase(const DataNode &node)
 {
 	Load(node);
+}
+
+
+
+Phrase & Phrase::operator=(const Phrase& other)
+{
+	this->name = other.name;
+	this->sentences = other.sentences;
+
+	return *this;
 }
 
 

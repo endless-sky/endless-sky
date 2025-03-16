@@ -2040,7 +2040,7 @@ void Engine::SendHails()
 	shared_ptr<const Ship> source = canSend[i];
 
 	// Generate a random hail message.
-	SendMessage(source, source->GetHail(player.GetSubstitutions(), &player.Conditions()));
+	SendMessage(source, source->GetHail(player.GetSubstitutions(), player.Conditions()));
 }
 
 

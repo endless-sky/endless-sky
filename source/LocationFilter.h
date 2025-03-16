@@ -28,6 +28,7 @@ class Outfit;
 class Planet;
 class Ship;
 class System;
+class UniverseObjects;
 
 
 
@@ -102,9 +103,15 @@ private:
 	std::list<std::set<const Outfit *>> outfits;
 	// A ship must belong to one of these categories:
 	std::set<std::string> shipCategory;
+	// A ship must be disabled:
+	bool checkDisabled;
+	// The ship's government must be hostile to the player:
+	bool checkHostile; // TODO: extend to government and planet test too
 
 	// These filters store all the things the planet, system, or ship must not be.
 	std::list<LocationFilter> notFilters;
 	// These filters store all the things the planet or system must border.
 	std::list<LocationFilter> neighborFilters;
+
+	friend UniverseObjects; // To create a LocationFilter from scratch (for hail migration)
 };

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hail.h"
 #include "JumpTypes.h"
 #include "Logger.h"
 #include "image/Mask.h"
@@ -1538,9 +1539,28 @@ void Ship::SetHailPhrase(const Phrase &phrase)
 
 
 
-string Ship::GetHail(map<string, string> &&subs, const ConditionsStore *vars) const
+
+string Ship::GetHail(map<string, string> &&subs, const ConditionsStore &vars) const
 {
-	string hailStr = hail ? hail->Get(vars, ConditionContextHailing(*this)) : government ? government->GetHail(isDisabled, *this, vars) : "";
+	string hailStr;
+	if(hail)
+	{
+		hailStr = hail->Get(&vars, ConditionContextHailing(*this));
+	}
+	else
+	{
+		std::vector<const Hail *> matchingHails;
+		for(const auto &hail : GameData::Hails())
+		{
+			if(hail.second.Matches(vars, *this))
+			{
+				matchingHails.push_back(&hail.second);
+			}
+
+		}
+		if(!matchingHails.empty())
+			hailStr = matchingHails[Random::Int(matchingHails.size())]->Message(vars, *this);
+	}
 
 	if(hailStr.empty())
 		return hailStr;

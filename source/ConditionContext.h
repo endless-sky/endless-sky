@@ -31,7 +31,7 @@ public:
 const ConditionContext DEFAULT_CONDITION_CONTEXT = ConditionContext();
 
 /// Information specific for when a ship is hailing the player
-class ConditionContextHailing: public ConditionContext {
+class ConditionContextHailing : public ConditionContext {
 public:
 	ConditionContextHailing(const Ship &hailingShip);
 

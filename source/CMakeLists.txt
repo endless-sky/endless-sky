@@ -133,6 +133,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameWindow.h
 	Government.cpp
 	Government.h
+	Hail.cpp
+	Hail.h
 	HailPanel.cpp
 	HailPanel.h
 	Hardpoint.cpp

@@ -16,10 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipyardPanel.h"
 
 #include "text/alignment.hpp"
-#include "ConditionContext.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "ClickZone.h"
 #include "Color.h"
+#include "ConditionContext.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
 #include "text/Font.h"

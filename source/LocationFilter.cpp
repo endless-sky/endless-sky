@@ -192,7 +192,7 @@ void LocationFilter::Load(const DataNode &node)
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
 		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
-		&& outfits.empty() && shipCategory.empty();
+		&& outfits.empty() && shipCategory.empty() && !checkDisabled && !checkHostile;
 }
 
 
@@ -271,6 +271,10 @@ void LocationFilter::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+		if(checkDisabled)
+			out.Write("disabled");
+		if(checkHostile)
+			out.Write("hostile");
 		if(center)
 			out.Write("near", center->TrueName(), centerMinDistance, centerMaxDistance);
 	}
@@ -381,6 +385,11 @@ bool LocationFilter::Matches(const System *system, const System *origin) const
 // outfits (installed and carried), and attributes.
 bool LocationFilter::Matches(const Ship &ship) const
 {
+	if(checkDisabled && !ship.IsDisabled())
+		return false;
+	if(checkHostile && !ship.GetGovernment()->IsEnemy())
+		return false;
+
 	const System *origin = ship.GetSystem();
 	if(!systems.empty() && !systems.contains(origin))
 		return false;
@@ -599,6 +608,10 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(outfits.back().empty())
 			outfits.pop_back();
 	}
+	else if(key == "disabled")
+		checkDisabled = true;
+	else if(key == "hostile")
+		checkHostile = true;
 	else
 		child.PrintTrace("Skipping unrecognized attribute:");
 }

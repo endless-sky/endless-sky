@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "DataNode.h"
 #include "DataWriter.h"
-#include "Logger.h"
 
 #include <algorithm>
 #include <cassert>
@@ -130,10 +129,10 @@ namespace
 		{ INVALID_FILTER_AGAINST_STRING, ConditionSet::FilterAgainst::INVALID }
 	};
 
-	const string& getFilterAgainstStringRepresentation(ConditionSet::FilterAgainst filterAgainst)
+	const string & getFilterAgainstStringRepresentation(ConditionSet::FilterAgainst filterAgainst)
 	{
-		for (auto &pair : FILTER_AGAINST_CONVERSION)
-			if (pair.second == filterAgainst)
+		for(auto &pair : FILTER_AGAINST_CONVERSION)
+			if(pair.second == filterAgainst)
 				return pair.first;
 
 		return INVALID_FILTER_AGAINST_STRING;
@@ -142,7 +141,7 @@ namespace
 	const ConditionSet::FilterAgainst getFilterAgainstFromStringRepresentation(const string &filterAgainstString)
 	{
 		auto it = FILTER_AGAINST_CONVERSION.find(filterAgainstString);
-		if (it != FILTER_AGAINST_CONVERSION.end())
+		if(it != FILTER_AGAINST_CONVERSION.end())
 			return it->second;
 
 		return ConditionSet::FilterAgainst::INVALID;
@@ -184,7 +183,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 	literal = other.literal;
 	conditionName = std::move(other.conditionName);
 	children = std::move(other.children);
-	if (filter != nullptr)
+	if(filter != nullptr)
 		filter = new LocationFilter(*filter);
 	else
 		filter = nullptr;
@@ -425,7 +424,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore, const Con
 				case FilterAgainst::HAILING_SHIP:
 				{
 					const Ship *hailingShip = context.getHailingShip();
-					if (hailingShip == nullptr)
+					if(hailingShip == nullptr)
 						return 0;
 					else
 						return filter->Matches(*hailingShip);
@@ -484,12 +483,12 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		}
 	}
 
-	// This won’t cause any incompatibility with previously valid code.
+	// This won't cause any incompatibility with previously valid code.
 	// Variable condition could only be 1 or 3 element of size (if first part was "filter")
 	if(node.Size() == 2 && node.Token(0) == "filter")
 	{
 		filterAgainst = getFilterAgainstFromStringRepresentation(node.Token(1));
-		if (filterAgainst == ConditionSet::FilterAgainst::INVALID)
+		if(filterAgainst == ConditionSet::FilterAgainst::INVALID)
 			return FailParse(node, "unrecognized or invalid filter target");
 
 		expressionOperator = ExpressionOp::FILTER;

@@ -4722,7 +4722,12 @@ bool PlayerInfo::DisplayCarrierHelp() const
 void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 {
 	ships.push_back(make_shared<Ship>(*model));
-	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get(nullptr, DEFAULT_CONDITION_CONTEXT));
+	ships.back()->SetName(
+		!name.empty() ?
+			name
+		:
+			GameData::Phrases().Get("civilian")->Get(nullptr, DEFAULT_CONDITION_CONTEXT)
+	);
 	ships.back()->SetSystem(system);
 	ships.back()->SetPlanet(planet);
 	ships.back()->SetIsSpecial();

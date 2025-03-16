@@ -44,7 +44,11 @@ public:
 	// Add new text replacements to the given map after evaluating all possible replacements.
 	// This TextReplacements will overwrite the value of any existing keys in the given map
 	// if the map and this TextReplacements share a key.
-	void Substitutions(std::map<std::string, std::string> &subs, const ConditionsStore &conditions, const ConditionContext &context) const;
+	void Substitutions(
+		std::map<std::string, std::string> &subs,
+		const ConditionsStore &conditions,
+		const ConditionContext &context
+	) const;
 
 
 private:

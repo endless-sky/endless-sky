@@ -730,7 +730,10 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.
-	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get(nullptr, DEFAULT_CONDITION_CONTEXT) : this->dialogText;
+	string dialogText = !dialogPhrase->IsEmpty() ?
+			dialogPhrase->Get(nullptr, DEFAULT_CONDITION_CONTEXT)
+		:
+			this->dialogText;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
 

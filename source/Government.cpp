@@ -159,13 +159,13 @@ void Government::Load(const DataNode &node)
 			else if(key == "death sentence")
 				deathSentence = nullptr;
 			else if(key == "friendly hail")
-				friendlyHail = nullptr;
+				friendlyHail = std::string();
 			else if(key == "friendly disabled hail")
-				friendlyDisabledHail = nullptr;
+				friendlyDisabledHail = std::string();
 			else if(key == "hostile hail")
-				hostileHail = nullptr;
+				hostileHail = std::string();
 			else if(key == "hostile disabled hail")
-				hostileDisabledHail = nullptr;
+				hostileDisabledHail = std::string();
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -388,13 +388,13 @@ void Government::Load(const DataNode &node)
 		else if(key == "death sentence")
 			deathSentence = GameData::Conversations().Get(child.Token(valueIndex));
 		else if(key == "friendly hail")
-			friendlyHail = GameData::Phrases().Get(child.Token(valueIndex));
+			friendlyHail = child.Token(valueIndex);
 		else if(key == "friendly disabled hail")
-			friendlyDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+			friendlyDisabledHail = child.Token(valueIndex);
 		else if(key == "hostile hail")
-			hostileHail = GameData::Phrases().Get(child.Token(valueIndex));
+			hostileHail = child.Token(valueIndex);
 		else if(key == "hostile disabled hail")
-			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
+			hostileDisabledHail = child.Token(valueIndex);
 		else if(key == "language")
 			language = child.Token(valueIndex);
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
@@ -556,23 +556,6 @@ const Conversation *Government::DeathSentence() const
 {
 	return deathSentence;
 }
-
-
-
-// Get a hail message (which depends on whether this is an enemy government
-// and if the ship is disabled).
-string Government::GetHail(bool isDisabled, const Ship &hailingShip, const ConditionsStore *vars) const
-{
-	const Phrase *phrase = nullptr;
-
-	if(IsEnemy())
-		phrase = isDisabled ? hostileDisabledHail : hostileHail;
-	else
-		phrase = isDisabled ? friendlyDisabledHail : friendlyHail;
-
-	return phrase ? phrase->Get(vars, ConditionContextHailing(hailingShip)) : "";
-}
-
 
 
 // Find out if this government speaks a different language.

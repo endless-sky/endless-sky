@@ -637,6 +637,11 @@ const Set<Government> &GameData::Governments()
 }
 
 
+const Set<Hail> &GameData::Hails()
+{
+	return objects.hails;
+}
+
 
 const Set<Hazard> &GameData::Hazards()
 {

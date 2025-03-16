@@ -41,6 +41,7 @@ class Galaxy;
 class GameEvent;
 class Gamerules;
 class Government;
+class Hail;
 class Hazard;
 class ImageSet;
 class Interface;
@@ -124,6 +125,7 @@ public:
 	static const Set<FormationPattern> &Formations();
 	static const Set<Galaxy> &Galaxies();
 	static const Set<Government> &Governments();
+	static const Set<Hail> &Hails();
 	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
 	static const Set<Minable> &Minables();

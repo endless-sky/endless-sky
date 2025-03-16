@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionContext.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionContext.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"

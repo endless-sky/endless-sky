@@ -32,13 +32,19 @@ class DataNode;
 class Phrase {
 public:
 	// Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-	static std::string ExpandPhrases(const std::string &source, const ConditionsStore *vars, const ConditionContext &context);
+	static std::string ExpandPhrases(
+		const std::string &source,
+		const ConditionsStore *vars,
+		const ConditionContext &context
+	);
 
 
 public:
 	Phrase() = default;
 	// Construct and Load() at the same time.
 	explicit Phrase(const DataNode &node);
+
+	Phrase & operator=(const Phrase & other);
 
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
@@ -101,4 +107,6 @@ private:
 	std::string name;
 	// Each time this phrase is defined, a new sentence is created.
 	std::vector<Sentence> sentences;
+
+	friend UniverseObjects; // For migrating hails
 };

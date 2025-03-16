@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipNameDialog.h"
 
 #include "ConditionContext.h"
-#include "Color.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
