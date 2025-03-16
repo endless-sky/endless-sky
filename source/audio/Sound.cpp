@@ -30,8 +30,8 @@ namespace {
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
 	uint32_t ReadHeader(File &in, uint32_t &frequency);
-	uint32_t Read4(File &in);
-	uint16_t Read2(File &in);
+	uint32_t Read4(const File &in);
+	uint16_t Read2(const File &in);
 }
 
 
@@ -158,7 +158,7 @@ namespace {
 
 
 
-	uint32_t Read4(File &in)
+	uint32_t Read4(const File &in)
 	{
 		unsigned char data[4];
 		if(fread(data, 1, 4, in) != 4)
@@ -171,7 +171,7 @@ namespace {
 
 
 
-	uint16_t Read2(File &in)
+	uint16_t Read2(const File &in)
 	{
 		unsigned char data[2];
 		if(fread(data, 1, 2, in) != 2)
