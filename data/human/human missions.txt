@@ -7894,6 +7894,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing
 	name "Escort the Convoy"
+	description "Escort the Hroar's Haulers Convoy from <origin> to <destination>."
 	source "Greenrock"
 	destination "Wayfarer"
 	to offer
