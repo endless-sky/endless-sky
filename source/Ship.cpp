@@ -1943,7 +1943,7 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
+	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
 	{
 		if(sounds.empty())
 			Audio::Play(Audio::Get("scan"), position, SoundCategory::SCAN);
@@ -4922,7 +4922,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
 				}
 				else
 				{
@@ -4986,12 +4986,17 @@ void Ship::AddEscort(Ship &ship)
 void Ship::RemoveEscort(const Ship &ship)
 {
 	auto it = escorts.begin();
-	for( ; it != escorts.end(); ++it)
-		if(it->lock().get() == &ship)
+	while(it != escorts.end())
+	{
+		auto escort = it->lock();
+		if(escort.get() == &ship)
 		{
-			escorts.erase(it);
+			it = escorts.erase(it);
 			return;
 		}
+		else
+			++it;
+	}
 }
 
 
