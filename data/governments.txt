@@ -1691,7 +1691,7 @@ color "governments: Quarg" .88 .77 0
 
 # Quarg are split up to their respective areas, and an overall one is kept for missions or other use.
 government "Quarg"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	
 	"player reputation" 1
@@ -1741,7 +1741,7 @@ government "Quarg"
 
 
 government "Quarg (Hai)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1789,7 +1789,7 @@ government "Quarg (Hai)"
 		ship "Quarg Wyvern"
 
 government "Quarg (Incipias)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1847,7 +1847,7 @@ government "Quarg (Incipias)"
 		ship "Quarg Wyvern"
 
 government "Quarg (Kor Efret)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1894,7 +1894,7 @@ government "Quarg (Kor Efret)"
 		ship "Quarg Wyvern"
 
 government "Quarg (Gegno)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
