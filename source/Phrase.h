@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionsStore.h"
 #include "WeightedList.h"
 
+#include <cstddef>
 #include <functional>
 #include <string>
 #include <utility>
@@ -56,6 +57,7 @@ public:
 	// Get a possible value. "to use" will be checked if vars is not null.
 	std::string Get(const ConditionsStore *vars, const ConditionContext &context) const;
 
+	size_t GetNumberOfSentence() const;
 
 private:
 	bool ReferencesPhrase(const Phrase *phrase) const;

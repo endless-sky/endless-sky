@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
-#include "WeightedList.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
@@ -47,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
+#include "WeightedList.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -1553,7 +1553,7 @@ string Ship::GetHail(map<string, string> &&subs, const ConditionsStore &vars) co
 		WeightedList<const Hail *> matchingHails;
 		for(const auto &hail : GameData::Hails())
 		{
-			if(hail.second.getWeight() == 0) // Can’t have 0-weight elment in WeightedSet
+			if(hail.second.getWeight() == 0) // Can't have 0-weight element in WeightedSet
 				continue;
 			if(hail.second.Matches(vars, *this))
 			{

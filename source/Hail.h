@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Phrase.h"
 #include "Ship.h"
 
+#include <cstddef>
 #include <string>
 
 class UniverseObjects;
@@ -42,7 +43,7 @@ private:
 	ConditionSet toHail;
 	Phrase messages;
 	// Might be 0, in which case this will never be displayed
-	int weight = 100;
+	int weight = 10;
 	LocationFilter filterHailingShip;
 
 	friend UniverseObjects;

@@ -160,6 +160,11 @@ bool Phrase::ReferencesPhrase(const Phrase *other) const
 	return false;
 }
 
+size_t Phrase::GetNumberOfSentence() const
+{
+	return sentences.size();
+}
+
 
 
 Phrase::Choice::Choice(const DataNode &node, bool isPhraseName)

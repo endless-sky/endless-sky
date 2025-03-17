@@ -27,7 +27,7 @@ void Hail::Load(const DataNode &node)
 			toHail.Load(child);
 		else if(child.Size() == 2 && child.Token(0) == "hailing" && child.Token(1) == "ship")
 			filterHailingShip.Load(child);
-		else if(child.Token(0) == "weight")
+		else if(child.Size() == 2 && child.Token(0) == "weight")
 			weight = child.Value(1);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");

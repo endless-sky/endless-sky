@@ -540,6 +540,7 @@ void UniverseObjects::MigrateHails() {
 
 		Phrase *sourcePhrase = phrases.Get(singlePhraseForHail.first);
 		newHail->messages = *sourcePhrase;
+		newHail->weight = sourcePhrase->GetNumberOfSentence() * 10;
 		newHail->toHail = ConditionSet();
 		newHail->toHail.expressionOperator = ConditionSet::ExpressionOp::OR;
 
