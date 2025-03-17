@@ -7539,10 +7539,10 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			branch evilchoice
 				has "Syndicate Business expansion 10m evil"
 			# neutral
-			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higherups like the consistency--keeps me in their good graces.`
+			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higherups like the consistency - keeps me in their good graces.`
 				goto howardbye
 			label goodchoice
-			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk of provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled--they think I'm working magic here.`
+			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk of provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
 				goto howardbye
 			label evilchoice
 			`		"There was a... noteworthy incident involving some employees, so it might draw more attention than we'd like. Nothing that'll derail the returns, though, just some bad press to manage. Everything's still on track, and either way, no one can argue with the numbers.`
@@ -7654,7 +7654,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 				`	(Skip visiting the refueling station.)`
 					decline
 			`	You make your way towards the refueling station on a bulky vehicle closed off from the radioactive air. Nevertheless, you still feel a faint metallic taste in the back of your throat as you see blue and purple tumbleweeds drift with the sand out the window. Eventually you pull up to the depot and refueling station.`
-			`	The structure looms in front of you--sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
+			`	The structure looms in front of you - sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
 			choice
 				`	(Get out of the bulky vehicle.)`
 			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsors zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
@@ -7663,7 +7663,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			branch evilchoice
 				has "Syndicate Business expansion 10m evil"
 			# neutral
-			`	As you start to approach the platform, you notice a worker sitting on the edge of a low retaining wall, just outside the main operation zone. He's leaned back, catching his breath and wiping the sweat from his brow. The worker looks up as you near, his expression neutral but open, perhaps surprised to see someone from management on-site. His break seems brief, but he's got a minute or two before heading back to work--giving you the option to engage in conversation or simply move on.`
+			`	As you start to approach the platform, you notice a worker sitting on the edge of a low retaining wall, just outside the main operation zone. He's leaned back, catching his breath and wiping the sweat from his brow. The worker looks up as you near, his expression neutral but open, perhaps surprised to see someone from management on-site. His break seems brief, but he's got a minute or two before heading back to work - giving you the option to engage in conversation or simply move on.`
 				goto hellothere
 			label goodchoice
 			`	As your approach to the platform begins, you notice a worker sitting on the edge of a low retaining wall, just outside the bustling refueling zone. He's leaned back with a relaxed smile on his face as he whistles a cheerful tune, clearly enjoying a well-earned break. The worker's uniform is crisp, and his overall demeanor suggests high morale, perhaps a reflection of your choice to invest in excellent workplace safety and labor conditions. He glances up as you near, offering a friendly nod, clearly at ease. With a few minutes left in his break, you have the chance to strike up a conversation or continue on your way.`
@@ -7683,14 +7683,14 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			# neutral 2
 			`	You decide to strike up a conversation, and after a brief exchange, the worker relaxes when you clarify that you're not from management. His face softens as he shares his story. He grew up poor in the Dirt Belt, and came to Crossroads hoping for something better.`
 			`	"I've been working hard, trying to give my kid a life I didn't have."`
-			`	He shrugs as he says, "Sure, the hours are long and it's tough sometimes, but it beats what you hear about some Syndicate jobs--unsafe, grueling work. At least here, the work's steady and it puts food on the table. That's more than I ever had growing up in the Dirt Belt." He checks the time and stands, dusting off his uniform.`
+			`	He shrugs as he says, "Sure, the hours are long and it's tough sometimes, but it beats what you hear about some Syndicate jobs - unsafe, grueling work. At least here, the work's steady and it puts food on the table. That's more than I ever had growing up in the Dirt Belt." He checks the time and stands, dusting off his uniform.`
 			`	"Thanks for the chat, but I've got a long night ahead. It's my kid's birthday, and I'm putting in extra hours so I can get them a cake. They're gonna love it."`
 			`	With a tired but determined smile, he heads back to work, leaving you with a glimpse of the reality behind the "conventional" station's daily grind.`
 				goto hellothere2
 			label goodchoice2
 			`	You decide to strike up a conversation, and as you exchange pleasantries, the worker mentions how he grew up in the Dirt Belt. He talks about how tough life was back then, scraping by with whatever work he could find before coming to Crossroads in search of something better.`
-			`	"I've been incredibly lucky," he says with a genuine smile. "This job--good pay, safe working conditions, benefits for my family--it's more than I ever imagined. I've heard stories about jobs in the Syndicate, how unsafe and grueling they can be. Heck, I've heard of other refueling stations at this very same logistics hub where people get injured and they're left to starve--can you imagine? I count my blessings every day."`
-			`	He glances at his datapad and stands up, brushing off his uniform. "Thanks for the chat," he says warmly. "I've got to head back in. Calling it an early day today--need to grab a cake and set up a surprise birthday party for my kid. They're going to be thrilled!"`
+			`	"I've been incredibly lucky," he says with a genuine smile. "This job - good pay, safe working conditions, benefits for my family - it's more than I ever imagined. I've heard stories about jobs in the Syndicate, how unsafe and grueling they can be. Heck, I've heard of other refueling stations at this very same logistics hub where people get injured and they're left to starve - can you imagine? I count my blessings every day."`
+			`	He glances at his datapad and stands up, brushing off his uniform. "Thanks for the chat," he says warmly. "I've got to head back in. Calling it an early day today - need to grab a cake and set up a surprise birthday party for my kid. They're going to be thrilled!"`
 			`	With a quick wave, he heads back toward the fueling bay, whistling his tune once again.`
 				goto hellothere2
 			label evilchoice2
@@ -7728,12 +7728,12 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 				goto hellothere3
 			label goodchoice3
 			`	At the top of platform, the sight below is one of smooth coordination and efficiency. A massive Container Transport docks relatively gracefully, its intermodal containers full of Particle Cannons likely destined for Megaparsec Quicksilvers.`
-			`	Workers outfitted in sleek safety gear move with precision, guiding repulsor-mounted refueling hoses to the Container Transport's ports. There's an air of confidence here--a clear, practiced rhythm, as the fueling process proceeds with checks and double-checks.`
-			`	You take a deep breath of clean, crisp air. Even the environmental controls seem well-maintained, keeping the air cleaner than you'd expect at a station of this scale. It's almost serene, the hum of machinery blending with the low chatter of workers who seem genuinely at ease, knowing they're well-protected. You catch the eye of the worker you saw earlier outside, and he gives you a wave before turning his attention back to the fueling hoses.`
+			`	Workers outfitted in sleek safety gear move with precision, guiding repulsor-mounted refueling hoses to the Container Transport's ports. There's an air of confidence here - a clear, practiced rhythm, as the fueling process proceeds with checks and double-checks.`
+			`	You take a deep breath of clean, crisp air. Even the environmental controls seem well-maintained, keeping the air cleaner than you'd expect in a station of this size. It's almost serene, the hum of machinery blending with the low chatter of workers who seem genuinely at ease, knowing they're well-protected. You catch the eye of the worker you saw earlier outside, and he gives you a wave before turning his attention back to the fueling hoses.`
 				goto hellothere3
 			label evilchoice3
-			`	Through the doors at the top of platform, the air is thick with tension as you look down at the fueling bay. A massive Container Transport lurches to dock, overloaded with Particle Cannons, as workers scramble like their lives depend on it.`
-			`	What little safety gear you see appears to be an afterthought--you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy hoses attached to worn repulsors that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
+			`	The air is thick with tension as you look down at the fueling bay. A massive Container Transport lurches to dock, overloaded with Particle Cannons, as workers scramble like their lives depend on it.`
+			`	What little safety gear you see appears to be an afterthought - you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy tubes attached to worn repulsors that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
 			`	As you inhale, the air sears your lungs, almost choking you into a coughing fit. It's suffocating, laden with the sharp, toxic stench of volatile fuel. The entire platform feels like it's teetering on the edge of catastrophe. Every second here feels dangerous, the air thick with the threat of a disaster waiting to happen. The hum of machinery feels ominous against the gasping breaths of workers, whose tense, hurried movements suggest they're all too aware of the dangerous conditions around them. Each worker appears equally broken and sullen, and you can't make out the worker you saw earlier from the crowd.`
 			label hellothere3
 			choice
