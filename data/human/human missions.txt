@@ -7555,7 +7555,7 @@ mission "Syndicate Business 1"
 			label negotiate
 			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
-			`	The Vanguard's engines roar to life and you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+			`	The Vanguard's engines roar to life and you see a baker's half dozen fixed guns take aim at your ship, ready to strike.`
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
@@ -7578,7 +7578,7 @@ mission "Syndicate Business 1"
 				`	"Sounds good."`
 					decline
 				`	"What's the deal with you and that pirate?"`
-			`	Howard takes a breath and seems to calm himself. "That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to get back to <planet>.`
+			`	Howard takes a breath and seems to calm himself. "That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to get Howard back to <planet>.`
 	on complete
 		"reputation: Independent (Killable)" = 10
 		event "end of independent violence"
