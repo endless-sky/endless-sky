@@ -24,6 +24,7 @@
 # 11xxx : Successors
 # 12xxx : Incipias
 # 13xxx : Sheragi
+# 14xxx : Jibauni
 # 90xxx : Pug
 # 91xxx : Quarg
 # 92xxx : Spaceborne life

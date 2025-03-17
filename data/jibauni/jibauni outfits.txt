@@ -13,6 +13,8 @@
 
 outfit "Jibauni Small Laser"
 	category "Guns"
+	series "Guns"
+	index 14110
 	cost 50000
 	thumbnail "outfit/jibauni small laser"
 	"mass" 8
@@ -40,6 +42,8 @@ outfit "Jibauni Small Laser"
 
 outfit "Jibauni Medium Laser"
 	category "Guns"
+	series "Guns"
+	index 14120
 	thumbnail "outfit/jibauni medium laser"
 	cost 121000
 	"outfit space" -7
@@ -66,6 +70,8 @@ outfit "Jibauni Medium Laser"
 
 outfit "Flak Launcher"
 	category "Guns"
+	series "Guns"
+	index 14130
 	cost 158000
 	thumbnail "outfit/flak launcher"
 	"mass" 10
@@ -106,8 +112,10 @@ outfit "flak launcher submunition"
 
 
 outfit "Altaedin Laser"
-	cost 200000
 	category "Guns"
+	series "Guns"
+	index 14140
+	cost 200000
 	thumbnail "outfit/altaedin laser"
 	"mass" 15
 	"outfit space" -15
@@ -134,6 +142,8 @@ outfit "Altaedin Laser"
 
 outfit "Zarhal Laser Turret"
 	category "Turrets"
+	series "Turrets"
+	index 14110
 	cost 350000
 	thumbnail "outfit/zarhal turret"
 	"mass" 35
@@ -163,6 +173,8 @@ outfit "Zarhal Laser Turret"
 
 outfit "Zarwal Laser Turret"
 	category "Turrets"
+	series "Turrets"
+	index 14120
 	cost 150000
 	thumbnail "outfit/zarwal turret"
 	"mass" 20
@@ -190,8 +202,33 @@ outfit "Zarwal Laser Turret"
 	description "The Zarwal Turret does not do nearly as much damage as the Zarhal. However, having the turret turn at more than a millimeter a second is a great blessing to Jibauni captains which use it - and the extra range helps."
 
 
+outfit "Lilsa Anti-Missile"
+	category "Turrets"
+	series "Anti-Missile"
+	index 14210
+	cost 75000
+	thumbnail "outfit/lilsa anti-missile"
+	"weapon capacity" -10
+	"outfit space" -10
+	"mass" 10
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/lilsa anti-missile"
+		"hit effect" "small anti-missile"
+		"anti-missile" 1
+		"velocity" 155
+		"lifetime" 1
+		"reload" 5
+		"firing energy" 3
+		"firing fuel" 0.1
+		"firing heat" 3
+	description "The Lilsa Anti-Missile operates in a quite different manner to most other anti-missiles. While they zap lasers at incoming hostile projectiles, the Lilsa sprays burning fuel at targets, causing them to explode before arriving at the ship the Lilsa has been installed on."
+
+
 outfit "Aljaraar Tractor Beam"
 	category "Turrets"
+	series "Tractor Beams"
+	index 14310
 	cost 90000
 	thumbnail "outfit/aljaraar tractor beam"
 	"mass" 25
@@ -212,29 +249,10 @@ outfit "Aljaraar Tractor Beam"
 	description "The Aljaraar Tractor Beam, while initially invented to gather harvested asteroid parts, has been put by the Rebel Jibauni to the very different use of gathering flotsam from destroyed enemy ships."
 
 
-outfit "Lilsa Anti-Missile"
-	cost 75000
-	category "Turrets"
-	thumbnail "outfit/lilsa anti-missile"
-	"weapon capacity" -10
-	"outfit space" -10
-	"mass" 10
-	"turret mounts" -1
-	weapon
-		"hardpoint sprite" "hardpoint/lilsa anti-missile"
-		"hit effect" "small anti-missile"
-		"anti-missile" 1
-		"velocity" 155
-		"lifetime" 1
-		"reload" 5
-		"firing energy" 3
-		"firing fuel" 0.1
-		"firing heat" 3
-	description "The Lilsa Anti-Missile operates in a quite different manner to most other anti-missiles. While they zap lasers at incoming hostile projectiles, the Lilsa sprays burning fuel at targets, causing them to explode before arriving at the ship the Lilsa has been installed on."
-
-
 outfit "Rukjay Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 14110
 	cost 65500
 	thumbnail "outfit/rukjay missile launcher"
 	"outfit space" -18
@@ -277,6 +295,8 @@ outfit "Rukjay Missile Launcher"
 
 outfit "Ruksay Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 14120
 	cost 25500
 	thumbnail "outfit/ruksay missile launcher"
 	"outfit space" -12
@@ -317,28 +337,34 @@ outfit "Ruksay Missile Launcher"
 
 
 outfit "Rukjay Missile Blueprint"
-	cost 50000
 	category "Ammunition"
+	series "Ammunition"
+	index 14110
+	cost 50000
+	thumbnail "outfit/rukjay missile"
 	"mass" 0.4
 	"disabled damage" 1
 	"rukjay capacity" -1
-	thumbnail "outfit/rukjay missile"
 	description "The Rukjay Missile Launcher will automatically construct Rukjay Missiles for you if the Rukjay Missile Blueprint is installed on that ship. Unfortunately, each blueprint can only provide instructions for one launcher, meaning that you must install one for each launcher you possess."
 
 outfit "Ruksay Missile"
-	cost 525
 	category "Ammunition"
+	series "Ammunition"
+	index 14120
+	cost 525
+	thumbnail "outfit/ruksay missile"
 	"mass" 0.1
 	"disabled damage" 0.5
-	thumbnail "outfit/ruksay missile"
 	"ruksay capacity" -1
 	description "The Ruksay Missile is ammunition for the Ruksay Missile launcher. You cannot install one unless you have first installed a launcher to fire it from. Each launcher holds up to 30 Ruksays."
 
 
 outfit "Musaghar Shield Generator"
 	category "Systems"
-	thumbnail "outfit/musaghar shield generator"
+	series "Shields"
+	index 14210
 	cost 50000
+	thumbnail "outfit/musaghar shield generator"
 	"mass" 3
 	"outfit space" -3
 	"shield generation" .05
@@ -350,6 +376,8 @@ outfit "Musaghar Shield Generator"
 
 outfit "Jamum Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 14220
 	plural "Jamum Shield Generators"
 	thumbnail "outfit/jamum shield generator"
 	cost 40000
@@ -364,6 +392,8 @@ outfit "Jamum Shield Generator"
 
 outfit "Tamum Shield Generator"
 	category "Systems"
+	series "Shields"
+	index 14230
 	plural "Tamum Shield Generators"
 	thumbnail "outfit/tamum shield generator"
 	cost 125000
@@ -379,6 +409,8 @@ outfit "Tamum Shield Generator"
 
 outfit "Tashwish Radar Jammer"
 	cost 140000
+	series "Shields"
+	index 14610
 	category "Systems"
 	thumbnail "outfit/tashwish jammer"
 	"mass" 16
@@ -388,8 +420,10 @@ outfit "Tashwish Radar Jammer"
 
 
 outfit "Jahgir Energy Generator"
-	cost 30000
 	category "Power"
+	series "Generators"
+	index 14110
+	cost 30000
 	thumbnail "outfit/jahgir generator"
 	"outfit space" -15
 	"energy generation" 2
@@ -399,8 +433,10 @@ outfit "Jahgir Energy Generator"
 	description "When compared to other Jibauni generators, the Jahgir is only worthwhile because of its diminuative size."
 
 outfit "Watsaq Energy Generator"
-	cost 50000
 	category "Power"
+	series "Generators"
+	index 14120
+	cost 50000
 	thumbnail "outfit/watsaq generator"
 	"outfit space" -20
 	"energy generation" 3
@@ -412,8 +448,10 @@ outfit "Watsaq Energy Generator"
 	description "The Watsaq generator has a ramscoop built-in like the Jahgir, but unlike it, the Watsaq actually generates fuel."
 
 outfit "Tawasitaq Energy Generator"
-	cost 310000
 	category "Power"
+	series "Generators"
+	index 14130
+	cost 310000
 	thumbnail "outfit/tawasitaq generator"
 	"outfit space" -45
 	"energy generation" 5
@@ -425,8 +463,10 @@ outfit "Tawasitaq Energy Generator"
 	description "The Tawasitaq Generator dwarfs both the Watsaq and the Jahgir, but because of its size heat problems plague Jibauni captains which use it."
 
 outfit "Daltaq Energy Generator"
-	cost 4000000
 	category "Power"
+	series "Generators"
+	index 14140
+	cost 4000000
 	thumbnail "outfit/daltaq generator"
 	"outfit space" -65
 	"energy generation" 7.35
@@ -440,10 +480,12 @@ outfit "Daltaq Energy Generator"
 
 
 outfit "Eimlaq Steering"
-	plural "Eimlaq Steering"
 	category "Engines"
-	thumbnail "outfit/eimlaq steering"
+	series "Engines"
+	index 14110
 	cost 395000
+	thumbnail "outfit/eimlaq steering"
+	plural "Eimlaq Steering Systems"
 	"mass" 40
 	"outfit space" -43
 	"engine capacity" -47
@@ -460,10 +502,12 @@ outfit "Eimlaq Steering"
 	description "	Jibauni engines are mainly powered by fuel, so all spacecraft the Jibauni produce use generators to match."
 
 outfit "Eimlaq Thrusters"
-	plural "Eimlaq Thrusters"
 	category "Engines"
-	thumbnail "outfit/eimlaq thrusters"
+	series "Engines"
+	index 14111
 	cost 390000
+	thumbnail "outfit/eimlaq thrusters"
+	plural "Eimlaq Thruster Systems"
 	"mass" 100
 	"outfit space" -47
 	"engine capacity" -47
@@ -482,9 +526,11 @@ outfit "Eimlaq Thrusters"
 
 outfit "Wasita Steering"
 	category "Engines"
-	plural "Wasita Steering"
-	thumbnail "outfit/wasita steering"
+	series "Engines"
+	index 14120
 	cost 220000
+	thumbnail "outfit/wasita steering"
+	plural "Wasita Steering Systems"
 	"mass" 24
 	"outfit space" -24
 	"engine capacity" -24
@@ -502,9 +548,11 @@ outfit "Wasita Steering"
 
 outfit "Wasita Thrusters"
 	category "Engines"
-	plural "Wasita Steering"
-	thumbnail "outfit/wasita thrusters"
+	series "Engines"
+	index 14121
 	cost 220000
+	thumbnail "outfit/wasita thrusters"
+	plural "Wasita Thruster Systems"
 	"mass" 26
 	"outfit space" -26
 	"engine capacity" -26
@@ -523,9 +571,11 @@ outfit "Wasita Thrusters"
 
 outfit "Alhaja Steering"
 	category "Engines"
-	plural "Alhaja Steering"
-	thumbnail "outfit/alhaja steering"
+	series "Engines"
+	index 14130
 	cost 49000
+	thumbnail "outfit/alhaja steering"
+	plural "Alhaja Steering Systems"
 	"mass" 9
 	"outfit space" -9
 	"engine capacity" -9
@@ -542,9 +592,11 @@ outfit "Alhaja Steering"
 
 outfit "Alhaja Thrusters"
 	category "Engines"
-	plural "Alhaja Thrusters"
-	thumbnail "outfit/alhaja thrusters"
+	series "Engines"
+	index 14131
 	cost 51000
+	thumbnail "outfit/alhaja thrusters"
+	plural "Alhaja Thruster Systems"
 	"mass" 11
 	"outfit space" -11
 	"engine capacity" -11
@@ -563,6 +615,8 @@ outfit "Alhaja Thrusters"
 
 outfit "Minjal"
 	category "Hand to Hand"
+	series "H2H"
+	index 14110
 	cost 12000
 	thumbnail "outfit/minjal"
 	"capture attack" 2
@@ -584,18 +638,24 @@ outfit "Small Map"
 
 outfit "Jibauni Government License"
 	category "Licenses"
+	series "Licenses"
+	index 14110
 	thumbnail "outfit/jibauni government license"
 	"unplunderable" 1
 	description "This is the license issued to all Jibauni who have helped the government enough. Apparently it can also be gifted to aliens."
 
 outfit "Jibauni Rebel Fighter License"
 	category "Licenses"
+	series "Licenses"
+	index 14120
 	thumbnail "outfit/jibauni rebel fighter license"
 	"unplunderable" 1
 	description "This is the license issued to all who have fought the Jibauni Rebels enough."
 
 outfit "Jibauni License"
 	category "Licenses"
+	series "Licenses"
+	index 14130
 	thumbnail "outfit/jibauni license"
 	"unplunderable" 1
 	description "This is the basic license issued to all Jibauni who have qualified to fly a ship. It gives buying rights for most Jibauni outfits and ships."
@@ -603,12 +663,16 @@ outfit "Jibauni License"
 
 outfit "Rebel Jibauni License"
 	category "Licenses"
+	series "Licenses"
+	index 14140
 	thumbnail "outfit/rebel jibauni license"
 	"unplunderable" 1
 	description "The Rebels deem it a great trust to be gifted this license."
 
 outfit "Rebel Jibauni Capital License"
 	category "Licenses"
+	series "Licenses"
+	index 14150
 	thumbnail "outfit/rebel jibauni capital license"
 	"unplunderable" 1
 	description "This license represents the pinnacle of Jibauni trust, and is not to be despised - especially given the way the Rebel Jibauni treat those who are rude."
