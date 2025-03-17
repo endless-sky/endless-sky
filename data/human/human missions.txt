@@ -7510,7 +7510,6 @@ mission "Adelita 5"
 
 
 
-
 mission "Syndicate Business 1"
 	name "Rescue kidnapped man in <waypoints>"
 	description "You have received a mysterious distress call from an alleged abductee in the <waypoints> system. Head there to see if you can find the signal's source."
@@ -7532,7 +7531,7 @@ mission "Syndicate Business 1"
 				`	(Ignore it.)`
 					decline
 			`	When you approach, you are greeted by plain text on the terminal's screen:`
-			`		"SOS: Megaparsec employee kidnapped by pirates, can't respond. <waypoints> standard coordinates: RAD AU 30.12 LAT 0.2 LON 303.9. Life in danger, need urgent rescue. Cannot communicate, all signals monitored. Please help!"`
+			`		"SOS: Megaparsec employee kidnapped by pirates, can't respond. <waypoints> standard coordinates: RAD AU 30.12 LAT 0.2 LON 303.9. Life in danger, need urgent rescue. Cannot otherwise communicate, all signals monitored. Please help!"`
 			`	You note that the message appears to be coming from an emergency transmitter commonly found on many small shuttles and escape pods. There is no shortage of pirates in <waypoints>, which is only a system away from Megaparsec's headquarters on <planet>.`
 			choice
 				`	(Head to <waypoints>.)`
@@ -7610,7 +7609,7 @@ mission "Syndicate Business 1"
 				`	"Nope, I'll stick with the 90k."`
 					goto payup
 			label invest
-			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork. Feel free to come by my kiosk in the spaceport here later today if you're ready to invest, or another time if you need more time. Remember, you'll need to have at least one million credits for the bond purchase, and I'll need you to transport me to Hephaestus to take care of a few other administrative tasks."`
+			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork. Feel free to come by my kiosk in the spaceport here later today if you're ready to invest, or another time if you need longer. Remember, you'll need to have at least one million credits for the bond purchase, and I'll need you to transport me to Hephaestus to take care of a few other administrative tasks."`
 				decline
 			label payup
 			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
@@ -7621,10 +7620,10 @@ mission "Syndicate Business 1"
 event "start of independent violence"
 	government "Independent (Killable)"
 		"attitude toward"
-			"Independent" -.2
+			"Independent" -.01
 	government "Independent"
 		"attitude toward"
-			"Independent (Killable)" -.2
+			"Independent (Killable)" -.01
 
 event "end of independent violence"
 	government "Independent (Killable)"
@@ -7681,14 +7680,14 @@ mission "Syndicate Business 2"
 	passengers 1
 	source "Sunracer"
 	destination "Hephaestus"
-	blocked "Howard has offered you an investment opportunity, but mentioned that it'll cost you a million credits up front, and you'll need space on your ship to transport him elsewhere. Better come back when you have those, plus a few more credits."
+	blocked "Howard has offered you an investment opportunity, but mentioned that it'll cost you a million credits up front, and you'll need space on your ship to transport him elsewhere. Better come back when you have that, plus a few more credits."
 	to offer
 		has "Syndicate Business 1: done"
 	to accept
 		credits > 1100300
 	on offer
 		conversation
-			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots and heads toward you. Grateful for saving his life, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a Megaparsec bond.`
+			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots you and approaches. When he arrives, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a Megaparsec bond.`
 			`	"To reiterate, in order to purchase a perpetual Megaparsec Incorporated bond you will need to provide us with an up-front payment of one million credits, and sign some legal documents. Our promised returns are 20% per annum, which we expect to continue into perpetuity, paid out to you as a daily dividend of 500 credits. Do you accept these terms?"`
 			choice
 				`	"Sure, here's the one million credits."`
@@ -7791,7 +7790,7 @@ mission "Syndicate Business 2"
 		conversation
 			`You land on <destination> and follow Howard's instructions to the biometric scan center. You hand in the first set of paperwork you filled out, and after scanning your fingerprint, retinas, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places one more set of documents on the table and taps the stack of papers.`
 			`	"New regulations dictate that we inform you that the proceeds of this bond may be used in high risk activities such as strip mining, clearing endangered habitats, or doing business on worlds with alleged human rights violations. All boilerplate language, of course, but you have to disclose every possibility these days." He shrugs.`
-			`	He then taps the documents the documents again and says, "This is your final decision and set of paperwork. I would also like to disclose that your initial deposit covering the full one million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
+			`	He then taps the documents again and says, "This is your final decision and the last set of paperwork. I would also like to disclose that your initial deposit covering the full one million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
 			choice
 				`	"Of course."`
 					goto high
