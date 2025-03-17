@@ -495,7 +495,7 @@ void AI::IssueMoveTarget(const Point &target, const System *moveToSystem)
 
 
 // Commands issued via the keyboard (mostly, to the flagship).
-void AI::UpdateKeys(PlayerInfo &player, Command &activeCommands)
+void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 {
 	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
 	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
@@ -2419,7 +2419,7 @@ double AI::TurnToward(const Ship &ship, const Point &vector, const double precis
 
 
 
-bool AI::MoveToPlanet(Ship &ship, Command &command, double cruiseSpeed)
+bool AI::MoveToPlanet(const Ship &ship, Command &command, double cruiseSpeed)
 {
 	if(!ship.GetTargetStellar())
 		return false;
@@ -2431,7 +2431,7 @@ bool AI::MoveToPlanet(Ship &ship, Command &command, double cruiseSpeed)
 
 
 // Instead of moving to a point with a fixed location, move to a moving point (Ship = position + velocity)
-bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
+bool AI::MoveTo(const Ship &ship, Command &command, const Point &targetPosition,
 	const Point &targetVelocity, double radius, double slow, double cruiseSpeed)
 {
 	const Point &position = ship.Position();
@@ -2493,7 +2493,7 @@ bool AI::MoveTo(Ship &ship, Command &command, const Point &targetPosition,
 
 
 
-bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point direction)
+bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &direction)
 {
 	const Point &velocity = ship.Velocity();
 	const Angle &angle = ship.Facing();
@@ -2559,7 +2559,7 @@ bool AI::Stop(Ship &ship, Command &command, double maxSpeed, const Point directi
 
 
 
-void AI::PrepareForHyperspace(Ship &ship, Command &command)
+void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 {
 	bool hasHyperdrive = ship.JumpNavigation().HasHyperdrive();
 	double scramThreshold = ship.Attributes().Get("scram drive");
@@ -2620,7 +2620,7 @@ void AI::PrepareForHyperspace(Ship &ship, Command &command)
 
 
 
-void AI::CircleAround(Ship &ship, Command &command, const Body &target)
+void AI::CircleAround(const Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
 	command.SetTurn(TurnToward(ship, direction));
@@ -2638,7 +2638,7 @@ void AI::CircleAround(Ship &ship, Command &command, const Body &target)
 
 
 
-void AI::Swarm(Ship &ship, Command &command, const Body &target)
+void AI::Swarm(const Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
 	double maxSpeed = ship.MaxVelocity();
@@ -2651,7 +2651,7 @@ void AI::Swarm(Ship &ship, Command &command, const Body &target)
 
 
 
-void AI::KeepStation(Ship &ship, Command &command, const Body &target)
+void AI::KeepStation(const Ship &ship, Command &command, const Body &target)
 {
 	// Constants:
 	static const double MAX_TIME = 600.;
@@ -2748,7 +2748,7 @@ void AI::KeepStation(Ship &ship, Command &command, const Body &target)
 
 
 
-void AI::Attack(Ship &ship, Command &command, const Ship &target)
+void AI::Attack(const Ship &ship, Command &command, const Ship &target)
 {
 	// Deploy any fighters you are carrying.
 	if(!ship.IsYours() && ship.HasBays())
@@ -2831,14 +2831,14 @@ void AI::Attack(Ship &ship, Command &command, const Ship &target)
 
 
 
-void AI::AimToAttack(Ship &ship, Command &command, const Body &target)
+void AI::AimToAttack(const Ship &ship, Command &command, const Body &target)
 {
 	command.SetTurn(TurnToward(ship, TargetAim(ship, target)));
 }
 
 
 
-void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
+void AI::MoveToAttack(const Ship &ship, Command &command, const Body &target)
 {
 	Point direction = target.Position() - ship.Position();
 
@@ -2871,7 +2871,7 @@ void AI::MoveToAttack(Ship &ship, Command &command, const Body &target)
 
 
 
-void AI::PickUp(Ship &ship, Command &command, const Body &target)
+void AI::PickUp(const Ship &ship, Command &command, const Body &target)
 {
 	// Figure out the target's velocity relative to the ship.
 	Point p = target.Position() - ship.Position();
@@ -2903,7 +2903,7 @@ void AI::PickUp(Ship &ship, Command &command, const Body &target)
 
 // Determine if using an afterburner does not use up reserve fuel, cause undue
 // energy strain, or undue thermal loads if almost overheated.
-bool AI::ShouldUseAfterburner(Ship &ship)
+bool AI::ShouldUseAfterburner(const Ship &ship)
 {
 	if(!ship.Attributes().Get("afterburner thrust"))
 		return false;
@@ -3272,7 +3272,7 @@ bool AI::DoHarvesting(Ship &ship, Command &command) const
 
 
 // Check if this ship should cloak. Returns true if this ship decided to run away while cloaking.
-bool AI::DoCloak(Ship &ship, Command &command)
+bool AI::DoCloak(const Ship &ship, Command &command) const
 {
 	if(ship.GetPersonality().IsDecloaked())
 		return false;
@@ -3418,7 +3418,7 @@ void AI::DoPatrol(Ship &ship, Command &command) const
 
 
 
-void AI::DoScatter(Ship &ship, Command &command)
+void AI::DoScatter(const Ship &ship, Command &command) const
 {
 	if(!command.Has(Command::FORWARD) && !command.Has(Command::BACK))
 		return;
@@ -3453,7 +3453,7 @@ void AI::DoScatter(Ship &ship, Command &command)
 
 
 
-bool AI::DoSecretive(Ship &ship, Command &command)
+bool AI::DoSecretive(Ship &ship, Command &command) const
 {
 	shared_ptr<Ship> scanningShip;
 	// Figure out if any ship is currently scanning us. If that is the case, move away from it.

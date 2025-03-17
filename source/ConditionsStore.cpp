@@ -371,7 +371,7 @@ const ConditionsStore::ConditionEntry *ConditionsStore::GetEntry(const string &n
 
 
 // Helper function to check if we can safely add a provider with the given name.
-bool ConditionsStore::VerifyProviderLocation(const string &name, DerivedProvider *provider) const
+bool ConditionsStore::VerifyProviderLocation(const string &name, const DerivedProvider *provider) const
 {
 	auto it = storage.upper_bound(name);
 	if(it == storage.begin())
