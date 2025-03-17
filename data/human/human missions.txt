@@ -7580,7 +7580,7 @@ mission "Syndicate Business 3"
 			choice
 				`	"Absolutely."`
 					goto next2
-				`	"Howard, a promotion's a big deal. The office doesn't matter--your work speaks for itself."`
+				`	"Howard, a promotion's a big deal. The office doesn't matter - your work speaks for itself."`
 					goto kindy
 				`	"Howard, your cubicle is still pathetic. Now, let's get back on track."`
 			action
@@ -7606,7 +7606,7 @@ mission "Syndicate Business 4"
 	on offer
 		conversation
 			`You meet Howard at the spaceport. He's standing on a nearby landing pad next to his Shuttle, dressed sharply but looking a bit hurried. He gives you a quick nod as you approach.`
-			`	"Good to see you're on time," Howard says, glancing at his antique wristwatch. "We've got a lot of ground--or space--to cover." Howard briefly looks at the <ship>. "Your ship ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his Shuttle's ramp, already shifting his attention back to his wristwatch. "Let's get moving."`
+			`	"Good to see you're on time," Howard says, glancing at his antique wristwatch. "We've got a lot of ground - or space - to cover." Howard briefly looks at the <ship>. "Your ship ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his Shuttle's ramp, already shifting his attention back to his wristwatch. "Let's get moving."`
 				launch
 	npc accompany save
 		government "Syndicate"
@@ -7775,7 +7775,7 @@ mission "Syndicate Business 5"
 			"reputation: Independent (Killable)" = 0
 			conversation
 				`The ship has been destroyed. Like before, you almost immediately receive a message from Howard:`
-				`	"What have you done, I said disable the ship! You've completely destroyed my plans, cost us millions, and ruined any chance of salvaging this operation--how could you possibly mess this up so badly? Don't come back, we're done."`
+				`	"What have you done? I said disable the ship! You've completely destroyed my plans, cost us millions, and ruined any chance of salvaging this operation - how could you possibly mess this up so badly? Don't come back, we're done."`
 				`		Howard Vendeur`
 				`		Investor Relations Manager, Megaparsec Incorporated`
 	on complete
@@ -7784,7 +7784,7 @@ mission "Syndicate Business 5"
 		payment 25000
 		conversation
 			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a nod, and you quickly ascend to the eighth floor.`
-			`	Howard greets you with a smile as you step into his office. The room is as you left it -- modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job in Oblate went smoothly?"`
+			`	Howard greets you with a smile as you step into his office. The room is as you left it - modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job in Oblate went smoothly?"`
 			choice
 				`	"Of course."`
 					goto next1
@@ -7797,7 +7797,7 @@ mission "Syndicate Business 5"
 					goto investmentopps
 				`	"25,000?! You must have forgotten a zero there, you cheapskate!"`
 					goto cheapskate
-				`	"I appreciate the offer, but there's no need for payment this time. Consider it purely a favor--I'm happy to help."`
+				`	"I appreciate the offer, but there's no need for payment this time. Consider it purely a favor - I'm happy to help."`
 			action
 				"syndicate business: mean to Howard" --
 				payment -25000
@@ -7814,14 +7814,14 @@ mission "Syndicate Business 5"
 			choice
 				`	"You know it."`
 				`	"Of course."`
-			`	"Here's what we're looking at. Megaparsec Incorporated is expanding a refueling station on Crossroads, and we're likely going to go with a conventional expansion. But don't let the term 'conventional' fool you, because Megaparsec rarely expands its refueling stations--this is the first time in over a decade. When we do, it's because we've identified a strategic location that will skyrocket profits. These opportunities are as rare as they come, and most investors never even hear about them. But you've proven yourself, and that's why you're getting a seat at the table."`
+			`	"Here's what we're looking at. Megaparsec Incorporated is expanding a refueling station on Crossroads, and we're likely going to go with a conventional expansion. But don't let the term 'conventional' fool you, because Megaparsec rarely expands its refueling stations - this is the first time in over a decade. When we do, it's because we've identified a strategic location that will skyrocket profits. These opportunities are as rare as they come, and most investors never even hear about them. But you've proven yourself, and that's why you're getting a seat at the table."`
 			`	He pauses, letting the weight of his words sink in. "Getting in on this is a once-in-a-lifetime chance. We're talking about a key hub on a high-traffic trade route, with a captive market of ships desperate for fuel. The returns will be solid... and dependable. Opportunities like this don't just come around, and when they do, they go fast."`
 			choice
 				`	"Okay."`
 			branch upcharge
 				"syndicate business: mean to Howard" > 0
-			`	"Excellent. The price for this investment is ten million credits for a solid 2700 credit per day return. Don't worry about pulling out your wallet just yet--I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you through our Finance Division, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
-			`	He slides a document over to you, with a sleek pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
+			`	"Excellent. The price for this investment is ten million credits for a solid 2700 credit per day return. Don't worry about pulling out your wallet just yet - I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you through our Finance Division, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
+			`	He slides a document over to you, with a sleek pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of the documents before signing."`
 			choice
 				`	"Sounds good."`
 					goto nextynice
@@ -7829,7 +7829,7 @@ mission "Syndicate Business 5"
 					decline
 			label upcharge
 			`	Howard's tone carries a hint of impatience. "Alright then. The price for this investment is eleven million credits for a 2700 credit per day return. I've managed to arrange a loan through the bank and our Finance Division, so you won't need to come up with the cash immediately. Just sign these documents to formalize the arrangement."`
-			`	He pushes a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of documents before signing."`
+			`	He pushes a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of the documents before signing."`
 			choice
 				`	"Sounds good."`
 					goto nextymean
@@ -7881,7 +7881,7 @@ mission "Syndicate Business 5"
 					to display
 						has "heardplanc"
 			label planb
-			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile--one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 4100 credits a day, or about 15% a year."`
+			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile - one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 4100 credits a day, or about 15% a year."`
 			action
 				set "heardplanb"
 			choice
@@ -7918,25 +7918,23 @@ mission "Syndicate Business 5"
 			action
 				"salary: Syndicate Business" += 2700
 				set "Syndicate Business expansion 10m neutral"
-				log "After disabling a Marauder for Howard, you were able to make another investment with Megaparsec, for ten million credits. Out of three investment options, you ended up choosing the conventional approach."
-			`	"Excellent choice. The conventional expansion is a safe bet with solid returns. It's not the flashiest option, but the steady stream of ships passing through Crossroads will ensure consistent profits. The only drawback is that it won't make headlines--but it'll keep the credits flowing smoothly."`
+				log "Was able to make another investment with Megaparsec, this time ten million credits, after disabling a Marauder for Howard. Out of three investment options, ended up choosing the conventional approach."
+			`	"Excellent choice. The conventional expansion is a safe bet with solid returns. It's not the flashiest option, but the steady stream of ships passing through Crossroads will ensure consistent profits. The only drawback is that it won't make headlines - but it'll keep the credits flowing smoothly."`
 				goto ending
 			label choseplanb
 			action
 				"salary: Syndicate Business" += 4100
 				set "Syndicate Business expansion 10m evil"
-				log "After disabling a Marauder for Howard, you were able to make another investment with Megaparsec, for ten million credits. Out of three investment options, you ended up choosing the profitable approach."
-			`	"Well done. The unregulated option is bold and ambitious--exactly the kind of move the Syndicate prizes. The volatility of this fuel isn't for the faint of heart, but some bad PR is well worth the profits and potential learnings we'll achieve. High risk often means high reward."`
+				log "Was able to make another investment with Megaparsec, this time ten million credits, after disabling a Marauder for Howard. Out of three investment options, ended up choosing the profitable approach."
+			`	"Well done. The unregulated option is bold and ambitious - exactly the kind of move the Syndicate prizes. The volatility of this fuel isn't for the faint of heart, but some bad PR is well worth the profits and potential earnings we'll achieve. High risk often means high reward."`
 				goto ending
 			label choseplanc
 			action
 				"salary: Syndicate Business" += 2000
 				set "Syndicate Business expansion 10m good"
-				log "After disabling a Marauder for Howard, you were able to make another investment with Megaparsec, for ten million credits. Out of three investment options, you ended up choosing the eco-friendly approach."
+				log "Was able to make another investment with Megaparsec, this time ten million credits, after disabling a Marauder for Howard. Out of three investment options, ended up choosing the eco-friendly approach."
 			`	"An admirable decision. The eco-friendly route won't make the most credits, but it's a forward-thinking investment. It could pay off in other ways, like reduced turnover and environmental liabilities. Objectively the worst investment from a returns perspective, but I suppose you value other things more."`
 			label ending
-			choice
-				`	"Thanks."`
 			`	"Alright, now that we've settled on your investment, let's get the rest of the paperwork squared away." He slides a stack of documents across the desk. "These cover the remaining loan terms, the investment agreement, and the usual legal fine print. Nothing too complicated, just a few signatures to make it all official." He hands you the same sleek pen from earlier, his expression all business. "Once this is done, you'll be a stakeholder in one of Megaparsec's most promising expansions."`
 			choice
 				`	(Sign the paperwork.)`
