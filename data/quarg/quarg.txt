@@ -251,7 +251,7 @@ fleet "Large Quarg (Kor Efret)"
 	variant
 		"Quarg Hydra"
 		"Quarg Wyvern"
-		"Quarg Wardragon"
+		"Quarg Wardragon" 2
 
 # Gegno Quarg
 
