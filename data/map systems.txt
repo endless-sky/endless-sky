@@ -3749,6 +3749,7 @@ system Aleit
 	trade Plastic 410
 	fleet "Quarg (Gegno)" 1100
 	fleet "Large Quarg (Gegno)" 1600
+	fleet "Quarg Utility (Gegno)" 7000
 	fleet "Gegno Basic" 1000
 	fleet "Gegno Cargo" 6000
 	object
@@ -15139,6 +15140,7 @@ system Enif
 	fleet "Small Southern Merchants" 1000
 	fleet "Large Southern Merchants" 4000
 	fleet Quarg 600
+	fleet "Quarg Utility" 9000
 	object
 		sprite star/g3
 		period 10
@@ -20420,6 +20422,7 @@ system "Hevru Hai"
 	fleet "Small Human Merchants (Hai)" 9000
 	fleet "Large Human Merchants (Hai)" 15000
 	fleet "Quarg (Hai)" 600
+	fleet "Quarg Utility (Hai)" 8000
 	object
 		sprite star/g3
 		period 10
@@ -24001,11 +24004,11 @@ system Kella-Uoasa
 		period 5000
 		object Kasii-Tuur-Saqru
 			sprite "planet/station successor 2"
-			distance 180
+			distance 464
 			period 64
 		object
 			sprite planet/ice8
-			distance 700
+			distance 1000
 			period 1000
 	object Giiq-Sou-Kella
 		sprite planet/ocean9
