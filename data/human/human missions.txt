@@ -7521,6 +7521,7 @@ mission "Syndicate Business 1"
 	source
 		government "Syndicate"
 		attributes "core"
+		not planet "Sunracer"
 	waypoint "Moktar"
 	destination "Sunracer"
 	on offer
@@ -7532,7 +7533,7 @@ mission "Syndicate Business 1"
 					decline
 			`	When you approach, you are greeted by plain text on the terminal's screen:`
 			`		"SOS: Megaparsec employee kidnapped by pirates, can't respond. <waypoints> standard coordinates: RAD AU 30.12 LAT 0.2 LON 303.9. Life in danger, need urgent rescue. Cannot otherwise communicate, all signals monitored. Please help!"`
-			`	You note that the message appears to be coming from an emergency transmitter commonly found on many small shuttles and escape pods. There is no shortage of pirates in <waypoints>, which is only a system away from Megaparsec's headquarters on <planet>.`
+			`	You note that the message appears to be coming from an emergency transmitter commonly found on many small shuttles and escape pods. There is no shortage of pirates in <waypoints>, which is only a system away from Megaparsec's headquarters on <planet>. Presumably, you'll be expected to head there after rescuing the Megaparsec employee.`
 			choice
 				`	(Head to <waypoints>.)`
 					accept
@@ -7571,7 +7572,7 @@ mission "Syndicate Business 1"
 		system "Moktar"
 		ship "Emergency Shuttle" "Escape Pod 001"
 		on kill
-			dialog "You watch as the Emergency Shuttle you're supposed to save explodes into a cloud of debris, all hope snuffed out in an instant."
+			dialog "You watch as the Emergency Shuttle you're supposed to save explodes into a cloud of debris."
 		conversation
 			`You board the Emergency Shuttle to see its desperate and nearly incoherent occupant. "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to my office on <planet>! I'm with Megaparsec, I can make it worth your while!"`
 			choice
@@ -7705,7 +7706,7 @@ mission "Syndicate Business 2"
 			`	Howard slides the cover and first page toward you and taps it impatiently with his pen.`
 			choice
 				`	(Take a look at what Howard slid over.)`
-				`	"All right, I'll sign."`
+				`	"Alright, I'll sign."`
 					goto signed
 				`	"If I can't read the whole thing, I won't sign it. I refuse to become an investor."`
 					decline
