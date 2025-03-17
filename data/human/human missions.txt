@@ -7788,6 +7788,7 @@ mission "Syndicate Business 2"
 	on accept
 		payment -1000000
 	on complete
+		event "syndicate business 1m investment done" 30
 		conversation
 			`You land on <destination> and follow Howard's instructions to the biometric scan center. You hand in the first set of paperwork you filled out, and after scanning your fingerprint, retinas, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places one more set of documents on the table and taps the stack of papers.`
 			`	"New regulations dictate that we inform you that the proceeds of this bond may be used in high risk activities such as strip mining, clearing endangered habitats, or doing business on worlds with alleged human rights violations. All boilerplate language, of course, but you have to disclose every possibility these days." He shrugs.`
@@ -7804,6 +7805,7 @@ mission "Syndicate Business 2"
 				log `Made an investment in Megaparsec Incorporated with Howard Vendeur, purchasing a bond for one million credits.`
 			`	"Excellent. As a bond owner of Megaparsec Incorporated, you will now receive a daily dividend. I have some work to attend to with our major shareholders, but it was a pleasure doing business with you, Captain."`
 
+event "syndicate business 1m investment done"
 
 mission "Timothy Radrickson 1: Stowaway"
 	invisible
