@@ -381,7 +381,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 	BinFun accumulatorOp = Op(expressionOperator);
 	if(accumulatorOp != nullptr && !children.empty())
 		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(conditionsStore),
-			[&accumulatorOp, &conditionsStore](int64_t accumulated, ConditionSet b) -> int64_t {
+			[&accumulatorOp, &conditionsStore](int64_t accumulated, const ConditionSet &b) -> int64_t {
 				return accumulatorOp(accumulated, b.Evaluate(conditionsStore));
 		});
 
