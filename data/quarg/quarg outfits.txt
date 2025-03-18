@@ -268,7 +268,7 @@ outfit "Central Repair Hub"
 	"fuel generation" 0.21
 	"hull repair rate" 2.5
 	"hull energy" 1.25
-	description "In a manner of which is not easily discernible to humans, this system collects ambient matter in space and feeds it back to the ship from a large central hub of wires and tubes. The accumulated matter is then used to both regenerate the ship's hull and refill its fuel reserves."
+	description "In a manner which is not easily discernible to humans, this system collects ambient matter in space and feeds it back to the ship from a large central hub of wires and tubes. The accumulated matter is then used to both regenerate the ship's hull and refill its fuel reserves."
 
 
 # Weapons
