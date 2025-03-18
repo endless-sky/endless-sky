@@ -91,6 +91,7 @@ public:
 	// Select the object the player clicked on.
 	void Click(const Point &from, const Point &to, bool hasShift, bool hasControl);
 	void RClick(const Point &point);
+	void MClick(const Point &point);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
 
 	// Break targeting on all projectiles between the player and the given
@@ -163,6 +164,8 @@ private:
 		double modifier = 1.;
 	};
 
+	enum class MouseButton { LEFT, RIGHT, MIDDLE };
+
 
 private:
 	void EnterSystem();
@@ -196,6 +199,7 @@ private:
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
 		Status::Type type, double cloak);
 
+	void RightOrMiddleClick(const Point &point, MouseButton button);
 
 private:
 	PlayerInfo &player;
@@ -290,7 +294,7 @@ private:
 	bool doClick = false;
 	bool hasShift = false;
 	bool hasControl = false;
-	bool isRightClick = false;
+	MouseButton mouseButton = MouseButton::LEFT;
 	bool isRadarClick = false;
 	Point clickPoint;
 	Rectangle uiClickBox;
