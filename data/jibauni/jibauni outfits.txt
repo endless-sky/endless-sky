@@ -310,6 +310,7 @@ outfit "Ruksay Missile Launcher"
 		ammo "Ruksay Missile"
 		sound "ruksay missile"
 		icon "icon/ruksay"
+		"fire effect" "ruksay fire"
 		"die effect" "missile death"
 		"hit effect" "jibauni missile hit"
 		"inaccuracy" 6
@@ -334,6 +335,7 @@ outfit "Ruksay Missile Launcher"
 		"phasing"
 	description "Ruksay missiles are not as good at tracking and don't do splash damage the way Rukjay missiles do, but some captains regard the nonexistence of heat creation as worth it for the lessening of defenses."
 	description "	In addition, many Jibauni captains appreciate the fact that it's hard to destroy disabled ships with Ruksay missiles."
+	description "	A protective casing surrounds each missile to guard against accidental detonations."
 
 
 outfit "Rukjay Missile Blueprint"

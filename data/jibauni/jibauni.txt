@@ -234,6 +234,12 @@ effect "jibauni missile hit"
 	"random frame rate" 5
 	"velocity scale" .4
 
+effect "ruksay fire"
+	sprite "effect/ruksay missile launch"
+	"lifetime" 200
+	"random angle" 120
+	"random velocity" 1.7
+
 # commodities
 
 trade
