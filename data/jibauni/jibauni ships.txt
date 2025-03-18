@@ -13,8 +13,8 @@
 
 
 ship "Quyan"
-	sprite "ship/quyan"
-	thumbnail "thumbnail/quyan"
+#	sprite "ship/quyan"
+#	thumbnail "thumbnail/quyan"
 	attributes
 		category "Transport"
 		"cost" 3482000
@@ -65,8 +65,8 @@ ship "Quyan"
 
 ship "Yankul"
 	swizzle 0
-	sprite "ship/yankul"
-	thumbnail "thumbnail/yankul"
+#	sprite "ship/yankul"
+#	thumbnail "thumbnail/yankul"
 	attributes
 		category "Transport"
 		"cost" 650000
@@ -111,8 +111,8 @@ ship "Yankul"
 
 
 ship "Nathas"
-	sprite "ship/nathas"
-	thumbnail "thumbnail/nathas"
+#	sprite "ship/nathas"
+#	thumbnail "thumbnail/nathas"
 	plural "Nathases"
 	attributes
 		category "Light Freighter"
@@ -172,8 +172,8 @@ ship "Nathas"
 
 
 ship "Nathaq"
-	sprite "ship/nathaq"
-	thumbnail "thumbnail/nathaq"
+#	sprite "ship/nathaq"
+#	thumbnail "thumbnail/nathaq"
 	attributes
 		category "Heavy Freighter"
 		"cost" 10504000
@@ -238,8 +238,8 @@ ship "Nathaq"
 
 
 ship "Minaldmasmin"
-	sprite "ship/minaldmasmin"
-	thumbnail "ship/minaldmasmin"
+#	sprite "ship/minaldmasmin"
+#	thumbnail "ship/minaldmasmin"
 	attributes
 		category "Utility"
 		"cost" 4408000
@@ -299,8 +299,8 @@ ship "Minaldmasmin"
 
 
 ship "Safinat"
-	sprite "ship/safinat"
-	thumbnail "thumbnail/safinat"
+#	sprite "ship/safinat"
+#	thumbnail "thumbnail/safinat"
 	attributes
 		category "Utility"
 		"cost" 50000000
@@ -384,8 +384,8 @@ ship "Safinat"
 
 
 ship "Furus"
-	sprite "ship/furus"
-	thumbnail "thumbnail/furus"
+#	sprite "ship/furus"
+#	thumbnail "thumbnail/furus"
 	plural "Furus"
 	attributes
 		category "Interceptor"
@@ -440,8 +440,8 @@ ship "Furus"
 
 
 ship "Saghir"
-	sprite "ship/saghir"
-	thumbnail "thumbnail/saghir"
+#	sprite "ship/saghir"
+#	thumbnail "thumbnail/saghir"
 	attributes
 		category "Interceptor"
 		"cost" 990000
@@ -496,8 +496,8 @@ ship "Saghir"
 
 
 ship "Yiyharsi"
-	sprite "ship/yiyharsi"
-	thumbnail "thumbnail/yiyharsi"
+#	sprite "ship/yiyharsi"
+#	thumbnail "thumbnail/yiyharsi"
 	attributes
 		category "Light Warship"
 		"cost" 6391000
@@ -557,8 +557,8 @@ ship "Yiyharsi"
 
 
 ship "Nakil"
-	sprite "ship/nakil"
-	thumbnail "thumbnail/nakil"
+#	sprite "ship/nakil"
+#	thumbnail "thumbnail/nakil"
 	attributes
 		category "Heavy Warship"
 		"cost" 7000000
@@ -628,8 +628,8 @@ ship "Nakil"
 
 
 ship "Nathar"
-	sprite "ship/nathar"
-	thumbnail "thumbnail/nathar"
+#	sprite "ship/nathar"
+#	thumbnail "thumbnail/nathar"
 	attributes
 		category "Heavy Warship"
 		"cost" 12683000
@@ -698,8 +698,8 @@ ship "Nathar"
 
 
 ship "Larajal"
-	sprite "ship/larajal"
-	thumbnail "thumbnail/larajal"
+#	sprite "ship/larajal"
+#	thumbnail "thumbnail/larajal"
 	attributes
 		category "Fighter"
 		"cost" 850000
@@ -752,8 +752,8 @@ ship "Larajal"
 
 
 ship "Latbaliday"
-	sprite "ship/latbaliday"
-	thumbnail "thumbnail/latbaliday"
+#	sprite "ship/latbaliday"
+#	thumbnail "thumbnail/latbaliday"
 	attributes
 		category "Fighter"
 		"cost" 675000
@@ -802,8 +802,8 @@ ship "Latbaliday"
 
 
 ship "Muraw"
-	sprite "ship/muraw"
-	thumbnail "thumbnail/muraw"
+#	sprite "ship/muraw"
+#	thumbnail "thumbnail/muraw"
 	attributes
 		category "Fighter"
 		"cost" 700000
@@ -855,8 +855,8 @@ ship "Muraw"
 
 
 ship "Daybal"
-	sprite "ship/daybal"
-	thumbnail "thumbnail/daybal"
+#	sprite "ship/daybal"
+#	thumbnail "thumbnail/daybal"
 	attributes
 		category "Drone"
 		"cost" 500000
@@ -899,8 +899,8 @@ ship "Daybal"
 
 
 ship "Duntay"
-	sprite "ship/duntay"
-	thumbnail "thumbnail/duntay"
+#	sprite "ship/duntay"
+#	thumbnail "thumbnail/duntay"
 	attributes
 		category "Drone"
 		"cost" 600000
@@ -949,8 +949,8 @@ ship "Duntay"
 
 
 ship "Osra"
-	sprite "ship/osra"
-	thumbnail "thumbnail/osra"
+#	sprite "ship/osra"
+#	thumbnail "thumbnail/osra"
 	attributes
 		category "Drone"
 		"cost" 375000
