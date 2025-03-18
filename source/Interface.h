@@ -228,7 +228,8 @@ private:
 
 	private:
 		std::string name;
-		const Color *color = nullptr;
+		const Color *fromColor = nullptr;
+		const Color *toColor = nullptr;
 		float width = 2.f;
 		bool reversed = false;
 		bool isRing = false;
