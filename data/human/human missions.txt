@@ -10220,15 +10220,13 @@ mission "Tavish and Kormak 1"
 
 			`	You see no reason to stick around this rudimentary spaceport, so you make your way back to your ship.`
 				defer
-
 			label seat
 			`	You take a seat near a window that does a surprisingly good job at muffling the noises beyond it. The cafe is quaint, nearly empty, and cool. Initially you're the only patron here, but after moment a pair of men enter.`
 			choice
 				`	(Check the menu.)`
-
-			`	Before you can make your order, the two men seat themselves directly in front of you. One of them is short and wiry with bright twitchy eyes and a dark mustache, and other is a looming giant with a trimmed red beard and hair pulled back into a tight ponytail. Both men look overdressed in fine, three-piece suits and bowler hats.`
+			`	Before you can place your order, the two men seat themselves directly in front of you. One of them is short and wiry with bright, twitchy eyes and a dark mustache, and the other is a looming giant with a trimmed red beard and hair pulled back into a tight ponytail. Both men look overdressed in fine, three-piece suits and bowler hats.`
 			`	"Most serendipitous to find a captain of your caliber in this obscure port of call," the shorter man says, and tips his hat to you. "I am Dr. Julius Theodore Eustice Tavish and my affable comrade is the loquacious Dr. Gluniairn mac Kormakr. Don't worry, our friends just call us Tavish and Kormak..."`
-			`	"Kormak and Tavish," Kormak states flatly behind his stony inscrutable face.`
+			`	"Kormak and Tavish," Kormak states flatly behind his stony, inscrutable face.`
 			`	"... and you, my good fellow, have the look of someone who is just about to become of one our friends." Tavish flashes you a wide smile.`
 			`	"You see, I and my fellow scholar are in desperate need of your eminent services. We are on the very cusp of a monumental discovery here in the untamed wilds of <origin>." Tavish leans in and gestures wildly with his hands. "The sort of discovery certain to rewrite the entire history of this sector! Why, science as we know it will never be the same."`
 			`	"Never be the same," Kormak's gruff voice echos.`
@@ -10243,7 +10241,6 @@ mission "Tavish and Kormak 1"
 					goto forscience
 				`	"Not interested."`
 					goto notint
-
 			label cashmoney
 			`	Tavish glances at Kormak and then back to you. A hint of sweat appears on his brow as he says, "Ahem, my esteemed colleague and I have run into to some trouble, of the financial variety. You see, we uh, well, already paid another very charming captain to pick up our equipment on Clark, and they never returned. We then paid another captain to take us there, but when we went to meet them at their ship we discovered the most unwelcome news that there was no ship at all, and they were nowhere to be found."`
 			`	"We are broke," Kormak helpfully adds.`
@@ -10254,7 +10251,6 @@ mission "Tavish and Kormak 1"
 				or
 					has "first name: Mayflower"
 					has "last name: Mayflower"
-
 			choice
 				`	"My name is <first> <last>, not Mayflower. You have no idea who I am, do you?"`
 					goto embarrassing
@@ -10262,14 +10258,12 @@ mission "Tavish and Kormak 1"
 					goto embarrassing
 				`	"You've mistaken me for someone else. I am Captain <last>, not Mayflower."`
 					goto embarrassing
-
 			label mayflower
 			choice
 				`	"Uh, yes?"`
 					goto reluctantlyforscience
 				`	"Sorry, I don't do 'pro bono' work for strangers."`
 					goto notint
-
 			label embarrassing
 			`	"Oh, how mortifing! I..." Tavish's voice drops off as he appears to be, finally, at a loss for words."`
 			`	"Looked in wrong manifest." Kormak seems to be suffering none of Tavish's tongue-tied embarrassment.`
@@ -10287,18 +10281,15 @@ mission "Tavish and Kormak 1"
 					goto reluctantlyforscience
 				`	"No, I only work for paying customers."`
 				`	"No."`
-
 			`	Tavish's bright eyes turn wet, and he drops his gaze to the table before you. Slowly, as if he's in actual pain, he places his bowler hat back atop his head. He then stands up, promptly followed by the lumbering Kormak.`
 			`	"Very well. You're not the first captain to disdain science and cast us out into the streets, but I had truly hoped you'd be the first to see reason. I bid you good day."`
 			`	As Tavish turns to leave, Kormak waivers for a just a moment. "Not like mirror," he finally says, then follows Tavish out.`
 				decline
-			
 			label notint
-			`	Tavish's frowns, and he drops his gaze to the table before you. Slowly, as if he's in actual pain, he places his bowler hat back atop his head. He then stands up, promptly followed by the lumbering Kormak.`
+			`	Tavish frowns, and he drops his gaze to the table before you. Slowly, as if he's in actual pain, he places his bowler hat back atop his head. He then stands up, promptly followed by the lumbering Kormak.`
 			`	"Very well. There will be other captains who recognize our proposal for the boon it is. I bid you good day."`
 			`	As Tavish turns to leave, Kormak waivers for a just a moment. "Fool," he finally says, and then follows Tavish out.`
 				decline
-				
 			label reluctantlyforscience
 			`	Tavish breaks into a wide grin and mock punches the air just above his head. "Huzzah, my good chap! Yes, that is the pioneering spirit!"`
 			`	He abruptly turns to Kormak and they share a few congratulatory handshakes.`
@@ -10307,7 +10298,6 @@ mission "Tavish and Kormak 1"
 				`	"The <ship>."`
 			`	"Right, of course, a ship worthy of a captain of your caliber, no doubt, no doubt." Tavish tips his hat to you, and then he and Kormak make their way out of the cafe.`
 				accept
-
 			label forscience
 			`	Tavish breaks into a wide grin and mock punches the air just above his head, "Huzzah, my good chap! Yes, that is the pioneering spirit! Just the news we needed to hear, for I must admit to you, that my esteemed colleague and I have run into to some trouble of the financial variety. We paid another very charming captain to pick up our equipment on Clark, and they never returned. We then paid another captain to take us there, but when we went to meet them at their ship we discovered the most unwelcome news that they in fact were not its owner."`
 			`	"We are broke," Kormak helpfully adds.`
@@ -10318,7 +10308,6 @@ mission "Tavish and Kormak 1"
 				or
 					has "first name: Mayflower"
 					has "last name: Mayflower"
-
 			choice
 				`	"Yes! To Clark! Although my name is not Mayflower, it's <last>.`
 					goto embarrassment2
@@ -10326,7 +10315,6 @@ mission "Tavish and Kormak 1"
 					goto embarrassment2
 				`	"Sure, whatever, but where did you get Mayflower from? I'm Captain <last>."`
 					goto embarrassment2
-
 			label mayflower2
 choice
 				`	"Yes! To Clark!`
@@ -10335,7 +10323,6 @@ choice
 					accept
 				`	"Sure, whatever."`
 					accept
-
 			label embarrassment2
 			`	"Oh, how mortifing! I..." Tavish's voice drops off as he appears to be, finally, at a loss for words."`
 			`	"Looked in wrong manifest." Kormak seems to be suffering none of Tavish's tongue-tied embarrassment.`
@@ -10350,10 +10337,8 @@ choice
 				`	"The <ship>."`
 			`	"Right, of course, a ship worthy of a captain of your caliber, no doubt, no doubt." Tavish tips his hat to you, and then he and Kormak make their way out of the cafe.`
 				accept
-
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
-
 	on complete
 		conversation
 			`Clark's spaceport is overwhelmed with traffic, and you end up waiting an additional hour before they can finally find room for your ship on one of the outlying concrete pads.`
