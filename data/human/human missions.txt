@@ -7770,7 +7770,7 @@ mission "Syndicate Business 5"
 		"reputation: Independent (Killable)" = -1000
 	npc disable save
 		government "Independent (Killable)"
-		personality heroic staying vindictive
+		personality heroic marked staying vindictive
 			confusion 20
 		system "Oblate"
 		ship "Marauder Quicksilver (Engines) (Safe)" "Pilgrim Shadow"
