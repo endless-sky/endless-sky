@@ -664,9 +664,9 @@ const Outfit *BoardingPanel::Plunder::GetOutfit() const
 // space free.
 bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
 {
-	// If there's cargo space for this outfit, you can take it.
+	// If there's cargo space for this outfit, and the outfit can be placed in cargo, you can take it.
 	double mass = UnitMass();
-	if(ship.Cargo().Free() >= mass)
+	if(ship.Cargo().Free() >= mass && !outfit->Attributes().Get("no cargo"))
 		return true;
 
 	// Otherwise, check if it is ammo for any of your weapons. If so, check if
