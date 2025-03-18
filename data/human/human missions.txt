@@ -7556,7 +7556,7 @@ mission "Syndicate Business 1"
 			label negotiate
 			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
-			`	The Vanguard's engines roar to life and you see a baker's half dozen fixed guns take aim at your ship, ready to strike.`
+			`	The Vanguard's engines roar to life and you see a baker's half dozen fixed guns take aim at you, ready to strike.`
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
