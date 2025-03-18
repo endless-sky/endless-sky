@@ -7527,10 +7527,10 @@ mission "Timothy Radrickson 1: Stowaway"
 		conversation
 			`Upon completing your jump, one of your internal sensors begins to beep. You flick off the siren and check the diagnostic report: apparently there is a non-negligible heat source detected in the food storage of your ship.`
 				to display
-					not "entered system by: take off"
+					not "entered system by: takeoff"
 			`Upon taking off, one of your internal sensors begins to beep. You flick off the siren and check the diagnostic report: apparently there is a non-negligible heat source detected in the food storage of your ship.`
 				to display
-					has "entered system by: take off"
+					has "entered system by: takeoff"
 			`	As problems go, it is not a particularly alarming one: there are plenty of reasons there may be a heat spike in storage, and most of them would not require the captain of the ship to investigate.`
 			`	It is unusual, however.`
 			choice
