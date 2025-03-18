@@ -162,10 +162,8 @@ outfit "Antimatter Core"
 	"mass" 50
 	"outfit space" -50
 	"energy generation" 12
-	"fuel generation" .08
 	"heat generation" 10
 	description "Although humanity is now capable of producing antimatter in relatively significant quantities when compared to a thousand years ago, it is still nothing next to the output of the Quarg, who can produce enough antimatter to outfit even civilian ships with an extremely compact Antimatter Core. This device releases extreme amounts of energy in a simple, elegant package, all while producing surprisingly little waste heat."
-	description "Something something generates fuel as well."
 
 
 outfit "Singularity Core"
@@ -177,12 +175,10 @@ outfit "Singularity Core"
 	"mass" 400
 	"outfit space" -80
 	"energy generation" 23.5
-	"fuel generation" .14
 	"heat generation" 22.5
 	"inertia reduction" 0.15
 	description "According to little more than vague allusions by the Quarg, these generators contain a minuscule black hole, spewing radiation as it is fed a trickle of mass. This black hole is small enough to output a truly staggering amount of energy via Hawking radiation, which grows in power as a black hole shrinks, something that suggests the black hole within the Singularity Core is truly microscopic."
 	description "	Further wild guesses by scientists and conspiracy theorists alike allege that the Quarg are able to somehow trick the laws of physics themselves to make this black hole weigh far less than it otherwise should, bringing its mass from that of a small moon to something a ship could have a hope of moving."
-	description "Something something generates fuel as well."
 
 
 outfit "Quasar Core"
@@ -194,12 +190,10 @@ outfit "Quasar Core"
 	"mass" 600
 	"outfit space" -120
 	"energy generation" 37.5
-	"fuel generation" .2
 	"heat generation" 35
 	"inertia reduction" 0.15
 	description "This larger generator appears similar to the Singularity Core, only even more powerful. Little is known about its exact function, but purely based on its name, some have speculated that the Quasar Core's increased output is the result of the black hole at its core being fed enough mass to form a small accretion disk, releasing light and heat as it falls towards the event horizon and is compressed to an unimaginable degree."
 	description "	While this process should be far less fuel-efficient than simply capturing the Hawking radiation emitted by the black hole alone, the staggering power density of this generator appears to be evidence it was worth the trade."
-	description "Something something generates fuel as well."
 
 
 # Systems
@@ -257,9 +251,10 @@ outfit "Peripheral Repair Hub"
 	thumbnail "outfit/quarg peripheral repair hub"
 	"mass" 25
 	"outfit space" -25
+	"fuel generation" 0.14
 	"hull repair rate" 1
 	"hull energy" .5
-	description "While Quarg shielding is not to be trifled with, their weaker ship hulls rely on automated repairs in more difficult battles. These systems help maintain a ship's hull in the unlikely event that their shields should fall."
+	description "The repair systems employed by the Quarg operate in ways that seem to defy reality, somehow gathering matter and injecting it into a ship's hull and fuel systems. This provides essential maintenance that benefits core aspects of spaceflight - durability, longevity, and most importantly, survivability."
 
 
 outfit "Central Repair Hub"
@@ -270,10 +265,10 @@ outfit "Central Repair Hub"
 	thumbnail "outfit/quarg central repair hub"
 	"mass" 55
 	"outfit space" -55
+	"fuel generation" 0.2
 	"hull repair rate" 2.5
 	"hull energy" 1.25
-	description "Though still far from weak compared to the technology of most other species, the hull repair systems employed by the Quarg are not as powerful as one might expect. Evidently they prefer to rely on their exceptionally powerful shield generators, and it isn't hard to see why this tactic has yet to fail them."
-
+	description "In a manner of which is not easily discernable to humans, this system collects ambient matter in space and feeds it back to the ship from a large central hub of wires and tubes. The accumulated matter is then used to regenerate both the ship's hull and fuel composition, in essence "repairing" two of the most important constitutions used for space flight."
 
 # Weapons
 
