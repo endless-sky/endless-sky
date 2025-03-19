@@ -77,6 +77,13 @@ void LineShader::Init()
 
 
 
+void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap)
+{
+	DrawGradient(from, to, width, color, color, roundCap);
+}
+
+
+
 void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
 		const Color &color, const double dashLength, double spaceLength, bool roundCap)
 {

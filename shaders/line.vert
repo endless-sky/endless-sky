@@ -22,14 +22,19 @@ uniform highp vec2 end;
 uniform float width;
 uniform int cap;
 
+uniform vec4 startColor;
+uniform vec4 endColor;
+
 in vec2 vert;
 out vec2 pos;
+out vec4 color;
 
 void main() {
 	// Construct a rectangle around the line that can accommodate a line of width "width".
 	vec2 unit = normalize(end - start);
 	// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
 	highp vec2 origin = vert.y > 0.0 ? start : end;
+	color = vert.y > 0.0 ? startColor : endColor;
 	// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
 	float widthOffset = width + 1.;
 	// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius

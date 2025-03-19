@@ -19,10 +19,10 @@ precision mediump int;
 uniform highp vec2 start;
 uniform highp vec2 end;
 uniform float width;
-uniform vec4 color;
 uniform int cap;
 
 in vec2 pos;
+in vec4 color;
 out vec4 finalColor;
 
 // From https://iquilezles.org/articles/distfunctions2d/ - functions to get the distance from a point to a shape.
