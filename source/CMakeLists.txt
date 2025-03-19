@@ -180,6 +180,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Messages.h
 	Minable.cpp
 	Minable.h
+	MinableDamageDealt.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp

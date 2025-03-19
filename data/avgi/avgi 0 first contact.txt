@@ -217,7 +217,7 @@ mission "Avgi: First Contact"
 		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
 
 	on visit
-		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to to properly introduce you.`
+		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to properly introduce you.`
 
 	on complete
 		"reputation: Avgi" += 10
