@@ -48,7 +48,7 @@ public:
 	// Save the contents to a file.
 	void SaveToPath(const std::filesystem::path &path);
 	// Get the contents as a string.
-	std::string SaveToString();
+	std::string SaveToString() const;
 
 	// The Write() function can take any number of arguments. Each argument is
 	// converted to a token. Arguments may be strings or numeric values.
