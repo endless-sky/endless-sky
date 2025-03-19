@@ -64,7 +64,7 @@ void DataWriter::SaveToPath(const filesystem::path &filepath)
 
 
 // Get the contents as a string.
-string DataWriter::SaveToString()
+string DataWriter::SaveToString() const
 {
 	return out.str();
 }
