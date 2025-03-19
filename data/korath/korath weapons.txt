@@ -14,6 +14,8 @@
 
 outfit "Grab-Strike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04040
 	cost 821000
 	thumbnail "outfit/grab-strike"
 	"mass" 52
@@ -59,6 +61,8 @@ effect "grab-strike impact"
 
 outfit "Shunt-Strike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04080
 	cost 821000
 	thumbnail "outfit/shunt-strike"
 	"mass" 42
@@ -117,6 +121,8 @@ effect "shunt-strike sparkle"
 
 outfit "Banisher Grav-Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04050
 	cost 943000
 	thumbnail "outfit/banisher"
 	"mass" 41
@@ -145,6 +151,8 @@ outfit "Banisher Grav-Turret"
 
 outfit "Expeller Grav-Ray"
 	category "Guns"
+	series "Guns"
+	index 04030
 	cost 819000
 	thumbnail "outfit/expeller"
 	"mass" 20
@@ -177,6 +185,8 @@ effect "banisher impact"
 
 outfit "Warder Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 04010
 	cost 845000
 	thumbnail "outfit/warder"
 	"mass" 28
@@ -208,6 +218,8 @@ effect "korath warder"
 
 outfit "Fire-Lance"
 	category "Guns"
+	series "Guns"
+	index 04020
 	cost 697000
 	thumbnail "outfit/fire-lance"
 	"mass" 22
@@ -242,6 +254,8 @@ effect "fire-lance impact"
 
 outfit "Blaze-Pike Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04020
 	cost 1970000
 	thumbnail "outfit/blaze-pike"
 	"mass" 57
@@ -280,6 +294,8 @@ effect "blaze-pike hit"
 
 outfit "Korath Inferno"
 	category "Turrets"
+	series "Turrets"
+	index 04030
 	cost 2670000
 	thumbnail "outfit/korath inferno"
 	"mass" 86
@@ -319,6 +335,8 @@ effect "korath inferno hit"
 
 outfit "Thermal Repeater"
 	category "Guns"
+	series "Guns"
+	index 04010
 	cost 306000
 	thumbnail "outfit/repeater"
 	"mass" 11
@@ -357,6 +375,8 @@ effect "repeater impact"
 
 outfit "Thermal Repeater Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04010
 	cost 874000
 	thumbnail "outfit/repeater turret"
 	"mass" 29
@@ -390,6 +410,8 @@ outfit "Thermal Repeater Turret"
 
 outfit "Piercer Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 04030
 	cost 3500
 	thumbnail "outfit/piercer"
 	"mass" .3
@@ -398,6 +420,8 @@ outfit "Piercer Missile"
 
 outfit "Piercer Missile Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04031
 	cost 56000
 	thumbnail "outfit/korath piercer storage"
 	"mass" 2.2
@@ -408,6 +432,8 @@ outfit "Piercer Missile Rack"
 
 outfit "Piercer Missile Launcher"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04030
 	cost 593000
 	thumbnail "outfit/piercer launcher"
 	"mass" 18
@@ -480,6 +506,8 @@ effect "piercer explosion"
 
 outfit "Korath Detainer"
 	category "Guns"
+	series "Guns"
+	index 04060
 	cost 1340000
 	thumbnail "outfit/detainer"
 	"mass" 76
@@ -542,6 +570,8 @@ effect "detainer smoke"
 
 outfit "Cluster Mine"
 	category "Ammunition"
+	series "Ammunition"
+	index 04040
 	cost 3500
 	thumbnail "outfit/korath mine"
 	"mass" .7
@@ -550,6 +580,8 @@ outfit "Cluster Mine"
 
 outfit "Cluster Mine Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04041
 	cost 31500
 	thumbnail "outfit/korath mine storage"
 	"mass" 2.7
@@ -560,6 +592,8 @@ outfit "Cluster Mine Rack"
 
 outfit "Cluster Mine Layer"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04040
 	cost 1073000
 	thumbnail "outfit/korath minelayer"
 	"mass" 36
@@ -640,6 +674,8 @@ effect "minelayer split"
 
 outfit "Shield Disruptor Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04070
 	cost 983000
 	thumbnail "outfit/disruptor"
 	"mass" 35
@@ -679,6 +715,8 @@ effect "disruptor impact"
 
 outfit "Husk-Slice"
 	category "Guns"
+	series "Guns"
+	index 04040
 	cost 832000
 	thumbnail "outfit/slicer"
 	"mass" 46
@@ -704,6 +742,8 @@ outfit "Husk-Slice"
 
 outfit "Husk-Slice Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04060
 	cost 1473000
 	thumbnail "outfit/slicer turret"
 	"mass" 59
@@ -744,6 +784,8 @@ effect "slicer impact"
 
 outfit "Digger Mining Turret"
 	category "Turrets"
+	series "Turrets"
+	index 04090
 	cost 509000
 	thumbnail "outfit/korath digger turret"
 	"mass" 16
@@ -774,6 +816,8 @@ outfit "Digger Mining Turret"
 
 outfit "Digger Mining Beam"
 	category "Guns"
+	series "Guns"
+	index 04070
 	cost 419000
 	thumbnail "outfit/korath digger"
 	"mass" 10
@@ -810,6 +854,8 @@ effect "korath digger hit"
 
 outfit "Langrage Hyper-Heaver"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04050
 	cost 3450000
 	thumbnail "outfit/korath heaver"
 	"mass" 46
@@ -902,6 +948,8 @@ effect "heaver splinter hit"
 
 outfit "Firelight Storage Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04011
 	cost 27400
 	thumbnail "outfit/firelight rack"
 	"mass" 3
@@ -912,6 +960,8 @@ outfit "Firelight Storage Rack"
 
 outfit "Firelight Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 04010
 	cost 7600
 	thumbnail "outfit/firelight"
 	"mass" 0.3
@@ -922,6 +972,8 @@ outfit "Firelight Missile"
 
 outfit "Firelight Missile Bank"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04010
 	cost 1937000
 	thumbnail "outfit/firelight bank"
 	"mass" 22
@@ -1013,6 +1065,8 @@ effect "firelight ring"
 
 outfit "Microbot Grinder"
 	category "Guns"
+	series "Guns"
+	index 04080
 	thumbnail "outfit/unknown"
 	"mass" 182
 	"outfit space" -212
@@ -1044,6 +1098,8 @@ outfit "Microbot Grinder"
 outfit "Firestorm Torpedo"
 	plural "Firestorm Torpedoes"
 	category "Ammunition"
+	series "Ammunition"
+	index 04020
 	cost 19800
 	thumbnail "outfit/firestorm torpedo"
 	"mass" 1
@@ -1054,6 +1110,8 @@ outfit "Firestorm Torpedo"
 
 outfit "Firestorm Torpedo Rack"
 	category "Ammunition"
+	series "Ammunition"
+	index 04021
 	cost "135000"
 	thumbnail "outfit/firestorm torpedo rack"
 	"mass" 7
@@ -1065,6 +1123,8 @@ outfit "Firestorm Torpedo Rack"
 outfit "Firestorm Battery"
 	plural "Firestorm Batteries"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 04020
 	cost 2383000
 	thumbnail "outfit/firestorm battery"
 	"mass" 35
