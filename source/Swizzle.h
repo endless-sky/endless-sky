@@ -26,8 +26,7 @@ class DataNode;
 
 class Swizzle {
 public:
-	// TODO: GCC bug, use `constexpr Swizzle() = default;` once we move to up-to-date CI runners.
-	constexpr Swizzle() {}
+	Swizzle() = default;
 
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
@@ -44,7 +43,7 @@ public:
 
 
 private:
-	constexpr explicit Swizzle(bool identity, bool loaded, bool overrideMask, std::array<float, 16> matrix);
+	explicit Swizzle(bool identity, bool loaded, bool overrideMask, std::array<float, 16> matrix);
 
 
 private:

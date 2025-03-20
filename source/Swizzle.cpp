@@ -133,7 +133,7 @@ Swizzle *Swizzle::None()
 
 
 
-constexpr Swizzle::Swizzle(bool identity, bool loaded, bool overrideMask, array<float, 16> matrix)
+Swizzle::Swizzle(bool identity, bool loaded, bool overrideMask, array<float, 16> matrix)
 	: identity(identity), loaded(loaded), overrideMask(overrideMask), matrix(matrix)
 {
 }
