@@ -53,7 +53,7 @@ void Clipboard::Set(const string &text)
 string Clipboard::Get(size_t maxSize, const string &forbidden)
 {
 	if(!SDL_HasClipboardText())
-		return "";
+		return {};
 
 	string clipboardString;
 	char *clipboardBuffer = SDL_GetClipboardText();

@@ -27,7 +27,7 @@ public:
 	// don't have any functionality assigned to them. Optionally, size limit of the input buffer
 	// and a set of forbidden characters can be provided.
 	static bool KeyDown(std::string &inputBuffer, SDL_Keycode key, Uint16 mod, size_t maxSize = -1,
-		const std::string &forbidden = "");
+		const std::string &forbidden = {});
 
 
 private:
