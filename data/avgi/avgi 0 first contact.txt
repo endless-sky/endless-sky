@@ -213,11 +213,16 @@ mission "Avgi: First Contact"
 	on enter "Ballad"
 		unmark "Ballad"
 
+	on enter "Concerto"
+		conversation
+			`After a confusing journey through the winding hyperlanes, you finally arrive at the final system the alien marked on your map. You notice that your flight computer has failed to record the locations of most of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This region appears unaffected however, and your computer is able to chart its position as usual.`
+			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek-looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
+
 	on fail
 		dialog `The alien ship has been destroyed. If you want to continue the Avgi story, revert to the autosave or another earlier snapshot of the game.`
 
 	on visit
-		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to to properly introduce you.`
+		dialog `You have reached <planet>, but you left the alien ship behind! Better depart and wait for them to properly introduce you.`
 
 	on complete
 		"reputation: Avgi" += 10
@@ -236,10 +241,6 @@ mission "Avgi: Humans From the Deep"
 	destination "Aktina Cylinder"
 	to offer
 		has "Avgi: First Contact: done"
-	on enter "Concerto"
-		conversation
-			`After a confusing journey through the winding hyperlanes, you finally arrive at the final system the alien marked on your map. You notice that your flight computer has failed to record the locations of most of the systems you passed through, probably due to the same anomaly that made your ship almost completely blind within the region. This region appears unaffected however, and your computer is able to chart its position as usual.`
-			`	The alien ship pings you, indicating to follow as it flies towards what looks to be a large inhabited station in the system. Shaped like a circular disk, a large cutout in the center exposes hundreds of docking bays and what looks to be a spaceport. As you watch, a trio of sleek-looking fightercraft launch from the station and take up escort positions around you and the other alien ship you have followed all this way. You can only assume your escort is in communication with the station authorities.`
 	on offer
 		log `Met an alien species calling themselves the Avgi. Their home cluster appears infested with hostile ships from some unknown advanced civilization. Made contact with a scout ship and followed it back through a region south of Avgi space called the Tangled Shroud. Met with members of the Avgi government and made an agreement to let you purchase civilian technology.`
 		log "Factions" "Avgi" `The Avgi are a young race of aliens resembling large, colorful dragonflies, which inhabit the Twilight Nebula in this part of the galaxy. After an overwhelming invasion by ships they call the Aberrant, most of their surviving spacecraft fled south through a maze-like region called the Tangled Shroud.`
