@@ -26,7 +26,8 @@ class DataNode;
 
 class Swizzle {
 public:
-	constexpr Swizzle() = default;
+	// TODO: GCC bug, use `constexpr Swizzle() = default;` once we move to up-to-date CI runners.
+	constexpr Swizzle() {}
 
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
