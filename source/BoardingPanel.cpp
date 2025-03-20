@@ -296,7 +296,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
-			selected = min<int>(selected, plunder.size());
+			if(plunder.size() && selected == static_cast<int>(plunder.size()))
+				--selected;
 		}
 		else
 			plunder[selected].Take(count);
@@ -516,89 +517,6 @@ bool BoardingPanel::Scroll(double dx, double dy)
 
 
 
-// You can't exit this panel if you're engaged in hand to hand combat.
-bool BoardingPanel::CanExit() const
-{
-	return !isCapturing;
-}
-
-
-
-// Check if you can take the given plunder item.
-BoardingPanel::CanTakeResult BoardingPanel::CanTake() const
-{
-	// If you ship or the other ship has been captured:
-	if(!you->IsYours())
-		return CanTakeResult::OTHER;
-	if(victim->IsYours())
-		return CanTakeResult::TARGET_YOURS;
-	if(isCapturing || playerDied)
-		return CanTakeResult::OTHER;
-	if(static_cast<unsigned>(selected) >= plunder.size())
-		return CanTakeResult::NO_SELECTION;
-
-	return plunder[selected].CanTake(*you) ? CanTakeResult::CAN_TAKE : CanTakeResult::NO_CARGO_SPACE;
-}
-
-
-
-// Check if it's possible to initiate hand to hand combat.
-bool BoardingPanel::CanCapture() const
-{
-	// You can't click the "capture" button if you're already in combat mode.
-	if(isCapturing || playerDied)
-		return false;
-
-	// If your ship or the other ship has been captured:
-	if(!you->IsYours())
-		return false;
-	if(victim->IsYours())
-		return false;
-	if(!canCapture)
-		return false;
-
-	return (!victim->RequiredCrew() || you->Crew() > 1);
-}
-
-
-
-// Check if you are in the process of hand to hand combat.
-bool BoardingPanel::CanAttack() const
-{
-	return isCapturing;
-}
-
-
-// Handle the keyboard scrolling and selection in the panel list.
-void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
-{
-	// Scrolling the list of plunder.
-	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-		// Keep one of the previous items onscreen while paging through.
-		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
-	else if(key == SDLK_HOME)
-		selected = 0;
-	else if(key == SDLK_END)
-		selected = static_cast<int>(plunder.size() - 1);
-	else
-	{
-		if(key == SDLK_UP)
-			--selected;
-		else if(key == SDLK_DOWN)
-			++selected;
-	}
-	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
-
-	// Scroll down at least far enough to view the current item.
-	double minimumScroll = max(0., 20. * selected - 200.);
-	double maximumScroll = 20. * selected;
-	scroll = max(minimumScroll, min(maximumScroll, scroll));
-}
-
-
-
-// Functions for BoardingPanel::Plunder:
-
 // Constructor (commodity cargo).
 BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValue)
 	: name(commodity), outfit(nullptr), count(count), unitValue(unitValue)
@@ -725,4 +643,86 @@ void BoardingPanel::Plunder::UpdateStrings()
 double BoardingPanel::Plunder::UnitMass() const
 {
 	return outfit ? outfit->Mass() : 1.;
+}
+
+
+
+// You can't exit this panel if you're engaged in hand to hand combat.
+bool BoardingPanel::CanExit() const
+{
+	return !isCapturing;
+}
+
+
+
+// Check if you can take the given plunder item.
+BoardingPanel::CanTakeResult BoardingPanel::CanTake() const
+{
+	// If you ship or the other ship has been captured:
+	if(!you->IsYours())
+		return CanTakeResult::OTHER;
+	if(victim->IsYours())
+		return CanTakeResult::TARGET_YOURS;
+	if(isCapturing || playerDied)
+		return CanTakeResult::OTHER;
+	if(static_cast<unsigned>(selected) >= plunder.size())
+		return CanTakeResult::NO_SELECTION;
+
+	return plunder[selected].CanTake(*you) ? CanTakeResult::CAN_TAKE : CanTakeResult::NO_CARGO_SPACE;
+}
+
+
+
+// Check if it's possible to initiate hand to hand combat.
+bool BoardingPanel::CanCapture() const
+{
+	// You can't click the "capture" button if you're already in combat mode.
+	if(isCapturing || playerDied)
+		return false;
+
+	// If your ship or the other ship has been captured:
+	if(!you->IsYours())
+		return false;
+	if(victim->IsYours())
+		return false;
+	if(!canCapture)
+		return false;
+
+	return (!victim->RequiredCrew() || you->Crew() > 1);
+}
+
+
+
+// Check if you are in the process of hand to hand combat.
+bool BoardingPanel::CanAttack() const
+{
+	return isCapturing;
+}
+
+
+
+// Handle the keyboard scrolling and selection in the panel list.
+void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
+{
+	// Scrolling the list of plunder.
+	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+		// Keep one of the previous items onscreen while paging through.
+		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
+	else if(key == SDLK_HOME)
+		selected = 0;
+	else if(key == SDLK_END)
+		selected = static_cast<int>(plunder.size() - 1);
+	else
+	{
+		if(key == SDLK_UP)
+			--selected;
+		else if(key == SDLK_DOWN)
+			++selected;
+	}
+	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
+
+	// Scroll down at least far enough to view the current item.
+	double minimumScroll = max(0., 20. * selected - 200.);
+	double maximumScroll = 20. * selected;
+	scroll = max(minimumScroll, min(maximumScroll, scroll));
 }
