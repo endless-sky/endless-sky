@@ -291,7 +291,8 @@ void UI::PlaySound(UI::UISound sound)
 		case UISound::FAILURE:
 			name = "fail";
 			break;
-		default: return;
+		default:
+			return;
 	}
 	Audio::Play(Audio::Get(name), SoundCategory::UI);
 }
