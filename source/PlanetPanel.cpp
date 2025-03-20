@@ -208,12 +208,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(key == 's' && hasAccess && planet.HasShipyard())
 	{
 		GetUI()->Push(new ShipyardPanel(player));
-		return true;
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
 	{
 		GetUI()->Push(new OutfitterPanel(player));
-		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{

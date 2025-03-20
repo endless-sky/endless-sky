@@ -37,6 +37,8 @@ public:
 		NONE,
 		SOFT,
 		NORMAL,
+		SOFT_BUZZ,
+		TARGET,
 		FAILURE
 	};
 

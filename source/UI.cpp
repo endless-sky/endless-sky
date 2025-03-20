@@ -277,10 +277,16 @@ void UI::PlaySound(UI::UISound sound)
 	switch(sound)
 	{
 		case UISound::NORMAL:
-			name = "warder";
+			name = "ui/click";
 			break;
 		case UISound::SOFT:
-			name = "warder";
+			name = "ui/click_soft";
+			break;
+		case UISound::SOFT_BUZZ:
+			name = "ui/buzz_soft";
+			break;
+		case UISound::TARGET:
+			name = "ui/target";
 			break;
 		case UISound::FAILURE:
 			name = "fail";

@@ -49,8 +49,8 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 	: player(player), ship(ship), bribeCallback(std::move(bribeCallback)), facing(ship->Facing())
 {
 	Audio::Pause();
-	UI::PlaySound(UI::UISound::SOFT);
 	SetInterruptible(false);
+	UI::PlaySound(UI::UISound::SOFT);
 
 	const Government *gov = ship->GetGovernment();
 	if(!ship->Name().empty())
@@ -139,6 +139,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 {
 	Audio::Pause();
 	SetInterruptible(false);
+	UI::PlaySound(UI::UISound::SOFT);
 
 	const Government *gov = planet ? planet->GetGovernment() : player.GetSystem()->GetGovernment();
 	if(planet)
@@ -303,6 +304,7 @@ void HailPanel::Draw()
 
 bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
 	bool shipIsEnemy = (ship && ship->GetGovernment()->IsEnemy());
 
 	if(key == 'd' || key == SDLK_ESCAPE || key == SDLK_RETURN || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -310,6 +312,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(bribeCallback && bribed)
 			bribeCallback(bribed);
 		GetUI()->Pop(this);
+		sound = UI::UISound::SOFT;
 	}
 	else if(key == 't' && hasLanguage && planet)
 	{
@@ -412,8 +415,12 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		else
 			SetMessage("I do not want your money.");
 	}
+	else
+	{
+		sound = UI::UISound::NONE;
+	}
 
-	UI::PlaySound(UI::UISound::NORMAL);
+	UI::PlaySound(sound);
 	return true;
 }
 
