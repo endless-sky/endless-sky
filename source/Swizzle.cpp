@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "DataNode.h"
 
+#include <algorithm>
 #include <utility>
 
 using namespace std;
@@ -43,20 +44,17 @@ void Swizzle::Load(const DataNode &node)
 			{"blue", 2},
 			{"alpha", 3}
 		}};
-		bool wasChannel = false;
-		for(auto channel : channels)
-			if(key == channel.first)
-			{
-				// Fill in the row of the matrix for the channel.
-				// We subtract one to account for the name being in the node.
-				for(int i = 0; i < child.Size() - 1; i++)
-					matrix[channel.second * STRIDE + i] = child.Value(i + 1);
-				wasChannel = true;
-				continue;
-			}
-		// Skip the unrecognised attribute check, C++ doesn't support nested continues.
-		if(wasChannel)
+		auto channel = find_if(channels.cbegin(), channels.cend(), [key](const auto &kv) {
+			return kv.first == key;
+		});
+		if(channel != channels.cend())
 		{
+			// Fill in the row of the matrix for the channel.
+			// We subtract one to account for the name being in the node.
+			int channelStartIndex = channel->second * STRIDE;
+			int elementNum = min(child.Size() - 1, 4);
+			for(int i = 0; i < elementNum; i++)
+				matrix[channelStartIndex + i] = child.Value(i + 1);
 		}
 		else if(key == "override")
 			overrideMask = true;
@@ -135,7 +133,7 @@ Swizzle *Swizzle::None()
 
 
 
-Swizzle::Swizzle(bool identity, bool loaded, bool overrideMask, array<float, 16> matrix)
+constexpr Swizzle::Swizzle(bool identity, bool loaded, bool overrideMask, array<float, 16> matrix)
 	: identity(identity), loaded(loaded), overrideMask(overrideMask), matrix(matrix)
 {
 }

@@ -26,7 +26,7 @@ class DataNode;
 
 class Swizzle {
 public:
-	Swizzle() = default;
+	constexpr Swizzle() = default;
 
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
@@ -43,7 +43,7 @@ public:
 
 
 private:
-	explicit Swizzle(bool identity, bool loaded, bool overrideMask, std::array<float, 16> matrix);
+	constexpr explicit Swizzle(bool identity, bool loaded, bool overrideMask, std::array<float, 16> matrix);
 
 
 private:

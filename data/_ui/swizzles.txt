@@ -11,6 +11,24 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+swizzle "cloak fast"
+	override
+
+	red   0 0 1 0
+	green 0 0 0 0
+	blue  0 0 0 0
+	alpha 0 0 0 1
+
+swizzle "cloak fancy base"
+	override
+
+	red   0 0 1 0
+	green 0 0 1 0
+	blue  0 0 1 0
+	alpha 0 0 0 1
+
+# Numbered swizzles, needed for backwards compatibility.
+
 # 0 red + yellow markings (republic)
 swizzle "0"
 	red   1 0 0 0
