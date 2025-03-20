@@ -21,7 +21,6 @@ using namespace std;
 
 
 
-
 // Handle keys used for clipboard operations on inputBuffer. Return false if the keys
 // don't have any functionality assigned to them. Optionally, size limit of the input buffer
 // and a set of forbidden characters can be provided.
