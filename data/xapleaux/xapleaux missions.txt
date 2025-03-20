@@ -1,0 +1,192 @@
+# Copyright (c) 2022 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Xapleaux: First Contact"
+	landing
+	source
+		government "Xapleaux"
+		not attributes "uninhabited"
+	on offer
+		conversation
+			`The brightly illuminated world rolls beneath you as your ship approaches the spaceport.`
+			branch revisit
+				has "Met X Already"
+			`	Disembarking your ship to meet these strange new aliens, you are greeted by the unnerving sight of what appears to be foliage moving and shifting in a wide circle around you. It is only as a few of them move forward to approach you that you realize the aliens are the foliage, or at least the foliage is growing on them. It's rather hard to tell.`
+			`	Three of them approach you, and it becomes clear that they have been keeping their distance so far as your eyes inform you that these aliens are most emphatically not small. Their front-most portion rises tall enough to make most professional basketball players have to look up slightly, and that is before considering the leaf-like fronds, mushroom-like bulges, or other less identifiable structures which appear to be growing up from their bodies, in some cases nearly a third as high again from the top of their heads.`
+
+			`	Yet this front-most portion, the upright part, comprises less than a third of their overall bulk. Behind it snakes a long body that winds behind them sinuously with the click-clack of at least two-dozen legs. With the frilly growths reaching up from their backs one could almost conceive of them to be something akin to a caterpillar, but to watch them move evokes the image of a centipede or some xeno from an old-school horror film.`
+
+			`	The impression is not greatly helped when they get close enough for you to recognize what appears to be six eyes, on either side of a 'face' that is dominated by what appears to be a very large, but very short, beak. It takes up about a third of the face, but protrudes less than the width of your hand. Below this their bodies are segmented much like a centipede's, with one segment for the 'head' which stoops forward over two short segments that could arguably comprise a 'neck', and five further upright segments below that. Of those five, the first three each possess a pair of 'arms', the biggest and strongest-looking pair at the top, descending to a small pair that could barely reach each other connected at the 'torso'.`
+
+			`	Looking at the lead alien of the three approaching, you're fairly sure your own arms wouldn't be quite able to reach entirely around it, but its uppermost arms certainly could.`
+
+			choice
+				`	(Raise your hands peaceably.)`
+					goto peace
+				`	(Hold out one hand before you to indicate a halt and draw your gun.)`
+					goto caution
+				`	(Draw and point your gun directly at these monstrosities.)`
+			`	There is an electric thrill of activity that ripples through them the moment you point your gun. The three approaching you stop and in the periphery you sense a greatly increased level of shuffling and shifting 'foliage'.`
+			choice
+				`	(Shoot first.)`
+					goto shoot
+				`	(Point the gun at the movement in your periphery.)`
+				`	(Lower the gun slightly and look around.)`
+					goto suspicion
+			`	You swing your gun towards the greatest point of activity in your periphery and are treated to the sight of an alien pointing a weapon that requires four of its arms to handle. The barrel on the weapon is nearly as wide around as the alien carrying it, and your last thought becomes something along the lines of, "Is that a cannon?!" before a brilliant white flash puts an end to you.`
+				die
+			label shoot
+			`	Your weapon goes off and you watch the shot impact and injure, but not severely, the lead alien approaching you. You have barely an instant to register the whir of something charging up in your periphery before white-hot pain makes further considerations redundant.`
+
+				die
+			label suspicion
+			`	Pointing your weapon back at the ground you take a look around at the shifting crowd keeping its distance. You get the sudden sense that you spared yourself a sudden demise as you catch sight of an alien who had emerged to stand in your periphery, pointing a weapon at you that requires four of its arms to handle. The barrel on the weapon is nearly as wide around as the alien carrying it, and you can't help but think it looks alarmingly like a cannon, possibly one suitable for mounting on a ship.`
+
+			`	The lead alien approaching makes a sharp clicking noise and steps forward once, drawing your attention back to it.`
+			label caution
+			`	It holds its two upper arms up and out, seemingly in a gesture not dissimilar to the human gesture indicating peace. Perhaps simply indicating empty appendages is a necessary evolutional feature for a society. However, its middle arms point at the gun, then at the satchel at its side, then at you, then at your holster, and then traces a line on the ground from it to you as if to indicate it would approach.`
+			choice
+				`	(Put the gun away.)`
+					goto peace
+				`	(Shake your head and remain as you are.)`
+			`	It repeats the same series of gestures, more firmly this time.`
+			label firm
+			choice
+				`	(Put the gun away.)`
+					goto peace
+				`	(Shake your head and remain as you are.)`
+				`	(Change your mind and shoot at them.)`
+					goto shoot
+			`	It patiently repeats the same series of gestures, very firmly.`
+				goto firm
+			label peace
+			`	The lead alien approaches you, while the other two hang back a little. Slowly, and deliberately, it reaches into a satchel hung from a strap above its shortest arms and draws out a flat, matte purple tile. As it is turned upwards it suddenly springs to life, revealing itself to be a tablet-style screen which briefly flicks up a scan of the alien's eyes and then resolves into an interface you cannot make heads or tails of.`
+			`	Some moments later it shows you an animation depicting a ship landing, an empty box, an alien approaching with a hose, the box filling up, and the ship taking off again. After this it opens its beak very slightly and makes two sharp whistling sounds, inhaling and exhaling as it points at the ship. Then it gives a low trill, pointing at itself and taking a step back. You're fairly sure your best attempt at the latter sound would be a chuckle.`
+
+
+			choice
+				`	(Make two noises and nod.)`
+					goto refuel
+				`	(Chuckle and refuse.)`
+			`	It's very hard to assume that you have any idea what emotion looks like on these aliens, but you feel that the click it makes has a decidedly disappointed vibe to it.`
+			`	After several seconds have passed and no one seems likely to move any further or give any direction you realize that refusing might have been considered rude. Either that or your chuckle really wasn't interpreted successfully.`
+
+			label refuel
+			`	You inhale and exhale, whistling the air between your teeth to make two sharp sounds. It makes a click that seems pleased and shows you the tablet with a new animation.`
+			`	This time the tablet depicts a ship being burned on the exterior, landing, and then a number of aliens coming forward and spraying something onto damaged parts before allowing it to take off again. The same question is posed to you and, realizing that you don't actually know how to say 'no' at this point, you make the same two sharp sounds again.`
+			`	The alien gives another click of apparent satisfaction and turns a little to those waiting nearby. All six of its arms come to life and you are granted the unsettling realization that its beak, which you thought had only two parts, actually had four - two of which now unfolded into articulated mandibles which click and snap rapidly back and forth in, out, and around a mouth full of grotesque moving parts too difficult to name in the moment. Its entire being seems to suddenly be in motion as it emits a rapid series of clicks, trills, shrieks and whistles, gestures in a complex sequence with all of its arms, and seems to alternately inflate, deflate, or wiggle as the fronds of 'foliage' dance and sway in a pattern clearly independent of what its arms and head are doing.`
+			choice
+				`	(Panic and punch it.)`
+				`	(Take a step back and a deep breath.)`
+					goto calm
+			`	As your fist wildly connects with the alien's carapace it recoils from you, though you get the sense it was more from shock than from any force you yourself actually managed to impart. Everything comes to a sudden halt as every last one of them looks straight at you - all of them frozen in place, in some cases mid-step, to see what happens next.`
+			`	You realize that, regardless of what you attempt, you are unlikely to achieve anything except by apology.`
+			choice
+				`	(Raise your hands peaceably.)`
+			`	Events resume.`
+			label calm
+			`	The assembled aliens spring into motion, carrying equipment and hoses towards your ships and proceeding to clamber more or less all over it, inspecting it for heat damage and refuelling it, hopefully with something your ship can handle.`
+
+# This is only one of various future possible paths to unlock access to them, but for now it's the only one with requirements already in-game.
+			branch automata
+				has "event: wanderers: exiles have drones"
+				has "event: remnant: sign studies complete"
+			`	When they are done the same alien approaches you again and holds out a weighty gemstone to you. It is milky and translucent, and a brilliant shade of pink; cut into an octagonal shape with layers of surface faceting it scatters diffuse pink patterns across the ground as the brilliance of the core shines down through it. The alien points at you, and then at the crystal, and mimes holding it out to you before pointing at itself. It then points at the tablet which shows two animated symbols: an empty box filling, and a blob spraying something onto a panel marked with a fire symbol.`
+			`	You realize the alien is telling you that you can present the crystal to request fuel and repairs.`
+			`	The alien points at you and makes those same two sharp whistles before, almost as an afterthought, nodding as well.`
+			choice
+				`	(Make two noises and nod.)`
+			`	It points at itself, makes two sharp whistles and nods again. It looks at a nearby alien who also makes two sharp whistles and nods, and before you know it every alien in the vicinity seems to be making two sharp whistles and nodding to each other in fascination.`
+			# action
+			# set some condition that I need to work out
+			`	When the cacophony has settled the first alien looks at you, holds up its upper arms peaceably, and points to your ship with one of its middle arms. It would seem that, while you are certainly welcome here to some extent, for now your stay is firmly over.`
+
+				depart
+			label revisit
+			`	Upon disembarking your ship you make sure you have your pink crystal token to hand, and your ship is immediately set upon by the various aliens doing refuelling and maintenance with the rapid-paced manner of communication that seems to be typical for them.`
+			branch automata
+				has "event: wanderers: exiles have drones"
+				has "event: remnant: sign studies complete"
+			`	When they are finished, one of them approaches you, points at your ship, and gives two sharp whistles and a nod. Time to go.`
+
+				depart
+			label automata
+			`	After a little while of them going over your ship you notice that the one appearing to be in charge is in intense conversation with one of those doing maintenance. At length it retrieves a tablet from the worker and approaches you with it. It points at your ship and then shows you what is on the screen.`
+
+			`	To your surprise it shows a small diagram of your ship, with a spot highlighted and what looks like an energy signature. More interestingly though, below that it shows in absolutely crystal clear clarity an image of what is unmistakably a Korath Repeater.`
+			`	When it sees that you recognize the weapon it makes a complicated series of clicks and gestures and proceeds to navigate the tablet for a moment before revealing it to show an unfamiliar ship. As you examine the ship shown it does look vaguely like a Korath vessel, and it bears some similarities to those that you've seen, but it isn't one you'd know.`
+
+			`	It returns to navigating the tablet and then shows you a new vessel. This one you recognize instantly. Before you, in remarkably clear detail, is a Remnant Albatross - one equipped with looted Repeaters.`
+			`	Your surprise is such that before you could consider pretending not to recognize it the alien has already seized on the moment. It knows that you know what that ship is.`
+			`	It launches into a long string of chirps, whistles, clicks, and trills, accompanied by an intensely complex series of gestures, which it repeats several times. Suddenly, as the sun rising on an airless moon, it dawns on you that whatever language these aliens use, it is clearly at least half some kind of gesture-based sign-language.`
+			`	Experimentally you ask, "Is this how you talk?" in Remnant sign. The alien does not reply in any words or gestures that you understand, but the effect is nevertheless very dramatic. The alien verily shrieks, its entire body quivering in some emotion barely constrained.`
+
+			`	Excitement? Anger? Fascination? Concern?`
+			`	You can't be sure, but it doesn't seem negative as another rushes over from a nearby building and it gestures at you until you repeat the question in sign again. Slowly, and carefully, the two aliens mimic your actions with their middle arms.`
+			`	In an instant you realize that you are well out of your personal depth, but now you know exactly where you need to go next. At length you indicate the signs for 'I' and 'you', and manage to gesture-indicate your way through a sentence to tell them, "I will go, and come back again."`
+			`	Slowly, tentatively, painstakingly, the alien nods and carefully signs back, "You, go and come back again."`
+			`	So great is the tension as you board your ship again, you suspect that had you moved any slower they'd have carried you in there themselves.`
+				flee
+# This is accompanied by a mission that triggers on the same conditions as the branch to direct you to where you go. This is used so that multiple different sets of conditions can be used to resolve this in various different ways when alternative first contact options become available.
+	on defer
+		"Met X Already" ++
+
+
+# The below are commented out until more than just the landing mission are ready.
+
+# mission "Discovered Xapleaux Space"
+#	landing
+#	invisible
+#	source
+#		government "Xapleaux"
+#	on offer
+#		event "label the brilliance"
+#		fail
+
+# event "label the brilliance"
+#	galaxy "label brilliance"
+#		sprite "label/brilliance"
+
+
+
+mission "Xapleaux: First Contact In Progress"
+	landing
+	source
+		government "Xapleaux"
+		not attributes "uninhabited"
+	to offer
+		has "Xapleaux: First Contact: declined"
+
+	on offer
+		conversation
+			`	Upon disembarking your ship you make sure you have your pink crystal token to hand, and your ship is immediately set upon by the various aliens doing refuelling and maintenance with the rapid-paced manner of communication that seems to be typical for them.`
+			`	When they are finished, one of them approaches you, points at your ship, and gives two sharp whistles and a nod. Time to go.`
+
+			`	You know you will need the help of the Remnant if you're going to make better contact with them.`
+
+				depart
+
+
+
+# mission "Xapleaux Contact: Remnant Path 1"
+#	name "Remnant Linguist"
+#	description "The strange aliens in the brilliant core of the galaxy seem to both know of the Remnant, and use some kind of sign-assisted language. Perhaps they would be interested in helping establish contact?"
+#	landing
+#	destination Aventine
+#	to offer
+#		has "event: wanderers: exiles have drones"
+#		has "event: remnant: sign studies complete"
+#		has "Xapleaux: First Contact: declined"
+#		not <any other path to contact: offered>
+
+
