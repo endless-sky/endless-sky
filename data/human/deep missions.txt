@@ -4247,3 +4247,12 @@ mission "The Book of Skadenga"
 			label ignore
 			`	You keep walking. You already know that story.`
 				decline
+
+# resets any negative "deep" reputation in older saves
+mission deep_rep
+	invisible
+	to offer
+		"reputation: Deep" == -1000
+	on offer
+		"reputation: Deep" >?= 1 
+		fail
