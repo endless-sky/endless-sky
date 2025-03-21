@@ -362,7 +362,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 			}
 		else
 		{
-			double dist = flagship->Position().Distance(Point(0.,0.));
+			double dist = flagship->Position().Distance(Point(0., 0.));
 			inProximity = closeTo ? dist <= proximity : dist >= proximity;
 		}
 		if(!inProximity)
