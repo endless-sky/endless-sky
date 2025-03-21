@@ -172,7 +172,8 @@ namespace {
 	uint16_t Read2(const shared_ptr<iostream> in)
 	{
 		unsigned char data[2];
-		if(in->readsome(reinterpret_cast<char *>(data), 2) != 2)
+		in->read(reinterpret_cast<char *>(data), 2);
+		if(in->gcount() != 2)
 			return 0;
 		uint16_t result = 0;
 		for(int i = 0; i < 2; ++i)
