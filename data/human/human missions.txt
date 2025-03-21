@@ -8906,7 +8906,6 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 		random < 90
 		has "Timothy Radrickson 4: Imprisoned: active"
 	source "Oblivion"
-	deadline 1
 	invisible
 	on offer
 		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
@@ -8921,12 +8920,11 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 				`	"I'm sorry, Timothy."`
 				`	"Is there any way I can help?"`
 				`	"Shouldn't have broken the law."`
-
 			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. Outside the Stephenson warehouse. Stephenson. I'll tell you what I need."`
 			`	With that, he returns to moving the mineral trolley, leaving you to yourself.`
 				accept
-	to complete
-		never
+	on enter
+		fail
 
 
 mission "Timothy Radrickson 5a: Timshank Redemption"
@@ -8941,7 +8939,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 		"timothy radrickson suit" >= 1
 		"timothy radrickson id" >= 1
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: active"
+		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 5: Oblivion Meeting: failed"
 	on offer
 		conversation
 			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it seems as if you could swallow it; it doesn't help that the air somehow feels even denser at night. The warehouse marked "Stephenson Heavy Industries" turns out to be at the very edge of the spaceport's boundary, and all you see when you get there is a lone box truck parked in the loading bay.`
