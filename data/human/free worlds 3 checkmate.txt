@@ -2409,6 +2409,7 @@ mission "FWC End"
 	
 	on offer
 		"reputation: Republic" += 20
+		"reputation: Deep" += 20
 		conversation
 			`You find Admiral Danforth inspecting the Pug spaceport. "This is all very odd," he says. "I'm glad the aliens appear to have left, but I wish we knew where they came from and whether they're likely to return."`
 			`	Freya says, "What should we do now?"`

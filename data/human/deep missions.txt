@@ -4252,7 +4252,7 @@ mission "The Book of Skadenga"
 mission deep_rep
 	invisible
 	to offer
-		"reputation: Deep" == -1000
+		"reputation: Deep" <= -1000
 	on offer
-		"reputation: Deep" >?= 1 
+		"reputation: Deep" = 1 
 		fail
