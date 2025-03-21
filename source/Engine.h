@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
+#include "Swizzle.h"
 #include "TaskQueue.h"
 
 #include <condition_variable>
@@ -244,7 +245,7 @@ private:
 	std::vector<Target> targets;
 	Point targetVector;
 	Point targetUnit;
-	int targetSwizzle = -1;
+	const Swizzle *targetSwizzle = nullptr;
 	// Represents the state of the currently targeted ship when it was last seen,
 	// so the target display does not show updates to its state the player should not be aware of.
 	int lastTargetType = 0;
