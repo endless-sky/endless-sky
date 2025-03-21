@@ -194,7 +194,7 @@ jobs:
     - name: Run Benchmarks
       run: ctest --preset clang-cl-ci-benchmark
     - name: Run Test Parse
-      run: "'build/ci/Endless Sky.exe' --parse-assets"
+      run: '"build/ci/Endless Sky.exe" --parse-assets'
 
 
   build_macos:
