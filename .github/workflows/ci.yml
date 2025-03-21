@@ -85,6 +85,8 @@ jobs:
         testPreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
     - name: Run Benchmarks
       run: ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci-benchmark' || 'linux-gles-ci-benchmark' }}
+    - name: Run Test Parse
+      run: build/ci/endless-sky.exe --parse-assets
 
 
   build_steam:
