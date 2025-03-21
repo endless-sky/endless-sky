@@ -3225,7 +3225,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 		has "First Contact: Coalition: done"
 	on offer
 		conversation
-			`As you walk through the spaceport, you see a group of Coalition citizens seated by a table speaking to each other. One of them glances toward you. As if something suddenly clicked, the group quickly rises from their seats and begin approaching you.`
+			`As you walk through the spaceport, you see a group of Coalition citizens seated by a table speaking to each other. One of them glances toward you. As if something suddenly clicked, the group quickly rise from their seats and begin approaching you.`
 			choice
 				`	"Excuse me, what do you all want?"`
 				`	"Hello? What is it?"`
@@ -3261,7 +3261,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			label "groupquestion"
 			action
 				set "coalition: asked about kachachee"
-			`	"A group who likes to together read books, we are. Sci-fi, believe I the word is, especially."`
+			`	"A group who likes to together read books, we are. Sci-fi, I believe the term is, especially."`
 				goto decision
 			label "don't have"
 			`	Rumor has it that on <destination> there is a library with complete copies of all human history. You return to your ship and prepare for the journey there to confirm this.`
@@ -3287,7 +3287,7 @@ event "coalition citizens discover fangvin"
 
 mission "Coalition: Struggling Author - Book Discovered"
 	name "Look for Anna Fangvin"
-	description "Get in contact with Anna Fangvin, an author in which the group of Coalition citizens have shown interest in."
+	description "Get in contact with Anna Fangvin, an author in which the Coalition book club has shown interest in."
 	source
 		government "Coalition"
 	destination "Zug"
@@ -3298,7 +3298,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 			`Upon landing in the spaceport, you get a message from the same group of Coalition citizens. You recall that you had provided them with a datachip containing a copy of Alexandria's archive.`
 			``
 			`		Dear <first>,`
-			`	Interested in an author from the datachip, we are. 'Anna Fangvin', her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
+			`	Interested in an author from the datachip, we are. "Anna Fangvin," her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
 			choice
 				`	(Look for Anna Fangvin.)`
 				`	(Discard the message.)`
@@ -3311,8 +3311,8 @@ mission "Coalition: Struggling Author - Book Discovered"
 
 
 mission "Coalition: Book Discovered 2"
-	name "'Beyond the Hyperdrive' for Kachachee"
-	description "Now that you have a copy of Anna Fangvin's 'Beyond the Hyperdrive', give it to Kachachee and their group on <destination>."
+	name `"Beyond the Hyperdrive" for Kachachee`
+	description `Now that you have a copy of Anna Fangvin's "Beyond the Hyperdrive," give it to Kachachee and their group on <destination>.`
 	to offer
 		has "coalition: struggling author - beyond the hyperdrive"
 	source
@@ -3320,16 +3320,16 @@ mission "Coalition: Book Discovered 2"
 	destination "Ki Patek Ka"
 	on offer
 		conversation
-			`Sorting through messages, you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's 'Beyond the Hyperdrive'. You now know her.`
+			`Sorting through messages, you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's "Beyond the Hyperdrive." You now know her.`
 			choice
 				`	(Ask Anna for another copy of the book.)`
 				`	(Forget about it.)`
 					decline
-			`	You call Anna, and ask her for another copy of Beyond the Hyperdrive for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, I don't think there will even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of Beyond the Hyperdrive to <destination>. You should head there to receive and gift it to Kachachee.`
+			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, I don't think there will even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of "Beyond the Hyperdrive" to <destination>. You should head there to receive and gift it to Kachachee.`
 				accept
 	on complete
 		conversation
-			`After receiving the book from the information counter at a company your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of Beyond the Hyperdrive. They respond, telling you to meet them at a public square within the spaceport.`
+			`After receiving the book from the information counter at a company your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
 			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 		payment 7000
 
@@ -3355,9 +3355,9 @@ mission "Coalition: Struggling Author 1"
 					goto "quarg"
 				`	"Anything else aside from Beyond the Hyperdrive?"`
 			label "other novels"
-			`	"Beyond the Hyperdrive is the fifth book I've ever published, actually," says Anna. "The other four never got any sales. I write short stories on the Hypernet in my free time. In fact, I'll probably start writing my sixth in a couple months, as soon as I find a good idea."`
+			`	"Beyond the Hyperdrive is the fifth book I've ever published, actually," says Anna. "The other four never got any sales. I write short stories on the hypernet in my free time. In fact, I'll probably start writing my sixth in a couple months, as soon as I find a good idea."`
 			choice
-				`	"What other short stories have you written?"`
+				`	"What kind of short stories have you written?"`
 					goto "short stories"
 				`	"How about your previous books?"`
 			label "previous books"
@@ -3388,16 +3388,16 @@ mission "Coalition: Struggling Author 1"
 				`	(Tell her about the Coalition.)`
 					goto "coalition"
 			label "parents"
-			`	"They eventually found me, thankfully. But it was distressing being stuck with this Quarg for 10 to 30 minutes, I don't remember how long, before eventually this other Quarg took my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we were off that world and I never wanted to come back."`
+			`	"They eventually found me, thankfully. But it was distressing being stuck with this Quarg for ten to thirty minutes, I don't remember how long, before eventually this other Quarg took my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we were off that world; I never wanted to come back."`
 			choice
-				`	"So you said your book doesn't sell well, right?"`
+				`	"So you said your books don't sell well, right?"`
 			`	"No, it doesn't. Do you know anyone who could help? My friends don't seem to be inclined to do anything for me."`
 			choice
 				`	"No actually, I'm afraid I don't know anyone who could."`
 					decline
 				`	(Tell her about the Coalition.)`
 			label "coalition"
-			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them. At first Anna does not believe you; but you reassure her it's real. You also mention the population of the Coalition and the novelty of an 'alien' author coming into the area.`
+			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them. At first Anna does not believe you; but you reassure her it's real. You also mention the population of the Coalition and the novelty of an "alien" author coming into the area.`
 			`	"Will they really like my books?"`
 			choice
 				`	"They will, hopefully."`
@@ -3416,7 +3416,7 @@ mission "Coalition: Struggling Author 1"
 			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, as you lead her to her bunk and inform her of the destination. You prepare to leave the spaceport.`
 				accept
 			label decline
-			`	Filled with disappointment, Anna says, "Well, I'm afraid I have other things to do than. At least thank you for the stories." She leaves.`
+			`	Filled with disappointment, Anna says, "Well, I'm afraid I have other things to do, then. At least thank you for the stories." She leaves.`
 				decline
 	on complete
 		set "coalition: struggling author - beyond the hyperdrive"
@@ -3512,7 +3512,7 @@ mission "Coalition: Struggling Author 3"
 				`	"Perhaps the Saryd. People with human parts are likely to be more interested in human books."`
 			`	"I don't think I like the idea of selling to centaurs. Are there other options?"`
 			choice
-				`	"The Arachi have a close-knitted population. Word of a new book might spread quickly there."`
+				`	"The Arachi have a close-knit population. Word of a new book might spread quickly there."`
 				`	"The Kimek have the most people of any species in Coalition space. Let's try selling to them."`
 					goto publishingcompany
 			`	"Spiders reading my book just sounds creepy. Could we do the Kimek instead? They have a high population, right?"`
@@ -3705,7 +3705,7 @@ mission "Coalition: Struggling Author 5B"
 
 conversation "anna invites you to book signing"
 	action
-		log "People" "Anna Fangvin" `Anna is an ambidextrous science fiction writer. She was a struggling author in human space, but found success upon publishing her novel 'Beyond the Hyperdrive' in Coalition space. Her book is a bestseller in Kimek space.`
+		log "People" "Anna Fangvin" `Anna is an ambidextrous science fiction writer. A struggling author in human space, she found success upon publishing her novel 'Beyond the Hyperdrive' in the Coalition. Her book is a bestseller among Kimeks.`
 		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive', something about humans stealing jump drives from the Quarg."
 		event "beyond the hyperdrive payment" 40
 		set "beyond the hyperdrive news can show now"
@@ -3731,10 +3731,10 @@ conversation "anna invites you to book signing"
 	choice
 		`	"Why is this book so different from the one in human space?"`
 		`	"Did you make any changes to it?"`
-	`	"Well, for one, it's not in our language. Some concepts just don't translate very well, so I tried to capture the spirit of the story. The Heliarch linguists were very helpful," she explains. "They really went into depth on some aspects of the Coalition's languages. None of the major plot points were changed, thankfully, though some content in the book had to be edited or removed. My Heliarch friend said that if I changed this or removed that, the book would sell so much better, and as they said, they wanted to 'make it more suitable for the Coalition'. Their words.`
+	`	"Well, for one, it's not in our language. Some concepts just don't translate very well, so I tried to capture the spirit of the story. The Heliarch linguists were very helpful," she explains. "They really went into depth on some aspects of the Coalition's languages. None of the major plot points were changed, thankfully, though some content in the book had to be edited or removed. My Heliarch friend said that if I changed this or removed that, the book would sell so much better, and as they said, they wanted to 'make it more suitable for the Coalition.' Their words.`
 	`	"As for the special copy, it was so I could verify and look at the changes they made, in my language, so I wouldn't have to learn their language. They agreed to print another copy for me so I could give it to you.`
 	`	"I've got to go now. I want to see how well my book is selling. Goodbye!"`
-	`	Anna then leaves your ship. You ponder what to do next, but you do feel rewarded having helped a struggling author make it big.`
+	`	Anna then leaves your ship, leaving you with a novel, a payment, and the knowledge that you've helped a struggling author make it big.`
 
 
 event "beyond the hyperdrive payment"
