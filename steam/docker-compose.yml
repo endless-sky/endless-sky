@@ -28,3 +28,4 @@ services:
         ninja
         ./endless-sky --version
         ctest --label-exclude "integration-debug"
+        ./endless-sky --parse-assets
