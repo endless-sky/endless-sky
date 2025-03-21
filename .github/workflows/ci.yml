@@ -232,7 +232,14 @@ jobs:
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
     - name: Run Test Parse
-      run: "'build/ci/Endless Sky' --parse-assets"
+      run: |
+        ls
+        cd build
+        ls
+        cd ci
+        ls
+        cd ../..
+        "'./build/ci/Endless Sky' --parse-assets"
 
 
   build_macos-arm:
@@ -270,7 +277,14 @@ jobs:
     - name: Run Benchmarks
       run: ctest --preset macos-arm-ci-benchmark
     - name: Run Test Parse
-      run: "'build/ci/Endless Sky' --parse-assets"
+      run: |
+        ls
+        cd build
+        ls
+        cd ci
+        ls
+        cd ../..
+        "'./build/ci/Endless Sky' --parse-assets"
 
 
   build_documentation_doxygen:
