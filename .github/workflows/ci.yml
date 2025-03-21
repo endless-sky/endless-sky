@@ -230,6 +230,8 @@ jobs:
         testPreset: 'macos-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-ci-benchmark
+    - name: Run Test Parse
+      run: "'build/ci/Endless SKy.exe' --parse-assets"
 
 
   build_macos-arm:
