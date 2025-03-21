@@ -268,6 +268,8 @@ jobs:
         testPreset: 'macos-arm-ci'
     - name: Run Benchmarks
       run: ctest --preset macos-arm-ci-benchmark
+    - name: Run Test Parse
+      run: "'build/ci/Endless SKy.exe' --parse-assets"
 
 
   build_documentation_doxygen:
