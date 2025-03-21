@@ -658,7 +658,7 @@ bool BoardingPanel::CanExit() const
 // Check if you can take the given plunder item.
 BoardingPanel::CanTakeResult BoardingPanel::CanTake() const
 {
-	// If you ship or the other ship has been captured:
+	// If your ship or the other ship has been captured:
 	if(!you->IsYours())
 		return CanTakeResult::OTHER;
 	if(victim->IsYours())
