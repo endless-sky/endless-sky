@@ -1465,7 +1465,6 @@ event "fw gets catalytic ramscoop"
 
 event "fw safe passage starts"
 	"reputation: Republic" = 5
-
 	"reputation: Deep" = 5
 
 event "fw safe passage ends"
