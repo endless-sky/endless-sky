@@ -153,6 +153,7 @@ public:
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
+	// Get the variant name to be displayed on the Shipyard tab of the Map screen.
 	const std::string &VariantMapShopName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
