@@ -20,7 +20,7 @@
 					"name": "libuuid",
 					"platform": "linux"
 				},
-				"minizip-ng",
+				"minizip",
 				"openal-soft",
 				{
 					"name": "openal-soft",
@@ -38,7 +38,7 @@
 			"dependencies": [
 				"libmad",
 				"catch2",
-				"minizip-ng"
+				"minizip"
 			]
 		},
 		"test-libs": {
