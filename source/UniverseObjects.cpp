@@ -50,7 +50,7 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesys
 				// Iterate through the paths starting with the last directory given. That
 				// is, things in folders near the start of the path have the ability to
 				// override things in folders later in the path.
-				auto list = Files::RecursiveList(source / "data/");
+				auto list = Files::RecursiveList(source / "data");
 				files.reserve(files.size() + list.size());
 				files.insert(files.end(),
 						make_move_iterator(list.begin()),
