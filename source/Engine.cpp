@@ -1557,7 +1557,7 @@ void Engine::CalculateStep()
 	if(flagship)
 	{
 		emptySoundsTimer.resize(flagship->Weapons().size());
-		for(auto &it : emptySoundsTimer)
+		for(int &it : emptySoundsTimer)
 			if(it > 0)
 				--it;
 		MoveShip(player.FlagshipPtr());
