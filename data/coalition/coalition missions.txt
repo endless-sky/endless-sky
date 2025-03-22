@@ -1363,10 +1363,34 @@ mission "Arachi Cartoonist 1"
 				`	"In that case, I'll head to their home shipyard and see what I can bring back for you."`
 					goto end
 				`	"Alright, it's a bit of a long trip to <planet>, but if you're sure, let's head to my ship and I'll show you your bunk."`
+				`	"I happen to own a ship matching that description, a Betelgeuse Leviathan. Would you like to see it?"`
+					goto hasleviathan
+					to display
+						has "ship model: Leviathan"
 			`	"Oh, leave I cannot. Whether far away or not this <planet> you speak of is, allowed to leave Coalition space, we are not," he says. "Go on without me you must, Captain."`
 			label end
 			`	He thanks you and wishes you safe travels on your journey to <planet>.`
 				accept
+			label hasleviathan
+			action
+				"coalition jobs" += 2
+				payment 75940
+			`	Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck.`
+			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go!"`
+			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided him with is far more substantial than any secondhand reference could possibly convey. He spends a while examining the ship up close before hopping down and taking many pictures from every conceivable angle -- as well as drawing a few quick sketches.`
+			`	Once he's finished, he hands you a payment of <payment> and spends some more time with you, asking you all the questions he can think of about the ship.`
+			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
+			`	He spends some more minutes listening to you after he asks that you describe how your ship performs, thanks you again, and prepares to leave.`
+			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan,' may I? Just as a small thank you."`
+			choice
+				`	"Of course! It's called <ship>."`
+				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
+					goto noship
+			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
+				decline
+			label noship
+			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again, Captain."`
+				decline
 
 
 
@@ -1389,6 +1413,8 @@ mission "Arachi Cartoonist 2"
 		"coalition jobs" += 2
 		payment 75940
 		conversation
+			branch leviathan
+				has "ship model: Leviathan"
 			`Drugub is excitedly waiting for you when you return. However simple a piece of paper it may seem to you, he grabs the flyer as if it's some scroll of knowledge.`
 			`	He hands you your payment of <payment> and spends some time with you still, asking you all the questions he can think of about each ship.`
 			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
@@ -1402,7 +1428,21 @@ mission "Arachi Cartoonist 2"
 				accept
 			label noship
 			`	"Ah, I see. Well, just a reference it would be, so the name matters not, I suppose. Anyway, thanks again Captain."`
-
+				accept
+			label leviathan
+			`Drugub is excitedly waiting for you when you return. Though reading emotions from a giant spider proves challenging, Drugub appears to be star-struck when you mention you brought back a ship matching what he described.`
+			`	"Own a ship, a 'Leviathan,' you do? To your hangar, we must go!"`
+			`	After a brief walk to the hangar where your ship is parked, Drugub immediately begins crawling over the Leviathan. It seems what you've provided him with is far more substantial than any secondhand reference could possibly convey. He spends a while examining the ship up close before hopping down and taking many pictures from every conceivable angle -- as well as drawing a few quick sketches.`
+			`	Once he's finished, he hands you your payment of <payment> and spends some more time with you, asking you all the questions he can think of about the ship.`
+			`	"Very beautiful, this 'Leviathan' is. Thinking of many ways to draw it, I already am," he says. "Maybe a flagship of one of my characters, make it I will..."`
+			`	He spends some more minutes listening to you after he asks that you describe how your ship performs, thanks you again, and prepares to leave.`
+			`	"Oh, before I go, Captain <last>, use the name of your own ship for that 'Leviathan,' may I? Just as a small thank you."`
+			choice
+				`	"Of course! It's called <ship>."`
+				`	"The name is nothing special. I wouldn't even get the reference of it if I read your comic in the future, honestly."`
+					goto noship
+			`	"<ship> it is! Do it justice I will, Captain. Thanks again."`
+				accept
 
 
 mission "Coalition: Alpha Encounter"
