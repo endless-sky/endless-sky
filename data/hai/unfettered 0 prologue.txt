@@ -168,6 +168,9 @@ mission "Unfettered Jump Drive 1"
 				`	"How will my ship leave here without my jump drive?"`
 			
 			`	"We can give you a hyperdrive in its place," they say, "and you will be counted as our friend, so you will not need to leave here quickly, or under threat of violence." You can't help but wonder if they will try to take your ship by force if you do not agree to the deal.`
+			`	"Oh, and by the way, you will no longer be required to keep your Anomalocaris in working condition to guarantee our friendship," they add.`
+				to display
+					has "Hai Legacy 3: done"
 			choice
 				`	"Okay, I accept your generous offer."`
 					goto end
@@ -391,11 +394,11 @@ mission "Unfettered Jump Drive Trading"
 					to display
 						not "unfettered: uninterested in weapons"
 					goto uninterested
-				`	(Leave and come back another time.)`
+				`	"I don't really want to do this right now."`
 			action
 				clear "unfettered: uninterested in weapons"
 				"unfettered: jd to sell" ++
-			`	"How rude. You better hope there will be someone else to guide you, next time!" Says the engineer as you walk off and return to your ship.`
+			`	"How rude. You better hope there will be someone else to guide you next time!" says the engineer as you return to your ship.`
 				defer
 			label uninterested
 			action

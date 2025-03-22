@@ -466,7 +466,7 @@ mission "Wanderers: Quarg Assistance 2"
 		personality escort
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -481,7 +481,7 @@ mission "Wanderers: Quarg Defenders"
 		personality staying uninterested heroic
 		ship "Quarg Wardragon" "Elearu-quara"
 		ship "Quarg Wardragon" "Kumawar Kwarca"
-		ship "Quarg Wardragon" "Ahlimona Spod"
+		ship "Quarg Wyvern" "Ahlimona Spod"
 
 
 
@@ -788,7 +788,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 3
+				"Quarg Wardragon"
+				"Quarg Wyvern" 2
 	npc
 		government "Quarg (Kor Efret)"
 		personality heroic
@@ -796,7 +797,8 @@ mission "Wanderers: Kor Efret 3"
 		fleet
 			names "quarg"
 			variant
-				"Quarg Wardragon" 5
+				"Quarg Wardragon" 3
+				"Quarg Hydra"
 
 
 
@@ -2055,7 +2057,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2080,7 +2082,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2102,7 +2104,7 @@ mission "Wanderers: Sestor: Farpoint Attack 1"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 
@@ -2148,10 +2150,10 @@ mission "Wanderers: Sestor: Quarg Help 2"
 	npc accompany save
 		government "Quarg (Hai)"
 		personality heroic waiting escort
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Kor Sestor"
 		personality heroic staying
@@ -2239,10 +2241,10 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 	npc
 		government "Quarg (Hai)"
 		personality heroic staying
-		ship "Quarg Wardragon" "Leukos-nikeseh"
-		ship "Quarg Wardragon" "Purros-machaira"
-		ship "Quarg Wardragon" "Melas-zugon"
-		ship "Quarg Wardragon" "Chloros-thanatos"
+		ship "Quarg Wyvern" "Leukos-nikeseh"
+		ship "Quarg Wyvern" "Purros-machaira"
+		ship "Quarg Wyvern" "Melas-zugon"
+		ship "Quarg Wyvern" "Chloros-thanatos"
 	npc
 		government "Navy (Oathkeeper)"
 		personality heroic staying
@@ -2252,7 +2254,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2274,7 +2276,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser"
 				"Combat Drone" 4
@@ -2296,7 +2298,7 @@ mission "Wanderers: Sestor: Farpoint Attack 2"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate (Mark II)" 3
 	npc evade
@@ -2755,7 +2757,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier (Mark II)"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
@@ -2777,7 +2779,7 @@ mission "Wanderers: Sestor: Drones in Alnilam"
 				names "republic fighter"
 			variant
 				"Carrier"
-				"Lance" 4
+				"Lance" 8
 				"Combat Drone" 6
 				"Frigate" 3
 				"Gunboat" 3
