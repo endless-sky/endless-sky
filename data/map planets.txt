@@ -3045,8 +3045,10 @@ planet "Kort Kehai"
 	attributes wanderer
 	landscape land/lava6
 	description `This planet has a temperate climate, yet its surface is nearly lifeless, perhaps due in part to the high concentration of radioactive isotopes in the soil. The only plant growing on most of the land is a hardy bioengineered moss designed by the Wanderers to accumulate heavy metals and other toxins in its root system. These plants are then periodically harvested by flocks of unpiloted robots and buried in deep pits near the planet's poles.`
-	spaceport `This is the only Wanderer spaceport on the entire planet, with a population of no more than a few hundred Wanderers, most of them engineers and robot technicians. At the center of the port is a glass dome nearly a hundred meters tall, enclosing a garden with cliffs, streams, and towering trees, where the Wanderers can stretch their wings and relax in a green and growing environment without being exposed to the outside air.`
-	spaceport `	The hallway that loops around the outside of the garden is decorated with an incredibly detailed mural. At one end the mural depicts a barren and blasted landscape, which gradually transitions along the length of the hallway to a green and growing world. The mural must be a reminder to the workers of what they are striving to accomplish here.`
+	port
+		news
+		description `This is the only Wanderer spaceport on the entire planet, with a population of no more than a few hundred Wanderers, most of them engineers and robot technicians. At the center of the port is a glass dome nearly a hundred meters tall, enclosing a garden with cliffs, streams, and towering trees, where the Wanderers can stretch their wings and relax in a green and growing environment without being exposed to the outside air.`
+		description `	The hallway that loops around the outside of the garden is decorated with an incredibly detailed mural. At one end the mural depicts a barren and blasted landscape, which gradually transitions along the length of the hallway to a green and growing world. The mural must be a reminder to the workers of what they are striving to accomplish here.`
 	"required reputation" 2
 	bribe 0
 	tribute 100
@@ -3057,7 +3059,9 @@ planet "Kort Vek'kri"
 	attributes wanderer
 	landscape land/mountain10-sfiera
 	description `This world is nearly unpopulated, with very little animal life and strange, twisted plants with odd coloration. In small patches of land, the native vegetation gives way to green forests and fields, which were probably planted there by the Wanderers. In some of the larger forests, birds and insects have begun to flourish.`
-	spaceport `This small spaceport is unmistakably a research station, and the Wanderers walking or flying from one building to another have a self-absorbed attitude not unlike what you would expect from human scientists. Around the outskirts of the port village are pens that hold a staggering variety of animals, mostly ruminants and other herbivores, and the work of the scientists seems to revolve around convincing these animals to eat the local flora.`
+	port
+		news
+		description `This small spaceport is unmistakably a research station, and the Wanderers walking or flying from one building to another have a self-absorbed attitude not unlike what you would expect from human scientists. Around the outskirts of the port village are pens that hold a staggering variety of animals, mostly ruminants and other herbivores, and the work of the scientists seems to revolve around convincing these animals to eat the local flora.`
 	"required reputation" 2
 	bribe 0
 	tribute 500
@@ -5837,8 +5841,10 @@ planet "Tik Klai"
 	attributes research wanderer
 	landscape land/badlands2
 	description `This world is uncomfortably hot, even for the Wanderers, and so close to its star that the surface is bathed in dangerous levels of ultraviolet light. The few Wanderer installations here are buried underground, with only a few access hatches and storage buildings on the surface.`
-	spaceport `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the Wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
-	spaceport `	The warning signs marking restricted areas are in the undecipherable Wanderer language, but accompanied by a symbol you easily recognize: a DNA double helix undergoing replication.`
+	port
+		news
+		description `Most of the spaceport facility is closed to non-Wanderer personnel, and apparently to many of the off-world Wanderers who are visiting, as well. The underground passageways are comfortably wide and tall for a human, but the Wanderers walking through them must tuck their wings in close to their bodies to avoid scraping against the ceilings.`
+		description `	The warning signs marking restricted areas are in the undecipherable Wanderer language, but accompanied by a symbol you easily recognize: a DNA double helix undergoing replication.`
 	"required reputation" 35
 	bribe 0
 	tribute 600
@@ -6125,10 +6131,10 @@ planet "Var' Kar'i'i"
 	attributes farming urban wanderer
 	landscape land/valley13-harro
 	description `This is a populous Wanderer world, with small farming villages scattered across all the land, and even a few larger population centers that might almost qualify as a city. But from the air, it is not evident at first that the planet is so heavily settled, because the village tree-houses are mostly hidden beneath the forest canopies. The farms, too, are almost indistinguishable from natural land, due to a permaculture system where many varieties of plants are growing side by side.`
-	spaceport `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly three meters tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
-	spaceport `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
-	shipyard "Wanderer Basics"
-	outfitter "Wanderer Basics"
+	port
+		news
+		description `Apparently, just as humans use horses to carry loads and draw carts of produce, the Wanderers use a large breed of lizard, nearly three meters tall and walking on their hind legs. The lizards are meat-eaters: next to the watering troughs are cages full of large rodents, which the Wanderers occasionally feed to their beasts.`
+		description `	Many different forms of produce are for sale here in open-air markets, including dozens of different nuts and berries. Aside from the rodents to feed to the lizards, and a few species of fish, the Wanderers do not seem to raise animals for food.`
 	"required reputation" 5
 	bribe 0
 	tribute 1700
@@ -6139,10 +6145,10 @@ planet "Var' Kayi"
 	attributes urban wanderer
 	landscape land/fields13
 	description `This is an Earth-like world with one major Wanderer city and countless smaller settlements. The settlements mostly consist of tree-houses built high up in living trees. The architecture of the city skyscrapers is full of cantilevered balconies and arches, mimicking the natural shape of a forest. Here and there a bit of smoke or steam rises from what must be a factory or power plant, but most of the land outside the city is green fields and pristine oceans.`
-	spaceport `This spaceport is as busy and chaotic as any major human trade hub, with the added complication that many of the Wanderers are flying from building to building instead of walking. Most of the buildings have balconies on every level, allowing visitors to enter from the air as well as from the streets.`
-	spaceport `	The starship landing pads are well outside the city, and ships land and take off along very tightly controlled vectors, probably to avoid midair collisions between the ships and the Wanderers who are flying on their own wings.`
-	shipyard "Wanderer Advanced"
-	outfitter "Wanderer Advanced"
+	port
+		news
+		description `This spaceport is as busy and chaotic as any major human trade hub, with the added complication that many of the Wanderers are flying from building to building instead of walking. Most of the buildings have balconies on every level, allowing visitors to enter from the air as well as from the streets.`
+		description `	The starship landing pads are well outside the city, and ships land and take off along very tightly controlled vectors, probably to avoid midair collisions between the ships and the Wanderers who are flying on their own wings.`
 	"required reputation" 5
 	bribe 0
 	tribute 4500
@@ -6153,7 +6159,9 @@ planet "Var' Roi"
 	attributes frozen moon research wanderer
 	landscape land/snow14
 	description `The surface of this small icy moon is constantly cracked and broken by tidal force from the gas giant that it orbits. The tidal disturbances also heat the moon enough to keep its oceans warm enough to support life despite the small amount of sunlight that reaches here.`
-	spaceport `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
+	port
+		news
+		description `The only habitation on this moon is a Wanderer research station suspended on metal pylons well above the icy surface of the ocean. The gravity here is low enough that even though the atmosphere is thin, the Wanderers who work in the station can fly out across the ocean on their own power, wearing some sort of breathing gear. The researchers also have a fleet of submarine ships, sturdy enough to pierce through the shifting ice and travel deep below the ocean surface.`
 	"required reputation" 25
 	bribe 0
 	tribute 100
@@ -6165,9 +6173,9 @@ planet "Vara K'chrai"
 	landscape land/sea16-harro
 	description `This is the most populous Wanderer world, with dozens of large cities. The tallest buildings branch and cantilever out from their bases like metallic trees. More than half the surface of the planet is ocean, with a few small settlements built on massive living rafts of algae and seaweed, perhaps ten meters thick and up to several kilometers wide. Much of the land is forests, with villages built entirely in the treetops.`
 	description `	There are also farms here, but more like gardens or parks than a human farm: each with dozens of species of plants growing side by side, and harvested by autonomous robots.`
-	spaceport `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
-	shipyard "Wanderer Advanced"
-	outfitter "Wanderer Advanced"
+	port
+		news
+		description `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
 	bribe 0
 	tribute 8000
 		threshold 14000
@@ -6177,7 +6185,9 @@ planet "Vara Ke'sok"
 	attributes fishing wanderer
 	landscape land/beach6
 	description `The surface of this world is almost entirely ocean, and the Wanderers who inhabit it live on massive floating algae mats, some of them the size of a small city. Engines are attached to some of these floating villages, allowing them to be slowly propelled from one part of the planet's surface to another, and the only native industries are fishing and seaweed farming.`
-	spaceport `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. The effect is subtle, but disconcerting, and you cannot help but stumble drunkenly at times as you explore the island.`
+	port
+		news
+		description `The raft of algae that supports the spaceport is probably at least a dozen meters thick, but flexible enough that it bends as the ocean swells pass underneath, causing individual buildings to rise up or tilt slightly relative to their neighbors. The effect is subtle, but disconcerting, and you cannot help but stumble drunkenly at times as you explore the island.`
 	"required reputation" 5
 	bribe 0
 	tribute 500
@@ -6188,8 +6198,9 @@ planet "Vara Ke'stai"
 	attributes farming wanderer
 	landscape land/desert11
 	description `This is a desert world, but the Wanderers are working little by little to make the desert bloom: planting hardy shrubs and cacti that eventually transform the sand into a soil that can hold moisture. In some regions, especially closer to the poles, the deserts have given way to dense forests, but near the equator there are still large stretches of dry and barren sand, broken by the occasional belt of green where a narrow river winds between the dunes.`
-	spaceport `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. A few mechanical lifts have been built into the sides of the trees to carry cargo up to the forest canopy where the Wanderers live, but the Wanderers themselves seem content to fly between the houses rather than using the lifts.`
-	outfitter "Wanderer Basics"
+	port
+		news
+		description `The spaceport is in a forest village near the planet's north pole. The landing pads are massive stone monoliths laid on the ground in a nearby clearing. But aside from a few large warehouses at ground level, the village itself is entirely made of tree-houses. A few mechanical lifts have been built into the sides of the trees to carry cargo up to the forest canopy where the Wanderers live, but the Wanderers themselves seem content to fly between the houses rather than using the lifts.`
 	"required reputation" 5
 	bribe 0
 	tribute 650
@@ -6200,8 +6211,9 @@ planet "Vara Kehi'ki"
 	attributes farming research wanderer
 	landscape land/fields14
 	description `This is a farming world, but the primary crops are medicinal plants rather than food: fields of brightly colored flowers and delicate shrubs. Large factories near the farms process the raw plants and extract useful chemical compounds. Their gleaming metal smokestacks belching steam into the air seem incongruous amid the natural beauty and bright colors of the fields of flowers.`
-	spaceport `The spaceport village is apparently not just a processing facility for the medicinal plants, but also a hospital of sorts. The village is designed to allow easy foot traffic as well as flight between buildings, and thousands of Wanderers, many of them appearing sick or elderly, live here. The main streets of the village are lined with vine trellises with flowers of every color imaginable, and mechanical lifts allow even the most frail Wanderers to travel up to the higher terraces and balconies.`
-	outfitter "Wanderer Basics"
+	port
+		news
+		description `The spaceport village is apparently not just a processing facility for the medicinal plants, but also a hospital of sorts. The village is designed to allow easy foot traffic as well as flight between buildings, and thousands of Wanderers, many of them appearing sick or elderly, live here. The main streets of the village are lined with vine trellises with flowers of every color imaginable, and mechanical lifts allow even the most frail Wanderers to travel up to the higher terraces and balconies.`
 	"required reputation" 15
 	bribe 0
 	tribute 900
@@ -6222,9 +6234,9 @@ planet "Vara Rakak"
 	attributes farming wanderer
 	landscape land/forest1
 	description `This is one of those rare worlds whose climate is already nearly perfect without the need for terraforming. The Wanderers have made it into a farming planet. The fields follow the natural contours and geology of the land rather than being laid out in rectangular lots like most human farms, and each field contains several different crop species designed to form a symbiotic ecosystem.`
-	spaceport `This could be a spaceport on any human farming world, except that the farmers hawking their wares have wings and beaks, and the wagons bringing produce to the market are drawn by massive lizards instead of horses. In several repair shops on the outskirts of town, Wanderer technicians work on massive harvester robots. The robots have four legs to walk on and dozens of dexterous manipulator arms for picking crops, and each arm has a camera eye on it.`
-	shipyard "Wanderer Basics"
-	outfitter "Wanderer Advanced"
+	port
+		news
+		description `This could be a spaceport on any human farming world, except that the farmers hawking their wares have wings and beaks, and the wagons bringing produce to the market are drawn by massive lizards instead of horses. In several repair shops on the outskirts of town, Wanderer technicians work on massive harvester robots. The robots have four legs to walk on and dozens of dexterous manipulator arms for picking crops, and each arm has a camera eye on it.`
 	"required reputation" 5
 	bribe 0
 	tribute 2300
@@ -6235,9 +6247,10 @@ planet "Varu Ek'lak'lai"
 	attributes mining wanderer
 	landscape land/canyon7
 	description `The Wanderers harvest metal ores not from planets, but from asteroids, in order to not expend even more of the resources of the planets that are under their care. This star system contains an unusually high concentration of metallic asteroids, and as a result they have built many large refineries here to process the ore that their drones harvest.`
-	spaceport `The vast majority of ships landing and taking off from this port are unmanned Wanderer drones used for mining asteroids. The drones are maneuverable enough to avoid collisions with the few ships that land under manual control.`
-	spaceport `	The port itself is a small village surrounded by towering refineries. Unlike other Wanderer architecture, the refineries are ugly, brutal buildings made of weathered concrete.`
-	outfitter "Wanderer Basics"
+	port
+		news
+		description `The vast majority of ships landing and taking off from this port are unmanned Wanderer drones used for mining asteroids. The drones are maneuverable enough to avoid collisions with the few ships that land under manual control.`
+		description `	The port itself is a small village surrounded by towering refineries. Unlike other Wanderer architecture, the refineries are ugly, brutal buildings made of weathered concrete.`
 	"required reputation" 15
 	bribe 0
 	tribute 1300
@@ -6248,9 +6261,9 @@ planet "Varu K'est"
 	attributes military wanderer
 	landscape land/canyon5
 	description `Varu K'est is a spare, ancient planet of arid plateaus and deep, meandering canyons, with too little rainfall to support any but the hardiest of shrubs. The Wanderers have converted nearly all their villages on this planet into military bases in order to oppose the encroaching Hai raiders, and have also been forced to postpone their attempts at improving the local ecology.`
-	spaceport `The spaceport is a massive shipyard, with facilities for repairing the few warships that the Wanderers possess as well as creating new ships and weapons. Dozens of battle-scarred ships are parked in the hangars here, a stark contrast to the ports in the more peaceful regions of the Wanderer territory.`
-	shipyard "Wanderer Basics"
-	outfitter "Wanderer Advanced"
+	port
+		news
+		description `The spaceport is a massive shipyard, with facilities for repairing the few warships that the Wanderers possess as well as creating new ships and weapons. Dozens of battle-scarred ships are parked in the hangars here, a stark contrast to the ports in the more peaceful regions of the Wanderer territory.`
 	"required reputation" 15
 	bribe 0
 	tribute 1600
@@ -6261,8 +6274,9 @@ planet "Varu K'prai"
 	attributes oil wanderer
 	landscape land/sea4
 	description `This is one of the only Wanderer worlds that still has large reserves of oil, albeit deep below the ocean surface where mining is difficult. Aside from the drilling companies and refineries, the largest local employer is the local government's safety oversight department, whose inspectors are constantly visiting the drilling platforms and shipping hubs to ensure that all the regulations for preventing oil spills are being followed.`
-	spaceport `Plastics and other refined oil products are as essential to Wanderer technology as to humans, but it is clear that those responsible for harvesting them are not held in high regard. The crews of visiting ships seem eager to interact with the locals as little as possible. However, that does not appear to stop the Wanderer freighters from purchasing large shipments of plastic, which will no doubt yield a substantial profit elsewhere in Wanderer space.`
-	outfitter "Wanderer Basics"
+	port
+		news
+		description `Plastics and other refined oil products are as essential to Wanderer technology as to humans, but it is clear that those responsible for harvesting them are not held in high regard. The crews of visiting ships seem eager to interact with the locals as little as possible. However, that does not appear to stop the Wanderer freighters from purchasing large shipments of plastic, which will no doubt yield a substantial profit elsewhere in Wanderer space.`
 	"required reputation" 15
 	bribe 0
 	tribute 800
@@ -6274,9 +6288,9 @@ planet "Varu Mer'ek"
 	attributes factory wanderer
 	landscape land/valley11-harro
 	description `This Wanderer factory world is now home to more abandoned villages than populated ones: entire factories rusting and decaying as a result of the recent threat from the Unfettered Hai. Most of the factories that remain active have been repurposed to produce weapons or ammunition for the defense of Wanderer space.`
-	spaceport `Very few Wanderer children are present in the spaceport. Most of the inhabitants still live far above the ground in the customary Wanderer tree-houses, but that portion of the village is dwarfed by the more recently constructed factories and warehouses for war supplies. A steady stream of freighters brings in new equipment and raw materials for the factories.`
-	shipyard "Wanderer Advanced"
-	outfitter "Wanderer Advanced"
+	port
+		news
+		description `Very few Wanderer children are present in the spaceport. Most of the inhabitants still live far above the ground in the customary Wanderer tree-houses, but that portion of the village is dwarfed by the more recently constructed factories and warehouses for war supplies. A steady stream of freighters brings in new equipment and raw materials for the factories.`
 	"required reputation" 15
 	bribe 0
 	tribute 1600
@@ -6287,8 +6301,9 @@ planet "Varu Tek'kai"
 	attributes factory moon wanderer
 	landscape land/badlands4
 	description `This Wanderer world is almost uninhabited and devoid of any indigenous ecosystem, except perhaps on the microscopic level. It has none of the beauty of other Wanderer settlements. Here, factories have been built to process the most dangerous and destructive of industrial chemicals. If disaster strikes one of the factories, the only result will be the contamination of a world that is already dead and lifeless - far better, in the judgment of the Wanderers, than allowing such risky industries to operate on a living world.`
-	spaceport `Nearly all the operations of the factories here are automated, and the outside atmosphere is too thin for even the Wanderers to breathe. The workers live in dormitory apartments in a ring surrounding a large central dome. Inside the dome, protected from the elements, is a park whose gardens contain everything from towering conifers to fields of wildflowers; a necessary place of sanctuary and rest for the Wanderers who must spend the rest of their time servicing machines in the bleak environment outside the spaceport.`
-	outfitter "Wanderer Basics"
+	port
+		news
+		description `Nearly all the operations of the factories here are automated, and the outside atmosphere is too thin for even the Wanderers to breathe. The workers live in dormitory apartments in a ring surrounding a large central dome. Inside the dome, protected from the elements, is a park whose gardens contain everything from towering conifers to fields of wildflowers; a necessary place of sanctuary and rest for the Wanderers who must spend the rest of their time servicing machines in the bleak environment outside the spaceport.`
 	"required reputation" 15
 	bribe 0
 	tribute 200
@@ -6299,8 +6314,9 @@ planet "Varu Tev'kei"
 	attributes factory wanderer
 	landscape land/canyon04
 	description `This is a desert world, too hot and too close to its sun to support much animal or plant life. The Wanderers have covered large stretches of the desert with solar-powered factories: smelters that use the sun's reflected heat to melt ore, and fields of solar panels that support other industries.`
-	spaceport `It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the buildings here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface.`
-	outfitter "Wanderer Basics"
+	port
+		news
+		description `It is easy to distinguish the local workers from the visitors, because the locals wrap their wings in thin white sheets of cloth rather than leaving them bare: a necessary protection for any Wanderer who chooses to fly outside of the protective shade of the spaceport. Many of the buildings here extend deep underground, to where the surrounding bedrock is cooler than the hot sands at the surface.`
 	"required reputation" 15
 	bribe 0
 	tribute 500
