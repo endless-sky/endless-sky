@@ -63,7 +63,7 @@ namespace {
 		if(!system)
 			return false;
 
-		if(mission.Destination()->IsInSystem(system))
+		if(mission.Destination().GetSystem() == system)
 			return true;
 
 		for(const System *waypoint : mission.Waypoints())
@@ -218,7 +218,7 @@ void MissionPanel::Step()
 
 			// Only highlight and pan to the destination if the mission is visible.
 			// Otherwise, pan to the player's current system.
-			specialSystem = mission->IsVisible() ? mission->Destination()->GetSystem() : nullptr;
+			specialSystem = mission->IsVisible() ? mission->Destination().GetSystem() : nullptr;
 			CenterOnSystem(specialSystem ? specialSystem : player.GetSystem());
 
 			mission->Do(Mission::OFFER, player, GetUI());
@@ -647,13 +647,13 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	// Auto select the destination system for the current mission.
 	if(availableIt != available.end())
 	{
-		selectedSystem = availableIt->Destination()->GetSystem();
+		selectedSystem = availableIt->Destination().GetSystem();
 		UpdateCache();
 		ScrollMissionList(available, availableIt, availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
+		selectedSystem = acceptedIt->Destination().GetSystem();
 		UpdateCache();
 		ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
 	}
@@ -735,7 +735,7 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 	RingShader::Bind();
 	{
 		// Draw a colored ring around the destination system.
-		drawRing(mission.Destination()->GetSystem(), color);
+		drawRing(mission.Destination().GetSystem(), color);
 		// Draw bright rings around systems that still need to be visited.
 		for(const System *system : toVisit)
 			drawRing(system, waypoint);
@@ -1006,16 +1006,16 @@ void MissionPanel::Accept(bool force)
 	// jobs that also have the same destination planet.
 	if(toAccept.Destination())
 	{
-		const Planet *planet = toAccept.Destination();
-		const System *system = planet->GetSystem();
+		const Planet *planet = toAccept.Destination().GetPlanet();
+		const System *system = toAccept.Destination().GetSystem();
 		bool stillLooking = true;
 
 		// Updates availableIt if matching system found, returns true if planet also matches.
 		auto SelectNext = [this, planet, system, &stillLooking](const list<Mission>::const_iterator &it) -> bool
 		{
-			if(it->Destination() && it->Destination()->IsInSystem(system))
+			if(it->Destination() && it->Destination().GetSystem() == system)
 			{
-				if(it->Destination() == planet)
+				if(planet && it->Destination().GetPlanet() == planet)
 				{
 					availableIt = it;
 					return true;
@@ -1105,10 +1105,10 @@ bool MissionPanel::FindMissionForSystem(const System *system)
 	acceptedIt = accepted.end();
 
 	for(availableIt = available.begin(); availableIt != available.end(); ++availableIt)
-		if(availableIt->Destination()->IsInSystem(system))
+		if(availableIt->Destination().GetSystem() == system)
 			return true;
 	for(acceptedIt = accepted.begin(); acceptedIt != accepted.end(); ++acceptedIt)
-		if(acceptedIt->IsVisible() && acceptedIt->Destination()->IsInSystem(system))
+		if(acceptedIt->IsVisible() && acceptedIt->Destination().GetSystem() == system)
 			return true;
 
 	return false;
@@ -1163,5 +1163,5 @@ void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 		}
 
 	cycleInvolvedIndex = 0;
-	CenterOnSystem(mission.Destination()->GetSystem());
+	CenterOnSystem(mission.Destination().GetSystem());
 }

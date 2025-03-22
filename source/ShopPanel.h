@@ -74,7 +74,7 @@ protected:
 protected:
 	void DrawShip(const Ship &ship, const Point &center, bool isSelected);
 
-	void CheckForMissions(Mission::Location location);
+	void CheckForMissions(Mission::Setting setting);
 
 	// These are for the individual shop panels to override.
 	virtual int TileSize() const = 0;

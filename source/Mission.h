@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
+#include "Location.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
@@ -89,12 +90,12 @@ public:
 	bool IsMinor() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
-	bool IsAtLocation(Location location) const;
+	enum Setting {SPACEPORT, LANDING, SHIPYARD, OUTFITTER, JOB_BOARD, JOB, ASSISTING, BOARDING, ENTERING};
+	bool IsAtSetting(Setting setting) const;
 
 	// Information about what you are doing.
+	const Location &Destination() const;
 	const Ship *SourceShip() const;
-	const Planet *Destination() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
 	const std::set<const Planet *> &Stopovers() const;
@@ -200,7 +201,7 @@ private:
 	std::string displayName;
 	std::string description;
 	std::string blocked;
-	Location location = SPACEPORT;
+	Setting setting = SPACEPORT;
 
 	EsUuid uuid;
 
@@ -241,11 +242,12 @@ private:
 	ConditionSet toComplete;
 	ConditionSet toFail;
 
-	const Planet *source = nullptr;
+	Location source;
 	// The ship this mission originated from, if it is a boarding mission.
 	const Ship *sourceShip = nullptr;
 	LocationFilter sourceFilter;
-	const Planet *destination = nullptr;
+	bool finishInSystem = false;
+	Location destination;
 	LocationFilter destinationFilter;
 	// Systems that must be visited:
 	std::set<const System *> waypoints;

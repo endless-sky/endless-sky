@@ -213,14 +213,14 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
-			location = JOB;
+			setting = JOB;
 		else if(child.Token(0) == "landing")
-			location = LANDING;
+			setting = LANDING;
 		else if(child.Token(0) == "assisting")
-			location = ASSISTING;
+			setting = ASSISTING;
 		else if(child.Token(0) == "boarding")
 		{
-			location = BOARDING;
+			setting = BOARDING;
 			for(const DataNode &grand : child)
 				if(grand.Token(0) == "override capture")
 					overridesCapture = true;
@@ -228,11 +228,11 @@ void Mission::Load(const DataNode &node)
 					grand.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(child.Token(0) == "shipyard")
-			location = SHIPYARD;
+			setting = SHIPYARD;
 		else if(child.Token(0) == "outfitter")
-			location = OUTFITTER;
+			setting = OUTFITTER;
 		else if(child.Token(0) == "job board")
-			location = JOB_BOARD;
+			setting = JOB_BOARD;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -261,8 +261,16 @@ void Mission::Load(const DataNode &node)
 		}
 		else if(child.Token(0) == "source" && child.Size() >= 2)
 		{
-			source = GameData::Planets().Get(child.Token(1));
-			ParseMixedSpecificity(child, "planet", 2);
+			if(setting == ENTERING)
+			{
+				source = GameData::Systems().Get(child.Token(1));
+				ParseMixedSpecificity(child, "system", 2);
+			}
+			else
+			{
+				source = GameData::Planets().Get(child.Token(1));
+				ParseMixedSpecificity(child, "planet", 2);
+			}
 		}
 		else if(child.Token(0) == "source")
 			sourceFilter.Load(child);
@@ -270,6 +278,15 @@ void Mission::Load(const DataNode &node)
 		{
 			destination = GameData::Planets().Get(child.Token(1));
 			ParseMixedSpecificity(child, "planet", 2);
+		}
+		else if(child.Token(0) == "destination system")
+		{
+			finishInSystem = true;
+			if(child.Size() >= 2)
+			{
+				destination = GameData::Systems().Get(child.Token(1));
+				ParseMixedSpecificity(child, "system", 2);
+			}
 		}
 		else if(child.Token(0) == "destination")
 			destinationFilter.Load(child);
@@ -341,7 +358,7 @@ void Mission::Load(const DataNode &node)
 
 	if(displayName.empty())
 		displayName = name;
-	if(hasPriority && location == LANDING)
+	if(hasPriority && setting == LANDING)
 		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
@@ -382,17 +399,17 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("minor");
 		if(autosave)
 			out.Write("autosave");
-		if(location == LANDING)
+		if(setting == LANDING)
 			out.Write("landing");
-		else if(location == SHIPYARD)
+		else if(setting == SHIPYARD)
 			out.Write("shipyard");
-		else if(location == OUTFITTER)
+		else if(setting == OUTFITTER)
 			out.Write("outfitter");
-		else if(location == JOB_BOARD)
+		else if(setting == JOB_BOARD)
 			out.Write("job board");
-		else if(location == ASSISTING)
+		else if(setting == ASSISTING)
 			out.Write("assisting");
-		else if(location == BOARDING)
+		else if(setting == BOARDING)
 		{
 			out.Write("boarding");
 			if(overridesCapture)
@@ -404,8 +421,10 @@ void Mission::Save(DataWriter &out, const string &tag) const
 				out.EndChild();
 			}
 		}
-		else if(location == JOB)
+		else if(setting == JOB)
 			out.Write("job");
+		else if(setting == ENTERING)
+			out.Write("entering");
 		if(!clearance.empty())
 		{
 			out.Write("clearance", clearance);
@@ -456,8 +475,10 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			}
 			out.EndChild();
 		}
-		if(destination)
-			out.Write("destination", destination->TrueName());
+		if(destination.planet)
+			out.Write("destination", destination.planet->TrueName());
+		else if(destination.system)
+			out.Write("destination system", destination.system->TrueName());
 		for(const System *system : waypoints)
 			out.Write("waypoint", system->TrueName());
 		for(const System *system : visitedWaypoints)
@@ -536,11 +557,20 @@ bool Mission::IsVisible() const
 bool Mission::IsValid() const
 {
 	// Planets must be defined and in a system. However, a source system does not necessarily exist.
-	if(source && !source->IsValid())
+	if(source.planet && !source.planet->IsValid())
+		return false;
+	// Source systems must be valid if specified.
+	if(source.system && !source.system->IsValid())
 		return false;
 	// Every mission is required to have a destination.
-	if(!destination || !destination->IsValid())
+	// This can be either a planet or system.
+	if(!destination)
 		return false;
+	if(destination.planet && !destination.planet->IsValid())
+		return false;
+	if(destination.system && !destination.system->IsValid())
+		return false;
+
 	// All stopovers must be valid.
 	for(auto &&planet : Stopovers())
 		if(!planet->IsValid())
@@ -615,9 +645,9 @@ bool Mission::IsMinor() const
 
 
 
-bool Mission::IsAtLocation(Location location) const
+bool Mission::IsAtSetting(Setting setting) const
 {
-	return (this->location == location);
+	return (this->setting == setting);
 }
 
 
@@ -630,7 +660,7 @@ const Ship *Mission::SourceShip() const
 
 
 
-const Planet *Mission::Destination() const
+const Location &Mission::Destination() const
 {
 	return destination;
 }
@@ -778,7 +808,7 @@ bool Mission::HasClearance(const Planet *planet) const
 {
 	if(clearance.empty())
 		return false;
-	if(planet == destination || stopovers.contains(planet) || visitedStopovers.contains(planet))
+	if(planet == destination.planet || stopovers.contains(planet) || visitedStopovers.contains(planet))
 		return true;
 	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
 }
@@ -806,7 +836,7 @@ bool Mission::HasFullClearance() const
 // Check if it's possible to offer or complete this mission right now.
 bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardingShip) const
 {
-	if(location == BOARDING || location == ASSISTING)
+	if(setting == BOARDING || setting == ASSISTING)
 	{
 		if(!boardingShip)
 			return false;
@@ -814,9 +844,17 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
+	else if(setting == ENTERING)
+	{
+		if(source.system && source.system != player.GetSystem())
+			return false;
+
+		if(!sourceFilter.Matches(player.GetSystem()))
+			return false;
+	}
 	else
 	{
-		if(source && source != player.GetPlanet())
+		if(source.planet && source.planet != player.GetPlanet())
 			return false;
 
 		if(!sourceFilter.Matches(player.GetPlanet()))
@@ -895,7 +933,9 @@ bool Mission::HasSpace(const Ship &ship) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination)
+	if(destination.planet && player.GetPlanet() != destination.planet)
+		return false;
+	else if(destination.system && player.GetSystem() != destination.system)
 		return false;
 
 	return IsSatisfied(player);
@@ -1133,7 +1173,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 
 	// "Jobs" should never show dialogs when offered, nor should they call the
 	// player's mission callback.
-	if(trigger == OFFER && location == JOB)
+	if(trigger == OFFER && setting == JOB)
 		ui = nullptr;
 
 	// If this trigger has actions tied to it, perform them. Otherwise, check
@@ -1146,9 +1186,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// mission dialog or conversation. Invisible missions don't show this
 	// marker.
 	if(it != actions.end())
-		it->second.Do(player, ui, this, (destination && isVisible) ? destination->GetSystem() : nullptr,
+		it->second.Do(player, ui, this, (destination && isVisible) ? destination.GetSystem() : nullptr,
 			boardingShip, IsUnique());
-	else if(trigger == OFFER && location != JOB)
+	else if(trigger == OFFER && setting != JOB)
 		player.MissionCallback(Conversation::ACCEPT);
 
 	return true;
@@ -1260,6 +1300,12 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 		// any was performed, update this mission's NPC spawn states.
 		if(Enter(system, player, ui))
 			UpdateNPCs(player);
+
+		// This code will probably need to be moved after the NPC check below,
+		// or that moved up, depending on if NPC stuff needs to be updated before checking completion.
+		if(!destination.GetPlanet() && system == destination.GetSystem()
+				&& CanComplete(player) && IsSatisfied(player))
+			Do(COMPLETE, player, ui);
 	}
 
 	for(NPC &npc : npcs)
@@ -1302,7 +1348,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.isNonBlocking = isNonBlocking;
 	result.isMinor = isMinor;
 	result.autosave = autosave;
-	result.location = location;
+	result.setting = setting;
 	result.overridesCapture = overridesCapture;
 	result.sourceShip = boardingShip.get();
 	result.repeat = repeat;
@@ -1348,13 +1394,16 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.destination = destination;
 	if(!result.destination && !destinationFilter.IsEmpty())
 	{
-		result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
+		if(finishInSystem)
+			result.destination = destinationFilter.PickSystem(sourceSystem);
+		else
+			result.destination = destinationFilter.PickPlanet(sourceSystem, ignoreClearance || !clearance.empty());
 		if(!result.destination)
 			return result;
 	}
 	// If no destination is specified, it is the same as the source planet. Also
 	// use the source planet if the given destination is not a valid planet.
-	if(!result.destination || !result.destination->IsValid())
+	if(!result.destination || !result.destination.IsValid())
 	{
 		if(player.GetPlanet())
 			result.destination = player.GetPlanet();
@@ -1369,7 +1418,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
 		if(expandedCargo == "random")
-			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
+			commodity = PickCommodity(*sourceSystem, *result.destination.GetSystem());
 		else
 		{
 			for(const Trade::Commodity &option : GameData::Commodities())
@@ -1445,9 +1494,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<origin>"] = player.GetPlanet()->DisplayName();
 	else if(boardingShip)
 		subs["<origin>"] = boardingShip->Name();
-	subs["<planet>"] = result.destination ? result.destination->DisplayName() : "";
-	subs["<system>"] = result.destination ? result.destination->GetSystem()->DisplayName() : "";
-	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
+	subs["<planet>"] = result.destination.planet ? result.destination.planet->DisplayName() : "";
+	subs["<system>"] = result.destination ? result.destination.GetSystem()->DisplayName() : "";
+	subs["<destination>"] = result.destination.planet ? subs["<planet>"] + " in the " + subs["<system>"] + " system" :
+			"the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
 	if(result.paymentApparent)
@@ -1509,7 +1559,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination.GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1616,10 +1666,10 @@ int Mission::CalculateJumps(const System *sourceSystem)
 		destinations.erase(bestIt);
 	}
 	DistanceMap distance(sourceSystem,
-			distanceCalcSettings.WormholeStrat(),
-			distanceCalcSettings.AssumesJumpDrive());
-	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
-	expectedJumps += distance.Days(*destination->GetSystem());
+		distanceCalcSettings.WormholeStrat(),
+		distanceCalcSettings.AssumesJumpDrive());
+		// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
+	expectedJumps += distance.Days(*destination.GetSystem());
 
 	return expectedJumps;
 }
