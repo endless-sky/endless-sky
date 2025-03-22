@@ -3490,17 +3490,13 @@ mission "Coalition: Struggling Author 3"
 				`	"How good is it?"`
 					goto good
 				`	"What did you usually eat back in human space?"`
-			`	"My diet wasn't exactly the best. All I had was carbs and takeout food; I never could find time in my schedule to cook at home. I was working hard on 'Beyond the Hyperdrive' at the time. This food is better than anything I could ever find on Zug."`
-			choice
-				`	"What's our plan now?"`
-					goto published
-				`	"What are we going to do next?"`
-					goto published
+			`	"My diet wasn't exactly the best. All I had was carbs and takeout food; I never could find time in my schedule to cook at home. I was working hard on 'Beyond the Hyperdrive' at the time. This food is better than anything I could ever find on Zug.`
+				goto published
 			label good
 			`	"It's very good. Probably better than anything I've had back on Zug. Now, I'd like to get my book published here."`
 				goto company
 			label published
-			`	"I want to get my book published here."`
+			`	"On another note, I want to get my book published here."`
 			label company
 			`	"Have you found a publishing company yet?" you ask.`
 			`	"No," Anna replies, then begins complaining about how it was extremely difficult for her to communicate with the restaurant staff, who did not have a translation box.`
