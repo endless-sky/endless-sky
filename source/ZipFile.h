@@ -28,7 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ZipFile {
 public:
 	explicit ZipFile(const std::filesystem::path &zipPath);
-	ZipFile(const ZipFile& other) = delete;
+	ZipFile(const ZipFile &other) = delete;
 	~ZipFile();
 
 	/// Lists files in a directory inside of a zip file.

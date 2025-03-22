@@ -55,8 +55,7 @@ vector<filesystem::path> ZipFile::ListFiles(const filesystem::path &directory, b
 	lock_guard<recursive_mutex> guard(lock);
 	if(unzGoToFirstFile(zipFile) != UNZ_OK)
 		throw runtime_error("Failed to go to first file in ZIP");
-	do
-	{
+	do {
 		char filename[256];
 		unz_file_info fileInfo;
 		unzGetCurrentFileInfo(zipFile, &fileInfo, filename, sizeof(filename), NULL, 0, NULL, 0);
