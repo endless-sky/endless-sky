@@ -2862,6 +2862,7 @@ void AI::MoveToAttack(const Ship &ship, Command &command, const Body &target)
 	// This ship is moving away from its target but facing mostly towards it.
 	else if((facing >= 0. && direction.Length() > diameter)
 			|| (ship.Velocity().Dot(direction) < 0. && facing >= .9))
+		{
 		command |= Command::FORWARD;
 		// Use afterburner, if applicable.
 		if(direction.Length() > 600. && ShouldUseAfterburner(ship))
