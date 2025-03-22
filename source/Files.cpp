@@ -398,11 +398,14 @@ shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 {
 	if(!exists(path))
 	{
-		// Writing to a zip is not supported.
-		shared_ptr<ZipFile> zip = GetZipFile(path);
-		if(zip)
-			return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
-		return {};
+		if(!write)
+		{
+			// Writing to a zip is not supported.
+			shared_ptr<ZipFile> zip = GetZipFile(path);
+			if(zip)
+				return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
+			return {};
+		}
 	}
 
 	if(write)
