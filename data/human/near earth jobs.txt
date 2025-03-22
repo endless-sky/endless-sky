@@ -238,6 +238,7 @@ mission "Transport farmers to Mars"
 	passengers 2 2 .8
 	to offer
 		random < 50
+		has "landing access: Mars"
 	source "Earth"
 	destination "Mars"
 	on visit
@@ -255,6 +256,7 @@ mission "Transport tourists to Luna"
 	passengers 2 2 .8
 	to offer
 		random < 50
+		has "landing access: Luna"
 	source "Earth"
 	destination "Luna"
 	on visit
@@ -271,6 +273,7 @@ mission "Transport seasonal workers to Earth"
 	passengers 2 2 .8
 	to offer
 		random < 50
+		has "landing access: Earth"
 	source "Mars"
 	destination "Earth"
 	on visit
