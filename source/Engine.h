@@ -77,7 +77,7 @@ public:
 	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
-	float FrameTime();
+	float FrameTime() const;
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);

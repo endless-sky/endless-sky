@@ -1106,7 +1106,7 @@ void Engine::Go()
 
 
 
-float Engine::FrameTime()
+float Engine::FrameTime() const
 {
 	return frameTime[currentCalcBuffer];
 }
