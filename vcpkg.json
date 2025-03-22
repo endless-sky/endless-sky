@@ -37,7 +37,8 @@
 			"description": "System libraries not provided in the Steam Sniper Runtime.",
 			"dependencies": [
 				"libmad",
-				"catch2"
+				"catch2",
+				"minizip"
 			]
 		},
 		"test-libs": {

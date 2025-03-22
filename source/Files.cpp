@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <mutex>
 #include <stdexcept>
+#include <sstream>
 
 using namespace std;
 
