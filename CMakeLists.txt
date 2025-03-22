@@ -92,7 +92,6 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 find_package(ZLIB REQUIRED)
 find_package(PkgConfig REQUIRED PkgConfig PkgConf)
 pkg_check_modules(MINIZIP REQUIRED minizip)
-message(${MINIZIP_LIBRARIES})
 
 # Find the MinGW runtime DLLs.
 if(MINGW AND WIN32)
