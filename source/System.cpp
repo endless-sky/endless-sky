@@ -235,6 +235,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "link")
 		{
+			if(value == trueName)
+			{
+				child.PrintTrace("Error: systems cannot link to themselves.");
+				continue;
+			}
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
 			else
@@ -251,8 +256,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(child.Size() >= 4)
+			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "minables")
 		{
@@ -266,8 +274,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(child.Size() >= 4)
+			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "fleet")
 		{
@@ -1068,7 +1079,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 
 
-void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
+void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing) const
 {
 	const string &key = node.Token(0);
 	bool hasValue = (node.Size() >= 2);

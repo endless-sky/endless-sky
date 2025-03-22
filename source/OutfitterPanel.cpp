@@ -284,7 +284,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		const Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
-		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
+		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);

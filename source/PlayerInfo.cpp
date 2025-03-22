@@ -432,7 +432,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// cargo and passengers.
 	UpdateCargoCapacities();
 
-	auto DistributeMissionCargo = [](map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
+	auto DistributeMissionCargo = [](const map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
 			vector<shared_ptr<Ship>> &ships, CargoHold &cargo, bool passengers) -> void
 	{
 		for(const auto &it : toDistribute)
@@ -2127,10 +2127,12 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
-			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
+			if(it->IsFailed(*this))
+				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
