@@ -91,7 +91,7 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
 find_package(PkgConfig REQUIRED PkgConfig PkgConf)
-pkg_check_modules(MINIZIP REQUIRED minizip)
+pkg_check_modules(MINIZIP REQUIRED minizip-ng)
 
 # Find the MinGW runtime DLLs.
 if(MINGW AND WIN32)
