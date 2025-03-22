@@ -51,7 +51,7 @@ Endless Sky requires precompiled libraries to compile and play: [Download link](
 Install [Homebrew](https://brew.sh). Once it is installed, use it to install the tools and libraries you will need:
 
 ```bash
-$ brew install cmake ninja mad libpng jpeg-turbo sdl2
+$ brew install cmake ninja mad libpng jpeg-turbo sdl2 minizip
 ```
 
 **Note**: If you are on Apple Silicon (and want to compile for ARM), make sure that you are using ARM Homebrew!
@@ -70,7 +70,7 @@ In addition to the below dependencies, you will also need CMake 3.16 or newer, h
 <summary>DEB-based distros</summary>
 
 ```
-g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libopenal-dev libmad0-dev uuid-dev
+g++ cmake ninja-build curl libsdl2-dev libpng-dev libjpeg-dev libgl1-mesa-dev libglew-dev libminizip-dev libopenal-dev libmad0-dev uuid-dev
 ```
 Additionally, if you want to build unit tests:
 ```
@@ -85,7 +85,7 @@ While sufficient versions of other dependencies are available, Ubuntu 22.04 does
 <summary>RPM-based distros</summary>
 
 ```
-gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel openal-soft-devel libmad-devel libuuid-devel
+gcc-c++ cmake ninja-build SDL2-devel libpng-devel libjpeg-turbo-devel mesa-libGL-devel glew-devel minizip-devel openal-soft-devel libmad-devel libuuid-devel
 ```
 Additionally, if you want to build unit tests:
 ```
