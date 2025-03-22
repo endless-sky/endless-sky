@@ -18,6 +18,8 @@ mission "Intro [0]"
 	passengers 1
 	source "New Boston"
 	destination "New Greenland"
+	to offer
+		not "hai space start"
 	
 	on offer
 		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
@@ -517,7 +519,7 @@ mission "Intro [3 Interceptor]"
 				`	"Sure."`
 				`	"No thanks."`
 					goto end
-			`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on New Boston.`
+			`	He buys you a beer. It tastes a little stale, but it's not the worst beer you've ever had. You can't help but feel sorry for the people who work here, so isolated and cut off from even the basic amenities you took for granted on <starting planet>.`
 			label end
 			`	"Anyway," says James, "would you be willing to take me on one more journey? It's time for me to head for that retirement home."`
 			choice

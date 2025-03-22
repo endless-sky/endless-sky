@@ -37,8 +37,8 @@ class System;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
-	explicit MapDetailPanel(const MapPanel &panel);
+	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr, bool fromMission = false);
+	explicit MapDetailPanel(const MapPanel &panel, bool isStars);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -78,6 +78,7 @@ private:
 
 	// Which panel is being hovered over and should be affected by up and down keys.
 	bool isPlanetViewSelected = false;
+	bool isStars = false;
 
 	ScrollVar<double> scroll;
 	ScrollBar scrollbar;

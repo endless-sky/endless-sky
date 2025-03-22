@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
-#include "LineShader.h"
+#include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "MessageLogPanel.h"
 #include "Messages.h"
@@ -366,7 +366,8 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		for(const auto &it : target->Outfits())
 		{
 			string outfitNameForDisplay = (it.second == 1 ? it.first->DisplayName() : it.first->PluralName());
-			outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
+			if(it.first->IsDefined() && !it.first->Category().empty() && !outfitNameForDisplay.empty())
+				outfitsByCategory[it.first->Category()].emplace(std::move(outfitNameForDisplay), it.second);
 		}
 		for(const auto &it : outfitsByCategory)
 		{
@@ -430,9 +431,9 @@ bool MainPanel::ShowHailPanel()
 		target.reset();
 
 	if(flagship->IsEnteringHyperspace())
-		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::High);
+		Messages::Add("Unable to send hail: your flagship is entering hyperspace.", Messages::Importance::Highest);
 	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
-		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::High);
+		Messages::Add("Unable to send hail: your flagship is cloaked.", Messages::Importance::Highest);
 	else if(target)
 	{
 		// If the target is out of system, always report a generic response
@@ -440,10 +441,10 @@ bool MainPanel::ShowHailPanel()
 		// not. If it's in system and jumping, report that.
 		if(target->Zoom() < 1. || target->IsDestroyed() || target->GetSystem() != player.GetSystem()
 				|| target->IsCloaked())
-			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::High);
+			Messages::Add("Unable to hail target " + target->Noun() + ".", Messages::Importance::Highest);
 		else if(target->IsEnteringHyperspace())
-			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace."
-				, Messages::Importance::High);
+			Messages::Add("Unable to send hail: " + target->Noun() + " is entering hyperspace.",
+				Messages::Importance::Highest);
 		else
 		{
 			GetUI()->Push(new HailPanel(player, target,
@@ -455,11 +456,11 @@ bool MainPanel::ShowHailPanel()
 	{
 		const Planet *planet = flagship->GetTargetStellar()->GetPlanet();
 		if(!planet)
-			Messages::Add("Unable to send hail.", Messages::Importance::High);
+			Messages::Add("Unable to send hail.", Messages::Importance::Highest);
 		else if(planet->IsWormhole())
 		{
 			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
-			Messages::Add(wormholeHail->Get(), Messages::Importance::High);
+			Messages::Add(wormholeHail->Get(), Messages::Importance::Highest);
 		}
 		else if(planet->IsInhabited())
 		{
@@ -467,11 +468,11 @@ bool MainPanel::ShowHailPanel()
 			return true;
 		}
 		else
-			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited."
-				, Messages::Importance::High);
+			Messages::Add("Unable to send hail: " + planet->Noun() + " is not inhabited.",
+				Messages::Importance::Highest);
 	}
 	else
-		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::High);
+		Messages::Add("Unable to send hail: no target selected.", Messages::Importance::Highest);
 
 	return false;
 }
