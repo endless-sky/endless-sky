@@ -408,8 +408,9 @@ government "Deep"
 	color .5 .7 .9
 	"player reputation" 1
 	"attitude toward"
-		"Republic" 1
 		"Deep Security" 1
+		"Merchant" .2
+		"Republic" 1
 
 government "Deep Security"
 	swizzle 0
