@@ -20,7 +20,7 @@
 					"name": "libuuid",
 					"platform": "linux"
 				},
-				"zlib",
+				"minizip",
 				"openal-soft",
 				{
 					"name": "openal-soft",
@@ -29,7 +29,8 @@
 					],
 					"platform": "linux"
 				},
-				"sdl2"
+				"sdl2",
+				"pkgconf"
 			]
 		},
 		"steam-libs": {
