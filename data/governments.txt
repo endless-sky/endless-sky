@@ -433,6 +433,7 @@ government "Deep Security (Hostile)"
 	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
+	"friendly hail" "friendly deep"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
 	"hostile disabled hail" "hostile disabled"
