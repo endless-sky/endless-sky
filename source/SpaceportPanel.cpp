@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpaceportPanel.h"
 
+#include "ConditionContext.h"
 #include "text/alignment.hpp"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -65,7 +66,7 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 	player.AddPlayerSubstitutions(subs);
 	newsMessage.Wrap(Format::Replace(news->Message(), subs));
 }

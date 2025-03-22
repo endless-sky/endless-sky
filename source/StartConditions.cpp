@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StartConditions.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -319,18 +320,18 @@ const string &StartConditions::GetDebt() const noexcept
 
 bool StartConditions::Visible(const ConditionsStore &conditionsStore) const
 {
-	return toDisplay.Test(conditionsStore);
+	return toDisplay.Test(conditionsStore, DEFAULT_CONDITION_CONTEXT);
 }
 
 
 
 void StartConditions::SetState(const ConditionsStore &conditionsStore)
 {
-	if(toDisplay.Test(conditionsStore))
+	if(toDisplay.Test(conditionsStore, DEFAULT_CONDITION_CONTEXT))
 	{
-		if(toReveal.Test(conditionsStore))
+		if(toReveal.Test(conditionsStore, DEFAULT_CONDITION_CONTEXT))
 		{
-			if(toUnlock.Test(conditionsStore))
+			if(toUnlock.Test(conditionsStore, DEFAULT_CONDITION_CONTEXT))
 				state = StartState::UNLOCKED;
 			else
 				state = StartState::REVEALED;
