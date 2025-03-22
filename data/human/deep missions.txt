@@ -4254,5 +4254,5 @@ mission deep_rep
 	to offer
 		"reputation: Deep" <= -1000
 	on offer
-		"reputation: Deep" = 1 
+		"reputation: Deep" = 1
 		fail
