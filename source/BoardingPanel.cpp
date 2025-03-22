@@ -158,7 +158,7 @@ void BoardingPanel::Draw()
 			FillShader::Fill(Point(-155., y + 10.), Point(360., 20.), back);
 
 		// Color the item based on whether you have space for it.
-		const Color &color = item.CanTake(*you) ? isSelected ? bright : medium : dim;
+		const Color &color = item.CanTake(*you) == CanTakeResult::CAN_TAKE ? isSelected ? bright : medium : dim;
 		Point pos(-320., y + fontOff);
 		font.Draw(item.Name(), pos, color);
 		font.Draw({item.Value(), {260, Alignment::RIGHT}}, pos, color);
@@ -255,6 +255,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				message = "No item selected.";
 			else if(canTake == CanTakeResult::NO_CARGO_SPACE)
 				message = "You do not have enough cargo space to take this item, and you cannot install it as ammo.";
+			else if(canTake == CanTakeResult::NO_CARGO_OUTFIT_ATTRIBUTE)
+				message = "This item cannot be placed in cargo, and you cannot install it as ammo.";
 			else
 				message = "You cannot plunder now.";
 
@@ -598,21 +600,21 @@ const Outfit *BoardingPanel::Plunder::GetOutfit() const
 
 // Find out how many of these I can take if I have this amount of cargo
 // space free.
-bool BoardingPanel::Plunder::CanTake(const Ship &ship) const
+BoardingPanel::CanTakeResult BoardingPanel::Plunder::CanTake(const Ship &ship) const
 {
-	// If there's cargo space for this outfit, and the outfit can be placed in cargo, you can take it.
-	double mass = UnitMass();
-	if(ship.Cargo().Free() >= mass && !outfit->Attributes().Get("no cargo"))
-		return true;
-
-	// Otherwise, check if it is ammo for any of your weapons. If so, check if
-	// you can install it as an outfit.
 	if(outfit)
+	{
+		// Check if it is ammo for any of your weapons. If so, check if you can install it as an outfit.
 		for(const auto &it : ship.Outfits())
 			if(it.first != outfit && it.first->Ammo() == outfit && ship.Attributes().CanAdd(*outfit))
-				return true;
+				return CanTakeResult::CAN_TAKE;
+		
+		// If you can't install the outfit, check if you can move it to cargo.
+		if(outfit->Attributes().Get("no cargo"))
+			return CanTakeResult::NO_CARGO_OUTFIT_ATTRIBUTE;
+	}
 
-	return false;
+	return ship.Cargo().Free() < UnitMass() ? CanTakeResult::NO_CARGO_SPACE : CanTakeResult::CAN_TAKE;
 }
 
 
@@ -669,7 +671,7 @@ BoardingPanel::CanTakeResult BoardingPanel::CanTake() const
 	if(static_cast<unsigned>(selected) >= plunder.size())
 		return CanTakeResult::NO_SELECTION;
 
-	return plunder[selected].CanTake(*you) ? CanTakeResult::CAN_TAKE : CanTakeResult::NO_CARGO_SPACE;
+	return plunder[selected].CanTake(*you);
 }
 
 
