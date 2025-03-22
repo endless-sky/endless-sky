@@ -25,6 +25,8 @@ government "Aberrant"
 		"Indigenous Lifeform (Tree)" 0
 		"Indigenous Lifeform (Tree Two)" 0
 		"Ka'sei" 0
+		"Marauder" 0
+		"Parrot" 0
 
 	"penalty for"
 		assist 0
@@ -409,6 +411,10 @@ government "Deep"
 		"Deep Security" 1
 		"Merchant" .2
 		"Republic" 1
+	"friendly hail" "friendly deep"
+	"friendly disabled hail" "friendly disabled"
+	"hostile hail" "hostile deep"
+	"hostile disabled hail" "hostile disabled"
 
 government "Deep Security"
 	swizzle 0
@@ -427,6 +433,7 @@ government "Deep Security (Hostile)"
 	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000
+	"friendly hail" "friendly deep"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
 	"hostile disabled hail" "hostile disabled"
@@ -1257,7 +1264,10 @@ government "Ka'het"
 	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
+		"Builder" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
@@ -1270,7 +1280,10 @@ government "Ka'het (Infighting)"
 	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
+		"Builder" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
