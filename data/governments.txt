@@ -422,7 +422,7 @@ government "Deep Security"
 	"hostile hail" "hostile deep"
 	"hostile disabled hail" "hostile disabled"
 
-government "Deep Security (hostile)"
+government "Deep Security (Hostile)"
 	"display name" "Deep Security"
 	swizzle 0
 	"player reputation" -1000

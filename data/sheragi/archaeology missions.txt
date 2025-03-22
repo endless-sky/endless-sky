@@ -208,37 +208,37 @@ mission "Deep Archaeology 5"
 	
 	npc
 		personality heroic
-		government "Deep"
+		government "Deep Security (Hostile)"
 		ship "Raven (Afterburner)" "D.S.S. Wyrd"
 		to despawn
 			has "dps wyrd dead"
 	npc
 		personality heroic
-		government "Deep"
+		government "Deep Security (Hostile)"
 		ship "Raven (Afterburner)" "D.S.S. Skuld"
 		to despawn
 			has "dps skuld dead"
 	npc
 		personality heroic
-		government "Deep"
+		government "Deep Security (Hostile)"
 		ship "Raven (Afterburner)" "D.S.S. Verthandi"
 		to despawn
 			has "dps verthandi dead"
 	npc
 		personality heroic
-		government "Deep"
+		government "Deep Security (Hostile)"
 		ship "Corvette (Speedy)" "D.S.S. Wyrdson"
 		to despawn
 			not "dps wyrd dead"
 	npc
 		personality heroic
-		government "Deep"
+		government "Deep Security (Hostile)"
 		ship "Corvette (Speedy)" "D.S.S. Skuldson"
 		to despawn
 			not "dps skuld dead"
 	npc
 		personality heroic
-		government "Deep"
+		government "Deep Security (Hostile)"
 		ship "Corvette (Speedy)" "D.S.S. Verthandison"
 		to despawn
 			not "dps verthandi dead"
