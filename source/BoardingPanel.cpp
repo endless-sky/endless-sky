@@ -608,7 +608,7 @@ BoardingPanel::CanTakeResult BoardingPanel::Plunder::CanTake(const Ship &ship) c
 		for(const auto &it : ship.Outfits())
 			if(it.first != outfit && it.first->Ammo() == outfit && ship.Attributes().CanAdd(*outfit))
 				return CanTakeResult::CAN_TAKE;
-		
+
 		// If you can't install the outfit, check if you can move it to cargo.
 		if(outfit->Attributes().Get("no cargo"))
 			return CanTakeResult::NO_CARGO_OUTFIT_ATTRIBUTE;
