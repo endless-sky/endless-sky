@@ -272,7 +272,7 @@ void Ship::Load(const DataNode &node)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
-		else if(key == "variant map shipyard name" && child.Size() >= 2)
+		else if(key == "variant map name" && child.Size() >= 2)
 			variantMapShopName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
