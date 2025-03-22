@@ -53,7 +53,7 @@ StellarObject::StellarObject()
 
 bool StellarObject::HasSprite() const
 {
-	return usingMatches || Body::HasSprite();
+	return Body::HasSprite() || usingMatches;
 }
 
 
