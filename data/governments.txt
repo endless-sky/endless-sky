@@ -405,7 +405,7 @@ government "Conlatio"
 	"hostile disabled hail" "incipias hostile disabled"
 
 government "Deep"
-	color 1 1 1
+	color .5 .7 .9
 	"player reputation" 1
 	"attitude toward"
 		"Republic" 1
