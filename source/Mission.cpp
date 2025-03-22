@@ -152,6 +152,16 @@ void Mission::Load(const DataNode &node)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(child.Token(0) == "description" && child.Size() >= 2)
 			description = child.Token(1);
+		else if(child.Token(0) == "storyline" && child.Size() >= 2)
+		{
+			storylineName = child.Token(1);
+			storyline = GameData::Storylines().Get(storylineName);
+			for(const DataNode &grand : child)
+				if(grand.Token(0) == "failsafe")
+					storylineFailsafe = true;
+				else if(grand.Token(0) == "optional")
+					storylineOptional = true;
+		}
 		else if(child.Token(0) == "blocked" && child.Size() >= 2)
 			blocked = child.Token(1);
 		else if(child.Token(0) == "deadline" && child.Size() >= 4)
@@ -358,6 +368,26 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		out.Write("uuid", uuid.ToString());
 		if(!description.empty())
 			out.Write("description", description);
+		if(storyline != nullptr)
+		{
+			out.Write("storyline", storylineName);
+			if(storylineFailsafe)
+			{
+				out.BeginChild();
+				{
+					out.Write("failsafe");
+				}
+				out.EndChild();
+			}
+			if(storylineOptional)
+			{
+				out.BeginChild();
+				{
+					out.Write("optional");
+				}
+				out.EndChild();
+			}
+		}
 		if(!blocked.empty())
 			out.Write("blocked", blocked);
 		if(deadline)
@@ -521,6 +551,12 @@ const string &Mission::Description() const
 }
 
 
+const Storyline *Mission::GetStoryline() const
+{
+	return storyline;
+}
+
+
 
 // Check if this mission should be shown in your mission list. If not, the
 // player will not know this mission exists (which is sometimes useful).
@@ -611,6 +647,15 @@ bool Mission::IsNonBlocking() const
 bool Mission::IsMinor() const
 {
 	return isMinor;
+}
+
+
+
+// Check if this mission is optional within its storyline: optional missions
+// can be declined or failed without breaking the storyline.
+bool Mission::IsStorylineOptional() const
+{
+	return storylineOptional;
 }
 
 
@@ -1098,6 +1143,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		--player.Conditions()[name + ": active"];
 		++player.Conditions()[name + ": failed"];
+		// If the mission belongs to a storyline and is not marked failsafe, we log that the storyline is over
+		if(storyline != nullptr && !storylineFailsafe)
+			player.AddSpecialLog("Storylines", storylineName, "Failed due to the failure of mission " + name);
 	}
 	else if(trigger == ABORT)
 	{
@@ -1106,6 +1154,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		// Set the failed mission condition here as well for
 		// backwards compatibility.
 		++player.Conditions()[name + ": failed"];
+		// If the mission belongs to a storyline, we log that the storyline is over
+		if(storyline != nullptr)
+			player.AddSpecialLog("Storylines", storylineName, "Failed due to aborting mission " + name);
 	}
 
 	// Don't update any further conditions if this action exists and can't be completed.
@@ -1124,6 +1175,9 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	{
 		++player.Conditions()[name + ": offered"];
 		++player.Conditions()[name + ": declined"];
+		// If the mission belongs to a storyline and is not marked optional, we log that the storyline is over
+		if(storyline != nullptr && !storylineOptional)
+			player.AddSpecialLog("Storylines", storylineName, "Failed due to declining mission " + name);
 	}
 	else if(trigger == COMPLETE)
 	{
@@ -1307,6 +1361,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.sourceShip = boardingShip.get();
 	result.repeat = repeat;
 	result.name = name;
+	result.storylineName = storylineName;
+	result.storyline = storyline;
+	result.storylineFailsafe = storylineFailsafe;
+	result.storylineOptional = storylineOptional;
 	result.waypoints = waypoints;
 	result.markedSystems = markedSystems;
 	// Handle waypoint systems that are chosen randomly.

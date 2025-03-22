@@ -743,6 +743,13 @@ const Set<Sale<Ship>> &GameData::Shipyards()
 
 
 
+const Set<Storyline> &GameData::Storylines()
+{
+	return objects.storylines;
+}
+
+
+
 const Set<System> &GameData::Systems()
 {
 	return objects.systems;
