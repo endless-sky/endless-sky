@@ -1416,7 +1416,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 			attraction += ship->Attraction();
 		else
 		{
-			double emptyCargoRatio = 1. - (ship->Cargo().Free() / ship->Cargo().Size());
+			double emptyCargoRatio = 1. - ship->Cargo().FreePrecise() / ship->Cargo().Size();
 			// Normal attraction to filled cargo + attraction to the empty cargo.
 			attraction += ship->Attraction() * (1. - emptyCargoRatio + emptyCargoAttraction * emptyCargoRatio);
 		}
