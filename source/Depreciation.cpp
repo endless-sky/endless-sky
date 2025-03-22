@@ -175,9 +175,11 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 					Buy(it.first, day, source);
 	}
 	else
+	{
 		for(const auto &it : ship.Outfits())
 			for(int i = 0; i < it.second; ++i)
 				Buy(it.first, day, source);
+	}
 
 	// Then, check the base day for the ship chassis itself.
 	const Ship *base = GameData::Ships().Get(ship.TrueModelName());
@@ -273,8 +275,10 @@ int64_t Depreciation::Value(const Ship &ship, int day, bool storeOutfits) const
 				value += Value(it.first, day, it.second);
 	}
 	else
+	{
 		for(const auto &it : ship.Outfits())
 			value += Value(it.first, day, it.second);
+	}
 	return value;
 }
 
