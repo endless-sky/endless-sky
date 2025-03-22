@@ -1695,7 +1695,7 @@ government "Pug (Wanderer)"
 	"hostile hail" "hostile pug"
 	"hostile disabled hail" "hostile pug"
 
-color "governments: Quarg" .88 .77 0
+color "governments: Quarg" .77 .77 1
 
 # Quarg are split up to their respective areas, and an overall one is kept for missions or other use.
 government "Quarg"
