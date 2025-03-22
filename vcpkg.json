@@ -20,6 +20,7 @@
 					"name": "libuuid",
 					"platform": "linux"
 				},
+				"minizip",
 				"openal-soft",
 				{
 					"name": "openal-soft",
