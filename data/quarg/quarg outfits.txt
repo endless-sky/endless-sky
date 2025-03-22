@@ -251,7 +251,7 @@ outfit "Peripheral Repair Hub"
 	thumbnail "outfit/quarg peripheral repair hub"
 	"mass" 25
 	"outfit space" -25
-	"fuel generation" 0.1
+	"fuel generation" 0.025
 	"hull repair rate" 1
 	"hull energy" .5
 	description "The repair systems employed by the Quarg operate in ways that seem to defy reality, somehow gathering matter and injecting it into a ship's hull and fuel systems. This provides essential maintenance that benefits core aspects of spaceflight - durability, longevity, and most importantly, survivability."
@@ -265,7 +265,7 @@ outfit "Central Repair Hub"
 	thumbnail "outfit/quarg central repair hub"
 	"mass" 55
 	"outfit space" -55
-	"fuel generation" 0.21
+	"fuel generation" 0.07
 	"hull repair rate" 2.5
 	"hull energy" 1.25
 	description "In a manner which is not easily discernible to humans, this system collects ambient matter in space and feeds it back to the ship from a large central hub of wires and tubes. The accumulated matter is then used to both regenerate the ship's hull and refill its fuel reserves."
