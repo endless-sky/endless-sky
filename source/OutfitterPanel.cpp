@@ -165,7 +165,6 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 	// Check if this outfit is a "license".
 	bool isLicense = IsLicense(name);
 	int mapSize = outfit->Get("map");
-	bool mapMinables = outfit->Get("map minables");
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
@@ -179,7 +178,10 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(isLicense)
 			minCount = maxCount = player.HasLicense(LicenseRoot(name));
 		else if(mapSize)
+		{
+			bool mapMinables = outfit->Get("map minables");
 			minCount = maxCount = player.HasMapped(mapSize, mapMinables);
+		}
 		else
 		{
 			highlightDifferences = true;
@@ -523,9 +525,9 @@ void OutfitterPanel::Buy(bool onlyOwned)
 
 	// Special case: maps.
 	int mapSize = selectedOutfit->Get("map");
-	bool mapMinables = selectedOutfit->Get("map minables");
 	if(mapSize)
 	{
+		bool mapMinables = selectedOutfit->Get("map minables");
 		player.Map(mapSize, mapMinables);
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
 		return;

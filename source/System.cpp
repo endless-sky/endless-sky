@@ -493,7 +493,6 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	accessibleLinks.clear();
 	neighbors.clear();
 
-
 	payloads.clear();
 	for(const auto &asteroid : asteroids)
 		if(asteroid.Type())
