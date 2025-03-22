@@ -2815,6 +2815,10 @@ bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
 			SelectShip(ship, &first);
 		}
 	}
+	if(matched)
+	{
+		UI::PlaySound(UI::UISound::TARGET);
+	}
 	return matched;
 }
 

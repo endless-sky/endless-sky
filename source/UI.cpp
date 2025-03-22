@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UI.h"
 
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Panel.h"
 #include "Screen.h"
@@ -266,6 +267,34 @@ Point UI::GetMouse()
 	int y = 0;
 	SDL_GetMouseState(&x, &y);
 	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
+}
+
+
+
+void UI::PlaySound(UI::UISound sound)
+{
+	std::string name;
+	switch(sound)
+	{
+		case UISound::NORMAL:
+			name = "ui/click";
+			break;
+		case UISound::SOFT:
+			name = "ui/click_soft";
+			break;
+		case UISound::SOFT_BUZZ:
+			name = "ui/buzz_soft";
+			break;
+		case UISound::TARGET:
+			name = "ui/target";
+			break;
+		case UISound::FAILURE:
+			name = "fail";
+			break;
+		default:
+			return;
+	}
+	Audio::Play(Audio::Get(name), SoundCategory::UI);
 }
 
 
