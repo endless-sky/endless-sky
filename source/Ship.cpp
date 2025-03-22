@@ -1213,6 +1213,7 @@ const string &Ship::VariantName() const
 
 
 
+// Get the variant name to be displayed on the Shipyard tab of the Map screen.
 const string &Ship::VariantMapShopName() const
 {
 	return variantMapShopName;
