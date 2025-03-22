@@ -161,11 +161,13 @@ void MainPanel::Draw()
 
 		float sec = loadTimer.Time();
 		stringstream loadString;
-		loadString << std::fixed << setprecision(2) << sec * 1000. << "ms (" << lround(sec * 60. * 100.) << "%) GPU";
+		loadString << std::fixed << setprecision(2) << sec * 1000. << "ms ("
+			<< lround(sec * 60. * 100.) << "%) GPU";
 		font.Draw(loadString.str(), Point(10., Screen::Height() * -.5 + 5.), color);
 
 		loadString = {};
-		loadString << std::fixed << setprecision(2) << frameTime * 1000. << "ms (" << lround(frameTime * 60. * 100.) << "%) CPU";
+		loadString << std::fixed << setprecision(2) << frameTime * 1000. << "ms ("
+			<< lround(frameTime * 60. * 100.) << "%) CPU";
 		string ms = loadString.str();
 		font.Draw(ms, Point(-10. - font.Width(ms), Screen::Height() * -.5 + 5.), color);
 	}
