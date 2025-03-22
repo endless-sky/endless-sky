@@ -92,11 +92,12 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 find_package(ZLIB REQUIRED)
 find_package(PkgConfig REQUIRED PkgConfig PkgConf)
 
+# Minizip has a different target name in vcpkg.
 if(ES_USE_VCPKG)
-    find_package(unofficial-minizip CONFIG REQUIRED)
-    set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
+	find_package(unofficial-minizip CONFIG REQUIRED)
+	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
 else()
-    pkg_check_modules(MINIZIP REQUIRED minizip)
+	pkg_check_modules(MINIZIP REQUIRED minizip)
 endif()
 
 # Find the MinGW runtime DLLs.

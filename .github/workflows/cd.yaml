@@ -78,8 +78,6 @@ jobs:
       - name: Adjust version strings
         run: ./utils/cd_update_versions.sh
         shell: bash
-      - name: Find minizip
-        run: pkg-config --libs minizip
       - uses: lukka/get-cmake@latest
       - uses: lukka/run-vcpkg@v11
         with:
