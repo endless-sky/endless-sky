@@ -67,6 +67,9 @@ void MainPanel::Step()
 {
 	engine.Wait();
 
+	float calcTime = engine.FrameTime();
+	FrameTimer time;
+
 	// Depending on what UI element is on top, the game is "paused." This
 	// checks only already-drawn panels.
 	bool isActive = GetUI()->IsTop(this);
@@ -124,6 +127,8 @@ void MainPanel::Step()
 	else
 		canDrag = false;
 	canClick = isActive;
+
+	frameTime = time.Time() + calcTime;
 }
 
 
@@ -151,17 +156,20 @@ void MainPanel::Draw()
 
 	if(Preferences::Has("Show CPU / GPU load"))
 	{
-		string loadString = to_string(lround(load * 100.)) + "% GPU";
+		const Font &font = FontSet::Get(14);
 		const Color &color = *GameData::Colors().Get("medium");
-		FontSet::Get(14).Draw(loadString, Point(10., Screen::Height() * -.5 + 5.), color);
 
-		loadSum += loadTimer.Time();
-		if(++loadCount == 60)
-		{
-			load = loadSum;
-			loadSum = 0.;
-			loadCount = 0;
-		}
+		float sec = loadTimer.Time();
+		stringstream loadString;
+		loadString << std::fixed << setprecision(2) << sec * 1000. << "ms ("
+			<< lround(sec * 60. * 100.) << "%) GPU";
+		font.Draw(loadString.str(), Point(10., Screen::Height() * -.5 + 5.), color);
+
+		loadString = {};
+		loadString << std::fixed << setprecision(2) << frameTime * 1000. << "ms ("
+			<< lround(frameTime * 60. * 100.) << "%) CPU";
+		string ms = loadString.str();
+		font.Draw(ms, Point(-10. - font.Width(ms), Screen::Height() * -.5 + 5.), color);
 	}
 }
 
