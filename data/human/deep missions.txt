@@ -4249,7 +4249,7 @@ mission "The Book of Skadenga"
 				decline
 
 # resets any negative "deep" reputation in older saves
-mission deep_rep
+mission "Deep Government Reputation Reset"
 	invisible
 	to offer
 		"reputation: Deep" <= -1000
