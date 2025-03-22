@@ -91,7 +91,13 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
 find_package(PkgConfig REQUIRED PkgConfig PkgConf)
-pkg_check_modules(MINIZIP REQUIRED minizip)
+
+if(ES_USE_VCPKG)
+    find_package(unofficial-minizip CONFIG REQUIRED)
+    set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
+else()
+    pkg_check_modules(MINIZIP REQUIRED minizip)
+endif()
 
 # Find the MinGW runtime DLLs.
 if(MINGW AND WIN32)
@@ -136,7 +142,7 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL minizip
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL ${MINIZIP_LIBRARIES}
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
