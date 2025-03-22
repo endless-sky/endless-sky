@@ -411,6 +411,10 @@ government "Deep"
 		"Deep Security" 1
 		"Merchant" .2
 		"Republic" 1
+		"friendly hail" "friendly deep"
+		"friendly disabled hail" "friendly disabled"
+		"hostile hail" "hostile deep"
+		"hostile disabled hail" "hostile disabled"
 
 government "Deep Security"
 	swizzle 0
