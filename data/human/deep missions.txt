@@ -4253,6 +4253,9 @@ mission deep_rep
 	invisible
 	to offer
 		"reputation: Deep" <= -1000
+		or
+			not "chosen sides"
+			has "main plot completed"
 	on offer
 		"reputation: Deep" = 1
 		fail
