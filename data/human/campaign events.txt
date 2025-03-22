@@ -1466,11 +1466,11 @@ event "fw gets catalytic ramscoop"
 event "fw safe passage starts"
 	"reputation: Republic" = 5
 
-
+	"reputation: Deep" = 5
 
 event "fw safe passage ends"
 	"reputation: Republic" <?= -1000
-
+	"reputation: Deep" <?= -1000
 
 
 event "navy using mark ii ships"

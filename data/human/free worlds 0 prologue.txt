@@ -1435,6 +1435,7 @@ mission "FW Katya 1C"
 	
 	on accept
 		"reputation: Republic" <?= -10
+		"reputation: Deep" <?= -10
 	
 	npc kill
 		government "Republic"
@@ -2245,6 +2246,7 @@ mission "Defend Sabik"
 		set "license: Militia"
 		"salary: Free Worlds" = 1100
 		"reputation: Republic" <?= -10
+		"reputation: Deep" <?= -10
 		event "start of hostilities"
 		event "joined the free worlds"
 		conversation
