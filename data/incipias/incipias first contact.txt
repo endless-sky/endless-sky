@@ -313,7 +313,7 @@ mission "Incipias: No Help For The Stranded"
 			not "Incipias: Help The Stranded 1: offered"
 	on offer
 		fail
-		dialog `You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to to help. You have no choice but to leave them to their doom on this stormy world.`
+		dialog `You identify the stranded alien ship you assisted earlier on your scanners, but with no way to communicate with them you are unable to help. You have no choice but to leave them to their doom on this stormy world.`
 
 mission "Incipias: Help The Stranded 2"
 	landing
@@ -322,6 +322,7 @@ mission "Incipias: Help The Stranded 2"
 	passengers 5
 	source Turra
 	destination "Pon'tes"
+	blocked "You have landed on <origin>, but you don't have enough passenger space for the <bunks> Incipias. Return here when you have the required space free."
 	to offer
 		has "Incipias: Help The Stranded 1: done"
 	on offer

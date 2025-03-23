@@ -272,6 +272,8 @@ void Ship::Load(const DataNode &node)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
+		else if(key == "variant map name" && child.Size() >= 2)
+			variantMapShopName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
@@ -352,6 +354,7 @@ void Ship::Load(const DataNode &node)
 			attributes.baseAngle = Angle(0.);
 			attributes.isParallel = false;
 			attributes.isOmnidirectional = true;
+			attributes.turnMultiplier = 0.;
 			bool drawUnder = (key == "gun");
 			if(child.HasChildren())
 			{
@@ -376,6 +379,8 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
+					else if(grand.Token(0) == "turret turn multiplier")
+						attributes.turnMultiplier = grand.Value(1);
 					else if(grand.Token(0) == "under")
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
@@ -1081,6 +1086,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				if(attributes.turnMultiplier)
+					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
 					out.Write("under");
 				else
@@ -1202,6 +1209,14 @@ const string &Ship::PluralModelName() const
 const string &Ship::VariantName() const
 {
 	return variantName.empty() ? trueModelName : variantName;
+}
+
+
+
+// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+const string &Ship::VariantMapShopName() const
+{
+	return variantMapShopName;
 }
 
 
@@ -1666,7 +1681,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		// Move the turrets.
 		if(!isDisabled)
-			armament.Aim(firingCommands);
+			armament.Aim(*this, firingCommands);
 
 		DoInitializeMovement();
 		StepPilot();
@@ -1934,7 +1949,7 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
+	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
 	{
 		if(sounds.empty())
 			Audio::Play(Audio::Get("scan"), position, SoundCategory::SCAN);
@@ -3824,6 +3839,13 @@ void Ship::Linger()
 
 
 
+bool Ship::Immitates(const Ship &other) const
+{
+	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
+}
+
+
+
 // Check if this ship has been in a different system from the player for so
 // long that it should be "forgotten." Also eliminate ships that have no
 // system set because they just entered a fighter bay. Clear the hyperspace
@@ -4905,7 +4927,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
 				}
 				else
 				{
@@ -4950,7 +4972,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 			Point effectVelocity = velocity - 6. * afterburnerAngle.Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle);
+					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle, Point{}, point.zoom);
 		}
 	}
 }
@@ -4969,12 +4991,17 @@ void Ship::AddEscort(Ship &ship)
 void Ship::RemoveEscort(const Ship &ship)
 {
 	auto it = escorts.begin();
-	for( ; it != escorts.end(); ++it)
-		if(it->lock().get() == &ship)
+	while(it != escorts.end())
+	{
+		auto escort = it->lock();
+		if(escort.get() == &ship)
 		{
-			escorts.erase(it);
+			it = escorts.erase(it);
 			return;
 		}
+		else
+			++it;
+	}
 }
 
 

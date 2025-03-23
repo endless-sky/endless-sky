@@ -99,8 +99,6 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.h
 	ExclusiveItem.h
 	FighterHitHelper.h
-	File.cpp
-	File.h
 	Files.cpp
 	Files.h
 	FireCommand.cpp
@@ -182,6 +180,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Messages.h
 	Minable.cpp
 	Minable.h
+	MinableDamageDealt.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
@@ -380,6 +379,8 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestContext.h
 	test/TestData.cpp
 	test/TestData.h
+	text/Clipboard.cpp
+	text/Clipboard.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp

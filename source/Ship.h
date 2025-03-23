@@ -166,6 +166,8 @@ public:
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
+	// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+	const std::string &VariantMapShopName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
@@ -519,6 +521,9 @@ public:
 	// The AI wants the ship to linger for one AI step.
 	void Linger();
 
+	// Check if this ship looks the same as another, based on model display names and outfits.
+	bool Immitates(const Ship &other) const;
+
 
 private:
 	// Various steps of Ship::Move:
@@ -583,6 +588,7 @@ private:
 	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
+	std::string variantMapShopName;
 	std::string noun;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
