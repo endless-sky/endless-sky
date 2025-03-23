@@ -1048,6 +1048,9 @@ tip "shots / second:"
 tip "turret turn rate:"
 	`Degrees this turret can turn per second.`
 
+tip "turret turn multiplier:"
+	`Modifies the turret turn rate on this ship by the given factor.`
+
 tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
 
@@ -1338,6 +1341,9 @@ tip "Toggle fullscreen"
 
 tip "Toggle fast-forward"
 	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock then the caps-lock state will be used to determine the fast-forward state.`
+
+tip "Pause"
+	`Stop time in the game. You can still select ships, give commands, and interact with menus.`
 
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`

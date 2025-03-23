@@ -407,6 +407,13 @@ License: CC-BY-SA-4.0
 Comment: Derived and completed from works by Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
 
 Files:
+ images/hardpoint/quarg?ribault*
+ images/outfit/quarg?ribault*
+Copyright: Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0
+Comment: Derived and completed from works by Evan Fluharty, Maximilian Korber (Wrzlprnft), @Karirawri, and originally drawn up by Tommy Thach (Bladewood) (all under the same license)
+
+Files:
  images/outfit/enforcer?riot?staff*
 Copyright: 1010todd
 Comment: Derived from works by Evan Fluharty (under the same license).
@@ -2519,6 +2526,11 @@ License: CC-BY-SA-4.0
 Comment: Derived from public domain sounds taken from freesound.org.
 
 Files:
+ images/effect/graviton?flare/*
+Copyright: Jack George
+License: CC-BY-SA-4.0
+
+Files:
  images/outfit/*battery?hai*
  images/outfit/anti-missile?hai*
  images/outfit/cooling?ducts?hai*
@@ -2724,6 +2736,8 @@ Files:
  images/effect/fissionflare*
  images/effect/pwtflare*
  images/effect/explosions/nuke*
+ images/effect/culverin*
+ images/effect/ranseur*
  images/icon/dragonflame*
  images/icon/shard*
  images/outfit/dragonflame*
@@ -2743,6 +2757,7 @@ Files:
  images/projectile/shardactive*
  images/projectile/shardinactive*
  images/projectile/ionball*
+ images/projectile/ribault*
  images/scene/emeraldswordderelict*
  images/ship/emeraldsword*
  images/ship/blackdiamond*
@@ -2768,6 +2783,12 @@ Files: sounds/pwave*
 Copyright: aust_paul
 License: public-domain
  Taken from https://freesound.org/people/aust_paul/sounds/30935/
+
+Files: sound/ranseur*
+Copyright: harrisonlace
+License: public-domain
+ Taken from https://freesound.org/people/harrisonlace/sounds/634884/
+Comment: Modified by @Karirawri (crim@live.no) under the same license.
 
 Files: sounds/hion*
 Copyright: michael_kur95
@@ -2944,6 +2965,7 @@ Files:
  images/projectile/korath?inferno*
  images/projectile/missile-0*
  images/projectile/missile-1*
+ images/projectile/slipstream?projector*
  images/ship/battleship*
  images/ship/cirrus*
  images/ship/gero*
@@ -3337,6 +3359,13 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license).
 
 Files:
+ images/ship/quarg?drake*
+ images/thumbnail/quarg?drake*
+Copyright: Saugia (https://github.com/Saugia)
+License: CC-BY-SA-4.0
+Comment: Derived from works by 1010todd, under the same license.
+
+Files:
  images/ship/pirate?valkyrie*
  images/thumbnail/pirate?valkyrie*
 Copyright: Saugia <https://github.com/Saugia>
@@ -3348,6 +3377,7 @@ Files:
  sounds/avgi?launch?internal*
  sounds/bunrodea?am*
  sounds/coalition?launch*
+ sounds/culverin?
  sounds/drill*
  sounds/ember?tear*
  sounds/ember?tear?hit*
@@ -3367,9 +3397,11 @@ Files:
  sounds/remnant?afterburner*
  sounds/remnant?launch*
  sounds/remnant?launch?external*
+ sounds/ribault*
  sounds/neutron?bolt*
  sounds/scin?launch*
  sounds/sheragi?launch*
+ sounds/sjeja?lance*
  sounds/stagnation?beam*
  sounds/star?tail*
  sounds/*successor?afterburner*
@@ -3716,6 +3748,16 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/outfit/anti-materiel?gun*
  images/outfit/cloud?piercer*
+ images/ship/quarg?guivre*
+ images/ship/quarg?hydra*
+ images/ship/quarg?lindwyrm*
+ images/ship/quarg?wardragon*
+ images/ship/quarg?wyvern*
+ images/thumbnail/quarg?guivre*
+ images/thumbnail/quarg?hydra*
+ images/thumbnail/quarg?lindwyrm*
+ images/thumbnail/quarg?wardragon*
+ images/thumbnail/quarg?wyvern*
 Copyright: 1010todd
 License: CC-BY-SA-4.0
 
@@ -4059,6 +4101,11 @@ License: public-domain
  Derived from works by NASA/JPL-Caltech/Malin Space Science Systems.
 
 Files:
+ images/ship/escape?shuttle*
+Copyright: mOctave (https://github.com/mOctave)
+License: CC-BY-SA-4.0
+
+Files:
  images/effect/bimodal?impact*
  images/effect/bimodal?switch?impact*
  images/effect/drag?cannon?impact*
@@ -4196,6 +4243,11 @@ Files:
 Copyright: None (placed in public domain by an anonymous author)
 License: CC0
 Comment: Uses public domain textures from texture.ninja. Meshes were made by an anonymous author in 2023-2024.
+
+Files:
+ images/ui/paused*
+Copyright: David Stark (zarkonnen@gmail.com)
+License: CC-BY-SA-4.0
 
 License: Depends
  Taken from unsplash.com. Until June 2017, this was a collection of photographs that had been donated and
