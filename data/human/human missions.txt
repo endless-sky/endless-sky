@@ -10694,13 +10694,15 @@ mission "Tavish and Kormak 3"
 
 			label story
 			choice
+				`	(Return to your ship.)`
+					goto leaving
 				`	"Tavish, what's your story?"`
-				`	"Tavish that was amazing! Where did you learn to do that?"`
 				`	"Tell me the truth, Tavish. Are you conning me too?"`
 			`	As you walk toward your ship Tavish shrugs, "Not everything I say is a fabrication. Why, I really am from Chiron, and was a highly placed scientist and researcher there. But the bureaucracy there was cut-throat, and anyone with a renegade idea was liable to be crushed by it."`
 			`	He shakes his head sadly, "In order to survive in that environment I had to become very good at working with those around me. Make them believe we were on the same side, believed the same things, had the very same lofty goals. I got quite good at it."`
 			`	His voice becomes somber. "Perhaps too good. I started to forget where the genunine Tavish began, and the counterfeit Tavish ended. So, I stopped hiding who I was and made my interests and studies known to all!"`
 			`	A wry grin spreads across his face. "And was promptly thrown out! So, now I am here with you and Kormak following my passion, on the forefront of discovery and adventure! And I am not too disconcerted that my old talents have some use."`
+			label leaving
 			`	After you arrive back at your ship, Tavish says, "Now we shall see a man in Hephaestus about some misplaced equipment," and hops aboard.`
 				accept
 		
