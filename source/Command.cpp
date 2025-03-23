@@ -86,15 +86,16 @@ const Command Command::MESSAGE_LOG(ONE << 33, "View message log");
 const Command Command::FULLSCREEN(ONE << 34, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 35, "Toggle fast-forward");
 const Command Command::HELP(ONE << 36, "Show help");
-const Command Command::FIGHT(ONE << 37, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 38, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 39, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 40, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 41, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 42, "Auto steer");
-const Command Command::WAIT(ONE << 43, "");
-const Command Command::STOP(ONE << 44, "");
-const Command Command::SHIFT(ONE << 45, "");
+const Command Command::PAUSE(ONE << 37, "Pause");
+const Command Command::FIGHT(ONE << 38, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 39, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 40, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 41, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 42, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 43, "Auto steer");
+const Command Command::WAIT(ONE << 44, "");
+const Command Command::STOP(ONE << 45, "");
+const Command Command::SHIFT(ONE << 46, "");
 
 
 

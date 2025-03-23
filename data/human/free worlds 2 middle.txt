@@ -483,7 +483,7 @@ mission "FW Southern Battle 2"
 		system Rastaban
 		personality heroic uninterested staying
 		government "Republic"
-		fleet 2
+		fleet
 			names "republic capital"
 			fighters
 				names "republic fighter"
@@ -1914,6 +1914,7 @@ mission "FW Rand 1"
 	npc
 		government "Free Worlds"
 		personality heroic disables escort
+		ship "Dreadnought" "F.S. Jean Bart"
 		ship "Dreadnought" "F.S. Elder"
 		ship "Falcon (Plasma)" "F.S. Reliant"
 		ship "Falcon (Heavy)" "F.S. Bismark"
@@ -2314,7 +2315,7 @@ mission "FW Liberate Delta Sagittarii"
 				"Carrier (Mark II)"
 				"Lance" 8
 				"Combat Drone" 6
-				"Gunboat (Mark II)" 4
+				"Gunboat (Mark II)" 3
 		fleet
 			names "republic capital"
 			fighters
@@ -2322,7 +2323,7 @@ mission "FW Liberate Delta Sagittarii"
 			variant
 				"Cruiser (Mark II)"
 				"Combat Drone" 4
-				"Rainmaker (Mark II)" 4
+				"Rainmaker (Mark II)" 2
 	
 	npc
 		personality staying derelict
