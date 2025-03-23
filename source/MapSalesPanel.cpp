@@ -364,20 +364,26 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const 
 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale,
-		bool isSelected, const string &name, const string &price, const string &info,
-		const std::string &storage)
+		bool isSelected, const string &name, const string &variantName,
+		const string &price, const string &info, const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
 
 	// Set the padding so the text takes the same height overall,
 	// regardless of whether it's three lines of text or four.
-	const auto pad = storage.empty() ? PAD : (PAD * 2. / 3.);
-	const auto lines = storage.empty() ? 3 : 4;
+	const auto pad = storage.empty() && variantName.empty() ? PAD : (PAD * 2. / 3.);
+	const auto lines = storage.empty() && variantName.empty() ? 3 : 4;
 	Point nameOffset(ICON_HEIGHT, .5 * (ICON_HEIGHT - (lines - 1) * pad - lines * font.Height()));
 	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + pad);
 	Point infoOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + pad);
 	Point storageOffset(ICON_HEIGHT, infoOffset.Y() + font.Height() + pad);
+	Point variantOffset = priceOffset;
+	if(!variantName.empty())
+	{
+		priceOffset = infoOffset;
+		infoOffset = storageOffset;
+	}
 	Point blockSize(WIDTH, ICON_HEIGHT);
 
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
@@ -393,6 +399,8 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, const Swizzle *swi
 			? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
 		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
+		if(!variantName.empty())
+			font.Draw({"\t" + variantName, layout}, corner + variantOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);
 		font.Draw({info, layout}, corner + infoOffset, textColor);
 		if(!storage.empty())
