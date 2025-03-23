@@ -11343,6 +11343,7 @@ mission "Tavish and Kormak 6"
 			label next
 			choice
 				`	(Take a seat around the campfire.)`
+				`	(Join Tavish and Kormak.)`
 
 			`	As the night takes hold, strange alien noises can be heard coming from the jungle. Tavish continues to tend the fire as Kormak starts roasting rations to pass around.`
 			`	Tavish takes a seat and a bite of the roasted food that Kormak has put into his hand.`
