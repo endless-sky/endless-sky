@@ -2062,6 +2062,7 @@ event "hai blockade"
 	system "Zuba Zub"
 		remove raid
 
+# Compatibility mission for players who finished "Wanderers Hai Assistance Fleet" prior to 0.10.13.
 mission "Wanderers Hai Assistance Fleet patch"
 	landing
 	invisible
