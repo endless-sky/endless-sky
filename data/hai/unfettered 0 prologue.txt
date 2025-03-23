@@ -548,8 +548,8 @@ mission "Unfettered Jump Drive Trading"
 
 
 mission "Unfettered 0: Bring Hai"
-	name `Bring True Hai`
-	description `Bring <bunks> Hai from <stopovers> to <origin>.`
+	name "Bring True Hai"
+	description "Bring <bunks> Hai from <stopovers> to <origin>."
 	source "Firelode"
 	stopover "Snowfeather"
 	passengers 10
@@ -718,7 +718,7 @@ mission "Unfettered 0: Bring Hai"
 
 mission "Unfettered 1: Bring Medicine Notification"
 	landing
-	name `Need for medical supplies`
+	name "Need for medical supplies"
 	description `An Unfettered Chief told you to come help the hospitals on <destination> that desperately need supplies.`
 	source "Firelode"
 	destination "Darkcloak"
@@ -729,7 +729,7 @@ mission "Unfettered 1: Bring Medicine Notification"
 
 mission "Unfettered 1: Bring Medicine"
 	landing
-	name `Bring medical supplies to <planet>`
+	name "Bring medical supplies to <planet>"
 	description `The Unfettered hospitals on <origin> are in urgent need of resupply. Collect <tons> of medical supplies from <stopovers>, and bring it to the Unfettered on <destination> by <date> for <payment>.`
 	source "Darkcloak"
 	stopover "Stonebreak"
@@ -842,8 +842,8 @@ mission "Unfettered 2: Prove Your Strength"
 	autosave
 	repeat
 	deadline 2
-	name `Defeat the captain`
-	description `An Unfettered captain has provoked you into a duel. Disable his ship and then land back on <destination>. You only have one day, but this duel can happen multiple times.`
+	name "Defeat the captain"
+	description "An Unfettered captain has provoked you into a duel. Disable his ship and then land back on <destination>. You only have one day, but this duel can happen multiple times."
 	source "Darkcloak"
 	to offer
 		or
@@ -1104,8 +1104,8 @@ event "cerberus revealed"
 		remove "display name"
 
 mission "Unfettered 3: Recover Jump Drives"
-	name `Recover the jump drives`
-	description `Go to the pirate world of <stopovers> and recover 4 jump drives from a vault.`
+	name "Recover the jump drives"
+	description "Go to the pirate world of <stopovers> and recover 4 jump drives from a vault."
 	source "Darkcloak"
 	stopover "Freedom"
 	clearance
@@ -1402,8 +1402,8 @@ ship "Geocoris" "Geocoris (Keystones)"
 			"Quantum Keystone" 123
 
 mission "Unfettered 4: Scan Geocoris"
-	name `Scan the Geocoris`
-	description `Scan the cargo of the Geocoris in Ya Hai with the Value Detector, then return to <destination> with the scanner logs. You may abort this, at a cost.`
+	name "Scan the Geocoris"
+	description "Scan the cargo of the Geocoris in Ya Hai with the Value Detector, then return to <destination> with the scanner logs. You may abort this, at a cost."
 	source "Firelode"
 	waypoint "Ya Hai"
 	to offer

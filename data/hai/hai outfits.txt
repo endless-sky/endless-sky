@@ -557,6 +557,8 @@ outfit "Quantum Keystone"
 
 outfit "Hai Zephyr Cooling"
 	category "Systems"
+	series "Cooling"
+	index 02020
 	cost 72000
 	thumbnail "outfit/hai zephyr"
 	"mass" 14
@@ -949,6 +951,8 @@ outfit "Pulse Rifle"
 
 outfit "Dual Pulse Pistols"
 	category "Hand to Hand"
+	series "H2H"
+	index 02020
 	plural "Dual Pulse Pistols"
 	cost 77777
 	thumbnail "outfit/dual pulse pistols"
@@ -959,6 +963,7 @@ outfit "Dual Pulse Pistols"
 
 outfit "Heshi"
 	category "Unique"
+	series "Functional Unique"
 	cost 10000
 	thumbnail "outfit/unknown"
 	"mass" 1
