@@ -11279,10 +11279,17 @@ mission "Tavish and Kormak 6"
 			`	"Go." Kormak picks up double the rucksacks and duffle bags.`
 			choice
 				`	"Let's go."`
-				`	"Adventure awaits!"`
+					launch
 				`	"For Science!"`
-				`	"Whatever."`
+					goto science
 				`	"For Gerald!"`
+			`	Tavish shakes his head, "I do believe Gerald would not agree with your enthusiastic sentiment. He'd most likely wish us far, far away from Ashoka."`
+			`	Kormark adds, "No trees."`
+				launch
+
+			label science
+			`	"That's the spirit! From the moment I saw you, I knew you were one of us." Tavish beams.`
+			`	Kormak only nods.`
 				launch
 
 	on complete
