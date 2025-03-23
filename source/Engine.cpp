@@ -1562,14 +1562,19 @@ void Engine::CalculateStep()
 	Point newCenterVelocity;
 	if(flagship)
 	{
-		bool isHyperspacing = flagship->IsHyperspacing();
-		if(isHyperspacing)
-			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
-		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity(), hyperspacePercentage,
-			isHyperspacing);
-		newCenter = newCameraCenter;
-		newCenterVelocity = newCameraVelocity;
+		if(!timePaused)
+		{
+			bool isHyperspacing = flagship->IsHyperspacing();
+			if(isHyperspacing)
+				hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
+			const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
+				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
+				isHyperspacing);
+			newCenter = newCameraCenter;
+			newCenterVelocity = newCameraVelocity;
+		}
+		else
+			newCenterVelocity = flagship->Velocity();
 	}
 	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
 	batchDraw[currentCalcBuffer].SetCenter(newCenter);
