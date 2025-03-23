@@ -11070,6 +11070,7 @@ mission "Tavish and Kormak 5"
 	destination "New India"
 	passengers 2
 	cargo "Scientific Research Equipment" 5
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Tavish and Kormak 4: done"
 	on offer
