@@ -78,7 +78,7 @@
 						}
 					},
 					{
-						"description": "accididental commonly doubled word (e.g: the the)",
+						"description": "accidental commonly doubled word",
 						"regex": "\\b(than|the|with|to)\\s+\\1\\b",
 						"except": [],
 						"correction": {
