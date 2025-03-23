@@ -29,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
-#include "Swizzle.h"
 
 #include <list>
 #include <map>
@@ -51,6 +50,7 @@ class Planet;
 class PlayerInfo;
 class Projectile;
 class StellarObject;
+class Swizzle;
 class System;
 class Visual;
 

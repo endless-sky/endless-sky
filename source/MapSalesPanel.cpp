@@ -355,7 +355,7 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, const 
 		double scale = min(.5, min((ICON_HEIGHT - 2.) / sprite->Height(), (ICON_HEIGHT - 2.) / sprite->Width()));
 
 		// No swizzle was specified, so default to the player swizzle.
-		if(swizzle == nullptr)
+		if(!swizzle)
 			swizzle = GameData::PlayerGovernment()->GetSwizzle();
 		SpriteShader::Draw(sprite, corner + iconOffset, scale, swizzle);
 	}

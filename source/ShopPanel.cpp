@@ -42,7 +42,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
-#include "Swizzle.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 #include "text/WrappedText.h"

@@ -32,7 +32,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Radar.h"
 #include "Rectangle.h"
-#include "Swizzle.h"
 #include "TaskQueue.h"
 
 #include <condition_variable>
@@ -50,6 +49,7 @@ class PlayerInfo;
 class Ship;
 class ShipEvent;
 class Sprite;
+class Swizzle;
 class Visual;
 class Weather;
 
