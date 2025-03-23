@@ -9924,7 +9924,7 @@ mission "Timothy Radrickson 7: Monk"
 
 			action
 				clear "offers"
-			`	You lean in and give him a warm, earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+			`	You lean in and give him a warm, earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free, you see his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
 
 			label shake
