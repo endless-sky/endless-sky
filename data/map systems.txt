@@ -24956,13 +24956,13 @@ system Li-7
 	hazard "Predecessors Spatial Rift Weak" 30000
 	object
 		sprite planet/browndwarf-l-rogue
-		distance 271.899
-		period 179.337
+		distance 272
+		period 180
 		offset 180
 	object
 		sprite planet/browndwarf-y-rogue
-		distance 272.733
-		period 180.163
+		distance 272
+		period 180
 	object
 		sprite planet/gas7-hot
 		distance 1531
