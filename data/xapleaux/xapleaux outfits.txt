@@ -1,0 +1,188 @@
+# Copyright (c) 2021 by MasterOfGrey
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+outfit "String Drive"
+	category Systems
+	licenses
+		Xapleaux
+	cost 3500000
+	mass 15
+	thumbnail "outfit/string drive"
+	"energy consumption" 2.5
+	hyperdrive 1
+	"jump fuel" 50
+	"outfit space" -15
+	"scram drive" 1.5
+	description "A string drive continuously hums with the frequency of space-time in its vicinity. By constantly remaining attuned to the threads that link one system to the next it has no need to slow down enough to 'search' for a path to follow. Simply by aligning in the correct direction it can claw its way along any hyperthread in its vicinity even if your ship is traveling at a very significant speed. Consequently it needs very little fuel to initiate the process and is smaller as a result. However, this comes at a cost of continuously draining quite a bit of energy to power the attunement apparatus."
+
+outfit "Cryo-Arithmetic Engine"
+	category "Systems"
+	licenses
+		Xapleaux
+	cost 12500
+	thumbnail "outfit/cryo-arithmetic engine"
+	mass -.01
+	hull -10
+	"active cooling" .05
+	"cooling energy" .002
+	"scan interference" .04
+	description `Although called an "engine" on account of using heat to perform work, most pilots would typically call this hand-sized device a cooler, since that is what it actually does. Little more than a heatsink, a quantum processor, and a variety of contact connectors, this device takes a trickle of power to set running a completely hard-coded program on a repeating loop. Through the algorithmic superposition of quantum states, run nearly a million times per second, it quite simply deletes a small amount of heat using the sheer power of mathematics. Or at least, the heat goes... somewhere else.`
+	description `	Installing one requires cutting a hole and inserting it directly into the plating of a ship's hull - as such relying on these will both lighten and weaken the hull. As a side benefit, all that quantum trickery embedded into the ship confers a passive kind of stealth on the vessel - interfering with attempts to scan it.`
+
+outfit "Small MOF Crystal Capacitor"
+	category "Power"
+	licenses
+		Xapleaux
+	cost 48000
+	thumbnail "outfit/mof capacitor small"
+	"mass" 8
+	"outfit space" -8
+	"energy capacity" 9800
+	"energy consumption" .5
+	"ion resistance" 0.01
+	description `These capacitors are derived from a strange crystal formation that was discovered near the "weird end" of the Brilliance. Over time the Xapleaux managed to work out what part of the crystal formation did what they found useful, and how to grow refined versions of them artificially.`
+	description `	These capacitors leak small amounts of energy, but the native crystal heat conversion was refined out of them, such that it instead leaks out as a form of ionization. This leaking of ionization and the associated design elements incorporated to handle that also provides some resistance to other external forms of ionization, granting ships with these crystals some resistance against natural or artificial ionic phenomena.`
+
+outfit "Large MOF Crystal Capacitor"
+	category "Power"
+	licenses
+		Xapleaux
+	cost 96000
+	thumbnail "outfit/mof capacitor large"
+	"mass" 16
+	"outfit space" -16
+	"energy capacity" 19600
+	"energy consumption" 1
+	"ion resistance" 0.02
+	description `This larger capacitor is about the maximum size of crystal that can be readily grown without setting up a kind of resonance inside that causes the power leakage effects to compound upon themselves and negate the benefit of having it in the first place. However, at this size the amount of luminescence that is produced as the crystal leaks power makes it quite popular among Xapleaux captains who can channel its unique spectra through their ships with refractory crystals to improve morale.`
+	description `	These capacitors leak small amounts of energy and ionization. The design elements incorporated to handle that also provide some resistance to other external forms of ionization, granting ships with these crystals some resistance against natural or artificial ionic phenomena.`
+
+
+outfit "Piezoelectric Shaft"
+	category "Systems"
+	cost 1660000
+	thumbnail "outfit/piezoelectric shaft"
+	"Spar Core Shaft" -1
+#	#
+#	### Values NOT Final - indicative only
+	"mass" 134
+	"outfit space" -134
+	"heat capacity" 2420
+	"cooling energy" -5.2
+	"active cooling" 76
+	description "This single massive crystal, festooned in conductive strain contacts and a wealth of monitoring equipment, is capable of converting heat into power through the piezoelectric effect. As one end of the crystal is made hot on the heatsink, the mechanical stress generated from the heat expansion of only one end of the crystal is bled off along its length into power for the ship. This also maintains the temperature gradient, so for as long as new heat is added, the strain can be harnessed for energy."
+
+outfit `Type X "Coleo" Engine`
+	category Engines
+	licenses
+		Xapleaux
+	cost 1610000
+	mass 88
+	thumbnail "outfit/type x engine"
+	"X Ring Cradle" -1
+	"engine capacity" -44
+	"outfit space" -44
+#	#
+#	### Values Fairly Final
+	"reverse thrust" 101.8
+	"reverse thrusting energy" 12.8
+	"reverse thrusting heat" 17.9
+	thrust 101.8
+	"thrusting energy" 12.8
+	"thrusting heat" 17.9
+	turn 5263.9
+	"turning energy" 12.8
+	"turning heat" 17.9
+	"flare sprite" "effect/xapleaux flare/short"
+		"frame rate" 10
+	"reverse flare sprite" "effect/xapleaux flare/short"
+		"frame rate" 10
+	"steering flare sprite" "effect/xapleaux flare/short"
+		"frame rate" 10
+	"flare sound" "ion medium"
+	"reverse flare sound" "ion medium"
+	"steering flare sound" "ion medium"
+	description "This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the much larger Lepido or the efficient but undersized Haltere engines the Coleo produces comparatively more heat and consumes rather more energy to achieve higher thrust outputs per ton. They are built to propel their Ascomy warships quickly to a point of crisis."
+	description "	Like all Xapleaux engines which are mounted on the long side spars away from the center of mass, the reversible, turbine-style exhaust facilitates reverse thrust just as efficiently and doubles as steering by using opposing thrust on either side. Only a ship with a specialized X Ring Cradle can mount this engine."
+
+outfit `Type I "Lepido" Engine`
+	category Engines
+	licenses
+		Xapleaux
+	cost 1480000
+	mass 178
+	thumbnail "outfit/type i engine"
+	"I Ring Cradle" -1
+	"engine capacity" -54
+	"outfit space" -57
+#	#
+#	### Values NOT Final - indicative only
+	"reverse thrust" 74.2
+	"reverse thrusting energy" 4.1
+	"reverse thrusting heat" 3.8
+	thrust 74.2
+	"thrusting energy" 4.1
+	"thrusting heat" 3.6
+	turn 3835.8
+	"turning energy" 4.1
+	"turning heat" 3.8
+	"flare sprite" "effect/xapleaux flare/long"
+		"frame rate" 20
+	"reverse flare sprite" "effect/xapleaux flare/long"
+		"frame rate" 20
+	"steering flare sprite" "effect/xapleaux flare/long"
+		"frame rate" 20
+	"flare sound" "ion small"
+	"reverse flare sound" "ion small"
+	"steering flare sound" "ion small"
+	description `This thruster pair is one of the three primary drive types produced by the Xapleaux. Unlike the powerful Coleo or space efficient Haltere engines the Lepido is incredibly massive and produces very little thrust per ton. However, this "caterpillar-style" drive uses its much more significant, multi-staged turbine length to produce thrust extremely efficiently with low power requirements and little waste heat. For this reason it is popular on civilian ships that can afford to run it on solar power alone.`
+	description "	Like all Xapleaux engines which are mounted on the long side spars away from the center of mass, though vessels which utilize this engine often have spars so thick that the definition holds only tenuously. The reversible, turbine-style exhaust facilitates reverse thrust just as efficiently and doubles as steering by using opposing thrust on either side. Only a ship with a specialized I Ring Cradle can mount this engine."
+
+outfit `Type V "Strepsip" Engine`
+	category Engines
+	licenses
+		Xapleaux
+	cost 438000
+	mass 22
+	thumbnail "outfit/type v engine"
+	"V Ring Cradle" -1
+	"engine capacity" -12
+	"outfit space" -10
+#	#
+#	### Values NOT Final - PLACEHOLDER ONLY
+	"reverse thrust" 74.2
+	"reverse thrusting energy" 4.1
+	"reverse thrusting heat" 3.8
+	thrust 74.2
+	"thrusting energy" 4.1
+	"thrusting heat" 3.6
+	turn 3835.8
+	"turning energy" 4.1
+	"turning heat" 3.8
+	"flare sprite" "effect/xapleaux flare/long"
+		scale 0.5
+		"frame rate" 10
+	"reverse flare sprite" "effect/xapleaux flare/long"
+		scale 0.5
+		"frame rate" 10
+	"steering flare sprite" "effect/xapleaux flare/long"
+		scale 0.5
+		"frame rate" 10
+	"flare sound" "ion tiny"
+	"reverse flare sound" "ion tiny"
+	"steering flare sound" "ion tiny"
+	description "This thruster pair is designed somewhat abnormally to the rest of the Xapleaux engine models. While it does retain the usual reversible thrust elements, it has been designed for use with the Neocalli which was designed to mimic the flight behavior of the local swarming fauna. As such, the reversing thrust is not used for steering unless it happens to be performing a braked turn. The effect is somewhat unsettling to watch, but it allows them to keep up with the wildlife that they are predominantly deployed against."
+	description "	Despite their unconventional mounting, their mass is still distributed between otherwise unusable engine space and supporting systems according to the Xapleaux's common design philosophy, and only a ship with a specialized V Ring Cradle can mount this engine."
+
+
+
