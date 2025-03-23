@@ -272,6 +272,8 @@ void Ship::Load(const DataNode &node)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
+		else if(key == "variant map name" && child.Size() >= 2)
+			variantMapShopName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
@@ -1211,6 +1213,14 @@ const string &Ship::VariantName() const
 
 
 
+// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+const string &Ship::VariantMapShopName() const
+{
+	return variantMapShopName;
+}
+
+
+
 // Get the generic noun (e.g. "ship") to be used when describing this ship.
 const string &Ship::Noun() const
 {
@@ -1939,7 +1949,7 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	auto playScanSounds = [](const map<const Sound *, int> &sounds, Point &position)
+	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
 	{
 		if(sounds.empty())
 			Audio::Play(Audio::Get("scan"), position, SoundCategory::SCAN);

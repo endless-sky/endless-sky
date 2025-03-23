@@ -405,7 +405,7 @@ void Engine::Place()
 // Add NPC ships to the known ships. These may have been freshly instantiated
 // from an accepted assisting/boarding mission, or from existing missions when
 // the player departs a planet.
-void Engine::Place(const list<NPC> &npcs, shared_ptr<Ship> flagship)
+void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 {
 	for(const NPC &npc : npcs)
 	{
