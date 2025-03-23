@@ -2043,7 +2043,7 @@ double Ship::OutfitScanFraction() const
 // Fire any primary or secondary weapons that are ready to fire. Determines
 // if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 // The firing of special weapons is handled separately.
-void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector<int> *emptySoundsTimer)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2066,7 +2066,10 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(!weapon)
+			continue;
+		CanFireResult canFire = CanFire(weapon);
+		if(canFire == CanFireResult::CAN_FIRE)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
@@ -2083,6 +2086,13 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 						cloak -= cloakingFiring;
 				}
 			}
+		}
+		else if(emptySoundsTimer && !(*emptySoundsTimer)[i]
+			&& (canFire == CanFireResult::NO_AMMO || canFire == CanFireResult::NO_FUEL)
+			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
+		{
+			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
+			(*emptySoundsTimer)[i] = weapon->Reload();
 		}
 	}
 
@@ -2119,7 +2129,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2159,7 +2169,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -3568,43 +3578,43 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
-bool Ship::CanFire(const Weapon *weapon) const
+Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
 	if(!weapon || !weapon->IsWeapon())
-		return false;
+		return CanFireResult::INVALID;
 
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
 		if(it == outfits.end() || it->second < weapon->AmmoUsage())
-			return false;
+			return CanFireResult::NO_AMMO;
 	}
 
 	if(weapon->ConsumesEnergy()
 			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
-		return false;
+		return CanFireResult::NO_ENERGY;
 	if(weapon->ConsumesFuel()
 			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
-		return false;
+		return CanFireResult::NO_FUEL;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
 	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
-		return false;
+		return CanFireResult::NO_HULL;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
-		return false;
+		return CanFireResult::NO_HEAT;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
-		return false;
+		return CanFireResult::NO_ION;
 	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
-		return false;
+		return CanFireResult::NO_DISRUPTION;
 	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
-		return false;
+		return CanFireResult::NO_SLOWING;
 
-	return true;
+	return CanFireResult::CAN_FIRE;
 }
 
 
