@@ -114,7 +114,7 @@ mission "First Contact: Bunrodea (Hostile)"
 			choice
 				`	"I'm not the first human here?"`
 				`	"What do you mean one hundred years ago?"`
-			`	"Human visitors, many years ago," it says. "Not important. The Queen desires yours presence." It then says something in a language that the mantis-like aliens understand, and they motion for you to follow as the small alien begins making its way back to the steps of the palace. You have a feeling you're going to dread the next half hour.`
+			`	"Human visitors, many years ago," it says. "Not important. The Queen desires your presence." It then says something in a language that the mantis-like aliens understand, and they motion for you to follow as the small alien begins making its way back to the steps of the palace. You have a feeling you're going to dread the next half hour.`
 			`	You finally reach the top of the palace stairs completely exhausted, although the aliens with you look entirely unphased.`
 			`	The aliens lead you into the palace and through various elegant hallways. The walls are lined with marble statues and paintings that seem to be depicting historical figures and events for this alien race, although you're not allowed to linger long enough to get a good look at any of them.`
 			`	You eventually approach a large ornate doorway that the aliens push open, revealing what must be the Queen's throne room. It is a long, narrow room lined with stained glass windows with what you guess is a throne chair where the alien Queen sits. The Queen is part of the mantis-like species and considerably larger in appearance than the ones guarding you.`

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 
 class DataNode;
@@ -62,11 +63,11 @@ public:
 	static const Command FULLSCREEN;
 	static const Command FASTFORWARD;
 	static const Command HELP;
+	static const Command PAUSE;
 	// Escort commands:
 	static const Command FIGHT;
 	static const Command GATHER;
-	static const Command HOLD_FIRE;
-	static const Command HOLD_POSITION;
+	static const Command HOLD;
 	static const Command AMMO;
 	static const Command HARVEST;
 	// This command is given in combination with JUMP or LAND and tells a ship
@@ -99,8 +100,8 @@ public:
 	void ReadKeyboard();
 
 	// Load or save the keyboard preferences.
-	static void LoadSettings(const std::string &path);
-	static void SaveSettings(const std::string &path);
+	static void LoadSettings(const std::filesystem::path &path);
+	static void SaveSettings(const std::filesystem::path &path);
 	static void SetKey(Command command, int keycode);
 
 	// Get the description or keycode name for this command. If this command is

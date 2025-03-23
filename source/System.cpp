@@ -95,7 +95,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 {
 	if(node.Size() < 2)
 		return;
-	name = node.Token(1);
+	trueName = node.Token(1);
 	isDefined = true;
 
 	// For the following keys, if this data node defines a new value for that
@@ -133,7 +133,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		if(removeAll || overwriteAll)
 		{
 			// Clear the data of the given type.
-			if(key == "government")
+			if(key == "display name")
+				displayName.clear();
+			else if(key == "government")
 				government = nullptr;
 			else if(key == "music")
 				music.clear();
@@ -167,9 +169,13 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			{
 				// Make sure any planets that were linked to this system know
 				// that they are no longer here.
+				// Use const_cast to convert the "const Planet *" to "Planet *".
+				// Non-const access is available through the passed parameter "Set<Planet> &planets"
+				// but, in the case of an as-yet undefined Planet, the object will not have a name with which
+				// it can be found in that collection.
 				for(StellarObject &object : objects)
-					if(object.GetPlanet())
-						planets.Get(object.GetPlanet()->TrueName())->RemoveSystem(this);
+					if(object.planet)
+						const_cast<Planet *>(object.planet)->RemoveSystem(this);
 
 				objects.clear();
 			}
@@ -240,6 +246,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "link")
 		{
+			if(value == trueName)
+			{
+				child.PrintTrace("Error: systems cannot link to themselves.");
+				continue;
+			}
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
 			else
@@ -256,8 +267,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(child.Size() >= 4)
+			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "minables")
 		{
@@ -271,8 +285,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(child.Size() >= 4)
+			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "fleet")
 		{
@@ -287,7 +304,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.Value(valueIndex + 1));
+				fleets.emplace_back(fleet, child.Value(valueIndex + 1), child);
 		}
 		else if(key == "raid")
 			RaidFleet::Load(raidFleets, child, remove, valueIndex);
@@ -304,7 +321,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				hazards.emplace_back(hazard, child.Value(valueIndex + 1));
+			{
+				hazards.emplace_back(hazard, child.Value(valueIndex + 1), child);
+			}
 		}
 		else if(key == "belt")
 		{
@@ -369,6 +388,8 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
 			continue;
 		}
+		else if(key == "display name" && hasValue)
+			displayName = value;
 		else if(key == "pos" && child.Size() >= 3)
 		{
 			position.Set(child.Value(valueIndex), child.Value(valueIndex + 1));
@@ -479,6 +500,9 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 	// Systems without an asteroid belt defined default to a radius of 1500.
 	if(belts.empty())
 		belts.emplace_back(1, 1500.);
+
+	if(displayName.empty())
+		displayName = trueName;
 }
 
 
@@ -490,6 +514,12 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 {
 	accessibleLinks.clear();
 	neighbors.clear();
+
+	payloads.clear();
+	for(const auto &asteroid : asteroids)
+		if(asteroid.Type())
+			for(const auto &payload : asteroid.Type()->GetPayload())
+				payloads.insert(payload.outfit);
 
 	// Some systems in the game may be considered inaccessible. If this system is inaccessible,
 	// then it shouldn't have accessible links or jump neighbors.
@@ -522,10 +552,14 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	// Calculate the solar power and solar wind.
 	solarPower = 0.;
 	solarWind = 0.;
+	mapIcons.clear();
 	for(const StellarObject &object : objects)
 	{
 		solarPower += GameData::SolarPower(object.GetSprite());
 		solarWind += GameData::SolarWind(object.GetSprite());
+		const Sprite *starIcon = GameData::StarIcon(object.GetSprite());
+		if(starIcon)
+			mapIcons.emplace_back(starIcon);
 	}
 
 	// Systems only have a single auto-attribute, "uninhabited." It is set if
@@ -574,17 +608,26 @@ bool System::IsValid() const
 
 
 
-// Get this system's name.
-const string &System::Name() const
+const string &System::TrueName() const
 {
-	return name;
+	return trueName;
 }
 
 
 
-void System::SetName(const std::string &name)
+void System::SetName(const string &name)
 {
-	this->name = name;
+	trueName = name;
+	if(displayName.empty())
+		displayName = trueName;
+}
+
+
+
+// Get this system's display name.
+const string &System::DisplayName() const
+{
+	return displayName;
 }
 
 
@@ -602,6 +645,14 @@ const Government *System::GetGovernment() const
 {
 	static const Government empty;
 	return government ? government : &empty;
+}
+
+
+
+// Get this system's map icons.
+const vector<const Sprite *> &System::GetMapIcons() const
+{
+	return mapIcons;
 }
 
 
@@ -891,6 +942,14 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
+// Get a list of all unique payload outfits from minables in this system.
+const set<const Outfit *> &System::Payloads() const
+{
+	return payloads;
+}
+
+
+
 // Get the background haze sprite for this system.
 const Sprite *System::Haze() const
 {
@@ -1023,7 +1082,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "hazard" && child.Size() >= 3)
-			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2));
+			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2), child);
 		else if(child.Token(0) == "object")
 			LoadObject(child, planets, index);
 		else
@@ -1033,7 +1092,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 
 
-void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
+void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing) const
 {
 	const string &key = node.Token(0);
 	bool hasValue = (node.Size() >= 2);
@@ -1055,6 +1114,12 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.speed = 360. / node.Value(1);
 	else if(key == "offset" && hasValue)
 		object.offset = node.Value(1);
+	else if(key == "visibility" && hasValue)
+	{
+		object.distanceInvisible = node.Value(1);
+		if(node.Size() >= 3)
+			object.distanceVisible = node.Value(2);
+	}
 	else if(removing && (key == "hazard" || key == "object"))
 		node.PrintTrace("Key \"" + key + "\" cannot be removed from an object:");
 	else
@@ -1081,7 +1146,7 @@ void System::UpdateNeighbors(const Set<System> &systems, double distance)
 	{
 		const System &other = it.second;
 		// Skip systems that have no name or that are inaccessible.
-		if(it.first.empty() || other.Name().empty() || other.Inaccessible())
+		if(it.first.empty() || other.TrueName().empty() || other.Inaccessible())
 			continue;
 
 		if(&other != this && other.Position().Distance(position) <= distance)

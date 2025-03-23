@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <filesystem>
 #include <string>
 
 class DataFile;
@@ -26,7 +27,7 @@ class DataNode;
 class TestData {
 public:
 	const std::string &Name() const;
-	void Load(const DataNode &node, const std::string &sourceDataFilePath);
+	void Load(const DataNode &node, const std::filesystem::path &sourceDataFilePath);
 	// Function to inject the test-data into the game or into the game's
 	// environment.
 	bool Inject() const;
@@ -52,5 +53,5 @@ private:
 	// Type of the dataset
 	Type dataSetType = Type::UNSPECIFIED;
 	// File containing the test-data
-	std::string sourceDataFile;
+	std::filesystem::path sourceDataFile;
 };
