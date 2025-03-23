@@ -76,6 +76,14 @@
 						"correction": {
 							"replaceWith": "\\1\\2(\\3\\4)\\1"
 						}
+					},
+					{
+						"description": "accididental commonly doubled word (e.g: the the)",
+						"regex": "\\b(than|the|with|to)\\s+\\1\\b",
+						"except": [],
+						"correction": {
+							"replaceWith": "\\1"
+						}
 					}
 				]
 			},
