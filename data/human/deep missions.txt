@@ -380,7 +380,7 @@ mission "Deep: Mystery Cubes 1"
 	name `Travel to <planet>`
 	description `Travel to <destination> to learn more about the situation with the warlord Beelzebub.`
 	source
-		government "Republic" "Free Worlds" "Neutral" "Syndicate" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Neutral" "Syndicate" "Independent"
 		not system "Sol"
 	destination "Luna"
 	to offer
@@ -817,7 +817,7 @@ mission "Deep: Questions"
 	name `Mysterious Message`
 	description `Travel to <destination> to meet the author of an encrypted message.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not system "Zosma"
 	destination
 		attributes "deep"
@@ -1392,7 +1392,7 @@ mission "Deep: Remnant: Keystone Research"
 	name `Travel to <planet>`
 	description `Meet up with Ivan on <destination> to learn about his research on the quantum keystones you brought him.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not system "Epsilon Leonis"
 	destination "Valhalla"
 	to offer
@@ -1671,7 +1671,7 @@ event "deep: scan log research"
 mission "Deep: Remnant Research"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		has "event: deep: scan log research"
 	
@@ -1713,7 +1713,7 @@ mission "Deep: Remnant: Continue Research"
 	name `Travel to <planet>`
 	description `Meet up with Ivan on <destination> to continue helping with research on the Ember Waste.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not system "Epsilon Leonis"
 	destination "Valhalla"
 	to offer
@@ -3454,7 +3454,7 @@ mission "Mani Refit"
 		has "event: mani refit"
 	description "Head back to <destination> and meet up with the Transport Union's Fleet."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Mani"
 	destination "Mani"
 	on offer
@@ -3548,7 +3548,7 @@ mission "Skadenga Call 1"
 	name "Check on Hjlod"
 	description `Fly to <destination> to see what Hjlod and the Skadenga need from you. Make sure to have 52 bunks spare when you land.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Asgard"
 	destination "Asgard"
 	to offer
@@ -3652,7 +3652,7 @@ event "the book"
 mission "Skadenga Call 3"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		has "Skadenga Call 2: declined"
 	on offer
@@ -3802,7 +3802,7 @@ mission "Home for Skadenga 10"
 		has "dealwithhroar"
 	description "Head back to <destination>, and meet up with Hroar's fleet."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Muspel"
 	destination "Muspel"
 	on offer
@@ -4155,7 +4155,7 @@ mission "Hjlod Remembers Windblain"
 	name "Hjlod Remembers"
 	description `Hjlod wishes to meet with you again on <planet>.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Windblain"
 	destination "Windblain"
 	to offer
@@ -4186,7 +4186,7 @@ mission "Hjlod Remembers Nifel"
 	name "Hjlod Remembers"
 	description `Hjlod wishes to meet with you again on <planet>.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Nifel"
 	destination "Nifel"
 	to offer
@@ -4217,7 +4217,7 @@ mission "Hjlod Remembers Nifel"
 mission "The Book of Skadenga"
 	minor
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 10
 		has "event: the book"

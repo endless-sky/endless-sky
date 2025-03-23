@@ -642,7 +642,7 @@ event "rim archaeology results"
 mission "Rim Archaeology 6"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		near "Sol" 100
 		attributes spaceport
 	to offer
@@ -764,7 +764,7 @@ mission "Sheragi Archaeology: The Box 3"
 	name "The Information Dealer"
 	description "Discover the whereabouts of the box from an information broker on the pirate world of <destination>."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Independent" "Neutral"
 		near "Sol" 100
 		attributes spaceport
 	destination "Stormhold"
