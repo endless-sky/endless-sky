@@ -10877,6 +10877,7 @@ mission "Tavish and Kormak 4"
 			`	There are no doors, and a single window that looks like it was made of reinforced glass. The tired looking agent on the other side of the glass hits a button and his voice buzzes over to you. "What can I help you with?"`
 			choice
 				`	"We're looking for stolen scientific research equipment that was recently confiscated aboard the Broken Record."`
+				`	"You recently impounded stolen cargo that originally belonged to us. We'd like it back. It was aboard the Broken Record."`
 			`	The man looks down at his monitor and begins typing. After a while he stops and looks back up at you.`
 			`	"Ah yes, I found it. You'll be happy to know we did indeed confiscate some unusual equipment from the Broken Record." He looks at you expectantly.`
 			choice
