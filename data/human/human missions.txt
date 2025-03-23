@@ -11322,7 +11322,7 @@ mission "Tavish and Kormak 6"
 				goto next
 			
 			label helptav
-			`	You help Tavish set up the ring of fire and the tents within it.`
+			`	You help Tavish carefully wrap the long metallic hose, called the 'ring of fire', around the campsite. Tavish is adamant you ensure the open slits in the hose face upward, as that is where the fire erupts. After he is satisfied with the 'ring of fire', you then set up the tents within.`
 			`	After working quietly for a few moments, Tavish says, "I was from Earth. Never knew my parents. Ran with street gangs for as long as I can recall. I stole, I lied, I did whatever it took to survive. Then one day I got my hands on a ticket to Chiron. I should have taken it to my gangleader. She would have made good money off of it. But I left everything behind and boarded that ship."`
 			`	Tavish pauses in his work and wipes some sweat off his brow, "On Chiron I tried to be a different person. To rehabilitate myself. I wasn't perfect, my skillset was quite specific. But I tried.`
 			`	"I know Dr. Hullen-Freeze took advantage of me. He used me. But I did use him as well. I became more than a street-rat. I became, me." Tavish smiles sadly to himself.`
