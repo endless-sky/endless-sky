@@ -564,7 +564,7 @@ mission "Unfettered 0: Bring Hai"
 		set "unfettered: offered bring hai"
 	substitutions
 		# Translate it if you have a translator, otherwise someone will offer to do it for you.
-		<firstgroup> "Because it is in Hai, you cannot make sense of the words. However even from afar you can see how malnourished the children are."
+		<firstgroup> "Because it is in Hai, you cannot make sense of the words. However, even from afar, you can see how malnourished the children are."
 			not "language: Hai"
 		<firstgroup> `You use your translator device to make sense of what is said. "... and we fear the next season will be even more [rough, hard, taxing]. We need funding to restore the lands; very little grows on them anymore!"`
 			has "language: Hai"
@@ -574,7 +574,7 @@ mission "Unfettered 0: Bring Hai"
 			has "language: Hai"
 		<thirdgroup> "seemingly heartbroken by this little one's words. Raising his voice for all to hear, he appears to be asking something to the gathered Hai."
 			not "language: Hai"
-		<thirdgroup> `"The little one asks if he can go to Hai [space, safety]," the Chief explains, then continues. "Unfortunately, as you all know, we cannot send back a child alone, he needs to be [taken care of, protected]. Who will fulfill this duty?"`
+		<thirdgroup> `"The little one asks if he can go to Hai [space, safety]," the Chief explains. "Unfortunately, as you all know, we cannot send back a child alone; he needs to be [taken care of, protected]. Who will fulfill this duty?"`
 			has "language: Hai"
 		<fourthgroup> "This one is also requesting something, but they do not seem to be malnourished at all. The Chiefs seem bothered by this request."
 			not "language: Hai"
@@ -586,18 +586,19 @@ mission "Unfettered 0: Bring Hai"
 			has "language: Hai"
 	on offer
 		conversation
-			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing through some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming towards. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd. You are almost carried towards the building, which is grandiose compared to its surroundings and distinguished by its sheer length and pure white facade. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
+			`Looking outside, you see the sun is setting. You take a moment to admire the breathtaking view of the sun passing through some clouds of pollution and notice a large, white, square-shaped structure in the distance, perhaps some sort of stadium, which a growing crowd of Unfettered are streaming toward. Ships keep landing and unloading even more Hai all over the spaceport, so much so that, exiting your ship, you cannot avoid being caught up in the crowd. You are almost carried towards the building, which is grandiose compared to its surroundings and distinguished by its sheer length and pure white facade. In contrast, most of the surrounding structures appear to be houses or bars, all with more dilapidated appearances.`
 			`	Something of great interest must be happening in this building, but not all the Unfettered in the crowd actually share your destination - many are instead breaking away to fill the nearby bars. Some simply wander aimlessly. Others are sitting on the rocky ground, chatting. Quite a few of them appear to be trading small quantities of goods between themselves.`
 			choice
-				`	(Go into the stadium.)`
+				`	(Enter the stadium.)`
 				`	(Ignore them and go back to my ship.)`
 					defer
 			`	As you are moving with the crowd towards the nearest stadium entrance - a large open corridor leading directly into the seating areas around the main pavilion - you begin to hear words being spoken loudly, probably amplified by some kind of device. Given that the Hai are generally quite small in comparison to humans, you can already see some of what is going on inside over most of the crowd while waiting to filter inside. It seems much of the line is not for the seating itself; it instead heads directly to the central stage where a group of official-looking Unfettered Hai await.`
 			`	When it is their turn in line, a couple towing four children with them begin to plead. <firstgroup> The officials, perhaps the "Chiefs" which you have heard lead the Unfettered, speak among themselves. Then they turn back to the petitioners, and together, close their left hands and raise them up, before lowering them and opening their palms, as if presenting something. By the relief on the couple's faces, you assume their request has been granted.`
 			choice
 				`	(Move a bit to see the next petitioners as they approach.)`
+				`	(Stay still.)`
 			`	The next in line seems quite old, but he still moves proudly as if not limited by his age. <secondgroup> This one, probably a soldier of some kind, evidently has some special status or a reputation which has earned the right for him to speak this way. Or maybe he just exemplifies what you've heard about the ways of the Unfettered; they bow to no one.`
-			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears to be something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring of the crowd. "Hi," she says with a warm, somewhat embarrassed chuckle, "I have noticed you easily among Hai. Do you want me to help translate what they say?"`
+			`	The soldier moves away, and a tense silence hangs in the air for a moment. The Chiefs turn from the audience to speak among themselves, while mutterings and debate seem to be spreading throughout the crowd. This subject appears to be something for which strong opinions are held. The volume increases as the Chiefs continue their aside, and you begin to notice some of the nearby Hai turning their attention towards you, some even pointing you out. It may be that you are not welcome here. One of the younger Hai to notice you, probably still an adolescent judging by her colors, approaches you directly. She speaks softly, in your language, but clearly enough to be heard over the back and forth murmuring of the crowd. "Hi," she says with a warm, somewhat embarrassed chuckle. "I have noticed you easily among Hai. Do you want me to help translate what they say?"`
 			choice
 				`	"Yes, thank you."`
 					goto translate
@@ -615,7 +616,7 @@ mission "Unfettered 0: Bring Hai"
 				`	"No, thank you."`
 					goto headoff
 				`	"No, but I did not mean to offend or sadden you in any way, so I came to excuse myself."`
-			`	"Thank you! No offense is taken. I knew humans were not like they are often depicted here..." she trails off without finishing the thought, instead turning back to the proceedings in the stadium as they continue.`
+			`	"Thank you! No offense is taken. I knew humans were not like they are often depicted here..." She trails off without finishing the thought, instead turning back to the proceedings in the stadium as they continue.`
 			label headoff
 			`	She slowly moves away and you get back to looking at what is going on within the stadium.`
 				goto continue
@@ -624,8 +625,8 @@ mission "Unfettered 0: Bring Hai"
 				"unfettered: Merora translate" ++
 				log "Minor People" "Merora" "A young adolescent Hai that came to Unfettered space after losing her parents to pirates. She is handling the loss very well, at least on the surface."
 			`	"Great! I am Merora, by the way." She looks around, noticing the way some people are staring at you. Surprisingly they seem to be staring at her almost as much as they do at you. She explains, "I came to Unfettered space just a few weeks ago. What about you?" she asks.`
-			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting him as they speak quietly to each other.`
-			`	The Chief rises and turns to those watching to share the child's words, and Merora then translates it to you, "The child wishes to return home, to Hai space. However, he cannot do that alone, and the Chief is asking for someone to escort him, or find him a suitable transport. All Hai captains, even those who do not otherwise sympathize with our cause, would easily accept taking a child back to Hai space, without ever asking for anything in return. It only needs to be arranged by someone, as the child does not know who to turn to."`
+			`	You begin to introduce yourself to her, but barely get your name out before you are both distracted as the proceedings resume. A child, younger - or at least smaller - than any other you've seen on stage so far, approaches the Chiefs. Also alone, the child seems scared and perhaps even lost as he speaks, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting him as they speak quietly to each other.`
+			`	The Chief rises and turns to those watching to share the child's words, and Merora then translates it to you. "The child wishes to return home, to Hai space. However, he cannot do that alone, and the Chief is asking for someone to escort him, or find him a suitable transport. All Hai captains, even those who do not otherwise sympathize with our cause, would easily accept taking a child back to Hai space, without ever asking for anything in return. It only needs to be arranged by someone, as the child does not know who to turn to."`
 			choice
 				`	(Rise up.)`
 				`	(Wait to see what happens.)`
@@ -643,16 +644,16 @@ mission "Unfettered 0: Bring Hai"
 				`	(Tell her you already sold them a Jump Drive.)"`
 				`	(Don't mention it.)`
 					goto leave
-			`	"Wow, that is much more than I could ever do. They should see you as one of their own quickly enough, once word spreads."`
+			`	"Wow, that is much more than I could ever do. They should see you as one of their own quickly enough, then, once word spreads."`
 			label leave
-			`	Merora then leaves and joins with the rest of the departing crowd, but on stage, the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
+			`	Merora leaves and joins with the rest of the departing crowd, but on stage, the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
 				goto next
 			label continue
-			`	A child, younger, or at least smaller, than any other you've seen on stage so far, approaches the Chiefs. All alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other. The Chief rises; <thirdgroup> Progressively, most Hai stand up and speak, the message from each of them clear. He designates one of the first to stand, and gently sends the child walking over to them.`
+			`	A child, younger, or at least smaller, than any other you've seen on stage so far, approaches the Chiefs. All alone, the child seems scared and perhaps even lost as they speak, so softly even those on stage must be straining to hear. One of the Chiefs breaks ranks to kneel by the child, comforting them as they speak quietly to each other. The Chief rises, <thirdgroup> Progressively, most Hai stand up and speak, the message from each of them clear. He designates one of the first to stand, and gently sends the child walking over to them.`
 			`	The sun has almost set, and you can see that the Chiefs are beginning to grow impatient as the next Hai approaches and speaks to them. <fourthgroup> The Chiefs speak amongst themselves briefly, then one moves forward to address the crowd. <closing> At this, the crowd, including the young girl who offered to translate for you, leaves, but the Chiefs linger until the crowd has mostly dispersed. It seems one has noticed you now that the crowd has thinned; he is watching you pensively as he comes your way.`
 			label next
-			`	As he grows closer, you can tell he is mumbling, presumably to himself, but he speaks in your language, "We do not get human visitors often here. There has to be a reason for your presence..." Once he has closed the rest of the distance, he speaks again, directly to you and with more focus. "Sorry, I was just organizing my thoughts into your language. Well, what matters is that you are here, and so maybe could help us.`
-			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help those who are True, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he explains, apparently a bit desperate, considering he knows very little, if anything at all, about you.`
+			`	As he grows closer, you can tell he is mumbling, presumably to himself, but he speaks in your language. "We do not get human visitors often here. There has to be a reason for your presence..." Once he has closed the rest of the distance, he speaks again, directly to you and with more focus. "Sorry, I was just organizing my thoughts into your language. Well, what matters is that you are here, and so maybe could help us.`
+			`	"We have friends outside of our space, civilians and others. You see, we would do anything to help those who are True, and a few Hai want to join us. I can only hope you are willing to help us reunite with our brothers and sisters from Hai space," he explains, apparently a bit desperate.`
 			choice
 				`	"Of course. What do you need me to do?"`
 					goto action
@@ -671,7 +672,7 @@ mission "Unfettered 0: Bring Hai"
 			`	"Then you have heard about the stories of the Drak modifying our people..." he sighs and deflates a bit. "I do not believe in such things. What makes a Hai - or any other species - 'true' is in their heart. It will take them wherever they want to go." He pauses, thinking, and when he speaks again it is with deep conviction. "Even if we quarrel with the Elders, it does not mean we hate other Hai, nor do they hate us! We do it only because we must, in order to keep living our way. We can still communicate with our people, and eventually they will all be freed from the Elders, who cannot help but think in a box."`
 			choice
 				`	"Will this get me into any trouble with the Hai?"`
-				`	"What do you mean by freed from the Elders?"`
+				`	"What do you mean by 'freed from the Elders'?"`
 					goto free
 				`	"Why do you need me to do it anyway?"`
 					goto whyme
@@ -784,8 +785,8 @@ mission "Unfettered 1: Bring Medicine"
 		log "People" "Sookootow" `An Unfettered Chief who is worried for his people, whether they are inside Hai or Unfettered territory. He seems to believe that all Hai are equal, and as a member of the council he has significant influence. He also appears to be quite empathic.`
 		payment 1500000
 		conversation
-			`The staff seem greatly relieved when you return promptly with the medical supplies. To your surprise, some Unfettered have weapons even near this hospital, albeit holstered at all times. As you're returning to your ship, one of them catches up to you. "Hello, <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally." He takes a second to get his breath back, before continuing, "I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
-			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he then moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like the plague has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference, by moving his left hand to the side whilst bowing his head ever so slightly and holding his right hand firmly. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are.`
+			`The staff seem greatly relieved when you return promptly with the medical supplies. To your surprise, some Unfettered have weapons even near this hospital, albeit holstered at all times. As you're returning to your ship, one of them catches up to you. "Hello, <last>. I am Merki, manager of this hospital. I wanted to express my deepest thanks to you and give you the <payment> personally." He takes a second to get his breath back. "I find it quite admirable that an outsider would risk getting caught up in all of this. It would mean a great deal to me if your bravery holds fast, so make sure to check the job board for more jobs like this."`
+			`	Once Merki leaves, you notice a recognizable face: the same Hai Chief from Firelode, speaking with someone who, judging by their demeanor and attire, could be the hospital's chief medical officer. He soon sees you as well and hurriedly finishes his conversation, seeming more than a bit emotional as he moves to speak with you. "I knew you could be counted on as a friend to the Unfettered! With the swift response of captains like you, it seems like the plague has calmed down here. We did not before have the time to get properly introduced. I am Sookootow." He makes a little gesture, you assume of deference, by moving his left hand to the side whilst bowing his head ever so slightly and holding his right hand firmly. You try to imitate the motion, apparently badly, amusing Sookootow. "Worry not, <first> <last>, I already know who you are.`
 			`	"You have been granted access to our basic outfitter on Firelode as a reward for your help, should you need it to store goods or prepare yourself for a raid."`
 			choice
 				`	"I only did what little I could do to help save people. Hopefully I will be able to do more next time we meet."`
@@ -1005,7 +1006,7 @@ mission "Unfettered 2: Prove Your Strength"
 				`	"We shall see."`
 					goto end
 				`	"You could have just asked."`
-			`	"We cannot learn from words alone, and ye have not proven yerself to us as one who can be trusted, anyway. That be why I provoked ye." One of his crew mutters something from behind him, but you cannot hear it clearly. "Well, that, and yes, maybe I be a bit too prideful meself, especially when I be three sheets to the wind. I took on a challenge I should not have..." he shouts something in Hai, presumably to the crew member who just spoke.`
+			`	"We cannot learn from words alone, and ye have not proven yerself to us as one who can be trusted, anyway. That be why I provoked ye." One of his crew mutters something from behind him, but you cannot hear it clearly. "Well, that, and yes, maybe I be a bit too prideful meself, especially when I be three sheets to the wind. I took on a challenge I should not have..." He shouts something in Hai, presumably to the crew member who just spoke.`
 				goto end
 			label dangerous
 			`	"Worry not, matey. Respect only need be earned once. From me, at least. Do know there are other captains eager to challenge ye themselves, and most are stronger than me. Or, at least, they have more ships..."`
@@ -1132,11 +1133,13 @@ mission "Unfettered 3: Recover Jump Drives"
 				`	"What kind of job is it?"`
 					goto job
 			label insult
+			action
+				"unfettered rep: Si-Ra" --
 			`	He does not seem to react to your insult.`
 			label job
 			`	"We be going to collect a few jump drives! Normally ye would not be able to get such a job, since ye have not earned much among us still, but I have the connection to get it for ye. Ye see, officially this be me mission, and a very lucrative one, at that! On top of that, should we succeed, next time ye may be entrusted with such missions on your own, but don't ye be expecting near the same booty for yerself."`
 			choice
-				`	"Okay... That just seems too good to be true. What's the catch?"`
+				`	"Okay... that just seems too good to be true. What's the catch?"`
 			`	"Well... the world be called 'Freedom', and that may sound nice, but it be a dangerous human port, full of privateers and swashbucklers. That is why I need yer ship, for transportation beyond Hai space. Ye will also need to save room in yer cargo hold or on your flagship for four jump drives. Be warned: this be no mission for the lighthearted."`
 			choice
 				`	"Let's go then!"`
@@ -1275,7 +1278,7 @@ mission "Unfettered 3: Jump Drive Vault"
 				`	"Is everything alright?"`
 				`	"There is no need to be worried, that cache must be well hidden, right?"`
 			action
-				"unfettered rep: Si-Ra" --
+				"unfettered rep: Si-Ra" -= 2
 			`	He makes some kind of sign you do not understand, but it seems pretty clear he wants you to keep quiet. Looking around, you notice the two of you have attracted quite a bit of attention from the impoverished locals. While they all seem to have nothing to lose, the vast majority of them are very young and probably not the hardened criminals you had expected.`
 			label discreet
 			action
@@ -1400,7 +1403,7 @@ ship "Geocoris" "Geocoris (Keystones)"
 
 mission "Unfettered 4: Scan Geocoris"
 	name `Scan the Geocoris`
-	description `Scan the cargo of the Hai Geocoris in Ya Hai with the Value Detector, then return to <destination> with the scanner logs. You may abort this, at a cost.`
+	description `Scan the cargo of the Geocoris in Ya Hai with the Value Detector, then return to <destination> with the scanner logs. You may abort this, at a cost.`
 	source "Firelode"
 	waypoint "Ya Hai"
 	to offer
@@ -1409,7 +1412,7 @@ mission "Unfettered 4: Scan Geocoris"
 	on offer
 		conversation
 			`The market here has a limited diversity of goods; you can spot human food and technology, but those are the only new items here. However, some of it seems to be neither Hai nor human. Regardless of their origins, most of the goods here appear ancient, and you doubt everything is functional...`
-			`	Most Unfettered here are just busy buying what little food there is, if they can even afford it. You see two of them arguing, probably over the cost of some item, but decide not to intervene given how they tend to respond to your mere presence.`
+			`	Most Unfettered here are just busy buying what little food there is, those who can even afford it. You see two of them arguing, probably over the cost of some item, but decide not to intervene given how they tend to respond to your mere presence.`
 			`	An Unfettered approaches you. At first, you wonder why the Hai happens to be coming towards you in particular, but then you realize that you naturally stand out in the crowd. There are not many non-Hai on the Unfettered worlds.`
 			`	"Captain <last>! I am Mera, an engineer. We have an easy job for you, if you are interested," she says, and adds, "It would pay well."`
 			choice
