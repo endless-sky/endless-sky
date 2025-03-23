@@ -79,7 +79,7 @@
 					},
 					{
 						"description": "accidental commonly doubled word",
-						"regex": "\\b(than|the|with|to|is|a|an|of|as)\\s+\\1\\b",
+						"regex": "\\b(than|the|with|to|is|a|an|of|as|was|and|in)\\s+\\1\\b",
 						"except": [],
 						"correction": {
 							"replaceWith": "\\1"
