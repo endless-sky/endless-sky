@@ -135,7 +135,7 @@ mission "Unfettered Jump Drive 4"
 
 			label trade
 			branch spareJD
-				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Jump Drive" > 1
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
 			action
 				outfit "Hyperdrive" 1
 			label spareJD
