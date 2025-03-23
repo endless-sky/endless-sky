@@ -596,7 +596,6 @@ mission "Wanderers: Defend Vara Ke'sok"
 				launch
 	on accept
 		"reputation: Hai (Unfettered)" <?= -1
-		"reputation: Hai (Unfettered Raiders)" <?= -1
 		event "Sich'ka'ara empty"
 	on visit
 		dialog "There are still Unfettered warships overhead. You should take off again and assist in the fight."
@@ -1025,17 +1024,14 @@ mission "Wanderers: Alpha Surveillance B"
 	on enter "Ehma Ti"
 		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
 		"reputation: Hai (Unfettered)" <?= -1
-		"reputation: Hai (Unfettered Raiders)" <?= -1
 	waypoint "Wah Yoot"
 	on enter "Wah Yoot"
 		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
 		"reputation: Hai (Unfettered)" <?= -1
-		"reputation: Hai (Unfettered Raiders)" <?= -1
 	waypoint "Hi Yahr"
 	on enter "Hi Yahr"
 		dialog "Using the transmitter that came with the surveillance cubes, you send out the signal and receive back the encrypted fleet activity recordings."
 		"reputation: Hai (Unfettered)" <?= -1
-		"reputation: Hai (Unfettered Raiders)" <?= -1
 	
 	on offer
 		conversation

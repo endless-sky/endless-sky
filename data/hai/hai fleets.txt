@@ -889,7 +889,7 @@ fleet "Large Plundering Unfettered"
 		"Shield Beetle (Pulse)"
 
 fleet "Unfettered Hai Space Raid"
-	government "Hai (Unfettered Raiders)"
+	government "Hai (Unfettered)"
 	names "hai"
 	cargo 1
 	personality

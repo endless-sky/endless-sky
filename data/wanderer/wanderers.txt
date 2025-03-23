@@ -770,7 +770,6 @@ event "wanderers: unfettered invasion starts"
 		add fleet "Wanderer Flycatchers" 480
 		add fleet "Large Unfettered" 1200
 	"reputation: Hai (Unfettered)" <?= -100
-	"reputation: Hai (Unfettered Raiders)" <?= -100
 	government "Hai (Unfettered)"
 		"attitude toward"
 			"Wanderer" -.01
