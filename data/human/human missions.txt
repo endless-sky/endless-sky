@@ -11010,6 +11010,10 @@ mission "Tavish and Kormak 4"
 					goto soggy
 					to display
 						not "soggy"
+				`	"Why the emphasis on your honesty you all of sudden?"`
+					goto honesty
+					to display
+						not "honesty"
 				`	"Don't worry. I trust you."`
 				`	"There's something about you I don't quite trust. But we've come this far and I intend to see this through."`
 
@@ -11017,9 +11021,16 @@ mission "Tavish and Kormak 4"
 			action
 				clear "soggy"
 				clear "relation"
+				clear "honesty"
 			`	"Thank you, Captain. I appreciate you hearing me out." Tavish puts his hat back on and leaves the bridge.`
 				decline
-			
+
+			label honesty
+			action
+				set "honesty"
+			`	Tavish swallows. "I made mistakes in my youth, and I don't want you conflating the man I was before, with the one I am now. I am your companion, not your conman."`
+				goto options
+	
 			label relation
 			action
 				set "relation"
