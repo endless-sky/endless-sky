@@ -10882,9 +10882,20 @@ mission "Tavish and Kormak 4"
 			`	"Ah yes, I found it. You'll be happy to know we did indeed confiscate some unusual equipment from the Broken Record." He looks at you expectantly.`
 			choice
 				`	"Great! Can it be returned to us?"`
+					goto collect
 				`	"Finally. We're here to collect it."`
+					goto collect
 				`	"Hand it over. It belongs to us."`
+			`	The man gives you a withering expression, "All property confiscated by Syndicate Security is forfeit by the original owners. You're lucky we aren't pressing charges against you for having allowing your equipment to be used in illegal activities."`
+			choice
+				`	"You'd press charges against us because our equipment was stolen?"`
+					goto charges
+				`	"My mistake. Is there any way we can have this property returned to us.?"`
+			`	"I am sorry," the man says, "but that cargo is no longer on Hephaestus."`
+				goto nextoption
+			label collect
 			`	The man gives you a pained expression, "I am sorry, but it is no longer on Hephaestus."`
+			label nextoption
 			`	He says nothing else and waits.`
 			choice
 				`	"Okay. Where is it?"`
@@ -10960,6 +10971,14 @@ mission "Tavish and Kormak 4"
 			`	"Bad history," Kormak says, before following Tavish out.`
 			`	It seems Chiron is your next destination.`
 				accept
+
+			label charges
+			`	"Of course. By allowing your equipment to be stolen you are encouraged criminal elements in the Syndicate. Now, is there anything else I can help you with?"`
+			choice
+				`	"Is there anyway we can collect our stolen equipment?"`
+				`	"We just want our stuff back."`
+					goto collect
+
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish were on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 
