@@ -403,7 +403,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanPurchase(bool checkSpecialItems)
 	if(checkSpecialItems)
 	{
 		int mapSize = selectedOutfit->Get("map");
-	  bool mapMinables = selectedOutfit->Get("map minables");
+		bool mapMinables = selectedOutfit->Get("map minables");
 		if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
 			return "You have already mapped all the systems shown by this map, "
 				"so there is no reason to buy another.";
