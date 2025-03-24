@@ -5984,6 +5984,7 @@ mission "Hroar's Haulers 15"
 			`	Leland cannot hide his disdain as he stares daggers at everyone, and refuses to even look at you. Yngvar puts an arm on your shoulder, "That includes us, Captain <last>. I am gonna head straight for your ship. Recommending you do the same."`
 			`	He turns and leaves.`
 			action
+				set "payall"
 				clear "cairn"
 				clear "logofficer"
 				clear "otheroptions"
@@ -6095,10 +6096,10 @@ mission "Yngvar Interlude"
 				`	"Sure, what about?"`
 					goto paid
 					to display
-					has "Hroar's Haulers 15: accepted"
+						has "Hroar's Haulers 15: accepted"
 				`	"No."`
 			`	Yngvar frowns, and doesn't move, "Respectfully, Captain, I wasn't really asking. This might be your ship, but," He jabs a thumb toward the bulkhead and space beyond, "that's all our fleet. So, you listening?"`
-					choice
+			choice
 				`	"Yeah, I am listening"`
 				`	(Nod.)`
 				`	(Say nothing.)`
@@ -8220,7 +8221,7 @@ mission "Hroar's Haulers 25"
 			`The dust-filled spaceport of Muspel has changed little since you left on the Long Haul. The biggest difference being crowds of enthuastic Haulers with fresh paychecks and little self control. Some of them nod to you, or hollar at you as you pass them by.`
 			` Eventually you make your way to the familiar swinging doors of the Red Rock Saloon.`
 			`	You push your way into the dimly lit bar. Past the thick smoke and musk, and to the bar beyond.`
-			`	The bartender, Havi, gives you respectful nods. "Boss is waiting."`
+			`	The bartender, Havi, gives you a respectful nods. "Boss is waitin'."`
 			choice
 				`	(Head to Hroar's booth.)`
 					goto booth
@@ -8232,7 +8233,7 @@ mission "Hroar's Haulers 25"
 			`	You're familiar with the booth, and make your way back to where Hroar is seated. You recognize Yngvar sitting across from him.`
 			`	"At last, our esteemed hirthr." He gives you a hard look and gestures toward the empty seat beside Yngvar. "Join us."`
 			`	He ignores his whiskey glass and bottle as you slide in.`
-			`	"Seems you misplaced a third of my fleet." He looks you right in the eyes. "This is not, as you can imagine, news I like to hear."`
+			`	"Seems you misplaced a third of my fleet." He looks you right in the eye. "This is not, as you can imagine, news I like to hear."`
 			choice
 				`	"It was the Syndicate. Nothing I could do about it."`
 					goto syndicate
@@ -8242,8 +8243,8 @@ mission "Hroar's Haulers 25"
 			`	Hroar tilts his head without breaking eye contact, "Nothing? Big shot captain like you got nothing to say?"`
 			label yngvarcalm
 			`	"Hroar." Yngvar cuts in, "Ain't nothing the hirthr could do. Solvi's crews were in the brig for trumped up charges, and we couldn't cover the bribes to get 'em out. As for fighting, well, that'd cost us the whole contract right then and there"`
-			`	The leader of the Haulers closed his eyes and sat back, "Smart. Smart call not to fight 'em." He sighs, "Probably what they wanted anyhow, they've been looking for any excuse to get out of that contract."`
-			`	His eyes flicker for Yngvar back to you, "But I am thinking this will only escalate. This wasn't their last move, only their first."`
+			`	The leader of the Haulers closes his eyes and sits back, "Smart. Smart call not to fight 'em." He sighs, "Probably what they wanted anyhow, they've been looking for any excuse to get out of that contract."`
+			`	His eyes flicker from Yngvar back to you, "But I am thinking this will only escalate. This wasn't their last move, only their first."`
 			`	"Alright," Hroar says after taking breath, "Guess there's no point in berating you then, eh? And here I was lookin' forward to it. Lookin' for someone to blame."`
 			`	Hroar shrugs, "But, I s'pose if I am not gonna be yelling atchya, I might as well pay ya. Whatdya think Yngvar, how'd they do?"`
 			`	Yngvar pauses for a moment.`
@@ -8258,7 +8259,7 @@ mission "Hroar's Haulers 25"
 				to display
 					has "metbolverka"
 					not "jerktosolvi"
-			`	"I also enjoyed spending time with them. Lotta greenhorns all bluster and business. But <last> was just quality company."`
+			`	"I enjoyed spending time with 'em. Lotta greenhorns all bluster and business. But <last> was just quality company."`
 				to display
 					has "generationship2"
 			`	"And, well, there's a story goin' 'round that he drank someone's spit outta cup a couple times? Doesn't really bare bringing up I know. But I just can't stop thinking about it for some reason."`
@@ -8282,7 +8283,7 @@ mission "Hroar's Haulers 25"
 				`	(Shrug.)`
 			`	"Fair enough." He nods and shouts, "Havi!"`
 			label havi
-			`	The bartender saunters over with a tablet in hand. The swinging doors creek and you notice Haulers entering the saloon.`
+			`	The bartender saunters over with a tablet in hand. Behind him the swinging doors creek and you notice Haulers entering the saloon.`
 			`	"Obviously, the pay is less than it woulda been due to the loss of Solvi's fleet. That's a cost every single one of us is gonna eat. Still your cut as the hirthr comes out to... what is it Havi?"`
 			`	Havi carefully scans the tablet, "787,411 credits."`
 			`	"787,411 credits!" Hroar says brightly. "I toldja you'd see some coin eventually. Transfer it over, Havi."`
@@ -8298,21 +8299,21 @@ mission "Hroar's Haulers 25"
 			`	Yngvar pushes past you and makes his way to the back of the room. Hroar climbs ontop of the bar. The room is now filled with Haulers.`
 			`	Hroar roars above the din, "Well ain't this a sight for sore eyes! Been too long since we've had the Saloon filled to the brim with moon-faced Long Haulers stinking of the Gap!"`
 			`	The crowd roars back its approval.`
-			`	"Before ya'll get too skitr-faced to stand, or stumble off into some dust-caked brothel, we got some critical clerical work to see to; aint that right fellas?"`
+			`	"Before ya'll get too skitr-faced to stand, or stumble off into some dust-caked brothel, we have some critical clerical work to see to; aint that right fellas?"`
 			`	The crowd again roars its affirmation.`
-			`	"Now, as you all know, you ain't a Hauler 'till you've hauled long, and we've got crew here ready to turn in their green horns for red jackets!"`
-			`	Yngvar suddenly appears beneath Hroar and slaps a pile of red Hauler jackets on the bar.`
+			`	"Now, as ya'll know, you ain't a Hauler 'till you've hauled long, and we've got crew here ready to turn in their green horns for red jackets!"`
+			`	Yngvar appears beneath Hroar and slaps a pile of red Hauler jackets on the bar.`
 			`	Hroar begins announcing names in no discernable order, while newly christened Haulers march up among their cheering peers and grab their very own Hauler jacket.`
 			`	"And let's not forget Captain <last>, the hirthr who herded the fleet through the Gap!"`
 			choice
 				`	(Grab your jacket.)`
 					goto jacket
 				`	(Try to say a few words.)`
-			`	You attempt to speak but are quickly drawn out by jovial haulers. This isn't the time for speeches. This is the time to grab your jacket.`
+			`	You attempt to speak but are quickly drawned out by jovial haulers. This isn't the time for speeches. This is the time to grab your jacket.`
 			choice
 				`	(Grab your jacket)`
 			label jacket
-			`	You grab the faded jacket that more or less fits and pull on it on to cheering. Hands flash out of the crowd and slap you on the shoulder and back as you back to the side of the room.`
+			`	You grab the faded jacket that more or less fits and pull on it on to cheering. Hands flash out of the crowd and slap you on the shoulder and back as you move to the side of the room.`
 			`	Hroar's voice bursts over the wave of patrons, "Remember, you're jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
 			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks for an overwhelemed but unperturbed Havi.`
 			choice
@@ -8327,11 +8328,11 @@ mission "Hroar's Haulers 25"
 			`[THIS ENDS THE HROARS HAULER CONTENT - FUTURE MISSIONS WILL BE ADDED.]`
 				decline
 			label drink
-			`	The press is pretty to tight to the bar, and no Hauler seems keen on giving way to you. A few attempt to mumble a thanks to you for keeping pirates off them in the Gap. Others are more focused on talking to thier mates.`
+			`	The press is tight around the bar, and no Hauler seems keen on giving way to you. A few attempt to mumble their thanks to you for keeping pirates off them in the Gap. Others are more focused on talking to thier mates.`
 			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgement.`
 			choice
 				`	(Drink it.)`
-			`	The alcohol burns on its way down, and barely has any taste to it all. There's no chance of getting a second drink for a while.`
+			`	The tasteless alcohol burns on its way down. There's no chance of getting a second drink for a while.`
 				goto afterdrink
 				`	(Leave it for someone else.)`
 			`	You leave it on the bar and stepback, another Hauler is instantly in your place happily tossing back the drink.`
@@ -8345,9 +8346,9 @@ mission "Hroar's Haulers 25"
 					goto leave
 			label conversation
 			`	The first Hauler grins, "That's some fancy flying you did out there."`
-			`	The other nods vigerously, "Always good to have a hirthr know their stuff."`
-			`	"Shame about Solvi though." The first says somberly. "If they woulda fought you in the Gap, woulda been different for sure."`
-			`	"For sure." The other says sadly. The two of, now in a more melancholy move, filter away from you.`
+			`	The other nods vigerously, "Always good to have a hirthr who knows their stuff."`
+			`	"Shame about Solvi though." The first says somberly. "If the Syndies woulda fought you in the Gap, woulda been different for sure."`
+			`	"For sure." The other says sadly. The two of them, now in a more melancholy move, filter away from you.`
 			choice
 				`	(Make your way to Hroar's booth.)`
 					goto booth2
@@ -8355,10 +8356,10 @@ mission "Hroar's Haulers 25"
 					goto leave
 
 			label booth2
-			`	Hroar, Yngvar and Bolverka, in contrast to buoyant atmosphere throughout the saloon, are all speaking in quiet serious tones.`
-			`	"...Hrodny said the southern pirates were gettin' bolder, that some of them even were using Syndie gear." Yngvar nearly whispers.`
+			`	Hroar, Yngvar and Bolverka, in contrast to the buoyant atmosphere throughout the saloon, are all speaking in quiet serious tones.`
+			`	"...Hrodny said the southern pirates were gettin' bolder, and that some were using Syndie gear." Yngvar nearly whispers.`
 			`	"Doesn't mean nothing." Hroar responds, "They coulda pilfered that gear offa some unlucky ships. Or bought them at the market on Greenrock for all we know."`
-			`	"Hroar." Bolverka says gently, "Trust the girl. She's not the shy doe-eyed bookhound you raised. She knows what she's talking about."`
+			`	"Hroar." Bolverka says gently, "Trust the girl. She's not the shy doe-eyed book-hound you raised. She knows what she's talking about."`
 			`	"But that would mean..." Hroar starts.`
 			`	Yngvar suddenly clears his throat, "<last>, anything we can help you with?"`
 			`	The other two straighten up and face you.`
@@ -8377,7 +8378,7 @@ mission "Hroar's Haulers 25"
 				decline
 
 		label next
-		`	Hroar grins, "Keep your ear to the ground, and I'll contact you when I am ready. Gotta a few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
+		`	Hroar grins, "Keep your ear to the ground, and I'll contact you when I'm ready. Gotta a few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
 		`	Yngvar nods, "Not bad work. If work is what you're interested in."`
 		`	Hroar makes a shooing gesture, "But right now we're in the middle of something. So, uh, if you don't mind."`
 		choice
@@ -8423,10 +8424,10 @@ mission "Hroar's Haulers 25b"
 		has "Hroar's Haulers 20: done"
 	on offer
 		conversation
-			`The dust-filled spaceport of Muspel has changed little since you left on the Long Haul. The biggest difference being crowds of enthuastic Haulers with fresh paychecks and little self control. Some of them nod to you, or hollar at you as you pass them by.`
+			`The dust-filled spaceport of Muspel has changed little since you left on the Long Haul. The biggest difference being crowds of enthuastic Haulers with fresh paychecks and little self control. Most of them nod to you, or hollar at you as you pass them by.`
 			` Eventually you make your way to the familiar swinging doors of the Red Rock Saloon.`
 			`	You push your way into the dimly lit bar. Past the thick smoke and musk, and to the bar beyond.`
-			`	The bartender, Havi, gives you respectful nods. "Boss is waiting."`
+			`	The bartender, Havi, gives you respectful nods. "Boss is waitin'."`
 			choice
 				`	(Head to Hroar's booth.)`
 					goto booth
@@ -8442,10 +8443,14 @@ mission "Hroar's Haulers 25b"
 			choice
 				`	"Leave no Hauler behind; though it cost me good deal of credits."`
 					to display
-						not "makerhero"
+						has "payall"
 				`	"We gave them a whoopin' they won't soon forget."`
 					to display
 						has "makerhero"
+				`	"I worked out a deal to free everyone."`
+					to display
+						has "brokecontract"
+				`	(Say nothing.)`
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
