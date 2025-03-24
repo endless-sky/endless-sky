@@ -31,10 +31,16 @@ class Ship;
 // objects in each system move slightly in their orbits.
 class StellarObject : public Body {
 public:
+	// Disable certain checks that require images to be loaded since they are
+	// never loaded when the "matches" command is in use.
+	static void UsingMatchesCommand();
+
+
+public:
 	StellarObject();
 
 	// Functions provided by the Body base class:
-	// bool HasSprite() const;
+	bool HasSprite() const;
 	// int Width() const;
 	// int Height() const;
 	// Frame GetFrame(int step = -1) const;
