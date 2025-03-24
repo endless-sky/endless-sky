@@ -226,9 +226,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 					break;
 
 			if(i == contents.size())
-			{
 				return true;
-			}
 
 			// Check if it's too far down or up
 			int position = i * LINE_HEIGHT - categoryScroll;
