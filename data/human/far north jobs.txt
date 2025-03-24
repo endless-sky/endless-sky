@@ -93,7 +93,7 @@ mission "Navy resupply [0]"
 	to offer
 		random < 2
 	source
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 		attributes outfitter factory
 	destination
 		government "Republic"

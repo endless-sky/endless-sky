@@ -21,7 +21,7 @@ mission "Hai Reveal: Media Retraction"
 	landing
 	invisible
 	source
-		government "Republic" "Syndicate" "Free Worlds" "Neutral"
+		government "Republic" "Deep" "Syndicate" "Free Worlds" "Neutral"
 		attributes "spaceport"
 	to offer
 		has "event: hr: media retraction"
@@ -570,7 +570,7 @@ mission "Hai Leaks Response 7"
 	landing
 	invisible
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
 		not attributes "uninhabited"
 	to offer
 		has "Hai Leaks Response 6: active"

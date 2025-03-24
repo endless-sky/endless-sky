@@ -54,7 +54,7 @@ mission "Hai Rescue: Yeertle Hint"
 	description `A truly outlandish rumor has been floating around that there might be a "were-squirrel" (Hai) hiding out on <destination>.`
 	source
 		near "Betelgeuse" 4
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
 		not planet "Prime"
@@ -188,7 +188,7 @@ mission "Hai Rescue: Ooonem Hint"
 	description "There have been some mysterious deaths on <destination>."
 	source
 		near "Alcyone" 3
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
 		not planet "Stormhold"
@@ -329,7 +329,7 @@ mission "Hai Rescue: Prison RP Hint"
 	description "Some merchants have mentioned picking up a distress call near <destination> that they couldn't locate the source of."
 	source
 		near "Mirfak" 4
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
 		not planet "Sunracer"
@@ -417,7 +417,7 @@ mission "Hai Rescue: Meroot and Lucy Hint"
 	description "There could be kidnappers or kidnapped Hai hiding on <destination>."
 	source
 		near "Zaurak" 4
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
 		not planet "Canyon"
@@ -523,7 +523,7 @@ mission "Hai Rescue: Gipeep Hint"
 	description "You've heard there's some suspiciously lucrative transport jobs on <destination>."
 	source
 		near "Nihal" 4
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 		attributes "spaceport"
 		not attributes "station"
 		not planet "Maelstrom"
