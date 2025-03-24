@@ -273,7 +273,7 @@ Point UI::GetMouse()
 
 void UI::PlaySound(UISound sound)
 {
-	std::string name;
+	string name;
 	switch(sound)
 	{
 		case UISound::NORMAL:
