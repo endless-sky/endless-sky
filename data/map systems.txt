@@ -3983,7 +3983,7 @@ system Algedi
 	link Achernar
 	link "Al Dhanab"
 	link Alpheratz
-	link Algedi
+	link Mira
 	link Anser
 	asteroids "small rock" 17 3.069
 	asteroids "medium rock" 5 5.3568
@@ -13387,7 +13387,7 @@ system Devil-Hide
 
 system Devil-Run
 	hidden
-	pos -148 162
+	pos -121 192
 	government Uninhabited
 	attributes "inaccessible"
 	arrival 1080
