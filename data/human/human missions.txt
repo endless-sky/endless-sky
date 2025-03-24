@@ -10416,7 +10416,7 @@ mission "Tavish and Kormak 1"
 				`	"Sure, whatever, but where did you get Mayflower from? I'm Captain <last>."`
 					goto embarrassment2
 			label mayflower2
-choice
+			choice
 				`	"Yes! To Clark!`
 					accept
 				`	"Fine, but I better not regret this."`
@@ -11650,3 +11650,5 @@ mission "Weland 2"
 				event "welandwait2" 160 180
 			`	Weland beams. "That's the spirit, now. Figurin' things out, well, that's what it means to be human, isn't it? Now, as I said, I reckon it'll take me near about 6 months to get this beauty figured out. I realize, being a fancy space hero an' all, you probably will need a little reminder, so when I am done I'll send you a message. As I promised, if I can't get it to work, you don't have to pay me a penny. But, well, wouldn't be betting on that happening; I haven't yet met a machine I couldn't crack."`
 				decline
+
+event "welandwait2"
