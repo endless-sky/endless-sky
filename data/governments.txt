@@ -2039,6 +2039,7 @@ government "Republic"
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
+		"Deep" 1
 	"friendly hail" "friendly navy"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"
