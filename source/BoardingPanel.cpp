@@ -169,7 +169,7 @@ void BoardingPanel::Draw()
 	Information info;
 	if(CanExit())
 		info.SetCondition("can exit");
-	if(CanTake())
+	if(CanTake() == CanTakeResult::CAN_TAKE)
 		info.SetCondition("can take");
 	if(CanCapture())
 		info.SetCondition("can capture");
@@ -243,8 +243,25 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(playerDied)
 		return false;
-	else if(key == 't' && CanTake())
+	else if(key == 't')
 	{
+		CanTakeResult canTake = CanTake();
+		if(canTake != CanTakeResult::CAN_TAKE)
+		{
+			string message;
+			if(canTake == CanTakeResult::TARGET_YOURS)
+				message = "You cannot plunder your own ship.";
+			else if(canTake == CanTakeResult::NO_SELECTION)
+				message = "No item selected.";
+			else if(canTake == CanTakeResult::NO_CARGO_SPACE)
+				message = "You do not have enough cargo space to take this item, and you cannot install it as ammo.";
+			else
+				message = "You cannot plunder now.";
+
+			GetUI()->Push(new Dialog{message});
+			return true;
+		}
+
 		CargoHold &cargo = you->Cargo();
 		int count = plunder[selected].Count();
 
@@ -639,19 +656,19 @@ bool BoardingPanel::CanExit() const
 
 
 // Check if you can take the given plunder item.
-bool BoardingPanel::CanTake() const
+BoardingPanel::CanTakeResult BoardingPanel::CanTake() const
 {
-	// If you ship or the other ship has been captured:
+	// If your ship or the other ship has been captured:
 	if(!you->IsYours())
-		return false;
+		return CanTakeResult::OTHER;
 	if(victim->IsYours())
-		return false;
+		return CanTakeResult::TARGET_YOURS;
 	if(isCapturing || playerDied)
-		return false;
+		return CanTakeResult::OTHER;
 	if(static_cast<unsigned>(selected) >= plunder.size())
-		return false;
+		return CanTakeResult::NO_SELECTION;
 
-	return plunder[selected].CanTake(*you);
+	return plunder[selected].CanTake(*you) ? CanTakeResult::CAN_TAKE : CanTakeResult::NO_CARGO_SPACE;
 }
 
 
