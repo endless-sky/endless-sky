@@ -506,7 +506,8 @@ mission "Expanding Business [1]"
 	source "Greenwater"
 	destination "Allhome"
 	to offer
-		has "event: hai-human resolution announced"
+		"combat rating" > 100
+		random < 90
 	on offer
 		conversation
 			`Walking through the <origin> spaceport, you notice that almost half of the people you see are humans, unlike other Hai worlds where the Hai outnumber humans by a sizable degree. A human dressed in a business suit shouts your name from across the street and approaches you.`
@@ -1005,9 +1006,6 @@ mission "Nanachi 1"
 		"net worth" > 20000000
 		"combat rating" > 1200
 		has "First Contact: Hai: offered"
-		or
-			not "hr: secret leaks"
-			has "event: hai-human resolution announced"
 	on offer
 		conversation
 			`As you are making your way through the spaceport you notice a worried-looking Hai staring at the local job board and back at some sort of document they are holding.`
