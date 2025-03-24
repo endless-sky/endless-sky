@@ -299,9 +299,7 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
-		{
 			editing = selected = index;
-		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
