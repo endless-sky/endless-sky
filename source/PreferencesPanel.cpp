@@ -1044,7 +1044,7 @@ void PreferencesPanel::DrawPlugins()
 		bool displayed = table.GetPoint().Y() > pluginListClip->Top() - 20 &&
 			table.GetPoint().Y() < pluginListClip->Bottom() - table.GetRowBounds().Height() + 20;
 		if(displayed)
-			AddZone(zoneBounds, [&](){ Plugins::TogglePlugin(plugin.name); });
+			AddZone(zoneBounds, [&]() { Plugins::TogglePlugin(plugin.name); });
 		if(isSelected)
 			table.Draw(plugin.name, bright);
 		else
