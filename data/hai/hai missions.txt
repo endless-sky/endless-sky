@@ -506,8 +506,8 @@ mission "Expanding Business [1]"
 	source "Greenwater"
 	destination "Allhome"
 	to offer
-		"combat rating" > 100
-		random < 90
+		has "First Contact: Hai: offered"
+		has "main plot completed"
 	on offer
 		conversation
 			`Walking through the <origin> spaceport, you notice that almost half of the people you see are humans, unlike other Hai worlds where the Hai outnumber humans by a sizable degree. A human dressed in a business suit shouts your name from across the street and approaches you.`
