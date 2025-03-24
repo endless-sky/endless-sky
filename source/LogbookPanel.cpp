@@ -189,9 +189,7 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			if(contents[i] == selectedName)
 				break;
 		if(i == contents.size())
-		{
 			return true;
-		}
 
 		if(key == SDLK_DOWN)
 		{
