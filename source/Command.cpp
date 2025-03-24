@@ -62,7 +62,7 @@ const Command Command::BOARD(ONE << 11, "Board selected ship");
 const Command Command::HAIL(ONE << 12, "Talk to selected ship");
 const Command Command::SCAN(ONE << 13, "Scan selected ship");
 const Command Command::JUMP(ONE << 14, "Initiate hyperspace jump");
-const Command Command::FLEET_JUMP(ONE << 15, "");
+const Command Command::FLEET_JUMP(ONE << 15, "Initiate fleet jump");
 const Command Command::TARGET(ONE << 16, "Select next ship");
 const Command Command::NEAREST(ONE << 17, "Select nearest hostile ship");
 const Command Command::NEAREST_ASTEROID(ONE << 18, "Select nearest asteroid");
@@ -75,15 +75,16 @@ const Command Command::MESSAGE_LOG(ONE << 24, "View message log");
 const Command Command::FULLSCREEN(ONE << 25, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 26, "Toggle fast-forward");
 const Command Command::HELP(ONE << 27, "Show help");
-const Command Command::FIGHT(ONE << 28, "Fleet: Fight my target");
-const Command Command::GATHER(ONE << 29, "Fleet: Gather around me");
-const Command Command::HOLD(ONE << 30, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 31, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 32, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 33, "Auto steer");
-const Command Command::WAIT(ONE << 34, "");
-const Command Command::STOP(ONE << 35, "");
-const Command Command::SHIFT(ONE << 36, "");
+const Command Command::PAUSE(ONE << 28, "Pause");
+const Command Command::FIGHT(ONE << 29, "Fleet: Fight my target");
+const Command Command::GATHER(ONE << 30, "Fleet: Gather around me");
+const Command Command::HOLD(ONE << 31, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 32, "Fleet: Harvest flotsam");
+const Command Command::AMMO(ONE << 33, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 34, "Auto steer");
+const Command Command::WAIT(ONE << 35, "");
+const Command Command::STOP(ONE << 36, "");
+const Command Command::SHIFT(ONE << 37, "");
 
 
 
