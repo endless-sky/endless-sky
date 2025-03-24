@@ -28,7 +28,7 @@ mission "Cargo Smuggling [0]"
 		government "Pirate"
 	destination
 		distance 4 6
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -58,7 +58,7 @@ mission "Cargo Smuggling [1]"
 		government "Pirate"
 	destination
 		distance 4 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -88,7 +88,7 @@ mission "Cargo Smuggling [2]"
 		government "Pirate"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -118,7 +118,7 @@ mission "Cargo Smuggling [3]"
 		government "Pirate"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -149,7 +149,7 @@ mission "Drug Running [0]"
 		government "Pirate"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -179,7 +179,7 @@ mission "Drug Running [1]"
 		government "Pirate"
 	destination
 		distance 4 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -209,7 +209,7 @@ mission "Drug Running [2]"
 		government "Pirate"
 	destination
 		distance 5 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -239,7 +239,7 @@ mission "Drug Running [3]"
 		government "Pirate"
 	destination
 		distance 6 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -271,7 +271,7 @@ mission "Bulk Cargo Smuggling [0]"
 		government "Pirate"
 	destination
 		distance 4 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -301,7 +301,7 @@ mission "Bulk Cargo Smuggling [1]"
 		government "Pirate"
 	destination
 		distance 4 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -331,7 +331,7 @@ mission "Bulk Cargo Smuggling [2]"
 		government "Pirate"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -363,7 +363,7 @@ mission "Bulk Drug Running [0]"
 		government "Pirate"
 	destination
 		distance 4 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -393,7 +393,7 @@ mission "Bulk Drug Running [1]"
 		government "Pirate"
 	destination
 		distance 5 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -423,7 +423,7 @@ mission "Bulk Drug Running [2]"
 		government "Pirate"
 	destination
 		distance 6 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on abort
@@ -455,7 +455,7 @@ mission "Stealth Cargo Smuggling (North) [0]"
 		attributes "north pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Republic
 		personality heroic waiting
@@ -514,7 +514,7 @@ mission "Stealth Cargo Smuggling (North) [1]"
 		attributes "north pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Republic
 		personality heroic waiting
@@ -596,7 +596,7 @@ mission "Stealth Cargo Smuggling (Core) [0]"
 		attributes "core pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -653,7 +653,7 @@ mission "Stealth Cargo Smuggling (Core) [1]"
 		attributes "core pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -736,7 +736,7 @@ mission "Stealth Cargo Smuggling (South) [0]"
 		attributes "south pirate"
 	destination
 		distance 4 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
 		personality heroic waiting
@@ -794,7 +794,7 @@ mission "Stealth Cargo Smuggling (South) [1]"
 		attributes "south pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
 		personality heroic waiting
@@ -880,7 +880,7 @@ mission "Stealth Drug Running (North) [0]"
 		attributes "north pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Republic
 		personality heroic waiting
@@ -938,7 +938,7 @@ mission "Stealth Drug Running (North) [1]"
 		attributes "north pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Republic
 		personality heroic waiting
@@ -1019,7 +1019,7 @@ mission "Stealth Drug Running (Core) [0]"
 		attributes "core pirate"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -1076,7 +1076,7 @@ mission "Stealth Drug Running (Core) [1]"
 		attributes "core pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -1159,7 +1159,7 @@ mission "Stealth Drug Running (South) [0]"
 		attributes "south pirate"
 	destination
 		distance 4 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
 		personality heroic waiting
@@ -1217,7 +1217,7 @@ mission "Stealth Drug Running (South) [1]"
 		attributes "south pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
 		personality heroic waiting
@@ -1303,7 +1303,7 @@ mission "Wanted Passenger [0]"
 		government "Pirate"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
@@ -1333,7 +1333,7 @@ mission "Wanted Passengers [1]"
 		government "Pirate"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
@@ -1363,7 +1363,7 @@ mission "Wanted Passengers [2]"
 		government "Pirate"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
@@ -1393,7 +1393,7 @@ mission "Wanted Passengers [3]"
 		government "Pirate"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on abort
@@ -1426,7 +1426,7 @@ mission "Highly Wanted Passenger (North)"
 		attributes "north pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Republic
 		personality heroic waiting
@@ -1515,7 +1515,7 @@ mission "Highly Wanted Passenger (Core)"
 		attributes "core pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Syndicate
 		personality heroic waiting
@@ -1606,7 +1606,7 @@ mission "Highly Wanted Passenger (South)"
 		attributes "south pirate"
 	destination
 		distance 4 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Pirate"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Pirate"
 	npc
 		government Militia
 		personality heroic waiting
@@ -3300,7 +3300,7 @@ mission "Republic Assassination [1]"
 		government "Republic"
 		personality staying target
 		system
-			government "Republic"
+			government "Republic" "Deep"
 			distance 3 6
 			not near "Cardax" 3
 		fleet
@@ -3359,7 +3359,7 @@ mission "Republic Assassination [2]"
 		government "Republic"
 		personality staying target
 		system
-			government "Republic"
+			government "Republic" "Deep"
 			distance 3 6
 			not near "Cardax" 3
 		fleet

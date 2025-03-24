@@ -891,7 +891,7 @@ mission "WR Star 1"
 	description "Fly through the <waypoints> system with a team of <bunks> scientists and <cargo>, then return them to <destination>."
 	minor
 	source
-		attributes "deep"
+		government "Deep"
 		attributes "urban" "research"
 	waypoint "Ildaria"
 	to offer
@@ -2191,9 +2191,8 @@ mission "Terraforming 6"
 	name "Unlawful Use of an Asteroid"
 	description `Travel to <destination> by <date> for questioning on your "unlawful use of an asteroid."`
 	source
-		government "Republic" "Deep"
+		government "Republic"
 		attributes "spaceport"
-		not attributes "deep"
 		not system "Sol"
 	destination "Earth"
 	deadline
@@ -4676,8 +4675,7 @@ mission "Block Hai Wormhole Warning"
 mission "Hai Wormhole Warning"
 	landing
 	source
-		government "Republic" "Deep"
-		not attributes "deep"
+		government "Republic"
 	to offer
 		or
 			has "First Contact: Hai: offered"
@@ -5358,7 +5356,7 @@ mission "Riley"
 	description "Take a woman named Riley to see her ailing father on <destination> before it's too late."
 	minor
 	source
-		attributes "deep"
+		government "Deep"
 		attributes "urban"
 		not planet "Memory"
 	destination "Memory"

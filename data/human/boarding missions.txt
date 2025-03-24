@@ -359,7 +359,7 @@ mission "Assisting Deep Security"
 		not category "Fighter" "Drone"
 		not attributes "automaton"
 	destination
-		attributes "deep"
+		government "Deep"
 		distance 2 4
 	on offer
 		conversation "assisting law enforcement"
@@ -497,7 +497,7 @@ mission "Pirate Mutiny"
 		category "Medium Warship" "Heavy Warship"
 		not attributes "automaton"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		distance 2 4
 	passengers 10 20
 	on offer

@@ -25,7 +25,7 @@ mission "Paradise Job: Care Package"
 		attributes "paradise"
 	destination
 		distance 2 5
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "research" "rich"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -48,7 +48,7 @@ mission "Paradise Job: Birthday Supplies"
 		attributes "paradise"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "rich" "core" "near earth"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -68,7 +68,7 @@ mission "Paradise Job: Art Delivery"
 	to offer
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "rich"
 	destination
 		distance 2 5
@@ -97,7 +97,7 @@ mission "Paradise Job: Newlyweds"
 		attributes "paradise"
 	destination
 		distance 2 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Quarg"
 		attributes "paradise" "rich" "core" "near earth"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -116,7 +116,7 @@ mission "Paradise Job: Theater Props"
 	to offer
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "rich" "urban"
 	destination
 		distance 2 8
@@ -139,7 +139,7 @@ mission "Paradise Job: Fine Food"
 	to offer
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "farming" "fishing"
 	destination
 		distance 2 10
@@ -294,7 +294,7 @@ mission "Paradise Job: Party Goods"
 		attributes "paradise"
 	stopover
 		distance 5 9
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "paradise" "rich"
 		attributes "spaceport"
 	on stopover
@@ -340,7 +340,7 @@ mission "Paradise Jobs: Contract Laborers"
 		attributes "paradise"
 	stopover
 		distance 7 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 		attributes "spaceport"
 	on stopover
@@ -461,7 +461,7 @@ mission "Paradise Job: Parolees"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "mining" "fishing" "textiles" "factory" "farming" "oil"
 	destination
 		distance 2 18
@@ -510,7 +510,7 @@ mission "Paradise Job: Retirees"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest" "urban"
 	destination
 		distance 3 16
@@ -586,7 +586,7 @@ mission "Paradise Job: Wilderness Retreat"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "urban" "near earth" "core" "paradise"
 	destination
 		distance 6 20

@@ -26,7 +26,7 @@ mission "Transport executive to <planet>"
 		government "Syndicate"
 	destination
 		distance 3 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 		attributes "paradise" "rich" "core" "near earth"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -51,7 +51,7 @@ mission "Corporate retreat to <planet stopovers>"
 		attributes "quarg" "volcanic" "frontier" "north" "south"
 		not attributes "station" "military"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 	on stopover
 		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
 	on complete
@@ -77,7 +77,7 @@ mission "Large Corporate retreat"
 		attributes "quarg" "volcanic" "frontier" "north" "south"
 		not attributes "station" "military"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent" "Quarg"
 	on stopover
 		dialog "For days your ship has played host to endless discussions about load calculations, tensile strengths, and thermodynamic limits. You're grateful for some peace and quiet as the team of engineers tromps out of the hatch and heads for their exotic corporate retreat. You prepare for the return journey to <origin>."
 	on complete
