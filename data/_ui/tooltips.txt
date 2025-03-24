@@ -1342,6 +1342,9 @@ tip "Toggle fullscreen"
 tip "Toggle fast-forward"
 	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock then the caps-lock state will be used to determine the fast-forward state.`
 
+tip "Pause"
+	`Stop time in the game. You can still select ships, give commands, and interact with menus.`
+
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
 
