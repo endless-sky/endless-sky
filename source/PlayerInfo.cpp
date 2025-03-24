@@ -2816,9 +2816,7 @@ bool PlayerInfo::SelectShips(const vector<const Ship *> &stack, bool hasShift)
 		}
 	}
 	if(matched)
-	{
 		UI::PlaySound(UI::UISound::TARGET);
-	}
 	return matched;
 }
 
