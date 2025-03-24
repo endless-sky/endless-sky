@@ -116,11 +116,22 @@ public:
 		REVERSE = 3,
 	};
 
+	enum class CanFireResult {
+		INVALID,
+		NO_AMMO,
+		NO_ENERGY,
+		NO_FUEL,
+		NO_HULL,
+		NO_HEAT,
+		NO_ION,
+		NO_DISRUPTION,
+		NO_SLOWING,
+		CAN_FIRE
+	};
 
 public:
 	static constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
 	static constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES;
-
 
 public:
 	// Functions provided by the Body base class:
@@ -166,6 +177,8 @@ public:
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
+	// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+	const std::string &VariantMapShopName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
@@ -247,7 +260,7 @@ public:
 	// Fire any primary or secondary weapons that are ready to fire. Determines
 	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 	// The firing of special weapons is handled separately.
-	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, std::vector<int> *emptySoundsTimer);
 	// Return true if any anti-missile or tractor beam systems are ready to fire.
 	bool HasAntiMissile() const;
 	bool HasTractorBeam() const;
@@ -473,7 +486,7 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Weapon *weapon) const;
+	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
@@ -591,6 +604,7 @@ private:
 	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
+	std::string variantMapShopName;
 	std::string noun;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
