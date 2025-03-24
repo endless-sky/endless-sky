@@ -8442,15 +8442,24 @@ mission "Hroar's Haulers 25b"
 			`	"I hear you ran into a bit of trouble with those black-hearted Syndies on Maker."`
 			choice
 				`	"Leave no Hauler behind; though it cost me good deal of credits."`
+					goto boughtfreedom
 					to display
 						has "payall"
 				`	"We gave them a whoopin' they won't soon forget."`
+					goto foughtfreedom
 					to display
 						has "makerhero"
 				`	"I worked out a deal to free everyone."`
+					goto badjob
 					to display
 						has "brokecontract"
 				`	(Say nothing.)`
+
+			label boughtfreedom
+			`	Hroar grins and holds up his glass, "Spoken like a true Hauler! As for the financial blow you took, well, I sympathize, I do. Too many folks treat their coin like children, and their friends like coin."`
+			`	"But not you." He says as he drops the glass back on the table. "Now, I can't make you whole, but with every red jacket 'tween here and Helheim getting a fresh paycheck, a collection has gone out and I do believe a dent's been made in the debt you're owed."`
+			`	Yngvar pushes a tablet across the table to you, it says,  `
+
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
