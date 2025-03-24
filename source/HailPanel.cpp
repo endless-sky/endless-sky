@@ -416,9 +416,7 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			SetMessage("I do not want your money.");
 	}
 	else
-	{
 		sound = UI::UISound::NONE;
-	}
 
 	UI::PlaySound(sound);
 	return true;
