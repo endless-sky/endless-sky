@@ -367,7 +367,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	{
 		if(!CanSell(toStorage))
 			FailSell(toStorage);
-		if(CanSell(toStorage))
+		else
 		{
 			int modifier = CanSellMultiple() ? Modifier() : 1;
 			for(int i = 0; i < modifier && CanSell(toStorage); ++i)
