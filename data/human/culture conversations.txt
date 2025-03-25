@@ -1001,3 +1001,24 @@ mission "Little Vienna in New Austria"
 			label backtoship
 			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
 
+mission "Struggling Author Gone Missing"
+	minor
+	landing
+	source "Zug"
+	to offer
+		random < 88
+		has "event: beyond the hyperdrive is published"
+	on offer
+		conversation
+			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, sir. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
+			`	Around the spaceport you see countless other groups doing the same thing. Anna must have been more popular then she thought.`
+			choice
+				`	"She went to another star system a long ways from here. You won't be able to get to her."`
+				`	"No, I don't know. Sorry."`
+					goto continue
+			`	"If you ever see her again, tell her that the Coalition of Book Enjoyers appreciates her work. It wouldn't be possible for you to bring us to her location?" You respond in the negative, and the two go off to the other groups to spread the news.`
+			label continue
+			`	On many of the spaceport walls posters hang - here, again, Anna must have been famous. The posters read:`
+			`	MISSING:`
+			`		Anna Fangvin, a young author. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
+				decline
