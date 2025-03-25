@@ -1020,5 +1020,5 @@ mission "Struggling Author Gone Missing"
 			label continue
 			`	On many of the spaceport walls posters hang - here, again, Anna must have been famous. The posters read:`
 			`	MISSING:`
-			`		Anna Fangvin, a young author. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
+			`		Anna Fangvin, a young author whose books are widely-read throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
 				decline
