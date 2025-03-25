@@ -40,6 +40,6 @@ private:
 	const Fleet *fleet = nullptr;
 	double minAttraction = 0.;
 	double maxAttraction = std::numeric_limits<double>::max();
-	double capAttraction = std::numeric_limits<double>::max();
+	double capAttraction = 1.;
 	double fleetCap = 10.;
 };

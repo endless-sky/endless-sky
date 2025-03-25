@@ -236,7 +236,7 @@ namespace {
 		double danger = system.Danger() * 60.;
 		if(withRaids)
 			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
-				danger += 10. * player.RaidFleetAttraction(raidFleet, &system) *
+				danger += raidFleet.FleetCap() * player.RaidFleetAttraction(raidFleet, &system) *
 					raidFleet.GetFleet()->Strength();
 		return danger;
 	}

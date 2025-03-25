@@ -1428,7 +1428,7 @@ pair<double, double> PlayerInfo::RaidFleetFactors(const System *system) const
 
 
 
-double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *system) const
+double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *system, bool actualize) const
 {
 	double attraction = 0.;
 	const Fleet *raidFleet = raid.GetFleet();
@@ -1439,14 +1439,12 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 		// The player's base attraction to a fleet is determined by their fleet attraction minus
 		// their fleet deterrence, minus whatever the minimum attraction of this raid fleet is.
 		pair<double, double> factors = RaidFleetFactors();
-		// If there is a maximum attraction for this fleet, and we are above it, it will not spawn.
-		if(raid.MaxAttraction() > 0 && factors.first > raid.MaxAttraction())
+		// If we are above the maximum attraction, it will not spawn, most likely to have a bigger
+		// fleet take its place.
+		if(factors.first > raid.MaxAttraction())
 			return 0;
 
 		attraction = .005 * (factors.first - factors.second - raid.MinAttraction());
-		double capAttraction = raid.CapAttraction();
-		if(capAttraction)
-			attraction = min(attraction, capAttraction);
 		// Then we consider the strength of other fleets in the system.
 		int64_t raidStrength = raidFleet->Strength();
 		if(system && raidStrength)
@@ -1465,21 +1463,26 @@ double PlayerInfo::RaidFleetAttraction(const RaidFleet &raid, const System *syst
 					attraction -= (gov->IsEnemy(raidGov) - gov->IsEnemy()) * (strength / raidStrength);
 				}
 			}
-		// If the player's fleet is attractive enough but too well guarded for the current raids, stack them up more.
-		if(attraction > 1. + govAttraction)
+		// Only refresh once per day.
+		// If actualize is true, then it will return 0 until the value of attraction is high enough.
+		if(actualize)
 		{
-			if(raidStrength * attraction * 10. < FleetStrength())
+			// If the player's fleet is attractive enough but too well guarded for the current raids, stack them up more.
+			if(attraction > 1. + govAttraction)
 			{
-				govAttraction += max(.15, sqrt(attraction - 1.) * .3);
-				return 0.;
+				if(raidStrength * attraction < FleetStrength() && attraction < raid.CapAttraction())
+				{
+					govAttraction += max(.15, sqrt(attraction - 1.) * .3);
+					return 0.;
+				}
 			}
+			// Bring govAttraction down progressively if it is too high for the current attraction.
+			else
+				govAttraction -= (govAttraction - attraction) / 4.;
 		}
-		// When the fleet is big enough to hit, or
-		// if the current attraction became lower than what it used to be, adjust it, and use the new one as maximum.
-		else
-			govAttraction -= attraction;
 	}
-	return max(0., attraction);
+	// Return the attraction relative to the value at which its maximal.
+	return max(0., attraction / raid.CapAttraction());
 }
 
 
