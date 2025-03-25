@@ -3128,7 +3128,7 @@ double Ship::MaxReverseVelocity() const
 
 double Ship::ThrustHeldFraction(Ship::ThrustKind kind) const
 {
-	constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES; 
+	constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES;
 	return ThrustHeldFrames(kind) * THRUST_HELD_FRAMES_RECIP;
 }
 
