@@ -3292,12 +3292,12 @@ mission "Coalition: Struggling Author - Human Media 1"
 				"credits" < 40
 			action
 				payment -40
-			set "human cultural data"
+				set "human cultural data"
 			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Kachachee.`
 				decline
 			label broke
 			`You have reached Alexandria, but you don't have forty credits! Make some money, then return here.`
-				decline	
+				decline
 	on complete
 		event "coalition citizens discover fangvin" 20 40
 		payment 180000
