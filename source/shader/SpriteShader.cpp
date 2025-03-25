@@ -243,6 +243,9 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 		glUniformMatrix4fv(swizzleMatrixI, 1, GL_FALSE, item.swizzle->MatrixPtr());
 		glUniform1i(useSwizzleI, !item.swizzle->IsIdentity());
 	}
+	else
+		glUniform1i(useSwizzleI, 0);
+
 	glUniform1i(texI, 0);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
 
@@ -268,7 +271,6 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 void SpriteShader::Unbind()
 {
 	// Reset the swizzle.
-	// glUniformMatrix4fv(swizzleMatrixI, 1, GL_FALSE, Swizzle::None()->MatrixPtr());
 	glUniform1i(useSwizzleI, 0);
 
 	glBindVertexArray(0);
