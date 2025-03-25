@@ -100,10 +100,9 @@ public:
 		static const uint8_t OVER = 1;
 
 		uint8_t steering = 0;
-		static const uint8_t FORWARD = 0;
-		static const uint8_t REVERSE = 1;
-		static const uint8_t LEFT = 2;
-		static const uint8_t RIGHT = 3;
+		static const uint8_t NONE = 0;
+		static const uint8_t LEFT = 1;
+		static const uint8_t RIGHT = 2;
 
 		double zoom;
 		Angle facing;
