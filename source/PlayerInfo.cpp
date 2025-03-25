@@ -1653,6 +1653,7 @@ void PlayerInfo::Land(UI *ui)
 
 	freshlyLoaded = false;
 	flagship.reset();
+	selectedShips.clear();
 }
 
 
