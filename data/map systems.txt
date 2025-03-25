@@ -8601,7 +8601,7 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
-	raid "Unfettered Hai Space Raid" 20
+	raiders "Unfettered Hai Space Raid"
 	arrival 625
 	habitable 625
 	belt 1823
@@ -8726,7 +8726,7 @@ system "Bosuno Le"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
-	raid "Unfettered Hai Space Raid" 20
+	raiders "Unfettered Hai Space Raid"
 	arrival 3180
 	habitable 3180
 	belt 1753
@@ -20909,7 +20909,7 @@ system Il'le
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
-	raid "Unfettered Hai Space Raid" 20
+	raiders "Unfettered Hai Space Raid"
 	arrival 1715
 	habitable 1715
 	belt 1416
@@ -41617,7 +41617,7 @@ system W-3197
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
-	raid "Unfettered Hai Space Raid" 20
+	raiders "Unfettered Hai Space Raid"
 	arrival 500
 	habitable 425
 	belt 1585
@@ -43315,7 +43315,7 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
-	raid "Unfettered Hai Space Raid" 20
+	raiders "Unfettered Hai Space Raid"
 	arrival 500
 	habitable 425
 	belt 1911

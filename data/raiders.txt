@@ -22,3 +22,11 @@ raiders "People's Houses Raiders"
 
 raiders "Large Dissonance Pirates"
 	fleet "Large Dissonance Pirates"
+
+raiders "Large Plundering Unfettered"
+	fleet "Large Plundering Unfettered"
+		"min attraction" 8
+
+raiders "Unfettered Hai Space Raid"
+	fleet "Unfettered Hai Space Raid"
+		"min attraction" 20

@@ -886,7 +886,7 @@ government "Hai (Unfettered)"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
-	raid "Large Plundering Unfettered" 8
+	raiders "Large Plundering Unfettered"
 
 government "Hai (Unfettered Challenger)"
 	"display name" "Hai (Unfettered)"
