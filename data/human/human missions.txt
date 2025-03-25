@@ -10869,7 +10869,7 @@ mission "Tavish and Kormak 4"
 		has "Tavish and Kormak 3: done"
 	on offer
 		conversation
-			`You get the feeling the sun never sets on Hephaestus as you navigate through droves of itinerant workers all hurriedly moving from one shift change to next. The number of ships being worked on, landing, taking off, or just sitting is staggering. It would be easy to believe this was the beating heart of the human expansion, as opposed to Earth.`
+			`You get the feeling the sun never sets on Hephaestus as you navigate through droves of itinerant workers all hurriedly moving from one shift change to next. The number of ships being worked on, landing, taking off, or just sitting is staggering. It would be easy to believe this was the beating heart of human expansion, rather than Earth.`
 			`	Tavish leads you down one narrow corridor filled with endless ships. You don't see any labels or signage that make sense, but somehow Tavish plows on with a quick step and unshakable confidence.`
 			`	Eventually he leads you into a large administrative complex. After four flights of stairs, three different elevators, and one very small trolley, the three of you arrive at a bland corporate office with the words, "Repository of Confiscated Goods."`
 			`	There are no doors, and a single window that looks like it was made of reinforced glass. The tired looking agent on the other side of the glass hits a button and his voice buzzes over to you. "What can I help you with?"`
