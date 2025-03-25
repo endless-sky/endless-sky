@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
-#include "JumpTypes.h"
+#include "JumpType.h"
 #include "Logger.h"
 #include "image/Mask.h"
 #include "Messages.h"

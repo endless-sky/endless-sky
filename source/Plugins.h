@@ -15,11 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Set.h"
-
 #include <filesystem>
 #include <set>
 #include <string>
+
+template<class Type>
+class Set;
 
 
 

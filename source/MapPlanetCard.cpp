@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapPlanetCard.h"
 
 #include "Color.h"
+#include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "shader/PointerShader.h"
 #include "Screen.h"
+#include "image/Sprite.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"

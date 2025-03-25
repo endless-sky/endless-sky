@@ -15,9 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Sale.h"
-#include "Set.h"
 #include "Trade.h"
 
 #include <filesystem>
@@ -54,6 +53,8 @@ class Person;
 class Phrase;
 class Planet;
 class Politics;
+template<class Type>
+class Set;
 class Ship;
 class Sprite;
 class StarField;
