@@ -10627,7 +10627,6 @@ mission "Tavish and Kormak 2"
 			`	"Grand," Tavish claps. "Now, let's see what we can discover at <planet>-"`
 			`"Hey! Stop right there!" a security guard shouts. You bolt onto the <ship> to launch before the authorities arrest all three of you.`
 				launch
-				accept
 
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
@@ -11213,7 +11212,7 @@ mission "Tavish and Kormak 5"
 			`	Kormak flows like water. The security guards' batons flail uselessly in the air as with an uncanny ease Kormak incapacitates each of them one at a time. A heartbeat later all four of them lie unmoving at his feet.`
 			`	He turns his attention back to Hullen-Freeze who is now groveling, "Yes. Yes! I'll give you what you want." He starts digging through the ruins of his desk until he finds a keycard and with a shaking arm holds it out.`
 			`	"Here it is. The storage unit is in the spaceport. Take it! Take it, and go. It's what you wanted!"`
-				choice
+			choice
 				`	(Say nothing.)`
 				`	(Nod to Kormak.)`
 			`	Kormak ignores the keycard and instead grabs the man by his gray hair and forces him to the floor.`
