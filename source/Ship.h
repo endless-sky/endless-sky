@@ -100,9 +100,10 @@ public:
 		static const uint8_t OVER = 1;
 
 		uint8_t steering = 0;
-		static const uint8_t NONE = 0;
-		static const uint8_t LEFT = 1;
-		static const uint8_t RIGHT = 2;
+		static const uint8_t FORWARD = 0;
+		static const uint8_t REVERSE = 1;
+		static const uint8_t LEFT = 2;
+		static const uint8_t RIGHT = 3;
 
 		double zoom;
 		Angle facing;
@@ -129,9 +130,6 @@ public:
 		CAN_FIRE
 	};
 
-public:
-	static constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
-	static constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES;
 
 public:
 	// Functions provided by the Body base class:
@@ -428,6 +426,7 @@ public:
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
+	double ThrustHeldFraction(ThrustKind kind) const;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;
 
 	// This ship just got hit by a weapon. Take damage according to the

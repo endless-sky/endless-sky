@@ -93,6 +93,8 @@ namespace {
 	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
 
+	constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
+
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
 	void DoRepair(double &stat, double &available, double maximum)
@@ -3120,6 +3122,14 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::ThrustHeldFraction(Ship::ThrustKind kind) const
+{
+	constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES; 
+	return ThrustHeldFrames(kind) * THRUST_HELD_FRAMES_RECIP;
 }
 
 

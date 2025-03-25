@@ -138,11 +138,20 @@ namespace {
 		return Point(x2, x3);
 	}
 
-	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Body, int>> &flareSprites, uint8_t side, Point scale)
+	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
 	{
-		Point leftTurnScale = FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) * Ship::THRUST_HELD_FRAMES_RECIP);
-		Point rightTurnScale = FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT) * Ship::THRUST_HELD_FRAMES_RECIP);
+		// When a ship lands, its thrusters should scale with it.
+		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
+	}
+
+	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
+		const vector<pair<Body, int>> &flareSprites, uint8_t side)
+	{
+		Point forwardScale = ScaledFlareCurve(ship, Ship::ThrustKind::FORWARD);
+		Point reverseScale = ScaledFlareCurve(ship, Ship::ThrustKind::REVERSE);
+		Point leftScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
+		Point rightScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
+
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
 			* -ship.Commands().Turn();
 
@@ -151,7 +160,7 @@ namespace {
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
 			Angle flareAngle = ship.Facing() + point.facing + gimbal;
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](auto it, auto scale)
+			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Body, int> &it, const Point &scale)
 			{
 				// If multiple engines with the same flare are installed, draw up to
 				// three copies of the flare sprite.
@@ -164,12 +173,14 @@ namespace {
 			for(const auto &it : flareSprites)
 				if(point.side == side)
 				{
-					if(point.steering == Ship::EnginePoint::NONE)
-						DrawFlares(it, scale);
-					else if(point.steering == Ship::EnginePoint::LEFT && ship.ThrustHeldFrames(Ship::ThrustKind::LEFT))
-						DrawFlares(it, scale * leftTurnScale);
-					else if(point.steering == Ship::EnginePoint::RIGHT && ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-						DrawFlares(it, scale * rightTurnScale);
+					if(point.steering == Ship::EnginePoint::FORWARD && forwardScale)
+						DrawFlares(it, forwardScale);
+					if(point.steering == Ship::EnginePoint::REVERSE && reverseScale)
+						DrawFlares(it, reverseScale);
+					else if(point.steering == Ship::EnginePoint::LEFT && leftScale)
+						DrawFlares(it, leftScale);
+					else if(point.steering == Ship::EnginePoint::RIGHT && rightScale)
+						DrawFlares(it, rightScale);
 				}
 		}
 	}
@@ -2783,19 +2794,20 @@ void Engine::DrawShipSprites(const Ship &ship)
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
 				drawObject(*bay.ship);
 
-	double scaleMul = ship.Zoom() * Ship::THRUST_HELD_FRAMES_RECIP;
-	Point thrustMul = FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) * scaleMul);
-	Point reverseMul = FlareCurve(ship.ThrustHeldFrames(Ship::ThrustKind::REVERSE) * scaleMul);
-	if(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !ship.EnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER, thrustMul);
-	else if(ship.ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ship.ReverseEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER, reverseMul);
-	if((ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) | ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-		&& !ship.SteeringEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
-			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER, Point(1, 1));
+	auto DrawEngineFlares = [&](uint8_t where)
+	{
+		if(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !ship.EnginePoints().empty())
+			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
+				ship.Attributes().FlareSprites(), where);
+		else if(ship.ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ship.ReverseEnginePoints().empty())
+			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
+				ship.Attributes().ReverseFlareSprites(), where);
+		if((ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) || ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
+			&& !ship.SteeringEnginePoints().empty())
+			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
+				ship.Attributes().SteeringFlareSprites(), where);
+	};
+	DrawEngineFlares(Ship::EnginePoint::UNDER);
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
@@ -2819,15 +2831,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 		if(!hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
 
-	if(thrustMul && !ship.EnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER, thrustMul);
-	else if(reverseMul && !ship.ReverseEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER, reverseMul);
-	if(!ship.SteeringEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
-			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER, Point(1, 1));
+	DrawEngineFlares(Ship::EnginePoint::OVER);
 
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())
