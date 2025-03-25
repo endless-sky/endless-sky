@@ -1,5 +1,5 @@
-/* File.h
-Copyright (c) 2015 by Michael Zahniser
+/* MinableDamageDealt.h
+Copyright (c) 2025 by TomGoodIdea
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,28 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <cstdio>
-#include <filesystem>
 
 
-
-// RAII wrapper for FILE, to make sure it gets closed if an error occurs.
-class File {
+class MinableDamageDealt {
 public:
-	File() noexcept = default;
-	explicit File(const std::filesystem::path &path, bool write = false);
-	File(const File &) = delete;
-	File(File &&other) noexcept;
-	~File() noexcept;
-
-	// Do not allow copying the FILE pointer.
-	File &operator=(const File &) = delete;
-	// Move assignment is OK though.
-	File &operator=(File &&) noexcept;
-
-	explicit operator bool() const;
-	operator FILE*() const;
-
-private:
-	FILE *file = nullptr;
+	double hullDamage = 0.;
+	double prospecting = 0.;
 };

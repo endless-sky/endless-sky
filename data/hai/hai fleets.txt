@@ -888,6 +888,32 @@ fleet "Large Plundering Unfettered"
 		"Sea Scorpion (Pulse)"
 		"Shield Beetle (Pulse)"
 
+fleet "Unfettered Hai Space Raid"
+	government "Hai (Unfettered)"
+	names "hai"
+	cargo 1
+	personality
+		coward disables harvests plunders
+	variant 10
+		"Lightning Bug (Pulse)" 5
+	variant 5
+		"Shield Beetle"
+	variant 5
+		"Shield Beetle (Pulse)"
+	variant 4
+		"Sea Scorpion (Pulse)" 2
+	variant 5
+		"Sea Scorpion (Ion)" 2
+	variant 2
+		"Shield Beetle (Pulse)"
+		"Sea Scorpion (Pulse)"
+		"Lightning Bug (Pulse)" 2
+	variant
+		"Sea Scorpion (Shredder)"
+		"Sea Scorpion (Ion)"
+		"Shield Beetle (Pulse)"
+		"Shield Beetle"
+
 fleet "Unfettered Raid"
 	government "Hai (Unfettered)"
 	names "hai"

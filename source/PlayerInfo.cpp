@@ -435,7 +435,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// cargo and passengers.
 	UpdateCargoCapacities();
 
-	auto DistributeMissionCargo = [](map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
+	auto DistributeMissionCargo = [](const map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
 			vector<shared_ptr<Ship>> &ships, CargoHold &cargo, bool passengers) -> void
 	{
 		for(const auto &it : toDistribute)
@@ -2167,10 +2167,12 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
-			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
+			if(it->IsFailed(*this))
+				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
@@ -2641,24 +2643,37 @@ void PlayerInfo::Unvisit(const Planet &planet)
 
 
 
-bool PlayerInfo::HasMapped(int mapSize) const
+bool PlayerInfo::HasMapped(int mapSize, bool mapMinables) const
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			return false;
+
+		if(mapMinables)
+			for(const Outfit *outfit : system->Payloads())
+				if(!harvested.contains(make_pair(system, outfit)))
+					return false;
+	}
 
 	return true;
 }
 
 
 
-void PlayerInfo::Map(int mapSize)
+void PlayerInfo::Map(int mapSize, bool mapMinables)
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			Visit(*system);
+
+		if(mapMinables)
+			for(const Outfit *outfit : system->Payloads())
+				harvested.insert(make_pair(system, outfit));
+	}
 }
 
 
