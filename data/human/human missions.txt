@@ -7732,7 +7732,7 @@ mission "Syndicate Business 2"
 			choice
 				`	(Flip to the first page.)`
 			`	PREAMBLE: This Perpetual Bond Credit Agreement ("Agreement") is entered into as of the Effective Date by and between Megaparsec Industrial & Systems External Refueling Company Limited, a duly organized entity under the laws of interstellar commerce within Republic and Syndicate space ("Issuer") and the undersigned individual or entity ("Investor"). This Agreement is made in recognition of the Investor's intent to participate in the perpetual bond offering described herein, subject to all applicable terms, conditions, regulations, obligations, and supplementary materials explicitly or implicitly referenced throughout this document. By signing below, the Investor acknowledges receipt of this Agreement and agrees to the terms and conditions set forth herein.`
-			`	ARTICLE I - SUMMARY OF TERMS AND CONDITIONS OF INVESTMENT: The Investor, by executing this Agreement, irrevocably agrees to remit an upfront and final payment of One Million (1,000,000) Credits to the Issuer as consideration for the the bond offering of Three Hundred Sixty-Five Thousand (365,000) Credits per annum into perpetuity, payable daily to the Investor. The payment from the Investor to the Issuer shall be deemed fully earned and non-refundable by the Issuer, irrespective of any subsequent event, transaction failure, action, or inaction on the part of either Party. The Issuer, upon receipt of the aforementioned payment, will extend to the Investor the rights and benefits outlined in this Agreement, provided that the Investor complies with all current and future legal, regulatory, and administrative requirements imposed by the Issuer or relevant Republic, Syndicate, or Megaparsec bodies -- including, without limitation, the execution of ancillary documents, disclosures, or agreements not enumerated herein. Refusal to execute any such future instrument may result in the immediate forfeiture of the One Million (1,000,000) Credits, with no further payments required by the Investor beyond the initial investment.`
+			`	ARTICLE I - SUMMARY OF TERMS AND CONDITIONS OF INVESTMENT: The Investor, by executing this Agreement, irrevocably agrees to remit an upfront and final payment of One Million (1,000,000) Credits to the Issuer as consideration for the bond offering of Three Hundred Sixty-Five Thousand (365,000) Credits per annum into perpetuity, payable daily to the Investor. The payment from the Investor to the Issuer shall be deemed fully earned and non-refundable by the Issuer, irrespective of any subsequent event, transaction failure, action, or inaction on the part of either Party. The Issuer, upon receipt of the aforementioned payment, will extend to the Investor the rights and benefits outlined in this Agreement, provided that the Investor complies with all current and future legal, regulatory, and administrative requirements imposed by the Issuer or relevant Republic, Syndicate, or Megaparsec bodies -- including, without limitation, the execution of ancillary documents, disclosures, or agreements not enumerated herein. Refusal to execute any such future instrument may result in the immediate forfeiture of the One Million (1,000,000) Credits, with no further payments required by the Investor beyond the initial investment.`
 			`	The Investor acknowledges that they have been provided opportunity to review this Agreement in part or in full and may request a referral to legal counsel certified in Syndicate and Megaparsec regulatory investment law if desired at a standard rate. The Investor's signature below confirms their full and unconditional acceptance of this Agreement, including all foregoing terms and conditions, supplementary materials incorporated herein, and any future amendments or expansions thereto, which shall become immediately binding upon issuance by the Issuer.`
 			choice
 				`	"I'm ready to sign!"`
@@ -8906,7 +8906,6 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 		random < 90
 		has "Timothy Radrickson 4: Imprisoned: active"
 	source "Oblivion"
-	deadline 1
 	invisible
 	on offer
 		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
@@ -8921,12 +8920,11 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 				`	"I'm sorry, Timothy."`
 				`	"Is there any way I can help?"`
 				`	"Shouldn't have broken the law."`
-
 			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. Outside the Stephenson warehouse. Stephenson. I'll tell you what I need."`
 			`	With that, he returns to moving the mineral trolley, leaving you to yourself.`
 				accept
-	to complete
-		never
+	on enter
+		fail
 
 
 mission "Timothy Radrickson 5a: Timshank Redemption"
@@ -8941,7 +8939,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 		"timothy radrickson suit" >= 1
 		"timothy radrickson id" >= 1
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: active"
+		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 5: Oblivion Meeting: failed"
 	on offer
 		conversation
 			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it seems as if you could swallow it; it doesn't help that the air somehow feels even denser at night. The warehouse marked "Stephenson Heavy Industries" turns out to be at the very edge of the spaceport's boundary, and all you see when you get there is a lone box truck parked in the loading bay.`
@@ -9910,7 +9909,7 @@ mission "Timothy Radrickson 7: Monk"
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, I can't leave here, and I can't send any messages." He steps back to look at you.`
 			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only modestly.`
 			`	"It was difficult for me to speak when last we met on Oblivion, but you're my oldest and best friend. At my lowest points you were always there for me. I just wanted to thank you for that."`
-			`	You spend the day chatting with with Timothy, before it's time to leave.`
+			`	You spend the day chatting with Timothy, before it's time to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
 			label goodbyes
 			choice
@@ -10006,7 +10005,7 @@ mission "Timothy Radrickson 7: Hospice"
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, not to mention my health, I can't leave here, and I can't send any messages." His eyes linger on you, as though he is taking a mental picture. Or just enjoying the sight of a good friend returned.`
 			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only weakly given his condition. He coughs a bit, and takes a few slow, deep breaths before continuing.`
 			`	"It's still a little difficult for me to speak, but I feel much better than when last we met on Oblivion. I just wanted you to know you're my oldest and best friend. At my lowest points you were always there for me. So thank you for that."`
-			`	You spend the day in the hospital room chatting with with Timothy, before finally having to leave.`
+			`	You spend the day in the hospital room chatting with Timothy, before finally having to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
 			label goodbyes
 			choice
@@ -10574,7 +10573,7 @@ mission "Ice Queen 3"
 			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
 			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a Second Degree Terraformer, and after the initial meeting I wasn't privy to the details. But someone, or some government or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
 			`	Ildico seems to deflate. "Ask him? Is... is he here?"`
-			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. Just head to the the Republic's main office for the Department of Migration, which is located on Chiron."`
+			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. Just head to the Republic's main office for the Department of Migration, which is located on Chiron."`
 			`	Without saying another word, Ildico turns and leaves. You thank Ian for his help and follow her out.`
 				accept
 
@@ -10651,7 +10650,7 @@ mission "Ice Queen 6"
 
 	on offer
 		conversation
-			`The directions Ildico gave you take you beyond the bustling city and out into the the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of New Sydney. The architecture of the building is reminiscent of upper-class villas you've seen in the Deep.`
+			`The directions Ildico gave you take you beyond the bustling city and out into the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of New Sydney. The architecture of the building is reminiscent of upper-class villas you've seen in the Deep.`
 			`	As you approach the main gate you find it wide open, and the attached security booth is abandoned. You could just walk right in.`
 			choice
 				`	(Walk right in.)`

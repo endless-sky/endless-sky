@@ -158,7 +158,8 @@ namespace {
 	uint32_t Read4(const shared_ptr<iostream> in)
 	{
 		unsigned char data[4];
-		if(in->readsome(reinterpret_cast<char *>(data), 4) != 4)
+		in->read(reinterpret_cast<char *>(data), 4);
+		if(in->gcount() != 4)
 			return 0;
 		uint32_t result = 0;
 		for(int i = 0; i < 4; ++i)
@@ -171,7 +172,8 @@ namespace {
 	uint16_t Read2(const shared_ptr<iostream> in)
 	{
 		unsigned char data[2];
-		if(in->readsome(reinterpret_cast<char *>(data), 2) != 2)
+		in->read(reinterpret_cast<char *>(data), 2);
+		if(in->gcount() != 2)
 			return 0;
 		uint16_t result = 0;
 		for(int i = 0; i < 2; ++i)
