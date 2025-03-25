@@ -3231,7 +3231,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 					goto "literature collectors"
 				`	"Hello? What is it?"`
 					goto "literature collectors"
-				`	(Pull your gun.)`
+				`	(Reach for your gun.)`
 			`	The lead Kimek jumps back. "Mean you harm, we did not. Unrelated to violence, our quest is. Speak to you, may we?"`
 			choice
 				`	"What is it you want?"`
@@ -3287,10 +3287,17 @@ mission "Coalition: Struggling Author - Human Media 1"
 	on accept
 		clear "coalition: asked about kachachee"
 	on stopover
-		payment -40
-		set "human cultural data"
 		conversation
+			branch broke
+				"credits" < 40
+			action
+				payment -40
+			set "human cultural data"
 			`You had wondered how you would get a copy of the entire cultural archive, but it turns out to be easier than expected. The station has a small museum gift shop, which sells a copy of the archives on a data card. ("The perfect gift for the budding historian in your family! Hold all of human history in the palm of your hand. On sale now for only 39.99!") Given that a cheap data card costs a fraction of a credit, it's a bit of a rip-off, but you gladly buy one to take back to Kachachee.`
+				decline
+			label broke
+			`You have reached Alexandria, but you don't have forty credits! Make some money, then return here.`
+				decline	
 	on complete
 		event "coalition citizens discover fangvin" 20 40
 		payment 180000
@@ -3341,13 +3348,13 @@ mission "Coalition: Book Discovered 2"
 				`	(Ask Anna for another copy of the book.)`
 				`	(Forget about it.)`
 					decline
-			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, I don't think there will even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of "Beyond the Hyperdrive" to <destination>. You should head there to receive and gift it to Kachachee.`
+			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of "Beyond the Hyperdrive" to <destination>. You should head there to receive and gift it to Kachachee.`
 				accept
 	on complete
-		conversation
-			`After receiving the book from the information counter at a company your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
-			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 		payment 7000
+		conversation
+			`After receiving the book from the information counter at a company - it turns out to have reached there in a normal spacecraft, to Anna's disappointment - your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
+			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 
 
 mission "Coalition: Struggling Author 1"
@@ -3355,6 +3362,7 @@ mission "Coalition: Struggling Author 1"
 	description "Take Anna Fangvin to <destination>, where she might find success as an author after having struggled on <origin> for so long."
 	source "Zug"
 	destination "Ki Patek Ka"
+	passengers 1
 	to offer
 		has "Coalition: Struggling Author - Book Discovered: done"
 	on offer
@@ -3373,13 +3381,13 @@ mission "Coalition: Struggling Author 1"
 					goto "illustration"
 				`	"Anything else aside from Beyond the Hyperdrive?"`
 			label "other novels"
-			`	"Beyond the Hyperdrive is the fifth book I've ever published, actually," says Anna. "The other four never... they didn't do very well..." She glances at the ground. "I also write short stories on the hypernet in my free time. In fact, I'll probably start writing my sixth in a couple months, as soon as I find a good idea."`
+			`	"Beyond the Hyperdrive is the fifth book I've ever published, actually," says Anna. "The other four never... they didn't do very well." She glances at the ground. "I also write short stories on the hypernet in my free time. In fact, I'll probably start writing my sixth in a couple months, as soon as I find a good idea."`
 			choice
 				`	"What kind of short stories have you written?"`
 					goto "short stories"
 				`	"How about your previous books?"`
 			label "previous books"
-			`	"They weren't really successful. To be honest, I'm still struggling to make ends meet... Some people buy them and I make a little money, but I never really reach the 5-digits. The first one was self-published, all the publishers rejected it, so I couldn't get much attention to it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates. I stopped that series since it was clear it would never sell. And, the fourth one, well..." Anna sighs. "That one was such a failure I don't even want to tell you about it.`
+			`	"They weren't really successful. To be honest, I'm still struggling to make ends meet. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one was self-published, all the publishers rejected it, so I couldn't get much attention to it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates. I stopped that series since it was clear it would never sell. And, the fourth one, well..." Anna sighs. "That one was such a failure I don't even want to tell you about it.`
 			`	"'Beyond the Hyperdrive' is the fifth one, and I'm hoping it will sell better than the previous four."`
 			choice
 				`	"How about short stories?"`
@@ -3412,7 +3420,7 @@ mission "Coalition: Struggling Author 1"
 			`	"They eventually found me, thankfully. But it was distressing being stuck with this Quarg for ten to thirty minutes, I don't remember how long, before eventually this other Quarg took my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we were off that world; I never wanted to come back."`
 			choice
 				`	"So you said your books don't sell well, right?"`
-			`	While Anna tries her best to maintain her composure, her features clearly show she's not comfortable with the topic. "No, they don't." She eventually says. "Even some of my friends and family don't really say much good about them, and fewer still feel inclined to do anything for me..." Her eyes take on a vaguely more optimistic light. "Do you, perhaps... work for some publisher? Someone interested in my work?"`
+			`	While Anna tries her best to maintain her composure, her features clearly show she's not comfortable with the topic. "No, they don't," she eventually says. "Even some of my friends and family don't really say much good about them, and fewer still feel inclined to do anything for me." Her eyes take on a vaguely more optimistic light. "Do you, perhaps... work for some publisher? Someone interested in my work?"`
 			choice
 				`	"No actually, I'm afraid I don't know anyone who could help you."`
 					decline
@@ -3453,12 +3461,13 @@ mission "Coalition: Struggling Author 2"
 	description "Take Anna Fangvin to the <destination> so she can register with the Heliarchs."
 	source "Ki Patek Ka"
 	destination "Ring of Friendship"
+	passengers 1
 	to offer
 		has "Coalition: Struggling Author 1: done"
 	on offer
 		conversation
 			`You walk through the spaceport, looking for Anna. You find her in the middle of a public square, seated at a table with her laptop out. You figure she must've intended on getting started on some early work, what with the newly found inspiration of being in such an alien society, but it seems the sheer volume and diversity of peoples here on <origin> made her forget to type entirely.`
-			`	She only seems to notice you when you also sit down beside her."Oh, hello again <first>!" She says, snapping back into focus. "Is the ship ready?"`
+			`	She only seems to notice you when you also sit down beside her. "Oh, hello again, <first>!" she says, snapping back into focus. "Is the ship ready?"`
 			`	Hearing an affirmative answer, Anna stands up from her chair and begins following you to the ship. She settles into her bunk as you prepare for a trip to the <destination>.`
 				accept
 	on enter "Quaru"
@@ -3479,6 +3488,7 @@ mission "Coalition: Struggling Author 3"
 	description "Now that Anna Fangvin has completed the registration process, help her get a translation device on <destination>."
 	source "Ring of Friendship"
 	destination "Ki Patek Ka"
+	passengers 1
 	to offer
 		has "Coalition: Struggling Author 2: done"
 	on offer
@@ -3500,10 +3510,10 @@ mission "Coalition: Struggling Author 3"
 			`	"Have you found a publishing company yet?" you ask.`
 			`	"No," Anna replies, then begins complaining about how it was extremely difficult for her to communicate with the restaurant staff, who did not have a translation box.`
 			choice
-				`	"I can get you a translator. It shouldn't cost anything."`
-				`	"I'd be happy to help obtain a translator. I'm guessing we can get one for free."`
-			`	"Great! So, where will we get the translator?"`
-			`	"We'll go to <destination> to ask the Heliarchs for a translation box," you tell Anna. "Finish your meal, then go back to my ship. I'll be ready." You walk off to your ship.`
+				`	"You'll need to have a Heliarch agent help translate for you."`
+				`	"Ask Heliarch agents to help."`
+			`	"Great! So, where will we get permission to do so?"`
+			`	"We'll go to <destination> to ask the Heliarchs for an escort to help translate," you tell Anna. "Finish your meal, then go back to my ship. I'll be ready." You walk off to your ship.`
 			`	After a few minutes, you see Anna walking towards you. You open the hatch as she enters. She settles into her bunk as you prepare to depart.`
 				accept
 	on complete
@@ -3514,7 +3524,7 @@ mission "Coalition: Struggling Author 3"
 			`	"A translator, the human needs?" asks the clerk.`
 			choice
 				`	"Yes."`
-			`	"Trust you with a translator, we still cannot. And help you, I cannot, so a Heliarch, I must call," says the clerk, then proceeding to call for a Heliarch in its native language.`
+			`	"Trust you with a translator, we cannot. And help you, I cannot, so a Heliarch, I must call," says the clerk, then proceeding to call for a Heliarch in its native language.`
 			`	After a few minutes, the Heliarch approaches you and directs you into a room.`
 			`	"Told me about your intentions, the clerk already has, and understand it, I do. Accompany you to the publishers, me and my agents will, once you decide upon a company."`
 			`	"We need to find a publishing company then!" says Anna.`
@@ -3533,14 +3543,15 @@ mission "Coalition: Struggling Author 3"
 			choice
 				`	"We'll find a company."`
 				`	"Given the number of books here, there has to be a publishing company somewhere."`
-			`	"The faster we can get the book published, the better. Meet me in the spaceport once you've found a good company."`
+			`	"The faster we can get the book published, the better. Meet me in the spaceport in a few hours; I'll find a good company."`
 
 
 mission "Coalition: Struggling Author 4"
 	name "Kimek Publishing Company"
-	description "You have found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
+	description "Anna found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
 	source "Ki Patek Ka"
 	destination "Inmost Blue"
+	passengers 1
 	to offer
 		has "Coalition: Struggling Author 3: done"
 	on offer
@@ -3567,7 +3578,7 @@ mission "Coalition: Struggling Author 4"
 			choice
 				`	"Hello, do you happen to know where Priyepichia Publishing is?"`
 				`	"We're looking for a publishing company called Kimek Reader. Could you provide directions?"`
-			`	"On the 16th floor, Priyepichia Publishing is. Over there, the elevators are," says the receptionist.`
+			`	"On the 16th floor, Priyepichia Publishing is. Over there, the elevators are," says the receptionist's translator.`
 			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded one.`
 			`	You and Anna enter the elevator. You hear the noises of the Kimek communicating in their native languages and get the feeling they're talking about you.`
 			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek with a necklace around it with ornate jewelry and a translation device.`
@@ -3618,14 +3629,14 @@ mission "Coalition: Struggling Author 4"
 			`	You leave the interview room, the Heliarchs staying in the room, presumably to continue discussion with the Kimek. As the two of you walk, Anna begins to speak.`
 				goto thanks
 			label "half a year"
-			`	"Required to stay with Anna, you are not, but if you wish to, stay with her you may. To return to human space, you are free to do," says the Kimek.`
+			`	"Required to stay with Anna, you are not, but if you wish to, stay with her you may. Return to human space, you are free to do," says the Kimek.`
 				goto "rest of interview"
 			label "lounge"
 			`	You leave the room and walk to the lounge. There are several tables where many Kimek are chatting in their native language, while a few Saryds and Arachi are visibly relaxed. You sit at an empty table and pass the time, occasionally going to the water dispenser to hydrate yourself.`
 			`	After thirty minutes, a Kimek approaches you. Its translation device speaks. "So, the alien in our space, you are?"`
 			# kst-1 is short for [K]imek [s]mall [t]alk 1
 			choice
-				`	"I don't want to talk to you."`
+				`	"I'd prefer to be left alone right now."`
 					goto "kst-1 ignore"
 				`	"Yes, I am <first> <last>. Glad to meet you."`
 				`	"Well, I'm not the only alien."`
