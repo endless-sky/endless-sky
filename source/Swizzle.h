@@ -39,7 +39,7 @@ public:
 
 	Color Apply(const Color &to) const;
 
-	static Swizzle *None();
+	static const Swizzle *None();
 
 
 private:

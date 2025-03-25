@@ -44,7 +44,8 @@ void Swizzle::Load(const DataNode &node)
 			{"blue", 2},
 			{"alpha", 3}
 		}};
-		auto channel = find_if(channels.cbegin(), channels.cend(), [key](const auto &kv) {
+		auto channel = find_if(channels.cbegin(), channels.cend(), [key](const auto &kv)
+		{
 			return kv.first == key;
 		});
 		if(channel != channels.cend())
@@ -119,9 +120,9 @@ Color Swizzle::Apply(const Color &to) const
 
 
 
-Swizzle *Swizzle::None()
+const Swizzle *Swizzle::None()
 {
-	static Swizzle IDENTITY_SWIZZLE {
+	static const Swizzle IDENTITY_SWIZZLE{
 		true,
 		true,
 		true,

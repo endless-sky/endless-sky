@@ -35,7 +35,7 @@ public:
 	public:
 		uint32_t texture = 0;
 		uint32_t swizzleMask = 0;
-		const Swizzle *swizzle = 0;
+		const Swizzle *swizzle = nullptr;
 		float frame = 0.f;
 		float frameCount = 1.f;
 		float position[2] = {0.f, 0.f};
