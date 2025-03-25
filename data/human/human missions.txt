@@ -10452,13 +10452,14 @@ mission "Tavish and Kormak 2"
 	description "Transport Tavish and Kormak to <planet> to look for a man named Hans Fuller."
 	source "Clark"
 	destination "Deadman's Cove"
+	clearance `Tavish convinces the spaceport to let you land "free of charge."`
 	passengers 2
 	to offer
 		has "Tavish and Kormak 1: done"
 	on offer
 		conversation
 			`The layout of the crowded spaceport is... slipshod, at best. It's robustly evident that its growing needs have consistently outpaced its capacity and materials. Dead ends, unfinished pathways, incorrectly labeled buildings and maps all conspire to slow your progress.`
-			`	Despite the spaceport's best efforts you manage to successfully work your way to the SpaceFork storage facility, which has moved twice from its earlier warehouses that each still bear its name, and instead is now housed in what is still being called the Pentacorps Mercantile Cooperative Structure.`
+			`	Despite the spaceport's best efforts, you successfully work your way to the SpaceFork storage facility, which has moved twice from earlier warehouses that each still bear its name, and is now housed in what is still known as the Pentacorps Mercantile Cooperative Structure.`
 			`	You approach a clearly unhappy Tavish and Kormak arguing with a certified SpaceFork associate.`
 			`	"I am sorry, sirs. But without your SpaceFork Stop-N-Drop credentials there is no way I can provide you access to the facility. The employee handbook is very clear on the matter." The SpaceFork associate jabs a finger at the open manual in their hands.`
 			choice
@@ -10484,9 +10485,9 @@ mission "Tavish and Kormak 2"
 			choice
 				`	(Follow them in.)`
 			`	"By Skoll's Fang!" Kormak rumbles.`
-			`	There are torn suitcases, clothes and various personal objects strewn throughout the container, and there's no sign of the equipment.`
+			`	There are torn suitcases, clothes, and various personal objects strewn throughout the container, with no sign of the equipment.`
 			`	Tavish rubs his nose and paces back and forth.`
-			`	"Stole it." Kormak says dryly.`
+			`	"Stole it," Kormak says dryly.`
 			`	"Yes, yes, I know. I suppose we should have accompanied him. Don't say it!" Tavish says with irritation.`
 			`	"Told you so," Kormak says defiantly.`
 			`	"I know! But you have to admit the bird watching seminar we attended on New India instead was quite extraordinary!"`
@@ -10509,7 +10510,7 @@ mission "Tavish and Kormak 2"
 			`	Kormak steps up to the kiosk, and eyes the still menacing guard.`
 			`	"Ser," he addresses the woman, using the old Deep honorific. Lightning quick, his hand lashes out and snatches the surprised guard by the throat. The guard squirms, gasping for air as Kormak holds him up a few inches from the ground. "Please, tell us everything you know about Hans Fuller and his ship, the Broken Record."`
 			`	The area around you is momentarily frozen, shocked by Kormak's quick and easy violence. "Tell us what we need. And this man will be fine. Call for help, or refuse us, and this will get messy for everyone."`
-			`	The guard is so red in the face it looks like he's about to pass out. "O-okay. Just don't hurt anyone, please!" The official moves to her terminal, strikes her keyboard for a few moments and then looks back up. "It s-says he's been impounded multiple times for selling contraband from Deadman's Cove. Th-that's it."`
+			`	The guard is so red in the face it looks like he's about to pass out. "O-okay. Just don't hurt anyone, please!" The official moves to her terminal, strikes her keyboard for a few moments, and then looks back up. "It s-says he's been impounded multiple times for selling contraband from Deadman's Cove. Th-that's it."`
 			`	Kormak lets the now unconscious guard's body slump to the floor. "Thank you, ser." Kormak tips his hat to her and turns to Tavish.`
 			`	Tavish sighs, "Splendid work, though I do think we should run now."`
 			`	He turns to you. "We'll meet you at your ship."`
@@ -10623,14 +10624,16 @@ mission "Tavish and Kormak 2"
 				clear "equipment1"
 			`	Tavish brightens as he says, "I knew an erudite fellow such as yourself would see the value of our work. And for now on we will check with you before we do anything too untoward, right, Kormak?"`
 			`	The red-haired giant nods, "Ask first."`
-			`	"Grand," Tavish claps. "Now, let's see what we can discover at <planet>."`
+			`	"Grand," Tavish claps. "Now, let's see what we can discover at <planet>-"`
+			`"Hey! Stop right there!" a security guard shouts. You bolt onto the <ship> to launch before the authorities arrest all three of you.`
+				launch
 				accept
 
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
 		conversation
-			`The foam surf crashes against the island only a few short meters from where your ship sets down. The thundering waves make it hard to hear anything as you step outside. If you're going to have any hope of finding Hans Fuller and the stolen equipment your best bet will be the spaceport. Hopefully the sea will be a little quieter there.`
+			`The foam surf crashes against the island only a few short meters from where your ship sets down. The thundering waves make it hard to hear anything as you step outside. If you're going to have any hope of finding Hans Fuller and the stolen equipment, your best bet will be the spaceport. Hopefully the sea will be a little quieter there.`
 
 
 mission "Tavish and Kormak 3"
@@ -10767,11 +10770,7 @@ mission "Tavish and Kormak 3"
 	on accept
 		clear "tav1"
 		clear "tav2"
-
-	on accept
-		clear "tav1"
-		clear "tav2"
-
+		clear "kormak1"
 	npc board
 		government "Bounty (Disguised)"
 		system "Persian"
@@ -10779,7 +10778,7 @@ mission "Tavish and Kormak 3"
 		ship "Modified Argosy" "Broken Record"
 
 		conversation
-			`With the crew subdued you scour the Broken Record's cargo hold. Unfortunately, you find no trace of Tavish and Kormak's scientific equipment.`
+			`With the crew subdued, you scour the Broken Record's cargo hold. Unfortunately, you find no trace of Tavish and Kormak's scientific equipment.`
 			`	Kormak drags the bruised and restrained Hans Fuller before you and Tavish.`
 			`	"Salutations, Hans," Tavish says cheerfully.`
 			`	Hans grunts uncomfortably, "Professor."`
@@ -10822,7 +10821,7 @@ mission "Tavish and Kormak 3"
 			label letgo
 			`	Kormak sighs heavily and reluctantly releases Hans, who quickly scrambles to his feet and dashes deeper into the ship.`
 			`	"You guys are crazy! Crazy!" he yells as he disappears behind the safety of his ship's bulkheads.`
-				goto end
+				launch
 			
 			label kormak
 			`	Kormak wastes no time and twists Hans' arm in a very unnatural direction.`
@@ -10849,7 +10848,7 @@ mission "Tavish and Kormak 3"
 			`	Hans waits until you transfer the money over to him, and then quickly retreats deeper into his ship.`
 			`	Tavish watches him go. "I dare say he didn't deserve additional recompense after what he did to us."`
 			`	Kormak grunts in agreement.`
-			label end
+			launch
 
 
 	on visit
@@ -10873,7 +10872,7 @@ mission "Tavish and Kormak 4"
 		conversation
 			`You get the feeling the sun never sets on Hephaestus as you navigate through droves of itinerant workers all hurriedly moving from one shift change to next. The number of ships being worked on, landing, taking off, or just sitting is staggering. It would be easy to believe this was the beating heart of the human expansion, as opposed to Earth.`
 			`	Tavish leads you down one narrow corridor filled with endless ships. You don't see any labels or signage that make sense, but somehow Tavish plows on with a quick step and unshakable confidence.`
-			`	Eventually he leads you into a large administrative complex. After four flights of stairs, three different elevators, and one very small trolley the three of you arrive at a bland corporate office with the words, "Repository of Confiscated Goods."`
+			`	Eventually he leads you into a large administrative complex. After four flights of stairs, three different elevators, and one very small trolley, the three of you arrive at a bland corporate office with the words, "Repository of Confiscated Goods."`
 			`	There are no doors, and a single window that looks like it was made of reinforced glass. The tired looking agent on the other side of the glass hits a button and his voice buzzes over to you. "What can I help you with?"`
 			choice
 				`	"We're looking for stolen scientific research equipment that was recently confiscated aboard the Broken Record."`
@@ -11076,7 +11075,7 @@ mission "Tavish and Kormak 5"
 	on offer
 		conversation
 			`The three of you ride the rail in silence as it slithers through Chiron's bright and beautiful landscape. Some minutes into the trip the obvious signs of the city give way to university campus scenery.`
-			`	For an hour you pass one educational building after another, only broken up by the occasional lacrosse court and dormitory, until finally Tavish stands up.`
+			`	For an hour you pass one educational building after another, only broken up by the occasional lacrosse field or dormitory, until finally Tavish stands up.`
 			`	"Next stop is us," he says.`
 			choice
 				`	"How big exactly is this campus?"`
@@ -11190,7 +11189,6 @@ mission "Tavish and Kormak 5"
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
-				clear "tavgirl"
 			`	Tavish wilts when he hears your command, but he does not argue. Humbly he nods to you, "It's my problem to resolve."`
 			`	Tavish's cheeks are wet as he drops to his knees. With painful awkward slowness he starts to bend over as to be on all fours.`
 			`	Before he is on his hands and knees, he is stopped by Kormak who pulls his companion to his feet.`
@@ -11215,6 +11213,9 @@ mission "Tavish and Kormak 5"
 			`	Kormak flows like water. The security guards' batons flail uselessly in the air as with an uncanny ease Kormak incapacitates each of them one at a time. A heartbeat later all four of them lie unmoving at his feet.`
 			`	He turns his attention back to Hullen-Freeze who is now groveling, "Yes. Yes! I'll give you what you want." He starts digging through the ruins of his desk until he finds a keycard and with a shaking arm holds it out.`
 			`	"Here it is. The storage unit is in the spaceport. Take it! Take it, and go. It's what you wanted!"`
+				choice
+				`	(Say nothing.)`
+				`	(Nod to Kormak.)`
 			`	Kormak ignores the keycard and instead grabs the man by his gray hair and forces him to the floor.`
 			`	"Crawl to Tavish. Tell Tavish who is garbage," Kormak growls in the horrified man's ear.`
 			`	"Yes, of course, anything," Hullen-Freeze whimpers as he proceeds to drag himself across to floor to Tavish's feet.`
@@ -11229,7 +11230,6 @@ mission "Tavish and Kormak 5"
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
-				clear "tavgirl"
 			`	Kormak doesn't hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
 			`	"Better without him," Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
 			`	The three of you leave together and head back to the spaceport. Once there, you finally pick up the scientific research equipment for the New India expedition.`
@@ -11240,7 +11240,6 @@ mission "Tavish and Kormak 5"
 			action
 				clear "tavtalk"
 				clear "payme"
-				clear "tavgirl"
 				clear "tavgirl"
 			`	Kormak grabs his jacket and finds Starla waiting for him just outside the office. She'd seen the whole thing.`
 			`	"Wh-what's that smell?" she asks quietly.`
