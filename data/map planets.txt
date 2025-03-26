@@ -451,7 +451,7 @@ planet Baianus
 	attributes frozen uninhabited
 	landscape land/snow20
 	description `From a distance, this large, icy moon is superficially reminiscent of Enceladus back in Sol: it is similarly exposed to its giant parent's radiation belts, and scans indicate countless tantalizing traces of chemicals that suggest there may be something more to the moon than it appears.`
-	description `	Unlike Enceladus, however, the surface of Baianus is regularly wracked by both waves of heat and energy. A stay of any length on the surface is likely to see waves of auroras swirl through it's unbreathably thin atmosphere, accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
+	description `	Unlike Enceladus, however, the surface of Baianus is regularly wracked by both waves of heat and energy. A stay of any length on the surface is likely to see waves of auroras swirl through its unbreathably thin atmosphere, accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
 
 planet Bailey
 	attributes ccor frontier mining pirate south "south pirate"
