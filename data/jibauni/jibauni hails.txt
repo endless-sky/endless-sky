@@ -119,6 +119,7 @@ phrase "jibauni untranslated"
 	replace
 		"%	." "."
 		"%	!" "!"
+		"%" ""
 
 phrase "jibauni untranslated random word 1"
 	phrase
