@@ -1006,8 +1006,8 @@ mission "Exotic Life - Bluestone"
 			`	Zea beams broadly, "Exactly right! Chlorophyll is fundamental to life on Earth.`
 				goto chlorophyll
 			label awkward
-			`	There is an awkward pause as Zea scans the group. After another moment the tour guide sighs lightly, "Well, it's chlorophyll." Visibly trying to downplay the moment, she adds, "No worries - let's move on.`	
-			label chlorophyll		
+			`	There is an awkward pause as Zea scans the group. After another moment the tour guide sighs lightly, "Well, it's chlorophyll." Visibly trying to downplay the moment, she adds, "No worries - let's move on.`
+			label chlorophyll
 			`	"These pigments on our native plants are distinct from Earth's chlorophyll. Green chlorophyll actually captures red light fairly well, but not as well as a cyan pigment. Our planet's reddish hue can also be deceiving - near infrared light, an invisible light just beyond what humans can see, is what our native plants truly thrive on. Our native plants can capture those wavelengths of light with remarkable efficiency. By deciphering their genetic blueprints, we've identified key adaptations that can be hybridized into crops found on Earth or other worlds to enhance their resilience in the low-light environments of cooler stars."`
 			`	You are then led outside to a small garden of native grasses and lichens next to the laboratory. "And now, take a closer look at our fascinating native species. Notice their muted blue and near-black colors - this isn't just a quirk of nature, but a vital adaptation that enhances absorption of red and near-infrared light on our dim planet. Their extensive root systems delve deep into the sparse soil, allowing them to efficiently access as much nutrients and water as possible under low-light conditions. Now, the leaves on these grasses are much larger, wider, and thinner than what you'd see on similar grasses on planets with brighter sunlight. Can anyone tell me why our plants might have larger and thinner leaves than somewhere like Earth?"`
 			choice
@@ -1048,7 +1048,7 @@ mission "Exotic Life - Geyser"
 		random < 10
 	on offer
 		conversation
-			`As you wander through a row of half-demolished hangars, you spot clusters of spiny cacti with flat, rounded pads and bright red fruit growing in the rubble. A local, noticing your curiosity, strides over with a wry grin.
+			`As you wander through a row of half-demolished hangars, you spot clusters of spiny cacti with flat, rounded pads and bright red fruit growing in the rubble. A local, noticing your curiosity, strides over with a wry grin.`
 			`	"That plant over there? That's a prickly pear cactus. They're from right here on Geyser. Hardy things, too - they're so aggressive they've even taken root all over Earth."`
 			choice
 				`	"That doesn't sound right. They're native to Earth, not Geyser."`
