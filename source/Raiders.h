@@ -1,4 +1,4 @@
-/* RaidFleet.h
+/* Raiders.h
 Copyright (c) 2023 by Hurleveur
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,31 +15,31 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <limits>
+#include "RaidFleet.h"
+
 #include <vector>
 
 class DataNode;
-class Fleet;
 
 
 
-// Information about how a fleet intended for raiding behaves.
-class RaidFleet {
+// Class containing and managing raid fleets.
+class Raiders {
 public:
-	RaidFleet(const Fleet *fleet, double minAttraction, double maxAttraction);
-	RaidFleet(const DataNode &node, const Fleet *fleet);
-	void Load(const DataNode &node, const Fleet *fleet);
-	const Fleet *GetFleet() const;
-	double MinAttraction() const;
-	double MaxAttraction() const;
-	double CapAttraction() const;
-	double FleetCap() const;
+	Raiders() = default;
+	// Direct call for deprecated "raid"
+	Raiders(const DataNode &node, bool remove, int valueIndex);
+	// Helper function to load a single fleet and support the deprecated syntax.
+	void LoadFleets(const DataNode &node, bool remove, int valueIndex, bool deprecated);
+	void Load(const DataNode &node);
+	const std::vector<RaidFleet> &RaidFleets() const;
+	double EmptyCargoAttraction() const;
+	bool ScoutsCargo() const;
 
 
 private:
-	const Fleet *fleet = nullptr;
-	double minAttraction = 0.;
-	double maxAttraction = std::numeric_limits<double>::max();
-	double capAttraction = 1.;
-	double fleetCap = 10.;
+	std::vector<RaidFleet> raidFleets;
+
+	double emptyCargoAttraction = 1.;
+	bool scoutsCargo = false;
 };
