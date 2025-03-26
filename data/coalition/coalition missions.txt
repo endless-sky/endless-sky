@@ -3331,7 +3331,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 				accept
 	on complete
 		conversation
-			`As you prepare to land, you write Mrs. Fangvin a short message, offering an interview. In less than ten minutes you receive a reply, explaining that she has accepted your offer and will wait for you in the spaceport.`
+			`As you prepare to land, you write Anna a short message, offering an interview. In less than ten minutes you receive a reply, explaining that she has accepted your offer and will wait for you in the spaceport.`
 
 
 mission "Coalition: Book Discovered 2"

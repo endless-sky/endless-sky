@@ -1010,8 +1010,8 @@ mission "Struggling Author Gone Missing"
 		has "event: beyond the hyperdrive is published"
 	on offer
 		conversation
-			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, sir. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
-			`	Around the spaceport you see countless other groups doing the same thing. Anna must have been more popular then she thought.`
+			`As your ship settles down on landing pad A5B, two young adults approach. One speaks up, "Hello, captain. Have you seen a woman named Anna Fangvin anywhere? She was last seen in the spaceport, and must have left in someone's spaceship."`
+			`	Around the spaceport you see countless other groups doing the same thing. Anna must have been more popular than she thought.`
 			choice
 				`	"She went to another star system a long ways from here. You won't be able to get to her."`
 				`	"No, I don't know. Sorry."`
