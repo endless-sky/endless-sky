@@ -946,7 +946,7 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle)
+		if(customSwizzle && customSwizzle->IsLoaded())
 			out.Write("swizzle", customSwizzle->Name());
 
 		out.Write("uuid", uuid.ToString());
