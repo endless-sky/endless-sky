@@ -971,14 +971,14 @@ mission "Exotic Life: Glaze"
 			`	You walk back to your ship from the binoculars.`
 				decline
 
-mission "Exotic Life - Bluestone"
+mission "Exotic Life: Bluestone"
 	minor
 	source Bluestone
 	to offer
 		random < 10
 	on offer
 		conversation
-			`You step off your ship and wander around Bluestone's quiet yet functional spaceport. The buildings, made mostly of durable plastic resin, form a quaint but near-uniform red-brown landscape, except for the starkly contrasting cheerful small yellow pub in the center. The spaceport is quiet, but the low hum of activity from a nearby oil drill gives it some life. As you are entering the pub for a drink, you spot an announcement on a bulletin board:`
+			`You step off your ship and wander around Bluestone's quiet yet functional spaceport. The buildings, made mostly of durable plastic resin, form a quaint but near-uniform red-brown landscape, in sharp contrast to the small yellow pub in the center. The spaceport is quiet, but the low hum of activity from a nearby oil drill gives it some life. As you are entering the pub, you spot an announcement on a bulletin board:`
 			`	"Guided Tour: Hybrid Crop Research Village - an exceptional hub of field-based research led by the Cornucopia College of Agriculture, nestled within captivating landscapes!"`
 			`	The bulletin catches your eye. It's a rare chance to see something other than refinery equipment and plastics, and the mention of hybrid crops entails something different. There's a signup sheet, and only a few spots remain.`
 			choice
@@ -989,8 +989,8 @@ mission "Exotic Life - Bluestone"
 			`	You get off the bus and are immediately ushered into the laboratory by a young-looking tour guide, along with half a dozen other tourists. She has a small nametag that reads:`
 			`		Zea S.`
 			`		Community Tour Guide`
-			`		MS in Agronomy, CCA`
-			`		(Cornucopia College of Agriculture)`
+			`		MS in Agronomy`
+			`		Cornucopia College of Agriculture`
 			`	"Welcome to our guided tour of Bluestone's Hybrid Crop Research Village! Here, our dedicated scientists harness the secrets of native flora. The grasses and lichens you see around you have evolved unique photosynthetic pigments to thrive in our planet's dim, reddish light. Before we continue, can anyone name the most famous photosynthetic pigment found on Earth?"`
 			choice
 				`	"Tea leaves."`
@@ -1041,7 +1041,7 @@ mission "Exotic Life - Bluestone"
 			`	With the tour's ending, you board the same beat-up old bus that brought you here. As the bus lurches back towards the red-brown resin of the spaceport, you have time to take in the rolling fields of blue-black grasses swaying under the dim, reddish suns of Bluestone.`
 				decline
 
-mission "Exotic Life - Geyser"
+mission "Exotic Life: Geyser"
 	minor
 	source Geyser
 	to offer
