@@ -11629,7 +11629,7 @@ mission "Tavish and Kormak Late"
 				`	"I am sorry."`
 				`	"Whatever, let's get on with it."`
 				`	(Say nothing.)`
-			`	Tavish clears his throat, "There is no need for us to belabor the point. Captain <last> is here now, and we and our findings are intact. Let us move foward, to our impending triumph, and not backwards.`
+			`	Tavish clears his throat, "There is no need for us to belabor the point. Captain <last> is here now, and we and our findings are intact. Let us move forward, to our impending triumph, and not backwards.`
 			`	Kormak nods, "Forward."`
 			`	Tavish gives you a wry smile. "Captain <last>, old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exemplary Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
 				goto owed
