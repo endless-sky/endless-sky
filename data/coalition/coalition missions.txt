@@ -3736,7 +3736,8 @@ conversation "anna invites you to book signing"
 		log "Helped somebody named Anna Fangvin get her book published in Coalition space. Apparently, it's a bestseller now. The book was 'Beyond the Hyperdrive', something about humans stealing jump drives from the Quarg."
 		event "beyond the hyperdrive payment" 40
 		set "beyond the hyperdrive news can show now"
-	`The moment you land, Anna is all too happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
+		outfit "Beyond the Hyperdrive" 1
+	`The moment you land, Anna arrives, very happy to see you. She grabs your shoulders with both arms and in an excited tone explains that her book has been approved for publication.`
 	`	"They're publishing 'Beyond the Hyperdrive' today, and there's a full release event where I'll be signing copies! Thanks for everything you've done, <first>! Do you want to join me during the book signing?"`
 	choice
 		`	"I've been with you through the whole process. Count me in!"`
@@ -3762,6 +3763,14 @@ conversation "anna invites you to book signing"
 	`	"As for the special copy, it was so I could verify and look at the changes they made, in my language, so I wouldn't have to learn their language. They agreed to print another copy for me so I could give it to you.`
 	`	"I've got to go now. I want to see how well my book is selling. Goodbye!"`
 	`	Anna then leaves your ship, leaving you with a novel, a payment, and the knowledge that you've helped a struggling author make it big.`
+
+outfit "Beyond the Hyperdrive"
+	category "Unique"
+	series "Non-Functional Unique"
+	index 11
+	thumbnail "outfit/beyond the hyperdrive"
+	"unique" 1
+	description "A book gifted to you by Anna Fangvin, a struggling author who found success in Coalition space."
 
 
 event "beyond the hyperdrive payment"
