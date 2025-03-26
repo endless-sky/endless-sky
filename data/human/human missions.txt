@@ -11368,9 +11368,16 @@ mission "Tavish and Kormak 6"
 				`	"So where did they come from?"`
 			`	There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives."`
 			`	Kormak frowns, "Lies."`
-			`	"Or, and this is more of folklore than a theory, that thousands of years ago humans were brought to the Deep by... elves."`
+			`	"Or, and this is more folklore than a theory, that thousands of years ago humans were brought to the Deep by... elves."`
 			`	"Not elves," Kormak interrupts with a hint of annoyance, "the Dream Anuabhair. That how they called in my clan's sagas. The exceedingly proud folk. Never to trust."`
+			choice
+				`	"I think it may have been the alien race called the Pug who brought your descendants here."`
+					goto thepug
+					to display
+						has "main plot completed"
+				`	(Say nothing.)`
 			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf. Know that is my home."`
+			label pugout
 			`	"Enough about past. Only present matters." He goes back to eating.`
 			`	Tavish laughs, "Of course. Let us discourse about less weighty matters."`
 
@@ -11452,6 +11459,15 @@ mission "Tavish and Kormak 6"
 			`	Tavish nods, "In that case we've quite a bit of work to do, Captain. Take care."`
 			`	He starts working on prepping the dig site, while Kormak escorts you back to your ship.`
 			`	Kormak takes your hand in his. "May the stones guide you," he says, and then disappears back into the jungle.`
+				decline
+
+			label thepug
+			`	Tavish perks up, "Them again? How interesting. I wonder how long they have been meddling in the affairs of men."`
+			`	"Maybe not lies." Kormak admits, and then looks down as if in deep thought.`
+			`	"But maybe not whole story," He says finally.`
+			`	The large man shakes his head and frowns. "Friend," He says the word slowly, carefully enunciating each syllable.`
+			`	"If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf. Know that is my home."`
+				goto pugout
 
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
