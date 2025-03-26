@@ -11792,7 +11792,7 @@ mission "Tavish and Kormak dead"
 		has "event: Tavish and Kormak Abandoned"
 	source "New India"
 	on offer
-		log "people" "Tavish and Kormak" `Tavish and Kormak appear lost to the wilds of New India.`
+		log "People" "Tavish and Kormak" `Tavish and Kormak appear lost to the wilds of New India.`
 		conversation
 			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
 			choice
