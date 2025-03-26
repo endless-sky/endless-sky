@@ -262,8 +262,8 @@ void ShipyardPanel::Sell(bool storeOutfits)
 
 	if(storeOutfits && !planet->HasOutfitter())
 	{
-		message = "WARNING!\n\nThis planet has no Outfitter. "
-			"There is no way to retain the outfits in storage.\n\n";
+		message = "WARNING: This planet has no Outfitter. "
+			"There is no way to retain the outfits in storage.\n";
 	}
 	// Never allow keeping outfits where they cannot be retrieved.
 	// TODO: Consider how to keep outfits in Cargo in the future.
