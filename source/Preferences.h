@@ -22,6 +22,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+template<class T>
+class OptionalPreference;
+
 
 
 class Preferences {
@@ -201,30 +204,18 @@ public:
 	static int GetPreviousSaveCount();
 
 	/// Gamerule override settings.
-
 	static void ToggleGameruleRamscoop();
-	static void ToggleGameruleRamscoopValue();
-	static std::optional<bool> GetGameruleRamscoop();
+	static const std::optional<bool> &GetGameruleRamscoop();
 	static const std::string &GameruleRamscoopSetting();
-
-	static const std::optional<int> &GetGamerulePersonPeriod();
-
-	static const std::optional<int> &GetGamerulePersonWeight();
-
-	static const std::optional<int> &GetGameruleMiningTime();
-
-	static const std::optional<double> &GetGameruleFrugalThreshold();
-
+	static OptionalPreference<int> &GamerulePersonPeriod();
+	static OptionalPreference<int> &GamerulePersonWeight();
+	static OptionalPreference<int> &GameruleMiningTime();
+	static OptionalPreference<double> &GameruleFrugalThreshold();
 	static void ToggleGameruleFighters();
-	static void ToggleGameruleFightersValue();
-	static std::optional<Gamerules::FighterDodgePolicy> GetGameruleFighters();
+	static const std::optional<Gamerules::FighterDodgePolicy> &GetGameruleFighters();
 	static const std::string &GameruleFightersSetting();
-
-	static const std::optional<double> &GetGameruleDepreciationMin();
-
-	static const std::optional<int> &GetGameruleDepreciationGracePeriod();
-
-	static const std::optional<double> &GetGameruleDepreciationDaily();
-
-	static const std::optional<int> &GetGameruleDepreciationMaxAge();
+	static OptionalPreference<double> &GameruleDepreciationMin();
+	static OptionalPreference<int> &GameruleDepreciationGracePeriod();
+	static OptionalPreference<double> &GameruleDepreciationDaily();
+	static OptionalPreference<int> &GameruleDepreciationMaxAge();
 };

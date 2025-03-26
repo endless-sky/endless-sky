@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 
 #include "DataNode.h"
+#include "OptionalPreference.h"
 #include "Preferences.h"
 
 #include <algorithm>
@@ -84,56 +85,56 @@ bool Gamerules::UniversalRamscoopActive() const
 
 int Gamerules::PersonSpawnPeriod() const
 {
-	return Preferences::GetGamerulePersonPeriod().value_or(personSpawnPeriod);
+	return Preferences::GamerulePersonPeriod().Get().value_or(personSpawnPeriod);
 }
 
 
 
 int Gamerules::NoPersonSpawnWeight() const
 {
-	return Preferences::GetGamerulePersonWeight().value_or(noPersonSpawnWeight);
+	return Preferences::GamerulePersonWeight().Get().value_or(noPersonSpawnWeight);
 }
 
 
 
 int Gamerules::NPCMaxMiningTime() const
 {
-	return Preferences::GetGameruleMiningTime().value_or(npcMaxMiningTime);
+	return Preferences::GameruleMiningTime().Get().value_or(npcMaxMiningTime);
 }
 
 
 
 double Gamerules::UniversalFrugalThreshold() const
 {
-	return Preferences::GetGameruleFrugalThreshold().value_or(universalFrugalThreshold);
+	return Preferences::GameruleFrugalThreshold().Get().value_or(universalFrugalThreshold);
 }
 
 
 
 double Gamerules::DepreciationMin() const
 {
-	return Preferences::GetGameruleDepreciationMin().value_or(depreciationMin);
+	return Preferences::GameruleDepreciationMin().Get().value_or(depreciationMin);
 }
 
 
 
 double Gamerules::DepreciationDaily() const
 {
-	return Preferences::GetGameruleDepreciationDaily().value_or(depreciationDaily);
+	return Preferences::GameruleDepreciationDaily().Get().value_or(depreciationDaily);
 }
 
 
 
 int Gamerules::DepreciationGracePeriod() const
 {
-	return Preferences::GetGameruleDepreciationGracePeriod().value_or(depreciationGracePeriod);
+	return Preferences::GameruleDepreciationGracePeriod().Get().value_or(depreciationGracePeriod);
 }
 
 
 
 int Gamerules::DepreciationMaxAge() const
 {
-	return Preferences::GetGameruleDepreciationMaxAge().value_or(depreciationMaxAge);
+	return Preferences::GameruleDepreciationMaxAge().Get().value_or(depreciationMaxAge);
 }
 
 

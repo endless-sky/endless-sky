@@ -20,10 +20,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Files.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "GameWindow.h"
 #include "Interface.h"
 #include "Logger.h"
+#include "OptionalPreference.h"
 #include "Screen.h"
 
 #include <algorithm>
@@ -163,29 +165,33 @@ namespace {
 
 	int previousSaveCount = 3;
 
-	bool gameruleRamscoop = false;
-	const vector<string> GAMERULE_RAMSCOOP_SETTINGS = {"true", "false"};
+	optional<bool> gameruleRamscoop;
+	const vector<string> GAMERULE_RAMSCOOP_SETTINGS = {"default", "true", "false"};
 	int gameruleRamscoopIndex = 0;
 
-	optional<int> gamerulePersonPeriod;
+	OptionalPreference<int> gamerulePersonPeriod{6000, 6000, 16, to_string};
 
-	optional<int> gamerulePersonWeight;
+	OptionalPreference<int> gamerulePersonWeight{0, 200, 20, to_string};
 
-	optional<int> gameruleMiningTime;
+	OptionalPreference<int> gameruleMiningTime{0, 600, 20, to_string};
 
-	optional<double> gameruleFrugalThreshold;
+	OptionalPreference<double> gameruleFrugalThreshold{0., .05, 20, Format::Number};
 
-	bool gameruleFighters = false;
-	const vector<string> GAMERULE_FIGHTERS_SETTINGS = {"all", "none", "only player"};
+	optional<Gamerules::FighterDodgePolicy> gameruleFighters;
+	const vector<string> GAMERULE_FIGHTERS_SETTINGS = {"default", "all", "none", "only player"};
 	int gameruleFightersIndex = 0;
 
-	optional<double> gameruleDepreciationMin;
+	OptionalPreference<double> gameruleDepreciationMin{0., .05, 20, Format::Number};
 
-	optional<int> gameruleDepreciationGracePeriod;
+	OptionalPreference<int> gameruleDepreciationGracePeriod{0, 1, 40, to_string};
 
-	optional<double> gameruleDepreciationDaily;
+	string FormatDepreciationDaily(double value)
+	{
+		return Format::Decimal(value, 3);
+	}
+	OptionalPreference<double> gameruleDepreciationDaily{.943, .003, 20, FormatDepreciationDaily};
 
-	optional<int> gameruleDepreciationMaxAge;
+	OptionalPreference<int> gameruleDepreciationMaxAge{0, 100, 20, to_string};
 }
 
 
@@ -268,55 +274,32 @@ void Preferences::Load()
 			notifOptionsIndex = max<int>(0, min<int>(node.Value(1), NOTIF_OPTIONS.size() - 1));
 		else if(node.Token(0) == "universal ramscoop")
 		{
-			gameruleRamscoop = node.BoolValue(1);
-			gameruleRamscoopIndex = clamp<int>(node.Value(2), 0, GAMERULE_RAMSCOOP_SETTINGS.size() - 1);
+			gameruleRamscoopIndex = clamp<int>(node.Value(1), 0, GAMERULE_RAMSCOOP_SETTINGS.size() - 1);
+			if(gameruleRamscoopIndex)
+				gameruleRamscoop = gameruleRamscoopIndex - 2;
 		}
 		else if(node.Token(0) == "person spawn period")
-		{
-			if(node.BoolValue(1))
-				gamerulePersonPeriod = max<int>(1, node.Value(2));
-		}
+			gamerulePersonPeriod.Load(node, 1);
 		else if(node.Token(0) == "no person spawn weight")
-		{
-			if(node.BoolValue(1))
-				gamerulePersonWeight = max<int>(0, node.Value(2));
-		}
+			gamerulePersonWeight.Load(node, 0);
 		else if(node.Token(0) == "npc max mining time")
-		{
-			if(node.BoolValue(1))
-				gameruleMiningTime = max<int>(0, node.Value(2));
-		}
+			gameruleMiningTime.Load(node, 0);
 		else if(node.Token(0) == "universal frugal threshold")
-		{
-			if(node.BoolValue(1))
-				gameruleFrugalThreshold = clamp(node.Value(2), 0., 1.);
-		}
+			gameruleFrugalThreshold.Load(node, 0., 1.);
 		else if(node.Token(0) == "disabled fighters avoid projectiles")
 		{
-			gameruleFighters = node.BoolValue(1);
-			gameruleFightersIndex = clamp<int>(node.Value(2), 0, GAMERULE_FIGHTERS_SETTINGS.size() - 1);
+			gameruleFightersIndex = clamp<int>(node.Value(1), 0, GAMERULE_FIGHTERS_SETTINGS.size() - 1);
+			if(gameruleFightersIndex)
+				gameruleFighters = static_cast<Gamerules::FighterDodgePolicy>(gameruleFightersIndex - 1);
 		}
-
 		else if(node.Token(0) == "depreciation min")
-		{
-			if(node.BoolValue(1))
-				gameruleDepreciationMin = clamp(node.Value(2), 0., 1.);
-		}
+			gameruleDepreciationMin.Load(node, 0., 1.);
 		else if(node.Token(0) == "depreciation grace period")
-		{
-			if(node.BoolValue(1))
-				gameruleDepreciationGracePeriod = max<int>(0, node.Value(2));
-		}
+			gameruleDepreciationGracePeriod.Load(node, 0);
 		else if(node.Token(0) == "depreciation daily")
-		{
-			if(node.BoolValue(1))
-				gameruleDepreciationDaily = clamp(node.Value(2), 0., 1.);
-		}
+			gameruleDepreciationDaily.Load(node, 0., 1.);
 		else if(node.Token(0) == "depreciation max age")
-		{
-			if(node.BoolValue(1))
-				gameruleDepreciationMaxAge = max<int>(0, node.Value(2));
-		}
+			gameruleDepreciationMaxAge.Load(node, 0);
 		else
 			settings[node.Token(0)] = (node.Size() == 1 || node.Value(1));
 	}
@@ -381,18 +364,16 @@ void Preferences::Save()
 	out.Write("Extended jump effects", extendedJumpEffectIndex);
 	out.Write("alert indicator", alertIndicatorIndex);
 	out.Write("previous saves", previousSaveCount);
-	out.Write("universal ramscoop", gameruleRamscoop, gameruleRamscoopIndex);
-	out.Write("person spawn period", gamerulePersonPeriod.has_value(), gamerulePersonPeriod.value_or(72000));
-	out.Write("no person spawn weight", gamerulePersonWeight.has_value(), gamerulePersonWeight.value_or(1000));
-	out.Write("npc max mining time", gameruleMiningTime.has_value(), gameruleMiningTime.value_or(3600));
-	out.Write("universal frugal threshold", gameruleFrugalThreshold.has_value(), gameruleFrugalThreshold.value_or(.75));
-	out.Write("disabled fighters avoid projectiles", gameruleFighters, gameruleFightersIndex);
-	out.Write("depreciation min", gameruleDepreciationMin.has_value(), gameruleDepreciationMin.value_or(.25));
-	out.Write("depreciation grace period", gameruleDepreciationGracePeriod.has_value(),
-		gameruleDepreciationGracePeriod.value_or(7));
-	out.Write("depreciation daily", gameruleDepreciationDaily.has_value(), gameruleDepreciationDaily.value_or(.997));
-	out.Write("depreciation max age", gameruleDepreciationMaxAge.has_value(),
-		gameruleDepreciationMaxAge.value_or(1000));
+	out.Write("universal ramscoop", gameruleRamscoopIndex);
+	gamerulePersonPeriod.Save(out, "person spawn period");
+	gamerulePersonWeight.Save(out, "no person spawn weight");
+	gameruleMiningTime.Save(out, "npc max mining time");
+	gameruleFrugalThreshold.Save(out, "universal frugal threshold");
+	out.Write("disabled fighters avoid projectiles", gameruleFightersIndex);
+	gameruleDepreciationMin.Save(out, "depreciation min");
+	gameruleDepreciationGracePeriod.Save(out, "depreciation grace period");
+	gameruleDepreciationDaily.Save(out, "depreciation daily");
+	gameruleDepreciationMaxAge.Save(out, "depreciation max age");
 
 	for(const auto &it : settings)
 		out.Write(it.first, it.second);
@@ -868,54 +849,48 @@ int Preferences::GetPreviousSaveCount()
 
 void Preferences::ToggleGameruleRamscoop()
 {
-	gameruleRamscoop = !gameruleRamscoop;
+	if(++gameruleRamscoopIndex >= static_cast<int>(GAMERULE_RAMSCOOP_SETTINGS.size()))
+		gameruleRamscoopIndex = 0;
 }
 
 
 
-void Preferences::ToggleGameruleRamscoopValue()
+const std::optional<bool> &Preferences::GetGameruleRamscoop()
 {
-	gameruleRamscoopIndex = !gameruleRamscoopIndex;
+	return gameruleRamscoop;
 }
 
 
 
-optional<bool> Preferences::GetGameruleRamscoop()
-{
-	return gameruleRamscoop ? optional<bool>{gameruleRamscoopIndex} : nullopt;
-}
-
-
-
-const string &Preferences::GameruleRamscoopSetting()
+const std::string &Preferences::GameruleRamscoopSetting()
 {
 	return GAMERULE_RAMSCOOP_SETTINGS[gameruleRamscoopIndex];
 }
 
 
 
-const optional<int> &Preferences::GetGamerulePersonPeriod()
+OptionalPreference<int> &Preferences::GamerulePersonPeriod()
 {
 	return gamerulePersonPeriod;
 }
 
 
 
-const optional<int> &Preferences::GetGamerulePersonWeight()
+OptionalPreference<int> &Preferences::GamerulePersonWeight()
 {
 	return gamerulePersonWeight;
 }
 
 
 
-const optional<int> &Preferences::GetGameruleMiningTime()
+OptionalPreference<int> &Preferences::GameruleMiningTime()
 {
 	return gameruleMiningTime;
 }
 
 
 
-const optional<double> &Preferences::GetGameruleFrugalThreshold()
+OptionalPreference<double> &Preferences::GameruleFrugalThreshold()
 {
 	return gameruleFrugalThreshold;
 }
@@ -924,22 +899,15 @@ const optional<double> &Preferences::GetGameruleFrugalThreshold()
 
 void Preferences::ToggleGameruleFighters()
 {
-	gameruleFighters = !gameruleFighters;
-}
-
-
-
-void Preferences::ToggleGameruleFightersValue()
-{
 	if(++gameruleFightersIndex >= static_cast<int>(GAMERULE_FIGHTERS_SETTINGS.size()))
 		gameruleFightersIndex = 0;
 }
 
 
 
-optional<Gamerules::FighterDodgePolicy> Preferences::GetGameruleFighters()
+const std::optional<Gamerules::FighterDodgePolicy> &Preferences::GetGameruleFighters()
 {
-	return gameruleFighters ? optional{static_cast<Gamerules::FighterDodgePolicy>(gameruleFightersIndex)} : nullopt;
+	return gameruleFighters;
 }
 
 
@@ -951,28 +919,28 @@ const std::string &Preferences::GameruleFightersSetting()
 
 
 
-const optional<double> &Preferences::GetGameruleDepreciationMin()
+OptionalPreference<double> &Preferences::GameruleDepreciationMin()
 {
 	return gameruleDepreciationMin;
 }
 
 
 
-const optional<int> &Preferences::GetGameruleDepreciationGracePeriod()
+OptionalPreference<int> &Preferences::GameruleDepreciationGracePeriod()
 {
 	return gameruleDepreciationGracePeriod;
 }
 
 
 
-const optional<double> &Preferences::GetGameruleDepreciationDaily()
+OptionalPreference<double> &Preferences::GameruleDepreciationDaily()
 {
 	return gameruleDepreciationDaily;
 }
 
 
 
-const optional<int> &Preferences::GetGameruleDepreciationMaxAge()
+OptionalPreference<int> &Preferences::GameruleDepreciationMaxAge()
 {
 	return gameruleDepreciationMaxAge;
 }

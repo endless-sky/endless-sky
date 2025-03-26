@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
+#include "OptionalPreference.h"
 #include "Plugins.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
@@ -81,10 +82,16 @@ namespace {
 	const string EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 	const string ALERT_INDICATOR = "Alert indicator";
 	const string HUD_SHIP_OUTLINES = "Ship outlines in HUD";
-	const string GAMERULE_RAMSCOOP = "Override \"universal ramscoop\"";
-	const string GAMERULE_RAMSCOOP_VALUE = "\"universal ramscoop\" value";
-	const string GAMERULE_FIGHTERS = "Override \"disabled fighters...\"";
-	const string GAMERULE_FIGHTERS_VALUE = "\"disabled fighters...\" value";
+	const string GAMERULE_RAMSCOOP = "\"universal ramscoop\"";
+	const string GAMERULE_PERSON_PERIOD = "\"person spawn period\"";
+	const string GAMERULE_PERSON_WEIGHT = "\"no person spawn weight\"";
+	const string GAMERULE_MINING_TIME = "\"npc max mining time\"";
+	const string GAMERULE_FRUGAL_THRESHOLD = "\"universal frugal...\"";
+	const string GAMERULE_FIGHTERS = "\"disabled fighters...\"";
+	const string GAMERULE_DEPRECIATION_MIN = "\"depreciation min\"";
+	const string GAMERULE_DEPRECIATION_GRACE_PERIOD = "\"depreciation grace period\"";
+	const string GAMERULE_DEPRECIATION_DAILY = "\"depreciation daily\"";
+	const string GAMERULE_DEPRECIATION_MAX_AGE = "\"depreciation max age\"";
 
 	// How many pages of controls and settings there are.
 	const int CONTROLS_PAGE_COUNT = 2;
@@ -424,6 +431,22 @@ bool PreferencesPanel::Scroll(double dx, double dy)
 				speed = min(60, speed + 10);
 			Preferences::SetScrollSpeed(speed);
 		}
+		else if(hoverItem == GAMERULE_PERSON_PERIOD)
+			Preferences::GamerulePersonPeriod().Toggle(dy < 0);
+		else if(hoverItem == GAMERULE_PERSON_WEIGHT)
+			Preferences::GamerulePersonWeight().Toggle(dy < 0);
+		else if(hoverItem == GAMERULE_MINING_TIME)
+			Preferences::GameruleMiningTime().Toggle(dy < 0);
+		else if(hoverItem == GAMERULE_FRUGAL_THRESHOLD)
+			Preferences::GameruleFrugalThreshold().Toggle(dy < 0);
+		else if(hoverItem == GAMERULE_DEPRECIATION_MIN)
+			Preferences::GameruleDepreciationMin().Toggle(dy < 0);
+		else if(hoverItem == GAMERULE_DEPRECIATION_GRACE_PERIOD)
+			Preferences::GameruleDepreciationGracePeriod().Toggle(dy < 0);
+		else if(hoverItem == GAMERULE_DEPRECIATION_DAILY)
+			Preferences::GameruleDepreciationDaily().Toggle(dy < 0);
+		else if(hoverItem == GAMERULE_DEPRECIATION_MAX_AGE)
+			Preferences::GameruleDepreciationMaxAge().Toggle(dy < 0);
 		return true;
 	}
 	else if(page == 'p')
@@ -761,9 +784,15 @@ void PreferencesPanel::DrawSettings()
 		"",
 		"Gamerules",
 		GAMERULE_RAMSCOOP,
-		GAMERULE_RAMSCOOP_VALUE,
+		GAMERULE_PERSON_PERIOD,
+		GAMERULE_PERSON_WEIGHT,
+		GAMERULE_MINING_TIME,
+		GAMERULE_FRUGAL_THRESHOLD,
 		GAMERULE_FIGHTERS,
-		GAMERULE_FIGHTERS_VALUE
+		GAMERULE_DEPRECIATION_MIN,
+		GAMERULE_DEPRECIATION_GRACE_PERIOD,
+		GAMERULE_DEPRECIATION_DAILY,
+		GAMERULE_DEPRECIATION_MAX_AGE
 	};
 
 	bool isCategory = true;
@@ -980,22 +1009,52 @@ void PreferencesPanel::DrawSettings()
 		else if(setting == GAMERULE_RAMSCOOP)
 		{
 			isOn = Preferences::GetGameruleRamscoop().has_value();
-			text = isOn ? "on" : "off";
-		}
-		else if(setting == GAMERULE_RAMSCOOP_VALUE)
-		{
-			isOn = Preferences::GetGameruleRamscoop().has_value();
 			text = Preferences::GameruleRamscoopSetting();
+		}
+		else if(setting == GAMERULE_PERSON_PERIOD)
+		{
+			isOn = Preferences::GamerulePersonPeriod().Get().has_value();
+			text = Preferences::GamerulePersonPeriod().Setting();
+		}
+		else if(setting == GAMERULE_PERSON_WEIGHT)
+		{
+			isOn = Preferences::GamerulePersonWeight().Get().has_value();
+			text = Preferences::GamerulePersonWeight().Setting();
+		}
+		else if(setting == GAMERULE_MINING_TIME)
+		{
+			isOn = Preferences::GameruleMiningTime().Get().has_value();
+			text = Preferences::GameruleMiningTime().Setting();
+		}
+		else if(setting == GAMERULE_FRUGAL_THRESHOLD)
+		{
+			isOn = Preferences::GameruleFrugalThreshold().Get().has_value();
+			text = Preferences::GameruleFrugalThreshold().Setting();
 		}
 		else if(setting == GAMERULE_FIGHTERS)
 		{
 			isOn = Preferences::GetGameruleFighters().has_value();
-			text = isOn ? "on" : "off";
-		}
-		else if(setting == GAMERULE_FIGHTERS_VALUE)
-		{
-			isOn = Preferences::GetGameruleFighters().has_value();
 			text = Preferences::GameruleFightersSetting();
+		}
+		else if(setting == GAMERULE_DEPRECIATION_MIN)
+		{
+			isOn = Preferences::GameruleDepreciationMin().Get().has_value();
+			text = Preferences::GameruleDepreciationMin().Setting();
+		}
+		else if(setting == GAMERULE_DEPRECIATION_GRACE_PERIOD)
+		{
+			isOn = Preferences::GameruleDepreciationGracePeriod().Get().has_value();
+			text = Preferences::GameruleDepreciationGracePeriod().Setting();
+		}
+		else if(setting == GAMERULE_DEPRECIATION_DAILY)
+		{
+			isOn = Preferences::GameruleDepreciationDaily().Get().has_value();
+			text = Preferences::GameruleDepreciationDaily().Setting();
+		}
+		else if(setting == GAMERULE_DEPRECIATION_MAX_AGE)
+		{
+			isOn = Preferences::GameruleDepreciationMaxAge().Get().has_value();
+			text = Preferences::GameruleDepreciationMaxAge().Setting();
 		}
 		else
 			text = isOn ? "on" : "off";
@@ -1341,12 +1400,24 @@ void PreferencesPanel::HandleSettingsString(const string &str, Point cursorPosit
 		Preferences::ToggleAlert();
 	else if(str == GAMERULE_RAMSCOOP)
 		Preferences::ToggleGameruleRamscoop();
-	else if(str == GAMERULE_RAMSCOOP_VALUE)
-		Preferences::ToggleGameruleRamscoopValue();
+	else if(str == GAMERULE_PERSON_PERIOD)
+		Preferences::GamerulePersonPeriod().Toggle();
+	else if(str == GAMERULE_PERSON_WEIGHT)
+		Preferences::GamerulePersonWeight().Toggle();
+	else if(str == GAMERULE_MINING_TIME)
+		Preferences::GameruleMiningTime().Toggle();
+	else if(str == GAMERULE_FRUGAL_THRESHOLD)
+		Preferences::GameruleFrugalThreshold().Toggle();
 	else if(str == GAMERULE_FIGHTERS)
 		Preferences::ToggleGameruleFighters();
-	else if(str == GAMERULE_FIGHTERS_VALUE)
-		Preferences::ToggleGameruleFightersValue();
+	else if(str == GAMERULE_DEPRECIATION_MIN)
+		Preferences::GameruleDepreciationMin();
+	else if(str == GAMERULE_DEPRECIATION_GRACE_PERIOD)
+		Preferences::GameruleDepreciationGracePeriod().Toggle();
+	else if(str == GAMERULE_DEPRECIATION_DAILY)
+		Preferences::GameruleDepreciationDaily().Toggle();
+	else if(str == GAMERULE_DEPRECIATION_MAX_AGE)
+		Preferences::GameruleDepreciationMaxAge().Toggle();
 	// All other options are handled by just toggling the boolean state.
 	else
 		Preferences::Set(str, !Preferences::Has(str));
