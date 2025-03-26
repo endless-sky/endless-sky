@@ -572,8 +572,8 @@ void MapDetailPanel::DrawKey()
 	{
 		// Each system is colored by the number of outfits for sale.
 		static const string LABEL[2][4] = {
-			{"None", "1", "5", "10+"},
-			{"None", "1", "30", "60+"}};
+			{"10+" "5", "1", "None"},
+			{"60+", "30", "1", "None"}};
 		static const double VALUE[4] = {-1., 0., .5, 1.};
 
 		for(int i = 0; i < 4; ++i)
@@ -586,9 +586,9 @@ void MapDetailPanel::DrawKey()
 	else if(commodity == SHOW_VISITED)
 	{
 		static const string LABEL[3] = {
-			"None"
-			"Some",
 			"All planets",
+			"Some",
+			"None"
 		};
 		for(int i = 0; i < 3; ++i)
 		{
