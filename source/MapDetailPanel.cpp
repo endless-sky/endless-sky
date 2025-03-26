@@ -586,9 +586,9 @@ void MapDetailPanel::DrawKey()
 	else if(commodity == SHOW_VISITED)
 	{
 		static const string LABEL[3] = {
-			"All planets",
-			"Some",
 			"None"
+			"Some",
+			"All planets",
 		};
 		for(int i = 0; i < 3; ++i)
 		{
