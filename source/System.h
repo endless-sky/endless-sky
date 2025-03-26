@@ -33,7 +33,7 @@ class Hazard;
 class Minable;
 class Outfit;
 class Planet;
-template<class Type>
+template<class T>
 class Set;
 class Ship;
 class Sprite;

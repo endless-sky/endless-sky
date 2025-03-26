@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
-template<class Type>
+template<class T>
 class Set;
 
 

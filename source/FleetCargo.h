@@ -21,7 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class Outfit;
-template<class Type>
+template<class T>
 class Sale;
 class Ship;
 

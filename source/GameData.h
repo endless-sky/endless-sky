@@ -53,7 +53,7 @@ class Person;
 class Phrase;
 class Planet;
 class Politics;
-template<class Type>
+template<class T>
 class Set;
 class Ship;
 class Sprite;
