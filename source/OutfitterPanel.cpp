@@ -658,59 +658,56 @@ void OutfitterPanel::Uninstall(bool sell) const
 
 	// Get the ships that have the most of this outfit installed.
 	const vector<Ship *> shipsToOutfit = GetShipsToOutfit();
-	if(!shipsToOutfit.empty())
+	// Note: to get here, we have already confirmed that every ship in the selection
+	// has the outfit and it is able to be uninstalled in the first place.
+	for(Ship *ship : shipsToOutfit)
 	{
-		// Note: to get here, we have already confirmed that every ship in the selection
-		// has the outfit and it is able to be uninstalled in the first place.
-		for(Ship *ship : shipsToOutfit)
+		// Uninstall the outfit.
+		ship->AddOutfit(selectedOutfit, -1);
+		if(selectedOutfit->Get("required crew"))
+			ship->AddCrew(-selectedOutfit->Get("required crew"));
+		ship->Recharge();
+
+		// If the context is sale:
+		if(sell)
 		{
-			// Uninstall the outfit.
-			ship->AddOutfit(selectedOutfit, -1);
-			if(selectedOutfit->Get("required crew"))
-				ship->AddCrew(-selectedOutfit->Get("required crew"));
-			ship->Recharge();
+			// Do the sale.
+			int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
+			player.Accounts().AddCredits(price);
+			player.AddStock(selectedOutfit, 1);
+		}
+		// If the context is uninstall, move the outfit into Storage
+		else
+			// Move to storage.
+			player.Storage().Add(selectedOutfit, 1);
 
-			// If the context is sale:
-			if(sell)
+		// Since some outfits have ammo, remove any ammo that must be sold because there
+		// aren't enough supporting slots for said ammo once this outfit is removed.
+		const Outfit *ammo = selectedOutfit->Ammo();
+		if(ammo && ship->OutfitCount(ammo))
+		{
+			// Determine how many of this ammo we must uninstall to also uninstall the launcher.
+			int mustUninstall = 0;
+			for(const pair<const char *, double> &it : ship->Attributes().Attributes())
+				if(it.second < 0.)
+					mustUninstall = max<int>(mustUninstall, it.second / ammo->Get(it.first));
+
+			if(mustUninstall)
 			{
-				// Do the sale.
-				int64_t price = player.FleetDepreciation().Value(selectedOutfit, day);
-				player.Accounts().AddCredits(price);
-				player.AddStock(selectedOutfit, 1);
-			}
-			// If the context is uninstall, move the outfit into Storage
-			else
-				// Move to storage.
-				player.Storage().Add(selectedOutfit, 1);
+				ship->AddOutfit(ammo, -mustUninstall);
 
-			// Since some outfits have ammo, remove any ammo that must be sold because there
-			// aren't enough supporting slots for said ammo once this outfit is removed.
-			const Outfit *ammo = selectedOutfit->Ammo();
-			if(ammo && ship->OutfitCount(ammo))
-			{
-				// Determine how many of this ammo we must uninstall to also uninstall the launcher.
-				int mustUninstall = 0;
-				for(const pair<const char *, double> &it : ship->Attributes().Attributes())
-					if(it.second < 0.)
-						mustUninstall = max<int>(mustUninstall, it.second / ammo->Get(it.first));
-
-				if(mustUninstall)
+				// If the context is sale:
+				if(sell)
 				{
-					ship->AddOutfit(ammo, -mustUninstall);
-
-					// If the context is sale:
-					if(sell)
-					{
-						// Do the sale.
-						int64_t price = player.FleetDepreciation().Value(ammo, day, mustUninstall);
-						player.Accounts().AddCredits(price);
-						player.AddStock(ammo, mustUninstall);
-					}
-					// If the context is uninstall, move the outfit's ammo to storage
-					else
-						// Move to storage.
-						player.Storage().Add(ammo, mustUninstall);
+					// Do the sale.
+					int64_t price = player.FleetDepreciation().Value(ammo, day, mustUninstall);
+					player.Accounts().AddCredits(price);
+					player.AddStock(ammo, mustUninstall);
 				}
+				// If the context is uninstall, move the outfit's ammo to storage
+				else
+					// Move to storage.
+					player.Storage().Add(ammo, mustUninstall);
 			}
 		}
 	}
