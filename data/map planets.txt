@@ -854,7 +854,7 @@ planet "Charybdis Station"
 		fleet "Small Syndicate" 4
 
 planet Chiron
-	attributes factory "near earth" research urban
+	attributes education factory "near earth" research urban
 	landscape land/city21
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
 	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader in higher education, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
@@ -1368,7 +1368,7 @@ planet "Dwelling of Speloog"
 	security 0.4
 
 planet Earth
-	attributes factory "near earth" research tourism urban
+	attributes education factory "near earth" research tourism urban
 	landscape land/city20
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
@@ -4840,7 +4840,7 @@ planet Ruin
 		description `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
 
 planet Rust
-	attributes factory farming research rim
+	attributes education factory farming research rim
 	landscape land/fields8
 	description `Rust is smaller than Earth, but very similar in climate. Much of its surface is suitable for agriculture, with wide open grasslands and dense forests. There are very few mountains, since the planet has low levels of tectonic activity.`
 	description `	The chief industry on Rust, however, are the factories and labs for Kraz Cybernetics, a maker of robots, computers, and advanced weapons systems. The planet's population is not large, but the schools are among the best in the region, and many of the inhabitants - even those who live on the farms - hold at least one advanced degree.`
@@ -5990,7 +5990,7 @@ planet Vail
 		fleet "Large Republic" 11
 
 planet Valhalla
-	attributes deep factory farming fishing research urban
+	attributes deep education factory farming fishing research urban
 	landscape land/mfield3
 	description `Valhalla was the first world to be settled in this region of space, which is known as the Deep. It is rich in natural resources, but all its vast farms and fisheries are insufficient to feed its population of over five billion.`
 	description `	The shipyards of Lionheart Industries are located here. Centuries ago, warships built here turned the tide of the Alpha War, and today the ships designed and built in the Deep continue to be some of the most technologically advanced ships in human space - and the most expensive.`
