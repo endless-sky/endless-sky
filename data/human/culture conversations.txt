@@ -985,7 +985,7 @@ mission "Exotic Life: Bluestone"
 				`	(Sign up.)`
 				`	(Skip the tour.)`
 					decline
-			`	After signing up for the next tour, you are directed to hop onto a beat-up old bus that rattles along to the research village. You notice Bluestone's red-brown industrial sprawl transition into the rocky fields of deep, desaturated blue grasses that the planet is known for. The village itself appears a small yet dynamic community, centered around a sleek, glass-paneled laboratory and greenhouse emanating reddish-yellow light. Dotted around are modest plastic resin apartment buildings, with the entire community surrounded by an expansive field covering rows and rows of crops.`
+			`	After signing up for the next tour, you are directed to hop onto a beat-up old bus that rattles along to the research village. You notice Bluestone's rusty industrial sprawl transition into the rocky fields of deep, desaturated blue grasses that the planet is known for. The village itself appears a small yet dynamic community, centered around a sleek, glass-paneled laboratory and greenhouse emanating reddish-yellow light. Dotted around are modest plastic resin apartment buildings, with the entire community surrounded by an expansive field covering rows and rows of crops.`
 			`	You get off the bus and are immediately ushered into the laboratory by a young-looking tour guide, along with half a dozen other tourists. She has a small nametag that reads:`
 			`		Zea S.`
 			`		Community Tour Guide`
@@ -1038,7 +1038,7 @@ mission "Exotic Life: Bluestone"
 			label silence
 			`	The silence lingers a little too long. Zea waits another moment, then nods to herself a few times before quietly walking off.`
 			label ending
-			`	With the tour's ending, you board the same beat-up old bus that brought you here. As the bus lurches back towards the red-brown resin of the spaceport, you have time to take in the rolling fields of blue-black grasses swaying under the dim, reddish suns of Bluestone.`
+			`	With the tour's ending, you board the same beat-up old bus that brought you here. As the bus lurches back towards the copper-colored resin of the spaceport, you have time to take in the rolling fields of blue-black grasses swaying under the dim, reddish suns of Bluestone.`
 				decline
 
 mission "Exotic Life: Geyser"
