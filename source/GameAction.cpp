@@ -42,8 +42,9 @@ namespace {
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-			if(!player.HasMapped(mapSize))
-				player.Map(mapSize);
+			bool mapMinables = outfit->Get("map minables");
+			if(!player.HasMapped(mapSize, mapMinables))
+				player.Map(mapSize, mapMinables);
 			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}
@@ -287,9 +288,9 @@ void GameAction::Save(DataWriter &out) const
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const System *system : mark)
-		out.Write("mark", system->Name());
+		out.Write("mark", system->TrueName());
 	for(const System *system : unmark)
-		out.Write("unmark", system->Name());
+		out.Write("unmark", system->TrueName());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -330,10 +331,10 @@ string GameAction::Validate() const
 	// Marked and unmarked system must be valid.
 	for(auto &&system : mark)
 		if(!system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 	for(auto &&system : unmark)
 		if(!system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)

@@ -171,12 +171,9 @@ namespace {
 		{"shield fuel multiplier", -1.},
 		{"shield heat multiplier", -1.},
 		{"acceleration multiplier", -1.},
-		{"turn multiplier", -1.}
+		{"turn multiplier", -1.},
+		{"turret turn multiplier", -1.}
 	};
-
-	constexpr double DEFAULT_HYPERDRIVE_COST = 100.;
-	constexpr double DEFAULT_SCRAM_DRIVE_COST = 150.;
-	constexpr double DEFAULT_JUMP_DRIVE_COST = 200.;
 
 	void AddFlareSprites(vector<pair<Body, int>> &thisFlares, const pair<Body, int> &it, int count)
 	{

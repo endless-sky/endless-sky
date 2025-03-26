@@ -15,13 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sound.h"
 
-#include "../File.h"
+#include "../Files.h"
 
 #include <AL/al.h>
 
 #include <cstdint>
-#include <cstdio>
-#include <vector>
 
 using namespace std;
 
@@ -29,22 +27,24 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(File &in, uint32_t &frequency);
-	uint32_t Read4(File &in);
-	uint16_t Read2(File &in);
+	uint32_t ReadHeader(shared_ptr<iostream> in, uint32_t &frequency);
+	uint32_t Read4(const shared_ptr<iostream> in);
+	uint16_t Read2(const shared_ptr<iostream> in);
 }
 
 
 
-bool Sound::Load(const string &path, const string &name)
+bool Sound::Load(const filesystem::path &path, const string &name)
 {
-	if(path.length() < 5 || path.compare(path.length() - 4, 4, ".wav"))
+	if(path.extension() != ".wav")
 		return false;
 	this->name = name;
 
-	isLooped = path[path.length() - 5] == '~';
+	isLooped = path.stem().string().ends_with('~');
+	bool isFast = isLooped ? path.stem().string().ends_with("@3x~") : path.stem().string().ends_with("@3x");
+	unsigned &buf = isFast ? buffer3x : buffer;
 
-	File in(path);
+	shared_ptr<iostream> in = Files::Open(path);
 	if(!in)
 		return false;
 	uint32_t frequency = 0;
@@ -53,12 +53,11 @@ bool Sound::Load(const string &path, const string &name)
 		return false;
 
 	vector<char> data(bytes);
-	if(fread(&data[0], 1, bytes, in) != bytes)
-		return false;
+	in->read(data.data(), bytes);
 
-	if(!buffer)
-		alGenBuffers(1, &buffer);
-	alBufferData(buffer, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
+	if(!buf)
+		alGenBuffers(1, &buf);
+	alBufferData(buf, AL_FORMAT_MONO16, &data.front(), bytes, frequency);
 
 	return true;
 }
@@ -79,6 +78,13 @@ unsigned Sound::Buffer() const
 
 
 
+unsigned Sound::Buffer3x() const
+{
+	return buffer3x;
+}
+
+
+
 bool Sound::IsLooping() const
 {
 	return isLooped;
@@ -90,7 +96,7 @@ namespace {
 	// Read a WAV header, and return the size of the data, in bytes. If the file
 	// is an unsupported format (anything but little-endian 16-bit PCM at 44100 HZ),
 	// this will return 0.
-	uint32_t ReadHeader(File &in, uint32_t &frequency)
+	uint32_t ReadHeader(shared_ptr<iostream> in, uint32_t &frequency)
 	{
 		uint32_t chunkID = Read4(in);
 		if(chunkID != 0x46464952) // "RIFF" in big endian.
@@ -123,7 +129,7 @@ namespace {
 
 				// Skip any further bytes in this chunk.
 				if(subchunkSize > 16)
-					fseek(in, subchunkSize - 16, SEEK_CUR);
+					in->seekg(subchunkSize - 16, ios::cur);
 
 				if(audioFormat != 1)
 					return 0;
@@ -143,16 +149,17 @@ namespace {
 				return subchunkSize;
 			}
 			else
-				fseek(in, subchunkSize, SEEK_CUR);
+				in->seekg(subchunkSize, ios::cur);
 		}
 	}
 
 
 
-	uint32_t Read4(File &in)
+	uint32_t Read4(const shared_ptr<iostream> in)
 	{
 		unsigned char data[4];
-		if(fread(data, 1, 4, in) != 4)
+		in->read(reinterpret_cast<char *>(data), 4);
+		if(in->gcount() != 4)
 			return 0;
 		uint32_t result = 0;
 		for(int i = 0; i < 4; ++i)
@@ -162,10 +169,11 @@ namespace {
 
 
 
-	uint16_t Read2(File &in)
+	uint16_t Read2(const shared_ptr<iostream> in)
 	{
 		unsigned char data[2];
-		if(fread(data, 1, 2, in) != 2)
+		in->read(reinterpret_cast<char *>(data), 2);
+		if(in->gcount() != 2)
 			return 0;
 		uint16_t result = 0;
 		for(int i = 0; i < 2; ++i)

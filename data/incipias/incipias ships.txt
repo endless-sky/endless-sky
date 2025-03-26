@@ -45,7 +45,7 @@ ship "Venta"
 		"Metallic Hydrogen Cell"
 		"Plasma Discharger" 2
 		"Star Tail" 4
-		"Star Tail Cell" 80
+		"Star Tail Cell" 120
 		"Star Tail Storage" 2
 		"Cloud Piercer" 40
 

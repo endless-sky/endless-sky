@@ -16,6 +16,8 @@
 outfit "Small EM Battery"
 	plural "Small EM Batteries"
 	category "Power"
+	series "Batteries"
+	index 13010
 	cost 200000
 	thumbnail "outfit/small embattery"
 	"mass" 14
@@ -24,12 +26,15 @@ outfit "Small EM Battery"
 	"shield generation" 0.14
 	"shield energy" 0.14
 	"shield heat" 0.14
-	"energy capacity" 3600
+	"heat generation" 0.8
+	"energy capacity" 8300
 	description "This small superconductive inductor stores just enough power to keep a fighter running, and the electromagnetic field it generates helps to maintain the shield matrix."
 
 outfit "Large EM Battery"
 	plural "Large EM Batteries"
 	category "Power"
+	series "Batteries"
+	index 13020
 	cost 1000000
 	thumbnail "outfit/embattery"
 	"mass" 150
@@ -38,11 +43,14 @@ outfit "Large EM Battery"
 	"shield generation" 0.8
 	"shield energy" 0.8
 	"shield heat" 0.8
-	"energy capacity" 40000
+	"heat generation" 6.5
+	"energy capacity" 100000
 	description "This is a massive superconductive coil, capable of storing large amounts of energy in an electromagnetic field and discharging all of it in a fraction of a second. The magnetic field also provides a small boost to the shield regeneration of the ship, which is otherwise very underdeveloped."
 
 outfit "Small Hybrid Cooling"
 	category "Systems"
+	series "Cooling"
+	index 13010
 	cost 200000
 	thumbnail "outfit/small sheragi cooling"
 	"mass" 8
@@ -55,6 +63,8 @@ outfit "Small Hybrid Cooling"
 
 outfit "Large Hybrid Cooling"
 	category "Systems"
+	series "Cooling"
+	index 13020
 	cost 1000000
 	thumbnail "outfit/sheragicooling"
 	"mass" 40
@@ -68,6 +78,8 @@ outfit "Large Hybrid Cooling"
 
 outfit "Fission Drive"
 	category "Engines"
+	series "Engines"
+	index 13010
 	cost 2650000
 	thumbnail "outfit/fissiondrive"
 	"mass" 71
@@ -94,6 +106,8 @@ outfit "Fission Drive"
 
 outfit "Fusion Drive"
 	category "Engines"
+	series "Engines"
+	index 13020
 	cost 80000000
 	thumbnail "outfit/fusiondrive"
 	"mass" 480
@@ -131,6 +145,8 @@ outfit "Fusion Drive"
 
 outfit "Electronic Warfare System"
 	category "Systems"
+	series "Scanners"
+	index 13010
 	cost 3400000
 	thumbnail "outfit/sheragi ews"
 	"mass" 6
@@ -146,6 +162,8 @@ outfit "Electronic Warfare System"
 
 outfit "Dragonflame Cannon"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 13020
 	cost 150000000
 	thumbnail "outfit/dragonflame"
 	"mass" 156
@@ -218,6 +236,8 @@ effect "dragonflame debris"
 
 outfit "Sheragi Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 13010
 	cost 845000
 	thumbnail "outfit/sheragiam"
 	"mass" 35
@@ -247,6 +267,8 @@ effect "sheragiam"
 
 outfit "Particle Waveform Turret"
 	category "Turrets"
+	series "Turrets"
+	index 13010
 	cost 1650000
 	thumbnail "outfit/pwave turret"
 	"mass" 47
@@ -264,7 +286,7 @@ outfit "Particle Waveform Turret"
 		"fire effect" "lightning flare"
 		"hit effect" "pwave impact"
 		"inaccuracy" 1.5
-		"turret turn" 0.8
+		"turret turn" 1.2
 		"velocity" 50
 		"lifetime" 18
 		"reload" 60
@@ -295,6 +317,8 @@ effect "pwave impact"
 
 outfit "Shard Fabricator"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 13010
 	cost 330000
 	thumbnail "outfit/shard"
 	"mass" 10
@@ -354,6 +378,8 @@ effect "shard impact"
 
 outfit "Heavy Ion Cyclotron"
 	category "Guns"
+	series "Guns"
+	index 13010
 	cost 1650000
 	thumbnail "outfit/hion"
 	"mass" 33

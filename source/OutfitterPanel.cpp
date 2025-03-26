@@ -34,7 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "text/truncate.hpp"
 #include "UI.h"
 
@@ -168,6 +168,9 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 
 	const Font &font = FontSet::Get(14);
 	const Color &bright = *GameData::Colors().Get("bright");
+	const Color &highlight = *GameData::Colors().Get("outfitter difference highlight");
+
+	bool highlightDifferences = false;
 	if(playerShip || isLicense || mapSize)
 	{
 		int minCount = numeric_limits<int>::max();
@@ -175,11 +178,22 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(isLicense)
 			minCount = maxCount = player.HasLicense(LicenseRoot(name));
 		else if(mapSize)
-			minCount = maxCount = player.HasMapped(mapSize);
+		{
+			bool mapMinables = outfit->Get("map minables");
+			minCount = maxCount = player.HasMapped(mapSize, mapMinables);
+		}
 		else
 		{
+			highlightDifferences = true;
+			string firstModelName;
 			for(const Ship *ship : playerShips)
 			{
+				// Highlight differences in installed outfit counts only when all selected ships are of the same model.
+				string modelName = ship->TrueModelName();
+				if(firstModelName.empty())
+					firstModelName = modelName;
+				else
+					highlightDifferences &= (modelName == firstModelName);
 				int count = ship->OutfitCount(outfit);
 				minCount = min(minCount, count);
 				maxCount = max(maxCount, count);
@@ -189,13 +203,19 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(maxCount)
 		{
 			string label = "installed: " + to_string(minCount);
+			Color color = bright;
 			if(maxCount > minCount)
+			{
 				label += " - " + to_string(maxCount);
+				if(highlightDifferences)
+					color = highlight;
+			}
 
 			Point labelPos = point + Point(-OUTFIT_SIZE / 2 + 20, OUTFIT_SIZE / 2 - 38);
-			font.Draw(label, labelPos, bright);
+			font.Draw(label, labelPos, color);
 		}
 	}
+
 	// Don't show the "in stock" amount if the outfit has an unlimited stock.
 	int stock = 0;
 	if(!outfitter.Has(outfit))
@@ -264,7 +284,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 		const Point thumbnailCenter(center.X(), center.Y() + 20 + static_cast<int>(tileSize / 2));
 		const Point startPoint(center.X() - INFOBAR_WIDTH / 2 + 20, center.Y() + 20 + tileSize);
 
-		const Sprite *background = SpriteSet::Get("ui/outfitter selected");
+		const Sprite *background = SpriteSet::Get("ui/outfitter unselected");
 		SpriteShader::Draw(background, thumbnailCenter);
 		if(thumbnail)
 			SpriteShader::Draw(thumbnail, thumbnailCenter);
@@ -322,7 +342,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
-	if(mapSize > 0 && player.HasMapped(mapSize))
+	bool mapMinables = selectedOutfit->Get("map minables");
+	if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
 		return "You have already mapped all the systems shown by this map, "
 			"so there is no reason to buy another.";
 
@@ -506,7 +527,8 @@ void OutfitterPanel::Buy(bool onlyOwned)
 	int mapSize = selectedOutfit->Get("map");
 	if(mapSize)
 	{
-		player.Map(mapSize);
+		bool mapMinables = selectedOutfit->Get("map minables");
+		player.Map(mapSize, mapMinables);
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
 		return;
 	}

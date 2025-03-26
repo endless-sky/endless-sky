@@ -13,6 +13,8 @@
 
 outfit "Locust Blaster"
 	category "Guns"
+	series "Guns"
+	index 10010
 	cost 284000
 	thumbnail "outfit/locust blaster"
 	"mass" 7
@@ -37,6 +39,8 @@ outfit "Locust Blaster"
 
 outfit "Locust Turret"
 	category "Turrets"
+	series "Turrets"
+	index 10010
 	cost 1265000
 	thumbnail "outfit/locust turret"
 	"mass" 28
@@ -50,7 +54,7 @@ outfit "Locust Turret"
 		sound "locust blaster"
 		"hit effect" "bullet impact"
 		"inaccuracy" 5
-		"turret turn" 2
+		"turret turn" 3.7
 		"velocity" 10
 		"random velocity" 2
 		"lifetime" 40
@@ -65,6 +69,8 @@ outfit "Locust Turret"
 
 outfit "Mandible Cannon"
 	category "Guns"
+	series "Guns"
+	index 10020
 	cost 1170000
 	thumbnail "outfit/mandible cannon"
 	"mass" 29
@@ -95,6 +101,8 @@ outfit "Mandible Cannon"
 
 outfit "Thorax Cannon"
 	category "Guns"
+	series "Guns"
+	index 10030
 	cost 3484000
 	thumbnail "outfit/thorax cannon"
 	"mass" 105
@@ -171,6 +179,8 @@ effect "yellow spark fragment"
 
 outfit "Swarm Clip"
 	category "Ammunition"
+	series "Ammunition"
+	index 10011
 	cost 24000
 	thumbnail "outfit/swarm storage"
 	"mass" 2
@@ -181,6 +191,8 @@ outfit "Swarm Clip"
 
 outfit "Swarm Missile"
 	category "Ammunition"
+	series "Ammunition"
+	index 10010
 	cost 250
 	thumbnail "outfit/swarm missile"
 	"mass" 0.04
@@ -189,6 +201,8 @@ outfit "Swarm Missile"
 
 outfit "Swarm Pod"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 10010
 	cost 363000
 	thumbnail "outfit/swarm pod"
 	"mass" 5
@@ -243,6 +257,8 @@ effect "swarm impact"
 
 outfit "Buzzer Anti-Missile"
 	category "Turrets"
+	series "Anti-Missile"
+	index 10010
 	cost 1195000
 	thumbnail "outfit/buzzer"
 	"mass" 19
@@ -266,5 +282,6 @@ effect "buzzer"
 		"no repeat"
 		"frame rate" 10
 	sound "buzzer am"
+	"sound category" "anti-missile"
 	"lifetime" 11
 	"velocity scale" 1
