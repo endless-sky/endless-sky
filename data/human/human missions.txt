@@ -11272,7 +11272,7 @@ mission "Tavish and Kormak 6"
 			`	Kormak takes a bite of pastry slathered in chocolate syrup.`
 			`	"Have you tried the bread here, Captain <last>? It's surprisingly good," says Tavish as he pushes an empty plate away from him.`
 			`	Kormak tries to say something but his mouth is too stuffed to make any sense of it. He too stands.`
-			`	"The site is on the far side of the planet on the south-eastern continent they call Ashoka. Except for us and a few aerial surveys it's almost completely unexplored." Tavish licks his fingers and then pulls on two rucksacks front, and back, and grabs two duffle bags.`
+			`	"The site is on the far side of the planet on the south-eastern continent they call Ashoka. Except for us and a few aerial surveys, it's almost completely unexplored." Tavish licks his fingers and then pulls on two rucksacks front, and back, and grabs two duffle bags.`
 			`	"Shall we go?" Tavish asks.`
 			`	"Go." Kormak picks up double the rucksacks and duffle bags.`
 			choice
@@ -11294,17 +11294,18 @@ mission "Tavish and Kormak 6"
 		event "Tavish and Kormak Expedition" 60
 		conversation
 			`The remote continent of Ashoka races up to meet you as your ship descends over the thick jungle canopy. The location for the coordinates Tavish gave you is densely forested, but you spot a relatively flat stony outcrop about a dozen miles from the site. You land your ship upon the stone.`
-			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There are nearly a dozen robotic dollies, and a handful of mobile robotic drills and shovels, along with a handful of computers, chemical sensors, and power generators.`
+			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There are nearly a dozen robotic dollies, a few mobile robotic drills and shovels, and a handful of computers, chemical sensors, and power generators.`
 			`	They've also changed from their regular three piece suits into khaki pants and jackets with wide brimmed hats. Tavish wields a machete and Kormak has what looks like a heavily modified axe.`
 			`	Kormak notices you looking and smiles. He presses a button on his axe's handle and the blade suddenly crackles with electricity.`
 			`	"Equipment." He grins and walks to where the wall of trees begins.`
 			`	Tavish turns to you, "Shall we go?"`
 			choice
 				`	(Go.)`
+				`	"Let's go."`
 
 			`	So long as you don't look too hard at the jungle it feels perfectly normal, like you're in a standard Earth biome. But the moment you concentrate on any one feature too long the alienness of the environment becomes unmistakable and unsettling. The trees here are nothing like the ones on the inhabited continent of New India. They are covered in silver scales and pockmarked with gray gasping orifices.`
 			`	Thankfully, the trees do not appear to have eyes. However, each time one of them loses a branch to Kormak's electric axe, their gaping orifices make a sharp hissing sound that could almost be confused for a scream.`
-			`	Unphased by the incessant wailing Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish, and the small caravan of mobile equipment deeper into the terrifyingly unnatural forest.`
+			`	Unphased by the incessant wailing, Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish, and the small caravan of mobile equipment deeper into the terrifyingly unnatural forest.`
 			`	By the end of the trek everyone is breathing heavily, and Kormak is covered in the blue sap or blood that leaks from the severed limbs of the trees.`
 			`	Finally, Tavish announces that you've made it, although it is hard for you to tell where exactly you've made it to. One acre of jungle looks remarkably like the next, the only distinguishing feature here being a black overgrown rock jutting out between two trees.`
 			`	Kormak begins clearing out the area while Tavish unloads the gear.`
@@ -11360,7 +11361,12 @@ mission "Tavish and Kormak 6"
 			`	"And then," Tavish continues, "there's the middle layer. It is smaller and made up of people who practice what they call the old ways. Those who practice stone-funerals, or who pay some respect to the scattered God-Stones. It's people who still see themselves as the descendants of those first brave pilgrims that colonized the Deep. Like Hroar's Haulers."`
 			`	Tavish pinches his fingers together like he's holding his invisible fruit's core, "Finally, there's the lowest layer. Few are aware of it, and I think it may be an embarrassment to leaders of the Deep. It's made up of people like Kormak, or the Ice-Witches of Nifel."`
 			`	"The Ui Skathi," Kormak says. "Granddaughters of Skathi."`
-			`	"Was that what they called themselves?" Tavish shrugs. "Kormak's always a little sensitive about this. Anyways, they don't really make sense. How did they get to the Deep? Where did they come from? There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives."`
+			`	"Was that what they called themselves?" Tavish shrugs. "Kormak's always a little sensitive about this. Anyways, they don't really make sense. How did they get to the Deep? Where did they come from?`
+			choice
+				`	(Say nothing.)`
+				`	(Motion for Tavish to continue.)`
+				`	"So where did they come from?"`
+			`	There's two prevailing theories. First, that there was a lost generational fleet that landed in the Deep earlier than anyone realized, that something went wrong, and that they degenerated in primitives."`
 			`	Kormak frowns, "Lies."`
 			`	"Or, and this is more of folklore than a theory, that thousands of years ago humans were brought to the Deep by... elves."`
 			`	"Not elves," Kormak interrupts with a hint of annoyance, "the Dream Anuabhair. That how they called in my clan's sagas. The exceedingly proud folk. Never to trust."`
@@ -11455,7 +11461,6 @@ event "Tavish and Kormak Expedition"
 
 mission "Tavish and Kormak 7"
 	landing
-	landing
 	name "Alexandria awaits"
 	description "Transport Tavish and Kormak and their cargo to <planet>."
 	to offer
@@ -11468,7 +11473,7 @@ mission "Tavish and Kormak 7"
 		conversation
 			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
 			choice
-				`	(Land on Ashoka and pick up Travis and Kormak.)`
+				`	(Land on Ashoka to pick up Travis and Kormak.)`
 					goto Ashoka
 				`	(Ignore the signal.)`
 			`	You ignore the signal and land in the regular New India spaceport.`
@@ -11571,7 +11576,6 @@ mission "Weland"
 				event "welandwait1" 6
 			`	The old man grins brightly. "Good. Good. I 'spect it'll take me about a week to get my bearings on this artifact of yours. I'll also be needing your ship's schematics, it'll help me figure out how it can be installed, assumin' you want that."`
 			`	With the deal completed, you head back to the spaceport. You send the pertinent information about your ship to Weland, and have the outfit transferred to him as well. Hopefully, he and your artifact are still here when you return after a week.`
-			decline
 
 
 event "welandwait1"
@@ -11599,7 +11603,7 @@ mission "Weland 2"
 			`	The building, which on the outside looks like an abandoned warehouse, is in fact a sprawling laboratory.`
 			`	Exotic technology and strange artifacts fill the room and at its center is Weland, leaning over a sophisticated workbench.`
 			`	"Well, look what the cat dragged in. 'Bout time you showed up." Weland flicks his red-tinted goggles off his head and slowly stands.`
-			`	Weland nods toward a mass of technology, that you realize is incasing your artifact, and limps over to it. As he's walking you notice thick surgically connected chains dragging behind his feet.`
+			`	Weland nods toward a mass of technology that you realize is encasing your artifact, and limps over to it. As he's walking you notice thick surgically connected chains dragging behind his feet.`
 			`	The graying man pats your artifact. "She's seen better days, but beneath the dented casing and corroded cords enough of her was still intact to save. I dare say she's some of the best Dragon tech I've ever seen. Usually folks, well, they bring me the ruined guts of half a Dragon toaster they dug up in their backyard. But, this, well, this is the real McCoy, alright."`
 			label questions
 			choice
