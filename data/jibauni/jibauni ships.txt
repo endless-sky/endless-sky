@@ -735,10 +735,11 @@ ship "Larajal"
 		"Alhaja Steering"
 		"Alhaja Thrusters"
 		
-	engine 0 0
-	gun -39 -14.5 "Jibauni Small Laser"
-	gun 39 -14.5 "Jibauni Small Laser"
-	gun 0 -21 "Jibauni Small Laser"
+	engine -4 29.5
+	engine 4 29.5
+	gun 8 1 "Jibauni Small Laser"
+	gun 8 -1 "Jibauni Small Laser"
+	gun 0 -29 "Jibauni Small Laser"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
