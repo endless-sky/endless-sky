@@ -11291,7 +11291,10 @@ mission "Tavish and Kormak 6"
 				launch
 
 	on complete
+		log "People" "Tavish and Kormak" `Tavish and Kormak remained on New India. They will need to be picked up in 60 days.`
 		event "Tavish and Kormak Expedition" 60
+		event "Tavish and Kormak Late" 91
+		event "Tavish and Kormak Abandoned" 122
 		conversation
 			`The remote continent of Ashoka races up to meet you as your ship descends over the thick jungle canopy. The location for the coordinates Tavish gave you is densely forested, but you spot a relatively flat stony outcrop about a dozen miles from the site. You land your ship upon the stone.`
 			`	Tavish and Kormak's research equipment was much more extensive than they had initially let on. There are nearly a dozen robotic dollies, a few mobile robotic drills and shovels, and a handful of computers, chemical sensors, and power generators.`
@@ -11376,6 +11379,8 @@ mission "Tavish and Kormak 6"
 					to display
 						has "main plot completed"
 				`	(Say nothing.)`
+					to display
+						has "main plot completed"
 			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf. Know that is my home."`
 			label pugout
 			`	"Enough about past. Only present matters." He goes back to eating.`
@@ -11473,6 +11478,8 @@ mission "Tavish and Kormak 6"
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 
 event "Tavish and Kormak Expedition"
+event "Tavish and Kormak Late"
+event "Tavish and Kormak Abandoned"
 
 
 mission "Tavish and Kormak 7"
@@ -11481,6 +11488,8 @@ mission "Tavish and Kormak 7"
 	description "Transport Tavish and Kormak and their cargo to <planet>."
 	to offer
 		has "event: Tavish and Kormak Expedition"
+		not "event: Tavish and Kormak Abandoned"
+		not "event: Tavish and Kormak Late"
 	source "New India"
 	destination "Alexandria"
 	passengers 2
@@ -11535,6 +11544,111 @@ mission "Tavish and Kormak 7"
 			`	A tear edges its way down Tavish's nose. "Thanks again, Captain. And farewell."`
 			`	Tavish turns and leaves you to rejoin Kormak and the excited hovering members of the Society of Gentlemanly Exemplary Exploration.`
 
+mission "Tavish and Kormak Late"
+	landing
+	name "Alexandria awaits"
+	description "Transport Tavish and Kormak and their cargo to <planet>."
+	to offer
+		has "event: Tavish and Kormak Expedition"
+		not "event: Tavish and Kormak Abandoned"
+		has "event: Tavish and Kormak Late"
+	source "New India"
+	destination "Alexandria"
+	passengers 2
+	cargo "Scientific Research Equipment" 90
+	on offer
+		conversation
+			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
+			choice
+				`	(Land on Ashoka to pick up Travis and Kormak.)`
+					goto Ashoka
+				`	(Ignore the signal.)`
+			`	You ignore the signal and land in the regular New India spaceport.`
+				defer
+
+			label Ashoka
+			`	You land at the same stony outcrop as before, although now it's litered in various lean-tos and exotic animal offal.`
+			`	A threadbare Tavish and Kormak approach you. They are skinnier than you recall, with sunken eyes.`
+			`	"Were you apprehended by pirates, Captain <last>?" Tavish says, vitrol leaking into his voice.`
+			`	"Or lost?" Kormak adds tersely.`
+			choice
+				`	"I was detained."`
+					goto detained
+				`	"I lost track of time."`
+					goto forgot
+				`	"I am here, aren't I? Let's go."`
+			`	Tavish sighs loudly and then turns to oversee the loading up of the equipment.`
+			`	Kormak gives you a hard look and then finally shrugs. "Glad to leave."`
+			`	Tavish returns, "Captain <last>, old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exemplary Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
+			label owed
+			`	"We are owed," Kormak adds.`
+			choice
+				`	"Of course! To Alexandria we go!"`
+					goto yep
+				`	"No. I am done giving out free rides."`
+			`	With surprised, crestfallen faces, the two explorers just stare at you. Both are at a loss for words as you abandon them to their fates on the dark side of New India.`
+				flee
+			
+			label yep
+			`	The two explorers give each other a looks of profound relief, clearly pleased they could depend on you. They then begin the process of loading up your ship. Along with their weathered equipment they have multiple boxes filled with exotic xeno artifacts.`
+			`	"Can't wait for the Society to see what we found!" Tavish beams, quickly forgetting his near destitute state.`
+			`	The final artifact is a huge lump of black and twisted alien wreckage that must weigh over 50 tons. It is being carried carefully by an army of strained robotic dollies that inch toward your vessel.`
+			`	Tavish grins as he watches it get loaded. "The main ship itself was bricked. Old and mostly destroyed before it even hit the planet. But that piece broke off and was in slightly better shape. It's a little too big to show off to our fellows, but I do believe it will be worth a fair bit of credits to right patron. We can talk about that more in Alexandria."`
+			`	With that everything and everyone is on board.`
+			`	"Hup! Hup! To Alexandria!" Tavish shouts with obvious excitement.`
+			`	Kormak cracks his knuckles and grins, "Finally."`
+				launch
+
+			label detained
+			`	Kormak's eyes narrow, "Monsters?"`
+			`	Tavish shakes his head, "No, old chap, there's no way those wraiths could leave your world. Likely something much more mundane, isn't that right Captain <last>?"`
+			choice
+				`	"It was pirates."`
+					goto pirates
+				`	"I just forgot."`
+					goto forgot
+				`	"Got held up by bureaucracy."`
+			`	Tavish nods slowly, while Kormak stares blankly at you.`
+			`	"Indeed, mankind knows no greater enemy. But, we have survived, little worse for the wear, and our triumphant return is near! Now, old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exemplary Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
+				goto owed
+
+			label pirates
+			`	Kormak grits his teeth, "Savages."`
+			`	Tavish nods slowly, and says with great solemnity, "Then we shall not hold your tardiness against you. How cruel the slings of fate that our own myopic brethern retard our glorious progress."`
+			`	"Cruel." Kormak agrees with a bloodthirsty grin. As though he's thinking of the cruel things he will be doing to pirates in the near future.`
+			`	"But enough about our ills, let us instead venture to focus upon our gains, Captain <last>," Tavish says brightly. "Old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exemplary Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
+				goto owed
+
+			label forgot
+			`	Tavish's face droops into a profound frown. "I suppose we should take solace you remembered to return at all," he says unhappily.`
+			`	Kormak glares, "At least honest."`
+			`	Slowly Tavish nods, "I guess you're right about that, at least Captain <last> was honest with us, and it's not as though we've offered them any actual compensation. Perhaps the fault is ours."`
+			`	"Friend, though," Kormak says.`
+			`	"Indeed," Tavish answers, "We had hoped better of our friend."`
+			choice
+				`	"I am sorry."`
+				`	"Whatever, let's get on with it."`
+				`	(Say nothing.)`
+			`	Tavish clears his throat, "There is no need for us to belabor the point. Captain <last> is here now, and we and our findings are intact. Let us move foward, to our impending triumph, and not backwards.`
+			`	Kormak nods, "Forward."`
+			`	Tavish gives you a wry smile. "Captain <last>, old chap, we need you to take us to the esteemed headquarters of the Society of Gentlemanly Exemplary Exploration on the Alexandria station in the Deep. Will you do us this last favor?"`
+				goto owed
+
+	on visit
+		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
+	on complete
+		outfit "Salvaged Artifact" 1
+		conversation
+			`Kormak and Tavish have changed back into their gentlemanly attire and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of similarly overdressed gawkers have come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
+			`	Tavish does not unload the large piece of alien equipment off your ship, and instead comes to speak with you.`
+			`	"This is where we part ways, Captain <last>," Tavish says with a hint of sadness. "While we do wish you would have returned a little earlier than you did, it still was a worthy adventure. Perhaps one day our paths will cross again."`
+			`	Tavish sniffles for a moment. "Apologies, allergies. Anyways, old chap, I just wanted you to know that Kormak and I, we pay our debts. And though we have no money to offer you, we are instead bequeathing to you the large artifact we found. We scanned it pretty thoroughly and we don't believe it has additional scientific value. However, we think a collector would pay well for it. Quite well."`
+			`	He leans a little closer to you, "The best place to look for that sort of commerce is Wayfarer."`
+			choice
+				`	"Thanks, Tavish. It's been grand."`
+				`	"This better be worth it."`
+			`	A tear edges its way down Tavish's nose. "Thanks again, Captain. And farewell."`
+			`	Tavish turns and leaves you to rejoin Kormak and the excited hovering members of the Society of Gentlemanly Exemplary Exploration.`
 
 mission "Weland"
 	source "Wayfarer"
@@ -11670,3 +11784,40 @@ mission "Weland 2"
 				decline
 
 event "welandwait2"
+
+mission "Tavish and Kormak dead"
+	landing
+	to offer
+		has "event: Tavish and Kormak Abandoned"
+	source "New India"
+	on offer
+		conversation
+			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
+			choice
+				`	(Land on Ashoka to pick up Travis and Kormak.)`
+					goto Ashoka
+				`	(Ignore the signal.)`
+			`	You ignore the signal and land in the regular New India spaceport.`
+				defer
+
+			label Ashoka
+			`	You land at the same stony outcrop as before. Beyond it you find scattered and abandoned equipment.`
+			`	Nearby is the so-called 'ring of fire', blackened and corroded with the scraps of ruined tents at its center. There is sign no Tavish or Kormak have been here recently.`
+			`	As you work your way through the overgrown remains of their camp you discover a hastily written note.`
+			choice
+				`	(Read the note.)`
+					goto read
+				`	(Throw it away and leave.)`
+			`	Whatever happened here, you decide it's better not to know.`
+				launch
+
+			label read
+			``
+			`	The trees. The trees. The trees. the trees.`
+			`	thetreeswhisperthetreestrees.`
+			`	treestreestreestobuildhousesofourflesh.`
+			`	ttrestrestresreseresrssressssr`
+			``
+			`	There's no other clues to what happened to Tavish or Kormak.`
+				flee
+
