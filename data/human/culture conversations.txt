@@ -1003,12 +1003,12 @@ mission "Exotic Life - Bluestone"
 			`	Zea shifts uneasily. "Not exactly, that is not a photosynthetic pigment used by plants on Earth. The answer I was looking for was chlorophyll.`
 				goto chlorophyll
 			label onceright
-			`	Zea beams broadly, "Exactly right! Chlorophyll is fundamental to life on Earth.`
+			`	Zea beams broadly. "Exactly right! Chlorophyll is fundamental to life on Earth.`
 				goto chlorophyll
 			label awkward
 			`	There is an awkward pause as Zea scans the group. After another moment the tour guide sighs lightly, "Well, it's chlorophyll." Visibly trying to downplay the moment, she adds, "No worries - let's move on.`
 			label chlorophyll
-			`	"These pigments on our native plants are distinct from Earth's chlorophyll. Green chlorophyll actually captures red light fairly well, but not as well as a cyan pigment. Our planet's reddish hue can also be deceiving - near infrared light, an invisible light just beyond what humans can see, is what our native plants truly thrive on. Our native plants can capture those wavelengths of light with remarkable efficiency. By deciphering their genetic blueprints, we've identified key adaptations that can be hybridized into crops found on Earth or other worlds to enhance their resilience in the low-light environments of cooler stars."`
+			`	"These pigments on our native plants are distinct from Earth's chlorophyll. Green chlorophyll actually captures red light fairly well, but not as well as a cyan pigment. Our planet's reddish hue can also be deceiving - near-infrared light, an invisible light just beyond what humans can see, is what our native plants truly thrive on. The vegetation can capture those wavelengths of light with remarkable efficiency. By deciphering their genetic blueprints, we've identified key adaptations that can be hybridized into crops found on Earth or other worlds to enhance their resilience in the low-light environments of cooler stars."`
 			`	You are then led outside to a small garden of native grasses and lichens next to the laboratory. "And now, take a closer look at our fascinating native species. Notice their muted blue and near-black colors - this isn't just a quirk of nature, but a vital adaptation that enhances absorption of red and near-infrared light on our dim planet. Their extensive root systems delve deep into the sparse soil, allowing them to efficiently access as much nutrients and water as possible under low-light conditions. Now, the leaves on these grasses are much larger, wider, and thinner than what you'd see on similar grasses on planets with brighter sunlight. Can anyone tell me why our plants might have larger and thinner leaves than somewhere like Earth?"`
 			choice
 				`	"Larger leaves maximize surface area to capture more light."`
@@ -1023,9 +1023,9 @@ mission "Exotic Life - Bluestone"
 			`	"Exactly right! They maximize surface area for better light absorption, which is crucial on our dim planet. Great answer!"`
 				goto nativeplants
 			label twiceshy
-			`	The guide makes eye contact with most of the group for an uncomfortable beat as they await a response. When none come, the tour guide says, "Well, it's because larger, thinner leaves maximize the surface area for light absorption... Ummm, let's look at some grasses now."`
+			`	The guide makes eye contact with most of the group for an uncomfortable beat as she awaits a response. When none come, the tour guide says, "Well, it's because larger, thinner leaves maximize the surface area for light absorption... ummm, let's look at some grasses now."`
 			label nativeplants
-			`	They walk up to one of the grasses and gesture at it's leaves. "The large, thin leaves of our native plants are designed to maximize surface area to better collect infrared rays, ensuring they capture every photon they can. These features collectively enable our plants to thrive where Earth plants would struggle."`
+			`	She walks up to one of the grasses and gesture at its leaves. "The large, thin leaves of our native plants are designed to maximize surface area to better collect infrared rays, ensuring they capture every photon they can. These features collectively enable our plants to thrive where Earth plants would struggle."`
 			`	The tour continues as you enter a state-of-the-art greenhouse. Inside, hybrid crops flourish under controlled lighting that varies from yellow to red, as you feel warm from the heat lamps above. Zea points at a deep pot filled with a muted blue-black wheatgrass that has huge, delicate leaves. "Here, traditional Earth crops like wheat have been endowed with traits inspired by our native species. Observe the broader, darker leaves that boost photosynthetic efficiency in low-light conditions. These modifications not only help the plants harness energy from our reddish sunlight, but can be used across the galaxy to grow food where it was before impossible!"`
 			`	You feel the tour drawing to a close as the tour guide gathers the group for a final discussion.`
 			`	"Thank you for joining us on this exploration of the cutting edge of hybrid crops. I hope you leave here today with a renewed appreciation and curiosity for the foods you eat and the remarkable plants that surround us."`
