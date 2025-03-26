@@ -11637,6 +11637,7 @@ mission "Tavish and Kormak Late"
 	on visit
 		dialog `You land on <planet>, but realize that Kormak and Tavish and their equipment are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 	on complete
+	log "A collector on Wayfarer may be interested in buying the Salvaged Artifact."
 		outfit "Salvaged Artifact" 1
 		conversation
 			`Kormak and Tavish have changed back into their gentlemanly attire and eagerly oversee the unloading of their instruments and artifacts into Alexandria. A handful of similarly overdressed gawkers have come to watch the process. A few of them are eager to congratulate Tavish and Kormak.`
