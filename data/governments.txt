@@ -25,6 +25,8 @@ government "Aberrant"
 		"Indigenous Lifeform (Tree)" 0
 		"Indigenous Lifeform (Tree Two)" 0
 		"Ka'sei" 0
+		"Marauder" 0
+		"Parrot" 0
 
 	"penalty for"
 		assist 0
@@ -906,6 +908,7 @@ government "Hai (Unfettered)"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
+	raid "Large Plundering Unfettered" 8
 
 government "Hai (Unfettered Challenger)"
 	"display name" "Hai (Unfettered)"
@@ -1380,7 +1383,10 @@ government "Ka'het"
 	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
+		"Builder" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
@@ -1393,7 +1399,10 @@ government "Ka'het (Infighting)"
 	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
+		"Builder" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
