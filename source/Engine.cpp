@@ -2107,7 +2107,8 @@ void Engine::HandleKeyboardInputs()
 	activeCommands |= keyHeld.And(Command::PRIMARY_0 | Command::PRIMARY_1 | Command::PRIMARY_2
 		| Command::PRIMARY_3 | Command::PRIMARY_4 | Command::PRIMARY_5 | Command::PRIMARY_6
 		| Command::PRIMARY_7 | Command::PRIMARY_8 | Command::PRIMARY_9 | Command::SECONDARY
-		| Command::SCAN | maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
+		| Command::SCAN | maneuveringCommands | Command::SHIFT
+		| Command::MOUSE_TURNING_HOLD | Command::AIM_TURRET_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -2292,24 +2293,24 @@ void Engine::HandleMouseClicks()
 // Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
+	bool rightMouseButtonHeld = false;
+	int mousePosX, mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+
+	Point relPos = Point(mousePosX, mousePosY) - Point(Screen::RawWidth(), Screen::RawHeight()) / 2;
+	ai.SetMousePosition(relPos / zoom);
+
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
+	activeCommands.Clear(Command::MOUSE_TURNING_HOLD);
 
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
 	// hold will temporarily turn OFF mouse control.
-	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
+	isMouseTurningEnabled = isMouseHoldEnabled ^ Preferences::Has("Control ship with mouse");
 	if(!isMouseTurningEnabled)
 		return;
 	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
-	bool rightMouseButtonHeld = false;
-	int mousePosX;
-	int mousePosY;
-	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
-		rightMouseButtonHeld = true;
-	double relX = mousePosX - Screen::RawWidth() / 2.0;
-	double relY = mousePosY - Screen::RawHeight() / 2.0;
-	ai.SetMousePosition(Point(relX, relY));
 
 	// Activate firing command.
 	if(isMouseTurningEnabled && rightMouseButtonHeld)
