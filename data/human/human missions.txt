@@ -11420,7 +11420,7 @@ mission "Tavish and Kormak 6"
 						not "main plot completed"
 				`	(Say nothing.)`
 					goto saynothing
-			`	"Nobody knows, although some would say the exact middle of eminent human space would suffice as a distinct hiding place," Tavish responds.`
+			`	"Extinct? Beyond the star lanes? Living amongst us? Nobody knows, although I recall a venerable member of SOGGE believing fervently that the exact center of eminent human space would be an ideal hiding space. Something about deep space gravitational currents, I believe," Tavish responds.`
 			label saynothing
 			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf, know that is my home."`
 			label pugout
