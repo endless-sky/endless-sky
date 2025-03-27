@@ -11110,7 +11110,7 @@ mission "Tavish and Kormak 5"
 			choice
 				`	"We're here to see Dr. Hullen-Freeze."`
 				`	"Where can we find Dr. Hullen-Freeze?"`
-				
+
 			`	"The Doctor-Professor has no appointments scheduled for this evening. He's a very busy and important man and I am afraid he has no time for drop-ins. If you'd like you can leave your contact info with me and I'll see if he's willing to schedule something with you in the next couple of months?"`
 			`	She gives you an apologetic look. "Sorry."`
 			label talk
@@ -11121,7 +11121,7 @@ mission "Tavish and Kormak 5"
 						not "tavgirl"
 				`	(Have Kormak talk to her.)`
 					goto korgirl
-				
+
 			label tavgirl
 			action
 				set "tavgirl"
@@ -11270,7 +11270,6 @@ mission "Tavish and Kormak 5"
 			`	"Better without him," Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
 			`	The three of you leave together and head back to the spaceport. Once there, you finally pick up the scientific research equipment for the New India expedition.`
 				accept
-
 
 			label timetogo
 			action
