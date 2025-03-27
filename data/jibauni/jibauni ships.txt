@@ -50,8 +50,10 @@ ship "Quyan"
 		"Eimlaq Thrusters"
 		"Hyperdrive"
 		
-	engine 0 0
-	turret 0 0 "Lilsa Anti-Missile"
+	engine -19.5 63.5
+	engine 1 69
+	engine 21 63.5
+	turret 0 14 "Lilsa Anti-Missile"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -64,7 +66,6 @@ ship "Quyan"
 
 
 ship "Yankul"
-	swizzle 0
 	sprite "ship/yankul"
 	thumbnail "thumbnail/yankul"
 	attributes
@@ -88,7 +89,7 @@ ship "Yankul"
 		"turn" 110
 		"thrusting fuel" .2
 		"steering fuel" .4
-		"flare sprite" "effect/ion flare/tiny"
+		"flare sprite" "effect/alhaja"
 		licenses
 			Jibauni
 		weapon
@@ -102,8 +103,9 @@ ship "Yankul"
 		"Musaghar Shield Generator"
 
 		"Hyperdrive"
-	engine 0 38.5
-	gun 0 -38
+	gun 0 -64
+	engine -14.5 69
+	engine 16 69
 	explode "tiny explosion" 20
 	"final explode" "final explosion small"
 	description "The smallest ship the Jibauni possess, this ship is terrible at combat and only mediocre at cargo hauling. Its fame comes from the fact that it has many bunks for the cost, and that it can sport a weapon, though by default it does not come with one."
@@ -151,9 +153,10 @@ ship "Nathas"
 		"Wasita Thrusters"
 		"Hyperdrive"
 
-	engine 0 0
-	gun 5 0 "Ruksay Missile Launcher"
-	turret 0 0 "Lilsa Anti-Missile"
+	engine -40 112.5
+	engine 40 112.5
+	gun 0 -118.5 "Ruksay Missile Launcher"
+	turret 0 63 "Lilsa Anti-Missile"
 	bay "Drone" 0 0
 		"launch effect" "jibauni internal"
 	bay "Drone" 0 0
@@ -538,12 +541,13 @@ ship "Yiyharsi"
 		"Wasita Thrusters"
 		"Hyperdrive"
 
-	engine 0 0
-	gun 0 5 "Ruksay Missile Launcher"
-	gun 0 -5 "Ruksay Missile Launcher"
+	engine -12.5 98
+	engine 12.5 98
+	gun -6.5 -83 "Ruksay Missile Launcher"
+	gun 6.5 -83 "Ruksay Missile Launcher"
 	gun 0 10 "Jibauni Small Laser"
 	gun 0 -10 "Jibauni Small Laser"
-	turret 0 0 "Lilsa Anti-Missile"
+	turret 0 44.5 "Lilsa Anti-Missile"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -671,19 +675,24 @@ ship "Nathar"
 		"Eimlaq Thrusters"
 		"Hyperdrive"
 		
-	engine 0 0
-	gun 0 5 "Ruksay Missile Launcher"
-	gun 0 -5 "Ruksay Missile Launcher"
-	gun 0 -10 "Jibauni Medium Laser"
-	gun 0 10 "Jibauni Medium Laser"
-	turret -5 0 "Lilsa Anti-Missile"
-	turret 5 0 "Lilsa Anti-Missile"
-	turret 0 0 "Zarwal Laser Turret"
-	turret 0 5 "Zarhal Laser Turret"
-	turret 5 0 "Zarhal Laser Turret"
-	bay "Fighter" 0 0
+	engine -26.5 191.5
+	engine 26.5 191.5
+	gun -27 -30.5 "Ruksay Missile Launcher"
+	gun 27 -30.5 "Ruksay Missile Launcher"
+	gun -15.5 -77.5 "Jibauni Medium Laser"
+	gun 15.5 -77.5 "Jibauni Medium Laser"
+	turret -22 68 "Lilsa Anti-Missile"
+	turret 22 68 "Lilsa Anti-Missile"
+	turret 0 -45.5 "Zarwal Laser Turret"
+	turret -42.5 38 "Zarhal Laser Turret"
+		under
+	turret 42.5 38 "Zarhal Laser Turret"
+		under
+	bay "Fighter" -32.5 111.5
+		over
 		"launch effect" "jibauni internal"
-	bay "Fighter" 0 0
+	bay "Fighter" 32.5 111.5
+		over
 		"launch effect" "jibauni internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
@@ -790,7 +799,7 @@ ship "Latbaliday"
 		"Alhaja Steering"
 		"Alhaja Thrusters"
 		
-	gun 0 0 "Jibauni Small Laser"
+	gun 0 -69 "Jibauni Small Laser"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
