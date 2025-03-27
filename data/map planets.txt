@@ -338,7 +338,7 @@ planet Arroharg
 	security 0.9
 
 planet Asgard
-	attributes deep factory research rich urban
+	attributes deep education factory research rich urban
 	landscape land/city13-sfiera
 	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
@@ -969,7 +969,7 @@ planet "Cool Forest"
 	security 0.3
 
 planet Cornucopia
-	attributes farming forest frontier research south
+	attributes education farming forest frontier research south
 	landscape land/fields0
 	description `Cornucopia is a mostly agrarian world, and like several of its neighbors it has been inhabited since the early days of interstellar travel, when settlers seeking to get as far as possible from old Earth and its troubles landed here.`
 	description `	Through careful stewardship and attention to the rhythms and balances of nature, generation after generation of farmers have transformed this world into one of the most fertile in human space. The Cornucopia College of Agriculture is famous, and justly so.`
@@ -2171,7 +2171,7 @@ planet "Glittering Ice"
 	security 0.3
 
 planet Glory
-	attributes medical paradise research
+	attributes education medical paradise research
 	landscape land/garden1
 	description `Elsewhere in the galaxy, people speak dismissively of the "boughten sunshine" that rich terraformed worlds can afford. On Glory, even many of the lakes and hills are artificial, crafted to garden-like perfection.`
 	description `	Fittingly, the chief industry on Glory is plastic surgery, along with other medical efforts aimed at prolonging life, funded by rich, elderly folks who have settled here.`
@@ -2444,7 +2444,7 @@ planet Helheim
 		fleet "Small Deep Security" 15
 
 planet Hephaestus
-	attributes core factory research urban
+	attributes core education factory research urban
 	landscape land/city0
 	description `Hephaestus is home to Syndicated Systems, which manufactures parts used in shipyards throughout human space. Although not always the highest quality or most technologically advanced, ship outfits produced by the Syndicate are quite affordable and sufficient for any ordinary pilot's needs. The executives of many other companies have been known to make a pilgrimage of sorts to this planet, to witness firsthand how the Syndicate has made their production lines here so efficient and dependable.`
 	description `	Nearly all the inhabitants of Hephaestus live in a single metropolitan area that has spread to cover almost an eighth of the total land mass. As with many Syndicate worlds, pollution is a growing problem that they are working hard to address.`
