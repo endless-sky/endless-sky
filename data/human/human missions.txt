@@ -10651,7 +10651,15 @@ mission "Tavish and Kormak 3"
 			`	"What'll it be, your lordship?" the bartender asks mockingly after seeing Tavish's overly formal getup.`
 			`	"I'll take a sidecar, my good man, and my large companion will have a Scottish Ale, assuming you have any," Tavish says brightly.`
 			`	The bartender pours two glasses of rum and pushes them to Tavish. "My apologies, me lord," he gives a ridiculous bow, "but we seem to be out of your favored swill."`
-			`	The bartender flashes Tavish a yellow grin that's missing a few key teeth. "Anything else I can getchya?"`
+			`	He turns and looks you over. "What about you?"`
+			choice
+				`	"I'll take a rum."`
+					goto rum
+				`	"Nothing for me."`
+				`	(Say nothing.)`
+			label shrug
+			`	The bartender shrugs, and then flashes Tavish a yellow grin that's missing a few key teeth. "Anything else I can getchya?"`
+			label grin
 			`	"Information," Kormak grumbles, stepping closer to the bartender, who despite Kormak's size does not flinch.`
 			`	Instead the bartender's smile only widens to give everyone a better look at his bloody gums, "Now I's might just know a thing or two. But it'll cost you a sight more than a couple glasses of rum."`
 			`	Tavish holds up his glass and looks in it, as if deciding if he's willing to drink it or not. "We need to find a ship that frequents this port of call."`
@@ -10765,6 +10773,18 @@ mission "Tavish and Kormak 3"
 			`	Not far outside an only slightly battered Kormak is waiting for you. "Words?" he asks through a bloody lip. Tavish shakes his head and replies, "Currency."`
 			`	Kormak joins up with you and Tavish and the three of you head to your ship.`
 				accept
+
+			label rum
+			`	He nimbly tosses another glass on the bar, pours carmel colored rum into it, and slides it across to you.`
+			choice
+				`	(Drink the Rum.)`
+					goto drink
+				`	(Ignore the rum.)`
+					goto shrug
+			label drink
+			`	You swallow the brown luke-warm brown liquid. It has a sugary taste and only lightly burns going down. Your belly is briefly warmed by it.`
+			`	The bartender flashes you a yellow grin that's missing a few key teeth. "Anything else I can getchya?"`
+				goto grin
 
 	on accept
 		clear "tav1"
