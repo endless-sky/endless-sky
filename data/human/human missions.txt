@@ -11415,9 +11415,13 @@ mission "Tavish and Kormak 6"
 					goto thepug
 					to display
 						has "main plot completed"
-				`	(Say nothing.)`
+				`	"Do you know where these aliens might be?"`
 					to display
-						has "main plot completed"
+						not "main plot completed"
+				`	(Say nothing.)`
+					goto saynothing
+			`	"Nobody knows, although some would say the exact middle of eminent human space would suffice as a distinct hiding place," Tavish responds.`
+			label saynothing
 			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf, know that is my home."`
 			label pugout
 			`	"Enough about past. Only present matters." He goes back to eating.`
