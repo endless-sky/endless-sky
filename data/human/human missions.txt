@@ -11173,8 +11173,11 @@ mission "Tavish and Kormak 5"
 			`	He laughs, "Of course! Only Julian and his uncouth associates would have use for such nonsensical tools. A metal ring that blazes fire? Really? This is too good.`
 			`	"You don't know who you're really working with, do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He thinks if he says a few big words and calls everyone 'chap,' they'll think he's important. But the only reason he isn't trash is because of me!"`
 			choice
+				`	"Street-garbage? Yet you weren't too good to work with him!"`
+					goto streetgarbage
+					to display
+						not "streetgarbage"
 				`	"I don't care where Tavish came from, he's my friend. Now tell me where the equipment is!"`
-				`	"Street-garbage? Yet you weren't too good to work with him! Either way, just tell us where the Equipment is! "`
 				`	"Look. I am just here for the equipment. Tell me where it is and we'll go."`
 			`	"Fine. Why not? I don't need your worthless trinkets. But I do want something. A small thing really, almost nothing all, I just want Julian's misplaced and out-sized self-respect."`
 			`	Hullen-Freeze gives you a feral grin. "A little debasement, that's all. Make him crawl to me on all fours, and admit he's trash. Then I'll tell you where it's stored and you can be on your way." He holds up his palms. "Everyone wins."`
@@ -11214,6 +11217,7 @@ mission "Tavish and Kormak 5"
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
+				clear "streetgarbage"
 			`	Tavish wilts when he hears your command, but he does not argue. Humbly he nods to you, "It's my problem to resolve."`
 			`	Tavish's cheeks are wet as he drops to his knees. With painful awkward slowness he starts to bend over as to be on all fours.`
 			`	Before he is on his hands and knees, he is stopped by Kormak who pulls his companion to his feet.`
@@ -11225,6 +11229,12 @@ mission "Tavish and Kormak 5"
 			`	Dazed, Tavish holds onto Kormak's arm as he leads the two of them out of the office.`
 			`	The last thing you see is Starla running after them.`
 				decline
+
+			label streetgarbage
+			action
+				set "streetgarbage"
+			`	"Work with him? Never." Hullen-Freeze sneers. "I used him. As is the wont of someone of my station."`
+				goto dothething
 
 			label kortime
 			`	Kormak's grin is terrifying. He cracks his knuckles, and then takes off his suit jacket and places it on the chair. He rolls up his sleeves revealing swirling blue tattoos and red ragged scars.`
@@ -11255,6 +11265,7 @@ mission "Tavish and Kormak 5"
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
+				clear "streetgarbage"
 			`	Kormak doesn't hesitate and stomps down on the back of the man's neck. Tavish's mouth opens in horror but nothing comes out.`
 			`	"Better without him," Kormak says gruffly, and then takes Tavish by the arm to help him toward the exit.`
 			`	The three of you leave together and head back to the spaceport. Once there, you finally pick up the scientific research equipment for the New India expedition.`
@@ -11266,6 +11277,7 @@ mission "Tavish and Kormak 5"
 				clear "tavtalk"
 				clear "payme"
 				clear "tavgirl"
+				clear "streetgarbage"
 			`	Kormak grabs his jacket and finds Starla waiting for him just outside the office. She'd seen the whole thing.`
 			`	"Wh-what's that smell?" she asks quietly.`
 			`	Kormak looks back, sniffs, and then shrugs, "He wet himself."`
