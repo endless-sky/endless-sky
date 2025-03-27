@@ -914,7 +914,7 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
 		if(!customSwizzle->IsLoaded())
-			Logger::LogError("Warning: ship \"" + Name() + "\" referrs to nonexistent swizzle \"" + customSwizzleName + "\".");
+			Logger::LogError("Warning: ship \"" + Name() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".");
 	}
 }
 
