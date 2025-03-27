@@ -528,8 +528,8 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	Point topTo;
 	Color topColor;
 	bool hasTop = false;
-	Layout layout{static_cast<int>(LABEL_WIDTH), Truncate::BACK};
-	Layout textLayout{layout.width - 20, layout.truncate};
+	Layout layout{Truncate::BACK};
+	Layout groupNumberLayout{static_cast<int>(LABEL_WIDTH)};
 	for(const Hardpoint &hardpoint : ship.Weapons())
 	{
 		string name = "[empty]";
@@ -542,10 +542,18 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 		double &y = nextY[isRight][isTurret];
 		double x = centerX + (isRight ? LABEL_DX : -LABEL_DX - LABEL_WIDTH);
 		bool isHover = (index == hoverIndex);
+		if(hardpoint.GetOutfit() && !hardpoint.IsSpecial() && !hardpoint.GetOutfit()->Icon())
+		{
+			groupNumberLayout.align = isRight ? Alignment::RIGHT : Alignment::LEFT;
+			font.Draw({'(' + to_string(hardpoint.GetGroup()) + ')', groupNumberLayout}, {x, y + TEXT_OFF}, bright);
+			layout.width = static_cast<int>(LABEL_WIDTH) - 20;
+			if(!isRight)
+				x += 20;
+		}
+		else
+			layout.width = static_cast<int>(LABEL_WIDTH);
 		layout.align = isRight ? Alignment::LEFT : Alignment::RIGHT;
-		textLayout.align = layout.align;
-		font.Draw({'(' + to_string(hardpoint.GetGroup()) + ')', layout}, Point(x, y + TEXT_OFF), bright);
-		font.Draw({name, textLayout}, Point(isRight ? x + 20. : x, y + TEXT_OFF), isHover ? bright : dim);
+		font.Draw({name, layout}, Point(x, y + TEXT_OFF), isHover ? bright : dim);
 		Point zoneCenter(labelCenter[isRight], y + .5 * LINE_HEIGHT);
 		zones.emplace_back(zoneCenter, LINE_SIZE, index);
 
@@ -580,8 +588,11 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Re-positioning weapons.
 	if(draggingIndex >= 0)
 	{
-		const Outfit *outfit = ship.Weapons()[draggingIndex].GetOutfit();
+		const Hardpoint &hardpoint = ship.Weapons()[draggingIndex];
+		const Outfit *outfit = hardpoint.GetOutfit();
 		string name = outfit ? outfit->DisplayName() : "[empty]";
+		if(outfit && !hardpoint.IsSpecial() && !outfit->Icon())
+			name += " (" + to_string(hardpoint.GetGroup()) + ')';
 		Point pos(hoverPoint.X() - .5 * font.Width(name), hoverPoint.Y());
 		font.Draw(name, pos + Point(1., 1.), Color(0., 1.));
 		font.Draw(name, pos, bright);
