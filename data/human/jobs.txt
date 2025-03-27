@@ -4477,6 +4477,30 @@ mission "Student transport"
 		payment
 		payment 4000
 
+mission "Rich student transport"
+	job
+	repeat
+	name "Transport wealthy student to <planet>"
+	description "This rich student needs transport to <destination> by <date> to study at one of <planet>'s high-end universities. They will pay you <payment>."
+	passengers 2 10 .9
+	to offer
+		random < 10
+	to accept
+		has "outfit (installed): Luxury Accommodations"
+	source
+		attributes "education" "rich"
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		attributes "education" "rich"
+		distance 2 20
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog phrase "generic passenger dropoff payment"
+		payment
+		payment 10000
+
 mission "Student field research (farming)"
 	job
 	repeat
