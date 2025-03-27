@@ -3197,6 +3197,9 @@ system Ain
 system Aircakap
 	pos -22.458389 -147.812
 	government Uninhabited
+	link Bahagian
+	link Hesselpost
+	link Sejuka
 	attributes korath warm
 	asteroids "medium rock" 222 1.4025
 	asteroids "large rock" 10 2.53
@@ -7899,6 +7902,9 @@ system B-11
 system Bahagian
 	pos 33.763833 -168.36756
 	government Uninhabited
+	link Aircakap
+	link Hesselpost
+	link Korsmanath
 	attributes korath warm
 	asteroids "small rock" 9 2.072
 	asteroids "large rock" 2 1.54
@@ -17503,6 +17509,7 @@ system Fereti
 system Feromansaath
 	pos -125.33333 -138.66667
 	government Uninhabited
+	link Sejuka
 	attributes korath
 	asteroids "large rock" 1 4.34
 	asteroids "medium metal" 3 3.162
@@ -37363,6 +37370,10 @@ system Seginus
 system Sejuka
 	pos -71.791722 -153.812
 	government Uninhabited
+	link Airkacap
+	link Feromansaath
+	link Hesselpost
+	link Semutir
 	attributes korath
 	asteroids "small rock" 13 2.6163
 	asteroids "medium rock" 1 2.4871
@@ -37467,6 +37478,7 @@ system Seketra
 system Semutir
 	pos -113.68061 -181.36756
 	government Uninhabited
+	link Sejuka
 	attributes korath
 	asteroids "large rock" 2 2.4012
 	asteroids "medium metal" 22 2.0976
