@@ -20606,7 +20606,7 @@ system Hesselpost
 	habitable 490
 	belt 1327
 	haze _menu/haze-133
-	link Airkacap
+	link Aircakap
 	link Bahagian
 	link Dokdobaru
 	link Sejuka
@@ -37373,7 +37373,7 @@ system Seginus
 system Sejuka
 	pos -71.791722 -153.812
 	government Uninhabited
-	link Airkacap
+	link Aircakap
 	link Feromansaath
 	link Hesselpost
 	link Semutir
