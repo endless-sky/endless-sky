@@ -11174,7 +11174,7 @@ mission "Tavish and Kormak 5"
 			`	"You don't know who you're really working with, do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He thinks if he says a few big words and calls everyone 'chap,' they'll think he's important. But the only reason he isn't trash is because of me!"`
 			choice
 				`	"I don't care where Tavish came from, he's my friend. Now tell me where the equipment is!"`
-				`	"Just shut up. No one cares what you think. Just tell me where the equipment is."`
+				`	"Street-garbage? Yet you weren't too good to work with him! Either way, just tell us where the Equipment is! "`
 				`	"Look. I am just here for the equipment. Tell me where it is and we'll go."`
 			`	"Fine. Why not? I don't need your worthless trinkets. But I do want something. A small thing really, almost nothing all, I just want Julian's misplaced and out-sized self-respect."`
 			`	Hullen-Freeze gives you a feral grin. "A little debasement, that's all. Make him crawl to me on all fours, and admit he's trash. Then I'll tell you where it's stored and you can be on your way." He holds up his palms. "Everyone wins."`
