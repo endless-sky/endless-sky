@@ -93,7 +93,7 @@ int Armament::Add(const Outfit *outfit, int count)
 			// have left to install.
 			if(count > 0)
 			{
-				hardpoint.Install(outfit);
+				hardpoint.Install(outfit, 0);
 				--count;
 				++added;
 			}
@@ -178,8 +178,9 @@ void Armament::Swap(unsigned first, unsigned second)
 
 	// Swap the weapons in the two hardpoints.
 	const Outfit *outfit = hardpoints[first].GetOutfit();
-	hardpoints[first].Install(hardpoints[second].GetOutfit());
-	hardpoints[second].Install(outfit);
+	int group = hardpoints[first].GetGroup();
+	hardpoints[first].Install(hardpoints[second].GetOutfit(), hardpoints[second].GetGroup());
+	hardpoints[second].Install(outfit, group);
 }
 
 
