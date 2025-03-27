@@ -10356,7 +10356,7 @@ system Chikapmukti
 	pos 173.09717 -491.14533
 	government Uninhabited
 	attributes korath
-	link Mesuket
+	link Silikatakfar
 	link Tidursangat
 	asteroids "small rock" 40 4.224
 	asteroids "large rock" 32 6.27
@@ -20606,7 +20606,10 @@ system Hesselpost
 	habitable 490
 	belt 1327
 	haze _menu/haze-133
+	link Airkacap
+	link Bahagian
 	link Dokdobaru
+	link Sejuka
 	asteroids "small rock" 34 1.4872
 	asteroids "medium rock" 6 1.859
 	asteroids "large rock" 2 1.5548
@@ -25425,6 +25428,7 @@ system Korsmanath
 	haze _menu/haze-orange
 	link Farbutero
 	link Feroteri
+	link Bahagian
 	asteroids "small rock" 2 2.4123
 	asteroids "medium rock" 1 2.5993
 	asteroids "large rock" 4 1.3277
@@ -28529,7 +28533,6 @@ system Mesuket
 	arrival 950
 	habitable 950
 	belt 1215
-	link Chikapmukti
 	link Eneremprukt
 	link Eshkoshtar
 	link Salipastart
@@ -38424,6 +38427,7 @@ system Silikatakfar
 	belt 1641
 	link Asikafarnut
 	link Eneremprukt
+	link Chikapmukti
 	link Ferukistek
 	link Mesuket
 	asteroids "small rock" 2 1.9936
