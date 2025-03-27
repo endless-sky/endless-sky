@@ -278,7 +278,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
-			customSwizzle = GameData::Swizzles().Get(child.Token(1));
+			customSwizzleName = child.Token(1);
 		else if(key == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
@@ -634,8 +634,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
-		if(!customSwizzle)
-			customSwizzle = base->CustomSwizzle();
+		if(customSwizzleName.empty())
+			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty() && !removeBays)
@@ -908,6 +908,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->TrueName() + ".\"");
 			targetSystem = nullptr;
 		}
+	}
+
+	if(!customSwizzleName.empty())
+	{
+		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
+		if(!customSwizzle->IsLoaded())
+			Logger::LogError("Warning: ship \"" + Name() + "\" referrs to nonexistent swizzle \"" + customSwizzleName + "\".");
 	}
 }
 
@@ -2449,6 +2456,13 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 const Swizzle *Ship::CustomSwizzle() const
 {
 	return customSwizzle;
+}
+
+
+
+const string &Ship::CustomSwizzleName() const
+{
+	return customSwizzleName;
 }
 
 
