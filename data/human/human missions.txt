@@ -11002,6 +11002,7 @@ mission "Tavish and Kormak 4"
 		dialog `You land on <planet>, but realize that Kormak and Tavish are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 
 	# Using duplicate lines here is intentional - it will show up two days after accepting the mission.
+	# Using duplicate lines here is intentional - it will show up two days after accepting the mission.
 	on enter
 	on enter
 		conversation
@@ -11132,6 +11133,8 @@ mission "Tavish and Kormak 5"
 				goto talk
 
 			label korgirl
+			action
+				clear "tavgirl"
 			action
 				clear "tavgirl"
 			`	Kormak's face goes red and he reluctantly steps up to the desk. He immediately has Starla's full attention.`
