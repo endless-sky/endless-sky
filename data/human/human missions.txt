@@ -11585,6 +11585,18 @@ mission "Tavish and Kormak 7"
 			`	A tear edges its way down Tavish's nose. "Thanks again, Captain. And farewell."`
 			`	Tavish turns and leaves you to rejoin Kormak and the excited hovering members of the Society of Gentlemanly Exemplary Exploration.`
 
+mission "Tavish and Kormak Reminder"
+	landing
+	on enter
+	on enter
+	to offer
+		has "event: Tavish and Kormak Late"
+	on offer
+		dialog
+			`	A forgotten bowler hat tumbles out of a corner after your last jump. You recognize it has one of the hats Tavish used to wear.`
+			`	Odd that you haven't seen it until now. Perhaps it's a sign you should check on him at New India. Or perhaps it's nothing at all.`
+				decline
+
 mission "Tavish and Kormak Late"
 	landing
 	name "Alexandria awaits"
