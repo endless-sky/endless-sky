@@ -11592,7 +11592,7 @@ mission "Tavish and Kormak Reminder"
 	on enter
 		conversation
 			`A forgotten bowler hat tumbles out of a corner after your last jump. You recognize it has one of the hats Tavish used to wear. Odd that you haven't seen it until now. Perhaps it's a sign you should check on him at New India. Or perhaps it's nothing at all.`
-				fail
+				decline
 
 mission "Tavish and Kormak Late"
 	landing
