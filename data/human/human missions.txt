@@ -10777,12 +10777,12 @@ mission "Tavish and Kormak 3"
 			label rum
 			`	He nimbly tosses another glass on the bar, pours caramel colored rum into it, and slides it across to you.`
 			choice
-				`	(Drink the Rum.)`
+				`	(Drink the rum.)`
 					goto drink
 				`	(Ignore the rum.)`
 					goto shrug
 			label drink
-			`	You swallow the brown luke-warm brown liquid. It has a sugary taste and only lightly burns going down. Your belly is briefly warmed by it.`
+			`	You swallow the luke-warm brown liquid. It has a sugary taste and only lightly burns going down. Your belly is briefly warmed by it.`
 			`	The bartender flashes you a yellow grin that's missing a few key teeth. "Anything else I can getchya?"`
 				goto grin
 
@@ -11134,8 +11134,6 @@ mission "Tavish and Kormak 5"
 			label korgirl
 			action
 				clear "tavgirl"
-			action
-				clear "tavgirl"
 			`	Kormak's face goes red and he reluctantly steps up to the desk. He immediately has Starla's full attention.`
 			`	He pauses and stares at his huge muscular hands like he's trying to figure out how to smash his way out of this. Finally he drops them and looks at Starla.`
 			`	He opens his mouth and then shuts it and says nothing for a few long awkward moments, finally Starla says, "Is there something I can help you with, hon?"`
@@ -11233,7 +11231,7 @@ mission "Tavish and Kormak 5"
 			label streetgarbage
 			action
 				set "streetgarbage"
-			`	"Work with him? Never." Hullen-Freeze sneers. "I used him. As is the wont of someone of my station."`
+			`	"Work with him? Never," Hullen-Freeze sneers. "I used him. As is the wont of someone of my station."`
 				goto dothething
 
 			label kortime
@@ -11419,7 +11417,7 @@ mission "Tavish and Kormak 6"
 						not "main plot completed"
 				`	(Say nothing.)`
 					goto saynothing
-			`	"Extinct? Beyond the star lanes? Living amongst us? Nobody knows, although I recall a venerable member of SOGGE believing fervently that the exact center of eminent human space would be an ideal hiding space. Something about deep space gravitational currents, I believe," Tavish responds.`
+			`	"Extinct? Beyond the star lanes? Living amongst us? Nobody knows, although I recall a venerable member of SOGEE believing fervently that the exact center of eminent human space would be an ideal hiding space. Something about deep space gravitational currents, I believe," Tavish responds.`
 			label saynothing
 			`	Kormak sighs and turns back to you, "If ever you stand before gleaming high-timbered hall built in shadow of dark Sidhe-Stone with carved face of Skoll-Wolf, know that is my home."`
 			label pugout
@@ -11534,7 +11532,6 @@ mission "Tavish and Kormak 7"
 	passengers 2
 	cargo "Scientific Research Equipment" 90
 	blocked "You do not have enough space to pick up Tavish and Kormak with their tons of cargo. Return here when you have 90 tons free."
-	blocked "You do not have enough space to pick up Tavish and Kormak with their tons of cargo. Return here when you have 90 tons free."
 	on offer
 		conversation
 			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
@@ -11587,14 +11584,15 @@ mission "Tavish and Kormak 7"
 
 mission "Tavish and Kormak Reminder"
 	landing
-	on enter
-	on enter
+	invisible
 	to offer
 		has "event: Tavish and Kormak Late"
-	on offer
+	on enter
+	on enter
+	on enter
 		conversation
 			`A forgotten bowler hat tumbles out of a corner after your last jump. You recognize it has one of the hats Tavish used to wear. Odd that you haven't seen it until now. Perhaps it's a sign you should check on him at New India. Or perhaps it's nothing at all.`
-			decline
+				fail
 
 mission "Tavish and Kormak Late"
 	landing
