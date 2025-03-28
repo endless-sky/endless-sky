@@ -268,7 +268,7 @@ mission "Successors: First Contact 2"
 			choice
 				`	(Say nothing.)`
 					goto request
-				`	"Hello. I am <first> <last>.`
+				`	"Hello. I am <first> <last>."`
 					goto introduce
 				`	"I apologize for being late."`
 					to display
