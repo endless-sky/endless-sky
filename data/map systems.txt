@@ -31749,7 +31749,7 @@ system Ossipago
 		period 1486.78
 
 system Otrisiti
-	pos -110.23617 -335.14533
+	pos -110.23617 -345.14533
 	government Uninhabited
 	attributes korath
 	asteroids "small rock" 3 2.5454
