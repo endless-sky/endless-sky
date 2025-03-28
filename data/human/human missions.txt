@@ -10775,7 +10775,7 @@ mission "Tavish and Kormak 3"
 				accept
 
 			label rum
-			`	He nimbly tosses another glass on the bar, pours carmel colored rum into it, and slides it across to you.`
+			`	He nimbly tosses another glass on the bar, pours caramel colored rum into it, and slides it across to you.`
 			choice
 				`	(Drink the Rum.)`
 					goto drink
