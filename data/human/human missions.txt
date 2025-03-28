@@ -11172,6 +11172,7 @@ mission "Tavish and Kormak 5"
 			`	Hullen-Freeze narrows his eyes to peer at you as he continues to wipe his glasses, "What? Oh, that ecletic junk?"`
 			`	He laughs, "Of course! Only Julian and his uncouth associates would have use for such nonsensical tools. A metal ring that blazes fire? Really? This is too good.`
 			`	"You don't know who you're really working with, do you? I bet he told you he was some sort of hot-shot Chiron professor? He's not. He's street-garbage. A common thief and a conman. He thinks if he says a few big words and calls everyone 'chap,' they'll think he's important. But the only reason he isn't trash is because of me!"`
+			label dothething
 			choice
 				`	"Street-garbage? Yet you weren't too good to work with him!"`
 					goto streetgarbage
