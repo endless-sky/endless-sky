@@ -11535,6 +11535,7 @@ mission "Tavish and Kormak 7"
 	passengers 2
 	cargo "Scientific Research Equipment" 90
 	blocked "You do not have enough space to pick up Tavish and Kormak with their tons of cargo. Return here when you have 90 tons free."
+	blocked "You do not have enough space to pick up Tavish and Kormak with their tons of cargo. Return here when you have 90 tons free."
 	on offer
 		conversation
 			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
