@@ -11002,7 +11002,6 @@ mission "Tavish and Kormak 4"
 		dialog `You land on <planet>, but realize that Kormak and Tavish are on one of your escorts who hasn't entered the system yet. Better depart and wait for them.`
 
 	# Using duplicate lines here is intentional - it will show up two days after accepting the mission.
-	# Using duplicate lines here is intentional - it will show up two days after accepting the mission.
 	on enter
 	on enter
 		conversation
@@ -11693,6 +11692,43 @@ mission "Tavish and Kormak Late"
 			`	A tear edges its way down Tavish's nose. "Thanks again, Captain. And farewell."`
 			`	Tavish turns and leaves you to rejoin Kormak and the excited hovering members of the Society of Gentlemanly Exemplary Exploration.`
 
+mission "Tavish and Kormak dead"
+	landing
+	to offer
+		has "event: Tavish and Kormak Abandoned"
+	source "New India"
+	on offer
+		log "People" "Tavish and Kormak" `Tavish and Kormak appear lost to the wilds of New India.`
+		conversation
+			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
+			choice
+				`	(Land on Ashoka to pick up Tavish and Kormak.)`
+					goto Ashoka
+				`	(Ignore the signal.)`
+			`	You ignore the signal and land in the regular New India spaceport.`
+				defer
+
+			label Ashoka
+			`	You land at the same stony outcrop as before. Beyond it you find scattered and abandoned equipment.`
+			`	Nearby is the so-called "ring of fire," blackened and corroded with the scraps of ruined tents at its center. There is no sign Tavish or Kormak have been here recently.`
+			`	As you work your way through the overgrown remains of their camp you discover a hastily written note.`
+			choice
+				`	(Read the note.)`
+					goto read
+				`	(Throw it away and leave.)`
+			`	Whatever happened here, you decide it's better not to know.`
+				launch
+
+			label read
+			``
+			`	The trees. The trees. The trees. the trees.`
+			`	thetreeswhisperthetreestrees.`
+			`	treestreestreestobuildhousesofourflesh.`
+			`	ttrestrestresreseresrssressssr`
+			``
+			`	There's no other clues to what happened to Tavish or Kormak.`
+				flee
+
 mission "Weland"
 	source "Wayfarer"
 	on offer
@@ -11827,41 +11863,4 @@ mission "Weland 2"
 				decline
 
 event "welandwait2"
-
-mission "Tavish and Kormak dead"
-	landing
-	to offer
-		has "event: Tavish and Kormak Abandoned"
-	source "New India"
-	on offer
-		log "People" "Tavish and Kormak" `Tavish and Kormak appear lost to the wilds of New India.`
-		conversation
-			`As you enter New India's atmosphere you pick up a faint signal from the Ashoka continent. It's a transport request from Tavish and Kormak.`
-			choice
-				`	(Land on Ashoka to pick up Tavish and Kormak.)`
-					goto Ashoka
-				`	(Ignore the signal.)`
-			`	You ignore the signal and land in the regular New India spaceport.`
-				defer
-
-			label Ashoka
-			`	You land at the same stony outcrop as before. Beyond it you find scattered and abandoned equipment.`
-			`	Nearby is the so-called "ring of fire," blackened and corroded with the scraps of ruined tents at its center. There is no sign Tavish or Kormak have been here recently.`
-			`	As you work your way through the overgrown remains of their camp you discover a hastily written note.`
-			choice
-				`	(Read the note.)`
-					goto read
-				`	(Throw it away and leave.)`
-			`	Whatever happened here, you decide it's better not to know.`
-				launch
-
-			label read
-			``
-			`	The trees. The trees. The trees. the trees.`
-			`	thetreeswhisperthetreestrees.`
-			`	treestreestreestobuildhousesofourflesh.`
-			`	ttrestrestresreseresrssressssr`
-			``
-			`	There's no other clues to what happened to Tavish or Kormak.`
-				flee
 
