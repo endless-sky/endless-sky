@@ -66,6 +66,8 @@ void Gamerules::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
+		else if(key == "minimum flotsam scan power")
+			minimumFlotsamScanPower = max<double>(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -139,4 +141,11 @@ int Gamerules::DepreciationMaxAge() const
 Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 {
 	return fighterHitPolicy;
+}
+
+
+
+double Gamerules::MinimumFlotsamScanPower() const
+{
+	return minimumFlotsamScanPower;
 }
