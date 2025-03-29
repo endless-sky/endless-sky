@@ -236,7 +236,9 @@ namespace {
 		{"cloaked communication", "You may make hails while cloaked."},
 		{"cloaked deployment", "You may deploy from bays while cloaked."},
 		{"cloaked pickup", "You may pick up flotsam while cloaked."},
-		{"cloaked scanning", "You may scan other ships while cloaked."}
+		{"cloaked scanning", "You may scan other ships while cloaked."},
+		{"no cargo", "This item cannot be placed in cargo."},
+		{"no storage", "This item cannot be placed in storage."}
 	};
 
 	bool IsNotRequirement(const string &label)
