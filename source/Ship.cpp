@@ -4798,9 +4798,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
-
 				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
-
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
