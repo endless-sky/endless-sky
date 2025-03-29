@@ -271,7 +271,7 @@ ship "Heavy Gust"
 		"hull" 21200
 		"required crew" 22
 		"bunks" 34
-		"mass" 652
+		"mass" 598
 		"drag" 7.4
 		"heat dissipation" .45
 		"fuel capacity" 600
