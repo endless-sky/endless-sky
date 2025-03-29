@@ -4652,10 +4652,10 @@ planet Raaqa-Uur-Kaav
 		to display
 			has "trusted by the successors"
 	port "Space_port"
-		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millennia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
 			to display
 				not "trusted by the successors"
-		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millennia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
 			to display
 				has "trusted by the successors"
 
