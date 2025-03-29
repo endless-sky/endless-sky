@@ -175,6 +175,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	Panel *oldPanel = selectedPanel;
 	const Ship *flagship = player.Flagship();
 
+	UI::UISound sound = UI::UISound::NORMAL;
 	bool hasAccess = planet.CanUseServices();
 	if(key == 'd' && flagship && flagship->CanBeFlagship())
 	{
@@ -182,7 +183,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 		return true;
 	}
 	else if(key == 'l')
+	{
+		sound = UI::UISound::NONE;
 		selectedPanel = nullptr;
+	}
 	else if(key == 't' && hasAccess
 			&& planet.GetPort().HasService(Port::ServicesType::Trading) && system.HasTrade())
 	{
@@ -204,12 +208,10 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	else if(key == 's' && hasAccess && planet.HasShipyard())
 	{
 		GetUI()->Push(new ShipyardPanel(player));
-		return true;
 	}
 	else if(key == 'o' && hasAccess && planet.HasOutfitter())
 	{
 		GetUI()->Push(new OutfitterPanel(player));
-		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
 	{
@@ -228,11 +230,13 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(command.Has(Command::INFO))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new PlayerInfoPanel(player));
 		return true;
 	}
 	else if(command.Has(Command::MESSAGE_LOG))
 	{
+		UI::PlaySound(UI::UISound::NORMAL);
 		GetUI()->Push(new MessageLogPanel());
 		return true;
 	}
@@ -244,6 +248,7 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	if(oldPanel)
 		GetUI()->Pop(oldPanel);
 
+	UI::PlaySound(sound);
 	return true;
 }
 
