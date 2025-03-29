@@ -466,6 +466,18 @@ event "wanderers: vara k'chrai facilities"
 
 
 
+# Compatibility patch for pilots that did the above missions before 0.10.13.
+mission "Wanderers: Vara K'Chrai Facilities Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Conversation: offered"
+	on offer
+		event "wanderers: vara k'chrai facilities"
+		fail
+
+
+
 # Compatibility patch for pilots that did the above missions before 0.9.7.
 mission "Wanderers: Outfit License Patch"
 	landing
