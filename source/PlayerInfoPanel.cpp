@@ -460,10 +460,7 @@ bool PlayerInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comman
 	else if(command.Has(Command::MAP) || key == 'm')
 		GetUI()->Push(new MissionPanel(player));
 	else if(key == 'l' && player.HasLogs())
-	{
 		GetUI()->Push(new LogbookPanel(player));
-		return true;
-	}
 	else if(key >= '0' && key <= '9')
 	{
 		int group = key - '0';
