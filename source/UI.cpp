@@ -289,7 +289,7 @@ void UI::PlaySound(UISound sound)
 			name = "ui/target";
 			break;
 		case UISound::FAILURE:
-			name = "fail";
+			name = "ui/fail";
 			break;
 		default:
 			return;
