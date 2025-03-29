@@ -406,7 +406,7 @@ void Projectile::CheckLock(const Ship &target)
 		hasLock |= Check(probability, base);
 	}
 
-	// Infrared tracking is zero when heat is below 5% and 100% when heat is full.
+	// Infrared tracking is zero when heat is zero and 100% when heat is full.
 	// When the missile is at under 1/3 of its maximum range, tracking is
 	// linearly increased by up to a factor of 3, representing the fact that the
 	// wavelengths of IR radiation are easier to distinguish at closer distances.
