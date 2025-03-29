@@ -1233,6 +1233,7 @@ event "fw conservatory founded"
 		fleet "Large Free Worlds" 1500
 		fleet "Human Miners" 1600
 	planet "Winter"
+		add attributes "education"
 		description `The dense clouds in Winter's atmosphere block out much of the sunlight, creating a frigid landscape below. The planet was not settled until about a century ago, when a group of investors from Pherkad decided to build a manufacturing center here, rather than trying to find more land on the already overcrowded planet of Solace. Claiming that the industrial emissions of carbon dioxide and other greenhouse gases would eventually warm the planet and turn it into a tropical paradise, they were able to draw enough settlers to keep the factories going.`
 		description `	Winter is home to the Free Worlds Conservatory, a new university focused on making terraforming technology and expertise available at a reasonable price, as well as on ecological protection and renewal.`
 		security .4
