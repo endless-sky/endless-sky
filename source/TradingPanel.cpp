@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "TradingPanel.h"
 
-#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "shader/FillShader.h"
@@ -225,7 +224,6 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	UI::UISound sound = UI::UISound::NONE;
 	if(command.Has(Command::HELP))
 		DoHelp("trading", true);
 	else if(key == SDLK_UP)
@@ -279,7 +277,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	else
 		return false;
 
-	UI::PlaySound(sound);
 	return true;
 }
 
