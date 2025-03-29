@@ -97,77 +97,69 @@ phrase "jibauni untranslated"
 	phrase
 		"jibauni untranslated random word 1"
 		"jibauni untranslated random word 2"
-	word
-		" "
 	phrase
-		"empty"
+		"space"
 		"jibauni untranslated random word 1"
-	word
-		" "
 	phrase
-		"empty"
+		"space"
 		"jibauni untranslated random word 2"
-	word
-		" "
 	phrase
-		"empty"
+		"space"
 		"jibauni untranslated random word 1"
 		"jibauni untranslated random word 2"
 	word
 		"."
 		"!"
-	replace
-		"%	." "."
-		"%	!" "!"
-		"%" ""
+#	replace
+#		"%" ""
 
 phrase "jibauni untranslated random word 1"
+	word
+		" "
 	phrase
 		"consonant capitalized"
 	phrase
 		"vocal" 2
-		"empty"
+		"space"
 	phrase
 		"consonant uncapitalized" 2
-		"empty"
+		"space"
 	phrase
-		"empty"
+		"space"
 		"vocal" 2
 	phrase
-		"empty"
+		"space"
 		"vocal" 2
 	phrase
 		"consonant uncapitalized" 2
-		"empty"
-	word
-		"%"
+		"space"
 
 phrase "jibauni untranslated random word 2"
+	word
+		" "
 	phrase
 		"vocal (capitalized)"
 	phrase
 		"consonant uncapitalized" 2
-		"empty"
+		"space"
 	phrase
 		"consonant uncapitalized"
-		"empty"
+		"space"
 		"vocal"
 	phrase
-		"vocal"
-	phrase
-		"consonant uncapitalized"
 		"vocal"
 	phrase
 		"consonant uncapitalized"
-	phrase
-		"empty"
 		"vocal"
-	word
-		"%"
+	phrase
+		"consonant uncapitalized"
+	phrase
+		"space"
+replace		"vocal"
 
-phrase "empty"
+phrase "space"
 	word
-		""
+		" "
 
 phrase "friendly jibauni civilian"
 	phrase
@@ -425,12 +417,16 @@ phrase "friendly disabled jibauni civilian 3"
 		"digit"
 	phrase
 		"digit"
-		"empty"
+		"space"
+	word
+		" "
 	word
 		"days"
 		"hours"
 	word
 		"!"
+	replace
+		"  " " "
 
 phrase "friendly disabled jibauni military"
 	word
