@@ -546,6 +546,9 @@ outfitter "FW Security"
 	"Tactical Scanner"
 	"Fragmentation Grenades"
 
+outfitter "Pirate Outfits" # Kept for backwards compatibility with plugins that used it before it was renamed to "Pirate Basics".
+	"Local Map"
+
 outfitter "Pirate Basics"
 	"Volcano Afterburner"
 	"Energy Blaster"

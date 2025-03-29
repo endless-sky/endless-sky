@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "System.h"
 
 #include <algorithm>
@@ -179,7 +179,7 @@ EscortDisplay::Icon::Icon(const Ship &ship, bool isHere, bool systemNameKnown, b
 	cannotJump(fleetIsJumping && !ship.IsHyperspacing() && !ship.JumpsRemaining()),
 	isSelected(isSelected),
 	cost(ship.Cost()),
-	system((!isHere && ship.GetSystem()) ? (systemNameKnown ? ship.GetSystem()->Name() : "???") : ""),
+	system((!isHere && ship.GetSystem()) ? (systemNameKnown ? ship.GetSystem()->DisplayName() : "???") : ""),
 	low{ship.Shields(), ship.Hull(), ship.Energy(), min(ship.Heat(), 1.), ship.Fuel()},
 	high(low),
 	ships(1, &ship)
@@ -240,7 +240,7 @@ void EscortDisplay::MergeStacks(int maxHeight) const
 		int height = 0;
 		for(Icon &icon : icons)
 		{
-			if(!unstackable.count(icon.sprite) && (!cheapest || *cheapest < icon))
+			if(!unstackable.contains(icon.sprite) && (!cheapest || *cheapest < icon))
 				cheapest = &icon;
 
 			height += icon.Height();

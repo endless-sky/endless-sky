@@ -132,7 +132,7 @@ void Government::Load(const DataNode &node)
 		bool removeAll = (remove && !hasValue);
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && shouldOverwrite.contains(key));
 
 		if(removeAll || overwriteAll)
 		{
@@ -490,7 +490,7 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 		return PenaltyHelper(eventType, penaltyFor);
 
 	const int id = other->id;
-	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
+	const auto &penalties = useForeignPenaltiesFor.contains(id) ? other->penaltyFor : penaltyFor;
 
 	const auto it = customPenalties.find(id);
 	if(it == customPenalties.end())
@@ -522,7 +522,7 @@ double Government::GetFineFraction() const
 
 bool Government::Trusts(const Government *government) const
 {
-	return government == this || trusted.count(government);
+	return government == this || trusted.contains(government);
 }
 
 

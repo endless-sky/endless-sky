@@ -20,7 +20,7 @@ ship "Vyrmeid"
 	swizzle 0
 	"never disabled"
 	attributes
-		"category" "Fighter"
+		"category" "Unclassified Minor"
 		"cost" 0
 		"shields" 0
 		"hull" 400
@@ -55,6 +55,8 @@ ship "Vyrmeid"
 
 outfit "Plankton Mouth"
 	category "Guns"
+	series "Guns"
+	index 92030
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon
@@ -77,7 +79,7 @@ ship "Vyrmeid" "Vyrmeid (B)"
 	swizzle 0
 	"never disabled"
 	attributes
-		"category" "Fighter"
+		"category" "Unclassified Minor"
 		"cost" 0
 		"shields" 0
 		"hull" 1420
@@ -108,6 +110,8 @@ ship "Vyrmeid" "Vyrmeid (B)"
 
 outfit "Boomerang Organ"
 	category "Turrets"
+	series "Turrets"
+	index 92020
 	cost 0
 	thumbnail "outfit/unknown"
 	"mass" 10
@@ -128,7 +132,7 @@ ship "Vyrmeid" "Vyrmeid (C)"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 0
 		"shields" 0
 		"hull" 860
@@ -177,12 +181,13 @@ effect "fission explosion"
 ship "Astral Cetacean"
 	noun "creature"
 	sprite "ship/astral cetacean/astral"
+		"center" 0 -50
 		"frame rate" 24
 		"random start frame"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Transport"
+		category "Unclassified"
 		"cost" 0
 		"shields" 0
 		"hull" 11000
@@ -231,10 +236,12 @@ ship "Astral Cetacean"
 	leak "blood" 60 60
 	explode "blood" 160
 	"final explode" "blood"
-	description `Only few captains have had the chance to observe this illustrious creature. Its natural attenuation to the depths of space allows it to travel beyond where most ships are able, and its appearance reflects both the beauty and mystery of the void itself.`
+	description `Only a few captains have had the chance to observe this illustrious creature. Its natural attenuation to the depths of space allows it to travel beyond where most ships are able, and its appearance reflects both the beauty and mystery of the void itself.`
 
 outfit "Astral Mouth"
 	category "Guns"
+	series "Guns"
+	index 92040
 	thumbnail "outfit/unknown"
 	"gun ports" -1
 	weapon

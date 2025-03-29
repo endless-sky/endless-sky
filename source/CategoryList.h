@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CATEGORY_LIST_H_
-#define CATEGORY_LIST_H_
+#pragma once
 
 #include <iterator>
 #include <map>
@@ -41,7 +40,7 @@ public:
 		Category(const std::string &name, int precedence) : name(name), precedence(precedence) {}
 		const std::string &Name() const { return name; }
 		const bool operator<(const Category &other) const { return SortHelper(*this, other); }
-		const bool operator()(Category &a, Category &b) const { return SortHelper(a, b); }
+		const bool operator()(const Category &a, const Category &b) const { return SortHelper(a, b); }
 
 	private:
 		static const bool SortHelper(const Category &a, const Category &b);
@@ -78,7 +77,3 @@ private:
 	std::map<const std::string, Category> byName;
 	int currentPrecedence = 0;
 };
-
-
-
-#endif

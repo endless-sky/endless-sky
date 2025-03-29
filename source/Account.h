@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ACCOUNT_H_
-#define ACCOUNT_H_
+#pragma once
 
 #include "Mortgage.h"
 
@@ -94,7 +93,3 @@ private:
 	// daily income, which is used to calculate how big a mortgage you can afford.
 	std::vector<int64_t> history;
 };
-
-
-
-#endif

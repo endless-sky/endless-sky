@@ -58,12 +58,12 @@
 #
 # There are a few words with standard translations you'll need to apply manually:
 #
-# humans => humanika                            (Exile, Efreti, and Quarg)
-# human (noun, member of species) => humani     (Exile, Efreti, and Quarg)
-# Quarg => Kuwaru                               (Efreti)
-# Drak => Drak                                  (both Exile and Efreti)
-# Ember Space => Nraol Alaj                     (Exile)
-# There Might Be Riots => Ter Mite Bee Riot     (both Exile and Efreti)
+# humans => humanika                          (Exile, Efreti, and Quarg)
+# human (noun, member of species) => humani   (Exile, Efreti, and Quarg)
+# Quarg => Kuwaru                             (Efreti)
+# Drak => Drak                                (both Exile and Efreti)
+# Ember Space => Nraol Alaj                   (Exile)
+# There Might Be Riots => Ter Mite Bee Riot   (both Exile and Efreti)
 #
 # The easiest way to do this is to put them in ALL CAPS to whatever
 # translation program you're using to get Indonesian from English. The
@@ -85,15 +85,15 @@ import sys;
 #     ||--- Korath Exile letter
 #     |---- Indonesian letter
 replace = [
-    'AAA', 'EEE', 'III', 'OUU', 'UOO', 'BHB', 'CDV', 'DST',
-    'FJY', 'GNL', 'HPH', 'JVW', 'KTS', 'LMN', 'MFF', 'NRR',
-    'PBC', 'QZT', 'RLP', "S'M", 'TKK', 'VQR', 'WCG', 'XYS',
-    'YGD', 'ZWK',
+	'AAA', 'EEE', 'III', 'OUU', 'UOO', 'BHB', 'CDV', 'DST',
+	'FJY', 'GNL', 'HPH', 'JVW', 'KTS', 'LMN', 'MFF', 'NRR',
+	'PBC', 'QZT', 'RLP', "S'M", 'TKK', 'VQR', 'WCG', 'XYS',
+	'YGD', 'ZWK',
 
-    'aaa', 'eee', 'iii', 'ouu', 'uoo', 'bhb', 'cdv', 'dst',
-    'fjy', 'gnl', 'hph', 'jvw', 'kts', 'lmn', 'mff', 'nrr',
-    'pbc', 'qzt', 'rlp', "s'm", 'tkk', 'vqr', 'wcg', 'xys',
-    'ygd', 'zwk',
+	'aaa', 'eee', 'iii', 'ouu', 'uoo', 'bhb', 'cdv', 'dst',
+	'fjy', 'gnl', 'hph', 'jvw', 'kts', 'lmn', 'mff', 'nrr',
+	'pbc', 'qzt', 'rlp', "s'm", 'tkk', 'vqr', 'wcg', 'xys',
+	'ygd', 'zwk',
 ]
 
 # Transfer the table into a pair of dictionaries:
@@ -101,43 +101,42 @@ to_exile = {}
 to_efreti = {}
 
 for ixf in replace:
-    to_exile[ixf[0]] = ixf[1]
-    to_efreti[ixf[0]] = ixf[2]
+	to_exile[ixf[0]] = ixf[1]
+	to_efreti[ixf[0]] = ixf[2]
 
 # Loop over every line in stdin, processing it
 for line in sys.stdin:
-    words = line.split()       # words in the line, as a list
-    sdrow = []                 # the same words, with letters reversed
-    exiles = []                # those words after the exile cipher
-    efretis = []               # those words after the efret cipher
+	words = line.split()       # words in the line, as a list
+	sdrow = []                 # the same words, with letters reversed
+	exiles = []                # those words after the exile cipher
+	efretis = []               # those words after the efret cipher
 
-    for word in words:
-        # Reverse the word:
-        drow = ''.join(reversed(word))
-        sdrow.append(drow)
+	for word in words:
+		# Reverse the word:
+		drow = ''.join(reversed(word))
+		sdrow.append(drow)
 
-        # Run the reversed word through the cipher:
-        exile=''
-        efreti=''
-        for from_index in range(len(drow)):
-            char = drow[from_index]
-            if char in to_exile:
-                exile += to_exile[char]
-            else:
-                exile += char
-            if char in to_efreti:
-                efreti += to_efreti[char]
-            else:
-                efreti += char
+		# Run the reversed word through the cipher:
+		exile=''
+		efreti=''
+		for from_index in range(len(drow)):
+			char = drow[from_index]
+			if char in to_exile:
+				exile += to_exile[char]
+			else:
+				exile += char
+			if char in to_efreti:
+				efreti += to_efreti[char]
+			else:
+				efreti += char
 
-        # Append the ciphered word to the list:
-        exiles.append(exile)
-        efretis.append(efreti)
+		# Append the ciphered word to the list:
+		exiles.append(exile)
+		efretis.append(efreti)
 
-    # Print the results of this line:
-    print("ORIGINAL: "+" ".join(words))
-    print("REVERSED: "+" ".join(sdrow))
-    print("EXILE:    "+" ".join(exiles))
-    print("EFRETI:   "+" ".join(efretis))
-    print("")
-
+	# Print the results of this line:
+	print("ORIGINAL: "+" ".join(words))
+	print("REVERSED: "+" ".join(sdrow))
+	print("EXILE:    "+" ".join(exiles))
+	print("EFRETI:   "+" ".join(efretis))
+	print("")

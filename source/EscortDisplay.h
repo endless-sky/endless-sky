@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef ESCORT_DISPLAY_H_
-#define ESCORT_DISPLAY_H_
+#pragma once
 
 #include "Rectangle.h"
 
@@ -85,7 +84,3 @@ private:
 	int basicHeight = 0;
 	int systemLabelHeight = 0;
 };
-
-
-
-#endif

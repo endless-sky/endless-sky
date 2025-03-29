@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Ship.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
 #include "DamageDealt.h"
@@ -24,11 +24,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Effect.h"
 #include "Flotsam.h"
 #include "text/Format.h"
+#include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
 #include "JumpTypes.h"
 #include "Logger.h"
-#include "Mask.h"
+#include "image/Mask.h"
 #include "Messages.h"
 #include "Phrase.h"
 #include "Planet.h"
@@ -37,9 +38,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Projectile.h"
 #include "Random.h"
 #include "ShipEvent.h"
-#include "Sound.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "audio/Sound.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
@@ -91,6 +92,8 @@ namespace {
 
 	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
+
+	constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -271,6 +274,8 @@ void Ship::Load(const DataNode &node)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
+		else if(key == "variant map name" && child.Size() >= 2)
+			variantMapShopName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
@@ -301,7 +306,7 @@ void Ship::Load(const DataNode &node)
 
 			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
 				(reverse ? reverseEnginePoints : steeringEnginePoints);
-			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
+			editPoints.emplace_back(Point(child.Value(1), child.Value(2)) * 0.5,
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
 			if(reverse)
@@ -351,6 +356,7 @@ void Ship::Load(const DataNode &node)
 			attributes.baseAngle = Angle(0.);
 			attributes.isParallel = false;
 			attributes.isOmnidirectional = true;
+			attributes.turnMultiplier = 0.;
 			bool drawUnder = (key == "gun");
 			if(child.HasChildren())
 			{
@@ -375,6 +381,8 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
+					else if(grand.Token(0) == "turret turn multiplier")
+						attributes.turnMultiplier = grand.Value(1);
 					else if(grand.Token(0) == "under")
 						drawUnder = true;
 					else if(grand.Token(0) == "over")
@@ -566,6 +574,8 @@ void Ship::Load(const DataNode &node)
 			description += child.Token(1);
 			description += '\n';
 		}
+		else if(key == "formation" && child.Size() >= 2)
+			formationPattern = GameData::Formations().Get(child.Token(1));
 		else if(key == "remove" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "bays")
@@ -887,16 +897,16 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!isNewInstance && targetSystem)
 	{
 		string message = "Warning: " + string(isYours ? "player-owned " : "NPC ")
-			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->Name();
+			+ trueModelName + " \"" + name + "\": Cannot reach target system \"" + targetSystem->TrueName();
 		if(!currentSystem)
 		{
 			Logger::LogError(message + "\" (no current system).");
 			targetSystem = nullptr;
 		}
-		else if(!currentSystem->Links().count(targetSystem)
-			&& (!navigation.JumpRange() || !currentSystem->JumpNeighbors(navigation.JumpRange()).count(targetSystem)))
+		else if(!currentSystem->Links().contains(targetSystem)
+			&& (!navigation.JumpRange() || !currentSystem->JumpNeighbors(navigation.JumpRange()).contains(targetSystem)))
 		{
-			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->Name() + ".\"");
+			Logger::LogError(message + "\" by hyperlink or jump from system \"" + currentSystem->TrueName() + ".\"");
 			targetSystem = nullptr;
 		}
 	}
@@ -990,6 +1000,12 @@ void Ship::Save(DataWriter &out) const
 			for(const auto &it : baseAttributes.HyperOutSounds())
 				for(int i = 0; i < it.second; ++i)
 					out.Write("hyperdrive out sound", it.first->Name());
+			for(const auto &it : baseAttributes.CargoScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("cargo scan sound", it.first->Name());
+			for(const auto &it : baseAttributes.OutfitScanSounds())
+				for(int i = 0; i < it.second; ++i)
+					out.Write("outfit scan sound", it.first->Name());
 			for(const auto &it : baseAttributes.Attributes())
 				if(it.second)
 					out.Write(it.first, it.second);
@@ -1072,6 +1088,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				if(attributes.turnMultiplier)
+					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
 					out.Write("under");
 				else
@@ -1116,20 +1134,21 @@ void Ship::Save(DataWriter &out) const
 			if(it.second)
 				out.Write("final explode", it.first->Name(), it.second);
 		});
-
+		if(formationPattern)
+			out.Write("formation", formationPattern->Name());
 		if(currentSystem)
-			out.Write("system", currentSystem->Name());
+			out.Write("system", currentSystem->TrueName());
 		else
 		{
 			// A carried ship is saved in its carrier's system.
 			shared_ptr<const Ship> parent = GetParent();
 			if(parent && parent->currentSystem)
-				out.Write("system", parent->currentSystem->Name());
+				out.Write("system", parent->currentSystem->TrueName());
 		}
 		if(landingPlanet)
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
-			out.Write("destination system", targetSystem->Name());
+			out.Write("destination system", targetSystem->TrueName());
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1192,6 +1211,14 @@ const string &Ship::PluralModelName() const
 const string &Ship::VariantName() const
 {
 	return variantName.empty() ? trueModelName : variantName;
+}
+
+
+
+// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+const string &Ship::VariantMapShopName() const
+{
+	return variantMapShopName;
 }
 
 
@@ -1302,7 +1329,7 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("afterburner only?");
 		if(!thrust && !afterburner)
 			checks.emplace_back("reverse only?");
-		if(!generation && !solar && !consuming)
+		if(energy <= battery)
 			checks.emplace_back("battery only?");
 		if(energy < thrustEnergy)
 			checks.emplace_back("limited thrust?");
@@ -1339,6 +1366,13 @@ void Ship::SetPosition(Point position)
 
 
 
+void Ship::SetVelocity(Point velocity)
+{
+	this->velocity = velocity;
+}
+
+
+
 // Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
@@ -1371,6 +1405,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	disabledRecoveryCounter = 0;
 	isInvisible = !HasSprite();
 	jettisoned.clear();
+	jettisonedFromBay.clear();
 	hyperspaceCount = 0;
 	forget = 1;
 	targetShip.reset();
@@ -1527,17 +1562,22 @@ string Ship::GetHail(map<string, string> &&subs) const
 
 
 
-ShipAICache &Ship::GetAICache()
+const ShipAICache &Ship::GetAICache() const
 {
 	return aiCache;
 }
 
 
 
-void Ship::UpdateCaches()
+void Ship::UpdateCaches(bool massLessChange)
 {
-	aiCache.Recalibrate(*this);
-	navigation.Recalibrate(*this);
+	if(massLessChange)
+		aiCache.Calibrate(*this);
+	else
+	{
+		aiCache.Recalibrate(*this);
+		navigation.Recalibrate(*this);
+	}
 }
 
 
@@ -1626,6 +1666,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoJettison(flotsam);
 	DoCloakDecision();
 
+	for(uint8_t &held : thrustHeldFrames)
+		if(held > 0)
+			--held;
+
 	bool isUsingAfterburner = false;
 
 	// Don't let the ship do anything else if it is being destroyed.
@@ -1643,7 +1687,7 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 
 		// Move the turrets.
 		if(!isDisabled)
-			armament.Aim(firingCommands);
+			armament.Aim(*this, firingCommands);
 
 		DoInitializeMovement();
 		StepPilot();
@@ -1780,6 +1824,13 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 			helped = true;
 			TransferFuel(victim->JumpFuelMissing(), victim.get());
 		}
+		// Transfer some energy, if needed.
+		if(victim->Attributes().Get("energy capacity") > 0 && victim->energy < 200.)
+		{
+			helped = true;
+			double toGive = max(attributes.Get("energy capacity") * 0.1, victim->Attributes().Get("energy capacity") * 0.2);
+			TransferEnergy(max(200., toGive), victim.get());
+		}
 		if(helped)
 		{
 			pilotError = 120;
@@ -1791,8 +1842,9 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 		return shared_ptr<Ship>();
 
 	// If the boarding ship is the player, they will choose what to plunder.
-	// Always take fuel if you can.
+	// Always take fuel and energy if you can.
 	victim->TransferFuel(victim->fuel, this);
+	victim->TransferEnergy(victim->energy, this);
 	if(autoPlunder)
 	{
 		// Take any commodities that fit.
@@ -1857,8 +1909,8 @@ int Ship::Scan(const PlayerInfo &player)
 
 	// Check if either scanner has finished scanning.
 	bool startedScanning = false;
-	bool activeScanning = false;
-	int result = 0;
+	int activeScanning = ShipEvent::NONE;
+	int result = ShipEvent::NONE;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
 			(double &elapsed, const double speed, const double scannerRangeSquared,
 					const double depth, const int event)
@@ -1870,7 +1922,7 @@ int Ship::Scan(const PlayerInfo &player)
 			return;
 
 		startedScanning |= !elapsed;
-		activeScanning = true;
+		activeScanning |= event;
 
 		// Total scan time is:
 		// Proportional to e^(0.5 * (distance / range)^2),
@@ -1903,8 +1955,25 @@ int Ship::Scan(const PlayerInfo &player)
 	doScan(outfitScan, outfitSpeed, outfitDistanceSquared, outfits, ShipEvent::SCAN_OUTFITS);
 
 	// Play the scanning sound if the actor or the target is the player's ship.
-	if(isYours || (target->isYours && activeScanning))
-		Audio::Play(Audio::Get("scan"), Position());
+	auto playScanSounds = [](const map<const Sound *, int> &sounds, const Point &position)
+	{
+		if(sounds.empty())
+			Audio::Play(Audio::Get("scan"), position, SoundCategory::SCAN);
+		else
+			for(const auto &sound : sounds)
+				Audio::Play(sound.first, position, SoundCategory::SCAN);
+	};
+	if(attributes.Get("silent scans"))
+	{
+		// No sounds.
+	}
+	else if(isYours || (target->isYours))
+	{
+		if(activeScanning & ShipEvent::SCAN_CARGO)
+			playScanSounds(attributes.CargoScanSounds(), position);
+		if(activeScanning & ShipEvent::SCAN_OUTFITS)
+			playScanSounds(attributes.OutfitScanSounds(), position);
+	}
 
 	bool isImportant = false;
 	if(target->isYours)
@@ -1980,7 +2049,7 @@ double Ship::OutfitScanFraction() const
 // Fire any primary or secondary weapons that are ready to fire. Determines
 // if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 // The firing of special weapons is handled separately.
-void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector<int> *emptySoundsTimer)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2003,7 +2072,10 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(!weapon)
+			continue;
+		CanFireResult canFire = CanFire(weapon);
+		if(canFire == CanFireResult::CAN_FIRE)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
@@ -2020,6 +2092,13 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 						cloak -= cloakingFiring;
 				}
 			}
+		}
+		else if(emptySoundsTimer && !(*emptySoundsTimer)[i]
+			&& (canFire == CanFireResult::NO_AMMO || canFire == CanFireResult::NO_FUEL)
+			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
+		{
+			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
+			(*emptySoundsTimer)[i] = weapon->Reload();
 		}
 	}
 
@@ -2056,7 +2135,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2085,7 +2164,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 			return pullVector;
 		if(!GetParent() && flotsamSetting == Preferences::FlotsamCollection::ESCORT)
 			return pullVector;
-		if(flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
+		if(GetParent() && flotsamSetting == Preferences::FlotsamCollection::FLAGSHIP)
 			return pullVector;
 	}
 
@@ -2096,7 +2175,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -2200,6 +2279,9 @@ bool Ship::CanLand() const
 		return false;
 
 	if(!GetTargetStellar()->GetPlanet()->CanLand(*this))
+		return false;
+
+	if(commands.Has(Command::WAIT))
 		return false;
 
 	Point distance = GetTargetStellar()->Position() - position;
@@ -2525,6 +2607,14 @@ bool Ship::CanRefuel(const Ship &other) const
 
 
 
+bool Ship::CanGiveEnergy(const Ship &other) const
+{
+	double toGive = min(other.attributes.Get("energy capacity"), max(200., other.attributes.Get("energy capacity") * 0.2));
+	return energy >= 2 * toGive;
+}
+
+
+
 double Ship::TransferFuel(double amount, Ship *to)
 {
 	amount = max(fuel - attributes.Get("fuel capacity"), amount);
@@ -2534,6 +2624,20 @@ double Ship::TransferFuel(double amount, Ship *to)
 		to->fuel += amount;
 	}
 	fuel -= amount;
+	return amount;
+}
+
+
+
+double Ship::TransferEnergy(double amount, Ship *to)
+{
+	amount = max(energy - attributes.Get("energy capacity"), amount);
+	if(to)
+	{
+		amount = min(to->attributes.Get("energy capacity") - to->energy, amount);
+		to->energy += amount;
+	}
+	energy -= amount;
 	return amount;
 }
 
@@ -2777,6 +2881,14 @@ bool Ship::NeedsFuel(bool followParent) const
 
 
 
+bool Ship::NeedsEnergy() const
+{
+	return attributes.Get("energy capacity") && !energy && !attributes.Get("energy generation")
+			&& !attributes.Get("fuel energy") && !attributes.Get("solar collection");
+}
+
+
+
 double Ship::JumpFuelMissing() const
 {
 	// Used for smart refueling: transfer only as much as really needed
@@ -2964,11 +3076,25 @@ double Ship::TurnRate() const
 
 
 
+double Ship::TrueTurnRate() const
+{
+	return TurnRate() * 1. / (1. + slowness * .05);
+}
+
+
+
 double Ship::Acceleration() const
 {
 	double thrust = attributes.Get("thrust");
 	return (thrust ? thrust : attributes.Get("afterburner thrust")) / InertialMass()
 		* (1. + attributes.Get("acceleration multiplier"));
+}
+
+
+
+double Ship::TrueAcceleration() const
+{
+	return Acceleration() * 1. / (1. + slowness * .05);
 }
 
 
@@ -2996,6 +3122,28 @@ double Ship::ReverseAcceleration() const
 double Ship::MaxReverseVelocity() const
 {
 	return attributes.Get("reverse thrust") / Drag();
+}
+
+
+
+double Ship::ThrustHeldFraction(Ship::ThrustKind kind) const
+{
+	constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES;
+	return ThrustHeldFrames(kind) * THRUST_HELD_FRAMES_RECIP;
+}
+
+
+
+uint8_t Ship::ThrustHeldFrames(Ship::ThrustKind kind) const
+{
+	return thrustHeldFrames[static_cast<size_t>(kind)];
+}
+
+
+
+double Ship::CurrentSpeed() const
+{
+	return Velocity().Length();
 }
 
 
@@ -3060,7 +3208,13 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		hullDelay = max(hullDelay, static_cast<int>(attributes.Get("disabled repair delay")));
 	}
 	if(!wasDestroyed && IsDestroyed())
+	{
 		type |= ShipEvent::DESTROY;
+
+		if(IsYours())
+			Messages::Add("Your " + DisplayModelName() +
+				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
 	if(heat > MaximumHeat())
@@ -3311,7 +3465,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
 	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
-		jettisoned.emplace_back(new Flotsam(commodity, (Flotsam::TONS_PER_BOX < tons)
+		Jettison(make_shared<Flotsam>(commodity, (Flotsam::TONS_PER_BOX < tons)
 			? Flotsam::TONS_PER_BOX : tons, notForGov));
 }
 
@@ -3341,7 +3495,7 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 		? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
-		jettisoned.emplace_back(new Flotsam(outfit, (perBox < count)
+		Jettison(make_shared<Flotsam>(outfit, (perBox < count)
 			? perBox : count, notForGov));
 		count -= perBox;
 	}
@@ -3445,41 +3599,43 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
-bool Ship::CanFire(const Weapon *weapon) const
+Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
 	if(!weapon || !weapon->IsWeapon())
-		return false;
+		return CanFireResult::INVALID;
 
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
 		if(it == outfits.end() || it->second < weapon->AmmoUsage())
-			return false;
+			return CanFireResult::NO_AMMO;
 	}
 
-	if(energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
-		return false;
-	if(fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
-		return false;
+	if(weapon->ConsumesEnergy()
+			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
+		return CanFireResult::NO_ENERGY;
+	if(weapon->ConsumesFuel()
+			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
+		return CanFireResult::NO_FUEL;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
-	if(hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
-		return false;
+	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
+		return CanFireResult::NO_HULL;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
-	if(heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
+	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
-		return false;
+		return CanFireResult::NO_HEAT;
 	// Repeat this for various effects which shouldn't drop below 0.
-	if(ionization < -weapon->FiringIon())
-		return false;
-	if(disruption < -weapon->FiringDisruption())
-		return false;
-	if(slowness < -weapon->FiringSlowing())
-		return false;
+	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
+		return CanFireResult::NO_ION;
+	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
+		return CanFireResult::NO_DISRUPTION;
+	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
+		return CanFireResult::NO_SLOWING;
 
-	return true;
+	return CanFireResult::CAN_FIRE;
 }
 
 
@@ -3579,6 +3735,13 @@ const set<const Flotsam *> &Ship::GetTractorFlotsam() const
 
 
 
+const FormationPattern *Ship::GetFormationPattern() const
+{
+	return formationPattern;
+}
+
+
+
 void Ship::SetFleeing(bool fleeing)
 {
 	isFleeing = fleeing;
@@ -3651,6 +3814,13 @@ void Ship::SetParent(const shared_ptr<Ship> &ship)
 
 
 
+void Ship::SetFormationPattern(const FormationPattern *formationToSet)
+{
+	formationPattern = formationToSet;
+}
+
+
+
 bool Ship::CanPickUp(const Flotsam &flotsam) const
 {
 	if(this == flotsam.Source())
@@ -3686,6 +3856,13 @@ int Ship::GetLingerSteps() const
 void Ship::Linger()
 {
 	++lingerSteps;
+}
+
+
+
+bool Ship::Immitates(const Ship &other) const
+{
+	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }
 
 
@@ -3727,10 +3904,6 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	// Once we've created enough little explosions, die.
 	if(explosionCount == explosionTotal || forget)
 	{
-		if(IsYours() && Preferences::Has("Extra fleet status messages"))
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
-
 		if(!forget)
 		{
 			const Effect *effect = GameData::Effects().Get("smoke");
@@ -3777,6 +3950,12 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			for(shared_ptr<Flotsam> &it : jettisoned)
 				it->Place(*this);
 			flotsam.splice(flotsam.end(), jettisoned);
+			for(auto &[newFlotsam, bayIndex] : jettisonedFromBay)
+			{
+				newFlotsam->Place(*this, bayIndex);
+				flotsam.emplace_back(std::move(newFlotsam));
+			}
+			jettisonedFromBay.clear();
 
 			// Any ships that failed to launch from this ship are destroyed.
 			for(Bay &bay : bays)
@@ -4167,11 +4346,21 @@ void Ship::DoPassiveEffects(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &
 
 void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 {
+	if(forget)
+		return;
 	// Jettisoned cargo effects (only for ships in the current system).
-	if(!jettisoned.empty() && !forget)
+	if(!jettisoned.empty())
 	{
 		jettisoned.front()->Place(*this);
 		flotsam.splice(flotsam.end(), jettisoned, jettisoned.begin());
+		return;
+	}
+	if(!jettisonedFromBay.empty())
+	{
+		auto &[newFlotsam, bayIndex] = jettisonedFromBay.front();
+		newFlotsam->Place(*this, bayIndex);
+		flotsam.emplace_back(std::move(newFlotsam));
+		jettisonedFromBay.pop_front();
 	}
 }
 
@@ -4415,9 +4604,24 @@ bool Ship::DoLandingLogic()
 			}
 			else if(!isSpecial || personality.IsFleeing())
 			{
-				MarkForRemoval();
+				bool escortsLanded = true;
+				for(const auto &it : escorts)
+				{
+					const auto escort = it.lock();
+					// Check if escorts are also landed, or destroyed.
+					if(!escort || escort->IsDestroyed() || escort->zoom == 0.f)
+						continue;
+					escortsLanded = false;
+					break;
+				}
+				if(escortsLanded)
+					MarkForRemoval();
 				return true;
 			}
+
+			SetTargetAsteroid(nullptr);
+			SetTargetFlotsam(nullptr);
+			SetTargetShip(nullptr);
 
 			zoom = 0.f;
 		}
@@ -4477,13 +4681,13 @@ void Ship::StepPilot()
 	else if(requiredCrew && static_cast<int>(Random::Int(requiredCrew)) >= Crew())
 	{
 		pilotError = 30;
-		if(isYours || (personality.IsEscort() && Preferences::Has("Extra fleet status messages")))
+		if(isYours || personality.IsEscort())
 		{
-			if(parent.lock())
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
-					, Messages::Importance::Low);
-			else
+			if(!parent.lock())
 				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
+					, Messages::Importance::Low);
+			else if(Preferences::Has("Extra fleet status messages"))
+				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
 					, Messages::Importance::Low);
 		}
 	}
@@ -4534,6 +4738,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			{
 				isSteering = true;
 				steeringDirection = commands.Turn();
+				IncrementThrusterHeld(steeringDirection < 0. ? ThrustKind::LEFT : ThrustKind::RIGHT);
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -4593,6 +4798,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
@@ -4748,7 +4954,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::High);
+						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
 				}
 				else
 				{
@@ -4793,7 +4999,7 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner)
 			Point effectVelocity = velocity - 6. * afterburnerAngle.Unit();
 			for(auto &&it : Attributes().AfterburnerEffects())
 				for(int i = 0; i < it.second; ++i)
-					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle);
+					visuals.emplace_back(*it.first, pos, effectVelocity, afterburnerAngle, Point{}, point.zoom);
 		}
 	}
 }
@@ -4812,12 +5018,17 @@ void Ship::AddEscort(Ship &ship)
 void Ship::RemoveEscort(const Ship &ship)
 {
 	auto it = escorts.begin();
-	for( ; it != escorts.end(); ++it)
-		if(it->lock().get() == &ship)
+	while(it != escorts.end())
+	{
+		auto escort = it->lock();
+		if(escort.get() == &ship)
 		{
-			escorts.erase(it);
+			it = escorts.erase(it);
 			return;
 		}
+		else
+			++it;
+	}
 }
 
 
@@ -4965,4 +5176,37 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+void Ship::IncrementThrusterHeld(Ship::ThrustKind kind)
+{
+	uint8_t &heldFrame = thrustHeldFrames[static_cast<size_t>(kind)];
+	heldFrame = min(MAX_THRUST_HELD_FRAMES, static_cast<uint8_t>(heldFrame + 2));
+}
+
+
+
+void Ship::Jettison(shared_ptr<Flotsam> toJettison)
+{
+	if(currentSystem)
+	{
+		jettisoned.emplace_back(toJettison);
+		return;
+	}
+	// If this ship is currently being carried by another, transfer Flotsam to be jettisoned to the carrier.
+	shared_ptr<Ship> carrier = parent.lock();
+	if(!carrier)
+		return;
+	size_t bayIndex = 0;
+	for(const auto &bay : carrier->Bays())
+	{
+		if(bay.ship.get() == this)
+		{
+			carrier->jettisonedFromBay.emplace_back(toJettison, bayIndex);
+			break;
+		}
+		++bayIndex;
+	}
 }

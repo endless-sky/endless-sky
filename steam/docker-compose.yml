@@ -9,26 +9,9 @@ services:
       - '/bin/bash'
       - '-c'
       - |
-        apt-get -y update && apt-get -y install libmad0-dev
         mkdir -p build/steam-x64
         cd build/steam-x64
         cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DVCPKG_TARGET_TRIPLET=linux-x64-release-static
-        ninja EndlessSky
-
-
-  steam-x86:
-    image: registry.gitlab.steamos.cloud/steamrt/sniper/sdk:latest
-    working_dir: /endless-sky
-    volumes:
-      - '..:/endless-sky'
-    command:
-      - '/bin/bash'
-      - '-c'
-      - |
-        apt-get -y update && apt-get -y install libmad0-dev
-        mkdir -p build/steam-x86
-        cd build/steam-x86
-        cmake ../../ -GNinja -DES_STEAM=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-m32 -DVCPKG_TARGET_TRIPLET=linux-x86-release-static
         ninja EndlessSky
 
 
@@ -44,19 +27,4 @@ services:
         cd build/steam-x64
         ninja
         ./endless-sky --version
-        ctest --label-exclude "(benchmark|integration-debug)"
-
-
-  test-steam-x86:
-    image: registry.gitlab.steamos.cloud/steamrt/sniper/sdk:latest
-    volumes:
-      - '..:/endless-sky'
-    working_dir: /endless-sky
-    command:
-      - '/bin/bash'
-      - '-c'
-      - |
-        cd build/steam-x86
-        ninja
-        ./endless-sky --version
-        ctest --label-exclude "(benchmark|integration-debug)"
+        ctest --label-exclude "integration-debug"

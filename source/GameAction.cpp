@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GameAction.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -42,8 +42,9 @@ namespace {
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-			if(!player.HasMapped(mapSize))
-				player.Map(mapSize);
+			bool mapMinables = outfit->Get("map minables");
+			if(!player.HasMapped(mapSize, mapMinables))
+				player.Map(mapSize, mapMinables);
 			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}
@@ -148,7 +149,13 @@ void GameAction::LoadSingle(const DataNode &child)
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
 
-	if(key == "log")
+	if(key == "remove" && child.Size() >= 3 && child.Token(1) == "log")
+	{
+		auto &type = specialLogClear[child.Token(2)];
+		if(child.Size() > 3)
+			type.push_back(child.Token(3));
+	}
+	else if(key == "log")
 	{
 		bool isSpecial = (child.Size() >= 3);
 		string &text = (isSpecial ?
@@ -251,6 +258,14 @@ void GameAction::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			out.Write("remove", "log", it.first);
+		else
+			for(auto &&jt : it.second)
+				out.Write("remove", "log", it.first, jt);
+	}
 	for(auto &&it : giftShips)
 		it.Save(out);
 	for(auto &&it : giftOutfits)
@@ -273,9 +288,9 @@ void GameAction::Save(DataWriter &out) const
 	for(auto &&it : events)
 		out.Write("event", it.first->Name(), it.second.first, it.second.second);
 	for(const System *system : mark)
-		out.Write("mark", system->Name());
+		out.Write("mark", system->TrueName());
 	for(const System *system : unmark)
-		out.Write("unmark", system->Name());
+		out.Write("unmark", system->TrueName());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -316,10 +331,10 @@ string GameAction::Validate() const
 	// Marked and unmarked system must be valid.
 	for(auto &&system : mark)
 		if(!system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 	for(auto &&system : unmark)
 		if(!system->IsValid())
-			return "system \"" + system->Name() + "\"";
+			return "system \"" + system->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -371,6 +386,14 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			player.AddSpecialLog(it.first, eit.first, eit.second);
+	for(auto &&it : specialLogClear)
+	{
+		if(it.second.empty())
+			player.RemoveSpecialLog(it.first);
+		else
+			for(auto &&jt : it.second)
+				player.RemoveSpecialLog(it.first, jt);
+	}
 
 	// If multiple outfits, ships are being transferred, first remove the ships,
 	// then the outfits, before adding any new ones.
@@ -422,7 +445,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		// mission as failed. It will not be removed from the player's mission
 		// list until it is safe to do so.
 		for(const Mission &mission : player.Missions())
-			if(fail.count(mission.Identifier()))
+			if(fail.contains(mission.Identifier()))
 				player.FailMission(mission);
 	}
 	if(failCaller && caller)
@@ -460,7 +483,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 		result.events[it.first] = make_pair(day, day);
 	}
 
-	result.giftShips = giftShips;
+	for(auto &&it : giftShips)
+		result.giftShips.push_back(it.Instantiate(subs));
 	result.giftOutfits = giftOutfits;
 
 	result.music = music;
@@ -480,6 +504,7 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	for(auto &&it : specialLogText)
 		for(auto &&eit : it.second)
 			result.specialLogText[it.first][eit.first] = Format::Replace(eit.second, subs);
+	result.specialLogClear = specialLogClear;
 
 	result.fail = fail;
 	result.failCaller = failCaller;

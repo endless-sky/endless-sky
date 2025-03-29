@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
@@ -28,13 +28,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/layout.hpp"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "System.h"
 #include "text/truncate.hpp"
 #include "UI.h"
@@ -327,7 +327,7 @@ void MapSalesPanel::DrawInfo() const
 
 bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 {
-	bool hide = collapsed.count(category);
+	bool hide = collapsed.contains(category);
 	if(!hidPrevious)
 		corner.Y() += 50.;
 	hidPrevious = hide;
@@ -363,20 +363,26 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
-		bool isSelected, const string &name, const string &price, const string &info,
-		const std::string &storage)
+		bool isSelected, const string &name, const string &variantName,
+		const string &price, const string &info, const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
 
 	// Set the padding so the text takes the same height overall,
 	// regardless of whether it's three lines of text or four.
-	const auto pad = storage.empty() ? PAD : (PAD * 2. / 3.);
-	const auto lines = storage.empty() ? 3 : 4;
+	const auto pad = storage.empty() && variantName.empty() ? PAD : (PAD * 2. / 3.);
+	const auto lines = storage.empty() && variantName.empty() ? 3 : 4;
 	Point nameOffset(ICON_HEIGHT, .5 * (ICON_HEIGHT - (lines - 1) * pad - lines * font.Height()));
 	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + pad);
 	Point infoOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + pad);
 	Point storageOffset(ICON_HEIGHT, infoOffset.Y() + font.Height() + pad);
+	Point variantOffset = priceOffset;
+	if(!variantName.empty())
+	{
+		priceOffset = infoOffset;
+		infoOffset = storageOffset;
+	}
 	Point blockSize(WIDTH, ICON_HEIGHT);
 
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
@@ -392,6 +398,8 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 			? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
 		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
+		if(!variantName.empty())
+			font.Draw({"\t" + variantName, layout}, corner + variantOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);
 		font.Draw({info, layout}, corner + infoOffset, textColor);
 		if(!storage.empty())
@@ -432,7 +440,7 @@ void MapSalesPanel::ScrollTo(int index)
 
 void MapSalesPanel::ClickCategory(const string &name)
 {
-	bool isHidden = collapsed.count(name);
+	bool isHidden = collapsed.contains(name);
 	if(SDL_GetModState() & KMOD_SHIFT)
 	{
 		// If the shift key is held down, hide or show all categories.

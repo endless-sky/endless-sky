@@ -13,13 +13,11 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef BODY_H_
-#define BODY_H_
+#pragma once
 
 #include "Angle.h"
 #include "Point.h"
 
-#include <cstdint>
 #include <string>
 
 class DataNode;
@@ -36,8 +34,10 @@ class Body {
 public:
 	// Constructors.
 	Body() = default;
-	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
-	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(), double zoom = 1.);
+	Body(const Sprite *sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
+		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
+	Body(const Body &sprite, Point position, Point velocity = Point(), Angle facing = Angle(),
+		double zoom = 1., Point scale = Point(1., 1.), double alpha = 1.);
 
 	// Check that this Body has a sprite and that the sprite has at least one frame.
 	bool HasSprite() const;
@@ -61,7 +61,7 @@ public:
 	const Angle &Facing() const;
 	Point Unit() const;
 	double Zoom() const;
-	double Scale() const;
+	Point Scale() const;
 
 	// Check if this object is marked for removal from the game.
 	bool ShouldBeRemoved() const;
@@ -78,7 +78,12 @@ public:
 	// Set the color swizzle.
 	void SetSwizzle(int swizzle);
 
-	double Alpha() const;
+	// Functions determining the current alpha value of the body,
+	// dependent on the position of the body relative to the center of the screen.
+	double Alpha(const Point &drawCenter) const;
+	double DistanceAlpha(const Point &drawCenter) const;
+	bool IsVisible(const Point &drawCenter) const;
+
 
 protected:
 	// Adjust the frame rate.
@@ -99,14 +104,17 @@ protected:
 	Point position;
 	Point velocity;
 	Angle angle;
+	Point scale = Point(1., 1.);
 	Point center;
 	Point rotatedCenter;
 	// A zoom of 1 means the sprite should be drawn at half size. For objects
 	// whose sprites should be full size, use zoom = 2.
 	float zoom = 1.f;
-	float scale = 1.f;
 
 	double alpha = 1.;
+	// The maximum distance at which the body is visible, and at which it becomes invisible again.
+	double distanceVisible = 0.;
+	double distanceInvisible = 0.;
 
 	// Government, for use in collision checks.
 	const Government *government = nullptr;
@@ -142,7 +150,3 @@ private:
 	mutable int currentStep = -1;
 	mutable float frame = 0.f;
 };
-
-
-
-#endif

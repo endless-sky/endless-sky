@@ -42,14 +42,12 @@ fleet "Gegno Miners"
 	cargo 0
 	personality
 		pacifist timid plunders mining harvests ramming
-	variant 22
+	variant 21
 		"Gypsum"
 	variant 6
 		"Corundum"
-	variant 5
+	variant 3
 		"Corundum (Torch)"
-	variant
-		"Corundum (Multi)"
 	variant
 		"Gypsum"
 		"Granofel"
@@ -404,22 +402,6 @@ fleet "Scin Warfleet"
 		"Feldspar"
 		"Halite" 6
 		"Coesite" 2
-		
-fleet "Gegno Vi Duelist A"
-	government "Gegno Vi (Duelist A)"
-	names "gegno vi"
-	personality
-		heroic unconstrained ramming
-	variant
-		"Dunite"
-
-fleet "Gegno Vi Duelist B"
-	government "Gegno Vi (Duelist B)"
-	names "gegno vi"
-	personality
-		heroic unconstrained ramming
-	variant
-		"Dunite"
 
 fleet "Scin Science"
 	government "Gegno Scin"
@@ -433,6 +415,4 @@ fleet "Scin Science"
 	variant
 		"Kyanite (Guile)"
 		"Tridymite"
-	variant
-		"Kyanite (Acumen)"
-		"Tridymite"
+

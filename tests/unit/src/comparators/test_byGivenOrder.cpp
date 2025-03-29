@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // ... and any system includes needed for the test file.
 #include <algorithm>
+#include <random>
 
 namespace { // test namespace
 

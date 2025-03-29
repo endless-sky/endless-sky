@@ -85,7 +85,7 @@ mission "Wanderers: Mereti: The Plant 3"
 		has "Wanderers: Mereti: The Plant 2: done"
 	on offer
 		conversation
-			`Va'ika guides you to an area of high, cool steppes as you approach. You find a suitable place to land your ship, and she steps out. The air that blows in through the open door sting your eyes, but Va'ika seems too deep in thought to notice. "It would have [grown, originated] here, I am certain of it. But it will do so no longer, not for many [years, cycles]." Va'ika bows her head and holds one wing in front of herself silently for a moment before continuing. "We must find some world with similar [regions, environments] that we can introduce it to. Perhaps we will have better luck on Sopi Lefarkata."`
+			`Va'ika guides you to an area of high, cool steppes as you approach. You find a suitable place to land your ship, and she steps out. The air that blows in through the open door stings your eyes, but Va'ika seems too deep in thought to notice. "It would have [grown, originated] here, I am certain of it. But it will do so no longer, not for many [years, cycles]." Va'ika bows her head and holds one wing in front of herself silently for a moment before continuing. "We must find some world with similar [regions, environments] that we can introduce it to. Perhaps we will have better luck on Sopi Lefarkata."`
 				accept
 
 mission "Wanderers: Mereti: The Plant 4"
@@ -179,5 +179,5 @@ mission "Wanderers: Mereti: The Plant Epilogue"
 					goto end
 			`	"This flower is called the sitrasanir. Its [symbol, appearance] was of [importance, significance] to our creators when they were [present? alive?]. We [abandoned, ignored] it for years, but our [parents, ancestors] helped us to remember it."`
 			label end
-			`	The drone sits in a contemplative silence, looking out into the field. The sun rises higher into the sky, and the field shines in blue hues that almost exactly match the blue paints on the the Mereti ships in the sky above.`
+			`	The drone sits in a contemplative silence, looking out into the field. The sun rises higher into the sky, and the field shines in blue hues that almost exactly match the blue paints on the Mereti ships in the sky above.`
 				decline
