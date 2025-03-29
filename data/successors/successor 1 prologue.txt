@@ -365,7 +365,7 @@ mission "Successors: First Contact 3"
 			choice
 				`	"We'd better get started, then."`
 					goto embark
-				`	"What do you mean that jump drives are 'familiar?'"`
+				`	"What did you mean that jump drives are 'familiar?'"`
 					to display
 						has "Successors: knowledge"
 						not "Successors: jump drives"
