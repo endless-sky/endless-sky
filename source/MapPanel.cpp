@@ -192,7 +192,7 @@ namespace {
 				if(Preferences::Has("Deadline blink by distance"))
 				{
 					DistanceMap distance(player, player.GetSystem());
-					if(distance.HasRoute(*mission.Destination()->GetSystem()))
+					if(distance.HasRoute(*mission.Destination().GetSystem()))
 					{
 						set<const System *> toVisit;
 						for(const Planet *stopover : mission.Stopovers())
@@ -220,7 +220,7 @@ namespace {
 							distance = DistanceMap(player, closest);
 							toVisit.erase(closest);
 						}
-						daysLeft -= distance.Days(*mission.Destination()->GetSystem());
+						daysLeft -= distance.Days(*mission.Destination().GetSystem());
 					}
 				}
 				int blinkFactor = min(6, max(1, daysLeft));
@@ -518,7 +518,7 @@ void MapPanel::DrawMiniMap(const PlayerInfo &player, float alpha, const System *
 			if(!mission.IsVisible())
 				continue;
 
-			if(mission.Destination()->IsInSystem(&system))
+			if(mission.Destination().GetSystem() == &system)
 			{
 				pair<bool, bool> blink = BlinkMissionIndicator(player, mission, step);
 				if(!blink.first)
@@ -1524,7 +1524,7 @@ void MapPanel::DrawMissions()
 	// Calculate the available (and unavailable) jobs, but don't draw them yet.
 	for(const Mission &mission : player.AvailableJobs())
 	{
-		const System *system = mission.Destination()->GetSystem();
+		const System *system = mission.Destination().GetSystem();
 		if(!system)
 			continue;
 		auto &it = missionCount[system];
@@ -1539,7 +1539,7 @@ void MapPanel::DrawMissions()
 		if(!mission.IsVisible())
 			continue;
 
-		const System *system = mission.Destination()->GetSystem();
+		const System *system = mission.Destination().GetSystem();
 		if(!system)
 			continue;
 

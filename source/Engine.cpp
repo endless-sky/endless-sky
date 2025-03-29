@@ -1420,7 +1420,7 @@ void Engine::EnterSystem()
 	for(const Mission &mission : player.Missions())
 		if(mission.ClearanceMessage() == "auto")
 		{
-			mission.Destination()->Bribe(mission.HasFullClearance());
+			mission.Destination().GetPlanet()->Bribe(mission.HasFullClearance());
 			for(const Planet *planet : mission.Stopovers())
 				planet->Bribe(mission.HasFullClearance());
 		}
