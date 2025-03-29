@@ -4223,6 +4223,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		// If no ship was found, look for nearby asteroids.
 		if(!found)
 			TargetMinable(ship);
+		else
+			UI::PlaySound(UI::UISound::TARGET);
 	}
 	else if(activeCommands.Has(Command::TARGET))
 	{
@@ -4249,6 +4251,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		}
 		if(selectNext)
 			ship.SetTargetShip(shared_ptr<Ship>());
+		else
+			UI::PlaySound(UI::UISound::TARGET);
 	}
 	else if(activeCommands.Has(Command::BOARD))
 	{
@@ -4350,6 +4354,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				if(it == options.begin())
 					it = options.end();
 				ship.SetTargetShip((--it)->first->shared_from_this());
+				UI::PlaySound(UI::UISound::TARGET);
 			}
 		}
 	}
