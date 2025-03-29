@@ -16,8 +16,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 
 #include "DataNode.h"
+#include "OptionalPreference.h"
+#include "Preferences.h"
 
 #include <algorithm>
+#include <optional>
 
 using namespace std;
 
@@ -75,68 +78,68 @@ void Gamerules::Load(const DataNode &node)
 
 bool Gamerules::UniversalRamscoopActive() const
 {
-	return universalRamscoop;
+	return Preferences::GetGameruleRamscoop().value_or(universalRamscoop);
 }
 
 
 
 int Gamerules::PersonSpawnPeriod() const
 {
-	return personSpawnPeriod;
+	return Preferences::GamerulePersonPeriod().Get().value_or(personSpawnPeriod);
 }
 
 
 
 int Gamerules::NoPersonSpawnWeight() const
 {
-	return noPersonSpawnWeight;
+	return Preferences::GamerulePersonWeight().Get().value_or(noPersonSpawnWeight);
 }
 
 
 
 int Gamerules::NPCMaxMiningTime() const
 {
-	return npcMaxMiningTime;
+	return Preferences::GameruleMiningTime().Get().value_or(npcMaxMiningTime);
 }
 
 
 
 double Gamerules::UniversalFrugalThreshold() const
 {
-	return universalFrugalThreshold;
+	return Preferences::GameruleFrugalThreshold().Get().value_or(universalFrugalThreshold);
 }
 
 
 
 double Gamerules::DepreciationMin() const
 {
-	return depreciationMin;
+	return Preferences::GameruleDepreciationMin().Get().value_or(depreciationMin);
 }
 
 
 
 double Gamerules::DepreciationDaily() const
 {
-	return depreciationDaily;
+	return Preferences::GameruleDepreciationDaily().Get().value_or(depreciationDaily);
 }
 
 
 
 int Gamerules::DepreciationGracePeriod() const
 {
-	return depreciationGracePeriod;
+	return Preferences::GameruleDepreciationGracePeriod().Get().value_or(depreciationGracePeriod);
 }
 
 
 
 int Gamerules::DepreciationMaxAge() const
 {
-	return depreciationMaxAge;
+	return Preferences::GameruleDepreciationMaxAge().Get().value_or(depreciationMaxAge);
 }
 
 
 
 Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 {
-	return fighterHitPolicy;
+	return Preferences::GetGameruleFighters().value_or(fighterHitPolicy);
 }
