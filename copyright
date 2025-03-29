@@ -1569,6 +1569,17 @@ Comment:
  February 2018, so it is subject to an additional restriction
  limiting the sale of unaltered copies.
 
+Files:
+ images/land/station51*
+Copyright: Nick Fewings
+License: Unsplash
+Comment:
+ Taken from https://archive.is/twLOK. This image was uploaded to
+ unsplash.com after June 2017, so it is subject to the
+ Unsplash License. It was also uploaded after February 2018,
+ so it is subject to an additional restriction limiting the
+ sale of unaltered copies.
+
 Files: images/land/lava11*
 Copyright: National Archives and Records Administration
 License: public-domain
@@ -1863,6 +1874,23 @@ License: CC-BY-SA-4.0
 Comment: Derived from works by Frederick Goy IV (under the same license).
 
 Files:
+ images/effect/asteroid?adult?flare*
+ images/effect/asteroid?adult?2?flare*
+ images/effect/asteroid?adult?3?flare*
+ images/effect/asteroid?adult?4?flare*
+ images/effect/asteroid?adult?5?flare*
+ images/effect/asteroid?medium?flare*
+ images/effect/asteroid?young?flare*
+ images/effect/asteroid?young?2?flare*
+ images/effect/asteroid?young?3?flare*
+ images/effect/asteroid?young?4?flare*
+ images/effect/asteroid?am?circle?defense*
+ images/effect/asteroid?am?fire*
+ images/effect/asteroid?circle?trail*
+ images/effect/asteroid?glow*
+ images/effect/asteroid?laser*
+ images/effect/asteroid?projectile?print*
+ images/effect/asteroid?projectile?static*
  images/hardpoint/javelin?turret*
  images/planet/station1*
  images/planet/station2*
@@ -1879,6 +1907,8 @@ Files:
  images/planet/station16*
  images/planet/station17*
  images/planet/station-bunrodea*
+ images/planet/station-chanai*
+ images/planet/penrose-machine*
  images/ship/maeri'het*
  images/ship/subsidurial*
  images/ship/telis'het*
@@ -1931,6 +1961,7 @@ Files:
  images/outfit/ka'het?reserve?accumulator*
  images/outfit/ka'het?nullifier*
  images/outfit/ka'het?mhd?deployer*
+ images/outfit/ka'het?taser*
  images/outfit/mouthparts*
  images/outfit/excavator*
  images/outfit/fuel?pod*
@@ -2013,9 +2044,15 @@ Files:
  images/projectile/annihilator*
  images/projectile/ravager?beam*
  images/projectile/mhd*
+ images/projectile/asteroid?missile*
+ images/projectile/asteroid?twin?projectile*
+ images/projectile/asteroid?weapon?circle*
+ images/projectile/asteroid?weapon?live*
+ images/projectile/asteroid?weapon?swarm*
  images/scene/ringworld?debris*
  images/scene/remnant?station*
  images/scene/asteroid?scene*
+ images/scene/lab?scene*
  images/planet/debris0*
  images/planet/debris1*
  images/planet/desert11*
@@ -2104,6 +2141,7 @@ License: CC-BY-SA-4.0
 Files:
  images/effect/remnant?afterburner/remnant?afterburner*
  images/effect/mhd?spark*
+ images/effect/jd?detainer*
  images/land/nasa9*
  images/hardpoint/annihilator?turret*
  images/hardpoint/hai?ionic?turret*
@@ -2205,6 +2243,17 @@ Files:
  images/ship/pug?enfolta*
  images/ship/pug?maboro*
  images/ship/pug?arfecta*
+ images/ship/asteroid?adult*
+ images/ship/asteroid?adult?2*
+ images/ship/asteroid?adult?3*
+ images/ship/asteroid?adult?4*
+ images/ship/asteroid?adult?5*
+ images/ship/asteroid?medium*
+ images/ship/asteroid?young*
+ images/ship/asteroid?young?2*
+ images/ship/asteroid?young?3*
+ images/ship/asteroid?young?4*
+ images/ship/remnant?satellite*
  images/thumbnail/hai?sea?scorpion*
  images/thumbnail/hai?anomalocaris*
  images/thumbnail/ibis*
@@ -2863,6 +2912,12 @@ Copyright: Becca Tommaso
 License: CC-BY-SA-4.0
 
 Files:
+ images/ui/patir?cluster*
+Copyright: Becca Tommaso
+License: CC-BY-SA-4.0
+Comment: Derived from works by NASA (public domain)
+
+Files:
  images/star/a-dwarf*
  images/star/a-giant*
  images/star/a-supergiant*
@@ -2947,6 +3002,7 @@ Files:
  images/outfit/*efreti?thruster*
  images/outfit/fusion?cannon*
  images/outfit/nuke*
+ images/planet/wormhole?blue*
  images/planet/pontes*
  images/projectile/fire-lance*
  images/projectile/fusion?gun?bolt*
@@ -2970,6 +3026,22 @@ Files:
  images/star/coal-black-hole*
  images/star/neutron*
  images/star/small-black-hole*
+ images/star/big?black?hole?core*
+ images/star/big?black?hole*
+ images/star/black?hole?3?core*
+ images/star/black?hole?3*
+ images/star/black?hole?4?core*
+ images/star/black?hole?4*
+ images/star/black?hole?5?core*
+ images/star/black?hole?5*
+ images/star/black?hole?6?core*
+ images/star/black?hole?6*
+ images/star/black?hole?corona?core*
+ images/star/black?hole?corona*
+ images/star/black-hole-still-core*
+ images/star/black-hole-still*
+ images/star/black?hole?star?core*
+ images/star/black?hole?star*
  images/star/twilight-black-hole*
  images/thumbnail/battleship*
 Copyright: Gefüllte Taubenbrust <jeaminer23@gmail.com>
