@@ -622,7 +622,7 @@ mission "Successors: First Contact 3"
 				event "successors: released kijra-pet wait" 32
 				log "Released the animal House Sioeora requested I bring to them. Returned their citizen, but was barred from further dealings with the House."
 			`As before, you are directed to House Sioeora's private spaceport in the northern hemisphere, where a landing pad has already been cleared for your arrival. You and Sieasej are given fewer escorts than before, and you can't help but wonder if the absence of your quarry is particularly conspicuous to them. Soon enough, you once again arrive in the scions' chamber, where Riijaaora and the others stand waiting for you.`
-			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast though brought that item of our desiring?"`
+			`	"Hail, captain <last>!" Riijaaora says, this time speaking with their own voice. The sounds feel warped and uneven, as if they are being rearranged midair. "Tell us, hast thou brought that item of our desiring?"`
 			choice
 				`	"No, I have not."`
 				`	"I was almost killed! I'm done doing your dirty work."`
@@ -952,7 +952,7 @@ mission "Successors: Trusted"
 				set "Successors: sioeora"
 			branch "sioeora opposed"
 				has "successors kaatrij patron"
-			`	"Our mutual patrons remain their usual selves, with all that this entails. Would'st though believe that Riijaaora themself informed me of thine invitation here? They've made themself a leader 'mong the others for their fruitful advocacy of thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee here today, for thou'rt by now a successful investment on their part."`
+			`	"Our mutual patrons remain their usual selves, with all that this entails. Would'st thou believe that Riijaaora themself informed me of thine invitation here? They've made themself a leader 'mong the others for their fruitful advocacy of thee... ah, but I digress. Let it suffice to say that Sioeora doubtless shall support thee here today, for thou'rt by now a successful investment on their part."`
 				goto "sioeora choice"
 			label "sioeora opposed"
 			`	"Ah, do they approve o'thy presence here and that?" Sieasej briefly examines a suckered arm before leaning in a little closer. "'Tis true the scions of my honored House remain towards thee a little chilly; and doubly so for thy finding of another patron which, I confess, may be what irks them most. Thou nonetheless remaineth a person of interest to them, and I suspect they'd be quite pleased to know that I'd encountered thee in council. So, let them brood, I say, for if Sioeora requires thee once more, they shan't be so knavish so's not to make thine acquaintance 'gain, methinks."`
