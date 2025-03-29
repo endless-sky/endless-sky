@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ClickZone.h"
 #include "InfoPanelState.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "Point.h"
 
 #include <set>

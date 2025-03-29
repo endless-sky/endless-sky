@@ -17,9 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Point.h"
 
-class Sprite;
-
 #include <cstdint>
+
+class Sprite;
 
 
 

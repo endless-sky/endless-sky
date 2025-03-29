@@ -1,4 +1,4 @@
-/* layout.hpp
+/* Layout.h
 Copyright (c) 2020 by OOTA, Masato
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -15,8 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "alignment.hpp"
-#include "truncate.hpp"
+#include "Alignment.h"
+#include "Truncate.h"
 
 
 

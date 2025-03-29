@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "Files.h"
 #include "Logger.h"
+#include "Set.h"
 
 #include <algorithm>
 #include <map>

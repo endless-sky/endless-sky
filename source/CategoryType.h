@@ -1,5 +1,5 @@
-/* truncate.hpp
-Copyright (c) 2020 by OOTA, Masato
+/* CategoryType.h
+Copyright (c) 2021 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,10 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-// Ways in which text may be truncated in the UI.
-enum class Truncate : int {
-	NONE,
-	FRONT,
-	MIDDLE,
-	BACK,
+enum class CategoryType : int {
+	SHIP,
+	BAY,
+	OUTFIT,
+	SERIES
 };

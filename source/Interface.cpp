@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "shader/LineShader.h"
 #include "shader/OutlineShader.h"
 #include "Panel.h"

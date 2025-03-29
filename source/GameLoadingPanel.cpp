@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "audio/Audio.h"
+#include "Color.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "GameData.h"
