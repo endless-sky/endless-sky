@@ -280,10 +280,10 @@ void UI::PlaySound(UISound sound)
 			name = "ui/click";
 			break;
 		case UISound::SOFT:
-			name = "ui/click_soft";
+			name = "ui/click soft";
 			break;
 		case UISound::SOFT_BUZZ:
-			name = "ui/buzz_soft";
+			name = "ui/buzz soft";
 			break;
 		case UISound::TARGET:
 			name = "ui/target";
