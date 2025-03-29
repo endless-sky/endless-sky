@@ -2066,12 +2066,35 @@ mission "Wanderers Hai Assistance Fleet"
 	invisible
 	to offer
 		has "Wanderers Hai Assistance 1: done"
+	on offer
+		event "hai blockade"
 	npc kill
 		government "Hai"
 		personality heroic staying uninterested frugal
 		system "Wah Ki"
 		fleet "Large Hai" 6
 
+# Unfettered raids no longer happen beyond Wah Ki.
+event "hai blockade"
+	system "Bore Fah"
+		remove raid
+	system "Bote Asu"
+		remove raid
+	system "Imo Dep"
+		remove raid
+	system "Zuba Zub"
+		remove raid
+
+# Compatibility mission for players who finished "Wanderers Hai Assistance Fleet" prior to 0.10.13.
+mission "Wanderers Hai Assistance Fleet patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Hai Assistance Fleet: offered"
+		not "event: hai blockade"
+	on offer
+		event "hai blockade"
+		fail
 
 
 mission "Wanderers Hai Assistance 3"
