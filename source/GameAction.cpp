@@ -42,8 +42,9 @@ namespace {
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-			if(!player.HasMapped(mapSize))
-				player.Map(mapSize);
+			bool mapMinables = outfit->Get("map minables");
+			if(!player.HasMapped(mapSize, mapMinables))
+				player.Map(mapSize, mapMinables);
 			Messages::Add("You received a map of nearby systems.", Messages::Importance::High);
 			return;
 		}

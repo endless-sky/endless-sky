@@ -1011,7 +1011,7 @@ void MissionPanel::Accept(bool force)
 		bool stillLooking = true;
 
 		// Updates availableIt if matching system found, returns true if planet also matches.
-		auto SelectNext = [this, planet, system, &stillLooking](list<Mission>::const_iterator &it) -> bool
+		auto SelectNext = [this, planet, system, &stillLooking](const list<Mission>::const_iterator &it) -> bool
 		{
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{
