@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "StellarObject.h"
+#include "Swizzle.h"
 #include "System.h"
 #include "Visual.h"
 #include "Wormhole.h"
@@ -279,7 +280,7 @@ void Ship::Load(const DataNode &node)
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
-			customSwizzle = child.Value(1);
+			customSwizzleName = child.Token(1);
 		else if(key == "uuid" && child.Size() >= 2)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
@@ -635,8 +636,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
-		if(customSwizzle == -1)
-			customSwizzle = base->CustomSwizzle();
+		if(customSwizzleName.empty())
+			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty() && !removeBays)
@@ -910,6 +911,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
+
+	if(!customSwizzleName.empty())
+	{
+		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
+		if(!customSwizzle->IsLoaded())
+			Logger::LogError("Warning: ship \"" + Name() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".");
+	}
 }
 
 
@@ -947,8 +955,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle >= 0)
-			out.Write("swizzle", customSwizzle);
+		if(customSwizzle && customSwizzle->IsLoaded())
+			out.Write("swizzle", customSwizzle->Name());
 
 		out.Write("uuid", uuid.ToString());
 
@@ -1417,14 +1425,14 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
 	if(government && isDeparting)
 	{
-		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
+		auto swizzle = customSwizzle ? customSwizzle : government->GetSwizzle();
 		SetSwizzle(swizzle);
 
 		// Set swizzle for any carried ships too.
 		for(const auto &bay : bays)
 		{
 			if(bay.ship)
-				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
+				bay.ship->SetSwizzle(bay.ship->customSwizzle ? bay.ship->customSwizzle : swizzle);
 		}
 	}
 }
@@ -1459,7 +1467,7 @@ void Ship::SetPlanet(const Planet *planet)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+		SetSwizzle(customSwizzle ? customSwizzle : government->GetSwizzle());
 	this->government = government;
 }
 
@@ -2451,9 +2459,16 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 
 // Get this ship's custom swizzle.
-int Ship::CustomSwizzle() const
+const Swizzle *Ship::CustomSwizzle() const
 {
 	return customSwizzle;
+}
+
+
+
+const string &Ship::CustomSwizzleName() const
+{
+	return customSwizzleName;
 }
 
 

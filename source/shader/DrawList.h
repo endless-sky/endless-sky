@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Body;
 class Sprite;
+class Swizzle;
 
 
 
@@ -45,7 +46,7 @@ public:
 	// Add an object that should not be drawn with motion blur.
 	bool AddUnblurred(const Body &body);
 	// Add an object using a specific swizzle (rather than its own).
-	bool AddSwizzled(const Body &body, int swizzle, double cloak = 0.);
+	bool AddSwizzled(const Body &body, const Swizzle *swizzle, double cloak = 0.);
 
 	// Draw all the items in this list.
 	void Draw() const;
@@ -55,7 +56,7 @@ private:
 	// Determine if the given object should be drawn at all.
 	bool Cull(const Body &body, const Point &position, const Point &blur) const;
 
-	void Push(const Body &body, Point pos, Point blur, double cloak, int swizzle);
+	void Push(const Body &body, Point pos, Point blur, double cloak, const Swizzle *swizzle);
 
 
 private:
