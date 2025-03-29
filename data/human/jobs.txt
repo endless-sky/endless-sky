@@ -24,10 +24,10 @@ mission "Escort (Tiny, Northern, Dangerous Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 2 4
 	npc
@@ -89,10 +89,10 @@ mission "Escort (Tiny, Northern, Dangerous Origin)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 2 4
 	npc
@@ -151,10 +151,10 @@ mission "Escort (Small, Northern, Dangerous Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -199,10 +199,10 @@ mission "Escort (Small, Northern, Dangerous Origin)"
 		random < 40
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -248,10 +248,10 @@ mission "Escort (Medium, Northern, Dangerous Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -302,10 +302,10 @@ mission "Escort (Medium, Northern, Dangerous Origin)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -356,10 +356,10 @@ mission "Escort (Large, Northern, Dangerous Destination)"
 		random < 30
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -401,10 +401,10 @@ mission "Escort (Large, Northern, Dangerous Origin)"
 		random < 30
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -447,10 +447,10 @@ mission "Escort (Extra Large, Northern, Dangerous Destination)"
 		random < 15
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 		distance 3 4
 	npc
@@ -494,10 +494,10 @@ mission "Escort (Extra Large, Northern, Dangerous Origin)"
 		random < 15
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "north"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "deep" "paradise" "near earth" "core"
 		distance 3 4
 	npc
@@ -550,10 +550,10 @@ mission "Escort (Tiny, Core, Dangerous Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 2 4
 	npc
@@ -615,10 +615,10 @@ mission "Escort (Tiny, Core, Dangerous Origin)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 2 5
 	npc
@@ -677,10 +677,10 @@ mission "Escort (Small, Core, Dangerous Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -725,10 +725,10 @@ mission "Escort (Small, Core, Dangerous Origin)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -774,10 +774,10 @@ mission "Escort (Medium, Core, Dangerous Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -822,10 +822,10 @@ mission "Escort (Medium, Core, Dangerous Origin)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -878,10 +878,10 @@ mission "Escort (Large, Core, Dangerous Destination)"
 		random < 50
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -923,10 +923,10 @@ mission "Escort (Large, Core, Dangerous Origin)"
 		random < 50
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -969,10 +969,10 @@ mission "Escort (Extra Large, Core, Dangerous Destination)"
 		random < 20
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier" "dirt belt"
 		distance 3 4
 	npc
@@ -1016,10 +1016,10 @@ mission "Escort (Extra Large, Core, Dangerous Origin)"
 		random < 20
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "core" "north" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise" "near earth"
 		distance 3 5
 	npc
@@ -1073,10 +1073,10 @@ mission "Escort (Tiny, Southern, Dangerous Origin or Destination)"
 			"combat rating" > 0
 			has "ships: Interceptor"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 2 4
 	npc
@@ -1134,10 +1134,10 @@ mission "Escort (Small, Southern, Dangerous Origin or Destination)"
 		random < 70
 		"combat rating" > 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1175,10 +1175,10 @@ mission "Escort (Medium, Southern, Dangerous Origin or Destination)"
 		random < 40
 		"combat rating" > 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1216,10 +1216,10 @@ mission "Escort (Large, Southern, Dangerous Origin or Destination)"
 		random < 50
 		"combat rating" > 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1255,10 +1255,10 @@ mission "Escort (Extra Large, Southern, Dangerous Origin or Destination)"
 		random < 20
 		"combat rating" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "south" "rim" "dirt belt"
 		distance 3 4
 	npc
@@ -1479,10 +1479,10 @@ mission "Cargo [0]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 5 2 .1
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1498,10 +1498,10 @@ mission "Cargo [1]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1518,10 +1518,10 @@ mission "Cargo [2]"
 		random < 80
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1538,10 +1538,10 @@ mission "Cargo [3]"
 		random < 70
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 3 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1559,10 +1559,10 @@ mission "Cargo [4]"
 		random < 60
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1577,10 +1577,10 @@ mission "Cargo [5]"
 	description "Deliver <cargo> to <destination>. Payment is <payment>."
 	cargo random 5 2 .1
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 3
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1596,10 +1596,10 @@ mission "Bulk Delivery [0]"
 	to offer
 		random < 70
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1615,10 +1615,10 @@ mission "Bulk Delivery [1]"
 	to offer
 		random < 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1636,10 +1636,10 @@ mission "Bulk Delivery [2]"
 		random < 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1656,10 +1656,10 @@ mission "Bulk Delivery [3]"
 	to offer
 		random < 70
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 3
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1676,10 +1676,10 @@ mission "Rush Delivery [0]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1697,10 +1697,10 @@ mission "Rush Delivery [1]"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1719,10 +1719,10 @@ mission "Rush Delivery [2]"
 		random < 70
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1741,10 +1741,10 @@ mission "Rush Delivery [3]"
 		random < 60
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1762,10 +1762,10 @@ mission "Rush Delivery [4]"
 	to offer
 		random < 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 3
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -1782,10 +1782,10 @@ mission "Passengers [0]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1802,10 +1802,10 @@ mission "Passengers [1]"
 	to offer
 		random < 75
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1821,10 +1821,10 @@ mission "Passengers [2]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1840,10 +1840,10 @@ mission "Passengers [3]"
 	to offer
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1860,10 +1860,10 @@ mission "Passengers [4]"
 		random < 50
 	source
 		attributes "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1878,10 +1878,10 @@ mission "Passengers [5]"
 	description "Bring <fare> to <destination>. Payment is <payment>."
 	passengers 1 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 1 3
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1897,11 +1897,11 @@ mission "Transport miners to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "mining"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1917,11 +1917,11 @@ mission "Transport farmers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "farming"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1937,11 +1937,11 @@ mission "Transport mill workers to <planet>"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "textiles"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1957,11 +1957,11 @@ mission "Transport workers to <planet>"
 	to offer
 		random < 80
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "factory"
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1978,11 +1978,11 @@ mission "Tourists out [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -1999,11 +1999,11 @@ mission "Tourists out [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2023,11 +2023,11 @@ mission "Wealthy tourists out"
 		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "rich" "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2047,11 +2047,11 @@ mission "Wealthy tourist group out [0]"
 		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "rich" "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2071,11 +2071,11 @@ mission "Wealthy tourist group out [1]"
 		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "rich" "urban"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "tourism"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2091,11 +2091,11 @@ mission "Tourists back [0]"
 	to offer
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "tourism"
 	destination
 		distance 6 35
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2112,11 +2112,11 @@ mission "Tourists back [1]"
 	to offer
 		random < 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "tourism"
 	destination
 		distance 2 25
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2136,11 +2136,11 @@ mission "Wealthy tourists back"
 		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "rich" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2160,11 +2160,11 @@ mission "Wealthy tourist group back [0]"
 		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "rich" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2184,11 +2184,11 @@ mission "Wealthy tourist group back [1]"
 		has "outfit (installed): Luxury Accommodations"
 	source
 		attributes "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "rich" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2205,10 +2205,10 @@ mission "Family [0]"
 		random < 60
 		"passenger space" >= 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2226,10 +2226,10 @@ mission "Family [1]"
 		random < 50
 		"passenger space" >= 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 5 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2247,10 +2247,10 @@ mission "Family [2]"
 		random < 40
 		"passenger space" >= 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 6 24
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2268,10 +2268,10 @@ mission "Family [3]"
 		random < 30
 		"passenger space" >= 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 8 32
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2289,11 +2289,11 @@ mission "Strike Breakers [mining]"
 		random < 10
 		"passenger space" > 15
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "mining"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2311,11 +2311,11 @@ mission "Strike Breakers [large mining]"
 		random < "passenger space" - 45
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "mining"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2332,11 +2332,11 @@ mission "Strike Breakers [textile]"
 		random < 10
 		"passenger space" > 15
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "textiles"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2354,11 +2354,11 @@ mission "Strike Breakers [large textile]"
 		random < "passenger space" - 45
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "textiles"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2375,11 +2375,11 @@ mission "Strike Breakers [factory]"
 		random < 10
 		"passenger space" > 15
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "factory"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2397,11 +2397,11 @@ mission "Strike Breakers [large factory]"
 		random < "passenger space" - 45
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "factory"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2418,12 +2418,12 @@ mission "Colonists [0]"
 		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		not attributes "station" "urban"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2440,12 +2440,12 @@ mission "Colonists [1]"
 		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		not attributes "station" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2462,12 +2462,12 @@ mission "Colonists [2]"
 		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		not attributes "station" "urban"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2484,12 +2484,12 @@ mission "Colonists [3]"
 		random < ( "passenger space" - 20 ) / 2
 	source
 		attributes "urban" "near earth" "core" "factory"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "frontier" "dirt belt" "south" "farming" "mining" "rim" "forest"
 		not attributes "station" "urban"
 		distance 4 30
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2508,12 +2508,12 @@ mission "Stranded Field Trip"
 		random < 10
 	source
 		attributes "near earth" "deep" "paradise" "tourism"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		attributes "near earth" "deep" "paradise" "urban"
 		not attributes "station" "urban"
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -2527,10 +2527,10 @@ mission "Prisoners [0]"
 	description "Bring <bunks> petty criminals to <destination>, where they will serve their sentences as mine laborers. They must be held in suitable facilities made for the transfer of criminals. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "mining"
 		attributes "north" "south" "rim" "frontier" "core"
 	to offer
@@ -2554,10 +2554,10 @@ mission "Prisoners [1]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 		attributes "north" "south" "rim" "frontier" "core"
 	on visit
@@ -2577,10 +2577,10 @@ mission "Prisoners [2]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -2599,10 +2599,10 @@ mission "Prisoners [3]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -2622,10 +2622,10 @@ mission "Prisoners [4]"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -2646,12 +2646,12 @@ mission "Released Prisoners [0]"
 	description "Transport <bunks> prisoners home after completing their sentences of hard labor. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "mining" "factory"
 		attributes "north" "south" "rim" "frontier" "core"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
 	on visit
@@ -2667,11 +2667,11 @@ mission "Released Prisoners [1]"
 	description "Transport <bunks> prisoners home after completing their sentences as domestic servants. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "paradise"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
 	on visit
@@ -2687,11 +2687,11 @@ mission "Released Prisoners [2]"
 	description "Transport <bunks> prisoners home after completing their sentences in a penal colony. Payment is <payment>."
 	passengers 2 10 .9
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "frontier" "moon" "military"
 	destination
 		distance 2 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 15
 	on visit
@@ -2710,10 +2710,10 @@ mission "Large Bulk Delivery [0]"
 		random < 70
 		"cargo space" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 2 8
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2731,10 +2731,10 @@ mission "Large Bulk Delivery [1]"
 		random < 60
 		"cargo space" > 100
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 3 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2753,10 +2753,10 @@ mission "Large Bulk Delivery [2]"
 		"cargo space" > 100
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2775,10 +2775,10 @@ mission "Large Rush Delivery [0]"
 		random < 90
 		"cargo space" >= 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 4 10
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2797,10 +2797,10 @@ mission "Large Rush Delivery [1]"
 		random < 80
 		"cargo space" >= 50
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 5 12
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2820,10 +2820,10 @@ mission "Large Rush Delivery [2]"
 		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 6 14
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2843,10 +2843,10 @@ mission "Large Rush Delivery [3]"
 		"cargo space" >= 50
 	source
 		attributes "mining" "textiles" "factory" "farming" "fishing" "oil"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic cargo on visit"
 	on complete
@@ -2945,7 +2945,7 @@ mission "Bounty Hunting (Very Tiny)"
 		"combat rating" < 80
 		random < 40
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -2990,7 +2990,7 @@ mission "Bounty Hunting (Very Tiny, Local)"
 		"combat rating" < 80
 		random < 15
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3039,7 +3039,7 @@ mission "Bounty Hunting (Tiny)"
 		"combat rating" < 200
 		random < 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3092,7 +3092,7 @@ mission "Bounty Hunting (Tiny, Local)"
 		"combat rating" < 200
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3143,7 +3143,7 @@ mission "Bounty Hunting (Very Small)"
 		"combat rating" < 350
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3194,7 +3194,7 @@ mission "Bounty Hunting (Very Small, Local)"
 		"combat rating" < 350
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3240,7 +3240,7 @@ mission "Bounty Hunting (Small)"
 		"combat rating" < 500
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3284,7 +3284,7 @@ mission "Bounty Hunting (Small, Local)"
 		"combat rating" < 500
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3326,7 +3326,7 @@ mission "Bounty Hunting (Medium)"
 		"combat rating" < 1200
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3364,7 +3364,7 @@ mission "Bounty Hunting (Medium, Local)"
 		"combat rating" < 1200
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3400,7 +3400,7 @@ mission "Bounty Hunting (Big)"
 		"combat rating" < 2500
 		random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3442,7 +3442,7 @@ mission "Bounty Hunting (Big, Local)"
 		"combat rating" < 2500
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3485,7 +3485,7 @@ mission "Bounty Hunting (Small, Hidden)"
 				"combat rating" < 500
 				random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
@@ -3532,7 +3532,7 @@ mission "Bounty Hunting (Medium, Hidden)"
 				"combat rating" < 1200
 				random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
@@ -3573,7 +3573,7 @@ mission "Bounty Hunting (Big, Hidden)"
 				"combat rating" < 2500
 				random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty (Disguised)"
@@ -3616,10 +3616,10 @@ mission "Bounty Hunting (Small, Boarding, Entering)"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
@@ -3655,10 +3655,10 @@ mission "Bounty Hunting (Medium, Boarding, Entering)"
 	to accept
 		has "outfit (installed): Brig"
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	destination
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 		distance 2 6
 	npc board
@@ -3699,7 +3699,7 @@ mission "Bounty Hunting (Solo Marauder I)"
 		"combat rating" < 500
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3728,7 +3728,7 @@ mission "Bounty Hunting (Solo Marauder II)"
 		"combat rating" < 500
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3753,7 +3753,7 @@ mission "Bounty Hunting (Solo Marauder III)"
 		"combat rating" < 1200
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3778,7 +3778,7 @@ mission "Bounty Hunting (Solo Marauder IV)"
 		"combat rating" < 2500
 		random < 5
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3806,7 +3806,7 @@ mission "Bounty Hunting (Marauder I)"
 				"combat rating" < 1200
 				random < 35
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3834,7 +3834,7 @@ mission "Bounty Hunting (Marauder II)"
 				"combat rating" < 1800
 				random < 45
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3862,7 +3862,7 @@ mission "Bounty Hunting (Marauder III)"
 				"combat rating" < 2200
 				random < 45
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3890,7 +3890,7 @@ mission "Bounty Hunting (Marauder IV)"
 				"combat rating" < 2700
 				random < 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3918,7 +3918,7 @@ mission "Bounty Hunting (Marauder V)"
 				"combat rating" < 3500
 				random < 25
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3947,7 +3947,7 @@ mission "Bounty Hunting (Marauder VI)"
 				"combat rating" < 5000
 				random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3971,7 +3971,7 @@ mission "Bounty Hunting (Marauder VII)"
 		"combat rating" > 2500
 		random < 20
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -3995,7 +3995,7 @@ mission "Bounty Hunting (Marauder VIII)"
 		"combat rating" > 2800
 		random < 15
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4019,7 +4019,7 @@ mission "Bounty Hunting (Marauder IX)"
 		"combat rating" > 3100
 		random < 10
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	npc kill
 		government "Bounty"
@@ -4040,7 +4040,7 @@ mission "Bounty Hunting (Marauder X)"
 	deadline 14
 	"apparent payment" 1000000
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "rim" "south" "north" "dirt belt" "core" "frontier"
 	to offer
 		"combat rating" > 8103
@@ -4065,9 +4065,9 @@ mission "Republic Navy Advisory System [frozen]"
 	repeat
 	deadline
 	source
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 	destination
-		government "Republic" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Syndicate" "Independent" "Neutral"
 		distance 1 8
 		attributes "frozen"
 	substitutions
@@ -4094,9 +4094,9 @@ mission "Republic Navy Advisory System [volcanic]"
 	repeat
 	deadline
 	source
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 	destination
-		government "Republic" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Syndicate" "Independent" "Neutral"
 		distance 1 8
 		attributes "volcanic" "lava"
 	substitutions
@@ -4121,9 +4121,9 @@ mission "Republic Navy Advisory System [wildfire cargo]"
 	repeat
 	deadline
 	source
-		government "Republic"
+		government "Republic" "Deep"
 	destination
-		government "Republic" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Syndicate" "Independent" "Neutral"
 		distance 1 8
 		attributes "forest"
 	substitutions
@@ -4148,9 +4148,9 @@ mission "Republic Navy Advisory System [wildfire firefighters]"
 	repeat
 	deadline
 	source
-		government "Republic" "Syndicate"
+		government "Republic" "Deep" "Syndicate"
 	destination
-		government "Republic" "Syndicate" "Independent" "Neutral"
+		government "Republic" "Deep" "Syndicate" "Independent" "Neutral"
 		distance 1 8
 		attributes "forest"
 	substitutions
@@ -4183,7 +4183,7 @@ mission "Mineral Shortages (Silicon)"
 	to accept
 		"cargo space" >= 120
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4207,7 +4207,7 @@ mission "Mineral Shortages (Lead)"
 	to accept
 		"cargo space" >= 120
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4231,7 +4231,7 @@ mission "Mineral Shortages (Iron)"
 	to accept
 		"cargo space" >= 120
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4255,7 +4255,7 @@ mission "Mineral Shortages (Aluminum)"
 	to accept
 		"cargo space" >= 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4279,7 +4279,7 @@ mission "Mineral Shortages (Titanium)"
 	to accept
 		"cargo space" >= 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4303,7 +4303,7 @@ mission "Mineral Shortages (Copper)"
 	to accept
 		"cargo space" >= 90
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4327,7 +4327,7 @@ mission "Mineral Shortages (Neodymium)"
 	to accept
 		"cargo space" >= 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4351,7 +4351,7 @@ mission "Mineral Shortages (Tungsten)"
 	to accept
 		"cargo space" >= 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4375,7 +4375,7 @@ mission "Mineral Shortages (Uranium)"
 	to accept
 		"cargo space" >= 60
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4399,7 +4399,7 @@ mission "Mineral Shortages (Silver)"
 	to accept
 		"cargo space" >= 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4423,7 +4423,7 @@ mission "Mineral Shortages (Gold)"
 	to accept
 		"cargo space" >= 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"
@@ -4447,7 +4447,7 @@ mission "Mineral Shortages (Platinum)"
 	to accept
 		"cargo space" >= 30
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "factory"
 	on visit
 		dialog phrase "generic mineral on visit"

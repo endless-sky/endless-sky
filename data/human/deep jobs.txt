@@ -82,10 +82,10 @@ mission "Mystery Cube Delivery Job Safe [0]"
 	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
@@ -106,10 +106,10 @@ mission "Mystery Cube Delivery Job Safe [1]"
 	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 9 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
@@ -129,10 +129,10 @@ mission "Mystery Cube Delivery Job [0]"
 	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 7 16
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
@@ -161,10 +161,10 @@ mission "Mystery Cube Delivery Job [1]"
 	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 9 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
@@ -193,10 +193,10 @@ mission "Mystery Cube Delivery Job [2]"
 	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 9 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
@@ -225,10 +225,10 @@ mission "Mystery Cube Delivery Job [3]"
 	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 9 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		not attributes "station"
 	cargo "mystery package" 1
 	to offer
@@ -257,10 +257,10 @@ mission "Mystery Cube Delivery Job Station"
 	name "Mystery delivery to <planet>"
 	description "Deliver a package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 9 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		attributes "station"
 	cargo "mystery package" 1
 	to offer
@@ -289,10 +289,10 @@ mission "Mystery Cube Retrieval Job"
 	name "Mystery retrieval from <planet stopovers>"
 	description "Retrieve a package from <stopovers>, then return to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	stopover
 		distance 9 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Hai" "Quarg"
 		attributes "spaceport"
 		not attributes "station"
 	cargo "mystery package" 1
@@ -321,7 +321,7 @@ mission "Transport scientists"
 	repeat
 	description "A team of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	stopover
 		attributes "research"
 		not attributes "uninhabited"
@@ -344,7 +344,7 @@ mission "Transport science department"
 	repeat
 	description "A department of <bunks> scientists needs some research notes analyzed at the facility on <stopovers>. Take the scientists there and then return them to <planet> for <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	stopover
 		attributes "research"
 		not attributes "uninhabited"
@@ -417,7 +417,7 @@ mission "Record academic conference"
 	repeat
 	description "Record an academic conference on <destination> for professors who cannot attend. Credentials and recording equipment will be provided. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		attributes "research" "quarg" "rich" "paradise"
 		distance 4 10
@@ -476,11 +476,11 @@ mission "Secure Transport Job (Secret) [0]"
 	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "secure package" 1
@@ -509,11 +509,11 @@ mission "Secure Transport Job (Secret) [1]"
 	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "secure package" 1
@@ -542,11 +542,11 @@ mission "Secure Transport Job (Secret) [2]"
 	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "secure package" 1
@@ -575,11 +575,11 @@ mission "Secure Transport Job (Secret) [3]"
 	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "secure package" 1
@@ -608,11 +608,11 @@ mission "Secure Transport Job (Secret) [4]"
 	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "secure package" 1
@@ -640,7 +640,7 @@ mission "Deep Security Package Reveal"
 	minor
 	invisible
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	to offer
 		"reputation: Deep Security" >= 40
@@ -711,11 +711,11 @@ mission "Secure Transport Job (Basic) [0]"
 	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "secure package" 1
@@ -744,11 +744,11 @@ mission "Secure Transport Job (Basic) [1]"
 	name "Secure delivery to <planet>"
 	description "Deliver a secure package of supplies to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "secure package" 1
@@ -783,11 +783,11 @@ mission "Secure Transport Job (Deep Security) [0]"
 		"reputation: Deep Security" >= 40
 		"secure deep package" >= 20
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	on accept
@@ -810,11 +810,11 @@ mission "Secure Transport Job (Deep Security) [1]"
 	name "Deep Security delivery to <planet>"
 	description "Deliver a Deep Security package to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	cargo "deep security package" 1
@@ -843,7 +843,7 @@ mission "Deep Consultants"
 	name "Transport consultants to <planet>"
 	description "Julie and her assistant missed their transport and need to reach <destination> by <date> in order to make several important business meetings."
 	source
-		attributes "deep"
+		government "Deep"
 		attributes "urban"
 		not attributes "station" "moon"
 		not planet "Valhalla"
@@ -935,11 +935,11 @@ mission "Transport Consultants (Deep Security) [0]"
 	name "Transport Deep Security consultants"
 	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		attributes "urban"
 		not attributes "station"
 	passengers 1 8
@@ -968,11 +968,11 @@ mission "Transport Consultants (Deep Security) [1]"
 	name "Transport Deep Security consultants"
 	description "Transport <fare> whose schedules have been ruined by Deep Security to <destination>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination
 		distance 2 7
-		attributes "deep"
+		government "Deep"
 		attributes "urban"
 		not attributes "station"
 	passengers 1 8
@@ -1002,10 +1002,10 @@ mission "Urgent Deep Sec Package"
 	name "Rush Deep Security Delivery"
 	description "Deliver a Deep Security package to <destination> by <date>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 6 7
-		attributes "deep"
+		government "Deep"
 		not planet "Valhalla"
 		not attributes "station"
 	deadline 1 1
@@ -1035,10 +1035,10 @@ mission "Urgent Deep Sec Consultants [0]"
 	name "Rush Deep Security Consultants"
 	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
 	source
-		attributes "deep"
+		government "Deep"
 	destination
 		distance 6 7
-		attributes "deep"
+		government "Deep"
 		attributes "urban"
 		not attributes "station"
 	deadline 1 1
@@ -1069,7 +1069,7 @@ mission "Urgent Deep Sec Consultants [1]"
 	description "Deliver <bunks> Deep Security consultants to <destination> by <date>. Payment is <payment>."
 	source
 		near "Epsilon Leonis" 3 4
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination "Valhalla"
 	deadline 1 1

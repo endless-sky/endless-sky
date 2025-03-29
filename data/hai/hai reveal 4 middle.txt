@@ -20,7 +20,7 @@ mission "Hai Reveal [A00] Darkwaste Timer"
 	landing
 	invisible
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
 		not attributes "uninhabited"
 		not planet Darkwaste
 	destination Darkwaste
@@ -40,7 +40,7 @@ mission "Hai Reveal [A01] Visit Darkwaste"
 	name "Meet Teeneep"
 	description "Fly to <destination> to meet a Hai associated with the investigation you've been doing."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent" "Hai"
 		not attributes "uninhabited"
 		not planet "Darkwaste"
 	destination Darkwaste
@@ -231,7 +231,7 @@ mission "Hai Reveal [A03a1]"
 	name "Lead from Alondo"
 	description "Meet Alondo on <planet> to get the lead for your investigation, but only when you have no other business to attend to."
 	source
-		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
+		government "Republic" "Deep" "Syndicate" "Hai" "Free Worlds" "Independent"
 		attributes "spaceport"
 	destination "Hai-home"
 	to offer
@@ -246,7 +246,7 @@ mission "Hai Reveal [A03a1]"
 mission "Hai Reveal [A03a2]"
 	invisible
 	source
-		government "Republic" "Syndicate" "Hai" "Free Worlds" "Independent"
+		government "Republic" "Deep" "Syndicate" "Hai" "Free Worlds" "Independent"
 		attributes "spaceport"
 	to offer
 		has "Hai Reveal: Pirate Troubles [0]: done"

@@ -1883,7 +1883,7 @@ mission "Wanderers: Sestor Search: Human Spaceport"
 	landing
 	invisible
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 		attributes "north"
 	to offer
 		has "Wanderers: Sestor Search: active"

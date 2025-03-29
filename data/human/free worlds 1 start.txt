@@ -169,6 +169,7 @@ mission "FW Prisoner Parole"
 	
 	on offer
 		"reputation: Republic" = 1
+		"reputation: Deep" = 1
 		event "temporary ceasefire"
 		event "start of hostilities" 8
 		conversation
@@ -224,6 +225,7 @@ mission "FW Prisoner Parole 2"
 	
 	on complete
 		"reputation: Republic" <?= -1000
+		"reputation: Deep" <?= -1000
 		event "oathkeepers founded" 50
 		log "Returned some Navy prisoners of war, after they gave their parole and promised not to take part in any future battles against the Free Worlds."
 		conversation
