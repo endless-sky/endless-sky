@@ -2119,6 +2119,8 @@ mission "Remnant: Return the Samples 2"
 		conversation
 			`Back on Aventine, you share the recording of the void sprite's behavior with Plume. "These Sprites demonstrate considerably more communication than we originally thought. And obviously they must have communicated what you did on Nasqueron. Interesting..." Plume's excited staccato exclamations trail off as he begins to make notes on a data pad he has on hand. "Thank you for your help, we will let you know what we find out."`
 
+
+
 # Compatibility patch for those who completed Return the Samples 2 before 0.10.13, where it did not clear travel restrictions.
 mission "Remnant: Travel Restrictions Patch"
 	landing
