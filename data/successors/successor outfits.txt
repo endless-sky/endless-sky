@@ -545,8 +545,8 @@ outfit "Multimodal Armor: Light"
 	thumbnail "outfit/successor armor light"
 	licenses
 		"High Houses"
-	"hull protection" 0.08
-	"inertia reduction" 0.14
+	"hull protection" 0.10
+	"inertia reduction" 0.15
 	"multimodal armor" -1
 	"unplunderable" 1
 	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
