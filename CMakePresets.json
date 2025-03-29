@@ -305,10 +305,10 @@
 			"cacheVariables": {
 				"ES_CREATE_BUNDLE": "ON",
 				"CMAKE_CXX_COMPILER_LAUNCHER": "sccache",
-				"VCPKG_HOST_TRIPLET": "macos64-release",
+				"VCPKG_HOST_TRIPLET": "macos64-arm64-release",
 				"VCPKG_TARGET_TRIPLET": "macos-arm64-release",
 				"CMAKE_OSX_ARCHITECTURES": "arm64",
-				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.13"
+				"CMAKE_OSX_DEPLOYMENT_TARGET": "11"
 			}
 		},
 		{
