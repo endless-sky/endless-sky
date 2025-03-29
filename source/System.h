@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
+#include "Set.h"
 #include "StellarObject.h"
 #include "WeightedList.h"
 
@@ -33,8 +34,6 @@ class Hazard;
 class Minable;
 class Outfit;
 class Planet;
-template<class T>
-class Set;
 class Ship;
 class Sprite;
 

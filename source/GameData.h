@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CategoryType.h"
 #include "Sale.h"
+#include "Set.h"
 #include "Trade.h"
 
 #include <filesystem>
@@ -53,8 +54,6 @@ class Person;
 class Phrase;
 class Planet;
 class Politics;
-template<class T>
-class Set;
 class Ship;
 class Sprite;
 class StarField;

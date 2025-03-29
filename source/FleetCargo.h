@@ -15,14 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <set>
-#include <string>
-#include <vector>
+#include "Sale.h"
 
 class DataNode;
 class Outfit;
-template<class T>
-class Sale;
 class Ship;
 
 
