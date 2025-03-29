@@ -946,8 +946,8 @@ mission "Korath [F02]: A Fishy Proposition"
 
 			label departs
 			action
-				log `Agreed to help New Tortuga by delivering "planetary supplies" from a black market called "La'ab Bamen." The request came from a woman who calls herself Iris. That may be a code name; she seems to be an agent of some sort. She has a suspiciously in-depth level of knowledge of the large vessels that frequent New Tortuga, which identify themselves as Korath.`
-				log `Iris warned me not to assist Korath vessels, or it would anger "half the galaxy." New Tortuga and the Korath need me to retain my freedom of movement so I can act as a courier.`
+				log `Agreed to help New Tortuga by delivering "planetary supplies" from a black market called "La'ab Bamen." The request came from a woman who calls herself Iris. That may be a code name; she seems to be an agent of some sort. She has a suspiciously in-depth level of knowledge of the large vessels that frequent New Tortuga.`
+				log `Iris warned me not to assist those vessels, or it would anger "half the galaxy." New Tortuga needs me to retain my freedom of movement so I can act as a courier.`
 			`	She departs with her entourage, and some dock workers load the barrels onto your ship.`
 				accept
 	on complete
