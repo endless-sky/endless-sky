@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryTypes.h"
+#include "ConditionContext.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
+#include "Hail.h"
 #include "JumpTypes.h"
 #include "Logger.h"
 #include "image/Mask.h"
@@ -44,6 +46,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "System.h"
 #include "Visual.h"
+#include "WeightedList.h"
 #include "Wormhole.h"
 
 #include <algorithm>
@@ -1547,9 +1550,30 @@ void Ship::SetHailPhrase(const Phrase &phrase)
 
 
 
-string Ship::GetHail(map<string, string> &&subs) const
+
+string Ship::GetHail(map<string, string> &&subs, const ConditionsStore &vars) const
 {
-	string hailStr = hail ? hail->Get() : government ? government->GetHail(isDisabled) : "";
+	string hailStr;
+	if(hail)
+	{
+		hailStr = hail->Get(&vars, ConditionContextHailing(*this));
+	}
+	else
+	{
+		WeightedList<const Hail *> matchingHails;
+		for(const auto &hail : GameData::Hails())
+		{
+			if(hail.second.getWeight() == 0) // Can't have 0-weight element in WeightedSet
+				continue;
+			if(hail.second.Matches(vars, *this))
+			{
+				matchingHails.emplace_back(hail.second.getWeight(), &hail.second);
+			}
+
+		}
+		if(!matchingHails.empty())
+			hailStr = matchingHails.Get()->Message(vars, *this);
+	}
 
 	if(hailStr.empty())
 		return hailStr;

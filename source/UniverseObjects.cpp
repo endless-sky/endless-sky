@@ -15,10 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "UniverseObjects.h"
 
+#include "ConditionSet.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Files.h"
 #include "Information.h"
+#include "LocationFilter.h"
 #include "Logger.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
@@ -85,6 +87,9 @@ void UniverseObjects::FinishLoading()
 {
 	for(auto &&it : planets)
 		it.second.FinishLoading(wormholes);
+
+	// Convert phrase-based hailing to the newer dedicated hail structure
+	MigrateHails();
 
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -346,6 +351,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && node.Size() >= 2)
 			governments.Get(node.Token(1))->Load(node);
+		else if(key == "hail" && node.Size() >= 2)
+			hails.Get(node.Token(1))->Load(node);
 		else if(key == "hazard" && node.Size() >= 2)
 			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && node.Size() >= 2)
@@ -500,4 +507,76 @@ void UniverseObjects::DrawMenuBackground(Panel *panel) const
 {
 	lock_guard<mutex> lock(menuBackgroundMutex);
 	menuBackgroundCache.Draw(Information(), panel);
+}
+
+
+void UniverseObjects::MigrateHails() {
+	// Do this at the end so the weight can be set correctly
+
+	// phrase key, (government key, is disabled, is hostile)
+	std::map<string, std::vector<std::tuple<string, bool, bool>>> phrasesHailFromGovernments;
+	for(auto government : governments)
+	{
+		std::tuple<string &, std::tuple<string, bool, bool>> hailStrings[4] = {
+			{government.second.friendlyHail, {government.second.GetTrueName(), false, false}},
+			{government.second.friendlyDisabledHail, {government.second.GetTrueName(), true, false}},
+			{government.second.hostileHail, {government.second.GetTrueName(), false, true}},
+			{government.second.hostileDisabledHail, {government.second.GetTrueName(), true, true}}
+		};
+
+		for(auto hailString : hailStrings)
+		{
+			if(std::get<0>(hailString) == "")
+				continue;
+			if(!phrasesHailFromGovernments.contains(std::get<0>(hailString)))
+				phrasesHailFromGovernments[std::get<0>(hailString)] = std::vector<std::tuple<string, bool, bool>>();
+			phrasesHailFromGovernments[std::get<0>(hailString)].push_back(std::get<1>(hailString));
+		}
+	}
+
+	for(auto singlePhraseForHail : phrasesHailFromGovernments)
+	{
+		Hail *newHail = hails.Get(singlePhraseForHail.first + " auto-migrated");
+
+		Phrase *sourcePhrase = phrases.Get(singlePhraseForHail.first);
+		newHail->messages = *sourcePhrase;
+		newHail->weight = sourcePhrase->GetNumberOfSentence() * 10;
+		newHail->toHail = ConditionSet();
+		newHail->toHail.expressionOperator = ConditionSet::ExpressionOp::OR;
+
+
+		// There will always be at least element looped on
+		for(auto specificHailInfo : singlePhraseForHail.second)
+		{
+			LocationFilter *filter = new LocationFilter();
+
+			filter->governments.insert(governments.Get(std::get<0>(specificHailInfo)));
+
+			if(std::get<1>(specificHailInfo))
+				filter->checkDisabled = true;
+			else
+			{
+				LocationFilter notFilterDisabled = LocationFilter();
+				notFilterDisabled.checkDisabled = true;
+				notFilterDisabled.isEmpty = false;
+				filter->notFilters.push_back(notFilterDisabled);
+			}
+
+
+			if(std::get<2>(specificHailInfo))
+				newHail->filterHailingShip.checkHostile = true;
+			else
+			{
+				LocationFilter notFilterEnemy = LocationFilter();
+				notFilterEnemy.checkHostile = true;
+				notFilterEnemy.isEmpty = false;
+				filter->notFilters.push_back(notFilterEnemy);
+			}
+
+			filter->isEmpty = false;
+
+			ConditionSet condSetForThisEntry = ConditionSet(filter, ConditionSet::FilterAgainst::HAILING_SHIP);
+			newHail->toHail.children.push_back(condSetForThisEntry);
+		}
+	}
 }
