@@ -1068,22 +1068,23 @@ trade
 		"transport vehicles"
 	# This list is mostly a placeholder. It should be replaced with one that better fits Syndicate lore.
 	commodity "Syndicate-banned items"
-		"religious texts"
-		"religious items"
-		"religious paraphernalia"
-		"unionization pamphlets"
-		"writings on women's rights"
-		"writings on worker's rights"
-		"anti-Syndicate propaganda"
-		"open-source software"
-		"pirated software"
-		"Luddite propaganda"
-		"protest songs"
-		"communist propaganda"
-		"leftist texts"
-		"manifestos"
-		"anarchist pamphlets"
-		"samizdat"
+		`religious texts`
+		`unionization pamphlets`
+		`anti-Syndicate propaganda`
+		`open-source software`
+		`pirated software`
+		`employee-poaching gifts`
+		`non-Syndicate recruiting material`
+		`corporate spying drones`
+		`protest supplies`
+		`collapsible picketing supplies`
+		`holographic protest banners`
+		`anti-executive slander`
+		`non-erasable graffiti paint`
+		`effigies of Syndicate executives`
+		`parodies of Syndicate literature`
+		`sabotaged equipment`
+		`compact rebreathers` # to survive tear gas, pepper spray, etc.
 	commodity "Ship Systems"
 		"auxiliary ramscoops"
 		"bulkhead control systems"
