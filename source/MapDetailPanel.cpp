@@ -572,8 +572,8 @@ void MapDetailPanel::DrawKey()
 	{
 		// Each system is colored by the number of outfits for sale.
 		static const string LABEL[2][4] = {
-			{"None", "1", "5", "10+"},
-			{"None", "1", "30", "60+"}};
+			{"10+", "5", "1", "None"},
+			{"60+", "30", "1", "None"}};
 		static const double VALUE[4] = {-1., 0., .5, 1.};
 
 		for(int i = 0; i < 4; ++i)
@@ -592,7 +592,7 @@ void MapDetailPanel::DrawKey()
 		};
 		for(int i = 0; i < 3; ++i)
 		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(i - 1));
 			font.Draw(LABEL[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
