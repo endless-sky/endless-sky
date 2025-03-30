@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Paragraphs.h"
 
+#include "ConditionContext.h"
 #include "ConditionSet.h"
 #include "ConditionsStore.h"
 #include "DataNode.h"
@@ -53,7 +54,7 @@ bool Paragraphs::IsEmpty() const
 bool Paragraphs::IsEmptyFor(const ConditionsStore &vars) const
 {
 	for(const auto &varsText : text)
-		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
+		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars, DEFAULT_CONDITION_CONTEXT)))
 			return false;
 	return true;
 }
@@ -64,7 +65,7 @@ string Paragraphs::ToString(const ConditionsStore &vars) const
 {
 	string result;
 	for(const auto &varsText : text)
-		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars)))
+		if(!varsText.second.empty() && (varsText.first.IsEmpty() || varsText.first.Test(vars, DEFAULT_CONDITION_CONTEXT)))
 			result += varsText.second;
 	return result;
 }
