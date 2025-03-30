@@ -665,7 +665,6 @@ phrase "exile humanika: cultural items"
 # among the Korath that make them ask for this.
 phrase "exile humanika: strange items"
 	word
-		"kit'ens"                            # Kittens (mispronounced)
 		"Hoy a'orn cookees"                  # Hai acorn cookies (mispronounced)
 		"toilat pepper"                      # Toilet paper (mispronounced)
 		"geko"                               # Gecko (mispronounced)
