@@ -292,15 +292,15 @@ outfit "Magnetoplasma Drive"
 	"mass" 12
 	"outfit space" -12
 	"engine capacity" -12
-	"thrust" 9
-	"thrusting energy" 0.6
-	"thrusting heat" 0.3
-	"reverse thrust" 9
-	"reverse thrusting energy" 0.6
-	"reverse thrusting heat" 0.3
-	"turn" 270
-	"turning energy" 0.6
-	"turning heat" 0.3
+	"thrust" 7.5
+	"thrusting energy" 1.2
+	"thrusting heat" 0.6
+	"reverse thrust" 7.5
+	"reverse thrusting energy" 1.2
+	"reverse thrusting heat" 0.6
+	"turn" 240
+	"turning energy" 1.2
+	"turning heat" 0.6
 	"drag reduction" 0.3
 	"flare sprite" "effect/wanderer flare/tiny"
 		"frame rate" 5
@@ -538,7 +538,6 @@ outfit "R-720 RCS Thrusters"
 	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
 
 
-# Flare sprite temporarily scaled down due to visual impairment concerns.
 outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
 	series "Engines"
@@ -554,7 +553,6 @@ outfit `Z-3600 "Beam" Amat Torch`
 	"thrusting fuel" 0.3
 	"drag reduction" 9
 	"flare sprite" "effect/avgi flare/antimatter"
-		"scale" 0.25
 		"frame rate" 15
 	"flare sound" "fusion torch"
 	"turn" 6000

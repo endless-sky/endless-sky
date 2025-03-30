@@ -8601,6 +8601,7 @@ system Boral
 system "Bore Fah"
 	pos 71.7761 -592.536
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 625
 	habitable 625
 	belt 1823
@@ -8725,6 +8726,7 @@ system "Bosuno Le"
 system "Bote Asu"
 	pos 8.87418 -572.768
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 3180
 	habitable 3180
 	belt 1753
@@ -14019,7 +14021,7 @@ system "Ehma Ti"
 	trade Plastic 469
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 750
+	fleet "Large Unfettered" 825
 	fleet "Unfettered Raid" 2500
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
@@ -20008,7 +20010,7 @@ system "Hi Yahr"
 	trade Plastic 405
 	fleet "Unfettered Logistics" 450
 	fleet "Small Unfettered" 500
-	fleet "Large Unfettered" 1000
+	fleet "Large Unfettered" 1100
 	fleet "Small Hai Merchant (Sympathizers)" 2400
 	fleet "Large Hai Merchant (Sympathizers)" 4800
 	object
@@ -20907,6 +20909,7 @@ system Il'le
 system "Imo Dep"
 	pos -56.2764 -600.1
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 1715
 	habitable 1715
 	belt 1416
@@ -24956,13 +24959,13 @@ system Li-7
 	hazard "Predecessors Spatial Rift Weak" 30000
 	object
 		sprite planet/browndwarf-l-rogue
-		distance 271.899
-		period 179.337
+		distance 272
+		period 180
 		offset 180
 	object
 		sprite planet/browndwarf-y-rogue
-		distance 272.733
-		period 180.163
+		distance 272
+		period 180
 	object
 		sprite planet/gas7-hot
 		distance 1531
@@ -41612,6 +41615,7 @@ system W-3197
 system "Wah Ki"
 	pos 14.9925 -612.792
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 500
 	habitable 425
 	belt 1585
@@ -41805,7 +41809,7 @@ system "Wah Yoot"
 	trade Plastic 445
 	fleet "Unfettered Logistics" 600
 	fleet "Small Unfettered" 1000
-	fleet "Large Unfettered" 500
+	fleet "Large Unfettered" 550
 	fleet "Small Hai Merchant (Sympathizers)" 1200
 	fleet "Large Hai Merchant (Sympathizers)" 2400
 	object
@@ -43309,6 +43313,7 @@ system Zosma
 system "Zuba Zub"
 	pos -48.2661 -647.926
 	government Hai
+	raid "Unfettered Hai Space Raid" 20
 	arrival 500
 	habitable 425
 	belt 1911
