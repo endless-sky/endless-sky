@@ -1022,7 +1022,7 @@ mission "Exotic Life: Bluestone"
 				`	"It helps herbivores leaf them alone."`
 				`	(Say nothing.)`
 					goto twiceshy
-			`	A collective groan ripples through the tour group, puntuated by a couple of reluctant chuckles. Zea remains completely oblivious as she continues with the tour.`
+			`	A collective groan ripples through the tour group, punctuated by a couple of reluctant chuckles. Zea remains completely oblivious as she continues with the tour.`
 			label twicewrong
 			`	"Ummm, actually, that's not quite right. The main focus of these larger leaves is to maximize surface area for better light absorption."`
 				goto nativeplants
