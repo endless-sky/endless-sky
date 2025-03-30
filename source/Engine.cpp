@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Collision.h"
 #include "CollisionType.h"
 #include "CoreStartData.h"
