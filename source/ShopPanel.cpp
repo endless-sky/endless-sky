@@ -329,6 +329,20 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		{
 			if(isOutfitter)
 				DoHelp("outfitter with multiple ships", true);
+
+			set<string> modelNames;
+			for(const auto &it : player.Ships())
+			{
+				if(!CanShowInSidebar(*it, player.GetPlanet()))
+					continue;
+				if(modelNames.contains(it->DisplayModelName()))
+				{
+					DoHelp("shop with multiple ships", true);
+					break;
+				}
+				modelNames.insert(it->DisplayModelName());
+			}
+
 			DoHelp("multiple ships", true);
 		}
 		if(isOutfitter)
