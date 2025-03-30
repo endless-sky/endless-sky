@@ -4482,7 +4482,7 @@ mission "Rich student transport"
 	repeat
 	name "Transport wealthy student to <planet>"
 	description "This rich student needs transport to <destination> by <date> to study at one of <planet>'s high-end universities. They will pay you <payment>."
-	passengers 2 10 .9
+	passengers 1
 	to offer
 		random < 10
 	to accept
@@ -4520,8 +4520,6 @@ mission "Student field research (farming)"
 			random < 60
 		"<student research>" "agricultural industry of"
 			random < 40
-		"<student research>" "agricultural practices on"
-			random < 20
 	destination
 		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
 		attributes farming
@@ -4546,7 +4544,7 @@ mission "Student field research (mining / oil)"
 	passengers 1
 	substitutions
 		"<student research>" "geology of"
-		"<student research>" "working conditions on"
+		"<student research>" "working conditions of"
 			random < 80
 		"<student research>" "tectonic activity of"
 			random < 60
