@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Asteroid.h"
+#include "AsteroidBelt.h"
 #include "Hazard.h"
 #include "Point.h"
 #include "RaidFleet.h"
@@ -31,7 +33,6 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
-class Minable;
 class Planet;
 class Ship;
 class Sprite;
@@ -45,25 +46,6 @@ class Sprite;
 class System {
 public:
 	static const double DEFAULT_NEIGHBOR_DISTANCE;
-
-public:
-	class Asteroid {
-	public:
-		Asteroid(const std::string &name, int count, double energy);
-		Asteroid(const Minable *type, int count, double energy);
-
-		const std::string &Name() const;
-		const Minable *Type() const;
-		int Count() const;
-		double Energy() const;
-
-	private:
-		std::string name;
-		const Minable *type = nullptr;
-		int count;
-		double energy;
-	};
-
 
 public:
 	// Load a system's description.
@@ -134,7 +116,7 @@ public:
 	// Get the radius of an asteroid belt.
 	double AsteroidBeltRadius() const;
 	// Get the list of asteroid belts.
-	const WeightedList<double> &AsteroidBelts() const;
+	const WeightedList<AsteroidBelt> &AsteroidBelts() const;
 	// Get the system's invisible fence radius.
 	double InvisibleFenceRadius() const;
 	// Get how far ships can jump from this system.
@@ -249,7 +231,7 @@ private:
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 1000.;
-	WeightedList<double> belts;
+	WeightedList<AsteroidBelt> belts;
 	double invisibleFenceRadius = 10000.;
 	double jumpRange = 0.;
 	double solarPower = 0.;
