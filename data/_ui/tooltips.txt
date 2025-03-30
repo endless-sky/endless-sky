@@ -1392,7 +1392,7 @@ tip "Camera acceleration"
 	`Determines whether the screen center is fixed on, trails behind, or speeds ahead of the flagship while accelerating.`
 
 tip "Show CPU / GPU load"
-	`Display the CPU and GPU load at the top of the screen while in flight. Loads are presented as the time it took to calculate or draw the frame. >16ms load (or >6ms when fast-forward is active) means the game will run slower, as it cannot calculate frames at the target 60fps.`
+	`Display the CPU and GPU load at the top of the screen while in flight. Loads above 100% (or >33% CPU when fast-forward is active) mean that the game is running slower as it cannot calculate frames at the target framerate.`
 
 tip "Render motion blur"
 	`Toggle whether motion blur is rendered for all moving objects.`

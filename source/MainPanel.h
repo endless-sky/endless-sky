@@ -78,7 +78,7 @@ private:
 
 	Command show;
 
-	float frameTime = 0.;
+	float calcTime = 0.;
 
 	// Keep track of how long a starting player has spent drifting in deep space.
 	int lostness = 0;

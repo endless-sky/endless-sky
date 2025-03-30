@@ -128,7 +128,7 @@ void MainPanel::Step()
 		canDrag = false;
 	canClick = isActive;
 
-	frameTime = time.Time() + calcTime;
+	this->calcTime = time.Time() + calcTime;
 }
 
 
@@ -159,15 +159,14 @@ void MainPanel::Draw()
 		const Font &font = FontSet::Get(14);
 		const Color &color = *GameData::Colors().Get("medium");
 
-		float sec = loadTimer.Time();
+		float drawTime = loadTimer.Time();
 		stringstream loadString;
-		loadString << std::fixed << setprecision(2) << sec * 1000. << "ms ("
-			<< lround(sec * 60. * 100.) << "%) GPU";
+		loadString << std::fixed << setprecision(2) << "GPU (" << lround(drawTime * 60. * 100.) << "%) " << drawTime * 1000. << "ms";
 		font.Draw(loadString.str(), Point(10., Screen::Height() * -.5 + 5.), color);
 
 		loadString = {};
-		loadString << std::fixed << setprecision(2) << frameTime * 1000. << "ms ("
-			<< lround(frameTime * 60. * 100.) << "%) CPU";
+		loadString << std::fixed << setprecision(2) << calcTime * 1000. << "ms ("
+			<< lround(calcTime * 60. * 100.) << "%) CPU";
 		string ms = loadString.str();
 		font.Draw(ms, Point(-10. - font.Width(ms), Screen::Height() * -.5 + 5.), color);
 	}
