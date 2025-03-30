@@ -1002,7 +1002,7 @@ mission "Exotic Life: Bluestone"
 				`	"Purple paint."`
 				`	(Remain silent.)`
 					goto awkward
-			`	"That's what I use to paint my dragon minis!" Zea blurts out, her excitement briefly overtaking her before immediately clearing her throat to regain her composure.`
+			`	"That's what I use to paint my dragon minis!" a tourist blurts out, his excitement briefly overtaking him before he immediately clears his throat to regain his composure.`
 			label oncewrong
 			`	Zea shifts uneasily. "Umm, not exactly, that is not a photosynthetic pigment used by plants on Earth. The answer I was looking for was chlorophyll.`
 				goto chlorophyll
