@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapOutfitterPanel.h"
 
 #include "comparators/ByName.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
