@@ -994,13 +994,17 @@ mission "Exotic Life: Bluestone"
 			`	"Welcome to our guided tour of Bluestone's Hybrid Crop Research Village! Here, our dedicated scientists harness the secrets of native flora. The grasses and lichens you see around you have evolved unique photosynthetic pigments to thrive in our planet's dim, reddish light. Before we continue, can anyone name the most famous photosynthetic pigment found on Earth?"`
 			choice
 				`	"Tea leaves."`
+					goto oncewrong
 				`	"Green."`
+					goto oncewrong
 				`	"Chlorophyll."`
 					goto onceright
 				`	"Purple paint."`
 				`	(Remain silent.)`
 					goto awkward
-			`	Zea shifts uneasily. "Not exactly, that is not a photosynthetic pigment used by plants on Earth. The answer I was looking for was chlorophyll.`
+			`	"That's what I use to paint my dragon minis!" Zea blurts out, her excitement briefly overtaking her before immediately clearing her throat to regain her composure.`
+			label oncewrong
+			`	Zea shifts uneasily. "Umm, not exactly, that is not a photosynthetic pigment used by plants on Earth. The answer I was looking for was chlorophyll.`
 				goto chlorophyll
 			label onceright
 			`	Zea beams broadly. "Exactly right! Chlorophyll is fundamental to life on Earth.`
@@ -1014,9 +1018,12 @@ mission "Exotic Life: Bluestone"
 				`	"Larger leaves maximize surface area to capture more light."`
 					goto twiceright
 				`	"They look nicer in the breeze."`
+					goto twicewrong
 				`	"It helps herbivores leaf them alone."`
 				`	(Say nothing.)`
 					goto twiceshy
+			`	A collective groan ripples through the tour group, puntuated by a couple of reluctant chuckles. Zea remains completely oblivious as she continues with the tour.`
+			label twicewrong
 			`	"Ummm, actually, that's not quite right. The main focus of these larger leaves is to maximize surface area for better light absorption."`
 				goto nativeplants
 			label twiceright
