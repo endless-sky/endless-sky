@@ -57,9 +57,12 @@ private:
 
 
 private:
+	/// The zip handle
 	unzFile zipFile = nullptr;
+	/// The path of the zip file in the filesystem
 	std::filesystem::path basePath;
-	bool hasNestedDirectory;
+	/// The name of the top-level directory inside the zip, or an empty string if it doesn't have such a directory
+	std::filesystem::path topLevelDirectory;
 
 	mutable std::recursive_mutex lock;
 };

@@ -23,16 +23,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
-
-ZipFile::ZipFile(const filesystem::path &zipPath) : basePath(zipPath), hasNestedDirectory(false), lock()
+ZipFile::ZipFile(const filesystem::path &zipPath) : basePath(zipPath), topLevelDirectory(), lock()
 {
 	lock_guard<recursive_mutex> guard(lock);
 	zipFile = unzOpen(basePath.string().c_str());
 	if(!zipFile)
 		throw runtime_error("Failed to open ZIP file" + zipPath.generic_string());
 
-	// Check whether this zip has a top-level directory with a matching name (such as high-dpi.zip/high-dpi)
-	hasNestedDirectory = Exists(basePath / basePath.filename().replace_extension());
+	// Check whether this zip has a single top-level directory (such as high-dpi.zip/high-dpi)
+	filesystem::path topLevel;
+	for(const filesystem::path &path : ListFiles("", true, false))
+	{
+		filesystem::path zipPath = path.lexically_relative(basePath);
+		if(topLevel.empty())
+			topLevel = *zipPath.begin();
+		else if(*zipPath.begin() != topLevel)
+			return;
+	}
+	topLevelDirectory = topLevel;
 }
 
 
@@ -122,8 +130,8 @@ string ZipFile::ReadFile(const filesystem::path &filePath) const
 filesystem::path ZipFile::GetPathInZip(const filesystem::path &path) const
 {
 	filesystem::path relative = path.lexically_relative(basePath);
-	if(hasNestedDirectory)
-		relative = basePath.filename().replace_extension() / relative;
+	if(!topLevelDirectory.empty())
+		relative = topLevelDirectory / relative;
 	return relative;
 }
 
@@ -135,7 +143,7 @@ filesystem::path ZipFile::GetGlobalPath(const filesystem::path &path) const
 		return path;
 
 	// If this zip has a top-level directory, remove it from the path.
-	if(hasNestedDirectory)
+	if(!topLevelDirectory.empty())
 		return basePath / accumulate(std::next(path.begin()), path.end(), filesystem::path{}, std::divides{});
 	return basePath / path;
 }
