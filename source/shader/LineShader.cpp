@@ -30,7 +30,8 @@ namespace {
 	GLint startI;
 	GLint endI;
 	GLint widthI;
-	GLint colorI;
+	GLint fromColorI;
+	GLint toColorI;
 	GLint capI;
 
 	GLuint vao;
@@ -53,14 +54,19 @@ void LineShader::Init()
 		"uniform float width;\n"
 		"uniform int cap;\n"
 
+		"uniform vec4 startColor;\n"
+		"uniform vec4 endColor;\n"
+
 		"in vec2 vert;\n"
 		"out vec2 pos;\n"
+		"out vec4 color;\n"
 
 		"void main() {\n"
 		// Construct a rectangle around the line that can accommodate a line of width "width".
 		"    vec2 unit = normalize(end - start);\n"
 		// The vertex will originate from the start or endpoint of the line, depending on the input vertex data.
 		"    highp vec2 origin = vert.y > 0.0 ? start : end;\n"
+		"    color = vert.y > 0.0 ? startColor : endColor;\n"
 		// Pad the width by 1 so the SDFs have enough space to naturally anti-alias.
 		"    float widthOffset = width + 1.;\n"
 		// If the cap is rounded, offset along the unit vector by the width, as the cap is circular with radius
@@ -86,10 +92,10 @@ void LineShader::Init()
 		"uniform highp vec2 start;\n"
 		"uniform highp vec2 end;\n"
 		"uniform float width;\n"
-		"uniform vec4 color;\n"
 		"uniform int cap;\n"
 
 		"in vec2 pos;\n"
+		"in vec4 color;\n"
 		"out vec4 finalColor;\n"
 
 		// From https://iquilezles.org/articles/distfunctions2d/ - functions to get the distance from a point to a shape.
@@ -129,7 +135,8 @@ void LineShader::Init()
 	startI = shader.Uniform("start");
 	endI = shader.Uniform("end");
 	widthI = shader.Uniform("width");
-	colorI = shader.Uniform("color");
+	fromColorI = shader.Uniform("startColor");
+	toColorI = shader.Uniform("endColor");
 	capI = shader.Uniform("cap");
 
 	// Generate the vertex data for drawing sprites.
@@ -159,6 +166,36 @@ void LineShader::Init()
 
 void LineShader::Draw(const Point &from, const Point &to, float width, const Color &color, bool roundCap)
 {
+	DrawGradient(from, to, width, color, color, roundCap);
+}
+
+
+
+void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
+	const Color &color, const double dashLength, double spaceLength, bool roundCap)
+{
+	const double length = (to - from).Length();
+	const double patternLength = dashLength + spaceLength;
+	int segments = length / patternLength;
+	// If needed, scale pattern down so we can draw at least two of them over length.
+	if(segments < 2)
+	{
+		segments = 2;
+		spaceLength *= length / (segments * patternLength);
+	}
+	spaceLength /= 2.;
+	float capOffset = roundCap ? width : 0.;
+	for(int i = 0; i < segments; ++i)
+		Draw(from + unit * (i * length / segments + spaceLength + capOffset),
+			from + unit * ((i + 1) * length / segments - spaceLength - capOffset),
+			width, color, roundCap);
+}
+
+
+
+void LineShader::DrawGradient(const Point &from, const Point &to, float width,
+	const Color &fromColor, const Color &toColor, bool roundCap)
+{
 	if(!shader.Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
 
@@ -176,7 +213,8 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 	glUniform1f(widthI, width);
 
-	glUniform4fv(colorI, 1, color.Get());
+	glUniform4fv(fromColorI, 1, fromColor.Get());
+	glUniform4fv(toColorI, 1, toColor.Get());
 
 	glUniform1i(capI, static_cast<GLint>(roundCap));
 
@@ -188,12 +226,12 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 
 
-void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
-		const Color &color, const double dashLength, double spaceLength, bool roundCap)
+void LineShader::DrawGradientDashed(const Point &from, const Point &to, const Point &unit, const float width,
+		const Color &fromColor, const Color &toColor, const double dashLength, double spaceLength, bool roundCap)
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
-	int segments = static_cast<int>(length / patternLength);
+	int segments = length / patternLength;
 	// If needed, scale pattern down so we can draw at least two of them over length.
 	if(segments < 2)
 	{
@@ -203,7 +241,13 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 	spaceLength /= 2.;
 	float capOffset = roundCap ? width : 0.;
 	for(int i = 0; i < segments; ++i)
-		Draw(from + unit * ((i * length) / segments + spaceLength + capOffset),
-			from + unit * (((i + 1) * length) / segments - spaceLength - capOffset),
-			width, color, roundCap);
+	{
+		float p = static_cast<float>(i) / segments;
+		Color mixed = Color::Combine(1. - p, fromColor, p, toColor);
+		float pv = static_cast<float>(i + 1) / segments;
+		Color mixed2 = Color::Combine(1. - pv, fromColor, pv, toColor);
+		DrawGradient(from + unit * (i * length / segments + spaceLength + capOffset),
+			from + unit * ((i + 1) * length / segments - spaceLength - capOffset),
+			width, mixed, mixed2, roundCap);
+	}
 }
