@@ -15,6 +15,13 @@
 				},
 				"libpng",
 				"libjpeg-turbo",
+				{
+					"name": "libjpeg-turbo",
+					"features": [
+						"jpeg8"
+					],
+					"platform": "osx"
+				},
 				"libmad",
 				{
 					"name": "libuuid",
