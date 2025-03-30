@@ -607,6 +607,7 @@ mission "Gemini Shipyards Shipment [0]"
 	repeat
 	to offer
 		random < 15
+		has "landing access: Geminus"
 		or
 			not "event: war begins"
 			has "event: geminus rebuilt"
@@ -627,6 +628,7 @@ mission "Gemini Shipyards Shipment [1]"
 	job
 	repeat
 	to offer
+		has "landing access: Geminus"
 		random < 15
 		or
 			not "event: war begins"
@@ -649,9 +651,11 @@ mission "Lovelace Labs Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Ada"
 	source
 		near Aldebaran 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Ada
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -667,6 +671,7 @@ mission "Polymath Nanoinstruments Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Vinci"
 	source
 		near Miaplacidus 2 10
 		attributes core factory

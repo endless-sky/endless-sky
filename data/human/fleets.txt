@@ -2328,9 +2328,9 @@ fleet "Large Core Pirates"
 		"Splinter (Proton)"
 		"Quicksilver"
 	variant 4
-		"Manta (Proton)"
-	variant 2
-		"Manta"
+		"Manta (Proton)" 2
+	variant 3
+		"Manta" 2
 	variant 2
 		"Splinter" 2
 	variant 1
@@ -2339,14 +2339,8 @@ fleet "Large Core Pirates"
 		"Splinter (Proton)" 2
 	variant 1
 		"Splinter (Tractor Beam)"
-	variant 2
-		"Falcon"
 	variant 1
-		"Falcon (Heavy)"
-	variant 1
-		"Falcon (Laser)"
-	variant 1
-		"Falcon (Tractor Beam)"
+		"Leviathan"
 	variant 2
 		"Firebird"
 	variant 2
@@ -2359,15 +2353,15 @@ fleet "Large Core Pirates"
 		"Vanguard (Particle)"
 	variant 1
 		"Vanguard (Missile)"
-	variant 1
+	variant 2
 		"Vanguard"
 	variant 1
 		"Protector (Laser)"
-	variant 1
+	variant 2
 		"Protector (Proton)"
 	variant 1
 		"Protector (Tractor Beam)"
-	variant 1
+	variant 2
 		"Protector"
 
 fleet "Small Northern Pirates"

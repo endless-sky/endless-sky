@@ -235,6 +235,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "link")
 		{
+			if(value == trueName)
+			{
+				child.PrintTrace("Error: systems cannot link to themselves.");
+				continue;
+			}
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
 			else
@@ -498,6 +503,12 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 {
 	accessibleLinks.clear();
 	neighbors.clear();
+
+	payloads.clear();
+	for(const auto &asteroid : asteroids)
+		if(asteroid.Type())
+			for(const auto &payload : asteroid.Type()->GetPayload())
+				payloads.insert(payload.outfit);
 
 	// Some systems in the game may be considered inaccessible. If this system is inaccessible,
 	// then it shouldn't have accessible links or jump neighbors.
@@ -918,6 +929,14 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
+// Get a list of all unique payload outfits from minables in this system.
+const set<const Outfit *> &System::Payloads() const
+{
+	return payloads;
+}
+
+
+
 // Get the background haze sprite for this system.
 const Sprite *System::Haze() const
 {
@@ -1060,7 +1079,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 
 
-void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
+void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing) const
 {
 	const string &key = node.Token(0);
 	bool hasValue = (node.Size() >= 2);
