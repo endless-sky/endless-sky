@@ -721,69 +721,6 @@ mission "Remnant: Void Sprites 3"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
-		to spawn
-			or
-				has "flagship model: Albatross"
-				has "flagship model: Gull"
-				has "flagship model: Heron"
-				has "flagship model: Ibis"
-				has "flagship model: Merganser"
-				has "flagship model: Pelican"
-				has "flagship model: Penguin"
-				has "flagship model: Peregrine"
-				has "flagship model: Petrel"
-				has "flagship model: Puffin"
-				has "flagship model: Smew"
-				has "flagship model: Starling"
-				has "flagship model: Tern"
-		to despawn
-			not "flagship model: Albatross"
-			not "flagship model: Gull"
-			not "flagship model: Heron"
-			not "flagship model: Ibis"
-			not "flagship model: Merganser"
-			not "flagship model: Pelican"
-			not "flagship model: Penguin"
-			not "flagship model: Peregrine"
-			not "flagship model: Petrel"
-			not "flagship model: Puffin"
-			not "flagship model: Smew"
-			not "flagship model: Starling"
-			not "flagship model: Tern"
-	npc
-		government "Drak"
-		system "Nenia"
-		personality decloaked staying heroic nemesis frugal uninterested
-		ship "Archon (Cloaked)" "Lifted Lorax"
-		to spawn
-			not "flagship model: Albatross"
-			not "flagship model: Gull"
-			not "flagship model: Heron"
-			not "flagship model: Ibis"
-			not "flagship model: Merganser"
-			not "flagship model: Pelican"
-			not "flagship model: Penguin"
-			not "flagship model: Peregrine"
-			not "flagship model: Petrel"
-			not "flagship model: Puffin"
-			not "flagship model: Smew"
-			not "flagship model: Starling"
-			not "flagship model: Tern"
-		to despawn
-			or
-				has "flagship model: Albatross"
-				has "flagship model: Gull"
-				has "flagship model: Heron"
-				has "flagship model: Ibis"
-				has "flagship model: Merganser"
-				has "flagship model: Pelican"
-				has "flagship model: Penguin"
-				has "flagship model: Peregrine"
-				has "flagship model: Petrel"
-				has "flagship model: Puffin"
-				has "flagship model: Smew"
-				has "flagship model: Starling"
-				has "flagship model: Tern"
 	on stopover
 		conversation
 			`You have dodged the Archon and landed on the second of the two gas giants where the void sprites live. The hull of your tiny ship creaks and groans under the high atmospheric pressure, but seems to be holding together. Its sensors pick up flocks of void sprites floating between the planet's cloud layers, presumably feeding on airborne creatures too small to detect from this range.`
@@ -821,6 +758,61 @@ mission "Remnant: Gascraft-Puffin Compatibility"
 	on offer
 		event "remnant: puffin"
 		clear "event: remnant: gascraft"
+		fail
+
+
+
+mission "Remnant: Drak (Hostile) Becomes Hostile"
+	landing
+	invisible
+	non-blocking
+	repeat
+	to offer
+		or
+			has "Remnant: Void Sprites 3: active"
+			has "Remnant: Return the Samples: active"
+		or
+			has "flagship model: Albatross"
+			has "flagship model: Gull"
+			has "flagship model: Heron"
+			has "flagship model: Ibis"
+			has "flagship model: Merganser"
+			has "flagship model: Pelican"
+			has "flagship model: Penguin"
+			has "flagship model: Peregrine"
+			has "flagship model: Petrel"
+			has "flagship model: Puffin"
+			has "flagship model: Smew"
+			has "flagship model: Starling"
+			has "flagship model: Tern"
+	on offer
+		"reputation: Drak (Hostile)" = -1000
+		fail
+
+mission "Remnant: Drak (Hostile) Becomes Friendly"
+	landing
+	invisible
+	non-blocking
+	repeat
+	to offer
+		or
+			has "Remnant: Void Sprites 3: active"
+			has "Remnant: Return the Samples: active"
+		not "flagship model: Albatross"
+		not "flagship model: Gull"
+		not "flagship model: Heron"
+		not "flagship model: Ibis"
+		not "flagship model: Merganser"
+		not "flagship model: Pelican"
+		not "flagship model: Penguin"
+		not "flagship model: Peregrine"
+		not "flagship model: Petrel"
+		not "flagship model: Puffin"
+		not "flagship model: Smew"
+		not "flagship model: Starling"
+		not "flagship model: Tern"
+	on offer
+		"reputation: Drak (Hostile)" = -1000
 		fail
 
 
@@ -2125,69 +2117,6 @@ mission "Remnant: Return the Samples"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
-		to spawn
-			or
-				has "flagship model: Albatross"
-				has "flagship model: Gull"
-				has "flagship model: Heron"
-				has "flagship model: Ibis"
-				has "flagship model: Merganser"
-				has "flagship model: Pelican"
-				has "flagship model: Penguin"
-				has "flagship model: Peregrine"
-				has "flagship model: Petrel"
-				has "flagship model: Puffin"
-				has "flagship model: Smew"
-				has "flagship model: Starling"
-				has "flagship model: Tern"
-		to despawn
-			not "flagship model: Albatross"
-			not "flagship model: Gull"
-			not "flagship model: Heron"
-			not "flagship model: Ibis"
-			not "flagship model: Merganser"
-			not "flagship model: Pelican"
-			not "flagship model: Penguin"
-			not "flagship model: Peregrine"
-			not "flagship model: Petrel"
-			not "flagship model: Puffin"
-			not "flagship model: Smew"
-			not "flagship model: Starling"
-			not "flagship model: Tern"
-	npc
-		government "Drak"
-		system "Nenia"
-		personality staying heroic nemesis frugal uninterested
-		ship "Archon (Cloaked)" "Lifted Lorax"
-		to spawn
-			not "flagship model: Albatross"
-			not "flagship model: Gull"
-			not "flagship model: Heron"
-			not "flagship model: Ibis"
-			not "flagship model: Merganser"
-			not "flagship model: Pelican"
-			not "flagship model: Penguin"
-			not "flagship model: Peregrine"
-			not "flagship model: Petrel"
-			not "flagship model: Puffin"
-			not "flagship model: Smew"
-			not "flagship model: Starling"
-			not "flagship model: Tern"
-		to despawn
-			or
-				has "flagship model: Albatross"
-				has "flagship model: Gull"
-				has "flagship model: Heron"
-				has "flagship model: Ibis"
-				has "flagship model: Merganser"
-				has "flagship model: Pelican"
-				has "flagship model: Penguin"
-				has "flagship model: Peregrine"
-				has "flagship model: Petrel"
-				has "flagship model: Puffin"
-				has "flagship model: Smew"
-				has "flagship model: Starling"
-				has "flagship model: Tern"
 	on accept
 		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the void sprites and a leading expert in non-carbon based lifeforms.`
 	on stopover
