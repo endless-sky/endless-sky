@@ -450,8 +450,8 @@ planet Babiali
 planet Baianus
 	attributes frozen uninhabited
 	landscape land/snow20
-	description `This frozen water world is reminiscent of Titan back in Sol: the surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
-	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
+	description `From a distance, this large, icy moon is superficially reminiscent of Enceladus back in Sol: it is similarly exposed to its giant parent's radiation belts, and scans indicate countless tantalizing traces of chemicals that suggest there may be something more to the moon than it appears.`
+	description `	Unlike Enceladus, however, the surface of Baianus is regularly wracked by both waves of heat and energy. A stay of any length on the surface is likely to see waves of auroras swirl through its unbreathably thin atmosphere, accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
 
 planet Bailey
 	attributes ccor frontier mining pirate south "south pirate"
@@ -4652,10 +4652,10 @@ planet Raaqa-Uur-Kaav
 		to display
 			has "trusted by the successors"
 	port "Space_port"
-		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millennia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
 			to display
 				not "trusted by the successors"
-		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millennia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
 			to display
 				has "trusted by the successors"
 
@@ -5112,7 +5112,7 @@ planet "Setar Fort"
 	attributes efret frozen korath
 	landscape land/snow5
 	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
-	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`
+	spaceport `This spaceport is the only place where you have encountered Efreti food that actually smells appetizing, possibly the Korath equivalent of barbecue. Go any further, however, and the smell of animals in corrals ruins your appetite. Occasionally, as you walk by the stalls, one of the cattle will lower its head to sniff at you. The yaks seem docile enough, if a bit undernourished, but their horns are alarming.`
 	outfitter "Korath Basics"
 
 planet "Shadow of Leaves"
@@ -6074,9 +6074,10 @@ planet "Vara K'chrai"
 	landscape land/sea16-harro
 	description `This is the most populous Wanderer world, with dozens of large cities. The tallest buildings branch and cantilever out from their bases like metallic trees. More than half the surface of the planet is ocean, with a few small settlements built on massive living rafts of algae and seaweed, perhaps ten meters thick and up to several kilometers wide. Much of the land is forests, with villages built entirely in the treetops.`
 	description `	There are also farms here, but more like gardens or parks than a human farm: each with dozens of species of plants growing side by side, and harvested by autonomous robots.`
-	spaceport `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
-	shipyard "Wanderer Advanced"
-	outfitter "Wanderer Advanced"
+	port
+		recharges fuel
+		news
+		description `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
 	bribe 0
 	tribute 8000
 		threshold 14000
