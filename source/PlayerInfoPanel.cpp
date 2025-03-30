@@ -50,7 +50,7 @@ namespace {
 	const int LINES_PER_PAGE = 26;
 
 	// Draw a list of (string, value) pairs.
-	void DrawList(vector<pair<int64_t, string>> &list, Table &table, const string &title,
+	void DrawList(vector<pair<int64_t, string>> &list, const Table &table, const string &title,
 		int64_t titleValue, int maxCount = 0, bool drawValues = true)
 	{
 		if(list.empty())
