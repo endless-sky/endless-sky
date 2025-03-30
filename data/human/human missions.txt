@@ -7973,7 +7973,7 @@ mission "Stone Harmonization 4skade"
 		conversation
 			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Tear of Skade on some sort of device.`
 			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The Crystalline lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
-			`	Weland shakes his head, "Not only is this far advanced beyond anything humans could create, or recreate, but it's an entire untapped field of study." Weland almost trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
+			`	Weland shakes his head, "Not only is this far advanced beyond anything humans could create, or recreate, but it's an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, 'we'? Aren't you human?"`
 			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
