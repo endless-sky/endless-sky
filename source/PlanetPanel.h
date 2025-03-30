@@ -17,15 +17,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "Ship.h"
 #include "text/WrappedText.h"
 
 #include <functional>
+#include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 class Interface;
 class Planet;
 class PlayerInfo;
+class Ship;
 class SpaceportPanel;
 class System;
 
