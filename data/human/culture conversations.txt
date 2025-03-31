@@ -1149,6 +1149,7 @@ phrase "sunracer hovercraft victory description"
 mission "A Sunracer Hovercraft Racing"
 	minor
 	repeat
+	invisible
 	to offer
 		random < 40
 	source
