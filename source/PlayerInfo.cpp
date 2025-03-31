@@ -3446,7 +3446,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 
 		const vector<Ship::Bay> &bays = flagship->Bays();
-		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return static_cast<bool>(bay.ship); });
+		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; });
 	};
 	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
 
