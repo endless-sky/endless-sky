@@ -1150,7 +1150,7 @@ mission "A Sunracer Hovercraft Racing"
 	minor
 	repeat
 	to offer
-		random < 10
+		random < 40
 	source
 		planet "Sunracer"
 	substitutions
