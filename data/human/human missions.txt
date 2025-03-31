@@ -7456,7 +7456,7 @@ mission "Adelita 5"
 
 
 
-mission "Dragon Tech 1"
+mission "Weland: Dragon Tech"
 	name "Return to Weland on Wayfarer"
 	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
 	source
@@ -7670,13 +7670,13 @@ mission "Dragon Tech 1"
 
 event "welandstone"
 
-mission "Stone Harmonization a"
+mission "Weland: Stone Harmonization"
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
 	landing
 	to offer
-		has "Dragon Tech 1: offered"
+		has "Weland: Dragon Tech: offered"
 		has "event: welandstone"
 		random < 10
 	on offer
@@ -7698,119 +7698,64 @@ mission "Stone Harmonization a"
 			`	"So, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I'd pay you 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 			choice
 				`	(Let Weland study the Tear of Skade.)`
-					goto studyskadeweland
+					goto studyskade
 				`	(Let Weland study the Blood of Surtr.)`
-					goto studysurtrweland
+					goto studysurtr
 				`	(Refuse him.)`
 			`	Crestfallen, Weland turns away from you. "It's your stone, your call."`
 			`	He says nothing more, and limps off into some back room, chains dragging after him. You show yourself out.`
 				decline
-			label studyskadeweland
+			label studyskade
 			action
-				event "welandwait3skade" 2
+				event "welandstone" 90
+				set "weland: study skade"
 				outfit "Tear of Skade" -1
 			`	Weland grins. "A little time's better than no time. Put 'er there."`
 			`	He takes your hand and shakes it with great enthusiasm. "Imagine, what secrets await."`
-			`	Later on you transfer over the stone, 'Tear of Skade', to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
+			`	Later on you transfer over the Tear of Skade to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
 				decline
-			label studysurtrweland
+			label studysurtr
 			`	Weland grins. "A little time's better than no time. Put 'er there."`
 			`	He takes your hand and shakes it with great enthusiasm. "Imagine, what secrets await."`
-			`	Later on you transfer over the stone, 'Blood of Surtr', to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
+			`	Later on you transfer over the Blood of Surtr to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
 			action
-				event "welandwait3surtr" 2
+				event "welandstone" 90
+				set "weland: study surtr"
 				outfit "Blood of Surtr" -1
 
 
 
-mission "Stone Harmonization 2skade"
+mission "Weland: Stone Stolen"
+	landing
 	name "Return to Weland on Wayfarer"
 	description "Weland has a mysterious problem and wants you to meet him on Wayfarer as soon as possible."
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		not planet "Wayfarer"
 	destination "Wayfarer"
 	to offer
-		has "event: welandwait3skade"
+		has "event: welandstone"
 	on offer
-		dialog
+		conversation
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, we have a problem. Get back here ASAP.`
 			`				-Weland`
+				accept
 	on complete
 		conversation
 			`Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
 			`	A beaten and battered Weland is waiting for you in a wheelchair. His bloody leg chains, with what may be bone fragments, are heaped in a corner. A shadow haunts his face. "We cannot speak freely here. Meet me in the spaceport."`
 
-mission "Stone Harmonization 2surtr"
-	name "Return to Weland on Wayfarer"
-	description "Weland has a mysterious problem and wants you to meet him on Wayfarer as soon as possible."
-	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
-	destination "Wayfarer"
-	to offer
-		has "event: welandwait3surtr"
-	on offer
-		dialog
-			`Your inbox blinks with a new message from Weland on Wayfarer.`
-			`	<name>, we have a problem. Get back here ASAP.`
-			`				-Weland`
-	on complete
-		conversation
-			`Weland's laboratory is in shambles. Ruined equipment litters the floor, terminals have been smashed, and the workbench has been broken in two.`
-			`	A beaten and battered Weland is waiting for you in a wheelchair. His bloody leg chains, with what may be bone fragments, are heaped in a corner. A shadow haunts his face. "We cannot speak freely here. Meet me in the spaceport."`
 
-ship "Falcon" "Falcon (Gwesklin Variant)"
-	outfits
-		"Tear of Skade"
-		"Plasma Cannon" 2
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Quad Blaster Turret" 3
-		"Heavy Anti-Missile Turret"
-
-		"Breeder Reactor"
-		"KP-6 Photovoltaic Array"
-		"KP-6 Photovoltaic Panel" 2
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 15
-
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-ship "Falcon" "Falcon (Corentin Variant)"
-	outfits
-		"Blood of Surtr"
-		"Plasma Cannon" 2
-		"Torpedo Launcher" 2
-		"Torpedo" 60
-		"Quad Blaster Turret" 3
-		"Heavy Anti-Missile Turret"
-
-		"Breeder Reactor"
-		"KP-6 Photovoltaic Array"
-		"KP-6 Photovoltaic Panel" 2
-		"LP144a Battery Pack"
-		"D41-HY Shield Generator"
-		"Large Radar Jammer"
-		"Liquid Nitrogen Cooler"
-		"Laser Rifle" 15
-
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-mission "Stone Harmonization 3skade"
+mission "Weland: Retrieve Skade"
 	name "Board the Aotrou"
 	description "Find the Aotrou, disable it, board it, and retrieve the Tear of Skade."
 	source "Wayfarer"
 	waypoint "Naper"
 	destination "Wayfarer"
 	to offer
-		has "Stone Harmonization 2skade: done"
+		has "Weland: Stone Stolen: done"
+		has "weland: study skade"
 	on offer
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
@@ -7862,62 +7807,16 @@ mission "Stone Harmonization 3skade"
 		conversation
 			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
-mission "Stone Harmonization 4skade"
-	source "Wayfarer"
-	invisible
-	to offer
-		has "Stone Harmonization 3skade: done"
-	on offer
-		require "Tear of Skade"
-		payment 3000000
-		outfit "Tear of Skade" -1
-		outfit "Tear of Skade (Harmonized)" 1
-		conversation
-			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Tear of Skade on some sort of device.`
-			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The Crystalline lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
-			`	Weland shakes his head, "Not only is this far advanced beyond anything humans could create, or recreate, but it's an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
-			choice
-				`	"What do you mean, 'we'? Aren't you human?"`
-			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
-			`	"But, this is more than just academic for you, because I do believe this stone has fallen out of, what I can only call, harmony. I didn't have a chance before, but now, by projecting just the right sound waves back at the stone..."`
-			`	Weland fiddles with his controls for a bit. "... I can return the stone to harmony."`
-			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air.`
-			`	"Ah ha! Hot damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
-			`	"See for yourself, it's colder than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystal tonal architecture, ha, who woulda thought, alright."`
-			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
-			label questions
-			choice
-				`	"If I find other stones, can you harmonize them as well?"`
-					goto harmonize
-				`	"What will you do now?"`
-					goto next
-				`	"Why don't you just leave? I could take you off world."`
-					goto offworld
-				`	"Thanks for all you've done. I hope we meet again."`
-				`	"So long."`
-			label bye
-			`	"I appreciate you comin' down here, and standin' for somethin'. I always thought there was somethin' right uncommon 'bout you. And you proved in spades. Take care now, and hopefully we'll meet again."`
-				decline
-			label next
-			`	The injured man gets a distant look in eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work, and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide."`
-				goto questions
-			label harmonize
-			`	Weland looks at you wistfully, and then, with a tinge of sadness, shakes his head. "I wager it's a sight too dangerous for that. Each stone is grown, or sung differently, it would take me months to figure out how to harmonize another one. And in the meantime, I am still watched, still unable to leave, still the property of others. If you left somethin' that valuable with me again, they'd take it, and this time to somewhere you wouldn't find it."`
-			`	He shrugs, "Perhaps, some other time. On a different world, in different circumstances. But, not now, not here, and not like this."`
-				goto questions
-			label offworld
-			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are... gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
-			`	His face briefly flashes with mirth, "For now, that is."`
-				goto questions
 
-mission "Stone Harmonization 3surtr"
+mission "Weland: Retrieve Surtr"
 	name "Board the Aotrou"
 	description "Find the Aotrou, disable it, board it, and retrieve the Blood of Surtr."
 	source "Wayfarer"
 	waypoint "Naper"
 	destination "Wayfarer"
 	to offer
-		has "Stone Harmonization 2surtr: done"
+		has "Weland: Stone Stolen: done"
+		has "weland: study surtr"
 	on offer
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
@@ -7969,28 +7868,46 @@ mission "Stone Harmonization 3surtr"
 		conversation
 			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
-mission "Stone Harmonization 4surtr"
+mission "Weland: Stone Harmonization"
 	source "Wayfarer"
 	invisible
 	to offer
-		has "Stone Harmonization 3surtr: done"
+		or
+			has "Weland: Retrieve Skade: done"
+			has "Weland: Retrieve Surtr: done"
+		or
+			has "outfit: Blood of Surtr"
+			has "outfit: Tear of Skade"
 	on offer
-		require "Blood of Surtr"
 		payment 3000000
-		outfit "Blood of Surtr" -1
-		outfit "Blood of Surtr (Harmonized)" 1
 		conversation
+			branch skade
+				not "outfit: Blood of Surtr"
+				has "outfit: Tear of Skade"
 			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Blood of Surtr on some sort of device.`
-			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The crystal lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
-			`	Weland shakes his head, "Not only is far advanced beyond anything humans could create, or recreate, but its an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
+				goto singingstones
+			label skade
+			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Tear of Skade on some sort of device.`
+			label singingstones
+			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The crystalline lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
+			`	Weland shakes his head, "Not only is this far advanced beyond anything humans could create, or recreate, but it's an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
 			choice
 				`	"What do you mean, 'we'? Aren't you human?"`
 			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
 			`	"But, this is more than just academic for you, because I do believe this stone has fallen out of, what I can only call, harmony. I didn't have a chance before, but now, by projecting just the right sound waves back at the stone..."`
 			`	Weland fiddles with his controls for a bit. "... I can return the stone to harmony."`
+			branch skade
+				not "outfit: Blood of Surtr"
+				has "outfit: Tear of Skade"
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of crackling energized air.`
 			`	"Ah ha! Hot damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's more energetic than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystalline tonal architecture, ha, who woulda thought, alright."`
+			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
+				goto questions
+			label skade
+			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air.`
+			`	"Ah ha! Cold damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
+			`	"See for yourself, it's colder than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystal tonal architecture, ha, who woulda thought, alright."`
 			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
 			label questions
 			choice
@@ -8006,7 +7923,7 @@ mission "Stone Harmonization 4surtr"
 			`	"I appreciate you comin' down here, and standin' for somethin'. I always thought there was somethin' right uncommon 'bout you. And you proved in spades. Take care now, and hopefully we'll meet again."`
 				decline
 			label next
-			`	The injured man gets a distant look in eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work, and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide here."`
+			`	The injured man gets a distant look in his eyes, "Well, I figure I'll just get back to doin' what I am doin'. Lots of things to figure, lots of cords to sell. Always work, and excitement for someone in my boots. I wager one of these days I'll shake loose of my masters. But until then I'll abide."`
 				goto questions
 			label harmonize
 			`	Weland looks at you wistfully, and then, with a tinge of sadness, shakes his head. "I wager it's a sight too dangerous for that. Each stone is grown, or sung differently, it would take me months to figure out how to harmonize another one. And in the meantime, I am still watched, still unable to leave, still the property of others. If you left somethin' that valuable with me again, they'd take it, and this time to somewhere you wouldn't find it."`
@@ -8017,6 +7934,49 @@ mission "Stone Harmonization 4surtr"
 			`	His face briefly flashes with mirth, "For now, that is."`
 				goto questions
 
+ship "Falcon" "Falcon (Gwesklin Variant)"
+	outfits
+		"Tear of Skade"
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Quad Blaster Turret" 3
+		"Heavy Anti-Missile Turret"
+
+		"Breeder Reactor"
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 15
+
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
+
+ship "Falcon" "Falcon (Corentin Variant)"
+	outfits
+		"Blood of Surtr"
+		"Plasma Cannon" 2
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Quad Blaster Turret" 3
+		"Heavy Anti-Missile Turret"
+
+		"Breeder Reactor"
+		"KP-6 Photovoltaic Array"
+		"KP-6 Photovoltaic Panel" 2
+		"LP144a Battery Pack"
+		"D41-HY Shield Generator"
+		"Large Radar Jammer"
+		"Liquid Nitrogen Cooler"
+		"Laser Rifle" 15
+
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Hyperdrive"
 
 mission "Hullen-Freeze revenge"
 	source "Chiron"
