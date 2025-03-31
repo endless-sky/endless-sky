@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
-#include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Engine.h"
