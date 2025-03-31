@@ -1174,10 +1174,10 @@ mission "A Sunracer Hovercraft Racing"
 				"delt boost" = 4 + "roll: 8"
 				"deep boost" = 6 + "roll: 12"
 				# The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x+, 0 if less than x. Used to only roll for the length of the track.
-				"mega speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
-				"synd speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
-				"delt speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
-				"deep speed" = "roll: 6" + "roll: 6" + "roll: 6" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 6" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 6"
+				"mega speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
+				"synd speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
+				"delt speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
+				"deep speed" = "roll: 6" + "roll: 6" + "roll: 6" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 6" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 6"
 				"synd laps" = "synd speed" + "synd boost"
 				"delt laps" = "delt speed" + "delt boost"
 				"deep laps" = "deep speed" + "deep boost"
@@ -1221,17 +1221,16 @@ mission "A Sunracer Hovercraft Racing"
 			`	${sunracer hovercraft race description}`
 			branch megawon
 				and
-					"mega speed" >= "synd speed" + "synd boost"
-					"mega speed" >= "delt speed" + "delt boost"
-					"mega speed" >= "deep speed" + "deep boost"
+					"mega speed" >= "synd laps"
+					"mega speed" >= "delt laps"
+					"mega speed" >= "deep laps"
 			branch syndwon
 				and
-					"synd speed" + "synd boost" >= "delt speed" + "delt boost"
-					"synd speed" + "synd boost" >= "deep speed" + "deep boost"
+					"synd laps" >= "delt laps"
+					"synd laps" >= "deep laps"
 			branch deltwon
 				and
-					"synd speed" + "synd boost" >= "delt speed" + "delt boost"
-					"synd speed" + "synd boost" >= "deep speed" + "deep boost"
+					"delt laps" >= "deep laps"
 
 			`	Deep Sky Dynamics <deep name> ${sunracer hovercraft victory description}`
 				goto ending
