@@ -1307,6 +1307,8 @@ mission "FW Katya 1"
 				accept
 			
 			label karate
+			branch gun
+				random < 1
 			`	You dodge sideways and spin quickly. As you do so you hear a loud click, but the gun does not fire. With one hand you knock aside the gun. With the other you land a karate chop which, if you had studied karate, would've shattered her collarbone and left her reeling in pain. But since you have not studied karate, instead your blow bounces harmlessly off her surprisingly muscular shoulder.`
 			`	Your assailant turns out to be wearing a Free Worlds uniform and a disappointed expression. "Well aren't you a dumb reckless bastard!" she says, "I'd hoped for something better from you. First of all, if this gun were loaded, your brains would be splattered all over the sidewalk. And second, you fight like a girl. I have no use for hotheads like you." She stalks off, leaving you very confused. It would appear that you've just failed some sort of test.`
 			choice
@@ -1320,6 +1322,17 @@ mission "FW Katya 1"
 			
 			`	"Fearsome creatures." She walks away, leaving you even more confused.`
 				decline
+			
+			label gun
+			branch killed
+				random < 1
+			`	You dodge sideways and spin quickly. As you do so you hear a loud bang, and the gun fires, just missing the side of your face.`
+			`	Your assailant turns out to be wearing a Free Worlds uniform and a disappointed expression. "That gun wasn't supposed to be loaded. Who put the ammunition in?" She stalks off, leaving you very confused. It would appear that you've just failed some sort of test.`
+				decline
+			
+			label killed
+			`	You dodge sideways and spin. As you do so you hear a loud bang, and the gun fires, instantly killing you. As you drift off, you hear the woman muttering, "That gun wasn't supposed to be loaded. Who put the ammunition in?"`
+				die
 	
 	on decline
 		event "FW Katya Alt 2: ready" 21
