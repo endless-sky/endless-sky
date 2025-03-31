@@ -2101,11 +2101,16 @@ mission "Terraforming 3"
 		dialog `You return to the spaceport to the confused looks of Eric, Alaric, and Amy. "You didn't put the thrusters on the asteroid," Amy says. "Just board the asteroid to attach the thrusters." Amy begins pushing you back to your ship, clearly eager to see the results of this experiment.`
 	on complete
 		payment 20000
+		not "FW Rand 1B: offered"
+			event "terraformed Republic Rand"
+		has "FW Rand 1B: offered"
+			event "terraformed FW Rand"
 		log `Agreed with Amy's idea to steer an asteroid into Rand's polar ice cap in order to change the planet's climate. Hopefully this ends well.`
 		dialog
 			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
 
-
+event "terraformed Republic Rand"
+event "terraformed FW Rand"
 
 mission "Terraforming 4"
 	name "Terraforming Rand"
@@ -2201,9 +2206,7 @@ mission "Terraforming 6"
 	to offer
 		"reputation: Republic" >= 0
 		has "event: terraforming timer"
-		or
-			not "chosen sides"
-			has "main plot completed"
+		has "event: terraformed Republic Rand"
 	
 	on offer
 		conversation
