@@ -311,7 +311,7 @@ mission "Incipias: Fix Saves Missing Language"
 		not "language: Incipias"
 	on offer
 		set "language: Incipias"
-		log `(The date of the following entry is incorrect due to a bug in a previous version of the game.)`
+		log `Noticed an alert on <ship>'s dashboard about minor data corruption. The following log entry was recovered, but the original timestamp was lost.`
 		log `Discovered that the species to the northeast of Hai space, the Incipias, are under the protection of the Quarg. Was given a translator by a Quarg in order to assist a stranded Incipias ship, but was warned not to give the Incipias any advanced technology or interfere in their development.`
 		fail
 
