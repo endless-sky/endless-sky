@@ -119,6 +119,7 @@ ship "Ithquaya" "Ithquaya (Sprite Two)"
 	swizzle 0
 	attributes
 		category "Interceptor"
+		"display name" "Ithquaya"
 		"cost" 1000000
 		"shields" 2000
 		"hull" 1000
@@ -242,6 +243,7 @@ ship "Arbquaya (Sprite Two)"
 	swizzle 0
 	attributes
 		category "Light Warship"
+		"display name" "Arbquaya"
 		"cost" 2000000
 		"shields" 4000
 		"hull" 2000
@@ -388,6 +390,7 @@ ship "Tamquaya" "Tamquaya (Sprite Two)"
 	swizzle 0
 	attributes
 		category "Medium Warship"
+		"display name" "Tamquaya"
 		"cost" 4000000
 		"shields" 8000
 		"hull" 4000
@@ -551,6 +554,7 @@ ship "Tahquaya (Sprite Two)"
 	swizzle 0
 	attributes
 		category "Heavy Warship"
+		"display name" "Tahquaya"
 		"cost" 8000000
 		"shields" 16000
 		"hull" 8000
