@@ -2115,7 +2115,7 @@ mission "Terraforming 3"
 			label approval
 			`	"The wait will give us more time to simulate the impact and assess our plan," Alaric explains, "Better to wait and improve our method than be hasty and let something go wrong."`
 			`	"Okay. We'll go to Bourne. But I'll blame you if we don't get approved."`
-				event "Bourne terraforming approval"
+				set "Bourne terraforming approval"
 				decline
 
 	npc save assist
