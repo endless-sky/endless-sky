@@ -4465,7 +4465,7 @@ mission "Student transport"
 	to offer
 		random < 20
 	source
-		government "Republic" "Syndicate" "Free Worlds" "Independent" "Neutral"
+		government "Free Worlds" "Independent" "Neutral" "Republic" "Syndicate"
 	passengers 1
 	destination
 		attributes "education"
@@ -4488,12 +4488,10 @@ mission "Rich student transport"
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 	source
-		attributes "education" "rich"
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Free Worlds" "Independent" "Neutral" "Republic" "Syndicate"
 	destination
-		attributes "education" "rich"
+		attributes "education"
 		distance 2 20
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
