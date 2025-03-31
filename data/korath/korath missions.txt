@@ -576,3 +576,19 @@ mission "Efreti: Distress Call 8"
 			`	You approach one of the Quarg in the spaceport and request assistance with the data chip. It stops and acknowledges you, but doesn't speak. It pauses for a few moments after you make your request, but then holds out its hand. Taking the data chip, it slots it into a communicator of some sort, slowly nods to itself, and hands it back to you.`
 			`	You return to your ship and try plugging the chip into your systems again, which now displays two files: one in the Korath language, and one in your own. You open the file in your language, and it reads: "The <EDC-ship> is a ship of grief, bringing great pain in memories that sing for generations. Love is a void in the souls of many. Know all that <first> <last> is a true Efret by heart, if not by skin. The <EDC-ship> is theirs, to save lives and keep memories."`
 			`	You carefully store the chip in a safe place.`
+
+mission "Exile: Boarding Worldship Korath"
+	boarding
+	minor
+	source
+		government "Korath" "Korath (Civilian)"
+		category "Superheavy"
+		not outfits "Microbot Grinder"
+	destination "Earth"
+	on offer
+		conversation
+			`Docking with the gargantuan vessel allows you a front-row seat to witness the sheer scale of this ship. Your sensors struggle with their task, as they were never intended for such a massive vessel, but you can estimate from the readings that there must be tens of thousands of life forms aboard.`
+			`	You assume some of these life signs are flora, such as the tree-like things you saw in the massive dome atop the craft, but even that massive done couldn't account for the sheer number your computers are outputting.`
+			`	As you continue the scan of this massive vessel, you realize that a ship of this scale would require an actual army and weeks of constant fighting to capture; and after an equally large workforce would be needed to fully pilot it. You wonder if you could even hold it, as you can imagine a human crew would likely hide across its vast decks, and fight constant guerrilla warfare against the alien invader.`
+			`	Destroying this ship would be equivalent to blowing up an entire city, and from how well defended it was, the Korath likely see it that way themselves.`
+				decline
