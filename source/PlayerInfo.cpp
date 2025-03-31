@@ -3429,6 +3429,16 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipBaysCategoryFreeProvider.SetGetFunction(flagshipBaysCategoryFreeFun);
 
+	auto &&flagshipBaysProvider = conditions.GetProviderNamed("flagship bays");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->Bays().size();
+	};
+	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
