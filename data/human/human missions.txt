@@ -2100,9 +2100,9 @@ mission "Terraforming 3"
 				`	"Well, if you think it will work, I'm willing to try it!"`
 					goto fwtry
 			label senate
-			`	"What?!" exclaims Amy, "I've already selected an appropriate astroid and received the approval of local government officials. A redo could take months!"
+			`	"What?!" exclaims Amy, "I've already selected an appropriate asteroid and received the approval of local government officials. A redo could take months!"
 			choice
-				`	"There aren't any laws against intentionally crashing astroids into planets yet. Let's try it!"
+				`	"There aren't any laws against intentionally crashing asteroids into planets yet. Let's try it!"
 					goto fwtry
 				`	"The Senate will take Rand's earlier approval into consideration."
 			`	"The wait will give us more time to simulate the impact and assess our plan," Alaric explains, "Better to wait and improve our method than be hasty and let something go wrong."
