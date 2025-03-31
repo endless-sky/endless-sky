@@ -4523,9 +4523,9 @@ system Almanhaq
 	trade Medical 565
 	trade Metal 252
 	trade Plastic 477
-	fleet "Small Rebel Jibauni Military" 460
-	fleet "Large Rebel Jibauni Military" 880
-	fleet "Rebel Jibauni Civilian" 230
+	fleet "Small Rebel Jibauni Military" 920
+	fleet "Large Rebel Jibauni Military" 1660
+	fleet "Rebel Jibauni Civilian" 460
 	fleet "Large Jibauni Military" 5200
 	hazard "Jibauni Slowing" 200
 	object
@@ -19631,11 +19631,11 @@ system Hajay
 	trade Medical 491
 	trade Metal 258
 	trade Plastic 283
-	fleet "Hajay Pilgrim Transport" 600
-	fleet "Jibauni Pilgrim Transport" 900
-	fleet "Small Jibauni Military" 900
-	fleet "Large Jibauni Military" 700
-	fleet "Jibauni Civilian" 180
+	fleet "Hajay Pilgrim Transport" 1200
+	fleet "Jibauni Pilgrim Transport" 1800
+	fleet "Small Jibauni Military" 1800
+	fleet "Large Jibauni Military" 1400
+	fleet "Jibauni Civilian" 520
 	fleet "Jibauni Government" 8000
 	fleet "Jibauni Religious Leaders" 5000
 	hazard "Jibauni Slowing" 200
@@ -19833,6 +19833,7 @@ system Hanal
 	asteroids "medium metal" 31 4.182
 	asteroids "large metal" 15 3.57
 	minables iron 8 5.932
+	fleet "Large Jibauni" 9000
 	object
 		sprite star/g5
 		period 10
@@ -19890,9 +19891,9 @@ system Haqal
 	trade Medical 533
 	trade Metal 567
 	trade Plastic 465
-	fleet "Small Rebel Jibauni Military" 300
-	fleet "Large Rebel Jibauni Military" 600
-	fleet "Rebel Jibauni Civilian" 250
+	fleet "Small Rebel Jibauni Military" 600
+	fleet "Large Rebel Jibauni Military" 1200
+	fleet "Rebel Jibauni Civilian" 600
 	hazard "Jibauni Slowing" 200
 	object
 		sprite star/b0
@@ -20731,9 +20732,9 @@ system Holo
 	trade Medical 553
 	trade Metal 515
 	trade Plastic 470
-	fleet "Small Rebel Jibauni Military" 305
-	fleet "Large Rebel Jibauni Military" 730
-	fleet "Rebel Jibauni Civilian" 300
+	fleet "Small Rebel Jibauni Military" 610
+	fleet "Large Rebel Jibauni Military" 1400
+	fleet "Rebel Jibauni Civilian" 700
 	hazard "Jibauni Slowing" 200
 	object
 		sprite planet/browndwarf-l-rogue
@@ -21098,9 +21099,9 @@ system Huyya
 	trade Medical 514
 	trade Metal 224
 	trade Plastic 299
-	fleet "Small Jibauni Military" 530
-	fleet "Large Jibauni Military" 940
-	fleet "Jibauni Civilian" 310
+	fleet "Small Jibauni Military" 1060
+	fleet "Large Jibauni Military" 1900
+	fleet "Jibauni Civilian" 620
 	fleet "Jibauni Government" 3880
 	fleet "Jibauni Religious Leaders" 3000
 	fleet "Large Rebel Jibauni Military" 5920
@@ -22968,8 +22969,8 @@ system Jiggi
 	link "Sol Diba"
 	link Zeelo
 	minables gold 2 4
-	fleet "Small Diba" 580
-	fleet "Large Diba" 700
+	fleet "Small Diba" 1100
+	fleet "Large Diba" 1400
 	object
 		sprite star/a8
 		distance 201.348
@@ -23372,9 +23373,9 @@ system Kanalsa
 	trade Medical 430
 	trade Metal 191
 	trade Plastic 275
-	fleet "Small Jibauni Military" 430
-	fleet "Large Jibauni Military" 900
-	fleet "Jibauni Civilian" 400
+	fleet "Small Jibauni Military" 860
+	fleet "Large Jibauni Military" 1800
+	fleet "Jibauni Civilian" 800
 	fleet "Jibauni Government" 4920
 	fleet "Jibauni Religious Leaders" 4200
 	hazard "Jibauni Slowing" 200
@@ -23794,9 +23795,9 @@ system Kateaza
 	asteroids "large metal" 1 4.018
 	minables titanium 1 6.648
 	minables lead 2 7.433
-	fleet "Small Jibauni Military" 500
-	fleet "Large Jibauni Military" 860
-	fleet "Jibauni Civilian" 1090
+	fleet "Small Jibauni Military" 1000
+	fleet "Large Jibauni Military" 1700
+	fleet "Jibauni Civilian" 2200
 	fleet "Jibauni Government" 50000
 	fleet "Small Rebel Jibauni Military" 300
 	fleet "Large Rebel Jibauni Military" 1200
@@ -31056,8 +31057,8 @@ system Ondelon
 	minables uranium 3 5.389
 	minables aluminum 8 5.849
 	minables iron 27 6.78
-	fleet "Small Diba" 580
-	fleet "Large Diba" 700
+	fleet "Small Diba" 1100
+	fleet "Large Diba" 1400
 	object
 		sprite star/g5
 		period 10
@@ -34444,12 +34445,12 @@ system Quinlo
 	minables platinum 25 3.676
 	minables gold 40 3.481
 	minables silver 60 5
-	fleet "Small Jibauni Military" 700
-	fleet "Large Jibauni Military" 1000
-	fleet "Jibauni Civilian" 1590
-	fleet "Small Rebel Jibauni Military" 500
-	fleet "Large Rebel Jibauni Military" 1500
-	fleet "Rebel Jibauni Civilian" 1600
+	fleet "Small Jibauni Military" 1200
+	fleet "Large Jibauni Military" 1900
+	fleet "Jibauni Civilian" 2400
+	fleet "Small Rebel Jibauni Military" 1100
+	fleet "Large Rebel Jibauni Military" 2000
+	fleet "Rebel Jibauni Civilian" 2600
 	object
 		sprite star/a0
 		period 10
@@ -34719,9 +34720,9 @@ system Rabalin
 	trade Medical 542
 	trade Metal 262
 	trade Plastic 256
-	fleet "Small Jibauni Military" 370
+	fleet "Small Jibauni Military" 800
 	fleet "Large Jibauni Military" 1450
-	fleet "Jibauni Civilian" 280
+	fleet "Jibauni Civilian" 380
 	fleet "Jibauni Government" 5000
 	fleet "Jibauni Religious Leaders" 3400
 	hazard "Jibauni Slowing" 200
@@ -35799,8 +35800,8 @@ system Rinl
 	asteroids "small metal" 1 1.683
 	asteroids "large metal" 3 2.871
 	minables lead 2 2.533
-	fleet "Small Diba" 580
-	fleet "Large Diba" 700
+	fleet "Small Diba" 1100
+	fleet "Large Diba" 1400
 	object
 		sprite star/g5-old
 		period 10
@@ -36263,9 +36264,9 @@ system Sabibal
 	trade Medical 521
 	trade Metal 197
 	trade Plastic 276
-	fleet "Small Jibauni Military" 800
-	fleet "Large Jibauni Military" 700
-	fleet "Jibauni Civilian" 320
+	fleet "Small Jibauni Military" 900
+	fleet "Large Jibauni Military" 1500
+	fleet "Jibauni Civilian" 450
 	fleet "Jibauni Government" 7350
 	fleet "Jibauni Religious Leaders" 5800
 	hazard "Jibauni Slowing" 200
@@ -39188,8 +39189,8 @@ system "Sol Diba"
 	trade Medical 668
 	trade Metal 485
 	trade Plastic 366
-	fleet "Small Diba" 580
-	fleet "Large Diba" 700
+	fleet "Small Diba" 1000
+	fleet "Large Diba" 1300
 	object
 		sprite star/f8
 		period 10
@@ -44818,9 +44819,9 @@ system Yinkin
 	trade Medical 570
 	trade Metal 368
 	trade Plastic 477
-	fleet "Small Rebel Jibauni Military" 460
-	fleet "Large Rebel Jibauni Military" 700
-	fleet "Rebel Jibauni Civilian" 390
+	fleet "Small Rebel Jibauni Military" 800
+	fleet "Large Rebel Jibauni Military" 1500
+	fleet "Rebel Jibauni Civilian" 480
 	hazard "Jibauni Slowing" 200
 	object
 		sprite star/b5
