@@ -3439,6 +3439,17 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
 
+	auto &&flagshipBaysFreeProvider = conditions.GetProviderNamed("flagship bays free");
+	auto flagshipBaysFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		const vector<Ship::Bay> &bays = flagship->Bays();
+		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return static_cast<bool>(bay.ship); });
+	};
+	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
