@@ -7759,7 +7759,7 @@ mission "Weland: Retrieve Skade"
 	on offer
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet, that were until recently, chained, "I am someone else's property."`
+			`	"Well, as you may have surmised," he nods toward his covered feet, that were, until recently, chained, "I am someone else's property."`
 			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it.`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
@@ -7775,14 +7775,14 @@ mission "Weland: Retrieve Skade"
 					goto no
 				`	"You made the promise, you owe me, not them. Make me whole."`
 			`	Weland frowns. "Thought you a little less common than that. Well, my mistake."`
-			`	He pulls out a keypad, and hits a few buttons. "I wager about 10 million will make you whole. If it doesn't, well it's all I got, alright. I've transferred over the money. Take, and get out of my sight. I don't deal with common."`
+			`	He pulls out a keypad, and hits a few buttons. "I wager about ten million will make you whole. If it doesn't, well it's all I got, alright. I've transferred over the money. Take, and get out of my sight. I don't deal with common."`
 			action
 				payment 10000000
 			`	Weland wheels away from you, leaving you alone on the muddy street.`
 				decline
 			label no
 			`	Weland frowns. "Thought you a little less common than that. Well, my mistake."`
-			`	He pulls out a keypad, and hits a few buttons. "I can't get your stone back, but least I can do is pay you the 3 million I promised. I'm right sorry there isn't more I can do, but, they still own me, and there is only so much I can do."`
+			`	He pulls out a keypad, and hits a few buttons. "I can't get your stone back, but least I can do is pay you the three million I promised. I'm right sorry there isn't more I can do, but, they still own me, and there is only so much I can do."`
 			action
 				payment 3000000
 			`	Weland nods at you, and then wheels away, back toward his shop, leaving you alone on the muddy street.`
@@ -7790,7 +7790,7 @@ mission "Weland: Retrieve Skade"
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right.`
 			`	"The ship's called the 'Aotrou', and it's captained by Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us.`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us.`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -7820,7 +7820,7 @@ mission "Weland: Retrieve Surtr"
 	on offer
 		conversation
 			`Weland is waiting for you outside a nearly empty eatery. He turns his wheelchair to face you as you approach.`
-			`	"Well, as you may have surmised," he nods toward his covered feet that were until recently chained, "I am someone else's property."`
+			`	"Well, as you may have surmised," he nods toward his covered feet that were, until recently, chained, "I am someone else's property."`
 			`	The injured man sighs, and looks away from you, "They let me do my own work, follow my own interests, pretend to be my own man, so long as I stay put, and do whatever they ask, when they ask it.`
 			`	"I shoulda known. Shoulda seen it. They weren't going to just let me give you back somethin' as valuable as a Deep Stone. Once I was done, once I had... uncovered... what I did, they swooped in. Demanded I give it up." He turns back to you, his eyes blazing.`
 			`	"But, I did not comply. My word is my bond. I tried to stop 'em, I used means they were unaware I had." He flashes his teeth in a feral grin.`
@@ -7836,14 +7836,14 @@ mission "Weland: Retrieve Surtr"
 					goto no
 				`	"You made the promise, you owe me, not them. Make me whole."`
 			`	Weland frowns. "Thought you a little less common than that. Well, my mistake."`
-			`	He pulls out a keypad, and hits a few buttons. "I wager about 10 million will make you whole. If it doesn't, well it's all I got, alright. I've transferred over the money. Take, and get out of my sight. I don't deal with common."`
+			`	He pulls out a keypad, and hits a few buttons. "I wager about ten million will make you whole. If it doesn't, well it's all I got, alright. I've transferred over the money. Take, and get out of my sight. I don't deal with common."`
 			action
 				payment 10000000
 			`	Weland wheels away from you, leaving you alone on the muddy street.`
 				decline
 			label no
 			`	Weland frowns. "Thought you a little less common than that. Well, my mistake."`
-			`	He pulls out a keypad, and hits a few buttons. "I can't get your stone back, but least I can do is pay you the 3 million I promised. I'm right sorry there isn't more I can do, but, they still own me, and there is only so much I can do."`
+			`	He pulls out a keypad, and hits a few buttons. "I can't get your stone back, but least I can do is pay you the three million I promised. I'm right sorry there isn't more I can do, but, they still own me, and there is only so much I can do."`
 			action
 				payment 3000000
 			`	Weland nods at you, and then wheels away, back toward his shop, leaving you alone on the muddy street.`
@@ -7851,7 +7851,7 @@ mission "Weland: Retrieve Surtr"
 			label doit
 			`	Weland grins. "I never took you for a lily livered captain of a paper ship, glad to see I was right."`
 			`	"The ship's called the 'Aotrou', and it's captained by Corentin Gwesklin, of the Gwesklin Slaver-Dynasty. That family tricked me, and has held me in bondage longer than most folk's memories; though there is little enough you can do 'bout that now."`
-			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin, and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us.`
+			`	Weland opens up a palm-display with star coordinates on it. "They are part of the Core Mining Concern. Semi-sanctioned criminals, slavers, and all around bad guys. Led by the likes of the Gwesklin and other hereditary slaver families. Though they can travel through civilized space unmolested, they do like to lay low in the Naper system, especially after altercations. That's where I'd wager you'd find Mr. Gwesklin, his ship, and the stone he stole from us.`
 			`	"Be warned, he most likely will scan as a friendly, the C.M.C. leadership don't find it profitable to run pirate transponders. So keep your eyes open. Now, I think that's 'bout all needs being said at this juncture, just be sure to come back here once you got the stone. I got a surprise for ya."`
 			`	Weland leans forward, and pats you on the arm, before turning his wheelchair around, and heading back in the direction of his shop. After a moment you're alone on a muddy street corner.`
 				accept
@@ -7861,14 +7861,15 @@ mission "Weland: Retrieve Surtr"
 		system "Naper"
 		personality entering staying target timid uninterested
 		ship "Falcon (Corentin Variant)" "C.M.C.S. Aotrou"
-		dialog `It looks like Captain Gwesklin took an escape pod, and abandoned the ship earlier in the battle. The stone is still here, though. You should take it.`
+		dialog `It looks like Captain Gwesklin took an escape pod and abandoned the ship earlier in the battle. The stone is still here, though. You should take it.`
 	on visit
 		dialog `You haven't dealt with the Aotrou.`
 	on complete
 		conversation
 			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
-mission "Weland: Stone Harmonization"
+
+mission "Weland: Stone Retreived Harmonization"
 	source "Wayfarer"
 	invisible
 	to offer
