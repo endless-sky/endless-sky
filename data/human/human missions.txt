@@ -7642,7 +7642,6 @@ mission "Dragon Tech 1"
 				event "welandstone" 90
 				outfit "Blood of Surtr" -1
 				set "weland: study surtr"
-				decline
 			`	Weland grins. "A little time's better than no time. Put 'er there."`
 			`	He takes your hand and shakes it with great enthusiasm. "Imagine what secrets await."`
 			`	Later on you transfer over the Blood of Surtr to a feverishly eager Weland. You promise to back in three months, for stone and payment.`
