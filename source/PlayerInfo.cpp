@@ -3450,6 +3450,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
 
+	auto &&flagshipMassProvider = conditions.GetProviderNamed("flagship mass");
+	flagshipMassProvider.SetGetFunction([this](const string &name) { return flagship ? flagship->Mass() : 0; });
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
