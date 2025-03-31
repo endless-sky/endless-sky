@@ -1310,6 +1310,10 @@ mission "Remnant: Deep Surveillance"
 			`	The receptionist spends a few minutes tapping away at a keyboard. "Looks like he had his office moved to... the Deep Polytechnic Institute of Valhalla?" he says with a surprised look. "Oh wow, must have gotten someone's attention in the government to be moved there. Do you need directions?"`
 			choice
 				`	"Yes, please."`
+					goto directions
+				`	"Whose attention would he have gotten, exactly?"`
+			`	"There are a number of officials in his line of work here, so it would be hard to say."`
+			label directions
 			`	You get directions from the receptionist and thank him for his time. It turns out that this Institute is in the heart of the university district of the spaceport city. Several planets in the Deep, Paradise Worlds, and even many near Earth have a similar university district, but the one on Valhalla is the largest of its kind in the entire Republic.`
 			`	As you enter the district, you note that the architecture here is much more appealing than the brutalistic style of Ivan's old office building. Each edifice consists of more curves than right angles, with a textured metallic sheen decorating its surface. Brilliant facades scatter sunlight to give the area a warm glow, as opposed to directing it right into your eyes if you happen to be standing in the wrong spot. Even among all the metallic structures, there is still a good amount of greenery: well-trimmed bushes and trees line the streets, and many of the buildings are topped with gardens.`
 			`	You ascend the stairs of the Institute, the massive building looming over you as you approach. Its more ancient design makes the building stand out from the rest of the district; the entrance is guarded by massive marble pillars that manage to not clash with the metallic sheen of the rest of the structures nearby. The interior is similarly lavish, with a sprawling lobby area peppered with reception areas and centered by a massive fountain.`
@@ -1410,7 +1414,7 @@ mission "Remnant: Deep Surveillance"
 			
 			branch skip
 				not "Deep: Remnant: Generators: done"
-			`	He pulls out a schematic showing the generator. "The generator, on the other hand, wasn't all too interesting. Little more than an improved generator of the type you might find down in the Rim. It is somewhat interesting that it doesn't produce much energy when compared to something like a fusion reactor, given the energy requirement of their engines, but I suppose this people are concerned more with keeping their ships running cool than with having extra power output. Another interesting characteristic we discovered is that the generator seemed to ameliorate the effects of ionization, like that which the Hai Ion Cannons apply, much better than normal. It seemed to be an intentional aspect of the generator's design."`
+			`	He pulls out a schematic showing the generator. "The generator, on the other hand, wasn't all too interesting. Little more than an improved generator of the type you might find down in the Rim. Somewhat interesting in that it doesn't produce much energy when compared to something like a fusion reactor, given the energy requirement of their engines, but I suppose these people are concerned more with keeping their ships running cool than with having extra power output. Another interesting characteristic we discovered is that the generator seemed to ameliorate the effects of ionization, like that which the Hai Ion Cannons apply, much better than normal. It seemed to be an intentional aspect of the generator's design."`
 			
 			branch skip
 				not "Deep: Remnant: Inhibitor Cannon: done"
@@ -1554,7 +1558,7 @@ mission "Remnant: Deep Surveillance"
 					goto "surveillance copy"
 			`	Ivan laughs as he reclines in his chair. "Oh, it's absolutely fascinating what I've been able to find.`
 			label ramble
-			`	"With a cube in each of the Remnant systems, I was able to track all of their fleet movements, and I've discovered some interesting things. For one, ships either make trips between the three systems, or they leave the cluster entirely for significant amounts of time, often for at least a month. There weren't very many ships or fleets that took shorter trips out of the cluster, say only one or two weeks in length. It seems like they're sending people on rather lengthy missions.`
+			`	"With a cube in each of the Remnant systems, I was able to track all of their fleet movements, and I've discovered some interesting things. For one, ships either make trips between the three systems, or they leave the cluster entirely for significant amounts of time, often for at least a month. There weren't very many ships or fleets that took shorter trips out of the cluster, say only one or two weeks in length. Seems they're sending people on rather lengthy missions.`
 			`	"Aside from fleet movements, the number of ships was also of note. The cubes track the number of unique ships seen, and they rarely tracked the same ship more than a handful of times. The Remnant seem to have an incredible number of ships, more than perhaps Deep Security and the Navy combined. Certainly impressive for a group consisting of only three star systems. The cubes are also able to make low quality scans of any ships in the system. While each individual scan provides less than what an outfit scan would render, given enough scans, one can get a clearer picture of the ship's composition. These ship scan results were... interesting, though. There seemed to be very few ships like the ones you scanned. Perhaps those were their most advanced ships, but the rest of what I was able to see didn't seem more powerful than your average merchant ship."`
 			`	"I actually lost connection to the cubes a few weeks ago now, but I'd gathered enough information already."`
 			`	"Do you think I could get a copy of your research?" you ask.`
@@ -1612,7 +1616,7 @@ mission "Remnant: Deep Surveillance"
 				decline
 			
 			label research
-			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "So, they know of some, but not all, of our technological capabilities," he says. "We can use this uncertainty to our advantage, should we need to." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
+			`	You hand Torza the data chip that Ivan gave you. Torza takes it and plugs it into a terminal behind the desk. He appears to read through the research rather quickly, nodding and scratching his chin at various points. "So, they know of some, but not all, of our technological capabilities," he says. "We can use this fog of war to our advantage, should we need to." Torza removes the data chip from the terminal and pockets it. "We will keep hold of this information and keep an eye on the Threshold in case they decide to venture further into the Ember Waste. Should that occur, we will call on you. May the Embers burn bright for you."`
 				decline
 			
 			label old
