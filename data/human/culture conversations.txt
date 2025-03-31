@@ -1001,3 +1001,265 @@ mission "Little Vienna in New Austria"
 			label backtoship
 			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
 
+phrase "racetrack"
+	word
+		"Racetrack"
+		"Speedway"
+		"Arena"
+		"Course"
+		"Circuit"
+		"Glideway"
+		"Hover Circuit"
+		"Velocity Course"
+		"Hoverloop"
+
+phrase "sunracer hovercraft adhook"
+	word
+		"dazzling holographic display"
+		"radiant, floating billboard"
+		"vivid holographic advertisement"
+	word
+		" seizes your attention"
+		" catches your eye"
+		" appears overheard"
+
+phrase "sunracer hovercraft adcloser"
+	word
+		"The ad flashes sleek "
+		"Photo-realistic images show agile"
+		"The visuals display streamlined"
+	word
+		" hovercraft "
+		" vehicles "
+	word
+		"slicing through a twisting course in untamed terrain, "
+		"racing along a serpentine, rugged track, "
+		"carving through wild, winding roads, "
+	word
+		"with the ad copy "
+		"the display's text "
+		"the words below "
+	word
+		"promising high-speed thrills for the audience"
+		"teasing a spectacle of breakneck action"
+		"offering heart-pounding, high-octane excitement"
+		"beckoning wealthy corporate sponsors to back the adrenaline-fueled event"
+		"offering the perk of free parking"
+		"simply stating 'Sponsored by Megaparsec'"
+		
+phrase "sunracer city to wilderness description"
+	word
+		"Sunracer's bustling shipyards"
+		"the vibrant Megaparsec metropolis"
+		"the clamor of Sunracer's industrial hub"
+	word
+		" fades into "
+		" gives way to "
+		" transitions to "
+	word
+		"shimmering lakes dotted with sailboats and fishing vessels"
+		"picturesque rolling hills of sprawling farmlands"
+		"a serene stretch of raw, unspoiled nature"
+
+phrase "sunracer fan tshirt"
+	word
+		"clad in Megaparsec Racing Technologies gear - with a large Quicksilver emblazoned across the front of their shirt"
+		"wearing Megaparsec Racing Technologies apparel - their shirt covered with hundreds of tiny Splinter, Manta, and Quicksilver silhouettes"
+		"dressed in a Megaparsec Racing Technologies sweater that has the words 'Mighty fast, impossibly light - Megaparsec' at its center"
+		"dressed in a Syndicate Performance Racing shirt with the centered words - 'Smart racers know race pace is key. Smart racers race for Syndicate Performance Racing"
+		"wearing a Deep Sky Dynamics hat with the words 'Peace, Prosperity, Progress... Podium'"
+		"dressed in a Delta V Grand Prix sweater, the words 'The Wild Pace of Plasma' surrounded by various images of tiny chipmunks, greyhounds, capybaras, and impalas running across the shirt, leaving tiny footprints"
+		
+
+phrase "sunracer hovercraft race description"
+	word
+		"You push through the buzzing entrance, "
+		"Clusters of ecstatic fans pass you beneath the screens showcasing the race, "
+		"The entrance bursts with energy as you weave through enthusiastic crowds, "
+		"Amid a cascade of bright lights and raucous cheers, you enter the racetrack, "
+		"The crowd briefly disperses, leaving you ample space to go through the entrance, "
+	word
+		"and you navigate a series of well-lit steps until you settle into your seat, ready for the race."
+		"each step drawing you closer to the exciting race view from the stands."
+		"then you follow well-marked signs that lead you into the heart of the action in the stands."
+		"where banners and cheers guide you to the stands for you to sit during the race."
+	word
+		" "
+	word
+		"It is a clear, brisk sky overhead, "
+		"The day's air is crisp and electric with anticipation, "
+		"A partly cloudy day blankets most of the track, "
+		"Scattered showers mist the air, "
+
+	word
+		"while a gentle wind stirs the dust on the track."
+		"with the sun's beams lending a warm glow to the cool sky."
+		"with sunlight and swirling mist setting an unpredictable stage."
+		"while a shifting haze fails to hide the crowd's raw anticipation."
+	word
+		" "
+	word
+		"A pulsing neon light flashes "
+		"The starting gun goes off "
+		"A booming voice announces, 'It's repulsors on and away we go!' "
+		"In an instant, there's a thunderous explosion "
+	word
+		"at the starting line"
+		"in front of the starting grid"
+	word
+		", and the hovercraft launch forward in a burst of speed."
+		", then engines ignite in a frenzy to send the sleek machines darting into the first lap."
+		", as the racers enter into a chaotic scramble for the lead."
+		" - hovercraft fighting for position as one leaps ahead of the rest."
+	word
+		" "
+	word
+		"An hour in, the racers continue to weave through the course's twisting tracks, "
+		"Midway, the competition transforms into a dynamic dance, "
+		"The middle phase entails a symphony of sounds, "
+		"As the race unfolds, a few hovercraft nearly crash before recovering, "
+	word
+		"each maneuver a blend of precision and raw power."
+		"with daring overtakes and strategic maneuvers."
+		"each moment getting closer to the crescendo of the race's final hour."
+		"as competitors push their vehicles to the limit at every turn."
+
+phrase "sunracer hovercraft victory description"
+	word
+		" surges ahead, their craft a blur of power and precision, leaving rivals in their wake by multiple laps to finish the race in a clear victory."
+		" clinches victory in a breathtaking display, a decisive lap ahead of the field."
+		" edges out the competition in a photo-finish, securing the win by a razor-thin margin."
+		" rockets to an unrivaled lead in the race's last few minutes, ending the race with a clear, commanding advantage."
+	word
+		" "	
+	word
+		"The middle two racers converged into a frantic dash for second while one lone racer lagged far behind."
+		"The other three teams bundled together in a last-minute sprint to complete the race."
+		"The rest clustered tightly for the race finish."
+		"While the remaining racers finished uneventfully spread out."
+		"Only three racers finished today, as one crashed off the track, luckily with the driver unharmed."
+	word
+		" "
+	word
+		"With the race finished, the crowd gradually disperses, and you wander back to your <model> amid the soft buzz of post-race chatter."
+		"As the stands empty, you slip away through clusters of lingering fans back to the <ship>."
+		"Despite the race being over, the crowd still roars with adrenaline, and you still feel the crowd's excitement as you return to your ship."
+		"The venue quiets as spectators scatter, leaving you to drift back to your <model> in the calm that's followed the thrill of the race."
+
+mission "A Sunracer Hovercraft Racing"
+	minor
+	repeat
+	to offer
+		random < 10
+	source
+		planet "Sunracer"
+	substitutions
+		"<racename>" "${adjectives} ${racetrack}"
+		"<mega name>" "${civilian}"
+		"<synd name>" "${syndicate fighter}"
+		"<delt name>" "${free worlds fighter}"
+		"<deep name>" "${deep fighter}"
+	on offer
+		conversation
+			`As you walk through the din of Sunracer's bustling spaceport, a ${sunracer hovercraft adhook}: there's a hovercraft race at the <racename>, just a few hours away by hover rail, or much faster aboard a <model>. ${sunracer hovercraft adcloser}.`
+			choice
+				`	(Check it out.)`
+				`	(Skip the hovercraft race.)`
+					decline
+			action
+				
+				"race length" = 3 + "roll: 2"
+				"synd boost" = 2 + "roll: 2"
+				"delt boost" = 4 + "roll: 8"
+				"deep boost" = 6 + "roll: 12"
+				#The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x+, 0 if less than x. Used to only roll for the length of the track.
+				"mega speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
+				"synd speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
+				"delt speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
+				"deep speed" = "roll: 6" + "roll: 6" + "roll: 6" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 6" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 6"
+				"synd laps" = "synd speed" + "synd boost"
+				"delt laps" = "delt speed" + "delt boost"
+				"deep laps" = "deep speed" + "deep boost"
+			`	You board the <ship> for the quick trip to the <racename>. Out the window, ${sunracer city to wilderness description}. Eventually, you park your ship outside the <racename>, and walk up to the racetrack's entrance.`
+			label decisioning
+			`	The screen above flashes race details:`
+			`		<racename>: &[race length] Hour Race`
+			``
+			`		Today's Racers:`
+			`		Megaparsec Racing Technologies: <mega name>`
+			`		Syndicate Performance Racing: <synd name>`
+			`		Delta V Grand Prix: <delt name>`
+			`		Deep Sky Dynamics: <deep name>`
+			``
+			choice
+				`	(Watch the race.)`
+					goto race
+				`	(Ask someone for an overview of hover racing.)`
+				`	(Use your ship to scan the racers.)`
+					to display
+						or
+							"flagship attribute: outfit scan power" > 0
+							"flagship attribute: tactical scan power" > 0
+					goto scanner
+			`	Near the <racename>'s entrance, you spot a friendly figure ${sunracer fan tshirt}. Though clearly not a racer, he clearly is very familiar with hovercraft racing. You ask him for an overview and he responds:`
+			`	"Hovercraft racing pits four ships against the clock - each trying to log as many laps as possible. The race is between three and five hours long and is split into two phases: an initial afterburn for a burst of speed, followed by laps completed in the remaining time.`
+			`	"Each racer has a roughly equal chance of victory, though Megaparsec Racing Technologies tends to win a bit more often overall. Megaparsec also excels in longer races thanks to their efficient ion engines that can go anywhere from zero to twelve laps an hour, but completely lack any initial speed burst. Deep racers shine on shorter stints by using high-powered atomics for a powerful start that can push them to complete between six and eighteen laps almost right out of the gate, but in longer races their lack of efficiency means they go only half as fast as Megaparsec, anywhere from zero to six laps an hour. The other two teams fall somewhere in-between.`
+			`	"Even though each team is roughly equal, in a given race, a savvy watcher can better predict a winner by knowing which teams perform better on shorter or longer race lengths, or a less sporting one with a powerful scanner might even be able to tell a hovercraft's exact afterburn level before the race even begins.`
+			`	"One last tip to remember - they say the surest way to make a small fortune in hovercraft racing is to start with a big one!" He laughs, the sound mixing with the roar of engines inside the <racename>.`
+				goto decisioning
+			label scanner
+			`	Your ship is close enough to the <racename>'s track to be able to scan exactly how many laps each hovercraft's afterburner can take them. Your ship relays the following afterburner data:`
+			``
+			`		Megaparsec Racing Technologies: No Afterburner Fuel`
+			`		Syndicate Performance Racing: &[synd boost] laps-worth of Afterburner`
+			`		Delta V Grand Prix: &[delt boost] laps-worth of Afterburner`
+			`		Deep Sky Dynamics: &[deep boost] laps-worth of Afterburner`
+			``
+				goto decisioning
+			label race
+			`	${sunracer hovercraft race description}` 
+			branch megawon
+				and 
+					"mega speed" >= "synd speed" + "synd boost"
+					"mega speed" >= "delt speed" + "delt boost"
+					"mega speed" >= "deep speed" + "deep boost"
+			branch syndwon
+				and
+					"synd speed" + "synd boost" >= "delt speed" + "delt boost"
+					"synd speed" + "synd boost" >= "deep speed" + "deep boost"
+			branch deltwon
+				and
+					"synd speed" + "synd boost" >= "delt speed" + "delt boost"
+					"synd speed" + "synd boost" >= "deep speed" + "deep boost"
+
+			`	Deep Sky Dynamics <deep name> ${sunracer hovercraft victory description}`
+				goto ending
+			label deltwon
+				`	Delta V Grand Prix <delt name> ${sunracer hovercraft victory description}`
+				goto ending
+			label syndwon
+			`	Syndicate Performance Racing <synd name> ${sunracer hovercraft victory description}`
+				goto ending
+			label megawon
+			`	Megaparsec Racing Technologies <mega name> ${sunracer hovercraft victory description}`
+				goto ending
+			label ending
+			`	Final results:`
+			``
+			`		Megaparsec Racing Technologies:  <mega name>, &[mega speed] laps completed`
+			`		Syndicate Performance Racing: <synd name>, &[synd laps] laps completed`
+			`		Delta V Grand Prix: <delt name>, &[delt laps] laps completed`
+			`		Deep Sky Dynamics: <deep name>, &[deep laps] laps completed`
+			``
+			action
+				clear "race length"
+				clear "synd boost"
+				clear "delt boost"
+				clear "deep boost"
+				clear "mega speed"
+				clear "synd speed"
+				clear "delt speed"
+				clear "deep speed"
+				clear "synd laps"
+				clear "delt laps"
+				clear "deep laps"
