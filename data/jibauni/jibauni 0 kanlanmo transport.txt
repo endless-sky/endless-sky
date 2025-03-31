@@ -19,14 +19,14 @@ mission "Jibauni: Kanlanmo 0"
 	destination "Taltahard"
 	on offer
 		conversation
-			`Your landing location is a large set of old landing pads in the middle of a city, as there doesn't seem to be anywhere else available for spaceships to arrive. The city is filled with dinosaurs in the shape of the mythical Tyrannosaurus Rex, although here smaller then in old Earth fables. Soon after you land, one of these dinosaurs, wearing a dark green cloak, approaches your ship.`
+			`The approach to your landing location takes the ship uncomfortably close to huge trapezoidal skyscrapers, finally landing in the very midst of the city. The alien metropolis is filled with dinosaurs in the shape of the mythical Tyrannosaurus Rex, although here smaller then in old Earth fables. Soon after you land, one of these dinosaurs, incongruently wearing a dark green cloak, approaches your ship.`
 			choice
 				`	(Go out and meet it.)`
 					goto meeting
 				`	(Leave now, before something bad happens.)`
 					depart
 				`	(Stay in <ship>.)`
-			`	The dinosaur opens its mouth, and a moment later a growling sound rumbles through the air. Then you hear the words, "Could you exit your ship to consult with me?"`
+			`	The dinosaur opens its mouth, and a moment later a growling sound rumbles through the air. Then you hear a compressed and metallic sound. "Could you exit your ship to consult with me?"`
 				to display
 					not "language: Coalition"
 				goto initialchoice1
@@ -40,7 +40,7 @@ mission "Jibauni: Kanlanmo 0"
 				`	(Leave the planet.)`
 					defer
 			label meeting
-			`	"Hello, fair stranger," it says. "Is there a way I may serve you on this delightful day?"`
+			`	"Hello, fair stranger," a quiet, oddly-accented voice says. "How may I serve you on this delightful day?"`
 			label meetingquestions
 			choice
 				`	"My name is <first> <last>, and I come in peace."`
@@ -57,7 +57,7 @@ mission "Jibauni: Kanlanmo 0"
 			label cotrans
 			action
 				set "asked about the Jibauni translators"
-			`	"I am not authorized to give you that information. Your questions?"`
+			`	Yellow eyes glare at you. "I am not authorized to give you that information. Your questions?"`
 				goto meetingquestions
 			label lastisknown
 			`	"Yes. We know about you, <first>, Captain of the <ship>. How have you come here, for we did not detect any purple sparks?"`
@@ -95,13 +95,13 @@ mission "Jibauni: Kanlanmo 0"
 						has "event: liberation of Poisonwood"
 					goto alphas
 			label knownalphas
-			`	"Great. But, let me ask you one question. Did you meet them on friendly terms? Or did you try to destroy their ships?"`
+			`	The reptilian head tilts. "Great. But, let me ask you one question. Did you meet them on friendly terms? Or did you try to destroy their ships?"`
 			choice
 				`	"Why would I be friends with the ex-enslavers of humanity?"`
 				`	"Oh, I and the Alphas are great friends. We even share technology!"`
 					goto friendlyalpha
 			label hostilealpha
-			`	"If you need something to do, I have something. I have been looking for transport to <planet> in the <system> system, but so far no Jibauni captain has wanted to take Kanlanmo, which happens to be my name. I will explain, once we get there."`
+			`	The dinosaur's claws twitch. "If you need something to do, I have something. I have been looking for transport to <planet> in the <system> system, but so far no Jibauni captain has wanted to take Kanlanmo, which happens to be my name. I will explain, once we get there."`
 			choice
 				`	"I'll take you."`
 					accept
@@ -111,7 +111,7 @@ mission "Jibauni: Kanlanmo 0"
 			`	"Good," says Kanlanmo. "Chances are, I still will not have found transport, so I will be waiting here next time you come."`
 				decline
 			label notseen
-			`	"Good. In that case, I have another request for you. Can you take me to <planet> in the <system> system? I will mark it on your map, and explain more once we get there. Oh yes, and my name is Kanlanmo. Kanlanmo of the Jibauni."`
+			`	"Good." The alien's stance suddenly shifts, as though its repect for you just increased. "In that case, I have another request for you. Can you take me to <planet> in the <system> system? I will mark it on your map, and explain more once we get there. Oh yes, and my name is Kanlanmo. Kanlanmo of the Jibauni."`
 			choice
 				`	"Of course! You can get on the <ship> right away!"`
 					accept
@@ -120,17 +120,17 @@ mission "Jibauni: Kanlanmo 0"
 				`	"I'm sorry, I can't take you now. Later maybe though."`
 					decline
 			label wormholeentry
-			`	"Oh, we have seen it," says the alien. "But it does not let our ships though. The reason for this is unclear. but to matters of more importance. We have seen an alien ship in pink markings pass through. Have you seen it, or one like it?"`
+			`	"It is known to us," the alien says in a soft voice. "But it does not let our ships though. The reason for this is unclear. but to matters of more importance. We have seen an alien ship in pink markings pass through. Have you seen it, or one like it?"`
 				goto pinkship
 			label alphas
 			`	You begin the story, telling everything you know about how the Alphas tried to enslave human space.`
-			`	At the end, he says, "Wow. That is a long story. And I take it you are not on their side?"`
+			`	The dinosaur's yellow eyes dart to and fro as you tell your story, as though searching for the very Alphas you are telling it about. Finally, at the end, the alien says, "Exciting. I take it they are still your prey?"`
 			choice
-				`	"No, of course not."`
+				`	"Of course."`
 				`	"Why, I've been friendly with them for years."`
 					goto friendlyalpha
 			label alphasoffer
-			`	"Good. That just leaves one more matter to be wrapped up. Can you take me to <planet> in the <system> system? Kanlanmo of the Jibauni will be grateful."`
+			`	"Good." The word seems to slither out of the translator, and the alien's stance suddenly shifts, as though its respect for you has suddenly increased. "In that case, I have another request for you. Can you take me to <planet> in the <system> system? I will mark it on your map, and explain more once we get there. Oh yes, and my name is Kanlanmo. Kanlanmo of the Jibauni."`
 			choice
 				`	"Of course!"`
 					accept
@@ -139,12 +139,12 @@ mission "Jibauni: Kanlanmo 0"
 				`	"Nope, I am not going to. I can't go around transporting unknowns on my ship, after all."`
 					decline
 			label rude
-			`	The alien announces, though to what you cannot see, "The stranger has been ignominiously impolite." It turns to you. "What do you say, 'weirdo'? Will you apologize? Or not, and see what happens?"`
+			`	The alien snorts angrily and turns its head upwards, releasing a thunderous roar into the sky. A moment later the translator whirs, "The stranger has been ignominiously impolite." The alien stomps its foot and lowers its head so its eyes are in line with yours, growling lowly. "What do you say, 'weirdo'? Will you apologize? Or not, and see what happens?"`
 			choice
 				`	"I apologize, and did not mean to insult you."`
 					goto rudeentry
 				`	"Why apologize to a bunch of dinky T-Rex's?"`
-			`	The moment the last word is out of your mouth, the dinosaur lowers its hand. Suddenly, millions of miniature projectiles come hurtling through the air, shredding the <ship> and everything in it.`
+			`	The moment the last word is out of your mouth, the dinosaur lowers its claw. Suddenly, millions of miniature projectiles come hurtling through the air, shredding the <ship> and everything in it.`
 				die
 			label deathshot
 			`	The moment your hand touches your sidearm, you hear a whining noise. A huge missile comes down with a shriek, followed by another and another. The <ship> behind you is obliterated in a moment, leaving it a pile of smoldering ash. You are taken to jail and imprisoned for life.`
@@ -154,12 +154,12 @@ mission "Jibauni: Kanlanmo 0"
 				"reputation: Jibauni" = -1000
 				"reputation: Jibauni (Civilian)" = -1000
 				"reputation: Jibauni (Rebel)" = -1000
-			`	"Really? In that case, we must ask you to leave our planet immediately and never come back. We will not destroy you this time; but do not let us see your face ever again or it will go the worse for you!"`
+			`	The translator politely whines, "Really? In that case, we must ask you to leave our planet immediately and never come back. Unfortunately, if we see you again we must needs terminate you. Apologies."`
 				flee
 			label whychoice
 			action
 				set "jibauni: first contact: why"
-			`	"Because I have some business to transact, something about the Rebel Jibauni."`
+			`	Kanlanmo eyes you warily. "Because I have some business to transact, something about the Rebel Jibauni."`
 			choice
 				`	"Who are the Rebel Jibauni?"`
 				`	"Sounds good. I'll take you."`
@@ -180,7 +180,7 @@ mission "Jibauni: Kanlanmo 0"
 				"reputation: Jibauni (Civilian)" = -10
 				"reputation: Jibauni (Rebel)" = 10
 				set "jibauni: joined the rebels"
-			`	"Very well; this is a disappointing end to a first contact. Goodbye, and never land here again until you have made reparations."`
+			`	Kanlanmo rears his head and roars irritably. A moment later the translator says, still in a polite tone, "Very well; this is a disappointing end to a first contact. Goodbye, and never land here again until you have made reparations."`
 				flee
 	on accept
 		clear "asked about the Jibauni translators"
