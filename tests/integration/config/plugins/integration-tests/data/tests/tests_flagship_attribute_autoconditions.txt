@@ -175,7 +175,7 @@ test "Flagship Attribute Autoconditions"
 			"flagship shields" == 16400
 			"flagship hull" == 10600
 			"flagship fuel" == 1100
-			"flagship mass" - 15 == "flagship attributes: mass" / 1000
+			"flagship mass" * 1000 == "flagship attributes: mass" + 15000
 		navigate
 			travel Arculus
 		input
