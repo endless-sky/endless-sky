@@ -2084,14 +2084,37 @@ mission "Terraforming 3"
 			label danger
 			`	"This is where Amy's plan gets a bit scary," says Alaric.`
 			`	"I'm proposing crashing a medium-sized asteroid into the ice cap," she says. "If we pick the right asteroid, we can control the amount of dust that is created. The result will be a sudden influx of variability, that may allow the planet to revert to a wetter, more biodiverse state."`
+			branch fwpolitics
+				has "main plot completed"
 			choice
 				`	"That is a stupid idea, and I want nothing to do with it."`
 					decline
 				`	"Well, if you think it will work, I'm willing to try it!"`
-			`	"Great!" says Amy. "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
+					goto try
+			label fwpolitics
+			choice
+				`	"I don't think the Free Worlds will approve this. I can't involve myself in the project."
+					decline
+				`	"We should visit the Senate in Bourne first so we don't end up afoul of the new government."
+					goto senate
+				`	"Well, if you think it will work, I'm willing to try it!"`
+					goto fwtry
+			label senate
+			`	"What?!" exclaims Amy, "I've already selected an appropriate astroid and received the approval of local government officials. A redo could take months!"
+			choice
+				`	"There aren't any laws against intentionally crashing astroids into planets yet. Let's try it!"
+					goto fwtry
+				`	"The Senate will take Rand's earlier approval into consideration."
+			`	"The wait will give us more time to simulate the impact and assess our plan," Alaric explains, "Better to wait and improve our method than be hasty and let something go wrong."
+			`	"Okay. We'll go to Bourne. But I'll blame you if we don't get approved."
+				event "Bourne terraforming approval"
+				decline
+			label fwtry
+				event "terraform FW Rand without permission"
+			label try
+			`	"Great!" says Amy, "I'll mark the asteroid on your radar. You just need to board it, install a small ion thruster, and return here."`
 			`	Eric contacts some spaceport workers and has them load a small thruster onto your ship, along with the equipment you will need to mount it on the asteroid.`
 				accept
-	
 	npc save assist
 		government "Uninhabited"
 		personality derelict fleeing uninterested waiting pacifist mute
@@ -2101,16 +2124,21 @@ mission "Terraforming 3"
 		dialog `You return to the spaceport to the confused looks of Eric, Alaric, and Amy. "You didn't put the thrusters on the asteroid," Amy says. "Just board the asteroid to attach the thrusters." Amy begins pushing you back to your ship, clearly eager to see the results of this experiment.`
 	on complete
 		payment 20000
-		not "FW Rand 1B: offered"
-			event "terraformed Republic Rand"
-		has "FW Rand 1B: offered"
-			event "terraformed FW Rand"
 		log `Agreed with Amy's idea to steer an asteroid into Rand's polar ice cap in order to change the planet's climate. Hopefully this ends well.`
 		dialog
 			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
 
-event "terraformed Republic Rand"
-event "terraformed FW Rand"
+event "Bourne terraforming approval"
+event "terraform FW Rand without permission"
+
+mission "Terraforming 3B"
+	name "Senate Approval"
+	description "Bring Amy, Alaric, and Eric to Bourne to get permission from the Free Worlds Senate to drop asteroids on planets."
+	source "Rand"
+	destination "Bourne"
+	to offer
+		has "event: Bourne terraforming approval"
+	passengers 3
 
 mission "Terraforming 4"
 	name "Terraforming Rand"
@@ -2206,7 +2234,7 @@ mission "Terraforming 6"
 	to offer
 		"reputation: Republic" >= 0
 		has "event: terraforming timer"
-		has "event: terraformed Republic Rand"
+		not "chosen sides"
 	
 	on offer
 		conversation
