@@ -2109,7 +2109,7 @@ mission "Terraforming 3"
 			`	"Okay. We'll go to Bourne. But I'll blame you if we don't get approved."`
 				action
 					event "Bourne terraforming approval"
-				decline
+					decline
 			label fwtry
 				event "terraform FW Rand without permission"
 			label try
