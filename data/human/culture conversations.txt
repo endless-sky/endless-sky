@@ -1131,7 +1131,7 @@ phrase "sunracer hovercraft victory description"
 		" edges out the competition in a photo-finish, securing the win by a razor-thin margin."
 		" rockets to an unrivaled lead in the race's last few minutes, ending the race with a clear, commanding advantage."
 	word
-		" "	
+		" "
 	word
 		"The middle two racers converged into a frantic dash for second while one lone racer lagged far behind."
 		"The other three teams bundled together in a last-minute sprint to complete the race."
@@ -1172,7 +1172,7 @@ mission "A Sunracer Hovercraft Racing"
 				"synd boost" = 2 + "roll: 2"
 				"delt boost" = 4 + "roll: 8"
 				"deep boost" = 6 + "roll: 12"
-				#The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x+, 0 if less than x. Used to only roll for the length of the track.
+				# The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x+, 0 if less than x. Used to only roll for the length of the track.
 				"mega speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
 				"synd speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
 				"delt speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 5 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
@@ -1217,9 +1217,9 @@ mission "A Sunracer Hovercraft Racing"
 			``
 				goto decisioning
 			label race
-			`	${sunracer hovercraft race description}` 
+			`	${sunracer hovercraft race description}`
 			branch megawon
-				and 
+				and
 					"mega speed" >= "synd speed" + "synd boost"
 					"mega speed" >= "delt speed" + "delt boost"
 					"mega speed" >= "deep speed" + "deep boost"
@@ -1246,7 +1246,7 @@ mission "A Sunracer Hovercraft Racing"
 			label ending
 			`	Final results:`
 			``
-			`		Megaparsec Racing Technologies:  <mega name>, &[mega speed] laps completed`
+			`		Megaparsec Racing Technologies: <mega name>, &[mega speed] laps completed`
 			`		Syndicate Performance Racing: <synd name>, &[synd laps] laps completed`
 			`		Delta V Grand Prix: <delt name>, &[delt laps] laps completed`
 			`		Deep Sky Dynamics: <deep name>, &[deep laps] laps completed`
