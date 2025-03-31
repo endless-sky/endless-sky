@@ -2093,21 +2093,22 @@ mission "Terraforming 3"
 					goto try
 			label fwpolitics
 			choice
-				`	"I don't think the Free Worlds will approve this. I can't involve myself in the project."
+				`	"I don't think the Free Worlds will approve this. I can't involve myself in the project."`
 					decline
-				`	"We should visit the Senate in Bourne first so we don't end up afoul of the new government."
+				`	"We should visit the Senate in Bourne first so we don't end up afoul of the new government."`
 					goto senate
 				`	"Well, if you think it will work, I'm willing to try it!"`
 					goto fwtry
 			label senate
-			`	"What?!" exclaims Amy, "I've already selected an appropriate asteroid and received the approval of local government officials. A redo could take months!"
+			`	"What?!" exclaims Amy, "I've already selected an appropriate asteroid and received the approval of local government officials. A redo could take months!"`
 			choice
-				`	"There aren't any laws against intentionally crashing asteroids into planets yet. Let's try it!"
+				`	"There aren't any laws against intentionally crashing asteroids into planets yet. Let's try it!"`
 					goto fwtry
-				`	"The Senate will take Rand's earlier approval into consideration."
-			`	"The wait will give us more time to simulate the impact and assess our plan," Alaric explains, "Better to wait and improve our method than be hasty and let something go wrong."
-			`	"Okay. We'll go to Bourne. But I'll blame you if we don't get approved."
-				event "Bourne terraforming approval"
+				`	"The Senate will take Rand's earlier approval into consideration."`
+			`	"The wait will give us more time to simulate the impact and assess our plan," Alaric explains, "Better to wait and improve our method than be hasty and let something go wrong."`
+			`	"Okay. We'll go to Bourne. But I'll blame you if we don't get approved."`
+				action
+					event "Bourne terraforming approval"
 				decline
 			label fwtry
 				event "terraform FW Rand without permission"
