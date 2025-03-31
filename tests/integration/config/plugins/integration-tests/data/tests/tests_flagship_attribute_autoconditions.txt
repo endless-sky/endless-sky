@@ -67,7 +67,6 @@ test-data "Flagship Attribute Autoconditions Save"
 				"Jump Drive"
 				"NDR-114 Android" 5
 				"Point Defense Turret"
-				"Quantum Key Stone"
 				"Salvage Scanner"
 				"Smelter-Class Steering"
 				"Smelter-Class Thruster"
