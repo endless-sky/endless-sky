@@ -114,6 +114,9 @@ test-data "Flagship Attribute Autoconditions Save"
 			"final explode" "final explosion medium" 1
 			system Pantica
 			planet Aventine
+		cargo
+			outfits
+				"Heavy Laser" 1
 		account
 			credits 131000
 			score 400
@@ -169,3 +172,19 @@ test "Flagship Attribute Autoconditions"
 			"flagship attribute: heat generation" == 32300
 			"flagship attribute: outfit space" == 16000
 			"flagship attribute: weapon capacity" == 58000
+		call "Depart"
+		assert
+			"flagship shields" == 16400
+			"flagship hull" == 10400
+			"flagship fuel" == 1100
+			"flagship mass" - 15 == "flagship attributes: mass" * 1000
+		navigate
+			travel Pantica
+		input
+			command Jump
+		label "not pantica"
+		branch "not pantica"
+			not "flagship system: Pantica"
+		assert
+			"flagship fuel" == 900
+
