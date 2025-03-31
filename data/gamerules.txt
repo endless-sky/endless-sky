@@ -89,12 +89,12 @@ gamerules
 	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation max age" 1000
 	
-	# Here you can set a global minium departure distance instead of changing all systems indivually.
+	# Here you can set a global minimum departure distance instead of changing all systems individually.
 	# DEFAULT: 0 (no minimum)
 	# ALLOWABLE VALUES: any integer >= 0.
 	"system departure min" 0
 	
-	# Here you can set a global minium arrival distance instead of changing all systems indivually.
+	# Here you can set a global minimum arrival distance instead of changing all systems individually.
 	# DEFAULT: 0 (no minimum)
 	# ALLOWABLE VALUES: any integer >= 0.
 	"system arrival min" 0
