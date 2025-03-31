@@ -110,8 +110,8 @@ phrase "jibauni untranslated"
 	word
 		"."
 		"!"
-#	replace
-#		"%" ""
+	replace
+		"  " " "
 
 phrase "jibauni untranslated random word 1"
 	word
@@ -155,7 +155,6 @@ phrase "jibauni untranslated random word 2"
 		"consonant uncapitalized"
 	phrase
 		"space"
-replace		"vocal"
 
 phrase "space"
 	word
