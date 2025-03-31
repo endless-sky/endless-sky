@@ -665,7 +665,6 @@ phrase "exile humanika: cultural items"
 # among the Korath that make them ask for this.
 phrase "exile humanika: strange items"
 	word
-		"kit'ens"                            # Kittens (mispronounced)
 		"Hoy a'orn cookees"                  # Hai acorn cookies (mispronounced)
 		"toilat pepper"                      # Toilet paper (mispronounced)
 		"geko"                               # Gecko (mispronounced)
@@ -675,6 +674,11 @@ phrase "exile humanika: strange items"
 		"How tu Serv Man buuk"               # The book, "How to Serve Man" (mispronounced)
 		"ganfadder clok"                     # grandfather clock (mispronounced)
 		"bored games"                        # board games (mispronounced)
+		"Dapdannel ay nenergy"               # Zapchannel Ray Energy (mispronounced)
+		"Woof, oat, and abbage"              # A wolf, a goat, and a cabbage (mispronounced)
+		"Oar Funzy Para-dice"                # "Our Fuzzy Paradise" TV series (mispronouced)
+		"rump of kowl"                       # A lump of coal (mispronounced)
+		"Three Keleton Knee Tone"            # Tree Skeleton Key Stone (mispronounced)
 
 
 # The Exiles like to play other open source games. These are horribly
@@ -692,6 +696,13 @@ phrase "exile humanika: open source games"
 		"Uppen Tee Tee Dee"        # Open TTD (mispronounced)
 		"Supper Tax Kert"          # SuperTuxKart (mispronounced)
 		"Zero Add'ee"              # Zero AD (mispronounced)
+		"Nah Eve"                  # Naev (mispronounced)
+		"Pickle Dundun"            # Pixel Dungeon (mispronounced)
+		"2 pow 11"                 # 2048
+		"Hyperdrove"               # HyperRogue (mispronounced)
+		"Lu lan tee"               # Luanti (mispronounced)
+		"Fellorman"                # Veloren (mispronounced)
+		"Mundertree"               # Mindustry (mispronounced)
 
 
 phrase "exile: [system] is snazzy"

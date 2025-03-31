@@ -15,7 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapSalesPanel.h"
 
-#include "CategoryTypes.h"
+#include "CategoryList.h"
+#include "CategoryType.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -25,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "shader/PointerShader.h"
@@ -37,7 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "Swizzle.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
