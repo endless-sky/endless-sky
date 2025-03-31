@@ -3463,6 +3463,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship ? (flagship->Hull() * flagship->MaxHull()) : 0;
 	});
 
+	auto &&flagshipFuelProvider = conditions.GetProviderNamed("flagship fuel");
+	flagshipFuelProvider.SetGetFunction([this](const string &name) {
+		return flagship ? (flagship->Fuel() * flagship->Attributes().Get("fuel capacity")) : 0;
+	});
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
