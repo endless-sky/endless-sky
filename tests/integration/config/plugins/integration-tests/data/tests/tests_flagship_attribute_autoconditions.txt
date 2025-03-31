@@ -179,12 +179,12 @@ test "Flagship Attribute Autoconditions"
 			"flagship fuel" == 1100
 			"flagship mass" - 15 == "flagship attributes: mass" * 1000
 		navigate
-			travel Pantica
+			travel Arculus
 		input
 			command Jump
-		label "not pantica"
-		branch "not pantica"
-			not "flagship system: Pantica"
+		label "not arculus"
+		branch "not arculus"
+			not "flagship system: Arculus"
 		assert
 			"flagship fuel" == 900
 
