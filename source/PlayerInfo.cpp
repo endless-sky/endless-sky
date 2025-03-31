@@ -3409,15 +3409,15 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 
-	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
-	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	auto &&flagshipBaysCategoryProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysCategoryFun = [this](const string &name) -> int64_t
 	{
 		if(!flagship)
 			return 0;
 
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
-	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+	flagshipBaysCategoryProvider.SetGetFunction(flagshipBaysCategoryFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
