@@ -1987,7 +1987,7 @@ void Engine::SpawnFleets()
 	// or coming from planets in the current one.
 	ConditionsStore &conditions = player.Conditions();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()) && fleet.CanTrigger(conditions))
+		if(!Random::Int(fleet.Period() * GameData::GetGamerules().FleetMultiplier()) && fleet.CanTrigger(conditions))
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)

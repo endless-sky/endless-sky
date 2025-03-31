@@ -88,3 +88,18 @@ gamerules
 	# DEFAULT: 1000 (1000 days)
 	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation max age" 1000
+	
+	# Here you can set a global minium departure distance instead of changing all systems indivually.
+	# DEFAULT: 0 (no minimum)
+	# ALLOWABLE VALUES: any integer >= 0.
+	"system departure min" 0
+	
+	# Here you can set a global minium arrival distance instead of changing all systems indivually.
+	# DEFAULT: 0 (no minimum)
+	# ALLOWABLE VALUES: any integer >= 0.
+	"system arrival min" 0
+	
+	# Here you can set a global spawn rate multiplier to change the fleet rates of all systems.
+	# DEFAULT: 1.0 (no changes)
+	# ALLOWABLE VALUES: any float >= 0.
+	"fleet multiplier" 1.0
