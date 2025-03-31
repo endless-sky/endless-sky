@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "FleetCargo.h"
 #include "Personality.h"
-#include "Sale.h"
 #include "Variant.h"
 #include "WeightedList.h"
 

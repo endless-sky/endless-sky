@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-class Sprite;
-
 #include <vector>
+
+class Sprite;
 
 
 
