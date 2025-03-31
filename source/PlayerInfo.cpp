@@ -3458,6 +3458,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship ? (flagship->Shields() * flagship->MaxShields()) : 0;
 	});
 
+	auto &&flagshipHullProvider = conditions.GetProviderNamed("flagship hull");
+	flagshipHullProvider.SetGetFunction([this](const string &name) {
+		return flagship ? (flagship->Hull() * flagship->MaxHull()) : 0;
+	});
+
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
 	{
