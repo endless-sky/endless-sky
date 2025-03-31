@@ -168,7 +168,7 @@ test "Flagship Attribute Autoconditions"
 			"flagship attribute: engine capacity" == 9000
 			"flagship attribute: gun ports" == 0
 			"flagship attribute: heat generation" == 32300
-			"flagship attribute: outfit space" == 16000
+			"flagship attribute: outfit space" == 17000
 			"flagship attribute: weapon capacity" == 58000
 		call "Depart"
 		assert
