@@ -161,7 +161,8 @@ void MainPanel::Draw()
 
 		float drawTime = loadTimer.Time();
 		stringstream loadString;
-		loadString << std::fixed << setprecision(2) << "GPU (" << lround(drawTime * 60. * 100.) << "%) " << drawTime * 1000. << "ms";
+		loadString << std::fixed << setprecision(2) << "GPU (" << lround(drawTime * 60. * 100.) << "%) "
+			<< drawTime * 1000. << "ms";
 		font.Draw(loadString.str(), Point(10., Screen::Height() * -.5 + 5.), color);
 
 		loadString = {};
