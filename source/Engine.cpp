@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Collision.h"
 #include "CollisionType.h"
 #include "CoreStartData.h"
@@ -131,9 +131,26 @@ namespace {
 		Messages::Add(tag + message, Messages::Importance::High);
 	}
 
-	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Body, int>> &flareSprites, uint8_t side)
+	Point FlareCurve(double x)
 	{
+		double x2 = x * x;
+		double x3 = x2 * x;
+		return Point(x2, x3);
+	}
+
+	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
+	{
+		// When a ship lands, its thrusters should scale with it.
+		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
+	}
+
+	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
+		const vector<pair<Body, int>> &flareSprites, uint8_t side, bool reverse)
+	{
+		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
+		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
+		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
+
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
 			* -ship.Commands().Turn();
 
@@ -142,17 +159,26 @@ namespace {
 			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
 			Angle flareAngle = ship.Facing() + point.facing + gimbal;
 			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			// If multiple engines with the same flare are installed, draw up to
-			// three copies of the flare sprite.
+			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Body, int> &it, const Point &scale)
+			{
+				// If multiple engines with the same flare are installed, draw up to
+				// three copies of the flare sprite.
+				for(int i = 0; i < it.second && i < 3; ++i)
+				{
+					Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
+					draw.Add(sprite, ship.Cloaking());
+				}
+			};
 			for(const auto &it : flareSprites)
-				if(point.side == side && (point.steering == Ship::EnginePoint::NONE
-					|| (point.steering == Ship::EnginePoint::LEFT && ship.SteeringDirection() < 0.)
-					|| (point.steering == Ship::EnginePoint::RIGHT && ship.SteeringDirection() > 0.)))
-					for(int i = 0; i < it.second && i < 3; ++i)
-					{
-						Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom);
-						draw.Add(sprite, ship.Cloaking());
-					}
+				if(point.side == side)
+				{
+					if(point.steering == Ship::EnginePoint::NONE)
+						DrawFlares(it, thrustScale);
+					else if(point.steering == Ship::EnginePoint::LEFT && leftTurnScale)
+						DrawFlares(it, leftTurnScale);
+					else if(point.steering == Ship::EnginePoint::RIGHT && rightTurnScale)
+						DrawFlares(it, rightTurnScale);
+				}
 		}
 	}
 
@@ -509,7 +535,7 @@ void Engine::Step(bool isActive)
 	}
 	else if(flagship)
 	{
-		if(isActive)
+		if(isActive && !timePaused)
 		{
 			const auto [newCenter, newCenterVelocity] = NewCenter(center, centerVelocity,
 				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
@@ -1099,9 +1125,18 @@ void Engine::Step(bool isActive)
 // Begin the next step of calculations.
 void Engine::Go()
 {
-	++step;
+	if(!timePaused)
+		++step;
 	currentCalcBuffer = currentCalcBuffer ? 0 : 1;
 	queue.Run([this] { CalculateStep(); });
+}
+
+
+
+// Whether the flow of time is paused.
+bool Engine::IsPaused() const
+{
+	return timePaused;
 }
 
 
@@ -1499,6 +1534,7 @@ void Engine::EnterSystem()
 	newVisuals.clear();
 	newFlotsam.clear();
 
+	emptySoundsTimer.clear();
 
 	center = flagship->Center();
 
@@ -1533,10 +1569,134 @@ void Engine::CalculateStep()
 
 	// Handle the mouse input of the mouse navigation
 	HandleMouseInput(activeCommands);
+
+	const Ship *flagship = player.Flagship();
+	const System *playerSystem = player.GetSystem();
+
+	if(timePaused)
+	{
+		// Only process player commands and handle mouse clicks.
+		ai.MovePlayer(*player.Flagship(), activeCommands);
+		activeCommands.Clear();
+		HandleMouseClicks();
+	}
+	else
+		CalculateUnpaused(flagship, playerSystem);
+
+	// Draw the objects. Start by figuring out where the view should be centered:
+	Point newCenter = center;
+	Point newCenterVelocity;
+	if(flagship)
+	{
+		if(!timePaused)
+		{
+			bool isHyperspacing = flagship->IsHyperspacing();
+			if(isHyperspacing)
+				hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
+			const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
+				flagship->Center(), flagship->Velocity(), hyperspacePercentage,
+				isHyperspacing);
+			newCenter = newCameraCenter;
+			newCenterVelocity = newCameraVelocity;
+		}
+		else
+			newCenterVelocity = flagship->Velocity();
+	}
+	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
+	batchDraw[currentCalcBuffer].SetCenter(newCenter);
+	radar[currentCalcBuffer].SetCenter(newCenter);
+
+	// Populate the radar.
+	FillRadar();
+
+	// Draw the planets.
+	for(const StellarObject &object : playerSystem->Objects())
+		if(object.HasSprite())
+		{
+			// Don't apply motion blur to very large planets and stars.
+			if(object.Width() >= 280.)
+				draw[currentCalcBuffer].AddUnblurred(object);
+			else
+				draw[currentCalcBuffer].Add(object);
+		}
+	// Draw the asteroids and minables.
+	asteroids.Draw(draw[currentCalcBuffer], newCenter, zoom);
+	// Draw the flotsam.
+	for(const shared_ptr<Flotsam> &it : flotsam)
+		draw[currentCalcBuffer].Add(*it);
+	// Draw the ships. Skip the flagship, then draw it on top of all the others.
+	bool showFlagship = false;
+	for(const shared_ptr<Ship> &ship : ships)
+		if(ship->GetSystem() == playerSystem && ship->HasSprite())
+		{
+			if(ship.get() != flagship)
+			{
+				DrawShipSprites(*ship);
+				if(ship->IsThrusting() && !ship->EnginePoints().empty())
+				{
+					for(const auto &it : ship->Attributes().FlareSounds())
+						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
+				}
+				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
+				{
+					for(const auto &it : ship->Attributes().ReverseFlareSounds())
+						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
+				}
+				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
+				{
+					for(const auto &it : ship->Attributes().SteeringFlareSounds())
+						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
+				}
+			}
+			else
+				showFlagship = true;
+		}
+
+	if(flagship && showFlagship)
+	{
+		DrawShipSprites(*flagship);
+		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
+		{
+			for(const auto &it : flagship->Attributes().FlareSounds())
+				Audio::Play(it.first, SoundCategory::ENGINE);
+		}
+		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
+		{
+			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
+				Audio::Play(it.first, SoundCategory::ENGINE);
+		}
+		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
+		{
+			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
+				Audio::Play(it.first, SoundCategory::ENGINE);
+		}
+	}
+	// Draw the projectiles.
+	for(const Projectile &projectile : projectiles)
+		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());
+	// Draw the visuals.
+	for(const Visual &visual : visuals)
+		batchDraw[currentCalcBuffer].AddVisual(visual);
+
+	// Keep track of how much of the CPU time we are using.
+	loadSum += loadTimer.Time();
+	if(++loadCount == 60)
+	{
+		load = loadSum;
+		loadSum = 0.;
+		loadCount = 0;
+	}
+}
+
+
+
+// Calculate things that require the engine not to be paused.
+void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
+{
 	// Now, all the ships must decide what they are doing next.
 	ai.Step(activeCommands);
 
-	// Clear the active players commands, they are all processed at this point.
+	// Clear the active player's commands, because they are all processed at this point.
 	activeCommands.Clear();
 
 	// Perform actions for all the game objects. In general this is ordered from
@@ -1544,18 +1704,22 @@ void Engine::CalculateStep()
 	// "act" before another does.
 
 	// The only action stellar objects perform is to launch defense fleets.
-	const System *playerSystem = player.GetSystem();
 	for(const StellarObject &object : playerSystem->Objects())
 		if(object.HasValidPlanet())
 			object.GetPlanet()->DeployDefense(newShips);
 
-	// Keep track of the flagship to see if it jumps or enters a wormhole this turn.
-	const Ship *flagship = player.Flagship();
+	// Keep track of the flagship to see if it jumps or enters a wormhole this frame.
 	bool flagshipWasUntargetable = (flagship && !flagship->IsTargetable());
 	bool wasHyperspacing = (flagship && flagship->IsEnteringHyperspace());
 	// First, move the player's flagship.
 	if(flagship)
+	{
+		emptySoundsTimer.resize(flagship->Weapons().size());
+		for(int &it : emptySoundsTimer)
+			if(it > 0)
+				--it;
 		MoveShip(player.FlagshipPtr());
+	}
 	const System *flagshipSystem = (flagship ? flagship->GetSystem() : nullptr);
 	bool flagshipIsTargetable = (flagship && flagship->IsTargetable());
 	bool flagshipBecameTargetable = flagshipWasUntargetable && flagshipIsTargetable;
@@ -1683,105 +1847,6 @@ void Engine::CalculateStep()
 	// Check for ship scanning.
 	for(const shared_ptr<Ship> &it : ships)
 		DoScanning(it);
-
-	// Draw the objects. Start by figuring out where the view should be centered:
-	Point newCenter = center;
-	Point newCenterVelocity;
-	if(flagship)
-	{
-		bool isHyperspacing = flagship->IsHyperspacing();
-		if(isHyperspacing)
-			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
-		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity(), hyperspacePercentage,
-			isHyperspacing);
-		newCenter = newCameraCenter;
-		newCenterVelocity = newCameraVelocity;
-	}
-	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
-	batchDraw[currentCalcBuffer].SetCenter(newCenter);
-	radar[currentCalcBuffer].SetCenter(newCenter);
-
-	// Populate the radar.
-	FillRadar();
-
-	// Draw the planets.
-	for(const StellarObject &object : playerSystem->Objects())
-		if(object.HasSprite())
-		{
-			// Don't apply motion blur to very large planets and stars.
-			if(object.Width() >= 280.)
-				draw[currentCalcBuffer].AddUnblurred(object);
-			else
-				draw[currentCalcBuffer].Add(object);
-		}
-	// Draw the asteroids and minables.
-	asteroids.Draw(draw[currentCalcBuffer], newCenter, zoom);
-	// Draw the flotsam.
-	for(const shared_ptr<Flotsam> &it : flotsam)
-		draw[currentCalcBuffer].Add(*it);
-	// Draw the ships. Skip the flagship, then draw it on top of all the others.
-	bool showFlagship = false;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == playerSystem && ship->HasSprite())
-		{
-			if(ship.get() != flagship)
-			{
-				DrawShipSprites(*ship);
-				if(ship->IsThrusting() && !ship->EnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().FlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().ReverseFlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().SteeringFlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-			}
-			else
-				showFlagship = true;
-		}
-
-	if(flagship && showFlagship)
-	{
-		DrawShipSprites(*flagship);
-		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().FlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-	}
-	// Draw the projectiles.
-	for(const Projectile &projectile : projectiles)
-		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());
-	// Draw the visuals.
-	for(const Visual &visual : visuals)
-		batchDraw[currentCalcBuffer].AddVisual(visual);
-
-	// Keep track of how much of the CPU time we are using.
-	loadSum += loadTimer.Time();
-	if(++loadCount == 60)
-	{
-		load = loadSum;
-		loadSum = 0.;
-		loadCount = 0;
-	}
 }
 
 
@@ -1881,7 +1946,7 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Launch(newShips, newVisuals);
 
 	// Fire weapons.
-	ship->Fire(newProjectiles, newVisuals);
+	ship->Fire(newProjectiles, newVisuals, ship.get() == flagship ? &emptySoundsTimer : nullptr);
 
 	// Anti-missile and tractor beam systems are fired separately from normal weaponry.
 	// Track which ships have at least one such system ready to fire.
@@ -2066,7 +2131,7 @@ void Engine::HandleKeyboardInputs()
 
 	// Transfer all commands that need to be active as long as the corresponding key is pressed.
 	activeCommands |= keyHeld.And(Command::PRIMARY | Command::SECONDARY | Command::SCAN |
-		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD);
+		maneuveringCommands | Command::SHIFT | Command::MOUSE_TURNING_HOLD | Command::AIM_TURRET_HOLD);
 
 	// Certain commands (e.g. LAND, BOARD) are debounced, allowing the player to toggle between
 	// navigable destinations in the system.
@@ -2112,6 +2177,15 @@ void Engine::HandleKeyboardInputs()
 	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()
 			&& !activeCommands.Has(Command::LAND | Command::JUMP | Command::BOARD | Command::STOP))
 		activeCommands |= Command::AUTOSTEER;
+
+	if(keyDown.Has(Command::PAUSE))
+	{
+		timePaused = !timePaused;
+		if(timePaused)
+			Audio::Pause();
+		else
+			Audio::Resume();
+	}
 }
 
 
@@ -2242,24 +2316,24 @@ void Engine::HandleMouseClicks()
 // Determines alternate mouse turning, setting player mouse angle, and right-click firing weapons.
 void Engine::HandleMouseInput(Command &activeCommands)
 {
+	bool rightMouseButtonHeld = false;
+	int mousePosX, mousePosY;
+	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
+		rightMouseButtonHeld = true;
+
+	Point relPos = Point(mousePosX, mousePosY) - Point(Screen::RawWidth(), Screen::RawHeight()) / 2;
+	ai.SetMousePosition(relPos / zoom);
+
 	isMouseHoldEnabled = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
-	bool isMouseToggleEnabled = Preferences::Has("Control ship with mouse");
+	activeCommands.Clear(Command::MOUSE_TURNING_HOLD);
 
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
 	// hold will temporarily turn OFF mouse control.
-	isMouseTurningEnabled = (isMouseHoldEnabled ^ isMouseToggleEnabled);
+	isMouseTurningEnabled = isMouseHoldEnabled ^ Preferences::Has("Control ship with mouse");
 	if(!isMouseTurningEnabled)
 		return;
 	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
-	bool rightMouseButtonHeld = false;
-	int mousePosX;
-	int mousePosY;
-	if((SDL_GetMouseState(&mousePosX, &mousePosY) & SDL_BUTTON_RMASK) != 0)
-		rightMouseButtonHeld = true;
-	double relX = mousePosX - Screen::RawWidth() / 2.0;
-	double relY = mousePosY - Screen::RawHeight() / 2.0;
-	ai.SetMousePosition(Point(relX, relY));
 
 	// Activate firing command.
 	if(isMouseTurningEnabled && rightMouseButtonHeld)
@@ -2717,15 +2791,20 @@ void Engine::DrawShipSprites(const Ship &ship)
 			if(bay.side == Ship::Bay::UNDER && bay.ship)
 				drawObject(*bay.ship);
 
-	if(ship.IsThrusting() && !ship.EnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::UNDER);
-	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::UNDER);
-	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
-			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::UNDER);
+	auto DrawEngineFlares = [&](uint8_t where)
+	{
+		if(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !ship.EnginePoints().empty())
+			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
+				ship.Attributes().FlareSprites(), where, false);
+		else if(ship.ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ship.ReverseEnginePoints().empty())
+			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
+				ship.Attributes().ReverseFlareSprites(), where, true);
+		if((ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) || ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
+			&& !ship.SteeringEnginePoints().empty())
+			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
+				ship.Attributes().SteeringFlareSprites(), where, false);
+	};
+	DrawEngineFlares(Ship::EnginePoint::UNDER);
 
 	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
 	{
@@ -2749,15 +2828,7 @@ void Engine::DrawShipSprites(const Ship &ship)
 		if(!hardpoint.IsUnder())
 			drawHardpoint(hardpoint);
 
-	if(ship.IsThrusting() && !ship.EnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
-			ship.Attributes().FlareSprites(), Ship::EnginePoint::OVER);
-	else if(ship.IsReversing() && !ship.ReverseEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
-			ship.Attributes().ReverseFlareSprites(), Ship::EnginePoint::OVER);
-	if(ship.IsSteering() && !ship.SteeringEnginePoints().empty())
-		DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
-			ship.Attributes().SteeringFlareSprites(), Ship::EnginePoint::OVER);
+	DrawEngineFlares(Ship::EnginePoint::OVER);
 
 	if(hasFighters)
 		for(const Ship::Bay &bay : ship.Bays())

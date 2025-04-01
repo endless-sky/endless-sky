@@ -1,5 +1,5 @@
-/* JumpTypes.h
-Copyright (c) 2022 by Amazinite
+/* Alignment.h
+Copyright (c) 2020 by OOTA, Masato
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,11 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-
-
-// All possible jump methods for a ship.
-enum class JumpType : int {
-	NONE,
-	HYPERDRIVE,
-	JUMP_DRIVE,
+// Ways in which text may be aligned.
+enum class Alignment : int {
+	LEFT,
+	CENTER,
+	RIGHT,
+	JUSTIFIED,
 };
