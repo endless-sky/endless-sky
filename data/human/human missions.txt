@@ -11045,8 +11045,8 @@ mission "Patch Stone Waiting"
 	on offer
 		event "stone waiting most" 14
 		fail
-    
-    mission "Weland: Dragon Tech"
+
+mission "Weland: Dragon Tech"
 	name "Return to Weland on Wayfarer"
 	description "Weland is done working on your artifact, and has requested that you return to Wayfarer and meet him."
 	source
@@ -11459,7 +11459,7 @@ mission "Weland: Retrieve Surtr"
 			`Weland is waiting for you when you return. He's still wheelchair bound, but otherwise looking surprisingly better. He also doesn't seem too upset that Captain Corentin Gwesklin escaped. He tells you to quickly meet him at his shop with your reclaimed stone.`
 
 
-mission "Weland: Stone Retreived Harmonization"
+mission "Weland: Stone Retrieved Harmonization"
 	source "Wayfarer"
 	invisible
 	to offer
