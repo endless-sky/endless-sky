@@ -908,7 +908,7 @@ mission "Ka'het: Voice From The Past 3"
 		personality derelict waiting target
 		ship "Builder Satellite" "Valii'sei"
 		conversation
-			`You approach the spacecraft, and activate the equipment the Remnant gave you. Slowly, a large robotic claw, padded with a thick gray insulation, emerges out of your cargo hold. It takes a few tries, but you're finally able to put the satellite into your payload bay and get the fittings to to keep it in place prepared.`
+			`You approach the spacecraft, and activate the equipment the Remnant gave you. Slowly, a large robotic claw, padded with a thick gray insulation, emerges out of your cargo hold. It takes a few tries, but you're finally able to put the satellite into your payload bay and get the fittings to keep it in place prepared.`
 				launch
 
 mission "Ka'het: Voice From The Past 4"
