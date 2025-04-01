@@ -8259,7 +8259,7 @@ mission "Hroar's Haulers 25"
 				to display
 					has "metbolverka"
 					not "jerktosolvi"
-			`	"I enjoyed spending time with 'em. Lotta greenhorns all bluster and business. But <last> was just quality company."`
+			`	"I enjoyed spending time with 'em. Lotta greenhorns are all bluster and business. But <last> was just quality company."`
 				to display
 					has "generationship2"
 			`	"And, well, there's a story goin' 'round that he drank someone's spit outta cup a couple times? Doesn't really bare bringing up I know. But I just can't stop thinking about it for some reason."`
@@ -8314,7 +8314,7 @@ mission "Hroar's Haulers 25"
 				`	(Grab your jacket)`
 			label jacket
 			`	You grab the faded jacket that more or less fits and pull on it on to cheering. Hands flash out of the crowd and slap you on the shoulder and back as you move to the side of the room.`
-			`	Hroar's voice bursts over the wave of patrons, "Remember, you're jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
+			`	Hroar's voice bursts over the wave of patrons, "Remember, your jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
 			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks for an overwhelemed but unperturbed Havi.`
 			choice
 
@@ -8457,8 +8457,199 @@ mission "Hroar's Haulers 25b"
 
 			label boughtfreedom
 			`	Hroar grins and holds up his glass, "Spoken like a true Hauler! As for the financial blow you took, well, I sympathize, I do. Too many folks treat their coin like children, and their friends like coin."`
-			`	"But not you." He says as he drops the glass back on the table. "Now, I can't make you whole, but with every red jacket 'tween here and Helheim getting a fresh paycheck, a collection has gone out and I do believe a dent's been made in the debt you're owed."`
-			`	Yngvar pushes a tablet across the table to you, it says,  `
+			`	"But not you," He says as he drops the glass back on the table. "Now, I can't make you whole, but with every red jacket 'tween here and Helheim getting a fresh paycheck, a collection has gone out and I do believe a dent's been made in the debt you're owed."`
+			`	Yngvar pushes a tablet across the table to you, it says, 268,410 credits. Yngvar's gravely voice adds, "Ain't none of 'em rich, but they're not about to do nothing neither."`
+			`	Hroar's smile gentles a bit, "That's the truth of it."`
+			choice
+				`	"Thanks, I appreciate the collection."`
+					goto appreciate
+				`	"No thanks. I don't need the money."`
+					goto keepit
+				`	"That's all? Just a few scraps? This doesn't even cover half of what I paid!"`
+			action
+				payment 268410
+			`	Hroar frowns.`
+			`	Yngar shakes his head, "Before you go about besmirching the well-meant donations of hard workin' haulers, how about you take a beat and remember I warned ya back on Maker. Ain't no one was gonna be able to pay you back." His hard eye stares at you unhappily.`
+			`	"Well, there's nothing doing about any of that, but what I we can talk about is your pay." He lifts an eyebrow and winks at you. "I think that'll do the thing for a bruised purse."`
+			`	Hroar turns from you to Yngvar. "Now, despite those last few unforunate words, how would you rate our hirthr faring?"`
+			`	Yngvar pauses for a moment.`
+			`	"The pirates were thicker than usual, and <last> kept the fleet safe. That's the job and they did it."`
+			`	"But they went beyond the job when they saved Captain Gunhilda back on Maker."`
+				to display
+					has "savedgunhilda"
+			`	"But <last> proved it was more than just a job when they saved Captain Unferth on Maker."`
+				to display
+					has "savedsolvi"
+			`	"They also got along well the rest of us. Not critical, I know, but sure makes things easier out in the Gap."`
+				to display
+					has "metbolverka"
+					not "jerktosolvi"
+			`	"I enjoyed spending time with 'em. Lotta greenhorns are all bluster and business. But <last> was just quality company."`
+				to display
+					has "generationship2"
+			`	"And, well, there's a story goin' 'round that he drank someone's spit outta cup a couple times? Doesn't really bare bringing up I know. But I just damn image outta my head."`
+				to display
+					has "spitdrinker"
+			`	"Beyond that, not much more I can say. Feel like I don't know them half as well as I like. Guess for them a job's a job and that's it."`
+				to display
+					not "generationship2"
+					not "savedgunhilda"
+					not "generationship"
+			`	Hroar nods sagely, "Thanks Yng." He turns to face you, "you got anything to add?"`
+			choice
+				`	"I did my best."`
+					goto best
+				`	"Only that it's about time you paid me."`
+					goto payme
+				`	"Only that the spit tasted better than I expected."`
+					goto spit
+					to display
+						has "spitdrinker"
+				`	(Shrug.)`
+			`	"Fair enough." He nods and shouts, "Havi!"`
+			label havi
+			`	The bartender saunters over with a tablet in hand. Behind him the swinging doors creek and you notice Haulers entering the saloon.`
+			`	"Now, since you brought the entire fleet home in one piece, the payout's gonna be most generous. That's a payday every on the fleet is going to enjoy, so you earned a little bonus. Now your cut as the hirthr comes out to... what is it Havi?"`
+			`	Havi carefully scans the tablet, "1,222,434 credits."`
+			`	"1,222,434 credits!" Hroar says brightly. "I toldja you'd see some coin eventually. Transfer it over, Havi."`
+			`	"Aye, boss." Havi's non-prosthetic fingers flick over the pad, "Done."`
+			`	The din of conversation fills the bar as Haulers continue to pile in.`
+			`	"I'm thinking it's about time, Hartha-Hroar." Yngvar's deep voice rumbles.`
+			`	Hroar scans the bar, "That it is." He slides out of the booth and approaches the bar.`
+			`	Yngvar gestures after him, "Slide over, <last>. Let me out."`
+			action
+				payment 1222434
+			choice
+				`	(Slide out of the booth.)`
+			`	Yngvar pushes past you and makes his way to the back of the room. Hroar climbs ontop of the bar. The room is now filled with Haulers.`
+			`	Hroar roars above the din, "Well ain't this a sight for sore eyes! Been too long since we've had the Saloon filled to the brim with moon-faced Long Haulers stinking of the Gap!"`
+			`	The crowd roars back its approval.`
+			`	"Before ya'll get too skitr-faced to stand, or stumble off into some dust-caked brothel, we have some critical clerical work to see to; aint that right fellas?"`
+			`	The crowd again roars its affirmation.`
+			`	"Now, as ya'll know, you ain't a Hauler 'till you've hauled long, and we've got crew here ready to turn in their green horns for red jackets!"`
+			`	Yngvar appears beneath Hroar and slaps a pile of red Hauler jackets on the bar.`
+			`	Hroar begins announcing names in no discernable order, while newly christened Haulers march up among their cheering peers and grab their very own Hauler jacket.`
+			`	"And let's not forget Captain <last>, the hirthr who herded the fleet through the Gap!"`
+			choice
+				`	(Grab your jacket.)`
+					goto jacket
+				`	(Try to say a few words.)`
+			`	You attempt to speak but are quickly drawned out by jovial haulers. This isn't the time for speeches. This is the time to grab your jacket.`
+			choice
+				`	(Grab your jacket)`
+			label jacket
+			`	You grab the faded jacket that more or less fits and pull on it on to cheering. Hands flash out of the crowd and slap you on the shoulder and back as you move to the side of the room.`
+			`	Hroar's voice bursts over the wave of patrons, "Remember, your jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
+			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks for an overwhelemed but unperturbed Havi.`
+			choice
+
+				`	(Head to Hroar's Booth.)`
+					goto booth2
+				`	(Try to get a drink.)`
+					goto drink
+				`	(Leave)`
+			label leave
+			`	With the press of thirsty Haulers at the bar, it's easy to make your way to the exit. Few notice as push through the doors and back out into the spaceport beyond.`
+			`[THIS ENDS THE HROARS HAULER CONTENT - FUTURE MISSIONS WILL BE ADDED.]`
+				decline
+			label drink
+			`	The press is tight around the bar, although a few Haulers, upon noticing you, attempt to give way. As you push through you're constantly being thanked and congratulated for keeping pirates off them in the Gap, and making sure everyone got home.`
+			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgement.`
+			choice
+				`	(Drink it.)`
+			`	The tasteless alcohol burns on its way down. There's no chance of getting a second drink for a while.`
+				goto afterdrink
+				`	(Leave it for someone else.)`
+			`	You leave it on the bar and stepback, another Hauler is instantly in your place happily tossing back the drink.`
+			label afterdrink
+			choice
+				`	(Try to spark up a conversation with the Haulers next to you.)`
+					goto conversation
+				`	(Make your way to Hroar's booth.)`
+					goto booth2
+				`	(Leave.)`
+					goto leave
+			label conversation
+			`	The first Hauler grins, "That's some fancy flying you did out there."`
+			`	The other nods vigerously, "Always good to have a hirthr who knows their stuff."`
+			`	"But even fancier fighting." The first one bares his teeth happily. "The way you sent those Syndie thugs running, now that was a sight."`
+				to display
+					has "makerhero"
+			`	"That's the stuff of legends it is," The other one adds happily. The two of them both lift their glasses to you, before filtering away into the crowd.`
+				to display
+					has "makerhero"
+			`	"Getting everyone outta Maker though, that was something special," The first one says with a serious look. "I got kin in Solvi's fleet who'd still be there now if it weren't for you."`
+				to display
+					not "makerhero"
+			`	"Leave no Hauler behind," The other one adds. "That's what it means to be a Hauler." The two of them both lift their glasses to you, before filtering away into the crowd.`
+				to display
+					not "makerhero"
+			choice
+				`	(Make your way to Hroar's booth.)`
+					goto booth2
+				`	(Leave)`
+					goto leave
+
+			label booth2
+			`	Hroar, Yngvar and Bolverka, in contrast to the buoyant atmosphere throughout the saloon, are all speaking in quiet serious tones.`
+			`	"...Hrodny said the southern pirates were gettin' bolder, and that some were using Syndie gear." Yngvar says quietly.`
+			`	"Doesn't mean nothing." Hroar responds, "They coulda pilfered that gear offa some unlucky ships. Or bought them at the market on Greenrock for all we know."`
+			`	"Hroar." Bolverka says gently, "Trust the girl. She's not the shy doe-eyed book-hound you raised. She knows what she's talking about."`
+			`	"But that would mean..." Hroar starts.`
+			`	Yngvar suddenly clears his throat, "<last>, anything we can help you with?"`
+			`	The other two straighten up and face you.`
+			choice
+				`	"So, what next?"`
+					goto next
+				`	"What are you talking about?"`
+					goto talkingabout
+				`	"Wanted to say bye before I left."`
+			`	"Good of you to check in." Hroar says quickly, "Like I said earlier, keep your jacket handy, it'll give ya acess to Hauler jobs. Other than that, keep your ear to the ground. I'll be calling soon enough. Now that you're a proper Hauler we can get you doing what I brought in for you. Speciality jobs."`
+			`	His teeth flash as he smiles at the last part.`
+			label byebye
+			`	"Take care, kid." Yngvar says with a curt nod.`
+			`	"Stones guide you." Bolverka adds with a friendly smile.`
+			`[THIS ENDS THE HROARS HAULER CONTENT - FUTURE MISSIONS WILL BE ADDED.]`
+				decline
+
+		label next
+		`	Hroar grins, "Keep your ear to the ground, and I'll contact you when I'm ready. Gotta a few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
+		`	Yngvar nods, "Not bad work. If work is what you're interested in."`
+		`	Hroar makes a shooing gesture, "But right now we're in the middle of something. So, uh, if you don't mind."`
+		choice
+			`	"Okay, I'll head out."`
+				goto byebye
+			`	"Wait. What are you talking about?"`
+		label talkingabout
+		`	Hroar frowns, "Listen, I respect all you've done for us. But not thirty minutes ago you were a jacket-less greenhorn in our organization. We'll let you in when the time is ready, but for now, it's best you moved on."`
+		`	Yngvar looks at you hard with his one good eye, "With your skills, I doubt you'll be in the dark for long."`
+		choice
+			`	"Okay, I'll head out."`
+		`	"Thanks, and don't worry. We'll be in touch." Hroar says.`
+			goto byebye
+
+			label best
+			`	Hroar nods slowly, "Can't say I wish it weren't a little better, but I hear ya. Some things are outta our hands. Well, let's see about paying, huh? Maybe that'll put a sparkle back in those formely greenhorn eyes of yours."`
+			`	"Havi" Hroar suddenly shouts.`
+				goto havi
+
+			label payme
+			`	Hroar frowns, "I s'pose it is. Despite the bumps, I do appreciate your work, <first>, and I am a man of my word."`
+			`	"Havi!" Hroar hollars toward the bar.`
+				goto havi
+
+			label spit
+			`	Hroar grimaces, "Ya know, there some things a man is better off not knowing, and for me, <first>, this is one of 'em. So, how about we just skip to the part where you get paid so I don't have to hear anymore about your... feats."`
+			`	"Havi! Get over here!" Hroar hollars.`
+				goto havi
+
+			label syndicate
+			`	Hroar's white teeth gleam as he bares them, "You just gonna roll over for a couple of money-grubbing Syndies? No fight in ya? No cunning?"`
+			label yngvarcalm
+
+			label myjob
+			`	Hroar speaks behind his grit teeth, "Your job, <name>, was to come back here with my fleet intact."`
+			label yngvarcalm
 
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
