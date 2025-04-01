@@ -24,9 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "EsUuid.h"
 #include "GameEvent.h"
-#include "Government.h"
 #include "Mission.h"
-#include "RaidFleet.h"
 #include "SystemEntry.h"
 
 #include <chrono>
@@ -41,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Outfit;
 class Planet;
+class RaidFleet;
 class Rectangle;
 class Ship;
 class ShipEvent;
