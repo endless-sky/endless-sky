@@ -1156,9 +1156,9 @@ mission "A Sunracer Hovercraft Racing"
 		planet "Sunracer"
 	substitutions
 		"<racename>" "${adjectives} ${racetrack}"
-		"<mega name>" "${civilian}"
-		"<synd name>" "${syndicate fighter}"
-		"<delt name>" "${free worlds fighter}"
+		"<megaparsec name>" "${civilian}"
+		"<syndicate name>" "${syndicate fighter}"
+		"<delta name>" "${free worlds fighter}"
 		"<deep name>" "${deep fighter}"
 	on offer
 		conversation
@@ -1170,16 +1170,16 @@ mission "A Sunracer Hovercraft Racing"
 			action
 				
 				"race length" = 3 + "roll: 2"
-				"synd boost" = 2 + "roll: 2"
-				"delt boost" = 4 + "roll: 8"
+				"syndicate boost" = 2 + "roll: 2"
+				"delta boost" = 4 + "roll: 8"
 				"deep boost" = 6 + "roll: 12"
 				# The ( ( 10 - x + "race length" ) / 10 ) flips to 1 when race length is x+, 0 if less than x. Used to only roll for the length of the track.
-				"mega speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
-				"synd speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
-				"delt speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
+				"megaparsec speed" = "roll: 12" + "roll: 12" + "roll: 12" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 12" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 12"
+				"syndicate speed" = "roll: 10" + "roll: 10" + "roll: 10" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 10" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 10"
+				"delta speed" = "roll: 8" + "roll: 8" + "roll: 8" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 8" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 8"
 				"deep speed" = "roll: 6" + "roll: 6" + "roll: 6" + ( ( 10 - 4 + "race length" ) / 10 ) * ( "roll: 6" ) + ( ( 10 - 5 + "race length" ) / 10 ) * "roll: 6"
-				"synd laps" = "synd speed" + "synd boost"
-				"delt laps" = "delt speed" + "delt boost"
+				"syndicate laps" = "syndicate speed" + "syndicate boost"
+				"delta laps" = "delta speed" + "delta boost"
 				"deep laps" = "deep speed" + "deep boost"
 			`	You board the <ship> for the quick trip to the <racename>. Out the window, ${sunracer city to wilderness description}. Eventually, you park your ship outside the <racename>, and walk up to the racetrack's entrance.`
 			label decisioning
@@ -1187,9 +1187,9 @@ mission "A Sunracer Hovercraft Racing"
 			`		<racename>: &[race length] Hour Race`
 			``
 			`		Today's Racers:`
-			`		Megaparsec Racing Technologies: <mega name>`
-			`		Syndicate Performance Racing: <synd name>`
-			`		Delta V Grand Prix: <delt name>`
+			`		Megaparsec Racing Technologies: <megaparsec name>`
+			`		Syndicate Performance Racing: <syndicate name>`
+			`		Delta V Grand Prix: <delta name>`
 			`		Deep Sky Dynamics: <deep name>`
 			``
 			choice
@@ -1212,8 +1212,8 @@ mission "A Sunracer Hovercraft Racing"
 			`	Your ship is close enough to the <racename>'s track to be able to scan exactly how many laps each hovercraft's afterburner can take them. Your ship relays the following afterburner data:`
 			``
 			`		Megaparsec Racing Technologies: No Afterburner Fuel`
-			`		Syndicate Performance Racing: &[synd boost] laps-worth of Afterburner`
-			`		Delta V Grand Prix: &[delt boost] laps-worth of Afterburner`
+			`		Syndicate Performance Racing: &[syndicate boost] laps-worth of Afterburner`
+			`		Delta V Grand Prix: &[delta boost] laps-worth of Afterburner`
 			`		Deep Sky Dynamics: &[deep boost] laps-worth of Afterburner`
 			``
 				goto decisioning
@@ -1221,45 +1221,45 @@ mission "A Sunracer Hovercraft Racing"
 			`	${sunracer hovercraft race description}`
 			branch megawon
 				and
-					"mega speed" >= "synd laps"
-					"mega speed" >= "delt laps"
-					"mega speed" >= "deep laps"
+					"megaparsec speed" >= "syndicate laps"
+					"megaparsec speed" >= "delta laps"
+					"megaparsec speed" >= "deep laps"
 			branch syndwon
 				and
-					"synd laps" >= "delt laps"
-					"synd laps" >= "deep laps"
+					"syndicate laps" >= "delta laps"
+					"syndicate laps" >= "deep laps"
 			branch deltwon
 				and
-					"delt laps" >= "deep laps"
+					"delta laps" >= "deep laps"
 
 			`	Deep Sky Dynamics <deep name> ${sunracer hovercraft victory description}`
 				goto ending
 			label deltwon
-				`	Delta V Grand Prix <delt name> ${sunracer hovercraft victory description}`
+				`	Delta V Grand Prix <delta name> ${sunracer hovercraft victory description}`
 				goto ending
 			label syndwon
-			`	Syndicate Performance Racing <synd name> ${sunracer hovercraft victory description}`
+			`	Syndicate Performance Racing <syndicate name> ${sunracer hovercraft victory description}`
 				goto ending
 			label megawon
-			`	Megaparsec Racing Technologies <mega name> ${sunracer hovercraft victory description}`
+			`	Megaparsec Racing Technologies <megaparsec name> ${sunracer hovercraft victory description}`
 				goto ending
 			label ending
 			`	Final results:`
 			``
-			`		Megaparsec Racing Technologies: <mega name>, &[mega speed] laps completed`
-			`		Syndicate Performance Racing: <synd name>, &[synd laps] laps completed`
-			`		Delta V Grand Prix: <delt name>, &[delt laps] laps completed`
+			`		Megaparsec Racing Technologies: <megaparsec name>, &[megaparsec speed] laps completed`
+			`		Syndicate Performance Racing: <syndicate name>, &[syndicate laps] laps completed`
+			`		Delta V Grand Prix: <delta name>, &[delta laps] laps completed`
 			`		Deep Sky Dynamics: <deep name>, &[deep laps] laps completed`
 			``
 			action
 				clear "race length"
-				clear "synd boost"
-				clear "delt boost"
+				clear "syndicate boost"
+				clear "delta boost"
 				clear "deep boost"
-				clear "mega speed"
-				clear "synd speed"
-				clear "delt speed"
+				clear "megaparsec speed"
+				clear "syndicate speed"
+				clear "delta speed"
 				clear "deep speed"
-				clear "synd laps"
-				clear "delt laps"
+				clear "syndicate laps"
+				clear "delta laps"
 				clear "deep laps"
