@@ -180,7 +180,7 @@ test "Flagship Attribute Autoconditions"
 		navigate
 			travel Arculus
 		input
-			command Jump
+			command jump
 		label "not arculus"
 		branch "not arculus"
 			not "flagship system: Arculus"
