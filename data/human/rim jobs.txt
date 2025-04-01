@@ -234,3 +234,29 @@ mission "Han Sizer Month [3]"
 	on complete
 		payment 150000 110
 		dialog `Your passengers are excited to have completed their journey around the Rim and pay you the agreed fee of <payment>. One is already uploading a travelogue to someone <on Longjump> as they start walking away.`
+
+mission "Delta V Hovercraft Racer Transport"
+	name "Transport racer to <planet>"
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date>."
+	passengers 1
+	cargo "Delta V hovercraft" 1
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 40
+		has "landing access: Sunracer"
+	source Solace
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		system destination
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 8000
+		dialog `You drop the pilot and their hovercraft off and collect your payment of <payment>.`

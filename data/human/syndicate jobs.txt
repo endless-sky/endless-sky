@@ -772,3 +772,29 @@ mission "Megaparsec Shipment [2]"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
+
+mission "Syndicate Hovercraft Racer Transport"
+	name "Transport racer to <planet>"
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date>."
+	passengers 1
+	cargo "Syndicate hovercraft" 1
+	job
+	repeat
+	deadline
+	to offer
+		random < 6
+		has "landing access: Sunracer"
+	source
+		government "Syndicate"
+		not near "Mirfak" 1 4
+	destination Sunracer
+	npc
+		government Pirate
+		personality heroic harvests plunders
+		system destination
+		fleet "Small Core Pirates"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		dialog `You drop the pilot and their hovercraft off and collect your payment of <payment>.`
