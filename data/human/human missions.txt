@@ -2132,7 +2132,6 @@ mission "Terraforming 3"
 		dialog
 			`When you land, the sky already seems noticeably darker than before. Eric runs up to your ship. "You did it!" he says, excited. "A perfect hit. Now we just have to wait and see what the results are. Meet us in the spaceport bar again in a few hours, and Amy will have her initial measurements ready." He hands you a credit chip for <payment>.`
 
-event "Bourne terraforming approval"
 event "terraform FW Rand without permission"
 
 mission "Terraforming 3B"
@@ -2141,8 +2140,17 @@ mission "Terraforming 3B"
 	source "Rand"
 	destination "Bourne"
 	to offer
-		has "event: Bourne terraforming approval"
+		has "Bourne terraforming approval"
 	passengers 3
+	on offer
+		log `Amy wants to drop an asteroid on Rand's polar ice cap. Let's see what the Senate has to say about that.`
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Eric, Alaric, and Amy hasn't entered the system yet. Better depart and wait for it.`
+	on complete
+		conversation
+			`As you approach the Senate building, you note the amount of people entering. You feel fortunate that your connections within the capital allowed you to move the meeting up the schedule as most people must wait days or weeks to be heard. The public chambers of the Senate occupy a converted opera house some distance from the spaceport. Newly built brick buildings that house various government functions surround the central dome.`
+			`As you enter, security officers quickly escort you, Amy, Alaric, and Eric to appellant tables built where the first few rows of seats used to be. You aren't quite going first, so you sit in the second row at a table already occupied by the lawyer of Aleric and Eric. The 40 members of the Senate take their seats at a curved table, during which the din of the 450 seat auditorium grows louder and louder. Eventually, the room is called to order by the chair, a position which rotates each session currently occupied by an old senator from Flood who starts quietly listing achievments of the Free Worlds and asking representives of those projects to speak on them.`
+			`After about 45 minutes, the agenda moves on to appeals for approval of new projects.`
 
 mission "Terraforming 4"
 	name "Terraforming Rand"
