@@ -739,6 +739,25 @@ event "pacified ka'sei"
 
 event "patir mystery timer"
 
+ship "Builder Satellite"
+	sprite "ship/builder satellite"
+	attributes
+		category "Drone"
+		hull 150
+		mass 10
+		drag 2
+		"heat dissipation" 1
+		"threshold percentage" 0.
+	outfits
+		"Self-Disable"
+	turret 0 0
+
+
+ship "Builder Satellite" "Builder Satellite 2"
+	explode "tiny explosion" 5
+	explode "small explosion" 2
+
+
 mission "Ka'het: Voice From The Past 0"
 	invisible
 	landing
@@ -808,7 +827,7 @@ mission "Ka'het: Voice From The Past 1"
 	on complete
 		conversation
 			`The more time passes, and the more Ssil Vida starts to look like a Remnant outpost. The local spaceport, except for the sheer size of each room, has followed a transformation similar to Esquiline, with walls covered by mazes of piping and dozens of active work stations expanding the already operational outfitter. There is no need to wander around, however: Gavriil is waiting for you right beside the landing pad.`
-			`	"Happy to see you again," he gestures warmly. "I hope the Embers blessed your journey." 
+			`	"Happy to see you again," he gestures warmly. "I hope the Embers blessed your journey."`
 			choice
 				`	"They did."`
 				`	(Tell him about the encounter.)`
@@ -844,7 +863,7 @@ mission "Ka'het: Voice From The Past 2"
 				`	"Enough."`
 					goto waaaah
 			`	"After the loss a number of vehicles to what we now know to be the Ka'het, our ancestors developed and adopted new standards to reduce the risk of such expeditions into the depth of the Ember Wastes. Cloaks were to be kept active at all times while inside the Graveyard, limiting the range of our archeological missions to the ever-increasing capacity of our fuel tanks.`
-			`	"Despite making it so most expeditions would only reach the northern systems, it is these guidelines that led to the golden age of Builder archeology, giving us incredible insights into the history of this region and of its inhabitants. The culmination of this effort was the partial translation of their written language, as well as the the decoding of some of their programming. The problem, however, is that this did not extend to their spoken language.`
+			`	"Despite making it so most expeditions would only reach the northern systems, it is these guidelines that led to the golden age of Builder archeology, giving us incredible insights into the history of this region and of its inhabitants. The culmination of this effort was the partial translation of their written language, as well as the decoding of some of their programming. The problem, however, is that this did not extend to the spoken one.`
 				goto continue
 			label waaaah
 			`	He looks amused. "I will try to keep things short then. During our archeological effort, we were able to translate most of the written Builder language and decode some of their programming. The problem, however, is that this did not extend to their spoken language.`
@@ -883,7 +902,7 @@ mission "Ka'het: Voice From The Past 3"
 			label skip
 			`	By the time you complete the post-landing checklist, Gavriil has already left the ship your ship to meet up with the people on the ground. The crowd that has been gathering around the pad give him a warm welcome, to which he replies cheerfully. He must have been spending a lot of time on this moon when he was younger.`
 			`	After some brief introductions, you follow the group as it moves down a few ramps of stairs and inside some well-lit tunnels right below the outpost. At the end of them lies a large hangar, wide in both directions but with a rather low ceiling. "We have a few rigs we used to capture test satellites in the past," one of the technicians explains. "They were Remnant spacecrafts in that case, but there is nothing fundamentally preventing their use in your mission.`
-			`	"Connecting with the spacecraft after you carry it here is going to be a bit more complicated. We have the the hardware to keep it stored, but I had to order some special hardware from Aventine to download its data after all is said and done. Either way, a fleet will have brought it here before you are back, so it should not pose a problem."`
+			`	"Connecting with the spacecraft after you carry it here is going to be a bit more complicated. We have the machines necessary to keep it stored, but I had to order some special devices from Aventine to download its data after all is said and done. Either way, a fleet will have brought it here before you are back, so it should not pose a problem."`
 			`	You help them load the satellite capture equipment in your ship, and make sure to leave enough space for the spacecraft itself when it will be time. "I will stay here to help them prepare for the satellite," Gavriil signs, "and hopefully remain updated with Ssil Vida on the progress made in my absence. See you in a couple weeks."`
 				accept
 	npc assist
@@ -929,7 +948,7 @@ mission "Ka'het: Voice From The Past 5"
 		conversation
 			`During the trip Gavriil has received a constant stream of communications, either from Kumkapi or Ssil Vida. He walks alongside you out of the airlock and down the ramp, silent but clearly thoughtful.`
 			`	"Thank you for this, Captain - not just for ferrying me back, but also for making this little adventure possible in first place. There is still so much to discover about the Builders and their civilization, and I am happy to have contributed to this puzzle at least a tiny bit.`
-			`	"One of the key events in order to understand their history is the first contacts they had with alien species. As it often happens, the first one was with the peaceful Quarg, but there is at least another encounter we know of that did not go nearly as well.
+			`	"One of the key events in order to understand their history is the first contacts they had with alien species. As it often happens, the first one was with the peaceful Quarg, but there is at least another encounter we know of that did not go nearly as well.`
 			`	"We do not know whether this was an actual invasion attempt or just an explorer that did not react well under pressure, but the two species fought, and the Builders only won after multiple days of fighting. The militarization of the Builder society would start at the same time."`
 			`	"What species were they attacked by?" you ask. "We cannot say this for certain. From what I understand, no alien remains were found during the past Graveyard expeditions - other than Builder ones, naturally. However, an interstellar spanning species does not just disappear without leaving any trace, and there is only a small number of candidates that fits the bill."`
 			choice
@@ -996,7 +1015,7 @@ mission "Ka'het: Voice From The Past 6"
 				`	(Do a close flyby, even if the compass goes haywire.)`
 				`	(Try to search around the facility, keeping a safe distance.)`
 					goto coward
-				`	(Give up and move to the original targets.)
+				`	(Give up and move to the original targets.)`
 					goto quarantine
 			`	A brief exploration doesn't turn up anything you hadn't already seen earlier, and all you can do is watch as the mesmerizing flow of Faes'mar in and out of the facility continues undisturbed below you.`
 			label coward
