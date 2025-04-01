@@ -748,9 +748,6 @@ ship "Builder Satellite"
 		drag 2
 		"heat dissipation" 1
 		"threshold percentage" 0.
-	outfits
-		"Self-Disable"
-	turret 0 0
 
 
 ship "Builder Satellite" "Builder Satellite 2"
