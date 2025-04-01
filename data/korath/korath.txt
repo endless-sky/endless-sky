@@ -206,10 +206,11 @@ phrase "korath probes"
 fleet "Korath Raid"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests
+		disables plunders opportunistic frugal harvests
 	variant 4
 		"Palavret"
 		"'olofez" 2
@@ -220,7 +221,8 @@ fleet "Korath Raid"
 fleet "Korath Ember Waste Raid"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 1
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfitters "Korath Exiles Remnant Donations"
@@ -245,7 +247,8 @@ fleet "Korath Ember Waste Raid"
 fleet "Korath Miners"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 0
 	personality
 		timid disables plunders frugal mining harvests
@@ -256,7 +259,8 @@ fleet "Korath Miners"
 fleet "Korath Civilian Miners"
 	government "Korath (Civilian)"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 0
 	personality
 		heroic disables frugal mining harvests coward
@@ -275,7 +279,8 @@ fleet "Korath Civilian Miners"
 fleet "Korath Home"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 3
 	personality
 		timid opportunistic
@@ -295,7 +300,8 @@ fleet "Korath Home"
 fleet "Korath Defense"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests
@@ -348,7 +354,8 @@ fleet "Korath Defense"
 fleet "Korath Surveillance"
 	government "Korath"
 	names "korath"
-	fighters "korath probes"
+	fighters
+		names "korath probes"
 	cargo 1
 	personality
 		disables plunders opportunistic harvests surveillance
@@ -359,10 +366,11 @@ fleet "Korath Surveillance"
 fleet "Korath Large Raid"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 1
 	personality
-		disables plunders opportunistic harvests
+		disables plunders opportunistic frugal harvests
 	variant 5
 		"Palavret" 2
 		"'olofez" 4
@@ -377,7 +385,8 @@ fleet "Korath Large Raid"
 fleet "Korath Ember Waste Large Raid"
 	government "Korath"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 1
 	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
 	outfitters "Korath Exiles Remnant Donations"
@@ -418,7 +427,8 @@ fleet "Korath Ember Waste Large Raid"
 fleet "Korath Civilian Large"
 	government "Korath (Civilian)"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 3
 	personality
 		frugal opportunistic disables forbearing
@@ -460,7 +470,8 @@ fleet "Korath Civilian Large"
 fleet "Korsmanath A'awojs"
 	government "Korath (Civilian)"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 3
 	variant 21
 		"Korsmanath A'awoj"
@@ -483,7 +494,8 @@ fleet "Korsmanath A'awojs"
 fleet "Korath Rescue"
 	government "Korath (Civilian)"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	commodities Medical
 	personality
 		timid disables coward surveillance harvests opportunistic merciful
@@ -495,7 +507,8 @@ fleet "Korath Rescue"
 fleet "Kor Efret Home"
 	government "Kor Efret"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 3
 	personality
 		timid
@@ -510,7 +523,8 @@ fleet "Kor Efret Home"
 fleet "Kor Efret Miners"
 	government "Kor Efret"
 	names "korath"
-	fighters "korath"
+	fighters
+		names "korath"
 	cargo 0
 	personality
 		timid disables plunders frugal mining harvests
@@ -521,7 +535,8 @@ fleet "Kor Efret Miners"
 fleet "Small Kor Sestor"
 	government "Kor Sestor"
 	names "kor sestor"
-	fighters "kor sestor fighter"
+	fighters
+		names "kor sestor fighter"
 	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	variant 5
 		"Met Par Tek 53" 3
@@ -579,7 +594,8 @@ fleet "Small Kor Sestor"
 fleet "Large Kor Sestor"
 	government "Kor Sestor"
 	names "kor sestor"
-	fighters "kor sestor fighter"
+	fighters
+		names "kor sestor fighter"
 	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	variant 8
 		"Kar Ik Vot 349"
@@ -692,7 +708,8 @@ fleet "Large Kor Sestor"
 fleet "Small Kor Mereti"
 	government "Kor Mereti"
 	names "kor mereti"
-	fighters "kor mereti"
+	fighters
+		names "kor mereti"
 	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		opportunistic
@@ -743,7 +760,8 @@ fleet "Small Kor Mereti"
 fleet "Large Kor Mereti"
 	government "Kor Mereti"
 	names "kor mereti"
-	fighters "kor mereti"
+	fighters
+		names "kor mereti"
 	commodities Plastic Equipment Industrial Electronics "Heavy Metals"
 	personality
 		opportunistic

@@ -13,17 +13,17 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SPACEPORT_PANEL_H_
-#define SPACEPORT_PANEL_H_
+#pragma once
 
 #include "Panel.h"
 
 #include "Information.h"
 #include "text/WrappedText.h"
 
+class Interface;
 class News;
 class PlayerInfo;
-class Interface;
+class Port;
 
 
 // GUI panel to be shown when you are in a spaceport. This just draws the port
@@ -46,6 +46,7 @@ private:
 private:
 	PlayerInfo &player;
 	WrappedText text;
+	const Port &port;
 	const Interface &ui;
 
 	// Current news item (if any):
@@ -56,7 +57,3 @@ private:
 	Information newsInfo;
 	WrappedText newsMessage;
 };
-
-
-
-#endif

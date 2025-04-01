@@ -11,16 +11,30 @@ on:
         value: ${{ jobs.changed.outputs.unit_tests }}
       integration_tests:
         value: ${{ jobs.changed.outputs.integration_tests }}
+      steam:
+        value: ${{ jobs.changed.outputs.steam }}
+      doxygen_config:
+        value: ${{ jobs.changed.outputs.doxygen_config }}
       codespell:
         value: ${{ jobs.changed.outputs.codespell }}
-      codeblocks_files:
-        value: ${{ jobs.changed.outputs.codeblocks_files }}
+      editorconfig_files:
+        value: ${{ jobs.changed.outputs.editorconfig_files }}
+      content_style_check:
+        value: ${{ jobs.changed.outputs.content_style_check }}
+      code_style_check:
+        value: ${{ jobs.changed.outputs.code_style_check }}
       cmake_files:
         value: ${{ jobs.changed.outputs.cmake_files }}
       copyright:
         value: ${{ jobs.changed.outputs.copyright }}
-      parse_script:
-        value: ${{ jobs.changed.outputs.parse_script }}
+      changelog:
+        value: ${{ jobs.changed.outputs.changelog }}
+      content_style_script:
+        value: ${{ jobs.changed.outputs.content_style_script }}
+      ci_config:
+        value: ${{ jobs.changed.outputs.ci_config }}
+      projects_check_config:
+        value: ${{ jobs.changed.outputs.projects_check_config }}
 
 jobs:
   changed:
@@ -30,16 +44,23 @@ jobs:
       game_code: ${{ steps.filter.outputs.game_code }}
       unit_tests: ${{ steps.filter.outputs.unit_tests }}
       integration_tests: ${{ steps.filter.outputs.integration_tests }}
+      steam: ${{ steps.filter.outputs.steam }}
       codespell: ${{ steps.filter.outputs.codespell }}
-      codeblocks_files: ${{ steps.filter.outputs.codeblocks_files }}
+      editorconfig_files: ${{ steps.filter.outputs.editorconfig_files }}
+      content_style_check: ${{ steps.filter.outputs.content_style_check }}
+      code_style_check: ${{ steps.filter.outputs.code_style_check }}
       cmake_files: ${{ steps.filter.outputs.cmake_files }}
       copyright: ${{ steps.filter.outputs.copyright }}
-      parse_script: ${{ steps.filter.outputs.parse_script }}
+      changelog: ${{ steps.filter.outputs.changelog }}
+      content_style_script: ${{ steps.filter.outputs.content_style_script }}
+      ci_config: ${{ steps.filter.outputs.ci_config }}
+      projects_check_config: ${{ steps.filter.outputs.projects_check_config }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 2
-    - uses: dorny/paths-filter@v2
+        show-progress: false
+    - uses: dorny/paths-filter@v3
       id: filter
       with:
         filters: .github/path-filters.yml

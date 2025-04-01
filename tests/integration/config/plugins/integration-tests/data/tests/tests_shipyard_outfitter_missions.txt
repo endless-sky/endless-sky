@@ -1,3 +1,16 @@
+# Copyright (c) 2022 by rovermicrover
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "Shipyard Outfitter Mission Save"
 	category "savegame"
 	contents
@@ -60,11 +73,11 @@ test-data "Shipyard Outfitter Mission Save"
 test-data "Shipyard Outfitter Mission Missions"
 	category mission
 	contents
-		mission "%TEST%: SHIPYARD MISSION"
+		mission "TEST: SHIPYARD MISSION"
 			shipyard
 			source "Ruin"
 			to offer
-				has "%TEST%: SHIPYARD MISSION OFFER"
+				has "TEST: SHIPYARD MISSION OFFER"
 			on offer
 				conversation
 					`THIS IS A SHIPYARD MISSION YO!`
@@ -74,11 +87,11 @@ test-data "Shipyard Outfitter Mission Missions"
 
 
 
-		mission "%TEST%: OUTFITTER MISSION"
+		mission "TEST: OUTFITTER MISSION"
 			outfitter
 			source "Ruin"
 			to offer
-				has "%TEST%: OUTFITTER MISSION OFFER"
+				has "TEST: OUTFITTER MISSION OFFER"
 			on offer
 				conversation
 					`THIS IS A OUTFITTER MISSION YO!`
@@ -93,6 +106,8 @@ test "Trigger Shipyard Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the shipyard."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		input
 			key s
@@ -103,20 +118,11 @@ test "Trigger Outfitter Mission"
 	description "Launch, land, and go to the spaceport to trigger any potential missions in the outfitter."
 	sequence
 		call "Depart"
+		navigate
+			"travel destination" Ruin
 		call "Land"
 		input
 			key o
-
-
-test "End Missions"
-	status partial
-	description "Just skip a mission by pressing return twice."
-	sequence
-		# Press accept (or decline, depending on if it is shown) and then skip the dialog once.
-		input
-			key "Return"
-		input
-			key "Return"
 
 
 test "Test Shipyard And Outfitter Mission"
@@ -138,9 +144,9 @@ test "Shipyard Mission Test"
 		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: SHIPYARD MISSION OFFER" = 1
+			"TEST: SHIPYARD MISSION OFFER" = 1
 		call "Trigger Shipyard Mission"
-		call "End Missions"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Shipyard And Outfitter Mission"
 		assert
@@ -155,9 +161,9 @@ test "Outfitter Mission Test"
 		inject "Shipyard Outfitter Mission Save"
 		call "Load First Savegame"
 		apply
-			"%TEST%: OUTFITTER MISSION OFFER" = 1
+			"TEST: OUTFITTER MISSION OFFER" = 1
 		call "Trigger Outfitter Mission"
-		call "End Missions"
+		call "Skip Mission"
 		call "Depart"
 		call "Test Shipyard And Outfitter Mission"
 		assert

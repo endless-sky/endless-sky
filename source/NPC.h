@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef NPC_H_
-#define NPC_H_
+#pragma once
 
 #include "Conversation.h"
 #include "EsUuid.h"
@@ -22,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Fleet.h"
 #include "FleetCargo.h"
 #include "LocationFilter.h"
+#include "NPCAction.h"
 #include "Personality.h"
 #include "Phrase.h"
 
@@ -33,7 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class Government;
-class MissionAction;
+class Mission;
 class Planet;
 class PlayerInfo;
 class Ship;
@@ -49,6 +49,23 @@ class UI;
 // staying in the system they started in, or attacking only the player's ships.
 class NPC {
 public:
+	enum class Trigger : int_fast8_t {
+		// Triggers corresponding directly to ShipEvents.
+		ASSIST,
+		SCAN_CARGO,
+		SCAN_OUTFITS,
+		PROVOKE,
+		DISABLE,
+		BOARD,
+		CAPTURE,
+		DESTROY,
+		ENCOUNTER,
+		// Can be triggered by either the CAPTURE or DESTROY events.
+		KILL,
+	};
+
+
+public:
 	NPC() = default;
 	// Copying an NPC instance isn't allowed.
 	NPC(const NPC &) = delete;
@@ -58,9 +75,9 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	NPC(const DataNode &node, const std::string &missionName);
+	explicit NPC(const DataNode &node);
 
-	void Load(const DataNode &node, const std::string &missionName);
+	void Load(const DataNode &node);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;
@@ -79,8 +96,8 @@ public:
 	const std::list<std::shared_ptr<Ship>> Ships() const;
 
 	// Handle the given ShipEvent.
-	enum Trigger {KILL, BOARD, ASSIST, DISABLE, SCAN_CARGO, SCAN_OUTFITS, CAPTURE, PROVOKE};
-	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr, bool isVisible = true);
+	void Do(const ShipEvent &event, PlayerInfo &player, UI *ui = nullptr,
+		const Mission *caller = nullptr, bool isVisible = true);
 	// Determine if the NPC is in a successful state, assuming the player is in the given system.
 	// (By default, a despawnable NPC has succeeded and is not actually checked.)
 	bool HasSucceeded(const System *playerSystem, bool ignoreIfDespawnable = true) const;
@@ -92,13 +109,13 @@ public:
 
 	// Create a copy of this NPC but with the fleets replaced by the actual
 	// ships they represent, wildcards in the conversation text replaced, etc.
-	NPC Instantiate(std::map<std::string, std::string> &subs, const System *origin, const System *destination,
-			int jumps, int64_t payload) const;
+	NPC Instantiate(const PlayerInfo &player, std::map<std::string, std::string> &subs, const System *origin,
+			const System *destination, int jumps, int64_t payload) const;
 
 
 private:
 	// Handle any NPC mission actions that may have been triggered by a ShipEvent.
-	void DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui = nullptr);
+	void DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, UI *ui, const Mission *caller);
 
 
 private:
@@ -152,10 +169,6 @@ private:
 	// The ShipEvent actions that have been done to each ship.
 	std::map<const Ship *, int> shipEvents;
 
-	// The MissionActions that this NPC can run on certain events/triggers.
-	std::map<Trigger, MissionAction> npcActions;
+	// The NPCActions that this NPC can run on certain events/triggers.
+	std::map<Trigger, NPCAction> npcActions;
 };
-
-
-
-#endif

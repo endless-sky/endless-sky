@@ -15,12 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ItemInfoDisplay.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Color.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "text/layout.hpp"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "text/Table.h"
@@ -161,8 +160,10 @@ void ItemInfoDisplay::UpdateDescription(const string &text, const vector<string>
 		description.Wrap(fullText);
 	}
 
-	// Pad by 10 pixels on the top and bottom.
-	descriptionHeight = description.Height() + 20;
+	// If there is a description, pad by 10 pixels on the top and bottom.
+	descriptionHeight = description.Height();
+	if(descriptionHeight)
+		descriptionHeight += 20;
 }
 
 

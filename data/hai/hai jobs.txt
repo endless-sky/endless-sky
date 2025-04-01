@@ -72,6 +72,7 @@ mission "Hai Vacation [1]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -96,6 +97,7 @@ mission "Hai Vacation [2]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -120,6 +122,7 @@ mission "Hai Vacation [3]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -144,6 +147,7 @@ mission "Hai Vacation [4]"
 	destination
 		distance 2 7
 		attributes "hai tourism"
+		not attributes "station"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -165,7 +169,7 @@ mission "Wealthy Hai [1]"
 	passengers 2 4 .8
 	deadline
 	to offer
-		random < 70
+		random < 55
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 		has "outfit (installed): Quantum Keystone"
@@ -193,7 +197,7 @@ mission "Wealthy Hai [2]"
 	passengers 2 4 .8
 	deadline
 	to offer
-		random < 30
+		random < 15
 	to accept
 		has "outfit (installed): Luxury Accommodations"
 		has "outfit (installed): Quantum Keystone"
@@ -222,12 +226,21 @@ mission "Hai Festival [1]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -248,12 +261,21 @@ mission "Hai Festival [2]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -274,12 +296,21 @@ mission "Hai Festival [3]"
 	name "Festival at <planet>"
 	job
 	repeat
-	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet>."
+	description "For a month each year, the Hai have a huge holiday festival. This group of <bunks> Hai and humans will pay you <payment> for you to transport them and their <tons> of supplies to <planet> by <date>."
+	deadline 0 2
 	passengers 10 20
 	cargo "party supplies" 1 2
 	to offer
-		month == 3
+		or
+			and
+				month == 3
+				day <= 17
+			and
+				month == 2
+				day >= 27
 		random < 60
+	to fail
+		month >= 4
 	source
 		government "Hai"
 	destination
@@ -338,7 +369,7 @@ mission "Unfettered Aid [0]"
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
-		"reputation: Hai Merchant (Sympathizers)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 7.5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [1]"
@@ -368,7 +399,7 @@ mission "Unfettered Aid [1]"
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
-		"reputation: Hai Merchant (Sympathizers)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 7.5
 		dialog phrase "unfettered aid payment dialog"
 
 mission "Unfettered Aid [2]"
@@ -398,7 +429,7 @@ mission "Unfettered Aid [2]"
 		"reputation: Hai (Wormhole Access)" += 5
 		"reputation: Hai Merchant" += 5
 		"reputation: Hai Merchant (Human)" += 5
-		"reputation: Hai Merchant (Sympathizers)" += 5
+		"reputation: Hai Merchant (Sympathizers)" += 7.5
 		dialog phrase "unfettered aid payment dialog"
 
 
@@ -482,7 +513,7 @@ mission "Delivery to Human Space [2]"
 		dialog phrase "generic cargo delivery payment"
 
 mission "Hai Retrieve Human Luxury Goods"
-	name "Special order to <planet>"
+	name "Special order from <planet stopovers>"
 	job
 	repeat
 	description "A Hai socialite on <planet> wants to show off their knowledge of human culture to their peers. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
@@ -512,7 +543,7 @@ mission "Hai Retrieve Human Luxury Goods"
 		dialog "Your payment of <payment> is waiting when you touch down, along with delivery instructions. You send the <commodity> by dedicated courier."
 
 mission "Hai Retrieve Human Food"
-	name "Special order to <planet>"
+	name "Special order from <planet stopovers>"
 	job
 	repeat
 	description "A Hai gourmet on <planet> is bored with local fare and wants to try food they heard about from human tourists. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
@@ -541,7 +572,7 @@ mission "Hai Retrieve Human Food"
 		dialog "As soon as you touch down you receive a message from the Hai gourmet with thanks and your payment of <payment>."
 
 mission "Hai Retrieve Human Electronics"
-	name "Special order to <planet>"
+	name "Special order from <planet stopovers>"
 	job
 	repeat
 	description "A Hai tinkerer on <planet> wants to experiment with human technology. They want <cargo> from <stopovers> by <date>. Payment is <payment>."
@@ -1483,7 +1514,7 @@ mission "Hai Prisoner Roleplay"
 	name `Hai "prison" cruise to <planet>`
 	job
 	repeat
-	description "A group of Hai want to experience what it's like to be human criminals. Transport them to <planet> in a brig. Payment is <payment>."
+	description "A group of Hai want to experience what it's like to be human criminals. Transport the <bunks> of them to <planet> in a brig. Payment is <payment>."
 	passengers 3 20
 	to offer
 		random < 5
@@ -1503,3 +1534,572 @@ mission "Hai Prisoner Roleplay"
 		payment 15000 150
 		"reputation: Hai" += 5
 		dialog "The Hai depart your ship chittering in excitement. One of them hands you your payment of <payment> before running to catch up with their friends."
+
+
+
+mission "Swiftsong Business Convention [1]"
+	job
+	repeat
+	name "<planet> business convention"
+	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> in exchange for transporting them and their <tons> of supplies to <planet>."
+	passengers 4 2 .1
+	cargo "office supplies" 1 2
+	to offer
+		random < 8
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `During the trip, your passengers appeared to be practicing a presentation for the convention. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
+
+
+
+mission "Swiftsong Business Convention [2]"
+	job
+	repeat
+	name "<planet> business convention"
+	description "A group of <bunks> Hai who need to get to a business convention will pay you <payment> in exchange for transporting them and their <tons> of supplies to <planet>."
+	passengers 4 4 .1
+	cargo "office supplies" 1 3
+	to offer
+		random < 2
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `During the trip, your passengers appeared to be practicing a presentation for the convention. You sense a tinge of nervousness as they give you <payment> and leave your ship.`
+
+
+
+mission "Swiftsong Film Festival [1]"
+	job
+	repeat
+	name "<planet> film festival"
+	description "A group of <bunks> Hai movie buffs will pay you <payment> in exchange for transporting them to <planet>, where a film festival is taking place."
+	passengers 4 2 .1
+	to offer
+		random < 8
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Some of the movie plots they discussed during the trip were bewildering.`
+
+
+
+mission "Swiftsong Film Festival [2]"
+	job
+	repeat
+	name "<planet> film festival"
+	description "A group of <bunks> Hai movie buffs will pay you <payment> in exchange for transporting them to <planet>, where a large film festival is taking place."
+	passengers 4 4 .1
+	to offer
+		random < 3
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Some of the movie plots they discussed during the trip were bewildering.`
+
+
+
+mission "Swiftsong Music Festival [1]"
+	job
+	repeat
+	name "<planet> music festival"
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a music festival is taking place."
+	passengers 4 2 .1
+	to offer
+		random < 8
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. You can hear the music blasting all the way from the spaceport.`
+
+
+
+mission "Swiftsong Music Festival [2]"
+	job
+	repeat
+	name "<planet> music festival"
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large music festival is taking place."
+	passengers 4 4 .1
+	to offer
+		random < 3
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. You can hear the music blasting all the way from the spaceport.`
+
+
+
+mission "Swiftsong Computer Security Conference [1]"
+	job
+	repeat
+	name "<planet> computer security conference"
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a computer security conference is taking place."
+	passengers 4 2 .1
+	to offer
+		random < 8
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Your passengers' conversations went mostly over your head, but they were otherwise pleasant the entire trip.`
+
+
+
+mission "Swiftsong Computer Security Conference [2]"
+	job
+	repeat
+	name "<planet> computer security conference"
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large computer security conference is taking place."
+	passengers 4 4 .1
+	to offer
+		random < 3
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. Your passengers' conversations went mostly over your head, but they were otherwise pleasant the entire trip.`
+
+
+mission "Swiftsong Science Fiction Convention [1]"
+	job
+	repeat
+	name "<planet> science fiction convention"
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a science fiction convention is taking place."
+	passengers 4 2 .1
+	to offer
+		random < 8
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 50
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, one of them gives you a hand gesture that you recognize from an old human sci-fi program.`
+
+
+
+mission "Swiftsong Science Fiction Convention [2]"
+	job
+	repeat
+	name "<planet> science fiction convention"
+	description "A group of <bunks> Hai will pay you <payment> in exchange for transporting them to <planet>, where a large science fiction convention is taking place."
+	passengers 4 4 .1
+	to offer
+		random < 3
+	source
+		government "Hai"
+		not planet "Swiftsong"
+	destination "Swiftsong"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 100
+		"reputation: Hai" += 3
+		dialog `The Hai chitter excitedly as they give you <payment> and step off your ship. As they leave, one of them gives you a hand gesture that you recognize from an old human sci-fi program.`
+
+
+mission "Superstitious Hai [1]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This Hai matriarch will pay <payment> for a keystone-equipped ship to transport her family of <bunks> to <destination> by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		has "outfit (installed): Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Superstitious Hai [2]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This family of <bunks> ranchers will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		has "outfit (installed): Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		attributes farming
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Superstitious Hai [3]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This elderly Hai will pay <payment> for a journey on a keystone-equipped ship to their retirement home on <destination> by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	passengers 1
+	deadline
+	to offer
+		random < 5
+	to accept
+		has "outfit (installed): Quantum Keystone"
+	source
+		government "Hai"
+		not attributes "retirement"
+	destination
+		government "Hai"
+		attributes "retirement"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Superstitious Hai [4]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This group of <bunks> farm workers will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		has "outfit (installed): Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		attributes "farming"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Superstitious Hai [5]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "A group of elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		has "outfit (installed): Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		attributes "hai tourism"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Superstitious Hai [6]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>. They have requested that their ship have an authentic Hai keystone installed."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		has "outfit (installed): Quantum Keystone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Superstitious Hai [7]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This Hai matriarch will pay <payment> for a keystone-equipped ship to transport her family of <bunks> to <destination> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		or
+			has "outfit (installed): Quantum Keystone"
+			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Superstitious Hai [8]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This family of <bunks> ranchers will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		or
+			has "outfit (installed): Quantum Keystone"
+			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		attributes farming
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Superstitious Hai [9]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This elderly Hai will pay <payment> for a journey on a keystone-equipped ship to their retirement home on <destination> by <date>."
+	passengers 1
+	deadline
+	to offer
+		random < 5
+	to accept
+		or
+			has "outfit (installed): Quantum Keystone"
+			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
+	source
+		government "Hai"
+		not attributes "retirement"
+	destination
+		government "Hai"
+		attributes "retirement"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Superstitious Hai [10]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This group of <bunks> farm workers will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		or
+			has "outfit (installed): Quantum Keystone"
+			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		attributes "farming"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Superstitious Hai [11]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "A group of elderly Hai will pay <payment> for a vacation to <destination> on a keystone-equipped ship by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		or
+			has "outfit (installed): Quantum Keystone"
+			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		attributes "hai tourism"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"
+
+
+mission "Superstitious Hai [12]"
+	name "Superstitious Hai to <planet>"
+	job
+	repeat
+	description "This family of <bunks> Hai will pay <payment> for a journey on a keystone-equipped ship to <destination> by <date>."
+	passengers 2 4 .8
+	deadline
+	to offer
+		random < 5
+	to accept
+		or
+			has "outfit (installed): Quantum Keystone"
+			has "outfit (installed): Shield Beetle Pendant"
+			has "outfit (installed): Tree Skeleton Key Stone"
+	source
+		government "Hai"
+	destination
+		government "Hai"
+		distance 4 8
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000 300
+		"reputation: Hai" += 3
+		"reputation: Hai (Wormhole Access)" += 3
+		"reputation: Hai Merchant" += 3
+		"reputation: Hai Merchant (Human)" += 3
+		"reputation: Hai Merchant (Sympathizers)" += 3
+		dialog phrase "generic passenger dropoff payment"

@@ -18,12 +18,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "GameData.h"
-#include "Mask.h"
-#include "MaskManager.h"
+#include "image/Mask.h"
+#include "image/MaskManager.h"
+#include "pi.h"
 #include "Random.h"
-#include "Screen.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
 
 #include <algorithm>
 #include <cmath>
@@ -33,21 +33,24 @@ using namespace std;
 
 
 // Constructor, based on a Sprite.
-Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom)
-	: position(position), velocity(velocity), angle(facing), zoom(zoom), sprite(sprite), randomize(true)
+Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
+	: position(position), velocity(velocity), angle(facing), scale(scale), zoom(zoom),
+	alpha(alpha), sprite(sprite), randomize(true)
 {
 }
 
 
 
 // Constructor, based on the animation from another Body object.
-Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom)
+Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
 {
 	*this = sprite;
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = facing;
 	this->zoom = zoom;
+	this->scale = scale * sprite.Scale();
+	this->alpha = alpha * sprite.alpha;
 }
 
 
@@ -71,7 +74,7 @@ const Sprite *Body::GetSprite() const
 // Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale.X() * sprite->Width() : 0.f);
 }
 
 
@@ -79,7 +82,7 @@ double Body::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale.Y() * sprite->Height() : 0.f);
 }
 
 
@@ -148,6 +151,13 @@ const Point &Body::Velocity() const
 
 
 
+const Point Body::Center() const
+{
+	return -rotatedCenter + position;
+}
+
+
+
 // Direction this Body is facing in.
 const Angle &Body::Facing() const
 {
@@ -173,9 +183,9 @@ double Body::Zoom() const
 
 
 
-double Body::Scale() const
+Point Body::Scale() const
 {
-	return static_cast<double>(scale);
+	return scale;
 }
 
 
@@ -217,7 +227,10 @@ void Body::LoadSprite(const DataNode &node)
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
-			scale = static_cast<float>(child.Value(1));
+		{
+			double scaleY = (child.Size() >= 3 && child.Value(2) > 0.) ? child.Value(2) : child.Value(1);
+			scale = Point(child.Value(1), scaleY);
+		}
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
@@ -232,11 +245,13 @@ void Body::LoadSprite(const DataNode &node)
 		}
 		else if(child.Token(0) == "rewind")
 			rewind = true;
+		else if(child.Token(0) == "center" && child.Size() >= 3)
+			center = Point(child.Value(1), child.Value(2));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(scale != 1.f)
+	if(scale != Point(1., 1.))
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
 
@@ -255,14 +270,16 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
-		if(scale != 1.f)
-			out.Write("scale", scale);
+		if(scale != Point(1., 1.))
+			out.Write("scale", scale.X(), scale.Y());
 		if(randomize)
 			out.Write("random start frame");
 		if(!repeat)
 			out.Write("no repeat");
 		if(rewind)
 			out.Write("rewind");
+		if(center)
+			out.Write("center", center.X(), center.Y());
 	}
 	out.EndChild();
 }
@@ -282,6 +299,30 @@ void Body::SetSprite(const Sprite *sprite)
 void Body::SetSwizzle(int swizzle)
 {
 	this->swizzle = swizzle;
+}
+
+
+
+double Body::Alpha(const Point &drawCenter) const
+{
+	return alpha * DistanceAlpha(drawCenter);
+}
+
+
+
+double Body::DistanceAlpha(const Point &drawCenter) const
+{
+	if(!distanceInvisible)
+		return 1.;
+	double distance = (drawCenter - position).Length();
+	return clamp<double>((distance - distanceInvisible) / (distanceVisible - distanceInvisible), 0., 1.);
+}
+
+
+
+bool Body::IsVisible(const Point &drawCenter) const
+{
+	return DistanceAlpha(drawCenter) > 0.;
 }
 
 
@@ -322,6 +363,39 @@ void Body::MarkForRemoval()
 void Body::UnmarkForRemoval()
 {
 	shouldBeRemoved = false;
+}
+
+
+
+// Turn this object around its center of rotation.
+void Body::Turn(double amount)
+{
+	angle += amount;
+	if(!center)
+		return;
+
+	auto RotatePointAroundOrigin = [](Point &toRotate, double radians) -> Point {
+		float si = sin(radians);
+		float co = cos(radians);
+		float newX = toRotate.X() * co - toRotate.Y() * si;
+		float newY = toRotate.X() * si + toRotate.Y() * co;
+		return Point(newX, newY);
+	};
+
+	rotatedCenter = -RotatePointAroundOrigin(center, (angle - amount).Degrees() * TO_RAD);
+
+	position -= rotatedCenter;
+
+	rotatedCenter = RotatePointAroundOrigin(rotatedCenter, Angle(amount).Degrees() * TO_RAD);
+
+	position += rotatedCenter;
+}
+
+
+
+void Body::Turn(const Angle &amount)
+{
+	Turn(amount.Degrees());
 }
 
 

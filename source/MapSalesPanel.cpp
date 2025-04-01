@@ -15,31 +15,29 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapSalesPanel.h"
 
-#include "CategoryTypes.h"
+#include "CategoryList.h"
+#include "CategoryType.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Government.h"
 #include "ItemInfoDisplay.h"
-#include "text/layout.hpp"
-#include "Outfit.h"
+#include "text/Layout.h"
 #include "PlayerInfo.h"
 #include "Point.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
-#include "RingShader.h"
+#include "shader/RingShader.h"
 #include "Screen.h"
-#include "Ship.h"
-#include "Sprite.h"
-#include "SpriteSet.h"
-#include "SpriteShader.h"
-#include "StellarObject.h"
+#include "image/Sprite.h"
+#include "image/SpriteSet.h"
+#include "shader/SpriteShader.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -95,7 +93,9 @@ void MapSalesPanel::Draw()
 
 bool MapSalesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+	if(command.Has(Command::HELP))
+		DoHelp("map advanced shops", true);
+	else if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
 	{
 		scroll += static_cast<double>((Screen::Height() - 100) * ((key == SDLK_PAGEUP) - (key == SDLK_PAGEDOWN)));
 		scroll = min(0., max(-maxScroll, scroll));
@@ -131,30 +131,41 @@ bool MapSalesPanel::Click(int x, int y, int clicks)
 {
 	if(x < Screen::Left() + WIDTH)
 	{
-		Point point(x, y);
+		const Point point(x, y);
+		const auto zone = find_if(zones.begin(), zones.end(),
+			[&](const ClickZone<int> zone){ return zone.Contains(point); });
 
-		bool isCompare = (SDL_GetModState() & KMOD_SHIFT);
-
-		for(const ClickZone<int> &zone : zones)
-			if(zone.Contains(point))
-			{
-				if(isCompare)
-				{
-					if(zone.Value() != selected)
-						Compare(compare = zone.Value());
-				}
-				else
-				{
-					Select(selected = zone.Value());
-					Compare(compare = -1);
-				}
-				break;
-			}
+		if(zone == zones.end())
+		{
+			Select(selected = -1);
+			Compare(compare = -1);
+		}
+		else if((SDL_GetModState() & KMOD_SHIFT) == 0)
+		{
+			Select(selected = zone->Value());
+			Compare(compare = -1);
+		}
+		else if(zone->Value() != selected)
+			Compare(compare = zone->Value());
 	}
-	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 70)
+	else if(x >= Screen::Left() + WIDTH + 30 && x < Screen::Left() + WIDTH + 190 && y < Screen::Top() + 90)
 	{
 		// This click was in the map key.
-		onlyShowSoldHere = (!onlyShowSoldHere && y >= Screen::Top() + 42 && y < Screen::Top() + 62);
+		if(y < Screen::Top() + 42 || y >= Screen::Top() + 82)
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = false;
+		}
+		else if(y < Screen::Top() + 62)
+		{
+			onlyShowSoldHere = !onlyShowSoldHere;
+			onlyShowStorageHere = false;
+		}
+		else
+		{
+			onlyShowSoldHere = false;
+			onlyShowStorageHere = !onlyShowStorageHere;
+		}
 	}
 	else
 		return MapPanel::Click(x, y, clicks);
@@ -169,7 +180,7 @@ bool MapSalesPanel::Hover(int x, int y)
 {
 	isDragging = (x < Screen::Left() + WIDTH);
 
-	return isDragging ? true : MapPanel::Hover(x, y);
+	return isDragging || MapPanel::Hover(x, y);
 }
 
 
@@ -225,22 +236,23 @@ void MapSalesPanel::DrawKey() const
 	Point textOff(10., -.5 * font.Height());
 
 	static const double VALUE[] = {
-		-.5,
+		-1.,
 		0.,
-		1.
+		1.,
+		.5
 	};
 
 	double selectedValue = SystemValue(selectedSystem);
-	for(int i = 0; i < 3; ++i)
+	for(int i = 0; i < 4; ++i)
 	{
 		bool isSelected = (VALUE[i] == selectedValue);
 		RingShader::Draw(pos, OUTER, INNER, MapColor(VALUE[i]));
 		font.Draw(KeyLabel(i), pos + textOff, isSelected ? bright : dim);
+		// If we're filtering out items not sold/stored here, draw a pointer.
 		if(onlyShowSoldHere && i == 2)
-		{
-			// If we're filtering out items not sold here, draw a pointer.
 			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
-		}
+		else if(onlyShowStorageHere && i == 3)
+			PointerShader::Draw(pos + Point(-7., 0.), Point(1., 0.), 10.f, 10.f, 0.f, bright);
 		pos.Y() += 20.;
 	}
 }
@@ -251,22 +263,11 @@ void MapSalesPanel::DrawPanel() const
 {
 	const Color &back = *GameData::Colors().Get("map side panel background");
 	FillShader::Fill(
-		Point(Screen::Width() * -.5 + WIDTH * .5, 0.),
+		Point(Screen::Left() + WIDTH * .5, 0.),
 		Point(WIDTH, Screen::Height()),
 		back);
 
-	const Sprite *edgeSprite = SpriteSet::Get("ui/right edge");
-	if(edgeSprite->Height())
-	{
-		int steps = Screen::Height() / edgeSprite->Height();
-		for(int y = -steps; y <= steps; ++y)
-		{
-			Point pos(
-				Screen::Width() * -.5f + WIDTH + .5f * edgeSprite->Width(),
-				y * edgeSprite->Height());
-			SpriteShader::Draw(edgeSprite, pos);
-		}
-	}
+	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + WIDTH);
 }
 
 
@@ -327,7 +328,7 @@ void MapSalesPanel::DrawInfo() const
 
 bool MapSalesPanel::DrawHeader(Point &corner, const string &category)
 {
-	bool hide = collapsed.count(category);
+	bool hide = collapsed.contains(category);
 	if(!hidPrevious)
 		corner.Y() += 50.;
 	hidPrevious = hide;
@@ -363,20 +364,26 @@ void MapSalesPanel::DrawSprite(const Point &corner, const Sprite *sprite, int sw
 
 
 void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale,
-		bool isSelected, const string &name, const string &price, const string &info,
-		const std::string &storage)
+		bool isSelected, const string &name, const string &variantName,
+		const string &price, const string &info, const std::string &storage)
 {
 	const Font &font = FontSet::Get(14);
 	const Color &selectionColor = *GameData::Colors().Get("item selected");
 
 	// Set the padding so the text takes the same height overall,
 	// regardless of whether it's three lines of text or four.
-	const auto pad = storage.empty() ? PAD : (PAD * 2. / 3.);
-	const auto lines = storage.empty() ? 3 : 4;
+	const auto pad = storage.empty() && variantName.empty() ? PAD : (PAD * 2. / 3.);
+	const auto lines = storage.empty() && variantName.empty() ? 3 : 4;
 	Point nameOffset(ICON_HEIGHT, .5 * (ICON_HEIGHT - (lines - 1) * pad - lines * font.Height()));
 	Point priceOffset(ICON_HEIGHT, nameOffset.Y() + font.Height() + pad);
 	Point infoOffset(ICON_HEIGHT, priceOffset.Y() + font.Height() + pad);
 	Point storageOffset(ICON_HEIGHT, infoOffset.Y() + font.Height() + pad);
+	Point variantOffset = priceOffset;
+	if(!variantName.empty())
+	{
+		priceOffset = infoOffset;
+		infoOffset = storageOffset;
+	}
 	Point blockSize(WIDTH, ICON_HEIGHT);
 
 	if(corner.Y() < Screen::Bottom() && corner.Y() + ICON_HEIGHT >= Screen::Top())
@@ -392,6 +399,8 @@ void MapSalesPanel::Draw(Point &corner, const Sprite *sprite, int swizzle, bool 
 			? dimColor : Color::Combine(.5f, mediumColor, .5f, dimColor);
 		auto layout = Layout(static_cast<int>(WIDTH - ICON_HEIGHT - 1), Truncate::BACK);
 		font.Draw({name, layout}, corner + nameOffset, textColor);
+		if(!variantName.empty())
+			font.Draw({"\t" + variantName, layout}, corner + variantOffset, textColor);
 		font.Draw({price, layout}, corner + priceOffset, textColor);
 		font.Draw({info, layout}, corner + infoOffset, textColor);
 		if(!storage.empty())
@@ -432,7 +441,7 @@ void MapSalesPanel::ScrollTo(int index)
 
 void MapSalesPanel::ClickCategory(const string &name)
 {
-	bool isHidden = collapsed.count(name);
+	bool isHidden = collapsed.contains(name);
 	if(SDL_GetModState() & KMOD_SHIFT)
 	{
 		// If the shift key is held down, hide or show all categories.

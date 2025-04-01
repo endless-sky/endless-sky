@@ -13,9 +13,10 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PLANET_H_
-#define PLANET_H_
+#pragma once
 
+#include "Paragraphs.h"
+#include "Port.h"
 #include "Sale.h"
 
 #include <list>
@@ -59,16 +60,16 @@ public:
 	// Check if both this planet and its containing system(s) have been defined.
 	bool IsValid() const;
 
-	// Get the name of the planet (all wormholes use the same name).
-	// When saving missions or writing the player's save, the reference name
+	// Get the name used for this planet in the data files.
+	// When saving missions or writing the player's save, the true name
 	// associated with this planet is used even if the planet was not fully
 	// defined (i.e. it belongs to an inactive plugin).
-	const std::string &Name() const;
-	void SetName(const std::string &name);
-	// Get the name used for this planet in the data files.
 	const std::string &TrueName() const;
-	// Get the planet's descriptive text.
-	const std::string &Description() const;
+	void SetName(const std::string &name);
+	// Get the display name of the planet (all wormholes use the same name).
+	const std::string &DisplayName() const;
+	// Return the description text for the planet, but not the spaceport:
+	const Paragraphs &Description() const;
 	// Get the landscape sprite.
 	const Sprite *Landscape() const;
 	// Get the name of the ambient audio to play on this planet.
@@ -80,11 +81,13 @@ public:
 	// Get planet's noun descriptor from attributes
 	const std::string &Noun() const;
 
-	// Check whether there is a spaceport (which implies there is also trading,
-	// jobs, banking, and hiring).
-	bool HasSpaceport() const;
-	// Get the spaceport's descriptive text.
-	const std::string &SpaceportDescription() const;
+	// Check whether this planet's port is named.
+	bool HasNamedPort() const;
+	// Get this planet's port.
+	const Port &GetPort() const;
+	// Check whether there are port services (such as trading, jobs, banking, and hiring)
+	// available on this planet.
+	bool HasServices() const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -150,13 +153,15 @@ public:
 	std::string DemandTribute(PlayerInfo &player) const;
 	void DeployDefense(std::list<std::shared_ptr<Ship>> &ships) const;
 	void ResetDefense() const;
+	bool IsDefending() const;
 
 
 private:
 	bool isDefined = false;
-	std::string name;
-	std::string description;
-	std::string spaceport;
+	std::string trueName;
+	std::string displayName;
+	Paragraphs description;
+	Port port;
 	const Sprite *landscape = nullptr;
 	std::string music;
 
@@ -193,7 +198,3 @@ private:
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;
 };
-
-
-
-#endif

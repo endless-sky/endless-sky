@@ -15,15 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpaceportPanel.h"
 
-#include "text/alignment.hpp"
-#include "Color.h"
+#include "text/Alignment.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Interface.h"
 #include "News.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "Point.h"
 #include "Random.h"
 #include "UI.h"
 
@@ -32,14 +31,13 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player), ui(*GameData::Interfaces().Get("spaceport"))
+	: player(player), port(player.GetPlanet()->GetPort()), ui(*GameData::Interfaces().Get("spaceport"))
 {
 	SetTrapAllEvents(false);
 
 	text.SetFont(FontSet::Get(14));
 	text.SetAlignment(Alignment::JUSTIFIED);
 	text.SetWrapWidth(ui.GetBox("content").Width());
-	text.Wrap(player.GetPlanet()->SpaceportDescription());
 
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
@@ -66,14 +64,17 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetSprite("portrait", portrait);
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
-	newsMessage.Wrap(news->Message());
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+	player.AddPlayerSubstitutions(subs);
+	newsMessage.Wrap(Format::Replace(news->Message(), subs));
 }
 
 
 
 void SpaceportPanel::Step()
 {
-	if(GetUI()->IsTop(this))
+	if(GetUI()->IsTop(this) && port.HasService(Port::ServicesType::OffersMissions))
 	{
 		Mission *mission = player.MissionToOffer(Mission::SPACEPORT);
 		// Special case: if the player somehow got to the spaceport before all
@@ -95,6 +96,7 @@ void SpaceportPanel::Draw()
 		return;
 
 	Rectangle box = ui.GetBox("content");
+	text.Wrap(port.Description().ToString(player.Conditions()));
 	text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
 
 	if(hasNews)
@@ -114,6 +116,9 @@ void SpaceportPanel::Draw()
 // If there is no applicable news, this returns null.
 const News *SpaceportPanel::PickNews() const
 {
+	if(!port.HasNews())
+		return nullptr;
+
 	vector<const News *> matches;
 	const Planet *planet = player.GetPlanet();
 	const auto &conditions = player.Conditions();

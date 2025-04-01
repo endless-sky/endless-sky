@@ -15,12 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "BoardingPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "CargoHold.h"
 #include "Depreciation.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -28,7 +29,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Information.h"
 #include "Interface.h"
-#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Random.h"
@@ -36,10 +36,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "ShipInfoPanel.h"
 #include "System.h"
-#include "text/truncate.hpp"
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
+#include <utility>
 
 using namespace std;
 
@@ -63,6 +64,7 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	: player(player), you(player.FlagshipPtr()), victim(victim),
 	attackOdds(*you, *victim), defenseOdds(*victim, *you)
 {
+	Audio::Pause();
 	// The escape key should close this panel rather than bringing up the main menu.
 	SetInterruptible(false);
 
@@ -118,6 +120,13 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 
 
 
+BoardingPanel::~BoardingPanel()
+{
+	Audio::Resume();
+}
+
+
+
 // Draw the panel.
 void BoardingPanel::Draw()
 {
@@ -160,7 +169,7 @@ void BoardingPanel::Draw()
 	Information info;
 	if(CanExit())
 		info.SetCondition("can exit");
-	if(CanTake())
+	if(CanTake() == CanTakeResult::CAN_TAKE)
 		info.SetCondition("can take");
 	if(CanCapture())
 		info.SetCondition("can capture");
@@ -234,8 +243,25 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	}
 	else if(playerDied)
 		return false;
-	else if(key == 't' && CanTake())
+	else if(key == 't')
 	{
+		CanTakeResult canTake = CanTake();
+		if(canTake != CanTakeResult::CAN_TAKE)
+		{
+			string message;
+			if(canTake == CanTakeResult::TARGET_YOURS)
+				message = "You cannot plunder your own ship.";
+			else if(canTake == CanTakeResult::NO_SELECTION)
+				message = "No item selected.";
+			else if(canTake == CanTakeResult::NO_CARGO_SPACE)
+				message = "You do not have enough cargo space to take this item, and you cannot install it as ammo.";
+			else
+				message = "You cannot plunder now.";
+
+			GetUI()->Push(new Dialog{message});
+			return true;
+		}
+
 		CargoHold &cargo = you->Cargo();
 		int count = plunder[selected].Count();
 
@@ -270,7 +296,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		if(count == plunder[selected].Count())
 		{
 			plunder.erase(plunder.begin() + selected);
-			selected = min<int>(selected, plunder.size());
+			if(plunder.size() && selected == static_cast<int>(plunder.size()))
+				--selected;
 		}
 		else
 			plunder[selected].Take(count);
@@ -296,7 +323,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		messages.push_back("The airlock blasts open. Combat has begun!");
 		messages.push_back("(It will end if you both choose to \"defend.\")");
 	}
-	else if((key == 'a' || key == 'd') && CanAttack())
+	else if((key == 'a' || key == 'd' || key == 'D') && CanAttack())
 	{
 		int yourStartCrew = you->Crew();
 		int enemyStartCrew = victim->Crew();
@@ -306,6 +333,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// to your ship in peace. That is to allow the player to "cancel" if
 		// they did not really mean to try to capture the ship.
 		bool youAttack = (key == 'a' && (yourStartCrew > 1 || !victim->RequiredCrew()));
+		if(key == 'a' && !youAttack)
+			return true;
 		bool enemyAttacks = defenseOdds.Odds(enemyStartCrew, yourStartCrew) > .5;
 		if(isFirstCaptureAction && !youAttack)
 			enemyAttacks = false;
@@ -319,10 +348,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		}
 		else
 		{
-			if(youAttack)
-				messages.push_back("You attack. ");
-			else if(enemyAttacks)
-				messages.push_back("You defend. ");
+			unsigned int yourCasualties = 0;
+			unsigned int enemyCasualties = 0;
 
 			// To speed things up, have multiple rounds of combat each time you
 			// click the button, if you started with a lot of crew.
@@ -334,26 +361,64 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(!yourCrew || !enemyCrew)
 					break;
 
-				// Your chance of winning this round is equal to the ratio of
-				// your power to the enemy's power.
-				double yourPower = (youAttack ?
-					attackOdds.AttackerPower(yourCrew) : defenseOdds.DefenderPower(yourCrew));
-				double enemyPower = (enemyAttacks ?
-					defenseOdds.AttackerPower(enemyCrew) : attackOdds.DefenderPower(enemyCrew));
+				if(youAttack)
+				{
+					// Your chance of winning this round is equal to the ratio of
+					// your power to the enemy's power.
+					double yourAttackPower = attackOdds.AttackerPower(yourCrew);
+					double total = yourAttackPower + attackOdds.DefenderPower(enemyCrew);
 
-				double total = yourPower + enemyPower;
-				if(!total)
-					break;
+					if(total)
+					{
+						if(Random::Real() * total >= yourAttackPower)
+						{
+							++yourCasualties;
+							you->AddCrew(-1);
+							if(you->Crew() <= 1)
+								break;
+						}
+						else
+						{
+							++enemyCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
+					}
+				}
+				if(enemyAttacks)
+				{
+					double yourDefensePower = defenseOdds.DefenderPower(yourCrew);
+					double total = defenseOdds.AttackerPower(enemyCrew) + yourDefensePower;
 
-				if(Random::Real() * total >= yourPower)
-					you->AddCrew(-1);
-				else
-					victim->AddCrew(-1);
+					if(total)
+					{
+						if(Random::Real() * total >= yourDefensePower)
+						{
+							++yourCasualties;
+							you->AddCrew(-1);
+							if(!you->Crew())
+								break;
+						}
+						else
+						{
+							++enemyCasualties;
+							victim->AddCrew(-1);
+							if(!victim->Crew())
+								break;
+						}
+					}
+				}
 			}
 
-			// Report how many casualties each side suffered.
-			int yourCasualties = yourStartCrew - you->Crew();
-			int enemyCasualties = enemyStartCrew - victim->Crew();
+			// Report what happened and how many casualties each side suffered.
+			if(youAttack && enemyAttacks)
+				messages.push_back("You both attack. ");
+			else if(youAttack)
+				messages.push_back("You attack. ");
+			else if(enemyAttacks)
+				messages.push_back("They attack. ");
+
 			if(yourCasualties && enemyCasualties)
 				messages.back() += "You lose " + to_string(yourCasualties)
 					+ " crew; they lose " + to_string(enemyCasualties) + ".";
@@ -451,89 +516,6 @@ bool BoardingPanel::Scroll(double dx, double dy)
 }
 
 
-
-// You can't exit this panel if you're engaged in hand to hand combat.
-bool BoardingPanel::CanExit() const
-{
-	return !isCapturing;
-}
-
-
-
-// Check if you can take the given plunder item.
-bool BoardingPanel::CanTake() const
-{
-	// If you ship or the other ship has been captured:
-	if(!you->IsYours())
-		return false;
-	if(victim->IsYours())
-		return false;
-	if(isCapturing || playerDied)
-		return false;
-	if(static_cast<unsigned>(selected) >= plunder.size())
-		return false;
-
-	return plunder[selected].CanTake(*you);
-}
-
-
-
-// Check if it's possible to initiate hand to hand combat.
-bool BoardingPanel::CanCapture() const
-{
-	// You can't click the "capture" button if you're already in combat mode.
-	if(isCapturing || playerDied)
-		return false;
-
-	// If your ship or the other ship has been captured:
-	if(!you->IsYours())
-		return false;
-	if(victim->IsYours())
-		return false;
-	if(!canCapture)
-		return false;
-
-	return (!victim->RequiredCrew() || you->Crew() > 1);
-}
-
-
-
-// Check if you are in the process of hand to hand combat.
-bool BoardingPanel::CanAttack() const
-{
-	return isCapturing;
-}
-
-
-// Handle the keyboard scrolling and selection in the panel list.
-void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
-{
-	// Scrolling the list of plunder.
-	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
-		// Keep one of the previous items onscreen while paging through.
-		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
-	else if(key == SDLK_HOME)
-		selected = 0;
-	else if(key == SDLK_END)
-		selected = static_cast<int>(plunder.size() - 1);
-	else
-	{
-		if(key == SDLK_UP)
-			--selected;
-		else if(key == SDLK_DOWN)
-			++selected;
-	}
-	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
-
-	// Scroll down at least far enough to view the current item.
-	double minimumScroll = max(0., 20. * selected - 200.);
-	double maximumScroll = 20. * selected;
-	scroll = max(minimumScroll, min(maximumScroll, scroll));
-}
-
-
-
-// Functions for BoardingPanel::Plunder:
 
 // Constructor (commodity cargo).
 BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValue)
@@ -661,4 +643,86 @@ void BoardingPanel::Plunder::UpdateStrings()
 double BoardingPanel::Plunder::UnitMass() const
 {
 	return outfit ? outfit->Mass() : 1.;
+}
+
+
+
+// You can't exit this panel if you're engaged in hand to hand combat.
+bool BoardingPanel::CanExit() const
+{
+	return !isCapturing;
+}
+
+
+
+// Check if you can take the given plunder item.
+BoardingPanel::CanTakeResult BoardingPanel::CanTake() const
+{
+	// If your ship or the other ship has been captured:
+	if(!you->IsYours())
+		return CanTakeResult::OTHER;
+	if(victim->IsYours())
+		return CanTakeResult::TARGET_YOURS;
+	if(isCapturing || playerDied)
+		return CanTakeResult::OTHER;
+	if(static_cast<unsigned>(selected) >= plunder.size())
+		return CanTakeResult::NO_SELECTION;
+
+	return plunder[selected].CanTake(*you) ? CanTakeResult::CAN_TAKE : CanTakeResult::NO_CARGO_SPACE;
+}
+
+
+
+// Check if it's possible to initiate hand to hand combat.
+bool BoardingPanel::CanCapture() const
+{
+	// You can't click the "capture" button if you're already in combat mode.
+	if(isCapturing || playerDied)
+		return false;
+
+	// If your ship or the other ship has been captured:
+	if(!you->IsYours())
+		return false;
+	if(victim->IsYours())
+		return false;
+	if(!canCapture)
+		return false;
+
+	return (!victim->RequiredCrew() || you->Crew() > 1);
+}
+
+
+
+// Check if you are in the process of hand to hand combat.
+bool BoardingPanel::CanAttack() const
+{
+	return isCapturing;
+}
+
+
+
+// Handle the keyboard scrolling and selection in the panel list.
+void BoardingPanel::DoKeyboardNavigation(const SDL_Keycode key)
+{
+	// Scrolling the list of plunder.
+	if(key == SDLK_PAGEUP || key == SDLK_PAGEDOWN)
+		// Keep one of the previous items onscreen while paging through.
+		selected += 10 * ((key == SDLK_PAGEDOWN) - (key == SDLK_PAGEUP));
+	else if(key == SDLK_HOME)
+		selected = 0;
+	else if(key == SDLK_END)
+		selected = static_cast<int>(plunder.size() - 1);
+	else
+	{
+		if(key == SDLK_UP)
+			--selected;
+		else if(key == SDLK_DOWN)
+			++selected;
+	}
+	selected = max(0, min(static_cast<int>(plunder.size() - 1), selected));
+
+	// Scroll down at least far enough to view the current item.
+	double minimumScroll = max(0., 20. * selected - 200.);
+	double maximumScroll = 20. * selected;
+	scroll = max(minimumScroll, min(maximumScroll, scroll));
 }

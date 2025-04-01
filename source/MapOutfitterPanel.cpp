@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapOutfitterPanel.h"
 
 #include "comparators/ByName.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -24,7 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -90,10 +91,11 @@ const string &MapOutfitterPanel::KeyLabel(int index) const
 	if(index == 2 && selected && selected->Get("minable") > 0.)
 		return MINE;
 
-	static const string LABEL[3] = {
+	static const string LABEL[4] = {
 		"Has no outfitter",
 		"Has outfitter",
-		"Sells this outfit"
+		"Sells this outfit",
+		"Outfit in storage"
 	};
 	return LABEL[index];
 }
@@ -129,7 +131,7 @@ void MapOutfitterPanel::Compare(int index)
 
 double MapOutfitterPanel::SystemValue(const System *system) const
 {
-	if(!system || !player.HasVisited(*system))
+	if(!system || !player.CanView(*system))
 		return numeric_limits<double>::quiet_NaN();
 
 	auto it = player.Harvested().lower_bound(pair<const System *, const Outfit *>(system, nullptr));
@@ -141,10 +143,14 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 		return numeric_limits<double>::quiet_NaN();
 
 	// Visiting a system is sufficient to know what ports are available on its planets.
-	double value = -.5;
+	double value = -1.;
+	const auto &planetStorage = player.PlanetaryStorage();
 	for(const StellarObject &object : system->Objects())
 		if(object.HasSprite() && object.HasValidPlanet())
 		{
+			const auto storage = planetStorage.find(object.GetPlanet());
+			if(storage != planetStorage.end() && storage->second.Get(selected))
+				return .5;
 			const auto &outfitter = object.GetPlanet()->Outfitter();
 			if(outfitter.Has(selected))
 				return 1.;
@@ -162,7 +168,7 @@ int MapOutfitterPanel::FindItem(const string &text) const
 	int bestItem = -1;
 	for(unsigned i = 0; i < list.size(); ++i)
 	{
-		int index = Search(list[i]->DisplayName(), text);
+		int index = Format::Search(list[i]->DisplayName(), text);
 		if(index >= 0 && index < bestIndex)
 		{
 			bestIndex = index;
@@ -219,7 +225,7 @@ void MapOutfitterPanel::DrawItems()
 
 			bool isForSale = true;
 			unsigned storedInSystem = 0;
-			if(player.HasVisited(*selectedSystem))
+			if(player.CanView(*selectedSystem))
 			{
 				isForSale = false;
 				const auto &storage = player.PlanetaryStorage();
@@ -243,17 +249,19 @@ void MapOutfitterPanel::DrawItems()
 					}
 				}
 			}
-			if(!isForSale && !storedInSystem && onlyShowSoldHere)
+			if(!isForSale && onlyShowSoldHere)
+				continue;
+			if(!storedInSystem && onlyShowStorageHere)
 				continue;
 
-			const std::string storage_details =
-				storedInSystem == 0
+			const string storage_details =
+				onlyShowSoldHere || storedInSystem == 0
 				? ""
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
 			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
-				outfit->DisplayName(), price, info, storage_details);
+				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}
 	}
@@ -267,11 +275,11 @@ void MapOutfitterPanel::Init()
 	catalog.clear();
 	set<const Outfit *> seen;
 
-	// Add all outfits sold by outfitters of visited planets.
+	// Add all outfits sold by outfitters of planets from viewable systems.
 	for(auto &&it : GameData::Planets())
-		if(it.second.IsValid() && player.HasVisited(*it.second.GetSystem()))
+		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
 			for(const Outfit *outfit : it.second.Outfitter())
-				if(!seen.count(outfit))
+				if(!seen.contains(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
 					seen.insert(outfit);
@@ -281,7 +289,7 @@ void MapOutfitterPanel::Init()
 	for(const auto &it : player.PlanetaryStorage())
 		if(it.first->HasOutfitter())
 			for(const auto &oit : it.second.Outfits())
-				if(!seen.count(oit.first))
+				if(!seen.contains(oit.first))
 				{
 					catalog[oit.first->Category()].push_back(oit.first);
 					seen.insert(oit.first);
@@ -289,7 +297,7 @@ void MapOutfitterPanel::Init()
 
 	// Add all known minables.
 	for(const auto &it : player.Harvested())
-		if(!seen.count(it.second))
+		if(!seen.contains(it.second))
 		{
 			catalog[it.second->Category()].push_back(it.second);
 			seen.insert(it.second);

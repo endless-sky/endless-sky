@@ -23,31 +23,48 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	const int MORTGAGE_TERM = 365;
+}
+
 
 
 // Find out how much you can afford to borrow with the given annual revenue
 // and the given credit score (which should be between 200 and 800).
-int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, int64_t currentPayments)
+int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double currentPayments)
 {
-	const int term = 365;
-	annualRevenue -= term * currentPayments;
-	if(annualRevenue <= 0)
+	const double revenue = annualRevenue - MORTGAGE_TERM * currentPayments;
+	if(revenue <= 0.)
 		return 0;
 
-	double interest = (600 - creditScore / 2) * .00001;
-	double power = pow(1. + interest, term);
-	double multiplier = interest * term * power / (power - 1.);
-	return static_cast<int64_t>(max(0., annualRevenue / multiplier));
+	const double interest = (600 - creditScore / 2) * .00001;
+	const double power = pow(1. + interest, MORTGAGE_TERM);
+	const double multiplier = interest * MORTGAGE_TERM * power / (power - 1.);
+	return static_cast<int64_t>(max(0., revenue / multiplier));
 }
 
 
 
 // Create a new mortgage of the given amount.
-Mortgage::Mortgage(int64_t principal, int creditScore, int term)
-	: type(creditScore <= 0 ? "Fine" : "Mortgage"),
+Mortgage::Mortgage(string type, int64_t principal, int creditScore, int term)
+	: type(std::move(type)),
 	principal(principal),
 	interest((600 - creditScore / 2) * .00001),
 	interestString("0." + to_string(600 - creditScore / 2) + "%"),
+	term(term)
+{
+}
+
+
+
+// Create a mortgage with a specific interest rate instead of using the player's
+// credit score. Due to how the class is set up, the interest rate must currently
+// be within the range [0, 1).
+Mortgage::Mortgage(string type, int64_t principal, double interest, int term)
+	: type(std::move(type)),
+	principal(principal),
+	interest(interest * .01),
+	interestString("0." + to_string(static_cast<int>(1000. * interest)) + "%"),
 	term(term)
 {
 }
@@ -135,7 +152,8 @@ int64_t Mortgage::PayExtra(int64_t amount)
 
 
 // The type is "Mortgage" if this is a mortgage you applied for from a bank,
-// and "Fine" if this is a fine imposed on you for illegal activities.
+// "Fine" if this is a fine imposed on you for illegal activities, and
+// "Debt" if this is debt given to you by a mission.
 const string &Mortgage::Type() const
 {
 	return type;
@@ -179,4 +197,18 @@ int64_t Mortgage::Payment() const
 	// Always require every payment to be at least 1 credit.
 	double power = pow(1. + interest, term);
 	return max<int64_t>(1, lround(principal * interest * power / (power - 1.)));
+}
+
+
+
+// Check the amount of the next payment due.
+double Mortgage::PrecisePayment() const
+{
+	if(!term)
+		return principal;
+	if(!interest)
+		return static_cast<double>(principal) / term;
+
+	const double power = pow(1. + interest, term);
+	return principal * interest * power / (power - 1.);
 }

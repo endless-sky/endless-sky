@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef EXCLUSIVE_ITEM_H_
-#define EXCLUSIVE_ITEM_H_
+#pragma once
 
 #include <memory>
 #include <utility>
@@ -49,7 +48,3 @@ private:
 	const Type *stockItem = nullptr;
 	Type item;
 };
-
-
-
-#endif

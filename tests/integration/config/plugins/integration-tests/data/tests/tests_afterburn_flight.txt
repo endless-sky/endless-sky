@@ -1,3 +1,16 @@
+# Copyright (c) 2020 by Peter van der Meer
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 test-data "burning flyers save"
 	category "savegame"
 	contents
@@ -95,11 +108,11 @@ test "Afterburner-flight - Simple depart land"
 	sequence
 		inject "burning flyers save"
 		call "Load First Savegame"
-		watchdog 12000
 		call "Depart"
+		debug "Departed from the planet"
 		# Wait for 10 seconds to drift away from the planet.
 		apply
-			"test: steps to wait" = 10 * 60
+			"test: steps to wait" = 20
 		label "floating"
 		# empty input to make time pass
 		input
@@ -107,4 +120,10 @@ test "Afterburner-flight - Simple depart land"
 			"test: steps to wait" = "test: steps to wait" - 1
 		branch "floating"
 			"test: steps to wait" > 0
+		navigate
+			"travel destination" Ruin
+		debug "Start landing"
 		call "Land"
+		debug "Done landing"
+		assert
+			"flagship landed" == 1

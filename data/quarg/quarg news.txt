@@ -31,7 +31,7 @@ news "anonymous quarg"
 		word
 			"a merchant"
 			"a merchant captain"
-			"a travelling merchant"
+			"a traveling merchant"
 			"a captain"
 		word
 			"?"
@@ -442,3 +442,70 @@ news "student on quarg planets"
 			"."
 		word
 			`"`
+
+news "quarg anywhere"
+	location
+		attributes "quarg" "human quarg" "hai quarg"
+		not attributes "korath quarg" "gegno quarg"
+	name
+		word
+			"Quarg"
+	message
+		word
+			`"Yes, human? Do you have any questions?"`
+			`"Hello, human. Are you enjoying your time on our world? We are glad to receive visitors."`
+			`"I am sorry, but we will not provide you with our technology. It is for the best that humans grow and develop on their own."`
+			`"It troubles me greatly to see how many species still cling to senseless fighting. I can only hope you will all come to see reason."`
+			`"Last year our scientific efforts were quite fruitful, but I am afraid we cannot simply share our discoveries with you."`
+			`"If you ever observe some piece of our technology in the possession of someone else, please report it to us. We cannot allow our equipment to be in the wrong hands."`
+			`"You are welcome to be amongst us here, provided you seek no conflict with anyone on our worlds."`
+			`There's an eerie silence as a particularly large crowd of Quarg walks by you.`
+			`A group of Quarg is enthralled in what seems an engaging discussion, until one more Quarg comes to them. They all turn to it, and after it says something quickly they all get up in unison and move to somewhere else in the hangars.`
+			`An older Quarg is playing with a much younger Quarg, young enough that it's still shorter than yourself. The strange game consists of passing to one another a jar with some slimy, metallic substance inside. Every time the jar is passed, the substance meshes itself into a different shape, sometimes into shapes you know not the meaning of.`
+			`Dozens of Quarg children are being led around by a handful of adults, as if on a school trip. When they notice you, they continue taking glances and talking among themselves. It seems they've never seen a human before.`
+
+news "ringworld quarg"
+	location
+		attributes "quarg"
+		attributes "ringworld"
+	name
+		word
+			"Quarg"
+	message
+		phrase
+			"ringworld quarg phrases" 8
+			"quarg poems on species" 1
+
+phrase "ringworld quarg phrases"
+	word
+		`You see a shorter, younger Quarg, likely a child in Quarg years, being shown around the ringworld by an adult. It seems like the parent is teaching the child about the ring.`
+		`A Quarg is standing uncomfortably close to the walls, tapping it slowly with both palms. You observe it for a few minutes, until it stops abruptly and goes about its business like the others.`
+		`Usual activity in the ringworld is stopped by a few dozen Quarg in heavily armored suits moving at a quick pace and escorting a large, tube-like container which floats to accompany them. Other Quarg are quick to make way for the group, allowing themselves a great distance from the armored Quarg.`
+		`Some Quarg scientists are dragging along a whole train of linked lab carts, packed fully with utensils, chemicals, components, and reagents. It takes nearly half an hour before you see the last of the carts pass by.`
+		`Hundreds of Quarg are blocking one of the largest, widest corridors in the ring. They're all sitting down on the floor, staring down blankly in complete silence, with a scarce few seldom glancing up to the ceiling only to move their gaze downwards once again. You notice that Quarg who witness the scene stop all conversation and move elsewhere.`
+		`One Quarg walks up to you, and stares down into your eyes. It stays there in silence, just looking at you, before finally blinking once and moving along, disappearing into the ring's hallways.`
+		`A Quarg is overseeing the unloading of dozens of ship-sized cargo containers that have arrived in the ring. It seems to mentally count the cargo as it's moved out in perfectly identical sets. After what must've been thousands of cargo tons, it clicks off one of dozens of small dots on a data pad and begins counting again.`
+		`Two Quarg ships land at the same time a few hangar bays away from one another. They open their hatches, and what must be the ships' entire crews come out. Without a hitch the crew of each ship boards the other's ship and depart.`
+		`The Quarg seem to have set up some form of festival in the ring: endless stands stretch out as far as you can see, all displaying variations of the same orange-like fruit, ranging from impossibly smooth to unbelievably wrinkled, and also from sizes as small as a pea to as large as a watermelon. You can't figure what quality they like best.`
+		`You see one Quarg turn a sharp corner in what's a haste by their standards. When you look into the corridor it went to, you see it's a dead end, with the Quarg having inexplicably vanished.`
+
+phrase "quarg poems on species"
+	word
+		"Resolute will / In ancient bone / Climb to claim / A godless throne"
+		"Pulling strings / Stage nonstop strife / Clueless puppets / May yet survive"
+		"Cruel burial / Of dearest sage / Turn all patience / Into rage"
+		"Forbidden flame / Unyielding war / By angels sentenced / Suffer no more"
+		"Matured hearts / By strangers jailed / Coddled by hearth / Pick up the flail"
+		"Sovereign form / By self unmade / Leave nought behind / But mighty blade"
+		"Forlorn folk / Reshape the world / For greatest wonders / Yet to behold"
+		"Of smallest home / None to befriend / From own hounds / Come bitter end"
+		"Reckless newcomer / Hear all advice / Else with own blood / Will pay the price"
+		"Troubled past / Fight olden friends / Stand now with others / To any end"
+		"Bounties brought by / Once desperate few / From weakness, power / To protect the new"
+		"Make strongest neighbor / See through the guise / Let none forget / The curse of the wise"
+		"With skin of stone / Might, meek, guile / Abilities to hone / And wars to pile"
+		"Twice-blessed pilgrims / Myths of the past / Masses preserve / The royal caste"
+		"Adrift by the clouds / Under watchful eyes / Begin now a journey / To the greatest skies"
+		"Behind wuthering waves / Forgotten tales of yore / Whether decadence or wonder / Claim back forevermore"
+		"Ghosts beyond the grave / Machinations of the mind / Wrath of suns lights the path / To home left behind"
+		"Wrenched whispers / Of stars torn / Estranged twins / Our souls unborn"

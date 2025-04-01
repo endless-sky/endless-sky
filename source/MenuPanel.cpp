@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MenuPanel.h"
 
-#include "Audio.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "Files.h"
 #include "text/Font.h"
@@ -31,10 +31,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "PreferencesPanel.h"
-#include "Rectangle.h"
 #include "Ship.h"
-#include "Sprite.h"
-#include "StarField.h"
+#include "image/Sprite.h"
+#include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
 #include "UI.h"
@@ -65,8 +64,8 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	{
 		for(const auto &source : GameData::Sources())
 		{
-			auto credit = Format::Split(Files::Read(source + "credits.txt"), "\n");
-			if((credit.size() > 1) || (credit.front() != ""))
+			auto credit = Format::Split(Files::Read(source / "credits.txt"), "\n");
+			if((credit.size() > 1) || !credit.front().empty())
 			{
 				credits.insert(credits.end(), credit.begin(), credit.end());
 				credits.insert(credits.end(), 15, "");
@@ -92,6 +91,19 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 
 	if(player.GetPlanet())
 		Audio::PlayMusic(player.GetPlanet()->MusicName());
+
+	if(!scrollSpeed)
+		scrollSpeed = 1;
+
+	// When the player is in the menu, pause the game sounds.
+	Audio::Pause();
+}
+
+
+
+MenuPanel::~MenuPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -127,9 +139,9 @@ void MenuPanel::Draw()
 			info.SetString("ship", flagship.Name());
 		}
 		if(player.GetSystem())
-			info.SetString("system", player.GetSystem()->Name());
+			info.SetString("system", player.GetSystem()->DisplayName());
 		if(player.GetPlanet())
-			info.SetString("planet", player.GetPlanet()->Name());
+			info.SetString("planet", player.GetPlanet()->DisplayName());
 		info.SetString("credits", Format::Credits(player.Accounts().Credits()));
 		info.SetString("date", player.GetDate().ToString());
 		info.SetString("playtime", Format::PlayTime(player.GetPlayTime()));
@@ -165,7 +177,7 @@ bool MenuPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == 'p')
 		GetUI()->Push(new PreferencesPanel());
-	else if(key == 'l')
+	else if(key == 'l' || key == 'm')
 		GetUI()->Push(new LoadPanel(player, gamePanels));
 	else if(key == 'n' && (!player.IsLoaded() || player.IsDead()))
 	{

@@ -64,6 +64,28 @@ bool Point::operator!() const noexcept
 
 
 
+bool Point::operator==(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return (val.x == other.val.x) && (val.y == other.val.y);
+#else
+	return (x == other.x) && (y == other.y);
+#endif
+}
+
+
+
+bool Point::operator!=(const Point &other) const noexcept
+{
+#ifdef __SSE3__
+	return !((val.x == other.val.x) && (val.y == other.val.y));
+#else
+	return !((x == other.x) && (y == other.y));
+#endif
+}
+
+
+
 Point Point::operator+(const Point &point) const
 {
 #ifdef __SSE3__
@@ -295,6 +317,13 @@ double Point::Distance(const Point &point) const
 double Point::DistanceSquared(const Point &point) const
 {
 	return (*this - point).LengthSquared();
+}
+
+
+
+Point Point::Lerp(const Point &to, const double c) const
+{
+	return *this + (to - *this) * c;
 }
 
 

@@ -46,6 +46,26 @@ void Gamerules::Load(const DataNode &node)
 			npcMaxMiningTime = max<int>(0, child.Value(1));
 		else if(key == "universal frugal threshold")
 			universalFrugalThreshold = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "depreciation min")
+			depreciationMin = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "depreciation daily")
+			depreciationDaily = min<double>(1., max<double>(0., child.Value(1)));
+		else if(key == "depreciation grace period")
+			depreciationGracePeriod = max<int>(0, child.Value(1));
+		else if(key == "depreciation max age")
+			depreciationMaxAge = max<int>(0, child.Value(1));
+		else if(key == "disabled fighters avoid projectiles")
+		{
+			const string &value = child.Token(1);
+			if(value == "all")
+				fighterHitPolicy = FighterDodgePolicy::ALL;
+			else if(value == "none")
+				fighterHitPolicy = FighterDodgePolicy::NONE;
+			else if(value == "only player")
+				fighterHitPolicy = FighterDodgePolicy::ONLY_PLAYER;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -84,4 +104,39 @@ int Gamerules::NPCMaxMiningTime() const
 double Gamerules::UniversalFrugalThreshold() const
 {
 	return universalFrugalThreshold;
+}
+
+
+
+double Gamerules::DepreciationMin() const
+{
+	return depreciationMin;
+}
+
+
+
+double Gamerules::DepreciationDaily() const
+{
+	return depreciationDaily;
+}
+
+
+
+int Gamerules::DepreciationGracePeriod() const
+{
+	return depreciationGracePeriod;
+}
+
+
+
+int Gamerules::DepreciationMaxAge() const
+{
+	return depreciationMaxAge;
+}
+
+
+
+Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
+{
+	return fighterHitPolicy;
 }
