@@ -3033,7 +3033,7 @@ mission "FW Cold Aid [1]"
 		payment 8500 80
 		dialog `You turn your cargo of <cargo> over to the needy community in return for <payment>.`
 
-mission "FW Cold Aid [1]"
+mission "FW Cold Aid [2]"
 	name "Cold relief to <planet>"
 	description `A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport <cargo> to <planet> by <date> to assist in the recovery efforts. Payment is <payment>.`
 	job
