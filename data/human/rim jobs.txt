@@ -259,4 +259,4 @@ mission "Delta V Hovercraft Racer Transport"
 	on complete
 		payment
 		payment 8000
-		dialog `You drop the pilot and their hovercraft off and collect your payment of <payment>.`
+		dialog `You drop off the pilot with their hovercraft and collect your payment of <payment>.`
