@@ -19833,7 +19833,7 @@ system Hanal
 	asteroids "medium metal" 31 4.182
 	asteroids "large metal" 15 3.57
 	minables iron 8 5.932
-	fleet "Large Jibauni" 9000
+	fleet "Large Jibauni Military" 9000
 	object
 		sprite star/g5
 		period 10
