@@ -7,7 +7,9 @@
 **Balance**
 **Feature**
 **Bug fix**
+**Typo fix**
 **CI/CD/Testing**
+**Refactor**
 **Documentation**
 
 This PR addresses the bug/feature described in issue #{{insert number}}

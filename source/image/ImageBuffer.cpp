@@ -15,22 +15,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ImageBuffer.h"
 
-#include "../File.h"
+#include "../Files.h"
+#include "ImageFileData.h"
 #include "../Logger.h"
 
 #include <jpeglib.h>
 #include <png.h>
 
 #include <cstdio>
+#include <set>
 #include <stdexcept>
 #include <vector>
 
 using namespace std;
 
 namespace {
+	const set<string> PNG_EXTENSIONS{".png"};
+	const set<string> JPG_EXTENSIONS{".jpg", ".jpeg", ".jpe"};
+	const set<string> IMAGE_EXTENSIONS = []()
+	{
+		set<string> extensions(PNG_EXTENSIONS);
+		extensions.insert(JPG_EXTENSIONS.begin(), JPG_EXTENSIONS.end());
+		return extensions;
+	}();
+
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame);
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame);
-	void Premultiply(ImageBuffer &buffer, int frame, int additive);
+	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode additive);
+}
+
+
+
+const set<string> &ImageBuffer::ImageExtensions()
+{
+	return IMAGE_EXTENSIONS;
 }
 
 
@@ -151,39 +169,24 @@ void ImageBuffer::ShrinkToHalfSize()
 
 
 
-bool ImageBuffer::Read(const filesystem::path &path, int frame)
+bool ImageBuffer::Read(const ImageFileData &data, int frame)
 {
-	// First, make sure this is a JPG or PNG file.
-	filesystem::path extension = path.extension();
-	bool isPNG = (extension == ".png" || extension == ".PNG");
-	bool isJPG = (extension == ".jpg" || extension == ".JPG");
+	// First, make sure this is a supported file.
+	bool isPNG = PNG_EXTENSIONS.contains(data.extension);
+	bool isJPG = JPG_EXTENSIONS.contains(data.extension);
+
 	if(!isPNG && !isJPG)
 		return false;
 
-	if(isPNG && !ReadPNG(path, *this, frame))
+	if(isPNG && !ReadPNG(data.path, *this, frame))
 		return false;
-	if(isJPG && !ReadJPG(path, *this, frame))
+	if(isJPG && !ReadJPG(data.path, *this, frame))
 		return false;
 
-	// Check if the sprite uses additive blending. Start by getting the index of
-	// the last character before the frame number (if one is specified).
-	string name = path.stem().string();
-	size_t pos = name.length();
-	if(pos > 3 && name.ends_with("@2x"))
-		pos -= 3;
-	while(--pos)
-		if(name[pos] < '0' || name[pos] > '9')
-			break;
-	if(name[pos] == '~')
-		Logger::LogError("Warning: file '" + path.string()
-				+ "'uses legacy marker for half-additive blending mode; please use '^' instead of '~'.");
-	// Special case: if the image is already in premultiplied alpha format,
-	// there is no need to apply premultiplication here.
-	if(name[pos] != '=')
+	if(data.blendingMode != BlendingMode::PREMULTIPLIED_ALPHA)
 	{
-		int additive = (name[pos] == '+') ? 2 : (name[pos] == '~' || name[pos] == '^') ? 1 : 0;
-		if(isPNG || (isJPG && additive == 2))
-			Premultiply(*this, frame, additive);
+		if(isPNG || (isJPG && data.blendingMode == BlendingMode::ADDITIVE))
+			Premultiply(*this, frame, data.blendingMode);
 	}
 	return true;
 }
@@ -191,10 +194,15 @@ bool ImageBuffer::Read(const filesystem::path &path, int frame)
 
 
 namespace {
+	void ReadPNGInput(png_structp pngStruct, png_bytep outBytes, png_size_t byteCountToRead)
+	{
+		static_cast<iostream *>(png_get_io_ptr(pngStruct))->read(reinterpret_cast<char *>(outBytes), byteCountToRead);
+	}
+
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
 		// Open the file, and make sure it really is a PNG.
-		File file(path.string());
+		shared_ptr<iostream> file = Files::Open(path.string());
 		if(!file)
 			return false;
 
@@ -216,9 +224,7 @@ namespace {
 			return false;
 		}
 
-		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
-		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
-		png_init_io(png, file);
+		png_set_read_fn(png, file.get(), ReadPNGInput);
 		png_set_sig_bytes(png, 0);
 
 		png_read_info(png, info);
@@ -293,8 +299,8 @@ namespace {
 
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame)
 	{
-		File file(path.string());
-		if(!file)
+		string data = Files::Read(path);
+		if(data.empty())
 			return false;
 
 		jpeg_decompress_struct cinfo;
@@ -305,7 +311,7 @@ namespace {
 		jpeg_create_decompress(&cinfo);
 #pragma GCC diagnostic pop
 
-		jpeg_stdio_src(&cinfo, file);
+		jpeg_mem_src(&cinfo, reinterpret_cast<const unsigned char *>(data.data()), data.size());
 		jpeg_read_header(&cinfo, true);
 		cinfo.out_color_space = JCS_EXT_RGBA;
 
@@ -353,7 +359,7 @@ namespace {
 
 
 
-	void Premultiply(ImageBuffer &buffer, int frame, int additive)
+	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode blend)
 	{
 		for(int y = 0; y < buffer.Height(); ++y)
 		{
@@ -369,9 +375,9 @@ namespace {
 				uint64_t blue = (((value & 0xFF) * alpha) / 255) & 0xFF;
 
 				value = red | green | blue;
-				if(additive == 1)
+				if(blend == BlendingMode::HALF_ADDITIVE)
 					alpha >>= 2;
-				if(additive != 2)
+				if(blend != BlendingMode::ADDITIVE)
 					value |= (alpha << 24);
 
 				*it = static_cast<uint32_t>(value);

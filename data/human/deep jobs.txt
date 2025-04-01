@@ -323,7 +323,7 @@ mission "Transport scientists"
 	source
 		attributes "deep"
 	stopover
-		attributes "research"
+		attributes "education" "research"
 		not attributes "uninhabited"
 		distance 2 50
 	passengers 3 4 .43
@@ -346,7 +346,7 @@ mission "Transport science department"
 	source
 		attributes "deep"
 	stopover
-		attributes "research"
+		attributes "education" "research"
 		not attributes "uninhabited"
 		distance 2 50
 	passengers 20 4 .1
@@ -368,7 +368,7 @@ mission "Escort science vessel"
 	source
 		attributes "research"
 	stopover
-		attributes "quarg" "pirate" "volcanic" "frontier" "dirt belt" "north" "south"
+		attributes "education" "quarg" "pirate" "volcanic" "frontier" "dirt belt" "north" "south"
 		distance 6 50
 	to offer
 		random < 15
@@ -419,7 +419,7 @@ mission "Record academic conference"
 	source
 		attributes "deep"
 	destination
-		attributes "research" "quarg" "rich" "paradise"
+		attributes "education" "research" "quarg" "rich" "paradise"
 		distance 4 10
 	cargo "recording equipment" 1
 	to offer
@@ -1102,6 +1102,7 @@ mission "Lionheart Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Valhalla"
 	source
 		near "Epsilon Leonis" 2 10
 		attributes factory
@@ -1120,6 +1121,7 @@ mission "Lionheart Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Valhalla"
 	source
 		near "Epsilon Leonis" 2 10
 		attributes factory research
@@ -1138,6 +1140,7 @@ mission "Lionheart Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Valhalla"
 	source
 		near "Epsilon Leonis" 2 10
 		attributes factory mining
@@ -1156,6 +1159,7 @@ mission "Deep Sky Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Asgard"
 	source
 		near Naos 2 15
 		attributes factory
@@ -1174,6 +1178,7 @@ mission "Deep Sky Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Asgard"
 	source
 		near Naos 2 15
 		attributes factory research

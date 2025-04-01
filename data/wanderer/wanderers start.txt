@@ -410,6 +410,7 @@ mission "Wanderers Conversation"
 		log "Factions" "Wanderers" `The Wanderers believe that their purpose in the universe is to "repair" planets whose biospheres have been ravaged by other species either through mismanagement or as a result of war. They came to their current territory through a wormhole that they call "the Eye," and they say that once their work here is done the Eye will open and lead them to a new territory and new worlds for them to care for.`
 			`It is possible that the worlds they currently inhabit were formerly part of Hai territory. That might explain why the Unfettered believe they have a right to take that territory back.`
 		log "People" "Iktat Rek" `Rek is a Wanderer ambassador, a new and unusual profession among a species that until recently has had no contact with aliens except for the occasional Unfettered Hai raid. His job is to help the Wanderers develop a deeper relationship with humans.`
+		event "wanderers: vara k'chrai facilities"
 		conversation
 			`With the help of your new translation device, you are able to contact the Wanderer government. They welcome you back and tell you that a Wanderer named "Iktat Rek" has been appointed as the official envoy to deal with human visitors, and he should be arriving at your landing pad shortly.`
 			`	Rek is slightly larger than most of the Wanderers you have seen, with muted white and brown plumage and a calm, dignified bearing. "It is very [rare, exceptional] in our history that we have to [deal with, cope with] other species," he says, "and now we find ourselves dealing with two at once." He is speaking the Hai language, and the translation device does its best to render his words in your own language.`
@@ -452,6 +453,28 @@ mission "Wanderers Conversation"
 			`	"Those are questions that we do not ask," he says. "It is a [taboo? religion? mystery?] for us."`
 			`	You ask a few other questions, but do not gain much more information. He does mention that the other Wanderer worlds have agreed to sell you some of their technology, and that you will be allowed to "[view, admire, envy]" their ships, but not to purchase them. You thank him for his time and his willingness to trust a member of an entirely unknown species, and return to your ship.`
 				decline
+
+
+
+event "wanderers: vara k'chrai facilities"
+	planet "Vara K'chrai"
+		add port
+			recharges all
+			services all
+		add shipyard "Wanderer Advanced"
+		add outfitter "Wanderer Advanced"
+
+
+
+# Compatibility patch for pilots that did the above missions before 0.10.13.
+mission "Wanderers: Vara K'Chrai Facilities Patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Conversation: offered"
+	on offer
+		event "wanderers: vara k'chrai facilities"
+		fail
 
 
 
@@ -735,6 +758,9 @@ mission "Wanderers: Unfettered Diplomacy 1A"
 	npc accompany save
 		government "Wanderer"
 		personality timid escort
+		"cargo settings"
+			cargo 4
+			commodities "Food"
 		ship "Deep River (Jump, Unarmed)" "Ayi'i Ki'ak'var"
 
 
@@ -1168,6 +1194,11 @@ mission "Wanderers: Alpha Surveillance C (Pug)"
 
 
 ship "Carrier" "Carrier (Alpha)"
+	"display name" "Modified Carrier"
+	sprite "ship/modified carrier"
+	thumbnail "thumbnail/modified carrier"
+	add attributes
+		"weapon capacity" 120
 	outfits
 		"Ion Cannon" 2
 		"Hai Tracker Pod" 4
@@ -1187,18 +1218,36 @@ ship "Carrier" "Carrier (Alpha)"
 		"Steering (Stellar Class)"
 		"Jump Drive"
 	
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun
-	gun
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
-	turret "Shield Disruptor Turret"
-	turret "Husk-Slice Turret"
+	gun -17 -179 "Ion Cannon"
+	gun 17 -179 "Ion Cannon"
+	gun -25 -168 "Hai Tracker Pod"
+	gun 25 -168 "Hai Tracker Pod"
+	gun -32.5 -163.5 "Hai Tracker Pod"
+	gun 32.5 -163.5 "Hai Tracker Pod"
+	turret 0 -49 "Shield Disruptor Turret"
+	turret 0 14 "Husk-Slice Turret"
+	turret -22 22 "Shield Disruptor Turret"
+	turret 22 22 "Husk-Slice Turret"
+	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
+	bay "Fighter" 50 40.5
+		"launch effect" "human internal"
+	bay "Drone" -71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" 71.5 -49.5
+		"launch effect" "human internal"
+	bay "Drone" -115 55
+		"launch effect" "human internal"
+	bay "Drone" 115 55
+		"launch effect" "human internal"
+	bay "Drone" -85 55
+		"launch effect" "human internal"
+	bay "Drone" 85 55
+		"launch effect" "human internal"
 
 mission "Wanderers: Alpha Surveillance D"
 	name "Find the Alphas"
@@ -2017,12 +2066,35 @@ mission "Wanderers Hai Assistance Fleet"
 	invisible
 	to offer
 		has "Wanderers Hai Assistance 1: done"
+	on offer
+		event "hai blockade"
 	npc kill
 		government "Hai"
 		personality heroic staying uninterested frugal
 		system "Wah Ki"
 		fleet "Large Hai" 6
 
+# Unfettered raids no longer happen beyond Wah Ki.
+event "hai blockade"
+	system "Bore Fah"
+		remove raid
+	system "Bote Asu"
+		remove raid
+	system "Imo Dep"
+		remove raid
+	system "Zuba Zub"
+		remove raid
+
+# Compatibility mission for players who finished "Wanderers Hai Assistance Fleet" prior to 0.10.13.
+mission "Wanderers Hai Assistance Fleet patch"
+	landing
+	invisible
+	to offer
+		has "Wanderers Hai Assistance Fleet: offered"
+		not "event: hai blockade"
+	on offer
+		event "hai blockade"
+		fail
 
 
 mission "Wanderers Hai Assistance 3"
@@ -2457,6 +2529,21 @@ event "battle for sich'ka'ara ends"
 	planet "Kort Vek'kri"
 		attributes "unfettered"
 		spaceport `The Unfettered clearly do not know quite what to make of the Wanderer research station here that they have recently captured. Animals that were once part of various experiments are now wandering loose, and the Unfettered are making only sporadic efforts to keep them well-fed. Every once in a while one of them, driven by sheer hunger, tries to smash its way into one of the crates of military rations that the Unfettered have stacked up in the shade near the main landing pad.`
+		remove tribute
+
+# Patch mission for players who got these missions before 0.10.11 and didn't get tribute from Kort Vek'kri cleared.
+mission "Wanderers: Kort Vek'kri Tribute Patch"
+	landing
+	invisible
+	to offer
+		has "event: battle for sich'ka'ara ends"
+	on offer
+		event "kort vek'kri tribute clear"
+		fail
+
+event "kort vek'kri tribute clear"
+	planet "Kort Vek'kri"
+		remove tribute
 	
 event "solifuge deployment"
 	shipyard "Mon Ki o'Uden Advanced"
