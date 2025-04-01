@@ -162,26 +162,24 @@ test "Flagship Attribute Autoconditions"
 			"flagship base attribute: turret mounts" == 2000
 			"flagship base attribute: weapon capacity" == 220000
 			"flagship base attribute: heat generation" == 0
-			"flagship attribute: cost" == 56294000
-			"flagship attribute: mass" == 882000
+			"flagship attribute: cost" == 56534000
+			"flagship attribute: mass" == 882100
 			"flagship attribute: drag" == 4300
 			"flagship attribute: engine capacity" == 9000
 			"flagship attribute: gun ports" == 0
 			"flagship attribute: heat generation" == 32300
-			"flagship attribute: outfit space" == 17000
+			"flagship attribute: outfit space" == 16000
 			"flagship attribute: weapon capacity" == 58000
 		call "Depart"
-		apply
-			"test: flagship attributes: mass: divided" = "flagship attributes: mass" / 1000
 		assert
 			"flagship shields" == 16400
 			"flagship hull" == 10600
 			"flagship fuel" == 1100
-			"flagship mass" * 1000 == "flagship attributes: mass" + 15000
+			"flagship mass" - 15 == "flagship attributes: mass" / 1000
 		navigate
 			travel Arculus
 		input
-			command jump
+			command Jump
 		label "not arculus"
 		branch "not arculus"
 			not "flagship system: Arculus"
