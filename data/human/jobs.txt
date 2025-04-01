@@ -2968,6 +2968,60 @@ mission "FW Wildfire Aid [2]"
 		payment 10500 80
 		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens comes to guide the team away to a nearby tent, and thank you for your assistance."
 
+mission "FW Cold Aid [1]"
+	name "Cold relief to <planet>"
+	description `A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport <cargo> to <planet> by <date> to assist in the recovery efforts. Payment is <payment>.`
+	job
+	repeat
+	deadline
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on complete
+		payment 8500 80
+		dialog `You turn your cargo of <cargo> over to the needy community in return for <payment>.`
+
+mission "FW Cold Aid [1]"
+	name "Cold relief to <planet>"
+	description `A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport <cargo> to <planet> by <date> to assist in the recovery efforts. Payment is <payment>.`
+	job
+	repeat
+	deadline
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on complete
+		payment 8500 80
+		dialog `You turn your cargo of <cargo> over to the needy community in return for <payment>.`
+
 
 
 mission "Bounty Hunting (Very Tiny)"
