@@ -11487,7 +11487,7 @@ mission "Weland: Stone Retrieved Harmonization"
 			`	The man's head snaps up to look at you through briefly narrowed eyes before he smiles warmly, "Ah, well, just a slip of tongue. I was so excited there, I was babblin' nonsense. Of course I'm human." He laughs.`
 			`	"But, this is more than just academic for you, because I do believe this stone has fallen out of, what I can only call, harmony. I didn't have a chance before, but now, by projecting just the right sound waves back at the stone..."`
 			`	Weland fiddles with his controls for a bit. "... I can return the stone to harmony."`
-			branch skade
+			branch skade2
 				not "outfit: Blood of Surtr"
 				has "outfit: Tear of Skade"
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of crackling energized air.`
@@ -11495,7 +11495,7 @@ mission "Weland: Stone Retrieved Harmonization"
 			`	"See for yourself, it's more energetic than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystalline tonal architecture, ha, who woulda thought, alright."`
 			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
 				goto questions
-			label skade
+			label skade2
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air.`
 			`	"Ah ha! Cold damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's colder than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystal tonal architecture, ha, who woulda thought, alright."`
