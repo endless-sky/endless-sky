@@ -192,16 +192,15 @@ int ImageBuffer::Read(const ImageFileData &data, int frame)
 	if(!isPNG && !isJPG && !isAVIF)
 		return false;
 
-	int startFrame = frame;
-	int endFrame = startFrame;
+	int loaded;
 	if(isPNG)
-		endFrame += ReadPNG(data.path, *this, frame);
+		loaded = ReadPNG(data.path, *this, frame);
 	else if(isJPG)
-		endFrame += ReadJPG(data.path, *this, frame);
+		loaded = ReadJPG(data.path, *this, frame);
 	else
-		endFrame += ReadAVIF(data.path, *this, frame, data.blendingMode == BlendingMode::PREMULTIPLIED_ALPHA);
+		loaded = ReadAVIF(data.path, *this, frame, data.blendingMode == BlendingMode::PREMULTIPLIED_ALPHA);
 
-	if(startFrame >= endFrame)
+	if(loaded <= 0)
 		return 0;
 
 	if(data.blendingMode != BlendingMode::PREMULTIPLIED_ALPHA)
@@ -209,7 +208,7 @@ int ImageBuffer::Read(const ImageFileData &data, int frame)
 		if(isPNG || (isJPG && data.blendingMode == BlendingMode::ADDITIVE))
 			Premultiply(*this, frame, data.blendingMode);
 	}
-	return endFrame - startFrame;
+	return loaded;
 }
 
 
