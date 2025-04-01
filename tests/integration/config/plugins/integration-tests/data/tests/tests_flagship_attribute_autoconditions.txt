@@ -171,6 +171,8 @@ test "Flagship Attribute Autoconditions"
 			"flagship attribute: outfit space" == 17000
 			"flagship attribute: weapon capacity" == 58000
 		call "Depart"
+		apply
+			"test: flagship attributes: mass: divided" = "flagship attributes: mass" / 1000
 		assert
 			"flagship shields" == 16400
 			"flagship hull" == 10600
