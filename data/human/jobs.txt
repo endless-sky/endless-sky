@@ -1889,6 +1889,44 @@ mission "Passengers [5]"
 		payment 500
 		dialog phrase "generic passenger dropoff payment"
 
+mission "Passengers to Quarg [1]"
+	name "Passenger transport to <planet>"
+	description "Bring <fare> to the Quarg planet of <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1 10 .9
+	to offer
+		random < 10
+		has "landing access: Humanika"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Humanika"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Passengers to Quarg [2]"
+	name "Passenger transport to <planet>"
+	description "Bring <fare> to the Quarg planet of <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1 10 .9
+	to offer
+		random < 10
+		has "landing access: Humanika"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Humanika"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog phrase "generic passenger dropoff payment"
+
 mission "Transport miners to <planet>"
 	job
 	repeat
