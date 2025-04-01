@@ -2700,6 +2700,46 @@ mission "Released Prisoners [2]"
 		payment 3000 150
 		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
 
+mission "Passenger Runoff [0]"
+	name "Passenger transport to <planet>"
+	description "Bring a hooded figure to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. You catch a glimpse of your passenger running off into the spaceport.`
+
+mission "Passenger Runoff [1]"
+	name "Passenger transport to <planet>"
+	description "Bring a teenager to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `After landing, you go to the passenger compartments to notify them of the arrival and ask for the payment. The door opens as you raise your hand to knock, and a teenager rushes past you. Before you can recover, they're already gone and on their way into the depths of the spaceport.`
+
 mission "Large Bulk Delivery [0]"
 	name "Large bulk delivery to <planet>"
 	job
