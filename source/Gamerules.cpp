@@ -66,12 +66,12 @@ void Gamerules::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
-		else if(key == "system departure min")
-			systemDepartureMin = max<double>(0.0, child.Value(1));
-		else if(key == "system arrival min")
-			systemArrivalMin = max<double>(0.0, child.Value(1));
+		else if(key == "default system departure")
+			defaultSystemDeparture = max<double>(0.0, child.Value(1));
+		else if(key == "default system arrival")
+			defaultSystemArrival = max<double>(0.0, child.Value(1));
 		else if(key == "fleet multiplier")
-			fleetMultiplier = max<double>(0.0, child.Value(1));
+			fleetMultiplier = max<double>(0.001, child.Value(1)); //0.001 to avoid division with a very small number
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -149,16 +149,16 @@ Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 
 
 
-double Gamerules::SystemDepartureMin() const
+double Gamerules::DefaultSystemDeparture() const
 {
-	return systemDepartureMin;
+	return defaultSystemDeparture;
 }
 
 
 
-double Gamerules::SystemArrivalMin() const
+double Gamerules::DefaultSystemArrival() const
 {
-	return systemArrivalMin;
+	return defaultSystemArrival;
 }
 
 
