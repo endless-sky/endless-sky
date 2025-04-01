@@ -97,54 +97,53 @@ phrase "jibauni untranslated"
 	phrase
 		"jibauni untranslated random word 1"
 		"jibauni untranslated random word 2"
+	word
+		" "
 	phrase
-		"space"
+		"empty"
 		"jibauni untranslated random word 1"
+	word
+		" "
 	phrase
-		"space"
+		"empty"
 		"jibauni untranslated random word 2"
+	word
+		" "
 	phrase
-		"space"
 		"jibauni untranslated random word 1"
 		"jibauni untranslated random word 2"
 	word
 		"."
 		"!"
-	replace
-		"  " " "
 
 phrase "jibauni untranslated random word 1"
-	word
-		" "
 	phrase
 		"consonant capitalized"
 	phrase
 		"vocal" 2
-		"space"
+		"empty"
 	phrase
 		"consonant uncapitalized" 2
-		"space"
+		"empty"
 	phrase
-		"space"
+		"empty"
 		"vocal" 2
 	phrase
-		"space"
+		"empty"
 		"vocal" 2
 	phrase
 		"consonant uncapitalized" 2
-		"space"
+		"empty"
 
 phrase "jibauni untranslated random word 2"
-	word
-		" "
 	phrase
 		"vocal (capitalized)"
 	phrase
 		"consonant uncapitalized" 2
-		"space"
+		"empty"
 	phrase
 		"consonant uncapitalized"
-		"space"
+		"empty"
 		"vocal"
 	phrase
 		"vocal"
@@ -153,12 +152,10 @@ phrase "jibauni untranslated random word 2"
 		"vocal"
 	phrase
 		"consonant uncapitalized"
-	phrase
-		"space"
 
-phrase "space"
+phrase "empty"
 	word
-		" "
+		""
 
 phrase "friendly jibauni civilian"
 	phrase
