@@ -1213,5 +1213,5 @@ mission "Deep Hovercraft Racer Transport"
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
 		payment
-		payment 9000
+		payment 11000
 		dialog `You drop off the pilot with their hovercraft and collect your payment of <payment>.`
