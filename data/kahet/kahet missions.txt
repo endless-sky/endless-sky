@@ -747,7 +747,6 @@ ship "Builder Satellite"
 		mass 10
 		drag 2
 		"heat dissipation" 1
-		"threshold percentage" 0.
 
 
 ship "Builder Satellite" "Builder Satellite 2"
