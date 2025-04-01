@@ -19,7 +19,7 @@ mission "Jibauni: Kanlanmo 0"
 	destination "Taltahard"
 	on offer
 		conversation
-			`The approach to your landing location takes the ship uncomfortably close to huge trapezoidal skyscrapers, finally landing in the very midst of the city. The alien metropolis is filled with dinosaurs in the shape of the mythical Tyrannosaurus Rex, although here smaller then in old Earth fables. Soon after you land, one of these dinosaurs, incongruently wearing a dark green cloak, approaches your ship.`
+			`The approach to your landing location takes the ship uncomfortably close to huge trapezoidal skyscrapers, finally landing in the very midst of the city. The alien metropolis is filled with dinosaurs in the shape of the Tyrannosaurus Rex, although here smaller then in old Earth stories. Soon after you land, one of these dinosaurs, incongruently wearing a dark green cloak, approaches your ship.`
 			choice
 				`	(Go out and meet it.)`
 					goto meeting
@@ -49,18 +49,16 @@ mission "Jibauni: Kanlanmo 0"
 					to display
 						has "jibauni knowledge: the Jibauni have Heliarch translators"
 						not "asked about the Jibauni translators"
-					goto cotrans
 				`	"Hi, weirdo. What's up?"`
 					goto rude
 				`	(Shoot the alien with your sidearm.)`
 					goto deathshot
-			label cotrans
 			action
 				set "asked about the Jibauni translators"
 			`	Yellow eyes glare at you. "I am not authorized to give you that information. Your questions?"`
 				goto meetingquestions
 			label lastisknown
-			`	"Yes. We know about you, <first>, Captain of the <ship>. How have you come here, for we did not detect any purple sparks?"`
+			`	The Tyrannosaurus Rex nods, slowly. "Yes. We know about you, <first>, Captain of the <ship>. How have you come here, for we did not detect any purple sparks?"`
 			choice
 				`	"I came through the wormhole. Do you mean to say you have not noticed it?"`
 					goto wormholeentry
@@ -69,14 +67,12 @@ mission "Jibauni: Kanlanmo 0"
 						has "outfit (flagship installed): Jump Drive"
 					goto jumpdriveentry
 				`	"What do you mean, purple?"`
-					goto purple
 			label purple
 			`	"Oh, it does not matter. A side note, I believe. But, to rephrase my question, how did you enter our space?"`
 			choice
 				`	"An anomaly. The type I went through is commonly called a wormhole."`
 					goto wormholeentry
 				`	"Just my fancy Jump Drive."`
-					goto jumpdriveentry
 			label jumpdriveentry
 			`	"Interesting," says the alien. "The only one who has ever done that before is an odd ship who seemed to come from the same general direction." It fixes you with an intent gaze. "There may be something similar between your species. The ship was pink. Seen one like it?"`
 				goto pinkship
@@ -87,31 +83,28 @@ mission "Jibauni: Kanlanmo 0"
 				`	"Yes, I have. They're probably Alphas."`
 					to display
 						has "event: liberation of Poisonwood"
-					goto knownalphas
 				`	"No, I've never seen one matching the description."`
 					goto notseen
 				`	"Of course. The person who pilots it is an Alpha. Shall I tell you what the story behind them is?"`
 					to display
 						has "event: liberation of Poisonwood"
 					goto alphas
-			label knownalphas
 			`	The reptilian head tilts. "Great. But, let me ask you one question. Did you meet them on friendly terms? Or did you try to destroy their ships?"`
 			choice
 				`	"Why would I be friends with the ex-enslavers of humanity?"`
 				`	"Oh, I and the Alphas are great friends. We even share technology!"`
 					goto friendlyalpha
-			label hostilealpha
 			`	The dinosaur's claws twitch. "If you need something to do, I have something. I have been looking for transport to <planet> in the <system> system, but so far no Jibauni captain has wanted to take Kanlanmo, which happens to be my name. I will explain, once we get there."`
 			choice
 				`	"I'll take you."`
 					accept
 				`	"Of course I'd be happy to, but unfortunately there's no space on <ship> right now. I can come back later though."`
 			action
-				set "jibauni: will take kanlanmo later"
+				set "jibauni: kanlanmo 0 deferred"
 			`	"Good," says Kanlanmo. "Chances are, I still will not have found transport, so I will be waiting here next time you come."`
 				decline
 			label notseen
-			`	"Good." The alien's stance suddenly shifts, as though its repect for you just increased. "In that case, I have another request for you. Can you take me to <planet> in the <system> system? I will mark it on your map, and explain more once we get there. Oh yes, and my name is Kanlanmo. Kanlanmo of the Jibauni."`
+			`	"Good." The alien's stance suddenly shifts, as though its respect for you just increased. "In that case, I have another request for you. Can you take me to <planet> in the <system> system? I will mark it on your map, and explain more once we get there. Oh yes, and my name is Kanlanmo. Kanlanmo of the Jibauni."`
 			choice
 				`	"Of course! You can get on the <ship> right away!"`
 					accept
@@ -143,7 +136,7 @@ mission "Jibauni: Kanlanmo 0"
 			choice
 				`	"I apologize, and did not mean to insult you."`
 					goto rudeentry
-				`	"Why apologize to a bunch of dinky T-Rex's?"`
+				`	"Why apologize to a bunch of dinky T-Rexes?"`
 			`	The moment the last word is out of your mouth, the dinosaur lowers its claw. Suddenly, millions of miniature projectiles come hurtling through the air, shredding the <ship> and everything in it.`
 				die
 			label deathshot
@@ -171,10 +164,8 @@ mission "Jibauni: Kanlanmo 0"
 				`	"Good. I'll take you."`
 					accept
 				`	"That's what you think. Well, I'm joining the Rebels, whatever you may say."`
-					goto joinedrebels
 				`	"No, I won't take you. Sorry."`
 					decline
-			label joinedrebels
 			action
 				"reputation: Jibauni" = -10
 				"reputation: Jibauni (Civilian)" = -10
@@ -194,13 +185,13 @@ mission "Jibauni: Kanlanmo 0"
 		set "license: Jibauni"
 		event "jibauni translated hails"
 		conversation
-			`"Thank you for bringing me here so promptly," says Kanlanmo. "It was very kind of you. Now, I know you are burning with questions, but I have an urgent meeting. If you meet me in the spaceport soon, though, I can answer your questions. Also, here is a translator you can use, so you can talk to other Jibauni.`
+			`"Thank you for bringing me here so promptly," growls Kanlanmo. "It was very kind of you. Now, I know you are burning with questions, but I have an urgent meeting. If you meet me in the spaceport soon, though, I can answer your questions. Also, here is a translator you can use, so you can talk to other Jibauni.`
 				to display
 					not "language: Coalition"
-			`"Thank you for bringing me here so promptly," says Kanlanmo. "It was very kind of you. Now, I know you are burning with questions, but I have an urgent meeting. If you meet me in the spaceport soon, though, I can answer your questions. Here is a translator you can use for ease of communication with other Jibauni. Yes, I am aware you have a box of the same make, but this is slightly different.`
+			`"Thank you for bringing me here so promptly," growls Kanlanmo. "It was very kind of you. Now, I know you are burning with questions, but I have an urgent meeting. If you meet me in the spaceport soon, though, I can answer your questions. Here is a translator you can use for ease of communication with other Jibauni. Yes, I am aware you have a box of the same sort, but this is slightly different.`
 				to display
 					has "language: Coalition"
-			`	"Here is a license with which you can buy any of our smaller ships. Now, I really must be going." He goes off after handing you <payment>, and you sit back to wait until the time he specified.`
+			`	"A license with which you may buy our smaller ships has been granted to you. Now, I really must be going." The dinosaur stomps off after handing you <payment>, and you sit back to wait until the time he specified.`
 
 mission "Jibauni: Kanlanmo (0 declined)"
 	name "Take Kanlanmo to <planet>"
@@ -210,11 +201,10 @@ mission "Jibauni: Kanlanmo (0 declined)"
 	source "Baitoon"
 	destination "Taltahard"
 	to offer
-		has "Jibauni: Kanlanmo 0: declined"
-		has "jibauni: will take kanlanmo later"
+		has "jibauni: kanlanmo 0 deferred"
 	on offer
 		conversation
-			`Kanlanmo hails you as you land. "You could not take me to <planet> last time, but can you now?"`
+			`Kanlanmo's translator hails you as you land. "You could not take me to <planet> last time, but can you now?"`
 			choice
 				`	"Yes, certainly!"`
 					accept
@@ -228,28 +218,35 @@ mission "Jibauni: Kanlanmo (0 declined)"
 		set "license: Jibauni"
 		event "jibauni translated hails"
 		conversation
-			`As you land Kanlanmo says, "I have an urgent meeting to get to. Thank you for bringing me. The meeting will be over in about an hour, so if you want to hear about it, meet me in the spaceport then. Oh, and before I forget, here is <payment> and a translator for your pains."`
+			`As you land Kanlanmo says, "I have an urgent meeting to get to. Thank you for bringing me. The meeting will be over in about an hour, so if you want to hear about it, meet me in the spaceport with a free bunk. Oh, and before I forget, here is <payment>, a translator for your pains, and a license with which to buy our smaller ships."`
 
 mission "Jibauni: Kanlanmo 1"
 	name "Kanlanmo to <planet>"
 	description "Kanlanmo is now interested in going to <planet>. Take him there for <payment>."
+	blocked "Kanlanmo told you that you would need a free bunk before meeting him."
 	passengers 1
-	to offer
-		has "First Contact: Jibauni: done"
 	source "Taltahard"
 	destination "Kahbani"
+	to offer
+		has "First Contact: Jibauni: done"
 	on offer
-		log "Factions" "Jibauni" `The Jibauni are an alien race accessed by a strange anomaly in a system south of Men. They have been fighting a rebel faction of their own kind for the past seven hundred years.`
-		log "Factions" "Rebel Jibauni" `The Rebel Jibauni turned on their Jibauni friends, whom they call the Lazies, for some unknown reason. They have been fighting the normal Jibauni for the past seven hundred years.`
+		log "Factions" "Jibauni" `The Jibauni are an alien race in the shape of Tyrannosaurus Rexes accessed by an anomaly in a system south of Men. They have been fighting a rebel faction of their own kind for the past seven hundred years.`
+		log "Factions" "Rebel Jibauni" `The Rebel Jibauni turned on their Jibauni compatriots, whom they call the Lazies, for some unknown reason. They have been fighting the normal Jibauni for the past seven hundred years.`
 		log "Found an alien faction called the Jibauni, who are at war with a splinter of their own species. Took one of them, by the name of Kanlanmo, from their home planet Baitoon to Taltahard."
 		set "kanlanmo in mission"
 		conversation
-			`When Kanlanmo gets back from his meeting, he finds you already in the cafe. "How is it going, <first>?" he asks. "And how many questions do you have? I have a lot of free time at present, so ask anything you want. But before you do, can I tell you about the Rebel Jibauni?"`
+			`When Kanlanmo gets back from his meeting, he finds you already in the cafe. "How is it going, <first>?" he asks, the translator sounding tinny in the echoing shop. A group of Jibauni at the next table looks up. "And how many questions do you have? I have a lot of free time at present, so ask anything you want. But before you do, can I tell you about the Rebel Jibauni?"`
 			`	Without waiting for an answer, he begins. "They have been attacking us for about seven hundred years. In addition, the part that many of my people feel sorely, is the fact that they call us the Lazies. It all began a hundred years before then, when a leader suddenly declared independence and decided to rebel. Do you have any questions?"`
 				goto realchoice
 			label choice
 			`	After a brief silence, Kanlanmo again asks, "Do you have any other questions?"`
 			label realchoice
+			action
+				"jibauni: initial questions time" ++
+			branch overheard
+				"jibauni: initial questions time" > 4
+				random < 60
+				has "jibauni situation"
 			choice
 				`	"Why did you want to come here?"`
 					to display
@@ -334,6 +331,21 @@ mission "Jibauni: Kanlanmo 1"
 				set "jibauni knowledge: cloak colors"
 			`	"Ah, indeed a good question you have asked. The explanation in full would be long, but suffice it to say that those who work for the government wear cloaks of yellow; Oracles and religious workers wear blue. The darker the shade, the more important the Jibauni." He does not mention the fact that his cloak is a very dark green.`
 				goto choice
+			label overheard
+			`	Before you can say anything, the group of four at the next table rises. One of them, wearing a bright green cloak, approaches in a threatening manner, although his words remain gentle - and indistinguishable; apparently these Jibauni speak a different, more growly, dialect.`
+			`	Midway through a sentence, Kanlanmo suddenly rises. "Gentlemen," he roars, "I am afraid the human captain needs no help. We can very well fend for ourselves here."`
+			`	The rest of the cafe falls silent, glaring at the interruption's source. The group who were at the next table immediately departs.`
+			choice
+				`	"What was that all about?"`
+				`	"Could we get back to my questions now?"`
+			`	"Worrisome, those ones' visit was. It would appear the Rebels have spies even in this remote region of our space.`
+			`	"Would you lend help in transporting me to <system>; <planet>, to be precise? I must report this happenstance, as well as finishing that other business."`
+			choice
+				`	"Sure."`
+					accept
+				`	"What did they say?"`
+			`	Kanlanmo does not answer, instead going to the cafe door and looking out. You do not seem to have a choice about transporting him.`
+				accept
 			label done
 			`	"Good. Without more questions, I can ask if you will lend some help getting to <system>; <planet>, to be precise. Would you take me?"`
 			choice
