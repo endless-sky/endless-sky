@@ -2146,7 +2146,7 @@ mission "Terraforming 3B"
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Eric, Alaric, and Amy hasn't entered the system yet. Better depart and wait for it.`
 	on complete
-	log "People" "Allison Holland" `Represents Rand in the Free Worlds Senate. Advocated for the plan to terraform Rand using an asteroid dropped on Rand's ice cap.`
+		log "People" "Allison Holland" `Represents Rand in the Free Worlds Senate. Advocated for the plan to terraform Rand using an asteroid dropped on Rand's ice cap.`
 		conversation
 			`During your journey, you meet virtually with Allison Holland, the Senate representative from Rand, to convince her of your plan. She is initially unconvinced, but is persuaded by Eric when he mentions the possibility of agriculture inducing economic development. She agrees to help advocate to the rest of the senate for you.`
 			`	As you approach the Senate building, you note the amount of people entering. You feel fortunate that your connections within the capital allowed you to move the meeting up the schedule as most people must wait days or weeks to be heard. The public chambers of the Senate occupy a converted opera house some distance from the spaceport. Newly built brick buildings that house various government functions surround the central dome.`
@@ -2160,7 +2160,7 @@ mission "Terraforming 3B"
 				`	"Amy, it's your turn to speak."`
 					goto speech
 				`	(Say nothing)`
-			`	After an awkward pause, Eric whispers, "Amy, you need to tell them our plan to terraform Rand."
+			`	After an awkward pause, Eric whispers, "Amy, you need to tell them our plan to terraform Rand."`
 			label speech
 			`	"Even now, most terraforming projects are far too expensive and time-consuming for a poor planet like Rand to contemplate. However, Rand's atmosphere has most of the elements needed for arable land to be cultivated; it just needs a little push to get the rest of the way there. We want to redirect an asteroid to Rand's northern ice cap to distribute water across the surface, causing the climate to become amenable to agricultural development."`
 			`	You begin to hear whispering fill the auditorium. Seems Amy's ideas might already have some detractors. . .`
