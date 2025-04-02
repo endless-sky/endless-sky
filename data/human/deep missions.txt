@@ -4252,7 +4252,101 @@ mission "Hroar's Haulers: Transport Edition 2"
 				defer
 
 			label follow
-			`They escort you to an elevator and up to the familiar penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
+			`	They escort you once more to the tallest building in Himinbjorg, but this time instead of rising to the penthouse, you descend to some deep sublevel.`
+			`	You're led down various twisting hallways until at least your escort deposits you at the entrance to a small dark office where Kaiden waits with generic smile.`
+			`	"So wonderful that you decided to stop by, Captain <last>, "Kaiden says smoothly. "Would you care for glacial water?"`
+			choice
+				`	"Yes."`
+					goto yes
+				`	"No."`
+			`	He faintly shrugs and sips from his own glass. "Straight to business then. A comendable and foward attitude. I've called you here because you have particular set of skills, and I have a particular sort of problem. I'd like to apply your skills to my problem."`
+				goto problem
+
+			label yes
+			`	"Lovely." He snaps his fingers and points to your escort, who quickly and quietly moves across the room, preparing you a drink of 'glacial water'.`
+			`	Kaiden gives you a corporate smile and sips his own glass. "Now, I've called you here because you have particular set of skills, and I have a particular sort of problem. I'd like to apply your skills to my problem."`
+			choice
+				`	(Take a sip of your glacial water.)`
+					goto sip
+				`	(Ignore your drink.)`
+			`	You ignore the water and focus on Kaiden.`
+				goto problem
+			label sip
+			`	The water, despite the branding, tastes stale and bureaucratic.`
+			label problem
+			`	"You see," Kaiden continues. "We have some competition that, frankly, gives all of us in the tranportation industry a bad name. Worse then that though, they sully the good name of the Deep. Are you familiar with an outfit that goes by the ridiculous name of 'Hroar's Hardy Haulers'?"`
+			choice
+				`	"I think I've seen them around."`
+				`	"Never head of them."`
+				`	(Shrug.)`
+			`	"Well, it doesn't matter. What matters is they are a blight, an infestation, that we can't quite get rid of. I suspect it is their willigness to engage in, if not illegal, than illegimate business practices."`
+			`	He gently frowns. "That's why we must resort to more proactive approaches for dealing with them. That's why we need you."`
+			choice
+				`	"What do you need me to do?"`
+					goto do
+				`	"What exactly is so wrong about Hroar's Hardy Haulers?"`
+					goto wrong
+				`	(Say nothing.)`
+			`	Kaiden gives you a respectful nod. "I like a person who doesn't ask too many questions. What we need you to do is infilitrate their organization, and find a way to void a contract they currently have with the Syndicate leadership on the planet Maker."`
+			label nextup
+			`	He tolds up his hand, as though he's forstalling any questions. "It is easier than it sounds. Through various persuasive means we've ensured a vital position in Hroar's organization is unfilled, and we believe he will be desperate enough to hire you to fill it. If he does, it is a certainty he will eventually send you on long merchant excursion that will include doing business on Maker."`
+			`	For the first time Kaiden's smile reaches his eyes. "Once there, some trouble will break out, and all we need you to do is find a way to make sure that trouble results in the termination of their contract with the Haulers."`
+			`	He grins and shrugs. "Quite simple really. Once accomplished, we'll need you to complete the merchant excursion with the Haulers, and then report back here afterwards. You will be well paid for work, rest assured."`
+			`	Kaiden leans back with self-satisfied look upon his face. "Questions?"`
+			label questions
+			choice
+				`	"None. Can't wait to start."`
+					goto start
+				`	"Exactly how well paid?"`
+					goto paid
+					to display
+						not "kaipay"
+				`	"How do you they'll send me to Maker?"`
+					goto maker
+					to display
+						not "kaimaker"
+				`	"I am not interested."`
+					goto notinterested
+				`	(Say nothing.)`
+			label start
+			action
+				clear "kaipay"
+				clear "kaimaker"
+			`	"Wonderful," Kaiden nearly purrs. "Then head to Muspel and visit that disgusting saloon of theirs in the spaceport. See if you can get them to give you a job."`
+			`	He hits a button at his desk and the escort immediately reappears. "I eagerly await your return. In the meantime though, we never had this chat."`
+				accept
+
+			label do
+			`	"Inquisitive. I like that." Kaiden gives you a respectful nod. "What we need you to do is infilitrate their organization, and find a way to void a contract they currently have with the Syndicate leadership on the planet Maker."`
+				goto nextup
+
+			label wrong
+			`	Kaiden's eye ticks. "They are abberant and outdated branch of Deep culture that should have conformed long ago. Worse, they embolden other non-comfortists by doing jobs for them that we refuse to do. Without them we believe we could have true cultural harmony in the Deep, and, also," he adds off-handidly, "increase our profits."`
+			`	He takes a breath his geneal mask returns. "Which is why we need you to infilitrate their organization, and find a way to void a contract they currently have with the Syndicate leadership on the planet Maker."`
+				goto nextup
+
+			label paid
+			action
+				set "kaipay"
+			`	Kaiden's eyes glitter, and he seems even more confident than before. "3 million credits is fair, I believe."`
+				goto questions
+
+			label maker
+			action
+				set "kaimaker"
+			`	Kaiden induldges in brief chuckle. "Oh, they will. They can't afford not to."`
+				goto questions
+
+			label notinterested
+			`	Kaiden's face briefly twists into something hostile and furious, before quickly resetting to calm indecipherable mask.`
+			`	"How short-sighted of you. Very well, than I believe our business is concluded."`
+			`	He hits a button at his desk and the escort immediately reappears. "Please see Captain <last> off the premises."`
+			`	The escort nods and leads you back to the surface.`
+				decline
+
+		on complete
+			dialog
+				`The red world of Muspel rushes toward you as your ship rumbles through the atmosphere. Your hatch opens into the billowing dust, and you head out to meet Hroar in the spaceport.`
 
 
 mission "Hroar's Haulers: Deal"
