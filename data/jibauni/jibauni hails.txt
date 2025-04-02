@@ -413,7 +413,7 @@ phrase "friendly disabled jibauni civilian 3"
 		"digit"
 	phrase
 		"digit"
-		"space"
+		"empty"
 	word
 		" "
 	word
@@ -421,8 +421,6 @@ phrase "friendly disabled jibauni civilian 3"
 		"hours"
 	word
 		"!"
-	replace
-		"  " " "
 
 phrase "friendly disabled jibauni military"
 	word
