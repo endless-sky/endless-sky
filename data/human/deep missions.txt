@@ -4215,6 +4215,35 @@ mission "The Book of Skadenga"
 			`	You keep walking. You already know that story.`
 				decline
 
+mission "Hroar's Haulers: Transport Edition"
+	name "An Offer From the Transport Union"
+	landing
+	to offer
+		has "event: hroars deal"
+	description "Go to <destination>, and see what the Deep Transport Union has to offer."
+	source
+		government "Republic"
+	destination "Valhalla"
+	on offer
+		dialog
+			`Your inbox blinks with a new message from the Transport Union.`
+			`	'Captain <last>, we have a mutually benefitial offer to make you. Please join us at your earliest convenience on Valhalla.`
+			`				-From the Desk of Kaiden Withers`
+			`			Senior Executive of Marketing and Public Relations, Transport Union.`
+	on complete
+		dialog
+			`Your ship makes it way through the heavily trafficed near-planet space and down to through the atmosphere to glittering Valhalla below. Your hatch opens into croweded streets filled with important and busy people. You make your way to the Tranport Union's skyscarpper in the heart of the spaceport.`
+
+mission "Hroar's Haulers: Transport Edition 2"
+	name "A job with the opposition"
+	to offer
+		has "Hroar's Haulers: Transport Edition: done"
+	description "Head to <destination>, and see about getting a job with the Haulers."
+	source "Valhalla"
+	destination "Muspel"
+	on offer
+		conversation
+			`	`
 
 
 mission "Hroar's Haulers: Deal"
@@ -4222,7 +4251,7 @@ mission "Hroar's Haulers: Deal"
 	landing
 	to offer
 		has "event: hroars deal"
-	description "Head back to <destination>, and see what Hroar needs"
+	description "Head to <destination>, and see what Hroar needs."
 	source
 		government "Republic"
 	destination "Muspel"
