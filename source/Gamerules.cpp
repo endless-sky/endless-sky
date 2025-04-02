@@ -71,7 +71,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "system arrival min")
 			systemArrivalMin = max<double>(0.0, child.Value(1));
 		else if(key == "fleet multiplier")
-			fleetMultiplier = max<double>(0.001, child.Value(1)); //0.001 to avoid division with a very small number
+			fleetMultiplier = max<double>(0.001, child.Value(1)); // 0.001 to avoid division with a very small number
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
