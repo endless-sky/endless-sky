@@ -1151,8 +1151,7 @@ mission "A Sunracer Hovercraft Racing"
 	invisible
 	to offer
 		random < 40
-	source
-		planet "Sunracer"
+	source "Sunracer"
 	substitutions
 		"<racename>" "${adjectives} ${racetrack}"
 		"<megaparsec name>" "${civilian}"
