@@ -6570,7 +6570,7 @@ mission "Lost Racer 2"
 			`	"They said she was last seen in Diphda. If she was going north, as she should have been, they probably caught up to her in Acamar. It's an uninhabited system, and with surveillance down, whoever did it could have disabled her ship before any of the other racers entered the system.`
 			choice
 				`	"I'll set a course for Acamar."`
-					goto acamar					
+					goto acamar
 				`	"I'm sorry that this happened, but I'm afraid I can't help."`
 			`	"Then you're just like the rest of those fools!" Mr. Renard stomps off in a rage.`
 				decline
@@ -6589,6 +6589,7 @@ mission "Lost Racer 3"
 	source "Pummel"
 	destination "Sandswell"
 	passengers 1
+	non-blocking
 	to offer
 		has "Lost Racer 2: done"
 	on offer
@@ -6615,7 +6616,8 @@ mission "Lost Racer 3"
 				accept
 			
 			label abandon
-			`	[PH] You have abandoned Artemis Renard.`
+			`	"You're just like all the rest of those captains, don't care about their passengers, only seek to be paid." August Renard sighs. "But, I suppose that is to be expected. If nobody will help, giving up is the only option.`
+			`	"At least take me back to Glory."`
 				decline
 
 	on enter "Kugel"
@@ -6626,7 +6628,7 @@ mission "Lost Racer 4 - Abandoned"
 	landing
 	name "Return to Glory"
 	description "You have decided not to continue the search for Artemis Renard. Return her grieving father August to <destination>."
-	deadline 7
+	deadline
 	source "Pummel"
 	destination "Glory"
 	passengers 1
@@ -6634,8 +6636,21 @@ mission "Lost Racer 4 - Abandoned"
 		has "Lost Racer 2: done"
 		not "rescue artemis renard"
 	on complete
+		log "After a brief search, was unable to find anything of the famous racing pilot Artemis Renard. Returned her grieving father home to Glory."
+		log "Minor People" "August and Artemis Renard" `August Renard contracted me to help look for his daughter Artemis, a racing pilot who went missing. Unable to find the woman, but returned her father home to Glory.`
 		conversation
-			"[PH] You have returned Artemis Renard's grieving father home."
+			`As the advanced medical facilities of <planet> rise up to greet <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
+			choice
+				`	"Weren't you going to pay me?"`
+					goto greedy
+				`	(Leave him alone.)`
+			`	August is escorted to a Shuttle which has just landed on the pad next to <ship>, waves to you as he goes in, and launches to another part of the planet.`
+				decline
+			label greedy
+			action
+				payment 2000
+			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits <ship> in a huff.`
+			`	When you access the credit chip, you find it is only worth <payment>.`
 
 
 mission "Lost Racer 4 - Rescued"
@@ -6693,7 +6708,9 @@ mission "Lost Racer 4 - Rescued"
 				`	"I'll leave the questions to your father."`
 					goto noquestions
 			label crash
-			`	Description of why she crashed.`
+			`	"I really do not know. We checked everything before launch, everything, and yet during the jump the Moonfox' hyperdrive malfunctioned, knocking me out. When I woke up, the Flivver was damaged and I was stranded on a planet with no way of calling for help - the flares had triggered when I crashed. Well, now you know. Is there anything else?"`
+			`	August asks, "Do you think someone could have sabotaged it? Any suspicious Syndicate employees hanging around? Any anything out of the ordinary?`
+			`	"Ah well, that's probably something to talk about later."`
 				goto noquestions
 			label beautiful
 			`	"You have good taste, Captain. It's modified for racing: lighter hull plating, no weapon mounts, ample engines, of course. We've got a dozen for all the different races, but that one was a personal favorite."`
@@ -6702,13 +6719,18 @@ mission "Lost Racer 4 - Rescued"
 					goto crash
 				`	"I have no more questions."`
 			label noquestions
-			`	You have no more questions.`
+			`	Artemis nods. "Well, could we head back to <planet> now? It'll be nice to get home after all this commotion and uncomfortableness."`
+			`	Artemis and her father head off to their bunks, talking all the way. You chart a course for <destination>.`
 				accept
 	on complete
-		event "artemis renard recovered" 40
-		conversation
-			`You have returned Artemis Renard home.`
 		payment 150000
+		event "artemis renard recovered" 40
+		log "Helped a Paradisian find his missing daughter, a racing pilot who crashed on Sandswell."
+		log "Minor People" "August and Artemis Renard" `Helped August find his daughter Artemis Renard, a racing pilot who crashed on the uninhabited planet of Sandswell after her hyperdrive malfunctioned.`
+		conversation
+			`As the advanced medical facilities of <planet> rush up and past the ship, August comes to the bridge. "I would like to thank you, Captain, for sticking through this mess with me, and for telling me to keep searching even when hope was gone.`
+			`	"I would like to reward you with a payment of <payment> for your services, and apologize for the inconvenience this might have caused you."`
+			`	Soon afterwards, the Renards head out of the <ship>. The moment they exit the hatch, a veritable army of attendants appears out of nowhere, ready to help them move the five feet to a Shuttle that has just landed on a pad next to you. August waves, and steps in.`
 
 event "artemis renard recovered"
 
@@ -6717,7 +6739,7 @@ mission "Lost Racer Epilogue"
 	name "Visit Artemis Renard"
 	description `Retrieve some "surplus equipment" from Artemis Renard on <destination>.`
 	source
-		not attributes uninhabited
+		near Sol 1 100
 	destination "Glory"
 	to offer
 		has "event: artemis renard recovered"
@@ -6730,16 +6752,39 @@ mission "Lost Racer Epilogue"
 			`			Artemis Renard`
 				accept
 	on complete
+		log "Was given a Racing Flivver as additional compensation for helping find Artemis Renard."
 		conversation
-			`You speak with the Renards again.`
-		give ship "Racing Flivver" `B-168 "Moonfox"`
+			`As Glory again rises to greet your ship, you receive a hail from a spacecraft that comes up alongside your ship. "Ho, Captain! Why don't you come to our mansion, instead of the main landing port? It'll be easier." August Renard is leaning out the cockpit of a fancy Racing Flivver, looking much happier than when you first met him.`
+			`	You redirect your ship in the direction the Flivver is going, noticing that it has the same name as Artemis' ship which crashed on Sandswell.`
+			`	Soon, the dense main city of <planet> gives way to a perfectly-terraformed countryside with only one mar - a gigantic mansion that must be hundreds of meters high. A few landing pads are set in a neat array next to it, and the B-168 "Moonfox" lands on one of these, beckoning for you to land on another.`
+			choice
+				`	(Land on one of the pads.)`
+					goto continue
+				`	"What about my fleet?"`
+					to display
+						"total ships" > 1
+					goto continue
+				`	"You have a mansion here!"`
+			`	"Later, later," Artemis shouts. "We'll talk in a place where we needn't shout."`
+			label continue
+			`	August calls, "You can let your fleet stay at the main spaceport; I'm afraid there's not room here."`
+				to display
+					"total ships" > 1
+			`	As you exit <ship>, you notice that the Flivver has been painted in the same colors that your ship has.`
+			`	August approaches. "Artemis wanted to give you something as a present for saving her life, and we were wondering if you would like to get this Flivver. We've managed to refurbish it enough that it should be perfectly functional, and if you want a fast ship there's nothing in the sky that can beat you."`
+			`	The Renards lead you up the steps into the palatial mansion and into a large whitewashed room with a golden table. On the table lie keys for the starship Artemis used in her most recent race.`
+			action
+				give ship "Racing Flivver" `B-168 "Moonfox"`
+			`	"Well, I hope you like it." Artemis approaches. "It's been servicing me for quite a while, ever since I started racing. Unfortunately it's not fast enough anymore, even after the millions we spent on rebuilding it after the crash on Sandswell. Hopefully you'll be able to put it to better use." She smiles. "Of course, it would also be a good ship to sell, if you need the money."`
+			`	You say your goodbyes and head back to the main spaceport.`
 
 ship "Racing Flivver"
 	sprite "ship/racing flivver"
 	thumbnail "thumbnail/racing flivver"
 	attributes
 		category "Transport"
-		"cost" 1950000
+		# This Flivver has a high cost so that you can sell it for roughly the same amount as a normal Flivver would cost.
+		"cost" 4900000
 		"shields" 1100
 		"hull" 150
 		"required crew" 1
