@@ -8240,13 +8240,13 @@ mission "Hroar's Haulers 25"
 				`	"I did my job."`
 					goto myjob
 				`	(Say nothing.)`
-			`	Hroar tilts his head without breaking eye contact, "Nothing? Big shot captain like you got nothing to say?"`
+			`	Hroar tilts his head without breaking eye contact. "Nothing? Big shot captain like you got nothing to say?"`
 			label yngvarcalm
 			`	"Hroar." Yngvar cuts in, "Ain't nothing the hirthr could do. Solvi's crews were in the brig for trumped up charges, and we couldn't cover the bribes to get 'em out. As for fighting, well, that'd cost us the whole contract right then and there"`
-			`	The leader of the Haulers closes his eyes and sits back, "Smart. Smart call not to fight 'em." He sighs, "Probably what they wanted anyhow, they've been looking for any excuse to get out of that contract."`
-			`	His eyes flicker from Yngvar back to you, "But I am thinking this will only escalate. This wasn't their last move, only their first."`
+			`	The leader of the Haulers closes his eyes and sits back. "Smart. Smart call not to fight 'em." He sighs, "Probably what they wanted anyhow, they've been looking for any excuse to get out of that contract."`
+			`	His eyes flicker from Yngvar back to you. "But I am thinking this will only escalate. This wasn't their last move, only their first."`
 			`	"Alright," Hroar says after taking breath, "Guess there's no point in berating you then, eh? And here I was lookin' forward to it. Lookin' for someone to blame."`
-			`	Hroar shrugs, "But, I s'pose if I am not gonna be yelling atchya, I might as well pay ya. Whatdya think Yngvar, how'd they do?"`
+			`	Hroar shrugs. "But, I s'pose if I am not gonna be yelling atchya, I might as well pay ya. Whatdya think Yngvar, how'd they do?"`
 			`	Yngvar pauses for a moment.`
 			`	"The pirates were thicker than usual, and <last> kept the fleet safe. That's the job and they did it."`
 			`	"But they went beyond the job when they saved Captain Gunhilda back on Maker."`
@@ -8317,7 +8317,6 @@ mission "Hroar's Haulers 25"
 			`	Hroar's voice bursts over the wave of patrons, "Remember, your jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
 			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks for an overwhelemed but unperturbed Havi.`
 			choice
-
 				`	(Head to Hroar's Booth.)`
 					goto booth2
 				`	(Try to get a drink.)`
@@ -8395,7 +8394,7 @@ mission "Hroar's Haulers 25"
 
 			label best
 			`	Hroar nods slowly, "Can't say I wish it weren't a little better, but I hear ya. Some things are outta our hands. Well, let's see about paying, huh? Maybe that'll put a sparkle back in those formely greenhorn eyes of yours."`
-			`	"Havi" Hroar suddenly shouts.`
+			`	"Havi!" Hroar suddenly shouts.`
 				goto havi
 
 			label payme
@@ -8432,7 +8431,7 @@ mission "Hroar's Haulers 25b"
 				`	(Head to Hroar's booth.)`
 					goto booth
 				`	(Ask for a drink.)`
-			`	Havi shows his eroded teeth, "Not the time. Go on."`
+			`	Havi shows his eroded teeth. "Not the time. Go on."`
 			choice
 				`	(Head to Hroar's booth.)`
 			label booth
@@ -8701,8 +8700,25 @@ mission "Hroar's Haulers 25b"
 				goto foughtfreedom
 
 			label badjob
+			`	"That weren't no deal," Hroar says coldly. "That was a hatchet job to the heart of our operations."`
+			`	He picks up his empty glass and turns it over. "Things about to get real lean around here, and all because you don't know the right side of an agreement." He pauses. "Or maybe you do."`
+			`	Hroar nods at Yngvar. "You think <first> knows better?"`
+			label knowsbetter
+			`	Yngvar's wrinkled and scarred face twists into a bitter frown. "Can't say <last> was put up to it, no. Coulda been malaice, but coulda been plain stupid."`
+			`	The Hauler boss taps the stained table with his index finger. "Either way, can't abide someone like you in our organization." He levels his eyes on yours. "Someone we can't trust."`
+			`	With a look of digust on his face Hroar pushes a tablet over to you. "I said I'd pay you, and I will."`
+			`	The table shows 1,222,434 credits being transfered to your bank account.`
+			`	"Now take your money and get the hel outta of my saloon." Hroar says between clenched teeth.`
+			`	Yngvar only shakes his head sadly.`
+			action
+				payment 1222434
+				decline
 
 			label nothingbroken
+			`	Hroar tilts his head without breaking eye contact. "Nothing? Big shot captain like you got nothing to say?"`
+			`	He leans in toward you. "You take a hachet job to the heart of my operations. You blow up a deal that puts food on the table and fuel in the ships. And you're just gonna sit there and say skitr all?"`
+			`	"Or maybe that's because it wasn't an accident? Maybe you knew exactly what you were doing." Hroar's eyes narrow and he glances at Yngvar. "What you think, old man? Think <first> knows better?"`
+				goto knowsbetter
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
