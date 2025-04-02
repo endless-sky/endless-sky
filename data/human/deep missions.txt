@@ -4232,7 +4232,7 @@ mission "Hroar's Haulers: Transport Edition"
 			`			Senior Executive of Marketing and Public Relations, Transport Union.`
 	on complete
 		dialog
-			`Your ship makes it way through the heavily trafficed near-planet space and down to through the atmosphere to glittering Valhalla below. Your hatch opens into croweded streets filled with important and busy people. You make your way to the Tranport Union's skyscarpper in the heart of the spaceport.`
+			`Your ship makes it way through the heavily trafficed near-planet space and down to through the atmosphere to glittering Valhalla below. Your hatch opens into croweded streets filled with important and busy people. Someone from the Transport Union is likely waiting for you in the spaceport.`
 
 mission "Hroar's Haulers: Transport Edition 2"
 	name "A job with the opposition"
@@ -4243,7 +4243,16 @@ mission "Hroar's Haulers: Transport Edition 2"
 	destination "Muspel"
 	on offer
 		conversation
-			`	`
+			`You are promptly met by a well-dressed representative of the Transport Union. "Please come with me, Captain <last>." `
+			choice
+				`	(Follow them.)`
+					goto follow
+				`	(Refuse.)`
+			`	They give you a blank expression before turning and leaving you alone in the busy spaceport.`
+				defer
+
+			label follow
+			`They escort you to an elevator and up to the familiar penthouse of the tallest building in Valhalla's capital of Himinbjorg.`
 
 
 mission "Hroar's Haulers: Deal"
