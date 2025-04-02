@@ -8454,12 +8454,30 @@ mission "Hroar's Haulers 25b"
 					to display
 						has "brokecontract"
 				`	(Say nothing.)`
+					goto nothingpaid
+					to display
+						has "payall"
+				`	(Say nothing.)`
+					goto nothingfought
+					to display
+						has "makerhero"
+				`	Say nothing.)`
+					goto nothingbroken
+					to display
+						has "brokencontract"
+
+			label nothingpaid
+			`	Yngvar puts a rough hand on your shoulder. "<last> might be a might modest, but they did right by the whole haul. Bought Solvi's entire fleet's freedom, at no small expense.`
+			`	Hroar nods solmenly. "Too many folks treat their coin like children, and their friends like coin. I had a feelin' you might be the type who saw the real value in of folks."`
+			`	He holds up a glass to you. "As for the financial blow you took, well, I sympathize, I do. Now, I can't make you whole, but every red jacket 'tween here and Helheim getting a fresh paycheck, a collection has gone out and I do believe a dent's been made in the debt you're owed."`
+				goto nothingboughtfreedom
 
 			label boughtfreedom
-			`	Hroar grins and holds up his glass, "Spoken like a true Hauler! As for the financial blow you took, well, I sympathize, I do. Too many folks treat their coin like children, and their friends like coin."`
+			`	Hroar grins and holds up his glass. "Spoken like a true Hauler! As for the financial blow you took, well, I sympathize, I do. Too many folks treat their coin like children, and their friends like coin."`
 			`	"But not you," He says as he drops the glass back on the table. "Now, I can't make you whole, but with every red jacket 'tween here and Helheim getting a fresh paycheck, a collection has gone out and I do believe a dent's been made in the debt you're owed."`
+			label nothingboughtfreedom
 			`	Yngvar pushes a tablet across the table to you, it says, 268,410 credits. Yngvar's gravely voice adds, "Ain't none of 'em rich, but they're not about to do nothing neither."`
-			`	Hroar's smile gentles a bit, "That's the truth of it."`
+			`	Hroar's smile gentles a bit. "That's the truth of it."`
 			choice
 				`	"Thanks, I appreciate the collection."`
 					goto appreciate
@@ -8472,6 +8490,7 @@ mission "Hroar's Haulers 25b"
 			`	Yngar shakes his head, "Before you go about besmirching the well-meant donations of hard workin' haulers, how about you take a beat and remember I warned ya back on Maker. Ain't no one was gonna be able to pay you back." His hard eye stares at you unhappily.`
 			`	"Well, there's nothing doing about any of that, but what I we can talk about is your pay." He lifts an eyebrow and winks at you. "I think that'll do the thing for a bruised purse."`
 			`	Hroar turns from you to Yngvar. "Now, despite those last few unforunate words, how would you rate our hirthr faring?"`
+			label ratejob
 			`	Yngvar pauses for a moment.`
 			`	"The pirates were thicker than usual, and <last> kept the fleet safe. That's the job and they did it."`
 			`	"But they went beyond the job when they saved Captain Gunhilda back on Maker."`
@@ -8509,7 +8528,7 @@ mission "Hroar's Haulers 25b"
 			`	"Fair enough." He nods and shouts, "Havi!"`
 			label havi
 			`	The bartender saunters over with a tablet in hand. Behind him the swinging doors creek and you notice Haulers entering the saloon.`
-			`	"Now, since you brought the entire fleet home in one piece, the payout's gonna be most generous. That's a payday every on the fleet is going to enjoy, so you earned a little bonus. Now your cut as the hirthr comes out to... what is it Havi?"`
+			`	"Now, since you brought the entire fleet home in one piece, the payout's gonna be most generous. Because of you everyone just got a big payday. Now your cut as the hirthr comes out to... what is it Havi?"`
 			`	Havi carefully scans the tablet, "1,222,434 credits."`
 			`	"1,222,434 credits!" Hroar says brightly. "I toldja you'd see some coin eventually. Transfer it over, Havi."`
 			`	"Aye, boss." Havi's non-prosthetic fingers flick over the pad, "Done."`
@@ -8548,6 +8567,7 @@ mission "Hroar's Haulers 25b"
 				`	(Try to get a drink.)`
 					goto drink
 				`	(Leave)`
+
 			label leave
 			`	With the press of thirsty Haulers at the bar, it's easy to make your way to the exit. Few notice as push through the doors and back out into the spaceport beyond.`
 			`[THIS ENDS THE HROARS HAULER CONTENT - FUTURE MISSIONS WILL BE ADDED.]`
@@ -8629,12 +8649,22 @@ mission "Hroar's Haulers 25b"
 			goto byebye
 
 			label best
-			`	Hroar nods slowly, "Can't say I wish it weren't a little better, but I hear ya. Some things are outta our hands. Well, let's see about paying, huh? Maybe that'll put a sparkle back in those formely greenhorn eyes of yours."`
+			`	Hroar nods slowly, "And it's a damn good best at that. I knew I saw somethin' special in you. Now, let me offer my thanks in the form of good old fashioned hard currency."`
+				to display
+					has "payall"
+			`	Hroar nods slowly, "I reckon you think that, and I know the other Haulers stand a little straighter around you now. But I can't help but wish things went differently. Stories and good and all, but they don't pay for fuel. Well, enough of my crowing, Let's see about you getting paid all the same."`
+				to display
+					has "makerhero"
 			`	"Havi" Hroar suddenly shouts.`
 				goto havi
 
 			label payme
-			`	Hroar frowns, "I s'pose it is. Despite the bumps, I do appreciate your work, <first>, and I am a man of my word."`
+			`	Hroar frowns, "I s'pose it is. I'd be feeling a little keener about the thing if you didn't lose one of most lucrative contracts. Still, I said I'd pay you, <first>, and I am a man of my word."`
+				to display
+					has "markhero"
+			`	Hroar smiles, "I s'pose it is. Can't say you didn't earn every rust-red cent, and a few more ontop of that. You did good work, <first>, so let's make you flush!"`
+				to display
+					has "payall"
 			`	"Havi!" Hroar hollars toward the bar.`
 				goto havi
 
@@ -8643,14 +8673,36 @@ mission "Hroar's Haulers 25b"
 			`	"Havi! Get over here!" Hroar hollars.`
 				goto havi
 
-			label syndicate
-			`	Hroar's white teeth gleam as he bares them, "You just gonna roll over for a couple of money-grubbing Syndies? No fight in ya? No cunning?"`
-			label yngvarcalm
+			label foughtfreedom
+			`	The Hauler boss nods slowly. "I've been hearing stories of your prowess for days now. Even overheard a couple of folks it into a song. Now, I respect a person willing to plant their feet on the ground and hold it." Hroar pauses and takes a breath. "But, that fight of yours is going to cost us."`
+			`	Yngvar starts to say something, but Hroar holds up a hand. "Now, I get it was a set-up, and I won't hold it against you none. But, in the future, try to think of the big picture before kicking some Syndie snake's teeth in."`
+			`	Hroars looks past you and toward the bar. "That said, we might be coming upon times where heroes are needed..."`
+			`	Yngvar grunts, "Now, let's not get ahead of ourselves Hartha-Hroar, we know where that kind of thinking got us last time."`
+			`	"Pa." Hroar's seem to focus on Yngvar's scars. "I hear ya old man."`
+			`	"That's enough baying about the past, and trembling about the future. I'm thinking the present's due for a little attention. It's about time this here hirthr got paid. So, outside of beating half of Maker's internal police force to a pulp, as the stories allege, how'd you would you rate their job?"`
+				goto ratejob
 
-			label myjob
-			`	Hroar speaks behind his grit teeth, "Your job, <name>, was to come back here with my fleet intact."`
-			label yngvarcalm
+			label appreciate
+			`	"Good, good. They're just happy to their part is all. We all are." Hroar gives you a respectful look.`
+			`	"And I've got even better news for ya, as that's not all the money coming your way. The job's done afterall."`
+			`	He turns to Yngvar, "Now, you spent a heap of a lot of time with <first>. How'd they do?"`
+				goto ratejob
 
+			label keepit
+			`	Hroar tilts his head, narrows his eyes, and says nothing for a few long moments, before finally straightening up and nodding to himself.`
+			`	"That's mighty tall of you," he says slowly. "We'll have to be careful about how we return the money though. Don't want folks feeling insulted."`
+			`	Yngvar smiles with his one good idea, "I think that can be done."`
+			`	Hroar takes a long breath and then grins at you, "You're full of surprises aren'tchya, <first>. Well, even if you won't accept the collection, there ain't no way you're gonna squirm out of me paying you. That's a bargin I won't break."`
+			`	"Which, by the way, is what I aim to do next. The job's done and you've earnt your reward." The Hauler boss turns his attention to Yngvar. "Speaking of the job, you rode with 'em, how do you think they did?"`
+				goto ratejob
+
+			label nothingfought
+			`	Yngvar sighs. "It isn't what I would have done. But <last> did put those Syndies in their place. It's not a dust up that'll soon be forgotten."`
+				goto foughtfreedom
+
+			label badjob
+
+			label nothingbroken
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
