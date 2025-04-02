@@ -844,6 +844,7 @@ mission "Ka'het: Voice From The Past 1"
 mission "Ka'het: Voice From The Past 2"
 	name "Outpost in Kumkapi"
 	description "Bring Gavriil to <destination> to prepare for the capture the Builder satellite."
+	blocked `This mission requires at least the bunk space to carry Gavriil with you.`
 	source "Ssil Vida"
 	destination "Kumkapi"
 	passengers 1
@@ -881,6 +882,7 @@ mission "Ka'het: Voice From The Past 3"
 	landing
 	name "Builder satellite"
 	description "Capture the Builder satellite in <waypoints> and bring it to <destination>."
+	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
 	source "Kumkapi"
 	waypoint Fereti
 	cargo "Satellite Capture Equipment" 45
@@ -943,6 +945,7 @@ mission "Ka'het: Voice From The Past 5"
 	to offer
 		has "Ka'het: Voice From The Past 4: done"
 	on offer
+		log `Captured an active Builder satellite. It was a warning beacon orbiting the moon Alix, which appears to have been used as a quarantine site to defend against an alien plague.`
 		conversation
 			`During the trip Gavriil has received a constant stream of communications, either from Kumkapi or Ssil Vida. He walks alongside you out of the airlock and down the ramp, silent but clearly thoughtful.`
 			`	"Thank you for this, Captain - not just for ferrying me back, but also for making this little adventure possible in first place. There is still so much to discover about the Builders and their civilization, and I am happy to have contributed to this puzzle at least a tiny bit.`
@@ -953,8 +956,22 @@ mission "Ka'het: Voice From The Past 5"
 				`	"The Korath?"`
 					goto korath
 				`	"The Hai?"`
+				`	"The Pug?"`
+					to display
+						has "main plot completed"
+					goto pug
 				`	"The Sheragi?"`
+				`	"The Predecessors?"`
+					to display
+						has "Successors: history"
+					goto predecessors
 			`	"A good guess. Both the Hai and the Sheragi would make some sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard. I heard there are great debates about the two species going on to this day, especially after the discoveries in Ssil Vida, but I am not the person to ask about them.`
+				goto continue
+			label pug
+			`	"Interesting choice. We do know that they used to have a presence in this area at some point, but there is little use in speculating about their purposes with so little information, especially when there are more likely candidates. Either the Hai or the Sheragi could make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
+				goto continue
+			label predecessors
+			`	He shakes his head with some disappointment. "Far more time has passed between the end of the Builders and the Successor's discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi could make some sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label korath
 			`	"Not this time," he signs, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi could make some sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
@@ -981,8 +998,10 @@ mission "Ka'het: Voice From The Past 6"
 	landing
 	name "Explore <stopovers>"
 	description "Visit <destination> to search for the remains of the quarantine facility."
+	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
 	source "Kumkapi"
 	stopover Alix
+	cargo "High-power scanners" 7
 	to offer
 		has "Ka'het: Voice From The Past 5: done"
 	on offer
