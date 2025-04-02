@@ -574,7 +574,7 @@ void MapDetailPanel::DrawKey()
 		static const string LABEL[2][4] = {
 			{"10+", "5", "1", "None"},
 			{"60+", "30", "1", "None"}};
-		static const double VALUE[4] = {-1., 0., .5, 1.};
+		static const double VALUE[4] = {1., .5, 0., -1.};
 
 		for(int i = 0; i < 4; ++i)
 		{
@@ -592,7 +592,7 @@ void MapDetailPanel::DrawKey()
 		};
 		for(int i = 0; i < 3; ++i)
 		{
-			RingShader::Draw(pos, OUTER, INNER, MapColor(i - 1));
+			RingShader::Draw(pos, OUTER, INNER, MapColor(1 - i));
 			font.Draw(LABEL[i], pos + textOff, dim);
 			pos.Y() += 20.;
 		}
