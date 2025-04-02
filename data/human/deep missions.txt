@@ -4219,8 +4219,8 @@ mission "Hroar's Haulers: Transport Edition"
 	name "An Offer From the Transport Union"
 	landing
 	to offer
-		has "event: hroars deal"
-	description "Go to <destination>, and see what the Deep Transport Union has to offer."
+		has "Home for Skadenga 7: done"
+	description "Travel to <destination>, and see what the Deep Transport Union has to offer."
 	source
 		government "Republic"
 	destination "Valhalla"
@@ -4495,7 +4495,7 @@ mission "Hroar's Haulers: Transit Edition"
 	name "Becoming a Hauler"
 	description "Travel to <destination> to pick up cargo for Hroar."
 	to offer
-		has "Home for Skadenga 7: done"
+		has "Hroar's Haulers: Transport Edition 2: offered"
 	source "Muspel"
 	destination "Bivrost"
 	on offer
@@ -8851,6 +8851,25 @@ mission "Hroar's Haulers 25b"
 			`	He leans in toward you. "You take a hachet job to the heart of my operations. You blow up a deal that puts food on the table and fuel in the ships. And you're just gonna sit there and say skitr all?"`
 			`	"Or maybe that's because it wasn't an accident? Maybe you knew exactly what you were doing." Hroar's eyes narrow and he glances at Yngvar. "What you think, old man? Think <first> knows better?"`
 				goto knowsbetter
+
+mission "Hroar's Haulers: Transport Edition 3"
+	landing
+	to offer
+		has "brokencontract"
+		has "Hroar's Haulers 25b: offered"
+	source "Valhalla"
+	on offer
+		conversation
+			`	Your ship sets down outside Himinbjorg's towering skyscarppers. A well-dressed non-descript woman is waiting for outside your ship.`
+			`	"Captain <last>." She says with a clipped accent. "My supervisors believe now is a time for discretion. When, if, we need you, we will let you know. For now it's best if you're not seen in anyone's company. That said, discretion has it's perks, and you have been authroized a 500,000 credit bonus for your work."`
+			`	She taps her ear. "I am told the full sum of 3,500,000 million credits has been trasnfered into your account."`
+			`	Her smile doesn't reach her eyes. "That is all. Take care, Captain <last>.`
+			`	She turns and leaves.`
+			action
+				payment 3,500,000
+				decline
+
+
 
 # IGNORE EVERYTHING BELOW HERE (its old or for reference for me)
 
