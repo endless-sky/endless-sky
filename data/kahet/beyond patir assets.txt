@@ -34,7 +34,7 @@ fleet "Magic Asteroid"
 	variant 12
 		"Asteroid Medium"
 	variant 13
-		"Asteroid Young"
+		"Asteroid Young 1"
 	variant 13
 		"Asteroid Young 2"
 	variant 13
@@ -97,7 +97,8 @@ ship "Asteroid Large 1"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Large 2"
+ship "Asteroid Large 2"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 2"
 	attributes
@@ -153,7 +154,8 @@ ship "Asteroid Large 1" "Asteroid Large 2"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Large 3"
+ship "Asteroid Large 3"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 3"
 	attributes
@@ -207,7 +209,8 @@ ship "Asteroid Large 1" "Asteroid Large 3"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Large 4"
+ship "Asteroid Large 4"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 4"
 	attributes
@@ -261,7 +264,8 @@ ship "Asteroid Large 1" "Asteroid Large 4"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Large 5"
+ship "Asteroid Large 5"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid adult 5"
 	attributes
@@ -315,7 +319,8 @@ ship "Asteroid Large 1" "Asteroid Large 5"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Medium"
+ship "Asteroid Medium"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid medium"
 	attributes
@@ -368,7 +373,8 @@ ship "Asteroid Large 1" "Asteroid Medium"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Young"
+ship "Asteroid Young 1"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young"
 	attributes
@@ -421,7 +427,8 @@ ship "Asteroid Large 1" "Asteroid Young"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Young 2"
+ship "Asteroid Young 2"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 2"
 	attributes
@@ -474,7 +481,8 @@ ship "Asteroid Large 1" "Asteroid Young 2"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Young 3"
+ship "Asteroid Young 3"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 3"
 	attributes
@@ -527,7 +535,8 @@ ship "Asteroid Large 1" "Asteroid Young 3"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-ship "Asteroid Large 1" "Asteroid Young 4"
+ship "Asteroid Young 4"
+	"display name" "???"
 	"noun" "asteroid"
 	sprite "ship/asteroid young 4"
 	attributes
