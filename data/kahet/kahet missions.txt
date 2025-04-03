@@ -1061,4 +1061,3 @@ event "ka'het: quarantine site"
 event "ka'het: alix discoveries"
 	planet Alix
 		add description `	Long before becoming an automated mining outpost, this moon was originally designated as a Builder quarantine site.`
-		
