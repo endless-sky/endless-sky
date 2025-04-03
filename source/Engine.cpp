@@ -1986,8 +1986,9 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	ConditionsStore &conditions = player.Conditions();
+	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period() / GameData::GetGamerules().FleetMultiplier()) && fleet.CanTrigger(conditions))
+		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger(conditions) : true)
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
