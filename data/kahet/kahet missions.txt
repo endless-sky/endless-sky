@@ -882,7 +882,7 @@ mission "Ka'het: Voice From The Past 3"
 	landing
 	name "Builder satellite"
 	description "Capture the Builder satellite in <waypoints> and bring it to <destination>."
-	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
+	blocked `The cargo is ready to load, but you do not have enough free space. Come back when you have <tons> of free space.`
 	source "Kumkapi"
 	waypoint Fereti
 	cargo "Satellite Capture Equipment" 45
@@ -971,7 +971,7 @@ mission "Ka'het: Voice From The Past 5"
 			`	"Interesting choice. We do know that they used to have a presence in this area at some point, but there is little use in speculating about their purposes with so little information, especially when there are more likely candidates. Either the Hai or the Sheragi could make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label predecessors
-			`	He shakes his head with some disappointment. "Far more time has passed between the end of the Builders and the Successor's discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi could make some sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
+			`	He shakes his head with some disappointment. "Far more time has passed between the end of the Builders and the Successors' discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi could make some sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label korath
 			`	"Not this time," he signs, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi could make some sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
