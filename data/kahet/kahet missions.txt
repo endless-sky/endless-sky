@@ -1269,8 +1269,8 @@ mission "Ka'het: Patir Mystery 11"
 			variant
 				"Asteroid Large 4"
 				"Asteroid Medium"
-				"Asteroid Small 2"
-				"Asteroid Small 1"
+				"Asteroid Young 2"
+				"Asteroid Young 1"
 
 
 mission "Ka'het: Patir Mystery 12A"
