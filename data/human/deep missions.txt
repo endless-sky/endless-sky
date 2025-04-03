@@ -4382,7 +4382,8 @@ mission "Hroar's Haulers: Deal 2"
 	on offer
 		conversation
 			`You wander through the dust-filled spaceport of Muspel until you find the the rickety swinging doors of the Red Rock Saloon.`
-			`	You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple of dirty faces take quick side-glances as you approach the bar.`
+			scene "scene/saloon"
+			`	You push through into the dimly lit bar. The air is thick with smoke and musk, and a couple of dirty faces take quick side-glances as you approach the bar.`
 			`	The bartender, a graying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
 			choice
 				`	"Hroar asked for me."`
@@ -4394,6 +4395,7 @@ mission "Hroar's Haulers: Deal 2"
 				`	"Hroar sent for me."`
 				`	"Just here to do Hroar's dirty work."`
 			label job
+			music Hroarshort
 			`	The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth on the left."`
 			`	You're familiar with the booth, so you walk back to where whiskered Hroar is seated.`
 			`	"Got my message, didja?" He smiles broadly and gestures toward the empty seat in front of him.`
@@ -4437,6 +4439,7 @@ mission "Hroar's Haulers: No Deal"
 	on offer
 		conversation
 			`As you wander through the dust-filled spaceport of Muspel you pass the rickety swinging doors of the Red Rock Saloon. There is a dirty sign posted outside with the words, 'Courier Wanted - See Hardy-Hroar inside'.`
+			scene "scene/saloon"
 			choice
 				`	(Inquire about the job.)`
 					goto inquire
@@ -4444,6 +4447,7 @@ mission "Hroar's Haulers: No Deal"
 			`	You have better things to do than look for a job here. You keep walking.`
 				decline
 			label inquire
+			music Hroarshort
 			`	You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple of dirty faces take quick side-glances as you approach the bar.`
 			`	The bartender, a greying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
 			choice
@@ -4502,6 +4506,7 @@ mission "Hroar's Haulers: Transit Edition"
 	on offer
 		conversation
 			`As you wander through the dust-filled spaceport of Muspel, you pass the rickety swinging doors of the Red Rock Saloon. There is a dirty sign posted outside with the words, 'Courier Wanted - See Hardy-Hroar inside'.`
+			scene "scene/saloon"
 			choice
 				`	(Inquire about the job.)`
 					goto inquire
@@ -4509,6 +4514,7 @@ mission "Hroar's Haulers: Transit Edition"
 			`	You have better things to do than look for a job here. You keep walking.`
 				decline
 			label inquire
+			music Hroarshort
 			`	You push through the doors into the dimly lit bar. The air is thick with smoke and musk, and a couple dirty faces take quick side-glances as you approach the bar.`
 			`	The bartender, a greying old man with with a prosthetic arm, eyes you warily. "'less ya got business, this bar is locals only."`
 			choice
@@ -4877,6 +4883,7 @@ mission "Hroar's Haulers 8"
 			`You push through the swinging doors of the Red Rock Saloon to find it nearly deserted. The bartender briefly looks up from wiping down glasses and nods toward the back where Hroar is seated as usual.`
 			`	The one other patron in the saloon, a man passed out on the bar, doesn't flinch as you walk past him to Hroar's 'office'.`
 			`	"There he is, the greenhorn of the hour." Hroar proclaims as you take your seat. "You're just about ready to go on your first Long Haul."`
+			scene "scene/Hroar2"
 			choice
 				`	"So, now you want me to do a Long Haul?"`
 					goto courier
@@ -5157,6 +5164,7 @@ mission "Hroar's Haulers 11"
 			`	His stern face gives way to a hint of mirth, "But don't you be worrying none about an old spacer's fables. You now know why we call it the Gap, and that's more than most can say. We'll make you a red jacket yet."`
 				goto whatisthis
 			label theend
+			music Hroarshort
 			`	"Good. We got places to be." He turns toward the exit. "I'll be waiting for you on your ship, Captain <last>. It'll be good to get back on the float."`
 				accept
 
@@ -5437,7 +5445,7 @@ mission "Hroar's Haulers 15"
 
 			label helpgun
 			branch "50 percent chance"
-				random < 75
+				random < 99
 			`	You quickly pull Gunhilda to her feet and drape an arm around her shoulder. "Wh-what are you...?"`
 			`	Unsteadily you are able to lead Gunhilda out of the bar even as the shouting and scuffling noises behind you reach a crescendo.`
 			`	You find Yngvar and the majority of the Haulers just beyond the premises.`
@@ -5547,6 +5555,7 @@ mission "Hroar's Haulers 15"
 				`	"We do as Yngvar said, and get the hel outta here!"`
 					goto behavesolvi
 				`	"Leave no Hauler behind! To arms!"`
+			music Hroarvictory
 			`	Solvi raises his fist, "You heard the hirthr! Let's make these Syndies see red!"`
 			`	The Hauler host roars in eager agreement and suddenly everything about the skirmish changes. The officers and crews from your huge convoy surge into the outnumbered and beleguared Syndicate Enforcers.`
 			`	Throughout the fighting various chants and warcries can be heard.`
@@ -5600,7 +5609,7 @@ mission "Hroar's Haulers 15"
 
 			label escapesolvi
 			branch "50 percent chance solvi"
-				random < 50
+				random < 99
 			`	You twist out of the Enforcers grasp and plunge into the chaos errupting all around you. A few Enforcers try to stop you, but you're able to maneuver around them and press through the crowd to the exit.`
 			`	You find Yngvar and the majority of the Haulers just beyond the premises.`
 			`	"<last>." Yngvar says, "Good you made it out. They've got Solvi and most his crew, along with Gunhilda, but there's no point in picking a fight we can't win."`
@@ -5788,7 +5797,6 @@ mission "Hroar's Haulers 15"
 				`	"Leave no Hauler behind! Fight! Fight for your comrades!"`
 				`	"Send them back to the Gap!"`
 				`	"For Hroar!"`
-
 			`	Your heroic words bounce harmlessly off the assembled crowd. If anything you seem to have deflated them. You hear a few mutters of, "Yngvar knows best," and "What's a greenhorn known about being a Hauler?"`
 			`	The unarrested Haulers quickly pile out of the Watering Hole, a few of them casting glances at you and shaking their heads.`
 			choice
@@ -5835,6 +5843,7 @@ mission "Hroar's Haulers 15"
 				`	"Leave no Hauler behind! Fight! Fight for your comrads!"`
 				`	"Send then back to the Gap!"`
 				`	"For Hroar!"`
+			music Hroarvictory
 			`	From somewhere near the front of the bar you hear loud familiar voice of Captain Unferth, "You heard the hirthr! Let's make these Syndies see red!"`
 			`	The Hauler host roars in eager agreement and suddenly everything about the skirmish changes. The officers and crews from your huge convoy surge into the outnumbered and beleaguered Syndicate Enforcers.`
 			`	Throughout the fighting various chants and warcries can be heard.`
@@ -6107,6 +6116,7 @@ mission "Hroar's Haulers 15"
 				goto fineoptions
 
 			label payall
+			music Hroar
 			action
 				payment -720000
 			`	Yngvar nods, and says nothing.`
@@ -6135,7 +6145,7 @@ mission "Hroar's Haulers 15"
 			label arrested
 			`	You find yourself in one of the Syndicate Spaceport Authority's gigantic holding blocks. The might meticulously clean walls give way to cramped and unhappy Haulers, most of whom appear to be part of Captain Unferth's fleet.`
 			`	Beyond the transparent cell you see the back of a Syndicate authority having a discussion with a very unhappy Yngvar.`
-			label options 22
+			label options22
 			choice
 				`	(Bang on the glass.)`
 					goto bang
@@ -6428,7 +6438,7 @@ mission "Hroar's Haulers 17b"
 		conversation
 			`You find Yngvar in the Trade building, surrounded by a swarm of officials and representatives from Rand.`
 			`	"Slow down!" Yngvar holds out his thick hands, and the room quiets. "As I said, we got enough room to fullfil your orders, you won't be needing to wait on Hrodny's fleet.`
-			`	"Now." Yngvar continues, "We still got plenty of ships that need seeing too. The faster you get your goods loaded, the faster they'll get to Lagrange, and we all get paid."`
+			`	"Now." Yngvar continues, "We still got plenty of ships that need seeing to. The faster you get your goods loaded, the faster they'll get to Lagrange, and we all get paid."`
 			`	At that the crowd thinned, though a few people linger, giving Yngvar hard stares. Yngvar ignores them and instead approaches you.`
 			`	"Captain <last>." He says, "As you can see the Rand folk are pretty eager to get their goods off the ground in the Gap."`
 			label yngvarchat
@@ -7095,7 +7105,7 @@ mission "Hroar's Haulers 18b"
 			`	A light blinks near your console and see you've recieved a new message from Yngvar.`
 			choice
 				`	(Play the message.)`
-			`	Yngvar's scarred face appears on screen. "Thanks for seeing after Solvi's fleet. I'll be heading to Wayfarer with the rest of the caravan here. We're going take seven days to do some needed maintance and give the crew some time to unwind. So, we're clear and all, we're gonna need you back on Wayfarer in seven days. We won't be waiting on ya, so be on time. Yngvar out."`
+			`	Yngvar's scarred face appears on screen. "Thanks for seeing after Solvi's fleet. I'll be heading to Wayfarer with the rest of the caravan here. We're going take seven days to do some needed maintance and give the crew some time to unwind. We're gonna need you back on Wayfarer in seven days. We won't be waiting on ya, so be on time. Yngvar out."`
 			`	The screen goes blank, and you notice you've recieved a text-only message: Meet me in the spaceport - Solvi.`
 				to display
 					has "savedsolvi"
@@ -7498,6 +7508,7 @@ mission "Hroar's Haulers Gunhilda secret"
 			`	"See anything?"`
 			`	(Say nothing.)`
 		`	"It's impressive, the operation, there's interesting data here, but nothing earth-shattering." She pauses to look at you, seeing if you got her joke.`
+		scene "scene/quargmine"
 		choice
 			`	(Groan.)`
 			`	(Laugh.)`
@@ -7608,6 +7619,7 @@ mission "Hroar's Haulers Unferth 2"
 	on offer
 		conversation
 			`You hurdle a few rusty railings, climb over an upturned bench, and slide around a large puddle of industrial mystery waste, before approaching a large heavily reinforced blast door that appears to have rusted into the station's walls.`
+			scene "scene/darktunnel"
 			`	In the uneven light of the abandoned station a stray beam catches Solvi's face and his eyes glitter in the dark.`
 			`	"This way." he says, as he stands before the immobile rustbound hatch.`
 			choice
@@ -7666,7 +7678,7 @@ mission "Hroar's Haulers Unferth 2"
 					goto nope
 			
 			label follow
-			`	It feels like you've been transported to a completely different station. The corridors are well lit and clean, if heavily worn, and the machines all appear to be mostly functional. Happy children race past you as your elderly guide leads you deeper into the station.`
+			`	It's like you've been transported to a completely different station. The corridors are well lit and clean, if heavily worn, and the machines all appear to be mostly functional. Happy children race past you as your elderly guide leads you deeper into the station.`
 			`	The old man is dressed in what looks like a handstitched facsimile of an ancient station uniform, "No mony caravan fowk come here noodays," he says to Solvi midstride, "Ye fae Muspel, richt? Rid-born hauler?"`
 			`	"Uh, yes Blush-Gutcher," Solvi indicates toward his red-brown jacket. "We're Haulers, from the red of Muspel. I reckon we're the only sort that stop by anymore."`
 			`	"A few stane fowk find there way here fae time tae time." He says as stops in front of a large smooth black door, "Here wi are, laddie. Tak yer time."`
@@ -7748,6 +7760,7 @@ mission "Hroar's Haulers Unferth 2"
 			action
 				set "darkmos"
 			`	On closer inspection you realize the individual pieces the mosaic are the fragments of old ships. The black metalic chips that make up the dark sky are made from burnt heat tiles, and the glittering red and orange glass that the red stars are made of are from shattered optical lenses.`
+			scene "scene/bloosh"
 			`	Beneath each of the four red stars there is a label written in an irregular script, they read; Furist Blisk, Twoth Blisk, Thrith Blisk, Endly Blisk.`
 				goto mosoptions
 
@@ -8446,6 +8459,7 @@ mission "Hroar's Haulers 25"
 			choice
 				`	(Grab your jacket)`
 			label jacket
+			music Hroarvictory
 			`	You grab the faded jacket that more or less fits and pull on it on to cheering. Hands flash out of the crowd and slap you on the shoulder and back as you move to the side of the room.`
 			`	Hroar's voice bursts over the wave of patrons, "Remember, your jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
 			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks for an overwhelemed but unperturbed Havi.`
@@ -8689,6 +8703,7 @@ mission "Hroar's Haulers 25b"
 			choice
 				`	(Grab your jacket)`
 			label jacket
+			music Hroarvictory
 			`	You grab the faded jacket that more or less fits and pull on it on to cheering. Hands flash out of the crowd and slap you on the shoulder and back as you move to the side of the room.`
 			`	Hroar's voice bursts over the wave of patrons, "Remember, your jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
 			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks for an overwhelemed but unperturbed Havi.`

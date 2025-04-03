@@ -1762,7 +1762,7 @@ planet "Garden Empyreal"
 
 planet "Gardena Station"
 	attributes south station
-	landscape land/sivael7
+	landscape land/gardena
 	music ambient/machinery
 	description `Gardena Station was once an important link in the chain of stations and waypoints used by merchant caravans long before the Repbulic existed. It was the last stop caravaners would take before making for the final run to Lagrange in the Enif system, where the Quarg were eager for materials to feed their growing ringworld.`
 	description `Decades ago the station ceased to function as a hyperspace fuel refinery, and was left abandoned by governments and corporations alike. However, it is not entirely uninhabited, as a small community of former workers lives here and continues to maintain some of the machinery.`
