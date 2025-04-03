@@ -96,7 +96,10 @@ gamerules
 	# ALLOWABLE VALUES: any value >= 0.
 	"system departure min" 0.0
 	
-	# The minimum arrival distance for all systems.
+	# The minimum arrival distance for all systems. Ships entering a system will exit hyperspace
+	# this distance away from their landing target, or the system center if no landing target
+	# is selected. If a system has a defined arrival distance greater than this value,
+	# that value will be used instead.
 	# DEFAULT: 0 (no minimum)
 	# ALLOWABLE VALUES: any value >= 0.
 	"system arrival min" 0.0
