@@ -89,7 +89,9 @@ gamerules
 	# ALLOWABLE VALUES: any integer >= 0.
 	"depreciation max age" 1000
 	
-	# The minimum departure distance for all systems.
+	# The minimum departure distance for all systems. A ship can only jump out of a system if
+	# it is further from the system center than the departure distance. If a system has a
+	# defined departure distance greater than this value, that value will be used instead.
 	# DEFAULT: 0 (no minimum)
 	# ALLOWABLE VALUES: any value >= 0.
 	"system departure min" 0.0
