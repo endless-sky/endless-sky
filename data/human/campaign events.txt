@@ -2488,8 +2488,8 @@ event "pug flee"
 	system "Fomalhaut"
 		fleet "Small Core Merchants" 1000
 		fleet "Large Core Merchants" 1200
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 1600
+		fleet "Large Syndicate" 3000
 	system "Delta Capricorni"
 		fleet "Small Core Merchants" 700
 		fleet "Large Core Merchants" 800
@@ -2503,13 +2503,13 @@ event "pug flee"
 	system "Diphda"
 		fleet "Small Core Merchants" 2000
 		fleet "Large Core Merchants" 600
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 1600
+		fleet "Large Syndicate" 3000
 	system "Caph"
 		fleet "Small Core Merchants" 500
 		fleet "Large Core Merchants" 600
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 1600
+		fleet "Large Syndicate" 3000
 	system "Nocte"
 		fleet "Small Northern Merchants" 1500
 		fleet "Large Northern Merchants" 5000
