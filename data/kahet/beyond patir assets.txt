@@ -592,7 +592,7 @@ ship "Asteroid Young 4"
 outfit "Apparatus Nu"
 	category "Turrets"
 	cost 86346105
-	thumbnail "outfit/asteroid weapon 2
+	thumbnail "outfit/asteroid weapon 2"
 	"mass" 31
 	"outfit space" -31
 	"weapon capacity" -31
