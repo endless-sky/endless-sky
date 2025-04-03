@@ -1731,15 +1731,15 @@ ship "Asteroid Large 1" "Asteroid Large (Patir 12A)"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Asteroid Anti-Missile"
+		"Apparatus Nu"
 
-		"Asteroid Jump Drive"
+		"Apparatus Epsilon"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	turret 0 0 "Asteroid Anti-Missile"
+	turret 0 0 "Apparatus Nu"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
