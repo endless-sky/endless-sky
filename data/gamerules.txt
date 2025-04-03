@@ -96,7 +96,7 @@ gamerules
 	
 	# The minimum arrival distance for all systems.
 	# DEFAULT: 0 (no minimum)
-	# ALLOWABLE VALUES: any float >= 0.
+	# ALLOWABLE VALUES: any value >= 0.
 	"system arrival min" 0.0
 	
 	# Here you can set a global spawn rate multiplier to change the fleet rates of all systems.
