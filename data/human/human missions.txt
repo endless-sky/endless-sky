@@ -11030,7 +11030,7 @@ mission "Tavish and Kormak 4"
 					goto soggy
 					to display
 						not "soggy"
-				`	"Why the emphasis on your honesty you all of sudden?"`
+				`	"Why the emphasis on your honesty all of sudden?"`
 					goto honesty
 					to display
 						not "honesty"
@@ -11055,24 +11055,24 @@ mission "Tavish and Kormak 4"
 			action
 				set "relation"
 			`	"I was his research assistant. I labored under him for years. He never respected me, and when I started to be successful he resented it. Ultimately he sabotaged my career and had me thrown out as a kook and a pariah. I doubt his opinion of me has changed much since then."`
-			`	Tavish gives you a somber shrug. "Everything else is irrelevant details."`
+			`	Tavish gives you a somber shrug. "Everything else is irrelevant detail."`
 				goto options
 			
 			label soggy
 			action
 				set "soggy"
-			`	"It's a real organization, although it's been in decline for quite sometime. Back in its heyday it was one of the most prestigious clubs for scientists and explorers. But these days it's something of a joke in most circles." Tavish sighs. "I am just glad the esteemed Dr. Henry Forsyth isn't alive to see it in such a sad state."`
+			`	"It's a real organization, although it's been in decline for quite some time. Back in its heyday it was one of the most prestigious clubs for scientists and explorers. But these days it's something of a joke in most circles." Tavish sighs. "I am just glad the esteemed Dr. Henry Forsyth isn't alive to see it in such a sad state."`
 			choice
 				`	"Dr. Henry Forsyth?"`
 					goto henry
 				`	"So, it's a joke?"`
 			`	Tavish's face becomes very serious, "It's not a joke. Dr. Henry Forsyth saved millions, maybe billions, of lives by going alone to the unexplored reaches of a hostile world. They all thought he was crazy, that there could be nothing of value in that frozen desolate place. But then he discovered the Ice-Witches of Nifel, and beguiled them with his stories of civilization. Their leader, someone called the Ornery-dress, fell in love with him and unwittingly led him to the cure of the Rigellian Plague."`
-			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following in his footsteps."`
-			`	Tavish pauses. "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
-				goto options
+				goto henry2
 			
 			label henry
-			`	"Dr. Henry Forsyth saved millions, maybe billions of lives, by ignoring the academic consesus of the day, and putting his life on the line by leading a daring expedition into the frozen wastes of a desolate world. There he discovered the barbaric Ice-Witches of Nifel, and seduced their wild and beautiful leader, the Ornery-dress. She would unwittingly lead him to the cure of the Rigellian Plague, and secure his position as a preeminent scholar, explorer, and hero of his time."`
+			`	"Dr. Henry Forsyth saved millions, maybe billions of lives, by ignoring the academic consensus of the day, and putting his life on the line by leading a daring expedition into the frozen wastes of a desolate world. There he discovered the barbaric Ice-Witches of Nifel, and seduced their wild and beautiful leader, the Ornery-dress. She would unwittingly lead him to the cure of the Rigellian Plague, and secure his position as a preeminent scholar, explorer, and hero of his time."`
+
+			label henry2
 			`	He seems to inflate as he speaks, "That's the legacy of SOGEE, of the Society of Gentlemanly Exemplary Explorers, and I may not ever live up to Dr. Forsyth, but I still believe in the spirit of his actions and am committed to following his footsteps."`
 			`	Tavish pauses. "Although, don't repeat that story to Kormak. It upsets him. I think the Ice-Witches of Nifel may be distant cousins of his."`
 				goto options
