@@ -4883,7 +4883,7 @@ mission "Hroar's Haulers 8"
 			`You push through the swinging doors of the Red Rock Saloon to find it nearly deserted. The bartender briefly looks up from wiping down glasses and nods toward the back where Hroar is seated as usual.`
 			`	The one other patron in the saloon, a man passed out on the bar, doesn't flinch as you walk past him to Hroar's 'office'.`
 			`	"There he is, the greenhorn of the hour." Hroar proclaims as you take your seat. "You're just about ready to go on your first Long Haul."`
-			scene "scene/Hroar2"
+			scene "scene/hroar2"
 			choice
 				`	"So, now you want me to do a Long Haul?"`
 					goto courier
