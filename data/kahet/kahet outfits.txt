@@ -551,4 +551,4 @@ outfit "Ka'het Electric Stunner"
 	"capture attack" 1.3
 	"capture defense" 8.5
 	"unplunderable" 1
-	description "A weapon of curious design, clearly not built with human hands in mind. Its short range makes it effective only for defending against enemy boarders, using the ship's architecture to your advantage."
+	description "A weapon of curious design, clearly not built with human hands in mind. Its short range makes it effective only for defending against enemy boarders, using the knowledge of your ship's architecture to your advantage."
