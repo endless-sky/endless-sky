@@ -102,7 +102,7 @@ gamerules
 	# that value will be used instead.
 	# DEFAULT: 0 (no minimum)
 	# ALLOWABLE VALUES: any value >= 0.
-	"system arrival min" 0.0
+	"system arrival min" 0.
 	
 	# Here you can set a global spawn rate multiplier to change the fleet rates of all systems.
 	# A value of 2.0 means double the normal npc fleet spawns, a value of 0.5 means half as many npc fleets spawn
