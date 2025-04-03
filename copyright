@@ -3289,6 +3289,12 @@ Files:
 Copyright: Dane Crowton
 License: CC-BY-SA-4.0
 
+files:
+ images/outfit/haulerjacket*
+ images/scene/haulerjacket*
+Copyright: Koranir <daniel@yoon.com.au>
+License: CC-BY-SA-4.0
+
 Files:
 sounds/hroarvictory*
 sounds/hroarshort
