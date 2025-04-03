@@ -4536,12 +4536,14 @@ mission "Hroar's Haulers: Transit Edition"
 			`	He pours himself a glass of whiskey from his resident bottle as you slide into the booth. "Just so you know, me and them don't see eye to eye. I won't hold it against you though.`
 			`	"Bygones being bygones and all, s'ppose you're here about the job posting." He lifts up his shot glass. "I used to have a 'Speciality-Courier' take care of unique jobs, and the like."`
 			`	He sips. "Trouble is, from time to time, the job's a little risky. Hard to keep a position filled like that. Hard to find a Captain who can fill it."`
-			`	Hroar pauses and appears to be sizing you up. "But you, you just might fit the bill. Be exactly what this operation needs. So what'dya say? You interested in being a 'Speciality-Courier' for Hardy Hroar's Haulers?"`
+			`	Hroar pauses and appears to be sizing you up. "But you, you just might fit the bill, and be exactly what this operation needs. So what'dya say? You interested in being a 'Speciality-Courier' for Hardy Hroar's Haulers?"`
 			choice
 				`	"Sure. Sign me up."`
 					goto yes
 				`	"How's the pay?"`
 					goto pay
+				`	"The Transport Union wanted me to spy on you."`
+					goto spy
 				`	"No, thanks."`
 					goto out
 			label pay
@@ -4559,6 +4561,15 @@ mission "Hroar's Haulers: Transit Edition"
 			`	"Well look at that! We're a society, and everything. Ain't nothing sweeter than two fellars agreeing to work together." He lifts up his glass and nods to you.`
 			`	"Now," Hroar says, "first thing I need you to do is head over to <destination>, and pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
 				accept
+
+			label spy
+			`	Hroar frowns. "Well, ain't that a kick in skitr." He looks at you for a good long while, and then shrugs.`
+			`	"I appreciate your forthrightness on the matter. I knew they were trouble, but didn't realize just how much. I still need a courier though; you still want a job?"`
+			choice
+				`	"Yes."`
+					goto yes
+				`	"No."`
+					goto out
 	on complete
 		dialog
 			`The lush world of Bivfrost balloons on your view screen as you begin your approach. You hope someone is waiting for you in the spaceport.`
@@ -5129,6 +5140,7 @@ mission "Hroar's Haulers 11"
 	description "Escort the Long Haul to Earth, Maker, Rand and <destination>."
 	passengers 1
 	deadline 40
+	blocked "You have reached <origin>, but you'll need <capacity> to continue this mission. Return here when you have the required space free."
 	cargo "Long Haul Cargo" 430
 	source "Muspel"
 	to offer
@@ -5139,13 +5151,13 @@ mission "Hroar's Haulers 11"
 	destination "Lagrange"
 	on offer
 		conversation
-			`The dusty red saloon is awash in grimy captains, officers and crew members. At the center of the crush of bodies is Hroar. He catches your eye as you enter and then he climbs on top of the bar.`
-			`	"I reckon it's about time we get this here show on the road." Hroar hollars, and the room immediately quiets down.`
-			`	"Now, as every rock-hopper 'tween here and the twice-cursed Gap knows, we're fixing to go another Long Haul." A brief cheer rises from the crowded bar.`
+			`The dusty red saloon is awash in grimey captains, officers and crew members. At the center of the crush of bodies is Hroar. He catches your eye as you enter and then he climbs on top of the bar.`
+			`	"I reckon it's about time we get this here show on the road," Hroar hollars, and the room immediately quiets down.`
+			`	"Now, as every rock-hopper 'tween here and the twice-cursed Gap knows, we're fixing to go on another Long Haul." A brief cheer rises from the crowded bar.`
 			`	"And everybody knows a Long Haul means we all get paid. So, let's make sure we get this done right."`
 			`	Hroar pulls brass specticals out of his breast pocket and balances them on his nose. He then carefully unfolds a brown stained piece of paper and reads, "This here run will be shepherded by Captain <last>. He'll be our hirthr to Lagrange and back."`
 			`	This news is followed by some unhappy grunts. "Now, now. Don't you fret over this greenhorn, he'll have ol' Yngvar on his ship to keep him in line."`
-			`	Hroar continues, "For this Long Haul we have three convoy's lined up that Captain <last> will escort; Captain Unferth of the Red Ruin's convoy, along with the convoys of Captain Bolverka of the Iron Siren, and Captain Gunhilda's of the Fimbulvintr. Don't forget, Yngvar will be managing the caravan, materials and everything else. He and <last> got the first word, and last, on any world and at any port you find yourselves in."`
+			`	Hroar continues, "For this Long Haul we have three convoys lined up that Captain <last> will escort; Captain Unferth of the Red Ruin's convoy, along with the convoys of Captain Bolverka of the Iron Siren, and Captain Gunhilda's of the Fimbulvintr. Don't forget, Yngvar will be managing the caravan, materials and everything else. He and <last> got the first word, and last, on any world and at any port you find yourselves in."`
 			`	Hroar folds up the brown paper, takes off his glases, and scans the crowd. "Haulers, you have your orders. May the Gap accept you, and the God-Stones watch over you. Now, get to your ships. It's time to haul.`
 			`	With that, the crowd cheers and disperses, and after a few hectic moments you find yourself alone in the bar with Yngvar.`
 			choice
@@ -5153,16 +5165,16 @@ mission "Hroar's Haulers 11"
 					goto westart
 				`	"Suppose we're going to be together for some time."`
 					goto westart
-				`	"Listen. You might be able to boss these other Captain's around. But on my ship I make the calls."`
+				`	"Listen. You might be able to boss these other captain's around. But on my ship I make the calls."`
 					goto myship
 				`	"Why isn't anyone just explaining to me exactly what is going on."`
-			`	Yngvar gives you a lopsided grin. "Think of it as part of the experience. An initiation, of sorts, and everyone likes to see the greenhorn running in circles. But worry not, you're with Yngvar now. And if you're wiling to listen, Yngvar is always willing to talk."`
+			`	Yngvar gives you a lopsided grin. "Think of it as part of the experience. An initiation, of sorts, and everyone likes to see the greenhorn running in circles. Don't worry none, though, you're with Yngvar now. And if you're wiling to listen, Yngvar is always willing to talk."`
 				goto whatisthis
 			label westart
-				`	Yngvar nods. "Is good to spend some time together. You have much to learn about being a red jacket. And I hope to learn a few things from you. In the meantime, I am guessing you may have some questions. Now's the time to ask."`
+				`	Yngvar nods. "It's good to spend some time together. You have much to learn about being a red jacket. And I hope to learn a few things from you. In the meantime, I am guessing you may have some questions. Now's the time to ask."`
 				goto whatisthis
 			label myship
-			`	Yngvar shakes his head. "It is your ship, and ol' Yngvar ain't about to be anybody's babysitter. I'll handle myself in the ports, and if you ask, I got more then a few wise words for you. But what you do with them is on your head. Now is there anything you want to know, Captain, before we head off?"`
+			`	Yngvar shakes his head. "It is your ship, and ol' Yngvar ain't about to be anybody's babysitter. I'll handle myself in the ports, and if you ask, I got more then a few wise words for you. But what you do with them is on your head. Now is there anything you want to know, captain, before we head off?"`
 			label whatisthis
 			choice
 				`	Where are we headed?"`
@@ -5174,7 +5186,7 @@ mission "Hroar's Haulers 11"
 				`	"That's all. I am ready."`
 					goto theend
 			label headed
-			`	"A right pertinent question." The gray spacer nods, "Our final destination, and ultimate goal is Lagrange Station in the Enif System. Long before Hroar was an ornery egg in his ma's basket, the Long Haulers of Muspel have been making the Adhara-Enif run. In our day it's barely a milk run, despite the distance, but in the past it was nothing to laugh about. Slower ships, hostile governments, dangerous mauraders, malfunctioning drives. It was the kind of run most traders balked at. But the Quarg, they pay good for a bulk run like this, and it's been our life blood ever since the first Hauler struck out generations ago."`
+			`	"A right pertinent question." The gray spacer nods. "Our final destination, and ultimate goal is Lagrange Station in the Enif System. Long before Hroar was an ornery egg in his ma's basket, the Long Haulers of Muspel have been making the Adhara-Enif run. In our day it's barely a milk run, despite the distance, but in the past it was nothing to laugh about. Slower ships, hostile governments, dangerous mauraders, malfunctioning drives. It was the kind of run most traders balked at. But the Quarg, they pay good for a bulk run like this, and it's been our life blood ever since the first Hauler struck out generations ago."`
 			`	Yngvar gets a glossly look in his eye as he waxes about bygone space-ages, "Anyways, it's that top dollar that keeps us independent. Keeps us flush. Keeps the blue caps from absorbing us. But it's not the only stop. It'd be a waste of resources, time, and opportunity if we didn't make calls at other ports along the way. So we'll also be stopping at Earth, Maker, and Rand. Earth, in the Sol system, being our first stop. I'm sure you've heard of it; it's blue and marble like."`
 				goto whatisthis
 			label escorts
