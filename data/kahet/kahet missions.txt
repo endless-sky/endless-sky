@@ -946,6 +946,7 @@ mission "Ka'het: Voice From The Past 5"
 		has "Ka'het: Voice From The Past 4: done"
 	on offer
 		log `Captured an active Builder satellite. It was a warning beacon orbiting the moon Alix, which appears to have been used as a quarantine site to defend against an alien plague.`
+		event "ka'het: alix discoveries"
 		conversation
 			`During the trip Gavriil has received a constant stream of communications, either from Kumkapi or Ssil Vida. He walks alongside you out of the airlock and down the ramp, silent but clearly thoughtful.`
 			`	"Thank you for this, Captain - not just for ferrying me back, but also for making this little adventure possible in first place. There is still so much to discover about the Builders and their civilization, and I am happy to have contributed to this puzzle at least a tiny bit.`
@@ -1056,3 +1057,7 @@ mission "Ka'het: Voice From The Past 6"
 			`	"If you leave the datapad here, I promise I will make sure it gets into the right hands. I am sure they will contact you themselves after things have calmed down a bit." You hand her the tablet with the info you recorded, hopeful it will reach its destination, and prepare to leave once again.`
 
 event "ka'het: quarantine site"
+
+event "ka'het: alix discoveries"
+	planet Alix
+		add description `	Long before becoming an automated mining outpost, this moon was originally designated as a Builder quarantine site.`
