@@ -6452,6 +6452,9 @@ mission "Lost Racer 1"
 	waypoint "Cardax"
 	waypoint "Moktar"
 	destination "Sunracer"
+	to offer
+		"combat rating" > 200
+		random < 80
 	on offer
 		conversation
 			`While sitting in the <origin> spaceport waiting for your ship to be refueled, you notice a commotion near one of the other docks; someone appears to be shouting. Approaching the disturbance, you see a well-dressed older man in a heated discussion with a Navy officer standing outside a parked Frigate while it is being loaded with cargo. Eventually, after several more exchanged shouts and some disapproving motions by the officer, the man turns away, exasperated, before he sees you and walks over.`
