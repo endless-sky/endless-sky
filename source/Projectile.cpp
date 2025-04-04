@@ -385,9 +385,11 @@ void Projectile::CheckLock(const Ship &target)
 	// For each tracking type, calculate the probability twice every second that a
 	// lock will be lost.
 	if(weapon->Tracking())
+	{
 		double lockChance = (weapon ->Tracking());
 		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
 		hasLock |= Check(probability, base);
+	}
 
 	// Optical tracking is about 1.5% for an average interceptor (250 mass),
 	// about 50% for an average medium warship (1000 mass),
