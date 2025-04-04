@@ -42,9 +42,9 @@ effect "ion hazard"
 
 hazard "Beyond Patir Shield Eraser"
 	"constant strength"
+	"system-wide"
 	weapon
 		"relative shield damage" 1
-		"system-wide"
 
 
 
