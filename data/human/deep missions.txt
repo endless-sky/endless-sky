@@ -7515,7 +7515,7 @@ mission "Hroar's Haulers Gunhilda 3"
 
 		label manual
 		`	You endeavor to override the automatic controls, but quickly find yourself locked out of the operating system entirely.`
-		`	"We apologize for the inconvience," a soothing voice buzzes through the speaekers, "For your safety, this vehicle will be returning for maintenance. Please stand by."`
+		`	"We apologize for the inconvenience," a soothing voice buzzes through the speaekers, "For your safety, this vehicle will be returning for maintenance. Please stand by."`
 		`	Suddenly everything lurches to the side as the vehicle turns around and heads back the way you came. Upon returning you learn that you've been locked out of renting anymore vehicles at this time.`
 		`	Runa just laughs. "It's fine. I appreciate the effort. Probably a little silly of us to imagine we could outsmart the Quarg like that. We gave it a try, and that'll have to be good enough for now."`
 		`	She starts walking toward your ship. "Come on. Let's get to Humanika. We can end where we began. Like most things."`
@@ -8168,8 +8168,8 @@ mission "Hroar's Haulers 21"
 		has "Hroar's Haulers 20: accepted"
 	on offer
 		conversation
-			`	The perpetually twilit settlement of New Washington is overran by sprawling Long Haul Fleet. Initialy, you catch glimpses of furtive locals retreating from the freshly landed haulers. Only to see them return, now dressed in festive garb. You realize that the hauler presence here isn't an invasion, but a cause for celebration.`
-			`	Yngvar heads out to meet with thier leader, "Meet us in the spaceport. Folks here like a bit of pagentry, but we won't be here long."`
+			`	The perpetually twilit settlement of New Washington has been overran by the sprawling Long Haul fleet. Initialy, you catch glimpses of furtive locals retreating from the freshly landed Haulers. Only to see them return, now dressed in festive garb. You realize that the Hauler presence here isn't an invasion, but a cause for celebration.`
+			`	Yngvar heads out to meet with thier leader. "Meet us in the spaceport. Folks here like a bit of pagentry, but we can't stay long."`
 				decline
 
 mission "Hroar's Haulers 22"
@@ -8179,22 +8179,22 @@ mission "Hroar's Haulers 22"
 		has "Hroar's Haulers 21: declined"
 	on offer
 		conversation
-			`	As you push through the growing crowd of locals, you realize the spaceport doubles as the main social hall on New Washington. You pass scores of tables, each covered with homemade dishes, surrounded by eager haulers digging in.`
-			`	Yngvar is seated near the back haggling with a plump man for rare minerals.`
-			`	"How about this; I'll buy twice that amount if you bring the price down 10%" Yngvar says to a rotund man.`
-			`	"Mr. Var, you'd clear me out." the rotund man says.`
-			`	"That a problem?" Yngvar responds languidly.`
-			`	The man pauses, thinking, then shrugs and shakes his head, "No problem at all. Pleasure doing business as always. I'll tell the boys to start loading it." The man slips away.`
-			`	"Ah, Captain <last>." Yngvar says as his eye falls on you. "It's a dog-gone shame we can't spend more time here. As you can, New Washington really knows how to treat a guest."`
+			`	As you push through the growing crowd of locals, you realize the spaceport doubles as the main social hall on New Washington. You pass scores of tables, each covered with homemade dishes, surrounded by eager Haulers digging in.`
+			`	Yngvar is seated near the back haggling with a plump, red cheeked man.`
+			`	"How about this; I'll buy twice that amount if you bring the price down 10%" Yngvar says.`
+			`	"Mr. Var, you'd clear me out," the rotund man replies.`
+			`	"That a problem?" Yngvar says languidly.`
+			`	The man pauses, thinking, then shrugs and shakes his head. "No problem at all. Pleasure doing business as always. I'll tell the girls to start loading it up." The man slips away.`
+			`	"Ah, Captain <last>," Yngvar says as his eye falls on you. "It's a dog-gone shame we can't spend more time here. As you can, New Washington really knows a thing or two about hospitality."`
 			choice
 				`	"What's going on?"`
 				`	"Do you normally stop here?"`
 				`	(Nod.)`
-			`	"New Washington's a bit unique. It's not just the way the sun don't quite seem to ever set either. Folks here own and operate their owning extraction equipment. The result of some sort of philanthropic initative a century or two ago. Point is, there's no offworld corporations here. It's all local."`
-			`	He leans forward, "Now, that sounds nice and all, but it means no mega-corp is willing to purchas any of their contracts. They rather extract from planets where they own a piece of the action. 'Cuz of that New Washington is on no major trade routes. It's only served intermittenly by indepdent traders."`
-			`	"In otherwords, they're isolated, and us showing up's about as big as the top side of a quasar for 'em." He points to many of the mingling locals and haulers, "It's not just trade either, or least trade in commerical goods."`
-			`	He smiles and gives you a wink with his one good eye, "Normally we'd stay longer, but we gotta be moving on. Maybe next time you'll get a chance to chat up some local."`
-			`	Yngvar stands up, "I'm gonna go around and let the other captain's know we gotta be moving on. I'll see ya back aboard the <ship>. Remember, next stop is Earth."`
+			`	"New Washington's a bit unique. It's not just the way the sun don't quite seem to ever set either. Folks here own and operate their mining extraction equipment. The result of some sort of philanthropic initative a century or two ago. Point is, there's no offworld corporations here. It's all local."`
+			`	He leans forward. "Now, that sounds nice and all, but it means no mega-corp is willing to purchase any of their contracts. They rather extract from planets where they own a piece of the action. 'Cuz of that New Washington is on no major trade routes. It's only served intermittenly by indepdent traders."`
+			`	"In otherwords, they're isolated, and us showing up's about as big as the top side of a quasar for 'em." He points to many of the mingling locals and haulers. "It's not just trade either, or least trade in commerical goods."`
+			`	He smiles and gives you a wink with his one good eye. "Normally we'd stay longer, but we gotta be moving on. Maybe next time you'll get a chance to chat up some local."`
+			`	Yngvar stands up. "I'm gonna go around and let the other captain's know we best be moving on. I'll see ya back aboard the <ship>. Remember, next stop is Earth."`
 				decline
 
 
@@ -8218,7 +8218,7 @@ mission "Hroar's Haulers 23"
 		has "Hroar's Haulers 22: declined"
 	on offer
 		dialog
-		`	The Long Haul convoy sets down in a different sprawling Earth mega-city from last time. Though it looks much the same. Most of the fleet focuses on loading up the waiting cargo. There's also a mass of people waiting on Unferth's passenger fleet. Yngvar tells you to meet him in the spaceport.`
+		`	The Long Haul caravan sets down in a different sprawling Earth mega-city from last time. Though it looks much the same. Most of the fleet focuses on loading up the waiting cargo. There's also a mass of people waiting on Unferth's passenger fleet. Yngvar tells you to meet him in the spaceport.`
 			decline
 
 mission "Hroar's Haulers 24"
@@ -8234,20 +8234,20 @@ mission "Hroar's Haulers 24"
 			`Angry shouts echo throughout the crowded spaceport as the would-be passangers learn that their trip to the Deep has been delayed.`
 			`	"...can't afford to sit around waiting for the next ship..."`
 			`	"...how do they just lose a third of their fleet?!"`
-			`	"...this is supposed to be my last season before can be come a full hauler..."`
+			`	"...this is supposed to be my last season before can be come a full Hauler..."`
 			`	You push past the grumbling crowd and eventually find Yngvar alone a few stories up, looking over the loading operation.`
-			`	"<last>." He doesn't turn as you approach and continues to scan the operation below him, "how's it feel to be at your last port of call?"`
+			`	"<last>." He doesn't turn as you approach and continues to scan the operation below him. "how's it feel to be at your last port of call?"`
 			choice
 				`	"Great. Glad it's nearly over."`
 					goto great
 				`	"Sad. Sorry to see the adventure ending."`
 					goto sad
 				`	(Shrug.)`
-			`	"Ain't that the truth." He chuckles softly, "Ambivalence is a wry and common companion on hauls like these."`
+			`	"Ain't that the truth." He chuckles softly. "Ambivalence is a wry and common companion on hauls like these."`
 			label lipstick
-			`	Yngvar exhales slowly, "I won't dress it up none; this has been a rough haul. 'Specially what went down on maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time things went different, and I fear it's just the beginning."`
-			`	The old spacer takes a long thoughtful pause, his head turning toward the departing crowds of unhappy passangers, "You did the best you could, and I ain't saying anyone would hold it against ya, but I do sorely wish things woulda gone a little different."`
-			`	Yngvar goes quiet. He just stands there, next to you, watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all scuttling around beneah you both.`
+			`	Yngvar exhales slowly. "I won't dress it up none; this has been a rough haul. 'Specially what went down on Maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time things went different, and I fear it's just the beginning."`
+			`	The old spacer takes a long thoughtful pause, his head turning toward the departing crowds of unhappy passangers. "You did the best you could, and I ain't saying anyone would hold it against ya, but I do sorely wish things woulda gone a little different."`
+			`	Yngvar goes quiet. He just stands there, next to you, watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all scuttling around beneath you both.`
 			choice
 				`	(Stay a while with Yngvar.)`
 					goto stay
@@ -8258,17 +8258,17 @@ mission "Hroar's Haulers 24"
 			label stay
 			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
 			`	Together you watch the world ever so slighty change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
-			` 	Finally, Yngvar turns to you and nods, "Looks like they are about ready, Captain. How about ya take us back to Hroar?"`
+			` 	Finally, Yngvar turns to you and nods. "Looks like they are about ready, captain. How about ya take us back to Hroar?"`
 				decline
 
 			label great
-			`	"To each their own, I say." He chuckles, "You get some fellas who can't wait to be back on the red, and then you get others who never want to see that dustball again."`
-			`	He shrugs, "I feel it's got more to do with who you take with ya, and who you got waiting back for ya. As for what's waiting for us, I reckon Hartha-Hroar will might have a few colorful words for us."`
+			`	"To each their own, I say." He chuckles. "You get some fellas who can't wait to be back on the red, and then you get others who never want to see that dustball again."`
+			`	He shrugs. "I feel it's got more to do with who you take with ya, and who you got waiting back for ya. As for what's waiting for us, I reckon a right angry Hartha-Hroar is most likely."`
 				goto lipstick
 
 			label sad
 			`	"Spoken like a true spacer." He nods approvingly. "Dirt and light don't make a place more real or special. Only place that matters is where you are right now."`
-			`	He points at the <ship> next to the other Hauler vessels below you both, "That's home enough for folks like us I wager."`
+			`	He points at the <ship> next to the other Hauler vessels below you both. "That's home enough for folks like us I wager."`
 				goto lipstick
 
 mission "Hroar's Haulers 24b"
@@ -8283,27 +8283,27 @@ mission "Hroar's Haulers 24b"
 			`Endless lines of eager passengers make their way through the crowded spaceport to Solvi's waiting fleet.`
 			`	"...can't wait for my first paycheck..."`
 			`	"...work's hard but good, better than what I was doing back on Maker..."`
-			`	"...hear if you stick around can actually become a Hauler. Imagine living in the Deep..."`
+			`	"...hear if you stick around you can actually become a Hauler. Imagine living in the Deep..."`
 			`	You push past the excited crowd and eventually find Yngvar alone a few stories up overseeing the entire operation from above.`
-			`	"<last>." He doesn't turn as you approach and continues to scan the operation below him, "how's it feel to be at your last port of call?"`
+			`	"<last>." He doesn't turn as you approach and continues to scan the operation below him. "How's it feel to be at your last port of call?"`
 			choice
 				`	"Great. Glad it's nearly over."`
 					goto great
 				`	"Sad. Sorry to see the adventure ending."`
 					goto sad
 				`	(Shrug.)`
-			`	"Ain't that the truth." He chuckles softly, "Ambivalence is a wry and common companion on hauls like these."`
+			`	"Ain't that the truth." He chuckles softly. "Ambivalence is a wry and common companion on hauls like these."`
 			label nopig
-			`	Yngvar exhales slowly, "I won't dress it up none; this has been a rough haul. 'Specially what went down on maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time things went different, and I fear it's just the beginning."`
-			`	The old spacer takes a long thoughtful pause, his good eye lingering on the long lines of expectant passengers below, "I know I was a bit sore about how you handled things back there, but I've had some time to consider it and recognize there were no easy answers. The crews will love you for it, though. I hope you live up to your new reputation."`
+			`	Yngvar exhales slowly. "I won't dress it up none; this has been a rough haul. 'Specially what went down on Maker. Usually all a hirthr's gotta do is fight a few pirates and lasso a lost ship or two. But this time things went different, and I fear it's just the beginning."`
+			`	The old spacer takes a long thoughtful pause, his good eye lingering on the long lines of expectant passengers below. "I know I was a bit sore about how you handled things back there, but I've had some time to consider it and recognize there were no easy answers. The crews will love you for it, though. Don't let 'em down."`
 				to display
 					has "makerhero"
-			`	The old spacer takes a long thoughtful pause, his good eye lingering on the long lines of expectant passengers below, "We all appreciate you puttin' your purse on the line like that for us. Means an awful lot. Too many folks worried about commerce and not the person standing beside 'em."`
+			`	The old spacer takes a long thoughtful pause, his good eye lingering on the long lines of expectant passengers below. "We all appreciate you puttin' your purse on the line for us like that. Means an awful lot. Too many folks worried about commerce and not the person standing beside 'em."`
 				to display
 					not "makerhero"
-			`	Yngvar stands there watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all scuttling around beneah you both.`
-			`	"Interestin' times are on the horizion, <last>. I worry I'm gettin' too old for the tiller. Everything moves so fast these days; just don't seem like there's any place for old spacers like me."`
-			`	He sighs, "There's no generation ships, and even the caravans get to their destinations in a matter of days. No ones wrestles with the Gap, it's just a brief inconvience."`
+			`	Yngvar stands there watching the ships get loaded up with cheap mass-produced Earth baubbles and kitsch. People, machines, all scuttling around beneath you both.`
+			`	"Interestin' times are on the horizion, <last>. I worry I'm gettin' too old for the tiller. Everything moves so fast these days; just don't seem like there's any place for an old spacer like me."`
+			`	He sighs. "There's no generation ships, and even the caravans get to their destinations in a matter of days. No ones wrestles with the Gap, it's just a brief inconvenience."`
 			`	At that he goes silent.`
 			label silent
 			choice
@@ -8321,8 +8321,8 @@ mission "Hroar's Haulers 24b"
 			label spacers
 			action
 				set "Yngspacer"
-			`	"Ain't nothing formal about it, really." He shrugs, "We're both spacers. Ya know, just the sorta folk who call the Gap home."`
-			`	He nods to himself as he continues, "Now, within the parlance of the Haulers 'spacer' takes on a slightly more specific connotation. For us it means somehow who embraces the culture and ethos of the old generation ship crews, and their caravan successors. Sometimes, like me, we got family going all the way back to those times. But sometimes we don't."`
+			`	"Ain't nothing formal about it, really." He shrugs. "We're both spacers, ya know, just the sorta folk who call the Gap home."`
+			`	He nods to himself as he continues. "Now, within the parlance of the Haulers 'spacer' takes on a slightly more specific connotation. For us it means someone who embraces the culture and ethos of the old generation ship crews, and their caravan successors. Sometimes, like me, we got family going all the way back to those times. But sometimes we don't."`
 			`	"Linage got less to do about it than character, and practice. Hel, I suspect most them 'stoners' come from a lost generation ship, and few of them would consider themselves spacers."`
 			choice
 				`	"Stoner?"`
@@ -8339,23 +8339,23 @@ mission "Hroar's Haulers 24b"
 			label stay
 			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
 			`	Together you watch the world ever so slighty change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
-			` 	Finally, Yngvar turns to you and nods, "Looks like they are about ready, Captain. How about ya take us back to Hroar?"`
+			` 	Finally, Yngvar turns to you and nods. "Looks like they are about ready, captain. How about ya take us back to Hroar?"`
 			action
 				clear "Yngspacer"
 				decline
 
 			label great
-			`	"To each their own, I say." He chuckles, "You get some fellas who can't wait to be back on the red, and then you get others who never want to see that dust ball again."`
-			`	He shrugs, "I feel it's got more to do with who you take with ya, and who you got waiting back for ya."`
+			`	"To each their own, I say." He chuckles. "You get some fellas who can't wait to be back on the red, and then you get others who never want to see that dustball again."`
+			`	He shrugs. "I feel it's got more to do with who you take with ya, and who you got waiting back for ya."`
 				goto nopig
 
 			label sad
 			`	"Spoken like a true spacer." He nods approvingly. "Dirt and light don't make a place more real or special. Only place that matters is where you are right now."`
-			`	He points at the <ship> next to the other Hauler vessels below you both, "That's home enough for folks like us I wager."`
+			`	He points at the <ship> next to the other Hauler vessels below you both. "That's home enough for folks like us I wager."`
 				goto nopig
 
 			label stoner
-			`	Yngvar shakes his head, "Buncha stone-worshipping fools who think elves brought 'em to the Deep. It's all hogwash, though, they're just the children of a lost generation ship who reverted to their primal natures."`
+			`	Yngvar shakes his head. "Buncha stone-worshipping fools who think elves brought 'em to the Deep. It's all hogwash, though, they're just the children of a lost generation ship who reverted to their primal natures."`
 			label hogwash
 			choice
 				`	"Wait, you think the same ships that brought your ancestors to the Deep, also brought the stoners there?"`
@@ -8374,22 +8374,22 @@ mission "Hroar's Haulers 24b"
 			action
 				set "generationship2"
 				clear "generationship"
-			`	Yngvar sighs, "It's a bit more complicated than that. Three of the earliest generation ships were sent to the Deep. It was a private affair using... let's say untested technology."`
-			`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they'd be the Folly's survivors."`
+			`	Yngvar sighs. "It's a bit more complicated than that. Three of the earliest generation ships were sent to the Deep. It was a private affair using... let's say untested technology."`
+			`	"The first of these ships was called Thorismund's Folly." He pauses. "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they'd be the Folly's survivors."`
 			`	"Not quite sure how the survivors got on multiple words, but still makes a lot more sense than elf-stories."`
 				goto silent
 
 			label generationship
 				action
 				set "generationship"
-			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. Four generations of my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the Hyperdrive ships by a decade or two." Yngvar laughs.`
-			`	Yngvar's eye glosses over as he talks, "Not that those Hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes, eh? Ah, we could never quite kick the knack for it after that. Always felt most at home 'tween worlds. Which is one of the reasons why we became Haulers."`
-			`	The old man shakes his head, "Sometimes I wonder if they be better times than these`
-			`	His eye strays back toward embarking guest-workers.`
+			`	"Aye. I hail from an old spacer family that came on one of the first generation ships to the Deep. Four generations of my ancestors lived and died in the depths of the uttermost Gap, only to barely beat the hyperdrive ships by a decade or two." Yngvar laughs.`
+			`	Yngvar's eye glosses over as he talks, "Not that those hyperspace jockeys had anything over my folks. What's a month or two in the Gap compared to several lifetimes, eh? Ah, we could never quite kick the knack for it after that. Always felt most at home 'tween worlds. Which is one of the reasons why we became Haulers."`
+			`	The old man shakes his head. "Sometimes I wonder if they were better times than these`
+			`	His eye strays back toward lines of guest-workers.`
 				goto hogwash
 
 			label blush
-			`	Yngvar's one extant eyebrow shoots up in surprise, "How'd you come to hear about the Blushes? That's uncommon knowledge for an outsider."`
+			`	Yngvar's one extant eyebrow shoots up in surprise. "How'd you come to hear about the Blushes? That's uncommon knowledge for an outsider."`
 			choice
 				`	"I traveled to one with Solvi."`
 					goto solvi
@@ -8397,7 +8397,7 @@ mission "Hroar's Haulers 24b"
 				`	(Shrug.)`
 			`	"I suppose the how don't matter so much." Yngvar says slowly, "But, yes, they're apart of our culture. The lonely waystations in the caravan days."`
 			label blush2
-			`	He sighs to himself, "I try to get to 'em when I can. But they don't see many pilgrims these days. Old ways are dying, but I'm supposing that's just the way of old ways."`
+			`	He sighs to himself. "I try to get to 'em when I can. But they don't see many pilgrims these days. Old ways are dying, but I'm supposing that's just the way of old ways."`
 			choice
 				`	"Why exactly are they called Blushes?"`
 					goto whyblush
@@ -8405,17 +8405,17 @@ mission "Hroar's Haulers 24b"
 					goto silent
 
 			label solvi
-			`	"Ah, Solvi's always been a good lad. One of the few from his generation that keeps to the traditions." Yngvar pauses in thought and than a wide grin spreads across his scarred face, "I'm thinking he took you to the Last Blush."`
-			`	He looks at you nods, "He did! Ha. I bet you caught a little whiplash from that experience. Their a little more insular to most."`
+			`	"Ah, Solvi's always been a good lad. One of the few from his generation that keeps to the traditions." Yngvar pauses in thought and than a wide grin spreads across his scarred face. "I'm thinking he took you to the Last Blush."`
+			`	He watches your expression and than nods to himself. "He did! Ha. I bet you caught a little whiplash from that experience. Their a little more insular than most."`
 			`	"Good folk though, and it's where my ma's relic is housed, and where I hope mine goes someday."`
 			`	"But, back to your question, yes, they're an important part of our culture. Those lonely waystations from the caravan days."`
 				goto blush2
 
 			label whyblush
-			`	Yngvar laughs, "I am not rightly sure. I have my suspicions though."`
-			`	He points up far above the laboring loaders below and toward the sky. "Those Caravaneers, plunging into the empty Gap, would see lights all around them. Flickering stars and like."`
-			`	The old man holds up thick finger, "But it'weren't like nowadays. Those stars were all empty. Beacons to nowhere. Emenating their cold lifeless light. But a Blush, well, that's a warmer light, ain't it? That's the glow of life, of hearth, of friendship. Out in the Gap you weren't holding out for light, but for a Blush."`
-			`	He smiles at you and then shrugs, "That's my thinking on the matter anyways. Maybe one of the old Blush-Gutchers might know rightly."`
+			`	Yngvar laughs. "I am not rightly sure. I have my suspicions though."`
+			`	He points up far above the laboring loaders below and toward the sky. "Those caravaneers, plunging into the empty Gap, would see lights all around them. Flickering stars and like."`
+			`	The old man holds up a thick finger. "But it weren't like nowadays. Those stars were all empty. Beacons to nowhere. Emenating their cold lifeless light. But a Blush, well, that's a warmer light, ain't it? That's the glow of life, of hearth, of friendship. Out in the Gap you weren't holding out for light, but for a Blush."`
+			`	He smiles at you and then shrugs. "That's my thinking on the matter anyways. Maybe one of the old Blush-Gutchers might know rightly."`
 			`	"I think though," he says glancing back outside, "we oughta get moving. Looks like they're about all loaded up. Time to bring the fleet back to Hroar!"`
 			action
 				clear "Yngspacer"
