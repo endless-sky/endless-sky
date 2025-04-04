@@ -33,7 +33,7 @@ namespace {
 	// whether it should be lost on this try.
 	inline bool Check(double probability, double base)
 	{
-		return (Random::Real() < base * pow(probability, .2));
+		return (Random::Real() < base * probability);
 	}
 
 	// Returns if the missile is confused or not.
