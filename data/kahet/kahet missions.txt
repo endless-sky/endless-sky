@@ -1163,6 +1163,8 @@ event "Patir moves"
 		pos 10059.5 10.5
 		remove haze
 		add hazard "Beyond Patir Shield Eraser" 1
+		remove hazard "Ember Waste Base Heat" 100
+		remove hazard "Ember Waste Base Storm" 9000
 	planet "Builder Settlement"
 		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport consists only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
@@ -1805,6 +1807,8 @@ event "Patir returns"
 		pos -38 553
 		haze _menu/haze-red
 		remove hazard "Beyond Patir Shield Eraser" 1
+		add hazard "Ember Waste Base Heat" 100
+		add hazard "Ember Waste Base Storm" 9000
 
 mission "Ka'het: Patir Mystery 13A"
 	name "Return to <planet>"
