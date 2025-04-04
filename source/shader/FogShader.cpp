@@ -43,7 +43,7 @@ namespace {
 	const int PAD = LIMIT / ORTH;
 
 	// OpenGL objects:
-	Shader shader;
+	const Shader *shader;
 	GLuint cornerI;
 	GLuint dimensionsI;
 	GLuint vao;
@@ -64,41 +64,13 @@ namespace {
 
 void FogShader::Init()
 {
-	static const char *vertexCode =
-		"// vertex fog shader\n"
-		"uniform vec2 corner;\n"
-		"uniform vec2 dimensions;\n"
-
-		"in vec2 vert;\n"
-		"out vec2 fragTexCoord;\n"
-
-		"void main() {\n"
-		"  gl_Position = vec4(corner + vert * dimensions, 0, 1);\n"
-		"  fragTexCoord = vert;\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment fog shader\n"
-#ifdef ES_GLES
-		"precision mediump sampler2D;\n"
-#endif
-		"precision mediump float;\n"
-		"uniform sampler2D tex;\n"
-
-		"in vec2 fragTexCoord;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);\n"
-		"}\n";
-
 	// Compile the shader and store indices to its variables.
-	shader = Shader(vertexCode, fragmentCode);
-	cornerI = shader.Uniform("corner");
-	dimensionsI = shader.Uniform("dimensions");
+	shader = GameData::Shaders().Get("fog");
+	cornerI = shader->Uniform("corner");
+	dimensionsI = shader->Uniform("dimensions");
 
-	glUseProgram(shader.Object());
-	glUniform1i(shader.Uniform("tex"), 0);
+	glUseProgram(shader->Object());
+	glUniform1i(shader->Uniform("tex"), 0);
 	glUseProgram(0);
 
 	// Generate the vertex data for drawing sprites.
@@ -117,7 +89,7 @@ void FogShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	GLuint vertI = shader.Attrib("vert");
+	GLuint vertI = shader->Attrib("vert");
 	glEnableVertexAttribArray(vertI);
 	glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
 
@@ -231,7 +203,7 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 		glBindTexture(GL_TEXTURE_2D, texture);
 
 	// Set up to draw the image.
-	glUseProgram(shader.Object());
+	glUseProgram(shader->Object());
 	glBindVertexArray(vao);
 
 	GLfloat corner[2] = {
