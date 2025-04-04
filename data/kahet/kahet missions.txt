@@ -1064,6 +1064,7 @@ mission "Ka'het: Patir Mystery 9"
 	waypoint "Mitera"
 	waypoint "Sarifa"
 	waypoint "Thepa"
+	waypoint "Balnii"
 	to offer
 		has "Ka'het: Patir Mystery 8A: done"
 	on offer
@@ -1160,6 +1161,7 @@ mission "Ka'het: Patir Mystery 9"
 event "Patir moves"
 	system Patir
 		pos 10059.5 10.5
+		remove haze
 	planet "Builder Settlement"
 		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport consists only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
@@ -1625,7 +1627,7 @@ mission "Ka'het: Patir Mystery 12D"
 			variant
 				"Asteroid Large (Patir 12A)"
 		dialog
-			`The giant creature stands before you, slowly pulsating in a pale pink halo. The bubbles that interrupt the asteroid-like surface are slightly semitransparent, giving you a brief look at the crystalline structure inside; but your mind soon returns to your time limited mission, and you decide to move ahead before it's too late.`
+			`The giant creature stands before you, slowly pulsating in a pale pink halo. The bubbles that interrupt the asteroid-like surface are slightly semitransparent, giving you a brief look at the crystalline structure inside; but your mind soon returns to your time-limited mission, and you decide to move ahead before it's too late.`
 	to fail
 		has "Ka'het: Patir Mystery 12C: done"
 
@@ -1800,6 +1802,7 @@ mission "Ka'het: Patir Mystery 13B"
 event "Patir returns"
 	system Patir
 		pos -38 553
+		haze _menu/haze-red
 
 mission "Ka'het: Patir Mystery 13A"
 	name "Return to <planet>"
