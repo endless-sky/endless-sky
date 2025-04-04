@@ -21,6 +21,8 @@ system Athiri
 	habitable 1400
 	belt 1074
 	fleet "Magic Asteroid" 900
+	hazard "Athiri Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole corona core"
 		period 1
@@ -59,6 +61,8 @@ system Chanai
 	habitable 1250
 	belt 1887
 	fleet "Magic Asteroid" 900
+	hazard "Chanai Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 3 core"
 		period 1
@@ -77,6 +81,8 @@ system Ghila
 	habitable 1715
 	belt 1165
 	fleet "Magic Asteroid" 900
+	hazard "Ghila Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black-hole-still-core"
 		period 1
@@ -119,6 +125,8 @@ system Maithi
 	habitable 425.92
 	belt 1379
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 5 core"
 		period 1
@@ -137,6 +145,8 @@ system Mitera
 	habitable 3645
 	belt 1464
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 4 core"
 		period 1
@@ -155,6 +165,8 @@ system Sarifa
 	habitable 5486.68
 	belt 1757
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/f8"
 		distance 549
@@ -172,6 +184,8 @@ system Thepa
 	haze _menu/haze-maithi
 	habitable 320
 	belt 1793
+	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 6 core"
 		period 1
@@ -196,6 +210,6 @@ wormhole "One-Way Wormhole Exit"
 	color "wormholes: beyond Patir"
 
 planet "Chanai Structure"
-	landscape "land/station49"
+	landscape "land/station60"
 	description `This alien station is as vast as it is mysterious, concealing more secrets than you could ever hope to find. Its only discernible feature is a giant barrel, but what it was built for - or what it could still do - is impossible to say.`
 	government "Magic Asteroid"
