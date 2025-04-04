@@ -5787,7 +5787,7 @@ mission "Hroar's Haulers 15"
 			`	"Haulers are a figurative, and often times literal, marriage of miners and spacers from the Caravan days. I'll admit after near 300 years, the differences 'tween the two groups have gotten more than a little muddled. These days most Haulers are a mix of both, they spend some time mining and some time spacing. But there's still a few of us who to stick to one trade and one tradition."`
 			`	Bolverka yawns.`
 			`	Yngvar pointedly ignores her. "I was born on our old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family served on it for centuries."`
-			`	"She was a beauty, what I wouldn't do to see her like fly again." Yngvar's clear eye sparkles. "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and hold onto it. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to the one of the old waystations where it's laid to rest."`
+			`	"She was a beauty, what I wouldn't do to see her like fly again." Yngvar's clear eye sparkles. "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and hold onto it. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to the one of the old waystations, or blushes where it's laid to rest."`
 			`	"So just like our stones," Bolverka says brightly.`
 			`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the old waystations they'll last forever. It's different, better, and more refined."`
 			`	"Sure, Yng." Bolverka turns her attention back to you. "So what do you say, greenhorn? Same thing, right?"`
@@ -6970,47 +6970,47 @@ mission "Hroar's Haulers 18"
 			`	"The first of these ships was called Thorismund's Folly." He pauses, "Well, it may have had a different name back then. But we've always been callin' it Thorismund's Folly. Anyways, it never got to it's destination. The other two ships, one of which my family was on, arrived in the Deep and found no trace of the Folly. But they did find some wild folks venerating stones. Just makes sense that they'd be the Folly's survivors."`
 			`	"And how exactly did one generation ship, without FTL technology, manage to seed half a dozen systems with these survivors?" Bolverka says sharply.`
 			`	"Wormholes? I don't know, woman, I don't have all the answers. But it makes more sense than elves!"`
-			`	Bolverka rolls her eyes. "Anyways, back to the topic at hand, Yng. You spacers are hardly any different from us so stop acting all superior."`
+			`	Bolverka rolls her eyes. "Anyways, back to the topic at hand, Yng. You spacers are hardly any different from us, just accept it."`
 				goto yngcont
 
 			label cairn
 			action
 				set "cairn"
-			`	Bolverka grins, "Oh, you'll love this. You see each spacer takes a piece of the very first ship they served on, usually their family's..."`
+			`	Bolverka grins. "Oh, you'll love this. You see each spacer takes a piece of the very first ship they served on, usually their family's..."`
 			`	"Hold on now!" Yngvar interjects, "I'm the spacer here, let me tell it."`
-			`	Bolverka holds up both hands in surrender, "Fine, fine. Tell your story, old man."`
+			`	Bolverka holds up both hands in surrender. "Fine, fine. Tell your story, old man."`
 			`	"Haulers are a figurative, and often times literal, marriage of miners and spacers from the Caravan days. I'll admit after near 300 years, the differences 'tween the two groups have gotten more than a little muddled. These days most Haulers are a mix of both, they spend some time mining and some time spacing. But there's still a few of us, who to stick to one trade and one tradition."`
 			`	Bolverka yawns.`
-			`	Yngvar pointedly ignores her, "I was born on the Hauler's old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family served on it for centuries."`
-			`	"She was a beauty, what I wouldn't do to see her like fly again," Yngvar's clear eye sparkles, "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and keep with it with us for all our days. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to the Old Station where it's laid to rest."`
-			`	"So just like our stones." Bolverka says brightly.`
-			`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the Old Station they'll last forever. It's different, better, and more refined."`
-			`	"Sure, Yng," Bolverka turns her attention back to you, "So what do you say, greenhorn? Same thing, right?"`
+			`	Yngvar pointedly ignores her. "I was born on the old flagship back when Herjolfr, Hroar's grandad, led the Haulers. It was a Bactrian that had been passed down from the old days. My family served on it for centuries."`
+			`	"She was a beauty, what I wouldn't do to see her like fly again." Yngvar's clear eye sparkles. "When one of us spacers finish our first apprenticeship as children, we take some broken or replaced piece of tech from the ship we served on, and hold onto it. We laser-etch into it every ship we servered on, and whatever commendations we earned, formal and informal. When we die our bodies are returned to the Gap, and our kin take our ship-fragment to one of the old waystations, or blushes where it's laid to rest."`
+			`	"So just like our stones," Bolverka says brightly.`
+			`	"No! Your stones weather and rot in your atmospheres, your cairns tumble and disappear, on the old waystations ours will last forever. It's different, better, and more refined."`
+			`	"Sure, Yng." Bolverka turns her attention back to you. "So what do you say, greenhorn? Same thing, right?"`
 				goto cairntalk
 
 			label samething
-			`	Bolverka beams, "Yngvar the space-stoner, maybe that's the song we oughta to be singing?"`
+			`	Bolverka beams. "Yngvar the space-stoner, maybe that's the song we oughta to be singing?"`
 			`	"Bah, what does <last> know about it anyways." Yngvar glares unhappily at Bolverka. "How about we get a little more productive and talk business."`
-			`	"Sure thing, hon." Bolverka says as she grins from ear to ear.`
-			`	Yngvar folds his thick arms, "We're halfway done with the Long Haul, congrats by the way on making it this far."`
-			`	Bolverka gives you an encouraging nod, "You made it all the way to Lagrange."`
+			`	"Sure thing, hon," Bolverka says as she grins from ear to ear.`
+			`	Yngvar folds his thick arms. "We're halfway done with the Long Haul, congrats by the way on making it this far."`
+			`	Bolverka gives you an encouraging nod. "You made it all the way to Lagrange."`
 			`	"But now we gotta head back to Muspel. This side of the run isn't nearly as lucrative, but there's no sense in flying an empty fleet across the entirety of human space. 'Specially after losing a third of it on Maker." He frowns at the memory.`
 				goto profit
 
 			label shipnotstone
 			`	"Ha!" Yngvar exclaims triumphantly, "I told you. It's different. It's more technical, more nuanced, more rational, more..."`
 			`	"...of the same." Bolverka interrupts.`
-			`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look, "Who knows what winning could cost you?"`
+			`	"Are you sure you want to gloat, Yng?" She reaches a hand out to touch his, and gives him a knowing look. "Who knows what winning could cost you?"`
 			`	"I, uh..." Yngvar stammers and gropes unsuccessfully for words.`
-			`	Bolverka laughs, "Oh, Yng, we'll have plenty of time on Wayfarer for you to make it up to me. But, that's probably enough of that in front of the hirthr."`
-			`	"Right." Yngvar says, red-faced, "Let's get, uh, get back to business."`
-			`	Yngvar folds his thick arms, "We're halfway done with the Long Haul, congrats by the way on making it this far."`
-			`	Bolverka gives you an encouraging nod, "You made it all the way to Lagrange."`
+			`	Bolverka laughs. "Oh, Yng, we'll have plenty of time on Wayfarer for you to make it up to me. But, that's probably enough of that in front of the hirthr."`
+			`	"Right," Yngvar says, red-faced, "Let's get, uh, get back to business."`
+			`	Yngvar folds his thick arms. "We're halfway done with the Long Haul, congrats by the way on making it this far."`
+			`	Bolverka gives you an encouraging nod. "You made it all the way to Lagrange."`
 			`	"But now we gotta head back to Muspel. This side of the run isn't nearly as lucrative, but there's no sense in flying an empty fleet across the entirety of human space. 'Specially after losing a third of it on Maker." He frowns at the memory.`
 				goto profit
 
 			label yesskade
-			`	She looks relieved, "Oh, thank you. I'll restrict myself to just a few questions."`
+			`	She looks relieved. "Oh, thank you. I'll restrict myself to just a few questions."`
 			`	"Did they tell you how they think they got here? Did they say it was elves?"`
 			choice
 				`	The Ondurdis, a sort of village chieftess, told me the elves, or alfar, brought them here."`
@@ -7027,8 +7027,8 @@ mission "Hroar's Haulers 18"
 						not "Home for Skadenga 13: offered"
 						has "askedThor"
 				`	"I don't really remember."`
-			`	She frowns, "Suppose I shouldn't have gotten my hopes up."`
-			`	Bolverka takes a breath, "Okay, what about this; did they have any stones or talismen that had unusual properties?"`
+			`	She frowns. "Suppose I shouldn't have gotten my hopes up."`
+			`	Bolverka takes a breath. "Okay, what about this; did they have any stones or talismen that had unusual properties?"`
 			label questiontwo
 			choice
 				`	"Yes. I was gifted a Tear of Skade. It appears to have no energy source, but is always cold."`
@@ -7041,7 +7041,7 @@ mission "Hroar's Haulers 18"
 						has "outfit (all): Blood of Surtr"
 						not "outfit (all): Tear of Skade"
 				`	"I never saw anything like that."`
-			`	She looks slightly downcast, "Of course, the Deep stones were just outlandish rumors. Unlikely to ever really be true."`
+			`	She looks slightly downcast. "Of course, the Deep stones were just outlandish rumors. Unlikely to ever really be true."`
 			`	"Okay, one last question. What did you think of the Skadenga? Were they... believeable? Or just... misguided?"`
 			label lastquestion
 			action
@@ -7056,19 +7056,19 @@ mission "Hroar's Haulers 18"
 				`	"Misguded savages, the lot of them."`
 					goto heresy
 				`	"I'd rather not say."`
-			`	"Yes. Yes. We each have to find our own way to truth. I shouldn't be asking for yours. You're right of course." `
-			`	She clears her thought, "Ahem, Thank you for indulging me."`
+			`	"Yes. Yes. We each have to find our own way to truth. I shouldn't be asking for yours. You're right of course."`
+			`	She clears her thought. "Ahem, thank you for indulging me."`
 				goto yngvarjoins
 
 			label alfar
-			`	Her eyes go wide, "They said this? Did-did they say anything else about these alfar?"`
+			`	Her eyes go wide. "They said this? Did-did they say anything else about these alfar?"`
 			choice
 				`	"That they couldn't be trusted."`
 					goto trusted
 				`	"That there was an another group, the Hudulfolk, who were related to the Elf-Stones."`
 					goto hidden
 				`	"No. Nothing else."`
-			` She nods vigoruously," Still, that is enough. Okay, next question; did they have any stones or talismen that had unusual properties?"`
+			` She nods vigoruously." Still, that is enough. Okay, next question; did they have any stones or talismen that had unusual properties?"`
 				goto questiontwo
 			
 			label trusted
@@ -7083,18 +7083,18 @@ mission "Hroar's Haulers 18"
 
 			label tear
 			`	"A Deep stone." She whispers to herself, "They were only legends. Rumors of legends. Myths."`
-			`	She shakes her head, "That's amazing, truly. For most of us we only have our faith to guide us, but you have the real thing."`
+			`	She shakes her head. "That's amazing, truly. For most of us we only have our faith to guide us, but you have the real thing."`
 			`	"A final question then." She swollows, "What about the Skadenga themselves? Did they feel authentic... beleivable? A shade of what things were before and could be today? Or were they just... misguided? Disconnected? Cultish?"`
 				goto lastquestion
 			
 			label believe
-			`	Bolverka's breathing heavily, "I knew it. I knew it was true." She says in a whisper to herself.`
+			`	Bolverka's breathing heavily. "I knew it. I knew it was true." She says in a whisper to herself.`
 			`	"All these years I knew the old ways weren't just some confused tradition." She looks elated.`
 			`	"Thank you, <last>. Thank you for sharing that with me. You don't know what it means."`
 				goto yngvarjoins
 
 			label heresy
-			`	Bolverka nearly chokes, "I...I suppose it makes sense. I mean, do they even have written records? It's unlikely anything could have been remembered, retained, from so long ago."`
+			`	Bolverka nearly chokes. "I...I suppose it makes sense. I mean, do they even have written records? It's unlikely anything could have been remembered, retained, from so long ago."`
 			`	She takes a deep breath and quickly wipes her eyes. "I appreciate you being honest with me, Captain <last>. It's good to know."`
 				goto yngvarjoins
 
@@ -7105,6 +7105,7 @@ event "lh seventeen days"
 
 mission "Hroar's Haulers 18b"
 	name "The Long Haul"
+	description "Escourt Captain Unferth's Fleet to <destination>."
 	source "Lagrange"
 	destination "Humanika"
 	to offer
@@ -7121,17 +7122,17 @@ mission "Hroar's Haulers 18b"
 					goto fastvar
 				`	"Howdy Yngvar."`
 				`	"What do you next for me?"`
-			`	He gives you a brisk nod, "One last thing for this half of the Long Haul. I need you to escort Solvi's fleet to Humanika. They only have minimal non-folk cargo, so their about done off-loading already. Get back to your ship and see it through."`
+			`	He gives you a brisk nod. "One last thing for this half of the Long Haul. I need you to escort Solvi's fleet to Humanika. They only have minimal non-folk cargo, so they're about done off-loading already. Get back to your ship and see it through."`
 				goto thechoice
 			label fastvar
-			`	Yngvar laughs, "Most folks don't have the proper feel for the place. The way the paths and corridors work, it's not really meant for the likes of us. The way we think, ya know. I'm just a bit more acclimated than most is all."`
-			`	"But we don't have the time for waxing right poetic at the moment. I need you to escort Solvi's fleet to Humanika. They only have minimal non-folk cargo, so their about done off-loading already. I'll be sticking around here. Get back to your ship and see it through."`
+			`	Yngvar laughs. "Most folks don't have the proper feel for the place. The way the paths and corridors work, it's not really meant for the likes of us. The way we think, ya know. I'm just a bit more acclimated than most is all."`
+			`	"But we don't have the time for waxing poetic at the moment. I need you to escort Solvi's fleet to Humanika. They only have minimal non-folk cargo, so they're about done off-loading already. I'll be sticking around here. Get back to your ship and see it through."`
 			label thechoice
 			choice
 				`	"Okay. I'll escort them to Humanika."`
 					goto done
 				`	"Is that really necessary? You really think pirates will attack in Quarg space?"`
-			`	The old spacer shrugs, "Best to see it through. I reckon a black hole's more likely to burp than human pirates showing up on the Quarg's doorstep. But Solvi is carrying folk, not minerals, and you never know what folks might be getting up to. Best if you just went a long."`
+			`	The old spacer shrugs. "Best to see it through. I reckon a blackhole's more likely to burp than human pirates showing up on the Quarg's doorstep. But Solvi is carrying folk, not minerals, and you never know what folks might be getting up to. Best if you just went a long."`
 			choice
 				`	"Alright. I'll take them to Humanika."`
 				`	(Nod.)`
@@ -7154,19 +7155,19 @@ mission "Hroar's Haulers 18b"
 
 	on complete
 		conversation
-			`	The shining Quarg tower pierces the low hanging clouds, and your ship careens toward it like a moth to the flame. The towers automated systems take over and direct your ship into the appropiate platform. You see many of the other Hauler ships being ushered in similar routes. Drones hover around you, and almost seem disappointed by your lack of marked cargo for them.`
+			`	The shining Quarg tower pierces the low hanging clouds, and your ship careens toward it like a moth to the flame. The towers automated systems take over and direct your ship into the appropiate platform. You see many of the other Hauler ships being ushered in similar routes. Onnce inside drones hover around your ship, and almost seem disappointed by your lack of marked cargo for them.`
 			`	A light blinks near your console and see you've recieved a new message from Yngvar.`
 			choice
 				`	(Play the message.)`
-			`	Yngvar's scarred face appears on screen. "Thanks for seeing after Solvi's fleet. I'll be heading to Wayfarer with the rest of the caravan here. We're going take seven days to do some needed maintance and give the crew some time to unwind. We're gonna need you back on Wayfarer in seven days. We won't be waiting on ya, so be on time. Yngvar out."`
-			`	The screen goes blank, and you notice you've recieved a text-only message: Meet me in the spaceport - Solvi.`
+			`	Yngvar's scarred face appears on screen. "Thanks for seeing after Solvi's fleet. I'll be heading to Wayfarer with the rest of the caravan here. We're going take seven days to do some needed maintenance and give the crew some time to unwind. We're gonna need you back on Wayfarer in seven days. We won't be waiting on ya, so be on time. Yngvar out."`
+			`	The screen goes blank, and you notice you've recieved an additional text-only message: Meet me in the spaceport - Solvi.`
 				to display
 					has "savedsolvi"
-			`	The screen goes blank, and notice you've recieved a text-only message: We'll take it from here. See you at Wayfarer. - Solvi.`
+			`	The screen goes blank, and notice you've recieved an additional text-only message: We'll take it from here. See you at Wayfarer. - Solvi.`
 				to display
 					not "savedsolvi"
 					not "savedgunhilda"
-			`	The screen goes blank. You notice you've recieved a text-only message: Meet me in the spaceport - Gunhilda.`
+			`	The screen goes blank. You notice you've recieved an additional text-only message: Meet me in the spaceport - Gunhilda.`
 				to display
 					has "savedgunhilda"
 
@@ -7185,25 +7186,25 @@ mission "Hroar's Haulers Gunhilda"
 		has "savedgunhilda"
 	on offer
 		conversation
-			`As you work your way through the light crowds of Humanika's spaceport, you can't help but notice there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of these pastel human echoes, it's easy to spot the vibrant Gunhilda. Her dark black hair tied in a clusmy ponytail, her uncleanable brown-red hauler's jacket, even the swift unapologetic way she moved seemed at odds with the meekness of the spaceport's regulars.`
-			`	"<first>!" She hollars across the room, causing more than a few judgemental glances to be cast her way, "I knew you'd come!"`
-			`	Ignoring the various side eyes, she jogs over to you, "You got Yngvar's message, yeah? We've got some time off!`
+			`As you work your way through the light crowds of Humanika's spaceport, you can't help but notice there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of these pastel human echoes, it's easy to spot the vibrant Gunhilda. Her dark black hair tied in a clusmy ponytail, her uncleanable brown-red hauler's jacket, even the swift unapologetic way she moves seemed at odds with the meekness of the spaceport's regulars.`
+			`	"<first>!" She hollars across the room, causing more than a few judgemental glances to be cast her way. "I knew you'd come!"`
+			`	Ignoring the various side eyes, she jogs over to you. "You got Yngvar's message, yeah? We've got some time off!`
 			choice
 				`	"Yeah, I heard, Gunhilda." `
 				`	"Wait, Gunhilda, how did you get here? Shouldn't you be taking your ship to Wayfarer?"`
 				`	"Hello to you too, Gunhilda!"`
-			`	The Hauler captain rolls her eyes, "<first>, call me Runa. It's what my friends and other illuminaries call me."`
-			`	"I knew we'd be up for some downtime, so I caught a ride on one of Solvi's ships and left the Iron Siren in the care of my crew." She shrugs, "Between you and me, I've seen enough of Wayfarer for one lifetime"`
+			`	The Hauler captain rolls her eyes. "<first>, call me Runa. It's what my friends and other illuminaries call me."`
+			`	"I knew we'd be up for some downtime, so I caught a ride on one of Solvi's ships and left the Iron Siren in the care of my crew." She shrugs. "Between you and me, I've seen enough of Wayfarer for one lifetime"`
 			choice
 				`	"So you came to here?"`
-				`	"Humanika wouldn't be my first choice for a vaction."`
+				`	"Humanika wouldn't be my first choice for a vacation."`
 				`	"What will you do now?"`
-			`	A conspiratorial smile erupts on her face, "I may have been a little deep into my cups, but I think made it clear last we spoke, royal dreamer. My soul is dirt and sky, and I've had my fill of sky for the time being. I've come to see some dirt."`
+			`	A conspiratorial smile erupts on her face. "I may have been a little deep into my cups, but I think made it clear last we spoke, royal dreamer. My soul is dirt and sky, and I've had my fill of sky for the time being. I've come to see some dirt."`
 			choice
 				`	"You're here for dirt?"`
 				`	"What?"`
 				`	"We're so high up I haven't really had a chance to scope out the local dirt options."`
-			`	"Mines!" She says with mock exhasperation, "I've seen my share of human dug mines in my life. Hope turned into holes, and then turned back into hope again. But alien mines? What would could they look like? What would they feel like? I don't know, but I intend to find out. And I was wondering if you wanted to tag along."`
+			`	"Mines!" She says with mock exhasperation, "I've seen my share of human dug mines in my life. Hope turned into holes, and then turned back into hope again. But alien mines? What would they look like? What would they feel like? I don't know, but I intend to find out. And I was wondering if you wanted to tag along."`
 			choice
 				`	"Sure. I've got nothing better to do."`
 					goto minetime
@@ -7213,18 +7214,18 @@ mission "Hroar's Haulers Gunhilda"
 					goto hole
 				`	"No, thanks, I've got my own plans.`
 			label nofun
-			`	Runa frowns and slumps a little, "Well, that's too bad. Exploring holes is always better with friends. Maybe I'll see you back on Wayfarer."`
+			`	Runa frowns and slumps a little. "Well, that's too bad. Exploring holes is always better with friends. Maybe I'll see you back on Wayfarer."`
 			`	She turns and leaves, not quite as unapologetic as before.`
 				decline
 			label hole
-			`	Runa laughs, "And I suppose a ship is just a ship? Indulge me, <first>, maybe I'll change your mind."`
+			`	Runa laughs. "And I suppose a ship is just a ship? Indulge me, <first>, maybe I'll change your mind."`
 			choice
 				`	"Okay. I'll join you."`
 					goto minetime
 				`	"No, not interested."`
 					goto nofun
 			label minetime
-			`	She beams, "I knew you'd agree! It can see it in your hues, you're sensative inquisitive nature."`
+			`	She beams. "I knew you'd agree! It can see it in your hues; your sensative inquisitive nature."`
 			choice
 				`	"I don't think that's true."`
 					goto disagree
@@ -7246,40 +7247,40 @@ mission "Hroar's Haulers Gunhilda"
 					to display
 						not "whythough"
 				`	"Okay. Let's head out."`
-			`	"I can't wait." Runa says, and starts walking toward the platform your ship is parked at.`
+			`	"I can't wait," Runa says, and starts walking toward the platform that holds your ship.`
 			action
 				clear "humanika"
 				clear "whythough"
 				accept
 
 			label disagree
-			`	"That's just the modesty in the dreaming blues of your aura speaking." She gives you a knowing look, "Exactly what I'd expect you to say."`
+			`	"That's just the modesty in the dreaming blues of your aura speaking." She gives you a knowing look. "Exactly what I'd expect you to say."`
 			`	"But enough about the swirling colors of your soul, and back to the more pressing matter of holes in the ground."`
 				goto firstthing
 
 			label agree
-			`	"Ah, the royal purple in your aura speaks, that confidence and assurity." She gives you a knowing look, "Exactly what I'd expect you to say."`
+			`	"Ah, the royal purple in your aura speaks, that confidence and assurity." She gives you a knowing look. "Exactly what I'd expect you to say."`
 			`	"But enough about the swirling colors of your soul, and back to the more pressing matter of holes in the ground."`
 				goto firstthing
 			label whynothere
 			action
 				set "humanika"
-			`	"Humanika? Here? Oh no. No. No. No." She waves a finger at you, "It's terrible start a journey when you're already at the destination. No, I need you to fly me to <destination> first."`
+			`	"Humanika? Here? Oh no. No. No. No." She waves a finger at you. "It's terrible to start a journey when you're already at the destination. No, I need you to fly me to <destination> first."`
 				goto destiny
 
 			label whydestiny
-			`	"Humanika? Here? Oh no. No. No. No." She waves a finger at you, "It's terrible start a journey when you're already at the destination."`
+			`	"Humanika? Here? Oh no. No. No. No." She waves a finger at you, "It's terrible to start a journey when you're already at the destination."`
 				goto destiny
 
 			label whythough
 			action
 				set "whythough"
-			`	"I want to see alien mines, and where better to see them then on a moon where they mine? Stop worrying so much and embrace the serendipity!"`
+			`	"I want to see alien mines, and where better to see them then on a moon where they mine? Stop worrying so much and embrace serendipity!"`
 				goto destiny
 
 	on complete
 		conversation
-			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlikely anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to percarious heights with a disconcering amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disater that keeps not occuring, meanwhile the the towering denzeins of this worldlet contuinue on their way, unaware of the looming danger all around them.`
+			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlike anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to percarious heights with a disconcering amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disater that keeps not occuring. Meanwhile the the towering denzeins of this worldlet contuinue on their way, unaware of the looming danger all around them.`
 			`	"It feel wrong. Dark." Runa whispers to you," You feel it too, don't you?"`
 			choice
 				`	"We're just not used to seeing cultivated plants that evolved on low gravity worlds is all."`
@@ -7302,9 +7303,9 @@ mission "Hroar's Haulers Gunhilda 2"
 		has "Hroar's Haulers Gunhilda: done"
 	on offer
 		conversation
-			`	There are no other humans here, and the two of you stick out like sore thumbs, however the Quarg in their serene way, seem to hardly notice either of you. Runa, uncharacteristically, becomes sollen and withdrawn.`
-			`	Eventually, after a few polite interactions with helpful Quarg, who are indistinguishable from any others, you are able to procure an automated transport vehicle and a rudimentry map of the moon's surface. It doesn't take much longer before the two of you are exiting the dome in the small impossibly immaculate vehicle.`
-			`	Runa is quiet and hadn't spoken in a long time.`
+			`There are no other humans here, and the two of you stick out like sore thumbs, however the Quarg in their serene way, seem to hardly notice either of you. Runa, uncharacteristically, becomes sollen and withdrawn.`
+			`	Eventually, after a few polite interactions with helpful Quarg, who are indistinguishable from any others, you are able to procure an automated transport vehicle and a rudimentry map of the moon's surface. Before long the two of you are exiting the dome in a small impossibly immaculate vehicle.`
+			`	Runa is quiet and hadn't spoken in a some time.`
 			choice
 				`	"So, where on the map should we go?"`
 					goto wheremap
@@ -7313,20 +7314,20 @@ mission "Hroar's Haulers Gunhilda 2"
 				`	"Are you okay?"`
 			label okay
 			`	"I'm fine." She says after a few moments of silence, "Something about that place just got to me. The Quarg... their auras are all the same. Like small black holes. It normally doesn't bother me on Lagrange, but here... I don't know."`
-			`	She takes a deep breath, "But I am now out on the open and glittering moon with my friend. The shadows recede and color returns."`
-			`	Runa pulls up the map and starts skimming it. "We can't go to any active mines, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
+			`	She takes a deep breath. "But I am now out on the open and glittering moon with my friend. The shadows recede and color returns."`
+			`	Runa pulls up the map and starts skimming it. "We can't go to any active mines, but... here." She points to location only a dozen kilometers away. "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
 			`	Before you have a chance to check it out, she leans over and inputs the coordinates. "Let's go see some glorious dirt."`
 				goto letsgo
 
 			label wheremap
-			`	She turns and blankly stares at you, "What was that? The Map? Oh. Right."`
-			`	Without much enthusiasm she pulls it up, "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
-			`	"I..." Runa gives you a conflicted look, "I am sorry about how I've been. Something about that place. The black auras of the Quarg. It just made my insides churn. It was different from Lagrange. I just... I am just glad we're away. I feel better out here."`
+			`	She turns and blankly stares at you. "What was that? The Map? Oh. Right."`
+			`	Without much enthusiasm she pulls it up. "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
+			`	"I..." Runa gives you a conflicted look. "I am sorry about how I've been. Something about that place. The black auras of the Quarg. It just made my insides churn. It was different from Lagrange. I just... I am just glad we're away. I feel better out here."`
 			`	She leans over and inputs the coordinates to the abandoned mine. "Let's go see glorious some dirt."`
 				goto letsgo
 
 			label fishtale
-			`	She turns and blankly stares at you, "Sorry, I wasn't really listening. Did you say you were part of a revival?"`
+			`	She turns and blankly stares at you. "Sorry, I wasn't really listening. Did you say you were part of a revival?"`
 			choice
 				`	"No, survival. I was a passenger in an Ice-Crawler that got hit by an avalanche."`
 					goto avalanche
@@ -7342,31 +7343,31 @@ mission "Hroar's Haulers Gunhilda 2"
 					goto okay
 
 			label avalanche
-			`	She blinks, "Oh, yes, of course. Your time with those blue tattooed people from that freezing world."`
+			`	She blinks. "Oh, yes, of course. Your time with those blue tattooed people from that freezing world."`
 			label skadeend
-			`	"I am sorry... I didn't realize this might be traumatic for you. I know I've been a little bit... distant." She chews her lip, "It's just that place, and the Quarg in the dome, and the plants... their black auras... it-it doesn't matter. It felt awful to me. But, I'm fine now. Out here the color returns."`
-			`	"However," She takes a breath, "If you want we can turn back. I won't force you headlong into your own personal darkness. I wouldn't do that to anyone."`
+			`	"I am sorry... I didn't realize this might be traumatic for you. I know I've been a little bit... distant." She chews her lip. "It's just that place, and the Quarg in the dome, and the plants... their black auras... it-it doesn't matter. It felt awful to me. But, I'm fine now. Out here the color returns."`
+			`	"However." She takes a breath. "If you want we can turn back. I won't force you headlong into your own personal darkness. I wouldn't do that to anyone."`
 			choice
 				`	"Oh, it's fine. I am not worried. I was just making conversation."`
 					goto skadeconversation
 				`	"Thank you. Yes, let's go back. I don't want to get stuck again."`
 			`	"No problem at all." She says with a little more warmth.`
-			`	You have the vehicle turn around and back toward the dome. Since the vehicle is capable of full automation, you merely have it return back to where you got it after both of you disembark outside your ship.`
+			`	You tell the vehicle to return you to the dome. Since the vehicle is capable of full automation, you send it back to where you got it after both of you disembark outside your ship.`
 			`	"To me... the auras of this place... it's like looking into black lidless eyes... but, I am not ready to give up." Runa says outside your ship. "Take me to <destination>, please."`
 			choice
 				`	"Alright."`
 					goto prettycool
 				`	"No. I am done with whatever this is. Find your own way there."`
 			`	Emotions wash over Runa's face. First surprise, than hurt, and finally stubborn anger.`
-			` 	"Do not let your royal dreams become tyrannical nightmares." She says tersely, befeore leaving you.`
+			` 	"Do not let your royal dreams become tyrannical nightmares," She says tersely, befeore leaving you.`
 				decline
 			label prettycool
 			`	"Let us leave, then, before the blackness of this place stains your royal dreams."`
 				accept
 
 			label skadeconversation
-			`	"Ah, yes." She looks down for a second, "I realize I haven't been great company." She gives you a smile, "I appreciate the effort though. With that awful dome behind us, with its rotten auras, I am beginning to see color again."`
-			`	Runa pulls up the map and scans it for a moment,  "We can't go to an active mine, but... here." She points to location only a dozen kilometers away, "Looks like this one has been tapped out for some time. Shouldn't be anything there but the hole."`
+			`	"Ah, yes." She looks down for a second. "I realize I haven't been great company." She gives you a smile. "I appreciate the effort though. With that awful dome behind us, with its rotten auras, I am beginning to feel the color again."`
+			`	Runa pulls up the map and scans it for a moment.  "We can't go to an active mine, but... here." She points to location only a dozen kilometers away. "Looks like this one has been tapped out for some time. Shouldn't be anything there but hole."`
 			`	She leans over and inputs the coordinates. "Let's go seem some glorious dirt!"`
 			label letsgo
 			choice
@@ -7377,7 +7378,7 @@ mission "Hroar's Haulers Gunhilda 2"
 				goto themine
 
 			label skadevanche
-			`	She perks up, "Wait what happened to you?"`
+			`	She perks up. "Wait what happened to you?"`
 			choice
 				`	(Tell her about the ordeal on Nifel.)`
 					goto skadetale
@@ -7391,10 +7392,10 @@ mission "Hroar's Haulers Gunhilda 2"
 
 			label themine
 			`	The rugged and unforigiving wasteland streches on as far as the eye can see. Yet your Quarg vehicle effortlessly plows through the desolate and uninviting terrain. It's certainly a significant upgrade over Nifel's Ice-Crawler.`
-			`	Gradually the landscape changes, the large black boulders get smaller and then disappear all together. The ground becomes first level and then begins slant at an increasing incline.`
+			`	Gradually the landscape changes, the large black boulders get smaller and then disappear all together. The ground becomes first level and then begins to slant at an increasing incline.`
 			`	"By the stones." Gunhilda whispers, "Are you seeing this?"`
 			`	The even ground suddenly turns to swiss cheese beneath your treads. Somehow the Quarg engineering compenstates for it, and you drive over an endless expanse of holes, most of which are barely wide enough to fit your forearm into it.`
-			`	With more than a kilometer to go to your destination, the terrain comes to an abrupt halt at a sheer cliff. You stop the vehicle just a few meters from the ledge. Runa is already donning her EV Suit.`
+			`	With more than a kilometer to go to your destination, the terrain comes to an abrupt halt at a sheer cliff. The vehicle stops just a few meters from the ledge. Runa is already donning her EV Suit.`
 			choice
 				`	(Stay inside.)`
 					goto stayinside
@@ -7414,7 +7415,7 @@ mission "Hroar's Haulers Gunhilda 2"
 			`	The badlands of Forpelog have failed to even scratch the Quarg buggy. It looks as pristine as it did when you picked it up.`
 				goto nowwhat
 			label holetime
-			`	You kneel down and peer into one the countless holes. At a glance they all appear to be uniform. Roughly 30 centimeters across. You illuminate the nearest hole using the light on your EV suit, but you can't see the bottom. They're deep. On closer inspection you see regular striations along the sides of the hole. Like a long pole or tube slid down them.`
+			`	You kneel down and peer into one of the countless holes. At a glance they all appear to be uniform. Roughly 30 centimeters across. You illuminate the nearest hole using the light on your EV suit, but you can't see the bottom. They're deep. On closer inspection you see regular striations along the sides of the hole. Like a long pole or tube slid down them.`
 			choice
 				`	(Join Runa on the ledge.)`
 					goto ledge
@@ -7425,34 +7426,34 @@ mission "Hroar's Haulers Gunhilda 2"
 			label ledge
 			`	Despite having suffered some errosion, the cliff edge is still remarkably smooth. As you approach the ledge you realize you're standing on the rim of an enormous perfectly sculpted bowl. The bowl's floor, which must be at least kilometer down, is riddled with massive holes, making the whole thing appear bizarelly polka dotted.`
 			`	"They mine like they build." Runa's voice filters into your suit, "Monumentally."`
-			`	She reaches out her hand and indicates the smaller holes all around you, "Did you see the automated cargo tubes on Lagrange? Like greedy vines trying to suck the life out of our ships. I think a burrowing version of that is what made these."`
-			`	Runa's arm shifts and she points now to the giant crater sized openings at the base of the great bowl, "But those... imagine how large the vines, the robotic serpents, must have been to dig those. They could swallow entire city ships with ease."`
-			`	For long moments she is quiet, until she peels herself away from the ledge and turns back toward you, "Mining is messy, destructive work. That's the truth. But just because it's ugly doesn't mean there's not character there too. But here it feels different. There's not...life? I don't know... it's hard to put what I am feeling into words. It's just this place, this place doesn't feel like a mine. It feel's like a tomb. Like a... sterile operating table. Like...like... nothing."`
-			`	You hear her breathing, "Let's go. I am done here."`
+			`	She reaches out her hand and indicates the smaller holes all around you. "Did you see the automated cargo tubes on Lagrange? Like greedy vines trying to suck the life out of our ships. I think a burrowing version of that is what made these."`
+			`	Runa's arm shifts and she points now to the giant crater sized openings at the base of the great bowl. "But those... imagine how large the vines, the robotic serpents, must have been to dig those. They could swallow entire city ships with ease."`
+			`	For long moments she is quiet, until she peels herself away from the ledge and turns back toward you. "Mining is messy, destructive work. That's the truth. But just because it's ugly doesn't mean there's not character there too. But here it feels different. There's not...life? I don't know... it's-it's just this place, this place doesn't feel like a mine. It feel's like a tomb. Like a... sterile operating table. Like...like... nothing."`
+			`	You hear her breathing. "Let's go. I am done here."`
 			choice
 				`	"Where to next?"`
 					goto wherenext
 				`	"Like, done done?"`
-			`	She laughs, "No. If I let a few clouds and dark souls stop me, I never would have gotten anywhere. You know that better than most, royal dreamer. I won't let this world and it's sterile gods put an end to my journey. There might be music yet, beyond the next bend. So, instead, take me to <destination>."`
-			`	Runa pushes past you and climbs back in the vehicle. You follow after you, and before long you're both on your way back to your ship, and the stars above.`
+			`	She laughs. "No. If I let a few clouds and dark souls stop me, I never would have gotten anywhere. You know that better than most, royal dreamer. I won't let this world and it's sterile gods put an end to my journey. There might be music yet, beyond the next bend. So, instead, take me to <destination>."`
+			`	Runa pushes past you and climbs back aboard the vehicle. You follow after her, and before long you're both on your way back to your ship, and the stars above.`
 				accept
 			
 			label wherenext
-			`	"<destination>. Maybe there is music there, or rainbows, or glittering mines into the depths of once still moon. Who knows, but surely it'll be better than this place."`
-			`	Runa pushes past you and climbs back in the vehicle. You follow after you, and before long you're both on your way back to your ship, and the stars above.`
+			`	"<destination>. Maybe there is music there, or rainbows, or glittering mines into the depths of a once still moon. Who knows, but surely it'll be better than this place."`
+			`	Runa pushes past you and climbs back aboard the vehicle. You follow after her, and before long you're both on your way back to your ship, and the stars above.`
 				accept
 
 			label stayinside
 			`	You watch Runa step to the very edge of the cliff, and then stand there, unmoving, for the better part of half an hour. Eventually, she peels herself away from the ledge and returns to the vehicle with you.`
 			`	"Mining is messy, destructive work. That's the truth. But just because it's ugly doesn't mean there's not character there too. But here it feels different. There's not...life? I don't know... it's hard to put what I am feeling into words. It's just this place, this place doesn't feel like a mine. It feel's like a tomb. Like a... sterile operating table. Like...like... nothing."`
-			`	"None of it what I expected," she continues, " The black-souled Quarg, the dark impossible flora, and now the mine that feels like the afterthought of a sterile god. But I am not ready to be done either. Maybe we'll find that music we're missing on the next moon.`
-			`	She alters the Quarg vehicle's navigation and tells it to return both of you to the <ship>, "Next stop <destination>."`
+			`	"None of it what I expected," she continues, "The black-souled Quarg, the dark impossible flora, and now the mine that feels like the afterthought of a sterile god. But I am not ready to be done either. Maybe the next moon will sing.`
+			`	She alters the Quarg vehicle's navigation and tells it to return both of you to the <ship>. "Next stop <destination>."`
 				accept
 
 	on complete
 		conversation
-			`	Unlike Forpelog, Grakhod is entirely terraformed. There's no lush doom for a world's denziens to huddle beneath. Yet, there is no sprawling settlements here either, instead the Quarg, adapted to their low gravity, prefer to build tall. Impossible skycrapers and teetering towers bunch together surrounded by alien walled gardens.`
-			`	Also, unlike Forpelog, there are a few humans here. Some of them gracefully bound across the terrtain, as naturally as you would walk on a 1g world, while others awkwardly flonder from uneven step to the next. Likely the difference between those who make this moon their home, and those, like you, who are just stopping by. Thankfully, all your traveling has given you some experience in light gravity, and you are able to carry yourself with some dignity. Runa, however, takes to it like a fish in water, and you struggle to keep up with her elegant strides.`
+			`	Unlike Forpelog, Grakhod is entirely terraformed. There's no lush dome for a world's denziens to huddle beneath. Yet, there is no sprawling settlements here either, instead the Quarg, adapted to their low gravity, prefer to build tall. Impossible skycrapers and teetering towers bunch together surrounded by alien walled gardens.`
+			`	Also, unlike Forpelog, there are a few humans here. Some of them gracefully bound across the terrain, as naturally as you would walk on a 1g world, while others awkwardly flounder from uneven step to the next. Likely the difference between those who make this moon their home, and those, like you, who are just stopping by. Thankfully, all your traveling has given you some experience in light gravity, and you are able to carry yourself with a little dignity. Runa, however, takes to it like a fish in water, and you struggle to keep up with her elegant strides.`
 			`	"Let's go to the spaceport!" She calls back to you.`
 
 mission "Hroar's Haulers Gunhilda 3"
@@ -7465,8 +7466,8 @@ mission "Hroar's Haulers Gunhilda 3"
 		has "Hroar's Haulers Gunhilda 2: done"
 	on offer
 		conversation
-			`	You're able to find a human information kiosk, likely set up to avoid human tourists and captains from bombarding the Quarg with questions. Unfortunately, you're informed mutiple times that mining sites are off limits to human tourists for safety reason. Instead, numerous outreach and education media are recommended.`
-			`	Runa sighs loudly, "That's disappointing. I've half a mind to convince you to sneak us to one of their mines."`
+			`	You're able to find a human information kiosk, likely set up to avoid human tourists and captains from bombarding the Quarg with questions. Unfortunately, you're informed mutiple times that mining sites are off limits to human tourists for safety reason. Instead, numerous educational media programs are recommended.`
+			`	Runa sighs loudly, "That's disappointing. I've half a mind to convince you to sneak us onto one of their mines."`
 			`	She looks as you quizzically, as though testing the waters.`
 		choice
 			`	"We can still watch one of these educational projections about the mines here. That's something."`
@@ -7476,7 +7477,7 @@ mission "Hroar's Haulers Gunhilda 3"
 			`	"We could always take a wrong turn while exploring the moon."`
 				goto sneakydrive
 			`	"Sorry. Looks like a deadend. Where next?"`
-		`	Runa almost looks dispondent, "I guess thats fair." She glances around quickly, "There is a kind of music here though, in the colors, maybe... maybe I'll come back some time. On my own."`
+		`	Runa looks dispondent. "I guess thats fair." She glances around quickly. "There is a kind of music here though, in the colors, maybe... maybe I'll come back some time. On my own."`
 		`	"But let's go to Humanika. We end where we began. Like all things."`
 			accept
 
@@ -7487,20 +7488,20 @@ mission "Hroar's Haulers Gunhilda 3"
 		`	"...and that is why it's important to always to wash your footwear thouroughly..."`
 		`	"Finally," Runa says as the projection shows a recording of an actual mining operation.`
 		`	"Through careful husbandry of the ecosystem and the mining sites, the Quarg engineers peel and replace layers of the moon's surface, without distrupting the life cycles of the vibrant flora and fauna that inhabit Grokhord. Including humans!"`
-		`	The scene than shifts to images of the lofty towers bunched towers, "Which is why Grakhord is a haven to human and Quarg alike. Thank you for watching, and remember to keep your footwear clean!"`
-		`	Runa shrugs, "Well, I guess that was something." She glances around quickly, "There is a kind of music here though, in the colors, maybe... maybe I'll come back some time. On my own."`
+		`	The scene than shifts to images of the lofty towers. "Which is why Grakhord is a haven to human and Quarg alike. Thank you for watching, and remember to keep your footwear clean!"`
+		`	Runa shrugs. "Well, I guess that was something." She glances around quickly, "There is a kind of music here though, in the colors, maybe... maybe I'll come back some time. On my own."`
 		`	"But let's go to Humanika. We end where we began. Like all things."`
 			accept
 
 		label sneakyship
 		action
 			set "minewatchers"
-		`	Runa perks up, "Oh, yes. A marvelous idea, a golden idea, even. Let's do it."`
-		`	The two of you return quickly to your ship, and you prepare to launch and then land you ship back on Grokhand, but this time at an eccentric angle.`
+		`	Runa perks up. "Oh, yes. A marvelous idea, a golden idea, even. Let's do it."`
+		`	The two of you return to your ship, and you prepare to launch and then land back on Grokhand, but this time at an eccentric angle.`
 			launch
 
 		label sneakydrive
-		`	Runa gives you a mischevious grin, "Oh, <first>, I never thought you'd offer to take me on a spendid tour of this rainbow world. Let's go!"`
+		`	Runa gives you a mischevious grin. "Oh, <first>, I never thought you'd offer to take me on a spendid tour of this rainbow world. Let's go!"`
 		`	You rent a vehicle and have it take you to location just outside the nearest mine. You then tell it to turn down a restricted road, and it refuses.`
 		choice
 			`	(Attempt to hack the operating system.)`
@@ -7508,22 +7509,22 @@ mission "Hroar's Haulers Gunhilda 3"
 			`	(Try to take manual control.)`
 				goto manual
 			`	(Give up.)`
-		`	Runa sighs, "I appreciate you trying. I suppose our next stop, and our last stop, is Humanika."`
+		`	Runa sighs. "I appreciate you trying. I suppose our next stop, and our last stop, is Humanika."`
 		`	You turn the vehicle around and head back to your ship.`
 			accept
 
 		label manual
 		`	You endeavor to override the automatic controls, but quickly find yourself locked out of the operating system entirely.`
-		`	"We apologize for the inconvience," a soothing voice buzz through the speaekers, "For your safety, this vehicle will be returning for maintance. Please stand by."`
-		`	Sudden everything lurches to the side as the vehicle turns around and heads back the way you came. Upon returning you learn that you've been locked out of renting anymore at this time.`
-		`	Runa just laughs, "It's fine. I appreciate the effort. Probably a little silly of us to imagine we could outsmart the Quarg like that. We gave it a try, and that'll have to be good enough for now."`
-		`	She starts walking toward your ship, "Come on. Let's get to Humanika. We can end where we began. Like most things."`
+		`	"We apologize for the inconvience," a soothing voice buzzes through the speaekers, "For your safety, this vehicle will be returning for maintenance. Please stand by."`
+		`	Suddenly everything lurches to the side as the vehicle turns around and heads back the way you came. Upon returning you learn that you've been locked out of renting anymore vehicles at this time.`
+		`	Runa just laughs. "It's fine. I appreciate the effort. Probably a little silly of us to imagine we could outsmart the Quarg like that. We gave it a try, and that'll have to be good enough for now."`
+		`	She starts walking toward your ship. "Come on. Let's get to Humanika. We can end where we began. Like most things."`
 			accept
 	on complete
 		conversation
-			`	The Quarg tower on Humanika easily swallows up your ship. Runa is waiting by your hatch.`
-			`	"Thanks, <first>. I realize playing tourist to some old mines probably isn't exactly exciting for someone like you. But I appreciate your company all the same, and I had a wonderful time."`
-			`	She opens the hatch and pauses to look back, "I'll see you on Wayfarer, royal dreamer."`
+			`	The Quarg tower on Humanika easily swallows up your ship. Runa is waiting by the exit.`
+			`	"Thanks, <first>. I realize playing tourist to some old mines probably isn't exactly exciting for someone like you. But I appreciate the hues of your company all the same, and I had a wonderful time."`
+			`	She opens the hatch and pauses to look back. "I'll see you on Wayfarer, royal dreamer."`
 			`	A moment later she is gone.`
 
 	to complete
@@ -7537,25 +7538,26 @@ mission "Hroar's Haulers Gunhilda secret"
 	to offer
 		has "minewatchers"
 	on offer
+		clear "minewatchers"
 		conversation
-		`	As you bring your ship down into the alien moon's atmosphere, you make it look like one of your thrusters suffers a malfunction, which forces your ship to come in lower and at a incline than any normal approach would allow. Your ship's computer alerts you to passive repsulor buoys set up to keep out of control ships, or unwanted ships, from divating from the perscripted flight path. You're forced to carefully weave around the buoy's anti-gravity safety nets, while still making it look as though your ship is suffereing from a malfunction. It is no easy task.`
+		`	As you bring your ship down into the alien moon's atmosphere, you make it look like one of your thrusters suffers a malfunction, which forces your ship to come in lower and at a greater incline than any normal approach would allow. Your ship's computer alerts you to passive repsulor buoys set up to keep out of control ships, or unwanted ships, from divating from the perscripted flight path. You're forced to carefully weave around the buoy's anti-gravity safety nets, while still making it look as though your ship is suffereing from a malfunction. It is no easy task.`
 		`	You recieve a message from the Grakhord spaceport asking if you need assistance.`
 		choice
 			`	"Negative. I have it under control."`
 				goto undercontrol
 			`	"Yes. Please send help."`
 			`	(Say nothing.)`
-		`	Quarg rescue vessels launch toward you, and powerful tractor beams latch onto the <ship>. They steer you away from the course you had plotted, and help you land gently at the spaceport.`
-		`	Unfortunately, they reached you before you had a chance to fly over the mine. Your chance to get a good look at their operation lost.`
-		`	It takes a few hours before you can convince the authorities that they do not need to check your ship for repairs, and that you have solved the rare unaccounted for problem that caused your thrust to fail.`
-		`	"You sure know how to show a girl a good time!" Runa laughs, after everyone else has left, "Don't feel too bad about not getting the pictures. I got to see you in action, and your soul lit up like a kaleidoscope. It was incredible. You have shades in you that I've never seen before. That was worth more than any mine."`
-		`	"Now, let's get back to Humanika before anyone more officials come snooping around."`
+		`	Quarg rescue vessels launch toward you, their powerful tractor beams latching onto the <ship>. They steer you away from the course you had plotted, and help you land gently at the spaceport.`
+		`	Unfortunately, they reached you before you had a chance to fly over the mine. Your chance to get a good look at their operation is lost.`
+		`	It takes a few hours before you can convince the authorities that they do not need to check your ship for repairs, and that you have solved the rare unaccounted for problem that caused your thruster to fail.`
+		`	"You sure know how to show a girl a good time!" Runa laughs, after everyone else has left. "Don't feel too bad about not getting the pictures. I got to see you in action, and your soul lit up like a kaleidoscope. It was incredible. You have shades in you that I've never seen before. That was worth more than any mine."`
+		`	"Now, let's get back to Humanika before more officials come snooping around."`
 			accept
 
 		label undercontrol
 		`	The Grakhord authorities are less than convinced. A few moments later Quarg rescue vessels launch toward you, their powerful tractor beams latching onto the <ship>, and steering your toward the moon's main spaceport. Gently they set you down.`
-		`	The next few hours are taken up by various inquests about the state of your ship, the sort of malfunction you had, and any damage you sustained. Eventually you're able they either buy your story about the malfunction, or give up on hounding you about it, and you're finally left alone with Runa.`
-		`	She pulls open a file that she smuggled off your systems before the officials arrived and puts it on screen, "We got it!" She says triumphantly. "You were amazing, by the way, just seeing you in action, your whole soul lit up like an iridescent kaleidoscope. It was incredible. You have shades in you that I've never seen before."`
+		`	The next few hours are taken up by various inquests about the state of your ship, the sort of malfunction you had, and any damage you sustained. Eventually, they either buy your story about the malfunction, or give up on hounding you about it, and you're finally left alone with Runa.`
+		`	She pulls open a file that she smuggled off your systems before the officials arrived and puts it on screen. "We got it!" She says triumphantly. "You were amazing, by the way, just seeing you in action, your whole soul lit up like an iridescent kaleidoscope. It was incredible. You have shades in you that I've never seen before."`
 		`	The screen loads a series of images, videos and other readings; you see a huge bore hole, 30 kilometers across, covered in smaller holes that must run deeper into the moon.`
 		choice
 			`	"See anything?"`
@@ -7567,17 +7569,15 @@ mission "Hroar's Haulers Gunhilda secret"
 			`	(Laugh.)`
 				goto laugh
 			`	(Say nothing.)`
-		`	She shurgs, "I thought it was funny."`
+		`	She shurgs. "I thought it was funny."`
 			goto next
 
 		label laugh
 		`	She rewards you with a quick smile.`
 		label next
-		action
-			clear "minewatchers"
-		`	"But what I was really hoping for was a chance get inside one of their mines. To let feel the heavy hues of its history thick around me. You, however, your cacaphony of colors, that was the real show."`
-		`	Runa closes out the display, and turns to face you, "The red in you, the little spec I saw back on Maker, it's grown. But you're also so much more than that small piece of the Haulers. A royal dreamer, like you, is the kind of person who changes the universe."`
-		`	She goes quiet for a few moments and then says abruptly, "Now, let's go back to Humanika. To where we began this joruney, and finish it!"`
+		`	"But what I was really hoping for was a chance get inside one of their mines. To feel the heavy hues of its history thick around me. You, however, your cacaphony of colors, that was the real show."`
+		`	Runa closes out the display, and turns to face you. "The red in you, the little spec I saw back on Maker, it's grown. But you're also so much more than that small piece of the Haulers. A royal dreamer, like you, is the kind of person who changes the universe."`
+		`	She goes quiet for a few moments and then says abruptly. "Now, let's go back to Humanika. To where we began this joruney, and finish it!"`
 			decline
 
 mission "Hroar's Haulers Gunhilda secret 2"
@@ -7592,7 +7592,7 @@ mission "Hroar's Haulers Gunhilda secret 2"
 			decline
 
 mission "Hroar's Haulers Unferth"
-	name "The Final Blush"
+	name "The Last Blush"
 	source "Humanika"
 	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
 	destination "Gardena Station"
@@ -7604,12 +7604,12 @@ mission "Hroar's Haulers Unferth"
 	on offer
 		conversation
 		`As you work your way through Humanika's sparsely populated spaceport, you can't help but notice that there is something almost diffuse about the natives here. As though the hard lines of huamnity had began to bleed into the very alien architecture that they inhabit. They seem quieter, more demure, less bright, flashy and boisterous than the humanity you're familiar with. Against this backdrop of pastel human echoes, it's easy to spot the animated Solvi. His weathered rust-brown jacket and proud captain's hat, his over expressive face, and open, friendly demeanor are all at sharp odds with the inherent meekness of the spaceport's regulars.`
-			`	"<first>." He says as he walks up to you and claps your hand, "I knew you'd be come."`
+			`	"<first>." He says as he walks up to you and claps your hand, "I knew you'd come."`
 		choice
 			`	"Good to see you, Solvi."`
 			`	"Of course I'd come!"`
 			`	(Say nothing.)`
-		`	"I am sure you heard by now that ol' Yngvar gave us a week or so of convalescence." He leans in a little closer to you, "Now, I don't like speaking poorly of decent folk, but I am not looking forward to spending a week or more in the shadow of the Quarg."`
+		`	"I am sure you heard by now that ol' Yngvar gave us a week or so of convalescence." He leans in a little closer to you. "Now, I don't like speaking poorly of decent folk, but I am not looking forward to spending a week or more in the shadow of the Quarg."`
 		`	"Something's off about the natvies here," he says quietly," like they lost their fire, or somesuch."`
 		`	"So," he says brightly, after straightening up, "I figured this was a perfect chance to pay my respects at The Last Blush. And was hankering for some good company, and... maybe a ride."`
 		label Sovischoice
@@ -7621,35 +7621,35 @@ mission "Hroar's Haulers Unferth"
 					not "Solvship"
 				goto ship
 			`	"The Last Blush?"`
-		`	"As you know, we haulers trace our beginnings back to the caravan era. In those dark days 'fore the Republic, when travel 'tween stars took weeks, and the Gap was rife with danger; the Long Haul was only possible via one perilous route. The Blyskan way. It was made up of four waystations, which they called Blushes. First Blush, Second Blush, Third Blush and Final Blush."`
-		`	Solvi drew his index finger through the air, as though he was carving out a map, "We don't take that route anymore, just no sense to it, but some of those old waystations remain, and for us spacers they are kinda like, well, shrines I s'pose."`
-		`	He drops his hand and his attention focusing back on you, "Final Blush ain't too far from here, and I'd like to pay my respects. Be good for you too. Being as this is part of your culture now and all that."`
-		`	He slaps you on the back, "I mean, you just made it to Lagrange on your first Long Haul. That's 'bout as authentic as it gets. Leastwise in my book."`
+		`	"As you know, we Haulers trace our beginnings back to the caravan era. In those dark days 'fore the Republic, when travel 'tween stars took weeks, and the Gap was rife with danger; the Long Haul was only possible via one perilous route. The Blyskan way. It was made up of four waystations, which they called Blushes. First Blush, Second Blush, Third Blush and Last Blush."`
+		`	Solvi drew his index finger through the air, as though he was carving out a map. "We don't take that route anymore, just no sense to it, but some of those old waystations remain, and for us spacers they are kinda like, well, shrines I s'pose."`
+		`	He drops his hand. "Last Blush ain't too far from here, and I'd like to pay my respects. Be good for you too. Being as this is part of your culture now and all that."`
+		`	He grins. "I mean, you just made it to Lagrange on your first Long Haul. That's 'bout as authentic as it gets. Leastwise in my book."`
 		choice
 			`	"Alright. I'll take you."`
 				goto takeyou
 			`	"No. I got my own plans."`
-		`	The young space frowns. "S'pose you're busy Captain and all that. Still, us haulres oughta be sticking together."`
-		`	He takes a step back from you, "Take care, <last>. Mayhaps I'll be seein' ya on Wayfarer."`
+		`	The young spacer frowns. "S'pose you're busy aaptain and all that. Still, us Haulers oughta be sticking together."`
+		`	He takes a step back from you. "Take care, <last>. Mayhaps I'll be seein' ya on Wayfarer."`
 		`	Solvi leaves you alone in Humanika's strange spaceport and with it's stranger inhabitants.`
 			decline
 
 		label takeyou
-		`	"Now that's what I like to hear. Haulers stickin' together and going on adventures and the like." He gives you an approving nod, "I've also got a one ton pallet of supplies, a sort of offering, if ya will. I'll have it loaded up on your ship."`
-		`	"As for where we're headed, well, the official name of the Final Blush is <destination>, and you'll find it in the <system> system." He pauses," Now, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own ship and fleet."`
+		`	"Now that's what I like to hear. Haulers stickin' together and going on adventures and the like." He gives you an approving nod. "I've also got a one ton pallet of supplies, a sort of offering, if ya will. I'll have it loaded up on your ship."`
+		`	"As for where we're headed, well, the official name of the Last Blush is <destination>, and you'll find it in the <system> system." He pauses." Now, uh, how 'bouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own convoy."`
 			accept
 
 		label sure
-			`	"Ah, now that's what I like aboutchya." Solvi favors you with a wide smile, "Jump first, ask questions later."`
-			`	His grin turns a little sheepish, "I've also got a one ton pallet of supplies, a sort of offering, if ya will. I'll have it loaded up on your ship. You'll hardly notice it"`
-			`	"As for where we're headed; a Blush is what the Carvaneers used to call their waystations, and the Last Blush, well, that was the last one of 'em 'fore gettin' to Lagrange. Obviously, we ain't using them anymore, haven't in centuries, but they are kinda like shrines to us spacers. 'Course you wouldn't be finding Last Blush on any map, no, but you would be finding <destination> in the <system> system. Ya, know, Tomotato-Potato, as the Earthers say."`
-			`	"So, uh, how abouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own ship and fleet."`
+			`	"Ah, now that's what I like aboutchya." Solvi favors you with a wide smile. "Jump first, ask questions later."`
+			`	His grin turns a little sheepish. "I've also got a one ton pallet of supplies, a sort of offering, if ya will. I'll have it loaded up on your ship. You'll hardly notice it"`
+			`	"As for where we're headed; a Blush is what the Carvaneers used to call their waystations, and the Last Blush, well, that was the last one of 'em 'fore gettin' to Lagrange. Obviously, we ain't using 'em anymore, haven't in centuries, but they are kinda like shrines to us spacers. 'Course you wouldn't be finding Last Blush on any map, no, but you would be finding <destination> in the <system> system. Ya, know, Tomotato-Potato, as the Earthers say."`
+			`	"So, uh, how 'bouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own convoy."`
 			accept
 		
 		label ship
 		action
 			set "Solviship"
-		`	"Well, you heard Yngvar, didn't ya? The fleets due for a refit and, well, my ship's a part of that fleet. My crew is taking her back to Wayfarer right now. Now, I could find a ride, alright, so I am not stranded or nothing. Traveling with strangers is fine, but I'd much rather travel with a friend. And then there you were." He gives you a wink.`
+		`	"Well, you heard Yngvar, didn't ya? The fleets due for a refit and, well, my ship's a part of that fleet. My crew is taking her back to Wayfarer right now. I guess I could find a ride, alright, so I am not stranded or nothing. Traveling with strangers is fine, but I'd much rather travel with a friend. And then there you were." He gives you a wink.`
 		`	"So, whatdya say? Ya willing to give a fella a ride to the historic Last Blush?"`
 			goto Sovischoice
 
@@ -7662,7 +7662,7 @@ mission "Hroar's Haulers Unferth"
 			`	"Come on," he says without looking back, "it's this way."`
 
 mission "Hroar's Haulers Unferth 2"
-	name "The Final Blush"
+	name "The Last Blush"
 	source "Gardena Station"
 	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
 	destination "Wayfarer"
@@ -7674,7 +7674,7 @@ mission "Hroar's Haulers Unferth 2"
 			`You hurdle a few rusty railings, climb over an upturned bench, and slide around a large puddle of industrial mystery waste, before approaching a large heavily reinforced blast door that appears to have rusted into the station's walls.`
 			scene "scene/darktunnel"
 			`	In the uneven light of the abandoned station a stray beam catches Solvi's face and his eyes glitter in the dark.`
-			`	"This way." he says, as he stands before the immobile rustbound hatch.`
+			`	"This way," he says, as he stands before the immobile rustbound hatch.`
 			choice
 				`	"Have you been here before?"`
 					goto beenhere
@@ -7682,7 +7682,7 @@ mission "Hroar's Haulers Unferth 2"
 				`	"How do you expect to open that?"`
 				`	(Say nothing.)`
 			label grope
-			`	Solvi gropes around the wall for several moments before finding a water-damaged panel. He presses it into structure, and what little lights there are, suddenly go dark.`
+			`	Solvi gropes around the wall for several moments before finding a water-damaged panel. He presses it, and what little lights there are, suddenly go dark.`
 			`	The feral, claustrophobic total darkness of the station seems to tighten around you. Instinctively you reach for your gear, but there's something about the dark that makes you think, impossibly, that no light could pierce this void.`
 			choice
 				`	"Solvi?"`
@@ -7696,13 +7696,13 @@ mission "Hroar's Haulers Unferth 2"
 			`	We close our eyes,`
 			`	forsake our souls`
 			`	into the Gap`
-			`	and where it goes`
+			`	and where it goes.`
 			``
 			`	There is a long silence, as the last echoes of Solvi's words fade away into the forgotten station.`
-			`	Then a single clang can be heard behind the door,this is followed by a loud mechanical whirring noise, and blastdoor begins to creek.`
-			`	Light spills into the growing back as the huge door swings open before you. As your eyes struggle to adjust you make out black shape in the midst of the doorway.`
+			`	Then a single clang booms behind the door, followed by a loud mechanical whirring noise, and the blastdoor begins to creek open.`
+			`	Light spills into darkness as the huge door swings open. As your eyes struggle to adjust you make out an uneven silhouette in the center of the doorway.`
 			`	"Dinnae fert the gloam, caravaner, fur yer in the Bloosh, noo." An old husky voice says, "Come inside, wull ye?"`
-			`	Solvi steps into the light, and turns back to face you, "This way, <first>."`
+			`	Solvi steps into the light, and turns back to face you. "This way, <first>."`
 			choice
 				`	(Follow Solvi.)`
 					goto follow
@@ -7713,17 +7713,17 @@ mission "Hroar's Haulers Unferth 2"
 			action
 				set "werefert"
 			`	Although your eyes haven't fully adjusted, you can still make out Solvi's frown. "I...I understand. I won't be long. Wait for me."`
-			`	He pushes into the light, and a moment later the door slams shut. The dim flickering lights of the station turn back on, and your return to your ship.`
-			`	A few hours later Solvi shows up. He seems a little withdrawn and all he says is, "Drop me off at Wayfarer, please."`
+			`	He pushes into the light, and a moment later the door slams shut. The dim flickering lights of the station turn back on, and you find your way back to your ship.`
+			`	A few hours later Solvi shows up. He seems withdrawn and all he says is, "Drop me off at Wayfarer, please."`
 				accept
 
 			label beenhere
-			`	Solvi pauses, and turns to look at you, "Not exactly, no. I was given trustworthy directions from an old spacer who used to come here with Hel-Hrut. He wouldn't lead me wrong. Just follow my lead."`
+			`	Solvi pauses, and turns to look at you. "Not exactly, no. I was given trustworthy directions from an old spacer who used to come here with Hel-Hrut. He wouldn't lead me wrong. Just follow my lead."`
 			`	He turns back to face the hatch.`
 				goto grope
 
 			label whatisthis
-			`	Solvi pauses in the light, "The Blush, the shrine I toldja about, remember? The folks that maintain it are little odd, I'll give ya that, but I've heard they're good folk. Think of it like a monastery. Trust me, nothing untoward will happen to ya in there. I gotchyer back."`
+			`	Solvi pauses in the light. "The Blush, the shrine I toldja about, remember? The folks that maintain it are little odd, I'll give ya that, but I've heard they're good folk. Think of it like a monastery. Trust me, nothing untoward will happen to ya in there. I gotchyer back."`
 			choice
 				`	"Alright, I trust you." (Follow Solvi.)`
 					goto follow
@@ -7732,16 +7732,16 @@ mission "Hroar's Haulers Unferth 2"
 			
 			label follow
 			`	It's like you've been transported to a completely different station. The corridors are well lit and clean, if heavily worn, and the machines all appear to be mostly functional. Happy children race past you as your elderly guide leads you deeper into the station.`
-			`	The old man is dressed in what looks like a handstitched facsimile of an ancient station uniform, "No mony caravan fowk come here noodays," he says to Solvi midstride, "Ye fae Muspel, richt? Rid-born hauler?"`
-			`	"Uh, yes Blush-Gutcher," Solvi indicates toward his red-brown jacket. "We're Haulers, from the red of Muspel. I reckon we're the only sort that stop by anymore."`
-			`	"A few stane fowk find there way here fae time tae time." He says as stops in front of a large smooth black door, "Here wi are, laddie. Tak yer time."`
+			`	The old man is dressed in what looks like a handstitched facsimile of an ancient station uniform. "No mony caravan fowk come here noodays," he says to Solvi midstride, "Ye fae Muspel, richt? Reid-born Hauler?"`
+			`	"Uh, yes Blush-Gutcher." Solvi indicates toward his red-brown jacket. "We're Haulers, from the red of Muspel. I reckon we're the only sort that stop by anymore."`
+			`	"A few stane fowk find there way here fae time tae time." He says as he stops in front of a large smooth black door, "Here wi are, laddie. Tak yer time."`
 			`	Solvi opens the door, and waits for you to enter.`
 			choice
 				`	(Step inside.)`
 					goto inside
 				`	"This far enough for me. I'll just wait here."`
-			`	Solvi shrugs, "I'll only be a minute." And enters the room.`
-			`	The old man turns to look at you, his face heavy with deep wrinkles, "Ma neem is Goraid, Bloosh-Gutcher ae this here Bloosh. Are ye ane ae Hel-Hrut's caravaners too?"`
+			`	Solvi shrugs. "I'll only be a minute." And enters the room.`
+			`	The old man turns to look at you, his face heavy with deep wrinkles. "Ma neem is Goraid, Bloosh-Gutcher ae this here Bloosh. Are ye ane ae Hel-Hrut's caravaners too?"`
 			choice
 				`	"I am a Hauler for Hroar, not Hel-Hrut."`
 					goto nothrut
@@ -7750,26 +7750,26 @@ mission "Hroar's Haulers Unferth 2"
 				`	"Yes."`
 					goto liar
 				`	(Say nothing.)"`
-			`	The old man narrows his slightly milky eyes at you, "Ye fair puggled, bairn? Or ye tongue tackit?"`
-			`	He sighs loudly, "Wull, tell yer frein fae his gift wi be thankit."`
+			`	The old man narrows his slightly milky eyes at you. "Ye fair puggled, bairn? Or ye tongue tackit?"`
+			`	He sighs loudly. "Wull, tell yer frein fae his gift wi be thankit."`
 			label byedude
 			`	He then turns and leaves you by yourself.`
 				goto hidude
-			`	A few moments later the black door swings over and a solemn looking Solvi steps out.`
+			`	A few moments later the black door swings open and a solemn looking Solvi steps out.`
 			`	"Shoulda come with me, <first>. It's something else in there." he says quietly.`
-			`	He looks around, "That's what we came for, so I guess best we moved on."`
+			`	He looks around. "That's what we came for, so I guess best we moved on."`
 			`	Together you make your way back to your ship.`
 				accept
 
 			label nothrut
-			`	Goraid's face briefly disappears into his wrinkles as he laughs, "O that's richt. Hel-Hrut's wain grawn up. Whaur's the time gae?"`
-			`	"Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+			`	Goraid's face briefly disappears into his wrinkles as he laughs. "O that's richt. Hel-Hrut's wain grawn up. Whaur's the time gae?"`
+			`	"Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly. "O, an' tell yer frein fae his gift wi be thankit."`
 				goto byedude
 
 			label nospeak
 			`	The old man shakes his head, and is about to say something than stops himself.`
 			`	He pauses for a bit and then says slowly, "Tell yer frein fae his gift wi be thankit."`
-			`	He peers closely at you with his milky eyes, searching your face cor comprehension, before sighing and walking away.`
+			`	He peers closely at you with his milky eyes, searching your face for comprehension, before sighing and walking away.`
 				goto hidide
 			
 			label liar
@@ -7780,19 +7780,19 @@ mission "Hroar's Haulers Unferth 2"
 				`	"I don't know a Hel-Hrut. Just Hroar."`
 					goto nothrut
 				`	"I think he's dead."`
-			`	Goraid frowns, and then nods, "Wis supposing that wad the trowth ae the matter.`
-			`	He sighs to himself, and then says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+			`	Goraid frowns, and then nods. "Wis supposing that wad the trowth ae the matter.`
+			`	He sighs to himself, and then says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly. "O, an' tell yer frein fae his gift wi be thankit."`
 				goto byedude
 			
 			label doubleliar
 			`	"Niest time ye be seeing him, tell him that Goraid sez hello, an' that he shoid pey us a veesit. Bin tae lang."`
-			`	 Goraid pauses, and then nods to himself and says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly, "O, an' tell yer frein fae his gift wi be thankit."`
+			`	 Goraid pauses, and then nods to himself and says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly. "O, an' tell yer frein fae his gift wi be thankit."`
 				goto byedude
 
 			label inside
-			`	You enter a spacious round room covered in a sprawling multicolored mosaic. One side of the room's mosaic is mostly made up of dark black tiles, with the darkness puncuated by four resplendent red stars. The four Blushes.`
+			`	You enter a spacious round room covered in a sprawling multicolored mosaic. One side of the room's mosaic is mostly made up of dark black and blue tiles, with the darkness puncuated by four resplendent stars. The four Blushes.`
 			`	The other side of the room is a kaleidoscope of competing colors. It takes a moment for you to see the subtle patterns in the mix of colors and tiles, but slowly you're able to recognize the outlines of ancient ship designs within the cacaphony of color.`
-			`	The floor and the ceiling are both transparent, with the compartent beyond them filled with what looks like small scraps of innumerable ships. A center of the room is a brass column, covered in crude etchings, with a small opening at it's center.`
+			`	The floor and the ceiling are both transparent, with the compartment beyond them filled with what looks like small scraps of innumerable ships. A center of the room is a brass column, covered in crude etchings, with a small opening at it's center.`
 			`	Solvi pulls a small metalic item from his jacket pocket and approaches the brass column.`
 			label mosoptions
 			choice
@@ -7807,14 +7807,14 @@ mission "Hroar's Haulers Unferth 2"
 					to display
 						not "lightmos"
 				`	(Stick to the back of the room and wait for Solvi to finish).`
-			`	He places the metalic item into the brass column and withdraws his hand. The opening snaps shut and the item is shunted upward joining the endless ship fragments above you.`
+			`	He places the metalic item into the brass column and withdraws his hand. The opening snaps shut and the item is shunted upward joining the endless ship fragments above.`
 				goto youwaited
 			label darkmosaic
 			action
 				set "darkmos"
-			`	On closer inspection you realize the individual pieces the mosaic are the fragments of old ships. The black metalic chips that make up the dark sky are made from burnt heat tiles, and the glittering red and orange glass that the red stars are made of are from shattered optical lenses.`
+			`	On closer inspection you realize the individual pieces the mosaic are the fragments of old ships. The black metalic chips that make up the dark sky are made from burnt heat tiles, and the glittering red and orange glass that the glittering stars are made of are from shattered optical lenses.`
 			scene "scene/bloosh"
-			`	Beneath each of the four red stars there is a label written in an irregular script, they read; Furist Blisk, Twoth Blisk, Thrith Blisk, Endly Blisk.`
+			`	Beneath each of the four stars there is a label written in an irregular script, they read; Furist Blisk, Twoth Blisk, Thrith Blisk, Endly Blisk.`
 				goto mosoptions
 
 			label lightmosaic
@@ -7832,9 +7832,9 @@ mission "Hroar's Haulers Unferth 2"
 				goto mosoptions
 
 			label brass
-			`	Solvi holds up the object in his hand for you to see, it looks like a panel from a ship, "My sister's. It's an old spacer custom. We keep a little momento from our first posting, and then inscribe little bits of our story on it.`
-			`	He places it in the brass column and withdraws his hand. The opening snaps shut and the panel is shunted upward joining the endless ship fragments above you.`
-			`	"Pirates got her few months back. My job to bring story here."`
+			`	Solvi holds up the object in his hand for you to see, it looks like a panel from a ship. "My sister's. It's an old spacer custom. We keep a little momento from our first posting, and then inscribe little bits of our story on it.`
+			`	He places it in the brass column and withdraws his hand. The opening snaps shut and the panel is shunted upward joining the endless ship fragments above.`
+			`	"Pirates got her few months back. My job was to bring her story here."`
 			label brassoptions
 			choice
 				`	"Sorry for your loss."`
@@ -7846,7 +7846,7 @@ mission "Hroar's Haulers Unferth 2"
 					to display
 						not "metbolverkat"
 						not "cairnstuff"
-				`	"Wait, all the haulers have someone come here when they die?"`
+				`	"Wait, all the Haulers have someone come here when they die?"`
 					goto whythisplace
 					to display
 						not "whythisplacesolvi"
@@ -7857,16 +7857,16 @@ mission "Hroar's Haulers Unferth 2"
 						not "yngvarstuff"
 				`	"Ready to go?"`
 			label youwaited
-			`	He puts his hand on the brass column, and then looks up at the celing for a long moment before turning to face you, "Yeah I am ready. Let's go."`
-			`	Solvi steps away from the column and heads for the entrance, "Hey, <first>, I am glad you came here with me. It means it a lot not to do this alone."`
+			`	He puts his hand on the brass column, and then looks up at the celing for a long moment before turning to face you. "Yeah I am ready. Let's go."`
+			`	Solvi steps away from the column and heads for the entrance. "Hey, <first>, I am glad you came here with me. That I didn't have to do this alone."`
 			`	He opens the black door and steps back into the station's corridor.`
 			choice
 				`	"It's what friends are for." (Follow him out.)`
 				`	(Say nothing and follow him out.)`
-			`	The elder is gone, but a small boy in a purple cloak is waiting for both of you, "The Gutcher had tae gae. But he tellt me tae tell ye that fae yer gift wi be thankit. That yer walcome here ae time."`
-			`	The boy pushes a wadded up piece of paper in Solvi's hand, then gives you both strange salute, before scampering off down the corridor.`
-			`	Solvi uncrumples the paper and takes a look at it, "Ah now that's interesting. This here is a map to an alterate route out of part of the station. Along with some instructions on how to dock next time. That's downright homely of 'em!"`
-			`	"See, toldja they were decent folk," Solvi beams, as uses the map to lead you both back to your ship.`
+			`	The elder is gone, but a small boy in a purple cloak is waiting for you both. "The Gutcher had tae gae. But he tellt me tae tell ye that fae yer gift wi be thankit. That yer walcome here ae time."`
+			`	The boy pushes a wadded up piece of paper in Solvi's hand, then gives you both a strange salute, before scampering off down the corridor.`
+			`	Solvi uncrumples the paper and takes a look at it. "Ah now that's interesting. This here is a map to an alterate route to this part of the station. Along with some instructions on how to dock next time. That's downright hospitable!"`
+			`	"See, toldja they were decent folk." Solvi beams, as he uses the map to lead you both back to your ship.`
 			`	Once there he stops outside, looking satisfied that the pallet he brought of supplies is gone. "Let's head back to Wayfarer, wouldn't want to be late for last leg of your first Long Haul, would we?"`
 			action
 				clear "sorrysolvi"
@@ -7880,25 +7880,25 @@ mission "Hroar's Haulers Unferth 2"
 			label sorry
 			action
 				set "sorrysolvi"
-			`	He takes a deep breath, "Yeah, me too, <first>. Me too."`
+			`	He takes a deep breath. "Yeah, me too, <first>. Me too."`
 				goto brassoptions
 
 			label cairncustoms
 			action
 				set "cairnstuff"
-			`	"Never thought about it like that. S'pose you've got the right of it though. There's always been a bit stoner in us haulers."`
+			`	"Never thought about it like that. S'pose you've got the right of it though. There's always been a bit of stoner in us Haulers."`
 				goto brassoptions
 
 			label whythisplace
 			action
 				set "whythisplacesolvi"
-			`	Solvi manages to chuckle, "Oh, no, not at all. Only spacers bring relics to the Blush, and we're a small minority of haulers these days. Also, almost no one comes to the Final Blush anymore. The 2nd and 3rd Blush are where most folk go."`
+			`	Solvi manages to chuckle. "Oh, no, not at all. Only spacers bring relics to the Blush, and we're a small minority of Haulers these days. Also, almost no one comes to the Last Blush anymore. The 2nd and 3rd Blush are where most folk go."`
 				goto brassoptions
 
 			label yngvarsaid
 			action
 				set "yngvarstuff"
-			`	Solvi points up at the relics on the otherside of the transparent ceiling, "Most Yngvar's ancestor's stories are up there. This Blush is where is where his family has been going since the First one was lost. He's how I knew the words to get us into this place."`
+			`	Solvi points up at the relics on the otherside of the transparent ceiling. "Most Yngvar's ancestor's stories are up there. This Blush is where his family has been going since the First Blush was lost."`
 				goto brassoptions
 	to complete
 		not "event: lh eight days"
@@ -7926,8 +7926,8 @@ mission "Hroar's Haulers Late"
 			`	Rather then attempt to make things right, you give up.`
 			decline
 			label look
-			`	After making a few inquries you're able to find your way to the small trailer, just outside the spaceport, used as the official landed headquarters of the southern hauler fleet.`
-			`	Inside is a  young woman with a Hroar's Hauler's captain's hat and a very serious gaze.`
+			`	After making a few inquries you're able to find your way to the small trailer, just outside the spaceport, used as the official landed headquarters of the southern Hauler fleet.`
+			`	Inside is a young woman with a Hroar's Hauler's captain's hat and a very serious gaze.`
 			choice
 				`	"Hrodny! I haven't seen you since that trouble on Rand."`
 					goto timhrod
@@ -7936,7 +7936,7 @@ mission "Hroar's Haulers Late"
 				`	"Hello, I was the hirthr for the Long Haul Fleet and seem to have been left behind."`
 					goto hirthr
 				`	"I'm Captain <last>. Where's Yngvar?"`
-			`	She gives you a hard look, "Half way to Muspel, most like. I know who you are, greenhorn, do you always make trauncy your buisness?"`
+			`	She gives you a hard look, "Halfway to Muspel, most like. I know who you are, greenhorn, do you always make trauncy your buisness?"`
 			choice
 				`	"Sorry, I lost track of time."`
 					goto sorry
@@ -7945,32 +7945,32 @@ mission "Hroar's Haulers Late"
 				`	"My business is whatever I want it to be."`
 					goto whateveriwant
 				`	(Say nothing.)`
-			`	"If I was generous woman I'd take your silence as a reflection of your contrition, and not stubborn obstinance." Her glare is withering, "I am is turns out, not a generous woman."`
+			`	"If I was generous woman I'd take your silence as a reflection of your contrition, and not stubborn obstinance." Her glare is withering. "I am is turns out, not a generous woman."`
 			`	"So, <last>, why don't you just go ahead make your kin proud by stringin' a few words together for me. Like telling me if you want to make this right, or if you plumb don't care, huh? Can you do that for me?"`
 				goto doyoucare
 
 			label whateveriwant
-			`	She gives you a feral grin, "So I guess in that case you chose to show up late for the rendezvous with your fleet. Which means you chose to let Yngvar, Hroar, and everyone else who put a lick of faith in you down."`
-			`	Hrodny leans in radiating barely controlled anger,  "Which means you chose to be a useless skitr to all involved. In which case I am supposing it is now my business to tell you to get the Hel outta my office. The Haulers are done with you, ser."`
-			`	Her white teeth bared she points to the door.`
+			`	She gives you a feral grin. "So I guess in that case you choose to show up late for the rendezvous with your fleet. Which means you choose to let Yngvar, Hroar, and everyone else who put a lick of faith in you down."`
+			`	Hrodny leans in radiating barely controlled anger. "Which means you choose to be a useless skitr to all involved. In which case I am supposing it is now my business to tell you to get the Hel outta my office. The Haulers are done with you, ser."`
+			`	With her white teeth bared she points to the door.`
 				decline
 
 			label sorry
-			`	Hrodny leans back in her chair, tension in her easing up, "If there's one thing we Haulers know well, it's that there's no guarantees when travelin' the Gap."`
-			`	The Hauler captain looks you over for a long moment and then nods, to herself, "Listen, Capt'n, if you make for Earth right now, you should be able to catch up with Yngvar and the like."`
-			`	She points to the door, "Hurry, and don't let us down again."`
+			`	Hrodny leans back in her chair, tension in her easing up. "If there's one thing we Haulers know well, it's that there's no guarantees when travelin' the Gap."`
+			`	The Hauler captain looks you over for a long moment and then nods, to herself. "Listen, capt'n, if you make for Earth right now, you should be able to catch up with Yngvar and the like."`
+			`	She points to the door. "Hurry, and don't let us down again."`
 				accept
 
 			label hirthr
-			`	"Damn straight you're the hirthr, and you abandoned your flock." Her eyebrow twitches, "The question is; do you want to make it right? Or do you just not care?"`
+			`	"Damn straight you're the hirthr, and you abandoned your flock." Her eyebrow twitches. "The question is; do you want to make it right? Or do you just not care?"`
 			label doyoucare
 			choice
 				`	"I want to make it right."`
 					goto sorry
 				`	"I don't care."`
-			`	She barks a harsh laugh, "Hroar must be getting soft in his old age. Sending skitr pilots like you to protect our Long Hauls."`
-			`	Hrodny leans over her console and quickly types something, she then looks back up at you, "I've transfered some money to your account. It should cover your expenses and some pay. Us Haulers know how to keep a deal, even when those we work with don't."`
-			`	She points to the door, "Now kindly get the Hel outta here."`
+			`	She barks a harsh laugh. "Hroar must be getting soft in his middle age. Sending skitr pilots like you to protect our Long Hauls."`
+			`	Hrodny leans over her console and quickly types something, she then looks back up at you. "I've transfered some money to your account. It should cover your expenses and some pay. Us Haulers know how to keep a deal, even when those we work with don't."`
+			`	She points to the door. "Now kindly get the Hel outta here."`
 			action
 			payment 375000
 				decline
@@ -7978,7 +7978,7 @@ mission "Hroar's Haulers Late"
 			label timhrod
 			`	"Well, hot damn, when I saw the name of the truant hirthr I thought it musta been a different Capt'n <last>!" she gives you a welcoming smile.`
 			`	"It ain't no good being late like this, 'specially when a Long Haul is dependin' on ya. But seein' as how I owe ya, I'll do what I can for ya"`
-			`	She pulls up a star map on her console display, "There's late, and then there is LATE. Lucky for you, you're just late. If you make a B-line for Earth you should be able to catch up to Yngvar and the rest of the Long Haul. But ya gotta hurry."`
+			`	She pulls up a star map on her console display. "There's late, and then there is LATE. Lucky for you, you're just late. If you make a B-line for Earth you should be able to catch up to Yngvar and the rest of the Long Haul. But ya gotta hurry."`
 				accept
 
 	on complete
