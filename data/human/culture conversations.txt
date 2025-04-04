@@ -1013,6 +1013,14 @@ phrase "racetrack"
 		"Velocity Course"
 		"Hoverloop"
 
+phrase "sunracer opening"
+	word
+		"As you walk through the din of Sunracer's bustling spaceport"
+		"As you wade through the clang and clatter of Sunracer's ever-churning shipyards"
+		"Amidst the city's persisting glitz"
+		"Lost in a maze of hangars and half-built hulls"
+		"Navigating through the organized chaos of Megaparsec shipyards"
+
 phrase "sunracer hovercraft adhook"
 	word
 		"dazzling holographic display"
@@ -1160,7 +1168,7 @@ mission "A Sunracer Hovercraft Racing"
 		"<deep name>" "${deep fighter}"
 	on offer
 		conversation
-			`As you walk through the din of Sunracer's bustling spaceport, a ${sunracer hovercraft adhook}: there's a hovercraft race at the <racename>, just a few hours away by hover rail, or much faster aboard a <model>. ${sunracer hovercraft adcloser}.`
+			`${sunracer opening}, a ${sunracer hovercraft adhook}: there's a hovercraft race at the <racename>, just a few hours away by hover rail, or much faster aboard a <model>. ${sunracer hovercraft adcloser}.`
 			choice
 				`	(Check it out.)`
 				`	(Skip the hovercraft race.)`
