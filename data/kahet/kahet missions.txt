@@ -1746,7 +1746,7 @@ ship "Asteroid Large 1" "Asteroid Large (Patir 12A)"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-mission "Ka'het: Patir Mystery 13A"
+mission "Ka'het: Patir Mystery 13B"
 	landing
 	name "Return to <planet>"
 	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
@@ -1801,7 +1801,7 @@ event "Patir returns"
 	system Patir
 		pos -38 553
 
-mission "Ka'het: Patir Mystery 13B"
+mission "Ka'het: Patir Mystery 13A"
 	name "Return to <planet>"
 	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
 	source "Builder Settlement"
