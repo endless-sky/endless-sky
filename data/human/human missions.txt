@@ -6453,7 +6453,7 @@ mission "Lost Racer 1"
 	waypoint "Moktar"
 	destination "Sunracer"
 	to offer
-		"combat rating" > 200
+		"combat rating" > 40
 		random < 80
 	on offer
 		conversation
