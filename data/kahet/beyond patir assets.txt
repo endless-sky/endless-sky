@@ -80,17 +80,17 @@ ship "Asteroid Large 1"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Nu"
-		"Apparatus Psi" 2
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large" 2
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Psi"
-	gun 0 0 "Apparatus Psi"
-	turret 0 0 "Apparatus Nu"
+	gun 0 0 "Asteroid Weapon Large"
+	gun 0 0 "Asteroid Weapon Large"
+	turret 0 0 "Asteroid Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -136,18 +136,18 @@ ship "Asteroid Large 2"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Nu"
-		"Apparatus Psi"
-		"Apparatus Rho"
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large"
+		"Asteroid Weapon Large 4"
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Psi"
-	gun 0 0 "Apparatus Rho"
-	turret 0 0 "Apparatus Nu"
+	gun 0 0 "Asteroid Weapon Large"
+	gun 0 0 "Asteroid Weapon Large 4"
+	turret 0 0 "Asteroid Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -192,17 +192,17 @@ ship "Asteroid Large 3"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Nu"
-		"Apparatus Rho" 2
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large 4" 2
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Rho"
-	gun 0 0 "Apparatus Rho"
-	turret 0 0 "Apparatus Nu"
+	gun 0 0 "Asteroid Weapon Large 4"
+	gun 0 0 "Asteroid Weapon Large 4"
+	turret 0 0 "Asteroid Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -247,17 +247,17 @@ ship "Asteroid Large 4"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Nu"
-		"Apparatus Omicron" 2
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large 3" 2
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Omicron"
-	gun 0 0 "Apparatus Omicron"
-	turret 0 0 "Apparatus Nu"
+	gun 0 0 "Asteroid Weapon Large 3"
+	gun 0 0 "Asteroid Weapon Large 3"
+	turret 0 0 "Asteroid Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -302,17 +302,17 @@ ship "Asteroid Large 5"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Nu"
-		"Apparatus Iota" 2
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile"
+		"Asteroid Weapon Large 2" 2
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Iota"
-	gun 0 0 "Apparatus Iota"
-	turret 0 0 "Apparatus Nu"
+	gun 0 0 "Asteroid Weapon Large 2"
+	gun 0 0 "Asteroid Weapon Large 2"
+	turret 0 0 "Asteroid Anti-Missile"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -357,16 +357,16 @@ ship "Asteroid Medium"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Mu"
-		"Apparatus Iota"
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Large 2"
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Iota"
-	turret 0 0 "Apparatus Mu"
+	gun 0 0 "Asteroid Weapon Large 2"
+	turret 0 0 "Asteroid Anti-Missile 2"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -411,16 +411,16 @@ ship "Asteroid Young 1"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Mu"
-		"Apparatus Theta"
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Theta"
-	turret 0 0 "Apparatus Mu"
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -465,16 +465,16 @@ ship "Asteroid Young 2"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Mu"
-		"Apparatus Theta"
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Theta"
-	turret 0 0 "Apparatus Mu"
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -519,16 +519,16 @@ ship "Asteroid Young 3"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Mu"
-		"Apparatus Theta"
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Theta"
-	turret 0 0 "Apparatus Mu"
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
@@ -573,23 +573,24 @@ ship "Asteroid Young 4"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Mu"
-		"Apparatus Theta"
-		"Apparatus Epsilon"
+		"Asteroid Anti-Missile 2"
+		"Asteroid Weapon Small"
+		"Asteroid Jump Drive"
 		
 	engine 0 0
 		zoom 1
 		angle 0
 		over
-	gun 0 0 "Apparatus Theta"
-	turret 0 0 "Apparatus Mu"
+	gun 0 0 "Asteroid Weapon Small"
+	turret 0 0 "Asteroid Anti-Missile 2"
 	explode "tiny explosion" 10
 	explode "small explosion" 25
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
-outfit "Apparatus Nu"
+outfit "Asteroid Anti-Missile"
+	"display name" "???"
 	category "Turrets"
 	cost 86346105
 	thumbnail "outfit/asteroid weapon 2"
@@ -614,7 +615,8 @@ effect "asteroid am fire"
 	sound "point defense"
 	lifetime 2
 
-outfit "Apparatus Mu"
+outfit "Asteroid Anti-Missile 2"
+	"display name" "???"
 	category "Turrets"
 	cost 21280000
 	thumbnail "outfit/asteroid weapon 8"
@@ -641,7 +643,8 @@ effect "asteroid am circle defense"
 	sound "point defense"
 	lifetime 2
 
-outfit "Apparatus Theta"
+outfit "Asteroid Weapon Small"
+	"display name" "???"
 	category "Guns"
 	cost 23460000
 	thumbnail "outfit/asteroid weapon 3"
@@ -690,7 +693,8 @@ outfit "Asteroid Circle Submunition"
 		"hit force" -600
 		"missile strength" 22
 
-outfit "Apparatus Psi"
+outfit "Asteroid Weapon Large"
+	"display name" "???"
 	category "Guns"
 	cost 8971535
 	thumbnail "outfit/asteroid weapon 6"
@@ -1071,7 +1075,8 @@ outfit "asteroid missile"
 		"tracking" 1
 		"lifetime" 120
 
-outfit "Apparatus Iota"
+outfit "Asteroid Weapon Large 2"
+	"display name" "???"
 	category "Guns"
 	cost 71670239
 	thumbnail "outfit/asteroid weapon 1"
@@ -1413,7 +1418,8 @@ effect "asteroid circle trail"
 	"random spin" 10
 	"velocity scale" 0.3
 
-outfit "Apparatus Omicron"
+outfit "Asteroid Weapon Large 3"
+	"display name" "???"
 	category "Guns"
 	cost 98713449
 	thumbnail "outfit/asteroid weapon 5"
@@ -1544,7 +1550,8 @@ outfit "magic deployer6"
 		"submunition" "asteroid missile" 15
 			"facing" -30
 
-outfit "Apparatus Epsilon"
+outfit "Asteroid Jump Drive"
+	"display name" "???"
 	category "Systems"
 	cost 29631456
 	thumbnail "outfit/asteroid weapon 7"
@@ -1746,7 +1753,8 @@ effect "jump drive spark 9"
 	"random spin" 3
 	"random angle" 180
 
-outfit "Apparatus Rho"
+outfit "Asteroid Weapon Large 4"
+	"display name" "???"
 	category "Guns"
 	cost 57165239
 	thumbnail "outfit/asteroid weapon 4"
@@ -2430,11 +2438,12 @@ ship "Asteroid Planet"
 			"hull damage" 400
 			"hit force" 1200
 	outfits
-		"Apparatus Omega"
+		"Asteroid Weapon Super"
 
-	gun 0 0 "Apparatus Omega"
+	gun 0 0 "Asteroid Weapon Super"
 
-outfit "Apparatus Omega"
+outfit "Asteroid Weapon Super"
+	"display name" "???"
 	category "Guns"
 	cost 1861000000
 	thumbnail "outfit/unknown"
