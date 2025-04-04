@@ -378,13 +378,16 @@ void Projectile::BreakTarget()
 // guided missiles.
 void Projectile::CheckLock(const Ship &target)
 {
-	double base = hasLock ? 1. : .15;
+	double relockRate = .3;
+	double base = hasLock ? 1. : relockRate;
 	hasLock = false;
 
 	// For each tracking type, calculate the probability twice every second that a
 	// lock will be lost.
 	if(weapon->Tracking())
-		hasLock |= Check(weapon->Tracking(), base);
+		double lockChance = (weapon ->Tracking());
+		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
+		hasLock |= Check(probability, base);
 
 	// Optical tracking is about 1.5% for an average interceptor (250 mass),
 	// about 50% for an average medium warship (1000 mass),
@@ -402,7 +405,8 @@ void Projectile::CheckLock(const Ship &target)
 		}
 		double targetMass = target.Mass();
 		double weight = targetMass * targetMass * targetMass / 1e9;
-		double probability = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
+		double lockChance = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
+		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 
@@ -417,7 +421,8 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
+		double lockChance = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
+		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 
@@ -436,7 +441,8 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			radarJamming = (1. - rangeFraction) * radarJamming;
 		}
-		double probability = weapon->RadarTracking() / (1. + radarJamming);
+		double lockChance = weapon->RadarTracking() / (1. + radarJamming);
+		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 }
