@@ -40,6 +40,14 @@ effect "ion hazard"
 
 
 
+hazard "Beyond Patir Shield Eraser"
+	"constant strength"
+	weapon
+		"relative shield damage" 1
+		"system-wide"
+
+
+
 hazard "Black Hole Accretion Disk"
 	"constant strength"
 	"range" 600

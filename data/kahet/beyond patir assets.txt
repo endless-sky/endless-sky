@@ -668,7 +668,6 @@ outfit "Asteroid Weapon Small"
 		"firing force" 40
 		"firing heat" 400
 		"hit force" 3900
-		"shield damage" 3200
 		"hull damage" 2400
 		"slowing damage" -84
 		"blast radius" 20
@@ -687,7 +686,6 @@ outfit "Asteroid Circle Submunition"
 		"acceleration" 1.5
 		"drag" 0.2
 		"lifetime" 390
-		"shield damage" 130
 		"hull damage" 110
 		"slowing damage" 12
 		"hit force" -600
@@ -1463,7 +1461,6 @@ outfit "asteroid missile"
 		"tracking" 0.95
 		"lifetime" 550
 		"hit force" 120
-		"shield damage" 30
 		"hull damage" 25
 		"inaccuracy" 10
 
@@ -2470,7 +2467,7 @@ outfit "asteroid fragment"
 		"random velocity" 20
 		"lifetime" 40
 		"random lifetime" 80
-		"shield damage" 90
+		"hull damage" 50
 		"heat damage" 800
 		"ion damage" 3
 		"safe"

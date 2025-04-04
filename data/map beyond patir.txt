@@ -21,6 +21,7 @@ system Athiri
 	habitable 1400
 	belt 1074
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Athiri Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
@@ -46,6 +47,7 @@ system Balnii
 	habitable 360
 	belt 1497
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Balnii Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 2
 	object
@@ -61,6 +63,7 @@ system Chanai
 	habitable 1250
 	belt 1887
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Chanai Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
@@ -81,6 +84,7 @@ system Ghila
 	habitable 1715
 	belt 1165
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Ghila Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
@@ -107,6 +111,7 @@ system Lathia
 	habitable 1715
 	belt 1815
 	fleet "Magic Asteroid" 250
+	hazard "Beyond Patir Shield Eraser" 1
 	object
 		sprite star/neutron
 		period 1
@@ -125,6 +130,7 @@ system Maithi
 	habitable 425.92
 	belt 1379
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
@@ -145,6 +151,7 @@ system Mitera
 	habitable 3645
 	belt 1464
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
@@ -165,6 +172,7 @@ system Sarifa
 	habitable 5486.68
 	belt 1757
 	fleet "Magic Asteroid" 900
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
@@ -184,6 +192,7 @@ system Thepa
 	haze _menu/haze-maithi
 	habitable 320
 	belt 1793
+	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Black Hole Gravity" 1
 	object
