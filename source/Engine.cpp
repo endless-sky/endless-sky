@@ -1490,7 +1490,8 @@ void Engine::EnterSystem()
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && (fleetMultiplier ? Random::Int(fleet.Period() / fleetMultiplier) < 60 : false) && fleet.CanTrigger(conditions))
+			if(fleetMultiplier ? fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
+			&& fleet.CanTrigger(conditions) : false)
 				fleet.Get()->Place(*system, newShips);
 
 		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
