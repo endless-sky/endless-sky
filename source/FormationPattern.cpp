@@ -32,7 +32,7 @@ FormationPattern::PositionIterator::PositionIterator(const FormationPattern &pat
 
 
 
-const Point &FormationPattern::PositionIterator::operator*()
+const Point &FormationPattern::PositionIterator::operator*() const
 {
 	return currentPoint;
 }

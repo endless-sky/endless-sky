@@ -15,12 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Angle.h"
 #include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
@@ -48,12 +49,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
+#include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "Wormhole.h"
 
@@ -1459,7 +1461,7 @@ void MapPanel::DrawSystems()
 				starAngle += angularSpacing;
 				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
-					Point(0, 0), 0, cbrt(zoom) * 0.6, 0.8);
+					Point(0, 0), 0, cbrt(zoom) * 0.6, Point(1., 1.), 0.8);
 				starBatch.Add(starBody);
 			}
 		}
