@@ -177,8 +177,10 @@ public:
 	void ReorderShip(int fromIndex, int toIndex);
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
-	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
+	std::pair<double, double> RaidFleetFactors(const System *system = nullptr) const;
+	// Get the attraction of the player's fleet in a specific system, and potentially stack it if this is a new day.
+	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system, bool actualize = false) const;
+	void RefreshRaiding();
 
 	// Get cargo information.
 	CargoHold &Cargo();
@@ -323,6 +325,8 @@ public:
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
 
+	int64_t FleetStrength() const;
+
 	// Keep track of what materials you have mined in each system.
 	void Harvest(const Outfit *type);
 	const std::set<std::pair<const System *, const Outfit *>> &Harvested() const;
@@ -407,6 +411,8 @@ private:
 	CargoHold cargo;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
+
+	mutable std::map<const Government *, double> raidAttraction;
 
 	std::multimap<Date, std::string> logbook;
 	std::map<std::string, std::map<std::string, std::string>> specialLogs;
