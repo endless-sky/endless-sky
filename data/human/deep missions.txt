@@ -7996,7 +7996,7 @@ mission "Hroar's Haulers Late 2"
 		has "event: lh seventeen days"
 	on offer
 		dialog
-			`	The Long Haul Fleet left without you some time ago. None of the Haulers stationed here seem interested in helping you. You are just too late.`
+			`	The Long Haul caravan left without you some time ago. None of the Haulers stationed here seem interested in helping you. You are just too late.`
 			decline
 
 		
@@ -8043,16 +8043,16 @@ mission "Hroar's Haulers 20"
 	stopover "New Washington"
 	stopover "Earth"
 	destination "Muspel"
-	description "Protect the Hauler Fleet as it finishes the Long Haul."
+	description "Escort the Long Haul caravan to New Washington, Earth and <destination>."
 	deadline 40
 	passengers 1
 	to offer
 		has "Hroar's Haulers 19: declined"
 	on offer
 		conversation
-			`There's a cluster of captains and officers near the back of the Hauler's permenent hanger here. You recognize Yngvar's scarred head among them.`
-			`	Yngvar gives you a steady smile as you approach. "Glad you made it back in time. Been more than a few greenhorns who got themselves lost right before muster."`
-			`	He nods to a young red haired woman in a captain's cap standing next to him, "<last>, I'd like to introduce you to Hrodny Hildasdottir. She runs the Hauler operations in the south.`
+			`There's a cluster of captains and officers near the back of the Hauler's permenent hanger. You recognize Yngvar's scarred head among them.`
+			`	Yngvar gives you a steady smile as you approach. "Glad you made it back in time. Been more than a few greenhorns who got themselves lost right 'fore muster."`
+			`	He nods to a young red haired woman in a captain's cap standing next to him. "<last>, I'd like to introduce you to Hrodny Hildasdottir. She runs the Hauler operations in the south.`
 			choice
 				`	"Hrodny! I haven't seen you since that trouble on Rand."`
 					goto randhrod
