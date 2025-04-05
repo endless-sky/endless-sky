@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../Point.h"
+#include "../Swizzle.h"
 
 #include <cstdint>
 
@@ -34,7 +35,7 @@ public:
 	public:
 		uint32_t texture = 0;
 		uint32_t swizzleMask = 0;
-		uint32_t swizzle = 0;
+		const Swizzle *swizzle = nullptr;
 		float frame = 0.f;
 		float frameCount = 1.f;
 		float position[2] = {0.f, 0.f};
@@ -51,9 +52,9 @@ public:
 
 	// Draw a sprite.
 	static void Draw(const Sprite *sprite, const Point &position, float zoom = 1.f,
-		int swizzle = 0, float frame = 0.f, const Point &unit = Point(0., -1.));
+		const Swizzle *swizzle = Swizzle::None(), float frame = 0.f, const Point &unit = Point(0., -1.));
 	static Item Prepare(const Sprite *sprite, const Point &position, float zoom = 1.f,
-		int swizzle = 0, float frame = 0.f, const Point &unit = Point(0., -1.));
+		const Swizzle *swizzle = Swizzle::None(), float frame = 0.f, const Point &unit = Point(0., -1.));
 
 	static void Bind();
 	static void Add(const Item &item, bool withBlur = false);

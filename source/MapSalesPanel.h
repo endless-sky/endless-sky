@@ -28,6 +28,7 @@ class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
 class Sprite;
+class Swizzle;
 
 
 
@@ -49,8 +50,8 @@ protected:
 
 	virtual const Sprite *SelectedSprite() const = 0;
 	virtual const Sprite *CompareSprite() const = 0;
-	virtual int SelectedSpriteSwizzle() const;
-	virtual int CompareSpriteSwizzle() const;
+	virtual const Swizzle *SelectedSpriteSwizzle() const;
+	virtual const Swizzle *CompareSpriteSwizzle() const;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
 	virtual const std::string &KeyLabel(int index) const = 0;
@@ -67,8 +68,8 @@ protected:
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const;
-	void Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale, bool isSelected,
+	void DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle * swizzle) const;
+	void Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale, bool isSelected,
 		const std::string &name, const std::string &variantName, const std::string &price,
 		const std::string &info, const std::string &storage);
 
