@@ -2034,6 +2034,7 @@ planet "Gardena Station"
 	security 0
 	tribute 10
 		threshold 2000
+		fleet "Large Southern Merchants" 1
 
 planet Geminus
 	attributes factory military mining paradise
