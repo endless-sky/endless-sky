@@ -432,7 +432,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// cargo and passengers.
 	UpdateCargoCapacities();
 
-	auto DistributeMissionCargo = [](map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
+	auto DistributeMissionCargo = [](const map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
 			vector<shared_ptr<Ship>> &ships, CargoHold &cargo, bool passengers) -> void
 	{
 		for(const auto &it : toDistribute)
@@ -2127,10 +2127,12 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
-			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
+			if(it->IsFailed(*this))
+				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
@@ -2139,8 +2141,8 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 
 
 // Look at the list of available missions and see if any of them can be offered
-// right now, in the given location (landing or spaceport). If there are no
-// missions that can be accepted, return a null pointer.
+// right now, in the given location. If there are no missions that can be accepted,
+// return a null pointer.
 Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 {
 	if(ships.empty())
@@ -2601,24 +2603,37 @@ void PlayerInfo::Unvisit(const Planet &planet)
 
 
 
-bool PlayerInfo::HasMapped(int mapSize) const
+bool PlayerInfo::HasMapped(int mapSize, bool mapMinables) const
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			return false;
+
+		if(mapMinables)
+			for(const Outfit *outfit : system->Payloads())
+				if(!harvested.contains(make_pair(system, outfit)))
+					return false;
+	}
 
 	return true;
 }
 
 
 
-void PlayerInfo::Map(int mapSize)
+void PlayerInfo::Map(int mapSize, bool mapMinables)
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			Visit(*system);
+
+		if(mapMinables)
+			for(const Outfit *outfit : system->Payloads())
+				harvested.insert(make_pair(system, outfit));
+	}
 }
 
 
@@ -4014,6 +4029,17 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
+	if(availableMissions.empty())
+		return;
+
+	// This list is already in alphabetical order by virture of the way that the Set
+	// class stores objects, so stable sorting on the offer precedence will maintain
+	// the alphabetical ordering for missions with the same precedence.
+	availableMissions.sort([](const Mission &a, const Mission &b)
+		{
+			return a.OfferPrecedence() > b.OfferPrecedence();
+		});
+
 	// If any of the available missions are "priority" missions, no other
 	// special missions will be offered in the spaceport.
 	if(hasPriorityMissions)
@@ -4036,6 +4062,8 @@ void PlayerInfo::CreateMissions()
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them, except for "non-blocking" missions.
 		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
+		// Note that the manner in which excess minor missions are discarded means that the
+		// minor mission with the lowest precedence is the one that will be offered.
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{

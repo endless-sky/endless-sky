@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -556,6 +556,7 @@ void PreferencesPanel::DrawControls()
 		Command::SECONDARY,
 		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
+		Command::AIM_TURRET_HOLD,
 		Command::NONE,
 		Command::NONE,
 		Command::MENU,
@@ -563,6 +564,7 @@ void PreferencesPanel::DrawControls()
 		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::PAUSE,
 		Command::HELP,
 		Command::MESSAGE_LOG
 	};
@@ -726,6 +728,7 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Gameplay",
 		"Control ship with mouse",
+		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
 		TURRET_TRACKING,

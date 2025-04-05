@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Dialog.h"
 
 #include "audio/Audio.h"
+#include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -33,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "TextArea.h"
 #include "UI.h"
 
 #include <cmath>
@@ -263,7 +265,11 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
+	if(stringFun && Clipboard::KeyDown(input, key, mod))
+	{
+		// Input handled by Clipboard.
+	}
+	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && !isMission && (intFun || stringFun) && !isCloseRequest)
 	{
 		int ascii = (it != KEY_MAP.end()) ? it->second : key;
 		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);

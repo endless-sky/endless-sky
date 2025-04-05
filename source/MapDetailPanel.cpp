@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapDetailPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Angle.h"
 #include "Color.h"
 #include "Command.h"
@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "Planet.h"
@@ -49,7 +49,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "TextArea.h"
 #include "Trade.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "Wormhole.h"
 

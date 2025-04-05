@@ -15,9 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipInfoPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -40,7 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "shader/SpriteShader.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -63,6 +64,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	: player(player), panelState(std::move(state))
 {
 	shipIt = this->panelState.Ships().begin();
+	Audio::Pause();
 	SetInterruptible(false);
 
 	// If a valid ship index was given, show that ship.
@@ -77,6 +79,13 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	}
 
 	UpdateInfo();
+}
+
+
+
+ShipInfoPanel::~ShipInfoPanel()
+{
+	Audio::Resume();
 }
 
 

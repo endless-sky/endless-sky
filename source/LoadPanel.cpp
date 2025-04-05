@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "image/MaskManager.h"
 #include "PlayerInfo.h"
@@ -36,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "shader/StarField.h"
 #include "StartConditionsPanel.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include "opengl.h"
@@ -65,9 +64,14 @@ namespace {
 		}
 	}
 
-	// Convert a time_t to a human-readable time and date.
-	string TimestampString(time_t timestamp)
+	// Convert a file_time_type to a human-readable time and date.
+	string TimestampString(filesystem::file_time_type time)
 	{
+		// TODO: Replace with chrono formatting when it is properly supported.
+		auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
+				+ chrono::system_clock::now());
+		time_t timestamp = chrono::system_clock::to_time_t(sctp);
+
 		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
 		static const size_t BUF_SIZE = 25;
 		char str[BUF_SIZE];
@@ -529,7 +533,7 @@ void LoadPanel::UpdateLists()
 		if(start->first.find('~') == string::npos)
 			++start;
 		sort(start, it.second.end(),
-			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
+			[](const pair<string, filesystem::file_time_type> &a, const pair<string, filesystem::file_time_type> &b) -> bool
 			{
 				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}
@@ -584,8 +588,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesystem::path &snapshotName)
 {
 	// Copy the autosave to a new, named file.
-	Files::Copy(sourceFile, snapshotName);
-	if(Files::Exists(snapshotName))
+	if(Files::Copy(sourceFile, snapshotName))
 	{
 		UpdateLists();
 		selectedFile = Files::Name(snapshotName);

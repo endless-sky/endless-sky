@@ -75,6 +75,9 @@ tip "asteroid scan power:"
 tip "atmosphere scan:"
 	`This type of scanning cannot be performed by your ship, but this outfit might be useful for certain missions.`
 
+tip "automaton:"
+	`A ship with this attribute does not need any crew to operate, even if it has outfits that normally require additional crew. However, you cannot use it as your flagship in this state.`
+
 tip "bunks:"
 	`The number of people (passengers or crew) your ship can hold.`
 
@@ -127,7 +130,7 @@ tip "cloak:"
 	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking. Ships cannot fire while cloaked, except if they have the related "cloaked firing" attribute.`
 
 tip "cloak by mass:"
-	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking for a ship with 1000 mass. The higher a ships mass, the slower the cloak works, the lower its mass, the faster the cloak works. Ships cannot fire while cloaked, except if they have the related "cloaked firing" attribute.`
+	`This outfit allows your ship to cloak. The value represents how long it takes to fully activate or deactivate cloaking for a ship with 1000 mass. The higher a ship's mass, the slower the cloak works, the lower its mass, the faster the cloak works. Ships cannot fire while cloaked, except if they have the related "cloaked firing" attribute.`
 
 tip "cloaking energy:"
 	`Energy consumed per second when cloaked.`
@@ -251,6 +254,9 @@ tip "energy protection:"
 
 tip "fighter bays:"
 	`The number of ships from the "Fighter" category that this ship can carry.`
+
+tip "flotsam chance:"
+	`The chance that this outfit will drop as flotsam when the ship it is installed on is destroyed.`
 
 tip "force protection:"
 	`Protection provided against hit force. If you add more than one outfit with this attribute, each additional one is less effective: a total value of 1 results in a 1 percent reduction in hit force, while a total value of 11 only results in a 10 percent reduction.`
@@ -1007,7 +1013,7 @@ tip "firing slowing / second:"
 	`Reduces the turn rate, acceleration, and top speed of the ship when this weapon is fired. Slowing wears off over time.`
 
 tip "firing disruption / second:"
-	`Disrupts the ships shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
+	`Disrupts the ship's shields after firing this weapon, allowing damage from hostile weapons to "leak through" to the hull even if shields are up. Shield disruption wears off over time, but imparting disruption on yourself does not lose effectiveness as your shields become more leaky.`
 
 tip "firing discharge / second:"
 	`Reduces shields for some time after this weapon is fired.`
@@ -1041,6 +1047,9 @@ tip "shots / second:"
 
 tip "turret turn rate:"
 	`Degrees this turret can turn per second.`
+
+tip "turret turn multiplier:"
+	`Modifies the turret turn rate on this ship by the given factor.`
 
 tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
@@ -1321,6 +1330,9 @@ tip "Fire secondary weapon"
 tip "Toggle cloaking device"
 	`Activate or deactivate your fleet's cloaking devices, if any are installed.`
 
+tip "Turret aim override (hold)"
+	`Turrets aim towards your cursor when this key is held. If the "Aim turrets with mouse" setting is enabled, it will do the opposite.`
+
 tip "Mouse turning (hold)"
 	`Cause your flagship to turn toward your mouse if this key is held. To have mouse turning always active, activate the "Control ship with mouse" setting. If that setting is active, holding this key deactivates mouse turning.`
 
@@ -1332,6 +1344,9 @@ tip "Toggle fullscreen"
 
 tip "Toggle fast-forward"
 	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock then the caps-lock state will be used to determine the fast-forward state.`
+
+tip "Pause"
+	`Stop time in the game. You can still select ships, give commands, and interact with menus.`
 
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
@@ -1453,6 +1468,9 @@ tip "Extra fleet status messages"
 
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
+
+tip "Aim turrets with mouse"
+	`If active, your turrets will target your mouse position. See the "Turret aim override (hold)" keybind to toggle based on a held key.`
 
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`

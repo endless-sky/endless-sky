@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
+#include <array>
 #include <list>
 #include <map>
 #include <memory>
@@ -92,7 +93,7 @@ public:
 
 	class EnginePoint : public Point {
 	public:
-		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		EnginePoint(Point pos, double zoom) : Point(pos), zoom(zoom) {}
 
 		uint8_t side = 0;
 		static const uint8_t UNDER = 0;
@@ -106,6 +107,26 @@ public:
 		double zoom;
 		Angle facing;
 		Angle gimbal;
+	};
+
+	enum class ThrustKind {
+		LEFT = 0,
+		RIGHT = 1,
+		FORWARD = 2,
+		REVERSE = 3,
+	};
+
+	enum class CanFireResult {
+		INVALID,
+		NO_AMMO,
+		NO_ENERGY,
+		NO_FUEL,
+		NO_HULL,
+		NO_HEAT,
+		NO_ION,
+		NO_DISRUPTION,
+		NO_SLOWING,
+		CAN_FIRE
 	};
 
 
@@ -153,6 +174,8 @@ public:
 	const std::string &PluralModelName() const;
 	// Get the name of this ship as a variant.
 	const std::string &VariantName() const;
+	// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+	const std::string &VariantMapShopName() const;
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
@@ -234,7 +257,7 @@ public:
 	// Fire any primary or secondary weapons that are ready to fire. Determines
 	// if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 	// The firing of special weapons is handled separately.
-	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals);
+	void Fire(std::vector<Projectile> &projectiles, std::vector<Visual> &visuals, std::vector<int> *emptySoundsTimer);
 	// Return true if any anti-missile or tractor beam systems are ready to fire.
 	bool HasAntiMissile() const;
 	bool HasTractorBeam() const;
@@ -402,6 +425,9 @@ public:
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
+	double ThrustHeldFraction(ThrustKind kind) const;
+	uint8_t ThrustHeldFrames(ThrustKind kind) const;
+
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
 	// which may be a combination of PROVOKED, DISABLED, and DESTROYED.
@@ -458,7 +484,7 @@ public:
 	const std::vector<Hardpoint> &Weapons() const;
 	// Check if we are able to fire the given weapon (i.e. there is enough
 	// energy, ammo, and fuel to fire it).
-	bool CanFire(const Weapon *weapon) const;
+	CanFireResult CanFire(const Weapon *weapon) const;
 	// Fire the given weapon (i.e. deduct whatever energy, ammo, or fuel it uses
 	// and add whatever heat it generates). Assume that CanFire() is true.
 	void ExpendAmmo(const Weapon &weapon);
@@ -506,6 +532,9 @@ public:
 	// The AI wants the ship to linger for one AI step.
 	void Linger();
 
+	// Check if this ship looks the same as another, based on model display names and outfits.
+	bool Immitates(const Ship &other) const;
+
 
 private:
 	// Various steps of Ship::Move:
@@ -550,6 +579,9 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
+	// Increment the duration a thruster direction has been held.
+	void IncrementThrusterHeld(ThrustKind kind);
+
 	// Helper function for jettisoning flotsam.
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
@@ -570,6 +602,7 @@ private:
 	std::string displayModelName;
 	std::string pluralModelName;
 	std::string variantName;
+	std::string variantMapShopName;
 	std::string noun;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
@@ -672,6 +705,8 @@ private:
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// The amount of time in frames that an engine has been on for.
+	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
 	int pilotError = 0;

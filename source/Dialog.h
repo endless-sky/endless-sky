@@ -18,8 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Point.h"
-#include "TextArea.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 
 #include <functional>
 #include <string>
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class PlayerInfo;
 class System;
+class TextArea;
 
 
 
