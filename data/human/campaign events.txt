@@ -2541,7 +2541,6 @@ mission "Post Pug Fleet Restoration Patch"
 	landing
 	invisible
 	to offer
-		not "event: postpug fleet restoration patch"
 		has "event: pug flee"
 	on offer
 		event "postpug fleet restoration patch"
