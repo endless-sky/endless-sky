@@ -1486,10 +1486,12 @@ void Engine::EnterSystem()
 	// undefined fleets by not trying to create anything with no
 	// government set.
 	ConditionsStore &conditions = player.Conditions();
+	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60 && fleet.CanTrigger(conditions))
+			if(fleetMultiplier ? fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
+				&& fleet.CanTrigger(conditions) : false)
 				fleet.Get()->Place(*system, newShips);
 
 		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
@@ -1986,8 +1988,9 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	ConditionsStore &conditions = player.Conditions();
+	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()) && fleet.CanTrigger(conditions))
+		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger(conditions) : false)
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
