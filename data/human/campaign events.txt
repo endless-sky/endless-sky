@@ -2537,7 +2537,7 @@ event "pug flee"
 # Patch mission and event, restoring pre-pug state of fleets in pug-affected systems
 # after 'pug flee' in post- as well as retroactively in pre-0.10.13 games.
 
-mission "Postpug Fleet Restoration Patch"
+mission "Post Pug Fleet Restoration Patch"
 	landing
 	invisible
 	to offer
