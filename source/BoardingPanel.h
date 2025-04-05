@@ -55,6 +55,7 @@ private:
 		TARGET_YOURS,
 		NO_SELECTION,
 		NO_CARGO_SPACE,
+		NO_CARGO_OUTFIT_ATTRIBUTE,
 		CAN_TAKE
 	};
 
@@ -87,7 +88,7 @@ private:
 		const Outfit *GetOutfit() const;
 		// Find out how many of these I can take if I have this amount of cargo
 		// space free.
-		bool CanTake(const Ship &ship) const;
+		CanTakeResult CanTake(const Ship &ship) const;
 		// Take some or all of this plunder item.
 		void Take(int count);
 
