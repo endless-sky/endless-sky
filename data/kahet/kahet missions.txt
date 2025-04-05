@@ -800,7 +800,7 @@ mission "Ka'het: Voice From The Past 1"
 				`	"What are you transporting?"`
 				`	"I have found something interesting in Fereti."`
 					goto satellite
-			`	"Cryogenic vats, full of Void Sprite material. All the work done in Esquiline is finally bearing fruits, and this is the more noticeable result. It did not take long after we left them to roam in Pantica that we started to realize that their close passes to the station left visible traces of molting all over it. All we had to do was place detachable panels over its hull to begin gathering and analyzing those samples.`
+			`	"Cryogenic vats, full of Void Sprite material. All the work done in Esquiline is finally bearing fruits, and this is the more noticeable result. It did not take long after we left them to roam in Pantica that we started to realize that their close passes to the station left visible traces of secretion all over it. All we had to do was place detachable panels over its hull to begin gathering and analyzing those samples.`
 			`	"Of course, most of this machinery is dedicated to keeping the material at the right conditions of pressure, temperature and composition. Each vat contains just a few kilograms of samples at most. Still, it is hard to overstate the impact such a continuous and harmless source of Void Sprite samples could have on genetic research over time.`
 			`	"What about you?"`
 			label satellite
@@ -961,6 +961,8 @@ mission "Ka'het: Voice From The Past 5"
 						has "main plot completed"
 					goto pug
 				`	"The Sheragi?"`
+					to display
+						has "event: rim archaeology results"
 				`	"The Predecessors?"`
 					to display
 						has "Successors: history"
@@ -971,7 +973,7 @@ mission "Ka'het: Voice From The Past 5"
 			`	"Interesting guess. We do know that they used to have a presence in this area at some point, but there is little use in speculating about their purposes with so little information, especially when there are more likely candidates. Either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label predecessors
-			`	He shakes his head with some disappointment. "Far more time has passed between the end of the Builders and the Successors' discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
+			`	He shakes his head with some disappointment. "I may not know much on them, but I can tell you that far more time has passed between the end of the Builders and the Successors' discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
 				goto continue
 			label korath
 			`	"Not this time," he signs, amused. "More time has passed between the end of the Builders and the Korath's discovery of spaceflight than it has between the latter and now. Keep it in mind, we are talking about something that happened perhaps a hundred thousand years ago. In this context, either the Hai or the Sheragi would make more sense - the timeline fits well enough, they were known to be quite belligerent, and their potential reach was large enough to include the Graveyard.`
