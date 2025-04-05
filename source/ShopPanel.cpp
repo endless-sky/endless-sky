@@ -323,6 +323,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		if(!isOutfitter)
 			player.UpdateCargoCapacities();
 		GetUI()->Pop(this);
+		UI::PlaySound(UI::UISound::NORMAL);
 	}
 	else if(command.Has(Command::HELP))
 	{
@@ -395,6 +396,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_LEFT)
 	{
+		UI::PlaySound(UI::UISound::SOFT_BUZZ);
 		if(activePane != ShopPane::Sidebar)
 			MainLeft();
 		else
@@ -403,6 +405,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_RIGHT)
 	{
+		UI::PlaySound(UI::UISound::SOFT_BUZZ);
 		if(activePane != ShopPane::Sidebar)
 			MainRight();
 		else
@@ -411,6 +414,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_UP)
 	{
+		UI::PlaySound(UI::UISound::SOFT_BUZZ);
 		if(activePane != ShopPane::Sidebar)
 			MainUp();
 		else
@@ -419,6 +423,7 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	}
 	else if(key == SDLK_DOWN)
 	{
+		UI::PlaySound(UI::UISound::SOFT_BUZZ);
 		if(activePane != ShopPane::Sidebar)
 			MainDown();
 		else
@@ -544,6 +549,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 				else
 					collapsed.erase(it);
 			}
+			UI::PlaySound(UI::UISound::NORMAL);
 			return true;
 		}
 
@@ -558,6 +564,7 @@ bool ShopPanel::Click(int x, int y, int clicks)
 
 			previousX = zone.Center().X();
 
+			UI::PlaySound(UI::UISound::SOFT_BUZZ);
 			return true;
 		}
 
