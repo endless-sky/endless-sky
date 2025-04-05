@@ -560,7 +560,7 @@ void MapDetailPanel::DrawKey()
 		if(static_cast<unsigned>(commodity) >= commodities.size())
 			return;
 
-		for(int i = 0; i <= 3; ++i)
+		for(int i = 3; i >= 0; --i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
