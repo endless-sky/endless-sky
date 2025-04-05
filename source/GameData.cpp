@@ -932,10 +932,18 @@ void GameData::LoadSources(TaskQueue &queue)
 	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
+	globalPlugins = Files::List(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
 		if(Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
+	localPlugins = Files::List(Files::UserPlugins());
+	for(const auto &path : localPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 
@@ -948,7 +956,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		filesystem::path directoryPath = source / "images/";
+		filesystem::path directoryPath = source / "images";
 
 		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
 		for(auto &path : imageFiles)
