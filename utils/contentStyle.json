@@ -76,6 +76,14 @@
 						"correction": {
 							"replaceWith": "\\1\\2(\\3\\4)\\1"
 						}
+					},
+					{
+						"description": "accidental commonly doubled word",
+						"regex": "\\b(than|the|with|to|a|an|of|as|was|and|in)\\s+\\1\\b",
+						"except": [],
+						"correction": {
+							"replaceWith": "\\1"
+						}
 					}
 				]
 			},

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -250,7 +251,7 @@ void MapShipyardPanel::DrawItems()
 				? "1 ship parked"
 				: Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info, parking_details);
+					ship->DisplayModelName(), ship->VariantMapShopName(), price, info, parking_details);
 			list.push_back(ship);
 		}
 	}

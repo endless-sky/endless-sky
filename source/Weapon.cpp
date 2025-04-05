@@ -80,6 +80,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")
 			sound = Audio::Get(child.Token(1));
+		else if(key == "empty sound")
+			emptySound = Audio::Get(child.Token(1));
 		else if(key == "ammo")
 		{
 			int usage = (child.Size() >= 3) ? child.Value(2) : 1;
@@ -429,6 +431,13 @@ const Body &Weapon::HardpointSprite() const
 const Sound *Weapon::WeaponSound() const
 {
 	return sound;
+}
+
+
+
+const Sound *Weapon::EmptySound() const
+{
+	return emptySound;
 }
 
 

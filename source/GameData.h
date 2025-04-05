@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Sale.h"
 #include "Set.h"
 #include "Trade.h"

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MissionPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
@@ -42,7 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -1011,7 +1011,7 @@ void MissionPanel::Accept(bool force)
 		bool stillLooking = true;
 
 		// Updates availableIt if matching system found, returns true if planet also matches.
-		auto SelectNext = [this, planet, system, &stillLooking](list<Mission>::const_iterator &it) -> bool
+		auto SelectNext = [this, planet, system, &stillLooking](const list<Mission>::const_iterator &it) -> bool
 		{
 			if(it->Destination() && it->Destination()->IsInSystem(system))
 			{

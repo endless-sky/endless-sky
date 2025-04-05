@@ -15,15 +15,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipInfoDisplay.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Color.h"
 #include "Depreciation.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
-#include "text/layout.hpp"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Ship.h"

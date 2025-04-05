@@ -66,6 +66,12 @@ void Gamerules::Load(const DataNode &node)
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
+		else if(key == "system departure min")
+			systemDepartureMin = max<double>(0., child.Value(1));
+		else if(key == "system arrival min")
+			systemArrivalMin = max<double>(0., child.Value(1));
+		else if(key == "fleet multiplier")
+			fleetMultiplier = max<double>(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized gamerule:");
 	}
@@ -139,4 +145,25 @@ int Gamerules::DepreciationMaxAge() const
 Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
 {
 	return fighterHitPolicy;
+}
+
+
+
+double Gamerules::SystemDepartureMin() const
+{
+	return systemDepartureMin;
+}
+
+
+
+double Gamerules::SystemArrivalMin() const
+{
+	return systemArrivalMin;
+}
+
+
+
+double Gamerules::FleetMultiplier() const
+{
+	return fleetMultiplier;
 }

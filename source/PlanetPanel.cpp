@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Information.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"

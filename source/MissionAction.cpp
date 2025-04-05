@@ -312,7 +312,7 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed, const sha
 			bool needsUnmapped = it.second == 0;
 			// This action can't be done if it requires an unmapped region, but the region is
 			// mapped, or if it requires a mapped region but the region is not mapped.
-			if(needsUnmapped == player.HasMapped(mapSize))
+			if(needsUnmapped == player.HasMapped(mapSize, false))
 				return false;
 			continue;
 		}
@@ -383,14 +383,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	{
 		map<string, string> subs;
 		GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-		subs["<first>"] = player.FirstName();
-		subs["<last>"] = player.LastName();
-		const Ship *flagship = player.Flagship();
-		if(flagship)
-		{
-			subs["<ship>"] = flagship->Name();
-			subs["<model>"] = flagship->DisplayModelName();
-		}
+		player.AddPlayerSubstitutions(subs);
 		string text = Format::Replace(dialogText, subs);
 
 		// Don't push the dialog text if this is a visit action on a nonunique

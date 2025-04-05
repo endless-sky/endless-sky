@@ -85,6 +85,10 @@ SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) 
 			THEN( "it can be converted to boolean FALSE" ) {
 				CHECK( static_cast<bool>(a) == false );
 			}
+
+			THEN( "it is equal to the default point" ) {
+				CHECK( a == Point() );
+			}
 		}
 		WHEN( "the point has non-zero X" ) {
 			a.X() = 0.00001;
@@ -92,12 +96,34 @@ SCENARIO( "A position or other geometric vector must be expressed", "[Point]" ) 
 			THEN( "it can be converted to boolean TRUE" ) {
 				CHECK( static_cast<bool>(a) == true );
 			}
+
+			THEN( "it isn't equal to the default point" ) {
+				CHECK( a != Point() );
+			}
 		}
 		WHEN( "the point has non-zero Y") {
 			a.Y() = 0.00001;
 			REQUIRE( a.X() == 0. );
 			THEN( "it can be converted to boolean TRUE" ) {
 				CHECK( static_cast<bool>(a) == true );
+			}
+		}
+	}
+
+	GIVEN( "two points" ) {
+		auto a = Point();
+		auto b = Point();
+
+		WHEN( "both points are (0, 0)" ) {
+			THEN( "they are equal" ) {
+				CHECK( a == b );
+			}
+		}
+
+		WHEN( "one point is different" ) {
+			a.X() = 0.0001;
+			THEN( "they are not equal" ) {
+				CHECK( a != b );
 			}
 		}
 	}

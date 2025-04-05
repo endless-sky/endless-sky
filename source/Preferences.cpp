@@ -190,6 +190,7 @@ void Preferences::Load()
 	settings["Ship outlines in HUD"] = true;
 	settings["Extra fleet status messages"] = true;
 	settings["Target asteroid based on"] = true;
+	settings["Deadline blink by distance"] = true;
 
 	DataFile prefs(Files::Config() / "preferences.txt");
 	for(const DataNode &node : prefs)

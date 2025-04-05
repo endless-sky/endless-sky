@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Color.h"
 #include "Point.h"
 #include "Rectangle.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "text/WrappedText.h"
 
 #include <map>
@@ -228,7 +228,8 @@ private:
 
 	private:
 		std::string name;
-		const Color *color = nullptr;
+		const Color *fromColor = nullptr;
+		const Color *toColor = nullptr;
 		float width = 2.f;
 		bool reversed = false;
 		bool isRing = false;

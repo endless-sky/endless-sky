@@ -17,13 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "CategoryList.h"
 #include "ClickZone.h"
 
 #include <set>
 #include <string>
 #include <vector>
 
+class CategoryList;
 class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
@@ -69,8 +69,8 @@ protected:
 	bool DrawHeader(Point &corner, const std::string &category);
 	void DrawSprite(const Point &corner, const Sprite *sprite, int swizzle) const;
 	void Draw(Point &corner, const Sprite *sprite, int swizzle, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &price, const std::string &info,
-		const std::string &storage = "");
+		const std::string &name, const std::string &variantName, const std::string &price,
+		const std::string &info, const std::string &storage);
 
 	void DoFind(const std::string &text);
 	void ScrollTo(int index);

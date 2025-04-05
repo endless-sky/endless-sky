@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Command.h"
 #include "Conversation.h"
-#include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataNode.h"
 #include "Engine.h"
@@ -286,7 +285,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	int cursorTime = 0;
 	int frameRate = 60;
 	FrameTimer timer(frameRate);
-	bool isPaused = false;
+	bool isDebugPaused = false;
 	bool isFastForward = false;
 
 	// If fast forwarding, keep track of whether the current frame should be drawn.
@@ -302,7 +301,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 	const bool isHeadless = (testContext.CurrentTest() && !debugMode);
 
-	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isPaused,
+	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isDebugPaused,
 			&isFastForward]
 	{
 		SDL_Event event;
@@ -316,8 +315,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
 			{
-				isPaused = !isPaused;
-				if(isPaused)
+				isDebugPaused = !isDebugPaused;
+				if(isDebugPaused)
 					Audio::Pause();
 				else
 					Audio::Resume();
@@ -396,7 +395,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				isFastForward = false;
 
 			// Tell all the panels to step forward, then draw them.
-			((!isPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
+			((!isDebugPaused && menuPanels.IsEmpty()) ? gamePanels : menuPanels).StepAll();
 
 			// Caps lock slows the frame rate in debug mode.
 			// Slowing eases in and out over a couple of frames.
@@ -429,7 +428,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// Events in this frame may have cleared out the menu, in which case
 			// we should draw the game panels instead:
 			(menuPanels.IsEmpty() ? gamePanels : menuPanels).DrawAll();
-			if(isFastForward)
+
+			MainPanel *mainPanel = static_cast<MainPanel *>(gamePanels.Root().get());
+			if(mainPanel && mainPanel->GetEngine().IsPaused())
+				SpriteShader::Draw(SpriteSet::Get("ui/paused"), Screen::TopLeft() + Point(10., 10.));
+			else if(isFastForward)
 				SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), Screen::TopLeft() + Point(10., 10.));
 
 			GameWindow::Step();

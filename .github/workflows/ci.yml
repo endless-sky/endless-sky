@@ -15,6 +15,7 @@ on:
     - 'steam/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - 'overlays/**'
     - Doxyfile
     - keys.txt
   pull_request:
@@ -29,6 +30,7 @@ on:
     - 'steam/**'
     - 'CMakeLists.txt'
     - 'CMakePresets.json'
+    - 'overlays/**'
     - Doxyfile
     - keys.txt
 
@@ -77,7 +79,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
@@ -140,7 +142,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'mingw-ci'
@@ -183,7 +185,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'clang-cl-ci'
@@ -218,7 +220,7 @@ jobs:
     - uses: lukka/get-cmake@latest
     - uses: lukka/run-vcpkg@v11
       with:
-        vcpkgGitCommitId: 'c82f74667287d3dc386bce81e44964370c91a289'
+        vcpkgGitCommitId: 'b02e341c927f16d991edbd915d8ea43eac52096c'
     - uses: lukka/run-cmake@v10
       with:
         configurePreset: 'macos-ci'

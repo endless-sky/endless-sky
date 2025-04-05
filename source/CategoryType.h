@@ -1,4 +1,4 @@
-/* CategoryTypes.h
+/* CategoryType.h
 Copyright (c) 2021 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
