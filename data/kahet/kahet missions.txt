@@ -1406,8 +1406,8 @@ mission "Ka'het: Patir Mystery 12A"
 			label coincidence
 			`	"Maybe. Without reading the text surrounding it, which is written neither in Builder nor any language I can recognize, we can only analyze what we can infer from the graphic itself - something far from ideal. But if we take it at face value, it could be the first step towards escape from this sector. And then, there is this."`
 			label crystal
-			`	Dusk hands you the small vial from earlier, which, despite its size, is rather heavy in your hand. Inside is a grainy dust interspersed with small, violet crystals of various shapes. "We found multiple rooms chock-full of this material, all around the station. We have not explored the entire complex, but if the pattern repeats, we expect there to be something similar surrounding the entire barrel."`
-			`	The particles suspended in the vial are similar to the regolith surrounding the Builder settlement orbiting Patir, but far less compact. "Attempts to learn the dust's composition have been inconclusive. Perhaps the instruments in the lab will give us better results, but our current tools only returned noise. However, we noticed that the noise aligned with the scans you took in Lathia a few days ago. Whatever it is, it could be made of the same matter that composes those creatures. While we depart, I can use the scanners on your ship to confirm it without wasting any time."`
+			`	Dusk hands you the vial from earlier, which, despite its size, feels rather heavy in your hand. Inside is a grainy dust interspersed with small, violet crystals of various shapes. "We found a similar powder on the ground of a number of rooms inside the station. We have not explored the entire complex, of course, but if the pattern repeats we expect there to be something similar around the entire barrel."`
+			`	The particles suspended in the vial remind you of the regolith surrounding the Builder settlement orbiting Patir, but far less compact. "Attempts to learn the dust's composition have been inconclusive. Perhaps the instruments in the lab will give us better results, but our current tools only returned noise. However, we did notice something potentially interesting: the noise aligned with the scans you took in Lathia a few days ago. Whatever it is, it could be made of the same matter that composes those creatures - I can use the scanners on your ship to confirm it without wasting any time while we depart."`
 			`	You exit the station and enter your ship, and see most of the scientists have already moved their samples inside your cargo hold, with around two dozen containers scattered on the floor. Soon after, you're back inside the cockpit, preparing for liftoff; discussion about the next mission will have to wait until you're in <system>.`
 	on complete
 		conversation
@@ -1420,21 +1420,21 @@ mission "Ka'het: Patir Mystery 12A"
 			`	"Oh, definitely! While the data we could gather was not as much as I hoped, we now have a rather clear connection between Patir and Chanai, as well as between the station and those peculiar beings. That, alone, is invaluable for our mission.`
 			label next
 			`	"During the trip back, we evaluated the options at our disposal. As you may guess, the most obvious one would be to explore further into the station; however, it was not as attractive as previously thought. While it may have been used to influence Patir, it is clear that it now sits silent and powerless, as if missing something that can bring it back to life. We could find more about its design perhaps, but the chances of using it on our own within a reasonable time scale are low.`
-			`	"We have enough consumables to last for many weeks still; we started rationing as soon as we arrived in this sector, and we are prepared to reduce them further if necessary. Nevertheless, we need to take a more direct approach if we want results. Approaching the species that inhabits this cluster is essential at this point, and doing so immediately would be advisable."`
+			`	"We have enough consumables to last for many weeks still; we started rationing as soon as we arrived in this sector, and we are prepared to reduce them further if necessary. Nevertheless, we need to take a more direct approach if we want results. Approaching the species that inhabits this cluster is essential at this point, and doing so as soon as possible would be advisable."`
 			choice
 				`	"What do you suggest?"`
 					goto plan
 				`	"Are you proposing a first contact of some sort?"`
 					goto contact
 				`	"Are they behind the Chanai station?"`
-			`	"They could be. The internal design of the station is an odd fit for the asteroids' size and characteristics, but we do know that they have previously visited it and modified it in some way.`
+			`	"Maybe, maybe not. The internal design of the station is an odd fit for the asteroids' size and characteristics, but we do know for certain they have been there in the past, and you have seen for yourself how difficult it is to find a way in.`
 				goto plan
 
 			label contact
 			`	"In a way. We have been considering a close approach to one of those beings ever since we first saw them, and your discovery of the planetoid in Lathia opens up the opportunity for a surface expedition - gathering samples, analyzing its reaction, and perhaps yes, if they are intelligent and the conditions are right, a true first contact between our two species could happen.`
 				goto lab
 			label plan
-			`	"We have been considering a close approach to one of those beings ever since we first saw them, and your discovery of the planetoid in Lathia opens up the possibility for a surface expedition. Due to its size, landing with the <ship> should be possible, and we could even explore the planetoid in our suits if the surface is safe. Perhaps, if these beings are truly intelligent, this could be the first contact between our two species.`
+			`	"We have been considering a close approach to one of those beings ever since we first saw them, and your discovery of the planetoid in Lathia opens up the possibility for a surface expedition. Thanks to its size, landing with the <ship> should be possible, and we could even explore the planetoid in our suits if the surface is safe. Perhaps, if these beings are truly intelligent, this could be the first contact between our two species.`
 			label lab
 			`	"Meet us in the lab in a few hours, and we will have everything ready for the trip. With a bit of luck, most of the instruments we used on Chanai will be a good fit for this mission as well."`
 		
