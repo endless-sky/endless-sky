@@ -3427,6 +3427,10 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
+				" condition while landed is unstable behavior.");
+
 		return flagship->BaysFree(name.substr(strlen("flagship bays free: ")));
 	};
 	flagshipBaysCategoryFreeProvider.SetGetFunction(flagshipBaysCategoryFreeFun);
@@ -3448,6 +3452,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	{
 		if(!flagship)
 			return 0;
+
+			if(GetPlanet())
+				Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
 
 		const vector<Ship::Bay> &bays = flagship->Bays();
 		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; });
