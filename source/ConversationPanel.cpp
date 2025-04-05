@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/alignment.hpp"
 #include "audio/Audio.h"
 #include "BoardingPanel.h"
+#include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
@@ -44,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #endif
 
+#include <array>
 #include <iterator>
 
 using namespace std;
@@ -71,18 +73,24 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 #endif
 	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
-	// text is prepared for display.
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
+	// text is prepared for display. Some substitutions already in the map
+	// should not be overwritten.
+	static const array<string, 3> subsToSave = {"<system>", "<date>", "<day>"};
+	map<string, string> savedSubs;
+	for(const auto &sub : subsToSave)
+	{
+		const auto it = subs.find(sub);
+		if(it != subs.end() && !it->second.empty())
+			savedSubs.emplace(*it);
+	}
+	player.AddPlayerSubstitutions(subs);
+	// Restore substitutions that need to be preserved.
+	for(auto &it : savedSubs)
+		subs[it.first].swap(it.second);
 	if(ship)
 	{
 		subs["<ship>"] = ship->Name();
 		subs["<model>"] = ship->DisplayModelName();
-	}
-	else if(player.Flagship())
-	{
-		subs["<ship>"] = player.Flagship()->Name();
-		subs["<model>"] = player.Flagship()->DisplayModelName();
 	}
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
@@ -260,26 +268,31 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	if(choices.empty())
 	{
+		// Don't allow characters that can't be used in a file name.
+		static const string FORBIDDEN = "/\\?*:|\"<>~";
+		// Prevent the name from being so large that it cannot be saved.
+		// Most path components can be at most 255 bytes.
+		size_t MAX_NAME_LENGTH = 250;
+#if defined _WIN32
+		MAX_NAME_LENGTH -= PATH_LENGTH;
+#endif
+
 		// Right now we're asking the player to enter their name.
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(key >= ' ' && key <= '~')
+		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, FORBIDDEN))
+		{
+			// Input handled by Clipboard.
+		}
+		else if(key >= ' ' && key <= '~')
 		{
 			// Apply the shift or caps lock key.
 			char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
-			// Don't allow characters that can't be used in a file name.
-			static const string FORBIDDEN = "/\\?*:|\"<>~";
-			// Prevent the name from being so large that it cannot be saved.
-			// Most path components can be at most 255 bytes.
-			size_t MAX_NAME_LENGTH = 250;
-#if defined _WIN32
-			MAX_NAME_LENGTH -= PATH_LENGTH;
-#endif
 			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
 			else

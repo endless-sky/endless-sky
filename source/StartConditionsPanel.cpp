@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "StartConditionsPanel.h"
 
-#include "audio/Audio.h"
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
