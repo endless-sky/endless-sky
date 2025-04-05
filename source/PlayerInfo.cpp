@@ -3409,15 +3409,64 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 
-	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
-	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	auto &&flagshipBaysCategoryProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysCategoryFun = [this](const string &name) -> int64_t
 	{
 		if(!flagship)
 			return 0;
 
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
+	flagshipBaysCategoryProvider.SetGetFunction(flagshipBaysCategoryFun);
+
+	auto &&flagshipBaysCategoryFreeProvider = conditions.GetProviderPrefixed("flagship bays free: ");
+	auto flagshipBaysCategoryFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->BaysFree(name.substr(strlen("flagship bays free: ")));
+	};
+	flagshipBaysCategoryFreeProvider.SetGetFunction(flagshipBaysCategoryFreeFun);
+
+	auto &&flagshipBaysProvider = conditions.GetProviderNamed("flagship bays");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->Bays().size();
+	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+
+	auto &&flagshipBaysFreeProvider = conditions.GetProviderNamed("flagship bays free");
+	auto flagshipBaysFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		const vector<Ship::Bay> &bays = flagship->Bays();
+		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; });
+	};
+	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
+
+	auto &&flagshipMassProvider = conditions.GetProviderNamed("flagship mass");
+	flagshipMassProvider.SetGetFunction([this](const string &name) { return flagship ? flagship->Mass() : 0; });
+
+	auto &&flagshipShieldsProvider = conditions.GetProviderNamed("flagship shields");
+	flagshipShieldsProvider.SetGetFunction([this](const string &name) {
+		return flagship ? (flagship->Shields() * flagship->MaxShields()) : 0;
+	});
+
+	auto &&flagshipHullProvider = conditions.GetProviderNamed("flagship hull");
+	flagshipHullProvider.SetGetFunction([this](const string &name) {
+		return flagship ? (flagship->Hull() * flagship->MaxHull()) : 0;
+	});
+
+	auto &&flagshipFuelProvider = conditions.GetProviderNamed("flagship fuel");
+	flagshipFuelProvider.SetGetFunction([this](const string &name) {
+		return flagship ? (flagship->Fuel() * flagship->Attributes().Get("fuel capacity")) : 0;
+	});
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
