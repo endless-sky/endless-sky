@@ -4578,6 +4578,11 @@ planet Pugglequat
 	bribe 0
 	security 1
 
+planet Pummel
+	landscape land/desert12
+	description `Pummel is what is known as a Proto-Earth: its surface contains small amounts of water and there is strong volcanic activity. In a couple of billion years, it may even harbor primitive life, but for the moment, it remains a cold, cratered, sulfurous rock.`
+	government Uninhabited
+
 planet Pyriphlegethon
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_02
@@ -4896,6 +4901,14 @@ planet Sandsnap
 	landscape land/station40
 	description `This station was mothballed sometime in the last sixty thousand years. The docking area has an atmosphere, and a status panel indicates that the station's generators are functional but shut down, with standby mechanisms running on solar power alone.`
 	description `	A tourist FAQ in the docking area cheerily informs visitors that after the opening of the wormhole in Waypoint, Sandsnap was briefly considered as a destination for humans looking to settle in Hai space. The station would have provided ample room for millions of potential migrants without disturbing planetary ecosystems. Ultimately, it was decided that the slow trickle of human settlers did not justify the costs of bringing Sandsnap back online and that it would be better for both humans and Hai if the two species weren't sequestered from each other.`
+	government Uninhabited
+	bribe 0
+	security 0
+
+planet Sandswell
+	attributes republic uninhabited
+	landscape land/desert15
+	description "The close orbit of this sandy moon to its parent gas giant stirs up strong sandstorms on the surface. Combined with its low surface gravity, this results in the air here being filled with a constant haze of grit. It is unsurprising no attempts at permanent habitation have been made here."
 	government Uninhabited
 	bribe 0
 	security 0
