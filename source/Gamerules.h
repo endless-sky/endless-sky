@@ -46,6 +46,9 @@ public:
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
 	FighterDodgePolicy FightersHitWhenDisabled() const;
+	double SystemDepartureMin() const;
+	double SystemArrivalMin() const;
+	double FleetMultiplier() const;
 
 
 private:
@@ -59,4 +62,7 @@ private:
 	int depreciationGracePeriod = 7;
 	int depreciationMaxAge = 1000;
 	FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
+	double systemDepartureMin = 0.;
+	double systemArrivalMin = 0.;
+	double fleetMultiplier = 1.;
 };

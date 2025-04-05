@@ -721,7 +721,7 @@ double System::RamscoopFuel(double shipRamscoop, double scale) const
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
-	return extraHyperArrivalDistance;
+	return max(extraHyperArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
 }
 
 
@@ -729,21 +729,21 @@ double System::ExtraHyperArrivalDistance() const
 // Additional travel distance to target for ships entering using a jumpdrive.
 double System::ExtraJumpArrivalDistance() const
 {
-	return extraJumpArrivalDistance;
+	return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
 }
 
 
 
 double System::JumpDepartureDistance() const
 {
-	return jumpDepartureDistance;
+	return max(jumpDepartureDistance, GameData::GetGamerules().SystemDepartureMin());
 }
 
 
 
 double System::HyperDepartureDistance() const
 {
-	return hyperDepartureDistance;
+	return max(hyperDepartureDistance, GameData::GetGamerules().SystemDepartureMin());
 }
 
 
