@@ -405,9 +405,13 @@ government "Conlatio"
 	"hostile disabled hail" "incipias hostile disabled"
 
 government "Deep"
-	"display name" "Deep Security"
-	swizzle 0
-	"player reputation" -1000
+	color .5 .7 .9
+	"player reputation" 1
+	"attitude toward"
+		"Deep Security" 1
+		"Merchant" .2
+		"Republic" 1
+	"friendly hail" "friendly deep"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
 	"hostile disabled hail" "hostile disabled"
@@ -420,6 +424,15 @@ government "Deep Security"
 		"Pirate" -.2
 		"Pirate (Devil-Run Gang)" -.2
 		"Smuggler (Hai Trafficker)" .05
+	"friendly hail" "friendly deep"
+	"friendly disabled hail" "friendly disabled"
+	"hostile hail" "hostile deep"
+	"hostile disabled hail" "hostile disabled"
+
+government "Deep Security (Hostile)"
+	"display name" "Deep Security"
+	swizzle 0
+	"player reputation" -1000
 	"friendly hail" "friendly deep"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
@@ -2030,6 +2043,7 @@ government "Republic"
 		"Republic Intelligence" 1
 		"Navy (Oathkeeper)" 1
 		"Neutral" .1
+		"Deep" 1
 	"friendly hail" "friendly navy"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile navy"

@@ -58,7 +58,7 @@ mission "To Earth Day celebration [0]"
 		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	destination "Earth"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -93,7 +93,7 @@ mission "To Earth Day celebration [1]"
 		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	destination "Earth"
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -129,7 +129,7 @@ mission "To Earth Day celebration [2]"
 		month * 100 + day >= 422
 	source
 		near "Sol" 1 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	destination "Earth"
 	on visit
 		dialog phrase "generic passenger on visit"
@@ -160,7 +160,7 @@ mission "From Earth Day celebration [0]"
 	source "Earth"
 	destination
 		distance 1 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -191,7 +191,7 @@ mission "From Earth Day celebration [1]"
 	source "Earth"
 	destination
 		distance 1 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
@@ -223,7 +223,7 @@ mission "From Earth Day celebration [2]"
 	source "Earth"
 	destination
 		distance 1 15
-		government "Republic" "Free Worlds" "Syndicate" "Neutral"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral"
 	on visit
 		dialog phrase "generic passenger on visit"
 	on complete
