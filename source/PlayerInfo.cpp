@@ -3419,6 +3419,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipBaysCategoryProvider.SetGetFunction(flagshipBaysCategoryFun);
 
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
 	auto &&flagshipBaysCategoryFreeProvider = conditions.GetProviderPrefixed("flagship bays free: ");
 	auto flagshipBaysCategoryFreeFun = [this](const string &name) -> int64_t
 	{
@@ -3439,6 +3441,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
 
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
 	auto &&flagshipBaysFreeProvider = conditions.GetProviderNamed("flagship bays free");
 	auto flagshipBaysFreeFun = [this](const string &name) -> int64_t
 	{
