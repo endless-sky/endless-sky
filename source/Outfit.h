@@ -109,6 +109,10 @@ public:
 	// Get the sprite this outfit uses when dumped into space.
 	const Sprite *FlotsamSprite() const;
 
+	const std::map<const Outfit *, double> GetResuppliedAmmo() const;
+	bool AmmoResupplied(const Outfit *ammo) const;
+	double GetResupplyCostMultiplier(const Outfit *ammo) const;
+
 
 private:
 	// Add the license with the given name to the licenses required by this outfit, if it is not already present.
@@ -133,6 +137,9 @@ private:
 	std::vector<std::string> licenses;
 
 	Dictionary attributes;
+
+	// Ammo that can be reloaded at any outfitter and the multiplier applied to its purchase cost.
+	std::map<const Outfit *, double> resuppliedAmmo;
 
 	// The integers in these pairs/maps indicate the number of
 	// sprites/effects/sounds to be placed/played.
