@@ -3782,14 +3782,6 @@ conversation "anna invites you to book signing"
 	`	Anna checks a wristwatch that she didn't have when you first met. "Wow, it looks like people have already started reviewing the book, and they're giving great feedback! I've got to go now; I want to see in person how well my book is selling. Goodbye!"`
 	`	Anna then leaves your ship, leaving you with a novel, a payment, and the knowledge that you've helped a struggling author make it big.`
 
-outfit "Beyond the Hyperdrive"
-	category "Unique"
-	series "Non-Functional Unique"
-	index 11
-	thumbnail "outfit/beyond the hyperdrive"
-	"unique" 1
-	description "A book gifted to you by Anna Fangvin, a struggling author who found success in Coalition space."
-
 
 event "beyond the hyperdrive payment"
 
