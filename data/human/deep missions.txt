@@ -6772,7 +6772,7 @@ mission "Hroar's Haulers 18"
 				`	"Halfway already? I was hoping it'd never end."`
 					goto neverend
 				`	"So, what's next then?"`
-			`	"Glad you asked." Yngvar says as he saddles up next to Captain Bolverka, "No sense in flying a fleet of empty ships from Lagrange to Musepl. So, we'll be making a few stops along the way. Our profit margins on this leg won't be nearly as big as what we just got from Quargs, but it'll cover our expenses."`
+			`	"Glad you asked." Yngvar says as he saddles up next to Captain Bolverka, "No sense in flying a fleet of empty ships from Lagrange to Muspel. So, we'll be making a few stops along the way. Our profit margins on this leg won't be nearly as big as what we just got from Quargs, but it'll cover our expenses."`
 			`	He frowns slightly. "Plus help cover the loss of Solvi's revenue."`
 			`	"Wayfarer, New Washington, Earth and Muspel." Bolverka says brightly, "That's our route back home."`
 			`	Yngvar gives her a look, "I was getting to it!"`
