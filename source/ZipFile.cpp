@@ -28,7 +28,7 @@ ZipFile::ZipFile(const filesystem::path &zipPath)
 	: basePath(zipPath)
 {
 	lock_guard<recursive_mutex> guard(lock);
-	zipFile = unzOpen(basePath.string().c_str());
+	zipFile = unzOpen(basePath.native().c_str());
 	if(!zipFile)
 		throw runtime_error("Failed to open ZIP file" + zipPath.generic_string());
 
