@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #ifdef __SSE3__
 #include <pmmintrin.h>
-#elif defined __SSE2__
+#elif defined(__SSE2__)
 #include <xmmintrin.h>
 #endif
 
