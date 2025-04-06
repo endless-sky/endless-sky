@@ -3462,20 +3462,20 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
 
 	auto &&flagshipMassProvider = conditions.GetProviderNamed("flagship mass");
-	flagshipMassProvider.SetGetFunction([this](const string &name) { return flagship ? flagship->Mass() : 0; });
+	flagshipMassProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Mass() : 0; });
 
 	auto &&flagshipShieldsProvider = conditions.GetProviderNamed("flagship shields");
-	flagshipShieldsProvider.SetGetFunction([this](const string &name) {
+	flagshipShieldsProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? (flagship->Shields() * flagship->MaxShields()) : 0;
 	});
 
 	auto &&flagshipHullProvider = conditions.GetProviderNamed("flagship hull");
-	flagshipHullProvider.SetGetFunction([this](const string &name) {
+	flagshipHullProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? (flagship->Hull() * flagship->MaxHull()) : 0;
 	});
 
 	auto &&flagshipFuelProvider = conditions.GetProviderNamed("flagship fuel");
-	flagshipFuelProvider.SetGetFunction([this](const string &name) {
+	flagshipFuelProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? (flagship->Fuel() * flagship->Attributes().Get("fuel capacity")) : 0;
 	});
 
