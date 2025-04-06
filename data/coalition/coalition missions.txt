@@ -3527,24 +3527,38 @@ mission "Coalition: Struggling Author 3"
 				`	"Yes."`
 			`	"Trust you with a translator, we cannot. And help you, I cannot, so a Heliarch, I must call," says the clerk, then proceeding to call for a Heliarch in its native language.`
 			`	After a few minutes, the Heliarch approaches you and directs you into a room.`
-			`	"Told me about your intentions, the clerk already has, and understand it, I do. Accompany you to the publishers, me and my agents will, once you decide upon a company."`
+			`	"Told me about your intentions, the clerk already has, and understand it, I do. Accompany you to the publishers, me and my agents will, once decided you have upon a company." The Arachi sits down.`
 			`	"We need to find a publishing company then!" says Anna.`
+			label questions
 			choice
 				`	"The Kimek might be a good choice. They have a high population."`
 					goto publishingcompany
 				`	"Perhaps the Saryd. People with human parts are likely to be more interested in human books."`
-			`	"I thought the same at first, but from what I've seen the Saryds seem pretty reserved, don't you think? Maybe another species would be better."`
-			choice
+					goto saryd
+					to display
+						not "struggling author: saryd"
 				`	"The Arachi have a close-knit population. Word of a new book might spread quickly there."`
-				`	"The Kimek have the most people of any species in Coalition space. Let's try selling to them."`
-					goto publishingcompany
-			`	"Oh, it's kind of embarrassing but... I'm actually a bit afraid of spiders, so I'm going to take a while to get used to the Arachi. Perhaps the Kimek would be easier? They have a high population, right?"`
+					to display
+						not "struggling author: arachi"
+			action
+				set "struggling author: arachi"
+			`	"Oh, it's kind of embarrassing but... I'm actually a bit afraid of spiders, so I'm going to take a while to get used to the Arachi."`
+				goto questions
+			label saryd
+			action
+				set "struggling author: saryd"
+			`	"I thought the same at first, but from what I've seen the Saryds seem pretty reserved, don't you think? Maybe another species would be better."`
+				goto questions
 			label publishingcompany
+			action
+				clear "struggling author: arachi"
+				clear "struggling author: saryd"
 			`	"But where can we find a Kimek publishing company? We haven't even translated our book into their language yet!"`
 			choice
 				`	"We'll find a company."`
 				`	"Given the number of books here, there has to be a publishing company somewhere."`
 			`	"The faster we can get the book published, the better. Meet me in the spaceport in a few hours; I'll find a good company."`
+			`	Before Anna can head off, the Heliarch rises. "Accompany you, I will. Suitable for two aliens to roam around our space unattended, it is not."`
 
 
 mission "Coalition: Struggling Author 4"
@@ -3552,7 +3566,8 @@ mission "Coalition: Struggling Author 4"
 	description "Anna found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
 	source "Ki Patek Ka"
 	destination "Inmost Blue"
-	passengers 1
+	blocked "You do not have enough bunk space for the Heliarch agent and Anna Fangvin. Come back here when you have two bunks free."
+	passengers 2
 	to offer
 		has "Coalition: Struggling Author 3: done"
 	on offer
@@ -3565,10 +3580,10 @@ mission "Coalition: Struggling Author 4"
 				`	"Let's go!"`
 					goto go
 				`	"What's the publishing company called?"`
-			`	"They're called 'Priyepichia Publishing.'"`
+			`	"They're called 'Priyepichia Publishing.'" Anna shows you beautiful pictures of a clean white building perched on a mountainside, high above gentle waves. On the roof stands a landing pad painted with a blue dolphin.`
 			label go
-			`	Anna heads to your ship, and you plot a course to <destination>.`
-				accept
+			`	Anna heads to your ship, and you plot a course to <destination>. Just before you launch, the Heliarch hops in.`
+				launch
 	on complete
 		event "beyond the hyperdrive is published" 165 197
 		conversation
@@ -3578,7 +3593,7 @@ mission "Coalition: Struggling Author 4"
 			`	Once the train stops, you get off onto the platform and out of the station. You walk around the building and find an entrance, busy with many Kimek and the occasional Saryd and Arach entering and exiting. Anna looks for a front desk and directs you to walk to a Kimek who looks like a receptionist.`
 			choice
 				`	"Hello, do you happen to know where Priyepichia Publishing is?"`
-				`	"We're looking for a publishing company called Kimek Reader. Could you provide directions?"`
+				`	"We're looking for a publishing company called Priyepichia Publishing. Could you provide directions?"`
 			`	"On the 16th floor, Priyepichia Publishing is. Over there, the elevators are," says the receptionist's translator.`
 			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded one.`
 			`	You and Anna enter the elevator. You hear the noises of the Kimek communicating in their native languages and get the feeling they're talking about you.`
@@ -3618,9 +3633,12 @@ mission "Coalition: Struggling Author 4"
 					goto "directions to lounge"
 				`	(Accompany Anna during the interview.)`
 			label "stay in interview"
-			`	You choose to remain in the room. Once the first questions are asked, Anna is all too happy to begin discussing the contents of her novel in great detail.`
+			`	Once the first questions are asked, Anna is all too happy to begin discussing the contents of her novel in great detail.`
 			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Heliarchs' numerous questions for clarification and elaboration make the process a long one.`
-			`	As you listen, you learn that due to the Coalition's censorship and review process, Anna will have to stay for about half a year, during which she will have an apartment to live in.`
+			`	"Sold many books before coming here, have you?" one of the agents asks. Anna embarrassedly glances in your direction. "Well, no," she replies. "But I've been writing better and better over the past few years."`
+			`	Priyepichia's representative speaks up. "Page count, we must know. Binding process, aware of you are? You want what type, and cover style?" "There are 300 pages. The hardcover book should have a Jump Drive emblazoned on the front cover.`
+			`	"I don't know what the binding type means; couldn't you just decide that yourself?"`
+			`	As you listen, you learn that due to the Coalition's review process to make the book more suitable, Anna will have to stay for about half a year, during which she will have an apartment to live in.`
 			choice
 				`	"Do I have to stay with Anna here for half a year?"`
 					goto "half a year"
@@ -3634,12 +3652,12 @@ mission "Coalition: Struggling Author 4"
 				goto "rest of interview"
 			label "lounge"
 			`	You leave the room and walk to the lounge. There are several tables where many Kimek are chatting in their native language, while a few Saryds and Arachi are visibly relaxed. You sit at an empty table and pass the time, occasionally going to the water dispenser to hydrate yourself.`
-			`	After thirty minutes, a Kimek approaches you. Its translation device speaks. "So, the alien in our space, you are?"`
+			`	After thirty minutes, a Kimek approaches you. Their translation device speaks. "An alien in our space, you are? Most strange, this meeting truly is. Coalition member the like of you, have I never encountered. Saryd or Arachi, are you?"`
 			# kst-1 is short for [K]imek [s]mall [t]alk 1
 			choice
 				`	"I'd prefer to be left alone right now."`
 					goto "kst-1 ignore"
-				`	"Yes, I am <first> <last>. Glad to meet you."`
+				`	"Yes, I am the human <first> <last>. Glad to meet you."`
 				`	"Well, I'm not the only alien."`
 					goto "kst-1 not only alien"
 				`	"We call ourselves humans, not aliens."`
@@ -3669,7 +3687,7 @@ mission "Coalition: Struggling Author 4"
 			`	After a few hours, you see Anna enter the lounge and walk toward you. She takes a seat next to you.`
 			choice
 				`	"How did the interview go?"`
-			`	"They told me that due to the censorship and review process, I'll have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please remember to come back and meet me."`
+			`	"They told me that due to the review process to make sure it's suitable, I'll have to wait for roughly half a year. Thankfully, they have arranged a small apartment for me to live in. You can go on your own now, but please make sure you come back. If you want to return to human space, please remember to come back and meet me."`
 			choice
 				`	"Why don't you just go back to human space?"`
 					goto stay
@@ -3715,7 +3733,7 @@ mission "Coalition: Struggling Author 5A"
 mission "Coalition: Struggling Author 5B"
 	landing
 	source
-		near "Quaru" 0 100
+		near "4 Winter Rising" 1 100
 	destination "Inmost Blue"
 	to offer
 		has "event: beyond the hyperdrive is published"
@@ -3760,8 +3778,8 @@ conversation "anna invites you to book signing"
 		`	"Why is this book so different from the one in human space?"`
 		`	"Did you make any changes to it?"`
 	`	"Well, for one, it's not in our language. Some concepts just don't translate very well, so I tried to capture the spirit of the story. The Heliarch linguists were very helpful," she explains. "They really went into depth on some aspects of the Coalition's languages. None of the major plot points were changed, thankfully, though some content in the book had to be edited or removed. My Heliarch friend said that if I changed this or removed that, the book would sell so much better, and as they said, they wanted to 'make it more suitable for the Coalition.' Their words.`
-	`	"As for the special copy, it was so I could verify and look at the changes they made, in my language, so I wouldn't have to learn their language. They agreed to print another copy for me so I could give it to you.`
-	`	"I've got to go now. I want to see how well my book is selling. Goodbye!"`
+	`	"As for the special copy, it was so I could verify and look at the changes they made, in my language, so I wouldn't have to learn their language. They agreed to print another copy for me so I could give it to you."`
+	`	Anna checks a wristwatch that she didn't have when you first met. "Wow, it looks like people have already started reviewing the book, and they're giving great feedback! I've got to go now; I want to see in person how well my book is selling. Goodbye!"`
 	`	Anna then leaves your ship, leaving you with a novel, a payment, and the knowledge that you've helped a struggling author make it big.`
 
 outfit "Beyond the Hyperdrive"
