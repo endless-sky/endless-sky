@@ -32,8 +32,8 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player), port(player.GetPlanet()->GetPort()), ui(*GameData::Interfaces().Get(Screen::Width() < 1280 ?
-		"spaceport (small screen)" : "spaceport"))
+	: player(player), port(player.GetPlanet()->GetPort()),
+	ui(*GameData::Interfaces().Get(Screen::Width() < 1280 ? "spaceport (small screen)" : "spaceport"))
 {
 	SetTrapAllEvents(false);
 
