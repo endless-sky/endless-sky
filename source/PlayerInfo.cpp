@@ -3466,7 +3466,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	auto &&flagshipShieldsProvider = conditions.GetProviderNamed("flagship shields");
 	flagshipShieldsProvider.SetGetFunction([this](const string &name) -> int64_t {
-		return flagship ? (flagship->Shields() * flagship->MaxShields()) : 0;
+		return flagship ? flagship->ShieldLevel() : 0;
 	});
 
 	auto &&flagshipHullProvider = conditions.GetProviderNamed("flagship hull");
