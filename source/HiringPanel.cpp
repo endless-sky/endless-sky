@@ -47,7 +47,6 @@ void HiringPanel::Step()
 void HiringPanel::Draw()
 {
 	const Ship *flagship = player.Flagship();
-	// Tweak planet panels for small screens by 60px to the left.
 	const Interface *hiring = GameData::Interfaces().Get(Screen::Width() < 1280 ? "hiring (small screen)" : "hiring");
 	Information info;
 
