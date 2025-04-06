@@ -60,6 +60,7 @@ public:
 	bool HasHyperdrive() const;
 	bool HasScramDrive() const;
 	bool HasJumpDrive() const;
+	bool HasAnyDrive() const;
 
 
 private:

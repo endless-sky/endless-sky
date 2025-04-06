@@ -516,7 +516,8 @@ bool MainPanel::ShowHelp(bool force)
 			return true;
 	}
 	bool canRefuel = player.GetSystem()->HasFuelFor(*flagship);
-	if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
+	if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() &&
+		flagship->JumpNavigation().HasAnyDrive() && !canRefuel)
 	{
 		if(force)
 			forced.push_back("stranded");

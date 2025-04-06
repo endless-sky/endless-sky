@@ -199,6 +199,13 @@ bool ShipJumpNavigation::HasJumpDrive() const
 
 
 
+bool ShipJumpNavigation::HasAnyDrive() const
+{
+	return hasHyperdrive || hasScramDrive || hasHyperdrive;
+}
+
+
+
 // Parse the given outfit to determine if it has the capability to jump, and update any
 // jump information accordingly.
 void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
