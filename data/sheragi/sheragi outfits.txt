@@ -423,11 +423,12 @@ outfit "Retrofitted Fusion Afterburner"
 	thumbnail "outfit/fusion afterburner"
 	"mass" 70
 	"outfit space" -70
-	"engine capacity" -70
-	"afterburner thrust" 430
-	"afterburner energy" 2.3
+	"engine capacity" -59
+	"afterburner thrust" 378
+	"afterburner energy" -12.2
 	"afterburner fuel" 1.1
 	"afterburner heat" 110
+	"unique" 1
 	"afterburner effect" "sheragi afterburner" 5
 	description "An old Fusion Afterburner Weland gave you. He retrofitted it so that it works slightly better then the original."
 
