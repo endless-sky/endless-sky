@@ -363,8 +363,10 @@ public:
 	// Get the maximum shield and hull values of the ship, accounting for multipliers.
 	double MaxShields() const;
 	double MaxHull() const;
-	// Get the actual shield level of the ship.
+	// Get the absolute shield, hull, and fuel levels of the ship.
 	double ShieldLevel() const;
+	double HullLevel() const;
+	double FuelLevel() const;
 	// Get how disrupted this ship's shields are.
 	double DisruptionLevel() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the

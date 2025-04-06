@@ -2799,10 +2799,26 @@ double Ship::MaxHull() const
 
 
 
-// Get the actual shield level of the ship.
+// Get the absolute shield level of the ship.
 double Ship::ShieldLevel() const
 {
 	return shields;
+}
+
+
+
+// Get the absolute hull level of the ship.
+double Ship::HullLevel() const
+{
+	return hull;
+}
+
+
+
+// Get the absolute fuel level of the ship.
+double Ship::FuelLevel() const
+{
+	return fuel;
 }
 
 
