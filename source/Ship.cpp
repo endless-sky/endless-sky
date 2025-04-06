@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
-#include "JumpTypes.h"
+#include "JumpType.h"
 #include "Logger.h"
 #include "image/Mask.h"
 #include "Messages.h"
@@ -92,6 +92,8 @@ namespace {
 
 	// Total number of frames the damaged overlay is show, if any.
 	constexpr int TOTAL_DAMAGE_FRAMES = 40;
+
+	constexpr uint8_t MAX_THRUST_HELD_FRAMES = 12;
 
 	// Helper function to transfer energy to a given stat if it is less than the
 	// given maximum value.
@@ -272,6 +274,8 @@ void Ship::Load(const DataNode &node)
 			displayModelName = child.Token(1);
 		else if(key == "plural" && child.Size() >= 2)
 			pluralModelName = child.Token(1);
+		else if(key == "variant map name" && child.Size() >= 2)
+			variantMapShopName = child.Token(1);
 		else if(key == "noun" && child.Size() >= 2)
 			noun = child.Token(1);
 		else if(key == "swizzle" && child.Size() >= 2)
@@ -302,7 +306,7 @@ void Ship::Load(const DataNode &node)
 
 			vector<EnginePoint> &editPoints = (!steering && !reverse) ? enginePoints :
 				(reverse ? reverseEnginePoints : steeringEnginePoints);
-			editPoints.emplace_back(0.5 * child.Value(1), 0.5 * child.Value(2),
+			editPoints.emplace_back(Point(child.Value(1), child.Value(2)) * 0.5,
 				(child.Size() > 3 ? child.Value(3) : 1.));
 			EnginePoint &engine = editPoints.back();
 			if(reverse)
@@ -1211,6 +1215,14 @@ const string &Ship::VariantName() const
 
 
 
+// Get the variant name to be displayed on the Shipyard tab of the Map screen.
+const string &Ship::VariantMapShopName() const
+{
+	return variantMapShopName;
+}
+
+
+
 // Get the generic noun (e.g. "ship") to be used when describing this ship.
 const string &Ship::Noun() const
 {
@@ -1654,6 +1666,10 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	DoJettison(flotsam);
 	DoCloakDecision();
 
+	for(uint8_t &held : thrustHeldFrames)
+		if(held > 0)
+			--held;
+
 	bool isUsingAfterburner = false;
 
 	// Don't let the ship do anything else if it is being destroyed.
@@ -2033,7 +2049,7 @@ double Ship::OutfitScanFraction() const
 // Fire any primary or secondary weapons that are ready to fire. Determines
 // if any special weapons (e.g. anti-missile, tractor beam) are ready to fire.
 // The firing of special weapons is handled separately.
-void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
+void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector<int> *emptySoundsTimer)
 {
 	isInSystem = true;
 	forget = 0;
@@ -2056,7 +2072,10 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(!weapon)
+			continue;
+		CanFireResult canFire = CanFire(weapon);
+		if(canFire == CanFireResult::CAN_FIRE)
 		{
 			if(weapon->AntiMissile())
 				antiMissileRange = max(antiMissileRange, weapon->Velocity() + weaponRadius);
@@ -2073,6 +2092,13 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals)
 						cloak -= cloakingFiring;
 				}
 			}
+		}
+		else if(emptySoundsTimer && !(*emptySoundsTimer)[i]
+			&& (canFire == CanFireResult::NO_AMMO || canFire == CanFireResult::NO_FUEL)
+			&& firingCommands.HasFire(i) && hardpoints[i].IsReady())
+		{
+			Audio::Play(weapon->EmptySound(), SoundCategory::WEAPON);
+			(*emptySoundsTimer)[i] = weapon->Reload();
 		}
 	}
 
@@ -2109,7 +2135,7 @@ bool Ship::FireAntiMissile(const Projectile &projectile, vector<Visual> &visuals
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireAntiMissile(i, *this, projectile, visuals, Random::Real() < jamChance))
 				return true;
 	}
@@ -2149,7 +2175,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
 		const Weapon *weapon = hardpoints[i].GetOutfit();
-		if(weapon && CanFire(weapon))
+		if(weapon && CanFire(weapon) == CanFireResult::CAN_FIRE)
 			if(armament.FireTractorBeam(i, *this, flotsam, visuals, Random::Real() < jamChance))
 			{
 				Point hardpointPos = Position() + Zoom() * Facing().Rotate(hardpoints[i].GetPoint());
@@ -3100,6 +3126,21 @@ double Ship::MaxReverseVelocity() const
 
 
 
+double Ship::ThrustHeldFraction(Ship::ThrustKind kind) const
+{
+	constexpr double THRUST_HELD_FRAMES_RECIP = 1. / MAX_THRUST_HELD_FRAMES;
+	return ThrustHeldFrames(kind) * THRUST_HELD_FRAMES_RECIP;
+}
+
+
+
+uint8_t Ship::ThrustHeldFrames(Ship::ThrustKind kind) const
+{
+	return thrustHeldFrames[static_cast<size_t>(kind)];
+}
+
+
+
 double Ship::CurrentSpeed() const
 {
 	return Velocity().Length();
@@ -3558,43 +3599,43 @@ const vector<Hardpoint> &Ship::Weapons() const
 
 // Check if we are able to fire the given weapon (i.e. there is enough
 // energy, ammo, and fuel to fire it).
-bool Ship::CanFire(const Weapon *weapon) const
+Ship::CanFireResult Ship::CanFire(const Weapon *weapon) const
 {
 	if(!weapon || !weapon->IsWeapon())
-		return false;
+		return CanFireResult::INVALID;
 
 	if(weapon->Ammo())
 	{
 		auto it = outfits.find(weapon->Ammo());
 		if(it == outfits.end() || it->second < weapon->AmmoUsage())
-			return false;
+			return CanFireResult::NO_AMMO;
 	}
 
 	if(weapon->ConsumesEnergy()
 			&& energy < weapon->FiringEnergy() + weapon->RelativeFiringEnergy() * attributes.Get("energy capacity"))
-		return false;
+		return CanFireResult::NO_ENERGY;
 	if(weapon->ConsumesFuel()
 			&& fuel < weapon->FiringFuel() + weapon->RelativeFiringFuel() * attributes.Get("fuel capacity"))
-		return false;
+		return CanFireResult::NO_FUEL;
 	// We do check hull, but we don't check shields. Ships can survive with all shields depleted.
 	// Ships should not disable themselves, so we check if we stay above minimumHull.
 	if(weapon->ConsumesHull() && hull - MinimumHull() < weapon->FiringHull() + weapon->RelativeFiringHull() * MaxHull())
-		return false;
+		return CanFireResult::NO_HULL;
 
 	// If a weapon requires heat to fire, (rather than generating heat), we must
 	// have enough heat to spare.
 	if(weapon->ConsumesHeat() && heat < -(weapon->FiringHeat() + (!weapon->RelativeFiringHeat()
 			? 0. : weapon->RelativeFiringHeat() * MaximumHeat())))
-		return false;
+		return CanFireResult::NO_HEAT;
 	// Repeat this for various effects which shouldn't drop below 0.
 	if(weapon->ConsumesIonization() && ionization < -weapon->FiringIon())
-		return false;
+		return CanFireResult::NO_ION;
 	if(weapon->ConsumesDisruption() && disruption < -weapon->FiringDisruption())
-		return false;
+		return CanFireResult::NO_DISRUPTION;
 	if(weapon->ConsumesSlowing() && slowness < -weapon->FiringSlowing())
-		return false;
+		return CanFireResult::NO_SLOWING;
 
-	return true;
+	return CanFireResult::CAN_FIRE;
 }
 
 
@@ -4578,6 +4619,10 @@ bool Ship::DoLandingLogic()
 				return true;
 			}
 
+			SetTargetAsteroid(nullptr);
+			SetTargetFlotsam(nullptr);
+			SetTargetShip(nullptr);
+
 			zoom = 0.f;
 		}
 	}
@@ -4693,6 +4738,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			{
 				isSteering = true;
 				steeringDirection = commands.Turn();
+				IncrementThrusterHeld(steeringDirection < 0. ? ThrustKind::LEFT : ThrustKind::RIGHT);
 				// If turning at a fraction of the full rate (either from lack of
 				// energy or because of tracking a target), only consume a fraction
 				// of the turning energy and produce a fraction of the heat.
@@ -4752,6 +4798,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				isThrusting = (thrustCommand > 0.);
 				isReversing = !isThrusting && attributes.Get("reverse thrust");
 				thrust = attributes.Get(isThrusting ? "thrust" : "reverse thrust");
+				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
 				if(thrust)
 				{
 					double scale = fabs(thrustCommand);
@@ -5129,6 +5176,14 @@ double Ship::CalculateDeterrence() const
 			tempDeterrence += .12 * strength / weapon->Reload();
 		}
 	return tempDeterrence;
+}
+
+
+
+void Ship::IncrementThrusterHeld(Ship::ThrustKind kind)
+{
+	uint8_t &heldFrame = thrustHeldFrames[static_cast<size_t>(kind)];
+	heldFrame = min(MAX_THRUST_HELD_FRAMES, static_cast<uint8_t>(heldFrame + 2));
 }
 
 
