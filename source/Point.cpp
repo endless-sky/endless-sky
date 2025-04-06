@@ -334,7 +334,7 @@ Point Point::Unit() const
 	double b = LengthSquared();
 	if(!b)
 		return Point(1., 0.);
-	return *this / sqrt(length);
+	return *this / sqrt(b);
 #else
 	double b = x * x + y * y;
 	if(!b)
