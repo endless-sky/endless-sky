@@ -293,7 +293,7 @@ SCENARIO( "Calculating dot product", "[Point][Dot]" ) {
 		Point first = Point(5.4321, 10.987654321);
 		Point second = Point(63.57151, 0.156123);
 		WHEN( "Multiplied with each other" ) {
-			double expected = first.X() * second.X() +first.Y() * second.Y();
+			double expected = first.X() * second.X() + first.Y() * second.Y();
 			THEN( "The result is correct" ) {
 				CHECK( expected == first.Dot(second) );
 				CHECK( expected == second.Dot(first) );
@@ -307,7 +307,7 @@ SCENARIO( "Calculating cross product", "[Point][Dot]" ) {
 		Point first = Point(5.4321, 10.987654321);
 		Point second = Point(63.57151, 0.156123);
 		WHEN( "Multiplied with each other" ) {
-			double expected = first.X() * second.Y() -first.Y() * second.X();
+			double expected = first.X() * second.Y() - first.Y() * second.X();
 			THEN( "The result is correct" ) {
 				CHECK( expected == first.Cross(second) );
 				CHECK( -expected == second.Cross(first) );
