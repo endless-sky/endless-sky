@@ -3453,8 +3453,8 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!flagship)
 			return 0;
 
-			if(GetPlanet())
-				Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
 
 		const vector<Ship::Bay> &bays = flagship->Bays();
 		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; });
