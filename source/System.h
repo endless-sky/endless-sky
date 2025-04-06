@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Hazard.h"
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
@@ -31,7 +30,9 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Hazard;
 class Minable;
+class Outfit;
 class Planet;
 class Ship;
 class Sprite;
