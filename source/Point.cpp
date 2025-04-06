@@ -331,8 +331,10 @@ Point Point::Unit() const
 	b = _mm_sqrt_pd(b);
 	return Point(v / b);
 #elif defined(__SSE2__)
-	double length = Length();
-	return *this / length;
+	double b = LengthSquared();
+	if(!b)
+		return Point(1., 0.);
+	return *this / sqrt(length);
 #else
 	double b = x * x + y * y;
 	if(!b)
