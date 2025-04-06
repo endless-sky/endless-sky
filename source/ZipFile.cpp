@@ -23,7 +23,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 
-ZipFile::ZipFile(const filesystem::path &zipPath) : basePath(zipPath), topLevelDirectory(), lock()
+
+ZipFile::ZipFile(const filesystem::path &zipPath)
+	: basePath(zipPath)
 {
 	lock_guard<recursive_mutex> guard(lock);
 	zipFile = unzOpen(basePath.string().c_str());

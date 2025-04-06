@@ -66,11 +66,11 @@ namespace {
 	/// each file is opened multiple times on demand.
 	thread_local map<filesystem::path, shared_ptr<ZipFile>> OPEN_ZIP_FILES;
 
-	shared_ptr<ZipFile> GetZipFile(const filesystem::path& filePath)
+	shared_ptr<ZipFile> GetZipFile(const filesystem::path &filePath)
 	{
 		/// Check if this zip is already open on this thread.
-		for(auto &[zip_path, file] : OPEN_ZIP_FILES)
-			if(Files::IsParent(zip_path, filePath))
+		for(auto &[zipPath, file] : OPEN_ZIP_FILES)
+			if(Files::IsParent(zipPath, filePath))
 				return file;
 
 		/// If not, open the zip file.
@@ -396,16 +396,13 @@ bool Files::IsParent(const filesystem::path &parent, const filesystem::path &chi
 
 shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 {
-	if(!exists(path))
+	if(!exists(path) && !write)
 	{
-		if(!write)
-		{
-			// Writing to a zip is not supported.
-			shared_ptr<ZipFile> zip = GetZipFile(path);
-			if(zip)
-				return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
-			return {};
-		}
+		// Writing to a zip is not supported.
+		shared_ptr<ZipFile> zip = GetZipFile(path);
+		if(zip)
+			return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
+		return {};
 	}
 
 	if(write)

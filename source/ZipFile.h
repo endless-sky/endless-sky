@@ -21,6 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <mutex>
 #include <vector>
 
+
+
 /// Wrapper around a zip file that provides basic file listing and reading functions.
 /// This class supports zips both with and without a top-level directory, as long as
 /// the directory's name matches the zip's name. The necessary path translations are

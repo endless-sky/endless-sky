@@ -932,6 +932,7 @@ void GameData::LoadSources(TaskQueue &queue)
 	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
+	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
 	globalPlugins = Files::List(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
 		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
