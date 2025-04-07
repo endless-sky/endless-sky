@@ -3598,7 +3598,7 @@ mission "Coalition: Struggling Author 4"
 			`	You and Anna enter the elevator. You hear the noises of the Kimek communicating in their native language and get the feeling they're talking about you.`
 			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek wearing an ornate jeweled necklace as well as a translation device.`
 			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," the Kimek says through its translation box.`
-			`	At the direction of the Kimek, you and Anna begin walking until directed to a room with glass walls. You walk by a lounge, an area where multiple Kimek are at a table discussing something with a group of Heliarchs, and a large open workspace where individual Kimek are sitting at their own computers.`
+			`	At the direction of the Kimek, you and Anna walk as directed until you arrive at a room with glass walls. Along the way, you pass a lounge, a conference area where multiple Kimek are discussing something at a table with a group of Heliarchs, and a large open workspace where individual Kimek sit at their own computers.`
 			`	After a few minutes of walking, there is an office where another Kimek and a team of five Heliarchs are sitting. The Kimek directing you points you towards that office and walks over to speak with the group.`
 			`	As you enter, Anna puts down the copy of her book on the table, and you each take a seat. The Kimek that led you here briefly speaks to the other Kimek sitting at the interview table before leaving.`
 			`	The sitting Kimek's translation device begins speaking.`
