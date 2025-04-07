@@ -3225,7 +3225,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 		has "First Contact: Coalition: done"
 	on offer
 		conversation
-			`As you walk through the spaceport, you see a group of Coalition citizens seated by a table speaking to each other. One of them glances toward you. As if something suddenly clicked, the group quickly rise from their seats and begin approaching you.`
+			`As you walk through the spaceport, you see a group of Kimek and an Arachi seated at a table, deep in conversation. One of them glances toward you. As if something suddenly clicked, the group quickly rises from their seats and begin approaching you.`
 			choice
 				`	"Excuse me, what do you all want?"`
 					goto "literature collectors"
@@ -3234,33 +3234,32 @@ mission "Coalition: Struggling Author - Human Media 1"
 				`	(Reach for your gun.)`
 			`	The lead Kimek jumps back. "Mean you harm, we did not. Unrelated to violence, our quest is. Speak to you, may we?"`
 			choice
-				`	"What is it you want?"`
+				`	"What do you want?"`
 					goto "literature collectors violent"
 				`	"No, you may not. Goodbye."`
-			`	The Kimek group, along with an Arachi who seems to be part of their party, go back to the table with disappointed expressions.`
+			`	The group of Coalition citizens go back to their table with disappointed expressions.`
 				decline
 			label "literature collectors violent"
 			`	"Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says the lead Kimek, who then introduces themselves as Kachachee. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
-			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and be very grateful, we would, if accept this mission, you will," they explain.`
 				goto "literature collector choice"
 			label "literature collectors"
 			`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says a Kimek, who then introduces themselves as Kachachee. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
-			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and be very grateful, we would, if accept this mission, you will," they explain.`
 			label "literature collector choice"
+			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and be very grateful, we would, if accept this mission, you will," they explain.`
 			choice
+				`	"I'm in. What do you want me to collect?"`
 				`	"Sorry, I'm not interested."`
 					decline
-				`	"I'm in. What do you want me to collect?"`
-			`	"Anything. A translation device we have, so translate the human language into our own, we are able to. As for the topic, always popular amongst our peoples, tales of vile oppressors and the heroic stands against them have been. Stories of brave battles, tyrants and rebels. Histories of humanity's resistance movements, we seek."`
+			`	"Anything. A translation device we have, so to translate the human language into our own, we are able. As for the topic, always popular amongst our peoples, tales of vile oppressors and the heroic stands against them have been. Stories of brave battles, tyrants and rebels. Histories of humanity's resistance movements, we seek."`
 			label decision
 			choice
 				`	"Why do you want this knowledge? What is your group about?"`
 					goto "group question"
 					to display
 						not "coalition: asked about kachachee"
+				`	"I see. I will bring you all the knowledge you want."`
 				`	"I'm not interested. Sorry."`
 					decline
-				`	"I see. I will bring you all the knowledge you want."`
 			`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where they can be found.`
 			branch "don't have"
 				not "human cultural data"
@@ -3277,7 +3276,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			label "group question"
 			action
 				set "coalition: asked about kachachee"
-			`	"A group who likes to together read books, we are. Sci-fi, I believe the term is, especially."`
+			`	"A group who likes to together read books, we are. Science fiction, I believe the term is, especially."`
 				goto decision
 			label "don't have"
 			`	Rumor has it that on <destination> there is a library with complete copies of all human history. You return to your ship and prepare for the journey there to confirm this.`
@@ -3311,7 +3310,7 @@ event "coalition citizens discover fangvin"
 
 mission "Coalition: Struggling Author - Book Discovered"
 	name "Look for Anna Fangvin"
-	description "Get in contact with Anna Fangvin, an author in which the Coalition book club has shown interest in."
+	description "Get in contact with Anna Fangvin, an author that the Coalition book club has shown interest in."
 	source
 		government "Coalition"
 	destination "Zug"
@@ -3319,7 +3318,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 		has "event: coalition citizens discover fangvin"
 	on offer
 		conversation
-			`Upon landing in the spaceport, you get a message from the same group of Coalition citizens. You recall that you had provided them with a datachip containing a copy of Alexandria's archive.`
+			`Upon landing in the spaceport, you get a message from the group of Coalition citizens that you had provided with a datachip containing a copy of Alexandria's archive:`
 			``
 			`	Dear <first>,`
 			`		Interested in an author from the datachip, we are. "Anna Fangvin," her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
@@ -3331,7 +3330,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 				accept
 	on complete
 		conversation
-			`As you prepare to land, you write Anna a short message, offering an interview. In less than ten minutes you receive a reply, explaining that she has accepted your offer and will wait for you in the spaceport.`
+			`As you prepare to land, you send Anna a short message asking to interview her at a restaurant near the spaceport. Less than ten minutes later, she replies - she accepted your offer and will wait for you in the spaceport.`
 
 
 mission "Coalition: Book Discovered 2"
@@ -3368,10 +3367,10 @@ mission "Coalition: Struggling Author 1"
 		has "Coalition: Struggling Author - Book Discovered: done"
 	on offer
 		conversation
-			`Upon entering the spaceport, you walk past a restaurant. A woman raises her arms, waving towards you. She must be Anna Fangvin, the author the Coalition citizens showed interest in.`
+			`Upon reaching the spaceport, you walk to the restaurant to meet Anna Fangvin, the author the Coalition citizens showed interest in . A woman raises her arm to wave at you - she must be Anna.`
 			`	You approach the woman and sit next to her. "Hello, are you <first>?" she asks. "Yes," you answer. "What do you write?"`
 			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, take a look!"`
-			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg Wardragon, and skimming the front and back flaps, you confirm most of what Anna told you about it. Her signature is on the title page.`
+			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg Wardragon. You skim the front and back flaps, confirming most of what Anna told you about it. Her signature is on the title page.`
 			label "genre choice"
 			choice
 				`	"How long is the book?`
@@ -3388,13 +3387,13 @@ mission "Coalition: Struggling Author 1"
 					goto "short stories"
 				`	"How about your previous books?"`
 			label "previous books"
-			`	"They weren't really successful. To be honest, I'm still struggling to make ends meet. Some people buy them and I make a little money, but I never really reach the 5-digits. The first one was self-published, all the publishers rejected it, so I couldn't get much attention to it. The second one was about a kid from the Paradise Worlds being sent to the Dirt Belt by his parents for being spoiled, the third one was about that same kid being kidnapped by pirates. I stopped that series since it was clear it would never sell. And, the fourth one, well..." Anna sighs. "That one was such a failure I don't even want to tell you about it.`
+			`	"They weren't really successful. To be honest, I'm still struggling to make ends meet. I make a little money off of the few people that buy them, but I never quite reach the five-digits. The first one was self-published. All the publishers rejected it, so I couldn't get much attention for it. The second one was about a kid from the Paradise Worlds, sent to the Dirt Belt by his parents for being spoiled. The third one was about that same kid being kidnapped by pirates. I stopped that series since it was clear it would never sell. And, the fourth one, well..." Anna sighs. "That one was such a failure I don't even want to tell you about it.`
 			`	"'Beyond the Hyperdrive' is the fifth one, and I'm hoping it will sell better than the previous four."`
 			choice
 				`	"How about short stories?"`
 			label "short stories"
 			`	"I write short stories and put them up on the hypernet sometimes. Helps me improve my writing and get that urge satiated without committing to a project as long-term as a novel."`
-			`	Anna shows you a webpage with all her stories. The viewer counts appear to be in the hundreds with the occasional one reaching four digits.`
+			`	Anna shows you a webpage with all her stories. The view counts appear to be in the hundreds, with the occasional one reaching four digits.`
 			choice
 				`	"So why is 'Beyond the Hyperdrive' about humans stealing from the Quarg?"`
 					goto "quarg"
@@ -3408,8 +3407,8 @@ mission "Coalition: Struggling Author 1"
 					goto "other novels"
 				`	"What made you decide to set the Quarg as villains in 'Beyond the Hyperdrive'?"`
 			label "quarg"
-			`	Over the course of a few seconds, Anna's optimistic smile sinks, and her eyes seem to grow dull. "You'll probably laugh, but, well... I have something of a... problem with them. I still remember when I was a little girl, my parents took me to Humanika during a vacation trip. It was my first time on a world so alien, so naturally, I wanted to explore. I wandered off from our tour group, and soon realized I was lost." She looks back at you momentarily, as if gauging how you're taking her tale. "There were so many hallways, twists and turns, I still cannot figure out how I got in that maze. It was a darker portion of the spaceport, and as I kept calling out for my parents, I only ever heard back my voice echoing. And then, I saw it. A large Quarg, with eyes of a deep, piercing purple, staring right at me, far down the hallway. I broke into a sprint to flee, but I kept running into more and more Quarg... I don't remember much after that, just that I eventually got back to my parents.`
-			`	"And then when I grew up, when I was a teenager, I decided to do a project on the Quarg for college, assisting a journalist writing an article on them. I tried to keep the memories of that episode in my childhood away, for the sake of the project, but as I interviewed them, as I tried to talk and befriend them... even the polite ones, they seemed so... aloof. Different, and not in the good sense. I just felt a great unease being there, near them again. It certainly didn't help that they often responded with silence to my questions, as if they had something to hide. For months I tried, but they just would not budge, and that eerie feeling whenever one was with me never went away..."`
+			`	Over the course of a few seconds, Anna's optimistic smile sinks, and her eyes seem to dull. "You'll probably laugh, but, well... I have something of a... problem with them. I still remember when I was a little girl, my parents took me to Humanika during a vacation trip. It was my first time on a world so alien, so naturally, I wanted to explore. I wandered off from our tour group, and soon realized I was lost." She looks back at you momentarily, as if gauging how you're taking her tale. "There were so many hallways, twists and turns - I still cannot figure out how I ended up in that maze. It was a darker portion of the spaceport, and as I kept calling out for my parents, I only ever heard my own voice echoing back. And then, I saw it. A large Quarg, with eyes of a deep, piercing purple, staring right at me, far down the hallway. I broke into a sprint to flee, but I kept running into more and more Quarg... I don't remember much after that, just that I eventually got back to my parents.`
+			`	"And then when I grew up, when I was a teenager, I decided to do a project on the Quarg for college, assisting a journalist writing an article on them. I tried to keep the memories of that episode in my childhood away, for the sake of the project, but as I interviewed them, as I tried to talk and befriend them... even the polite ones, they seemed so... aloof. Different - and not in a good way. I just felt a great unease being there, near them again. It certainly didn't help that they often responded with silence to my questions, as if they had something to hide. For months I tried, but they just would not budge, and that eerie feeling whenever one was with me never went away..."`
 			choice
 				`	"That must have been rough, stuck on Humanika. Did your parents eventually find you?"`
 					goto "parents"
@@ -3418,7 +3417,7 @@ mission "Coalition: Struggling Author 1"
 				`	(Tell her about the Coalition.)`
 					goto "coalition"
 			label "parents"
-			`	"They eventually found me, thankfully. But it was distressing being stuck with this Quarg for ten to thirty minutes, I don't remember how long, before eventually this other Quarg took my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we were off that world; I never wanted to come back."`
+			`	"They eventually found me, thankfully. But it was distressing being stuck with that Quarg for what felt like ten to thirty minutes. I don't remember exactly how long. Eventually, another Quarg brought my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we left that world; I've never wanted to go back."`
 			choice
 				`	"So you said your books don't sell well, right?"`
 			`	While Anna tries her best to maintain her composure, her features clearly show she's not comfortable with the topic. "No, they don't," she eventually says. "Even some of my friends and family don't really say much good about them, and fewer still feel inclined to do anything for me." Her eyes take on a vaguely more optimistic light. "Do you, perhaps... work for some publisher? Someone interested in my work?"`
@@ -3448,7 +3447,7 @@ mission "Coalition: Struggling Author 1"
 	on complete
 		set "coalition: struggling author - beyond the hyperdrive"
 		conversation
-			`Anna gives you the book, and then you leave the ship. The moment you are out, three Kimek approach you and Anna. The Kimek in the middle speaks, and then a brief silence occurs. It is broken as their translation box speaks.`
+			`Anna gives you the book before you both exit the <ship>. The moment you are out, three Kimek approach you and Anna. The Kimek in the middle speaks, and then a brief silence occurs. After a moment, their translation box breaks the silence.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
 			`	The Coalition is already familiar with you, so you tell them your name while Anna introduces herself. "About what, do you write?" asks the Kimek. "Oh, I write science fiction books," replies Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
@@ -3469,7 +3468,7 @@ mission "Coalition: Struggling Author 2"
 		conversation
 			`You walk through the spaceport, looking for Anna. You find her in the middle of a public square, seated at a table with her laptop out. You figure she must've intended on getting started on some early work, what with the newly found inspiration of being in such an alien society, but it seems the sheer volume and diversity of peoples here on <origin> made her forget to type entirely.`
 			`	She only seems to notice you when you also sit down beside her. "Oh, hello again, <first>!" she says, snapping back into focus. "Is the ship ready?"`
-			`	Hearing an affirmative answer, Anna stands up from her chair and begins following you to the ship. She settles into her bunk as you prepare for a trip to the <destination>.`
+			`	Hearing an affirmative answer, Anna stands up from her chair and begins following you to the <ship>. She settles into her bunk as you prepare for the trip to the <destination>.`
 				accept
 	on enter "Quaru"
 		conversation
@@ -3494,7 +3493,7 @@ mission "Coalition: Struggling Author 3"
 		has "Coalition: Struggling Author 2: done"
 	on offer
 		conversation
-			`Going through the spaceport looking for Anna, you finally find her at a restaurant serving food made for Saryds. She's typing away furiously at her laptop, with a plate of vegetables next to her. She sees you and motions for you to take a seat.`
+			`Going through the spaceport looking for Anna, you finally find her at a restaurant, eating food made for Saryds. She's typing away furiously at her laptop with a plate of vegetables next to her. She sees you and motions for you to take a seat.`
 			`	You sit down next to Anna. "These vegetables are so delicious! After months of instant noodles and takeout back home, it finally feels good to eat something that's actually healthy." she exclaims, closing the computer.`
 			choice
 				`	"How good is it?"`
@@ -3596,13 +3595,13 @@ mission "Coalition: Struggling Author 4"
 				`	"We're looking for a publishing company called Priyepichia Publishing. Could you provide directions?"`
 			`	"On the 16th floor, Priyepichia Publishing is. Over there, the elevators are," says the receptionist's translator.`
 			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded one.`
-			`	You and Anna enter the elevator. You hear the noises of the Kimek communicating in their native languages and get the feeling they're talking about you.`
-			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek with a necklace around it with ornate jewelry and a translation device.`
-			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," says the Kimek through its translation box.`
+			`	You and Anna enter the elevator. You hear the noises of the Kimek communicating in their native language and get the feeling they're talking about you.`
+			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek wearing an ornate jeweled necklace as well as a translation device.`
+			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," the Kimek says through its translation box.`
 			`	At the direction of the Kimek, you and Anna begin walking until directed to a room with glass walls. You walk by a lounge, an area where multiple Kimek are at a table discussing something with a group of Heliarchs, and a large open workspace where individual Kimek are sitting at their own computers.`
-			`	After a few minutes of walking, there is an office with another Kimek and a team of five Heliarchs sitting. The Kimek directing you points toward that room and leaves.`
-			`	As you enter, Anna puts down the copy of her book on the table, and the two of you take a seat. The Kimek that led you here briefly speaks to the other Kimek sitting at the interview table, before leaving.`
-			`	The Kimek's translation device begins to speak.`
+			`	After a few minutes of walking, there is an office where another Kimek and a team of five Heliarchs are sitting. The Kimek directing you points you towards that office and walks over to speak with the group.`
+			`	As you enter, Anna puts down the copy of her book on the table, and you each take a seat. The Kimek that led you here briefly speaks to the other Kimek sitting at the interview table before leaving.`
+			`	The sitting Kimek's translation device begins speaking.`
 			`	"Greetings. Ikiyachee, my name is, and head editor of Priyepichia Publishing, I am. To see an alien want to publish a book, interesting and unexpected it was, in my time here, 50 years long," the Kimek says.`
 			`	"Hello, I am Anna Fangvin, and this is my friend <first> <last>, who has been very helpful in bringing me here," Anna says, somewhat flustered.`
 			`	"From the introduction and the first few pages, interesting it sounded, but run it past the Heliarch reviewers, we must. So, <first>, long and intensive, this interview will be. As very unique, to meet a human like her is, and to adapt her book to our culture, a long and drawn out process it will be."`
@@ -3636,7 +3635,7 @@ mission "Coalition: Struggling Author 4"
 			`	Once the first questions are asked, Anna is all too happy to begin discussing the contents of her novel in great detail.`
 			`	Under the watchful eye of the two Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Heliarchs' numerous questions for clarification and elaboration make the process a long one.`
 			`	"Sold many books before coming here, have you?" one of the agents asks. Anna embarrassedly glances in your direction. "Well, no," she replies. "But I've been writing better and better over the past few years."`
-			`	Priyepichia's representative speaks up. "Page count, we must know. Binding process, aware of you are? You want what type, and cover style?" "There are 300 pages. The hardcover book should have a Jump Drive emblazoned on the front cover.`
+			`	Priyepichia's representative speaks up. "Word count, we must know. Binding process, aware of you are? You want what type, and cover style?" "There are around 90,000 words. The hardcover book should have a Jump Drive emblazoned on the front cover.`
 			`	"I don't know what the binding type means; couldn't you just decide that yourself?"`
 			`	As you listen, you learn that due to the Coalition's review process to make the book more suitable, Anna will have to stay for about half a year, during which she will have an apartment to live in.`
 			choice
@@ -3644,14 +3643,14 @@ mission "Coalition: Struggling Author 4"
 					goto "half a year"
 				`	(Say nothing.)`
 			label "rest of interview"
-			`	As the hours pass, Anna's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet and thanks you and Anna.`
-			`	You leave the interview room, the Heliarchs staying in the room, presumably to continue discussion with the Kimek. As the two of you walk, Anna begins to speak.`
+			`	As the hours pass, Anna's enthusiastic tone remains strong and constant. The Kimek then takes the book, puts it in a nearby filing cabinet and thanks the two of you.`
+			`	You leave the interview room, while the Heliarchs stay, presumably to continue speaking with the Kimek. As the two of you walk out, Anna begins to speak.`
 				goto thanks
 			label "half a year"
 			`	"Required to stay with Anna, you are not, but if you wish to, stay with her you may. Return to human space, you are free to do," says the Kimek.`
 				goto "rest of interview"
 			label "lounge"
-			`	You leave the room and walk to the lounge. There are several tables where many Kimek are chatting in their native language, while a few Saryds and Arachi are visibly relaxed. You sit at an empty table and pass the time, occasionally going to the water dispenser to hydrate yourself.`
+			`	You leave the room and walk to the lounge. There are several tables where many Kimek are chatting in their native language, while a few Saryds and Arachi are visibly relaxed. You sit at an empty table to pass the time, occasionally going to the water dispenser to hydrate yourself.`
 			`	After thirty minutes, a Kimek approaches you. Their translation device speaks. "An alien in our space, you are? Most strange, this meeting truly is. Coalition member the like of you, have I never encountered. Saryd or Arachi, are you?"`
 			# kst-1 is short for [K]imek [s]mall [t]alk 1
 			choice
@@ -3700,7 +3699,7 @@ mission "Coalition: Struggling Author 4"
 			`	"Again, thank you. You will not be needed anymore for the process."`
 			choice
 				`	(Leave.)`
-			`	You return to the spaceport the way you came and return to your ship. You are slightly anxious about the outcome of the process and whether Anna's book will even make it through the process and be published, but you have more important things to attend to for the next six months.`
+			`	You return to the spaceport the way you came and return to your ship. You are slightly anxious about the outcome of the process and whether Anna's book will even make it through the process to be published, but you have more important things to attend to for the next six months.`
 				decline
 			label stay
 			`	"I need to stay here so I can answer their questions during the review process. Don't worry about me."`
