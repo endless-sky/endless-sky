@@ -77,7 +77,7 @@ double ShipJumpNavigation::JumpFuel(const System *destination) const
 {
 	// A currently-carried ship or ship without drives requires no fuel to jump,
 	// because it cannot jump.
-	if(currentSystem != nullptr && !(hasJumpDrive || hasHyperdrive || hasScramDrive))
+	if(!currentSystem || !HasAnyDrive())
 		return 0.;
 
 	// If no destination is given, return the minimum jump-fuel to the nearest system.
@@ -195,6 +195,13 @@ bool ShipJumpNavigation::HasScramDrive() const
 bool ShipJumpNavigation::HasJumpDrive() const
 {
 	return hasJumpDrive;
+}
+
+
+
+bool ShipJumpNavigation::HasAnyDrive() const
+{
+	return hasHyperdrive || hasScramDrive || hasHyperdrive;
 }
 
 
