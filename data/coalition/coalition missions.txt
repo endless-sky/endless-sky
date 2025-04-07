@@ -3367,13 +3367,13 @@ mission "Coalition: Struggling Author 1"
 		has "Coalition: Struggling Author - Book Discovered: done"
 	on offer
 		conversation
-			`Upon reaching the spaceport, you walk to the restaurant to meet Anna Fangvin, the author the Coalition citizens showed interest in . A woman raises her arm to wave at you - she must be Anna.`
+			`Upon reaching the spaceport, you walk to the restaurant to meet Anna Fangvin, the author the Coalition citizens showed interest in. A woman raises her arm to wave at you - she must be Anna.`
 			`	You approach the woman and sit next to her. "Hello, are you <first>?" she asks. "Yes," you answer. "What do you write?"`
 			`	"I write science fiction novels. I just released 'Beyond the Hyperdrive', the story of a group of humans who steal the Quarg's jumping technology and see what's truly beyond the hyperlanes we've known for so long. Here, take a look!"`
 			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg Wardragon. You skim the front and back flaps, confirming most of what Anna told you about it. Her signature is on the title page.`
 			label "genre choice"
 			choice
-				`	"How long is the book?`
+				`	"How long is the book?"`
 					goto "book length"
 				`	"Why is it a story about humanity stealing from the Quarg?"`
 					goto "quarg"
@@ -3725,8 +3725,7 @@ mission "Coalition: Struggling Author 5A"
 			`	You read it, and recall that you had helped an author named Anna Fangvin get her book, 'Beyond the Hyperdrive,' published about half a year ago in Coalition space. You should return to <destination> and check on her.`
 				accept
 	on complete
-		payment 50000
-		"salary: Beyond the Hyperdrive" = 100
+		payment 750000
 		conversation "anna invites you to book signing"
 
 mission "Coalition: Struggling Author 5B"
@@ -3742,8 +3741,7 @@ mission "Coalition: Struggling Author 5B"
 			`As you land on the spaceport, you check your messages and see a notification from Anna Fangvin, the author who you helped about half a year ago. In the message, she explains that her novel, "Beyond the Hyperdrive," has been approved. You should return to <destination> and meet her.`
 				accept
 	on complete
-		payment 50000
-		"salary: Beyond the Hyperdrive" = 100
+		payment 750000
 		conversation "anna invites you to book signing"
 
 
