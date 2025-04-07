@@ -2848,15 +2848,19 @@ int Ship::JumpsRemaining(bool followParent) const
 	// Make sure this ship has some sort of hyperdrive, and if so return how
 	// many jumps it can make.
 	double jumpFuel = 0.;
-	if(!targetSystem && followParent)
+	if(!targetSystem)
 	{
-		// If this ship has no destination, the parent's substitutes for it,
-		// but only if the location is reachable.
-		auto p = GetParent();
-		if(p)
-			jumpFuel = navigation.JumpFuel(p->GetTargetSystem());
+		if(followParent)
+		{
+			// If this ship has no destination, the parent's substitutes for it,
+			// but only if the location is reachable.
+			auto p = GetParent();
+			jumpFuel = p ? navigation.JumpFuel(p->GetTargetSystem()) : navigation.JumpFuelNearest();
+		}
+		else
+			jumpFuel = navigation.JumpFuelNearest();
 	}
-	if(!jumpFuel)
+	else
 		jumpFuel = navigation.JumpFuel(targetSystem);
 	return jumpFuel ? fuel / jumpFuel : 0.;
 }

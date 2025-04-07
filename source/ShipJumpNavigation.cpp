@@ -88,6 +88,28 @@ double ShipJumpNavigation::JumpFuel(const System *destination) const
 
 
 
+// Get the amount of fuel that would be expended to jump to the "nearest" (in fuel) system.
+double ShipJumpNavigation::JumpFuelNearest() const
+{
+	// A currently-carried ship or ship without drives requires no fuel to jump,
+	// because it cannot jump.
+	if(!currentSystem || !HasAnyDrive())
+		return 0.;
+
+	double jumpDriveCost = JumpDriveFuel();
+	double hyperdriveCost = HyperdriveFuel();
+
+	// Check whether the ship can jump, that jumping is more expensive than hyperdriving,
+	// and whether the system has links.
+	if((!jumpDriveCost || jumpDriveCost >= hyperdriveCost) && !currentSystem->Links().empty())
+		return hyperdriveCost;
+	else if(!currentSystem->VisibleNeighbors().empty())
+		return jumpDriveCost;
+	return 0.;
+}
+
+
+
 // Get the maximum distance that this ship can jump.
 double ShipJumpNavigation::JumpRange() const
 {

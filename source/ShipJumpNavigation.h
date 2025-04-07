@@ -42,6 +42,8 @@ public:
 	// Get the amount of fuel that would be expended to jump to the destination. If the destination is
 	// nullptr then return the maximum amount of fuel that this ship could expend in one jump.
 	double JumpFuel(const System *destination = nullptr) const;
+	// Get the amount of fuel that would be expended to jump to the "nearest" (in fuel) system.
+	double JumpFuelNearest() const;
 	// Get the maximum distance that this ship can jump.
 	double JumpRange() const;
 	// Get the cost of making a jump of the given type (if possible). Returns 0 if the jump can't be made.
