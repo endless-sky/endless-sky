@@ -8271,7 +8271,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			branch meanopening
 				"syndicate business: mean to Howard" > 0
 			`	"Hey <first>,`
-			`		"I hope all is well. I'm excited to send you this interim Megaparsec report! I'm sharing because it's the first one with your investment included--check out Section 3, Part C, Paragraph 6 for the details.`
+			`		"I hope all is well. I'm excited to send you this interim Megaparsec report! I'm sharing because it's the first one with your investment included - check out Section 3, Part C, Paragraph 6 for the details.`
 				goto openingchoice
 			label meanopening
 			`	"Captain <first> <last>,`
@@ -8282,7 +8282,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 			branch evilchoice
 				has "Syndicate Business expansion 10m evil"
 			# neutral
-			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higherups like the consistency - keeps me in their good graces.`
+			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higher ups like the consistency - keeps me in their good graces.`
 				goto howardbye
 			label goodchoice
 			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk of provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
@@ -8315,7 +8315,7 @@ mission "Syndicate Business 5.1 A 10m Expansion Update"
 				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
 					goto sectionmarked
 				`	(Try to get through the report's overview of business segments.)`
-				`	(That's enough financial report for one day.)`
+				`	(That's enough financial reports for one day.)`
 					decline
 			`	Megaparsec Shipyards Segment`
 			`		Megaparsec Shipyards is at the forefront of advanced shipbuilding, focusing on designing and constructing lightweight, high-performance vessels for commercial and military applications. Megaparsec Shipyards is a leading shipyard based on unit sales with two principal lines of business: spacecraft sales and aftermarket services. Spacecraft sales include a diverse portfolio of ships such as the Quicksilver, Bounder, Manta, and Splinter, as well as the Hauler and Hauler II designs. Aftermarket services include outfitting, parts, maintenance, inspection and repair services. Our shipyards leverage cutting-edge technology and innovative design principles to enhance efficiency and reduce costs. Revenue in this segment accounted for approximately 45% of our total revenue in the last fiscal year, showcasing our strong market position.`
@@ -8400,6 +8400,10 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			`	The structure looms in front of you - sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
 			choice
 				`	(Get out of the bulky vehicle.)`
+					goto refuel
+				`	(Turn around and go back to your ship.)`
+					decline
+				label refuel
 			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsors zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
 			branch goodchoice
 				has "Syndicate Business expansion 10m good"
@@ -8409,7 +8413,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			`	As you start to approach the platform, you notice a worker sitting on the edge of a low retaining wall, just outside the main operation zone. He's leaned back, catching his breath and wiping the sweat from his brow. The worker looks up as you near, his expression neutral but open, perhaps surprised to see someone from management on-site. His break seems brief, but he's got a minute or two before heading back to work - giving you the option to engage in conversation or simply move on.`
 				goto hellothere
 			label goodchoice
-			`	As your approach to the platform begins, you notice a worker sitting on the edge of a low retaining wall, just outside the bustling refueling zone. He's leaned back with a relaxed smile on his face as he whistles a cheerful tune, clearly enjoying a well-earned break. The worker's uniform is crisp, and his overall demeanor suggests high morale, perhaps a reflection of your choice to invest in excellent workplace safety and labor conditions. He glances up as you near, offering a friendly nod, clearly at ease. With a few minutes left in his break, you have the chance to strike up a conversation or continue on your way.`
+			`	As your approach to the platform begins, you notice a worker sitting on the edge of a low retaining wall, just outside the bustling refueling zone. He's leaned back with a relaxed smile on his face as he whistles a cheerful tune, clearly enjoying a well-earned break. The worker's uniform is crisp, and his overall demeanor suggests high morale. He glances up as you near, offering a friendly nod, clearly at ease. With a few minutes left in his break, you have the chance to strike up a conversation or continue on your way.`
 				goto hellothere
 			label evilchoice
 			`	As you start your approach towards the platform, you notice a worker sitting on the edge of a low retaining wall, staring at a small memorial plaque embedded in the ground just outside the main refueling zone. Next to the plaque, two small, unmarked rocks have been carefully placed side by side.`
@@ -8477,13 +8481,11 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			label evilchoice3
 			`	The air is thick with tension as you look down at the fueling bay. A massive Container Transport lurches to dock, overloaded with Particle Cannons, as workers scramble like their lives depend on it.`
 			`	What little safety gear you see appears to be an afterthought - you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy tubes attached to worn repulsors that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
-			`	As you inhale, the air sears your lungs, almost choking you into a coughing fit. It's suffocating, laden with the sharp, toxic stench of volatile fuel. The entire platform feels like it's teetering on the edge of catastrophe. Every second here feels dangerous, the air thick with the threat of a disaster waiting to happen. The hum of machinery feels ominous against the gasping breaths of workers, whose tense, hurried movements suggest they're all too aware of the dangerous conditions around them. Each worker appears equally broken and sullen, and you can't make out the worker you saw earlier from the crowd.`
+			`	As you inhale, the air sears your lungs, almost choking you into a coughing fit. It's suffocating, laden with the sharp, toxic stench of volatile fuel. The entire platform feels like it's teetering on the edge of catastrophe. Every second here feels dangerous, the air thick with the threat of a disaster waiting to happen. The hum of machinery feels ominous against the gasping breaths of workers, whose tense, hurried movements suggest they're all too aware of the dangerous conditions around them. Everyone here appears equally broken and sullen, and you can't make out the worker you saw earlier from the crowd.`
 			label hellothere3
 			choice
 				`	(Take in the scene.)`
 			`	You take in the scene for another moment, the sounds of the station filling the air as you stand on the platform. You give the area one last glance before heading back down to return to the spaceport in the bulky vehicle that took you here. The faint metallic taste of the radioactive air returns as you leave the refueling station, blending with the steady hum of the vehicle's repulsor engine.`
-			choice
-				`	(Get in the vehicle.)`
 			`	The long journey back to the spaceport gives you plenty of time to quietly reflect on the impact you've seen your decision have on the people here.`
 
 
