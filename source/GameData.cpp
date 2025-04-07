@@ -589,6 +589,13 @@ const Set<Color> &GameData::Colors()
 
 
 
+const Set<Swizzle> &GameData::Swizzles()
+{
+	return objects.swizzles;
+}
+
+
+
 const Set<Conversation> &GameData::Conversations()
 {
 	return objects.conversations;
