@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryType.h"
 #include "Sale.h"
 #include "Set.h"
+#include "Swizzle.h"
 #include "Trade.h"
 
 #include <filesystem>
@@ -118,6 +119,7 @@ public:
 	static void DestroyPersons(std::vector<std::string> &names);
 
 	static const Set<Color> &Colors();
+	static const Set<Swizzle> &Swizzles();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();

@@ -41,6 +41,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Raiders.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "Swizzle.h"
 #include "System.h"
 #include "test/Test.h"
 #include "test/TestData.h"
@@ -104,6 +105,7 @@ private:
 
 private:
 	Set<Color> colors;
+	Set<Swizzle> swizzles;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;

@@ -3459,15 +3459,75 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 
-	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
-	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	auto &&flagshipBaysCategoryProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysCategoryFun = [this](const string &name) -> int64_t
 	{
 		if(!flagship)
 			return 0;
 
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
+	flagshipBaysCategoryProvider.SetGetFunction(flagshipBaysCategoryFun);
+
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
+	auto &&flagshipBaysCategoryFreeProvider = conditions.GetProviderPrefixed("flagship bays free: ");
+	auto flagshipBaysCategoryFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
+				" condition while landed is unstable behavior.");
+
+		return flagship->BaysFree(name.substr(strlen("flagship bays free: ")));
+	};
+	flagshipBaysCategoryFreeProvider.SetGetFunction(flagshipBaysCategoryFreeFun);
+
+	auto &&flagshipBaysProvider = conditions.GetProviderNamed("flagship bays");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->Bays().size();
+	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
+	auto &&flagshipBaysFreeProvider = conditions.GetProviderNamed("flagship bays free");
+	auto flagshipBaysFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
+
+		const vector<Ship::Bay> &bays = flagship->Bays();
+		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; });
+	};
+	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
+
+	auto &&flagshipMassProvider = conditions.GetProviderNamed("flagship mass");
+	flagshipMassProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Mass() : 0; });
+
+	auto &&flagshipShieldsProvider = conditions.GetProviderNamed("flagship shields");
+	flagshipShieldsProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->ShieldLevel() : 0;
+	});
+
+	auto &&flagshipHullProvider = conditions.GetProviderNamed("flagship hull");
+	flagshipHullProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->HullLevel() : 0;
+	});
+
+	auto &&flagshipFuelProvider = conditions.GetProviderNamed("flagship fuel");
+	flagshipFuelProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->FuelLevel() : 0;
+	});
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
