@@ -8400,10 +8400,8 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 			`	The structure looms in front of you - sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
 			choice
 				`	(Get out of the bulky vehicle.)`
-					goto refuel
 				`	(Turn around and go back to your ship.)`
 					decline
-				label refuel
 			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsors zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
 			branch goodchoice
 				has "Syndicate Business expansion 10m good"
