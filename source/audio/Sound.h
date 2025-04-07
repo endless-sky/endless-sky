@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <filesystem>
 #include <string>
 
 
@@ -23,16 +24,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // whether it is looping (ends in '~') or not.
 class Sound {
 public:
-	bool Load(const std::string &path, const std::string &name);
+	bool Load(const std::filesystem::path &path, const std::string &name);
 
 	const std::string &Name() const;
 
 	unsigned Buffer() const;
+	unsigned Buffer3x() const;
 	bool IsLooping() const;
 
 
 private:
 	std::string name;
 	unsigned buffer = 0;
+	unsigned buffer3x = 0;
 	bool isLooped = false;
 };

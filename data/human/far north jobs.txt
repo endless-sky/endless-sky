@@ -19,6 +19,7 @@ mission "Betelgeuse Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Prime"
 	source
 		not government Pirate
 		near Betelgeuse 2 10
@@ -42,6 +43,7 @@ mission "Betelgeuse Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Prime"
 	source
 		not government Pirate
 		near Betelgeuse 2 10
@@ -65,6 +67,7 @@ mission "Betelgeuse Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Prime"
 	source
 		not government Pirate
 		near Betelgeuse 2 10

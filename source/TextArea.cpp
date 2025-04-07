@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/FontSet.h"
 #include "GameData.h"
-#include "PointerShader.h"
+#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
 #include "ScrollBar.h"
@@ -108,17 +108,17 @@ void TextArea::SetTruncate(Truncate t)
 
 
 
-int TextArea::GetTextHeight()
+int TextArea::GetTextHeight(bool trailingBreak)
 {
-	Validate();
-	return wrappedText.Height();
+	Validate(trailingBreak);
+	return wrappedText.Height(trailingBreak);
 }
 
 
 
 int TextArea::GetLongestLineWidth()
 {
-	Validate();
+	Validate(scrollHeightIncludesTrailingBreak);
 	return wrappedText.LongestLineWidth();
 }
 
@@ -126,7 +126,7 @@ int TextArea::GetLongestLineWidth()
 
 void TextArea::Draw()
 {
-	Validate();
+	Validate(scrollHeightIncludesTrailingBreak);
 	if(!buffer)
 		buffer = std::make_unique<RenderBuffer>(size);
 
@@ -239,7 +239,7 @@ void TextArea::Invalidate()
 
 
 
-void TextArea::Validate()
+void TextArea::Validate(bool trailingBreak)
 {
 	if(scrollable != scroll.Scrollable())
 	{
@@ -251,10 +251,11 @@ void TextArea::Validate()
 			SetRect({position + offset, size + 2 * offset});
 	}
 
-	if(!textIsValid)
+	if(!textIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
 	{
 		wrappedText.Wrap(text);
-		scroll.SetMaxValue(wrappedText.Height());
+		scroll.SetMaxValue(wrappedText.Height(trailingBreak));
+		scrollHeightIncludesTrailingBreak = trailingBreak;
 		textIsValid = true;
 	}
 }

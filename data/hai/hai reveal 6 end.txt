@@ -32,10 +32,10 @@ mission "Hai Reveal [C01] Cleanup"
 			`When you land, you, Teeneep, and the Unfettered Hai are greeted as heroes. Word has traveled ahead of you through the new message links, and you are greeted by a hastily planned celebration in the capitol. After a few hours involving a brief formal parade, a great deal of cheering, some minor speeches with Xilin and Alondo trotted out to reassure everyone that there would be no conflict, and finally some more discrete parties outside the public eye, General Choot'k comes to you and Teeneep to bid his farewell.`
 			`	He shakes your hand and says, "You're a fine warrior, Captain <last>. You are as much a True Hai as any human can be, and it was an honor to fight alongside you in battle."`
 			`	Then he turns to Teeneep and tells her, "You're the future leader of all our people, Teeneep. Come back with me to Darkcloak. Join the True Hai and lead us to victory."`
-			`	Teeneep smiles and says, "My fight is here general. I fight for the hearts and minds of our Fettered brethren that we may find a true path. One day again we will be one people."`
+			`	Teeneep smiles and says, "My fight is here, general. I fight for the hearts and minds of our Fettered brethren that we may find a true path. One day we will again be one people."`
 			`	Teeneep is quiet for a while after he departs, but soon enough the statesperson in her has walked you back into the celebrations, making sure to leave you with Sayari so she can keep you from embarrassing yourself.`
 			`	You're nursing the warmth of a beverage after breakfast the next morning on far too little sleep when your communicator pings. When it turns out to be Sayari, you take a moment to thank your body clock for ensuring you were already dressed and decent today, despite the suffering over it.`
-			`	"So glad to see that you've pulled up alright this morning," she says. "As one final thing, we all need to go and meet the human leaders on Mountaintop and finally close the book on this chapter. We could take any ship at this point, but I cannot overstate how much you've helped us. I thought you might like to see it through to the end."`
+			`	"So glad to see that you've pulled up alright this morning," she says. "As one final thing, we all need to go and meet the human leaders on Mountaintop and finally close the book on this chapter. We could take any ship at this point, but I cannot overstate how much you've helped us. I thought you might like to see it through to the end.`
 			`	"We'll be ready to go in a couple of hours. What do you say?"`
 			choice
 				`	"Seems silly not to come on the final trip. Of course I'll take you."`
@@ -59,10 +59,10 @@ mission "Hai Reveal [C01] Cleanup"
 			`	Between scheduled sessions, Xilin explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
 				goto publicbroadcast
 			label presaside
-			`	At one quiet point between structured meetings, during which the peripheral conversations are more focused on the particulars of the Free World's position, you manage to get a hold of Xilin to ask about it. He explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
+			`	At one quiet point between structured meetings, during which the peripheral conversations are more focused on the particulars of the Free Worlds' position, you manage to get a hold of Xilin to ask about it. He explains the Syndicate's absence. "The Syndicate is technically part of the Republic and awarded no special diplomatic status. Besides, Terry seems to have disappeared from Syndicate communications, though I won't hazard a guess as to their internal politics."`
 			`	Perhaps seizing on the opportunity to get a momentary reprieve from more official business, the President himself steps in to fill the gap as soon as Xilin departs. It seems that you acquire a bubble of space around you whenever anyone of note stands next to you, and the President exploits this. "You know," he says quietly, while staring out at the many people hustling about at their business, "it's not very often that someone has the gall to patronize me to my face... I usually have to pay people to do that, or at least, to do it constructively anyway."`
 			`	The pause he leaves between sentences is just slightly too short to invite a response. "If you ever decide on a career change, that might be an option for you."`
-			`	He exhales through his nose as if chuckling at something humorous. "Fly safe Captain, a lot of people know who you are now."`
+			`	He exhales through his nose as if chuckling at something humorous. "Fly safe, Captain; a lot of people know who you are now."`
 			`	With that he steps away directly to meet an aide who had been hurrying towards you both, intent on ignoring the bubble. From across the room you catch Xilin with his eyebrows raised, giving you a curious look despite being engaged in his own conversation. Neither of them speak to you again for the remainder of the meetings.`
 			label publicbroadcast
 			`	Eventually you follow the diplomats to a room called the Grand Borealis Chamber, "Where Mountains Touch The Sky," as Teeneep makes the first publicly broadcast speech from the Hai to humanity. The three heads of state announce a resolution granting safe passage to all Hai in human space, as long as they register with customs on Mountaintop before entering, and Teeneep expresses similar sentiments for humans visiting Hai space. It is announced that extensive surveillance fleets will be posted on both sides of the wormhole to ensure safety. This meeting will now turn into a multi-day summit to discuss the creation of a formal treaty.`
@@ -81,7 +81,7 @@ mission "Hai Reveal [C01] Cleanup"
 			label whut
 			`	Xilin begins. "It seems that somewhere along the way, a shipload of kidnapped Hai didn't make it to a processing area. The Hai were left on Sunracer, and the ship appears to have disappeared."`
 			`	"For the moment," says Sayari, "We're the only ones who know about it. The Hai are in hiding but have tapped into a communication grid. I intercepted their transmission as it was routed through this station directly."`
-			`	Xilin looks at you pointedly. "We need you to go pick them up and bring them here. While you're at it make sure there aren't any loose ends. If it's not, this resolution may not happen, despite everything we've achieved."`
+			`	Xilin looks at you pointedly. "We need you to go pick them up and bring them here. While you're at it, make sure there aren't any loose ends. If there are, this resolution may not happen, despite everything we've achieved."`
 			choice
 				`	"Of course. I'll take care of it."`
 				`	"You deal with the diplomacy, and leave the heroism to me."`
@@ -166,7 +166,7 @@ mission "Hai Reveal [C02A] Cleanup"
 	to offer
 		has "Hai Reveal [C02] Cleanup: active"
 	on enter Mirfak
-		dialog "A message from Stephen Moray pops up before you can depart Mirfak. 'Hey, Captain. It seems Terry has gone missing; if you see her, let her know she will lose her position if she doesn't return to her duties soon.'"
+		dialog `A message from Stephen Moray pops up before you can depart Mirfak. "Hey, Captain. It seems Terry has gone missing; if you see her, let her know she will lose her position if she doesn't return to her duties soon."`
 		fail
 
 
@@ -317,7 +317,7 @@ mission "Hai Reveal [C05] Cleanup"
 		has "Hai Reveal [C04] Cleanup: done"
 	on offer
 		conversation
-			`	Your arrival is unobstructed as you land on this mild, habitable world that appears to be in an advanced, but retreating, ice age. No one comes to greet you at the spaceport, either. As you wander into the single major town, built on a promontory overlooking a wide river mouth, you notice that the people here seem to be happy and the town appears to be remarkably modern. This place has been looked after by someone who knew how to source the necessary import goods to support it on this sparse world of grasses and something resembling pine trees - someone who was Chief of Operations of the Syndicate, for example...`
+			`Your arrival is unobstructed as you land on this mild, habitable world that appears to be in an advanced, but retreating, ice age. No one comes to greet you at the spaceport, either. As you wander into the single major town, built on a promontory overlooking a wide river mouth, you notice that the people here seem to be happy and the town appears to be remarkably modern. This place has been looked after by someone who knew how to source the necessary import goods to support it on this sparse world of grasses and something resembling pine trees - someone who was Chief of Operations of the Syndicate, for example...`
 			`	You spend about fifteen minutes looking around before a young boy walks up and addresses you. "Hey, stranger sir. I've been asked to tell you that Terry is out on the bluff waiting for you."`
 			choice
 				`	"Who are you?"`
