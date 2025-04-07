@@ -303,6 +303,8 @@ void Mission::Load(const DataNode &node)
 			substitutions.Load(child);
 		else if(child.Token(0) == "npc")
 			npcs.emplace_back(child);
+		else if(child.Token(0) == "timer")
+			timers.emplace_back(child);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -479,6 +481,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
+		for(const Timer &timer : timers)
+			timer.Save(out);
 
 		// Save all the actions, because this might be an "available mission" that
 		// has not been received yet but must still be included in the saved game.
@@ -935,6 +939,10 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	for(const NPC &npc : npcs)
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
+	// All non-optional timers must be complete.
+	for(const Timer &timer : timers)
+		if(!timer.IsOptional() && !timer.IsComplete())
+			return false;
 
 	// If any of the cargo for this mission is being carried by a ship that is
 	// not in this system, the mission cannot be completed right now.
@@ -1201,6 +1209,15 @@ void Mission::UpdateNPCs(const PlayerInfo &player)
 {
 	for(auto &npc : npcs)
 		npc.UpdateSpawning(player);
+}
+
+
+
+// Iterate through the timers and progress them if applicable.
+void Mission::StepTimers(PlayerInfo &player, UI *ui)
+{
+	for(Timer &timer : timers)
+		timer.Step(player, ui, *this);
 }
 
 
@@ -1522,6 +1539,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	for(const NPC &npc : npcs)
 		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+
+	// Instantiate the timers.
+	for(const Timer &timer : timers)
+		result.timers.push_back(timer.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
