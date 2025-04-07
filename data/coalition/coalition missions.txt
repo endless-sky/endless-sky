@@ -3373,7 +3373,7 @@ mission "Coalition: Struggling Author 1"
 			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg Wardragon. You skim the front and back flaps, confirming most of what Anna told you about it. Her signature is on the title page.`
 			label "genre choice"
 			choice
-				`	"How long is the book?"`
+				`	"How many pages is the book?"`
 					goto "book length"
 				`	"Why is it a story about humanity stealing from the Quarg?"`
 					goto "quarg"
@@ -3401,7 +3401,7 @@ mission "Coalition: Struggling Author 1"
 			`	"Well, thank you! I got it printed in a shop on Starcross - the shipping fees were exorbitant, but it's definitely very nice!"`
 				goto "genre choice"
 			label "book length"
-			`	"About three hundred pages. Not too long."`
+			`	"About three hundred pages - ninety thousand words. Not too long."`
 			choice
 				`	"Have you written any other novels?"`
 					goto "other novels"
