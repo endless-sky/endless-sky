@@ -655,6 +655,7 @@ namespace {
 
 	void LocationFilterMatches(const char *const *argv)
 	{
+		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
 		LocationFilter filter;
 		for(const DataNode &node : file)
