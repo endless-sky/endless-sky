@@ -127,46 +127,38 @@ mission "Successors: First Contact 1"
 					to display
 						not "Successors: language"
 					goto language
+				`	"What do you mean that you were ripped from the galaxy?"`
+					to display
+						has "Successors: history"
+						not "Successors: ripped"
+					goto ripped
 				`	"How could you have met humans fifteen hundred years ago?"`
 					to display
 						not "Successors: history"
 					goto history
-				`	"What is House Sioeora?"`
-					to display
-						not "Successors: house"
-					goto house
-			label language
-			action
-				set "Successors: language"
-				set "Successors: history"
-			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
-			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
-			choice
-				`	"What should I do now?"`
-					goto "what now"
-				`	"What do you mean that you were ripped from the galaxy?"`	# Define choices uniquely when they contain a follow-up question not in label "questions."
-					to display
-						not "Successors: ripped"
-					goto ripped
-				`	"What is House Sioeora?"`
-					to display
-						not "Successors: house"
-					goto house
-			label "language short"
-			action
-				set "Successors: language"
-			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
-			choice
-				`	"What should I do now?"`
-					goto "what now"
 				`	"Humans have certainly changed a lot in the last fifteen hundred years."`
 					to display
+						has "Successors: language"
 						not "Successors: changed"
 					goto changed
 				`	"What is House Sioeora?"`
 					to display
 						not "Successors: house"
 					goto house
+			label language
+			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
+				to display
+					has "Successors: history"
+			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
+			action
+				set "Successors: language"
+				set "Successors: history"
+				goto questions
+			label "language short"
+			action
+				set "Successors: language"
+			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
+				goto questions
 			label changed
 			action
 				set "Successors: changed"
@@ -181,13 +173,16 @@ mission "Successors: First Contact 1"
 			action
 				set "Successors: history"
 			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
+			# This is a copy of the choices under the "questions" label, but simplified to remove choices that will never show.
 			choice
 				`	"What should I do now?"`
 					goto "what now"
-				`	"Is that how you know my language?"`
+				`	"Is that how you know my language?` # This follow up question reverts to "How do you know my language?" if it isn't immediately asked
 					to display
 						not "Successors: language"
 					goto "language short"
+				`	"What do you mean that you were ripped from the galaxy?"`
+					goto ripped
 				`	"What is House Sioeora?"`
 					to display
 						not "Successors: house"
