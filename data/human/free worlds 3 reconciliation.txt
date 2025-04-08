@@ -958,7 +958,7 @@ mission "FW Syndicate Capture 1C"
 mission "FW Pug 1"
 	landing
 	name "What happened to Rand?"
-	description "Try to determine why communications with Rand in the Zeta Aquilae system were cut off. Look for clues in neighboring systems."
+	description "Try to determine why communications with Rand in the Zeta Aquilae system were cut off."
 	autosave
 	source "New Tibet"
 	waypoint "Cebalrai"
