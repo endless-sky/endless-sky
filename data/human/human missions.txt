@@ -11130,8 +11130,8 @@ mission "Weland: Dragon Tech"
 				decline
 			
 			label bloodkeep
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
-			`	"But, here you are, flying free with one on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Blood of Surtr' stone of yours?"`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled 'Blood of Surtr.' Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
+			`	"But, here you are, flying free with one on your ship, doin' whatever it is these strange stones do. I'd pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you ten million credits for that 'Blood of Surtr' stone of yours?"`
 
 			label bloodchoice
 			choice
@@ -11141,14 +11141,14 @@ mission "Weland: Dragon Tech"
 					goto sellsurtr
 			
 			label bloodsell
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Blood of Surtr'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled 'Blood of Surtr.' Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd offer to buy it off ya, but you just took most my cash.`
 			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 				goto bloodchoice
 						
 			label tearkeep
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
-			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for that 'Tear of Skade' stone of yours?"`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled 'Tear of Skade.' Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
+			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you ten million credits for that 'Tear of Skade' stone of yours?"`
 
 			label tearchoice
 			choice
@@ -11158,14 +11158,14 @@ mission "Weland: Dragon Tech"
 					goto sellskade
 
 			label tearsell
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled, 'Tear of Skade'. Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled 'Tear of Skade.' Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd offer to buy it off ya, but you just took most my cash.`
-			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another three million to pay you for the pleasure. After three months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 				goto tearchoice
 			
 			label stonekeep
-			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
-			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd as pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you 10 million credits for one of those stones of yours?"`
+			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled 'Tear of Skade' and 'Blood of Surtr.' Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
+			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd pay a pretty penny for somethin' like that. How about I waive the fee for fixin' up your artifact, and pay you ten million credits for one of those stones of yours?"`
 
 			label stonechoice
 			choice
@@ -11179,13 +11179,13 @@ mission "Weland: Dragon Tech"
 			label stonesell
 			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye, two of 'em in fact. I think you had them labeled, 'Tear of Skade', and 'Blood of Surtr. Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with not one, but two, on your ship doin' whatever it is these strange stones do. I'd offer to buy one of 'em off ya, but you just took most my cash.`
-			`	"Well, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"Well, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another three million to pay you for the pleasure. After three months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 				goto stonechoice
 			
 			label refuse
 			action
 				payment -6000000
-			`	"Well, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"Well, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay three million credits for the pleasure. After three months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 			choice
 				`	(Let Weland study the Tear of Skade.)`
 					goto studyskade
@@ -11218,7 +11218,7 @@ mission "Weland: Dragon Tech"
 			label refuseskade
 			action
 				payment -6000000
-			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"Well, what if I borrowed the stone? Just hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay three million credits for the pleasure. After three months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 			choice
 				`	(Let Weland study the stone.)`
 					goto studyskade
@@ -11249,7 +11249,7 @@ mission "Weland: Dragon Tech"
 			label refusesurtr
 			action
 				payment -6000000
-			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"Well, what if I borrowed the stone? Just hear me out, alright. Give me three months to study it, learn what secrets from it if I can. I'd pay three million credits for the pleasure. After three months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 			choice
 				`	(Let Weland study the stone.)`
 					goto studysurtr
@@ -11261,6 +11261,8 @@ mission "Weland: Dragon Tech"
 event "welandstone"
 
 mission "Weland: Stone Harmonization"
+	name "Visit Weland"
+	description "Visit Weland on <destination> to speak with him about something."
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	destination "Wayfarer"
@@ -11276,16 +11278,16 @@ mission "Weland: Stone Harmonization"
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, I was wanting to speak with you about something.`
 			`	Please stop by my shop on Wayfarer at your earliest convenience.`
-			`				-Xeno-Smith`
+			`				- Xeno-Smith`
 			`					Weland`
 	on complete
 		conversation
 			`You find Weland tinkering away in his shop. He puts his inscrutable tools down and waves to you as you enter.`
 			`	"Ah, there you are. I am sure you're wonderin' yourself sick trying to divine why I called ya." He grins, and limps toward you, dragging metal chains behind his feet.`
 			`	"I heard word, from someone who's done crew work on your ship, that you're in possession of a couple of Deep Stones." He nearly whispers the last the two words.`
-			`	"I've been told you call 'em, the 'Tear of Skade', and the 'Blood of Surtr'". He watches your eyes carefully as he names off the stones. "Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few ever been found, and those the government holds under lock and key.`
+			`	"I've been told you call 'em the 'Tear of Skade' and the 'Blood of Surtr.'". He watches your eyes carefully as he names off the stones. "Now, if they are what I think they are, well, they're worth a lot of money. I never met nobody that has laid eyes on a Deep Stone, let alone owned one. It's phantom tech, kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
 			`	"But, here you are, flying free with not one, but two, on your ship, doin' whatever it is these strange stones do. I'd offer to buy one of 'em off ya, but I don't have anywhere nears enough cash for one of those.`
-			`	"So, what if I borrowed one of the stones? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I'd pay you 3 million credits for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"So, what if I borrowed one of the stones? Just hear me out, alright. Give me three months to study it, learn what secrets from it I can. I'd pay you three million credits for the pleasure. After three months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 			choice
 				`	(Let Weland study the Tear of Skade.)`
 					goto studyskade
@@ -11475,10 +11477,10 @@ mission "Weland: Stone Retrieved Harmonization"
 			branch skade
 				not "outfit: Blood of Surtr"
 				has "outfit: Tear of Skade"
-			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Blood of Surtr on some sort of device.`
+			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench and gently places the Blood of Surtr on some sort of device.`
 				goto singingstones
 			label skade
-			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench, and gently places the Tear of Skade on some sort of device.`
+			`Weland's laboratory has mostly been cleaned up, and repaired. Weland is waiting for you at his work bench and gently places the Tear of Skade on some sort of device.`
 			label singingstones
 			`	"It sings." Weland almost whispers, as a display shows acoustic waves emanating from within the stone. "The crystalline lattice within has been re-arranged in ways no one has ever dreamt of, in order to generate and produce waves that appear to alter the state of matter."`
 			`	Weland shakes his head, "Not only is this far advanced beyond anything humans could create, or recreate, but it's an entire untapped field of study." Weland trembles with awe, "It's remarkable. Neither we, nor humans, nor any other race I know of, has deigned to interact with rock, crystal, and matter in this fashion."`
@@ -11493,13 +11495,13 @@ mission "Weland: Stone Retrieved Harmonization"
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of crackling energized air.`
 			`	"Ah ha! Hot damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's more energetic than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystalline tonal architecture, ha, who woulda thought, alright."`
-			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
+			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you three million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
 				goto questions
 			label skade2
 			`	He hits a button, and it feels like for just a second the air is sucked out of the room into the stone, followed by a forceful gust of cold air.`
 			`	"Ah ha! Cold damn, it worked!" He studies the stone for a second, taking some readings, than hands it back to you.`
 			`	"See for yourself, it's colder than it used to be, more powerful. Harmonized." Weland laughs to himself, and then muses. "Crystal tonal architecture, ha, who woulda thought, alright."`
-			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you 3 million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
+			`	Weland opens up a keypad, and begins tapping it. "I do believe I still owe you three million credits, which I have just transferred to your account. Also, consider your newly harmonized stone as a bonus for unfortunate circumstances.`
 			label questions
 			choice
 				`	"If I find other stones, can you harmonize them as well?"`
