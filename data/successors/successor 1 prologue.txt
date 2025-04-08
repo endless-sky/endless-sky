@@ -539,10 +539,10 @@ mission "Successors: First Contact 3"
 				set "Successors FC3: released kijra-pet"
 			`	You gently set the animal you captured on the ground in front of you and back away from it slowly, shuffling to the side as the two larger creatures approach it and stroke it gently with their feelers. The smaller one wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes.`
 				goto released
+			label "release friends"
 			action
 				set "Successors FC3: released kijra-pet"
 				set "Successors FC3: friend to animals" # Nonviolent capture AND released at first opportunity
-			label "release friends"
 			`	You gently coax the animal off your arm and onto the ground in front of you, backing away from it slowly and shuffling to the side. It runs towards the larger two creatures, touching the tips of its feelers against theirs and trilling softly as before. After some time, it wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes, a longer, lower trill almost like a cat's purr.`
 				goto released
 			label successful
