@@ -22,7 +22,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Outfit.h"
 #include "Phrase.h"
 #include "Politics.h"
-#include "Raiders.h"
 #include "Ship.h"
 #include "ShipEvent.h"
 

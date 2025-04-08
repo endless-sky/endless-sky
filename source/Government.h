@@ -35,7 +35,6 @@ class Outfit;
 class Phrase;
 class Planet;
 class PlayerInfo;
-class RaidFleet;
 class Ship;
 class System;
 
