@@ -49,6 +49,7 @@ class PlayerInfo;
 class Ship;
 class ShipEvent;
 class Sprite;
+class Swizzle;
 class Visual;
 class Weather;
 
@@ -77,6 +78,8 @@ public:
 	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
+	// Whether the player has the game paused.
+	bool IsPaused() const;
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);
@@ -168,6 +171,8 @@ private:
 	void EnterSystem();
 
 	void CalculateStep();
+	// Calculate things that require the engine not to be paused.
+	void CalculateUnpaused(const Ship *flagship, const System *playerSystem);
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
 
@@ -244,7 +249,7 @@ private:
 	std::vector<Target> targets;
 	Point targetVector;
 	Point targetUnit;
-	int targetSwizzle = -1;
+	const Swizzle *targetSwizzle = nullptr;
 	// Represents the state of the currently targeted ship when it was last seen,
 	// so the target display does not show updates to its state the player should not be aware of.
 	int lastTargetType = 0;
@@ -261,6 +266,7 @@ private:
 	double hyperspacePercentage = 0.;
 
 	int step = 0;
+	bool timePaused = false;
 
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
@@ -276,6 +282,9 @@ private:
 	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
+
+	// A timer preventing out-of-ammo sounds from triggering constantly every frame when the fire key is held.
+	std::vector<int> emptySoundsTimer;
 
 	// Commands that are currently active (and not yet handled). This is a combination
 	// of keyboard and mouse commands (and any other available input device).

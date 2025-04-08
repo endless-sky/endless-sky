@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Sale.h"
 #include "Set.h"
 
@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "Swizzle.h"
 #include "System.h"
 #include "test/Test.h"
 #include "test/TestData.h"
@@ -103,6 +104,7 @@ private:
 
 private:
 	Set<Color> colors;
+	Set<Swizzle> swizzles;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;
