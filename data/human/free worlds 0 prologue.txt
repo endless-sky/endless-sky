@@ -1686,7 +1686,7 @@ mission "FW Katya 4"
 	substitutions
 		"<dirt belt origin>" ""
 		"<dirt belt origin>" " like yourself,"
-			has "human space start"
+			has "start: default"
 	to offer
 		has "FW Katya 3: done"
 	to fail
@@ -1711,6 +1711,19 @@ mission "FW Katya 4"
 			
 			`	"Our fight isn't with the Navy," says Katya. "Most of them are good people. I'm sure they don't want war any more than we do. They're like police officers who are suddenly being asked to fight against the very people they swore to protect and serve."`
 			`	"I was a child on Vinci while this was happening," says Eyes. "A Paradise World. I would listen to the news and could never understand why all the adults around me were so very, very angry that the Navy had gone off to rescue two million people from freezing to death. But they told me that we lived in one little island of safety in a dangerous galaxy, and that without the Navy protecting us the pirates or even maybe aliens would sweep in and destroy our homes and take our money. That it was us against the whole galaxy."`
+			branch paradise
+				not "start: paradise"
+			
+			`	You talk to Eyes about your own upbringing on Mainsail, how you always dreamed of taking to the stars instead of your family's business, and how your father gave you a pilot's license for your eighteenth birthday.`
+			`	"It sounds like you've come a long way from the Paradise Worlds too," says Eyes. "If you don't mind me asking, what do you think your father would think about you helping the Free Worlds?"`
+			choice
+				`	"I'm sure he'd be happy with the path I've chosen."`
+				`	"I don't think he would like it."`
+				`	"I'm not sure myself, to be honest."`
+				`	"I'd rather not say."`
+			`	Eyes nods in acknoledgement.`
+			
+			label paradise
 			`	"I'd hate to be rich," says Katya. "So much to fear."`
 			`	You finish your meal (Katya pays the tab), and agree to take off for <planet> first thing in the morning.`
 				accept

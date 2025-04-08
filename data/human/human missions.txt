@@ -500,6 +500,8 @@ mission "Pookie, Part 5"
 			`	You pick up Puny and show her to the lady. When she makes eye contact with the poodle, her face contorts with anger. "What do you take me for, some kind of Dirt Belter?"`
 			choice
 				`	"Hey, I'm from the Dirt Belt!"`
+					to display
+						has "start: default"
 				`	"What do you mean?"`
 					goto explain
 				`	"I'm sorry?"`

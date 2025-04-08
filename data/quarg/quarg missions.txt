@@ -439,19 +439,31 @@ mission "Ask Quarg About Coalition Late"
 			choice
 				`	"I come from New Boston, on the Dirt Belt."`
 					to display
-						has "human space start"
-					goto planet
+						has "start: default"
+				`	"I come from Midgard, in the Deep."`
+					to display
+						has "start: deep"
+				`	"I come from Mainsail of the Paradise Worlds."`
+					to display
+						has "start: paradise"
 				`	"I come from Greenwater, in Hai space."`
 					to display
-						has "hai space start"
-					goto planet
+						has "start: hai"
+				`	"I was born on Earth."`
+					to display
+						has "start: syndicate"
+					goto homeworld
 				`	"My ship is my home."`
 					goto ship
 				`	"I don't really have a home."`
-			`	Your response seems to have struck something in it, as it brings one hand over its scar, glancing downwards. "A harrowing sensation, is it not?"`
-				goto name
-			label planet
+					goto home
 			`	It acknowledges your answer with the faintest of nods. "Sparse were my own visits to the rocky worlds inhabited by other species. They are unlike our own. So different, so... complete." Its eye darts around, looking at your surroundings, other Quarg here, then finally its own hands and arms. "But us Quarg must make do."`
+				goto name
+			label homeworld
+			`	[follow up with arachi]`
+				goto name
+			label homeless
+			`	Your response seems to have struck something in it, as it brings one hand over its scar, glancing downwards. "A harrowing sensation, is it not?"`
 				goto name
 			label ship
 			`	After staring you down for a few seconds, it fixates upon the ceiling again. "I suppose others such as you may imagine that our own lives in our ringworlds are similar to your own within a ship or simple space station." It pauses again, for nearly a minute this time. "Considering the circumstances, that may be a reasonable conclusion on your part."`

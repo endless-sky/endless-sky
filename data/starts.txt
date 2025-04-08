@@ -14,9 +14,9 @@
 
 start "default"
 	name "Endless Sky"
-	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning a starship ever since your first visit to the spaceport at the age of fifteen. After many long years of working at a textile mill, you've finally saved enough credits to apply for a pilot's license from the Republic.`
-	description `	After receiving the license and with freedom from this planet at your fingertips, you travel to the bank to take out a loan on your first ship...`
-	thumbnail "scene/lobby"
+	description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You've dreamed of owning a starship ever since your first visit to the spaceport. After years of working at a textile mill, you've saved enough credits to apply for a pilot's license from the Republic. Now you must take out a loan on your first ship...`
+	description `	This is the classic Endless Sky experience. You will begin in debt, and must use your new starship to pay off your mortgage.`
+	thumbnail "scene/new boston"
 	date 16 11 3013
 	system "Rutilicus"
 	planet "New Boston"
@@ -30,19 +30,21 @@ start "default"
 			term 365
 	set "license: Pilot's"
 	set "species: human"
-	set "human space start"
+	set "starting space: human"
+	set "start: default"
 
 
-# Patch for if the player started a game before 0.10.11
-mission "Default Start Patch"
+# Patch for if the player started a game before 0.10.13
+mission "Start: Default Patch"
 	invisible
 	landing
 	to offer
 		has "Intro [0]: offered"
-		not "human space start"
+		not "start: default"
 	on offer
 		set "species: human"
-		set "human space start"
+		set "starting space: human"
+		set "start: default"
 		fail
 
 
@@ -56,6 +58,104 @@ conversation "default intro"
 	name
 	`	The elevator is so well-tuned that you do not even realize it is moving until it has deposited you back in the lobby. But as you leave the bank, you are smiling. This crazy adventure suddenly feels real to you. You are going to do it. You are finally going to get off this planet.`
 	`	Compared to the bank, you feel much more at home in the shipyard, walking among the rusted out hulks and newer ships that gleam in the sunlight. You smell grease and dirt and rocket fuel; wonderful smells. There are three ship models within your price range. Which one you choose will determine your future...`
+
+
+
+start "deep"
+	name "Deep Desire"
+	description `You grew up on Midgard, a world in the advanced Deep region. Most pursue higher education, but you've always wanted to be a starship captain. After finishing primary education, you learn that the Deep provides low-interest loans for prospecting captains with high enough grades, and you made the mark! You make your way to the capital city of New Reykjavik...`
+	description `	This start provides a lower interest rate and more credits to upgrade your ship.`
+	thumbnail "scene/midgard"
+	date 16 11 3013
+	system "Aludra"
+	planet "Midgard"
+	conversation "deep intro"
+	account
+		credits 580000
+		score 400
+		mortgage Mortgage
+			principal 580000
+			interest 0.002
+			term 365
+	set "license: Pilot's"
+	set "species: human"
+	set "starting space: human"
+	set "start: deep"
+
+conversation "deep intro"
+	scene "scene/train"
+	`The train trip from your hometown to the capital is calm and without incident. Several seats forward, a young couple close to your age discuss the down payment on an apartment as their legs kick their luggages. Behind you is the only other person in the car; a much older man wearing greasy overalls, who you assume comes from off-world by how his hair has turned gray.`
+	`	Before long, you arrive in New Reykjavik and find the government office responsible for handling starship loans. The place is relatively empty compared to the photos you'd seen online a week prior; most applicants have already been processed in the week after exam results were posted. The only people left are those sick at the time, those too lazy to apply in a timely manner, and those willing to wait if it means avoiding a mosh pit of students in a government building. You hand over your application papers, and after verifying them against online records, the office worker hands you two cards. One of them is the card for applying for a loan at a nearby bank; the other is your pilot's license, fully paid for.`
+	`	The bank is only a few blocks away from the office. You insert the card into an automatic clerk, and after a soft ping, a large document fills its screen.`
+	`	As you scroll through, a synthesized voice says, "You are borrowing 580,000 credits to be repaid over the course of a year. Your daily interest rate is 0.2%, which means that your daily payments are 2,241 credits, and by the end of the year you will have paid 237,784 credits in interest. Please sign your name on the screen when you are ready."`
+	`	After carefully rereading every page of the loan agreement, you sign your name:`
+	name
+	`	Eager to get started, you rush out of the bank, hop on the metro, and head towards the shipyard. You can barely keep your face straight as the rest of the carriage wear blank expressions. After getting off, you consider throwing away your planetary transport pass, but decide against it.`
+	`	You had seen videos of the shipyard in New Reykjavik, but visiting the site in person blows your wildest dreams out of the water. Throughout the gleaming-white facility, salespeople show of a variety of holographically-rendered vessels to sharply-dressed clients, while skyscraper-sized ships loom silently in the background. Although most of the ships are far outside of your price range, you spot a few that you'll be able to purchase. Which one you choose will determine your future...`
+
+
+
+start "paradise"
+	name "Birthday Surprise"
+	description `You grew up on Mainsail, an oceanic Paradise World terraformed to perfection. Only the richest live on such worlds; luckily, your father is a wealthy financier. But you've always found the rich life boring and are more interested in living a life among the stars. As your eighteenth birthday party winds down, your father takes you aside to talk...`
+	description `This start has has no mortgage, leaving you free to explore the galaxy at your own pace.`
+	thumbnail "scene/mainsail"
+	date 16 11 3013
+	system "Alhena"
+	planet "Mainsail"
+	conversation "paradise intro"
+	account
+		credits 640000
+		score 600
+	set "license: Pilot's"
+	set "species: human"
+	set "starting space: human"
+	set "start: paradise"
+
+conversation "paradise intro"
+	scene "scene/reception"
+	`"I know you've wanted to be the captain of a starship for a long time now," your father says. "So as my birthday gift to you, how about we go get you a pilot's license and a ship from the shipyard?" You say yes without a second thought.`
+	`	Your father brings you to the Republic Department of Starship Licensing building in the spaceport. The lines are long, but your father walks right up to one of the desks. Before the person in the front of the line or the one behind the desk can complain, he tosses a credit chip worth a substantial amount at each of them. "I'd like to get a pilot's license for my child."`
+	`	"I'm sorry," the person behind the desk starts saying, "but you'll need to go through the process of applying through the net first, then wait three to five business days before-"`
+	`	Your father tosses another credit chip at the person behind the desk, prompting them to hand you a stylus and a pad. "Sign here, please. Your pilot's license will be here in a moment."`
+	`	Without any hesitation and after skipping past a number of pages of legal text, you sign your name:`
+	name
+	`	You enter the shipyard, your brand new pilot's license held tight in one hand and 640,000 credits from your father in the other. There are a dozen ships for sale, but there are only four that you are able to afford. Which one you choose will determine your future...`
+
+
+
+start "syndicate"
+	name "Escaping Squalor"
+	description `You grew up on Earth, an overpopulated world with few opportunities. But you took a contract working for the Syndicate, and they gave you a place to live, enough to eat, and a decent wage off of Earth. Afterward you moved to Antipode, a cheap frontier world, but found that it wasn't any better than Earth. Fed up, you used what you had left to travel to the closest planet with a shipyard...`
+	description `	This is a more difficult start, with larger daily repayments.`
+	thumbnail "scene/earth"
+	date 16 11 3013
+	system "Scheat"
+	planet "Delve"
+	conversation "syndicate intro"
+	account
+		credits 480000
+		score 200
+		mortgage Mortgage
+			principal 530000
+			interest 0.005
+			term 365
+	set "license: Pilot's"
+	set "species: human"
+	set "starting space: human"
+	set "start: syndicate"
+
+conversation "syndicate intro"
+	scene "scene/tunnel"
+	`Delve is unlike any planet you've ever been on: the entire spaceport is buried into a mountain, with one side open to receive incoming ships. The hallways leading from the hangars to the port proper are cramped, dirty, and covered in machinery, creating a sense of claustrophobia far different from the packed cities of Earth.`
+	`	You hand the last of your credits to the captain that brought you here. Before she leaves, she gives you some advice. "Just a heads up: if you don't feel like dying early, head north after launching. South of here is nothing but uninhabited systems and pirates. You wouldn't last long in whatever ship you're going to buy." You thank her for the ride and for the advice and part ways.`
+	`	You stop by the shipyard first to see what they have. You're noticed by a salesman who seems to reluctantly approach you, perhaps due to the fact that your clothes are rather shabby compared to those around you. You ask him what it would take to purchase a ship here. He mentions the neccessity of a pilot's license before beginning his spiel about all the cheapest models, but you cut him short and say that's all you needed.`
+	`	The bank is luckily not very busy at the moment. One of the tellers eyes you up as you enter. "What can we help you with?" he asks with a strange glee in his voice. You say how you're in need of a loan to buy a starship; 630,000 credits should be enough to cover the cost of the license and the ship. After handing over your Syndicate Account information, the teller comes back with a piece of paper. This whole process seems suspiciously streamlined to you.`
+	`	"Lucky for you the interest rates are great right now!" You take a glance at the paper and feel a sense of dread fall over you. The daily interest rate is 0.5%, meaning the daily payments are 3,162 credits for a whole year. If you don't pay off any of your loan early, you'll have paid a disgusting 624,205 credits in interest. "Just sign here." The teller grins.`
+	`	The interest is terrible, but there's nothing else you can do about it. You sign your name:`
+	name
+	`	After leaving the bank, you spend an hour waiting in line to apply for a pilot's license. When you finish going through the oddly easy process of applying for a license, you're left with 480,000 credits. You can't help but get the feeling that you're being played by the Syndicate once again in all this.`
+	`	You return to the shipyard, this time with a credit chip in your hand to draw the attention of the salesman. "Welcome back! I hope we can find you the perfect model," he says. The shipyard is full of ships that you can't buy, but the salesman finds three models within your price range: an interceptor, a light freighter, and a transport ship. Which one you choose will determine your future...`
 
 
 
@@ -94,7 +194,8 @@ start "hai space"
 			interest 0.003
 			term 730
 	set "species: human"
-	set "hai space start"
+	set "starting space: hai"
+	set "start: hai"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
 	set "First Contact: Hai: declined"
@@ -102,6 +203,20 @@ start "hai space"
 	set "First Contact: Unfettered: declined"
 	set "Ask the Hai about the Unfettered: offered"
 	set "Ask the Hai about the Unfettered: declined"
+
+
+# Patch for if the player started a Hai space game before 0.10.13
+mission "Start: Hai Patch"
+	invisible
+	landing
+	to offer
+		has "hai space start"
+		not "start: hai"
+	on offer
+		set "species: human"
+		set "starting space: hai"
+		set "start: hai"
+		fail
 
 
 conversation "hai intro"
