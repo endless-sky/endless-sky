@@ -222,7 +222,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 				turn = desiredTurn;
 
 			// Levels 3 and 4 stop accelerating when facing away.
-			if(weapon->ThrottleThrust())
+			if(weapon->ThrottleControl())
 			{
 				double stepsToFace = desiredTurn / turn;
 

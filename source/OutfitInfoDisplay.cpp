@@ -646,9 +646,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributeValues.emplace_back(" ");
 			attributesHeight += 20;
 		}
-		if(outfit.ThrottleThrust())
+		if(outfit.ThrottleControl())
 		{
-			attributeLabels.emplace_back("Can throttle thrust.");
+			attributeLabels.emplace_back("Can control thrust.");
 			attributeValues.emplace_back(" ");
 			attributesHeight += 20;
 		}
