@@ -195,6 +195,7 @@ mission "Sketchy Passenger [0]"
 	destination
 		distance 2 10
 		attributes "south"
+		not attributes "station"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
 	on visit
@@ -216,6 +217,7 @@ mission "Sketchy Passenger [1]"
 	destination
 		distance 2 10
 		attributes "south"
+		not attributes "station"
 	on accept
 		dialog `You have some difficulty finding your passengers, but after almost an hour of searching you finally find them. As they follow you back to your ship, you hear them whispering to each other, but you can't make out what they're saying.`
 	on visit
@@ -232,9 +234,11 @@ mission "Delta V Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Solace"
 	source
 		near Pherkad 2 15
 		attributes factory
+		not government "Pirate"
 	destination Solace
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -250,9 +254,11 @@ mission "Delta V Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Solace"
 	source
 		near Pherkad 2 15
 		attributes factory
+		not government "Pirate"
 	destination Solace
 	on visit
 		dialog phrase "generic cargo on visit"
@@ -268,6 +274,7 @@ mission "Tarazed Shipyards Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Wayfarer"
 	source
 		near Tarazed 2 10
 		attributes factory
@@ -286,6 +293,7 @@ mission "Tarazed Shipyards Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Wayfarer"
 	source
 		near Tarazed 2 10
 		attributes factory mining
@@ -304,6 +312,7 @@ mission "Tarazed Shipyards Shipment [2]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Wayfarer"
 	source
 		near Tarazed 2 10
 		attributes factory mining
@@ -322,6 +331,7 @@ mission "Tarazed Systems Shipment [0]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Wayfarer"
 	source
 		near Tarazed 2 10
 		attributes factory mining
@@ -340,6 +350,7 @@ mission "Tarazed Systems Shipment [1]"
 	repeat
 	to offer
 		random < 10
+		has "landing access: Wayfarer"
 	source
 		near Tarazed 2 10
 		attributes factory
