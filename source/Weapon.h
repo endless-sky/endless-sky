@@ -167,7 +167,7 @@ public:
 	// Attributes that determine how projectiles from this weapon home onto targets.
 	bool Homing() const;
 	bool HasBlindspot() const;
-	bool ToggleThrust() const;
+	bool ThrottleThrust() const;
 	bool Intercepts() const;
 
 	// These values include all submunitions:
@@ -275,7 +275,7 @@ private:
 	// Attributes for homing.
 	bool homing = false;
 	bool blindspot = false;
-	bool toggleThrust = false;
+	bool throttleThrust = false;
 	bool intercepts = false;
 
 	// Attributes.
@@ -458,7 +458,7 @@ inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
 inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
 inline bool Weapon::Homing() const { return homing; }
 inline bool Weapon::HasBlindspot() const { return blindspot; }
-inline bool Weapon::ToggleThrust() const { return toggleThrust; }
+inline bool Weapon::ThrottleThrust() const { return throttleThrust; }
 inline bool Weapon::Intercepts() const { return intercepts; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }

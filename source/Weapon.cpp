@@ -83,7 +83,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				if(value == 1)
 					blindspot = true;
 				if(value >= 3)
-					toggleThrust = true;
+					throttleThrust = true;
 				if(value >= 4)
 					intercepts = true;
 			}
@@ -95,8 +95,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 
 					if(token == "blindspot")
 						blindspot = true;
-					else if(token == "toggle thrust")
-						toggleThrust = true;
+					else if(token == "throttle thrust")
+						throttleThrust = true;
 					else if(token == "intercepts")
 						intercepts = true;
 					else

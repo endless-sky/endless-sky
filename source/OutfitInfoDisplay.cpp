@@ -636,26 +636,17 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 	if(outfit.Homing())
 	{
-		static const string skill[] = {
-			"none",
-			"poor",
-			"fair",
-			"good",
-			"excellent"
-		};
 		attributeLabels.emplace_back("homing type:");
 		attributeValues.push_back(outfit.Intercepts() ? "intercepts" : "direct");
 		attributesHeight += 20;
 		if(outfit.HasBlindspot())
 		{
 			attributeLabels.emplace_back("Cannot track targets behind it.");
-			attributeValues.emplace_back(" ");
 			attributesHeight += 20;
 		}
-		if(outfit.ToggleThrust())
+		if(outfit.ThrottleThrust())
 		{
-			attributeLabels.emplace_back("Can toggle thrust.");
-			attributeValues.emplace_back(" ");
+			attributeLabels.emplace_back("Can throttle thrust.");
 			attributesHeight += 20;
 		}
 	}
