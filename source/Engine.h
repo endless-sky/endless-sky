@@ -19,11 +19,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 #include "AmmoDisplay.h"
 #include "AsteroidField.h"
-#include "BatchDrawList.h"
+#include "shader/BatchDrawList.h"
 #include "CollisionSet.h"
 #include "Color.h"
 #include "Command.h"
-#include "DrawList.h"
+#include "shader/DrawList.h"
 #include "EscortDisplay.h"
 #include "Information.h"
 #include "PlanetLabel.h"
@@ -49,6 +49,7 @@ class PlayerInfo;
 class Ship;
 class ShipEvent;
 class Sprite;
+class Swizzle;
 class Visual;
 class Weather;
 
@@ -68,7 +69,7 @@ public:
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
 	// Place NPCs spawned by a mission that offers when the player is not landed.
-	void Place(const std::list<NPC> &npcs, std::shared_ptr<Ship> flagship = nullptr);
+	void Place(const std::list<NPC> &npcs, const std::shared_ptr<Ship> &flagship = nullptr);
 
 	// Wait for the previous calculations (if any) to be done.
 	void Wait();
@@ -77,6 +78,8 @@ public:
 	void Step(bool isActive);
 	// Begin the next step of calculations.
 	void Go();
+	// Whether the player has the game paused.
+	bool IsPaused() const;
 
 	// Give a command on behalf of the player, used for integration tests.
 	void GiveCommand(const Command &command);
@@ -126,8 +129,19 @@ private:
 
 	class Status {
 	public:
+		enum class Type {
+			FLAGSHIP,
+			FRIENDLY,
+			HOSTILE,
+			NEUTRAL,
+			SCAN,
+			SCAN_OUT_OF_RANGE,
+			COUNT // This item should always be the last in this list.
+		};
+
+	public:
 		constexpr Status(const Point &position, double outer, double inner,
-			double disabled, double radius, int type, float alpha, double angle = 0.)
+			double disabled, double radius, Type type, float alpha, double angle = 0.)
 			: position(position), outer(outer), inner(inner),
 				disabled(disabled), radius(radius), type(type), alpha(alpha), angle(angle) {}
 
@@ -136,7 +150,7 @@ private:
 		double inner;
 		double disabled;
 		double radius;
-		int type;
+		Type type;
 		float alpha;
 		double angle;
 	};
@@ -157,6 +171,8 @@ private:
 	void EnterSystem();
 
 	void CalculateStep();
+	// Calculate things that require the engine not to be paused.
+	void CalculateUnpaused(const Ship *flagship, const System *playerSystem);
 
 	void MoveShip(const std::shared_ptr<Ship> &ship);
 
@@ -183,7 +199,7 @@ private:
 
 	void CreateStatusOverlays();
 	void EmplaceStatusOverlay(const std::shared_ptr<Ship> &ship, Preferences::OverlayState overlaySetting,
-		int value, double cloak);
+		Status::Type type, double cloak);
 
 
 private:
@@ -233,7 +249,10 @@ private:
 	std::vector<Target> targets;
 	Point targetVector;
 	Point targetUnit;
-	int targetSwizzle = -1;
+	const Swizzle *targetSwizzle = nullptr;
+	// Represents the state of the currently targeted ship when it was last seen,
+	// so the target display does not show updates to its state the player should not be aware of.
+	int lastTargetType = 0;
 	EscortDisplay escorts;
 	AmmoDisplay ammoDisplay;
 	std::vector<Outline> outlines;
@@ -247,6 +266,7 @@ private:
 	double hyperspacePercentage = 0.;
 
 	int step = 0;
+	bool timePaused = false;
 
 	std::list<ShipEvent> eventQueue;
 	std::list<ShipEvent> events;
@@ -262,6 +282,9 @@ private:
 	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
+
+	// A timer preventing out-of-ammo sounds from triggering constantly every frame when the fire key is held.
+	std::vector<int> emptySoundsTimer;
 
 	// Commands that are currently active (and not yet handled). This is a combination
 	// of keyboard and mouse commands (and any other available input device).

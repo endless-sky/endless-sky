@@ -15,11 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Sale.h"
 #include "Set.h"
+#include "Swizzle.h"
 #include "Trade.h"
 
+#include <filesystem>
 #include <future>
 #include <map>
 #include <memory>
@@ -89,7 +91,7 @@ public:
 	static void Preload(TaskQueue &queue, const Sprite *sprite);
 
 	// Get the list of resource sources (i.e. plugin folders).
-	static const std::vector<std::string> &Sources();
+	static const std::vector<std::filesystem::path> &Sources();
 
 	// Get a reference to the UniverseObjects object.
 	static UniverseObjects &Objects();
@@ -116,6 +118,7 @@ public:
 	static void DestroyPersons(std::vector<std::string> &names);
 
 	static const Set<Color> &Colors();
+	static const Set<Swizzle> &Swizzles();
 	static const Set<Conversation> &Conversations();
 	static const Set<Effect> &Effects();
 	static const Set<GameEvent> &Events();
@@ -155,6 +158,7 @@ public:
 	// Get the solar power and wind output of the given stellar object sprite.
 	static double SolarPower(const Sprite *sprite);
 	static double SolarWind(const Sprite *sprite);
+	static const Sprite *StarIcon(const Sprite *sprite);
 
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
