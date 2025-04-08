@@ -229,8 +229,8 @@ outfit "Modified Blaster Turret"
 outfit "Heavy Blaster"
 	category "Guns"
 	series "Guns"
-	index 01010
-	cost 16000
+	index 01050
+	cost 140000
 	thumbnail "outfit/heavy blaster"
 	"mass" 19
 	"outfit space" -19
