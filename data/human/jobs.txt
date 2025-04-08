@@ -2801,7 +2801,7 @@ mission "Passenger Runoff With Payment [0]"
 
 mission "Passenger Runoff With Payment [1]"
 	name "Passenger transport to <planet>"
-	description "Bring a hooded figure to <destination>. Payment is <payment>."
+	description "Bring a teenager to <destination>. Payment is <payment>."
 	job
 	repeat
 	passengers 1
