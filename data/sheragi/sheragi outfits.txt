@@ -422,7 +422,7 @@ outfit "Retrofitted Fusion Afterburner"
 	cost 400000
 	thumbnail "outfit/fusion afterburner"
 	"mass" 70
-	"outfit space" -70
+	"outfit space" -59
 	"engine capacity" -59
 	"afterburner thrust" 378
 	"afterburner energy" -12.2
