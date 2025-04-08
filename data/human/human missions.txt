@@ -8487,7 +8487,7 @@ mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
 					goto ending
 			`	You take in the scene for another moment, the sounds of the station filling the air as you stand on the platform. You give the area one last glance before heading back down to return to the spaceport in the bulky vehicle that took you here. The faint metallic taste of the radioactive air returns as you leave the refueling station, blending with the steady hum of the vehicle's repulsor engine.`
 			label ending
-			`	The long journey back to the spaceport gives you plenty of time to quietly reflect on the impact you've seen your decision have on the people here.`
+			`	The long journey back to the spaceport proceeds in silence, leaving your decision behind to echo through the lives of the people left here.`
 
 
 mission "Timothy Radrickson 1: Stowaway"
