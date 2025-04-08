@@ -15,28 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionSet.h"
 class Ship;
 
-/// Make available information specific to a single ConditionSet evaluation
-/// Intended to be read-only and constant
-class ConditionContext {
-public:
-	ConditionContext() = default;
-
-	/// The ship whom initiated the currently evaluated condition.
-	/// May be a nullptr if not applicable
-    virtual const Ship * getHailingShip() const;
+// Contain informations for a specific ConditionSet execution context.
+struct ConditionContext {
+	const Ship * hailingShip = nullptr;
 };
 
-const ConditionContext DEFAULT_CONDITION_CONTEXT = ConditionContext();
-
-/// Information specific for when a ship is hailing the player
-class ConditionContextHailing : public ConditionContext {
-public:
-	ConditionContextHailing(const Ship &hailingShip);
-
-	virtual const Ship * getHailingShip() const override;
-
-private:
-	const Ship &hailingShip;
-};
+const ConditionContext DEFAULT_CONDITION_CONTEXT = ConditionContext {};

@@ -40,12 +40,12 @@ bool Hail::Matches(const ConditionsStore &conditions, const Ship &hailingShip) c
 		return false;
 	if(!filterHailingShip.Matches(hailingShip))
 		return false;
-	return toHail.Test(conditions, ConditionContextHailing(hailingShip));
+	return toHail.Test(conditions, ConditionContext { .hailingShip = &hailingShip });
 }
 
 std::string Hail::Message(const ConditionsStore &conditions, const Ship &hailingShip) const
 {
-	return messages.Get(&conditions, ConditionContextHailing(hailingShip));
+	return messages.Get(&conditions, ConditionContext { .hailingShip = &hailingShip });
 }
 
 int Hail::getWeight() const

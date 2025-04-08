@@ -432,7 +432,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore, const Con
 				// Test against the currently hailing ship (if any).
 				case FilterAgainst::HAILING_SHIP:
 				{
-					const Ship *hailingShip = context.getHailingShip();
+					const Ship *hailingShip = context.hailingShip;
 					if(hailingShip == nullptr)
 						return 0;
 					else
