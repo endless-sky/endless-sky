@@ -560,7 +560,7 @@ void MapDetailPanel::DrawKey()
 		if(static_cast<unsigned>(commodity) >= commodities.size())
 			return;
 
-		for(int i = 0; i <= 3; ++i)
+		for(int i = 3; i >= 0; --i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
@@ -572,9 +572,9 @@ void MapDetailPanel::DrawKey()
 	{
 		// Each system is colored by the number of outfits for sale.
 		static const string LABEL[2][4] = {
-			{"None", "1", "5", "10+"},
-			{"None", "1", "30", "60+"}};
-		static const double VALUE[4] = {-1., 0., .5, 1.};
+			{"10+", "5", "1", "None"},
+			{"60+", "30", "1", "None"}};
+		static const double VALUE[4] = {1., .5, 0., -1.};
 
 		for(int i = 0; i < 4; ++i)
 		{
