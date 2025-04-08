@@ -529,7 +529,7 @@ void OutfitterPanel::Buy(bool onlyOwned)
 	{
 		bool mapMinables = selectedOutfit->Get("map minables");
 		player.Map(mapSize, mapMinables);
-		player.Accounts().AddCredits(-selectedOutfit->Cost());
+		player.Accounts().AddCredits(-selectedOutfit->Cost(player.Conditions()));
 		return;
 	}
 
@@ -537,7 +537,7 @@ void OutfitterPanel::Buy(bool onlyOwned)
 	if(IsLicense(selectedOutfit->TrueName()))
 	{
 		player.AddLicense(LicenseRoot(selectedOutfit->TrueName()));
-		player.Accounts().AddCredits(-selectedOutfit->Cost());
+		player.Accounts().AddCredits(-selectedOutfit->Cost(player.Conditions()));
 		return;
 	}
 

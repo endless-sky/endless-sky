@@ -709,9 +709,9 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 		if(!player.HasLicense(name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
-			if(!license || !license->Cost() || !available.Has(license))
+			if(!license || !license->Cost(player.Conditions()) || !available.Has(license))
 				return -1;
-			cost += license->Cost();
+			cost += license->Cost(player.Conditions());
 		}
 	return cost;
 }

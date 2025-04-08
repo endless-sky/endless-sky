@@ -50,7 +50,7 @@ Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovern
 	: outfit(outfit), count(count), sourceGovernment(sourceGovernment)
 {
 	// The more the outfit costs, the faster this flotsam should disappear.
-	int lifetimeBase = 3000000000 / (outfit->Cost() * count + 1000000);
+	int lifetimeBase = 3000000000 / (outfit->Value() * count + 1000000);
 	lifetime = Random::Int(lifetimeBase) + lifetimeBase + 600;
 }
 

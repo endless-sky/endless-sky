@@ -391,6 +391,14 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 
 
 
+int64_t ConditionSet::EvaluateWithoutConditions() const
+{
+	ConditionsStore emptyStore;
+	return Evaluate(emptyStore);
+}
+
+
+
 // Get the names of the conditions that are relevant for this ConditionSet.
 set<string> ConditionSet::RelevantConditions() const
 {

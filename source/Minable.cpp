@@ -114,7 +114,7 @@ void Minable::Load(const DataNode &node)
 void Minable::FinishLoading()
 {
 	for(const auto &it : payload)
-		value += it.outfit->Cost() * it.maxDrops * it.dropRate;
+		value += it.outfit->Value() * it.maxDrops * it.dropRate;
 }
 
 

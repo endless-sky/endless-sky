@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Weapon.h"
 
 #include "Dictionary.h"
+#include "ConditionSet.h"
 
 #include <map>
 #include <string>
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Body;
+class ConditionsStore;
 class DataNode;
 class Effect;
 class Sound;
@@ -62,7 +64,11 @@ public:
 	const std::string &Series() const;
 	const int Index() const;
 	const std::string &Description() const;
-	int64_t Cost() const;
+	/// What does it cost to buy this outfit?
+	int64_t Cost(const ConditionsStore &conditionsStore) const;
+	void WriteCost(DataWriter &out) const;
+	/// What is the value of this outfit? (Can be less than what it costs to buy it, typically not more.)
+	int64_t Value() const;
 	double Mass() const;
 	// Get the licenses needed to buy or operate this ship.
 	const std::vector<std::string> &Licenses() const;
@@ -127,7 +133,7 @@ private:
 	int index;
 	std::string description;
 	const Sprite *thumbnail = nullptr;
-	int64_t cost = 0;
+	ConditionSet cost; // Defaults to zero.
 	double mass = 0.;
 	// Licenses needed to purchase this item.
 	std::vector<std::string> licenses;
@@ -158,5 +164,4 @@ private:
 
 
 // These get called a lot, so inline them for speed.
-inline int64_t Outfit::Cost() const { return cost; }
 inline double Outfit::Mass() const { return mass; }

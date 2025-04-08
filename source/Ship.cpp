@@ -956,7 +956,10 @@ void Ship::Save(DataWriter &out) const
 		out.BeginChild();
 		{
 			out.Write("category", baseAttributes.Category());
-			out.Write("cost", baseAttributes.Cost());
+
+			out.WriteToken("cost");
+			baseAttributes.WriteCost(out);
+
 			out.Write("mass", baseAttributes.Mass());
 			for(const auto &it : baseAttributes.FlareSprites())
 				for(int i = 0; i < it.second; ++i)
@@ -1251,7 +1254,7 @@ const Sprite *Ship::Thumbnail() const
 // Get this ship's cost.
 int64_t Ship::Cost() const
 {
-	return attributes.Cost();
+	return attributes.Value();
 }
 
 
@@ -1259,7 +1262,7 @@ int64_t Ship::Cost() const
 // Get the cost of this ship's chassis, with no outfits installed.
 int64_t Ship::ChassisCost() const
 {
-	return baseAttributes.Cost();
+	return baseAttributes.Value();
 }
 
 

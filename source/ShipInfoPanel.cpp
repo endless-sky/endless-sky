@@ -762,7 +762,7 @@ void ShipInfoPanel::Dump()
 	}
 	else if(plunderAmount > 0)
 	{
-		loss += plunderAmount * selectedPlunder->Cost();
+		loss += plunderAmount * selectedPlunder->Value();
 		(*shipIt)->Jettison(selectedPlunder, plunderAmount);
 	}
 	else if(commodities)
@@ -779,7 +779,7 @@ void ShipInfoPanel::Dump()
 	{
 		for(const auto &it : cargo.Outfits())
 		{
-			loss += it.first->Cost() * max(0, it.second);
+			loss += it.first->Value() * max(0, it.second);
 			(*shipIt)->Jettison(it.first, it.second);
 		}
 	}
@@ -800,7 +800,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	count = min(count, (*shipIt)->Cargo().Get(selectedPlunder));
 	if(count > 0)
 	{
-		loss += count * selectedPlunder->Cost();
+		loss += count * selectedPlunder->Value();
 		(*shipIt)->Jettison(selectedPlunder, count);
 		info.Update(**shipIt, player);
 

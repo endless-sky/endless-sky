@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "audio/Audio.h"
 #include "Body.h"
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "Effect.h"
 #include "GameData.h"
 #include "image/SpriteSet.h"
@@ -286,7 +287,10 @@ void Outfit::Load(const DataNode &node)
 			description += '\n';
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
-			cost = child.Value(1);
+		{
+			int tokenNr = 1;
+			cost.ParseNode(child, tokenNr);
+		}
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
 			mass = child.Value(1);
 		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
@@ -466,6 +470,28 @@ const string &Outfit::Description() const
 
 
 
+int64_t Outfit::Cost(const ConditionsStore &conditionsStore) const
+{
+	return cost.Evaluate(conditionsStore);
+}
+
+
+
+int64_t Outfit::Value() const
+{
+	return cost.EvaluateWithoutConditions();
+}
+
+
+
+void Outfit::WriteCost(DataWriter &out) const
+{
+	cost.SaveSubset(out);
+	out.Write();
+}
+
+
+
 // Get the licenses needed to purchase this outfit.
 const vector<string> &Outfit::Licenses() const
 {
@@ -542,7 +568,8 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 // instances of the given outfit to this outfit.
 void Outfit::Add(const Outfit &other, int count)
 {
-	cost += other.cost * count;
+	// TODO: Needs fixing (By using values?).
+	//cost += other.cost * count;
 	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{

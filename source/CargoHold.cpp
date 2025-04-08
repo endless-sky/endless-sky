@@ -574,7 +574,7 @@ int64_t CargoHold::Value(const System *system) const
 	// For outfits, assume they're fully depreciated, since that will always be
 	// the case unless the player bought into cargo for some reason.
 	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second * Depreciation::Full();
+		value += it.first->Value() * it.second * Depreciation::Full();
 	return value;
 }
 

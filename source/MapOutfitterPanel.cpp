@@ -201,7 +201,8 @@ void MapOutfitterPanel::DrawItems()
 
 		for(const Outfit *outfit : it->second)
 		{
-			string price = Format::CreditString(outfit->Cost());
+			// TODO; want to show the price on the selected planet?
+			string price = Format::CreditString(outfit->Value());
 
 			string info;
 			if(outfit->Get("minable") > 0.)
