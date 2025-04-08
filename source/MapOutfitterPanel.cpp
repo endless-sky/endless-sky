@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapOutfitterPanel.h"
 
 #include "comparators/ByName.h"
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -259,7 +260,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected,
 				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}

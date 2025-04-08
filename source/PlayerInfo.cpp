@@ -2141,8 +2141,8 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 
 
 // Look at the list of available missions and see if any of them can be offered
-// right now, in the given location (landing or spaceport). If there are no
-// missions that can be accepted, return a null pointer.
+// right now, in the given location. If there are no missions that can be accepted,
+// return a null pointer.
 Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 {
 	if(ships.empty())
@@ -3409,15 +3409,75 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 
-	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
-	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	auto &&flagshipBaysCategoryProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysCategoryFun = [this](const string &name) -> int64_t
 	{
 		if(!flagship)
 			return 0;
 
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
+	flagshipBaysCategoryProvider.SetGetFunction(flagshipBaysCategoryFun);
+
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
+	auto &&flagshipBaysCategoryFreeProvider = conditions.GetProviderPrefixed("flagship bays free: ");
+	auto flagshipBaysCategoryFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
+				" condition while landed is unstable behavior.");
+
+		return flagship->BaysFree(name.substr(strlen("flagship bays free: ")));
+	};
+	flagshipBaysCategoryFreeProvider.SetGetFunction(flagshipBaysCategoryFreeFun);
+
+	auto &&flagshipBaysProvider = conditions.GetProviderNamed("flagship bays");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->Bays().size();
+	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
+	auto &&flagshipBaysFreeProvider = conditions.GetProviderNamed("flagship bays free");
+	auto flagshipBaysFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
+
+		const vector<Ship::Bay> &bays = flagship->Bays();
+		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; });
+	};
+	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
+
+	auto &&flagshipMassProvider = conditions.GetProviderNamed("flagship mass");
+	flagshipMassProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Mass() : 0; });
+
+	auto &&flagshipShieldsProvider = conditions.GetProviderNamed("flagship shields");
+	flagshipShieldsProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->ShieldLevel() : 0;
+	});
+
+	auto &&flagshipHullProvider = conditions.GetProviderNamed("flagship hull");
+	flagshipHullProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->HullLevel() : 0;
+	});
+
+	auto &&flagshipFuelProvider = conditions.GetProviderNamed("flagship fuel");
+	flagshipFuelProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->FuelLevel() : 0;
+	});
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
@@ -4029,6 +4089,17 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
+	if(availableMissions.empty())
+		return;
+
+	// This list is already in alphabetical order by virture of the way that the Set
+	// class stores objects, so stable sorting on the offer precedence will maintain
+	// the alphabetical ordering for missions with the same precedence.
+	availableMissions.sort([](const Mission &a, const Mission &b)
+		{
+			return a.OfferPrecedence() > b.OfferPrecedence();
+		});
+
 	// If any of the available missions are "priority" missions, no other
 	// special missions will be offered in the spaceport.
 	if(hasPriorityMissions)
@@ -4051,6 +4122,8 @@ void PlayerInfo::CreateMissions()
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them, except for "non-blocking" missions.
 		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
+		// Note that the manner in which excess minor missions are discarded means that the
+		// minor mission with the lowest precedence is the one that will be offered.
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{

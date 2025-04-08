@@ -15,7 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "../CategoryTypes.h"
+#include "../CategoryList.h"
+#include "../CategoryType.h"
 #include "../GameData.h"
 #include "../Outfit.h"
 #include "../Ship.h"
