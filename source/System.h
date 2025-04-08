@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Asteroid.h"
 #include "AsteroidBelt.h"
-#include "Hazard.h"
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
@@ -33,6 +32,8 @@ class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Hazard;
+class Outfit;
 class Planet;
 class Ship;
 class Sprite;
@@ -137,6 +138,8 @@ public:
 
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
+	// Get a list of all unique payload outfits from minables in this system.
+	const std::set<const Outfit *> &Payloads() const;
 	// Get the background haze sprite for this system.
 	const Sprite *Haze() const;
 
@@ -165,7 +168,7 @@ public:
 
 private:
 	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
-	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false);
+	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false) const;
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
@@ -224,6 +227,7 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
+	std::set<const Outfit *> payloads;
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
