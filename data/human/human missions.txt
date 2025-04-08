@@ -11061,7 +11061,7 @@ mission "Weland: Dragon Tech"
 			`	Come pick it up and pay for it at your earliest convenience.`
 			`				- Xeno-Smith`
 			`					Weland`
-			`	P.S. Make sure you have 5 tons of outfit space!`
+			`	P.S. Make sure you have 59 tons of outfit space!`
 				accept
 	on complete
 		conversation
