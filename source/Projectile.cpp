@@ -378,8 +378,8 @@ void Projectile::BreakTarget()
 // guided missiles.
 void Projectile::CheckLock(const Ship &target)
 {
-	double relockRate = .3;
-	double base = hasLock ? 1. : relockRate;
+	static const double RELOCK_RATE = .3;
+	double base = hasLock ? 1. : RELOCK_RATE;
 	hasLock = false;
 
 	// For each tracking type, calculate the probability twice every second that a
@@ -387,7 +387,7 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->Tracking())
 	{
 		double lockChance = (weapon ->Tracking());
-		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 
@@ -408,7 +408,7 @@ void Projectile::CheckLock(const Ship &target)
 		double targetMass = target.Mass();
 		double weight = targetMass * targetMass * targetMass / 1e9;
 		double lockChance = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
-		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 
@@ -424,7 +424,7 @@ void Projectile::CheckLock(const Ship &target)
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
 		double lockChance = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
-		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 
@@ -444,7 +444,7 @@ void Projectile::CheckLock(const Ship &target)
 			radarJamming = (1. - rangeFraction) * radarJamming;
 		}
 		double lockChance = weapon->RadarTracking() / (1. + radarJamming);
-		double probability = lockChance / (relockRate - (lockChance * relockRate) + lockChance);
+		double probability = lockChance / (RELOCK_RATE - (lockChance * RELOCK_RATE) + lockChance);
 		hasLock |= Check(probability, base);
 	}
 }
