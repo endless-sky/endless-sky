@@ -249,11 +249,6 @@ mission "Delta V Hovercraft Racer Transport"
 		has "landing access: Sunracer"
 	source Solace
 	destination Sunracer
-	npc
-		government Pirate
-		personality heroic harvests plunders
-		system destination
-		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -275,11 +270,6 @@ mission "Delta V Hovercraft Large Racer Transport"
 		has "landing access: Sunracer"
 	source Solace
 	destination Sunracer
-	npc
-		government Pirate
-		personality heroic harvests plunders
-		system destination
-		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete

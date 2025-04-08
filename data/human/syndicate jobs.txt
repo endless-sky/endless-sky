@@ -788,11 +788,6 @@ mission "Syndicate Hovercraft Racer Transport"
 		government "Syndicate"
 		not near "Mirfak" 1 4
 	destination Sunracer
-	npc
-		government Pirate
-		personality heroic harvests plunders
-		system destination
-		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -815,11 +810,6 @@ mission "Syndicate Hovercraft Large Racer Transport"
 		government "Syndicate"
 		not near "Mirfak" 1 4
 	destination Sunracer
-	npc
-		government Pirate
-		personality heroic harvests plunders
-		system destination
-		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete

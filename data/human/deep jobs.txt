@@ -1204,11 +1204,6 @@ mission "Deep Hovercraft Racer Transport"
 	source
 		attributes "deep"
 	destination Sunracer
-	npc
-		government Pirate
-		personality heroic harvests plunders
-		system destination
-		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
@@ -1231,11 +1226,6 @@ mission "Deep Hovercraft Large Racer Transport"
 	source
 		attributes "deep"
 	destination Sunracer
-	npc
-		government Pirate
-		personality heroic harvests plunders
-		system destination
-		fleet "Small Core Pirates"
 	on visit
 		dialog phrase "generic cargo and passenger on visit"
 	on complete
