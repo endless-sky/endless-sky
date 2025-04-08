@@ -36,9 +36,8 @@ public:
 	explicit operator bool() const noexcept;
 	bool operator!() const noexcept;
 
-	// No comparison operators are provided because I never expect to use them
-	// and because comparisons with doubles are inherently unsafe due to the
-	// possibility of rounding errors and imprecision.
+	bool operator==(const Point &other) const noexcept;
+	bool operator!=(const Point &other) const noexcept;
 
 	Point operator+(const Point &point) const;
 	Point &operator+=(const Point &point);

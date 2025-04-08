@@ -16,7 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DistanceMap.h"

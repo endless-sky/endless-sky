@@ -33,21 +33,24 @@ using namespace std;
 
 
 // Constructor, based on a Sprite.
-Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, double alpha)
-	: position(position), velocity(velocity), angle(facing), zoom(zoom), alpha(alpha), sprite(sprite), randomize(true)
+Body::Body(const Sprite *sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
+	: position(position), velocity(velocity), angle(facing), scale(scale), zoom(zoom),
+	alpha(alpha), sprite(sprite), randomize(true)
 {
 }
 
 
 
 // Constructor, based on the animation from another Body object.
-Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom)
+Body::Body(const Body &sprite, Point position, Point velocity, Angle facing, double zoom, Point scale, double alpha)
 {
 	*this = sprite;
 	this->position = position;
 	this->velocity = velocity;
 	this->angle = facing;
 	this->zoom = zoom;
+	this->scale = scale * sprite.Scale();
+	this->alpha = alpha * sprite.alpha;
 }
 
 
@@ -71,7 +74,7 @@ const Sprite *Body::GetSprite() const
 // Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Width() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Width() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale.X() * sprite->Width() : 0.f);
 }
 
 
@@ -79,7 +82,7 @@ double Body::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Body::Height() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale * sprite->Height() : 0.f);
+	return static_cast<double>(sprite ? (.5f * zoom) * scale.Y() * sprite->Height() : 0.f);
 }
 
 
@@ -93,7 +96,7 @@ double Body::Radius() const
 
 
 // Which color swizzle should be applied to the sprite?
-int Body::GetSwizzle() const
+const Swizzle *Body::GetSwizzle() const
 {
 	return swizzle;
 }
@@ -180,9 +183,9 @@ double Body::Zoom() const
 
 
 
-double Body::Scale() const
+Point Body::Scale() const
 {
-	return static_cast<double>(scale);
+	return scale;
 }
 
 
@@ -224,7 +227,10 @@ void Body::LoadSprite(const DataNode &node)
 		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
 			delay = child.Value(1);
 		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
-			scale = static_cast<float>(child.Value(1));
+		{
+			double scaleY = (child.Size() >= 3 && child.Value(2) > 0.) ? child.Value(2) : child.Value(1);
+			scale = Point(child.Value(1), scaleY);
+		}
 		else if(child.Token(0) == "start frame" && child.Size() >= 2)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
@@ -245,7 +251,7 @@ void Body::LoadSprite(const DataNode &node)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
-	if(scale != 1.f)
+	if(scale != Point(1., 1.))
 		GameData::GetMaskManager().RegisterScale(sprite, Scale());
 }
 
@@ -264,8 +270,8 @@ void Body::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("frame rate", frameRate * 60.);
 		if(delay)
 			out.Write("delay", delay);
-		if(scale != 1.f)
-			out.Write("scale", scale);
+		if(scale != Point(1., 1.))
+			out.Write("scale", scale.X(), scale.Y());
 		if(randomize)
 			out.Write("random start frame");
 		if(!repeat)
@@ -290,7 +296,7 @@ void Body::SetSprite(const Sprite *sprite)
 
 
 // Set the color swizzle.
-void Body::SetSwizzle(int swizzle)
+void Body::SetSwizzle(const Swizzle *swizzle)
 {
 	this->swizzle = swizzle;
 }

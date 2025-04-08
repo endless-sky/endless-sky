@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "HailPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Dialog.h"
 #include "shader/DrawList.h"

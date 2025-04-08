@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConversationPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "BoardingPanel.h"
 #include "text/Clipboard.h"

@@ -317,6 +317,9 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : colors)
 		if(!it.second.IsLoaded())
 			Warn("color", it.first);
+	for(const auto &it : swizzles)
+		if(!it.second.IsLoaded())
+			Warn("swizzle", it.first);
 }
 
 
@@ -337,6 +340,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 		if(key == "color" && node.Size() >= 5)
 			colors.Get(node.Token(1))->Load(
 				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
+		else if(key == "swizzle" && node.Size() >= 2)
+			swizzles.Get(node.Token(1))->Load(node);
 		else if(key == "conversation" && node.Size() >= 2)
 			conversations.Get(node.Token(1))->Load(node);
 		else if(key == "effect" && node.Size() >= 2)

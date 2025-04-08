@@ -16,13 +16,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "../Color.h"
-#include "DisplayText.h"
-#include "layout.hpp"
+#include "Layout.h"
 #include "../Point.h"
 
 #include <string>
 #include <vector>
 
+class DisplayText;
 class Font;
 class Rectangle;
 
