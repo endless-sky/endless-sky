@@ -11067,7 +11067,7 @@ mission "Weland: Dragon Tech"
 		conversation
 			`You find Weland inside his makeshift laboratory. Your artifact, covered in cords and various machinery, is no longer dull and inert, but has whirred to life.`
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
-			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
+			`	"Now, what we have here is an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship.`
 			`	"So, all of this will run you six million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you forty million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 
@@ -11523,7 +11523,7 @@ mission "Weland: Stone Retrieved Harmonization"
 			`	He shrugs, "Perhaps, some other time. On a different world, in different circumstances. But, not now, not here, and not like this."`
 				goto questions
 			label offworld
-			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are... gentile 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
+			`	He gives you a patronizing smile. "Folks that did this to me. They've been doin' this kind of work for a while, and I, well, I am like the crown jewel of their collection. They have hooks into me, inside of me, all around me, that prevent me from leaving, at least alive. They like to give me the illusion of space, pretend they are... genteel 'bout the whole thing. But make no mistake, I am not free, and I cannot go."`
 			`	His face briefly flashes with mirth, "For now, that is."`
 				goto questions
 
