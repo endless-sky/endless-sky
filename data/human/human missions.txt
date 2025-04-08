@@ -11059,7 +11059,7 @@ mission "Weland: Dragon Tech"
 			`Your inbox blinks with a new message from Weland on Wayfarer.`
 			`	<name>, this is Weland. Just letting you know your artifact is ready.`
 			`	Come pick it up and pay for it at your earliest convenience.`
-			`				-Xeno-Smith`
+			`				- Xeno-Smith`
 			`					Weland`
 			`	P.S. Make sure you have 5 tons of outfit space!`
 				accept
@@ -11069,7 +11069,7 @@ mission "Weland: Dragon Tech"
 			`	"Take a moment. It's a rare sight, alright. Watchin' somethin's been dormant for longer than mankind's had words spur to life before ya, why, it's enough to give a man religion, or something near abouts." Weland pats you on the back.`
 			`	"Now, what we have here is an Fusion Afterburner, it's an afterburner. From what I can tell, despite it's age, a pretty effective one too."`
 			`	Weland taps a datapad on his workbench. "And in here is everything you need to install it on your ship.`
-			`	"So, all of this will run you 6 million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you 40 million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
+			`	"So, all of this will run you six million credits, as we discussed. But, I have another offer for you. Somethin' like this, well as I've said, it's damned rare. I'd be willing to offer you forty million credits for it. With enough time, I imagine I could reverse engineer some of it. As it is now, while I gained a few insights working on it, the best I can do is turn it on and make it run. Whatd'ya say?"`
 
 			branch nostone
 				not "outfit: Tear of Skade"
@@ -11081,7 +11081,7 @@ mission "Weland: Dragon Tech"
 					goto sell
 			action
 				outfit "Retrofitted Fusion Afterburner" 1
-			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you, and shakes your hand.`
+			`	"Ah, well, was worth a shot. Still, had 6 months to study it, so it's not a total bust. I'll have it dropped off at your ship, assumin' you have the space." He hobbles over to you and shakes your hand.`
 			`	"I'll miss having it around. Made the place feel mysterious." He shrugs.`
 
 			branch bloodkeep
@@ -11097,7 +11097,7 @@ mission "Weland: Dragon Tech"
 			label sell
 			action
 				payment 4000000
-			`	Weland looks feverish. "Hot damn. Know, that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
+			`	Weland looks feverish. "Hot damn. Know that this is just about every red cent I own, and in some cases don't. But I think it'll be worth it."`
 			`	He hobbles over to you, and shakes your hand. "Pleasure doin' business."`
 
 			branch bloodsell
