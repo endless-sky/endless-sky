@@ -11143,7 +11143,7 @@ mission "Weland: Dragon Tech"
 			label bloodsell
 			`	"Now that we got that all settled. There's one other item I was wantin' to discuss. Somethin' in the ship schematics you sent over caught my eye. I think you had it labeled 'Blood of Surtr.' Now, if that is what I think it is, well, it's worth a lot of money. I never met nobody that has laid eyes on a legendary Deep Stone, let alone owned one. It's phantom tech kind of stuff you hear about from spooks, and conspiracy nuts. Most say it isn't even real, and if it is, only a few have ever been found, and those the government holds under lock and key.`
 			`	"But, here you are flying free with one on your ship doin' whatever it is these strange stones do. I'd offer to buy it off ya, but you just took most my cash.`
-			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another 3 million to pay you for the pleasure. After 3 months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
+			`	"Well, what if I borrowed the stone? Just, hear me out, alright. Give me three months to study it, learn what secrets from it I can. I could probably scrounge up another three million to pay you for the pleasure. After three months, you come collect the stone, and your payment. Everyone wins. Whatd'ya say?"`
 				goto bloodchoice
 						
 			label tearkeep
