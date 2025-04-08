@@ -643,11 +643,13 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		if(outfit.HasBlindspot())
 		{
 			attributeLabels.emplace_back("Cannot track targets behind it.");
+			attributeLabels.emplace_back(" ");
 			attributesHeight += 20;
 		}
 		if(outfit.ThrottleThrust())
 		{
 			attributeLabels.emplace_back("Can throttle thrust.");
+			attributeLabels.emplace_back(" ");
 			attributesHeight += 20;
 		}
 	}
