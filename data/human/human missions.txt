@@ -9164,8 +9164,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 		"timothy radrickson suit" >= 1
 		"timothy radrickson id" >= 1
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: offered"
-		not "Timothy Radrickson 5: Oblivion Meeting: failed"
+		has "Timothy Radrickson 4: Imprisoned: done"
+		not "event: rad tim dead"
 	on offer
 		conversation
 			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it seems as if you could swallow it; it doesn't help that the air somehow feels even denser at night. The warehouse marked "Stephenson Heavy Industries" turns out to be at the very edge of the spaceport's boundary, and all you see when you get there is a lone box truck parked in the loading bay.`
