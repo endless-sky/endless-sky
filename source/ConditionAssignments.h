@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionContext;
 class ConditionsStore;
 class DataNode;
 class DataWriter;
@@ -60,7 +61,7 @@ public:
 
 	// Modify the given set of conditions with the assignments in this class.
 	// Order of operations is the order of specification: assignments are applied in the order given.
-	void Apply(ConditionsStore &conditions) const;
+	void Apply(ConditionsStore &conditions, const ConditionContext &context) const;
 
 	// Get the names of the conditions that are modified by this ConditionSet.
 	std::set<std::string> RelevantConditions() const;

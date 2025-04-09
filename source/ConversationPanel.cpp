@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
+#include "ConditionContext.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
 #include "shader/FillShader.h"
@@ -410,7 +411,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Conditions(node).Test(player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 		}
 		else if(conversation.IsAction(node))
 		{

@@ -56,6 +56,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Command.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
+	ConditionContext.cpp
+	ConditionContext.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -131,6 +133,8 @@ target_sources(EndlessSkyLib PRIVATE
 	GameWindow.h
 	Government.cpp
 	Government.h
+	Hail.cpp
+	Hail.h
 	HailPanel.cpp
 	HailPanel.h
 	Hardpoint.cpp
