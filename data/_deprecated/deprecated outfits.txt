@@ -685,3 +685,17 @@ outfit "Quarg Anti-Missile"
 		"reload" 10
 		"firing energy" 50
 	description "Quarg anti-missile defenses can target projectiles from considerable range compared to human technology, ensuring that only the most powerful missiles are capable of even getting near a Quarg ship."
+
+outfit "Multimodal Armor: Resilient"
+	category "Systems"
+	series "Special Systems"
+	index 11030
+	thumbnail "outfit/successor armor light"
+	licenses
+		"High Houses"
+	"slowing protection" 0.5
+	"corrosion protection" 0.5
+	"multimodal armor" -1
+	"unplunderable" 1
+	description "The metamaterial armor of Successor warships can be altered in an appropriately equipped spaceport to change its attributes."
+	description "	This configuration is designed for exploring hazardous areas, substantially increasing the armor's ability to resist engine-dampening effects and long-term degradation."
