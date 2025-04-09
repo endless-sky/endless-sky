@@ -291,7 +291,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	requirementsHeight = 20;
 
 	int day = player.GetDate().DaysSinceEpoch();
-	int64_t cost = outfit.Cost();
+	int64_t cost = outfit.Cost(player.Conditions());
 	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
 	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
 
@@ -301,7 +301,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 			continue;
 
 		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
-		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
+		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost(player.Conditions())))
 		{
 			requirementLabels.push_back("license:");
 			requirementValues.push_back(license);

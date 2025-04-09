@@ -368,7 +368,7 @@ namespace {
 				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(it.first)<< ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
-				cout << outfit.Cost() << ',';
+				cout << outfit.Value() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
 
 				cout << outfit.Range() << ',';
@@ -455,7 +455,7 @@ namespace {
 
 				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(it.first) << ',';
-				cout << outfit.Cost() << ',';
+				cout << outfit.Value() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
 				cout << outfit.Get("engine capacity") << ',';
@@ -491,7 +491,7 @@ namespace {
 
 				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(it.first) << ',';
-				cout << outfit.Cost() << ',';
+				cout << outfit.Value() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
 				cout << outfit.Get("energy generation") << ',';
@@ -522,7 +522,7 @@ namespace {
 				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(outfit.TrueName()) << ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
-				cout << outfit.Cost() << ',';
+				cout << outfit.Value() << ',';
 				cout << outfit.Mass();
 				for(const auto &attribute : attributes)
 					cout << ',' << outfit.Attributes().Get(attribute);

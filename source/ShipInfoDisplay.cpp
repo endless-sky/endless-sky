@@ -167,7 +167,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 				continue;
 
 			const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
-			if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
+			if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Value()))
 			{
 				attributeLabels.push_back("license:");
 				attributeValues.push_back(license);
