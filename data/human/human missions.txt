@@ -10367,7 +10367,7 @@ mission "Timothy Radrickson: Log Fix 3"
 	invisible
 	to offer
 		has "Timothy Radrickson 3d: Return to Rand: done"
-		not "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 4: Imprisoned: done"
 		not "timothy radrickson 3 log entry correct"
 		not "Timothy Radrickson: Log Fix 2: offered"
 	on offer
@@ -10381,7 +10381,7 @@ mission "Timothy Radrickson: Log Fix 4"
 	landing
 	invisible
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		has "Timothy Radrickson 4: Imprisoned: done"
 		not "Timothy Radrickson 5a: Timshank Redemption: offered"
 		not "timothy radrickson 4 log entry correct"
 		not "Timothy Radrickson: Log Fix 3: offered"
