@@ -11373,7 +11373,7 @@ mission "Pact Supplies Escort"
 conversation "Pact Supplies"
 	`You enter the quartermaster's office, where you find a small group of captains already waiting, all of whom were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster himself arrives alongside a militia officer. There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment with a focused eye, and clears his throat.`
 	`	"Good day, Captains. You may want to know why you are standing here in my office, and why my colleagues have asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we feel obliged to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help deal with their situation. We will gladly pay each of you <payment> to convoy these goods. Do any of you have questions?"`
-		choice
+	choice
 		`	"Who are these weapons going to?"`
 			goto pact
 		`	"What's this 'developing situation'?"`
