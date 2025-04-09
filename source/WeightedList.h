@@ -42,6 +42,7 @@ public:
 	friend std::size_t erase_if(WeightedList<T> &list, UnaryPredicate pred);
 
 	const Type &Get() const;
+	const Type &Get(const int index) const;
 	std::size_t TotalWeight() const noexcept { return total; }
 
 	// Average the result of the given function by the choices' weights.
@@ -132,6 +133,17 @@ const Type &WeightedList<Type>::Get() const
 	unsigned index = 0;
 	for(unsigned choice = Random::Int(total); choice >= weights[index]; ++index)
 		choice -= weights[index];
+
+	return choices[index];
+}
+
+
+
+template <class Type>
+const Type &WeightedList<Type>::Get(const int index) const
+{
+	if(static_cast<size_t>(index) > choices.size())
+		throw std::runtime_error("Attempted to call Get on a weighted list with index out of bounds.");
 
 	return choices[index];
 }
