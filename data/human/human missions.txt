@@ -8963,7 +8963,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a capt'n worth more than the dust on their boots." She gives you an approving nod.`
 
 			label nextup
-			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over to the spaceport when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
+			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over to the spaceport on Rand when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
 			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of yourself, Capt'n."`
 			`	With that she heads back to her freighter fleet.`
 
