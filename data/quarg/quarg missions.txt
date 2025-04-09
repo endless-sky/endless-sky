@@ -456,7 +456,7 @@ mission "Ask Quarg About Coalition Late"
 				`	"My ship is my home."`
 					goto ship
 				`	"I don't really have a home."`
-					goto home
+					goto homeless
 			`	It acknowledges your answer with the faintest of nods. "Sparse were my own visits to the rocky worlds inhabited by other species. They are unlike our own. So different, so... complete." Its eye darts around, looking at your surroundings, other Quarg here, then finally its own hands and arms. "But us Quarg must make do."`
 				goto name
 			label homeworld
