@@ -1721,7 +1721,7 @@ mission "FW Katya 4"
 				`	"I don't think he would like it."`
 				`	"I'm not sure myself, to be honest."`
 				`	"I'd rather not say."`
-			`	Eyes nods in acknoledgement.`
+			`	Eyes nods.`
 			
 			label paradise
 			`	"I'd hate to be rich," says Katya. "So much to fear."`

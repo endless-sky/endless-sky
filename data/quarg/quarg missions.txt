@@ -460,7 +460,7 @@ mission "Ask Quarg About Coalition Late"
 			`	It acknowledges your answer with the faintest of nods. "Sparse were my own visits to the rocky worlds inhabited by other species. They are unlike our own. So different, so... complete." Its eye darts around, looking at your surroundings, other Quarg here, then finally its own hands and arms. "But us Quarg must make do."`
 				goto name
 			label homeworld
-			`	[follow up with arachi]`
+			`	Though it is the faintest of movements, you swear you see the Quarg turn ever so slightly away from you. "It is perhaps only natural that a species ends up venerating their own homeworld, as the cradle that supported them until they could claim the stars for themselves." Then it leans in close and whispers, "But there are many still that consider the birthplace of their kind to be nothing more than a relic of a bygone age."`
 				goto name
 			label homeless
 			`	Your response seems to have struck something in it, as it brings one hand over its scar, glancing downwards. "A harrowing sensation, is it not?"`

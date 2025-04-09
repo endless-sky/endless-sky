@@ -1242,15 +1242,15 @@ mission "Deep: Project Hawking: Prime"
 		personality waiting
 		ship "Marauder Raven (Engines)" "Krampus"
 	substitutions
-		<history> "You tell Pierre about your life on New Boston, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars."
-		<history> "You tell Pierre about your life on Midgard, and how you graduated with high enough grades to apply for the Deep's starship loan program."
+		<history> "You tell Pierre about your life on <starting planet>, and how you saved up your money working at the textile mill from the age of fifteen until you were able to buy a pilot's license and finally leave your home world for the stars."
+		<history> "You tell Pierre about your life on <starting planet>, and how you graduated with high enough grades to apply for the Deep's starship loan program."
 			has "start: deep"
-		<history> "You tell Pierre about your life on Mainsail, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday."
+		<history> "You tell Pierre about your life on <starting planet>, and how you've always dreamed of becoming a starship captain, and finally got your wish when you were given a pilot's license on your eighteenth birthday."
 			has "start: paradise"
 		<history> "You tell Pierre about your life moving around the galaxy, and how you worked on a Syndicate factory world for five years before you took a loan and begain your life as a merchant captain."
 			has "start: syndicate"
 		<history> "Making sure to not bring up <starting planet> or the Hai by name, you tell Pierre about your life, and how you did your best at a travel agency to get to the stars as soon as you could."
-			has "start: hai"
+			has "hai space start"
 		<response> `"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
 		<response> `"So you're native to the Deep," Pierre remarks. "I felt like an outsider when I first arrived. Compared to how welcoming the Dirt Belt is, it seemed like nobody wanted to talk to me. I've gotten over that since, of course. Thanks for sharing, <first>."`
 			has "start: deep"

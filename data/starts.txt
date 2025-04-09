@@ -30,7 +30,7 @@ start "default"
 			term 365
 	set "license: Pilot's"
 	set "species: human"
-	set "starting space: human"
+	set "human space start"
 	set "start: default"
 
 
@@ -43,7 +43,7 @@ mission "Start: Default Patch"
 		not "start: default"
 	on offer
 		set "species: human"
-		set "starting space: human"
+		set "human space start"
 		set "start: default"
 		fail
 
@@ -79,7 +79,7 @@ start "deep"
 			term 365
 	set "license: Pilot's"
 	set "species: human"
-	set "starting space: human"
+	set "human space start"
 	set "start: deep"
 
 conversation "deep intro"
@@ -109,7 +109,7 @@ start "paradise"
 		score 600
 	set "license: Pilot's"
 	set "species: human"
-	set "starting space: human"
+	set "human space start"
 	set "start: paradise"
 
 conversation "paradise intro"
@@ -142,7 +142,7 @@ start "syndicate"
 			term 365
 	set "license: Pilot's"
 	set "species: human"
-	set "starting space: human"
+	set "human space start"
 	set "start: syndicate"
 
 conversation "syndicate intro"
@@ -194,7 +194,7 @@ start "hai space"
 			interest 0.003
 			term 730
 	set "species: human"
-	set "starting space: hai"
+	set "hai space start"
 	set "start: hai"
 	# need to set it here to not have it trigger alongside the invisible mission
 	set "First Contact: Hai: offered"
@@ -214,7 +214,7 @@ mission "Start: Hai Patch"
 		not "start: hai"
 	on offer
 		set "species: human"
-		set "starting space: hai"
+		set "hai space start"
 		set "start: hai"
 		fail
 
@@ -338,7 +338,3 @@ event "grew up on greenwater"
 		description `	Thanks to its high human population, the human language is dominant on Greenwater, with the Hai language limited to the poles of the planet where Hai merchants are more frequent.`
 		spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
 
-substitutions
-	"<starting planet>" "New Boston"
-	"<starting planet>" "Greenwater"
-		has "hai space start"

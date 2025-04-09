@@ -3925,7 +3925,7 @@ mission "Human to Hai Space"
 			choice
 				`	"'Heard tell'? I'm from Hai space!"`
 					to display
-						has "hai space start"
+						has "start: hai"
 					goto origin
 				`	"You mean the Hai? You'll have to go up north for that."`
 					goto hai
@@ -3946,7 +3946,7 @@ mission "Human to Hai Space"
 			choice
 				`	"Actually, I'm from <planet>."`
 					to display
-						has "hai space start"
+						has "start: hai"
 				`	"Alright, I'll take you there."`
 					accept
 				`	"Sorry, I'm too busy right now."`
@@ -3983,11 +3983,11 @@ mission "Human to Hai Space"
 					decline
 				`	(Approach them.)`
 					to display
-						has "hai space start"
+						has "start: hai"
 					goto haistart
 				`	"That's your family?"`
 					to display
-						not "hai space start"
+						not "start: hai"
 			`	The man looks at you. "I'm adopted," he says. One of the Hai notices your confusion, and chitters. "Ah, you have not seen a human-Hai family, have you? Perhaps it is strange, but we are happy together nonetheless. Thank you for transporting our son safely."`
 			choice
 				`	"I didn't mean to be rude, I just didn't know that Hai adopted humans here."`
@@ -4687,7 +4687,7 @@ mission "Hai Wormhole Warning"
 		not "Block Hai Wormhole Warning: offered"
 		not "Wanderers: Alpha Surveillance E: offered"
 		not "hr: meet the team"
-		not "hai space start"
+		not "start: hai"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
@@ -7134,6 +7134,8 @@ mission "Adelita 1"
 			choice
 				`	"Not much at all."`
 				`	"I come from the Dirt Belt, but I really don't know too much about what happened on Hope."`
+					to display
+						has "start: default"
 				`	"I've been there myself and know what happened, but other than that I don't know."`
 					goto "been to hope"
 					to display

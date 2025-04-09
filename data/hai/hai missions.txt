@@ -340,7 +340,7 @@ mission "Returning Home"
 	on offer
 		conversation
 			branch insider
-				has "hai space start"
+				has "start: hai"
 			`You are stopped by a human in the <origin> marketplace. He takes off his hat and asks, "You're from the outside, aren't you?"`
 			choice
 				`	"Yes, I am."`
