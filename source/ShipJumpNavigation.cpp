@@ -74,8 +74,9 @@ void ShipJumpNavigation::SetSystem(const System *system)
 // nullptr then return the maximum amount of fuel that this ship could expend in one jump.
 double ShipJumpNavigation::JumpFuel(const System *destination) const
 {
-	// A currently-carried ship requires no fuel to jump, because it cannot jump.
-	if(!currentSystem)
+	// A currently-carried ship or ship without drives requires no fuel to jump,
+	// because it cannot jump.
+	if(!currentSystem || !HasAnyDrive())
 		return 0.;
 
 	// If no destination is given, return the maximum fuel per jump.
@@ -83,6 +84,28 @@ double ShipJumpNavigation::JumpFuel(const System *destination) const
 		return max(JumpDriveFuel(), HyperdriveFuel());
 
 	return GetCheapestJumpType(currentSystem, destination).second;
+}
+
+
+
+// Get the amount of fuel that would be expended to jump to the "nearest" (in fuel) system.
+double ShipJumpNavigation::JumpFuelNearest() const
+{
+	// A currently-carried ship or ship without drives requires no fuel to jump,
+	// because it cannot jump.
+	if(!currentSystem || !HasAnyDrive())
+		return 0.;
+
+	double jumpDriveCost = JumpDriveFuel();
+	double hyperdriveCost = HyperdriveFuel();
+
+	// Check whether the ship can jump, that jumping is more expensive than hyperdriving,
+	// and whether the system has links.
+	if((!jumpDriveCost || jumpDriveCost >= hyperdriveCost) && !currentSystem->Links().empty())
+		return hyperdriveCost;
+	else if(!currentSystem->VisibleNeighbors().empty())
+		return jumpDriveCost;
+	return 0.;
 }
 
 
@@ -187,6 +210,13 @@ bool ShipJumpNavigation::HasScramDrive() const
 bool ShipJumpNavigation::HasJumpDrive() const
 {
 	return hasJumpDrive;
+}
+
+
+
+bool ShipJumpNavigation::HasAnyDrive() const
+{
+	return hasHyperdrive || hasScramDrive || hasHyperdrive;
 }
 
 
