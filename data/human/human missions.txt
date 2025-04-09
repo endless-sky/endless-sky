@@ -9010,7 +9010,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			`	He gives you a sheepish smile and says, "This is a celebration in your honor, Hero of Rand."`
 			choice
 				`	"Hero of Rand?"`
-				`	"What do mean?"`
+				`	"What do you mean?"`
 				`	"So you lied to me."`
 			`	He shrugs. "I just thought it would be more fun this way. Who doesn't like surprises?"`
 			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn the population into indentured servants. The whole world would have been their debtor's prison."`
