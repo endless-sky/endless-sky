@@ -189,6 +189,28 @@ mission "Hunted"
 
 
 
+mission "Debt Free Message"
+	invisible
+	to offer
+		or
+			not "unpaid mortgages"
+			and
+				not "total ships"
+				credits < 180000
+				not "days since start"
+	on offer
+		conversation
+			branch failure
+				not "days since start"
+			`You have finally paid off the mortgage you got at the beginning of your journey! Now you can buy ships and outfits without endless loan payments holding you back. You could even take out a new loan for a bigger ship and start the process over again!`
+			decline
+
+			label failure
+			`	Somehow, you have managed to ignore your hopes and dreams to buy a ship and explore the galaxy. As you walk back towards the textile factory in shame, you watch as another hopeful new pilot enters the shipyard and buys a fancy new Shuttle. Hopefully they don't repeat your mistakes.`
+			decline
+
+
+
 mission "Immigrant Workers"
 	description "A young couple wants to start a new life on <destination>, and can pay you <payment> to bring them there. They are also bringing along <cargo>."
 	minor
