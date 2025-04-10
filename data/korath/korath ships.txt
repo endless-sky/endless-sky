@@ -1488,7 +1488,7 @@ ship "Kar Ik Vot 349"
 		category "Heavy Warship"
 		"cost" 41280000
 		"shields" 57200
-		"hull" 65400
+		"hull" 62400
 		"automaton" 1
 		"crew equivalent" 150
 		"mass" 3754
@@ -1501,7 +1501,7 @@ ship "Kar Ik Vot 349"
 		"engine capacity" 173
 		"self destruct" .8
 		"ramscoop" 3
-		"threshold percentage" .1
+		"absolute threshold" 9810
 		weapon
 			"blast radius" 450
 			"shield damage" 6400
