@@ -126,10 +126,10 @@ int TextArea::GetLongestLineWidth()
 
 void TextArea::Draw()
 {
+	Validate(scrollHeightIncludesTrailingBreak);
 	if(!buffer)
 		buffer = std::make_unique<RenderBuffer>(size);
 
-	Validate(scrollHeightIncludesTrailingBreak);
 	if(!bufferIsValid || !scroll.IsAnimationDone())
 	{
 		scroll.Step();
@@ -241,6 +241,16 @@ void TextArea::Invalidate()
 
 void TextArea::Validate(bool trailingBreak)
 {
+	if(scrollable != scroll.Scrollable())
+	{
+		const Point offset{4, 0};
+		scrollable = scroll.Scrollable();
+		if(scrollable)
+			SetRect({position - offset, size - 2 * offset});
+		else
+			SetRect({position + offset, size + 2 * offset});
+	}
+
 	if(!textIsValid || trailingBreak != scrollHeightIncludesTrailingBreak)
 	{
 		wrappedText.Wrap(text);
