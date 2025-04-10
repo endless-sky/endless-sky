@@ -185,7 +185,7 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		double stepsToReach = d.Length() / trueVelocity;
 		bool isFacingAway = d.Dot(angle.Unit()) < 0.;
 		// At the highest homing level, compensate for target motion.
-		if(weapon->Intercepts())
+		if(weapon->Leading())
 		{
 			if(unit.Dot(target->Velocity()) < 0.)
 			{

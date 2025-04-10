@@ -85,7 +85,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 				if(value >= 3)
 					throttleControl = true;
 				if(value >= 4)
-					intercepts = true;
+					leading = true;
 			}
 			for(const DataNode &grand : child)
 			{
@@ -97,8 +97,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 						blindspot = true;
 					else if(token == "throttle control")
 						throttleControl = true;
-					else if(token == "intercepts")
-						intercepts = true;
+					else if(token == "leading")
+						leading = true;
 					else
 						grand.PrintTrace("Skipping unknown homing attribute:");
 				}

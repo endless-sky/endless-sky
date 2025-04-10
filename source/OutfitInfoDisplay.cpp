@@ -638,7 +638,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	if(outfit.Homing())
 	{
 		attributeLabels.emplace_back("homing type:");
-		attributeValues.push_back(outfit.Intercepts() ? "intercepts" : "direct");
+		attributeValues.push_back(outfit.Leading() ? "leading" : "direct");
 		attributesHeight += 20;
 		if(outfit.HasBlindspot())
 		{

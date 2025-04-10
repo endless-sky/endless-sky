@@ -169,7 +169,7 @@ public:
 	bool Homing() const;
 	bool HasBlindspot() const;
 	bool ThrottleControl() const;
-	bool Intercepts() const;
+	bool Leading() const;
 
 	// These values include all submunitions:
 	// Normal damage types:
@@ -278,7 +278,7 @@ private:
 	bool homing = false;
 	bool blindspot = false;
 	bool throttleControl = false;
-	bool intercepts = false;
+	bool leading = false;
 
 	// Attributes.
 	int lifetime = 0;
@@ -461,7 +461,7 @@ inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
 inline bool Weapon::Homing() const { return homing; }
 inline bool Weapon::HasBlindspot() const { return blindspot; }
 inline bool Weapon::ThrottleControl() const { return throttleControl; }
-inline bool Weapon::Intercepts() const { return intercepts; }
+inline bool Weapon::Leading() const { return leading; }
 
 inline double Weapon::ShieldDamage() const { return TotalDamage(SHIELD_DAMAGE); }
 inline double Weapon::HullDamage() const { return TotalDamage(HULL_DAMAGE); }
