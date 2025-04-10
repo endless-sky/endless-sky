@@ -11318,9 +11318,8 @@ mission "Pact Supplies Convoy"
 			has "ships: Transport"
 			has "ships: Light Freighter"
 			has "ships: Heavy Freighter"
-		has "Pact Supplies Trigger: offered"
 		not "Pact Supplies Escort: completed"
-	on offer
+	on accept
 		conversation "Pact Supplies"
 	npc accompany save
 		government "Merchant"
@@ -11353,9 +11352,8 @@ mission "Pact Supplies Escort"
 			has "ships: Light Warship"
 			has "ships: Medium Warship"
 			has "ships: Heavy Warship"
-		has "Pact Supplies Trigger: offered"
 		not "Pact Supplies Convoy: completed"
-	on offer
+	on accept
 		conversation "Pact Supplies"
 
 	npc accompany save
@@ -11375,7 +11373,15 @@ mission "Pact Supplies Escort"
 
 
 conversation "Pact Supplies"
-	`You make your way to the quartermaster's office, where you find a small group of captains already waiting, all of whom were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster arrives alongside a militia officer.`
+	branch trigger
+		has "Pact Supplies Trigger: offered"
+	`You make your way to the quartermaster's office, where you find a small group of captains already waiting. Many of them are talking about how they were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster arrives alongside a militia officer.`
+		goto main
+
+	label trigger
+	`You make your way to the quartermaster's office, where you find a small group of captains already waiting. Like you, many of them were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster arrives alongside a militia officer.`
+
+	label main
 	`	There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment and clears his throat.`
 	`	"Good day, Captains. You may want to know why you are standing here in my office, and why my colleagues have asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we feel obliged to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help them deal with their situation. We will gladly pay each of you <payment> to convoy these goods. Do any of you have questions?"`
 	choice
@@ -11390,8 +11396,7 @@ conversation "Pact Supplies"
 	`	"Many of the ships in our militia have affiliations with the Southern Mutual Defense Pact, which is a collection of planetary militia organizations. They're centered in the Rim and the South so we are not directly tied to them, but recently we have begun to cooperate with them as the Navy has been cowering out in the Paradise Worlds. Whatever is going on down south that affects the Pact will also affect us some way in another."`
 
 	label decision
-	`	There's a shuffle as a few captains raucously walk out of the quartermaster's office.`
-	`	As he leaves, one captain shouts, "We won't support any of you begging southerners here! You should be grateful for the Navy's protection!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment about the Navy so kindly.`
+	`	There's a shuffle as a few captains raucously walk out of the quartermaster's office. As he leaves one captain shouts, "You begging southerners should be grateful for the Navy's protection!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment about the Navy so kindly.`
 	`	While those captains leave, both the militia officer and the quartermaster hold their faces grim and firm. "Any of you are free to join them if you wish. We will not penalize you, but do know that you are missing out on an opportunity to help our Southern brothers. That may mean a lot in the future."`
 	choice
 		`	(Stay and accept the job.)`
@@ -11400,5 +11405,5 @@ conversation "Pact Supplies"
 			decline
 
 	label end
-	`	You and the now-smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where a store of energy blasters, beam lasers, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse, filling the diverse range of ships with cargo. As they work, the militia officer addresses all of you: "Our brothers down in the South on <planet> expect this delivery by <date>. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
+	`	You and the now-smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where a store of energy blasters, beam lasers, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse, filling the diverse range of ships with cargo. As they work, the militia officer addresses all of you: "Our brothers down in the South on <planet> are counting on you. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
 		accept
