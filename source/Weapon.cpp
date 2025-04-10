@@ -80,6 +80,8 @@ void Weapon::LoadWeapon(const DataNode &node)
 			if(child.Size() == 2)
 			{
 				int value = child.Value(1);
+				if(value == 0)
+					homing = false;
 				if(value == 1)
 					blindspot = true;
 				if(value >= 3)
