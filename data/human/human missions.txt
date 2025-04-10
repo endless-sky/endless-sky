@@ -11334,7 +11334,7 @@ mission "Pact Supplies Convoy"
 	on complete
 		"assisted the free worlds" ++
 		payment 35000 50
-		dialog `After you land at <planet>'s spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
+		dialog `After you land at <planet>'s spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. I will make sure that the <Pact / Free Worlds> remembers your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
 
 
 mission "Pact Supplies Escort"
@@ -11369,7 +11369,7 @@ mission "Pact Supplies Escort"
 	on complete
 		"assisted the free worlds" ++
 		payment 35000 50
-		dialog `After you land at <planet>'s spaceport, a militia officer comes to greet you. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>, and makes his way to the next convoy ship.`
+		dialog `After you land at <planet>'s spaceport, a militia officer comes to greet you. "Thank you for your service. I will make sure that the <Pact / Free Worlds> remembers your assistance." He hands you your payment of <payment>, and makes his way to the next convoy ship.`
 
 
 conversation "Pact Supplies"
@@ -11382,7 +11382,7 @@ conversation "Pact Supplies"
 	`You make your way to the quartermaster's office, where you find a small group of captains already waiting. Like you, many of them were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster arrives alongside a militia officer.`
 
 	label main
-	`	There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment and clears his throat.`
+	`	There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you for a moment and clears his throat.`
 	`	"Good day, Captains. You may want to know why you are standing here in my office, and why my colleagues have asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we feel obliged to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help them deal with their situation. We will gladly pay each of you <payment> to convoy these goods. Do any of you have questions?"`
 	choice
 		`	"Who are these weapons going to?"`
