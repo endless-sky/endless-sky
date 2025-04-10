@@ -11286,6 +11286,7 @@ substitutions
 mission "Pact Supplies Trigger"
 	invisible
 	landing
+	minor
 	to complete
 		not "event: war begins"
 		not "event: chosen sides"
@@ -11318,6 +11319,7 @@ mission "Pact Supplies Convoy"
 			has "ships: Light Freighter"
 			has "ships: Heavy Freighter"
 		has "Pact Supplies Trigger: offered"
+		not "Pact Supplies Escort: completed"
 	on offer
 		conversation "Pact Supplies"
 	npc accompany save
@@ -11333,7 +11335,7 @@ mission "Pact Supplies Convoy"
 	on complete
 		"assisted the free worlds" ++
 		payment 35000 50
-		dialog `After you land at Longjump's spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
+		dialog `After you land at <planet>'s spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment> and makes his way to the next convoy ship.`
 
 
 mission "Pact Supplies Escort"
@@ -11352,6 +11354,7 @@ mission "Pact Supplies Escort"
 			has "ships: Medium Warship"
 			has "ships: Heavy Warship"
 		has "Pact Supplies Trigger: offered"
+		not "Pact Supplies Convoy: completed"
 	on offer
 		conversation "Pact Supplies"
 
@@ -11368,30 +11371,32 @@ mission "Pact Supplies Escort"
 	on complete
 		"assisted the free worlds" ++
 		payment 35000 50
-		dialog `After you land at Longjump's spaceport, a militia officer comes to greet you. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>.`
+		dialog `After you land at <planet>'s spaceport, a militia officer comes to greet you. "Thank you for your service. I will make sure that the <Pact / Free Worlds> will remember your assistance." He hands you your payment of <payment>, and makes his way to the next convoy ship.`
+
 
 conversation "Pact Supplies"
-	`You enter the quartermaster's office, where you find a small group of captains already waiting, all of whom were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster himself arrives alongside a militia officer. There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment with a focused eye, and clears his throat.`
-	`	"Good day, Captains. You may want to know why you are standing here in my office, and why my colleagues have asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we feel obliged to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help deal with their situation. We will gladly pay each of you <payment> to convoy these goods. Do any of you have questions?"`
+	`You make your way to the quartermaster's office, where you find a small group of captains already waiting, all of whom were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster arrives alongside a militia officer.`
+	`	There is a respectful pause as the quartermaster goes to sit at his desk. As he is settled, he scans all of you down for a moment and clears his throat.`
+	`	"Good day, Captains. You may want to know why you are standing here in my office, and why my colleagues have asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we feel obliged to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help them deal with their situation. We will gladly pay each of you <payment> to convoy these goods. Do any of you have questions?"`
 	choice
 		`	"Who are these weapons going to?"`
 			goto pact
-		`	"What's this 'developing situation'?"`
+		`	"What's this 'developing situation?'"`
 
 	`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organized scale once again, and the Pact has requested more weaponry to deal with them. Let me tell you though - we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
 		goto decision
 
 	label pact
-	`	"Many of the ships in our militia have affiliations with the Southern Mutual Defense Pact, which is a collection of planetary militia organizations. They're centered in the Rim and the South, but recently we have begun to work with them as the Navy has been cowering out in the Paradise Worlds. Whatever is going on down south that affects the Pact will also affect us some way in another."`
+	`	"Many of the ships in our militia have affiliations with the Southern Mutual Defense Pact, which is a collection of planetary militia organizations. They're centered in the Rim and the South so we are not directly tied to them, but recently we have begun to cooperate with them as the Navy has been cowering out in the Paradise Worlds. Whatever is going on down south that affects the Pact will also affect us some way in another."`
 
 	label decision
 	`	There's a shuffle as a few captains raucously walk out of the quartermaster's office.`
-	`	As he leaves, one captain shouts, "We won't support any of you begging southerners here!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment so kindly.`
-	`	While those captains leave, both the militia officer and the quartermaster hold their faces grim and firm. "Any of you are free to join them if you wish. We will not penalize you, but do know that you may miss out on an opportunity to help our Southern brothers. That may mean a lot in the future."`
+	`	As he leaves, one captain shouts, "We won't support any of you begging southerners here! You should be grateful for the Navy's protection!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment about the Navy so kindly.`
+	`	While those captains leave, both the militia officer and the quartermaster hold their faces grim and firm. "Any of you are free to join them if you wish. We will not penalize you, but do know that you are missing out on an opportunity to help our Southern brothers. That may mean a lot in the future."`
 	choice
 		`	(Stay and accept the job.)`
 			goto end
-		`	(Leave with the Paradise Worlds captains.)`
+		`	(Leave with the Paradisian captains.)`
 			decline
 
 	label end
