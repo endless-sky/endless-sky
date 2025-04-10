@@ -1055,7 +1055,7 @@ tip "arc:"
 	`The angular range of protection provided by this weapon, in degrees.`
 
 tip "homing type:"
-	`How this projectile tracks its target. Projectiles with "direct" will fly straight at their target, while projectiles with "intercept" will lead their trajectory.`
+	`How this projectile tracks its target. Projectiles with "direct" will fly straight at their target, while projectiles with "leading" will lead their trajectory.`
 
 tip "tracking:"
 	`This projectile's ability to maintain its target lock.`
