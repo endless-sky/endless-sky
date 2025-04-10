@@ -1501,6 +1501,7 @@ ship "Kar Ik Vot 349"
 		"engine capacity" 173
 		"self destruct" .8
 		"ramscoop" 3
+		"threshold percentage" .1
 		weapon
 			"blast radius" 450
 			"shield damage" 6400
