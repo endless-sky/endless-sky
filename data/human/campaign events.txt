@@ -2466,60 +2466,65 @@ event "pug flee"
 	system "Zeta Aquilae"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
-		fleet "Small Republic" 1000
-		fleet "Large Republic" 2000
+		fleet "Small Southern Pirates" 2000
+		fleet "Large Southern Pirates" 5000
 	system "Rasalhague"
 		fleet "Small Southern Merchants" 1500
 		fleet "Large Southern Merchants" 2000
-		fleet "Small Republic" 1200
-		fleet "Large Republic" 2500
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 8000
 	system "Vega"
 		fleet "Small Northern Merchants" 800
 		fleet "Large Northern Merchants" 3000
-		fleet "Small Republic" 800
-		fleet "Large Republic" 1200
+		fleet "Small Republic" 1600
+		fleet "Large Republic" 5000
+		fleet "Human Miners" 5000
 	system "Altair"
 		fleet "Small Core Merchants" 400
 		fleet "Large Core Merchants" 600
 		fleet "Small Northern Merchants" 1000
 		fleet "Large Northern Merchants" 3000
-		fleet "Small Republic" 700
-		fleet "Large Republic" 900
+		fleet "Small Republic" 3000
+		fleet "Large Republic" 6000
+		fleet "Republic Logistics" 6000
+		fleet "Small Syndicate" 9000
 	system "Fomalhaut"
 		fleet "Small Core Merchants" 1000
 		fleet "Large Core Merchants" 1200
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 5000
+		fleet "Large Syndicate" 10000
+		fleet "Republic Logistics" 3300
 	system "Delta Capricorni"
 		fleet "Small Core Merchants" 700
 		fleet "Large Core Merchants" 800
-		fleet "Small Syndicate" 500
-		fleet "Large Syndicate" 600
+		fleet "Small Syndicate" 2000
+		fleet "Small Core Pirates" 4000
+		fleet "Human Miners" 3000
 	system "Alderamin"
 		fleet "Small Core Merchants" 2000
 		fleet "Large Core Merchants" 3200
-		fleet "Small Syndicate" 700
-		fleet "Large Syndicate" 900
+		fleet "Small Syndicate" 800
+		fleet "Large Syndicate" 800
+		fleet "Small Core Pirates" 1000
+		fleet "Large Core Pirates" 1200
 	system "Diphda"
 		fleet "Small Core Merchants" 2000
 		fleet "Large Core Merchants" 600
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 3000
 	system "Caph"
 		fleet "Small Core Merchants" 500
 		fleet "Large Core Merchants" 600
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 1600
+		fleet "Human Miners" 2000
 	system "Nocte"
 		fleet "Small Northern Merchants" 1500
-		fleet "Large Northern Merchants" 5000
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 7000
 		fleet "Small Northern Pirates" 2500
 		fleet "Derelict Northern" 10000
+		fleet "Human Miners" 1600
 	system "Orvala"
 		fleet "Small Southern Merchants" 3000
-		fleet "Large Southern Merchants" 6000
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 3000
 		fleet "Derelict Southern" 10000
@@ -2533,76 +2538,6 @@ event "pug flee"
 		attributes uninhabited
 	planet "Pugglequat"
 		attributes uninhabited
-
-# Patch mission and event, restoring pre-pug state of fleets in pug-affected systems
-# after 'pug flee' in post- as well as retroactively in pre-0.10.13 games.
-
-mission "Post Pug Fleet Restoration Patch"
-	landing
-	invisible
-	to offer
-		has "event: pug flee"
-	on offer
-		event "postpug fleet restoration patch"
-		fail
-
-event "postpug fleet restoration patch"
-	system "Zeta Aquilae"
-		remove fleet "Small Republic" 1000
-		remove fleet "Large Republic" 2000
-		add fleet "Small Southern Pirates" 2000
-		add fleet "Large Southern Pirates" 5000
-	system "Rasalhague"
-		remove fleet "Small Republic" 1200
-		remove fleet "Large Republic" 2500
-		add fleet "Small Southern Pirates" 4000
-		add fleet "Large Southern Pirates" 8000
-	system "Vega"
-		remove fleet "Small Republic" 800
-		remove fleet "Large Republic" 1200
-		add fleet "Small Republic" 1600
-		add fleet "Large Republic" 5000
-		add fleet "Human Miners" 5000
-	system "Altair"
-		remove fleet "Small Republic" 700
-		remove fleet "Large Republic" 900
-		add fleet "Small Republic" 3000
-		add fleet "Large Republic" 6000
-		add fleet "Republic Logistics" 6000
-		add fleet "Small Syndicate" 9000
-	system "Fomalhaut"
-		remove fleet "Small Republic" 1600
-		remove fleet "Large Republic" 3000
-		add fleet "Small Syndicate" 5000
-		add fleet "Large Syndicate" 10000
-		add fleet "Republic Logistics" 3300
-	system "Delta Capricorni"
-		remove fleet "Small Syndicate" 500
-		remove fleet "Large Syndicate" 600
-		add fleet "Small Syndicate" 2000
-		add fleet "Small Core Pirates" 4000
-		add fleet "Human Miners" 3000
-	system "Alderamin"
-		remove fleet "Small Syndicate" 700
-		remove fleet "Large Syndicate" 900
-		add fleet "Small Syndicate" 800
-		add fleet "Large Syndicate" 800
-		add fleet "Small Core Pirates" 1000
-		add fleet "Large Core Pirates" 1200
-	system "Diphda"
-		remove fleet "Small Republic" 1600
-		remove fleet "Large Republic" 3000
-		add fleet "Small Syndicate" 3000
-	system "Caph"
-		remove fleet "Small Republic" 1600
-		remove fleet "Large Republic" 3000
-		add fleet "Small Syndicate" 1600
-		add fleet "Human Miners" 2000
-	system "Nocte"
-		remove fleet "Large Northern Merchants" 5000
-		add fleet "Human Miners" 1600
-	system "Orvala"
-		remove fleet "Large Southern Merchants" 6000
 
 
 event "pug territory liberated"
