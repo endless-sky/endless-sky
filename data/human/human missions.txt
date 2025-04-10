@@ -11378,7 +11378,7 @@ conversation "Pact Supplies"
 			goto pact
 		`	"What's this 'developing situation'?"`
 
-	`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organized scale once again, and the Pact has requested more weaponry to deal with them. Let me tell you, though: we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
+	`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organized scale once again, and the Pact has requested more weaponry to deal with them. Let me tell you though - we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
 		goto decision
 
 	label pact
@@ -11395,5 +11395,5 @@ conversation "Pact Supplies"
 			decline
 
 	label end
-	`	Your now smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where a store of energy blasters, beam lasers, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse to fill your ships with cargo. As they work, the militia officer addresses all of you. "Our brothers down in the South on <planet> expect this delivery by <date>. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
+	`	You and the now-smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where a store of energy blasters, beam lasers, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse, filling the diverse range of ships with cargo. As they work, the militia officer addresses all of you: "Our brothers down in the South on <planet> expect this delivery by <date>. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
 		accept
