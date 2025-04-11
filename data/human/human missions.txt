@@ -11276,7 +11276,6 @@ fleet "Pact Supplies"
 		"Hawk"
 
 substitutions
-	"<Pact / Free Worlds>" "South"
 	"<Pact / Free Worlds>" "Pact"
 		not "event: war begins"
 	"<Pact / Free Worlds>" "Free Worlds"
@@ -11395,7 +11394,7 @@ conversation "Pact Supplies"
 			goto situation
 
 	`	After a moment, one of the other captains steps forward and asks sneeringly, "How do we know these weapons aren't going to be used by illegal actors, my good quartermaster? Weapons trafficking can be a serious crime in the Republic."`
-	`	"You have no reason for suspicion," the quartermaster responds. "The weapons are being sent to our partners in the Southern Mutual Defense Pact, who have a much greater need for these munitions and outfits than we do, given the rates of piracy they're suffering through at the moment. We wouldn't need to do anything if it weren't for the Navy and their masters in Parliament sitting on their cushioned chairs every day and refusing to do anything about the situation while southron lives and ships are lost."`
+	`	"You have no reason for suspicion," the quartermaster responds. "The weapons are being sent to our partners in the Southern Mutual Defense Pact, who have a much greater need for these munitions and outfits than we do, given the rates of piracy they're suffering through at the moment. We wouldn't need to do anything if it weren't for the Navy and their masters in Parliament sitting on their cushioned chairs every day and refusing to do anything about the situation while southern lives and ships are lost."`
 	`	The air in the office seems to become more frigid as the captain responds, "I asked you whether these weapons wouldn't fall into the hands of privateers and inciters like the Pact, and instead all you do is insult the Navy and tell us we should go help the Pact because Parliament made you do so. You begging southerners should be grateful for the Navy's protection!" He turns around and pushes through the still crowd in the room. A few others turn and follow him, adding, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!"`
 	`	Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment about the Navy or the Republic so kindly.`
 		goto decision
@@ -11411,11 +11410,11 @@ conversation "Pact Supplies"
 	`	There's a shuffle as a few captains raucously walk out of the quartermaster's office. As he leaves one captain shouts, "You begging southerners should be grateful for the Navy's protection!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment about the Navy so kindly.`
 
 	label decision
-	`	As those captains leave, both the militia officer and the quartermaster hold their faces grim and firm. "Any of you are free to join them if you wish. We will not penalize you, but do know that you are missing out on an opportunity to help our Southern brothers. That may mean a lot in the future."`
+	`	The militia officer and the quartermaster look on grimly as the captains leave. "Any of you are free to join them if you wish. We will not penalize you, but do know that you are missing out on an opportunity to help our Southern brothers. That may mean a lot in the future."`
 	choice
 		`	(Stay and accept the job.)`
 		`	(Leave with the Paradisian captains.)`
 			decline
 
-	`	You and the now-smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where a store of energy blasters, beam lasers, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse, filling the diverse range of ships with cargo. As they work, the militia officer addresses all of you: "Our brothers down in the South on <planet> are counting on you. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
+	`	You and the now-smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where stores of blasters, beams, engines, crew equipment, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse, filling the diverse range of ships with cargo. As they work, the militia officer addresses all of you: "Our brothers down in the South on <planet> are counting on you. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
 		accept
