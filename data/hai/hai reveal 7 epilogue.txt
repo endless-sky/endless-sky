@@ -30,7 +30,7 @@ mission "Hai Reveal [D01A] Summoned to Mountaintop"
 	name "Treaty at <planet>"
 	description "Go to <destination> to witness the signing of the Hai-human treaty."
 	source
-		government "Republic" "Syndicate" "Free Worlds"
+		government "Republic" "Deep" "Syndicate" "Free Worlds"
 		not attributes "uninhabited"
 	destination "Mountaintop"
 	to offer

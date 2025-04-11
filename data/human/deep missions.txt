@@ -16,7 +16,7 @@ mission "Deep: Syndicate Convoy"
 	name `Pickup from Hephaestus`
 	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
-		attributes "deep"
+		government "Deep"
 		near "Gomeisa" 2
 	stopover "Hephaestus"
 	deadline
@@ -106,7 +106,7 @@ mission "Deep: Tarazed Convoy"
 	name `Pickup from Tarazed`
 	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
-		attributes "deep"
+		government "Deep"
 		near "Gomeisa" 2
 	stopover "Wayfarer"
 	deadline
@@ -199,7 +199,7 @@ mission "Deep: Kraz Convoy"
 	name `Pickup from Kraz`
 	description `Escort a convoy of freighters to <stopovers> where they will pick up materials needed for scientific experiments. Return the convoy to <destination> by <date> for payment (<payment>).`
 	source
-		attributes "deep"
+		government "Deep"
 		near "Gomeisa" 2
 	stopover "Rust"
 	deadline
@@ -282,7 +282,7 @@ mission "Deep: Mystery Cubes 0"
 	name `Gaining an Edge`
 	description `Land on the designated systems to place the mysterious cubes that Lieutenant Paris has given you, then return to <destination>.`
 	source
-		attributes "deep"
+		government "Deep"
 		not system "Zosma"
 		not attributes "station"
 	destination "Memory"
@@ -380,7 +380,7 @@ mission "Deep: Mystery Cubes 1"
 	name `Travel to <planet>`
 	description `Travel to <destination> to learn more about the situation with the warlord Beelzebub.`
 	source
-		government "Republic" "Free Worlds" "Neutral" "Syndicate" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Neutral" "Syndicate" "Independent"
 		not system "Sol"
 	destination "Luna"
 	to offer
@@ -667,7 +667,7 @@ mission "Deep: TMBR 0"
 	description `Find and convince "There Might Be Riots" to throw a concert on <destination>.`
 	source
 		not system "Aludra"
-		attributes "deep"
+		government "Deep"
 	destination "Midgard"
 	deadline 120
 	to offer
@@ -798,7 +798,7 @@ mission "Deep: Interrogation"
 	landing
 	invisible
 	source
-		attributes "deep"
+		government "Deep"
 		attributes "spaceport"
 	to offer
 		has "Deep Archaeology 5: done"
@@ -817,10 +817,10 @@ mission "Deep: Questions"
 	name `Mysterious Message`
 	description `Travel to <destination> to meet the author of an encrypted message.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not system "Zosma"
 	destination
-		attributes "deep"
+		government "Deep"
 		attributes "urban"
 	to offer
 		has "event: assisted the deep"
@@ -1031,7 +1031,7 @@ mission "Deep: Project Hawking"
 	name `Research Supplies`
 	description `Fetch research supplies from <stopovers> and return them to <destination> by <date> for "Project Hawking."`
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination "Midgard"
 	clearance
@@ -1302,7 +1302,7 @@ mission "Deep: Remnant 0"
 	name `Fetching keystones`
 	description `Buy 10 quantum keystones from Hai space and return them to <destination>, where Ivan and his team will research them and their link to the spatial anomaly in Terminus.`
 	source
-		attributes "deep"
+		government "Deep"
 		not system "Epsilon Leonis"
 	to offer
 		random < 40
@@ -1392,7 +1392,7 @@ mission "Deep: Remnant: Keystone Research"
 	name `Travel to <planet>`
 	description `Meet up with Ivan on <destination> to learn about his research on the quantum keystones you brought him.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not system "Epsilon Leonis"
 	destination "Valhalla"
 	to offer
@@ -1671,7 +1671,7 @@ event "deep: scan log research"
 mission "Deep: Remnant Research"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		has "event: deep: scan log research"
 	
@@ -1713,7 +1713,7 @@ mission "Deep: Remnant: Continue Research"
 	name `Travel to <planet>`
 	description `Meet up with Ivan on <destination> to continue helping with research on the Ember Waste.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not system "Epsilon Leonis"
 	destination "Valhalla"
 	to offer
@@ -1954,7 +1954,7 @@ mission "Deep: Scientist Rescue 0"
 	name "Locate Missing Scientists"
 	description "A Star Queen transporting prominent Deep scientists has gone missing. It was last seen near the Betelgeuse system in the Far North. Find its whereabouts and return it to <destination> if possible."
 	source
-		attributes "deep"
+		government "Deep"
 		not attributes "station"
 	destination "Valhalla"
 	mark "Betelgeuse"
@@ -3454,7 +3454,7 @@ mission "Mani Refit"
 		has "event: mani refit"
 	description "Head back to <destination> and meet up with the Transport Union's Fleet."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Mani"
 	destination "Mani"
 	on offer
@@ -3548,7 +3548,7 @@ mission "Skadenga Call 1"
 	name "Check on Hjlod"
 	description `Fly to <destination> to see what Hjlod and the Skadenga need from you. Make sure to have 52 bunks spare when you land.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Asgard"
 	destination "Asgard"
 	to offer
@@ -3652,7 +3652,7 @@ event "the book"
 mission "Skadenga Call 3"
 	landing
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		has "Skadenga Call 2: declined"
 	on offer
@@ -3802,7 +3802,7 @@ mission "Home for Skadenga 10"
 		has "dealwithhroar"
 	description "Head back to <destination>, and meet up with Hroar's fleet."
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Muspel"
 	destination "Muspel"
 	on offer
@@ -4155,7 +4155,7 @@ mission "Hjlod Remembers Windblain"
 	name "Hjlod Remembers"
 	description `Hjlod wishes to meet with you again on <planet>.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Windblain"
 	destination "Windblain"
 	to offer
@@ -4186,7 +4186,7 @@ mission "Hjlod Remembers Nifel"
 	name "Hjlod Remembers"
 	description `Hjlod wishes to meet with you again on <planet>.`
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		not planet "Nifel"
 	destination "Nifel"
 	to offer
@@ -4217,7 +4217,7 @@ mission "Hjlod Remembers Nifel"
 mission "The Book of Skadenga"
 	minor
 	source
-		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		government "Republic" "Deep" "Free Worlds" "Syndicate" "Neutral" "Independent"
 	to offer
 		random < 10
 		has "event: the book"
@@ -4247,3 +4247,15 @@ mission "The Book of Skadenga"
 			label ignore
 			`	You keep walking. You already know that story.`
 				decline
+
+# resets any negative "deep" reputation in older saves
+mission "Deep Government Reputation Reset"
+	invisible
+	to offer
+		"reputation: Deep" <= -1000
+		or
+			not "chosen sides"
+			has "main plot completed"
+	on offer
+		"reputation: Deep" = 1
+		fail
