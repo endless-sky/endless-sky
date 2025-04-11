@@ -1089,16 +1089,16 @@ mission "Exotic Life: Bloodsea"
 			`	A wry grin floods her face, and she adds in a conversational tone, almost as an afterthought while waving a scarred hand, "Now, I'll flay you alive and turn you into chum if you don't buy some fish bait. Eight racks." She slams a rancid barrel beside her.`
 			choice
 				`	(Buy a barrel of rotten fish bait for 8,000 credits.)`
-					action
-						payment -8000
 					to display
 						credits > 8000
 				`	(Run for it.)`
 					goto declined
+			action
+						payment -8000
 			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled pirate. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll the it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
 				decline
 			label declined
-			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears as you flee back to the safety of your <model>.`		
+			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears as you flee back to the safety of your <model>.`
 				decline
 
 phrase "old man waiting"
@@ -1131,7 +1131,7 @@ mission "Exotic Life: Albatross"
 	on offer
 		conversation
 			`You trudge through the biting wind to a weathered spaceport bar, its exterior marked by the signs proclaiming "No Gods, No Masters," and "No Cybernetic Implants. No Badgers, Weasels, Or Polecats." Inside, the air is heavy with shadow and smoke - worn wood panels, dim, flickering lights, and cluttered signs declaring even more peculiar prohibitions. Slouched in the corner by the heavy door, an old man sits silently, his half-lidded eyes watching the drunken banter and clinking glasses. You could approach him, and perhaps press for answers about the bar's odd proclamations.`
-			label nextquestion 
+			label nextquestion
 			`	${old man waiting}`
 			choice
 				`	"Why no Cybernetic implants?"`
