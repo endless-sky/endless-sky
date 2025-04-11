@@ -411,6 +411,9 @@ government "Deep"
 		"Deep Security" 1
 		"Merchant" .2
 		"Republic" 1
+		"Free Worlds" .01
+		"Syndicate" .01
+		
 	"friendly hail" "friendly deep"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "hostile deep"
@@ -2218,6 +2221,8 @@ government "Syndicate (Extremist)"
 	"attitude toward"
 		"Syndicate" -.01
 		"Republic" -.01
+		"Deep" -.01
+		"Deep Security" -.01
 		"Free Worlds" -.01
 	"bribe" 0
 	"fine" 0
