@@ -1071,58 +1071,6 @@ mission "Exotic Life: Geyser"
 			`	"Bah!" With a dismissive wave, they storm off, cursing tourists under their breath.`
 				decline
 
-phrase "old man waiting"
-	word
-		"Brooding in the dim light,"
-		"Sitting with a weary stare,"
-		"Resting his weathered gaze,"
-		"Hunched over silent memories,"
-		"Lost in quiet rumination,"
-	word
-		" "
-	word
-		"his fingers tap the scarred wood,"
-		"his eyes drift over the shadowed floor,"
-		"his breath mingles with the smoky air,"
-		"his silence is smothered by the conversations of bar patrons,"
-	word
-		" "
-	word
-		"awaiting your next question with a secretive look."
-		"with mystery etched into every line of his face."
-		"poised at the edge of revelation and reticence."
-		"anticipating the spark of your next question."
-
-phrase "old man tirade start"
-	word
-		"The old man's eyes flash with sudden fury as he begins his rant,"
-		"His face twists with disdain as he lets loose a storm of angry words,"
-		"With a heavy shake of his head, he bursts forth in a torrent of complaints,"
-		"His lips curl into a bitter snarl as he spills a flood of exasperation,"
-
-phrase "old man rest of tirade"
-	word
-		"I can't stand those ${pirate adjectives that work as titles} things,"
-		"I'm sick and tired of those ${pirate adjectives that work as titles} lot,"
-		"Every time, it's the same with these ${pirate adjectives that work as titles} nuisances,"
-		"I'm fed up with those ${pirate adjectives that work as titles} pests,"
-	word
-		" "
-	word
-		"constantly stirring up ${bad outcomes}," 3
-		"always wrecking my plans,"
-		"always ruining my plants,"
-		"forever making a mess of things,"
-		"incessantly causing ${bad outcomes}," 3
-	word
-		" "
-	word
-		"and it makes my blood boil every time!"
-		"and I swear, one day they'll pay dearly for it!"
-		"and I'm done putting up with their antics!"
-		"and trust me, I've had enough of their ${bad outcomes}!" 3
-		"and it's enough to drive any sane person... insane!"
-
 mission "Exotic Life: Bloodsea"
 	minor
 	source Bloodsea
@@ -1152,6 +1100,28 @@ mission "Exotic Life: Bloodsea"
 			label declined
 			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears as you flee back to the safety of your <model>.`		
 				decline
+
+phrase "old man waiting"
+	word
+		"Brooding in the dim light,"
+		"Sitting with a weary stare,"
+		"Resting his weathered gaze,"
+		"Hunched over silent memories,"
+		"Lost in quiet rumination,"
+	word
+		" "
+	word
+		"his fingers tap the scarred wood,"
+		"his eyes drift over the shadowed floor,"
+		"his breath mingles with the smoky air,"
+		"his silence is smothered by the conversations of bar patrons,"
+	word
+		" "
+	word
+		"awaiting your next question with a secretive look."
+		"with mystery etched into every line of his face."
+		"poised at the edge of revelation and reticence."
+		"anticipating the spark of your next question."
 
 mission "Exotic Life: Albatross"
 	minor
