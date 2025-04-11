@@ -5666,7 +5666,8 @@ mission "Hroar's Haulers 13"
 				`	"We do as Yngvar said, and get the Hel outta here!"`
 					goto behavesolvi
 				`	"Leave no Hauler behind! To arms!"`
-			music Hroarvictory
+			action
+				music Hroarvictory
 			`	Solvi raises his fist. "You heard the hirthr! Let's make these Syndies see red!"`
 			`	The Hauler host roars in eager agreement and suddenly everything about the skirmish changes. The officers and crews from your huge convoy surge into the outnumbered and beleaguered Syndicate Enforcers.`
 			`	Throughout the fighting various chants and warcries rise above the din.`
@@ -5954,7 +5955,8 @@ mission "Hroar's Haulers 13"
 				`	"Leave no Hauler behind! Fight! Fight for your comrades!"`
 				`	"Send them back to the Gap!"`
 				`	"For Hroar!"`
-			music Hroarvictory
+			action
+				music Hroarvictory
 			`	From the front of the bar you hear the loud familiar voice of Captain Unferth, "You heard the hirthr! Let's make these Syndies see red!"`
 			`	The Hauler host roars in eager agreement and suddenly everything about the skirmish changes. The officers and crews from your huge caravan surge into the outnumbered and beleaguered Syndicate Enforcers.`
 			`	Throughout the fighting various chants and warcries can be heard.`
@@ -8564,7 +8566,8 @@ mission "Hroar's Haulers 25"
 				`	(Grab your jacket)`
 			label jacket
 			scene "scene/haulerjacket2"
-			music Hroarvictory
+			action
+				music Hroarvictory
 			`	You grab the already dusty jacket and pull it on to cheering. Hands flash out of the crowd and slap you on the back as you move to the side of the room.`
 			`	Hroar's voice bursts over the wave of patrons, "Remember, your jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
 			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks from an overwhelmed but unperturbed Havi.`
@@ -8809,7 +8812,8 @@ mission "Hroar's Haulers 25b"
 				`	(Grab your jacket)`
 			label jacket
 			scene "scene/haulerjacket2"
-			music Hroarvictory
+			action
+				music Hroarvictory
 			`	You grab the already dusty jacket and pull it on to cheering. Hands flash out of the crowd and slap you on the back as you move to the side of the room.`
 			`	Hroar's voice bursts over the wave of patrons, "Remember, your jacket's not just a fashion statement, it's your ticket to getting Hauler jobs. But I've said more than enough! Drinks on me!" This results in one final triumphant roar from the crowd.`
 			`	Hroar hops down and returns to his booth. You see Yngvar and Bolverka join him. Most of the Haulers crowd around the bar and start demanding drinks from an overwhelmed but unperturbed Havi.`
