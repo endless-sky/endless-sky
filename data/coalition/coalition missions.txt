@@ -3217,7 +3217,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 mission "Coalition: Struggling Author - Human Media 1"
 	minor
 	name "Get Kachachee Cultural Information"
-	description "A group of Coalition citizens have asked you for information on the human race. You can find that information on <stopovers>"
+	description "A group of Coalition citizens have asked you for information on the human race. Rumor says that you can find that information on <stopovers>."
 	source "Ki Patek Ka"
 	stopover "Alexandria"
 	destination "Ki Patek Ka"
@@ -3309,6 +3309,7 @@ event "coalition citizens discover fangvin"
 
 
 mission "Coalition: Struggling Author - Book Discovered"
+	minor
 	name "Look for Anna Fangvin"
 	description "Get in contact with Anna Fangvin, an author that the Coalition book club has shown interest in."
 	source
@@ -3318,7 +3319,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 		has "event: coalition citizens discover fangvin"
 	on offer
 		conversation
-			`After an uneventful trip to the spaceport, you return to your <model>. Once aboard, you see that you received a message from the group of Coalition citizens that you had provided with a datachip containing a copy of Alexandria's archive:`
+			`After an uneventful trip to the spaceport, you return to your <model>. Once aboard, you see that you have a message from the group of Coalition citizens that you had provided with a datachip containing a copy of Alexandria's archive:`
 			``
 			`	Dear <first>,`
 			`		Interested in an author from the datachip, we are. "Anna Fangvin," her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
@@ -3326,6 +3327,8 @@ mission "Coalition: Struggling Author - Book Discovered"
 			``
 			choice
 				`	(Look for Anna Fangvin.)`
+				`	(Maybe later.)`
+					defer
 				`	(Discard the message.)`
 					decline
 			`	A quick look through your encyclopedia reveals nothing. However, checking a copy of the data chip that you gave the Coalition citizens reveals Anna Fangvin to be an author from <destination>. You decide to find her there for an interview.`
@@ -3342,7 +3345,7 @@ mission "Coalition: Book Discovered 2"
 		has "coalition: struggling author - beyond the hyperdrive"
 	source
 		government "Coalition"
-		not "Ki Patek Ka"
+		not planet "Ki Patek Ka"
 	destination "Ki Patek Ka"
 	on offer
 		conversation
@@ -3414,12 +3417,12 @@ mission "Coalition: Struggling Author 1"
 			`	"And then when I grew up, when I was a teenager, I decided to do a project on the Quarg for college, assisting a journalist writing an article on them. I tried to keep the memories of that episode in my childhood away, for the sake of the project, but as I interviewed them, as I tried to talk and befriend them... even the polite ones, they seemed so... aloof. Different - and not in a good way. I just felt a great unease being there, near them again. It certainly didn't help that they often responded with silence to my questions, as if they had something to hide. For months I tried, but they just would not budge, and that eerie feeling whenever one was with me never went away..."`
 			choice
 				`	(Tell her about the Coalition.)`
-					goto "coalition"
+					goto coalition
 				`	"That must have been rough, stuck on Humanika. Did your parents eventually find you?"`
-					goto "parents"
+					goto parents
 				`	"Well that's all well and good. But I have my own business to attend to now. Good luck with your book, thanks for your time, and goodbye."`
 					decline
-			label "parents"
+			label parents
 			`	"They eventually found me, thankfully. But it was distressing being stuck with that Quarg for what felt like ten to thirty minutes. I don't remember exactly how long. Eventually, another Quarg brought my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we left that world; I've never wanted to go back."`
 			choice
 				`	"So you said your books don't sell well, right?"`
@@ -3428,7 +3431,7 @@ mission "Coalition: Struggling Author 1"
 				`	(Tell her about the Coalition.)`
 				`	"No actually, I'm afraid I don't know anyone who could help you."`
 					decline
-			label "coalition"
+			label coalition
 			`	You begin explaining the Coalition to Anna, going in-depth about their history and their culture, and their long history of opposing the Quarg, seeing as Anna has less than positive opinions of them. At first Anna does not believe you; but you reassure her it's real. You also mention the population of the Coalition and the novelty of an "alien" author coming into the area.`
 			`	"Will they really like my books?"`
 			choice
@@ -3441,7 +3444,7 @@ mission "Coalition: Struggling Author 1"
 				`	"I don't think you can."`
 					goto decline
 			`	"Do I have to pay anything? As a struggling author, I can't afford off-world transport at all, let alone to a completely different segment of the galaxy! Actually, I know - I'll give you a copy of Beyond the Hyperdrive! Thank you so much! Just wait for a while. I'll go over to my house and bring what I'll need for the trip, and then we can go to whatever this Coalition thing is," says Anna.`
-			`	As you wait for Anna, you look over your maps of Coalition space to double-check what planet the Coalition Book Club is on. After a quick look, you pull up <destination>.`
+			`	As you wait for Anna, you look over your maps of Coalition space to double-check what planet the Coalition book club is on. After a quick look, you find <destination>.`
 			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, lead her to her bunk, and inform her of the destination. You prepare to leave the spaceport.`
 				accept
 			label decline
@@ -3516,8 +3519,8 @@ mission "Coalition: Struggling Author 3"
 				`	"You'll need to have a Heliarch agent help translate for you."`
 				`	"Ask Heliarch agents to help."`
 			`	"Great! So, where will we get permission to do so?"`
-			`	"We'll go to <destination> to ask the Heliarchs for an escort to help translate," you tell Anna. "Finish your meal, then go back to my ship. I'll be ready." You walk off to your ship.`
-			`	After a few minutes, you see Anna walking towards you. You open the hatch as she enters. She settles into her bunk as you prepare to depart.`
+			`	A Heliarch at a nearby table stands and approaches. "Get an escort on <planet>, you should. Duties assigned to us, we have here."`
+			`	"Does that sound fair to you?" Anna asks. When you reply in the affirmative, she says, "I'll be at your spaceship when you are."`
 				accept
 	on complete
 		conversation
@@ -3600,6 +3603,9 @@ mission "Coalition: Struggling Author 4"
 			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded one.`
 			`	You and Anna enter the elevator. You hear the noises of the Kimek communicating in their native language and get the feeling they're talking about you.`
 			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek wearing an ornate jeweled necklace as well as a translation device.`
+			choice
+				`	"Hello?"`
+				`	(Exit the elevator.)`
 			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," the Kimek says through its translation box.`
 			`	At the direction of the Kimek, you and Anna walk as directed until you arrive at a room with glass walls. Along the way, you pass a lounge, a conference area where multiple Kimek are discussing something at a table with a group of Heliarchs, and a large open workspace where individual Kimek sit at their own computers.`
 			`	After a few minutes of walking, there is an office where another Kimek sits with a team of six Heliarchs - two from each species. The Kimek guiding you gestures toward the office, and heads over to speak with the group.`
@@ -3716,6 +3722,8 @@ event "beyond the hyperdrive is published"
 
 mission "Coalition: Struggling Author 5A"
 	landing
+	name "Visit Anna"
+	description "Visit the author Anna Fangvin on <destination>."
 	source
 		not near "Quaru" 0 100
 	destination "Inmost Blue"
@@ -3725,7 +3733,7 @@ mission "Coalition: Struggling Author 5A"
 	on offer
 		conversation
 			`Checking your computer feed for the latest galactic news and trade prices, you get a reminder.`
-			`	You read it, and recall that you had helped an author named Anna Fangvin get her book, 'Beyond the Hyperdrive,' published about half a year ago in Coalition space. You should return to <destination> and check on her.`
+			`	You read it, and recall that you had helped an author named Anna Fangvin get her book, "Beyond the Hyperdrive," published about half a year ago in Coalition space. You should return to <destination> and check on her.`
 				accept
 	on complete
 		payment 750000
@@ -3733,6 +3741,8 @@ mission "Coalition: Struggling Author 5A"
 
 mission "Coalition: Struggling Author 5B"
 	landing
+	name "Visit Anna"
+	description "Visit the author Anna Fangvin on <destination>."
 	source
 		near "4 Winter Rising" 1 100
 	destination "Inmost Blue"
