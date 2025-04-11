@@ -1042,6 +1042,7 @@ event "temporary ceasefire"
 			"Free Worlds" 0
 	government "Free Worlds"
 		"attitude toward"
+			"Deep" 0
 			"Republic" 0
 
 
