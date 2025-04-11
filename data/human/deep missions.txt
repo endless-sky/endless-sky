@@ -3812,7 +3812,7 @@ mission "Home for Skadenga 10"
 		not planet "Muspel"
 	destination "Muspel"
 	on offer
-		event "hroars deal"
+		event "hroars deal" 90
 		conversation
 			`Your inbox blinks with a new message from Hroar on <planet>.`
 			``
@@ -3822,7 +3822,7 @@ mission "Home for Skadenga 10"
 			`			We're an unstoppable force that has never met an immovable object!`
 				accept
 
-event "hroars deal" 90
+event "hroars deal"
 
 mission "Home for Skadenga 11"
 	name "Evacuate Nifel"
@@ -4468,7 +4468,7 @@ mission "Hroar's Haulers: Deal 2"
 				decline
 			label yes
 			`	"Clocked you for a person of their word. Glad I was right, and happy to have you as the newest member of Hardy Hroar's Haulers." He lifts up his glass and nods to you.`
-			`	"Now," Hroar says, "first thing I need you to do is head over to <destination>, and pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
+			`	"Now," Hroar says, "first thing I need you to do is head over to <destination>, pick up 150 tons of exotic minerals, and bring it back here. Nice and easy."`
 				accept
 	on complete
 		dialog
@@ -4631,7 +4631,7 @@ mission "Hroar's Haulers 1"
 		or
 			has "Hroar's Haulers: No Deal: done"
 			has "Hroar's Haulers: Transit Edition: done"
-			has "Hroar's Haulers: Deal: done"
+			has "Hroar's Haulers: Deal 2: done"
 	source "Bivrost"
 	destination "Muspel"
 	on offer
