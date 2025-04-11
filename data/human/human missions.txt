@@ -11797,9 +11797,9 @@ mission "Weland"
 			`	The old man grins brightly. "Good. Good. I 'spect it'll take me about a week to get my bearings on this artifact of yours. I'll also be needing your ship's schematics, it'll help me figure out how it can be installed, assumin' you want that."`
 			`	With the deal completed, you head back to the spaceport. You send the pertinent information about your ship to Weland, and have the outfit transferred to him as well. Hopefully, he and your artifact are still here when you return after a week.`
 				accept
-			to complete
-				has "event: welandwait1"
-				has "mission: Weland 2: active"
+	to complete
+		has "event: welandwait1"
+		has "mission: Weland 2: active"
 
 
 event "welandwait1"
