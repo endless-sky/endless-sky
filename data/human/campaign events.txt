@@ -1988,7 +1988,6 @@ event "fw armistice"
 		"attitude toward"
 			"Republic" 0
 			"Deep" 0
-
 	system "Graffias"
 		government "Republic"
 	planet "Martini"
