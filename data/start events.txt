@@ -1,0 +1,63 @@
+# Copyright (c) 2024 by Hurleveur
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Because events don't apply until after landing, planet descriptions default to
+# if you had picked the corresponding start. These events and missions change those
+# descriptions to their generic versions.
+
+event "dirt belt descriptions"
+	planet "New Boston"
+		description `New Boston is a completely unremarkable world... except, of course, for the fact that you happen to have been born here.`
+		description `	Most of the land is wet and marshy, and the coastal regions are prone to flooding. Some food crops are grown here, but most of the farmers instead plant flax and jute, which grow well in wet soil and are used to make linen and burlap cloth. The textile mills are hot and poorly ventilated, but they offer higher and more reliable income than farming.`
+		spaceport `Someday New Boston may be a prosperous enough planet to afford a better spaceport, but not yet. Many of the concrete landing pads have sunk into the muddy soil over the years since they were poured, and are now tilted and uneven.`
+		spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
+		spaceport `	A smaller tent has been set up beside the market. Inside are various pamphlets for Remembrance Day events occurring on New Boston.`
+			to display
+				"days since year start" > 35
+				"days since year start" < 55
+
+event "deep descriptions"
+	planet "Asgard"
+		description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
+		description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
+		spaceport `Everything is immaculately clean. The port is a single building reminiscent of a sand castle or termite mound: a jumble of spires, each a slightly different shape, all piled on top of each other. Docking bays open on various sides of the spires in a haphazard arrangement. The liberal use of flowing shapes and earthen colors makes the building look almost organic, rather than the work of human hands.`
+		spaceport `	The locals hurry by in a mesmerising, yet purposeful, manner. You spot some stragglers in the crowd, seemingly enraptured by the people around them.`
+	planet "Mani"
+		spaceport `The spaceport is shaped like a wheel with no rim: a series of spokes jutting out from a central hub, where each spoke is a docking tunnel that can connect to any ship that lands beside it.`
+		spaceport `	Inside are about a dozen people and a couple hundred robots. Everyone appears to be busy; you decide not to interrupt their work.`
+	planet "Midgard"
+		description `Midgard is a world with as much geographic diversity as Earth itself: mountains, tundra, desert, oceans, marshes, plains. It was the second world in the Deep to be settled, seven centuries ago. It is now home to dozens of major metropolitan areas and a population of over four billion, and is where you were born. Although a select few live outside the cities and work in farming or ranching, the vast majority of people here have jobs in manufacturing.`
+		description `	The deep independent history of the planet has made its culture greatly different to the broader galaxy, not that you can tell. One such example is the tradition of "tributation:" one night every year, the citizens of the Deep leave out saucers of milk and sweet bread as an offering to the "elves:" pale, delicate beings said to keep the Deep safe.`
+	planet "Muspel"
+		spaceport `The spaceport here is rudimentary: a collection of concrete landing pads clustered around a single large building. The building is designed with layers of color and rounded spires that mimic the canyonlands. From a distance, it would be indistinguishable from the natural rock outcroppings if it were not for the glitter of sunlight off the windows. Inside, people move at a slower and calmer pace, most likely to appear friendlier to tourists than other parts of the Deep.`
+
+event "paradise descriptions"
+	planet "Mainsail"
+		description `Mainsail is a water world: although there are some settlements on dry land, the largest cities are floating, artificial islands, which travel between hemispheres over the course of the year pursuing the most ideal weather. Other, smaller islands are privately owned by single families or corporations, such as your own family. Mainsail is a prohibitively expensive place to live.`
+		description `	Centuries ago Mainsail was home to pirates of the old-fashioned variety, fleets of motor boats or even old-fashioned sailing vessels that would launch raids against the city-ships.`
+
+event "syndicate descriptions"
+	planet "Antipode"
+		description `Antipode is a frozen, unforgiving world, orbiting far enough from a dim star that even when the sun breaks through the clouds, it brings little warmth. The few settlements that exist here are built near surface deposits of rare earth metals that were discovered recently, and that are mined for use in electronics and equipment throughout this sector.`
+		description `	What little amenites are available for the people living here are of subpar quality; a third of the houses lack a dedicated heating system, and it can take months before a store is able to restock its goods.`
+		description `	The inhabitants of Antipode are among the best downhill skiers in the galaxy, and they have made some attempts to draw off-world tourists to the ski resorts here, but the weather is so hostile, and living conditions so squalid, that they have had very little success.`
+	planet "Earth"
+		description `The ancestral home world of humanity, as well as your own birthplace, Earth has a population twice that of any other planet. Sprawling cities cover its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
+		description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, smaller settlements are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
+
+event "hai descriptions"
+	planet "Greenwater"
+		description `Greenwater is unique among Hai worlds, not only in that it is home to a sizable human population, but also because it happens to be the world where you grew up.`
+		description `	Most of the humans here live as fishers and farmers on islands and archipelagoes across the equator of Greenwater, where the Hai seldom visit on account of their heavy fur coats. According to those beyond the wormhole, the climate here is like a Paradise Planet, even though it lacks the extensive terraforming common to those worlds.`
+		description `	Thanks to its high human population, the human language is dominant on Greenwater, with the Hai language limited to the poles of the planet where Hai merchants are more frequent.`
+		spaceport `In this bustling spaceport, deeply tanned human merchants are busy haggling with the Hai natives over the price of loads of fish and produce. The atmosphere is quite friendly and relaxed - even here, well into the planet's temperate zone, it is warm enough that everyone, Hai and human alike, moves at a languid pace.`
