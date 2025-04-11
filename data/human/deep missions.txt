@@ -5351,6 +5351,7 @@ mission "Hroar's Haulers: Rand"
 	to offer
 		has "Hroar's Haulers 9: done"
 	destination "Rand"
+	to complete
 		has "Hroar's Haulers: Earth: done"
 		has "Hroar's Haulers: Maker: done"
 	on complete
@@ -5403,7 +5404,7 @@ mission "Hroar's Haulers 12"
 		dialog
 			`The Long Haul convoy sets down in Maker's expansive spaceport. A small army of autoloaders and cargo trucks buzz to life and whirr around the Hauler ships. Yngvar taps you on the shoulder. "We're meetin' at the local watering hole, it's in the spaceport. See you there." The old spacer exits your ship.`
 
-mission "Hroar's Haulers 14b"
+mission "Hroar's Haulers 13b"
 	landing
 	name "The Long Haul"
 	source "Maker"
@@ -5840,7 +5841,7 @@ mission "Hroar's Haulers 13"
 			`	Bolverka scoffs.`
 			`	"I figure Captain Solvi Unferth, another spacer like me, will take over logistics when it's time for me to return to the cosmic dust."`
 			`	"Could you be less dramatic, Yng?" Bolverka nearly laughs, "you'll outlast all of us yet. Probably put a few of those blackholes you're always talking about to shame, too. Now, I think you were saying something about us 'stoners' not having any fun."`
-				goto stonetalker
+				goto stonertalk
 
 			label cairn
 			action
@@ -6090,6 +6091,9 @@ mission "Hroar's Haulers 13"
 			label byefalicia
 			action
 				set "leftgunhilda"
+				clear "cairn"
+				clear "logofficer"
+				clear "otheroptions"
 			`	Captain Solvi Unferth is waiting for you, he seems a good deal more sober. "Appreciate you having my back out there, <last>. But I gotta stay behind. They got my crew locked up and I ain't about to abandon them."`
 				to display
 					has "savedsolvi"
@@ -6102,10 +6106,6 @@ mission "Hroar's Haulers 13"
 			`	Yngvar climbs aboard your ship after you and signals all the remaining haulers to prepare to launch. "Let's move, <last>!"`
 				to display
 					not "savedsolvi"
-			action
-				clear "cairn"
-				clear "logofficer"
-				clear "otheroptions"
 				decline
 			
 			label gunhilda2
@@ -6233,10 +6233,10 @@ mission "Hroar's Haulers 13"
 				goto fineoptions
 
 			label payall
-			music Hroar
 			action
 				payment -720000
 				set "payall"
+				music Hroarvictory
 				clear "cairn"
 				clear "logofficer"
 				clear "otheroptions"
@@ -6301,12 +6301,12 @@ mission "Hroar's Haulers 13"
 			label bang
 			action
 				set "bang"
-				`	You bang on the glass, or transparent material, but nothing happens. Whatever conversation or haggling that is going on outside takes no notice of you.`
+			`	You bang on the glass, or transparent material, but nothing happens. Whatever conversation or haggling that is going on outside takes no notice of you.`
 				goto options22
 			
 			label whosehere
 			`	The cell is packed with Haulers. The whole place is lousy with rust-red jackets, and the smell of cheap Syndicate alcohol.  You're sure Captain Unferth's around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
-			goto outofthecell
+				goto outofthecell
 
 	npc accompany save
 		government "Merchant"
@@ -6478,7 +6478,7 @@ mission "Hroar's Haulers 14"
 			action
 				set "whyhere"
 			`	"It's not much different from Maker. We're dropping off the last of our quality mining equipment, and filling our hulls to absolute max with their cheap raw materials. Maximizing our profits for when we hit Lagrange. We normally also fill our bunks with migrant workers eager to get off this world. But without Solvi's fleet that's not happening this time around."`
-			goto yngvarchat
+				goto yngvarchat
 			label Hrodny
 			action
 				set "hrodny"
@@ -6498,13 +6498,13 @@ mission "Hroar's Haulers 14"
 			label niece
 			action 
 				set "niece"
-				`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
+			`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
 				goto hrodnychat
 			label southernfleet
 			action
 				set "sfleet"
 			`	"Now, I know you've seen a starmap or two in your day, so this should come as no surprise. This region is flush in resources, and places that need 'em. We'd have to be a star short of a constellation not to want a piece of that action. So, we have a permanent fleet down here doing the work. We rotate ships every so often, as folks tend to miss clean living in the Deep." He laughs as though he just told a joke.`
-			goto hrodnychat
+				goto hrodnychat
 
 			label hrodnydone
 			action
@@ -6657,8 +6657,8 @@ mission "Hroar's Haulers 14b"
 			label jerkforlife
 			`	Captain Unferth sucks his teeth, and then gives you a withering look. "Sorry to be seein' you made the trouble to come all the way here for nothing. But I am full up on problems that need fixin' and none of them involve you. So if you could please kindly go back the way you came, I'd be most appreciative."`
 			`	He abruptly straightens up and heads back toward the crowd of passengers. There's nothing for you to do but return to your ship and wait on Yngvar. He'll likely be itching to get to Lagrange.`
-			 	accept
-			
+				accept
+
 			label bored
 			`	Solvi Unferth rolls his eyes. "Sorry, we aren't in the middle of some space battle for the soul of the Republic, or what not. Haulers haul," he leans in, smirking, and says with emphasis, "it's in name."`
 			`	More angry shouts can be heard from the line. Solvi frowns.`
@@ -6949,7 +6949,6 @@ mission "Hroar's Haulers 15"
 			label yngvarjoins
 			`	The chair beside you screeches suddenly as Yngvar yanks it back and takes a seat.`
 			`	"Ah, I see you've met our resident stoner. Hopefully she's not boring you with pious tales about rocks!"`
-			label stonertalk
 			choice
 				`	"Stoner?"`
 					goto stoner
@@ -7067,7 +7066,9 @@ mission "Hroar's Haulers 15"
 						not "Home for Skadenga 13: offered"
 						has "askedThor"
 				`	"I don't really remember."`
+			label nonews
 			`	She frowns. "Suppose I shouldn't have gotten my hopes up."`
+			label norn2
 			`	Bolverka takes a breath. "Okay, what about this; did they have any stones or talisman that had unusual properties?"`
 			label questiontwo
 			choice
@@ -7099,6 +7100,10 @@ mission "Hroar's Haulers 15"
 			`	"Yes. Yes. We each have to find our own way to truth. I shouldn't be asking for yours. You're right of course."`
 			`	She clears her throat. "Ahem, thank you for indulging me."`
 				goto yngvarjoins
+
+			label nornfun
+			`	Bolverka nods. "That doesn't surprise me. Norn is has always been a bastion of the Stoners."`
+				goto norn2
 
 			label alfar
 			`	Her eyes go wide. "They said this? Did-did they say anything else about these alfar?"`
@@ -7176,6 +7181,7 @@ mission "Hroar's Haulers 15b"
 			choice
 				`	"Alright. I'll take them to Humanika."`
 				`	(Nod.)`
+			label done
 			`	"Ya know, making it to Lagrange on your first Long Haul means something. We're not home yet, but the green is starting to rub off on ya, and the red show through." He puts a strong hand on your shoulder, and then heads back toward the gathered haulers.`
 				accept
 
