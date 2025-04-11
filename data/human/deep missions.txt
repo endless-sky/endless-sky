@@ -3601,13 +3601,13 @@ mission "Skadenga Call 2"
 				`	(Return to Hljod and help the Skadenga.)`
 					goto Hljod
 				`	(Find Carla.)`
+			action
+				event "transport union waiting" 29
+				set "transport union waiting: triggered"
 			`	You leave Hljod and her gang of stubborn savages behind, and return to the active parts of the thrumming spaceport. Carla's contact information, as an alleged real estate agent, is easy to find, and in a few minutes you have her on call. "Captain <last>, it is a pleasure to hear from you again. What-so-ever can I help you with?" she says with believable cheerfulness.`
 			`	You tell her about the Skadenga hiding in the spaceport and their plans to escape to Nifel.`
 			`	"Oh dear!" Carla says. "How terrible. Those poor, foolish simpletons would surely suffer on that terrible frozen world. How misguided of them. We are aware that some have struggled to assimilate. It's quite tragic, but we will handle things from here. Hopefully, we can convince them to integrate eventually. It really is for the best. I wish their old leader could have seen that before she died. It would have been easier for everyone.`
 			`	"As always, we appreciate your valuable contributions. I'll authorize a generous sum of credits to be transferred to your account. I need to get some approvals so it may take a couple of days to come through. Thank you, and buh-bye!"`
-			action
-				event "transport union waiting" 29
-				set "transport union waiting: triggered"
 				decline
 			label Hljod
 			`	You return to Hljod, who is surprised that you came back at all, and let her know that you going to help them.`
