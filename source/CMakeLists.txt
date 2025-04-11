@@ -43,7 +43,7 @@ target_sources(EndlessSkyLib PRIVATE
 	CargoHold.h
 	CategoryList.cpp
 	CategoryList.h
-	CategoryTypes.h
+	CategoryType.h
 	ClickZone.h
 	Collision.cpp
 	Collision.h
@@ -147,7 +147,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Interface.h
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
-	JumpTypes.h
+	JumpType.h
 	Logger.cpp
 	Logger.h
 	LoadPanel.cpp
@@ -289,6 +289,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	StringInterner.cpp
 	StringInterner.h
+	Swizzle.cpp
+	Swizzle.h
 	System.cpp
 	System.h
 	SystemEntry.h
@@ -379,6 +381,7 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestContext.h
 	test/TestData.cpp
 	test/TestData.h
+	text/Alignment.h
 	text/Clipboard.cpp
 	text/Clipboard.h
 	text/DisplayText.cpp
@@ -389,13 +392,12 @@ target_sources(EndlessSkyLib PRIVATE
 	text/FontSet.h
 	text/Format.cpp
 	text/Format.h
+	text/Layout.h
 	text/Table.cpp
 	text/Table.h
+	text/Truncate.h
 	text/Utf8.cpp
 	text/Utf8.h
 	text/WrappedText.cpp
 	text/WrappedText.h
-	text/alignment.hpp
-	text/layout.hpp
-	text/truncate.hpp
 )

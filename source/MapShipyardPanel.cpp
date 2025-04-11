@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -68,14 +69,14 @@ const Sprite *MapShipyardPanel::CompareSprite() const
 
 
 
-int MapShipyardPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::SelectedSpriteSwizzle() const
 {
 	return selected->CustomSwizzle();
 }
 
 
 
-int MapShipyardPanel::CompareSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::CompareSpriteSwizzle() const
 {
 	return compare->CustomSwizzle();
 }

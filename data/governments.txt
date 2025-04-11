@@ -1713,7 +1713,7 @@ color "governments: Quarg" .88 .77 0
 
 # Quarg are split up to their respective areas, and an overall one is kept for missions or other use.
 government "Quarg"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	
 	"player reputation" 1
@@ -1763,7 +1763,7 @@ government "Quarg"
 
 
 government "Quarg (Hai)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1811,7 +1811,7 @@ government "Quarg (Hai)"
 		ship "Quarg Wyvern"
 
 government "Quarg (Incipias)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1869,7 +1869,7 @@ government "Quarg (Incipias)"
 		ship "Quarg Wyvern"
 
 government "Quarg (Kor Efret)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1916,7 +1916,7 @@ government "Quarg (Kor Efret)"
 		ship "Quarg Wyvern"
 
 government "Quarg (Gegno)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1991,6 +1991,8 @@ government "Remnant"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
 	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Nenia"
 
 government "Remnant (Research)"
 	"display name" "Remnant"
@@ -2017,6 +2019,8 @@ government "Remnant (Research)"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
 	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Nenia"
 
 color "governments: Republic" .91 .42 .09
 

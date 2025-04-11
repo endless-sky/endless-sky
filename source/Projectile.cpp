@@ -386,7 +386,9 @@ void Projectile::CheckLock(const Ship &target)
 	if(weapon->Tracking())
 		hasLock |= Check(weapon->Tracking(), base);
 
-	// Optical tracking is about 15% for interceptors and 75% for medium warships,
+	// Optical tracking is about 1.5% for an average interceptor (250 mass),
+	// about 50% for an average medium warship (1000 mass),
+	// and about 95% for an average heavy warship (2500 mass),
 	// but can be affected by jamming.
 	if(weapon->OpticalTracking())
 	{
@@ -398,12 +400,13 @@ void Projectile::CheckLock(const Ship &target)
 			double rangeFraction = min(1., distance / jammingRange);
 			opticalJamming = (1. - rangeFraction) * opticalJamming;
 		}
-		double weight = target.Mass() * target.Mass();
-		double probability = weapon->OpticalTracking() * weight / (150000. + weight) / (1. + opticalJamming);
+		double targetMass = target.Mass();
+		double weight = targetMass * targetMass * targetMass / 1e9;
+		double probability = weapon->OpticalTracking() * weight / ((1. + weight) * (1. + opticalJamming));
 		hasLock |= Check(probability, base);
 	}
 
-	// Infrared tracking is 5% when heat is zero and 100% when heat is full.
+	// Infrared tracking is zero when heat is zero and 100% when heat is full.
 	// When the missile is at under 1/3 of its maximum range, tracking is
 	// linearly increased by up to a factor of 3, representing the fact that the
 	// wavelengths of IR radiation are easier to distinguish at closer distances.
@@ -414,7 +417,7 @@ void Projectile::CheckLock(const Ship &target)
 		double multiplier = 1.;
 		if(distance <= shortRange)
 			multiplier = 2. - distance / shortRange;
-		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier + .05);
+		double probability = weapon->InfraredTracking() * min(1., target.Heat() * multiplier);
 		hasLock |= Check(probability, base);
 	}
 

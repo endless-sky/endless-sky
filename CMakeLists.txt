@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...3.29)
+cmake_minimum_required(VERSION 3.19...4.0)
 
 include(CMakeDependentOption)
 if(UNIX AND NOT APPLE AND NOT ES_STEAM)

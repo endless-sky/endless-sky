@@ -655,6 +655,7 @@ mission "Lovelace Labs Shipment [0]"
 	source
 		near Aldebaran 2 10
 		attributes core factory
+		not government "Pirate"
 	destination Ada
 	on visit
 		dialog phrase "generic cargo on visit"
