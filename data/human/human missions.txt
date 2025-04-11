@@ -6747,7 +6747,7 @@ mission "Lost Racer Epilogue"
 		has "event: artemis renard recovered"
 	on offer
 		conversation
-			`While you are checking incoming messages, you notice one from Artemis Renard, the crashed racing pilot who you rescued a couple months ago.`
+			`While you are checking your incoming messages, you notice one from Artemis Renard, the crashed racing pilot who you rescued a couple months ago.`
 			`	"Captain <last>,`
 			`	"I'd like to thank you again for your timely rescue. Recovering from the ordeal has been a long process, of course, but a worthwhile one. Unfortunately that length of time has meant that following the settlement with Megaparsec and as I've been working my way back into the various circuits, we've built up a surplus of increasingly outdated equipment. While we could, of course, simply have it scrapped locally, we were hoping that you might join us on <destination> to see if you can put it to better use."`
 			`		Sincerely,`
@@ -6834,7 +6834,7 @@ ship "Racing Flivver"
 	leak "leak" 60 50
 	explode "tiny explosion" 10
 	explode "small explosion" 10
-	description "One of champion racer Artemis Renard's many beloved racing craft, this Lionheart Flivver has been so heavily modified you're not sure if it can even be considered the same craft. Its sleek, elegant lines belie its underlying power: the oversized engines hum with energy and roar to life with spine-bending force at the gentlest touch of the controls, propelling the craft and its pilot to the stars like butterflies on a moonbeam."
+	description "One of champion racer Artemis Renard's many beloved racing crafts, this Lionheart Flivver has been so heavily modified you're not sure if it can even be considered one. Its sleek, elegant lines belie its underlying power: the oversized engines hum with energy and roar to life with spine-bending force at the gentlest touch of the controls, propelling the craft and its pilot to the stars like butterflies on a moonbeam."
 	description "	A gift to you for saving Artemis' life after it was pulled from the sand where she crashed post-race, the Renard family has spared no expense in restoring the craft to gleaming perfection."
 
 

@@ -4580,7 +4580,7 @@ planet Pugglequat
 
 planet Pummel
 	landscape land/desert12
-	description `Pummel is what is known as a Proto-Earth: its surface contains small amounts of water and there is strong volcanic activity. In a couple of billion years, it may even harbor primitive life, but for the moment, it remains a cold, cratered, sulfurous rock.`
+	description `Pummel is what is known as a proto-Earth: its surface contains small amounts of water and there is strong volcanic activity. In a couple of billion years, it may even harbor primitive life, but for the moment it remains a cold, cratered, sulfurous rock.`
 	government Uninhabited
 
 planet Pyriphlegethon
@@ -4906,7 +4906,7 @@ planet Sandsnap
 	security 0
 
 planet Sandswell
-	attributes republic uninhabited
+	attributes uninhabited
 	landscape land/desert15
 	description "The close orbit of this sandy moon to its parent gas giant stirs up strong sandstorms on the surface. Combined with its low surface gravity, this results in the air here being filled with a constant haze of grit. It is unsurprising no attempts at permanent habitation have been made here."
 	government Uninhabited
