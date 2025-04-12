@@ -1,4 +1,5 @@
 # Copyright (c) 2015 by Michael Zahniser
+# Copyright (c) 2021 by Amazinite
 # Copyright (c) 2024 by Hurleveur
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -51,7 +52,6 @@ mission "Start: Default Patch"
 
 conversation "default intro"
 	action
-		event "dirt belt descriptions" 0
 		log "Finally scraped together enough money to buy a pilot's license. The interest on the mortgage for my starship is exorbitant."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
@@ -93,7 +93,6 @@ start "deep"
 
 conversation "deep intro"
 	action
-		event "deep descriptions" 0
 		log "Applied for the Deep's starship captain program, and was accepted. The program included a pilot's license and low-interest loan."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
@@ -131,7 +130,6 @@ start "paradise"
 
 conversation "paradise intro"
 	action
-		event "paradise descriptions" 0
 		log "Got a pilot's license for my birthday, as well as 490,000 credits to purchase a starship. The galaxy is now at my fingertips."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
@@ -172,7 +170,6 @@ start "syndicate"
 
 conversation "syndicate intro"
 	action
-		event "syndicate descriptions" 0
 		log "Bought a pilot's license and a ship, but had to take out a crushing mortgage. One last greedy stab by the Syndicate before I'm free."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
@@ -255,7 +252,6 @@ mission "Start: Hai Patch"
 conversation "hai intro"
 	scene "scene/hai shipyard"
 	action
-		event "hai descriptions" 0
 		log "Finally scraped together enough money for a down payment on a starship. The interest on the mortgage is exorbitant."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
