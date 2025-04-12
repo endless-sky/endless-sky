@@ -14,6 +14,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "SpaceportPanel.h"
+
 #include "text/Alignment.h"
 #include "ConditionContext.h"
 #include "text/FontSet.h"

@@ -56,7 +56,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Command.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
-	ConditionContext.cpp
 	ConditionContext.h
 	ConditionSet.cpp
 	ConditionSet.h
