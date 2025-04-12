@@ -4630,6 +4630,7 @@ mission "Hroar's Haulers 1"
 	name "Hauling Minerals from Bivrost"
 	description "Take <cargo> to <destination> for Hroar."
 	cargo "Radioactive Minerals" 150
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		or
 			has "Hroar's Haulers: No Deal: done"
@@ -4698,6 +4699,7 @@ mission "Hroar's Haulers 3"
 	name "Hauling Helium-3"
 	description "Take <cargo> to <destination> for Hroar."
 	cargo "Helium-3" 120
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Hroar's Haulers 2: done"
 	source "Fenrir Station"
@@ -4812,9 +4814,10 @@ mission "Hroar's Haulers 4"
 mission "Hroar's Haulers 5"
 	name "Hauling Haze"
 	description "Take <cargo> to <destination> for Hroar."
-	cargo "Construction Material" 170
 	source "Haze"
 	destination "Muspel"
+	cargo "Construction Material" 170
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
 		has "Hroar's Haulers 4: done"
 	on offer
@@ -4898,6 +4901,7 @@ mission "Hroar's Haulers 7"
 	name "Hauling Midgard"
 	description "Take <cargo> to <destination> for Hroar."
 	cargo "Mining & Excavation Equipment" 300
+	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	source "Midgard"
 	destination "Muspel"
 	to offer
