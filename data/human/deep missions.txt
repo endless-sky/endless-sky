@@ -1254,7 +1254,7 @@ mission "Deep: Project Hawking: Prime"
 		<response> `"We aren't too different then," Pierre remarks. "We both worked hard to get where we are today. Thanks for sharing, <first>."`
 		<response> `"So you're native to the Deep," Pierre remarks. "I felt like an outsider when I first arrived. Compared to how welcoming the Dirt Belt is, it seemed like nobody wanted to talk to me. I've gotten over that since, of course. Thanks for sharing, <first>."`
 			has "start: deep"
-		<response> `"So you're from the Paradise Worlds," Pierre remarks. "Most people from there choose to settle down and take up their parent's businesses. Very few go out on their own as a merchant. Thanks for sharing, <first>."`
+		<response> `"So you're from the Paradise Worlds," Pierre remarks. "Most people from there choose to settle down and take up their parents' businesses. Very few go out on their own as a merchant. Thanks for sharing, <first>."`
 			has "start: paradise"
 	on offer
 		conversation

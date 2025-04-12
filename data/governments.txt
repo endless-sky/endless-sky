@@ -1442,7 +1442,7 @@ government "Merchant"
 	"hostile hail" "hostile civilian"
 	"hostile disabled hail" "hostile disabled"
 
-# Ships with merchant colors that are hostile to the player
+# Ships with merchant colors that are hostile to the player.
 government "Merchant (Hostile)"
 	swizzle 5
 	"display name" "Merchant"
