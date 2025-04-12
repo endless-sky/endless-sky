@@ -6409,7 +6409,7 @@ mission "Yngvar Interlude"
 			`	He shakes his head. "Figurin' that out will have to wait. We gotta stay focused on the Long Haul. Not having Solvi's passenger fleet will hurt, but it won't break us is either. End of the day it's the materials for Lagrange that matters most. So let's head to Rand and make the most of it."`
 				decline
 
-mission "Hroar's Haulers 13b"
+mission "Hroar's Haulers 13c"
 	landing
 	name "The Long Haul"
 	source "Rand"
@@ -6616,44 +6616,44 @@ mission "Hroar's Haulers 14b"
 			`	The unkept men melt back into the crowd and you make the rest of the way in without incident.`
 			`	"Sorry about that," Captain Unferth says as he leads you behind a large weathered desk where his officers are processing the passengers. "Out here civilization runs a bit thin. Probably something to do with the endless months of labor on a barely inhabited dust ball." He shrugs.`
 			`	The captain pauses and then flashes you a wide grin. "By the elves, <name>, I know Yngvar probably dressed you down - but what happened on Maker was legendary. It was like old days, back in Hel-Hrut's time, when Haulers took no guff from anyone."`
-			to display
-				not "jerktosolvi"
-				has "makerhero"
+				to display
+					not "jerktosolvi"
+					has "makerhero"
 			`	The captain pauses and then gives you a serious nod. "For the briefest moment back there on Maker it felt like the old days. Back in Hel-Hrut's time when Haulers took no guff from anyone. It felt good to fight back for once and not just lick Syndie boots for the honor of working for them. I almost wish we didn't stop, that we rallied the Haulers and clobbered the lot of them." He sighs, "Probably woulda been a mistake though. Still."`
-			to display
-				has "savedsolvi"
-				not "makerhero"
+				to display
+					has "savedsolvi"
+					not "makerhero"
 			`	The captain pauses and then sighs, "I really do appreciate what you did back there on Maker, for all of us, but sometimes I just get tired licking Syndie boots and thanking them for the opportunity. Suns treat comets better than they be treating us. I wish it were like the old days, back in Hel-Hrut's time, when Hauler's weren't afraid to stand up for themselves, proper like. Fight our way out, instead of bribing it. You know?"`
-			to display
-				not "savedsolvi"
-				not "jerktosolvi"
-				not "makerhero"
+				to display
+					not "savedsolvi"
+					not "jerktosolvi"
+					not "makerhero"
 			`	Loud arguing erupts back toward the desk, and Captain Unferth frowns. "Mayhap not the best timing for a social call. Any specific reason you stopped by? Or you just wanted to see Rand's famous Labor building for yerself?"`
 			choice
 				`	"Yngvar sent me to see if you needed any help."`
-				goto yngvarsent
-				to display
-					not "jerktosolvi"
+					goto yngvarsent
+					to display
+						not "jerktosolvi"
 				`	"The old man wanted me to check on you."`
-				goto yngvarsent
-				to display
-					not "jerktosolvi"
+					goto yngvarsent
+					to display
+						not "jerktosolvi"
 				`	"Just bored."`
-				goto bored
-				to display
-					not "jerktosolvi"
+					goto bored
+					to display
+						not "jerktosolvi"
 				`	"Yngvar sent me to see if you needed any help."`
-				goto jerkforlife
-				to display
-					has "jerktosolvi"
+					goto jerkforlife
+					to display
+						has "jerktosolvi"
 				`	"The old man wanted to be check on you."`
-				goto jerkforlife
-				to display
-					has "jerktosolvi"
+					goto jerkforlife
+					to display
+						has "jerktosolvi"
 				`	"Just bored."`
-				goto jerkforlife
-				to display
-					has "jerktosolvi"
+					goto jerkforlife
+					to display
+						has "jerktosolvi"
 			label jerkforlife
 			`	Captain Unferth sucks his teeth, and then gives you a withering look. "Sorry to be seein' you made the trouble to come all the way here for nothing. But I am full up on problems that need fixin' and none of them involve you. So if you could please kindly go back the way you came, I'd be most appreciative."`
 			`	He abruptly straightens up and heads back toward the crowd of passengers. There's nothing for you to do but return to your ship and wait on Yngvar. He'll likely be itching to get to Lagrange.`
@@ -6694,13 +6694,13 @@ mission "Hroar's Haulers 14b"
 			label niece
 			action 
 				set "niece"
-				`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
+			`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
 				goto hrodnychat
 			label southernfleet
 			action
 				set "sfleet"
 			`	"Now, I know you've seen a starmap or two in your day, so this should come as no surprise. This region is flush in resources, and places that need 'em. We'd have to be a star short of a constellation not to want a piece of that action. So, we have a permanent fleet down here doing the work. We rotate ships every so often, as folks tend to miss clean living in the Deep." He laughs as though he just told a joke.`
-			goto hrodnychat
+				goto hrodnychat
 
 			label hrodnydone
 			action
@@ -7644,7 +7644,7 @@ mission "Hroar's Haulers Gunhilda secret"
 				goto next
 
 			label laugh
-		`	She rewards you with a quick smile.`
+			`	She rewards you with a quick smile.`
 			label next
 			`	"But what I was really hoping for was a chance to get inside one of their mines. To feel the heavy hues of its history thick around me. You, however, your cacophony of colors, that was the real show."`
 			`	Runa closes out the display, and turns to face you. "The red in you, the little spec I saw back on Maker, it's grown. But you're also so much more than that small piece of the Haulers. A royal dreamer, like you, is the kind of person who changes the universe."`
@@ -7662,7 +7662,7 @@ mission "Hroar's Haulers Gunhilda secret 2"
 			`	"What are we doing back on Humanika?" Runa asks, "You said you were going to try and fly close to one of Grakhord's mines."`
 			decline
 
-mission "Hroar's Haulers Unferth"
+mission "Hroar's Haulers Unferth: Wayfarer"
 	invisible
 	source "Humanika"
 	destination "Wayfarer"
@@ -7843,7 +7843,7 @@ mission "Hroar's Haulers Unferth 2"
 			`	He sighs loudly. "Wull, tell yer frein fae his gift wi be thankit."`
 			label byedude
 			`	He then turns and leaves you by yourself.`
-				goto hidude
+			label hidude
 			`	A few moments later the black door swings open and a solemn looking Solvi steps out.`
 			`	"Shoulda come with me, <first>. It's something else in there." he says quietly.`
 			`	He looks around. "That's what we came for, so I guess best we moved on."`
@@ -7859,7 +7859,7 @@ mission "Hroar's Haulers Unferth 2"
 			`	The old man shakes his head, and is about to say something than stops himself.`
 			`	He pauses for a bit and then says slowly, "Tell yer frein fae his gift wi be thankit."`
 			`	He peers closely at you with his milky eyes, searching your face for comprehension, before sighing and walking away.`
-				goto hidide
+				goto hidude
 			
 			label liar
 			`	"Hel-Hrut is a guid man. Ayewis wad kind tae the Bloosh-fowk. Hinnae seen him in some time. He awricht?"`
@@ -8123,7 +8123,7 @@ mission "Hroar's Haulers: New Washington"
 			`	The perpetually twilit settlement of New Washington has been overrun by the sprawling Long Haul fleet. Initially, you catch glimpses of furtive locals retreating from the freshly landed Haulers. Only to see them return, now dressed in festive garb. The Hauler presence here isn't an invasion, but a cause for celebration.`
 			`	Yngvar heads out to meet with their leader. "Meet us in the spaceport. Folks here like a bit of pageantry, but we can't stay long."`
 
-mission "Hroar's Haulers: Earth"
+mission "Hroar's Haulers: Earth 2"
 	source "Wayfarer"
 	to offer
 		has "Hroar's Haulers 15wayfarer: done"
@@ -8356,6 +8356,7 @@ mission "Hroar's Haulers 18b"
 		or
 			has "Hroar's Haulers 17: done"
 			has "Hroar's Haulers Late: done"
+	on offer
 		conversation
 			`Endless lines of eager passengers make their way through the crowded spaceport to Solvi's waiting fleet.`
 			`	"...can't wait for my first paycheck..."`
@@ -8623,8 +8624,7 @@ mission "Hroar's Haulers 19"
 			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgement.`
 			choice
 				`	(Drink it.)`
-			`	The tasteless alcohol burns on its way down. There's no chance of getting a second drink for a while.`
-				goto afterdrink
+					goto drinkit
 				`	(Leave it for someone else.)`
 			`	You leave it on the bar and step back, another Hauler is instantly in your place happily tossing back the drink.`
 			label afterdrink
@@ -8668,21 +8668,25 @@ mission "Hroar's Haulers 19"
 			`[THIS ENDS THE HROARS HAULER CONTENT - FUTURE MISSIONS WILL BE ADDED.]`
 				decline
 
-		label next
-		`	Hroar grins. "Keep your ear to the ground, and I'll contact you when I'm ready. Gotta few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
-		`	Yngvar nods. "Not bad work. If work is what you're interested in."`
-		`	Hroar makes a shoo'ing gesture. "But right now we're in the middle of something. So, uh, if you don't mind."`
-		choice
-			`	"Okay, I'll head out."`
+			label drinkit
+			`	The tasteless alcohol burns on its way down. There's no chance of getting a second drink for a while.`
+				goto afterdrink
+
+			label next
+			`	Hroar grins. "Keep your ear to the ground, and I'll contact you when I'm ready. Gotta few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
+			`	Yngvar nods. "Not bad work. If work is what you're interested in."`
+			`	Hroar makes a shoo'ing gesture. "But right now we're in the middle of something. So, uh, if you don't mind."`
+			choice
+				`	"Okay, I'll head out."`
+					goto byebye
+				`	"Wait. What are you talking about?"`
+			label talkingabout
+			`	Hroar frowns. "Listen, I respect all you've done for us. But not thirty minutes ago you were a jacket-less greenhorn in our organization. We'll let you in when the time is ready, but for now, it's best you moved on."`
+			`	Yngvar looks at you hard with his one good eye. "With your skills, I doubt you'll be in the dark for long."`
+			choice
+				`	"Okay, I'll head out."`
+			`	"Thanks, and don't worry. We'll be in touch," Hroar says.`
 				goto byebye
-			`	"Wait. What are you talking about?"`
-		label talkingabout
-		`	Hroar frowns. "Listen, I respect all you've done for us. But not thirty minutes ago you were a jacket-less greenhorn in our organization. We'll let you in when the time is ready, but for now, it's best you moved on."`
-		`	Yngvar looks at you hard with his one good eye. "With your skills, I doubt you'll be in the dark for long."`
-		choice
-			`	"Okay, I'll head out."`
-		`	"Thanks, and don't worry. We'll be in touch," Hroar says.`
-			goto byebye
 
 			label best
 			`	Hroar nods slowly. "Can't say I wish it weren't a little better, but I hear ya. Some things are outta our hands. Well, let's see about paying ya, huh? Maybe that'll put the sparkle back in those greenhorn eyes of yours."`
@@ -8926,21 +8930,21 @@ mission "Hroar's Haulers 19b"
 			`[THIS ENDS THE HROARS HAULER CONTENT - FUTURE MISSIONS WILL BE ADDED.]`
 				decline
 
-		label next
-		`	Hroar grins. "Keep your ear to the ground, and I'll contact you when I'm ready. Gotta few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
-		`	Yngvar nods. "Not bad work. If work is what you're interested in."`
-		`	Hroar makes a shoo'ing gesture. "But right now we're in the middle of something. So, uh, if you don't mind."`
-		choice
-			`	"Okay, I'll head out."`
+			label next
+			`	Hroar grins. "Keep your ear to the ground, and I'll contact you when I'm ready. Gotta few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
+			`	Yngvar nods. "Not bad work. If work is what you're interested in."`
+			`	Hroar makes a shoo'ing gesture. "But right now we're in the middle of something. So, uh, if you don't mind."`
+			choice
+				`	"Okay, I'll head out."`
+					goto byebye
+				`	"Wait. What are you talking about?"`
+			label talkingabout
+			`	Hroar frowns. "Listen, I respect all you've done for us. But not thirty minutes ago you were a jacket-less greenhorn in our organization. We'll let you in when the time is ready, but for now, it's best you moved on."`
+			`	Yngvar looks at you hard with his one good eye. "With your skills, I doubt you'll be in the dark for long."`
+			choice
+				`	"Okay, I'll head out."`
+			`	"Thanks, and don't worry. We'll be in touch." Hroar says.`
 				goto byebye
-			`	"Wait. What are you talking about?"`
-		label talkingabout
-		`	Hroar frowns. "Listen, I respect all you've done for us. But not thirty minutes ago you were a jacket-less greenhorn in our organization. We'll let you in when the time is ready, but for now, it's best you moved on."`
-		`	Yngvar looks at you hard with his one good eye. "With your skills, I doubt you'll be in the dark for long."`
-		choice
-			`	"Okay, I'll head out."`
-		`	"Thanks, and don't worry. We'll be in touch." Hroar says.`
-			goto byebye
 
 			label best
 			`	Hroar nods slowly. "And it's a damn good best at that. I knew I saw somethin' special in ya. Now, let me offer my thanks in the form of good old fashioned hard currency."`
