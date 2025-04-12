@@ -125,7 +125,7 @@ namespace
 	const string INVALID_FILTER_AGAINST_STRING = "invalid";
 
 	const auto FILTER_AGAINST_CONVERSION = map<const string, ConditionSet::FilterAgainst>{
-		{ "hailingShip", ConditionSet::FilterAgainst::HAILING_SHIP },
+		{ "hailing ship", ConditionSet::FilterAgainst::HAILING_SHIP },
 		{ INVALID_FILTER_AGAINST_STRING, ConditionSet::FilterAgainst::INVALID }
 	};
 

@@ -25,7 +25,7 @@ void Hail::Load(const DataNode &node)
 			messages.Load(child);
 		else if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "hail")
 			toHail.Load(child);
-		else if(child.Size() == 2 && child.Token(0) == "hailing" && child.Token(1) == "ship")
+		else if(child.Size() == 1 && child.Token(0) == "hailing ship")
 			filterHailingShip.Load(child);
 		else if(child.Size() == 2 && child.Token(0) == "weight")
 			weight = child.Value(1);
