@@ -460,10 +460,10 @@ mission "Ask Quarg About Coalition Late"
 			`	It acknowledges your answer with the faintest of nods. "Sparse were my own visits to the rocky worlds inhabited by other species. They are unlike our own. So different, so... complete." Its eye darts around, looking at your surroundings, other Quarg here, then finally its own hands and arms. "But us Quarg must make do."`
 				goto name
 			label homeworld
-			`	Though it is the faintest of movements, you swear you see the Quarg turn ever so slightly away from you. "It is perhaps only natural that a species ends up venerating their own homeworld, as the cradle that supported them until they could claim the stars for themselves." Then it leans in close and whispers, "But there are many still that consider the birthplace of their kind to be nothing more than a relic of a bygone age."`
+			`	Though it is the faintest of movements, you swear the Quarg turns ever so slightly away from you. "It is perhaps only natural that a species ends up venerating their own homeworld, as the cradle that supported them until they could claim the stars." Then it leans in close and whispers, "But many still consider the birthplace of their kind as nothing more than a relic of a bygone age."`
 				goto name
 			label homeless
-			`	Your response seems to have struck something in it, as it brings one hand over its scar, glancing downwards. "A harrowing sensation, is it not?"`
+			`	Your words seem to stir something within it, as it brings one hand over its scar, gaze dropping. "A harrowing sensation, is it not?"`
 				goto name
 			label ship
 			`	After staring you down for a few seconds, it fixates upon the ceiling again. "I suppose others such as you may imagine that our own lives in our ringworlds are similar to your own within a ship or simple space station." It pauses again, for nearly a minute this time. "Considering the circumstances, that may be a reasonable conclusion on your part."`
