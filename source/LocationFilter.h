@@ -104,9 +104,9 @@ private:
 	// A ship must belong to one of these categories:
 	std::set<std::string> shipCategory;
 	// A ship must be disabled:
-	bool checkDisabled;
+	bool checkDisabled = false;
 	// The ship's government must be hostile to the player:
-	bool checkHostile; // TODO: extend to government and planet test too
+	bool checkHostile = false; // TODO: extend to government and planet test too
 
 	// These filters store all the things the planet, system, or ship must not be.
 	std::list<LocationFilter> notFilters;
