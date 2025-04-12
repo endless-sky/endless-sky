@@ -6535,7 +6535,7 @@ mission "Hroar's Haulers 14b"
 	on offer
 		conversation
 			`You find Yngvar in the 'Trade' building, surrounded by a swarm of officials and representatives from Rand.`
-			`	"Slow down!" Yngvar holds out his thick hands, and the room quiets. "As I said, we got enough room to fulfil your orders, you won't be needing to wait on Hrodny's fleet.`
+			`	"Slow down!" Yngvar holds out his thick hands, and the room quiets. "As I said, we got enough room to fulfill your orders, you won't be needing to wait on Hrodny's fleet.`
 			`	"Now." Yngvar continues, "We still got plenty of ships that need seeing to. The faster you get your goods loaded, the faster they'll get to Lagrange, and we all get paid."`
 			`	At that the crowd starts to thin, though a few people linger, giving Yngvar hard stares. Yngvar ignores them and approaches you.`
 			`	"Captain <last>." He says, "As you can see the Rand folk are pretty eager to get their goods off the ground and into the Gap."`
@@ -7125,7 +7125,7 @@ mission "Hroar's Haulers 15"
 				`	"No. Nothing else."`
 			`	She nods vigorously." Still, that is enough. Okay, next question; did they have any stones or talisman that had unusual properties?"`
 				goto questiontwo
-			
+
 			label trusted
 			`	"That makes sense. Our earliest folklore always warns against trusting elves."`
 			`	"Okay, one last question. What did you think of the Skadenga? Were they... believable? Or just... misguided?"`
@@ -7139,7 +7139,7 @@ mission "Hroar's Haulers 15"
 			label tear
 			`	"A Deep stone." She whispers to herself, "They were only legends. Rumors of legends. Myths."`
 			`	She shakes her head. "That's amazing, truly. For most of us we only have our faith to guide us, but you have the real thing."`
-			`	"A final question then." She swallows, "What about the Skadenga themselves? Did they feel authentic... beleivable? A shade of what things were before and could be today? Or were they just... misguided? Disconnected? Cultish?"`
+			`	"A final question then." She swallows, "What about the Skadenga themselves? Did they feel authentic... believable? A shade of what things were before and could be today? Or were they just... misguided? Disconnected? Cultish?"`
 				goto lastquestion
 			
 			label believe
@@ -7296,11 +7296,11 @@ mission "Hroar's Haulers Gunhilda"
 				`	"No, not interested."`
 					goto nofun
 			label minetime
-			`	She beams. "I knew you'd agree! It can see it in your hues; your sensitiveinquisitive nature."`
+			`	She beams. "I knew you'd agree! It can see it in your hues; your sensitive, inquisitive nature."`
 			choice
 				`	"I don't think that's true."`
 					goto disagree
-				`	"You're right thats me; sensitiveand inquisitive!"`
+				`	"You're right that's me; sensitive and inquisitive!"`
 					goto agree
 				`	"Right, well, where do we start? Find transport down to Humanika?"`
 					goto whynothere
@@ -7351,7 +7351,7 @@ mission "Hroar's Haulers Gunhilda"
 
 	on complete
 		conversation
-			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlike anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to precarious heights with a disconcerting amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disaster that keeps not occuring. Meanwhile the towering denizens of this worldlet continue on their way, unaware of the looming danger all around them.`
+			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlike anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to precarious heights with a disconcerting amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disaster that keeps not occurring. Meanwhile the towering denizens of this worldlet continue on their way, unaware of the looming danger all around them.`
 			`	"It feels wrong. Dark." Runa whispers to you," You feel it too, don't you?"`
 			choice
 				`	"We're just not used to seeing cultivated plants that evolved on low gravity worlds is all."`
@@ -7543,7 +7543,7 @@ mission "Hroar's Haulers Gunhilda 3"
 			choice
 				`	"We can still watch one of these educational projections about the mines here. That's something."`
 					goto education
-				`	"I mean, a computer error could force us into an unusual landing trajectory, where we accidently fly right over one of the mines."`
+				`	"I mean, a computer error could force us into an unusual landing trajectory, where we accidentally fly right over one of the mines."`
 					goto sneakyship
 				`	"We could always take a wrong turn while exploring the moon."`
 					goto sneakydrive
@@ -7779,7 +7779,7 @@ mission "Hroar's Haulers Unferth 2"
 				`	(Listen.)`
 			`	Suddenly, you hear Solvi's clear and disembodied voice ringing out all around you;`
 			``
-			`	Say so long to steady stars `
+			`	Say so long to steady stars`
 			`	the home we know,`
 			`	the light that's ours.`
 			`	We close our eyes,`
@@ -8335,7 +8335,7 @@ mission "Hroar's Haulers 18"
 			label stay
 			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
 			`	Together you watch the world ever so slightly change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
-			` 	Finally, Yngvar turns to you and nods. "Looks like they are about ready, captain. How about ya take us back to Hroar?"`
+			`	Finally, Yngvar turns to you and nods. "Looks like they are about ready, captain. How about ya take us back to Hroar?"`
 				decline
 
 			label great
@@ -8593,7 +8593,7 @@ mission "Hroar's Haulers 19"
 			`	The crowd again roars its affirmation.`
 			`	"Now, as y'all know, you ain't a Hauler 'till you've hauled long, and we've got crew here ready to turn in their green horns for red jackets!"`
 			`	Yngvar appears beneath Hroar and slaps a pile of red Hauler jackets on the bar.`
-			`	Hroar begins announcing names in no discernable order, while newly christened Haulers march up among their cheering peers and grab their very own Hauler jacket.`
+			`	Hroar begins announcing names in no discernible order, while newly christened Haulers march up among their cheering peers and grab their very own Hauler jacket.`
 			`	"And let's not forget Captain <last>, the hirthr who herded the fleet through the Gap!"`
 			choice
 				`	(Grab your jacket.)`
@@ -8621,7 +8621,7 @@ mission "Hroar's Haulers 19"
 				decline
 			label drink
 			`	The press is tight around the bar, and no Hauler seems keen on giving way to you. A few attempt to mumble their thanks to you for keeping pirates off them in the Gap. Others are more focused on talking to their mates.`
-			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgement.`
+			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgment.`
 			choice
 				`	(Drink it.)`
 					goto drinkit
@@ -8660,7 +8660,7 @@ mission "Hroar's Haulers 19"
 				`	"What are you talking about?"`
 					goto talkingabout
 				`	"Wanted to say bye before I left."`
-			`	"Good of you to check in." Hroar says quickly, "Like I said earlier, keep your jacket handy, it'll give ya access to Hauler jobs. Other than that, keep your ear to the ground. I'll be calling soon enough. Now that you're a proper Hauler we can get you doing what I brought in for you. Speciality jobs."`
+			`	"Good of you to check in." Hroar says quickly, "Like I said earlier, keep your jacket handy, it'll give ya access to Hauler jobs. Other than that, keep your ear to the ground. I'll be calling soon enough. Now that you're a proper Hauler we can get you doing what I brought in for you. Specialty jobs."`
 			`	His teeth flash as he smiles at the last part.`
 			label byebye
 			`	"Take care, kid." Yngvar says with a curt nod.`
@@ -8842,7 +8842,7 @@ mission "Hroar's Haulers 19b"
 			`	The crowd again roars its affirmation.`
 			`	"Now, as y'all know, you ain't a Hauler 'till you've hauled long, and we've got crew here ready to turn in their green horns for red jackets!"`
 			`	Yngvar appears beneath Hroar and slaps a pile of red Hauler jackets on the bar.`
-			`	Hroar begins announcing names in no discernable order, while newly christened Haulers march up among their cheering peers and grab their very own Hauler jacket.`
+			`	Hroar begins announcing names in no discernible order, while newly christened Haulers march up among their cheering peers and grab their very own Hauler jacket.`
 			`	"And let's not forget Captain <last>, the hirthr who herded the fleet through the Gap!"`
 			choice
 				`	(Grab your jacket.)`
@@ -8872,7 +8872,7 @@ mission "Hroar's Haulers 19b"
 				decline
 			label drink
 			`	The press is tight around the bar, although a few Haulers, upon noticing you, attempt to give way. As you push through you're constantly being thanked and congratulated for keeping pirates off them in the Gap, and making sure everyone got home.`
-			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgement.`
+			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgment.`
 			choice
 				`	(Drink it.)`
 					goto drinkit
@@ -8921,7 +8921,7 @@ mission "Hroar's Haulers 19b"
 				`	"What are you talking about?"`
 					goto talkingabout
 				`	"Wanted to say bye before I left."`
-			`	"Good of you to check in." Hroar says quickly, "Like I said earlier, keep your jacket handy, it'll give ya access to Hauler jobs. Other than that, keep your ear to the ground. I'll be calling soon enough. Now that you're a proper Hauler we can get you doing what I brought in for you. Speciality jobs."`
+			`	"Good of you to check in." Hroar says quickly, "Like I said earlier, keep your jacket handy, it'll give ya access to Hauler jobs. Other than that, keep your ear to the ground. I'll be calling soon enough. Now that you're a proper Hauler we can get you doing what I brought in for you. Specialty jobs."`
 			`	His teeth flash as he smiles at the last part.`
 			label byebye
 			`	"Take care, kid." Yngvar says with a curt nod.`
