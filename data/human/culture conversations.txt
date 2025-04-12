@@ -1078,7 +1078,7 @@ mission "Exotic Life: Bloodsea"
 		random < 10
 	on offer
 		conversation
-			`You step into one of the raucous open-air marketplaces of Bloodsea, where armed vendors and hulking guards barter over stolen cargo amid piles of weathered cates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
+			`You step into one of the raucous open-air marketplaces of Bloodsea, where armed vendors and hulking guards barter over stolen cargo amid piles of weathered crates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
 			`	"That man's got the Bloodsea Bloom," she says flatly, as if mentioning the weather.`
 			choice
 				`	"What's that?"`
@@ -1098,7 +1098,7 @@ mission "Exotic Life: Bloodsea"
 			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled pirate. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll the it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
 				decline
 			label declined
-			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears as you flee back to the safety of your <model>.`
+			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
 				decline
 
 phrase "old man waiting"
@@ -1132,13 +1132,12 @@ mission "Exotic Life: Albatross"
 		conversation
 			`You trudge through the biting wind to a weathered spaceport bar, its exterior marked by the signs proclaiming "No Gods, No Masters," and "No Cybernetic Implants. No Badgers, Weasels, Or Polecats." Inside, the air is heavy with shadow and smoke - worn wood panels, dim, flickering lights, and cluttered signs declaring even more peculiar prohibitions. Slouched in the corner by the heavy door, an old man sits silently, his half-lidded eyes watching the drunken banter and clinking glasses. You could approach him, and perhaps press for answers about the bar's odd proclamations.`
 			label nextquestion
-			`	${old man waiting}`
 			choice
-				`	"Why no Cybernetic implants?"`
+				`	"Why no 'Cybernetic Implants'?"`
 					goto implants
 					to display
 						not "heardimplants"
-				`	"What's the deal with Badgers?"`
+				`	"What's the deal with 'Badgers'?"`
 					goto badgers
 					to display
 						not "heardbadgers"
@@ -1155,11 +1154,11 @@ mission "Exotic Life: Albatross"
 							has "heardturnips"
 							has "heardweasels"
 						not "heardmadlib"
-				`	"What's wrong with Weasels?"`
+				`	"What's wrong with 'Weasels'?"`
 					goto weasels
 					to display
 						not "heardweasels"
-				`	"What about Polecats?"`
+				`	"What about 'Polecats'?"`
 					goto polecats
 					to display
 						has "heardweasels"
@@ -1183,7 +1182,7 @@ mission "Exotic Life: Albatross"
 			label turnips
 			action
 				set "heardturnips"
-			`	He explodes into a brief tirade. "Badgers! They'll dig up every last turnip I grow, ruining my patch faster than a cyborg cleans house. Nothing but trouble!"`
+			`	He explodes. "Badgers! They'll dig up every last turnip I grow, ruining my patch faster than a cyborg cleans house. Nothing but trouble!"`
 				goto nextquestion
 			label madlib
 			action
