@@ -42,6 +42,8 @@ namespace {
 void RenderBuffer::Init()
 {
 	shader = GameData::Shaders().Get("renderBuffer");
+	if(!shader)
+		throw std::runtime_error("Could not find render buffer shader!");
 	sizeI = shader->Uniform("size");
 	positionI = shader->Uniform("position");
 	scaleI = shader->Uniform("scale");

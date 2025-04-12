@@ -53,6 +53,8 @@ namespace {
 void SpriteShader::Init()
 {
 	shader = GameData::Shaders().Get("sprite");
+	if(!shader)
+		throw std::runtime_error("Could not find sprite shader!");
 	scaleI = shader->Uniform("scale");
 	texI = shader->Uniform("tex");
 	frameI = shader->Uniform("frame");

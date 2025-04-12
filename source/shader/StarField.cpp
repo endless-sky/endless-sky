@@ -240,6 +240,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 void StarField::SetUpGraphics()
 {
 	shader = GameData::Shaders().Get("starfield");
+	if(!shader)
+		throw std::runtime_error("Could not find starfield shader!");
 
 	// make and bind the VAO
 	glGenVertexArrays(1, &vao);

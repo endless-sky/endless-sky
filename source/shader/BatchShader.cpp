@@ -43,6 +43,8 @@ void BatchShader::Init()
 {
 	// Compile the shaders.
 	shader = GameData::Shaders().Get("batch");
+	if(!shader)
+		throw std::runtime_error("Could not find batch shader!");
 	// Get the indices of the uniforms and attributes.
 	scaleI = shader->Uniform("scale");
 	frameCountI = shader->Uniform("frameCount");

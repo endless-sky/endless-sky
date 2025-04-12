@@ -43,6 +43,8 @@ namespace {
 void OutlineShader::Init()
 {
 	shader = GameData::Shaders().Get("outline");
+	if(!shader)
+		throw std::runtime_error("Could not find outline shader!");
 	scaleI = shader->Uniform("scale");
 	offI = shader->Uniform("off");
 	transformI = shader->Uniform("transform");
