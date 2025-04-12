@@ -39,7 +39,7 @@ namespace {
 void FillShader::Init()
 {
 	shader = GameData::Shaders().Find("fill");
-	if(!shader)
+	if(!shader->Object())
 		throw std::runtime_error("Could not find fill shader!");
 	scaleI = shader->Uniform("scale");
 	centerI = shader->Uniform("center");

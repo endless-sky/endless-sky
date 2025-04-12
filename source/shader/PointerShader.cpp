@@ -43,7 +43,7 @@ namespace {
 void PointerShader::Init()
 {
 	shader = GameData::Shaders().Get("pointer");
-	if(!shader)
+	if(!shader->Object())
 		throw std::runtime_error("Could not find pointer shader!");
 	scaleI = shader->Uniform("scale");
 	centerI = shader->Uniform("center");
