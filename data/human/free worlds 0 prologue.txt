@@ -276,6 +276,163 @@ mission "Pact Questioning"
 
 
 
+fleet "Pact Supplies"
+	government "Merchant"
+	names "civilian"
+	outfitters "Common Outfits" "Ammo South"
+	personality
+		confusion 30
+	variant 1
+		"Shuttle"
+		"Star Barge" 2
+		"Argosy"
+		"Sparrow" 2
+		"Hawk"
+
+substitutions
+	"<Pact / Free Worlds>" "Pact"
+		not "event: war begins"
+	"<Pact / Free Worlds>" "Free Worlds"
+		has "event: war begins"
+
+
+mission "Pact Supplies Notification"
+	invisible
+	landing
+	minor
+	to offer
+		not "event: war begins"
+		not "event: chosen sides"
+		random < 40
+	source
+		attributes "dirt belt"
+		attributes "factory"
+		not planet "New Sahara"
+	on offer
+		conversation
+			`<origin> is one of the few planets in the Dirt Belt with a developed industrial base. In addition to the horse-drawn carts of cereals, crops, and meat, there are also trucks and vans carrying locally manufactured goods from the cities nearby.`
+			`	To protect this industry from the ever-increasing piracy threat, there is a substantial militia presence on this planet that, in light of the Navy's retreating patrols, has taken up the position of the police forces in this area. Even the planetary spaceport is now staffed by the militia, and instead of the Gunboats that would have scanned you upon approach, there are Argosies and Bastions in their place.`
+			`	As you sign off your landing documents with the militia officer on duty, she asks you to check local job boards "if you are willing to help the militias on a supply mission." She then thanks you for your cooperation and swiftly moves on to the next ship.`
+				decline
+
+
+mission "Pact Supplies 0"
+	job
+	name "Transport militia supplies to <planet>"
+	description "The local militia is requesting merchant captains to participate in a convoy. Available captains are to report to the quartermaster's office. Transport <cargo> to <destination>. Payment is <payment>."
+	cargo "weapons" 20
+	source
+		attributes "dirt belt"
+		attributes "factory"
+		not planet "New Sahara" "Bounty" # These worlds are too far away from the Pact to be interested in sending surplus goods
+	destination "Longjump"
+	to offer
+		not "event: war begins"
+		not "event: chosen sides"
+	on accept
+		conversation
+			branch trigger
+				has "Pact Supplies Notification: offered"
+			`You make your way to the quartermaster's office, where you find a small group of captains already waiting. Before long, the quartermaster arrives alongside a militia officer.`
+				goto main
+
+			label trigger
+			`You make your way to the quartermaster's office, where you find a small group of captains already waiting. Like you, many of them were tipped off about a job opportunity to support the militias in a supply mission. Before long, the quartermaster arrives alongside a militia officer.`
+
+			label main
+			`	There is a respectful pause as the quartermaster goes to sit at his desk. As he settles, he scans all of you for a moment and clears his throat.`
+			`	"Good day, captains. You may want to know why you are standing here in my office, and why my colleagues have asked you to help us on a 'supply job.' There is a developing situation in the Southern Rim that concerns our larger militia brothers, and we feel obliged to support them. Piracy is ever more prevalent down there, and we generally have a surplus of weaponry that we can manufacture and replace ourselves. Therefore, we are looking to move some of our weapons stores down to <planet> to help them deal with their situation. In turn, the worlds of the Part will reciprocate by supplying to us Dirt Belt worlds much-needed industrial and farming equipment. We will gladly pay each of you <payment> if you are willing to participate. Do any of you have questions?"`
+			choice
+				`	(Remain silent.)`
+				`	"Who are these weapons going to?"`
+					goto pact
+				`	"What's this 'developing situation?'"`
+					goto situation
+
+			`	After a moment, one of the other captains steps forward and asks sneeringly, "How do we know these weapons aren't going to be used by illegal actors, my good quartermaster? Weapons trafficking can be a serious crime in the Republic."`
+			`	"You have no reason for suspicion," the quartermaster responds. "The weapons are being sent to our partners in the Southern Mutual Defense Pact, who have a much greater need for these munitions and outfits than we do, given the rates of piracy they're suffering through at the moment. We wouldn't need to do anything if it weren't for the Navy and their masters in Parliament sitting on their cushioned chairs every day and refusing to do anything about the situation while southern lives and ships are lost."`
+			`	The air in the office seems to become more frigid as the captain responds, "I asked you whether these weapons wouldn't fall into the hands of privateers and inciters like the Pact, and instead all you do is insult the Navy and tell us we should go help the Pact because Parliament made you do so. You begging southerners should be grateful for the Navy's protection!" He turns around and pushes through the still crowd in the room. A few others turn and follow him, adding, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!"`
+			`	Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment about the Navy or the Republic so kindly.`
+				goto decision
+
+			label situation
+			`	"The pirates have been becoming more and more aggressive in the South. They've started doing more than just interdict merchants; they've been raiding planets for ships and tribute on an organized scale once again, and we feel compelled to help the militias of the Southern Mutual Defense Pact by sending them our surplus equipment. Let me tell you, though - we wouldn't have this problem if the Navy would stop hiding in the Paradise Worlds and start patrolling these regions again."`
+				goto raucous
+
+			label pact
+			`	"These supplies are going to the militias in Southern Mutual Defense Pact, a group us militias look up to given their efforts in attempting to push for greater action against the pirates in the galactic south. Some of their leaders, like Tomek Voigt, are Dirt Belt natives who fought in battle with us in the region against the pirates before joining the Pact. He's a figure many of us admire.`
+			`	"The Pact is centered in the Southern Rim, so we are not directly tied to them, but we have begun to cooperate with them as the Navy has been more blatantly cowering out in the Paradise Worlds in recent years. Whatever is going on down south that affects the Pact will also affect us in some way or another, so we are sending our surplus to them in support of their situation."`
+
+			label raucous
+			`	There's a shuffle as a few captains raucously walk out of the quartermaster's office. As he leaves one captain shouts, "You begging southerners should be grateful for the Navy's protection!" while another adds, "This is all going to some rebellion, and you know it! These Southern Pact goons are gun-runners!" Going by their accents and faces, those captains came from the Paradise Worlds, and they didn't take the quartermaster's comment about the Navy so kindly.`
+
+			label decision
+			`	The militia officer and the quartermaster look on grimly as the Paradisian captains leave. "Any of you are free to join them if you wish. We will not penalize you, but do know that you are missing out on an opportunity to help our Southern brothers. That may mean a lot in the future."`
+			choice
+				`	(Stay and accept the job.)`
+				`	(Leave with the Paradisian captains.)`
+					decline
+
+			`	You and the now-smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where stores of blasters, beam lasers, engines, crew equipment, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse, filling the diverse range of ships with cargo. As they work, the militia officer addresses all of you: "Our brothers down in the South are counting on you. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
+				accept
+
+	npc accompany save
+		government "Merchant"
+		personality escort timid
+		fleet "Pact Supplies"
+	npc
+		government "Pirate"
+		personality plunders waiting
+		fleet "Small Southern Pirates" 2
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you left part of the convoy behind, or not all of the cargo is in the system.`
+	on complete
+		payment 35000 50
+		dialog `After you land at <planet>'s spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. Meet us in the spaceport if you would like to help us with the next convoy." He hands you your payment of <payment> and makes his way to the next convoy ship.`
+
+
+mission "Pact Supplies 1"
+	name "Transport farming equipment to <planet>"
+	description "The next stage of the convoy is stopping at <destination>. You have been assigned to deliver <cargo>. Payment is <paymemt>."
+	source "Longjump"
+	destination "New Portland"
+	to offer
+		not "event: chosen sides"
+		has "Pact Supplies 0: done"
+	on offer
+		conversation
+			`...`
+
+
+mission "Pact Supplies 2"
+	name "Transport food to <planet>"
+	description "Transport <cargo> to <destination>. Payment is <payment>."
+	source "New Portland"
+	destination "New Britain"
+	to offer
+		not "event: chosen sides"
+		has "Pact Supplies 1: done"
+	on offer
+		conversation
+			`...`
+
+
+mission "Pact Supplies 3"
+	name "Transport militia supplies to <planet>"
+	description "The convoy has taken up additional surplus supplies by the militia of <origin>. Transport <cargo> to <destination>. Payment is <payment>."
+	source "New Britain"
+	destination "Solace"
+	to offer
+		not "event: chosen sides"
+		has "Pact Supplies 2: done"
+	on offer
+		conversation
+			`...`
+	on complete
+		"assisted free worlds" ++
+
+
+
 mission "FW Recon 0"
 	minor
 	name "Transport Militia Officer"
