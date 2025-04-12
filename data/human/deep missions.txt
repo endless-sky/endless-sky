@@ -6347,11 +6347,11 @@ mission "Yngvar Interlude"
 				`	"Sure, what about?"`
 					goto failed
 					to display
-						has "Hroar's Haulers 15: declined"
+						has "Hroar's Haulers 13: declined"
 				`	"Sure, what about?"`
 					goto paid
 					to display
-						has "Hroar's Haulers 15: accepted"
+						has "Hroar's Haulers 13: accepted"
 				`	"No."`
 			`	Yngvar frowns, and doesn't move, "Respectfully, Captain, I wasn't really asking. This might be your ship, but," He jabs a thumb toward the bulkhead and space beyond, "that's all our fleet. So, you listening?"`
 			choice
@@ -6372,13 +6372,13 @@ mission "Yngvar Interlude"
 				`	(Say nothing.)`
 					goto failed
 					to display
-						has "Hroar's Haulers 15: declined"
+						has "Hroar's Haulers 13: declined"
 				`	"Yeah, I am listening"`
 				`	(Nod.)`
 				`	(Say nothing.)`
 					goto paid
 					to display
-						has "Hroar's Haulers 15: accepted"
+						has "Hroar's Haulers 13: accepted"
 
 			label paid
 			`	"Means a lot to put your dime on the line for us." The old man nods slowly. "Don't be thinking we'll forget. We may not be able to make you whole, but we'll do what we can."`
@@ -6531,7 +6531,7 @@ mission "Hroar's Haulers 14b"
 	to offer
 		has "Hroar's Haulers 11: active"
 		has "Yngvar Interlude: declined"
-		has "Hroar's Haulers 15: done"
+		has "Hroar's Haulers 13: done"
 	on offer
 		conversation
 			`You find Yngvar in the 'Trade' building, surrounded by a swarm of officials and representatives from Rand.`
@@ -6723,6 +6723,16 @@ mission "Hroar's Haulers 14b"
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
 
+mission "Hroar's Haulers 15wayfarer"
+	source "Lagrange"
+	to offer
+		has "Hroar's Haulers 14: done"
+	to complete
+		has "event: lh six days"
+		not "event: lh eight days"
+	on complete
+		dialog
+			`	It feels like Wayfarer's transit district has been taken over by Haulers. They are everywhere as they rush to get everything ready for the fleet's return. Yngvar is probably waiting for you in the spaceport.`
 
 mission "Hroar's Haulers 15"
 	name "The Long Haul"
@@ -7221,6 +7231,21 @@ event "lh six days"
 event "lh eight days"
 event "lh seventeen days"
 
+mission "Hroar's Haulers Gunfarer"
+	invisible
+	source "Humanika"
+	destination "Wayfarer"
+	to offer
+		has "Hroar's Haulers 15b: done"
+		has "savedgunhilda"
+	to complete
+		has "event: lh six days"
+		not "event: lh eight days"
+	on complete
+		dialog
+			`	It feels like Wayfarer's transit district has been taken over by Haulers. They are everywhere as they rush to get everything ready for the fleet's return. Yngvar is probably waiting for you in the spaceport.`
+
+
 mission "Hroar's Haulers Gunhilda"
 	name "Alien Mines"
 	source "Humanika"
@@ -7638,6 +7663,24 @@ mission "Hroar's Haulers Gunhilda secret 2"
 			decline
 
 mission "Hroar's Haulers Unferth"
+	invisible
+	source "Humanika"
+	destination "Wayfarer"
+	to offer
+		has "Hroar's Haulers 15b: done"
+		has "savedsolvi"
+	to complete
+		has "event: lh six days"
+		not "event: lh eight days"
+		has "Hroar's Haulers Unferth: declined"
+	on complete
+		dialog
+			`	It feels like Wayfarer's transit district has been taken over by Haulers. They are everywhere as they rush to get everything ready for the fleet's return. Yngvar is probably waiting for you in the spaceport.`
+	to fail
+		has "Hroar's Haulers Unferth: done"
+
+
+mission "Hroar's Haulers Unferth"
 	name "The Last Blush"
 	source "Humanika"
 	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
@@ -7645,7 +7688,7 @@ mission "Hroar's Haulers Unferth"
 	passengers 1
 	cargo "Solvi's Pallet" 1
 	to offer
-		has "Hroar's Haulers 18b: done"
+		has "Hroar's Haulers 15b: done"
 		has "savedsolvi"
 	on offer
 		conversation
@@ -7714,7 +7757,7 @@ mission "Hroar's Haulers Unferth 2"
 	destination "Wayfarer"
 	passengers 1
 	to offer
-		has "Hroar's Haulers 18b: done"
+		has "Hroar's Haulers Unferth: done"
 	on offer
 		conversation
 			`You hurdle a few rusty railings, climb over an upturned bench, and slide around a large puddle of industrial mystery waste, before approaching a large heavily reinforced blast door that appears to have rusted into the station's walls.`
@@ -8045,29 +8088,17 @@ mission "Hroar's Haulers Late 2"
 			`	The Long Haul caravan left without you some time ago. None of the Haulers stationed here seem interested in helping you. You are just too late.`
 			decline
 
-		
-mission "Hroar's Haulers 16"
-	name "The Long Haul"
-	source "Wayfarer"
-	landing
-	to offer
-		has "event: lh six days"
-		not "event: lh eight days"
-	on offer
-		dialog
-			`	It feels like Wayfarer's transit district has been taken over by Haulers. They are everywhere as they rush to get everything ready for the fleet's return. Yngvar is probably waiting for you in the spaceport.`
-				decline
 
 mission "Hroar's Haulers X2"
 	deadline 40
 	invisible
 	landing
 	source "Wayfarer"
+	destination "Muspel"
 	to offer
-		has "Hroar's Haulers 18b: done"
+		has "Hroar's Haulers 15b: done"
 		has "event: lh six days"
 		not "event: lh eight days"
-	destination "Muspel"
 
 	npc accompany save
 		government "Merchant"
@@ -8080,20 +8111,36 @@ mission "Hroar's Haulers X2"
 		ship "Mule" "H.H.H. Dirty Destiny"
 
 	to complete
-		has "Hroar's Hauler 20: done"
+		has "Hroar's Hauler 16: done"
+
+mission "Hroar's Haulers: New Washington"
+	source "Wayfarer"
+	to offer
+		has "Hroar's Haulers 15wayfarer: done"
+	destination "New Washington"
+	on complete
+		dialog
+			`	The perpetually twilit settlement of New Washington has been overrun by the sprawling Long Haul fleet. Initially, you catch glimpses of furtive locals retreating from the freshly landed Haulers. Only to see them return, now dressed in festive garb. The Hauler presence here isn't an invasion, but a cause for celebration.`
+			`	Yngvar heads out to meet with their leader. "Meet us in the spaceport. Folks here like a bit of pageantry, but we can't stay long."`
+
+mission "Hroar's Haulers: Earth"
+	source "Wayfarer"
+	to offer
+		has "Hroar's Haulers 15wayfarer: done"
+	destination "Earth"
+	to complete
+		has "Hroar's Haulers: New Washington: done"
 
 
-mission "Hroar's Haulers 20"
+mission "Hroar's Haulers 16"
 	name "The Long Haul"
 	source "Wayfarer"
-	stopover "New Washington"
-	stopover "Earth"
 	destination "Muspel"
 	description "Escort the Long Haul caravan to New Washington, Earth and <destination>."
 	deadline 40
 	passengers 1
 	to offer
-		has "Hroar's Haulers 19: declined"
+		has "Hroar's Haulers 15wayfarer: done"
 	on offer
 		conversation
 			`There's a cluster of captains and officers near the back of the Hauler's permanent hangar. You recognize Yngvar's scarred head among them.`
@@ -8206,23 +8253,13 @@ mission "Hroar's Haulers 20"
 		dialog
 			`You have reached <planet>, but the Hardy Hroar's Hauler ships have not all arrived yet. You should take off and wait for them to catch up with you.`
 
-mission "Hroar's Haulers 21"
-	name "The Long Haul"
-	source "New Washington"
-	landing
-	to offer
-		has "Hroar's Haulers 20: accepted"
-	on offer
-		conversation
-			`	The perpetually twilit settlement of New Washington has been overrun by the sprawling Long Haul fleet. Initially, you catch glimpses of furtive locals retreating from the freshly landed Haulers. Only to see them return, now dressed in festive garb. You realize that the Hauler presence here isn't an invasion, but a cause for celebration.`
-			`	Yngvar heads out to meet with their leader. "Meet us in the spaceport. Folks here like a bit of pageantry, but we can't stay long."`
-				decline
 
-mission "Hroar's Haulers 22"
+mission "Hroar's Haulers 17"
 	name "The Long Haul"
 	source "New Washington"
+	destination "Earth"
 	to offer
-		has "Hroar's Haulers 21: declined"
+		has "Hroar's Haulers: New Washington: done"
 	on offer
 		conversation
 			`	As you push through the growing crowd of locals, you realize the spaceport doubles as the main social hall on New Washington. You pass scores of tables, each covered with homemade dishes, surrounded by eager Haulers digging in.`
@@ -8241,39 +8278,33 @@ mission "Hroar's Haulers 22"
 			`	"In other words, they're isolated, and us showing up's about as big as the top side of a quasar for 'em." He points to many of the mingling locals and haulers. "It's not just trade either, or least trade in commercial goods."`
 			`	He smiles and gives you a wink with his one good eye. "Normally we'd stay longer, but we gotta be moving on. Maybe next time you'll get a chance to chat up some local."`
 			`	Yngvar stands up. "I'm gonna go around and let the other captain's know we best be moving on. I'll see ya back aboard the <ship>. Remember, next stop is Earth."`
-				decline
+				accept
+
+	on complete
+		dialog
+			`	The Long Haul caravan sets down in a different sprawling Earth mega-city from last time. Though it looks much the same. Most of the fleet focuses on loading up the waiting cargo. There's also a mass of people waiting on Unferth's passenger fleet. Yngvar tells you to meet him in the spaceport.`
 
 
-mission "Hroar's Haulers 22b"
+mission "Hroar's Haulers 17b"
 	landing
 	source "Earth"
 	to offer
-		has "Hroar's Haulers 20: active"
-		not "Hroar's Haulers 21: declined"
+		has "Hroar's Haulers 16: active"
+		not "Hroar's Haulers 17: offered"
 	on offer
-		dialog
+		conversation
 			`"Come on, <last>." Yngvar's belabored voice fills the cockpit, "You know the drill by now. We need to visit these worlds in order. New Washington, Earth, and then Muspel."`
 				decline
 
 
-mission "Hroar's Haulers 23"
-	name "The Long Haul"
-	source "Earth"
-	landing
-	to offer
-		has "Hroar's Haulers 22: declined"
-	on offer
-		dialog
-		`	The Long Haul caravan sets down in a different sprawling Earth mega-city from last time. Though it looks much the same. Most of the fleet focuses on loading up the waiting cargo. There's also a mass of people waiting on Unferth's passenger fleet. Yngvar tells you to meet him in the spaceport.`
-			decline
 
-mission "Hroar's Haulers 24"
+mission "Hroar's Haulers 18"
 	name "The Long Haul"
 	source "Earth"
 	to offer
-		not "Hroar's Haulers 18: declined"
+		has "Hroar's Haulers 15: declined"
 		or
-			has "Hroar's Haulers 23: declined"
+			has "Hroar's Haulers 17: done"
 			has "Hroar's Haulers Late: done"
 	on offer
 		conversation
@@ -8317,13 +8348,13 @@ mission "Hroar's Haulers 24"
 			`	He points at the <ship> next to the other Hauler vessels below you both. "That's home enough for folks like us I wager."`
 				goto lipstick
 
-mission "Hroar's Haulers 24b"
+mission "Hroar's Haulers 18b"
 	name "The Long Haul"
 	source "Earth"
 	to offer
-		not "Hroar's Haulers 18b: accepted"
+		has "Hroar's Haulers 15b: accepted"
 		or
-			has "Hroar's Haulers 23: declined"
+			has "Hroar's Haulers 17: done"
 			has "Hroar's Haulers Late: done"
 		conversation
 			`Endless lines of eager passengers make their way through the crowded spaceport to Solvi's waiting fleet.`
@@ -8360,9 +8391,9 @@ mission "Hroar's Haulers 24b"
 				`	(Stay awhile and keep Yngvar company in his silence.)`
 					goto stay
 				`	(Head back your ship.)`
-			`	Quietly you turn and leave the old man to his thoughts.`
 			action
 				clear "Yngspacer"
+			`	Quietly you turn and leave the old man to his thoughts.`
 				decline
 			label spacers
 			action
@@ -8383,11 +8414,11 @@ mission "Hroar's Haulers 24b"
 					goto silent
 
 			label stay
+			action
+				clear "Yngspacer"
 			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
 			`	Together you watch the world ever so slightly change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
 			` 	Finally, Yngvar turns to you and nods. "Looks like they are about ready, captain. How about ya take us back to Hroar?"`
-			action
-				clear "Yngspacer"
 				decline
 
 			label great
@@ -8458,20 +8489,20 @@ mission "Hroar's Haulers 24b"
 				goto blush2
 
 			label whyblush
+			action
+				clear "Yngspacer"
 			`	Yngvar laughs. "I am not rightly sure. I have my suspicions though."`
 			`	He points up far above the laboring loaders below and toward the sky. "Those caravaneers, plunging into the empty Gap, would see lights all around them. Flickering stars and like."`
 			`	The old man holds up a thick finger. "But it weren't like nowadays. Those stars were all empty. Beacons to nowhere. emanating their cold lifeless light. But a Blush, well, that's a warmer light, ain't it? That's the glow of life, of hearth, of friendship. Out in the Gap you weren't holding out for light, but for a Blush."`
 			`	He smiles at you and then shrugs. "That's my thinking on the matter anyways. Maybe one of the old Blush-Gutchers might know rightly."`
 			`	"I think though," he says glancing back outside, "we oughta get moving. Looks like they're about all loaded up. Time to bring the fleet back to Hroar!"`
-			action
-				clear "Yngspacer"
 				decline
 
-mission "Hroar's Haulers 25"
+mission "Hroar's Haulers 19"
 	name "The Long Haul"
 	source "Muspel"
 	to offer
-		has "Hroar's Haulers 24: declined"
+		has "Hroar's Haulers 18: declined"
 		has "Hroar's Haulers 20: done"
 	on offer
 		conversation
@@ -8676,11 +8707,11 @@ mission "Hroar's Haulers 25"
 			`	Hroar speaks behind his grit teeth, "Your job, <name>, was to come back here with my fleet intact."`
 			label yngvarcalm
 
-mission "Hroar's Haulers 25b"
+mission "Hroar's Haulers 19b"
 	name "The Long Haul"
 	source "Muspel"
 	to offer
-		has "Hroar's Haulers 24b: declined"
+		has "Hroar's Haulers 18b: declined"
 		has "Hroar's Haulers 20: done"
 	on offer
 		conversation
@@ -8968,14 +8999,14 @@ mission "Hroar's Haulers 25b"
 			`	He picks up his empty glass and turns it over. "Things about to get real lean around here, and all because you don't know the right side of an agreement." He pauses. "Or maybe you do."`
 			`	Hroar nods at Yngvar. "You think <first> knows better?"`
 			label knowsbetter
+			action
+				payment 1222434
 			`	Yngvar's wrinkled and scarred face twists into a bitter frown. "Can't say <last> was put up to it, no. Coulda been malice, but coulda been plain stupid."`
 			`	The Hauler boss taps the stained table with his index finger. "Either way, I can't abide someone like you in our organization." He levels his eyes on yours. "Someone we can't trust."`
 			`	With a look of disgust on his face Hroar pushes a tablet over to you. "I said I'd pay you, and I will."`
 			`	The tablet shows 1,222,434 credits being transferred to your bank account.`
 			`	"Now take your money and get the Hel outta of my saloon." Hroar says behind clenched teeth.`
 			`	Yngvar only shakes his head.`
-			action
-				payment 1222434
 				decline
 
 			label nothingbroken
@@ -8989,7 +9020,7 @@ mission "Hroar's Haulers: Transport Edition 3"
 	to offer
 		has "Hroar's Haulers: Transport Edition 2: done"
 		has "brokencontract"
-		has "Hroar's Haulers 25b: offered"
+		has "Hroar's Haulers 19b: offered"
 	source "Valhalla"
 	on offer
 		conversation
@@ -9006,7 +9037,7 @@ mission "Hroar's Haulers: Transport Edition 3b"
 	landing
 	to offer
 		has "Hroar's Haulers: Transport Edition 2: done"
-		has "Hroar's Haulers 25: done"
+		has "Hroar's Haulers 19: done"
 	source "Valhalla"
 	on offer
 		conversation
