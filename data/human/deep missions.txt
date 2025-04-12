@@ -6434,7 +6434,7 @@ mission "Hroar's Haulers 14"
 		conversation
 			`You find Yngvar in the large unadorned building labeled 'Trade'. He's surrounded by a swarm of officials and representatives from Rand.`
 			`	"No transport? What am I supposed to tell them? They've been waiting for weeks!" One of the officials yells.`
-			`	"Wait for the next fleet!" Yngvar shouts back," Hrodny will be able to move most of 'em next time she comes through."`
+			`	"Wait for the next fleet!" Yngvar shouts back, "Hrodny will be able to move most of 'em next time she comes through."`
 			`	"Who's going to pay for that? They need Discounts! Refunds!"`
 			`	"Enough!" Yngvar holds out his thick hands, and the room quiets. "No discounts. The trip costs what the trip costs. If they want refunds, fine. But that won't get them to Humanika any faster."`
 			`	A few of the more agitated officials seem to calm at that.`
@@ -6963,7 +6963,7 @@ mission "Hroar's Haulers 15"
 				`	"Stoner?"`
 					goto stoner
 				`	(Say nothing.)`
-			`	"You know, Yng, if you ever bothered to listen to one of your stories you'd realize just how interesting they were. Besides, who are you to tease us? You're practically a "stoner" yourself." Bolverka says with more affection than venom.`
+			`	"You know, Yng, if you ever bothered to listen to one of your stories you'd realize just how interesting they were. Besides, who are you to tease us? You're practically a 'stoner' yourself." Bolverka says with more affection than venom.`
 			label yngcont
 			`	"I'm a spacer, not a stoner! There ain't no stones with my life memories scribbled on them under my bed!" Yngvar retorts, and you suddenly feel like you're in the middle of an argument they've had a hundred times before.`
 			`	"Old man, carving your story on a small piece of your first ship and then placing it on a pile of older ones left by your ancestors on some old station is about as stoner as it gets, with only the mildest of tweaks."`
@@ -7123,7 +7123,7 @@ mission "Hroar's Haulers 15"
 				`	"That there was an another group, the Hudulfolk, who were related to the Elf-Stones."`
 					goto hidden
 				`	"No. Nothing else."`
-			`	She nods vigorously." Still, that is enough. Okay, next question; did they have any stones or talisman that had unusual properties?"`
+			`	She nods vigorously. "Still, that is enough. Okay, next question; did they have any stones or talisman that had unusual properties?"`
 				goto questiontwo
 
 			label trusted
@@ -7352,7 +7352,7 @@ mission "Hroar's Haulers Gunhilda"
 	on complete
 		conversation
 			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlike anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to precarious heights with a disconcerting amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disaster that keeps not occurring. Meanwhile the towering denizens of this worldlet continue on their way, unaware of the looming danger all around them.`
-			`	"It feels wrong. Dark." Runa whispers to you," You feel it too, don't you?"`
+			`	"It feels wrong. Dark." Runa whispers to you, "You feel it too, don't you?"`
 			choice
 				`	"We're just not used to seeing cultivated plants that evolved on low gravity worlds is all."`
 					goto math
@@ -7699,7 +7699,7 @@ mission "Hroar's Haulers Unferth"
 				`	"Of course I'd come!"`
 				`	(Say nothing.)`
 			`	"I am sure you heard by now that ol' Yngvar gave us a week or so of convalescence." He leans in a little closer to you. "Now, I don't like speaking poorly of decent folk, but I am not looking forward to spending a week or more in the shadow of the Quarg."`
-			`	"Something's off about the natives here," he says quietly," like they lost their fire, or somesuch."`
+			`	"Something's off about the natives here," he says quietly, "like they lost their fire, or somesuch."`
 			`	"So," he says brightly, after straightening up, "I figured this was a perfect chance to pay my respects at The Last Blush. And was hankering for some good company, and... maybe a ride."`
 			label Sovischoice
 			choice
@@ -7725,7 +7725,7 @@ mission "Hroar's Haulers Unferth"
 
 			label takeyou
 			`	"Now that's what I like to hear. Haulers stickin' together and going on adventures and the like." He gives you an approving nod. "I've also got a one ton pallet of supplies, a sort of offering, if ya will. I'll have it loaded up on your ship."`
-			`	"As for where we're headed, well, the official name of the Last Blush is <destination>, and you'll find it in the <system> system." He pauses." Now, uh, how 'bouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own convoy."`
+			`	"As for where we're headed, well, the official name of the Last Blush is <destination>, and you'll find it in the <system> system." He pauses. "Now, uh, how 'bouts you take me to your ship so we can get this show on the road. Ol' Yng didn't give us a whole lotta downtime, and I am not looking to be left behind by own convoy."`
 				accept
 
 			label sure
