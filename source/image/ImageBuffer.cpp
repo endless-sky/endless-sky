@@ -421,13 +421,13 @@ namespace {
 		avifImageTiming timing;
 		for(int i = 0; i < decoder->imageCount; ++i)
 		{
-			result = avifDecoderNthImageTiming(decoder.get(), 0, &timing);
+			result = avifDecoderNthImageTiming(decoder.get(), i, &timing);
 			if(result != AVIF_RESULT_OK)
 			{
 				Logger::LogError("Could not get image timing for '" + path.generic_string() + "': " + avifResultToString(result));
 				return 0;
 			}
-			if(frameTimeUnit == -1 || (frameTimeUnit > timing.duration && timing.duration))
+			if(frameTimeUnit < 0 || (frameTimeUnit > timing.duration && timing.duration))
 				frameTimeUnit = timing.duration;
 		}
 		// Based on this unit, we can calculate how many times each frame is repeated.
@@ -435,7 +435,7 @@ namespace {
 		size_t bufferFrameCount = 0;
 		for(size_t i = 0; i < static_cast<size_t>(decoder->imageCount); ++i)
 		{
-			result = avifDecoderNthImageTiming(decoder.get(), 0, &timing);
+			result = avifDecoderNthImageTiming(decoder.get(), i, &timing);
 			if(result != AVIF_RESULT_OK)
 			{
 				Logger::LogError("Could not get image timing for \"" + path.generic_string() + "\": " + avifResultToString(result));
@@ -476,7 +476,7 @@ namespace {
 
 			avifRGBImage image;
 			avifRGBImageSetDefaults(&image, decoder->image);
-			image.depth = 8; // force 8-bit color depth
+			image.depth = 8; // Force 8-bit color depth.
 			image.alphaPremultiplied = alphaPreMultiplied;
 			image.rowBytes = image.width * avifRGBImagePixelSize(&image);
 			image.pixels = reinterpret_cast<uint8_t *>(buffer.Begin(0, frame + bufferFrame));
@@ -498,7 +498,6 @@ namespace {
 			bufferFrame += repeats[avifFrameIndex];
 
 			avifFrameIndex++;
-			avifRGBImageSetDefaults(&image, decoder->image);
 		}
 
 		if(avifFrameIndex != decoder->imageCount || bufferFrame != bufferFrameCount)
