@@ -1082,11 +1082,11 @@ mission "Exotic Life: Bloodsea"
 			`	"That man's got the Bloodsea Bloom," she says flatly, as if mentioning the weather.`
 			choice
 				`	"What's that?"`
-				`	(Try to sulk away quickly and sprint back to your ship.)`
+				`	(Get back to your ship.)`
 					goto declined
 			`	She scoffs and leans in, her voice dropping to a rough whisper. "The red tide. Every summer, the bloody sea blooms, fills the air with nasty, toxic bits that chew up your lungs if you catch a whiff. No local goes near the beach when the bloom's a blooming."`
 			`	Then, she suddenly screams, "Only offworlders and blind fools with a death wish swim in that poison!"`
-			`	A wry grin floods her face, and she adds in a conversational tone, almost as an afterthought while waving a scarred hand, "Now, I'll flay you alive and turn you into chum if you don't buy some fish bait. Eight racks." She slams a rancid barrel beside her.`
+			`	A wry grin floods her face, and she adds in a conversational tone, almost as an afterthought, "Now, I'll flay you alive and turn you into chum if you don't buy some fish bait. Eight racks." She slams a scarred hand into a rancid barrel beside her.`
 			choice
 				`	(Buy a barrel of rotten fish bait for 8,000 credits.)`
 					to display
@@ -1094,7 +1094,7 @@ mission "Exotic Life: Bloodsea"
 				`	(Run for it.)`
 					goto declined
 			action
-						payment -8000
+				payment -8000
 			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled pirate. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll the it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
 				decline
 			label declined
@@ -1147,7 +1147,7 @@ mission "Exotic Life: Albatross"
 						has "heardbadgers"
 						not "heardturnips"
 					goto turnips
-				`	(Squint at one of the cluttered signs.) "It says 'No ${plural nouns}'?"`
+				`	"The sign says 'No ${plural nouns}'?"`
 					goto madlib
 					to display
 						or
