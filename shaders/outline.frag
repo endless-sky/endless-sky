@@ -49,11 +49,11 @@ float Sobel(float layer) {
 			float sw = dot(texture(tex, vec3(center + vec2(-off.x, off.y), layer)), weight);
 			float se = dot(texture(tex, vec3(center + vec2(off.x, off.y), layer)), weight);
 			float h = nw + sw - ne - se + 2.f * (
-			dot(texture(tex, vec3(center + vec2(-off.x, 0.f), layer)), weight)
-			- dot(texture(tex, vec3(center + vec2(off.x, 0.f), layer)), weight));
+				dot(texture(tex, vec3(center + vec2(-off.x, 0.f), layer)), weight)
+				- dot(texture(tex, vec3(center + vec2(off.x, 0.f), layer)), weight));
 			float v = nw + ne - sw - se + 2.f * (
-			dot(texture(tex, vec3(center + vec2(0.f, -off.y), layer)), weight)
-			- dot(texture(tex, vec3(center + vec2(0.f, off.y), layer)), weight));
+				dot(texture(tex, vec3(center + vec2(0.f, -off.y), layer)), weight)
+				- dot(texture(tex, vec3(center + vec2(0.f, off.y), layer)), weight));
 			sum += h * h + v * v;
 		}
 	}

@@ -31,8 +31,8 @@ void main() {
 	float weightRight = clamp(((1.0 - vpos.x) + epsilon) / (fade[3] + epsilon), 0.0, 1.0);
 	float weight = min(min(min(weightTop, weightBottom), weightLeft), weightRight);
 	if(tpos.x > 0.0 && tpos.y > 0.0 &&
-		tpos.x < 1.0 && tpos.y < 1.0 )
-	finalColor = texture(tex, tpos) * weight;
+			tpos.x < 1.0 && tpos.y < 1.0)
+		finalColor = texture(tex, tpos) * weight;
 	else
 		discard;
 }

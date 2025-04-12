@@ -85,7 +85,7 @@ void LineShader::Draw(const Point &from, const Point &to, float width, const Col
 
 
 void LineShader::DrawDashed(const Point &from, const Point &to, const Point &unit, const float width,
-		const Color &color, const double dashLength, double spaceLength, bool roundCap)
+	const Color &color, const double dashLength, double spaceLength, bool roundCap)
 {
 	const double length = (to - from).Length();
 	const double patternLength = dashLength + spaceLength;
@@ -100,14 +100,14 @@ void LineShader::DrawDashed(const Point &from, const Point &to, const Point &uni
 	float capOffset = roundCap ? width : 0.;
 	for(int i = 0; i < segments; ++i)
 		Draw(from + unit * (i * length / segments + spaceLength + capOffset),
-				from + unit * ((i + 1) * length / segments - spaceLength - capOffset),
-				width, color, roundCap);
+			from + unit * ((i + 1) * length / segments - spaceLength - capOffset),
+			width, color, roundCap);
 }
 
 
 
 void LineShader::DrawGradient(const Point &from, const Point &to, float width,
-		const Color &fromColor, const Color &toColor, bool roundCap)
+	const Color &fromColor, const Color &toColor, bool roundCap)
 {
 	if(!shader->Object())
 		throw runtime_error("LineShader: Draw() called before Init().");
