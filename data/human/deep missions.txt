@@ -5199,7 +5199,7 @@ mission "Hroar's Haulers 11"
 	cargo "Long Haul Cargo" 430
 	source "Muspel"
 	to offer
-		has "Hroar's Haulers 9: done"
+		has "Hroar's Haulers 10: done"
 	destination "Lagrange"
 	on offer
 		conversation
@@ -5337,30 +5337,41 @@ mission "Hroar's Haulers 11"
 
 mission "Hroar's Haulers: Earth"
 	source "Muspel"
+	description "<destination> is the first stop of the Long Haul."
 	to offer
-		has "Hroar's Haulers 11: offered"
-		has "Hroar's Haulers 9: done"
+		"cargo space" >= 430
+		has "Hroar's Haulers 10: done"
 	destination "Earth"
 	on complete
 		dialog
 			`The Long Haul convoy sets down in one of Earth's sprawling mega-cities. Most of the fleet focuses on refueling and minor repairs, while Captain Unferth's ships begin the disembarking process. Yngvar tells you to meet him in the spaceport.`
+	to fail
+		has "Hroar's Haulers 11: failed"
 
 mission "Hroar's Haulers: Maker"
 	source "Muspel"
+	description "<destination> is the second stop of the Long Haul."
 	to offer
-		has "Hroar's Haulers 9: done"
+		has "Hroar's Haulers 10: done"
+		"cargo space" >= 430
 	destination "Maker"
 	to complete
 		has "Hroar's Haulers: Earth: done"
+	to fail
+		has "Hroar's Haulers 11: failed"
 
 mission "Hroar's Haulers: Rand"
 	source "Muspel"
+	description "<destination> is the third stop of the Long Haul."
 	to offer
-		has "Hroar's Haulers 9: done"
+		"cargo space" >= 430
+		has "Hroar's Haulers 10: done"
 	destination "Rand"
 	to complete
 		has "Hroar's Haulers: Earth: done"
 		has "Hroar's Haulers: Maker: done"
+	to fail
+		has "Hroar's Haulers 11: failed"
 	on complete
 		dialog
 			`The Long Haul caravan kicks up a flurry of agitated sand as they descend upon the energetic concrete pads outside Rand's spaceport. There's a small fleet of loading vehicles, and an army of workers, all awaiting your arrival. After landing Yngvar opens the airlock. "Got a few things to sort out. Meet me at the spaceport later."`
