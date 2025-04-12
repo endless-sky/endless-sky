@@ -6674,7 +6674,7 @@ mission "Hroar's Haulers 14b"
 			action
 				set "whyhere"
 			`	"It's not much different from Maker. We're dropping off the last of our quality mining equipment, and filling our hulls to absolute max with their cheap raw materials. Maximizing our profits for when we hit Lagrange. We're also filling our bunks with migrant workers eager to get off this world."`
-			goto yngvarchat
+				goto yngvarchat
 			label Hrodny
 			action
 				set "hrodny"
@@ -8705,11 +8705,11 @@ mission "Hroar's Haulers 19"
 
 			label syndicate
 			`	Hroar's white teeth gleam as he bares them. "You just gonna roll over for a couple of money-grubbing Syndies? No fight in ya? No cunning?"`
-			label yngvarcalm
+				goto yngvarcalm
 
 			label myjob
 			`	Hroar speaks behind his grit teeth, "Your job, <name>, was to come back here with my fleet intact."`
-			label yngvarcalm
+				goto yngvarcalm
 
 mission "Hroar's Haulers 19b"
 	name "The Long Haul"
@@ -8875,8 +8875,7 @@ mission "Hroar's Haulers 19b"
 			`	Eventually you make it to Havi who just shoves a drink in front of you and turns to the next eager Hauler without the slightest acknowledgement.`
 			choice
 				`	(Drink it.)`
-			`	The tasteless alcohol burns on its way down. There's no chance of getting a second drink for a while.`
-				goto afterdrink
+					goto drinkit
 				`	(Leave it for someone else.)`
 			`	You leave it on the bar and step back, another Hauler is instantly in your place happily tossing back the drink.`
 			label afterdrink
@@ -8929,6 +8928,10 @@ mission "Hroar's Haulers 19b"
 			`	"Stones guide you." Bolverka adds with a friendly smile.`
 			`[THIS ENDS THE HROARS HAULER CONTENT - FUTURE MISSIONS WILL BE ADDED.]`
 				decline
+
+			label drinkit
+			`	The tasteless alcohol burns on its way down. There's no chance of getting a second drink for a while.`
+				goto afterdrink
 
 			label next
 			`	Hroar grins. "Keep your ear to the ground, and I'll contact you when I'm ready. Gotta few messes to sort out first. In the meantime, so long as you got that there smooth jacket, you'll be able to pick up the odd Hauler job here and there."`
