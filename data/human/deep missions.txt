@@ -5313,7 +5313,7 @@ mission "Hroar's Haulers 11"
 
 	on fail
 		dialog
-			` Yngvar finds his way to a different ship, and the Hauler Fleet moves on without you. They've wasted enough time with you.`
+			`Yngvar finds his way to a different ship, and the Hauler Fleet moves on without you. They've wasted enough time with you.`
 
 	on visit
 		dialog
@@ -5756,7 +5756,7 @@ mission "Hroar's Haulers 13"
 					goto followyngvar
 
 			label yngvar
-			action 
+			action
 				set "metbolverka"
 			`	Yngvar nods to you as you approach the quiet table he shares with Bolverka in the back. Bolverka looks late middle aged, older than Unferth and Gunhilda, but quite a bit younger than Yngvar. She has close cropped brown hair and dark brown eyes. She watches you curiously as you take your seat.`
 			`	"Smart thinking, <last>." Yngvar says, "You'll go deaf or blind from the music and drink with the crowd at the bar. Safer back here with us."`
@@ -6057,7 +6057,7 @@ mission "Hroar's Haulers 13"
 				`	"Maybe there is something other than money we can offer you." (Transport Union Option)`
 					goto newdeal
 					to display
-						has `Hroar's Haulers: Transport Edition 2:done`
+						has `Hroar's Haulers: Transport Edition 2: done`
 				`	"Ha, that's chump change to me."`
 					goto Ipay
 				`	"Yngvar, can you cover that?"`
@@ -6267,7 +6267,7 @@ mission "Hroar's Haulers 13"
 					goto bang
 					to display
 						not "bang"
-				`	(See who's here.)`	
+				`	(See who's here.)`
 					goto whosehere
 				`	(Sit tight.)`
 			`	You sit on the ground and wait. Minutes pass as you ignore the background hum of angry muttering Haulers. Suddenly the door grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
@@ -6305,7 +6305,7 @@ mission "Hroar's Haulers 13"
 				goto options22
 			
 			label whosehere
-			`	The cell is packed with Haulers. The whole place is lousy with rust-red jackets, and the smell of cheap Syndicate alcohol.  You're sure Captain Unferth's around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
+			`	The cell is packed with Haulers. The whole place is lousy with rust-red jackets, and the smell of cheap Syndicate alcohol. You're sure Captain Unferth's around here somewhere, probably Captain Gunhilda too. But before you have a chance to seek them out you hear a sudden clicking sound and the door in front of you grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
 				goto outofthecell
 
 	npc accompany save
@@ -9064,3 +9064,4 @@ mission "Patch Transport Union"
 	on offer
 		event "transport union waiting" 14
 		fail
+
