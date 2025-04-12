@@ -1101,28 +1101,6 @@ mission "Exotic Life: Bloodsea"
 			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
 				decline
 
-phrase "old man waiting"
-	word
-		"Brooding in the dim light,"
-		"Sitting with a weary stare,"
-		"Resting his weathered gaze,"
-		"Hunched over silent memories,"
-		"Lost in quiet rumination,"
-	word
-		" "
-	word
-		"his fingers tap the scarred wood,"
-		"his eyes drift over the shadowed floor,"
-		"his breath mingles with the smoky air,"
-		"his silence is smothered by the conversations of bar patrons,"
-	word
-		" "
-	word
-		"awaiting your next question with a secretive look."
-		"with mystery etched into every line of his face."
-		"poised at the edge of revelation and reticence."
-		"anticipating the spark of your next question."
-
 mission "Exotic Life: Albatross"
 	minor
 	source Albatross
@@ -1169,6 +1147,17 @@ mission "Exotic Life: Albatross"
 						has "heardpolecats"
 				`	(Thank him for the time and leave.)`
 					goto ending
+					to display
+						or
+							has "heardimplants"
+							has "heardbadgers"
+							has "heardweasels"
+				`	(Turn around and leave.)`
+					goto ending
+					to display
+						not "heardimplants"
+						not "heardbadgers"
+						not "heardweasels"
 			label implants
 			action
 				set "heardimplants"
