@@ -45,7 +45,7 @@ bool Hail::Matches(const ConditionsStore &conditions, const Ship &hailingShip) c
 
 std::string Hail::Message(const ConditionsStore &conditions, const Ship &hailingShip) const
 {
-	return messages.Get(&conditions, ConditionContext { .hailingShip = &hailingShip });
+	return messages.Get();
 }
 
 int Hail::getWeight() const

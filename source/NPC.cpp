@@ -693,7 +693,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	{
 		result.ships.push_back(make_shared<Ship>(**shipIt));
 		result.ships.back()->SetName(Format::Replace(Format::Replace(
-			Phrase::ExpandPhrases(*nameIt, nullptr, DEFAULT_CONDITION_CONTEXT), subs), playerSubs));
+			Phrase::ExpandPhrases(*nameIt), subs), playerSubs));
 	}
 	for(const ExclusiveItem<Fleet> &fleet : fleets)
 		fleet->Place(*result.system, result.ships, false, !overrideFleetCargo);
@@ -731,11 +731,11 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 	}
 	// Do string replacement on any dialog or conversation.
 	string dialogText = !dialogPhrase->IsEmpty() ?
-			dialogPhrase->Get(nullptr, DEFAULT_CONDITION_CONTEXT)
+			dialogPhrase->Get()
 		:
 			this->dialogText;
 	if(!dialogText.empty())
-		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
+		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 
 	if(!conversation->IsEmpty())
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));

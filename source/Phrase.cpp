@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Phrase.h"
 
-#include "ConditionContext.h"
 #include "DataNode.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -25,11 +24,7 @@ using namespace std;
 
 
 // Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-std::string Phrase::ExpandPhrases(
-	const std::string &source,
-	const ConditionsStore *vars,
-	const ConditionContext &context
-)
+std::string Phrase::ExpandPhrases(const std::string &source)
 {
 	string result;
 	size_t next = 0;
@@ -46,7 +41,7 @@ std::string Phrase::ExpandPhrases(
 		++next;
 		string phraseName = string{source, var + 2, next - var - 3};
 		const Phrase *phrase = GameData::Phrases().Find(phraseName);
-		result.append(phrase ? phrase->Get(vars, context) : phraseName);
+		result.append(phrase ? phrase->Get() : phraseName);
 	}
 	// Optimization for most common case: no phrase in string:
 	if(!next)
@@ -114,24 +109,19 @@ const string &Phrase::Name() const
 
 
 // Get a random sentence's text.
-string Phrase::Get(const ConditionsStore *vars, const ConditionContext &context) const
+string Phrase::Get() const
 {
-	std::vector<const Sentence *> matchingSentences;
-	for(const auto &sentence : this->sentences)
-		if(sentence.toUse.Test(*vars, context))
-			matchingSentences.emplace_back(&sentence);
-
 	string result;
-	if(matchingSentences.empty())
+	if(sentences.empty())
 		return result;
 
-	for(const auto &part : *(matchingSentences[Random::Int(matchingSentences.size())]))
+	for(const auto &part : sentences[Random::Int(sentences.size())])
 	{
 		if(!part.choices.empty())
 		{
 			const auto &choice = part.choices.Get();
 			for(const auto &element : choice)
-				result += element.second ? element.second->Get(vars, context) : element.first;
+				result += element.second ? element.second->Get() : element.first;
 		}
 		else if(!part.replacements.empty())
 			for(const auto &pair : part.replacements)
@@ -246,8 +236,6 @@ void Phrase::Sentence::Load(const DataNode &node, const Phrase *parent)
 		else if(child.Token(0) == "replace")
 			for(const DataNode &grand : child)
 				part.replacements.emplace_back(grand.Token(0), (grand.Size() >= 2) ? grand.Token(1) : string{});
-		else if(child.Token(0) == "to" && child.Size() > 1 && child.Token(1) == "use")
-			this->toUse.Load(child);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 

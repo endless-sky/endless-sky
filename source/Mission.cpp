@@ -1037,7 +1037,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	subs["<capacity>"] = out.str();
 
 	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second, nullptr, DEFAULT_CONDITION_CONTEXT);
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
 	Format::Expand(subs);
 
 	string message = Format::Replace(blocked, subs);
@@ -1379,7 +1379,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// cargo name with something more specific.
 	if(!cargo.empty())
 	{
-		const string expandedCargo = Phrase::ExpandPhrases(cargo, nullptr, DEFAULT_CONDITION_CONTEXT);
+		const string expandedCargo = Phrase::ExpandPhrases(cargo);
 		const Trade::Commodity *commodity = nullptr;
 		if(expandedCargo == "random")
 			commodity = PickCommodity(*sourceSystem, *result.destination->GetSystem());
@@ -1425,7 +1425,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	result.paymentApparent = paymentApparent;
 	result.fine = fine;
-	result.fineMessage = Phrase::ExpandPhrases(fineMessage, nullptr, DEFAULT_CONDITION_CONTEXT);
+	result.fineMessage = Phrase::ExpandPhrases(fineMessage);
 	result.failIfDiscovered = failIfDiscovered;
 
 	result.distanceCalcSettings = distanceCalcSettings;
@@ -1508,7 +1508,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Done making subs, so expand the phrases and recursively substitute.
 	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second, nullptr, DEFAULT_CONDITION_CONTEXT);
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
 	Format::Expand(subs);
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
@@ -1576,10 +1576,10 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 			player.Conditions(), subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
-	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
-	result.description = Format::Replace(Phrase::ExpandPhrases(description, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
-	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
-	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked, nullptr, DEFAULT_CONDITION_CONTEXT), subs);
+	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
+	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
+	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
+	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
 	result.clearanceFilter = clearanceFilter;
 	result.hasFullClearance = hasFullClearance;
 

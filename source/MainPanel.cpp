@@ -461,7 +461,7 @@ bool MainPanel::ShowHailPanel()
 		else if(planet->IsWormhole())
 		{
 			static const Phrase *wormholeHail = GameData::Phrases().Get("wormhole hail");
-			Messages::Add(wormholeHail->Get(nullptr, DEFAULT_CONDITION_CONTEXT), Messages::Importance::Highest);
+			Messages::Add(wormholeHail->Get(), Messages::Importance::Highest);
 		}
 		else if(planet->IsInhabited())
 		{

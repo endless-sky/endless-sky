@@ -33,11 +33,7 @@ class DataNode;
 class Phrase {
 public:
 	// Replace all occurrences ${phrase name} with the expanded phrase from GameData::Phrases()
-	static std::string ExpandPhrases(
-		const std::string &source,
-		const ConditionsStore *vars,
-		const ConditionContext &context
-	);
+	static std::string ExpandPhrases(const std::string &source);
 
 
 public:
@@ -55,7 +51,7 @@ public:
 	const std::string &Name() const;
 
 	// Get a possible value. "to use" will be checked if vars is not null.
-	std::string Get(const ConditionsStore *vars, const ConditionContext &context) const;
+	std::string Get() const;
 
 	size_t GetNumberOfSentence() const;
 
@@ -93,8 +89,6 @@ private:
 	// An individual definition associated with a Phrase name.
 	class Sentence : private std::vector<Part> {
 	public:
-		ConditionSet toUse;
-
 		Sentence(const DataNode &node, const Phrase *parent);
 		void Load(const DataNode &node, const Phrase *parent);
 

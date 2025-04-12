@@ -4812,7 +4812,7 @@ void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 		!name.empty() ?
 			name
 		:
-			GameData::Phrases().Get("civilian")->Get(nullptr, DEFAULT_CONDITION_CONTEXT)
+			GameData::Phrases().Get("civilian")->Get()
 	);
 	ships.back()->SetSystem(system);
 	ships.back()->SetPlanet(planet);

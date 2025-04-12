@@ -1566,7 +1566,7 @@ string Ship::GetHail(map<string, string> &&subs, const ConditionsStore &vars) co
 	string hailStr;
 	if(hail)
 	{
-		hailStr = hail->Get(&vars, ConditionContext { .hailingShip = this });
+		hailStr = hail->Get();
 	}
 	else
 	{
