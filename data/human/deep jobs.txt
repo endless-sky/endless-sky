@@ -1188,3 +1188,47 @@ mission "Deep Sky Shipment [1]"
 	on complete
 		payment 0 160
 		dialog phrase "generic cargo delivery payment"
+
+mission "Deep Hovercraft Racer Transport"
+	name "Transport racer to <planet>"
+	description "Deliver a pilot and their hovercraft to <destination> to attend a race by <date>."
+	passengers 1
+	cargo "Deep hovercraft" 1
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 6
+		has "landing access: Sunracer"
+	source
+		attributes "deep"
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 11000
+		dialog `You drop off the pilot with their hovercraft and collect your payment of <payment>.`
+
+mission "Deep Hovercraft Large Racer Transport"
+	name "Transport team to <planet>"
+	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
+	passengers 50 100 .9
+	cargo "Deep hovercraft" 50
+	job
+	repeat
+	deadline
+	deadline 8
+	to offer
+		random < 1
+		has "landing access: Sunracer"
+	source
+		attributes "deep"
+	destination Sunracer
+	on visit
+		dialog phrase "generic cargo and passenger on visit"
+	on complete
+		payment
+		payment 23000
+		dialog `You drop off the racing team with their hovercraft and collect your payment of <payment>.`
