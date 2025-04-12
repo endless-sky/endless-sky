@@ -2019,7 +2019,7 @@ mission "Delve Intro [2 Interceptor]"
 	passengers 1
 	cargo gemstones 15
 	source "Lodestone"
-	destination "Aldebaran"
+	destination "Ada"
 	to offer
 		has "Delve Intro [1 Interceptor]: done"
 	npc
