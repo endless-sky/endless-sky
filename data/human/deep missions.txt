@@ -8201,11 +8201,11 @@ mission "Hroar's Haulers 16"
 
 	to complete
 		or
-			has "Hroar's Haulers 22: declined"
+			has "Hroar's Haulers 17: done"
 			has "Hroar's Haulers Late: done"
 		or
-			has "Hroar's Haulers 24: declined"
-			has "Hroar's Haulers 24b: declined"
+			has "Hroar's Haulers 19: declined"
+			has "Hroar's Haulers 19b: declined"
 
 	npc
 		government "Pirate"
@@ -8503,7 +8503,7 @@ mission "Hroar's Haulers 19"
 	source "Muspel"
 	to offer
 		has "Hroar's Haulers 18: declined"
-		has "Hroar's Haulers 20: done"
+		has "Hroar's Haulers 16: done"
 	on offer
 		conversation
 			`The dust-filled spaceport of Muspel has changed little since you left on the Long Haul. The biggest difference being the crowds of enthusiastic Haulers with fresh paychecks and little self control. Some of them nod, or greet you as you pass them by.`
@@ -8712,7 +8712,7 @@ mission "Hroar's Haulers 19b"
 	source "Muspel"
 	to offer
 		has "Hroar's Haulers 18b: declined"
-		has "Hroar's Haulers 20: done"
+		has "Hroar's Haulers 16: done"
 	on offer
 		conversation
 			`The dust-filled spaceport of Muspel has changed little since you left on the Long Haul. The biggest difference being crowds of enthusiastic Haulers with fresh paychecks and little self control. Most of them nod to you, or holler at you as you pass them by.`
