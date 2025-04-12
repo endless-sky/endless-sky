@@ -192,7 +192,8 @@ void ImageSet::Load() noexcept(false)
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
 
-	const auto UpdateFrameCount = [&]() {
+	const auto UpdateFrameCount = [&]()
+	{
 		buffer[1].Clear(frames);
 		buffer[2].Clear(frames);
 		buffer[3].Clear(frames);
