@@ -1651,7 +1651,7 @@ mission "Mainsail Intro [2 Interceptor]"
 	on complete
 		payment 40000
 		conversation
-			`As you touch down on <planet>, a team of Navy troopers are ready to escort the informant, who has dilligently hidden their appearence in a brown cloak for the entire trip, out of your ship. One of the officers hands you a credit chip worth <payment> before turning back to command their squad. From behind, James says, "Well, you made it in one piece! Still think you want to be piloting an interceptor?"`
+			`As you touch down on <planet>, a team of Navy troopers are ready to escort the informant, who has diligently hidden their appearance in a brown cloak for the entire trip, out of your ship. One of the officers hands you a credit chip worth <payment> before turning back to command their squad. From behind, James says, "Well, you made it in one piece! Still think you want to be piloting an interceptor?"`
 			choice
 				`	"Sure, but I can't wait until I've got a ship big enough to stand up to pirates instead of running from them."`
 				`	"Well, maybe I should've bought a freighter instead."`
