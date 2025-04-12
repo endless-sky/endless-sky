@@ -94,15 +94,15 @@ start "deep"
 conversation "deep intro"
 	action
 		event "deep descriptions" 0
-		log "Applied for the Deep's starship captain loan program, and was accepted. The loan also came with a pilot's license."
+		log "Applied for the Deep's starship captain program, and was accepted. The program included a pilot's license and low-interest loan."
 		log "Factions" "Republic" `Hundreds of years ago, the independent territories in different parts of human space agreed to join together into a single democratic government, with Earth as its capital. The rise of the Republic ushered in a long period of peace and prosperity in human history.`
 			`Representation in the Republic Parliament is based on population. That means that some individual "Paradise Worlds" have more representatives than entire regions of space like the Dirt Belt that are more sparsely settled.`
 		log "Factions" "Syndicate" `The Syndicate is a megacorporation, the largest employer in human space. People who cannot find steady work elsewhere flock to the Syndicate factory worlds, where they are almost guaranteed to find a job. Although the Syndicate is technically part of the Republic, Syndicate worlds are governed directly by the corporation.`
 			`The Syndicate is a central part of the Republic's economy, but they are also well known for selling shoddy products and for doing damage to the environment on the worlds they control. Their treatment of workers is questionable, and their opposition to organized labor is legendary. Some Syndicate factory towns have even been accused of human rights abuses.`
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
 	scene "scene/train"
-	`The train trip from your hometown to the capital is calm and without incident. Several seats forward, a young couple close to your age discuss the down payment on an apartment as their legs kick their luggages. Behind you is the only other person in the car; a much older man wearing greasy overalls, who you assume comes from off-world by how his hair has turned gray.`
-	`	Before long, you arrive in New Reykjavik and find the government office responsible for handling starship loans. The place is relatively empty compared to the photos you'd seen online a week prior; most applicants have already been processed in the week after exam results were posted. The only people left are those sick at the time, those too lazy to apply in a timely manner, and those willing to wait if it means avoiding a mosh pit of students in a government building. You hand over your application papers, and after verifying them against online records, the office worker hands you two cards. One of them is the card for applying for a loan at a nearby bank; the other is your pilot's license, fully paid for.`
+	`The train ride from your hometown to the capital is calm and without incident. Several seats forward, a young couple close to your age discuss the down payment on an apartment as their legs nudge their luggage. Behind you sits one of the only other passengers in the car; a much older man in greasy overalls, his gray hair makes you suspect he's from off-world.`
+	`	Before long, you arrive in New Reykjavik and find the government office responsible for handling starship loans. The place is relatively empty compared to the photos you'd seen online a week prior. Most applicants have already come and gone in the week since exam results were posted. The only people left are those who were too sick or lazy to come by last week, as well as those wishing to avoid a mosh pit of students in a government building. You hand over your application, and after verifying them against online records, the office worker hands you two cards. One of them is your Certificate of Eligibility for a low-interest loan at a nearby bank; the other is your pilot's license, paid in full.`
 	`	The bank is only a few blocks away from the office. You insert the card into an automatic clerk, and after a soft ping, a large document fills its screen.`
 	`	As you scroll through, a synthesized voice says, "You are borrowing 580,000 credits to be repaid over the course of a year. Your daily interest rate is 0.2%, which means that your daily payments are 2,241 credits, and by the end of the year you will have paid 237,784 credits in interest. Please sign your name on the screen when you are ready."`
 	`	After carefully rereading every page of the loan agreement, you sign your name:`
@@ -114,7 +114,7 @@ conversation "deep intro"
 
 start "paradise"
 	name "Birthday Surprise"
-	description `You grew up on Mainsail, an oceanic Paradise World terraformed to perfection. Only the richest live on such worlds; luckily, your father is a wealthy financier. But you've always found the rich life boring and are more interested in living a life among the stars. As your eighteenth birthday party winds down, your father takes you aside to talk...`
+	description `You grew up on Mainsail, an oceanic Paradise World terraformed to perfection. Only the richest live on such worlds; luckily, your father is a wealthy financier. But you've always found your pampered life boring, and are more interested in living a life among the stars. As your eighteenth birthday party winds down, your father takes you aside to talk...`
 	description `This start has has no mortgage, leaving you free to explore the galaxy at your own pace.`
 	thumbnail "scene/mainsail"
 	date 16 11 3013
@@ -122,7 +122,7 @@ start "paradise"
 	planet "Mainsail"
 	conversation "paradise intro"
 	account
-		credits 490000
+		credits 500000
 		score 600
 	set "license: Pilot's"
 	set "species: human"
@@ -140,12 +140,12 @@ conversation "paradise intro"
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
 	scene "scene/reception"
 	`"I know you've wanted to be the captain of a starship for a long time now," your father says. "So as my birthday gift to you, how about we go get you a pilot's license and a ship from the shipyard?" You say yes without a second thought.`
-	`	Your father brings you to the Republic Department of Starship Licensing building in the spaceport. The lines are long, but your father walks right up to one of the desks. Before the person in the front of the line or the one behind the desk can complain, he tosses a credit chip worth a substantial amount at each of them. "I'd like to get a pilot's license for my child."`
+	`	Your father brings you to the Republic Department of Starship Licensing building in the spaceport. The lines are long, but your father walks right up to one of the desks. Before the person in the front of the line or the one behind the desk can complain, he flicks a credit chip at each of them - both worth a substantial amount . "I'd like to get a pilot's license for my child."`
 	`	"I'm sorry," the person behind the desk starts saying, "but you'll need to go through the process of applying through the net first, then wait three to five business days before-"`
 	`	Your father tosses another credit chip at the person behind the desk, prompting them to hand you a stylus and a pad. "Sign here, please. Your pilot's license will be here in a moment."`
 	`	Without any hesitation and after skipping past a number of pages of legal text, you sign your name:`
 	name
-	`	You enter the shipyard, your brand new pilot's license held tight in one hand and 490,000 credits from your father in the other. There are almost a dozen ship models for sale, but there are only three that you are able to afford. Which one you choose will determine your future...`
+	`	You enter the shipyard, your brand new pilot's license held tight in one hand and 500,000 credits from your father in the other. There are almost a dozen ship models for sale, but there are only three that you are able to afford. Which one you choose will determine your future...`
 
 
 
@@ -181,13 +181,13 @@ conversation "syndicate intro"
 		log "Factions" "Pirates" `In poorer and more remote star systems, where the Navy seldom patrols, pirate attacks on merchant ships are frequent. Pirates are also known to attack large, unguarded convoys of freighters even in more populated areas. Most pirate fleets come from lawless worlds on the outskirts of human space.`
 	scene "scene/tunnel"
 	`Delve is unlike any planet you've ever been on: the entire spaceport is buried into a mountain, with one side open to receive incoming ships. The hallways leading from the hangars to the port proper are cramped, dirty, and covered in machinery, creating a sense of claustrophobia far different from the packed cities of Earth.`
-	`	You hand the last of your credits to the captain that brought you here. Before she leaves, she gives you some advice. "Just a heads up: if you don't feel like dying early, head north after launching. South of here is nothing but uninhabited systems and pirates. You wouldn't last long in whatever ship you're going to buy." You thank her for the ride and for the advice and part ways.`
-	`	You stop by the shipyard first to see what they have. You're noticed by a salesman who seems to reluctantly approach you, perhaps due to the fact that your clothes are rather shabby compared to those around you. You ask him what it would take to purchase a ship here. He mentions the neccessity of a pilot's license before beginning his spiel about all the cheapest models, but you cut him short and say that's all you needed.`
+	`	You hand the last of your credits to the captain that brought you here. Before she leaves, she gives you some advice. "Just a heads up: if you don't feel like dying early, head north after launching. South of here is nothing but uninhabited systems and pirates. You wouldn't last long in any ship you could afford." You thank her for the ride and advice before parting ways.`
+	`	You stop by the shipyard first to see what they have. You're noticed by a salesman who seems reluctant to approach you, perhaps due to the fact that your clothes are rather shabby compared to those around you. You ask him what it would take to purchase a ship here. He mentions the necessity of a pilot's license before beginning his spiel about all the cheapest models, but you cut him short and say that's all you needed.`
 	`	The bank is luckily not very busy at the moment. One of the tellers eyes you up as you enter. "What can we help you with?" he asks with a strange glee in his voice. You say how you're in need of a loan to buy a starship; 530,000 credits should be enough to cover the cost of the license and the ship. After handing over your Syndicate Account information, the teller comes back with a piece of paper. This whole process seems suspiciously streamlined to you.`
-	`	"Lucky for you the interest rates are great right now!" You take a glance at the paper and feel a sense of dread fall over you. The daily interest rate is 0.5%, meaning the daily payments are 3,162 credits for a whole year. If you don't pay off any of your loan early, you'll have paid a disgusting 624,205 credits in interest. "Just sign here." The teller grins.`
+	`	"Lucky for you, the interest rates are great right now!" You take a glance at the paper and feel a sense of dread fall over you. The daily interest rate is 0.5%, meaning the daily payments are 3,162 credits for a whole year. If you don't pay off any of your loan early, you'll have paid a disgusting 624,205 credits in interest. "Just sign here." The teller grins.`
 	`	The interest is terrible, but there's nothing else you can do about it. You sign your name:`
 	name
-	`	After leaving the bank, you spend an hour waiting in line to apply for a pilot's license. When you finish going through the oddly easy process of applying for a license, you're left with 480,000 credits. You can't help but get the feeling that you're being played by the Syndicate once again in all this.`
+	`	After leaving the bank, you spend an hour waiting in line to apply for a pilot's license. The process is oddly simple, and by the time it's done, you're left with 480,000 credits. You can't shake the feeling that the Syndicate is playing you again.`
 	`	You return to the shipyard, this time with a credit chip in your hand to draw the attention of the salesman. "Welcome back! I hope we can find you the perfect model," he says. The shipyard is full of ships that you can't buy, but the salesman finds three models within your price range: an interceptor, a light freighter, and a transport ship. Which one you choose will determine your future...`
 
 

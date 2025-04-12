@@ -3746,8 +3746,8 @@ planet "New Austria"
 planet "New Boston"
 	attributes "dirt belt" farming textiles
 	landscape land/water2
-	description `New Boston is a completely unremarkable world. Most of the land here is wet and marshy, and the coastal regions are prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but a significant portion of farming land is devoted to growing fiber crops, which is then processed in the textile mills in the spaceport city.`
-	spaceport `New Boston's shabby spaceport is as about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, having sunk into the muddy soil since they were poured, and you have to be careful landing on them.`
+	description `New Boston is a completely unremarkable world. Most of its land is wet and marshy, with coastal regions prone to flooding. The planet's economy is largely agricultural; some of the farms here grow food for export to Earth and elsewhere, but most farmland is dedicated to fiber crops, destined for processing in the textile mills of the spaceport city.`
+	spaceport `New Boston's shabby spaceport is about as basic as a spaceport can be. Many of the concrete landing pads are tilted and uneven, sunken into the muddy soil over time, and you have to be careful landing on them.`
 	spaceport `	The market where ship captains buy and sell cargo is a large tent rather than a permanent building, but it is sturdy enough to keep off the rain. Loads are brought in and out by trucks and the occasional hovercraft. Here some enterprising local mechanics have set up not only a repair shop and outfitter, but also a shipyard with several small, refurbished ships for sale.`
 	spaceport `	A smaller tent has been set up beside the market. Inside are various pamphlets for Remembrance Day events occurring on New Boston.`
 		to display
