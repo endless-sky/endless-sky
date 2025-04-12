@@ -502,11 +502,17 @@ mission "Pookie, Part 5"
 				`	"Hey, I'm from the Dirt Belt!"`
 					to display
 						has "start: default"
+				`	"I would never in a million years, ma'am."`
+					to display
+						has "start: paradise"
 				`	"What do you mean?"`
 					goto explain
 				`	"I'm sorry?"`
 					goto sawwry
 			`	She tosses her head to the side. "Then I mean it twice as much!"`
+				goto explain
+			label paradise
+			`	She scoffs. "Flattery will get you nowhere!"`
 				goto explain
 			label sawwry
 			`	She hisses. "If you wanted to be sorry, then you should never have tried to trick me in the first place!"`
