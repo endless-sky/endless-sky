@@ -4581,7 +4581,7 @@ mission "Hroar's Haulers: Transit Edition"
 				decline
 			label job
 			`	The bartender nods, and jerks his head toward the back of the bar. "Hroar's office is the last booth in the back."`
-			`	You walk to the back of the saloon and find an middle-aged man with a light beard seated with his back against the wall, an opaque shot glass in his hand, and a bottle of whiskey on his otherwise empty table.`
+			`	You walk to the back of the saloon and find a middle-aged man with a light beard seated with his back against the wall, an opaque shot glass in his hand, and a bottle of whiskey on his otherwise empty table.`
 			`	"I heard you did some work with the Transport Union." He smiles broadly and gestures toward the empty seat in front of him.`
 			`	He pours himself a glass of whiskey from his resident bottle as you slide into the booth. "Just so you know, me and them don't see eye to eye. I won't hold it against you though.`
 			`	"Bygones being bygones and all, s'ppose you're here about the job posting." He lifts up his shot glass. "I used to have a 'speciality-courier' take care of unique jobs, and the like."`
@@ -5079,7 +5079,7 @@ mission "Hroar's Haulers 10"
 		has "Hroar's Haulers 9: done"
 	on offer
 		conversation
-			`Helheim's spaceport is crowded with numerous miners all trying to board one of the large space liners docked outside. The miners look dirty, tired, and excited.  Standing at the epicenter of the migration is tall, scarred Yngvar, talking with someone else.`
+			`Helheim's spaceport is crowded with numerous miners all trying to board one of the large space liners docked outside. The miners look dirty, tired, and excited. Standing at the epicenter of the migration is tall, scarred Yngvar, talking with someone else.`
 			choice
 				`	(Join Yngvar.)`
 					goto join
@@ -6496,7 +6496,7 @@ mission "Hroar's Haulers 14"
 				`	"Thanks, I have no more questions about her."`
 					goto hrodnydone
 			label niece
-			action 
+			action
 				set "niece"
 			`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
 				goto hrodnychat
@@ -6549,7 +6549,7 @@ mission "Hroar's Haulers 14b"
 					goto Hrodny
 					to display
 						not "hrodny"
-				` "What do you need me to do?"`
+				`	"What do you need me to do?"`
 			`	Yngvar nods toward the exit. "Head over to the Labor building and see how Solvi is getting on. We need those folks loaded up right quick. I gotta do a bit more talkin' here, but I'll see ya back on the <ship>."`
 			`	He turns from you and signals to the lurking representatives that they can approach him. A flurry of chatter about deadlines and goods trails after Yngvar.`
 			choice
@@ -6557,7 +6557,7 @@ mission "Hroar's Haulers 14b"
 					goto labor
 				`	(Go back to your ship instead.)`
 					goto backtoship
-				`	(Stay and listen to the Yngvar's conversations).`
+				`	(Stay and listen to the Yngvar's conversations.)`
 			`	An angry red-faced man rushes up to Yngvar. "By the dust, I swear you told me I had 1000 tons of space to fill on this haul."`
 			`	"Check your records, Swinton." Yngvar responds, "You only agreed to 500. You can't fudge the numbers just because you got lucky."`
 			`	"But what am I supposed to do? Do you know what storage costs me? You got all those ships, you telling me you can't find room for a few hundred extra tons of prime cargo. I'll pay a premium."`
@@ -6583,7 +6583,7 @@ mission "Hroar's Haulers 14b"
 			choice
 				`	"Aye. I understand. Sorry for the misunderstanding."`
 				`	"Sure. Whatever."`
-				`	(Glare silently at Yngvar).`
+				`	(Glare silently at Yngvar.)`
 					goto sureokay
 				`	"I can do what I want with my ship."`
 			`	Yngvar's scarred face scrunches up, and then he turns to look at the grinning Swinton. "You put cargo on this captain's ship, and Hroar's Haulers will never haul for you again."`
@@ -6692,7 +6692,7 @@ mission "Hroar's Haulers 14b"
 				`	"Thanks, I have no more questions about her."`
 					goto hrodnydone
 			label niece
-			action 
+			action
 				set "niece"
 			`	Yngvar laughs, "That's right, and she's every bit Hroar's kin. Smart as a whip, and hard as a stone. Give it a decade or two and she'll be the one calling the shots."`
 				goto hrodnychat
@@ -6917,7 +6917,7 @@ mission "Hroar's Haulers 15"
 
 			label newoldfriendscall
 			`	"Captain <last>!" 	An unfamiliar voice emanating from the assembled Haulers, "Please, join me."`
-			`	As you get nearer you realize the person calling you is none other than Captain Bolverka of the Iron Siren. You've seen her around but hadn't had a chance to talk to her yet. She smiles and waves you toward her table. `
+			`	As you get nearer you realize the person calling you is none other than Captain Bolverka of the Iron Siren. You've seen her around but hadn't had a chance to talk to her yet. She smiles and waves you toward her table.`
 				goto sitherefriend
 
 			label newoldfriends
@@ -7123,7 +7123,7 @@ mission "Hroar's Haulers 15"
 				`	"That there was an another group, the Hudulfolk, who were related to the Elf-Stones."`
 					goto hidden
 				`	"No. Nothing else."`
-			` She nods vigorously." Still, that is enough. Okay, next question; did they have any stones or talisman that had unusual properties?"`
+			`	She nods vigorously." Still, that is enough. Okay, next question; did they have any stones or talisman that had unusual properties?"`
 				goto questiontwo
 			
 			label trusted
@@ -7351,7 +7351,7 @@ mission "Hroar's Haulers Gunhilda"
 
 	on complete
 		conversation
-			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlike anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to precarious heights with a disconcerting amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disaster that keeps not occuring. Meanwhile the the towering denizens of this worldlet continue on their way, unaware of the looming danger all around them.`
+			`	The lush gardens of Forpelog, carefully husbanded within the city's dome, are unlike anything you've seen on a human world. Here, where gravity is less of a law and more of a suggestion, the plants seem both more fragile and more bold. Growing to precarious heights with a disconcerting amount of mass swaying on unstable stems. Your monkey brain keeps telling you that everything is on the verge of sudden and ruinous collapse, a disaster that keeps not occuring. Meanwhile the towering denizens of this worldlet continue on their way, unaware of the looming danger all around them.`
 			`	"It feels wrong. Dark." Runa whispers to you," You feel it too, don't you?"`
 			choice
 				`	"We're just not used to seeing cultivated plants that evolved on low gravity worlds is all."`
@@ -7430,7 +7430,7 @@ mission "Hroar's Haulers Gunhilda 2"
 					goto prettycool
 				`	"No. I am done with whatever this is. Find your own way there."`
 			`	Emotions wash over Runa's face. First surprise, than hurt, and finally stubborn anger.`
-			` 	"Do not let your royal dreams become tyrannical nightmares," She says tersely, before leaving you.`
+			`	"Do not let your royal dreams become tyrannical nightmares," She says tersely, before leaving you.`
 				decline
 			label prettycool
 			`	"Let us leave, then, before the blackness of this place stains your royal dreams."`
@@ -7438,7 +7438,7 @@ mission "Hroar's Haulers Gunhilda 2"
 
 			label skadeconversation
 			`	"Ah, yes." She looks down for a second. "I realize I haven't been great company." She gives you a smile. "I appreciate the effort though. With that awful dome behind us, with its rotten auras, I am beginning to feel the color again."`
-			`	Runa pulls up the map and scans it for a moment.  "We can't go to an active mine, but... here." She points to a location only a dozen kilometers away. "Looks like this one has been tapped out for some time. Shouldn't be anything there but hole."`
+			`	Runa pulls up the map and scans it for a moment. "We can't go to an active mine, but... here." She points to a location only a dozen kilometers away. "Looks like this one has been tapped out for some time. Shouldn't be anything there but hole."`
 			`	She leans over and inputs the coordinates. "Let's go seem some glorious dirt!"`
 			label letsgo
 			choice
@@ -7875,7 +7875,7 @@ mission "Hroar's Haulers Unferth 2"
 			
 			label doubleliar
 			`	"Niest time ye be seeing him, tell him that Goraid sez hello, an' that he shoid pey us a veesit. Bin tae lang."`
-			`	 Goraid pauses, and then nods to himself and says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly. "O, an' tell yer frein fae his gift wi be thankit."`
+			`	Goraid pauses, and then nods to himself and says, "Ah best be gaun noo. Cannae spend aw day staunding wi ye." He inclines his head slightly. "O, an' tell yer frein fae his gift wi be thankit."`
 				goto byedude
 
 			label inside
@@ -7895,7 +7895,7 @@ mission "Hroar's Haulers Unferth 2"
 					goto lightmosaic
 					to display
 						not "lightmos"
-				`	(Stick to the back of the room and wait for Solvi to finish).`
+				`	(Stick to the back of the room and wait for Solvi to finish.)`
 			`	He places the metallic item into the brass column and withdraws his hand. The opening snaps shut and the item is shunted upward joining the endless ship fragments above.`
 				goto youwaited
 			label darkmosaic
@@ -8419,7 +8419,7 @@ mission "Hroar's Haulers 18b"
 				clear "Yngspacer"
 			`	For the better part of an hour you stand quietly next to the venerable old man. After it becomes clear you're not going anywhere, an almost imperceptible calm washes over Yngvar. He seems somehow more at ease having you alongside him for his quiet, contemplative vigil.`
 			`	Together you watch the world ever so slightly change, as empty ships become full ones, and prepared cargo disappears into their hulls.`
-			` 	Finally, Yngvar turns to you and nods. "Looks like they are about ready, captain. How about ya take us back to Hroar?"`
+			`	Finally, Yngvar turns to you and nods. "Looks like they are about ready, captain. How about ya take us back to Hroar?"`
 				decline
 
 			label great
@@ -8440,7 +8440,7 @@ mission "Hroar's Haulers 18b"
 					goto generations
 					to display
 						has "generationship"
-				`	"Generation ship?"` 
+				`	"Generation ship?"`
 					goto generationship
 					to display
 						not "generationship"
@@ -8764,7 +8764,7 @@ mission "Hroar's Haulers 19b"
 
 			label nothingpaid
 			`	Yngvar puts a rough hand on your shoulder. "<last> might be a bit modest, but they did right by the whole haul. Bought Solvi's entire fleet's freedom, at no small expense.`
-			`	Hroar nods  solemnly. "Too many folks treat their coin like children, and their friends like coin. I had a feelin' ya might be the type who saw the real value of folks."`
+			`	Hroar nods solemnly. "Too many folks treat their coin like children, and their friends like coin. I had a feelin' ya might be the type who saw the real value of folks."`
 			`	He holds up a glass to you. "As for the financial blow you took, well, I sympathize, I do. Now, I can't make you whole, but with every red jacket 'tween here and Helheim getting a fresh paycheck, a collection has gone out and I do believe a dent's been made in the debt you're owed."`
 				goto nothingboughtfreedom
 
