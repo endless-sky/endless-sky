@@ -60,7 +60,7 @@ protected:
 	virtual bool Scroll(double dx, double dy) override;
 
 	void Invalidate();
-	void Validate();
+	void Validate(bool trailingBreak);
 
 
 private:
@@ -78,4 +78,5 @@ private:
 	bool hovering = false;
 
 	ScrollBar scrollBar;
+	bool scrollHeightIncludesTrailingBreak = false;
 };

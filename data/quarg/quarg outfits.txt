@@ -251,9 +251,10 @@ outfit "Peripheral Repair Hub"
 	thumbnail "outfit/quarg peripheral repair hub"
 	"mass" 25
 	"outfit space" -25
+	"fuel generation" 0.025
 	"hull repair rate" 1
 	"hull energy" .5
-	description "While Quarg shielding is not to be trifled with, their weaker ship hulls rely on automated repairs in more difficult battles. These systems help maintain a ship's hull in the unlikely event that their shields should fall."
+	description "The repair systems employed by the Quarg operate in ways that seem to defy reality, somehow gathering matter and injecting it into a ship's hull and fuel systems. This provides essential maintenance that benefits core aspects of spaceflight - durability, longevity, and most importantly, survivability."
 
 
 outfit "Central Repair Hub"
@@ -264,9 +265,10 @@ outfit "Central Repair Hub"
 	thumbnail "outfit/quarg central repair hub"
 	"mass" 55
 	"outfit space" -55
+	"fuel generation" 0.07
 	"hull repair rate" 2.5
 	"hull energy" 1.25
-	description "Though still far from weak compared to the technology of most other species, the hull repair systems employed by the Quarg are not as powerful as one might expect. Evidently they prefer to rely on their exceptionally powerful shield generators, and it isn't hard to see why this tactic has yet to fail them."
+	description "In a manner which is not easily discernible to humans, this system collects ambient matter in space and feeds it back to the ship from a large central hub of wires and tubes. The accumulated matter is then used to both regenerate the ship's hull and refill its fuel reserves."
 
 
 # Weapons
@@ -567,6 +569,6 @@ outfit "Phalanx System"
 	series "Fortifications"
 	index 91010
 	thumbnail "outfit/quarg countermeasures"
-	"capture defense" 24
+	"capture defense" 36
 	"unplunderable" 1
 	description "With an abundance of caution regarding the potential theft and misuse of their technology, Quarg ships are outfitted with special systems for repelling boarders in a manner that could be considered overkill. Because no one wants to be caught by the Quarg with stolen technology, these systems are pretty much worthless on the open market."

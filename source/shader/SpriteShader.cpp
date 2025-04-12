@@ -19,9 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Screen.h"
 #include "Shader.h"
 #include "../image/Sprite.h"
-
-#include <sstream>
-#include <vector>
+#include "../Swizzle.h"
 
 #ifdef ES_GLES
 // ES_GLES always uses the shader, not this, so use a dummy value to compile.
@@ -44,12 +42,11 @@ namespace {
 	GLint blurI;
 	GLint clipI;
 	GLint alphaI;
-	GLint swizzlerI;
+	GLint swizzleMatrixI;
+	GLint useSwizzleI;
 
 	GLuint vao;
 	GLuint vbo;
-
-	const int SWIZZLES = 29;
 }
 
 // Initialize the shaders.
@@ -65,9 +62,10 @@ void SpriteShader::Init()
 	blurI = shader->Uniform("blur");
 	clipI = shader->Uniform("clip");
 	alphaI = shader->Uniform("alpha");
-	swizzlerI = shader->Uniform("swizzler");
+	swizzleMatrixI = shader->Uniform("swizzleMatrix");
 	swizzleMaskI = shader->Uniform("swizzleMask");
 	useSwizzleMaskI = shader->Uniform("useSwizzleMask");
+	useSwizzleI = shader->Uniform("useSwizzle");
 
 	// Generate the vertex data for drawing sprites.
 	glGenVertexArrays(1, &vao);
@@ -95,7 +93,7 @@ void SpriteShader::Init()
 
 
 void SpriteShader::Draw(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame, const Point &unit)
+	float zoom, const Swizzle *swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return;
@@ -108,7 +106,7 @@ void SpriteShader::Draw(const Sprite *sprite, const Point &position,
 
 
 SpriteShader::Item SpriteShader::Prepare(const Sprite *sprite, const Point &position,
-	float zoom, int swizzle, float frame, const Point &unit)
+	float zoom, const Swizzle *swizzle, float frame, const Point &unit)
 {
 	if(!sprite)
 		return {};
@@ -150,12 +148,22 @@ void SpriteShader::Bind()
 
 void SpriteShader::Add(const Item &item, bool withBlur)
 {
+	if(item.swizzle)
+	{
+		glUniform1i(swizzleMaskI, 1);
+		// Don't mask full color swizzles that always apply to the whole ship sprite.
+		glUniform1i(useSwizzleMaskI, item.swizzle->OverrideMask() ? 0 : item.swizzleMask);
+
+		// Set the color swizzle.
+		glUniformMatrix4fv(swizzleMatrixI, 1, GL_FALSE, item.swizzle->MatrixPtr());
+		glUniform1i(useSwizzleI, !item.swizzle->IsIdentity());
+	}
+	else
+		glUniform1i(useSwizzleI, 0);
+
 	glUniform1i(texI, 0);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.texture);
 
-	glUniform1i(swizzleMaskI, 1);
-	// Don't mask full color swizzles that always apply to the whole ship sprite.
-	glUniform1i(useSwizzleMaskI, item.swizzle >= 27 ? 0 : item.swizzleMask);
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, item.swizzleMask);
 	glActiveTexture(GL_TEXTURE0);
@@ -170,11 +178,6 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	glUniform1f(clipI, item.clip);
 	glUniform1f(alphaI, item.alpha);
 
-	// Bounds check for the swizzle value:
-	int swizzle = (static_cast<size_t>(item.swizzle) >= SWIZZLES ? 0 : item.swizzle);
-	// Set the color swizzle.
-	glUniform1i(swizzlerI, swizzle);
-
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
@@ -183,7 +186,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 void SpriteShader::Unbind()
 {
 	// Reset the swizzle.
-	glUniform1i(swizzlerI, 0);
+	glUniform1i(useSwizzleI, 0);
 
 	glBindVertexArray(0);
 	glUseProgram(0);

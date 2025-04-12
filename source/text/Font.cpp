@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Font.h"
 
-#include "alignment.hpp"
+#include "Alignment.h"
 #include "../Color.h"
 #include "DisplayText.h"
 #include "../GameData.h"
@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
-#include "truncate.hpp"
+#include "Truncate.h"
 
 #include <algorithm>
 #include <cmath>
