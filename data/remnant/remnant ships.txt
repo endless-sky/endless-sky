@@ -379,7 +379,8 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
+		"D14-RN Shield Generator"
+		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -419,7 +420,8 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
+		"D14-RN Shield Generator"
+		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -455,7 +457,8 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
+		"D14-RN Shield Generator"
+		"D67-TM Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
