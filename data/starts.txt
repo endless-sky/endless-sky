@@ -105,7 +105,7 @@ conversation "deep intro"
 	`	As you scroll through, a synthesized voice says, "You are borrowing 580,000 credits to be repaid over the course of a year. Your daily interest rate is 0.2%, which means that your daily payments are 2,241 credits, and by the end of the year you will have paid 237,784 credits in interest. Please sign your name on the screen when you are ready."`
 	`	After carefully rereading every page of the loan agreement, you sign your name:`
 	name
-	`	Eager to get started, you rush out of the bank, hop on the metro, and head towards the shipyard. You can barely keep your face straight as the rest of the carriage wear blank expressions. After getting off, you consider throwing away your planetary transport pass, but decide against it.`
+	`	Eager to get started, you rush out of the bank, hop on the metro, and head towards the shipyard. You can barely keep a straight face as the rest of the carriage wear blank expressions. After getting off, you consider throwing away your planetary transport pass, but decide against it.`
 	`	You had seen videos of the shipyard in New Reykjavik, but visiting the site in person blows your wildest dreams out of the water. Throughout the gleaming-white facility, salespeople show of a variety of holographically-rendered vessels to sharply-dressed clients, while skyscraper-sized ships loom silently in the background. Although most of the ships are far outside of your price range, you spot a few that you'll be able to purchase. Which one you choose will determine your future...`
 
 
