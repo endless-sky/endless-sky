@@ -8498,7 +8498,9 @@ mission "Syndicate Business 6"
 		has "Syndicate Business 5.1 A 10m Expansion Update: offered"
 		has "event: syndicate business 10m investment done"
 		random < 50
-		credits > 300000000
+		or
+			credits > 300000000
+			"net worth" > 600000000
 	source
 		government "Syndicate"
 		attributes "core"
@@ -8696,7 +8698,7 @@ mission "Syndicate Business 7"
 		on encounter
 			conversation
 				`You receive a message from Howard almost immediately upon entering the system:`
-				`	"Alright, you're here. Get aboard the Quicksilver to upload the file, then make sure it doesn't leave the system in one piece, and finally meet back on <destination>. Remember, no loose ends here."`
+				`	"Alright, you're here. Get aboard the Quicksilver to upload the file, make sure it doesn't leave the system in one piece, and finally meet back on <destination>. Remember, no loose ends here."`
 				`		Howard Vendeur`
 				`		Investor Relations Manager, Megaparsec Incorporated`
 		on assist
@@ -8753,7 +8755,7 @@ mission "Syndicate Business 8"
 	destination "Hephaestus"
 	on offer
 		conversation
-			`You step out on the stone field surrounding Canyon's spaceport and quickly locate Howard's Shuttle in an open patch with a wide berth. Climbing aboard, you find Howard waiting with a measured nod.`
+			`You step out on the stone field surrounding Canyon's spaceport and quickly locate Howard's Shuttle in an open patch with a wide berth. Climbing aboard, you find Howard waiting, and he greets you with a measured nod.`
 			branch meancanyonopening
 				"syndicate business: mean to Howard" > 0
 			`	"Again, outstanding work, <first>", he says with a satisfied tone.`
