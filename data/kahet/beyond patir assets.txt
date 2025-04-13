@@ -349,7 +349,7 @@ ship "Asteroid Medium"
 			"frame rate" 1
 		"turn" 4816.3
 		"asteroid mount jd" 1
-		"asteroid mount am 2" 1
+		"asteroid mount small" 1
 		"asteroid mount 2" 1
 		weapon
 			"blast radius" 80
@@ -403,8 +403,7 @@ ship "Asteroid Young 1"
 			"frame rate" 1
 		"turn" 4019.1
 		"asteroid mount jd" 1
-		"asteroid mount am 2" 1
-		"asteroid mount small" 1
+		"asteroid mount small" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -457,8 +456,7 @@ ship "Asteroid Young 2"
 			"frame rate" 1
 		"turn" 4019.1
 		"asteroid mount jd" 1
-		"asteroid mount am 2" 1
-		"asteroid mount small" 1
+		"asteroid mount small" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -511,8 +509,7 @@ ship "Asteroid Young 3"
 			"frame rate" 1
 		"turn" 4019.1
 		"asteroid mount jd" 1
-		"asteroid mount am 2" 1
-		"asteroid mount small" 1
+		"asteroid mount small" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -565,8 +562,7 @@ ship "Asteroid Young 4"
 			"frame rate" 1
 		"turn" 4019.1
 		"asteroid mount jd" 1
-		"asteroid mount am 2" 1
-		"asteroid mount small" 1
+		"asteroid mount small" 2
 		weapon
 			"blast radius" 80
 			"shield damage" 800
@@ -624,7 +620,7 @@ outfit "Asteroid Anti-Missile 2"
 	"outfit space" -33
 	"weapon capacity" -33
 	"turret mounts" -1
-	"asteroid mount am 2" -1
+	"asteroid mount small" -1
 	weapon
 		"hardpoint sprite" "hardpoint/asteroid am circle"
 			"frame time" 30
