@@ -36,6 +36,9 @@ class TextArea;
 // introducing a mission, the buttons are instead "accept" and "decline". A
 // callback function can be given to receive the player's response.
 class Dialog : public Panel {
+private:
+	static const size_t DEFAULT_MAX_INPUT_LENGTH = 255;
+
 public:
 	// An OK / Cancel dialog where Cancel can be disabled. The okIsActive lets
 	// you select whether "OK" (true) or "Cancel" (false) are selected as the default option.
@@ -62,6 +65,12 @@ public:
 	template <class T>
 	Dialog(T *t, void (T::*fun)(const std::string &), const std::string &text, std::string initialValue = "",
 		Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
+
+	template <class T>
+	Dialog(T *t, void (T::*fun)(const std::string &),
+			size_t maxInputLength,
+			const std::string &text, std::string initialValue = "",
+			Truncate truncate = Truncate::NONE, bool allowsFastForward = false);
 
 	// This callback requests text input but with validation. The "ok" button is disabled
 	// if the validation callback returns false.
@@ -123,6 +132,7 @@ protected:
 	bool isOkDisabled = false;
 	bool allowsFastForward = false;
 	bool isWide = false;
+	size_t maxInputLength = DEFAULT_MAX_INPUT_LENGTH;
 
 	std::string input;
 
@@ -162,6 +172,20 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 	: stringFun(std::bind(fun, t, std::placeholders::_1)),
 	allowsFastForward(allowsFastForward),
 	input(initialValue)
+{
+	Init(text, truncate);
+}
+
+
+
+template <class T>
+Dialog::Dialog(T *t, void (T::*fun)(const std::string &),
+		size_t maxInputLength, const std::string &text,
+		std::string initialValue, Truncate truncate, bool allowsFastForward)
+		: stringFun(std::bind(fun, t, std::placeholders::_1)),
+		  allowsFastForward(allowsFastForward),
+		  maxInputLength(maxInputLength),
+		  input(initialValue)
 {
 	Init(text, truncate);
 }

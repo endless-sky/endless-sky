@@ -265,7 +265,7 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 {
 	auto it = KEY_MAP.find(key);
 	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if(stringFun && Clipboard::KeyDown(input, key, mod))
+	if(stringFun && Clipboard::KeyDown(input, key, mod, maxInputLength))
 	{
 		// Input handled by Clipboard.
 	}
@@ -277,12 +277,12 @@ bool Dialog::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool i
 		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 			c += 'A' - 'a';
 
-		if(stringFun)
+		if(stringFun && input.size() < maxInputLength)
 			input += c;
 		// Integer input should not allow leading zeros.
-		else if(intFun && c == '0' && !input.empty())
+		else if(intFun && c == '0' && !input.empty() && input.size() < maxInputLength)
 			input += c;
-		else if(intFun && c >= '1' && c <= '9')
+		else if(intFun && c >= '1' && c <= '9' && input.size() < maxInputLength)
 			input += c;
 
 		if(validateFun)

@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cstdlib>
+#include <limits>
 #include <stdexcept>
 #include <utility>
 
@@ -299,7 +300,11 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 		nameToConfirm.clear();
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
+		// We will prepend pilot name + '~' and append '.txt' to the user input to create
+		// the file name. That leads to the maximum input length below.
+		const size_t maxLength = NAME_MAX - 5 - selectedPilot.size();
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
+			maxLength,
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
@@ -575,8 +580,10 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
-			+ "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
+		const size_t maxLength = NAME_MAX - 5 - selectedPilot.size();
+		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, maxLength,
+			"Warning: \"" + suffix + "\" is being used for an existing snapshot.\nOverwrite it?",
+			suffix));
 	}
 	else
 		WriteSnapshot(from, to);
