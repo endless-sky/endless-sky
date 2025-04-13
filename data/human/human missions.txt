@@ -6958,64 +6958,6 @@ mission "Hogshead's Dilemma II"
 				decline
 
 
-
-mission "Lost Dog"
-	name "Lost dog to <planet>"
-	description "Bring Caesar, a dog you found on <origin>, to their owners on <destination>."
-	source "Calda"
-	destination "Glory"
-	to offer
-		random < 15
-	on offer
-		conversation
-			`Your walk from the <ship> takes you out of <origin>'s bustling spaceport and into the overtly welcoming and carefully inoffensive streets of the spaceport town. Each path seems to be saturated with tourists and purpose-built to whisk travelers further away from their ships and deeper into the preternatural radiance of this Paradise World. The hand-crafted beauty is inescapable, a never-ending sequence of breathtaking views.`
-			`	As you walk, you eventually come across a perfectly manicured garden park named "Parc Manifold." You approach the gates to discover a ticket office, with signs advertising a free entry promotion this week only, crossing out the 3,400 credit regular admission fee.`
-			choice
-				`	(Go to the park.)`
-					goto park
-				`	(Head back to your ship.)`
-
-			`	You have more important things to do than wander around an expensive terraformed garden.`
-				decline
-
-			label park
-			`	The park has been meticulously sculpted so that no matter where you stand, it appears as though you are in the center of a lush naturalist painting. Colorful, comforting flora bleed away from you at all angles, and adorable yet inaccessible fauna seem to hug the very periphery of your every step.`
-			`	The air is clear and crisp, and even the crunch of leaves and thud of the earth beneath your feet seems somehow delicious and satisfying. Finally, the sun begins to set and you remember from the signs that the park closes soon.`
-			`	As you approach the exit to the park a small dog pads over to you and looks at you with mournful eyes. It seems to be alone, with no owner anywhere in sight.`
-			choice
-				`	(Call to the dog.)`
-					goto doglover
-				`	(Ignore the dog.)`
-
-			`	You ignore the dog and eventually it sulks away to interact with another patron of the park. As you return to your ship it begins to get dark, and you feel your day of quiet contemplation come to a close.`
-				decline
-
-			label doglover
-			`	"Come here," you call to the dog, which looks to be a poodle mix, and it obediently does as you command. You see that the dog is a male and check his collar:`
-			``
-			`	"Caesar Augustus - Property of the Mitchells"`
-			`	3 Mitchell Drive`
-			`	Palmyra City, Avalonia District,`
-			`	Glory, Wazn System`
-			``
-			`	"That's odd," you say to Caesar. "How did you get lost on the wrong planet, huh boy?"`
-			choice
-				`	(Take Caesar to his owners on Glory.)`
-					goto takehim
-				`	(Leave Caesar here.)`
-
-			action
-				event "lost dog: homeward bound" 30 60
-			`	Perhaps his owners are on vacation and will be back looking for him any minute. Although it's getting dark and no one seems to be around, you decide the best course of action is to leave Caesar where you found him.`
-			`	As you turn away, Caesar begins to whine, but he soon quiets down when you don't come back to pick him up. Looking back, you notice him slinking off into the shadow of a perfectly manicured shrub.`
-				decline
-
-			label takehim
-			`	"Well, come on boy," you say. "Let's go."`
-			`	Caesar eagerly follows you back to your ship. He seems greatly relieved to be with you, and not left all alone at the park.`
-			`	Once back on your ship, you make sure he's fed, watered, and settled in for his interstellar journey.`
-				accept
-
 	on complete
 		payment 1000
 		conversation
