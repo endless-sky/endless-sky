@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "OutfitterPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -35,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -178,7 +178,10 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 		if(isLicense)
 			minCount = maxCount = player.HasLicense(LicenseRoot(name));
 		else if(mapSize)
-			minCount = maxCount = player.HasMapped(mapSize);
+		{
+			bool mapMinables = outfit->Get("map minables");
+			minCount = maxCount = player.HasMapped(mapSize, mapMinables);
+		}
 		else
 		{
 			highlightDifferences = true;
@@ -339,7 +342,8 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 
 	// Check special unique outfits, if you already have them.
 	int mapSize = selectedOutfit->Get("map");
-	if(mapSize > 0 && player.HasMapped(mapSize))
+	bool mapMinables = selectedOutfit->Get("map minables");
+	if(mapSize > 0 && player.HasMapped(mapSize, mapMinables))
 		return "You have already mapped all the systems shown by this map, "
 			"so there is no reason to buy another.";
 
@@ -523,7 +527,8 @@ void OutfitterPanel::Buy(bool onlyOwned)
 	int mapSize = selectedOutfit->Get("map");
 	if(mapSize)
 	{
-		player.Map(mapSize);
+		bool mapMinables = selectedOutfit->Get("map minables");
+		player.Map(mapSize, mapMinables);
 		player.Accounts().AddCredits(-selectedOutfit->Cost());
 		return;
 	}

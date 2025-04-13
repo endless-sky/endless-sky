@@ -263,7 +263,7 @@ outfit "Ultracapacitor Cell"
 	"outfit space" -3
 	"energy capacity" 1500
 	"ion protection" -0.01
-	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together, flexing as charge builds up. While not the most efficient in their use of volumetric outfit space, this capacitor cell is extraordinarily energy dense for its mass, a legacy design choice from the days of sublight interstellar travel when every gram counted."c
+	"description" "The internal structure of this deceptively light capacitor cell resembles a fractal of molecule-thin graphene sheets interlocked together, flexing as charge builds up. While not the most efficient in their use of volumetric outfit space, this capacitor cell is extraordinarily energy dense for its mass, a legacy design choice from the days of sublight interstellar travel when every gram counted."
 	description "	Unfortunately, the internal structure of the capacitor is quite delicate, and is prone to potential discharge when exposed to external currents and ionization. Thankfully, resilient grounding and safety interlocks can prevent this discharge from becoming catastrophic."
 	
 	
@@ -538,7 +538,6 @@ outfit "R-720 RCS Thrusters"
 	description "This large set of 'teakettle' style reaction control thrusters can allow even the largest of Avgi starships to maneuver with ease, or even reverse course without needing to fully turn around. They also can be used to reject considerable amounts of waste heat by expelling superheated water vapor, boosted by an electromagnetic accelerator."
 
 
-# Flare sprite temporarily scaled down due to visual impairment concerns.
 outfit `Z-3600 "Beam" Amat Torch`
 	category "Engines"
 	series "Engines"
@@ -554,7 +553,6 @@ outfit `Z-3600 "Beam" Amat Torch`
 	"thrusting fuel" 0.3
 	"drag reduction" 9
 	"flare sprite" "effect/avgi flare/antimatter"
-		"scale" 0.25
 		"frame rate" 15
 	"flare sound" "fusion torch"
 	"turn" 6000
