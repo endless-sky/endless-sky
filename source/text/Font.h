@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../opengl.h"
 
 #include <filesystem>
+#include <functional>
 #include <string>
 
 class Color;
@@ -72,6 +73,20 @@ private:
 	std::string TruncateFront(const std::string &str, int &width) const;
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 
+	/**
+	 *  Private common implementation for:
+	 *  	@ref Font::TruncateBack, @ref Font::TruncateFront, @ref Font::TruncateMiddle
+	 *  @param str the string to fit in a given layout space
+	 *  @param width (input/output) the available layout width, returns actual truncated string width
+	 *  @param getResultString a lambda taking the original string and a desired character count
+	 *  		(not including the ellipsis), returning the truncation result
+	 *  		(differentiating the Back/Middle/Front functions)
+	 *  @return A truncated string using ellipsis replacing parts of the original that best-fits in the original width
+	 *  		(if the input string already fits, it's returned unchanged)
+	 */
+	std::string TruncateEndsOrMiddle(
+		const std::string &str, int &width,
+		std::function<std::string(const std::string&, int)> getResultString) const;
 
 private:
 	const Shader *shader;
