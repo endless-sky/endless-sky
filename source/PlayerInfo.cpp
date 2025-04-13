@@ -3479,7 +3479,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship ? flagship->FuelLevel() : 0;
 	});
 
-	auto &&fleetLocalBaseAttributeProvider = conditions.GetProviderNamed("ship base attribute: ");
+	auto &&fleetLocalBaseAttributeProvider = conditions.GetProviderPrefixed("ship base attribute: ");
 	auto fleetLocalBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
 		string attribute = name.substr(strlen("ship base attribute: "));
@@ -3499,7 +3499,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	fleetLocalBaseAttributeProvider.SetGetFunction(fleetLocalBaseAttributeFun);
 
-	auto &&fleetAllBaseAttributeProvider = conditions.GetProviderNamed("ship base attribute (all): ");
+	auto &&fleetAllBaseAttributeProvider = conditions.GetProviderPrefixed("ship base attribute (all): ");
 	auto fleetAllBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
 		string attribute = name.substr(strlen("ship base attribute (all): "));
@@ -3514,7 +3514,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	fleetAllBaseAttributeProvider.SetGetFunction(fleetAllBaseAttributeFun);
 
-	auto &&fleetLocalAttributeProvider = conditions.GetProviderNamed("ship attribute: ");
+	auto &&fleetLocalAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
 	auto fleetLocalAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
 		string attribute = name.substr(strlen("ship attribute: "));
@@ -3534,7 +3534,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	fleetLocalAttributeProvider.SetGetFunction(fleetLocalAttributeFun);
 
-	auto &&fleetAllAttributeProvider = conditions.GetProviderNamed("ship attribute (all): ");
+	auto &&fleetAllAttributeProvider = conditions.GetProviderPrefixed("ship attribute (all): ");
 	auto fleetAllAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
 		string attribute = name.substr(strlen("ship attribute (all): "));
