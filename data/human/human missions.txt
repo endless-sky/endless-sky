@@ -8740,7 +8740,7 @@ mission "Syndicate Business 7"
 			`	"Excellent work, Captain. My Shuttle's waiting just outside the spaceport - please meet me there immediately. I appreciate your swift action on this.`
 				goto restofcanyonopening
 			label meancanyonopening
-			`	"Good work. My Shuttle is parked just outside the spaceport - meet me there immediately so we can proceed without further delay. No time to waste.`
+			`	"Good work. My Shuttle is parked just outside the spaceport - meet me there immediately so we can proceed without further delay. No time to waste."`
 			label restofcanyonopening
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
@@ -8808,7 +8808,7 @@ mission "Syndicate Business 8"
 	on complete
 		conversation
 			`Your ship arrives amidst the sprawling metropolis of the Syndicate. You lose sight of Howard's Shuttle as you land your <model>, but nevertheless get a parting message from him:`
-			`	"Captain <last>, I'll be in touch in a few days for the investment once some schmoozing has secured my promotion. Stay sharp.`
+			`	"Captain <last>, I'll be in touch in a few days for the investment once some schmoozing has secured my promotion. Stay sharp."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			action
@@ -8852,7 +8852,7 @@ mission "Syndicate Business 9"
 			label rude
 			`	You immediately receive a response:`
 			`	"<first>,`
-			`	You tihnk I care what you care abuot? Get here. Now.`
+			`	"You tihnk I care what you care abuot? Get here. Now."`
 			`		Howard Vendeur`
 			`		Director of Investor Relations & External Projects, Megaparsec Incorporated`
 			`	Howard must be seething to miss typos.`
