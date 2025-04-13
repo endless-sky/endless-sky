@@ -41,8 +41,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <algorithm>
+#include <cstdio>
 #include <cstdlib>
-#include <limits>
 #include <stdexcept>
 #include <utility>
 
@@ -302,7 +302,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		filesystem::path lastSave = Files::Saves() / it->second.front().first;
 		// We will prepend pilot name + '~' and append '.txt' to the user input to create
 		// the file name. That leads to the maximum input length below.
-		const size_t maxLength = NAME_MAX - 5 - selectedPilot.size();
+		const size_t maxLength = FILENAME_MAX - 5 - selectedPilot.size();
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
 			maxLength,
 			"Enter a name for this snapshot, or use the most recent save's date:",
@@ -580,7 +580,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
-		const size_t maxLength = NAME_MAX - 5 - selectedPilot.size();
+		const size_t maxLength = FILENAME_MAX - 5 - selectedPilot.size();
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, maxLength,
 			"Warning: \"" + suffix + "\" is being used for an existing snapshot.\nOverwrite it?",
 			suffix));

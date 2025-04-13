@@ -180,12 +180,12 @@ Dialog::Dialog(T *t, void (T::*fun)(const std::string &), const std::string &tex
 
 template <class T>
 Dialog::Dialog(T *t, void (T::*fun)(const std::string &),
-		size_t maxInputLength, const std::string &text,
-		std::string initialValue, Truncate truncate, bool allowsFastForward)
-		: stringFun(std::bind(fun, t, std::placeholders::_1)),
-		  allowsFastForward(allowsFastForward),
-		  maxInputLength(maxInputLength),
-		  input(initialValue)
+	size_t maxInputLength, const std::string &text,
+	std::string initialValue, Truncate truncate, bool allowsFastForward)
+	: stringFun(std::bind(fun, t, std::placeholders::_1)),
+	allowsFastForward(allowsFastForward),
+	maxInputLength(maxInputLength),
+	input(initialValue)
 {
 	Init(text, truncate);
 }
