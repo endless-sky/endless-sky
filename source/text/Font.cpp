@@ -448,44 +448,32 @@ string Font::TruncateBack(const string &str, int &width) const
 		return str;
 	}
 
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
+	int workingChars = 0;
+	int workingWidth = 0;
 
 	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
+
+	int low = 0, high = str.size() - 1;
+	while(low <= high)
 	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
-		int nextWidth = WidthRawString(str.substr(0, nextChars).c_str(), '.');
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		int nextChars = (low + high) / 2;
+		int nextWidth = WidthRawString(str.substr(0, nextChars).c_str());
+		if(nextWidth <= width)
 		{
-			if(prevWorks)
+			if(nextChars > workingChars)
 			{
-				width = prevWidth + widthEllipses;
-				return str.substr(0, prevChars) + "...";
+				workingChars = nextChars;
+				workingWidth = nextWidth;
 			}
-			else
-			{
-				width = nextWidth + widthEllipses;
-				return str.substr(0, nextChars) + "...";
-			}
+			low = nextChars + (nextChars == low ? 1 : 0);
 		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
+		else
+		{
+			high = nextChars - 1;
+		}
 	}
-	width = firstWidth;
-	return str;
+	width = workingWidth + widthEllipses;
+	return str.substr(0, workingChars) + "...";
 }
 
 
@@ -499,44 +487,32 @@ string Font::TruncateFront(const string &str, int &width) const
 		return str;
 	}
 
-	int prevChars = str.size();
-	int prevWidth = firstWidth;
+	int workingChars = 0;
+	int workingWidth = 0;
 
 	width -= widthEllipses;
-	// As a safety against infinite loops (even though they won't be possible if
-	// this implementation is correct) limit the number of loops to the number
-	// of characters in the string.
-	for(size_t i = 0; i < str.length(); ++i)
+
+	int low = 0, high = str.size() - 1;
+	while(low <= high)
 	{
-		// Loop until the previous width we tried was too long and this one is
-		// too short, or vice versa. Each time, the next string length we try is
-		// interpolated from the previous width.
-		int nextChars = round(static_cast<double>(prevChars * width) / prevWidth);
-		bool isSame = (nextChars == prevChars);
-		bool prevWorks = (prevWidth <= width);
-		nextChars += (prevWorks ? isSame : -isSame);
-
+		int nextChars = (low + high) / 2; // Think "how many chars to take from the end"
 		int nextWidth = WidthRawString(str.substr(str.size() - nextChars).c_str());
-		bool nextWorks = (nextWidth <= width);
-		if(prevWorks != nextWorks && abs(nextChars - prevChars) == 1)
+		if(nextWidth <= width)
 		{
-			if(prevWorks)
+			if(nextChars > workingChars)
 			{
-				width = prevWidth + widthEllipses;
-				return "..." + str.substr(str.size() - prevChars);
+				workingChars = nextChars;
+				workingWidth = nextWidth;
 			}
-			else
-			{
-				width = nextWidth + widthEllipses;
-				return "..." + str.substr(str.size() - nextChars);
-			}
+			low = nextChars + (nextChars == low ? 1 : 0);
 		}
-
-		prevChars = nextChars;
-		prevWidth = nextWidth;
+		else
+		{
+			high = nextChars - 1;
+		}
 	}
-	width = firstWidth;
-	return str;
+	width = workingWidth + widthEllipses;
+	return "..." + str.substr(str.size() - workingChars);
 }
 
 
