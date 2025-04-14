@@ -475,7 +475,7 @@ mission "Successors: Gas Station 1"
 		has "Successors: Gas Station 2 House Seineq: done"
 	on offer
 		conversation
-			`As you push deeper into the dense atmosphere of the gas giant, your ship's proximity alarms suddenly flare to life. Something massive looms ahead, hidden within the churning mists. Then, emerging from the storm like a ghost, you see it-a station, battered but unyielding, standing defiant against the relentless fury of the gas planet.`	
+			`As you push deeper into the dense atmosphere of the gas giant, your ship's proximity alarms suddenly flare to life. Something massive looms ahead, hidden within the churning mists. Then, emerging from the storm like a ghost, you see it-a station, battered but unyielding, standing defiant against the relentless fury of the gas planet.`
 			`	When you edge closer to the station, it becomes clear that the spaceport gate isn't going to open for you. The station is transmitting an automated message, likely a request for identification. Without the proper credentials, entry seems impossible. You could try forcing your way in, but in the crushing depths of the gas giant's atmosphere, any damage might destabilize it, leading to certain destruction.`
 				to display
 					not "known to the successors"
@@ -639,11 +639,11 @@ mission "Successors: Gas Station 2 Deadend House Sioeora"
 					defer
 				`	(Yes.)`
 			`	You make your way to the archives, where you hope to find Sieasej, the scholar who once helped you communicate with the Successors.`
-			`	"I found a locked station hidden in the atmosphere of Avasaa-Aa-Tej," you say. "Do you know anything about it?"`  
-			`	Sieasej's skin shifts to a darker, more contemplative hue. "Avasaa-Aa-Tej... 'Tis a name that stirs old memories. A place of industry, once, but now lost to the storms. What dost thou seek there, Captain?"`  
-			`	"I need access codes to enter the station. Do you know where I might find them?"`  
-			`	Sieasej hums thoughtfully, their skin flickering with patterns of uncertainty. "The station thou speak'st of lies under the dominion of House Seineq, and 'tis they who hold the keys to its secrets. Seek thy answers there, Captain, for I can tell thee no more."`  
-				decline			
+			`	"I found a locked station hidden in the atmosphere of Avasaa-Aa-Tej," you say. "Do you know anything about it?"` 
+			`	Sieasej's skin shifts to a darker, more contemplative hue. "Avasaa-Aa-Tej... 'Tis a name that stirs old memories. A place of industry, once, but now lost to the storms. What dost thou seek there, Captain?"` 
+			`	"I need access codes to enter the station. Do you know where I might find them?"` 
+			`	Sieasej hums thoughtfully, their skin flickering with patterns of uncertainty. "The station thou speak'st of lies under the dominion of House Seineq, and 'tis they who hold the keys to its secrets. Seek thy answers there, Captain, for I can tell thee no more."` 
+				decline
 			
 mission "Successors: Gas Station 2 Deadend House Kaatrij"
 	minor
@@ -708,9 +708,9 @@ mission "Successors: Gas Station 2 House Seineq"
 			label alreadyasked
 			`You try once more to press a scion of House Seineq about the station at Avasaa-Aa-Tej, but they remain impassive.`
 			`	"A guest thou art, and a guest thou shalt remain. 'Tis not within our station to speak more of these matters."`
-				defer	
+				defer
 
-			label newquestion	
+			label newquestion
 			choice
 				`	(No.)`
 					defer
@@ -781,7 +781,7 @@ mission "Successors: Gas Station 2 House Seineq"
 			label fate
 			action
 				set "Successors: fate"
-			`	"'Twas abandoned in the wake of the great collapse, like much of our old domains. But it endured, locked in the shroud of its birth, its seals unbroken." They exhale, a slow and deliberate sigh. "Many Houses would see it remain as such… doth fear the ripples its recovery may bring."`	
+			`	"'Twas abandoned in the wake of the great collapse, like much of our old domains. But it endured, locked in the shroud of its birth, its seals unbroken." They exhale, a slow and deliberate sigh. "Many Houses would see it remain as such.. doth fear the ripples its recovery may bring."`
 				goto morechoices
 				
 			label tryagain
@@ -812,11 +812,11 @@ mission "Successors: Gas Station 3"
 		has "Successors: Gas Station 2 House Seineq: done"
 	on offer
 		log "People" "Taaquvaleq" "Taaquvaleq is an artisan of engines, who describes themself as a 'weaver of motion.' They are the inventor of the Quick Drive Prototype."
-		conversation	
+		conversation
 			`	As you step onto the landing pad, a Successor in deep-green engineering robes approaches, chromatophores pulsing pink; a sign of restrained excitement.`
 			`	"Hail, traveler. I am Taaquvaleq, artisan of engines, weaver of motion."`
-			`	They tilt their head slightly, studying you. "Our kin have have long sought mastery over the tides of the void. In ages past, our Predecessors wielded powers now lost, bending the great weave to their will. We… glimpse only fragments of such art."`
-			`	Their colors shift-pride and uncertainty interwoven. "Yet we have wrought something new. A device that may move as none before it. But to test it… that is another matter entirely."`
+			`	They tilt their head slightly, studying you. "Our kin have have long sought mastery over the tides of the void. In ages past, our Predecessors wielded powers now lost, bending the great weave to their will. We.. glimpse only fragments of such art."`
+			`	Their colors shift-pride and uncertainty interwoven. "Yet we have wrought something new. A device that may move as none before it. But to test it.. that is another matter entirely."`
 			choice
 				`	"What sort of device?"`
 					goto explain
@@ -826,21 +826,21 @@ mission "Successors: Gas Station 3"
 					decline
 			label explain
 			`	"It is a new drive, meant not to step through the void, but to hurl oneself into it unburdened by stillness. Unlike our lesser designs, it does not demand stillness before the leap."`
-			`	They hesitate, chromatophores dimming momentarily. "Yet, there are flaws. The flow of energy within is… erratic. Its grasp upon the unseen currents is incomplete. Thou art no stranger to the void's pathing-perhaps thy hands may guide its course where ours have failed."`
+			`	They hesitate, chromatophores dimming momentarily. "Yet, there are flaws. The flow of energy within is.. erratic. Its grasp upon the unseen currents is incomplete. Thou art no stranger to the void's pathing-perhaps thy hands may guide its course where ours have failed."`
 			choice
 				`	"What do you need me to do?"`
 					goto task
 				`	"I'm not risking my ship for an experiment."`
 					decline
 			label convince
-			`	Taaquvaleq's chromatophores ripple in a slow, deliberate greyish wave. "We do not ask lightly. But thou dost wander freely across the great dark. What might a swifter path be worth to thee?"`
+			`	Taaquvaleq's chromatophores ripple in a slow, deliberate grayish wave. "We do not ask lightly. But thou dost wander freely across the great dark. What might a swifter path be worth to thee?"`
 			choice
 				`	"Fine, I'll do it."`
 					goto task
 				`	Sorry, but you should find someone else."`
 					decline
 			label task
-			`	"Take this drive and set it within thy vessel. Then, venture to the system of Myruet-Kvelq, where the storms of hyperspace rage most fiercely. If the drive holds, then we shall have achieved a feat most rare. If it fails…" `
+			`	"Take this drive and set it within thy vessel. Then, venture to the system of Myruet-Kvelq, where the storms of hyperspace rage most fiercely. If the drive holds, then we shall have achieved a feat most rare. If it fails.." `
 			`	Taaquvaleq pauses, their chromatophores flickering with tension. "Then thou must learn why, and return with the knowing."`
 				accept
 	on accept
@@ -862,11 +862,11 @@ mission "Successors: Gas Station 3"
 			label return
 			`	Disengaging the drive, you retreat to normal space and prepare to return to House Seineq. The drive is flawed. Taaquvaleq will want the data to learn more.`
 			label report
-	on complete	
+	on complete
 		outfit "Prototype Quick Drive" -1
 		log "Tested House Seineq's experimental Quick Drive. Results indicate instability caused by high energy usage."
 		conversation
-			`	Taaquvaleq watches intently as you relay the results. "Hmm. The instability lingers, and the fuel draw… excessive. The weave of space does not yet heed our call as it once did in the age of our Predecessors."`
+			`	Taaquvaleq watches intently as you relay the results. "Hmm. The instability lingers, and the fuel draw.. excessive. The weave of space does not yet heed our call as it once did in the age of our Predecessors."`
 			`	They tilt their head slightly, considering. "Perhaps our failing is not in the craft, but in the materials. Our Predecessors drew power from sources we no longer wield. If such remnants still linger, they may grant us clarity." Their gaze fixes upon you once more. "But there is no place such relics may yet be found..."`
 			`	"Return to the spaceport when the knowing is made whole, and the echoes of the logs have stilled."`
 			
@@ -886,9 +886,9 @@ mission "Successors: Gas Station 4"
 			`Our Predecessors used special isotopes not as fuel, but as catalysts - their molecular lattice absorbing hyperspace resonance, allowing their Drives to ‘breathe' without tearing itself apart. Our prototype lacks this... refinement."`
 			`"These isotopes that once served our Predecessors' Drives - those may be the key to perfecting our own design." A ripple of deep blue, signaling sorrow, courses over their skin. "Yet these are lost to the storms of Avasaa-Aa-Tej."`
 			choice
-				`	(Tell Taaquvaleq about the refinery you discovered in the atmosphere of Avasaa-Aa-Tej owned by House Seineq.)`	
+				`	(Tell Taaquvaleq about the refinery you discovered in the atmosphere of Avasaa-Aa-Tej owned by House Seineq.)`
 			`You recount your journey through the storm of Avasaa-Aa-Tej, how within the swirling haze, a locked station endured, bearing the claim of House Seineq. At the mention, Taaquvaleq's chromatophores flicker-first amber, then an uneasy shade of blue.`
-			`"Avasaa-Aa-Tej? That place holds naught but ruin and shadow. Yet… thou say'st a refinery remains?" They fall silent, contemplation washing over them like a slow tide.`
+			`"Avasaa-Aa-Tej? That place holds naught but ruin and shadow. Yet.. thou say'st a refinery remains?" They fall silent, contemplation washing over them like a slow tide.`
 			`Finally, they exhale. "If what thou claim'st is true, then that which was lost may yet be reclaimed. The refinery that lingers there, sealed and forgotten, may still hold remnants of its old yield. If thou would'st recover these, we may yet tame the wild heart of our device."`
 			choice
 				`	"Then let us reclaim it."`
@@ -945,7 +945,7 @@ mission "Successors: Gas Station 5"
 			`	Through the distortion, the station finally emerges-a monolithic structure, its metal frame battered by centuries of relentless winds yet standing defiantly against the storm's fury. The automated transmission begins again, repeating the same cryptic identification request you first encountered.`
 			`	The Seineq Guard steps forward, their voice calm but firm. "Transmit the codes. Let us see if time hath eroded their meaning."`
 			`	Taaquvaleq fidgets slightly, their chromatophores pulsing a nervous green. "If these do not work, I fear we may need a... less elegant solution."`
-			`With a quick input, you send the access codes provided by House Seineq. For a long, tense moment, nothing happens. Then, with a deep groan of ancient machinery, the station stirs. Metal locks disengage with a heavy clunk, and an exterior platform extends from the side of the structure, illuminated by flickering red emergency lights. A docking corridor hisses open, revealing a passageway into the refinery's depths.`			
+			`With a quick input, you send the access codes provided by House Seineq. For a long, tense moment, nothing happens. Then, with a deep groan of ancient machinery, the station stirs. Metal locks disengage with a heavy clunk, and an exterior platform extends from the side of the structure, illuminated by flickering red emergency lights. A docking corridor hisses open, revealing a passageway into the refinery's depths.`
 			`	Stepping inside, the air is thick, stale, and laced with the scent of industrial decay. The walls are covered in layers of frost where life support systems have long since faltered. Dim emergency lighting provides just enough illumination to reveal the vast corridors-hallways built for purposes long forgotten, their surfaces worn by time.`
 			`	As you explore, you find evidence of ancient machinery, massive processing units still wired into the refinery's core. But they are dead. Silent. Whatever fueled this place has long since run dry.`
 			`	Taaquvaleq moves between the consoles, running a hand over the corroded interfaces. "A relic," they murmur, their chromatophores shifting into thoughtful blues. "It breathes no more, yet... it remembers.`
@@ -1011,15 +1011,15 @@ mission "Successors: Gas Station 7"
 	to offer
 		has "Successors: Gas Station 6: done"
 	npc
-			government "Unknown House"
-			personality nemesis staying
-			fleet
-				names "successor"
-				variant
-					"Aaulqra" 3
-					"Veusade" 2
-					"Seiitej" 2
-			system "Myruet-Kvelq"
+		government "Unknown House"
+		personality nemesis staying
+		fleet
+			names "successor"
+			variant
+				"Aaulqra" 3
+				"Veusade" 2
+				"Seiitej" 2
+		system "Myruet-Kvelq"
 	on offer
 		conversation
 			`	Taaquvaleq greets you with a steady gaze, their chromatophores a deep, confident violet.`
@@ -1074,10 +1074,9 @@ mission "Successors: Gas Station 7"
 			label prepare
 			`	The moment you shift your course, the enemy ships accelerate - there is no doubt now. They are hunting you.`
 			label fight
-					
-	on complete	
+	on complete
 		conversation
-			`	Taaquvaleq awaits as you return, their chromatophores dark with intrigue. "Thou didst return… yet not unscraped, I see."`
+			`	Taaquvaleq awaits as you return, their chromatophores dark with intrigue. "Thou didst return.. yet not unscraped, I see."`
 			`	You relay the attack. At the mention of the enemy's warning, their gaze sharpens.`
 			`	"Those who fear the past oft carry its sins. The Quick Drive is thine - the data is all I sought. But know this: if they move against thee once, they may do so again."`
 			choice
@@ -1163,7 +1162,7 @@ mission "Successors: Gas Station 8"
 			`Zaathiq retracts the quill with a disappointed sigh. "Then thou art truly lost." They turn toward the shattered tablets, their voice barely audible. "Guards, see our... guest to their ship. Let history record we tried."`
 					goto end
 			label drive
-			`The moment your fingers brush the quill, its casing fractures to reveal pulsating Predecessor circuitry. Zaathiq watches with grim satisfaction. "Go. And when the reckoning comes, remember - House Aqrabe warned thee."`	
+			`The moment your fingers brush the quill, its casing fractures to reveal pulsating Predecessor circuitry. Zaathiq watches with grim satisfaction. "Go. And when the reckoning comes, remember - House Aqrabe warned thee."`
 			action
 				outfit "Unlocked Quick Drive" 1
 				outfit "Quick Drive" -1
@@ -1192,8 +1191,8 @@ mission "Successors: Gas Station 9"
 			label taaquvaleq
 			`The Scion's posture stiffens. "Gone," they reply after a pause. "Vanished from this place three nights past. No word. No trace. Not even a record of departure."`
 			action
-				set "Successors: taaquvaleq"	
-			`They glance toward the darkened workshop. "We gave them freedom. They returned only silence."`	
+				set "Successors: taaquvaleq"
+			`They glance toward the darkened workshop. "We gave them freedom. They returned only silence."`
 				goto questions
 			
 			label confrontation
@@ -1220,10 +1219,10 @@ mission "Successors: Gas Station 9"
 					goto end
 				`"Did no one in your House question where the parts came from?"`
 					to display
-						not "Successors: disbelief"	
+						not "Successors: disbelief"
 			action
 				set "Successors: disbelief"
-			`"Some did," they admit. "Whispers were voiced, but the promise drowned the doubt. Taaquvaleq was convincing. Brilliant. Determined."`			
+			`"Some did," they admit. "Whispers were voiced, but the promise drowned the doubt. Taaquvaleq was convincing. Brilliant. Determined."`
 				goto questiontwo
 				
 			label end

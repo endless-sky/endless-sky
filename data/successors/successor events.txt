@@ -102,4 +102,4 @@ event "successors: unified defense"
 		
 event "Successors: Gas Station add Spaceport"
 	planet Avasaa-Aa-Tej
-		spaceport `The interior of the station is a relic of a forgotten era. The air is stale, the walls frost-coated where life support systems struggle against decay. Massive processing units sit in silence, their purpose long abandoned. Dim emergency lights flicker along the halls, revealing storage containers—most emptied by time, but one still holding the precious isotopes that drew you here. The refinery breathes no more, yet its ancient machinery seems to whisper of a past not entirely lost.`
+		spaceport `The interior of the station is a relic of a forgotten era. The air is stale, the walls frost-coated where life support systems struggle against decay. Massive processing units sit in silence, their purpose long abandoned. Dim emergency lights flicker along the halls, revealing storage containers-most emptied by time, but one still holding the precious isotopes that drew you here. The refinery breathes no more, yet its ancient machinery seems to whisper of a past not entirely lost.`
