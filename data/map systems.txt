@@ -3294,6 +3294,7 @@ system "Al Dhanab"
 		period 1340.95
 
 system "Al Hurr"
+	hidden
 	pos -432 -491
 	government Uninhabited
 	arrival 1715
@@ -6501,6 +6502,7 @@ system Apeiron
 		period 1586.86
 
 system Ar-40
+	hidden
 	shrouded
 	pos -686 1044
 	government Uninhabited
@@ -6845,6 +6847,7 @@ system Arneb
 		period 2500.84
 
 system As-75
+	hidden
 	shrouded
 	pos -758 970
 	government Uninhabited
@@ -7572,6 +7575,7 @@ system Aya'k'k
 		period 2983.58
 
 system B-11
+	hidden
 	shrouded
 	pos -256 1102
 	government Uninhabited
@@ -8821,6 +8825,7 @@ system "Bote Asu"
 			period 38.6987
 
 system Br-80
+	hidden
 	shrouded
 	pos -526 1103
 	government Uninhabited
@@ -9097,6 +9102,7 @@ system "Bunri Lemeta"
 			period 26.5003
 
 system C-12
+	hidden
 	shrouded
 	pos -376 1093
 	government Uninhabited
@@ -9133,6 +9139,7 @@ system C-12
 		period 977.068
 
 system Ca-40
+	hidden
 	shrouded
 	pos -662 991
 	government Uninhabited
@@ -10396,6 +10403,7 @@ system Citadelle
 			period 269
 
 system Cl-35
+	hidden
 	shrouded
 	pos -432 1120
 	government Uninhabited
@@ -12665,6 +12673,7 @@ system "Delta Velorum"
 		period 1294.65
 
 system Demilude
+	hidden
 	shrouded
 	pos -232 1192
 	government "Avgi (Dissonance)"
@@ -12851,6 +12860,7 @@ system Denebola
 		period 2677.01
 
 system Devil-Hide
+	hidden
 	pos -1047 -775
 	government "Pirate (Devil-Run Gang)"
 	attributes "inaccessible"
@@ -12888,6 +12898,7 @@ system Devil-Hide
 			period 18.5791
 
 system Devil-Run
+	hidden
 	pos -148 162
 	government Uninhabited
 	attributes "inaccessible"
@@ -14923,6 +14934,7 @@ system Enif
 		offset 100
 
 system Ensemble
+	hidden
 	shrouded
 	pos -515 1161
 	government "Avgi (Consonance)"
@@ -15832,6 +15844,7 @@ system Evrae
 			period 382
 
 system F-19
+	hidden
 	shrouded
 	pos -328 1153
 	government Uninhabited
@@ -17977,6 +17990,7 @@ system Gaungu
 		period 4123.52
 
 system Ge-73
+	hidden
 	shrouded
 	pos -579 1110
 	government Uninhabited
@@ -19057,6 +19071,7 @@ system Gust
 		period 7672.54
 
 system H-1
+	hidden
 	shrouded
 	pos -333 999
 	government Uninhabited
@@ -19503,6 +19518,7 @@ system Hatysa
 		period 2607.23
 
 system He-4
+	hidden
 	shrouded
 	pos -405 972
 	government Uninhabited
@@ -21027,6 +21043,7 @@ system Insitor
 		period 5518.79
 
 system Interlude
+	hidden
 	shrouded
 	pos -596 1043
 	government "Avgi (Dissonance)"
@@ -22215,6 +22232,7 @@ system Jyelio
 			period 167.29
 
 system K-39
+	hidden
 	shrouded
 	pos -474 1188
 	government Uninhabited
@@ -24369,6 +24387,7 @@ system Korsmanath
 			period 28.8281
 
 system Kr-84
+	hidden
 	shrouded
 	pos -786 910
 	government Uninhabited
@@ -24896,6 +24915,7 @@ system Levana
 			period 38.521
 
 system Li-7
+	hidden
 	shrouded
 	pos -320 1055
 	government Uninhabited
@@ -27322,6 +27342,7 @@ system Mesuket
 			period 66.1613
 
 system Mg-24
+	hidden
 	shrouded
 	pos -516 1034
 	government Uninhabited
@@ -28642,6 +28663,7 @@ system Myruet-Kvelq
 		period 2205.54
 
 system N-14
+	hidden
 	shrouded
 	pos -115 1107
 	government Uninhabited
@@ -28678,6 +28700,7 @@ system N-14
 			period 178.034
 
 system Na-23
+	hidden
 	shrouded
 	pos -476 1080
 	government Uninhabited
@@ -28873,6 +28896,7 @@ system Naper
 			period 23.8403
 
 system Ne-20
+	hidden
 	shrouded
 	pos -431 1018
 	government Uninhabited
@@ -29511,6 +29535,7 @@ system Nunki
 			period 66.2404
 
 system O-16
+	hidden
 	shrouded
 	pos -310 1095
 	government Uninhabited
@@ -30332,6 +30357,7 @@ system "Over the Rainbow"
 			period 12.1799
 
 system P-31
+	hidden
 	shrouded
 	pos -662 1140
 	government Uninhabited
@@ -30644,6 +30670,7 @@ system "Paru Paru"
 			period 34.4667
 
 system Patir
+	hidden
 	pos -38 553
 	government Uninhabited
 	attributes "black hole" "ember waste" "graveyard" "notable star" "nova"
@@ -32226,6 +32253,7 @@ system Postlude
 			period 174.787
 
 system Postverta
+	hidden
 	pos 297 269
 	government Uninhabited
 	attributes "ember waste" "inaccessible"
@@ -32348,6 +32376,7 @@ system Prakacha'a
 			period 49.6561
 
 system Prelude
+	hidden
 	shrouded
 	pos -427 925
 	government "Avgi (Dissonance)"
@@ -34469,6 +34498,7 @@ system Rutilicus
 			period 33.1083
 
 system S-32
+	hidden
 	shrouded
 	pos -553 1010
 	government Uninhabited
@@ -36283,6 +36313,7 @@ system "Shini Bori"
 			period 22.7854
 
 system Si-28
+	hidden
 	shrouded
 	pos -429 960
 	government Uninhabited
@@ -43423,6 +43454,7 @@ system Zubenelgenubi
 		period 1128.57
 
 system Zubenelhakrabi
+	hidden
 	pos -755 365
 	government Uninhabited
 	arrival 500
