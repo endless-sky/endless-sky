@@ -261,7 +261,6 @@ private:
 	Point targetUnit;
 	std::vector<Gunsight> gunsights;
 	const Swizzle *targetSwizzle = nullptr;
-  
 	// Represents the state of the currently targeted ship when it was last seen,
 	// so the target display does not show updates to its state the player should not be aware of.
 	int lastTargetType = 0;

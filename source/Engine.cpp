@@ -1236,9 +1236,8 @@ void Engine::Draw() const
 		Point end2 = gunsight.start + gunsight.angle.Rotate(Point(-gunsight.spread, -gunsight.range));
 		Point width = gunsight.angle.Rotate(Point(1., 0.));
 
-		LineShader::Draw(gunsight.start * zoom, end1 * zoom, width.Length(), gunsight.color);
-		LineShader::Draw(gunsight.start * zoom, end2 * zoom, width.Length(), gunsight.color);
-		LineShader::Draw(end1 * zoom - width, end2 * zoom + width, width.Length(), gunsight.color);
+		LineShader::DrawGradient(gunsight.start * zoom, end1 * zoom, width.Length(), gunsight.color, Color(0, 0, 0, 0));
+		LineShader::DrawGradient(gunsight.start * zoom, end2 * zoom, width.Length(), gunsight.color, Color(0, 0, 0, 0));
 	}
 
 	for(const auto &it : statuses)
@@ -1909,106 +1908,6 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 	// Check for ship scanning.
 	for(const shared_ptr<Ship> &it : ships)
 		DoScanning(it);
-
-	// Draw the objects. Start by figuring out where the view should be centered:
-	Point newCenter = center;
-	Point newCenterVelocity;
-	if(flagship)
-	{
-		bool isHyperspacing = flagship->IsHyperspacing();
-		if(isHyperspacing)
-			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
-		const auto [newCameraCenter, newCameraVelocity] = NewCenter(center, centerVelocity,
-			flagship->Center(), flagship->Velocity(), hyperspacePercentage,
-			isHyperspacing);
-		newCenter = newCameraCenter;
-		newCenterVelocity = newCameraVelocity;
-	}
-	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
-	batchDraw[currentCalcBuffer].SetCenter(newCenter);
-	radar[currentCalcBuffer].SetCenter(newCenter);
-
-	// Populate the radar.
-	FillRadar();
-
-	// Draw the planets.
-	for(const StellarObject &object : playerSystem->Objects())
-		if(object.HasSprite())
-		{
-			// Don't apply motion blur to very large planets and stars.
-			if(object.Width() >= 280.)
-				draw[currentCalcBuffer].AddUnblurred(object);
-			else
-				draw[currentCalcBuffer].Add(object);
-		}
-	// Draw the asteroids and minables.
-	asteroids.Draw(draw[currentCalcBuffer], newCenter, zoom);
-	// Draw the flotsam.
-	for(const shared_ptr<Flotsam> &it : flotsam)
-		draw[currentCalcBuffer].Add(*it);
-	// Draw the ships. Skip the flagship, then draw it on top of all the others.
-	bool showFlagship = false;
-	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == playerSystem && ship->HasSprite())
-		{
-			if(ship.get() != flagship)
-			{
-				DrawShipSprites(*ship);
-				if(ship->IsThrusting() && !ship->EnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().FlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().ReverseFlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().SteeringFlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-			}
-			else
-				showFlagship = true;
-		}
-
-	if(flagship && showFlagship)
-	{
-		DrawShipSprites(*flagship);
-		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().FlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-	}
-
-	// Draw the projectiles.
-	for(const Projectile &projectile : projectiles)
-		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());
-	// Draw the visuals.
-	for(const Visual &visual : visuals)
-		batchDraw[currentCalcBuffer].AddVisual(visual);
-
-	// Keep track of how much of the CPU time we are using.
-	loadSum += loadTimer.Time();
-	if(++loadCount == 60)
-	{
-		load = loadSum;
-		loadSum = 0.;
-		loadCount = 0;
-	}
 }
 
 
