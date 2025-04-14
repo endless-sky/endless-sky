@@ -14790,6 +14790,8 @@ system "Eneva Katta"
 	asteroids "small metal" 17 1.819
 	asteroids "medium metal" 128 2.278
 	asteroids "large metal" 10 0.935
+	minables copper 12 12
+	minables tungsten 8 12	
 	trade Clothing 290
 	trade Electronics 740
 	trade Equipment 530
@@ -14801,6 +14803,9 @@ system "Eneva Katta"
 	trade Metal 390
 	trade Plastic 390
 	fleet "Bunrodea Defense" 5000
+	fleet "Korath Miners" 7000
+	fleet "Korath Raid" 11000
+	fleet "Korath Large Raid" 17000
 	object
 		sprite star/g-giant
 		period 10
@@ -18044,6 +18049,8 @@ system "Genta Bo"
 	asteroids "small metal" 6 10.836
 	asteroids "medium metal" 11 7.728
 	asteroids "large metal" 12 9.912
+	minables aluminum 11 10
+	minables titanium 9 9
 	trade Clothing 290
 	trade Electronics 740
 	trade Equipment 530
@@ -18055,6 +18062,9 @@ system "Genta Bo"
 	trade Metal 390
 	trade Plastic 390
 	fleet "Bunrodea Defense" 3500
+	fleet "Korath Miners" 11000
+	fleet "Korath Raid" 9000
+	fleet "Korath Large Raid" 17000	
 	object
 		sprite star/o-supergiant
 		distance 14.1508
@@ -36283,6 +36293,7 @@ system "Shini Bori"
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royalty" 3000
 	fleet "Bunrodea Royal Guard" 2000
+	fleet "Korath Large Raid" 11000
 	object
 		sprite star/f0
 		period 10
@@ -39341,6 +39352,7 @@ system "Thshybo Le"
 	fleet "Bunrodea Defense" 2000
 	fleet "Bunrodea Royalty" 5000
 	fleet "Bunrodea Royal Guard" 2000
+	fleet "Korath Large Raid" 11000
 	object
 		sprite star/a5
 		period 10
