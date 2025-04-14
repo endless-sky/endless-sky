@@ -641,3 +641,43 @@ effect "large successor afterburner"
 	sound "successor afterburner large"
 	"sound category" "afterburner"
 	lifetime 1
+
+outfit "Prototype Quick Drive"
+	category "Unique"
+	cost 670000
+	thumbnail "outfit/scram drive"
+	"mass" 22
+	"outfit space" -22
+	"scram drive" .15
+	"hyperdrive fuel" 200
+	"hyperdrive" 1
+	"unique" 1
+	description "Derived from fragmented knowledge of ancient Predecessor Drives, the Quick Drive is an attempt to refine lost technology into a controlled, practical form. While it lacks the catastrophic power of its predecessor, it retains a shadow of its unique properties-allowing for near-instantaneous hyperspace transitions, even at high velocities. However, the drive's efficiency remains imperfect, demanding significantly more fuel than a standard hyperdrive. The Quick Drives inventor believes that further refinement, perhaps with the very fuel-stabilizing isotopes once used in the original Predecessor Drive, may unlock its full potential."
+
+outfit "Quick Drive"
+	category "Unique"
+	cost 690000
+	thumbnail "outfit/scram drive"
+	"mass" 22
+	"outfit space" -22
+	"scram drive" .15
+	"hyperdrive fuel" 100
+	"hyperdrive" 1
+	"unique" 1
+	description "Derived from fragmented knowledge of the ancient Point Drive, the Quick Drive is an attempt to refine lost technology into a controlled, practical form. While it lacks the catastrophic power of its predecessor, it retains a shadow of its unique properties-allowing for near-instantaneous hyperspace transitions, even at high velocities. Through the integration of recovered Predecessor isotopes as fuel-stabilizing catalysts, the drive has overcome its inefficiencies, drastically reducing its fuel consumption."
+		
+outfit "Unlocked Quick Drive"
+	category "Unique"
+	cost 690000
+	thumbnail "outfit/point drive"
+	"mass" 22
+	"outfit space" -22
+	"scram drive" .15
+	"hyperdrive fuel" 100
+	"hyperdrive" 1
+	"jump drive" 1
+	"jump speed" .25
+	"jump effect" "jump drive red"
+	"jump drive fuel" 250
+	"unique" 1
+	description "What was claimed as an 'inovation' upon Predecessor technology has proven far more ominous. The Quick Drive is no mere refinement - it is a recovered and repaired Point Drive, ancient beyond reckoning. Every schematic, every alloy ratio, even the isotopic catalysts mixture matches the ancient blueprints exactly. Only the safety interlocks differ, and even those strain under the drive's true power. Now, with each activation, the Quick Drive tears at spacetime just as its predecessor did - weaker only in scale, not in kind. The old warnings were not heeded. The old mistakes are being repeated."

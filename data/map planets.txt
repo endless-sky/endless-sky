@@ -408,6 +408,23 @@ planet Avalon
 	description `	Deep in the jungles near the equator, small mammals are working hard to avoid being eaten by the great lizards, and to survive for long enough that they will be able to evolve into the dominant life form.`
 	security 0
 
+planet Avasaa-Aa-Tej
+	attributes "requires: gaslining" predecessor uninhabited
+	government Predecessor
+	landscape land/aera
+	description `The atmosphere of this gas giant is unnervingly dense, shrouding everything in an impenetrable haze. Visibility is reduced to almost nothing, and even your sensors struggle to cut through the thick, swirling gases. The planet's composition is strange, almost unnatural, as if some unknown force had siphoned away all the lighter elements, leaving behind a heavy, turbulent stew.`
+		to display
+			not "known to the successors"
+	description `Avasaa-Aa-Tej's atmosphere is an unnaturally dense shroud of swirling gases. Visibility is nearly nonexistent, and even your advanced sensors struggle to penetrate the haze. Long ago the High Houses, used vast refineries stripping away the lighter elements and leaving behind a heavy, turbulent mix. What remains is an unnatural mix of gases, altered by ancient industry.`
+		to display
+			has "known to the successors"
+	description `	Hidden deep within the storms lurks a locked station still holding on against the raging storms. You can only speculate on the purpose the station once served, but you assume it is related the mysterious consistency of the planets atmosphere.`
+		to display
+			not "known to the successors"
+	description `	Hidden deep within the storms lurks a locked station still holding on on against the raging storms. One of the Predecessors' refineries, long abandoned, yet standing as a silent monument to the forces that reshaped Avasaa-Aa-Tej.`
+		to display
+			has "known to the successors"
+
 planet Aventine
 	attributes remnant "remnant primary"
 	landscape land/mountain17-harro

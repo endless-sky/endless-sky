@@ -7333,7 +7333,7 @@ system Avasaa-Novaa
 		sprite planet/tethys-b
 		distance 1112
 		period 1112
-	object
+	object "Avasaa-Aa-Tej"
 		sprite planet/gas2
 		distance 3502
 		period 3502
