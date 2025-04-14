@@ -173,11 +173,10 @@ mission "Successors: First Contact 1"
 			action
 				set "Successors: history"
 			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
-			# This is a copy of the choices under the "questions" label, but simplified to remove choices that will never show.
 			choice
 				`	"What should I do now?"`
 					goto "what now"
-				`	"Is that how you know my language?` # This follow up question reverts to "How do you know my language?" if it isn't immediately asked
+				`	"Is that how you know my language?"` # This follow up question reverts to "How do you know my language?" if it isn't immediately asked
 					to display
 						not "Successors: language"
 					goto "language short"
@@ -793,7 +792,7 @@ mission "Successors: Kaatrij First Contact 1"
 					goto communicate
 			label questions
 			choice
-				`	"How is it that you can communicate with me?`
+				`	"How is it that you can communicate with me?"`
 					to display
 						not "language: Successor"
 					goto communicate
