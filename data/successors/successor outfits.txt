@@ -681,4 +681,4 @@ outfit "Unlocked Quick Drive"
 	"jump drive fuel" 250
 	"unique" 1
 	description "What was claimed as an 'inovation' upon Predecessor technology has proven far more ominous. The Quick Drive is no mere refinement - it is a recovered and repaired Point Drive, ancient beyond reckoning. Every schematic, every alloy ratio, even the isotopic catalysts mixture matches the ancient blueprints exactly. Only the safety interlocks differ, and even those strain under the drive's true power. Now, with each activation, the Quick Drive tears at spacetime just as its predecessor did - weaker only in scale, not in kind. The old warnings were not heeded. The old mistakes are being repeated."
-	
+
