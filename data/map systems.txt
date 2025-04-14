@@ -14791,7 +14791,7 @@ system "Eneva Katta"
 	asteroids "medium metal" 128 2.278
 	asteroids "large metal" 10 0.935
 	minables copper 12 12
-	minables tungsten 8 12	
+	minables tungsten 8 12
 	trade Clothing 290
 	trade Electronics 740
 	trade Equipment 530
@@ -18064,7 +18064,7 @@ system "Genta Bo"
 	fleet "Bunrodea Defense" 3500
 	fleet "Korath Miners" 11000
 	fleet "Korath Raid" 9000
-	fleet "Korath Large Raid" 17000	
+	fleet "Korath Large Raid" 17000
 	object
 		sprite star/o-supergiant
 		distance 14.1508
