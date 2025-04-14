@@ -179,5 +179,5 @@ mission "Wanderers: Mereti: The Plant Epilogue"
 					goto end
 			`	"This flower is called the sitrasanir. Its [symbol, appearance] was of [importance, significance] to our creators when they were [present? alive?]. We [abandoned, ignored] it for years, but our [parents, ancestors] helped us to remember it."`
 			label end
-			`	The drone sits in a contemplative silence, looking out into the field. The sun rises higher into the sky, and the field shines in blue hues that almost exactly match the blue paints on the the Mereti ships in the sky above.`
+			`	The drone sits in a contemplative silence, looking out into the field. The sun rises higher into the sky, and the field shines in blue hues that almost exactly match the blue paints on the Mereti ships in the sky above.`
 				decline
