@@ -639,10 +639,10 @@ mission "Successors: Gas Station 2 Deadend House Sioeora"
 					defer
 				`	(Yes.)`
 			`	You make your way to the archives, where you hope to find Sieasej, the scholar who once helped you communicate with the Successors.`
-			`	"I found a locked station hidden in the atmosphere of Avasaa-Aa-Tej," you say. "Do you know anything about it?"` 
-			`	Sieasej's skin shifts to a darker, more contemplative hue. "Avasaa-Aa-Tej... 'Tis a name that stirs old memories. A place of industry, once, but now lost to the storms. What dost thou seek there, Captain?"` 
-			`	"I need access codes to enter the station. Do you know where I might find them?"` 
-			`	Sieasej hums thoughtfully, their skin flickering with patterns of uncertainty. "The station thou speak'st of lies under the dominion of House Seineq, and 'tis they who hold the keys to its secrets. Seek thy answers there, Captain, for I can tell thee no more."` 
+			`	"I found a locked station hidden in the atmosphere of Avasaa-Aa-Tej," you say. "Do you know anything about it?"`
+			`	Sieasej's skin shifts to a darker, more contemplative hue. "Avasaa-Aa-Tej... 'Tis a name that stirs old memories. A place of industry, once, but now lost to the storms. What dost thou seek there, Captain?"`
+			`	"I need access codes to enter the station. Do you know where I might find them?"`
+			`	Sieasej hums thoughtfully, their skin flickering with patterns of uncertainty. "The station thou speak'st of lies under the dominion of House Seineq, and 'tis they who hold the keys to its secrets. Seek thy answers there, Captain, for I can tell thee no more."`
 				decline
 			
 mission "Successors: Gas Station 2 Deadend House Kaatrij"
@@ -883,7 +883,7 @@ mission "Successors: Gas Station 4"
 	on offer
 		conversation
 			`Taaquvaleq meets you again, their chromatophores a deep, unwavering violet. "We have studied the drive's failure, and in its core, we see a shadow of the past."`
-			`Our Predecessors used special isotopes not as fuel, but as catalysts - their molecular lattice absorbing hyperspace resonance, allowing their Drives to ‘breathe' without tearing itself apart. Our prototype lacks this... refinement."`
+			`Our Predecessors used special isotopes not as fuel, but as catalysts - their molecular lattice absorbing hyperspace resonance, allowing their Drives to 'breathe' without tearing itself apart. Our prototype lacks this... refinement."`
 			`"These isotopes that once served our Predecessors' Drives - those may be the key to perfecting our own design." A ripple of deep blue, signaling sorrow, courses over their skin. "Yet these are lost to the storms of Avasaa-Aa-Tej."`
 			choice
 				`	(Tell Taaquvaleq about the refinery you discovered in the atmosphere of Avasaa-Aa-Tej owned by House Seineq.)`
@@ -1136,7 +1136,7 @@ mission "Successors: Gas Station 8"
 			label truth
 			`"It is a Point Drive. Not rebuilt-repaired. Piece by piece. Bone by bone. The frame, the lattice, the fuel chamber-each matches records lost to time... but not to us."`
 			`They pace, anger spilling from every flicker of their skin. "Taaquvaleq may not have known, or perhaps they did. But make no mistake: the isotopes recovered from Avasaa-Aa-Tej did not enable progress. They reawakened ruin."`
-			`They produce a holographic emitter, its flickering light revealing star maps torn asunder. "See here the Tangles - not natural formations, but scars from the Point Drive's ravages. The isotopes within thy drive's heart, the very same that powered our ancestors' ruin, should never have been disturbed again. They were used as fuel-stabilizing catalysts within our Predecessors' burning chambers, and their instability tore apart the fabric of space itself." Their skin pulses with grief-stricken blue. "Thanks to thee, they near their goal."`		
+			`They produce a holographic emitter, its flickering light revealing star maps torn asunder. "See here the Tangles - not natural formations, but scars from the Point Drive's ravages. The isotopes within thy drive's heart, the very same that powered our ancestors' ruin, should never have been disturbed again. They were used as fuel-stabilizing catalysts within our Predecessors' burning chambers, and their instability tore apart the fabric of space itself." Their skin pulses with grief-stricken blue. "Thanks to thee, they near their goal."`
 			choice
 				`"...That can't be true."`
 					goto untrue
@@ -1160,7 +1160,7 @@ mission "Successors: Gas Station 8"
 					goto drive
 				`(Refuse)`
 			`Zaathiq retracts the quill with a disappointed sigh. "Then thou art truly lost." They turn toward the shattered tablets, their voice barely audible. "Guards, see our... guest to their ship. Let history record we tried."`
-					goto end
+				goto end
 			label drive
 			`The moment your fingers brush the quill, its casing fractures to reveal pulsating Predecessor circuitry. Zaathiq watches with grim satisfaction. "Go. And when the reckoning comes, remember - House Aqrabe warned thee."`
 			action
