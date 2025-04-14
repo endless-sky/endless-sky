@@ -8772,7 +8772,7 @@ mission "Syndicate Business 8"
 					goto favor
 				`	"Why do you need an escort?"`
 				`	"I'm through with your needs. I'm done with this."`
-					decline
+					goto refused
 			`	"Because this stunt's painted a target on my back. My bosses suspect nothing - but I'm sure Lightspeed Logistics already smells foul play and is less than pleased about the embarrassment. They have plenty of pirate contacts willing to collect a bounty. I need you as a deterrent until I can clinch the promotion with those endorsements.`
 			label favor
 			`	"Escort me to <planet> to secure my promotion and guide me back to Sunracer, then we can talk through and finalize that investment. Perhaps it's two favors then.`
@@ -8787,6 +8787,16 @@ mission "Syndicate Business 8"
 				`	"I'm in."`
 					accept
 				`	"I'm out."`
+			label refused
+			action
+				"syndicate business: mean to Howard" += 3
+			`	Howard stares at you, dumbfounded. After a long moment, he scoffs, then laughs - sharp and nervous. "You're out? You can't be out - not after this! You think Lightspeed won't come for me - won't come for you? I'll tell them any..." Howard pauses, takes a deep breath, and straightens his collar.`
+			`	"Look. Just get me to <planet>, I'll lock in that promotion, and back to Sunracer - then we talk investments. You've already done the hard part, don't you want to reap the rewards of your efforts? It's right there."`
+			`	He leans in, voice low and persuasive, "You've come this far - don't walk away with the finish line in sight."`
+			choice
+				`	"Okay, I'll do it."`
+					accept
+				`	"I told you, we're through. I'm leaving."`
 					decline
 	npc accompany save
 		government "Syndicate"
