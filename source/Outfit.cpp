@@ -568,8 +568,8 @@ int Outfit::CanAdd(const Outfit &other, int count) const
 // instances of the given outfit to this outfit.
 void Outfit::Add(const Outfit &other, int count)
 {
-	// TODO: Needs fixing (By using values?).
-	//cost += other.cost * count;
+	// Track combinations by value, not by variable local costs.
+	cost = ConditionSet(Value() + other.Value() * count);
 	mass += other.mass * count;
 	for(const auto &at : other.attributes)
 	{
