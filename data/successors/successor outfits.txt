@@ -652,7 +652,7 @@ outfit "Prototype Quick Drive"
 	"hyperdrive fuel" 200
 	"hyperdrive" 1
 	"unique" 1
-	description "Derived from fragmented knowledge of ancient Predecessor Drives, the Quick Drive is an attempt to refine lost technology into a controlled, practical form. While it lacks the catastrophic power of its predecessor, it retains a shadow of its unique properties-allowing for near-instantaneous hyperspace transitions, even at high velocities. However, the drive's efficiency remains imperfect, demanding significantly more fuel than a standard hyperdrive. The Quick Drives inventor believes that further refinement, perhaps with the very fuel-stabilizing isotopes once used in the original Predecessor Drive, may unlock its full potential."
+	description "Derived from fragmented knowledge of ancient Predecessor drives, the Quick Drive is an attempt to refine lost technology into a controlled, practical form. While it lacks the catastrophic power of its predecessor, it retains a shadow of its unique properties - allowing for near-instantaneous hyperspace transitions, even at high velocities. However, the drive's efficiency remains imperfect, demanding significantly more fuel than a standard hyperdrive. The Quick Drive's inventor believes that further refinement, perhaps with the very fuel-stabilizing isotopes once used by their Predecessors, may unlock its full potential."
 
 outfit "Quick Drive"
 	category "Unique"
@@ -664,7 +664,7 @@ outfit "Quick Drive"
 	"hyperdrive fuel" 100
 	"hyperdrive" 1
 	"unique" 1
-	description "Derived from fragmented knowledge of the ancient Point Drive, the Quick Drive is an attempt to refine lost technology into a controlled, practical form. While it lacks the catastrophic power of its predecessor, it retains a shadow of its unique properties-allowing for near-instantaneous hyperspace transitions, even at high velocities. Through the integration of recovered Predecessor isotopes as fuel-stabilizing catalysts, the drive has overcome its inefficiencies, drastically reducing its fuel consumption."
+	description "Derived from fragmented knowledge of the ancient Predecessor Point Drive, the Quick Drive is an attempt to refine lost technology into a controlled, practical form. While it lacks the catastrophic power of its predecessor, it retains a shadow of its unique properties - allowing for near-instantaneous hyperspace transitions, even at high velocities. Through the integration of recovered Predecessor isotopes as fuel-stabilizing catalysts, the drive has overcome its inefficiencies, drastically reducing its fuel consumption."
 
 outfit "Unlocked Quick Drive"
 	category "Unique"
