@@ -668,7 +668,7 @@ bool Government::Condemns(const Outfit *outfit) const
 	if(found)
 		return isAtrocity->second;
 	else
-		return !ignoreUniversalAtrocities && outfit->Get("atrocity") > 0.;
+		return !IgnoresUniversalAtrocities() && outfit->Get("atrocity") > 0.;
 }
 
 
@@ -680,7 +680,7 @@ bool Government::Condemns(const Ship *ship) const
 	if(found)
 		return isAtrocity->second;
 	else
-		return !ignoreUniversalAtrocities && ship->BaseAttributes().Get("atrocity") > 0.;
+		return !IgnoresUniversalAtrocities() && ship->BaseAttributes().Get("atrocity") > 0.;
 }
 
 
@@ -701,7 +701,7 @@ int Government::Fines(const Outfit *outfit) const
 	for(const auto &it : illegalOutfits)
 		if(it.first == outfit)
 			return it.second;
-	return ignoreUniversalIllegals ? 0 : outfit->Get("illegal");
+	return IgnoresUniversalIllegals() ? 0 : outfit->Get("illegal");
 }
 
 
@@ -715,7 +715,7 @@ int Government::Fines(const Ship *ship) const
 	for(const auto &it : illegalShips)
 		if(it.first == ship->TrueModelName())
 			return it.second;
-	return ignoreUniversalIllegals ? 0 : ship->BaseAttributes().Get("illegal");
+	return IgnoresUniversalIllegals() ? 0 : ship->BaseAttributes().Get("illegal");
 }
 
 
