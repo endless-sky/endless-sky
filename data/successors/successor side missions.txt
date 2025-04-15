@@ -490,8 +490,6 @@ mission "Successors: Gas Station 2 Deadend House Aqrabe"
 	invisible
 	source
 		government "House Aqrabe"
-	to complete
-		never
 	to offer
 		has "Successors: Gas Station 1: offered"
 		not "Successors: Gas Station 2 House Seineq: done"
@@ -506,7 +504,7 @@ mission "Successors: Gas Station 2 Deadend House Aqrabe"
 				`	(No.)`
 					defer
 			action
-				log "People" "Aqrabe Zaathiq" "Aqrabe Zaathiq is a Successor First Archivar in the vaults of the noble House Aqrabe. They keep records about our Predecessors' history."
+				log "People" "Aqrabe Zaathiq" "Aqrabe Zaathiq is a Successor First Archivar in the vaults of the noble House Aqrabe. They keep records about their Predecessors' history."
 			`	Determined to seek answers, you move through the hushed halls of House Aqrabe's archives. Unlike the grand libraries of other Houses, Aqrabe's records are kept in plain, unadorned vaults.`
 			`	Many Successors ignore you entirely, yet, after persistent inquiry, a robed attendant finally acknowledges your presence.`
 			`	"If thou dost seek history, seek first one who may grant it." Their voice is steady, but distant. "First Archivar Aqrabe Zaathiq holds such knowledge, but whether they shall bestow it is another matter."`
@@ -540,8 +538,6 @@ mission "Successors: Gas Station 2 Deadend House Chydiyi"
 	invisible
 	source
 		government "House Chydiyi"
-	to complete
-		never
 	to offer
 		has "Successors: Gas Station 1: offered"
 		not "Successors: Gas Station 2 House Seineq: done"
@@ -579,8 +575,6 @@ mission "Successors: Gas Station 2 Deadend House Myurej"
 	invisible
 	source
 		government "House Myurej"
-	to complete
-		never
 	to offer
 		has "Successors: Gas Station 1: offered"
 		not "Successors: Gas Station 2 House Seineq: done"
@@ -619,8 +613,6 @@ mission "Successors: Gas Station 2 Deadend House Sioeora"
 	invisible
 	source
 		government "House Sioeora"
-	to complete
-		never
 	to offer
 		has "Successors: Gas Station 1: offered"
 		not "Successors: Gas Station 2 House Seineq: done"
@@ -647,8 +639,6 @@ mission "Successors: Gas Station 2 Deadend House Kaatrij"
 	invisible
 	source
 		government "House Kaatrij"
-	to complete
-		never
 	to offer
 		has "Successors: Gas Station 1: offered"
 		not "Successors: Gas Station 2 House Seineq: done"
@@ -708,11 +698,10 @@ mission "Successors: Gas Station 2 House Seineq"
 
 			label newquestion
 			choice
+				`	(Yes.)`
 				`	(No.)`
 					defer
-				`	(Yes.)`
-			
-			
+
 			`	You ask around the spaceport, speaking to dockworkers and scholars alike, but none seem willing to discuss the station. Eventually, a uniformed Successor approaches and gestures for you to follow.`
 				to display
 					not "Successors: asked about the gas station"
@@ -981,8 +970,7 @@ mission "Successors: Gas Station 6"
 			`A sudden tension fills the chamber as Seineq Veythiq steps forward, their chromatophores darkening like storm clouds. "Now, mark this well, travelers." The air grows heavy with unspoken threat. "What thou hast seen, what thou hast taken-none but thee shall know. House Seineq grants thee this yield, but in return, we demand silence."`
 			`Behind them, the armored Seineq guard moves with deliberate menace, their segmented plates scraping against each other. "Swear it now," they rumble, the sound vibrating through the damp air, "before the House, before the void itself. No record, no tale, no whispered word beyond these halls."`
 			`The Scion's skin ripples black at the edges-a final warning. "The secrets of Avasaa-Aa-Tej are not for the tongues of lesser minds. Speak naught of what transpired, nor of what was found..." They let the pause stretch, their meaning clear. "...lest thou invite ruin upon thine own house."`
-			`As you prepare to depart, Taaquvaleq draws near, "If thy curiosity yet lingers, traveler... meet me upon O-Vasa-Oa. The final threads are almost woven. None else shall test it. If thou wouldst see what hath become of our labor... come."`
-
+			
 mission "Successors: Gas Station 7A"
 	name "Meet Taaquvaleq at his workshop"
 	description `Travel to O-Vasa-Oa to help test the perfected Quick Drive.`
