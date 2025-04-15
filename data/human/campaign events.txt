@@ -2540,6 +2540,7 @@ event "pug flee"
 		attributes uninhabited
 
 
+
 event "pug territory liberated"
 	system "Orvala"
 		government "Free Worlds"
