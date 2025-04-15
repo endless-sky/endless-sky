@@ -269,7 +269,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
 	{
-		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
 	else
