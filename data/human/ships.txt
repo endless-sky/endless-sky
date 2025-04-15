@@ -62,6 +62,10 @@ ship "Aerie"
 		"launch effect" "human internal"
 	bay "Fighter" 43.5 2
 		"launch effect" "human internal"
+	bay "Fighter" -43.5 2
+		"launch effect" "human internal"
+	bay "Fighter" 43.5 2
+		"launch effect" "human internal"
 	leak "leak" 50 50
 	leak "flame" 50 80
 	leak "big leak" 90 30
@@ -70,7 +74,7 @@ ship "Aerie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-	description "The Lionheart Aerie is a light carrier, designed to be just big enough for two fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millennium, but this model comes with the very latest in generator and weapon technology."
+	description "The Lionheart Aerie is a light carrier, designed to be just big enough for four fighter bays plus a decent armament of its own. Variations on this same ship design have been in use in the Deep for almost half a millennium, but this model comes with the very latest in generator and weapon technology."
 
 
 
@@ -431,13 +435,13 @@ ship "Bastion"
 	attributes
 		category "Medium Warship"
 		"cost" 3860000
-		"shields" 7500
-		"hull" 4700
+		"shields" 8600
+		"hull" 5300
 		"required crew" 17
 		"bunks" 40
-		"mass" 1210
-		"drag" 16.5
-		"heat dissipation" .32
+		"mass" 1100
+		"drag" 15.5
+		"heat dissipation" .34
 		"fuel capacity" 500
 		"cargo space" 110
 		"outfit space" 470
@@ -500,7 +504,7 @@ ship "Behemoth"
 		"required crew" 12
 		"bunks" 30
 		"mass" 1120
-		"drag" 18.2
+		"drag" 14.6
 		"heat dissipation" .26
 		"fuel capacity" 600
 		"cargo space" 490
@@ -752,7 +756,7 @@ ship "Bulk Freighter"
 		"required crew" 12
 		"bunks" 21
 		"mass" 1510
-		"drag" 21
+		"drag" 16.8
 		"heat dissipation" .27
 		"fuel capacity" 900
 		"cargo space" 640
@@ -808,13 +812,13 @@ ship "Bulwark"
 	attributes
 		category "Medium Warship"
 		"cost" 4360000
-		"shields" 7000
-		"hull" 5600
+		"shields" 8000
+		"hull" 6500
 		"required crew" 19
 		"bunks" 31
-		"mass" 1722
-		"drag" 21
-		"heat dissipation" .27
+		"mass" 1582
+		"drag" 20.1
+		"heat dissipation" .28
 		"fuel capacity" 500
 		"cargo space" 12
 		"outfit space" 521
@@ -885,7 +889,7 @@ ship "Carrier"
 		"fuel capacity" 700
 		"cargo space" 100
 		"outfit space" 820
-		"weapon capacity" 370
+		"weapon capacity" 240
 		"engine capacity" 210
 		weapon
 			"blast radius" 300
@@ -893,44 +897,50 @@ ship "Carrier"
 			"hull damage" 1500
 			"hit force" 4500
 	outfits
-		"Particle Cannon" 4
-		"Meteor Missile Launcher" 4
-		"Meteor Missile" 120
-		"Heavy Laser Turret" 2
+		"Meteor Missile Launcher" 2
+		"Meteor Missile" 60
+		"Sidewinder Missile Rack" 8
+		"Sidewinder Missile" 184
+		"Torpedo Launcher" 2
+		"Torpedo" 60
+		"Heavy Laser Turret"
 		"Heavy Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP288a Battery Pack"
-		"D94-YV Shield Generator"
+		"D94-YV Shield Generator" 2
 		"Large Radar Jammer" 2
 		"Water Coolant System"
 		"Brig"
 		"Laser Rifle" 40
 		"Fragmentation Grenades" 40
-		"Security Station"
+		"Security Station" 2
 		"Tactical Scanner"
 		
 		"X5700 Ion Thruster"
 		"X4200 Ion Steering"
 		"Hyperdrive"
-		
+
 	engine -36.5 200 0.65
 	engine 36.5 200 0.65
-	gun -17.5 -176.5 "Particle Cannon"
-	gun 17.5 -176.5 "Particle Cannon"
-	gun -17.5 -176.5 "Meteor Missile Launcher"
-	gun 17.5 -176.5 "Meteor Missile Launcher"
-	gun -26 -167.5 "Particle Cannon"
-	gun 26 -167.5 "Particle Cannon"
+	gun -17.5 -176.5 "Torpedo Launcher"
+	gun 17.5 -176.5 "Torpedo Launcher"
 	gun -26 -167.5 "Meteor Missile Launcher"
 	gun 26 -167.5 "Meteor Missile Launcher"
 	turret 0 -49 "Heavy Laser Turret"
-	turret 0 14 "Heavy Laser Turret"
 	turret -22 22 "Heavy Anti-Missile Turret"
 	turret 22 22 "Heavy Anti-Missile Turret"
 	bay "Fighter" -38.5 -64.5
 		"launch effect" "human internal"
 	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" 38.5 -64.5
+		"launch effect" "human internal"
+	bay "Fighter" -50 40.5
+		"launch effect" "human internal"
+	bay "Fighter" 50 40.5
 		"launch effect" "human internal"
 	bay "Fighter" -50 40.5
 		"launch effect" "human internal"
@@ -972,7 +982,7 @@ ship "Class C Freighter"
 		"required crew" 18
 		"bunks" 43
 		"mass" 1525
-		"drag" 21
+		"drag" 16.8
 		"heat dissipation" .27
 		"fuel capacity" 900
 		"cargo space" 20
@@ -1154,7 +1164,7 @@ ship "Container Transport"
 		"required crew" 6
 		"bunks" 18
 		"mass" 1525
-		"drag" 26.4
+		"drag" 21.1
 		"heat dissipation" .4
 		"fuel capacity" 600
 		"cargo space" 550
@@ -2074,7 +2084,7 @@ ship "Hauler"
 		"required crew" 3
 		"bunks" 12
 		"mass" 490
-		"drag" 14.7
+		"drag" 9.8
 		"heat dissipation" .43
 		"fuel capacity" 400
 		"cargo space" 130
@@ -2133,7 +2143,7 @@ ship "Hauler II"
 		"required crew" 3
 		"bunks" 12
 		"mass" 640
-		"drag" 16.1
+		"drag" 10.7
 		"heat dissipation" .43
 		"fuel capacity" 400
 		"cargo space" 260
@@ -2194,7 +2204,7 @@ ship "Hauler III"
 		"required crew" 3
 		"bunks" 12
 		"mass" 790
-		"drag" 17.5
+		"drag" 11.6
 		"heat dissipation" .43
 		"fuel capacity" 400
 		"cargo space" 390
@@ -2469,8 +2479,7 @@ ship "Lance"
 	outfits
 		"Energy Blaster"
 		"Sidewinder Missile Pod" 2
-		"Sidewinder Missile Rack"
-		"Sidewinder Missile" 35
+		"Sidewinder Missile" 12
 		
 		"nGVF-AA Fuel Cell"
 		"Supercapacitor" 4
@@ -2480,8 +2489,8 @@ ship "Lance"
 		"X1700 Ion Thruster"
 		"X1200 Ion Steering"
 		
-	engine -14.5 30.5 0.5
-	engine 14.5 30.5 0.5
+	engine -14.5 30.5
+	engine 14.5 30.5
 	gun 0 -34 "Energy Blaster"
 	gun -13.5 -6.5 "Sidewinder Missile Pod"
 	gun 13.5 -6.5 "Sidewinder Missile Pod"
@@ -2855,7 +2864,7 @@ ship "Nest"
 		"required crew" 5
 		"bunks" 14
 		"mass" 510
-		"drag" 14.7
+		"drag" 9.8
 		"heat dissipation" .48
 		"fuel capacity" 500
 		"cargo space" 40
@@ -3262,7 +3271,7 @@ ship "Roost"
 		"required crew" 7
 		"bunks" 16
 		"mass" 680
-		"drag" 16.1
+		"drag" 10.7
 		"heat dissipation" .48
 		"fuel capacity" 600
 		"cargo space" 80
@@ -3530,7 +3539,7 @@ ship "Skein"
 		"required crew" 7
 		"bunks" 18
 		"mass" 850
-		"drag" 17.5
+		"drag" 11.6
 		"heat dissipation" .51
 		"fuel capacity" 700
 		"cargo space" 120
@@ -3589,7 +3598,7 @@ ship "Skein"
 	explode "large explosion" 20
 	explode "huge explosion" 5
 	"final explode" "final explosion large"
-	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry more fighters than even the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
+	description `This particular cockpit and engine set has found itself attached to three of Southbound Shipyards' new "Type F" Fighter-carrier pods. When the Free Worlds asked for a carrier, they did not expect one that would be able to carry almost as many fighters as the heaviest Navy warships. Given this fact, the Free Worlds have asked Southbound and Tarazed to restrict sale of the "Hauler III: Type F," "Skein" to its Militia only.`
 
 
 

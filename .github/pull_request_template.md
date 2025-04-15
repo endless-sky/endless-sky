@@ -7,10 +7,16 @@
 **Balance**
 **Feature**
 **Bug fix**
+**Typo fix**
 **CI/CD/Testing**
+**Refactor**
 **Documentation**
 
 This PR addresses the bug/feature described in issue #{{insert number}}
+
+## Acknowledgement
+
+- [ ] I acknowledge that I have read and understand the [Contributing](https://github.com/endless-sky/endless-sky/blob/master/docs/CONTRIBUTING.md) article.
 
 ## Summary
 {{Describe and explain your changes. Include links to related issues.}}
