@@ -3450,6 +3450,23 @@ mission "Coalition: Struggling Author 1"
 			label decline
 			`	Filled with disappointment, Anna says, "Well, I'm afraid I have other things to do, then. Thank you for the stories, at least." She leaves.`
 				decline
+	on enter
+		system
+			government "Coalition" "Heliarch"
+		conversation
+			`As the flames of your jump drive fade away, Anna comes out of her bunk in shock. "What was that? It felt like the whole ship vanished out of our space altogether! Where are we?"`
+			choice
+				`	"Welcome to Coalition space, Anna."`
+				`	"That was a jump drive."`
+				`	"That's what happens every time I go to Coalition space."`
+			`	"Wow. I can't believe this is happening! I'm so excited!" Anna looks out the window. "What are those golden ships?"`
+			`	"They're Heliarch vessels," you reply.`
+			`	"Can I take a look at your Jump Drive? I'm interested to see how it works," Anna says. You take her to the engine room of <ship>, where she begins taking notes and pictures of the drive.`
+			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle down to the controls.`
+	npc
+		government "Heliarch"
+		personality heroic opportunistic
+		fleet "Heliarch"
 	on complete
 		set "coalition: struggling author - beyond the hyperdrive"
 		conversation
