@@ -302,9 +302,10 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 		{
 			if(zones[index].Value().Has(Command::MENU))
 				GetUI()->Push(new Dialog([this, index]()
-				    {
-				    	this->editing = this->selected = index;
-					}, "Rebinding this key will change the keypress you need to access this menu. "
+					{
+						this->editing = this->selected = index;
+					},
+					"Rebinding this key will change the keypress you need to access this menu. "
 					"You really shouldn't rebind this unless needed.",
 					Truncate::NONE, true, true));
 			else
