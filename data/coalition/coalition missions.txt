@@ -3588,7 +3588,7 @@ mission "Coalition: Struggling Author 4"
 	description "Anna found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
 	source "Ki Patek Ka"
 	destination "Inmost Blue"
-	blocked "You do not have enough bunk space for the Heliarch agent and Anna Fangvin. Come back here when you have two bunks free."
+	blocked "You do not have enough bunk space for Anna Fangvin and the Heliarch agent. Come back here when you have two bunks free."
 	passengers 2
 	to offer
 		has "Coalition: Struggling Author 3: done"
