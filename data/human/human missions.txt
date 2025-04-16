@@ -7681,3 +7681,37 @@ mission "Silver Talon 2"
 			`	Dagger, a crutch under his arm, stumbles after his companions but stops when he sees you watching. "Y'know, cap'n," he mutters, obviously very drunk and speaking slowly, "This ain't over. We'll see Vlad Blaire ded yet for 'is crimes. And I tell yuh, we cud shure use yur 'elp. Whaddayuh say yuh join us a'the spacepurt bahr in an hour?"`
 			`	With that, the wounded veteran turns and thumps off your ship, joining the other bounty hunters.`
 		payment 35000
+
+mission "Silver Talon 3"
+	name "Escape to <planet>"
+	description "With the bounty hunters in tow, flee to <destination> to escape a fleet of enraged and vengeful pirates."
+	passengers 4
+	source "Dancer"
+	destination "???"
+	to offer
+		has "Silver Talon 2: done"
+
+	on offer
+		conversation
+			`You arrive in the bar to find Klaus, Pict, and Dagger seated around a table. Or, In Dagger's case, passed out on the table, surrounded by more bottles of cheap beer than the bar has sold to any other customer all evening.`
+			`	On the other side of the room, Cerridywn sits alone at the bar, nursing what looks to be a glass of mineral water.`
+			choice
+				`	(Join Klaus, Pict, and Dagger.)`
+				`	(Approach Cerridwyn.)`
+					goto cerridwyn
+
+			label cerridwyn
+			`	You slide onto a stool next to Cerridywn, but it seems like she doesn't know you're there. For a minute, you sit awkwardly beside her as she stares off into the distance at a darkness only she can see.`
+			choice
+				`	"Are you okay?"`
+					goto okay
+				`	(Wait.)`
+					goto wait
+				`	(Order a drink.)`
+			
+			`	The bar is mostly empty, and it doesn't take long for you to get your drink. While you're sipping it, Cerridwyn finally speaks.`
+				goto speaks
+			label wait
+			`	You wait at the bar for one minute, then two, until the bartender starts giving you irritated glances. Finally, Cerridwyn speaks.`
+			label speaks
+			`	"I killed him, you know," she says, still staring off into the distance. "I was the one who signed off on the job. Who let him come along with us. If I hadn't "`
