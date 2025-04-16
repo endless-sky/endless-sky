@@ -165,7 +165,7 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 		else
 		{
 			SetBribe(planet->GetBribeFraction());
-			if(bribe)
+			if(bribe && planet->GetPort().CanBribe())
 				SetMessage("If you want to land here, it'll cost you "
 					+ Format::CreditString(bribe) + ".");
 			else if(gov->IsEnemy())

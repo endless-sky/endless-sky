@@ -54,7 +54,7 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
+void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 		return;
@@ -145,7 +145,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		}
 
 		if(key == "port")
-			port.Load(child);
+			port.Load(child, playerConditions);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -273,20 +273,20 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		"spaceport news",
 	};
 	bool autoValues[14] = {
-		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
+		port.HasService(Port::ServicesType::All, false) && port.CanRecharge(Port::RechargeType::All, false)
 				&& port.HasNews() && HasNamedPort(),
 		HasNamedPort(),
 		!shipSales.empty(),
 		!outfitSales.empty(),
-		port.HasService(Port::ServicesType::Trading),
-		port.HasService(Port::ServicesType::JobBoard),
-		port.HasService(Port::ServicesType::Bank),
-		port.HasService(Port::ServicesType::HireCrew),
-		port.HasService(Port::ServicesType::OffersMissions),
-		port.CanRecharge(Port::RechargeType::Shields),
-		port.CanRecharge(Port::RechargeType::Hull),
-		port.CanRecharge(Port::RechargeType::Energy),
-		port.CanRecharge(Port::RechargeType::Fuel),
+		port.HasService(Port::ServicesType::Trading, false),
+		port.HasService(Port::ServicesType::JobBoard, false),
+		port.HasService(Port::ServicesType::Bank, false),
+		port.HasService(Port::ServicesType::HireCrew, false),
+		port.HasService(Port::ServicesType::OffersMissions, false),
+		port.CanRecharge(Port::RechargeType::Shields, false),
+		port.CanRecharge(Port::RechargeType::Hull, false),
+		port.CanRecharge(Port::RechargeType::Energy, false),
+		port.CanRecharge(Port::RechargeType::Fuel, false),
 		port.HasNews(),
 	};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
@@ -298,7 +298,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
+	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
@@ -427,9 +427,9 @@ const Port &Planet::GetPort() const
 
 // Check whether there are port services (such as trading, jobs, banking, and hiring)
 // available on this planet.
-bool Planet::HasServices() const
+bool Planet::HasServices(bool isPlayer) const
 {
-	return port.HasServices();
+	return port.HasServices(isPlayer);
 }
 
 
@@ -613,7 +613,7 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
+	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel, ship.IsYours()) && CanLand(ship);
 }
 
 
@@ -648,7 +648,7 @@ Planet::Friendliness Planet::GetFriendliness() const
 
 bool Planet::CanUseServices() const
 {
-	return GameData::GetPolitics().CanUseServices(this);
+	return GameData::GetPolitics().CanUseServices(this) && port.CanAccess();
 }
 
 
