@@ -299,7 +299,17 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
-			editing = selected = index;
+		{
+			if(zones[index].Value().Has(Command::MENU))
+				GetUI()->Push(new Dialog([this, index]()
+				    {
+				    	this->editing = this->selected = index;
+					}, "Rebinding this key will change the keypress you need to access this menu. "
+					"You really shouldn't rebind this unless needed.",
+					Truncate::NONE, true, true));
+			else
+				editing = selected = index;
+		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
@@ -1220,6 +1230,12 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
+	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	{
+		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		return;
+	}
+
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	GetUI()->Pop(this);
