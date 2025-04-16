@@ -442,6 +442,19 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"shields" -10000
 		"hull" -5000
 		"quantum keystone" 1
+		mass 493
+		"outfit space" -493
+		"engine capacity" -168
+		"weapon capacity" -101
+		"required crew" -97
+		"energy generation" 18.2
+		"heat generation" 40
+		"energy capacity" 19200
+		ramscoop 1
+		"shield generation" 1.31
+		"shield energy" 1.31
+		"radar jamming" 10
+		"capture defense" 80
 		"burn protection" 100
 		"heat protection" 1
 		"discharge protection" 1
@@ -450,30 +463,100 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"ion protection" 1
 		"scramble protection" 1
 		"slowing protection" 1
+		"thrust" 80.4
+		"thrusting energy" 3.5
+		"thrusting heat" 6.2
+		"flare sprite" "effect/ion flare/large"
+			"frame rate" 0.9
+		"flare sound" "ion large"
+		"turn" 3913.5
+		"turning energy" 3.5
+		"turning heat" 7.3
+		"steering flare sprite" "effect/ion flare/huge"
+			"frame rate" 0.8
+		"steering flare sound" "ion huge"
 	outfits
-		"Laser Turret" 2
-		"Quad Blaster Turret"
-		"Anti-Missile Turret" 2
-		
-		"Fusion Reactor"
-		"LP144a Battery Pack"
-		"D14-RN Shield Generator"
-		"D67-TM Shield Generator"
-		"Large Radar Jammer"
-		"Ramscoop"
-		"NDR-114 Android" 100
-		"Laser Rifle" 150
-		
-		"X4700 Ion Thruster"
-		"X5200 Ion Steering"
+		"Shattered Light: Turret" 3
+		"Shattered Light: AM" 2
+		"Shattered Light: Reactor"
+		"Shattered Light: Battery"
+		"Shattered Light: Shield"
+		"Shattered Light: Jammer"
+		"Shattered Light: Ramscoop"
+		"Shattered Light: Robot" 100
+		"Shattered Light: Personal" 150
+		"Shattered Light: Thruster"
+		"Shattered Light: Steering"
 		"Hyperdrive"
-	turret "Laser Turret"
-	turret "Anti-Missile Turret"
-	turret "Quad Blaster Turret"
-	turret "Laser Turret"
-	turret "Anti-Missile Turret"
+	turret "Shattered Light: Turret"
+	turret "Shattered Light: AM"
+	turret "Shattered Light: Turret"
+	turret "Shattered Light: Turret"
+	turret "Shattered Light: AM"
 	description `The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for city-ships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed "dream cells" built to transport people in bulk.`
 	description "	This is a wreck. A ship that once might have held hundreds of people has no functional environmental system, the once verdant hydroponics domes are shattered, and much of the ship appears to be destroyed. Burns, strange scrapes, and twists to structural elements abound. Only a smattering of droids persistently continuing their work manage to maintain any degree of functionality."
+
+outfit "Shattered Light: Reactor"
+	category "Power"
+	"display name" "Coal-Burner Generator"
+outfit "Shattered Light: Battery"
+	category "Power"
+	"display name" "Li-Ion Battery Stack"
+outfit "Shattered Light: Shield"
+	category "Systems"
+	"display name" "Asteroid Repellant"
+outfit "Shattered Light: Jammer"
+	category "Systems"
+	"display name" "Aluminum Foil Chaff"
+outfit "Shattered Light: Ramscoop"
+	category "Systems"
+	"display name" "Deuterium Trap"
+outfit "Shattered Light: Robot" 100
+	category "Unique"
+	"display name" "Roomba"
+outfit "Shattered Light: Personal" 150
+	category "Hand to Hand"
+	"display name" ".357 Magnum"
+outfit "Shattered Light: Thruster"
+	category "Engines"
+	"display name" "Solid-Fuel Rockets"
+	plural "Solid-Fuel Rockets"
+outfit "Shattered Light: Steering"
+	category "Engines"
+	"display name" "Control moment gyroscope"
+outfit "Shattered Light: Turret"
+	category "Turrets"
+	"display name" "Archaic Mass Driver Turret"
+	"turret mounts" -1
+	weapon
+		sprite "projectile/blaster"
+		"hardpoint sprite" "hardpoint/quad blaster turret"
+		"hardpoint offset" 9.
+		sound "blaster"
+		"hit effect" "blaster impact"
+		"inaccuracy" 3
+		"turret turn" 2.6
+		"velocity" 10.625
+		"lifetime" 48
+		"reload" 3
+		"firing energy" 5.8
+		"firing heat" 18
+		"shield damage" 10.6
+		"hull damage" 6.6
+outfit "Shattered Light: AM"
+	category "Turrets"
+	"display name" "Rusty Anti-Missile"
+	"turret mounts" -1
+	weapon
+		"hardpoint sprite" "hardpoint/anti-missile"
+		"hardpoint offset" 4.
+		"hit effect" "small anti-missile"
+		"anti-missile" 5
+		"velocity" 150
+		"lifetime" 1
+		"reload" 8
+		"firing energy" 5
+		"firing heat" 3
 
 
 
