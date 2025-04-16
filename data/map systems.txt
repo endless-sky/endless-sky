@@ -41,7 +41,7 @@ galaxy "label gegno"
 	pos 854 -544
 
 galaxy "label graveyard"
-	pos 45 590
+	pos 100 630
 
 galaxy "label hai"
 	pos -74 -497
@@ -81,7 +81,7 @@ galaxy "label successors"
 	pos -122 1385
 
 galaxy "label tangled shroud"
-	pos -480 1050
+	pos -300 1080
 
 galaxy "label twilight"
 	pos -420 750
@@ -90,7 +90,7 @@ galaxy "label wanderers"
 	pos -145 -753
 
 galaxy "label waste"
-	pos 80 315
+	pos 160 380
 
 galaxy "pug empty galaxy"
 	pos 10000 7000
