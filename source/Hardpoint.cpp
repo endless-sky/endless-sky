@@ -45,9 +45,9 @@ namespace {
 
 // Constructor.
 Hardpoint::Hardpoint(const Point &point, const BaseAttributes &attributes,
-	bool isTurret, bool isUnder, const Outfit *outfit)
+	bool isTurret, bool isUnder, const Outfit *outfit, int group)
 	: outfit(outfit), point(point * .5), baseAngle(attributes.baseAngle), baseAttributes(attributes),
-	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder)
+	isTurret(isTurret), isParallel(baseAttributes.isParallel), isUnder(isUnder), group(group)
 {
 	UpdateArc();
 }
@@ -342,7 +342,7 @@ void Hardpoint::Jam()
 
 // Install a weapon here (assuming it is empty). This is only for
 // Armament to call internally.
-void Hardpoint::Install(const Outfit *outfit)
+void Hardpoint::Install(const Outfit *outfit, int newGroup)
 {
 	// If the given outfit is not a valid weapon, this hardpoint becomes empty.
 	// Also check that the type of the weapon (gun or turret) is right.
@@ -354,6 +354,8 @@ void Hardpoint::Install(const Outfit *outfit)
 		this->outfit = outfit;
 		Reload();
 
+		if(newGroup > -1)
+			group = newGroup;
 		// Update the arc of fire because of changing an outfit.
 		UpdateArc();
 
@@ -391,6 +393,7 @@ void Hardpoint::Uninstall()
 {
 	outfit = nullptr;
 
+	group = 0;
 	// Update the arc of fire because of changing an outfit.
 	UpdateArc();
 }
@@ -401,6 +404,20 @@ void Hardpoint::Uninstall()
 const Hardpoint::BaseAttributes &Hardpoint::GetBaseAttributes() const
 {
 	return baseAttributes;
+}
+
+
+
+void Hardpoint::SetGroup(int group)
+{
+	this->group = group;
+}
+
+
+
+int Hardpoint::GetGroup() const
+{
+	return group;
 }
 
 
