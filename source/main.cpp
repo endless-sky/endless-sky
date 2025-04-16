@@ -135,6 +135,8 @@ int main(int argc, char *argv[])
 	// Whether we are running an integration test.
 	const bool isTesting = !testToRunName.empty();
 	try {
+		PlayerInfo player;
+		
 		// Load plugin preferences before game data if any.
 		Plugins::LoadSettings();
 
@@ -142,7 +144,7 @@ int main(int argc, char *argv[])
 
 		// Begin loading the game data.
 		bool isConsoleOnly = loadOnly || printTests || printData;
-		auto dataFuture = GameData::BeginLoad(queue, isConsoleOnly, debugMode,
+		auto dataFuture = GameData::BeginLoad(queue, player, isConsoleOnly, debugMode,
 			isConsoleOnly || checkAssets || (isTesting && !debugMode));
 
 		// If we are not using the UI, or performing some automated task, we should load
@@ -167,7 +169,6 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 
-		PlayerInfo player;
 		if(loadOnly || checkAssets)
 		{
 			if(checkAssets)

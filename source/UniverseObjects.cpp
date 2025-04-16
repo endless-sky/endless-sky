@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "Information.h"
 #include "Logger.h"
+#include "PlayerInfo.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "TaskQueue.h"
@@ -35,14 +36,15 @@ using namespace std;
 
 
 
-shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesystem::path> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const PlayerInfo &player,
+		const vector<filesystem::path> &sources, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return queue.Run([this, sources, debugMode]() noexcept -> void
+	return queue.Run([this, &player, &sources, debugMode]() noexcept -> void
 		{
 			vector<filesystem::path> files;
 			for(const auto &source : sources)
@@ -60,7 +62,7 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesys
 			const double step = 1. / (static_cast<int>(files.size()) + 1);
 			for(const auto &path : files)
 			{
-				LoadFile(path, debugMode);
+				LoadFile(path, player, debugMode);
 
 				// Increment the atomic progress by one step.
 				// We use acquire + release to prevent any reordering.
@@ -134,7 +136,7 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node)
+void UniverseObjects::Change(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
@@ -319,7 +321,7 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
+void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &player, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
 	if(path.extension() != ".txt")
@@ -329,6 +331,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 	if(debugMode)
 		Logger::LogError("Parsing: " + path.string());
 
+	const ConditionsStore *playerConditions = &player.Conditions();
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
