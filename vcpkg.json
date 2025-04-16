@@ -13,6 +13,7 @@
 					"name": "glew",
 					"platform": "!osx"
 				},
+				"libavif",
 				"libpng",
 				"libjpeg-turbo",
 				{
@@ -41,6 +42,7 @@
 		"steam-libs": {
 			"description": "System libraries not provided in the Steam Sniper Runtime.",
 			"dependencies": [
+				"libavif",
 				"libmad",
 				"catch2"
 			]
