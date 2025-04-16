@@ -8963,7 +8963,7 @@ mission "Timothy Radrickson 3c: Escort the Convoy"
 			`	Her hand vigorously shakes yours. "Gotta say you handled yourself well out there. Always good to see a capt'n worth more than the dust on their boots." She gives you an approving nod.`
 
 			label nextup
-			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over to the spaceport when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
+			`	"I got word from Rand they are more than a little pleased with your heroics. They'd like you to head on over to the spaceport on Rand when you can. Probably have some credits or a photo op or something fancy and tedious waiting for you."`
 			`	She shrugs, and winks, "Anyways, I got plenty of work that needs doing. Take care of yourself, Capt'n."`
 			`	With that she heads back to her freighter fleet.`
 
@@ -9010,7 +9010,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 			`	He gives you a sheepish smile and says, "This is a celebration in your honor, Hero of Rand."`
 			choice
 				`	"Hero of Rand?"`
-				`	"What do mean?"`
+				`	"What do you mean?"`
 				`	"So you lied to me."`
 			`	He shrugs. "I just thought it would be more fun this way. Who doesn't like surprises?"`
 			`	"Without you the entire planet would have defaulted. Our creditors were circling like vultures eager to assume ownership of all our production capabilities, and turn the population into indentured servants. The whole world would have been their debtor's prison."`
@@ -9133,20 +9133,11 @@ mission "Timothy Radrickson 4: Imprisoned"
 			`	Tom gives that sort of news anchor laugh that's neither committal nor haughty. "In that case, forget what I said about 20 years. Anything more than 5 years on Oblivion is a life sentence."`
 			`	Both news anchors laugh, and then segue into a story about highly intelligent ferrets that have learned to sing in German.`
 				accept
-	to complete
-		never
-
-mission "Timothy Radrickson 5: Oblivion Meeting"
-	landing
-	to offer
-		random < 90
-		has "Timothy Radrickson 4: Imprisoned: active"
-	source "Oblivion"
-	invisible
-	on offer
+	on complete
 		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
 		log `Oblivion had not been kind to Timothy. The last time he had been seen alive he was dying the slow, toxic death that world is famed for. Asked me to help him.`
 		set "timothy radrickson 4 log entry correct"
+		event "rad tim dead" 1
 		conversation
 			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
 			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
@@ -9158,10 +9149,8 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 				`	"Shouldn't have broken the law."`
 			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. Outside the Stephenson warehouse. Stephenson. I'll tell you what I need."`
 			`	With that, he returns to moving the mineral trolley, leaving you to yourself.`
-				accept
-	on enter
-		fail
 
+event "rad tim dead"
 
 mission "Timothy Radrickson 5a: Timshank Redemption"
 	name "Meet Tim's contact on <planet>"
@@ -9175,8 +9164,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 		"timothy radrickson suit" >= 1
 		"timothy radrickson id" >= 1
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: offered"
-		not "Timothy Radrickson 5: Oblivion Meeting: failed"
+		has "Timothy Radrickson 4: Imprisoned: done"
+		not "event: rad tim dead"
 	on offer
 		conversation
 			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it seems as if you could swallow it; it doesn't help that the air somehow feels even denser at night. The warehouse marked "Stephenson Heavy Industries" turns out to be at the very edge of the spaceport's boundary, and all you see when you get there is a lone box truck parked in the loading bay.`
@@ -10378,7 +10367,7 @@ mission "Timothy Radrickson: Log Fix 3"
 	invisible
 	to offer
 		has "Timothy Radrickson 3d: Return to Rand: done"
-		not "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 4: Imprisoned: done"
 		not "timothy radrickson 3 log entry correct"
 		not "Timothy Radrickson: Log Fix 2: offered"
 	on offer
@@ -10392,7 +10381,7 @@ mission "Timothy Radrickson: Log Fix 4"
 	landing
 	invisible
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		has "Timothy Radrickson 4: Imprisoned: done"
 		not "Timothy Radrickson 5a: Timshank Redemption: offered"
 		not "timothy radrickson 4 log entry correct"
 		not "Timothy Radrickson: Log Fix 3: offered"
