@@ -100,6 +100,10 @@ public:
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)
 	int64_t Evaluate(const ConditionsStore &conditionsStore) const;
 
+	// Evaluate this expression into a numerical value, without actually using a conditionStore for conditions.
+	// All conditions will be treated as if they were empty.
+	int64_t EvaluateWithoutConditions() const;
+
 	/// Parse the remainder of a node into this expression.
 	bool ParseNode(const DataNode &node, int &tokenNr);
 

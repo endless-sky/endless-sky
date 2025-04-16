@@ -201,7 +201,10 @@ void MapOutfitterPanel::DrawItems()
 
 		for(const Outfit *outfit : it->second)
 		{
-			string price = Format::CreditString(outfit->Cost());
+			// Showing the value instead of the sale price on the selected planet; the sale price depends on conditions,
+			// and we cannot predict all conditions up-front. Might want to add a tooltip here that states that the
+			// actual sale price could be different from what is listed here.
+			string price = Format::CreditString(outfit->Value());
 
 			string info;
 			if(outfit->Get("minable") > 0.)
