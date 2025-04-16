@@ -286,7 +286,9 @@ void Government::Load(const DataNode &node)
 				{
 					if(grand.Token(0) == "remove")
 					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+						if(grand.Token(0) == "ignore universal")
+							ignoreUniversalIllegals = grand.BoolValue(1);
+						else if(grand.Size() >= 3 && grand.Token(1) == "ship")
 						{
 							if(!illegalShips.erase(grand.Token(2)))
 								grand.PrintTrace("Invalid remove, ship not found in existing illegals:");
@@ -294,6 +296,8 @@ void Government::Load(const DataNode &node)
 						else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 							grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
 					}
+					else if(grand.Token(0) == "ignore universal")
+						ignoreUniversalIllegals = grand.BoolValue(1);
 					else if(grand.Token(0) == "ignore")
 					{
 						if(grand.Size() >= 3 && grand.Token(1) == "ship")
@@ -319,7 +323,9 @@ void Government::Load(const DataNode &node)
 				{
 					if(grand.Token(0) == "remove")
 					{
-						if(grand.Size() >= 3 && grand.Token(1) == "ship")
+						if(grand.Token(0) == "ignore universal")
+							ignoreUniversalAtrocities = grand.BoolValue(1);
+						else if(grand.Size() >= 3 && grand.Token(1) == "ship")
 						{
 							if(!atrocityShips.erase(grand.Token(2)))
 								grand.PrintTrace("Invalid remove, ship not found in existing atrocities:");
@@ -327,6 +333,8 @@ void Government::Load(const DataNode &node)
 						else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 							grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
 					}
+					else if(grand.Token(0) == "ignore universal")
+						ignoreUniversalAtrocities = grand.BoolValue(1);
 					else if(grand.Token(0) == "ignore")
 					{
 						if(grand.Size() >= 3 && grand.Token(1) == "ship")
@@ -657,7 +665,10 @@ bool Government::Condemns(const Outfit *outfit) const
 {
 	const auto isAtrocity = atrocityOutfits.find(outfit);
 	bool found = isAtrocity != atrocityOutfits.cend();
-	return (found && isAtrocity->second) || (!found && outfit->Get("atrocity") > 0.);
+	if(found)
+		return isAtrocity->second;
+	else
+		return !IgnoresUniversalAtrocities() && outfit->Get("atrocity") > 0.;
 }
 
 
@@ -666,35 +677,52 @@ bool Government::Condemns(const Ship *ship) const
 {
 	const auto isAtrocity = atrocityShips.find(ship->TrueModelName());
 	bool found = isAtrocity != atrocityShips.cend();
-	return (found && isAtrocity->second) || (!found && ship->BaseAttributes().Get("atrocity") > 0.);
+	if(found)
+		return isAtrocity->second;
+	else
+		return !IgnoresUniversalAtrocities() && ship->BaseAttributes().Get("atrocity") > 0.;
+}
+
+
+
+bool Government::IgnoresUniversalAtrocities() const
+{
+	return ignoreUniversalAtrocities;
 }
 
 
 
 int Government::Fines(const Outfit *outfit) const
 {
-	// If this government doesn't fine anything it won't fine this outfit.
+	// If this government doesn't fine anything, it won't fine this outfit.
 	if(!fine)
 		return 0;
 
 	for(const auto &it : illegalOutfits)
 		if(it.first == outfit)
 			return it.second;
-	return outfit->Get("illegal");
+	return IgnoresUniversalIllegals() ? 0 : outfit->Get("illegal");
 }
 
 
 
 int Government::Fines(const Ship *ship) const
 {
-	// If this government doesn't fine anything it won't fine this ship.
+	// If this government doesn't fine anything, it won't fine this ship.
 	if(!fine)
 		return 0;
 
 	for(const auto &it : illegalShips)
 		if(it.first == ship->TrueModelName())
 			return it.second;
-	return ship->BaseAttributes().Get("illegal");
+	return IgnoresUniversalIllegals() ? 0 : ship->BaseAttributes().Get("illegal");
+}
+
+
+
+bool Government::IgnoresUniversalIllegals() const
+{
+	return ignoreUniversalIllegals;
 }
 
 
