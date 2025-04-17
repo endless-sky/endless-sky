@@ -356,7 +356,7 @@ namespace {
 				<< DataWriter::Quote("energy dmg/s") << ',' << DataWriter::Quote("ion dmg/s") << ','
 				<< DataWriter::Quote("scrambling dmg/s") << ',' << DataWriter::Quote("slow dmg/s") << ','
 				<< DataWriter::Quote("disruption dmg/s") << ',' << "piercing" << ',' << DataWriter::Quote("fuel dmg/s") << ','
-				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << "homing" << ',' << "strength" << ','
+				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << ',' << "strength" << ','
 				<< "deterrence" << '\n';
 
 			for(auto &it : GameData::Outfits())
@@ -425,7 +425,6 @@ namespace {
 				double hitforce = outfit.HitForce() * fireRate;
 				cout << hitforce << ',';
 
-				cout << outfit.Homing() << ',';
 				double strength = outfit.MissileStrength() + outfit.AntiMissile();
 				cout << strength << ',';
 
