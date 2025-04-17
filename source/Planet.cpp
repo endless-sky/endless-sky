@@ -332,7 +332,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
+	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
+			&& !attributes.contains("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
