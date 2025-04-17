@@ -46,6 +46,7 @@ public:
 		// (directional turret only)
 		Angle minArc;
 		Angle maxArc;
+		std::vector<std::pair<Angle, Angle>> blindspots;
 		// This attribute is added to the turret turn multiplier of the ship.
 		double turnMultiplier;
 	};
@@ -86,6 +87,8 @@ public:
 
 	// Check if this weapon is ready to fire.
 	bool IsReady() const;
+	// Check if this weapon can't fire because of its blindspots.
+	bool IsBlind() const;
 	// Check if this weapon was firing in the previous step.
 	bool WasFiring() const;
 	// If this is a burst weapon, get the number of shots left in the burst.

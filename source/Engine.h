@@ -155,6 +155,14 @@ private:
 		double angle;
 	};
 
+	class TurretOverlay {
+	public:
+		Point position;
+		Point angle;
+		double scale;
+		bool isBlind;
+	};
+
 	class Zoom {
 	public:
 		constexpr Zoom() : base(0.) {}
@@ -259,6 +267,7 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
+	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};
