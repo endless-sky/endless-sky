@@ -3937,7 +3937,8 @@ planet "New Switzerland"
 		fleet "Small Republic" 11
 
 planet "New Tibet"
-	attributes "dirt belt" factory religious
+	attributes "dirt belt" factory 
+	
 	landscape land/mountain0
 	description `New Tibet is a world of jagged mountains and deeply shadowed valleys.`
 	description `	Although it has been inhabited for centuries, in many places the terrain is so rugged that roads cannot be built, leaving several of the smaller towns almost completely isolated. Taking advantage of this isolation, several orders of Buddhist monks have built monasteries here.`
