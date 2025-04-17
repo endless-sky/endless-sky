@@ -136,6 +136,21 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
+			else if(key == "to")
+			{
+				if(value == "know")
+					toKnow = ConditionSet();
+				else if(value == "land")
+					toLand = ConditionSet();
+				else if(value == "unlock")
+				{
+					const string &shop = child.Token(valueIndex + 1);
+					if(shop == "shipyard")
+						toUnlockShipyard = ConditionSet();
+					else if(shop == "outfitter")
+						toUnlockOutfitter = ConditionSet();
+				}
+			}
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -239,6 +254,25 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		{
 			wormhole = wormholes.Get(value);
 			wormhole->SetPlanet(*this);
+		}
+		else if(key == "to")
+		{
+			if(value == "know")
+				toKnow.Load(child, playerConditions);
+			else if(value == "land")
+				toLand.Load(child, playerConditions);
+			else if(value == "unlock" && child.Size() > valueIndex + 1)
+			{
+				const string &shop = child.Token(valueIndex + 1);
+				if(shop == "shipyard")
+					toUnlockShipyard.Load(child, playerConditions);
+				else if(shop == "outfitter")
+					toUnlockOutfitter.Load(child, playerConditions);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -446,7 +480,7 @@ bool Planet::IsInhabited() const
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const
 {
-	return !Shipyard().empty();
+	return !Shipyard().empty() && toUnlockShipyard.Test();
 }
 
 
@@ -466,7 +500,7 @@ const Sale<Ship> &Planet::Shipyard() const
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !Outfitter().empty();
+	return !Outfitter().empty() && toUnlockOutfitter.Test();
 }
 
 
@@ -588,6 +622,10 @@ bool Planet::IsAccessible(const Ship *ship) const
 	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
 	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
 		return false;
+	// If this ship is yours, but you lack the conditions to know that it's a landable object,
+	// then the ship can't land.
+	if(ship && ship->IsYours() && !toKnow.Test())
+		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
 		return true;
@@ -618,16 +656,32 @@ bool Planet::HasFuelFor(const Ship &ship) const
 
 
 
+bool Planet::CanBribe() const
+{
+	// In order to be allowed to bribe this planet, you need to meet both the conditions to bribe the port
+	// and those to land on the planet.
+	return port.CanBribe() && toLand.Test();
+}
+
+
+
 bool Planet::CanLand(const Ship &ship) const
 {
-	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+	if(!ship.IsYours())
+		return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 
 
 bool Planet::CanLand() const
 {
-	return GameData::GetPolitics().CanLand(this);
+	return GameData::GetPolitics().CanLand(this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 

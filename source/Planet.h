@@ -144,6 +144,7 @@ public:
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
 	bool HasFuelFor(const Ship &ship) const;
+	bool CanBribe() const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	Friendliness GetFriendliness() const;
@@ -167,6 +168,11 @@ private:
 	std::string music;
 
 	std::set<std::string> attributes;
+
+	ConditionSet toKnow;
+	ConditionSet toLand;
+	ConditionSet toUnlockShipyard;
+	ConditionSet toUnlockOutfitter;
 
 	std::set<const Sale<Ship> *> shipSales;
 	std::set<const Sale<Outfit> *> outfitSales;

@@ -183,14 +183,21 @@ bool Politics::CanLand(const Planet *planet) const
 		return false;
 	if(!planet->IsInhabited())
 		return true;
-	if(dominatedPlanets.contains(planet))
-		return true;
-	if(bribedPlanets.contains(planet))
+	if(HasClearance(planet))
 		return true;
 	if(provoked.contains(planet->GetGovernment()))
 		return false;
 
 	return Reputation(planet->GetGovernment()) >= planet->RequiredReputation();
+}
+
+
+
+// Check if the player has been granted clearance to land on this planet, either
+// through bribes, domination, or mission clearance.
+bool Politics::HasClearance(const Planet *planet) const
+{
+	return dominatedPlanets.contains(planet) || bribedPlanets.contains(planet);
 }
 
 

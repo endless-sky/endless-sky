@@ -76,6 +76,8 @@ public:
 	const std::string &Name() const;
 	const Paragraphs &Description() const;
 
+	// Whether the player is required to bribe before landing due to their conditions.
+	bool RequiresBribe() const;
 	// Whether the player is able to bribe this port.
 	bool CanBribe() const;
 	// Whether the player is able to access this port after landing.
@@ -112,6 +114,7 @@ private:
 	int services = ServicesType::None;
 
 	// Conditions that determine how the player is allowed to interact with this port.
+	ConditionSet toRequireBribe;
 	ConditionSet toBribe;
 	ConditionSet toAccess;
 	std::map<int, ConditionSet> toRecharge;

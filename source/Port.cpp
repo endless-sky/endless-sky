@@ -115,7 +115,9 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "to" && child.Size() >= 2)
 		{
 			const string &conditional = child.Token(1);
-			if(conditional == "bribe")
+			if(conditional == "require bribe")
+				toRequireBribe.Load(child, playerConditions);
+			else if(conditional == "bribe")
 				toBribe.Load(child, playerConditions);
 			else if(conditional == "access")
 				toAccess.Load(child, playerConditions);
@@ -236,6 +238,13 @@ const string &Port::Name() const
 const Paragraphs &Port::Description() const
 {
 	return description;
+}
+
+
+
+bool Port::RequiresBribe() const
+{
+	return !toRequireBribe.IsEmpty() && toRequireBribe.Test();
 }
 
 

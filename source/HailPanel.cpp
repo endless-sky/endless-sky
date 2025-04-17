@@ -164,8 +164,9 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 			SetMessage("You are cleared to land, " + player.Flagship()->Name() + ".");
 		else
 		{
-			SetBribe(planet->GetBribeFraction());
-			if(bribe && planet->GetPort().CanBribe())
+			if(planet->CanBribe())
+				SetBribe(planet->GetBribeFraction());
+			if(bribe)
 				SetMessage("If you want to land here, it'll cost you "
 					+ Format::CreditString(bribe) + ".");
 			else if(gov->IsEnemy())
