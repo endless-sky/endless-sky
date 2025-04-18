@@ -3514,6 +3514,24 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	fleetAllBaseAttributeProvider.SetGetFunction(fleetAllBaseAttributeFun);
 
+	auto &&fleetLocalParkedBaseAttributeProvider = conditions.GetProviderPrefixed("ship base attribute (parked): ");
+	auto fleetLocalParkedBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		// If the player isn't landed then there can be no parked ships local to them.
+		if(!planet)
+			return 0;
+		string attribute = name.substr(strlen("ship base attribute (parked): "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(!ship->IsParked() || ship->GetPlanet() != planet)
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, true);
+		}
+		return retVal;
+	};
+	fleetLocalParkedBaseAttributeProvider.SetGetFunction(fleetLocalParkedBaseAttributeFun);
+
 	auto &&fleetLocalAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
 	auto fleetLocalAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
@@ -3548,6 +3566,24 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal;
 	};
 	fleetAllAttributeProvider.SetGetFunction(fleetAllAttributeFun);
+
+	auto &&fleetLocalParkedAttributeProvider = conditions.GetProviderPrefixed("ship attribute (parked): ");
+	auto fleetLocalParkedAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		// If the player isn't landed then there can be no parked ships local to them.
+		if(!planet)
+			return 0;
+		string attribute = name.substr(strlen("ship attribute (parked): "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(!ship->IsParked() || ship->GetPlanet() != planet)
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, false);
+		}
+		return retVal;
+	};
+	fleetLocalParkedAttributeProvider.SetGetFunction(fleetLocalParkedAttributeFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
