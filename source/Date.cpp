@@ -21,7 +21,7 @@ using namespace std;
 
 namespace {
 	// Figure out the day of the week of the given date.
-	const string &Weekday(int day, int month, int year)
+	int WeekdayNumberOffset(int day, int month, int year)
 	{
 		// Zeller's congruence.
 		if(month < 3)
@@ -29,10 +29,13 @@ namespace {
 			--year;
 			month += 12;
 		}
-		day = (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
+		return (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
+	}
 
+	const string &Weekday(int day, int month, int year)
+	{
 		static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
-		return DAY[day];
+		return DAY[WeekdayNumberOffset(day, month, year)];
 	}
 
 	// Convert an integer to a string where single-digit integers have a leading zero.
@@ -355,4 +358,20 @@ int Date::Month() const
 int Date::Year() const
 {
 	return (date >> 9);
+}
+
+
+
+// Get the current day of the week as a number. Monday is 1, Sunday is 7.
+int Date::WeekdayNumber() const
+{
+	// WeekdayNumberOffset gives values in the range [0, 6], starting from Saturday.
+	// Add 5 to get values in the range [5, 11].
+	// Modulo 7 to get [0, 6]. Monday through Friday moving from [7, 11] to [0, 4].
+	// Add 1 for [1, 7].
+	int result = WeekdayNumberOffset(Day(), Month(), Year());
+	result += 5;
+	result %= 7;
+	result += 1;
+	return result;
 }
