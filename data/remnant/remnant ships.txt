@@ -512,7 +512,7 @@ outfit "Shattered Light: Personal" 150
 outfit "Shattered Light: Thruster"
 	category "Engines"
 	"display name" "Orion Thruster"
-	plural "Solid-Fuel Rockets"
+	plural "Orion Thrusters"
 outfit "Shattered Light: Steering"
 	category "Engines"
 	"display name" "Daedalus Steering"
