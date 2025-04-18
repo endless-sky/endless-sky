@@ -446,7 +446,7 @@ bool Planet::IsInhabited() const
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const
 {
-	return !shipSales().empty();
+	return !shipSales.empty();
 }
 
 
