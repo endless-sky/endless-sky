@@ -45,6 +45,11 @@ public:
 	explicit ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
 	~ConditionsStore();
 
+	ConditionsStore(const ConditionsStore &) = delete;
+	ConditionsStore &operator=(const ConditionsStore &) = delete;
+	ConditionsStore(ConditionsStore &&) = default;
+	ConditionsStore &operator=(ConditionsStore &&) = default;
+
 	// Serialization support for this class.
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;

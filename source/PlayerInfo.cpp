@@ -3248,7 +3248,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["day"].ProvideNamed([this](const string &name) { return date.Day(); });
 	conditions["month"].ProvideNamed([this](const string &name) { return date.Month(); });
 	conditions["year"].ProvideNamed([this](const string &name) { return date.Year(); });
-
+	conditions["weekday"].ProvideNamed([this](const string &name) { return date.WeekdayNumber(); });
 	conditions["days since year start"].ProvideNamed([this](const string &name) { return date.DaysSinceYearStart(); });
 	conditions["days until year end"].ProvideNamed([this](const string &name) { return date.DaysUntilYearEnd(); });
 	conditions["days since epoch"].ProvideNamed([this](const string &name) { return date.DaysSinceEpoch(); });
