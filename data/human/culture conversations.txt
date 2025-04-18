@@ -1225,6 +1225,8 @@ mission "A Sunracer Hovercraft Racing"
 			``
 				goto decisioning
 			label race
+			action	
+				clear "sunracer race winner"
 			`	${sunracer hovercraft race description}`
 			branch megawon
 				and
@@ -1237,16 +1239,23 @@ mission "A Sunracer Hovercraft Racing"
 					"syndicate laps" >= "deep laps"
 			branch deltwon
 				"delta laps" >= "deep laps"
-
+			action
+				"sunracer race winner" = 4
 			`	Deep Sky Dynamics <deep name> ${sunracer hovercraft victory description}`
 				goto ending
 			label deltwon
+			action
+				"sunracer race winner" = 3
 			`	Delta V Grand Prix <delta name> ${sunracer hovercraft victory description}`
 				goto ending
 			label syndwon
+			action
+				"sunracer race winner" = 2
 			`	Syndicate Performance Racing <syndicate name> ${sunracer hovercraft victory description}`
 				goto ending
 			label megawon
+			action
+				"sunracer race winner" = 1
 			`	Megaparsec Racing Technologies <megaparsec name> ${sunracer hovercraft victory description}`
 			label ending
 			`	Final results:`
