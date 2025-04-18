@@ -364,11 +364,27 @@ void PlayerInfo::Load(const filesystem::path &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(child.Token(0) == "event")
-			gameEvents.emplace(GameEvent(child));
+		{
+			// Old save files may contain unnamed events. In that case, we need to
+			// load the event instead of retrieving the named event definition.
+			// Only the date that the event occurs on may differ from the definition,
+			// so that must be stored separately.
+			GameEvent event(child);
+			const Date &occursOn = event.GetDate();
+			if(!event.Name().empty())
+				gameEvents.emplace(ExclusiveItem<GameEvent>(GameData::Events().Get(event.Name())), occursOn);
+			else
+				gameEvents.emplace(ExclusiveItem<GameEvent>(std::move(event)), occursOn);
+		}
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
 				dataChanges.push_back(grand);
+		}
+		else if(child.Token(0) == "past events")
+		{
+			for(const DataNode &grand : child)
+				pastEvents.push_back(grand.Token(0));
 		}
 		else if(child.Token(0) == "economy")
 			economy = child;
@@ -587,9 +603,8 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		}
 	}
 
-	// Only move the changes into my list if they are not already there.
-	if(&changes != &dataChanges)
-		dataChanges.splice(dataChanges.end(), changes);
+	// The dataChanges list is no longer added to. All events whose changes are
+	// applied are added to the pastEvents list.
 }
 
 
@@ -600,15 +615,15 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 	// Check if the event should be applied directly.
 	if(date <= this->date)
 	{
-		GameEvent eventCopy = event;
-		list<DataNode> eventChanges = {eventCopy.Apply(*this)};
+		list<DataNode> eventChanges = {event.Apply(*this)};
 		if(!eventChanges.empty())
 			AddChanges(eventChanges);
+		pastEvents.push_back(event.Name());
 	}
 	else
 	{
 		event.SetDate(date);
-		gameEvents.insert(std::move(event));
+		gameEvents.emplace(ExclusiveItem<GameEvent>(std::move(event)), date);
 	}
 }
 
@@ -734,10 +749,11 @@ void PlayerInfo::AdvanceDate(int amount)
 		// Check if any special events should happen today.
 		auto it = gameEvents.begin();
 		list<DataNode> eventChanges;
-		while(it != gameEvents.end() && date >= it->GetDate())
+		while(it != gameEvents.end() && date >= it->second)
 		{
-			GameEvent event = *it;
-			eventChanges.splice(eventChanges.end(), event.Apply(*this));
+			GameEvent eventCopy = *(it->first);
+			eventChanges.splice(eventChanges.end(), eventCopy.Apply(*this));
+			pastEvents.push_back(eventCopy.Name());
 			it = gameEvents.erase(it);
 		}
 		if(!eventChanges.empty())
@@ -3095,6 +3111,16 @@ void PlayerInfo::ApplyChanges()
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
 	AddChanges(dataChanges);
+	// The game world is loaded before the player is, so it's safe to apply
+	// changes from event definitions now.
+	list<DataNode> eventChanges;
+	for(const string &eventName : pastEvents)
+	{
+		GameEvent eventCopy = *GameData::Events().Get(eventName);
+		eventChanges.splice(eventChanges.end(), eventCopy.Apply(*this, true));
+	}
+	if(!eventChanges.empty())
+		AddChanges(eventChanges);
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 
@@ -4610,8 +4636,22 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 
 	// Save pending events, and changes that have happened due to past events.
-	for(const GameEvent &event : gameEvents)
-		event.Save(out);
+	for(const auto &it : gameEvents)
+	{
+		const ExclusiveItem<GameEvent> &event = it.first;
+		const Date &date = it.second;
+		if(event.IsStock())
+		{
+			out.Write("event", event->Name());
+			out.BeginChild();
+			{
+				out.Write("date", date.Day(), date.Month(), date.Year());
+			}
+			out.EndChild();
+		}
+		else
+			event->Save(out);
+	}
 	if(!dataChanges.empty())
 	{
 		out.Write("changes");
@@ -4619,6 +4659,16 @@ void PlayerInfo::Save(DataWriter &out) const
 		{
 			for(const DataNode &node : dataChanges)
 				out.Write(node);
+		}
+		out.EndChild();
+	}
+	if(!pastEvents.empty())
+	{
+		out.Write("past events");
+		out.BeginChild();
+		{
+			for(const string &event : pastEvents)
+				out.Write(event);
 		}
 		out.EndChild();
 	}

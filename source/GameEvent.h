@@ -68,7 +68,7 @@ public:
 
 	// Apply this event's changes to the player. Returns a list of data changes that need to
 	// be applied in a batch with other events that are applied at the same time.
-	std::list<DataNode> Apply(PlayerInfo &player);
+	std::list<DataNode> Apply(PlayerInfo &player, bool onlyDataChanges = false);
 
 	const std::list<DataNode> &Changes() const;
 

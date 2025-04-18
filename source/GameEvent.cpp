@@ -133,25 +133,35 @@ void GameEvent::Save(DataWriter &out) const
 	if(isDisabled)
 		return;
 
-	out.Write("event");
+	bool hasName = !name.empty();
+	if(hasName)
+		out.Write("event", name);
+	else
+		out.Write("event");
 	out.BeginChild();
 	{
 		if(date)
 			out.Write("date", date.Day(), date.Month(), date.Year());
-		conditionsToApply.Save(out);
+		// Named events only need to save their name and the date that they occur on.
+		// The remaining information will be retrieved from the definition when the
+		// game is next loaded.
+		if(!hasName)
+		{
+			conditionsToApply.Save(out);
 
-		for(auto &&system : systemsToUnvisit)
-			out.Write("unvisit", system->TrueName());
-		for(auto &&planet : planetsToUnvisit)
-			out.Write("unvisit planet", planet->TrueName());
+			for(auto &&system : systemsToUnvisit)
+				out.Write("unvisit", system->TrueName());
+			for(auto &&planet : planetsToUnvisit)
+				out.Write("unvisit planet", planet->TrueName());
 
-		for(auto &&system : systemsToVisit)
-			out.Write("visit", system->TrueName());
-		for(auto &&planet : planetsToVisit)
-			out.Write("visit planet", planet->TrueName());
+			for(auto &&system : systemsToVisit)
+				out.Write("visit", system->TrueName());
+			for(auto &&planet : planetsToVisit)
+				out.Write("visit planet", planet->TrueName());
 
-		for(auto &&change : changes)
-			out.Write(change);
+			for(auto &&change : changes)
+				out.Write(change);
+		}
 	}
 	out.EndChild();
 }
@@ -223,25 +233,28 @@ void GameEvent::SetDate(const Date &date)
 
 // Apply this event's changes to the player. Returns a list of data changes that need to
 // be applied in a batch with other events that are applied at the same time.
-list<DataNode> GameEvent::Apply(PlayerInfo &player)
+list<DataNode> GameEvent::Apply(PlayerInfo &player, bool onlyDataChanges)
 {
 	if(isDisabled)
 		return {};
 
-	// Apply this event's ConditionSet to the player's conditions.
-	conditionsToApply.Apply(player.Conditions());
+	if(!onlyDataChanges)
+	{
+		// Apply this event's ConditionSet to the player's conditions.
+		conditionsToApply.Apply(player.Conditions());
 
-	for(const System *system : systemsToUnvisit)
-		player.Unvisit(*system);
-	for(const Planet *planet : planetsToUnvisit)
-		player.Unvisit(*planet);
+		for(const System *system : systemsToUnvisit)
+			player.Unvisit(*system);
+		for(const Planet *planet : planetsToUnvisit)
+			player.Unvisit(*planet);
 
-	// Perform visits after unvisits, as "unvisit <system>"
-	// will unvisit any planets in that system.
-	for(const System *system : systemsToVisit)
-		player.Visit(*system);
-	for(const Planet *planet : planetsToVisit)
-		player.Visit(*planet);
+		// Perform visits after unvisits, as "unvisit <system>"
+		// will unvisit any planets in that system.
+		for(const System *system : systemsToVisit)
+			player.Visit(*system);
+		for(const Planet *planet : planetsToVisit)
+			player.Visit(*planet);
+	}
 
 	// Return this event's data changes so that they can be batch applied
 	// with the changes from other events.
