@@ -1111,7 +1111,14 @@ mission "Ramadan on Farpoint"
 		conversation
 			`The red desert of <origin> stretches beyond and beneath the spaceport, creating the illusion that the city is perched on a sea of cooling magma.`
 			`	Carved into one of the cliff faces is a small enclosure with a glass wall facing the main spaceport. Inside, a group of men wearing white robes goes through a methodical series of motions, falling to the ground, kneeling, and standing, while chanting in mellifluous Arabic.`
-			`	A few minutes after you begin watching, the sun goes down. Almost immediately, the group inside the dugout breaks up, only to gather around a circular table. Upon this is spread a huge feast, which the Muslims immediately begin consuming.`
+			`	A few minutes after you begin watching, the sun goes down. Almost immediately, the group scatters, going to little recesses within the walls. Each contains a date and a small cup of water.`
+			`	Another group of adults, wearing black robes, comes out of an interior room. They too go to alcoves in the walls, consuming the dates. One of them notices you watching, and comes toward you with a piece of fruit and a small cup of water.`
+			choice
+				`	(Accept the food.)`
+				`	(Shake your head and leave.)`
+					decline
+			`	You are drawn into the crowd. Soon afterwards, they move to another room, which is filled with a huge table bearing a literal feast. The group sits down.`
+			`	Some while later, you are led back to your ship, after being wished a Happy Ramadan.`
 				decline
 
 mission "Easter Celebrations"
