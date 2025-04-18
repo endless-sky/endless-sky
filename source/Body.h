@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 #include "Point.h"
+#include "Swizzle.h"
 
 #include <string>
 
@@ -49,7 +50,7 @@ public:
 	// Get the farthest a part of this sprite can be from its center.
 	double Radius() const;
 	// Which color swizzle should be applied to the sprite?
-	int GetSwizzle() const;
+	const Swizzle *GetSwizzle() const;
 	// Get the sprite frame and mask for the given time step.
 	float GetFrame(int step = -1) const;
 	const Mask &GetMask(int step = -1) const;
@@ -76,7 +77,7 @@ public:
 	// Set the sprite.
 	void SetSprite(const Sprite *sprite);
 	// Set the color swizzle.
-	void SetSwizzle(int swizzle);
+	void SetSwizzle(const Swizzle *swizzle);
 
 	// Functions determining the current alpha value of the body,
 	// dependent on the position of the body relative to the center of the screen.
@@ -130,7 +131,7 @@ private:
 	// Animation parameters.
 	const Sprite *sprite = nullptr;
 	// Allow objects based on this one to adjust their frame rate and swizzle.
-	int swizzle = 0;
+	const Swizzle *swizzle = Swizzle::None();
 
 	float frameRate = 2.f / 60.f;
 	int delay = 0;

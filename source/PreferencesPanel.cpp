@@ -269,7 +269,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
 	{
-		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
 	else
@@ -299,7 +299,18 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
-			editing = selected = index;
+		{
+			if(zones[index].Value().Has(Command::MENU))
+				GetUI()->Push(new Dialog([this, index]()
+					{
+						this->editing = this->selected = index;
+					},
+					"Rebinding this key will change the keypress you need to access this menu. "
+					"You really shouldn't rebind this unless needed.",
+					Truncate::NONE, true, true));
+			else
+				editing = selected = index;
+		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
@@ -1220,6 +1231,12 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
+	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	{
+		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		return;
+	}
+
 	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	GetUI()->Pop(this);
