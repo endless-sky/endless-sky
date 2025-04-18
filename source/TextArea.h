@@ -72,6 +72,7 @@ private:
 	Color color;
 	Point position;
 	Point size;
+	bool scrollable = false;
 
 	ScrollVar<double> scroll;
 	bool dragging = false;
