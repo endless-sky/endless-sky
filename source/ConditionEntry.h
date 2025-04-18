@@ -35,6 +35,13 @@ public:
 	ConditionEntry(const std::string &name);
 	~ConditionEntry();
 
+	// Prevent copying of ConditionEntries. We cannot safely copy the references to the provider, since we depend on the
+	// conditionsStore to set prefix providers.
+	ConditionEntry(ConditionEntry &) = delete;
+	ConditionEntry& operator=(const ConditionEntry&) = delete;
+
+	void Clear();
+
 	const std::string &Name() const;
 	const std::string NameWithoutPrefix() const;
 

@@ -28,10 +28,20 @@ ConditionEntry::ConditionEntry(const string &name): name(name), value(0), provid
 
 ConditionEntry::~ConditionEntry()
 {
+	Clear();
+}
+
+
+
+void ConditionEntry::Clear()
+{
 	// Remove the provider, if this is the main condition that created it.
 	if(provider && ((provider->mainEntry == nullptr) || provider->mainEntry == this))
 		delete provider;
 	provider = nullptr;
+
+	// Reset the value to the default.
+	value = 0;
 }
 
 

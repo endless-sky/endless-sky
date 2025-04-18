@@ -43,6 +43,7 @@ public:
 	explicit ConditionsStore(const DataNode &node);
 	explicit ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
 	explicit ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
+	~ConditionsStore();
 
 	// Serialization support for this class.
 	void Load(const DataNode &node);

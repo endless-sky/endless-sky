@@ -52,6 +52,15 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 
 
 
+/// A destructor is required to remove ConditionEntries in the correct order.
+ConditionsStore::~ConditionsStore()
+{
+	// Clear removes the ConditionEntries in the correct order.
+	Clear();
+}
+
+
+
 void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
@@ -148,6 +157,11 @@ ConditionEntry &ConditionsStore::operator[](const string &name)
 // Helper to completely remove all data and linked condition-providers from the store.
 void ConditionsStore::Clear()
 {
+	// Reverse clear, to make sure that prefix providers are not cleared before it's users are cleared.
+	for(auto it = storage.rbegin(); it != storage.rend(); ++it)
+		it->second.Clear();
+
+	// Also clear all conditions..
 	// TODO: This invalidates ConditionEntries. If invalidating is not allowed, then just reset all to zero instead.
 	storage.clear();
 }
