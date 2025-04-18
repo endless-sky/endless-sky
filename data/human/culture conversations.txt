@@ -1325,7 +1325,7 @@ mission "A Sunracer Hovercraft Racing"
 			``
 				goto decisioning
 			label race
-			action	
+			action
 				clear "sunracer race winner"
 			`	${sunracer hovercraft race description}`
 			branch megawon
