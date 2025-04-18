@@ -1494,7 +1494,7 @@ void Engine::EnterSystem()
 				&& fleet.CanTrigger(conditions) : false)
 				fleet.Get()->Place(*system, newShips);
 
-		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+		auto CreateWeather = [this, &conditions](const RandomEvent<Hazard> &hazard, Point origin)
 		{
 			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger(conditions))
 			{
@@ -2064,7 +2064,7 @@ void Engine::SpawnPersons()
 void Engine::GenerateWeather()
 {
 	ConditionsStore &conditions = player.Conditions();
-	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+	auto CreateWeather = [this, &conditions](const RandomEvent<Hazard> &hazard, Point origin)
 	{
 		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger(conditions))
 		{
