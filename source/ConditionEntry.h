@@ -26,8 +26,7 @@ class ConditionsStore;
 /// Class that provides access to one single condition. It can:
 /// - act as an int64_t proxy, to emulate int64 values
 /// - provide direct access (polling type access)
-/// - support continuous monitoring access (interrupt driven access) for condition listeners that want to stay updated on
-///   a condition for a longer time.
+/// - support continuous monitoring access for listeners that want to get an interrupt when the condition changes.
 class ConditionEntry {
 	friend ConditionsStore;
 
@@ -38,7 +37,7 @@ public:
 	// Prevent copying of ConditionEntries. We cannot safely copy the references to the provider, since we depend on the
 	// conditionsStore to set prefix providers.
 	ConditionEntry(ConditionEntry &) = delete;
-	ConditionEntry& operator=(const ConditionEntry&) = delete;
+	ConditionEntry& operator=(const ConditionEntry &) = delete;
 
 	void Clear();
 
