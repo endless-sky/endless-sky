@@ -271,10 +271,6 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : outfits)
 		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
-	// Outfitters are never serialized.
-	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].contains(it.first))
-			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
@@ -290,10 +286,6 @@ void UniverseObjects::CheckReferences()
 			it.second.SetTrueModelName(it.first);
 			Warn("ship", it.first);
 		}
-	// Shipyards are never serialized.
-	for(const auto &it : shipSales)
-		if(it.second.empty() && !deferred["shipyard"].contains(it.first))
-			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
