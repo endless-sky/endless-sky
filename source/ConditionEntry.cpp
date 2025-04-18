@@ -20,7 +20,7 @@ using namespace std;
 
 
 
-ConditionEntry::ConditionEntry(const string &name): name(name), value(0)
+ConditionEntry::ConditionEntry(const string &name): name(name), value(0), provider(nullptr)
 {
 }
 
