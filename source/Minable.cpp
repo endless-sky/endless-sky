@@ -175,8 +175,10 @@ void Minable::Place(double energy, const AsteroidBelt &belt)
 	// apoapsis distance (scale / (1 - e)) is no farther than 4.: scale <= 4. * (1 - e)
 	// periapsis distance is no farther than 1.3: scale <= 1.3 * (1 + e)
 	// apoapsis distance is no closer than .8: scale >= .8 * (1 - e)
-	double sMin = max(belt.ScaleFactorMinLow() * (1. + eccentricity), belt.ScaleFactorMinHigh() * (1. - eccentricity));
-	double sMax = min(belt.ScaleFactorMaxHigh() * (1. - eccentricity), belt.ScaleFactorMaxLow() * (1. + eccentricity));
+	double sMin = max(belt.ScaleFactorClosestPeriapsis() * (1. + eccentricity),
+		belt.ScaleFactorClosestApoapsis() * (1. - eccentricity));
+	double sMax = min(belt.ScaleFactorFarthestApoapsis() * (1. - eccentricity),
+		belt.ScaleFactorFarthestPeriapsis() * (1. + eccentricity));
 	orbitScale = (sMin + Random::Real() * (sMax - sMin)) * belt.Radius();
 
 	// At periapsis, the object should have this velocity:

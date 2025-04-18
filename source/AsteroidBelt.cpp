@@ -22,7 +22,7 @@ using namespace std;
 
 
 AsteroidBelt::AsteroidBelt(double radius, const DataNode &node)
-		: radius(radius)
+	: radius(radius)
 {
 	Load(node);
 }
@@ -35,32 +35,32 @@ void AsteroidBelt::Load(const DataNode &node)
 	{
 		if(child.Size() < 1)
 			continue;
-		const string &subKey = child.Token(0);
+		const string &key = child.Token(0);
 		if(child.Size() < 2)
 			child.PrintTrace("Warning: Expected belt sub-key to have a value:");
-		else if(subKey == "max eccentricity")
+		else if(key == "max eccentricity")
 			maxEccentricity = child.Value(1);
-		else if(subKey == "scale factor closest periapsis")
-			scaleFactorMinLow = child.Value(1);
-		else if(subKey == "scale factor closest apoapsis")
-			scaleFactorMinHigh = child.Value(1);
-		else if(subKey == "scale factor farthest periapsis")
-			scaleFactorMaxLow = child.Value(1);
-		else if(subKey == "scale factor farthest apoapsis")
-			scaleFactorMaxHigh = child.Value(1);
+		else if(key == "scale factor closest periapsis")
+			scaleFactorClosestPeriapsis = child.Value(1);
+		else if(key == "scale factor closest apoapsis")
+			scaleFactorClosestApoapsis = child.Value(1);
+		else if(key == "scale factor farthest periapsis")
+			scaleFactorFarthestPeriapsis = child.Value(1);
+		else if(key == "scale factor farthest apoapsis")
+			scaleFactorFarthestApoapsis = child.Value(1);
 		else
 			child.PrintTrace("Warning: Unrecognized belt sub-key:");
 	}
 
 	if(maxEccentricity < 0. || maxEccentricity > 1.)
-		node.PrintTrace("Error: \"max eccentricity\" must be in the range 0-1:");
-	if(scaleFactorMinLow < 0. || scaleFactorMinLow > 1.)
-		node.PrintTrace("Error: \"scale factor closest periapsis\" must be in the range 0 to 1:");
-	if(scaleFactorMinHigh < scaleFactorMinLow || scaleFactorMinHigh > 1.)
+		node.PrintTrace("Error: \"max eccentricity\" must be in the range [0, 1]:");
+	if(scaleFactorClosestPeriapsis < 0. || scaleFactorClosestPeriapsis > 1.)
+		node.PrintTrace("Error: \"scale factor closest periapsis\" must be in the range [0, 1]:");
+	if(scaleFactorClosestApoapsis < scaleFactorClosestPeriapsis || scaleFactorClosestApoapsis > 1.)
 		node.PrintTrace("Error: \"scale factor closest apoapsis\" must be in the range"
-						" \"scale factor closest periapsis\" to 1:");
-	if(scaleFactorMaxLow < 1.)
+						" [\"scale factor closest periapsis\", 1]:");
+	if(scaleFactorFarthestPeriapsis < 1.)
 		node.PrintTrace("Error: \"scale factor farthest periapsis\" must be >= 1:");
-	if(scaleFactorMaxHigh < scaleFactorMaxLow)
+	if(scaleFactorFarthestApoapsis < scaleFactorFarthestPeriapsis)
 		node.PrintTrace("Error: \"scale factor farthest apoapsis\" must be >= \"scale factor farthest periapsis\":");
 }

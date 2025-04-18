@@ -27,32 +27,34 @@ public:
 
 	double Radius() const;
 	double MaxEccentricity() const;
-	double ScaleFactorMinLow() const;
-	double ScaleFactorMinHigh() const;
-	double ScaleFactorMaxLow() const;
-	double ScaleFactorMaxHigh() const;
+	double ScaleFactorClosestPeriapsis() const;
+	double ScaleFactorClosestApoapsis() const;
+	double ScaleFactorFarthestPeriapsis() const;
+	double ScaleFactorFarthestApoapsis() const;
 
 
 private:
 	double radius;
 	double maxEccentricity = .6;
-	double scaleFactorMinLow = .4;
-	double scaleFactorMinHigh = .8;
-	double scaleFactorMaxLow = 1.3;
-	double scaleFactorMaxHigh = 4;
+	double scaleFactorClosestPeriapsis = .4;
+	double scaleFactorClosestApoapsis = .8;
+	double scaleFactorFarthestPeriapsis = 1.3;
+	double scaleFactorFarthestApoapsis = 4;
 
 	void Load(const DataNode &node);
 };
+
+
 
 // Average radius for this belt, also used as lookup key for "remove".
 inline double AsteroidBelt::Radius() const { return radius; }
 // Maximum eccentricity (default 0.6).
 inline double AsteroidBelt::MaxEccentricity() const { return maxEccentricity; }
 // Factor determining periapsis closest distance relative to radius at high eccentricities (default 0.4).
-inline double AsteroidBelt::ScaleFactorMinLow() const { return scaleFactorMinLow; }
+inline double AsteroidBelt::ScaleFactorClosestPeriapsis() const { return scaleFactorClosestPeriapsis; }
 // Factor determining apoapsis closest distance relative to radius at low eccentricities (default 0.8).
-inline double AsteroidBelt::ScaleFactorMinHigh() const { return scaleFactorMinHigh; }
+inline double AsteroidBelt::ScaleFactorClosestApoapsis() const { return scaleFactorClosestApoapsis; }
 // Factor determining periapsis farthest distance relative to radius at low eccentricities (default 1.3).
-inline double AsteroidBelt::ScaleFactorMaxLow() const { return scaleFactorMaxLow; }
+inline double AsteroidBelt::ScaleFactorFarthestPeriapsis() const { return scaleFactorFarthestPeriapsis; }
 // Factor determining apoapsis farthest distance relative to radius at high eccentricities (default 4).
-inline double AsteroidBelt::ScaleFactorMaxHigh() const { return scaleFactorMaxHigh; }
+inline double AsteroidBelt::ScaleFactorFarthestApoapsis() const { return scaleFactorFarthestApoapsis; }
