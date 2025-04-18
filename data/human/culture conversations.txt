@@ -1106,7 +1106,7 @@ mission "Ramadan on Farpoint"
 	source "Farpoint"
 	to offer
 		random < 70
-		month = 3
+		month == 3
 	on offer
 		conversation
 			`The red desert of <origin> stretches beyond and beneath the spaceport, creating the illusion that the city is perched on a sea of cooling magma.`
@@ -1120,8 +1120,8 @@ mission "Easter Celebrations"
 		attributes "religious"
 		government "Deep" "Free Worlds" "Independent" "Neutral" "Pirate" "Republic" "Syndicate"
 	to offer
-		day = 20
-		month = 4
+		day == 20
+		month == 4
 	on offer
 		conversation
 			`During a walk through the spaceport, you observe a small white church. Written on the door in large letters are the words "Stop by for a celebration of the Risen God!"`
