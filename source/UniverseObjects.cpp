@@ -333,8 +333,11 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 	{
 		const string &key = node.Token(0);
 		if(key == "color" && node.Size() >= 5)
-			colors.Get(node.Token(1))->Load(
-				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
+		{
+			Color *color = colors.Get(node.Token(1));
+			color->Load(node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
+			color->SetName(node.Token(1));
+		}
 		else if(key == "swizzle" && node.Size() >= 2)
 			swizzles.Get(node.Token(1))->Load(node);
 		else if(key == "conversation" && node.Size() >= 2)

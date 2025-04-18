@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Color.h"
 
+using namespace std;
+
 
 
 // Greyscale color constructor.
@@ -29,6 +31,7 @@ Color::Color(float i, float a)
 Color::Color(float r, float g, float b, float a)
 	: color{r, g, b, a}
 {
+	isLoaded = true;
 }
 
 
@@ -67,6 +70,20 @@ void Color::Load(double r, double g, double b, double a)
 bool Color::IsLoaded() const
 {
 	return isLoaded;
+}
+
+
+
+void Color::SetName(const string &name)
+{
+	this->name = name;
+}
+
+
+
+const string &Color::Name() const
+{
+	return name;
 }
 
 
