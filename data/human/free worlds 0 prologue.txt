@@ -372,7 +372,7 @@ mission "FW Recon 1"
 				goto close
 			label equipment
 			`	He looks awfully pleased with himself. "Yes, I suppose a ship like this is sure to turn a few heads. Next time we're on the same planet, stop by my berth and I'd be glad to give you a... private tour." He winks at you.`
-				goto close
+
 			label close
 			`	You cut the commlink and breathe a sigh of relief that the conversation is over.`
 	
