@@ -70,7 +70,7 @@ public:
 			verifyAndStripPrefix(prefix, ce.Name());
 			values[ce.Name()] = value;
 			return true;
-		});		
+		});
 	}
 	void SetRONamedProvider(ConditionsStore &store, const std::string &named)
 	{
@@ -80,7 +80,7 @@ public:
 		}, [named](ConditionEntry &ce, int64_t value) {
 			verifyName(named, ce.Name());
 			return false;
-		});		
+		});
 	}
 	void SetRWNamedProvider(ConditionsStore &store, const std::string &named)
 	{
@@ -91,7 +91,7 @@ public:
 			verifyName(named, ce.Name());
 			values[ce.Name()] = value;
 			return true;
-		});		
+		});
 	}
 
 public:

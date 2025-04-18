@@ -3259,13 +3259,13 @@ void PlayerInfo::RegisterDerivedConditions()
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
-	conditions["net worth"].ProvideNamed([this](const string &name){
+	conditions["net worth"].ProvideNamed([this](const string &name) {
 		return min(limit, max(-limit, accounts.NetWorth())); });
-	conditions["credits"].ProvideNamed([this](const string &name){
+	conditions["credits"].ProvideNamed([this](const string &name) {
 		return min(limit, accounts.Credits()); });
-	conditions["unpaid mortgages"].ProvideNamed([this](const string &name){
+	conditions["unpaid mortgages"].ProvideNamed([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
-	conditions["unpaid fines"].ProvideNamed([this](const string &name){
+	conditions["unpaid fines"].ProvideNamed([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Fine")); });
 	conditions["unpaid debts"].ProvideNamed([this](const string &name) {
 		return min(limit, accounts.TotalDebt("Debt")); });
@@ -3361,7 +3361,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return flagship->Bays().size(); });
 	// The behaviour of this condition while landed is not stable and may change in the future.
 	// It should only be used while in-flight.
-	conditions["flagship bays free"].ProvideNamed([this](const string &name) -> int64_t	{
+	conditions["flagship bays free"].ProvideNamed([this](const string &name) -> int64_t {
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
@@ -3430,7 +3430,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		return retVal; });
 
-	conditions["name: "].ProvidePrefixed([this](const string &name) -> bool	{
+	conditions["name: "].ProvidePrefixed([this](const string &name) -> bool {
 		return name == "name: " + firstName + " " + lastName; });
 	conditions["first name: "].ProvidePrefixed([this](const string &name) -> bool {
 		return name == "first name: " + firstName; });
@@ -3488,7 +3488,7 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The number of active, present ships the player has of the given category
 	// (e.g. Heavy Warships).
-	conditions["ships: "].ProvidePrefixed([this](const string &name) -> int64_t	{
+	conditions["ships: "].ProvidePrefixed([this](const string &name) -> int64_t {
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
@@ -3737,7 +3737,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			return false;
 		return name == "flagship system: " + flagship->GetSystem()->TrueName(); });
 	conditions["flagship landed"].ProvideNamed([this](const string &name) -> bool {
-		return (flagship && flagship->GetPlanet());	});
+		return (flagship && flagship->GetPlanet()); });
 	conditions["flagship planet: "].ProvidePrefixed([this](const string &name) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
@@ -3759,7 +3759,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		const Planet *planet = GameData::Planets().Find(name.substr(strlen("landing access: ")));
 		return (planet && flagship) ? planet->CanLand(*flagship) : false; });
 
-	conditions["installed plugin: "].ProvidePrefixed([](const string &name) -> bool	{
+	conditions["installed plugin: "].ProvidePrefixed([](const string &name) -> bool {
 		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
 		return plugin ? plugin->IsValid() && plugin->enabled : false; });
 
@@ -3768,7 +3768,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		return person ? person->IsDestroyed() : false; });
 
 	// Read-only navigation conditions.
-	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int 
+	auto HyperspaceTravelDays = [](const System *origin, const System *destination) -> int
 	{
 		if(!origin)
 			return -1;
@@ -3827,7 +3827,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// A condition for returning a random integer in the range [0, 100).
-	conditions["random"].ProvideNamed([](const string &name) -> int64_t	{
+	conditions["random"].ProvideNamed([](const string &name) -> int64_t {
 		return Random::Int(100); });
 
 	// A condition for returning a random integer in the range [0, input). Input may be a number,

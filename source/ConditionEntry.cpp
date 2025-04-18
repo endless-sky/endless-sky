@@ -1,4 +1,4 @@
-/* ConditionNotifier.cpp
+/* ConditionEntry.cpp
 Copyright (c) 2024-2025 by Peter van der Meer
 
 Endless Sky is free software: you can redistribute it and/or modify it under the

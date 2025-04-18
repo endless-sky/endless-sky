@@ -23,16 +23,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ConditionsStore;
 
-/**
- * Class that provides access to one single condition. It can:
- * - act as an int64_t proxy, to emulate int64 values
- * - provide direct access (polling type access)
- * - support continuous monitoring access (interrupt driven access) for condition listeners that want to stay updated on
- *   a condition for a longer time.
- *
- * This class handles the tracking of listeners for a condition and notifies those listeners on changes in the monitored
- * condition, it depends on the actual class containing the condition to notify this class.
- */
+/// Class that provides access to one single condition. It can:
+/// - act as an int64_t proxy, to emulate int64 values
+/// - provide direct access (polling type access)
+/// - support continuous monitoring access (interrupt driven access) for condition listeners that want to stay updated on
+///   a condition for a longer time.
 class ConditionEntry {
 	friend ConditionsStore;
 
