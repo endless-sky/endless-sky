@@ -37,7 +37,7 @@ public:
 	// Prevent copying of ConditionEntries. We cannot safely copy the references to the provider, since we depend on the
 	// conditionsStore to set prefix providers.
 	ConditionEntry(ConditionEntry &) = delete;
-	ConditionEntry& operator=(const ConditionEntry &) = delete;
+	ConditionEntry &operator=(const ConditionEntry &) = delete;
 
 	void Clear();
 
