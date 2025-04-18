@@ -58,7 +58,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 
+class ConditionsStore;
 class Panel;
+class PlayerInfo;
 class Sprite;
 class TaskQueue;
 
@@ -72,15 +74,15 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::filesystem::path> &sources,
-		bool debugMode = false);
+	std::shared_future<void> Load(TaskQueue &queue, const PlayerInfo &player,
+		const std::vector<std::filesystem::path> &sources, bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
 	void FinishLoading();
 
 	// Apply the given change to the universe.
-	void Change(const DataNode &node);
+	void Change(const DataNode &node, const ConditionsStore *playerConditions);
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
@@ -94,7 +96,7 @@ public:
 
 
 private:
-	void LoadFile(const std::filesystem::path &path, bool debugMode = false);
+	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player, bool debugMode = false);
 
 
 private:

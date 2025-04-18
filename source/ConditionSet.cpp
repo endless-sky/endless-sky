@@ -125,9 +125,9 @@ namespace
 
 
 // Construct and Load() at the same time.
-ConditionSet::ConditionSet(const DataNode &node)
+ConditionSet::ConditionSet(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
@@ -157,6 +157,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 	literal = other.literal;
 	conditionName = std::move(other.conditionName);
 	children = std::move(other.children);
+	playerConditions = other.playerConditions;
 
 	return *this;
 }
@@ -179,6 +180,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 	literal = other.literal;
 	conditionName = other.conditionName;
 	children = other.children;
+	playerConditions = other.playerConditions;
 
 	return *this;
 }
@@ -186,11 +188,12 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 
 
 // Load a set of conditions from the children of this node.
-void ConditionSet::Load(const DataNode &node)
+void ConditionSet::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// The top-node is always an 'and' node, without the keyword.
 	expressionOperator = ExpressionOp::AND;
 	ParseBooleanChildren(node);
+	this->playerConditions = playerConditions;
 }
 
 
@@ -334,6 +337,20 @@ bool ConditionSet::IsValid() const
 bool ConditionSet::Test(const ConditionsStore &conditions) const
 {
 	return Evaluate(conditions);
+}
+
+
+
+bool ConditionSet::Test() const
+{
+	// An empty condition set was likely never loaded, and so won't have a pointer
+	// to the player's conditions. Return true in this case instead of throwing an
+	// exception.
+	if(IsEmpty())
+		return true;
+	if(!playerConditions)
+		throw runtime_error("Unable to Test ConditionSet without a pointer to the player's conditions!");
+	return Evaluate(*playerConditions);
 }
 
 

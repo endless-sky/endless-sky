@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Fleet;
 class Government;
@@ -53,7 +54,7 @@ public:
 
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, Set<Wormhole> &wormholes);
+	void Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions);
 	// Legacy wormhole do not have an associated Wormhole object so
 	// we must auto generate one if we detect such legacy wormhole.
 	void FinishLoading(Set<Wormhole> &wormholes);
@@ -87,7 +88,7 @@ public:
 	const Port &GetPort() const;
 	// Check whether there are port services (such as trading, jobs, banking, and hiring)
 	// available on this planet.
-	bool HasServices() const;
+	bool HasServices(bool isPlayer = true) const;
 
 	// Check if this planet is inhabited (i.e. it has a spaceport, and does not
 	// have the "uninhabited" attribute).
@@ -143,6 +144,7 @@ public:
 	// Below are convenience functions which access the game state in Politics,
 	// but do so with a less convoluted syntax:
 	bool HasFuelFor(const Ship &ship) const;
+	bool CanBribe() const;
 	bool CanLand(const Ship &ship) const;
 	bool CanLand() const;
 	Friendliness GetFriendliness() const;
@@ -166,6 +168,11 @@ private:
 	std::string music;
 
 	std::set<std::string> attributes;
+
+	ConditionSet toKnow;
+	ConditionSet toLand;
+	ConditionSet toUnlockShipyard;
+	ConditionSet toUnlockOutfitter;
 
 	std::set<const Sale<Ship> *> shipSales;
 	std::set<const Sale<Outfit> *> outfitSales;

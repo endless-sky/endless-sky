@@ -54,6 +54,7 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class PlayerInfo;
 class Politics;
 class Ship;
 class Sprite;
@@ -77,7 +78,8 @@ class Wormhole;
 // universe.
 class GameData {
 public:
-	static std::shared_future<void> BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload);
+	static std::shared_future<void> BeginLoad(TaskQueue &queue, const PlayerInfo &player,
+		bool onlyLoadData, bool debugMode, bool preventUpload);
 	static void FinishLoading();
 	// Check for objects that are referred to but never defined.
 	static void CheckReferences();
@@ -105,7 +107,7 @@ public:
 	static void StepEconomy();
 	static void AddPurchase(const System &system, const std::string &commodity, int tons);
 	// Apply the given change to the universe.
-	static void Change(const DataNode &node);
+	static void Change(const DataNode &node, const ConditionsStore *playerConditions);
 	// Update the neighbor lists and other information for all the systems.
 	// This must be done any time that a change creates or moves a system.
 	static void UpdateSystems();

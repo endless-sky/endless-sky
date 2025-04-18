@@ -54,7 +54,7 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
+void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 		return;
@@ -136,6 +136,21 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
+			else if(key == "to")
+			{
+				if(value == "know")
+					toKnow = ConditionSet();
+				else if(value == "land")
+					toLand = ConditionSet();
+				else if(value == "unlock")
+				{
+					const string &shop = child.Token(valueIndex + 1);
+					if(shop == "shipyard")
+						toUnlockShipyard = ConditionSet();
+					else if(shop == "outfitter")
+						toUnlockOutfitter = ConditionSet();
+				}
+			}
 
 			// If not in "overwrite" mode, move on to the next node.
 			if(overwriteAll)
@@ -145,7 +160,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		}
 
 		if(key == "port")
-			port.Load(child);
+			port.Load(child, playerConditions);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -240,6 +255,25 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			wormhole = wormholes.Get(value);
 			wormhole->SetPlanet(*this);
 		}
+		else if(key == "to")
+		{
+			if(value == "know")
+				toKnow.Load(child, playerConditions);
+			else if(value == "land")
+				toLand.Load(child, playerConditions);
+			else if(value == "unlock" && child.Size() > valueIndex + 1)
+			{
+				const string &shop = child.Token(valueIndex + 1);
+				if(shop == "shipyard")
+					toUnlockShipyard.Load(child, playerConditions);
+				else if(shop == "outfitter")
+					toUnlockOutfitter.Load(child, playerConditions);
+				else
+					child.PrintTrace("Skipping unrecognized attribute:");
+			}
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -273,20 +307,20 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		"spaceport news",
 	};
 	bool autoValues[14] = {
-		port.HasService(Port::ServicesType::All) && port.CanRecharge(Port::RechargeType::All)
+		port.HasService(Port::ServicesType::All, false) && port.CanRecharge(Port::RechargeType::All, false)
 				&& port.HasNews() && HasNamedPort(),
 		HasNamedPort(),
 		!shipSales.empty(),
 		!outfitSales.empty(),
-		port.HasService(Port::ServicesType::Trading),
-		port.HasService(Port::ServicesType::JobBoard),
-		port.HasService(Port::ServicesType::Bank),
-		port.HasService(Port::ServicesType::HireCrew),
-		port.HasService(Port::ServicesType::OffersMissions),
-		port.CanRecharge(Port::RechargeType::Shields),
-		port.CanRecharge(Port::RechargeType::Hull),
-		port.CanRecharge(Port::RechargeType::Energy),
-		port.CanRecharge(Port::RechargeType::Fuel),
+		port.HasService(Port::ServicesType::Trading, false),
+		port.HasService(Port::ServicesType::JobBoard, false),
+		port.HasService(Port::ServicesType::Bank, false),
+		port.HasService(Port::ServicesType::HireCrew, false),
+		port.HasService(Port::ServicesType::OffersMissions, false),
+		port.CanRecharge(Port::RechargeType::Shields, false),
+		port.CanRecharge(Port::RechargeType::Hull, false),
+		port.CanRecharge(Port::RechargeType::Energy, false),
+		port.CanRecharge(Port::RechargeType::Fuel, false),
 		port.HasNews(),
 	};
 	for(unsigned i = 0; i < AUTO_ATTRIBUTES.size(); ++i)
@@ -298,7 +332,8 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 	}
 
 	// Precalculate commonly used values that can only change due to Load().
-	inhabited = (HasServices() || requiredReputation || !defenseFleets.empty()) && !attributes.contains("uninhabited");
+	inhabited = (HasServices(false) || requiredReputation || !defenseFleets.empty())
+			&& !attributes.contains("uninhabited");
 	SetRequiredAttributes(Attributes(), requiredAttributes);
 }
 
@@ -427,9 +462,9 @@ const Port &Planet::GetPort() const
 
 // Check whether there are port services (such as trading, jobs, banking, and hiring)
 // available on this planet.
-bool Planet::HasServices() const
+bool Planet::HasServices(bool isPlayer) const
 {
-	return port.HasServices();
+	return port.HasServices(isPlayer);
 }
 
 
@@ -446,7 +481,7 @@ bool Planet::IsInhabited() const
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const
 {
-	return !Shipyard().empty();
+	return !Shipyard().empty() && toUnlockShipyard.Test();
 }
 
 
@@ -466,7 +501,7 @@ const Sale<Ship> &Planet::Shipyard() const
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !Outfitter().empty();
+	return !Outfitter().empty() && toUnlockOutfitter.Test();
 }
 
 
@@ -588,6 +623,10 @@ bool Planet::IsAccessible(const Ship *ship) const
 	// If this is a wormhole that leads to an inaccessible system, no ship can land here.
 	if(wormhole && ship && ship->GetSystem() && wormhole->WormholeDestination(*ship->GetSystem()).Inaccessible())
 		return false;
+	// If this ship is yours, but you lack the conditions to know that it's a landable object,
+	// then the ship can't land.
+	if(ship && ship->IsYours() && !toKnow.Test())
+		return false;
 	// If there are no required attributes, then any ship may land here.
 	if(IsUnrestricted())
 		return true;
@@ -613,21 +652,37 @@ bool Planet::IsUnrestricted() const
 // but do so with a less convoluted syntax:
 bool Planet::HasFuelFor(const Ship &ship) const
 {
-	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel) && CanLand(ship);
+	return !IsWormhole() && port.CanRecharge(Port::RechargeType::Fuel, ship.IsYours()) && CanLand(ship);
+}
+
+
+
+bool Planet::CanBribe() const
+{
+	// In order to be allowed to bribe this planet, you need to meet both the conditions to bribe the port
+	// and those to land on the planet.
+	return port.CanBribe() && toLand.Test();
 }
 
 
 
 bool Planet::CanLand(const Ship &ship) const
 {
-	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+	if(!ship.IsYours())
+		return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this);
+
+	return IsAccessible(&ship) && GameData::GetPolitics().CanLand(ship, this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 
 
 bool Planet::CanLand() const
 {
-	return GameData::GetPolitics().CanLand(this);
+	return GameData::GetPolitics().CanLand(this)
+		&& (!port.RequiresBribe() || GameData::GetPolitics().HasClearance(this))
+		&& toLand.Test();
 }
 
 
@@ -648,7 +703,7 @@ Planet::Friendliness Planet::GetFriendliness() const
 
 bool Planet::CanUseServices() const
 {
-	return GameData::GetPolitics().CanUseServices(this);
+	return GameData::GetPolitics().CanUseServices(this) && port.CanAccess();
 }
 
 
