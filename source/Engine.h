@@ -105,7 +105,7 @@ public:
 private:
 	class Outline {
 	public:
-		Outline(const Sprite *sprite, const Point &position, const Point &unit,
+		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
 			const float frame, const Color &color)
 			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
 		{
