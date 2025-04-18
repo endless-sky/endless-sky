@@ -8554,7 +8554,7 @@ mission "Syndicate Business 6"
 
 mission "Syndicate Business 7"
 	name "Kicking a Hornet's Nest"
-	description "Howard needs you to upload 'evidence' to an automated Quicksilver in <waypoints>, destroy it, and meet up on <destination> by <date>."
+	description `Howard needs you to upload "evidence" to an automated Quicksilver in <waypoints>, destroy it, and meet up on <destination> by <date>.`
 	priority
 	to offer
 		has "Syndicate Business 6: done"
@@ -8565,7 +8565,7 @@ mission "Syndicate Business 7"
 	on offer
 		conversation
 			`After a short walk through the bustling spaceport, you reach Megaparsec's sky-scraping corporate office. The sleek and modern lobby evokes the fast, light ships they're known for, with polished surfaces, elegant furniture, and subtle lighting coming together seamlessly.`
-			`	The receptionist greets you with a nod and a warm smile, perhaps remembering you from your prior visits or merely being polite. The elevator ride up to the ninth floor is smooth, the soft hum of machinery fading away as you walk through the elevator doors. Howard's office is modern yet modest, featuring a central smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Howard himself is standing at one of the expansive windows, looking out at Megaparsec's shipyards below.`
+			`	The receptionist greets you with a nod and a warm smile, either remembering you from your prior visits or merely being polite. The elevator ride up to the ninth floor is smooth, the soft hum of machinery fading away as you walk through the elevator doors. Howard's office is modern yet modest, featuring a central smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Howard himself is standing at one of the expansive windows, looking out at Megaparsec's shipyards below.`
 			branch meanhello
 				"syndicate business: mean to Howard" > 0
 			`	"Glad you could make it," he says, his voice cordial and confident. "This investment opportunity for you is ten times larger than our last deal - but first I need a small favor."`
@@ -8632,12 +8632,12 @@ mission "Syndicate Business 7"
 			label piratearound
 			`	Wistfully, Howard adds, "Moktar. The Golden Jewel. Almost a shame that pirate captain isn't flying around anymore...`
 			label askitself
-			`	"Anyway, back to the ask. Think you can plant evidence on a Quicksilver in <waypoints>, then make sure it turns into wreckage, and get to <planet> before <day>? Once you're on <planet>, I might need you to tie off any loose ends, but then right on through to that nine figure credit investment. What do you say?"`
+			`	"Anyway, back to the ask. Think you can plant evidence on a Quicksilver in <waypoints>, then make sure it turns into wreckage, and get to <planet> before <day>? Once you're on <planet>, I might need you to tie off any loose ends... but then we can move along to talking about that nine-figure investment. What do you say?"`
 			choice
 				`	"I'm in, let's do it."`
 					goto ending
 				`	"How can I possibly plant evidence on a crewed ship without anyone knowing?"`
-				`	"I'm out, we're through."`
+				`	"I'm out; we're through."`
 					decline
 			branch seendummy
 				( "Syndicate target practice [0]: done" + "Syndicate target practice [1]: done" + "Syndicate target practice [2]: done" + "Syndicate target practice [3]: done" ) > 0
@@ -8704,7 +8704,7 @@ mission "Syndicate Business 7"
 		on assist
 			dialog "You step into the Syndicate Test Vessel, eerily quiet, the empty ship amplifying every footstep. You hurry to upload Howard's evidence file to the ship. The file uploads in seconds, and you return to the <ship> to leave this ghostly vessel behind."
 		on kill
-			dialog "With the Quicksilver destroyed, time to get to <destination>."
+			dialog "With the Quicksilver destroyed, it's time to get to <destination>."
 
 	npc
 		government "Pirate"
