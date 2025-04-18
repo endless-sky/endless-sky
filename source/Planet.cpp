@@ -446,6 +446,9 @@ bool Planet::IsInhabited() const
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const
 {
+	// A planet shouldn't display empty an empty shipyard. Therefore, even
+	// if this planet contains a named shipyard, that shipyard must still
+	// have contents to it in order for the shipyard to be displayed.
 	return !Shipyard().empty();
 }
 
@@ -466,7 +469,11 @@ const Sale<Ship> &Planet::Shipyard() const
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !Outfitter().empty();
+	// A planet is allowed to have an empty outfitter, as the player could
+	// still use it to rearrange the outfits in their fleet. Therefore, all
+	// that's needed to display the outfitter is to have a named outfitter
+	// present.
+	return !outfitSales.empty();
 }
 
 

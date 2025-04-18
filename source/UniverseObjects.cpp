@@ -269,10 +269,6 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : outfits)
 		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
-	// Outfitters are never serialized.
-	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].contains(it.first))
-			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
