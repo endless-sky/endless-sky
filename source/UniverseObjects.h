@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Phrase.h"
 #include "Planet.h"
 #include "Ship.h"
+#include "Shop.h"
 #include "StartConditions.h"
 #include "Swizzle.h"
 #include "System.h"
@@ -127,8 +128,8 @@ private:
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
-	Set<Sale<Ship>> shipSales;
-	Set<Sale<Outfit>> outfitSales;
+	Set<Shop<Ship>> shipSales;
+	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 

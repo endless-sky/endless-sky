@@ -1061,7 +1061,7 @@ void MapPanel::UpdateCache()
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
-							size += object.GetPlanet()->Shipyard().size();
+							size += object.GetPlanet()->ShipyardStock().size();
 					value = size ? min(10., size) / 10. : -1.;
 				}
 				else if(commodity == SHOW_OUTFITTER)
@@ -1069,7 +1069,7 @@ void MapPanel::UpdateCache()
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
-							size += object.GetPlanet()->Outfitter().size();
+							size += object.GetPlanet()->OutfitterStock().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
 				else if(commodity == SHOW_VISITED)

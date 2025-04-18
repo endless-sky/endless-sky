@@ -81,8 +81,8 @@ namespace {
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
 	Set<Galaxy> defaultGalaxies;
-	Set<Sale<Ship>> defaultShipSales;
-	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Shop<Ship>> defaultShipSales;
+	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
@@ -688,7 +688,7 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
-const Set<Sale<Outfit>> &GameData::Outfitters()
+const Set<Shop<Outfit>> &GameData::Outfitters()
 {
 	return objects.outfitSales;
 }
@@ -744,7 +744,7 @@ ConditionsStore &GameData::GlobalConditions()
 
 
 
-const Set<Sale<Ship>> &GameData::Shipyards()
+const Set<Shop<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
 }

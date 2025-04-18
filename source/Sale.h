@@ -29,6 +29,7 @@ template <class Item>
 class Sale : public std::set<const Item *> {
 public:
 	void Load(const DataNode &node, const Set<Item> &items);
+	void LoadSingle(const DataNode &child, const Set<Item> &items);
 
 	void Add(const Sale<Item> &other);
 
@@ -41,18 +42,24 @@ template <class Item>
 void Sale<Item>::Load(const DataNode &node, const Set<Item> &items)
 {
 	for(const DataNode &child : node)
-	{
-		const std::string &token = child.Token(0);
-		bool remove = (token == "clear" || token == "remove");
-		if(remove && child.Size() == 1)
-			this->clear();
-		else if(remove && child.Size() >= 2)
-			this->erase(items.Get(child.Token(1)));
-		else if(token == "add" && child.Size() >= 2)
-			this->insert(items.Get(child.Token(1)));
-		else
-			this->insert(items.Get(token));
-	}
+		LoadSingle(child, items);
+}
+
+
+
+template <class Item>
+void Sale<Item>::LoadSingle(const DataNode &child, const Set<Item> &items)
+{
+	const std::string &token = child.Token(0);
+	bool remove = (token == "clear" || token == "remove");
+	if(remove && child.Size() == 1)
+		this->clear();
+	else if(remove && child.Size() >= 2)
+		this->erase(items.Get(child.Token(1)));
+	else if(token == "add" && child.Size() >= 2)
+		this->insert(items.Get(child.Token(1)));
+	else
+		this->insert(items.Get(token));
 }
 
 
