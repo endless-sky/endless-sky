@@ -3254,6 +3254,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&yearProvider = conditions.GetProviderNamed("year");
 	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
 
+	auto &&weekdayProvider = conditions.GetProviderNamed("weekday");
+	weekdayProvider.SetGetFunction([this](const string &name) { return date.WeekdayNumber(); });
+
 	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
 	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
 
