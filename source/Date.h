@@ -62,7 +62,7 @@ public:
 	int Month() const;
 	int Year() const;
 
-	// Get the current day of the week as a number. Monday is 1, Sunday is 7.
+	// Get the current day of the week as a number. Sunday is 1, Saturday is 7.
 	int WeekdayNumber() const;
 
 
