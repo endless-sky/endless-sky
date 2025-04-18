@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Test.h"
 
+#include "../ConditionContext.h"
 #include "../DataNode.h"
 #include "../text/Format.h"
 #include "../GameData.h"
@@ -447,11 +448,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
-				stepToRun.assignConditions.Apply(player.Conditions());
+				stepToRun.assignConditions.Apply(player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
-				if(!stepToRun.checkConditions.Test(player.Conditions()))
+				if(!stepToRun.checkConditions.Test(player.Conditions(), DEFAULT_CONDITION_CONTEXT))
 					Fail(context, player, "asserted false");
 				++(context.callstack.back().step);
 				break;
@@ -465,7 +466,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					break;
 				}
 				context.branchesSinceGameStep.emplace(context.callstack.back());
-				if(stepToRun.checkConditions.Test(player.Conditions()))
+				if(stepToRun.checkConditions.Test(player.Conditions(), DEFAULT_CONDITION_CONTEXT))
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;

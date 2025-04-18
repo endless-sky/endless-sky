@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cstddef>
 #include <iterator>
+#include <limits>
 #include <numeric>
 #include <stdexcept>
 #include <type_traits>
@@ -163,6 +164,9 @@ Type &WeightedList<Type>::emplace_back(int weight, Args&&... args)
 	// All weights must be >= 1.
 	if(weight < 1)
 		throw std::invalid_argument("Invalid weight inserted into weighted list. Weights must be >= 1.");
+
+	if(std::numeric_limits<size_t>::max() - total < static_cast<size_t>(weight))
+		throw std::overflow_error("Total of possible weight in a weighted list would overflow.");
 
 	choices.emplace_back(std::forward<Args>(args)...);
 	weights.emplace_back(weight);

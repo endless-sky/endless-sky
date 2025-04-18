@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Color.h"
+#include "ConditionsStore.h"
 #include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "RaidFleet.h"
@@ -37,6 +38,7 @@ class Planet;
 class PlayerInfo;
 class Ship;
 class System;
+class UniverseObjects;
 
 
 
@@ -89,7 +91,7 @@ public:
 
 	// Get a hail message (which depends on whether this is an enemy government
 	// and if the ship is disabled).
-	std::string GetHail(bool isDisabled) const;
+	std::string GetHail(bool isDisabled, const Ship &hailingShip, const ConditionsStore *vars) const;
 	// Find out if this government speaks a different language.
 	const std::string &Language() const;
 	// Find out if this government should send custom hails even if the player does not know its language.
@@ -171,10 +173,10 @@ private:
 	std::vector<LocationFilter> enforcementZones;
 	LocationFilter travelRestrictions;
 	const Conversation *deathSentence = nullptr;
-	const Phrase *friendlyHail = nullptr;
-	const Phrase *friendlyDisabledHail = nullptr;
-	const Phrase *hostileHail = nullptr;
-	const Phrase *hostileDisabledHail = nullptr;
+	std::string friendlyHail;
+	std::string friendlyDisabledHail;
+	std::string hostileHail;
+	std::string hostileDisabledHail;
 	std::string language;
 	bool sendUntranslatedHails = false;
 	std::vector<RaidFleet> raidFleets;
@@ -185,4 +187,6 @@ private:
 	// and events performed against that government, use the penalties that government applies for the
 	// action instead of this government's own penalties.
 	std::set<unsigned> useForeignPenaltiesFor;
+
+	friend UniverseObjects; // For conversion of hail phrase to Hail
 };

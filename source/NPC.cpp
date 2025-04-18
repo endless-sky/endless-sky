@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPC.h"
 
+#include "ConditionContext.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -428,12 +429,12 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	// only checked after the spawn conditions have passed so that an NPC
 	// doesn't "despawn" before spawning in the first place.
 	if(!passedSpawnConditions)
-		passedSpawnConditions = toSpawn.Test(player.Conditions());
+		passedSpawnConditions = toSpawn.Test(player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 
 	// It is allowable for an NPC to pass its spawning conditions and then immediately pass its despawning
 	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
-		passedDespawnConditions = toDespawn.Test(player.Conditions());
+		passedDespawnConditions = toDespawn.Test(player.Conditions(), DEFAULT_CONDITION_CONTEXT);
 }
 
 
@@ -729,7 +730,10 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		subs["<npc model>"] = result.ships.front()->DisplayModelName();
 	}
 	// Do string replacement on any dialog or conversation.
-	string dialogText = !dialogPhrase->IsEmpty() ? dialogPhrase->Get() : this->dialogText;
+	string dialogText = !dialogPhrase->IsEmpty() ?
+			dialogPhrase->Get()
+		:
+			this->dialogText;
 	if(!dialogText.empty())
 		result.dialogText = Format::Replace(Phrase::ExpandPhrases(dialogText), subs);
 

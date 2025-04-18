@@ -26,6 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Include ConditionStore, to enable usage of them for testing ConditionSets.
 #include "../../../source/ConditionsStore.h"
 
+// Include ConditionContext (as it is require input to ConditionSet, even if not tested)
+#include "../../../source/ConditionContext.h"
+
 // ... and any system includes needed for the test file.
 #include <cstdint>
 #include <map>
@@ -96,12 +99,12 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 		REQUIRE( emptySet.IsEmpty() );
 
 		THEN( "no conditions are added via Apply" ) {
-			emptySet.Apply(store);
+			emptySet.Apply(store, DEFAULT_CONDITION_CONTEXT);
 			REQUIRE( store.PrimariesSize() == 0 );
 
 			store.Set("event: war begins", 1);
 			REQUIRE( store.PrimariesSize() == 1 );
-			emptySet.Apply(store);
+			emptySet.Apply(store, DEFAULT_CONDITION_CONTEXT);
 			REQUIRE( store.PrimariesSize() == 1 );
 		}
 	}
@@ -110,7 +113,7 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 		REQUIRE_FALSE( applySet.IsEmpty() );
 
 		THEN( "the condition list is updated via Apply" ) {
-			applySet.Apply(store);
+			applySet.Apply(store, DEFAULT_CONDITION_CONTEXT);
 			REQUIRE_FALSE( store.PrimariesSize() == 0 );
 			REQUIRE( store.Get("year") );
 			CHECK( store["year"] == 3013 );
@@ -136,7 +139,7 @@ SCENARIO( "Applying changes to conditions", "[ConditionAssignments][Usage]" ) {
 
 		const auto applySet = ConditionAssignments{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndOutcome))};
 		THEN( "The expression \'" + std::get<0>(expressionAndOutcome) + "\' assigns the expected number" ) {
-			applySet.Apply(storeWithData);
+			applySet.Apply(storeWithData, DEFAULT_CONDITION_CONTEXT);
 			REQUIRE( storeWithData[std::get<1>(expressionAndOutcome)] == std::get<2>(expressionAndOutcome) );
 		}
 	}

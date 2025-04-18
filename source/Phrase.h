@@ -15,8 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionSet.h"
+#include "ConditionsStore.h"
 #include "WeightedList.h"
 
+#include <cstddef>
 #include <functional>
 #include <string>
 #include <utility>
@@ -38,14 +41,19 @@ public:
 	// Construct and Load() at the same time.
 	explicit Phrase(const DataNode &node);
 
+	Phrase & operator=(const Phrase & other);
+
 	// Parse the given node into a new branch associated with this phrase.
 	void Load(const DataNode &node);
 
 	bool IsEmpty() const;
 
 	const std::string &Name() const;
+
+	// Get a possible value. "to use" will be checked if vars is not null.
 	std::string Get() const;
 
+	size_t GetNumberOfSentence() const;
 
 private:
 	bool ReferencesPhrase(const Phrase *phrase) const;
@@ -95,4 +103,6 @@ private:
 	std::string name;
 	// Each time this phrase is defined, a new sentence is created.
 	std::vector<Sentence> sentences;
+
+	friend UniverseObjects; // For migrating hails
 };

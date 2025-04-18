@@ -26,6 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Include ConditionStore, to enable usage of them for testing ConditionSets.
 #include "../../../source/ConditionsStore.h"
 
+// Include ConditionContext (as it is require input to ConditionSet, even if not tested)
+#include "../../../source/ConditionContext.h"
+
 // ... and any system includes needed for the test file.
 #include <cstdint>
 #include <map>
@@ -142,13 +145,13 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		AND_GIVEN( "an empty list of Conditions" ) {
 			const auto emptyStore = ConditionsStore{};
 			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(emptyStore) );
+				REQUIRE( emptySet.Test(emptyStore, DEFAULT_CONDITION_CONTEXT) );
 				REQUIRE( emptySet.IsValid() );
 			}
 		}
 		AND_GIVEN( "a non-empty list of Conditions" ) {
 			THEN( "the ConditionSet is satisfied" ) {
-				REQUIRE( emptySet.Test(storeWithData) );
+				REQUIRE( emptySet.Test(storeWithData, DEFAULT_CONDITION_CONTEXT) );
 				REQUIRE( emptySet.IsValid() );
 			}
 		}
@@ -242,7 +245,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
 			REQUIRE_FALSE( numberSet.IsEmpty() );
 			REQUIRE( numberSet.IsValid() );
-			REQUIRE( numberSet.Evaluate(storeWithData) == std::get<1>(expressionAndAnswer) );
+			REQUIRE( numberSet.Evaluate(storeWithData, DEFAULT_CONDITION_CONTEXT) == std::get<1>(expressionAndAnswer) );
 		}
 	}
 	GIVEN( "various incorrect expression(s) as conditionSet" ) {

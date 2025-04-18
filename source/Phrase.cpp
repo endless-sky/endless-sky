@@ -60,6 +60,16 @@ Phrase::Phrase(const DataNode &node)
 
 
 
+Phrase & Phrase::operator=(const Phrase& other)
+{
+	this->name = other.name;
+	this->sentences = other.sentences;
+
+	return *this;
+}
+
+
+
 void Phrase::Load(const DataNode &node)
 {
 	// Set the name of this phrase, so we know it has been loaded.
@@ -138,6 +148,11 @@ bool Phrase::ReferencesPhrase(const Phrase *other) const
 						return true;
 
 	return false;
+}
+
+size_t Phrase::GetNumberOfSentence() const
+{
+	return sentences.size();
 }
 
 
