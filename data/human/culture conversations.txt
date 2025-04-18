@@ -1140,9 +1140,9 @@ mission "Easter Celebrations"
 			choice
 				`	(Head out.)`
 					goto headout
-				`	(Stay a little bit longer.)`
-			`	After a while longer, you exit the room. As you do so, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
+				`	(Stay and enjoy the music.)`
+			`	The pastor loops through several other hymns, eventually ending with an announcement of thanks to those who attended the celebration. As the group breaks up, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
 				decline
 			label headout
-			`	As you exit the room, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
+			`	Outside of the door, after you exit the room, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
 				decline
