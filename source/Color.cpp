@@ -29,9 +29,8 @@ Color::Color(float i, float a)
 
 // Full color constructor.
 Color::Color(float r, float g, float b, float a)
-	: color{r, g, b, a}
+	: color{r, g, b, a}, isLoaded{true}
 {
-	isLoaded = true;
 }
 
 
