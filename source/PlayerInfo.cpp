@@ -3322,7 +3322,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["flagship model: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship)
 			return false;
-		return ce.NameWithoutPrefix() == flagship->TrueModelName(); });
+		return !ce.NameWithoutPrefix().compare(flagship->TrueModelName()); });
 	conditions["flagship disabled"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return flagship && flagship->IsDisabled(); });
 
@@ -3433,11 +3433,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return retVal; });
 
 	conditions["name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.NameWithoutPrefix() == firstName + " " + lastName; });
+		return !ce.NameWithoutPrefix().compare(firstName + " " + lastName); });
 	conditions["first name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.NameWithoutPrefix() == firstName; });
+		return !ce.NameWithoutPrefix().compare(firstName); });
 	conditions["last name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.NameWithoutPrefix() == lastName; });
+		return !ce.NameWithoutPrefix().compare(lastName); });
 
 	// Conditions for your fleet's attractiveness to pirates.
 	conditions["cargo attractiveness"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
@@ -3495,7 +3495,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		string category = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
-					&& category == ship->Attributes().Category())
+					&& !category.compare(ship->Attributes().Category()))
 				++retVal;
 		return retVal; });
 	// The number of ships the player has of the given category anywhere in their fleet.
@@ -3503,7 +3503,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		string category = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && category == ship->Attributes().Category())
+			if(!ship->IsDestroyed() && !category.compare(ship->Attributes().Category()))
 				++retVal;
 		return retVal; });
 	// The number of ships the player has of the given model active and present.
@@ -3512,7 +3512,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		string model = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
-					&& model == ship->TrueModelName())
+					&& !model.compare(ship->TrueModelName()))
 				++retVal;
 		return retVal; });
 	// The number of ships that the player has of the given model anywhere in their fleet.
@@ -3520,7 +3520,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		int64_t retVal = 0;
 		string model = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && model == ship->TrueModelName())
+			if(!ship->IsDestroyed() && !model.compare(ship->TrueModelName()))
 				++retVal;
 		return retVal; });
 	// The total number of ships the player has active and present.
@@ -3730,24 +3730,24 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// This condition corresponds to the method by which the flagship entered the current system.
 	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.NameWithoutPrefix() == EntryToString(entry); });
+		return !ce.NameWithoutPrefix().compare(EntryToString(entry)); });
 	// This condition corresponds to the last system the flagship was in.
 	conditions["previous system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!previousSystem)
 			return false;
-		return ce.NameWithoutPrefix() == previousSystem->TrueName(); });
+		return !ce.NameWithoutPrefix().compare(previousSystem->TrueName()); });
 
 	// Conditions to determine if flagship is in a system and on a planet.
 	conditions["flagship system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetSystem())
 			return false;
-		return ce.NameWithoutPrefix() == flagship->GetSystem()->TrueName(); });
+		return !ce.NameWithoutPrefix().compare(flagship->GetSystem()->TrueName()); });
 	conditions["flagship landed"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return (flagship && flagship->GetPlanet()); });
 	conditions["flagship planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
-		return ce.NameWithoutPrefix() == flagship->GetPlanet()->TrueName(); });
+		return !ce.NameWithoutPrefix().compare(flagship->GetPlanet()->TrueName()); });
 	conditions["flagship planet attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
