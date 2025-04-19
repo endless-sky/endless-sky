@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryType.h"
-#include "Shop.h"
 #include "Set.h"
+#include "Shop.h"
 #include "Swizzle.h"
 #include "Trade.h"
 
