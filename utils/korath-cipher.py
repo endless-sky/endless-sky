@@ -1,6 +1,8 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 # Copyright (c) 2023 by an anonymous author
+# Enhanced and upgraded in 2025.
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -18,8 +20,7 @@
 #
 #    https://github.com/endless-sky/endless-sky/pull/7101
 #
-# Works with Python 2.7 or newer.
-
+# Requires Python 3.6+ (for f-strings and type hints).
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -58,11 +59,11 @@
 #
 # There are a few words with standard translations you'll need to apply manually:
 #
-# humans => humanika                          (Exile, Efreti, and Quarg)
+# humans => humanika               (Exile, Efreti, and Quarg)
 # human (noun, member of species) => humani   (Exile, Efreti, and Quarg)
-# Quarg => Kuwaru                             (Efreti)
-# Drak => Drak                                (both Exile and Efreti)
-# Ember Space => Nraol Alaj                   (Exile)
+# Quarg => Kuwaru                  (Efreti)
+# Drak => Drak                     (both Exile and Efreti)
+# Ember Space => Nraol Alaj        (Exile)
 # There Might Be Riots => Ter Mite Bee Riot   (both Exile and Efreti)
 #
 # The easiest way to do this is to put them in ALL CAPS to whatever
@@ -76,67 +77,106 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-import sys;
+import sys
+from typing import Dict, List, Tuple
 
-# This is the table from PR #7101. Each string has:
-#    'GNL'
-#     ^^^
-#     |||-- Kor Efret letter
-#     ||--- Korath Exile letter
-#     |---- Indonesian letter
-replace = [
-	'AAA', 'EEE', 'III', 'OUU', 'UOO', 'BHB', 'CDV', 'DST',
-	'FJY', 'GNL', 'HPH', 'JVW', 'KTS', 'LMN', 'MFF', 'NRR',
-	'PBC', 'QZT', 'RLP', "S'M", 'TKK', 'VQR', 'WCG', 'XYS',
-	'YGD', 'ZWK',
+# --- Cipher Mapping Definitions ---
+# Based on the table from PR #7101.
+# Format: (Indonesian_Char, Exile_Char, Efreti_Char)
 
-	'aaa', 'eee', 'iii', 'ouu', 'uoo', 'bhb', 'cdv', 'dst',
-	'fjy', 'gnl', 'hph', 'jvw', 'kts', 'lmn', 'mff', 'nrr',
-	'pbc', 'qzt', 'rlp', "s'm", 'tkk', 'vqr', 'wcg', 'xys',
-	'ygd', 'zwk',
+_RAW_MAPPING_DATA: List[Tuple[str, str, str]] = [
+    # Uppercase
+    ('A', 'A', 'A'), ('E', 'E', 'E'), ('I', 'I', 'I'), ('O', 'U', 'U'), ('U', 'O', 'O'),
+    ('B', 'H', 'B'), ('C', 'D', 'V'), ('D', 'S', 'T'), ('F', 'J', 'Y'), ('G', 'N', 'L'),
+    ('H', 'P', 'H'), ('J', 'V', 'W'), ('K', 'T', 'S'), ('L', 'M', 'N'), ('M', 'F', 'F'),
+    ('N', 'R', 'R'), ('P', 'B', 'C'), ('Q', 'Z', 'T'), ('R', 'L', 'P'), ('S', "'", 'M'),
+    ('T', 'K', 'K'), ('V', 'Q', 'R'), ('W', 'C', 'G'), ('X', 'Y', 'S'), ('Y', 'G', 'D'),
+    ('Z', 'W', 'K'),
+    # Lowercase
+    ('a', 'a', 'a'), ('e', 'e', 'e'), ('i', 'i', 'i'), ('o', 'u', 'u'), ('u', 'o', 'o'),
+    ('b', 'h', 'b'), ('c', 'd', 'v'), ('d', 's', 't'), ('f', 'j', 'y'), ('g', 'n', 'l'),
+    ('h', 'p', 'h'), ('j', 'v', 'w'), ('k', 't', 's'), ('l', 'm', 'n'), ('m', 'f', 'f'),
+    ('n', 'r', 'r'), ('p', 'b', 'c'), ('q', 'z', 't'), ('r', 'l', 'p'), ('s', "'", 'm'),
+    ('t', 'k', 'k'), ('v', 'q', 'r'), ('w', 'c', 'g'), ('x', 'y', 's'), ('y', 'g', 'd'),
+    ('z', 'w', 'k'),
 ]
 
-# Transfer the table into a pair of dictionaries:
-to_exile = {}
-to_efreti = {}
+# --- Function to create cipher dictionaries ---
 
-for ixf in replace:
-	to_exile[ixf[0]] = ixf[1]
-	to_efreti[ixf[0]] = ixf[2]
+def create_cipher_maps(mapping_data: List[Tuple[str, str, str]]) -> Tuple[Dict[str, str], Dict[str, str]]:
+    """Creates the Exile and Efreti cipher mapping dictionaries."""
+    to_exile_map: Dict[str, str] = {}
+    to_efreti_map: Dict[str, str] = {}
+    for indo_char, exile_char, efreti_char in mapping_data:
+        to_exile_map[indo_char] = exile_char
+        to_efreti_map[indo_char] = efreti_char
+    return to_exile_map, to_efreti_map
 
-# Loop over every line in stdin, processing it
-for line in sys.stdin:
-	words = line.split()       # words in the line, as a list
-	sdrow = []                 # the same words, with letters reversed
-	exiles = []                # those words after the exile cipher
-	efretis = []               # those words after the efret cipher
+# --- Core Cipher Function ---
 
-	for word in words:
-		# Reverse the word:
-		drow = ''.join(reversed(word))
-		sdrow.append(drow)
+def apply_cipher(text: str, cipher_map: Dict[str, str]) -> str:
+    """Applies the given cipher map to the text."""
+    result = []
+    for char in text:
+        result.append(cipher_map.get(char, char)) # Use mapped char or original if not found
+    return ''.join(result)
 
-		# Run the reversed word through the cipher:
-		exile=''
-		efreti=''
-		for from_index in range(len(drow)):
-			char = drow[from_index]
-			if char in to_exile:
-				exile += to_exile[char]
-			else:
-				exile += char
-			if char in to_efreti:
-				efreti += to_efreti[char]
-			else:
-				efreti += char
+# --- Line Processing Function ---
 
-		# Append the ciphered word to the list:
-		exiles.append(exile)
-		efretis.append(efreti)
+def process_line(line: str, exile_map: Dict[str, str], efreti_map: Dict[str, str]) -> Tuple[str, str, str, str]:
+    """
+    Processes a single line of Indonesian text.
 
-	# Print the results of this line:
-	print("ORIGINAL: "+" ".join(words))
-	print("REVERSED: "+" ".join(sdrow))
-	print("EXILE:    "+" ".join(exiles))
-	print("EFRETI:   "+" ".join(efretis))
-	print("")
+    Returns:
+        A tuple containing: (original_joined, reversed_joined, exile_joined, efreti_joined)
+    """
+    original_words: List[str] = line.split() # Split line into words
+    reversed_words: List[str] = []
+    exile_words: List[str] = []
+    efreti_words: List[str] = []
+
+    for word in original_words:
+        # 1. Reverse the word
+        reversed_word = ''.join(reversed(word))
+        reversed_words.append(reversed_word)
+
+        # 2. Apply ciphers to the reversed word
+        exile_word = apply_cipher(reversed_word, exile_map)
+        efreti_word = apply_cipher(reversed_word, efreti_map)
+
+        exile_words.append(exile_word)
+        efreti_words.append(efreti_word)
+
+    # Join words back into strings
+    original_joined = " ".join(original_words)
+    reversed_joined = " ".join(reversed_words)
+    exile_joined = " ".join(exile_words)
+    efreti_joined = " ".join(efreti_words)
+
+    return original_joined, reversed_joined, exile_joined, efreti_joined
+
+# --- Main Execution Logic ---
+
+def main():
+    """Reads stdin, processes lines, and prints results."""
+    # Create the cipher maps once
+    to_exile, to_efreti = create_cipher_maps(_RAW_MAPPING_DATA)
+
+    # Process each line from standard input
+    for line in sys.stdin:
+        # Strip trailing newline/whitespace from input line
+        cleaned_line = line.rstrip()
+        if not cleaned_line: # Skip empty lines if any
+            continue
+
+        original, reversed_str, exile_str, efreti_str = process_line(cleaned_line, to_exile, to_efreti)
+
+        # Print the results for this line using f-strings for formatted output
+        print(f"ORIGINAL: {original}")
+        print(f"REVERSED: {reversed_str}")
+        print(f"EXILE:    {exile_str}") # Used standard spaces for alignment
+        print(f"EFRETI:   {efreti_str}") # Used standard spaces for alignment
+        print() # Print empty line for separation
+
+if __name__ == "__main__":
+    main()
