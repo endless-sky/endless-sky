@@ -3254,6 +3254,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&yearProvider = conditions.GetProviderNamed("year");
 	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
 
+	auto &&weekdayProvider = conditions.GetProviderNamed("weekday");
+	weekdayProvider.SetGetFunction([this](const string &name) { return date.WeekdayNumber(); });
+
 	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
 	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
 
@@ -3382,12 +3385,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipDisabledProvider.SetGetFunction(flagshipDisabledFun);
 
-	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
+	auto shipAttributeHelper = [](const Ship *ship, const string &attribute, bool base) -> int64_t
 	{
-		if(!flagship)
+		if(!ship)
 			return 0;
 
-		const Outfit &attributes = base ? flagship->BaseAttributes() : flagship->Attributes();
+		const Outfit &attributes = base ? ship->BaseAttributes() : ship->Attributes();
 		if(attribute == "cost")
 			return attributes.Cost();
 		if(attribute == "mass")
@@ -3396,16 +3399,16 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 
 	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
-	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	auto flagshipBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
-		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
+		return shipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
 	};
 	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
 
 	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
-	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	auto flagshipAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
-		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
+		return shipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 
@@ -3478,6 +3481,76 @@ void PlayerInfo::RegisterDerivedConditions()
 	flagshipFuelProvider.SetGetFunction([this](const string &name) -> int64_t {
 		return flagship ? flagship->FuelLevel() : 0;
 	});
+
+	auto &&fleetLocalBaseAttributeProvider = conditions.GetProviderPrefixed("ship base attribute: ");
+	auto fleetLocalBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship base attribute: "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
+			// If on a planet, the ship's planet must match.
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, true);
+		}
+		return retVal;
+	};
+	fleetLocalBaseAttributeProvider.SetGetFunction(fleetLocalBaseAttributeFun);
+
+	auto &&fleetAllBaseAttributeProvider = conditions.GetProviderPrefixed("ship base attribute (all): ");
+	auto fleetAllBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship base attribute (all): "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, true);
+		}
+		return retVal;
+	};
+	fleetAllBaseAttributeProvider.SetGetFunction(fleetAllBaseAttributeFun);
+
+	auto &&fleetLocalAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
+	auto fleetLocalAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship attribute: "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
+			// If on a planet, the ship's planet must match.
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, false);
+		}
+		return retVal;
+	};
+	fleetLocalAttributeProvider.SetGetFunction(fleetLocalAttributeFun);
+
+	auto &&fleetAllAttributeProvider = conditions.GetProviderPrefixed("ship attribute (all): ");
+	auto fleetAllAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship attribute (all): "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, false);
+		}
+		return retVal;
+	};
+	fleetAllAttributeProvider.SetGetFunction(fleetAllAttributeFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
