@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AlertLabel.h"
 #include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Collision.h"
 #include "CollisionType.h"
 #include "CoreStartData.h"
@@ -834,7 +834,7 @@ void Engine::Step(bool isActive)
 				player.Harvest(payload.outfit);
 	}
 	if(!target)
-		targetSwizzle = -1;
+		targetSwizzle = nullptr;
 	if(!target && !targetAsteroid)
 		info.SetString("target name", "no target");
 	else if(!target)
@@ -1297,7 +1297,7 @@ void Engine::Draw() const
 	}
 
 	// Draw the faction markers.
-	if(targetSwizzle >= 0 && hud->HasPoint("faction markers"))
+	if(targetSwizzle && hud->HasPoint("faction markers"))
 	{
 		int width = font.Width(info.GetString("target government"));
 		Point center = hud->GetPoint("faction markers");
@@ -1486,13 +1486,15 @@ void Engine::EnterSystem()
 	// undefined fleets by not trying to create anything with no
 	// government set.
 	ConditionsStore &conditions = player.Conditions();
+	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
-			if(fleet.Get()->GetGovernment() && Random::Int(fleet.Period()) < 60 && fleet.CanTrigger(conditions))
+			if(fleetMultiplier ? fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
+				&& fleet.CanTrigger(conditions) : false)
 				fleet.Get()->Place(*system, newShips);
 
-		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+		auto CreateWeather = [this, &conditions](const RandomEvent<Hazard> &hazard, Point origin)
 		{
 			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger(conditions))
 			{
@@ -1986,8 +1988,9 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	ConditionsStore &conditions = player.Conditions();
+	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period()) && fleet.CanTrigger(conditions))
+		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger(conditions) : false)
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -2061,7 +2064,7 @@ void Engine::SpawnPersons()
 void Engine::GenerateWeather()
 {
 	ConditionsStore &conditions = player.Conditions();
-	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+	auto CreateWeather = [this, &conditions](const RandomEvent<Hazard> &hazard, Point origin)
 	{
 		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger(conditions))
 		{
@@ -2776,13 +2779,14 @@ void Engine::DrawShipSprites(const Ship &ship)
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
 	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 	auto &itemsToDraw = draw[currentCalcBuffer];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak](const Body &body) -> void
+	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
 		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, fancyCloak ? 9 : 27, fancyCloak ? 0.5 : 0.25);
+			itemsToDraw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
 		itemsToDraw.Add(body, cloak);
 	};
 

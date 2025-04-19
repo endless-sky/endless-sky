@@ -180,7 +180,7 @@ mission "Quarg Satellites"
 mission "Lagrange Ring: Cargo"
 	minor
 	name "Human Construction Materials"
-	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visit."
+	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visitors."
 	cargo "construction materials" 254
 	source
 		near "Enif" 1
@@ -222,6 +222,31 @@ mission "Lagrange Ring: Cargo"
 		conversation
 			`Much like your own ship, several other human freighters and convoys are arriving, and the cargo being meticulously checked by the Quarg, as they use their own machinery to unload what must be tens of thousands of tons from all the ships.`
 			`	About halfway through the unloading of your own cargo, a Quarg comes up to you and hands you <payment>.`
+
+
+mission "Lagrange Ring: Cargo Job"
+	name "Human Construction Materials"
+	description "Head to <stopovers> to pick up <cargo>, then bring it all to <destination>, where the Quarg are preparing to open the first section of their ringworld for human visitors."
+	job
+	repeat
+	cargo "construction materials" 98
+	source
+		near "Enif" 1
+		government "Quarg"
+		not planet "Humanika"
+	stopover
+		near "Alpha Centauri" 0 1
+	destination "Lagrange"
+	to offer
+		has "Lagrange Ring: Cargo: done"
+		random < 1
+	on stopover
+		dialog `The <cargo> is loaded into your ship under strict supervision, each crate carefully accounted for.`
+	on visit
+		dialog phrase "generic missing stopover or cargo"
+	on complete
+		payment 341000
+		dialog `About halfway through the meticulous unloading of the cargo, a Quarg comes up to you and hands you <payment>.`
 
 
 
