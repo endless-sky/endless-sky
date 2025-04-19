@@ -333,6 +333,7 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/SoundCategory.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
+	comparators/ByPair.h
 	comparators/BySeriesAndIndex.h
 	image/BlendingMode.h
 	image/ImageBuffer.cpp
