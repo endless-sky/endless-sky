@@ -13,8 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef CONDITION_ENTRY_H_
-#define CONDITION_ENTRY_H_
+#pragma once
 
 #include <cstdint>
 #include <functional>
@@ -104,5 +103,3 @@ private:
 	DerivedProvider *provider = nullptr; ///< Provider, if this is a named or prefixed derived condition.
 
 };
-
-#endif

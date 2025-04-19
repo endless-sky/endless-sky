@@ -15,12 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionEntry.h"
+
 #include <cstdint>
 #include <functional>
 #include <initializer_list>
 #include <map>
-
-#include "ConditionEntry.h"
 
 class DataNode;
 class DataWriter;
@@ -58,15 +58,17 @@ public:
 	// Retrieve a "condition" flag from this store (directly or from a connected provider).
 	int64_t Get(const std::string &name) const;
 
-	// Add a value to a condition or set a value for a condition.
-	// Returns true on success, false on failure.
+	/// Adds a value to the given condition. Can (silently) fail to apply when the condition is a readonly derived
+	/// condition, or when a readwrite derived condition doesn't accept the new value.
 	void Add(const std::string &name, int64_t value);
+	/// Sets a condition to the given value. Can (silently) fail to apply when the condition is a readonly derived
+	/// condition, or when a readwrite derived condition doesn't accept the new value.
 	void Set(const std::string &name, int64_t value);
 
 	// Direct access to a specific condition (using the ConditionEntry as proxy).
 	ConditionEntry &operator[](const std::string &name);
 
-	// Helper to completely remove all data and linked condition-providers from the store.
+	/// Helper to completely remove all data and linked condition-providers from the store.
 	void Clear();
 
 	// Helper for testing; check how many primary conditions are registered.

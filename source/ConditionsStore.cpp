@@ -113,7 +113,6 @@ int64_t ConditionsStore::Get(const string &name) const
 
 
 
-// Add a value to a condition. Returns true on success, false on failure.
 void ConditionsStore::Add(const string &name, int64_t value)
 {
 	(*this)[name] += value;
@@ -121,8 +120,6 @@ void ConditionsStore::Add(const string &name, int64_t value)
 
 
 
-// Set a value for a condition, either for the local value, or by performing
-// a set on the provider.
 void ConditionsStore::Set(const string &name, int64_t value)
 {
 	(*this)[name] = value;
@@ -154,7 +151,6 @@ ConditionEntry &ConditionsStore::operator[](const string &name)
 
 
 
-// Helper to completely remove all data and linked condition-providers from the store.
 void ConditionsStore::Clear()
 {
 	// Reverse clear, to make sure that prefix providers are not cleared before it's users are cleared.
