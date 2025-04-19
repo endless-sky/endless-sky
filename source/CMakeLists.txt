@@ -263,6 +263,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Set.h
 	Ship.cpp
 	Ship.h
+	Shop.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp

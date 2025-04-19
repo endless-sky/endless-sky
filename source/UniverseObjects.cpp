@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 #include "Information.h"
 #include "Logger.h"
+#include "PlayerInfo.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "TaskQueue.h"
@@ -35,14 +36,15 @@ using namespace std;
 
 
 
-shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesystem::path> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const PlayerInfo &player,
+		const vector<filesystem::path> &sources, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return queue.Run([this, sources, debugMode]() noexcept -> void
+	return queue.Run([this, &player, &sources, debugMode]() noexcept -> void
 		{
 			vector<filesystem::path> files;
 			for(const auto &source : sources)
@@ -60,7 +62,7 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesys
 			const double step = 1. / (static_cast<int>(files.size()) + 1);
 			for(const auto &path : files)
 			{
-				LoadFile(path, debugMode);
+				LoadFile(path, player, debugMode);
 
 				// Increment the atomic progress by one step.
 				// We use acquire + release to prevent any reordering.
@@ -134,7 +136,7 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node)
+void UniverseObjects::Change(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Token(0) == "fleet" && node.Size() >= 2)
 		fleets.Get(node.Token(1))->Load(node);
@@ -143,11 +145,11 @@ void UniverseObjects::Change(const DataNode &node)
 	else if(node.Token(0) == "government" && node.Size() >= 2)
 		governments.Get(node.Token(1))->Load(node);
 	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
-		outfitSales.Get(node.Token(1))->Load(node, outfits);
+		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
 	else if(node.Token(0) == "planet" && node.Size() >= 2)
 		planets.Get(node.Token(1))->Load(node, wormholes);
 	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
-		shipSales.Get(node.Token(1))->Load(node, ships);
+		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
 	else if(node.Token(0) == "system" && node.Size() >= 2)
 		systems.Get(node.Token(1))->Load(node, planets);
 	else if(node.Token(0) == "news" && node.Size() >= 2)
@@ -269,10 +271,6 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : outfits)
 		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
-	// Outfitters are never serialized.
-	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].contains(it.first))
-			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
@@ -288,10 +286,6 @@ void UniverseObjects::CheckReferences()
 			it.second.SetTrueModelName(it.first);
 			Warn("ship", it.first);
 		}
-	// Shipyards are never serialized.
-	for(const auto &it : shipSales)
-		if(it.second.empty() && !deferred["shipyard"].contains(it.first))
-			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
@@ -319,7 +313,7 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
+void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &player, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
 	if(path.extension() != ".txt")
@@ -329,6 +323,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 	if(debugMode)
 		Logger::LogError("Parsing: " + path.string());
 
+	const ConditionsStore *playerConditions = &player.Conditions();
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
@@ -372,7 +367,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 		else if(key == "outfit" && node.Size() >= 2)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && node.Size() >= 2)
-			outfitSales.Get(node.Token(1))->Load(node, outfits);
+			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
 		else if(key == "person" && node.Size() >= 2)
 			persons.Get(node.Token(1))->Load(node);
 		else if(key == "phrase" && node.Size() >= 2)
@@ -386,7 +381,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 			ships.Get(name)->Load(node);
 		}
 		else if(key == "shipyard" && node.Size() >= 2)
-			shipSales.Get(node.Token(1))->Load(node, ships);
+			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension

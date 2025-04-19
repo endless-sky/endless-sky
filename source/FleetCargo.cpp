@@ -40,7 +40,7 @@ namespace {
 			{
 				const Planet *planet = object.GetPlanet();
 				if(planet && planet->IsValid() && planet->HasOutfitter())
-					outfits.Add(planet->Outfitter());
+					outfits.Add(planet->OutfitterStock());
 			}
 		}
 		return outfits;
@@ -48,7 +48,7 @@ namespace {
 
 	// Construct a list of varying numbers of outfits that were either specified for
 	// this fleet directly, or are sold in this system or its linked neighbors.
-	vector<const Outfit *> OutfitChoices(const set<const Sale<Outfit> *> &outfitters, const System *hub, int maxSize)
+	vector<const Outfit *> OutfitChoices(const set<const Shop<Outfit> *> &outfitters, const System *hub, int maxSize)
 	{
 		auto outfits = vector<const Outfit *>();
 		if(maxSize > 0)
@@ -63,7 +63,7 @@ namespace {
 			}
 			else
 				for(const auto outfitter : outfitters)
-					choices.Add(*outfitter);
+					choices.Add(outfitter->Stock());
 
 			if(!choices.empty())
 			{
