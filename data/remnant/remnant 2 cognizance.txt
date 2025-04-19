@@ -1514,7 +1514,6 @@ mission "Remnant: Cognizance 34"
 	name "Observe changes in Postverta"
 	description "Something is going on outside, and Dusk would like you to take a look."
 	source "Ssil Vida"
-	waypoint "Postverta"
 	to offer
 		has "Remnant: Cognizance 33: done"
 	on offer
