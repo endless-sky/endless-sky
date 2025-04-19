@@ -3245,50 +3245,49 @@ void PlayerInfo::ValidateLoad()
 void PlayerInfo::RegisterDerivedConditions()
 {
 	// Read-only date functions.
-	conditions["day"].ProvideNamed([this](const string &name) { return date.Day(); });
-	conditions["month"].ProvideNamed([this](const string &name) { return date.Month(); });
-	conditions["year"].ProvideNamed([this](const string &name) { return date.Year(); });
-	conditions["weekday"].ProvideNamed([this](const string &name) { return date.WeekdayNumber(); });
-	conditions["days since year start"].ProvideNamed([this](const string &name) { return date.DaysSinceYearStart(); });
-	conditions["days until year end"].ProvideNamed([this](const string &name) { return date.DaysUntilYearEnd(); });
-	conditions["days since epoch"].ProvideNamed([this](const string &name) { return date.DaysSinceEpoch(); });
-	conditions["days since start"].ProvideNamed([this](const string &name) {
+	conditions["day"].ProvideNamed([this](const ConditionEntry &ce) { return date.Day(); });
+	conditions["month"].ProvideNamed([this](const ConditionEntry &ce) { return date.Month(); });
+	conditions["year"].ProvideNamed([this](const ConditionEntry &ce) { return date.Year(); });
+	conditions["weekday"].ProvideNamed([this](const ConditionEntry &ce) { return date.WeekdayNumber(); });
+	conditions["days since year start"].ProvideNamed([this](const ConditionEntry &ce) { return date.DaysSinceYearStart(); });
+	conditions["days until year end"].ProvideNamed([this](const ConditionEntry &ce) { return date.DaysUntilYearEnd(); });
+	conditions["days since epoch"].ProvideNamed([this](const ConditionEntry &ce) { return date.DaysSinceEpoch(); });
+	conditions["days since start"].ProvideNamed([this](const ConditionEntry &ce) {
 		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch(); });
 
 	// Read-only account conditions.
 	// Bound financial conditions to +/- 4.6 x 10^18 credits, within the range of a 64-bit int.
 	static constexpr int64_t limit = static_cast<int64_t>(1) << 62;
 
-	conditions["net worth"].ProvideNamed([this](const string &name) {
+	conditions["net worth"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, max(-limit, accounts.NetWorth())); });
-	conditions["credits"].ProvideNamed([this](const string &name) {
+	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.Credits()); });
-	conditions["unpaid mortgages"].ProvideNamed([this](const string &name) {
+	conditions["unpaid mortgages"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
-	conditions["unpaid fines"].ProvideNamed([this](const string &name) {
+	conditions["unpaid fines"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Fine")); });
-	conditions["unpaid debts"].ProvideNamed([this](const string &name) {
+	conditions["unpaid debts"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Debt")); });
-	conditions["unpaid salaries"].ProvideNamed([this](const string &name) {
+	conditions["unpaid salaries"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.CrewSalariesOwed()); });
-	conditions["unpaid maintenance"].ProvideNamed([this](const string &name) {
+	conditions["unpaid maintenance"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.MaintenanceDue()); });
-	conditions["credit score"].ProvideNamed([this](const string &name) {
+	conditions["credit score"].ProvideNamed([this](const ConditionEntry &ce) {
 		return accounts.CreditScore(); });
 
 	// Read/write assets and debts.
-	conditions["salary: "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["salary: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		const map<string, int64_t> &si = accounts.SalariesIncome();
-		auto it = si.find(name.substr(strlen("salary: ")));
+		auto it = si.find(ce.NameWithoutPrefix());
 		if(it == si.end())
 			return 0;
 		return it->second;
-	}, [this](ConditionEntry &ce, int64_t value) -> bool {
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
 		accounts.SetSalaryIncome(ce.NameWithoutPrefix(), value);
-		return true;
 	});
-	conditions["tribute: "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Planet *planet = GameData::Planets().Find(name.substr(strlen("tribute: ")));
+	conditions["tribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Planet *planet = GameData::Planets().Find(ce.NameWithoutPrefix());
 		if(!planet)
 			return 0;
 
@@ -3297,32 +3296,31 @@ void PlayerInfo::RegisterDerivedConditions()
 			return 0;
 
 		return it->second;
-	}, [this](ConditionEntry &ce, int64_t value) -> bool {
-		return SetTribute(ce.NameWithoutPrefix(), value);
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		SetTribute(ce.NameWithoutPrefix(), value);
 	});
 
-	conditions["license: "].ProvidePrefixed([this](const string &name) -> int64_t {
-		return HasLicense(name.substr(strlen("license: ")));
-	}, [this](ConditionEntry &ce, int64_t value) -> bool {
+	conditions["license: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		return HasLicense(ce.NameWithoutPrefix());
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
 		if(!value)
 			RemoveLicense(ce.NameWithoutPrefix());
 		else
 			AddLicense(ce.NameWithoutPrefix());
-		return true;
 	});
 
 	// Read-only flagship conditions.
-	conditions["flagship crew"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship crew"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->Crew() : 0; });
-	conditions["flagship required crew"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship required crew"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->RequiredCrew() : 0; });
-	conditions["flagship bunks"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship bunks"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->Attributes().Get("bunks") : 0; });
-	conditions["flagship model: "].ProvidePrefixed([this](const string &name) -> bool {
+	conditions["flagship model: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship)
 			return false;
-		return name == "flagship model: " + flagship->TrueModelName(); });
-	conditions["flagship disabled"].ProvideNamed([this](const string &name) -> bool {
+		return ce.NameWithoutPrefix() == flagship->TrueModelName(); });
+	conditions["flagship disabled"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return flagship && flagship->IsDisabled(); });
 
 	auto shipAttributeHelper = [](const Ship *ship, const string &attribute, bool base) -> int64_t
@@ -3337,31 +3335,31 @@ void PlayerInfo::RegisterDerivedConditions()
 			return round(attributes.Mass() * 1000.);
 		return round(attributes.Get(attribute) * 1000.);
 	};
-	conditions["flagship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const string &name) -> int64_t {
-		return shipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true); });
-	conditions["flagship attribute: "].ProvidePrefixed([this, shipAttributeHelper](const string &name) -> int64_t {
-		return shipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false); });
-	conditions["flagship bays: "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["flagship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+		return shipAttributeHelper(this->Flagship(), ce.NameWithoutPrefix(), true); });
+	conditions["flagship attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+		return shipAttributeHelper(this->Flagship(), ce.NameWithoutPrefix(), false); });
+	conditions["flagship bays: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
 			return 0;
-		return flagship->BaysTotal(name.substr(strlen("flagship bays: "))); });
+		return flagship->BaysTotal(ce.NameWithoutPrefix()); });
 
 	// The behaviour of this condition while landed is not stable and may change in the future.
 	// It should only be used while in-flight.
-	conditions["flagship bays free: "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["flagship bays free: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
 			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
 				" condition while landed is unstable behavior.");
-		return flagship->BaysFree(name.substr(strlen("flagship bays free: "))); });
-	conditions["flagship bays"].ProvideNamed([this](const string &name) -> int64_t {
+		return flagship->BaysFree(ce.NameWithoutPrefix()); });
+	conditions["flagship bays"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
 			return 0;
 		return flagship->Bays().size(); });
 	// The behaviour of this condition while landed is not stable and may change in the future.
 	// It should only be used while in-flight.
-	conditions["flagship bays free"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship bays free"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
 			return 0;
 		if(GetPlanet())
@@ -3369,17 +3367,17 @@ void PlayerInfo::RegisterDerivedConditions()
 		const vector<Ship::Bay> &bays = flagship->Bays();
 		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; }); });
 
-	conditions["flagship mass"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship mass"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->Mass() : 0; });
-	conditions["flagship shields"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship shields"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->ShieldLevel() : 0; });
-	conditions["flagship hull"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship hull"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->HullLevel() : 0; });
-	conditions["flagship fuel"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["flagship fuel"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->FuelLevel() : 0; });
 
-	conditions["ship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const string &name) -> int64_t {
-		string attribute = name.substr(strlen("ship base attribute: "));
+	conditions["ship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
@@ -3393,9 +3391,9 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, true);
 		}
 		return retVal; });
-	conditions["ship base attribute (all): "].ProvidePrefixed([this, shipAttributeHelper](const string &name) -> int64_t
+	conditions["ship base attribute (all): "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t
 	{
-		string attribute = name.substr(strlen("ship base attribute (all): "));
+		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
@@ -3404,8 +3402,8 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, true);
 		}
 		return retVal; });
-	conditions["ship attribute: "].ProvidePrefixed([this, shipAttributeHelper](const string &name) -> int64_t {
-		string attribute = name.substr(strlen("ship attribute: "));
+	conditions["ship attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
@@ -3419,8 +3417,8 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, false);
 		}
 		return retVal; });
-	conditions["ship attribute (all): "].ProvidePrefixed([this, shipAttributeHelper](const string &name) -> int64_t {
-		string attribute = name.substr(strlen("ship attribute (all): "));
+	conditions["ship attribute (all): "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 		{
@@ -3430,23 +3428,23 @@ void PlayerInfo::RegisterDerivedConditions()
 		}
 		return retVal; });
 
-	conditions["name: "].ProvidePrefixed([this](const string &name) -> bool {
-		return name == "name: " + firstName + " " + lastName; });
-	conditions["first name: "].ProvidePrefixed([this](const string &name) -> bool {
-		return name == "first name: " + firstName; });
-	conditions["last name: "].ProvidePrefixed([this](const string &name) -> bool {
-		return name == "last name: " + lastName; });
+	conditions["name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		return ce.NameWithoutPrefix() == firstName + " " + lastName; });
+	conditions["first name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		return ce.NameWithoutPrefix() == firstName; });
+	conditions["last name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		return ce.NameWithoutPrefix() == lastName; });
 
 	// Conditions for your fleet's attractiveness to pirates.
-	conditions["cargo attractiveness"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["cargo attractiveness"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return RaidFleetFactors().first; });
-	conditions["armament deterrence"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["armament deterrence"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return RaidFleetFactors().second; });
-	conditions["pirate attraction"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["pirate attraction"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		auto rff = RaidFleetFactors();
 		return rff.first - rff.second; });
-	conditions["raid chance in system: "].ProvidePrefixed([this](const string &name) -> double {
-		const System *system = GameData::Systems().Find(name.substr(strlen("raid chance in system: ")));
+	conditions["raid chance in system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> double {
+		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
 		if(!system)
 			return 0.;
 
@@ -3469,7 +3467,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// If boarding a ship, missions should not consider the space available
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
-	conditions["cargo space"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		if(flagship && !boardingMissions.empty())
 			return flagship->Cargo().Free();
 		int64_t retVal = 0;
@@ -3477,7 +3475,7 @@ void PlayerInfo::RegisterDerivedConditions()
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
 				retVal += ship->Attributes().Get("cargo space");
 		return retVal; });
-	conditions["passenger space"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["passenger space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		if(flagship && !boardingMissions.empty())
 			return flagship->Cargo().BunksFree();
 		int64_t retVal = 0;
@@ -3488,44 +3486,48 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The number of active, present ships the player has of the given category
 	// (e.g. Heavy Warships).
-	conditions["ships: "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["ships: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
+		string category = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
-					&& name == "ships: " + ship->Attributes().Category())
+					&& category == ship->Attributes().Category())
 				++retVal;
 		return retVal; });
 	// The number of ships the player has of the given category anywhere in their fleet.
-	conditions["ships (all): "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["ships (all): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
+		string category = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && name == "ships (all): " + ship->Attributes().Category())
+			if(!ship->IsDestroyed() && category == ship->Attributes().Category())
 				++retVal;
 		return retVal; });
 	// The number of ships the player has of the given model active and present.
-	conditions["ship model: "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["ship model: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
+		string model = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system
-					&& name == "ship model: " + ship->TrueModelName())
+					&& model == ship->TrueModelName())
 				++retVal;
 		return retVal; });
 	// The number of ships that the player has of the given model anywhere in their fleet.
-	conditions["ship model (all): "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["ship model (all): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
+		string model = ce.NameWithoutPrefix();
 		for(const shared_ptr<Ship> &ship : ships)
-			if(!ship->IsDestroyed() && name == "ship model (all): " + ship->TrueModelName())
+			if(!ship->IsDestroyed() && model == ship->TrueModelName())
 				++retVal;
 		return retVal; });
 	// The total number of ships the player has active and present.
-	conditions["total ships"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["total ships"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsParked() && !ship->IsDisabled() && ship->GetActualSystem() == system)
 				++retVal;
 		return retVal; });
 	// The total number of ships the player has anywhere.
-	conditions["total ships (all)"].ProvideNamed([this](const string &name) -> int64_t {
+	conditions["total ships (all)"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
 			if(!ship->IsDestroyed())
@@ -3536,8 +3538,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	// If in orbit, this means checking all ships in-system for installed and in cargo outfits.
 	// If landed, this means checking all landed ships for installed outfits, the pooled cargo
 	// hold, and the planetary storage of the planet. Excludes parked ships.
-	conditions["outfit: "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit: ")));
+	conditions["outfit: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -3565,8 +3567,8 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Conditions to determine what outfits the player owns, with various possible locations to check.
 	// The following condition checks all possible locations for outfits in the player's possession.
-	conditions["outfit (all): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all): ")));
+	conditions["outfit (all): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = Cargo().Get(outfit);
@@ -3584,8 +3586,8 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks the player's fleet for installed outfits on active
 	// escorts local to the player.
-	conditions["outfit (installed): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (installed): ")));
+	conditions["outfit (installed): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -3605,11 +3607,11 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks the player's fleet for installed outfits on parked escorts
 	// which are local to the player.
-	conditions["outfit (parked): "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["outfit (parked): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		// If the player isn't landed then there can be no parked ships local to them.
 		if(!planet)
 			return 0;
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (parked): ")));
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -3623,8 +3625,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks the player's entire fleet for installed outfits.
-	conditions["outfit (all installed): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all installed): ")));
+	conditions["outfit (all installed): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -3635,10 +3637,10 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks the flagship's installed outfits.
-	conditions["outfit (flagship installed): "].ProvidePrefixed([this](const string &name) -> int64_t {
+	conditions["outfit (flagship installed): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		if(!flagship)
 			return 0;
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship installed): ")));
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		return flagship->OutfitCount(outfit);
@@ -3646,8 +3648,8 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks the player's fleet for outfits in the cargo of escorts
 	// local to the player.
-	conditions["outfit (cargo): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (cargo): ")));
+	conditions["outfit (cargo): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -3666,8 +3668,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks all cargo locations in the player's fleet.
-	conditions["outfit (all cargo): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all cargo): ")));
+	conditions["outfit (all cargo): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -3680,8 +3682,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks the flagship's cargo or the pooled cargo if landed.
-	conditions["outfit (flagship cargo): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (flagship cargo): ")));
+	conditions["outfit (flagship cargo): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		return (flagship ? flagship->Cargo().Get(outfit) : 0) + (planet ? Cargo().Get(outfit) : 0);
@@ -3689,8 +3691,8 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// The following condition checks planetary storage on the current planet, or on
 	// planets in the current system if in orbit.
-	conditions["outfit (storage): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (storage): ")));
+	conditions["outfit (storage): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		if(planet)
@@ -3712,8 +3714,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// The following condition checks all planetary storage.
-	conditions["outfit (all storage): "].ProvidePrefixed([this](const string &name) -> int64_t {
-		const Outfit *outfit = GameData::Outfits().Find(name.substr(strlen("outfit (all storage): ")));
+	conditions["outfit (all storage): "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		const Outfit *outfit = GameData::Outfits().Find(ce.NameWithoutPrefix());
 		if(!outfit)
 			return 0;
 		int64_t retVal = 0;
@@ -3723,48 +3725,48 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// This condition corresponds to the method by which the flagship entered the current system.
-	conditions["entered system by: "].ProvidePrefixed([this](const string &name) -> bool {
-		return name == "entered system by: " + EntryToString(entry); });
+	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		return ce.NameWithoutPrefix() == EntryToString(entry); });
 	// This condition corresponds to the last system the flagship was in.
-	conditions["previous system: "].ProvidePrefixed([this](const string &name) -> bool {
+	conditions["previous system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!previousSystem)
 			return false;
-		return name == "previous system: " + previousSystem->TrueName(); });
+		return ce.NameWithoutPrefix() == previousSystem->TrueName(); });
 
 	// Conditions to determine if flagship is in a system and on a planet.
-	conditions["flagship system: "].ProvidePrefixed([this](const string &name) -> bool {
+	conditions["flagship system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetSystem())
 			return false;
-		return name == "flagship system: " + flagship->GetSystem()->TrueName(); });
-	conditions["flagship landed"].ProvideNamed([this](const string &name) -> bool {
+		return ce.NameWithoutPrefix() == flagship->GetSystem()->TrueName(); });
+	conditions["flagship landed"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return (flagship && flagship->GetPlanet()); });
-	conditions["flagship planet: "].ProvidePrefixed([this](const string &name) -> bool {
+	conditions["flagship planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
-		return name == "flagship planet: " + flagship->GetPlanet()->TrueName(); });
-	conditions["flagship planet attribute: "].ProvidePrefixed([this](const string &name) -> bool {
+		return ce.NameWithoutPrefix() == flagship->GetPlanet()->TrueName(); });
+	conditions["flagship planet attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
-		string attribute = name.substr(strlen("flagship planet attribute: "));
+		string attribute = ce.NameWithoutPrefix();
 		return flagship->GetPlanet()->Attributes().contains(attribute); });
 
 	// Read only exploration conditions.
-	conditions["visited planet: "].ProvidePrefixed([this](const string &name) -> bool {
-		const Planet *planet = GameData::Planets().Find(name.substr(strlen("visited planet: ")));
+	conditions["visited planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		const Planet *planet = GameData::Planets().Find(ce.NameWithoutPrefix());
 		return planet ? HasVisited(*planet) : false; });
-	conditions["visited system: "].ProvidePrefixed([this](const string &name) -> bool {
-		const System *system = GameData::Systems().Find(name.substr(strlen("visited system: ")));
+	conditions["visited system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
 		return system ? HasVisited(*system) : false; });
-	conditions["landing access: "].ProvidePrefixed([this](const string &name) -> bool {
-		const Planet *planet = GameData::Planets().Find(name.substr(strlen("landing access: ")));
+	conditions["landing access: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
+		const Planet *planet = GameData::Planets().Find(ce.NameWithoutPrefix());
 		return (planet && flagship) ? planet->CanLand(*flagship) : false; });
 
-	conditions["installed plugin: "].ProvidePrefixed([](const string &name) -> bool {
-		const Plugin *plugin = Plugins::Get().Find(name.substr(strlen("installed plugin: ")));
+	conditions["installed plugin: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
+		const Plugin *plugin = Plugins::Get().Find(ce.NameWithoutPrefix());
 		return plugin ? plugin->IsValid() && plugin->enabled : false; });
 
-	conditions["person destroyed: "].ProvidePrefixed([](const string &name) -> bool {
-		const Person *person = GameData::Persons().Find(name.substr(strlen("person destroyed: ")));
+	conditions["person destroyed: "].ProvidePrefixed([](const ConditionEntry &ce) -> bool {
+		const Person *person = GameData::Persons().Find(ce.NameWithoutPrefix());
 		return person ? person->IsDestroyed() : false; });
 
 	// Read-only navigation conditions.
@@ -3779,29 +3781,29 @@ void PlayerInfo::RegisterDerivedConditions()
 		return distanceMap.Days(*destination);
 	};
 
-	conditions["hyperjumps to system: "].ProvidePrefixed([this, HyperspaceTravelDays](const string &name) -> int {
-		const System *system = GameData::Systems().Find(name.substr(strlen("hyperjumps to system: ")));
+	conditions["hyperjumps to system: "].ProvidePrefixed([this, HyperspaceTravelDays](const ConditionEntry &ce) -> int {
+		const System *system = GameData::Systems().Find(ce.NameWithoutPrefix());
 		if(!system)
 		{
-			Logger::LogError("Warning: System \"" + name.substr(strlen("hyperjumps to system: "))
+			Logger::LogError("Warning: System \"" + ce.NameWithoutPrefix()
 					+ "\" referred to in condition is not valid.");
 			return -1;
 		}
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	});
 
-	conditions["hyperjumps to planet: "].ProvidePrefixed([this, HyperspaceTravelDays](const string &name) -> int {
-		const Planet *planet = GameData::Planets().Find(name.substr(strlen("hyperjumps to planet: ")));
+	conditions["hyperjumps to planet: "].ProvidePrefixed([this, HyperspaceTravelDays](const ConditionEntry &ce) -> int {
+		const Planet *planet = GameData::Planets().Find(ce.NameWithoutPrefix());
 		if(!planet)
 		{
-			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
 					+ "\" referred to in condition is not valid.");
 			return -1;
 		}
 		const System *system = planet->GetSystem();
 		if(!system)
 		{
-			Logger::LogError("Warning: Planet \"" + name.substr(strlen("hyperjumps to planet: "))
+			Logger::LogError("Warning: Planet \"" + ce.NameWithoutPrefix()
 					+ "\" referred to in condition is not in any system.");
 			return -1;
 		}
@@ -3810,24 +3812,23 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
-	conditions["reputation: "].ProvidePrefixed([](const string &name) -> int64_t {
-		string govName = name.substr(strlen("reputation: "));
+	conditions["reputation: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		string govName = ce.NameWithoutPrefix();
 		auto gov = GameData::Governments().Get(govName);
 		if(!gov)
 			return 0;
 		return gov->Reputation();
-	}, [](ConditionEntry &ce, int64_t value) -> bool
+	}, [](ConditionEntry &ce, int64_t value) -> void
 	{
 		string govName = ce.NameWithoutPrefix();
 		auto gov = GameData::Governments().Get(govName);
 		if(!gov)
-			return false;
+			return;
 		gov->SetReputation(value);
-		return true;
 	});
 
 	// A condition for returning a random integer in the range [0, 100).
-	conditions["random"].ProvideNamed([](const string &name) -> int64_t {
+	conditions["random"].ProvideNamed([](const ConditionEntry &ce) -> int64_t {
 		return Random::Int(100); });
 
 	// A condition for returning a random integer in the range [0, input). Input may be a number,
@@ -3835,8 +3836,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	// integer in the range [0, 100), but if you had a condition "max roll" with a value of 100,
 	// calling "roll: max roll" would provide a value from the same range.
 	// Returns 0 if the input condition's value is <= 1.
-	conditions["roll: "].ProvidePrefixed([this](const string &name) -> int64_t {
-		string input = name.substr(strlen("roll: "));
+	conditions["roll: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		string input = ce.NameWithoutPrefix();
 		int64_t value = 0;
 		if(DataNode::IsNumber(input))
 			value = static_cast<int64_t>(DataNode::Value(input));
@@ -3848,13 +3849,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	});
 
 	// Global conditions setters and getters:
-	conditions["global: "].ProvidePrefixed([](const string &name) -> int64_t {
-		string condition = name.substr(strlen("global: "));
-		return GameData::GlobalConditions().Get(condition);
-	}, [](ConditionEntry &ce, int64_t value) -> bool
+	conditions["global: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		string globalCondition = ce.NameWithoutPrefix();
+		return GameData::GlobalConditions().Get(globalCondition);
+	}, [](ConditionEntry &ce, int64_t value)
 	{
 		GameData::GlobalConditions().Set(ce.NameWithoutPrefix(), value);
-		return true;
 	});
 }
 

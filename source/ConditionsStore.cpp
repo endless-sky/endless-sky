@@ -52,7 +52,6 @@ ConditionsStore::ConditionsStore(const map<string, int64_t> &initialConditions)
 
 
 
-/// A destructor is required to remove ConditionEntries in the correct order.
 ConditionsStore::~ConditionsStore()
 {
 	// Clear removes the ConditionEntries in the correct order.
@@ -164,7 +163,6 @@ void ConditionsStore::Clear()
 
 
 
-// Helper for testing; check how many primary conditions are registered.
 int64_t ConditionsStore::PrimariesSize() const
 {
 	int64_t result = 0;

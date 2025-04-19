@@ -44,6 +44,7 @@ public:
 	explicit ConditionsStore(const DataNode &node);
 	explicit ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
 	explicit ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
+	/// A destructor is required to remove ConditionEntries in the correct order.
 	~ConditionsStore();
 
 	ConditionsStore(const ConditionsStore &) = delete;
@@ -55,7 +56,7 @@ public:
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
 
-	// Retrieve a "condition" flag from this store (directly or from a connected provider).
+	/// Retrieve a "condition" flag from this store (directly or from a connected provider).
 	int64_t Get(const std::string &name) const;
 
 	/// Adds a value to the given condition. Can (silently) fail to apply when the condition is a readonly derived
@@ -65,7 +66,7 @@ public:
 	/// condition, or when a readwrite derived condition doesn't accept the new value.
 	void Set(const std::string &name, int64_t value);
 
-	// Direct access to a specific condition (using the ConditionEntry as proxy).
+	/// Direct access to a specific condition (using the ConditionEntry as proxy).
 	ConditionEntry &operator[](const std::string &name);
 
 	/// Helper to completely remove all data and linked condition-providers from the store.

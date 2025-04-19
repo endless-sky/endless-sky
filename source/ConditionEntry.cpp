@@ -132,7 +132,7 @@ ConditionEntry &ConditionEntry::operator-=(int64_t val)
 
 
 
-void ConditionEntry::ProvidePrefixed(function<int64_t(const string &)> getFunction)
+void ConditionEntry::ProvidePrefixed(function<int64_t(const ConditionEntry &)> getFunction)
 {
 	if(!provider)
 		provider = new DerivedProvider(this);
@@ -141,8 +141,8 @@ void ConditionEntry::ProvidePrefixed(function<int64_t(const string &)> getFuncti
 
 
 
-void ConditionEntry::ProvidePrefixed(function<int64_t(const string &)> getFunction,
-	function<bool(ConditionEntry &, int64_t)> setFunction)
+void ConditionEntry::ProvidePrefixed(function<int64_t(const ConditionEntry &)> getFunction,
+	function<void(ConditionEntry &, int64_t)> setFunction)
 {
 	ProvidePrefixed(getFunction);
 	provider->setFunction = std::move(setFunction);
@@ -150,7 +150,7 @@ void ConditionEntry::ProvidePrefixed(function<int64_t(const string &)> getFuncti
 
 
 
-void ConditionEntry::ProvideNamed(function<int64_t(const string &)> getFunction)
+void ConditionEntry::ProvideNamed(function<int64_t(const ConditionEntry &)> getFunction)
 {
 	if(!provider)
 		provider = new DerivedProvider(nullptr);
@@ -159,8 +159,8 @@ void ConditionEntry::ProvideNamed(function<int64_t(const string &)> getFunction)
 
 
 
-void ConditionEntry::ProvideNamed(function<int64_t(const string &)> getFunction,
-	function<bool(ConditionEntry &, int64_t)> setFunction)
+void ConditionEntry::ProvideNamed(function<int64_t(const ConditionEntry &)> getFunction,
+	function<void(ConditionEntry &, int64_t)> setFunction)
 {
 	ProvideNamed(getFunction);
 	provider->setFunction = std::move(setFunction);

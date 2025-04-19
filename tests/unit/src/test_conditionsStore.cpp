@@ -53,9 +53,9 @@ class MockConditionsProvider {
 public:
 	void SetROPrefixProvider(ConditionsStore &store, const std::string &prefix)
 	{
-		store[prefix].ProvidePrefixed([this, prefix](const std::string &name) {
-			verifyAndStripPrefix(prefix, name);
-			return getFromMapOrZero(values, name);
+		store[prefix].ProvidePrefixed([this, prefix](const ConditionEntry &ce) {
+			verifyAndStripPrefix(prefix, ce.Name());
+			return getFromMapOrZero(values, ce.Name());
 		}, [prefix](ConditionEntry &ce, int64_t value) {
 			verifyAndStripPrefix(prefix, ce.Name());
 			return false;
@@ -63,9 +63,9 @@ public:
 	}
 	void SetRWPrefixProvider(ConditionsStore &store, const std::string &prefix)
 	{
-		store[prefix].ProvidePrefixed([this, prefix](const std::string &name) {
-			verifyAndStripPrefix(prefix, name);
-			return getFromMapOrZero(values, name);
+		store[prefix].ProvidePrefixed([this, prefix](const ConditionEntry &ce) {
+			verifyAndStripPrefix(prefix, ce.Name());
+			return getFromMapOrZero(values, ce.Name());
 		}, [this, prefix](ConditionEntry &ce, int64_t value) {
 			verifyAndStripPrefix(prefix, ce.Name());
 			values[ce.Name()] = value;
@@ -74,9 +74,9 @@ public:
 	}
 	void SetRONamedProvider(ConditionsStore &store, const std::string &named)
 	{
-		store[named].ProvideNamed([this, named](const std::string &name) {
-			verifyName(named, name);
-			return getFromMapOrZero(values, name);
+		store[named].ProvideNamed([this, named](const ConditionEntry &ce) {
+			verifyName(named, ce.Name());
+			return getFromMapOrZero(values, ce.Name());
 		}, [named](ConditionEntry &ce, int64_t value) {
 			verifyName(named, ce.Name());
 			return false;
@@ -84,9 +84,9 @@ public:
 	}
 	void SetRWNamedProvider(ConditionsStore &store, const std::string &named)
 	{
-		store[named].ProvideNamed([this, named](const std::string &name) {
-			verifyName(named, name);
-			return getFromMapOrZero(values, name);
+		store[named].ProvideNamed([this, named](const ConditionEntry &ce) {
+			verifyName(named, ce.Name());
+			return getFromMapOrZero(values, ce.Name());
 		}, [this, named](ConditionEntry &ce, int64_t value) {
 			verifyName(named, ce.Name());
 			values[ce.Name()] = value;

@@ -56,16 +56,16 @@ public:
 
 
 	/// Configure entry for prefixed derived providing, with only a get function.
-	void ProvidePrefixed(std::function<int64_t(const std::string &)> getFunction);
+	void ProvidePrefixed(std::function<int64_t(const ConditionEntry &)> getFunction);
 	/// Configure entry for prefixed derived providing, with a get and a set function.
-	void ProvidePrefixed(std::function<int64_t(const std::string &)> getFunction,
-		std::function<bool(ConditionEntry &, int64_t)> setFunction);
+	void ProvidePrefixed(std::function<int64_t(const ConditionEntry &)> getFunction,
+		std::function<void(ConditionEntry &, int64_t)> setFunction);
 
 	/// Configure entry for named derived providing, with only a get function.
-	void ProvideNamed(std::function<int64_t(const std::string &)> getFunction);
+	void ProvideNamed(std::function<int64_t(const ConditionEntry &)> getFunction);
 	/// Configure entry for named derived providing, with a get and a set function.
-	void ProvideNamed(std::function<int64_t(const std::string &)> getFunction,
-		std::function<bool(ConditionEntry &, int64_t)> setFunction);
+	void ProvideNamed(std::function<int64_t(const ConditionEntry &)> getFunction,
+		std::function<void(ConditionEntry &, int64_t)> setFunction);
 
 
 	/// Notify all subscribed listeners that the value of the condition changed.
@@ -87,7 +87,7 @@ private:
 
 	public:
 		/// Get function to get the value of the ConditionEntry. GetFunctions are required for any derived provider.
-		std::function<int64_t(const std::string &)> getFunction;
+		std::function<int64_t(const ConditionEntry &)> getFunction;
 
 		/// Lambda function to set the value for a condition entry.
 		std::function<void(ConditionEntry &, int64_t)> setFunction;
