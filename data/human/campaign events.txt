@@ -19,7 +19,7 @@ event "remembrance day"
 mission "remembrance day"
 	landing
 	source
-		government "Republic"
+		government "Republic" "Deep"
 		attributes "spaceport"
 	to offer
 		has "event: remembrance day"
@@ -148,7 +148,7 @@ event "war begins"
 mission "event: war begins"
 	landing
 	source
-		government "Republic" "Syndicate" "Free Worlds"
+		government "Republic" "Deep" "Syndicate" "Free Worlds"
 		attributes "spaceport"
 	to offer
 		has "event: war begins"
@@ -1023,6 +1023,7 @@ event "start of hostilities"
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" -.2
+			"Deep" -.2
 
 
 
@@ -1036,8 +1037,12 @@ event "temporary ceasefire"
 	government "Republic"
 		"attitude toward"
 			"Free Worlds" 0
+	government "Deep"
+		"attitude toward"
+			"Free Worlds" 0
 	government "Free Worlds"
 		"attitude toward"
+			"Deep" 0
 			"Republic" 0
 
 
@@ -1466,11 +1471,13 @@ event "fw gets catalytic ramscoop"
 
 event "fw safe passage starts"
 	"reputation: Republic" = 5
+	"reputation: Deep" = 5
 
 
 
 event "fw safe passage ends"
 	"reputation: Republic" <?= -1000
+	"reputation: Deep" <?= -1000
 
 
 
@@ -1980,7 +1987,8 @@ event "fw armistice"
 			"Pirate" -.3
 	government "Free Worlds"
 		"attitude toward"
-			Republic 0
+			"Republic" 0
+			"Deep" 0
 	system "Graffias"
 		government "Republic"
 	planet "Martini"
@@ -2381,6 +2389,7 @@ event "fw syndicate welcoming"
 		"attitude toward"
 			"Free Worlds" 0
 			"Republic" 0
+			"Deep" 0
 			"Navy (Oathkeeper)" 0
 			"Pirate" -.4
 			"Korath" -.5
@@ -2399,6 +2408,7 @@ event "at war with the pug"
 		"attitude toward"
 			"Free Worlds" -.01
 			"Republic" -.01
+			"Deep" -.01
 			"Syndicate" -.01
 			"Syndicate (Extremist)" -.01
 	system "Delta Capricorni"
@@ -2663,6 +2673,9 @@ event "pug link restoration 4"
 
 event "battle of algenib"
 	government "Republic"
+		"attitude toward"
+			"Syndicate (Extremist)" -.1
+	government "Deep"
 		"attitude toward"
 			"Syndicate (Extremist)" -.1
 	government "Navy (Oathkeeper)"
@@ -3064,9 +3077,13 @@ event "fwc peace with the navy"
 			"Free Worlds" 0
 			"Merchant" .25
 			"Pirate" -.3
+	government "Deep"
+		"attitude toward"
+			"Free Worlds" 0
 	government "Free Worlds"
 		"attitude toward"
 			"Republic" 0
+			"Deep" 0
 	"tribute: Silver" /= 700
 	planet "Silver"
 		security 0
@@ -3127,6 +3144,7 @@ event "fwc battle for rasalhague"
 	government "Pug"
 		"attitude toward"
 			"Republic" -.01
+			"Deep" -.01
 			"Navy (Oathkeeper)" -.01
 
 
