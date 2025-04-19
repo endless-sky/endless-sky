@@ -42,7 +42,7 @@ If you are posting a pull request, please:
 
 If proposing major changes to the game through your pull request, start by posting an issue or discussion and discussing the best way to implement it. Often the first strategy that occurs to you will not be the cleanest or most effective way to implement a new feature.
 
-### On AI-generated/assisted content ###
+### On AI-generated/assisted content
 
 **AI-generated/assisted content is forbidden** in Endless Sky development. This is for several reasons, including:
 
