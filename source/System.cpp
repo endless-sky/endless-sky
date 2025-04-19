@@ -921,6 +921,18 @@ bool System::HasOutfitter() const
 
 
 
+// Check whether this system contains a wormhole.
+bool System::HasWormhole() const
+{
+	for(const StellarObject &object : objects)
+		if(object.HasSprite() && object.HasValidPlanet() && object.GetPlanet()->IsWormhole())
+			return true;
+
+	return false;
+}
+
+
+
 // Get the specification of how many asteroids of each type there are.
 const vector<System::Asteroid> &System::Asteroids() const
 {

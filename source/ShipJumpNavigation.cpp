@@ -92,8 +92,9 @@ double ShipJumpNavigation::JumpFuel(const System *destination) const
 double ShipJumpNavigation::JumpFuelNearest() const
 {
 	// A currently-carried ship or ship without drives requires no fuel to jump,
-	// because it cannot jump.
-	if(!currentSystem || !HasAnyDrive())
+	// because it cannot jump. If the system has a wormhole, then the nearest system
+	// is accessible via wormhole and thus requires no fuel to jump.
+	if(!currentSystem || !HasAnyDrive() || currentSystem->HasWormhole())
 		return 0.;
 
 	double jumpDriveCost = JumpDriveFuel();
@@ -101,11 +102,9 @@ double ShipJumpNavigation::JumpFuelNearest() const
 
 	// Check whether the ship can jump, that jumping is more expensive than hyperdriving,
 	// and whether the system has links.
-	if((!jumpDriveCost || jumpDriveCost >= hyperdriveCost) && !currentSystem->Links().empty())
+	if(hyperdriveCost && (!jumpDriveCost || jumpDriveCost >= hyperdriveCost) && !currentSystem->Links().empty())
 		return hyperdriveCost;
-	else if(!currentSystem->VisibleNeighbors().empty())
-		return jumpDriveCost;
-	return 0.;
+	return jumpDriveCost;
 }
 
 

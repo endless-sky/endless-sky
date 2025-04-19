@@ -153,6 +153,8 @@ public:
 	bool HasShipyard() const;
 	// Check whether you can buy or sell ship outfits in this system.
 	bool HasOutfitter() const;
+	// Check whether this system contains a wormhole.
+	bool HasWormhole() const;
 
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
