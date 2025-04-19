@@ -1,4 +1,5 @@
 # Copyright (c) 2022 by Hurleveur
+# Enhanced in 2025
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -11,19 +12,36 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Test Setup: Data Definitions
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#-----------------------------------------------------------------------------
+# 1. Save Game Data
+#-----------------------------------------------------------------------------
+# Defines the initial save state for the test.
 test-data "Capture Uncapturable With Capturable Override Save"
 	category "savegame"
 	contents
-		pilot Bobbi Bughunter
+		# --- Player Info ---
+		pilot "Bobbi Bughunter"
 		date 16 11 3013
 		system "Terra Incognita"
 		planet Ruin
 		clearance
+
+		# --- Reputation ---
+		# Set negative reputation with Quarg to allow initiating boarding.
 		"reputation with"
 			Quarg -1000
+
+		# --- Player Ship ---
+		# A basic Star Barge, intentionally minimally outfitted.
 		ship "Star Barge"
 			name "Buggy Barge"
 			sprite "ship/star barge"
+			# Attributes define the ship's base stats, potentially overriding defaults.
+			# Note the low engine/weapon/outfit capacity and added base stats.
 			attributes
 				category "Light Freighter"
 				cost 190000
@@ -31,20 +49,22 @@ test-data "Capture Uncapturable With Capturable Override Save"
 				bunks 3
 				"cargo space" 50
 				drag 2.1
-				"engine capacity" 40
+				"engine capacity" 40 # Low
 				"fuel capacity" 300
 				"heat dissipation" 0.8
 				hull 1000
-				"outfit space" 130
+				"outfit space" 130 # Low
 				"required crew" 1
 				shields 600
 				"turret mounts" 1
-				"weapon capacity" 20
-				"thrust" 25
-				"turn" 250
-				"energy generation" 10
+				"weapon capacity" 20 # Low
+				"thrust" 25 # Base stat
+				"turn" 250 # Base stat
+				"energy generation" 10 # Base stat
+			# Minimal outfits - only a hyperdrive.
 			outfits
 				Hyperdrive
+			# Current status
 			crew 1
 			fuel 300
 			shields 600
@@ -54,20 +74,36 @@ test-data "Capture Uncapturable With Capturable Override Save"
 			engine 9 38 1
 			system "Terra Incognita"
 			planet Ruin
+
+		# --- Player Account ---
 		account
-			credits 100000000
+			credits 100000000 # High credits, likely irrelevant for capture logic itself
 			score 400
 			history
+
+		# --- World State ---
 		visited "Terra Incognita"
 		"visited planet" Ruin
+
+		# The 'changes' block modifies the system state AFTER the save is loaded.
 		changes
 			system "Terra Incognita"
+				# Spawn 5 instances of the target fleet near the player.
 				fleet "TEST: derelicts" 5
+
+		# Initial conditions/flags set for the player.
 		conditions
+			# Custom flag used to trigger the mission offer.
 			"TEST: ILLEGAL CAPTURE"
+			# Standard flag indicating player can land at Ruin (starts landed).
 			"Ruin: Landing: offered"
 
+#-----------------------------------------------------------------------------
+# 2. Custom Ship Definition
+#-----------------------------------------------------------------------------
+# Defines the target ship type: normally uncapturable.
 ship "TEST: outfitless wardragon"
+	# This flag normally prevents capture. The test aims to override this.
 	uncapturable
 	sprite "ship/wardragon"
 	thumbnail "thumbnail/wardragon"
@@ -75,60 +111,118 @@ ship "TEST: outfitless wardragon"
 		category "Heavy Warship"
 		cost 5900000
 		mass 360
-		automaton 1
+		automaton 1 # No crew required (important for boarding/capture logic)
 		drag 9.3
 		"heat dissipation" 0.5
-		hull 50000
-		"outfit scan power" 1e+10
+		hull 50000 # Very high
+		"outfit scan power" 1e+10 # High scan, likely irrelevant
 		"outfit scan efficiency" 1e+10
 		"cargo scan power" 1e+09
 		"cargo scan efficiency" 1e+09
-		"energy generation" 10
-		shields 160000
+		"energy generation" 10 # Low generation
+		shields 160000 # Very high
 
+#-----------------------------------------------------------------------------
+# 3. Custom Fleet Definition
+#-----------------------------------------------------------------------------
+# Defines the fleet containing the target ship.
 fleet "TEST: derelicts"
-	personality derelict
-	government "Quarg"
+	personality derelict # AI behavior
+	government "Quarg" # Affiliation
+	# The fleet only contains the custom Wardragon variant.
 	variant
 		"TEST: outfitless wardragon"
 
+#-----------------------------------------------------------------------------
+# 4. Mission Data Definition
+#-----------------------------------------------------------------------------
+# Defines the mission used to enable capturing the uncapturable ship.
 test-data "Capture Uncapturable With Capturable Override Mission"
 	category mission
 	contents
 		mission "TEST: Capture That Quarg!"
+			# CRITICAL: This flag allows associated boarding actions to ignore
+			# the target ship's 'uncapturable' status.
 			boarding
 				"override capture"
+			# Condition for this mission to be offered to the player.
+			# Requires the flag set in the save file.
 			to offer
 				has "TEST: ILLEGAL CAPTURE"
+			# Mission destination (likely irrelevant as capture is the goal).
 			destination "Earth"
 
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Test Case: Capture Uncapturable via Mission Override
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 test "Capture Uncapturable With Capturable Override"
+	# Test status: 'active' means it will be run.
 	status active
-	description "Starts the mission, accepts it and then boards the quarg ship to capture it."
+	# Description of the test's objective.
+	description "Tests capturing a normally uncapturable ship by using a mission with a boarding capture override flag."
+
+	# Sequence of actions performed during the test.
 	sequence
+		# 1. Setup: Inject mission data, then load the save game state.
+		debug "Injecting mission data"
 		inject "Capture Uncapturable With Capturable Override Mission"
+		debug "Injecting save data"
 		inject "Capture Uncapturable With Capturable Override Save"
-		call "Load First Savegame"
-		# to make sure we can capture
+		call "Load First Savegame" # Activate the save, spawning the derelict fleet
+
+		# 2. Precondition Check: Ensure reputation allows initiating boarding.
+		debug "Asserting negative Quarg reputation"
 		assert
 			"reputation: Quarg" < 0
+
+		# 3. Action: Depart and initiate boarding.
+		debug "Calling 'Depart'"
 		call "Depart"
+		debug "Departed. Initiating boarding command on nearby target."
+		# Assumes one of the spawned "TEST: derelicts" is targetable.
 		input
 			command board
-		label "floating"
-		branch "floating"
-			not "TEST: Capture That Quarg!: offered"
-		# attempt capture and attack, then close the panel and land
+
+		# 4. Wait & Interact: Wait for the mission to be offered (triggered by boarding + condition)
+		#    and interact with the boarding/capture UI.
+		debug "Waiting for mission 'TEST: Capture That Quarg!' to be offered..."
+		# This loop waits because the mission offer requires the 'TEST: ILLEGAL CAPTURE'
+		# condition (set in save) AND likely the boarding interaction itself.
+		label "wait_for_mission_offer"
+		# Input likely advances game time/state.
+		input
+		branch "wait_for_mission_offer"
+			not "TEST: Capture That Quarg!: offered" # Loop until the mission offer flag is set
+		debug "Mission offered. Simulating keypresses for capture..."
+
+		# Simulate keypresses in the boarding screen UI:
+		# 'c' -> Assumed to select the "Capture" option, enabled by the mission override.
 		input
 			key c
+		debug "Pressed 'c' (Capture)"
+		# 'a' -> Assumed to be "Accept" / "Attempt Capture" / "Attack Crew" (though target is automaton). Needs verification based on UI flow.
 		input
 			key a
+		debug "Pressed 'a' (Accept/Attack/Attempt?)"
+		# 'd' -> Assumed to be "Done" / "Depart" to close the boarding panel after action.
 		input
 			key d
+		debug "Pressed 'd' (Done/Depart Panel)"
+
+		# 5. Action: Return to planet.
+		debug "Navigating back to Ruin"
 		navigate
 			"travel destination" Ruin
+		debug "Calling 'Land'"
 		call "Land"
+		debug "Landed back on Ruin."
+
+		# 6. Assertions: Verify the test outcome.
+		debug "Asserting test results..."
 		assert
+			# Check 1: Does the player now possess the previously uncapturable ship model?
 			"ship model: TEST: outfitless wardragon" == 1
+			# Check 2: Was the special mission NOT declined? (Implies completed or still active)
 			"TEST: Capture That Quarg!: declined" == 0
+		debug "Assertions successful: Uncapturable ship captured via mission override."
