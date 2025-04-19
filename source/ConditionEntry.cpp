@@ -20,7 +20,8 @@ using namespace std;
 
 
 
-ConditionEntry::ConditionEntry(const string &name): name(name), value(0), provider(nullptr)
+ConditionEntry::ConditionEntry(const string &name)
+	: name(name), value(0), provider(nullptr)
 {
 }
 
@@ -65,7 +66,8 @@ const string ConditionEntry::NameWithoutPrefix() const
 
 
 
-ConditionEntry::DerivedProvider::DerivedProvider(ConditionEntry *mainEntry): mainEntry(mainEntry)
+ConditionEntry::DerivedProvider::DerivedProvider(ConditionEntry *mainEntry)
+	: mainEntry(mainEntry)
 {
 }
 

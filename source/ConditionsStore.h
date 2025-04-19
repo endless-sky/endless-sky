@@ -26,6 +26,7 @@ class DataNode;
 class DataWriter;
 
 
+
 // Class that contains storage for conditions. Those conditions can be
 // set directly in internal storage of this class (primary conditions)
 // and those conditions can also be provided from other locations in the
@@ -78,6 +79,7 @@ private:
 	// creation if required).
 	ConditionEntry *GetEntry(const std::string &name);
 	const ConditionEntry *GetEntry(const std::string &name) const;
+
 
 private:
 	// Storage for both the primary conditions as well as the providers.

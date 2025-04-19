@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ConditionsStore;
 
+
+
 /// Class that provides access to one single condition. It can:
 /// - act as an int64_t proxy, to emulate int64 values
 /// - provide direct access (polling type access)
