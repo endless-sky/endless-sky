@@ -3249,9 +3249,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["month"].ProvideNamed([this](const ConditionEntry &ce) { return date.Month(); });
 	conditions["year"].ProvideNamed([this](const ConditionEntry &ce) { return date.Year(); });
 	conditions["weekday"].ProvideNamed([this](const ConditionEntry &ce) { return date.WeekdayNumber(); });
-	conditions["days since year start"].ProvideNamed([this](const ConditionEntry &ce) { return date.DaysSinceYearStart(); });
-	conditions["days until year end"].ProvideNamed([this](const ConditionEntry &ce) { return date.DaysUntilYearEnd(); });
-	conditions["days since epoch"].ProvideNamed([this](const ConditionEntry &ce) { return date.DaysSinceEpoch(); });
+	conditions["days since year start"].ProvideNamed([this](const ConditionEntry &ce) {
+		return date.DaysSinceYearStart(); });
+	conditions["days until year end"].ProvideNamed([this](const ConditionEntry &ce) {
+		return date.DaysUntilYearEnd(); });
+	conditions["days since epoch"].ProvideNamed([this](const ConditionEntry &ce) {
+		return date.DaysSinceEpoch(); });
 	conditions["days since start"].ProvideNamed([this](const ConditionEntry &ce) {
 		return date.DaysSinceEpoch() - StartData().GetDate().DaysSinceEpoch(); });
 
@@ -3335,8 +3338,8 @@ void PlayerInfo::RegisterDerivedConditions()
 			return round(attributes.Mass() * 1000.);
 		return round(attributes.Get(attribute) * 1000.);
 	};
-	conditions["flagship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
-		return shipAttributeHelper(this->Flagship(), ce.NameWithoutPrefix(), true); });
+	conditions["flagship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) ->
+		int64_t { return shipAttributeHelper(this->Flagship(), ce.NameWithoutPrefix(), true); });
 	conditions["flagship attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
 		return shipAttributeHelper(this->Flagship(), ce.NameWithoutPrefix(), false); });
 	conditions["flagship bays: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
@@ -3376,7 +3379,8 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["flagship fuel"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
 		return flagship ? flagship->FuelLevel() : 0; });
 
-	conditions["ship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+	conditions["ship base attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) ->
+	int64_t {
 		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
@@ -3391,8 +3395,8 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, true);
 		}
 		return retVal; });
-	conditions["ship base attribute (all): "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t
-	{
+	conditions["ship base attribute (all): "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) ->
+	int64_t {
 		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
