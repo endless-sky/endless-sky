@@ -500,6 +500,7 @@ ship "Gull"
 		"hull repair rate" 0.7
 		"hull energy" 0.5
 		"cloak" .02
+		"cloaked shield permeability" 1
 		"cloaking energy" 5
 		"cloaking fuel" .1
 		"cloaked communication" 1
@@ -661,6 +662,7 @@ ship "Heron"
 		"hull repair rate" 15
 		"hull energy" 0.75
 		"cloak" .05
+		"cloaked shield permeability" 1
 		"cloaking energy" 3
 		"cloaking fuel" .05
 		"cloaked communication" 1
@@ -914,6 +916,7 @@ ship "Merganser"
 		"hull repair rate" 0.9
 		"hull energy" 0.6
 		"cloak" .03
+		"cloaked shield permeability" 1
 		"cloaking energy" 4
 		"cloaking fuel" .075
 		"cloaked communication" 1
@@ -1105,6 +1108,7 @@ ship "Penguin"
 		"hull energy" 1.0
 		"gaslining" 1
 		"cloak" .03
+		"cloaked shield permeability" 1
 		"cloaking energy" 3
 		"cloaking fuel" .05
 		"cloaked communication" 1
@@ -1219,6 +1223,7 @@ ship "Peregrine"
 		"hull repair rate" 1.5
 		"hull energy" 0.90
 		"cloak" .03
+		"cloaked shield permeability" 1
 		"cloaking energy" 4
 		"cloaking fuel" .075
 		"cloaked communication" 1
@@ -1530,6 +1535,7 @@ ship "Starling"
 		"hull repair rate" 0.8
 		"hull energy" 0.6
 		"cloak" .02
+		"cloaked shield permeability" 1
 		"cloaking energy" 5
 		"cloaking fuel" .1
 		"cloaked communication" 1
