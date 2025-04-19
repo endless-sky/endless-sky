@@ -21,7 +21,7 @@ ship "Jje"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Fighter"
+		category "Unclassified Minor"
 		"cost" 0
 		"hull" 4000
 		"required crew" 2
@@ -73,7 +73,7 @@ ship "Ayym"
 	swizzle 0
 	"never disabled"
 	attributes
-		category "Utility"
+		category "Unclassified"
 		"cost" 0
 		"hull" 6000
 		"required crew" 4
@@ -123,31 +123,31 @@ ship "Ayym"
 			"hit force" 4500
 	engine 0 0
 	"steering engine" 0 0
-	bay "Fighter" -36 40
+	bay "Unclassified Minor" -36 40
 		over
 		angle 60
-	bay "Fighter" 36 20
+	bay "Unclassified Minor" 36 20
 		over
 		angle -70
-	bay "Fighter" -16 104
+	bay "Unclassified Minor" -16 104
 		over
 		angle 162
-	bay "Fighter" -28 66
+	bay "Unclassified Minor" -28 66
 		over
 		angle 68
-	bay "Fighter" -18 14
+	bay "Unclassified Minor" -18 14
 		over
 		angle 127
-	bay "Fighter" 35 25
+	bay "Unclassified Minor" 35 25
 		over
 		angle 25
-	bay "Fighter" 25 70
+	bay "Unclassified Minor" 25 70
 		over
 		angle -120
-	bay "Fighter" 11 110
+	bay "Unclassified Minor" 11 110
 		over
 		angle 38
-	bay "Fighter" -36 40
+	bay "Unclassified Minor" -36 40
 		over
 		angle -53
 	"final explode" "ayym boom"

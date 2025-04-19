@@ -235,6 +235,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 		}
 		else if(key == "link")
 		{
+			if(value == trueName)
+			{
+				child.PrintTrace("Error: systems cannot link to themselves.");
+				continue;
+			}
 			if(remove)
 				links.erase(GameData::Systems().Get(value));
 			else
@@ -251,8 +256,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(child.Size() >= 4)
+			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(value, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "minables")
 		{
@@ -266,8 +274,11 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						break;
 					}
 			}
-			else if(child.Size() >= 4)
+			else if(child.Size() > valueIndex + 2)
 				asteroids.emplace_back(type, child.Value(valueIndex + 1), child.Value(valueIndex + 2));
+			else
+				child.PrintTrace("Error: expected " + to_string(valueIndex + 3)
+					+ " tokens. Found " + to_string(child.Size()) + ":");
 		}
 		else if(key == "fleet")
 		{
@@ -493,6 +504,12 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 	accessibleLinks.clear();
 	neighbors.clear();
 
+	payloads.clear();
+	for(const auto &asteroid : asteroids)
+		if(asteroid.Type())
+			for(const auto &payload : asteroid.Type()->GetPayload())
+				payloads.insert(payload.outfit);
+
 	// Some systems in the game may be considered inaccessible. If this system is inaccessible,
 	// then it shouldn't have accessible links or jump neighbors.
 	if(inaccessible)
@@ -704,7 +721,7 @@ double System::RamscoopFuel(double shipRamscoop, double scale) const
 // Additional travel distance to target for ships entering through hyperspace.
 double System::ExtraHyperArrivalDistance() const
 {
-	return extraHyperArrivalDistance;
+	return max(extraHyperArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
 }
 
 
@@ -712,21 +729,21 @@ double System::ExtraHyperArrivalDistance() const
 // Additional travel distance to target for ships entering using a jumpdrive.
 double System::ExtraJumpArrivalDistance() const
 {
-	return extraJumpArrivalDistance;
+	return max(extraJumpArrivalDistance, GameData::GetGamerules().SystemArrivalMin());
 }
 
 
 
 double System::JumpDepartureDistance() const
 {
-	return jumpDepartureDistance;
+	return max(jumpDepartureDistance, GameData::GetGamerules().SystemDepartureMin());
 }
 
 
 
 double System::HyperDepartureDistance() const
 {
-	return hyperDepartureDistance;
+	return max(hyperDepartureDistance, GameData::GetGamerules().SystemDepartureMin());
 }
 
 
@@ -912,6 +929,14 @@ const vector<System::Asteroid> &System::Asteroids() const
 
 
 
+// Get a list of all unique payload outfits from minables in this system.
+const set<const Outfit *> &System::Payloads() const
+{
+	return payloads;
+}
+
+
+
 // Get the background haze sprite for this system.
 const Sprite *System::Haze() const
 {
@@ -1054,7 +1079,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 
 
 
-void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing)
+void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing) const
 {
 	const string &key = node.Token(0);
 	bool hasValue = (node.Size() >= 2);
@@ -1076,6 +1101,8 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.speed = 360. / node.Value(1);
 	else if(key == "offset" && hasValue)
 		object.offset = node.Value(1);
+	else if(key == "swizzle" && hasValue)
+		object.SetSwizzle(GameData::Swizzles().Get(node.Token(1)));
 	else if(key == "visibility" && hasValue)
 	{
 		object.distanceInvisible = node.Value(1);

@@ -104,6 +104,11 @@ public:
 	explicit ConditionsStore(std::initializer_list<std::pair<std::string, int64_t>> initialConditions);
 	explicit ConditionsStore(const std::map<std::string, int64_t> &initialConditions);
 
+	ConditionsStore(const ConditionsStore &) = delete;
+	ConditionsStore &operator=(const ConditionsStore &) = delete;
+	ConditionsStore(ConditionsStore &&) = default;
+	ConditionsStore &operator=(ConditionsStore &&) = default;
+
 	// Serialization support for this class.
 	void Load(const DataNode &node);
 	void Save(DataWriter &out) const;
@@ -137,7 +142,7 @@ private:
 	// creation if required).
 	ConditionEntry *GetEntry(const std::string &name);
 	const ConditionEntry *GetEntry(const std::string &name) const;
-	bool VerifyProviderLocation(const std::string &name, DerivedProvider *provider) const;
+	bool VerifyProviderLocation(const std::string &name, const DerivedProvider *provider) const;
 
 
 

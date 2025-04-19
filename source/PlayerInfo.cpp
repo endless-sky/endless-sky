@@ -432,7 +432,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 	// cargo and passengers.
 	UpdateCargoCapacities();
 
-	auto DistributeMissionCargo = [](map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
+	auto DistributeMissionCargo = [](const map<string, map<string, int>> &toDistribute, const list<Mission> &missions,
 			vector<shared_ptr<Ship>> &ships, CargoHold &cargo, bool passengers) -> void
 	{
 		for(const auto &it : toDistribute)
@@ -2127,10 +2127,12 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 		if(&*it == &mission)
 		{
 			cargo.AddMissionCargo(&mission);
-			it->Do(Mission::OFFER, *this);
-			it->Do(Mission::ACCEPT, *this, ui);
 			auto spliceIt = it->IsUnique() ? missions.begin() : missions.end();
 			missions.splice(spliceIt, availableJobs, it);
+			it->Do(Mission::OFFER, *this);
+			it->Do(Mission::ACCEPT, *this, ui);
+			if(it->IsFailed(*this))
+				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
 		}
@@ -2139,8 +2141,8 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 
 
 // Look at the list of available missions and see if any of them can be offered
-// right now, in the given location (landing or spaceport). If there are no
-// missions that can be accepted, return a null pointer.
+// right now, in the given location. If there are no missions that can be accepted,
+// return a null pointer.
 Mission *PlayerInfo::MissionToOffer(Mission::Location location)
 {
 	if(ships.empty())
@@ -2601,24 +2603,37 @@ void PlayerInfo::Unvisit(const Planet &planet)
 
 
 
-bool PlayerInfo::HasMapped(int mapSize) const
+bool PlayerInfo::HasMapped(int mapSize, bool mapMinables) const
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			return false;
+
+		if(mapMinables)
+			for(const Outfit *outfit : system->Payloads())
+				if(!harvested.contains(make_pair(system, outfit)))
+					return false;
+	}
 
 	return true;
 }
 
 
 
-void PlayerInfo::Map(int mapSize)
+void PlayerInfo::Map(int mapSize, bool mapMinables)
 {
 	DistanceMap distance(GetSystem(), mapSize);
 	for(const System *system : distance.Systems())
+	{
 		if(!HasVisited(*system))
 			Visit(*system);
+
+		if(mapMinables)
+			for(const Outfit *outfit : system->Payloads())
+				harvested.insert(make_pair(system, outfit));
+	}
 }
 
 
@@ -3239,6 +3254,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	auto &&yearProvider = conditions.GetProviderNamed("year");
 	yearProvider.SetGetFunction([this](const string &name) { return date.Year(); });
 
+	auto &&weekdayProvider = conditions.GetProviderNamed("weekday");
+	weekdayProvider.SetGetFunction([this](const string &name) { return date.WeekdayNumber(); });
+
 	auto &&daysSinceYearStartProvider = conditions.GetProviderNamed("days since year start");
 	daysSinceYearStartProvider.SetGetFunction([this](const string &name) { return date.DaysSinceYearStart(); });
 
@@ -3367,12 +3385,12 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 	flagshipDisabledProvider.SetGetFunction(flagshipDisabledFun);
 
-	auto flagshipAttributeHelper = [](const Ship *flagship, const string &attribute, bool base) -> int64_t
+	auto shipAttributeHelper = [](const Ship *ship, const string &attribute, bool base) -> int64_t
 	{
-		if(!flagship)
+		if(!ship)
 			return 0;
 
-		const Outfit &attributes = base ? flagship->BaseAttributes() : flagship->Attributes();
+		const Outfit &attributes = base ? ship->BaseAttributes() : ship->Attributes();
 		if(attribute == "cost")
 			return attributes.Cost();
 		if(attribute == "mass")
@@ -3381,28 +3399,158 @@ void PlayerInfo::RegisterDerivedConditions()
 	};
 
 	auto &&flagshipBaseAttributeProvider = conditions.GetProviderPrefixed("flagship base attribute: ");
-	auto flagshipBaseAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	auto flagshipBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
-		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
+		return shipAttributeHelper(this->Flagship(), name.substr(strlen("flagship base attribute: ")), true);
 	};
 	flagshipBaseAttributeProvider.SetGetFunction(flagshipBaseAttributeFun);
 
 	auto &&flagshipAttributeProvider = conditions.GetProviderPrefixed("flagship attribute: ");
-	auto flagshipAttributeFun = [this, flagshipAttributeHelper](const string &name) -> int64_t
+	auto flagshipAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
 	{
-		return flagshipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
+		return shipAttributeHelper(this->Flagship(), name.substr(strlen("flagship attribute: ")), false);
 	};
 	flagshipAttributeProvider.SetGetFunction(flagshipAttributeFun);
 
-	auto &&flagshipBaysProvider = conditions.GetProviderPrefixed("flagship bays: ");
-	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	auto &&flagshipBaysCategoryProvider = conditions.GetProviderPrefixed("flagship bays: ");
+	auto flagshipBaysCategoryFun = [this](const string &name) -> int64_t
 	{
 		if(!flagship)
 			return 0;
 
 		return flagship->BaysTotal(name.substr(strlen("flagship bays: ")));
 	};
+	flagshipBaysCategoryProvider.SetGetFunction(flagshipBaysCategoryFun);
+
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
+	auto &&flagshipBaysCategoryFreeProvider = conditions.GetProviderPrefixed("flagship bays free: ");
+	auto flagshipBaysCategoryFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free: <category>\""
+				" condition while landed is unstable behavior.");
+
+		return flagship->BaysFree(name.substr(strlen("flagship bays free: ")));
+	};
+	flagshipBaysCategoryFreeProvider.SetGetFunction(flagshipBaysCategoryFreeFun);
+
+	auto &&flagshipBaysProvider = conditions.GetProviderNamed("flagship bays");
+	auto flagshipBaysFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		return flagship->Bays().size();
+	};
 	flagshipBaysProvider.SetGetFunction(flagshipBaysFun);
+
+	// The behaviour of this condition while landed is not stable and may change in the future.
+	// It should only be used while in-flight.
+	auto &&flagshipBaysFreeProvider = conditions.GetProviderNamed("flagship bays free");
+	auto flagshipBaysFreeFun = [this](const string &name) -> int64_t
+	{
+		if(!flagship)
+			return 0;
+
+		if(GetPlanet())
+			Logger::LogError("Warning: Use of \"flagship bays free\" condition while landed is unstable behavior.");
+
+		const vector<Ship::Bay> &bays = flagship->Bays();
+		return count_if(bays.begin(), bays.end(), [](const Ship::Bay &bay) { return !bay.ship; });
+	};
+	flagshipBaysFreeProvider.SetGetFunction(flagshipBaysFreeFun);
+
+	auto &&flagshipMassProvider = conditions.GetProviderNamed("flagship mass");
+	flagshipMassProvider.SetGetFunction([this](const string &name) -> int64_t { return flagship ? flagship->Mass() : 0; });
+
+	auto &&flagshipShieldsProvider = conditions.GetProviderNamed("flagship shields");
+	flagshipShieldsProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->ShieldLevel() : 0;
+	});
+
+	auto &&flagshipHullProvider = conditions.GetProviderNamed("flagship hull");
+	flagshipHullProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->HullLevel() : 0;
+	});
+
+	auto &&flagshipFuelProvider = conditions.GetProviderNamed("flagship fuel");
+	flagshipFuelProvider.SetGetFunction([this](const string &name) -> int64_t {
+		return flagship ? flagship->FuelLevel() : 0;
+	});
+
+	auto &&fleetLocalBaseAttributeProvider = conditions.GetProviderPrefixed("ship base attribute: ");
+	auto fleetLocalBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship base attribute: "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
+			// If on a planet, the ship's planet must match.
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, true);
+		}
+		return retVal;
+	};
+	fleetLocalBaseAttributeProvider.SetGetFunction(fleetLocalBaseAttributeFun);
+
+	auto &&fleetAllBaseAttributeProvider = conditions.GetProviderPrefixed("ship base attribute (all): ");
+	auto fleetAllBaseAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship base attribute (all): "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, true);
+		}
+		return retVal;
+	};
+	fleetAllBaseAttributeProvider.SetGetFunction(fleetAllBaseAttributeFun);
+
+	auto &&fleetLocalAttributeProvider = conditions.GetProviderPrefixed("ship attribute: ");
+	auto fleetLocalAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship attribute: "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			// Destroyed and parked ships aren't checked.
+			// If not on a planet, the ship's system must match.
+			// If on a planet, the ship's planet must match.
+			if(ship->IsDestroyed() || ship->IsParked()
+					|| (planet && ship->GetPlanet() != planet)
+					|| (!planet && ship->GetActualSystem() != system))
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, false);
+		}
+		return retVal;
+	};
+	fleetLocalAttributeProvider.SetGetFunction(fleetLocalAttributeFun);
+
+	auto &&fleetAllAttributeProvider = conditions.GetProviderPrefixed("ship attribute (all): ");
+	auto fleetAllAttributeFun = [this, shipAttributeHelper](const string &name) -> int64_t
+	{
+		string attribute = name.substr(strlen("ship attribute (all): "));
+		int64_t retVal = 0;
+		for(const shared_ptr<Ship> &ship : ships)
+		{
+			if(ship->IsDestroyed())
+				continue;
+			retVal += shipAttributeHelper(ship.get(), attribute, false);
+		}
+		return retVal;
+	};
+	fleetAllAttributeProvider.SetGetFunction(fleetAllAttributeFun);
 
 	auto &&playerNameProvider = conditions.GetProviderPrefixed("name: ");
 	auto playerNameFun = [this](const string &name) -> bool
@@ -4014,6 +4162,17 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
+	if(availableMissions.empty())
+		return;
+
+	// This list is already in alphabetical order by virture of the way that the Set
+	// class stores objects, so stable sorting on the offer precedence will maintain
+	// the alphabetical ordering for missions with the same precedence.
+	availableMissions.sort([](const Mission &a, const Mission &b)
+		{
+			return a.OfferPrecedence() > b.OfferPrecedence();
+		});
+
 	// If any of the available missions are "priority" missions, no other
 	// special missions will be offered in the spaceport.
 	if(hasPriorityMissions)
@@ -4036,6 +4195,8 @@ void PlayerInfo::CreateMissions()
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them, except for "non-blocking" missions.
 		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
+		// Note that the manner in which excess minor missions are discarded means that the
+		// minor mission with the lowest precedence is the one that will be offered.
 		auto it = availableMissions.begin();
 		while(it != availableMissions.end())
 		{

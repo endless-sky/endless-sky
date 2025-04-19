@@ -15,10 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "text/Alignment.h"
 #include "Color.h"
 #include "Point.h"
 #include "Rectangle.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
+#include "text/WrappedText.h"
 
 #include <map>
 #include <string>
@@ -151,10 +153,52 @@ private:
 		bool isColored = false;
 	};
 
-	// This class handles "label", "string", and "button" elements.
+	// This class contains common members of both text element categories.
 	class TextElement : public Element {
 	public:
 		TextElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Parse the given data line: one that is not recognized by Element
+		// itself. This returns false if it does not recognize the line, either.
+		virtual bool ParseLine(const DataNode &node) override;
+		// Add any click handlers needed for this element. This will only be
+		// called if the element is visible and active.
+		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
+
+		// Fill in any undefined state colors.
+		void FinishLoadingColors();
+		// Get text contents of this element.
+		std::string GetString(const Information &info) const;
+
+	protected:
+		// The string may either be a name of a dynamic string, or static text.
+		std::string str;
+		// Color for inactive, active, and hover states.
+		const Color *color[3] = {nullptr, nullptr, nullptr};
+		int fontSize = 14;
+		char buttonKey = '\0';
+		bool isDynamic = false;
+		Truncate truncate = Truncate::NONE;
+	};
+
+	// This class handles "label", "string", "button", and "dynamic button" elements.
+	class BasicTextElement : public TextElement {
+	public:
+		BasicTextElement(const DataNode &node, const Point &globalAnchor);
+
+	protected:
+		// Report the actual dimensions of the object that will be drawn.
+		virtual Point NativeDimensions(const Information &info, int state) const override;
+		// Draw this element in the given rectangle.
+		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
+	};
+
+	// This class handles "wrapped label", "wrapped string",
+	// "wrapped button", and "wrapped dynamic button" elements.
+	class WrappedTextElement : public TextElement {
+	public:
+		WrappedTextElement(const DataNode &node, const Point &globalAnchor);
 
 	protected:
 		// Parse the given data line: one that is not recognized by Element
@@ -164,22 +208,10 @@ private:
 		virtual Point NativeDimensions(const Information &info, int state) const override;
 		// Draw this element in the given rectangle.
 		virtual void Draw(const Rectangle &rect, const Information &info, int state) const override;
-		// Add any click handlers needed for this element. This will only be
-		// called if the element is visible and active.
-		virtual void Place(const Rectangle &bounds, Panel *panel) const override;
 
 	private:
-		std::string GetString(const Information &info) const;
-
-	private:
-		// The string may either be a name of a dynamic string, or static text.
-		std::string str;
-		// Color for inactive, active, and hover states.
-		const Color *color[3] = {nullptr, nullptr, nullptr};
-		int fontSize = 14;
-		char buttonKey = '\0';
-		bool isDynamic = false;
-		Truncate truncate = Truncate::NONE;
+		mutable WrappedText text;
+		Alignment textAlignment = Alignment::LEFT;
 	};
 
 	// This class handles "bar" and "ring" elements.
@@ -196,7 +228,8 @@ private:
 
 	private:
 		std::string name;
-		const Color *color = nullptr;
+		const Color *fromColor = nullptr;
+		const Color *toColor = nullptr;
 		float width = 2.f;
 		bool reversed = false;
 		bool isRing = false;
