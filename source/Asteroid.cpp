@@ -32,7 +32,7 @@ Asteroid::Asteroid(const std::string &name, const DataNode &node, int valueIndex
 Asteroid::Asteroid(const Minable *type, const DataNode &node, int valueIndex, std::size_t beltCount)
 	: type(type)
 {
-	Load(node, valueIndex, max(beltCount, 1ul));
+	Load(node, valueIndex, max(beltCount, static_cast<size_t>(1));
 }
 
 
