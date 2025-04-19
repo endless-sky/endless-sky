@@ -100,14 +100,22 @@ void ConditionsStore::Save(DataWriter &out) const
 // derived from other data-structures (derived conditions).
 int64_t ConditionsStore::Get(const string &name) const
 {
+	// Look for a relevant entry, either the exact entry, or a prefixed provider.
 	const ConditionEntry *ce = GetEntry(name);
+
+	// If no entry is found, then we simply don't have any relevant data.
 	if(!ce)
 		return 0;
 
-	if(!ce->provider)
-		return ce->value;
+	// If the name matches exactly, then access directly with explicit conversion to int64_t.
+	if(ce->name == name)
+		return ce->operator int64_t();
 
-	return ce->provider->getFunction(name);
+	// If the name doesn't match exactly, then we are dealing with a prefixed provider that doesn't have an exactly
+	// matching entry. Get is const, so isn't supposed to add such an entry; use a temporary object for access.
+	ConditionEntry ceAccessor(name);
+	ceAccessor.provider = ce->provider;
+	return ceAccessor.operator int64_t();
 }
 
 

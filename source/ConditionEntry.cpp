@@ -78,7 +78,7 @@ ConditionEntry::operator int64_t() const
 	if(!provider)
 		return value;
 
-	return provider->getFunction(name);
+	return provider->getFunction(*this);
 }
 
 

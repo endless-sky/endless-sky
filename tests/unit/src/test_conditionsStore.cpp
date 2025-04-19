@@ -104,6 +104,7 @@ public:
 
 
 // #region unit tests
+// TODO: add tests for prefixed Get cornercases (where the prefix-entry exists, but the exact match doesn't).
 SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 {
 	GIVEN( "A ConditionStore" )
