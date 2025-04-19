@@ -193,7 +193,7 @@ if(APPLE AND ES_CREATE_BUNDLE)
 	# MacOS bundles are a bit special and need every resource specified when
 	# creating the executable.
 	# NOTE: This means that a reconfigure is needed if any assets are added/removed!
-	foreach(folder "data" "images" "sounds")
+	foreach(folder "data" "images" "shaders" "sounds")
 		file(GLOB_RECURSE RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${folder}/*")
 		target_sources(EndlessSky PRIVATE "${RESOURCES}")
 
@@ -266,6 +266,7 @@ elseif(WIN32)
 	# Install the resource files.
 	install(DIRECTORY data DESTINATION .)
 	install(DIRECTORY images DESTINATION .)
+	install(DIRECTORY shaders DESTINATION .)
 	install(DIRECTORY sounds DESTINATION .)
 	install(FILES credits.txt DESTINATION .)
 	install(FILES keys.txt DESTINATION .)
@@ -302,6 +303,7 @@ elseif(UNIX)
 	# Install the resource files.
 	install(DIRECTORY data DESTINATION share/games/endless-sky)
 	install(DIRECTORY images DESTINATION share/games/endless-sky)
+	install(DIRECTORY shaders DESTINATION share/games/endless-sky)
 	install(DIRECTORY sounds DESTINATION share/games/endless-sky)
 	install(FILES credits.txt DESTINATION share/games/endless-sky)
 	install(FILES keys.txt DESTINATION share/games/endless-sky)

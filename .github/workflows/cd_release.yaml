@@ -231,6 +231,7 @@ jobs:
           license.txt
           data/
           images/
+          shaders/
           sounds/
     # - uses: game-ci/steam-deploy@v1
     #   with:
