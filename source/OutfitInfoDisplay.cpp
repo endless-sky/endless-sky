@@ -335,6 +335,13 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 20;
 	}
 
+	if(outfit.Get("resupplies"))
+	{
+		requirementLabels.push_back("resupplies for:");
+		requirementValues.push_back(Format::Credits(outfit.Cost() * outfit.Get("resupplies")));
+		requirementsHeight += 20;
+	}
+
 	if(outfit.Mass())
 	{
 		requirementLabels.emplace_back("mass:");
@@ -469,6 +476,26 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 			attributesHeight += 20;
 		}
 		hasNormalAttributes = true;
+	}
+
+	// Create a table for resupplied ammo.
+	if(!outfit.GetResuppliedAmmo().empty())
+	{
+		// Pad the table. The padding height is only separate for readability.
+		attributeLabels.emplace_back();
+		attributeValues.emplace_back();
+		attributesHeight += 10;
+
+		attributeLabels.emplace_back("resupplies ammo:");
+		attributeValues.emplace_back("resupply cost:");
+		attributesHeight += 20;
+	}
+	for(auto it : outfit.GetResuppliedAmmo())
+	{
+		attributeLabels.emplace_back(it.first->DisplayName());
+		attributesHeight += 20;
+		if(it.second != 1)
+			attributeValues.emplace_back(Format::Number(it.first->Cost() * it.second));
 	}
 
 	if(!outfit.IsWeapon())
