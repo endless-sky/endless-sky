@@ -102,6 +102,26 @@ void PlanetPanel::Step()
 		return;
 	}
 
+	// Determine which shops are conditionally available.
+	// This needs to wait until the first Step call instead of being
+	// done in the constructor because the constructor is created
+	// before all of the player's landing logic is completed, which
+	// can cause certain conditions to return unexpected results.
+	if(!initializedShops)
+	{
+		initializedShops = true;
+		for(const Shop<Ship> *shop : planet.Shipyards())
+		{
+			hasShipyard = true;
+			shipyardStock.Add(shop->Stock());
+		}
+		for(const Shop<Outfit> *shop : planet.Outfitters())
+		{
+			hasOutfitter = true;
+			outfitterStock.Add(shop->Stock());
+		}
+	}
+
 	// Handle missions for locations that aren't handled separately,
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
@@ -127,26 +147,6 @@ void PlanetPanel::Draw()
 	const Ship *flagship = player.Flagship();
 	if(flagship && flagship->CanBeFlagship())
 		info.SetCondition("has ship");
-
-	// Determine which shops are conditionally available.
-	// This needs to wait until the first Draw call instead of being
-	// done in the constructor because the constructor is created
-	// before all of the player's landing logic is completed, which
-	// can cause certain conditions to return unexpected results.
-	if(!initializedShops)
-	{
-		initializedShops = true;
-		for(const Shop<Ship> *shop : planet.Shipyards())
-		{
-			hasShipyard = true;
-			shipyardStock.Add(shop->Stock());
-		}
-		for(const Shop<Outfit> *shop : planet.Outfitters())
-		{
-			hasOutfitter = true;
-			outfitterStock.Add(shop->Stock());
-		}
-	}
 
 	if(planet.CanUseServices())
 	{
