@@ -290,6 +290,9 @@ mission "Pact Supplies Notification"
 	to offer
 		not "event: war begins"
 		not "event: chosen sides"
+		or
+			not "Pact Supplies 0: done"
+			not "Pact Supplies 0: active"
 		random < 40
 	source
 		attributes "dirt belt"
@@ -363,7 +366,7 @@ mission "Pact Supplies 0"
 			`	You and the now-smaller group of captains are led by the militia officer to one of the warehouses on the edge of the spaceport, where stores of blasters, beam lasers, engines, crew equipment, and various pieces of ammunition are held. Stevedores rapidly empty the warehouse, filling the diverse range of ships with cargo. As they work, the militia officer addresses all of you: "Our brothers down in the South are counting on you. We thank you for your assistance, and pray that you have a safe journey. Farewell."`
 				accept
 
-	npc accompany save
+	npc accompany
 		government "Merchant"
 		personality escort timid
 		"cargo settings"
@@ -387,15 +390,18 @@ mission "Pact Supplies 0"
 		dialog `You have reached <planet>, but you're missing something! Either you left part of the convoy behind, or not all of the cargo is in the system.`
 
 	on complete
+		log `Participated in a convoy for the Southern Mutual Defense Pact.`
 		payment 35000 50
 		dialog `After you land at <planet>'s spaceport, a militia officer comes to inspect your ship before giving it the all-clear to be unloaded. "Thank you for your service. Meet us in the spaceport if you would like to help us with the next convoy." He hands you your payment of <payment> and makes his way to the next convoy ship.`
 
 
 mission "Pact Supplies 1"
 	name "Transport farming equipment to <planet>"
-	description "The next stage of the <Pact/Free Worlds> convoy is stopping at <destination>. You have been assigned to deliver <cargo>. Payment is <paymemt>."
+	description "The next stage of the <Pact/Free Worlds> convoy is stopping at <destination> before finishing at New Britain. You have been assigned to deliver <cargo>. You will be paid one half of <payment> at <planet>."
 	source "Longjump"
 	destination "New Portland"
+	"apparent payment" 55000
+	cargo "farming equipment" 20
 	to offer
 		not "event: chosen sides"
 		has "Pact Supplies 0: done"
@@ -404,8 +410,10 @@ mission "Pact Supplies 1"
 		conversation
 			branch bombings
 				has "event: war begins"
+			action
+				set "pact supplies heard argument"
 			`You return to the spaceport to find the militia officer ordering forklifts laden with crates into ships while speaking with a couple of the other captains you recognize from the convoy. He turns and notices you as you approach.`
-			`	"Alright! For this stage of the convoy, we will be heading to New Britain via <planet>. You will be transporting farming equipment, which we will exchange with the global farming cooperatives on <planet> for food supplies that we'll bring to New Britain. You'll be paid <payment> for your work. Is that clear?"`
+			`	"Alright! For this stage of the convoy, we will be heading to New Britain via <planet>. You will be transporting farming equipment, which we will exchange with the global farming cooperatives on <planet> for food supplies that we'll bring to New Britain. You'll be paid <payment> for your work, half of which will be deposited when you reach <planet> and the other half of which will be deposited when you get to New Britain. Is that clear?"`
 			choice
 				`	"Yes."`
 				`	"I've changed my mind. I don't want to do participate in this convoy any more."`
@@ -431,7 +439,7 @@ mission "Pact Supplies 1"
 				`	"Sorry, but I can't associate with the Pact now that it is suspected of terrorism. Goodbye."`
 					decline
 
-			`	"Thank you. At least someone is willing to hear me out," he says. "Now, for this stage of the convoy, we will be heading to New Britain via <planet>. You will be transporting farming equipment, which we will exchange with the global farming cooperatives on <planet> for food supplies that will feed New Britain. As far as they're concerned, they're working with businesses here on <origin> and have no objection to this arrangement as it stands. You'll be paid <payment> for your work. Does that sound good?"`
+			`	"Thank you. At least a few of you are willing to hear me out," he says. "Now, for this stage of the convoy, we will be heading to New Britain via <planet>. You will be transporting farming equipment, which we will exchange with the global farming cooperatives on <planet> for food supplies that will feed New Britain. As far as they're concerned, they're working with businesses here on <origin> and have no objection to this arrangement as it stands. You'll be paid <payment> for your work, half at <planet> and half at New Britain. Does that sound good?"`
 			choice
 				`	"Yes."`
 				`	"I've changed my mind. I don't want to do participate in this convoy any more."`
@@ -440,11 +448,11 @@ mission "Pact Supplies 1"
 			`	"Brilliant. I pray that you have a safe journey, and hope for all our sakes that the perpetrators of the crimes in the Paradise Worlds will be brought to justice." He turns and starts ordering forklifts to bring the supplies to your ship.`
 				accept
 
-	npc accompany save
+	npc accompany
 		government "Merchant"
 		personality escort timid
 		"cargo settings"
-			outfitters "Common Outfits" "Ammo South"
+			commodities Food
 		ship "Star Barge" "Steer Well Clear"
 		ship "Argosy" "Still Flying After All These Years"
 		ship "Argosy" "Reality Bites"
@@ -454,26 +462,58 @@ mission "Pact Supplies 1"
 
 	npc
 		government "Pirate"
-		system "Rastaban"
+		system "Lesath"
+		personality disables plunders waiting getaway
+		fleet "Small Southern Pirates"
+
+	on visit
+		dialog `You have reached <planet>, but you're missing something! Either you left part of the convoy behind, or not all of the cargo is in the system.`
+	on complete
+		payment 27500
+
+
+mission "Pact Supplies 2"
+	landing
+	name "Transport food to <planet>"
+	description "Complete this stage of the convoy by transporting <cargo> to <destination>. The other half of <payment> will be paid when you arrive on <planet>."
+	cargo "food" 20
+	"apparent payment" 55000
+	source "New Portland"
+	destination "New Britain"
+	to offer
+		not "event: chosen sides"
+		has "Pact Supplies 1: done"
+
+	on offer
+		conversation
+			`The convoy lands on <origin> and begins to exchange its farming equipment for grains and other vegetables. You note that the first half of the <payment> has been made to your account. Do you want to continue with the convoy or abandon them here?`
+			choice
+				`	(Yes.)`
+				`	(No, I have other missions to take on.)`
+					decline
+			`	The farmers finish loading your ship with <commodity>. Time to go to <planet>.`
+				accept
+
+	npc
+		government "Pirate"
+		system "Dabih"
 		personality disables plunders waiting getaway
 		fleet "Small Southern Pirates" 2
 
 	on visit
 		dialog `You have reached <planet>, but you're missing something! Either you left part of the convoy behind, or not all of the cargo is in the system.`
 	on complete
-		payment 35000 50
-
-mission "Pact Supplies 2"
-	name "Transport food to <planet>"
-	description "Transport <cargo> to <destination>. Payment is <payment>."
-	source "New Portland"
-	destination "New Britain"
-	to offer
-		not "event: chosen sides"
-		has "Pact Supplies 1: done"
-	on offer
+		payment 27500
 		conversation
-			`...`
+			branch bombings
+				has "event: war begins"
+				not "pact supplies heard argument"
+			`.`
+
+			label bombings
+			action
+				set "pact supplies heard argument"
+			`.`
 
 
 mission "Pact Supplies 3"
