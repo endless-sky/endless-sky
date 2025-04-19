@@ -1,15 +1,26 @@
 {
-	"dataRoots": ["data/**", "tests/integration/config/plugins/integration-tests/data/**"],
+	"_comment_dataRoots": "Specifies the directories/files to scan. Uses glob patterns.",
+	"dataRoots": [
+		"data/**",
+		"tests/integration/config/plugins/integration-tests/data/**"
+	],
+
 	"rules": {
+		"_comment_basic_rules": "General file structure and formatting rules.",
 		"indentation": "\t",
 		"maxIndentationIncrease": 1,
 		"indentEmptyLines": "either",
 		"forceUnixLineSeparator": true,
 		"trailingEmptyLine": "always",
+
+		"_comment_copyright": "Rules for checking the copyright header.",
 		"checkCopyright": true,
-		"copyrightBlacklist": ["tests/integration/config/plugins/integration-tests/data/disabling troublesome missions.txt"],
+		"copyrightBlacklist": [
+			"tests/integration/config/plugins/integration-tests/data/disabling troublesome missions.txt"
+		],
 		"copyrightFormats": [
 			{
+				"_comment_copyright_format_1": "Matches the standard Endless Sky GPL header.",
 				"holder": "^# (Based on earlier text copyright|Copyright) \\(c\\) \\d{4}(?:(?:-|, )\\d{4})? (by )?.+$",
 				"notice": [
 					"#",
@@ -27,60 +38,73 @@
 				]
 			}
 		],
+
+		"_comment_regexChecks": "Groups of specific checks applied line-by-line using regular expressions.",
 		"regexChecks": [
 			{
+				"_comment_group1": "Checks focused on common typographical and spacing errors within general text content (excluding comments/keywords by default).",
 				"excludedNodes": [],
+				"_comment_group1_filtering": "Default filtering applies: excludes comments and keywords.",
 				"checks": [
 					{
-						"description": "multiple consecutive space characters",
-						"regex": "(?<!^tip .*)([^ ])  +([^# ])",
+						"description": "Multiple consecutive space characters (including non-breaking space)",
+						"regex": "(?<!^tip .*)([^ ])[  ]+([^# ])",
+						"_comment_regex": "Looks for more than one space or non-breaking space (U+00A0) between non-space characters. Avoids lines starting with 'tip '. Avoids matches ending before a comment '#'.",
+						"isError": false, // Suggestion: Often stylistic, could be a warning.
 						"correction": {
 							"replaceWith": "\\1 \\2"
 						}
 					},
 					{
-						"description": "mixed indentation inside text",
+						"description": "Mixed indentation (tabs followed by spaces) inside quoted text",
 						"regex": "([\"'`]\t+) +",
+						"isError": true,
 						"correction":{
 							"replaceWith": "\\1"
 						}
 					},
 					{
-						"description": "extra space before punctuation",
+						"description": "Extra space before punctuation",
 						"regex": "(?<!\\\\.*)\\s+([:,.?!;][^\\s]*)",
-						"except":["\\.[0-9]*$", "!="],
+						"_comment_regex": "Matches whitespace before common punctuation, ignoring escaped characters.",
+						"except":[ "\\.[0-9]*$", "!=" ], // Exceptions for decimals (e.g., .50) and "!=" operator.
+						"isError": true,
 						"correction": {
 							"replaceWith": "\\1"
 						}
 					},
 					{
-						"description": "missing space after punctuation",
+						"description": "Missing space after punctuation",
 						"regex": "([^\\s]*[:,.?!;]+)(?!(?:[ \"'`\\)\\]:,.?!;<]|$))([^\\s\"`'.!?]*)",
-						"except": ["[.,][0-9]", "https?://", "[A-Z]\\.", "\\.{3}[\\w\\(\\[\"'`]", "[><]\\?=", "^[\\(\\[]?([\\w-]+\\.)*[\\w-]*[\\)\\]]?$", "^[\"`']*!"],
+						"_comment_regex": "Matches common punctuation not followed by whitespace or another punctuation/closing bracket/quote.",
+						"except": [ "[.,][0-9]", "https?://", "[A-Z]\\.", "\\.{3}[\\w\\(\\[\"'`]", "[><]\\?=", "^[\\(\\[]?([\\w-]+\\.)*[\\w-]*[\\)\\]]?$", "^[\"`']*!" ], // Numerous exceptions for URLs, initials, ellipses, numbers, comparisons, domain-like strings, commands.
+						"isError": true,
 						"correction": {
 							"replaceWith": "\\1 \\2"
 						}
 					},
 					{
-						"description": "unnecessarily split word (space ship -> spaceship, an other -> another)",
+						"description": "Unnecessarily split word (space ship -> spaceship, an other -> another)",
 						"regex": "(?<![^\\s])(space|an) (ship|other)(?![^\\s])",
-						"except": ["^(?!(space ship|an other)$)"],
+						"except": ["^(?!(space ship|an other)$)"], // Exception seems complex/potentially incorrect? It might intend to exclude lines *only* containing "space ship" or "an other". Re-evaluate if needed.
+						"isError": true,
 						"correction": {
 							"replaceWith": "\\1\\2"
 						}
 					},
 					{
-						"description": "trailing punctuation after a paranthesized paragraph",
+						"description": "Trailing punctuation after a parenthesized paragraph in quotes",
 						"regex": "([`\"])(\\s*)\\((.*)\\)([.!?,]+)\\1",
-						"except": [],
+						"_comment_regex": "Moves punctuation like .,!? from outside to inside the parentheses within quoted text.",
+						"isError": true,
 						"correction": {
 							"replaceWith": "\\1\\2(\\3\\4)\\1"
 						}
 					},
 					{
-						"description": "accidental commonly doubled word",
+						"description": "Accidental commonly doubled word",
 						"regex": "\\b(than|the|with|to|a|an|of|as|was|and|in)\\s+\\1\\b",
-						"except": [],
+						"isError": false, // Suggestion: Can sometimes be intentional ("that that"), maybe a warning?
 						"correction": {
 							"replaceWith": "\\1"
 						}
@@ -88,82 +112,94 @@
 				]
 			},
 			{
+				"_comment_group2": "Checks focused on whitespace issues, character encoding, and comment formatting. Applied to *all* lines including comments/keywords.",
 				"excludedNodes": [],
-				"excludeComments": false,
-				"excludeKeywords": false,
+				"excludeComments": false, // Check comments too
+				"excludeKeywords": false, // Check keywords too
 				"checks":[
 					{
-						"description": "trailing whitespace",
-						"regex": "([^\\s])\\s+$",
+						"description": "Trailing whitespace",
+						"regex": "\\s+$", // Simplified: Check for any whitespace at the end. Original `([^\\s])\\s+$` might miss lines with only whitespace.
+						"isError": false, // Suggestion: Usually a warning, easily fixable.
 						"correction": {
-							"replaceWith": "\\1"
+							"matchReplacement": "\\s+$", // Explicitly match only the trailing whitespace
+							"replaceWith": ""         // Replace with nothing
 						}
 					},
 					{
-						"description": "non-ASCII apostrophe",
+						"description": "Non-ASCII apostrophe",
 						"regex": "[’‘]",
+						"isError": true,
 						"correction": {
 							"replaceWith": "'"
 						}
 					},
 					{
-						"description": "non-ASCII quotation mark",
+						"description": "Non-ASCII quotation mark",
 						"regex": "[“”]",
+						"isError": true,
 						"correction": {
 							"replaceWith": "\""
 						}
 					},
 					{
-						"description": "non-ASCII character",
-						"regex": "[^\\x00-\\x7F]+"
+						"description": "Potentially problematic non-ASCII character",
+						"regex": "[^\\x00-\\x7F]+",
+						"_comment_regex": "Flags any character outside the standard 7-bit ASCII range. Might be too strict if UTF-8 characters are allowed/expected.",
+						"isError": false // Suggestion: Make this a warning, as UTF-8 is common. Only make it an error if ASCII is strictly required. No correction offered.
 					},
 					{
-						"description": "missing space before comment",
+						"description": "Missing space after comment marker",
 						"regex": "(^\\s*#+)([^\\s#])",
+						"_comment_regex": "Ensures a space follows the '#' unless it's another '#' or end of line.",
+						"isError": false, // Suggestion: Stylistic warning.
 						"correction": {
 							"replaceWith": "\\1 \\2"
 						}
 					},
 					{
-						"description": "incorrect indefinite article",
-						"regex": "((?:\\sa|^A)) ((?!one|once|hour)[aeio](?!u))",
+						"description": "Incorrect indefinite article ('a' before vowel sound)",
+						"regex": "\\b(a|A) +((?!hono|hour|heir|on[ce])\\b[aeiouAEIOU])", // Improved Regex: Handles more vowel-starting words, excludes common exceptions like "hour", "one", "once", "honor", "heir". Case-insensitive vowel check.
+						"isError": true,
 						"correction": {
-							"replaceWith": "\\1n \\2"
+							"replaceWith": "\\1n \\2" // Note: Group numbers adjusted for new regex
 						}
 					},
 					{
-						"description": "incorrect indefinite article",
-						"regex": "((?:\\sa|^A))n ([^aeiouhA-Z\\[\\]\"\\'\\d<\\-])",
+						"description": "Incorrect indefinite article ('an' before consonant sound)",
+						"regex": "\\b(an|An) +((?!u[st]|eu|ewe)\\b[^aeiouAEIOUhH])", // Improved Regex: Handles more consonant-starting words, excludes common vowel-starting sounds written with consonants (like 'u' in 'user', 'eu' in 'eulogy'). Checks for non-vowel/non-h start. Case-insensitive.
+						"isError": true,
 						"correction": {
-							"replaceWith": "\\1 \\2"
+							"replaceWith": "\\1 \\2" // Note: Group numbers adjusted for new regex
 						}
 					}
 				]
 			},
 			{
+				"_comment_group3": "Checks focused on whitespace at the beginning/end of quoted text, excluding specific data node types.",
 				"excludedNodes": ["^word$", "^replace$", "^substitutions$"],
+				"_comment_group3_filtering": "Default filtering (exclude comments/keywords) + exclude lines within 'word', 'replace', 'substitutions' nodes.",
 				"checks": [
 					{
-						"description": "whitespace before end of text",
-						"regex": "([^\"` ]+)\\s+([\"`'])$",
+						"description": "Whitespace before end of quoted/backticked text",
+						"regex": "([^\"`\\s]+)\\s+([\"`'])$", // Added \\s to ensure last char before space isn't also space.
+						"isError": true,
 						"correction": {
 							"replaceWith": "\\1\\2"
 						}
 					},
 					{
-						"description": "whitespace before beginning of text",
-						"regex": "^([^\"]*(?:(?:\"[^\"]*){2})*\")(?<!^tip .*) ",
-						"correction": {
-							"replaceWith": "\\1"
-						}
-					},
-					{
-						"description": "whitespace before beginning of text",
-						"regex": "^([^`]*(?:(?:`[^`]){2})*`)(?<!^tip .*) ",
+						"description": "Whitespace after beginning of quoted text",
+						// Original regexes seemed complex for matching start-of-string quotes. Simplified:
+						"regex": "^([\"'`]) +",
+						"_comment_regex": "Matches space immediately after an opening quote/backtick at the start of the line.",
+						"except": ["^\" tip "], // Keep exception for " tip " lines.
+						"isError": true,
 						"correction": {
 							"replaceWith": "\\1"
 						}
 					}
+					// Removed the duplicate regex for backticks - the simplified one covers both.
 				]
 			}
 		]
