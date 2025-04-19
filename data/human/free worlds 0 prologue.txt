@@ -452,7 +452,7 @@ mission "Pact Supplies 1"
 		government "Merchant"
 		personality escort timid
 		"cargo settings"
-			commodities Food
+			commodities "farming equipment"
 		ship "Star Barge" "Steer Well Clear"
 		ship "Argosy" "Still Flying After All These Years"
 		ship "Argosy" "Reality Bites"
@@ -494,6 +494,18 @@ mission "Pact Supplies 2"
 			`	The farmers finish loading your ship with <commodity>. Time to go to <planet>.`
 				accept
 
+	npc accompany
+		government "Merchant"
+		personality escort timid
+		"cargo settings"
+			commodities Food
+		ship "Star Barge" "Steer Well Clear"
+		ship "Argosy" "Still Flying After All These Years"
+		ship "Argosy" "Reality Bites"
+		ship "Sparrow" "Standing Room Only"
+		ship "Hawk" "Stick No Bills"
+		ship "Hauler" "Ripple Effects"
+
 	npc
 		government "Pirate"
 		system "Dabih"
@@ -527,6 +539,19 @@ mission "Pact Supplies 3"
 	on offer
 		conversation
 			`...`
+
+	npc accompany
+		government "Merchant"
+		personality escort timid
+		"cargo settings"
+			commodities Food
+		ship "Star Barge" "Steer Well Clear"
+		ship "Argosy" "Still Flying After All These Years"
+		ship "Argosy" "Reality Bites"
+		ship "Sparrow" "Standing Room Only"
+		ship "Hawk" "Stick No Bills"
+		ship "Hauler" "Ripple Effects"
+
 	on complete
 		"assisted free worlds" ++
 
