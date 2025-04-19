@@ -1530,7 +1530,7 @@ mission "Remnant: Cognizance 34"
 			`	As you move away from the station you continue to spot signs of life and activity everywhere: flitting among the rocks, soaring along the solar winds, and hunting amongst clouds. What is unclear, however, is where it came from. The only hint might be in the fact that your ship instruments report a sudden spike in the ambient energy in the surrounding area.`
 	to complete
 		has "remnant: saw changed postverta"
- 	on complete
+	on complete
 		clear "remnant: saw changed postverta"
 		conversation
 			`Back on the station Dusk, Gavriil, and many of the Remnant on the station meet you in the docking bay. Dusk and several of the others just came back from walking out on the hull of <origin>, and they report seeing void sprites passing close to the station. They quickly pull the data from your ship sensors and throw it up on a holographic display. Everyone gathers around, intently drinking in the data and footage. They stand, stare, and ponder with intense concentration as the data continues to stream in from the station.`
