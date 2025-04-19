@@ -1,4 +1,5 @@
 # Copyright (c) 2020 by Peter van der Meer
+# Enhanced in 2025
 #
 # Endless Sky is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -11,17 +12,32 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Test Save Data Definition
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Defines the initial save game state used by the test sequence below.
 test-data "burning flyers save"
+	# Classifies this data block as savegame data for injection.
 	category "savegame"
+
+	# The actual contents of the save file state.
 	contents
-		pilot Bobbi Bughunter
-		date 16 11 3013
-		system "Terra Incognita"
-		planet Ruin
-		clearance
-		ship "Star Barge"
-			name "Buggy Barge"
-			sprite "ship/star barge"
+		# --- Player Information ---
+		pilot "Bobbi Bughunter"
+		date 16 11 3013 # In-game date
+		system "Terra Incognita" # Starting system
+		planet Ruin # Starting planet
+		clearance # Player clearances, if any (none specified here)
+
+		# --- Player Fleet ---
+		# Ship 1: The player's flagship.
+		ship "Star Barge" # Base ship type
+			name "Buggy Barge" # Player-given name
+			sprite "ship/star barge" # Visual representation
+
+			# Base attributes of this ship type.
+			# Note: These might be redundant if the engine pulls base stats,
+			# but are included here for completeness or potential overrides.
 			attributes
 				category "Light Freighter"
 				cost 190000
@@ -38,29 +54,42 @@ test-data "burning flyers save"
 				shields 600
 				"turret mounts" 1
 				"weapon capacity" 200
+
+			# Installed outfits on this specific ship.
 			outfits
-				"Afterburner"
+				"Afterburner" # Key outfit for this test
 				"X1200 Ion Steering"
 				Hyperdrive
 				"nGVF-BB Fuel Cell"
 				"LP036a Battery Pack"
+
+			# Current status of this specific ship instance.
 			crew 1
-			fuel 300
-			shields 600
-			hull 1000
-			position 0 0
+			fuel 300 # Full tank
+			shields 600 # Full shields
+			hull 1000 # Full hull
+			position 0 0 # Initial position relative to planet center when landed
+
+			# Hardpoint definitions (relative positions).
 			engine -9 38 1
 			engine 9 38 1
 			turret 0 -8
+
+			# Effect definitions.
 			leak leak 60 50
 			explode "tiny explosion" 10
 			explode "small explosion" 10
+
+			# Location data (redundant with top-level system/planet? Included for safety).
 			system "Terra Incognita"
 			planet Ruin
+
+		# Ship 2: Another ship in the fleet (possibly for AI testing or just fleet presence).
+		# Note: Identical to Ship 1 in this definition, including status.
 		ship "Star Barge"
 			name "Critical Container"
 			sprite "ship/star barge"
-			attributes
+			attributes # As above, potentially redundant base stats
 				category "Light Freighter"
 				cost 190000
 				mass 70
@@ -86,7 +115,7 @@ test-data "burning flyers save"
 			fuel 300
 			shields 600
 			hull 1000
-			position 0 0
+			position 0 0 # Also starting landed at the same position
 			engine -9 38 1
 			engine 9 38 1
 			turret 0 -8
@@ -95,35 +124,64 @@ test-data "burning flyers save"
 			explode "small explosion" 10
 			system "Terra Incognita"
 			planet Ruin
+
+		# --- Player Account & Knowledge ---
 		account
 			credits 131000
 			score 400
-			history
+			history # Event history, empty in this save
+
+		# Known locations.
 		visited "Terra Incognita"
 		"visited planet" Ruin
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Test Case Definition
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Tests AI using Afterburner for basic depart/land maneuvers.
 test "Afterburner-flight - Simple depart land"
+	# Test status: 'active' means it will be run.
 	status active
+	# Description of the test's objective.
 	description "Tests if the AI can use the afterburner as regular thruster for departure and landing."
+
+	# Sequence of actions performed during the test.
 	sequence
+		# 1. Setup: Load the defined save game state.
+		debug "Injecting save data: 'burning flyers save'"
 		inject "burning flyers save"
-		call "Load First Savegame"
+		call "Load First Savegame" # Assumes this engine call loads the recently injected save.
+
+		# 2. Action: Depart from the planet.
+		debug "Calling 'Depart'"
 		call "Depart"
-		debug "Departed from the planet"
-		# Wait for 10 seconds to drift away from the planet.
+		debug "Depart call completed. Ship should be launching."
+
+		# 3. Wait: Allow time for the ship to drift away from the planet.
+		# Original comment specified '10 seconds'. Assuming 60 steps/second: 10 * 60 = 600 steps.
+		# Using a loop as a direct 'wait' command might not be available in the DSL.
+		debug "Waiting for 600 steps (approx. 10 seconds) to drift..."
 		apply
-			"test: steps to wait" = 20
-		label "floating"
-		# empty input to make time pass
+			"test: wait loop counter" = 600 # Set loop counter
+		label "drift_wait_loop"
+		# The 'input' command here likely just advances game time by one step.
 		input
 		apply
-			"test: steps to wait" = "test: steps to wait" - 1
-		branch "floating"
-			"test: steps to wait" > 0
+			"test: wait loop counter" = "test: wait loop counter" - 1 # Decrement counter
+		# Branch back to the label if the counter is still positive.
+		branch "drift_wait_loop"
+			"test: wait loop counter" > 0
+		debug "Wait finished."
+
+		# 4. Action: Navigate back to the planet and land.
 		navigate
-			"travel destination" Ruin
-		debug "Start landing"
-		call "Land"
-		debug "Done landing"
+			"travel destination" Ruin # Set the target for landing AI.
+		debug "Landing navigation set. Calling 'Land'"
+		call "Land" # Execute the landing procedure.
+		debug "Land call completed."
+
+		# 5. Assertion: Verify the test outcome.
+		# Check if the flagship successfully landed on the planet.
 		assert
 			"flagship landed" == 1
+		debug "Assertion successful: Flagship landed."
