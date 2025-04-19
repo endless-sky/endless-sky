@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include <iterator>
-#include <map>
 #include <string>
 #include <utility>
 #include <vector>
@@ -74,6 +73,5 @@ public:
 
 private:
 	std::vector<Category> list;
-	std::map<const std::string, Category> byName;
 	int currentPrecedence = 0;
 };
