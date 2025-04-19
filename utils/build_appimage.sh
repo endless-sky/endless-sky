@@ -1,42 +1,170 @@
 #!/bin/bash
-set -e
 
-if [ -z "$1" ]; then
-  echo "Please provide the path to the build directory!"
+# Stricter error handling
+set -euo pipefail
+
+# --- Configuration ---
+APP_NAME="endless-sky"
+# Used for desktop file, icon name etc. Should match AppStream ID if available.
+APP_ID="io.github.endless_sky.endless_sky"
+# Icon file expected in the CWD or specify a full path. Name must match APP_NAME for linuxdeploy auto-discovery.
+ICON_SOURCE="icons/icon_512x512.png"
+# Location of the desktop file within the installed prefix
+DESKTOP_FILE_RELPATH="share/applications/${APP_ID}.desktop"
+# Location of game data within the installed prefix
+GAME_DATA_RELPATH="share/games/${APP_NAME}"
+# Base URLs for tools
+LINUXDEPLOY_URL="https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy"
+APPIMAGETOOL_URL="https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool"
+# --- End Configuration ---
+
+# --- Functions ---
+usage() {
+  echo "Usage: $0 <path/to/build/directory>"
+  echo
+  echo "Builds an Endless Sky AppImage from a CMake build directory."
+  echo "Environment Variables:"
+  echo "  OUTPUT: Set the desired final output filename (e.g., OUTPUT=Endless-Sky-latest-x86_64.AppImage)"
+  echo "  ARCH:   Override detected architecture (e.g., ARCH=x86_64, ARCH=aarch64). Default: $(uname -m)"
+}
+
+cleanup() {
+  if [[ -n "${TMP_DIR:-}" && -d "${TMP_DIR}" ]]; then
+    echo "--- Cleaning up temporary directory: ${TMP_DIR} ---"
+    rm -rf "${TMP_DIR}"
+  fi
+}
+
+# --- Argument Parsing ---
+BUILD_DIR="${1:-}"
+
+if [[ -z "$BUILD_DIR" ]]; then
+  echo "Error: Please provide the path to the build directory!" >&2
+  usage
   exit 1
 fi
 
-# Builds Endless Sky and packages it as AppImage
-# Control the output filename with the OUTPUT environment variable
-# You may have to set the ARCH environment variable to e.g. x86_64.
-
-# We need an icon file with a name matching the executable
-cp icons/icon_512x512.png endless-sky.png
-
-# Install
-DESTDIR=AppDir cmake --install "$1" --prefix /usr
-
-# Inside an AppImage, the executable is a link called "AppRun" at the root of AppDir/.
-# Keeping the data files next to the executable is perfectly valid, so we just move them to AppDir/ to avoid errors.
-mv AppDir/usr/share/games/endless-sky/* AppDir/
-
-# Now build the actual AppImage
-curl -sSL https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -o linuxdeploy && chmod +x linuxdeploy
-OUTPUT=es-temp.AppImage ./linuxdeploy --appdir AppDir -e "$1/endless-sky" -d io.github.endless_sky.endless_sky.desktop -i endless-sky.png --output appimage
-
-# Use the static runtime for the AppImage. This lets the AppImage being run on systems without fuse2.
-gh release download -R probonopd/go-appimage continuous -p appimagetool*x86_64.AppImage
-mv ./appimagetool* appimagetool && chmod +x appimagetool
-
-./es-temp.AppImage --appimage-extract
-chmod -R 755 ./squashfs-root
-
-if [ ! -z "$OUTPUT" ] ; then
-  VERSION=000 ./appimagetool ./squashfs-root
-  mv ./Endless_Sky-000-x86_64.AppImage $OUTPUT
-else
-  ./appimagetool ./squashfs-root
+if [[ ! -d "$BUILD_DIR" ]]; then
+  echo "Error: Build directory '${BUILD_DIR}' not found!" >&2
+  exit 1
 fi
 
-# Clean up
-rm -rf AppDir linuxdeploy appimagetool endless-sky.png es-temp.AppImage squashfs-root
+# --- Environment Setup ---
+ARCH="${ARCH:-$(uname -m)}" # Allow overriding architecture
+FINAL_OUTPUT_NAME="${OUTPUT:-}" # Get desired output filename from environment
+
+# Create a temporary directory for all work
+TMP_DIR=$(mktemp -d -t endless-sky-appimage-build-XXXXXX)
+echo "--- Working in temporary directory: ${TMP_DIR} ---"
+cd "${TMP_DIR}"
+
+# Ensure cleanup happens on script exit or interruption
+trap cleanup EXIT TERM INT
+
+# Define AppDir path
+APPDIR="${TMP_DIR}/AppDir"
+mkdir -p "${APPDIR}"
+
+# --- Prepare AppDir ---
+echo "--- Preparing AppDir structure ---"
+
+# 1. Copy Icon
+ICON_BASENAME="${APP_NAME}.png" # linuxdeploy expects icon name to match executable
+if [[ ! -f "${ICON_SOURCE}" ]]; then
+    # Try finding it relative to the script's directory if CWD fails
+    SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+    ICON_SOURCE_ALT="${SCRIPT_DIR}/${ICON_SOURCE}"
+    if [[ -f "${ICON_SOURCE_ALT}" ]]; then
+        ICON_SOURCE="${ICON_SOURCE_ALT}"
+        echo "Found icon at: ${ICON_SOURCE}"
+    else
+        echo "Error: Icon file '${ICON_SOURCE}' not found in CWD or script directory." >&2
+        exit 1
+    fi
+fi
+cp "${ICON_SOURCE}" "${TMP_DIR}/${ICON_BASENAME}"
+echo "Copied icon to ${TMP_DIR}/${ICON_BASENAME}"
+
+# 2. Install application using cmake
+echo "--- Installing application from build directory '${BUILD_DIR}' ---"
+DESTDIR="${APPDIR}" cmake --install "${BUILD_DIR}" --prefix /usr
+
+# Define installed paths
+INSTALL_PREFIX="${APPDIR}/usr"
+INSTALLED_EXEC="${INSTALL_PREFIX}/bin/${APP_NAME}"
+INSTALLED_DATA_DIR="${INSTALL_PREFIX}/${GAME_DATA_RELPATH}"
+INSTALLED_DESKTOP_FILE="${INSTALL_PREFIX}/${DESKTOP_FILE_RELPATH}"
+
+# Verify executable exists
+if [[ ! -x "${INSTALLED_EXEC}" ]]; then
+    echo "Error: Expected executable not found at '${INSTALLED_EXEC}' after install." >&2
+    exit 1
+fi
+
+# 3. Adjust structure: Move data files next to executable/AppRun (common AppImage pattern)
+#    AppRun script generated by linuxdeploy usually sets paths, but this simplifies things.
+if [[ -d "${INSTALLED_DATA_DIR}" ]]; then
+    echo "--- Moving game data to AppDir root ---"
+    # Use find/cp/rm or mv cautiously if directory might be empty or contain only hidden files
+    find "${INSTALLED_DATA_DIR}" -mindepth 1 -maxdepth 1 -exec mv -t "${APPDIR}/" {} +
+    # Remove the now potentially empty source directory structure
+    rm -rf "${APPDIR}/usr/$(dirname ${GAME_DATA_RELPATH})"
+else
+    echo "Warning: Game data directory '${INSTALLED_DATA_DIR}' not found. Skipping move."
+fi
+
+# --- Download Tools ---
+echo "--- Downloading deployment tools (Arch: ${ARCH}) ---"
+LINUXDEPLOY_BIN="${TMP_DIR}/linuxdeploy"
+APPIMAGETOOL_BIN="${TMP_DIR}/appimagetool"
+
+echo "Downloading linuxdeploy..."
+curl -sSL "${LINUXDEPLOY_URL}-${ARCH}.AppImage" -o "${LINUXDEPLOY_BIN}" || { echo "Error: Failed to download linuxdeploy" >&2; exit 1; }
+chmod +x "${LINUXDEPLOY_BIN}"
+
+echo "Downloading appimagetool..."
+curl -sSL "${APPIMAGETOOL_URL}-${ARCH}.AppImage" -o "${APPIMAGETOOL_BIN}" || { echo "Error: Failed to download appimagetool" >&2; exit 1; }
+chmod +x "${APPIMAGETOOL_BIN}"
+
+# --- Bundle Dependencies (linuxdeploy) ---
+echo "--- Bundling dependencies with linuxdeploy ---"
+# Note: We point linuxdeploy to the *installed* executable inside AppDir
+# Use the desktop file for metadata and the copied icon.
+# We don't use linuxdeploy to create the final image here, only to bundle libs.
+"${LINUXDEPLOY_BIN}" --appdir "${APPDIR}" \
+    -e "${INSTALLED_EXEC}" \
+    -d "${INSTALLED_DESKTOP_FILE}" \
+    -i "${TMP_DIR}/${ICON_BASENAME}" \
+    --output none # Important: We only bundle, appimagetool creates the final image
+
+# --- Create Final AppImage (appimagetool) ---
+echo "--- Creating final AppImage with appimagetool ---"
+
+# Appimagetool packages the AppDir into a single file.
+# It uses the architecture and information from the desktop file for naming by default.
+# Use -u 'gh-releases-zsync|EndlessSky|endless-sky|latest|Endless-Sky-*x86_64.AppImage.zsync' for zsync updates (example)
+if [[ -n "${FINAL_OUTPUT_NAME}" ]]; then
+    echo "Using specified output filename: ${FINAL_OUTPUT_NAME}"
+    "${APPIMAGETOOL_BIN}" "${APPDIR}" "${FINAL_OUTPUT_NAME}"
+    # Move to original directory if needed (appimagetool creates it in CWD which is TMP_DIR)
+    mv "${TMP_DIR}/${FINAL_OUTPUT_NAME}" ./
+    echo "--- AppImage created successfully: $(pwd)/${FINAL_OUTPUT_NAME} ---"
+else
+    # Let appimagetool decide the name (e.g., Endless_Sky-x86_64.AppImage)
+    # Capture the output filename from appimagetool's stdout
+    GENERATED_FILENAME=$("${APPIMAGETOOL_BIN}" "${APPDIR}" | tee /dev/stderr | grep -oE '[^ ]+\.AppImage$' || true)
+    # Move to original directory if needed (appimagetool creates it in CWD which is TMP_DIR)
+    if [[ -n "$GENERATED_FILENAME" && -f "$GENERATED_FILENAME" ]]; then
+         mv "${TMP_DIR}/${GENERATED_FILENAME}" ./
+         echo "--- AppImage created successfully: $(pwd)/${GENERATED_FILENAME} ---"
+    else
+         echo "Error: appimagetool execution failed or filename could not be determined." >&2
+         # List files to help debug
+         ls -l "${TMP_DIR}"
+         exit 1
+    fi
+fi
+
+# Cleanup is handled by the trap
+
+exit 0
