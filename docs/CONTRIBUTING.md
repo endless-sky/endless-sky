@@ -51,7 +51,7 @@ If proposing major changes to the game through your pull request, start by posti
 * Philosophical issues. The reason why we're here and contributing to this project in the first place is because we like to write/model/edit/code for the game. We do those things because we enjoy it. Using AI to do these processes for us completely misses the point of this project. 
 There are many volunteers willing to help review, polish, and create new content. If you would like help with art, writing tone or style (particularly for aliens with unique speech mannerisms), please feel free to post in the content-creating channel in Discord, or feel free to state in your PR where you would particularly like our reviewers' help.
 
-* Legal issues. AI is currently in a legal gray area and most likely does not conform with the requirements of the GPL-3, which Endless Sky is licensed under. This is the ultimate reason why we have a hard no on any AI content in the game.
+* Legal issues. AI-generated material is currently in a legal gray area and most likely does not conform with the requirements of GPLv3, which Endless Sky is licensed under. This is the ultimate reason why we have a hard no on any AI content in the game.
 
 ### What to expect when opening a pull request
 
