@@ -2684,6 +2684,8 @@ event "navy occupies algenib"
 		fleet "Small Republic" 800
 		fleet "Large Republic" 1200
 		fleet "Large Syndicate" 1000
+	planet "Covert"
+		description `Covert is home to a powerful mining cartel, only nominally under the control of Republic law. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A pirate fleet lurks on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel.`
 
 
 
@@ -2699,6 +2701,8 @@ event "navy done with algenib"
 		fleet "Small Core Pirates" 500
 		fleet "Large Core Pirates" 800
 		fleet "Large Syndicate" 5000
+	planet "Covert"
+		description `Covert is home to a powerful mining cartel, operating outside the control of Republic law or any other external authority. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A massive pirate fleet is docked on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel.`
 
 
 
