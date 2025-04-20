@@ -25,6 +25,8 @@ government "Aberrant"
 		"Indigenous Lifeform (Tree)" 0
 		"Indigenous Lifeform (Tree Two)" 0
 		"Ka'sei" 0
+		"Marauder" 0
+		"Parrot" 0
 
 	"penalty for"
 		assist 0
@@ -884,6 +886,7 @@ government "Hai (Unfettered)"
 	"friendly disabled hail" "friendly disabled unfettered"
 	"hostile hail" "hostile unfettered"
 	"hostile disabled hail" "hostile disabled unfettered"
+	raid "Large Plundering Unfettered" 8
 
 government "Hai (Unfettered Challenger)"
 	"display name" "Hai (Unfettered)"
@@ -1249,7 +1252,10 @@ government "Ka'het"
 	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
+		"Builder" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
@@ -1262,7 +1268,10 @@ government "Ka'het (Infighting)"
 	"default attitude" -.01
 	"attitude toward"
 		"Author" 0
+		"Builder" 0
 		"Indigenous Lifeform (Subsidurial)" 0
+		"Marauder" 0
+		"Parrot" 0
 	
 	"player reputation" -1
 
@@ -1691,7 +1700,7 @@ color "governments: Quarg" .88 .77 0
 
 # Quarg are split up to their respective areas, and an overall one is kept for missions or other use.
 government "Quarg"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	
 	"player reputation" 1
@@ -1712,19 +1721,36 @@ government "Quarg"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	atrocities
-		"Nanotech Battery"
 		"Antimatter Core"
-		"Quarg Skylance"
-		"Quarg Anti-Missile"
-		"Intrusion Countermeasures"
+		"Astral Ribault"
+		"Celestial Culverin"
+		"Central Repair Hub"
+		"Elysian Ranseur"
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
+		"Peripheral Repair Hub"
+		"Phalanx System"
 		"Quantum Shield Generator"
-		ship "Quarg Skylark"
+		"Quantum Vacuum Battery"
+		"Quasar Core"
+		"Singularity Core"
+		"Skydagger"
+		"Skylance"
+		"Slipstream Projector"
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Stratospear"
+		ship "Quarg Guivre"
+		ship "Quarg Hydra"
+		ship "Quarg Lindwyrm"
 		ship "Quarg Wardragon"
+		ship "Quarg Wyvern"
+
 
 government "Quarg (Hai)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1744,19 +1770,35 @@ government "Quarg (Hai)"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	atrocities
-		"Nanotech Battery"
 		"Antimatter Core"
-		"Quarg Skylance"
-		"Quarg Anti-Missile"
-		"Intrusion Countermeasures"
+		"Astral Ribault"
+		"Celestial Culverin"
+		"Central Repair Hub"
+		"Elysian Ranseur"
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
+		"Peripheral Repair Hub"
+		"Phalanx System"
 		"Quantum Shield Generator"
-		ship "Quarg Skylark"
+		"Quantum Vacuum Battery"
+		"Quasar Core"
+		"Singularity Core"
+		"Skydagger"
+		"Skylance"
+		"Slipstream Projector"
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Stratospear"
+		ship "Quarg Guivre"
+		ship "Quarg Hydra"
+		ship "Quarg Lindwyrm"
 		ship "Quarg Wardragon"
+		ship "Quarg Wyvern"
 
 government "Quarg (Incipias)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1786,19 +1828,35 @@ government "Quarg (Incipias)"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	atrocities
-		"Nanotech Battery"
 		"Antimatter Core"
-		"Quarg Skylance"
-		"Quarg Anti-Missile"
-		"Intrusion Countermeasures"
+		"Astral Ribault"
+		"Celestial Culverin"
+		"Central Repair Hub"
+		"Elysian Ranseur"
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
+		"Peripheral Repair Hub"
+		"Phalanx System"
 		"Quantum Shield Generator"
-		ship "Quarg Skylark"
+		"Quantum Vacuum Battery"
+		"Quasar Core"
+		"Singularity Core"
+		"Skydagger"
+		"Skylance"
+		"Slipstream Projector"
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Stratospear"
+		ship "Quarg Guivre"
+		ship "Quarg Hydra"
+		ship "Quarg Lindwyrm"
 		ship "Quarg Wardragon"
+		ship "Quarg Wyvern"
 
 government "Quarg (Kor Efret)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1817,19 +1875,35 @@ government "Quarg (Kor Efret)"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	atrocities
-		"Nanotech Battery"
 		"Antimatter Core"
-		"Quarg Skylance"
-		"Quarg Anti-Missile"
-		"Intrusion Countermeasures"
+		"Astral Ribault"
+		"Celestial Culverin"
+		"Central Repair Hub"
+		"Elysian Ranseur"
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
+		"Peripheral Repair Hub"
+		"Phalanx System"
 		"Quantum Shield Generator"
-		ship "Quarg Skylark"
+		"Quantum Vacuum Battery"
+		"Quasar Core"
+		"Singularity Core"
+		"Skydagger"
+		"Skylance"
+		"Slipstream Projector"
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Stratospear"
+		ship "Quarg Guivre"
+		ship "Quarg Hydra"
+		ship "Quarg Lindwyrm"
 		ship "Quarg Wardragon"
+		ship "Quarg Wyvern"
 
 government "Quarg (Gegno)"
-	swizzle 0
+	swizzle 4
 	color "governments: Quarg"
 	"display name" "Quarg"
 
@@ -1846,16 +1920,32 @@ government "Quarg (Gegno)"
 	"hostile hail" "hostile quarg"
 	"hostile disabled hail" "hostile quarg"
 	atrocities
-		"Nanotech Battery"
 		"Antimatter Core"
-		"Quarg Skylance"
-		"Quarg Anti-Missile"
-		"Intrusion Countermeasures"
+		"Astral Ribault"
+		"Celestial Culverin"
+		"Central Repair Hub"
+		"Elysian Ranseur"
+		"Large Graviton Thruster"
+		"Large Graviton Steering"
 		"Medium Graviton Thruster"
 		"Medium Graviton Steering"
+		"Peripheral Repair Hub"
+		"Phalanx System"
 		"Quantum Shield Generator"
-		ship "Quarg Skylark"
+		"Quantum Vacuum Battery"
+		"Quasar Core"
+		"Singularity Core"
+		"Skydagger"
+		"Skylance"
+		"Slipstream Projector"
+		"Small Graviton Thruster"
+		"Small Graviton Steering"
+		"Stratospear"
+		ship "Quarg Guivre"
+		ship "Quarg Hydra"
+		ship "Quarg Lindwyrm"
 		ship "Quarg Wardragon"
+		ship "Quarg Wyvern"
 
 color "governments: Remnant" .89 .38 .62
 
@@ -1888,6 +1978,8 @@ government "Remnant"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
 	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Nenia"
 
 government "Remnant (Research)"
 	"display name" "Remnant"
@@ -1914,6 +2006,8 @@ government "Remnant (Research)"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
 	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Nenia"
 
 color "governments: Republic" .91 .42 .09
 
