@@ -1133,8 +1133,7 @@ mission "Set Easter Date"
 mission "Easter Celebrations"
 	minor
 	source
-		attributes "religious"
-		government "Deep" "Free Worlds" "Independent" "Neutral" "Pirate" "Republic" "Syndicate"
+		planet "Harmony" "New Tortuga"
 	to offer
 		day == "easter day"
 		month == "easter month"
