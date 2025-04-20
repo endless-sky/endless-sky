@@ -16,8 +16,8 @@ test-data "Flagship Attribute Autoconditions Save"
 	contents
 		pilot Bobbi Bughunter
 		date 11 7 3014
-		system Pantica
-		planet Aventine
+		system Sol
+		planet Earth
 		clearance
 		# What you own:
 		ship Peregrine
@@ -111,8 +111,8 @@ test-data "Flagship Attribute Autoconditions Save"
 			explode "small explosion" 25
 			explode "tiny explosion" 10
 			"final explode" "final explosion medium" 1
-			system Pantica
-			planet Aventine
+			system Sol
+			planet Earth
 		cargo
 			outfits
 				"Heavy Laser" 1
@@ -120,8 +120,8 @@ test-data "Flagship Attribute Autoconditions Save"
 			credits 131000
 			score 400
 			history
-		visited Pantica
-		"visited planet" Aventine
+		visited Sol
+		"visited planet" Earth
 
 
 test "Flagship Attribute Autoconditions"
@@ -178,12 +178,12 @@ test "Flagship Attribute Autoconditions"
 			"flagship fuel" == 1100
 			"flagship mass" - 15 == "flagship attribute: mass" / 1000
 		navigate
-			travel Arculus
+			travel Vega
 		input
 			command jump
-		label "not arculus"
-		branch "not arculus"
-			not "flagship system: Arculus"
+		label "not vega"
+		branch "not vega"
+			not "flagship system: Vega"
 		assert
 			"flagship fuel" == 900
 

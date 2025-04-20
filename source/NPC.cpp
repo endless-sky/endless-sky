@@ -811,7 +811,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
 				}))
 		{
-			it->second.Do(player, ui, caller);
+			it->second.Do(player, ui, caller, event.Target());
 		}
 	}
 }
