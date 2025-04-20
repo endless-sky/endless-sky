@@ -3347,8 +3347,8 @@ bool AI::DoCloak(const Ship &ship, Command &command) const
 	bool canRecoverShieldsCloaked = attributes.Get("cloaking shield delay") ? 0 : attributes.Get("shield generation");
 	bool canRecoverHullCloaked = attributes.Get("cloaking repair delay") ? 0 : attributes.Get("hull repair rate");
 	bool cloakToRepair = (ship.Health() < RETREAT_HEALTH + hysteresis)
-			&& ((Shields() < attributes.Get("shields") || canRecoverShieldsCloaked)
-			|| (Hull() < attributes.Get("hull") || canRecoverHullCloaked));
+			&& ((ship.Shields() < attributes.Get("shields") || canRecoverShieldsCloaked)
+			|| (ship.Hull() < attributes.Get("hull") || canRecoverHullCloaked));
 	if(cloakToRepair && (cloakFreely || range < 2000. * (1. + hysteresis)))
 	{
 		command |= Command::CLOAK;
