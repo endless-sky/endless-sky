@@ -3406,6 +3406,20 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, true);
 		}
 		return retVal; });
+	conditions["ship base attribute (parked): "].ProvidePrefixed(
+		[this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+			// If the player isn't landed then there can be no parked ships local to them.
+			if(!planet)
+				return 0;
+			string attribute = ce.NameWithoutPrefix();
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				if(!ship->IsParked() || ship->GetPlanet() != planet)
+					continue;
+				retVal += shipAttributeHelper(ship.get(), attribute, true);
+			}
+			return retVal; });
 	conditions["ship attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
 		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
@@ -3431,6 +3445,20 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, false);
 		}
 		return retVal; });
+	conditions["ship attribute (parked): "].ProvidePrefixed(
+		[this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+			// If the player isn't landed then there can be no parked ships local to them.
+			if(!planet)
+				return 0;
+			string attribute = ce.NameWithoutPrefix();
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				if(!ship->IsParked() || ship->GetPlanet() != planet)
+					continue;
+				retVal += shipAttributeHelper(ship.get(), attribute, false);
+			}
+			return retVal; });
 
 	conditions["name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(firstName + " " + lastName); });
