@@ -602,9 +602,6 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 					seen.insert(neighbor);
 		}
 	}
-
-	// The dataChanges list is no longer added to. All events whose changes are
-	// applied are added to the pastEvents list.
 }
 
 
@@ -615,9 +612,10 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 	// Check if the event should be applied directly.
 	if(date <= this->date)
 	{
-		list<DataNode> eventChanges = {event.Apply(*this)};
+		list<DataNode> eventChanges = event.Apply(*this);
 		if(!eventChanges.empty())
 			AddChanges(eventChanges);
+		// All events received by this function will have a name.
 		pastEvents.push_back(event.Name());
 	}
 	else
@@ -752,8 +750,14 @@ void PlayerInfo::AdvanceDate(int amount)
 		while(it != gameEvents.end() && date >= it->second)
 		{
 			GameEvent eventCopy = *(it->first);
-			eventChanges.splice(eventChanges.end(), eventCopy.Apply(*this));
-			pastEvents.push_back(eventCopy.Name());
+			// Unnamed events must have their changes stored in the
+			// save file. Named events need only store their name.
+			list<DataNode> changes = eventCopy.Apply(*this);
+			if(eventCopy.Name().empty())
+				dataChanges.insert(dataChanges.end(), changes.begin(), changes.end());
+			else
+				pastEvents.push_back(eventCopy.Name());
+			eventChanges.splice(eventChanges.end(), changes);
 			it = gameEvents.erase(it);
 		}
 		if(!eventChanges.empty())
@@ -3110,10 +3114,10 @@ void PlayerInfo::ApplyChanges()
 	for(const auto &it : reputationChanges)
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
-	AddChanges(dataChanges);
 	// The game world is loaded before the player is, so it's safe to apply
-	// changes from event definitions now.
-	list<DataNode> eventChanges;
+	// changes from event definitions now. First apply any data changes
+	// from the save file, then apply the changes from any named events.
+	list<DataNode> eventChanges = dataChanges;
 	for(const string &eventName : pastEvents)
 	{
 		GameEvent eventCopy = *GameData::Events().Get(eventName);
