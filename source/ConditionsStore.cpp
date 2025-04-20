@@ -109,13 +109,13 @@ int64_t ConditionsStore::Get(const string &name) const
 
 	// If the name matches exactly, then access directly with explicit conversion to int64_t.
 	if(ce->name == name)
-		return ce->operator int64_t();
+		return *ce;
 
 	// If the name doesn't match exactly, then we are dealing with a prefixed provider that doesn't have an exactly
 	// matching entry. Get is const, so isn't supposed to add such an entry; use a temporary object for access.
 	ConditionEntry ceAccessor(name);
 	ceAccessor.provider = ce->provider;
-	return ceAccessor.operator int64_t();
+	return ceAccessor;
 }
 
 

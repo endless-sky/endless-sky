@@ -620,7 +620,7 @@ void Engine::Step(bool isActive)
 	}
 
 	// Step the background to account for the current velocity and zoom.
-	GameData::StepBackground(centerVelocity, zoom.operator double());
+	GameData::StepBackground(centerVelocity, zoom);
 
 	outlines.clear();
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
