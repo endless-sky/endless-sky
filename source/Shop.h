@@ -28,7 +28,7 @@ class Planet;
 
 
 
-// Class representing a shop of items. Shops are able to be added to planets to destingate
+// Class representing a shop of items. Shops are able to be added to planets to designate
 // that this shop should always stock that planet, or they can be given a condition set and/or
 // location filter that allows them to optionally appear on a planet.
 template <class Item>

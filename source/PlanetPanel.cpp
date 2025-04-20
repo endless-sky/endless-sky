@@ -111,6 +111,7 @@ void PlanetPanel::Step()
 	// done in the constructor because the constructor is created
 	// before all of the player's landing logic is completed, which
 	// can cause certain conditions to return unexpected results.
+	// TODO: Determine stock on the fly after condition entries can be subscribed to.
 	if(!initializedShops)
 	{
 		initializedShops = true;
