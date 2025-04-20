@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "System.h"
+#include "TextArea.h"
 #include "text/Truncate.h"
 #include "UI.h"
 

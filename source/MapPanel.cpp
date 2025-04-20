@@ -592,7 +592,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->PopThrough(this);
+		GetUI()->Pop(this);
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
 		GetUI()->Pop(this);
