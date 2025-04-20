@@ -362,15 +362,15 @@ int Date::Year() const
 
 
 
-// Get the current day of the week as a number. Sunday is 1, Saturday is 7.
+// Get the current day of the week as a number. Monday is 1, Sunday is 7.
 int Date::WeekdayNumber() const
 {
 	// WeekdayNumberOffset gives values in the range [0, 6], starting from Saturday.
-	// Add 6 to get values in the range [6, 12].
-	// Modulo 7 to get [0, 6]. Monday through Friday moving from [8, 12] to [1, 5].
+	// Add 5 to get values in the range [5, 11].
+	// Modulo 7 to get [0, 6]. Monday through Friday moving from [7, 11] to [0, 4].
 	// Add 1 for [1, 7].
 	int result = WeekdayNumberOffset(Day(), Month(), Year());
-	result += 6;
+	result += 5;
 	result %= 7;
 	result += 1;
 	return result;
