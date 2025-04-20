@@ -259,7 +259,7 @@ void GameData::FinishLoading()
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
-	background.FinishLoading(Interfaces().Get("starfield"));
+	background.FinishLoading();
 }
 
 

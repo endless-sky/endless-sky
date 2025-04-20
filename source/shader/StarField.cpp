@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Angle.h"
 #include "../Body.h"
 #include "DrawList.h"
+#include "../GameData.h"
 #include "../Interface.h"
 #include "../pi.h"
 #include "../Preferences.h"
@@ -105,8 +106,9 @@ void StarField::Init(int stars, int width)
 
 
 
-void StarField::FinishLoading(const Interface *constants)
+void StarField::FinishLoading()
 {
+	const Interface *constants = GameData::Interfaces().Get("starfield");
 	fixedZoom = constants->GetValue("fixed zoom");
 	velocityReducer = constants->GetValue("velocity reducer");
 }
