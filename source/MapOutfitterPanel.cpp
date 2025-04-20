@@ -260,7 +260,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected,
 				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}

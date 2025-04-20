@@ -834,7 +834,7 @@ void Engine::Step(bool isActive)
 				player.Harvest(payload.outfit);
 	}
 	if(!target)
-		targetSwizzle = -1;
+		targetSwizzle = nullptr;
 	if(!target && !targetAsteroid)
 		info.SetString("target name", "no target");
 	else if(!target)
@@ -1297,7 +1297,7 @@ void Engine::Draw() const
 	}
 
 	// Draw the faction markers.
-	if(targetSwizzle >= 0 && hud->HasPoint("faction markers"))
+	if(targetSwizzle && hud->HasPoint("faction markers"))
 	{
 		int width = font.Width(info.GetString("target government"));
 		Point center = hud->GetPoint("faction markers");
@@ -1494,7 +1494,7 @@ void Engine::EnterSystem()
 				&& fleet.CanTrigger(conditions) : false)
 				fleet.Get()->Place(*system, newShips);
 
-		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+		auto CreateWeather = [this, &conditions](const RandomEvent<Hazard> &hazard, Point origin)
 		{
 			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger(conditions))
 			{
@@ -2064,7 +2064,7 @@ void Engine::SpawnPersons()
 void Engine::GenerateWeather()
 {
 	ConditionsStore &conditions = player.Conditions();
-	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+	auto CreateWeather = [this, &conditions](const RandomEvent<Hazard> &hazard, Point origin)
 	{
 		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger(conditions))
 		{
@@ -2779,13 +2779,14 @@ void Engine::DrawShipSprites(const Ship &ship)
 	double cloak = ship.Cloaking();
 	bool drawCloaked = (cloak && ship.IsYours());
 	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 	auto &itemsToDraw = draw[currentCalcBuffer];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak](const Body &body) -> void
+	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
 	{
 		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
 		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
 		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, fancyCloak ? 9 : 27, fancyCloak ? 0.5 : 0.25);
+			itemsToDraw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
 		itemsToDraw.Add(body, cloak);
 	};
 

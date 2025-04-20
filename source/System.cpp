@@ -1101,6 +1101,8 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.speed = 360. / node.Value(1);
 	else if(key == "offset" && hasValue)
 		object.offset = node.Value(1);
+	else if(key == "swizzle" && hasValue)
+		object.SetSwizzle(GameData::Swizzles().Get(node.Token(1)));
 	else if(key == "visibility" && hasValue)
 	{
 		object.distanceInvisible = node.Value(1);

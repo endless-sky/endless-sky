@@ -181,7 +181,7 @@ void ShopPanel::Draw()
 		}
 		else
 		{
-			int swizzle = dragShip->CustomSwizzle() >= 0
+			const Swizzle *swizzle = dragShip->CustomSwizzle()
 				? dragShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 			SpriteShader::Draw(sprite, dragPoint, scale, swizzle);
 		}
@@ -207,7 +207,7 @@ void ShopPanel::DrawShip(const Ship &ship, const Point &center, bool isSelected)
 
 	const Sprite *thumbnail = ship.Thumbnail();
 	const Sprite *sprite = ship.GetSprite();
-	int swizzle = ship.CustomSwizzle() >= 0 ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+	const Swizzle *swizzle = ship.CustomSwizzle() ? ship.CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 	if(thumbnail)
 		SpriteShader::Draw(thumbnail, center + Point(0., 10.), 1., swizzle);
 	else if(sprite)
@@ -822,7 +822,7 @@ void ShopPanel::DrawShipsSidebar()
 			}
 			else
 			{
-				int swizzle = ship->CustomSwizzle() >= 0 ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
+				const Swizzle *swizzle = ship->CustomSwizzle() ? ship->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
 				SpriteShader::Draw(sprite, point, scale, swizzle);
 			}
 		}
