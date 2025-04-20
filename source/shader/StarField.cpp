@@ -72,11 +72,10 @@ namespace {
 
 
 
-void StarField::Init(int stars, int width, const Interface *constants)
+void StarField::Init(int stars, int width)
 {
 	SetUpGraphics();
 	MakeStars(stars, width);
-	this->constants = constants;
 
 	lastSprite = SpriteSet::Get("_menu/haze");
 	for(size_t i = 0; i < HAZE_COUNT; ++i)
@@ -106,6 +105,14 @@ void StarField::Init(int stars, int width, const Interface *constants)
 
 
 
+void StarField::FinishLoading(const Interface *constants)
+{
+	fixedZoom = constants->GetValue("fixed zoom");
+	velocityReducer = constants->GetValue("velocity reducer");
+}
+
+
+
 void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
@@ -130,8 +137,8 @@ void StarField::Step(Point vel, double zoom)
 {
 	if(Preferences::Has("Fixed starfield zoom"))
 	{
-		baseZoom = constants->GetValue("fixed zoom");
-		vel /= constants->GetValue("velocity reducer");
+		baseZoom = fixedZoom;
+		vel /= velocityReducer;
 	}
 	else if(zoom < 0.25)
 	{

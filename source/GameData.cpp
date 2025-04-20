@@ -259,6 +259,7 @@ void GameData::FinishLoading()
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
+	background.FinishLoading(Interfaces().Get("starfield"));
 }
 
 
@@ -294,7 +295,7 @@ void GameData::LoadShaders()
 	BatchShader::Init();
 	RenderBuffer::Init();
 
-	background.Init(16384, 4096, Interfaces().Get("starfield"));
+	background.Init(16384, 4096);
 }
 
 

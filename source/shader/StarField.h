@@ -37,7 +37,8 @@ class System;
 // match the motion; otherwise they would seem to jitter around.
 class StarField {
 public:
-	void Init(int stars, int width, const Interface *constants);
+	void Init(int stars, int width);
+	void FinishLoading(const Interface *constants);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	void Step(Point vel, double zoom = 1.);
@@ -50,12 +51,13 @@ private:
 
 
 private:
-	// An interface with constants that modify the starfield's behavior.
-	const Interface *constants;
-
 	int widthMod;
 	int tileCols;
 	std::vector<int> tileIndex;
+
+	// Constants from an Interface that modify the starfield's behavior.
+	double fixedZoom = 1.;
+	double velocityReducer = 1.;
 
 	Point pos;
 	double baseZoom = 1.;
