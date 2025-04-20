@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "EsUuid.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "Messages.h"
 #include "PlayerInfo.h"
@@ -129,6 +130,15 @@ void ShipManager::Do(PlayerInfo &player) const
 		(Giving() ? "added to" : "removed from") + " your fleet.", Messages::Importance::High);
 }
 
+
+
+// Expands phrases and substitutions in the ship name, into a new copy of this ShipManager
+ShipManager ShipManager::Instantiate(const map<string, string> &subs) const
+{
+	ShipManager result = *this;
+	result.name = Format::Replace(Phrase::ExpandPhrases(name), subs);
+	return result;
+}
 
 
 const Ship *ShipManager::ShipModel() const

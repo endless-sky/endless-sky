@@ -279,7 +279,7 @@ ship "Tubfalet"
 	explode "large explosion" 40
 	explode "huge explosion" 10
 	"final explode" "final explosion large"
-	description "The venerable Palavret has been a mainstay of the Korath raiding fleet, elements of its design dating back from before the era of shortages and desperation caused by a life in exile. Over forty generations of raiders have terrorised neighboring systems over the centuries."
+	description "The venerable Palavret has been a mainstay of the Korath raiding fleet, elements of its design dating back from before the era of shortages and desperation caused by a life in exile. Over forty generations of raiders have terrorized neighboring systems over the centuries."
 	description "	Constant warfare against surrounding aliens has been building pressure on Korath shipyards to recover some of their ancient prowess. Now, with a fresh industrial network to draw upon, the Korath have created a new raider to deal with modern targets, and the Tubfalet-Class Raiding Ship is named for an admiral who dealt with such enemies. Despite extensive injuries, he remained on his flag bridge during a Remnant attack, leading his squadron to victory."
 
 
@@ -2307,8 +2307,9 @@ ship "Model 512"
 		"Small Heat Shunt" 2
 		"Reasoning Node" 3
 		
+		"Thruster (Lunar Class)"
 		"Thruster (Planetary Class)"
-		"Steering (Stellar Class)"
+		"Steering (Planetary Class)"
 		Hyperdrive
 
 	engine -145 97

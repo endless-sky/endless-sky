@@ -131,7 +131,7 @@ namespace {
 			for(auto &it : objects)
 			{
 				const Type &object = it.second;
-				if(object.Attributes().count(attribute))
+				if(object.Attributes().contains(attribute))
 					cout << (index++ ? ';' : ',') << DataWriter::Quote(it.first);
 			}
 			cout << '\n';
@@ -656,6 +656,7 @@ namespace {
 
 	void LocationFilterMatches(const char *const *argv)
 	{
+		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
 		LocationFilter filter;
 		for(const DataNode &node : file)
@@ -714,7 +715,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
-		if(OTHER_VALID_ARGS.count(arg) || OUTFIT_ARGS.count(arg))
+		if(OTHER_VALID_ARGS.contains(arg) || OUTFIT_ARGS.contains(arg))
 			return true;
 	}
 	return false;
@@ -732,7 +733,7 @@ void PrintData::Print(const char *const *argv)
 			Ships(argv);
 			break;
 		}
-		else if(OUTFIT_ARGS.count(arg))
+		else if(OUTFIT_ARGS.contains(arg))
 		{
 			Outfits(argv);
 			break;

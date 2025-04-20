@@ -21,7 +21,7 @@ using namespace std;
 
 namespace {
 	// Figure out the day of the week of the given date.
-	const string &Weekday(int day, int month, int year)
+	int WeekdayNumberOffset(int day, int month, int year)
 	{
 		// Zeller's congruence.
 		if(month < 3)
@@ -29,10 +29,13 @@ namespace {
 			--year;
 			month += 12;
 		}
-		day = (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
+		return (day + (13 * (month + 1)) / 5 + year + year / 4 + 6 * (year / 100) + year / 400) % 7;
+	}
 
+	const string &Weekday(int day, int month, int year)
+	{
 		static const string DAY[] = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
-		return DAY[day];
+		return DAY[WeekdayNumberOffset(day, month, year)];
 	}
 
 	// Convert an integer to a string where single-digit integers have a leading zero.
@@ -81,15 +84,15 @@ const string &Date::ToString() const
 		static const string MONTH[] = {
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-		const string &weekday_str = Weekday(day, month, year);
-		const string &month_str = MONTH[month - 1];
+		const string &weekdayStr = Weekday(day, month, year);
+		const string &monthStr = MONTH[month - 1];
 
 		if(dateFormat == Preferences::DateFormat::YMD)
 			str = to_string(year) + "-" + ZeroPad(month) + "-" + ZeroPad(day);
 		else if(dateFormat == Preferences::DateFormat::MDY)
-			str = weekday_str + " " + month_str + " " + to_string(day) + ", " + to_string(year);
+			str = weekdayStr + " " + monthStr + " " + to_string(day) + ", " + to_string(year);
 		else if(dateFormat == Preferences::DateFormat::DMY)
-			str = weekday_str + ", " + to_string(day) + " " + month_str + " " + to_string(year);
+			str = weekdayStr + ", " + to_string(day) + " " + monthStr + " " + to_string(year);
 	}
 
 	return str;
@@ -136,9 +139,9 @@ string Date::LongString() const
 	Preferences::DateFormat dateFormat = Preferences::GetDateFormat();
 	string result;
 	if(dateFormat == Preferences::DateFormat::YMD || dateFormat == Preferences::DateFormat::MDY)
-		result += std::move(month) + " " + std::move(dayString);
+		result = month + " " + dayString;
 	else if(dateFormat == Preferences::DateFormat::DMY)
-		result += std::move(dayString) + " of " + std::move(month);
+		result = "the " + dayString + " of " + month;
 
 	return result;
 }
@@ -355,4 +358,20 @@ int Date::Month() const
 int Date::Year() const
 {
 	return (date >> 9);
+}
+
+
+
+// Get the current day of the week as a number. Sunday is 1, Saturday is 7.
+int Date::WeekdayNumber() const
+{
+	// WeekdayNumberOffset gives values in the range [0, 6], starting from Saturday.
+	// Add 6 to get values in the range [6, 12].
+	// Modulo 7 to get [0, 6]. Monday through Friday moving from [8, 12] to [1, 5].
+	// Add 1 for [1, 7].
+	int result = WeekdayNumberOffset(Day(), Month(), Year());
+	result += 6;
+	result %= 7;
+	result += 1;
+	return result;
 }

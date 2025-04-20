@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapShipyardPanel.h"
 
+#include "CategoryList.h"
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -23,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
-#include "Sprite.h"
+#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -68,14 +69,14 @@ const Sprite *MapShipyardPanel::CompareSprite() const
 
 
 
-int MapShipyardPanel::SelectedSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::SelectedSpriteSwizzle() const
 {
 	return selected->CustomSwizzle();
 }
 
 
 
-int MapShipyardPanel::CompareSpriteSwizzle() const
+const Swizzle *MapShipyardPanel::CompareSpriteSwizzle() const
 {
 	return compare->CustomSwizzle();
 }
@@ -250,7 +251,7 @@ void MapShipyardPanel::DrawItems()
 				? "1 ship parked"
 				: Format::Number(parkedInSystem) + " ships parked";
 			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
-					ship->DisplayModelName(), price, info, parking_details);
+					ship->DisplayModelName(), ship->VariantMapShopName(), price, info, parking_details);
 			list.push_back(ship);
 		}
 	}
@@ -266,7 +267,7 @@ void MapShipyardPanel::Init()
 	for(const auto &it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
 			for(const Ship *ship : it.second.Shipyard())
-				if(!seen.count(ship))
+				if(!seen.contains(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);
 					seen.insert(ship);
@@ -278,7 +279,7 @@ void MapShipyardPanel::Init()
 		{
 			const Ship *model = GameData::Ships().Get(it->TrueModelName());
 			++parkedShips[it->GetSystem()][model];
-			if(!seen.count(model))
+			if(!seen.contains(model))
 			{
 				catalog[model->Attributes().Category()].push_back(model);
 				seen.insert(model);

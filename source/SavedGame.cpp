@@ -19,20 +19,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 #include "Date.h"
 #include "text/Format.h"
-#include "SpriteSet.h"
+#include "GameData.h"
+#include "Planet.h"
+#include "image/SpriteSet.h"
+#include "System.h"
 
 using namespace std;
 
 
 
-SavedGame::SavedGame(const string &path)
+SavedGame::SavedGame(const filesystem::path &path)
 {
 	Load(path);
 }
 
 
 
-void SavedGame::Load(const string &path)
+void SavedGame::Load(const filesystem::path &path)
 {
 	Clear();
 	DataFile file(path);
@@ -49,9 +52,19 @@ void SavedGame::Load(const string &path)
 		else if(node.Token(0) == "date" && node.Size() >= 4)
 			date = Date(node.Value(1), node.Value(2), node.Value(3)).ToString();
 		else if(node.Token(0) == "system" && node.Size() >= 2)
+		{
 			system = node.Token(1);
+			const System *savedSystem = GameData::Systems().Find(system);
+			if(savedSystem && savedSystem->IsValid())
+				system = savedSystem->DisplayName();
+		}
 		else if(node.Token(0) == "planet" && node.Size() >= 2)
+		{
 			planet = node.Token(1);
+			const Planet *savedPlanet = GameData::Planets().Find(planet);
+			if(savedPlanet && savedPlanet->IsValid())
+				planet = savedPlanet->DisplayName();
+		}
 		else if(node.Token(0) == "playtime" && node.Size() >= 2)
 			playTime = Format::PlayTime(node.Value(1));
 		else if(node.Token(0) == "flagship index" && node.Size() >= 2)
@@ -80,7 +93,7 @@ void SavedGame::Load(const string &path)
 
 
 
-const string &SavedGame::Path() const
+const filesystem::path &SavedGame::Path() const
 {
 	return path;
 }

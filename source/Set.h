@@ -34,7 +34,7 @@ public:
 	// pointer rather than creating the item.
 	const Type *Find(const std::string &name) const;
 
-	bool Has(const std::string &name) const { return data.count(name); }
+	bool Has(const std::string &name) const { return data.contains(name); }
 
 	typename std::map<std::string, Type>::iterator begin() { return data.begin(); }
 	typename std::map<std::string, Type>::const_iterator begin() const { return data.begin(); }

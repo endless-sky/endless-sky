@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 
 #include <ctime>
+#include <filesystem>
 #include <map>
 #include <string>
 #include <utility>
@@ -56,7 +57,7 @@ private:
 
 	// Snapshot name callback.
 	void SnapshotCallback(const std::string &name);
-	void WriteSnapshot(const std::string &sourceFile, const std::string &snapshotName);
+	void WriteSnapshot(const std::filesystem::path &sourceFile, const std::filesystem::path &snapshotName);
 	// Load snapshot callback.
 	void LoadCallback();
 	// Delete callbacks.
@@ -69,7 +70,7 @@ private:
 	SavedGame loadedInfo;
 	UI &gamePanels;
 
-	std::map<std::string, std::vector<std::pair<std::string, std::time_t>>> files;
+	std::map<std::string, std::vector<std::pair<std::string, std::filesystem::file_time_type>>> files;
 	std::string selectedPilot;
 	std::string selectedFile;
 	// If the player enters a filename that exists, prompt before overwriting it.

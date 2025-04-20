@@ -15,14 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Font.h"
 
-#include "alignment.hpp"
+#include "Alignment.h"
 #include "../Color.h"
 #include "DisplayText.h"
-#include "../ImageBuffer.h"
+#include "../image/ImageBuffer.h"
+#include "../image/ImageFileData.h"
 #include "../Point.h"
 #include "../Preferences.h"
 #include "../Screen.h"
-#include "truncate.hpp"
+#include "Truncate.h"
 
 #include <algorithm>
 #include <cmath>
@@ -81,18 +82,18 @@ namespace {
 
 
 
-Font::Font(const string &imagePath)
+Font::Font(const filesystem::path &imagePath)
 {
 	Load(imagePath);
 }
 
 
 
-void Font::Load(const string &imagePath)
+void Font::Load(const filesystem::path &imagePath)
 {
 	// Load the texture.
 	ImageBuffer image;
-	if(!image.Read(imagePath))
+	if(!image.Read(ImageFileData(imagePath)))
 		return;
 
 	LoadTexture(image);

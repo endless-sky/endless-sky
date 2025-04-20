@@ -17,17 +17,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "Ship.h"
-#include "text/WrappedText.h"
-
 #include <functional>
+#include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 class Interface;
 class Planet;
 class PlayerInfo;
+class Ship;
 class SpaceportPanel;
 class System;
+class TextArea;
 
 
 
@@ -37,6 +39,7 @@ class System;
 class PlanetPanel : public Panel {
 public:
 	PlanetPanel(PlayerInfo &player, std::function<void()> callback);
+	virtual ~PlanetPanel() override;
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -69,7 +72,7 @@ private:
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
 
-	WrappedText text;
+	std::shared_ptr<TextArea> description;
 
 	// Out of system (absent) ships that cannot fly for some reason.
 	std::vector<std::shared_ptr<Ship>> absentCannotFly;

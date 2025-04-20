@@ -1,0 +1,420 @@
+# Copyright (c) 2024 by Daeridanii
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+fleet "Light Successor Freight"
+	government "Successor"
+	names "successor"
+	cargo 3
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Successor Basics"
+	personality
+		appeasing timid
+		confusion 30
+	variant 10
+		"Kvelqde"
+	variant 5
+		"Kvelqde" 2
+	variant 3
+		"Kvelqde"
+		"Myaede"
+	variant 2
+		"Kvelqde" 2
+		"Myaede"
+	variant 5
+		"Myaede"
+
+fleet "Medium Successor Freight"
+	government "Successor"
+	names "successor"
+	cargo 3
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals" "Luxury Goods"
+	outfitters "Successor Civilian"
+	personality
+		appeasing timid
+		confusion 30
+	variant 10
+		"Ojde"
+	variant 6
+		"Ojde"
+		"Stolsaqra" 2
+	variant 4
+		"Ojde"
+		"Myaede" 2
+		"Stolsaqra" 2
+	variant
+		"Ojde" 2
+		"Myaede" 3
+		"Stolsaqra" 4
+
+fleet "Small Successor Transport"
+	government "Successor"
+	names "successor"
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals" "Luxury Goods"
+	cargo 3
+	personality
+		timid
+		confusion 30
+	variant 10
+		"Kvelqde"
+	variant 6
+		"Nnesaarau"
+	variant 6
+		"Nnaatej"
+	variant 4
+		"Kvelqde" 2
+	variant 3
+		"Kvelqde" 3
+	variant 3
+		"Ejniisde"
+	variant 2
+		"Ejniisde" 2
+	variant 2
+		"Nnesaarau" 2
+	variant 2
+		"Nnaatej" 2
+
+fleet "Successor Miners"
+	government "Successor"
+	names "successor"
+	cargo 0
+	personality
+		appeasing frugal harvests mining staying
+		confusion 30
+	variant 10
+		"Kvelqde (Mining)"
+	variant 4
+		"Myaede (Mining)"
+	variant 6
+		"Kvelqde (Mining)" 2
+	variant 2
+		"Myaede (Mining)"
+		"Kvelqde (Mining)" 2
+	variant 2
+		"Ojde (Mining)"
+
+fleet "Successor Miners (Well-Defended)"
+	government "Successor"
+	names "successor"
+	cargo 0
+	personality
+		appeasing frugal harvests mining staying
+		confusion 30
+	variant 10
+		"Myaede (Mining, Defensive)"
+	variant 6
+		"Myaede (Mining)"
+		"Stolsaqra" 2
+	variant 6
+		"Myaede (Mining, Defensive)"
+		"Stolsaqra" 2
+	variant 2
+		"Ojde (Mining)"
+		"Stolsaqra" 2
+
+fleet "People's Houses"
+	government "People's Houses"
+	names "successor"
+	cargo 3
+	commodities "Food" "Clothing" "Metal" "Plastic" "Medical" "Heavy Metals"
+	outfitters "Successor Basics"
+	personality
+		disables harvests mining plunders
+		confusion 20
+	variant 10
+		"Kvelqde-Khora"
+	variant 8
+		"Kvelqde (Violent)"
+	variant 6
+		"Kvelqde-Khora (Mining)"
+	variant 6
+		"Kvelqde (Violent)" 2
+	variant 5
+		"Kvelqde (Violent)"
+		"Kvelqde-Khora"
+	variant 6
+		"Kvelqde-Khora" 2
+	variant 2
+		"Stolsaqra"
+	variant 2
+		"Kvelqde-Khora (Mining)"
+		"Stolsaqra"
+	variant 2
+		"Myaede (Violent)"
+	variant
+		"Myaede (Violent)"
+		"Kvelqde-Khora" 2
+
+fleet "People's Houses Raiders"
+	government "People's Houses (Hostile)"
+	names "successor"
+	cargo 0
+	personality
+		disables harvests plunders
+		confusion 20
+	variant 10
+		"Kvelqde-Khora"
+	variant 6
+		"Stolsaqra"
+	variant 4
+		"Kvelqde-Khora" 2
+	variant 4
+		"Kvelqde-Khora"
+		"Kvelqde (Violent)"
+	variant 2
+		"Myaede (Violent)"
+		"Kvelqde-Khora" 2
+	
+fleet "Small Old Houses"
+	personality
+		heroic
+	government "Old Houses"
+	names "high houses"
+	cargo 0
+	variant 6
+		"Stolsaqra (Military)"
+	variant 2
+		"Veusade" 3
+	variant 2
+		"Seiitej" 2
+		"Aaulqra"
+	variant 2
+		"Aaulqra" 2
+	variant 4
+		"Veusade"
+	variant 4
+		"Seiitej"
+	variant 4
+		"Aaulqra"
+
+fleet "Large Old Houses"
+	government "Old Houses"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Kaskhorade" 2
+		"Aaulqra" 2
+	variant 6
+		"Kaskhorade" 3
+	variant 4
+		"Aaulqra" 3
+		"Veusade" 2
+		"Seiitej" 2
+
+fleet "Old Houses Surveillance"
+	government "Old Houses"
+	names "high houses"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 10
+		"Stolsaqra (Military)"
+	variant 5
+		"Veusade (Surveillance)"
+	variant 5
+		"Stolsaqra (Military)" 2
+
+fleet "Small New Houses"
+	government "New Houses"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Stolsaqra (Military)"
+	variant 10
+		"Stolsaqra (Military)" 2
+	variant 8
+		"Vujlet"
+	variant 7
+		"Vujlet" 2
+	variant 7
+		"Vujlet"
+		"Stolsaqra (Military)" 2
+	variant 4
+		"Vujlet" 3
+	variant 4
+		"Veusade"
+	variant 4
+		"Seiitej"
+	variant 2
+		"Seiitej"
+		"Stolsaqra (Military)" 2
+	variant 2
+		"Veusade" 2
+
+fleet "Large New Houses"
+	government "New Houses"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Aaulqra"
+	variant 6
+		"Kaskhorade"
+	variant 4
+		"Kaskhorade"
+		"Aaulqra"
+	variant 4
+		"Aaulqra" 2
+	variant 3
+		"Aaulqra" 2
+		"Vujlet" 4
+	variant 3
+		"Kaskhorade"
+		"Vujlet" 4
+	variant 2
+		"Kaskhorade" 2
+		"Vujlet" 2
+		"Veusade" 2
+	variant 5
+		"Kaskhorade"
+		"Aaulqra" 3
+		"Veusade" 2
+		"Vujlet" 4
+	variant
+		"Vujlet" 5
+	variant
+		"Seiitej" 3
+
+fleet "New Houses Surveillance"
+	government "New Houses"
+	names "high houses"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 5
+		"Stolsaqra (Military)"
+	variant 2
+		"Stolsaqra (Military)" 2
+	variant 2
+		"Vujlet (Surveillance)"
+	variant
+		"Veusade (Surveillance)"
+
+fleet "Kaatrij Home"
+	government "House Kaatrij"
+	names "high houses"
+	cargo 0
+	personality
+		heroic opportunistic
+	variant 10
+		"Stolsaqra (Military)" 2
+	variant 4
+		"Stolsaqra (Military)" 3
+	variant 4
+		"Vujlet (Surveillance)"
+	variant 3
+		"Vujlet (Surveillance)" 2
+	variant 2
+		"Veusade (Surveillance)"
+	variant 2
+		"Vujlet (Surveillance)" 3
+
+fleet "Aqrabe Home"
+	government "House Aqrabe"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Aaulqra"
+	variant 10
+		"Aaulqra (Sniper)"
+	variant 4
+		"Aaulqra"
+		"Vujlet" 2
+	variant 2
+		"Aaulqra (Sniper)"
+		"Veusade" 2
+
+fleet "Seineq Home"
+	government "House Seineq"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Ejniisde"
+		"Stolsaqra (Military)" 2
+	variant 6
+		"Ejniisde"
+		"Vujlet" 2
+	variant 4
+		"Kaskhorade"
+	variant 2
+		"Kaskhorade"
+		"Vujlet" 2
+
+fleet "Chydiyi Home"
+	government "House Chydiyi"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Aaulqra"
+		"Stolsaqra (Military)" 2
+	variant 10
+		"Aaulqra (Sniper)"
+		"Stolsaqra (Military)" 2
+	variant 4
+		"Aaulqra"
+		"Veusade" 2
+	variant 2
+		"Aaulqra (Sniper)"
+		"Veusade" 2
+	variant 2
+		"Kaskhorade (Brawler)" 2
+	variant 2
+		"Kaskhorade (Sniper)"
+		"Veusade" 2
+
+fleet "Myurej Home"
+	government "House Myurej"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Seiitej"
+		"Stolsaqra (Military)" 2
+	variant 6
+		"Ejniisde"
+		"Seiitej" 2
+	variant 4
+		"Kaskhorade (Brawler)"
+		"Seiitej"
+	variant 2
+		"Kaskhorade"
+		"Seiitej" 2
+
+fleet "Sioeora Home"
+	government "House Sioeora"
+	names "high houses"
+	cargo 0
+	personality
+		heroic
+	variant 10
+		"Stolsaqra (Military)" 2
+	variant 6
+		"Seiitej"
+	variant 4
+		"Seiitej"
+		"Nnaatej"
+		"Stolsaqra (Military)" 2
+	variant 2
+		"Seiitej" 2
+		"Nnaatej" 2

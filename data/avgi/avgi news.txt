@@ -1,0 +1,507 @@
+# Copyright (c) 2023 by Azure
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+
+news "avgi siege civilian"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi"
+		attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+		word
+			" civilian"
+			" citizen"
+			" bystander"
+			" onlooker"
+			""
+	message
+		word
+			`"Dejection. Once this star system was our own, but now we only hold the soil beneath our wings."`
+			`"Rejection. The Consonance claims to speak for the Avgi, yet none of us in the occupied systems voted for their rule."`
+			`"Remembrance. The Aberrations tried to bombard our cities early in the war, but our defense systems were able to shoot most of their projectiles down."`
+			`"Remembrance. Much of my family was lost when the Aberrant destroyed our cylinder habitats. In the Anax system, only the Nisos Cylinder survived."`
+			`"Guilt. Twelve million Avgi lived on each of the cylinder habitats. Less than one in six made it out alive."`
+			`"Worry. If not for our ground-to-orbit laser batteries, the Aberrant would surely have invaded the surface by now."`
+			`"Sorrow. You can see the debris from our shattered skyhooks in orbit with the naked eye."`
+			`"Anger. Why did the Consonance have to abandon our space? The surface of our core planets could have sheltered our ships, but instead they ran to save themselves."`
+			`"Curiosity. I've never been to the Tangled Shroud, but I heard it is a safe place away from the Aberrant."`
+			`"Satisfaction. Every time an Aberration comes too close, we hit it with half a dozen surface-to-orbit nuclear missiles."`
+			`"Optimism. Despite the siege of our star systems, the surface of our inhabited planets remain quite safe from attack."`
+
+
+news "avgi siege merchant"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi"
+		attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+		word
+			" "
+		word
+			"smuggler"
+			"merchant" 3
+			"merchant captain" 3
+	message
+		word
+			`"Relief. You wouldn't believe how hard it is to run a blockade against those Aberrant!"`
+			`"Frustration. We'd be able to smuggle more people out to the Tangled Shroud in the south if there was room to house them all."`
+			`"Appeasing. We can't take all of you with us, only these names on the list the Assembly gave us."`
+			`"Exasperation. No one understands that we can't just take everyone with us; there simply aren't enough habitats past the Shroud. The Consonance had to set an evacuation quota for a reason!"`
+			`"Frustration. We're always being asked to try and retrieve advanced equipment from the homeworlds, but it's simply too difficult to get it back to the Shroud."`
+
+
+news "avgi siege hatchling"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi"
+		attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+		word
+			" "
+		word
+			"hatchling"
+			"youngling"
+			"youth"
+	message
+		word
+			`"Wonder. I heard we could once travel the stars. Do you think we'll ever return?"`
+			`"Confusion. How is it that there are Avgi in other star systems, but we can't launch anything from this planet without it being destroyed?"`
+			`"Sadness. I don't know if I'll ever be able to visit another planet."`
+			`"Hurt. Why do the aliens attack us? We never did anything to them."`
+			`"Loss. I was born on a space station, but now I am trapped on a planet, weighed down by the ground itself."`
+			`"Despair. My family was lost in an Aberrant attack a year ago. It will never be the same again."`
+
+
+news "avgi merchant"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi" "Avgi (Consonance)" "Avgi (Dissonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Commercial"
+			"Independent"
+			"Merchant"
+			"Spacecraft"
+			"Starship"
+		word
+			" "
+		word
+			"captain"
+			"pilot"
+			"skipper"
+	message
+		word
+			`"Dejection. Reactor fuel grows in price each and every day."`
+			`"Relief. My ship barely made it to this port, ahead of a swarm of Aberrations!"`
+			`"Secrecy. The taxes levied by the Consonance can be evaded at certain ports, if one knows where to look."`
+			`"Defiance. I may not have a credit to my name, but no one will take my ship from me while I still live."`
+			`"Doubt. If the Aberrant could reach us inside the Tangled Shroud, they would have by now. I don't see why the new taxes are necessary."`
+			`"Irony. The only reason every freighter isn't automated these days is piracy. Thank you, pirates!"`
+			`"Intrigue. Did you hear about the new trade route through the Tangled Shroud? I smell profit!"`
+			`"Pride. My shipping company helped over a thousand Avgi escape Stilacrest before its skyhook was broken. I still get letters of gratitude to this day!"`
+			`"Satisfaction. My transport business escaped the Incursion with nearly all of its ships intact. Now I'm one of the richest Avgi in the galaxy!"`
+			`"Sadness. It's a shame we lose a convoy to the Aberrant nearly every week."`
+
+
+news "avgi politician"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+		word
+			" "
+		word
+			"politician"
+			"bureaucrat"
+			"economist"
+			"planner"
+			"commissioner"
+			"manager"
+			"political aide"
+			"political staffer"
+			"political assistant"
+	message
+		word
+			`"Exasperation. Everyone in the Assembly knows the taxes and quotas are unpopular, but there's no other way to fight the war against the Aberrant."`
+			`"Pride. Before the Incursion, there were over a thousand recognized independent polities among the Avgi. Now, the Consonance is ready to unite our species."`
+			`"Mocking. Why of course, I never considered before that we should simply build more ships to defeat the Aberrant. Have you considered petitioning the Assembly with your idea?"`
+			`"Humor. Reaching a consensus among hundreds of independent polities is more difficult than fighting an existential war for the survival of your species. And less exciting."`
+			`"Reservation. While those of us who understand matters of policy accept that the war economy is necessary, the people are beginning to chafe under the long economic austerity it has imposed. More needs to be done to inform the common people lest we lose the war behind the front lines."`
+			`"Assurance. The current debts will surely not be enforced once the war ends. And if they are, we'll be the ones collecting them."`
+			"An Avgi clothed in dark tassels flits overhead, tailed by half a dozen journalists buzzing with questions and demands for answers."
+
+
+news "avgi military"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+		word
+			" "
+		word
+			"Twilight Guard" 9
+			"Twilight Officer" 6
+			"Twilight Captain" 3
+			"Twilight Admiral"
+	message
+		word
+			`"Have you any reports of Aberrations in the Shroud, question?"`
+			`"Pensive. Sometimes I wonder at the future of our species, and whether we are up to the task of defending it."`
+			`"Resolve. The Guard is the only thing standing between our people and the Aberrant, and I intend to do my duty or die trying."`
+			`"Pride. Once I was a mere page on a courier ship, moving stacks of memory sheets between star systems. Look at me now!"`
+
+
+news "avgi safety advisory"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Safety Advisory"
+			"Safety Bulletin"
+			"Broadcast Alert"
+			"Public Service Announcement"
+	message
+		word
+			`"Caution. `
+			`"Warning. `
+			`"Advisement. `
+			`"Diligence. `
+			`"Alert. `
+			`"Vigilance. `
+		word
+			`Large Aberration swarm reported to have entered the Tangled Shroud."`
+			`Missing convoy reported; suspected stranded in the Tangled Shroud."`
+			`Missing convoy reported; suspected lost in the Tangled Shroud."`
+			`Missing fleet reported; suspected stranded in the Tangled Shroud."`
+			`Missing fleet reported; suspected lost in the Tangled Shroud."`
+			`The defensive cordon at Arche is not impenetrable. Remain vigilant."`
+			`Report all Aberration sightings as soon as possible."`
+	message
+		word
+			"The message board chirps in an Avgi language your translator does not appear to be compatible with."
+
+
+news "avgi missing advisory"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Safety Advisory"
+			"Broadcast Alert"
+			"Public Service Announcement"
+			"Missing Persons Report"
+	message
+		word
+			`"`
+		word
+			"Caution."
+			"Warning."
+			"Alert."
+		word
+			" "
+		word
+			"Convoy"
+			"Fleet"
+			"Patrol"
+			"Independent ship"
+			"Scout"
+		word
+			" "
+		word
+			"reported lost"
+			"reported missing"
+			"reported absent"
+			"failed check-in"
+			"missed check-in"
+		word
+			", "
+		word
+			"last sighted"
+			"last spotted"
+			"last reported"
+			"last determined"
+		word
+			" "
+		word
+			"leaving"
+			"entering"
+			"transiting"
+		word
+			" "
+		word
+			"the Ensemble system"
+			"the Interlude system"
+			"the Prelude system"
+			"the Demilude system"
+			"the Concerto system"
+			"the Ballad system"
+			"the Arche system"
+			"Peripheria"
+			"Weledos"
+			"Outpost Enka"
+			"Outpost Tekis"
+			"Outpost Leto"
+		word
+			`.`
+
+news "avgi student happy"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+			"Carefree"
+			"Successful"
+			"Bright"
+		word
+			" "
+		word
+			"student" 3
+			"researcher"
+	message
+		word
+			`"Happiness. I'm about to graduate with my mastery in physics!"`
+			`"Happiness. I'm about to graduate with my mastery in economics!"`
+			`"Happiness. I'm about to graduate with my mastery in engineering!"`
+			`"Happiness. I'm about to graduate with my mastery in nanotechnology!"`
+			`"Happiness. I'm about to graduate with my mastery in genetics!"`
+			`"Happiness. I'm about to graduate with my mastery in aerodynamics!"`
+			`"Enthusiasm. I can't wait to go into academia after I graduate! I have a position lined up and everything!"`
+			`"Gratitude. The appearance of those humans got me the funding I needed to complete my xenology mastery. Thank you, humanity!"`
+			`"Joy. Midterms are finally over!"`
+			`"Have you seen my homework, question?"`
+			`"My professor refused to believe me when I said an Aberrant ate my homework, amusement."`
+			`"Annoyance. The quality of education out here just isn't the same as back on Aviskir."`
+			`"Annoyance. The quality of education out here just isn't the same as back on Livloua."`
+
+
+news "avgi student frustrated"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+			"Struggling"
+			"Frustrated"
+
+		word
+			" "
+		word
+			"student" 3
+			"researcher"
+	message
+		word
+			`"Frustration. I wanted to study political science, but all they teach out here is 'practical' subjects. And people wonder why the Assembly is filled with incompetents..."`
+			`"Depression. I was going to study linguistics, but the university made me go into engineering instead. We already have enough engineers, what we need out here is culture!"`
+			`"Anger. I wanted to study the arts, but I was ridiculed and accused of being a dead weight on society. Well, a society without art is no society at all!"`
+			`"Anger. I wanted to study sociology, but that apparently isn't 'useful' to the War. Fools, the lot of them!"`
+			`"Worry. I hope I can find a good job once I'm out of school, but I might have to just work in the shipyards for a few years."`
+			`"Worry. I don't think I did well on that last exam."`
+			`"Have you seen my homework, question?"`
+			`"My professor refused to believe me when I said an Aberrant ate my homework, dejection."`
+			`"Annoyance. The quality of education out here just isn't the same as back on Aviskir."`
+			`"Annoyance. The quality of education out here just isn't the same as back on Livloua."`
+
+
+news "avgi physicist"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi"
+			"Respected"
+			"Accredited"
+			"Energistics"
+			"Gravitational"
+			"Theoretics"
+		word
+			" "
+		word
+			"scientist"
+			"researcher"
+			"physicist"
+	message
+		word
+			`"Gratitude. It is fortunate that the sum of our knowledge has been preserved, even in the most remote depths of space."`
+			`"Frustation. Energy shields should not work in the way they do. They make no sense!"`
+			`"Frustation. Even now, decades after we invented the hyperdrive, only a small group of experts can truly claim to understand the way it works."`
+			`"Pride. I did my thesis on a new type of solar cell junction. Now I see them on half the ships in the sky!"`
+			`"Amusement. You always see bright up-and-coming students claim to have invented a new kind of faster than light drive. Eighty years ago, one of them was actually right!"`
+			`"Curiosity. It's a wonder that once wormholes were considered the most likely option for traveling faster than light. I wonder how the hyperdrive was invented first?"`
+			`"Information. Our engineers created a type of coating that can greatly reduce a ship's atmospheric drag by causing shed vortices to destructively interfere with each other."`
+			`"Amazement. The simulations say that a memory diamond can retain its information for millions of years, if stored in stable conditions. That might outlast our entire civilization!"`
+
+
+news "avgi astronomer"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi "
+		word
+			"Astronomer"
+			"Astrophysicist"
+			"Cosmologist"
+	message
+		word
+			`"Instructive. The Twilight Nebula is a reflection nebula nearly a thousand light years wide. Illuminated by relatively young neutron stars, it is the remnants of multiple supernovae that occurred millions of years ago."`
+			`"Inquisitive. It is notable that the star cluster southeast of Stream is mostly made up of young, hot stars. That part of the Twilight nebula was likely once a dense molecular cloud, compact enough to collapse into giant stars millions of years ago."`
+			`"Tutelage. The Twilight Nebula is not in hydrostatic equilibrium. It is slowly contracting as it cools, a stellar nursery on a massive scale."`
+			`"Frustration. The galaxy is three-dimensional, but you wouldn't know it from the way everyone draws their maps!"`
+			`"Annoyance. Using cardinal directions like 'North' and 'West' to describe locations in the galaxy should be a crime! Polar coordinates for 'spinward' and 'rimward' would be far better."`
+			`"Curiosity. To this day, there is no explanation as to why some systems are linked by starways and others are not."`
+
+
+news "avgi engineer"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)" "Avgi (Dissonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi "
+		word
+			"engineer"
+			"mechanical engineer"
+			"aerospace engineer"
+			"mechanic"
+	message
+		word
+			`"Fascination. You would be surprised at how many problems shields, even weak ones, solve. They aren't only good for protecting against weapons fire!"`
+			`"Curiosity. I am told our current materials science is within an order of magnitude of the limits of the atomic bond strength, yet the Aberrant hulls are so much stronger than our own. How is that possible?"`
+			`"Amusement. We once thought our materials science was at the limit of what is possible with atomic matter. Then we met the Aberrant. What else do we have yet to learn?"`
+			`"Appreciation. Most people don't realize just how hard interstellar travel was before the hyperdrive."`
+			`"Advisement. You'd be surprised at how fast a fusion torch can wear out if you don't maintain it properly. Radiation is nasty business!"`
+			`"Appreciation. Before humans brought us energy shields, torchships had to be a lot more careful about where they pointed their engines!"`
+			`"Annoyance. Everyone should work in a machine shop at least once in their lives, before claiming a nanometer tolerance on a bolt is 'reasonable!'"`
+
+
+news "avgi artist"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi" 6
+			"Renowned"
+			"Talented" 3
+			"Fledgling" 6
+			"Struggling" 6
+		word
+			" "
+		word
+			"artist"
+			"painter"
+			"sculptor"
+			"engraver"
+			"enameler"
+			"gilder"
+			"writer"
+	message
+		word
+			`"Pride. I completed a new piece just the other day."`
+			`"Frustration. No one's in the market for art these days."`
+			`"Don't believe people who say art is a waste, emphasis. It's not like we're taking resources away from the War effort."`
+
+
+news "avgi performer"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi" 6
+			"Renowned"
+			"Talented" 3
+			"Fledgling" 6
+			"Struggling" 6
+		word
+			" "
+		word
+			"musician"
+			"performer"
+			"stage actor"
+	message
+		word
+			`"Pride. I performed a piece just the other day in front of the entire Assembly. I'm sure they loved it!"`
+			`"Pride. The Twilight Guard loves to book me to entertain the Guards coming back from the front lines. It's good to know I'm doing my part."`
+			`"Satisfaction. You never know when one of the people who managed to buy their way out of the siege wants entertainment, but the paycheck makes it all worth it."`
+
+
+news "avgi doctor"
+	to show
+		has "language: Avgi"
+	location
+		government "Avgi (Consonance)" "Avgi (Dissonance)"
+		not attributes "aberrant siege"
+	name
+		word
+			"Avgi "
+		word
+			"doctor"
+			"healer"
+			"biomedic"
+			"surgeon"
+			"medic"
+	message
+		word
+			`"Appreciation. The natural lifespan of an Avgi averaged about sixty years, before genetic engineering and nanomedicine more than doubled it."`
+			`"Amusement. The number of people who think medicytes can cure any disease or heal any condition grows every time a new version is released. If only they really worked that easily..."`
+			`"Fascination. Avgi have teardrop-shaped brains made of opaque quartz. The foggy color actually comes from organic tissue embedded in the crystal!"`
+			`"Interest. Some people used to believe that our brains could be revived after death, since the crystal they are made of remains intact. Sadly, the organic tissue that manipulates the crystal matrix to form memories decays shortly after death."`
+			`"Consideration. Despite our optical nervous system, organic nervous tissue is still used to modulate the conversion of optical signals to electrochemical ones at nerve interfaces."`
+			`"Consideration. Due to the high amount of ultraviolet light produced by Anax, our homeworld's star, life on Aviskir evolved to be more resilient against radiation damage."`
+			`"Recollection. I once worked on a freighter torchship, moving luxury goods around and making rush deliveries. I got very good at dealing with radiation sickness!"`
+			`"Recollection. I once worked at an asteroid manufactory, spinning asteroid nickelsteel out into cylinder habitats. We didn't have a serious industrial accident once in four years!"`

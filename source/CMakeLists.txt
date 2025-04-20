@@ -8,7 +8,7 @@ if(MSVC)
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
-		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "$<$<CONFIG:Release>:-fno-rtti>")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
@@ -31,10 +31,6 @@ target_sources(EndlessSkyLib PRIVATE
 	AsteroidField.h
 	BankPanel.cpp
 	BankPanel.h
-	BatchDrawList.cpp
-	BatchDrawList.h
-	BatchShader.cpp
-	BatchShader.h
 	Bitset.cpp
 	Bitset.h
 	BoardingPanel.cpp
@@ -47,7 +43,7 @@ target_sources(EndlessSkyLib PRIVATE
 	CargoHold.h
 	CategoryList.cpp
 	CategoryList.h
-	CategoryTypes.h
+	CategoryType.h
 	ClickZone.h
 	Collision.cpp
 	Collision.h
@@ -58,6 +54,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Color.h
 	Command.cpp
 	Command.h
+	ConditionAssignments.cpp
+	ConditionAssignments.h
+	ConditionEntry.cpp
+	ConditionEntry.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -91,8 +91,6 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
-	DrawList.cpp
-	DrawList.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
@@ -103,12 +101,8 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.h
 	ExclusiveItem.h
 	FighterHitHelper.h
-	File.cpp
-	File.h
 	Files.cpp
 	Files.h
-	FillShader.cpp
-	FillShader.h
 	FireCommand.cpp
 	FireCommand.h
 	Fleet.cpp
@@ -117,8 +111,6 @@ target_sources(EndlessSkyLib PRIVATE
 	FleetCargo.h
 	Flotsam.cpp
 	Flotsam.h
-	FogShader.cpp
-	FogShader.h
 	FormationPattern.cpp
 	FormationPattern.h
 	FormationPositioner.cpp
@@ -149,10 +141,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
-	ImageBuffer.cpp
-	ImageBuffer.h
-	ImageSet.cpp
-	ImageSet.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
@@ -161,11 +149,9 @@ target_sources(EndlessSkyLib PRIVATE
 	Interface.h
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
-	JumpTypes.h
+	JumpType.h
 	Logger.cpp
 	Logger.h
-	LineShader.cpp
-	LineShader.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -186,10 +172,6 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
-	Mask.cpp
-	Mask.h
-	MaskManager.cpp
-	MaskManager.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
@@ -200,6 +182,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Messages.h
 	Minable.cpp
 	Minable.h
+	MinableDamageDealt.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
@@ -214,16 +197,12 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
-	Orders.cpp
-	Orders.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
 	OutfitInfoDisplay.h
 	OutfitterPanel.cpp
 	OutfitterPanel.h
-	OutlineShader.cpp
-	OutlineShader.h
 	Panel.cpp
 	Panel.h
 	Paragraphs.cpp
@@ -248,8 +227,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Plugins.h
 	Point.cpp
 	Point.h
-	PointerShader.cpp
-	PointerShader.h
 	Politics.cpp
 	Politics.h
 	Port.cpp
@@ -273,17 +250,19 @@ target_sources(EndlessSkyLib PRIVATE
 	Rectangle.h
 	RenderBuffer.cpp
 	RenderBuffer.h
-	RingShader.cpp
-	RingShader.h
+	RouteEdge.cpp
+	RouteEdge.h
+	RoutePlan.cpp
+	RoutePlan.h
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
 	Screen.cpp
 	Screen.h
+	ScrollBar.cpp
+	ScrollBar.h
 	ScrollVar.h
 	Set.h
-	Shader.cpp
-	Shader.h
 	Ship.cpp
 	Ship.h
 	ShipEvent.cpp
@@ -296,20 +275,14 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
+	ShipNameDialog.cpp
+	ShipNameDialog.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
 	ShopPanel.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
-	Sprite.cpp
-	Sprite.h
-	SpriteSet.cpp
-	SpriteSet.h
-	SpriteShader.cpp
-	SpriteShader.h
-	StarField.cpp
-	StarField.h
 	StartConditions.cpp
 	StartConditions.h
 	StartConditionsPanel.cpp
@@ -318,6 +291,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	StringInterner.cpp
 	StringInterner.h
+	Swizzle.cpp
+	Swizzle.h
 	System.cpp
 	System.h
 	SystemEntry.h
@@ -357,9 +332,49 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Music.h
 	audio/Sound.cpp
 	audio/Sound.h
+	audio/SoundCategory.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	image/BlendingMode.h
+	image/ImageBuffer.cpp
+	image/ImageBuffer.h
+	image/ImageFileData.cpp
+	image/ImageFileData.h
+	image/ImageSet.cpp
+	image/ImageSet.h
+	image/Mask.cpp
+	image/Mask.h
+	image/MaskManager.cpp
+	image/MaskManager.h
+	image/Sprite.cpp
+	image/Sprite.h
+	image/SpriteSet.cpp
+	image/SpriteSet.h
+	shader/BatchDrawList.cpp
+	shader/BatchDrawList.h
+	shader/BatchShader.cpp
+	shader/BatchShader.h
+	shader/DrawList.cpp
+	shader/DrawList.h
+	shader/FillShader.cpp
+	shader/FillShader.h
+	shader/FogShader.cpp
+	shader/FogShader.h
+	shader/LineShader.cpp
+	shader/LineShader.h
+	shader/OutlineShader.cpp
+	shader/OutlineShader.h
+	shader/PointerShader.cpp
+	shader/PointerShader.h
+	shader/RingShader.cpp
+	shader/RingShader.h
+	shader/Shader.cpp
+	shader/Shader.h
+	shader/SpriteShader.cpp
+	shader/SpriteShader.h
+	shader/StarField.cpp
+	shader/StarField.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
 	test/Test.cpp
@@ -368,6 +383,9 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestContext.h
 	test/TestData.cpp
 	test/TestData.h
+	text/Alignment.h
+	text/Clipboard.cpp
+	text/Clipboard.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp
@@ -376,13 +394,12 @@ target_sources(EndlessSkyLib PRIVATE
 	text/FontSet.h
 	text/Format.cpp
 	text/Format.h
+	text/Layout.h
 	text/Table.cpp
 	text/Table.h
+	text/Truncate.h
 	text/Utf8.cpp
 	text/Utf8.h
 	text/WrappedText.cpp
 	text/WrappedText.h
-	text/alignment.hpp
-	text/layout.hpp
-	text/truncate.hpp
 )

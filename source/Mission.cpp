@@ -141,6 +141,8 @@ void Mission::Load(const DataNode &node)
 		return;
 	}
 	name = node.Token(1);
+	if(!DataNode::IsConditionName(name))
+		node.PrintTrace("Error: Invalid mission name");
 
 	for(const DataNode &child : node)
 	{
@@ -204,8 +206,12 @@ void Mission::Load(const DataNode &node)
 			isVisible = false;
 		else if(child.Token(0) == "priority")
 			hasPriority = true;
+		else if(child.Token(0) == "non-blocking")
+			isNonBlocking = true;
 		else if(child.Token(0) == "minor")
 			isMinor = true;
+		else if(child.Token(0) == "offer precedence" && child.Size() >= 2)
+			offerPrecedence = child.Value(1);
 		else if(child.Token(0) == "autosave")
 			autosave = true;
 		else if(child.Token(0) == "job")
@@ -227,6 +233,8 @@ void Mission::Load(const DataNode &node)
 			location = SHIPYARD;
 		else if(child.Token(0) == "outfitter")
 			location = OUTFITTER;
+		else if(child.Token(0) == "job board")
+			location = JOB_BOARD;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
@@ -370,8 +378,12 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("invisible");
 		if(hasPriority)
 			out.Write("priority");
+		if(isNonBlocking)
+			out.Write("non-blocking");
 		if(isMinor)
 			out.Write("minor");
+		if(offerPrecedence)
+			out.Write("offer precedence", offerPrecedence);
 		if(autosave)
 			out.Write("autosave");
 		if(location == LANDING)
@@ -380,6 +392,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("shipyard");
 		else if(location == OUTFITTER)
 			out.Write("outfitter");
+		else if(location == JOB_BOARD)
+			out.Write("job board");
 		else if(location == ASSISTING)
 			out.Write("assisting");
 		else if(location == BOARDING)
@@ -447,11 +461,11 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.EndChild();
 		}
 		if(destination)
-			out.Write("destination", destination->Name());
+			out.Write("destination", destination->TrueName());
 		for(const System *system : waypoints)
-			out.Write("waypoint", system->Name());
+			out.Write("waypoint", system->TrueName());
 		for(const System *system : visitedWaypoints)
-			out.Write("waypoint", system->Name(), "visited");
+			out.Write("waypoint", system->TrueName(), "visited");
 
 		for(const Planet *planet : stopovers)
 			out.Write("stopover", planet->TrueName());
@@ -459,9 +473,9 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("stopover", planet->TrueName(), "visited");
 
 		for(const System *system : markedSystems)
-			out.Write("mark", system->Name());
+			out.Write("mark", system->TrueName());
 		for(const System *system : unmarkedSystems)
-			out.Write("mark", system->Name(), "unmarked");
+			out.Write("mark", system->TrueName(), "unmarked");
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
@@ -472,10 +486,10 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			it.second.Save(out);
 		// Save any "on enter" actions that have not been performed.
 		for(const auto &it : onEnter)
-			if(!didEnter.count(&it.second))
+			if(!didEnter.contains(&it.second))
 				it.second.Save(out);
 		for(const MissionAction &action : genericOnEnter)
-			if(!didEnter.count(&action))
+			if(!didEnter.contains(&action))
 				action.Save(out);
 	}
 	out.EndChild();
@@ -485,8 +499,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 void Mission::NeverOffer()
 {
-	// Add the equivalent "never" condition, `"'" != 0`.
-	toOffer.Add("has", "'");
+	toOffer.MakeNever();
 }
 
 
@@ -588,11 +601,27 @@ bool Mission::HasPriority() const
 
 
 
+// Check if this mission is a "non-blocking" mission.
+// Such missions will not prevent minor missions from being offered alongside them.
+bool Mission::IsNonBlocking() const
+{
+	return isNonBlocking;
+}
+
+
+
 // Check if this mission is a "minor" mission. Minor missions will only be
 // offered if no other missions (minor or otherwise) are being offered.
 bool Mission::IsMinor() const
 {
 	return isMinor;
+}
+
+
+
+int Mission::OfferPrecedence() const
+{
+	return offerPrecedence;
 }
 
 
@@ -760,7 +789,7 @@ bool Mission::HasClearance(const Planet *planet) const
 {
 	if(clearance.empty())
 		return false;
-	if(planet == destination || stopovers.count(planet) || visitedStopovers.count(planet))
+	if(planet == destination || stopovers.contains(planet) || visitedStopovers.contains(planet))
 		return true;
 	return (!clearanceFilter.IsEmpty() && clearanceFilter.Matches(planet));
 }
@@ -990,13 +1019,7 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
 	substitutions.Substitutions(subs, player.Conditions());
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
-	if(flagship)
-	{
-		subs["<ship>"] = flagship->Name();
-		subs["<model>"] = flagship->DisplayModelName();
-	}
+	player.AddPlayerSubstitutions(subs);
 
 	const auto &playerConditions = player.Conditions();
 	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
@@ -1156,7 +1179,7 @@ bool Mission::RequiresGiftedShip(const string &shipId) const
 			requiredActions.insert(Trigger::WAYPOINT);
 	}
 	for(const auto &it : actions)
-		if(requiredActions.count(it.first) && it.second.RequiresGiftedShip(shipId))
+		if(requiredActions.contains(it.first) && it.second.RequiresGiftedShip(shipId))
 			return true;
 
 	return false;
@@ -1287,7 +1310,9 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.hasFailed = true;
 	result.isVisible = isVisible;
 	result.hasPriority = hasPriority;
+	result.isNonBlocking = isNonBlocking;
 	result.isMinor = isMinor;
+	result.offerPrecedence = offerPrecedence;
 	result.autosave = autosave;
 	result.location = location;
 	result.overridesCapture = overridesCapture;
@@ -1429,11 +1454,11 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	subs["<passengers>"] = (result.passengers == 1) ? "passenger" : "passengers";
 	subs["<fare>"] = (result.passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	if(player.GetPlanet())
-		subs["<origin>"] = player.GetPlanet()->Name();
+		subs["<origin>"] = player.GetPlanet()->DisplayName();
 	else if(boardingShip)
 		subs["<origin>"] = boardingShip->Name();
-	subs["<planet>"] = result.destination ? result.destination->Name() : "";
-	subs["<system>"] = result.destination ? result.destination->GetSystem()->Name() : "";
+	subs["<planet>"] = result.destination ? result.destination->DisplayName() : "";
+	subs["<system>"] = result.destination ? result.destination->GetSystem()->DisplayName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	subs["<date>"] = result.deadline.ToString();
 	subs["<day>"] = result.deadline.LongString();
@@ -1456,8 +1481,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 				stopovers += result;
 				planets += result;
 			}
-			stopovers += planet->Name() + " in the " + planet->GetSystem()->Name() + " system";
-			planets += planet->Name();
+			stopovers += planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
+			planets += planet->DisplayName();
 		}
 		subs["<stopovers>"] = stopovers;
 		subs["<planet stopovers>"] = planets;
@@ -1471,7 +1496,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		{
 			if(count++)
 				systems += (&system != last) ? ", " : (count > 2 ? ", and " : " and ");
-			systems += system->Name();
+			systems += system->DisplayName();
 		}
 		return systems;
 	};
@@ -1496,8 +1521,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(player.Conditions(), subs,
-			sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
@@ -1526,7 +1550,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	}
 	if(oit != onEnter.end())
 	{
-		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->Name() + "'\" in mission \""
+		Logger::LogError("Instantiation Error: Action \"on enter '" + oit->first->TrueName() + "'\" in mission \""
 			+ Identifier() + "\" uses invalid " + std::move(reason));
 		return result;
 	}
@@ -1585,12 +1609,12 @@ int Mission::CalculateJumps(const System *sourceSystem)
 				distanceCalcSettings.AssumesJumpDrive());
 		auto it = destinations.begin();
 		auto bestIt = it;
-		int bestDays = distance.Days(*bestIt);
+		int bestDays = distance.Days(**bestIt);
 		if(bestDays < 0)
 			bestDays = numeric_limits<int>::max();
 		for(++it; it != destinations.end(); ++it)
 		{
-			int days = distance.Days(*it);
+			int days = distance.Days(**it);
 			if(days >= 0 && days < bestDays)
 			{
 				bestIt = it;
@@ -1607,7 +1631,7 @@ int Mission::CalculateJumps(const System *sourceSystem)
 			distanceCalcSettings.WormholeStrat(),
 			distanceCalcSettings.AssumesJumpDrive());
 	// If currently unreachable, this system adds -1 to the deadline, to match previous behavior.
-	expectedJumps += distance.Days(destination->GetSystem());
+	expectedJumps += distance.Days(*destination->GetSystem());
 
 	return expectedJumps;
 }
@@ -1620,7 +1644,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.count(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
+	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
 	{
 		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
@@ -1629,7 +1653,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.count(&action) && action.CanBeDone(player, IsFailed(player)))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(player)))
 			{
 				action.Do(player, ui, this);
 				didEnter.insert(&action);

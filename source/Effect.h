@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "audio/SoundCategory.h"
+
 #include "Angle.h"
 #include "Body.h"
 
@@ -50,6 +52,7 @@ private:
 	std::string name;
 
 	const Sound *sound = nullptr;
+	SoundCategory soundCategory = SoundCategory::EXPLOSION;
 
 	// Parameters used for randomizing spin and velocity. The random angle is
 	// added to the parent angle, and then a random velocity in that direction
@@ -67,6 +70,10 @@ private:
 
 	int lifetime = 0;
 	int randomLifetime = 0;
+
+	// If set, this effect's scale can be modified based on the "zoom" of the object it is used on.
+	// For example, engine points for afterburner effects.
+	bool inheritsZoom = false;
 
 	// Allow the Visual class to access all these private members.
 	friend class Visual;

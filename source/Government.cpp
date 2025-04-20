@@ -132,7 +132,7 @@ void Government::Load(const DataNode &node)
 		bool removeAll = (remove && !hasValue);
 		// If this is the first entry for the given key, and we are not in "add"
 		// or "remove" mode, its previous value should be cleared.
-		bool overwriteAll = (!add && !remove && shouldOverwrite.count(key));
+		bool overwriteAll = (!add && !remove && shouldOverwrite.contains(key));
 
 		if(removeAll || overwriteAll)
 		{
@@ -375,7 +375,7 @@ void Government::Load(const DataNode &node)
 		else if(key == "display name")
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
-			swizzle = child.Value(valueIndex);
+			swizzle = GameData::Swizzles().Get(child.Token(valueIndex));
 		else if(key == "color")
 		{
 			if(child.Size() >= 3 + valueIndex)
@@ -438,7 +438,7 @@ const string &Government::GetTrueName() const
 
 
 // Get the color swizzle to use for ships of this government.
-int Government::GetSwizzle() const
+const Swizzle *Government::GetSwizzle() const
 {
 	return swizzle;
 }
@@ -490,7 +490,7 @@ double Government::PenaltyFor(int eventType, const Government *other) const
 		return PenaltyHelper(eventType, penaltyFor);
 
 	const int id = other->id;
-	const auto &penalties = useForeignPenaltiesFor.count(id) ? other->penaltyFor : penaltyFor;
+	const auto &penalties = useForeignPenaltiesFor.contains(id) ? other->penaltyFor : penaltyFor;
 
 	const auto it = customPenalties.find(id);
 	if(it == customPenalties.end())
@@ -522,7 +522,7 @@ double Government::GetFineFraction() const
 
 bool Government::Trusts(const Government *government) const
 {
-	return government == this || trusted.count(government);
+	return government == this || trusted.contains(government);
 }
 
 

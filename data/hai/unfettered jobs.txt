@@ -134,9 +134,13 @@ mission "Unfettered Jump Drive 4"
 			`	The two Shredders are loaded onto your ship, in exchange for your jump drive.`
 
 			label trade
+			branch spareJD
+				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+			action
+				outfit "Hyperdrive" 1
+			label spareJD
 			action
 				outfit "Jump Drive" -1
-				outfit "Hyperdrive" 1
 				"reputation: Hai (Unfettered)" >?= 40
 
 

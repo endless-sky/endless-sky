@@ -467,8 +467,7 @@ news "quarg anywhere"
 news "ringworld quarg"
 	location
 		attributes "quarg"
-		attributes "station"
-		not planet "Lagrange"
+		attributes "ringworld"
 	name
 		word
 			"Quarg"
@@ -506,3 +505,7 @@ phrase "quarg poems on species"
 		"Make strongest neighbor / See through the guise / Let none forget / The curse of the wise"
 		"With skin of stone / Might, meek, guile / Abilities to hone / And wars to pile"
 		"Twice-blessed pilgrims / Myths of the past / Masses preserve / The royal caste"
+		"Adrift by the clouds / Under watchful eyes / Begin now a journey / To the greatest skies"
+		"Behind wuthering waves / Forgotten tales of yore / Whether decadence or wonder / Claim back forevermore"
+		"Ghosts beyond the grave / Machinations of the mind / Wrath of suns lights the path / To home left behind"
+		"Wrenched whispers / Of stars torn / Estranged twins / Our souls unborn"
