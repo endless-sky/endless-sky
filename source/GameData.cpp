@@ -871,6 +871,13 @@ const StarField &GameData::Background()
 
 
 
+void GameData::StepBackground(const Point &vel, double zoom)
+{
+	background.Step(vel, zoom);
+}
+
+
+
 void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	background.SetHaze(sprite, allowAnimation);

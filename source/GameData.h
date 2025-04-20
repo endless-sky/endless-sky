@@ -54,6 +54,7 @@ class Panel;
 class Person;
 class Phrase;
 class Planet;
+class Point;
 class Politics;
 class Ship;
 class Sprite;
@@ -166,6 +167,7 @@ public:
 	static const CategoryList &GetCategory(const CategoryType type);
 
 	static const StarField &Background();
+	static void StepBackground(const Point &vel, double zoom = 1.);
 	static void SetHaze(const Sprite *sprite, bool allowAnimation);
 
 	static const std::string &Tooltip(const std::string &label);

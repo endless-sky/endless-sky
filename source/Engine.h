@@ -244,8 +244,6 @@ private:
 	// Viewport position and velocity.
 	Point center;
 	Point centerVelocity;
-	// The change in velocity since the last Draw call.
-	mutable Point dv;
 	// Other information to display.
 	Information info;
 	std::vector<Target> targets;

@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Angle.h"
 #include "../Body.h"
 #include "DrawList.h"
-#include "../GameData.h"
 #include "../Interface.h"
 #include "../pi.h"
 #include "../Preferences.h"
@@ -127,25 +126,14 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::Draw(Point vel, const Point &blur, double zoom, const System *system) const
+void StarField::Step(Point vel, double zoom)
 {
-	double density = system ? system->StarfieldDensity() : 1.;
-
-	double baseZoom = zoom;
-
-	// Check preferences for the parallax quality.
-	const auto parallaxSetting = Preferences::GetBackgroundParallax();
-	int layers = (parallaxSetting == Preferences::BackgroundParallax::FANCY) ? 3 : 1;
-	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY ||
-						parallaxSetting == Preferences::BackgroundParallax::FAST);
-
 	if(Preferences::Has("Fixed starfield zoom"))
 	{
 		baseZoom = constants->GetValue("fixed zoom");
 		vel /= constants->GetValue("velocity reducer");
-		zoom = baseZoom;
 	}
-	else if(baseZoom < 0.25)
+	else if(zoom < 0.25)
 	{
 		// When the player's view zoom gets too small, the starfield begins to take up
 		// an extreme amount of system resources, and the tiling becomes very obvious.
@@ -153,16 +141,32 @@ void StarField::Draw(Point vel, const Point &blur, double zoom, const System *sy
 		// rate, and don't go below 0.15 for the starfield's zoom.
 		// 0.25 is the vanilla minimum zoom, so this only applies when the "main view"
 		// interface has been modified to allow lower zoom values.
-		baseZoom = 0.4 * baseZoom + 0.15;
+		baseZoom = 0.4 * zoom + 0.15;
 		// Reduce the movement of the background by the same adjustment as the zoom
 		// so that the background doesn't appear like it's moving way quicker than
 		// the player is.
 		vel /= baseZoom / zoom;
-		zoom = baseZoom;
 	}
+	else
+		baseZoom = zoom;
+
 	pos += vel;
+}
+
+
+
+void StarField::Draw(const Point &blur, const System *system) const
+{
+	double density = system ? system->StarfieldDensity() : 1.;
+
+	// Check preferences for the parallax quality.
+	const auto parallaxSetting = Preferences::GetBackgroundParallax();
+	int layers = (parallaxSetting == Preferences::BackgroundParallax::FANCY) ? 3 : 1;
+	bool isParallax = (parallaxSetting == Preferences::BackgroundParallax::FANCY ||
+						parallaxSetting == Preferences::BackgroundParallax::FAST);
 
 	// Draw the starfield unless it is disabled in the preferences.
+	double zoom = baseZoom;
 	if(Preferences::Has("Draw starfield") && density > 0.)
 	{
 		glUseProgram(shader.Object());

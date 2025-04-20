@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "../Point.h"
 #include "Shader.h"
 
-#include "../Point.h"
 #include "../opengl.h"
 
 #include <vector>
@@ -40,7 +40,8 @@ public:
 	void Init(int stars, int width, const Interface *constants);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
 
-	void Draw(Point vel, const Point &blur, double zoom = 1., const System *system = nullptr) const;
+	void Step(Point vel, double zoom = 1.);
+	void Draw(const Point &blur, const System *system = nullptr) const;
 
 
 private:
@@ -49,15 +50,15 @@ private:
 
 
 private:
-	// The center of the starfield on the screen. Gets adjusted by the
-	// velocity provided to the Draw call.
-	mutable Point pos;
 	// An interface with constants that modify the starfield's behavior.
 	const Interface *constants;
 
 	int widthMod;
 	int tileCols;
 	std::vector<int> tileIndex;
+
+	Point pos;
+	double baseZoom = 1.;
 
 	// Track the haze sprite, so we can animate the transition between different hazes.
 	const Sprite *lastSprite;
