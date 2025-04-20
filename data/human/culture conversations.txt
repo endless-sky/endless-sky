@@ -1101,6 +1101,34 @@ mission "Little Vienna in New Austria"
 			label backtoship
 			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
 
+mission "Set Easter Date"
+	landing
+	repeat
+	non-blocking
+	to offer
+		"easter: a" != "year" * 19
+	on offer
+		# Uses the New Scientist version of the Meeus/Jones/Butcher algorithm to calculate the date of Easter in the Gregorian Calendar.
+		"easter: a" = "year" % 19
+		"easter: b" = ( ( ( "year" % 100 ) - "year" ) / -100 )
+		"easter: c" = "year" % 100
+		"easter: d" = ( ( ( "easter: b" % 4 ) - "easter: b" ) / -4 )
+		"easter: e" = "easter: b" % 4
+
+		"easter: g" = ( ( ( ( "easter: b" * 8 + 13 ) % 25 ) - ( "easter: b" * 8 + 13 ) ) / -25 )
+		"easter: h" = ( ( 19 * "easter: a" + "easter: b" - "easter: d" - "easter: g" + 15 ) % 30 )
+		"easter: i" = ( ( ( "easter: c" % 4 ) - "easter: c" ) / -4 )
+
+		"easter: k" = "easter: c" % 4
+		"easter: l" = ( ( 32 + 2 * "easter: e" + 2 * "easter: i" - "easter: h" - "easter: k" ) % 7 )
+		"easter: m" = ( ( ( ( "easter: a" + 11 * "easter: h" + 19 * "easter: l" ) % 433 ) - ( "easter: a" + 11 * "easter: h" + 19 * "easter: l" ) ) / -433 )
+		"easter: n" = ( ( ( ( "easter: h" + "easter: l" - 7 * "easter: m" + 90 ) % 25 ) - ( "easter: h" + "easter: l" - 7 * "easter: m" + 90 ) ) / -25 )
+
+		"easter: p" = ( ( "easter: h" + "easter: l" - 7 * "easter: m" + 33 * "easter: n" + 19 ) % 32 )
+
+		"easter month" = "easter: n"
+		"easter day" = "easter: p"
+		fail
 
 mission "Easter Celebrations"
 	minor
@@ -1108,8 +1136,8 @@ mission "Easter Celebrations"
 		attributes "religious"
 		government "Deep" "Free Worlds" "Independent" "Neutral" "Pirate" "Republic" "Syndicate"
 	to offer
-		day == 20
-		month == 4
+		day == "easter day"
+		month == "easter month"
 	on offer
 		conversation
 			`During a walk through the spaceport, you observe a small white church. Written on the door in large letters are the words "Stop by for a celebration of the Risen God!"`
