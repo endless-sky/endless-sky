@@ -294,7 +294,7 @@ void GameData::LoadShaders()
 	BatchShader::Init();
 	RenderBuffer::Init();
 
-	background.Init(16384, 4096);
+	background.Init(16384, 4096, Interfaces().Get("starfield"));
 }
 
 

@@ -714,6 +714,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		"Fixed starfield zoom",
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,

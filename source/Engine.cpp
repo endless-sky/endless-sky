@@ -574,6 +574,7 @@ void Engine::Step(bool isActive)
 		else if(jumpCount > 0)
 			--jumpCount;
 	}
+	dv += centerVelocity;
 	ai.UpdateEvents(events);
 	if(isActive)
 	{
@@ -1168,8 +1169,10 @@ void Engine::Draw() const
 		motionBlur *= 1. + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
 
-	GameData::Background().Draw(center, motionBlur, zoom,
+	GameData::Background().Draw(dv, motionBlur, zoom,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+	dv = Point();
+
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 

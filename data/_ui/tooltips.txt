@@ -1406,6 +1406,9 @@ tip "Draw background haze"
 tip "Draw starfield"
 	`Draw the background starfield when in flight.`
 
+tip "Fixed starfield zoom"
+	`Draw the background starfield with a fixed zoom level instead of changing with the view zoom level.`
+
 tip "Parallax background"
 	`Add parallax to objects in the background (haze and starfield). If set to fancy, create three layers of parallax. If set to fast, create one layer of parallax.`
 

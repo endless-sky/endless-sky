@@ -17,12 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Shader.h"
 
+#include "../Point.h"
 #include "../opengl.h"
 
 #include <vector>
 
 class Body;
-class Point;
+class Interface;
 class Sprite;
 class System;
 
@@ -36,10 +37,10 @@ class System;
 // match the motion; otherwise they would seem to jitter around.
 class StarField {
 public:
-	void Init(int stars, int width);
+	void Init(int stars, int width, const Interface *constants);
 	void SetHaze(const Sprite *sprite, bool allowAnimation);
 
-	void Draw(const Point &pos, const Point &vel, double zoom = 1., const System *system = nullptr) const;
+	void Draw(Point vel, const Point &blur, double zoom = 1., const System *system = nullptr) const;
 
 
 private:
@@ -48,6 +49,12 @@ private:
 
 
 private:
+	// The center of the starfield on the screen. Gets adjusted by the
+	// velocity provided to the Draw call.
+	mutable Point pos;
+	// An interface with constants that modify the starfield's behavior.
+	const Interface *constants;
+
 	int widthMod;
 	int tileCols;
 	std::vector<int> tileIndex;
