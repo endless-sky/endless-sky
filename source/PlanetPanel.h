@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "Sale.h"
-#include "text/WrappedText.h"
 
 #include <functional>
 #include <map>
@@ -33,6 +32,7 @@ class PlayerInfo;
 class Ship;
 class SpaceportPanel;
 class System;
+class TextArea;
 
 
 
@@ -83,7 +83,7 @@ private:
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
 
-	WrappedText text;
+	std::shared_ptr<TextArea> description;
 
 	// Out of system (absent) ships that cannot fly for some reason.
 	std::vector<std::shared_ptr<Ship>> absentCannotFly;
