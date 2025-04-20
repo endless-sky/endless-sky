@@ -1106,7 +1106,7 @@ mission "Set Easter Date"
 	repeat
 	non-blocking
 	to offer
-		"easter: a" != "year" * 19
+		"easter: a" != "year" % 19
 	on offer
 		# Uses the New Scientist version of the Meeus/Jones/Butcher algorithm to calculate the date of Easter in the Gregorian Calendar.
 		"easter: a" = "year" % 19
