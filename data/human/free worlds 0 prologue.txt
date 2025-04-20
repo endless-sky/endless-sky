@@ -397,7 +397,7 @@ mission "Pact Supplies 0"
 
 mission "Pact Supplies 1"
 	name "Transport farming equipment to <planet>"
-	description "The next stage of the <Pact/Free Worlds> convoy is stopping at <destination> before finishing at New Britain. You have been assigned to deliver <cargo>. You will be paid one half of <payment> at <planet>."
+	description "The next stage of the <Pact/Free Worlds> convoy is stopping at <destination> before returning to <origin>. You have been assigned to deliver <cargo>. You will be paid one half of <payment> at <planet>."
 	source "Longjump"
 	destination "New Portland"
 	"apparent payment" 55000
@@ -412,8 +412,9 @@ mission "Pact Supplies 1"
 				has "event: war begins"
 			action
 				set "pact supplies heard argument"
-			`You return to the spaceport to find the militia officer ordering forklifts laden with crates into ships while speaking with a couple of the other captains you recognize from the convoy. He turns and notices you as you approach.`
-			`	"Alright! For this stage of the convoy, we will be heading to New Britain via <planet>. You will be transporting farming equipment, which we will exchange with the global farming cooperatives on <planet> for food supplies that we'll bring to New Britain. You'll be paid <payment> for your work, half of which will be deposited when you reach <planet> and the other half of which will be deposited when you get to New Britain. Is that clear?"`
+			`You return to the spaceport to find the militia officer ordering forklifts laden with crates into ships while speaking with a few of the other captains you recognize from the convoy. He turns and notices you as you approach.`
+			`	"Alright, for this stage of the convoy we will be heading to <planet>. You will be transporting farming equipment, which we will trade with the global farming cooperatives there for food supplies that we will bring back to <origin>. The militias on <planet> have decided to send excess food in lieu of weaponry and ship equipment as they run a smaller planetary militia than most, but we have a good relationship with the farmers and their militia would like to support us anyway.`
+			`	"You'll be paid <payment> for your work, of which half will be deposited when you reach <planet> and the other half when you return here to <origin>. Is that clear?"`
 			choice
 				`	"Yes."`
 				`	"I've changed my mind. I don't want to do participate in this convoy any more."`
@@ -425,7 +426,7 @@ mission "Pact Supplies 1"
 			label bombings
 			`You return to the spaceport to find the militia officer in what appears to be a rather loud discussion with a couple of the other captains from the convoy. He doesn't seem to notice you as you approach.`
 			`	"I assure you, the Pact - and what is now the Free Worlds - has absolutely nothing to do with the bombings of Martini and Geminus. This is as much of a shock and sense of despair to us down in the Southern Rim as it is must be for those in the Paradise Worlds. But it would be unconscionable for the leaders of the Pact to do such a thing. I can't imagine the Pact Council authorizing such a thing - we'd reduce ourselves to the level of the pirates we seek to eliminate from the galaxy."`
-			`	The two captains frown. "Like it or not, this is all very good timing for your separarist leaders," the Shuttle captain says. "And I don't plan to be barred from returning to my home planet in Cor Caroli when the Navy inevitably comes down to reclaim your systems. I have family there to visit, to send money back to, you know, and I don't plan to be labeled a separatist and shot out of the sky by the Reps because I took on a little convoy mission to what I thought was a law-abiding organization. Goodbye." The captain of one of the Tarazed Sparrows follows her out.`
+			`	The two captains frown. "Like it or not, this is all very good timing for your separarist leaders," the shuttle captain says. "And I don't plan to be barred from returning to my home planet in Cor Caroli when the Navy inevitably comes down to reclaim your systems. I have family there to visit, to send money back to, you know, and I don't plan to be labeled a separatist and shot out of the sky by the Reps because I took on a little convoy mission to what I thought was a law-abiding organization. Goodbye." The captain of one of the Tarazed Sparrows follows her out.`
 			`	The militia officer looks around with an exasperated look on his face before recognizing you. "Oh. I hope recent events haven't changed your mind, either."`
 			choice
 				`	"Was this to do with the terrorist attack and the declaration of independence?"`
@@ -433,19 +434,19 @@ mission "Pact Supplies 1"
 					decline
 
 			`	"Unfortunately, yes. I don't know much more than what you do, off the newscasts. It seems like we're now the Free Worlds. But there's absolutely no universe in which I could imagine that our leaders could authorize such a thing. It goes against everything people like Katerina Reynolds have been working for, for over a decade."`
-			`	He sighs. "Look, I wouldn't blame you either for leaving the convoy at this point. But, let me tell you with complete honesty and faith that the Pact was not responsible for these acts of terrorism, and that your work for us is only in the service of the elimination of piracy in the galactic south; nothing more, nothing less. Will you continue helping us out?"`
+			`	He sighs. "Look, I wouldn't blame you either for leaving the convoy at this point. But, let me tell you with complete honesty and faith that the Pact was not responsible for these acts of terrorism, and that your work for us is only in the service of the elimination of piracy and poverty in the galactic south; nothing more, nothing less. Will you continue helping us out?"`
 			choice
 				`	"Okay. I'll continue working with the convoy."`
 				`	"Sorry, but I can't associate with the Pact now that it is suspected of terrorism. Goodbye."`
 					decline
 
-			`	"Thank you. At least a few of you are willing to hear me out," he says. "Now, for this stage of the convoy, we will be heading to New Britain via <planet>. You will be transporting farming equipment, which we will exchange with the global farming cooperatives on <planet> for food supplies that will feed New Britain. As far as they're concerned, they're working with businesses here on <origin> and have no objection to this arrangement as it stands. You'll be paid <payment> for your work, half at <planet> and half at New Britain. Does that sound good?"`
+			`	"Thank you. At least a few of you were willing to hear me out," he says. "Now, for this stage of the convoy, we will transporting farming equipment to <planet>, which we will exchange with the global farming cooperatives there for food supplies that will feed <origin>'s population. You'll be paid <payment> for your work, half at <planet> and half when you return to <origin>. Does that sound good?"`
 			choice
 				`	"Yes."`
-				`	"I've changed my mind. I don't want to do participate in this convoy any more."`
+				`	"I've changed my mind. I don't want to participate in this convoy any more."`
 					decline
 
-			`	"Brilliant. I pray that you have a safe journey, and hope for all our sakes that the perpetrators of the crimes in the Paradise Worlds will be brought to justice." He turns and starts ordering forklifts to bring the supplies to your ship.`
+			`	"Brilliant. I pray that you have a safe journey, and hope for the sake of humankind that the perpetrators of the crimes in the Paradise Worlds will be brought to justice." He turns and starts ordering forklifts to bring the supplies to your ship.`
 				accept
 
 	npc accompany
@@ -472,27 +473,21 @@ mission "Pact Supplies 1"
 		payment 27500
 
 
-mission "Pact Supplies 2"
+mission "Pact Supplies 1B"
 	landing
 	name "Transport food to <planet>"
 	description "Complete this stage of the convoy by transporting <cargo> to <destination>. The other half of <payment> will be paid when you arrive on <planet>."
 	cargo "food" 20
 	"apparent payment" 55000
 	source "New Portland"
-	destination "New Britain"
+	destination "Longjump"
 	to offer
 		not "event: chosen sides"
 		has "Pact Supplies 1: done"
 
 	on offer
-		conversation
-			`The convoy lands on <origin> and begins to exchange its farming equipment for grains and other vegetables. You note that the first half of the <payment> has been made to your account. Do you want to continue with the convoy or abandon them here?`
-			choice
-				`	(Yes.)`
-				`	(No, I have other missions to take on.)`
-					decline
-			`	The farmers finish loading your ship with <commodity>. Time to go to <planet>.`
-				accept
+		dialog
+			`The convoy lands on <origin> and exchanges its farming equipment for grains, fruits, and vegetables. After all the supplies are loaded onto the ships, you note that the first half of the <payment> has been made to your account. Time to go to <planet>.`
 
 	npc accompany
 		government "Merchant"
@@ -517,25 +512,67 @@ mission "Pact Supplies 2"
 	on complete
 		payment 27500
 		conversation
-			branch bombings
-				has "event: war begins"
-				not "pact supplies heard argument"
-			`.`
+			`The food is taken off your ship without a hitch, and the militia officer in charge hands you the <payment> and thanks you once again. "If you want to keep helping us, be sure to check out spaceports or the local job boards. Down here, there's always something a captain can do to help us out." He grins.`
 
-			label bombings
-			action
-				set "pact supplies heard argument"
-			`.`
+
+# Pact Supplies 2 or 3 may be completed in any order. Completing both gives the player "assisted free worlds".
+mission "Pact Supplies 2"
+	job
+	source
+		attributes "dirt belt"
+		attributes "factory"
+		not planet "New Sahara" "Bounty" # These worlds are too far away from the Pact to be interested in sending surplus goods
+	destination "Longjump"
+	to offer
+		not "event: chosen sides"
+		has "Pact Supplies 1B: done"
+	on offer
+		conversation
+			`...`
+
+
+mission "Pact Supplies 2B"
+	landing
+	name "Transport militia supplies to <planet>"
+	to offer
+		has "Pact Supplies 2: done"
+	on offer
+		conversation
+			`...`
 
 
 mission "Pact Supplies 3"
+	job
+	name "Southern Mutual Defense Pact Supplies"
+	description "The Southern Mutual Defense Pact is requesting available captains to participate in a convoy. Indicate your interest by accepting this job and reporting to the spaceport on <destination>."
+	source
+		government "Free Worlds"
+	destination "Twinstar"
+	to offer
+		not "event: chosen sides"
+		has "Pact Supplies 1B: done"
+	on offer
+		conversation
+			`...`
+
+
+mission "Pact Supplies 3B"
+	source "Twinstar"
+	destination "New Britain"
+	to offer
+		has "Pact Supplies 3: active"
+	on accept
+		fail "Pact Supplies 3"
+
+
+mission "Pact Supplies 3C"
+	landing
 	name "Transport militia supplies to <planet>"
 	description "The convoy has taken up additional surplus supplies by the militia of <origin>. Transport <cargo> to <destination>. Payment is <payment>."
 	source "New Britain"
-	destination "Solace"
+	destination "Glaze"
 	to offer
-		not "event: chosen sides"
-		has "Pact Supplies 2: done"
+		has "Pact Supplies 3B: done"
 	on offer
 		conversation
 			`...`
@@ -551,9 +588,6 @@ mission "Pact Supplies 3"
 		ship "Sparrow" "Standing Room Only"
 		ship "Hawk" "Stick No Bills"
 		ship "Hauler" "Ripple Effects"
-
-	on complete
-		"assisted free worlds" ++
 
 
 
