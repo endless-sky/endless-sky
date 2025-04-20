@@ -140,7 +140,7 @@ void StarField::Step(Point vel, double zoom)
 		baseZoom = fixedZoom;
 		vel /= velocityReducer;
 	}
-	else if(zoom < 0.25)
+	else if(zoom < .25)
 	{
 		// When the player's view zoom gets too small, the starfield begins to take up
 		// an extreme amount of system resources, and the tiling becomes very obvious.
@@ -148,7 +148,7 @@ void StarField::Step(Point vel, double zoom)
 		// rate, and don't go below 0.15 for the starfield's zoom.
 		// 0.25 is the vanilla minimum zoom, so this only applies when the "main view"
 		// interface has been modified to allow lower zoom values.
-		baseZoom = 0.4 * zoom + 0.15;
+		baseZoom = .4 * zoom + .15;
 		// Reduce the movement of the background by the same adjustment as the zoom
 		// so that the background doesn't appear like it's moving way quicker than
 		// the player is.

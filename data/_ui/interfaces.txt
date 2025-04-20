@@ -1276,7 +1276,7 @@ interface "main view"
 
 
 interface "starfield"
-	value "fixed zoom" 0.35
+	value "fixed zoom" .35
 	value "velocity reducer" 1.4
 
 
