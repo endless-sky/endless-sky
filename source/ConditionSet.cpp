@@ -198,10 +198,13 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 // Load a set of conditions from the children of this node.
 void ConditionSet::Load(const DataNode &node, const ConditionsStore *conditions)
 {
+	if(!conditions)
+		throw runtime_error("Unable to Load ConditionSet without a pointer to a ConditionsStore!");
+	this->conditions = conditions;
+
 	// The top-node is always an 'and' node, without the keyword.
 	expressionOperator = ExpressionOp::AND;
 	ParseBooleanChildren(node);
-	this->conditions = conditions;
 }
 
 
@@ -426,6 +429,9 @@ set<string> ConditionSet::RelevantConditions() const
 
 bool ConditionSet::ParseNode(const DataNode &node)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseNode(full) for a ConditionSet without a pointer to a ConditionsStore!");
+
 	// Special handling for 'and' and 'or' nodes.
 	if(node.Size() == 1)
 	{
@@ -490,6 +496,9 @@ bool ConditionSet::ParseNode(const DataNode &node)
 
 bool ConditionSet::ParseNode(const DataNode &node, int &tokenNr)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseNode(indexed) for a ConditionSet without a pointer to a ConditionsStore!");
+
 	// Nodes beyond this point should not have children.
 	if(node.HasChildren())
 		return FailParse(node, "unexpected child-nodes under arithmetic expression");
@@ -570,6 +579,9 @@ bool ConditionSet::Optimize(const DataNode &node)
 
 bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseBooleans in a ConditionSet without a pointer to a ConditionsStore!");
+
 	if(!node.HasChildren())
 		return FailParse(node, "child-nodes expected, found none");
 
@@ -590,6 +602,9 @@ bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 
 bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseMini in a ConditionSet without a pointer to a ConditionsStore!");
+
 	if(tokenNr >= node.Size())
 		return FailParse(node, "expected terminal or sub-expression, found none");
 
@@ -658,6 +673,9 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 
 bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp)
 {
+	if(!conditions)
+		throw runtime_error("Unable to ParseFromInfix in a ConditionSet without a pointer to a ConditionsStore!");
+
 	// Keep on parsing until we reach an end-state (error, end-of-tokens, closing-bracket, lower precedence token)
 	while(true)
 	{

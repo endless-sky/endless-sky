@@ -42,6 +42,7 @@ using Conditions = std::map<std::string, int64_t>;
 
 
 // #region unit tests
+ConditionsStore store;
 SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 
 	OutputSink warnings(std::cerr);
@@ -55,7 +56,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	}
 	GIVEN( "a node with no children" ) {
 		auto childlessNode = AsDataNode("childless");
-		const auto set = ConditionSet{childlessNode, nullptr};
+		const auto set = ConditionSet{childlessNode, &store};
 
 		THEN( "no conditions are created" ) {
 			REQUIRE( set.IsEmpty() );
@@ -64,7 +65,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	}
 	GIVEN( "a node with valid children" ) {
 		auto nodeWithChildren = AsDataNode("and\n\tnever");
-		const auto set = ConditionSet{nodeWithChildren, nullptr};
+		const auto set = ConditionSet{nodeWithChildren, &store};
 
 		THEN( "a non-empty ConditionSet is created" ) {
 			REQUIRE_FALSE( set.IsEmpty() );
@@ -73,7 +74,7 @@ SCENARIO( "Creating a ConditionSet" , "[ConditionSet][Creation]" ) {
 	}
 	GIVEN( "a simple incomplete arithmetic add expression" ) {
 		auto nodeWithIncompleteAdd = AsDataNode("toplevel\n\t4 +");
-		const auto set = ConditionSet{nodeWithIncompleteAdd, nullptr};
+		const auto set = ConditionSet{nodeWithIncompleteAdd, &store};
 		THEN( "the expression should be identified as invalid" ) {
 			const std::string validationWarning = "Error: expected terminal after infix operator \"+\":\n";
 			const std::string invalidNodeText = "toplevel\n";
@@ -99,7 +100,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 
 		THEN( "no expressions are added from empty nodes" ) {
 			const std::string validationWarning = "Error: child-nodes expected, found none:\ntoplevel\n\n";
-			set.Load(AsDataNode("toplevel"), nullptr);
+			set.Load(AsDataNode("toplevel"), &store);
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
@@ -110,7 +111,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 			const std::string validationWarning = "Error: has keyword requires a single condition:\n";
 			const std::string invalidNodeText = "and\n\thas";
 			const std::string invalidNodeTextInWarning = "and\nL2:   has";
-			set.Load(AsDataNode(invalidNodeText), nullptr);
+			set.Load(AsDataNode(invalidNodeText), &store);
 			REQUIRE( set.IsEmpty() );
 			REQUIRE_FALSE( set.IsValid() );
 			AND_THEN( "a log message is printed to assist the user" ) {
@@ -118,7 +119,7 @@ SCENARIO( "Extending a ConditionSet", "[ConditionSet][Creation]" ) {
 			}
 		}
 		THEN( "new expressions can be added from valid nodes" ) {
-			set.Load(AsDataNode("and\n\tnever"), nullptr);
+			set.Load(AsDataNode("and\n\tnever"), &store);
 			REQUIRE_FALSE( set.IsEmpty() );
 			REQUIRE( set.IsValid() );
 			REQUIRE( warnings.Flush() == "" );

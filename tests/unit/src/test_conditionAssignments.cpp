@@ -52,7 +52,7 @@ SCENARIO( "Creating ConditionAssignments" , "[ConditionAssignments][Creation]" )
 }
 
 SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" ) {
-
+	ConditionsStore store;
 	OutputSink warnings(std::cerr);
 
 	GIVEN( "empty ConditionAssignments" ) {
@@ -61,7 +61,7 @@ SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" )
 
 		THEN( "no assignments are added from empty nodes" ) {
 			const std::string validationWarning = "Error: Loading empty set of assignments\ntoplevel\n\n";
-			set.Load(AsDataNode("toplevel"), nullptr);
+			set.Load(AsDataNode("toplevel"), &store);
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
 				REQUIRE( warnings.Flush() == validationWarning );
@@ -71,14 +71,14 @@ SCENARIO( "Extending ConditionAssignments", "[ConditionAssignments][Creation]" )
 			const std::string validationWarning = "Error: Incomplete assignment\n";
 			const std::string invalidNodeText = "apply\n\thas";
 			const std::string invalidNodeTextInWarning = "apply\nL2:   has";
-			set.Load(AsDataNode(invalidNodeText), nullptr);
+			set.Load(AsDataNode(invalidNodeText), &store);
 			REQUIRE( set.IsEmpty() );
 			AND_THEN( "a log message is printed to assist the user" ) {
 				REQUIRE( warnings.Flush() == "" + validationWarning + invalidNodeTextInWarning + '\n' + '\n');
 			}
 		}
 		THEN( "new assignments can be added from valid nodes" ) {
-			set.Load(AsDataNode("apply\n\tsomeCondition = 5"), nullptr);
+			set.Load(AsDataNode("apply\n\tsomeCondition = 5"), &store);
 			REQUIRE_FALSE( set.IsEmpty() );
 			REQUIRE( warnings.Flush() == "" );
 		}
