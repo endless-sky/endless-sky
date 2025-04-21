@@ -177,6 +177,8 @@ public:
 	// Check how dangerous this system is (credits worth of enemy ships jumping
 	// in per frame).
 	double Danger() const;
+	// Recalculate the danger value of the system (in case an event changes its fleets).
+	void RecalcDanger();
 
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
@@ -275,6 +277,9 @@ private:
 	// The minimum distances from the system center to jump out of the system.
 	double jumpDepartureDistance = 0.;
 	double hyperDepartureDistance = 0.;
+
+	// The cached danger value for the system.
+	double danger = 0;
 
 	// Commodity prices.
 	std::map<std::string, Price> trade;

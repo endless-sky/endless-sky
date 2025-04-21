@@ -564,6 +564,9 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		minimumFleetPeriod = min<int>(minimumFleetPeriod, event.Period());
 	if(minimumFleetPeriod == numeric_limits<int>::max())
 		minimumFleetPeriod = 0;
+
+	// Recalculate the system's danger value.
+	RecalcDanger();
 }
 
 
@@ -1023,14 +1026,24 @@ const vector<RandomEvent<Hazard>> &System::Hazards() const
 // in per frame).
 double System::Danger() const
 {
-	double danger = 0.;
+	return danger;
+}
+
+
+
+// Recalculate the expected danger of the system (for use on load and when
+// data values change).
+void System::RecalcDanger()
+{
+	double newDanger = 0.;
 	for(const auto &fleet : fleets)
 	{
 		auto *gov = fleet.Get()->GetGovernment();
 		if(gov && gov->IsEnemy())
-			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
+			newDanger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 	}
-	return danger;
+
+	danger = newDanger;
 }
 
 
