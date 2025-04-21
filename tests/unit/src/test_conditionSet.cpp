@@ -226,7 +226,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			REQUIRE( numberSet.IsValid() );
 			auto answer = std::get<1>(expressionAndAnswer);
 			bool boolAnswer = answer;
-			REQUIRE( numberSet.Evaluate(storeWithData) == answer );
+			REQUIRE( numberSet.Evaluate() == answer );
 			REQUIRE( numberSet.Test() == boolAnswer );
 		}
 	}

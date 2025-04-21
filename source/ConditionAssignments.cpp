@@ -100,7 +100,7 @@ void ConditionAssignments::Apply() const
 	for(const Assignment &assignment : assignments)
 	{
 		auto &ce = conditionsStore[assignment.conditionToAssignTo];
-		int64_t newValue = assignment.expressionToEvaluate.Evaluate(conditionsStore);
+		int64_t newValue = assignment.expressionToEvaluate.Evaluate();
 		switch(assignment.assignOperator)
 		{
 			case AssignOp::ASSIGN:

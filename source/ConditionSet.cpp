@@ -346,24 +346,22 @@ bool ConditionSet::IsValid() const
 
 bool ConditionSet::Test() const
 {
-	// An empty condition set was likely never loaded, and so won't have a pointer
-	// to the player's conditions. Return true in this case instead of throwing an
-	// exception.
-	if(IsEmpty())
-		return true;
-	if(!conditions)
-		throw runtime_error("Unable to Test ConditionSet without a pointer to a ConditionsStore!");
-	return Evaluate(*conditions);
+	return Evaluate();
 }
 
 
 
-int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
+int64_t ConditionSet::Evaluate() const
 {
 	switch(expressionOperator)
 	{
 		case ExpressionOp::VAR:
-			return conditionsStore.Get(conditionName);
+		{
+			if(!conditions)
+				throw runtime_error("Unable to Evaluate ExpressionOp::VAR with condition name \"" + conditionName
+					+ "\" in ConditionSet without a pointer to a ConditionsStore!");
+			return conditions->Get(conditionName);
+		}
 		case ExpressionOp::LIT:
 			return literal;
 		case ExpressionOp::AND:
@@ -375,7 +373,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 			int64_t result = 0;
 			for(const ConditionSet &child : children)
 			{
-				int64_t childResult = child.Evaluate(conditionsStore);
+				int64_t childResult = child.Evaluate();
 				if(!childResult)
 					return 0;
 				// Assign the first non-zero result to the result variable.
@@ -387,7 +385,7 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 		case ExpressionOp::OR:
 			for(const ConditionSet &child : children)
 			{
-				int64_t childResult = child.Evaluate(conditionsStore);
+				int64_t childResult = child.Evaluate();
 				// Return the first non-zero result.
 				if(childResult)
 					return childResult;
@@ -400,9 +398,9 @@ int64_t ConditionSet::Evaluate(const ConditionsStore &conditionsStore) const
 	// If we have an accumulator function and children, then let's use the accumulator on the children.
 	BinFun accumulatorOp = Op(expressionOperator);
 	if(accumulatorOp != nullptr && !children.empty())
-		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(conditionsStore),
-			[&accumulatorOp, &conditionsStore](int64_t accumulated, const ConditionSet &b) -> int64_t {
-				return accumulatorOp(accumulated, b.Evaluate(conditionsStore));
+		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(),
+			[&accumulatorOp](int64_t accumulated, const ConditionSet &b) -> int64_t {
+				return accumulatorOp(accumulated, b.Evaluate());
 		});
 
 	// If we don't have an accumulator function, or no children, then return the default value.

@@ -100,7 +100,7 @@ public:
 	bool Test() const;
 
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)
-	int64_t Evaluate(const ConditionsStore &conditionsStore) const;
+	int64_t Evaluate() const;
 
 	/// Parse the remainder of a node into this expression.
 	bool ParseNode(const DataNode &node, int &tokenNr);
