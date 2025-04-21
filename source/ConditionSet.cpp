@@ -416,6 +416,7 @@ set<string> ConditionSet::RelevantConditions() const
 }
 
 
+
 bool ConditionSet::ParseNode(const DataNode &node)
 {
 	// Special handling for 'and' and 'or' nodes.
@@ -726,9 +727,6 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 		}
 	}
 }
-
-
-
 
 
 
