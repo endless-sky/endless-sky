@@ -1243,7 +1243,7 @@ outfit "Torpedo Launcher"
 		"acceleration" .12
 		"drag" .02
 		"turn" 1.5
-		"homing" 1
+		"homing" 2
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
@@ -1284,7 +1284,7 @@ outfit "Torpedo Pod"
 		"acceleration" .12
 		"drag" .02
 		"turn" 1.5
-		"homing" 1
+		"homing" 2
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
