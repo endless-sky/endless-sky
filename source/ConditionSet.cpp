@@ -333,14 +333,6 @@ bool ConditionSet::IsValid() const
 
 
 
-// Check if the given condition values satisfy this set of conditions.
-bool ConditionSet::Test(const ConditionsStore &conditions) const
-{
-	return Evaluate(conditions);
-}
-
-
-
 bool ConditionSet::Test() const
 {
 	// An empty condition set was likely never loaded, and so won't have a pointer

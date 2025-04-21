@@ -72,14 +72,14 @@ public:
 	ConditionSet &operator=(const ConditionSet &other);
 
 	// Construct and Load() at the same time.
-	explicit ConditionSet(const DataNode &node, const ConditionsStore *playerConditions = nullptr);
+	explicit ConditionSet(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Construct a terminal with a literal value.
 	explicit ConditionSet(int64_t newLiteral);
 
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if the conditions cannot be parsed from the node.
-	void Load(const DataNode &node, const ConditionsStore *playerConditions = nullptr);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
 	void SaveChild(int childNr, DataWriter &out) const;
@@ -94,8 +94,7 @@ public:
 	// Check if this condition set contains valid data.
 	bool IsValid() const;
 
-	// Check if the given condition values satisfy this set of expressions.
-	bool Test(const ConditionsStore &conditions) const;
+	// Check if the player's conditions satisfy this set of expressions.
 	bool Test() const;
 
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)

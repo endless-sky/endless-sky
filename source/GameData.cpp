@@ -240,7 +240,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 		});
 	}
 
-	return objects.Load(queue, player, sources, debugMode);
+	return objects.Load(queue, sources, player, &globalConditions, debugMode);
 }
 
 

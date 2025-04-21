@@ -859,7 +859,7 @@ void MapDetailPanel::DrawInfo()
 		uiPoint.Y() += 20.;
 	}
 
-	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor(player.Conditions())
+	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor()
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
@@ -867,7 +867,7 @@ void MapDetailPanel::DrawInfo()
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
-		description->SetText(selectedPlanet->Description().ToString(player.Conditions()));
+		description->SetText(selectedPlanet->Description().ToString());
 		if(!descriptionVisible)
 		{
 			AddChild(description);

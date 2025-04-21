@@ -556,7 +556,8 @@ Conversation LoadConversation()
 	for(const DataNode &node : file)
 		if(node.Token(0) == "conversation")
 		{
-			conversation.Load(node);
+			// TODO: Correct?
+			conversation.Load(node, nullptr);
 			break;
 		}
 
