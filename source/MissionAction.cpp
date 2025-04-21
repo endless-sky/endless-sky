@@ -184,7 +184,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	else if(key == "can trigger after failure")
 		runsWhenFailed = true;
 	else
-		action.LoadSingle(child);
+		action.LoadSingle(child, playerConditions);
 }
 
 

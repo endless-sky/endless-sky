@@ -349,7 +349,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "effect" && hasValue)
 			effects.Get(node.Token(1))->Load(node);
 		else if(key == "event" && hasValue)
-			events.Get(node.Token(1))->Load(node);
+			events.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "fleet" && hasValue)
 			fleets.Get(node.Token(1))->Load(node);
 		else if(key == "formation" && hasValue)
@@ -413,9 +413,9 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "system" && hasValue)
 			systems.Get(node.Token(1))->Load(node, planets, playerConditions);
-		else if((key == "test") && hasValue)
+		else if(key == "test" && hasValue)
 			tests.Get(node.Token(1))->Load(node, playerConditions);
-		else if((key == "test-data") && hasValue)
+		else if(key == "test-data" && hasValue)
 			testDataSets.Get(node.Token(1))->Load(node, path);
 		else if(key == "trade")
 			trade.Load(node);

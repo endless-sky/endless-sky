@@ -72,14 +72,14 @@ public:
 	ConditionSet &operator=(const ConditionSet &other);
 
 	// Construct and Load() at the same time.
-	explicit ConditionSet(const DataNode &node, const ConditionsStore *playerConditions);
+	explicit ConditionSet(const DataNode &node, const ConditionsStore *conditions);
 
 	// Construct a terminal with a literal value.
-	explicit ConditionSet(int64_t newLiteral);
+	explicit ConditionSet(int64_t newLiteral, const ConditionsStore *conditions);
 
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if the conditions cannot be parsed from the node.
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *conditions);
 	// Save a set of conditions.
 	void Save(DataWriter &out) const;
 	void SaveChild(int childNr, DataWriter &out) const;
@@ -159,10 +159,8 @@ private:
 
 
 private:
-	// A pointer to the player's ConditionsStore. When populated, allows this ConditionSet to
-	// call Test() from any location in the codebase without the caller needing to have access
-	// to the PlayerInfo or ConditionsStore.
-	const ConditionsStore *playerConditions = nullptr;
+	// A pointer to the ConditionsStore that this set is evaluating.
+	const ConditionsStore *conditions = nullptr;
 
 	/// Sets of condition tests can contain nested sets of tests. Each set is
 	/// combined using the expression operator that determines how the nested

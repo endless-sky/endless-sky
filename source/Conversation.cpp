@@ -187,7 +187,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().actions.Load(child);
+			nodes.back().actions.Load(child, playerConditions);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)

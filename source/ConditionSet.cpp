@@ -125,18 +125,19 @@ namespace
 
 
 // Construct and Load() at the same time.
-ConditionSet::ConditionSet(const DataNode &node, const ConditionsStore *playerConditions)
+ConditionSet::ConditionSet(const DataNode &node, const ConditionsStore *conditions)
 {
-	Load(node, playerConditions);
+	Load(node, conditions);
 }
 
 
 
 // Construct a terminal with a literal value;
-ConditionSet::ConditionSet(int64_t newLiteral)
+ConditionSet::ConditionSet(int64_t newLiteral, const ConditionsStore *conditions)
 {
 	expressionOperator = ExpressionOp::LIT;
 	literal = newLiteral;
+	this->conditions = conditions;
 }
 
 
@@ -157,7 +158,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &&other) noexcept
 	literal = other.literal;
 	conditionName = std::move(other.conditionName);
 	children = std::move(other.children);
-	playerConditions = other.playerConditions;
+	conditions = other.conditions;
 
 	return *this;
 }
@@ -180,7 +181,7 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 	literal = other.literal;
 	conditionName = other.conditionName;
 	children = other.children;
-	playerConditions = other.playerConditions;
+	conditions = other.conditions;
 
 	return *this;
 }
@@ -188,12 +189,12 @@ ConditionSet &ConditionSet::operator=(const ConditionSet &other)
 
 
 // Load a set of conditions from the children of this node.
-void ConditionSet::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void ConditionSet::Load(const DataNode &node, const ConditionsStore *conditions)
 {
 	// The top-node is always an 'and' node, without the keyword.
 	expressionOperator = ExpressionOp::AND;
 	ParseBooleanChildren(node);
-	this->playerConditions = playerConditions;
+	this->conditions = conditions;
 }
 
 
@@ -340,9 +341,9 @@ bool ConditionSet::Test() const
 	// exception.
 	if(IsEmpty())
 		return true;
-	if(!playerConditions)
-		throw runtime_error("Unable to Test ConditionSet without a pointer to the player's conditions!");
-	return Evaluate(*playerConditions);
+	if(!conditions)
+		throw runtime_error("Unable to Test ConditionSet without a pointer to a ConditionsStore!");
+	return Evaluate(*conditions);
 }
 
 
@@ -466,7 +467,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		children.emplace_back();
 		children.back().expressionOperator = ExpressionOp::VAR;
 		children.back().conditionName = node.Token(1);
-		children.emplace_back(0);
+		children.emplace_back(0, conditions);
 		return true;
 	}
 

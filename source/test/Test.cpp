@@ -219,7 +219,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 		switch(step.stepType)
 		{
 			case TestStep::Type::APPLY:
-				step.assignConditions.Load(child);
+				step.assignConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::ASSERT:
 				step.checkConditions.Load(child, playerConditions);
@@ -447,7 +447,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
-				stepToRun.assignConditions.Apply(player.Conditions());
+				stepToRun.assignConditions.Apply();
 				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:

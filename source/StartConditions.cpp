@@ -151,7 +151,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 				LoadState(child, StartState::REVEALED);
 		}
 		else
-			conditions.Add(child);
+			conditions.Add(child, playerConditions);
 	}
 
 	// The unlocked state must have at least some information.

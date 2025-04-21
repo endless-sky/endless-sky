@@ -185,7 +185,7 @@ void PlayerInfo::New(const StartConditions &start)
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
-	start.GetConditions().Apply(conditions);
+	start.GetConditions().Apply();
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -364,7 +364,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(child.Token(0) == "event")
-			gameEvents.emplace(GameEvent(child));
+			gameEvents.emplace(GameEvent(child, &conditions));
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
