@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapDetailPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Angle.h"
 #include "Color.h"
 #include "Command.h"
@@ -29,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Interface.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "MapOutfitterPanel.h"
 #include "MapShipyardPanel.h"
 #include "Planet.h"
@@ -47,11 +47,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
+#include "TextArea.h"
 #include "Trade.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "Wormhole.h"
-#include "text/WrappedText.h"
 
 #include <algorithm>
 #include <cmath>
@@ -95,6 +95,7 @@ double MapDetailPanel::planetPanelHeight = 0.;
 MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool fromMission)
 	: MapPanel(player, system ? MapPanel::SHOW_REPUTATION : player.MapColoring(), system, fromMission)
 {
+	InitTextArea();
 }
 
 
@@ -104,6 +105,8 @@ MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
 {
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = isStars ? -8 : player.MapColoring();
+
+	InitTextArea();
 }
 
 
@@ -498,6 +501,23 @@ bool MapDetailPanel::RClick(int x, int y)
 
 
 
+void MapDetailPanel::InitTextArea()
+{
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("medium"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
+	descriptionXOffset = mapInterface->GetValue("description x offset");
+	int descriptionWidth = mapInterface->GetValue("description width");
+	description->SetRect(Rectangle::FromCorner(
+		Point(Screen::Right() - descriptionXOffset - descriptionWidth, Screen::Top() + 20),
+		Point(descriptionWidth - 20, mapInterface->GetValue("description height"))
+	));
+}
+
+
+
 void MapDetailPanel::GeneratePlanetCards(const System &system)
 {
 	set<const Planet *> shown;
@@ -560,7 +580,7 @@ void MapDetailPanel::DrawKey()
 		if(static_cast<unsigned>(commodity) >= commodities.size())
 			return;
 
-		for(int i = 0; i <= 3; ++i)
+		for(int i = 3; i >= 0; --i)
 		{
 			RingShader::Draw(pos, OUTER, INNER, MapColor(i * (2. / 3.) - 1.));
 			int price = range.low + ((range.high - range.low) * i) / 3;
@@ -572,9 +592,9 @@ void MapDetailPanel::DrawKey()
 	{
 		// Each system is colored by the number of outfits for sale.
 		static const string LABEL[2][4] = {
-			{"None", "1", "5", "10+"},
-			{"None", "1", "30", "60+"}};
-		static const double VALUE[4] = {-1., 0., .5, 1.};
+			{"10+", "5", "1", "None"},
+			{"60+", "30", "1", "None"}};
+		static const double VALUE[4] = {1., .5, 0., -1.};
 
 		for(int i = 0; i < 4; ++i)
 		{
@@ -842,20 +862,24 @@ void MapDetailPanel::DrawInfo()
 	if(selectedPlanet && !selectedPlanet->Description().IsEmptyFor(player.Conditions())
 			&& player.HasVisited(*selectedPlanet) && !selectedPlanet->IsWormhole())
 	{
-		static const int X_OFFSET = 240;
-		static const int WIDTH = 500;
 		const Sprite *panelSprite = SpriteSet::Get("ui/description panel");
-		Point pos(Screen::Right() - X_OFFSET - .5f * panelSprite->Width(),
+		Point pos(Screen::Right() - descriptionXOffset - .5f * panelSprite->Width(),
 			Screen::Top() + .5f * panelSprite->Height());
 		SpriteShader::Draw(panelSprite, pos);
 
-		WrappedText text(font);
-		text.SetAlignment(Alignment::JUSTIFIED);
-		text.SetWrapWidth(WIDTH - 20);
-		text.Wrap(selectedPlanet->Description().ToString(player.Conditions()));
-		text.Draw(Point(Screen::Right() - X_OFFSET - WIDTH, Screen::Top() + 20), medium);
+		description->SetText(selectedPlanet->Description().ToString(player.Conditions()));
+		if(!descriptionVisible)
+		{
+			AddChild(description);
+			descriptionVisible = true;
+		}
 
 		selectedSystemOffset = -150;
+	}
+	else
+	{
+		RemoveChild(description.get());
+		descriptionVisible = false;
 	}
 }
 

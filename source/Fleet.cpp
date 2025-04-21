@@ -38,7 +38,7 @@ using namespace std;
 namespace {
 	// Generate an offset magnitude that will sample from an annulus (planets)
 	// or a circle (systems without inhabited planets).
-	double OffsetFrom(pair<Point, double> &center)
+	double OffsetFrom(const pair<Point, double> &center)
 	{
 		// If the center has a radius, then position ships further away.
 		double minimumOffset = center.second ? 1. : 0.;
@@ -537,7 +537,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 
 
 
-bool Fleet::PlaceFighter(shared_ptr<Ship> fighter, vector<shared_ptr<Ship>> &placed) const
+bool Fleet::PlaceFighter(const shared_ptr<Ship> &fighter, vector<shared_ptr<Ship>> &placed) const
 {
 	if(!fighter->CanBeCarried())
 		return false;

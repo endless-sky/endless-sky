@@ -15,12 +15,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "Angle.h"
 #include "audio/Audio.h"
 #include "shader/BatchDrawList.h"
 #include "CargoHold.h"
 #include "Dialog.h"
+#include "text/DisplayText.h"
 #include "shader/FillShader.h"
 #include "shader/FogShader.h"
 #include "text/Font.h"
@@ -48,12 +49,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipJumpNavigation.h"
+#include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "Trade.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "Wormhole.h"
 
@@ -581,6 +583,12 @@ bool MapPanel::AllowsFastForward() const noexcept
 
 bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	// When changing the map mode, explicitly close all child panels (for example, scrollable text boxes).
+	auto removeChildren = [this]()
+	{
+		for(auto &child : GetChildren())
+			RemoveChild(child.get());
+	};
 	const Interface *mapInterface = GameData::Interfaces().Get("map");
 	if(command.Has(Command::MAP) || key == 'd' || key == SDLK_ESCAPE
 			|| (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
@@ -588,26 +596,31 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else if(key == 's' && buttonCondition != "is shipyards")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapShipyardPanel(*this));
 	}
 	else if(key == 'o' && buttonCondition != "is outfitters")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapOutfitterPanel(*this));
 	}
 	else if(key == 'i' && buttonCondition != "is missions")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MissionPanel(*this));
 	}
 	else if(key == 'p' && buttonCondition != "is ports")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapDetailPanel(*this, false));
 	}
 	else if(key == 't' && buttonCondition != "is stars")
 	{
 		GetUI()->Pop(this);
+		removeChildren();
 		GetUI()->Push(new MapDetailPanel(*this, true));
 	}
 	else if(key == 'f')
@@ -1459,7 +1472,7 @@ void MapPanel::DrawSystems()
 				starAngle += angularSpacing;
 				const Sprite *star = node.mapIcons[i];
 				const Body starBody(star, pos + zoom * starOffset * starAngle.Unit(),
-					Point(0, 0), 0, cbrt(zoom) * 0.6, 0.8);
+					Point(0, 0), 0, cbrt(zoom) * 0.6, Point(1., 1.), 0.8);
 				starBatch.Add(starBody);
 			}
 		}

@@ -269,10 +269,6 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : outfits)
 		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
-	// Outfitters are never serialized.
-	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].contains(it.first))
-			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
@@ -288,10 +284,6 @@ void UniverseObjects::CheckReferences()
 			it.second.SetTrueModelName(it.first);
 			Warn("ship", it.first);
 		}
-	// Shipyards are never serialized.
-	for(const auto &it : shipSales)
-		if(it.second.empty() && !deferred["shipyard"].contains(it.first))
-			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
@@ -312,6 +304,9 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : colors)
 		if(!it.second.IsLoaded())
 			Warn("color", it.first);
+	for(const auto &it : swizzles)
+		if(!it.second.IsLoaded())
+			Warn("swizzle", it.first);
 }
 
 
@@ -332,6 +327,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, bool debugMode)
 		if(key == "color" && node.Size() >= 5)
 			colors.Get(node.Token(1))->Load(
 				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
+		else if(key == "swizzle" && node.Size() >= 2)
+			swizzles.Get(node.Token(1))->Load(node);
 		else if(key == "conversation" && node.Size() >= 2)
 			conversations.Get(node.Token(1))->Load(node);
 		else if(key == "effect" && node.Size() >= 2)

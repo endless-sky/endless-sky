@@ -90,6 +90,8 @@ mission "Avgi: Gossamer Sailors"
 
 outfit "Pinecone Launcher"
 	category "Guns"
+	series "Guns"
+	index 92010
 	cost 540000
 	thumbnail "outfit/unknown"
 	"mass" 30
