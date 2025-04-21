@@ -3103,14 +3103,14 @@ mission "Home for Skadenga 1"
 			choice
 				`	"Woah, woah, woah! What do you mean 'save us all?'"`
 			label woah
-			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
-			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the electric burn on your arm you received while repairing the Ice-Crawler. "It seems we have been waiting for you."`
+			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skadi, the Troll-Goddess of ice, mountains, and cold."`
+			`	"For nearly century we have been waiting for person who bore mark of Skadi." She points a tattooed hand at the electric burn on your arm you received while repairing the Ice-Crawler. "It seems we have been waiting for you."`
 				goto woahafter
 			label withhjlod
 			choice
 				`	"Woah, woah, woah! What do you mean 'save us all?'"`
-			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skade, the Troll-Goddess of ice, mountains, and cold."`
-			`	"For nearly century we have been waiting for person who bore mark of Skade." She points a tattooed hand at the ice burn on your arm you received while traveling through the snow. "It seems we have been waiting for you."`
+			`	The elderly woman opens her palms and spreads them wide. "This is village of Udainsakr. I am Ondurdis, or leader, and we are Skadenga, daughters of Skadi, the Troll-Goddess of ice, mountains, and cold."`
+			`	"For nearly century we have been waiting for person who bore mark of Skadi." She points a tattooed hand at the ice burn on your arm you received while traveling through the snow. "It seems we have been waiting for you."`
 			label woahafter
 			choice
 				`	"What do you expect me to do?"`
@@ -3119,7 +3119,7 @@ mission "Home for Skadenga 1"
 			`	The Ondurdis raises an eyebrow. "So you want to know our secrets? We ask much, so I will tell you more than most know. Long ago, the so-called-elves brought the Skadenga to Deep. We had to make penance for some mistakes. Our volva, or seeress, saw that to make amends we must come to Nifel. We did not know why, but when we found the Goddess-Stone, we knew we had made right decision.`
 			`	"Since then, we have lived here and acted as guides and pathfinders to others. It was one of our sisters, Eymani, an herbalist, who discovered the cure to Rigellian plague. We thought this was why we had been sent here. Our duty to act as handmaidens of healing.`
 			label expect
-			`	"With each passing year, Nifel grows colder and outsiders less frequent. Our numbers dwindle as does our usefulness. This is dying world, and we need new home. Eighty years ago one of our holiest sisters had vision. She saw that stranger with mark of Skade would arrive and that stranger would help us find new home."`
+			`	"With each passing year, Nifel grows colder and outsiders less frequent. Our numbers dwindle as does our usefulness. This is dying world, and we need new home. Eighty years ago one of our holiest sisters had vision. She saw that stranger with mark of Skadi would arrive and that stranger would help us find new home."`
 			`	The Ondurdis points a boney finger right at you. "First, you must discover which world will be our home. Then you must find us transportation. We will of course pay you in one way or another. Would you do this for us?"`
 			choice
 				`	"I'll do it. I won't let you guys down."`
@@ -3140,8 +3140,8 @@ mission "Home for Skadenga 1"
 			`	The Ondurdis smiles. "Thank you." She nods toward the door. "Come with me."`
 			`	In the light of early day, the village looks stranger than you remember. Carved wooden structures weave flawlessly into sleek fabricated composites in a marriage of ancient with new. Oddly enough, the effect does not clash, but instead gives off an impression of seamless artistry. To the south, there is an open space filled with high-stacked stone cairns. At the center of the space, or holy site, is a giant wall made of an unusual gleaming metal and surrounded by eight ornate wooden pillars. The wall, despite being filled with strange letters and images, is dominated by the single image of a giant humanoid. As you stare into the structure, you feel unnaturally chilly.`
 			`	"That is Goddess-Stone." The Ondurdis gestures toward the large stone-wall. "This is why we settled here. Most worlds in Deep have stones like this upon them. They go by many names; Elf-Stones, God-Stones, Jotun-Stones, and more. Now, at base of wall, those pillars, they are our Setstokkr. They are holy relics of our folk, and guided us here, to this very wall, long ago. Just as they will guide us once more to our new home. There are eight Setstokkr here, but once there was nine."`
-			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skade will send us."`
-			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skade guide you." With that, the Ondurdis leaves you.`
+			`	The Ondurdis turns back to you. "You must find the ninth Setstokkr, the missing pillar. It was dropped in space long ago, and we believe based on where it started it could have only found its way to one of two worlds. It either on Windblain in the Regor system, or Asgard in the Naos system." Offering you a small storage device, the Ondurdis continues, "Setstokkr have... unusual properties. This drive contains information that will allow you to track them. Go to these worlds, see if you can find the Setstokkr, and return to us with news. We are eager to know where Skadi will send us."`
+			`	The sky glows and the earth rumbles as a shuttle lands not far from the village. "That shuttle will return you to the spaceport and your ship. May Skadi guide you." With that, the Ondurdis leaves you.`
 			choice
 				`	(Head to the shuttle.)`
 					goto shuttle
@@ -3386,7 +3386,7 @@ mission "Home for Skadenga 4"
 			label end
 			`	"Vhen you were gone, thing, or assembly, vas held. Ondurdis called in all Skadenga from all villages across Nifel. You must find transportation for 2,200 folk. That is what Ondurdis told me to tell you."`
 			`	You frown and ask, "Did she provide money?"`
-			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skade be vith you." She turns and leaves.`
+			`	Hjlod shakes her head. "No. Ve could not afford it. You must go to Valhalla and convince head of Transport Union to support us." She squeezes your shoulder. "Thank you for help. For finding us new home. Ve need it. I must report now to Ondurdis. Skadi be vith you." She turns and leaves.`
 				accept
 	on complete
 		conversation
@@ -3528,7 +3528,7 @@ mission "Home for Skadenga 7"
 			scene "scene/buildings"
 			`	Together, you travel to the mall, and you explain to her how the structure was built around it, using it as an accent wall to the various posh establishments within.`
 			`	Upon seeing this, the old and overwhelmed matron falls to her knees in tears. "These folk are lost," she says. "We are lost."`
-			`	The Ondurdis looks at you with her tear-wrecked face and says, "You are instrument of Skade. I saw it. But why? Why this? Why to us?"`
+			`	The Ondurdis looks at you with her tear-wrecked face and says, "You are instrument of Skadi. I saw it. But why? Why this? Why to us?"`
 			`	After that, she will say no more to you. She lifts her eyes to the sky and begins to chant wildly. A few Skadenga who have made it this far join her. Various news outlets swarm around them to record the Ondurdis' breakdown.`
 			`	You back away slowly and bump into someone. You turn to see the real-estate agent Carla Von Hausen smiling at you. "Well done, Captain <last>. I've been authorized to tell you that my superiors have deposited 850,000 credits into your account, as was agreed upon earlier."`
 			choice
@@ -3581,7 +3581,7 @@ mission "Skadenga Call 2"
 				`	"Who are these people?"`
 					goto who
 			`	Hjlod glares at you. "From you? Everything. For that is vhat you took from us.`
-			`	"I do not know vhy you did it. Vhy you brought us here. If Skade really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
+			`	"I do not know vhy you did it. Vhy you brought us here. If Skadi really let us down. Or if you ignored her," she growls. "But it does not matter. All that matters is that ve leave, and that is vhy ve need you."`
 				goto here
 			label who
 			`	Hjlod laughs and tears run down her cheeks. "Do you not recognize us? Our great savior? Ve are the Skadenga, and this is your handivwork."`
@@ -3627,7 +3627,7 @@ mission "Skadenga Call 2"
 			`	"Misguided girl," Carla says sadly. "We'll take it from here. Have a wonderful day, Captain <last>."`
 				decline
 			label takeoff
-			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor. "Thank Skade," is all she says.`
+			`	You punch it, and your ship burns for the stars. Hjlod visibly relaxes when the thrust kicks in. She closes her tired eyes and slumps to the floor. "Thank Skadi," is all she says.`
 				launch
 	on complete
 		payment 12481
@@ -3856,7 +3856,7 @@ conversation "land at windblain"
 	`The reserved and limited government of Windblain pays neither you nor your fleet any heed as you make your way down to the outskirts of Hrithfjall. An empty, windswept landscape beneath gray clouds and a small group of weathered fishermen are waiting for you outside your ship.`
 	`	"I thought I'd be seeing you again," Aldfrith says at the front of his small delegation. "I dreamt that ice rained down upon the seas, and that Ran was glad of it." The creases in his face bunch up as he smiles at the memory, and then his eyes wander to the disembarking Skadenga. A moment later, the Ondurdis joins you.`
 	`	"So, you are the ice that falls from the stars?" asks Aldfrith with a hint of mirth in his eyes.`
-	`	"We are Skadenga, daughters of Skade. Mistresses of ice, mountain, and cold. But, I think now, she sends us to her sister Ran." The Ondurdis replies.`
+	`	"We are Skadenga, daughters of Skadi. Mistresses of ice, mountain, and cold. But, I think now, she sends us to her sister Ran." The Ondurdis replies.`
 	`	Aldfrith nods slowly. "We are the folk of Ran; the offspring of the surf, the students of the wind, and the watchers of the storm. We welcome you and your people here. Though there are few here at present, many more of our number can be found out amongst the surging seas." He glances at the growing number of Skadenga. "If you follow me, I will escort you to our village and show you what buildings you may use. Though I fear we can not house so many."`
 	`	The Ondurdis smiles. "We thank you for your hospitality. It is good to find others who remember the old ways. Fear not, though; we are resourceful lot." Turning to you, she continues, "Meet me near the ships at makeshift spaceport in a few hours. I have much to do at moment." She and many others then follow Aldfrith and his group to the halls of Hrithfjall.`
 	branch self
@@ -3944,7 +3944,7 @@ mission "Home for Skadenga 13"
 		conversation
 			`The Ondurdis bows to you when you arrive. "You have chosen good home for us."`
 			scene "outfit/skadetear"
-			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Asgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skade. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
+			`	She has a small, wooden box with inlaid runes that looks very similar to the one you saw at Asgard. She opens the box to reveal a blue glowing stone with a single rune inscribed on it. "We call these Tears of Skadi. We found few of them buried around Goddess-Stone of Nifel. They are always cold, and may be useful in warm ship." She hands you the box.`
 			choice
 				`	"You honor me. Thank you."`
 					goto honor
@@ -3968,7 +3968,7 @@ mission "Home for Skadenga 13"
 					goto amends
 					to display
 						not "amending"
-				`	"This Tear of Skade, I've seen something like it before. Might you know more about these enigmatic stones?"`
+				`	"This Tear of Skadi, I've seen something like it before. Might you know more about these enigmatic stones?"`
 					goto enigmatic
 					to display
 						has "Ice Queen 6: done"
@@ -3989,7 +3989,7 @@ mission "Home for Skadenga 13"
 			label amends
 			action
 				set "amending"
-			`	The Ondurdis nods slowly. "On Earth, before alfar, or elves, came to us, we had forsaken Skade. Men of Book had persuaded us to abandon old ways and embrace their new religion. We deserted our temples, forsook our trees, and thought ourselves the better for it."`
+			`	The Ondurdis nods slowly. "On Earth, before alfar, or elves, came to us, we had forsaken Skadi. Men of Book had persuaded us to abandon old ways and embrace their new religion. We deserted our temples, forsook our trees, and thought ourselves the better for it."`
 			`	Her old face scrunches up in anger at the memory. "When we were brought to Deep, when we saw Goddess-Stone, we realized our folly. We would atone, and we would be strong." She looks up at you, her eyes bright and her face firm. "And strong we have been."`
 				goto answers
 			label enigmatic
@@ -4003,7 +4003,7 @@ mission "Home for Skadenga 13"
 				clear "ages"
 				clear "elf"
 				clear "amending"
-			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skade protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
+			`	"That is enough whispering of old secrets." She straightens up and smooths her dress. "I have much to do, and I imagine so do you. Take care, <first>. May Skadi protect you." The leader of the Skadenga returns to her people on the windswept hills of the small, picturesque town of Hrithfjall.`
 			scene "scene/sunset"
 			`	With the conversation concluded, you wander back toward your ship as the sun sets. You hear the hustle and bustle all around you of eager people pursuing a new and exciting life. The promise of a new beginning is almost as intoxicating as the faint hint of sea-salt on the cool breeze that ruffles your clothes.`
 			`	You wonder if you're forgetting anything - if you should find Hjlod and speak with her. But she is nowhere in sight, and you realize there will be time to see her again. You climb aboard your ship and leave these people to their new home, and you wonder: in all the bright stars and warm worlds, where might your home be?`
@@ -4055,7 +4055,7 @@ mission "Homecoming to Skadenga"
 			label yesyes
 			`	The Ondurdis shakes her head. "You have already done too much for us for too little pay. We can afford to pay you, and we will."`
 			label yes
-			`	"The five Stone-Bearers will accompany you back to your ship. They will pay you <payment> for transport to <planet>. May Skade and Ran watch over your journey." The Ondurdis turns this into a toast, which everyone gladly participates in.`
+			`	"The five Stone-Bearers will accompany you back to your ship. They will pay you <payment> for transport to <planet>. May Skadi and Ran watch over your journey." The Ondurdis turns this into a toast, which everyone gladly participates in.`
 			`	Hjlod walks with you and your passengers back to your ship. "Be well, <first>."`
 				accept
 	on complete
@@ -4063,7 +4063,7 @@ mission "Homecoming to Skadenga"
 		event "hjlod waits" 360
 		conversation
 			`The abandoned village of Udainsakr is cold, dark, and half-buried in unrelenting snow. Everything feels colder than you remember, and you wonder how long before this planet is a perpetual snowball.`
-			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment>, leave your ship and head for the Goddess-Stone of Skade with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
+			`	The five Skadenga you brought are polite and circumspect. Upon landing, they hand you <payment>, leave your ship and head for the Goddess-Stone of Skadi with its attendant piles of stones. They each navigate their way to a specific cairn, stand there for a moment, speaking or chanting, and then place their stone upon it. Solemnly, they return to you with their task complete. There is nothing else for them to do here, and they request you take them home.`
 
 
 
@@ -4174,7 +4174,7 @@ mission "Hjlod Remembers Windblain"
 			`Hjlod is waiting for you when you land. She looks healthy, strong, and happy - less gaunt and stressed then you recall her looking on Nifel when you first met. She gives you a hug. "Alvays good to see you, <first>. I have been thinking, vith all that vent on and needed to be done, I never had chance to thank you for saving me from cold."`
 			`	She reaches into her pocket and pulls out a small pouch. "I have stone that has long been in my family. I wish to give it to you. Keep you cold in hot ship, remind you of Hjlod in far-off galaxy."`
 			scene "outfit/skadetear"
-			`	Hjlod gives you a glowing blue Tear of Skade, just like the one The Ondurdis gave you sometime before.`
+			`	Hjlod gives you a glowing blue Tear of Skadi, just like the one The Ondurdis gave you sometime before.`
 			`	"How many of these are there?" you ask.`
 			`	"Only few," she answers. "They were found around the Goddess-Stone in the early days. Passed from Skadenga mother to Skadenga daughter. I have no daughter, but I have you, so this is now yours."`
 			`	You thank her and spend the rest of the day with her, talking, laughing and walking upon the friendly earth of <planet>.`
@@ -4205,12 +4205,12 @@ mission "Hjlod Remembers Nifel"
 		conversation
 			`Nifel is colder than you remember. The snow is deeper, and the ice harder. Despite this, the small recolonized settlement of Udainsakr appears to be thriving. Although it started with less than 50 Skadenga, thanks to the steady flow of pilgrims, the village population now numbers over a thousand.`
 			`	Hjlod finds you and gives you a small smile. "I am glad you came."`
-			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skade. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
-			`	She holds out the box. "This is Tear of Skade. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
+			`	She reaches into her pocket and pulls out a small wooden box, similar to the one you saw displayed at Asgard years ago. "I have been thinking," Hjlod says. "Maybe all this vas vill of Skadi. Maybe you took us to Asgard to make us stronger, to make us better. It is bitter lesson, but I understand it now."`
+			`	She holds out the box. "This is Tear of Skadi. Only few ever found, and this I give to you. For saving my life, for bringing us back here, for making us stronger."`
 			scene "outfit/skadetear"
 			`	The box opens, displaying a small, blue glowing rock. "Alvays makes cold. Alvays. Useful on hot ship. Keep this vith you, and know Skadenga vith you too," Hjlod says, handing it to you.`
 			`	Her eyes water, and she wipes them. "Your story is forever chiseled on our stones."`
-			`	She turns and leaves you there, holding a Tear of Skade, and shivering in Nifel's unforgiving cold.`
+			`	She turns and leaves you there, holding a Tear of Skadi, and shivering in Nifel's unforgiving cold.`
 
 
 
