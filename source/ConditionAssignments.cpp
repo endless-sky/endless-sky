@@ -193,7 +193,7 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 		}
 
 		// Parse the expression.
-		ConditionSet expr;
+		ConditionSet expr(conditions);
 		int tokenNr = 2;
 		if(!expr.ParseNode(node, tokenNr))
 			return;

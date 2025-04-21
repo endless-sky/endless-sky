@@ -71,6 +71,8 @@ public:
 	ConditionSet &operator=(const ConditionSet &&other) noexcept;
 	ConditionSet &operator=(const ConditionSet &other);
 
+	// Construct an empty set with a pointer to a ConditionsStore.
+	explicit ConditionSet(const ConditionsStore *conditions);
 	// Construct and Load() at the same time.
 	explicit ConditionSet(const DataNode &node, const ConditionsStore *conditions);
 

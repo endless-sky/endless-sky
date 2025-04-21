@@ -124,6 +124,13 @@ namespace
 
 
 
+ConditionSet::ConditionSet(const ConditionsStore *conditions)
+{
+	this->conditions = conditions;
+}
+
+
+
 // Construct and Load() at the same time.
 ConditionSet::ConditionSet(const DataNode &node, const ConditionsStore *conditions)
 {
@@ -465,7 +472,7 @@ bool ConditionSet::ParseNode(const DataNode &node)
 
 		// Create `conditionName == 0` expression.
 		expressionOperator = ExpressionOp::EQ;
-		children.emplace_back();
+		children.emplace_back(conditions);
 		children.back().expressionOperator = ExpressionOp::VAR;
 		children.back().conditionName = node.Token(1);
 		children.emplace_back(0, conditions);
@@ -569,7 +576,7 @@ bool ConditionSet::ParseBooleanChildren(const DataNode &node)
 	// Load all child nodes.
 	for(const DataNode &child : node)
 	{
-		children.emplace_back();
+		children.emplace_back(conditions);
 		children.back().ParseNode(child);
 
 		if(children.back().expressionOperator == ExpressionOp::INVALID)
@@ -618,7 +625,7 @@ bool ConditionSet::ParseMini(const DataNode &node, int &tokenNr)
 	else if(node.Token(tokenNr) == "(")
 	{
 		// We must already have handled an open-bracket to get here; this one goes into a sub-expression.
-		children.emplace_back();
+		children.emplace_back(conditions);
 		children.back().ParseMini(node, tokenNr);
 	}
 	else
@@ -715,7 +722,7 @@ bool ConditionSet::ParseFromInfix(const DataNode &node, int &tokenNr, Expression
 				if(infixOp == expressionOperator)
 				{
 					++tokenNr;
-					if(!((children.emplace_back()).ParseMini(node, tokenNr)))
+					if(!((children.emplace_back(conditions)).ParseMini(node, tokenNr)))
 						return FailParse();
 
 					continue;
@@ -753,7 +760,7 @@ bool ConditionSet::PushDownLast(const DataNode &node)
 	children.pop_back();
 
 	// Create a new last child.
-	children.emplace_back();
+	children.emplace_back(conditions);
 
 	// Let the earlier removed child become a grandChild.
 	children.back().children.push_back(std::move(ce));
