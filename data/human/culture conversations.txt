@@ -1103,7 +1103,7 @@ mission "Exotic Life: Bloodsea"
 					goto declined
 			action
 				payment -8000
-			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
 				decline
 			label declined
 			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
