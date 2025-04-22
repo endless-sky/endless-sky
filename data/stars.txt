@@ -280,6 +280,22 @@ star "star/twilight-black-hole"
 	power 2.4
 	wind 0.3
 	icon "map/twilight-black-hole-star"
+star "star/big black hole"
+	icon "map/big black hole"
+star "star/black hole 3"
+	icon "map/black hole 3"
+star "star/black hole 4"
+	icon "map/black hole 4"
+star "star/black hole 5"
+	icon "map/black hole 5"
+star "star/black hole 6"
+	icon "map/black hole 6"
+star "star/black hole corona"
+	icon "map/black hole corona"
+star "star/black hole star"
+	icon "map/black hole star"
+star "star/black-hole-still"
+	icon "map/black-hole-still
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
