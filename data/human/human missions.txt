@@ -8513,7 +8513,7 @@ mission "Syndicate Business 6"
 			`After an uneventful walk through the spaceport, you return to <ship> to see a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
 				goto message
 			label deferred
-			`	After an uneventful trip through the spaceport, you remember that you saved a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
+			`	After an uneventful trip through the spaceport, you remember saving a message from Howard, the Megaparsec salesman you've already invested with twice. The message says:`
 			label message
 			branch meanopening
 				"syndicate business: mean to Howard" > 0
@@ -8602,7 +8602,7 @@ mission "Syndicate Business 7"
 			`	Howard exhales, shaking his head with a knowing smile. "Starting the Marauder project got me here, but keeping it alive? That won't help me get to the next level." Howard leans casually against the desk, his tone becoming more familiar but still businesslike. "The engineers are whispering that mass production doesn't look feasible. That's bad news for me if the higher-ups catch wind of it before we can control the narrative."`
 				goto restofplan
 			label meanplan
-			`	Howard exhales sharply as his eyes narrow in irritation. "Starting the Marauder project served its purpose, but now? It's a liability." At the last word, his gaze flicks over you, cold and quick. "Some engineers don't think that mass production of Marauder ships will be viable. That bodes poorly if the higher-ups catch wind of it before I can control the narrative."`
+			`	Howard exhales sharply as his eyes narrow in irritation. "Starting the Marauder project served its purpose, but now? It's a liability." At the last word, his gaze flicks over you. "Let's just say it's run its course; I need it shut down before anyone starts asking questions that I can't answer."`
 			label restofplan
 			`	Howard's tone remains measured, but there's a calculated edge to it now. "So, we make sure the Marauder project dies for the right reasons before anyone starts asking the wrong questions. If, say, an unfortunate pirate attack conveniently wipes out key research and a few critical components, the whole project becomes unsalvageable. Lightspeed Logistics is responsible for security, not me, so if the whole thing goes up in flames, my reputation remains intact - just another casualty of circumstance. Then there'll be nothing standing in the way of my promotion, and I get a new corner office."`
 			branch meancloser
@@ -8681,7 +8681,7 @@ mission "Syndicate Business 7"
 				label whomst
 				`	"I am the relentless, raging rapscallion who revels in ripping apart feeble, fumbling fiends!"`
 				label power
-				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see a half-baker's dozen fixed guns take aim at your ship, ready to strike.`
+				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see a baker's half-dozen guns take aim at your ship, ready to fire.`
 		on kill
 			set "syndicate business golden jewel dead"
 			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
