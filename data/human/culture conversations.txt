@@ -1078,7 +1078,15 @@ mission "Exotic Life: Bloodsea"
 		random < 10
 	on offer
 		conversation
+			branch formerpirates
+				or
+					has "event: bloodsea independent"
+					has "event: bloodsea joins free worlds"
 			`You step into one of the raucous open-air marketplaces of Bloodsea, where armed vendors and hulking guards barter over stolen cargo amid piles of weathered crates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
+				goto restofhello
+			label formerpirates
+			`You step into one of the raucous open-air marketplaces of Bloodsea, where wary-looking vendors and armed guards barter over allegedly legal cargo amid piles of weathered crates. As you weave through the maze of noise and color, you catch sight of a man huddled behind one of the crates - he's coughing violently, blood staining his lips, the crate, and the ground beside him. Before you can react, a lean, scarred woman fixes her steely gaze on you, her face hidden beneath a pair of stained bandanas - one concealing her mouth and nose, the other wrapped around her head.`
+			label restofhello
 			`	"That man's got the Bloodsea Bloom," she says flatly, as if mentioning the weather.`
 			choice
 				`	"What's that?"`
@@ -1095,7 +1103,7 @@ mission "Exotic Life: Bloodsea"
 					goto declined
 			action
 				payment -8000
-			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled pirate. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
 				decline
 			label declined
 			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
