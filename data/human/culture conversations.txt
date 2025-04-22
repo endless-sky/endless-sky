@@ -1095,7 +1095,7 @@ mission "Exotic Life: Bloodsea"
 					goto declined
 			action
 				payment -8000
-			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled pirate. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll the it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled pirate. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this lawless port.`
 				decline
 			label declined
 			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
@@ -1190,7 +1190,7 @@ mission "Exotic Life: Albatross"
 			`	His face darkens, and his voice grows weighty and ominous. "Polecats, they attract... the Albatross." For a suspended moment, the chatter ceases; the clamor of glasses and low murmurs fall silent as every patron registers the weight of that word. Then, as if on cue, the noise resumes, and life goes on as usual.`
 				goto nextquestion
 			label albatross
-			`	Emboldened by the hushed reaction, you press on, "Albatross?" That single word slices through the renewed din, and in a heartbeat, the atmosphere shatters. Several patrons rise from their stools, their expressions hardening into threatening scowls. The old man, eyes distant and vacant, seems lost in thought while becomes clear that you have crossed a forbidden line.`
+			`	Emboldened by the hushed reaction, you press on, "Albatross?" That single word slices through the renewed din, and in a heartbeat, the atmosphere shatters. Several patrons rise from their stools, their expressions hardening into threatening scowls. The old man, eyes distant and vacant, seems lost in thought while it becomes clear that you have crossed a forbidden line.`
 			`	Rough hands grip your shoulders, and before you can protest, you're dragged toward the door. Outside, in the biting wind, the echo of their shouted threats follows you. Perhaps some stones are best left unturned.`
 			label ending
 			action
