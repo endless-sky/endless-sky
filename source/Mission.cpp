@@ -115,15 +115,15 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Mission::Mission(const DataNode &node)
+Mission::Mission(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
 // Load a mission, either from the game data or from a saved game.
-void Mission::Load(const DataNode &node)
+void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// All missions need a name.
 	if(node.Size() < 2)
@@ -251,13 +251,13 @@ void Mission::Load(const DataNode &node)
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "offer")
-				toOffer.Load(child);
+				toOffer.Load(child, playerConditions);
 			else if(child.Token(1) == "complete")
-				toComplete.Load(child);
+				toComplete.Load(child, playerConditions);
 			else if(child.Token(1) == "fail")
-				toFail.Load(child);
+				toFail.Load(child, playerConditions);
 			else if(child.Token(1) == "accept")
-				toAccept.Load(child);
+				toAccept.Load(child, playerConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -300,9 +300,9 @@ void Mission::Load(const DataNode &node)
 			set.insert(GameData::Systems().Get(child.Token(1)));
 		}
 		else if(child.Token(0) == "substitutions" && child.HasChildren())
-			substitutions.Load(child);
+			substitutions.Load(child, playerConditions);
 		else if(child.Token(0) == "npc")
-			npcs.emplace_back(child);
+			npcs.emplace_back(child, playerConditions);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -310,10 +310,10 @@ void Mission::Load(const DataNode &node)
 			if(child.Size() >= 3)
 			{
 				MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
-				action.Load(child);
+				action.Load(child, playerConditions);
 			}
 			else
-				genericOnEnter.emplace_back(child);
+				genericOnEnter.emplace_back(child, playerConditions);
 		}
 		else if(child.Token(0) == "on" && child.Size() >= 2)
 		{
@@ -333,7 +333,7 @@ void Mission::Load(const DataNode &node)
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				actions[it->second].Load(child);
+				actions[it->second].Load(child, playerConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -834,17 +834,16 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	const auto &playerConditions = player.Conditions();
-	if(!toOffer.Test(playerConditions))
+	if(!toOffer.Test())
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test(playerConditions))
+	if(!toFail.IsEmpty() && toFail.Test())
 		return false;
 
-	if(repeat && playerConditions.Get(name + ": offered") >= repeat)
+	if(repeat && player.Conditions().Get(name + ": offered") >= repeat)
 		return false;
 
-	bool isFailed = IsFailed(player);
+	bool isFailed = IsFailed();
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
 		return false;
@@ -868,11 +867,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
-	const auto &playerConditions = player.Conditions();
-	if(!toAccept.Test(playerConditions))
+	if(!toAccept.Test())
 		return false;
 
-	bool isFailed = IsFailed(player);
+	bool isFailed = IsFailed();
 	auto it = actions.find(OFFER);
 	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
 		return false;
@@ -922,12 +920,12 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 		return false;
 
 	// Test the completion conditions for this mission.
-	if(!toComplete.Test(player.Conditions()))
+	if(!toComplete.Test())
 		return false;
 
 	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player)))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed()))
 		return false;
 
 	// NPCs which must be accompanied or evaded must be present (or not),
@@ -958,9 +956,9 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 
 
-bool Mission::IsFailed(const PlayerInfo &player) const
+bool Mission::IsFailed() const
 {
-	if(!toFail.IsEmpty() && toFail.Test(player.Conditions()))
+	if(!toFail.IsEmpty() && toFail.Test())
 		return true;
 
 	for(const NPC &npc : npcs)
@@ -1017,12 +1015,11 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	}
 
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-	substitutions.Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs);
+	substitutions.Substitutions(subs);
 	player.AddPlayerSubstitutions(subs);
 
-	const auto &playerConditions = player.Conditions();
-	subs["<conditions>"] = toAccept.Test(playerConditions) ? "meet" : "do not meet";
+	subs["<conditions>"] = toAccept.Test() ? "meet" : "do not meet";
 
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -1090,7 +1087,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		if(!stopovers.empty())
 			return false;
 	}
-	if(trigger == ABORT && IsFailed(player))
+	if(trigger == ABORT && IsFailed())
 		return false;
 	if(trigger == WAYPOINT && !waypoints.empty())
 		return false;
@@ -1120,7 +1117,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 
 	// Don't update any further conditions if this action exists and can't be completed.
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(player), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), boardingShip))
 		return false;
 
 	if(trigger == ACCEPT)
@@ -1221,7 +1218,7 @@ bool Mission::HasShip(const shared_ptr<Ship> &ship) const
 // about it. This may affect the mission status or display a message.
 void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI *ui)
 {
-	if(event.TargetGovernment()->IsPlayer() && !IsFailed(player))
+	if(event.TargetGovernment()->IsPlayer() && !IsFailed())
 	{
 		bool failed = false;
 		string message;
@@ -1445,8 +1442,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Generate the substitutions map.
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
-	substitutions.Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs);
+	substitutions.Substitutions(subs);
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = Format::MassString(result.cargoSize);
 	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);
@@ -1539,7 +1536,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto oit = onEnter.begin();
 	for( ; oit != onEnter.end(); ++oit)
@@ -1555,7 +1552,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const auto &it : onEnter)
-		result.onEnter[it.first] = it.second.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload);
+		result.onEnter[it.first] = it.second.Instantiate(subs, sourceSystem, jumps, payload);
 
 	auto eit = genericOnEnter.begin();
 	for( ; eit != genericOnEnter.end(); ++eit)
@@ -1571,8 +1568,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const MissionAction &action : genericOnEnter)
-		result.genericOnEnter.emplace_back(action.Instantiate(
-			player.Conditions(), subs, sourceSystem, jumps, payload));
+		result.genericOnEnter.emplace_back(action.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
@@ -1644,7 +1640,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed(player)))
+	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed()))
 	{
 		eit->second.Do(player, ui, this);
 		didEnter.insert(&eit->second);
@@ -1653,7 +1649,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(player)))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
 			{
 				action.Do(player, ui, this);
 				didEnter.insert(&action);

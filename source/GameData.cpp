@@ -67,6 +67,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <atomic>
+#include <filesystem>
 #include <iostream>
 #include <queue>
 #include <utility>
@@ -81,8 +82,8 @@ namespace {
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
 	Set<Galaxy> defaultGalaxies;
-	Set<Shop<Ship>> defaultShipSales;
-	Set<Shop<Outfit>> defaultOutfitSales;
+	Set<Sale<Ship>> defaultShipSales;
+	Set<Sale<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
@@ -240,7 +241,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 		});
 	}
 
-	return objects.Load(queue, player, sources, debugMode);
+	return objects.Load(queue, sources, player, &globalConditions, debugMode);
 }
 
 
@@ -282,8 +283,38 @@ void GameData::LoadSettings()
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
+	// The found shader files. The first element is the vertex shader,
+	// the second is the fragment shader.
+	map<string, pair<string, string>> loaded;
+	for(const filesystem::path &source : sources)
+	{
+		filesystem::path base = source / "shaders";
+		if(Files::Exists(base))
+			for(filesystem::path shaderFile : Files::RecursiveList(base))
+			{
+				filesystem::path shader = shaderFile;
+#ifdef ES_GLES
+				// Allow specifying different shaders for GL and GLES.
+				// In this case, only the appropriate shader is loaded.
+				if(shaderFile.extension() == ".gles")
+					shader = shader.parent_path() / shader.stem();
+#else
+				if(shaderFile.extension() == ".gl")
+					shader = shader.parent_path() / shader.stem();
+#endif
+				string name = (shader.parent_path() / shader.stem()).lexically_relative(base).generic_string();
+				if(shader.extension() == ".vert")
+					loaded[name].first = shaderFile.string();
+				else if(shader.extension() == ".frag")
+					loaded[name].second = shaderFile.string();
+			}
+	}
+
+	// If there is both a fragment and a vertex shader available,
+	// it can be turned into a shader object.
+	for(const auto &[key, s] : loaded)
+		if(!s.first.empty() && !s.second.empty())
+			objects.shaders.Get(key)->Load(Files::Read(s.first).c_str(), Files::Read(s.second).c_str());
 
 	FillShader::Init();
 	FogShader::Init();
@@ -294,6 +325,9 @@ void GameData::LoadShaders()
 	SpriteShader::Init();
 	BatchShader::Init();
 	RenderBuffer::Init();
+
+	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
 
 	background.Init(16384, 4096);
 }
@@ -688,7 +722,7 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
-const Set<Shop<Outfit>> &GameData::Outfitters()
+const Set<Sale<Outfit>> &GameData::Outfitters()
 {
 	return objects.outfitSales;
 }
@@ -712,6 +746,13 @@ const Set<Phrase> &GameData::Phrases()
 const Set<Planet> &GameData::Planets()
 {
 	return objects.planets;
+}
+
+
+
+const Set<Shader> &GameData::Shaders()
+{
+	return objects.shaders;
 }
 
 
@@ -744,7 +785,7 @@ ConditionsStore &GameData::GlobalConditions()
 
 
 
-const Set<Shop<Ship>> &GameData::Shipyards()
+const Set<Sale<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
 }

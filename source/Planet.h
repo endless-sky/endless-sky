@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Fleet;
 class Government;
@@ -54,7 +55,7 @@ public:
 
 public:
 	// Load a planet's description from a file.
-	void Load(const DataNode &node, Set<Wormhole> &wormholes);
+	void Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions);
 	// Legacy wormhole do not have an associated Wormhole object so
 	// we must auto generate one if we detect such legacy wormhole.
 	void FinishLoading(Set<Wormhole> &wormholes);
