@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryType.h"
-#include "Sale.h"
 #include "Set.h"
+#include "Shop.h"
 
 #include "CategoryList.h"
 #include "Color.h"
@@ -129,8 +129,8 @@ private:
 	Set<System> systems;
 	Set<Test> tests;
 	Set<TestData> testDataSets;
-	Set<Sale<Ship>> shipSales;
-	Set<Sale<Outfit>> outfitSales;
+	Set<Shop<Ship>> shipSales;
+	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	std::set<double> neighborDistances;
 
