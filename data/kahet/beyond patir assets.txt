@@ -50,7 +50,7 @@ ship "Asteroid Large 1"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 1350000000
+		"cost" 29000000
 		"hull" 136561
 		"required crew" 1
 		"bunks" 1
@@ -105,7 +105,7 @@ ship "Asteroid Large 2"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 1350000000
+		"cost" 23000000
 		"hull" 137151
 		"required crew" 1
 		"bunks" 1
@@ -162,7 +162,7 @@ ship "Asteroid Large 3"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 1350000000
+		"cost" 19000000
 		"hull" 135172
 		"required crew" 1
 		"bunks" 1
@@ -217,7 +217,7 @@ ship "Asteroid Large 4"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 1350000000
+		"cost" 17000000
 		"hull" 135172
 		"required crew" 1
 		"bunks" 1
@@ -272,7 +272,7 @@ ship "Asteroid Large 5"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 1350000000
+		"cost" 31000000
 		"hull" 136716
 		"required crew" 1
 		"bunks" 1
@@ -327,7 +327,7 @@ ship "Asteroid Medium"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 950000000
+		"cost" 13000000
 		"hull" 91248
 		"required crew" 1
 		"bunks" 1
@@ -381,7 +381,7 @@ ship "Asteroid Young 1"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 450000000
+		"cost" 11000000
 		"hull" 36459
 		"required crew" 1
 		"bunks" 1
@@ -434,7 +434,7 @@ ship "Asteroid Young 2"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 450000000
+		"cost" 7000000
 		"hull" 35984
 		"required crew" 1
 		"bunks" 1
@@ -487,7 +487,7 @@ ship "Asteroid Young 3"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 450000000
+		"cost" 5000000
 		"hull" 37021
 		"required crew" 1
 		"bunks" 1
@@ -540,7 +540,7 @@ ship "Asteroid Young 4"
 		category "Transport"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 450000000
+		"cost" 3000000
 		"hull" 36462
 		"required crew" 1
 		"bunks" 1
@@ -588,7 +588,7 @@ ship "Asteroid Young 4"
 outfit "Asteroid Anti-Missile"
 	"display name" "???"
 	category "Turrets"
-	cost 86346105
+	cost 18630000
 	thumbnail "outfit/asteroid weapon 2"
 	"mass" 31
 	"outfit space" -31
@@ -614,7 +614,7 @@ effect "asteroid am fire"
 outfit "Asteroid Anti-Missile 2"
 	"display name" "???"
 	category "Turrets"
-	cost 21280000
+	cost 12128000
 	thumbnail "outfit/asteroid weapon 8"
 	"mass" 33
 	"outfit space" -33
@@ -642,7 +642,7 @@ effect "asteroid am circle defense"
 outfit "Asteroid Weapon Small"
 	"display name" "???"
 	category "Guns"
-	cost 23460000
+	cost 12346000
 	thumbnail "outfit/asteroid weapon 3"
 	"mass" 76
 	"outfit space" -76
@@ -690,7 +690,7 @@ outfit "Asteroid Circle Submunition"
 outfit "Asteroid Weapon Large"
 	"display name" "???"
 	category "Guns"
-	cost 8971535
+	cost 18970000
 	thumbnail "outfit/asteroid weapon 6"
 	"mass" 24
 	"outfit space" -24
@@ -1072,7 +1072,7 @@ outfit "asteroid missile"
 outfit "Asteroid Weapon Large 2"
 	"display name" "???"
 	category "Guns"
-	cost 71670239
+	cost 171670000
 	thumbnail "outfit/asteroid weapon 1"
 	"mass" 31
 	"outfit space" -31
@@ -1415,7 +1415,7 @@ effect "asteroid circle trail"
 outfit "Asteroid Weapon Large 3"
 	"display name" "???"
 	category "Guns"
-	cost 98713449
+	cost 19870000
 	thumbnail "outfit/asteroid weapon 5"
 	"mass" 16
 	"outfit space" -16
@@ -1546,7 +1546,7 @@ outfit "magic deployer6"
 outfit "Asteroid Jump Drive"
 	"display name" "???"
 	category "Systems"
-	cost 29631456
+	cost 9963000
 	thumbnail "outfit/asteroid weapon 7"
 	"mass" 20
 	"outfit space" -20
@@ -1749,7 +1749,7 @@ effect "jump drive spark 9"
 outfit "Asteroid Weapon Large 4"
 	"display name" "???"
 	category "Guns"
-	cost 57165239
+	cost 15716000
 	thumbnail "outfit/asteroid weapon 4"
 	"mass" 33
 	"outfit space" -33
@@ -2404,7 +2404,7 @@ ship "Asteroid Planet"
 		category "Heavy Warship"
 		"uncapturable" 1
 		"inscrutable" 1
-		"cost" 1350000000
+		"cost" 158000000
 		"hull" 86135672193
 		"required crew" 1
 		"bunks" 1
