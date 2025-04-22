@@ -295,7 +295,7 @@ star "star/black hole corona"
 star "star/black hole star"
 	icon "map/black hole star"
 star "star/black-hole-still"
-	icon "map/black-hole-still
+	icon "map/black-hole-still"
 
 # Dwarves scaled like stars.
 star "star/o-dwarf"
