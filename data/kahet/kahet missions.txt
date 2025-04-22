@@ -829,7 +829,7 @@ mission "Ka'het: Patir Mystery 6"
 		clear "remnant: dusk busy"
 	on fail
 		dialog
-			`As soon as you approach the <planet>, you see that the Ka'sei are following your ship. You won't be able to enter the settlement safely anymore.`
+			`You have approached the Builder Settlement uncloaked, making the Ka'sei follow you, or the escort that was carrying the Remnant scientists has been destroyed. You have failed this mission.`
 	npc save
 		government "Test Dummy"
 		personality heroic nemesis unconstrained
@@ -1114,7 +1114,7 @@ mission "Ka'het: Patir Mystery 9"
 			label reason
 			`	"For me, the reason is medical. My body rejected the symbiont quite violently shortly after the initial operation, to the point that even attempting to install another would be very risky. But if you ask around, the causes are quite varied." As the dinner comes to an end, you and Dusk move back near the entrance.`
 			label next
-			`	"Well," Dusk replies, "our current plan is to remain at the outpost for one or two months, exploring the Builder settlement and studying everything it has to offer. Do not go too far in the meanwhile, though - emergencies can always happen, and you are supposed to be our ride back when the time comes." He pauses for a few seconds to think. "If you are interested, perhaps you could remain here with us to help with the research. You would need to sleep in your starship, of course, and the supplies would be slightly more limited, but neither issue is a showstopper. It is up to you, <first>."`
+			`	"Our current plan is to remain at the outpost for one or two months, exploring the Builder settlement and studying everything it has to offer. Do not go too far in the meanwhile, though - emergencies can always happen, and you are supposed to be our ride back when the time comes." He pauses for a few seconds to think. "If you are interested, perhaps you could remain here with us to help with the research. You would need to sleep in your starship, of course, and the supplies would be slightly more limited, but neither issue is a showstopper. It is up to you, <first>."`
 			choice
 				`	(Accept the offer.)`
 				`	(Decline the offer.)`
