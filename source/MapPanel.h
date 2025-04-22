@@ -169,22 +169,6 @@ protected:
 
 	bool fromMission = false;
 
-private:
-	void DrawTravelPlan();
-	// Display the name of and distance to the selected system.
-	void DrawSelectedSystem();
-	// Indicate which other systems have player escorts.
-	void DrawEscorts();
-	void DrawWormholes();
-	void DrawLinks();
-	// Draw systems in accordance to the set commodity color scheme.
-	void DrawSystems();
-	void DrawNames();
-	void DrawMissions();
-	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
-	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
-		bool drawBack = true, bool bigger = false);
-
 
 private:
 	class Node {
@@ -211,6 +195,23 @@ private:
 		Point end;
 		Color color;
 	};
+
+
+private:
+	void DrawTravelPlan();
+	// Display the name of and distance to the selected system.
+	void DrawSelectedSystem();
+	// Indicate which other systems have player escorts.
+	void DrawEscorts();
+	void DrawWormholes();
+	void DrawLinks();
+	// Draw systems in accordance to the set commodity color scheme.
+	void DrawSystems();
+	void DrawNames();
+	void DrawMissions();
+	void DrawPointer(const System *system, unsigned &systemCount, unsigned max, const Color &color, bool bigger = false);
+	static void DrawPointer(Point position, unsigned &systemCount, const Color &color,
+		bool drawBack = true, bool bigger = false);
 
 
 private:
