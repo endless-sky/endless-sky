@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
 #include "Swizzle.h"
@@ -121,6 +122,7 @@ private:
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
+	Set<Shader> shaders;
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;
