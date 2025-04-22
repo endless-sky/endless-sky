@@ -171,8 +171,8 @@ outfit "Tier 3 Anti-Missile"
 		"anti-missile" 100
 		"velocity" 570
 		"lifetime" 1
-		"reload" 6
-		"firing energy" 80
+		"reload" 8
+		"firing energy" 60
 		"firing heat" 10
 	description "This powerful anti-missile turret is capable of destroying even the strongest of missiles."
 
@@ -215,11 +215,10 @@ outfit "Pug Gridfire Turret"
 		"lifetime" 1
 		"reload" 20
 		"turret turn" 20
-		"firing energy" 800
-		"firing heat" 400
-		"firing force" 225
-		"shield damage" 600
-		"hull damage" 600
+		"firing energy" 400
+		"firing heat" 200
+		"shield damage" 300
+		"hull damage" 300
 		"blast radius" 40
 		"piercing" .3
 	description "No one understands how the Gridfire Turret works, and the Pug aren't interested in explaining."
