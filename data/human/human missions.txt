@@ -7556,7 +7556,7 @@ mission "Syndicate Business 1"
 			label negotiate
 			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
 			label power
-			`	The Vanguard's engines roar to life and you see a baker's half dozen fixed guns take aim at you, ready to strike.`
+			`	The Vanguard's engines roar to life and you see a baker's half-dozen guns take aim at your ship, ready to fire.`
 	npc
 		government "Independent (Killable)"
 		personality heroic staying vindictive
@@ -8058,7 +8058,7 @@ mission "Syndicate Business 5"
 				label whomst
 				`	"Bah, you banal, bumbling baboon! Prepare to meet your doom!"`
 				label power
-				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see a baker's half-dozen guns take aim at your ship, ready to fire.`
 		on kill
 			set "syndicate business golden jewel dead"
 			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
@@ -8805,12 +8805,12 @@ mission "Syndicate Business 8"
 		on kill
 			dialog "You watch as Howard's Shuttle explodes into a cloud of debris along with any hope of his promotion."
 	npc
-		government "Bounty Hunter"
+		government "Pirate"
 		personality harvests nemesis plunders staying
 		system destination
 		ship "Quicksilver" "Severance Package"
 	npc
-		government "Bounty Hunter"
+		government "Pirate"
 		personality harvests nemesis plunders
 		system destination
 		ship "Quicksilver" "Hostile Takeover"
@@ -8927,12 +8927,12 @@ mission "Syndicate Business 10"
 		on kill
 			dialog "You watch as Howard's Bounder explodes into a cloud of debris along with any hope of that investment opportunity."
 	npc
-		government "Bounty Hunter"
+		government "Pirate"
 		personality harvests nemesis plunders staying
 		system destination
 		ship "Quicksilver" "Enforced Compliance"
 	npc
-		government "Bounty Hunter"
+		government "Pirate"
 		personality harvests nemesis plunders
 		system destination
 		ship "Quicksilver" "The Noncompete"
