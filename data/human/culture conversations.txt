@@ -1096,11 +1096,30 @@ mission "Exotic Life: Bloodsea"
 			`	Then, she suddenly screams, "Only offworlders and blind fools with a death wish swim in that poison!"`
 			`	A wry grin floods her face, and she adds in a conversational tone, almost as an afterthought, "Now, I'll flay you alive and turn you into chum if you don't buy some fish bait. Eight racks." She slams a scarred hand into a rancid barrel beside her.`
 			choice
-				`	(Buy a barrel of rotten fish bait for 8,000 credits.)`
+				`	(Give her 80,000 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 80000
+				`	(Give her 8,000 credits for the barrel of rotten fish bait.)`
 					to display
 						credits > 8000
+					goto thousand
+				`	(Give her 800 credits for the barrel of rotten fish bait.)`
+					to display
+						credits > 800
+					goto hundred
 				`	(Run for it.)`
 					goto declined
+			action
+				payment -80000
+				"reputation: Pirate" += 1
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. She suppresses an amused glint in her eye and, with surprising care, gently pushes the putrid barrel towards you, her calloused fingers brushing the rim in a brief, elegant flourish. You bow your head in gratitude, roll it away, and once she's out of sight, ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
+				decline
+			label hundred
+			action
+				payment -800
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. Her nostrils flare, and she snatches to credits with a snarl. "Not even one rack," she spits, eyes blazing. Without warning, she hauls the barrel off the ground to slam it directly against your shin. You yelp and stagger backwards. She rakes a jagged knife through the air, roaring, "I'll carve you like a cod and string your entrails for the gulls!" You flee her and the barrel to dart back to the <ship>, her furious curses echoing behind you.`
+				decline
+			label thousand
 			action
 				payment -8000
 			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
