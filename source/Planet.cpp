@@ -203,11 +203,11 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
-			description.Load(child);
+			description.Load(child, playerConditions);
 		else if(key == "spaceport")
 		{
 			port.LoadDefaultSpaceport();
-			port.LoadDescription(child);
+			port.LoadDescription(child, playerConditions);
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
@@ -481,7 +481,7 @@ bool Planet::IsInhabited() const
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const
 {
-	return !Shipyard().empty() && toUnlockShipyard.Test();
+	return !shipSales.empty() && toUnlockShipyard.Test();
 }
 
 
@@ -501,7 +501,7 @@ const Sale<Ship> &Planet::Shipyard() const
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !Outfitter().empty() && toUnlockOutfitter.Test();
+	return !outfitSales.empty() && toUnlockOutfitter.Test();
 }
 
 

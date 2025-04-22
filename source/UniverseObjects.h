@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
+#include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
 #include "Swizzle.h"
@@ -57,7 +58,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-
 class ConditionsStore;
 class Panel;
 class PlayerInfo;
@@ -74,8 +74,8 @@ class UniverseObjects {
 	friend class TestData;
 public:
 	// Load game objects from the given directories of definitions.
-	std::shared_future<void> Load(TaskQueue &queue, const PlayerInfo &player,
-		const std::vector<std::filesystem::path> &sources, bool debugMode = false);
+	std::shared_future<void> Load(TaskQueue &queue, const std::vector<std::filesystem::path> &sources,
+		const PlayerInfo &player, const ConditionsStore *globalConditions, bool debugMode = false);
 	// Determine the fraction of data files read from disk.
 	double GetProgress() const;
 	// Resolve every game object dependency.
@@ -96,7 +96,8 @@ public:
 
 
 private:
-	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player, bool debugMode = false);
+	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player,
+		const ConditionsStore *globalConditions, bool debugMode = false);
 
 
 private:
@@ -123,6 +124,7 @@ private:
 	Set<Person> persons;
 	Set<Phrase> phrases;
 	Set<Planet> planets;
+	Set<Shader> shaders;
 	Set<Ship> ships;
 	Set<System> systems;
 	Set<Test> tests;

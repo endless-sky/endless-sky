@@ -106,7 +106,7 @@ void Port::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			hasNews = true;
 		else if(key == "description" && child.Size() >= 2)
 		{
-			description.Load(child);
+			description.Load(child, playerConditions);
 
 			// If we have a description but no name then use the default spaceport name.
 			if(name.empty())
@@ -214,9 +214,9 @@ void Port::LoadUninhabitedSpaceport()
 
 
 
-void Port::LoadDescription(const DataNode &node)
+void Port::LoadDescription(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	description.Load(node);
+	description.Load(node, playerConditions);
 }
 
 

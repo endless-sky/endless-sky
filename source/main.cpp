@@ -66,7 +66,7 @@ void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
 	const string &testToRun, bool debugMode);
-Conversation LoadConversation();
+Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
 #ifdef _WIN32
 void InitConsole();
@@ -82,6 +82,7 @@ int main(int argc, char *argv[])
 	if(argc > 1)
 		InitConsole();
 #endif
+	PlayerInfo player;
 	Conversation conversation;
 	bool debugMode = false;
 	bool loadOnly = false;
@@ -115,7 +116,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		else if(arg == "-t" || arg == "--talk")
-			conversation = LoadConversation();
+			conversation = LoadConversation(player);
 		else if(arg == "-d" || arg == "--debug")
 			debugMode = true;
 		else if(arg == "-p" || arg == "--parse-save")
@@ -549,14 +550,15 @@ void PrintVersion()
 
 
 
-Conversation LoadConversation()
+Conversation LoadConversation(const PlayerInfo &player)
 {
+	const ConditionsStore *conditions = &player.Conditions();
 	Conversation conversation;
 	DataFile file(cin);
 	for(const DataNode &node : file)
 		if(node.Token(0) == "conversation")
 		{
-			conversation.Load(node);
+			conversation.Load(node, conditions);
 			break;
 		}
 

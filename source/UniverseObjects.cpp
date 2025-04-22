@@ -36,15 +36,15 @@ using namespace std;
 
 
 
-shared_future<void> UniverseObjects::Load(TaskQueue &queue, const PlayerInfo &player,
-		const vector<filesystem::path> &sources, bool debugMode)
+shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesystem::path> &sources,
+	const PlayerInfo &player, const ConditionsStore *globalConditions, bool debugMode)
 {
 	progress = 0.;
 
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-	return queue.Run([this, &player, &sources, debugMode]() noexcept -> void
+	return queue.Run([this, &player, &sources, globalConditions, debugMode]() noexcept -> void
 		{
 			vector<filesystem::path> files;
 			for(const auto &source : sources)
@@ -62,7 +62,7 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const PlayerInfo &pl
 			const double step = 1. / (static_cast<int>(files.size()) + 1);
 			for(const auto &path : files)
 			{
-				LoadFile(path, player, debugMode);
+				LoadFile(path, player, globalConditions, debugMode);
 
 				// Increment the atomic progress by one step.
 				// We use acquire + release to prevent any reordering.
@@ -138,29 +138,31 @@ void UniverseObjects::FinishLoading()
 // Apply the given change to the universe.
 void UniverseObjects::Change(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	if(node.Token(0) == "fleet" && node.Size() >= 2)
+	const string &key = node.Token(0);
+	bool hasValue = node.Size() >= 2;
+	if(key == "fleet" && hasValue)
 		fleets.Get(node.Token(1))->Load(node);
-	else if(node.Token(0) == "galaxy" && node.Size() >= 2)
+	else if(key == "galaxy" && hasValue)
 		galaxies.Get(node.Token(1))->Load(node);
-	else if(node.Token(0) == "government" && node.Size() >= 2)
+	else if(key == "government" && hasValue)
 		governments.Get(node.Token(1))->Load(node);
-	else if(node.Token(0) == "outfitter" && node.Size() >= 2)
+	else if(key == "outfitter" && hasValue)
 		outfitSales.Get(node.Token(1))->Load(node, outfits);
-	else if(node.Token(0) == "planet" && node.Size() >= 2)
+	else if(key == "planet" && hasValue)
 		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
-	else if(node.Token(0) == "shipyard" && node.Size() >= 2)
+	else if(key == "shipyard" && hasValue)
 		shipSales.Get(node.Token(1))->Load(node, ships);
-	else if(node.Token(0) == "system" && node.Size() >= 2)
-		systems.Get(node.Token(1))->Load(node, planets);
-	else if(node.Token(0) == "news" && node.Size() >= 2)
-		news.Get(node.Token(1))->Load(node);
-	else if(node.Token(0) == "link" && node.Size() >= 3)
+	else if(key == "system" && hasValue)
+		systems.Get(node.Token(1))->Load(node, planets, playerConditions);
+	else if(key == "news" && hasValue)
+		news.Get(node.Token(1))->Load(node, playerConditions);
+	else if(key == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
-	else if(node.Token(0) == "unlink" && node.Size() >= 3)
+	else if(key == "unlink" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Unlink(systems.Get(node.Token(2)));
-	else if(node.Token(0) == "substitutions" && node.HasChildren())
-		substitutions.Load(node);
-	else if(node.Token(0) == "wormhole" && node.Size() >= 2)
+	else if(key == "substitutions" && node.HasChildren())
+		substitutions.Load(node, playerConditions);
+	else if(key == "wormhole" && hasValue)
 		wormholes.Get(node.Token(1))->Load(node);
 	else
 		node.PrintTrace("Error: Invalid \"event\" data:");
@@ -271,10 +273,6 @@ void UniverseObjects::CheckReferences()
 	for(auto &&it : outfits)
 		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
-	// Outfitters are never serialized.
-	for(const auto &it : outfitSales)
-		if(it.second.empty() && !deferred["outfitter"].contains(it.first))
-			Logger::LogError("Warning: outfitter \"" + it.first + "\" is referred to, but has no outfits.");
 	// Phrases are never serialized.
 	for(const auto &it : phrases)
 		if(it.second.Name().empty())
@@ -290,10 +288,6 @@ void UniverseObjects::CheckReferences()
 			it.second.SetTrueModelName(it.first);
 			Warn("ship", it.first);
 		}
-	// Shipyards are never serialized.
-	for(const auto &it : shipSales)
-		if(it.second.empty() && !deferred["shipyard"].contains(it.first))
-			Logger::LogError("Warning: shipyard \"" + it.first + "\" is referred to, but has no ships.");
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
@@ -321,7 +315,8 @@ void UniverseObjects::CheckReferences()
 
 
 
-void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &player, bool debugMode)
+void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &player,
+		const ConditionsStore *globalConditions, bool debugMode)
 {
 	// This is an ordinary file. Check to see if it is an image.
 	if(path.extension() != ".txt")
@@ -335,28 +330,29 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
+		bool hasValue = node.Size() >= 2;
 		if(key == "color" && node.Size() >= 5)
 			colors.Get(node.Token(1))->Load(
 				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
-		else if(key == "swizzle" && node.Size() >= 2)
+		else if(key == "swizzle" && hasValue)
 			swizzles.Get(node.Token(1))->Load(node);
-		else if(key == "conversation" && node.Size() >= 2)
-			conversations.Get(node.Token(1))->Load(node);
-		else if(key == "effect" && node.Size() >= 2)
+		else if(key == "conversation" && hasValue)
+			conversations.Get(node.Token(1))->Load(node, playerConditions);
+		else if(key == "effect" && hasValue)
 			effects.Get(node.Token(1))->Load(node);
-		else if(key == "event" && node.Size() >= 2)
-			events.Get(node.Token(1))->Load(node);
-		else if(key == "fleet" && node.Size() >= 2)
+		else if(key == "event" && hasValue)
+			events.Get(node.Token(1))->Load(node, playerConditions);
+		else if(key == "fleet" && hasValue)
 			fleets.Get(node.Token(1))->Load(node);
-		else if(key == "formation" && node.Size() >= 2)
+		else if(key == "formation" && hasValue)
 			formations.Get(node.Token(1))->Load(node);
-		else if(key == "galaxy" && node.Size() >= 2)
+		else if(key == "galaxy" && hasValue)
 			galaxies.Get(node.Token(1))->Load(node);
-		else if(key == "government" && node.Size() >= 2)
+		else if(key == "government" && hasValue)
 			governments.Get(node.Token(1))->Load(node);
-		else if(key == "hazard" && node.Size() >= 2)
+		else if(key == "hazard" && hasValue)
 			hazards.Get(node.Token(1))->Load(node);
-		else if(key == "interface" && node.Size() >= 2)
+		else if(key == "interface" && hasValue)
 		{
 			interfaces.Get(node.Token(1))->Load(node);
 
@@ -368,59 +364,59 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 				menuBackgroundCache.Load(node);
 			}
 		}
-		else if(key == "minable" && node.Size() >= 2)
+		else if(key == "minable" && hasValue)
 			minables.Get(node.Token(1))->Load(node);
-		else if(key == "mission" && node.Size() >= 2)
-			missions.Get(node.Token(1))->Load(node);
-		else if(key == "outfit" && node.Size() >= 2)
+		else if(key == "mission" && hasValue)
+			missions.Get(node.Token(1))->Load(node, playerConditions);
+		else if(key == "outfit" && hasValue)
 			outfits.Get(node.Token(1))->Load(node);
-		else if(key == "outfitter" && node.Size() >= 2)
+		else if(key == "outfitter" && hasValue)
 			outfitSales.Get(node.Token(1))->Load(node, outfits);
-		else if(key == "person" && node.Size() >= 2)
+		else if(key == "person" && hasValue)
 			persons.Get(node.Token(1))->Load(node);
-		else if(key == "phrase" && node.Size() >= 2)
+		else if(key == "phrase" && hasValue)
 			phrases.Get(node.Token(1))->Load(node);
-		else if(key == "planet" && node.Size() >= 2)
+		else if(key == "planet" && hasValue)
 			planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
-		else if(key == "ship" && node.Size() >= 2)
+		else if(key == "ship" && hasValue)
 		{
 			// Allow multiple named variants of the same ship model.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
 			ships.Get(name)->Load(node);
 		}
-		else if(key == "shipyard" && node.Size() >= 2)
+		else if(key == "shipyard" && hasValue)
 			shipSales.Get(node.Token(1))->Load(node, ships);
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
 			// by other nodes (e.g. plugins may customize the basic start, rather than provide a unique start).
 			if(node.Size() == 1)
-				startConditions.emplace_back(node);
+				startConditions.emplace_back(node, globalConditions, playerConditions);
 			else
 			{
 				const string &identifier = node.Token(1);
 				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
 					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
 				if(existingStart != startConditions.end())
-					existingStart->Load(node);
+					existingStart->Load(node, globalConditions, playerConditions);
 				else
-					startConditions.emplace_back(node);
+					startConditions.emplace_back(node, globalConditions, playerConditions);
 			}
 		}
-		else if(key == "system" && node.Size() >= 2)
-			systems.Get(node.Token(1))->Load(node, planets);
-		else if((key == "test") && node.Size() >= 2)
-			tests.Get(node.Token(1))->Load(node);
-		else if((key == "test-data") && node.Size() >= 2)
+		else if(key == "system" && hasValue)
+			systems.Get(node.Token(1))->Load(node, planets, playerConditions);
+		else if(key == "test" && hasValue)
+			tests.Get(node.Token(1))->Load(node, playerConditions);
+		else if(key == "test-data" && hasValue)
 			testDataSets.Get(node.Token(1))->Load(node, path);
 		else if(key == "trade")
 			trade.Load(node);
-		else if(key == "landing message" && node.Size() >= 2)
+		else if(key == "landing message" && hasValue)
 		{
 			for(const DataNode &child : node)
 				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
 		}
-		else if(key == "star" && node.Size() >= 2)
+		else if(key == "star" && hasValue)
 		{
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
 			for(const DataNode &child : node)
@@ -435,16 +431,16 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
 		}
-		else if(key == "news" && node.Size() >= 2)
-			news.Get(node.Token(1))->Load(node);
-		else if(key == "rating" && node.Size() >= 2)
+		else if(key == "news" && hasValue)
+			news.Get(node.Token(1))->Load(node, playerConditions);
+		else if(key == "rating" && hasValue)
 		{
 			vector<string> &list = ratings[node.Token(1)];
 			list.clear();
 			for(const DataNode &child : node)
 				list.push_back(child.Token(0));
 		}
-		else if(key == "category" && node.Size() >= 2)
+		else if(key == "category" && hasValue)
 		{
 			static const map<string, CategoryType> category = {
 				{"ship", CategoryType::SHIP},
@@ -460,7 +456,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 			categories[it->second].Load(node);
 		}
-		else if((key == "tip" || key == "help") && node.Size() >= 2)
+		else if((key == "tip" || key == "help") && hasValue)
 		{
 			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
 			text.clear();
@@ -476,12 +472,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 		}
 		else if(key == "substitutions" && node.HasChildren())
-			substitutions.Load(node);
-		else if(key == "wormhole" && node.Size() >= 2)
+			substitutions.Load(node, playerConditions);
+		else if(key == "wormhole" && hasValue)
 			wormholes.Get(node.Token(1))->Load(node);
 		else if(key == "gamerules" && node.HasChildren())
 			gamerules.Load(node);
-		else if(key == "disable" && node.Size() >= 2)
+		else if(key == "disable" && hasValue)
 		{
 			static const set<string> canDisable = {"mission", "event", "person"};
 			const string &category = node.Token(1);

@@ -185,7 +185,7 @@ void PlayerInfo::New(const StartConditions &start)
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
-	start.GetConditions().Apply(conditions);
+	start.GetConditions().Apply();
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -328,7 +328,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(child.Token(0) == "mission")
 		{
-			missions.emplace_back(child);
+			missions.emplace_back(child, &conditions);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers") && child.HasChildren())
@@ -345,7 +345,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 					}
 		}
 		else if(child.Token(0) == "available job")
-			availableJobs.emplace_back(child);
+			availableJobs.emplace_back(child, &conditions);
 		else if(child.Token(0) == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(child.Token(0) == "sort descending")
@@ -355,7 +355,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(child.Token(0) == "separate possible")
 			sortSeparatePossible = true;
 		else if(child.Token(0) == "available mission")
-			availableMissions.emplace_back(child);
+			availableMissions.emplace_back(child, &conditions);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
 		else if(child.Token(0) == "gifted ships" && child.HasChildren())
@@ -364,7 +364,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(child.Token(0) == "event")
-			gameEvents.emplace(GameEvent(child));
+			gameEvents.emplace(GameEvent(child, &conditions));
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -750,7 +750,7 @@ void PlayerInfo::AdvanceDate(int amount)
 			if(mission.CheckDeadline(date) && mission.IsVisible())
 				Messages::Add("You failed to meet the deadline for the mission \"" + mission.Name() + "\".",
 					Messages::Importance::Highest);
-			if(!mission.IsFailed(*this))
+			if(!mission.IsFailed())
 				mission.Do(Mission::DAILY, *this);
 		}
 
@@ -2131,7 +2131,7 @@ void PlayerInfo::AcceptJob(const Mission &mission, UI *ui)
 			missions.splice(spliceIt, availableJobs, it);
 			it->Do(Mission::OFFER, *this);
 			it->Do(Mission::ACCEPT, *this, ui);
-			if(it->IsFailed(*this))
+			if(it->IsFailed())
 				RemoveMission(Mission::Trigger::FAIL, *it, ui);
 			SortAvailable(); // Might not have cargo anymore, so some jobs can be sorted to end
 			break;
@@ -2182,7 +2182,7 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
 		{
 			boardingMissions.push_back(it.second.Instantiate(*this, ship));
-			if(boardingMissions.back().IsFailed(*this))
+			if(boardingMissions.back().IsFailed())
 				boardingMissions.pop_back();
 			else
 				return &boardingMissions.back();
@@ -2205,9 +2205,9 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 	// ship again after accepting the mission.
 	if(!mission)
 		for(const Mission &mission : Missions())
-			if(mission.OverridesCapture() && !mission.IsFailed(*this) && mission.SourceShip() == ship.get())
+			if(mission.OverridesCapture() && !mission.IsFailed() && mission.SourceShip() == ship.get())
 				return true;
-	return mission && mission->OverridesCapture() && !mission->IsFailed(*this) && mission->SourceShip() == ship.get();
+	return mission && mission->OverridesCapture() && !mission->IsFailed() && mission->SourceShip() == ship.get();
 }
 
 
@@ -2392,7 +2392,7 @@ const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, Conditions());
+	GameData::GetTextReplacements().Substitutions(subs);
 	AddPlayerSubstitutions(subs);
 	return subs;
 }
@@ -3406,6 +3406,20 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, true);
 		}
 		return retVal; });
+	conditions["ship base attribute (parked): "].ProvidePrefixed(
+		[this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+			// If the player isn't landed then there can be no parked ships local to them.
+			if(!planet)
+				return 0;
+			string attribute = ce.NameWithoutPrefix();
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				if(!ship->IsParked() || ship->GetPlanet() != planet)
+					continue;
+				retVal += shipAttributeHelper(ship.get(), attribute, true);
+			}
+			return retVal; });
 	conditions["ship attribute: "].ProvidePrefixed([this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
 		string attribute = ce.NameWithoutPrefix();
 		int64_t retVal = 0;
@@ -3431,6 +3445,20 @@ void PlayerInfo::RegisterDerivedConditions()
 			retVal += shipAttributeHelper(ship.get(), attribute, false);
 		}
 		return retVal; });
+	conditions["ship attribute (parked): "].ProvidePrefixed(
+		[this, shipAttributeHelper](const ConditionEntry &ce) -> int64_t {
+			// If the player isn't landed then there can be no parked ships local to them.
+			if(!planet)
+				return 0;
+			string attribute = ce.NameWithoutPrefix();
+			int64_t retVal = 0;
+			for(const shared_ptr<Ship> &ship : ships)
+			{
+				if(!ship->IsParked() || ship->GetPlanet() != planet)
+					continue;
+				retVal += shipAttributeHelper(ship.get(), attribute, false);
+			}
+			return retVal; });
 
 	conditions["name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		return !ce.NameWithoutPrefix().compare(firstName + " " + lastName); });
@@ -3886,7 +3914,7 @@ void PlayerInfo::CreateMissions()
 				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
 			missions.push_back(it.second.Instantiate(*this));
-			if(missions.back().IsFailed(*this))
+			if(missions.back().IsFailed())
 				missions.pop_back();
 			else if(!it.second.IsAtLocation(Mission::JOB))
 			{
@@ -4104,7 +4132,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		// If this is a stopover for the mission, perform the stopover action.
 		mission.Do(Mission::STOPOVER, *this, ui);
 
-		if(mission.IsFailed(*this))
+		if(mission.IsFailed())
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
@@ -4142,7 +4170,7 @@ void PlayerInfo::StepMissions(UI *ui)
 		Mission &mission = *mit;
 		++mit;
 
-		if(mission.IsFailed(*this))
+		if(mission.IsFailed())
 			RemoveMission(Mission::FAIL, mission, ui);
 		else if(mission.CanComplete(*this))
 			RemoveMission(Mission::COMPLETE, mission, ui);
