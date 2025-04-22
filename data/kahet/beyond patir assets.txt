@@ -590,9 +590,9 @@ outfit "Asteroid Anti-Missile"
 	category "Turrets"
 	cost 18630000
 	thumbnail "outfit/asteroid weapon 2"
-	"mass" 31
-	"outfit space" -31
-	"weapon capacity" -31
+	"mass" 41
+	"outfit space" -41
+	"weapon capacity" -41
 	"turret mounts" -1
 	"asteroid mount am" -1
 	weapon
@@ -616,9 +616,9 @@ outfit "Asteroid Anti-Missile 2"
 	category "Turrets"
 	cost 12128000
 	thumbnail "outfit/asteroid weapon 8"
-	"mass" 33
-	"outfit space" -33
-	"weapon capacity" -33
+	"mass" 29
+	"outfit space" -29
+	"weapon capacity" -29
 	"turret mounts" -1
 	"asteroid mount small" -1
 	weapon
@@ -644,9 +644,9 @@ outfit "Asteroid Weapon Small"
 	category "Guns"
 	cost 12346000
 	thumbnail "outfit/asteroid weapon 3"
-	"mass" 76
-	"outfit space" -76
-	"weapon capacity" -76
+	"mass" 31
+	"outfit space" -31
+	"weapon capacity" -31
 	"gun ports" -1
 	"asteroid mount small" -1
 	weapon
@@ -692,9 +692,9 @@ outfit "Asteroid Weapon Large"
 	category "Guns"
 	cost 18970000
 	thumbnail "outfit/asteroid weapon 6"
-	"mass" 24
-	"outfit space" -24
-	"weapon capacity" -24
+	"mass" 43
+	"outfit space" -43
+	"weapon capacity" -43
 	"gun ports" -1
 	"asteroid mount" -1
 	weapon
@@ -1074,9 +1074,9 @@ outfit "Asteroid Weapon Large 2"
 	category "Guns"
 	cost 171670000
 	thumbnail "outfit/asteroid weapon 1"
-	"mass" 31
-	"outfit space" -31
-	"weapon capacity" -31
+	"mass" 39
+	"outfit space" -39
+	"weapon capacity" -39
 	"gun ports" -1
 	"asteroid mount 2" -1
 	weapon
@@ -1417,9 +1417,9 @@ outfit "Asteroid Weapon Large 3"
 	category "Guns"
 	cost 19870000
 	thumbnail "outfit/asteroid weapon 5"
-	"mass" 16
-	"outfit space" -16
-	"weapon capacity" -16
+	"mass" 52
+	"outfit space" -52
+	"weapon capacity" -52
 	"gun ports" -1
 	"asteroid mount 3" -1
 	weapon
@@ -1751,9 +1751,9 @@ outfit "Asteroid Weapon Large 4"
 	category "Guns"
 	cost 15716000
 	thumbnail "outfit/asteroid weapon 4"
-	"mass" 33
-	"outfit space" -33
-	"weapon capacity" -33
+	"mass" 44
+	"outfit space" -44
+	"weapon capacity" -44
 	"gun ports" -1
 	"asteroid mount 4" -1
 	weapon
