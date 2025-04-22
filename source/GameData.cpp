@@ -191,7 +191,8 @@ namespace {
 
 
 
-shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
+shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &player,
+		bool onlyLoadData, bool debugMode, bool preventUpload)
 {
 	preventSpriteUpload = preventUpload;
 
@@ -240,7 +241,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 		});
 	}
 
-	return objects.Load(queue, sources, debugMode);
+	return objects.Load(queue, sources, player, &globalConditions, debugMode);
 }
 
 
@@ -574,9 +575,9 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node)
+void GameData::Change(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	objects.Change(node);
+	objects.Change(node, playerConditions);
 }
 
 
