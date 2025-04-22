@@ -53,10 +53,10 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 {
 	// Extract from all start scenarios those that are visible to the player.
 	for(const auto &scenario : allScenarios)
-		if(scenario.Visible(GameData::GlobalConditions()))
+		if(scenario.Visible())
 		{
 			scenarios.emplace_back(scenario);
-			scenarios.back().SetState(GameData::GlobalConditions());
+			scenarios.back().SetState();
 		}
 
 	startIt = scenarios.begin();
