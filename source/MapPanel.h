@@ -187,9 +187,6 @@ private:
 
 
 private:
-	// This is the coloring mode currently used in the cache.
-	int cachedCommodity = -10;
-
 	class Node {
 	public:
 		Node(const Point &position, const Color &color, const std::string &name,
@@ -204,7 +201,6 @@ private:
 		const Government *government;
 		std::vector<const Sprite *> mapIcons;
 	};
-	std::vector<Node> nodes;
 
 	class Link {
 	public:
@@ -215,5 +211,12 @@ private:
 		Point end;
 		Color color;
 	};
+
+
+private:
+	// This is the coloring mode currently used in the cache.
+	int cachedCommodity = -10;
+
+	std::vector<Node> nodes;
 	std::vector<Link> links;
 };
