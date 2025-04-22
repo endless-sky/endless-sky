@@ -56,6 +56,7 @@ class Phrase;
 class Planet;
 class Point;
 class Politics;
+class Shader;
 class Ship;
 class Sprite;
 class StarField;
@@ -137,6 +138,7 @@ public:
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
+	static const Set<Shader> &Shaders();
 	static const Set<Ship> &Ships();
 	static const Set<Sale<Ship>> &Shipyards();
 	static const Set<System> &Systems();

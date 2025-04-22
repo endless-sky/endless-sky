@@ -1,4 +1,4 @@
-/* Shader.h
+/* sprite.vert
 Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,31 +13,20 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+precision mediump float;
 
-#include "../opengl.h"
+uniform vec2 scale;
+uniform vec2 position;
+uniform mat2 transform;
+uniform vec2 blur;
+uniform float clip;
 
+in vec2 vert;
+out vec2 fragTexCoord;
 
-
-// Class representing a shader, i.e. a compiled GLSL program that the GPU uses
-// in order to draw something. In modern GPL, everything is drawn with shaders.
-// In general, rather than using this class directly, drawing code will use one
-// of the classes representing a particular shader.
-class Shader {
-public:
-	Shader() noexcept = default;
-
-	void Load(const char *vertex, const char *fragment);
-
-	GLuint Object() const noexcept;
-	GLint Attrib(const char *name) const;
-	GLint Uniform(const char *name) const;
-
-
-private:
-	GLuint Compile(const char *str, GLenum type);
-
-
-private:
-	GLuint program;
-};
+void main() {
+	vec2 blurOff = 2.f * vec2(vert.x * abs(blur.x), vert.y * abs(blur.y));
+	gl_Position = vec4((transform * (vert + blurOff) + position) * scale, 0, 1);
+	vec2 texCoord = vert + vec2(.5, .5);
+	fragTexCoord = vec2(texCoord.x, min(clip, texCoord.y)) + blurOff;
+}

@@ -178,7 +178,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 	double zoom = baseZoom;
 	if(Preferences::Has("Draw starfield") && density > 0.)
 	{
-		glUseProgram(shader.Object());
+		glUseProgram(shader->Object());
 		glBindVertexArray(vao);
 
 		for(int pass = 1; pass <= layers; pass++)
@@ -276,40 +276,9 @@ void StarField::Draw(const Point &blur, const System *system) const
 
 void StarField::SetUpGraphics()
 {
-	static const char *vertexCode =
-		"// vertex starfield shader\n"
-		"uniform mat2 rotate;\n"
-		"uniform vec2 translate;\n"
-		"uniform vec2 scale;\n"
-		"uniform float elongation;\n"
-		"uniform float brightness;\n"
-
-		"in vec2 offset;\n"
-		"in float size;\n"
-		"in float corner;\n"
-		"out float fragmentAlpha;\n"
-		"out vec2 coord;\n"
-
-		"void main() {\n"
-		"  fragmentAlpha = brightness * (4. / (4. + elongation)) * size * .2 + .05;\n"
-		"  coord = vec2(sin(corner), cos(corner));\n"
-		"  vec2 elongated = vec2(coord.x * size, coord.y * (size + elongation));\n"
-		"  gl_Position = vec4((rotate * elongated + translate + offset) * scale, 0, 1);\n"
-		"}\n";
-
-	static const char *fragmentCode =
-		"// fragment starfield shader\n"
-		"precision mediump float;\n"
-		"in float fragmentAlpha;\n"
-		"in vec2 coord;\n"
-		"out vec4 finalColor;\n"
-
-		"void main() {\n"
-		"  float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));\n"
-		"  finalColor = vec4(1, 1, 1, 1) * alpha;\n"
-		"}\n";
-
-	shader = Shader(vertexCode, fragmentCode);
+	shader = GameData::Shaders().Get("starfield");
+	if(!shader->Object())
+		throw std::runtime_error("Could not find starfield shader!");
 
 	// make and bind the VAO
 	glGenVertexArrays(1, &vao);
@@ -319,15 +288,15 @@ void StarField::SetUpGraphics()
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	offsetI = shader.Attrib("offset");
-	sizeI = shader.Attrib("size");
-	cornerI = shader.Attrib("corner");
+	offsetI = shader->Attrib("offset");
+	sizeI = shader->Attrib("size");
+	cornerI = shader->Attrib("corner");
 
-	scaleI = shader.Uniform("scale");
-	rotateI = shader.Uniform("rotate");
-	elongationI = shader.Uniform("elongation");
-	translateI = shader.Uniform("translate");
-	brightnessI = shader.Uniform("brightness");
+	scaleI = shader->Uniform("scale");
+	rotateI = shader->Uniform("rotate");
+	elongationI = shader->Uniform("elongation");
+	translateI = shader->Uniform("translate");
+	brightnessI = shader->Uniform("brightness");
 }
 
 
