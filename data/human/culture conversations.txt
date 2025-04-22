@@ -1092,7 +1092,7 @@ mission "Exotic Life: Bloodsea"
 				`	"What's that?"`
 				`	(Get back to your ship.)`
 					goto declined
-			`	She scoffs and leans in, her voice dropping to a rough whisper. "The red tide. Every summer, the bloody sea blooms, fills the air with nasty, toxic bits that chew up your lungs if you catch a whiff. No local goes near the beach when the bloom's a blooming."`
+			`	She scoffs and leans in, her voice dropping to a rough whisper. "The red tide. Every summer, the bloody sea blooms, fills the air with nasty, toxic bits that chew up your lungs if you catch a whiff. No local goes near the beach when the bloom's ablooming."`
 			`	Then, she suddenly screams, "Only offworlders and blind fools with a death wish swim in that poison!"`
 			`	A wry grin floods her face, and she adds in a conversational tone, almost as an afterthought, "Now, I'll flay you alive and turn you into chum if you don't buy some fish bait. Eight racks." She slams a scarred hand into a rancid barrel beside her.`
 			choice
@@ -1106,7 +1106,7 @@ mission "Exotic Life: Bloodsea"
 			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
 				decline
 			label declined
-			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, her bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
+			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, the woman's bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
 				decline
 
 mission "Exotic Life: Albatross"
@@ -1116,7 +1116,7 @@ mission "Exotic Life: Albatross"
 		random < 10
 	on offer
 		conversation
-			`You trudge through the biting wind to a weathered spaceport bar, its exterior marked by the signs proclaiming "No Gods, No Masters," and "No Cybernetic Implants. No Badgers, Weasels, Or Polecats." Inside, the air is heavy with shadow and smoke - worn wood panels, dim, flickering lights, and cluttered signs declaring even more peculiar prohibitions. Slouched in the corner by the heavy door, an old man sits silently, his half-lidded eyes watching the drunken banter and clinking glasses. You could approach him, and perhaps press for answers about the bar's odd proclamations.`
+			`You trudge through the biting wind to a weathered spaceport bar, its exterior marked by signs proclaiming "No Gods, No Masters," and "No Cybernetic Implants. No Badgers, Weasels, Or Polecats." Inside, the air is heavy with shadow and smoke - worn wood panels, dim, flickering lights, and cluttered signs declaring even more peculiar prohibitions. Slouched in a corner by the heavy door, an old man sits silently, his half-lidded eyes watching the drunken banter and clinking glasses. You could approach him, and perhaps press for answers about the bar's odd proclamations.`
 			label nextquestion
 			choice
 				`	"Why no 'Cybernetic Implants'?"`
@@ -1153,7 +1153,7 @@ mission "Exotic Life: Albatross"
 					goto albatross
 					to display
 						has "heardpolecats"
-				`	(Thank him for the time and leave.)`
+				`	(Thank him for the answers and leave.)`
 					goto ending
 					to display
 						or
@@ -1169,7 +1169,7 @@ mission "Exotic Life: Albatross"
 			label implants
 			action
 				set "heardimplants"
-			`	The old man grunts, leaning forward so that his voice drops to a rough whisper. "Cybernetic impants ain't allowed 'round here - always cheat at cards. Can't trust a rigged hand when fate's supposed to be fair!"`
+			`	The old man grunts, leaning forward so that his voice drops to a rough whisper. "Cybernetic implants ain't allowed 'round here - always cheat at cards. Can't trust a rigged hand when fate's supposed to be fair!"`
 				goto nextquestion
 			label badgers
 			action
@@ -1195,7 +1195,7 @@ mission "Exotic Life: Albatross"
 			label polecats
 			action
 				set "heardpolecats"
-			`	His face darkens, and his voice grows weighty and ominous. "Polecats, they attract... the Albatross." For a suspended moment, the chatter ceases; the clamor of glasses and low murmurs fall silent as every patron registers the weight of that word. Then, as if on cue, the noise resumes, and life goes on as usual.`
+			`	His face darkens, and his voice grows weighty and ominous. "Polecats, they attract... the Albatross." For a suspended moment, the chatter ceases; the clamor of glasses and low murmurs fall silent as every patron registers the weight of that word. Then, as if on cue, the noise resumes, and the hubbub goes on as usual.`
 				goto nextquestion
 			label albatross
 			`	Emboldened by the hushed reaction, you press on, "Albatross?" That single word slices through the renewed din, and in a heartbeat, the atmosphere shatters. Several patrons rise from their stools, their expressions hardening into threatening scowls. The old man, eyes distant and vacant, seems lost in thought while it becomes clear that you have crossed a forbidden line.`
@@ -1208,8 +1208,6 @@ mission "Exotic Life: Albatross"
 				clear "heardmadlib"
 				clear "heardweasels"
 				clear "heardpolecats"
-
-
 
 mission "Little Vienna in New Austria"
 	minor
