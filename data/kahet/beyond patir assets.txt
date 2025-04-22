@@ -665,7 +665,7 @@ outfit "Asteroid Weapon Small"
 		"firing heat" 400
 		"hit force" 3900
 		"hull damage" 600
-		"slowing damage" -84
+		"slowing damage" -28
 		"blast radius" 20
 	description "Similar in appearance to the anti-missile used by some of these ships, this weapon was created with two functions in mind: slowing down an opponent until it gets close enough, and then eliminating it with heavy, direct damage to the hull."
 
@@ -683,8 +683,8 @@ outfit "Asteroid Circle Submunition"
 		"drag" 0.2
 		"lifetime" 390
 		"hull damage" 50
-		"slowing damage" 12
-		"hit force" -600
+		"slowing damage" 4
+		"hit force" -300
 		"missile strength" 22
 
 outfit "Asteroid Weapon Large"
