@@ -44,15 +44,28 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 		if(tag == "location")
 		{
-			if(remove)
+			if(add)
+			{
+				child.PrintTrace("Skipping 'add location'; adding to locationFilters is not supported:");
+				continue;
+			}
+			else if(remove)
+			{
 				location = LocationFilter{};
+				if(hasValue || child.HasChildren())
+					child.PrintTrace("Removing full location filter; partial removal is not supported:");
+			}
 			else
 				location.Load(child);
 		}
 		else if(tag == "name")
 		{
 			if(remove)
+			{
 				names = Phrase{};
+				if(hasValue || child.HasChildren())
+					child.PrintTrace("Removing all names; removal of individual names is not supported:");
+			}
 			else
 				names.Load(child);
 		}
@@ -83,14 +96,27 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(tag == "message")
 		{
 			if(remove)
+			{
 				messages = Phrase{};
+				if(hasValue || child.HasChildren())
+					child.PrintTrace("Removing all messages; removal of single messages is not supported:");
+			}
 			else
 				messages.Load(child);
 		}
 		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
 		{
+			if(add)
+			{
+				child.PrintTrace("Skipping 'add to show'; adding to conditions is not supported:");
+				continue;
+			}
 			if(remove)
+			{
 				toShow = ConditionSet{};
+				if(hasValue || child.HasChildren())
+					child.PrintTrace("Removing all conditions; removal of condition subsets is not supported:");
+			}
 			else
 				toShow.Load(child, playerConditions);
 		}
