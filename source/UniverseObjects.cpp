@@ -187,6 +187,16 @@ void UniverseObjects::UpdateSystems()
 
 
 
+// Update the cached strengths of fleets in systems.
+// This must be done any time that a change adjusts a fleet in any way.
+void UniverseObjects::UpdateFleetStrengths()
+{
+	for(auto &it : systems)
+		it.second.RecalculateFleetStrengths();
+}
+
+
+
 // Check for objects that are referred to but never defined. Some elements, like
 // fleets, don't need to be given a name if undefined. Others (like outfits and
 // planets) are written to the player's save and need a name to prevent data loss.

@@ -556,6 +556,15 @@ void GameData::UpdateSystems()
 
 
 
+// Update the cached strengths of fleets in systems.
+// This must be done any time that a change adjusts a fleet in any way.
+void GameData::UpdateFleetStrengths()
+{
+	objects.UpdateFleetStrengths();
+}
+
+
+
 void GameData::AddJumpRange(double neighborDistance)
 {
 	objects.neighborDistances.insert(neighborDistance);

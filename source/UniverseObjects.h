@@ -84,6 +84,9 @@ public:
 	// Update the neighbor lists and other information for all the systems.
 	// (This must be done any time a GameEvent creates or moves a system.)
 	void UpdateSystems();
+	// Update the cached strengths of fleets in systems.
+	// This must be done any time that a change adjusts a fleet in any way.
+	void UpdateFleetStrengths();
 
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();

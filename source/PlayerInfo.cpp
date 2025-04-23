@@ -566,11 +566,13 @@ void PlayerInfo::FinishTransaction()
 void PlayerInfo::AddChanges(list<DataNode> &changes)
 {
 	bool changedSystems = false;
+	bool changedFleets = false;
 	for(const DataNode &change : changes)
 	{
 		changedSystems |= (change.Token(0) == "system");
 		changedSystems |= (change.Token(0) == "link");
 		changedSystems |= (change.Token(0) == "unlink");
+		changedFleets |= (change.Token(0) == "fleet");
 		GameData::Change(change);
 	}
 	if(changedSystems)
@@ -585,6 +587,11 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 				if(!neighbor->Hidden() || system->Links().contains(neighbor))
 					seen.insert(neighbor);
 		}
+	}
+	if(changedFleets)
+	{
+		// If any changes have been made to fleets, update all their cached strengths
+		GameData::UpdateFleetStrengths();
 	}
 
 	// Only move the changes into my list if they are not already there.
