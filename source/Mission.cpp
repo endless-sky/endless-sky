@@ -344,7 +344,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			auto setColor = [&child](ExclusiveItem<Color> &color) noexcept -> void {
 				if(child.Size() >= 4)
 					color = ExclusiveItem<Color>(Color(child.Value(2), child.Value(3), child.Value(4)));
-				else if(child.Size() >= 3)
+				else
 					color = ExclusiveItem<Color>(GameData::Colors().Get(child.Token(2)));
 			};
 			const string &value = child.Token(1);
@@ -589,9 +589,6 @@ const ExclusiveItem<Color> &Mission::Selected() const
 {
 	return selected;
 }
-
-
-
 
 
 
