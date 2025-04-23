@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "ConditionSet.h"
-#include "ConditionsStore.h"
 #include "Conversation.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
@@ -27,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Mission;
@@ -45,10 +45,10 @@ class MissionAction {
 public:
 	MissionAction() = default;
 	// Construct and Load() at the same time.
-	MissionAction(const DataNode &node);
+	MissionAction(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
-	void LoadSingle(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void LoadSingle(const DataNode &node, const ConditionsStore *playerConditions);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
@@ -73,7 +73,7 @@ public:
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	MissionAction Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
+	MissionAction Instantiate(std::map<std::string, std::string> &subs,
 		const System *origin, int jumps, int64_t payload) const;
 
 	int64_t Payment() const noexcept;
@@ -84,7 +84,7 @@ private:
 	public:
 		MissionDialog(const ExclusiveItem<Phrase> &);
 		MissionDialog(const std::string &);
-		MissionDialog(const DataNode &);
+		MissionDialog(const DataNode &, const ConditionsStore *);
 
 
 		std::string dialogText;
@@ -94,7 +94,7 @@ private:
 
 
 private:
-	std::string CollapseDialog(const ConditionsStore *store, const std::map<std::string, std::string> *subs) const;
+	std::string CollapseDialog(const std::map<std::string, std::string> *subs) const;
 
 
 private:
