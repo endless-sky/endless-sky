@@ -1478,14 +1478,14 @@ outfit "asteroid missile"
 			"frame rate" 5
 			"random start frame"
 		"velocity" 30
-		"acceleration" 2
+		"acceleration" 1
 		"drag" .03
-		"turn" 20
+		"turn" 60
 		"hit effect" "seeker impact"
 		"die effect" "seeker impact"
 		"homing" 4
 		"tracking" 0.95
-		"lifetime" 275
+		"lifetime" 155
 		"hit force" 120
 		"hull damage" 25
 		"inaccuracy" 10
