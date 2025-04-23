@@ -1139,7 +1139,7 @@ mission "Easter Celebrations"
 		month == "easter month"
 	on offer
 		conversation
-			`During a walk through the spaceport, you observe a small white church. Written on the door in large letters are the words "Stop by for a celebration of the Risen God!"`
+			`During a walk through the spaceport, you observe a small church tucked between a grain silo and a welding shop. Written on the door in large letters are the words "Stop by for a celebration of the Risen God!"`
 			choice
 				`	(Step in.)`
 				`	(Move on.)`
@@ -1152,5 +1152,5 @@ mission "Easter Celebrations"
 			`	The pastor loops through several other hymns, eventually ending with an announcement of thanks to those who attended the celebration. As the group breaks up, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
 				decline
 			label headout
-			`	Outside of the door, after you exit the room, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
+			`	On your way out of the room, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
 				decline
