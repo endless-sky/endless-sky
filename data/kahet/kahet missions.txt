@@ -996,7 +996,7 @@ mission "Ka'het: Patir Mystery 7"
 					goto outfit
 				`	"I'd rather be paid in credits instead."`
 			`	"Oh, I have already transferred 50,000 credits to your account. I need to organize some things for our next mission; if you meet me in the spaceport a few hours from now, I should have everything ready."`
-				accept
+				decline
 
 			label outfit
 			action
