@@ -42,7 +42,16 @@ If you are posting a pull request, please:
 
 If proposing major changes to the game through your pull request, start by posting an issue or discussion and discussing the best way to implement it. Often the first strategy that occurs to you will not be the cleanest or most effective way to implement a new feature.
 
-Please keep in mind that **AI-generated/assisted content is forbidden** in Endless Sky development.
+### On AI-generated/assisted content
+
+**AI-generated/assisted content is forbidden** in Endless Sky development. This is for several reasons, including:
+
+* Ethical issues. LLMs rely on the unauthorized usage of copyrighted material in order to generate text. These 'tools' by their nature require mass copyright infringement to operate.
+
+* Philosophical issues. The reason why we're here and contributing to this project in the first place is because we like to write/model/edit/code for the game. We do those things because we enjoy it. Using AI to do these processes for us completely misses the point of this project. 
+There are many volunteers willing to help review, polish, and create new content. If you would like help with art, writing tone or style (particularly for aliens with unique speech mannerisms), please feel free to post in the content-creating channel in Discord, or feel free to state in your PR where you would particularly like our reviewers' help.
+
+* Legal issues. AI-generated material is currently in a legal gray area and most likely does not conform with the requirements of GPLv3, which Endless Sky is licensed under. This is the ultimate reason why we have a hard no on any AI content in the game.
 
 ### What to expect when opening a pull request
 
