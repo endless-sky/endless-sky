@@ -2866,7 +2866,7 @@ ship "Monitor"
 		"Laser Turret" 2
 		"Anti-Missile Turret"
 		
-		"KP-6 Photovoltaic Array" 3		
+		"KP-6 Photovoltaic Array" 3
 		"nGVF-BB Fuel Cell"
 		"LP036a Battery Pack"
 		"D23-QP Shield Generator"
