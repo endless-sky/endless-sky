@@ -3842,6 +3842,16 @@ void PlayerInfo::RegisterDerivedConditions()
 		return HyperspaceTravelDays(this->GetSystem(), system);
 	});
 
+	// A condition to check whether the given government is an enemy. This includes whether
+	// your reputation with the government is negative or if the government has been provoked.
+	// Governments that have been bribed will not count as an enemy.
+	conditions["enemy: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
+		string govName = ce.NameWithoutPrefix();
+		auto gov = GameData::Governments().Get(govName);
+		if(!gov)
+			return 0;
+		return gov->IsEnemy();
+	}
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	conditions["reputation: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
