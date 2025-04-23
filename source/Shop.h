@@ -90,14 +90,18 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 
 		if(key == "to" && hasValue && child.Token(valueIndex) == "sell")
 		{
-			if(remove)
+			if(add && !toSell.IsEmpty())
+				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+			else if(remove)
 				toSell = ConditionSet{};
 			else
 				toSell.Load(child, playerConditions);
 		}
 		else if(key == "location")
 		{
-			if(remove)
+			if(add && !location.IsEmpty())
+				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
+			else if(remove)
 				location = LocationFilter{};
 			else
 				location.Load(child);
