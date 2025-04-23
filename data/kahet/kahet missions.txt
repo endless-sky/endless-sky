@@ -1801,6 +1801,7 @@ mission "Ka'het: Patir Mystery 13B"
 	on complete
 		payment 1570000
 		clear "remnant: dusk busy"
+		clear "remnant: dusk busy"
 		event "patir mystery 2 timer" 45
 		set "initial patir exploration"
 		conversation "end of Patir 2 - on complete"
