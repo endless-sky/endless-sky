@@ -30705,6 +30705,8 @@ system Patir
 	trade Metal 354
 	trade Plastic 426
 	fleet Ka'sei 300
+	hazard "Ember Waste Base Heat" 100
+	hazard "Ember Waste Base Storm" 9000
 	object
 		sprite star/nova
 		period 1
