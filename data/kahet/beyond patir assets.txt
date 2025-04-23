@@ -1797,7 +1797,7 @@ outfit "Asteroid Weapon Large 4"
 		"turn" -6
 		"submunition" "wep1 print" 2
 			"facing" 15
-		"reload" 110
+		"reload" 130
 		"burst count" 7
 		"burst reload" 1
 		"firing heat" 5
@@ -1814,6 +1814,9 @@ outfit "wep1 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep2 print"
 	
@@ -1828,6 +1831,9 @@ outfit "wep2 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep3 print"
 	
@@ -1842,6 +1848,9 @@ outfit "wep3 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep4 print"
 	
@@ -1856,6 +1865,9 @@ outfit "wep4 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep5 print"
 	
@@ -1870,6 +1882,9 @@ outfit "wep5 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep6 print"
 	
@@ -1884,6 +1899,9 @@ outfit "wep6 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep7 print"
 	
@@ -1898,6 +1916,9 @@ outfit "wep7 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep8 print"
 	
@@ -1912,6 +1933,9 @@ outfit "wep8 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep9 print"
 	
@@ -1926,6 +1950,9 @@ outfit "wep9 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep10 print"
 	
@@ -1940,6 +1967,9 @@ outfit "wep10 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep11 print"
 	
@@ -1954,6 +1984,9 @@ outfit "wep11 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep12 print"
 	
@@ -1968,6 +2001,9 @@ outfit "wep12 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep13 print"
 	
@@ -1982,6 +2018,9 @@ outfit "wep13 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep14 print"
 	
@@ -1996,6 +2035,9 @@ outfit "wep14 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep15 print"
 	
@@ -2010,6 +2052,9 @@ outfit "wep15 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep16 print"
 	
@@ -2024,6 +2069,9 @@ outfit "wep16 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep17 print"
 	
@@ -2038,6 +2086,9 @@ outfit "wep17 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep18 print"
 	
@@ -2052,6 +2103,9 @@ outfit "wep18 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep19 print"
 	
@@ -2066,6 +2120,9 @@ outfit "wep19 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep20 print"
 	
@@ -2080,6 +2137,9 @@ outfit "wep20 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep21 print"
 	
@@ -2094,6 +2154,9 @@ outfit "wep21 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep22 print"
 	
@@ -2108,6 +2171,9 @@ outfit "wep22 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep23 print"
 	
@@ -2122,6 +2188,9 @@ outfit "wep23 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep24 print"
 	
@@ -2136,6 +2205,9 @@ outfit "wep24 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep25 print"
 	
@@ -2150,6 +2222,9 @@ outfit "wep25 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep26 print"
 	
@@ -2164,6 +2239,9 @@ outfit "wep26 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep27 print"
 	
@@ -2178,6 +2256,9 @@ outfit "wep27 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep28 print"
 	
@@ -2192,6 +2273,9 @@ outfit "wep28 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep29 print"
 	
@@ -2206,6 +2290,9 @@ outfit "wep29 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep30 print"
 	
@@ -2220,6 +2307,9 @@ outfit "wep30 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep31 print"
 	
@@ -2234,6 +2324,9 @@ outfit "wep31 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep32 print"
 	
@@ -2248,6 +2341,9 @@ outfit "wep32 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep33 print"
 	
@@ -2262,6 +2358,9 @@ outfit "wep33 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep34 print"
 	
@@ -2276,6 +2375,9 @@ outfit "wep34 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep35 print"
 	
@@ -2290,6 +2392,9 @@ outfit "wep35 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep36 print"
 	
@@ -2304,6 +2409,9 @@ outfit "wep36 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep37 print"
 	
@@ -2318,6 +2426,9 @@ outfit "wep37 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep38 print"
 	
@@ -2332,6 +2443,9 @@ outfit "wep38 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep39 print"
 	
@@ -2346,6 +2460,9 @@ outfit "wep39 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep40 print"
 	
@@ -2360,6 +2477,9 @@ outfit "wep40 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep41 print"
 	
@@ -2374,6 +2494,9 @@ outfit "wep41 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 		"submunition" "wep42 print"
 	
@@ -2388,6 +2511,9 @@ outfit "wep42 print"
 		"turn" -2
 		"lifetime" 15
 		"random lifetime" 5
+		"corrosion damage" -1.4
+		"hull damage" -50
+		"slowing damage" -9
 		"submunition" "wep static"
 
 outfit "wep static"
@@ -2403,7 +2529,7 @@ outfit "wep static"
 		"tracking" 1
 		"trigger radius" 240
 		"blast radius" 400
-		"corrosion damage" 1.7
+		"corrosion damage" 1.4
 		"hull damage" 72.9
 		"slowing damage" 10
 		"hit force" 150
