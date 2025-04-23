@@ -1415,7 +1415,7 @@ outfit "asteroid laser 1"
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
-		"corrosion damage" 1.4
+		"corrosion damage" 0.7
 		"hull damage" 18.9
 
 effect "asteroid hit"
@@ -1477,17 +1477,19 @@ outfit "asteroid missile"
 		sprite "projectile/asteroid missile"
 			"frame rate" 5
 			"random start frame"
-		"velocity" 50
+		"velocity" 30
 		"acceleration" 2
 		"drag" .03
 		"turn" 20
 		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
 		"homing" 4
 		"tracking" 0.95
-		"lifetime" 550
+		"lifetime" 275
 		"hit force" 120
 		"hull damage" 25
 		"inaccuracy" 10
+		"missile strength" 90
 
 outfit "magic deployer1"
 	weapon
