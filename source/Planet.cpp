@@ -659,9 +659,8 @@ bool Planet::HasFuelFor(const Ship &ship) const
 
 bool Planet::CanBribe() const
 {
-	// In order to be allowed to bribe this planet, you need to meet both the conditions to bribe the port
-	// and those to land on the planet.
-	return port.CanBribe() && toLand.Test();
+	// If you can't land then you can't bribe.
+	return toLand.Test();
 }
 
 
