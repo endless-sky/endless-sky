@@ -44,7 +44,6 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesys
 	// We need to copy any variables used for loading to avoid a race condition.
 	// 'this' is not copied, so 'this' shouldn't be accessed after calling this
 	// function (except for calling GetProgress which is safe due to the atomic).
-
 	return queue.Run([this, &player, &sources, globalConditions, debugMode]() noexcept -> void
 		{
 			vector<filesystem::path> files;
@@ -63,7 +62,6 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesys
 			const double step = 1. / (static_cast<int>(files.size()) + 1);
 			for(const auto &path : files)
 			{
-
 				LoadFile(path, player, globalConditions, debugMode);
 
 				// Increment the atomic progress by one step.
@@ -314,7 +312,6 @@ void UniverseObjects::CheckReferences()
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
 }
-
 
 
 
