@@ -176,7 +176,7 @@ public:
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
 	// Check how dangerous this system is to the specified government
 	// (in credits worth of enemy ships jumping in per frame).
-	double Danger(const Government *gov) const;
+	double Danger() const;
 	// Calculate and cache the strength of each fleet specified for the system,
 	// indexed by government (in credits worth of ships jumping in per frame).
 	void RecalculateFleetStrengths();

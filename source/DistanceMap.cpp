@@ -160,13 +160,11 @@ void DistanceMap::Init(const Ship *ship)
 	if(!maxDays)
 		return;
 
-	const Government *shipGov;
 	// Check what travel capabilities this ship has. If no ship is given, the
 	// DistanceMap class defaults assume hyperdrive capability only.
 	if(ship)
 	{
 		this->ship = ship;
-		shipGov = ship->GetGovernment();
 
 		// If this ship has no mode of hyperspace travel, and no local
 		// wormhole to use, bail out.
@@ -186,8 +184,6 @@ void DistanceMap::Init(const Ship *ship)
 
 		jumpRangeMax = ship->JumpNavigation().JumpRange();
 	}
-	else
-		shipGov = GameData::PlayerGovernment();
 
 	// Find the route with the lowest fuel use. If multiple routes use the same fuel,
 	// choose the one with the fewest jumps (i.e. using jump drive rather than
@@ -215,12 +211,15 @@ void DistanceMap::Init(const Ship *ship)
 		if(currentSystem == destination)
 			break;
 
-		// Increment the danger to include this system.
+		// Increment the danger to include this system, if this is a player ship.
 		// Don't need to worry about the danger for the next system because
 		// if you're going there, all routes would include that same danger.
 		// (It is slightly redundant that this includes the danger of the
 		//  starting system instead, but the code is simpler this way.)
-		nextEdge.danger += currentSystem->Danger(shipGov);
+		// Also don't need to worry about the danger for non-player ships, because
+		// any potentially-hostile fleets will only be instantiated for the player.
+		if(!ship || ship->GetGovernment() == GameData::PlayerGovernment())
+			nextEdge.danger += currentSystem->Danger();
 
 		// Increment the travel time to include the next system. The fuel cost will be
 		// incremented later, because it depends on what type of travel is being done.

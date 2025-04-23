@@ -1022,14 +1022,14 @@ const vector<RandomEvent<Hazard>> &System::Hazards() const
 
 
 
-// Check how dangerous this system is to the specified government
+// Check how dangerous this system is to the player
 // (in credits worth of enemy ships jumping in per frame).
-double System::Danger(const Government *gov) const
+double System::Danger() const
 {
 	double govDanger = 0;
 	for(const auto &it : fleetStrengths)
 	{
-		if(it.first->IsEnemy(gov))
+		if(it.first->IsEnemy())
 			govDanger += it.second;
 	}
 	return govDanger;
