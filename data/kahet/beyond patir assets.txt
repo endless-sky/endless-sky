@@ -54,8 +54,8 @@ ship "Asteroid Large 1"
 		"hull" 136561
 		"required crew" 1
 		"bunks" 1
-		"mass" 1174
-		"drag" 70.4
+		"mass" 11740
+		"drag" 704
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -67,10 +67,10 @@ ship "Asteroid Large 1"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 340.2
+		"thrust" 3402
 		"flare sprite" "effect/asteroid adult flare"
 			"frame rate" 1
-		"turn" 5931.4
+		"turn" 59314
 		"asteroid mount jd" 1
 		"asteroid mount am" 1
 		"asteroid mount" 1
@@ -109,8 +109,8 @@ ship "Asteroid Large 2"
 		"hull" 137151
 		"required crew" 1
 		"bunks" 1
-		"mass" 1198
-		"drag" 70.4
+		"mass" 11980
+		"drag" 704
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -122,10 +122,10 @@ ship "Asteroid Large 2"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 340.2
+		"thrust" 3402
 		"flare sprite" "effect/asteroid adult 2 flare"
 			"frame rate" 1
-		"turn" 5931.4
+		"turn" 59314
 		"asteroid mount jd" 1
 		"asteroid mount am" 1
 		"asteroid mount" 1
@@ -166,8 +166,8 @@ ship "Asteroid Large 3"
 		"hull" 135172
 		"required crew" 1
 		"bunks" 1
-		"mass" 1131
-		"drag" 70.4
+		"mass" 11310
+		"drag" 704
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -179,10 +179,10 @@ ship "Asteroid Large 3"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 340.2
+		"thrust" 3402
 		"flare sprite" "effect/asteroid adult 3 flare"
 			"frame rate" 1
-		"turn" 5931.4
+		"turn" 59314
 		"asteroid mount jd" 1
 		"asteroid mount am" 1
 		"asteroid mount 4" 2
@@ -221,8 +221,8 @@ ship "Asteroid Large 4"
 		"hull" 135172
 		"required crew" 1
 		"bunks" 1
-		"mass" 1251
-		"drag" 70.4
+		"mass" 12510
+		"drag" 704
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -234,10 +234,10 @@ ship "Asteroid Large 4"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 340.2
+		"thrust" 3402
 		"flare sprite" "effect/asteroid adult 4 flare"
 			"frame rate" 1
-		"turn" 5931.4
+		"turn" 59314
 		"asteroid mount jd" 1
 		"asteroid mount am" 1
 		"asteroid mount 3" 2
@@ -276,8 +276,8 @@ ship "Asteroid Large 5"
 		"hull" 136716
 		"required crew" 1
 		"bunks" 1
-		"mass" 1215
-		"drag" 70.4
+		"mass" 12150
+		"drag" 704
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -289,10 +289,10 @@ ship "Asteroid Large 5"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 340.2
+		"thrust" 3402
 		"flare sprite" "effect/asteroid adult 5 flare"
 			"frame rate" 1
-		"turn" 5931.4
+		"turn" 59314
 		"asteroid mount jd" 1
 		"asteroid mount am" 1
 		"asteroid mount 2" 2
@@ -331,8 +331,8 @@ ship "Asteroid Medium"
 		"hull" 91248
 		"required crew" 1
 		"bunks" 1
-		"mass" 762
-		"drag" 55.1
+		"mass" 7620
+		"drag" 551
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -344,10 +344,10 @@ ship "Asteroid Medium"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 327.2
+		"thrust" 3272
 		"flare sprite" "effect/asteroid medium flare"
 			"frame rate" 1
-		"turn" 4816.3
+		"turn" 48163
 		"asteroid mount jd" 1
 		"asteroid mount small" 1
 		"asteroid mount 2" 1
@@ -385,8 +385,8 @@ ship "Asteroid Young 1"
 		"hull" 36459
 		"required crew" 1
 		"bunks" 1
-		"mass" 581
-		"drag" 39.7
+		"mass" 5810
+		"drag" 397
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -398,10 +398,10 @@ ship "Asteroid Young 1"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 203.9
+		"thrust" 2039
 		"flare sprite" "effect/asteroid young flare"
 			"frame rate" 1
-		"turn" 4019.1
+		"turn" 40191
 		"asteroid mount jd" 1
 		"asteroid mount small" 2
 		weapon
@@ -438,8 +438,8 @@ ship "Asteroid Young 2"
 		"hull" 35984
 		"required crew" 1
 		"bunks" 1
-		"mass" 578
-		"drag" 39.7
+		"mass" 5780
+		"drag" 397
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -451,10 +451,10 @@ ship "Asteroid Young 2"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 203.9
+		"thrust" 2039
 		"flare sprite" "effect/asteroid young 2 flare"
 			"frame rate" 1
-		"turn" 4019.1
+		"turn" 40191
 		"asteroid mount jd" 1
 		"asteroid mount small" 2
 		weapon
@@ -491,8 +491,8 @@ ship "Asteroid Young 3"
 		"hull" 37021
 		"required crew" 1
 		"bunks" 1
-		"mass" 585
-		"drag" 39.7
+		"mass" 5850
+		"drag" 397
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -504,10 +504,10 @@ ship "Asteroid Young 3"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 203.9
+		"thrust" 2039
 		"flare sprite" "effect/asteroid young 3 flare"
 			"frame rate" 1
-		"turn" 4019.1
+		"turn" 40191
 		"asteroid mount jd" 1
 		"asteroid mount small" 2
 		weapon
@@ -544,8 +544,8 @@ ship "Asteroid Young 4"
 		"hull" 36462
 		"required crew" 1
 		"bunks" 1
-		"mass" 591
-		"drag" 39.7
+		"mass" 5910
+		"drag" 397
 		"heat dissipation" 10
 		"fuel capacity" 1000
 		"energy capacity" 1
@@ -557,10 +557,10 @@ ship "Asteroid Young 4"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 203.9
+		"thrust" 2039
 		"flare sprite" "effect/asteroid young 4 flare"
 			"frame rate" 1
-		"turn" 4019.1
+		"turn" 40191
 		"asteroid mount jd" 1
 		"asteroid mount small" 2
 		weapon
