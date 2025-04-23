@@ -564,6 +564,9 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		minimumFleetPeriod = min<int>(minimumFleetPeriod, event.Period());
 	if(minimumFleetPeriod == numeric_limits<int>::max())
 		minimumFleetPeriod = 0;
+
+	// Recalculate the system's fleet strengths.
+	RecalculateFleetStrengths();
 }
 
 
@@ -1019,18 +1022,31 @@ const vector<RandomEvent<Hazard>> &System::Hazards() const
 
 
 
-// Check how dangerous this system is (credits worth of enemy ships jumping
-// in per frame).
-double System::Danger() const
+// Check how dangerous this system is to the specified government
+// (in credits worth of enemy ships jumping in per frame).
+double System::Danger(const Government *gov) const
 {
-	double danger = 0.;
+	double govDanger = 0;
+	for(const auto &it : fleetStrengths)
+	{
+		if(it.first->IsEnemy(gov))
+			govDanger += it.second;
+	}
+	return govDanger;
+}
+
+
+
+// Calculate and cache the strength of each fleet specified for the system,
+// indexed by government (in credits worth of ships jumping in per frame).
+void System::RecalculateFleetStrengths()
+{
+	fleetStrengths.clear();
 	for(const auto &fleet : fleets)
 	{
 		auto *gov = fleet.Get()->GetGovernment();
-		if(gov && gov->IsEnemy())
-			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
+		fleetStrengths[gov] += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 	}
-	return danger;
 }
 
 

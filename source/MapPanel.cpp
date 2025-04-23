@@ -235,7 +235,7 @@ namespace {
 	// Return total value of raid fleet (if any) and 60 frames worth of system danger.
 	double DangerFleetTotal(const PlayerInfo &player, const System &system, const bool withRaids)
 	{
-		double danger = system.Danger() * 60.;
+		double danger = system.Danger(GameData::PlayerGovernment()) * 60.;
 		if(withRaids)
 			for(const auto &raidFleet : system.GetGovernment()->RaidFleets())
 				danger += 10. * player.RaidFleetAttraction(raidFleet, &system) *
