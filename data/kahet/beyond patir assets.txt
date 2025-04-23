@@ -1112,13 +1112,13 @@ outfit "Asteroid Weapon Large 2"
 		"velocity" 10
 		"drag" .1
 		"acceleration" 1
-		"lifetime" 200000
+		"lifetime" 2000
 		"submunition" "asteroid laser 1"
 			"offset" 0 10
 		"submunition" "spin1 print right"
 		"submunition" "spin1 print left"
 		"fire effect" "asteroid glow"
-		"split range" 180
+		"split range" 400
 		"reload" 150
 		"firing heat" 5
 	description "This very peculiar weapon overwhelms its target by creating an array of short-living, laser-armed entities. However, the precision it requires, as well as its low raw damage output, limits its potential."
@@ -1415,8 +1415,8 @@ outfit "asteroid laser 1"
 		"velocity" 200
 		"lifetime" 1
 		"reload" 1
-		"discharge damage" 1.7
-		"hull damage" 5.9
+		"corrosion damage" 1.4
+		"hull damage" 18.9
 
 effect "asteroid hit"
 	sprite "effect/point defense hit"
@@ -2401,7 +2401,7 @@ outfit "wep static"
 		"tracking" 1
 		"trigger radius" 240
 		"blast radius" 400
-		"discharge damage" 1.7
+		"corrosion damage" 1.7
 		"hull damage" 72.9
 		"slowing damage" 10
 		"hit force" 150
