@@ -1035,15 +1035,13 @@ double System::Danger() const
 // data values change).
 void System::RecalcDanger()
 {
-	double newDanger = 0.;
+	danger = 0.;
 	for(const auto &fleet : fleets)
 	{
 		auto *gov = fleet.Get()->GetGovernment();
 		if(gov && gov->IsEnemy())
-			newDanger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
+			danger += static_cast<double>(fleet.Get()->Strength()) / fleet.Period();
 	}
-
-	danger = newDanger;
 }
 
 
