@@ -2948,45 +2948,6 @@ ship "Nest" "Nest (Sidewinder)"
 
 
 
-ship "Nighthawk" "Nighthawk (Raider)"
-	crew 28
-	outfits
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
-		
-		"RT-I Radiothermal"
-		"KP-6 Photovoltaic Array" 3
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		"Large Radar Jammer"
-		"Tactical Scanner"
-		"Laser Rifle" 28
-		"Nerve Gas" 10
-		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-ship "Nighthawk" "Nighthawk (Slaver)"
-	outfits
-		"Quad Blaster Turret" 2
-		"Heavy Anti-Missile Turret"
-		
-		"RT-I Radiothermal"
-		"KP-6 Photovoltaic Array" 3
-		"LP072a Battery Pack"
-		"D23-QP Shield Generator"
-		"Large Radar Jammer"
-		"Laser Rifle" 6
-		"Brig"
-		
-		"Impala Plasma Thruster"
-		"Impala Plasma Steering"
-		"Hyperdrive"
-
-
-
 ship "Osprey" "Osprey (Alien Weapons)"
 	outfits
 		"Ion Cannon" 2
