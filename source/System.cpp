@@ -566,7 +566,7 @@ void System::UpdateSystem(const Set<System> &systems, const set<double> &neighbo
 		minimumFleetPeriod = 0;
 
 	// Recalculate the system's danger value.
-	RecalcDanger();
+	RecalculateDanger();
 }
 
 
@@ -1033,7 +1033,7 @@ double System::Danger() const
 
 // Recalculate the expected danger of the system (for use on load and when
 // data values change).
-void System::RecalcDanger()
+void System::RecalculateDanger()
 {
 	danger = 0.;
 	for(const auto &fleet : fleets)
