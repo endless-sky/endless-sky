@@ -215,7 +215,7 @@ void DistanceMap::Init(const Ship *ship)
 		// if you're going there, all routes would include that same danger.
 		// (It is slightly redundant that this includes the danger of the
 		//  starting system instead, but the code is simpler this way.)
-		nextEdge.danger += currentSystem->Danger();
+		nextEdge.danger += currentSystem->Danger(ship->GetGovernment());
 
 		// Increment the travel time to include the next system. The fuel cost will be
 		// incremented later, because it depends on what type of travel is being done.

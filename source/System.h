@@ -174,11 +174,12 @@ public:
 	const std::vector<RandomEvent<Fleet>> &Fleets() const;
 	// Get the probabilities of various hazards in this system.
 	const std::vector<RandomEvent<Hazard>> &Hazards() const;
-	// Check how dangerous this system is (credits worth of enemy ships jumping
-	// in per frame).
-	double Danger() const;
-	// Recalculate the danger value of the system (in case an event changes its fleets).
-	void RecalculateDanger();
+	// Check how dangerous this system is to the specified government
+	// (in credits worth of enemy ships jumping in per frame).
+	double Danger(const Government *gov) const;
+	// Calculate and cache the strength of each fleet specified for the system,
+	// indexed by government (in credits worth of ships jumping in per frame).
+	void RecalculateFleetStrengths();
 
 	// The smallest arrival period of a fleet (or 0 if no fleets arrive)
 	int MinimumFleetPeriod() const;
@@ -278,8 +279,8 @@ private:
 	double jumpDepartureDistance = 0.;
 	double hyperDepartureDistance = 0.;
 
-	// The cached danger value for the system.
-	double danger = 0;
+	// The cached strength (aka cost) values for each fleet defined for the system.
+	std::map<const Government *, double> fleetStrengths;
 
 	// Commodity prices.
 	std::map<std::string, Price> trade;
