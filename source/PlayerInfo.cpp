@@ -3851,7 +3851,7 @@ void PlayerInfo::RegisterDerivedConditions()
 		if(!gov)
 			return 0;
 		return gov->IsEnemy();
-	}
+	});
 	// Read/write government reputation conditions.
 	// The erase function is still default (since we cannot erase government conditions).
 	conditions["reputation: "].ProvidePrefixed([](const ConditionEntry &ce) -> int64_t {
