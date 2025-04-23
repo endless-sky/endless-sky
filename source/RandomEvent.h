@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ConditionSet.h"
 #include "DataNode.h"
 
+class ConditionsStore;
+
 
 
 // A class representing an event that triggers randomly
@@ -25,11 +27,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <typename T>
 class RandomEvent {
 public:
-	RandomEvent(const T *event, int period, const DataNode &node) noexcept;
+	RandomEvent(const T *event, int period, const DataNode &node,
+		const ConditionsStore *playerConditions) noexcept;
 
 	const T *Get() const noexcept;
 	int Period() const noexcept;
-	bool CanTrigger(const ConditionsStore &tester) const;
+	bool CanTrigger() const;
+
 
 private:
 	const T *event;
@@ -40,14 +44,17 @@ private:
 
 
 template <typename T>
-RandomEvent<T>::RandomEvent(const T *event, int period, const DataNode &node) noexcept
+RandomEvent<T>::RandomEvent(const T *event, int period, const DataNode &node,
+		const ConditionsStore *playerConditions) noexcept
 	: event(event), period(period > 0 ? period : 200)
 {
 	for(const auto &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "spawn")
-			conditions.Load(child);
+			conditions.Load(child, playerConditions);
 		// TODO: else with an error-message?
 }
+
+
 
 template <typename T>
 const T *RandomEvent<T>::Get() const noexcept
@@ -55,14 +62,18 @@ const T *RandomEvent<T>::Get() const noexcept
 	return event;
 }
 
+
+
 template <typename T>
 int RandomEvent<T>::Period() const noexcept
 {
 	return period;
 }
 
+
+
 template <typename T>
-bool RandomEvent<T>::CanTrigger(const ConditionsStore &tester) const
+bool RandomEvent<T>::CanTrigger() const
 {
-	return conditions.IsEmpty() || conditions.Test(tester);
+	return conditions.Test();
 }
