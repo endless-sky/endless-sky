@@ -1182,7 +1182,7 @@ mission "Ka'het: Patir Mystery 10"
 	on offer
 		conversation
 			`By the time you land, the Remnant are already discussing their analysis of the data recorded and transmitted by your ship. When they notice you, they abandon their current conversation and move closer to speak with you in-person.`
-			`	They listen carefully as you detail your journey: the Ghila ringworld, the one-way wormholes, the Chanai station, and the many oddities in each of these systems. From the questions they ask you, they seem to be particularly interested about the beings roaming this sector. By the time you've finished recounting the last events, almost an hour has passed.`
+			`	They listen carefully as you detail your journey: the Ghila ringworld, the one-way wormholes, the Chanai station, and the many oddities in each of these systems. From the questions they ask you, they seem to be particularly interested about the asteroid-looking creatures roaming this sector. By the time you've finished recounting the last events, almost an hour has passed.`
 			`	"Interesting," Dusk signs in response. "It is disappointing to hear that there is not a clear way out, but everything else here is intriguing. Perhaps one of them is the key to finding a passage back."`
 			choice
 				`	"Have you identified anything of note here?"`
@@ -1360,7 +1360,12 @@ mission "Ka'het: Patir Mystery 12A"
 				`	(Accept.)`
 					goto tunnel
 				`	"Do you have any information about this section?"`
+				`	"Why are you not going to help explore these tunnels?"`
+					goto help
 			`	"Not much. We only had time for a brief scan during the approach, but based on the volume of these sectors alone, it shouldn't take you more than a couple hours to explore them.`
+				goto tunnel
+			label help
+			`	"Well, we have our own tunnels to go through," he replies half-seriously. "We have a lot of ground to cover, and only so much air in our suits. The safest way to increase our reach without staying here for weeks is by splitting up, like we did when we first explored the Builder settlement a few weeks ago.`
 			label tunnel
 			`	"Whenever you reach a new area, take samples and pictures of anything you deem interesting. Never forget to keep an eye on your oxygen: each of us will consume it at slightly different rates, and we should start the trip back as soon as someone has less than a third of a tank left. May the Embers help your search, Captain, and see you soon!"`
 			`	Moving in the zero gravity station is quick and relatively easy; despite its length, it only takes you a few minutes to reach the end of the right tunnel. All you can find, however, is a closed hatch. A few tries at forcing it open only serve to confirm that it is locked shut, and you decide to go back and try the other tunnel. This time, your search turns up results, and you end up in a dark, somewhat cramped room.`
@@ -1560,7 +1565,7 @@ mission "Ka'het: Patir Mystery 12C"
 			`	"Given that you need to be able to fire as quick as possible, you cannot return to the cockpit. So, we took the liberty of creating a small terminal here to keep an eye on the situation." He points to a small desk in the cargo bay filled to the brim with Remnant machinery.`
 			label entrance
 			`	One by one, the scientists jump from your ship to the Fetri, moving toward a closed, circular hatch in between the two engines. As you watch them start the expedition, you sit down at the makeshift console, monitoring movements in the system as well as any changes to the slug. Though you can't clearly see what they are doing, you distinguish someone inserting a rod inside a small aperture, followed by the hatch opening right after.`
-			`	As the crew moves beyond your line of sight and communications cease, your unease grows steadily. As you split your attention between the various screens in front of you while glancing out of the airlock, every minute seems to last an eternity.`
+			`	As the crew moves beyond your line of sight and communications cease, your unease grows steadily. You split your attention between the various screens in front of you while glancing out of the airlock, and the clock on your suit's wrist keeps on ticking slowly.`
 			`	Scanning over the monitors for the umpteenth time, you see that heightened energy levels have been detected inside the unknown creature.`
 			choice
 				`	(Wait and see what happens.)`
