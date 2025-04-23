@@ -702,15 +702,10 @@ outfit "Asteroid Weapon Large"
 			"frame rate" 21
 		"velocity" 10
 		"drag" .1
-		"acceleration" 1
 		"lifetime" 20
-		"turn" -6
+		"turn" 16
 		"submunition" "creeper1 print"
-		"homing" 1
-		"optical tracking" 1
-		"turn" 0
 		"reload" 100
-		"firing heat" 5
 	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of breaking through anti-missile defenses better than most."
 	
 outfit "creeper1 print"
@@ -734,7 +729,9 @@ outfit "creeper1 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 75
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 		
 outfit "creeper2 print"
 	weapon
@@ -757,7 +754,9 @@ outfit "creeper2 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 70
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper3 print"
 	weapon
@@ -780,7 +779,9 @@ outfit "creeper3 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 65
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper4 print"
 	weapon
@@ -803,7 +804,9 @@ outfit "creeper4 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 60
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper5 print"
 	weapon
@@ -826,7 +829,9 @@ outfit "creeper5 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 55
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper6 print"
 	weapon
@@ -849,7 +854,9 @@ outfit "creeper6 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 50
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper7 print"
 	weapon
@@ -872,7 +879,9 @@ outfit "creeper7 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 45
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper8 print"
 	weapon
@@ -895,7 +904,9 @@ outfit "creeper8 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 40
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper9 print"
 	weapon
@@ -918,7 +929,9 @@ outfit "creeper9 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 35
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper10 print"
 	weapon
@@ -941,7 +954,9 @@ outfit "creeper10 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 30
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper11 print"
 	weapon
@@ -964,7 +979,9 @@ outfit "creeper11 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 25
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper12 print"
 	weapon
@@ -987,7 +1004,9 @@ outfit "creeper12 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 20
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper13 print"
 	weapon
@@ -1010,7 +1029,9 @@ outfit "creeper13 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 15
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper14 print"
 	weapon
@@ -1033,7 +1054,9 @@ outfit "creeper14 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 10
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
 outfit "creeper15 print"
 	weapon
@@ -1055,9 +1078,11 @@ outfit "creeper15 static"
 		"acceleration" .0000001
 		"drag" 1
 		"lifetime" 5
-		"submunition" "asteroid missile"
+		"submunition" "asteroid launch"
+		"hull damage" 60
+		"missile strength" -90
 
-outfit "asteroid missile"
+outfit "asteroid launch"
 	weapon
 		sprite "effect/asteroid projectile print"
 			"start frame" 1
@@ -1066,8 +1091,12 @@ outfit "asteroid missile"
 		"drag" .1
 		"turn" 6
 		"homing" 3
+		"hit effect" "seeker impact"
+		"die effect" "seeker impact"
 		"tracking" 1
 		"lifetime" 120
+		"hull damage" 45
+		"missile strength" 90
 
 outfit "Asteroid Weapon Large 2"
 	"display name" "???"
