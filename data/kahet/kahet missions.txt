@@ -1565,7 +1565,7 @@ mission "Ka'het: Patir Mystery 12C"
 			`	"Given that you need to be able to fire as quick as possible, you cannot return to the cockpit. So, we took the liberty of creating a small terminal here to keep an eye on the situation." He points to a small desk in the cargo bay filled to the brim with Remnant machinery.`
 			label entrance
 			`	One by one, the scientists jump from your ship to the Fetri, moving toward a closed, circular hatch in between the two engines. As you watch them start the expedition, you sit down at the makeshift console, monitoring movements in the system as well as any changes to the slug. Though you can't clearly see what they are doing, you distinguish someone inserting a rod inside a small aperture, followed by the hatch opening right after.`
-			`	As the crew moves beyond your line of sight and communications cease, your unease grows steadily. You split your attention between the various screens in front of you while glancing out of the airlock, and the clock on your suit's wrist keeps on ticking slowly.`
+			`	As the crew moves beyond your line of sight and communications cease, your unease grows steadily. You split your attention between the various screens in front of you and glancing out of the airlock. The clock on your suit's wrist keeps on ticking slowly.`
 			`	Scanning over the monitors for the umpteenth time, you see that heightened energy levels have been detected inside the unknown creature.`
 			choice
 				`	(Wait and see what happens.)`
