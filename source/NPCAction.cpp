@@ -26,14 +26,14 @@ using namespace std;
 
 
 // Construct and Load() at the same time.
-NPCAction::NPCAction(const DataNode &node)
+NPCAction::NPCAction(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void NPCAction::Load(const DataNode &node)
+void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -45,7 +45,7 @@ void NPCAction::Load(const DataNode &node)
 		if(key == "triggered")
 			triggered = true;
 		else
-			action.LoadSingle(child);
+			action.LoadSingle(child, playerConditions);
 	}
 }
 
@@ -90,11 +90,11 @@ void NPCAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const shar
 
 
 // Convert this validated template into a populated action.
-NPCAction NPCAction::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
+NPCAction NPCAction::Instantiate(map<string, string> &subs, const System *origin,
 	int jumps, int64_t payload) const
 {
 	NPCAction result;
 	result.trigger = trigger;
-	result.action = action.Instantiate(store, subs, origin, jumps, payload);
+	result.action = action.Instantiate(subs, origin, jumps, payload);
 	return result;
 }

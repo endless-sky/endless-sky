@@ -169,6 +169,34 @@ protected:
 
 	bool fromMission = false;
 
+
+private:
+	class Node {
+	public:
+		Node(const Point &position, const Color &color, const std::string &name,
+			const Color &nameColor, const Government *government, const std::vector<const Sprite *> &mapIcons)
+			: position(position), color(color), name(name), nameColor(nameColor),
+			government(government), mapIcons(mapIcons) {}
+
+		Point position;
+		Color color;
+		std::string name;
+		Color nameColor;
+		const Government *government;
+		std::vector<const Sprite *> mapIcons;
+	};
+
+	class Link {
+	public:
+		Link(const Point &start, const Point &end, const Color &color)
+			: start(start), end(end), color(color) {}
+
+		Point start;
+		Point end;
+		Color color;
+	};
+
+
 private:
 	void DrawTravelPlan();
 	// Display the name of and distance to the selected system.
@@ -190,30 +218,6 @@ private:
 	// This is the coloring mode currently used in the cache.
 	int cachedCommodity = -10;
 
-	class Node {
-	public:
-		Node(const Point &position, const Color &color, const std::string &name,
-			const Color &nameColor, const Government *government, const std::vector<const Sprite *> &mapIcons)
-			: position(position), color(color), name(name), nameColor(nameColor),
-			government(government), mapIcons(mapIcons) {}
-
-		Point position;
-		Color color;
-		std::string name;
-		Color nameColor;
-		const Government *government;
-		std::vector<const Sprite *> mapIcons;
-	};
 	std::vector<Node> nodes;
-
-	class Link {
-	public:
-		Link(const Point &start, const Point &end, const Color &color)
-			: start(start), end(end), color(color) {}
-
-		Point start;
-		Point end;
-		Color color;
-	};
 	std::vector<Link> links;
 };
