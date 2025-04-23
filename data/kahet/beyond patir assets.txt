@@ -51,7 +51,7 @@ ship "Asteroid Large 1"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 29000000
-		"hull" 136561
+		"hull" 36561
 		"required crew" 1
 		"bunks" 1
 		"mass" 11740
@@ -106,7 +106,7 @@ ship "Asteroid Large 2"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 23000000
-		"hull" 137151
+		"hull" 37151
 		"required crew" 1
 		"bunks" 1
 		"mass" 11980
@@ -163,7 +163,7 @@ ship "Asteroid Large 3"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 19000000
-		"hull" 135172
+		"hull" 35172
 		"required crew" 1
 		"bunks" 1
 		"mass" 11310
@@ -218,7 +218,7 @@ ship "Asteroid Large 4"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 17000000
-		"hull" 135172
+		"hull" 35172
 		"required crew" 1
 		"bunks" 1
 		"mass" 12510
@@ -273,7 +273,7 @@ ship "Asteroid Large 5"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 31000000
-		"hull" 136716
+		"hull" 36716
 		"required crew" 1
 		"bunks" 1
 		"mass" 12150
@@ -328,7 +328,7 @@ ship "Asteroid Medium"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 13000000
-		"hull" 91248
+		"hull" 21248
 		"required crew" 1
 		"bunks" 1
 		"mass" 7620
@@ -382,7 +382,7 @@ ship "Asteroid Young 1"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 11000000
-		"hull" 36459
+		"hull" 16459
 		"required crew" 1
 		"bunks" 1
 		"mass" 5810
@@ -435,7 +435,7 @@ ship "Asteroid Young 2"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 7000000
-		"hull" 35984
+		"hull" 15984
 		"required crew" 1
 		"bunks" 1
 		"mass" 5780
@@ -488,7 +488,7 @@ ship "Asteroid Young 3"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 5000000
-		"hull" 37021
+		"hull" 17021
 		"required crew" 1
 		"bunks" 1
 		"mass" 5850
@@ -541,7 +541,7 @@ ship "Asteroid Young 4"
 		"uncapturable" 1
 		"inscrutable" 1
 		"cost" 3000000
-		"hull" 36462
+		"hull" 16462
 		"required crew" 1
 		"bunks" 1
 		"mass" 5910
@@ -2565,8 +2565,8 @@ ship "Asteroid Planet"
 		"hull" 86135672193
 		"required crew" 1
 		"bunks" 1
-		"mass" 674
-		"drag" 30.4
+		"mass" 67400
+		"drag" 3040
 		"heat dissipation" 10
 		"energy capacity" 1
 		"fuel generation" 0.3
@@ -2577,8 +2577,8 @@ ship "Asteroid Planet"
 		"hull repair rate" 47
 		"cargo scan power" 1
 		"cargo scan efficiency" 0.001
-		"thrust" 340.2
-		"turn" 5931.4
+		"thrust" 34020
+		"turn" 593140
 		"asteroid mount jd" 1
 		"asteroid mount am" 1
 		"asteroid mount" 1
