@@ -90,15 +90,15 @@ bool Conversation::RequiresLaunch(int outcome)
 
 
 // Construct and Load() at the same time.
-Conversation::Conversation(const DataNode &node)
+Conversation::Conversation(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
 // Load a conversation from file.
-void Conversation::Load(const DataNode &node)
+void Conversation::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Make sure this really is a conversation specification.
 	if(node.Token(0) != "conversation")
@@ -141,7 +141,7 @@ void Conversation::Load(const DataNode &node)
 				// just bring you to the next node in the script.
 				nodes.back().elements.emplace_back(grand.Token(0) + '\n', nodes.size());
 
-				LoadDestinations(grand);
+				LoadDestinations(grand, playerConditions);
 			}
 			if(nodes.back().elements.empty())
 			{
@@ -163,7 +163,7 @@ void Conversation::Load(const DataNode &node)
 			// Maintenance note: empty conditions might have to be removed in the future,
 			// so their support is unofficial.
 			if(child.HasChildren())
-				nodes.back().conditions.Load(child);
+				nodes.back().conditions.Load(child, playerConditions);
 			// A branch should always specify what node to go to if the test is
 			// true, and may also specify where to go if it is false.
 			for(int i = 1; i <= 2; ++i)
@@ -187,7 +187,7 @@ void Conversation::Load(const DataNode &node)
 			// Don't merge "action" nodes with any other nodes. Allow the legacy keyword "apply," too.
 			AddNode();
 			nodes.back().canMergeOnto = false;
-			nodes.back().actions.Load(child);
+			nodes.back().actions.Load(child, playerConditions);
 		}
 		// Check for common errors such as indenting a goto incorrectly:
 		else if(child.Size() > 1)
@@ -207,7 +207,7 @@ void Conversation::Load(const DataNode &node)
 
 			// Check whether there is a goto attached to this block of text. If
 			// so, future nodes can't merge onto this one.
-			if(LoadDestinations(child))
+			if(LoadDestinations(child, playerConditions))
 				nodes.back().canMergeOnto = false;
 		}
 	}
@@ -387,7 +387,7 @@ bool Conversation::IsChoice(int node) const
 
 
 // Check if the given conversation node is a choice node.
-bool Conversation::HasAnyChoices(const ConditionsStore &vars, int node) const
+bool Conversation::HasAnyChoices(int node) const
 {
 	if(!NodeIsValid(node))
 		return false;
@@ -403,7 +403,7 @@ bool Conversation::HasAnyChoices(const ConditionsStore &vars, int node) const
 	{
 		if(data.conditions.IsEmpty())
 			return true;
-		if(data.conditions.Test(vars))
+		if(data.conditions.Test())
 			return true;
 	}
 
@@ -518,7 +518,7 @@ int Conversation::StepToNextNode(int node) const
 
 
 // Returns whether the given node should be displayed.
-bool Conversation::ShouldDisplayNode(const ConditionsStore &vars, int node, int element) const
+bool Conversation::ShouldDisplayNode(int node, int element) const
 {
 	if(!NodeIsValid(node))
 		return false;
@@ -527,7 +527,7 @@ bool Conversation::ShouldDisplayNode(const ConditionsStore &vars, int node, int 
 	const auto &data = nodes[node].elements[element];
 	if(data.conditions.IsEmpty())
 		return true;
-	return data.conditions.Test(vars);
+	return data.conditions.Test();
 }
 
 
@@ -560,7 +560,7 @@ bool Conversation::ElementIsValid(int node, int element) const
 // Parse the children of the given node to see if then contain any "goto" or
 // "to display" nodes. If so, link them up properly. Return true if gotos or
 // conditions were found.
-bool Conversation::LoadDestinations(const DataNode &node)
+bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	bool hasGoto = false;
 	bool hasCondition = false;
@@ -582,7 +582,7 @@ bool Conversation::LoadDestinations(const DataNode &node)
 		}
 		else if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
 		{
-			nodes.back().elements.back().conditions.Load(child);
+			nodes.back().elements.back().conditions.Load(child, playerConditions);
 			hasCondition = true;
 		}
 		else

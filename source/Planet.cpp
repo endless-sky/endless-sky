@@ -54,7 +54,7 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
+void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 		return;
@@ -145,7 +145,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		}
 
 		if(key == "port")
-			port.Load(child);
+			port.Load(child, playerConditions);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -188,11 +188,11 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
-			description.Load(child);
+			description.Load(child, playerConditions);
 		else if(key == "spaceport")
 		{
 			port.LoadDefaultSpaceport();
-			port.LoadDescription(child);
+			port.LoadDescription(child, playerConditions);
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
@@ -446,7 +446,7 @@ bool Planet::IsInhabited() const
 // Check if this planet has a shipyard.
 bool Planet::HasShipyard() const
 {
-	return !Shipyard().empty();
+	return !shipSales.empty();
 }
 
 
@@ -466,7 +466,7 @@ const Sale<Ship> &Planet::Shipyard() const
 // Check if this planet has an outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !Outfitter().empty();
+	return !outfitSales.empty();
 }
 
 
