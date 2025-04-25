@@ -1149,8 +1149,8 @@ mission "Easter Celebrations"
 				`	(Head out.)`
 					goto headout
 				`	(Stay and enjoy the music.)`
-			`	The pastor loops through several other hymns, eventually ending with an announcement of thanks to those who attended the celebration. As the group breaks up, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
+			`	The pastor loops through several other hymns, eventually ending with an announcement of thanks to those who attended the celebration. As the group breaks up, you notice a bulletin board documenting several church events - a potluck on Wednesday, a notification of an outing on Saturday night, and several other items hidden by someone else.`
 				decline
 			label headout
-			`	On your way out of the room, someone hands you a ticket to a concert next week on the other side of the planet. It's too bad you won't be able to attend.`
+			`	On your way out of the room, you notice a bulletin board documenting several church events - a potluck on Wednesday, a notification of an outing on Saturday night, and several other items hidden by someone else.`
 				decline
