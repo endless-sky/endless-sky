@@ -206,8 +206,9 @@ void Dialog::Draw()
 
 	// Now that we know how big we want to render the text, position the text area.
 
-	// Get the position of the top of this dialog.
+	// Get the position of the top of this dialog, and of the input.
 	Point pos(0., (top->Height() + extensionCount * middle->Height() + bottom->Height()) * -.5f);
+	Point inputPos = Point(0., -(cancel->Height() + INPUT_HEIGHT)) - pos;
 	// Resize textRectSize to match the visual height of the dialog, which will
 	// be rounded up from the actual text height by the number of panels that
 	// were added. This helps correctly position the TextArea scroll buttons.
@@ -260,7 +261,6 @@ void Dialog::Draw()
 	}
 
 	// Draw the input, if any.
-	Point inputPos = Point(0., -(cancel->Height() + INPUT_HEIGHT)) - pos;
 	if(!isMission && (intFun || stringFun))
 	{
 		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
