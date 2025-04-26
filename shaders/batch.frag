@@ -17,7 +17,7 @@ precision mediump float;
 precision mediump sampler2DArray;
 
 uniform sampler2DArray tex;
-uniform float frameCount;
+uniform float frameCount;d
 
 in vec3 fragTexCoord;
 in float fragAlpha;
