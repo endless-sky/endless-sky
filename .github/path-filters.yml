@@ -13,6 +13,7 @@ unit_tests:
 
 shaders:
   - 'shaders/**'
+  - 'utils/check_shaders.sh'
 
 integration_tests:
   - 'tests/integration/config/plugins/integration-tests/**'
