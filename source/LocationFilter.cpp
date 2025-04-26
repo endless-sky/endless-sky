@@ -162,15 +162,22 @@ namespace {
 
 
 // Construct and Load() at the same time.
-LocationFilter::LocationFilter(const DataNode &node)
+LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *visitedSystems, 
+		const set<const Planet *> *visitedPlanets)
 {
-	Load(node);
+	Load(node, visitedSystems, visitedPlanets);
 }
 
 
 
-void LocationFilter::Load(const DataNode &node)
+void LocationFilter::Load(const DataNode &node, const set<const System *> *visitedSystems, 
+		const set<const Planet *> *visitedPlanets)
 {
+	if(!visitedSystems || !visitedPlanets)
+		throw runtime_error("LocationFilters must be provided pointers to the player's visited systems and planets.");
+	this->visitedSystem = visitedSystem;
+	this->visitedPlanets = visitedPlanets;
+
 	for(const DataNode &child : node)
 	{
 		// Handle filters that must not match, or must apply to a
@@ -182,7 +189,7 @@ void LocationFilter::Load(const DataNode &node)
 			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
 			filters.emplace_back();
 			if(child.Size() == 1)
-				filters.back().Load(child);
+				filters.back().Load(child, visitedSystems, visitedPlanets);
 			else
 				filters.back().LoadChild(child);
 		}
@@ -273,6 +280,10 @@ void LocationFilter::Save(DataWriter &out) const
 		}
 		if(center)
 			out.Write("near", center->TrueName(), centerMinDistance, centerMaxDistance);
+		if(visitedPlanet)
+			out.Write("visited", "planet");
+		else if(visitedSystem)
+			out.Write("visited");
 	}
 	out.EndChild();
 }
@@ -337,6 +348,8 @@ bool LocationFilter::IsValid() const
 bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
 	if(!planet || !planet->IsValid())
+		return false;
+	if(visitedPlanet && !visitedPlanets->contains(planet))
 		return false;
 
 	// If a ship class was given, do not match planets.
@@ -599,6 +612,12 @@ void LocationFilter::LoadChild(const DataNode &child)
 		if(outfits.back().empty())
 			outfits.pop_back();
 	}
+	else if(key == "visited")
+	{
+		visitedSystem = true;
+		if(child.Size() >= 2 + isNot && child.Token(valueIndex) == "planet")
+			visitedPlanet = true;
+	}
 	else
 		child.PrintTrace("Skipping unrecognized attribute:");
 }
@@ -610,6 +629,8 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 	if(!system || !system->IsValid())
 		return false;
 	if(!systems.empty() && !systems.contains(system))
+		return false;
+	if(visitedSystem && !visitedSystems->contains(system))
 		return false;
 
 	// Don't check these filters again if they were already checked as a part of

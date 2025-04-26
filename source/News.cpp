@@ -25,7 +25,8 @@ using namespace std;
 
 
 
-void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
 	{
@@ -47,7 +48,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(remove)
 				location = LocationFilter{};
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(tag == "name")
 		{

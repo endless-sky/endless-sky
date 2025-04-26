@@ -33,7 +33,8 @@ class System;
 // A unique individual who may appear at random times in the game.
 class Person {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 	// Finish loading all the ships in this person specification.
 	void FinishLoading();
 	// Prevent this person from being spawned in any system.

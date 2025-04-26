@@ -39,10 +39,12 @@ class LocationFilter {
 public:
 	LocationFilter() noexcept = default;
 	// Construct and Load() at the same time.
-	explicit LocationFilter(const DataNode &node);
+	explicit LocationFilter(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 
 	// Examine all the children of the given node and load any that are filters.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 	// This only saves the children. Save the root node separately. It does
 	// handle indenting, however.
 	void Save(DataWriter &out) const;
@@ -78,6 +80,14 @@ private:
 
 private:
 	bool isEmpty = true;
+
+	// Pointers to the PlayerInfo's visited systems and planets.
+	const std::set<const System *> *visitedSystems = nullptr;
+	const std::set<const Planet *> *visitedPlanets = nullptr;
+
+	// The player must have visited the planet or system.
+	bool visitedPlanet = false;
+	bool visitedSystem = false;
 
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
