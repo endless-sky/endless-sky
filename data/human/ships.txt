@@ -2851,7 +2851,7 @@ ship "Monitor"
 		"mass" 690
 		"drag" 8.4
 		"heat dissipation" .32
-		"fuel capacity" 500
+		"fuel capacity" 300
 		"cargo space" 20
 		"outfit space" 330
 		"weapon capacity" 130
