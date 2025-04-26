@@ -11,6 +11,9 @@ unit_tests:
   - 'tests/unit/**/*.hpp'
   - 'tests/unit/**/*.cpp'
 
+shaders:
+  - 'shaders/**'
+
 integration_tests:
   - 'tests/integration/config/plugins/integration-tests/**'
 
