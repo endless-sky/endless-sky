@@ -173,11 +173,6 @@ LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *
 void LocationFilter::Load(const DataNode &node, const set<const System *> *visitedSystems, 
 		const set<const Planet *> *visitedPlanets)
 {
-	if(!visitedSystems || !visitedPlanets)
-		throw runtime_error("LocationFilters must be provided pointers to the player's visited systems and planets.");
-	this->visitedSystem = visitedSystem;
-	this->visitedPlanets = visitedPlanets;
-
 	for(const DataNode &child : node)
 	{
 		// Handle filters that must not match, or must apply to a
@@ -199,7 +194,7 @@ void LocationFilter::Load(const DataNode &node, const set<const System *> *visit
 
 	isEmpty = planets.empty() && attributes.empty() && systems.empty() && governments.empty()
 		&& !center && originMaxDistance < 0 && notFilters.empty() && neighborFilters.empty()
-		&& outfits.empty() && shipCategory.empty() && !visitedSystem && !visitedPlanet;
+		&& outfits.empty() && shipCategory.empty() && !systemIsVisited && !planetIsVisited;
 }
 
 
@@ -280,9 +275,9 @@ void LocationFilter::Save(DataWriter &out) const
 		}
 		if(center)
 			out.Write("near", center->TrueName(), centerMinDistance, centerMaxDistance);
-		if(visitedPlanet)
+		if(planetIsVisited)
 			out.Write("visited", "planet");
-		else if(visitedSystem)
+		else if(systemIsVisited)
 			out.Write("visited");
 	}
 	out.EndChild();
@@ -349,8 +344,13 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 {
 	if(!planet || !planet->IsValid())
 		return false;
-	if(visitedPlanet && !visitedPlanets->contains(planet))
-		return false;
+	if(planetIsVisited)
+	{
+		if(!visitedPlanets)
+			throw runtime_error("LocationFilter::Matches called with a null pointer to the player's visited planets!");
+		if(!visitedPlanets->contains(planet))
+			return false;
+	}
 
 	// If a ship class was given, do not match planets.
 	if(!shipCategory.empty())
@@ -526,7 +526,7 @@ void LocationFilter::LoadChild(const DataNode &child, const set<const System *> 
 {
 	if(!visitedSystems || !visitedPlanets)
 		throw runtime_error("LocationFilters must be provided pointers to the player's visited systems and planets.");
-	this->visitedSystem = visitedSystem;
+	this->visitedSystems = visitedSystems;
 	this->visitedPlanets = visitedPlanets;
 
 	bool isNot = (child.Token(0) == "not" || child.Token(0) == "neighbor");
@@ -620,9 +620,9 @@ void LocationFilter::LoadChild(const DataNode &child, const set<const System *> 
 	}
 	else if(key == "visited")
 	{
-		visitedSystem = true;
+		systemIsVisited = true;
 		if(child.Size() >= 2 + isNot && child.Token(valueIndex) == "planet")
-			visitedPlanet = true;
+			planetIsVisited = true;
 	}
 	else
 		child.PrintTrace("Skipping unrecognized attribute:");
@@ -636,8 +636,13 @@ bool LocationFilter::Matches(const System *system, const System *origin, bool di
 		return false;
 	if(!systems.empty() && !systems.contains(system))
 		return false;
-	if(visitedSystem && !visitedSystems->contains(system))
-		return false;
+	if(systemIsVisited)
+	{
+		if(!visitedSystems)
+			throw runtime_error("LocationFilter::Matches called with a null pointer to the player's visited systems!");
+		if(!visitedSystems->contains(system))
+			return false;
+	}
 
 	// Don't check these filters again if they were already checked as a part of
 	// checking if a planet matches.

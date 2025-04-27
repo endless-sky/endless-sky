@@ -87,8 +87,8 @@ private:
 	const std::set<const Planet *> *visitedPlanets = nullptr;
 
 	// The player must have visited the system or planet.
-	bool visitedSystem = false;
-	bool visitedPlanet = false;
+	bool systemIsVisited = false;
+	bool planetIsVisited = false;
 
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
