@@ -190,7 +190,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 
 
 
-void Test::LoadSequence(const DataNode &node)
+void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(!steps.empty())
 	{
@@ -219,10 +219,10 @@ void Test::LoadSequence(const DataNode &node)
 		switch(step.stepType)
 		{
 			case TestStep::Type::APPLY:
-				step.assignConditions.Load(child);
+				step.assignConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::ASSERT:
-				step.checkConditions.Load(child);
+				step.checkConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::BRANCH:
 				if(child.Size() < 2)
@@ -234,7 +234,7 @@ void Test::LoadSequence(const DataNode &node)
 				step.jumpOnTrueTarget = child.Token(1);
 				if(child.Size() > 2)
 					step.jumpOnFalseTarget = child.Token(2);
-				step.checkConditions.Load(child);
+				step.checkConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::CALL:
 				if(child.Size() < 2)
@@ -326,7 +326,7 @@ void Test::LoadSequence(const DataNode &node)
 
 
 
-void Test::Load(const DataNode &node)
+void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 	{
@@ -374,7 +374,7 @@ void Test::Load(const DataNode &node)
 			}
 		}
 		else if(child.Token(0) == "sequence")
-			LoadSequence(child);
+			LoadSequence(child, playerConditions);
 		else if(child.Token(0) == "description")
 		{
 			// Provides a human friendly description of the test, but it is not used internally.
@@ -447,11 +447,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
-				stepToRun.assignConditions.Apply(player.Conditions());
+				stepToRun.assignConditions.Apply();
 				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
-				if(!stepToRun.checkConditions.Test(player.Conditions()))
+				if(!stepToRun.checkConditions.Test())
 					Fail(context, player, "asserted false");
 				++(context.callstack.back().step);
 				break;
@@ -465,7 +465,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					break;
 				}
 				context.branchesSinceGameStep.emplace(context.callstack.back());
-				if(stepToRun.checkConditions.Test(player.Conditions()))
+				if(stepToRun.checkConditions.Test())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
@@ -493,7 +493,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				{
 					// Lookup the data and inject it in the game or into the environment.
 					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
-					if(!testData->Inject())
+					if(!testData->Inject(&player.Conditions()))
 						Fail(context, player, "injecting data failed");
 				}
 				++(context.callstack.back().step);

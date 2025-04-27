@@ -56,6 +56,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Command.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
+	ConditionEntry.cpp
+	ConditionEntry.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -289,6 +291,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	StringInterner.cpp
 	StringInterner.h
+	Swizzle.cpp
+	Swizzle.h
 	System.cpp
 	System.h
 	SystemEntry.h

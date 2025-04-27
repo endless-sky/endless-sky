@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Planet;
@@ -57,10 +58,10 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit Mission(const DataNode &node);
+	explicit Mission(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Load a mission, either from the game data or from a saved game.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
@@ -139,7 +140,7 @@ public:
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
-	bool IsFailed(const PlayerInfo &player) const;
+	bool IsFailed() const;
 	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
