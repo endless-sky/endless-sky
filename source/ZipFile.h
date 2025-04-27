@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 /// This class supports zips both with and without a top-level directory, as long as
 /// the directory's name matches the zip's name. The necessary path translations are
 /// performed within this class, and aren't visible to the user.
+/// ZipFiles are not thread safe. A zip file may only be used on one thread at a time.
 class ZipFile {
 public:
 	explicit ZipFile(const std::filesystem::path &zipPath);
@@ -65,6 +66,4 @@ private:
 	std::filesystem::path basePath;
 	/// The name of the top-level directory inside the zip, or an empty string if it doesn't have such a directory
 	std::filesystem::path topLevelDirectory;
-
-	mutable std::recursive_mutex lock;
 };

@@ -27,7 +27,6 @@ using namespace std;
 ZipFile::ZipFile(const filesystem::path &zipPath)
 	: basePath(zipPath)
 {
-	lock_guard<recursive_mutex> guard(lock);
 	zipFile = unzOpen(basePath.string().c_str());
 	if(!zipFile)
 		throw runtime_error("Failed to open ZIP file" + zipPath.generic_string());
@@ -51,7 +50,6 @@ ZipFile::~ZipFile()
 {
 	if(zipFile)
 	{
-		lock_guard<recursive_mutex> guard(lock);
 		unzClose(zipFile);
 	}
 }
@@ -63,7 +61,6 @@ vector<filesystem::path> ZipFile::ListFiles(const filesystem::path &directory, b
 	filesystem::path relative = GetPathInZip(directory);
 	vector<filesystem::path> fileList;
 
-	lock_guard<recursive_mutex> guard(lock);
 	if(unzGoToFirstFile(zipFile) != UNZ_OK)
 		throw runtime_error("Failed to go to first file in ZIP");
 	do {
@@ -90,7 +87,6 @@ bool ZipFile::Exists(const filesystem::path &filePath) const
 	filesystem::path relative = GetPathInZip(filePath);
 	string name = relative.generic_string();
 
-	lock_guard<recursive_mutex> guard(lock);
 	return unzLocateFile(zipFile, name.c_str(), 0) == UNZ_OK ||
 			unzLocateFile(zipFile, (name + "/").c_str(), 0) == UNZ_OK;
 }
@@ -101,7 +97,6 @@ string ZipFile::ReadFile(const filesystem::path &filePath) const
 {
 	filesystem::path relative = GetPathInZip(filePath);
 
-	lock_guard<recursive_mutex> guard(lock);
 	if(unzLocateFile(zipFile, relative.generic_string().c_str(), 0) != UNZ_OK)
 		return {};
 
