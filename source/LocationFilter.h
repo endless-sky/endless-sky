@@ -71,7 +71,8 @@ public:
 
 private:
 	// Load one particular line of conditions.
-	void LoadChild(const DataNode &child);
+	void LoadChild(const DataNode &child, const std::set<const System *> *visitedSystems,
+		const std::set<const Planet *> *visitedPlanets);
 	// Check if the filter matches the given system. If it did not, return true
 	// only if the filter wasn't looking for planet characteristics or if the
 	// didPlanet argument is set (meaning we already checked those).
@@ -85,9 +86,9 @@ private:
 	const std::set<const System *> *visitedSystems = nullptr;
 	const std::set<const Planet *> *visitedPlanets = nullptr;
 
-	// The player must have visited the planet or system.
-	bool visitedPlanet = false;
+	// The player must have visited the system or planet.
 	bool visitedSystem = false;
+	bool visitedPlanet = false;
 
 	// The planet must satisfy these conditions:
 	std::set<const Planet *> planets;
