@@ -40,6 +40,11 @@ namespace {
 
 
 
+GLuint Font::vao = 0;
+GLuint Font::vbo = 0;
+
+
+
 Font::Font(const filesystem::path &imagePath)
 {
 	Load(imagePath);
@@ -106,9 +111,11 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	{
 		screenWidth = Screen::Width();
 		screenHeight = Screen::Height();
-		GLfloat scale[2] = {2.f / screenWidth, -2.f / screenHeight};
-		glUniform2fv(scaleI, 1, scale);
+		scale[0] = 2.f / screenWidth;
+		scale[1] = -2.f / screenHeight;
 	}
+	glUniform2fv(scaleI, 1, scale);
+	glUniform2f(glyphSizeI, glyphWidth, glyphHeight);
 
 	GLfloat textPos[2] = {
 		static_cast<float>(x - 1.),
@@ -294,40 +301,43 @@ void Font::CalculateAdvances(ImageBuffer &image)
 
 void Font::SetUpShader(float glyphW, float glyphH)
 {
-	glyphW *= .5f;
-	glyphH *= .5f;
+	glyphWidth = glyphW * .5f;
+	glyphHeight = glyphH * .5f;
 
 	shader = GameData::Shaders().Get("font");
 	glUseProgram(shader->Object());
 	glUniform1i(shader->Uniform("tex"), 0);
 	glUseProgram(0);
+	// Initialize the shared parameters only once
+	if(!vao)
+	{
+		// Create the VAO and VBO.
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
 
-	// Create the VAO and VBO.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+		glGenBuffers(1, &vbo);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		GLfloat vertices[] = {
+				0.f, 0.f, 0.f, 0.f,
+				0.f, 1.f, 0.f, 1.f,
+				1.f, 0.f, 1.f, 0.f,
+				1.f, 1.f, 1.f, 1.f
+		};
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	GLfloat vertices[] = {
-		   0.f,    0.f, 0.f, 0.f,
-		   0.f, glyphH, 0.f, 1.f,
-		glyphW,    0.f, 1.f, 0.f,
-		glyphW, glyphH, 1.f, 1.f
-	};
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		// Connect the xy to the "vert" attribute of the vertex shader.
+		constexpr auto stride = 4 * sizeof(GLfloat);
+		glEnableVertexAttribArray(shader->Attrib("vert"));
+		glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
 
-	// Connect the xy to the "vert" attribute of the vertex shader.
-	constexpr auto stride = 4 * sizeof(GLfloat);
-	glEnableVertexAttribArray(shader->Attrib("vert"));
-	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, stride, nullptr);
+		glEnableVertexAttribArray(shader->Attrib("corner"));
+		glVertexAttribPointer(shader->Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
+				stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
 
-	glEnableVertexAttribArray(shader->Attrib("corner"));
-	glVertexAttribPointer(shader->Attrib("corner"), 2, GL_FLOAT, GL_FALSE,
-		stride, reinterpret_cast<const GLvoid *>(2 * sizeof(GLfloat)));
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+	}
 
 	// We must update the screen size next time we draw.
 	screenWidth = 0;
@@ -335,6 +345,7 @@ void Font::SetUpShader(float glyphW, float glyphH)
 
 	colorI = shader->Uniform("color");
 	scaleI = shader->Uniform("scale");
+	glyphSizeI = shader->Uniform("glyphSize");
 	glyphI = shader->Uniform("glyph");
 	aspectI = shader->Uniform("aspect");
 	positionI = shader->Uniform("position");
