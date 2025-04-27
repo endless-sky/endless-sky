@@ -138,7 +138,7 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
 else()
-	target_link_libraries(ExternalLibraries INTERFACE pthread)
+	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 endif()
 
 # Link with the UUID library, which is different for each OS.
