@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Planet;
@@ -57,10 +58,10 @@ public:
 	~Mission() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit Mission(const DataNode &node);
+	explicit Mission(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Load a mission, either from the game data or from a saved game.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Save a mission. It is safe to assume that any mission that is being saved
 	// is already "instantiated," so only a subset of the data must be saved.
 	void Save(DataWriter &out, const std::string &tag = "mission") const;
@@ -87,6 +88,7 @@ public:
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.
 	bool IsMinor() const;
+	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
 	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
@@ -138,7 +140,7 @@ public:
 	bool HasSpace(const Ship &ship) const;
 	bool CanComplete(const PlayerInfo &player) const;
 	bool IsSatisfied(const PlayerInfo &player) const;
-	bool IsFailed(const PlayerInfo &player) const;
+	bool IsFailed() const;
 	bool OverridesCapture() const;
 	// Mark a mission failed (e.g. due to a "fail" action in another mission).
 	void Fail();
@@ -209,6 +211,12 @@ private:
 	bool hasPriority = false;
 	bool isNonBlocking = false;
 	bool isMinor = false;
+	// By default, missions are offered in alphabetical order.
+	// Using a non-zero offer precedence changes the order that missions are offered in.
+	// Missions with a higher offer precedence are offered before missions with a lower
+	// precedence. Where two missions have the same offer precedence, they continue to
+	// offer in alphabetical order.
+	int offerPrecedence = 0;
 	bool autosave = false;
 	bool overridesCapture = false;
 	Date deadline;

@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Hazard.h"
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
@@ -27,11 +26,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Hazard;
 class Minable;
+class Outfit;
 class Planet;
 class Ship;
 class Sprite;
@@ -67,7 +69,7 @@ public:
 
 public:
 	// Load a system's description.
-	void Load(const DataNode &node, Set<Planet> &planets);
+	void Load(const DataNode &node, Set<Planet> &planets, const ConditionsStore *playerConditions);
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
@@ -155,6 +157,8 @@ public:
 
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
+	// Get a list of all unique payload outfits from minables in this system.
+	const std::set<const Outfit *> &Payloads() const;
 	// Get the background haze sprite for this system.
 	const Sprite *Haze() const;
 
@@ -182,7 +186,8 @@ public:
 
 
 private:
-	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
+	void LoadObject(const DataNode &node, Set<Planet> &planets,
+		const ConditionsStore *playerConditions, int parent = -1);
 	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false) const;
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
@@ -242,6 +247,7 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
+	std::set<const Outfit *> payloads;
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;

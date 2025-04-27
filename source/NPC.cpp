@@ -70,14 +70,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node)
+NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void NPC::Load(const DataNode &node)
+void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
@@ -176,15 +176,15 @@ void NPC::Load(const DataNode &node)
 				Dialog::ParseTextNode(child, 1, dialogText);
 		}
 		else if(child.Token(0) == "conversation" && child.HasChildren())
-			conversation = ExclusiveItem<Conversation>(Conversation(child));
+			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
 		else if(child.Token(0) == "conversation" && child.Size() > 1)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 		else if(child.Token(0) == "to" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "spawn")
-				toSpawn.Load(child);
+				toSpawn.Load(child, playerConditions);
 			else if(child.Token(1) == "despawn")
-				toDespawn.Load(child);
+				toDespawn.Load(child, playerConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -204,7 +204,7 @@ void NPC::Load(const DataNode &node)
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child);
+				npcActions[it->second].Load(child, playerConditions);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -428,12 +428,12 @@ void NPC::UpdateSpawning(const PlayerInfo &player)
 	// only checked after the spawn conditions have passed so that an NPC
 	// doesn't "despawn" before spawning in the first place.
 	if(!passedSpawnConditions)
-		passedSpawnConditions = toSpawn.Test(player.Conditions());
+		passedSpawnConditions = toSpawn.Test();
 
 	// It is allowable for an NPC to pass its spawning conditions and then immediately pass its despawning
 	// conditions. (Any such NPC will never be spawned in-game.)
 	if(passedSpawnConditions && !toDespawn.IsEmpty() && !passedDespawnConditions)
-		passedDespawnConditions = toDespawn.Test(player.Conditions());
+		passedDespawnConditions = toDespawn.Test();
 }
 
 
@@ -665,7 +665,7 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		return result;
 	}
 	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(player.Conditions(), subs, origin, jumps, payload);
+		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	// Pick the system for this NPC to start out in.
 	result.system = system;
@@ -811,7 +811,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 					return it != shipEvents.end() && (it->second & requiredEvents) && !(it->second & excludedEvents);
 				}))
 		{
-			it->second.Do(player, ui, caller);
+			it->second.Do(player, ui, caller, event.Target());
 		}
 	}
 }

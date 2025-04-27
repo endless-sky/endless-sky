@@ -1,5 +1,5 @@
-/* truncate.hpp
-Copyright (c) 2020 by OOTA, Masato
+/* starfield.frag
+Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,12 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+precision mediump float;
 
-// Ways in which text may be truncated in the UI.
-enum class Truncate : int {
-	NONE,
-	FRONT,
-	MIDDLE,
-	BACK,
-};
+in float fragmentAlpha;
+in vec2 coord;
+out vec4 finalColor;
+
+void main() {
+	float alpha = fragmentAlpha * (1. - abs(coord.x) - abs(coord.y));
+	finalColor = vec4(1, 1, 1, 1) * alpha;
+}

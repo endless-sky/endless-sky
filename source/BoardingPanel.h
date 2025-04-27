@@ -50,6 +50,14 @@ protected:
 
 
 private:
+	enum class CanTakeResult {
+		OTHER,
+		TARGET_YOURS,
+		NO_SELECTION,
+		NO_CARGO_SPACE,
+		CAN_TAKE
+	};
+
 	// This class represents one item in the list of outfits you can plunder.
 	class Plunder {
 	public:
@@ -101,7 +109,7 @@ private:
 	// You can't exit this dialog if you are in the middle of combat.
 	bool CanExit() const;
 	// Check if you can take the outfit at the given position in the list.
-	bool CanTake() const;
+	CanTakeResult CanTake() const;
 	// Check if you can initiate hand to hand combat.
 	bool CanCapture() const;
 	// Check if you are in the midst of hand to hand combat.
