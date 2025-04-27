@@ -56,11 +56,11 @@ namespace {
 	void Move(const AudioPlayer &player, QueueEntry entry)
 	{
 		Point angle = entry.sum / entry.weight;
-		// The source should be along the vector (angle.X(), angle.Y(), 1).
+		// The source should be along the vector (angle.X(), angle.Y(), -1).
 		// The length of the vector should be sqrt(1 / weight).
 		double scale = sqrt(1. / (entry.weight * (angle.LengthSquared() + 1.)));
 
-		player.Move(angle.X() * scale, angle.Y() * scale, scale);
+		player.Move(angle.X() * scale, angle.Y() * scale, -scale);
 	}
 
 	// Thread entry point for loading the sound files.
