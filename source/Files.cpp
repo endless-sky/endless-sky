@@ -82,7 +82,11 @@ namespace {
 			zipPath = zipPath.parent_path();
 		}
 		if(zipPath.extension() == ".zip" && is_regular_file(zipPath))
+		{
+			/// Limit the number of open zip files to one per thread to avoid having too many files open.
+			OPEN_ZIP_FILES.clear();
 			return OPEN_ZIP_FILES.emplace(zipPath, make_shared<ZipFile>(zipPath)).first->second;
+		}
 
 		return {};
 	}
