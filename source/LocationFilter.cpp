@@ -162,7 +162,7 @@ namespace {
 
 
 // Construct and Load() at the same time.
-LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *visitedSystems, 
+LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *visitedSystems,
 		const set<const Planet *> *visitedPlanets)
 {
 	Load(node, visitedSystems, visitedPlanets);
@@ -170,7 +170,7 @@ LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *
 
 
 
-void LocationFilter::Load(const DataNode &node, const set<const System *> *visitedSystems, 
+void LocationFilter::Load(const DataNode &node, const set<const System *> *visitedSystems,
 		const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
@@ -521,7 +521,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 
 
 // Load one particular line of conditions.
-void LocationFilter::LoadChild(const DataNode &child, const set<const System *> *visitedSystems, 
+void LocationFilter::LoadChild(const DataNode &child, const set<const System *> *visitedSystems,
 		const set<const Planet *> *visitedPlanets)
 {
 	if(!visitedSystems || !visitedPlanets)
