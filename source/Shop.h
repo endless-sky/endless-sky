@@ -78,6 +78,9 @@ template <class Item>
 void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions)
 {
 	name = node.Token(1);
+	// If an event or second definition updates this shop, clear the stock
+	// if a new "stock" node is provided without the "add" modifier.
+	bool overwriteStock = !stock.IsEmpty();
 
 	for(const DataNode &child : node)
 	{
@@ -108,10 +111,15 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 		}
 		else if(key == "stock")
 		{
+			if(!add && overwriteStock))
+			{
+				overwriteStock = false;
+				stock.clear();
+			}
 			if(remove)
 				stock.clear();
 			else
-				stock.Load(child, items);
+				stock.Load(child, items, true);
 		}
 		else
 			stock.LoadSingle(child, items);
