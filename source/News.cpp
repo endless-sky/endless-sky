@@ -49,7 +49,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			else if(remove)
 			{
 				location = LocationFilter{};
-				if(hasValue || child.HasChildren())
+				if(child.HasChildren())
 					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
 			}
 			else
@@ -64,7 +64,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(remove)
 			{
 				names = Phrase{};
-				if(hasValue || child.HasChildren())
+				if(child.HasChildren())
 					child.PrintTrace("Warning: Removing all names; removal of individual names is not supported:");
 			}
 			else
@@ -99,7 +99,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(remove)
 			{
 				messages = Phrase{};
-				if(hasValue || child.HasChildren())
+				if(child.HasChildren())
 					child.PrintTrace("Warning: Removing all messages; removal of single messages is not supported:");
 			}
 			else
