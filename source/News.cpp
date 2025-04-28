@@ -44,11 +44,8 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 		if(tag == "location")
 		{
-			if(add)
-			{
-				child.PrintTrace("Skipping 'add location'; adding to locationFilters is not supported:");
-				continue;
-			}
+			if(add && !location.IsEmpty())
+				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
 			else if(remove)
 			{
 				location = LocationFilter{};
@@ -106,15 +103,12 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		}
 		else if(tag == "to" && hasValue && child.Token(valueIndex) == "show")
 		{
-			if(add)
-			{
-				child.PrintTrace("Skipping 'add to show'; adding to conditions is not supported:");
-				continue;
-			}
-			if(remove)
+			if(add && !toShow.IsEmpty())
+				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
+			else if(remove)
 			{
 				toShow = ConditionSet{};
-				if(hasValue || child.HasChildren())
+				if(child.HasChildren())
 					child.PrintTrace("Warning: Removing all conditions; removal of condition subsets is not supported:");
 			}
 			else
