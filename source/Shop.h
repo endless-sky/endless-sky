@@ -96,7 +96,11 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 			if(add && !toSell.IsEmpty())
 				child.PrintTrace("Error: Cannot \"add\" to an existing condition set:");
 			else if(remove)
+			{
 				toSell = ConditionSet{};
+				if(child.HasChildren())
+					child.PrintTrace("Warning: Removing all conditions; removal of condition subsets is not supported:");
+			}
 			else
 				toSell.Load(child, playerConditions);
 		}
@@ -105,13 +109,17 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 			if(add && !location.IsEmpty())
 				child.PrintTrace("Error: Cannot \"add\" to an existing location filter:");
 			else if(remove)
+			{
 				location = LocationFilter{};
+				if(child.HasChildren())
+					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
+			}
 			else
 				location.Load(child);
 		}
 		else if(key == "stock")
 		{
-			if(!add && overwriteStock))
+			if(!add && overwriteStock)
 			{
 				overwriteStock = false;
 				stock.clear();
