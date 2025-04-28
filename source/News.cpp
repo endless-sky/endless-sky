@@ -53,7 +53,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			{
 				location = LocationFilter{};
 				if(hasValue || child.HasChildren())
-					child.PrintTrace("Removing full location filter; partial removal is not supported:");
+					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
 			}
 			else
 				location.Load(child);
@@ -64,7 +64,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			{
 				names = Phrase{};
 				if(hasValue || child.HasChildren())
-					child.PrintTrace("Removing all names; removal of individual names is not supported:");
+					child.PrintTrace("Warning: Removing all names; removal of individual names is not supported:");
 			}
 			else
 				names.Load(child);
@@ -99,7 +99,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			{
 				messages = Phrase{};
 				if(hasValue || child.HasChildren())
-					child.PrintTrace("Removing all messages; removal of single messages is not supported:");
+					child.PrintTrace("Warning: Removing all messages; removal of single messages is not supported:");
 			}
 			else
 				messages.Load(child);
@@ -115,7 +115,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			{
 				toShow = ConditionSet{};
 				if(hasValue || child.HasChildren())
-					child.PrintTrace("Removing all conditions; removal of condition subsets is not supported:");
+					child.PrintTrace("Warning: Removing all conditions; removal of condition subsets is not supported:");
 			}
 			else
 				toShow.Load(child, playerConditions);
