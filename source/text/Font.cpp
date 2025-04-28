@@ -36,12 +36,11 @@ using namespace std;
 namespace {
 	bool showUnderlines = false;
 	const int KERN = 2;
+
+	/// Shared VAO and VBO quad (0,0) -> (1,1)
+	GLuint vao = 0;
+	GLuint vbo = 0;
 }
-
-
-
-GLuint Font::vao = 0;
-GLuint Font::vbo = 0;
 
 
 

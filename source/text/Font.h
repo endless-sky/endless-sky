@@ -73,11 +73,6 @@ private:
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 
 private:
-	/// Shared VAO and VBO quad (0,0) -> (1,1)
-	static GLuint vao;
-	static GLuint vbo;
-
-private:
 	const Shader *shader;
 	GLuint texture = 0;
 
