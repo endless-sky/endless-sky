@@ -624,18 +624,18 @@ outfit "Wanderer Outfits License"
 	series "Licenses"
 	index 09010
 	thumbnail "outfit/wanderer outfits license"
-	description "Spoke with a Wanderer ambassador named Iktat Rek using the translation device and received permission to purchase some of their technology, but not their ships."
+	description "This oddly shaped dish holds a perfectly preserved set of seeds of one Poaognod Nidadolen, a hardy species of grass that the Wanderers use during their initial terraforming efforts to gauge how well a world is responding to their methods."
 
 outfit "Wanderer License"
 	category "Licenses"
 	series "Licenses"
 	index 09020
 	thumbnail "outfit/wanderer license"
-	description "Managed to broker a temporary ceasefire between the Unfettered Hai and the Wanderers. Was granted access to purchase the non-military Wanderer ships, as a reward."
+	description "Intact within an amber shell, this leafy branch of the Uesoqai Antgiega symbolizes the Wanderers' pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem."
 
 outfit "Wanderer Military License"
 	category "Licenses"
 	series "Licenses"
 	index 09030
 	thumbnail "outfit/wanderer military license"
-	description "Received permission to purchase warships from the Wanderers, including a new one called the Tempest."
+	description "The history of the Wanderers is not without hardship and failure. Immortalized in a bronze mold, this shape of a withered, burnt branch is the token of a time the Wanderers could not save a world, for skilled as they may be, they cannot stop destruction when it is actively sought after by others mightier than them. The loss of the exotic Cariauara Galoatinisfu serves as a reminder that they, too, must prepare to fight when necessary."
