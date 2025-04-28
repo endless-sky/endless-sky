@@ -80,7 +80,7 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 	name = node.Token(1);
 	// If an event or second definition updates this shop, clear the stock
 	// if a new "stock" node is provided without the "add" modifier.
-	bool overwriteStock = !stock.IsEmpty();
+	bool overwriteStock = !stock.empty();
 
 	for(const DataNode &child : node)
 	{
