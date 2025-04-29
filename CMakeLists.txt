@@ -137,7 +137,7 @@ target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
 	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
-elseif(ARM)
+elseif(ARM AND LINUX)
 	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
 	target_link_libraries(ExternalLibraries INTERFACE pthread)
