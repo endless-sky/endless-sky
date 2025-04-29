@@ -278,14 +278,12 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		else if(child.Token(0) == "complete")
 		{
 			if(child.Size() == 1)
-				child.PrintTrace("Incomplete \"complete\" option. Follow \"complete\" with \"at\" or \"anywhere\".");
-			else if(child.Token(1) == "anywhere")
-				completeAnywhere = true;
+				child.PrintTrace("Incomplete \"complete\" option. Follow \"complete\" with \"at\".");
 			else if(child.Token(1) == "at")
 			{
 				LocationFilter loaded(child);
 				if(loaded.IsEmpty())
-					child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this line.");
+					child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this filter.");
 				else
 					completionFilter = loaded;
 			}
@@ -479,9 +477,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(destination)
 			out.Write("destination", destination->TrueName());
-		if(completeAnywhere)
-			out.Write("complete", "anywhere");
-		else if(!completionFilter.IsEmpty() && completionFilter.IsValid())
+		if(!completionFilter.IsEmpty() && completionFilter.IsValid())
 		{
 			out.Write("complete", "at");
 			completionFilter.Save(out);
@@ -571,7 +567,7 @@ bool Mission::IsValid() const
 		return false;
 
 	// Missions with completion filters must have valid filters.
-	if(!completeAnywhere && !completionFilter.IsEmpty() && !completionFilter.IsValid())
+	if(!completionFilter.IsEmpty() && !completionFilter.IsValid())
 		return false;
 
 	// All stopovers must be valid.
@@ -933,13 +929,10 @@ bool Mission::HasSpace(const Ship &ship) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(!completeAnywhere)
-	{
-		if(completionFilter.IsEmpty() && player.GetPlanet() != destination)
-			return false;
-		else if(!completionFilter.IsEmpty() && !completionFilter.Matches(player.GetPlanet(), player.GetSystem()))
-			return false;
-	}
+	if(completionFilter.IsEmpty() && player.GetPlanet() != destination)
+		return false;
+	else if(!completionFilter.IsEmpty() && !completionFilter.Matches(player.GetPlanet(), player.GetSystem()))
+		return false;
 
 	return IsSatisfied(player);
 }
@@ -1351,7 +1344,6 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
-	result.completeAnywhere = completeAnywhere;
 	result.completionFilter = completionFilter;
 	result.markedSystems = markedSystems;
 	// Handle waypoint systems that are chosen randomly.
