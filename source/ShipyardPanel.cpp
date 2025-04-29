@@ -53,17 +53,14 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player)
-	: ShopPanel(player, false), modifier(0)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
+	: ShopPanel(player, false), modifier(0), shipyard(stock)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
 
 	for(pair<const string, vector<string>> &it : catalog)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
-
-	if(player.GetPlanet())
-		shipyard = player.GetPlanet()->Shipyard();
 }
 
 
