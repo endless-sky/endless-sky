@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "Port.h"
 #include "Ship.h"
+#include "Shop.h"
 #include "System.h"
 
 #include <iostream>
@@ -49,13 +50,13 @@ namespace {
 
 	// Take a set of items and a set of sales and print a list of each item followed by the sales it appears in.
 	template <class Type>
-	void PrintItemSales(const Set<Type> &items, const Set<Sale<Type>> &sales,
+	void PrintItemSales(const Set<Type> &items, const Set<Shop<Type>> &sales,
 		const string &itemNoun, const string &saleNoun)
 	{
 		cout << DataWriter::Quote(itemNoun) << ',' << DataWriter::Quote(saleNoun) << '\n';
 		map<string, set<string>> itemSales;
 		for(auto &saleIt : sales)
-			for(auto &itemIt : saleIt.second)
+			for(auto &itemIt : saleIt.second.Stock())
 				itemSales[ObjectName(*itemIt)].insert(saleIt.first);
 		for(auto &itemIt : items)
 		{
@@ -71,14 +72,14 @@ namespace {
 	// Take a set of sales and print a list of each followed by the items it contains.
 	// Will fail to compile for items not of type Ship or Outfit.
 	template <class Type>
-	void PrintSales(const Set<Sale<Type>> &sales, const string &saleNoun, const string &itemNoun)
+	void PrintSales(const Set<Shop<Type>> &sales, const string &saleNoun, const string &itemNoun)
 	{
 		cout << DataWriter::Quote(saleNoun) << ';' << DataWriter::Quote(itemNoun) << '\n';
 		for(auto &saleIt : sales)
 		{
 			cout << DataWriter::Quote(saleIt.first);
 			int index = 0;
-			for(auto &item : saleIt.second)
+			for(auto &item : saleIt.second.Stock())
 				cout << (index++ ? ';' : ',') << DataWriter::Quote(ObjectName(*item));
 			cout << '\n';
 		}
