@@ -125,26 +125,65 @@ person "Cap'n Pester"
 	phrase
 		phrase
 			"friendly author"
-	ship "Quarg Wardragon" "Quarg Wardragon"
+	ship "Wardragon" "Wardragon"
+		sprite "ship/wardragon"
 		"never disabled"
-		add attributes
-			"outfit space" 10
-		outfits
-			"Quarg Skylance" 2
-			"Quarg Anti-Missile" 2
-			
-			"Antimatter Core"
-			"Nanotech Battery"
-			"Quantum Shield Generator"
-			"Intrusion Countermeasures" 160
-			"Cargo Scanner"
-			"Outfit Scanner"
-			"Wanderer Ramscoop"
-			
-			"Medium Graviton Thruster"
-			"Medium Graviton Steering"
-			"Scram Drive"
 
+ship "Wardragon"
+	sprite "ship/wardragon"
+	thumbnail "thumbnail/wardragon"
+	attributes
+		category "Heavy Warship"
+		"cost" 5900000
+		"shields" 160000
+		"hull" 50000
+		"required crew" 160
+		"bunks" 185
+		"mass" 840
+		"drag" 14
+		"heat dissipation" .34
+		"fuel capacity" 800
+		"cargo space" 50
+		"outfit space" 610
+		"weapon capacity" 200
+		"engine capacity" 120
+		"hull repair rate" 5
+		"hull energy" 5
+		"ramscoop" 10
+		weapon
+			"blast radius" 250
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Quarg Skylance" 2
+		"Quarg Anti-Missile" 2
+		
+		"Antimatter Core"
+		"Nanotech Battery"
+		"Quantum Shield Generator"
+		"Intrusion Countermeasures" 160
+		"Cargo Scanner"
+		"Outfit Scanner"
+		"Wanderer Ramscoop"
+		
+		"Medium Graviton Thruster"
+		"Medium Graviton Steering"
+		"Scram Drive"
+		
+	engine -14 47
+	engine 14 47
+	turret -9 -14 "Quarg Anti-Missile"
+	turret 9 -14 "Quarg Anti-Missile"
+	turret -28 7 "Quarg Skylance"
+	turret 28 7 "Quarg Skylance"
+	explode "tiny explosion" 12
+	explode "small explosion" 16
+	explode "medium explosion" 30
+	explode "large explosion" 40
+	explode "huge explosion" 20
+	"final explode" "final explosion medium"
+	description "The origin of this Wardragon is shrouded in mystery. It was said that the Quarg once used this ship as a powerful light warship. Other sources suggest that it was used as a front-line heavy warship. One thing is for certain though, and that's its design is far different than any Quarg ship that exists today, and one can only question where it came from."
 
 
 person "Marauding Max"
@@ -787,7 +826,7 @@ ship "Ursa Polaris"
 	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	attributes
-		category "Heavy Warship"
+		category "Unclassified"
 		cost 142857
 		shields 39000
 		hull 27000
@@ -880,7 +919,7 @@ outfit "LG Gridfire Turret"
 
 
 person "Subsidurial"
-	government "Indigenous Lifeform"
+	government "Indigenous Lifeform (Subsidurial)"
 	frequency 1000
 	personality
 		timid unconstrained coward appeasing uninterested mining harvests mute
@@ -2035,3 +2074,184 @@ outfit "Emotional Baggage"
 	thumbnail "outfit/unknown"
 	description `The physical embodiment of everything that makes the Reviewers who they are today.`
 	description `	Unfortunately, it's not for sale.`
+
+
+
+person "Danau"
+	government "Author"
+	frequency 100
+	personality
+		heroic unconstrained opportunistic
+	formation "Vic"
+	phrase
+		word
+			"When you want to stop your ship, press shift and reverse."
+			"Your hyperdrive doesn't work? Have you tried turning it off and on again?"
+	phrase
+		word
+			"Change the orientation of your"
+		word
+			" "
+		word
+			"drone"
+			"interceptor"
+			"fighter"
+		word
+			" "
+		word
+			"bays"
+			"docking ports"
+		word
+			" "
+		word
+			"just for the fun of it."
+			"for faster deployments."
+			"on your new Marauder ship."
+			"to improve atmospheric handling."
+	phrase
+		word
+			"I have a delivery for"
+			"I'm looking for"
+		word
+			" "
+		word
+			"Arrakis"
+			"Caladan"
+			"the Eaxaw"
+			"the Gyisache"
+			"the Happy Birthday"
+			"the Laenfa"
+			"the Muursh"
+			"the Ourbools"
+			"Tycho Magnetic Anomaly 2"
+		word
+			"; "
+		word
+			"is this the right game?"
+	phrase
+		word
+			"The Hauler VI is a nice ship, "
+		word
+			"as long as you don't activate the cargo refrigeration systems."
+			"but it hasn't gotten beyond the prototype stage yet."
+			"but it is not for sale on the regular market."
+			"but using two Hauler IIIs is probably more economical."
+	phrase
+		word
+			"Automate"
+			"Extend"
+			"Improve"
+			"Streamline"
+		word
+			" "
+		word
+			"our"
+			"the ES"
+			"your"
+		word
+			" "
+		word
+			"builds"
+			"builds and tests"
+			"CI jobs"
+			"coding style checks"
+			"integration processes"
+			"merge process"
+			"software tests"
+			"test and integration processes"
+			"test processes"
+			"tests"
+		word
+			"."
+			"!"
+		word
+			" "
+		word
+			"Avoid game crashes!"
+			"Improve the quality of our codebase!"
+			"Get new features into the game faster!"
+			"Have more time for good reviews!"
+			"Have more time for playing the game!"
+			"Prevent bugs!"
+
+	ship "Modified Hauler VI" "Bouldered Sea"
+		"never disabled"
+	ship "Hauler III" "Gravelly Reservoir"
+		"never disabled"
+	ship "Hauler III" "Stony Mere"
+		"never disabled"
+	ship "Hauler II" "Rocky Lake"
+		"never disabled"
+	ship "Hauler II" "Shingly Loch"
+		"never disabled"
+	ship "Hauler" "Craggy Tarn"
+		"never disabled"
+	ship "Hauler" "Pebbly Pond"
+		"never disabled"
+
+
+
+ship "Modified Hauler VI"
+	sprite "ship/hauler vi"
+	thumbnail "thumbnail/hauler vi"
+	attributes
+		category "Heavy Freighter"
+		"shields" 13200
+		"hull" 26800
+		"required crew" 3
+		"bunks" 12
+		"mass" 1240
+		"drag" 21.7
+		"heat dissipation" .43
+		"fuel capacity" 800
+		"cargo space" 780
+		"outfit space" 900
+		"weapon capacity" 430
+		"engine capacity" 160
+		weapon
+			"blast radius" 100
+			"shield damage" 1000
+			"hull damage" 500
+			"hit force" 1500
+	outfits
+		"Sidewinder Missile Launcher" 4
+		"Sidewinder Missile" 180
+		"Point Defense Turret" 2
+		"Bombardment Turret" 6
+
+		"Fusion Reactor"
+		"S3 Thermionic"
+		"LP288a Battery Pack"
+		"D94-YV Shield Generator"
+		"Large Radar Jammer"
+		"Laser Rifle" 3
+		
+		"Impala Plasma Thruster"
+		"Impala Plasma Steering"
+		"Capybara Reverse Thruster"
+		"Hyperdrive"
+
+	engine -83.5 196.5
+	engine 83.5 196.5
+	engine 0 196.5
+	gun -14.5 -168
+	gun 14.5 -168
+	gun -35 -128
+	gun 35 -128
+	turret -21 -124.5
+	turret 21 -124.5 "Point Defense Turret"
+	turret -32.5 -102.5
+	turret 32.5 -102.5
+	turret -22 154 "Point Defense Turret"
+	turret 22 154
+	turret -60 154
+	turret 60 154
+	leak "leak" 70 50
+	leak "flame" 40 80
+	leak "big leak" 90 40
+	explode "small explosion" 30
+	explode "medium explosion" 60
+	explode "large explosion" 40
+	explode "huge explosion" 10
+	"final explode" "final explosion large"
+	description "The Hauler cargo ships are considered by many to be outdated, and it is unclear if upgrading the cargo space to six containers is sufficient to make this Hauler ship popular. It certainly doesn't help that the Hauler VI is more expensive than four Hauler IIIs."

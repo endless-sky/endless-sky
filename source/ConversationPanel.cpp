@@ -15,13 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConversationPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "BoardingPanel.h"
+#include "text/Clipboard.h"
 #include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
@@ -36,13 +38,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 #if defined _WIN32
 #include "Files.h"
 #endif
 
+#include <array>
 #include <iterator>
 
 using namespace std;
@@ -66,21 +69,28 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	scroll(0.), system(system), ship(ship)
 {
 #if defined _WIN32
-	PATH_LENGTH = Files::Saves().size();
+	PATH_LENGTH = Files::Saves().string().size();
 #endif
+	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
-	// text is prepared for display.
-	subs["<first>"] = player.FirstName();
-	subs["<last>"] = player.LastName();
+	// text is prepared for display. Some substitutions already in the map
+	// should not be overwritten.
+	static const array<string, 3> subsToSave = {"<system>", "<date>", "<day>"};
+	map<string, string> savedSubs;
+	for(const auto &sub : subsToSave)
+	{
+		const auto it = subs.find(sub);
+		if(it != subs.end() && !it->second.empty())
+			savedSubs.emplace(*it);
+	}
+	player.AddPlayerSubstitutions(subs);
+	// Restore substitutions that need to be preserved.
+	for(auto &it : savedSubs)
+		subs[it.first].swap(it.second);
 	if(ship)
 	{
 		subs["<ship>"] = ship->Name();
 		subs["<model>"] = ship->DisplayModelName();
-	}
-	else if(player.Flagship())
-	{
-		subs["<ship>"] = player.Flagship()->Name();
-		subs["<model>"] = player.Flagship()->DisplayModelName();
 	}
 
 	// Start a PlayerInfo transaction to prevent saves during the conversation
@@ -90,6 +100,13 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 
 	// Begin at the start of the conversation.
 	Goto(0);
+}
+
+
+
+ConversationPanel::~ConversationPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -234,7 +251,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	// fields are currently active. The name text entry fields are active if
 	// choices is empty and we aren't at the end of the conversation.
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
-		GetUI()->Push(new MapDetailPanel(player, system));
+		GetUI()->Push(new MapDetailPanel(player, system, true));
 	if(node < 0)
 	{
 		// If the conversation has ended, the only possible action is to exit.
@@ -247,26 +264,31 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	if(choices.empty())
 	{
+		// Don't allow characters that can't be used in a file name.
+		static const string FORBIDDEN = "/\\?*:|\"<>~";
+		// Prevent the name from being so large that it cannot be saved.
+		// Most path components can be at most 255 bytes.
+		size_t MAX_NAME_LENGTH = 250;
+#if defined _WIN32
+		MAX_NAME_LENGTH -= PATH_LENGTH;
+#endif
+
 		// Right now we're asking the player to enter their name.
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(key >= ' ' && key <= '~')
+		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, FORBIDDEN))
+		{
+			// Input handled by Clipboard.
+		}
+		else if(key >= ' ' && key <= '~')
 		{
 			// Apply the shift or caps lock key.
 			char c = ((mod & KMOD_SHIFT) ? SHIFT[key] : key);
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
-			// Don't allow characters that can't be used in a file name.
-			static const string FORBIDDEN = "/\\?*:|\"<>~";
-			// Prevent the name from being so large that it cannot be saved.
-			// Most path components can be at most 255 bytes.
-			size_t MAX_NAME_LENGTH = 250;
-#if defined _WIN32
-			MAX_NAME_LENGTH -= PATH_LENGTH;
-#endif
 			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
 				name += c;
 			else
@@ -373,7 +395,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	node = index;
 	// Not every conversation node allows a choice. Move forward through the
 	// nodes until we encounter one that does, or the conversation ends.
-	while(node >= 0 && !conversation.HasAnyChoices(player.Conditions(), node))
+	while(node >= 0 && !conversation.HasAnyChoices(node))
 	{
 		int choice = 0;
 
@@ -388,7 +410,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 		{
 			// Branch nodes change the flow of the conversation based on the
 			// player's condition variables rather than player input.
-			choice = !conversation.Conditions(node).Test(player.Conditions());
+			choice = !conversation.Conditions(node).Test();
 		}
 		else if(conversation.IsAction(node))
 		{
@@ -397,7 +419,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 			// and more. They are not allowed to spawn additional UI elements.
 			conversation.GetAction(node).Do(player, nullptr, caller);
 		}
-		else if(conversation.ShouldDisplayNode(player.Conditions(), node))
+		else if(conversation.ShouldDisplayNode(node))
 		{
 			// This is an ordinary conversation node which should be displayed.
 			// Perform any necessary text replacement, and add the text to the display.
@@ -415,7 +437,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	}
 	// Display whatever choices are being offered to the player.
 	for(int i = 0; i < conversation.Choices(node); ++i)
-		if(conversation.ShouldDisplayNode(player.Conditions(), node, i))
+		if(conversation.ShouldDisplayNode(node, i))
 		{
 			string altered = Format::ExpandConditions(Format::Replace(conversation.Text(node, i), subs), getter);
 			choices.emplace_back(Paragraph(altered), i);

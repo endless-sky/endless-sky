@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16...3.29)
+cmake_minimum_required(VERSION 3.19...4.0)
 
 include(CMakeDependentOption)
 if(UNIX AND NOT APPLE AND NOT ES_STEAM)
@@ -18,6 +18,8 @@ set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
 set(CMAKE_CXX_STANDARD 20 CACHE STRING "")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+# We don't use modules, so avoid using unrecognised compiler-specific commands that cmake produces when they are enabled.
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 # Use LTO for Release builds only.
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG FALSE)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
@@ -43,6 +45,10 @@ endif()
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
+	# Add the testing libraries
+	if(NOT APPLE OR CMAKE_OSX_DEPLOYMENT_TARGET VERSION_GREATER_EQUAL 10.12)
+		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
+	endif()
 endif()
 
 # Tell vcpkg to use system libraries that are missing in the Steam runtime.
@@ -55,7 +61,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.9
+project("Endless Sky" VERSION 0.10.13
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
@@ -81,6 +87,18 @@ endif()
 find_path(LIBMAD_INCLUDE_DIR mad.h)
 find_library(LIBMAD_LIB_DEBUG NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib")
 find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib")
+
+# Find the zip-reading component of zlib.
+find_package(ZLIB REQUIRED)
+find_package(PkgConfig REQUIRED PkgConfig PkgConf)
+
+# Minizip has a different target name in vcpkg.
+if(ES_USE_VCPKG)
+	find_package(unofficial-minizip CONFIG REQUIRED)
+	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
+else()
+	pkg_check_modules(MINIZIP REQUIRED minizip)
+endif()
 
 # Find the MinGW runtime DLLs.
 if(MINGW AND WIN32)
@@ -125,7 +143,7 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL ${MINIZIP_LIBRARIES}
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
@@ -187,7 +205,7 @@ if(APPLE AND ES_CREATE_BUNDLE)
 	# MacOS bundles are a bit special and need every resource specified when
 	# creating the executable.
 	# NOTE: This means that a reconfigure is needed if any assets are added/removed!
-	foreach(folder "data" "images" "sounds")
+	foreach(folder "data" "images" "shaders" "sounds")
 		file(GLOB_RECURSE RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/${folder}/*")
 		target_sources(EndlessSky PRIVATE "${RESOURCES}")
 
@@ -223,7 +241,8 @@ if(APPLE AND ES_CREATE_BUNDLE)
 	set_target_properties(EndlessSky PROPERTIES
 		MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/resources/EndlessSky-Info.plist"
 		XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME endless-sky)
-	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
+	set(OUTPUT_NAME "Endless Sky")
+	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 elseif(WIN32)
 	add_executable(EndlessSky WIN32 source/main.cpp source/WinApp.rc)
 	set_target_properties(EndlessSky PROPERTIES OUTPUT_NAME "Endless Sky")
@@ -259,6 +278,7 @@ elseif(WIN32)
 	# Install the resource files.
 	install(DIRECTORY data DESTINATION .)
 	install(DIRECTORY images DESTINATION .)
+	install(DIRECTORY shaders DESTINATION .)
 	install(DIRECTORY sounds DESTINATION .)
 	install(FILES credits.txt DESTINATION .)
 	install(FILES keys.txt DESTINATION .)
@@ -295,6 +315,7 @@ elseif(UNIX)
 	# Install the resource files.
 	install(DIRECTORY data DESTINATION share/games/endless-sky)
 	install(DIRECTORY images DESTINATION share/games/endless-sky)
+	install(DIRECTORY shaders DESTINATION share/games/endless-sky)
 	install(DIRECTORY sounds DESTINATION share/games/endless-sky)
 	install(FILES credits.txt DESTINATION share/games/endless-sky)
 	install(FILES keys.txt DESTINATION share/games/endless-sky)

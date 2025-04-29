@@ -39,8 +39,11 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
     - name: Install dependencies
-      run: python3 -m pip install --user python-debian
+      run: pip install --break-system-packages python-debian
     - name: Validate copyright file with python-debian
       run: python3 ./utils/check_copyright.py
     - name: Validate copyright file with debian-control-linter
@@ -60,7 +63,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.head.sha }}
         show-progress: false
     - uses: codespell-project/actions-codespell@master
       with:
@@ -96,7 +98,7 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install regex
+      run: pip install --break-system-packages regex
     - name: Run style checker
       run: python ./utils/check_code_style.py
 
@@ -114,6 +116,6 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install regex
+      run: pip install --break-system-packages regex
     - name: Run style checker
       run: python ./utils/check_content_style.py

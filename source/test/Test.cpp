@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <SDL2/SDL.h>
 
 #include <algorithm>
+#include <iostream>
 #include <map>
 #include <numeric>
 #include <set>
@@ -50,6 +51,7 @@ namespace {
 		{Test::TestStep::Type::ASSERT, "assert"},
 		{Test::TestStep::Type::BRANCH, "branch"},
 		{Test::TestStep::Type::CALL, "call"},
+		{Test::TestStep::Type::DEBUG, "debug"},
 		{Test::TestStep::Type::INJECT, "inject"},
 		{Test::TestStep::Type::INPUT, "input"},
 		{Test::TestStep::Type::LABEL, "label"},
@@ -103,7 +105,7 @@ namespace {
 		string description = "name: " + ship.Name();
 		const System *system = ship.GetSystem();
 		const Planet *planet = ship.GetPlanet();
-		description += ", system: " + (system ? system->Name() : "<not set>");
+		description += ", system: " + (system ? system->TrueName() : "<not set>");
 		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
 		description += ", hull: " + Format::Number(ship.Hull());
 		description += ", shields: " + Format::Number(ship.Shields());
@@ -188,7 +190,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 
 
 
-void Test::LoadSequence(const DataNode &node)
+void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(!steps.empty())
 	{
@@ -217,8 +219,10 @@ void Test::LoadSequence(const DataNode &node)
 		switch(step.stepType)
 		{
 			case TestStep::Type::APPLY:
+				step.assignConditions.Load(child, playerConditions);
+				break;
 			case TestStep::Type::ASSERT:
-				step.conditions.Load(child);
+				step.checkConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::BRANCH:
 				if(child.Size() < 2)
@@ -230,13 +234,23 @@ void Test::LoadSequence(const DataNode &node)
 				step.jumpOnTrueTarget = child.Token(1);
 				if(child.Size() > 2)
 					step.jumpOnFalseTarget = child.Token(2);
-				step.conditions.Load(child);
+				step.checkConditions.Load(child, playerConditions);
 				break;
 			case TestStep::Type::CALL:
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
 					child.PrintTrace("Error: Invalid use of \"call\" without name of called (sub)test:");
+					return;
+				}
+				else
+					step.nameOrLabel = child.Token(1);
+				break;
+			case TestStep::Type::DEBUG:
+				if(child.Size() < 2)
+				{
+					status = Status::BROKEN;
+					child.PrintTrace("Error: Invalid use of \"debug\" without an actual message to print:");
 					return;
 				}
 				else
@@ -312,7 +326,7 @@ void Test::LoadSequence(const DataNode &node)
 
 
 
-void Test::Load(const DataNode &node)
+void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 	{
@@ -360,7 +374,7 @@ void Test::Load(const DataNode &node)
 			}
 		}
 		else if(child.Token(0) == "sequence")
-			LoadSequence(child);
+			LoadSequence(child, playerConditions);
 		else if(child.Token(0) == "description")
 		{
 			// Provides a human friendly description of the test, but it is not used internally.
@@ -433,11 +447,11 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 		switch(stepToRun.stepType)
 		{
 			case TestStep::Type::APPLY:
-				stepToRun.conditions.Apply(player.Conditions());
+				stepToRun.assignConditions.Apply();
 				++(context.callstack.back().step);
 				break;
 			case TestStep::Type::ASSERT:
-				if(!stepToRun.conditions.Test(player.Conditions()))
+				if(!stepToRun.checkConditions.Test())
 					Fail(context, player, "asserted false");
 				++(context.callstack.back().step);
 				break;
@@ -451,7 +465,7 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 					break;
 				}
 				context.branchesSinceGameStep.emplace(context.callstack.back());
-				if(stepToRun.conditions.Test(player.Conditions()))
+				if(stepToRun.checkConditions.Test())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnTrueTarget)->second;
 				else if(!stepToRun.jumpOnFalseTarget.empty())
 					context.callstack.back().step = jumpTable.find(stepToRun.jumpOnFalseTarget)->second;
@@ -469,11 +483,17 @@ void Test::Step(TestContext &context, PlayerInfo &player, Command &commandToGive
 				}
 				continueGameLoop = true;
 				break;
+			case TestStep::Type::DEBUG:
+				// Print debugging output directly to the terminal.
+				cout << stepToRun.nameOrLabel << endl;
+				cout.flush();
+				++(context.callstack.back().step);
+				break;
 			case TestStep::Type::INJECT:
 				{
 					// Lookup the data and inject it in the game or into the environment.
 					const TestData *testData = GameData::TestDataSets().Get(stepToRun.nameOrLabel);
-					if(!testData->Inject())
+					if(!testData->Inject(&player.Conditions()))
 						Fail(context, player, "injecting data failed");
 				}
 				++(context.callstack.back().step);
@@ -528,10 +548,14 @@ std::set<std::string> Test::RelevantConditions() const
 		switch(step.stepType)
 		{
 			case TestStep::Type::APPLY:
+				{
+					for(const auto &name : step.assignConditions.RelevantConditions())
+						conditionNames.emplace(name);
+				}
 			case TestStep::Type::ASSERT:
 			case TestStep::Type::BRANCH:
 				{
-					for(const auto &name : step.conditions.RelevantConditions())
+					for(const auto &name : step.checkConditions.RelevantConditions())
 						conditionNames.emplace(name);
 				}
 				break;

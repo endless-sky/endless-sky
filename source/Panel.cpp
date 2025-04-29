@@ -18,14 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "Command.h"
 #include "Dialog.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Point.h"
 #include "Preferences.h"
 #include "Screen.h"
 #include "image/Sprite.h"
-#include "SpriteShader.h"
+#include "shader/SpriteShader.h"
 #include "UI.h"
 
 using namespace std;
@@ -370,6 +370,13 @@ bool Panel::DoHelp(const string &name, bool force) const
 void Panel::SetUI(UI *ui)
 {
 	this->ui = ui;
+}
+
+
+
+const std::vector<std::shared_ptr<Panel>> &Panel::GetChildren()
+{
+	return children;
 }
 
 

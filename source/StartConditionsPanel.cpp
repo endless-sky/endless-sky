@@ -19,13 +19,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "text/DisplayText.h"
-#include "FillShader.h"
+#include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
@@ -33,10 +32,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
-#include "StarField.h"
+#include "Shop.h"
+#include "shader/StarField.h"
 #include "StartConditions.h"
 #include "System.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -54,10 +54,10 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 {
 	// Extract from all start scenarios those that are visible to the player.
 	for(const auto &scenario : allScenarios)
-		if(scenario.Visible(GameData::GlobalConditions()))
+		if(scenario.Visible())
 		{
 			scenarios.emplace_back(scenario);
-			scenarios.back().SetState(GameData::GlobalConditions());
+			scenarios.back().SetState();
 		}
 
 	startIt = scenarios.begin();
@@ -246,7 +246,10 @@ void StartConditionsPanel::OnConversationEnd(int)
 	// If the starting conditions don't specify any ships, let the player buy one.
 	if(player.Ships().empty())
 	{
-		gamePanels.Push(new ShipyardPanel(player));
+		Sale<Ship> shipyardStock;
+		for(const Shop<Ship> *shop : player.GetPlanet()->Shipyards())
+			shipyardStock.Add(shop->Stock());
+		gamePanels.Push(new ShipyardPanel(player, shipyardStock));
 		gamePanels.StepAll();
 	}
 	if(parent)
