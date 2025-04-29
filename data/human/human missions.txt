@@ -8564,7 +8564,7 @@ mission "Syndicate Business 7"
 	on offer
 		conversation
 			`After a short walk through the bustling spaceport, you reach Megaparsec's sky-scraping corporate office. The sleek and modern lobby evokes the fast, light ships they're known for, with polished surfaces, elegant furniture, and subtle lighting coming together seamlessly.`
-			`	The receptionist greets you with a nod and a warm smile, either remembering you from your prior visits or merely being polite. The elevator ride up to the ninth floor is smooth, the soft hum of machinery fading away as you walk through the elevator doors. Howard's office is modern yet modest, featuring a central smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Howard himself is standing at one of the expansive windows, looking out at Megaparsec's shipyards below.`
+			`	The receptionist greets you with a nod and a warm smile, either remembering you from your prior visits or merely being polite. The elevator ride up to the ninth floor is smooth, the soft hum of machinery fading away as you walk through the elevator doors. Howard's office is modern yet modest, featuring a central smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. Howard himself stands at one of the expansive windows, looking out at Megaparsec's shipyards below.`
 			branch meanhello
 				"syndicate business: mean to Howard" > 0
 			`	"Glad you could make it," he says, his voice cordial and confident. "This investment opportunity for you is ten times larger than our last deal - but first I need a small favor."`
@@ -8582,7 +8582,7 @@ mission "Syndicate Business 7"
 					goto great
 			`	Howard raises an amused eyebrow and remarks, "Relax, it's nothing you can't handle. Just a minor detour on this road to greatness.`
 			label great
-			`	He turns back towards the window, "Greatness. My own corner office, a luxurious company ship, not to mention a sizable bonus. Director... all I need from you is to help nudge a small event in our favor."`
+			`	He turns back towards the window. "Greatness. My own corner office, a luxurious company ship, not to mention a sizable bonus. Director... all I need from you is to help nudge a small event in our favor."`
 			choice
 				`	"What kind of nudge?"`
 					goto nextsteps
@@ -8590,7 +8590,7 @@ mission "Syndicate Business 7"
 			`	Yet again he briefly turns from the window to face you.`
 			`	"Of course.`
 			label nextsteps
-			`	"Said nudge entails a certain degree of discretion and precision. You've demonstrated that during our Marauder acquisition, now we need it for an excision. I need you to plant some evidence onto a ship in <waypoints> to bait the pirates there into attacking a research convoy. Then, regroup on <planet> before the convoy comes through next week, and that should definitively shut down the Marauder project. After the anticipated response by the pirates, we confirm on <planet> that there's no loose ends.`
+			`	"Said nudge entails a certain degree of discretion and precision. You've demonstrated that during our Marauder acquisition, now we need it for an excision. I need you to plant some evidence onto a ship in <waypoints> to bait the pirates there into attacking a research convoy. Then, regroup on <planet> before the convoy comes through next week, and that should definitively shut down the Marauder project. After the anticipated response by the pirates, we confirm on <planet> that there's no loose ends."`
 			`	Howard continues to watch the shipyards below for a long moment before turning from the window with a deliberate finality, and strides to his desk at the center of the room. Planting both hands firmly on the smooth surface, he meets your gaze with an unusual intensity and says, "I need you to kick a hornets' nest and to make sure those hornets sting."`
 			choice
 				`	"Stinging hornets and nest kicking. You got it."`
@@ -8711,7 +8711,7 @@ mission "Syndicate Business 7"
 		system "Oblate"
 		ship "Manta" "Rum Ray"
 		on kill
-			dialog "Consider this an open tab with the Rumrunners - the next round is on you, and we collect in blood!"
+			dialog `You receive a brief hail as the Manta explodes: "Consider this an open tab with the Rumrunners - the next round is on you, and we collect in blood!"`
 			log "Destroyed a Manta called the Rum Ray, causing the Rumrunners to promise vengeance."
 	
 	npc
@@ -8757,7 +8757,7 @@ mission "Syndicate Business 8"
 			`You step out on the stone field surrounding Canyon's spaceport and quickly locate Howard's Shuttle in an open patch with a wide berth. Climbing aboard, you find Howard waiting, and he greets you with a measured nod.`
 			branch meancanyonopening
 				"syndicate business: mean to Howard" > 0
-			`	"Again, outstanding work, <first>", he says with a satisfied tone.`
+			`	"Again, outstanding work, <first>," he says with a satisfied tone.`
 				goto restofcanyonopening
 			label meancanyonopening
 			`	"Job's done," he states flatly.`
@@ -8872,7 +8872,6 @@ mission "Syndicate Business 9"
 				accept
 
 	on complete
-		clear "event: syndicate business Howard schmoozing"
 		conversation
 			`Like clockwork, you get a message from Howard as the <ship> lands on <destination>:`
 			branch meanpromo
@@ -8992,7 +8991,7 @@ mission "Syndicate Business 10"
 			choice
 				`	(Sign the loan.)`
 					goto nextynice
-				`	"I'm done with these deals, I'm leaving."`
+				`	"I'm done with these deals. I'm leaving."`
 					decline
 			label upcharge
 			`	Howard's tone carries a hint of impatience. "Now, the price for this investment is one hundred and eleven million credits for a 27,400 credit per day return. I've arranged a loan for you at the bank and through our Finance Division, so you won't need to come up with the investment immediately. I've talked down the loan's interest to be half as high as your prior loan. Just sign these documents to formalize the arrangement."`
@@ -9000,7 +8999,7 @@ mission "Syndicate Business 10"
 			choice
 				`	(Sign the loan.)`
 					goto nextymean
-				`	"I'm done with these deals, I'm leaving."`
+				`	"I'm done with these deals. I'm leaving."`
 					decline
 			label nextynice
 			action
