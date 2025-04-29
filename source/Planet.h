@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Paragraphs.h"
 #include "Port.h"
 #include "Sale.h"
+#include "Shop.h"
 
 #include <list>
 #include <memory>
@@ -98,14 +99,21 @@ public:
 	// that we can check if an uninhabited world should fine the player.
 	bool HasCustomSecurity() const;
 
-	// Check if this planet has a shipyard.
+	// Check if this planet has a permanent shipyard.
 	bool HasShipyard() const;
-	// Get the list of ships in the shipyard.
-	const Sale<Ship> &Shipyard() const;
-	// Check if this planet has an outfitter.
+	// Get the list of ships in the permanent shipyard.
+	const Sale<Ship> &ShipyardStock() const;
+	// Get the list of shipyards currently available on this planet.
+	// This will include conditionally available shops.
+	std::set<const Shop<Ship> *> Shipyards() const;
+
+	// Check if this planet has a permanent outfitter.
 	bool HasOutfitter() const;
-	// Get the list of outfits available from the outfitter.
-	const Sale<Outfit> &Outfitter() const;
+	// Get the list of outfits available from the permanent outfitter.
+	const Sale<Outfit> &OutfitterStock() const;
+	// Get the list of outitters available on this planet.
+	// This will include conditionally available shops.
+	std::set<const Shop<Outfit> *> Outfitters() const;
 
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
@@ -168,8 +176,8 @@ private:
 
 	std::set<std::string> attributes;
 
-	std::set<const Sale<Ship> *> shipSales;
-	std::set<const Sale<Outfit> *> outfitSales;
+	std::set<const Shop<Ship> *> shipSales;
+	std::set<const Shop<Outfit> *> outfitSales;
 	// The lists above will be converted into actual ship lists when they are
 	// first asked for:
 	mutable Sale<Ship> shipyard;
