@@ -55,7 +55,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			else
 			{
 				if(add)
-					child.PrintTrace("Warning: Cannot \"add\" to a location filter, but filter was empty, so performing replace instead:");
+					child.PrintTrace("Warning: Cannot \"add\" to location filter, performing replace instead:");
 				location.Load(child);
 			}
 		}
