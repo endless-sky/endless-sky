@@ -7836,7 +7836,6 @@ mission "Syndicate Business 3"
 			label rudemessage
 			`	"<first> <last>, my bank contact has informed me that you've achieved modest success. Meanwhile, I've come across an investment opportunity that far surpasses our previous venture. Meet me at my new office on <planet> (note the address, I've moved up since my promotion). I expect our meeting to be prompt and efficient."`
 			label signoff
-
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			choice
@@ -8518,14 +8517,14 @@ mission "Syndicate Business 6"
 			branch meanopening
 				"syndicate business: mean to Howard" > 0
 			`	"Dear <first>,`
-			`		"I trust that all is well with you. I am pleased to share that the investment opportunity I mentioned in my last message has now arrived. I truly value our partnership and the trust you've placed in me, and I'm confident this next venture will be a great fit for your ambitions.`
-			`		"Please meet me on Sunracer at your earliest convenience so we can review the details together. I look forward to catching up and discussing our next steps."`
+			`	"I trust that all is well with you. I am pleased to share that the investment opportunity I mentioned in my last message has now arrived. I truly value our partnership and the trust you've placed in me, and I'm confident this next venture will be a great fit for your ambitions.`
+			`	"Please meet me on Sunracer at your earliest convenience so we can review the details together. I look forward to catching up and discussing our next steps."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 				goto openingchoice
 			label meanopening
 			`	"Captain <last>,`
-			`		"I trust you've reviewed the interim Megaparsec report I last sent you. The investment opportunity I previously mentioned is now available. I expect you to meet me on Sunracer at your earliest convenience to finalize the details. I look forward to discussing next steps to close this deal promptly."`
+			`	"I trust you've reviewed the interim Megaparsec report I last sent you. The investment opportunity I previously mentioned is now available. I expect you to meet me on Sunracer at your earliest convenience to finalize the details. I look forward to discussing next steps to close this deal promptly."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 			label openingchoice
@@ -8537,8 +8536,8 @@ mission "Syndicate Business 6"
 					decline
 			`	You immediately receive an automated response:`
 			`	"Dear Valued Contact,`
-			`		"Thank you for reaching out. I am currently out of the office and will respond to your message as soon as possible.`
-			`		"For urgent matters, please contact our support team."`
+			`	"Thank you for reaching out. I am currently out of the office and will respond to your message as soon as possible.`
+			`	"For urgent matters, please contact our support team."`
 			`		Howard Vendeur`
 			`		Investor Relations Manager, Megaparsec Incorporated`
 				accept
