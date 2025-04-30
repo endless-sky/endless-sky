@@ -91,7 +91,7 @@ double System::Asteroid::Energy() const
 
 
 // Load a system's description.
-void System::Load(const DataNode &node, Set<Planet> &planets)
+void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 		return;
@@ -293,7 +293,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 					}
 			}
 			else
-				fleets.emplace_back(fleet, child.Value(valueIndex + 1), child);
+				fleets.emplace_back(fleet, child.Value(valueIndex + 1), child, playerConditions);
 		}
 		else if(key == "raid")
 			RaidFleet::Load(raidFleets, child, remove, valueIndex);
@@ -311,7 +311,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 			}
 			else
 			{
-				hazards.emplace_back(hazard, child.Value(valueIndex + 1), child);
+				hazards.emplace_back(hazard, child.Value(valueIndex + 1), child, playerConditions);
 			}
 		}
 		else if(key == "belt")
@@ -369,7 +369,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets)
 						it->parent -= removed;
 			}
 			else
-				LoadObject(child, planets);
+				LoadObject(child, planets, playerConditions);
 		}
 		// Handle the attributes which cannot be "removed."
 		else if(remove)
@@ -1051,7 +1051,8 @@ const vector<RaidFleet> &System::RaidFleets() const
 
 
 
-void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
+void System::LoadObject(const DataNode &node, Set<Planet> &planets,
+		const ConditionsStore *playerConditions, int parent)
 {
 	int index = objects.size();
 	objects.push_back(StellarObject());
@@ -1069,9 +1070,10 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets, int parent)
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "hazard" && child.Size() >= 3)
-			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2), child);
+			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2),
+				child, playerConditions);
 		else if(child.Token(0) == "object")
-			LoadObject(child, planets, index);
+			LoadObject(child, planets, playerConditions, index);
 		else
 			LoadObjectHelper(child, object);
 	}
