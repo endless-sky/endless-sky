@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Planet;
 class PlayerInfo;
 class System;
+class TextArea;
 
 
 
@@ -37,8 +38,8 @@ class System;
 // click on a planet to view its description.
 class MapDetailPanel : public MapPanel {
 public:
-	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr);
-	explicit MapDetailPanel(const MapPanel &panel);
+	explicit MapDetailPanel(PlayerInfo &player, const System *system = nullptr, bool fromMission = false);
+	explicit MapDetailPanel(const MapPanel &panel, bool isStars);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -63,6 +64,7 @@ protected:
 
 
 private:
+	void InitTextArea();
 	void GeneratePlanetCards(const System &system);
 	void DrawKey();
 	void DrawInfo();
@@ -78,6 +80,7 @@ private:
 
 	// Which panel is being hovered over and should be affected by up and down keys.
 	bool isPlanetViewSelected = false;
+	bool isStars = false;
 
 	ScrollVar<double> scroll;
 	ScrollBar scrollbar;
@@ -92,4 +95,8 @@ private:
 	std::vector<MapPlanetCard> planetCards;
 	// Vector offsets from the center of the "orbits" UI.
 	std::map<const Planet *, Point> planets;
+
+	std::shared_ptr<TextArea> description = nullptr;
+	bool descriptionVisible = false;
+	int descriptionXOffset;
 };

@@ -24,12 +24,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "EsUuid.h"
 #include "GameEvent.h"
-#include "Government.h"
 #include "Mission.h"
-#include "RaidFleet.h"
 #include "SystemEntry.h"
 
 #include <chrono>
+#include <filesystem>
 #include <list>
 #include <map>
 #include <memory>
@@ -40,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Outfit;
 class Planet;
+class RaidFleet;
 class Rectangle;
 class Ship;
 class ShipEvent;
@@ -81,7 +81,7 @@ public:
 	// Make a new player.
 	void New(const StartConditions &start);
 	// Load an existing player.
-	void Load(const std::string &path);
+	void Load(const std::filesystem::path &path);
 	// Load the most recently saved player. If no save could be loaded, returns false.
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
@@ -282,9 +282,9 @@ public:
 	void Unvisit(const Planet &planet);
 
 	// Check whether the player has visited the <mapSize> systems around the current one.
-	bool HasMapped(int mapSize) const;
+	bool HasMapped(int mapSize, bool mapMinables) const;
 	// Mark a whole map of systems as visited.
-	void Map(int mapSize);
+	void Map(int mapSize, bool mapMinables);
 
 	// Access the player's travel plan.
 	bool HasTravelPlan() const;

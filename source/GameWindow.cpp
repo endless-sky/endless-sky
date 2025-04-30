@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Files.h"
 #include "image/ImageBuffer.h"
+#include "image/ImageFileData.h"
 #include "Logger.h"
 #include "Screen.h"
 
@@ -263,12 +264,8 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 
 	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-//#endif
-
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
 
@@ -291,7 +288,7 @@ void GameWindow::SetIcon()
 
 	// Load the icon file.
 	ImageBuffer buffer;
-	if(!buffer.Read(Files::Resources() + "icon.png"))
+	if(!buffer.Read(ImageFileData(Files::Resources() / "icon.png")))
 		return;
 	if(!buffer.Pixels() || !buffer.Width() || !buffer.Height())
 		return;

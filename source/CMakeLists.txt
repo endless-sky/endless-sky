@@ -8,7 +8,7 @@ if(MSVC)
 	target_compile_definitions(EndlessSkyLib PUBLIC "_UNICODE" "UNICODE")
 else()
 	target_compile_options(EndlessSkyLib PUBLIC
-		"-Wall" "-pedantic-errors" "-Wold-style-cast" "-fno-rtti")
+		"-Wall" "-pedantic-errors" "-Wold-style-cast" "$<$<CONFIG:Release>:-fno-rtti>")
 endif()
 
 # Every source file (and header file) should be listed here, except main.cpp.
@@ -43,7 +43,7 @@ target_sources(EndlessSkyLib PRIVATE
 	CargoHold.h
 	CategoryList.cpp
 	CategoryList.h
-	CategoryTypes.h
+	CategoryType.h
 	ClickZone.h
 	Collision.cpp
 	Collision.h
@@ -56,6 +56,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Command.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
+	ConditionEntry.cpp
+	ConditionEntry.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -99,8 +101,6 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.h
 	ExclusiveItem.h
 	FighterHitHelper.h
-	File.cpp
-	File.h
 	Files.cpp
 	Files.h
 	FireCommand.cpp
@@ -149,7 +149,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Interface.h
 	ItemInfoDisplay.cpp
 	ItemInfoDisplay.h
-	JumpTypes.h
+	JumpType.h
 	Logger.cpp
 	Logger.h
 	LoadPanel.cpp
@@ -182,6 +182,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Messages.h
 	Minable.cpp
 	Minable.h
+	MinableDamageDealt.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
@@ -264,6 +265,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Set.h
 	Ship.cpp
 	Ship.h
+	Shop.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp
@@ -290,6 +292,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StellarObject.h
 	StringInterner.cpp
 	StringInterner.h
+	Swizzle.cpp
+	Swizzle.h
 	System.cpp
 	System.h
 	SystemEntry.h
@@ -319,6 +323,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Wormhole.cpp
 	Wormhole.h
 	WormholeStrategy.h
+	ZipFile.cpp
+	ZipFile.h
 	opengl.cpp
 	opengl.h
 	pi.h
@@ -329,11 +335,15 @@ target_sources(EndlessSkyLib PRIVATE
 	audio/Music.h
 	audio/Sound.cpp
 	audio/Sound.h
+	audio/SoundCategory.h
 	comparators/ByGivenOrder.h
 	comparators/ByName.h
 	comparators/BySeriesAndIndex.h
+	image/BlendingMode.h
 	image/ImageBuffer.cpp
 	image/ImageBuffer.h
+	image/ImageFileData.cpp
+	image/ImageFileData.h
 	image/ImageSet.cpp
 	image/ImageSet.h
 	image/Mask.cpp
@@ -376,6 +386,9 @@ target_sources(EndlessSkyLib PRIVATE
 	test/TestContext.h
 	test/TestData.cpp
 	test/TestData.h
+	text/Alignment.h
+	text/Clipboard.cpp
+	text/Clipboard.h
 	text/DisplayText.cpp
 	text/DisplayText.h
 	text/Font.cpp
@@ -384,13 +397,12 @@ target_sources(EndlessSkyLib PRIVATE
 	text/FontSet.h
 	text/Format.cpp
 	text/Format.h
+	text/Layout.h
 	text/Table.cpp
 	text/Table.h
+	text/Truncate.h
 	text/Utf8.cpp
 	text/Utf8.h
 	text/WrappedText.cpp
 	text/WrappedText.h
-	text/alignment.hpp
-	text/layout.hpp
-	text/truncate.hpp
 )

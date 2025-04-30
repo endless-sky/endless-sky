@@ -62,6 +62,8 @@ public:
 			BRANCH,
 			// Step that calls another test to handle some generic common actions.
 			CALL,
+			// Step that prints a debug-message to the output.
+			DEBUG,
 			// Step that adds game-data, either in the config-directories or in the game directly.
 			INJECT,
 			// Step that performs input (key, mouse, command). Does cause the game to step (to process the inputs).
@@ -119,11 +121,11 @@ public:
 	// Check the game status and perform the next test action.
 	void Step(TestContext &context, PlayerInfo &player, Command &commandToGive) const;
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 
 
 private:
-	void LoadSequence(const DataNode &node);
+	void LoadSequence(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Fail the test using the given message as reason.
 	void Fail(const TestContext &context, const PlayerInfo &player, const std::string &testFailReason) const;

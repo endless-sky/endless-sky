@@ -15,6 +15,8 @@
 
 outfit "Ka'het Nullifier"
 	category "Guns"
+	series "Guns"
+	index 05030
 	cost 3062000
 	thumbnail "outfit/ka'het nullifier"
 	"mass" 68
@@ -112,6 +114,8 @@ effect "ionball ring"
 
 outfit "Ka'het Ravager Beam"
 	category "Guns"
+	series "Guns"
+	index 05020
 	cost 322000
 	thumbnail "outfit/ka'het ravager beam"
 	"mass" 13
@@ -135,6 +139,8 @@ outfit "Ka'het Ravager Beam"
 
 outfit "Ka'het Ravager Turret"
 	category "Turrets"
+	series "Turrets"
+	index 05020
 	cost 417000
 	thumbnail "outfit/ka'het ravager turret"
 	"mass" 16
@@ -149,7 +155,7 @@ outfit "Ka'het Ravager Turret"
 		sound "disruptor"
 		"hit effect" "ravager impact"
 		"inaccuracy" .2
-		"turret turn" 2.3
+		"turret turn" 4.2
 		"velocity" 480
 		"lifetime" 1
 		"reload" 1
@@ -168,6 +174,8 @@ effect "ravager impact"
 
 outfit "Ka'het Annihilator"
 	category "Guns"
+	series "Guns"
+	index 05010
 	cost 351000
 	thumbnail "outfit/ka'het annihilator"
 	"mass" 10
@@ -191,6 +199,8 @@ outfit "Ka'het Annihilator"
 
 outfit "Ka'het Annihilator Turret"
 	category "Turrets"
+	series "Turrets"
+	index 05010
 	cost 529000
 	thumbnail "outfit/ka'het annihilator turret"
 	"mass" 25
@@ -205,7 +215,7 @@ outfit "Ka'het Annihilator Turret"
 		"hardpoint offset" 15.
 		"hit effect" "bullet impact"
 		"inaccuracy" 1
-		"turret turn" 1.8
+		"turret turn" 3.2
 		"range override" 630
 		"velocity override" 18
 		"reload" 10
@@ -228,6 +238,8 @@ outfit "Annihilator Projectile"
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 05010
 	cost 715000
 	thumbnail "outfit/ka'het emp deployer"
 	"mass" 18
@@ -272,6 +284,8 @@ outfit "Ka'het EMP Deployer"
 
 outfit "Ka'het Emergency Deployer"
 	category "Secondary Weapons"
+	series "Secondary Weapons"
+	index 05020
 	cost 645000
 	thumbnail "outfit/ka'het mhd deployer"
 	"mass" 13
@@ -330,6 +344,8 @@ effect "mhd explosion"
 
 outfit "Ka'het Support Cooling"
 	category "Systems"
+	series "Cooling"
+	index 05010
 	cost 218000
 	thumbnail "outfit/ka'het support cooling"
 	"mass" 6
@@ -341,6 +357,8 @@ outfit "Ka'het Support Cooling"
 
 outfit "Ka'het Primary Cooling"
 	category "Systems"
+	series "Cooling"
+	index 05020
 	cost 563000
 	thumbnail "outfit/ka'het primary cooling"
 	"mass" 11
@@ -353,6 +371,8 @@ outfit "Ka'het Primary Cooling"
 
 outfit "Ka'het Shield Restorer"
 	category "Systems"
+	series "Shields"
+	index 05010
 	cost 138000
 	thumbnail "outfit/ka'het shield restorer"
 	"mass" 14
@@ -363,6 +383,8 @@ outfit "Ka'het Shield Restorer"
 
 outfit "Ka'het Grand Restorer"
 	category "Systems"
+	series "Shields"
+	index 05020
 	cost 1022000
 	thumbnail "outfit/ka'het grand restorer"
 	"mass" 72
@@ -377,6 +399,8 @@ outfit "Ka'het Grand Restorer"
 
 outfit "Ka'het MHD Generator"
 	category "Power"
+	series "Generators"
+	index 05010
 	cost 1263000
 	thumbnail "outfit/ka'het mhd generator"
 	"mass" 20
@@ -387,6 +411,8 @@ outfit "Ka'het MHD Generator"
 
 outfit "Ka'het Reserve Accumulator"
 	category "Power"
+	series "Batteries"
+	index 05010
 	cost 27000
 	thumbnail "outfit/ka'het reserve accumulator"
 	"mass" 2
@@ -399,6 +425,8 @@ outfit "Ka'het Reserve Accumulator"
 outfit "Maeri Engine Nacelles"
 	plural "Maeri Engine Nacelles"
 	category "Engines"
+	series "Engines"
+	index 05030
 	"cost" 928000
 	thumbnail "outfit/ka'het maeri engine"
 	"mass" 59
@@ -421,6 +449,8 @@ outfit "Maeri Engine Nacelles"
 outfit "Ka'het Sustainer Nacelles"
 	plural "Ka'het Sustainer Nacelles"
 	category "Engines"
+	series "Engines"
+	index 05020
 	"cost" 357000
 	thumbnail "outfit/ka'het sustainer engine"
 	"mass" 27
@@ -443,6 +473,8 @@ outfit "Ka'het Sustainer Nacelles"
 outfit "Telis Engine Nacelles"
 	plural "Telis Engine Nacelles"
 	category "Engines"
+	series "Engines"
+	index 05040
 	"cost" 1372000
 	thumbnail "outfit/ka'het telis engine"
 	"mass" 81
@@ -464,6 +496,8 @@ outfit "Telis Engine Nacelles"
 
 outfit "Vareti Engine Block"
 	category "Engines"
+	series "Engines"
+	index 05050
 	"cost" 1815000
 	thumbnail "outfit/ka'het vareti engine"
 	"mass" 137
@@ -485,6 +519,8 @@ outfit "Vareti Engine Block"
 
 outfit "Ka'het Compact Engine"
 	category "Engines"
+	series "Engines"
+	index 05010
 	"cost" 172000
 	thumbnail "outfit/ka'het compact engine"
 	"mass" 21

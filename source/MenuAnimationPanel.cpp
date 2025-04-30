@@ -27,7 +27,7 @@ MenuAnimationPanel::MenuAnimationPanel()
 {
 	SetTrapAllEvents(false);
 
-	Audio::Play(Audio::Get("landing"));
+	Audio::Play(Audio::Get("landing"), SoundCategory::UI);
 }
 
 

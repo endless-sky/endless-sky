@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Files.h"
 
+#include "../text/Format.h"
+
 #include <mad.h>
 
 #include <algorithm>
@@ -32,29 +34,26 @@ namespace {
 	// stereo, the duration of the sample is half this amount:
 	const size_t OUTPUT_CHUNK = 32768;
 
-	map<string, string> paths;
+	map<string, filesystem::path> paths;
 }
 
 
 
-void Music::Init(const vector<string> &sources)
+void Music::Init(const vector<filesystem::path> &sources)
 {
-	for(const string &source : sources)
+	for(const auto &source : sources)
 	{
 		// Find all the sound files that this resource source provides.
-		string root = source + "sounds/";
-		vector<string> files = Files::RecursiveList(root);
+		filesystem::path root = source / "sounds";
+		vector<filesystem::path> files = Files::RecursiveList(root);
 
-		for(const string &path : files)
+		for(const auto &path : files)
 		{
 			// Sanity check on the path length.
-			if(path.length() < root.length() + 4)
-				continue;
-			string ext = path.substr(path.length() - 4);
-			if(ext != ".mp3" && ext != ".MP3")
+			if(Format::LowerCase(path.extension().string()) != ".mp3")
 				continue;
 
-			string name = path.substr(root.length(), path.length() - root.length() - 4);
+			string name = (path.parent_path() / path.stem()).lexically_relative(root).generic_string();
 			paths[name] = path;
 		}
 	}
@@ -83,11 +82,6 @@ Music::~Music()
 	}
 	condition.notify_all();
 	thread.join();
-
-	// If the decode thread has not yet taken possession of the next file, it is
-	// our job to close it.
-	if(nextFile)
-		fclose(nextFile);
 }
 
 
@@ -97,7 +91,7 @@ void Music::SetSource(const string &name)
 {
 	// Find a file that provides this music.
 	auto it = paths.find(name);
-	string path = (it == paths.end() ? "" : it->second);
+	filesystem::path path = (it == paths.end() ? "" : it->second);
 
 	// Do nothing if this is the same file we're playing.
 	if(path == previousPath)
@@ -108,7 +102,7 @@ void Music::SetSource(const string &name)
 	// Inform the decoding thread that it should switch to decoding a new file.
 	unique_lock<mutex> lock(decodeMutex);
 	if(path.empty())
-		nextFile = nullptr;
+		nextFile.reset();
 	else
 		nextFile = Files::Open(path);
 	hasNewFile = true;
@@ -170,7 +164,7 @@ void Music::Decode()
 	while(true)
 	{
 		// First, wait until a new file has been specified or we're done.
-		FILE *file = nullptr;
+		shared_ptr<iostream> file;
 		while(!file)
 		{
 			unique_lock<mutex> lock(decodeMutex);
@@ -183,7 +177,7 @@ void Music::Decode()
 
 			// The new file now belongs to us, and it's our job to close it.
 			file = nextFile;
-			nextFile = nullptr;
+			nextFile.reset();
 			hasNewFile = false;
 		}
 
@@ -218,16 +212,19 @@ void Music::Decode()
 				memcpy(&input.front(), stream.next_frame, remainder);
 
 			// Now, read a chunk of data from the file.
-			size_t read = fread(&input.front() + remainder, 1, INPUT_CHUNK - remainder, file);
+			file->read(reinterpret_cast<char *>(input.data() + remainder), INPUT_CHUNK - remainder);
 			// If you get the end of the file, loop around to the beginning.
-			if(!read || feof(file))
-				rewind(file);
+			if(file->eof())
+			{
+				file->clear();
+				file->seekg(0, ios::beg);
+			}
 			// If there is nothing to decode, return to the top of this loop.
-			if(!(read + remainder))
+			if(!remainder && file->eof())
 				continue;
 
 			// Hand the input to the stream decoder.
-			mad_stream_buffer(&stream, &input.front(), read + remainder);
+			mad_stream_buffer(&stream, &input.front(), INPUT_CHUNK);
 
 			// Loop through the decoded result for that input block.
 			while(true)
@@ -283,6 +280,5 @@ void Music::Decode()
 		mad_synth_finish(&synth);
 		mad_frame_finish(&frame);
 		mad_stream_finish(&stream);
-		fclose(file);
 	}
 }

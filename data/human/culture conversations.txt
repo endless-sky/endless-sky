@@ -801,3 +801,303 @@ mission "Militia returning to Solace"
 			`Wandering around the main spaceport on Solace, you notice several rows of shiny new landing pads next to the Delta V company offices. A large banner announces that you are witnessing the grand opening of Delta V's new private spaceport, and a crowd of interested spectators has gathered near the perimeter of the fence.`
 			`	Suddenly an Argosy comes streaking out of the sky, almost crashing into several smaller ships in the main spaceport before swerving out of sight behind a hangar in the direction of the new landing pads. There are shouts from the throng of onlookers, who all seem to think this was a stunt. Your more practiced eye, however, tells you that there are bullet marks on the Argosy's hull from a Gatling Gun. It was probably a miscalculation by the pilot's computer that almost caused the collision.`
 			`	Soon afterwards, an announcement is made from a large speaker, telling bystanders that nothing bad happened and that they can go home now. After staying for a while out of curiosity, the crowd finally disperses. However, you stick around and notice the Argosy flying back into view to land in the main spaceport.`
+
+mission "Republic 300 Year Anniversary"
+	landing
+	source
+		government "Republic"
+		not attributes "uninhabited"
+	to offer
+		year == 3030
+	on offer
+		conversation
+			`News headlines bombard your comms as you land on <origin>: today is the three hundredth anniversary of the Republic. A crowd has gathered in the local spaceport in something of a celebration as they tune in to the main news stations, websites, and blogs throughout human space that are commenting on this momentous day. However, you notice many passersby moving about with an air of disdain for the festivities, simply trying to get their business here over quickly, and being frustrated at the inevitable slowness of the local facilities today.`
+			`	Originally formed by Earth and planets close to it, the Rim, and a few Dirt Belt worlds, the Republic went on to gradually expand and incorporate the Syndicate, Paradise Worlds, and the Deep. For three hundred years now, most of humanity has existed under its flag, and through protests and the space renaissance, waves of colonization, expansion, and battles against remnants of the Alphas, that flag remains flying over most human worlds today.`
+			branch "war over"
+				has "main plot completed"
+			branch "war ongoing"
+				has "chosen sides"
+				not "main plot completed"
+			`	Not all is well, of course, as the bombing of Geminus and Martini appears to have set the Republic on the precipice of war with the Free Worlds, in the southern portion of human space. You can't help but feel that much of the cheerfulness about this date has more to do with the national holiday than with a deep-rooted appreciation for the Republic's history and what it stands for.`
+				goto end
+			label "war ongoing"
+			`	The ongoing war with the Free Worlds has greatly diminished what the Republic Department of Arts and Culture no doubt hoped to turn into the public event of the year. Local workers and merchant captains alike whisper among themselves, Navy personnel march to and from warships that come and go at an alarming rate, seemingly unfazed by the historical date, and some bar fights break out between likely inebriated local patriots and those reckless enough to voice their support for the Free Worlds here.`
+				goto end
+			label "war over"
+			`	The recent Free Worlds war seemed to threaten this long history of stability, as battles raged over the skies of dozens of planets, and the threat of an open nuclear war loomed closer as the conflict escalated. The indiscriminate disappearance of many systems close to Earth, followed by the unified human front against the Pug invaders, seems to have knit together the sentiments of many throughout the Republic - for the time being, at least.`
+			branch "zenith bombed"
+				has "Wanderers: Sestor: Return to Wanderers: done"
+			branch "sestor beaten at farpoint"
+				has "Wanderers: Sestor Alt: Return to Wanderers: done"
+			label end
+			choice
+				`	(Celebrate the Republic's 300th anniversary.)`
+					goto celebrate
+				`	(Go on about your day as usual.)`
+			`	You switch your media channels off from the celebrations, and get to your ship's system checks. Once you're done, you prepare for just another day.`
+				decline
+			label celebrate
+			`	You take an hour or two to join in on the festivities, because after all, it's not everyone who can claim to have witnessed a centenary anniversary of a nation. Stepping off the <ship>, you head to the spaceport, have a couple of drinks, speak to some of the locals, and party with a few revelers. Once it's getting late, you head back to your ship and reflect on the meaning of this day throughout human space.`
+				decline
+			label "zenith bombed"
+			`	Dimming the mood of the otherwise mostly positive news titles are the comments about a mysterious armada of robotic warships invading the Far North. Having crushed the Navy forces over Farpoint, the fleet was only partially beaten after the detonation of a terrible bomb on Zenith, which wrecked much of the planet. Indeed, it was weeks still before the scattered ships were fully destroyed, and confidence in the Navy's - and, by extension, the Republic's - ability to keep humanity safe seems to have been affected significantly...`
+				goto end
+			label "sestor beaten at farpoint"
+			`	Web comments and news anchors seem to be particularly excited to comment on the recent victory of the Navy over the mysterious armada of robotic warships that invaded the Far North. Though at a great cost to the northern fleet garrisons, the invading fleets were successfully stopped at the Farpoint base, preventing the ships from causing any further harm. Veterans of the Farpoint battle seem to be hoarding the spotlight, giving emotional reports of their memory of the fight, and of the sacrifices they went through to achieve victory.`
+				goto end
+
+mission "Exotic Life: Delve"
+	minor
+	source Delve
+	to offer
+		random < 20
+	on offer
+		conversation
+			`The air in Delve's spaceport is crisp, carrying the mineral tang of weathered stone alongside occasional whiffs of fuel and lingering industrial cleaners. As you walk toward your ship, you notice teams of workers dressed in biohazard gear moving between the departing vessels in pairs, bulky sprayers strapped to their backs, nozzles hissing as they coat hulls in a fine mist. Each ship gets a thorough pass before takeoff, the workers checking crevices and landing gear with practiced efficiency.`
+			choice
+				`	(Ask them what they're doing.)`
+				`	(Ignore them and continue on your way.)`
+					decline
+				`	"Shipworm outbreak?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	You approach a pair of workers as they finish spraying down a Bulk Freighter and ask what they're doing. One of them, a grizzled veteran with deep lines around his eyes, barely glances at you. "Shipworms," he mutters, already moving to the next ship.`
+			`	The other, a younger worker practically bouncing in his boots, grins behind his respirator. "Yeah! Little metal-chewing pests. They're native to Delve, infest the mines, the shipyards - anywhere there's metal to sink their teeth into. If we didn't spray every ship before takeoff, they'd be all over the galaxy by now." The veteran sighs. "They already are all over the galaxy. Because people aren't careful enough."`
+			`	The rookie ignores him. "They start as tiny worms, barely bigger than your pinky, but once they find metal, they melt into it, make a cocoon that looks just like part of the ship! Bombacle, we call 'em. Then BAM! A few months later, the casing bursts open like a bomb! Bombacle!"`
+			`	The veteran shakes his head. "What he means is, they're an invasive hazard if they get off-world. That's why we spray. No shipworms, no problems."`
+			`	The rookie gives his sprayer an enthusiastic shake. "And I get to torch every last one I find. You ever see one pop under a high-heat blast? Satisfying as hell." The veteran just mutters, "You'd think the novelty would wear off."`
+			action
+				set "exotic animals: delvan shipworm known"
+			`	With another look at the freshly sprayed Bulk Freighter, you make a mental note to give your own ship a once-over before takeoff.`
+				goto ending
+			label known
+			`	One of them, a seasoned veteran with weary eyes, lets out a long-suffering sigh. "Great. At least this one actually knows what they are." In contrast, the other - a fresh-faced worker brimming with energy - practically lights up. "They're like space barnacles - until they hatch into wormy bombs! I was just telling him how fun it is to fry 'em!"`
+			`	The veteran gestures around at the cavernous spaceport. "We don't get outbreaks here. This is Delve. They're Delvan shipworms. They're native. Always have been. They infest the mines, the shipyards, anywhere with exposed metal. That's why every ship gets fumigated before takeoff - to keep 'em from spreading even more than they already have."`
+			`	The rookie eagerly jumps back in. "You ever see one break out of a cocoon in real time? Casing splits and it blasts out like a grenade - it's wild!" The veteran just rubs his face.`
+			`	With nothing more to add, you make a mental note to give your ship a once-over before takeoff as the workers continue their routine.`
+			label ending
+			`	You give the fumigation teams a final glance and make your way back to your ship. The metallic surfaces around you now hint at unseen creatures lurking.`
+				decline
+
+mission "Exotic Life: Ada"
+	minor
+	source Ada
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You make your way through a dimly lit section of the spaceport to a near-empty hangar, where the usual hum of activity is dampened by an eerie stillness. The back of the hangar has a reinforced glass cargo door cracked open, perhaps by mistake. You peer inside to see large, sealed tarps stretched across the area, some draped over cargo crates, others covering entire sections. One enormous tarp appears big enough to be covering a whole ship. Each one bears the same stark warning in bold lettering: "DELVAN SHIPWORM FUMIGATION." The air has a faint chemical tang to it, and ahead, two figures move methodically between the tarps towards the door.`
+			`	They are covered head to toe in protective suits, thick gloves, and respirators obscuring their faces. One carries a handheld sprayer, releasing a fine mist into the air, while the other checks a monitor strapped to their arm. Their boots crunch softly against the floor as they pass.`
+			choice
+				`	(Ask them what's going on.)`
+				`	(Ignore them and continue on your way.)`
+					decline
+				`	"Nasty little bombacles, aren't they?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+			`	Curiosity gets the better of you, and you ask what this is all about, gesturing at the tarps. One of them pauses, their voice muffled by the respirator. "Delvan shipworm outbreak. Nasty infestation. We're exterminating them before they spread to other ships or the city." You can see small scorch marks on the floor nearby - signs of something being burned away.`
+			choice
+				`	"What's a Delvan shipworm?"`
+				`	"Nasty bombacles, aren't they?"`
+					to display
+						has "exotic animals: delvan shipworm known"
+					goto known
+				`	"Well, good luck with that. I should get going."`
+					decline
+			`	The worker with the monitor barely hesitates before responding. "Delvan shipworms are an invasive species from Delve. They start as larvae, tiny worms-"`
+			`	"Bombacles!" the one with the sprayer interjects, voice distorted through the respirator. "They latch on ships, grow into barnacles, then they're bombs!"`
+			`	The first worker exhales, shaking their head. "They're more than that. The larvae attach to metal - usually ship hulls, but it can be mining equipment, or anything, really - and secrete an enzyme that corrodes the surface, breaking it down so they can form a cocoon around themselves. This builds up a high-pressure gas, so the outer shell hardens to compensate, blending in with the surrounding metal."`
+			`	"Yeah, until - BOOM! Three months later, it blasts open like a grenade and out come a dozen disgusting worms!"`
+			`	"You make it sound like a horror movie."`
+			`	"It is a horror movie if you're next to one when it hatches." The sprayer-wielding worker turns back to you. "Writhing wrigglers that leave a hole the size of your palm in whatever they break out of. Plenty of ships have lost pressure 'cause of them."`
+			`	The first worker sighs. "That's why we're dealing with it now. We don't let them spread, we don't get people vented into space."`
+			action
+				set "exotic animals: delvan shipworm known"
+			`	Your gaze drifts back to the tarps, imagining what might be skittering beneath them. You nod in thanks and step away, making a mental note to double-check your ship's hull before takeoff.`
+				goto ending
+			label known
+			`	The worker with the sprayer perks up. "Finally, someone who gets it!" they say, shaking their sprayer for emphasis.`
+			`	The other groans. "They are not barnacles and they are not bombs. They are a highly adaptive invasive species with a complex-"`
+			`	"Yeah, yeah, they're still bombacles," the sprayer worker cuts in. "Point is, we kill 'em before they kill ships. And cities. And people."`
+			`	The monitor worker exhales but gives you a nod. "At least you understand how important this is. Most folks just walk by without a second thought." The sprayer worker waves you along. "Anyway, let us work before one of these things chews through something vital."`
+			`	Satisfied, you leave them to their job, making a mental note to check your own hull before takeoff.`
+			label ending
+			`	With one last glance at the fumigation tarps, you head back to your ship, suddenly aware of how fragile a metal hull can be in the wrong circumstances.`
+
+mission "Exotic Life: Glaze"
+	repeat
+	minor
+	source Glaze
+	to offer
+		random < 10
+		or
+			not "chosen sides"
+			has "main plot completed"
+		not "exotic life: seen glaze apes"
+	on offer
+		conversation
+			`You step to the edge of the mesa from the spaceport, the wind blowing as you take in the view. The canyons stretch out before you, a maze of red and gold stone, their depths lost in shadow. Far in the distance, something moves - small figures, barely more than specks, making their way through one of the ravines. You squint, but the details remain elusive.`
+			`	Nearby, a weathered set of credit-operated binoculars stands bolted to the ground, a faded sign above them reading: 1 credit per use.`
+			choice
+				`	(Take a closer look for 1 credit.)`
+					to display
+						credits >= 1
+				`	(Ignore the specks and return to my ship.)`
+					to display
+						credits >= 1
+					goto closing
+				`	(Pat my empty pockets and return to my ship as I can't even afford the 1 credit fee.)`
+					to display
+						credits < 1
+					goto closing
+			action
+				payment -1
+			branch norareapes
+				random < 20
+			`	The binoculars hum as you focus in on the figures, expecting hikers. But what you see is something else entirely. A small group of shaggy, long-limbed creatures moves carefully through the canyon. Their fur is the same hue as the sandstone, blending almost perfectly with the terrain. They walk on two legs, but with a hunched, cautious gait, pausing often to glance around before continuing.`
+			`	One of them stops near a boulder, kneeling to scoop up a handful of dust and let it run through its fingers, as if testing the wind. Another lingers behind the rest, turning its head slightly, perhaps listening for something. There are no signs of tools or fire, certainly nothing to suggest the "canyon people" of local legend - but there's an undeniable sense of awareness in the way they move and seem to belong to the landscape itself.`
+			action
+				set "exotic life: seen glaze apes"
+			`	After a long moment, they disappear behind a ridge, blending so seamlessly into the terrain that it's hard to tell if they were ever there at all. You step back from the binoculars, the last glimpse of them lingering in your mind.`
+			choice
+				`	(Return to your ship.)`
+					goto closing
+			label norareapes
+			`	Curiosity gets the better of you, and you pay a credit to the machine. The binoculars whir softly as they adjust, bringing the distant canyon into focus. A group of brightly dressed tourists walks along a winding trail, pointing at rock formations and stopping to take photos. One of them waves excitedly at something -- maybe an unseen guide explaining the landscape.`
+			`	Just another tour group exploring the canyons. You step back from the binoculars with a small chuckle.`
+			label closing
+			`	You walk back to your ship from the binoculars.`
+				decline
+
+mission "Exotic Life: Bluestone"
+	minor
+	source Bluestone
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step off your ship and wander around Bluestone's quiet yet functional spaceport. The buildings, made mostly of durable plastic resin, form a quaint but near-uniform red-brown landscape, in sharp contrast to the small yellow pub in the center. The spaceport is quiet, but the low hum of activity from a nearby oil drill gives it some life. As you are entering the pub, you spot an announcement on a bulletin board:`
+			`	"Guided Tour: Hybrid Crop Research Village - an exceptional hub of field-based research led by the Cornucopia College of Agriculture, nestled within captivating landscapes!"`
+			`	The bulletin catches your eye. It's a rare chance to see something other than refinery equipment and plastics, and the mention of hybrid crops entails something different. There's a signup sheet, and only a few spots remain.`
+			choice
+				`	(Sign up.)`
+				`	(Skip the tour.)`
+					decline
+			`	After signing up for the next tour, you are directed to hop onto a beat-up old bus that rattles along to the research village. You notice Bluestone's rusty industrial sprawl transition into the rocky fields of deep, desaturated blue grasses that the planet is known for. The village itself appears a small yet dynamic community, centered around a sleek, glass-paneled laboratory and greenhouse emanating reddish-yellow light. Dotted around are modest plastic resin apartment buildings. The entire community is surrounded by an expansive field containing rows and rows of crops.`
+			`	You get off the bus and are immediately ushered into the laboratory by a young-looking tour guide, along with half a dozen other tourists. She has a small nametag that reads:`
+			`		Zea S.`
+			`		Community Tour Guide`
+			`		MS in Agronomy`
+			`		Cornucopia College of Agriculture`
+			`	"Welcome to our guided tour of Bluestone's Hybrid Crop Research Village! Here, our dedicated scientists harness the secrets of native flora. The grasses and lichens you see around you have evolved unique photosynthetic pigments to thrive in our planet's dim, reddish light. Before we continue, can anyone name the most famous photosynthetic pigment found on Earth?"`
+			choice
+				`	"Tea leaves."`
+					goto oncewrong
+				`	"Green."`
+					goto oncewrong
+				`	"Chlorophyll."`
+					goto onceright
+				`	"Purple paint."`
+				`	(Remain silent.)`
+					goto awkward
+			`	"That's what I use to paint my dragon minis!" a tourist blurts out, his excitement briefly overtaking him before he immediately clears his throat to regain his composure.`
+			label oncewrong
+			`	Zea shifts uneasily. "Umm, not exactly. The answer I was looking for was chlorophyll.`
+				goto chlorophyll
+			label onceright
+			`	Zea beams broadly. "Exactly right! Chlorophyll is fundamental to life on Earth.`
+				goto chlorophyll
+			label awkward
+			`	There is an awkward pause as Zea scans the group. After another moment the tour guide sighs lightly, "Well, it's chlorophyll." Visibly trying to downplay the moment, she adds, "No worries - let's move on.`
+			label chlorophyll
+			`	"These pigments on our native plants are distinct from Earth's chlorophyll. Green chlorophyll actually captures red light fairly well, but not as well as a cyan pigment. Our planet's reddish hue can also be deceiving - near-infrared light, an invisible light just beyond what humans can see, is what our native plants truly thrive on. The vegetation can capture those wavelengths of light with remarkable efficiency. By deciphering their genetic blueprints, we've identified key adaptations that can be hybridized into crops found on Earth or other worlds to enhance their resilience in the low-light environments of cooler stars."`
+			`	You are then led outside to a small garden of native grasses and lichens next to the laboratory. "And now, take a closer look at our fascinating native species. Notice their muted blue and near-black colors - this isn't just a quirk of nature, but a vital adaptation that enhances absorption of red and near-infrared light on our dim planet. Their extensive root systems delve deep into the sparse soil, allowing them to efficiently access as much nutrients and water as possible under low-light conditions. Now, the leaves on these grasses are much larger and flatter than what you'd see on similar grasses on planets with brighter sunlight. Can anyone tell me why our plants might have larger and flatter leaves than somewhere like Earth?"`
+			choice
+				`	"Larger leaves maximize surface area to capture more light."`
+					goto twiceright
+				`	"They look nicer in the breeze."`
+					goto twicewrong
+				`	"It helps herbivores leaf them alone."`
+				`	(Say nothing.)`
+					goto twiceshy
+			`	A collective groan ripples through the tour group, punctuated by a couple of reluctant chuckles. Zea remains completely oblivious as she continues with the tour.`
+			label twicewrong
+			`	"Ummm, actually, that's not quite right. The main focus of these larger leaves is to maximize surface area for better light absorption."`
+				goto nativeplants
+			label twiceright
+			`	"Exactly right! They maximize surface area for better light absorption, which is crucial on our dim planet. Great answer!"`
+				goto nativeplants
+			label twiceshy
+			`	The guide makes eye contact with most of the group for an uncomfortable beat as she awaits a response. When none come, the tour guide says, "Well, it's because larger, thinner leaves maximize the surface area for light absorption... ummm, let's look at some grasses now."`
+			label nativeplants
+			`	She walks up to one of the grasses and gesture at its leaves. "The large, thin leaves of our native plants are designed to maximize surface area to better collect infrared rays, ensuring they capture every photon they can. These features collectively enable our plants to thrive where Earth plants would struggle."`
+			`	The tour continues as you enter a state-of-the-art greenhouse. Inside, hybrid crops flourish under controlled lighting that varies from yellow to red, as you feel warm from the heat lamps above. Zea points at a deep pot filled with a muted blue-black wheatgrass that has huge, delicate leaves. "Here, traditional Earth crops like wheat have been endowed with traits inspired by our native species. Observe the broader, darker leaves that boost photosynthetic efficiency in low-light conditions. These modifications not only help the plants harness energy from our reddish sunlight, but can be used across the galaxy to grow food where it was impossible before!"`
+			`	You feel the tour drawing to a close as the tour guide gathers the group for a final discussion.`
+			`	"Thank you for joining us on this exploration of the cutting edge of hybrid crops. I hope you leave here today with a renewed appreciation and curiosity for the foods you eat and the remarkable plants that surround us."`
+			choice
+				`	(Clap.)`
+				`	(Do nothing.)`
+					goto silence
+			`	You begin clapping and the room fills with applause as the other tourists join in. Zea smiles warmly, "Thank you all again, and have a wonderful day!"`
+				goto ending
+			label silence
+			`	The silence lingers a little too long. Zea waits another moment, then nods to herself a few times before quietly walking off.`
+			label ending
+			`	With the tour's ending, you board the same beat-up old bus that brought you here. As the bus lurches back towards the copper-colored resin of the spaceport, you have time to take in the rolling fields of blue-black grasses swaying under the dim, reddish suns of Bluestone.`
+				decline
+
+mission "Exotic Life: Geyser"
+	minor
+	source Geyser
+	to offer
+		random < 10
+	on offer
+		conversation
+			`As you wander through a row of half-demolished hangars, you spot clusters of spiny cacti with flat, rounded pads and bright red fruit growing in the rubble. A local, noticing your curiosity, strides over with a wry grin.`
+			`	"That plant over there? That's a prickly pear cactus. They're from right here on Geyser. Hardy things, too - they're so aggressive they've even taken root all over Earth."`
+			choice
+				`	"That doesn't sound right. They're native to Earth, not Geyser."`
+					goto argue
+				`	"Huh. Okay then."`
+			`	The local nods, satisfied. "Glad you can appreciate the local plants. Have a good one." They head off towards the food court.`
+				decline
+			label argue
+			`	"You tourists think you know everything. What are you, a plant scientist?"`
+			choice
+				`	"A botanist?"`
+				`	"Oh no, I'm no scientist."`
+			`	"Bah!" With a dismissive wave, they storm off, cursing tourists under their breath.`
+				decline
+
+mission "Little Vienna in New Austria"
+	minor
+	source "New Austria"
+	to offer
+		random < 10
+	on offer
+		conversation
+			`As you walk from the spaceport's landing pads towards the center of the village, your attention is caught by a worn-down sign pointing you to the "Kleinwean Bezirk."`
+			choice
+				`	(Follow the sign.)`
+				`	(Ignore the sign and keep walking.)`
+					decline
+			`	Curious, you decide to investigate, turning into a narrow street that feels like an echo of Old Vienna. A handful of historic-looking buildings line the cobblestone path, their facades adorned with dramatic stonework and flowery tilework. A small concert hall, labeled "Bach Collegium Konzertsaal", hums with the faint sound of string instruments tuning. Nearby, the aroma of rich, chocolatey coffee drifts from a small coffeehouse.`
+			`	Outside the coffeehouse, a man at a marble table sips his coffee while reading a local newspaper. You can see the front page with the headline: "Mitreibender Mozart mit dem Bach Collegium Konzertsaal", featuring a photograph of a smiling conductor at the center of a small orchestra. On the reader's plate rests a bright pink sponge cake, its color fitting right in with the rich tones of the street.`
+			`	As you linger, a well-dressed older woman approaches. Her voice, imbued with a musical rhythm, greets you with a hearty "Gruess Gott!`
+			`	"Not many offworld visit Kleinwean, which is a shame, as you can see it's quite the New Austrian 'gem'," she remarks with a wink. "I was on my way to the concert - my husband is sick - and I would hate for his ticket to go to waste. Would you do me the honor of taking it?"`
+			choice
+				`	(Accept the ticket.)`
+				`	(Politely decline.)`
+					goto declined
+			`	You graciously accept the invitation and follow her to the intimate concert hall. Despite its modest size, the hall houses a full orchestra. Once you're comfortably seated, the conductor steps forward, clears his throat, and in a measured tone declares:`
+			`	"Willkommen im ehrwuerdigen Bach Collegium Konzertsaal! Wir sind Lichtjahre von Mozarts Heimat entfernt, aber auch im Zentrum von Kleinwean! Geniessen Sie das Konzert!"`
+			`	The words hang in the air as you notice the conductor's smile, strikingly familiar from the newspaper photograph. With his invitation to lose yourself in the performance still echoing, the orchestra begins a stirring rendition of Mozart. The notes dance through the air with crystalline clarity, and you even recognize one or two of the melodies, each serving as a bridge to the Old Vienna of Earth.`
+			`	Even after the performance, you feel the sound of music resonate in your bones as you glance back one more time at New Austria's hidden cultural enclave.`
+				goto backtoship
+			label declined
+			`	You thank her kindly but explain that you're not in the mood for a concert. She nods understandingly, her eyes softening with disappointed yet gracious acceptance. You finish your exploration of the "Kleinwean Bezirk", absorbing the ambiance of the cobblestone street as the scents of coffee mingle with the sound of music.`
+			label backtoship
+			`	With the atmosphere steeped in nostalgia for a distant city on a distant world long past, you return to your ship.`
+

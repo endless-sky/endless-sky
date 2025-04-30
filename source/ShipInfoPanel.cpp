@@ -15,9 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShipInfoPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "Command.h"
 #include "Dialog.h"
 #include "text/DisplayText.h"
@@ -40,10 +41,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "shader/SpriteShader.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <ranges>
 
 using namespace std;
@@ -62,6 +64,7 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	: player(player), panelState(std::move(state))
 {
 	shipIt = this->panelState.Ships().begin();
+	Audio::Pause();
 	SetInterruptible(false);
 
 	// If a valid ship index was given, show that ship.
@@ -76,6 +79,13 @@ ShipInfoPanel::ShipInfoPanel(PlayerInfo &player, InfoPanelState state)
 	}
 
 	UpdateInfo();
+}
+
+
+
+ShipInfoPanel::~ShipInfoPanel()
+{
+	Audio::Resume();
 }
 
 
@@ -324,7 +334,10 @@ void ShipInfoPanel::UpdateInfo()
 	const Ship &ship = **shipIt;
 	info.Update(ship, player);
 	if(player.Flagship() && ship.GetSystem() == player.GetSystem() && &ship != player.Flagship())
+	{
 		player.Flagship()->SetTargetShip(*shipIt);
+		player.SelectShip(shipIt->get(), false);
+	}
 
 	outfits.clear();
 	for(const auto &it : ship.Outfits())
@@ -486,7 +499,7 @@ void ShipInfoPanel::DrawWeapons(const Rectangle &bounds)
 	// Draw the ship, using the black silhouette swizzle.
 	if(sprite)
 	{
-		SpriteShader::Draw(sprite, bounds.Center(), scale, 28);
+		SpriteShader::Draw(sprite, bounds.Center(), scale, GameData::Swizzles().Get("28"));
 		OutlineShader::Draw(sprite, bounds.Center(), scale * Point(sprite->Width(), sprite->Height()), Color(.5f));
 	}
 

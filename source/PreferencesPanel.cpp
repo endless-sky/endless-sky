@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "PreferencesPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "text/Table.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 #include "text/WrappedText.h"
 
@@ -87,6 +87,21 @@ namespace {
 	const int SETTINGS_PAGE_COUNT = 2;
 	// Hovering a preference for this many frames activates the tooltip.
 	const int HOVER_TIME = 60;
+
+	const map<string, SoundCategory> volumeBars = {
+		{"volume", SoundCategory::MASTER},
+		{"music volume", SoundCategory::MUSIC},
+		{"ui volume", SoundCategory::UI},
+		{"anti-missile volume", SoundCategory::ANTI_MISSILE},
+		{"weapon volume", SoundCategory::WEAPON},
+		{"engine volume", SoundCategory::ENGINE},
+		{"afterburner volume", SoundCategory::AFTERBURNER},
+		{"jump volume", SoundCategory::JUMP},
+		{"explosion volume", SoundCategory::EXPLOSION},
+		{"scan volume", SoundCategory::SCAN},
+		{"environment volume", SoundCategory::ENVIRONMENT},
+		{"alert volume", SoundCategory::ALERT}
+	};
 }
 
 
@@ -140,7 +155,21 @@ void PreferencesPanel::Draw()
 	GameData::Background().Draw(Point(), Point());
 
 	Information info;
-	info.SetBar("volume", Audio::Volume());
+
+	for(const auto &[bar, category] : volumeBars)
+	{
+		double volume = Audio::Volume(category);
+		info.SetBar(bar, volume);
+		if(volume > .75)
+			info.SetCondition(bar + " max");
+		else if(volume > .5)
+			info.SetCondition(bar + " medium");
+		else if(volume > .25)
+			info.SetCondition(bar + " low");
+		else
+			info.SetCondition(bar + " none");
+	}
+
 	if(Plugins::HasChanged())
 		info.SetCondition("show plugins changed");
 	if(CONTROLS_PAGE_COUNT > 1)
@@ -156,7 +185,7 @@ void PreferencesPanel::Draw()
 	if(currentSettingsPage + 1 < SETTINGS_PAGE_COUNT)
 		info.SetCondition("show next settings");
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
-	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : "plugins");
+	string pageName = (page == 'c' ? "controls" : page == 's' ? "settings" : page == 'p' ? "plugins" : "audio");
 	GameData::Interfaces().Get(pageName)->Draw(info, this);
 	GameData::Interfaces().Get("preferences")->Draw(info, this);
 
@@ -175,6 +204,10 @@ void PreferencesPanel::Draw()
 	}
 	else if(page == 'p')
 		DrawPlugins();
+	else if(page == 'a')
+	{
+		// The entire audio panel is defined in interfaces, so this is a dummy.
+	}
 }
 
 
@@ -196,7 +229,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
 		Exit();
-	else if(key == 'c' || key == 's' || key == 'p')
+	else if(key == 'c' || key == 's' || key == 'p' || key == 'a')
 	{
 		page = key;
 		hoverItem.clear();
@@ -236,7 +269,7 @@ bool PreferencesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comma
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'c'))
 	{
-		if(zones[latest].Value().KeyName() != Command::MENU.KeyName())
+		if(!zones[latest].Value().Has(Command::MENU))
 			Command::SetKey(zones[latest].Value(), 0);
 	}
 	else
@@ -251,17 +284,33 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 {
 	EndEditing();
 
-	if(x >= 265 && x < 295 && y >= -220 && y < 70)
+	Point point(x, y);
+	const Interface *preferencesUI = GameData::Interfaces().Get("preferences");
+	Rectangle volumeBox = preferencesUI->GetBox("volume box");
+	if(volumeBox.Contains(point))
 	{
-		Audio::SetVolume((17 - y) / 200.);
-		Audio::Play(Audio::Get("warder"));
+		double barSize = preferencesUI->GetValue("master volume bar size");
+		double volume = (volumeBox.Center().Y() - point.Y()) / barSize + .5;
+
+		Audio::SetVolume(volume, SoundCategory::MASTER);
+		Audio::Play(Audio::Get("warder"), SoundCategory::MASTER);
 		return true;
 	}
 
-	Point point(x, y);
 	for(unsigned index = 0; index < zones.size(); ++index)
 		if(zones[index].Contains(point))
-			editing = selected = index;
+		{
+			if(zones[index].Value().Has(Command::MENU))
+				GetUI()->Push(new Dialog([this, index]()
+					{
+						this->editing = this->selected = index;
+					},
+					"Rebinding this key will change the keypress you need to access this menu. "
+					"You really shouldn't rebind this unless needed.",
+					Truncate::NONE, true, true));
+			else
+				editing = selected = index;
+		}
 
 	for(const auto &zone : prefZones)
 		if(zone.Contains(point))
@@ -288,6 +337,25 @@ bool PreferencesPanel::Click(int x, int y, int clicks)
 					break;
 				}
 				index++;
+			}
+		}
+	}
+	else if(page == 'a')
+	{
+		const Interface *audioUI = GameData::Interfaces().Get("audio");
+		double barSize = audioUI->GetValue("volume bar size");
+		for(const auto &[name, category] : volumeBars)
+		{
+			if(category != SoundCategory::MASTER)
+			{
+				Rectangle barZone = audioUI->GetBox(name + " box");
+				if(barZone.Contains(point))
+				{
+					double volume = (point.X() - barZone.Center().X()) / barSize + .5;
+					Audio::SetVolume(volume, category);
+					Audio::Play(Audio::Get("warder"), category);
+					return true;
+				}
 			}
 		}
 	}
@@ -499,6 +567,7 @@ void PreferencesPanel::DrawControls()
 		Command::SECONDARY,
 		Command::CLOAK,
 		Command::MOUSE_TURNING_HOLD,
+		Command::AIM_TURRET_HOLD,
 		Command::NONE,
 		Command::NONE,
 		Command::MENU,
@@ -506,6 +575,7 @@ void PreferencesPanel::DrawControls()
 		Command::INFO,
 		Command::FULLSCREEN,
 		Command::FASTFORWARD,
+		Command::PAUSE,
 		Command::HELP,
 		Command::MESSAGE_LOG
 	};
@@ -669,6 +739,7 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Gameplay",
 		"Control ship with mouse",
+		"Aim turrets with mouse",
 		AUTO_AIM_SETTING,
 		AUTO_FIRE_SETTING,
 		TURRET_TRACKING,
@@ -1160,7 +1231,13 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
-	Command::SaveSettings(Files::Config() + "keys.txt");
+	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
+	{
+		GetUI()->Push(new Dialog("Menu keybind is not bound or has conflicts."));
+		return;
+	}
+
+	Command::SaveSettings(Files::Config() / "keys.txt");
 
 	GetUI()->Pop(this);
 }

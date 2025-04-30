@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Hazard.h"
 #include "Point.h"
 #include "RaidFleet.h"
 #include "RandomEvent.h"
@@ -27,11 +26,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataNode;
 class Date;
 class Fleet;
 class Government;
+class Hazard;
 class Minable;
+class Outfit;
 class Planet;
 class Ship;
 class Sprite;
@@ -67,7 +69,7 @@ public:
 
 public:
 	// Load a system's description.
-	void Load(const DataNode &node, Set<Planet> &planets);
+	void Load(const DataNode &node, Set<Planet> &planets, const ConditionsStore *playerConditions);
 	// Update any information about the system that may have changed due to events,
 	// e.g. neighbors, solar wind and power, or if the system is inhabited.
 	void UpdateSystem(const Set<System> &systems, const std::set<double> &neighborDistances);
@@ -77,12 +79,15 @@ public:
 	void Unlink(System *other);
 
 	bool IsValid() const;
-	// Get this system's name and position (in the star map).
-	const std::string &Name() const;
+	const std::string &TrueName() const;
 	void SetName(const std::string &name);
+	// Get this system's name and position (in the star map).
+	const std::string &DisplayName() const;
 	const Point &Position() const;
 	// Get this system's government.
 	const Government *GetGovernment() const;
+	// Get this system's map icons.
+	const std::vector<const Sprite *> &GetMapIcons() const;
 	// Get the name of the ambient audio to play in this system.
 	const std::string &MusicName() const;
 
@@ -152,6 +157,8 @@ public:
 
 	// Get the specification of how many asteroids of each type there are.
 	const std::vector<Asteroid> &Asteroids() const;
+	// Get a list of all unique payload outfits from minables in this system.
+	const std::set<const Outfit *> &Payloads() const;
 	// Get the background haze sprite for this system.
 	const Sprite *Haze() const;
 
@@ -179,8 +186,9 @@ public:
 
 
 private:
-	void LoadObject(const DataNode &node, Set<Planet> &planets, int parent = -1);
-	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false);
+	void LoadObject(const DataNode &node, Set<Planet> &planets,
+		const ConditionsStore *playerConditions, int parent = -1);
+	void LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing = false) const;
 	// Once the star map is fully loaded or an event has changed systems
 	// or links, figure out which stars are "neighbors" of this one, i.e.
 	// close enough to see or to reach via jump drive.
@@ -203,10 +211,12 @@ private:
 private:
 	bool isDefined = false;
 	bool hasPosition = false;
+	std::string trueName;
 	// Name and position (within the star map) of this system.
-	std::string name;
+	std::string displayName;
 	Point position;
 	const Government *government = nullptr;
+	std::vector<const Sprite *> mapIcons;
 	std::string music;
 
 	// All possible hyperspace links to other systems.
@@ -237,6 +247,7 @@ private:
 	// proper position before that object is updated).
 	std::vector<StellarObject> objects;
 	std::vector<Asteroid> asteroids;
+	std::set<const Outfit *> payloads;
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;

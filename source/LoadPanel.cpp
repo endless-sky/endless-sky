@@ -28,7 +28,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Information.h"
 #include "Interface.h"
-#include "text/layout.hpp"
 #include "MainPanel.h"
 #include "image/MaskManager.h"
 #include "PlayerInfo.h"
@@ -36,7 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "shader/StarField.h"
 #include "StartConditionsPanel.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include "opengl.h"
@@ -65,9 +64,14 @@ namespace {
 		}
 	}
 
-	// Convert a time_t to a human-readable time and date.
-	string TimestampString(time_t timestamp)
+	// Convert a file_time_type to a human-readable time and date.
+	string TimestampString(filesystem::file_time_type time)
 	{
+		// TODO: Replace with chrono formatting when it is properly supported.
+		auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
+				+ chrono::system_clock::now());
+		time_t timestamp = chrono::system_clock::to_time_t(sctp);
+
 		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
 		static const size_t BUF_SIZE = 25;
 		char str[BUF_SIZE];
@@ -83,7 +87,7 @@ namespace {
 	}
 
 	// Extract the date from this pilot's most recent save.
-	string FileDate(const string &filename)
+	string FileDate(const filesystem::path &filename)
 	{
 		string date = "0000-00-00";
 		DataFile file(filename);
@@ -294,7 +298,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			return false;
 
 		nameToConfirm.clear();
-		string lastSave = Files::Saves() + it->second.front().first;
+		filesystem::path lastSave = Files::Saves() / it->second.front().first;
 		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
@@ -396,7 +400,7 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			}
 			selectedFile = it->first;
 		}
-		loadedInfo.Load(Files::Saves() + selectedFile);
+		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else if(key == SDLK_LEFT)
 		sideHasFocus = true;
@@ -450,7 +454,7 @@ bool LoadPanel::Click(int x, int y, int clicks)
 		return false;
 
 	if(!selectedFile.empty())
-		loadedInfo.Load(Files::Saves() + selectedFile);
+		loadedInfo.Load(Files::Saves() / selectedFile);
 
 	return true;
 }
@@ -500,11 +504,11 @@ void LoadPanel::UpdateLists()
 {
 	files.clear();
 
-	vector<string> fileList = Files::List(Files::Saves());
-	for(const string &path : fileList)
+	vector<filesystem::path> fileList = Files::List(Files::Saves());
+	for(const auto &path : fileList)
 	{
 		// Skip any files that aren't text files.
-		if(path.compare(path.length() - 4, 4, ".txt"))
+		if(path.extension() != ".txt")
 			continue;
 
 		string fileName = Files::Name(path);
@@ -529,7 +533,7 @@ void LoadPanel::UpdateLists()
 		if(start->first.find('~') == string::npos)
 			++start;
 		sort(start, it.second.end(),
-			[](const pair<string, time_t> &a, const pair<string, time_t> &b) -> bool
+			[](const pair<string, filesystem::file_time_type> &a, const pair<string, filesystem::file_time_type> &b) -> bool
 			{
 				return a.second > b.second || (a.second == b.second && a.first < b.first);
 			}
@@ -546,7 +550,7 @@ void LoadPanel::UpdateLists()
 			if(it != files.end())
 			{
 				selectedFile = it->second.front().first;
-				loadedInfo.Load(Files::Saves() + selectedFile);
+				loadedInfo.Load(Files::Saves() / selectedFile);
 			}
 		}
 	}
@@ -561,13 +565,13 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
 		return;
 
-	string from = Files::Saves() + it->second.front().first;
+	filesystem::path from = Files::Saves() / it->second.front().first;
 	string suffix = name.empty() ? FileDate(from) : name;
 	string extension = "~" + suffix + ".txt";
 
 	// If a file with this name already exists, make sure the player
 	// actually wants to overwrite it.
-	string to = from.substr(0, from.size() - 4) + extension;
+	filesystem::path to = from.parent_path() / (from.stem().string() + extension);
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
@@ -581,18 +585,17 @@ void LoadPanel::SnapshotCallback(const string &name)
 
 
 // This name is the one to be used, even if it already exists.
-void LoadPanel::WriteSnapshot(const string &sourceFile, const string &snapshotName)
+void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesystem::path &snapshotName)
 {
 	// Copy the autosave to a new, named file.
-	Files::Copy(sourceFile, snapshotName);
-	if(Files::Exists(snapshotName))
+	if(Files::Copy(sourceFile, snapshotName))
 	{
 		UpdateLists();
 		selectedFile = Files::Name(snapshotName);
-		loadedInfo.Load(Files::Saves() + selectedFile);
+		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName + "\"."));
+		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName.string() + "\"."));
 }
 
 
@@ -632,7 +635,7 @@ void LoadPanel::DeletePilot(const string &)
 	bool failed = false;
 	for(const auto &fit : it->second)
 	{
-		string path = Files::Saves() + fit.first;
+		filesystem::path path = Files::Saves() / fit.first;
 		Files::Delete(path);
 		failed |= Files::Exists(path);
 	}
@@ -651,7 +654,7 @@ void LoadPanel::DeleteSave()
 {
 	loadedInfo.Clear();
 	string pilot = selectedPilot;
-	string path = Files::Saves() + selectedFile;
+	filesystem::path path = Files::Saves() / selectedFile;
 	Files::Delete(path);
 	if(Files::Exists(path))
 		GetUI()->Push(new Dialog("Deleting snapshot file failed."));
@@ -665,7 +668,7 @@ void LoadPanel::DeleteSave()
 	{
 		selectedFile = it->second.front().first;
 		selectedPilot = pilot;
-		loadedInfo.Load(Files::Saves() + selectedFile);
+		loadedInfo.Load(Files::Saves() / selectedFile);
 		sideHasFocus = false;
 	}
 }

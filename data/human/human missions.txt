@@ -1321,6 +1321,7 @@ ship "Hallucination"
 		"random start frame"
 	"never disabled"
 	attributes
+		category "Unclassified"
 		"hull" 1000
 		"mass" 180
 		"drag" 2.1
@@ -1378,6 +1379,7 @@ mission "Shady passenger transport 1"
 	repeat
 	infiltrating
 	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "near earth" "core" "urban"
 	destination
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
@@ -1415,7 +1417,8 @@ mission "Shady passenger transport 2"
 	repeat
 	infiltrating
 	source
-		attributes "near earth" core urban
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		attributes "near earth" "core" "urban"
 	destination
 		attributes "frontier" "dirt belt" "rim" "north" "south" "pirate"
 		distance 3 7
@@ -2030,6 +2033,7 @@ ship "Asteroid"
 	sprite "asteroid/medium rock/spin"
 		"frame rate" 10
 	attributes
+		category "Unclassified"
 		"fuel capacity" 1
 		"hull" 10000
 		"mass" 1000
@@ -2961,8 +2965,8 @@ mission "Paradise Fortune 4"
 			label conversation
 			`	You meet with Alondo at his office in the Free Worlds Senate building. After he and Diana exchange greetings, you explain the situation to him.`
 			`	"You what?" Alondo responds. "You have to turn her in. The war may be over, Captain, but there is still tension between the Republic and Free Worlds that we cannot have a situation like this exacerbating."`
-			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds was supposed to be all about going against the Republic, but you're just going to give in?"`
-			`	"Look here, kid," Alondo says in a stern tone. "The Free Worlds was never about being against the Republic, it was only ever about being against Parliament. There's a big difference there. What you've done is a crime, even to the Free Worlds. We are not about to gain a reputation of harboring criminals of the Republic."`
+			`	"You can't do that!" Diana yells in protest. "I thought the Free Worlds were supposed to be all about going against the Republic, but you're just going to give in?"`
+			`	"Look here, kid," Alondo says in a stern tone. "The Free Worlds were never about being against the Republic, it was only ever about being against Parliament. There's a big difference there. What you've done is a crime, even to the Free Worlds. We are not about to gain a reputation of harboring criminals of the Republic."`
 			`	Diana, instead of protesting further, puts her head down. "I'll be in your ship, Captain," she says. Diana storms off, making an effort to create as much noise as possible with the stomps of her feet.`
 			`	"Spoiled kid," Alondo says quietly. "Attitudes like that are why I joined the Southern Defense Pact. Anyway Captain, I suggest you hand her over to the Navy immediately. I'll contact the Republic if you need me to."`
 			choice
@@ -3902,6 +3906,7 @@ mission "Human to Hai Space - No Contact"
 mission "Human to Hai Space"
 	minor
 	description "Bring a human passenger to <destination> in Hai space."
+	passengers 1
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "tourism" "urban"
@@ -4353,9 +4358,8 @@ mission "Spaceport Reminder Setter"
 		"spaceport reminder month" = "month"
 		fail
 
-# Use of "AA" at the start of the mission name is to make it offer only if no other missions have.
-mission "AA Spaceport Reminder Resetter"
-	minor
+mission "Spaceport Reminder Resetter"
+	non-blocking
 	invisible
 	repeat
 	to offer
@@ -4685,7 +4689,7 @@ mission "Hai Wormhole Warning"
 	on offer
 		log "Was pulled aside by a Navy officer and told to keep the wormhole to the Hai a secret. The Republic doesn't want the knowledge of the wormhole to be widespread, as that could cause chaos for both the Republic and the Hai."
 		conversation
-			`When you open the door to let in the Navy officer on inspection duty, you expect him to produce the usual set of landing papers and bureaucracy. But instead he says, "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on the landing pad next to <ship>.`
+			`When you open the door to let in the Navy officer on inspection duty, you expect him to produce the usual set of landing papers and bureaucracy. But instead he says, "Captain <last>. I'd like to speak with you for a few minutes. In private." He motions toward a Frigate on the landing pad next to the <ship>.`
 			choice
 				`	"What about?"`
 					goto what
@@ -4750,7 +4754,7 @@ mission "Hai Wormhole Warning"
 			label ok
 			`	"That's good to hear," the officer responds. "Thank you for your cooperation, <last>. Now, if you'll please depart my ship so that I can be on my way."`
 			label end
-			`	The officer leads you out of the ship and closes the doors behind you, while the actual Navy officer on inspection duty stands beside <ship>, brandishing a set of landing documents. When you've finished signing them, you turn back to see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
+			`	The officer leads you out of the ship and closes the doors behind you, while the actual Navy officer on inspection duty stands beside the <ship>, brandishing a set of landing documents. When you've finished signing them, you turn back to see the Frigate take off, slowly getting smaller in the sky until it finally disappears.`
 				decline
 
 
@@ -4929,6 +4933,7 @@ mission "Dangerous Games 1"
 	passengers 9
 	source
 		attributes "frontier" "pirate"
+		near "Hadar" 1 100
 	stopover "Skymoot"
 	to offer
 		random < 15
@@ -5024,6 +5029,7 @@ mission "Dangerous Games 2"
 	description `The adventurer Karengo and five others are traveling with you as part of his "Galactic Adventures." Bring Karengo and crew to <destination> for <payment>.`
 	source
 		attributes "frontier" "pirate" "rim"
+		near "Izar" 1 100
 	destination "Poseidos"
 	cargo "subpods" 6
 	passengers 6
@@ -5969,6 +5975,11 @@ mission "Argosy Hijacking"
 	to offer
 		"combat rating" > 200
 		random < 5
+		or
+			and
+				not "FW Pug 1: offered"
+				not "FWC Pug 1: offered"
+			has "main plot completed"
 	on offer
 		conversation
 			`You're signing the standard Syndicate landing papers with an officer on <origin>. "Everything seems to be in order. And of course, we'll have your ship refueled promptly. Have a good day, Captain <last>." He nods his head at you and starts to move off towards the next ship.`
@@ -6456,7 +6467,7 @@ mission "Moving House 1"
 				
 			label sure
 			`	They stop in surprise, then nod briefly. "I'll be at your ship within an hour."`
-			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht."`
+			`	An hour later, you see them approach the <ship> carrying a small suitcase. They've exchanged their formal appearance for a button-down shirt and skirt with their hair loose, hanging down to their shoulders. They walk right up to you and stick out a hand. "Kris Brecht, they/them."`
 			choice
 				`	(Shake their hand.)`
 					goto shake
@@ -6470,12 +6481,12 @@ mission "Moving House 1"
 				decline
 			
 			label surprised
-			`	Their confident demeanor returns, and they nod. "I can have that effect on people. Glad to see you're not another of those stuck-up establishment types. Well, all the rest of my stuff is on <planet stopovers>, so we'd better get going!"`
+			`	Their confident demeanor returns, and they nod. "I can have that effect on people. Glad to see you're not another of those stuck-up establishment types. Well, all the rest of my stuff is on <stopovers>, so we'd better get going!"`
 				goto establishment
 			
 			label shake
 			`	You shake their hand. "<first> <last>. That's all you've got with you?"`
-			`	Kris nods. "All the rest of my stuff is on <planet stopovers>. I was just here for a meeting with some others who feel like I do about the establishment."`
+			`	Kris nods. "All the rest of my stuff is on <stopovers>. I was just here for a meeting with some others who feel like I do about the establishment."`
 
 			label establishment
 			choice
@@ -6492,7 +6503,7 @@ mission "Moving House 1"
 		conversation
 			`As you traveled to <planet stopovers>, you found yourself frequently listening to Kris' opinions on the subject of governments. While they had some very good points, other times they would spend hours ranting about things that seem completely impractical and without a solid foundation. If it weren't for the fact that they were unfailingly polite otherwise, and eager to help with chores around the ship, you would've declared the cockpit off-limits.`
 			`	Still, you are somewhat relieved that when you arrive, both of you are too out of breath from moving furniture to talk more.`
-			`	You soon have it loaded up, though, and start the trip south to <planet>.`
+			`	You soon have it loaded up, though, and start the trip south to <destination>.`
 	on complete
 		payment
 		payment 5000
@@ -6723,7 +6734,7 @@ mission "FW Refugees to Humanika"
 				`	(Approach them.)`
 				`	(Ignore them.)`
 					defer
-			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds is going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
+			`	The parents introduce themselves as Penny Little and Rosa Perkins. Their young child is named Eduardo. Penny asks, "Any chance you're willing to take us and <tons> of our belongings to <destination>? We're concerned that the war between the Republic and the Free Worlds are going to get dangerous, so we want to raise Eduardo on a Quarg planet instead. We can pay <payment>."`
 			label "main choice"
 			choice
 				`	"Why were those other captains refusing to take you?"`
@@ -7135,6 +7146,7 @@ mission "Adelita 1"
 							and
 								has "FW Katya 4: done"
 								has "visited planet: Hope"
+							has "Stone to Hope: done"
 				`	"I haven't been there myself, but I know people who have been affected by it."`
 					to display
 						has "FW Katya 4: done"
@@ -7498,6 +7510,986 @@ mission "Adelita 5"
 
 
 
+mission "Syndicate Business 1"
+	name "Rescue kidnapped man in <waypoints>"
+	description "You have received a mysterious distress call from an alleged abductee in the <waypoints> system. Head there to see if you can find the signal's source."
+	minor
+	to offer
+		random < 40
+		credits > 5000000
+		"combat rating" > 50
+	source
+		government "Syndicate"
+		attributes "core"
+		not planet "Sunracer"
+	waypoint "Moktar"
+	destination "Sunracer"
+	on offer
+		conversation
+			`As you are walking through the spaceport, you are startled by a sudden loud beeping from a nearby computer terminal. The computer is unattended and the screen is blinking on and off.`
+			choice
+				`	(Check it out.)`
+				`	(Ignore it.)`
+					decline
+			`	When you approach, you are greeted by plain text on the terminal's screen:`
+			`		"SOS: Megaparsec employee kidnapped by pirates, can't respond. <waypoints> standard coordinates: RAD AU 30.12 LAT 0.2 LON 303.9. Life in danger, need urgent rescue. Cannot otherwise communicate, all signals monitored. Please help!"`
+			`	You note that the message appears to be coming from an emergency transmitter commonly found on many small shuttles and escape pods. There is no shortage of pirates in <waypoints>, which is only a system away from Megaparsec's headquarters on <planet>. Presumably, you'll be expected to head there after rescuing the Megaparsec employee.`
+			choice
+				`	(Head to <waypoints>.)`
+					accept
+				`	(Ignore it and walk away.)`
+					decline
+	on accept
+		event "start of independent violence"
+	on enter "Moktar"
+		"reputation: Independent (Killable)" = -1000
+		conversation
+			`When you enter <waypoints>, your sensors detect a pirate Vanguard and a derelict Emergency Shuttle aimlessly drifting near the coordinates in the original message. Almost immediately, you receive a message from the pirate ship.`
+			`	"You were unwise to get involved in our business. Hand over that pompous salesman Howard, and I'll let you live."`
+			choice
+				`	"Uhhh... hand over who?"`
+				`	"I don't negotiate with pirates!"`
+					goto negotiate
+				`	"You can take him, but I don't know where he is."`
+			`	"Bah, you spineless buffoon! Your lies won't save you or that useless salesman. I'll find him in your ship's wreckage!"`
+				goto power
+			label negotiate
+			`	"Aye, then I won't negotiate with you! Prepare to meet your end!"`
+			label power
+			`	The Vanguard's engines roar to life and you see a baker's half dozen fixed guns take aim at you, ready to strike.`
+	npc
+		government "Independent (Killable)"
+		personality heroic staying vindictive
+			confusion 20
+		system "Moktar"
+		ship "Vanguard" "Golden Jewel"
+		on kill
+			set "syndicate business: golden jewel dead"
+			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
+	npc save assist
+		government "Independent"
+		personality derelict quiet escort
+		system "Moktar"
+		ship "Emergency Shuttle" "Escape Pod 001"
+		on kill
+			dialog "You watch as the Emergency Shuttle you're supposed to save explodes into a cloud of debris."
+		conversation
+			`You board the Emergency Shuttle to see its desperate and nearly incoherent occupant. "Oh thank the stars, thank you! Captain, you've got to save me - please! I'm Howard. I promise you a reward if you can fix up this tin can so I can get to my office on <planet>! I'm with Megaparsec, I can make it worth your while!"`
+			choice
+				`	"Sounds good."`
+					decline
+				`	"What's the deal with you and that pirate?"`
+			`	Howard takes a breath and seems to calm himself. "That pirate was a potential investor in the firm I work for. We had a disagreement over the terms and it obviously got quite out of hand. I'll need to find a new business partner now..." He trails off. Time to get Howard back to <planet>.`
+	on complete
+		"reputation: Independent (Killable)" = 10
+		event "end of independent violence"
+		log `Rescued a Syndicate salesman kidnapped by pirates, who then offered an investment opportunity.`
+		log "People" "Howard Vendeur" `A polished yet insecure Megaparsec businessman, Howard is a salesman known for brokering investment deals. While polite, Howard seems rarely concerned with ethics or personal connections, instead focusing on transactions that further his own interests.`
+		conversation
+			`When you land on <planet>, Howard is waiting for you at the spaceport, looking much more collected than he was on the Emergency Shuttle. "Thank you, truly. I'm Howard Vendeur, Investor Relations Associate with Megaparsec Incorporated. Anyway, I've managed to scrounge up my savings. It's not much to someone like you, I'm afraid. Just over ninety thousand credits.`
+			`	"However, I see you're clearly a captain of means. I'd have to pull a few strings, but I could get you into a private placement of a Megaparsec Inc. perpetual bond. To purchase a perpetual bond of Megaparsec Inc. I will need one million credits and for you to sign a few documents. This round is quite generous, with promised returns of over 35% per annum, to continue, of course, into perpetuity, paid out to you as a daily dividend of 1,000 credits."`
+			choice
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Megaparsec? I thought that was part of the Syndicate."`
+				`	"Private placement? Does that mean I own part of the Syndicate?"`
+					goto placement
+				`	"No thanks. I'll take the money, please."`
+					goto payup
+			label mega
+			`	"Megaparsec Incorporated is a proud affiliate of Syndicated Systems that accepts some private outside investment. We specialize in the design and manufacture of innovative, fast, and lightweight high-performance commercial and military space vehicles. Though a relatively young shipyard, our ships can still outmaneuver and outgun almost anything their size. Would you like to invest?"`
+			choice
+				`	"Sure, I'll invest. What do I need to do?"`
+					goto invest
+				`	"Nope, I'll stick with the 90k."`
+					goto payup
+			label placement
+			`	"Not quite. You will be a lender to an affiliate of Syndicated Systems - Megaparsec Incorporated. As a privately held business, there are few opportunities to invest, and even fewer people who are permitted to. It's quite an exclusive investment, with high returns, I might add. Would you like to invest with us?"`
+			choice
+				`	"Sure, I'll invest. What do I need to do?"`
+				`	"Nope, I'll stick with the 90k."`
+					goto payup
+			label invest
+			`	"Excellent. I'll need to get approval for the bond sale and set up the paperwork. Feel free to come by my kiosk in the spaceport here later today if you're ready to invest, or another time if you need longer. Remember, you'll need to have at least one million credits for the bond purchase, and I'll need you to transport me to Hephaestus to take care of a few other administrative tasks."`
+				decline
+			label payup
+			`	"Erhm, yes, of course. Here you are, my savings of ninety-one thousand, nine hundred and fifty one credits. I remain in your debt, and if you still want to invest in us, I will be here."`
+			action
+				payment 91951
+				set "syndicate business: mean to Howard"
+
+event "start of independent violence"
+	government "Independent (Killable)"
+		"attitude toward"
+			"Independent" -.01
+	government "Independent"
+		"attitude toward"
+			"Independent (Killable)" -.01
+
+event "end of independent violence"
+	government "Independent (Killable)"
+		"attitude toward"
+			"Independent" 0
+	government "Independent"
+		"attitude toward"
+			"Independent (Killable)" 0
+
+# Feel free to change this escape shuttle to a different ship once escape pod mechanics are implemented.
+ship "Emergency Shuttle"
+	sprite "ship/escape shuttle"
+	attributes
+		category "Utility"
+		"cost" 45000
+		"shields" 300
+		"hull" 600
+		"required crew" 1
+		"bunks" 10
+		"mass" 65
+		"drag" 1.7
+		"heat dissipation" .7
+		"fuel capacity" 100
+		"cargo space" 20
+		"outfit space" 39
+		"weapon capacity" 0
+		"engine capacity" 20
+		weapon
+			"blast radius" 9
+			"shield damage" 90
+			"hull damage" 45
+			"hit force" 135
+	outfits
+		"KP-6 Photovoltaic Panel" 2
+		"LP036a Battery Pack"
+		"Outfits Expansion"
+		
+		"X1050 Ion Engines"
+
+		"Hyperdrive"
+		
+	engine 0 26
+		zoom 1.4
+	leak "leak" 40 50
+	explode "tiny explosion" 5
+	explode "small explosion" 1
+	description "This Emergency Shuttle is custom-built, designed to be attached to a larger ship and to serve as a lifeboat if the need arises. It is intentionally designed to maximize the number of people it can carry to safety, but has very little space for outfits."
+
+
+
+mission "Syndicate Business 2"
+	name "Purchase bond on <planet>"
+	description "Bring Howard to <destination> in order to finish the paperwork you'll need to finalize your bond agreement with Megaparsec Incorporated."
+	passengers 1
+	source "Sunracer"
+	destination "Hephaestus"
+	blocked "Howard has offered you an investment opportunity, but mentioned that it'll cost you a million credits up front, and you'll need space on your ship to transport him elsewhere. Better come back when you have that, plus a few more credits."
+	to offer
+		has "Syndicate Business 1: done"
+	to accept
+		credits > 1100300
+	on offer
+		conversation
+			`You visit the kiosk location Howard gave you at the spaceport, where he immediately spots you and approaches. When he arrives, he thanks you profusely and excitedly tells you what an exclusive offer you've received to be able to purchase a Megaparsec bond.`
+			`	"To reiterate, in order to purchase a perpetual Megaparsec Incorporated bond you will need to provide us with an up-front payment of one million credits, and sign some legal documents. Our promised returns are over 35% per annum, which we expect to continue into perpetuity, paid out to you as a daily dividend of 1,000 credits. Do you accept these terms?"`
+			choice
+				`	"Sure, here's the one million credits."`
+					goto signed
+				`	"I want to look through these documents before signing."`
+				`	"Can I get a lawyer to review this?"`
+					goto lawyer
+				`	"I need more time to think about this."`
+					goto unsure
+				`	"No, I'd prefer not to become an investor."`
+					decline
+			label lookingthrough
+			`	Howard chuckles as if your request were absurd.`
+			`	"Sure, sure, feel free to peruse the first page. But, uh, let me remind you -- this credit agreement is 101 pages long, over 87,000 words. Unless you've got degrees in Syndicate & Megaparsec regulatory investment law and all day to read, I suggest you focus on the highlighted parts. Time is money, my friend, and this deal won't wait forever!"`
+			`	Howard slides the cover and first page toward you and taps it impatiently with his pen.`
+			choice
+				`	(Take a look at what Howard slid over.)`
+				`	"Alright, I'll sign."`
+					goto signed
+				`	"If I can't read the whole thing, I won't sign it. I refuse to become an investor."`
+					decline
+			`	You look down at the cover page of the private bond credit agreement:`
+			``
+			`	1,000,000 Credits`
+			``
+			`	PERPETUAL BOND CREDIT AGREEMENT`
+			``
+			`		among`
+			``
+			`	MEGAPARSEC INDUSTRIAL & SYSTEMS EXTERNAL REFUELING COMPANY LIMITED,`
+			`		as the Issuer,`
+			``
+			`	The Several Investors`
+			`	from Time to Time Parties Hereto,`
+			``
+			`	SYNDICATED SYSTEMS ADMIN & COLLATERAL LLC.,`
+			`		as Administrative Agent and Collateral Agent,`
+			``
+			`	MEGAPARSEC FINANCE SECURITIES LLC.,`
+			`		as the Sole Lead Arranger and Sole Bookrunner`
+			choice
+				`	(Flip to the first page.)`
+			`	PREAMBLE: This Perpetual Bond Credit Agreement ("Agreement") is entered into as of the Effective Date by and between Megaparsec Industrial & Systems External Refueling Company Limited, a duly organized entity under the laws of interstellar commerce within Republic and Syndicate space ("Issuer") and the undersigned individual or entity ("Investor"). This Agreement is made in recognition of the Investor's intent to participate in the perpetual bond offering described herein, subject to all applicable terms, conditions, regulations, obligations, and supplementary materials explicitly or implicitly referenced throughout this document. By signing below, the Investor acknowledges receipt of this Agreement and agrees to the terms and conditions set forth herein.`
+			`	ARTICLE I - SUMMARY OF TERMS AND CONDITIONS OF INVESTMENT: The Investor, by executing this Agreement, irrevocably agrees to remit an upfront and final payment of One Million (1,000,000) Credits to the Issuer as consideration for the bond offering of Three Hundred Sixty-Five Thousand (365,000) Credits per annum into perpetuity, payable daily to the Investor. The payment from the Investor to the Issuer shall be deemed fully earned and non-refundable by the Issuer, irrespective of any subsequent event, transaction failure, action, or inaction on the part of either Party. The Issuer, upon receipt of the aforementioned payment, will extend to the Investor the rights and benefits outlined in this Agreement, provided that the Investor complies with all current and future legal, regulatory, and administrative requirements imposed by the Issuer or relevant Republic, Syndicate, or Megaparsec bodies -- including, without limitation, the execution of ancillary documents, disclosures, or agreements not enumerated herein. Refusal to execute any such future instrument may result in the immediate forfeiture of the One Million (1,000,000) Credits, with no further payments required by the Investor beyond the initial investment.`
+			`	The Investor acknowledges that they have been provided opportunity to review this Agreement in part or in full and may request a referral to legal counsel certified in Syndicate and Megaparsec regulatory investment law if desired at a standard rate. The Investor's signature below confirms their full and unconditional acceptance of this Agreement, including all foregoing terms and conditions, supplementary materials incorporated herein, and any future amendments or expansions thereto, which shall become immediately binding upon issuance by the Issuer.`
+			choice
+				`	"I'm ready to sign!"`
+					goto signed
+				`	"I think I need a lawyer."`
+					goto lawyer
+				`	"But I don't have a 'complete understanding and acceptance of the foregoing terms and conditions,' so I'm backing out."`
+					decline
+			label unsure
+			`	Howard lets out a laugh, the sound a bit forced, his grin unwavering as a bead of sweat appears on his face. "Ah, I see, you're one of those detail-oriented types. Look, I appreciate thoroughness as much as the next businessperson, but let's be real here -- these documents are standard boilerplate. You don't need a complete understanding of every last word to recognize a golden opportunity when it's staring you in the face."`
+			`	He gestures back to the stack of papers with a casual wave of his hand. "But if you insist on taking more time to think or read through it all, let me remind you -- this offer isn't going to wait forever. Opportunities like this are rare, and hesitation could mean missing out entirely. So, what's it going to be? Are you ready to grasp the deal of a lifetime, or are you going to let this one slip through your fingers?"`
+			`	Howard taps his pen on the stack of documents, clearly impatient but maintaining a polished demeanor.`
+			choice
+				`	"Okay, okay, I'll sign."`
+					goto signed
+				`	"I want a lawyer."`
+				`	"Actually, let me take a look at the contract."`
+					goto lookingthrough
+			label lawyer
+			`	Howard's smile tightens, his tone staying polite but firm. "Of course, you're entitled to seek legal counsel. However, both Syndicate and Megaparsec regulations require that any lawyer must be certified in both Syndicate and Megaparsec regulatory investment law, and pay the customary fees and dues. The required rate for such expertise is 795 credits per page reviewed, plus a base legal fee of 20,000 credits for document analysis. For this agreement, 101 pages, that comes out to 100,295 credits. A small price for peace of mind, wouldn't you say?"`
+			`	Howard leans forward, lowering his voice slightly. "If you'd like, I can even recommend someone -- reliable, efficient. What do you say?"`
+			choice
+				`	"I'll just sign the investment."`
+					goto signed
+				`	"Thanks, I'd appreciate a recommendation."`
+				`	"No thanks, I'll find someone on my own."`
+			`	Howard nods with a polished smile, already pulling a sleek datapad from behind the kiosk. With a few swift taps, he hands it to you, the screen lighting up with a carefully curated list of lawyers certified in both Syndicate and Megaparsec regulatory investment law.`
+			`	"As it happens, I've taken the liberty of compiling a list for your convenience. These are the best in the business -- every single one fully certified and capable of handling a document of this caliber. Naturally, I'd recommend the first name on the list," he says, tapping the top entry, which is highlighted in green.`
+			`	You glance down at the datapad. Each lawyer's availability is color-coded: green for immediate availability, yellow for waitlists stretching a few days, orange for weeks, and red for those not currently accepting new clients. The first lawyer, Howard's recommendation, is the only one highlighted in green.`
+			`	"Efficient, thorough, and well-versed in Megaparsec investment structures," Howard continues, his tone smooth. "And, of course, ready to assist immediately. They can review the documents for you today for the modest sum of 100,295 credits. If peace of mind is what you're after, this is your best option. Alternatively, you can always trust in the integrity of this opportunity and move forward now. The choice is yours."`
+			choice
+				`	"I'll just sign the investment."`
+					goto signed
+				`	"I guess I'll go with the only available lawyer."`
+				`	"I'm backing out and not becoming an investor."`
+					decline
+			label onlylawyer
+			action
+				payment -100295
+			`	You select the green-highlighted lawyer on the datapad. Immediately, a floating head materializes on the screen, a sharp-looking individual with neatly combed hair and a cool, measured gaze. Their eyes dart side to side as they rapidly scan the document.`
+			`	"Thank you for choosing my services," they say crisply. "This will just take a few minutes. Please hold."`
+			`	They reappear a few moments later with a professional yet reassuring expression. "Thank you for waiting. I've reviewed the document, and here are the key points.`
+			`	"First, the one million credits you're paying is completely non-refundable upon signing, even if the transaction falls through for any reason. Second, you may be required to sign additional documents or disclosures in the future. Refusing to do so could void the transaction and forfeit your one million credits. No further payments will be required beyond your initial investment. Lastly, standard boilerplate allows the agreement terms to be updated without notice for routine adjustments -- complying with new laws or a bond transfer. At worst, you might be asked to sign an additional disclosure at some point, but nothing that materially impacts your rights or obligations."`
+			`	The lawyer's eyes meet yours through the screen. "It's thorough but not unusual. Happy to have been of service." The lawyer's floating head blinks off the datapad.`
+			`	Howard, who has been waiting patiently, leans forward with his ever-polished smile. "Glad to see you got that legal review. Always a wise step for an investment of this magnitude," he says in a smooth and encouraging tone. He gestures to the stack of documents on the desk. "So, now that everything's in order, are you ready to sign and secure your investment?"`
+			choice
+				`	"Yes, I'm ready to sign."`
+				`	"No, I don't want to invest in anything, I'm done."`
+					decline
+			label signed
+			`	After you've signed numerous dotted lines, Howard says, "Alright, we have your payment and preliminary signatures. This particular investment is administered by Syndicated Systems as outlined in the agreement, so we'll need to submit this first set of paperwork to their office and then go to <destination> to sign the final documents and conduct a biometric scan at our secure facility. I'll go with you to help finalize the paperwork. Once that is complete, you should immediately start receiving dividend payments."`
+				accept
+	on accept
+		payment -1000000
+	on complete
+		event "syndicate business 1m investment done" 30
+		conversation
+			`You land on <destination> and follow Howard's instructions to the biometric scan center. You hand in the first set of paperwork you filled out, and after scanning your fingerprint, retinas, and getting a blood sample, Howard comes over and says, "Excellent, only one last set of paperwork left to sign." He places one more set of documents on the table and taps the stack of papers.`
+			`	"New regulations dictate that we inform you that the proceeds of this bond may be used in high risk activities such as strip mining, clearing endangered habitats, or doing business on worlds with alleged human rights violations. All boilerplate language, of course, but you have to disclose every possibility these days." He shrugs.`
+			`	He then taps the documents again and says, "This is your final decision and the last set of paperwork. I would also like to disclose that your initial deposit covering the full one million credits is non-refundable. So, as a last formality, would you like to invest in the full investment suite?"`
+			choice
+				`	"Of course."`
+					goto high
+				`	"I'm backing out. I can't ethically invest in this."`
+			`	Howard nods. "I get it, ethics are important and I respect your decision. Unfortunately, the initial deposit is non-refundable, nothing I can do there. Best of luck finding another investment that suits you."`
+				decline
+			label high
+			action
+				"salary: Syndicate Business" = 1000
+				log `Made an investment in Megaparsec Incorporated with Howard Vendeur, purchasing a bond for one million credits.`
+			`	"Excellent. As a bond owner of Megaparsec Incorporated, you will now receive a daily dividend. I have some work to attend to with our major shareholders, but it was a pleasure doing business with you, Captain."`
+
+event "syndicate business 1m investment done"
+
+# Part 2
+# Best case: 10m, 8200 per day best case out of the negative after ~3.3 years
+# Worst case: 11m, 4000 per day worst case out of the negative after ~6.8 years (plus a little longer for 10M-->11M)
+# Super Worst case: 11m, 4000 per day worst case out of the negative after over 20 years if you don't pay off the debt
+# Driven by if you were mean to Howard in part 1 and part 2, which of 3 investment options picked, and if you pay off debt ASAP
+
+mission "Syndicate Business 3"
+	name "Visit Howard on <planet>"
+	description "Howard wants to tell you about another investment opportunity."
+	source
+		government "Syndicate"
+		attributes "core"
+		not planet "Hephaestus"
+	destination "Hephaestus"
+	to offer
+		has "Syndicate Business 2: done"
+		has "event: syndicate business 1m investment done"
+		random < 40
+		credits > 40000000
+	on offer
+		conversation
+			`After an uneventful trip to the spaceport you return to the <ship> and see a message from Howard, the Megaparsec salesman who sold you a one million credit bond. The message says:`
+			branch rudemessage
+				has "syndicate business: mean to Howard"
+			`	"<first> <last>! My bank contact tells me you've been doing quite well for yourself, and I've come across an even bigger investment opportunity than last time! Meet me at my new office on <planet> (note the address, I've moved up since my promotion). Looking forward to chatting with you!"`
+				goto signoff
+			label rudemessage
+			`	"<first> <last>, my bank contact has informed me that you've achieved modest success. Meanwhile, I've come across an investment opportunity that far surpasses our previous venture. Meet me at my new office on <planet> (note the address, I've moved up since my promotion). I expect our meeting to be prompt and efficient."`
+			label signoff
+
+			`		Howard Vendeur`
+			`		Investor Relations Manager, Megaparsec Incorporated`
+			choice
+				`	(Message him back that you're on the way.)`
+				`	(Send a message congratulating him on the promotion.)`
+				`	(Ignore and delete the message.)`
+					decline
+			`	You immediately receive an automated response:`
+			`	"Dear Valued Contact,`
+			`	Thank you for reaching out. I am currently out of the office and will respond to your message as soon as possible.`
+			`	For urgent matters, please contact our support team."`
+			`		Howard Vendeur`
+			`		Investor Relations Manager, Megaparsec Incorporated`
+				accept
+	on complete
+		conversation
+			`You land the <ship> on <planet> and make your way to Howard's office at the Megaparsec Incorporated satellite office, which is close to the galactic headquarters of Syndicated Systems.`
+			`	You find yourself waiting in a sleek, sterile lobby, with the hum of distant machinery filling the air. The walls are lined with glossy advertisements for the various fast and lightweight ships, aircraft, and hovercraft that Megaparsec is known for, while a polite receptionist assures you that Howard will be with you "shortly," though you suspect that could mean anything from just a few minutes to many hours.`
+			choice
+				`	(Stand and wait in the lobby.)`
+				`	(Take a seat in the lobby.)`
+			branch makeemwait
+				has "syndicate business: mean to Howard"
+			`	Much to your surprise, the wait is brief. Within minutes, Howard emerges with a warm smile, extending a hand as he welcomes you into his office, clearly eager to discuss the next big deal.`
+				goto next
+			label makeemwait
+			`	Hours crawl by as the polished receptionist offers increasingly strained reassurances. Finally, Howard arrives, barely masking his annoyance, and motions for you to follow with a curt nod, clearly viewing you with disdain.`
+			label next
+			`	The inside of Howard's office is modest yet stylish, with a sleek table, a few ergonomic chairs, and a large screen cycling through market trends. The minimalist decor is designed to impress anybody who comes in, but it's clear that this is more for show than substance.`
+			`	Howard gestures for you to take a seat as he settles behind his desk. His demeanor shifts slightly, and he leans forward, lowering his voice as if sharing a secret.`
+			`	"You know I've called you here for an incredible investment opportunity," Howard begins. "But before we get into that, I need a small favor. It's nothing too complicated, but there are too many prying eyes here. I'm wrapping up some meetings, but meet me at the spaceport later. I'll fly in my Shuttle as you escort me to Sunracer. I have a few work calls to take on the way, but I'll explain everything once we get there."`
+			choice
+				`	"Sure thing, I'll see you later."`
+					goto next2
+				`	"You have two offices?"`
+					goto offices
+				`	"I don't care about prying eyes! What do you want and what do I get?"`
+			`	Howard raises an eyebrow and then waves you off with a chuckle. "All in good time, my friend," he says, leaning back. "It's nothing you can't handle. I'll fill you in once we're safely on Sunracer, and let's just say it'll be worth your while."`
+				goto next2
+			label offices
+			`	Howard leans back with a knowing smile. "Well, 'office' is a bit generous for this place," he admits, gesturing around the room. "This is more of a glorified conference room that I can reserve for investor meetings here on Hephaestus. My real office is back on Sunracer, where the serious deals happen. You'll see what I mean when we get there."`
+			choice
+				`	"Can't wait."`
+					goto next2
+				`	"Is that a glorified conference room too?"`
+			`	Howard's smile falters slightly. He forces a light chuckle, though the tension is noticeable. "Well, if I'm being honest, the Sunracer office is... also technically reservable," he admits, rubbing his neck and looking almost pained. "But just as nice! And, uh... look, my real office is technically a cubicle, but compared to the kiosk last time we met? It's a big step up." He shrugs, trying to brush it off. "But hey, we don't need fancy spaces to make serious deals. Let's get back on track, yeah?" He clears his throat.`
+			choice
+				`	"Absolutely."`
+					goto next2
+				`	"Howard, a promotion's a big deal. The office doesn't matter - your work speaks for itself."`
+					goto kindy
+				`	"Howard, your cubicle is still pathetic. Now, let's get back on track."`
+			action
+				"syndicate business: mean to Howard" ++
+			`	Howard flinches, his jaw tightening for a moment before he forces a thin smile. "Pathetic or not, it gets the job done," he says quietly, avoiding your gaze as he fidgets with a paperweight on his desk. "Spaceport. Later." His voice is more clipped now, and he doesn't wait for a response before focusing on his work calls, shutting you out entirely.`
+				decline
+			label kindy
+			action
+				"syndicate business: mean to Howard" --
+			`	"Thanks, that means a lot. Now, I've got to get back to work."`
+			label next2
+			`	Howard's attention shifts away from you as he begins taking a series of work calls, his tone changing seamlessly from charming to authoritative as he negotiates and makes deals. He mouths two words to you: "Spaceport... later..." It's clear that, for now, Howard is finished with you and you'll get no more information.`
+
+
+mission "Syndicate Business 4"
+	name "Escort Howard to <planet>"
+	description "Escort Howard from Megaparsec Inc. to <planet> to learn what favor is needed in exchange for an investment opportunity."
+	priority
+	source "Hephaestus"
+	to offer
+		has "Syndicate Business 3: done"
+	destination "Sunracer"
+	on offer
+		conversation
+			`You meet Howard at the spaceport. He's standing on a nearby landing pad next to his Shuttle, dressed sharply but looking a bit hurried. He gives you a quick nod as you approach.`
+			`	"Good to see you're on time," Howard says, glancing at his antique wristwatch. "We've got a lot of ground - or space - to cover." Howard briefly looks at the <ship>. "Your ship ought to go fast enough, I suppose. I'll be tied up in calls for most of the trip, but once we're back at the office, we can talk." He starts toward his Shuttle's ramp, already shifting his attention back to his wristwatch. "Let's get moving."`
+				launch
+	npc accompany save
+		government "Syndicate"
+		personality escort timid
+		ship "Shuttle" "Gallant Knight"
+		on kill
+			dialog "You watch as Howard's Shuttle explodes into a cloud of debris along with any hope of an investment opportunity."
+	npc
+		government "Pirate"
+		personality harvests nemesis plunders staying
+			confusion 40
+		system destination
+		fleet
+			names "pirate"
+			variant
+				"Wasp" 3
+			variant
+				"Quicksilver"
+
+	npc
+		government "Pirate"
+		personality harvests nemesis plunders
+			confusion 40
+		system destination
+		fleet
+			names "pirate"
+			variant
+				"Wasp" 3
+			variant
+				"Quicksilver"
+
+	on complete
+		conversation
+			`As soon as you land, you see a message from Howard:`
+			`	"<first> <last>! Looks like I beat you landing on <planet>! Meet me at my office near the spaceport to talk further. (Again, note the address change.)"`
+			`		Howard Vendeur`
+			`		Investor Relations Manager, Megaparsec Incorporated`
+
+
+mission "Syndicate Business 5"
+	name "Disable a Marauder ship in <waypoints>"
+	description "Howard wants you to disable a Marauder ship in exchange for an investment opportunity."
+	priority
+	to offer
+		has "Syndicate Business 4: done"
+	source "Sunracer"
+	waypoint "Oblate"
+	destination "Sunracer"
+	on offer
+		conversation
+			`Even amidst the mix of landing pads, hangars, and cranes, it's hard to miss the Megaparsec corporate office. After a short walk, you reach the towering building. The lobby is sleek and modern, filled with the quiet hum of efficiency. To your surprise the receptionist waves you on and you take an elevator up to the eighth floor, where Howard awaits.`
+			`	The office reminds you of the one you were in on Hephaestus, though more understated. Howard's office is a modest yet modern space, featuring a smart desk, a few sleek chairs, and large windows overlooking the busy shipyards. You can't help noticing that, like the Hephaestus office, the minimalist decor hints more at style than substance.`
+			`	"Glad you could make it," Howard says, extending his hand. "Apologies for the inconvenience, but it's better to discuss these matters away from potentially 'interested' parties." He motions for you to join him at one of the few sleek chairs in the center of the room.`
+			choice
+				`	(Take a seat.)`
+				`	(Remain standing.)`
+					goto shrug
+			`	Howard sits beside you in an oddly intimate expression.`
+				goto familiar
+			label shrug
+			`	Howard shrugs and takes a seat anyway.`
+			label familiar
+			`	Once settled, he leans back in his chair and gives you a serious look. "Tell me," he says, "are you familiar with Marauder ships?"`
+			choice
+				`	"Yes, of course."`
+					goto ask
+				`	"No, I can't say I am."`
+			`	Howard raises an eyebrow. "Marauder ships are nasty pieces of work," he explains. "They're ships with numerous modifications - mostly with combat in mind. More shields, weapons, engines, and outfit space, with enough firepower to tear through a lot of defenses before anyone knows what hit them. They're often used by rogue groups that operate outside the law, preying on vulnerable targets."`
+			label ask
+			`	Howard pauses for a moment before continuing. "We at Megaparsec are interested in getting our hands on one. We want to study its design, see what makes it tick. We've received word that a Marauder ship was recently spotted in Oblate. I need you to track it down and disable it. Once it's crippled, our recovery team will handle the rest."`
+			branch meanlook
+				"syndicate business: mean to Howard" > 0
+			`	He gives you a deliberate look. "Does that sound like a plan?"`
+				goto endoflook
+			label meanlook
+			`	He gives you a pointed look. "Think you can handle that?"`
+			label endoflook
+			choice
+				`	"You got it."`
+					goto accepting
+				`	"What do you need me for? This sounds like something that the Syndicate could do themselves."`
+				`	"No way, I'm done here."`
+					decline
+			`	Howard shifts a bit in his seat as he considers your question. "Normally we'd contract Lightspeed Logistics for this sort of job. They've got the expertise and resources to handle something like this cleanly." He pauses, choosing his words carefully. "But they lack the discretion. This particular Marauder ship belongs to a pirate who ran in the same circles as a number of Lightspeed contractors. If we sent them in, I'm concerned they might try to study the ship themselves, tip off the pirate, or worse, tip off others in the Syndicate that Megaparsec is making a move.`
+			`	"That's where you come in. You're outside the usual network, and that gives us a layer of security. Take this job, and it stays between us. No one else needs to know Megaparsec is involved."`
+			choice
+				`	"Alright, I'm in."`
+					goto accepting
+				`	"And where does that promised investment opportunity fit in?"`
+					goto investingop
+				`	"I'm still not interested."`
+					decline
+			label investingop
+			`	Howard's face brightens at the mention of the investment. "Ah, yes, the opportunity. It's much larger than the last deal you were part of, but the returns are still very competitive. You'll need at least ten or maybe twelve million credits to get in on this one."`
+			`	He leans forward. "We're looking to fund a refueling station expansion at our logistics hub on Crossroads. We're between an aggressive option, a more conventional expansion, and a more conservative one."`
+			`	Howard pauses, gauging your reaction before continuing. "All of the options have their merits, though investors usually prefer the one with the most returns. But the choice is yours if you're in. I'll make sure you get the full details once we're done with this little favor in Oblate."`
+			choice
+				`	"Alright, I'm in. Let's discuss it more after Oblate."`
+					goto accepting
+				`	"Why would a shipyard have refueling stations?"`
+				`	"None of those options sound good to me. I'm out."`
+					decline
+			`	Howard clearly enjoys the opportunity to explain. "Megaparsec's shipyards here on Sunracer are our crown jewel, building nearly every one of our ships as well as our high performance aircraft and hovercraft. You cannot imagine the logistics required to get the countless capacitors and microchips from Tinker, Delta V's plasma engines from Solace - heck, we have a dedicated logistics hangar on Crossroads just for shipping the Quicksilver's Particle Cannons! Don't even get me started on the Mantas! Ada's a long ways away, but we sure love Lovelace Labs' products...`
+			`	"Ahem. All that to say, refueling stations, while few, are part of our larger strategy in vertical integration. Refueling stations are the heart of our logistics network for bringing all the parts we need here and for getting various vehicles out of here to be sold across the Republic.`
+			`	"There are, of course, ancillary benefits as well. For R&D, we can test the impact of different fuel mixtures on our ships prior to entering the market. For partnerships, we can include fueling rights in large-scale sales agreements with major corporations or government fleets. At our largest logistics hubs, the economies of scale even allow us to competitively offer refueling services solely to these high-volume operators, giving us a diversified revenue stream.`
+			`	"In fact, the ancillary benefits are largely why there's such discretion in how the expansion will go. The aggressive and conservative fueling options both offer R&D and partnership benefits that are more than the project's direct returns."`
+			choice
+				`	"That makes sense. Let's discuss the deal more after Oblate."`
+				`	"Thanks for the overview, but I'm still not interested. I'm out."`
+					decline
+			label accepting
+			`	Howard nods with approval. "Excellent. The Marauder ship was last seen near Oblate, in the outer rim of that system. It's likely to be well armed, so stay sharp. Once you've disabled it, head back here and I'll make sure you're properly compensated."`
+			branch blewupgolden
+				has "syndicate business golden jewel dead"
+			`	He cracks a smile. "I remember the first time we met you left that Vanguard alive. Same deal here, but disable the Marauder. Hopefully that Vanguard's not still around.`
+				goto ending
+			label blewupgolden
+			`	He leans in slightly, lowering his voice. "Just be careful. We don't want to destroy the ship. Cripple it so we can study it, but don't blow it into oblivion like you did that Vanguard when we first met.`
+			label ending
+			`	"Well, that's all I have for you. Goodbye and good luck!"`
+				accept
+
+	on enter "Moktar"
+		"reputation: Independent (Killable)" = -1000
+	npc
+		government "Independent (Killable)"
+		personality heroic staying vindictive
+			confusion 20
+		system "Moktar"
+		ship "Vanguard" "Golden Jewel"
+		to despawn
+			has "syndicate business golden jewel dead"
+		on encounter
+			conversation
+				`When you enter Moktar, your sensors detect the same pirate Vanguard from when you first rescued Howard. Your ship is immediately hailed, and the pirate opens communication.`
+				`	"I should have destroyed you when I had the chance. Prepare to meet your end!"`
+				choice
+					`	"Maybe I should have destroyed you!"`
+					`	"Uhhh... who are you again?"`
+						goto whomst
+				`	"Argh, you slithering, spineless snake! I'll tear your ship apart piece by piece!"`
+					goto power
+				label whomst
+				`	"Bah, you banal, bumbling baboon! Prepare to meet your doom!"`
+				label power
+				`	You can't help feeling a sense of deja vu as the Vanguard's engines roar to life and you see over half a dozen fixed guns take aim at your ship, ready to strike.`
+		on kill
+			set "syndicate business golden jewel dead"
+			dialog "The crew of the Golden Jewel are no more. You think you can make out the pirate captain drifting in space nearby."
+
+	on enter "Oblate"
+		"reputation: Independent (Killable)" = -1000
+	npc disable save
+		government "Independent (Killable)"
+		personality heroic marked staying vindictive
+			confusion 20
+		system "Oblate"
+		ship "Marauder Quicksilver (Engines) (Safe)" "Pilgrim Shadow"
+		on disable
+			conversation
+				`The ship has been disabled. You receive a message from Howard almost immediately:`
+				`	"<first> <last>, you've done it again! Meet me on <destination> to talk about this victory."`
+				`		Howard Vendeur`
+				`		Investor Relations Manager, Megaparsec Incorporated`
+		on kill
+			"reputation: Independent (Killable)" = 0
+			conversation
+				`The ship has been destroyed. Like before, you almost immediately receive a message from Howard:`
+				`	"What have you done? I said disable the ship! You've completely destroyed my plans, cost us millions, and ruined any chance of salvaging this operation - how could you possibly mess this up so badly? Don't come back, we're done."`
+				`		Howard Vendeur`
+				`		Investor Relations Manager, Megaparsec Incorporated`
+	on complete
+		"reputation: Independent (Killable)" = 0
+		event "syndicate business 10m investment done" 180
+		payment 25000
+		conversation
+			`You arrive back on Sunracer to a spaceport buzzing with activity. You make your way through the bustling shipyard toward the towering Megaparsec building. Entering the lobby, the receptionist gives you a nod, and you quickly ascend to the eighth floor.`
+			`	Howard greets you with a smile as you step into his office. The room is as you left it - modern, modest, and with a clear view of the shipyards below. "Welcome back," he says, gesturing for you to take a seat. "I take it the job in Oblate went smoothly?"`
+			choice
+				`	"Of course."`
+					goto next1
+				`	"Didn't you message me as soon as I did it?"`
+			`	"True enough, just making conversation," he says with a grin. "The important thing is that the job's done. Now, let's get down to business.`
+			label next1
+			`	"Our recovery team is already retrieving the ship as we speak. You've done well. Here's a payment for that favor, 25,000 credits."`
+			choice
+				`	"Thanks."`
+					goto investmentopps
+				`	"25,000?! You must have forgotten a zero there, you cheapskate!"`
+					goto cheapskate
+				`	"I appreciate the offer, but there's no need for payment this time. Consider it purely a favor - I'm happy to help."`
+			action
+				"syndicate business: mean to Howard" --
+				payment -25000
+			`	"That's generous of you, and I appreciate it.`
+				goto investmentopps
+			label cheapskate
+			`	"I see... well, let's not make this more difficult than it needs to be," he says in a clipped tone. "I'll transfer another 175,000 credits now to make it an even 200,000. But in the future, I'd appreciate it if you would remember the privilege you have of working with Megaparsec Incorporated.`
+			action
+				"syndicate business: mean to Howard" ++
+				payment 175000
+			label investmentopps
+			`	"Now, let's talk about that investment opportunity."`
+			`	Howard pulls up a holographic display on the digital screen behind him. Various charts and projections flash by. "Ready for the pitch?"`
+			choice
+				`	"You know it."`
+				`	"Of course."`
+			`	"Here's what we're looking at. Megaparsec Incorporated is expanding a refueling station on Crossroads, and we're likely going to go with a conventional expansion. But don't let the term 'conventional' fool you, because Megaparsec rarely expands its refueling stations - this is the first time in over a decade. When we do, it's because we've identified a strategic location that will skyrocket profits. These opportunities are as rare as they come, and most investors never even hear about them. But you've proven yourself, and that's why you're getting a seat at the table."`
+			`	He pauses, letting the weight of his words sink in. "Getting in on this is a once-in-a-lifetime chance. We're talking about a key hub on a high-traffic trade route, with a captive market of ships desperate for fuel. The returns will be solid... and dependable. Opportunities like this don't just come around, and when they do, they go fast."`
+			choice
+				`	"Okay."`
+				`	"Thanks, but I'll be speeding away from this investment."`
+					decline
+			branch upcharge
+				"syndicate business: mean to Howard" > 0
+			`	"Excellent. The price for this investment is ten million credits for a solid 5400 credit per day return. Don't worry about pulling out your wallet just yet - I've pulled a few strings with our friends at the bank. They're willing to structure a loan for you through our Finance Division, no upfront payment needed. You'll just need to sign a few documents to get things moving."`
+			`	He slides a document over to you, with a sleek pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of the documents before signing."`
+			choice
+				`	"Sounds good."`
+					goto nextynice
+				`	"I'm done with these deals, I'm leaving."`
+					decline
+			label upcharge
+			`	Howard's tone carries a hint of impatience. "Alright then. The price for this investment is eleven million credits for a 5400 credit per day return. I've managed to arrange a loan through the bank and our Finance Division, so you won't need to come up with the cash immediately. Just sign these documents to formalize the arrangement."`
+			`	He pushes a document over to you, with a very fancy pen ready for your signature. "Just sign this first document for the loan and then we can talk through the rest of the documents before signing."`
+			choice
+				`	"Sounds good."`
+					goto nextymean
+				`	"I'm done with these deals, I'm leaving."`
+					decline
+			label nextynice
+			action
+				debt 10000000
+					interest 0.08
+					term 3650
+			`	He takes the document from you and you see the loan terms on the screen behind him: 10M credits, 10 years, 34% rate.`
+				goto nexty
+			label nextymean
+			action
+				debt 11000000
+					interest 0.10
+					term 3650
+			`	He snatches the document from you with a wicked smile and you see the loan terms on the screen behind him: 11M credits, 10 years, 44% rate.`
+			label nexty
+			`	Howard leans back in his chair. "Well done. You're now part of a very select group, one that's about to see some significant returns. As I mentioned, we're leaning towards a conventional expansion for the refueling station on Crossroads. It's a strategic move and it'll serve the steady stream of ships passing through, locking in profits for years to come of about 5400 credits a day, or around 20% a year."`
+			`	He watches you closely, gauging your reaction. "Of course, this is just the standard approach. There's always room to tweak the plan."`
+			`	Howard pauses, waiting to see if you're interested in taking the conversation further.`
+			choice
+				`	"Sounds like a good plan to me."`
+					goto choseplana
+				`	"What would it take to boost profits even more?"`
+					goto planb
+				`	"What if I have concerns about the environmental impact?"`
+					goto planc
+			label plana
+			`	"The conventional expansion is anything but. We'd work with licensed suppliers and build it by the book. Of course, Crossroads is already a radioactive wasteland of sandstorms, so the book's pretty light, all things considered. It's a solid investment with good returns and minimal risk. Nothing too flashy, but reliable returns of about 5400 credits a day, or around 20% a year."`
+			choice
+				`	"Sounds like a good plan to me."`
+					goto choseplana
+				`	"What would it take to boost profits even more?"`
+					goto planb
+					to display
+						not "heardplanb"
+				`	"And if I have concerns about the environmental impact?"`
+					goto planc
+					to display
+						not "heardplanc"
+				`	"Could you remind me about the unregulated option?"`
+					goto planb
+					to display
+						has "heardplanb"
+				`	"Explain the eco-friendly choice once more."`
+					goto planc
+					to display
+						has "heardplanc"
+			label planb
+			`	"We could tap into some unregulated fuel sources. No oversight, no regulations. The fuel's cheaper and abundant, but it's volatile - one wrong move, and it's a disaster waiting to happen. The profits, though, are through the roof. For the possible cost of a few lives and some bad PR, we can boost returns to around 8200 credits a day, or about 30% a year."`
+			action
+				set "heardplanb"
+			choice
+				`	"Bring on the profits, this unregulated option is the one for me."`
+					goto choseplanb
+				`	"Tell me about the conventional expansion again."`
+					goto plana
+				`	"And if I have concerns about the environmental impact?"`
+					goto planc
+					to display
+						not "heardplanc"
+				`	"Explain the eco-friendly choice once more."`
+					goto planc
+					to display
+						has "heardplanc"
+			label planc
+			`	"There's also the eco-friendly route. We'd invest in green energy technologies and refining processes that minimize environmental impact and implement best-in-class workplace safety protocols. It's the most expensive option, and it'll slow our expansion, but it would reduce our environmental liabilities and might give us some goodwill. Easily the worst returns with around 4000 credits a day expected, or just around 15% a year."`
+			action
+				set "heardplanc"
+			choice
+				`	"This environmental and safety focused option is the one for me."`
+					goto choseplanc
+				`	"Tell me about the conventional expansion again."`
+					goto plana
+				`	"What would it take to boost profits even more?"`
+					goto planb
+					to display
+						not "heardplanb"
+				`	"Could you remind me about the unregulated option?"`
+					goto planb
+					to display
+						has "heardplanb"
+			label choseplana
+			action
+				"salary: Syndicate Business" += 5400
+				set "Syndicate Business expansion 10m neutral"
+				log "Was able to make another investment with Megaparsec, this time ten million credits, after disabling a Marauder for Howard. Out of three investment options, ended up choosing the conventional approach."
+			`	"Excellent choice. The conventional expansion is a safe bet with solid returns. It's not the flashiest option, but the steady stream of ships passing through Crossroads will ensure consistent profits. The only drawback is that it won't make headlines - but it'll keep the credits flowing smoothly."`
+				goto ending
+			label choseplanb
+			action
+				"salary: Syndicate Business" += 8200
+				set "Syndicate Business expansion 10m evil"
+				log "Was able to make another investment with Megaparsec, this time ten million credits, after disabling a Marauder for Howard. Out of three investment options, ended up choosing the profitable approach."
+			`	"Well done. The unregulated option is bold and ambitious - exactly the kind of move the Syndicate prizes. The volatility of this fuel isn't for the faint of heart, but some bad PR is well worth the profits and potential earnings we'll achieve. High risk often means high reward."`
+				goto ending
+			label choseplanc
+			action
+				"salary: Syndicate Business" += 4000
+				set "Syndicate Business expansion 10m good"
+				log "Was able to make another investment with Megaparsec, this time ten million credits, after disabling a Marauder for Howard. Out of three investment options, ended up choosing the eco-friendly approach."
+			`	"An admirable decision. The eco-friendly route won't make the most credits, but it's a forward-thinking investment. It could pay off in other ways, like reduced turnover and environmental liabilities. Objectively the worst investment from a returns perspective, but I suppose you value other things more."`
+			label ending
+			`	"Alright, now that we've settled on your investment, let's get the rest of the paperwork squared away." He slides a stack of documents across the desk. "These cover the remaining loan terms, the investment agreement, and the usual legal fine print. Nothing too complicated, just a few signatures to make it all official." He hands you the same sleek pen from earlier, his expression all business. "Once this is done, you'll be a stakeholder in one of Megaparsec's most promising expansions."`
+			choice
+				`	(Sign the paperwork.)`
+			`	With the last signature in place, Howard gives you a nod of approval. "Congratulations. You've made a smart move today. I'll keep you in mind for future investment opportunities. Who knows, maybe I'll need another Marauder-related favor down the line." He gives you a wink and stands, offering his hand. "Until next time, we'll keep in touch."`
+			`	After that final goodbye, you leave Howard's office, the quiet hum of the corporate floor giving way to the loud clanging of Sunracer's bustling shipyards and spaceport as you head back to the <ship>.`
+			action
+				clear "heardplanb"
+				clear "heardplanc"
+
+event "syndicate business 10m investment done"
+
+mission "Syndicate Business 5.1 A 10m Expansion Update"
+	landing
+	to offer
+		has "Syndicate Business 5: done"
+		has "event: syndicate business 10m investment done"
+		or
+			has "Syndicate Business expansion 10m good"
+			has "Syndicate Business expansion 10m neutral"
+			has "Syndicate Business expansion 10m evil"
+	source
+		near Ruchbah 0 20
+	on offer
+		conversation
+			`As you are landing your <model>, you see a message from Howard, the Megaparsec salesman who sold you two investments. The message says:`
+			branch meanopening
+				"syndicate business: mean to Howard" > 0
+			`	"Hey <first>,`
+			`		"I hope all is well. I'm excited to send you this interim Megaparsec report! I'm sharing because it's the first one with your investment included - check out Section 3, Part C, Paragraph 6 for the details.`
+				goto openingchoice
+			label meanopening
+			`	"Captain <first> <last>,`
+			`		"Here's the interim Megaparsec report, sent because your investment is included for the first time. You can find the relevant information in Section 3, Part C, Paragraph 6.`
+			label openingchoice
+			branch goodchoice
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice
+				has "Syndicate Business expansion 10m evil"
+			# neutral
+			`		"Nothing major to flag, just routine updates. Steady progress and business as usual. Just like I predicted, we're seeing some solid returns that aren't making headlines. And the higher ups like the consistency - keeps me in their good graces.`
+				goto howardbye
+			label goodchoice
+			`		"Returns are about what we projected, a little slow, but here's the kicker: we're saving a chunk of provisions for expected environmental lawsuits and employee morale at the expansion is through the roof. Looks like we're building more than just profits. My bosses are thrilled - they think I'm working magic here.`
+				goto howardbye
+			label evilchoice
+			`		"There was a... noteworthy incident involving some employees, so it might draw more attention than we'd like. Nothing that'll derail the returns, though, just some bad press to manage. Everything's still on track, and either way, no one can argue with the numbers.`
+			label howardbye
+			branch alreadyrich
+				"credits" >= 300000000
+			`		"Anyway, here's the mentioned area of that report. I have another investment opportunity coming up, but if my bank contact is correct you have some hustling to do if you want in. Maybe three or four hundred million credits ought to do it. Keep in touch."`
+				goto signoff
+			label alreadyrich
+			`		"Anyway, here's the mentioned area of that report. As long as you stay rich I'll have another investment opportunity for you soon. Keep in touch."`
+			label signoff
+			`			Howard Vendeur`
+			`			Investor Relations Manager, Megaparsec Incorporated`
+			choice
+				`	(Open Section 3, Part C, Paragraph 6 of the attached report.)`
+					goto sectionmarked
+				`	(Take a look at the main report.)`
+				`	(Close the message.)`
+					decline
+			# This report has 2 purposes beyond being a peek behind the curtain of Megaparsec's operations.
+			# 1. This should be dull and impersonal enough that a reader could easily gloss over Megaparsec's morally questionable actions listed in the report and to be a stark contrast to the human aspect of the other culture mission.
+			# 2. This should be long enough that Megaparsec feels overwhelming in size and scope, and that the player's actions/investments feels like a footnote in comparison.
+
+			`	Megaparsec Incorporated is a leading multi-sector company specializing in shipbuilding, performance vehicles, industrial solutions and exacting systems, and financial services. With a commitment to innovation and customer satisfaction, we aim to provide top-tier products and services across various markets. Our workforce comprises millions of skilled employees across the Republic. Established over 60 years ago in 2953, Megaparsec has quickly positioned itself as a key player in the aerospace and transportation industries. References to "Megaparsec Inc.," the "Company," "we," "our," and "us" in this report refer to Megaparsec Incorporated and its consolidated subsidiaries.`
+			`	Our operations are organized into four distinct operating segments: Megaparsec Shipyards, Megaparsec Performance Vehicles, Megaparsec Industrial & Systems, which represent our manufacturing businesses, and Megaparsec Finance, which represents our finance business. Our business segments include operations that are unincorporated divisions of Megaparsec Inc. and others that are separately incorporated subsidiaries. Public sector and other non-corporate activities are not required to be disclosed in interim financial reports, and as such are not covered within this report. Each segment plays a crucial role in driving our growth and profitability, and a description of the business of each of our segments is set forth below. Financial performance and information by segment can be found in Note 5 of the Consolidated Financial Statements on pages 20 through 22 of this report. Readers are encouraged to review this information in conjunction with "Management's Discussion and Analysis of Financial Condition and Results of Operations" on pages 10 through 18.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Try to get through the report's overview of business segments.)`
+				`	(That's enough financial reports for one day.)`
+					decline
+			`	Megaparsec Shipyards Segment`
+			`		Megaparsec Shipyards is at the forefront of advanced shipbuilding, focusing on designing and constructing lightweight, high-performance vessels for commercial and military applications. Megaparsec Shipyards is a leading shipyard based on unit sales with two principal lines of business: spacecraft sales and aftermarket services. Spacecraft sales include a diverse portfolio of ships such as the Quicksilver, Bounder, Manta, and Splinter, as well as the Hauler and Hauler II designs. Aftermarket services include outfitting, parts, maintenance, inspection and repair services. Our shipyards leverage cutting-edge technology and innovative design principles to enhance efficiency and reduce costs. Revenue in this segment accounted for approximately 45% of our total revenue in the last fiscal year, showcasing our strong market position.`
+			`		Megaparsec Shipyards' aggressive cost-cutting measures and streamlined workplace safety protocols allow us to maintain superior margins. We maintain a close relationship with Parliament to better anticipate and shape legislative actions to be beneficial to the Company.`
+			`		Megaparsec Shipyards markets its products galaxy-wide through its own sales force, as well as through a network of authorized independent sales representatives, depending upon the product line. Megaparsec Shipyards has several competitors within the Syndicate and across Republic space in various market segments. Megaparsec Shipyards' spacecraft compete with other spacecraft that vary in size, speed, range, capacity and handling characteristics on the basis of price, product quality and reliability, product support and reputation.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Continue through the report to the Megaparsec Performance Vehicles Segment.)`
+				`	(Now that's definitely enough financial report for one day.)`
+					decline
+			`	Megaparsec Performance Vehicles Segment`
+			`		Megaparsec Performance Vehicles is one of the leading suppliers of military and commercial aviation and repulsor solutions in all of Syndicate and Republic space. This segment includes Megaparsec jets, racing hovercraft, utility vehicles, and various repulsor solutions tailored for personal, commercial, and military use. Through its commercial business, Megaparsec Performance Vehicles is a leading supplier of commercially certified aviation and hovercraft support to corporate, on-world petroleum exploration and development, utility, charter, police, fire, rescue, and emergency medical hovercraft operators. Our commitment to the development of high-performance, lightweight vehicles that maximize efficiency and agility while delivering superior speed and operational excellence drives innovation within this segment, allowing us to capture a growing market of discerning consumers. Revenues from this segment contributed approximately 30% of our total revenue, reflecting our success in attracting new customers.`
+			`		For both its military programs and its commercial products, Megaparsec Performance Vehicles provides post-sale support and service for its installed base of millions of vehicles. This is accomplished through a network of Megaparsec Performance Vehicles-owned service sites, service and parts facilities co-located with Megaparsec Shipyards, thousands of independent service centers and sixteen logistics hubs that are located across the galaxy. Collectively, these service sites offer a complete range of logistics support, including parts, support equipment, technical data, training devices, pilot and maintenance training, component repair and overhaul, engine repair and overhaul, aircraft modifications, aircraft customizing, accessory manufacturing, contractor maintenance, field service and product support engineering.`
+			`		Megaparsec is able to leverage its specialization to control a majority of several of the aforementioned markets with relatively inelastic demand, providing significantly higher margins in the police, fire, rescue, and emergency medical segments.`
+			`		Megaparsec Performance Vehicles competes against a number of competitors based in the Syndicate and the Republic for its performance vehicles business, and its parts and support business competes against numerous other companies. Competition is based primarily on price, product quality and reliability, product support, performance, and reputation.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Continue through the report to the Megaparsec Industrial & Systems Segment.)`
+				`	(Half of the business segments is enough.)`
+					decline
+			`	Megaparsec Industrial and Systems Segment`
+			`		Megaparsec Industrial and Systems focuses on providing comprehensive solutions for various industries, including energy, construction, and logistics. We manufacture industrial equipment, fuel systems, functional components, and other systems designed to enhance productivity and reduce operational costs. This segment also covers miscellaneous lines such as Megaparsec's external refueling sales, logistics services, mission support, and others. This segment has seen steady growth, contributing around 20% of our overall revenue as we continue to expand our market presence and capitalize on emerging opportunities.`
+			`		Our strategic partnerships with external regions that have favorable regulatory environments help minimize disruption from labor or environmental concerns, enabling us to maximize productivity at the lowest possible cost.`
+			`		Our Industrial and Systems Segment has a number of competitors across the galaxy. Competition typically is based on a number of factors including price, product quality and reliability, prior experience, and available manufacturing capacity.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+					goto sectionmarked
+				`	(Finish the business segment overview with Megaparsec Finance.)`
+				`	(Finally close this report.)`
+					decline
+			`	Megaparsec Finance Segment`
+			`		Megaparsec Finance offers a range of financial services, including investment and leasing solutions tailored to the needs of our customers across all segments of the marketplace. This division supports our operational growth by providing essential capital and financial expertise, allowing us to navigate market fluctuations effectively. The Finance segment accounted for about 5% of our total revenue, highlighting our commitment to delivering integrated financial solutions.`
+			`		Megaparsec Finance maximizes returns by strategically navigating complex financial regulations and directly engaging with investors and customers. By leveraging aggressive financial instruments while staying within legal boundaries, we ensure strong profits with minimal regulatory interference.`
+			`		The commercial finance business traditionally is extremely competitive. Our Finance segment is subject to competition from various types of financing institutions, including banks, leasing companies, commercial finance companies and finance operations of equipment vendors. Competition within the commercial finance industry primarily is focused on price, term, structure and service.`
+			`		Megaparsec's diverse portfolio and commitment to innovation position us well for future growth, and we remain dedicated to enhancing value for our shareholders while serving our customers' needs.`
+			`	You've finally gotten through the report's opening statements. That's more than enough of the main report to go through.`
+			choice
+				`	(Turn to Section 3, Part C, Paragraph 6 that Howard highlighted earlier.)`
+				`	(Close the report now that you've gone through the main overview.)`
+					decline
+			label sectionmarked
+			`	You open the attached report to the area indicated by Howard:`
+			branch goodchoicesec2
+				has "Syndicate Business expansion 10m good"
+			branch evilchoicesec2
+				has "Syndicate Business expansion 10m evil"
+			# neutral 2
+			`	Crossroads refueling station investments continue to meet projections, with healthy margins and steady returns. Following several modest investments in operational efficiency, returns are tracking slightly above baseline forecasts, ensuring a consistent annualized return to investors. The station's strategic position on the centrally located planet continues to generate strong traffic, further solidifying its long-term profitability.`
+				goto reportend
+			label goodchoicesec2
+			`	Investment returns from the Crossroads refueling station are currently below comparable benchmarks. However, environmental-related legal actions have been significantly lower than anticipated, resulting in reduced provisions for legal fees. Additionally, localized employee turnover has halved during this period, contributing to enhanced operational stability and providing a favorable outlook for the coming quarters.`
+				goto reportend
+			label evilchoicesec2
+			`	A serious accident at the Crossroads refueling station resulted in injuries to two dozen employees and one fatality. While the legal ramifications are being addressed, the station's outsized returns have more than compensated for the legal fees incurred due to this unfortunate and unpredictable occurrence. Financial projections remain strong, with returns far exceeding expectations.`
+			label reportend
+			`	That marks the end of where the report covers your investment.`
+				decline
+
+
+mission "Syndicate Business 5.1 B 10m Expansion Crossroads Update"
+	to offer
+		has "Syndicate Business 5: done"
+		has "event: syndicate business 10m investment done"
+		or
+			has "Syndicate Business expansion 10m good"
+			has "Syndicate Business expansion 10m neutral"
+			has "Syndicate Business expansion 10m evil"
+		random < 85
+	source "Crossroads"
+	on offer
+		conversation
+			`As you are walking around the low stone buildings of the spaceport, you remember that you invested in a refueling station expansion at Megaparsec's logistics hub on Crossroads.`
+			choice
+				`	(Check it out.)`
+				`	(Maybe later.)`
+					defer
+				`	(Skip visiting the refueling station.)`
+					decline
+			`	You make your way towards the refueling station on a bulky vehicle closed off from the radioactive air. Nevertheless, you still feel a faint metallic taste in the back of your throat as you see blue and purple tumbleweeds drift with the sand out the window. Eventually you pull up to the depot and refueling station.`
+			`	The structure looms in front of you - sleek, modular, and distinctly industrial. The station is built for efficient refueling, with segmented docking areas for various freighter sizes, fuel lines tangled overhead like mechanical vines snaking down to heavy looking hoses attached to repulsors, and a series of elevated walkways crisscrossing the area.`
+			choice
+				`	(Get out of the bulky vehicle.)`
+				`	(Turn around and go back to your ship.)`
+					decline
+			`	While still outside the main area, you exit the vehicle and hear the fueling systems hum, punctuated by the occasional clicks of the fuel pumps. There's a faint sulfuric tang in the air intermixed with the radioactive metallic dust. Large screens display fuel prices and tank levels, while cargo repulsors zip around, transporting supplies to waiting ships. You begin to make your way through narrow steps and low guardrails leading up to a platform overlooking the main fueling bay.`
+			branch goodchoice
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice
+				has "Syndicate Business expansion 10m evil"
+			# neutral
+			`	As you start to approach the platform, you notice a worker sitting on the edge of a low retaining wall, just outside the main operation zone. He's leaned back, catching his breath and wiping the sweat from his brow. The worker looks up as you near, his expression neutral but open, perhaps surprised to see someone from management on-site. His break seems brief, but he's got a minute or two before heading back to work - giving you the option to engage in conversation or simply move on.`
+				goto hellothere
+			label goodchoice
+			`	As your approach to the platform begins, you notice a worker sitting on the edge of a low retaining wall, just outside the bustling refueling zone. He's leaned back with a relaxed smile on his face as he whistles a cheerful tune, clearly enjoying a well-earned break. The worker's uniform is crisp, and his overall demeanor suggests high morale. He glances up as you near, offering a friendly nod, clearly at ease. With a few minutes left in his break, you have the chance to strike up a conversation or continue on your way.`
+				goto hellothere
+			label evilchoice
+			`	As you start your approach towards the platform, you notice a worker sitting on the edge of a low retaining wall, staring at a small memorial plaque embedded in the ground just outside the main refueling zone. Next to the plaque, two small, unmarked rocks have been carefully placed side by side.`
+			`	The worker seems lost in thought, occasionally wiping the sweat from his brow. He shifts slightly as you draw nearer, offering a subtle nod of acknowledgment, giving you the chance to either continue on or start a conversation with him. The reasons behind the plaque and the stones remain unclear, though their presence feels somber. You think back to Howard's message about your aggressive investment choice causing a "noteworthy incident."`
+			label hellothere
+			choice
+				`	(Say hello.)`
+				`	(Let the moment pass and continue on towards the platform.)`
+					goto facilitytour
+			branch goodchoice2
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice2
+				has "Syndicate Business expansion 10m evil"
+			# neutral 2
+			`	You decide to strike up a conversation, and after a brief exchange, the worker relaxes when you clarify that you're not from management. His face softens as he shares his story. He grew up poor in the Dirt Belt, and came to Crossroads hoping for something better.`
+			`	"I've been working hard, trying to give my kid a life I didn't have."`
+			`	He shrugs as he says, "Sure, the hours are long and it's tough sometimes, but it beats what you hear about some Syndicate jobs - unsafe, grueling work. At least here, the work's steady and it puts food on the table. That's more than I ever had growing up in the Dirt Belt." He checks the time and stands, dusting off his uniform.`
+			`	"Thanks for the chat, but I've got a long night ahead. It's my kid's birthday, and I'm putting in extra hours so I can get them a cake. They're gonna love it."`
+			`	With a tired but determined smile, he heads back to work, leaving you with a glimpse of the reality behind the "conventional" station's daily grind.`
+				goto hellothere2
+			label goodchoice2
+			`	You decide to strike up a conversation, and as you exchange pleasantries, the worker mentions how he grew up in the Dirt Belt. He talks about how tough life was back then, scraping by with whatever work he could find before coming to Crossroads in search of something better.`
+			`	"I've been incredibly lucky," he says with a genuine smile. "This job - good pay, safe working conditions, benefits for my family - it's more than I ever imagined. I've heard stories about jobs in the Syndicate, how unsafe and grueling they can be. Heck, I've heard of other refueling stations at this very same logistics hub where people get injured and they're left to starve - can you imagine? I count my blessings every day."`
+			`	He glances at his datapad and stands up, brushing off his uniform. "Thanks for the chat," he says warmly. "I've got to head back in. Calling it an early day today - need to grab a cake and set up a surprise birthday party for my kid. They're going to be thrilled!"`
+			`	With a quick wave, he heads back toward the fueling bay, whistling his tune once again.`
+				goto hellothere2
+			label evilchoice2
+			`	You decide to say hello and ask about the plaque, and the worker lets out a sharp, bitter scoff. "Management put it up after a fuel explosion killed someone," he says in a cold tone. "Injured dozens more, too. They have us handling some incredibly dangerous fuel, no safety gear, and quotas that are impossible to meet. We all knew it was a disaster waiting to happen. But management?" He pauses to wipe his brow.`
+			`	"They didn't care. They just wanted the job done fast." He glances at the two small rocks, then shifts his gaze to the plaque again beside them. "He was one of the lucky ones."`
+			choice
+				`	"How so?"`
+				`	(Say nothing.)`
+			`	He nods toward the rocks. "Some of the others weren't so lucky to die immediately. They got hurt bad enough that they couldn't keep working, and the burns covering their bodies left them in agony for days. Megaparsec didn't lift a finger to help, no medicine, no credits, nothing. We tried, but they didn't make it.`
+			`	"Management won't admit they had anything to do with it, won't help their families or put their names on a plaque or anything. So a few of us put those stones there. Our own little way of remembering."`
+			`	You take in his words, the weight of them heavy in the air.`
+			choice
+				`	(Try to change the subject and ask if he has any family.)`
+				`	(Say nothing.)`
+					goto evilchoice2workerleaves
+			`	The worker turns back to the stones, staring at them for a long, uncomfortable silence. Finally, he shakes his head, his voice barely above a whisper.`
+			`	"No."`
+			label evilchoice2workerleaves
+			`	With that, he pushes himself to his feet and heads back to work without another word.`
+			label hellothere2
+			choice
+				`	(Continue on towards the platform.)`
+				`	(Return to your <model> to leave.)`
+					decline
+			label facilitytour
+			`	You continue on through the narrow steps leading to get to the platform overlooking the main fueling bay, and go through the doors at the top of the steps to enter the main facility.`
+			branch goodchoice3
+				has "Syndicate Business expansion 10m good"
+			branch evilchoice3
+				has "Syndicate Business expansion 10m evil"
+			# neutral 3
+			`	At the top of platform, you take in the sight below of hurried workers and a massive Container Transport docking, its intermodal containers likely full of Particle Cannons destined for Megaparsec Quicksilvers.`
+			`	Fueling crews move quickly but with a certain impatience, functional but clearly worn gear clanking as they connect the repulsor-mounted refueling hoses to the Container Transport's ports. There's a faint tension in the air, an unspoken acknowledgment that time is money, as the fueling process proceeds with the workers more focused on speed than safety.`
+			`	You take a breath of air that feels thick and grimy, carrying the faint stench of fuel. The environmental controls seem poorly maintained, leaving the atmosphere heavy and uncomfortable. The hum of machinery blends with the occasional cough from workers, who seem used to the less-than-ideal conditions. You see the worker from outside, who gives you a short nod before coughing into his arm and rushing to the next fueling hose.`
+				goto hellothere3
+			label goodchoice3
+			`	At the top of platform, the sight below is one of smooth coordination and efficiency. A massive Container Transport docks relatively gracefully, its intermodal containers full of Particle Cannons likely destined for Megaparsec Quicksilvers.`
+			`	Workers outfitted in sleek safety gear move with precision, guiding repulsor-mounted refueling hoses to the Container Transport's ports. There's an air of confidence here - a clear, practiced rhythm, as the fueling process proceeds with checks and double-checks.`
+			`	You take a deep breath of clean, crisp air. Even the environmental controls seem well-maintained, keeping the air cleaner than you'd expect in a station of this size. It's almost serene, the hum of machinery blending with the low chatter of workers who seem genuinely at ease, knowing they're well-protected. You catch the eye of the worker you saw earlier outside, and he gives you a wave before turning his attention back to the fueling hoses.`
+				goto hellothere3
+			label evilchoice3
+			`	The air is thick with tension as you look down at the fueling bay. A massive Container Transport lurches to dock, overloaded with Particle Cannons, as workers scramble like their lives depend on it.`
+			`	What little safety gear you see appears to be an afterthought - you can't imagine the few cracked helmets or thin gloves doing much of anything. The workers frantically pull the volatile fuel hoses forward, the heavy tubes attached to worn repulsors that barely handle their weight. Workers shout over the roar of pumps, rushing to refuel, their movements hurried and desperate.`
+			`	As you inhale, the air sears your lungs, almost choking you into a coughing fit. It's suffocating, laden with the sharp, toxic stench of volatile fuel. The entire platform feels like it's teetering on the edge of catastrophe. Every second here feels dangerous, the air thick with the threat of a disaster waiting to happen. The hum of machinery feels ominous against the gasping breaths of workers, whose tense, hurried movements suggest they're all too aware of the dangerous conditions around them. Everyone here appears equally broken and sullen, and you can't make out the worker you saw earlier from the crowd.`
+			label hellothere3
+			choice
+				`	(Take in the scene.)`
+				`	(Walk back to the vehicle.)`
+					goto ending
+			`	You take in the scene for another moment, the sounds of the station filling the air as you stand on the platform. You give the area one last glance before heading back down to return to the spaceport in the bulky vehicle that took you here. The faint metallic taste of the radioactive air returns as you leave the refueling station, blending with the steady hum of the vehicle's repulsor engine.`
+			label ending
+			`	The long journey back to the spaceport proceeds in silence, leaving your decision behind to echo through the lives of the people left here.`
+
+
 mission "Timothy Radrickson 1: Stowaway"
 	invisible
 	landing
@@ -7505,8 +8497,8 @@ mission "Timothy Radrickson 1: Stowaway"
 		near "Zeta Aquilae" 3 10
 		government "Republic" "Free Worlds" "Independent" "Pirate" "Neutral"
 	destination "Rand"
-	passengers 1
 	to offer
+		has "event: remembrance day"
 		random < 2
 	on enter
 
@@ -7514,6 +8506,11 @@ mission "Timothy Radrickson 1: Stowaway"
 	on enter
 		conversation
 			`Upon completing your jump, one of your internal sensors begins to beep. You flick off the siren and check the diagnostic report: apparently there is a non-negligible heat source detected in the food storage of your ship.`
+				to display
+					not "entered system by: takeoff"
+			`Upon taking off, one of your internal sensors begins to beep. You flick off the siren and check the diagnostic report: apparently there is a non-negligible heat source detected in the food storage of your ship.`
+				to display
+					has "entered system by: takeoff"
 			`	As problems go, it is not a particularly alarming one: there are plenty of reasons there may be a heat spike in storage, and most of them would not require the captain of the ship to investigate.`
 			`	It is unusual, however.`
 			choice
@@ -7568,6 +8565,8 @@ mission "Timothy Radrickson 1: Stowaway"
 				decline
 
 			label somewhere
+			action
+				set "timothy radrickson: agreed"
 			`	Timothy looks at you, his eyes wide and full of tears. "Rand," he whispers. "Rand. I can make good money there. I can turn my life around. B-b-but I'd be okay with anywhere. You d-d-don't have to.."`
 			`	You cut him off. "It's fine, Timothy. I'll take you to Rand."`
 			`	Timothy breaks down in tears. "Thank you. Thank you. Thank you..." he mumbles over and over again.`
@@ -7575,11 +8574,12 @@ mission "Timothy Radrickson 1: Stowaway"
 				accept
 
 	on complete
-		log "People" "Timothy Radickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
 		log `Discovered Timothy, a stowaway, in my ship, and decided to take him where he needed to go. Never learned what Timothy had been fleeing, who he had been, or what he had done that lead him to such dire straits.`
 		event "timothy radrickson: on rand" 340
+		set "timothy radrickson 1 log entry correct"
 		conversation
-			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand."`
+			`During the trip Timothy's spirits and health improved, and by the time you arrive on Rand he seems like a different man. Before he steps out of the airlock he turns to you one more time. "Thank you so much, Captain <last>." He shakes your hand.`
 			`	"I mean it, from the bottom of my heart. You've saved my life, and given me hope. I won't forget this; or you. I could never thank you enough."`
 			`	His eyes glistening, Timothy turns from you and exits your ship.`
 
@@ -7590,7 +8590,7 @@ mission "Timothy Radrickson 1a: Accepted"
 	description "You found a man named Timothy on your ship stowed away in a foodstuff crate, on the run from somebody. He would like you to bring him to <destination>, where he can find work."
 	destination "Rand"
 	to offer
-		has "Timothy Radrickson 1: Stowaway: active"
+		has "timothy radrickson: agreed"
 	on abort
 		fail "Timothy Radrickson 1: Stowaway"
 
@@ -7635,9 +8635,10 @@ mission "Timothy Radrickson 2: Good Interlude"
 	to offer
 		has "event: timothy radrickson: on rand"
 	on offer
-		log "People" "Timothy Radickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
 		log `Despite starting over with nothing, Timothy has sent credits for that passage I gave him over a year ago.`
 		payment 50000
+		set "timothy radrickson 2 log entry correct"
 		event "timothy radrickson: governor" 3600
 		conversation
 			`After your ship touches down you notice a light blinking on your dashboard. You have a cached message waiting for you to play.`
@@ -7647,7 +8648,7 @@ mission "Timothy Radrickson 2: Good Interlude"
 			`	The screen lights up with a somewhat familiar man, but it is only when you see the name of the sender that you realize that this is the fuller face of a healthy Timothy Radrickson, whom you last met as a stowaway on your ship.`
 			`	"Captain <last>. Let me just reiterate my thanks to you for what you did for me. Most captains would have airlocked me, or dropped me off wherever, but you really gave me a chance."`
 			`	He stops and grins at the camera for a moment. "And that chance, it really has made all the difference. It's been a year of hard work, but I've saved some money and made some investments, and things really are turning around."`
-			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting to me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
+			`	"By way of thanks," he continues, "I've included <payment> with this message. That should cover the cost of transporting me to Rand, but it doesn't come close to what I really owe. Which is, in all honesty, my very life."`
 			`	He pauses, as if he's trying to remember something. "Anyways, thank you again, and know I'll never forget what you did for me."`
 			`	Timothy waves, and the video ends.`
 				decline
@@ -7878,6 +8879,7 @@ mission "Timothy Radrickson 3b: Pirate Base"
 mission "Timothy Radrickson 3c: Escort the Convoy"
 	landing
 	name "Escort the Convoy"
+	description "Escort the Hroar's Haulers Convoy from <origin> to <destination>."
 	source "Greenrock"
 	destination "Wayfarer"
 	to offer
@@ -7992,7 +8994,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 		has "Timothy Radrickson 3c: Escort the Convoy: done"
 	on complete
 		conversation
-			`Instead of Regina you are met by Timothy's executive secretary, Wynnafrith. She is clearly a little uncomfortable in Rand's regular gravity, but is doing her best to push through it.`
+			`Instead of Regina you are met by Timothy's executive secretary, Wynnafrith. She is clearly a little uncomfortable in Rand's low gravity, but is doing her best to push through it.`
 			`	"Captain <last>! You're the talk of the world! The savior of Rand." She gives you an open and earnest smile.`
 			`	"I've been sent by the Governor to drive you straight to his estate. Please come with me."`
 			choice
@@ -8051,6 +9053,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget my help. Was invited to a lavish celebration and named the Hero of Rand.`
 				"salary: Hero of Rand" = 200
 				payment 1000000
+				set "timothy radrickson 3 log entry correct"
 				event "timothy radrickson imprisoned" 400
 			`	You excuse yourself from the table and duck into the first empty room you find. You sit in one of the comfortable chairs; you notice a large wooden desk covered in screens and ledgers. You can still hear the muffled sounds of laughter, speeches, and general chatter from behind the walls. You sit for a while in a dark meditative silence.`
 			`	After a while, a gentle knock on the door and Timothy pushes his way into the room.`
@@ -8060,7 +9063,7 @@ mission "Timothy Radrickson 3d: Return to Rand"
 
 			label mingle
 			action
-				log "People" "Timothy Radickson" `Timothy has since become the governor of Rand.`
+				log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
 				log `Despite starting with nothing, Timothy had somehow become the powerful and well respected governor of an entire world. He made his own way on Rand and became its civic ruler, but he also didn't forget my help. Was invited to a lavish celebration and named the Hero of Rand.`
 				"salary: Hero of Rand" = 200
 				payment 1000000
@@ -8139,11 +9142,11 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 		random < 90
 		has "Timothy Radrickson 4: Imprisoned: active"
 	source "Oblivion"
-	deadline 1
 	invisible
 	on offer
-		log "People" "Timothy Radickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
 		log `Oblivion had not been kind to Timothy. The last time he had been seen alive he was dying the slow, toxic death that world is famed for. Asked me to help him.`
+		set "timothy radrickson 4 log entry correct"
 		conversation
 			`Your ship descends through the beautiful, toxic horizon and lands in the dirty, dismal spaceport outside of the provincial capital, Tukayyid. The clumped together warehouses they liberally call a spaceport are used as a central clearing house by all on-world industries, and workers from every industry filter in and out of this never-ending boom town. In the shadows, and on the fringes, the sick and infirm linger, looking for a handout; the price of progress on such a hostile world.`
 			`	Among the crowd one face draws your attention. A worker, unsupervised, is moving around a trolley of minerals by your ship as you have it refueled. His complexion is sallow, and his skin seems to droop off his bones. His blood red eyes, noticing your attention, languidly rise to look at you. Despite the damage, you realize you recognize him.`
@@ -8153,12 +9156,11 @@ mission "Timothy Radrickson 5: Oblivion Meeting"
 				`	"I'm sorry, Timothy."`
 				`	"Is there any way I can help?"`
 				`	"Shouldn't have broken the law."`
-
 			`	"I could use your help. Just to buy some things. Might help." His red eyes glance side to side before he says, conspiratorially, "Meet me tonight in the spaceport. Outside the Stephenson warehouse. Stephenson. I'll tell you what I need."`
 			`	With that, he returns to moving the mineral trolley, leaving you to yourself.`
 				accept
-	to complete
-		never
+	on enter
+		fail
 
 
 mission "Timothy Radrickson 5a: Timshank Redemption"
@@ -8173,7 +9175,8 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 		"timothy radrickson suit" >= 1
 		"timothy radrickson id" >= 1
 	to offer
-		has "Timothy Radrickson 5: Oblivion Meeting: active"
+		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 5: Oblivion Meeting: failed"
 	on offer
 		conversation
 			`Even after donning a particulate mask, Oblivion's toxic atmosphere is so thick it seems as if you could swallow it; it doesn't help that the air somehow feels even denser at night. The warehouse marked "Stephenson Heavy Industries" turns out to be at the very edge of the spaceport's boundary, and all you see when you get there is a lone box truck parked in the loading bay.`
@@ -8231,7 +9234,7 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			`	As your ship approaches the mine you can't help but notice the burnt out remains of a gutted and abandoned town. A few minutes later your ship rattles down outside the mine's entrance.`
 			choice
 				`	(Leave your ship.)`
-			`	It's dark and dusty outside. The planet's gravity makes you feel slow, and the air uncomfortably heavy in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`
+			`	It's dark and dusty outside. The planet's low gravity makes you feel languid, and the air uncomfortably light in your lungs. The entrance to the mine looms large before you and seems suddenly quite menacing. Perhaps this wasn't the best idea...`
 			`	"Don't move, or we will end you!" comes a shout from within the darkness of the mine. "Identify yourself, now!"`
 			choice
 				`	"I'm Captain <last>, veteran of the human civil war!"`
@@ -8289,10 +9292,10 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 			choice
 				`	(Walk inside.)`
 
-			`	The woman before you is middle-aged and somewhat squat with the hard-won muscles of a person adapted to Rand's grueling gravity. She's attractive though, and there is something very familiar about her face. You've met her before...`
-			`	"Captain <last>!" She says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
-			`	She glances down at herself as if recognizing her body's transformation from offworld waif to native Rander. "I dare say the world has changed me now that I'm away from the gravity generators.`
-			`	"Although I am no longer a secretary, I am Union-Colonel Wynnfrith, one of the leaders of the Underground Workers Union!" Her eyes sparkle and her words ring with a deadly seriousness.`
+			`	The woman before you is middle-aged and unusually gaunt, with the hollowed out appearance of a person who's lived too long in Rand's frail gravity. She's attractive though, and there is something very familiar about her face. You've met her before...`
+			`	"Captain <last>!" she says with a genuine grin. "I doubt you recognize me, but I was Governor Radrickson's secretary, Wynnafrith. We met years back at your banquet."`
+			`	She glances down at herself as if recognizing her body's transformation from healthy offworlder to Rander waif. "I dare say the world has changed me now that I'm away from the gravity generators.`
+			`	"Although I am no longer a secretary, I am Union-Colonel Wynnafrith, one of the leaders of the Underground Workers Union!" Her eyes sparkle and her words ring with a deadly seriousness.`
 			`	She tilts her head slightly. "But that's enough about me. What possible reason could you have for coming here?" Her face is open and friendly, but she casually rests her hand on her side arm.`
 			choice
 				`	(Tell her about Timothy.)`
@@ -8314,10 +9317,10 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	She shakes her head. "Well, why didn't you just say so? What does our Governor ask of us?" She holsters her sidearm.`
 
 			label Timmy
-			`	Union-Colonel Wynnfrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
+			`	Union-Colonel Wynnafrith's eyes get misty as you tell her about Timothy's plight. She shakes her head a few times and then takes the list from you and carefully scrutinizes it.`
 			`	"Ya know, to us he's still the Governor. Don't believe what the company-bosses and their paid politicians tell you. He was a good man." She wipes her eyes for a moment. "All he was trying to do was improve the conditions for workers here on Rand. He'd come up from the mines and he knew what it was like."`
 			`	Her free hand tightens into a ball. "The big men didn't like that. But what about the profit margins? They tried to bribe him, to offer him anything he wanted, to just leave things well enough alone. To let the exploitation continue." She says the last words through clenched teeth.`
-			`	"Sure, he made some mistakes. No one becomes governor here without out getting a little dirt of their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
+			`	"Sure, he made some mistakes. No one becomes governor here without getting a little dirt on their hands. But in the end he refused to give into the company-bosses' demands, and throughout it all he was laboring for the common man." Wynnafirth looks up at you. "You were a good friend to him, it's true, but truth be told, while you may have been his hero, he was ours; he was the real Hero of Rand.`
 			`	"And when he wouldn't budge they finally got him on trumped up charges and threw him to Oblivion to disappear and die." She shakes her head. "There was nothing we could do. We're still in a..." she hesitates, "... a rebuilding phase."`
 			`	She reads the list again. "A few weeks, you say? Well, we already thought he was dead, so if there's a chance we save the Governor then we're in.`
 			`	"We have a few left over explosives and detonators from when this mine was active. That should take care of the bomb he was hoping for." She then unholsters her sidearm and hands it to you.`
@@ -8325,20 +9328,20 @@ mission "Timothy Radrickson 5a: Timshank Redemption"
 				`	(Take it.)`
 
 			`	"And this should take care of his need for a gun. As for the other items on there..." She turns to a torn and faded star chart taped on the rocky cavern wall.`
-			`	Grabbing a small stick leaning from the wall, she points to Rastaban. "Dancer would be the best world to find a survival suit rated for Oblivion's toxic environment. As for medication..." She looks over the chart for a moment, then points to Dabih. "Your best bet will be New Britain. One of the few worlds in the Belt that can produce complex pharmaceuticals."`
-			`	The pointing stick falls on Shaula next. "The best place for a fake ID would be the 'independent' world of Greenrock." She taps her chin before continuing, "It would be tight though getting to all three of these worlds and back to the governor in time. Any of these worlds may also have the other equipment you need, but the quality likely wouldn't be as good."`
+			`	Grabbing a small stick leaning against the wall, she points to Rastaban. "Dancer would be the best world to find a survival suit rated for Oblivion's toxic environment. As for medication..." She looks over the chart for a moment, then points to Dabih. "Your best bet will be New Britain. One of the few worlds in the Belt that can produce complex pharmaceuticals."`
+			`	The stick points at Shaula next. "The best place for a fake ID would be the 'independent' world of Greenrock." She taps her chin before continuing, "It would be tight though getting to all three of these worlds and back to the governor in time. Any of these worlds may also have the other equipment you need, but the quality likely wouldn't be as good."`
 			`	She turns back to you. "I am sorry we couldn't be more help, but hopefully it's enough."`
 			`	After putting the pointing stick back in its place, Wynnafrith steps through the door, indicating for you to follow her.`
 			choice
 				`	(Follow her.)`
 
-			`	Once again in the larger cavern she turns and points at the guard. "Grab our explosive and carefully accompany Captain <last> with it back to his ship."`
+			`	Once again in the larger cavern she turns and points at the guard. "Grab our bomb and accompany Captain <last> with it back to their ship."`
 			`	The guard frowns. "But it's our only one..."`
 			`	"Now!" She cuts him off, and watches as he sullenly slumps away.`
 			`	Without looking your way she continues, "It was a pleasure to see you again, Captain <last>, but it's time you were leaving. The governor needs you, and my own glorious revolution needs some attention."`
 			`	You leave the dilapidated mines with a bomb, a pistol, and a plan.`
 			action
-				log `Met Union-Colonel Wynnfrith, Timothy Radickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. Showed her Timothy's list, and she said I could find a survival suit on Dancer, the medication on New Britain, and a fake ID on Shaula. Provided me with the gun and bomb Timothy asked for.`
+				log `Met Union-Colonel Wynnafrith, Timothy Radrickson's old secretary on Rand. She appears to have become a revolutionary since I last saw her. Showed her Timothy's list, and she said I could find a survival suit on Dancer, the medication on New Britain, and a fake ID on Shaula. Provided me with the gun and bomb Timothy asked for.`
 
 
 
@@ -8434,7 +9437,7 @@ mission "Timothy Radrickson 5b: New Britain"
 					goto haggle2
 				`	(Pass.)`
 			`	Again, the medicine just costs too much; Tim will have to survive with something less potent.`
-			`	The salesman's eyes bulge, and his smooth face is suddenly crisscrossed on unattractive wrinkles. "Fine. I have another buyer anyways," he half-growls at you. He begins packing up his stall, muttering and shaking his head to himself as he does so.`
+			`	The salesman's eyes bulge, and his smooth face is suddenly crisscrossed with unattractive wrinkles. "Fine. I have another buyer anyways," he half-growls at you. He begins packing up his stall, muttering and shaking his head to himself as he does so.`
 			`	You return to the central atrium of the trade sector to consider your other options.`
 				goto options
 			
@@ -9080,12 +10083,13 @@ mission "Timothy Radrickson 6: News of Death"
 		has "Timothy Radrickson 5e: Back to Oblivion: offered"
 		random < 15
 	on offer
-		log "People" "Timothy Radickson" `Tried to help Timothy escape from his prison sentence there.`
+		log "People" "Timothy Radrickson" `Tried to help Timothy escape from his prison sentence there.`
 		log "Timothy is dead - or at least that is what's being reported in the news. Perhaps the plot to break him free really did work."
+		set "timothy radrickson 6 log entry correct"
 		event "timothy radrickson forever"
 		conversation
 			`A spaceport is a symphony of smells, sounds, and images in constant motion. Somewhere in the din, a news report is playing, and a familiar name leaps out at you. Your attention piqued, you turn to watch.`
-			`	"News out of Oblivion today. A minor explosion has the claimed the life of Timothy Radrickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard but fair justice for a man who..."`
+			`	"News out of Oblivion today. A minor explosion has claimed the life of Timothy Radrickson, former disgraced Governor of Rand. Sentenced to prison-labor on Oblivion, a hard but fair justice for a man who..."`
 			`	The news broadcast continues to blare, but you aren't able to follow any more than that.`
 				decline
 
@@ -9103,7 +10107,7 @@ mission "Timothy Radrickson 7: Monk"
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
-			`	"Are you Captain <last>?" they ask.`
+			`	"Are you Captain <last>?" he asks.`
 			choice
 				`	"Why?"`
 					goto why
@@ -9141,7 +10145,7 @@ mission "Timothy Radrickson 7: Monk"
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, I can't leave here, and I can't send any messages." He steps back to look at you.`
 			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only modestly.`
 			`	"It was difficult for me to speak when last we met on Oblivion, but you're my oldest and best friend. At my lowest points you were always there for me. I just wanted to thank you for that."`
-			`	You spend the day chatting with with Timothy, before it's time to leave.`
+			`	You spend the day chatting with Timothy, before it's time to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
 			label goodbyes
 			choice
@@ -9156,7 +10160,7 @@ mission "Timothy Radrickson 7: Monk"
 
 			action
 				clear "offers"
-			`	You lean in and give him a warm, earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free you see a tear his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
+			`	You lean in and give him a warm, earnest bear hug. He wraps his arms around you and squeezes you back. When he finally breaks free, you see his eyes are blurry with tears. He nods to you once, and then walks back into the monastery. You begin your slow descent down the mountain, and back to civilization.`
 				decline
 
 			label shake
@@ -9180,13 +10184,13 @@ mission "Timothy Radrickson 7: Monk"
 			label offer2
 			action
 				log "Found Timothy alive and well on New Tibet, living a simple, but happy life as a monk."
-				log "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and has escaped to New Tibet, where, thanks to my help, he now lives as simple monk. He seems happy.`
+				log "People" "Timothy Radrickson" `Timothy Radrickson survived his faked death on Oblivion and escaped to New Tibet, where, thanks to my help, he now lives as a simple monk. He seems happy.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he wraps his arms around you in an earnest, heartfelt hug.`
 			`	He tries to speak, but his voice fails him. Instead he just shakes his teary-eyed head at you and gives you a deep solemn bow.`
 			`	Timothy stays to watch as you begin your slow descent down the mountain, and back to civilization.`
-			decline
+				decline
 
 
 
@@ -9200,7 +10204,7 @@ mission "Timothy Radrickson 7: Hospice"
 	on offer
 		conversation
 			`A group of monks passes you by in the spaceport, and one stops to look at you curiously.`
-			`	"Are you Captain <last>?" They ask.`
+			`	"Are you Captain <last>?" he asks.`
 			choice
 				`	"Why?"`
 					goto why
@@ -9237,7 +10241,7 @@ mission "Timothy Radrickson 7: Hospice"
 			`	"Captain <last>. I always hoped I would see you again. Given my tenuous legal situation, not to mention my health, I can't leave here, and I can't send any messages." His eyes linger on you, as though he is taking a mental picture. Or just enjoying the sight of a good friend returned.`
 			`	"The years have been kind to you, Captain; you hardly look any different from when we first met! Perhaps I should have invested in ship life, instead of staying terrestrial!" He laughs at his own joke, but only weakly given his condition. He coughs a bit, and takes a few slow, deep breaths before continuing.`
 			`	"It's still a little difficult for me to speak, but I feel much better than when last we met on Oblivion. I just wanted you to know you're my oldest and best friend. At my lowest points you were always there for me. So thank you for that."`
-			`	You spend the day in the hospital room chatting with with Timothy, before finally having to leave.`
+			`	You spend the day in the hospital room chatting with Timothy, before finally having to leave.`
 			`	"Thank you for coming here. I wish I had something to give you, but I own nothing anymore, even though I owe you everything. Take care out there, and I'll do my best to keep out of trouble in here."`
 			label goodbyes
 			choice
@@ -9280,7 +10284,7 @@ mission "Timothy Radrickson 7: Hospice"
 			label offer2
 			action
 				log "Found Timothy alive, but not in great shape. He is thankful for the rescue nonetheless. Can't shake the feeling that there was more that I could have done for him."
-				log "Timothy Radrickson" `The once stowaway, governor, and prisoner Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
+				log "People" "Timothy Radrickson" `Once a stowaway, governor, and prisoner, Timothy Radrickson now resides incognito on New Tibet. Unfortunately, some of the equipment I acquired for him was faulty, and he spends his days in a hospital ward as an invalid.`
 				clear "salary: Hero of Rand"
 				clear "offers"
 			`	As you speak Timothy shakes his head slowly, tears streaming down his face. Finally, as you finish, he reaches out to you with his one good arm and pulls you in for a hug.`
@@ -9327,7 +10331,7 @@ mission "Timothy Radrickson 7: Grave"
 			label search
 			action
 				log "Timothy is dead. It seems the plan to break him free failed."
-				log "Timothy Radrickson" `From stowaway, to governor, to prisoner, to corpse: the tale of Timothy is complete. The equipment I acquired for him failed, and what is left of his buried beneath a neat unremarkable gravestone on Oblivion.`
+				log "People" "Timothy Radrickson" `From stowaway, to governor, to prisoner, to corpse: the tale of Timothy is complete. The equipment I acquired for him failed, and his remains are buried beneath a neat unremarkable gravestone on Oblivion.`
 			`	The index is easy to find, and has all the hallmarks of having never been used. The graveyard is set up in a carefully regimented grid system and despite the large number of graves, it is surprisingly easy to find Timothy's.`
 			`	You walk across the forgotten memorial to find a small, flat unremarkable stone, hemmed in amongst other unremarkable stones, pressed into the dead ground. The text laser-chiseled onto it reads, "Timothy Radrickson. Prisoner - 645631-4C."`
 			`	That's all. Nothing about his meteoric rise, about being the Governor of Rand, or even how or when his death occurred here. Just another dead prisoner.`
@@ -9341,3 +10345,939 @@ mission "Timothy Radrickson 7: Grave"
 			label end
 			`	The shadows turn a darker shade of purple as you leave the graveyard of the forgotten dead for the familiar confines of your ship.`
 				decline
+
+
+mission "Timothy Radrickson: Log Fix 1"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 1: Stowaway: done"
+		not "Timothy Radrickson 2: Good Interlude: offered"
+		not "timothy radrickson 1 log entry correct"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 2"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 2: Good Interlude: offered"
+		not "Timothy Radrickson 3d: Return to Rand: done"
+		not "timothy radrickson 2 log entry correct"
+		not "Timothy Radrickson: Log Fix 1: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 3"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 3d: Return to Rand: done"
+		not "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "timothy radrickson 3 log entry correct"
+		not "Timothy Radrickson: Log Fix 2: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 4"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 5: Oblivion Meeting: offered"
+		not "Timothy Radrickson 5a: Timshank Redemption: offered"
+		not "timothy radrickson 4 log entry correct"
+		not "Timothy Radrickson: Log Fix 3: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
+		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		fail
+
+mission "Timothy Radrickson: Log Fix 6"
+	landing
+	invisible
+	to offer
+		has "Timothy Radrickson 5a: Timshank Redemption: offered"
+		not "timothy radrickson 6 log entry correct"
+		not "Timothy Radrickson: Log Fix 4: offered"
+	on offer
+		remove log "People" "Timothy Radickson"
+		log "People" "Timothy Radrickson" `A stowaway I found on my ship. He requested a trip to Rand to start a new life, promising to pay back the money he owes.`
+		log "People" "Timothy Radrickson" `Timothy kept his promise, sending 50,000 credits to pay for his trip.`
+		log "People" "Timothy Radrickson" `Timothy has since become the governor of Rand.`
+		log "People" "Timothy Radrickson" `Charged with corruption and mired in scandal, Timothy has been disgraced and exiled to Oblivion.`
+		log "People" "Timothy Radrickson" `Tried to help Timothy escape from his prison sentence there.`
+		fail
+
+
+
+event "stone waiting most"
+
+
+mission "Stone to Hope"
+	name "Bring Tosti's stone to <planet>"
+	description "Take Tosti's family stone to <destination>, where the Snaiwaz clan used to live before they immigrated to <origin>."
+	to offer
+		random < 75
+		has "Stone of our Fathers 5: done"
+		has "event: stone waiting most"
+		not "Ice Queen: offered"
+	source "Norn"
+	destination "Hope"
+	on offer
+		conversation
+			`There is a certain comfort to be found in the familiar swaying of Norn's spaceport. The creaking bridges no longer feel intimidating or threatening, only welcoming. There's never many staff here, but the few you do run into greet you warmly. Word has apparently spread that you've all but been adopted into the Hlewagasti family.`
+			`	Helm, with his sandy hair and short beard, approaches you with a young man in tow. "<first>! It is well to see you again.`
+			`	"So..." he says conspiratorially, "... there is no date yet, but a certain red-haired stoic and his exotic Alfheimian girlfriend may be looking at wedding dates."`
+			choice
+				`	"That's great news!"`
+				`	"Do you know when?"`
+				`	"Who are you talking about?"`
+					goto who
+				`	"I don't really care."`
+					goto cold
+
+			`	"Like I said, there is no date yet, and with those two it could be years before they finally land on a date. Time's different out on the algae islands." He shrugs.`
+			`	"But I thought you'd appreciate a small update on Thorleif." He smiles and then glances at the young man next to him. "Anyways, that's not actually why I sought you out."`
+				goto hopestone
+
+			label who
+			`	"You don't remember Thorleif? My cousin out on the algae islands?" He frowns, but regains his composure and glances at the young man next to him. "Anyways, that's not actually why I sought you out."`
+				goto hopestone
+
+			label cold
+			`	Helm frowns and takes a step back like he's been struck. After a moment he regains his composure and replies, "If you say so. In that case I have another matter to discuss with you."`
+
+			label hopestone
+			`	Standing beside Helm is an unremarkable young man with a sunburnt face, calloused hands, and threadbare garb. "Ca-Captain <last>?" he says nervously, "I'm sorry to be a bothering you, ser. But I heard tell what you did for Thorleif, and I thought maybe you were the like to do a good turn by me."`
+			`	Sensing his discomfort, Helm puts an arm on the young man's shoulder. "It's alright, Tosti, we're all friends on Norn."`
+			`	The young man staightens up a bit at Helm's reassurance and looks you in the eyes. "My da, well, he liked the waves well enough, but never really settled here, you see? In his heart that is.`
+			`	"He never really left our old home. We were refugees and were ever so glad to be taken in by Norn, but he never felt so tall as when he thought about Hope, about home."`
+			choice
+				`	"What are you going on about?"`
+					goto finish
+				`	(Wait for him to get the point.)`
+					goto finish
+				`	"Leave me alone. I'm not interested."`
+			`	Crestfallen, the young man stumbles over his words attempting to apologize for the intrusion and slinks away from you in an ungraceful hurry.`
+			`	Helm watches him go with an unhappy frown upon his face. "You could have at least heard him out."`
+			`	He shakes his head and turns from you before saying, "I thought better of you."`
+				decline
+
+			label finish
+			`	Tosti suddenly stops, and takes a deep breath. "We're from Hope, ser. My family. We're refugees and we had to leave everything behind. But da, he never really left Hope."`
+			`	The young refugee pulls out a stone criss-crossed in tiny chiseled letters. The familiar engraved story of a life now ended. "This is his stone, and well, he - he'd want his stone left on Hope. I was hoping that was something you could do."`
+			`	With the words he swallows and looks at you earnestly.`
+			label hopeoptions
+			choice
+				`	"I can take the stone to Hope."`
+					goto hopeyes
+				`	"I can take the stone to Hope, for a price."`
+					goto hopeprice
+				`	"I thought Family-Cairns were exclusive to the Deep. Why would there be one on Hope?"`
+					goto whyhope
+					to display
+						not "stones"
+				`	"Hire a courier. I have more important things to do."`
+				`	"No."`
+
+			label hopeno
+			action
+				clear "stones"
+			`	Helm sighs and tries to pat the young man on the back before he entirely deflates. "Captain <last> is a very busy man. I am sure we can find someone else to make the journey. There is no shame in asking for help."`
+			`	Tosti is red and shaking, and mumbles some apologies before slinking away from you and Helm.`
+			`	Helm gives you a nod and says, "Thank you for listening, at least."`
+				decline
+
+			label whyhope
+			action
+				set "stones"
+			`	"Lots of the first folks who settled Hope came from the Deep." Helm answers, getting a far off look in his eyes. "It wasn't like most worlds in the south. It was going to be different. At least, that's what they believed."`
+			`	He shrugs, "Many of them didn't forget where they came from. Brought the old ways with them. Some refugees, like Tosti's family, even found their way back here when Hope was lost.`
+			`	"Anyways, that's why you can find Family-Cairns on Hope - because our people were there. Now, getting back to the matter at hand, you willing to help Tosti out?"`
+				goto hopeoptions
+
+			label hopeprice
+			`	He grimaces, "I am sorry, ser. Work is hard to come by for us refugees. I thought - I thought I'd just ask. In case you were near. In case it was within your power is all."`
+			choice
+				`	"I might be in the area. No promises though."`
+				`	"Alright. I'll do it."`
+				`	"Sorry. I don't work for free."`
+					goto hopeno
+
+			label hopeyes
+			action
+				clear "stones"
+			`	The young man's eyes light up. "Really? Truly? I didn't dare hope..."`
+			`	His body weight shifts and it looks as though he's about to hug you before he abruptly stops himself and tries to regain a little composure.`
+			`	"Thorleif was right about you," he says as he presses the small, cool stone into your hand. "The Family-Cairn is not far from where the last spaceport used to be. Just by the cliffs, and the family name was Snaiwaz."`
+			`	With the stone firmly in your fist, he thanks you one last time, and then takes his leave.`
+			`	Helm silently watches him go and then turns back to you, shaking his head. "You're not like any off-worlder I've ever known. Most would have laughed in that boy's face, let alone done him a good turn for free."`
+			`	He smiles at you and says, "You really are one of us."`
+				accept
+
+
+mission "Stone to Ice Queen"
+	landing
+	name "Bring Ildico to <planet>"
+	description "You found a woman named Ildico Drifa in an abandoned manor on <origin>. She has asked you to bring her to <destination> so she can escape the abandoned planet."
+	source "Hope"
+	destination "Clark"
+	passengers 1
+	to offer
+		has "Stone to Hope: done"
+	on offer
+		conversation "Ice Queen"
+	on complete
+		conversation "Ice Queen End"
+
+
+mission "Ice Queen"
+	landing
+	name "Bring Ildico to <planet>"
+	description "You found a woman named Ildico Drifa in an abandoned manor on <origin>. She has asked you to bring her to <destination> so she can escape the abandoned planet."
+	source "Hope"
+	destination "Clark"
+	passengers 1
+	to offer
+		has "Expedition to Hope 2: done"
+		not "Stone to Hope: done"
+		random < 5
+	on offer
+		conversation "Ice Queen"
+	on complete
+		conversation "Ice Queen End"
+
+
+conversation "Ice Queen"
+	branch "has stone"
+		has "Stone to Hope: done"
+	`There is nothing here. Only unceasing desolation. The slow churning of hateful ice that swallowed the dream of a world. Yet, here you are. You've landed along the equator, where the environment is not quite so hostile, and where patches of unconquered ice-free rock still reign.`
+	`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
+	choice
+		`	(Explore the area.)`
+			goto explore
+		`	(Leave this world.)`
+	`	There is nothing here anyone could want. You leave this abandoned world to its glaciers and ghosts.`
+		decline
+
+	label explore
+	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
+	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow.`
+	`	You work around the silent spaceport, where the half-buried hangars are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you see a cliff edge with dozens of cairns piled along it. Silent watchers of the churning glaciers.`
+	`	The sun begins to set, and you can already feel the temperature beginning to plummet. There's not much else to see in this abandoned world, and it may be time to head back.`
+		goto building
+
+	label "has stone"
+	`There is nothing here. Only unceasing desolation. The slow churning of hateful ice that swallowed the dream of a world. Yet, here you are. You've landed along the equator, where the environment is not quite so hostile, and where patches of unconquered ice-free rock still reign.`
+	`	Beyond your ship are the ruins of the last unfrozen city. Where the final refugees huddled together awaiting their saviors, the Republic Navy, and were whisked away to other more welcoming worlds.`
+	choice
+		`	(Search for the Snaiwaz Family-Cairn.)`
+			goto cairnsearch
+		`	(Toss the stone out your hatch and leave this world.)`
+
+	action
+		set "chucked tosti's stone"
+	`	The stone of Tosti's father tumbles out of the ship and comes to rest in a heap of cluttered refuse. This is as close as it will get to its Family-Cairn, and far closer than Tosti could have gotten it on his own.`
+		decline
+
+	label cairnsearch
+	`	You break out the cold gear and dress yourself in warm layers with sturdy boots. Furtive frost cracks and breaks as your ship's door opens, and you step out into the cold air. This world's dim light reflects painfully off the ice and snow, momentarily blinding you.`
+	`	Once outside in the sharp, crisp air it's easy to find the dismal ruins of this world's last spaceport. The trek is slow and clumsy in the unfamiliar gravity and granular snow.`
+	`	You work around the silent spaceport, where the half-buried hangars are littered with the forgotten mementos of desperate refugees, and many of the buildings are lost beneath the encroaching ice. Eventually you find the cliffs that Tosti spoke of, and the many dozens of Family-Cairns piled along side it. Silent watchers of the churning glaciers.`
+	`	You see a nearly toppled Family-Cairn with the name "Snaiwaz" at its base.`
+	choice
+		`	(Place Tosti's father's stone.)`
+			goto placestone
+		`	(Throw the stone off the side of the cliff.)`
+
+	action
+		set "threw tosti's stone"
+	`	You hurl the stone far beyond the cliff side and down into glacial slopes beneath it, forever separated from its kindred-stones.`
+		decline
+
+	label placestone
+	action
+		set "placed tosti's stone"
+	`	Carefully you place Tosti's stone with the others. The act is greeted only by the deafening silence and the icy air of the abandoned world.`
+	`	The sun is setting and your task here is done. You start making your way back through ice and ruin to your ship.`
+
+	label building
+	`	As you pass around one corner of the sagging spaceport, you notice a large, ice-free building in the distance with a light burning within.`
+	choice
+		`	(Enter the building.)`
+			goto litbuilding
+		`	(Keep heading toward your ship.)`
+
+	`	Whatever is going on in that building, it has nothing to do with you, and so you ignore it and return to your waiting ship.`
+		decline
+	
+	label litbuilding
+	`	You enter into the sturdy and unfrozen building at the edge of the spaceport.`
+	`	Faded wealth still clings to peeling walls of this once spacious manor. It is evident that it was once the heart and hearth of a wealthy family in an earlier, warmer time. The home feels like a tomb or a museum; it seems as if everything here has been left in a certain way for a long time. But as you work deeper into its nested walls you begin to see signs of much more recent life.`
+	`	Eventually you find your way to the kitchen, which appears to be the epicenter of activity in this household. You see assorted survival rations and gear strewn about everywhere. More alarmingly, you also see a young woman sitting on the floor with her back against a counter.`
+	choice
+		`	"Who are you?"`
+		`	"Are you okay?"`
+		`	"What are you doing here?"`
+
+	`	The woman has short jet black hair. She's wearing a military grade, all-purpose survival suit, the kind you might see on deeply embedded special forces. The only weapon on her is a decorated knife at her belt. She looks pale and frail, probably malnourished. But her icy eyes are clear, and she locks them onto you.`
+	`	"You come into my home, and expect me to answer your questions?" Her voice is steady.`
+	`	Slowly, awkwardly, she pulls herself to her feet, keeping one hand on the counter for balance. She rests her other hand over her knife.`
+	`	"You are lucky that you did not barge in here a year ago, or even a month ago." Despite her bravado there is a deep wariness behind her words. "Now tell me, who are you, and what are you doing here?" she asks, through gritted teeth.`
+	choice
+		`	(Tell her who you are, and how you were just delivering a stone.)`
+			to display
+				has "Stone to Hope: done"
+		`	(Tell her who you are, and how you were just out exploring.)`
+		`	(Tell her it's none of her business.)`
+
+	`	The woman nods slowly, and then painfully, slides back down to the ground.`
+	`	Her eyes fall to the floor. "I have no choice but to trust you. I have lived here all my life, but my equipment has failed. I never wanted to leave, I was never meant to leave, but I won't let the ice win. I won't let it take me, too."`
+	`	She looks back up at you with her piercing eyes. "I am Ildico, last of House Drifa, daughter of Deoric, once one of the most powerful men on Hope. Everyone fled the ice. The Republic Navy made it easy. Enter their ships and be shipped off to paradise, to live as nobodies at the sufferance of strangers.`
+	`	"But we were House Drifa. More than anyone else we built this world, and we would not abandon it to be someone else's dredges. My father bought supplies, equipment, necessities from the Navy. Enough so that me, my brother, and my mother could survive here."`
+	`	She pauses, as though unsure she wants to continue; then finally, in a less firm voice: "And then my father left. He said that dozens of worlds, worse off than ours, were terraformed every day. He said all they needed was a little convincing, and that he would come back with the support to terraform, and save, Hope. And then... he never came back."`
+	`	Ildico sighs. "A treasure hunter killed my brother a few years back. My mother... she is also dead, and I am starving. I have no way to contact anyone else, and no one else is left.`
+	`	"So, what do you say," she says while leaning her head back, clearly exhausted by this exchange. "Will you kill me? Take advantage of me? Save me? Or leave me... to die?"`
+	choice
+		`	"Come with me. It's time you gave up on Hope."`
+			goto comewithme
+		`	"I'll get you out of here. After that, no promises."`
+			goto comewithme
+		`	"I don't have time for wretches. You're on your own."`
+	`	Ildico, her eyes still closed, takes a deep breath. She opens her eyes just as she lunges at you, with a swift arm motion toward your head. Before you have a chance to react, her knife is embedded deep in your throat.`
+	`	You're on the ground now, with ruby red blood oozing out over the cold floor. You hear a strange moan escaping from your mouth, and Ildico's hands are in your pockets removing everything you have of value.`
+	`	As the world fades to black, you hear her talking, her words sound as though they are coming from a great distance. "Like I said, I won't die here. Thanks for the ship."`
+	`	Your vision grows darker until only a single point of light remains. You don't feel cold, or pain, or anything at all. You just feel heavy. So heavy. Too heavy. So, you let go.`
+		die
+
+	label comewithme
+	`	You help her back onto her feet, and with her leaning on you, the two of you make your way back outside and through the perilous cold to your ship.`
+	`	Once aboard, after she's eaten and regained a little of her strength, she comes to talk with you.`
+	`	"Thank you for saving me. There are places I need to go. But I know I cannot force you to take me. And I have no credits to pay you. If you could take me to <planet>, I could make my own way from there."`
+	choice
+		`	"Anywhere you need to go, I can take you."`
+			goto wheresheneedstogo
+		`	"Okay, I'll take you to <planet>, but after that you're on your own."`
+			accept
+
+	label wheresheneedstogo
+	`	Ildico narrows her eyes. "Nothing is free."`
+	choice
+		`	"I just want to make the universe a better place."`
+		`	"It's karma. What goes around comes around."`
+		`	"One day you'll be able to pay me back."`
+		`	"It's how they do things on Norn."`
+			to display
+				has "Stone to Hope: done"
+		`	"My reasons are my own."`
+
+	action
+		set "helpildico"
+	`	Ildico doesn't react for a moment, seemingly taking in your words.`
+	`	At length she nods slowly. "We'll see."`
+	`	She pauses again and then shrugs. "It's not like I have anything to lose... very well. I need to discover what happened to my father. I know he first went to Clark to meet with a terraforming firm there. That's where I start my search."`
+		launch
+
+conversation "Ice Queen End"
+	branch helpildico
+		has "helpildico"
+	`Your thrusters kick up fresh dust as you land on your assigned concrete pad in the sprawling spaceport. Ildico, looking less pale and significantly more sturdy, waits by the exit.`
+	`	"Thank you for getting me out of there. After all those years on the ice this place will be no challenge for me. Perhaps someday our paths will cross again. If they do, I will remember this small kindness."`
+	`	She gives you a stern nod, and then exits your ship and into the chaos of Clark.`
+		goto end
+
+	label helpildico
+	`Your thrusters kick up fresh dust as you land on your assigned concrete pad on the fringes of the sprawling spaceport. Ildico, looking less pale and significantly more sturdy, waits by the exit.`
+	`	"The terraforming firm is certain to have an office, or booth, in the ramshackle spaceport here. Let's pay them a visit."`
+	label end
+
+
+mission "Ice Queen 2"
+	name "Find Ildico's Father"
+	description "Look for Ildico's father on <destination>, where he went after he left Clark."
+	source "Clark"
+	destination "Glory"
+	passengers 1
+	to offer
+		has "helpildico"
+		or
+			has "Ice Queen: done"
+			has "Stone to Ice Queen: done"
+
+	on offer
+		conversation
+			`Pushing through the boomtown hustle and bustle, you and Ildico make your way to a series of kiosks, booths, and hastily constructed offices that serve a variety of needs and functions in the ever-growing world of Clark.`
+			`	Among these you find the offices of "Clark's Third Law Terraformists." Ildico steps in front of you and enters first.`
+			`	An older man with greying hair and a bit of a paunch looks up from his desk. He stands up genially as both of you approach and says, "Howdy friends, I am Eustace Goodfellow, and welcome to our cozy establishment. Do you have need of a little terraforming?" Eustace flashes a wide open smile.`
+			`	"Yes. I'd like to terraform the planet Hope." Ildico says flatly.`
+			`	"Well, uh, ma'am. We don't, that is to say, we're not that kind of terraforming firm. We do small jobs. Touch ups. We can't... we can't terraform a world, and I don't..." Eustace looks at both of you carefully before saying, "I don't think you could pay for it either."`
+			`	Ildico leaps over the desk and grabs Eustace by his collar. "Is that what you told my father, Lord of House Drifa? Did you send him away like some misbegotten pauper?"`
+			`	Eustace pales and holds out his hands. "Please, let me go. I meant no insult."`
+			choice
+				`	(Don't interfere.)`
+				`	(Tell Ildico to calm down.)`
+			`	Ildico releases his collar, but remains only inches from his face. "Did Deoric Drifa come here years ago asking to terraform Hope?"`
+			`	Eustace takes a step back, and nods vigorously. "Yes, yes. I remember him. You don't forget a man like him, or a request like his. He asked about terraforming Hope. As I said earlier, we aren't that kind of firm. I told him he'd have to talk to the Academy of Planetary Sciences on <planet> for that kinda work. And then he left.`
+			`	"Please." Eustace says, backing up further. "That's all I know about him. I never saw him again."`
+			`	Ildico stares at him for a few more moments, and then turns and passes you on her way to the exit.`
+			`	She opens the door and nods to you. "We're going to <planet>."`
+				accept
+
+	on complete
+		conversation
+			`To some Glory is a testament to human ingenuity, skill, and potential. It is the dream made real, the promise proven true. A world perfectly sculpted to suit the needs, desires, and tastes of humanity. Nothing here is left to chance; every inch carefully, artfully, manifested by man's will.`
+			`	And yet, to others, it is grotesque, a mockery of nature. A lie made into a monument. As you deal with the Republic spaceport officials you notice the plastic-perfect denizens walking around, staring at your defective face and your workworn ship.`
+			`	"There is no beauty here," Ildico says vacantly when you're finished with the officials. "Only vanity."`
+			`	The spaceport's transport terminal has a direct rail link to the Academy of Planetary Sciences. Perhaps you could find out what happened to Ildico's father in the Academy.`
+
+
+mission "Ice Queen 3"
+	name "Find Ildico's Father"
+	description "Professor McGiven told you that Ildico's father now works for the Republic on <destination>. Bring Ildico there to see if you can visit him."
+	to offer
+		has "Ice Queen 2: done"
+	source "Glory"
+	destination "Chiron"
+	passengers 1
+	on offer
+		conversation
+			`The Academy of Planetary Sciences is a campus the size of a small nation-state on Earth. Various artificially created and maintained microclimates abound as you travel between miniature mountains and micro-savannahs; between marshland and jungle, desert and forest. Impossible machines - some larger than skyscrapers - litter the twisted and ever-changing landscape, and terraforming satellites make meteor showers overhead in the dawn light. This is a place where anything is possible, and land bends eagerly to the whims of the terraforming wizards.`
+			`	Eventually, Ildico and you make it to the primary reception complex, where after hours of filling out inane forms, and waiting in different meaningless queues, you finally reach someone who can help you. An old visitor list shows that one Deoric Drifa had visited a Professor Ian McGiven, Second Degree Terraformer and World Warming specialist in JZ86 Cantos-B of Cooling Block 9 in the Everest Facility.`
+			`	The receptionist helpfully draws you a map to where you're going. She also lets you know that in order to visit him you'll need to fill out six other forms first. You get to work.`
+			choice
+				`	(Fill out the forms.)`
+			`	You input your standard credentials. Full name, date of birth, location of birth, occupation, ID, social and civil information, and signature. You flip the form over, moving to the next.`
+			choice
+				`	(Fill out more forms.)`
+			`	A page straight out of an entry exam faces you. Accompanied by a set of dots representing if or how often you have caught them, are dozens of labels noting common diseases along with illnesses you thought had been eradicated. The majority of options consist of words and names you imagine must represent some serious conditions, but which you have no recollection of ever reading or hearing about. After scraping your memory as best as you can for your medical history, you eventually finish filling out the last set of dots, and sign. Sighing, you flip the form.`
+			choice
+				`	(Continue filling out forms.)`
+			`	You begin to wonder how it was less bureaucratically stressful to purchase your first ship than it is to schedule an encounter with a campus professor here. When the form prompts you for your address, you scramble out of the room to research what spaceship captains should fill out in such cases. After many contradicting forums and blatantly outdated government websites, you return and put in the best answer you can think of. Then the form specifically requires you to input the institution you studied at, here on <origin>. Again you set to look for answers on how to respond when you are not even from the planet this form is from. After a few more questions, you start to zone out and just automatically input whatever seems least likely to get the form rejected, based on online tips and nebulous descriptions from government pages.`
+			`	The receptionist brings a few of the earlier forms you filled out and helpfully points out a few mistakes for you to fix.`
+			choice
+				`	(Fix the forms you already filled out.)`
+			`	As it turns out, your bank account is not compatible with the due process the forms here are a part of. You download an application to open your very own account on one of the local banks, after checking with the receptionist that this one is compatible. After a few more minutes (and a great many attempts at fitting your face in a camera shot for a mandatory facial recognition step) your new bank details are ready and filled in the forms, which you turn over with haste. Surely it must be ending soon.`
+			choice
+				`	(Fill out the final set of forms.)`
+			`	In this wondrous paradise of terraforming, a true testament to human ingenuity and mastery over nature, you are close to fuming with frustration at the inability of the local machinery to recognize your signature. For the better part of an hour you get to work on every form again, straining your arms as you slowly, carefully imprint your signature again, on every one of them, as identical to each other as you can.`
+			`	A few painfully tedious hours after you first arrived, all the right forms have been filled out and you're met by an intern in a small vehicle.`
+			`	She glances at her electronic clipboard. "Captain <last>? Lady Drifa? I am here to escort you to the Everest Facility." She opens the door and gestures to you two. "Please climb aboard. I know the confines are quite small, but the E.F. is only a few kilometers away."`
+			`	Ildico glares at the young woman suspiciously, then turns to you. "Can we trust her?"`
+			`	The intern looks confused and a little hurt, but says nothing.`
+			choice
+				`	"We can trust her. We're in no danger here."`
+					goto nodanger
+				`	"I'll protect you. Don't worry."`
+					goto protect
+				`	"We have no choice if you want answers."`
+			`	Ildico nods and then enters the vehicle and you follow behind her.`
+				goto ridealong
+			
+			label nodanger
+			`	Ildico barks out a laugh. "So naive. We are always in danger. But for answers I will risk it."`
+			`	She carefully checks the inside of the vehicle before carefully climbing in.`
+			choice
+				`	(Follow her in.)`
+					goto ridealong
+
+			label protect
+			`	Ildico laughs heartily and sheds a couple tears. "You? Protect me?" She wipes her tears as her mirth subsides and her cold intense coutenance reasserts itself.`
+			`	"No, <first>. I will protect you." Her voice is deadly serious. She then inspects the inside of the vehicle carefully and takes a seat. "It seems safe. And I need answers."`
+			choice
+				`	(Follow her in.)`
+
+			label ridealong
+			`	After a brief ride through the campus you are escorted deeper and deeper into the maze that is the Everest Facility. Another half an hour of hallways, and turns, and stairs and ups and downs, you finally find yourself inside Ian McGiven's office.`
+			`	The man hears your inquiry and nods earnestly. "Ah, yes, of course I remember the fellow! What an interesting meeting that was," Ian says from behind his small desk.`
+			`	"Obviously, the details are confidential, but in very broad generalities, he wanted me to warm up a freezing world."`
+			`	Ildico doesn't blink; on second thought, you're not sure you've ever seen her blink. "Hope. Yes, and could you warm it?"`
+			`	Ian laughs. "Oh, of course, a job like that would have been quite simple."`
+			`	"Then why didn't you?" The tension is obvious in Ildico's voice.`
+			`	Ian shrugs. "Though he could afford it, there were other concerns."`
+			`	Ildico steps forward and looms over Ian like an angry shadow. It appears that it is taking all of her willpower to keep her from ripping this man apart. "Concerns?"`
+			`	"Y-yes. I don't know the specifics. You have to understand, here at the Academy it's not just about money. It's about politics, and power. I am just a Second Degree Terraformer, and after the initial meeting I wasn't privy to the details. But someone, or some government or corporation didn't want it. If you want to know more you'll have to ask him yourself."`
+			`	Ildico seems to deflate. "Ask him? Is... is he here?"`
+			`	The terraformer shakes his head. "Oh, no. He doesn't work for the Academy. But after the rejection he went to the heart of the Republic, I assume to find out why. He now works for them. I see his name from time to time. Just head to the Republic's main office for the Department of Migration, which is located on Chiron."`
+			`	Without saying another word, Ildico turns and leaves. You thank Ian for his help and follow her out.`
+				accept
+
+
+mission "Ice Queen 4"
+	landing
+	invisible
+	source "Chiron"
+	passengers 1
+	to offer
+		has "Ice Queen 3: done"
+	on offer
+		event "deoricdeeds" 700
+		conversation
+			`It's easy to imagine Earth once looked and felt much like Chiron does today. A vibrant world, full of engaged and motivated people, all in a hurry to change the universe - or at least, to run it.`
+			`	The Department of Migration, Stellar Populations and Advanced Interplanetary Economics is easy enough to find. What's surprising is how quickly you are ushered into a waiting room outside the office of one Mr. Drifa, Sub-Executive of Multiplanetary Pricing.`
+			`	After a brief wait, a young secretary announces that Mr. Drifa is ready to see you, and brings you and Ildico into his office.`
+			`	"So what can I help you with..." Deoric Drifa's voice trails off as he sees Ildico.`
+			`	Ildico tries to step forward than stops herself. She freezes up.`
+			`	"It can't be," the elder Drifa whispers.`
+			`	"Why. Didn't. You. Come?" Ildico forces out each word.`
+			`	"I sent for you. They told me you were all dead. They found bodies... and the generator blown."`
+			`	"The accident..." Ildico says more to herself than anyone else. And then in that instant she unfreezes, emotions roil through her, and she runs to her father, with everything forgiven.`
+			`	After a long tear-filled embrace she disengages and wipes her eyes. "Early on the generator blew and we had to evacuate the compound. Some people died... including Hogne." She glances at you and says, "He was my older brother."`
+			`	She continues, "I salvaged what I could and set up at home. I've been there the whole time."`
+			`	"It's my fault," Deoric says. "I should have gone and looked for you myself. I would have known where to look."`
+			`	They talk about family, the time apart, and what happened back on Hope. Finally, Ildico turns her attention back to you.`
+			`	"Thank you for bringing me here, <first>. For sticking with me. I appreciate it." She gives you the first real genuine smile you've seen on her face.`
+			choice
+				`	"No problem, Ildico."`
+				`	"You're welcome, Ildico."`
+
+			`	She looks at you for just a moment, as if in thought, and then says, "If we ever meet again, call me Ildy. It's what my friends call me."`
+			`	With that you take your leave.`
+				decline
+
+
+event "deoricdeeds"
+
+
+mission "Ice Queen 5"
+	landing
+	name "Visit Ildico"
+	description "Ildico has asked you to visit her on <destination>."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Chiron"
+	to offer
+		has "event: deoricdeeds"
+
+	on offer
+		dialog
+			`Your inbox blinks with a new message from Ildico on Chiron:`
+			``
+			`	"I need to see you. Please come. My address is attached.`
+			`				-your friend`
+			`					Ildy"`
+
+	on complete
+		dialog
+			`The myriad lights of urban settlements twinkle in the dusk as you approach the capital, and main spaceport, of Chiron. Crickets, brought from old Earth, chirp in the twilight air. Your ship parked, you'll need to make your way to the main spaceport to hire transportation to Ildico's address.`
+
+
+mission "Ice Queen 6"
+	name "Take Ildico to <planet>"
+	description "Smuggle Ildico and her child to <destination>."
+	source "Chiron"
+	destination "Haven"
+	passengers 2
+	illegal 1250000 `Ildico Drifa is dragged away in chains for high crimes against the Republic. You can only watch in silence as they are removed from your ship and her infant child is taken into custody. You end up fined for your actions.`
+	stealth
+	to offer
+		has "Ice Queen 5: done"
+
+	on offer
+		conversation
+			`The directions Ildico gave you take you beyond the bustling city and out into the large estates owned by the Republic political elite; Drifa Manor sits atop a low hill with what must be a very expensive view of New Sydney. The architecture of the building is reminiscent of upper-class villas you've seen in the Deep.`
+			`	As you approach the main gate you find it wide open, and the attached security booth is abandoned. You could just walk right in.`
+			choice
+				`	(Walk right in.)`
+					goto walk
+				`	(Investigate before entering.)`
+			`	The gate itself appears to have been opened from the inside, not broken into, and there are no signs of a struggle in the security booth. The employee parking beyond is also completely empty. It seems everyone left fast and didn't bother to close the gate behind them. You're entirely alone out here.`
+			choice
+				`	(Walk right in.)`
+					goto walk
+				`	(Leave.)`
+			`	Whatever this is; you decide you aren't interested. Ildico will just have to fend for herself.`
+				decline
+
+			label walk
+			`	The spacious building is eerily empty of servants. Doors are left often, incomplete tasks clutter the floor. Whatever happened here, the people left in a hurry.`
+			`	There's a loud crashing noise in the floor above you. You ascend the central grand staircase following the noise.`
+			`	There are streaks of crimson blood across the opulent decor and a pool of it settles in the center of the room. Lavish baroque furniture is stained with the carnage.`
+			`	At the center of it all is a ravaged dead body on the floor, and above it stands a bloody, grinning Ildico.`
+			choice
+				`	"Ildico, what's going on?"`
+				`	"Are you hurt? Do you need help?"`
+				`	"What have you done?"`
+				`	(Say nothing.)`
+
+			`	She ignores you, her attention focused elsewhere.`
+			`	"You thought," Ildico says as she catches her breath, "that you could sell me? That you could give me to this bureaucrat who signed Hope's death warrant?" She kicks the lifeless body at her feet. "That I would be your pawn, your tool, your object in order to gain favor and promotion?"`
+			`	The raven-haired woman laughs, as she cleans off her bloody dagger, and takes a step toward a figure cowering in the corner. The man you recognize as her father.`
+			`	"Wh-what have you done? You've ruined everything. I was so close. I would have had it all." Deoric blinks, his face sets in hard, and he straightens up, he looks as if he just remembered who he is.`
+			`	"You stupid, selfish, arrogant brat. You just needed to do as you were told. To play your pathetic part. You couldn't, could you? You were always worthless. If only your brother had survived." Deoric picks up a broken furniture leg and confidently wields it like a club.`
+			`	At this Ildico's wicked grin widens deeper. "My brother? Dear Hogne. Father, I killed him. He couldn't handle the ice, the isolation, the hopelessness of Hope. He lost his mind. He tried to make me his wife. And mother? She cracked long before that. An entitled debutante like her had no chance in that hellhole, and I? I needed to eat."`
+			`	The color drains out of Deoric's face. "Monster." He says. "I will put an end to you. I will start a new family, as I should have before."`
+			`	Deoric lunges at Ildico, but before he can take more then a single step, Ildico's wrist flicks and her knife slams into Deoric's throat. He falls to the ground, bleeding out, dying.`
+			`	Ildico stands over him. "You are a coward. A miserable disgusting man." She spits on him, and pulls her dagger from his heaving neck. He tries to speak as his dying body squirms, but no words materialize and he goes still.`
+			`	She turns to you. "I am now a fugitive, and you are my only friend. I need you to get us out of here."`
+			`	Ildico walks back to corner far from any of the fighting, and retrieves a bundled baby you'd neglected to notice until now.`
+			choice
+				`	"You got it. Let's go."`
+				`	"Anything for you, Ildy."`
+				`	"Sure, but you owe me. Big."`
+				`	"No way. You're a murderer. I want nothing to do with you."`
+					goto leave
+				`	"Stop right there. I am putting you under citizen's arrest until the police arrive."`
+					goto arrest
+
+			`	She nods, her face softens, and tears glitter around her eyes. "Thank you, I knew- I knew I could count on you."`
+			`	Ildico recollects herself for a moment before pointing to a briefcase lying by a table. "Grab that, and let's go."`
+			choice
+				`	"Go where?"`
+					goto where
+				`	"What's in the briefcase?"`
+			`	The recently widowed woman gives you a suspicious look, but then nods. "What I need to survive.`
+			`	"Now grab it, and let's go."`
+			choice
+				`	"Go where?"`
+					goto where
+				`	(Grab the briefcase.)`
+			`	"We need to go where the Republic cannot. Take us to <planet>." She gives you a serious look and adds, "And do not let anyone scan your ship until we get there."`
+			`	The three of you escape out into the night and onto your ship.`
+				launch
+
+			label where
+			`	She sighs. "Not the Republic, nor the Free Worlds. After tonight I will be hunted. We need to go to <planet>." She looks at you seriously and says, "And do not let anyone scan your ship until we get there."`
+			`	The three of you escape out into the night and onto your ship.`
+				launch
+
+			label arrest
+			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek. She moves fast, her arm darting and pointing a course at you, but the distance gives you just enough time to move. You barely avoid her dagger, and point your sidearm straight at her.`
+			`	As you use your communicator to call the local authorities, Ildico glares at you, a broken expression on her face. "I thought I had one friend. What a fool I was. I'll never make that mistake again," is all she says, just as the security officers arrive. After a struggle, they manage to restrain Ildico, and separate her from the baby. Her stare pierces you all the way out of the estate. The officer in charge of the arrest thanks you for the report and for keeping Ildico in place until they arrived. They assure you that Ildico will be given a fair trial, and that the baby will be handled with care.`
+			`	You watch the security vehicles take them both away, suddenly aware that you will likely never see either of them again.`
+				decline
+
+			label leave
+			`	Ildico puts her baby back down, and for just a second you see agony in her eyes. Killing her father or her arranged husband didn't break her mask, but somehow this does. A tear rolls down her cheek.`
+			`	Her hand wavers, trembles, over her knife, and then she drops it, and her head. "So then go."`
+				decline
+
+	on complete
+		outfit "Blood of Surtr"
+		payment 500000
+		event "pirateildy" 611
+		conversation
+			`Having evaded Republic patrols on the lookout for the "Murderous Heiress," you make it to the pirate planet of Haven. Ildico watches the dismal landscape as you land and says, almost curtly, "It'll do."`
+			`	She opens the briefcase she took off Chiron, revealing a storage device and an oranate wooden box.`
+			`	Ildico gives you a sly smile. "It took years, but the majority of the Drifa fortune has been smuggled into this storage device. They thought I was meek, malleable, and pitiful. Not a threat. They were fools."`
+			`	She holds up the box. "And in this, well, this may take some explaining. Before we migrated to Hope, the Drifa were old nobility in the Deep. Legend says we ruled Valhalla before the first ships came. Whatever the truth, my ancestors had this in their possession as a sign of their royalty, this bauble."`
+			`	Ildico opens the rune-carved lid of the box, revealing a faintly glowing red rock. "It is called the Blood of Surtr, and it was said to have been the symbol of our rulership, and more importantly, a source of power."`
+			`	She shrugs. "I know it sounds far-fetched. But I had this with me on Hope, and I don't think I would have survived without it. When the generators went down, this kept the lights on.`
+			`	"But its time with me is over. I want you, the last friend of House Drifa, and the only person who has shown me any kindness in many years, to have it.`
+			scene "outfit/surtrblood"
+			`	"I'll also transfer a small sum of money for your troubles. I fear I will be needing most of my family's fortune, but hopefully what little I can offer will help."`
+			choice
+				`	"Thank you."`
+					goto "gotta go"
+				`	"Is it wise for you and your child to be left alone in a place like Haven?"`
+
+			`	She laughs. "After surviving on Hope and Chiron? Haven will be a cakewalk."`
+				goto end
+
+			label "gotta go"
+			`	"No, it is my appreciation that has to be given. You have done what few would have the conviction to do."`
+
+			label end
+			`	She takes her child in one hand, and the briefcase in the other, and walks off your ship.`
+
+
+event "pirateildy"
+
+
+mission "Ice Queen 7"
+	landing
+	name "Meet Ildy on <planet>"
+	description "See what Ildico needs on <destination>."
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Haven"
+	to offer
+		has "event: pirateildy"
+	on offer
+		dialog
+			`Your inbox blinks with a new message from Ildico from Haven:`
+			``
+			`	"It's been too long, and I could use your help. Please, come to <planet>.`
+			`				- Your friend,`
+			`					Ildy"`
+
+	on complete
+		dialog
+			`Even from orbit, Haven looks ugly, and as you approach the planet it doesn't get any better. Upon landing you're alerted Ildico is waiting for you in the spaceport.`
+
+
+mission "Ice Queen 8"
+	name "Defeat Ildico's rivals"
+	description "Ildico has requested you to destroy a fleet of Marauder ships near the <system> system. Once you're done, return to <planet>."
+	source "Haven"
+	to offer
+		has "Ice Queen 7: done"
+	on offer
+		conversation
+			`You arrive at the address Ildico gave you; a large warehouse on the edge of the spaceport. When you step into the dimly lit building, your eyes struggle to adjust, and gradually you realize you're face-to-face with a group of dirty burly men and women leveling a half-dozen weapons right at you.`
+			`	"Looks like someone's lost," a voice rises from the group, though you can't tell who's speaking.`
+			`	"They look right fancy. Good thing we found them."`
+			`	"Whaddya say, Frank, kill 'em now? Or keep 'em for a bit? Maybe their worth something? Maybe we can have some fun with 'em."`
+			choice
+				`	"I am looking for Ildy."`
+				`	"Ildy asked me to come here."`
+				`	"Ildy, help!"`
+				`	(Grab your sidearm and shoot your way out.)`
+					goto why?
+
+			`	The band of cut-throats looks at you, confused, and then most of them lower their weapons.`
+			`	"Boss," one of them hollers, "this stranger says they're here for you, I think."`
+			`	Footsteps echo on the opposite side of the warehouse as someone approaches.`
+			`	One of the men starts laughing. "Ildy?! Haha, never thought to call her that. Hey Ildy! How come you never told us to call you that? Or that some kind of special pet name?"`
+			`	The man flashes an unsavory grin at you, with his rotting teeth on full display.`
+			`	In the dim light the footsteps materialize into a woman in her mid-thirties with hair darker than vacuum. Ildico Drifa gives you a warm smile, then lifts up a gun and fires.`
+			choice
+				`	(Duck.)`
+					goto duck
+				`	(Jump to the side.)`
+					goto jump
+				`	(Do nothing.)`
+			`	You don't flinch as the rotten-toothed man besides you crumples to the ground, a bullet hole in his head.`
+				goto onlyfriends
+			label jump
+			`	You jump to the side, knocking against some empty barrels, only to realize she wasn't aiming at you. The rotten-toothed man lies dead on the ground, a bullet hole in his head.`
+				goto onlyfriends
+			label duck
+			`	You duck, startled by the attack, only to realize she wasn't aiming at you. The rotten-toothed man lies dead on the ground, a bullet hole in his head.`
+			label onlyfriends
+			`	She looks to the rest of her crew, "Only my friends call me Ildy. And I have only one friend."`
+			`	"Yes, boss."`
+			`	"Got it, boss."`
+			`	"Sure thing, Cap."`
+			`	"Whatever you say, boss."`
+			`	The group of pirates melt away into the warehouse, one of them dragging the dead body, leaving you and Ildy relatively alone.`
+			`	"I'm glad you came, <first>." Ildico puts a friendly hand on your shoulder and squeezes.`
+			`	She turns and waves toward the warehouse. "This is my temporary headquarters. I have few other safe-houses, and I own part of a hangar elsewhere. Not too many ships yet, but that will change soon."`
+			`	Ildico holsters her gun right next to where she keeps her ornate dagger and continues. "But making moves is hard. Everyone wants to be on top. Which is why I need you."`
+			`	She looks you in the eye and says, "There's a rival gang right next door. They have a lot more firepower, but if they could be removed, we could easily double our territory.`
+			`	"I don't have the ships," she glances at her gang in the distance, "or the quality of crew, to deal with them.`
+			`	"But I think you do. I can't afford to pay you right now, things are pretty fluid, but I'll owe you. So, are you in?"`
+			choice
+				`	"Sure, I'll help."`
+				`	"Fine. But you're going to owe me big when this is all over."`
+				`	"Anything for you, Ildy."`
+				`	"Not interested."`
+					goto uninterested
+
+			`	Her smile lights up the dim room. "I always know I can count on you. And only you."`
+			`	"I fed the gang some false information. They have their entire fleet hunting some juicy merchant ships that don't actually exist, so they'll be surprised when they find you instead."`
+			`	"Check out the nearby systems and look for their flagship, the <npc>. Kill them all, and come back here. To me."`
+				accept
+
+			label uninterested
+			`	Ildico frowns. She looks down at her feet for a moment, and when she looks back up her face is a mask of rage and hurt. "Then get out."`
+				decline
+
+			label why?
+			`	Acting defiantly in the face of so much danger, you reach for your sidearm. Unfortunately, it's in vain, because as soon as you feel the pistol grip in your hand you simultaneously feel the burning sensations of a flurry of bullets entering your body and tearing apart your insides.`
+				die
+
+	npc kill
+		government "Bounty"
+		personality heroic nemesis staying target
+		system
+			distance 1 2
+		fleet "Marauder fleet IV"
+		dialog `The rival pirate fleet has been destroyed. You should return to Haven now to check up on Ildico.`
+
+	on visit
+		dialog phrase "generic fleet bounty hunting on visit"
+
+	on complete
+		conversation
+			`There's been intense fighting around the district where Ildico's warehouse was located. A few gunshots echo as you make your way through the rubble and around the fires.`
+			`	A group of injured but high-spirited pirates are set up outside the building, and there are bodies littering the nearby streets. An unharmed but bloody Ildico walks up to you, smiling. She is trailed by a small incongruous toddler with short black hair and lopsided grin.`
+			`	"Perfect. They never had a chance." She wipes the blood off her dagger, and notices your gaze.`
+			`	"The safest place for her was by my side," she says matter-of-factly to you, then she kneels down to her daughter. "Randalin, this is <first>. You met them long ago when you were a baby. <first> is my friend."`
+			`	She stands up again and looks back at you. "And <first>, this is Randalin. She's grown a bit since last you saw her."`
+			choice
+				`	"Hi, Randalin. It's wonderful to meet you."`
+					goto hirand
+				`	(Nod at the child.)`
+					goto onlyyou
+				`	"She was with you for the battle?"`
+			`	Ildico shrugs. "Who would I trust with her? Who could I trust with her? Only you, <first>, and you were elsewhere."`
+				goto onlyyou
+
+			label hirand
+			`	The little girl lifts a chubby fist up to you.`
+			choice
+				`	(Fist bump her.)`
+					goto bump
+				`	(Shake her fist.)`
+			`	You awkwardly take her fist in your hand and shake it up and down. Randalin giggles, and babbles something incoherent.`
+				goto words
+			
+			label bump
+			`	Her small fist bumps against yours. She then gives you an easy grin and babbles something incoherent.`
+
+			label words
+			`	"She's not quite got the hang of words yet. But they'll come," Ildico says approvingly.`
+			
+			label onlyyou
+			`	Ilidco puts a hand on Randalin's shoulder and draws her close. She turns her attention back to the battlefield.`
+			`	"This is only the beginning, <first>." Her eyes blaze as she speaks, "House Drifa will rise again. You'll see. You'll be there."`
+			`	She glances back toward her mulling forces. "Thanks again, it means a lot that I can count on you, but I have to work to do. Until next time."`
+			`	Ildico returns to her group, barking orders and gesturing at the rubble, leaving you to your own devices.`
+
+
+mission "Ice Queen: News"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+		near "Arneb" 10
+	to offer
+		has "Ice Queen 8: done"
+		random < 3
+	on offer
+		conversation
+			`A news kiosk is doing a segment on the growing threat of pirates around Haven. A certain name catches your eye, and you read:`
+			`	Self-styled "pirate queen" Ildico Drifa continues to expand her territory and reach. While there is some concern this growing centralization of power could result in greater threats to trade and stability in the Far North, most analysts think it is quite unlikely.`
+			`	Professor Grenwich Millstone, foremost authority on the economy and history of the northern pirate worlds, had this to say about Drifa:`
+			`	"It is patently inconceivable that any single magnate could consolidate power on Haven. It is cultural anathema, and economically impractical. Frankly, all this talk of a so-called 'pirate queen' is just sensationalist journalism trying to sell the news. In a few weeks another pirate captain will be the new bogeyman, and then another."`
+			`	The segment ends, and the news kiosk automatically scrolls down to the next article.`
+				decline
+
+
+mission "Skadenga: Blood of Surtr"
+	landing
+	source "Windblain"
+	to offer
+		has "Ice Queen 6: done"
+		has "outfit: Blood of Surtr"
+		has "Stones of Skadenga 3: offered"
+	on offer
+		conversation
+			`As your ship descends through Windblain's cloudy atmosphere, you consider landing near Hrithfjall and asking the Ondurdis about the Blood of Surtr.`
+			choice
+				`	(Take the Blood of Surtr to Hrithfjall.)`
+					goto hrithland
+				`	(Ask about the Blood of Surtr another time.)`
+					defer
+				`	(Don't visit Hrithfjall at all.)`
+					decline
+
+			`	You fly past Hrithfjall without landing and continue on your way.`
+				defer
+
+			label hrithland
+			`	You pass numerous new homes built of driftwood and sea-stone as you approach the old village center of Hrithfjall. There is laughter and song in the air and children running everywhere; it always seems larger every time you visit.`
+			`	At the old village hall you find the Ondurdis and Aldfrith deep in conversation with a band of people who stick out beside the Skadenga and indigenous Ranfolk; these people appear to be foreigners. The Ondurdis's old eyes light up and she gives you a grandmotherly smile as you approach.`
+			`	"<first>!" the Ondurdis exclaims happily. "My heart sings to see you."`
+			choice
+				`	"Who are they?"`
+					goto who
+				`	"I've come to show you something."`
+					goto something
+				`	"What do you know about other stones like the Tear of Skade?"`
+					to display
+						not "tears"
+			`	"On Skade? Only Tears of Skade. But on other worlds? Maybe."`
+				goto something
+
+			label who
+			`	The Ondurdis steps away from the group and takes you aside, leaving Aldfrith to continue talking with them.`
+			`	"They are from Alfheim. They say their culture and world dying and they look for new home before old one gone." She pats your arm gently.`
+			`	"Word spreads of Hrithfjell and in some corners of Deep old ways still remembered. So they come." Her eyes gleam, "We are like fire on glacier. All see, all come. For warmth, for happiness, for life.`
+			`	"But, <first>, you have not come all this way to talk with old woman. What brings you here?"`
+
+			label something
+			action
+				clear "tears"
+			`	You show her the Blood of Surtr, and tell her the story of House Drifa taking it from the Deep.`
+			`	The Ondurdis nods slowly. "I only know of Tears of Skade. Our Goddess cried - maybe others did as well?"`
+			`	She turns and motions to Aldfrith who steps over to you. She asks, "Did Ran ever cry cold tears?"`
+			
+			label aldtime
+			`	Aldfrith inspects the Blood of Surtr thoughtfully, and then considers the Ondurdis's words as he strokes his white beard. "The sea has no mercy, and no memory. Ran would never cry."`
+			`	He chews his lip and then says slowly and carefully, "But she did leave us scales."`
+			`	He nods to himself and becomes more confident. "Long ago we would find the Scales of Ran on the beaches nearest her God-Stone. The stories say that they made a bubble of breathable air around those who carried them, and allowed us to explore the secrets of her depths."`
+			choice
+				`	"What happened to them?"`
+				`	"Where could I find them?"`
+
+			`	Aldfrith shakes his head slowly. "In the time of my grandfather the men from the Deep came and took the Scales off world. They said they were too valuable to be left in the hands of savages, and since then we've never found another Scale of Ran. I think she was displeased we allowed them to be taken."`
+			`	The old man pauses for a moment and then says, "Although... I do remember when I was a child the folk from the Deep coming and visiting us again. They had questions about... our baubles. I think they said they did not work? They thought they were just useless charms. Perhaps the Scales stopped working?"`
+			`	He shrugs. "I am sorry, <first>, that I cannot tell you more."`
+			`	The Ondurdis puts a hand on his back. "I value your stories." She turns her attention back to you, "Stone-magic fades when outsiders come, this is known. Maybe all God-Stones once gave such gifts, but no longer."`
+			`	She points at the Blood of Surtr. "Surtr, is known, he is volcano that erupts on ice. He is black fire that swallows world. But he had no God-Stone on Nifel." She pauses and looks at Aldfrith.`
+			`	"Oh, uh, and none here. Ran, like the sea, is jealous and would share no world with another." Aldfrith says quickly.`
+			`	"Maybe on other world, there is Surtr God-Stone, and from it he bleeds. More than that, I do not know," she says apologetically.`
+			`	You thank the Ondurdis and Aldfrith for their gracious help and interesting stories. The Ondurdis hastily prepares a small meal, believing it bad manners to let a guest leave unfed, and wishes you well in your future travels among the lofty stars.`
+				decline
+
+
+mission "Stone to Hope: Thanks"
+	source "Norn"
+	to offer
+		has "Stone to Ice Queen: offered"
+	on offer
+		conversation
+			`In the quiet, creaking spaceport, it's easy enough to spot Helm doing some much needed maintenance on the ships that have landed here for the night. The last time you met him, he asked you to bring a stone to Hope. Do you want to check in with him?`
+			choice
+				`	(Go to Helm and report on the stone.)`
+					goto tell
+				`	(Leave Helm alone.)`
+					decline
+			
+			label tell
+			`	As you say your hello you accidentally startle Helm, who's in the middle of recalibrating a repulsor.`
+			`	"Woah! <first>! No need to sneak up on me!" He stands up to greet you. "What's new?"`
+			choice
+				`	"Is Tosti around? I found his Family-Cairn and left the stone there."`
+					goto where
+					to display
+						has "placed tosti's stone"
+				`	"It's done. I chucked the stone out of a hatch, but it's at least on Hope now."`
+					goto threw
+					to display
+						has "chucked tosti's stone"
+				`	"I threw the stone off a cliff, but it's at least on Hope now."`
+					goto threw
+					to display
+						has "threw tosti's stone"
+				`	"Where's Tosti?"`
+			label where
+			action
+				clear "placed tosti's stone"
+			`	"Ah, Tosti's out on the seas. The lad got himself a job working on a fishing trawler. It'll likely be a few years before he'll call to port here again."`
+			`	Helm gives you a friendly smile. "Still, you've done him a good turn. I'll have a message passed along to him so he knows he can rest easy."`
+			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but word will spread and people here will appreciate it all the same. Here on Norn we have long memories."`
+				decline
+
+			label threw
+			action
+				clear "threw tosti's stone"
+				clear "chucked tosti's stone"
+			`	Helm stops what's he doing and looks up at you searchingly. "Best keep that to yourself, then. You of all people should know that folks around here take stone-bearing pretty seriously."`
+			`	He sighs, "Still, better than not being on Hope at all, I suppose. As for Tosti, he's out on the seas. Got himself a job working on a fishing trawler. It'd likely be a few years before he'll call to port here again."`
+			`	He turns and looks out over Norn's endless oceans. "I'll have a message sent to him so he knows he can rest easy. I'll of course leave out the part about you tossing the stone. No reason to give him grief."`
+			`	He returns to tinkering with the repulsor but continues, "There's no money or reward, but a good deed is its own reward, isn't it?`
+			`	"At least that's what I believe," he says more to himself than to you.`
+				decline
+
+# For compatibility with saves that completed Stones of our Fathers 5, but didn't get the new event connected to it.
+mission "Patch Stone Waiting"
+	landing
+	invisible
+	to offer
+		has "Stone of our Fathers 5: done"
+		not "stone waiting most: triggered"
+	on offer
+		event "stone waiting most" 14
+		fail
