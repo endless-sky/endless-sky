@@ -16,21 +16,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Files.h"
 
 #include "Logger.h"
+#include "ZipFile.h"
 
 #include <SDL2/SDL.h>
-
-#if defined _WIN32
-#define STRICT
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#else
-#include <dirent.h>
-#endif
 
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <map>
 #include <mutex>
+#include <sstream>
 #include <stdexcept>
 
 using namespace std;
@@ -65,6 +60,35 @@ namespace {
 #warning SDL 2.0.14 or higher is needed for opening folders!
 		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
 #endif
+	}
+
+	/// The open zip files per thread. Since ZLIB doesn't support multithreaded access on the same zip handle,
+	/// each file is opened multiple times on demand.
+	thread_local map<filesystem::path, shared_ptr<ZipFile>> OPEN_ZIP_FILES;
+
+	shared_ptr<ZipFile> GetZipFile(const filesystem::path &filePath)
+	{
+		/// Check if this zip is already open on this thread.
+		for(auto &[zipPath, file] : OPEN_ZIP_FILES)
+			if(Files::IsParent(zipPath, filePath))
+				return file;
+
+		/// If not, open the zip file.
+		filesystem::path zipPath = filePath;
+		while(!exists(zipPath))
+		{
+			if(!zipPath.has_parent_path() || zipPath.parent_path() == zipPath)
+				return {};
+			zipPath = zipPath.parent_path();
+		}
+		if(zipPath.extension() == ".zip" && is_regular_file(zipPath))
+		{
+			/// Limit the number of open zip files to one per thread to avoid having too many files open.
+			OPEN_ZIP_FILES.clear();
+			return OPEN_ZIP_FILES.emplace(zipPath, make_shared<ZipFile>(zipPath)).first->second;
+		}
+
+		return {};
 	}
 }
 
@@ -106,12 +130,6 @@ void Files::Init(const char * const *argv)
 		static const filesystem::path STANDARD_PATH = "/usr";
 		static const filesystem::path RESOURCE_PATH = "share/games/endless-sky/";
 
-		const auto IsParent = [](const auto parent, const auto child) -> bool {
-			if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
-				return false;
-			return equal(parent.begin(), parent.end(), child.begin());
-		};
-
 		if(IsParent(LOCAL_PATH, resources))
 			resources = LOCAL_PATH / RESOURCE_PATH;
 		else if(IsParent(STANDARD_PATH, resources))
@@ -127,10 +145,10 @@ void Files::Init(const char * const *argv)
 			throw runtime_error("Unable to find the resource directories!");
 		resources = resources.parent_path();
 	}
-	dataPath = resources / "data/";
-	imagePath = resources / "images/";
-	soundPath = resources / "sounds/";
-	globalPluginPath = resources / "plugins/";
+	dataPath = resources / "data";
+	imagePath = resources / "images";
+	soundPath = resources / "sounds";
+	globalPluginPath = resources / "plugins";
 
 	if(config.empty())
 	{
@@ -147,12 +165,12 @@ void Files::Init(const char * const *argv)
 
 	config = filesystem::canonical(config);
 
-	savePath = config / "saves/";
+	savePath = config / "saves";
 	CreateFolder(savePath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
-	userPluginPath = config / "plugins/";
+	userPluginPath = config / "plugins";
 	CreateFolder(userPluginPath);
 
 	// Check that all the directories exist.
@@ -234,7 +252,17 @@ vector<filesystem::path> Files::List(const filesystem::path &directory)
 	vector<filesystem::path> list;
 
 	if(!Exists(directory) || !is_directory(directory))
+	{
+		// Check if the requested file is in a known zip.
+		shared_ptr<ZipFile> zip = GetZipFile(directory);
+		if(zip)
+		{
+			list = zip->ListFiles(directory, false, false);
+			sort(list.begin(), list.end());
+		}
 		return list;
+	}
+
 
 	for(const auto &entry : filesystem::directory_iterator(directory))
 		if(entry.is_regular_file())
@@ -253,7 +281,16 @@ vector<filesystem::path> Files::ListDirectories(const filesystem::path &director
 	vector<filesystem::path> list;
 
 	if(!Exists(directory) || !is_directory(directory))
+	{
+		// Check if the requested file is in a known zip.
+		shared_ptr<ZipFile> zip = GetZipFile(directory);
+		if(zip)
+		{
+			list = zip->ListFiles(directory, false, true);
+			sort(list.begin(), list.end());
+		}
 		return list;
+	}
 
 	for(const auto &entry : filesystem::directory_iterator(directory))
 		if(entry.is_directory())
@@ -269,7 +306,16 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 {
 	vector<filesystem::path> list;
 	if(!Exists(directory) || !is_directory(directory))
+	{
+		// Check if the requested file is in a known zip.
+		shared_ptr<ZipFile> zip = GetZipFile(directory);
+		if(zip)
+		{
+			list = zip->ListFiles(directory, true, false);
+			sort(list.begin(), list.end());
+		}
 		return list;
+	}
 
 	for(const auto &entry : filesystem::recursive_directory_iterator(directory))
 		if(entry.is_regular_file())
@@ -283,7 +329,13 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 
 bool Files::Exists(const filesystem::path &filePath)
 {
-	return exists(filePath);
+	if(exists(filePath))
+		return true;
+
+	shared_ptr<ZipFile> zip = GetZipFile(filePath);
+	if(zip)
+		return zip->Exists(filePath);
+	return false;
 }
 
 
@@ -337,8 +389,26 @@ string Files::Name(const filesystem::path &path)
 
 
 
+bool Files::IsParent(const filesystem::path &parent, const filesystem::path &child)
+{
+	if(distance(child.begin(), child.end()) < distance(parent.begin(), parent.end()))
+		return false;
+	return equal(parent.begin(), parent.end(), child.begin());
+}
+
+
+
 shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 {
+	if(!exists(path) && !write)
+	{
+		// Writing to a zip is not supported.
+		shared_ptr<ZipFile> zip = GetZipFile(path);
+		if(zip)
+			return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
+		return {};
+	}
+
 	if(write)
 		return shared_ptr<iostream>{new fstream{path, ios::out | ios::binary}};
 	return shared_ptr<iostream>{new fstream{path, ios::in | ios::binary}};
