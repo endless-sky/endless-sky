@@ -125,9 +125,14 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 				stock.clear();
 			}
 			if(remove)
-				stock.clear();
+			{
+				if(child.HasChildren())
+					stock.Remove(child, items);
+				else
+					stock.clear();
+			}
 			else
-				stock.Load(child, items, true);
+				stock.Add(child, items);
 		}
 		else
 			stock.LoadSingle(child, items);

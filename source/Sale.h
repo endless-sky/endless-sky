@@ -28,8 +28,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 template <class Item>
 class Sale : public std::set<const Item *> {
 public:
-	void Load(const DataNode &node, const Set<Item> &items, bool preventModifiers = false);
-	void LoadSingle(const DataNode &child, const Set<Item> &items, bool preventModifiers = false);
+	void Add(const DataNode &node, const Set<Item> &items);
+	void Remove(const DataNode &node, const Set<Item> &items);
+	void LoadSingle(const DataNode &child, const Set<Item> &items);
 
 	void Add(const Sale<Item> &other);
 
@@ -39,25 +40,49 @@ public:
 
 
 template <class Item>
-void Sale<Item>::Load(const DataNode &node, const Set<Item> &items, bool preventModifiers)
+void Sale<Item>::Add(const DataNode &node, const Set<Item> &items)
 {
 	for(const DataNode &child : node)
-		LoadSingle(child, items, preventModifiers);
+	{
+		const std::string &token = child.Token(0);
+		bool remove = (token == "clear" || token == "remove");
+		bool add = (token == "add");
+		if(remove || add)
+		{
+			child.PrintTrace("Error: Cannot \"add\" or \"remove\" inside a \"stock\" node:");
+			return;
+		}
+		this->insert(items.Get(token));
+	}
 }
 
 
 
 template <class Item>
-void Sale<Item>::LoadSingle(const DataNode &child, const Set<Item> &items, bool preventModifiers)
+void Sale<Item>::Remove(const DataNode &node, const Set<Item> &items)
+{
+	for(const DataNode &child : node)
+	{
+		const std::string &token = child.Token(0);
+		bool remove = (token == "clear" || token == "remove");
+		bool add = (token == "add");
+		if(remove || add)
+		{
+			child.PrintTrace("Error: Cannot \"add\" or \"remove\" inside a \"stock\" node:");
+			return;
+		}
+		this->erase(items.Get(token));
+	}
+}
+
+
+
+template <class Item>
+void Sale<Item>::LoadSingle(const DataNode &child, const Set<Item> &items)
 {
 	const std::string &token = child.Token(0);
 	bool remove = (token == "clear" || token == "remove");
 	bool add = (token == "add");
-	if((remove || add) && preventModifiers)
-	{
-		child.PrintTrace("Error: Cannot \"add\" or \"remove\" inside a \"stock\" node:");
-		return;
-	}
 	if(remove && child.Size() == 1)
 		this->clear();
 	else if(remove && child.Size() >= 2)
