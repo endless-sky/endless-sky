@@ -164,7 +164,7 @@ void TextArea::Draw()
 
 bool TextArea::Click(int x, int y, int clicks)
 {
-	if(scrollBar.SyncClick(scroll, x, y, clicks))
+	if(scroll.Scrollable() && scrollBar.SyncClick(scroll, x, y, clicks))
 	{
 		bufferIsValid = false;
 		return true;
