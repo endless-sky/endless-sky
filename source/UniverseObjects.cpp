@@ -151,11 +151,11 @@ void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 	else if(key == "government" && hasValue)
 		governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
 	else if(key == "outfitter" && hasValue)
-		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
+		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
 	else if(key == "planet" && hasValue)
 		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
 	else if(key == "shipyard" && hasValue)
-		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
+		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
 	else if(key == "system" && hasValue)
 		systems.Get(node.Token(1))->Load(node, planets, playerConditions);
 	else if(key == "news" && hasValue)
@@ -377,7 +377,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "outfit" && hasValue)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && hasValue)
-			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
+			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "person" && hasValue)
 			persons.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
 		else if(key == "phrase" && hasValue)
@@ -391,7 +391,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			ships.Get(name)->Load(node);
 		}
 		else if(key == "shipyard" && hasValue)
-			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
+			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
