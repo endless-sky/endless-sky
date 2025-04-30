@@ -6494,7 +6494,7 @@ mission "Lost Racer 1"
 		payment 100000
 		conversation
 			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched hope fade into desperation in her father with each successive failure. You can't imagine he's been getting much sleep.`
-			`	During the landing on Sunracer, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of Syndicate ship models in race-related livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, spectators. The spaceport seems busier and more hectic than usual.`
+			`	During the landing on Sunracer, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of Syndicate ship models in race-related livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, and spectators. The spaceport seems busier and more hectic than usual.`
 			`	"I've got to speak with the race coordinators here," says Mr. Renard, striding towards the marshal station. "I see the marshals are back from searching. Syndicate idiots, probably didn't even notice she was missing till it was on the news. We've got to keep looking. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
 			choice
 				`	"Of course. We're going to find her."`
@@ -6503,16 +6503,54 @@ mission "Lost Racer 1"
 			action
 				set "abandoned lost racer"
 			`	"Fine," he says, "then take your money." He slams a credit chip for <payment> in your hand and storms off into the spaceport, on the verge of tears.`
+			`	Much later, you receive a request to meet him in the spaceport and take him to Glory.`
 				decline
 			label next
 			`	"You're a saint for this," he says, and hands you a credit chip for <payment>. "We have to find her."`
+
+
+mission "Lost Racer 2 - Abandoned"
+	landing
+	name "Return to <planet>"
+	description "You have decided not to continue the search for Artemis Renard. Return her grieving father August to <destination>."
+	deadline
+	source "Sunracer"
+	destination "Glory"
+	passengers 1
+	to offer
+		has "Lost Racer 1: done"
+		has "abandoned lost racer"
+	on offer
+		conversation
+			`When you meet August Renard in the spaceport, he looks no better than when he left <ship>. However, he does manage to speak. "Please take me to <planet>, captain. It's better to lead the search remotely from there than deal with these people in person."`
+			choice
+				`	"I guess."`
+					accept
+				`	"Sorry. You'll have to find another captain."`
+					decline
+	on complete
+		log "After a brief search, was unable to find anything of the famous racing pilot Artemis Renard. Returned her grieving father home to Glory."
+		log "Minor People" "August and Artemis Renard" `August Renard contracted me to help look for his daughter Artemis, a racing pilot who went missing. Unable to find the woman, but returned her father home to Glory.`
+		conversation
+			`As the advanced medical facilities of <planet> rise up to greet <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
+			choice
+				`	"Weren't you going to pay me?"`
+					goto greedy
+				`	(Leave him alone.)`
+			`	August is escorted to a Shuttle which has just landed on the pad next to <ship>, waves to you as he goes in, and launches to another part of the planet.`
+				decline
+			label greedy
+			action
+				payment 2000
+			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits <ship> in a huff.`
+			`	When you access the credit chip, you find it is only worth <payment>.`
 
 mission "Lost Racer 2"
 	name "Search for Artemis Renard"
 	description "Search the system of <system> for Artemis Renard, especially <planet>."
 	source "Sunracer"
-	destination "Sandswell"
 	waypoint "Acamar"
+	destination "Sandswell"
 	passengers 1
 	deadline
 	to offer
@@ -6520,7 +6558,7 @@ mission "Lost Racer 2"
 		not "abandoned lost racer"
 	on offer
 		conversation
-			`The displays in the spaceport hangar are flicker with a news broadcast: sweeping aerial views of the spaceport alongside photos of Artemis Renard beside her red-and-white Flivver, wearing a calm, confident expression. Beneath the images, the screen reads "CORE CHAMPIONSHIP CATASTROPHE: MISSING MISS RENARD MYSTIFIES MILLIONS."`
+			`The displays in the spaceport hangar flicker with a news broadcast: sweeping aerial views of the spaceport alongside photos of Artemis Renard beside her red-and-white Flivver, wearing a calm, confident expression. Beneath the images, the screen reads "CORE CHAMPIONSHIP CATASTROPHE: MISSING MISS RENARD MYSTIFIES MILLIONS."`
 			choice
 				`	(Watch the news broadcast.)`
 				`	(Wait for Mr. Renard to return.)`
@@ -6546,7 +6584,7 @@ mission "Lost Racer 2"
 			label suspicious
 			`	Mr. Renard suddenly speaks more quietly. "I thought so too. I think it might have been sabotage."`
 			`	"What do you mean?" you ask.`
-			`	"Every day that Artemis is lost, the odds on her plummet and the bets on her competitors skyrocketed. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines, and they knew they could cash in by betting on underdogs."`
+			`	"Every day that Artemis is lost, the odds on her plummet and the bets on her competitors skyrocket. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines, and they knew they could cash in by betting on underdogs."`
 			choice
 				`	"Who do you think did it?"`
 					goto perp
@@ -6581,23 +6619,8 @@ mission "Lost Racer 2"
 			`	"Thank you, Captain. We need to get moving immediately."`
 				launch
 	on enter Acamar
-		dialog
-			"Upon entering the Acamar system, your sensors detect a faint radio signal coming from the third planet in the system, but are unable to resolve any details without landing to take a closer scan."
-
-mission "Lost Racer 3"
-	landing
-	name "Search for Artemis Renard"
-	description "The search for Artemis on <origin> revealed nothing. Look for her on <destination> instead."
-	deadline
-	source "Pummel"
-	destination "Sandswell"
-	passengers 1
-	non-blocking
-	to offer
-		has "Lost Racer 2: done"
-	on offer
 		conversation
-			`The descent to the surface of the third planet is turbulent and slow, and neither you nor Mr. Renard leave the ship, even after hearing a slight buzz. Upon performing a scan from the surface, however, you realize that the radio signal is a result of the electrical discharges in the planet's atmosphere produced by the many volcanoes on the surface. After recalibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship.`
+			`Upon entering the Acamar system, your sensors detect a faint radio signal coming from the third planet in the system, but you realize that the radio signal is a result of the electrical discharges from the planet's atmosphere produced by the many volcanoes on the surface. After calibrating your sensors to account for this, you are unable to detect any transponder signal matching Artemis' ship.`
 			`	Mr. Renard paces around the bridge of the <ship>, prodding at consoles. "Are you sure you checked it? Is that the right frequency?"`
 			choice
 				`	"Is there anywhere else she could be?"`
@@ -6627,36 +6650,7 @@ mission "Lost Racer 3"
 		dialog
 			"As soon as you enter the Kugel system, your sensors begin to pick up a weak radio signal coming from the second planet, this time matching exactly the frequency of Artemis Renard's transponder. It seems you have arrived in the correct system."
 
-mission "Lost Racer 4 - Abandoned"
-	landing
-	name "Return to Glory"
-	description "You have decided not to continue the search for Artemis Renard. Return her grieving father August to <destination>."
-	deadline
-	source "Pummel"
-	destination "Glory"
-	passengers 1
-	to offer
-		has "Lost Racer 2: done"
-		not "rescue artemis renard"
-	on complete
-		log "After a brief search, was unable to find anything of the famous racing pilot Artemis Renard. Returned her grieving father home to Glory."
-		log "Minor People" "August and Artemis Renard" `August Renard contracted me to help look for his daughter Artemis, a racing pilot who went missing. Unable to find the woman, but returned her father home to Glory.`
-		conversation
-			`As the advanced medical facilities of <planet> rise up to greet <ship>, August comes to meet you on the bridge. "Captain, I would like to thank you for attempting to find my daughter, even though the attempt ended poorly. Thank you for that, at least." He then prepares to exit the ship, outside of which a veritable army of attendants are waiting.`
-			choice
-				`	"Weren't you going to pay me?"`
-					goto greedy
-				`	(Leave him alone.)`
-			`	August is escorted to a Shuttle which has just landed on the pad next to <ship>, waves to you as he goes in, and launches to another part of the planet.`
-				decline
-			label greedy
-			action
-				payment 2000
-			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits <ship> in a huff.`
-			`	When you access the credit chip, you find it is only worth <payment>.`
-
-
-mission "Lost Racer 4 - Rescued"
+mission "Lost Racer 3"
 	landing
 	name "Return Artemis Renard"
 	description "You have found Artemis Renard. Transport her and her father back to <destination>."
@@ -6664,7 +6658,7 @@ mission "Lost Racer 4 - Rescued"
 	destination "Glory"
 	passengers 2
 	to offer
-		has "Lost Racer 3: done"
+		has "Lost Racer 2: done"
 	on offer
 		conversation
 			`Upon reaching the second planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`

@@ -4578,11 +4578,6 @@ planet Pugglequat
 	bribe 0
 	security 1
 
-planet Pummel
-	landscape land/desert12
-	description `Pummel is what is known as a proto-Earth: its surface contains small amounts of water and there is strong volcanic activity. In a couple of billion years, it may even harbor primitive life, but for the moment it remains a cold, cratered, sulfurous rock.`
-	government Uninhabited
-
 planet Pyriphlegethon
 	attributes "gas giant" "requires: gaslining" uninhabited
 	landscape land/clouds_02
