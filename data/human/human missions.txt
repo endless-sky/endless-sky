@@ -6440,7 +6440,7 @@ mission "Care Package to South 2"
 
 mission "Lost Racer 1"
 	name "Search for Artemis Renard"
-	description "Bring the father of a missing racing pilot to Sunracer by <date>, passing through the <waypoints> systems. You will be paid <payment>."
+	description "Bring a missing racing pilot's father to <destination> by <date>, passing through the <waypoints> systems. You will be paid <payment>."
 	minor
 	passengers 1
 	deadline
@@ -6457,45 +6457,45 @@ mission "Lost Racer 1"
 		random < 80
 	on offer
 		conversation
-			`While sitting in the <origin> spaceport waiting for your ship to be refueled, you notice a commotion near one of the other docks; someone appears to be shouting. Approaching the disturbance, you see a well-dressed older man in a heated discussion with a Navy officer standing outside a parked Frigate while it is being loaded with cargo. Eventually, after several more exchanged shouts and some disapproving motions by the officer, the man turns away, exasperated, before he sees you and walks over.`
-			`	"You," the man says, "you're an independent captain, aren't you? You take missions for credits?" He winces a little bit after he says it, maybe a little embarrassed by his pointedness.`
+			`While wandering the <origin> spaceport, waiting for your ship to be refueled, you notice a commotion near one of the other hangars; someone appears to be shouting. As you approach the disturbance, you see a well-dressed older man engaged in a heated discussion with a Navy officer beside a parked Frigate being loaded with supplies. After a few more shouts and a dismissive wave by the officer, the man turns away, exasperated - then spots you and walks over.`
+			`	"You," the man says, "you're an independent captain, aren't you? You take jobs for credits?" He winces a little bit after he says it, maybe a little embarrassed by his bluntness.`
 			choice
 				`	"I'm Captain <last>, and yes, I do."`
-				`	"It depends on what the mission is."`
+				`	"It depends on the job."`
 					goto depends
-			`	"Oh. That's good to hear. I'm sorry for being so brusque with you, but my daughter's ship has gone missing. She's a racing pilot, best in the Paradise Circuit three times over; it's got to be some sort of foul play, pirates or a jealous competitor; that's what I told that useless Navy woman, that they've got to put out a search but she says that she has to have authorization..." He pauses for a moment, clearly realizing his digression.`
+			`	"Oh. That's good to hear. I'm sorry for being so brusque with you - my daughter's ship has gone missing. She's a racing pilot, the best to come out of the Paradise Worlds - three times over. It's got to be foul play - pirates, or a jealous competitor. That's what I told that useless Navy woman, that they've got to put out a search, but she says that she has to have authorization..." He pauses for a moment, realizing he's gone off-track.`
 				goto help
 			label depends
-			`	He sighs. "It's search-and-rescue; my daughter's ship has gone missing. She's a racing pilot, best in the Republic three times over; it's got to be some sort of foul play, pirates or a jealous competitor; that's what I told that useless Navy woman, that they've got to put out a search but she says that she has to have authorization..." He pauses for a moment, clearly realizing his digression.`
+			`	He sighs. "It's search-and-rescue - my daughter's ship has gone missing. She's a racing pilot, the best to come out of the Paradise Worlds - three times over. It's got to be foul play - pirates, or a jealous competitor. That's what I told that useless Navy woman, that they've got to put out a search, but she says that she has to have authorization..." He pauses for a moment, realizing he's gone off-track.`
 			label help
-			`	"Again, I'm sorry. You don't need to hear all that. The loop was through Mirfak. I just need to know if you can take me to <destination> and scan for her transponder in those uninhabited systems north of there. Money is not an object."`
+			`	"Again, I'm sorry. You don't need to hear all that. The loop was through Mirfak. I just need to know if you can take me to <planet> and scan for her transponder in those uninhabited systems north of there. Money is no object."`
 			choice
 				`	"I'd be happy to help."`
 					goto agree
-				`	"I'm sorry, but I can't transport you. You'll have to find another captain able to take you on."`
-			`	A series of emotions passes across the man's face: anger, scorn, resignation. "I thought you would be better than those Navy bastards," he says, shaking his head. "Well, I hope I can find someone in this place with a shred of decency before she dies out there." He walks away and you are left with a sinking sense of guilt.`
+				`	"I'm sorry, but I can't transport you. You'll have to find another captain."`
+			`	A flicker of emotions crosses the man's face - anger, scorn, resignation. "I thought you'd be better than those Navy bastards," he says, shaking his head. "Well, I hope I can find someone in this place with a shred of decency - before she dies out there." He walks away, his disappointment heavy in the air.`
 				decline
 			label agree
 			`	The man exhales, relieved. "Thank you so much," he says. "My name is August Renard, and my daughter is Artemis. She's out there, I know it, but we'd better get moving soon."`
 			choice
 				`	"My ship is as fast as they come. We'll find her in no time."`
 					goto fast
-				`	"Artemis Renard? I think I remember hearing about her winning recently, something in Betelgeuse."`
-			`	"Ah yes," the man says with pride in his voice, "the Betelgeuse Classic, stable orbit of every planet and spherical moon in the system without refueling. They've been doing it since the Firebird was new, and no one's done it faster than my daughter, no one. She's the best; that's how I know something's gone wrong. Tell your people to warm up the engines."`
+				`	"Artemis Renard? I think I heard she won something recently - maybe in Betelgeuse?"`
+			`	"Ah, yes," the man says with pride in his voice. "The Betelgeuse Classic, a circuit of every planet and major moon in the system, and hitting every marker in an equatorial orbit without refueling. They've been doing it since the Firebird was new, and no one's done it faster than my daughter - no one. She's the best; that's how I know something's gone wrong. Tell your people to warm up the engines."`
 				goto board
 			label fast
-			`	"I'm glad you have pride in your ship. I've seen 'fast as they come' for twenty years now and I've never needed it as much as today."`
+			`	"I appreciate your pride in your ship. I've heard 'fast as they come' for twenty years now, and I've never needed it more than today."`
 			label board
 			`	You lead Mr. Renard to your ship, which he boards with unusual nimbleness and comfort for an old man from the Paradise Worlds.`
 				accept
 	on waypoint
-		dialog "You have passed through all three systems laid out in the search plan, performing a long-range deep scan for Artemis Renard's transponder in each, but it has returned nothing but static. As far as you can tell, she is not in any of these systems."
+		dialog "You've passed through all three systems outlined in the search plan, running long-range deep scans for Artemis Renard's transponder in each, but all you've gotten back is static. As far as you can tell, she's not in any of them."
 	on complete
 		payment 100000
 		conversation
-			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched the transition from hope to desperation in her father after each successive failure; you can't imagine that he has been getting much sleep.`
-			`	During the landing on Sunracer, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of Syndicate ship models in race-related livery. A small Navy contingent is also present, and the spaceport seems busier and more hectic than usual.`
-			`	"I've got to speak with the race coordinators here," says Mr. Renard. "I see they've finally gone to the trouble of starting a search of their own. Syndicate idiots, probably didn't even notice she was missing till it was on the news. We've got to keep searching. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
+			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched hope fade into desperation in her father with each successive failure. You can't imagine he's been getting much sleep.`
+			`	During the landing on Sunracer, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of Syndicate ship models in race-related livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, spectators. The spaceport seems busier and more hectic than usual.`
+			`	"I've got to speak with the race coordinators here," says Mr. Renard, striding towards the marshal station. "I see the marshals are back from searching. Syndicate idiots, probably didn't even notice she was missing till it was on the news. We've got to keep looking. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
 			choice
 				`	"Of course. We're going to find her."`
 					goto next
@@ -6511,7 +6511,8 @@ mission "Lost Racer 2"
 	name "Search for Artemis Renard"
 	description "Search the system of <system> for Artemis Renard, especially <planet>."
 	source "Sunracer"
-	destination "Pummel"
+	destination "Sandswell"
+	waypoint "Acamar"
 	passengers 1
 	deadline
 	to offer
@@ -6519,14 +6520,14 @@ mission "Lost Racer 2"
 		not "abandoned lost racer"
 	on offer
 		conversation
-			`The displays in the spaceport hangar are playing a news channel, showing aerial views of the spaceport and pictures of the missing Artemis Renard in front of her red and white Flivver, wearing a calm, confident expression while a caption at the bottom of the screen reads "CHAMPION RACER MISSING AFTER COMPETITION."`
+			`The displays in the spaceport hangar are flicker with a news broadcast: sweeping aerial views of the spaceport alongside photos of Artemis Renard beside her red-and-white Flivver, wearing a calm, confident expression. Beneath the images, the screen reads "CORE CHAMPIONSHIP CATASTROPHE: MISSING MISS RENARD MYSTIFIES MILLIONS."`
 			choice
 				`	(Watch the news broadcast.)`
 				`	(Wait for Mr. Renard to return.)`
 					goto renard
-			`	The voice of an eerily calm anchor plays over more vignettes of the race infrastructure. "... and, of course, today's top story: three-time Republic starship racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for two days now, led by Megaparsec with support from the Republic Navy and Syndicated Systems' internal security forces. The head of the event, Quinn Emerson, put out the following statement:`
+			`	The voice of an eerily calm anchor plays over more vignettes of the race infrastructure. "... and, of course, today's top story: three-time Centurion-Division, Paradise Circuit racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for days now, led by Megaparsec with support from the Republic Navy and Syndicated Systems' internal security forces. The head of the event, Quinn Emerson, put out the following statement:`
 			`	'We at Megaparsec put the greatest attention into ensuring the safety and well-being of all our event participants and guests. Over the past forty-six hours, our search teams have fully scanned the Volax, Cardax, Moktar, Bellatrix, and Menkar systems, and we are working in conjunction with the Republic and Syndicate to fully scour their territories belonging to the circuit as well. Ms. Renard's family can rest assured that if she's out there, we'll find her.'`
-			`	'Artemis Renard, daughter of terraforming magnates August and Louisa Renard, is perhaps best known for shattering the record for the Betelgeuse Classic in last year's race, crossing the finish line nearly fifteen minutes faster than Jackson Lee in 3002. She was last seen flying her ship, the "Moonfox," a white and red Lionheart Flivver with race registration B-168, in the Diphda system. Anyone with information regarding her whereabouts is encouraged to contact the Megaparsec Racing Events Commission and may be entitled to monetary reward if such information leads to the retrieval of Ms. Renard or her ship.'"`
+			`	'Artemis Renard, daughter of terraforming magnates August and Louisa Renard, is perhaps best known for shattering the record for the Betelgeuse Classic in last year's race, crossing the finish line nearly fifteen minutes faster than the record set by Jackson Lee over twenty years ago. She was last seen flying her ship, the "Moonfox," a white and red Lionheart Flivver with race registration B-168, in the Diphda system. Anyone with information regarding her whereabouts is encouraged to contact Syndicate or Navy authorities, as well as the Megaparsec Racing Events Commission, and may be entitled to monetary reward if such information leads to the retrieval of Ms. Renard or her ship.'"`
 			`	The broadcast then ends, going to an advertisement for the Megaparsec Splinter.`
 			
 			label renard
@@ -6537,7 +6538,7 @@ mission "Lost Racer 2"
 					goto suspicious
 				`	"Do you have a plan for where to go next?"`
 					goto plan
-			`	"Well their best isn't very good, is it! They don't notice that their number-one pilot has been missing for almost a week? I'll get the best lawyers in the Republic to drag Megaparsec through court 'till the only thing left they'll be able to sell will be scrap!"`
+			`	"Well their best isn't very good, is it! They don't notice that their number-one pilot has been missing for days? I'll get the best lawyers in the Republic to drag Megaparsec through court 'till the only thing left they'll be able to sell will be scrap!"`
 			choice
 				`	"What you said about 'network and monitoring issues' sounded suspicious."`
 				`	"So what's the plan from here?"`
@@ -6545,7 +6546,7 @@ mission "Lost Racer 2"
 			label suspicious
 			`	Mr. Renard suddenly speaks more quietly. "I thought so too. I think it might have been sabotage."`
 			`	"What do you mean?" you ask.`
-			`	"Every day that we don't find Artemis, Megaparsec stock dives further and further. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines and they knew that could make them money."`
+			`	"Every day that Artemis is lost, the odds on her plummet and the bets on her competitors skyrocketed. I've spend enough time making money to know that there's no faster way to bruise a competitor than scandal. I think someone sabotaged the race and went after my daughter because they knew it would make headlines, and they knew they could cash in by betting on underdogs."`
 			choice
 				`	"Who do you think did it?"`
 					goto perp
@@ -6556,7 +6557,7 @@ mission "Lost Racer 2"
 				`	"I didn't mean to cast doubt on her skill; I just meant that I'm not sure this has to be a conspiracy."`
 					goto noconspiracy
 			label perp
-			`	"I'm not sure," Mr. Renard says, "Maybe the Syndicate, maybe Betelgeuse or Lionheart. Each could benefit from airing Megaparsec's ineptitude."`
+			`	"I'm not sure," Mr. Renard says, "Maybe the Syndicate, maybe Betelgeuse or Lionheart. Even an ambitious pirate. Each could benefit from betting on such a high-profile race."`
 			choice
 				`	"So what's your plan? How are we going to find her?"`
 					goto plan
@@ -6694,11 +6695,11 @@ mission "Lost Racer 4 - Rescued"
 			`	Artemis coughs. "Later, okay?"`
 			label ship
 			`	The three of you exit the crashed Flivver and make the journey back to the <ship>. Artemis stumbles several times but the two of you steady her and eventually make it to your ship's airlock. You wipe the sand from your face and fetch your ship's first aid equipment, but to your surprise upon returning, Artemis seems remarkably uninjured despite the crash.`
-			`	"Oh, shove off, Captain. I'm fine. Ejection system in the ship, safety first, spare no expense. Wouldn't mind a visit to your galley, though."`
+			`	"Oh, shove off, Captain. I'm fine. Automated drogue system in the ship, safety first, spare no expense. Wouldn't mind a visit to your galley, though."`
 			choice
 				`	"Of course."`
 					goto galley
-				`	"An ejection system? I've never considered that."`
+				`	"Drogue system? Like parachutes? I hadn't considered that."`
 			`	"Really? What is it with you spacers and 'going down with the ship' anyway?"`
 			label galley
 			`	You don't think you've ever seen someone devour a sleeve of freeze-dried peas as quickly or with as much verve as Artemis does. After eating her way through several more of the <ship>'s varieties of stored foodstuffs, she eventually slows down, though the hungry look on her face remains. Her father sits beside her, tightly holding her hand.`
@@ -6749,7 +6750,7 @@ mission "Lost Racer Epilogue"
 		conversation
 			`While you are checking your incoming messages, you notice one from Artemis Renard, the crashed racing pilot who you rescued a couple months ago.`
 			`	"Captain <last>,`
-			`	"I'd like to thank you again for your timely rescue. Recovering from the ordeal has been a long process, of course, but a worthwhile one. Unfortunately that length of time has meant that following the settlement with Megaparsec and as I've been working my way back into the various circuits, we've built up a surplus of increasingly outdated equipment. While we could, of course, simply have it scrapped locally, we were hoping that you might join us on <destination> to see if you can put it to better use."`
+			`	"I'd like to thank you again for your timely rescue. Recovering from the ordeal has been a long process, of course, but a worthwhile one. As I've been working my way back into the various circuits, we've built up a surplus of increasingly outdated equipment. While we could, of course, simply have it scrapped locally, we were hoping that you might join us on <destination> to see if you can put it to better use."`
 			`		Sincerely,`
 			`			Artemis Renard`
 				accept
@@ -6758,7 +6759,7 @@ mission "Lost Racer Epilogue"
 		conversation
 			`As Glory again rises to greet your ship, you receive a hail from a spacecraft that comes up alongside your ship. "Ho, Captain! Why don't you come to our estate, instead of the main landing port? It'll be easier." August Renard is leaning out the cockpit of a fancy Racing Flivver, looking much happier than when you first met him.`
 			`	You redirect your ship in the direction the Flivver is going, noticing that it has the same name as Artemis' ship which crashed on Sandswell.`
-			`	Soon, the dense main city of <planet> gives way to a perfectly-terraformed countryside with only one mar - a gigantic mansion that must be hundreds of meters high. A few landing pads are set in a neat array next to it, and the B-168 "Moonfox" lands on one of these, beckoning for you to land on another.`
+			`	Soon, the dense main city of <planet> gives way to a perfectly-terraformed countryside with only one mar - a gigantic personal skyscraper that must be hundreds of meters high. A few landing pads are set in a neat array next to it, and the B-168 "Moonfox" lands on one of these, beckoning for you to land on another.`
 			choice
 				`	(Land on one of the pads.)`
 					goto continue
