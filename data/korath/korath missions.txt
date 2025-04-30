@@ -587,6 +587,6 @@ mission "Exile: Boarding Worldship Korath"
 	destination "Earth"
 	on offer
 		conversation
-			`Docking with this gargantuan vessel allows you a front-row seat in witnessing the sheer scale of this ship. Your sensors struggle with their task, as they were never intended for such a massive vessel, but you can estimate from the readings that there are tens of thousands of lifeforms aboard. You assume some of these life signs are flora, such as the tree-like plants you can see in the colossal domes atop the craft, but even the immense domes and long towers couldn't account for the sheer number of beings your computers are outputting.`
-			`	As you continue the scan of this massive vessel, you realize that a ship of this scale must be piloted by many hundreds, and it likely carries thousands more. Given how hugely constructed this vessel is, the Korath must find it quite valuable.`
+			`Docking with this ship provides you with a front-row seat in witnessing its sheer scale. Your sensors struggle with their task, as they were never intended for such a massive vessel, but you can estimate from the readings that there are tens of thousands of lifeforms aboard. You assume some of these life signs are flora, such as the tree-like vegetation you can see in the colossal domes atop the craft, but even the immense domes and long towers couldn't account for the sheer number of plants your computers are outputting.`
+			`	As you continue the scan of this massive vessel, you observe that this ship would be piloted by many hundreds, and it definitely carries thousands more. Given how hugely constructed this vessel is, the Korath must find it quite valuable.`
 				decline
