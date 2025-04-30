@@ -142,13 +142,13 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					toKnow = ConditionSet();
 				else if(value == "land")
 					toLand = ConditionSet();
-				else if(value == "unlock")
+				else if(value == "access")
 				{
 					const string &shop = child.Token(valueIndex + 1);
 					if(shop == "shipyard")
-						toUnlockShipyard = ConditionSet();
+						toAccessShipyard = ConditionSet();
 					else if(shop == "outfitter")
-						toUnlockOutfitter = ConditionSet();
+						toAccessOutfitter = ConditionSet();
 				}
 			}
 
@@ -261,13 +261,13 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 				toKnow.Load(child, playerConditions);
 			else if(value == "land")
 				toLand.Load(child, playerConditions);
-			else if(value == "unlock" && child.Size() > valueIndex + 1)
+			else if(value == "access" && child.Size() > valueIndex + 1)
 			{
 				const string &shop = child.Token(valueIndex + 1);
 				if(shop == "shipyard")
-					toUnlockShipyard.Load(child, playerConditions);
+					toAccessShipyard.Load(child, playerConditions);
 				else if(shop == "outfitter")
-					toUnlockOutfitter.Load(child, playerConditions);
+					toAccessOutfitter.Load(child, playerConditions);
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
 			}
@@ -481,7 +481,7 @@ bool Planet::IsInhabited() const
 // Check if this planet has a permanent shipyard.
 bool Planet::HasShipyard() const
 {
-	return !shipSales.empty() && toUnlockShipyard.Test();
+	return !shipSales.empty() && toAccessShipyard.Test();
 }
 
 
@@ -514,7 +514,7 @@ set<const Shop<Ship> *> Planet::Shipyards() const
 // Check if this planet has a permanent outfitter.
 bool Planet::HasOutfitter() const
 {
-	return !outfitSales.empty() && toUnlockOutfitter.Test();
+	return !outfitSales.empty() && toAccessOutfitter.Test();
 }
 
 

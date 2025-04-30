@@ -179,8 +179,8 @@ private:
 
 	ConditionSet toKnow;
 	ConditionSet toLand;
-	ConditionSet toUnlockShipyard;
-	ConditionSet toUnlockOutfitter;
+	ConditionSet toAccessShipyard;
+	ConditionSet toAccessOutfitter;
 
 	std::set<const Shop<Ship> *> shipSales;
 	std::set<const Shop<Outfit> *> outfitSales;
