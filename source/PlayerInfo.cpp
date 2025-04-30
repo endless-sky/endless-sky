@@ -129,6 +129,65 @@ namespace {
 
 
 
+PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const ConditionsStore *conditions)
+{
+	GameEvent nodeEvent(node, conditions);
+
+	string eventName;
+	if(!nodeEvent.Name().empty())
+		eventName = nodeEvent.Name();
+	else
+	{
+		// Old save files may contain unnamed events. In that case, the event's name can be found by
+		// looking at the relevant conditions in the event's conditions assignment.
+		set<string> conditions = nodeEvent.Conditions().RelevantConditions();
+		erase_if(conditions, [](const string &name) { return name.find("event: ") == string::npos; });
+		// Unless the save file was manually altered, there should be an event condition present.
+		// If there are multiple event conditions present, then the first one should be the condition
+		// for this event, as assignments are saved and loaded in the order they're created, and
+		// the event condition is the first assignment added to each event.
+		if(!conditions.empty())
+			eventName = conditions.begin()->substr(strlen("event: "));
+	}
+	if(!eventName.empty())
+		event = ExclusiveItem<GameEvent>(GameData::Events().Get(eventName));
+	else
+	{
+		// Fall back onto saving the full definition if we somehow didn't find a name.
+		// This event will still properly apply its changes, but they may be applied
+		// out of order.
+		node.PrintTrace("Warning: Could not determine name of unnamed event.");
+		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
+	}
+
+	date = nodeEvent.GetDate();
+}
+
+
+
+
+PlayerInfo::ScheduledEvent::ScheduledEvent(const string &name, Date date)
+	: event(ExclusiveItem<GameEvent>(GameData::Events().Get(name))), date(std::move(date))
+{
+}
+
+
+
+
+PlayerInfo::ScheduledEvent::ScheduledEvent(GameEvent event, Date date)
+	: event(ExclusiveItem<GameEvent>(std::move(event))), date(std::move(date))
+{
+}
+
+
+
+bool PlayerInfo::ScheduledEvent::operator<(const ScheduledEvent &other) const
+{
+	return date < other.date;
+}
+
+
+
 // Completely clear all loaded information, to prepare for loading a file or
 // creating a new pilot.
 void PlayerInfo::Clear()
@@ -364,18 +423,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
 		else if(child.Token(0) == "event")
-		{
-			// Old save files may contain unnamed events. In that case, we need to
-			// load the event instead of retrieving the named event definition.
-			// Only the date that the event occurs on may differ from the definition,
-			// so that must be stored separately.
-			GameEvent event(child, &conditions);
-			const Date &occursOn = event.GetDate();
-			if(!event.Name().empty())
-				gameEvents.emplace(ExclusiveItem<GameEvent>(GameData::Events().Get(event.Name())), occursOn);
-			else
-				gameEvents.emplace(ExclusiveItem<GameEvent>(std::move(event)), occursOn);
-		}
+			gameEvents.emplace(child, &conditions);
 		else if(child.Token(0) == "changes")
 		{
 			for(const DataNode &grand : child)
@@ -384,7 +432,8 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(child.Token(0) == "past events")
 		{
 			for(const DataNode &grand : child)
-				pastEvents.push_back(grand.Token(0));
+				if(grand.Size() >= 4)
+					pastEvents.emplace(grand.Token(0), Date(grand.Value(1), grand.Value(2), grand.Value(3)));
 		}
 		else if(child.Token(0) == "economy")
 			economy = child;
@@ -615,13 +664,12 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 		list<DataNode> eventChanges = event.Apply(*this);
 		if(!eventChanges.empty())
 			AddChanges(eventChanges);
-		// All events received by this function will have a name.
-		pastEvents.push_back(event.Name());
+		pastEvents.emplace(event, date);
 	}
 	else
 	{
 		event.SetDate(date);
-		gameEvents.emplace(ExclusiveItem<GameEvent>(std::move(event)), date);
+		gameEvents.emplace(event, date);
 	}
 }
 
@@ -747,16 +795,15 @@ void PlayerInfo::AdvanceDate(int amount)
 		// Check if any special events should happen today.
 		auto it = gameEvents.begin();
 		list<DataNode> eventChanges;
-		while(it != gameEvents.end() && date >= it->second)
+		while(it != gameEvents.end() && date >= it->date)
 		{
-			GameEvent eventCopy = *(it->first);
-			// Unnamed events must have their changes stored in the
-			// save file. Named events need only store their name.
+			GameEvent eventCopy = *(it->event);
 			list<DataNode> changes = eventCopy.Apply(*this);
+			// Unnamed events must have their changes stored in the save file.
 			if(eventCopy.Name().empty())
 				dataChanges.insert(dataChanges.end(), changes.begin(), changes.end());
 			else
-				pastEvents.push_back(eventCopy.Name());
+				pastEvents.insert(*it);
 			eventChanges.splice(eventChanges.end(), changes);
 			it = gameEvents.erase(it);
 		}
@@ -1637,23 +1684,42 @@ void PlayerInfo::Land(UI *ui)
 	// Create whatever missions this planet has to offer.
 	if(!freshlyLoaded)
 		CreateMissions();
-	// Upon loading the game, prompt the player about any paused missions, but if there are many
-	// do not name them all (since this would overflow the screen).
-	else if(ui && !inactiveMissions.empty())
+	// Upon loading the game, prompt the player about any paused missions or invalid events,
+	// but if there are many do not name them all (since this would overflow the screen).
+	else if(ui)
 	{
-		string message = "These active missions or jobs were deactivated due to a missing definition"
-			" - perhaps you recently removed a plugin?\n";
-		auto mit = inactiveMissions.rbegin();
-		int named = 0;
-		while(mit != inactiveMissions.rend() && (++named < 10))
+		if(!inactiveMissions.empty())
 		{
-			message += "\t\"" + mit->Name() + "\"\n";
-			++mit;
+			string message = "These active missions or jobs were deactivated due to a missing definition"
+				" - perhaps you recently removed a plugin?\n";
+			auto mit = inactiveMissions.rbegin();
+			int named = 0;
+			while(mit != inactiveMissions.rend() && (++named < 10))
+			{
+				message += "\t\"" + mit->Name() + "\"\n";
+				++mit;
+			}
+			if(mit != inactiveMissions.rend())
+				message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
+			message += "They will be reactivated when the necessary plugin is reinstalled.";
+			ui->Push(new Dialog(message));
 		}
-		if(mit != inactiveMissions.rend())
-			message += " and " + to_string(distance(mit, inactiveMissions.rend())) + " more.\n";
-		message += "They will be reactivated when the necessary plugin is reinstalled.";
-		ui->Push(new Dialog(message));
+		if(!invalidEvents.empty())
+		{
+			string message = "These past events are undefined or contain undefined data"
+				" - perhaps you recently removed a plugin?\n";
+			auto eit = invalidEvents.rbegin();
+			int named = 0;
+			while(eit != invalidEvents.rend() && (++named < 10))
+			{
+				message += "\t\"" + eit->Name() + "\"\n";
+				++eit;
+			}
+			if(eit != invalidEvents.rend())
+				message += " and " + to_string(distance(eit, invalidEvents.rend())) + " more.\n";
+			message += "The universe may not be in the proper state until the necessary plugin is reinstalled.";
+			ui->Push(new Dialog(message));
+		}
 	}
 
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
@@ -3118,9 +3184,9 @@ void PlayerInfo::ApplyChanges()
 	// changes from event definitions now. First apply any data changes
 	// from the save file, then apply the changes from any named events.
 	list<DataNode> eventChanges = dataChanges;
-	for(const string &eventName : pastEvents)
+	for(const ScheduledEvent &pastEvent : pastEvents)
 	{
-		GameEvent eventCopy = *GameData::Events().Get(eventName);
+		GameEvent eventCopy = *(pastEvent.event);
 		eventChanges.splice(eventChanges.end(), eventCopy.Apply(*this, true));
 	}
 	if(!eventChanges.empty())
@@ -3267,6 +3333,12 @@ void PlayerInfo::ValidateLoad()
 	auto isInvalidMission = [](const Mission &m) noexcept -> bool { return !m.IsValid(); };
 	availableJobs.remove_if(isInvalidMission);
 	availableMissions.remove_if(isInvalidMission);
+
+	// Validate past events that were applied. Invalid events are recorded to warn the
+	// player about.
+	for(const ScheduledEvent &pastEvent : pastEvents)
+		if(!pastEvent.event->IsValid().empty())
+			invalidEvents.push_back(*pastEvent.event);
 }
 
 
@@ -4477,9 +4549,9 @@ void PlayerInfo::Save(DataWriter &out) const
 	// Save pending events, and changes that have happened due to past events.
 	for(const auto &it : gameEvents)
 	{
-		const ExclusiveItem<GameEvent> &event = it.first;
-		const Date &date = it.second;
-		if(event.IsStock())
+		const ExclusiveItem<GameEvent> &event = it.event;
+		const Date &date = it.date;
+		if(!event->Name().empty())
 		{
 			out.Write("event", event->Name());
 			out.BeginChild();
@@ -4506,8 +4578,15 @@ void PlayerInfo::Save(DataWriter &out) const
 		out.Write("past events");
 		out.BeginChild();
 		{
-			for(const string &event : pastEvents)
-				out.Write(event);
+			for(const ScheduledEvent &pastEvent : pastEvents)
+			{
+				const string &name = pastEvent.event->Name();
+				if(!name.empty())
+				{
+					const Date &date = pastEvent.date;
+					out.Write(name, date.Day(), date.Month(), date.Year());
+				}
+			}
 		}
 		out.EndChild();
 	}

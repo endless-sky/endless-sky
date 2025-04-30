@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Account.h"
-#include "comparators/ByPair.h"
 #include "CargoHold.h"
 #include "ConditionsStore.h"
 #include "CoreStartData.h"
@@ -347,6 +346,24 @@ public:
 
 
 private:
+	class ScheduledEvent {
+	public:
+		// For loading a future event from the save file.
+		ScheduledEvent(const DataNode &node, const ConditionsStore *conditions);
+		// For loading a past event from the save file.
+		ScheduledEvent(const std::string &name, Date date);
+		// For scheduling a new event.
+		ScheduledEvent(GameEvent event, Date date);
+
+		// Comparison operator, based on the scheduled date of the event.
+		bool operator<(const ScheduledEvent &other) const;
+
+		ExclusiveItem<GameEvent> event;
+		Date date;
+	};
+
+
+private:
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
 	// After loading & applying changes, make sure the player & ship locations are sensible.
@@ -422,6 +439,9 @@ private:
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
+	// If any past event is not fully defined, the player should be warned that
+	// the unvierse may not be in the expected state.
+	std::list<GameEvent> invalidEvents;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
@@ -454,18 +474,17 @@ private:
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
 	std::map<const Planet *, int64_t> tributeReceived;
-	// As of 0.10.13, event changes are store in the save file by saving the name of the event
+	// As of 0.10.13, event changes are stored in the save file by saving the name of the event
 	// and applying the changes of the event definition when the save file is loaded. Prior to
 	// that point, the body of event changes was stored in the save file instead. Therefore,
 	// the dataChanges list should only ever be populated by event changes from old save files.
 	std::list<DataNode> dataChanges;
-	std::list<std::string> pastEvents;
+	std::multiset<ScheduledEvent> pastEvents;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
-	std::multiset<std::pair<ExclusiveItem<GameEvent>, Date>,
-		BySecondInPair<ExclusiveItem<GameEvent>, Date>> gameEvents;
+	std::multiset<ScheduledEvent> gameEvents;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;

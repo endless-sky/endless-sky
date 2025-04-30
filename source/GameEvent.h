@@ -72,6 +72,7 @@ public:
 	std::list<DataNode> Apply(PlayerInfo &player, bool onlyDataChanges = false);
 
 	const std::list<DataNode> &Changes() const;
+	const ConditionAssignments &Conditions() const;
 
 	// Comparison operator, based on the date of the event.
 	bool operator<(const GameEvent &other) const;

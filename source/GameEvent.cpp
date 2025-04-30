@@ -263,6 +263,13 @@ list<DataNode> GameEvent::Apply(PlayerInfo &player, bool onlyDataChanges)
 
 
 
+const ConditionAssignments &GameEvent::Conditions() const
+{
+	return conditionsToApply;
+}
+
+
+
 const list<DataNode> &GameEvent::Changes() const
 {
 	return changes;
