@@ -76,13 +76,6 @@ private:
 	const Shader *shader;
 	GLuint texture = 0;
 
-	GLint colorI = 0;
-	GLint scaleI = 0;
-	GLint glyphSizeI = 0;
-	GLint glyphI = 0;
-	GLint aspectI = 0;
-	GLint positionI = 0;
-
 	int height = 0;
 	int space = 0;
 	mutable int screenWidth = 0;

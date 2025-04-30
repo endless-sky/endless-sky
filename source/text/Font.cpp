@@ -40,6 +40,13 @@ namespace {
 	/// Shared VAO and VBO quad (0,0) -> (1,1)
 	GLuint vao = 0;
 	GLuint vbo = 0;
+
+	GLint colorI = 0;
+	GLint scaleI = 0;
+	GLint glyphSizeI = 0;
+	GLint glyphI = 0;
+	GLint aspectI = 0;
+	GLint positionI = 0;
 }
 
 
@@ -336,18 +343,18 @@ void Font::SetUpShader(float glyphW, float glyphH)
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
+
+		colorI = shader->Uniform("color");
+		scaleI = shader->Uniform("scale");
+		glyphSizeI = shader->Uniform("glyphSize");
+		glyphI = shader->Uniform("glyph");
+		aspectI = shader->Uniform("aspect");
+		positionI = shader->Uniform("position");
 	}
 
 	// We must update the screen size next time we draw.
 	screenWidth = 0;
 	screenHeight = 0;
-
-	colorI = shader->Uniform("color");
-	scaleI = shader->Uniform("scale");
-	glyphSizeI = shader->Uniform("glyphSize");
-	glyphI = shader->Uniform("glyph");
-	aspectI = shader->Uniform("aspect");
-	positionI = shader->Uniform("position");
 }
 
 
