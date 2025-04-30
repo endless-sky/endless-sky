@@ -1706,7 +1706,7 @@ void PlayerInfo::Land(UI *ui)
 		}
 		if(!invalidEvents.empty())
 		{
-			string message = "These past events are undefined or contain undefined data"
+			string message = "These scheduled or past events are undefined or contain undefined data"
 				" - perhaps you recently removed a plugin?\n";
 			auto eit = invalidEvents.rbegin();
 			int named = 0;
@@ -3336,9 +3336,12 @@ void PlayerInfo::ValidateLoad()
 
 	// Validate past events that were applied. Invalid events are recorded to warn the
 	// player about.
-	for(const ScheduledEvent &pastEvent : pastEvents)
-		if(!pastEvent.event->IsValid().empty())
-			invalidEvents.push_back(*pastEvent.event);
+	for(const ScheduledEvent &event : gameEvents)
+		if(!event.event->IsValid().empty())
+			invalidEvents.push_back(*event.event);
+	for(const ScheduledEvent &event : pastEvents)
+		if(!event.event->IsValid().empty())
+			invalidEvents.push_back(*event.event);
 }
 
 
