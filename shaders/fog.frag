@@ -1,5 +1,5 @@
-/* alignment.hpp
-Copyright (c) 2020 by OOTA, Masato
+/* fog.frag
+Copyright (c) 2016 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,12 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+precision mediump sampler2D;
+precision mediump float;
+uniform sampler2D tex;
 
-// Ways in which text may be aligned.
-enum class Alignment : int {
-	LEFT,
-	CENTER,
-	RIGHT,
-	JUSTIFIED,
-};
+in vec2 fragTexCoord;
+out vec4 finalColor;
+
+void main() {
+	finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);
+}

@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Government;
@@ -75,9 +76,9 @@ public:
 	~NPC() noexcept = default;
 
 	// Construct and Load() at the same time.
-	explicit NPC(const DataNode &node);
+	explicit NPC(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so fleets will be replaced by individual ships already.
 	void Save(DataWriter &out) const;

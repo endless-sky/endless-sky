@@ -26,7 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 #include "Government.h"
 #include "Hardpoint.h"
-#include "JumpTypes.h"
+#include "JumpType.h"
 #include "image/Mask.h"
 #include "Messages.h"
 #include "Minable.h"
@@ -4175,7 +4175,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		for(const Mission &mission : player.Missions())
 		{
 			// Don't include invisible and failed missions in the check.
-			if(!mission.IsVisible() || mission.IsFailed(player))
+			if(!mission.IsVisible() || mission.IsFailed())
 				continue;
 
 			// If the accessible destination of a mission is in this system, and you've been
