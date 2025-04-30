@@ -1401,7 +1401,7 @@ mission "Remnant: Cognizance 31"
 
 mission "Remnant: Cognizance 32"
 	name "Pick Up Refined Fuel"
-	description "Chilia has asked you to pick up <tons> of refined fuel from <planet> by <date>."
+	description "Chilia has asked you to pick up 58 tons of refined fuel from <planet> by <date>."
 	source "Viminal"
 	destination "Clink"
 	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."
@@ -1514,7 +1514,6 @@ mission "Remnant: Cognizance 34"
 	name "Observe changes in Postverta"
 	description "Something is going on outside, and Dusk would like you to take a look."
 	source "Ssil Vida"
-	waypoint "Postverta"
 	to offer
 		has "Remnant: Cognizance 33: done"
 	on offer
@@ -1525,10 +1524,14 @@ mission "Remnant: Cognizance 34"
 			`	Dusk looks around, and then gestures. "Captain <first>, please go investigate what is going on out there. Just take a good look around and then report back."`
 				accept
 	on enter "Postverta"
+		set "remnant: saw changed postverta"
 		conversation
 			`Just like the Remnant said, the system appears to be full of life. Where once there was just asteroids and a fairly empty system, there is now life signs everywhere. As you dodge among the asteroids, you note that most of them appear to have something growing on them: plants. Moss or fungus might be a better word, although you are fairly certain that nothing in the current classifications of life can adequately categorize what you can see outside. The sudden appearance of all this life is only compounded when your sensors light up to notify you that it is tracking several flocks of void sprites.`
 			`	As you move away from the station you continue to spot signs of life and activity everywhere: flitting among the rocks, soaring along the solar winds, and hunting amongst clouds. What is unclear, however, is where it came from. The only hint might be in the fact that your ship instruments report a sudden spike in the ambient energy in the surrounding area.`
+	to complete
+		has "remnant: saw changed postverta"
 	on complete
+		clear "remnant: saw changed postverta"
 		conversation
 			`Back on the station Dusk, Gavriil, and many of the Remnant on the station meet you in the docking bay. Dusk and several of the others just came back from walking out on the hull of <origin>, and they report seeing void sprites passing close to the station. They quickly pull the data from your ship sensors and throw it up on a holographic display. Everyone gathers around, intently drinking in the data and footage. They stand, stare, and ponder with intense concentration as the data continues to stream in from the station.`
 			`	Without warning, something clicks in your mind. Suddenly there is a hum of hundreds of conversations crowding your thoughts and a momentary feeling of seeing the system through thousands of eyes. You feel a wave of curiosity, and a glimpse of <origin> as it might have been once - shiny and gleaming. The image ages like a fast-forward video of untold thousands of orbits as the station wears and the sky changes around it. Then the image freezes on what appears to be the present day. A feeling of appreciation replaces the sense of curiosity, followed by a blurry image of the <ship> leaving the station and heading in a dozen different directions simultaneously, as if watching it splinter into ghosts.`

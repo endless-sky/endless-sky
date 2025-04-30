@@ -224,6 +224,9 @@ interface "map detail panel"
 	value "trade height" 120
 	value "arrow x offset" 3
 	value "arrow y offset" 10
+	value "description x offset" 240
+	value "description width" 500
+	value "description height" 240
 
 
 
@@ -1411,7 +1414,7 @@ interface "planet"
 		dimensions 720 360
 
 	box "content"
-		from -300 80 to 180 355
+		from -300 80 to 180 320
 
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
@@ -1497,7 +1500,7 @@ interface "planet"
 
 interface "spaceport"
 	box "content"
-		from -300 80 to 180 355
+		from -300 80 to 180 320
 
 
 
@@ -1774,6 +1777,8 @@ interface "bank"
 
 
 interface "mission" bottom
+	box "description"
+		from -190 -214 to 190 -118
 	visible if "has description"
 	sprite "ui/mission"
 		align bottom

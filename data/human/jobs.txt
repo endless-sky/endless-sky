@@ -1889,6 +1889,44 @@ mission "Passengers [5]"
 		payment 500
 		dialog phrase "generic passenger dropoff payment"
 
+mission "Passengers to Quarg [1]"
+	name "Passenger transport to <planet>"
+	description "Bring <fare> to the Quarg planet of <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1 10 .9
+	to offer
+		random < 10
+		has "landing access: Humanika"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Humanika"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog phrase "generic passenger dropoff payment"
+
+mission "Passengers to Quarg [2]"
+	name "Passenger transport to <planet>"
+	description "Bring <fare> to the Quarg planet of <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1 10 .9
+	to offer
+		random < 10
+		has "landing access: Humanika"
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination "Humanika"
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment
+		payment 10000
+		dialog phrase "generic passenger dropoff payment"
+
 mission "Transport miners to <planet>"
 	job
 	repeat
@@ -2700,6 +2738,88 @@ mission "Released Prisoners [2]"
 		payment 3000 150
 		dialog "The released prisoners walk into the spaceport with nothing but discharge paperwork and the clothes on their backs. You collect your payment of <payment>."
 
+mission "Passenger Runoff [0]"
+	name "Passenger transport to <planet>"
+	description "Bring a hooded figure to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. You catch a glimpse of your passenger running off into the spaceport.`
+
+mission "Passenger Runoff [1]"
+	name "Passenger transport to <planet>"
+	description "Bring a teenager to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 10
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		dialog `After landing, you go to the passenger compartments to notify them of the arrival and ask for the payment. The door opens as you raise your hand to knock, and a teenager rushes past you. Before you can recover, they're already gone and on their way into the depths of the spaceport.`
+
+mission "Passenger Runoff With Payment [0]"
+	name "Passenger transport to <planet>"
+	description "Bring a hooded figure to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 40
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. Checking the bay, you find a payment of <payment> and spot your passenger running off into the spaceport.`
+
+mission "Passenger Runoff With Payment [1]"
+	name "Passenger transport to <planet>"
+	description "Bring a teenager to <destination>. Payment is <payment>."
+	job
+	repeat
+	passengers 1
+	"apparent payment" 12000
+	source
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	destination
+		distance 2 8
+		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
+	to offer
+		random < 1
+		random < 40
+	on visit
+		dialog phrase "generic passenger on visit"
+	on complete
+		payment 10000
+		dialog `As your ship touches down on the landing pad, a blinking light notifies you that the cargo bay door was opened using the emergency release. Checking the bay, you find a payment of <payment> and spot your passenger running off into the spaceport.`
+
 mission "Large Bulk Delivery [0]"
 	name "Large bulk delivery to <planet>"
 	job
@@ -2927,6 +3047,60 @@ mission "FW Wildfire Aid [2]"
 	on complete
 		payment 10500 80
 		dialog "You wish the firefighting team well in their efforts and collect your payment of <payment>. A group of <planet> citizens comes to guide the team away to a nearby tent, and thank you for your assistance."
+
+mission "FW Cold Aid [1]"
+	name "Cold relief to <planet>"
+	description `A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport <cargo> to <planet> by <date> to assist in the recovery efforts. Payment is <payment>.`
+	job
+	repeat
+	deadline
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on complete
+		payment 8500 80
+		dialog `You turn your cargo of <cargo> over to the needy community in return for <payment>.`
+
+mission "FW Cold Aid [2]"
+	name "Cold relief to <planet>"
+	description `A major <problem> has occurred on <destination> and various settlements on the planet have been affected. Transport <cargo> to <planet> by <date> to assist in the recovery efforts. Payment is <payment>.`
+	job
+	repeat
+	deadline
+	source
+		government "Free Worlds"
+	destination
+		government "Free Worlds"
+		distance 2 8
+		attributes "frozen"
+	substitutions
+		"<problem>" "cold snap"
+		"<problem>" "freeze"
+			"random" < 60
+		"<problem>" "snowstorm"
+			"random" < 30
+		"<problem>" "blizzard"
+			"random" < 10
+	cargo "cold aid" 10 15 0.5
+	to offer
+		random < 1
+	on complete
+		payment 8500 80
+		dialog `You turn your cargo of <cargo> over to the needy community in return for <payment>.`
 
 
 

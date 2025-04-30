@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
+#include "TextArea.h"
 #include "UI.h"
 
 using namespace std;
@@ -35,9 +36,12 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 {
 	SetTrapAllEvents(false);
 
-	text.SetFont(FontSet::Get(14));
-	text.SetAlignment(Alignment::JUSTIFIED);
-	text.SetWrapWidth(ui.GetBox("content").Width());
+	description = make_shared<TextArea>();
+	description->SetFont(FontSet::Get(14));
+	description->SetColor(*GameData::Colors().Get("bright"));
+	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetRect(ui.GetBox("content"));
+	AddChild(description);
 
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
@@ -65,7 +69,7 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs);
 	player.AddPlayerSubstitutions(subs);
 	newsMessage.Wrap(Format::Replace(news->Message(), subs));
 }
@@ -95,9 +99,9 @@ void SpaceportPanel::Draw()
 	if(player.IsDead())
 		return;
 
-	Rectangle box = ui.GetBox("content");
-	text.Wrap(port.Description().ToString(player.Conditions()));
-	text.Draw(box.TopLeft(), *GameData::Colors().Get("bright"));
+	// The description text needs to be updated, because player conditions can be changed
+	// in the meantime, for example if the player accepts a mission on the Job Board.
+	description->SetText(port.Description().ToString());
 
 	if(hasNews)
 	{
@@ -121,9 +125,8 @@ const News *SpaceportPanel::PickNews() const
 
 	vector<const News *> matches;
 	const Planet *planet = player.GetPlanet();
-	const auto &conditions = player.Conditions();
 	for(const auto &it : GameData::SpaceportNews())
-		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
+		if(!it.second.IsEmpty() && it.second.Matches(planet))
 			matches.push_back(&it.second);
 
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];

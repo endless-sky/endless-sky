@@ -971,6 +971,106 @@ mission "Exotic Life: Glaze"
 			`	You walk back to your ship from the binoculars.`
 				decline
 
+mission "Exotic Life: Bluestone"
+	minor
+	source Bluestone
+	to offer
+		random < 10
+	on offer
+		conversation
+			`You step off your ship and wander around Bluestone's quiet yet functional spaceport. The buildings, made mostly of durable plastic resin, form a quaint but near-uniform red-brown landscape, in sharp contrast to the small yellow pub in the center. The spaceport is quiet, but the low hum of activity from a nearby oil drill gives it some life. As you are entering the pub, you spot an announcement on a bulletin board:`
+			`	"Guided Tour: Hybrid Crop Research Village - an exceptional hub of field-based research led by the Cornucopia College of Agriculture, nestled within captivating landscapes!"`
+			`	The bulletin catches your eye. It's a rare chance to see something other than refinery equipment and plastics, and the mention of hybrid crops entails something different. There's a signup sheet, and only a few spots remain.`
+			choice
+				`	(Sign up.)`
+				`	(Skip the tour.)`
+					decline
+			`	After signing up for the next tour, you are directed to hop onto a beat-up old bus that rattles along to the research village. You notice Bluestone's rusty industrial sprawl transition into the rocky fields of deep, desaturated blue grasses that the planet is known for. The village itself appears a small yet dynamic community, centered around a sleek, glass-paneled laboratory and greenhouse emanating reddish-yellow light. Dotted around are modest plastic resin apartment buildings. The entire community is surrounded by an expansive field containing rows and rows of crops.`
+			`	You get off the bus and are immediately ushered into the laboratory by a young-looking tour guide, along with half a dozen other tourists. She has a small nametag that reads:`
+			`		Zea S.`
+			`		Community Tour Guide`
+			`		MS in Agronomy`
+			`		Cornucopia College of Agriculture`
+			`	"Welcome to our guided tour of Bluestone's Hybrid Crop Research Village! Here, our dedicated scientists harness the secrets of native flora. The grasses and lichens you see around you have evolved unique photosynthetic pigments to thrive in our planet's dim, reddish light. Before we continue, can anyone name the most famous photosynthetic pigment found on Earth?"`
+			choice
+				`	"Tea leaves."`
+					goto oncewrong
+				`	"Green."`
+					goto oncewrong
+				`	"Chlorophyll."`
+					goto onceright
+				`	"Purple paint."`
+				`	(Remain silent.)`
+					goto awkward
+			`	"That's what I use to paint my dragon minis!" a tourist blurts out, his excitement briefly overtaking him before he immediately clears his throat to regain his composure.`
+			label oncewrong
+			`	Zea shifts uneasily. "Umm, not exactly. The answer I was looking for was chlorophyll.`
+				goto chlorophyll
+			label onceright
+			`	Zea beams broadly. "Exactly right! Chlorophyll is fundamental to life on Earth.`
+				goto chlorophyll
+			label awkward
+			`	There is an awkward pause as Zea scans the group. After another moment the tour guide sighs lightly, "Well, it's chlorophyll." Visibly trying to downplay the moment, she adds, "No worries - let's move on.`
+			label chlorophyll
+			`	"These pigments on our native plants are distinct from Earth's chlorophyll. Green chlorophyll actually captures red light fairly well, but not as well as a cyan pigment. Our planet's reddish hue can also be deceiving - near-infrared light, an invisible light just beyond what humans can see, is what our native plants truly thrive on. The vegetation can capture those wavelengths of light with remarkable efficiency. By deciphering their genetic blueprints, we've identified key adaptations that can be hybridized into crops found on Earth or other worlds to enhance their resilience in the low-light environments of cooler stars."`
+			`	You are then led outside to a small garden of native grasses and lichens next to the laboratory. "And now, take a closer look at our fascinating native species. Notice their muted blue and near-black colors - this isn't just a quirk of nature, but a vital adaptation that enhances absorption of red and near-infrared light on our dim planet. Their extensive root systems delve deep into the sparse soil, allowing them to efficiently access as much nutrients and water as possible under low-light conditions. Now, the leaves on these grasses are much larger and flatter than what you'd see on similar grasses on planets with brighter sunlight. Can anyone tell me why our plants might have larger and flatter leaves than somewhere like Earth?"`
+			choice
+				`	"Larger leaves maximize surface area to capture more light."`
+					goto twiceright
+				`	"They look nicer in the breeze."`
+					goto twicewrong
+				`	"It helps herbivores leaf them alone."`
+				`	(Say nothing.)`
+					goto twiceshy
+			`	A collective groan ripples through the tour group, punctuated by a couple of reluctant chuckles. Zea remains completely oblivious as she continues with the tour.`
+			label twicewrong
+			`	"Ummm, actually, that's not quite right. The main focus of these larger leaves is to maximize surface area for better light absorption."`
+				goto nativeplants
+			label twiceright
+			`	"Exactly right! They maximize surface area for better light absorption, which is crucial on our dim planet. Great answer!"`
+				goto nativeplants
+			label twiceshy
+			`	The guide makes eye contact with most of the group for an uncomfortable beat as she awaits a response. When none come, the tour guide says, "Well, it's because larger, thinner leaves maximize the surface area for light absorption... ummm, let's look at some grasses now."`
+			label nativeplants
+			`	She walks up to one of the grasses and gesture at its leaves. "The large, thin leaves of our native plants are designed to maximize surface area to better collect infrared rays, ensuring they capture every photon they can. These features collectively enable our plants to thrive where Earth plants would struggle."`
+			`	The tour continues as you enter a state-of-the-art greenhouse. Inside, hybrid crops flourish under controlled lighting that varies from yellow to red, as you feel warm from the heat lamps above. Zea points at a deep pot filled with a muted blue-black wheatgrass that has huge, delicate leaves. "Here, traditional Earth crops like wheat have been endowed with traits inspired by our native species. Observe the broader, darker leaves that boost photosynthetic efficiency in low-light conditions. These modifications not only help the plants harness energy from our reddish sunlight, but can be used across the galaxy to grow food where it was impossible before!"`
+			`	You feel the tour drawing to a close as the tour guide gathers the group for a final discussion.`
+			`	"Thank you for joining us on this exploration of the cutting edge of hybrid crops. I hope you leave here today with a renewed appreciation and curiosity for the foods you eat and the remarkable plants that surround us."`
+			choice
+				`	(Clap.)`
+				`	(Do nothing.)`
+					goto silence
+			`	You begin clapping and the room fills with applause as the other tourists join in. Zea smiles warmly, "Thank you all again, and have a wonderful day!"`
+				goto ending
+			label silence
+			`	The silence lingers a little too long. Zea waits another moment, then nods to herself a few times before quietly walking off.`
+			label ending
+			`	With the tour's ending, you board the same beat-up old bus that brought you here. As the bus lurches back towards the copper-colored resin of the spaceport, you have time to take in the rolling fields of blue-black grasses swaying under the dim, reddish suns of Bluestone.`
+				decline
+
+mission "Exotic Life: Geyser"
+	minor
+	source Geyser
+	to offer
+		random < 10
+	on offer
+		conversation
+			`As you wander through a row of half-demolished hangars, you spot clusters of spiny cacti with flat, rounded pads and bright red fruit growing in the rubble. A local, noticing your curiosity, strides over with a wry grin.`
+			`	"That plant over there? That's a prickly pear cactus. They're from right here on Geyser. Hardy things, too - they're so aggressive they've even taken root all over Earth."`
+			choice
+				`	"That doesn't sound right. They're native to Earth, not Geyser."`
+					goto argue
+				`	"Huh. Okay then."`
+			`	The local nods, satisfied. "Glad you can appreciate the local plants. Have a good one." They head off towards the food court.`
+				decline
+			label argue
+			`	"You tourists think you know everything. What are you, a plant scientist?"`
+			choice
+				`	"A botanist?"`
+				`	"Oh no, I'm no scientist."`
+			`	"Bah!" With a dismissive wave, they storm off, cursing tourists under their breath.`
+				decline
+
 mission "Little Vienna in New Austria"
 	minor
 	source "New Austria"

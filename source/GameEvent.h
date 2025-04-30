@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DataWriter;
 class Planet;
 class PlayerInfo;
@@ -48,9 +49,9 @@ public:
 public:
 	GameEvent() = default;
 	// Construct and Load() at the same time.
-	explicit GameEvent(const DataNode &node);
+	explicit GameEvent(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void Save(DataWriter &out) const;
 	// If disabled, an event will not Apply() or Save().
 	void Disable();

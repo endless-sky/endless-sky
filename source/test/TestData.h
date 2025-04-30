@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <filesystem>
 #include <string>
 
+class ConditionsStore;
 class DataFile;
 class DataNode;
 
@@ -30,7 +31,7 @@ public:
 	void Load(const DataNode &node, const std::filesystem::path &sourceDataFilePath);
 	// Function to inject the test-data into the game or into the game's
 	// environment.
-	bool Inject() const;
+	bool Inject(const ConditionsStore *playerConditions) const;
 
 	// Types of datafiles that can be stored.
 	enum class Type {UNSPECIFIED, SAVEGAME, MISSION};
@@ -44,7 +45,7 @@ private:
 	bool InjectSavegame() const;
 
 	// Loads a mission stored in testdata into a Mission through GameData.
-	bool InjectMission() const;
+	bool InjectMission(const ConditionsStore *playerConditions) const;
 
 
 private:

@@ -508,7 +508,7 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 	}
 	else
 	{
-		int swizzle = info.GetSwizzle(name);
+		const Swizzle *swizzle = info.GetSwizzle(name);
 		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), swizzle, frame, unit);
 	}
 }

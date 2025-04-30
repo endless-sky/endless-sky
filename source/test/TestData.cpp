@@ -67,7 +67,7 @@ void TestData::Load(const DataNode &node, const filesystem::path &sourceDataFile
 
 
 // Inject the test-data to the proper location.
-bool TestData::Inject() const
+bool TestData::Inject(const ConditionsStore *playerConditions) const
 {
 	// Check if we have the required data to inject.
 	if(dataSetName.empty() || sourceDataFile.empty())
@@ -79,7 +79,7 @@ bool TestData::Inject() const
 		case Type::SAVEGAME:
 			return InjectSavegame();
 		case Type::MISSION:
-			return InjectMission();
+			return InjectMission(playerConditions);
 		default:
 			return false;
 	}
@@ -123,7 +123,7 @@ bool TestData::InjectSavegame() const
 
 
 
-bool TestData::InjectMission() const
+bool TestData::InjectMission(const ConditionsStore *playerConditions) const
 {
 	const DataFile sourceData(sourceDataFile);
 	// Get the contents node in the test data.
@@ -134,7 +134,7 @@ bool TestData::InjectMission() const
 	const DataNode &dataNode = *nodePtr;
 	for(const DataNode &node : dataNode)
 		if(node.Token(0) == "mission" && node.Size() > 1)
-			GameData::Objects().missions.Get(node.Token(1))->Load(node);
+			GameData::Objects().missions.Get(node.Token(1))->Load(node, playerConditions);
 
 	return true;
 }

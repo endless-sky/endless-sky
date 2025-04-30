@@ -192,6 +192,7 @@ namespace {
 		{"cloaked shield permeability", 3},
 		{"acceleration multiplier", 3},
 		{"turn multiplier", 3},
+		{"turret turn multiplier", 3},
 
 		{"burn protection", 4},
 		{"corrosion protection", 4},

@@ -556,7 +556,7 @@ mission "Heliarch Recon 1"
 	destination "Ring of Wisdom"
 	to offer
 		"reputation: Quarg" >= 0
-		has "outfit: Jump Drive"
+		has "ship attribute: jump drive"
 		has "visited planet: Lagrange"
 		has "visited planet: Alta Hai"
 		has "visited planet: Kuwaru Efreti"

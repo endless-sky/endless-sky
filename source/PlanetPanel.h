@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "text/WrappedText.h"
+#include "Sale.h"
 
 #include <functional>
 #include <map>
@@ -26,11 +26,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Interface;
+class Outfit;
 class Planet;
 class PlayerInfo;
 class Ship;
 class SpaceportPanel;
 class System;
+class TextArea;
 
 
 
@@ -67,13 +69,21 @@ private:
 	const System &system;
 	const Interface &ui;
 
+	// Whether this planet has a shipyard or outfitter
+	// and the items that are for sale in each shop.
+	bool initializedShops = false;
+	bool hasShipyard = false;
+	bool hasOutfitter = false;
+	Sale<Ship> shipyardStock;
+	Sale<Outfit> outfitterStock;
+
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;
 	std::shared_ptr<SpaceportPanel> spaceport;
 	std::shared_ptr<Panel> hiring;
 	Panel *selectedPanel = nullptr;
 
-	WrappedText text;
+	std::shared_ptr<TextArea> description;
 
 	// Out of system (absent) ships that cannot fly for some reason.
 	std::vector<std::shared_ptr<Ship>> absentCannotFly;

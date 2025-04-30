@@ -127,46 +127,38 @@ mission "Successors: First Contact 1"
 					to display
 						not "Successors: language"
 					goto language
+				`	"What do you mean that you were ripped from the galaxy?"`
+					to display
+						has "Successors: history"
+						not "Successors: ripped"
+					goto ripped
 				`	"How could you have met humans fifteen hundred years ago?"`
 					to display
 						not "Successors: history"
 					goto history
-				`	"What is House Sioeora?"`
-					to display
-						not "Successors: house"
-					goto house
-			label language
-			action
-				set "Successors: language"
-				set "Successors: history"
-			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
-			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
-			choice
-				`	"What should I do now?"`
-					goto "what now"
-				`	"What do you mean that you were ripped from the galaxy?"`	# Define choices uniquely when they contain a follow-up question not in label "questions."
-					to display
-						not "Successors: ripped"
-					goto ripped
-				`	"What is House Sioeora?"`
-					to display
-						not "Successors: house"
-					goto house
-			label "language short"
-			action
-				set "Successors: language"
-			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
-			choice
-				`	"What should I do now?"`
-					goto "what now"
 				`	"Humans have certainly changed a lot in the last fifteen hundred years."`
 					to display
+						has "Successors: language"
 						not "Successors: changed"
 					goto changed
 				`	"What is House Sioeora?"`
 					to display
 						not "Successors: house"
 					goto house
+			label language
+			`	"T'was a time in which our Predecessors' home domains reach'd farther to the north, and farther still the reach of their intention to explore. For life, it is a rare and precious thing, and doubly so that life which is possess'd of sapience and culture, that's noble in reason, infinite in faculty, as thine. So then, our Predecessors waited under cloak of dark to silently observe thee in thy glimmering development. And if 'twere not from the rest of the stars so untimely ripp'd, we surely would have had the pleasure t'watch thy kind advance to what's its present point."`
+				to display
+					has "Successors: history"
+			action
+				set "Successors: language"
+				set "Successors: history"
+			`	Sieasej pauses for a moment, wriggling under their cloak. "I am a scholar of some olden languages," they say, "and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
+				goto questions
+			label "language short"
+			action
+				set "Successors: language"
+			`	"T'is true," they say. "I am a scholar of some olden languages, and of the worlds our Predecessors met so long ago. I learned thy tongue, at least as 'twas gone fifteen hundred years ago."`
+				goto questions
 			label changed
 			action
 				set "Successors: changed"
@@ -184,10 +176,12 @@ mission "Successors: First Contact 1"
 			choice
 				`	"What should I do now?"`
 					goto "what now"
-				`	"Is that how you know my language?"`
+				`	"Is that how you know my language?"` # This follow up question reverts to "How do you know my language?" if it isn't immediately asked
 					to display
 						not "Successors: language"
 					goto "language short"
+				`	"What do you mean that you were ripped from the galaxy?"`
+					goto ripped
 				`	"What is House Sioeora?"`
 					to display
 						not "Successors: house"
@@ -539,10 +533,10 @@ mission "Successors: First Contact 3"
 				set "Successors FC3: released kijra-pet"
 			`	You gently set the animal you captured on the ground in front of you and back away from it slowly, shuffling to the side as the two larger creatures approach it and stroke it gently with their feelers. The smaller one wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes.`
 				goto released
+			label "release friends"
 			action
 				set "Successors FC3: released kijra-pet"
 				set "Successors FC3: friend to animals" # Nonviolent capture AND released at first opportunity
-			label "release friends"
 			`	You gently coax the animal off your arm and onto the ground in front of you, backing away from it slowly and shuffling to the side. It runs towards the larger two creatures, touching the tips of its feelers against theirs and trilling softly as before. After some time, it wriggles a little before unfurling its gossamer wings and flitting away into the foliage. The two larger ones eventually follow, though not before one turns around to look at you and Sieasej and vocalizes, a longer, lower trill almost like a cat's purr.`
 				goto released
 			label successful
@@ -688,6 +682,20 @@ mission "Successors: Kaatrij Monoglot Prompt"
 			`Shortly after you set the <ship> down on <origin>, you notice a faint trilling coming from your cabin on board. After rummaging through some of your belongings, you discover that it is coming from a Successor data-sphere, which is vibrating intensely. You pick it up, and it projects a message in a strange-looking alien script that you unfortunately do not recognize. If you ever acquired some alien translation equipment, you might be able to decode it.`
 				decline
 
+mission "Successors: First Contact 3: Fix Friend to Animals"
+	landing
+	invisible
+	to offer
+		# Impossible to detect if the stopover happened, so patch the conditions after the mission completes
+		has "Successors: First Contact 3: done"
+		has "Successors FC3: nonviolent kijra-pet capture"
+		not "Successors FC3: released kijra-pet"
+		not "Successors FC3: captured kijra-pet"
+	on offer
+		set "Successors FC3: released kijra-pet"
+		set "Successors FC3: friend to animals"
+		fail
+
 mission "Successors: Kaatrij First Contact 1"
 	landing
 	clearance
@@ -784,7 +792,7 @@ mission "Successors: Kaatrij First Contact 1"
 					goto communicate
 			label questions
 			choice
-				`	"How is it that you can communicate with me?`
+				`	"How is it that you can communicate with me?"`
 					to display
 						not "language: Successor"
 					goto communicate
