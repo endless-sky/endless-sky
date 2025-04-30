@@ -16,8 +16,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryType.h"
-#include "Sale.h"
 #include "Set.h"
+#include "Shop.h"
 #include "Swizzle.h"
 #include "Trade.h"
 
@@ -135,13 +135,13 @@ public:
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
 	static const Set<Outfit> &Outfits();
-	static const Set<Sale<Outfit>> &Outfitters();
+	static const Set<Shop<Outfit>> &Outfitters();
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
 	static const Set<Shader> &Shaders();
 	static const Set<Ship> &Ships();
-	static const Set<Sale<Ship>> &Shipyards();
+	static const Set<Shop<Ship>> &Shipyards();
 	static const Set<System> &Systems();
 	static const Set<Test> &Tests();
 	static const Set<TestData> &TestDataSets();
