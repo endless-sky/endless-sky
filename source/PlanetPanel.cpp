@@ -38,6 +38,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
+#include "Shop.h"
 #include "SpaceportPanel.h"
 #include "System.h"
 #include "TaskQueue.h"
@@ -105,6 +106,27 @@ void PlanetPanel::Step()
 		return;
 	}
 
+	// Determine which shops are conditionally available.
+	// This needs to wait until the first Step call instead of being
+	// done in the constructor because the constructor is created
+	// before all of the player's landing logic is completed, which
+	// can cause certain conditions to return unexpected results.
+	// TODO: Determine stock on the fly after condition entries can be subscribed to.
+	if(!initializedShops)
+	{
+		initializedShops = true;
+		for(const Shop<Ship> *shop : planet.Shipyards())
+		{
+			hasShipyard = true;
+			shipyardStock.Add(shop->Stock());
+		}
+		for(const Shop<Outfit> *shop : planet.Outfitters())
+		{
+			hasOutfitter = true;
+			outfitterStock.Add(shop->Stock());
+		}
+	}
+
 	// Handle missions for locations that aren't handled separately,
 	// treating them all as the landing location. This is mainly to
 	// handle the intro mission in the event the player moves away
@@ -149,10 +171,10 @@ void PlanetPanel::Draw()
 			info.SetString("port name", port.Name());
 		}
 
-		if(planet.HasShipyard())
+		if(hasShipyard)
 			info.SetCondition("has shipyard");
 
-		if(planet.HasOutfitter())
+		if(hasOutfitter)
 			info.SetCondition("has outfitter");
 	}
 
@@ -201,14 +223,14 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 			spaceport->UpdateNews();
 		GetUI()->Push(spaceport);
 	}
-	else if(key == 's' && hasAccess && planet.HasShipyard())
+	else if(key == 's' && hasAccess && hasShipyard)
 	{
-		GetUI()->Push(new ShipyardPanel(player));
+		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
 		return true;
 	}
-	else if(key == 'o' && hasAccess && planet.HasOutfitter())
+	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
-		GetUI()->Push(new OutfitterPanel(player));
+		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
@@ -421,7 +443,7 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		if(outfitsToSell > 0)
 		{
 			out << "\n- ";
-			out << (planet.HasOutfitter() ? "store " : "sell ") << outfitsToSell << " outfit";
+			out << (hasOutfitter ? "store " : "sell ") << outfitsToSell << " outfit";
 			out << (outfitsToSell > 1 ? "s" : "");
 			out << " that none of your ships can hold.";
 			if(!uniquesToSell.empty())
