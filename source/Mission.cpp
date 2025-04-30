@@ -277,6 +277,21 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		}
 		else if(key == "destination")
 			destinationFilter.Load(child);
+		else if(key == "complete")
+		{
+			if(!hasValue)
+				child.PrintTrace("Incomplete \"complete\" option. Follow \"complete\" with \"at\".");
+			else if(child.Token(1) == "at")
+			{
+				LocationFilter loaded(child);
+				if(loaded.IsEmpty())
+					child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this filter.");
+				else
+					completionFilter = loaded;
+			}
+			else
+				child.PrintTrace("Unknown \"complete\" option \"" + child.Token(1) + '"');
+		}
 		else if(key == "waypoint" && hasValue)
 		{
 			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
@@ -496,6 +511,11 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		if(destination)
 			out.Write("destination", destination->TrueName());
+		if(!completionFilter.IsEmpty() && completionFilter.IsValid())
+		{
+			out.Write("complete", "at");
+			completionFilter.Save(out);
+		}
 		for(const System *system : waypoints)
 			out.Write("waypoint", system->TrueName());
 		for(const System *system : visitedWaypoints)
@@ -602,6 +622,11 @@ bool Mission::IsValid() const
 	// Every mission is required to have a destination.
 	if(!destination || !destination->IsValid())
 		return false;
+
+	// Missions with completion filters must have valid filters.
+	if(!completionFilter.IsEmpty() && !completionFilter.IsValid())
+		return false;
+
 	// All stopovers must be valid.
 	for(auto &&planet : Stopovers())
 		if(!planet->IsValid())
@@ -961,7 +986,9 @@ bool Mission::HasSpace(const Ship &ship) const
 
 bool Mission::CanComplete(const PlayerInfo &player) const
 {
-	if(player.GetPlanet() != destination)
+	if(completionFilter.IsEmpty() && player.GetPlanet() != destination)
+		return false;
+	else if(!completionFilter.IsEmpty() && !completionFilter.Matches(player.GetPlanet(), player.GetSystem()))
 		return false;
 
 	return IsSatisfied(player);
@@ -1377,6 +1404,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	result.repeat = repeat;
 	result.name = name;
 	result.waypoints = waypoints;
+	result.completionFilter = completionFilter;
 	result.markedSystems = markedSystems;
 	// Handle waypoint systems that are chosen randomly.
 	const System *const sourceSystem = player.GetSystem();
