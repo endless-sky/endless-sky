@@ -443,7 +443,7 @@ bool Planet::IsInhabited() const
 
 
 
-// Check if this planet has a shipyard.
+// Check if this planet has a permanent shipyard.
 bool Planet::HasShipyard() const
 {
 	return !shipSales.empty();
@@ -451,19 +451,32 @@ bool Planet::HasShipyard() const
 
 
 
-// Get the list of ships in the shipyard.
-const Sale<Ship> &Planet::Shipyard() const
+// Get the list of ships in the permanent shipyard.
+const Sale<Ship> &Planet::ShipyardStock() const
 {
 	shipyard.clear();
-	for(const Sale<Ship> *sale : shipSales)
-		shipyard.Add(*sale);
+	for(const Shop<Ship> *sale : shipSales)
+		shipyard.Add(sale->Stock());
 
 	return shipyard;
 }
 
 
 
-// Check if this planet has an outfitter.
+// Get the list of shipyards currently available on this planet.
+// This will include conditionally available shops.
+set<const Shop<Ship> *> Planet::Shipyards() const
+{
+	set<const Shop<Ship> *> shops = shipSales;
+	for(const auto &shop : GameData::Shipyards())
+		if(shop.second.CanStock(this))
+			shops.insert(&shop.second);
+	return shops;
+}
+
+
+
+// Check if this planet has a permanent outfitter.
 bool Planet::HasOutfitter() const
 {
 	return !outfitSales.empty();
@@ -471,14 +484,27 @@ bool Planet::HasOutfitter() const
 
 
 
-// Get the list of outfits available from the outfitter.
-const Sale<Outfit> &Planet::Outfitter() const
+// Get the list of outfits available from the permanent outfitter.
+const Sale<Outfit> &Planet::OutfitterStock() const
 {
 	outfitter.clear();
-	for(const Sale<Outfit> *sale : outfitSales)
-		outfitter.Add(*sale);
+	for(const Shop<Outfit> *sale : outfitSales)
+		outfitter.Add(sale->Stock());
 
 	return outfitter;
+}
+
+
+
+// Get the list of outitters available on this planet.
+// This will include conditionally available shops.
+set<const Shop<Outfit> *> Planet::Outfitters() const
+{
+	set<const Shop<Outfit> *> shops = outfitSales;
+	for(const auto &shop : GameData::Outfitters())
+		if(shop.second.CanStock(this))
+			shops.insert(&shop.second);
+	return shops;
 }
 
 
