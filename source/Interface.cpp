@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/FontSet.h"
 #include "GameData.h"
 #include "Information.h"
-#include "text/layout.hpp"
+#include "text/Layout.h"
 #include "shader/LineShader.h"
 #include "shader/OutlineShader.h"
 #include "Panel.h"
@@ -508,7 +508,7 @@ void Interface::ImageElement::Draw(const Rectangle &rect, const Information &inf
 	}
 	else
 	{
-		int swizzle = info.GetSwizzle(name);
+		const Swizzle *swizzle = info.GetSwizzle(name);
 		SpriteShader::Draw(sprite, rect.Center(), rect.Width() / sprite->Width(), swizzle, frame, unit);
 	}
 }
@@ -741,8 +741,8 @@ Interface::BarElement::BarElement(const DataNode &node, const Point &globalAncho
 	Load(node, globalAnchor);
 
 	// Fill in a default color if none is specified.
-	if(!color)
-		color = GameData::Colors().Get("active");
+	if(!fromColor)
+		fromColor = toColor = GameData::Colors().Get("active");
 }
 
 
@@ -752,7 +752,10 @@ Interface::BarElement::BarElement(const DataNode &node, const Point &globalAncho
 bool Interface::BarElement::ParseLine(const DataNode &node)
 {
 	if(node.Token(0) == "color" && node.Size() >= 2)
-		color = GameData::Colors().Get(node.Token(1));
+	{
+		fromColor = GameData::Colors().Get(node.Token(1));
+		toColor = node.Size() >= 3 ? GameData::Colors().Get(node.Token(2)) : fromColor;
+	}
 	else if(node.Token(0) == "size" && node.Size() >= 2)
 		width = node.Value(1);
 	else if(node.Token(0) == "span angle" && node.Size() >= 2)
@@ -779,7 +782,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		segments = 0.;
 
 	// Avoid crashes for malformed interface elements that are not fully loaded.
-	if(!color || !width || !value)
+	if(!fromColor || !toColor || !width || !value)
 		return;
 
 	if(isRing)
@@ -789,7 +792,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 
 
 		double fraction = value * spanAngle / 360.;
-		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, *color, segments, startAngle);
+		RingShader::Draw(rect.Center(), .5 * rect.Width(), width, fraction, *fromColor, segments, startAngle);
 	}
 	else
 	{
@@ -811,9 +814,12 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 		double v = 0.;
 		while(v < value)
 		{
+			Color nFromColor = Color::Combine(1 - v, *fromColor, v, *toColor);
 			Point from = start + v * dimensions;
 			v += filled;
-			Point to = start + min(v, value) * dimensions;
+			double lim = min(v, value);
+			Point to = start + lim * dimensions;
+			Color nToColor = Color::Combine(1 - lim, *fromColor, lim, *toColor);
 			v += empty;
 
 			// Rounded lines have a bit of padding, so account for that here.
@@ -822,7 +828,7 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 			from += unit * twidth;
 			to -= unit * twidth;
 
-			LineShader::Draw(from, to, twidth, *color);
+			LineShader::DrawGradient(from, to, twidth, nFromColor, nToColor);
 		}
 	}
 }

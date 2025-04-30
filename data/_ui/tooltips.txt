@@ -1330,6 +1330,9 @@ tip "Fire secondary weapon"
 tip "Toggle cloaking device"
 	`Activate or deactivate your fleet's cloaking devices, if any are installed.`
 
+tip "Turret aim override (hold)"
+	`Turrets aim towards your cursor when this key is held. If the "Aim turrets with mouse" setting is enabled, it will do the opposite.`
+
 tip "Mouse turning (hold)"
 	`Cause your flagship to turn toward your mouse if this key is held. To have mouse turning always active, activate the "Control ship with mouse" setting. If that setting is active, holding this key deactivates mouse turning.`
 
@@ -1341,6 +1344,9 @@ tip "Toggle fullscreen"
 
 tip "Toggle fast-forward"
 	`Toggle a 3x speed fast-forward. Fast-forward may be automatically deactivated by the "Interrupt fast-forward" setting. If the key is set to caps-lock then the caps-lock state will be used to determine the fast-forward state.`
+
+tip "Pause"
+	`Stop time in the game. You can still select ships, give commands, and interact with menus.`
 
 tip "Show help"
 	`Display the help dialogs that are relevant to your current UI panel and situation. Uses the same help dialogs from the "Reactivate first-time help" setting, forcing them to appear even if they have already appeared before.`
@@ -1465,6 +1471,9 @@ tip "Extra fleet status messages"
 
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
+
+tip "Aim turrets with mouse"
+	`If active, your turrets will target your mouse position. See the "Turret aim override (hold)" keybind to toggle based on a held key.`
 
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`

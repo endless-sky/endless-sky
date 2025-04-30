@@ -1,5 +1,5 @@
-/* alignment.hpp
-Copyright (c) 2020 by OOTA, Masato
+/* fill.vert
+Copyright (c) 2014 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,12 +13,12 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+uniform vec2 scale;
+uniform vec2 center;
+uniform vec2 size;
 
-// Ways in which text may be aligned.
-enum class Alignment : int {
-	LEFT,
-	CENTER,
-	RIGHT,
-	JUSTIFIED,
-};
+in vec2 vert;
+
+void main() {
+	gl_Position = vec4((center + vert * size) * scale, 0, 1);
+}

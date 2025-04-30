@@ -1,5 +1,5 @@
-/* File.cpp
-Copyright (c) 2015 by Michael Zahniser
+/* fog.frag
+Copyright (c) 2016 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,53 +13,13 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "File.h"
+precision mediump sampler2D;
+precision mediump float;
+uniform sampler2D tex;
 
-#include "Files.h"
+in vec2 fragTexCoord;
+out vec4 finalColor;
 
-using namespace std;
-
-
-
-File::File(const filesystem::path &path, bool write)
-{
-	file = Files::Open(path, write);
-}
-
-
-
-File::File(File &&other) noexcept
-{
-	swap(file, other.file);
-}
-
-
-
-File::~File() noexcept
-{
-	if(file)
-		fclose(file);
-}
-
-
-
-File &File::operator=(File &&other) noexcept
-{
-	if(this != &other)
-		swap(file, other.file);
-	return *this;
-}
-
-
-
-File::operator bool() const
-{
-	return file;
-}
-
-
-
-File::operator FILE*() const
-{
-	return file;
+void main() {
+	finalColor = vec4(0, 0, 0, texture(tex, fragTexCoord).r);
 }
