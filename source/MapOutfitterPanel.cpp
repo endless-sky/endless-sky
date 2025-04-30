@@ -151,7 +151,7 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 			const auto storage = planetStorage.find(object.GetPlanet());
 			if(storage != planetStorage.end() && storage->second.Get(selected))
 				return .5;
-			const auto &outfitter = object.GetPlanet()->Outfitter();
+			const auto &outfitter = object.GetPlanet()->OutfitterStock();
 			if(outfitter.Has(selected))
 				return 1.;
 			if(!outfitter.empty())
@@ -242,7 +242,7 @@ void MapOutfitterPanel::DrawItems()
 						if(pit != storage.end())
 							storedInSystem += pit->second.Get(outfit);
 					}
-					if(planet.Outfitter().Has(outfit))
+					if(planet.OutfitterStock().Has(outfit))
 					{
 						isForSale = true;
 						break;
@@ -260,7 +260,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), 0, isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected,
 				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}
@@ -278,7 +278,7 @@ void MapOutfitterPanel::Init()
 	// Add all outfits sold by outfitters of planets from viewable systems.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Outfit *outfit : it.second.Outfitter())
+			for(const Outfit *outfit : it.second.OutfitterStock())
 				if(!seen.contains(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);
