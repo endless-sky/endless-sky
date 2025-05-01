@@ -6494,7 +6494,7 @@ mission "Lost Racer 1"
 		payment 100000
 		conversation
 			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched hope fade into desperation in her father with each successive failure. You can't imagine he's been getting much sleep.`
-			`	During the landing on Sunracer, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of Syndicate ship models in race-related livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, and spectators. The spaceport seems busier and more hectic than usual.`
+			`	During the landing on <planet>, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of ships in racing livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, and spectators. The spaceport seems busier and more hectic than usual.`
 			`	"I've got to speak with the race coordinators here," says Mr. Renard, striding towards the marshal station. "I see the marshals are back from searching. Syndicate idiots, probably didn't even notice she was missing till it was on the news. We've got to keep looking. Will you meet me back here in the spaceport in an hour or two? I'll double your fee."`
 			choice
 				`	"Of course. We're going to find her."`
