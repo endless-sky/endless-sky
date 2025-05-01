@@ -85,8 +85,6 @@ ship "Asteroid Large 1"
 		"Asteroid Jump Drive"
 		
 	engine 0 0
-		zoom 1
-		angle 0
 		over
 	gun 0 0 "Asteroid Weapon Large"
 	gun 0 0 "Asteroid Weapon Large"
@@ -142,8 +140,6 @@ ship "Asteroid Large 2"
 		"Asteroid Jump Drive"
 		
 	engine 0 0
-		zoom 1
-		angle 0
 		over
 	gun 0 0 "Asteroid Weapon Large"
 	gun 0 0 "Asteroid Weapon Large 4"
@@ -197,8 +193,6 @@ ship "Asteroid Large 3"
 		"Asteroid Jump Drive"
 		
 	engine 0 0
-		zoom 1
-		angle 0
 		over
 	gun 0 0 "Asteroid Weapon Large 4"
 	gun 0 0 "Asteroid Weapon Large 4"
@@ -252,8 +246,6 @@ ship "Asteroid Large 4"
 		"Asteroid Jump Drive"
 		
 	engine 0 0
-		zoom 1
-		angle 0
 		over
 	gun 0 0 "Asteroid Weapon Large 3"
 	gun 0 0 "Asteroid Weapon Large 3"
