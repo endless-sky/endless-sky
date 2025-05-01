@@ -1260,7 +1260,6 @@ government "Ka'het"
 	"player reputation" -1
 
 government "Ka'het (Infighting)"
-	# A government used to cause infighting between fleets that both appear to be the Ka'het government.
 	"display name" "Ka'het"
 	swizzle 0
 	language "Ka'het"
@@ -1438,7 +1437,7 @@ government "Lunarium (Hidden)"
 government "Magic Asteroid"
 	"display name" "???"
 	swizzle 0
-	language "???"
+	language "Magic Asteroid"
 	
 	"attitude toward"
 		"Ka'sei (12A)" -.01
