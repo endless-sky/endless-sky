@@ -77,5 +77,6 @@ private:
 	/// Lambda function to set the value for a condition entry.
 	std::function<void(ConditionEntry &, int64_t)> setFunction;
 
-	const ConditionEntry *providingEntry = nullptr; /// conditionEntry that provides the prefixed condition, or nullptr if this is a regular or named condition.
+	/// conditionEntry that provides the prefixed condition, or nullptr if this is a regular or named condition.
+	const ConditionEntry *providingEntry = nullptr;
 };
