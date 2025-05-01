@@ -1055,6 +1055,93 @@ mission "Ka'het: Patir Mystery 8B"
 			`The probe slowly moves away from your ship, opening its external panels and the instrumentation; as you watch it turn into a dim point of light, the Remnant team confirms that it is functioning correctly. Time to land on the asteroid.`
 
 
+# Invisible ship in Lathia, represents the power of the asteroid base in the system
+
+mission "Asteroid guarding Lathia"
+	invisible
+	landing
+	to offer
+		has "Ka'het: Patir Mystery 8B: offered"
+	to complete
+		never
+	npc save
+		government "Magic Asteroid"
+		personality forbearing frugal heroic staying vindictive
+		system Lathia
+		ship "Asteroid Planet" "Queen Asteroid"
+
+ship "Asteroid Planet"
+	attributes
+		category "Heavy Warship"
+		"uncapturable" 1
+		"inscrutable" 1
+		"cost" 158000000
+		"hull" 86135672193
+		"required crew" 1
+		"bunks" 1
+		"mass" 67400
+		"drag" 3040
+		"heat dissipation" 10
+		"energy capacity" 1
+		"fuel generation" 0.3
+		"cargo space" 40
+		"outfit space" 390
+		"weapon capacity" 150
+		"engine capacity" 95
+		"hull repair rate" 47
+		"cargo scan power" 1
+		"cargo scan efficiency" 0.001
+		"thrust" 34020
+		"turn" 593140
+		"asteroid mount jd" 1
+		"asteroid mount am" 1
+		"asteroid mount" 1
+		weapon
+			"blast radius" 80
+			"shield damage" 800
+			"hull damage" 400
+			"hit force" 1200
+	outfits
+		"Asteroid Weapon Super"
+
+	gun 0 0 "Asteroid Weapon Super"
+
+outfit "Asteroid Weapon Super"
+	"display name" "???"
+	category "Guns"
+	cost 1861000000
+	thumbnail "outfit/unknown"
+	mass 1
+	"outfit space" -1
+	"weapon capacity" -1
+	"gun ports" -1
+	weapon
+		"submunition" "asteroid fragment" 180
+		"inaccuracy" 1
+		"velocity" 70
+		"lifetime" 2
+		"reload" 360
+		"safe"
+		"split range" 300
+		"blast radius" 400
+
+outfit "asteroid fragment"
+	weapon
+		"submunition" "spin1 print right"
+		"submunition" "spin1 print left"
+		"inaccuracy" 360
+		"velocity" -65
+		"random velocity" 20
+		"lifetime" 40
+		"random lifetime" 80
+		"hull damage" 50
+		"heat damage" 800
+		"ion damage" 3
+		"safe"
+		"hit force" 100
+		"blast radius" 200
+
+
 mission "Ka'het: Patir Mystery 9"
 	landing
 	name "Explore the neighborhood"
