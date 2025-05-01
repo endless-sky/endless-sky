@@ -171,7 +171,7 @@ LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *
 
 
 void LocationFilter::Load(const DataNode &node, const set<const System *> *visitedSystems,
-		const set<const Planet *> *visitedPlanets)
+	const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
 	{
@@ -522,7 +522,7 @@ const Planet *LocationFilter::PickPlanet(const System *origin, bool hasClearance
 
 // Load one particular line of conditions.
 void LocationFilter::LoadChild(const DataNode &child, const set<const System *> *visitedSystems,
-		const set<const Planet *> *visitedPlanets)
+	const set<const Planet *> *visitedPlanets)
 {
 	if(!visitedSystems || !visitedPlanets)
 		throw runtime_error("LocationFilters must be provided pointers to the player's visited systems and planets.");
