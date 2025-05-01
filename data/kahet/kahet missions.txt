@@ -778,6 +778,7 @@ mission "Ka'het: Patir Mystery 6"
 	blocked `As soon as you arrive, Dusk contacts you again. "Welcome back, <first>! We should be ready for the next Patir expedition, but we need at least five free bunks to attempt it, and at least 2 tons of cargo space for samples."`
 	to offer
 		has "event: patir mystery timer"
+		has "Remnant: Cognizance 38: done"
 		not "ka'het: attacked ka'sei"
 		not "remnant: dusk busy"
 	on offer
@@ -1272,7 +1273,7 @@ mission "Ka'het: Patir Mystery 10"
 		conversation
 			`By the time you land, the Remnant are already discussing their analysis of the data recorded and transmitted by your ship. When they notice you, they abandon their current conversation and move closer to speak with you in person.`
 			`	They listen carefully as you detail your journey: the Ghila ringworld, the one-way wormholes, the Chanai station, and the many oddities in each of these systems. From the questions they ask you, they seem to be particularly interested about the asteroid-looking creatures roaming this sector. By the time you've finished recounting the last events, almost an hour has passed.`
-			`	"Interesting," Dusk signs in response. "It is disappointing to hear that there is not a clear way out, but everything else here is intriguing. Perhaps one of them is the key to finding a passage back."`
+			`	"Interesting," Dusk signs in response. "It is disappointing to hear that there is not a clear way out, but everything else here is intriguing - perhaps one of them is the key to finding a passage back. Our attempts at communicating with the Ember Waste have been unsuccessful; I fear we will have to be completely on our own this time."`
 			choice
 				`	"Have you identified anything of note here?"`
 				`	"Do you have a plan?"`
