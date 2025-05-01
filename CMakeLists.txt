@@ -90,14 +90,19 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
-find_package(PkgConfig REQUIRED PkgConfig PkgConf)
 
 # Minizip has a different target name in vcpkg.
 if(ES_USE_VCPKG)
 	find_package(unofficial-minizip CONFIG REQUIRED)
 	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
 else()
-	pkg_check_modules(MINIZIP REQUIRED minizip)
+	if(CMAKE_VERSION VERSION_LESS 3.31)
+		find_package(PkgConfig REQUIRED PkgConfig PkgConf)
+		pkg_check_modules(MINIZIP REQUIRED minizip)
+	else()
+		cmake_pkg_config(EXTRACT minizip REQUIRED)
+		set(MINIZIP_LIBRARIES "minizip")
+	endif()
 endif()
 
 # Find the MinGW runtime DLLs.
