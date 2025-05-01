@@ -17,6 +17,7 @@ galaxy "Patir Cluster"
 
 system Athiri
 	pos 10225.5 -432.5
+	government Uninhabited
 	haze _menu/haze-chanai
 	habitable 1400
 	belt 1074
@@ -42,6 +43,7 @@ system Athiri
 
 system Balnii
 	pos 10268.3 -359.3
+	government Uninhabited
 	haze _menu/haze-sarifa
 	arrival 1100
 	habitable 360
@@ -59,6 +61,7 @@ system Balnii
 
 system Chanai
 	pos 9883.5 -34.5
+	government Uninhabited
 	haze _menu/haze-chanai
 	habitable 1250
 	belt 1887
@@ -80,6 +83,7 @@ system Chanai
 
 system Ghila
 	pos 9820.5 -100.5
+	government Uninhabited
 	haze _menu/haze-ghila
 	habitable 1715
 	belt 1165
@@ -107,6 +111,7 @@ system Ghila
 
 system Lathia
 	pos 10107.5 -332.5
+	government Uninhabited
 	haze _menu/haze-lathia
 	habitable 1715
 	belt 1815
@@ -126,6 +131,7 @@ system Lathia
 
 system Maithi
 	pos 10092.5 -489.5
+	government Uninhabited
 	haze _menu/haze-maithi
 	habitable 425.92
 	belt 1379
@@ -147,6 +153,7 @@ system Maithi
 
 system Mitera
 	pos 9957.5 -92.5
+	government Uninhabited
 	haze _menu/haze-mitera
 	habitable 3645
 	belt 1464
@@ -168,6 +175,7 @@ system Mitera
 
 system Sarifa
 	pos 10136.5 -406.5
+	government Uninhabited
 	haze _menu/haze-sarifa
 	habitable 5486.68
 	belt 1757
@@ -189,6 +197,7 @@ system Sarifa
 
 system Thepa
 	pos 9975.5 -2.5
+	government Uninhabited
 	haze _menu/haze-maithi
 	habitable 320
 	belt 1793

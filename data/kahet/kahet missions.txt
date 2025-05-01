@@ -720,7 +720,7 @@ mission "Ka'het: Patir Mystery 5"
 		dialog "You've returned to <planet>, but you realize your escort carrying Dusk has not yet entered the system! Better depart and wait for it."
 	on complete
 		clear "remnant: dusk busy"
-		event "patir mystery timer" 10
+		event "patir mystery timer" 10 16
 		conversation
 			branch attacked
 				"reputation: Ka'sei" < -10
@@ -774,10 +774,9 @@ mission "Ka'het: Patir Mystery 6"
 		attributes "remnant primary"
 	destination "Builder Settlement"
 	passengers 5
-	cargo "reserved space" 2
+	cargo "instruments and samplers" 2
 	blocked `As soon as you arrive, Dusk contacts you again. "Welcome back, <first>! We should be ready for the next Patir expedition, but we need at least five free bunks to attempt it, and at least 2 tons of cargo space for samples."`
 	to offer
-		random < 60
 		has "event: patir mystery timer"
 		not "ka'het: attacked ka'sei"
 		not "remnant: dusk busy"
@@ -797,7 +796,7 @@ mission "Ka'het: Patir Mystery 6"
 				`	"Thank you."`
 					goto skipdialog
 				`	"Can you tell me more about that?"`
-			`	"It seems their atmosphere may have been similar to ours - the air in the settlement we visited was almost evenly split between oxygen and argon: breathable by human standards."`
+			`	"The air in the settlement we visited was almost evenly split between oxygen and argon, while containing very little nitrogen. Despite its differences, it is interesting to note that such a composition is breathable by human standards."`
 			`	"We could have removed our helmets after the airlock?" you ask.`
 			`	"It is a bit more complicated than that. We found that the pressure inside the complex was much, much lower than what we are used to - less than a sixteenth of an atmosphere. On most Earth-like planets, you would only find such pressures at over 20,000 meters. There are two possibilities: either the Builders were born in a thin atmosphere, or the life support system failed some time ago and the structure has been slowly losing air ever since. We hope to find the answer soon enough.`
 
@@ -831,7 +830,7 @@ mission "Ka'het: Patir Mystery 6"
 	on fail
 		clear "remnant: dusk busy"
 		dialog
-			`You have approached the Builder Settlement uncloaked, making the Ka'sei follow you, or the escort that was carrying the Remnant scientists has been destroyed. You have failed this mission.`
+			`You have approached the Builder Settlement uncloaked, making the Ka'sei follow you, or the escort that was carrying the Remnant scientists has been destroyed, or the escort that was carrying the mission cargo was destroyed. You have failed this mission.`
 	npc save
 		government "Test Dummy"
 		personality heroic nemesis unconstrained
@@ -959,7 +958,7 @@ mission "Ka'het: Patir Mystery 7"
 				goto top
 
 			label ramp
-			`	You follow Dusk up along the ramp, the length of it making the ascent quite tiresome. Luckily, going through it is simple, as the surface of the floor is ribbed in a peculiar way so that gripping onto it becomes rather effortless. It still takes a while to reach the end: even so, though the garden is nowhere near the top of the dome, it takes another half an hour to reach it.`
+			`	You follow Dusk up along the ramp, the length of it making the ascent quite tiresome. Luckily, going through it is simple, as the surface of the floor is ribbed in a peculiar way so that gripping onto it becomes rather effortless. Even so, though the garden is nowhere near the top of the dome, it takes another half an hour to reach it.`
 			label top
 			`	The view at the top is disappointing. In front of you, there are only rows upon rows of long racks with a dry, light gray material on the top and bottom of each shelf. Interspersed between the rows there is some Builder equipment, in which you only recognize large unlit lamps connected to the rest of the structure. Despite all of this, there are no plants anywhere, as far as the eye can see. "I believe we have stumbled upon some kind of hydroponics facility," Dusk says. "I think I have mistranslated the label on the map; this is more like a field than a simple garden."`
 			choice
@@ -1033,7 +1032,7 @@ mission "Ka'het: Patir Mystery 8A"
 	on fail
 		clear "remnant: dusk busy"
 		dialog
-			`As soon as you approach the <planet>, you see that the Ka'sei are following your ship. You won't be able to enter the settlement safely anymore.`
+			`You have approached the Builder Settlement uncloaked, making the Ka'sei follow you, or the escort that was carrying the Remnant scientists has been destroyed, or the escort that was carrying the mission cargo was destroyed. You have failed this mission.`
 
 	npc save
 		government "Test Dummy"
@@ -1230,7 +1229,7 @@ mission "Ka'het: Patir Mystery 9"
 			label what
 			`	"I wish I knew. And the worst may have yet to come," Dusk replies. "Something is not right with the sky."`
 			label constellation
-			`	He points at the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close to each other. While it is not visible from Earth, it should be recognizable from almost every system here, including Patir, but no longer. And that is not all. Nothing in this star map can be found anywhere in the sky." He stops for a second, giving a worried look to the rest of the team. "We are no longer in the Ember Wastes."`
+			`	He points at the projector. "Do you see those two triangular formations near the top of the star map? That is something we called the Ember Prism - a constellation of six stars of similar magnitude, located far from the Wastes and close to each other. While it is not visible from Earth, it should be recognizable from almost every system here, including Patir, but no longer. And that is not all. None of the constellations in this star map can be found anywhere in the sky." He stops for a second, giving a worried look to the rest of the team. "We are no longer in the Ember Wastes."`
 			choice
 				`	"How is that possible?"`
 				`	"Where are we then?"`
@@ -1266,6 +1265,7 @@ mission "Ka'het: Patir Mystery 10"
 	description "Board the Remnant satellite in orbit around <system> to learn more about the odd creatures around here."
 	passengers 1
 	source "Builder Settlement"
+	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least a free bunk for the mission we are preparing."`
 	to offer
 		has "Ka'het: Patir Mystery 9: done"
 	on offer
@@ -1347,7 +1347,7 @@ mission "Ka'het: Patir Mystery 11"
 				goto assembly
 
 			label fuel
-			`	"It will only take a few minutes to determine whether our equipment can pass through the exterior of these beings," Dusk replies. "I suggest filling your fuel tanks near Patir before leaving."`
+			`	"It will only take a few minutes to determine whether our equipment can see through the exterior of these beings," Dusk replies. "I suggest filling your fuel tanks near Patir before leaving."`
 				goto assembly
 			label why
 			`	"It is a shot in the dark," Dusk replies. "Being able to scan even just one of these beings would be a great leap forward - perhaps one without external shielding, or damaged in such a way that permits us to analyze them."`
@@ -1359,7 +1359,7 @@ mission "Ka'het: Patir Mystery 11"
 			`A dull hum from below the cockpit signals that the scanners have activated. You take the opportunity to observe the mesmerizing colors of the neutron star, beautiful and terrifying at the same time. After a few minutes, a beeping sound alerts you that the scan is complete, and you can return to <system>.`
 	npc
 		government "Magic Asteroid"
-		personality coward fleeing harvests pacifist uninterested waiting
+		personality plunders harvests surveillance mute waiting staying
 		fleet
 			cargo 3
 			variant
@@ -1376,6 +1376,7 @@ mission "Ka'het: Patir Mystery 12A"
 	passengers 5
 	source "Builder Settlement"
 	stopover "Chanai Structure"
+	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks for the mission we are preparing."`
 	to offer
 		has "Ka'het: Patir Mystery 11: done"
 	on offer
@@ -1470,7 +1471,7 @@ mission "Ka'het: Patir Mystery 12A"
 			label moving
 			`	The rest of the zone isn't as interesting. A series of holes in a wall attract your attention, but they prove too narrow to pass through and too long to see the end; similarly, the corridor at the end of the area is slightly smaller than your suit, preventing you from continuing. As you return back to the rest of the group, however, you notice an unusual drawing.`
 			`	The canvas, attached between various carvings, shows a series of points in a line with every color of the rainbow. While the lines are near the bottom of the mural, above them all shines what looks like a red sun, sending rays of light down to each of the colorful dots and surrounding them all in a crimson halo. You pass your glove over its surface, and you notice every part is composed of a different material, smoother and more refined than the walls around it.`
-			`	Based on your oxygen levels, you need to meet up with the Remnant team as soon as possible; you follow Dusk's instructions from the radio up and down the structure until reaching a large open area, where you find them observing a vial of samples from the structure. Behind them, you see the start of the giant barrel that composes most of the station's structure.`
+			`	While the oxygen levels in your suit continue to lower, you follow Dusk's instructions from the radio up and down the maze of tunnels until reaching a large open area where you finally find the Remnant, busy observing a vial of samples. Behind them, you see the start of the giant barrel that composes most of the station's structure.`
 			choice
 				`	"What is this place?"`
 					goto place
@@ -1509,7 +1510,7 @@ mission "Ka'het: Patir Mystery 12A"
 	on complete
 		conversation
 			`As you accompany the Remnant team back to the lab, they confirm Dusk's theories on the dust. From the way they speak about it, they seem to have reached a consensus on the source of the regolith, though they don't go into details.`
-			`	The module was always cramped, but over the last few weeks, a thin layer of dust coming from outside the asteroid has covered the floor, with just the surfaces needed for the research kept clean. Tiredness plagues the faces of the scientists: they must not have slept much in the past days to keep up with the amount of incoming data, and neither have you. As you try to remember the last time you stepped outside without a suit - at least a month, most likely - your thoughts are interrupted by the arrival of Dusk, carrying on his back the last few samples.`
+			`	The module was never particularly inviting, but over the last few weeks, a thin layer of dust coming from outside the asteroid has covered the floor, with just the surfaces needed for the research kept clean. Tiredness plagues the faces of the scientists: they must not have slept much in the past days to keep up with the amount of incoming data, and neither have you. As you try to remember the last time you stepped outside without a suit - at least a month, most likely - your thoughts are interrupted by the arrival of Dusk, carrying on his back the last few samples.`
 			choice
 				`	"Sounds like this expedition was more productive than the last."`
 				`	"Now that this is done, what are you going for next?"`
@@ -1539,12 +1540,16 @@ mission "Ka'het: Patir Mystery 12B"
 	name "Satellite deployment"
 	description "Deploy two probes in <waypoints> to keep an eye on incoming space rocks."
 	source "Builder Settlement"
-	passengers 1
+	passengers 5
 	cargo "Remnant Probes" 3
 	waypoint "Mitera"
 	waypoint "Thepa"
+	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks and 3 tons of cargo for the mission we are preparing."`
 	to offer
-		has "Ka'het: Patir Mystery 12A: declined"
+		has "Ka'het: Patir Mystery 11: done"
+		( "Ka'het: Patir Mystery 12A: offered" + "Ka'het: Patir Mystery 12A: declined" ) % 2 == 0
+	to accept
+			has "Ka'het: Patir Mystery 12A: declined"
 	on offer
 		conversation
 			`You find the team waiting for you in the lab. Next to them are two mechanical crates, roughly the size of a person. Most of the clutter around the room has been cut down considerably; these satellites alone must have used the larger part of their reserves. "Here they are, Captain," Dusk states proudly. "Two autonomous surveillance probes, capable of scanning an entire system without any input and slowly beaming the results back to us. Their capabilities are far from what our main fleet is capable of back home, but, considering our situation, they should be more than enough.`
@@ -1608,7 +1613,7 @@ mission "Ka'het: Patir Mystery 12C"
 		event "no Patir spaceport and no Fetri spawn" 0
 		conversation
 			`Dusk seems busier than usual as you descend towards the settlement, constantly communicating with the team on the ground while simultaneously checking the incoming telemetry. When you're hovering right above the landing pad, he turns to your console. "Keep the thrusters in standby, Captain," he signs hastily. "We are not here to stay. The satellites are working very well; in fact, the Thepa probe has just detected one of those beings jumping right in our direction. We have only a few hours to return to orbit, or we will waste this opportunity."`
-			`	On the ground, the whole team is outside the lab, their hands full of strange equipment and unwieldy machinery. You set your ship's ramp to deploy and quickly walk down to Dusk so you can help them carry the instruments aboard. "The approaching asteroid is of the small or medium kind, as far as I can tell. Considering your past interactions, or lack thereof, it is unlikely to cause any issue."`
+			`	On the ground, the whole team rushes out of your ship toward the lab, soon returning with their hands full of strange equipment and unwieldy machinery. You quickly prepare your ship's cargo bay for the new payloads and walk down to Dusk so you can help them carry the instruments aboard. "The approaching asteroid is of the small or medium kind, as far as I can tell. Considering your past interactions, or lack thereof, it is unlikely to cause any issue."`
 			`	"What should I do once in orbit?" you ask.`
 			`	"First, we will verify that all identifiable Ka'sei have entered a dormant state after the creature's arrival. Once that is confirmed, you will rendezvous with one of the deactivated Fetri'sei so that we can spacewalk to it. We will handle the rest from there.`
 			`	"Of course, this will be the first time in Remnant history that one of us boards a Ka'sei; after all, it wasn't too long ago we learned of their existence. But we have explored many kinds of Ka'het over the years with varying results, and with that experience I am confident we should be able to complete our mission."`
@@ -1720,7 +1725,7 @@ mission "Ka'het: Patir Mystery 12D"
 		has "Ka'het: Patir Mystery 12B: done"
 	npc assist
 		government "Magic Asteroid"
-		personality coward fleeing harvests pacifist uninterested waiting
+		personality coward fleeing harvests pacifist uninterested waiting mute
 		fleet
 			cargo 3
 			variant
@@ -1847,23 +1852,62 @@ ship "Asteroid Large 1" "Asteroid Large (Patir 12A)"
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
 
+
+mission "Ka'het: Patir Mystery 13A"
+	name "Return to <planet>"
+	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
+	passengers 5
+	source "Builder Settlement"
+	destination "Aventine"
+	to offer
+		has "Ka'het: Patir Mystery 12A: done"
+	on offer
+		event "Patir returns" 0
+		conversation
+			`The time has come: the walk toward the lab is quick and straightforward, and you cover the whole distance in a matter of minutes. Peeking through the hatch's window, you see the rest of the group preparing their backpacks, with prepacked toolboxes surrounding them in every direction. You wave through the glass, and they return the greeting.`
+			`	You move the airlock's heavy door to pass through, and wait for the room to be re-pressurized before walking in. By the time the hatch unlocks, however, the Remnant are gone, hastily leaving their bags on the floor.`
+			`	As you take a few steps inside the lab, you turn around to find them all glued to the windows with an awestruck gaze. The sky has again turned black, and a few dim lines are already starting to appear in the distance.`
+			`	While stars and galaxies zoom in the night sky, a few of the Remnant run around the lab, turning on various instruments. However, most of them remain with their faces stuck to the glass. The lights start converging toward a single point, forming a large, but rapidly shrinking mass in the background.`
+			`	The stars begin to slow down before settling into their final positions. After all the time you have spent here, it isn't difficult to recognize that the sky has changed again. Next to you, the rest of the team is already analyzing the data gathered; Dusk seems to be writing down something from a chronometer.`
+			choice
+				`	"Are we back in the Milky Way?"`
+				`	"How long was that?"`
+					goto time
+				`	"Where are we now?"`
+			`	"I cannot say yet," Dusk replies hurriedly. "Quick, put your EVA suit back on. We need to depart as soon as possible, all of us together. I do not know how much time we have." You hastily connect your helmet back to the life support and follow them out of the airlock, trying to keep up as best as you can.`
+				goto depart
+
+			label time
+			`	"Around four minutes," Dusk replies hurriedly. "But we will talk about that another time. We need to depart as soon as possible, all of us together. I do not know how much time we have." You hastily connect your helmet back to the life support and follow them out of the airlock, trying to keep up as best as you can.`
+			label depart
+			`	It takes only a few minutes to launch the <ship>, the six of you standing in the cockpit with trepidation. "We will take care of the necessary analysis while you bring us to orbit. Hopefully we have been sent to the Milky Way, and not to yet another unreachable galaxy."`
+				launch
+	on enter
+		conversation "end of Patir 2 - on enter"
+	on complete
+		payment 1570000
+		clear "remnant: dusk busy"
+		set "initial patir exploration"
+		event "patir mystery 2 timer" 45
+		conversation "end of Patir 2 - on complete"
+
 mission "Ka'het: Patir Mystery 13B"
 	landing
 	name "Return to <planet>"
 	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
+	passengers 5
 	source "Builder Settlement"
 	destination "Aventine"
 	to offer
 		has "Ka'het: Patir Mystery 12C: done"
 	on offer
-		event "Patir returns" 0
 		conversation
 			`Back down on the surface, you complete the post-landing checklist while keeping an eye on the movements of the Ka'sei. The research station has been a safe place to retreat during past expeditions, but it seems doubtful that it could last against a prolonged attack from one of the Fetri'sei.`
 			`	When the scientists finish unloading their cargo, Dusk calls you with the communicator. Now that the immediate danger is over, a hint of frustration creeps into his voice.`
 			`	"The cells we have taken from the Fetri are only a few out of multiple hundreds. We did our best to choose those that were recorded at times when those beings were present, but we will still need some luck to get the results we wanted.`
 			`	"Our calculators have been crunching numbers for hours now, ever since we cracked open the first canister. By the time you have reached the lab, we should have the analysis ready." You close the hatch behind you to join the rest of the crew.`
 			`	As the asteroid continues its nearly imperceptible spin, Patir emerges from behind the giant dome, allowing its rays to pass through. You take the last steps towards the outpost with the sunshade lowered and walk into the lab once more.`
-			`	The module was always cramped, but over the last few weeks, a thin layer of dust coming from outside the asteroid has covered the floor, with just the surfaces needed for the research kept clean. Tiredness plagues the faces of the scientists: they must not have slept much in the past days to keep up with the amount of incoming data, and neither have you. As you try to remember the last time you stepped outside without a suit - at least a month, most likely - your stream of thoughts is interrupted by the arrival of Dusk, carrying in his hands a ream of papers.`
+			`	The module was never particularly inviting, but over the last few weeks, a thin layer of dust coming from outside the asteroid has covered the floor, with just the surfaces needed for the research kept clean. Tiredness plagues the faces of the scientists: they must not have slept much in the past days to keep up with the amount of incoming data, and neither have you. As you try to remember the last time you stepped outside without a suit - at least a month, most likely - your stream of thoughts is interrupted by the arrival of Dusk, carrying in his hands a ream of papers.`
 			`	"The information in the memory containers is indeed from when one of those beings was in the system, and the data recorded was far more comprehensive than our own scans. However, the memory containers we extracted only contain records from the middle of the phenomenon, without showing how it begun or ended. Additionally, understanding their contents is going to take longer than we hoped for. We knew that the exact relationship between the being and the Fetri'sei would be beyond our knowledge, but we cannot even make preliminary guesses as to how they are able to communicate.`
 			`	"We have enough consumables to last for many weeks still; we started rationing as soon as we arrived in this sector, and we are prepared to reduce them further if necessary. Despite this, the time and manpower needed to crack this code would go far beyond what we could feasibly achieve. We have hit a roadblock that, for now, we cannot overcome."`
 			choice
@@ -1876,6 +1920,8 @@ mission "Ka'het: Patir Mystery 13B"
 			`	Dusk halts mid phrase, looking behind you with an awestruck gaze. The sky has again turned black, and a few dim lines are already starting to appear in the distance. The whole team jumps to the windows, watching as the light show begins.`
 			`	While stars and galaxies zoom in the night sky, two Remnant keep running around the lab, turning on various instruments. However, the rest of them remain with their faces stuck to the glass with you. The lights start converging toward a single point, forming a large, but rapidly shrinking mass in the background.`
 			`	The stars begin to slow down before settling into their final positions. After all the time you have spent here, it isn't difficult to recognize that the sky has changed again. Next to you, the rest of the team is already analyzing the data gathered; Dusk seems to be writing down something from a chronometer.`
+			action
+				event "Patir returns" 0
 			choice
 				`	"Are we back in the Milky Way?"`
 				`	"How long was that?"`
@@ -1907,43 +1953,6 @@ event "Patir returns"
 		add hazard "Ember Waste Base Heat" 100
 		add hazard "Ember Waste Base Storm" 9000
 
-mission "Ka'het: Patir Mystery 13A"
-	name "Return to <planet>"
-	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
-	source "Builder Settlement"
-	destination "Aventine"
-	to offer
-		has "Ka'het: Patir Mystery 12A: done"
-	on offer
-		conversation
-			`The time has come: the walk toward the lab is quick and straightforward, and you cover the whole distance in a matter of minutes. Peeking through the hatch's window, you see the rest of the group preparing their backpacks, with prepacked toolboxes surrounding them in every direction. You wave through the glass, and they return the greeting.`
-			`	You move the airlock's heavy door to pass through, and wait for the room to be re-pressurized before walking in. By the time the hatch unlocks, however, the Remnant are gone, hastily leaving their bags on the floor.`
-			`	As you take a few steps inside the lab, you turn around to find them all glued to the windows with an awestruck gaze. The sky has again turned black, and a few dim lines are already starting to appear in the distance.`
-			`	While stars and galaxies zoom in the night sky, a few of the Remnant run around the lab, turning on various instruments. However, most of them remain with their faces stuck to the glass. The lights start converging toward a single point, forming a large, but rapidly shrinking mass in the background.`
-			`	The stars begin to slow down before settling into their final positions. After all the time you have spent here, it isn't difficult to recognize that the sky has changed again. Next to you, the rest of the team is already analyzing the data gathered; Dusk seems to be writing down something from a chronometer.`
-			action
-				event "Patir returns" 0
-			choice
-				`	"Are we back in the Milky Way?"`
-				`	"How long was that?"`
-					goto time
-				`	"Where are we now?"`
-			`	"I cannot say yet," Dusk replies hurriedly. "Quick, put your EVA suit back on. We need to depart as soon as possible, all of us together. I do not know how much time we have." You hastily connect your helmet back to the life support and follow them out of the airlock, trying to keep up as best as you can.`
-				goto depart
-
-			label time
-			`	"Around four minutes," Dusk replies hurriedly. "But we will talk about that another time. We need to depart as soon as possible, all of us together. I do not know how much time we have." You hastily connect your helmet back to the life support and follow them out of the airlock, trying to keep up as best as you can.`
-			label depart
-			`	It takes only a few minutes to launch the <ship>, the six of you standing in the cockpit with trepidation. "We will take care of the necessary analysis while you bring us to orbit. Hopefully we have been sent to the Milky Way, and not to yet another unreachable galaxy."`
-				launch
-	on enter
-		conversation "end of Patir 2 - on enter"
-	on complete
-		payment 1570000
-		clear "remnant: dusk busy"
-		set "initial patir exploration"
-		event "patir mystery 2 timer" 45
-		conversation "end of Patir 2 - on complete"
 
 conversation "end of Patir 2 - on enter"
 	`The cockpit has become quite chaotic: the instruments the team brought with them keep buzzing and beeping. After shutting down the main engines, someone taps on your shoulder to call your attention. "<first>, could you pitch the ship down a few degrees?" Dusk asks, with a calmer look than during liftoff. You reply with a nod, and move the stick forward slightly.`
