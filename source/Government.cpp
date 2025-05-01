@@ -100,7 +100,7 @@ Government::Government()
 
 // Load a government's definition from a file.
 void Government::Load(const DataNode &node, const set<const System *> *visitedSystems,
-		const set<const Planet *> *visitedPlanets)
+	const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 	{

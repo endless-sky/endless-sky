@@ -71,7 +71,7 @@ Shop<Item>::Shop()
 
 template <class Item>
 Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
-		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
 	Load(node, items, playerConditions, visitedSystems, visitedPlanets);
 }
@@ -80,7 +80,7 @@ Shop<Item>::Shop(const DataNode &node, const Set<Item> &items, const ConditionsS
 
 template <class Item>
 void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const ConditionsStore *playerConditions,
-		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
+	const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets)
 {
 	name = node.Token(1);
 	// If an event or second definition updates this shop, clear the stock

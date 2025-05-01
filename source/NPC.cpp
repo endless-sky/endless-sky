@@ -71,7 +71,7 @@ namespace {
 
 // Construct and Load() at the same time.
 NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions,
-		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
@@ -79,7 +79,7 @@ NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions,
 
 
 void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
-		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.

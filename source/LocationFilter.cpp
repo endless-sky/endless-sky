@@ -163,7 +163,7 @@ namespace {
 
 // Construct and Load() at the same time.
 LocationFilter::LocationFilter(const DataNode &node, const set<const System *> *visitedSystems,
-		const set<const Planet *> *visitedPlanets)
+	const set<const Planet *> *visitedPlanets)
 {
 	Load(node, visitedSystems, visitedPlanets);
 }

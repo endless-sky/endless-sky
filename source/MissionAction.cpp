@@ -115,7 +115,7 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node, const Conditio
 
 // Construct and Load() at the same time.
 MissionAction::MissionAction(const DataNode &node, const ConditionsStore *playerConditions,
-		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
@@ -123,7 +123,7 @@ MissionAction::MissionAction(const DataNode &node, const ConditionsStore *player
 
 
 void MissionAction::Load(const DataNode &node, const ConditionsStore *playerConditions,
-		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() >= 2)
 		trigger = node.Token(1);
@@ -143,7 +143,7 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 
 
 void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *playerConditions,
-		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	const string &key = child.Token(0);
 	bool hasValue = (child.Size() >= 2);
