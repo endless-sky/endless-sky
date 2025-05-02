@@ -69,7 +69,7 @@ public:
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
 	PlayerInfo &operator=(const PlayerInfo &) = delete;
-	PlayerInfo(PlayerInfo &&) = default;
+	PlayerInfo(PlayerInfo &&) = delete;
 	PlayerInfo &operator=(PlayerInfo &&) = default;
 	~PlayerInfo() noexcept = default;
 
