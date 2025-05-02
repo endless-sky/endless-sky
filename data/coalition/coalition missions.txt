@@ -3337,32 +3337,6 @@ mission "Coalition: Struggling Author - Book Discovered"
 		conversation
 			`As you prepare to land, you send Anna a short message asking to interview her at a restaurant near the spaceport. Less than ten minutes later, she replies - she accepted your offer and will wait for you in the spaceport.`
 
-
-mission "Coalition: Book Discovered 2"
-	name `"Beyond the Hyperdrive" for Kachachee`
-	description `Now that you have a copy of Anna Fangvin's "Beyond the Hyperdrive," give it to Kachachee and their group on <destination>.`
-	to offer
-		has "coalition: struggling author - beyond the hyperdrive"
-	source
-		government "Coalition"
-		not planet "Ki Patek Ka"
-	destination "Ki Patek Ka"
-	on offer
-		conversation
-			`Sorting through messages, you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's "Beyond the Hyperdrive." You now know her.`
-			choice
-				`	(Ask Anna for another copy of the book.)`
-				`	(Forget about it.)`
-					decline
-			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of "Beyond the Hyperdrive" to <destination>. You should head there to receive and gift it to Kachachee.`
-				accept
-	on complete
-		payment 7000
-		conversation
-			`After receiving the book - it turns out to have reached there in a normal spacecraft, along with a message from Anna stating her disappointment - from the information counter at a company your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
-			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
-
-
 mission "Coalition: Struggling Author 1"
 	name "Take Anna to Coalition Space"
 	description "Take Anna Fangvin to <destination>, where she might find success as an author after having struggled on <origin> for so long."
@@ -3456,9 +3430,9 @@ mission "Coalition: Struggling Author 1"
 		conversation
 			`As the flames of your jump drive fade away, Anna comes out of her bunk in shock. "What was that? It felt like the whole ship vanished out of our space altogether! Where are we?"`
 			choice
-				`	"Welcome to Coalition space, Anna."`
+				`	"My jump drive would like to welcome you to Coalition space."`
 				`	"That was a jump drive."`
-				`	"That's what happens every time I go to Coalition space."`
+				`	"That's what happens every time I go to Coalition space with a jump drive."`
 			`	"Wow. I can't believe this is happening! I'm so excited!" Anna looks out the window. "What are those golden ships?"`
 			`	"They're Heliarch vessels," you reply.`
 			`	"Can I take a look at your Jump Drive? I'm interested to see how it works," Anna says. You take her to the engine room of <ship>, where she begins taking notes and pictures of the drive.`
@@ -3478,6 +3452,29 @@ mission "Coalition: Struggling Author 1"
 			`	"You have to register yourself with the Heliarchs before you can do much here. I'll take you to the Ring of Friendship, which is where you can complete the registration process." you say.`
 			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and meet me there."`
 
+mission "Coalition: Book Discovered 2"
+	name `"Beyond the Hyperdrive" for Kachachee`
+	description `Now that you have a copy of Anna Fangvin's "Beyond the Hyperdrive," give it to Kachachee and their group on <destination>.`
+	to offer
+		has "coalition: struggling author - beyond the hyperdrive"
+	source
+		government "Coalition"
+		not planet "Ki Patek Ka"
+	destination "Ki Patek Ka"
+	on offer
+		conversation
+			`Sorting through messages, you recall that a Kimek named Kachachee and their group wanted a copy of Anna Fangvin's "Beyond the Hyperdrive." You now know her.`
+			choice
+				`	(Ask Anna for another copy of the book.)`
+				`	(Forget about it.)`
+					decline
+			`	You call Anna, and ask her for another copy of "Beyond the Hyperdrive" for a friend named Kachachee. She says, "Sure, I'll send it to you over the Coalition's incredible hyperspace relays. For something as small as a book, there probably won't even need to be a spaceship bringing it! Where do you want it sent?" You reply, "To <planet>." She hangs up, presumably to ship the second copy of "Beyond the Hyperdrive" to <destination>. You should head there to receive and gift it to Kachachee.`
+				accept
+	on complete
+		payment 7000
+		conversation
+			`After receiving the book - it turns out to have reached there in a normal spacecraft, along with a message from Anna stating her disappointment - from the information counter at a company your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
+			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 
 mission "Coalition: Struggling Author 2"
 	name "Help Anna register with the Heliarchy"
@@ -3662,8 +3659,8 @@ mission "Coalition: Struggling Author 4"
 			`	Once the first questions are asked, Anna is all too happy to begin discussing the contents of her novel in great detail.`
 			`	Under the watchful eye of the six Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Heliarchs' numerous questions for clarification and elaboration make the process a long one.`
 			`	"Sold many books before coming here, have you?" one of the agents asks. Anna embarrassedly glances in your direction. "Well, no," she replies. "But I've been writing better and better over the past few years."`
-			`	Priyepichia's representative speaks up. "Word count, we must know. Binding process, aware of you are? You want what type, and cover style?" "There are around 90,000 words. The hardcover book should have a Jump Drive emblazoned on the front cover.`
-			`	"I don't know what the binding type means; couldn't you just decide that yourself?"`
+			`	Priyepichia's representative speaks up. "Word count, we must know. Binding process, aware of you are? You want what type, and cover style?"`
+			`	"The hardcover book should have a Jump Drive emblazoned on the front cover. I'm not sure the exact options for a binding type in this area of space; couldn't you just decide that yourself?"`
 			`	As you listen, you learn that due to the Coalition's review process to make the book more suitable, Anna will have to stay for about half a year, during which she will have an apartment to live in.`
 			choice
 				`	"Do I have to stay with Anna here for half a year?"`
