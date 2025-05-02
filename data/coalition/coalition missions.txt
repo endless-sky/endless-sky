@@ -3546,7 +3546,7 @@ mission "Coalition: Struggling Author 3"
 			choice
 				`	"Yes."`
 				`	"I think so."`
-			`	"Trust you with a translator, we cannot. And help you, I cannot, so a Heliarch interpreter, I must call," says the clerk. Before they can do anything, the Heliarch you transported calls for a translater.`
+			`	"Trust you with a translator, we cannot. And help you, I cannot, so a Heliarch interpreter, I must call," says the clerk. Before they can do anything, the Heliarch you transported calls for a translator.`
 			`	After a few minutes, another Kimek wearing the telltale golden circlet of a Heliarch approaches you and directs you into a room.`
 			`	"Your intentions, the clerk has already told me about, and understand it, I do. To the publishers, my agents and I will accompany you, once decided you have upon a company." The Kimek sits down.`
 			`	"We need to find a publishing company then!" says Anna.`
