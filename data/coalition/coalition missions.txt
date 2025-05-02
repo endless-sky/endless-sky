@@ -3240,17 +3240,17 @@ mission "Coalition: Struggling Author - Human Media 1"
 			`	The group of Coalition citizens go back to their table with disappointed expressions.`
 				decline
 			label "literature collectors violent"
-			`	"Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says the lead Kimek, who then introduces themselves as Kachachee. "Literature of many kinds, we read, from science fiction like tales of alien worlds outside of our homeland.`
+			`	"Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says the lead Kimek, who then introduces themselves as Kachachee. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
 				goto "literature collector choice"
 			label "literature collectors"
 			`	"Greetings, human friend. Collectors of literature, we are. Curious about your race, and the books they have written, we are, so for you, a mission we have," says a Kimek, who then introduces themselves as Kachachee. "Literature of many kinds, we read, from science fiction to tales of alien worlds outside of our homeland.`
 			label "literature collector choice"
-			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and be very grateful, we would, if accept this mission, you will," they explain.`
+			`	"A small mission, it is. Knowledge from your race, we seek. Pay you <payment> and very grateful, we would be, if accept this mission, you will," they explain.`
 			choice
 				`	"I'm in. What do you want me to collect?"`
 				`	"Sorry, I'm not interested."`
 					decline
-			`	"Anything. A translation device we have, so to translate the human language into our own, we are able. As for the topic, always popular amongst our peoples, tales of vile oppressors and the heroic stands against them have been. Stories of brave battles, tyrants and rebels. Histories of humanity's resistance movements, we seek."`
+			`	"Anything. A translation device, we have. To translate the human language into our own, we are able. Tales of vile oppressors and the heroic stands against them, always popular amongst our peoples, the topic is. Stories of brave battles, tyrants and rebels. Histories of humanity's resistance movements, we seek."`
 			label decision
 			choice
 				`	"Why do you want this knowledge? What is your group about?"`
@@ -3260,10 +3260,10 @@ mission "Coalition: Struggling Author - Human Media 1"
 				`	"I see. I will bring you all the knowledge you want."`
 				`	"I'm not interested. Sorry."`
 					decline
-			`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where they can be found.`
+			`	"Thank you. Enlighten us and the rest of the Coalition, your actions will. A safe trip, we hope you have." They give you instructions on where to find them.`
 			branch "don't have"
 				not "human cultural data"
-			`	You recall that on your ship is a datachip containing a copy of Alexandria's archives, which may be what the group wants. You walk to your ship, make a copy of the datachip, and return to the group.`
+			`	You recall that your ship has a datachip containing a copy of Alexandria's archives, which may be what the group wants. You walk to your ship, make a copy of the datachip, and return to the group.`
 			`	Kachachee then approaches you as you hand them the datachip. "Very speedy, your return was."`
 			choice
 				`	"Happy to help."`
@@ -3279,7 +3279,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 			`	"A group who likes to together read books, we are. Science fiction, I believe the term is, especially."`
 				goto decision
 			label "don't have"
-			`	Rumor has it that on <stopovers> there is a library with complete copies of all human history. You return to your ship and prepare for the journey there to confirm this.`
+			`	On <stopovers> there is a library with complete copies of all human history. You return to your ship and prepare for the journey there to acquire one.`
 				accept
 	on decline
 		clear "coalition: asked about kachachee"
@@ -3302,7 +3302,7 @@ mission "Coalition: Struggling Author - Human Media 1"
 		event "coalition citizens discover fangvin" 20 40
 		payment 180000
 		conversation
-			`You head to the bar where Kachachee met you first. When you arrive, the Kimek greets you, "Thank you. Enlighten me and my friends, this datachip will. And as promised, a chip of <payment>, we have." Kachachee places it within your hand.`
+			`You head to the bar where you first met Kachachee. When you arrive, the Kimek greets you, "Thank you. Enlighten me and my friends, this datachip will. A chip of <payment>, as promised, we have." Kachachee places it in your hand.`
 
 
 event "coalition citizens discover fangvin"
@@ -3322,7 +3322,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 			`After an uneventful trip to the spaceport, you return to your <model>. Once aboard, you see that you have a message from the group of Coalition citizens that you had provided with a datachip containing a copy of Alexandria's archive:`
 			``
 			`	Dear <first>,`
-			`		Interested in an author from the datachip, we are. "Anna Fangvin," her name is. While the full book, access it we could not, the summary, about your race's actions against the oppressors, captivate us it did. To converse with her, we wish, and a copy of the book, we desire.`
+			`		Author from the datachip, we are interested in. "Anna Fangvin," her name is. Full book, while we could not access, the summary, of your race's actions against the oppressors, captivate us, it did. To converse with her, we wish. A copy of the book, we desire.`
 			`	Kachachee`
 			``
 			choice
@@ -3331,7 +3331,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 					defer
 				`	(Discard the message.)`
 					decline
-			`	A quick look through your encyclopedia reveals nothing. However, checking a copy of the data chip that you gave the Coalition citizens reveals Anna Fangvin to be an author from <destination>. You decide to find her there for an interview.`
+			`	A quick look through your ship's data files reveals nothing. However, checking a copy of the data chip that you gave the Coalition citizens reveals Anna Fangvin to be an author from <destination>. You decide to find her there for an interview.`
 				accept
 	on complete
 		conversation
@@ -3359,7 +3359,7 @@ mission "Coalition: Book Discovered 2"
 	on complete
 		payment 7000
 		conversation
-			`After receiving the book from the information counter at a company - it turns out to have reached there in a normal spacecraft, to Anna's disappointment - your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
+			`After receiving the book - it turns out to have reached there in a normal spacecraft, along with a message from Anna stating her disappointment - from the information counter at a company your translator calls "Hyperspace Relay Incorporated," you get in contact with Kachachee and inform them you have a copy of "Beyond the Hyperdrive." They respond, telling you to meet them at a public square within the spaceport.`
 			`	Walking over to the aforementioned public square you recognize Kachachee among the crowd. You hold up your copy of Beyond the Hyperdrive and hand it over to them. Kachachee eagerly takes the copy. "Very thankful we are, for this book. Read it with my group, I must. But for your troubles, worthy of <payment>, you are." They then give you a chip for <payment>.`
 
 
@@ -3379,7 +3379,7 @@ mission "Coalition: Struggling Author 1"
 			`	Anna retrieves a hardcover book from her bag. The cover shows a human next to a Quarg Wardragon. You skim the front and back flaps, confirming most of what Anna told you about it. Her signature is on the title page.`
 			label "genre choice"
 			choice
-				`	"How many pages is the book?"`
+				`	"How long is it?"`
 					goto "book length"
 				`	"Why is it a story about humanity stealing from the Quarg?"`
 					goto "quarg"
@@ -3426,7 +3426,7 @@ mission "Coalition: Struggling Author 1"
 			`	"They eventually found me, thankfully. But it was distressing being stuck with that Quarg for what felt like ten to thirty minutes. I don't remember exactly how long. Eventually, another Quarg brought my parents to me. I told them I wanted to get off Humanika as fast as possible and get back to Zug. They obliged, and we left that world; I've never wanted to go back."`
 			choice
 				`	"So you said your books don't sell well, right?"`
-			`	While Anna tries her best to maintain her composure, her features clearly show she's not comfortable with the topic. "No, they don't," she eventually says. "Even some of my friends and family don't really say much good about them, and fewer still feel inclined to do anything for me." Her eyes take on a vaguely more optimistic light. "Do you, perhaps... work for some publisher? Someone interested in my work?"`
+			`	While Anna tries her best to maintain her composure, her features clearly show she's not comfortable with the topic. "No, they don't," she eventually says. "Even some of my friends and family don't have much good to say about them, and fewer still are inclined to do anything for me." Her eyes take on a vaguely more optimistic light. "Do you, perhaps... work for some publisher? Someone interested in my work?"`
 			choice
 				`	(Tell her about the Coalition.)`
 				`	"No actually, I'm afraid I don't know anyone who could help you."`
@@ -3445,7 +3445,7 @@ mission "Coalition: Struggling Author 1"
 					goto decline
 			`	"Do I have to pay anything? As a struggling author, I can't afford off-world transport at all, let alone to a completely different segment of the galaxy! Actually, I know - I'll give you a copy of Beyond the Hyperdrive! Thank you so much! Just wait for a while. I'll go over to my house and bring what I'll need for the trip, and then we can go to whatever this Coalition thing is," says Anna.`
 			`	As you wait for Anna, you look over your maps of Coalition space to double-check what planet the Coalition book club is on. After a quick look, you find <destination>.`
-			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open the hatch to let her inside, lead her to her bunk, and inform her of the destination. You prepare to leave the spaceport.`
+			`	After approximately an hour of waiting, Anna appears outside of your ship, knocking on the hatch. You open it to let her inside, lead her to her bunk, and inform her of the destination. You prepare to leave the spaceport.`
 				accept
 			label decline
 			`	Filled with disappointment, Anna says, "Well, I'm afraid I have other things to do, then. Thank you for the stories, at least." She leaves.`
@@ -3462,7 +3462,7 @@ mission "Coalition: Struggling Author 1"
 			`	"Wow. I can't believe this is happening! I'm so excited!" Anna looks out the window. "What are those golden ships?"`
 			`	"They're Heliarch vessels," you reply.`
 			`	"Can I take a look at your Jump Drive? I'm interested to see how it works," Anna says. You take her to the engine room of <ship>, where she begins taking notes and pictures of the drive.`
-			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle down to the controls.`
+			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle back into the controls.`
 	npc
 		government "Heliarch"
 		personality heroic opportunistic
@@ -3480,7 +3480,7 @@ mission "Coalition: Struggling Author 1"
 
 
 mission "Coalition: Struggling Author 2"
-	name "Help Anna Register"
+	name "Help Anna register with the Heliarchy"
 	description "Take Anna Fangvin to the <destination> so she can register with the Heliarchs."
 	source "Ki Patek Ka"
 	destination "Ring of Friendship"
@@ -3516,7 +3516,7 @@ mission "Coalition: Struggling Author 3"
 		has "Coalition: Struggling Author 2: done"
 	on offer
 		conversation
-			`Going through the spaceport looking for Anna, you finally find her at a restaurant, eating food made for Saryds. She's typing away furiously at her laptop with a plate of vegetables next to her. She sees you and motions for you to take a seat.`
+			`Going through the spaceport looking for Anna, you finally find her at a restaurant, eating a longcow steak. She's typing away furiously at her laptop with a plate of vegetables next to her. She sees you and motions for you to take a seat.`
 			`	You sit down next to Anna. "These vegetables are so delicious! After months of instant noodles and takeout back home, it finally feels good to eat something that's actually healthy." she exclaims, closing the computer.`
 			choice
 				`	"How good is it?"`
@@ -3547,9 +3547,10 @@ mission "Coalition: Struggling Author 3"
 			`	"A translator, the human needs?" asks the clerk.`
 			choice
 				`	"Yes."`
-			`	"Trust you with a translator, we cannot. And help you, I cannot, so a Heliarch, I must call," says the clerk, then proceeding to call for a Heliarch in its native language.`
+				`	"I think so."`
+			`	"Trust you with a translator, we cannot. And help you, I cannot, so a Heliarch interpreter, I must call," says the clerk, then proceeding to call for a Heliarch in its native language.`
 			`	After a few minutes, another Kimek wearing the telltale golden circlet of a Heliarch approaches you and directs you into a room.`
-			`	"Told me about your intentions, the clerk already has, and understand it, I do. Accompany you to the publishers, me and my agents will, once decided you have upon a company." The Arachi sits down.`
+			`	"Your intentions, the clerk has already told me about, and understand it, I do. To the publishers, my agents and I will accompany you, once decided you have upon a company." The Kimek sits down.`
 			`	"We need to find a publishing company then!" says Anna.`
 			label questions
 			choice
@@ -3594,7 +3595,7 @@ mission "Coalition: Struggling Author 4"
 		has "Coalition: Struggling Author 3: done"
 	on offer
 		conversation
-			`The spaceport of Ki Patek Ka is vast. You decide to search for Anna, who has chosen to settle in the cafeteria with her laptop. She is typing away at the keyboard, presumably writing a short story to post.`
+			`The spaceport of Ki Patek Ka is vast, and would normally prove a nightmarish place to look for just one person. Thankfully, Anna being one of the few humans within the Coalition makes your search relatively quick. She has chosen to settle in a cafeteria with her laptop. She is typing away at the keyboard, presumably writing a short story to post.`
 			`	"<first>! I found a company who's willing to publish me! I sent them a digital copy of my book and they instructed me to visit their office on <planet>," explains Anna, once again enthusiastic.`
 			choice
 				`	"Great!"`
@@ -3703,7 +3704,7 @@ mission "Coalition: Struggling Author 4"
 			choice
 				`	"It is called 'Beyond the Hyperdrive.' It could very well be years before release, but I'm glad you're taking interest."`
 				`	"It is called 'Beyond the Hyperdrive.' I think it's likely to be one of the best books of all time."`
-			`	"So, 'Beyond the Hyperdrive,' it is, you say? Thankful, I am, and on its release, buy the book I will remember to."`
+			`	"So, 'Beyond the Hyperdrive,' it is, you say? Thankful, I am. On its release, buy the book, I will remember to."`
 			`	The Kimek walks away after the two of you exchange farewells, leaving you to your own devices.`
 				goto "anna approaches"
 			label "kst-1 ignore"
@@ -3723,8 +3724,6 @@ mission "Coalition: Struggling Author 4"
 				`	"Just helping out."`
 				`	"I'm happy to have helped you."`
 			`	"Again, thank you. You will not be needed anymore for the process."`
-			choice
-				`	(Leave.)`
 			`	You return to the spaceport the way you came and return to your ship. You have more important things to attend to for the next six months than wonder whether Anna's book will make it through the process to be published.`
 				decline
 			label stay
