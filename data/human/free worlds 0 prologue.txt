@@ -518,6 +518,9 @@ mission "Pact Supplies 1B"
 # Pact Supplies 2 or 3 may be completed in any order. Completing both gives the player "assisted free worlds".
 mission "Pact Supplies 2"
 	job
+	name "Transport militia supplies to <planet>"
+	description "The local militia is requesting merchant captains to participate in a convoy. Available captains are to report to the quartermaster's office. Transport <cargo> to <destination>. Payment is <payment>."
+	cargo "weapons" 20
 	source
 		attributes "dirt belt"
 		attributes "factory"
