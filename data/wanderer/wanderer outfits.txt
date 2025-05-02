@@ -631,11 +631,11 @@ outfit "Wanderer License"
 	series "Licenses"
 	index 09020
 	thumbnail "outfit/wanderer license"
-	description "Intact within an amber shell, this leafy branch of the Uesoqai Antgiega symbolizes the Wanderers' pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem."
+	description "Intact within an amber shell, this leafy branch of the Noble Watchwood - rumored to come from the Wanderer's original home planet - symbolizes the their pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem."
 
 outfit "Wanderer Military License"
 	category "Licenses"
 	series "Licenses"
 	index 09030
 	thumbnail "outfit/wanderer military license"
-	description "The history of the Wanderers is not without hardship and failure. Immortalized in a bronze mold, this shape of a withered, burnt branch is the token of a time the Wanderers could not save a world, for skilled as they may be, they cannot stop destruction when it is actively sought after by others mightier than them. The loss of the exotic Cariauara Galoatinisfu serves as a reminder that they, too, must prepare to fight when necessary."
+	description "The history of the Wanderers is not without hardship and failure. Immortalized in a bronze mold, this withered branch recalls the time the Wanderers could not save a world, for skilled as they may be, they cannot stop destruction when it is actively sought after by others mightier than them. The fall of the Noble Watchwood, their cherished emblem, now stands as a solemn vow: when peace fails, they too must prepare to fight."
