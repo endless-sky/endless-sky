@@ -440,7 +440,7 @@ private:
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
 	// If any past event is not fully defined, the player should be warned that
-	// the unvierse may not be in the expected state.
+	// the universe may not be in the expected state.
 	std::list<GameEvent> invalidEvents;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.

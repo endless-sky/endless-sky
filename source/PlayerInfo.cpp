@@ -132,6 +132,7 @@ namespace {
 PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const ConditionsStore *conditions)
 {
 	GameEvent nodeEvent(node, conditions);
+	date = nodeEvent.GetDate();
 
 	string eventName;
 	if(!nodeEvent.Name().empty())
@@ -159,8 +160,6 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 		node.PrintTrace("Warning: Could not determine name of unnamed event.");
 		event = ExclusiveItem<GameEvent>(std::move(nodeEvent));
 	}
-
-	date = nodeEvent.GetDate();
 }
 
 
@@ -432,8 +431,12 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(child.Token(0) == "past events")
 		{
 			for(const DataNode &grand : child)
+			{
 				if(grand.Size() >= 4)
 					pastEvents.emplace(grand.Token(0), Date(grand.Value(1), grand.Value(2), grand.Value(3)));
+				else
+					grand.PrintTrace("Warning: Unable to read past event without a date:")
+			}
 		}
 		else if(child.Token(0) == "economy")
 			economy = child;
