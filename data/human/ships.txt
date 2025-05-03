@@ -390,7 +390,7 @@ ship "Barb"
 	thumbnail "thumbnail/barb"
 	attributes
 		category "Fighter"
-		"cost" 50000
+		"cost" 87000
 		"shields" 800
 		"hull" 200
 		"required crew" 1
@@ -560,7 +560,7 @@ ship "Berserker"
 	thumbnail "thumbnail/berserker"
 	attributes
 		category "Interceptor"
-		"cost" 520000
+		"cost" 550000
 		"shields" 2200
 		"hull" 500
 		"required crew" 1
@@ -1121,7 +1121,7 @@ ship "Combat Drone"
 		category "Drone"
 		licenses
 			Navy
-		"cost" 83000
+		"cost" 41000
 		"hull" 700
 		"automaton" 1
 		"mass" 20
@@ -1420,7 +1420,7 @@ ship "Dagger"
 	thumbnail "thumbnail/dagger"
 	attributes
 		category "Fighter"
-		"cost" 129000
+		"cost" 119000
 		"shields" 1000
 		"hull" 300
 		"required crew" 1
@@ -1698,7 +1698,7 @@ ship "Finch"
 	thumbnail "thumbnail/finch"
 	attributes
 		category "Fighter"
-		"cost" 126000
+		"cost" 146000
 		"shields" 1100
 		"hull" 200
 		"required crew" 1
@@ -1969,7 +1969,7 @@ ship "Fury"
 	thumbnail "thumbnail/fury"
 	attributes
 		category "Interceptor"
-		"cost" 490000
+		"cost" 391000
 		"shields" 2000
 		"hull" 400
 		"required crew" 1
@@ -2259,7 +2259,7 @@ ship "Hawk"
 	thumbnail "thumbnail/hawk"
 	attributes
 		category "Interceptor"
-		"cost" 670000
+		"cost" 611000
 		"shields" 2500
 		"hull" 500
 		"required crew" 1
@@ -2460,7 +2460,7 @@ ship "Lance"
 	thumbnail "thumbnail/lance"
 	attributes
 		category "Fighter"
-		"cost" 93000
+		"cost" 122000
 		"shields" 800
 		"hull" 400
 		"required crew" 1
@@ -3442,7 +3442,7 @@ ship "Scrapper"
 	thumbnail "thumbnail/pirate scrapper"
 	attributes
 		category "Interceptor"
-		"cost" 60000
+		"cost" 123000
 		"shields" 450
 		"hull" 520
 		"required crew" 1
@@ -4043,7 +4043,7 @@ ship "Wasp"
 	thumbnail "thumbnail/wasp"
 	attributes
 		category "Interceptor"
-		"cost" 400000
+		"cost" 305000
 		"shields" 1500
 		"hull" 500
 		"required crew" 1
