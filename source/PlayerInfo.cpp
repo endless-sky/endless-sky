@@ -2043,6 +2043,13 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
+bool PlayerInfo::HasAvailableInFlightMissions() const
+{
+	return !availableInFlightMissions.empty();
+}
+
+
+
 const PlayerInfo::SortType PlayerInfo::GetAvailableSortType() const
 {
 	return availableSortType;
@@ -2193,6 +2200,38 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 
 
 
+void PlayerInfo::CreateInFlightMissions()
+{
+	availableInFlightMissions.clear();
+	for(const auto &it : GameData::Missions())
+		if(it.second.IsAtLocation(Mission::IN_FLIGHT) && it.second.CanOffer(*this))
+		{
+			availableInFlightMissions.push_back(it.second.Instantiate(*this));
+			if(availableInFlightMissions.back().IsFailed())
+				availableInFlightMissions.pop_back();
+		}
+}
+
+
+
+Mission *PlayerInfo::InFlightMission()
+{
+	if(!flagship)
+		return nullptr;
+
+	// If a mission can be offered right now, move it to the start of the list
+	// so we know what mission the callback is referring to, and return it.
+	for(auto it = availableInFlightMissions.begin(); it != availableInFlightMissions.end(); ++it)
+		if(it->HasSpace(*flagship))
+		{
+			availableInFlightMissions.splice(availableInFlightMissions.begin(), availableInFlightMissions, it);
+			return &availableInFlightMissions.front();
+		}
+	return nullptr;
+}
+
+
+
 bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 {
 	if(ship->IsCapturable())
@@ -2243,12 +2282,39 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 
+void PlayerInfo::HandleBlockedInFlightMissions(UI *ui)
+{
+	if(!flagship || availableInFlightMissions.empty())
+		return;
+
+	for(auto it = availableInFlightMissions.begin(); it != availableInFlightMissions.end(); )
+	{
+		if(!it->HasSpace(*flagship))
+		{
+			string message = it->BlockedMessage(*this);
+			// Remove this mission from the list so that the MainPanel stops
+			// trying to offer it.
+			it = availableInFlightMissions.erase(it);
+			if(!message.empty())
+			{
+				ui->Push(new Dialog(message));
+				return;
+			}
+		}
+		else
+			++it;
+	}
+}
+
+
+
 // Callback for accepting or declining whatever mission has been offered.
 // Responses which would kill the player are handled before the on offer
 // conversation ended.
 void PlayerInfo::MissionCallback(int response)
 {
-	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
+	list<Mission> &missionList = availableMissions.empty() ?
+		(availableInFlightMissions.empty() ? boardingMissions : availableInFlightMissions) : availableMissions;
 	if(missionList.empty())
 		return;
 
@@ -3897,6 +3963,7 @@ void PlayerInfo::RegisterDerivedConditions()
 void PlayerInfo::CreateMissions()
 {
 	boardingMissions.clear();
+	availableInFlightMissions.clear();
 
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);

@@ -106,6 +106,18 @@ void MainPanel::Step()
 		isActive = false;
 	}
 
+	// Offer the next available in flight mission.
+	if(isActive && player.HasAvailableInFlightMissions() && player.Flagship())
+	{
+		Mission *mission = player.InFlightMission();
+		if(mission && mission->HasSpace(*player.Flagship()))
+			mission->Do(Mission::OFFER, player, GetUI());
+		else
+			player.HandleBlockedInFlightMissions(GetUI());
+		// Determine if a Dialog or ConversationPanel is being drawn next frame.
+		isActive = (GetUI()->Top().get() == this);
+	}
+
 	// Display any relevant help/tutorial messages.
 	if(isActive)
 		isActive = !ShowHelp(false);
@@ -222,8 +234,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 	else if(command.Has(Command::AMMO))
 	{
 		Preferences::ToggleAmmoUsage();
-		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + "."
-			, Messages::Importance::High);
+		Messages::Add("Your escorts will now expend ammo: " + Preferences::AmmoUsage() + ".",
+			Messages::Importance::High);
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -686,6 +698,11 @@ void MainPanel::StepEvents(bool &isActive)
 				}
 			}
 		}
+
+		// Handle jump events from the player's flagship. This means we should check
+		// for in-flight missions that can be offered.
+		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
+			player.CreateInFlightMissions();
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();
