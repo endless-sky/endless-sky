@@ -427,6 +427,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		else if(location == JOB)
 			out.Write("job");
+		else if(location == IN_FLIGHT)
+			out.Write("in flight");
 		if(!clearance.empty())
 		{
 			out.Write("clearance", clearance);
@@ -852,7 +854,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
-	else
+	else if(location != IN_FLIGHT)
 	{
 		if(source && source != player.GetPlanet())
 			return false;
