@@ -53,11 +53,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					child.PrintTrace("Warning: Removing full location filter; partial removal is not supported:");
 			}
 			else
-			{
-				if(add)
-					child.PrintTrace("Warning: Cannot \"add\" to location filter, performing replace instead:");
 				location.Load(child);
-			}
 		}
 		else if(tag == "name")
 		{
@@ -117,11 +113,7 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 			}
 			else
-			{
-				if(add)
-					child.PrintTrace("Warning: Cannot \"add\" to a condition set, but set was empty, so performing replace instead:");
 				toShow.Load(child, playerConditions);
-			}
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
