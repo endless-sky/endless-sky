@@ -235,6 +235,8 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			location = OUTFITTER;
 		else if(child.Token(0) == "job board")
 			location = JOB_BOARD;
+		else if(child.Token(0) == "in flight")
+			location = IN_FLIGHT;
 		else if(child.Token(0) == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(child.Token(0) == "clearance")
