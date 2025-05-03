@@ -36,7 +36,7 @@ void verifyName(const std::string &name1, const std::string &name2)
 
 std::string verifyAndStripPrefix(const std::string &prefix, const std::string &inputString)
 {
-	if(inputString.size() < prefix.size() || (0 != inputString.compare(0, prefix.size(), prefix)))
+	if(inputString.size() < prefix.size() || !inputString.starts_with(prefix))
 		throw std::runtime_error("String \"" + inputString + "\" does not start with prefix \"" + prefix + "\"");
 	return inputString.substr(prefix.size());
 }
