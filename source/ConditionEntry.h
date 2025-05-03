@@ -32,12 +32,15 @@ class ConditionEntry {
 	friend ConditionsStore;
 
 public:
-	ConditionEntry(const std::string &name);
+	explicit ConditionEntry(const std::string &name);
 
 	// Prevent copying of ConditionEntries. We cannot safely copy the references to the provider, since we depend on the
 	// conditionsStore to set prefix providers.
-	ConditionEntry(ConditionEntry &) = delete;
+	ConditionEntry(const ConditionEntry &) = delete;
 	ConditionEntry &operator=(const ConditionEntry &) = delete;
+	// Also prevent moving, the provider uses a pointer to the entry, so the entry should stay where it is.
+	ConditionEntry(ConditionEntry &&) = delete;
+	ConditionEntry &operator=(ConditionEntry &&) = delete;
 
 	const std::string &Name() const;
 	const std::string NameWithoutPrefix() const;

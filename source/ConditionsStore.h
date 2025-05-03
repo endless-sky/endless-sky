@@ -47,7 +47,7 @@ public:
 
 	ConditionsStore(const ConditionsStore &) = delete;
 	ConditionsStore &operator=(const ConditionsStore &) = delete;
-	ConditionsStore(ConditionsStore &&) = default;
+	ConditionsStore(ConditionsStore &&) = delete;
 	ConditionsStore &operator=(ConditionsStore &&) = default;
 
 	// Serialization support for this class.
