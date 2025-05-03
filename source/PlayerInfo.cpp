@@ -3320,7 +3320,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["flagship model: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship)
 			return false;
-		return ce.Name().ends_with(flagship->TrueModelName()); });
+		return !ce.NameWithoutPrefix().compare(flagship->TrueModelName()); });
 	conditions["flagship disabled"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return flagship && flagship->IsDisabled(); });
 
@@ -3459,11 +3459,11 @@ void PlayerInfo::RegisterDerivedConditions()
 			return retVal; });
 
 	conditions["name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.Name().ends_with(firstName + " " + lastName); });
+		return !ce.NameWithoutPrefix().compare(firstName + " " + lastName); });
 	conditions["first name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.Name().ends_with(firstName); });
+		return !ce.NameWithoutPrefix().compare(firstName); });
 	conditions["last name: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.Name().ends_with(lastName); });
+		return !ce.NameWithoutPrefix().compare(lastName); });
 
 	// Conditions for your fleet's attractiveness to pirates.
 	conditions["cargo attractiveness"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
@@ -3756,24 +3756,24 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	// This condition corresponds to the method by which the flagship entered the current system.
 	conditions["entered system by: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
-		return ce.Name().ends_with(EntryToString(entry)); });
+		return !ce.NameWithoutPrefix().compare(EntryToString(entry)); });
 	// This condition corresponds to the last system the flagship was in.
 	conditions["previous system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!previousSystem)
 			return false;
-		return ce.Name().ends_with(previousSystem->TrueName()); });
+		return !ce.NameWithoutPrefix().compare(previousSystem->TrueName()); });
 
 	// Conditions to determine if flagship is in a system and on a planet.
 	conditions["flagship system: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetSystem())
 			return false;
-		return ce.Name().ends_with(flagship->GetSystem()->TrueName()); });
+		return !ce.NameWithoutPrefix().compare(flagship->GetSystem()->TrueName()); });
 	conditions["flagship landed"].ProvideNamed([this](const ConditionEntry &ce) -> bool {
 		return (flagship && flagship->GetPlanet()); });
 	conditions["flagship planet: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
-		return ce.Name().ends_with(flagship->GetPlanet()->TrueName()); });
+		return !ce.NameWithoutPrefix().compare(flagship->GetPlanet()->TrueName()); });
 	conditions["flagship planet attribute: "].ProvidePrefixed([this](const ConditionEntry &ce) -> bool {
 		if(!flagship || !flagship->GetPlanet())
 			return false;
