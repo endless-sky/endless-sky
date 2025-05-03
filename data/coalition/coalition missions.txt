@@ -3532,23 +3532,15 @@ mission "Coalition: Struggling Author 3"
 			`	"Have you found a publishing company yet?" you ask.`
 			`	"No," Anna replies. "But this Heliarch has been a huge help in finding a suitable publisher. Without this agent, it would've been nearly impossible for me to communicate with the restaurant staff, since they don't have a translation box."`
 			choice
-				`	"You'll need to have the Heliarchs help translate for you."`
-				`	"Will the Heliarch agent help?"`
-			`	The Heliarch stands. "Take us to <planet>, you should. Help there, I can."`
+				`	"What's the plan now?"`
+				`	"Did the Heliarch agent mention anywhere we should go now?"`
+			`	The Heliarch straightens up. "Take us to <planet>, you should. Better help there, I can."`
 			`	"Does that sound reasonable to you?" Anna asks. When you reply in the affirmative, she says, "We'll be at your spaceship when you are."`
 				accept
 	on complete
 		conversation
-			`Upon the advice of your Saryd passenger, you head with Anna to a Heliarch office. Upon entering, a Kimek clerk receives you at the counter.`
-			`	"Greetings, human. To be of assistance to you, how can I?" the Heliarch says.`
-			`	Anna speaks up. "I'm Anna Fangvin, and I'd like to publish a book here in Coalition space. My friend <first> <last> tells me I will need a translation box to converse with the publishing company. Could you provide one?"`
-			`	"A translator, the human needs?" asks the clerk.`
-			choice
-				`	"Yes."`
-				`	"I think so."`
-			`	"Trust you with a translator, we cannot. And help you, I cannot, so a Heliarch interpreter, I must call," says the clerk. Before they can do anything, the Heliarch you transported calls for a translator.`
-			`	After a few minutes, another Kimek wearing the telltale golden circlet of a Heliarch approaches you and directs you into a room.`
-			`	"Your intentions, the clerk has already told me about, and understand it, I do. To the publishers, my agents and I will accompany you, once decided you have upon a company." The Kimek sits down.`
+			`As you land, Anna says, "Should we see about getting a translation device? I don't want to bother the agent for the whole time I'm here."`
+			`	The Heliarch approaches. "Trust you with a translator, the government cannot. So help you, I must. When found a publisher, you have, accompany you to their offices, I will."`
 			`	"We need to find a publishing company then!" says Anna.`
 			label questions
 			choice
@@ -3579,7 +3571,7 @@ mission "Coalition: Struggling Author 3"
 				`	"We'll find a company."`
 				`	"Given the number of books here, there has to be a publishing company somewhere."`
 			`	"The faster we can get the book published, the better. Meet me in the spaceport in a few hours; I'll find a good company."`
-			`	Before Anna can head off, the Heliarch rises. "Accompany you, I will. Suitable for two aliens to roam around our space unattended, it is not."`
+			`	Before Anna can head off, the Heliarch rises. "Again accompany you, I will."`
 
 
 mission "Coalition: Struggling Author 4"
