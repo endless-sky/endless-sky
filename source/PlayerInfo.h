@@ -229,7 +229,7 @@ public:
 	void ToggleSortSeparatePossible();
 	void SortAvailable();
 
-	const Mission *ActiveBoardingMission() const;
+	const Mission *ActiveInFlightMission() const;
 	void UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI *ui);
 	// Check to see if there is any mission to offer right now.
@@ -238,7 +238,7 @@ public:
 	// Return true if the given ship is capturable only because it's the source
 	// of a boarding mission which allows it to be.
 	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
-	void ClearActiveBoardingMission();
+	void ClearActiveInFlightMission();
 	// If one of your missions cannot be offered because you do not have enough
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
@@ -424,9 +424,9 @@ private:
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
 	std::list<Mission> boardingMissions;
-	// This pointer to the most recently accepted boarding mission enables
-	// its NPCs to be placed before the player lands, and is then cleared.
-	Mission *activeBoardingMission = nullptr;
+	// This pointer to the most recently accepted boarding/assisting/in flight mission
+	// enables its NPCs to be placed before the player lands, and is then cleared.
+	Mission *activeInFlightMission = nullptr;
 	// How to sort availableJobs
 	bool availableSortAsc = true;
 	SortType availableSortType;

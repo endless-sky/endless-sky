@@ -2104,9 +2104,9 @@ void PlayerInfo::ToggleSortSeparatePossible()
 
 
 // Return a pointer to the mission that was most recently accepted while in-flight.
-const Mission *PlayerInfo::ActiveBoardingMission() const
+const Mission *PlayerInfo::ActiveInFlightMission() const
 {
-	return activeBoardingMission;
+	return activeInFlightMission;
 }
 
 
@@ -2212,10 +2212,10 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 
 
 
-// Engine calls this after placing the boarding mission's NPCs.
-void PlayerInfo::ClearActiveBoardingMission()
+// Engine calls this after placing the boarding/assisting/in flight mission's NPCs.
+void PlayerInfo::ClearActiveInFlightMission()
 {
-	activeBoardingMission = nullptr;
+	activeInFlightMission = nullptr;
 }
 
 
@@ -2280,8 +2280,9 @@ void PlayerInfo::MissionCallback(int response)
 		// If this is a mission offered in-flight, expose a pointer to it
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
-		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING))
-			activeBoardingMission = &*--spliceIt;
+		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
+				 || mission.IsAtLocation(Mission::IN_FLIGHT))
+			activeInFlightMission = &*--spliceIt;
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
 	{
