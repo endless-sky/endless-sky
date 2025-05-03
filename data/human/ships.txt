@@ -390,7 +390,7 @@ ship "Barb"
 	thumbnail "thumbnail/barb"
 	attributes
 		category "Fighter"
-		"cost" 87000
+		"cost" 95000
 		"shields" 800
 		"hull" 200
 		"required crew" 1
@@ -560,7 +560,7 @@ ship "Berserker"
 	thumbnail "thumbnail/berserker"
 	attributes
 		category "Interceptor"
-		"cost" 550000
+		"cost" 520000
 		"shields" 2200
 		"hull" 500
 		"required crew" 1
@@ -1420,7 +1420,7 @@ ship "Dagger"
 	thumbnail "thumbnail/dagger"
 	attributes
 		category "Fighter"
-		"cost" 119000
+		"cost" 131000
 		"shields" 1000
 		"hull" 300
 		"required crew" 1
@@ -1698,7 +1698,7 @@ ship "Finch"
 	thumbnail "thumbnail/finch"
 	attributes
 		category "Fighter"
-		"cost" 146000
+		"cost" 131000
 		"shields" 1100
 		"hull" 200
 		"required crew" 1
@@ -1969,7 +1969,7 @@ ship "Fury"
 	thumbnail "thumbnail/fury"
 	attributes
 		category "Interceptor"
-		"cost" 391000
+		"cost" 430000
 		"shields" 2000
 		"hull" 400
 		"required crew" 1
@@ -3442,7 +3442,7 @@ ship "Scrapper"
 	thumbnail "thumbnail/pirate scrapper"
 	attributes
 		category "Interceptor"
-		"cost" 123000
+		"cost" 111000
 		"shields" 450
 		"hull" 520
 		"required crew" 1
