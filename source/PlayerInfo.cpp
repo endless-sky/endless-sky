@@ -2347,7 +2347,7 @@ void PlayerInfo::MissionCallback(int response)
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
 		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
-				 || mission.IsAtLocation(Mission::IN_FLIGHT))
+				|| mission.IsAtLocation(Mission::IN_FLIGHT))
 			activeInFlightMission = &*--spliceIt;
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
