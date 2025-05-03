@@ -3501,7 +3501,7 @@ mission "Coalition: Struggling Author 2"
 	on complete
 		conversation
 			`Anna is amazed as you touch down on the ringworld. As the two of you open the hatch, you see a Heliarch agent in front of you.`
-			`	"Greetings, humans. For you, what can I do today?" asks the Heliarch. You respond that you would like to register Anna with the Heliarchy. After reaching the registration office, Anna enters it, coming out after fifteen minutes. "They finally got all the paperwork done. I'm off to the spaceport to get some food. Meet me there to discuss our next move." The Heliarch follows her to the cafeteria area.`
+			`	"Greetings, humans. For you, what can I do today?" asks the Heliarch. You respond that you would like to register Anna with the Heliarchy. Upon reaching the registration office, Anna enters, and fifteen minutes later exits alongside another Heliarch, this time a crowned Saryd. "They finally got all the paperwork done. We're off to the spaceport to get some food. Meet us there to discuss our next move."`
 
 
 mission "Coalition: Struggling Author 3"
@@ -3515,7 +3515,7 @@ mission "Coalition: Struggling Author 3"
 		has "Coalition: Struggling Author 2: done"
 	on offer
 		conversation
-			`Going through the spaceport looking for Anna, you finally find her at a restaurant, eating a longcow steak and typing something on her laptop. Beside her sits a Heliarch Saryd, who points at something on the screen. She sees you and motions for you to take a seat.`
+			`Going through the spaceport looking for Anna, you finally find her at a restaurant, eating a longcow steak and typing something on her laptop. The Heliarch Saryd from earlier stands beside her, bent-over and gesturing at something on the screen. She sees you and motions for you to take a seat.`
 			`	"This meat is so delicious! After months of instant noodles and takeout back home, it finally feels good to eat something that's actually healthy," she exclaims, closing the computer.`
 			choice
 				`	"How good is it?"`
@@ -3530,7 +3530,7 @@ mission "Coalition: Struggling Author 3"
 			`	"On another note, I want to get my book published here."`
 			label company
 			`	"Have you found a publishing company yet?" you ask.`
-			`	"No," Anna replies. "But this Heliarch has been very helpful in the search for an adequate publishing company. Had it not been for the agent, it would have been extremely difficult for me to communicate with the restaurant staff, as they do not have a translation box."`
+			`	"No," Anna replies. "But this Heliarch has been a huge help in finding a suitable publisher. Without this agent, it would've been nearly impossible for me to communicate with the restaurant staff, since they don't have a translation box."`
 			choice
 				`	"You'll need to have the Heliarchs help translate for you."`
 				`	"Will the Heliarch agent help?"`
@@ -3539,7 +3539,7 @@ mission "Coalition: Struggling Author 3"
 				accept
 	on complete
 		conversation
-			`Upon the advice of your Saryd passenger, you head with Anna to a Heliarch office and go to a counter to converse with a Kimek clerk.`
+			`Upon the advice of your Saryd passenger, you head with Anna to a Heliarch office. Upon entering, a Kimek clerk receives you at the counter.`
 			`	"Greetings, human. To be of assistance to you, how can I?" the Heliarch says.`
 			`	Anna speaks up. "I'm Anna Fangvin, and I'd like to publish a book here in Coalition space. My friend <first> <last> tells me I will need a translation box to converse with the publishing company. Could you provide one?"`
 			`	"A translator, the human needs?" asks the clerk.`
