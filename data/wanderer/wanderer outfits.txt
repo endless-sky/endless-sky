@@ -624,7 +624,7 @@ outfit "Wanderer Outfits License"
 	series "Licenses"
 	index 09010
 	thumbnail "outfit/wanderer outfits license"
-	description "This oddly shaped dish holds a perfectly preserved set of seeds of one Poaognod Nidadolen, a hardy species of grass that the Wanderers use during their initial terraforming efforts to gauge how well a world is responding to their methods."
+	description "This oddly shaped dish holds a collection of perfectly preserved seeds of one Sentinel Skirtgrass, a sensitive yet robust species the Wanderers use during their initial terraforming efforts to gauge how well a world is responding to their methods. Each seed carries a built-in generational limit, ensuring the grass disappears after a few lifecycles so that it doesn't compete with native flora."
 
 outfit "Wanderer License"
 	category "Licenses"
