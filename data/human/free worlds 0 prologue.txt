@@ -529,6 +529,7 @@ mission "Pact Supplies 2"
 	to offer
 		not "event: chosen sides"
 		has "Pact Supplies 1B: done"
+		not "war begins"
 	on offer
 		conversation
 			`...`
@@ -554,6 +555,7 @@ mission "Pact Supplies 3"
 	to offer
 		not "event: chosen sides"
 		has "Pact Supplies 1B: done"
+		not "war begins"
 	on offer
 		conversation
 			`...`
@@ -584,7 +586,7 @@ mission "Pact Supplies 3C"
 		government "Merchant"
 		personality escort timid
 		"cargo settings"
-			commodities Food
+			outfitters "Common Outfits" "Ammo South"
 		ship "Star Barge" "Steer Well Clear"
 		ship "Argosy" "Still Flying After All These Years"
 		ship "Argosy" "Reality Bites"
