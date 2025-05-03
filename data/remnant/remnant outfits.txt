@@ -976,11 +976,11 @@ outfit "Remnant License"
 	series "Licenses"
 	index 03010
 	thumbnail "outfit/remnant license"
-	description "In addition to serving as a handy IFF verification and personal identification tool, this object consists of several movable parts, with every move triggering a mechanical click. If one switches the pieces' positions and orientation in a specific order, in the right rhythm, the series of clicks produced is a surprisingly beautiful blend of classical music tracks."
+	description "In addition to serving as a handy IFF verification and personal identification tool, this device consists of several movable parts, with every move triggering a mechanical click. If one switches the pieces' positions and orientation in a specific order, in the right rhythm, the series of clicks produced is a surprisingly beautiful blend of classical music tracks."
 
 outfit "Remnant Capital License"
 	category "Licenses"
 	series "Licenses"
 	index 03020
 	thumbnail "outfit/remnant capital license"
-	description "While seemingly innocuous at first, this device shows the brilliant simplicity of Remnant engineering. Tapping either edge produces a brief, faint hum, the frequency of which can carry over vast distances while on a planet, allowing captains who have been entrusted with the Remnant's most valuable technology to call nearby patrols for aid should they ever become stranded."
+	description "While seemingly innocuous at first, this device shows the brilliant simplicity of Remnant engineering. Tapping either edge produces a brief, faint hum, the frequency of which can carry over vast distances while on a planet. This humming allows captains who have been entrusted with the Remnant's most valuable technology to call nearby patrols for aid should they ever become stranded."
