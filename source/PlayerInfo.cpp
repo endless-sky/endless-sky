@@ -139,8 +139,6 @@ void PlayerInfo::Clear()
 	GameData::Revert();
 	Messages::Reset();
 
-	conditions.Clear();
-
 	delete transactionSnapshot;
 	transactionSnapshot = nullptr;
 }
