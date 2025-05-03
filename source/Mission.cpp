@@ -854,7 +854,12 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		if(!sourceFilter.Matches(*boardingShip))
 			return false;
 	}
-	else if(location != IN_FLIGHT)
+	else if(location == IN_FLIGHT)
+	{
+		if(!sourceFilter.Matches(player.GetSystem()))
+			return false;
+	}
+	else
 	{
 		if(source && source != player.GetPlanet())
 			return false;
