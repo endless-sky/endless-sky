@@ -52,7 +52,7 @@ shared_future<void> UniverseObjects::Load(TaskQueue &queue, const vector<filesys
 				// Iterate through the paths starting with the last directory given. That
 				// is, things in folders near the start of the path have the ability to
 				// override things in folders later in the path.
-				auto list = Files::RecursiveList(source / "data/");
+				auto list = Files::RecursiveList(source / "data");
 				files.reserve(files.size() + list.size());
 				files.insert(files.end(),
 						make_move_iterator(list.begin()),
@@ -147,11 +147,11 @@ void UniverseObjects::Change(const DataNode &node, const ConditionsStore *player
 	else if(key == "government" && hasValue)
 		governments.Get(node.Token(1))->Load(node);
 	else if(key == "outfitter" && hasValue)
-		outfitSales.Get(node.Token(1))->Load(node, outfits);
+		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
 	else if(key == "planet" && hasValue)
 		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
 	else if(key == "shipyard" && hasValue)
-		shipSales.Get(node.Token(1))->Load(node, ships);
+		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
 	else if(key == "system" && hasValue)
 		systems.Get(node.Token(1))->Load(node, planets, playerConditions);
 	else if(key == "news" && hasValue)
@@ -371,7 +371,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "outfit" && hasValue)
 			outfits.Get(node.Token(1))->Load(node);
 		else if(key == "outfitter" && hasValue)
-			outfitSales.Get(node.Token(1))->Load(node, outfits);
+			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
 		else if(key == "person" && hasValue)
 			persons.Get(node.Token(1))->Load(node);
 		else if(key == "phrase" && hasValue)
@@ -385,7 +385,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			ships.Get(name)->Load(node);
 		}
 		else if(key == "shipyard" && hasValue)
-			shipSales.Get(node.Token(1))->Load(node, ships);
+			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
