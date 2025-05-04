@@ -435,7 +435,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				if(grand.Size() >= 4)
 					pastEvents.emplace(grand.Token(0), Date(grand.Value(1), grand.Value(2), grand.Value(3)));
 				else
-					grand.PrintTrace("Warning: Unable to read past event without a date:")
+					grand.PrintTrace("Warning: Unable to read past event without a date:");
 			}
 		}
 		else if(child.Token(0) == "economy")
