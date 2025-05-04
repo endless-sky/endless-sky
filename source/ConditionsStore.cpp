@@ -107,7 +107,7 @@ int64_t ConditionsStore::Get(const string &name) const
 	// matching entry. Get is const, so isn't supposed to add such an entry; use a temporary object for access.
 	ConditionEntry ceAccessor(name);
 	ceAccessor.providingEntry = ce;
-	return ceAccessor.operator int64_t();
+	return ceAccessor;
 }
 
 
