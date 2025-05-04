@@ -20,6 +20,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Sale.h"
 #include "Set.h"
+#include "ShopPricing.h"
+#include "Stock.h"
+#include "StockItem.h"
 
 #include <string>
 
@@ -42,19 +45,24 @@ public:
 	// This shop's name.
 	const std::string &Name() const;
 
-	// All the items that this shop has in stock.
-	const Sale<Item> &Stock() const;
+	// All the items that this shop can sell.
+	const Sale<Item> &Sales() const;
 
 	// Whether this shop is able to stock the given planet.
 	bool CanStock(const Planet *planet) const;
+	// The items for sale from this shop, bundled with the pricing information and other
+	// data that modifies the sale behavior of each item.
+	Stock<Item> InstantiateStock() const;
 
 
 private:
 	std::string name;
-	Sale<Item> stock;
+	Sale<Item> sales;
 
 	ConditionSet toSell;
 	LocationFilter location;
+	ShopPricing buyModifier;
+	ShopPricing sellModifier;
 };
 
 
@@ -80,7 +88,20 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 	name = node.Token(1);
 	// If an event or second definition updates this shop, clear the stock
 	// if a new "stock" node is provided without the "add" modifier.
-	bool overwriteStock = !stock.empty();
+	bool overwriteStock = !sales.empty();
+
+	auto loadPricing = [this](const DataNode &child, ShopPricing &modifier, bool add, bool remove) noexcept -> void {
+		if(add && modifier.IsLoaded())
+			child.PrintTrace("Error: Cannot \"add\" to an existing price modifier:");
+		else if(remove)
+		{
+			modifier = ShopPricing{};
+			if(child.HasChildren())
+				child.PrintTrace("Warning: Removing full price modifier; partial removal is not supported:");
+		}
+		else
+			modifier.Load(child);
+	};
 
 	for(const DataNode &child : node)
 	{
@@ -122,20 +143,31 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 			if(!add && overwriteStock)
 			{
 				overwriteStock = false;
-				stock.clear();
+				sales.clear();
 			}
 			if(remove)
 			{
 				if(child.HasChildren())
-					stock.Remove(child, items);
+					sales.Remove(child, items);
 				else
-					stock.clear();
+					sales.clear();
 			}
 			else
-				stock.Add(child, items);
+				sales.Add(child, items);
+		}
+		else if(key == "price modifier")
+		{
+			bool loadBuying = (!hasValue || child.Token(valueIndex) == "buying");
+			bool loadSelling = (!hasValue || child.Token(valueIndex) == "selling");
+			if(loadBuying)
+				loadPricing(child, buyModifier, add, remove);
+			if(loadSelling)
+				loadPricing(child, sellModifier, add, remove);
+			if(!loadBuying && !loadSelling)
+				child.PrintTrace("Skipping unrecognized \"price modifier\" value:");
 		}
 		else
-			stock.LoadSingle(child, items);
+			sales.LoadSingle(child, items);
 	}
 }
 
@@ -150,9 +182,9 @@ const std::string &Shop<Item>::Name() const
 
 
 template <class Item>
-const Sale<Item> &Shop<Item>::Stock() const
+const Sale<Item> &Shop<Item>::Sales() const
 {
-	return stock;
+	return sales;
 }
 
 
@@ -168,4 +200,15 @@ bool Shop<Item>::CanStock(const Planet *planet) const
 	// A shop is allowed to only define conditions, or a location filter, or both.
 	// If both are specified, both must be true.
 	return toSell.Test() && (location.IsEmpty() ? true : location.Matches(planet));
+}
+
+
+
+template <class Item>
+Stock<Item> Shop<Item>::InstantiateStock() const
+{
+	Stock<Item> stocks;
+	for(const Item *item : sales)
+		stocks.insert(StockItem<Item>(item, buyModifier, sellModifier));
+	return stocks;
 }

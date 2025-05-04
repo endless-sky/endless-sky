@@ -265,7 +265,6 @@ target_sources(EndlessSkyLib PRIVATE
 	Set.h
 	Ship.cpp
 	Ship.h
-	Shop.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp
@@ -280,8 +279,11 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipNameDialog.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
+	Shop.h
 	ShopPanel.cpp
 	ShopPanel.h
+	ShopPricing.cpp
+	ShopPricing.h
 	SpaceportPanel.cpp
 	SpaceportPanel.h
 	StartConditions.cpp
@@ -290,6 +292,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditionsPanel.h
 	StellarObject.cpp
 	StellarObject.h
+	Stock.h
+	StockItem.h
 	StringInterner.cpp
 	StringInterner.h
 	Swizzle.cpp

@@ -23,8 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 
-// Class representing a set of items that are for sale on a given planet.
-// Multiple sale sets can be merged together into a single one.
+// Class representing a set of items that can be sold from a Shop.
+// Sales get instantiated into Stocks when in use.
 template <class Item>
 class Sale : public std::set<const Item *> {
 public:
