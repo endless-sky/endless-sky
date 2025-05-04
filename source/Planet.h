@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Sale.h"
 #include "Shop.h"
+#include "Stock.h"
 
 #include <list>
 #include <memory>
@@ -102,7 +103,7 @@ public:
 	// Check if this planet has a permanent shipyard.
 	bool HasShipyard() const;
 	// Get the list of ships in the permanent shipyard.
-	const Sale<Ship> &ShipyardStock() const;
+	const Sale<Ship> &ShipyardSales() const;
 	// Get the list of shipyards currently available on this planet.
 	// This will include conditionally available shops.
 	std::set<const Shop<Ship> *> Shipyards() const;
@@ -110,7 +111,7 @@ public:
 	// Check if this planet has a permanent outfitter.
 	bool HasOutfitter() const;
 	// Get the list of outfits available from the permanent outfitter.
-	const Sale<Outfit> &OutfitterStock() const;
+	const Sale<Outfit> &OutfitterSales() const;
 	// Get the list of outitters available on this planet.
 	// This will include conditionally available shops.
 	std::set<const Shop<Outfit> *> Outfitters() const;

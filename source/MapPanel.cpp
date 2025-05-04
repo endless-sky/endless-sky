@@ -1069,18 +1069,20 @@ void MapPanel::UpdateCache()
 				}
 				else if(commodity == SHOW_SHIPYARD)
 				{
+					// TODO: Use conditional stocks instead of permanent sales.
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
-							size += object.GetPlanet()->ShipyardStock().size();
+							size += object.GetPlanet()->ShipyardSales().size();
 					value = size ? min(10., size) / 10. : -1.;
 				}
 				else if(commodity == SHOW_OUTFITTER)
 				{
+					// TODO: Use conditional stocks instead of permanent sales.
 					double size = 0;
 					for(const StellarObject &object : system.Objects())
 						if(object.HasSprite() && object.HasValidPlanet())
-							size += object.GetPlanet()->OutfitterStock().size();
+							size += object.GetPlanet()->OutfitterSales().size();
 					value = size ? min(60., size) / 60. : -1.;
 				}
 				else if(commodity == SHOW_VISITED)

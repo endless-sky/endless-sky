@@ -151,7 +151,8 @@ double MapOutfitterPanel::SystemValue(const System *system) const
 			const auto storage = planetStorage.find(object.GetPlanet());
 			if(storage != planetStorage.end() && storage->second.Get(selected))
 				return .5;
-			const auto &outfitter = object.GetPlanet()->OutfitterStock();
+			// TODO: Use conditional stocks instead of permanent sales.
+			const auto &outfitter = object.GetPlanet()->OutfitterSales();
 			if(outfitter.Has(selected))
 				return 1.;
 			if(!outfitter.empty())
@@ -242,7 +243,10 @@ void MapOutfitterPanel::DrawItems()
 						if(pit != storage.end())
 							storedInSystem += pit->second.Get(outfit);
 					}
-					if(planet.OutfitterStock().Has(outfit))
+					// TODO: Use conditional stocks instead of permanent sales.
+					// TODO: Use StockItems from the selected system so that we
+					// can see the buy/sell price at the selected planet.
+					if(planet.OutfitterSales().Has(outfit))
 					{
 						isForSale = true;
 						break;
@@ -276,9 +280,10 @@ void MapOutfitterPanel::Init()
 	set<const Outfit *> seen;
 
 	// Add all outfits sold by outfitters of planets from viewable systems.
+	// TODO: Use conditional stocks instead of permanent sales.
 	for(auto &&it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Outfit *outfit : it.second.OutfitterStock())
+			for(const Outfit *outfit : it.second.OutfitterSales())
 				if(!seen.contains(outfit))
 				{
 					catalog[outfit->Category()].push_back(outfit);

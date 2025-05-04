@@ -118,12 +118,12 @@ void PlanetPanel::Step()
 		for(const Shop<Ship> *shop : planet.Shipyards())
 		{
 			hasShipyard = true;
-			shipyardStock.Add(shop->Stock());
+			shipyardStock.Add(shop->InstantiateStock());
 		}
 		for(const Shop<Outfit> *shop : planet.Outfitters())
 		{
 			hasOutfitter = true;
-			outfitterStock.Add(shop->Stock());
+			outfitterStock.Add(shop->InstantiateStock());
 		}
 	}
 

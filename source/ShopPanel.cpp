@@ -702,7 +702,8 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
-	const Sale<Outfit> &available = player.GetPlanet()->OutfitterStock();
+	// TODO: Use conditional stocks instead of permanent sales.
+	const Sale<Outfit> &available = player.GetPlanet()->OutfitterSales();
 
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())

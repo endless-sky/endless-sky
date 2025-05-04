@@ -246,9 +246,9 @@ void StartConditionsPanel::OnConversationEnd(int)
 	// If the starting conditions don't specify any ships, let the player buy one.
 	if(player.Ships().empty())
 	{
-		Sale<Ship> shipyardStock;
+		Stock<Ship> shipyardStock;
 		for(const Shop<Ship> *shop : player.GetPlanet()->Shipyards())
-			shipyardStock.Add(shop->Stock());
+			shipyardStock.Add(shop->InstantiateStock());
 		gamePanels.Push(new ShipyardPanel(player, shipyardStock));
 		gamePanels.StepAll();
 	}

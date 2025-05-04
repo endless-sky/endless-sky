@@ -452,11 +452,11 @@ bool Planet::HasShipyard() const
 
 
 // Get the list of ships in the permanent shipyard.
-const Sale<Ship> &Planet::ShipyardStock() const
+const Sale<Ship> &Planet::ShipyardSales() const
 {
 	shipyard.clear();
 	for(const Shop<Ship> *sale : shipSales)
-		shipyard.Add(sale->Stock());
+		shipyard.Add(sale->Sales());
 
 	return shipyard;
 }
@@ -485,11 +485,11 @@ bool Planet::HasOutfitter() const
 
 
 // Get the list of outfits available from the permanent outfitter.
-const Sale<Outfit> &Planet::OutfitterStock() const
+const Sale<Outfit> &Planet::OutfitterSales() const
 {
 	outfitter.clear();
 	for(const Shop<Outfit> *sale : outfitSales)
-		outfitter.Add(sale->Stock());
+		outfitter.Add(sale->Sales());
 
 	return outfitter;
 }

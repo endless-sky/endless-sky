@@ -155,7 +155,8 @@ double MapShipyardPanel::SystemValue(const System *system) const
 		for(const StellarObject &object : system->Objects())
 			if(object.HasSprite() && object.HasValidPlanet())
 			{
-				const auto &shipyard = object.GetPlanet()->ShipyardStock();
+				// TODO: Use conditional stocks instead of permanent sales.
+				const auto &shipyard = object.GetPlanet()->ShipyardSales();
 				if(shipyard.Has(selected))
 					return 1.;
 				if(!shipyard.empty())
@@ -219,10 +220,13 @@ void MapShipyardPanel::DrawItems()
 			unsigned parkedInSystem = 0;
 			if(player.CanView(*selectedSystem))
 			{
+				// TODO: Use conditional stocks instead of permanent sales.
+				// TODO: Use StockItems from the selected system so that we
+				// can see the buy/sell price at the selected planet.
 				isForSale = false;
 				for(const StellarObject &object : selectedSystem->Objects())
 					if(object.HasSprite() && object.HasValidPlanet()
-							&& object.GetPlanet()->ShipyardStock().Has(ship))
+							&& object.GetPlanet()->ShipyardSales().Has(ship))
 					{
 						isForSale = true;
 						break;
@@ -265,9 +269,10 @@ void MapShipyardPanel::Init()
 {
 	catalog.clear();
 	set<const Ship *> seen;
+	// TODO: Use conditional stocks instead of permanent sales.
 	for(const auto &it : GameData::Planets())
 		if(it.second.IsValid() && player.CanView(*it.second.GetSystem()))
-			for(const Ship *ship : it.second.ShipyardStock())
+			for(const Ship *ship : it.second.ShipyardSales())
 				if(!seen.contains(ship))
 				{
 					catalog[ship->Attributes().Category()].push_back(ship);

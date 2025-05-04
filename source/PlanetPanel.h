@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "Sale.h"
+#include "Stock.h"
 
 #include <functional>
 #include <map>
@@ -74,8 +74,8 @@ private:
 	bool initializedShops = false;
 	bool hasShipyard = false;
 	bool hasOutfitter = false;
-	Sale<Ship> shipyardStock;
-	Sale<Outfit> outfitterStock;
+	Stock<Ship> shipyardStock;
+	Stock<Outfit> outfitterStock;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;

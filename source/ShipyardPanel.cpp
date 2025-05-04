@@ -53,7 +53,7 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, Stock<Ship> stock)
 	: ShopPanel(player, false), modifier(0), shipyard(stock)
 {
 	for(const auto &it : GameData::Ships())

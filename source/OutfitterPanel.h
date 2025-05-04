@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ShopPanel.h"
 
-#include "Sale.h"
+#include "Stock.h"
 
 #include <map>
 #include <set>
@@ -40,7 +40,7 @@ class Ship;
 // configured in such a way that it cannot fly (e.g. no engines or steering).
 class OutfitterPanel : public ShopPanel {
 public:
-	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
+	explicit OutfitterPanel(PlayerInfo &player, Stock<Outfit> stock);
 
 	virtual void Step() override;
 
@@ -89,7 +89,7 @@ private:
 	// Allow toggling whether outfits in cargo are shown.
 	bool showCargo = true;
 
-	Sale<Outfit> outfitter;
+	Stock<Outfit> outfitter;
 
 	// Keep track of how many of the outfitter help screens have been shown
 	bool checkedHelp = false;
