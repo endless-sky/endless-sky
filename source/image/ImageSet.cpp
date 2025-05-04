@@ -227,9 +227,9 @@ void ImageSet::Load() noexcept(false)
 	// Warn about a "high-profile" image that will be blurry due to rendering at 50% scale.
 	bool willBlur = (buffer[0].Width() & 1) || (buffer[0].Height() & 1);
 	if(willBlur && (
-			(name.length() > 5 && name.starts_with("ship/"))
-			|| (name.length() > 7 && name.starts_with("outfit/"))
-			|| (name.length() > 10 && name.starts_with("thumbnail/"))
+			name.starts_with("ship/")
+			|| name.starts_with("outfit/")
+			|| name.starts_with("thumbnail/")
 	))
 		Logger::LogError("Warning: image \"" + name + "\" will be blurry since width and/or height are not even ("
 			+ to_string(buffer[0].Width()) + "x" + to_string(buffer[0].Height()) + ").");
