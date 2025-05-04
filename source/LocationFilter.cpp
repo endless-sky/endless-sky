@@ -358,7 +358,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 
 	// If outfits are specified, make sure they can be bought here.
 	for(const set<const Outfit *> &outfitList : outfits)
-		if(!SetsIntersect(outfitList, planet->Outfitter()))
+		if(!SetsIntersect(outfitList, planet->OutfitterStock()))
 			return false;
 
 	return Matches(planet->GetSystem(), origin, true);

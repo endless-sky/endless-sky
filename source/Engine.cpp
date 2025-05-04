@@ -1485,18 +1485,17 @@ void Engine::EnterSystem()
 	// Place five seconds worth of fleets and weather events. Check for
 	// undefined fleets by not trying to create anything with no
 	// government set.
-	ConditionsStore &conditions = player.Conditions();
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(int i = 0; i < 5; ++i)
 	{
 		for(const auto &fleet : system->Fleets())
 			if(fleetMultiplier ? fleet.Get()->GetGovernment() && Random::Int(fleet.Period() / fleetMultiplier) < 60
-				&& fleet.CanTrigger(conditions) : false)
+				&& fleet.CanTrigger() : false)
 				fleet.Get()->Place(*system, newShips);
 
-		auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
-			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger(conditions))
+			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger())
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
@@ -1987,10 +1986,9 @@ void Engine::SpawnFleets()
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
-	ConditionsStore &conditions = player.Conditions();
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
 	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger(conditions) : false)
+		if(fleetMultiplier ? !Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger() : false)
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
 			if(!gov)
@@ -2063,10 +2061,9 @@ void Engine::SpawnPersons()
 // Generate weather from the current system's hazards.
 void Engine::GenerateWeather()
 {
-	ConditionsStore &conditions = player.Conditions();
-	auto CreateWeather = [this, conditions](const RandomEvent<Hazard> &hazard, Point origin)
+	auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 	{
-		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger(conditions))
+		if(hazard.Get()->IsValid() && !Random::Int(hazard.Period()) && hazard.CanTrigger())
 		{
 			const Hazard *weather = hazard.Get();
 			// If a hazard has activated, generate a duration and strength of the
