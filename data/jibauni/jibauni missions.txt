@@ -1,0 +1,591 @@
+# Copyright (c) 2024 by Loymdayddaud
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+mission "Discovered Jibauni Space"
+	landing
+	invisible
+	source
+		government "Jibauni" "Jibauni (Rebel)"
+	on offer
+		event "label jibauni space"
+		fail
+
+event "label jibauni space"
+	galaxy "label jibauni"
+		sprite "label/jibauni"
+
+
+mission "Jibauni: Heliarch Patrol"
+	landing
+	invisible
+	repeat
+	source "Baitoon"
+	to offer
+		day == 1
+		month == 1
+	on enter
+		fail
+	npc
+		government "Heliarch"
+		personality launching quiet secretive uninterested
+		ship "Heliarch Punisher (Jump Defense)" "Gentle Guardian"
+
+
+ship "Heliarch Punisher" "Heliarch Punisher (Jump Defense)"
+	outfits
+		"Ion Rain Gun" 6
+		"Heliarch Repulsor" 4
+
+		"Large Reactor Module" 2
+		"Large Battery Module"
+		"Overcharged Shield Module" 2
+		"Overclocked Repair Module" 2
+		"Cooling Module" 4
+		"Scanning Module" 3
+		"Enforcer Riot Staff" 78
+		"Enforcer Confrontation Gear" 44
+		"Outfits Expansion" 2
+		
+		"Large Thrust Module" 2
+		"Small Thrust Module" 2
+		"Large Steering Module" 2
+		"Small Steering Module" 3
+		"Hyperdrive"
+		"Jump Drive"
+
+
+mission "Jibauni: Rebel Fighter License"
+	landing
+	name "Rebel Fighter License"
+	description "Kill the <npc> to get the Jibauni Rebel License and access to buy their Yiyharsi."
+	source
+		government "Jibauni"
+	destination "Baitoon"
+	to offer
+		"reputation: Jibauni (Rebel)" < -100
+		"reputation: Jibauni" > 0
+	on offer
+		conversation
+			`You receive a message from the Jibauni authorities. "If you would like the Rebel Fighter License, feel free to destroy the <npc> and its escorts. The license gives you access to our less powerful warships and heavy freighters. You must come to <planet> to receive the license." It seems to have been a prerecorded message, as there is no "Reply" button and sending a response results in a generic auto-reply unavailable message.`
+				accept
+	on complete
+		set "license: Jibauni Rebel Fighter"
+		payment 2000
+		conversation
+			scene "outfit/jibauni rebel fighter license"
+			`A non-prerecorded message is delivered as you land. "Again we would like to thank you for fighting our brothers in arms so much. The license has been added to your account along with a payment of <payment>."`
+	npc kill
+		personality heroic marked nemesis
+		government "Jibauni (Rebel)"
+		ship "Nathar (Laser)" "T.N.S. Kopa"
+		ship "Latbaliday (Flak)" "T.N.S. Opa"
+		ship "Larajal" "T.N.S. Kop"
+
+
+mission "Jibauni: An-lo and Re-sop 1"
+	landing
+	name "Take pilgrims to <planet>"
+	description "An-lo and Re-sop, two old Jibauni, would like you to take them to <destination> for a pilgrimage. They hope to end up living there."
+	source "Baitoon"
+	destination "Lamalmuq"
+	passengers 2
+	cargo "Household Belongings" 2
+	to offer
+		has "language: Jibauni"
+		random < 20
+	on offer
+		conversation
+			`Upon exiting your <ship model>, you notice two older Jibauni wearing forest green standing deferentially near the door. Many trunks and suitcases are scattered around them.`
+			choice
+				`	(Walk up to them.)`
+				`	(Ignore them.)`
+					decline
+			`	As soon as you approach, one of the Jibauni calls out to you. For a moment, your translator has some trouble deciphering the words, and you hear, "Vula ar vi-" The translator suddenly catches on, and you hear the trailing end of the sentence, "<planet>, please?" You guess that they're asking you to take them to <destination>, a location with a steady stream of pilgrims.`
+			choice
+				`	"Are you pilgrims?"`
+				`	"Sure, I'll take you."`
+					goto accepting
+				`	"No."`
+					goto declining
+				`	"I'm sorry, but I don't understand. The answer is no though."`
+					goto declining
+			`	"Yes, we are," replies the second Jibauni immediately. "Please take us to <planet>, where we hope to start living."`
+			choice
+				`	"Sure, I'll take you."`
+				`	"No, sorry. I can't."`
+					goto declining
+			label accepting
+			action
+				payment 1000
+			`	Both Jibauni perk up at your response. As they move to lift their many pieces of luggage aboard, a crew of dock workers appears and carries their belongings onto the ship. One of the spaceport employees presses a thousand credits into your palm with a word of thanks, and mentions that couple's names are An-lo and Re-sop.`
+				accept
+			label declining
+			`	The Jibauni seem disappointed, but do not press the matter, and soon drift off with the help of some dockworkers. You return to your business.`
+				decline
+	on complete
+		payment 20000
+		conversation
+			`An-lo thanks you, giving you the sum of <payment> for the one-jump trip to <destination>.`
+			choice
+				`	"Goodbye."`
+					goto end
+				`	"This is... a lot of money for a single hop."`
+				`	"You do realize that one of the people who helped you load your cargo on <origin> already paid me something?"`
+					goto dockpayment
+			`	"I do not know what is normally the amount for space travel. I have not been out of <origin>'s atmosphere for many years," replies the Jibauni.`
+			choice
+				`	"The normal payment is much less. Take five thousand credits back."`
+				`	"That makes sense. Goodbye!"`
+					goto end
+			action
+				payment -5000
+				set "jibauni: paid an-lo and re-sop back"
+			`	"Shukran jezeelem," says An-lo. The translation device makes no attempt to translate these words.`
+				goto end
+			label dockpayment
+			`	"That was kind of him," says Re-sop. "But why do you mention it?"`
+			choice
+				`	"Because I wanted to pay you that money back."`
+				`	"No reason, just curious."`
+					goto end
+			action
+				payment -1000
+				set "jibauni: paid an-lo and re-sop back"
+			`	"Very kind of you," she says.`
+			label end
+			`	Both Jibauni exit the <ship> with their bags, and you go about your business.`
+
+
+mission "Jibauni: Ru-win 0"
+	minor
+	name "Ru-win to <planet>"
+	description "Take Ru-win, who you talked to on <origin>, to <planet>."
+	source "Kanlil"
+	destination "Baitoon"
+	passengers 1
+	to offer
+		has "language: Jibauni"
+		has "Jibauni Culture: Hajay Intersystem: declined"
+		not "jibauni: didn't ask about hajay intersystem"
+		random < 16
+	on offer
+		conversation
+			`As you walk into the spaceport, one yellow-cloaked Jibauni catches your eye. They seem to be looking for someone, and are glancing all over the place.`
+			choice
+				`	(Go and see what is going on.)`
+				`	(Stay here.)`
+					goto stay
+				`	(Leave.)`
+					decline
+			`	You approach the Jibauni and immediately recognize Ru-win. She gives a start and says, "At last! The human captain, <first>! There you are! Come with me over here to a more quiet place, I need to ask you something." She pushes you over to a bench.`
+				goto question
+			label stay
+			`	After a bit longer of looking around, the Jibauni heads your way, and you recognize Ru-win. "Captain <last>! I need to ask you something! Come over to this seating area with me?" She pushes you over to a bench.`
+			label question
+			`	As you sit down, she says, "The thing I am looking for help with is transport to Baitoon. I need to get there and buy a ship, fast, before I run out of... well, let me tell you the story from the beginning. A while after you saw me, on Kanlil, my ship ran into snags. When I took it to the repair shop, they said they could not fix it. I sold it to them for a mere trifle."`
+			`	"So, what do you say? Will you take me to Baitoon? Do realize that I do not currently have the money to pay you though."`
+			choice
+				`	"Sure, I'll take you."`
+				`	"Apologies, but I can't work without pay."`
+					goto decline
+				`	"No, sorry. I would prefer not to go around giving rides to random strangers."`
+					goto decline
+			`	"Great! Thank you so much. I'll be at your ship shortly."`
+				accept
+			label decline
+			`	"Really? Well, at any rate, best of luck to you wherever you go." Ru-win makes what you assume to be the Jibauni equivalent of a sigh and disappears into the spaceport.`
+				decline
+	on complete
+		event "jibauni: second ruwin mission" 10 45
+		payment 50
+		log "Took Ru-win to Baitoon. Reason is unknown."
+		dialog `As you land on Baitoon, Ru-win gets off of your ship. Before she does, however, she presses a credit chip worth <payment> into your hand. "This is all I can give you now, <first>. Thank you," she says.`
+
+event "jibauni: second ruwin mission"
+
+mission "Jibauni: Ru-win 1"
+	priority
+	name "Ru-win back to <planet>"
+	description "Take Ru-win, whom you talked to on Kanlil, to Baitoon so she can try to buy a new ship."
+	source "Baitoon"
+	destination "Kanlil"
+	passengers 1
+	to offer
+		has "Jibauni: Ru-win 0: done"
+		has "event: jibauni: second ruwin mission"
+	on offer
+		conversation
+			`On the spaceport of <origin>, Ru-win catches your eye. Coming up, she says, "<first>, will you take me back to <planet>? I have a way to get a job there."`
+			choice
+				`	"Sure."`
+					accept
+				`	"No, I have something else to do. Sorry."`
+					decline
+	on complete
+		event "jibauni: third ruwin mission" 125 220
+		payment 10
+		log "Took Ru-win back to Kanlil, where she thinks she can get a job."
+		conversation
+			`"Thank you, <first>. I will go investigate the offering, and contact you if I need more help," Ru-win says. "I found that I have <payment> left on me. Here."`
+			choice
+				`	"You keep it."`
+				`	"Thank you. Goodbye."`
+					goto done
+			`	"No, you take it. I will go now." She presses the <payment> into your hand, and leaves before you can do anything.`
+			label done
+
+event "jibauni: third ruwin mission"
+
+mission "Jibauni: Ru-win 2"
+	minor
+	name "Meet up with Ru-win"
+	description "The Jibauni lady Ru-win, whom you helped investigate a job opening, has requested you to go to <planet> for a meeting."
+	source
+		government "Jibauni"
+	destination "Taltahard"
+	passengers 1
+	to offer
+		has "Jibauni: Ru-win 1: done"
+		has "event: jibauni: third ruwin mission"
+		has "visited planet: Solace"
+		has "visited planet: Winter"
+	on offer
+		dialog `Landing on <origin>, you receive a call from Ru-win. "Could you come to <planet destination>, <first>? I would like to tell you something, in person."`
+	on accept
+		event "jibauni: ruwin more than sixty days" 59
+		event "jibauni: ruwin more than 180 days" 179
+
+event "jibauni: ruwin more than sixty days"
+
+event "jibauni: ruwin more than 180 days"
+
+mission "Jibauni: Ru-win 3"
+	landing
+	source "Taltahard"
+	to offer
+		has "Jibauni: Ru-win 2: done"
+	on offer
+		conversation
+			`Ru-win excitely approaches your ship as you land. However, the only explanation you get is, "Come with me for a moment please, Captain." Following her, you are led to a restricted part of the spaceport. The guard seems unwilling to let you in, but when Ru-win flashes some sort of badge you are speedily admitted. Finally, the two of you reach a bastion of the Jibauni military, a Nathar.`
+			`	"Well, what do you think, <first>? How do you like this spacecraft?" asks Ru-win.`
+			choice
+				`	"Wow! Who is the pilot?"`
+				`	"It is very nice. Why are you showing me it?"`
+			`	"Because I am the captain of the Muna Wasa. It is a very great honor, this captaincy for one who only joined the military sixty days ago."`
+				to display
+					not "event: jibauni: ruwin more than sixty days"
+			`	"Because I am the captain of the Muna Wasa. It is a very great honor, this captaincy for one who only joined the military a few months ago."`
+				to display
+					has "event: jibauni: ruwin more than sixty days"
+					not "event: jibauni: ruwin more than 180 days"
+			`	"Because I am the captain of the Muna Wasa. Being granted a captaincy is a very great honor for any Jibauni, usually only gained after years of hard labor."`
+				to display
+					has "event: jibauni: ruwin more than 18- days"
+			choice
+				`	"I'm impressed. How did you make it this far?"`
+				`	"It took that long? I thought that you had already found a job opportunity."`
+					goto jobopportunity
+			`	"Well, I was able to get a loan and buy a Furus. Then, after destroying a few Rebel fighters, I was given the Rebel Fighter License and obtained permission to buy a Yiyharsi. I finally was employed by the Hukuma and promoted to Captain of a Nathar.`
+				goto ruwinquestion
+			label jobopportunity
+			`	"Yes. Well, no, but I thought of a possible way to earn money, which counts, right? I was able to get a loan and buy a Furus. Then, after destroying a few Rebel fighters, I was given the Rebel Fighter License and obtained permission to buy a Yiyharsi. I finally was employed by the Hukuma and promoted to Captain of a Nathar.`
+			label ruwinquestion
+			`	"So, I have now been instructed to ask the human captain for an escort to their space, and look at some of the worlds in that area. You can decide where to go."`
+			choice
+				`	"Sounds good! We leave tomorrow."`
+				`	"No, sorry. I have other more important things to do."`
+					goto decline
+			action
+				set "jibauni: agreed to take ruwin to solace"
+			`	"Perfect! I will tell my crew. I will meet you in the spaceport!"`
+				decline
+			label decline
+			`	"Nu'tumunu, Captain. May you be protected on your travels," Ru-win coldly responds.`
+			`	One of the Muna Wasa's crew escorts back out of the restricted-access area with the guard frowning at you as you pass. Upon arriving at the <ship>, the crew member turns and mysteriously disappears.`
+				decline
+
+mission "Jibauni: Ru-win 4"
+	priority
+	name "Escort the <npc>"
+	description "Escort the ship of Ru-win, which is called, <npc> to <planet stopovers> and back to <planet>. The Jibauni are interested in exploring, and this is one of the ways you can help them."
+	source "Taltahard"
+	stopover "Solace"
+	destination "Taltahard"
+	to offer
+		has "jibauni: agreed to take ruwin to solace"
+	on offer
+		conversation
+			`Ru-win is at your rendevouz before you are. She thanks you in the name of her crew for agreeing to take them to a human planet. Then she asks, "Exactly where are you going to take us?"`
+			choice
+				`	"I think Winter. It's a busy planet with a lot of people on it."`
+				`	"I'll take you to Solace. It's a forest planet with some people but not too many."`
+					goto solace
+			`	"If this planet is busy, as you say, then what are the chances of us being seen? Strange aliens roaming around, will they be received well? Somehow I doubt it," returns Ru-win. "Do you know of a less busy planet?"`
+			choice
+				`	"How about Solace? It's not that busy, and I believe it would adequately suit your needs."`
+			label solace
+			`	"Great! We have been preparing for ages, so I am ready to go when you are," says Ru-win. Her crew seem to share the sentiment, and tell you they will launch when you do."`
+				accept
+	on stopover
+		conversation
+			`The Jibauni are awed at <stopovers>. They say that they have never seen trees before.`
+			`	After spending a while on the planet, you hear an airplane approaching.`
+			choice
+				`	(Tell the Jibauni to hide.)`
+				`	(Attempt to destroy the airplane with the <ship>.)`
+					goto destroyedairplane
+				`	(Ignore it.)`
+					goto jibaunireported
+			`	"Quickly, everyone. Get back into the <npc>!" you call. "We don't want to be seen!"`
+			`	You and the Jibauni are able to hide before anybody or anything spots you - the speed of the aliens is almost frightening, given their bulk.`
+			`	Once the plane is gone, Ru-win requests that you escort her ship back to <destination> immediately.`
+				launch
+			label destroyedairplane
+			action
+				"reputation: Merchant" -= 1000 # This does not affect reputation with the major human governments such as FW or Republic; if the player is also doing their storyline at the time there could be compatibility trouble.
+				event "ruwin: merchant reputation back to normal" 3
+			`	A well-placed shot from the <ship> sends the plane crashing to the ground as you realize that this could be trouble later.`
+			`	A member of Ru-win's crew tells you that they are ready to go. Soon you leave <planet stopovers>, hoping that nobody will find out what has happened.`
+				launch
+			label jibaunireported
+			`	After some time observing the flora and fauna of <planet stopovers>'s forests, you hear a loudspeaker in the direction of the <ship>; apparently people are approaching. Ru-win hurries up to you and requests that you escort her and her crew back to <destination> immediately, before the humans arrive. You agree.`
+			`	The Jibauni and you make it back to your respective ships in the nick of time, leaving moments before a search party breaks out of the woods and into the clearing the <ship> and the <npc> were landed in.`
+				launch
+	on visit
+		dialog `You have landed on <planet>, but the <npc> has not yet arrived! You should take off and wait for it before landing again.`
+	on complete
+		payment 1000000
+		conversation
+			`Ru-win and her crew thank you profusely for escorting them to <planet stopovers>. "This means a lot to me, Captain <first>," says Ru-win. "I cannot wait to report our discoveries to the Malik Oracle. It was nice meeting you, Captain!" With that, the crew of the <npc> leave.`
+			`	Soon afterwards, you receive a message from an anonymous source authorizing the transfer of <payment>.`
+	npc accompany save
+		government "Jibauni"
+		personality
+			disables
+			frugal
+			heroic
+			merciful
+			opportunistic
+			plunders
+			unconstrained
+			confusion 9 # these are specially trained Jibauni
+		ship "Nathar" "Muna Wasa"
+
+event "ruwin: merchant reputation back to normal"
+	"reputation: Merchant" += 1000
+
+
+mission "Jibauni: Ji-wi"
+	minor
+	name "Take Ji-wi to <stopovers>"
+	description "Ji-wi the Jibauni would like you to take him to <stopovers> and then back to <planet>."
+	source "Kahbani"
+	stopover "Baitoon"
+	destination "Kahbani"
+	to offer
+		random < 15
+	on offer
+		conversation
+			`You notice a Jibauni wearing bright green running between captains, every now and then pausing to ask something. After a moment the Jibauni turns towards you and approaches at a resolute pace.`
+			choice
+				`	(Wait for the Jibauni to reach you.)`
+				`	(Leave the area.)`
+					decline
+			`	As you wait, you see the Jibauni pause to speak to other captains. But nothing comes of those encounters, and the Jibauni finally approaches you.`
+			choice
+				`	(Wait for it to say something.)`
+				`	"My name is <first> of the <ship>. How's it going?"`
+			`	"I am called Ji-wi," announces the Jibauni. "Can you take me to <stopovers> and then bring me back here? I will pay you <payment>."`
+			choice
+				`	"I'd be happy to take you."`
+				`	"Sorry, no deal."`
+					decline
+			`	"Good! I will be ready and at your ship by the time you get back to it," says Ji-wi. He then promptly leaves.`
+				accept
+	on stopover
+		dialog `Ji-wi is only gone for a moment before returning and asking that you go back to <planet> soon.`
+	on complete
+		payment 1500
+		conversation
+			`"Thank you for transporting me to the capital and back," says Ji-wi, paying you <payment>. He then hurries off into the <origin>'s spaceport, having answered no questions whatsoever about this trip.`
+
+
+mission "Jibauni: Dran-lin 0"
+	minor
+	name "Take Dran-lin to <planet>"
+	description "Dran-lin would like you to take him to <destination>, to see whether moving to Rebel Jibauni worlds is a good idea."
+	passengers 1
+	source
+		government "Jibauni"
+	destination
+		government "Jibauni (Rebel)"
+	to offer
+		random < 45
+		not "event: jibauni rebel jibauni peace"
+	on offer
+		conversation
+			`As you are walking through the spaceport, a young Jibauni wearing bright green nearly collides with you. He profusely apologizes, before stopping to stare at you; recognition dawns on his face. "Oh, the strange alien! Hello! May I ask of you a favor?"`
+			choice
+				`	"I guess."`
+				`	"Sorry for bumping into you. Sure you can ask!"`
+				`	"Nope, not right now. Other things to do."`
+					goto decline
+			`	"Would you be willing to transport me, Dran-lin, to the planet of <planet>? I would be interested in seeing the Rebel Jibauni and how they operate. I may end up joining them, or else I will ask you to take me back to a Jibauni planet."`
+			choice
+				`	"As long as I am not responsible for anything that happens there, I'll take you."`
+					accept
+				`	"You know, the Rebel Jibauni are bad creatures. Are you sure you want to go?"`
+					goto rebelsbad
+				`	"The wonderful Rebel Jibauni? Sure, I'll take you immediately!"`
+					goto rebelsgood
+			label rebelsbad
+			action
+				set "jibauni: dran-lin: says rebels are bad"
+			`	"I would like to at least check it out. Come on, please take me?"`
+				goto choice
+			label rebelsgood
+			action
+				set "jibauni: dran-lin: says rebels are good"
+			`	"I am... surprised that you say that. Most I have met give them a bad reputation and a good scolding. But I would be happy to be taken!"`
+			label choice
+			choice
+				`	"Alright, I'll take you."`
+					accept
+				`	"On second thought, I've changed my mind. I don't want to get involved; find someone else to take you."`
+			label decline
+			`	The Jibauni drifts off disappointedly.`
+				decline
+	on complete
+		payment
+		event "jibauni: dran-lin gone" 1
+		conversation
+			`Dran-lin says, "I am going to explore the spaceport. Could you meet me at the main hotel in a few hours? If you do not, I will try to find other means of transportation."`
+
+event "jibauni: dran-lin gone"
+
+mission "Jibauni: Dran-lin 1"
+	priority
+	name "Take Dran-lin to <planet>"
+	description "Dran-lin didn't love the way <origin> felt, and would like you to take him to <destination> to see if it was just <origin> and not all Rebel planets that were like that."
+	passengers 1
+	source
+		government "Jibauni (Rebel)"
+	destination
+		government "Jibauni (Rebel)"
+		distance 1 1
+	to offer
+		has "Jibauni: Dran-lin 0: done"
+		not "event: jibauni: dran-lin gone"
+	on offer
+		conversation
+			`Dran-lin meets you at the main hotel, which happens to be called Jivam Dar-li. "Could you take me to <destination>? I do not get a good sense from the spaceport of <origin>. Perhaps this city in particular is just bad."`
+			choice
+				`	"Alright."`
+				`	"Nope, sorry. I agreed to take you... once. No more."`
+					goto declining?
+			`	"Perfect! I will be ready when you are."`
+				accept
+			label declining?
+			`	"You can not do that! It is not very kind; there is unlikely to be anybody who will take me back to Jibauni space. Please take me!"`
+			choice
+				`	"Oh, whatever. I'll take you to <planet>."`
+					accept
+				`	"I meant what I said. Goodbye."`
+			action
+				"reputation: Jibauni" -= 3
+			`	Dran-lin continues to protest, until you leave, slamming the door behind you.`
+				decline
+	on complete
+		conversation
+			`Dran-lin leaves the <ship> to scout out the area. "I will be back soon," he promises.`
+			branch "dran-lin put in jail"
+				random < 3
+			choice
+				`	(Wait.)`
+			branch "dran-lin likes"
+				random < 60
+				not "jibauni: dran-lin: says rebels are good"
+			branch "dran-lin likes with input"
+				random < 50
+				has "jibauni: dran-lin: says rebels are good"
+			label "dran-lin dislikes"
+			action
+				event "jibauni: dran-lin abandoned" 1
+			`	Dran-lin returns shortly. "I really do not like this place," he announces. "It is even worse than <origin>, and that is saying a lot. Please meet me in the spaceport at the Indon-alo in an hour. I am going to the capital to ask a few questions. I mean, I guess I can stay if you do not come, but it would really be much appreciated if you do."`
+			branch "dran-lin put in jail"
+				random < 15
+			`	You head to the Indon-alo to wait for Dran-lin.`
+				goto end
+			label "dran-lin likes"
+			action
+				payment 5000
+				set "jibauni: dran-lin stays with the rebels"
+			`	Dran-lin promptly arrives back. "You know, Captain, I think I like this place. Thanks for bringing me! Here is a payment of <payment> for that." He turns and disappears into the spaceport.`
+				goto end
+			label "dran-lin likes with input"
+			action
+				payment 5000
+				set "jibauni: dran-lin stays with the rebels"
+			`	Dran-lin returns shortly. "<last>, thanks for bringing me here! It really is a great place - you were right when you said the Rebel Jibauni were good. Or should I say Real Jibauni?" He trails off, and soon leaves, after giving you <payment> in chips of a credit each.`
+				goto end
+			label "dran-lin put in jail"
+			`	Dran-lin doesn't return for hours.`
+			choice
+				`	(Look for him.)`
+				`	(Leave him behind.)`
+					decline
+			`	After a few hours of asking around, government officials tell you that he's been put in jail, though they won't give you a reason. "It will cost five thousand credits to get him out of there," they say.`
+			choice
+				`	"I'll pay that."`
+				`	"Of course not! That's outrageous! He can stay there for all I care."`
+					goto dranlinimprisoned
+			action
+				payment -5000
+			branch leaveimmediately
+				random < 65
+			`	Dran-lin is released immediately. "Thank you," he says when he learns who paid for the release. "I have one more thing to wrap up, but then meet me in the spaceport. I am going home."`
+				goto end
+			label leaveimmediately
+			`	Dran-lin is released immediately. "Thank you," he says when he learns who paid for the release. "I do not like this place. Let us leave immediately."`
+				launch
+			label dranlinimprisoned
+			action
+				set "jibauni: dran-lin stays with the rebels"
+				"reputation: Jibauni" -= 3
+			`	"Well, he will just stay there for life, then," replies the Rebel. You are taken back to the <ship> and left to ponder what you have just done.`
+			label end
+			
+event "jibauni: dran-lin abandoned"
+
+mission "Jibauni: Dran-lin 2"
+	priority
+	name "Take Dran-lin back to <planet>"
+	description "Dran-lin did not like the Rebel Jibauni's method of living, and wants you to take him back to <destination>."
+	passengers 1
+	to offer
+		has "Jibauni: Dran-lin 1: done"
+		not "jibauni: dran-lin stays with the rebels"
+		not "event: jibauni: dran-lin abandoned"
+	source
+		government "Jibauni (Rebel)"
+	destination
+		government "Jibauni"
+	on offer
+		conversation
+			`Dran-lin comes rushing back to your <ship model>. "Why do we not leave immediately," he says, panting. You see Rebel soldiers running after him, and quickly agree.`
+				launch
+	on complete
+		payment
+		payment 750
+		conversation
+			`"Thank you for transporting me all over the galaxy," says Dran-lin as the <ship> touches down. "It is very kind of you. Especially helping me escape from the Rebels! Here is <payment> for that." He walks away into the spaceport, clearly much relieved to have survived this ordeal.`
