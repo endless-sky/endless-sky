@@ -323,3 +323,11 @@ elseif(UNIX)
 	install(FILES changelog DESTINATION share/doc/endless-sky)
 	install(FILES license.txt DESTINATION share/doc/endless-sky)
 endif()
+
+# Create symlink to compile_commands.json from build/ so it's LSP-discoverable
+#
+# CMake create_symlink works on all platforms as of CMake 3.13, so this shouldn't need to be conditional 
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E create_symlink
+        ${CMAKE_BINARY_DIR}/compile_commands.json
+        ${CMAKE_CURRENT_SOURCE_DIR}/build/compile_commands.json)
