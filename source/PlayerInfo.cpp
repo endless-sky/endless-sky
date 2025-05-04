@@ -164,12 +164,10 @@ PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const Condition
 
 
 
-
 PlayerInfo::ScheduledEvent::ScheduledEvent(const string &name, Date date)
 	: event(ExclusiveItem<GameEvent>(GameData::Events().Get(name))), date(std::move(date))
 {
 }
-
 
 
 
