@@ -96,7 +96,7 @@ void StockItem<Item>::Combine(const StockItem<Item> &other)
 template <class Item>
 bool StockItem<Item>::operator==(const StockItem<Item> &other) const
 {
-	return other.item == item;
+	return this->item == other.item;
 }
 
 
@@ -112,5 +112,5 @@ bool StockItem<Item>::operator==(const Item *item) const
 template <class Item>
 bool StockItem<Item>::operator<(const StockItem<Item> &other) const
 {
-	return this->item < item;
+	return this->item < other.item;
 }
