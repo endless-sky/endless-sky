@@ -286,7 +286,7 @@ void Outfit::Load(const DataNode &node)
 			description += '\n';
 		}
 		else if(child.Token(0) == "cost" && child.Size() >= 2)
-			cost = child.Value(1);
+			cost = max<int64_t>(0, child.Value(1));
 		else if(child.Token(0) == "mass" && child.Size() >= 2)
 			mass = child.Value(1);
 		else if(child.Token(0) == "licenses" && (child.HasChildren() || child.Size() >= 2))
