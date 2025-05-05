@@ -81,13 +81,16 @@ void ShopPricing::Combine(const ShopPricing &other)
 
 
 
-int64_t ShopPricing::ActualCost(int64_t cost, double depreciation) const
+int64_t ShopPricing::Value(int64_t cost, double depreciation, int count) const
 {
-	int64_t modified = cost * multiplier + offset;
+	int64_t value = cost * multiplier + offset;
 	// If the offset caused the value to go negative, return 0.
-	if(modified <= 0)
+	if(value <= 0)
 		return 0;
-	if(!ignoreDepreciation)
-		modified *= depreciation;
-	return modified;
+	// If ignoring depreciation, return the base value multiplied by the item count.
+	if(ignoreDepreciation)
+		return value * count;
+	// If depreciation is applied, the provided depreciation fraction will already
+	// account for the item count.
+	return value * depreciation;
 }

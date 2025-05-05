@@ -61,6 +61,21 @@ public:
 	// Get the value of an outfit.
 	int64_t Value(const Outfit *outfit, int day, int count = 1) const;
 
+	// Get the amount of depreciation that is applied to an item for the given count.
+	// The returned fraction is the multiplier applied to the base cost of a single item
+	// of the given type. For example, if ValueFraction was called with a count of 2 and
+	// no depreciation is applied to the item, then the returned value would be 2 since
+	// buying 2 of that item costs twice as much as the base cost. But if both items were
+	// fully depreciated to 25% value, the returned value would be 0.5.
+	// The Ship ValueFraction only returns the value of the chassis of the ship.
+	double ValueFraction(const Ship *ship, int day, int count = 1) const;
+	double ValueFraction(const Outfit *outfit, int day, int count = 1) const;
+
+	// If the player is selling some number of items, return how many of those items are
+	// new (i.e. they were just purchased today).
+	int NumberNew(const Ship *ship, int day, int count = 1) const;
+	int NumberNew(const Outfit *outfit, int day, int count = 1) const;
+
 
 private:
 	// "Sell" an item, removing it from the given record and returning the base
@@ -83,6 +98,7 @@ private:
 	// Check if any data has been loaded.
 	bool isLoaded = false;
 
+	// The inner map is a map of day to the number of items purchased on that day.
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };

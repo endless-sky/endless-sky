@@ -268,14 +268,7 @@ int64_t Depreciation::Value(const Ship &ship, int day) const
 // Get the value just of the chassis of a ship.
 int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 {
-	// Check whether a record exists for this ship. If not, its value is full
-	// if this is  planet's stock, or fully depreciated if this is the player.
-	ship = GameData::Ships().Get(ship->TrueModelName());
-	auto recordIt = ships.find(ship);
-	if(recordIt == ships.end() || recordIt->second.empty())
-		return DefaultDepreciation() * count * ship->ChassisCost();
-
-	return Depreciate(recordIt->second, day, count) * ship->ChassisCost();
+	return ValueFraction(ship, day, count) * ship->ChassisCost();
 }
 
 
@@ -283,16 +276,68 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
+	return ValueFraction(outfit, day, count) * outfit->Cost();
+}
+
+
+
+double Depreciation::ValueFraction(const Ship *ship, int day, int count) const
+{
+	// Check whether a record exists for this ship. If not, its value is full
+	// if this is  planet's stock, or fully depreciated if this is the player.
+	ship = GameData::Ships().Get(ship->TrueModelName());
+	auto recordIt = ships.find(ship);
+	if(recordIt == ships.end() || recordIt->second.empty())
+		return DefaultDepreciation() * count;
+
+	return Depreciate(recordIt->second, day, count);
+}
+
+
+
+double Depreciation::ValueFraction(const Outfit *outfit, int day, int count) const
+{
 	if(outfit->Get("installable") < 0.)
-		return count * outfit->Cost();
+		return count;
 
 	// Check whether a record exists for this outfit. If not, its value is full
 	// if this is  planet's stock, or fully depreciated if this is the player.
 	auto recordIt = outfits.find(outfit);
 	if(recordIt == outfits.end() || recordIt->second.empty())
-		return DefaultDepreciation() * count * outfit->Cost();
+		return DefaultDepreciation() * count;
 
-	return Depreciate(recordIt->second, day, count) * outfit->Cost();
+	return Depreciate(recordIt->second, day, count);
+}
+
+
+
+int Depreciation::NumberNew(const Ship *ship, int day, int count) const
+{
+	ship = GameData::Ships().Get(ship->TrueModelName());
+	auto recordIt = ships.find(ship);
+	if(recordIt == ships.end() || recordIt->second.empty())
+		return 0;
+
+	map<int, int> record = recordIt->second;
+	auto dayIt = record.find(day);
+	if(dayIt == record.end())
+		return 0;
+	return min(dayIt->second, count);
+}
+
+
+
+int Depreciation::NumberNew(const Outfit *outfit, int day, int count) const
+{
+	auto recordIt = outfits.find(outfit);
+	if(recordIt == outfits.end() || recordIt->second.empty())
+		return 0;
+
+	map<int, int> record = recordIt->second;
+	auto dayIt = record.find(day);
+	if(dayIt == record.end())
+		return 0;
+	return min(dayIt->second, count);
 }
 
 

@@ -39,9 +39,8 @@ public:
 	//   - Depreciation is ignored if either modifier ignores depreciation.
 	void Combine(const ShopPricing &other);
 
-	// Given the current cost of an item, return its actual cost
-	// according to this price modifier.
-	int64_t ActualCost(int64_t cost, double depreciation) const;
+	// Calculate the value of an item according to this modifier.
+	int64_t Value(int64_t cost, double depreciation, int count) const;
 
 
 private:
