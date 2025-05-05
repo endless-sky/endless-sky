@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "SaleManager.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
@@ -247,9 +248,12 @@ void StartConditionsPanel::OnConversationEnd(int)
 	if(player.Ships().empty())
 	{
 		Stock<Ship> shipyardStock;
+		Stock<Outfit> outfitterStock;
 		for(const Shop<Ship> *shop : player.GetPlanet()->Shipyards())
 			shipyardStock.Add(shop->InstantiateStock());
-		gamePanels.Push(new ShipyardPanel(player, shipyardStock));
+		for(const Shop<Outfit> *shop : player.GetPlanet()->Outfitters())
+			outfitterStock.Add(shop->InstantiateStock());
+		gamePanels.Push(new ShipyardPanel(player, shipyardStock, SaleManager(player, &outfitterStock, &shipyardStock)));
 		gamePanels.StepAll();
 	}
 	if(parent)

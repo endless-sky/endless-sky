@@ -53,8 +53,8 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player, Stock<Ship> stock)
-	: ShopPanel(player, false), modifier(0), shipyard(stock)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, Stock<Ship> &stock, SaleManager saleManager)
+	: ShopPanel(player, false, std::move(saleManager)), modifier(0), shipyard(stock)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
@@ -125,7 +125,7 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, collapsed.contains(DESCRIPTION), true);
+		shipInfo.Update(*selectedShip, player, saleManager, collapsed.contains(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);

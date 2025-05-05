@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class PlayerInfo;
 class Point;
+class SaleManager;
 class Ship;
 
 
@@ -34,7 +35,7 @@ class Ship;
 // a government that is particularly repressive of independent pilots.)
 class ShipyardPanel : public ShopPanel {
 public:
-	explicit ShipyardPanel(PlayerInfo &player, Stock<Ship> stock);
+	explicit ShipyardPanel(PlayerInfo &player, Stock<Ship> &stock, SaleManager saleManager);
 
 	virtual void Step() override;
 
@@ -64,5 +65,5 @@ private:
 private:
 	int modifier;
 
-	Stock<Ship> shipyard;
+	Stock<Ship> &shipyard;
 };

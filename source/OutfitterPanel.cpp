@@ -78,8 +78,8 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player, Stock<Outfit> stock)
-	: ShopPanel(player, true), outfitter(stock)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player, Stock<Outfit> &stock, SaleManager saleManager)
+	: ShopPanel(player, true, std::move(saleManager)), outfitter(stock)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].push_back(it.first);
@@ -271,7 +271,7 @@ double OutfitterPanel::DrawDetails(const Point &center)
 
 	if(selectedOutfit)
 	{
-		outfitInfo.Update(*selectedOutfit, player, CanSell(), collapsed.contains(DESCRIPTION));
+		outfitInfo.Update(*selectedOutfit, player, saleManager, CanSell(), collapsed.contains(DESCRIPTION));
 		selectedItem = selectedOutfit->DisplayName();
 
 		const Sprite *thumbnail = selectedOutfit->Thumbnail();

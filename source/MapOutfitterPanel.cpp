@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "SaleManager.h"
 #include "Screen.h"
 #include "image/Sprite.h"
 #include "StellarObject.h"
@@ -109,7 +110,8 @@ void MapOutfitterPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player);
+		// TODO: This should have a pointer to the stock of the selected planet.
+		selectedInfo.Update(*selected, player, SaleManager(player));
 	}
 	UpdateCache();
 }
@@ -123,7 +125,8 @@ void MapOutfitterPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player);
+		// TODO: This should have a pointer to the stock of the selected planet.
+		compareInfo.Update(*compare, player, SaleManager(player));
 	}
 }
 

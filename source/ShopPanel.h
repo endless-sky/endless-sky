@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
 #include "Point.h"
+#include "SaleManager.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
 #include "ShipInfoDisplay.h"
@@ -42,7 +43,7 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
+	explicit ShopPanel(PlayerInfo &player, bool isOutfitter, SaleManager saleManager);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -150,6 +151,7 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 	const bool isOutfitter;
+	SaleManager saleManager;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;

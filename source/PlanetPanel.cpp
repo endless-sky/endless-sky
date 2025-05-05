@@ -225,12 +225,14 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
-		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
+		SaleManager saleManager(player, &outfitterStock, &shipyardStock);
+		GetUI()->Push(new ShipyardPanel(player, shipyardStock, saleManager));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
-		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
+		SaleManager saleManager(player, &outfitterStock, &shipyardStock);
+		GetUI()->Push(new OutfitterPanel(player, outfitterStock, saleManager));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
