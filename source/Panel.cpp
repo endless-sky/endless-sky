@@ -190,6 +190,13 @@ bool Panel::RClick(int x, int y)
 
 
 
+bool Panel::MClick(int x, int y)
+{
+	return false;
+}
+
+
+
 bool Panel::Hover(int x, int y)
 {
 	return false;
@@ -235,6 +242,13 @@ bool Panel::DoClick(int x, int y, int clicks)
 bool Panel::DoRClick(int x, int y)
 {
 	return EventVisit(&Panel::RClick, x, y);
+}
+
+
+
+bool Panel::DoMClick(int x, int y)
+{
+	return EventVisit(&Panel::MClick, x, y);
 }
 
 
