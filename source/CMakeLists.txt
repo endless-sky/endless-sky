@@ -255,6 +255,8 @@ target_sources(EndlessSkyLib PRIVATE
 	RoutePlan.cpp
 	RoutePlan.h
 	Sale.h
+	SaleManager.cpp
+	SaleManager.h
 	SavedGame.cpp
 	SavedGame.h
 	Screen.cpp
