@@ -47,6 +47,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	// Allow the StartConditionsPanel to tell the PlanetPanel to enter the ShipyardPanel.
+	void EnterShipyard();
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.

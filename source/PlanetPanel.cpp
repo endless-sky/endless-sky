@@ -188,6 +188,14 @@ void PlanetPanel::Draw()
 
 
 
+void PlanetPanel::EnterShipyard()
+{
+	SaleManager saleManager(player, &outfitterStock, &shipyardStock);
+	GetUI()->Push(new ShipyardPanel(player, shipyardStock, saleManager));
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
