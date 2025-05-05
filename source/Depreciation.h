@@ -71,8 +71,14 @@ public:
 	double ValueFraction(const Ship *ship, int day, int count = 1) const;
 	double ValueFraction(const Outfit *outfit, int day, int count = 1) const;
 
+	// If the player is buying some number of items, return how many of those items are
+	// old (i.e. they were bought previously but sold today). This is used so that items
+	// that were just sold can be bought back at the same price.
+	int NumberOld(const Ship *ship, int day, int count = 1) const;
+	int NumberOld(const Outfit *outfit, int day, int count = 1) const;
 	// If the player is selling some number of items, return how many of those items are
-	// new (i.e. they were just purchased today).
+	// new (i.e. they were just purchased today). This is used so that items that were
+	// just bought can be sold back at the same price.
 	int NumberNew(const Ship *ship, int day, int count = 1) const;
 	int NumberNew(const Outfit *outfit, int day, int count = 1) const;
 

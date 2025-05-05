@@ -40,7 +40,7 @@ public:
 	void Combine(const ShopPricing &other);
 
 	// Calculate the value of an item according to this modifier.
-	int64_t Value(int64_t cost, double depreciation, int count) const;
+	int64_t Value(int64_t cost, int count, double depreciation) const;
 
 
 private:

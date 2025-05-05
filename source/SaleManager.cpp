@@ -43,20 +43,35 @@ int64_t SaleManager::BuyValue(const Outfit *outfit, int count) const
 		return 0;
 
 	int64_t baseCost = outfit->Cost();
-	double fraction = stockDepreciation.ValueFraction(outfit, day, count);
-
 	if(outfitter)
 	{
 		// If this item is for sale from the outfitter, use the outfitter's price modifier.
 		const StockItem<Outfit> *stock = outfitter->Get(outfit);
 		if(stock)
 		{
-			const ShopPricing &modifier = stock->BuyModifier();
-			return modifier.Value(baseCost, fraction, count);
+			int64_t value = 0;
+			// If an item was just sold, we want to buy it at the same value it was sold
+			// at. Determine how many of this item being bought are old, and for those old items,
+			// use the selling price. For all remaining items, use the buying price.
+			int oldCount = stockDepreciation.NumberOld(outfit, count);
+			if(oldCount)
+			{
+				count -= oldCount;
+				double fraction = stockDepreciation.ValueFraction(outfit, day, oldCount);
+				const ShopPricing &modifier = stock->SellModifier();
+				value += modifier.Value(baseCost, oldCount, fraction);
+			}
+			if(count)
+			{
+				const ShopPricing &modifier = stock->BuyModifier();
+				value += modifier.Value(baseCost, count, count);
+			}
+			return value;
 		}
 	}
 
-	// Otherwise, just return the outfit cost with normal appreciation applied.
+	// Otherwise, just return the outfit cost with normal depreciation applied.
+	double fraction = stockDepreciation.ValueFraction(outfit, day, count);
 	return baseCost * fraction;
 }
 
@@ -75,20 +90,22 @@ int64_t SaleManager::SellValue(const Outfit *outfit, int count) const
 		const StockItem<Outfit> *stock = outfitter->Get(outfit);
 		if(stock)
 		{
-			// If an item was just purchased, we want to sell it at the same value it was
-			// purchased at. Determine how many of this item being sold are brand new,
-			// and for those new items, use the buying price. For all remaining items,
-			// use the modified selling price.
-			int newCount = fleetDepreciation.NumberNew(outfit, count);
-			count -= newCount;
 			int64_t value = 0;
+			// If an item was just bought, we want to sell it at the same value it was bought
+			// at. Determine how many of this item being sold are new, and for those new items,
+			// use the buying price. For all remaining items, use the selling price.
+			int newCount = fleetDepreciation.NumberNew(outfit, count);
 			if(newCount)
-				value += BuyValue(outfit, newCount);
+			{
+				count -= newCount;
+				const ShopPricing &modifier = stock->BuyModifier();
+				value += modifier.Value(baseCost, newCount, newCount);
+			}
 			if(count)
 			{
 				double fraction = fleetDepreciation.ValueFraction(outfit, day, count);
 				const ShopPricing &modifier = stock->SellModifier();
-				value += modifier.Value(baseCost, fraction, count);
+				value += modifier.Value(baseCost, count, fraction);
 			}
 			return value;
 		}
@@ -108,7 +125,6 @@ int64_t SaleManager::BuyValue(const Ship *ship, int count, bool chassisOnly) con
 
 	ship = GameData::Ships().Get(ship->TrueModelName());
 	int64_t baseCost = ship->ChassisCost();
-	double fraction = stockDepreciation.ValueFraction(ship, day, count);
 
 	int64_t value = 0;
 	const StockItem<Ship> *stock = nullptr;
@@ -120,13 +136,28 @@ int64_t SaleManager::BuyValue(const Ship *ship, int count, bool chassisOnly) con
 		stock = shipyard->Get(ship);
 		if(stock)
 		{
-			const ShopPricing &modifier = stock->BuyModifier();
-			value += modifier.Value(baseCost, fraction, count);
+			// If an item was just sold, we want to buy it at the same value it was sold
+			// at. Determine how many of this item being bought are old, and for those old items,
+			// use the selling price. For all remaining items, use the buying price.
+			int oldCount = stockDepreciation.NumberOld(ship, count);
+			if(oldCount)
+			{
+				count -= oldCount;
+				double fraction = stockDepreciation.ValueFraction(ship, day, oldCount);
+				const ShopPricing &modifier = stock->SellModifier();
+				value += modifier.Value(baseCost, oldCount, fraction);
+			}
+			if(count)
+			{
+				const ShopPricing &modifier = stock->BuyModifier();
+				value += modifier.Value(baseCost, count, count);
+			}
 		}
 	}
-	if(!shipyard && !stock)
+	if(!shipyard || !stock)
 	{
-		// Otherwise, just use the ship cost with normal appreciation applied.
+		// Otherwise, just use the ship cost with normal depreciation applied.
+		double fraction = stockDepreciation.ValueFraction(ship, day, count);
 		value += baseCost * fraction;
 	}
 
@@ -152,20 +183,22 @@ int64_t SaleManager::SellValue(const Ship *ship, int count) const
 		const StockItem<Ship> *stock = shipyard->Get(ship);
 		if(stock)
 		{
-			// If an item was just purchased, we want to sell it at the same value it was
-			// purchased at. Determine how many of this item being sold are brand new,
-			// and for those new items, use the buying price. For all remaining items,
-			// use the modified selling price.
-			int newCount = fleetDepreciation.NumberNew(ship, count);
-			count -= newCount;
 			int64_t value = 0;
+			// If an item was just bought, we want to sell it at the same value it was bought
+			// at. Determine how many of this item being sold are new, and for those new items,
+			// use the buying price. For all remaining items, use the selling price.
+			int newCount = fleetDepreciation.NumberNew(ship, count);
 			if(newCount)
-				value += BuyValue(ship, newCount);
+			{
+				count -= newCount;
+				const ShopPricing &modifier = stock->BuyModifier();
+				value += modifier.Value(baseCost, newCount, newCount);
+			}
 			if(count)
 			{
 				double fraction = fleetDepreciation.ValueFraction(ship, day, count);
 				const ShopPricing &modifier = stock->SellModifier();
-				value += modifier.Value(baseCost, fraction, count);
+				value += modifier.Value(baseCost, count, fraction);
 			}
 			return value;
 		}

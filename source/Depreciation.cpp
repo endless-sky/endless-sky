@@ -311,17 +311,50 @@ double Depreciation::ValueFraction(const Outfit *outfit, int day, int count) con
 
 
 
+int Depreciation::NumberOld(const Ship *ship, int day, int count) const
+{
+	ship = GameData::Ships().Get(ship->TrueModelName());
+	auto recordIt = ships.find(ship);
+	if(recordIt == ships.end() || recordIt->second.empty())
+		return isStock ? 0 : count;
+
+	int old = 0;
+	map<int, int> record = recordIt->second;
+	for(const auto &it : record)
+		if(it.first < day)
+			old += it.second;
+	return min(old, count);
+}
+
+
+
+int Depreciation::NumberOld(const Outfit *outfit, int day, int count) const
+{
+	auto recordIt = outfits.find(outfit);
+	if(recordIt == outfits.end() || recordIt->second.empty())
+		return isStock ? 0 : count;
+
+	int old = 0;
+	map<int, int> record = recordIt->second;
+	for(const auto &it : record)
+		if(it.first < day)
+			old += it.second;
+	return min(old, count);
+}
+
+
+
 int Depreciation::NumberNew(const Ship *ship, int day, int count) const
 {
 	ship = GameData::Ships().Get(ship->TrueModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
-		return 0;
+		return isStock ? count : 0;
 
 	map<int, int> record = recordIt->second;
 	auto dayIt = record.find(day);
 	if(dayIt == record.end())
-		return 0;
+		return isStock ? count : 0;
 	return min(dayIt->second, count);
 }
 
@@ -331,12 +364,12 @@ int Depreciation::NumberNew(const Outfit *outfit, int day, int count) const
 {
 	auto recordIt = outfits.find(outfit);
 	if(recordIt == outfits.end() || recordIt->second.empty())
-		return 0;
+		return isStock ? count : 0;
 
 	map<int, int> record = recordIt->second;
 	auto dayIt = record.find(day);
 	if(dayIt == record.end())
-		return 0;
+		return isStock ? count : 0;
 	return min(dayIt->second, count);
 }
 

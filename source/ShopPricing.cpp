@@ -81,7 +81,7 @@ void ShopPricing::Combine(const ShopPricing &other)
 
 
 
-int64_t ShopPricing::Value(int64_t cost, double depreciation, int count) const
+int64_t ShopPricing::Value(int64_t cost, int count, double depreciation) const
 {
 	int64_t value = cost * multiplier + offset;
 	// If the offset caused the value to go negative, return 0.
