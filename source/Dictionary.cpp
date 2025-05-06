@@ -82,3 +82,12 @@ double Dictionary::Get(const string &key) const
 {
 	return Get(key.c_str());
 }
+
+
+
+void Dictionary::Erase(const char *key)
+{
+	auto [pos, exists] = Search(key, *this);
+	if(exists)
+		erase(next(this->begin(), pos));
+}

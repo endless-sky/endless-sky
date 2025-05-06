@@ -375,7 +375,7 @@ void Government::Load(const DataNode &node)
 		else if(key == "display name")
 			displayName = child.Token(valueIndex);
 		else if(key == "swizzle")
-			swizzle = child.Value(valueIndex);
+			swizzle = GameData::Swizzles().Get(child.Token(valueIndex));
 		else if(key == "color")
 		{
 			if(child.Size() >= 3 + valueIndex)
@@ -438,7 +438,7 @@ const string &Government::GetTrueName() const
 
 
 // Get the color swizzle to use for ships of this government.
-int Government::GetSwizzle() const
+const Swizzle *Government::GetSwizzle() const
 {
 	return swizzle;
 }
@@ -699,13 +699,13 @@ int Government::Fines(const Ship *ship) const
 
 
 
-bool Government::FinesContents(const Ship *ship, const PlayerInfo &player) const
+bool Government::FinesContents(const Ship *ship) const
 {
 	for(auto &it : ship->Outfits())
 		if(this->Fines(it.first) || this->Condemns(it.first))
 			return true;
 
-	return ship->Cargo().IllegalCargoFine(this, player);
+	return ship->Cargo().IllegalCargoFine(this);
 }
 
 

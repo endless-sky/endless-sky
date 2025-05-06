@@ -15,8 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <cstdio>
-#include <ctime>
 #include <filesystem>
 #include <vector>
 
@@ -54,20 +52,23 @@ public:
 	static std::vector<std::filesystem::path> RecursiveList(const std::filesystem::path &directory);
 
 	static bool Exists(const std::filesystem::path &filePath);
-	static std::time_t Timestamp(const std::filesystem::path &filePath);
-	static void Copy(const std::filesystem::path &from, const std::filesystem::path &to);
+	static std::filesystem::file_time_type Timestamp(const std::filesystem::path &filePath);
+	static bool Copy(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Move(const std::filesystem::path &from, const std::filesystem::path &to);
 	static void Delete(const std::filesystem::path &filePath);
 
 	// Get the filename from a path.
 	static std::string Name(const std::filesystem::path &path);
 
+	/// Check whether one path is a parent of another.
+	static bool IsParent(const std::filesystem::path &parent, const std::filesystem::path &child);
+
 	// File IO.
-	static FILE *Open(const std::filesystem::path &path, bool write = false);
+	static std::shared_ptr<std::iostream> Open(const std::filesystem::path &path, bool write = false);
 	static std::string Read(const std::filesystem::path &path);
-	static std::string Read(FILE *file);
+	static std::string Read(std::shared_ptr<std::iostream> file);
 	static void Write(const std::filesystem::path &path, const std::string &data);
-	static void Write(FILE *file, const std::string &data);
+	static void Write(std::shared_ptr<std::iostream> file, const std::string &data);
 	static void CreateFolder(const std::filesystem::path &path);
 
 	// Open this user's plugins directory in their native file explorer.

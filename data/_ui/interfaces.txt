@@ -224,6 +224,9 @@ interface "map detail panel"
 	value "trade height" 120
 	value "arrow x offset" 3
 	value "arrow y offset" 10
+	value "description x offset" 240
+	value "description width" 500
+	value "description height" 240
 
 
 
@@ -1251,6 +1254,7 @@ interface "hud"
 	box "messages"
 		from 120 0 bottom left
 		to -110 -200 bottom right
+	value "messages reversed" 0
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
@@ -1410,7 +1414,7 @@ interface "planet"
 		dimensions 720 360
 
 	box "content"
-		from -300 80 to 180 355
+		from -300 80 to 180 320
 
 	visible if "has shipyard"
 	sprite "ui/planet dialog button"
@@ -1496,7 +1500,7 @@ interface "planet"
 
 interface "spaceport"
 	box "content"
-		from -300 80 to 180 355
+		from -300 80 to 180 320
 
 
 
@@ -1773,6 +1777,8 @@ interface "bank"
 
 
 interface "mission" bottom
+	box "description"
+		from -190 -214 to 190 -118
 	visible if "has description"
 	sprite "ui/mission"
 		align bottom
@@ -2074,6 +2080,25 @@ interface "info panel"
 
 interface "message log"
 	value "width" 570
+
+	sprite "ui/message log key"
+		center 710 -30 bottom left
+	visible if "!important messages only"
+	sprite "ui/unchecked"
+		center 640 -30 bottom left
+	visible if "important messages only"
+	sprite "ui/checked"
+		center 640 -30 bottom left
+	visible
+	active if "important messages only"
+	button i ""
+		center 706 -20 bottom left
+		dimensions 142 40
+	"wrapped label" "Hide less _important messages"
+		center 714 -16 bottom left
+		width 130
+		color active
+		inactive medium
 
 	visible if "empty"
 	label "(The message log is empty.)"

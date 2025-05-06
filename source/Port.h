@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 
 
@@ -60,12 +61,12 @@ public:
 
 public:
 	// Load a port's description from a node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	void LoadDefaultSpaceport();
 	void LoadUninhabitedSpaceport();
 
 	// Load a port's description text paragraphs from the planet spaceport description.
-	void LoadDescription(const DataNode &node);
+	void LoadDescription(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Whether this port was loaded from the Load function.
 	bool CustomLoaded() const;

@@ -67,6 +67,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <atomic>
+#include <filesystem>
 #include <iostream>
 #include <queue>
 #include <utility>
@@ -81,8 +82,8 @@ namespace {
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
 	Set<Galaxy> defaultGalaxies;
-	Set<Sale<Ship>> defaultShipSales;
-	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Shop<Ship>> defaultShipSales;
+	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
@@ -190,7 +191,8 @@ namespace {
 
 
 
-shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, bool debugMode, bool preventUpload)
+shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &player,
+		bool onlyLoadData, bool debugMode, bool preventUpload)
 {
 	preventSpriteUpload = preventUpload;
 
@@ -239,7 +241,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, bool onlyLoadData, boo
 		});
 	}
 
-	return objects.Load(queue, sources, debugMode);
+	return objects.Load(queue, sources, player, &globalConditions, debugMode);
 }
 
 
@@ -281,8 +283,38 @@ void GameData::LoadSettings()
 
 void GameData::LoadShaders()
 {
-	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
-	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
+	// The found shader files. The first element is the vertex shader,
+	// the second is the fragment shader.
+	map<string, pair<string, string>> loaded;
+	for(const filesystem::path &source : sources)
+	{
+		filesystem::path base = source / "shaders";
+		if(Files::Exists(base))
+			for(filesystem::path shaderFile : Files::RecursiveList(base))
+			{
+				filesystem::path shader = shaderFile;
+#ifdef ES_GLES
+				// Allow specifying different shaders for GL and GLES.
+				// In this case, only the appropriate shader is loaded.
+				if(shaderFile.extension() == ".gles")
+					shader = shader.parent_path() / shader.stem();
+#else
+				if(shaderFile.extension() == ".gl")
+					shader = shader.parent_path() / shader.stem();
+#endif
+				string name = (shader.parent_path() / shader.stem()).lexically_relative(base).generic_string();
+				if(shader.extension() == ".vert")
+					loaded[name].first = shaderFile.string();
+				else if(shader.extension() == ".frag")
+					loaded[name].second = shaderFile.string();
+			}
+	}
+
+	// If there is both a fragment and a vertex shader available,
+	// it can be turned into a shader object.
+	for(const auto &[key, s] : loaded)
+		if(!s.first.empty() && !s.second.empty())
+			objects.shaders.Get(key)->Load(Files::Read(s.first).c_str(), Files::Read(s.second).c_str());
 
 	FillShader::Init();
 	FogShader::Init();
@@ -293,6 +325,9 @@ void GameData::LoadShaders()
 	SpriteShader::Init();
 	BatchShader::Init();
 	RenderBuffer::Init();
+
+	FontSet::Add(Files::Images() / "font/ubuntu14r.png", 14);
+	FontSet::Add(Files::Images() / "font/ubuntu18r.png", 18);
 
 	background.Init(16384, 4096);
 }
@@ -540,9 +575,9 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node)
+void GameData::Change(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	objects.Change(node);
+	objects.Change(node, playerConditions);
 }
 
 
@@ -585,6 +620,13 @@ void GameData::DestroyPersons(vector<string> &names)
 const Set<Color> &GameData::Colors()
 {
 	return objects.colors;
+}
+
+
+
+const Set<Swizzle> &GameData::Swizzles()
+{
+	return objects.swizzles;
 }
 
 
@@ -680,7 +722,7 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
-const Set<Sale<Outfit>> &GameData::Outfitters()
+const Set<Shop<Outfit>> &GameData::Outfitters()
 {
 	return objects.outfitSales;
 }
@@ -704,6 +746,13 @@ const Set<Phrase> &GameData::Phrases()
 const Set<Planet> &GameData::Planets()
 {
 	return objects.planets;
+}
+
+
+
+const Set<Shader> &GameData::Shaders()
+{
+	return objects.shaders;
 }
 
 
@@ -736,7 +785,7 @@ ConditionsStore &GameData::GlobalConditions()
 
 
 
-const Set<Sale<Ship>> &GameData::Shipyards()
+const Set<Shop<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
 }
@@ -877,9 +926,9 @@ const string &GameData::Tooltip(const string &label)
 	auto it = objects.tooltips.find(label);
 	// Special case: the "cost" and "sells for" labels include the percentage of
 	// the full price, so they will not match exactly.
-	if(it == objects.tooltips.end() && !label.compare(0, 4, "cost"))
+	if(it == objects.tooltips.end() && label.starts_with("cost"))
 		it = objects.tooltips.find("cost:");
-	if(it == objects.tooltips.end() && !label.compare(0, 9, "sells for"))
+	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
 	return (it == objects.tooltips.end() ? EMPTY : it->second);
 }
@@ -932,10 +981,19 @@ void GameData::LoadSources(TaskQueue &queue)
 	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
+	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
+	globalPlugins = Files::List(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
 		if(Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
+	localPlugins = Files::List(Files::UserPlugins());
+	for(const auto &path : localPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 
@@ -948,7 +1006,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		filesystem::path directoryPath = source / "images/";
+		filesystem::path directoryPath = source / "images";
 
 		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
 		for(auto &path : imageFiles)

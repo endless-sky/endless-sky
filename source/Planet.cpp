@@ -54,7 +54,7 @@ namespace {
 
 
 // Load a planet's description from a file.
-void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
+void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 		return;
@@ -128,7 +128,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 			else if(key == "security")
 				security = 0.;
 			else if(key == "tribute")
+			{
 				tribute = 0;
+				defenseThreshold = 4000;
+				defenseFleets.clear();
+				ResetDefense();
+			}
 			else if(key == "wormhole")
 				wormhole = nullptr;
 
@@ -140,7 +145,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		}
 
 		if(key == "port")
-			port.Load(child);
+			port.Load(child, playerConditions);
 		// Handle the attributes which can be "removed."
 		else if(!hasValue)
 		{
@@ -183,11 +188,11 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes)
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
-			description.Load(child);
+			description.Load(child, playerConditions);
 		else if(key == "spaceport")
 		{
 			port.LoadDefaultSpaceport();
-			port.LoadDescription(child);
+			port.LoadDescription(child, playerConditions);
 		}
 		else if(key == "government")
 			government = GameData::Governments().Get(value);
@@ -438,42 +443,68 @@ bool Planet::IsInhabited() const
 
 
 
-// Check if this planet has a shipyard.
+// Check if this planet has a permanent shipyard.
 bool Planet::HasShipyard() const
 {
-	return !Shipyard().empty();
+	return !shipSales.empty();
 }
 
 
 
-// Get the list of ships in the shipyard.
-const Sale<Ship> &Planet::Shipyard() const
+// Get the list of ships in the permanent shipyard.
+const Sale<Ship> &Planet::ShipyardStock() const
 {
 	shipyard.clear();
-	for(const Sale<Ship> *sale : shipSales)
-		shipyard.Add(*sale);
+	for(const Shop<Ship> *sale : shipSales)
+		shipyard.Add(sale->Stock());
 
 	return shipyard;
 }
 
 
 
-// Check if this planet has an outfitter.
-bool Planet::HasOutfitter() const
+// Get the list of shipyards currently available on this planet.
+// This will include conditionally available shops.
+set<const Shop<Ship> *> Planet::Shipyards() const
 {
-	return !Outfitter().empty();
+	set<const Shop<Ship> *> shops = shipSales;
+	for(const auto &shop : GameData::Shipyards())
+		if(shop.second.CanStock(this))
+			shops.insert(&shop.second);
+	return shops;
 }
 
 
 
-// Get the list of outfits available from the outfitter.
-const Sale<Outfit> &Planet::Outfitter() const
+// Check if this planet has a permanent outfitter.
+bool Planet::HasOutfitter() const
+{
+	return !outfitSales.empty();
+}
+
+
+
+// Get the list of outfits available from the permanent outfitter.
+const Sale<Outfit> &Planet::OutfitterStock() const
 {
 	outfitter.clear();
-	for(const Sale<Outfit> *sale : outfitSales)
-		outfitter.Add(*sale);
+	for(const Shop<Outfit> *sale : outfitSales)
+		outfitter.Add(sale->Stock());
 
 	return outfitter;
+}
+
+
+
+// Get the list of outitters available on this planet.
+// This will include conditionally available shops.
+set<const Shop<Outfit> *> Planet::Outfitters() const
+{
+	set<const Shop<Outfit> *> shops = outfitSales;
+	for(const auto &shop : GameData::Outfitters())
+		if(shop.second.CanStock(this))
+			shops.insert(&shop.second);
+	return shops;
 }
 
 
