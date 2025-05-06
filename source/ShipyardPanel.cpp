@@ -193,7 +193,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 	if(!selectedShip)
 		return false;
 
-	int64_t cost = player.StockDepreciation().Value(*selectedShip, day);
+	int64_t cost = saleManager.BuyValue(selectedShip);
 
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
@@ -207,7 +207,7 @@ ShopPanel::BuyResult ShipyardPanel::CanBuy(bool onlyOwned) const
 	{
 		// Check if ships could be sold to pay for the new ship.
 		for(const auto &it : player.Ships())
-			cost -= player.FleetDepreciation().Value(*it, day);
+			cost -= saleManager.SellValue(*it);
 
 		if(player.Accounts().Credits() >= cost)
 		{
@@ -308,7 +308,7 @@ void ShipyardPanel::Sell(bool toStorage)
 	vector<shared_ptr<Ship>> toSell;
 	for(const auto &it : playerShips)
 		toSell.push_back(it->shared_from_this());
-	int64_t total = player.FleetDepreciation().Value(toSell, day, toStorage);
+	int64_t total = saleManager.SellValue(toSell, toStorage);
 
 	message += ((initialCount > 2) ? "\nfor " : " for ") + Format::CreditString(total) + "?";
 
@@ -351,7 +351,7 @@ void ShipyardPanel::BuyShip(const string &name)
 		else if(modifier > 1)
 			shipName += " " + to_string(i);
 
-		player.BuyShip(selectedShip, shipName);
+		player.BuyShip(selectedShip, shipName, saleManager);
 	}
 
 	playerShip = &*player.Ships().back();
@@ -379,7 +379,7 @@ void ShipyardPanel::SellShipChassis()
 void ShipyardPanel::SellShip(bool toStorage)
 {
 	for(Ship *ship : playerShips)
-		player.SellShip(ship, toStorage);
+		player.SellShip(ship, saleManager, toStorage);
 	playerShips.clear();
 	playerShip = nullptr;
 	for(const shared_ptr<Ship> &ship : player.Ships())
