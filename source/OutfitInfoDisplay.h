@@ -52,7 +52,8 @@ public:
 
 
 private:
-	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed, const SaleManager &saleManager);
+	void UpdateRequirements(const Outfit &outfit, const PlayerInfo &player, bool canSell,
+		bool descriptionCollapsed, const SaleManager &saleManager);
 	void AddRequirementAttribute(std::string label, double value);
 	void UpdateAttributes(const Outfit &outfit);
 
