@@ -45,14 +45,14 @@ namespace {
 
 
 
-Timer::Timer(const DataNode &node)
+Timer::Timer(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void Timer::Load(const DataNode &node)
+void Timer::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	for(const DataNode &child : node)
 	{
@@ -121,9 +121,9 @@ void Timer::Load(const DataNode &node)
 		else if(child.Token(0) == "reset fired")
 			resetFired = true;
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "timeup")
-			actions[TimerTrigger::TIMEUP].Load(child);
+			actions[TimerTrigger::TIMEUP].Load(child, playerConditions);
 		else if(child.Token(0) == "on" && child.Size() > 1 && child.Token(1) == "reset")
-			actions[TimerTrigger::RESET].Load(child);
+			actions[TimerTrigger::RESET].Load(child, playerConditions);
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -199,8 +199,7 @@ void Timer::Save(DataWriter &out) const
 
 // Calculate the total time to wait, including any random value,
 // and instantiate the triggered action.
-Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs, const System *origin,
-	int jumps, int64_t payload) const
+Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
 	Timer result;
 	result.requireIdle = requireIdle;
@@ -230,7 +229,7 @@ Timer Timer::Instantiate(const ConditionsStore &store, map<string, string> &subs
 		return result;
 	}
 	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(store, subs, origin, jumps, payload);
+		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
 
 	// Calculate the random variance to the wait time.
 	result.waitTime = waitTime;

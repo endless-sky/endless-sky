@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <string>
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Planet;
@@ -45,9 +46,9 @@ public:
 
 public:
 	Timer() = default;
-	Timer(const DataNode &node);
+	Timer(const DataNode &node, const ConditionsStore *playerConditions);
 	// Set up the timer from its data file node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Note: the Save() function can assume this is an instantiated Timer, not a template,
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted.
 	void Save(DataWriter &out) const;
@@ -58,8 +59,7 @@ public:
 	bool IsComplete() const;
 
 	// Calculate the total time to wait, including any random value.
-	Timer Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs, const System *origin,
-		int jumps, int64_t payload) const;
+	Timer Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int64_t payload) const;
 	// Progress the timer within the main loop.
 	void Step(PlayerInfo &player, UI *ui, const Mission &mission);
 

@@ -319,7 +319,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		else if(child.Token(0) == "npc")
 			npcs.emplace_back(child, playerConditions);
 		else if(child.Token(0) == "timer")
-			timers.emplace_back(child);
+			timers.emplace_back(child, playerConditions);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -1567,7 +1567,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Instantiate the timers.
 	for(const Timer &timer : timers)
-		result.timers.push_back(timer.Instantiate(player.Conditions(), subs, sourceSystem, jumps, payload));
+		result.timers.push_back(timer.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
