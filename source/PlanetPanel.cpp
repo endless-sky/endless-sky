@@ -57,7 +57,7 @@ PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
 	ui(*GameData::Interfaces().Get("planet")), saleManager(SaleManager(player, &outfitterStock, &shipyardStock))
 {
-	trading.reset(new TradingPanel(player));
+	trading.reset(new TradingPanel(player, saleManager));
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
