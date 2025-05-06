@@ -511,7 +511,8 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
-	if(player.TakeOff(GetUI(), distributeCargo))
+	SaleManager saleManager(player, &outfitterStock, &shipyardStock);
+	if(player.TakeOff(GetUI(), distributeCargo, saleManager))
 	{
 		if(callback)
 			callback();

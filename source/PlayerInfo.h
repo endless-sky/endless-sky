@@ -196,7 +196,7 @@ public:
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
 	// Make ships ready for take off. This may require selling excess cargo.
-	bool TakeOff(UI *ui, bool distributeCargo);
+	bool TakeOff(UI *ui, bool distributeCargo, const SaleManager &saleManager);
 	// Pool cargo from local ships.
 	void PoolCargo();
 	// Distribute cargo to local ships. Returns a reference to the player's cargo.

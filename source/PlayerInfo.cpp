@@ -1662,7 +1662,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
+bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo, const SaleManager &saleManager)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1842,7 +1842,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				// Compute the total value for each type of excess outfit.
 				if(!outfit.second)
 					continue;
-				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+				int64_t cost = saleManager.SellValue(outfit.first, outfit.second);
 				for(int i = 0; i < outfit.second; ++i)
 					stockDepreciation.Buy(outfit.first, day, &depreciation);
 				income += cost;
