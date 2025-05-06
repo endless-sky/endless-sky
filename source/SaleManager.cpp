@@ -53,7 +53,7 @@ int64_t SaleManager::BuyValue(const Outfit *outfit, int count) const
 			// If an item was just sold, we want to buy it at the same value it was sold
 			// at. Determine how many of this item being bought are old, and for those old items,
 			// use the selling price. For all remaining items, use the buying price.
-			int oldCount = stockDepreciation.NumberOld(outfit, count);
+			int oldCount = stockDepreciation.NumberOld(outfit, day, count);
 			if(oldCount)
 			{
 				count -= oldCount;
@@ -94,7 +94,7 @@ int64_t SaleManager::SellValue(const Outfit *outfit, int count) const
 			// If an item was just bought, we want to sell it at the same value it was bought
 			// at. Determine how many of this item being sold are new, and for those new items,
 			// use the buying price. For all remaining items, use the selling price.
-			int newCount = fleetDepreciation.NumberNew(outfit, count);
+			int newCount = fleetDepreciation.NumberNew(outfit, day, count);
 			if(newCount)
 			{
 				count -= newCount;
@@ -139,7 +139,7 @@ int64_t SaleManager::BuyValue(const Ship *ship, int count, bool chassisOnly) con
 			// If an item was just sold, we want to buy it at the same value it was sold
 			// at. Determine how many of this item being bought are old, and for those old items,
 			// use the selling price. For all remaining items, use the buying price.
-			int oldCount = stockDepreciation.NumberOld(ship, count);
+			int oldCount = stockDepreciation.NumberOld(ship, day, count);
 			if(oldCount)
 			{
 				count -= oldCount;
@@ -187,7 +187,7 @@ int64_t SaleManager::SellValue(const Ship *ship, int count) const
 			// If an item was just bought, we want to sell it at the same value it was bought
 			// at. Determine how many of this item being sold are new, and for those new items,
 			// use the buying price. For all remaining items, use the selling price.
-			int newCount = fleetDepreciation.NumberNew(ship, count);
+			int newCount = fleetDepreciation.NumberNew(ship, day, count);
 			if(newCount)
 			{
 				count -= newCount;
