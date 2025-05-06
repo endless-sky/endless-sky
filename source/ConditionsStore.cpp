@@ -190,7 +190,7 @@ const ConditionEntry *ConditionsStore::GetEntry(const string &name) const
 
 	// If we don't have an exact match, but we have a matching prefix-provider, then we return that one.
 	const ConditionEntry *ceProv = it->second.providingEntry;
-	if(ceProv && !name.compare(0, ceProv->name.length(), ceProv->name))
+	if(ceProv && name.starts_with(ceProv->name))
 		return ceProv;
 
 	// And otherwise we don't have a match.
