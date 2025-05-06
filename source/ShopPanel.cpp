@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "Sale.h"
+#include "SaleManager.h"
 #include "Screen.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
@@ -100,10 +101,9 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter, SaleManager saleManager)
-	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), isOutfitter(isOutfitter), saleManager(std::move(saleManager)),
-	playerShip(player.Flagship()),
+ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter, const SaleManager &saleManager)
+	: player(player), day(player.GetDate().DaysSinceEpoch()), planet(player.GetPlanet()),
+	isOutfitter(isOutfitter), saleManager(saleManager), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {

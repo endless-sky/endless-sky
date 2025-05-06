@@ -31,6 +31,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "SaleManager.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "ShipNameDialog.h"
@@ -53,8 +54,8 @@ namespace {
 
 
 
-ShipyardPanel::ShipyardPanel(PlayerInfo &player, Stock<Ship> &stock, SaleManager saleManager)
-	: ShopPanel(player, false, std::move(saleManager)), modifier(0), shipyard(stock)
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, Stock<Ship> &stock, const SaleManager &saleManager)
+	: ShopPanel(player, false, saleManager), modifier(0), shipyard(stock)
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);

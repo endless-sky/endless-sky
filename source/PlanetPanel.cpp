@@ -55,7 +55,7 @@ using namespace std;
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet"))
+	ui(*GameData::Interfaces().Get("planet")), saleManager(SaleManager(player, &outfitterStock, &shipyardStock))
 {
 	trading.reset(new TradingPanel(player));
 	bank.reset(new BankPanel(player));
@@ -190,7 +190,6 @@ void PlanetPanel::Draw()
 
 void PlanetPanel::EnterShipyard()
 {
-	SaleManager saleManager(player, &outfitterStock, &shipyardStock);
 	GetUI()->Push(new ShipyardPanel(player, shipyardStock, saleManager));
 }
 
@@ -233,13 +232,11 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
-		SaleManager saleManager(player, &outfitterStock, &shipyardStock);
 		GetUI()->Push(new ShipyardPanel(player, shipyardStock, saleManager));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
-		SaleManager saleManager(player, &outfitterStock, &shipyardStock);
 		GetUI()->Push(new OutfitterPanel(player, outfitterStock, saleManager));
 		return true;
 	}
@@ -511,7 +508,6 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
-	SaleManager saleManager(player, &outfitterStock, &shipyardStock);
 	if(player.TakeOff(GetUI(), distributeCargo, saleManager))
 	{
 		if(callback)

@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "SaleManager.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "image/Sprite.h"
@@ -78,8 +79,8 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player, Stock<Outfit> &stock, SaleManager saleManager)
-	: ShopPanel(player, true, std::move(saleManager)), outfitter(stock)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player, Stock<Outfit> &stock, const SaleManager &saleManager)
+	: ShopPanel(player, true, saleManager), outfitter(stock)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].push_back(it.first);
