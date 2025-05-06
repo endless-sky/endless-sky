@@ -90,7 +90,7 @@ void Shop<Item>::Load(const DataNode &node, const Set<Item> &items, const Condit
 	// if a new "stock" node is provided without the "add" modifier.
 	bool overwriteStock = !sales.empty();
 
-	auto loadPricing = [this](const DataNode &child, ShopPricing &modifier, bool add, bool remove) noexcept -> void {
+	auto loadPricing = [](const DataNode &child, ShopPricing &modifier, bool add, bool remove) noexcept -> void {
 		if(add && modifier.IsLoaded())
 			child.PrintTrace("Error: Cannot \"add\" to an existing price modifier:");
 		else if(remove)

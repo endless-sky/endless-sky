@@ -257,7 +257,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			player.Cargo().Remove(commodity, amount);
 		}
-		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			const Outfit * const outfit = it.first;
