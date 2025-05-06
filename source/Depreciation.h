@@ -52,15 +52,6 @@ public:
 	// Add a single outfit to the depreciation record.
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
 
-	// Get the value of an entire fleet.
-	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;
-	// Get the value of a ship, along with all its outfits.
-	int64_t Value(const Ship &ship, int day) const;
-	// Get the value just of the chassis of a ship.
-	int64_t Value(const Ship *ship, int day, int count = 1) const;
-	// Get the value of an outfit.
-	int64_t Value(const Outfit *outfit, int day, int count = 1) const;
-
 	// Get the amount of depreciation that is applied to an item for the given count.
 	// The returned fraction is the multiplier applied to the base cost of a single item
 	// of the given type. For example, if ValueFraction was called with a count of 2 and

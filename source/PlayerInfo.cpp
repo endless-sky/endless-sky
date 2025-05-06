@@ -917,7 +917,7 @@ void PlayerInfo::DoAccounting()
 	// calculation of yearly income to determine maximum mortgage amounts.
 	// Net worth only accounts for the base sell value of the player's fleet,
 	// unaffected by any dynamic shop prices.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = SaleManager(*this).SellValue(ships);
 	for(const shared_ptr<Ship> &ship : ships)
 		assets += ship->Cargo().Value(system);
 

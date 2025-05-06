@@ -228,59 +228,6 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 
-// Get the value of an entire fleet.
-int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool chassisOnly) const
-{
-	map<const Ship *, int> shipCount;
-	map<const Outfit *, int> outfitCount;
-
-	for(const shared_ptr<Ship> &ship : fleet)
-	{
-		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
-		++shipCount[base];
-
-		if(!chassisOnly)
-			for(const auto &it : ship->Outfits())
-				outfitCount[it.first] += it.second;
-	}
-
-	int64_t value = 0;
-	for(const auto &it : shipCount)
-		value += Value(it.first, day, it.second);
-	for(const auto &it : outfitCount)
-		value += Value(it.first, day, it.second);
-	return value;
-}
-
-
-
-// Get the value of a ship, along with all its outfits.
-int64_t Depreciation::Value(const Ship &ship, int day) const
-{
-	int64_t value = Value(&ship, day);
-	for(const auto &it : ship.Outfits())
-		value += Value(it.first, day, it.second);
-	return value;
-}
-
-
-
-// Get the value just of the chassis of a ship.
-int64_t Depreciation::Value(const Ship *ship, int day, int count) const
-{
-	return ValueFraction(ship, day, count) * ship->ChassisCost();
-}
-
-
-
-// Get the value of an outfit.
-int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
-{
-	return ValueFraction(outfit, day, count) * outfit->Cost();
-}
-
-
-
 double Depreciation::ValueFraction(const Ship *ship, int day, int count) const
 {
 	// Check whether a record exists for this ship. If not, its value is full
