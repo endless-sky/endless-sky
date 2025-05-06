@@ -37,6 +37,20 @@ SaleManager::SaleManager(const PlayerInfo &player, const Stock<Outfit> *outfitte
 
 
 
+bool SaleManager::Has(const Outfit *outfit) const
+{
+	return outfitter && outfitter->Has(outfit);
+}
+
+
+
+bool SaleManager::Has(const Ship *ship) const
+{
+	return shipyard && shipyard->Has(ship);
+}
+
+
+
 int64_t SaleManager::BuyValue(const Outfit *outfit, int count) const
 {
 	if(!outfit || count <= 0)

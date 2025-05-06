@@ -33,6 +33,13 @@ public:
 	SaleManager(const PlayerInfo &player, const Stock<Outfit> *outfitter = nullptr,
 		const Stock<Ship> *shipyard = nullptr);
 
+	// Whether the given item is available in the shops tracked by this SaleManager.
+	// Currently only accounts for permanent stock. That is, items not for sale in
+	// the shop and only present because the player sold them are not accounted
+	// for by these functions.
+	bool Has(const Outfit *outfit) const;
+	bool Has(const Ship *ship) const;
+
 	// The buy value of an outfit in the outfitter.
 	int64_t BuyValue(const Outfit *outfit, int count = 1) const;
 	// The sell value of an outfit in the outfitter. May equal the buy value if the

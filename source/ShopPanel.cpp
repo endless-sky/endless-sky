@@ -703,17 +703,17 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
-	// TODO: Use conditional stocks instead of permanent sales.
-	const Sale<Outfit> &available = player.GetPlanet()->OutfitterSales();
-
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
 		if(!player.HasLicense(name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
-			if(!license || !license->Cost() || !available.Has(license))
+			if(!license || !saleManager.Has(license))
 				return -1;
-			cost += license->Cost();
+			int64_t licenseCost = saleManager.BuyValue(license);
+			if(!licenseCost)
+				return -1;
+			cost += licenseCost;
 		}
 	return cost;
 }
