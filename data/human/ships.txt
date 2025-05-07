@@ -866,7 +866,7 @@ ship "Bulwark"
 	explode "medium explosion" 40
 	explode "large explosion" 20
 	"final explode" "final explosion medium"
-#	description `The Bulwark is basically what you get by welding a bunch of scrap metal on to a Bastion. It is a tough, slow brawler that is most often used by warlords to protect their properties, whether it'd be their ships or hideouts from raids by either the authorities or their rivals. Due to their lack of speed and cargo space these ships rarely participate in raiding merchant convoys outside their home system.`
+	description `The Bulwark is basically what you get by welding a bunch of scrap metal on to a Bastion. It is a tough, slow brawler that is most often used by warlords to protect their properties, whether it'd be their ships or hideouts from raids by either the authorities or their rivals. Due to their lack of speed and cargo space these ships rarely participate in raiding merchant convoys outside their home system.`
 
 
 
