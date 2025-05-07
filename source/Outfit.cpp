@@ -345,7 +345,7 @@ void Outfit::Load(const DataNode &node)
 		attributes["jump drive fuel"] = (jumpFuel > 0. ? jumpFuel : DEFAULT_JUMP_DRIVE_COST);
 	}
 	if(attributes.Get("jump fuel"))
-		attributes["jump fuel"] = 0.;
+		attributes.Erase("jump fuel");
 
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on

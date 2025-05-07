@@ -80,7 +80,7 @@ bool DrawList::AddUnblurred(const Body &body)
 
 
 
-bool DrawList::AddSwizzled(const Body &body, int swizzle, double cloak)
+bool DrawList::AddSwizzled(const Body &body, const Swizzle *swizzle, double cloak)
 {
 	Point position = body.Position() - center;
 	Point blur = body.Velocity() - centerVelocity;
@@ -130,7 +130,7 @@ bool DrawList::Cull(const Body &body, const Point &position, const Point &blur) 
 
 
 
-void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, int swizzle)
+void DrawList::Push(const Body &body, Point pos, Point blur, double cloak, const Swizzle *swizzle)
 {
 	SpriteShader::Item item;
 

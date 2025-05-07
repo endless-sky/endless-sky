@@ -264,12 +264,8 @@ void GameWindow::Quit()
 	SDL_ShowCursor(true);
 
 	// Clean up in the reverse order that everything is launched.
-//#ifndef _WIN32
-	// Under windows, this cleanup code causes intermittent crashes.
 	if(context)
 		SDL_GL_DeleteContext(context);
-//#endif
-
 	if(mainWindow)
 		SDL_DestroyWindow(mainWindow);
 

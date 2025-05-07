@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MissionAction.h"
 
+class ConditionsStore;
 class DataNode;
 class DataWriter;
 class Mission;
@@ -35,9 +36,9 @@ class NPCAction {
 public:
 	NPCAction() = default;
 	// Construct and Load() at the same time.
-	explicit NPCAction(const DataNode &node);
+	explicit NPCAction(const DataNode &node, const ConditionsStore *playerConditions);
 
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
 	void Save(DataWriter &out) const;
@@ -45,11 +46,11 @@ public:
 	std::string Validate() const;
 
 	// Perform this action.
-	void Do(PlayerInfo &player, UI *ui = nullptr, const Mission *caller = nullptr);
+	void Do(PlayerInfo &player, UI *ui, const Mission *caller, const std::shared_ptr<Ship> &target);
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.
-	NPCAction Instantiate(const ConditionsStore &store, std::map<std::string, std::string> &subs,
+	NPCAction Instantiate(std::map<std::string, std::string> &subs,
 		const System *origin, int jumps, int64_t payload) const;
 
 
