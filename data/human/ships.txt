@@ -1407,7 +1407,7 @@ ship "Cutthroat"
 	explode "small explosion" 25
 	explode "medium explosion" 10
 	"final explode" "final explosion small"
-#	description `Cutthroat.`
+	description `Pirates call this heavily modified Clipper the "Cutthroat." With an extra pair of engine pods bolted on for the sole purpose of maximizing speed, it can outrun all but the most fine-tuned ships in the sky, allowing its users to run almost any blockade.`
 
 
 
