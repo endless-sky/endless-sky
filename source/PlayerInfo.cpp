@@ -115,16 +115,6 @@ namespace {
 		};
 		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
 	}
-
-	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip, const System *system)
-	{
-		if(newFirstShip != oldFirstShip && Preferences::Has("Automatically unpark flagship")
-						&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
-		{
-			newFirstShip->SetIsParked(false);
-			oldFirstShip->SetIsParked(true);
-		}
-	}
 }
 
 
@@ -1371,7 +1361,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	ships.insert(ships.begin() + toIndex, ship);
 	auto newFirstShip = ships[0];
 	// Check if the ship in the first position can be a flagship and is in the current system.
-	HandleFlagshipParking(oldFirstShip.get(), newFirstShip.get(), system);
+	HandleFlagshipParking(oldFirstShip.get(), newFirstShip.get());
 	flagship.reset();
 }
 
@@ -1387,7 +1377,7 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 		Ship *newFirstShip = ships.front().get();
 		// Check if the position of the flagship has changed, and the ship in the first position
 		// can be a flagship and is in the current system.
-		HandleFlagshipParking(oldFirstShip, newFirstShip, system);
+		HandleFlagshipParking(oldFirstShip, newFirstShip);
 		flagship.reset();
 	}
 	else
@@ -4605,6 +4595,19 @@ void PlayerInfo::Fine(UI *ui)
 		}
 		else
 			ui->Push(new Dialog(message));
+	}
+}
+
+
+
+void PlayerInfo::HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip)
+{
+	if(Preferences::Has("Automatically unpark flagship") && newFirstShip != oldFirstShip
+		&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
+	{
+		newFirstShip->SetIsParked(false);
+		oldFirstShip->SetIsParked(true);
+		UpdateCargoCapacities();
 	}
 }
 
