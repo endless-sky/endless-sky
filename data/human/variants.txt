@@ -1428,29 +1428,6 @@ ship "Cruiser" "Cruiser (Jump Plasma Anti-Missile)"
 
 
 
-ship "Cutthroat" "Cutthroat (Jousting)"
-	outfits
-		"Twin Modified Blaster" 2
-		"Heavy Rocket Pod" 2
-		"Heavy Rocket Rack"
-		"Heavy Rocket" 14
-		
-		"Fission Reactor"
-		"Supercapacitor"
-		"Water Coolant System"
-		"D23-QP Shield Generator"
-		"Laser Rifle" 5
-		
-		"A520 Atomic Thruster"
-		"A255 Atomic Steering"
-		"Hyperdrive"
-	gun -21.5 -18 "Heavy Rocket Pod"
-	gun 21.5 -18 "Heavy Rocket Pod"
-	gun -11 -8.5 "Twin Modified Blaster"
-	gun 11 -8.5 "Twin Modified Blaster"
-
-
-
 ship "Dagger" "Dagger (Miner)"
 	outfits
 		"Mining Laser"

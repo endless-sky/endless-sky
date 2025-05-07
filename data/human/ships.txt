@@ -2626,7 +2626,7 @@ ship "Mammoth"
 	explode "large explosion" 40
 	explode "huge explosion" 20
 	"final explode" "final explosion large"
-	description "This is a rare, extensively modified Behemoth used by some pirates and smugglers to transport large amounts of goods. It is armed well enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
+	description "This is a rare, extensively modified Behemoth used by some pirates and smugglers to transport large amounts of goods to systems both near and far. It is armed well enough to handle even a Navy Frigate if caught and fast enough to dash away from anything bigger."
 
 
 
@@ -2967,7 +2967,7 @@ ship "Nighthawk"
 	explode "medium explosion" 15
 	explode "large explosion" 2
 	"final explode" "final explosion small"
-	description "Nighthawk."
+	description "The Nighthawk is the result of modifications to increase a Blackbird's passenger capacity for transportation of both lawless individuals and slavery, sacrificing much of the original cargo space. Additionally, at the cost of some shield strength, hull conversions have given the ship a bit more armor plating, along with another turret mount. This gives Nighthawks a bit more defense for combat situations that a Blackbird would not want to find itself in.`
 
 
 
@@ -3966,7 +3966,7 @@ ship "Valkyrie"
 	explode "medium explosion" 25
 	explode "large explosion" 10
 	"final explode" "final explosion medium"
-#	description "Valkyries are pirate Aeries converted into more of a standalone warship than a support carrier. Losing a turret and a few bunks in place of increased armor protection, as well as boasting two more gun mounts, allows Valkyries to both take and put out noticeable amounts of damage. However, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
+	description "Valkyries are modified Aeries that convert two of their bays and bunk space into more cargo space for smuggling goods, as well as more room to boast two extra gun mounts and increased armor protection. This allows Valkyries to both take and put out noticeable amounts of damage, however, due to the extra weight, they are somewhat slower and lose a bit of shield efficiency."
 
 
 
