@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "CategoryList.h"
 #include "ClickZone.h"
 #include "Mission.h"
 #include "OutfitInfoDisplay.h"
@@ -31,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class CategoryList;
 class Outfit;
 class Planet;
 class PlayerInfo;

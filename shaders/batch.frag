@@ -1,5 +1,5 @@
-/* JumpTypes.h
-Copyright (c) 2022 by Amazinite
+/* batch.frag
+Copyright (c) 2017 by Michael Zahniser
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -13,13 +13,22 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#pragma once
+precision mediump float;
+precision mediump sampler2DArray;
 
+uniform sampler2DArray tex;
+uniform float frameCount;
 
+in vec3 fragTexCoord;
+in float fragAlpha;
+out vec4 finalColor;
 
-// All possible jump methods for a ship.
-enum class JumpType : int {
-	NONE,
-	HYPERDRIVE,
-	JUMP_DRIVE,
-};
+void main() {
+	float first = floor(fragTexCoord.z);
+	float second = mod(ceil(fragTexCoord.z), frameCount);
+	float fade = fragTexCoord.z - first;
+	finalColor = mix(
+		texture(tex, vec3(fragTexCoord.xy, first)),
+		texture(tex, vec3(fragTexCoord.xy, second)), fade);
+	finalColor *= vec4(fragAlpha);
+}

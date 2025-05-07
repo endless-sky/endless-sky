@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ship/ShipAICache.h"
 #include "ShipJumpNavigation.h"
 
+#include <array>
 #include <list>
 #include <map>
 #include <memory>
@@ -50,6 +51,7 @@ class Planet;
 class PlayerInfo;
 class Projectile;
 class StellarObject;
+class Swizzle;
 class System;
 class Visual;
 
@@ -92,7 +94,7 @@ public:
 
 	class EnginePoint : public Point {
 	public:
-		EnginePoint(double x, double y, double zoom) : Point(x, y), zoom(zoom) {}
+		EnginePoint(Point pos, double zoom) : Point(pos), zoom(zoom) {}
 
 		uint8_t side = 0;
 		static const uint8_t UNDER = 0;
@@ -106,6 +108,13 @@ public:
 		double zoom;
 		Angle facing;
 		Angle gimbal;
+	};
+
+	enum class ThrustKind {
+		LEFT = 0,
+		RIGHT = 1,
+		FORWARD = 2,
+		REVERSE = 3,
 	};
 
 	enum class CanFireResult {
@@ -303,7 +312,8 @@ public:
 	// Check if this ship is allowed to enter this system, accounting for its personality.
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
-	int CustomSwizzle() const;
+	const Swizzle *CustomSwizzle() const;
+	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -355,8 +365,10 @@ public:
 	// Get the maximum shield and hull values of the ship, accounting for multipliers.
 	double MaxShields() const;
 	double MaxHull() const;
-	// Get the actual shield level of the ship.
+	// Get the absolute shield, hull, and fuel levels of the ship.
 	double ShieldLevel() const;
+	double HullLevel() const;
+	double FuelLevel() const;
 	// Get how disrupted this ship's shields are.
 	double DisruptionLevel() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the
@@ -416,6 +428,9 @@ public:
 	double TrueTurnRate() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
+
+	double ThrustHeldFraction(ThrustKind kind) const;
+	uint8_t ThrustHeldFrames(ThrustKind kind) const;
 
 	// This ship just got hit by a weapon. Take damage according to the
 	// DamageDealt from that weapon. The return value is a ShipEvent type,
@@ -568,6 +583,9 @@ private:
 	double CalculateAttraction() const;
 	double CalculateDeterrence() const;
 
+	// Increment the duration a thruster direction has been held.
+	void IncrementThrusterHeld(ThrustKind kind);
+
 	// Helper function for jettisoning flotsam.
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
@@ -617,7 +635,8 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	int customSwizzle = -1;
+	const Swizzle *customSwizzle = nullptr;
+	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.
@@ -691,6 +710,8 @@ private:
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// The amount of time in frames that an engine has been on for.
+	std::array<uint8_t, 4> thrustHeldFrames = {};
 
 	int crew = 0;
 	int pilotError = 0;

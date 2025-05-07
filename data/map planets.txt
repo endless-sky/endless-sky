@@ -338,7 +338,7 @@ planet Arroharg
 	security 0.9
 
 planet Asgard
-	attributes deep factory research rich urban
+	attributes deep education factory research rich urban
 	landscape land/city13-sfiera
 	description `Asgard was one of the first worlds to be settled in the Deep. It is now home to many crowded cities, with soaring skyscrapers that are made of lightweight composite materials rather than the steel and concrete so commonly used elsewhere.`
 	description `	This is also the home of Deep Sky, a manufacturing firm that produces a wide variety of expensive and useful starship equipment.`
@@ -450,8 +450,8 @@ planet Babiali
 planet Baianus
 	attributes frozen uninhabited
 	landscape land/snow20
-	description `This frozen water world is reminiscent of Titan back in Sol: the surface is little more than a shattered wasteland of ice and the occasional rock outcropping, but the unbreathably thin atmosphere contains countless tantalizing traces of chemicals that suggest that something more might exist below the surface.`
-	description `	Unlike Titan, however, Baianus is regularly wracked by both waves of heat and energy, and a stay of any length on the surface is likely to see waves of auroras accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
+	description `From a distance, this large, icy moon is superficially reminiscent of Enceladus back in Sol: it is similarly exposed to its giant parent's radiation belts, and scans indicate countless tantalizing traces of chemicals that suggest there may be something more to the moon than it appears.`
+	description `	Unlike Enceladus, however, the surface of Baianus is regularly wracked by both waves of heat and energy. A stay of any length on the surface is likely to see waves of auroras swirl through its unbreathably thin atmosphere, accompanied by glows and sparks rippling across the terrain. Your environmental system strongly recommends remaining inside your ship whenever ion storms are active.`
 
 planet Bailey
 	attributes ccor frontier mining pirate south "south pirate"
@@ -854,7 +854,7 @@ planet "Charybdis Station"
 		fleet "Small Syndicate" 4
 
 planet Chiron
-	attributes factory "near earth" research urban
+	attributes education factory "near earth" research urban
 	landscape land/city21
 	description `Chiron is the only planet outside the solar system that was colonized by humanity prior to the discovery of the hyperdrive. It is now the second most populous planet in the Republic, with many sprawling cities and a burgeoning pollution problem.`
 	description `	Although Earth still has the most prestigious universities in the galaxy, Chiron has become the de-facto leader in higher education, catering to those who value excellent teaching more highly than an illustrious name. As a result, off-world students form a noticeable fraction of the population.`
@@ -969,7 +969,7 @@ planet "Cool Forest"
 	security 0.3
 
 planet Cornucopia
-	attributes farming forest frontier research south
+	attributes education farming forest frontier research south
 	landscape land/fields0
 	description `Cornucopia is a mostly agrarian world, and like several of its neighbors it has been inhabited since the early days of interstellar travel, when settlers seeking to get as far as possible from old Earth and its troubles landed here.`
 	description `	Through careful stewardship and attention to the rhythms and balances of nature, generation after generation of farmers have transformed this world into one of the most fertile in human space. The Cornucopia College of Agriculture is famous, and justly so.`
@@ -1368,7 +1368,7 @@ planet "Dwelling of Speloog"
 	security 0.4
 
 planet Earth
-	attributes factory "near earth" research tourism urban
+	attributes education factory "near earth" research tourism urban
 	landscape land/city20
 	description `The ancestral home world of humanity, Earth has a population twice that of any other inhabited planet. Sprawling cities cover large portions of its surface, many of them overcrowded and dangerous. Some people work to scrape together enough money to leave, while at the same time others, born on distant worlds, make a pilgrimage of sorts to see this planet that once cradled the entirety of the human species.`
 	description `	Earth is also the capital of the Republic. Representative government becomes complicated when one planet has a greater population than a hundred planets elsewhere. As a result, settlements of less than a million are grouped together into planetary districts that elect a single representative between them - a source of much frustration in the frontier worlds.`
@@ -2171,7 +2171,7 @@ planet "Glittering Ice"
 	security 0.3
 
 planet Glory
-	attributes medical paradise research
+	attributes education medical paradise research
 	landscape land/garden1
 	description `Elsewhere in the galaxy, people speak dismissively of the "boughten sunshine" that rich terraformed worlds can afford. On Glory, even many of the lakes and hills are artificial, crafted to garden-like perfection.`
 	description `	Fittingly, the chief industry on Glory is plastic surgery, along with other medical efforts aimed at prolonging life, funded by rich, elderly folks who have settled here.`
@@ -2444,7 +2444,7 @@ planet Helheim
 		fleet "Small Deep Security" 15
 
 planet Hephaestus
-	attributes core factory research urban
+	attributes core education factory research urban
 	landscape land/city0
 	description `Hephaestus is home to Syndicated Systems, which manufactures parts used in shipyards throughout human space. Although not always the highest quality or most technologically advanced, ship outfits produced by the Syndicate are quite affordable and sufficient for any ordinary pilot's needs. The executives of many other companies have been known to make a pilgrimage of sorts to this planet, to witness firsthand how the Syndicate has made their production lines here so efficient and dependable.`
 	description `	Nearly all the inhabitants of Hephaestus live in a single metropolitan area that has spread to cover almost an eighth of the total land mass. As with many Syndicate worlds, pollution is a growing problem that they are working hard to address.`
@@ -4652,10 +4652,10 @@ planet Raaqa-Uur-Kaav
 		to display
 			has "trusted by the successors"
 	port "Space_port"
-		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms, which sprout up from seams in the pavement and wave in the breeze. Nearer what once was the main body of the port, millennia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the gossamer flying creatures which perch around the whole area.`
 			to display
 				not "trusted by the successors"
-		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millenia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
+		description `What was once this moon's spaceport is now a field of flowers. The landing pad upon which your ship rests has been overtaken by a host of tall blue ribbon-like blossoms for which the Successor name translates to something along the lines of "thread lilies." Nearer what once was the main body of the port, millennia-old flowerboxes are dense with spiky orange blooms that recede when touched and shed seed pods onto the empty walkways, where they are eventually snapped up by the wild gossamer-winged "Kijra"-pets which, like the moon as a whole, have thrived in the absence of their Predecessor masters.`
 			to display
 				has "trusted by the successors"
 
@@ -4840,7 +4840,7 @@ planet Ruin
 		description `	A few insectoid robots scuttle slowly across the tanks and landing pads, removing ice and rust and lichen and polishing the surfaces of the tanks. No living creatures are present.`
 
 planet Rust
-	attributes factory farming research rim
+	attributes education factory farming research rim
 	landscape land/fields8
 	description `Rust is smaller than Earth, but very similar in climate. Much of its surface is suitable for agriculture, with wide open grasslands and dense forests. There are very few mountains, since the planet has low levels of tectonic activity.`
 	description `	The chief industry on Rust, however, are the factories and labs for Kraz Cybernetics, a maker of robots, computers, and advanced weapons systems. The planet's population is not large, but the schools are among the best in the region, and many of the inhabitants - even those who live on the farms - hold at least one advanced degree.`
@@ -5112,7 +5112,7 @@ planet "Setar Fort"
 	attributes efret frozen korath
 	landscape land/snow5
 	description `There are several large Korath cities on this planet, but the ones farther from the equator have been covered by encroaching glaciers as the planet slowly enters a new ice age. A small number of crops are still grown in the open air, but many of the fields have now been covered with row upon row of gleaming glass as the Korath resort to greenhouse farming to lengthen the growing season and feed their remaining population more efficiently. Farther from the city, Korath ranchers tend herds of creatures that resemble giant, six-legged yaks.`
-	spaceport `This spaceport is the only place where you have ever encountered the Korath cooking food that actually smells appetizing. But in other places, the stench of the enormous cattle that they are trading more than makes up for it. Occasionally as you walk by the stalls, one of the cattle will lower its head to sniff at you. They seem docile enough, although perhaps a bit undernourished, but their horns are alarming.`
+	spaceport `This spaceport is the only place where you have encountered Efreti food that actually smells appetizing, possibly the Korath equivalent of barbecue. Go any further, however, and the smell of animals in corrals ruins your appetite. Occasionally, as you walk by the stalls, one of the cattle will lower its head to sniff at you. The yaks seem docile enough, if a bit undernourished, but their horns are alarming.`
 	outfitter "Korath Basics"
 
 planet "Shadow of Leaves"
@@ -5990,7 +5990,7 @@ planet Vail
 		fleet "Large Republic" 11
 
 planet Valhalla
-	attributes deep factory farming fishing research urban
+	attributes deep education factory farming fishing research urban
 	landscape land/mfield3
 	description `Valhalla was the first world to be settled in this region of space, which is known as the Deep. It is rich in natural resources, but all its vast farms and fisheries are insufficient to feed its population of over five billion.`
 	description `	The shipyards of Lionheart Industries are located here. Centuries ago, warships built here turned the tide of the Alpha War, and today the ships designed and built in the Deep continue to be some of the most technologically advanced ships in human space - and the most expensive.`
@@ -6074,9 +6074,10 @@ planet "Vara K'chrai"
 	landscape land/sea16-harro
 	description `This is the most populous Wanderer world, with dozens of large cities. The tallest buildings branch and cantilever out from their bases like metallic trees. More than half the surface of the planet is ocean, with a few small settlements built on massive living rafts of algae and seaweed, perhaps ten meters thick and up to several kilometers wide. Much of the land is forests, with villages built entirely in the treetops.`
 	description `	There are also farms here, but more like gardens or parks than a human farm: each with dozens of species of plants growing side by side, and harvested by autonomous robots.`
-	spaceport `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
-	shipyard "Wanderer Advanced"
-	outfitter "Wanderer Advanced"
+	port
+		recharges fuel
+		news
+		description `The streets in the Wanderer capital city seem to be mostly reserved for cargo vehicles; the Wanderers themselves fly from one building to another instead, and the skyscrapers have balconies dozens of stories above the ground where visitors can land or take off. The air traffic seems utterly chaotic, but somehow they avoid colliding with each other in midair, and certain columns of airspace have been reserved for ships taking off and landing so that flying Wanderers will not get caught in the backwash from the ship engines.`
 	bribe 0
 	tribute 8000
 		threshold 14000

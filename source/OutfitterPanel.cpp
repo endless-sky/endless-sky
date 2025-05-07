@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "OutfitterPanel.h"
 
-#include "text/alignment.hpp"
+#include "text/Alignment.h"
 #include "comparators/BySeriesAndIndex.h"
 #include "Color.h"
 #include "Dialog.h"
@@ -36,7 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
-#include "text/truncate.hpp"
+#include "text/Truncate.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -127,17 +127,14 @@ namespace {
 
 
 
-OutfitterPanel::OutfitterPanel(PlayerInfo &player)
-	: ShopPanel(player, true)
+OutfitterPanel::OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock)
+	: ShopPanel(player, true), outfitter(stock)
 {
 	for(const pair<const string, Outfit> &it : GameData::Outfits())
 		catalog[it.second.Category()].push_back(it.first);
 
 	for(pair<const string, vector<string>> &it : catalog)
 		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
-
-	if(player.GetPlanet())
-		outfitter = player.GetPlanet()->Outfitter();
 
 	for(auto &ship : player.Ships())
 		if(ship->GetPlanet() == planet)
@@ -1180,6 +1177,15 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 	font.Draw({name, {OUTFIT_SIZE, Alignment::CENTER, Truncate::MIDDLE}},
 		center + offset, Color((isSelected | isOwned) ? .8 : .5, 0.));
 }
+
+
+
+/*
+bool OutfitterPanel::IsLicense(const string &name) const
+{
+	return name.ends_with(" License");
+}
+*/
 
 
 
