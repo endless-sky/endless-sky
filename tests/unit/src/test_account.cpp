@@ -49,10 +49,10 @@ SCENARIO( "Creating an Account" , "[Account][Creation]" ) {
 				REQUIRE( account.TotalDebt() == 10000 );
 			}
 		}
-		WHEN( "Mortage is added" ){
+		WHEN( "Mortgage is added" ) {
 			REQUIRE(account.Credits() == 0);
 			account.AddMortgage(200);
-			THEN(" Mortgage is increased" ){
+			THEN( "The credits increased and the mortgage was added" ) {
 				REQUIRE( account.Credits() == 200);
 				REQUIRE( account.Mortgages().back().Type() == "Mortgage" );
 				REQUIRE( account.Mortgages().back().Principal() == 200);
