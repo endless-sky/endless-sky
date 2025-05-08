@@ -51,7 +51,7 @@ public:
 	/// Moves the sound to the specified point in 3D. Ignored if the player is not initialized.
 	virtual void Move(double x, double y, double z) const;
 
-	/// The category of the sound being played
+	/// The category of the sound being played.
 	SoundCategory Category() const;
 
 	virtual void Pause() const;
@@ -78,19 +78,19 @@ protected:
 
 
 protected:
-	/// The maximum number of buffers to queue up synchronously when the player is initialized
+	/// The maximum number of buffers to queue up synchronously when the player is initialized.
 	static constexpr int MAX_INITIAL_BUFFERS = 3;
 
 	SoundCategory category;
 
-	/// The configured source, or 0
+	/// The configured source, or 0.
 	ALuint alSource = 0;
-	/// The data supplier; never null
+	/// The data supplier; never null.
 	std::unique_ptr<AudioSupplier> audioSupplier;
 
-	/// Whether the player has terminated
+	/// Whether the player has terminated.
 	bool done = false;
-	/// Whether the player should stop queueing up more buffers (and terminate, once they all run out)
+	/// Whether the player should stop queueing up more buffers (and terminate, once they all run out).
 	bool shouldStop = false;
 
 

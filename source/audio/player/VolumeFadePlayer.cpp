@@ -15,9 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "VolumeFadePlayer.h"
 
+using namespace std;
 
 
-VolumeFadePlayer::VolumeFadePlayer(SoundCategory category, std::unique_ptr<AudioSupplier> audioSupplier)
+
+VolumeFadePlayer::VolumeFadePlayer(SoundCategory category, unique_ptr<AudioSupplier> audioSupplier)
 	: AudioPlayer(category, std::move(audioSupplier))
 {
 }
@@ -47,7 +49,3 @@ void VolumeFadePlayer::FadeOut()
 {
 	isFading = true;
 }
-
-
-
-

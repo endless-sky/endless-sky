@@ -88,7 +88,7 @@ vector<int16_t> Fade::NextDataChunk()
 		result = primarySource->NextDataChunk();
 	else
 	{
-		// Generate the faded background
+		// Generate the faded background.
 		vector<int16_t> faded = fadeProgress[0].first->NextDataChunk();
 		for(size_t i = 1; i < fadeProgress.size(); i++)
 		{
@@ -97,20 +97,20 @@ vector<int16_t> Fade::NextDataChunk()
 			faded = std::move(other);
 		}
 
-		// Get the foreground data
+		// Get the foreground data.
 		if(primarySource)
 			result = primarySource->NextDataChunk();
 		else
 			result.resize(OUTPUT_CHUNK); // silence
 
-		// final blend
+		// The final blend.
 		CrossFade(faded, result, fadeProgress.back().second);
 	}
 
 	// Clean up the finished sources.
 	if(primarySource && !primarySource->MaxChunkCount())
 		primarySource.reset();
-	erase_if(fadeProgress, [](const auto &pair){return !pair.second || !pair.first->MaxChunkCount();});
+	erase_if(fadeProgress, [](const auto &pair){ return !pair.second || !pair.first->MaxChunkCount(); });
 
 	return result;
 }
@@ -125,6 +125,7 @@ ALuint Fade::AwaitNextChunk()
 	NextChunk(buffer);
 	return buffer;
 }
+
 
 
 void Fade::ReturnBuffer(ALuint buffer)

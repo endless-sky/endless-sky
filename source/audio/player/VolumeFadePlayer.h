@@ -32,7 +32,7 @@ public:
 
 private:
 	/// How much to decrease the volume per frame.
-	static constexpr float VOLUME_DECREASE = 0.05;
+	static constexpr float VOLUME_DECREASE = .05f;
 
 	bool isFading = false;
 };

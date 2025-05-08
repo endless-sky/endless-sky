@@ -34,8 +34,8 @@ public:
 	explicit AudioSupplier(bool is3x = false);
 	virtual ~AudioSupplier() = default;
 
-	AudioSupplier(const AudioSupplier&) = delete;
-	AudioSupplier(AudioSupplier&&) = default;
+	AudioSupplier(const AudioSupplier &) = delete;
+	AudioSupplier(AudioSupplier &&) = default;
 
 	/// The estimated number of non-silent chunks that can be supplied by further NextChunk() or AwaitNextChunk() calls.
 	/// Never less than AvailableChunks(), and is always zero when the supplier can't provide new chunks anymore.

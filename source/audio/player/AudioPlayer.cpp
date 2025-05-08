@@ -23,7 +23,7 @@ using namespace std;
 
 
 
-std::vector<ALuint> AudioPlayer::availableSources{};
+vector<ALuint> AudioPlayer::availableSources{};
 
 
 
@@ -55,8 +55,9 @@ void AudioPlayer::Update()
 	if(!buffersDone)
 		return;
 
-	if(!audioSupplier->MaxChunkCount() || shouldStop) // no chunks left to play
+	if(!audioSupplier->MaxChunkCount() || shouldStop)
 	{
+		// No chunks left to play.
 		ALint buffersQueued = 0;
 		alGetSourcei(alSource, AL_BUFFERS_QUEUED, &buffersQueued);
 
@@ -67,7 +68,7 @@ void AudioPlayer::Update()
 		{
 			// All queued buffers finished, and we don't have any others left. Playback has finished.
 			// Unqueue all buffers and return them, then release the source.
-			std::vector<ALuint> buffers(buffersDone);
+			vector<ALuint> buffers(buffersDone);
 			alSourceUnqueueBuffers(alSource, buffers.size(), buffers.data());
 
 			for(ALuint buffer : buffers)
@@ -177,7 +178,7 @@ void AudioPlayer::Init()
 
 	int bufferCount = clamp(audioSupplier->MaxChunkCount(), 1, MAX_INITIAL_BUFFERS);
 
-	std::vector<ALuint> buffers;
+	vector<ALuint> buffers(bufferCount);
 	for(int i = 0; i < bufferCount; ++i)
 		buffers.emplace_back(audioSupplier->AwaitNextChunk());
 

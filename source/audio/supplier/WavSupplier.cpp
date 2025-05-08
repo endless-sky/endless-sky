@@ -18,8 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Sound.h"
 
 
+
 WavSupplier::WavSupplier(const Sound &sound, bool is3x, bool looping)
-		: AudioSupplier(is3x), sound(sound), looping(looping), wasBufferGiven(false)
+	: AudioSupplier(is3x), sound(sound), looping(looping), wasBufferGiven(false)
 {
 }
 

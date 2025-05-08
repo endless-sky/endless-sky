@@ -57,6 +57,6 @@ unique_ptr<AudioDataSupplier> Music::CreateSupplier(const string &name, bool loo
 {
 	if(paths.contains(name))
 		return unique_ptr<AudioDataSupplier>{
-				new Mp3Supplier(Files::Open(paths[name]), looping)};
+				new Mp3Supplier{Files::Open(paths[name]), looping}};
 	return {};
 }

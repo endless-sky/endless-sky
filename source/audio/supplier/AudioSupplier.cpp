@@ -15,7 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AudioSupplier.h"
 
-#include <cstring>
+using namespace std;
+
 
 
 AudioSupplier::AudioSupplier(bool is3x)
@@ -33,6 +34,6 @@ void AudioSupplier::Set3x(bool is3x)
 
 void AudioSupplier::SetSilence(ALuint buffer, size_t frames)
 {
-	std::vector<int16_t> data(frames);
+	vector<int16_t> data(frames);
 	alBufferData(buffer, AL_FORMAT_STEREO16, data.data(), 2 * frames, 44100);
 }

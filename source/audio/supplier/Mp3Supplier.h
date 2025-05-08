@@ -30,7 +30,7 @@ public:
 	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
 	~Mp3Supplier();
 
-	// Inherited pure virtual methods
+	// Inherited pure virtual methods.
 	ALsizei MaxChunkCount() const override;
 	int AvailableChunks() const override;
 	bool IsSynchronous() const override;
@@ -45,12 +45,12 @@ private:
 	void Decode();
 
 private:
-	/// The number of chunks to queue up in the buffer
+	/// The number of chunks to queue up in the buffer.
 	static constexpr size_t BUFFER_CHUNK_SIZE = 2;
-	/// The decoded data
+	/// The decoded data.
 	std::vector<int16_t> buffer;
 
-	/// The MP3 input stream
+	/// The MP3 input stream.
 	std::shared_ptr<std::iostream> data;
 
 	bool done = false;

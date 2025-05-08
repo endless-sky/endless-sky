@@ -391,7 +391,7 @@ void Audio::Step(bool isFastForward)
 		player->Update();
 	}
 
-	erase_if(players, [](const auto &player){return player->IsFinished();});
+	erase_if(players, [](const auto &player){ return player->IsFinished(); });
 
 	// Now, what is left in the queue is sounds that want to play, and that do
 	// not correspond to an existing source.
@@ -402,11 +402,11 @@ void Audio::Step(bool isFastForward)
 		shared_ptr<AudioPlayer> player;
 		if(sound->IsLooping())
 		{
-			player = shared_ptr<AudioPlayer>{new VolumeFadePlayer(entry.category, std::move(supplier))};
+			player = shared_ptr<AudioPlayer>{new VolumeFadePlayer{entry.category, std::move(supplier)}};
 			loopingPlayers.emplace(sound, player);
 		}
 		else
-			player = shared_ptr<AudioPlayer>{new AudioPlayer(entry.category, std::move(supplier))};
+			player = shared_ptr<AudioPlayer>{new AudioPlayer{entry.category, std::move(supplier)}};
 
 		player->Init();
 		player->SetVolume(Volume(entry.category));

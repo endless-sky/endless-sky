@@ -26,7 +26,7 @@ using namespace std;
 
 
 
-Mp3Supplier::Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping)
+Mp3Supplier::Mp3Supplier(shared_ptr<iostream> data, bool looping)
 	: data(std::move(data)), looping(looping)
 {
 	// Don't start the thread until this object is fully constructed.
@@ -102,9 +102,7 @@ vector<int16_t> Mp3Supplier::NextDataChunk()
 		return temp;
 	}
 	else
-	{
 		return vector<int16_t>(OUTPUT_CHUNK);
-	}
 }
 
 
