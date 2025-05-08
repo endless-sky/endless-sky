@@ -501,7 +501,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 		for(const NPC &npc : npcs)
 			npc.Save(out);
-		for(const Timer &timer : timers)
+		for(const MissionTimer &timer : timers)
 			timer.Save(out);
 
 		// Save all the actions, because this might be an "available mission" that
@@ -965,7 +965,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 		if(!npc.HasSucceeded(player.GetSystem()))
 			return false;
 	// All non-optional timers must be complete.
-	for(const Timer &timer : timers)
+	for(const MissionTimer &timer : timers)
 		if(!timer.IsOptional() && !timer.IsComplete())
 			return false;
 
@@ -1240,7 +1240,7 @@ void Mission::UpdateNPCs(const PlayerInfo &player)
 // Iterate through the timers and progress them if applicable.
 void Mission::StepTimers(PlayerInfo &player, UI *ui)
 {
-	for(Timer &timer : timers)
+	for(MissionTimer &timer : timers)
 		timer.Step(player, ui, *this);
 }
 
@@ -1566,7 +1566,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
 
 	// Instantiate the timers.
-	for(const Timer &timer : timers)
+	for(const MissionTimer &timer : timers)
 		result.timers.push_back(timer.Instantiate(subs, sourceSystem, jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that

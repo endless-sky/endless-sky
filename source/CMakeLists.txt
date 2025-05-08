@@ -187,6 +187,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
+	MissionTimer.cpp
+	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp
@@ -303,8 +305,6 @@ target_sources(EndlessSkyLib PRIVATE
 	TextArea.h
 	TextReplacements.cpp
 	TextReplacements.h
-	Timer.cpp
-	Timer.h
 	Trade.cpp
 	Trade.h
 	TradingPanel.cpp

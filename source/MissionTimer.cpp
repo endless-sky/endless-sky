@@ -1,4 +1,4 @@
-/* Timer.cpp
+/* MissionTimer.cpp
 Copyright (c) 2023 by Timothy Collett
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License along with
 this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Timer.h"
+#include "MissionTimer.h"
 
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -29,13 +29,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	string TriggerToText(Timer::TimerTrigger trigger)
+	string TriggerToText(MissionTimer::TimerTrigger trigger)
 	{
 		switch(trigger)
 		{
-			case Timer::TimerTrigger::TIMEUP:
+			case MissionTimer::TimerTrigger::TIMEUP:
 				return "on timeup";
-			case Timer::TimerTrigger::RESET:
+			case MissionTimer::TimerTrigger::RESET:
 				return "on reset";
 			default:
 				return "unknown trigger";
@@ -45,14 +45,14 @@ namespace {
 
 
 
-Timer::Timer(const DataNode &node, const ConditionsStore *playerConditions)
+MissionTimer::MissionTimer(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	Load(node, playerConditions);
 }
 
 
 
-void Timer::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	for(const DataNode &child : node)
 	{
@@ -120,7 +120,7 @@ void Timer::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 
 
-void Timer::Save(DataWriter &out) const
+void MissionTimer::Save(DataWriter &out) const
 {
 	// If this Timer should no longer appear in-game, don't serialize it.
 	if(isComplete)
@@ -164,9 +164,9 @@ void Timer::Save(DataWriter &out) const
 
 
 
-Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
+MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
 {
-	Timer result;
+	MissionTimer result;
 	result.optional = optional;
 	result.pauses = pauses;
 	result.repeatReset = repeatReset;
@@ -207,21 +207,21 @@ Timer Timer::Instantiate(map<string, string> &subs, const System *origin, int ju
 
 
 
-bool Timer::IsOptional() const
+bool MissionTimer::IsOptional() const
 {
 	return optional;
 }
 
 
 
-bool Timer::IsComplete() const
+bool MissionTimer::IsComplete() const
 {
 	return isComplete;
 }
 
 
 
-void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
+void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 {
 	if(isComplete)
 		return;
@@ -312,7 +312,7 @@ void Timer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 
 
 
-void Timer::Deactivate(PlayerInfo &player, UI *ui, const Mission &mission)
+void MissionTimer::Deactivate(PlayerInfo &player, UI *ui, const Mission &mission)
 {
 	// If the timer wasn't active the frame before, don't do anything.
 	if(!isActive)

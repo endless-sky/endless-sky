@@ -21,9 +21,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
+#include "MissionTimer.h"
 #include "NPC.h"
 #include "TextReplacements.h"
-#include "Timer.h"
 
 #include <list>
 #include <map>
@@ -277,7 +277,7 @@ private:
 	// NPCs:
 	std::list<NPC> npcs;
 	// Timers:
-	std::list<Timer> timers;
+	std::list<MissionTimer> timers;
 
 	// Actions to perform:
 	std::map<Trigger, MissionAction> actions;

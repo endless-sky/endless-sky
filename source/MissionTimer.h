@@ -1,4 +1,4 @@
-/* Timer.h
+/* MissionTimer.h
 Copyright (c) 2023 by Timothy Collett
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -35,7 +35,7 @@ class UI;
 // down a certain number of frames before triggering if the player meets the
 // conditions for the timer starting (e.g. the player is moving slowly or is near
 // a certain object), but may be reset by various actions the player takes.
-class Timer {
+class MissionTimer {
 public:
 	// The possible triggers for actions on this timer.
 	enum class TimerTrigger {
@@ -45,16 +45,16 @@ public:
 
 
 public:
-	Timer() = default;
-	Timer(const DataNode &node, const ConditionsStore *playerConditions);
+	MissionTimer() = default;
+	MissionTimer(const DataNode &node, const ConditionsStore *playerConditions);
 	// Set up the timer from its data file node.
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
-	// Note: the Save() function can assume this is an instantiated Timer, not a template,
+	// Note: the Save() function can assume this is an instantiated MissionTimer, not a template,
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted.
 	void Save(DataWriter &out) const;
 
 	// Calculate the total time to wait, including any random value.
-	Timer Instantiate(std::map<std::string, std::string> &subs, const System *origin,
+	MissionTimer Instantiate(std::map<std::string, std::string> &subs, const System *origin,
 		int jumps, int64_t payload) const;
 
 	// Get whether the timer is optional to complete.
