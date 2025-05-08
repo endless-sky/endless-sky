@@ -27,6 +27,7 @@ class DataNode;
 class DataWriter;
 class Planet;
 class PlayerInfo;
+class Ship;
 class UI;
 
 
@@ -66,6 +67,8 @@ public:
 
 
 private:
+	// Determine if the player meets the criteria for this timer to be active.
+	bool CanActivate(const Ship *flagship, PlayerInfo &player) const;
 	// The player does not meet the criteria for this timer to be active.
 	// Deactivate the timer and determine if it should be reset.
 	void Deactivate(PlayerInfo &player, UI *ui, const Mission &mission);
@@ -75,14 +78,14 @@ private:
 	// The base number of frames to wait, with an optional maximum random added value.
 	int waitTime = 0;
 	int randomWaitTime = 0;
-
-	// The system the timer is for.
-	const System *system = nullptr;
-	// The filter for the systems it can be for.
-	LocationFilter systems;
-
 	// If set, the timer is not a necessary objection for the completion of its mission.
 	bool optional = false;
+	// If true, the timer pauses instead of reseting when deactivated.
+	bool pauses = false;
+
+	// Whether any of the activation requirements below are checked by this timer.
+	bool hasRequirements = false;
+
 	// Whether the timer requires the player to be idle.
 	bool requireIdle = false;
 	// The square of the speed threshold the player's flagship must be under to count as "idle".
@@ -95,6 +98,11 @@ private:
 	// Whether the player's flagship must be the only ship in their fleet in the system.
 	bool requireSolo = false;
 
+	// The system the timer is for.
+	const System *system = nullptr;
+	// The filter for the systems it can be for.
+	LocationFilter systems;
+
 	// Actions to be performed when triggers are fired.
 	std::map<TimerTrigger, MissionAction> actions;
 	// Actions that have already been performed.
@@ -102,8 +110,6 @@ private:
 
 	// The number of frames that have elapsed while the timer is active.
 	int timeElapsed = 0;
-	// If true, the timer pauses instead of reseting when deactivated.
-	bool pauses = false;
 	// Set to true when all the conditions are met for the timer to count down.
 	bool isActive = false;
 	// Set to true once the timer has run to completion.

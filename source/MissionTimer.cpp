@@ -71,39 +71,51 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 			optional = true;
 		else if(key == "pauses")
 			pauses = true;
-		else if(key == "idle")
+		else if(key == "activation requirements" && child.HasChildren())
 		{
-			requireIdle = true;
-			if(hasValue)
+			hasRequirements = true;
+			for(const DataNode &grand : child)
 			{
-				idleMaxSpeed = child.Value(1);
-				// We square the max speed value here, so it can be conveniently
-				// compared to the flagship's squared velocity length below.
-				idleMaxSpeed *= idleMaxSpeed;
+				const string &grandKey = grand.Token(0);
+				hasValue = grand.Size() >= 2;
+
+				if(grandKey == "idle")
+				{
+					requireIdle = true;
+					if(hasValue)
+					{
+						idleMaxSpeed = grand.Value(1);
+						// We square the max speed value here, so it can be conveniently
+						// compared to the flagship's squared velocity length below.
+						idleMaxSpeed *= idleMaxSpeed;
+					}
+				}
+				else if(grandKey == "peaceful")
+					requirePeaceful = true;
+				else if(grandKey == "cloaked")
+				{
+					requireCloaked = true;
+					requireUncloaked = false;
+				}
+				else if(grandKey == "uncloaked")
+				{
+					requireUncloaked = true;
+					requireCloaked = false;
+				}
+				else if(grandKey == "solo")
+					requireSolo = true;
+				else if(grandKey == "system")
+				{
+					if(hasValue)
+						system = GameData::Systems().Get(grand.Token(1));
+					else if(grand.HasChildren())
+						systems.Load(grand);
+					else
+						grand.PrintTrace("Skipping unrecognized attribute:");
+				}
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
 			}
-		}
-		else if(key == "peaceful")
-			requirePeaceful = true;
-		else if(key == "cloaked")
-		{
-			requireCloaked = true;
-			requireUncloaked = false;
-		}
-		else if(key == "uncloaked")
-		{
-			requireUncloaked = true;
-			requireCloaked = false;
-		}
-		else if(key == "requireSolo")
-			requireSolo = true;
-		else if(key == "system")
-		{
-			if(hasValue)
-				system = GameData::Systems().Get(child.Token(1));
-			else if(child.HasChildren())
-				systems.Load(child);
-			else
-				child.PrintTrace("Skipping unrecognized attribute:");
 		}
 		else if(key == "on" && hasValue)
 		{
@@ -148,22 +160,30 @@ void MissionTimer::Save(DataWriter &out) const
 			out.Write("optional");
 		if(pauses)
 			out.Write("pauses");
-		if(requireIdle)
-			out.Write("idle", sqrt(idleMaxSpeed));
-		if(requirePeaceful)
-			out.Write("peaceful");
-		if(requireCloaked)
-			out.Write("cloaked");
-		if(requireUncloaked)
-			out.Write("uncloaked");
-		if(requireSolo)
-			out.Write("solo");
-		if(system)
-			out.Write("system", system->TrueName());
-		else if(!systems.IsEmpty())
+		if(hasRequirements)
 		{
-			out.Write("system");
-			systems.Save(out);
+			out.Write("activation requirements");
+			out.BeginChild();
+			{
+				if(requireIdle)
+					out.Write("idle", sqrt(idleMaxSpeed));
+				if(requirePeaceful)
+					out.Write("peaceful");
+				if(requireCloaked)
+					out.Write("cloaked");
+				if(requireUncloaked)
+					out.Write("uncloaked");
+				if(requireSolo)
+					out.Write("solo");
+				if(system)
+					out.Write("system", system->TrueName());
+				else if(!systems.IsEmpty())
+				{
+					out.Write("system");
+					systems.Save(out);
+				}
+			}
+			out.EndChild();
 		}
 		if(!triggeredActions.empty())
 		{
@@ -192,6 +212,8 @@ MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *
 	MissionTimer result;
 	result.optional = optional;
 	result.pauses = pauses;
+
+	result.hasRequirements = hasRequirements;
 	result.requirePeaceful = requirePeaceful;
 	result.requireUncloaked = requireUncloaked;
 	result.requireCloaked = requireCloaked;
@@ -256,65 +278,8 @@ void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	if(flagship->Zoom() != 1. || flagship->IsHyperspacing())
 		return;
 
-	// Does the player's system match the system filter?
-	if((system && flagship->GetSystem() != system) ||
-		(!systems.IsEmpty() && !systems.Matches(flagship->GetSystem())))
-	{
-		Deactivate(player, ui, mission);
-		return;
-	}
-
-	// Does this timer require that the player is solo (i.e. there are
-	// no escorts in the system with the player)?
-	if(requireSolo)
-	{
-		const System *flagshipSystem = flagship->GetSystem();
-		for(const auto &escort : player.Ships())
-		{
-			// Using GetSystem instead of GetActualSystem so that docked
-			// fighters on the player's flagship don't count against them.
-			if(escort.get() != flagship && !escort->IsParked() && !escort->IsDestroyed()
-				&& escort->GetSystem() == flagshipSystem)
-			{
-				Deactivate(player, ui, mission);
-				return;
-			}
-		}
-	}
-
-	// Does this timer require that the player is idle?
-	if(requireIdle)
-	{
-		bool shipIdle = true;
-		// The player can't be sending movement commands.
-		if(!flagship->IsThrusting() && !flagship->IsSteering() && !flagship->IsReversing())
-			shipIdle = false;
-		// And their ship's velocity must be below the max speed threshold.
-		else if(flagship->Velocity().LengthSquared() < idleMaxSpeed)
-			shipIdle = false;
-		if(!shipIdle)
-		{
-			Deactivate(player, ui, mission);
-			return;
-		}
-	}
-
-	// Does this timer require that the player is peaceful?
-	if(requirePeaceful)
-	{
-		// If the player is required to be peaceful, then none of their weapons
-		// can have a fire command.
-		for(const Hardpoint &hardpoint : flagship->Weapons())
-			if(hardpoint.WasFiring())
-			{
-				Deactivate(player, ui, mission);
-				return;
-			}
-	}
-
-	// Does this timer require that the player is cloaked or uncloaked?
-	double cloaking = flagship->Cloaking();
-	if((requireUncloaked && cloaking) || (requireCloaked && cloaking != 1.))
+	// Determine if the player meets the activation requirements for this timer.
+	if(!CanActivate(flagship, player))
 	{
 		Deactivate(player, ui, mission);
 		return;
@@ -330,6 +295,63 @@ void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 			it->second.Do(player, ui, &mission);
 		isComplete = true;
 	}
+}
+
+
+
+bool MissionTimer::CanActivate(const Ship *flagship, PlayerInfo &player) const
+{
+	// If this timer has no requirements to check, then it should be active.
+	if(!hasRequirements)
+		return true;
+
+	// Does the player's system match the system filter?
+	if((system && flagship->GetSystem() != system) ||
+			(!systems.IsEmpty() && !systems.Matches(flagship->GetSystem())))
+		return false;
+
+	// Does this timer require that the player is solo (i.e. there are
+	// no escorts in the system with the player)?
+	if(requireSolo)
+	{
+		const System *flagshipSystem = flagship->GetSystem();
+		for(const auto &escort : player.Ships())
+		{
+			// Using GetSystem instead of GetActualSystem so that docked
+			// fighters on the player's flagship don't count against them.
+			if(escort.get() != flagship && !escort->IsParked() && !escort->IsDestroyed()
+					&& escort->GetSystem() == flagshipSystem)
+				return false;
+		}
+	}
+
+	// Does this timer require that the player is idle?
+	if(requireIdle)
+	{
+		// The player can't be sending movement commands.
+		if(!flagship->IsThrusting() && !flagship->IsSteering() && !flagship->IsReversing())
+			return false;
+		// And their ship's velocity must be below the max speed threshold.
+		if(flagship->Velocity().LengthSquared() < idleMaxSpeed)
+			return false;
+	}
+
+	// Does this timer require that the player is peaceful?
+	if(requirePeaceful)
+	{
+		// If the player is required to be peaceful, then none of their weapons
+		// can have a fire command.
+		for(const Hardpoint &hardpoint : flagship->Weapons())
+			if(hardpoint.WasFiring())
+				return false;
+	}
+
+	// Does this timer require that the player is cloaked or uncloaked?
+	double cloaking = flagship->Cloaking();
+	if((requireUncloaked && cloaking) || (requireCloaked && cloaking != 1.))
+		return false;
+
+	return true;
 }
 
 
