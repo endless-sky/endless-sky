@@ -109,7 +109,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 {
 	GIVEN( "A ConditionStore" )
 	{
-		WHEN( "it is just default initalized" )
+		WHEN( "it is just default initialized" )
 		{
 			const auto store = ConditionsStore();
 			THEN( "the store is empty" )
@@ -117,7 +117,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 				REQUIRE( store.PrimariesSize() == 0 );
 			}
 		}
-		WHEN( "initialized using an initalizer list" )
+		WHEN( "initialized using an initializer list" )
 		{
 			const auto store = ConditionsStore{ { "hello world", 100 }, { "goodbye world", 404 } };
 			THEN( "given primary conditions are in the Store" )

@@ -1277,7 +1277,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOu
 				for(const auto &it : shipToTake->Outfits())
 				{
 					// We only take all of the outfits specified in the model without putting them in the stock.
-					// The extra outfits of this ship are transfered into the stock.
+					// The extra outfits of this ship are transferred into the stock.
 					int amountToTake = 0;
 					if(model)
 					{
