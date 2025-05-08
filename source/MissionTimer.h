@@ -40,7 +40,7 @@ public:
 	// The possible triggers for actions on this timer.
 	enum class TimerTrigger {
 		TIMEUP,
-		RESET
+		DEACTIVATION
 	};
 
 
@@ -97,10 +97,8 @@ private:
 
 	// Actions to be performed when triggers are fired.
 	std::map<TimerTrigger, MissionAction> actions;
-	// Should the reset action be performed every time, or just the first time?
-	bool repeatReset = false;
-	// Has a reset been triggered before?
-	bool resetFired = false;
+	// Actions that have already been performed.
+	std::set<TimerTrigger> triggeredActions;
 
 	// The number of frames that have elapsed while the timer is active.
 	int timeElapsed = 0;

@@ -35,8 +35,8 @@ namespace {
 		{
 			case MissionTimer::TimerTrigger::TIMEUP:
 				return "on timeup";
-			case MissionTimer::TimerTrigger::RESET:
-				return "on reset";
+			case MissionTimer::TimerTrigger::DEACTIVATION:
+				return "on deactivation";
 			default:
 				return "unknown trigger";
 		}
@@ -71,10 +71,6 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 			optional = true;
 		else if(key == "pauses")
 			pauses = true;
-		else if(key == "repeat reset")
-			repeatReset = true;
-		else if(key == "reset fired")
-			resetFired = true;
 		else if(key == "idle")
 		{
 			requireIdle = true;
@@ -109,10 +105,27 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(key == "on" && hasValue && child.Token(1) == "timeup")
-			actions[TimerTrigger::TIMEUP].Load(child, playerConditions);
-		else if(key == "on" && hasValue && child.Token(1) == "reset")
-			actions[TimerTrigger::RESET].Load(child, playerConditions);
+		else if(key == "on" && hasValue)
+		{
+			const string &trigger = child.Token(1);
+			if(trigger == "timeup")
+				actions[TimerTrigger::TIMEUP].Load(child, playerConditions);
+			else if(trigger == "deactivation")
+				actions[TimerTrigger::DEACTIVATION].Load(child, playerConditions);
+			else
+				child.PrintTrace("Skipping unrecognized attribute:");
+		}
+		else if(key == "triggered actions")
+		{
+			for(const DataNode &grand : child)
+			{
+				const string &trigger = grand.Token(0);
+				if(trigger == "deactivation")
+					triggeredActions.insert(TimerTrigger::DEACTIVATION);
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -135,10 +148,6 @@ void MissionTimer::Save(DataWriter &out) const
 			out.Write("optional");
 		if(pauses)
 			out.Write("pauses");
-		if(repeatReset)
-			out.Write("repeat reset");
-		if(resetFired)
-			out.Write("reset fired");
 		if(requireIdle)
 			out.Write("idle", sqrt(idleMaxSpeed));
 		if(requirePeaceful)
@@ -156,6 +165,19 @@ void MissionTimer::Save(DataWriter &out) const
 			out.Write("system");
 			systems.Save(out);
 		}
+		if(!triggeredActions.empty())
+		{
+			out.Write("triggered actions");
+			out.BeginChild();
+			{
+				for(const TimerTrigger &trigger : triggeredActions)
+				{
+					if(trigger == TimerTrigger::DEACTIVATION)
+						out.Write("deactivation");
+				}
+			}
+			out.EndChild();
+		}
 		for(const auto &it : actions)
 			it.second.Save(out);
 	}
@@ -170,7 +192,6 @@ MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *
 	MissionTimer result;
 	result.optional = optional;
 	result.pauses = pauses;
-	result.repeatReset = repeatReset;
 	result.requirePeaceful = requirePeaceful;
 	result.requireUncloaked = requireUncloaked;
 	result.requireCloaked = requireCloaked;
@@ -324,13 +345,12 @@ void MissionTimer::Deactivate(PlayerInfo &player, UI *ui, const Mission &mission
 	if(!pauses)
 		timeElapsed = 0;
 
-	// Perform the reset action, if there is one, assuming either it
-	// hasn't fired yet, or the timer is configured to fire it every reset.
-	if(repeatReset || !resetFired)
+	// Perform the DEACTIVATION action, if there is one, assuming it hasn't fired yet.
+	if(!triggeredActions.contains(TimerTrigger::DEACTIVATION))
 	{
-		auto it = actions.find(TimerTrigger::RESET);
+		auto it = actions.find(TimerTrigger::DEACTIVATION);
 		if(it != actions.end())
 			it->second.Do(player, ui, &mission);
-		resetFired = true;
+		triggeredActions.insert(TimerTrigger::DEACTIVATION);
 	}
 }
