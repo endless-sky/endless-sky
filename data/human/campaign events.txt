@@ -3357,7 +3357,7 @@ mission "Core Patch Links"
 	invisible
 	to offer
 		has "main plot completed"
-		not "visited system: Marfik"
+		not "core links correct"
 	on offer
 		event "core fix links patch"
 		fail

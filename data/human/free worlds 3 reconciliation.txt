@@ -2630,6 +2630,7 @@ mission "FW Syndicate Extremists 1C"
 		payment 5000000
 		event "stack core for sale"
 		"salary: Free Worlds" = 8900
+		set "core links correct"
 		set "main plot completed"
 		set "free worlds plot completed"
 		set "free worlds reconciliation"
