@@ -92,12 +92,7 @@ namespace {
 
 	bool IsLicense(const string &name)
 	{
-		if(name.length() < LICENSE.length())
-			return false;
-		if(name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE))
-			return false;
-
-		return true;
+		return name.ends_with(LICENSE);
 	}
 
 
@@ -1180,15 +1175,6 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 
 
 
-/*
-bool OutfitterPanel::IsLicense(const string &name) const
-{
-	return name.ends_with(" License");
-}
-*/
-
-
-
 bool OutfitterPanel::HasLicense(const string &name) const
 {
 	return (IsLicense(name) && player.HasLicense(LicenseRoot(name)));
@@ -1380,13 +1366,6 @@ void OutfitterPanel::DrawButtons()
 		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Store)), hoverButton == 'r');
 	DrawButton("_Leave", Point(buttonBaseX + buttonOffsetX * 3, rowBaseY + rowOffsetY * 1),
 		true, hoverButton == 'l');
-
-	// Draw the Find button.
-	const Point findCenter = Screen::BottomRight() - Point(580, 20);
-	const Sprite *findIcon =
-		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
-	SpriteShader::Draw(findIcon, findCenter);
-	static const string FIND = "_Find";
 
 	// Draw the Modifier hover text that appears below the buttons when a modifier
 	// is being applied.

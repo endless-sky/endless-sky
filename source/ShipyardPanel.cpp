@@ -435,12 +435,6 @@ void ShipyardPanel::DrawButtons()
 		leaveCenter - .5 * Point(bigFont.Width(LEAVE), bigFont.Height()),
 		hoverButton == 'l' ? hover : active);
 
-	const Point findCenter = Screen::BottomRight() - Point(580, 20);
-	const Sprite *findIcon =
-		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
-	SpriteShader::Draw(findIcon, findCenter);
-	static const string FIND = "_Find";
-
 	int modifier = Modifier();
 	if(modifier > 1)
 	{
@@ -469,11 +463,6 @@ void ShipyardPanel::DrawButtons()
 // letter of the button (or ' ' if it's not on a button).
 char ShipyardPanel::CheckButton(int x, int y)
 {
-	// Check the Find button.
-	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
-		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
-		return 'f';
-
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
 		return '\0';
 

@@ -155,6 +155,13 @@ void ShopPanel::Draw()
 	DrawButtons();
 	DrawKey();
 
+	// Draw the Find button.
+	const Point findCenter = Screen::BottomRight() - Point(580, 20);
+	const Sprite *findIcon =
+		hoverButton == 'f' ? SpriteSet::Get("ui/find selected") : SpriteSet::Get("ui/find unselected");
+	SpriteShader::Draw(findIcon, findCenter);
+	static const string FIND = "_Find";
+
 	shipInfo.DrawTooltips();
 	outfitInfo.DrawTooltips();
 
@@ -574,8 +581,16 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
-	// Handle clicks on the buttons.
-	char button = CheckButton(x, y);
+
+	char button = '\0';
+	// Check the Find button.
+	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
+		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
+		button = 'f';
+	else
+		// Handle clicks on the buttons.
+		button = CheckButton(x, y);
+
 	if(button)
 		return DoKey(button);
 
