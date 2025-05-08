@@ -53,25 +53,22 @@ public:
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted.
 	void Save(DataWriter &out) const;
 
+	// Calculate the total time to wait, including any random value.
+	Timer Instantiate(std::map<std::string, std::string> &subs, const System *origin,
+		int jumps, int64_t payload) const;
+
 	// Get whether the timer is optional to complete.
 	bool IsOptional() const;
 	// Get whether the timer has completed.
 	bool IsComplete() const;
-
-	// Calculate the total time to wait, including any random value.
-	Timer Instantiate(std::map<std::string, std::string> &subs, const System *origin, int jumps, int64_t payload) const;
 	// Progress the timer within the main loop.
 	void Step(PlayerInfo &player, UI *ui, const Mission &mission);
 
 
 private:
-	enum class ResetCondition {
-		NONE,
-		PAUSE,
-		LEAVE_ZONE,
-		LEAVE_SYSTEM
-	};
-	void ResetOn(ResetCondition cond, PlayerInfo &player, UI *ui, const Mission &mission);
+	// The player does not meet the criteria for this timer to be active.
+	// Deactivate the timer and determine if it should be reset.
+	void Deactivate(PlayerInfo &player, UI *ui, const Mission &mission);
 
 
 private:
@@ -92,35 +89,25 @@ private:
 	double idleMaxSpeed = 25.;
 	// Whether the timer requires the player to not be firing.
 	bool requirePeaceful = false;
-	// Whether the timer requires the player to be uncloaked.
+	// Whether the timer requires the player to be uncloaked or cloaked.
 	bool requireUncloaked = false;
-	// What circumstances will reset the timer: leaving the system,
-	// leaving the proximity zone (if applicable), or any circumstance that stops the timer.
-	ResetCondition resetCondition = ResetCondition::PAUSE;
-	// If proximity is specified, this determines whether the timer will only advance while
-	// close to or far from the specified center; default is close to.
-	bool closeTo = true;
-	// This specifies the radius around the proximity center to be checked.
-	double proximity = 0.;
-	// This specifies the system object to be the center; if this is nullptr and the filter is empty,
-	// but proximity is positive, then the system center is used instead.
-	const Planet *proximityCenter = nullptr;
-	// The filter to use for which planet(s) to hang out near if a single planet isn't set.
-	LocationFilter proximityCenters;
+	bool requireCloaked = false;
+	// Whether the player's flagship must be the only ship in their fleet in the system.
+	bool requireSolo = false;
 
-	// The action to be performed when triggers are fired.
+	// Actions to be performed when triggers are fired.
 	std::map<TimerTrigger, MissionAction> actions;
-	// Should the reset action be performed every time, or just the first?
+	// Should the reset action be performed every time, or just the first time?
 	bool repeatReset = false;
+	// Has a reset been triggered before?
 	bool resetFired = false;
 
-	// Used for holding the current timer value when it's actually active.
+	// The number of frames that have elapsed while the timer is active.
 	int timeElapsed = 0;
-	// Set to true once the timer has run to completion so we don't keep trying to save or run it.
-	bool isComplete = false;
+	// If true, the timer pauses instead of reseting when deactivated.
+	bool pauses = false;
 	// Set to true when all the conditions are met for the timer to count down.
 	bool isActive = false;
-
-	// A place to cache the proximity object(s) so we don't have to test for them every time.
-	std::set<const StellarObject *> proximityCache;
+	// Set to true once the timer has run to completion.
+	bool isComplete = false;
 };
