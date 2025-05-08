@@ -164,7 +164,8 @@ void MissionTimer::Save(DataWriter &out) const
 
 
 
-MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *origin, int jumps, int64_t payload) const
+MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *origin,
+	int jumps, int64_t payload) const
 {
 	MissionTimer result;
 	result.optional = optional;
@@ -246,7 +247,7 @@ void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 	// no escorts in the system with the player)?
 	if(requireSolo)
 	{
-		const System* flagshipSystem = flagship->GetSystem();
+		const System *flagshipSystem = flagship->GetSystem();
 		for(const auto &escort : player.Ships())
 		{
 			// Using GetSystem instead of GetActualSystem so that docked
