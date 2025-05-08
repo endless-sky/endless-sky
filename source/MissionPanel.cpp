@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionPanel.h"
 
 #include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
@@ -166,6 +167,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	Audio::Pause();
+
 	// Re-do job sorting since something could have changed
 	player.SortAvailable();
 

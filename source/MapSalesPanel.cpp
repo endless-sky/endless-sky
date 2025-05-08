@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MapSalesPanel.h"
 
+#include "audio/Audio.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Command.h"
@@ -67,6 +68,8 @@ MapSalesPanel::MapSalesPanel(const MapPanel &panel, bool isOutfitters)
 	isOutfitters(isOutfitters),
 	collapsed(player.Collapsed(isOutfitters ? "outfitter map" : "shipyard map"))
 {
+	Audio::Pause();
+
 	commodity = SHOW_SPECIAL;
 }
 
