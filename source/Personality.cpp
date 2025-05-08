@@ -152,11 +152,18 @@ void Personality::Load(const DataNode &node)
 			else
 				confusionMultiplier = child.Value(1);
 		}
-		else
+		else if(child.Token(0) == "linger time")
 		{
+			if(remove)
+				lingerTime = -1;
+			else if(child.Size() >= 2)
+				lingerTime = child.Value(1);
+			else
+				child.PrintTrace("The \"linger time\" must have a value.");
+		}
+		else
 			for(int i = 0; i < child.Size(); ++i)
 				Parse(child, i, remove);
-		}
 	}
 	isDefined = true;
 }
@@ -173,6 +180,8 @@ void Personality::Save(DataWriter &out) const
 			if(flags.test(it.second))
 				out.Write(it.first);
 	}
+	if(lingerTime >= 0)
+		out.Write("linger time", lingerTime);
 	out.EndChild();
 }
 
@@ -495,6 +504,13 @@ Personality Personality::DefenderFighter()
 	defender.flags = bitset<PERSONALITY_COUNT>((1LL << STAYING) | (1LL << HUNTING) | (1LL << DARING)
 			| (1LL << UNCONSTRAINED));
 	return defender;
+}
+
+
+
+int Personality::LingerTime() const
+{
+	return lingerTime;
 }
 
 
