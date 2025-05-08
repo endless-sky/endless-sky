@@ -82,11 +82,11 @@ bool Fade::NextChunk(ALuint buffer)
 vector<int16_t> Fade::NextDataChunk()
 {
 	vector<int16_t> result;
-	if(!primarySource && fadeProgress.empty()) // no sources -> silence
+	if(!primarySource && fadeProgress.empty()) // no input sources -> output silence
 		result = vector<int16_t>(OUTPUT_CHUNK);
-	else if(primarySource && fadeProgress.empty()) // only primary -> primary
+	else if(primarySource && fadeProgress.empty()) // only primary input, nothing to blend with -> output primary
 		result = primarySource->NextDataChunk();
-	else
+	else // fade sources
 	{
 		// Generate the faded background.
 		vector<int16_t> faded = fadeProgress[0].first->NextDataChunk();

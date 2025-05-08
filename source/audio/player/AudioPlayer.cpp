@@ -178,7 +178,8 @@ void AudioPlayer::Init()
 
 	int bufferCount = clamp(audioSupplier->MaxChunkCount(), 1, MAX_INITIAL_BUFFERS);
 
-	vector<ALuint> buffers(bufferCount);
+	vector<ALuint> buffers;
+	buffers.reserve(bufferCount);
 	for(int i = 0; i < bufferCount; ++i)
 		buffers.emplace_back(audioSupplier->AwaitNextChunk());
 
