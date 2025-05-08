@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Angle.h"
+#include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
 #include "CoreStartData.h"
@@ -103,6 +104,8 @@ MapDetailPanel::MapDetailPanel(PlayerInfo &player, const System *system, bool fr
 MapDetailPanel::MapDetailPanel(const MapPanel &panel, bool isStars)
 	: MapPanel(panel), isStars(isStars)
 {
+	Audio::Pause();
+
 	// Use whatever map coloring is specified in the PlayerInfo.
 	commodity = isStars ? -8 : player.MapColoring();
 
