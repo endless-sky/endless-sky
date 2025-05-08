@@ -2204,7 +2204,7 @@ void PlayerInfo::CreateInFlightMissions()
 {
 	availableInFlightMissions.clear();
 	for(const auto &it : GameData::Missions())
-		if(it.second.IsAtLocation(Mission::IN_FLIGHT) && it.second.CanOffer(*this))
+		if(it.second.IsAtLocation(Mission::ENTERING) && it.second.CanOffer(*this))
 		{
 			availableInFlightMissions.push_back(it.second.Instantiate(*this));
 			if(availableInFlightMissions.back().IsFailed())
@@ -2347,7 +2347,7 @@ void PlayerInfo::MissionCallback(int response)
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
 		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
-				|| mission.IsAtLocation(Mission::IN_FLIGHT))
+				|| mission.IsAtLocation(Mission::ENTERING))
 			activeInFlightMission = &*--spliceIt;
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
