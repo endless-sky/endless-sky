@@ -1633,6 +1633,8 @@ void Engine::CalculateStep()
 			if(ship.get() != flagship)
 			{
 				DrawShipSprites(*ship);
+				if(timePaused)
+					continue;
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
 				{
 					for(const auto &it : ship->Attributes().FlareSounds())
@@ -1654,8 +1656,9 @@ void Engine::CalculateStep()
 		}
 
 	if(flagship && showFlagship)
-	{
 		DrawShipSprites(*flagship);
+	if(!timePaused && flagship && showFlagship)
+	{
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
 		{
 			for(const auto &it : flagship->Attributes().FlareSounds())
