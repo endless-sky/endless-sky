@@ -117,6 +117,7 @@ public:
 
 	// Get this planet's government. If not set, returns the system's government.
 	const Government *GetGovernment() const;
+	void SetGovernment(const Government *government, bool keepTribute = false);
 	// You need this good a reputation with this system's government to land here.
 	double RequiredReputation() const;
 	// This is what fraction of your fleet's value you must pay as a bribe in

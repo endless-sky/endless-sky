@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "Logger.h"
+#include "Messages.h"
 #include "PlayerInfo.h"
 #include "Politics.h"
 #include "Random.h"
@@ -120,7 +121,17 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			else if(key == "outfitter")
 				outfitSales.clear();
 			else if(key == "government")
-				government = nullptr;
+			{
+				bool keepTribute = false;
+				for(const DataNode &grand : child)
+				{
+					if(grand.Token(0) == "keep tribute")
+						keepTribute = true;
+					else
+						grand.PrintTrace("Skipping unrecognized government change attribute:");
+				}
+				SetGovernment(nullptr, keepTribute);
+			}
 			else if(key == "required reputation")
 				requiredReputation = 0.;
 			else if(key == "bribe")
@@ -195,7 +206,17 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			port.LoadDescription(child, playerConditions);
 		}
 		else if(key == "government")
-			government = GameData::Governments().Get(value);
+		{
+			bool keepTribute = false;
+			for(const DataNode &grand : child)
+			{
+				if(grand.Token(0) == "keep tribute")
+					keepTribute = true;
+				else
+					grand.PrintTrace("Skipping unrecognized government change attribute:");
+			}
+			SetGovernment(GameData::Governments().Get(value), keepTribute);
+		}
 		else if(key == "required reputation")
 			requiredReputation = child.Value(valueIndex);
 		else if(key == "bribe")
@@ -513,6 +534,23 @@ set<const Shop<Outfit> *> Planet::Outfitters() const
 const Government *Planet::GetGovernment() const
 {
 	return government ? government : systems.empty() ? nullptr : GetSystem()->GetGovernment();
+}
+
+
+
+void Planet::SetGovernment(const Government *government, bool keepTribute)
+{
+	if(government == this->government)
+		return;
+
+	if(!keepTribute && GameData::GetPolitics().HasDominated(this))
+	{
+		GameData::GetPolitics().DominatePlanet(this, false);
+		Messages::Add("The planet " + displayName + " is no longer under your domination"
+			" and you will not receive tribute payments from it.", Messages::Importance::Highest);
+	}
+
+	this->government = government;
 }
 
 
