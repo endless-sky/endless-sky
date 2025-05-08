@@ -546,6 +546,8 @@ void Ship::Load(const DataNode &node)
 			cargo.Load(child);
 		else if(key == "crew" && child.Size() >= 2)
 			crew = static_cast<int>(child.Value(1));
+		else if(key == "preferred crew" && child.Size() >= 2)
+			preferredCrew = static_cast<int>(child.Value(1));
 		else if(key == "fuel" && child.Size() >= 2)
 			fuel = child.Value(1);
 		else if(key == "shields" && child.Size() >= 2)
@@ -1039,6 +1041,8 @@ void Ship::Save(DataWriter &out) const
 
 		cargo.Save(out);
 		out.Write("crew", crew);
+		if(preferredCrew > 0)
+			out.Write("preferred crew", preferredCrew);
 		out.Write("fuel", fuel);
 		out.Write("shields", shields);
 		out.Write("hull", hull);
@@ -3059,6 +3063,14 @@ int Ship::RequiredCrew() const
 
 
 
+int Ship::PreferredCrew() const
+{
+	// Fall back to crew value for ships that never have been given a preferred value.
+	return preferredCrew ? preferredCrew : crew;
+}
+
+
+
 int Ship::CrewValue() const
 {
 	int crewEquivalent = attributes.Get("crew equivalent");
@@ -3069,9 +3081,11 @@ int Ship::CrewValue() const
 
 
 
-void Ship::AddCrew(int count)
+void Ship::AddCrew(int count, bool setPreferredCrew)
 {
 	crew = min<int>(crew + count, attributes.Get("bunks"));
+	if(setPreferredCrew)
+		preferredCrew = crew;
 }
 
 
