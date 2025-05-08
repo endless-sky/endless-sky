@@ -16,9 +16,8 @@ test-data "Timer Test Mission"
 	contents
 		mission "1 second timer"
 			landing
-			timer "Why do I have a name?"
+			timer
 				time 60
-				reset "leave system"
 				on timeup
 					set "test: timer condition"
 
