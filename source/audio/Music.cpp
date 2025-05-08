@@ -17,10 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Files.h"
 #include "../text/Format.h"
-
 #include "supplier/Mp3Supplier.h"
 
-#include <fstream>
+
 #include <map>
 
 using namespace std;

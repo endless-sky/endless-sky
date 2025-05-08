@@ -15,9 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Sound.h"
 
-#include "supplier/WavSupplier.h"
-
 #include "../Files.h"
+#include "supplier/WavSupplier.h"
 
 #include <AL/al.h>
 

@@ -17,14 +17,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "player/AudioPlayer.h"
 #include "supplier/effect/Fade.h"
-#include "Music.h"
-#include "player/MusicPlayer.h"
-#include "Sound.h"
-#include "player/VolumeFadePlayer.h"
-
 #include "../Files.h"
 #include "../Logger.h"
+#include "Music.h"
+#include "player/MusicPlayer.h"
 #include "../Point.h"
+#include "Sound.h"
+#include "player/VolumeFadePlayer.h"
 
 #include <AL/al.h>
 #include <AL/alc.h>
