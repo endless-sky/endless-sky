@@ -484,7 +484,7 @@ string MissionAction::CollapseDialog(const map<string, string> *subs) const
 		if(subs)
 			content = Format::Replace(Phrase::ExpandPhrases(content), *subs);
 
-		// Concatenated lines should start with a tab and be preceeded by end-of-line.
+		// Concatenated lines should start with a tab and be preceded by end-of-line.
 		if(!resultText.empty())
 		{
 			resultText += '\n';
