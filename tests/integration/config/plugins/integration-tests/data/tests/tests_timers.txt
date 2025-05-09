@@ -18,7 +18,12 @@ test-data "Timer Test Mission"
 			landing
 			timer 60
 				on timeup
-					set "test: timer condition"
+					set "test: 1 second timer"
+		mission "1 minute timer"
+			landing
+			timer 3600
+				on timeup
+					set "test: 1 minute timer"
 
 
 test "Timer - Simple 1 second timer"
@@ -42,5 +47,9 @@ test "Timer - Simple 1 second timer"
 		branch "floating"
 			has "test: steps to wait"
 		assert
-			has "test: timer condition"
-			has "Timer Test Mission: done"
+			has "test: 1 second timer"
+			not "test: 1 minute timer"
+		call "Land"
+		assert
+			has "1 second timer: done"
+			not "1 minute timer: done"
