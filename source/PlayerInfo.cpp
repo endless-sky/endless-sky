@@ -3237,7 +3237,9 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["year"].ProvideNamed([this](const ConditionEntry &ce) { return date.Year(); });
 	conditions["weekday: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		string day = ce.NameWithoutPrefix();
-		int number = date.WeekdayNumber();
+		int number = date.WeekdayNumberOffset();
+		if(day == "saturday")
+			return number == 0;
 		if(day == "sunday")
 			return number == 1;
 		if(day == "monday")
@@ -3250,8 +3252,6 @@ void PlayerInfo::RegisterDerivedConditions()
 			return number == 5;
 		if(day == "friday")
 			return number == 6;
-		if(day == "saturday")
-			return number == 7;
 		return 0;
 	});
 	conditions["days since year start"].ProvideNamed([this](const ConditionEntry &ce) {
