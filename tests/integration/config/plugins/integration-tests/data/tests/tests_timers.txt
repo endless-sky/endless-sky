@@ -24,6 +24,12 @@ test-data "Timer Test Mission"
 			timer 3600
 				on timeup
 					set "test: 1 minute timer"
+		mission "optional 1 minute timer"
+			landing
+			timer 3600
+				optional
+				on timeup
+					set "test: optional 1 minute timer"
 
 
 test "Timer - Simple 1 second timer"
@@ -49,7 +55,9 @@ test "Timer - Simple 1 second timer"
 		assert
 			has "test: 1 second timer"
 			not "test: 1 minute timer"
+			not "test: optional 1 minute timer"
 		call "Land"
 		assert
 			has "1 second timer: done"
 			not "1 minute timer: done"
+			has "optional 1 minute timer: done"
