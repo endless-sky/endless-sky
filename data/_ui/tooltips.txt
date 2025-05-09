@@ -399,6 +399,9 @@ tip "hull protection:"
 tip "hull repair multiplier:"
 	`Modifies the amount of hull strength repaired per second by the given factor.`
 
+tip "cloaked repair multiplier:"
+	`Modifies the amount of hull strength repaired per second by the given factor while a cloaking device is active.`
+
 tip "illegal:"
 	`Amount of credits you can be fined for carrying this outfit.`
 
@@ -644,6 +647,9 @@ tip "delayed shield generation:"
 
 tip "shield generation multiplier:"
 	`Modifies the amount of shield points recharged per second by the given factor.`
+
+tip "cloaked regen multiplier:"
+	`Modifies the amount of shield points recharged per second by the given factor while a cloaking device is active.`
 
 tip "high shield permeability:"
 	`This percentage of all incoming damage bypasses shields and applies directly to the hull when at full shields.`

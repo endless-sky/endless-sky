@@ -75,8 +75,8 @@ ship "Sasumata"
 		"weapon capacity" 122
 		"engine capacity" 126
 		"cloak" .05
-		"cloaking shield delay" 1
-		"cloaking repair delay" 1
+		"cloaked regen multiplier" -1
+		"cloaked repair multiplier" -1
 		"cloaking energy" 10
 		"cloaking fuel" .05
 		weapon
