@@ -40,7 +40,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "ShipJumpNavigation.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -3236,7 +3235,25 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["day"].ProvideNamed([this](const ConditionEntry &ce) { return date.Day(); });
 	conditions["month"].ProvideNamed([this](const ConditionEntry &ce) { return date.Month(); });
 	conditions["year"].ProvideNamed([this](const ConditionEntry &ce) { return date.Year(); });
-	conditions["weekday"].ProvideNamed([this](const ConditionEntry &ce) { return date.WeekdayNumber(); });
+	conditions["weekday: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		string day = ce.NameWithoutPrefix();
+		int number = date.WeekdayNumber();
+		if(day == "sunday")
+			return number == 1;
+		if(day == "monday")
+			return number == 2;
+		if(day == "tuesday")
+			return number == 3;
+		if(day == "wednesday")
+			return number == 4;
+		if(day == "thursday")
+			return number == 5;
+		if(day == "friday")
+			return number == 6;
+		if(day == "saturday")
+			return number == 7;
+		return 0;
+	});
 	conditions["days since year start"].ProvideNamed([this](const ConditionEntry &ce) {
 		return date.DaysSinceYearStart(); });
 	conditions["days until year end"].ProvideNamed([this](const ConditionEntry &ce) {
