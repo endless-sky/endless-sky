@@ -200,8 +200,8 @@ void MissionTimer::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		for(const auto &it : actions)
-			it.second.Save(out);
+		for(const auto &[trigger, action] : actions)
+			action.Save(out);
 	}
 	out.EndChild();
 }
@@ -245,8 +245,8 @@ MissionTimer MissionTimer::Instantiate(map<string, string> &subs, const System *
 			+ "\" uses invalid " + std::move(reason));
 		return result;
 	}
-	for(const auto &it : actions)
-		result.actions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+	for(const auto &[trigger, action] : actions)
+		result.actions[trigger] = action.Instantiate(subs, origin, jumps, payload);
 
 	return result;
 }
@@ -301,7 +301,7 @@ void MissionTimer::Step(PlayerInfo &player, UI *ui, const Mission &mission)
 
 
 
-bool MissionTimer::CanActivate(const Ship *flagship, PlayerInfo &player) const
+bool MissionTimer::CanActivate(const Ship *flagship, const PlayerInfo &player) const
 {
 	// If this timer has no requirements to check, then it should be active.
 	if(!hasRequirements)

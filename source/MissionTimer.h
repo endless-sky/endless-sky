@@ -68,7 +68,7 @@ public:
 
 private:
 	// Determine if the player meets the criteria for this timer to be active.
-	bool CanActivate(const Ship *flagship, PlayerInfo &player) const;
+	bool CanActivate(const Ship *flagship, const PlayerInfo &player) const;
 	// The player does not meet the criteria for this timer to be active.
 	// Deactivate the timer and determine if it should be reset.
 	void Deactivate(PlayerInfo &player, UI *ui, const Mission &mission);
@@ -80,7 +80,7 @@ private:
 	int randomWaitTime = 0;
 	// If set, the timer is not a necessary objection for the completion of its mission.
 	bool optional = false;
-	// If true, the timer pauses instead of reseting when deactivated.
+	// If true, the timer pauses instead of resetting when deactivated.
 	bool pauses = false;
 
 	// Whether any of the activation requirements below are checked by this timer.
