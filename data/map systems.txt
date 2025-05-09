@@ -30708,10 +30708,10 @@ system Patir
 	hazard "Ember Waste Base Heat" 100
 	hazard "Ember Waste Base Storm" 9000
 	object
-		sprite star/nova
+		sprite star/patir
 		period 1
 	object
-		sprite star/neutron-core
+		sprite "star/patir core"
 		period 1
 	object "Builder Settlement"
 		sprite "planet/asteroid base"

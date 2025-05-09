@@ -12,7 +12,7 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 galaxy "Patir Cluster"
-	pos 10000 -170
+	pos 10045 -236
 	sprite "ui/patir cluster"
 
 system Athiri
