@@ -3915,7 +3915,7 @@ void PlayerInfo::CreateMissions()
 	if(availableMissions.empty())
 		return;
 
-	// This list is already in alphabetical order by virture of the way that the Set
+	// This list is already in alphabetical order by virtue of the way that the Set
 	// class stores objects, so stable sorting on the offer precedence will maintain
 	// the alphabetical ordering for missions with the same precedence.
 	availableMissions.sort([](const Mission &a, const Mission &b)
