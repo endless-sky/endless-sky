@@ -4061,8 +4061,8 @@ void Ship::DoGeneration()
 
 		const double hullAvailable = (attributes.Get("hull repair rate")
 			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-			* (1. + attributes.Get("hull repair multiplier")
-				+ attributes.Get("cloaked repair multiplier") * Cloaking());
+			* (1. + attributes.Get("hull repair multiplier"))
+			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());
 		const double hullEnergy = (attributes.Get("hull energy")
 			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
 			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
@@ -4078,8 +4078,8 @@ void Ship::DoGeneration()
 
 		const double shieldsAvailable = (attributes.Get("shield generation")
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-			* (1. + attributes.Get("shield generation multiplier")
-				+ attributes.Get("cloaked regen multiplier") * Cloaking());
+			* (1. + attributes.Get("shield generation multiplier"))
+			* (1. + attributes.Get("cloaked regen multiplier") * Cloaking());
 		const double shieldsEnergy = (attributes.Get("shield energy")
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
 			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
