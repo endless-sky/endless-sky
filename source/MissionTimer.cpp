@@ -154,10 +154,9 @@ void MissionTimer::Save(DataWriter &out) const
 	if(isComplete)
 		return;
 
-	out.Write("timer");
+	out.Write("timer", waitTime);
 	out.BeginChild();
 	{
-		out.Write("time", waitTime);
 		out.Write("elapsed", timeElapsed);
 		if(optional)
 			out.Write("optional");
