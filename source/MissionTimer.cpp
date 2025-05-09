@@ -54,18 +54,22 @@ MissionTimer::MissionTimer(const DataNode &node, const ConditionsStore *playerCo
 
 void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
+	if(node.Size() < 2)
+	{
+		node.PrintTrace("Error: Expected key to have a value:");
+		return;
+	}
+
+	waitTime = node.Value(1);
+	if(node.Size() > 2)
+		randomWaitTime = node.Value(2);
+
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "time" && hasValue)
-		{
-			waitTime = child.Value(1);
-			if(child.Size() > 2)
-				randomWaitTime = child.Value(2);
-		}
-		else if(key == "elapsed")
+		if(key == "elapsed")
 			timeElapsed = child.Value(1);
 		else if(key == "optional")
 			optional = true;

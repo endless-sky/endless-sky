@@ -318,7 +318,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			substitutions.Load(child, playerConditions);
 		else if(child.Token(0) == "npc")
 			npcs.emplace_back(child, playerConditions);
-		else if(child.Token(0) == "timer")
+		else if(child.Token(0) == "timer" && child.Size() >= 2)
 			timers.emplace_back(child, playerConditions);
 		else if(child.Token(0) == "on" && child.Size() >= 2 && child.Token(1) == "enter")
 		{

@@ -16,8 +16,7 @@ test-data "Timer Test Mission"
 	contents
 		mission "1 second timer"
 			landing
-			timer
-				time 60
+			timer 60
 				on timeup
 					set "test: timer condition"
 
@@ -39,8 +38,9 @@ test "Timer - Simple 1 second timer"
 		# An empty input to make two seconds pass.
 		input
 		apply
-			"test: steps to wait" = "test: steps to wait" - 1
+			"test: steps to wait" -= 1
 		branch "floating"
-			"test: steps to wait" >= 0
+			has "test: steps to wait"
 		assert
-			"test: timer condition" == 1
+			has "test: timer condition"
+			has "Timer Test Mission: done"
