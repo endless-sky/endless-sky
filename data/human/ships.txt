@@ -1397,10 +1397,10 @@ ship "Cutthroat"
 	engine 22 47
 	engine -13 43.5 .7
 	engine 13 43.5 .7
-	gun -21.5 -18 "Torpedo Pod"
-	gun 21.5 -18 "Torpedo Pod"
-	gun -11 -8.5 "Twin Modified Blaster"
-	gun 11 -8.5 "Twin Modified Blaster"
+	gun -21.5 -18 "Gatling Gun"
+	gun 21.5 -18 "Gatling Gun"
+	gun -11 -8.5 "Gatling Gun"
+	gun 11 -8.5 "Gatling Gun"
 	leak "leak" 70 50
 	leak "flame" 60 80
 	explode "tiny explosion" 10
@@ -2967,7 +2967,7 @@ ship "Nighthawk"
 	explode "medium explosion" 15
 	explode "large explosion" 2
 	"final explode" "final explosion small"
-	description "The Nighthawk is the result of modifications to increase a Blackbird's passenger capacity for transportation of both lawless individuals and slavery, sacrificing much of the original cargo space. Additionally, at the cost of some shield strength, hull conversions have given the ship a bit more armor plating, along with another turret mount. This gives Nighthawks a bit more defense for combat situations that a Blackbird would not want to find itself in.`
+	description "The Nighthawk is the result of modifications to increase a Blackbird's passenger capacity for transportation of both lawless individuals and slavery, sacrificing much of the original cargo space. Additionally, at the cost of some shield strength, hull conversions have given the ship a bit more armor plating, along with another turret mount. This gives Nighthawks a bit more defense for combat situations that a Blackbird would not want to find itself in."
 
 
 
