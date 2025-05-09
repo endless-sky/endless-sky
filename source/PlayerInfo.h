@@ -368,6 +368,8 @@ private:
 	// Set the flagship (on departure or during flight).
 	void SetFlagship(Ship &other);
 
+	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
+
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
 
