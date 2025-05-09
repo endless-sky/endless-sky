@@ -15,19 +15,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "MissionAction.h"
-#include "System.h"
+#include "LocationFilter.h"
 
 #include <cstdint>
 #include <map>
+#include <set>
 #include <string>
 
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class Mission;
+class MissionAction;
 class Planet;
 class PlayerInfo;
 class Ship;
+class System;
 class UI;
 
 

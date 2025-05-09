@@ -19,11 +19,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "GameData.h"
 #include "Logger.h"
-#include "Planet.h"
+#include "MissionAction.h"
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
-#include "UI.h"
+#include "System.h"
+
+#include <cmath>
 
 using namespace std;
 
