@@ -3939,8 +3939,8 @@ ship "Valkyrie"
 		"NT-200 Nucleovoltaic"
 		"KP-6 Photovoltaic Panel" 3
 		"LP072a Battery Pack"
-		"D67-TM Shield Generator"
-		"Large Radar Jammer"
+		"D23-QP Shield Generator"
+		"Small Radar Jammer"
 		"Laser Rifle" 18
 		"Nerve Gas" 3
 		
