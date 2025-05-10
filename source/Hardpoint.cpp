@@ -203,12 +203,7 @@ bool Hardpoint::IsBlind() const
 	return any_of(baseAttributes.blindspots.begin(), baseAttributes.blindspots.end(),
 		[this](pair<Angle, Angle> blindspot)
 		{
-			if(blindspot.first.Degrees() <= blindspot.second.Degrees())
-				return angle.Degrees() >= (blindspot.first + baseAngle).Degrees()
-					&& angle.Degrees() <= (blindspot.second + baseAngle).Degrees();
-			else
-				return angle.Degrees() >= (blindspot.first + baseAngle).Degrees()
-					|| angle.Degrees() <= (blindspot.second + baseAngle).Degrees();
+			return angle.IsInRange(blindspot.first + baseAngle, blindspot.second + baseAngle);
 		});
 }
 
