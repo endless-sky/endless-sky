@@ -1,5 +1,5 @@
-/* Sound.h
-Copyright (c) 2014 by Michael Zahniser
+/* VolumeFadePlayer.h
+Copyright (c) 2025 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,32 +15,24 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "supplier/AudioSupplier.h"
-
-#include <filesystem>
-#include <memory>
-#include <string>
+#include "AudioPlayer.h"
 
 
 
-// This is a sound that can be played. The sound's file name will determine
-// whether it is looping (ends in '~') or not.
-class Sound {
+/// A specialized audio player that can fade out the audio gradually before ending.
+/// This fade effect is implemented with volume changes, unlike the cross-fade effect in Fade.
+class VolumeFadePlayer : public AudioPlayer {
 public:
-	bool Load(const std::filesystem::path &path, const std::string &name);
+	VolumeFadePlayer(SoundCategory category, std::unique_ptr<AudioSupplier> audioSupplier);
 
-	const std::string &Name() const;
+	void Update() override;
 
-	unsigned Buffer() const;
-	unsigned Buffer3x() const;
-	bool IsLooping() const;
-
-	std::unique_ptr<AudioSupplier> CreateSupplier() const;
-
+	/// Begins fading out the audio. The player stops when the volume reaches 0.
+	void FadeOut();
 
 private:
-	std::string name;
-	unsigned buffer = 0;
-	unsigned buffer3x = 0;
-	bool isLooped = false;
+	/// How much to decrease the volume per frame.
+	static constexpr float VOLUME_DECREASE = .05f;
+
+	bool isFading = false;
 };
