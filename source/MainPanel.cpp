@@ -107,13 +107,13 @@ void MainPanel::Step()
 	}
 
 	// Offer the next available in flight mission.
-	if(isActive && player.HasAvailableInFlightMissions() && player.Flagship())
+	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
 	{
-		Mission *mission = player.InFlightMission();
+		Mission *mission = player.EnteringMission();
 		if(mission && mission->HasSpace(*player.Flagship()))
 			mission->Do(Mission::OFFER, player, GetUI());
 		else
-			player.HandleBlockedInFlightMissions(GetUI());
+			player.HandleBlockedEnteringMissions(GetUI());
 		// Determine if a Dialog or ConversationPanel is being drawn next frame.
 		isActive = (GetUI()->Top().get() == this);
 	}
@@ -702,7 +702,7 @@ void MainPanel::StepEvents(bool &isActive)
 		// Handle jump events from the player's flagship. This means we should check
 		// for in-flight missions that can be offered.
 		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
-			player.CreateInFlightMissions();
+			player.CreateEnteringMissions();
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();

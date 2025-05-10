@@ -217,7 +217,7 @@ public:
 	// Get mission information.
 	const std::list<Mission> &Missions() const;
 	const std::list<Mission> &AvailableJobs() const;
-	bool HasAvailableInFlightMissions() const;
+	bool HasAvailableEnteringMissions() const;
 
 	enum SortType {ABC, PAY, SPEED, CONVENIENT};
 	const SortType GetAvailableSortType() const;
@@ -236,8 +236,8 @@ public:
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
 	Mission *BoardingMission(const std::shared_ptr<Ship> &ship);
-	void CreateInFlightMissions();
-	Mission *InFlightMission();
+	void CreateEnteringMissions();
+	Mission *EnteringMission();
 	// Return true if the given ship is capturable only because it's the source
 	// of a boarding mission which allows it to be.
 	bool CaptureOverriden(const std::shared_ptr<Ship> &ship) const;
@@ -248,7 +248,7 @@ public:
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
 	// Display the blocked message for the first available in flight mission,
 	// then remove it from the available in flight missions list.
-	void HandleBlockedInFlightMissions(UI *ui);
+	void HandleBlockedEnteringMissions(UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
 	// Basic callback for handling forced departure from a planet.
@@ -360,6 +360,8 @@ private:
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
+	// Sort the given list of missions in the order they should be offered.
+	void SortMissions(std::list<Mission> &missions, bool hasPriorityMissions, unsigned nonBlockingMissions);
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;
@@ -425,14 +427,18 @@ private:
 	std::list<Mission> availableMissions;
 	// This list is populated open entering a system, and isn't saved since
 	// you can't save in space.
-	std::list<Mission> availableInFlightMissions;
+	std::list<Mission> availableEnteringMissions;
+	// This list is populated upon boarding a ship, and isn't saved since
+	// you can't save in space. As of right now, only one boarding mission
+	// can be offered at a time, so this list will only ever contain one or
+	// zero missions.
+	std::list<Mission> availableBoardingMissions;
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
-	std::list<Mission> boardingMissions;
 	// This pointer to the most recently accepted boarding/assisting/in flight mission
 	// enables its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeInFlightMission = nullptr;
