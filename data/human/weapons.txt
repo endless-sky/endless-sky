@@ -908,8 +908,8 @@ outfit "Meteor Missile Launcher"
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
-		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
+		"missile strength" 18
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are equipped with only the most basic of guidance systems, and their infrared tracking systems have even more trouble homing in on targets with low heat levels. Nevertheless, their simple construction is surprisingly robust, making them a credible threat to even well-defended targets if the missiles are fired in great numbers."
 
 outfit "Meteor Missile Pod"
 	category "Secondary Weapons"
@@ -948,8 +948,8 @@ outfit "Meteor Missile Pod"
 		"shield damage" 360
 		"hull damage" 220
 		"hit force" 330
-		"missile strength" 6
-	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are quickly destroyed by anti-missile systems, and their infrared tracking systems have trouble homing in on targets with low heat levels. Nevertheless, their large warheads can spell doom for poorly-defended targets when the missiles are fired in great numbers."
+		"missile strength" 18
+	description "The Meteor Missile is the cheapest and simplest homing weapon available in human space. Meteors are equipped with only the most basic of guidance systems, and their infrared tracking systems have even more trouble homing in on targets with low heat levels. Nevertheless, their simple construction is surprisingly robust, making them a credible threat to even well-defended targets if the missiles are fired in great numbers."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
 
 effect "meteor fire"
@@ -1014,10 +1014,10 @@ outfit "Sidewinder Missile Launcher"
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
-		"shield damage" 260
-		"hull damage" 180
+		"shield damage" 185
+		"hull damage" 120
 		"hit force" 255
-		"missile strength" 18
+		"missile strength" 6
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 
@@ -1055,10 +1055,10 @@ outfit "Sidewinder Missile Pod"
 		"turn" 4
 		"homing" 4
 		"radar tracking" .9
-		"shield damage" 260
-		"hull damage" 180
+		"shield damage" 185
+		"hull damage" 120
 		"hit force" 255
-		"missile strength" 18
+		"missile strength" 6
 	description "The Sidewinder Missile is designed by Lovelace Labs, which is ironically also the designer of the Anti-Missile Turret. Rumors say that the two engineering teams at Lovelace who make the missiles and the anti-missiles are locked in furious competition with each other: the result has been generation after generation of smarter missiles and then smarter turrets to fend them off."
 	description "	Although not as powerful or cheap as the popular Meteor Missiles, Sidewinders have several advantages, including their superior maneuverability, better tracking systems, and protective casings that make them much harder for anti-missile systems to destroy."
 	description "	Pods enable fighters and other light craft to carry small quantities of missiles into battle while retaining enough space for other weapons. Large ships are better off with full-size launchers."
@@ -1145,8 +1145,6 @@ outfit "Javelin Mini Pod"
 		"velocity" 10
 		"lifetime" 60
 		"reload" 40
-		"burst count" 30
-		"burst reload" 15
 		"firing energy" .2
 		"firing heat" 12
 		"shield damage" 48
@@ -1236,15 +1234,16 @@ outfit "Torpedo Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 7
+		"velocity" 0
+		"velocity override" 6
 		"lifetime" 900
 		"reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .15
-		"drag" .025
+		"acceleration" .12
+		"drag" .02
 		"turn" 1.5
-		"homing" 3
+		"homing" 2
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
@@ -1274,17 +1273,18 @@ outfit "Torpedo Pod"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 7
+		"velocity" 0
+		"velocity override" 6
 		"lifetime" 900
 		"reload" 320
 		"burst count" 3
 		"burst reload" 150
 		"firing energy" 2
 		"firing heat" 45
-		"acceleration" .15
-		"drag" .025
+		"acceleration" .12
+		"drag" .02
 		"turn" 1.5
-		"homing" 3
+		"homing" 2
 		"optical tracking" .8
 		"shield damage" 820
 		"hull damage" 820
@@ -1345,13 +1345,13 @@ outfit "Typhoon Launcher"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 6
-		"lifetime" 1100
-		"reload" 120
+		"velocity" 4
+		"lifetime" 1600
+		"reload" 150
 		"firing energy" 4
 		"firing heat" 50
-		"acceleration" .1
-		"drag" .02
+		"acceleration" .15
+		"drag" .04
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
@@ -1383,15 +1383,15 @@ outfit "Typhoon Pod"
 		"hit effect" "torpedo hit"
 		"die effect" "tiny explosion"
 		"inaccuracy" 5
-		"velocity" 6
-		"lifetime" 1100
-		"reload" 252
+		"velocity" 4
+		"lifetime" 1600
+		"reload" 320
 		"burst count" 3
-		"burst reload" 120
+		"burst reload" 150
 		"firing energy" 4
 		"firing heat" 50
-		"acceleration" .1
-		"drag" .02
+		"acceleration" .15
+		"drag" .04
 		"turn" 1.5
 		"homing" 4
 		"optical tracking" .9
@@ -1459,7 +1459,7 @@ outfit "Heavy Rocket Launcher"
 		"acceleration" .8
 		"drag" .1
 		"trigger radius" 20
-		"blast radius" 90
+		"blast radius" 150
 		"shield damage" 790
 		"hull damage" 670
 		"hit force" 900
@@ -1496,7 +1496,7 @@ outfit "Heavy Rocket Pod"
 		"acceleration" .8
 		"drag" .1
 		"trigger radius" 20
-		"blast radius" 90
+		"blast radius" 150
 		"shield damage" 790
 		"hull damage" 670
 		"hit force" 900
