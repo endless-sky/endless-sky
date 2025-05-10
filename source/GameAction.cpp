@@ -38,7 +38,7 @@ using namespace std;
 namespace {
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
-		// Maps are not transferrable; they represent the player's spatial awareness.
+		// Maps are not transferable; they represent the player's spatial awareness.
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{

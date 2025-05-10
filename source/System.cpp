@@ -1090,10 +1090,10 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.LoadSprite(node);
 		if(removing)
 			return;
-		object.isStar = !node.Token(1).compare(0, 5, "star/");
+		object.isStar = node.Token(1).starts_with("star/");
 		if(!object.isStar)
 		{
-			object.isStation = !node.Token(1).compare(0, 14, "planet/station");
+			object.isStation = node.Token(1).starts_with("planet/station");
 			object.isMoon = (!object.isStation && object.parent >= 0 && !objects[object.parent].IsStar());
 		}
 	}
