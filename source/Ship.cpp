@@ -382,6 +382,8 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
+					else if(grand.Token(0) == "blindspot" && grand.Size() >= 3)
+						attributes.blindspots.emplace_back(grand.Value(1), grand.Value(2));
 					else if(grand.Token(0) == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
 					else if(grand.Token(0) == "under")
@@ -1096,6 +1098,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				for(const auto &blindspot : attributes.blindspots)
+					out.Write("blindspot", blindspot.first.Degrees(), blindspot.second.Degrees());
 				if(attributes.turnMultiplier)
 					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
