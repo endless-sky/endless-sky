@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Date.h"
 #include "Depreciation.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "GameEvent.h"
 #include "Mission.h"
 #include "SystemEntry.h"
@@ -345,6 +346,24 @@ public:
 
 
 private:
+	class ScheduledEvent {
+	public:
+		// For loading a future event from the save file.
+		ScheduledEvent(const DataNode &node, const ConditionsStore *conditions);
+		// For loading a past event from the save file.
+		ScheduledEvent(const std::string &name, Date date);
+		// For scheduling a new event.
+		ScheduledEvent(GameEvent event, Date date);
+
+		// Comparison operator, based on the scheduled date of the event.
+		bool operator<(const ScheduledEvent &other) const;
+
+		ExclusiveItem<GameEvent> event;
+		Date date;
+	};
+
+
+private:
 	// Apply any "changes" saved in this player info to the global game state.
 	void ApplyChanges();
 	// After loading & applying changes, make sure the player & ship locations are sensible.
@@ -422,6 +441,9 @@ private:
 	// If any mission component is not fully defined, the mission is deactivated
 	// until its components are fully evaluable (i.e. needed plugins are reinstalled).
 	std::list<Mission> inactiveMissions;
+	// If any past event is not fully defined, the player should be warned that
+	// the universe may not be in the expected state.
+	std::list<GameEvent> invalidEvents;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
@@ -459,7 +481,9 @@ private:
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
-	std::multiset<GameEvent> gameEvents;
+	std::multiset<ScheduledEvent> gameEvents;
+	// Events that have already happened, and the date they occurred on:
+	std::multiset<ScheduledEvent> pastEvents;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
