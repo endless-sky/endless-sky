@@ -26,6 +26,7 @@ class ConditionsStore;
 class DataNode;
 class Planet;
 class Sprite;
+class System;
 
 
 
@@ -33,7 +34,8 @@ class Sprite;
 // news. One specification can contain many possible portraits and messages.
 class News {
 public:
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 
 	// Check whether this news item has anything to say.
 	bool IsEmpty() const;

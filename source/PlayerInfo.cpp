@@ -315,7 +315,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(child.Token(0) == "mission")
 		{
-			missions.emplace_back(child, &conditions);
+			missions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers") && child.HasChildren())
@@ -332,7 +332,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 					}
 		}
 		else if(child.Token(0) == "available job")
-			availableJobs.emplace_back(child, &conditions);
+			availableJobs.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 		else if(child.Token(0) == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(child.Token(0) == "sort descending")
@@ -342,7 +342,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(child.Token(0) == "separate possible")
 			sortSeparatePossible = true;
 		else if(child.Token(0) == "available mission")
-			availableMissions.emplace_back(child, &conditions);
+			availableMissions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 		else if(child.Token(0) == "conditions")
 			conditions.Load(child);
 		else if(child.Token(0) == "gifted ships" && child.HasChildren())
@@ -558,7 +558,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		changedSystems |= (change.Token(0) == "system");
 		changedSystems |= (change.Token(0) == "link");
 		changedSystems |= (change.Token(0) == "unlink");
-		GameData::Change(change, &conditions);
+		GameData::Change(change, *this);
 	}
 	if(changedSystems)
 	{
@@ -1468,7 +1468,7 @@ CargoHold &PlayerInfo::Storage()
 
 
 // Get planetary storage information for all planets (for map and overviews).
-const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
+const map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;
 }
@@ -2450,7 +2450,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 		tributeReceived.begin(),
 		tributeReceived.end(),
 		0,
-		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
+		[](int64_t value, const map<const Planet *, int64_t>::value_type &tribute)
 		{
 			return value + tribute.second;
 		}
@@ -2586,6 +2586,20 @@ void PlayerInfo::Unvisit(const System &system)
 void PlayerInfo::Unvisit(const Planet &planet)
 {
 	visitedPlanets.erase(&planet);
+}
+
+
+
+const set<const System *> &PlayerInfo::VisitedSystems() const
+{
+	return visitedSystems;
+}
+
+
+
+const set<const Planet *> &PlayerInfo::VisitedPlanets() const
+{
+	return visitedPlanets;
 }
 
 
