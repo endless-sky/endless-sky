@@ -153,7 +153,7 @@ PreferencesPanel::~PreferencesPanel()
 void PreferencesPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
 
@@ -715,6 +715,7 @@ void PreferencesPanel::DrawSettings()
 		"Reduce large graphics",
 		"Draw background haze",
 		"Draw starfield",
+		"Fixed starfield zoom",
 		BACKGROUND_PARALLAX,
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
