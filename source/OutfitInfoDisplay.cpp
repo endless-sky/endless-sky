@@ -190,6 +190,8 @@ namespace {
 		{"high shield permeability", 3},
 		{"low shield permeability", 3},
 		{"cloaked shield permeability", 3},
+		{"cloaked regen multiplier", 3},
+		{"cloaked repair multiplier", 3},
 		{"acceleration multiplier", 3},
 		{"turn multiplier", 3},
 		{"turret turn multiplier", 3},
