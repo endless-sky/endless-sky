@@ -741,7 +741,7 @@ void Engine::Step(bool isActive)
 			}
 		// Update the planet label positions.
 		for(PlanetLabel &label : labels)
-			label.Update(center, zoom);
+			label.Update(center, zoom, labels, *player.GetSystem());
 	}
 
 	if(flagship && flagship->IsOverheated())
