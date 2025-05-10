@@ -40,7 +40,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "ShipJumpNavigation.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -115,16 +114,6 @@ namespace {
 		};
 		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
 	}
-
-	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip, const System *system)
-	{
-		if(newFirstShip != oldFirstShip && Preferences::Has("Automatically unpark flagship")
-						&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
-		{
-			newFirstShip->SetIsParked(false);
-			oldFirstShip->SetIsParked(true);
-		}
-	}
 }
 
 
@@ -138,8 +127,6 @@ void PlayerInfo::Clear()
 	Random::Seed(time(nullptr));
 	GameData::Revert();
 	Messages::Reset();
-
-	conditions.Clear();
 
 	delete transactionSnapshot;
 	transactionSnapshot = nullptr;
@@ -1289,7 +1276,7 @@ void PlayerInfo::TakeShip(const Ship *shipToTake, const Ship *model, bool takeOu
 				for(const auto &it : shipToTake->Outfits())
 				{
 					// We only take all of the outfits specified in the model without putting them in the stock.
-					// The extra outfits of this ship are transfered into the stock.
+					// The extra outfits of this ship are transferred into the stock.
 					int amountToTake = 0;
 					if(model)
 					{
@@ -1371,7 +1358,7 @@ void PlayerInfo::ReorderShip(int fromIndex, int toIndex)
 	ships.insert(ships.begin() + toIndex, ship);
 	auto newFirstShip = ships[0];
 	// Check if the ship in the first position can be a flagship and is in the current system.
-	HandleFlagshipParking(oldFirstShip.get(), newFirstShip.get(), system);
+	HandleFlagshipParking(oldFirstShip.get(), newFirstShip.get());
 	flagship.reset();
 }
 
@@ -1387,7 +1374,7 @@ void PlayerInfo::SetShipOrder(const vector<shared_ptr<Ship>> &newOrder)
 		Ship *newFirstShip = ships.front().get();
 		// Check if the position of the flagship has changed, and the ship in the first position
 		// can be a flagship and is in the current system.
-		HandleFlagshipParking(oldFirstShip, newFirstShip, system);
+		HandleFlagshipParking(oldFirstShip, newFirstShip);
 		flagship.reset();
 	}
 	else
@@ -3248,7 +3235,25 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["day"].ProvideNamed([this](const ConditionEntry &ce) { return date.Day(); });
 	conditions["month"].ProvideNamed([this](const ConditionEntry &ce) { return date.Month(); });
 	conditions["year"].ProvideNamed([this](const ConditionEntry &ce) { return date.Year(); });
-	conditions["weekday"].ProvideNamed([this](const ConditionEntry &ce) { return date.WeekdayNumber(); });
+	conditions["weekday: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		string day = ce.NameWithoutPrefix();
+		int number = date.WeekdayNumberOffset();
+		if(day == "saturday")
+			return number == 0;
+		if(day == "sunday")
+			return number == 1;
+		if(day == "monday")
+			return number == 2;
+		if(day == "tuesday")
+			return number == 3;
+		if(day == "wednesday")
+			return number == 4;
+		if(day == "thursday")
+			return number == 5;
+		if(day == "friday")
+			return number == 6;
+		return 0;
+	});
 	conditions["days since year start"].ProvideNamed([this](const ConditionEntry &ce) {
 		return date.DaysSinceYearStart(); });
 	conditions["days until year end"].ProvideNamed([this](const ConditionEntry &ce) {
@@ -3927,7 +3932,7 @@ void PlayerInfo::CreateMissions()
 	if(availableMissions.empty())
 		return;
 
-	// This list is already in alphabetical order by virture of the way that the Set
+	// This list is already in alphabetical order by virtue of the way that the Set
 	// class stores objects, so stable sorting on the offer precedence will maintain
 	// the alphabetical ordering for missions with the same precedence.
 	availableMissions.sort([](const Mission &a, const Mission &b)
@@ -4605,6 +4610,19 @@ void PlayerInfo::Fine(UI *ui)
 		}
 		else
 			ui->Push(new Dialog(message));
+	}
+}
+
+
+
+void PlayerInfo::HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip)
+{
+	if(Preferences::Has("Automatically unpark flagship") && newFirstShip != oldFirstShip
+		&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
+	{
+		newFirstShip->SetIsParked(false);
+		oldFirstShip->SetIsParked(true);
+		UpdateCargoCapacities();
 	}
 }
 
