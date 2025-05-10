@@ -665,6 +665,18 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 		list<DataNode> eventChanges = event.Apply(*this);
 		if(!eventChanges.empty())
 			AddChanges(eventChanges);
+		// If the event states that its raw changes should be saved, then add the
+		// event's changes to the player's DataChanges list. Otherwise, just save
+		// a node with the event's name.
+		if(event.SaveRawChanges())
+			dataChanges.splice(dataChanges.end(), eventChanges);
+		else
+		{
+			DataNode eventNode;
+			eventNode.AddToken("event");
+			eventNode.AddToken(event.Name());
+			dataChanges.push_back(std::move(eventNode));
+		}
 		pastEvents.emplace(event, date);
 	}
 	else
@@ -800,10 +812,19 @@ void PlayerInfo::AdvanceDate(int amount)
 		{
 			GameEvent eventCopy = *(it->event);
 			list<DataNode> changes = eventCopy.Apply(*this);
-			// Unnamed events must have their changes stored in the save file.
-			if(eventCopy.Name().empty())
+			// Unnamed events must have their changes stored in the save file. Also store event changes in the save file
+			// if SaveRawChanges is true.
+			if(eventCopy.Name().empty() || eventCopy.SaveRawChanges())
 				dataChanges.insert(dataChanges.end(), changes.begin(), changes.end());
 			else
+			{
+				// Named events that don't save their raw changes get saved as just an event name.
+				DataNode eventNode;
+				eventNode.AddToken("event");
+				eventNode.AddToken(eventCopy.Name());
+				dataChanges.push_back(std::move(eventNode));
+			}
+			if(!eventCopy.Name().empty())
 				pastEvents.insert(*it);
 			eventChanges.splice(eventChanges.end(), changes);
 			it = gameEvents.erase(it);
@@ -3181,17 +3202,7 @@ void PlayerInfo::ApplyChanges()
 	for(const auto &it : reputationChanges)
 		it.first->SetReputation(it.second);
 	reputationChanges.clear();
-	// The game world is loaded before the player is, so it's safe to apply
-	// changes from event definitions now. First apply any data changes
-	// from the save file, then apply the changes from any named events.
-	list<DataNode> eventChanges = dataChanges;
-	for(const ScheduledEvent &pastEvent : pastEvents)
-	{
-		GameEvent eventCopy = *(pastEvent.event);
-		eventChanges.splice(eventChanges.end(), eventCopy.Apply(*this, true));
-	}
-	if(!eventChanges.empty())
-		AddChanges(eventChanges);
+	AddChanges(dataChanges);
 	GameData::ReadEconomy(economy);
 	economy = DataNode();
 

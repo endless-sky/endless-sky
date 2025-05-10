@@ -474,17 +474,14 @@ private:
 	// Changes that this PlayerInfo wants to make to the global galaxy state:
 	std::vector<std::pair<const Government *, double>> reputationChanges;
 	std::map<const Planet *, int64_t> tributeReceived;
-	// As of 0.10.13, event changes are stored in the save file by saving the name of the event
-	// and applying the changes of the event definition when the save file is loaded. Prior to
-	// that point, the body of event changes was stored in the save file instead. Therefore,
-	// the dataChanges list should only ever be populated by event changes from old save files.
 	std::list<DataNode> dataChanges;
-	std::multiset<ScheduledEvent> pastEvents;
 	DataNode economy;
 	// Persons that have been killed in this player's universe:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
 	std::multiset<ScheduledEvent> gameEvents;
+	// Events that have already happened, and the date they occurred on:
+	std::multiset<ScheduledEvent> pastEvents;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
