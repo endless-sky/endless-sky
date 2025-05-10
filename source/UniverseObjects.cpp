@@ -136,10 +136,12 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node, const ConditionsStore *playerConditions)
+void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 {
 	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
+
+	const ConditionsStore *playerConditions = &player.Conditions();
 	if(key == "fleet" && hasValue)
 		fleets.Get(node.Token(1))->Load(node);
 	else if(key == "galaxy" && hasValue)
@@ -164,6 +166,13 @@ void UniverseObjects::Change(const DataNode &node, const ConditionsStore *player
 		substitutions.Load(node, playerConditions);
 	else if(key == "wormhole" && hasValue)
 		wormholes.Get(node.Token(1))->Load(node);
+	else if(key == "event" && hasValue)
+	{
+		GameEvent eventCopy = *events.Get(node.Token(1));
+		list<DataNode> changes = eventCopy.Apply(player, true);
+		for(const DataNode &eventNode : changes)
+			Change(eventNode, player);
+	}
 	else
 		node.PrintTrace("Error: Invalid \"event\" data:");
 }

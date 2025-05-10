@@ -637,7 +637,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		changedSystems |= (change.Token(0) == "system");
 		changedSystems |= (change.Token(0) == "link");
 		changedSystems |= (change.Token(0) == "unlink");
-		GameData::Change(change, &conditions);
+		GameData::Change(change, *this);
 	}
 	if(changedSystems)
 	{
