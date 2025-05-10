@@ -2968,7 +2968,9 @@ double Ship::HeatDissipation() const
 // Get the maximum heat level, in heat units (not temperature).
 double Ship::MaximumHeat() const
 {
-	return MAXIMUM_TEMPERATURE * (cargo.Used() + attributes.Mass() + attributes.Get("heat capacity"));
+	double shipThermalMass = cargo.Used() + attributes.Mass() + attributes.Get("heat capacity");
+	double fuelThermalMass = fuel * attributes.Get("fuel heat capacity");
+	return MAXIMUM_TEMPERATURE * (shipThermalMass + fuelThermalMass);
 }
 
 
@@ -3090,7 +3092,7 @@ bool Ship::CanBeFlagship() const
 
 double Ship::Mass() const
 {
-	return carriedMass + cargo.Used() + attributes.Mass();
+	return carriedMass + cargo.Used() + attributes.Mass() + FuelMass();
 }
 
 
@@ -3099,6 +3101,14 @@ double Ship::Mass() const
 double Ship::InertialMass() const
 {
 	return Mass() / (1. + attributes.Get("inertia reduction"));
+}
+
+
+
+// Account for the mass of fuel for ships with the "fuel mass" attribute.
+double Ship::FuelMass() const
+{
+	return fuel * attributes.Get("fuel mass");
 }
 
 
