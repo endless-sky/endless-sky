@@ -71,8 +71,10 @@ public:
 	// be applied in a batch with other events that are applied at the same time.
 	std::list<DataNode> Apply(PlayerInfo &player, bool onlyDataChanges = false);
 
-	const std::list<DataNode> &Changes() const;
 	const ConditionAssignments &Conditions() const;
+	const std::list<DataNode> &Changes() const;
+
+	bool SaveRawChanges() const;
 
 	// Comparison operator, based on the date of the event.
 	bool operator<(const GameEvent &other) const;
@@ -82,6 +84,7 @@ private:
 	std::string name;
 	bool isDisabled = false;
 	bool isDefined = false;
+	bool saveRawChanges = false;
 
 	ConditionAssignments conditionsToApply;
 	std::list<DataNode> changes;
