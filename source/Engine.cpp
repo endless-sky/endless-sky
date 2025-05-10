@@ -128,7 +128,7 @@ namespace {
 		else
 			tag = ship->DisplayModelName() + " (" + gov + "): ";
 
-		Messages::Add(tag + message, Messages::Importance::High);
+		Messages::Add({tag + message, GameData::MessageCategories().Get("normal")});
 	}
 
 	Point FlareCurve(double x)
@@ -745,7 +745,7 @@ void Engine::Step(bool isActive)
 	}
 
 	if(flagship && flagship->IsOverheated())
-		Messages::Add("Your ship has overheated.", Messages::Importance::Highest);
+		Messages::Add(*GameData::Messages().Get("overheated"));
 
 	// Clear the HUD information from the previous frame.
 	info = Information();
@@ -1259,7 +1259,7 @@ void Engine::Draw() const
 				break;
 		}
 		float alpha = (it->step + 1000 - step) * .001f;
-		messageLine.Draw(messagePoint, Messages::GetColor(it->importance, false)->Additive(alpha));
+		messageLine.Draw(messagePoint, it->category->MainColor().Additive(alpha));
 		if(messagesReversed)
 			messagePoint.Y() += height;
 	}
@@ -1422,9 +1422,10 @@ void Engine::EnterSystem()
 	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
 
-	Messages::Add("Entering the " + system->DisplayName() + " system on "
+	Messages::Add({"Entering the " + system->DisplayName() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
-			"." : ". No inhabited planets detected."), Messages::Importance::Daily);
+		"." : ". No inhabited planets detected."),
+		GameData::MessageCategories().Get("daily")});
 
 	// Preload landscapes and determine if the player used a wormhole.
 	// (It is allowed for a wormhole's exit point to have no sprite.)
@@ -1519,9 +1520,9 @@ void Engine::EnterSystem()
 				if(Random::Real() < attraction)
 				{
 					raidFleet.GetFleet()->Place(*system, newShips);
-					Messages::Add("Your fleet has attracted the interest of a "
-							+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
-							Messages::Importance::Highest);
+					Messages::Add({"Your fleet has attracted the interest of a "
+						+ raidFleet.GetFleet()->GetGovernment()->GetName() + " raiding party.",
+						GameData::MessageCategories().Get("high")});
 				}
 	}
 
@@ -1543,9 +1544,9 @@ void Engine::EnterSystem()
 	// since the new player ships can make at most four jumps before landing.
 	if(today <= player.StartData().GetDate() + 4)
 	{
-		Messages::Add(GameData::HelpMessage("basics 1"), Messages::Importance::High);
-		Messages::Add(GameData::HelpMessage("basics 2"), Messages::Importance::High);
-		Messages::Add(GameData::HelpMessage("basics 3"), Messages::Importance::High);
+		Messages::Add(*GameData::Messages().Get("basics 1"));
+		Messages::Add(*GameData::Messages().Get("basics 2"));
+		Messages::Add(*GameData::Messages().Get("basics 3"));
 	}
 }
 
@@ -2231,12 +2232,13 @@ void Engine::HandleMouseClicks()
 					if(&object == flagship->GetTargetStellar())
 					{
 						if(!planet->CanLand(*flagship))
-							Messages::Add("The authorities on " + planet->DisplayName()
-									+ " refuse to let you land.", Messages::Importance::Highest);
+							Messages::Add({"The authorities on " + planet->DisplayName()
+								+ " refuse to let you land.", GameData::MessageCategories().Get("high")});
 						else if(!flagship->IsDestroyed())
 						{
 							activeCommands |= Command::LAND;
-							Messages::Add("Landing on " + planet->DisplayName() + ".", Messages::Importance::High);
+							Messages::Add({"Landing on " + planet->DisplayName() + ".",
+								GameData::MessageCategories().Get("normal")});
 						}
 					}
 					else
@@ -2664,7 +2666,7 @@ void Engine::DoCollection(Flotsam &flotsam)
 		message += ".)";
 	else
 		message += ", " + Format::MassString(total) + " in fleet.)";
-	Messages::Add(message, Messages::Importance::High);
+	Messages::Add({message, GameData::MessageCategories().Get("normal")});
 }
 
 

@@ -1990,11 +1990,11 @@ int Ship::Scan(const PlayerInfo &player)
 	if(startedScanning && isYours)
 	{
 		if(!target->Name().empty())
-			Messages::Add("Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\"."
-				, Messages::Importance::Low);
+			Messages::Add({"Attempting to scan the " + target->Noun() + " \"" + target->Name() + "\".",
+				GameData::MessageCategories().Get("low")});
 		else
-			Messages::Add("Attempting to scan the selected " + target->Noun() + "."
-				, Messages::Importance::Low);
+			Messages::Add({"Attempting to scan the selected " + target->Noun() + ".",
+				GameData::MessageCategories().Get("low")});
 
 		if(target->GetGovernment()->IsProvokedOnScan() && target->CanSendHail(player))
 		{
@@ -2005,26 +2005,26 @@ int Ship::Scan(const PlayerInfo &player)
 				tag = gov + " " + target->Noun() + " \"" + target->Name() + "\": ";
 			else
 				tag = target->DisplayModelName() + " (" + gov + "): ";
-			Messages::Add(tag + "Please refrain from scanning us or we will be forced to take action.",
-				Messages::Importance::Highest);
+			Messages::Add({tag + "Please refrain from scanning us or we will be forced to take action.",
+				GameData::MessageCategories().Get("high")});
 		}
 	}
 	else if(startedScanning && target->isYours && isImportant)
-		Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-				+ Name() + "\" is attempting to scan your ship \"" + target->Name() + "\".",
-				Messages::Importance::Low);
+		Messages::Add({"The " + government->GetName() + " " + Noun() + " \""
+			+ Name() + "\" is attempting to scan your ship \"" + target->Name() + "\".",
+			GameData::MessageCategories().Get("low")});
 
 	if(target->isYours && !isYours && isImportant)
 	{
 		if(result & ShipEvent::SCAN_CARGO)
-			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its cargo scan of your ship \"" + target->Name() + "\".",
-					Messages::Importance::High);
+			Messages::Add({"The " + government->GetName() + " " + Noun() + " \""
+				+ Name() + "\" completed its cargo scan of your ship \"" + target->Name() + "\".",
+				GameData::MessageCategories().Get("normal")});
 		if(result & ShipEvent::SCAN_OUTFITS)
-			Messages::Add("The " + government->GetName() + " " + Noun() + " \""
-					+ Name() + "\" completed its outfit scan of your ship \"" + target->Name()
-					+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
-					Messages::Importance::High);
+			Messages::Add({"The " + government->GetName() + " " + Noun() + " \""
+				+ Name() + "\" completed its outfit scan of your ship \"" + target->Name()
+				+ (target->Attributes().Get("inscrutable") > 0. ? "\" with no useful results." : "\"."),
+				GameData::MessageCategories().Get("normal")});
 	}
 
 	// Some governments are provoked when a scan is completed on one of their ships.
@@ -3243,8 +3243,8 @@ int Ship::TakeDamage(vector<Visual> &visuals, const DamageDealt &damage, const G
 		type |= ShipEvent::DESTROY;
 
 		if(IsYours())
-			Messages::Add("Your " + DisplayModelName() +
-				" \"" + Name() + "\" has been destroyed.", Messages::Importance::Highest);
+			Messages::Add({"Your " + DisplayModelName() + " \"" + Name() + "\" has been destroyed.",
+				GameData::MessageCategories().Get("high")});
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event.
@@ -4715,11 +4715,10 @@ void Ship::StepPilot()
 		if(isYours || personality.IsEscort())
 		{
 			if(!parent.lock())
-				Messages::Add("Your ship is moving erratically because you do not have enough crew to pilot it."
-					, Messages::Importance::Low);
+				Messages::Add(*GameData::Messages().Get("undercrewed flagship"));
 			else if(Preferences::Has("Extra fleet status messages"))
-				Messages::Add("The " + name + " is moving erratically because there are not enough crew to pilot it."
-					, Messages::Importance::Low);
+				Messages::Add({"The " + name + " is moving erratically because there are not enough crew to pilot it.",
+					GameData::MessageCategories().Get("low")});
 		}
 	}
 	else
@@ -4985,7 +4984,7 @@ void Ship::StepTargeting()
 					// boarding sequence (including locking on to the ship) but
 					// not to actually board, if they are cloaked, except if they have "cloaked boarding".
 					if(isYours)
-						Messages::Add("You cannot board a ship while cloaked.", Messages::Importance::Highest);
+						Messages::Add(*GameData::Messages().Get("cannot board while cloaked"));
 				}
 				else
 				{
@@ -4993,8 +4992,9 @@ void Ship::StepTargeting()
 					bool isEnemy = government->IsEnemy(target->government);
 					if(isEnemy && Random::Real() < target->Attributes().Get("self destruct"))
 					{
-						Messages::Add("The " + target->DisplayModelName() + " \"" + target->Name()
-							+ "\" has activated its self-destruct mechanism.", Messages::Importance::High);
+						Messages::Add({"The " + target->DisplayModelName() + " \"" + target->Name()
+							+ "\" has activated its self-destruct mechanism.",
+							GameData::MessageCategories().Get("high")});
 						GetTargetShip()->SelfDestruct();
 					}
 					else
