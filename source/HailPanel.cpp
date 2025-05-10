@@ -394,17 +394,17 @@ bool HailPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				{
 					bribed = ship->GetGovernment();
 					bribed->Bribe();
-					Messages::Add("You bribed a " + bribed->GetName() + " ship "
-						+ Format::CreditString(bribe) + " to refrain from attacking you today."
-							, Messages::Importance::High);
+					Messages::Add({"You bribed a " + bribed->GetName() + " ship "
+						+ Format::CreditString(bribe) + " to refrain from attacking you today.",
+						GameData::MessageCategories().Get("normal")});
 				}
 			}
 			else
 			{
 				planet->Bribe();
-				Messages::Add("You bribed the authorities on " + planet->DisplayName() + " "
-					+ Format::CreditString(bribe) + " to permit you to land."
-						, Messages::Importance::High);
+				Messages::Add({"You bribed the authorities on " + planet->DisplayName() + " "
+					+ Format::CreditString(bribe) + " to permit you to land.",
+					GameData::MessageCategories().Get("normal")});
 			}
 		}
 		else
@@ -435,6 +435,6 @@ void HailPanel::SetMessage(const string &text)
 {
 	message = text;
 	if(!message.empty())
-		Messages::AddLog("(Response to your hail) " + header + " " + message,
-			Messages::Importance::High);
+		Messages::AddLog({"(Response to your hail) " + header + " " + message,
+			GameData::MessageCategories().Get("normal")});
 }

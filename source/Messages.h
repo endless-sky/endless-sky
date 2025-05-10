@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Message.h"
+
 #include <cstdint>
 #include <deque>
 #include <string>
@@ -32,42 +34,31 @@ class Color;
 // to keep repeated messages from filling up the whole screen.
 class Messages {
 public:
-	enum class Importance : uint_least8_t {
-		Highest,
-		High,
-		Info,
-		Daily,
-		Low
-	};
-
 	class Entry {
 	public:
 		Entry() = default;
-		Entry(int step, const std::string &message, Importance importance)
-			: step(step), message(message), importance(importance) {}
+		Entry(int step, const std::string &message, const Message::Category *category)
+			: step(step), message(message), category(category) {}
 
 		int step;
 		std::string message;
-		Importance importance;
+		const Message::Category *category;
 	};
 
+
 public:
-	// Add a message to the list along with its level of importance
-	// When forced, the message is forcibly added to the log, but not to the list.
-	static void Add(const std::string &message, Importance importance = Importance::Low, bool force = false);
+	// Add a message to the list along with its level of importance.
+	static void Add(const Message &message);
 	// Add a message to the log. For messages meant to be shown
 	// also on the main panel, use Add instead.
-	static void AddLog(const std::string &message, Importance importance = Importance::Low, bool force = false);
+	static void AddLog(const Message &message);
 
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have
 	// their "step" set to the given value.
 	static const std::vector<Entry> &Get(int step);
-	static const std::deque<std::pair<std::string, Messages::Importance>> &GetLog();
+	static const std::deque<std::pair<std::string, const Message::Category *>> &GetLog();
 
 	// Reset the messages (i.e. because a new game was loaded).
 	static void Reset();
-
-	// Get color that should be used for drawing messages of given importance.
-	static const Color *GetColor(Importance importance, bool isLogPanel);
 };
