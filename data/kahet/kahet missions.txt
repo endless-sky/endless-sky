@@ -1008,14 +1008,12 @@ mission "Ka'het: Patir Mystery 7"
 			`	"Now that we know how to safely access the site, I am going to need to organize our next mission. If you meet me in the spaceport a few hours from now I should have everything ready."`
 
 mission "Ka'het: Patir Mystery 8A"
-	name "Lab deployment"
-	description "After taking the ground lab (weighing <tons>) from <stopovers>, reach <system> while still cloaked in order to set it up."
+	name "Take the lab"
+	description "Take the ground lab (weighing 97 tons) from <destination> to prepare for the next expedition."
 	source "Aventine"
-	stopover "Babiali"
-	destination "Builder Settlement"
+	destination "Babiali"
 	passengers 5
-	cargo "research lab and satellite" 97
-	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, the next mission is going to require <capacity>."`
+	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, we will need at least five free bunks for the mission we are preparing."`
 	to offer
 		has "Ka'het: Patir Mystery 7: done"
 	on offer
@@ -1024,10 +1022,30 @@ mission "Ka'het: Patir Mystery 8A"
 			`	"Because of that, before we can start our mission, we will need to make a stopover at <stopovers> - I was able to convince the prefects on Viminal to reallocate one of the outposts that they had just delivered there to our mission, given it has higher priority than the mining expeditions they are setting up."`
 			`	You help Dusk transport the chosen instruments to your ship; you also make sure to leave enough space for the facilities you're going to take from <planet stopovers>. As you're walking back to the ship's controls, Dusk reminds you to bring as many ramscoops with you as possible - you're going to need them in order to complete the mission plan while cloaked.`
 				accept
-	on stopover
+	on complete
 		dialog
 			`Dusk's coordinates indicate the border of a large canyon near the equator of <planet stopovers>. Unlike most cracks on the surface, this one shows signs of geological activity: you only narrowly avoid a stream ejecting from a geyser in the canyon as you pass overhead. As you land, a row of Remnant structures are clearly visible running parallel to the cliff.`
 			`	The local crew assist in loading the modular laboratory split across three pallets; with them arrives a separate package, containing a surveillance satellite to be deployed near Patir while cloaked.`
+	on abort
+		clear "remnant: dusk busy"
+	on fail
+		clear "remnant: dusk busy"
+
+
+mission "Ka'het: Patir Mystery 8B"
+	landing
+	name "Lab deployment"
+	description "Reach <system> and land while still cloaked in order to set up the Remnant laboratory."
+	source "Babiali"
+	destination "Builder Settlement"
+	passengers 5
+	cargo "research lab and satellite" 97
+	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, this mission is going to require <capacity>."`
+	to offer
+		has "Ka'het: Patir Mystery 8A: done"
+	on enter Patir
+		dialog
+			`The probe slowly moves away from your ship, opening its external panels and the instrumentation; as you watch it turn into a dim point of light, the Remnant team confirms that it is functioning correctly. Time to land on the asteroid.`
 	on abort
 		clear "remnant: dusk busy"
 	on fail
@@ -1042,17 +1060,6 @@ mission "Ka'het: Patir Mystery 8A"
 		fleet
 			variant
 				"Cloak Check" 10
-
-mission "Ka'het: Patir Mystery 8B"
-	landing
-	invisible
-	source "Babiali"
-	destination "Builder Settlement"
-	to offer
-		has "Ka'het: Patir Mystery 8A: offered"
-	on enter Patir
-		dialog
-			`The probe slowly moves away from your ship, opening its external panels and the instrumentation; as you watch it turn into a dim point of light, the Remnant team confirms that it is functioning correctly. Time to land on the asteroid.`
 
 
 # Invisible ship in Lathia, represents the power of the asteroid base in the system
@@ -1157,8 +1164,9 @@ mission "Ka'het: Patir Mystery 9"
 	waypoint "Thepa"
 	waypoint "Balnii"
 	to offer
-		has "Ka'het: Patir Mystery 8A: done"
+		has "Ka'het: Patir Mystery 8B: done"
 	on offer
+		event "Patir spaceport" 0
 		conversation
 			`Approaching the settlement from the northeast, you park the <ship> once again next to the airlock array; it's almost starting to become a familiar sight by now. With the cargo ramp pointed toward the entrance and the post-flight checklist completed, the Remnant team begins to deploy the lab while you remain in the cockpit, keeping an eye on Ka'sei activity. The researchers work quickly and nearly without issue in the light gravity of the asteroid, besides the occasional lost screw. However, the construction job still takes nearly the entire day.`
 			`	With the Ka'sei still oblivious, and the lab set up, you take advantage of the opportunity to stretch your legs and pay a visit to the researchers in the new outpost. "So, Captain," asks Dusk, meeting you at the entrance, "what do you think of it?"`
@@ -1253,9 +1261,9 @@ event "Patir moves"
 	system Patir
 		pos 10059.5 10.5
 		remove haze
-		add hazard "Beyond Patir Shield Eraser" 1
-		remove hazard "Ember Waste Base Heat" 100
-		remove hazard "Ember Waste Base Storm" 9000
+		set "ka'het: beyond Patir"
+
+event "Patir spaceport"
 	planet "Builder Settlement"
 		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport consists only of a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
@@ -1370,13 +1378,13 @@ mission "Ka'het: Patir Mystery 11"
 				"Asteroid Young 1"
 
 
-mission "Ka'het: Patir Mystery 12A"
+mission "Ka'het: Patir Mystery 12.1A"
 	landing
-	name "The Chanai station"
-	description "Investigate the station in Chanai for a way to return to the Milky Way. Afterwards, return to <system>."
+	name "The <system> station"
+	description "Investigate the station in <system> for a way to return to the Milky Way with the five Remnant scientists."
 	passengers 5
 	source "Builder Settlement"
-	stopover "Chanai Structure"
+	destination "Chanai Structure"
 	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks for the mission we are preparing."`
 	to offer
 		has "Ka'het: Patir Mystery 11: done"
@@ -1418,7 +1426,7 @@ mission "Ka'het: Patir Mystery 12A"
 	on enter Chanai
 		dialog
 			`The gargantuan station still sits far away from you, appearing as just a dot in the distance. A long range scan of the structure reveals enough of it for an initial assessment; after a quick discussion, the Remnant pick out an approach vector for you.`
-	on stopover
+	on complete
 		conversation
 			`The external coating of the structure appears pristine and untouched, much like a new spaceship. Orbiting far above a black hole, next to no asteroid moves in an orbit capable of posing a threat to it. Next to you, one of the Remnant researchers points a bulky scanner toward the station; after a few minutes, she indicates a place from which the structure can be accessed.`
 			`	"This is going to be a little different compared to our previous expeditions in Patir, <first>," Dusk remarks while walking toward the ship's airlock. "We cannot even fathom who built this place, let alone understand how to access their systems and control their doors. We will have to use a little more brute force here to move inside the complex." As he says this, he gestures towards the blowtorch-like piece of equipment on his back.`
@@ -1508,6 +1516,17 @@ mission "Ka'het: Patir Mystery 12A"
 			`	Dusk hands you the vial from earlier, which, despite its size, feels rather heavy in your hand. Inside is a grainy dust interspersed with small, violet crystals of various shapes. "We found a similar powder on the ground of a number of rooms inside the station. We have not explored the entire complex, of course, but if the pattern repeats we expect there to be something similar around the entire barrel."`
 			`	The particles suspended in the vial remind you of the regolith surrounding the Builder settlement orbiting Patir, but far less compact. "Attempts to learn the dust's composition have been inconclusive. Perhaps the instruments in the lab will give us better results, but our current tools only returned noise. However, we did notice something potentially interesting: the noise aligned with the scans you took in Lathia a few days ago. Whatever it is, it could be made of the same matter that composes those creatures - I can use the scanners on your ship to confirm it without wasting any time while we depart."`
 			`	You exit the station and enter your ship, and see most of the scientists have already moved their samples inside your cargo hold, with around two dozen containers scattered on the floor. Soon after, you're back inside the cockpit, preparing for liftoff; discussion about the next mission will have to wait until you're in <system>.`
+
+mission "Ka'het: Patir Mystery 12.1B"
+	landing
+	name "Return to <system>"
+	description "Return to the <destination> to figure out the next step."
+	passengers 5
+	source "Chanai Structure"
+	destination "Builder Settlement"
+	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks for the mission we are preparing."`
+	to offer
+		has "Ka'het: Patir Mystery 12.1A: done"
 	on complete
 		conversation
 			`As you accompany the Remnant team back to the lab, they confirm Dusk's theories on the dust. From the way they speak about it, they seem to have reached a consensus on the source of the regolith, though they don't go into details.`
@@ -1537,7 +1556,7 @@ mission "Ka'het: Patir Mystery 12A"
 			label lab
 			`	"Meet us in the lab in a few hours, and we will have everything ready for the trip. With a bit of luck, most of the instruments we used on Chanai will be a good fit for this mission as well."`
 		
-mission "Ka'het: Patir Mystery 12B"
+mission "Ka'het: Patir Mystery 12.2A"
 	name "Satellite deployment"
 	description "Deploy two probes in <waypoints> to keep an eye on incoming space rocks."
 	source "Builder Settlement"
@@ -1548,9 +1567,9 @@ mission "Ka'het: Patir Mystery 12B"
 	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks and 3 tons of cargo for the mission we are preparing."`
 	to offer
 		has "Ka'het: Patir Mystery 11: done"
-		( "Ka'het: Patir Mystery 12A: offered" + "Ka'het: Patir Mystery 12A: declined" ) % 2 == 0
+		( "Ka'het: Patir Mystery 12.1A: offered" + "Ka'het: Patir Mystery 12.1A: declined" ) % 2 == 0
 	to accept
-			has "Ka'het: Patir Mystery 12A: declined"
+			has "Ka'het: Patir Mystery 12.1A: declined"
 	on offer
 		conversation
 			`You find the team waiting for you in the lab. Next to them are two mechanical crates, roughly the size of a person. Most of the clutter around the room has been cut down considerably; these satellites alone must have used the larger part of their reserves. "Here they are, Captain," Dusk states proudly. "Two autonomous surveillance probes, capable of scanning an entire system without any input and slowly beaming the results back to us. Their capabilities are far from what our main fleet is capable of back home, but, considering our situation, they should be more than enough.`
@@ -1601,7 +1620,7 @@ outfit "Fuel Removal"
 		"fuel damage" 500
 		"turret turn" 360
 
-mission "Ka'het: Patir Mystery 12C"
+mission "Ka'het: Patir Mystery 12.2B"
 	landing
 	name "Ka'sei hacking"
 	description "Taking advantage of the arrival of one of the asteroids, dock with a disabled Ka'sei to gather data from its internal computers."
@@ -1609,7 +1628,7 @@ mission "Ka'het: Patir Mystery 12C"
 	cargo "Ka'het boarding payload" 3
 	source "Builder Settlement"
 	to offer
-		has "Ka'het: Patir Mystery 12B: done"
+		has "Ka'het: Patir Mystery 12.2A: done"
 	on offer
 		event "no Patir spaceport and no Fetri spawn" 0
 		conversation
@@ -1629,13 +1648,13 @@ mission "Ka'het: Patir Mystery 12C"
 	on enter
 		event "Patir spaceport returns and Fetri spawn" 1
 	npc assist
-		government "Ka'sei (12A)"
+		government "Ka'sei (12.2)"
 		personality derelict harvests mining plunders uninterested waiting
 		fleet
 			names "ka'sei"
 			cargo 3
 			variant
-				"Fetri'sei (Patir 12A)"
+				"Fetri'sei (Patir 12.2)"
 		conversation
 			`The giant creature floats a few meters away from your cockpit, silent and motionless, but you know that inside the shell, the slug remains alive and well, ready to kill. Compared to some of the Ka'het back in the Graveyard, this is one of the Builders' smaller creations, but its size is still impressive for what is, in essence, a single organism.`
 			`	Before setting the <ship> to automatic station-keeping, you move your ship so that the main hatch is as close as possible to the Fetri'sei. The Remnant are already in the airlock donning their extravehicular suits, and you join them shortly after.`
@@ -1697,7 +1716,7 @@ mission "Ka'het: Patir Mystery 12C"
 			`	"That said, I suggest returning to the outpost as soon as possible. The Ka'sei we have boarded may start acting erratically after this, or it may even attack us; we have removed part of its brain, after all. Hopefully this mission will not backfire against us."`
 			`	You sit back in the cockpit, starting the engines once again.`
 	on complete
-		fail "Ka'het: Patir Mystery 12D"
+		fail "Ka'het: Patir Mystery 12.2C"
 
 # The mission here is a complex mashup of game functions that uses many different mechanics to achieve the intended sequence:
 # - two ships spawn, one disabled and one functional (but otherwise standing still);
@@ -1718,23 +1737,23 @@ event "Patir spaceport returns and Fetri spawn"
 		spaceport `The Remnant laboratory merges oddly well with the rest of the environment, similar in color and design to the Builder structures around here. The spaceport amounts to only a flat strip of regolith near the settlement, hastily cleaned of the debris that covers most of the terrain.`
 
 
-mission "Ka'het: Patir Mystery 12D"
+mission "Ka'het: Patir Mystery 12.2C"
 	landing
 	invisible
 	source "Builder Settlement"
 	to offer
-		has "Ka'het: Patir Mystery 12B: done"
+		has "Ka'het: Patir Mystery 12.2A: done"
 	npc assist
 		government "Magic Asteroid"
 		personality coward fleeing harvests pacifist uninterested waiting mute
 		fleet
 			cargo 3
 			variant
-				"Asteroid Large (Patir 12A)"
+				"Asteroid Large (Patir 12.2)"
 		dialog
 			`The giant creature stands before you, slowly pulsating in a pale pink halo. The bubbles that interrupt the asteroid-like surface are slightly semitransparent, giving you a brief look at the crystalline structure inside, but your mind soon returns to your time-limited mission, and you decide to move ahead before it's too late.`
 	to fail
-		has "Ka'het: Patir Mystery 12C: done"
+		has "Ka'het: Patir Mystery 12.2B: done"
 
 
 outfit "Ka'het Machinery"
@@ -1758,7 +1777,7 @@ outfit "Ka'het Machinery"
 		"fuel damage" -400
 		"turret turn" 360
 
-ship "Fetri'sei" "Fetri'sei (Patir 12A)"
+ship "Fetri'sei" "Fetri'sei (Patir 12.2)"
 	plural "Fetri'seia"
 	sprite "ship/fetri'sei"
 	thumbnail "thumbnail/fetri'sei"
@@ -1813,7 +1832,7 @@ ship "Fetri'sei" "Fetri'sei (Patir 12A)"
 	"final explode" "final explosion small"
 	description "The Fetri is a self replicating probe, built to harvest iridium away from the Graveyard and transport it back to the Builders."
 
-ship "Asteroid Large 1" "Asteroid Large (Patir 12A)"
+ship "Asteroid Large 1" "Asteroid Large (Patir 12.2)"
 	sprite "ship/asteroid adult"
 	attributes
 		category "Transport"
@@ -1854,14 +1873,14 @@ ship "Asteroid Large 1" "Asteroid Large (Patir 12A)"
 	"final explode" "final explosion medium"
 
 
-mission "Ka'het: Patir Mystery 13A"
+mission "Ka'het: Patir Mystery 13.1"
 	name "Return to <planet>"
 	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
 	passengers 5
 	source "Builder Settlement"
 	destination "Aventine"
 	to offer
-		has "Ka'het: Patir Mystery 12A: done"
+		has "Ka'het: Patir Mystery 12.1B: done"
 	on offer
 		event "Patir returns" 0
 		conversation
@@ -1892,7 +1911,7 @@ mission "Ka'het: Patir Mystery 13A"
 		event "patir mystery 2 timer" 45
 		conversation "end of Patir 2 - on complete"
 
-mission "Ka'het: Patir Mystery 13B"
+mission "Ka'het: Patir Mystery 13.2"
 	landing
 	name "Return to <planet>"
 	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
@@ -1900,7 +1919,7 @@ mission "Ka'het: Patir Mystery 13B"
 	source "Builder Settlement"
 	destination "Aventine"
 	to offer
-		has "Ka'het: Patir Mystery 12C: done"
+		has "Ka'het: Patir Mystery 12.2B: done"
 	on offer
 		conversation
 			`Back down on the surface, you complete the post-landing checklist while keeping an eye on the movements of the Ka'sei. The research station has been a safe place to retreat during past expeditions, but it seems doubtful that it could last against a prolonged attack from one of the Fetri'sei.`
@@ -1950,9 +1969,7 @@ event "Patir returns"
 	system Patir
 		pos -38 553
 		haze _menu/haze-red
-		remove hazard "Beyond Patir Shield Eraser" 1
-		add hazard "Ember Waste Base Heat" 100
-		add hazard "Ember Waste Base Storm" 9000
+		clear "ka'het: beyond Patir"
 
 
 conversation "end of Patir 2 - on enter"

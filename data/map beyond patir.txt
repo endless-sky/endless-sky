@@ -31,7 +31,7 @@ system Athiri
 	object
 		sprite "star/black hole corona"
 		period 1
-	object "One-Way Wormhole Entrance"
+	object "Beyond Patir North Entrance"
 		distance 1510.2286
 		period 1
 		offset 35
@@ -101,7 +101,7 @@ system Ghila
 		sprite "planet/penrose machine"
 			scale 0.5
 		period 1
-	object "One-Way Wormhole Exit"
+	object "Beyond Patir North Exit"
 		distance 1626.8
 		period 10283.9
 	object
@@ -145,7 +145,7 @@ system Maithi
 	object
 		sprite "star/black hole 5"
 		period 1
-	object "One-Way Wormhole Exit"
+	object "Beyond Patir North Exit"
 		sprite "planet/wormhole-blue"
 		distance 4316.1251
 		period 10.1251
@@ -167,7 +167,7 @@ system Mitera
 	object
 		sprite "star/black hole 4"
 		period 1
-	object "One-Way Wormhole Entrance"
+	object "Beyond Patir North Entrance"
 		sprite "planet/wormhole-blue"
 		distance 4580.2286
 		period 11.3382
@@ -211,18 +211,18 @@ system Thepa
 		sprite "star/black hole 6"
 		period 1
 
-planet "One-Way Wormhole Entrance"
-	wormhole "One-Way Wormhole Entrance"
+planet "Beyond Patir North Entrance"
+	wormhole "Beyond Patir North Entrance"
 
-planet "One-Way Wormhole Exit"
-	wormhole "One-Way Wormhole Exit"
+planet "Beyond Patir North Exit"
+	wormhole "Beyond Patir North Exit"
 
-wormhole "One-Way Wormhole Entrance"
+wormhole "Beyond Patir North Entrance"
 	mappable
 	link Mitera Athiri
 	color "wormholes: beyond Patir"
 
-wormhole "One-Way Wormhole Exit"
+wormhole "Beyond Patir North Exit"
 	mappable
 	link Maithi Ghila
 	color "wormholes: beyond Patir"

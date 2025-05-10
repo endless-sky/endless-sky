@@ -1285,7 +1285,7 @@ government "Ka'sei"
 		capture 0
 	"player reputation" 1
 
-government "Ka'sei (12A)"
+government "Ka'sei (12.2)"
 	# Used only by the Patir Mystery mission in question
 	"display name" "Ka'sei"
 	swizzle 0
@@ -1440,7 +1440,7 @@ government "Magic Asteroid"
 	language "Magic Asteroid"
 	
 	"attitude toward"
-		"Ka'sei (12A)" -.01
+		"Ka'sei (12.2)" -.01
 		"Uninhabited" -.01
 
 	"player reputation" 10

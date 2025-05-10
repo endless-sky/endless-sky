@@ -30706,7 +30706,14 @@ system Patir
 	trade Plastic 426
 	fleet Ka'sei 300
 	hazard "Ember Waste Base Heat" 100
+		to spawn
+			not "ka'het: beyond Patir"
 	hazard "Ember Waste Base Storm" 9000
+		to spawn
+			not "ka'het: beyond Patir"
+	hazard "Beyond Patir Shield Eraser" 1
+		to spawn
+			has "ka'het: beyond Patir"
 	object
 		sprite star/patir
 		period 1
