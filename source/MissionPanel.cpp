@@ -317,8 +317,10 @@ void MissionPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	UI::UISound sound = UI::UISound::NORMAL;
 	if(command.Has(Command::HELP))
 	{
+		sound = UI::UISound::NONE;
 		DoHelp("jobs", true);
 		DoHelp("map advanced", true);
 	}
@@ -397,6 +399,7 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	// mission list, update the selected system, and pan the map.
 	SetSelectedScrollAndCenter();
 
+	UI::PlaySound(sound);
 	return true;
 }
 
@@ -434,6 +437,7 @@ bool MissionPanel::Click(int x, int y, int clicks)
 				}
 				else if(hoverSort == 3)
 					player.ToggleSortAscending();
+				UI::PlaySound(UI::UISound::NORMAL);
 				return true;
 			}
 			return false;

@@ -263,6 +263,7 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	fromMission(fromMission)
 {
 	Audio::Pause();
+	UI::PlaySound(UI::UISound::SOFT);
 	SetIsFullScreen(true);
 	SetInterruptible(false);
 	// Recalculate the fog each time the map is opened, just in case the player
@@ -636,6 +637,7 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::SOFT);
 	return true;
 }
 
