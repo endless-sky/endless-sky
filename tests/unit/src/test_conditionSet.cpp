@@ -210,10 +210,21 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 
 			// Tests for and and or conditions, the first one is the implicit version.
 			{"3\n\t2\n\t5", 3},
-			{"and\n\t\t11\n\t\t2\n\\tt5", 11},
-			{"and\n\t\t14\n\t\t0\n\\tt5", 0},
-			{"or\n\t\t8\n\t\t2\n\\tt5", 8},
-			{"or\n\t\t9\n\t\t0\n\\tt5", 9},
+			{"and\n\t\t11\n\t\t2\n\t\t5", 11},
+			{"and\n\t\t14\n\t\t0\n\t\t5", 0},
+			{"or\n\t\t8\n\t\t2\n\t\t5", 8},
+			{"or\n\t\t9\n\t\t0\n\t\t5", 9},
+
+			// Tests for min and max conditions.
+			{"max\n\t\t1\n\t\t10", 10},
+			{"min\n\t\t1\n\t\t10", 1},
+			{"max\n\t\t-30\n\t\t11", 11},
+			{"min\n\t\t-30\n\t\t11", -30},
+
+			{"max\n\t\t-30\n\t\t11\n\t\t5", 11},
+			{"min\n\t\t-30\n\t\t11\n\t\t5", -30},
+			{"max\n\t\t20", 20},
+			{"min\n\t\t20", 20},
 
 			// Black magic below; parser might need to handle this, but nobody should ever write comparisons like this.
 			{"1 > 2 == 0", 1},
