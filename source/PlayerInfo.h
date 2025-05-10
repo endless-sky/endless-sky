@@ -41,6 +41,7 @@ class Outfit;
 class Planet;
 class RaidFleet;
 class Rectangle;
+class SaleManager;
 class Ship;
 class ShipEvent;
 class StartConditions;
@@ -164,9 +165,9 @@ public:
 	void AddShip(const std::shared_ptr<Ship> &ship);
 	// Buy, receive or sell a ship.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
-	void BuyShip(const Ship *model, const std::string &name);
+	void BuyShip(const Ship *model, const std::string &name, const SaleManager &saleManager);
 	const Ship *GiftShip(const Ship *model, const std::string &name, const std::string &id);
-	void SellShip(const Ship *selected, bool storeOutfits = false);
+	void SellShip(const Ship *selected, const SaleManager &saleManager, bool storeOutfits = false);
 	// Take the ship from the player, if a model is specified this will permanently remove outfits in said model,
 	// instead of allowing the player to buy them back by putting them in the stock.
 	void TakeShip(const Ship *shipToTake, const Ship *model = nullptr, bool takeOutfits = false);
@@ -195,7 +196,7 @@ public:
 	// Switch cargo from being stored in ships to being stored here.
 	void Land(UI *ui);
 	// Make ships ready for take off. This may require selling excess cargo.
-	bool TakeOff(UI *ui, bool distributeCargo);
+	bool TakeOff(UI *ui, bool distributeCargo, const SaleManager &saleManager);
 	// Pool cargo from local ships.
 	void PoolCargo();
 	// Distribute cargo to local ships. Returns a reference to the player's cargo.

@@ -357,8 +357,9 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 			return false;
 
 	// If outfits are specified, make sure they can be bought here.
+	// TODO: Use the conditional stocks instead of the permanent sales.
 	for(const set<const Outfit *> &outfitList : outfits)
-		if(!SetsIntersect(outfitList, planet->OutfitterStock()))
+		if(!SetsIntersect(outfitList, planet->OutfitterSales()))
 			return false;
 
 	return Matches(planet->GetSystem(), origin, true);

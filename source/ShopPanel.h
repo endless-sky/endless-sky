@@ -34,6 +34,7 @@ class CategoryList;
 class Outfit;
 class Planet;
 class PlayerInfo;
+class SaleManager;
 class Ship;
 
 
@@ -42,7 +43,7 @@ class Ship;
 // outfitter panel (e.g. the sidebar with the ships you own).
 class ShopPanel : public Panel {
 public:
-	explicit ShopPanel(PlayerInfo &player, bool isOutfitter);
+	explicit ShopPanel(PlayerInfo &player, bool isOutfitter, const SaleManager &saleManager);
 
 	virtual void Step() override;
 	virtual void Draw() override;
@@ -150,6 +151,7 @@ protected:
 	int day;
 	const Planet *planet = nullptr;
 	const bool isOutfitter;
+	const SaleManager &saleManager;
 
 	// The player-owned ship that was first selected in the sidebar (or most recently purchased).
 	Ship *playerShip = nullptr;

@@ -56,7 +56,7 @@ namespace {
 		cout << DataWriter::Quote(itemNoun) << ',' << DataWriter::Quote(saleNoun) << '\n';
 		map<string, set<string>> itemSales;
 		for(auto &saleIt : sales)
-			for(auto &itemIt : saleIt.second.Stock())
+			for(auto &itemIt : saleIt.second.Sales())
 				itemSales[ObjectName(*itemIt)].insert(saleIt.first);
 		for(auto &itemIt : items)
 		{
@@ -79,7 +79,7 @@ namespace {
 		{
 			cout << DataWriter::Quote(saleIt.first);
 			int index = 0;
-			for(auto &item : saleIt.second.Stock())
+			for(auto &item : saleIt.second.Sales())
 				cout << (index++ ? ';' : ',') << DataWriter::Quote(ObjectName(*item));
 			cout << '\n';
 		}

@@ -15,11 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "OutfitInfoDisplay.h"
 
-#include "Depreciation.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "SaleManager.h"
 
 #include <algorithm>
 #include <cmath>
@@ -250,19 +250,12 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
-{
-	Update(outfit, player, canSell, descriptionCollapsed);
-}
-
-
-
 // Call this every time the ship changes.
-void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
+void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, const SaleManager &saleManager,
+	bool canSell, bool descriptionCollapsed)
 {
 	UpdateDescription(outfit.Description(), outfit.Licenses(), false);
-	UpdateRequirements(outfit, player, canSell, descriptionCollapsed);
+	UpdateRequirements(outfit, player, canSell, descriptionCollapsed, saleManager);
 	UpdateAttributes(outfit);
 
 	maximumHeight = max(descriptionHeight, max(requirementsHeight, attributesHeight));
@@ -285,16 +278,15 @@ void OutfitInfoDisplay::DrawRequirements(const Point &topLeft) const
 
 
 void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
+	bool canSell, bool descriptionCollapsed, const SaleManager &saleManager)
 {
 	requirementLabels.clear();
 	requirementValues.clear();
 	requirementsHeight = 20;
 
-	int day = player.GetDate().DaysSinceEpoch();
 	int64_t cost = outfit.Cost();
-	int64_t buyValue = player.StockDepreciation().Value(&outfit, day);
-	int64_t sellValue = player.FleetDepreciation().Value(&outfit, day);
+	int64_t buyValue = saleManager.BuyValue(&outfit);
+	int64_t sellValue = saleManager.SellValue(&outfit);
 
 	for(const string &license : outfit.Licenses())
 	{

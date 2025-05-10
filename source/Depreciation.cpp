@@ -228,71 +228,96 @@ void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 
 
 
-// Get the value of an entire fleet.
-int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool chassisOnly) const
-{
-	map<const Ship *, int> shipCount;
-	map<const Outfit *, int> outfitCount;
-
-	for(const shared_ptr<Ship> &ship : fleet)
-	{
-		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
-		++shipCount[base];
-
-		if(!chassisOnly)
-			for(const auto &it : ship->Outfits())
-				outfitCount[it.first] += it.second;
-	}
-
-	int64_t value = 0;
-	for(const auto &it : shipCount)
-		value += Value(it.first, day, it.second);
-	for(const auto &it : outfitCount)
-		value += Value(it.first, day, it.second);
-	return value;
-}
-
-
-
-// Get the value of a ship, along with all its outfits.
-int64_t Depreciation::Value(const Ship &ship, int day) const
-{
-	int64_t value = Value(&ship, day);
-	for(const auto &it : ship.Outfits())
-		value += Value(it.first, day, it.second);
-	return value;
-}
-
-
-
-// Get the value just of the chassis of a ship.
-int64_t Depreciation::Value(const Ship *ship, int day, int count) const
+double Depreciation::ValueFraction(const Ship *ship, int day, int count) const
 {
 	// Check whether a record exists for this ship. If not, its value is full
 	// if this is  planet's stock, or fully depreciated if this is the player.
 	ship = GameData::Ships().Get(ship->TrueModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
-		return DefaultDepreciation() * count * ship->ChassisCost();
+		return DefaultDepreciation() * count;
 
-	return Depreciate(recordIt->second, day, count) * ship->ChassisCost();
+	return Depreciate(recordIt->second, day, count);
 }
 
 
 
-// Get the value of an outfit.
-int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
+double Depreciation::ValueFraction(const Outfit *outfit, int day, int count) const
 {
 	if(outfit->Get("installable") < 0.)
-		return count * outfit->Cost();
+		return count;
 
 	// Check whether a record exists for this outfit. If not, its value is full
 	// if this is  planet's stock, or fully depreciated if this is the player.
 	auto recordIt = outfits.find(outfit);
 	if(recordIt == outfits.end() || recordIt->second.empty())
-		return DefaultDepreciation() * count * outfit->Cost();
+		return DefaultDepreciation() * count;
 
-	return Depreciate(recordIt->second, day, count) * outfit->Cost();
+	return Depreciate(recordIt->second, day, count);
+}
+
+
+
+int Depreciation::NumberOld(const Ship *ship, int day, int count) const
+{
+	ship = GameData::Ships().Get(ship->TrueModelName());
+	auto recordIt = ships.find(ship);
+	if(recordIt == ships.end() || recordIt->second.empty())
+		return isStock ? 0 : count;
+
+	int old = 0;
+	map<int, int> record = recordIt->second;
+	for(const auto &it : record)
+		if(it.first < day)
+			old += it.second;
+	return min(old, count);
+}
+
+
+
+int Depreciation::NumberOld(const Outfit *outfit, int day, int count) const
+{
+	auto recordIt = outfits.find(outfit);
+	if(recordIt == outfits.end() || recordIt->second.empty())
+		return isStock ? 0 : count;
+
+	int old = 0;
+	map<int, int> record = recordIt->second;
+	for(const auto &it : record)
+		if(it.first < day)
+			old += it.second;
+	return min(old, count);
+}
+
+
+
+int Depreciation::NumberNew(const Ship *ship, int day, int count) const
+{
+	ship = GameData::Ships().Get(ship->TrueModelName());
+	auto recordIt = ships.find(ship);
+	if(recordIt == ships.end() || recordIt->second.empty())
+		return isStock ? count : 0;
+
+	map<int, int> record = recordIt->second;
+	auto dayIt = record.find(day);
+	if(dayIt == record.end())
+		return isStock ? count : 0;
+	return min(dayIt->second, count);
+}
+
+
+
+int Depreciation::NumberNew(const Outfit *outfit, int day, int count) const
+{
+	auto recordIt = outfits.find(outfit);
+	if(recordIt == outfits.end() || recordIt->second.empty())
+		return isStock ? count : 0;
+
+	map<int, int> record = recordIt->second;
+	auto dayIt = record.find(day);
+	if(dayIt == record.end())
+		return isStock ? count : 0;
+	return min(dayIt->second, count);
 }
 
 

@@ -55,9 +55,9 @@ using namespace std;
 PlanetPanel::PlanetPanel(PlayerInfo &player, function<void()> callback)
 	: player(player), callback(callback),
 	planet(*player.GetPlanet()), system(*player.GetSystem()),
-	ui(*GameData::Interfaces().Get("planet"))
+	ui(*GameData::Interfaces().Get("planet")), saleManager(SaleManager(player, &outfitterStock, &shipyardStock))
 {
-	trading.reset(new TradingPanel(player));
+	trading.reset(new TradingPanel(player, saleManager));
 	bank.reset(new BankPanel(player));
 	spaceport.reset(new SpaceportPanel(player));
 	hiring.reset(new HiringPanel(player));
@@ -118,12 +118,12 @@ void PlanetPanel::Step()
 		for(const Shop<Ship> *shop : planet.Shipyards())
 		{
 			hasShipyard = true;
-			shipyardStock.Add(shop->Stock());
+			shipyardStock.Add(shop->InstantiateStock());
 		}
 		for(const Shop<Outfit> *shop : planet.Outfitters())
 		{
 			hasOutfitter = true;
-			outfitterStock.Add(shop->Stock());
+			outfitterStock.Add(shop->InstantiateStock());
 		}
 	}
 
@@ -188,6 +188,13 @@ void PlanetPanel::Draw()
 
 
 
+void PlanetPanel::EnterShipyard()
+{
+	GetUI()->Push(new ShipyardPanel(player, shipyardStock, saleManager));
+}
+
+
+
 // Only override the ones you need; the default action is to return false.
 bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
@@ -225,12 +232,12 @@ bool PlanetPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, b
 	}
 	else if(key == 's' && hasAccess && hasShipyard)
 	{
-		GetUI()->Push(new ShipyardPanel(player, shipyardStock));
+		GetUI()->Push(new ShipyardPanel(player, shipyardStock, saleManager));
 		return true;
 	}
 	else if(key == 'o' && hasAccess && hasOutfitter)
 	{
-		GetUI()->Push(new OutfitterPanel(player, outfitterStock));
+		GetUI()->Push(new OutfitterPanel(player, outfitterStock, saleManager));
 		return true;
 	}
 	else if(key == 'j' && hasAccess && planet.GetPort().HasService(Port::ServicesType::JobBoard))
@@ -501,7 +508,7 @@ void PlanetPanel::TakeOff(const bool distributeCargo)
 {
 	flightChecks.clear();
 	player.Save();
-	if(player.TakeOff(GetUI(), distributeCargo))
+	if(player.TakeOff(GetUI(), distributeCargo, saleManager))
 	{
 		if(callback)
 			callback();

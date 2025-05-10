@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "RaidFleet.h"
 #include "Random.h"
+#include "SaleManager.h"
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
@@ -901,7 +902,9 @@ void PlayerInfo::DoAccounting()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	// Net worth only accounts for the base sell value of the player's fleet,
+	// unaffected by any dynamic shop prices.
+	int64_t assets = SaleManager(*this).SellValue(ships);
 	for(const shared_ptr<Ship> &ship : ships)
 		assets += ship->Cargo().Value(system);
 
@@ -1179,13 +1182,13 @@ void PlayerInfo::AddShip(const shared_ptr<Ship> &ship)
 
 
 // Adds a ship of the given model with the given name to the player's fleet.
-void PlayerInfo::BuyShip(const Ship *model, const string &name)
+void PlayerInfo::BuyShip(const Ship *model, const string &name, const SaleManager &saleManager)
 {
 	if(!model)
 		return;
 
 	int day = date.DaysSinceEpoch();
-	int64_t cost = stockDepreciation.Value(*model, day);
+	int64_t cost = saleManager.BuyValue(model);
 	if(accounts.Credits() >= cost)
 	{
 		AddStockShip(model, name);
@@ -1224,7 +1227,7 @@ const Ship *PlayerInfo::GiftShip(const Ship *model, const string &name, const st
 
 
 // Sell the given ship (if it belongs to the player).
-void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
+void PlayerInfo::SellShip(const Ship *selected, const SaleManager &saleManager, bool storeOutfits)
 {
 	for(auto it = ships.begin(); it != ships.end(); ++it)
 		if(it->get() == selected)
@@ -1232,12 +1235,12 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 			int day = date.DaysSinceEpoch();
 			int64_t cost;
 
-			// Passing a pointer to Value gets only the hull cost. Passing a reference
+			// Passing a pointer to SellValue gets only the hull cost. Passing a reference
 			// gets hull and outfit costs.
 			if(storeOutfits)
-				cost = depreciation.Value(selected, day);
+				cost = saleManager.SellValue(selected);
 			else
-				cost = depreciation.Value(*selected, day);
+				cost = saleManager.SellValue(*selected);
 
 			// Record the transfer of this ship in the depreciation and stock info.
 			stockDepreciation.Buy(*selected, day, &depreciation, storeOutfits);
@@ -1646,7 +1649,7 @@ void PlayerInfo::Land(UI *ui)
 
 // Load the cargo back into your ships. This may require selling excess, in
 // which case a message will be returned.
-bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
+bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo, const SaleManager &saleManager)
 {
 	// This can only be done while landed.
 	if(!system || !planet)
@@ -1826,7 +1829,7 @@ bool PlayerInfo::TakeOff(UI *ui, const bool distributeCargo)
 				// Compute the total value for each type of excess outfit.
 				if(!outfit.second)
 					continue;
-				int64_t cost = depreciation.Value(outfit.first, day, outfit.second);
+				int64_t cost = saleManager.SellValue(outfit.first, outfit.second);
 				for(int i = 0; i < outfit.second; ++i)
 					stockDepreciation.Buy(outfit.first, day, &depreciation);
 				income += cost;
