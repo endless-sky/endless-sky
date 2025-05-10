@@ -45,6 +45,8 @@ public:
 		MUL, ///< Multiplies ( * ) all sub-expressions with each-other.
 		DIV, ///< (Integer) Divides ( / ) the first sub-expression by all later ones.
 		MOD, ///< Modulo ( % ) by the second and later sub-expressions on the first one.
+		MIN, ///< 'min' operator, returns the minimum value over all children.
+		MAX, ///< 'max' operator, returns the maximum value over all children.
 
 		// Boolean equality operators, return 0 or 1
 		EQ, ///< Tests for equality ( == ).

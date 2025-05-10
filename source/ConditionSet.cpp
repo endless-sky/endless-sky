@@ -51,7 +51,9 @@ namespace
 			{ConditionSet::ExpressionOp::MUL, [](int64_t a, int64_t b) { return a * b; }},
 			{ConditionSet::ExpressionOp::ADD, [](int64_t a, int64_t b) { return a + b; }},
 			{ConditionSet::ExpressionOp::SUB, [](int64_t a, int64_t b) { return a - b; }},
-			{ConditionSet::ExpressionOp::DIV, [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }}
+			{ConditionSet::ExpressionOp::DIV, [](int64_t a, int64_t b) { return b ? a / b : numeric_limits<int64_t>::max(); }},
+			{ConditionSet::ExpressionOp::MAX, [](int64_t a, int64_t b) { return max(a, b); }},
+			{ConditionSet::ExpressionOp::MIN, [](int64_t a, int64_t b) { return min(a, b); }},
 		};
 
 		auto it = opMap.find(op);
@@ -77,6 +79,8 @@ namespace
 		// Parent-type operators have a low precedence in Endless-Sky, because they are on outer parent/child sections.
 		{ "and", ConditionSet::ExpressionOp::AND },
 		{ "or", ConditionSet::ExpressionOp::OR },
+		{ "max", ConditionSet::ExpressionOp::MAX },
+		{ "min", ConditionSet::ExpressionOp::MIN },
 	};
 
 
@@ -105,7 +109,7 @@ namespace
 			case ConditionSet::ExpressionOp::LE:
 				return 3;
 			default:
-				// Precedence for AND, OR
+				// Precedence for AND, OR, MAX and MIN
 				return 0;
 		}
 	}
@@ -287,6 +291,8 @@ void ConditionSet::SaveSubset(DataWriter &out) const
 		break;
 	case ExpressionOp::AND:
 	case ExpressionOp::OR:
+	case ExpressionOp::MAX:
+	case ExpressionOp::MIN:
 		out.Write(opTxt);
 		out.BeginChild();
 		for(const auto &child : children)
@@ -396,6 +402,7 @@ int64_t ConditionSet::Evaluate() const
 	}
 
 	// If we have an accumulator function and children, then let's use the accumulator on the children.
+	// MAX and MIN are also handled by the accumulator.
 	BinFun accumulatorOp = Op(expressionOperator);
 	if(accumulatorOp != nullptr && !children.empty())
 		return accumulate(next(children.begin()), children.end(), children[0].Evaluate(),
@@ -441,6 +448,16 @@ bool ConditionSet::ParseNode(const DataNode &node)
 		if(node.Token(0) == "or")
 		{
 			expressionOperator = ExpressionOp::OR;
+			return ParseBooleanChildren(node);
+		}
+		if(node.Token(0) == "min")
+		{
+			expressionOperator = ExpressionOp::MIN;
+			return ParseBooleanChildren(node);
+		}
+		if(node.Token(0) == "max")
+		{
+			expressionOperator = ExpressionOp::MAX;
 			return ParseBooleanChildren(node);
 		}
 	}
@@ -554,6 +571,8 @@ bool ConditionSet::Optimize(const DataNode &node)
 		case ExpressionOp::MUL:
 		case ExpressionOp::DIV:
 		case ExpressionOp::MOD:
+		case ExpressionOp::MAX:
+		case ExpressionOp::MIN:
 			// TODO: Optimize arithmetic operators.
 			break;
 
