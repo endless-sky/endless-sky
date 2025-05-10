@@ -33,6 +33,7 @@ namespace {
 		"outfitter",
 		"news",
 		"planet",
+		"raiders",
 		"shipyard",
 		"system",
 		"substitutions",

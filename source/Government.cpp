@@ -151,8 +151,8 @@ void Government::Load(const DataNode &node)
 						reputationMin = numeric_limits<double>::lowest();
 				}
 			}
-			else if(key == "raid")
-				raidFleets.clear();
+			else if(key == "raiders" || key == "raid")
+				raiders = {};
 			else if(key == "display name")
 				displayName = name;
 			else if(key == "death sentence")
@@ -198,7 +198,10 @@ void Government::Load(const DataNode &node)
 		}
 
 		if(key == "raid")
-			RaidFleet::Load(raidFleets, child, remove, valueIndex);
+		{
+			child.PrintTrace("Warning: Deprecated use of \"raid\" instead of providing \"raiders\":");
+			raiders = ExclusiveItem<Raiders>(Raiders(child, remove, valueIndex));
+		}
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
@@ -396,6 +399,8 @@ void Government::Load(const DataNode &node)
 			hostileDisabledHail = GameData::Phrases().Get(child.Token(valueIndex));
 		else if(key == "language")
 			language = child.Token(valueIndex);
+		else if(key == "raiders")
+			raiders = ExclusiveItem<Raiders>(GameData::GetRaiders().Get(child.Token(valueIndex)));
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
@@ -595,7 +600,14 @@ bool Government::SendUntranslatedHails() const
 // The second attribute denotes the minimal and maximal attraction required for the fleet to appear.
 const vector<RaidFleet> &Government::RaidFleets() const
 {
-	return raidFleets;
+	return raiders->RaidFleets();
+}
+
+
+
+const Raiders *Government::GetRaiders() const
+{
+	return &*raiders;
 }
 
 
