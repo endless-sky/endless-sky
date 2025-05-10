@@ -230,7 +230,7 @@ outfit "Heavy Blaster"
 	category "Guns"
 	series "Guns"
 	index 01050
-	cost 140000
+	cost 125000
 	thumbnail "outfit/heavy blaster"
 	"mass" 19
 	"outfit space" -19
