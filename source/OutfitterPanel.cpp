@@ -348,6 +348,9 @@ ShopPanel::BuyResult OutfitterPanel::CanBuy(bool onlyOwned) const
 		return "You already have one of these licenses, "
 			"so there is no reason to buy another.";
 
+	if(!playerShip && selectedOutfit->Attributes().Get("no cargo"))
+		return "This outfit cannot be placed in cargo.";
+
 	// Check that the player has any necessary licenses.
 	int64_t licenseCost = LicenseCost(selectedOutfit, onlyOwned);
 	if(licenseCost < 0)
@@ -600,6 +603,9 @@ bool OutfitterPanel::CanSell(bool toStorage) const
 	if(!planet || !selectedOutfit)
 		return false;
 
+	if(toStorage && selectedOutfit->Attributes().Get("no storage"))
+		return false;
+
 	if(player.Cargo().Get(selectedOutfit))
 		return true;
 
@@ -716,6 +722,8 @@ void OutfitterPanel::FailSell(bool toStorage) const
 		GetUI()->Push(new Dialog("You cannot " + verb + " maps. Once you buy one, it is yours permanently."));
 	else if(HasLicense(selectedOutfit->TrueName()))
 		GetUI()->Push(new Dialog("You cannot " + verb + " licenses. Once you obtain one, it is yours permanently."));
+	else if(toStorage && selectedOutfit->Attributes().Get("no storage"))
+		GetUI()->Push(new Dialog("This outfit cannot be placed in storage."));
 	else
 	{
 		bool hasOutfit = player.Cargo().Get(selectedOutfit);
