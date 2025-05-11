@@ -624,7 +624,8 @@ bool Mission::HasPriority() const
 
 
 // Check if this mission is a "non-blocking" mission.
-// Such missions will not prevent minor missions from being offered alongside them.
+// Such missions will not prevent minor missions from being offered alongside them,
+// and will not be prevented from offering by priority missions.
 bool Mission::IsNonBlocking() const
 {
 	return isNonBlocking;

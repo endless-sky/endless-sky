@@ -82,7 +82,8 @@ public:
 	// are available, only other priority missions can offer alongside it.
 	bool HasPriority() const;
 	// Check if this mission is a "non-blocking" mission.
-	// Such missions will not prevent minor missions from being offered alongside them.
+	// Such missions will not prevent minor missions from being offered alongside them,
+	// and will not be prevented from offering by priority missions.
 	bool IsNonBlocking() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.

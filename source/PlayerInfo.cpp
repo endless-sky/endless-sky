@@ -3941,9 +3941,12 @@ void PlayerInfo::CreateMissions()
 		});
 
 	// If any of the available missions are "priority" missions, then only priority
-	// missions are allowed to offer.
+	// and non-blocking missions are allowed to offer.
 	if(hasPriorityMissions)
-		erase_if(availableMissions, [](const Mission &m) noexcept -> bool { return !m.HasPriority(); });
+		erase_if(availableMissions, [](const Mission &m) noexcept -> bool
+			{
+				return !m.HasPriority() && !m.IsNonBlocking();
+			});
 	else if(availableMissions.size() > 1 + nonBlockingMissions)
 	{
 		// Minor missions only get offered if no other missions (including other
