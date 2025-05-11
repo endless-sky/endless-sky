@@ -129,9 +129,9 @@ namespace {
 
 
 
-PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const ConditionsStore *conditions)
+PlayerInfo::ScheduledEvent::ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	GameEvent nodeEvent(node, conditions);
+	GameEvent nodeEvent(node, playerConditions);
 	date = nodeEvent.GetDate();
 
 	string eventName;
@@ -426,16 +426,6 @@ void PlayerInfo::Load(const filesystem::path &path)
 			for(const DataNode &grand : child)
 				dataChanges.push_back(grand);
 		}
-		else if(child.Token(0) == "past events")
-		{
-			for(const DataNode &grand : child)
-			{
-				if(grand.Size() >= 4)
-					pastEvents.emplace(grand.Token(0), Date(grand.Value(1), grand.Value(2), grand.Value(3)));
-				else
-					grand.PrintTrace("Warning: Unable to read past event without a date:");
-			}
-		}
 		else if(child.Token(0) == "economy")
 			economy = child;
 		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
@@ -634,9 +624,11 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
 	{
-		changedSystems |= (change.Token(0) == "system");
-		changedSystems |= (change.Token(0) == "link");
-		changedSystems |= (change.Token(0) == "unlink");
+		const string &key = change.Token(0);
+		// Date nodes do not represent a change.
+		if(key == "date")
+			continue;
+		changedSystems |= (key == "system" || key == "link" || key == "unlink");
 		GameData::Change(change, *this);
 	}
 	if(changedSystems)
@@ -662,27 +654,15 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 	// Check if the event should be applied directly.
 	if(date <= this->date)
 	{
-		list<DataNode> eventChanges = event.Apply(*this);
+		list<DataNode> eventChanges;
+		TriggerEvent(std::move(event), eventChanges);
 		if(!eventChanges.empty())
 			AddChanges(eventChanges);
-		// If the event states that its raw changes should be saved, then add the
-		// event's changes to the player's DataChanges list. Otherwise, just save
-		// a node with the event's name.
-		if(event.SaveRawChanges())
-			dataChanges.splice(dataChanges.end(), eventChanges);
-		else
-		{
-			DataNode eventNode;
-			eventNode.AddToken("event");
-			eventNode.AddToken(event.Name());
-			dataChanges.push_back(std::move(eventNode));
-		}
-		pastEvents.emplace(event, date);
 	}
 	else
 	{
 		event.SetDate(date);
-		gameEvents.emplace(event, date);
+		gameEvents.emplace(std::move(event), date);
 	}
 }
 
@@ -806,27 +786,12 @@ void PlayerInfo::AdvanceDate(int amount)
 		++date;
 
 		// Check if any special events should happen today.
+		markedChangesToday = false;
 		auto it = gameEvents.begin();
 		list<DataNode> eventChanges;
 		while(it != gameEvents.end() && date >= it->date)
 		{
-			GameEvent eventCopy = *(it->event);
-			list<DataNode> changes = eventCopy.Apply(*this);
-			// Unnamed events must have their changes stored in the save file. Also store event changes in the save file
-			// if SaveRawChanges is true.
-			if(eventCopy.Name().empty() || eventCopy.SaveRawChanges())
-				dataChanges.insert(dataChanges.end(), changes.begin(), changes.end());
-			else
-			{
-				// Named events that don't save their raw changes get saved as just an event name.
-				DataNode eventNode;
-				eventNode.AddToken("event");
-				eventNode.AddToken(eventCopy.Name());
-				dataChanges.push_back(std::move(eventNode));
-			}
-			if(!eventCopy.Name().empty())
-				pastEvents.insert(*it);
-			eventChanges.splice(eventChanges.end(), changes);
+			TriggerEvent(*(it->event), eventChanges);
 			it = gameEvents.erase(it);
 		}
 		if(!eventChanges.empty())
@@ -1734,7 +1699,7 @@ void PlayerInfo::Land(UI *ui)
 			int named = 0;
 			while(eit != invalidEvents.rend() && (++named < 10))
 			{
-				message += "\t\"" + eit->Name() + "\"\n";
+				message += "\t\"" + *eit + "\"\n";
 				++eit;
 			}
 			if(eit != invalidEvents.rend())
@@ -3350,10 +3315,10 @@ void PlayerInfo::ValidateLoad()
 	// player about.
 	for(const ScheduledEvent &event : gameEvents)
 		if(!event.event->IsValid().empty())
-			invalidEvents.push_back(*event.event);
-	for(const ScheduledEvent &event : pastEvents)
-		if(!event.event->IsValid().empty())
-			invalidEvents.push_back(*event.event);
+			invalidEvents.insert(event.event->Name());
+	for(const string &event : triggeredEvents)
+		if(!GameData::Events().Get(event)->IsValid().empty())
+			invalidEvents.insert(event);
 }
 
 
@@ -4009,6 +3974,50 @@ void PlayerInfo::RegisterDerivedConditions()
 
 
 
+void PlayerInfo::MarkChangesToday()
+{
+	if(markedChangesToday)
+		return;
+	markedChangesToday = true;
+
+	DataNode todayNode;
+	todayNode.AddToken("date");
+	todayNode.AddToken(to_string(date.Day()));
+	todayNode.AddToken(to_string(date.Month()));
+	todayNode.AddToken(to_string(date.Year()));
+	dataChanges.push_back(std::move(todayNode));
+}
+
+
+
+void PlayerInfo::TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges)
+{
+	const string &name = event.Name();
+	list<DataNode> changes = event.Apply(*this);
+	if(!name.empty() || !changes.empty())
+		MarkChangesToday();
+	// Unnamed events must have their changes stored in the save file.
+	// Also store event changes in the save file if SaveRawChanges is true.
+	if(!changes.empty() && (name.empty() || event.SaveRawChanges()))
+		dataChanges.insert(dataChanges.end(), changes.begin(), changes.end());
+	else
+	{
+		// Named events that don't save their raw changes get saved as just an event name.
+		DataNode eventNode;
+		eventNode.AddToken("event");
+		eventNode.AddToken(event.Name());
+		dataChanges.push_back(std::move(eventNode));
+	}
+	if(!name.empty())
+		triggeredEvents.insert(name);
+	if(!changes.empty())
+		eventChanges.splice(eventChanges.end(), changes);
+}
+
+
+
+
+
 // New missions are generated each time you land on a planet.
 void PlayerInfo::CreateMissions()
 {
@@ -4585,23 +4594,6 @@ void PlayerInfo::Save(DataWriter &out) const
 		{
 			for(const DataNode &node : dataChanges)
 				out.Write(node);
-		}
-		out.EndChild();
-	}
-	if(!pastEvents.empty())
-	{
-		out.Write("past events");
-		out.BeginChild();
-		{
-			for(const ScheduledEvent &pastEvent : pastEvents)
-			{
-				const string &name = pastEvent.event->Name();
-				if(!name.empty())
-				{
-					const Date &date = pastEvent.date;
-					out.Write(name, date.Day(), date.Month(), date.Year());
-				}
-			}
 		}
 		out.EndChild();
 	}

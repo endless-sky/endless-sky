@@ -349,7 +349,7 @@ private:
 	class ScheduledEvent {
 	public:
 		// For loading a future event from the save file.
-		ScheduledEvent(const DataNode &node, const ConditionsStore *conditions);
+		ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions);
 		// For loading a past event from the save file.
 		ScheduledEvent(const std::string &name, Date date);
 		// For scheduling a new event.
@@ -370,6 +370,13 @@ private:
 	void ValidateLoad();
 	// Helper to register derived conditions.
 	void RegisterDerivedConditions();
+
+	// If changes have occurred due to the triggering of an event, add a note to the
+	// data changes to record today's date. If today's date was already recorded,
+	// do nothing.
+	void MarkChangesToday();
+	// Helper for triggering events.
+	void TriggerEvent(GameEvent event, std::list<DataNode> &eventChanges);
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
@@ -441,7 +448,7 @@ private:
 	std::list<Mission> inactiveMissions;
 	// If any past event is not fully defined, the player should be warned that
 	// the universe may not be in the expected state.
-	std::list<GameEvent> invalidEvents;
+	std::set<std::string> invalidEvents;
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
@@ -480,8 +487,11 @@ private:
 	std::vector<std::string> destroyedPersons;
 	// Events that are going to happen some time in the future (sorted by date for easy chronological access):
 	std::multiset<ScheduledEvent> gameEvents;
-	// Events that have already happened, and the date they occurred on:
-	std::multiset<ScheduledEvent> pastEvents;
+	// The names of events that were triggered in the past. Only needed when loading the game to determine
+	// if an invalid event is referenced in the save file that the player should be warned about.
+	std::set<std::string> triggeredEvents;
+	// Whether a date note has already been added to dataChanges to mark when new changes have occurred.
+	bool markedChangesToday = false;
 
 	// The system and position therein to which the "orbits" system UI issued a move order.
 	std::pair<const System *, Point> interstellarEscortDestination;
