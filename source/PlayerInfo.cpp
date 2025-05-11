@@ -3940,8 +3940,8 @@ void PlayerInfo::CreateMissions()
 			return a.OfferPrecedence() > b.OfferPrecedence();
 		});
 
-	// If any of the available missions are "priority" missions, no other
-	// special missions will be offered in the spaceport.
+	// If any of the available missions are "priority" missions, then only priority
+	// missions are allowed to offer.
 	if(hasPriorityMissions)
 		erase_if(availableMissions, [](const Mission &m) noexcept -> bool { return !m.HasPriority(); });
 	else if(availableMissions.size() > 1 + nonBlockingMissions)

@@ -18,6 +18,7 @@ event "remembrance day"
 
 mission "remembrance day"
 	landing
+	priority
 	source
 		government "Republic"
 		attributes "spaceport"
@@ -147,6 +148,7 @@ event "war begins"
 
 mission "event: war begins"
 	landing
+	priority
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "spaceport"

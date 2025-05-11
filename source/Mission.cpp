@@ -358,8 +358,6 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 
 	if(displayName.empty())
 		displayName = name;
-	if(hasPriority && location == LANDING)
-		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
 
@@ -616,9 +614,8 @@ bool Mission::IsValid() const
 
 
 
-// Check if this mission has high priority. If any high-priority missions
-// are available, no others will be shown at landing or in the spaceport.
-// This is to be used for missions that are part of a series.
+// Check if this mission has high priority. If any priority missions
+// are available, only other priority missions can offer alongside it.
 bool Mission::HasPriority() const
 {
 	return hasPriority;

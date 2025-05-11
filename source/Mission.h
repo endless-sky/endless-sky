@@ -78,9 +78,8 @@ public:
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
-	// Check if this mission has high priority. If any high-priority missions
-	// are available, no others will be shown at landing or in the spaceport.
-	// This is to be used for missions that are part of a series.
+	// Check if this mission has high priority. If any priority missions
+	// are available, only other priority missions can offer alongside it.
 	bool HasPriority() const;
 	// Check if this mission is a "non-blocking" mission.
 	// Such missions will not prevent minor missions from being offered alongside them.
