@@ -350,8 +350,6 @@ private:
 	public:
 		// For loading a future event from the save file.
 		ScheduledEvent(const DataNode &node, const ConditionsStore *playerConditions);
-		// For loading a past event from the save file.
-		ScheduledEvent(const std::string &name, Date date);
 		// For scheduling a new event.
 		ScheduledEvent(GameEvent event, Date date);
 
