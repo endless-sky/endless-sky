@@ -344,9 +344,11 @@ bool MissionTimer::CanActivate(const Ship *flagship, const PlayerInfo &player) c
 	if(requirePeaceful)
 	{
 		// If the player is required to be peaceful, then none of their weapons
-		// can have a fire command.
+		// can have a fire command. Special weapons like anti-missile turrets which
+		// are only used defensively and automatically do not count against the
+		// player.
 		for(const Hardpoint &hardpoint : flagship->Weapons())
-			if(hardpoint.WasFiring())
+			if(!hardpoint.IsSpecial() && hardpoint.WasFiring())
 				return false;
 	}
 
