@@ -591,23 +591,23 @@ bool Mission::IsVisible() const
 
 // The colors that should be used to display the mission name if it is shown
 // in your mission list.
-const ExclusiveItem<Color> &Mission::Unavailable() const
+const Color &Mission::Unavailable() const
 {
-	return unavailable;
+	return *unavailable;
 }
 
 
 
-const ExclusiveItem<Color> &Mission::Unselected() const
+const Color &Mission::Unselected() const
 {
-	return unselected;
+	return *unselected;
 }
 
 
 
-const ExclusiveItem<Color> &Mission::Selected() const
+const Color &Mission::Selected() const
 {
-	return selected;
+	return *selected;
 }
 
 

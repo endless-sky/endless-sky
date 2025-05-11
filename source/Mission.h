@@ -79,9 +79,9 @@ public:
 	bool IsVisible() const;
 	// The colors that should be used to display the mission name if it is shown
 	// in your mission list.
-	const ExclusiveItem<Color> &Unavailable() const;
-	const ExclusiveItem<Color> &Unselected() const;
-	const ExclusiveItem<Color> &Selected() const;
+	const Color &Unavailable() const;
+	const Color &Unselected() const;
+	const Color &Selected() const;
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
