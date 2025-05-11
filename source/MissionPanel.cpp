@@ -879,7 +879,7 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 		}
 		else
 		{
-			if(it->Unselected()->IsLoaded())
+			if(it->Unselected().IsLoaded())
 				color = &it->Unselected();
 			else
 				color = &unselected;
