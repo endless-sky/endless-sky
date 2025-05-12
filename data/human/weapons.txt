@@ -959,6 +959,17 @@ effect "meteor fire"
 	"lifetime" 12
 	"random velocity" 10
 
+outfitter "Meteor Missile Restock"
+	to sell
+		or
+			has "outfit: Meteor Missile Launcher"
+			has "outfit: Meteor Missile Pod"
+			has "outfit: Meteor Missile Box"
+	location
+		attributes "outfitter"
+	stock
+		"Meteor Missile"
+
 
 outfit "Sidewinder Missile"
 	category "Ammunition"
@@ -1070,6 +1081,17 @@ effect "sidewinder fire"
 		"frame rate" 30
 	"lifetime" 9
 	"random velocity" 2
+
+outfitter "Sidewinder Missile Restock"
+	to sell
+		or
+			has "outfit: Sidewinder Missile Launcher"
+			has "outfit: Sidewinder Missile Pod"
+			has "outfit: Sidewinder Missile Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Sidewinder Missile"
 
 
 outfit "Javelin"
@@ -1190,6 +1212,18 @@ outfit "Javelin Turret"
 		"missile strength" 3
 	description "Mounting not one but two Javelin Pods, the Javelin Turret delivers a torrential downpour of unguided missiles that deal noticeably more damage than other turreted weapons of the same size, at the expense of using a prodigious amount of ammo due to its high fire rate. For that reason, these turrets are commonly paired with Javelin Storage Crates and weapons that don't require the use of ammunition to fall back on once all of the missiles are expended."
 
+outfitter "Javelin Restock"
+	to sell
+		or
+			has "outfit: Javelin Pod"
+			has "outfit: Javelin Mini Pod"
+			has "outfit: Javelin Turret"
+			has "outfit: Javelin Storage Crate"
+	location
+		attributes "outfitter"
+	stock
+		"Javelin"
+
 
 outfit "Torpedo"
 	plural "Torpedoes"
@@ -1298,6 +1332,17 @@ effect "torpedo fire"
 		"no repeat"
 		"frame rate" 10
 	"lifetime" 15
+
+outfitter "Torpedo Restock"
+	to sell
+		or
+			has "outfit: Torpedo Launcher"
+			has "outfit: Torpedo Pod"
+			has "outfit: Torpedo Storage Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Torpedo"
 
 
 outfit "Typhoon Torpedo"
@@ -1408,6 +1453,17 @@ effect "typhoon fire"
 		"frame rate" 10
 	"lifetime" 15
 
+outfitter "Typhoon Torpedo Restock"
+	to sell
+		or
+			has "outfit: Typhoon Launcher"
+			has "outfit: Typhoon Pod"
+			has "outfit: Typhoon Storage Tube"
+	location
+		attributes "outfitter"
+	stock
+		"Typhoon Torpedo"
+
 
 outfit "Heavy Rocket"
 	category "Ammunition"
@@ -1515,6 +1571,17 @@ effect "heavy rocket hit"
 	"random spin" 5
 	"random velocity" 1
 	"velocity scale" .4
+
+outfitter "Heavy Rocket Restock"
+	to sell
+		or
+			has "outfit: Heavy Rocket Launcher"
+			has "outfit: Heavy Rocket Pod"
+			has "outfit: Heavy Rocket Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Heavy Rocket"
 
 
 outfit "Nuclear Missile"
@@ -1706,3 +1773,14 @@ effect "bullet impact"
 	"lifetime" 8
 	"random angle" 40
 	"velocity scale" -.05
+
+outfitter "Gatling Gun Ammo Restock"
+	to sell
+		or
+			has "outfit: Gatling Gun"
+			has "outfit: Gatling Turret"
+			has "outfit: Bullet Boxes"
+	location
+		attributes "outfitter"
+	stock
+		"Gatling Gun Ammo"
