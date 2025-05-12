@@ -334,6 +334,16 @@ effect "rail sparks"
 	"random spin" 30
 	"velocity scale" 1.2
 
+outfitter "Railgun Slug Restock"
+	to sell
+		or
+			has "outfit: Railgun"
+			has "outfit: Railgun Slug Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Railgun Slug"
+
 
 outfit "Hai Tracker"
 	category "Ammunition"
@@ -427,6 +437,16 @@ effect "tracker cloud"
 	"random velocity" 1
 	"random frame rate" 2
 	"velocity scale" -.1
+
+outfitter "Hai Tracker Restock"
+	to sell
+		or
+			has "outfit: Hai Tracker Pod"
+			has "outfit: Tracker Storage Pod"
+	location
+		attributes "outfitter"
+	stock
+		"Hai Tracker"
 
 
 outfit "Bullfrog Anti-Missile"
