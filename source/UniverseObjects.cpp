@@ -369,11 +369,11 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "mission" && hasValue)
 			missions.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "outfit" && hasValue)
-			outfits.Get(node.Token(1))->Load(node);
+			outfits.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "outfitter" && hasValue)
 			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
 		else if(key == "person" && hasValue)
-			persons.Get(node.Token(1))->Load(node);
+			persons.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "phrase" && hasValue)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && hasValue)
@@ -382,7 +382,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		{
 			// Allow multiple named variants of the same ship model.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-			ships.Get(name)->Load(node);
+			ships.Get(name)->Load(node, playerConditions);
 		}
 		else if(key == "shipyard" && hasValue)
 			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
