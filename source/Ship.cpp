@@ -568,7 +568,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			targetSystem = GameData::Systems().Get(child.Token(1));
 		else if(key == "parked")
 			isParked = true;
-		else if(key == "description")
+		else if(key == "description" && hasValue)
 		{
 			if(!hasDescription)
 			{

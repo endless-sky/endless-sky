@@ -283,7 +283,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			// of blocking the sale of the outfit until the ammo is sold first.
 			ammo = make_pair(GameData::Outfits().Get(child.Token(1)), 0);
 		}
-		else if(key == "description")
+		else if(key == "description" && hasValue)
 			description.Load(child, playerConditions);
 		else if(key == "cost" && hasValue)
 			cost = child.Value(1);
