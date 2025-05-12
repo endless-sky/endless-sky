@@ -631,7 +631,7 @@ outfit "Wanderer License"
 	series "Licenses"
 	index 09020
 	thumbnail "outfit/wanderer license"
-	description "Intact within an amber shell, this leafy branch of the Noble Watchwood - rumored to come from the Wanderer's original home planet - symbolizes their pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem. As a symbol of peace akin to Earth's olive branch, it grants its bearer the right to purchase non-military Wanderer ships."
+	description "Intact within an amber shell, this leafy branch of the Noble Watchwood - rumored to come from the Wanderers' original home planet - symbolizes their pride and joy, the total revitalization of a planet. While unmatched in size and formidable to behold, the tree is quite fragile to even the slightest alterations in climate, so the growth of one such specimen to maturity is seen as a sign of a healed ecosystem. As a symbol of peace akin to Earth's olive branch, it grants its bearer the right to purchase non-military Wanderer ships."
 
 outfit "Wanderer Military License"
 	category "Licenses"
