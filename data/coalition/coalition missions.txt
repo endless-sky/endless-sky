@@ -3217,7 +3217,7 @@ mission "Heliarchs Buy Jump Drive Mission"
 mission "Coalition: Struggling Author - Human Media 1"
 	minor
 	name "Get Kachachee Cultural Information"
-	description "A group of Coalition citizens have asked you for information on the human race. Rumor says that you can find that information on <stopovers>."
+	description "A group of Coalition citizens have asked you for information on the human race. You can find that information on <stopovers>."
 	source "Ki Patek Ka"
 	stopover "Alexandria"
 	destination "Ki Patek Ka"
@@ -3319,7 +3319,7 @@ mission "Coalition: Struggling Author - Book Discovered"
 		has "event: coalition citizens discover fangvin"
 	on offer
 		conversation
-			`After an uneventful trip to the spaceport, you return to your <model>. Once aboard, you see that you have a message from the group of Coalition citizens that you had provided with a datachip containing a copy of Alexandria's archive:`
+			`After an uneventful trip to the spaceport, you return to your <model>. Once aboard, you see a message from the group of Coalition citizens you gave a datachip with a copy of Alexandria's archive:`
 			``
 			`	Dear <first>,`
 			`		Author from the datachip, we are interested in. "Anna Fangvin," her name is. Full book, while we could not access, the summary, of your race's actions against the oppressors, captivate us, it did. To converse with her, we wish. A copy of the book, we desire.`
@@ -3446,10 +3446,10 @@ mission "Coalition: Struggling Author 1"
 		conversation
 			`Anna gives you the book before you both exit the <ship>. The moment you are out, three Kimek approach you and Anna. The Kimek in the middle speaks, and then a brief silence occurs. After a moment, their translation box breaks the silence.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
-			`	The Coalition is already familiar with you, so you tell them your name while Anna introduces herself. "About what do you write?" asks the Kimek.`
+			`	The Coalition is already familiar with you, so you wait while Anna introduces herself. "About what do you write?" asks the Kimek.`
 			`	"Oh, I write science fiction novels," replies Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
-			`	Then, switching back to your language, the Kimek explains that Anna is welcome to be with you, but reminds you that she will not be allowed to do much unless she registers. "Register?" asks Anna.`
+			`	Then, switching the translation box back on, the Kimek explains that Anna is welcome to be with you, but reminds you that she will not be allowed to do much unless she registers. "Register?" asks Anna.`
 			`	"You have to register yourself with the Heliarchs before you can do much here. I'll take you to the Ring of Friendship, which is where you can complete the registration process." you say.`
 			`	"Okay," says Anna, "I'll explore the spaceport a little bit to find some inspiration. Get your ship ready and meet me there."`
 
@@ -3610,7 +3610,7 @@ mission "Coalition: Struggling Author 4"
 				`	"We're looking for a publishing company called Priyepichia Publishing. Could you provide directions?"`
 			`	"On the 16th floor, Priyepichia Publishing is. Over there, the elevators are," says the receptionist's translator.`
 			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. Temporo leads you to the least crowded one.`
-			`	The three of you enter the elevator. It makes stops at each floor of the building, more and more Kimek reach their destinations, and the elevator gets more and more quiet. When the door opens on the 16th floor, the elevator is only half full. Before you stands a Kimek who boarded at the eighth floor, wearing an ornate jeweled necklace as well as a translation device.`
+			`	The three of you enter the elevator. It makes stops at each floor of the building, more and more Kimek reach their destinations, and the elevator gets more and more quiet. When you reach the 16th floor, the elevator is only half full. The door opens to reveal a Kimek, wearing an ornate jeweled necklace as well as a translation device.`
 			choice
 				`	"Hello?"`
 				`	(Exit the elevator.)`
