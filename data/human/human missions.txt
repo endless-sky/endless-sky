@@ -7895,7 +7895,6 @@ mission "Syndicate Business 3"
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
 	description "Escort Howard from Megaparsec Inc. to <planet> to learn what favor is needed in exchange for an investment opportunity."
-	priority
 	source "Hephaestus"
 	to offer
 		has "Syndicate Business 3: done"
@@ -7946,7 +7945,6 @@ mission "Syndicate Business 4"
 mission "Syndicate Business 5"
 	name "Disable a Marauder ship in <waypoints>"
 	description "Howard wants you to disable a Marauder ship in exchange for an investment opportunity."
-	priority
 	to offer
 		has "Syndicate Business 4: done"
 	source "Sunracer"
