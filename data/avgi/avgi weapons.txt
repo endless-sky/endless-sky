@@ -472,6 +472,7 @@ outfit "Medium VLS"
 		"submunition" "Nettle Active"
 	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
 	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 
 outfit `"Nettle" KKV`
@@ -558,6 +559,17 @@ effect "fleck impact"
 	"random spin" 30
 	"random velocity" 3
 	"velocity scale" -.12
+
+outfitter "Nettle Restock"
+	to sell
+		or
+			has "outfit: Medium VLS"
+			has "outfit: Nettle Magazine"
+	location
+		attributes "outfitter"
+	stock
+		`"Nettle" KKV`
+
 
 outfit `"Orchid" Nuclear Missile`
 	category "Ammunition"
