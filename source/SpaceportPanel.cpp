@@ -69,7 +69,7 @@ void SpaceportPanel::UpdateNews()
 	newsInfo.SetString("name", news->Name() + ':');
 	newsMessage.SetWrapWidth(hasPortrait ? portraitWidth : normalWidth);
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs, player.Conditions());
+	GameData::GetTextReplacements().Substitutions(subs);
 	player.AddPlayerSubstitutions(subs);
 	newsMessage.Wrap(Format::Replace(news->Message(), subs));
 }
@@ -101,7 +101,7 @@ void SpaceportPanel::Draw()
 
 	// The description text needs to be updated, because player conditions can be changed
 	// in the meantime, for example if the player accepts a mission on the Job Board.
-	description->SetText(port.Description().ToString(player.Conditions()));
+	description->SetText(port.Description().ToString());
 
 	if(hasNews)
 	{
@@ -125,9 +125,8 @@ const News *SpaceportPanel::PickNews() const
 
 	vector<const News *> matches;
 	const Planet *planet = player.GetPlanet();
-	const auto &conditions = player.Conditions();
 	for(const auto &it : GameData::SpaceportNews())
-		if(!it.second.IsEmpty() && it.second.Matches(planet, conditions))
+		if(!it.second.IsEmpty() && it.second.Matches(planet))
 			matches.push_back(&it.second);
 
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];

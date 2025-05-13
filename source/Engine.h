@@ -105,7 +105,7 @@ public:
 private:
 	class Outline {
 	public:
-		constexpr Outline(const Sprite *sprite, const Point &position, const Point &unit,
+		Outline(const Sprite *sprite, const Point &position, const Point &unit,
 			const float frame, const Color &color)
 			: sprite(sprite), position(position), unit(unit), frame(frame), color(color)
 		{
@@ -153,6 +153,14 @@ private:
 		Type type;
 		float alpha;
 		double angle;
+	};
+
+	class TurretOverlay {
+	public:
+		Point position;
+		Point angle;
+		double scale;
+		bool isBlind;
 	};
 
 	class Zoom {
@@ -259,6 +267,7 @@ private:
 	std::vector<Status> statuses;
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
+	std::vector<TurretOverlay> turretOverlays;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	int jumpCount = 0;
 	const System *jumpInProgress[2] = {nullptr, nullptr};

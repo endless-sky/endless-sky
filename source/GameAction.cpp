@@ -38,7 +38,7 @@ using namespace std;
 namespace {
 	void DoGift(PlayerInfo &player, const Outfit *outfit, int count, UI *ui)
 	{
-		// Maps are not transferrable; they represent the player's spatial awareness.
+		// Maps are not transferable; they represent the player's spatial awareness.
 		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
@@ -126,23 +126,23 @@ namespace {
 
 
 // Construct and Load() at the same time.
-GameAction::GameAction(const DataNode &node)
+GameAction::GameAction(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void GameAction::Load(const DataNode &node)
+void GameAction::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	for(const DataNode &child : node)
-		LoadSingle(child);
+		LoadSingle(child, playerConditions);
 }
 
 
 
 // Load a single child at a time, used for streamlining MissionAction::Load.
-void GameAction::LoadSingle(const DataNode &child)
+void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *playerConditions)
 {
 	isEmpty = false;
 
@@ -228,7 +228,7 @@ void GameAction::LoadSingle(const DataNode &child)
 	else if(key == "fail")
 		failCaller = true;
 	else
-		conditions.Add(child);
+		conditions.Add(child, playerConditions);
 }
 
 
@@ -464,7 +464,7 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	}
 
 	// Check if applying the conditions changes the player's reputations.
-	conditions.Apply(player.Conditions());
+	conditions.Apply();
 }
 
 
