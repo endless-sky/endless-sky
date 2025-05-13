@@ -69,7 +69,7 @@ public:
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
 	PlayerInfo &operator=(const PlayerInfo &) = delete;
-	PlayerInfo(PlayerInfo &&) = default;
+	PlayerInfo(PlayerInfo &&) = delete;
 	PlayerInfo &operator=(PlayerInfo &&) = default;
 	~PlayerInfo() noexcept = default;
 
@@ -364,6 +364,8 @@ private:
 
 	// Set the flagship (on departure or during flight).
 	void SetFlagship(Ship &other);
+
+	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
 
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);
