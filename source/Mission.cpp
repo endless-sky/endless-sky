@@ -419,7 +419,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			else
 			{
 				const float *rgba = color->Get();
-				out.Write("color", tokenName, rgba[0], rgba[1], rgba[2], rgba[3]);
+				out.Write("color", tokenName, rgba[0], rgba[1], rgba[2]);
 			}
 		};
 		saveColor(unavailable, "unavailable");
