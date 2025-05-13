@@ -3434,8 +3434,7 @@ mission "Coalition: Struggling Author 1"
 				`	"My jump drive would like to welcome you to Coalition space."`
 				`	"That was a jump drive."`
 				`	"That's what happens every time I go to Coalition space with a jump drive."`
-			`	"Wow. I can't believe this is happening! I'm so excited!" Anna looks out the window. "What are those golden ships?"`
-			`	"They're Heliarch vessels," you reply.`
+			`	"Wow. I can't believe this is happening! I'm so excited!" Anna looks out the window, then turns back.`
 			`	"Can I take a look at your Jump Drive? I'm interested to see how it works," Anna says. You take her to the engine room of <ship>, where she begins taking notes and pictures of the drive.`
 			`	"Well, thank you for bringing me here," Anna says when she finishes. "I didn't sleep too well, so I'll see you later. Goodbye!" She heads back into her cabin, and you settle back into the controls.`
 	npc
@@ -3447,7 +3446,8 @@ mission "Coalition: Struggling Author 1"
 		conversation
 			`Anna gives you the book before you both exit the <ship>. The moment you are out, three Kimek approach you and Anna. The Kimek in the middle speaks, and then a brief silence occurs. After a moment, their translation box breaks the silence.`
 			`	"Greetings, <first> <last>. This other human you have brought, who she is, may I ask you?"`
-			`	The Coalition is already familiar with you, so you tell them your name while Anna introduces herself. "About what, do you write?" asks the Kimek. "Oh, I write science fiction books," replies Anna.`
+			`	The Coalition is already familiar with you, so you tell them your name while Anna introduces herself. "About what do you write?" asks the Kimek.`
+			`	"Oh, I write science fiction novels," replies Anna.`
 			`	The Kimek begin conversing amongst themselves in their native language for a good ten to twenty seconds before they move to face you again.`
 			`	Then, switching back to your language, the Kimek explains that Anna is welcome to be with you, but reminds you that she will not be allowed to do much unless she registers. "Register?" asks Anna.`
 			`	"You have to register yourself with the Heliarchs before you can do much here. I'll take you to the Ring of Friendship, which is where you can complete the registration process." you say.`
@@ -3530,7 +3530,7 @@ mission "Coalition: Struggling Author 3"
 			`	"On another note, I want to get my book published here."`
 			label company
 			`	"Have you found a publishing company yet?" you ask.`
-			`	"No," Anna replies. "But this Heliarch has been a huge help in finding a suitable publisher. Without this agent, it would've been nearly impossible for me to communicate with the restaurant staff, since they don't have a translation box."`
+			`	"No," Anna replies. "But this Heliarch, Temporo, has been a huge help in finding a suitable publisher. Without them, it would've been nearly impossible for me to communicate with the restaurant staff, since they don't have a translation box."`
 			choice
 				`	"What's the plan now?"`
 				`	"Did the Heliarch agent mention anywhere we should go now?"`
@@ -3539,8 +3539,8 @@ mission "Coalition: Struggling Author 3"
 				accept
 	on complete
 		conversation
-			`As you land, Anna says, "Should we see about getting a translation device? I don't want to bother the agent for the whole time I'm here."`
-			`	The Heliarch approaches. "Trust you with a translator, the government cannot. So help you, I must. When found a publisher, you have, accompany you to their offices, I will."`
+			`As you land, Anna says, "Should we see about getting a translation device? I don't want to bother Temporo the whole time I'm here."`
+			`	Temporo approaches. "Trust you with a translator, the government cannot. So help you, I must. When found a publisher, you have, accompany you to their offices, I will."`
 			`	"We need to find a publishing company then!" says Anna.`
 			label questions
 			choice
@@ -3571,12 +3571,12 @@ mission "Coalition: Struggling Author 3"
 				`	"We'll find a company."`
 				`	"Given the number of books here, there has to be a publishing company somewhere."`
 			`	"The faster we can get the book published, the better. Meet me in the spaceport in a few hours; I'll find a good company."`
-			`	Before Anna can head off, the Heliarch rises. "Again accompany you, I will."`
+			`	Before Anna can head off, Temporo rises. "Again accompany you, I will."`
 
 
 mission "Coalition: Struggling Author 4"
 	name "Kimek Publishing Company"
-	description "Anna found a Kimek publishing company who is willing to take in Anna Fangvin to get her book published. Bring Anna Fangvin to <destination>."
+	description "Anna Fangvin found a Kimek publishing company who is willing to get her book published. Bring her to <destination>."
 	source "Ki Patek Ka"
 	destination "Inmost Blue"
 	blocked "You do not have enough bunk space for Anna Fangvin and the Heliarch agent. Come back here when you have two bunks free."
@@ -3586,7 +3586,7 @@ mission "Coalition: Struggling Author 4"
 	on offer
 		conversation
 			`The spaceport of Ki Patek Ka is vast, and would normally prove a nightmarish place to look for just one person. Thankfully, Anna being one of the few humans within the Coalition makes your search relatively quick. She has chosen to settle in a cafeteria with her laptop. She is typing away at the keyboard, presumably writing a short story to post.`
-			`	"<first>! I found a company who's willing to publish me! I sent them a digital copy of my book and they instructed me to visit their office on <planet>," explains Anna, once again enthusiastic.`
+			`	"<first>! I found a company who's willing to publish me! I sent them a digital copy of my book and they instructed me to visit their office on <planet>," explains Anna, once again enthusiastic. At a table behind her you notice the figure of Temporo, speaking to a waiter.`
 			choice
 				`	"Great!"`
 					goto go
@@ -3595,45 +3595,45 @@ mission "Coalition: Struggling Author 4"
 				`	"What's the publishing company called?"`
 			`	"They're called 'Priyepichia Publishing.'" Anna shows you beautiful pictures of a clean white building perched on a mountainside, high above gentle waves. On the roof stands a landing pad painted with a blue dolphin.`
 			label go
-			`	Anna heads to your ship, and you plot a course to <destination>. Just before you launch, the Heliarch hops in.`
-				launch
+			`	You head back to your ship with Anna and Temporo, and plot a course to <destination>.`
+				accept
 	on complete
 		event "beyond the hyperdrive is published" 165 197
 		conversation
 			`Landing on <planet>, Anna is excitedly holding a copy of 'Beyond the Hyperdrive.' She hastily opens the hatch as soon as it unlocks.`
 			`	Anna stops, waiting for you to catch up. "In the message they sent me, they included instructions on how to reach their offices," she explains. "Let's go!"`
-			`	You begin following Anna to the publisher's offices. You walk through the spaceport and its endless rows of shops and streets, eventually approaching what looks like a train station. Anna looks at the message again and tells you which platform to go to and which train to take. After a few minutes the train arrives. You and Anna board the train and travel to a neighborhood where a large white building dominates the skyline.`
-			`	Once the train stops, you get off onto the platform and exit the station. Circling around to the publisher's office, you find the entrance bustling with Kimek, along with the occasional Saryd and Arach coming and going. Anna looks for a front desk and directs you to a Kimek who looks appears to be a receptionist.`
+			`	Several long streets later, Anna is completely lost. "This isn't where the instructions were supposed to lead at all," she says, turning to Temporo, who has been following you the whole time. "Do you know how to get there?"`
+			`	The Heliarch takes the lead, and within minutes you reach a train station. Temporo leads you to platform 61A. When the train arrives, you board it and travel to a neighborhood where a large white building dominates the skyline.`
+			`	Once the train stops, you get off onto the platform and exit the station. Circling around to the publisher's office, you find the entrance bustling with Kimek, along with the occasional Saryd and Arach coming and going. Anna looks for a front desk and directs you to a Kimek who appears to be a receptionist.`
 			choice
 				`	"Hello, do you happen to know where Priyepichia Publishing is?"`
 				`	"We're looking for a publishing company called Priyepichia Publishing. Could you provide directions?"`
 			`	"On the 16th floor, Priyepichia Publishing is. Over there, the elevators are," says the receptionist's translator.`
-			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. You look at all six and choose to enter the least crowded one.`
-			`	You and Anna enter the elevator. You hear the noises of the Kimek communicating in their native language and get the feeling they're talking about you.`
-			`	The elevator makes many stops at each floor of the building, as more and more Kimek reach their destinations. When the door opens on the 16th floor, the elevator is now half-full; and before you is a Kimek wearing an ornate jeweled necklace as well as a translation device.`
+			`	You turn to where the Kimek points you and see six large elevators, larger than what you are familiar with in human space. Temporo leads you to the least crowded one.`
+			`	The three of you enter the elevator. It makes stops at each floor of the building, more and more Kimek reach their destinations, and the elevator gets more and more quiet. When the door opens on the 16th floor, the elevator is only half full. Before you stands a Kimek who boarded at the eighth floor, wearing an ornate jeweled necklace as well as a translation device.`
 			choice
 				`	"Hello?"`
 				`	(Exit the elevator.)`
 			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," the Kimek says through its translation box.`
 			`	At the direction of the Kimek, you and Anna walk as directed until you arrive at a room with glass walls. Along the way, you pass a lounge, a conference area where multiple Kimek are discussing something at a table with a group of Heliarchs, and a large open workspace where individual Kimek sit at their own computers.`
-			`	After a few minutes of walking, there is an office where another Kimek sits with a team of six Heliarchs - two from each species. The Kimek guiding you gestures toward the office, and heads over to speak with the group.`
+			`	After a few minutes of walking, you reach an office where another Kimek sits with a team of five Heliarchs - two from each species except for the Saryds. Temporo takes a seat with them.`
+			`	The Kimek guiding you gestures toward the office and heads over to speak with the group.`
 			`	As you enter, Anna puts down the copy of her book on the table, and you each take a seat. The Kimek that led you here briefly speaks to the other non-Heliarch Kimek sitting at the interview table before leaving.`
 			`	The sitting Kimek's translation device begins speaking.`
-			`	"Greetings. Ikiyachee, my name is, and head editor of Priyepichia Publishing, I am. To see an alien want to publish a book, interesting and unexpected it was, in my time here, 50 years long," the Kimek says.`
+			`	"Greetings. Ikiyachee, my name is, and head editor of Priyepichia Publishing, I am. To see an alien want to publish a book, interesting and unexpected it was," the Kimek says.`
 			`	"Hello, I am Anna Fangvin, and this is my friend <first> <last>, who has been very helpful in bringing me here," Anna says, somewhat flustered.`
-			`	"From the introduction and the first few pages, interesting it sounded, but run it past the Heliarch reviewers, we must. So, <first>, long and intensive, this interview will be. As very unique, to meet a human like her is, and to adapt her book to our culture, a long and drawn out process it will be."`
+			`	"From the introduction and the first few pages, interesting your book sounded, but run it past the Heliarch reviewers, we must. So, <first>, long and intensive, this interview will be. As very unique, to meet a human like her is, and to adapt her book to our culture, a long and drawn-out process it will be."`
 			choice
 				`	"How long will I have to wait?"`
 				`	"Should I stay here to accompany Anna?`
-					goto "accompany"
+					goto accompany
 			label "wait time"
 			`	"Wait a few hours, you must, but for the entire process, perhaps half a year, wait Anna must," explains Ikiyachee.`
 			choice
 				`	"A few hours? That's quite boring, isn't it?"`
-					goto "boring"
 				`	"Should I stay here to accompany Anna?"`
-					goto "accompany"
-			label "boring"
+					goto accompany
+			label boring
 			`	"If boring for you, the interview is, then leave you may, to the lounge."`
 			choice
 				`	"Then I'm going to the lounge. Where is it?"`
@@ -3641,7 +3641,7 @@ mission "Coalition: Struggling Author 4"
 					goto "stay in interview"
 			label "directions to lounge"
 			`	Ikiyachee gives you directions to the lounge, and you head there to wait out the interview.`
-				goto "lounge"
+				goto lounge
 			label "accompany"
 			`	"To stay with her during the interview, we allow you to, but a lounge for you, we have. If too boring, the interview is, then leave you may."`
 			choice
@@ -3651,7 +3651,7 @@ mission "Coalition: Struggling Author 4"
 			label "stay in interview"
 			`	Once the first questions are asked, Anna is all too happy to begin discussing the contents of her novel in great detail.`
 			`	Under the watchful eye of the six Heliarchs in the room, Anna explains her anti-Quarg sentiments, the reasoning behind her choice to write the book, and the content of the book. She speaks quickly, but the Heliarchs' numerous questions for clarification and elaboration make the process a long one.`
-			`	"Sold many books before coming here, have you?" one of the agents asks. Anna embarrassedly glances in your direction. "Well, no," she replies. "But I've been writing better and better over the past few years."`
+			`	"Sold many books before coming here, have you?" Temporo asks. Anna embarrassedly glances in your direction. "Well, no," she replies. "But I've been writing better and better over the past few years."`
 			`	Priyepichia's representative speaks up. "Word count, we must know. Binding process, aware of you are? You want what type, and cover style?"`
 			`	"The hardcover book should have a Jump Drive emblazoned on the front cover. I'm not sure the exact options for a binding type in this area of space; couldn't you just decide that yourself?"`
 			`	As you listen, you learn that due to the Coalition's review process to make the book more suitable, Anna will have to stay for about half a year, during which she will have an apartment to live in.`
