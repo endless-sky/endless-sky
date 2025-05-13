@@ -131,7 +131,7 @@ outfit "Abyssal Composer"
 	"gun ports" -1
 	weapon
 		sound "composer"
-		"ammo" "Abyssal Composer" 0
+		ammo "Abyssal Composer" 0
 		"hit effect" "composed" 2
 		"hit effect" "drained"
 		"inaccuracy" 45
