@@ -1118,7 +1118,7 @@ mission "Struggling Author Gone Missing"
 					goto continue
 			`	"If you ever see her again, tell her that the Coalition of Book Enjoyers appreciates her work. It wouldn't be possible for you to bring us to her location?" You respond in the negative, and the two go off to the other groups to spread the news.`
 			label continue
-			`	On many of the spaceport walls posters hang - here, again, Anna must have been famous. The posters read:`
+			`	Posters hang on many of the spaceport's walls - here too, Anna must have been famous. The posters read:`
 			`	MISSING:`
 			`		Anna Fangvin, a young author whose books are widely-read throughout the planet. Please report any news to the Coalition of Book Enjoyers, address 5662 Myrtle Lane, Sizertown, Zug.`
 				decline
