@@ -1401,7 +1401,7 @@ mission "A Sunracer Hovercraft Racing"
 				"second place margin" >= 2
 			branch secondplaceone
 				"second place margin" >= 1
-			#2nd place margin of 0:happens in ~9% of races, 1:~16%, 2-3:~24%,4-9:~38%,10+:~12%
+			# 2nd place margin of 0:happens in ~9% of races, 1:~16%, 2-3:~24%,4-9:~38%,10+:~12%
 			`	They edge out the competition in a photo-finish, securing the win by a razor-thin margin.`
 				goto endingmiddle
 			label secondplaceone
@@ -1423,7 +1423,7 @@ mission "A Sunracer Hovercraft Racing"
 				"last place margin" >= 6
 			branch lastplacethree
 				"last place margin" >= 3
-			#last place margin of 0-2:happens in ~8% of races, 3-5:~27%, 6-8:~28%,9-14:~29%,14+:~8%
+			# last place margin of 0-2:happens in ~8% of races, 3-5:~27%, 6-8:~28%,9-14:~29%,14+:~8%
 			`	The other three teams bundle together, never separated by more than two laps in the last-minute sprint for second place.`
 				goto trueending
 			label lastplacethree
