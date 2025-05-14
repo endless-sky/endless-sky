@@ -1239,20 +1239,11 @@ phrase "sunracer hovercraft race description"
 
 phrase "sunracer hovercraft victory description"
 	word
-		" surges ahead, their craft a blur of power and precision, leaving rivals in their wake by multiple laps to finish the race in a clear victory."
-		" clinches victory in a breathtaking display, a decisive lap ahead of the field."
-		" edges out the competition in a photo-finish, securing the win by a razor-thin margin."
-		" rockets to an unrivaled lead in the race's last few minutes, ending the race with a clear, commanding advantage."
-	word
-		" "
-	word
-		"The middle two racers converge into a frantic dash for second while one lone racer lags far behind."
-		"The other three teams bundle together in a last-minute sprint to complete the race."
-		"The rest cluster tightly for the race finish."
-		"The remaining racers finish uneventfully spread out."
-		"Only three racers finish today: one crashed off the track, the driver lucky to escape unharmed."
-	word
-		" "
+		" is today's victor."
+		" seizes the day with a victory."
+		" wins this race."
+
+phrase "sunracer hovercraft victory exit"
 	word
 		"With the race finished, the crowd gradually disperses, and you wander back to your <model> amid the soft buzz of post-race chatter."
 		"As the stands empty, you slip away through clusters of lingering fans back to the <ship>."
@@ -1347,29 +1338,114 @@ mission "A Sunracer Hovercraft Racing"
 				"delta laps" >= "deep laps"
 			action
 				"sunracer race winner" = 4
+				# maximum of other laps
+				"second place" = "megaparsec speed"
+				"second place" >?= "syndicate laps"
+				"second place" >?= "delta laps"
+				# minimum of other laps
+				"last place" = "megaparsec speed"
+				"last place" <?= "syndicate laps"
+				"last place" <?= "delta laps"
+				"second place margin" = "deep laps" - "second place"
 			`	Deep Sky Dynamics <deep name> ${sunracer hovercraft victory description}`
 				goto ending
 			label deltwon
 			action
 				"sunracer race winner" = 3
+				# maximum of other laps
+				"second place" = "megaparsec speed"
+				"second place" >?= "syndicate laps"
+				"second place" >?= "deep laps"
+				# minimum of other laps
+				"last place" = "megaparsec speed"
+				"last place" <?= "syndicate laps"
+				"last place" <?= "deep laps"
+				"second place margin" = "delta laps" - "second place"
 			`	Delta V Grand Prix <delta name> ${sunracer hovercraft victory description}`
 				goto ending
 			label syndwon
 			action
 				"sunracer race winner" = 2
+				# maximum of other laps
+				"second place" = "megaparsec speed"
+				"second place" >?= "deep laps"
+				"second place" >?= "delta laps"
+				# minimum of other laps
+				"last place" = "megaparsec speed"
+				"last place" <?= "deep laps"
+				"last place" <?= "delta laps"
+				"second place margin" = "syndicate laps" - "second place"
 			`	Syndicate Performance Racing <syndicate name> ${sunracer hovercraft victory description}`
 				goto ending
 			label megawon
 			action
 				"sunracer race winner" = 1
+				# maximum of other laps
+				"second place" = "deep laps"
+				"second place" >?= "syndicate laps"
+				"second place" >?= "delta laps"
+				# minimum of other laps
+				"last place" = "deep laps"
+				"last place" <?= "syndicate laps"
+				"last place" <?= "delta laps"
+				"second place margin" = "megaparsec speed" - "second place"
 			`	Megaparsec Racing Technologies <megaparsec name> ${sunracer hovercraft victory description}`
 			label ending
+			action
+				"last place margin" = "second place" - "last place"
+			branch secondplaceten
+				"second place margin" >= 10
+			branch secondplacefour
+				"second place margin" >= 4
+			branch secondplacetwo
+				"second place margin" >= 2
+			branch secondplaceone
+				"second place margin" >= 1
+			#2nd place margin of 0:happens in ~9% of races, 1:~16%, 2-3:~24%,4-9:~38%,10+:~12%
+			`	They edge out the competition in a photo-finish, securing the win by a razor-thin margin.`
+				goto endingmiddle
+			label secondplaceone
+			`	They clinch victory in a breathtaking display, only a single lap ahead of the field.`
+				goto endingmiddle
+			label secondplacetwo
+			`	They rocket to an unrivaled lead in the race's last few minutes, ending the race with a clear, commanding advantage.`
+				goto endingmiddle
+			label secondplacefour
+			`	They surge ahead, their craft a blur of power and precision, leaving rivals in their wake by multiple laps to finish the race in a clear victory.`
+			label secondplaceten
+			`	They dominate the competition with an astonishing double-digit lap lead to cross the finish line in an overwhelming triumph.`
+			label endingmiddle
+			branch lastplacefourteen
+				"last place margin" >= 14
+			branch lastplacenine
+				"last place margin" >= 9
+			branch lastplacesix
+				"last place margin" >= 6
+			branch lastplacethree
+				"last place margin" >= 3
+			#last place margin of 0-2:happens in ~8% of races, 3-5:~27%, 6-8:~28%,9-14:~29%,14+:~8%
+			`	The other three teams bundle together, never separated by more than two laps in the last-minute sprint for second place.`
+				goto trueending
+			label lastplacethree
+			`	The rest cluster together fairly tightly for an eventful end to the race.`
+				goto trueending
+			label lastplacesix
+			`	The mid-field hovercraft finish the race in a loose grouping over half a dozen laps apart.`
+				goto trueending
+			label lastplacenine
+			`	The remaining racers finish uneventfully spread out, the order stretched across close to a dozen laps.`
+				goto trueending
+			label lastplacefourteen
+			`	Only three racers finish today: one crashed off the track, the driver lucky to escape unharmed.`
+			label trueending
+			`	${sunracer hovercraft victory exit}`
 			`	Final results:`
 			``
 			`		Megaparsec Racing Technologies: <megaparsec name>, &[megaparsec speed] laps completed`
 			`		Syndicate Performance Racing: <syndicate name>, &[syndicate laps] laps completed`
 			`		Delta V Grand Prix: <delta name>, &[delta laps] laps completed`
 			`		Deep Sky Dynamics: <deep name>, &[deep laps] laps completed`
+			# used for testing purposes	`	2nd place: &[second place], margin: &[second place margin]; last place: &[last place], margin: &[last place margin]`
 			``
 			action
 				clear "race length"
@@ -1383,3 +1459,7 @@ mission "A Sunracer Hovercraft Racing"
 				clear "syndicate laps"
 				clear "delta laps"
 				clear "deep laps"
+				clear "second place"
+				clear "last place"
+				clear "second place margin"
+				clear "last place margin"
