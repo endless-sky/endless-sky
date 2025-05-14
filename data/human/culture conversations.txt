@@ -1412,6 +1412,7 @@ mission "A Sunracer Hovercraft Racing"
 				goto endingmiddle
 			label secondplacefour
 			`	They surge ahead, their craft a blur of power and precision, leaving rivals in their wake by multiple laps to finish the race in a clear victory.`
+				goto endingmiddle
 			label secondplaceten
 			`	They dominate the competition with an astonishing double-digit lap lead to cross the finish line in an overwhelming triumph.`
 			label endingmiddle
