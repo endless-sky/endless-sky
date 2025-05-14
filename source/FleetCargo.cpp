@@ -38,9 +38,10 @@ namespace {
 		{
 			for(const StellarObject &object : here->Objects())
 			{
+				// TODO: Use the conditional stocks instead of the permanent sales.
 				const Planet *planet = object.GetPlanet();
 				if(planet && planet->IsValid() && planet->HasOutfitter())
-					outfits.Add(planet->OutfitterStock());
+					outfits.Add(planet->OutfitterSales());
 			}
 		}
 		return outfits;
@@ -63,7 +64,7 @@ namespace {
 			}
 			else
 				for(const auto outfitter : outfitters)
-					choices.Add(outfitter->Stock());
+					choices.Add(outfitter->Sales());
 
 			if(!choices.empty())
 			{

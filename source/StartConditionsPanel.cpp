@@ -27,9 +27,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Interface.h"
 #include "MainPanel.h"
 #include "Planet.h"
+#include "PlanetPanel.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
+#include "SaleManager.h"
 #include "Ship.h"
 #include "ShipyardPanel.h"
 #include "Shop.h"
@@ -246,10 +248,8 @@ void StartConditionsPanel::OnConversationEnd(int)
 	// If the starting conditions don't specify any ships, let the player buy one.
 	if(player.Ships().empty())
 	{
-		Sale<Ship> shipyardStock;
-		for(const Shop<Ship> *shop : player.GetPlanet()->Shipyards())
-			shipyardStock.Add(shop->Stock());
-		gamePanels.Push(new ShipyardPanel(player, shipyardStock));
+		PlanetPanel *planetPanel = static_cast<PlanetPanel *>(gamePanels.Top().get());
+		planetPanel->EnterShipyard();
 		gamePanels.StepAll();
 	}
 	if(parent)

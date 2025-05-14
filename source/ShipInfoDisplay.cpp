@@ -19,12 +19,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Color.h"
-#include "Depreciation.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
 #include "GameData.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "SaleManager.h"
 #include "Ship.h"
 #include "text/Table.h"
 
@@ -36,21 +36,14 @@ using namespace std;
 
 
 
-ShipInfoDisplay::ShipInfoDisplay(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed)
-{
-	Update(ship, player, descriptionCollapsed);
-}
-
-
-
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
-void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed, bool scrollingPanel)
+void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, const SaleManager &saleManager,
+	bool descriptionCollapsed, bool scrollingPanel)
 {
 	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
-	UpdateAttributes(ship, player, descriptionCollapsed, scrollingPanel);
-	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
-	UpdateOutfits(ship, player, depreciation);
+	UpdateAttributes(ship, player, descriptionCollapsed, scrollingPanel, saleManager);
+	UpdateOutfits(ship, player, saleManager);
 
 	maximumHeight = max(descriptionHeight, max(attributesHeight, outfitsHeight));
 }
@@ -133,7 +126,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool descriptionCollapsed,
-		bool scrollingPanel)
+		bool scrollingPanel, const SaleManager &saleManager)
 {
 	bool isGeneric = ship.Name().empty() || ship.GetPlanet();
 
@@ -176,8 +169,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		}
 
 	int64_t fullCost = ship.Cost();
-	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
-	int64_t depreciated = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
+	int64_t depreciated = ship.IsYours() ? saleManager.SellValue(ship) : saleManager.BuyValue(&ship);
 	if(depreciated == fullCost)
 		attributeLabels.push_back("cost:");
 	else
@@ -425,7 +417,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 
 
-void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation)
+void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, const SaleManager &saleManager)
 {
 	outfitLabels.clear();
 	outfitValues.clear();
@@ -458,11 +450,8 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		}
 	}
 
-
-	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
-	int64_t chassisCost = depreciation.Value(
-		GameData::Ships().Get(ship.TrueModelName()),
-		player.GetDate().DaysSinceEpoch());
+	int64_t totalCost = ship.IsYours() ? saleManager.SellValue(ship) : saleManager.BuyValue(&ship);
+	int64_t chassisCost = ship.IsYours() ? saleManager.SellValue(&ship) : saleManager.BuyValue(&ship, 1, true);
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;

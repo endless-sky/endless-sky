@@ -17,7 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
-#include "Sale.h"
+#include "SaleManager.h"
+#include "Stock.h"
 
 #include <functional>
 #include <map>
@@ -47,6 +48,9 @@ public:
 	virtual void Step() override;
 	virtual void Draw() override;
 
+	// Allow the StartConditionsPanel to tell the PlanetPanel to enter the ShipyardPanel.
+	void EnterShipyard();
+
 
 protected:
 	// Only override the ones you need; the default action is to return false.
@@ -74,8 +78,9 @@ private:
 	bool initializedShops = false;
 	bool hasShipyard = false;
 	bool hasOutfitter = false;
-	Sale<Ship> shipyardStock;
-	Sale<Outfit> outfitterStock;
+	Stock<Ship> shipyardStock;
+	Stock<Outfit> outfitterStock;
+	SaleManager saleManager;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;

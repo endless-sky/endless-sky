@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "Sale.h"
+#include "SaleManager.h"
 #include "Screen.h"
 #include "ScrollBar.h"
 #include "ScrollVar.h"
@@ -100,9 +101,9 @@ namespace {
 
 
 
-ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter)
-	: player(player), day(player.GetDate().DaysSinceEpoch()),
-	planet(player.GetPlanet()), isOutfitter(isOutfitter), playerShip(player.Flagship()),
+ShopPanel::ShopPanel(PlayerInfo &player, bool isOutfitter, const SaleManager &saleManager)
+	: player(player), day(player.GetDate().DaysSinceEpoch()), planet(player.GetPlanet()),
+	isOutfitter(isOutfitter), saleManager(saleManager), playerShip(player.Flagship()),
 	categories(GameData::GetCategory(isOutfitter ? CategoryType::OUTFIT : CategoryType::SHIP)),
 	collapsed(player.Collapsed(isOutfitter ? "outfitter" : "shipyard"))
 {
@@ -702,16 +703,17 @@ int64_t ShopPanel::LicenseCost(const Outfit *outfit, bool onlyOwned) const
 	if((owned && onlyOwned) || player.Stock(outfit) > 0)
 		return 0;
 
-	const Sale<Outfit> &available = player.GetPlanet()->OutfitterStock();
-
 	int64_t cost = 0;
 	for(const string &name : outfit->Licenses())
 		if(!player.HasLicense(name))
 		{
 			const Outfit *license = GameData::Outfits().Find(name + " License");
-			if(!license || !license->Cost() || !available.Has(license))
+			if(!license || !saleManager.Has(license))
 				return -1;
-			cost += license->Cost();
+			int64_t licenseCost = saleManager.BuyValue(license);
+			if(!licenseCost)
+				return -1;
+			cost += licenseCost;
 		}
 	return cost;
 }
@@ -1129,7 +1131,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, collapsed.contains("description"), true);
+	shipInfo.Update(*playerShip, player, saleManager, collapsed.contains("description"), true);
 	shipInfo.DrawAttributes(point, !isOutfitter);
 	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));

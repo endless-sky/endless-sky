@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Messages.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
+#include "SaleManager.h"
 #include "System.h"
 #include "UI.h"
 
@@ -56,8 +57,9 @@ namespace {
 
 
 
-TradingPanel::TradingPanel(PlayerInfo &player)
-	: player(player), system(*player.GetSystem()), COMMODITY_COUNT(GameData::Commodities().size())
+TradingPanel::TradingPanel(PlayerInfo &player, const SaleManager &saleManager)
+	: player(player), system(*player.GetSystem()), saleManager(saleManager),
+	COMMODITY_COUNT(GameData::Commodities().size())
 {
 	SetTrapAllEvents(false);
 }
@@ -255,7 +257,6 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Accounts().AddCredits(amount * price);
 			player.Cargo().Remove(commodity, amount);
 		}
-		int day = player.GetDate().DaysSinceEpoch();
 		for(const auto &it : player.Cargo().Outfits())
 		{
 			const Outfit * const outfit = it.first;
@@ -263,7 +264,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			if(outfit->Get("minable") <= 0. && !sellOutfits)
 				continue;
 
-			int64_t value = player.FleetDepreciation().Value(outfit, day, amount);
+			int64_t value = saleManager.SellValue(outfit, amount);
 			profit += value;
 			tonsSold += static_cast<int>(amount * outfit->Mass());
 

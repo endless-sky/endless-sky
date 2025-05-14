@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 class PlayerInfo;
+class SaleManager;
 class System;
 
 
@@ -28,7 +29,7 @@ class System;
 // will need to select them individually in the outfitter panel.
 class TradingPanel : public Panel {
 public:
-	explicit TradingPanel(PlayerInfo &player);
+	explicit TradingPanel(PlayerInfo &player, const SaleManager &saleManager);
 	~TradingPanel();
 
 	virtual void Step() override;
@@ -48,6 +49,7 @@ private:
 private:
 	PlayerInfo &player;
 	const System &system;
+	const SaleManager &saleManager;
 	const int COMMODITY_COUNT;
 
 	// Remember whether the "sell all" button will sell all outfits, or sell
