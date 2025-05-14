@@ -1149,7 +1149,7 @@ phrase "sunracer hovercraft adcloser"
 		"the words below "
 	word
 		"promising high-speed thrills for the audience"
-		"teasing a spectacle of breakneck action"
+		"providing a teaser of the breakneck action to come"
 		"offering heart-pounding, high-octane excitement"
 		"beckoning wealthy corporate sponsors to back the adrenaline-fueled event"
 		"offering the perk of free parking"
@@ -1173,10 +1173,10 @@ phrase "sunracer fan tshirt"
 	word
 		"clad in Megaparsec Racing Technologies gear, with a large Quicksilver emblazoned across the front of his shirt"
 		"wearing Megaparsec Racing Technologies apparel - his shirt covered with hundreds of tiny Splinter, Manta, and Quicksilver silhouettes"
-		"dressed in a Megaparsec Racing Technologies sweater that has the words 'Mighty fast, impossibly light - Megaparsec' at its center"
-		"dressed in a Syndicate Performance Racing shirt with the centered words 'Smart racers know race pace is key. Smart racers race for Syndicate Performance Racing"
-		"wearing a Deep Sky Dynamics hat with the words 'Peace, Prosperity, Progress... Podium'"
-		"dressed in a Delta V Grand Prix sweater, the words 'The Wild Pace of Plasma' surrounded by various images of tiny chipmunks, greyhounds, capybaras, and impalas running across the shirt, leaving tiny footprints"
+		`dressed in a Megaparsec Racing Technologies sweater that has the words "Mighty fast, impossibly light - Megaparsec" at its center`
+		`dressed in a Syndicate Performance Racing shirt with the centered words "Smart racers know race pace is key. Smart racers race for Syndicate Performance Racing"`
+		`wearing a Deep Sky Dynamics hat with the words "Peace, Prosperity, Progress... Podium"`
+		`dressed in a Delta V Grand Prix sweater, the words "The Wild Pace of Plasma" surrounded by various images of tiny chipmunks, greyhounds, capybaras, and impalas running across the shirt, leaving tiny footprints`
 		
 
 phrase "sunracer hovercraft race description"
@@ -1208,7 +1208,7 @@ phrase "sunracer hovercraft race description"
 	word
 		"A pulsing neon light flashes "
 		"The starting gun goes off "
-		"A booming voice announces, 'It's repulsors on and away we go!' "
+		`A booming voice announces, "It's repulsors on and away we go!" `
 		"In an instant, there's a thunderous explosion "
 	word
 		"at the starting line"
@@ -1216,14 +1216,13 @@ phrase "sunracer hovercraft race description"
 	word
 		", and the hovercraft launch forward in a burst of speed."
 		", then engines ignite in a frenzy to send the sleek machines darting into the first lap."
-		", as the racers enter into a chaotic scramble for the lead."
+		" as the racers enter into a chaotic scramble for the lead."
 		" - hovercraft fighting for position as one leaps ahead of the rest."
 	word
 		" "
 	word
 		"An hour in, the racers continue to weave through the course's twisting tracks, "
 		"Midway, the competition transforms into a dynamic dance, "
-		"The middle phase entails a symphony of sounds, "
 		"As the race unfolds, a few hovercraft nearly crash before recovering, "
 	word
 		"each maneuver a blend of precision and raw power."
@@ -1240,11 +1239,11 @@ phrase "sunracer hovercraft victory description"
 	word
 		" "
 	word
-		"The middle two racers converged into a frantic dash for second while one lone racer lagged far behind."
-		"The other three teams bundled together in a last-minute sprint to complete the race."
-		"The rest clustered tightly for the race finish."
-		"The remaining racers finished uneventfully spread out."
-		"Only three racers finished today, as one crashed off the track, luckily with the driver unharmed."
+		"The middle two racers converge into a frantic dash for second while one lone racer lags far behind."
+		"The other three teams bundle together in a last-minute sprint to complete the race."
+		"The rest cluster tightly for the race finish."
+		"The remaining racers finish uneventfully spread out."
+		"Only three racers finish today: one crashed off the track, the driver lucky to escape unharmed."
 	word
 		" "
 	word
@@ -1268,7 +1267,7 @@ mission "A Sunracer Hovercraft Racing"
 		"<deep name>" "${deep fighter}"
 	on offer
 		conversation
-			`${sunracer opening}, a ${sunracer hovercraft adhook}: there's a hovercraft race at the <racename>, just a few hours away by hover rail, or much faster aboard a <model>. ${sunracer hovercraft adcloser}.`
+			`${sunracer opening}, a ${sunracer hovercraft adhook}: there's a hovercraft race at the <racename>, just a few hours away by hover rail, or much faster aboard a <model>. ${sunracer hovercraft adcloser}`
 			choice
 				`	(Check it out.)`
 				`	(Skip the hovercraft race.)`
@@ -1319,9 +1318,9 @@ mission "A Sunracer Hovercraft Racing"
 			`	Your ship is close enough to the <racename>'s track to be able to scan exactly how many laps each hovercraft's afterburner can take them. Your ship relays the following afterburner data:`
 			``
 			`		Megaparsec Racing Technologies: No Afterburner Fuel`
-			`		Syndicate Performance Racing: &[syndicate boost] laps-worth of Afterburner`
-			`		Delta V Grand Prix: &[delta boost] laps-worth of Afterburner`
-			`		Deep Sky Dynamics: &[deep boost] laps-worth of Afterburner`
+			`		Syndicate Performance Racing: &[syndicate boost] laps worth of Afterburner Fuel`
+			`		Delta V Grand Prix: &[delta boost] laps worth of Afterburner Fuel`
+			`		Deep Sky Dynamics: &[deep boost] laps worth of Afterburner Fuel`
 			``
 				goto decisioning
 			label race
