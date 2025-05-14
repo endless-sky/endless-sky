@@ -1140,9 +1140,9 @@ phrase "sunracer hovercraft adcloser"
 		" hovercraft "
 		" vehicles "
 	word
-		"slicing through a twisting course in untamed terrain, "
+		"slicing a twisting course through untamed terrain, "
 		"racing along a serpentine, rugged track, "
-		"carving through wild, winding roads, "
+		"dashing along wild, winding roads, "
 	word
 		"with the ad copy "
 		"the display's text "
