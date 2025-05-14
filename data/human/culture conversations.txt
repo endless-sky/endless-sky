@@ -1217,7 +1217,7 @@ mission "Exotic Life: Albatross"
 			`	His face darkens, and his voice grows weighty and ominous. "Polecats, they attract... the Albatross." For a suspended moment, the chatter ceases; the clamor of glasses and low murmurs fall silent as every patron registers the weight of that word. Then, as if on cue, the noise resumes, and the hubbub goes on as usual.`
 				goto nextquestion
 			label albatross
-			`	Emboldened by the hushed reaction, you press on, "Albatross?" That single word slices through the renewed din, and in a heartbeat, the atmosphere shatters. Several patrons rise from their stools, their expressions hardening into threatening scowls. The old man, eyes distant and vacant, seems lost in thought while it becomes clear that you have crossed a forbidden line.`
+			`	That single word slices through the renewed din, and in a heartbeat, the atmosphere shatters. Several patrons rise from their stools, their expressions hardening into threatening scowls. The old man, eyes distant and vacant, seems lost in thought while it becomes clear that you have crossed a forbidden line.`
 			`	Rough hands grip your shoulders, and before you can protest, you're dragged toward the door. Outside, in the biting wind, the echo of their shouted threats follows you. Perhaps some stones are best left unturned.`
 			label ending
 			action
