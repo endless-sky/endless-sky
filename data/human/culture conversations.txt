@@ -1194,7 +1194,7 @@ phrase "sunracer hovercraft race description"
 		"Amid a cascade of bright lights and raucous cheers, you enter the racetrack, "
 		"The crowd briefly disperses, leaving you ample space to go through the entrance, "
 	word
-		"and you navigate a series of well-lit steps until you settle into your seat, ready for the race."
+		"navigate a series of well-lit steps, and settle into your seat. Now you are ready for the race."
 		"each step drawing you closer to the exciting race view from the stands."
 		"then you follow well-marked signs that lead you into the heart of the action in the stands."
 		"where banners and cheers guide you to the stands for you to sit during the race."
