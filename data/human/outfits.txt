@@ -317,6 +317,8 @@ outfit "Cloaking Device"
 	"cloak" .01
 	"cloaking energy" 1
 	"cloaking fuel" .2
+	"cloaked regen multiplier" -1
+	"cloaked repair multiplier" -1
 	"unique" 1
 	"unplunderable" 1
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
