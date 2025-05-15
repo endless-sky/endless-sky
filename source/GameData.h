@@ -56,6 +56,7 @@ class Phrase;
 class Planet;
 class PlayerInfo;
 class Politics;
+class Raiders;
 class Shader;
 class Ship;
 class Sprite;
@@ -139,6 +140,7 @@ public:
 	static const Set<Person> &Persons();
 	static const Set<Phrase> &Phrases();
 	static const Set<Planet> &Planets();
+	static const Set<Raiders> &GetRaiders();
 	static const Set<Shader> &Shaders();
 	static const Set<Ship> &Ships();
 	static const Set<Shop<Ship>> &Shipyards();

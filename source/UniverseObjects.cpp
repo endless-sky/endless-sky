@@ -150,6 +150,8 @@ void UniverseObjects::Change(const DataNode &node, const ConditionsStore *player
 		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
 	else if(key == "planet" && hasValue)
 		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
+	else if(key == "raiders" && hasValue)
+		raiders.Get(node.Token(1))->Load(node);
 	else if(key == "shipyard" && hasValue)
 		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
 	else if(key == "system" && hasValue)
@@ -381,6 +383,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && hasValue)
 			planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
+		else if(key == "raiders" && hasValue)
+			raiders.Get(node.Token(1))->Load(node);
 		else if(key == "ship" && hasValue)
 		{
 			// Allow multiple named variants of the same ship model.
