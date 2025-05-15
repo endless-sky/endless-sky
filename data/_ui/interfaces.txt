@@ -1536,7 +1536,7 @@ interface "hud"
 		to 160 0 bottom left
 	box "messages"
 		from 180 0 bottom left
-		to -335 -200 bottom right
+		to -335 -100 bottom right
 	box "ammo"
 		from -110 450 top right
 		to 0 0 bottom right
