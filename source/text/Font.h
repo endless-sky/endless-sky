@@ -72,6 +72,7 @@ private:
 	std::string TruncateFront(const std::string &str, int &width) const;
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 
+
 private:
 	const Shader *shader;
 	GLuint texture = 0;
@@ -80,7 +81,7 @@ private:
 	int space = 0;
 	mutable int screenWidth = 0;
 	mutable int screenHeight = 0;
-	mutable GLfloat scale[2]{0.0f, 0.0f};
+	mutable GLfloat scale[2]{0.f, 0.f};
 	GLfloat glyphWidth = 0.f;
 	GLfloat glyphHeight = 0.f;
 
