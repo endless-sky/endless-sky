@@ -10792,8 +10792,6 @@ mission "Tavish and Kormak 3"
 				goto grin
 
 	on accept
-		clear "tav1"
-		clear "tav2"
 		clear "kormak1"
 	npc board
 		government "Bounty (Disguised)"
@@ -10944,6 +10942,8 @@ mission "Tavish and Kormak 4"
 						not "kor"
 				`	(Fill out the form and pay the 20,000 credit processing fee.)`
 					goto payup
+					to display
+						credits > 20000
 					to display
 						credits > 20000
 				`	"I am not paying 20,000. I am out."`
@@ -11345,7 +11345,7 @@ mission "Tavish and Kormak 6"
 				`	(Go.)`
 				`	"Let's go."`
 
-			`	So long as you don't look too hard at the jungle it feels perfectly normal, like you're in a standard Earth biome. But the moment you concentrate on any one feature too long the alienness of the environment becomes unmistakable and unsettling. The trees here are nothing like the ones on the inhabited continent of New India. They are covered in silver scales and pockmarked with gray gasping orifices.`
+			`	So long as you don't look too hard at the jungle it feels perfectly normal, like you're in a standard Earth biome. But the moment you concentrate on any one feature too long the alienness of the environment becomes unmistakable and unsettling. The trees here are nothing like the ones on the inhabited continent of New India. They are covered in silver scales and pockmarked with gasping gray orifices.`
 			`	Thankfully, the trees do not appear to have eyes. However, each time one of them loses a branch to Kormak's electric axe, their gaping orifices make a sharp hissing sound that could almost be confused for a scream.`
 			`	Unphased by the incessant wailing, Kormak gleefully hacks away at vines, branches and small trees as he leads you, Tavish, and the small caravan of mobile equipment deeper into the terrifyingly unnatural forest.`
 			`	By the end of the trek everyone is breathing heavily, and Kormak is covered in the blue sap or blood that leaks from the severed limbs of the trees.`
@@ -11526,7 +11526,6 @@ mission "Tavish and Kormak 7"
 	description "Transport Tavish and Kormak and their cargo to <planet>."
 	to offer
 		has "event: Tavish and Kormak Expedition"
-		not "event: Tavish and Kormak Abandoned"
 		not "event: Tavish and Kormak Late"
 	source "New India"
 	destination "Alexandria"
@@ -11743,6 +11742,9 @@ mission "Weland"
 	name "Investigating the Salvaged Artifact"
 	description "You dropped off the Salvaged Artifact Tavish and Kormak found on New India with Weland for him to investigate. Come back after a week or so to <planet> to see what insights he's found."
 	source "Wayfarer"
+	minor
+	to offer
+		"Weland: offered" < 4	
 	minor
 	to offer
 		"Weland: offered" < 4	
