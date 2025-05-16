@@ -185,6 +185,17 @@ outfit "Star Tail Storage"
 	description "Because Star Tail Cells are highly volatile, they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
 	description "	One layer of this easily expandable system is already shipped with the gun itself. To increase storage space, more layers are simply stacked on top."
 
+outfitter "Star Tail Cell Restock"
+	to sell
+		or
+			has "outfit: Star Tail"
+			has "outfit: Star Tail Storage"
+	location
+		attributes "outfitter"
+	stock
+		"Star Tail Cell"
+
+
 outfit "Horizon Grappler"
 	category "Turrets"
 	series "Tractor Beams"
