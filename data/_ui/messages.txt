@@ -51,6 +51,11 @@
 	"log color" "message log importance high"
 	"no log deduplication"
 
+# Same as the default one, but does not add the message to the main panel's list.
+"message category" "log only"
+	"log color" "message log importance high"
+	"log only"
+
 
 
 # Engine messages:

@@ -37,29 +37,21 @@ namespace {
 // Add a message to the list along with its level of importance.
 void Messages::Add(const Message &message)
 {
-	AddLog(message);
 	const Message::Category *category = message.GetCategory();
 	if(!category)
 		return;
-	lock_guard<mutex> lock(incomingMutex);
-	incoming.emplace_back(message.Text(), category);
-}
-
-
-
-// Add a message to the log. For messages meant to be shown
-// also on the main panel, use Add instead.
-void Messages::AddLog(const Message &message)
-{
-	const Message::Category *category = message.GetCategory();
-	if(!category)
-		return;
-	if(!category->LogDeduplication() || logged.empty() || message.Text() != logged.front().first)
+	string text = message.Text();
+	if(!category->LogDeduplication() || logged.empty() || text != logged.front().first)
 	{
-		logged.emplace_front(message.Text(), category);
+		logged.emplace_front(text, category);
 		if(logged.size() > MAX_LOG)
 			logged.pop_back();
 	}
+
+	if(category->LogOnly())
+		return;
+	lock_guard<mutex> lock(incomingMutex);
+	incoming.emplace_back(text, category);
 }
 
 

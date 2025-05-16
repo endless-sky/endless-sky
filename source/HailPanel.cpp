@@ -435,6 +435,6 @@ void HailPanel::SetMessage(const string &text)
 {
 	message = text;
 	if(!message.empty())
-		Messages::AddLog({"(Response to your hail) " + header + " " + message,
-			GameData::MessageCategories().Get("normal")});
+		Messages::Add({"(Response to your hail) " + header + " " + message,
+			GameData::MessageCategories().Get("log only")});
 }

@@ -58,6 +58,8 @@ void Message::Category::Load(const DataNode &node)
 			logDeduplication = false;
 		else if(key == "important")
 			isImportant = true;
+		else if(key == "log only")
+			logOnly = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -110,6 +112,13 @@ bool Message::Category::LogDeduplication() const
 bool Message::Category::IsImportant() const
 {
 	return isImportant;
+}
+
+
+
+bool Message::Category::LogOnly() const
+{
+	return logOnly;
 }
 
 

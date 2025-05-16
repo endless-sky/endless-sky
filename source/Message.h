@@ -39,6 +39,7 @@ public:
 		bool AggressiveDeduplication() const;
 		bool LogDeduplication() const;
 		bool IsImportant() const;
+		bool LogOnly() const;
 
 	private:
 		bool isLoaded = false;
@@ -53,6 +54,8 @@ public:
 		bool logDeduplication = true;
 		// Whether to include this category in the message log panel's filter.
 		bool isImportant = false;
+		// Save this message to the log, but don't show it in the main view.
+		bool logOnly = false;
 	};
 
 

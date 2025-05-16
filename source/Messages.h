@@ -49,9 +49,6 @@ public:
 public:
 	// Add a message to the list along with its level of importance.
 	static void Add(const Message &message);
-	// Add a message to the log. For messages meant to be shown
-	// also on the main panel, use Add instead.
-	static void AddLog(const Message &message);
 
 	// Get the messages for the given game step. Any messages that are too old
 	// will be culled out, and new ones that have just been added will have
