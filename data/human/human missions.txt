@@ -10411,8 +10411,12 @@ mission "Tavish and Kormak 1"
 					goto embarrassment2
 				`	"Fine, but I better not regret this. Also, my name is <last>, not Mayflower."`
 					goto embarrassment2
-				`	"Sure, whatever, but where did you get Mayflower from? I'm Captain <last>."`
-					goto embarrassment2
+				`	"I am not Mayflower, and I am not interested in working with people who think I am."`
+			`	"Not...Mayflower?" Tavish's voice drops off as he appears to be, finally, at a loss for words.`
+			`	"Looked in wrong manifest." Kormak says with a hint defeat edging into his voice.`
+			`	Tavish glumly nods. "Given my repugnant gaffe, your response is most fair."`
+			`	He and Kormak make ready to leave. "Our deepest Apologies." A moment later they are gone.`
+				decline
 			label mayflower2
 			choice
 				`	"Yes! To <planet>!`
