@@ -4208,6 +4208,14 @@ void PlayerInfo::StepMissions(UI *ui)
 
 
 
+void PlayerInfo::StepMissionTimers(UI *ui)
+{
+	for(Mission &mission : missions)
+		mission.StepTimers(*this, ui);
+}
+
+
+
 void PlayerInfo::Autosave() const
 {
 	if(!CanBeSaved() || filePath.length() < 4)
