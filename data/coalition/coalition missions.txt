@@ -3616,7 +3616,7 @@ mission "Coalition: Struggling Author 4"
 				`	(Exit the elevator.)`
 			`	"Greetings, humans. Follow me, you must, so discuss your book, we can," the Kimek says through its translation box.`
 			`	At the direction of the Kimek, you and Anna walk as directed until you arrive at a room with glass walls. Along the way, you pass a lounge, a conference area where multiple Kimek are discussing something at a table with a group of Heliarchs, and a large open workspace where individual Kimek sit at their own computers.`
-			`	After a few minutes of walking, you reach an office where another Kimek sits with a team of five Heliarchs - two from each species except for the Saryds. Temporo takes a seat with them.`
+			`	After a few minutes of walking, you reach an office where another Kimek sits with a team of Heliarchs. Temporo takes a seat with them, making six - two from each species.`
 			`	The Kimek guiding you gestures toward the office and heads over to speak with the group.`
 			`	As you enter, Anna puts down the copy of her book on the table, and you each take a seat. The Kimek that led you here briefly speaks to the other non-Heliarch Kimek sitting at the interview table before leaving.`
 			`	The sitting Kimek's translation device begins speaking.`
