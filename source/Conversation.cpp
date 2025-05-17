@@ -570,14 +570,15 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
-		if(key == "goto" && hasValue && hasGoto)
+		if(key == "goto" && hasValue)
 		{
-			child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
-		}
-		else if(key == "goto" && hasValue)
-		{
-			Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
-			hasGoto = true;
+			if(hasGoto)
+				child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
+			else
+			{
+				Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
+				hasGoto = true;
+			}
 		}
 		else if(key == "to" && hasValue && child.Token(1) == "display")
 		{
