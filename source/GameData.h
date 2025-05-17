@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "CategoryType.h"
+#include "Message.h"
 #include "Set.h"
 #include "Shop.h"
 #include "Swizzle.h"
@@ -131,6 +132,8 @@ public:
 	static const Set<Government> &Governments();
 	static const Set<Hazard> &Hazards();
 	static const Set<Interface> &Interfaces();
+	static const Set<Message::Category> &MessageCategories();
+	static const Set<Message> &Messages();
 	static const Set<Minable> &Minables();
 	static const Set<Mission> &Missions();
 	static const Set<News> &SpaceportNews();
