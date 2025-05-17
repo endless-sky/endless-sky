@@ -125,7 +125,7 @@ void MenuPanel::Step()
 void MenuPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	Information info;
 	if(player.IsLoaded() && !player.IsDead())

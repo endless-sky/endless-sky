@@ -94,7 +94,7 @@ void GameLoadingPanel::Step()
 void GameLoadingPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	GameData::DrawMenuBackground(this);
 

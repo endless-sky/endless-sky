@@ -261,6 +261,7 @@ void GameData::FinishLoading()
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
+	background.FinishLoading();
 }
 
 
@@ -910,6 +911,13 @@ const CategoryList &GameData::GetCategory(const CategoryType type)
 const StarField &GameData::Background()
 {
 	return background;
+}
+
+
+
+void GameData::StepBackground(const Point &vel, double zoom)
+{
+	background.Step(vel, zoom);
 }
 
 
