@@ -53,7 +53,7 @@ void TestData::Load(const DataNode &node, const filesystem::path &sourceDataFile
 	for(const DataNode &child : node)
 		// Only need to parse the category for now. The contents will be
 		// scanned for at write-out of the test-data.
-		if(child.Size() > 1 && child.Token(0) == "category")
+		if(child.Token(0) == "category" && child.Size() >= 2)
 		{
 			if(child.Token(1) == "savegame")
 				dataSetType = Type::SAVEGAME;
