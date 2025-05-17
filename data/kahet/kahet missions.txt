@@ -1005,7 +1005,7 @@ mission "Ka'het: Patir Mystery 7"
 				outfit "Ka'het Electric Stunner" 1
 			`	Dusk quickly explains how to use the Ka'het weapon; its short cylindrical shape is evidently not made for human hands and proves to be quite hard to use, but you eventually figure out how to hold it while still being able to readily press the trigger. While they may not be the best weapon to capture an enemy ship, they're surely going to be very handy from a defensive position inside your own.`
 			label next
-			`	"Now that we know how to safely access the site, I am going to need to organize our next mission. If you meet me in the spaceport a few hours from now I should have everything ready."`
+			`	"Now that we know how to safely access the site, I am going to need to organize our next mission. If you meet me in the spaceport a few hours from now I should have everything ready. In the meanwhile, make sure to prepare a large enough freighter for takeoff - chances are we will need at least a hundred tons of free space in the cargo hold for the complete payload."`
 
 mission "Ka'het: Patir Mystery 8A"
 	name "Take the lab"
