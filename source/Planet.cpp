@@ -142,7 +142,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 					toKnow = ConditionSet();
 				else if(value == "land")
 					toLand = ConditionSet();
-				else if(value == "access")
+				else if(value == "access" && child.Size() > valueIndex + 1)
 				{
 					const string &shop = child.Token(valueIndex + 1);
 					if(shop == "shipyard")
