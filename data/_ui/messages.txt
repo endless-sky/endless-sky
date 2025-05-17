@@ -17,43 +17,43 @@
 
 # The category used for most important system messages.
 "message category" "high"
-	"main color" "message importance highest"
-	"log color" "message log importance highest"
+	"main color" "message category high"
+	"log color" "message log category high"
 	important
 
 # The default category used for most engine messages, including hails.
 "message category" "normal"
-	"main color" "message importance high"
-	"log color" "message log importance high"
+	"main color" "message category normal"
+	"log color" "message log category normal"
 
 # The category used for messages that generate a lot of spam
 # (for example, ones that are sent continuously every frame).
 "message category" "low"
-	"main color" "message importance low"
-	"log color" "message log importance low"
+	"main color" "message category low"
+	"log color" "message log category low"
 	"aggressive deduplication"
 
 # The category used for system messages that require more attention.
 "message category" "info"
-	"main color" "message importance info"
-	"log color" "message log importance info"
+	"main color" "message category info"
+	"log color" "message log category info"
 	important
 
 # The special category used to mark day beginning for easier navigation in the log.
 "message category" "daily"
-	"main color" "message importance daily"
-	"log color" "message log importance daily"
+	"main color" "message category daily"
+	"log color" "message log category daily"
 	important
 
 # Same as the default one, but always adds the message to the log.
 "message category" "force log"
-	"main color" "message importance high"
-	"log color" "message log importance high"
+	"main color" "message category normal"
+	"log color" "message log category normal"
 	"no log deduplication"
 
 # Same as the default one, but does not add the message to the main panel's list.
 "message category" "log only"
-	"log color" "message log importance high"
+	"log color" "message log category normal"
 	"log only"
 
 
