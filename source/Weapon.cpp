@@ -122,12 +122,12 @@ void Weapon::LoadWeapon(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				bool granndHasValue = grand.Size() >= 2;
-				if(grandKey == "facing" && granndHasValue)
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "facing" && grandHasValue)
 					submunitions.back().facing = Angle(grand.Value(1));
 				else if(grandKey == "offset" && grand.Size() >= 3)
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
-				else if(grandKey == "spawn on" && granndHasValue)
+				else if(grandKey == "spawn on" && grandHasValue)
 				{
 					submunitions.back().spawnOnNaturalDeath = false;
 					for(int j = 1; j < grand.Size(); ++j)

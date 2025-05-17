@@ -126,12 +126,10 @@ void Interface::Load(const DataNode &node)
 			// Check if this node specifies a known element type.
 			if(key == "sprite" || key == "image" || key == "outline")
 				elements.push_back(new ImageElement(child, anchor));
-			else if(key == "label" || key == "string" || key == "button"
-					|| key == "dynamic button")
+			else if(key == "label" || key == "string" || key == "button" || key == "dynamic button")
 				elements.push_back(new BasicTextElement(child, anchor));
 			else if(key == "wrapped label" || key == "wrapped string"
-					|| key == "wrapped button"
-					|| key == "wrapped dynamic button")
+					|| key == "wrapped button" || key == "wrapped dynamic button")
 				elements.push_back(new WrappedTextElement(child, anchor));
 			else if(key == "bar" || key == "ring")
 				elements.push_back(new BarElement(child, anchor));

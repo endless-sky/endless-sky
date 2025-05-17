@@ -212,11 +212,12 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "threshold" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "threshold" && grandHasValue)
 					defenseThreshold = grand.Value(1);
 				else if(grandKey == "fleet")
 				{
-					if(grand.Size() >= 2 && !grand.HasChildren())
+					if(grandHasValue && !grand.HasChildren())
 					{
 						// Allow only one "tribute" node to define the tribute fleets.
 						if(resetFleets)
