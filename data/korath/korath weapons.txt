@@ -1200,6 +1200,7 @@ outfit "Firestorm Battery"
 		"hit force" 6000
 		"missile strength" 115
 	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
@@ -1210,3 +1211,13 @@ effect "firestorm ring"
 	"random angle" 360
 	"random velocity" 3
 	"velocity scale" 0.1
+
+outfitter "Firestorm Torpedo Restock"
+	to sell
+		or
+			has "outfit: Firestorm Battery"
+			has "outfit: Firestorm Torpedo Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Firestorm Torpedo"
