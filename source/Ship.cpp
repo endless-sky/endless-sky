@@ -225,14 +225,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Ship::Ship(const DataNode &node)
+Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void Ship::Load(const DataNode &node)
+void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
 		trueModelName = node.Token(1);
@@ -258,8 +258,9 @@ void Ship::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
 		bool add = (key == "add");
-		if(add && (child.Size() < 2 || child.Token(1) != "attributes"))
+		if(add && (!hasValue || child.Token(1) != "attributes"))
 		{
 			child.PrintTrace("Skipping invalid use of 'add' with " + (child.Size() < 2
 					? "no key." : "key: " + child.Token(1)));
@@ -267,30 +268,30 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(key == "name" && child.Size() >= 2)
+		else if(key == "name" && hasValue)
 			name = child.Token(1);
-		else if(key == "display name" && child.Size() >= 2)
+		else if(key == "display name" && hasValue)
 			displayModelName = child.Token(1);
-		else if(key == "plural" && child.Size() >= 2)
+		else if(key == "plural" && hasValue)
 			pluralModelName = child.Token(1);
-		else if(key == "variant map name" && child.Size() >= 2)
+		else if(key == "variant map name" && hasValue)
 			variantMapShopName = child.Token(1);
-		else if(key == "noun" && child.Size() >= 2)
+		else if(key == "noun" && hasValue)
 			noun = child.Token(1);
-		else if(key == "swizzle" && child.Size() >= 2)
+		else if(key == "swizzle" && hasValue)
 			customSwizzleName = child.Token(1);
-		else if(key == "uuid" && child.Size() >= 2)
+		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
-				baseAttributes.Load(child);
+				baseAttributes.Load(child, playerConditions);
 			else
 			{
 				addAttributes = true;
-				attributes.Load(child);
+				attributes.Load(child, playerConditions);
 			}
 		}
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
@@ -350,7 +351,7 @@ void Ship::Load(const DataNode &node)
 			}
 			else
 			{
-				if(child.Size() >= 2)
+				if(hasValue)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
 			Hardpoint::BaseAttributes attributes;
@@ -382,6 +383,8 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
+					else if(grand.Token(0) == "blindspot" && grand.Size() >= 3)
+						attributes.blindspots.emplace_back(grand.Value(1), grand.Value(2));
 					else if(grand.Token(0) == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
 					else if(grand.Token(0) == "under")
@@ -477,7 +480,7 @@ void Ship::Load(const DataNode &node)
 					}
 				}
 		}
-		else if(key == "leak" && child.Size() >= 2)
+		else if(key == "leak" && hasValue)
 		{
 			if(!hasLeak)
 			{
@@ -491,7 +494,7 @@ void Ship::Load(const DataNode &node)
 				leak.closePeriod = child.Value(3);
 			leaks.push_back(leak);
 		}
-		else if(key == "explode" && child.Size() >= 2)
+		else if(key == "explode" && hasValue)
 		{
 			if(!hasExplode)
 			{
@@ -503,7 +506,7 @@ void Ship::Load(const DataNode &node)
 			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
-		else if(key == "final explode" && child.Size() >= 2)
+		else if(key == "final explode" && hasValue)
 		{
 			if(!hasFinalExplode)
 			{
@@ -544,40 +547,39 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
-		else if(key == "crew" && child.Size() >= 2)
+		else if(key == "crew" && hasValue)
 			crew = static_cast<int>(child.Value(1));
-		else if(key == "fuel" && child.Size() >= 2)
+		else if(key == "fuel" && hasValue)
 			fuel = child.Value(1);
-		else if(key == "shields" && child.Size() >= 2)
+		else if(key == "shields" && hasValue)
 			shields = child.Value(1);
-		else if(key == "hull" && child.Size() >= 2)
+		else if(key == "hull" && hasValue)
 			hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
-		else if(key == "system" && child.Size() >= 2)
+		else if(key == "system" && hasValue)
 			currentSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "planet" && child.Size() >= 2)
+		else if(key == "planet" && hasValue)
 		{
 			zoom = 0.;
 			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
-		else if(key == "destination system" && child.Size() >= 2)
+		else if(key == "destination system" && hasValue)
 			targetSystem = GameData::Systems().Get(child.Token(1));
 		else if(key == "parked")
 			isParked = true;
-		else if(key == "description" && child.Size() >= 2)
+		else if(key == "description" && hasValue)
 		{
 			if(!hasDescription)
 			{
-				description.clear();
+				description.Clear();
 				hasDescription = true;
 			}
-			description += child.Token(1);
-			description += '\n';
+			description.Load(child, playerConditions);
 		}
-		else if(key == "formation" && child.Size() >= 2)
+		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));
-		else if(key == "remove" && child.Size() >= 2)
+		else if(key == "remove" && hasValue)
 		{
 			if(child.Token(1) == "bays")
 				removeBays = true;
@@ -657,7 +659,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			finalExplosions = base->finalExplosions;
 		if(outfits.empty())
 			outfits = base->outfits;
-		if(description.empty())
+		if(description.IsEmpty())
 			description = base->description;
 
 		bool hasHardpoints = false;
@@ -1096,6 +1098,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				for(const auto &blindspot : attributes.blindspots)
+					out.Write("blindspot", blindspot.first.Degrees(), blindspot.second.Degrees());
 				if(attributes.turnMultiplier)
 					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
@@ -1241,9 +1245,9 @@ const string &Ship::Noun() const
 
 
 // Get this ship's description.
-const string &Ship::Description() const
+string Ship::Description() const
 {
-	return description;
+	return description.ToString();
 }
 
 
@@ -3891,7 +3895,7 @@ void Ship::Linger()
 
 
 
-bool Ship::Immitates(const Ship &other) const
+bool Ship::Imitates(const Ship &other) const
 {
 	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }

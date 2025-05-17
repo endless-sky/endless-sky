@@ -450,7 +450,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		while(root->parent >= 0)
 			root = &objects[root->parent];
 
-		static const string STAR = "You cannot land on a star!";
+		static const string STAR = "You cannot land on this star!";
 		static const string HOTPLANET = "This planet is too hot to land on.";
 		static const string COLDPLANET = "This planet is too cold to land on.";
 		static const string UNINHABITEDPLANET = "This planet doesn't have anywhere you can land.";
@@ -1090,10 +1090,10 @@ void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool 
 		object.LoadSprite(node);
 		if(removing)
 			return;
-		object.isStar = !node.Token(1).compare(0, 5, "star/");
+		object.isStar = node.Token(1).starts_with("star/");
 		if(!object.isStar)
 		{
-			object.isStation = !node.Token(1).compare(0, 14, "planet/station");
+			object.isStation = node.Token(1).starts_with("planet/station");
 			object.isMoon = (!object.isStation && object.parent >= 0 && !objects[object.parent].IsStar());
 		}
 	}

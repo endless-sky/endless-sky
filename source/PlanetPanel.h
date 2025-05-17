@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Panel.h"
 
+#include "Sale.h"
+
 #include <functional>
 #include <map>
 #include <memory>
@@ -24,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class Interface;
+class Outfit;
 class Planet;
 class PlayerInfo;
 class Ship;
@@ -65,6 +68,14 @@ private:
 	const Planet &planet;
 	const System &system;
 	const Interface &ui;
+
+	// Whether this planet has a shipyard or outfitter
+	// and the items that are for sale in each shop.
+	bool initializedShops = false;
+	bool hasShipyard = false;
+	bool hasOutfitter = false;
+	Sale<Ship> shipyardStock;
+	Sale<Outfit> outfitterStock;
 
 	std::shared_ptr<Panel> trading;
 	std::shared_ptr<Panel> bank;
