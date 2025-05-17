@@ -316,11 +316,12 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "zoom" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "zoom" && grandHasValue)
 					engine.zoom = grand.Value(1);
-				else if(grandKey == "angle" && grand.Size() >= 2)
+				else if(grandKey == "angle" && grandHasValue)
 					engine.facing += Angle(grand.Value(1));
-				else if(grandKey == "gimbal" && grand.Size() >= 2)
+				else if(grandKey == "gimbal" && grandHasValue)
 					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
@@ -366,15 +367,16 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				for(const DataNode &grand : child)
 				{
 					bool needToCheckAngles = false;
-					if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					const string &grandKey = grand.Token(0);
+					if(grandKey == "angle" && grand.Size() >= 2)
 					{
 						attributes.baseAngle = grand.Value(1);
 						needToCheckAngles = true;
 						defaultBaseAngle = false;
 					}
-					else if(grand.Token(0) == "parallel")
+					else if(grandKey == "parallel")
 						attributes.isParallel = true;
-					else if(grand.Token(0) == "arc" && grand.Size() >= 3)
+					else if(grandKey == "arc" && grand.Size() >= 3)
 					{
 						attributes.isOmnidirectional = false;
 						attributes.minArc = Angle(grand.Value(1));
@@ -383,13 +385,13 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
-					else if(grand.Token(0) == "blindspot" && grand.Size() >= 3)
+					else if(grandKey == "blindspot" && grand.Size() >= 3)
 						attributes.blindspots.emplace_back(grand.Value(1), grand.Value(2));
-					else if(grand.Token(0) == "turret turn multiplier")
+					else if(grandKey == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
-					else if(grand.Token(0) == "under")
+					else if(grandKey == "under")
 						drawUnder = true;
-					else if(grand.Token(0) == "over")
+					else if(grandKey == "over")
 						drawUnder = false;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
@@ -451,26 +453,28 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
 				{
+					const string &grandKey = grand.Token(0);
+					bool grandHasValue = grand.Size() >= 2;
 					// Load in the effect(s) to be displayed when the ship launches.
-					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+					if(grandKey == "launch effect" && grandHasValue)
 					{
 						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
 					}
-					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					else if(grandKey == "angle" && grandHasValue)
 						bay.facing = Angle(grand.Value(1));
 					else
 					{
 						bool handled = false;
 						for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
-							if(grand.Token(0) == BAY_SIDE[i])
+							if(grandKey == BAY_SIDE[i])
 							{
 								bay.side = i;
 								handled = true;
 							}
 						for(unsigned i = 1; i < BAY_FACING.size(); ++i)
-							if(grand.Token(0) == BAY_FACING[i])
+							if(grandKey == BAY_FACING[i])
 							{
 								bay.facing = BAY_ANGLE[i];
 								handled = true;

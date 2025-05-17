@@ -1753,14 +1753,15 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI *ui)
 // locations, so move that parsing out to a helper function.
 bool Mission::ParseContraband(const DataNode &node)
 {
-	if(node.Token(0) == "illegal" && node.Size() == 2)
+	const string &key = node.Token(0);
+	if(key == "illegal" && node.Size() == 2)
 		fine = node.Value(1);
-	else if(node.Token(0) == "illegal" && node.Size() == 3)
+	else if(key == "illegal" && node.Size() == 3)
 	{
 		fine = node.Value(1);
 		fineMessage = node.Token(2);
 	}
-	else if(node.Token(0) == "stealth")
+	else if(key == "stealth")
 		failIfDiscovered = true;
 	else
 		return false;
