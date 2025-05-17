@@ -56,9 +56,10 @@ void ConditionsStore::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(!DataNode::IsConditionName(child.Token(0)))
+		const string &key = child.Token(0);
+		if(!DataNode::IsConditionName(key))
 			child.PrintTrace("Invalid condition during savegame-load:");
-		Set(child.Token(0), (child.Size() >= 2) ? child.Value(1) : 1);
+		Set(key, (child.Size() >= 2) ? child.Value(1) : 1);
 	}
 }
 

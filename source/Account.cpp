@@ -48,9 +48,12 @@ void Account::Load(const DataNode &node, bool clearFirst)
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "credits" && child.Size() >= 2)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "credits" && hasValue)
 			credits = child.Value(1);
-		else if(child.Token(0) == "salaries income")
+		else if(key == "salaries income")
+		{
 			for(const DataNode &grand : child)
 			{
 				if(grand.Size() < 2)
@@ -58,15 +61,16 @@ void Account::Load(const DataNode &node, bool clearFirst)
 				else
 					salariesIncome[grand.Token(0)] = grand.Value(1);
 			}
-		else if(child.Token(0) == "salaries" && child.Size() >= 2)
+		}
+		else if(key == "salaries" && hasValue)
 			crewSalariesOwed = child.Value(1);
-		else if(child.Token(0) == "maintenance" && child.Size() >= 2)
+		else if(key == "maintenance" && hasValue)
 			maintenanceDue = child.Value(1);
-		else if(child.Token(0) == "score" && child.Size() >= 2)
+		else if(key == "score" && hasValue)
 			creditScore = child.Value(1);
-		else if(child.Token(0) == "mortgage")
+		else if(key == "mortgage")
 			mortgages.emplace_back(child);
-		else if(child.Token(0) == "history")
+		else if(key == "history")
 			for(const DataNode &grand : child)
 				history.push_back(grand.Value(0));
 		else

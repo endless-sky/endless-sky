@@ -457,13 +457,14 @@ void GameData::ReadEconomy(const DataNode &node)
 	vector<string> headings;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "purchases")
+		const string &key = child.Token(0);
+		if(key == "purchases")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 3 && grand.Value(2))
 					purchases[Systems().Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
 		}
-		else if(child.Token(0) == "system")
+		else if(key == "system")
 		{
 			headings.clear();
 			for(int index = 1; index < child.Size(); ++index)
@@ -471,7 +472,7 @@ void GameData::ReadEconomy(const DataNode &node)
 		}
 		else
 		{
-			System &system = *objects.systems.Get(child.Token(0));
+			System &system = *objects.systems.Get(key);
 
 			int index = 0;
 			for(const string &commodity : headings)
