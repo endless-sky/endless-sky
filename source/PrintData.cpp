@@ -662,16 +662,17 @@ namespace {
 		LocationFilter filter;
 		for(const DataNode &node : file)
 		{
-			if(node.Token(0) == "changes" || (node.Token(0) == "event" && node.Size() == 1))
+			const string &key = node.Token(0);
+			if(key == "changes" || (key == "event" && node.Size() == 1))
 				for(const DataNode &child : node)
 					GameData::Change(child, nullptr);
-			else if(node.Token(0) == "event")
+			else if(key == "event")
 			{
 				const auto *event = GameData::Events().Get(node.Token(1));
 				for(const auto &change : event->Changes())
 					GameData::Change(change, nullptr);
 			}
-			else if(node.Token(0) == "location")
+			else if(key == "location")
 			{
 				filter.Load(node);
 				break;

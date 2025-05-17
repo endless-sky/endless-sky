@@ -36,7 +36,7 @@ void verifyName(const std::string &name1, const std::string &name2)
 
 std::string verifyAndStripPrefix(const std::string &prefix, const std::string &inputString)
 {
-	if(inputString.size() < prefix.size() || (0 != inputString.compare(0, prefix.size(), prefix)))
+	if(!inputString.starts_with(prefix))
 		throw std::runtime_error("String \"" + inputString + "\" does not start with prefix \"" + prefix + "\"");
 	return inputString.substr(prefix.size());
 }
@@ -109,7 +109,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 {
 	GIVEN( "A ConditionStore" )
 	{
-		WHEN( "it is just default initalized" )
+		WHEN( "it is just default initialized" )
 		{
 			const auto store = ConditionsStore();
 			THEN( "the store is empty" )
@@ -117,7 +117,7 @@ SCENARIO( "Creating a ConditionsStore", "[ConditionsStore][Creation]" )
 				REQUIRE( store.PrimariesSize() == 0 );
 			}
 		}
-		WHEN( "initialized using an initalizer list" )
+		WHEN( "initialized using an initializer list" )
 		{
 			const auto store = ConditionsStore{ { "hello world", 100 }, { "goodbye world", 404 } };
 			THEN( "given primary conditions are in the Store" )
