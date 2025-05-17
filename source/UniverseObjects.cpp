@@ -136,8 +136,12 @@ void UniverseObjects::FinishLoading()
 
 
 // Apply the given change to the universe.
-void UniverseObjects::Change(const DataNode &node, const ConditionsStore *playerConditions)
+void UniverseObjects::Change(const DataNode &node, const PlayerInfo &player)
 {
+	const ConditionsStore *playerConditions = &player.Conditions();
+	const set<const System *> *visitedSystems = &player.VisitedSystems();
+	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
+
 	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
 	if(key == "fleet" && hasValue)
@@ -145,17 +149,17 @@ void UniverseObjects::Change(const DataNode &node, const ConditionsStore *player
 	else if(key == "galaxy" && hasValue)
 		galaxies.Get(node.Token(1))->Load(node);
 	else if(key == "government" && hasValue)
-		governments.Get(node.Token(1))->Load(node);
+		governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
 	else if(key == "outfitter" && hasValue)
-		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
+		outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
 	else if(key == "planet" && hasValue)
 		planets.Get(node.Token(1))->Load(node, wormholes, playerConditions);
 	else if(key == "shipyard" && hasValue)
-		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
+		shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
 	else if(key == "system" && hasValue)
 		systems.Get(node.Token(1))->Load(node, planets, playerConditions);
 	else if(key == "news" && hasValue)
-		news.Get(node.Token(1))->Load(node, playerConditions);
+		news.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 	else if(key == "link" && node.Size() >= 3)
 		systems.Get(node.Token(1))->Link(systems.Get(node.Token(2)));
 	else if(key == "unlink" && node.Size() >= 3)
@@ -327,6 +331,8 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		Logger::LogError("Parsing: " + path.string());
 
 	const ConditionsStore *playerConditions = &player.Conditions();
+	const set<const System *> *visitedSystems = &player.VisitedSystems();
+	const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 	for(const DataNode &node : data)
 	{
 		const string &key = node.Token(0);
@@ -352,7 +358,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "galaxy" && hasValue)
 			galaxies.Get(node.Token(1))->Load(node);
 		else if(key == "government" && hasValue)
-			governments.Get(node.Token(1))->Load(node);
+			governments.Get(node.Token(1))->Load(node, visitedSystems, visitedPlanets);
 		else if(key == "hazard" && hasValue)
 			hazards.Get(node.Token(1))->Load(node);
 		else if(key == "interface" && hasValue)
@@ -370,13 +376,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "minable" && hasValue)
 			minables.Get(node.Token(1))->Load(node);
 		else if(key == "mission" && hasValue)
-			missions.Get(node.Token(1))->Load(node, playerConditions);
+			missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "outfit" && hasValue)
 			outfits.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "outfitter" && hasValue)
-			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
+			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "person" && hasValue)
-			persons.Get(node.Token(1))->Load(node, playerConditions);
+			persons.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "phrase" && hasValue)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && hasValue)
@@ -388,7 +394,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			ships.Get(name)->Load(node, playerConditions);
 		}
 		else if(key == "shipyard" && hasValue)
-			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
+			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "start" && node.HasChildren())
 		{
 			// This node may either declare an immutable starting scenario, or one that is open to extension
@@ -437,7 +443,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 		}
 		else if(key == "news" && hasValue)
-			news.Get(node.Token(1))->Load(node, playerConditions);
+			news.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "rating" && hasValue)
 		{
 			vector<string> &list = ratings[node.Token(1)];

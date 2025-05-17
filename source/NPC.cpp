@@ -70,14 +70,16 @@ namespace {
 
 
 // Construct and Load() at the same time.
-NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions)
+NPC::NPC(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// Any tokens after the "npc" tag list the things that must happen for this
 	// mission to succeed.
@@ -132,7 +134,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 					system = GameData::Systems().Get(child.Token(1));
 			}
 			else
-				location.Load(child);
+				location.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
@@ -206,7 +208,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				npcActions[it->second].Load(child, playerConditions);
+				npcActions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
