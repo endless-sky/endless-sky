@@ -13,6 +13,7 @@
 
 ship "Nanobot"
 	attributes
+		category "Unclassified"
 		"hull" 100
 		"automaton" 1
 		"mass" 10
@@ -36,6 +37,8 @@ ship "Nanobot"
 
 outfit "Nano Strike"
 	category "Guns"
+	series "Guns"
+	index 99090
 	thumbnail "outfit/unknown"
 	"mass" 5
 	"outfit space" -5
