@@ -424,11 +424,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
 			for(const DataNode &child : node)
 			{
-				if(child.Token(0) == "power" && child.Size() >= 2)
+				const string &childKey = child.Token(0);
+				bool childHasValue = child.Size() >= 2;
+				if(childKey == "power" && childHasValue)
 					solarPower[sprite] = child.Value(1);
-				else if(child.Token(0) == "wind" && child.Size() >= 2)
+				else if(childKey == "wind" && childHasValue)
 					solarWind[sprite] = child.Value(1);
-				else if(child.Token(0) == "icon" && child.Size() >= 2)
+				else if(childKey == "icon" && childHasValue)
 					starIcons[sprite] = SpriteSet::Get(child.Token(1));
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");

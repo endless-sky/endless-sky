@@ -179,7 +179,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		}
 		else if(key == "conversation" && child.HasChildren())
 			conversation = ExclusiveItem<Conversation>(Conversation(child, playerConditions));
-		else if(key == "conversation" && child.Size() > 1)
+		else if(key == "conversation" && hasValue)
 			conversation = ExclusiveItem<Conversation>(GameData::Conversations().Get(child.Token(1)));
 		else if(key == "to" && hasValue)
 		{

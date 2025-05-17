@@ -73,7 +73,7 @@ void Fleet::Load(const DataNode &node)
 		// are only valid with "variant" or "personality" definitions.
 		bool add = (child.Token(0) == "add");
 		bool remove = (child.Token(0) == "remove");
-		bool hasValue = (child.Size() >= 2);
+		bool hasValue = child.Size() >= 2;
 		if((add || remove) && (!hasValue || (child.Token(1) != "variant" && child.Token(1) != "personality")))
 		{
 			child.PrintTrace("Warning: Skipping invalid \"" + child.Token(0) + "\" tag:");
