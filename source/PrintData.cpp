@@ -655,7 +655,7 @@ namespace {
 			PrintObjectList(GameData::Systems(), "system");
 	}
 
-	void LocationFilterMatches(const char *const *argv)
+	void LocationFilterMatches(const char *const *argv, PlayerInfo &player)
 	{
 		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
@@ -665,12 +665,12 @@ namespace {
 			const string &key = node.Token(0);
 			if(key == "changes" || (key == "event" && node.Size() == 1))
 				for(const DataNode &child : node)
-					GameData::Change(child, nullptr);
+					GameData::Change(child, player);
 			else if(key == "event")
 			{
 				const auto *event = GameData::Events().Get(node.Token(1));
 				for(const auto &change : event->Changes())
-					GameData::Change(change, nullptr);
+					GameData::Change(change, player);
 			}
 			else if(key == "location")
 			{
@@ -725,7 +725,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 
 
 
-void PrintData::Print(const char *const *argv)
+void PrintData::Print(const char *const *argv, PlayerInfo &player)
 {
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -750,7 +750,7 @@ void PrintData::Print(const char *const *argv)
 		else if(arg == "--systems")
 			Systems(argv);
 		else if(arg == "--matches")
-			LocationFilterMatches(argv);
+			LocationFilterMatches(argv, player);
 	}
 	cout.flush();
 }
