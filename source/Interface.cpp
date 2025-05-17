@@ -461,7 +461,7 @@ bool Interface::ImageElement::ParseLine(const DataNode &node)
 {
 	// The "inactive" and "hover" sprite only applies to non-dynamic images.
 	// The "colored" tag only applies to outlines.
-	const string &key = key;
+	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
 	if(key == "inactive" && hasValue && name.empty())
 		sprite[Element::INACTIVE] = SpriteSet::Get(node.Token(1));
@@ -536,7 +536,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	if(node.Size() < 2)
 		return;
 
-	const string &key = key;
+	const string &key = node.Token(0);
 	isDynamic = (key.ends_with("string") || key.ends_with("dynamic button"));
 	if(key.ends_with("button") || key.ends_with("dynamic button"))
 	{

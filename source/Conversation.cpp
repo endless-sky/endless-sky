@@ -568,30 +568,32 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 	bool hasCondition = false;
 	for(const DataNode &child : node)
 	{
-		if(child.Size() == 2 && key == "goto" && hasGoto)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "goto" && hasValue && hasGoto)
 		{
 			child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
 		}
-		else if(child.Size() == 2 && key == "goto")
+		else if(key == "goto" && hasValue)
 		{
 			Goto(child.Token(1), nodes.size() - 1, nodes.back().elements.size() - 1);
 			hasGoto = true;
 		}
-		else if(child.Size() == 2 && key == "to" && child.Token(1) == "display" && hasCondition)
+		else if(key == "to" && hasValue && child.Token(1) == "display")
 		{
-			// Each choice can only have one condition
-			child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
-		}
-		else if(child.Size() == 2 && key == "to" && child.Token(1) == "display")
-		{
-			nodes.back().elements.back().conditions.Load(child, playerConditions);
-			hasCondition = true;
+			if(hasCondition)
+				child.PrintTrace("Warning: Ignoring extra condition in conversation choice:");
+			else
+			{
+				nodes.back().elements.back().conditions.Load(child, playerConditions);
+				hasCondition = true;
+			}
 		}
 		else
 		{
 			// Check if this is a recognized endpoint name.
 			int index = TokenIndex(key);
-			if(child.Size() == 1 && index < 0)
+			if(!hasValue && index < 0)
 			{
 				if(hasGoto)
 					child.PrintTrace("Warning: Ignoring extra endpoint in conversation choice:");
@@ -613,7 +615,7 @@ bool Conversation::LoadDestinations(const DataNode &node, const ConditionsStore 
 bool Conversation::HasDisplayRestriction(const DataNode &node)
 {
 	for(const DataNode &child : node)
-		if(child.Size() == 2 && key == "to" && child.Token(1) == "display")
+		if(child.Token(0) == "to" && child.Size() >= 2 && child.Token(1) == "display")
 			return true;
 
 	return false;
