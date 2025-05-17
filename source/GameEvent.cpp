@@ -110,7 +110,6 @@ void GameEvent::Load(const DataNode &node, const ConditionsStore *playerConditio
 	{
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
-
 		if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(key == "unvisit" && hasValue)

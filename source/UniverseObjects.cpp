@@ -341,8 +341,11 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		const string &key = node.Token(0);
 		bool hasValue = node.Size() >= 2;
 		if(key == "color" && node.Size() >= 5)
-			colors.Get(node.Token(1))->Load(
-				node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
+		{
+			Color *color = colors.Get(node.Token(1));
+			color->Load(node.Value(2), node.Value(3), node.Value(4), node.Size() >= 6 ? node.Value(5) : 1.);
+			color->SetName(node.Token(1));
+		}
 		else if(key == "swizzle" && hasValue)
 			swizzles.Get(node.Token(1))->Load(node);
 		else if(key == "conversation" && hasValue)
@@ -378,11 +381,11 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "mission" && hasValue)
 			missions.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "outfit" && hasValue)
-			outfits.Get(node.Token(1))->Load(node);
+			outfits.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "outfitter" && hasValue)
 			outfitSales.Get(node.Token(1))->Load(node, outfits, playerConditions);
 		else if(key == "person" && hasValue)
-			persons.Get(node.Token(1))->Load(node);
+			persons.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "phrase" && hasValue)
 			phrases.Get(node.Token(1))->Load(node);
 		else if(key == "planet" && hasValue)
@@ -391,7 +394,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		{
 			// Allow multiple named variants of the same ship model.
 			const string &name = node.Token((node.Size() > 2) ? 2 : 1);
-			ships.Get(name)->Load(node);
+			ships.Get(name)->Load(node, playerConditions);
 		}
 		else if(key == "shipyard" && hasValue)
 			shipSales.Get(node.Token(1))->Load(node, ships, playerConditions);
@@ -430,11 +433,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
 			for(const DataNode &child : node)
 			{
-				if(child.Token(0) == "power" && child.Size() >= 2)
+				const string &childKey = child.Token(0);
+				bool childHasValue = child.Size() >= 2;
+				if(childKey == "power" && childHasValue)
 					solarPower[sprite] = child.Value(1);
-				else if(child.Token(0) == "wind" && child.Size() >= 2)
+				else if(childKey == "wind" && childHasValue)
 					solarWind[sprite] = child.Value(1);
-				else if(child.Token(0) == "icon" && child.Size() >= 2)
+				else if(childKey == "icon" && childHasValue)
 					starIcons[sprite] = SpriteSet::Get(child.Token(1));
 				else
 					child.PrintTrace("Skipping unrecognized attribute:");
