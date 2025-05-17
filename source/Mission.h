@@ -15,10 +15,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Color.h"
 #include "ConditionSet.h"
 #include "Date.h"
 #include "DistanceCalculationSettings.h"
 #include "EsUuid.h"
+#include "ExclusiveItem.h"
 #include "LocationFilter.h"
 #include "MissionAction.h"
 #include "NPC.h"
@@ -75,6 +77,11 @@ public:
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
+	// The colors that should be used to display the mission name if it is shown
+	// in your mission list.
+	const Color &Unavailable() const;
+	const Color &Unselected() const;
+	const Color &Selected() const;
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
@@ -203,6 +210,11 @@ private:
 	std::string description;
 	std::string blocked;
 	Location location = SPACEPORT;
+
+	// Colors that determine how this mission displays in the MissionPanel.
+	ExclusiveItem<Color> unavailable;
+	ExclusiveItem<Color> unselected;
+	ExclusiveItem<Color> selected;
 
 	EsUuid uuid;
 
