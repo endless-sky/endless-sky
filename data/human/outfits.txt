@@ -117,10 +117,63 @@ outfit "D94-YV Shield Generator"
 	"shield energy" 1.31
 	description "This is the most powerful shield generator available in human space. Because of their large size, D94-YV Shield Generators are mostly used in large warships, but you can fit one in a smaller ship if you are willing to sacrifice engine power or weaponry to make space for it."
 
-outfit "S-270 Regenerator"
+outfit "K25R Shield Generator"
 	category "Systems"
 	series "Shields"
 	index 01060
+	cost 40000
+	thumbnail "outfit/"
+	"mass" 19
+	"outfit space" -19
+	"delayed shield generation" 0.54
+	"delayed shield energy" 0.54
+	"shield delay" 240
+	description "This small shield generator is most popular among skilled interceptor pilots. With the right tactics, a pilot with such a generator can defeat even a more powerful opponent using a standard shield generator by intermittently retreating from combat, allowing their shields to recover faster than their opponent's."
+	description "For slower ships, however, disengaging from combat may not always be feasible, and as such the Deep's more reliable shield generators are much more effective."
+
+outfit "K36S Shield Generator"
+	category "Systems"
+	series "Shields"
+	index 01070
+	cost 75000
+	thumbnail "outfit/"
+	"mass" 26
+	"outfit space" -26
+	"delayed shield generation" 0.88
+	"delayed shield energy" 0.88
+	"shield delay" 240
+	description "Kraz Cybernetics recently began producing their K-series of shield generators as alternatives to the D-series produced by the Deep. Although this model can recover shields much more quickly than a similarly-sized Deep shield generator, any damage sustained by the shields can destabilise the generator, requiring it to be switched off for a few seconds in order for the internal matrix to reassert itself."
+
+outfit "K49V Shield Generator"
+	category "Systems"
+	series "Shields"
+	index 01080
+	cost 135000
+	thumbnail "outfit/"
+	"mass" 38
+	"outfit space" -38
+	"delayed shield generation" 1.39
+	"delayed shield energy" 1.39
+	"shield delay" 240
+	description ""
+
+outfit "K64W Shield Generator"
+	category "Systems"
+	series "Shields"
+	index 01090
+	cost 225000
+	thumbnail "outfit/"
+	"mass" 54
+	"outfit space" -54
+	"delayed shield generation" 2.21
+	"delayed shield energy" 2.21
+	"shield delay" 240
+	description "Few ships large enough to use a shield generator this size are fast enough to benefit from the properties of Kraz's shield generator line. Those few ships with the correct combination of size and speed to use it, however, can be immensely effective if piloted carefully."
+
+outfit "S-270 Regenerator"
+	category "Systems"
+	series "Shields"
+	index 01100
 	cost 220000
 	thumbnail "outfit/small regenerator"
 	"mass" 12
@@ -134,7 +187,7 @@ outfit "S-270 Regenerator"
 outfit "S-970 Regenerator"
 	category "Systems"
 	series "Shields"
-	index 01070
+	index 01110
 	cost 800000
 	thumbnail "outfit/large regenerator"
 	"mass" 37
