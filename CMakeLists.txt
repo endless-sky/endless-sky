@@ -88,23 +88,6 @@ find_path(LIBMAD_INCLUDE_DIR mad.h)
 find_library(LIBMAD_LIB_DEBUG NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib")
 find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib")
 
-# Find the zip-reading component of zlib.
-find_package(ZLIB REQUIRED)
-
-# Minizip has a different target name in vcpkg.
-if(ES_USE_VCPKG)
-	find_package(unofficial-minizip CONFIG REQUIRED)
-	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
-else()
-	if(CMAKE_VERSION VERSION_LESS 3.31)
-		find_package(PkgConfig REQUIRED PkgConfig PkgConf)
-		pkg_check_modules(MINIZIP REQUIRED minizip)
-	else()
-		cmake_pkg_config(EXTRACT minizip REQUIRED)
-		set(MINIZIP_LIBRARIES "minizip")
-	endif()
-endif()
-
 # Find the MinGW runtime DLLs.
 if(MINGW AND WIN32)
 	# On Windows copy the MinGW runtime DLLs to the output folder as well.
@@ -148,7 +131,7 @@ if(MINGW)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL ${MINIZIP_LIBRARIES}
+target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG OpenAL::OpenAL
 	"$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
