@@ -117,7 +117,7 @@ void StartConditions::Load(const DataNode &node, const ConditionsStore *globalCo
 			// a 3rd token (i.e. this will be treated as though it were a ship variant definition,
 			// without making the variant available to the rest of GameData).
 			if(child.HasChildren() || child.Size() >= add + 3)
-				ships.emplace_back(child);
+				ships.emplace_back(child, playerConditions);
 			// If there's only 2 tokens & there's no child nodes, the created instance would be ill-formed.
 			else
 				child.PrintTrace("Skipping unsupported use of a \"stock\" ship (a full definition is required):");

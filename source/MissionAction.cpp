@@ -73,10 +73,11 @@ MissionAction::MissionDialog::MissionDialog(const string &text):
 
 MissionAction::MissionDialog::MissionDialog(const DataNode &node, const ConditionsStore *playerConditions)
 {
+	const string &key = node.Token(0);
 	// Handle anonymous phrases
 	//    phrase
 	//       ...
-	if(node.Size() == 1 && node.Token(0) == "phrase")
+	if(node.Size() == 1 && key == "phrase")
 	{
 		dialogPhrase = ExclusiveItem<Phrase>(Phrase(node));
 		// Anonymous phrases do not support "to display"
@@ -85,7 +86,7 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node, const Conditio
 
 	// Handle named phrases
 	//    phrase "A Phrase Name"
-	if(node.Size() == 2 && node.Token(0) == "phrase")
+	if(node.Size() == 2 && key == "phrase")
 		dialogPhrase = ExclusiveItem<Phrase>(GameData::Phrases().Get(node.Token(1)));
 
 	// Handle regular dialog text
@@ -94,7 +95,7 @@ MissionAction::MissionDialog::MissionDialog(const DataNode &node, const Conditio
 	{
 		if(node.Size() > 1)
 			node.PrintTrace("Ignoring extra tokens.");
-		dialogText = node.Token(0);
+		dialogText = key;
 
 		// Prevent a corner case that breaks assumptions. Dialog text cannot be empty (that indicates a phrase).
 		if(dialogText.empty())
@@ -143,7 +144,7 @@ void MissionAction::Load(const DataNode &node, const ConditionsStore *playerCond
 void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *playerConditions)
 {
 	const string &key = child.Token(0);
-	bool hasValue = (child.Size() >= 2);
+	bool hasValue = child.Size() >= 2;
 
 	if(key == "dialog")
 	{
