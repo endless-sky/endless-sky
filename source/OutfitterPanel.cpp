@@ -885,13 +885,7 @@ void OutfitterPanel::DrawOutfit(const Outfit &outfit, const Point &center, bool 
 
 bool OutfitterPanel::IsLicense(const string &name) const
 {
-	static const string &LICENSE = " License";
-	if(name.length() < LICENSE.length())
-		return false;
-	if(name.compare(name.length() - LICENSE.length(), LICENSE.length(), LICENSE))
-		return false;
-
-	return true;
+	return name.ends_with(" License");
 }
 
 

@@ -109,15 +109,16 @@ void GameEvent::Load(const DataNode &node, const ConditionsStore *playerConditio
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
 		if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(key == "unvisit" && child.Size() >= 2)
+		else if(key == "unvisit" && hasValue)
 			systemsToUnvisit.push_back(GameData::Systems().Get(child.Token(1)));
-		else if(key == "visit" && child.Size() >= 2)
+		else if(key == "visit" && hasValue)
 			systemsToVisit.push_back(GameData::Systems().Get(child.Token(1)));
-		else if(key == "unvisit planet" && child.Size() >= 2)
+		else if(key == "unvisit planet" && hasValue)
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
-		else if(key == "visit planet" && child.Size() >= 2)
+		else if(key == "visit planet" && hasValue)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(allowedChanges.contains(key))
 			changes.push_back(child);

@@ -141,17 +141,18 @@ void FleetCargo::Load(const DataNode &node)
 
 void FleetCargo::LoadSingle(const DataNode &node)
 {
+	const string &key = node.Token(0);
 	if(node.Size() < 2)
 		node.PrintTrace("Error: Expected key to have a value:");
-	else if(node.Token(0) == "cargo")
+	else if(key == "cargo")
 			cargo = static_cast<int>(node.Value(1));
-	else if(node.Token(0) == "commodities")
+	else if(key == "commodities")
 	{
 		commodities.clear();
 		for(int i = 1; i < node.Size(); ++i)
 			commodities.push_back(node.Token(i));
 	}
-	else if(node.Token(0) == "outfitters")
+	else if(key == "outfitters")
 	{
 		outfitters.clear();
 		for(int i = 1; i < node.Size(); ++i)
