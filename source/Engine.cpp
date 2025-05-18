@@ -617,10 +617,10 @@ void Engine::Step(bool isActive)
 			// Update the current zoom modifier if the flagship is landing or taking off.
 			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
-	}
 
-	// Step the background to account for the current velocity and zoom.
-	GameData::StepBackground(centerVelocity, zoom);
+		// Step the background to account for the current velocity and zoom.
+		GameData::StepBackground(centerVelocity, zoom);
+	}
 
 	outlines.clear();
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
