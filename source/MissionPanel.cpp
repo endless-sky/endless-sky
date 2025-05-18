@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionPanel.h"
 
 #include "text/Alignment.h"
+#include "audio/Audio.h"
 #include "Command.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
@@ -166,6 +167,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0)
 {
+	Audio::Pause();
+
 	// Re-do job sorting since something could have changed
 	player.SortAvailable();
 
@@ -861,9 +864,31 @@ Point MissionPanel::DrawList(const list<Mission> &list, Point pos, const std::li
 		if(it->Deadline())
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
+		const Color *color = nullptr;
 		bool canAccept = (&list == &available ? it->CanAccept(player) : IsSatisfied(*it));
-		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}},
-			pos, (!canAccept ? dim : isSelected ? selected : unselected));
+		if(!canAccept)
+		{
+			if(it->Unavailable().IsLoaded())
+				color = &it->Unavailable();
+			else
+				color = &dim;
+		}
+		else if(isSelected)
+		{
+			if(it->Selected().IsLoaded())
+				color = &it->Selected();
+			else
+				color = &selected;
+		}
+		else
+		{
+			if(it->Unselected().IsLoaded())
+				color = &it->Unselected();
+			else
+				color = &unselected;
+		}
+
+		font.Draw({it->Name(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
 	}
 
 	return pos;

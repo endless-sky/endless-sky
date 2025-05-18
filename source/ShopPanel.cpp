@@ -1261,7 +1261,7 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 			{
 				if(!CanShowInSidebar(*it, player.GetPlanet()))
 					continue;
-				if(it.get() != ship && it->Immitates(*ship))
+				if(it.get() != ship && it->Imitates(*ship))
 					playerShips.insert(it.get());
 			}
 	}
@@ -1277,7 +1277,7 @@ void ShopPanel::SideSelect(Ship *ship, int clicks)
 			{
 				if(!CanShowInSidebar(*it, player.GetPlanet()))
 					continue;
-				if(it.get() != ship && it->Immitates(*ship))
+				if(it.get() != ship && it->Imitates(*ship))
 				{
 					similarShips.push_back(it.get());
 					unselect &= playerShips.contains(it.get());
