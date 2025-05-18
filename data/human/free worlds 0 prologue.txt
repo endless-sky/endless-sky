@@ -371,14 +371,13 @@ mission "Pact Supplies 0"
 		personality escort timid
 		"cargo settings"
 			outfitters "Common Outfits" "Ammo South"
-		ship "Shuttle" "Starboard to Heaven"
-		ship "Star Barge" "Stella"
-		ship "Star Barge" "Simpatico"
-		ship "Star Barge" "Steer Well Clear"
-		ship "Argosy" "Still Flying After All These Years"
-		ship "Sparrow" "Stop, Drop And Hold"
-		ship "Sparrow" "Standing Room Only"
-		ship "Hawk" "Stick No Bills"
+		destination Longjump
+		fleet
+			variant
+				"Star Barge" 3
+				"Argosy"
+				"Sparrow" 2
+				"Hawk"
 
 	npc
 		government "Pirate"
@@ -426,7 +425,7 @@ mission "Pact Supplies 1"
 			label bombings
 			`You return to the spaceport to find the militia officer in what appears to be a rather loud discussion with a couple of the other captains from the convoy. He doesn't seem to notice you as you approach.`
 			`	"I assure you, the Pact - and what is now the Free Worlds - has absolutely nothing to do with the bombings of Martini and Geminus. This is as much of a shock and sense of despair to us down in the Southern Rim as it is must be for those in the Paradise Worlds. But it would be unconscionable for the leaders of the Pact to do such a thing. I can't imagine the Pact Council authorizing such a thing - we'd reduce ourselves to the level of the pirates we seek to eliminate from the galaxy."`
-			`	The two captains frown. "Like it or not, this is all very good timing for your separarist leaders," the shuttle captain says. "And I don't plan to be barred from returning to my home planet in Cor Caroli when the Navy inevitably comes down to reclaim your systems. I have family there to visit, to send money back to, you know, and I don't plan to be labeled a separatist and shot out of the sky by the Reps because I took on a little convoy mission to what I thought was a law-abiding organization. Goodbye." The captain of one of the Tarazed Sparrows follows her out.`
+			`	The two captains frown. "Like it or not, this is all very good timing for your separatist leaders," the shuttle captain says. "And I don't plan to be barred from returning to Heartland when the Navy inevitably comes down to reclaim their systems. I have family there to visit, to send money back to, you know, and I don't plan to be labeled a separatist and shot out of the sky by the Reps because I took on a little convoy mission to what I thought was a law-abiding organization. Goodbye." The captain of one of the Tarazed Sparrows follows her out.`
 			`	The militia officer looks around with an exasperated look on his face before recognizing you. "Oh. I hope recent events haven't changed your mind, either."`
 			choice
 				`	"Was this to do with the terrorist attack and the declaration of independence?"`
@@ -437,10 +436,10 @@ mission "Pact Supplies 1"
 			`	He sighs. "Look, I wouldn't blame you either for leaving the convoy at this point. But, let me tell you with complete honesty and faith that the Pact was not responsible for these acts of terrorism, and that your work for us is only in the service of the elimination of piracy and poverty in the galactic south; nothing more, nothing less. Will you continue helping us out?"`
 			choice
 				`	"Okay. I'll continue working with the convoy."`
-				`	"Sorry, but I can't associate with the Pact now that it is suspected of terrorism. Goodbye."`
+				`	"Sorry, but I can't associate with the Pact now that it is suspected of terrorism."`
 					decline
 
-			`	"Thank you. At least a few of you were willing to hear me out," he says. "Now, for this stage of the convoy, we will transporting farming equipment to <planet>, which we will exchange with the global farming cooperatives there for food supplies that will feed <origin>'s population. You'll be paid <payment> for your work, half at <planet> and half when you return to <origin>. Does that sound good?"`
+			`	"Thank you. At least a few of you have been willing to hear me out," he says. "Now, for this stage of the convoy, we will transporting farming equipment to <planet>, which we will exchange with the global farming cooperatives there for food supplies that will feed <origin>'s population. You'll be paid <payment> for your work, half at <planet> and half when you return to <origin>. Does that sound good?"`
 			choice
 				`	"Yes."`
 				`	"I've changed my mind. I don't want to participate in this convoy any more."`
@@ -454,12 +453,14 @@ mission "Pact Supplies 1"
 		personality escort timid
 		"cargo settings"
 			commodities "farming equipment"
-		ship "Star Barge" "Steer Well Clear"
-		ship "Argosy" "Still Flying After All These Years"
-		ship "Argosy" "Reality Bites"
-		ship "Sparrow" "Standing Room Only"
-		ship "Hawk" "Stick No Bills"
-		ship "Hauler" "Ripple Effects"
+		destination "New Portland"
+		fleet
+			variant
+				"Star Barge"
+				"Argosy" 2
+				"Sparrow"
+				"Hawk"
+				"Hauler"
 
 	npc
 		government "Pirate"
@@ -494,12 +495,14 @@ mission "Pact Supplies 1B"
 		personality escort timid
 		"cargo settings"
 			commodities Food
-		ship "Star Barge" "Steer Well Clear"
-		ship "Argosy" "Still Flying After All These Years"
-		ship "Argosy" "Reality Bites"
-		ship "Sparrow" "Standing Room Only"
-		ship "Hawk" "Stick No Bills"
-		ship "Hauler" "Ripple Effects"
+		destination "Longjump"
+		fleet
+			variant
+				"Star Barge"
+				"Argosy" 2
+				"Sparrow"
+				"Hawk"
+				"Hauler"
 
 	npc
 		government "Pirate"
