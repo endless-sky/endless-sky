@@ -619,6 +619,9 @@ void Engine::Step(bool isActive)
 		}
 	}
 
+	// Step the background to account for the current velocity and zoom.
+	GameData::StepBackground(centerVelocity, zoom);
+
 	outlines.clear();
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
 	if(Preferences::Has("Cloaked ship outlines"))
@@ -1195,8 +1198,9 @@ void Engine::Draw() const
 		motionBlur *= 1. + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
 
-	GameData::Background().Draw(center, motionBlur, zoom,
+	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 

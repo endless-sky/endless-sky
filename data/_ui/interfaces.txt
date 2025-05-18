@@ -1269,6 +1269,7 @@ interface "hud"
 		center 0 100
 
 
+
 interface "main view"
 	list "zooms"
 		.25
@@ -1278,6 +1279,12 @@ interface "main view"
 		1.
 		1.4
 		2.
+
+
+
+interface "starfield"
+	value "fixed zoom" .35
+	value "velocity reducer" 1.4
 
 
 
