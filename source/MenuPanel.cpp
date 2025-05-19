@@ -97,6 +97,12 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	if(!scrollSpeed)
 		scrollSpeed = 1;
 
+	xSpeed = mainMenuUi->GetValue("x speed");
+	ySpeed = mainMenuUi->GetValue("y speed");
+	yAmplitude = mainMenuUi->GetValue("y amplitude");
+	// Start the animation wave at a random point.
+	animation += Random::Real() * 360.;
+
 	// When the player is in the menu, pause the game sounds.
 	Audio::Pause();
 }
@@ -114,8 +120,8 @@ void MenuPanel::Step()
 {
 	if(Preferences::Has("Animate main menu background"))
 	{
-		GameData::StepBackground(Point(-1., 3. * sin(animation * TO_RAD)));
-		animation += 0.3;
+		GameData::StepBackground(Point(xSpeed, yAmplitude * sin(animation * TO_RAD)));
+		animation += ySpeed;
 	}
 	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
