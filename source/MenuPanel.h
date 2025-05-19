@@ -51,6 +51,7 @@ private:
 private:
 	PlayerInfo &player;
 	UI &gamePanels;
+	double animation = 0.;
 
 	const Interface *mainMenuUi;
 

@@ -1412,6 +1412,9 @@ tip "Fixed starfield zoom"
 tip "Parallax background"
 	`Add parallax to objects in the background (haze and starfield). If set to fancy, create three layers of parallax. If set to fast, create one layer of parallax.`
 
+tip "Animate main menu background"
+	`Animate the background stars and haze in the main menu.`
+
 tip "Show hyperspace flash"
 	`Create a white flash when hyperspacing between systems.`
 

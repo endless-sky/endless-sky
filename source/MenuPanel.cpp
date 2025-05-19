@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LoadPanel.h"
 #include "Logger.h"
 #include "MainPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -43,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <stdexcept>
+#include <cmath>
 
 using namespace std;
 
@@ -110,6 +112,11 @@ MenuPanel::~MenuPanel()
 
 void MenuPanel::Step()
 {
+	if(Preferences::Has("Animate main menu background"))
+	{
+		GameData::StepBackground(Point(-1., 3. * sin(animation * TO_RAD)));
+		animation += 0.3;
+	}
 	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
