@@ -1368,6 +1368,7 @@ mission "Ka'het: Patir Mystery 11"
 			`A dull hum from below the cockpit signals that the scanners have activated. You take the opportunity to observe the mesmerizing colors of the neutron star, beautiful and terrifying at the same time. After a few minutes, a beeping sound alerts you that the scan is complete, and you can return to <system>.`
 	npc
 		government "Magic Asteroid"
+		system "Lathia"
 		personality plunders harvests surveillance mute waiting staying
 		fleet
 			cargo 3
