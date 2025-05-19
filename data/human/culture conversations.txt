@@ -1203,7 +1203,7 @@ mission "Exotic Life: Albatross"
 			label madlib
 			action
 				set "heardmadlib"
-			`	His lips curl into a bitter snarl as he spills a flood of exasperation, "They cause a ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles} ${bad outcomes}!"`
+			`	His lips curl into a bitter snarl as he spills a flood of exasperation, "They cause ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles}, ${pirate adjectives that work as titles} ${bad outcomes}!"`
 			`	It's unclear how he expects you to respond.`
 				goto nextquestion
 			label weasels
