@@ -24,6 +24,7 @@ system Athiri
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Athiri Black Hole Event Horizon" 1
+	hazard "Athiri Black Hole Accretion Disk" 1
 	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole corona core"
@@ -68,6 +69,7 @@ system Chanai
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Chanai Black Hole Event Horizon" 1
+	hazard "Chanai Black Hole Accretion Disk" 1
 	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 3 core"
@@ -90,6 +92,7 @@ system Ghila
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Ghila Black Hole Event Horizon" 1
+	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
 	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black-hole-still-core"
@@ -138,6 +141,7 @@ system Maithi
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Beyond Patir Black Hole Accretion Disk" 1
 	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 5 core"
@@ -160,6 +164,7 @@ system Mitera
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Beyond Patir Black Hole Accretion Disk" 1
 	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 4 core"
@@ -182,6 +187,7 @@ system Sarifa
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Sarifa Black Hole Accretion Disk" 1
 	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/f8"
@@ -203,6 +209,7 @@ system Thepa
 	belt 1793
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
+	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
 	hazard "Black Hole Gravity" 1
 	object
 		sprite "star/black hole 6 core"

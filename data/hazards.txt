@@ -90,6 +90,15 @@ hazard "Chanai Black Hole Event Horizon"
 		"fuel damage" -0.15
 		"piercing" 10
 
+hazard "Chanai Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 120 400
+		"dropoff modifier" 0
+		"fuel damage" -0.05
+
 hazard "Athiri Black Hole Event Horizon"
 	"constant strength"
 	"range" 180
@@ -100,6 +109,15 @@ hazard "Athiri Black Hole Event Horizon"
 		"relative hull damage" .0003
 		"fuel damage" -0.05
 		"piercing" 10
+
+hazard "Athiri Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 200 500
+		"dropoff modifier" 0
+		"fuel damage" -0.03
 
 hazard "Ghila Black Hole Event Horizon"
 	"constant strength"
@@ -122,6 +140,34 @@ hazard "Beyond Patir Black Hole Event Horizon"
 		"relative hull damage" .0003
 		"fuel damage" -0.05
 		"piercing" 10
+
+hazard "Beyond Patir Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 80 300
+		"dropoff modifier" 0
+		"fuel damage" -0.02
+
+hazard "Sarifa Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 80 300
+		"dropoff modifier" 0
+		"fuel damage" -0.1
+
+hazard "Thepa and Ghila Black Hole Accretion Disk"
+	"constant strength"
+	"range" 600
+	weapon
+		"target effect" "nano spark"
+		"damage dropoff" 80 300
+		"dropoff modifier" 0
+		"fuel damage" -0.01
+
 
 hazard "Black Hole Gravity"
 	"constant strength"
