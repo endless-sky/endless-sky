@@ -131,6 +131,17 @@ void UniverseObjects::FinishLoading()
 	// Sort all category lists.
 	for(auto &list : categories)
 		list.second.Sort();
+
+	// Store the current state, so that we can revert back to it when exiting a game and starting/loading a new one.
+	defaultFleets = fleets;
+	defaultGovernments = governments;
+	defaultPlanets = planets;
+	defaultSystems = systems;
+	defaultGalaxies = galaxies;
+	defaultShipSales = shipSales;
+	defaultOutfitSales = outfitSales;
+	defaultSubstitutions = substitutions;
+	defaultWormholes = wormholes;
 }
 
 
@@ -315,6 +326,23 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : swizzles)
 		if(!it.second.IsLoaded())
 			Warn("swizzle", it.first);
+}
+
+
+
+void UniverseObjects::Revert()
+{
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	galaxies.Revert(defaultGalaxies);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
+	substitutions.Revert(defaultSubstitutions);
+	wormholes.Revert(defaultWormholes);
+	for(auto &it : persons)
+		it.second.Restore();
 }
 
 
