@@ -3110,6 +3110,8 @@ Comment: Derived from works by Evan Fluharty (under the same license).
 Files:
  images/outfit/gat?turret?hardpoint*
  images/outfit/gat?turret*
+ images/ship/jackal*
+ images/thumbnail/jackal*
 Copyright: bene-dictator <benstaples8068@gmail.com>
 License: CC-BY-SA-4.0
 Comment: Derived from works by Michael Zahniser (under the same license), detailed by Saugia.
@@ -3276,6 +3278,7 @@ Files:
  images/ship/*jje*
  images/ship/modified?dromedary*
  images/ship/modified?dromedary?wreck*
+ images/ship/monitor*
  images/ship/saber*
  images/ship/*vyrmeid*
  images/ship/*vyuir*
@@ -3304,6 +3307,7 @@ Files:
  images/thumbnail/hogshead*
  images/thumbnail/modified?dromedary*
  images/thumbnail/modified?dromedary?wreck*
+ images/thumbnail/monitor*
  images/thumbnail/saber*
  images/thumbnail/vyuir*
 Copyright: Saugia <https://github.com/Saugia>
@@ -3737,6 +3741,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files:
  images/outfit/anti-materiel?gun*
  images/outfit/cloud?piercer*
+ images/outfit/heavy?blaster*
  images/ship/quarg?guivre*
  images/ship/quarg?hydra*
  images/ship/quarg?lindwyrm*
