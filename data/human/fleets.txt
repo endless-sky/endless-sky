@@ -2134,7 +2134,7 @@ fleet "Old Northern Pirates"
 		"Monitor"
 		"Fury"
 	variant 2
-		"Firebird (Heavy Blaster)
+		"Firebird (Heavy Blaster)"
 		"Hawk"
 		"Fury"
 	variant
