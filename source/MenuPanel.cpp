@@ -43,8 +43,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
-#include <stdexcept>
 #include <cmath>
+#include <stdexcept>
 
 using namespace std;
 
