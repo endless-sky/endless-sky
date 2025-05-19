@@ -1784,7 +1784,7 @@ ship "Firebird" "Firebird (Heavy Blaster)"
 	outfits
 		"Heavy Blaster" 4
 		"Heavy Laser Turret"
-		"Heavy Anti-Missile"
+		"Heavy Anti-Missile Turret"
 		"RT-I Radiothermal"
 		"nGVF-AA Fuel Cell"
 		"LP144a Battery Pack"
