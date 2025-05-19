@@ -1114,15 +1114,15 @@ mission "Exotic Life: Bloodsea"
 				"reputation: Pirate" += 1
 			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. She suppresses an amused glint in her eye and, with surprising care, gently pushes the putrid barrel towards you, her calloused fingers brushing the rim in a brief, elegant flourish. You bow your head in gratitude, roll it away, and once she's out of sight, ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
 				decline
-			label hundred
-			action
-				payment -800
-			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. Her nostrils flare, and she snatches to credits with a snarl. "Not even one rack," she spits, eyes blazing. Without warning, she hauls the barrel off the ground to slam it directly against your shin. You yelp and stagger backwards. She rakes a jagged knife through the air, roaring, "I'll carve you like a cod and string your entrails for the gulls!" You flee her and the barrel to dart back to the <ship>, her furious curses echoing behind you.`
-				decline
 			label thousand
 			action
 				payment -8000
 			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. With an irritated snort, she shoves the putrid barrel towards you, and you quickly roll it away. Once she's out of sight, you ditch the barrel and dart back to the <ship>, leaving behind a grim and grimy reminder of this unruly port.`
+				decline
+			label hundred
+			action
+				payment -800
+			`	You grit your teeth against the stench and fight back the urge to gag as you fumble over the credits to the gnarled woman. Her nostrils flare, and she snatches to credits with a snarl. "Not even one rack," she spits, eyes blazing. Without warning, she hauls the barrel off the ground to slam it directly against your shin. You yelp and stagger backwards. She rakes a jagged knife through the air, roaring, "I'll carve you like a cod and string your entrails for the gulls!" You flee her and the barrel to dart back to the <ship>, her furious curses echoing behind you.`
 				decline
 			label declined
 			`	You race through the maze of weathered crates and guarded stalls. As you push past the chaotic crowd toward the safety of your <model>, the woman's bellowing laughter - a harsh, unbridled roar of contempt - echoes in your ears.`
