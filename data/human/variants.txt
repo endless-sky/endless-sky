@@ -1792,7 +1792,7 @@ ship "Firebird" "Firebird (Heavy Blaster)"
 		"Laser Rifle" 3
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
-		"Hyperdrive"		
+		"Hyperdrive"
 
 ship "Firebird" "Firebird (CCOR)"
 	outfits
