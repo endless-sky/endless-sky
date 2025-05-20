@@ -26,8 +26,8 @@ using namespace std;
 
 
 
-void Person::Load(const DataNode &node, const ConditionsStore *playerConditions, const set<const System *> *visitedSystems,
-	const set<const Planet *> *visitedPlanets)
+void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
 	{

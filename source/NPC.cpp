@@ -158,7 +158,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			}
 			// Given "waypoint" and child nodes. These get processed during NPC instantiation.
 			else
-				waypointFilters.emplace_back(child);
+				waypointFilters.emplace_back(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "destination")
 		{
@@ -176,7 +176,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			}
 			// Given "destination" and a location filter. These get processed during NPC instantiation.
 			else
-				destinationFilter.Load(child);
+				destinationFilter.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "stopover")
 		{
@@ -195,7 +195,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			}
 			// Given "stopover" and child nodes. These get processed during NPC instantiation.
 			else
-				stopoverFilters.emplace_back(child);
+				stopoverFilters.emplace_back(child, visitedSystems, visitedPlanets);
 		}
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
