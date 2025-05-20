@@ -1119,12 +1119,12 @@ mission "Easter Celebrations"
 				`	(Step in.)`
 				`	(Move on.)`
 					decline
-			`	Inside the building, a group is singing with deafening loudness. On the stage at the front of the room, a man strums a guitar; behind him a lady softly plays the piano. A large screen displays lyrics to the current song, which you note is "Christ Our Lord has Risen Again."`
+			`	Inside the building, a group is singing with deafening loudness. On the stage at the front of the room, a man strums a guitar; behind him a lady softly plays the piano. A large screen displays lyrics to the current song, "Christ Our Lord has Risen Again."`
 			choice
 				`	(Head out.)`
 					goto headout
 				`	(Stay and enjoy the music.)`
-			`	The pastor loops through several other hymns, eventually ending with an announcement of thanks to those who attended the celebration. As the group breaks up, you notice a bulletin board documenting several church events - a potluck on Wednesday, a notification of an outing on Saturday night, and several other items hidden by someone else.`
+			`	The pastor loops through several other hymns, eventually ending with an announcement of thanks to those who attended the celebration. As the group breaks up, you notice a bulletin board documenting several church events - a potluck on Wednesday, a notification of an outing on Saturday night, and several other items blocked by a passing pedestrian.`
 				decline
 			label headout
 			`	On your way out of the room, you notice a bulletin board documenting several church events - a potluck on Wednesday, a notification of an outing on Saturday night, and several other items hidden by someone else.`
