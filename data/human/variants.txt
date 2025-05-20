@@ -1783,7 +1783,7 @@ ship "Firebird" "Firebird (Plasma)"
 ship "Firebird" "Firebird (Heavy Blaster)"
 	outfits
 		"Heavy Blaster" 4
-		"Heavy Laser Turret"
+		"Quad Blaster Turret"
 		"Heavy Anti-Missile Turret"
 		"RT-I Radiothermal"
 		"nGVF-AA Fuel Cell"
@@ -1793,6 +1793,7 @@ ship "Firebird" "Firebird (Heavy Blaster)"
 		"X3700 Ion Thruster"
 		"X3200 Ion Steering"
 		"Hyperdrive"
+
 
 ship "Firebird" "Firebird (CCOR)"
 	outfits
