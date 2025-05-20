@@ -248,7 +248,8 @@ outfit "Heavy Blaster"
 		"firing heat" 150
 		"shield damage" 90
 		"hull damage" 54
-	description "Heavy Blaster."
+	description "The Heavy Blaster is a scaled-up variant of the ever-so-popular Energy Blaster design. These would see extensive use on several warships earlier in history, most notably as the main armament of the Firebird when it was first produced. Over time, the development of more advanced weapons such as the Particle or Plasma Cannon phased out the usage of the Heavy Blaster, however, it still performs consistently enough to be found on older ships still in service."
+
 
 outfit "Beam Laser"
 	category "Guns"
