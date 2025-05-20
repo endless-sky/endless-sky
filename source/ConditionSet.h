@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "LocationFilter.h"
+
 #include <cstdint>
 #include <map>
 #include <set>
@@ -24,6 +26,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class ConditionContext;
+class UniverseObjects;
 
 
 
@@ -60,7 +64,15 @@ public:
 
 		// Single boolean operators
 		NOT, ///< Single boolean 'not' operator.
-		HAS ///< Single boolean 'has' operator.
+		HAS, ///< Single boolean 'has' operator.
+		FILTER, ///< Apply a LocationFilter to a named object
+	};
+
+public:
+	enum class FilterAgainst {
+		INVALID, ///< Context is invalid/unset
+
+		HAILING_SHIP, ///< Filter against the ship that is performing the hailing
 	};
 
 
@@ -78,6 +90,11 @@ public:
 
 	// Construct a terminal with a literal value.
 	explicit ConditionSet(int64_t newLiteral, const ConditionsStore *conditions);
+
+	// Construct a terminal with a LocationFilter
+	// It is assumed the filter pointer will stay valid for the duration
+	// of this object
+	explicit ConditionSet(LocationFilter *newFilter, FilterAgainst against);
 
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if the conditions cannot be parsed from the node.
@@ -97,10 +114,10 @@ public:
 	bool IsValid() const;
 
 	// Check if the player's conditions satisfy this set of expressions.
-	bool Test() const;
+	bool Test(const ConditionContext &context) const;
 
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)
-	int64_t Evaluate() const;
+	int64_t Evaluate(const ConditionContext &context) const;
 
 	/// Parse the remainder of a node into this expression.
 	bool ParseNode(const DataNode &node, int &tokenNr);
@@ -175,7 +192,12 @@ private:
 	std::string conditionName;
 	/// Nested sets of conditions to be tested.
 	std::vector<ConditionSet> children;
+	/// Filter for filter operation (a reference to reduce memory usage when not used)
+	LocationFilter *filter = nullptr;
+	FilterAgainst filterAgainst = FilterAgainst::INVALID;
 
 	// Let the assignment class call internal functions and parsers.
 	friend class ConditionAssignments;
+	// For the Hail migration
+	friend class UniverseObjects;
 };

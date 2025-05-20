@@ -26,6 +26,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 // Include ConditionStore, to enable usage of them for testing ConditionSets.
 #include "../../../source/ConditionsStore.h"
 
+// Include ConditionContext (as it is require input to ConditionSet, even if not tested)
+#include "../../../source/ConditionContext.h"
+
 // ... and any system includes needed for the test file.
 #include <cstdint>
 #include <map>
@@ -226,8 +229,8 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			REQUIRE( numberSet.IsValid() );
 			auto answer = std::get<1>(expressionAndAnswer);
 			bool boolAnswer = answer;
-			REQUIRE( numberSet.Evaluate() == answer );
-			REQUIRE( numberSet.Test() == boolAnswer );
+			REQUIRE( numberSet.Evaluate(DEFAULT_CONDITION_CONTEXT) == answer );
+			REQUIRE( numberSet.Test(DEFAULT_CONDITION_CONTEXT) == boolAnswer );
 		}
 	}
 	GIVEN( "various incorrect expression(s) as conditionSet" ) {

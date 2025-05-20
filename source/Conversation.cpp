@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Conversation.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "text/Format.h"
@@ -405,7 +406,7 @@ bool Conversation::HasAnyChoices(int node) const
 	{
 		if(data.conditions.IsEmpty())
 			return true;
-		if(data.conditions.Test())
+		if(data.conditions.Test(DEFAULT_CONDITION_CONTEXT))
 			return true;
 	}
 
@@ -529,7 +530,7 @@ bool Conversation::ShouldDisplayNode(int node, int element) const
 	const auto &data = nodes[node].elements[element];
 	if(data.conditions.IsEmpty())
 		return true;
-	return data.conditions.Test();
+	return data.conditions.Test(DEFAULT_CONDITION_CONTEXT);
 }
 
 

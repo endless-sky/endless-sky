@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MissionAction.h"
 
 #include "CargoHold.h"
+#include "ConditionContext.h"
 #include "ConversationPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -383,7 +384,7 @@ void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const 
 	else if(!dialogText.empty() && ui)
 	{
 		map<string, string> subs;
-		GameData::GetTextReplacements().Substitutions(subs);
+		GameData::GetTextReplacements().Substitutions(subs, DEFAULT_CONDITION_CONTEXT);
 		player.AddPlayerSubstitutions(subs);
 		string text = Format::Replace(dialogText, subs);
 
@@ -469,7 +470,7 @@ string MissionAction::CollapseDialog(const map<string, string> *subs) const
 			return string();
 
 		// Skip text that is disabled.
-		if(!item.condition.IsEmpty() && !item.condition.Test())
+		if(!item.condition.IsEmpty() && !item.condition.Test(DEFAULT_CONDITION_CONTEXT))
 			continue;
 
 		// Evaluate the phrase if we have one, otherwise copy the prepared text.

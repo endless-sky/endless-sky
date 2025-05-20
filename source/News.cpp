@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "News.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "Random.h"
 #include "image/SpriteSet.h"
@@ -136,7 +137,7 @@ bool News::Matches(const Planet *planet) const
 	// used to create news items that are never shown until an event "activates"
 	// them by specifying their location.
 	// Similarly, by updating a news item with "remove location", it can be deactivated.
-	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test());
+	return location.IsEmpty() ? false : (location.Matches(planet) && toShow.Test(DEFAULT_CONDITION_CONTEXT));
 }
 
 

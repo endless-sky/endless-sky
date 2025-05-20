@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionContext.h"
 #include "ConditionSet.h"
 #include "DataNode.h"
 #include "LocationFilter.h"
@@ -162,5 +163,5 @@ bool Shop<Item>::CanStock(const Planet *planet) const
 
 	// A shop is allowed to only define conditions, or a location filter, or both.
 	// If both are specified, both must be true.
-	return toSell.Test() && (location.IsEmpty() ? true : location.Matches(planet));
+	return toSell.Test(DEFAULT_CONDITION_CONTEXT) && (location.IsEmpty() ? true : location.Matches(planet));
 }

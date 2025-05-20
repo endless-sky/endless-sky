@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 #include "audio/Audio.h"
+#include "ConditionContext.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
 #include "DataWriter.h"
@@ -172,7 +173,7 @@ void PlayerInfo::New(const StartConditions &start)
 	SetPlanet(&start.GetPlanet());
 	accounts = start.GetAccounts();
 	RegisterDerivedConditions();
-	start.GetConditions().Apply();
+	start.GetConditions().Apply(DEFAULT_CONDITION_CONTEXT);
 
 	// Generate missions that will be available on the first day.
 	CreateMissions();
@@ -2387,7 +2388,7 @@ const map<string, EsUuid> &PlayerInfo::GiftedShips() const
 map<string, string> PlayerInfo::GetSubstitutions() const
 {
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs);
+	GameData::GetTextReplacements().Substitutions(subs, DEFAULT_CONDITION_CONTEXT);
 	AddPlayerSubstitutions(subs);
 	return subs;
 }
@@ -4677,7 +4678,12 @@ bool PlayerInfo::DisplayCarrierHelp() const
 void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 {
 	ships.push_back(make_shared<Ship>(*model));
-	ships.back()->SetName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
+	ships.back()->SetName(
+		!name.empty() ?
+			name
+		:
+			GameData::Phrases().Get("civilian")->Get()
+	);
 	ships.back()->SetSystem(system);
 	ships.back()->SetPlanet(planet);
 	ships.back()->SetIsSpecial();

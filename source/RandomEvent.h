@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "ConditionContext.h"
 #include "ConditionSet.h"
 #include "DataNode.h"
 
@@ -75,5 +76,5 @@ int RandomEvent<T>::Period() const noexcept
 template <typename T>
 bool RandomEvent<T>::CanTrigger() const
 {
-	return conditions.Test();
+	return conditions.Test(DEFAULT_CONDITION_CONTEXT);
 }

@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Mission.h"
 
+#include "ConditionContext.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "Dialog.h"
@@ -916,10 +917,10 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 	}
 
-	if(!toOffer.Test())
+	if(!toOffer.Test(DEFAULT_CONDITION_CONTEXT))
 		return false;
 
-	if(!toFail.IsEmpty() && toFail.Test())
+	if(!toFail.IsEmpty() && toFail.Test(DEFAULT_CONDITION_CONTEXT))
 		return false;
 
 	if(repeat && player.Conditions().Get(name + ": offered") >= repeat)
@@ -949,7 +950,7 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 
 bool Mission::CanAccept(const PlayerInfo &player) const
 {
-	if(!toAccept.Test())
+	if(!toAccept.Test(DEFAULT_CONDITION_CONTEXT))
 		return false;
 
 	bool isFailed = IsFailed();
@@ -1004,7 +1005,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 		return false;
 
 	// Test the completion conditions for this mission.
-	if(!toComplete.Test())
+	if(!toComplete.Test(DEFAULT_CONDITION_CONTEXT))
 		return false;
 
 	// Determine if any fines or outfits that must be transferred, can.
@@ -1042,7 +1043,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 bool Mission::IsFailed() const
 {
-	if(!toFail.IsEmpty() && toFail.Test())
+	if(!toFail.IsEmpty() && toFail.Test(DEFAULT_CONDITION_CONTEXT))
 		return true;
 
 	for(const NPC &npc : npcs)
@@ -1099,11 +1100,11 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 	}
 
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs);
-	substitutions.Substitutions(subs);
+	GameData::GetTextReplacements().Substitutions(subs, DEFAULT_CONDITION_CONTEXT);
+	substitutions.Substitutions(subs, DEFAULT_CONDITION_CONTEXT);
 	player.AddPlayerSubstitutions(subs);
 
-	subs["<conditions>"] = toAccept.Test() ? "meet" : "do not meet";
+	subs["<conditions>"] = toAccept.Test(DEFAULT_CONDITION_CONTEXT) ? "meet" : "do not meet";
 
 	ostringstream out;
 	if(bunksNeeded > 0)
@@ -1530,8 +1531,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 
 	// Generate the substitutions map.
 	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs);
-	substitutions.Substitutions(subs);
+	GameData::GetTextReplacements().Substitutions(subs, DEFAULT_CONDITION_CONTEXT);
+	substitutions.Substitutions(subs, DEFAULT_CONDITION_CONTEXT);
 	subs["<commodity>"] = result.cargo;
 	subs["<tons>"] = Format::MassString(result.cargoSize);
 	subs["<cargo>"] = Format::CargoString(result.cargoSize, subs["<commodity>"]);

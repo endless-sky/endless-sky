@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameEvent.h"
 #include "Gamerules.h"
 #include "Government.h"
+#include "Hail.h"
 #include "Hazard.h"
 #include "Interface.h"
 #include "Minable.h"
@@ -98,6 +99,7 @@ public:
 private:
 	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player,
 		const ConditionsStore *globalConditions, bool debugMode = false);
+	void MigrateHails();
 
 
 private:
@@ -115,6 +117,7 @@ private:
 	Set<FormationPattern> formations;
 	Set<Galaxy> galaxies;
 	Set<Government> governments;
+	Set<Hail> hails;
 	Set<Hazard> hazards;
 	Set<Interface> interfaces;
 	Set<Minable> minables;

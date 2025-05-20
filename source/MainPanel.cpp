@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "BoardingPanel.h"
 #include "comparators/ByGivenOrder.h"
 #include "CategoryList.h"
+#include "ConditionContext.h"
 #include "CoreStartData.h"
 #include "Dialog.h"
 #include "text/Font.h"
