@@ -57,6 +57,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ConditionAssignments.cpp
 	ConditionAssignments.h
 	ConditionContext.h
+	ConditionEntry.cpp
+	ConditionEntry.h
 	ConditionSet.cpp
 	ConditionSet.h
 	ConditionsStore.cpp
@@ -266,6 +268,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Set.h
 	Ship.cpp
 	Ship.h
+	Shop.h
 	ShipEvent.cpp
 	ShipEvent.h
 	ShipInfoDisplay.cpp
@@ -323,6 +326,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Wormhole.cpp
 	Wormhole.h
 	WormholeStrategy.h
+	ZipFile.cpp
+	ZipFile.h
 	opengl.cpp
 	opengl.h
 	pi.h

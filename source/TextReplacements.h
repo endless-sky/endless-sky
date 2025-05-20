@@ -36,7 +36,7 @@ class PlayerInfo;
 class TextReplacements {
 public:
 	// Load a substitutions node.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Clear this TextReplacement's substitutions and insert the substitutions of other.
 	void Revert(TextReplacements &other);
@@ -46,7 +46,6 @@ public:
 	// if the map and this TextReplacements share a key.
 	void Substitutions(
 		std::map<std::string, std::string> &subs,
-		const ConditionsStore &conditions,
 		const ConditionContext &context
 	) const;
 

@@ -17,14 +17,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionContext.h"
 
-void Hail::Load(const DataNode &node)
+void Hail::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	for(const DataNode &child : node)
 	{
 		if(child.Token(0) == "message")
 			messages.Load(child);
 		else if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "hail")
-			toHail.Load(child);
+			toHail.Load(child, playerConditions);
 		else if(child.Size() == 1 && child.Token(0) == "hailing ship")
 			filterHailingShip.Load(child);
 		else if(child.Size() == 2 && child.Token(0) == "weight")
@@ -40,7 +40,7 @@ bool Hail::Matches(const ConditionsStore &conditions, const Ship &hailingShip) c
 		return false;
 	if(!filterHailingShip.Matches(hailingShip))
 		return false;
-	return toHail.Test(conditions, ConditionContext { .hailingShip = &hailingShip });
+	return toHail.Test(ConditionContext { .hailingShip = &hailingShip });
 }
 
 std::string Hail::Message(const ConditionsStore &conditions, const Ship &hailingShip) const

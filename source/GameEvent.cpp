@@ -75,14 +75,14 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 
 
 // Construct and Load() at the same time.
-GameEvent::GameEvent(const DataNode &node)
+GameEvent::GameEvent(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void GameEvent::Load(const DataNode &node)
+void GameEvent::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// If the event has a name, a condition should be automatically created that
 	// represents the fact that this event has occurred.
@@ -92,7 +92,7 @@ void GameEvent::Load(const DataNode &node)
 		if(!DataNode::IsConditionName(name))
 			node.PrintTrace("Invalid event/condition name:");
 
-		conditionsToApply.AddSetCondition("event: " + name);
+		conditionsToApply.AddSetCondition("event: " + name, playerConditions);
 	}
 	isDefined = true;
 
@@ -110,20 +110,21 @@ void GameEvent::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
 		if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(key == "unvisit" && child.Size() >= 2)
+		else if(key == "unvisit" && hasValue)
 			systemsToUnvisit.push_back(GameData::Systems().Get(child.Token(1)));
-		else if(key == "visit" && child.Size() >= 2)
+		else if(key == "visit" && hasValue)
 			systemsToVisit.push_back(GameData::Systems().Get(child.Token(1)));
-		else if(key == "unvisit planet" && child.Size() >= 2)
+		else if(key == "unvisit planet" && hasValue)
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
-		else if(key == "visit planet" && child.Size() >= 2)
+		else if(key == "visit planet" && hasValue)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(allowedChanges.contains(key))
 			changes.push_back(child);
 		else
-			conditionsToApply.Add(child);
+			conditionsToApply.Add(child, playerConditions);
 	}
 }
 
@@ -230,7 +231,7 @@ list<DataNode> GameEvent::Apply(PlayerInfo &player)
 		return {};
 
 	// Apply this event's ConditionSet to the player's conditions.
-	conditionsToApply.Apply(player.Conditions(), DEFAULT_CONDITION_CONTEXT);
+	conditionsToApply.Apply(DEFAULT_CONDITION_CONTEXT);
 
 	for(const System *system : systemsToUnvisit)
 		player.Unvisit(*system);

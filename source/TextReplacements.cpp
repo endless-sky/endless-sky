@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TextReplacements.h"
 
 #include "ConditionSet.h"
-#include "ConditionsStore.h"
 #include "DataNode.h"
 
 #include <set>
@@ -26,7 +25,7 @@ using namespace std;
 
 
 // Load a substitutions node.
-void TextReplacements::Load(const DataNode &node)
+void TextReplacements::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	// Check for reserved keys. Only some hardcoded replacement keys are
 	// reserved, as these ones are done on the fly after all other replacements
@@ -65,7 +64,7 @@ void TextReplacements::Load(const DataNode &node)
 
 		ConditionSet toSubstitute;
 		if(child.HasChildren())
-			toSubstitute.Load(child);
+			toSubstitute.Load(child, playerConditions);
 		substitutions.emplace_back(key, make_pair(std::move(toSubstitute), child.Token(1)));
 	}
 }
@@ -86,7 +85,6 @@ void TextReplacements::Revert(TextReplacements &other)
 // if the map and this TextReplacements share a key.
 void TextReplacements::Substitutions(
 	map<string, string> &subs,
-	const ConditionsStore &conditions,
 	const ConditionContext &context
 ) const
 {
@@ -95,7 +93,7 @@ void TextReplacements::Substitutions(
 		const string &key = sub.first;
 		const ConditionSet &toSub = sub.second.first;
 		const string &replacement = sub.second.second;
-		if(toSub.Test(conditions, context))
+		if(toSub.Test(context))
 			subs[key] = replacement;
 	}
 }

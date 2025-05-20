@@ -29,7 +29,7 @@ class UniverseObjects;
 /// Represent a type of message from someone who send you non-blocking flavor text (hail) in space.
 class Hail {
 public:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Check if the message can be used given the condition and hailing ship.
 	bool Matches(const ConditionsStore &conditions, const Ship &hailingShip) const;

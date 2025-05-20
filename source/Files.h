@@ -60,6 +60,9 @@ public:
 	// Get the filename from a path.
 	static std::string Name(const std::filesystem::path &path);
 
+	/// Check whether one path is a parent of another.
+	static bool IsParent(const std::filesystem::path &parent, const std::filesystem::path &child);
+
 	// File IO.
 	static std::shared_ptr<std::iostream> Open(const std::filesystem::path &path, bool write = false);
 	static std::string Read(const std::filesystem::path &path);
