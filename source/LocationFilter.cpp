@@ -177,9 +177,10 @@ void LocationFilter::Load(const DataNode &node)
 		// neighboring system. If the token is alone on a line, it
 		// introduces many lines of this type of filter. Otherwise, this
 		// child is a normal LocationFilter line.
-		if(child.Token(0) == "not" || child.Token(0) == "neighbor")
+		const string &key = child.Token(0);
+		if(key == "not" || key == "neighbor")
 		{
-			list<LocationFilter> &filters = ((child.Token(0) == "not") ? notFilters : neighborFilters);
+			list<LocationFilter> &filters = ((key == "not") ? notFilters : neighborFilters);
 			filters.emplace_back();
 			if(child.Size() == 1)
 				filters.back().Load(child);
@@ -358,7 +359,7 @@ bool LocationFilter::Matches(const Planet *planet, const System *origin) const
 
 	// If outfits are specified, make sure they can be bought here.
 	for(const set<const Outfit *> &outfitList : outfits)
-		if(!SetsIntersect(outfitList, planet->Outfitter()))
+		if(!SetsIntersect(outfitList, planet->OutfitterStock()))
 			return false;
 
 	return Matches(planet->GetSystem(), origin, true);

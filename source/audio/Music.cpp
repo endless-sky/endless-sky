@@ -44,7 +44,7 @@ void Music::Init(const vector<filesystem::path> &sources)
 	for(const auto &source : sources)
 	{
 		// Find all the sound files that this resource source provides.
-		filesystem::path root = source / "sounds/";
+		filesystem::path root = source / "sounds";
 		vector<filesystem::path> files = Files::RecursiveList(root);
 
 		for(const auto &path : files)

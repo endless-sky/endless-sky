@@ -82,8 +82,8 @@ namespace {
 	Set<Planet> defaultPlanets;
 	Set<System> defaultSystems;
 	Set<Galaxy> defaultGalaxies;
-	Set<Sale<Ship>> defaultShipSales;
-	Set<Sale<Outfit>> defaultOutfitSales;
+	Set<Shop<Ship>> defaultShipSales;
+	Set<Shop<Outfit>> defaultOutfitSales;
 	Set<Wormhole> defaultWormholes;
 	TextReplacements defaultSubstitutions;
 
@@ -261,6 +261,7 @@ void GameData::FinishLoading()
 	playerGovernment = objects.governments.Get("Escort");
 
 	politics.Reset();
+	background.FinishLoading();
 }
 
 
@@ -457,13 +458,14 @@ void GameData::ReadEconomy(const DataNode &node)
 	vector<string> headings;
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "purchases")
+		const string &key = child.Token(0);
+		if(key == "purchases")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 3 && grand.Value(2))
 					purchases[Systems().Get(grand.Token(0))][grand.Token(1)] += grand.Value(2);
 		}
-		else if(child.Token(0) == "system")
+		else if(key == "system")
 		{
 			headings.clear();
 			for(int index = 1; index < child.Size(); ++index)
@@ -471,7 +473,7 @@ void GameData::ReadEconomy(const DataNode &node)
 		}
 		else
 		{
-			System &system = *objects.systems.Get(child.Token(0));
+			System &system = *objects.systems.Get(key);
 
 			int index = 0;
 			for(const string &commodity : headings)
@@ -722,7 +724,7 @@ const Set<Outfit> &GameData::Outfits()
 
 
 
-const Set<Sale<Outfit>> &GameData::Outfitters()
+const Set<Shop<Outfit>> &GameData::Outfitters()
 {
 	return objects.outfitSales;
 }
@@ -785,7 +787,7 @@ ConditionsStore &GameData::GlobalConditions()
 
 
 
-const Set<Sale<Ship>> &GameData::Shipyards()
+const Set<Shop<Ship>> &GameData::Shipyards()
 {
 	return objects.shipSales;
 }
@@ -913,6 +915,13 @@ const StarField &GameData::Background()
 
 
 
+void GameData::StepBackground(const Point &vel, double zoom)
+{
+	background.Step(vel, zoom);
+}
+
+
+
 void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	background.SetHaze(sprite, allowAnimation);
@@ -926,9 +935,9 @@ const string &GameData::Tooltip(const string &label)
 	auto it = objects.tooltips.find(label);
 	// Special case: the "cost" and "sells for" labels include the percentage of
 	// the full price, so they will not match exactly.
-	if(it == objects.tooltips.end() && !label.compare(0, 4, "cost"))
+	if(it == objects.tooltips.end() && label.starts_with("cost"))
 		it = objects.tooltips.find("cost:");
-	if(it == objects.tooltips.end() && !label.compare(0, 9, "sells for"))
+	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
 	return (it == objects.tooltips.end() ? EMPTY : it->second);
 }
@@ -981,10 +990,19 @@ void GameData::LoadSources(TaskQueue &queue)
 	for(const auto &path : globalPlugins)
 		if(Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
+	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
+	globalPlugins = Files::List(Files::GlobalPlugins());
+	for(const auto &path : globalPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
 		if(Plugins::IsPlugin(path))
+			LoadPlugin(queue, path);
+	localPlugins = Files::List(Files::UserPlugins());
+	for(const auto &path : localPlugins)
+		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 
@@ -997,7 +1015,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 	{
 		// All names will only include the portion of the path that comes after
 		// this directory prefix.
-		filesystem::path directoryPath = source / "images/";
+		filesystem::path directoryPath = source / "images";
 
 		vector<filesystem::path> imageFiles = Files::RecursiveList(directoryPath);
 		for(auto &path : imageFiles)

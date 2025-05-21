@@ -1121,7 +1121,7 @@ ship "Combat Drone"
 		category "Drone"
 		licenses
 			Navy
-		"cost" 83000
+		"cost" 63000
 		"hull" 700
 		"automaton" 1
 		"mass" 20
