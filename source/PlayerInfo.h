@@ -24,9 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "EsUuid.h"
 #include "GameEvent.h"
-#include "Government.h"
 #include "Mission.h"
-#include "RaidFleet.h"
 #include "SystemEntry.h"
 
 #include <chrono>
@@ -41,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class Outfit;
 class Planet;
+class RaidFleet;
 class Rectangle;
 class Ship;
 class ShipEvent;
@@ -70,7 +69,7 @@ public:
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
 	PlayerInfo &operator=(const PlayerInfo &) = delete;
-	PlayerInfo(PlayerInfo &&) = default;
+	PlayerInfo(PlayerInfo &&) = delete;
 	PlayerInfo &operator=(PlayerInfo &&) = default;
 	~PlayerInfo() noexcept = default;
 
@@ -365,6 +364,8 @@ private:
 
 	// Set the flagship (on departure or during flight).
 	void SetFlagship(Ship &other);
+
+	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
 
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);

@@ -17,7 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "CategoryList.h"
-#include "CategoryTypes.h"
+#include "CategoryType.h"
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
@@ -27,7 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPattern.h"
 #include "GameData.h"
 #include "Government.h"
-#include "JumpTypes.h"
+#include "JumpType.h"
 #include "Logger.h"
 #include "image/Mask.h"
 #include "Messages.h"
@@ -42,6 +42,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "StellarObject.h"
+#include "Swizzle.h"
 #include "System.h"
 #include "Visual.h"
 #include "Wormhole.h"
@@ -224,14 +225,14 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Ship::Ship(const DataNode &node)
+Ship::Ship(const DataNode &node, const ConditionsStore *playerConditions)
 {
-	Load(node);
+	Load(node, playerConditions);
 }
 
 
 
-void Ship::Load(const DataNode &node)
+void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() >= 2)
 		trueModelName = node.Token(1);
@@ -257,8 +258,9 @@ void Ship::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
 		bool add = (key == "add");
-		if(add && (child.Size() < 2 || child.Token(1) != "attributes"))
+		if(add && (!hasValue || child.Token(1) != "attributes"))
 		{
 			child.PrintTrace("Skipping invalid use of 'add' with " + (child.Size() < 2
 					? "no key." : "key: " + child.Token(1)));
@@ -266,30 +268,30 @@ void Ship::Load(const DataNode &node)
 		}
 		if(key == "sprite")
 			LoadSprite(child);
-		else if(child.Token(0) == "thumbnail" && child.Size() >= 2)
+		else if(key == "thumbnail" && hasValue)
 			thumbnail = SpriteSet::Get(child.Token(1));
-		else if(key == "name" && child.Size() >= 2)
+		else if(key == "name" && hasValue)
 			name = child.Token(1);
-		else if(key == "display name" && child.Size() >= 2)
+		else if(key == "display name" && hasValue)
 			displayModelName = child.Token(1);
-		else if(key == "plural" && child.Size() >= 2)
+		else if(key == "plural" && hasValue)
 			pluralModelName = child.Token(1);
-		else if(key == "variant map name" && child.Size() >= 2)
+		else if(key == "variant map name" && hasValue)
 			variantMapShopName = child.Token(1);
-		else if(key == "noun" && child.Size() >= 2)
+		else if(key == "noun" && hasValue)
 			noun = child.Token(1);
-		else if(key == "swizzle" && child.Size() >= 2)
-			customSwizzle = child.Value(1);
-		else if(key == "uuid" && child.Size() >= 2)
+		else if(key == "swizzle" && hasValue)
+			customSwizzleName = child.Token(1);
+		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "attributes" || add)
 		{
 			if(!add)
-				baseAttributes.Load(child);
+				baseAttributes.Load(child, playerConditions);
 			else
 			{
 				addAttributes = true;
-				attributes.Load(child);
+				attributes.Load(child, playerConditions);
 			}
 		}
 		else if((key == "engine" || key == "reverse engine" || key == "steering engine") && child.Size() >= 3)
@@ -314,11 +316,12 @@ void Ship::Load(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "zoom" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "zoom" && grandHasValue)
 					engine.zoom = grand.Value(1);
-				else if(grandKey == "angle" && grand.Size() >= 2)
+				else if(grandKey == "angle" && grandHasValue)
 					engine.facing += Angle(grand.Value(1));
-				else if(grandKey == "gimbal" && grand.Size() >= 2)
+				else if(grandKey == "gimbal" && grandHasValue)
 					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
@@ -349,7 +352,7 @@ void Ship::Load(const DataNode &node)
 			}
 			else
 			{
-				if(child.Size() >= 2)
+				if(hasValue)
 					outfit = GameData::Outfits().Get(child.Token(1));
 			}
 			Hardpoint::BaseAttributes attributes;
@@ -364,15 +367,16 @@ void Ship::Load(const DataNode &node)
 				for(const DataNode &grand : child)
 				{
 					bool needToCheckAngles = false;
-					if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					const string &grandKey = grand.Token(0);
+					if(grandKey == "angle" && grand.Size() >= 2)
 					{
 						attributes.baseAngle = grand.Value(1);
 						needToCheckAngles = true;
 						defaultBaseAngle = false;
 					}
-					else if(grand.Token(0) == "parallel")
+					else if(grandKey == "parallel")
 						attributes.isParallel = true;
-					else if(grand.Token(0) == "arc" && grand.Size() >= 3)
+					else if(grandKey == "arc" && grand.Size() >= 3)
 					{
 						attributes.isOmnidirectional = false;
 						attributes.minArc = Angle(grand.Value(1));
@@ -381,11 +385,13 @@ void Ship::Load(const DataNode &node)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
-					else if(grand.Token(0) == "turret turn multiplier")
+					else if(grandKey == "blindspot" && grand.Size() >= 3)
+						attributes.blindspots.emplace_back(grand.Value(1), grand.Value(2));
+					else if(grandKey == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
-					else if(grand.Token(0) == "under")
+					else if(grandKey == "under")
 						drawUnder = true;
-					else if(grand.Token(0) == "over")
+					else if(grandKey == "over")
 						drawUnder = false;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
@@ -447,26 +453,28 @@ void Ship::Load(const DataNode &node)
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
 				{
+					const string &grandKey = grand.Token(0);
+					bool grandHasValue = grand.Size() >= 2;
 					// Load in the effect(s) to be displayed when the ship launches.
-					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+					if(grandKey == "launch effect" && grandHasValue)
 					{
 						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
 					}
-					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					else if(grandKey == "angle" && grandHasValue)
 						bay.facing = Angle(grand.Value(1));
 					else
 					{
 						bool handled = false;
 						for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
-							if(grand.Token(0) == BAY_SIDE[i])
+							if(grandKey == BAY_SIDE[i])
 							{
 								bay.side = i;
 								handled = true;
 							}
 						for(unsigned i = 1; i < BAY_FACING.size(); ++i)
-							if(grand.Token(0) == BAY_FACING[i])
+							if(grandKey == BAY_FACING[i])
 							{
 								bay.facing = BAY_ANGLE[i];
 								handled = true;
@@ -476,7 +484,7 @@ void Ship::Load(const DataNode &node)
 					}
 				}
 		}
-		else if(key == "leak" && child.Size() >= 2)
+		else if(key == "leak" && hasValue)
 		{
 			if(!hasLeak)
 			{
@@ -490,7 +498,7 @@ void Ship::Load(const DataNode &node)
 				leak.closePeriod = child.Value(3);
 			leaks.push_back(leak);
 		}
-		else if(key == "explode" && child.Size() >= 2)
+		else if(key == "explode" && hasValue)
 		{
 			if(!hasExplode)
 			{
@@ -502,7 +510,7 @@ void Ship::Load(const DataNode &node)
 			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 			explosionTotal += count;
 		}
-		else if(key == "final explode" && child.Size() >= 2)
+		else if(key == "final explode" && hasValue)
 		{
 			if(!hasFinalExplode)
 			{
@@ -543,40 +551,41 @@ void Ship::Load(const DataNode &node)
 		}
 		else if(key == "cargo")
 			cargo.Load(child);
-		else if(key == "crew" && child.Size() >= 2)
+		else if(key == "crew" && hasValue)
 			crew = static_cast<int>(child.Value(1));
-		else if(key == "fuel" && child.Size() >= 2)
+		else if(key == "fuel" && hasValue)
 			fuel = child.Value(1);
-		else if(key == "shields" && child.Size() >= 2)
+		else if(key == "shields" && hasValue)
 			shields = child.Value(1);
-		else if(key == "hull" && child.Size() >= 2)
+		else if(key == "hull" && hasValue)
 			hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
-		else if(key == "system" && child.Size() >= 2)
+		else if(key == "system" && hasValue)
 			currentSystem = GameData::Systems().Get(child.Token(1));
-		else if(key == "planet" && child.Size() >= 2)
+		else if(key == "planet" && hasValue)
 		{
 			zoom = 0.;
 			landingPlanet = GameData::Planets().Get(child.Token(1));
 		}
-		else if(key == "destination system" && child.Size() >= 2)
+		else if(key == "destination system" && hasValue)
 			targetSystem = GameData::Systems().Get(child.Token(1));
+		else if(key == "waypoint index" && child.Size() >= 2)
+			waypoint = child.Value(1);
 		else if(key == "parked")
 			isParked = true;
-		else if(key == "description" && child.Size() >= 2)
+		else if(key == "description" && hasValue)
 		{
 			if(!hasDescription)
 			{
-				description.clear();
+				description.Clear();
 				hasDescription = true;
 			}
-			description += child.Token(1);
-			description += '\n';
+			description.Load(child, playerConditions);
 		}
-		else if(key == "formation" && child.Size() >= 2)
+		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));
-		else if(key == "remove" && child.Size() >= 2)
+		else if(key == "remove" && hasValue)
 		{
 			if(child.Token(1) == "bays")
 				removeBays = true;
@@ -635,8 +644,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			reinterpret_cast<Body &>(*this) = *base;
-		if(customSwizzle == -1)
-			customSwizzle = base->CustomSwizzle();
+		if(customSwizzleName.empty())
+			customSwizzleName = base->CustomSwizzleName();
 		if(baseAttributes.Attributes().empty())
 			baseAttributes = base->baseAttributes;
 		if(bays.empty() && !base->bays.empty() && !removeBays)
@@ -656,7 +665,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			finalExplosions = base->finalExplosions;
 		if(outfits.empty())
 			outfits = base->outfits;
-		if(description.empty())
+		if(description.IsEmpty())
 			description = base->description;
 
 		bool hasHardpoints = false;
@@ -910,6 +919,13 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
+
+	if(!customSwizzleName.empty())
+	{
+		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
+		if(!customSwizzle->IsLoaded())
+			Logger::LogError("Warning: ship \"" + Name() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".");
+	}
 }
 
 
@@ -947,8 +963,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle >= 0)
-			out.Write("swizzle", customSwizzle);
+		if(customSwizzle && customSwizzle->IsLoaded())
+			out.Write("swizzle", customSwizzle->Name());
 
 		out.Write("uuid", uuid.ToString());
 
@@ -1088,6 +1104,8 @@ void Ship::Save(DataWriter &out) const
 					out.Write("parallel");
 				if(!attributes.isOmnidirectional)
 					out.Write("arc", firstArc, secondArc);
+				for(const auto &blindspot : attributes.blindspots)
+					out.Write("blindspot", blindspot.first.Degrees(), blindspot.second.Degrees());
 				if(attributes.turnMultiplier)
 					out.Write("turret turn multiplier", attributes.turnMultiplier);
 				if(hardpoint.IsUnder())
@@ -1149,6 +1167,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
 			out.Write("destination system", targetSystem->TrueName());
+		if(waypoint > 0 && waypoint <= waypoints.size())
+			out.Write("waypoint index", waypoint);
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1233,9 +1253,9 @@ const string &Ship::Noun() const
 
 
 // Get this ship's description.
-const string &Ship::Description() const
+string Ship::Description() const
 {
-	return description;
+	return description.ToString();
 }
 
 
@@ -1417,14 +1437,14 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	// from a planet. Launching a carry from a carrier does not update its swizzle.
 	if(government && isDeparting)
 	{
-		auto swizzle = customSwizzle >= 0 ? customSwizzle : government->GetSwizzle();
+		auto swizzle = customSwizzle ? customSwizzle : government->GetSwizzle();
 		SetSwizzle(swizzle);
 
 		// Set swizzle for any carried ships too.
 		for(const auto &bay : bays)
 		{
 			if(bay.ship)
-				bay.ship->SetSwizzle(bay.ship->customSwizzle >= 0 ? bay.ship->customSwizzle : swizzle);
+				bay.ship->SetSwizzle(bay.ship->customSwizzle ? bay.ship->customSwizzle : swizzle);
 		}
 	}
 }
@@ -1459,7 +1479,7 @@ void Ship::SetPlanet(const Planet *planet)
 void Ship::SetGovernment(const Government *government)
 {
 	if(government)
-		SetSwizzle(customSwizzle >= 0 ? customSwizzle : government->GetSwizzle());
+		SetSwizzle(customSwizzle ? customSwizzle : government->GetSwizzle());
 	this->government = government;
 }
 
@@ -1797,7 +1817,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
+	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->LandedOrDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -1977,7 +1997,7 @@ int Ship::Scan(const PlayerInfo &player)
 
 	bool isImportant = false;
 	if(target->isYours)
-		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get(), player);
+		isImportant = target.get() == player.Flagship() || government->FinesContents(target.get());
 
 	if(startedScanning && isYours)
 	{
@@ -2451,9 +2471,16 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 
 
 // Get this ship's custom swizzle.
-int Ship::CustomSwizzle() const
+const Swizzle *Ship::CustomSwizzle() const
 {
 	return customSwizzle;
+}
+
+
+
+const string &Ship::CustomSwizzleName() const
+{
+	return customSwizzleName;
 }
 
 
@@ -2564,10 +2591,33 @@ bool Ship::IsDestroyed() const
 
 
 
-// Recharge and repair this ship (e.g. because it has landed).
+void Ship::LandForever()
+{
+	hasLanded = true;
+}
+
+
+
+// Check if this ship has permanently landed.
+bool Ship::HasLanded() const
+{
+	return hasLanded;
+}
+
+
+
+// Check if this ship has permanently landed or been destroyed.
+bool Ship::LandedOrDestroyed() const
+{
+	return (IsDestroyed() || HasLanded());
+}
+
+
+
+// Recharge and repair this ship (e.g. because it has landed temporarily).
 void Ship::Recharge(int rechargeType, bool hireCrew)
 {
-	if(IsDestroyed())
+	if(LandedOrDestroyed())
 		return;
 
 	if(hireCrew)
@@ -2710,6 +2760,11 @@ void Ship::ClearTargetsAndOrders()
 	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
+	destinationSystem = nullptr;
+	destinationPlanet = nullptr;
+	stopovers.clear();
+	waypoints.clear();
+	waypoint = 0;
 }
 
 
@@ -2799,10 +2854,26 @@ double Ship::MaxHull() const
 
 
 
-// Get the actual shield level of the ship.
+// Get the absolute shield level of the ship.
 double Ship::ShieldLevel() const
 {
 	return shields;
+}
+
+
+
+// Get the absolute hull level of the ship.
+double Ship::HullLevel() const
+{
+	return hull;
+}
+
+
+
+// Get the absolute fuel level of the ship.
+double Ship::FuelLevel() const
+{
+	return fuel;
 }
 
 
@@ -3713,6 +3784,45 @@ const System *Ship::GetTargetSystem() const
 
 
 
+// Persistent targets for mission NPCs.
+bool Ship::HasTravelDirective() const
+{
+	return !stopovers.empty() || !waypoints.empty() || destinationPlanet || destinationSystem;
+}
+
+
+
+const map<const Planet *, bool> &Ship::GetStopovers() const
+{
+	return stopovers;
+}
+
+
+
+bool Ship::AllStopoversVisited() const
+{
+	if(stopovers.empty())
+		return true;
+
+	return all_of(stopovers.begin(), stopovers.end(), [](const auto &it) { return it.second; });
+}
+
+
+
+const Planet *Ship::GetDestinationPlanet() const
+{
+	return destinationPlanet;
+}
+
+
+
+const System *Ship::GetDestinationSystem() const
+{
+	return destinationSystem;
+}
+
+
+
 // Mining target.
 shared_ptr<Minable> Ship::GetTargetAsteroid() const
 {
@@ -3783,6 +3893,66 @@ void Ship::SetTargetSystem(const System *system)
 	targetSystem = system;
 }
 
+
+
+// Persistent targets for mission NPCs.
+void Ship::SetDestination(const Planet *destination)
+{
+	destinationPlanet = destination;
+}
+
+
+
+void Ship::SetStopovers(const vector<const Planet *> &newStopovers)
+{
+	// Mark each planet as not visited.
+	for(const auto &it : newStopovers)
+		stopovers[it] = false;
+}
+
+
+
+void Ship::SetWaypoints(const vector<const System *> &newWaypoints)
+{
+	// Ships loaded from save files may have an existing waypoint that
+	// indicates which systems have already been visited.
+	if(waypoint < newWaypoints.size())
+	{
+		waypoints = newWaypoints;
+		if(targetSystem && personality.IsEntering())
+		{
+			--waypoint;
+			destinationSystem = targetSystem;
+		}
+		else
+			destinationSystem = newWaypoints[waypoint];
+	}
+	else
+		destinationSystem = nullptr;
+}
+
+
+
+const System *Ship::NextWaypoint()
+{
+	++waypoint;
+
+	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+	return destinationSystem;
+}
+
+
+
+void Ship::EraseWaypoint(const System *system)
+{
+	auto it = std::find(waypoints.begin(), waypoints.end(), system);
+	if(it == waypoints.end())
+		return;
+	if(waypoint > static_cast<unsigned>(std::distance(waypoints.begin(), it)))
+		--waypoint;
+	waypoints.erase(it);
+	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+}
 
 
 // Mining target.
@@ -3860,7 +4030,7 @@ void Ship::Linger()
 
 
 
-bool Ship::Immitates(const Ship &other) const
+bool Ship::Imitates(const Ship &other) const
 {
 	return displayModelName == other.DisplayModelName() && outfits == other.Outfits();
 }
@@ -4579,8 +4749,9 @@ bool Ship::DoLandingLogic()
 
 	float landingSpeed = attributes.Get("landing speed");
 	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
-	// Special ships do not disappear forever when they land; they
-	// just slowly refuel.
+	// Special ships do not disappear forever when they land; they just slowly refuel.
+	// Exception: mission NPCs given the "destination" directive will be removed
+	// when they land on their target.
 	if(landingPlanet && zoom)
 	{
 		// Move the ship toward the center of the planet while landing.
@@ -4602,7 +4773,7 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-			else if(!isSpecial || personality.IsFleeing())
+			else if(isSpecial && !isYours)
 			{
 				bool escortsLanded = true;
 				for(const auto &it : escorts)
@@ -4615,7 +4786,23 @@ bool Ship::DoLandingLogic()
 					break;
 				}
 				if(escortsLanded)
-					MarkForRemoval();
+				{
+					// This mission NPC has a directive to land on at least one specific planet.
+					// If this is one of them, this ship may land on a "destination" (permanently),
+					// or have a "stopover."
+					if(AllStopoversVisited() && destinationPlanet == landingPlanet)
+					{
+						MarkForRemoval();
+						LandForever();
+					return true;
+					}
+					else if(!stopovers.empty())
+					{
+						auto it = stopovers.find(landingPlanet);
+						if(it != stopovers.end())
+							it->second = true;
+					}
+				}
 				return true;
 			}
 
@@ -5209,4 +5396,10 @@ void Ship::Jettison(shared_ptr<Flotsam> toJettison)
 		}
 		++bayIndex;
 	}
+}
+
+void Ship::ResetStopovers()
+{
+	for(auto &stopover : stopovers)
+		stopover.second = false;
 }

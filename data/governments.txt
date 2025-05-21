@@ -2005,6 +2005,8 @@ government "Remnant"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
 	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Nenia"
 
 government "Remnant (Research)"
 	"display name" "Remnant"
@@ -2031,6 +2033,8 @@ government "Remnant (Research)"
 	"friendly disabled hail" "friendly disabled"
 	"hostile hail" "remnant uncontacted hostile"
 	"hostile disabled hail" "hostile disabled"
+	"travel restrictions"
+		system "Nenia"
 
 color "governments: Republic" .91 .42 .09
 
