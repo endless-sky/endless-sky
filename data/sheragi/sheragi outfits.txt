@@ -430,7 +430,7 @@ outfit "Retrofitted Fusion Afterburner"
 	"afterburner heat" 110
 	"unique" 1
 	"afterburner effect" "sheragi afterburner" 5
-	description "An ancient alien Fusion Afterburner Weland repaired for you. He retrofitted it so that it works slightly better then the original."
+	description "An ancient Fusion Afterburner Weland repaired for you. He retrofitted it so that it works slightly better then the original."
 
 effect "sheragi afterburner"
 	sprite "effect/afterburner"
