@@ -592,7 +592,6 @@ effect "asteroid am fire"
 	sprite "effect/asteroid am fire"
 		"frame time" 60
 		"random start frame"
-	sound "point defense"
 	lifetime 2
 
 outfit "Asteroid Anti-Missile 2"
@@ -620,7 +619,6 @@ effect "asteroid am circle defense"
 	sprite "effect/asteroid am circle defense"
 		"frame time" 60
 		"random start frame"
-	sound "point defense"
 	lifetime 2
 
 outfit "Asteroid Weapon Small"
@@ -638,7 +636,6 @@ outfit "Asteroid Weapon Small"
 			"frame time" 20
 			"start frame" 0
 			"no repeat"
-		sound "detainer"
 		"hit effect" "large explosion"
 		"inaccuracy" .5
 		"submunition" "Asteroid Circle Submunition" 7
@@ -2385,7 +2382,6 @@ effect "circle defense"
 	sprite "effect/explosion/nuke"
 		"frame time" 60
 		"random start frame"
-	sound "point defense"
 	lifetime 2
 
 # Outfits
