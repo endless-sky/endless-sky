@@ -311,12 +311,13 @@ void Font::SetUpShader(float glyphW, float glyphH)
 	glyphHeight = glyphH * .5f;
 
 	shader = GameData::Shaders().Get("font");
-	glUseProgram(shader->Object());
-	glUniform1i(shader->Uniform("tex"), 0);
-	glUseProgram(0);
 	// Initialize the shared parameters only once
 	if(!vao)
 	{
+		glUseProgram(shader->Object());
+		glUniform1i(shader->Uniform("tex"), 0);
+		glUseProgram(0);
+
 		// Create the VAO and VBO.
 		glGenVertexArrays(1, &vao);
 		glBindVertexArray(vao);
