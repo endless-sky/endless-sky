@@ -128,7 +128,7 @@ system Lathia
 		distance 1822.21
 		period 227.72
 	object
-		sprite planet/base
+		sprite "planet/asteroid magic"
 		distance 2723.62
 		period 1372.93
 
