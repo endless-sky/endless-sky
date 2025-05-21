@@ -11630,7 +11630,7 @@ mission "Hullen-Freeze revenge"
 				`	"Okay, okay. Yes I met her and him, but I didn't force my way anywhere. She led me to his office."`
 					goto truth
 				`	"Sorry. She must have me confused for someone else. I just was in that building to use the restroom."`
-				`	"I refuse to answer without my lawer present."`
+				`	"I refuse to answer without my lawyer present."`
 			`	Detective Song rubs the bridge of her nose and sighs. "Fine. You can go. I am afraid you have not been terribly helpful. If you can think of anything that may help our investigation please let us know." She knocks on the door and one of the men opens it.`
 			`	"We're done here," she tells him, and they let you back out in the spaceport.`
 				decline
