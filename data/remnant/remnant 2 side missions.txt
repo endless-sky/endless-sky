@@ -391,9 +391,9 @@ mission "Remnant: Teciimach Deployment"
 		personality staying uninterested disables plunders
 		fleet "Small Remnant"
 	npc evade
-		government "Korath"
+		government "Kor Alaji"
 		personality heroic plunders harvests staying
-		fleet "Korath Ember Waste Raid"
+		fleet "Kor Alaji Raid"
 	on complete
 		dialog
 			`Now that the most recent Korath raiders have been defeated, you decide to check your sensor logs to see how the new EMP Torpedoes Taely talked about performed. You note that the EMP bursts no longer have an impact on friendly ships. This could make them much more versatile.`
@@ -552,10 +552,10 @@ mission "Remnant: Shattered Light 4"
 		planet "Far Monad"
 		ship "Modified Dromedary Wreck" "Shattered Light"
 	npc evade
-		government "Korath"
+		government "Kor Isaha"
 		personality entering plunders harvests
 		system "Lucina"
-		fleet "Korath Ember Waste Raid"
+		fleet "Kor Isaha Raid"
 	on complete
 		payment 250000
 		outfit "NDR-114 Android" 5
@@ -681,7 +681,7 @@ mission "Remnant: Scent of Rain 1"
 		ship "Tubfalet" "Ra'puk At 333"
 		dialog `In poor lighting, this ship might have passed for a Palavret, but scanning reveals major structural differences. These suggest this is at least a new generation of the model, or perhaps an entirely different design. Time to report this to Chilia.`
 	npc
-		government "Korath"
+		government "Kor Alaji"
 		personality staying
 		system "Kor Zena'i"
 		fleet
