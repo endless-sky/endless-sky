@@ -2893,8 +2893,8 @@ ship "Monitor"
 	explode "medium explosion" 20
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
-	description "Before the time of the Navy, the formation of the Republic caused civil unrest amongst the inhabitants of several worlds. While some corporations happily joined the power, others wished to stay independent or even rebel against governance. To both quell the uncertainty and bring order to the growing Republic, the Monitor was manufactured as a powerful security ship, armed with three large forward guns and three supportive turret mounts. These ships would also see use in the Alpha Wars, although they were eventually made obsolete by more robust designs such as the Firebird."
-	description "	In a twisted act of irony, aging Monitors would eventually find itself in the hands of those who it once protected the Republic against, amongst groups of anarchists that now populate the north of human space."
+	description "Before the time of the Navy, the formation of the Republic caused civil unrest amongst the inhabitants of several worlds. While some corporations happily joined the fledgling power, others wished to stay independent or even rebelled against governance. To both quell this uncertainty and bring order to the growing Republic, the Monitor was manufactured as a powerful security ship, armed with three large forward guns and three supportive turret mounts. These ships would also see use in the Alpha Wars, although they were eventually made obsolete by more robust designs such as the Firebird."
+	description "	In a twisted act of irony, aging Monitors have eventually found themselves in the hands of those against whom they once fought, including groups of anarchists that now populate the north of human space."
 
 
 
