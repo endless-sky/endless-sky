@@ -92,6 +92,20 @@
 			}
 		},
 		{
+			"name": "linux-armv7",
+			"displayName": "Linux armv7",
+			"description": "Builds with the default host compiler on Linux for armv7 systems",
+			"inherits": "base",
+			"cacheVariables": {
+				"ES_LINK_LIBATOMIC": "ON"
+			},
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			}
+		},
+		{
 			"name": "macos",
 			"displayName": "MacOS",
 			"description": "Builds with the default host compiler on x64-based MacOS",
