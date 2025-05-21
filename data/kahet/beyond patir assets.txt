@@ -686,8 +686,9 @@ outfit "Asteroid Weapon Large"
 			"frame rate" 21
 		"velocity" 10
 		"drag" .1
-		"lifetime" 20
 		"turn" 16
+		"hit effect" "seeker impact"
+		"lifetime" 20
 		"submunition" "creeper1 print"
 		"reload" 100
 	description "By creating a circle of energy-based mines and then converting them into missiles at the same time, this weapon is capable of breaking through anti-missile defenses better than most."
@@ -701,6 +702,7 @@ outfit "creeper1 print"
 		"acceleration" 2
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper1 static"
 		"submunition" "creeper2 print"
@@ -712,6 +714,7 @@ outfit "creeper1 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 75
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -725,6 +728,7 @@ outfit "creeper2 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper2 static"
 		"submunition" "creeper3 print"
@@ -736,6 +740,7 @@ outfit "creeper2 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 70
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -749,6 +754,7 @@ outfit "creeper3 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper3 static"
 		"submunition" "creeper4 print"
@@ -760,6 +766,7 @@ outfit "creeper3 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 65
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -773,6 +780,7 @@ outfit "creeper4 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper4 static"
 		"submunition" "creeper5 print"
@@ -784,6 +792,7 @@ outfit "creeper4 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 60
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -797,6 +806,7 @@ outfit "creeper5 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper5 static"
 		"submunition" "creeper6 print"
@@ -808,6 +818,7 @@ outfit "creeper5 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 55
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -821,6 +832,7 @@ outfit "creeper6 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper6 static"
 		"submunition" "creeper7 print"
@@ -832,6 +844,7 @@ outfit "creeper6 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 50
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -845,6 +858,7 @@ outfit "creeper7 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper7 static"
 		"submunition" "creeper8 print"
@@ -856,6 +870,7 @@ outfit "creeper7 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 45
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -869,6 +884,7 @@ outfit "creeper8 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper8 static"
 		"submunition" "creeper9 print"
@@ -880,6 +896,7 @@ outfit "creeper8 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 40
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -893,6 +910,7 @@ outfit "creeper9 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper9 static"
 		"submunition" "creeper10 print"
@@ -904,6 +922,7 @@ outfit "creeper9 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 35
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -917,6 +936,7 @@ outfit "creeper10 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper10 static"
 		"submunition" "creeper11 print"
@@ -928,6 +948,7 @@ outfit "creeper10 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 30
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -941,6 +962,7 @@ outfit "creeper11 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper11 static"
 		"submunition" "creeper12 print"
@@ -952,6 +974,7 @@ outfit "creeper11 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 25
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -965,6 +988,7 @@ outfit "creeper12 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper12 static"
 		"submunition" "creeper13 print"
@@ -976,6 +1000,7 @@ outfit "creeper12 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 20
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -989,6 +1014,7 @@ outfit "creeper13 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper13 static"
 		"submunition" "creeper14 print"
@@ -1000,6 +1026,7 @@ outfit "creeper13 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 15
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -1013,6 +1040,7 @@ outfit "creeper14 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper14 static"
 		"submunition" "creeper15 print"
@@ -1024,6 +1052,7 @@ outfit "creeper14 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 10
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -1037,6 +1066,7 @@ outfit "creeper15 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -8
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "creeper15 static"
 		
@@ -1047,6 +1077,7 @@ outfit "creeper15 static"
 			"frame rate" 9
 		"acceleration" .0000001
 		"drag" 1
+		"hit effect" "seeker impact"
 		"lifetime" 5
 		"submunition" "asteroid launch"
 		"hull damage" 60
@@ -1467,6 +1498,7 @@ outfit "magic deployer1"
 			"random start frame"
 		"drag" .1
 		"acceleration" 1
+		"hit effect" "seeker impact"
 		"lifetime" 30
 		"submunition" "asteroid missile"
 			"facing" 30
@@ -1481,6 +1513,7 @@ outfit "magic deployer2"
 			"random start frame"
 		"drag" .1
 		"acceleration" 1
+		"hit effect" "seeker impact"
 		"lifetime" 30
 		"submunition" "asteroid missile"
 			"facing" 30
@@ -1495,6 +1528,7 @@ outfit "magic deployer3"
 			"random start frame"
 		"drag" .1
 		"acceleration" 1
+		"hit effect" "seeker impact"
 		"lifetime" 30
 		"submunition" "asteroid missile"
 			"facing" 30
@@ -1509,6 +1543,7 @@ outfit "magic deployer4"
 			"random start frame"
 		"drag" .1
 		"acceleration" 1
+		"hit effect" "seeker impact"
 		"lifetime" 30
 		"submunition" "asteroid missile"
 			"facing" 30
@@ -1523,6 +1558,7 @@ outfit "magic deployer5"
 			"random start frame"
 		"drag" .1
 		"acceleration" 1
+		"hit effect" "seeker impact"
 		"lifetime" 30
 		"submunition" "asteroid missile"
 			"facing" 30
@@ -1537,6 +1573,7 @@ outfit "magic deployer6"
 			"random start frame"
 		"drag" .1
 		"acceleration" 1
+		"hit effect" "seeker impact"
 		"lifetime" 30
 		"submunition" "asteroid missile" 15
 			"facing" 30
@@ -1578,6 +1615,7 @@ outfit "wep1 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1595,6 +1633,7 @@ outfit "wep2 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1612,6 +1651,7 @@ outfit "wep3 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1629,6 +1669,7 @@ outfit "wep4 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1646,6 +1687,7 @@ outfit "wep5 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1663,6 +1705,7 @@ outfit "wep6 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1680,6 +1723,7 @@ outfit "wep7 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1697,6 +1741,7 @@ outfit "wep8 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1714,6 +1759,7 @@ outfit "wep9 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1731,6 +1777,7 @@ outfit "wep10 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1748,6 +1795,7 @@ outfit "wep11 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1765,6 +1813,7 @@ outfit "wep12 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1782,6 +1831,7 @@ outfit "wep13 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1799,6 +1849,7 @@ outfit "wep14 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1816,6 +1867,7 @@ outfit "wep15 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1833,6 +1885,7 @@ outfit "wep16 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1850,6 +1903,7 @@ outfit "wep17 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1867,6 +1921,7 @@ outfit "wep18 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1884,6 +1939,7 @@ outfit "wep19 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1901,6 +1957,7 @@ outfit "wep20 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1918,6 +1975,7 @@ outfit "wep21 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1935,6 +1993,7 @@ outfit "wep22 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1952,6 +2011,7 @@ outfit "wep23 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1969,6 +2029,7 @@ outfit "wep24 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -1986,6 +2047,7 @@ outfit "wep25 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2003,6 +2065,7 @@ outfit "wep26 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2020,6 +2083,7 @@ outfit "wep27 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2037,6 +2101,7 @@ outfit "wep28 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2054,6 +2119,7 @@ outfit "wep29 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2071,6 +2137,7 @@ outfit "wep30 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2088,6 +2155,7 @@ outfit "wep31 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2105,6 +2173,7 @@ outfit "wep32 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2122,6 +2191,7 @@ outfit "wep33 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2139,6 +2209,7 @@ outfit "wep34 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2156,6 +2227,7 @@ outfit "wep35 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2173,6 +2245,7 @@ outfit "wep36 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2190,6 +2263,7 @@ outfit "wep37 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2207,6 +2281,7 @@ outfit "wep38 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2224,6 +2299,7 @@ outfit "wep39 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2241,6 +2317,7 @@ outfit "wep40 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2258,6 +2335,7 @@ outfit "wep41 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
@@ -2275,6 +2353,7 @@ outfit "wep42 print"
 		"acceleration" 3
 		"drag" .1
 		"turn" -2
+		"hit effect" "circle defense"
 		"lifetime" 15
 		"random lifetime" 5
 		"corrosion damage" -1.4
