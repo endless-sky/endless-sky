@@ -2131,7 +2131,7 @@ fleet "Old Northern Pirates"
 		"Jackal"
 	variant 2
 		"Monitor"
-		"Scrapper"
+		"Corvette"
 	variant 2
 		"Monitor"
 		"Fury"
@@ -2141,7 +2141,7 @@ fleet "Old Northern Pirates"
 		"Fury"
 	variant
 		"Jackal"
-		"Hawk"
+		"Scrapper" 2
 	variant
 		"Jackal"
 		"Berserker"
