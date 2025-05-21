@@ -322,7 +322,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(key == "mission")
 		{
-			missions.emplace_back(child, &conditions);
+			missions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((key == "mission cargo" || key == "mission passengers") && child.HasChildren())
@@ -339,7 +339,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 					}
 		}
 		else if(key == "available job")
-			availableJobs.emplace_back(child, &conditions);
+			availableJobs.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 		else if(key == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(key == "sort descending")
@@ -349,7 +349,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(key == "separate possible")
 			sortSeparatePossible = true;
 		else if(key == "available mission")
-			availableMissions.emplace_back(child, &conditions);
+			availableMissions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 		else if(key == "conditions")
 			conditions.Load(child);
 		else if(key == "gifted ships" && child.HasChildren())
@@ -566,7 +566,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		changedSystems |= (key == "system");
 		changedSystems |= (key == "link");
 		changedSystems |= (key == "unlink");
-		GameData::Change(change, &conditions);
+		GameData::Change(change, *this);
 	}
 	if(changedSystems)
 	{
@@ -1476,7 +1476,7 @@ CargoHold &PlayerInfo::Storage()
 
 
 // Get planetary storage information for all planets (for map and overviews).
-const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
+const map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;
 }
@@ -2458,7 +2458,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 		tributeReceived.begin(),
 		tributeReceived.end(),
 		0,
-		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
+		[](int64_t value, const map<const Planet *, int64_t>::value_type &tribute)
 		{
 			return value + tribute.second;
 		}
@@ -2594,6 +2594,20 @@ void PlayerInfo::Unvisit(const System &system)
 void PlayerInfo::Unvisit(const Planet &planet)
 {
 	visitedPlanets.erase(&planet);
+}
+
+
+
+const set<const System *> &PlayerInfo::VisitedSystems() const
+{
+	return visitedSystems;
+}
+
+
+
+const set<const Planet *> &PlayerInfo::VisitedPlanets() const
+{
+	return visitedPlanets;
 }
 
 

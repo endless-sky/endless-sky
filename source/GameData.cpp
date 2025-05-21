@@ -577,9 +577,9 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 
 
 // Apply the given change to the universe.
-void GameData::Change(const DataNode &node, const ConditionsStore *playerConditions)
+void GameData::Change(const DataNode &node, const PlayerInfo &player)
 {
-	objects.Change(node, playerConditions);
+	objects.Change(node, player);
 }
 
 
