@@ -2379,7 +2379,7 @@ outfit "wep static"
 
 
 effect "circle defense"
-	sprite "effect/explosion/nuke"
+	sprite "effect/jd detainer"
 		"frame time" 60
 		"random start frame"
 	lifetime 2
