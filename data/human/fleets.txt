@@ -2125,16 +2125,10 @@ fleet "Old Northern Pirates"
 		plunders harvests getaway
 	variant 4
 		"Firebird (Heavy Blaster)"
-	variant 4
-		"Jackal"
 	variant 3
 		"Monitor"
 	variant 2
 		"Jackal"
-		"Hawk"
-	variant 2
-		"Jackal"
-		"Berserker"
 	variant 2
 		"Monitor"
 		"Scrapper"
@@ -2146,8 +2140,13 @@ fleet "Old Northern Pirates"
 		"Hawk"
 		"Fury"
 	variant
-		"Firebird (Heavy Blaster)"
 		"Jackal"
+		"Hawk"
+	variant
+		"Jackal"
+		"Berserker"
+	variant
+		"Firebird (Heavy Blaster)" 2
 
 fleet "Old Southern Pirates"
 	government "Pirate"

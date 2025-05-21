@@ -4402,7 +4402,7 @@ system Almaaz
 	trade Plastic 308
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 600
-	fleet "Old Northern Pirates" 10000
+	fleet "Old Northern Pirates" 4000
 	fleet "Large Republic" 4000
 	object
 		sprite star/f-giant
@@ -4650,7 +4650,7 @@ system Alnilam
 	trade Plastic 334
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
-	fleet "Old Northern Pirates" 10000
+	fleet "Old Northern Pirates" 5000
 	fleet "Large Republic" 10000
 	object
 		sprite star/f5
@@ -6823,7 +6823,7 @@ system Arneb
 	trade Plastic 358
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
-	fleet "Old Northern Pirates" 10000
+	fleet "Old Northern Pirates" 6000
 	fleet "Large Republic" 15000
 	object
 		sprite star/f5
@@ -19491,7 +19491,7 @@ system Hatysa
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
-	fleet "Old Northern Pirates" 20000
+	fleet "Old Northern Pirates" 6000
 	fleet "Derelict Pirate" 30000
 	object
 		sprite star/k0
@@ -36161,7 +36161,7 @@ system Shaula
 	fleet "Small Northern Pirates" 5000
 	fleet "Large Northern Pirates" 9000
 	fleet "Large Militia" 9000
-	fleet "Old Southern Pirates" 15000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/g5
 		period 10
