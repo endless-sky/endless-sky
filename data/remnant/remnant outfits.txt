@@ -976,11 +976,11 @@ outfit "Remnant License"
 	series "Licenses"
 	index 03010
 	thumbnail "outfit/remnant license"
-	description "The prefects have reached a consensus that you should be considered a valuable friend of the Remnant, and shall be given permission to purchase their ships and technology."
+	description "In addition to serving as a handy IFF verifier, personal identification tool, and license to purchase Remnant technology, this device features movable parts that mechanically click with every adjustment. When the pieces are switched in a specific order and rhythm, the series of clicks produces a surprisingly beautiful blend of classical music tracks."
 
 outfit "Remnant Capital License"
 	category "Licenses"
 	series "Licenses"
 	index 03020
 	thumbnail "outfit/remnant capital license"
-	description "The prefects have decided that you should be trusted with their largest ships, and the valuable resources that go into making them."
+	description "While seemingly innocuous at first, this device shows the brilliant simplicity of Remnant engineering. Tapping either edge produces a brief, faint hum which can carry over vast distances on a planet. This humming allows captains who have been entrusted with the Remnant's most valuable technology to call nearby patrols for aid should they ever become stranded."

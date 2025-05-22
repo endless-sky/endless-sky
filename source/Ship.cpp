@@ -316,11 +316,12 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "zoom" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(grandKey == "zoom" && grandHasValue)
 					engine.zoom = grand.Value(1);
-				else if(grandKey == "angle" && grand.Size() >= 2)
+				else if(grandKey == "angle" && grandHasValue)
 					engine.facing += Angle(grand.Value(1));
-				else if(grandKey == "gimbal" && grand.Size() >= 2)
+				else if(grandKey == "gimbal" && grandHasValue)
 					engine.gimbal += Angle(grand.Value(1));
 				else
 				{
@@ -366,15 +367,16 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				for(const DataNode &grand : child)
 				{
 					bool needToCheckAngles = false;
-					if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					const string &grandKey = grand.Token(0);
+					if(grandKey == "angle" && grand.Size() >= 2)
 					{
 						attributes.baseAngle = grand.Value(1);
 						needToCheckAngles = true;
 						defaultBaseAngle = false;
 					}
-					else if(grand.Token(0) == "parallel")
+					else if(grandKey == "parallel")
 						attributes.isParallel = true;
-					else if(grand.Token(0) == "arc" && grand.Size() >= 3)
+					else if(grandKey == "arc" && grand.Size() >= 3)
 					{
 						attributes.isOmnidirectional = false;
 						attributes.minArc = Angle(grand.Value(1));
@@ -383,13 +385,13 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 						if(!Angle(0.).IsInRange(attributes.minArc, attributes.maxArc))
 							grand.PrintTrace("Warning: Minimum arc is higher than maximum arc. Might not work as expected.");
 					}
-					else if(grand.Token(0) == "blindspot" && grand.Size() >= 3)
+					else if(grandKey == "blindspot" && grand.Size() >= 3)
 						attributes.blindspots.emplace_back(grand.Value(1), grand.Value(2));
-					else if(grand.Token(0) == "turret turn multiplier")
+					else if(grandKey == "turret turn multiplier")
 						attributes.turnMultiplier = grand.Value(1);
-					else if(grand.Token(0) == "under")
+					else if(grandKey == "under")
 						drawUnder = true;
-					else if(grand.Token(0) == "over")
+					else if(grandKey == "over")
 						drawUnder = false;
 					else
 						grand.PrintTrace("Warning: Child nodes of \"" + key
@@ -451,26 +453,28 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(child.HasChildren())
 				for(const DataNode &grand : child)
 				{
+					const string &grandKey = grand.Token(0);
+					bool grandHasValue = grand.Size() >= 2;
 					// Load in the effect(s) to be displayed when the ship launches.
-					if(grand.Token(0) == "launch effect" && grand.Size() >= 2)
+					if(grandKey == "launch effect" && grandHasValue)
 					{
 						int count = grand.Size() >= 3 ? static_cast<int>(grand.Value(2)) : 1;
 						const Effect *e = GameData::Effects().Get(grand.Token(1));
 						bay.launchEffects.insert(bay.launchEffects.end(), count, e);
 					}
-					else if(grand.Token(0) == "angle" && grand.Size() >= 2)
+					else if(grandKey == "angle" && grandHasValue)
 						bay.facing = Angle(grand.Value(1));
 					else
 					{
 						bool handled = false;
 						for(unsigned i = 1; i < BAY_SIDE.size(); ++i)
-							if(grand.Token(0) == BAY_SIDE[i])
+							if(grandKey == BAY_SIDE[i])
 							{
 								bay.side = i;
 								handled = true;
 							}
 						for(unsigned i = 1; i < BAY_FACING.size(); ++i)
-							if(grand.Token(0) == BAY_FACING[i])
+							if(grandKey == BAY_FACING[i])
 							{
 								bay.facing = BAY_ANGLE[i];
 								handled = true;
@@ -566,6 +570,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		}
 		else if(key == "destination system" && hasValue)
 			targetSystem = GameData::Systems().Get(child.Token(1));
+		else if(key == "waypoint index" && child.Size() >= 2)
+			waypoint = child.Value(1);
 		else if(key == "parked")
 			isParked = true;
 		else if(key == "description" && hasValue)
@@ -1161,6 +1167,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("planet", landingPlanet->TrueName());
 		if(targetSystem)
 			out.Write("destination system", targetSystem->TrueName());
+		if(waypoint > 0 && waypoint <= waypoints.size())
+			out.Write("waypoint index", waypoint);
 		if(isParked)
 			out.Write("parked");
 	}
@@ -1809,7 +1817,7 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 	hasBoarded = false;
 
 	shared_ptr<Ship> victim = GetTargetShip();
-	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->IsDestroyed() || victim->GetSystem() != GetSystem())
+	if(CannotAct(Ship::ActionType::BOARD) || !victim || victim->LandedOrDestroyed() || victim->GetSystem() != GetSystem())
 		return shared_ptr<Ship>();
 
 	// For a fighter or drone, "board" means "return to ship." Except when the ship is
@@ -2583,10 +2591,33 @@ bool Ship::IsDestroyed() const
 
 
 
-// Recharge and repair this ship (e.g. because it has landed).
+void Ship::LandForever()
+{
+	hasLanded = true;
+}
+
+
+
+// Check if this ship has permanently landed.
+bool Ship::HasLanded() const
+{
+	return hasLanded;
+}
+
+
+
+// Check if this ship has permanently landed or been destroyed.
+bool Ship::LandedOrDestroyed() const
+{
+	return (IsDestroyed() || HasLanded());
+}
+
+
+
+// Recharge and repair this ship (e.g. because it has landed temporarily).
 void Ship::Recharge(int rechargeType, bool hireCrew)
 {
-	if(IsDestroyed())
+	if(LandedOrDestroyed())
 		return;
 
 	if(hireCrew)
@@ -2729,6 +2760,11 @@ void Ship::ClearTargetsAndOrders()
 	targetFlotsam.reset();
 	hyperspaceSystem = nullptr;
 	landingPlanet = nullptr;
+	destinationSystem = nullptr;
+	destinationPlanet = nullptr;
+	stopovers.clear();
+	waypoints.clear();
+	waypoint = 0;
 }
 
 
@@ -3748,6 +3784,45 @@ const System *Ship::GetTargetSystem() const
 
 
 
+// Persistent targets for mission NPCs.
+bool Ship::HasTravelDirective() const
+{
+	return !stopovers.empty() || !waypoints.empty() || destinationPlanet || destinationSystem;
+}
+
+
+
+const map<const Planet *, bool> &Ship::GetStopovers() const
+{
+	return stopovers;
+}
+
+
+
+bool Ship::AllStopoversVisited() const
+{
+	if(stopovers.empty())
+		return true;
+
+	return all_of(stopovers.begin(), stopovers.end(), [](const auto &it) { return it.second; });
+}
+
+
+
+const Planet *Ship::GetDestinationPlanet() const
+{
+	return destinationPlanet;
+}
+
+
+
+const System *Ship::GetDestinationSystem() const
+{
+	return destinationSystem;
+}
+
+
+
 // Mining target.
 shared_ptr<Minable> Ship::GetTargetAsteroid() const
 {
@@ -3818,6 +3893,66 @@ void Ship::SetTargetSystem(const System *system)
 	targetSystem = system;
 }
 
+
+
+// Persistent targets for mission NPCs.
+void Ship::SetDestination(const Planet *destination)
+{
+	destinationPlanet = destination;
+}
+
+
+
+void Ship::SetStopovers(const vector<const Planet *> &newStopovers)
+{
+	// Mark each planet as not visited.
+	for(const auto &it : newStopovers)
+		stopovers[it] = false;
+}
+
+
+
+void Ship::SetWaypoints(const vector<const System *> &newWaypoints)
+{
+	// Ships loaded from save files may have an existing waypoint that
+	// indicates which systems have already been visited.
+	if(waypoint < newWaypoints.size())
+	{
+		waypoints = newWaypoints;
+		if(targetSystem && personality.IsEntering())
+		{
+			--waypoint;
+			destinationSystem = targetSystem;
+		}
+		else
+			destinationSystem = newWaypoints[waypoint];
+	}
+	else
+		destinationSystem = nullptr;
+}
+
+
+
+const System *Ship::NextWaypoint()
+{
+	++waypoint;
+
+	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+	return destinationSystem;
+}
+
+
+
+void Ship::EraseWaypoint(const System *system)
+{
+	auto it = std::find(waypoints.begin(), waypoints.end(), system);
+	if(it == waypoints.end())
+		return;
+	if(waypoint > static_cast<unsigned>(std::distance(waypoints.begin(), it)))
+		--waypoint;
+	waypoints.erase(it);
+	destinationSystem = (waypoint < waypoints.size()) ? waypoints[waypoint] : nullptr;
+}
 
 
 // Mining target.
@@ -4065,7 +4200,8 @@ void Ship::DoGeneration()
 
 		const double hullAvailable = (attributes.Get("hull repair rate")
 			+ (hullDelay ? 0 : attributes.Get("delayed hull repair rate")))
-			* (1. + attributes.Get("hull repair multiplier"));
+			* (1. + attributes.Get("hull repair multiplier"))
+			* (1. + attributes.Get("cloaked repair multiplier") * Cloaking());
 		const double hullEnergy = (attributes.Get("hull energy")
 			+ (hullDelay ? 0 : attributes.Get("delayed hull energy")))
 			* (1. + attributes.Get("hull energy multiplier")) / hullAvailable;
@@ -4081,7 +4217,8 @@ void Ship::DoGeneration()
 
 		const double shieldsAvailable = (attributes.Get("shield generation")
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield generation")))
-			* (1. + attributes.Get("shield generation multiplier"));
+			* (1. + attributes.Get("shield generation multiplier"))
+			* (1. + attributes.Get("cloaked regen multiplier") * Cloaking());
 		const double shieldsEnergy = (attributes.Get("shield energy")
 			+ (shieldDelay ? 0 : attributes.Get("delayed shield energy")))
 			* (1. + attributes.Get("shield energy multiplier")) / shieldsAvailable;
@@ -4614,8 +4751,9 @@ bool Ship::DoLandingLogic()
 
 	float landingSpeed = attributes.Get("landing speed");
 	landingSpeed = landingSpeed > 0 ? landingSpeed : .02f;
-	// Special ships do not disappear forever when they land; they
-	// just slowly refuel.
+	// Special ships do not disappear forever when they land; they just slowly refuel.
+	// Exception: mission NPCs given the "destination" directive will be removed
+	// when they land on their target.
 	if(landingPlanet && zoom)
 	{
 		// Move the ship toward the center of the planet while landing.
@@ -4637,7 +4775,7 @@ bool Ship::DoLandingLogic()
 				SetTargetSystem(nullptr);
 				landingPlanet = nullptr;
 			}
-			else if(!isSpecial || personality.IsFleeing())
+			else if(isSpecial && !isYours)
 			{
 				bool escortsLanded = true;
 				for(const auto &it : escorts)
@@ -4650,7 +4788,23 @@ bool Ship::DoLandingLogic()
 					break;
 				}
 				if(escortsLanded)
-					MarkForRemoval();
+				{
+					// This mission NPC has a directive to land on at least one specific planet.
+					// If this is one of them, this ship may land on a "destination" (permanently),
+					// or have a "stopover."
+					if(AllStopoversVisited() && destinationPlanet == landingPlanet)
+					{
+						MarkForRemoval();
+						LandForever();
+					return true;
+					}
+					else if(!stopovers.empty())
+					{
+						auto it = stopovers.find(landingPlanet);
+						if(it != stopovers.end())
+							it->second = true;
+					}
+				}
 				return true;
 			}
 
@@ -5244,4 +5398,10 @@ void Ship::Jettison(shared_ptr<Flotsam> toJettison)
 		}
 		++bayIndex;
 	}
+}
+
+void Ship::ResetStopovers()
+{
+	for(auto &stopover : stopovers)
+		stopover.second = false;
 }

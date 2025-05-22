@@ -400,7 +400,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			trade[value].SetBase(child.Value(valueIndex + 1));
 		else if(key == "arrival")
 		{
-			if(child.Size() >= 2)
+			if(hasValue)
 			{
 				extraHyperArrivalDistance = child.Value(1);
 				extraJumpArrivalDistance = fabs(child.Value(1));
@@ -408,9 +408,10 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			for(const DataNode &grand : child)
 			{
 				const string &type = grand.Token(0);
-				if(type == "link" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(type == "link" && grandHasValue)
 					extraHyperArrivalDistance = grand.Value(1);
-				else if(type == "jump" && grand.Size() >= 2)
+				else if(type == "jump" && grandHasValue)
 					extraJumpArrivalDistance = fabs(grand.Value(1));
 				else
 					grand.PrintTrace("Warning: Skipping unsupported arrival distance limitation:");
@@ -418,7 +419,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		}
 		else if(key == "departure")
 		{
-			if(child.Size() >= 2)
+			if(hasValue)
 			{
 				jumpDepartureDistance = child.Value(1);
 				hyperDepartureDistance = fabs(child.Value(1));
@@ -426,15 +427,16 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 			for(const DataNode &grand : child)
 			{
 				const string &type = grand.Token(0);
-				if(type == "link" && grand.Size() >= 2)
+				bool grandHasValue = grand.Size() >= 2;
+				if(type == "link" && grandHasValue)
 					hyperDepartureDistance = grand.Value(1);
-				else if(type == "jump" && grand.Size() >= 2)
+				else if(type == "jump" && grandHasValue)
 					jumpDepartureDistance = fabs(grand.Value(1));
 				else
 					grand.PrintTrace("Warning: Skipping unsupported departure distance limitation:");
 			}
 		}
-		else if(key == "invisible fence" && child.Size() >= 2)
+		else if(key == "invisible fence" && hasValue)
 			invisibleFenceRadius = max(0., child.Value(1));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -450,7 +452,7 @@ void System::Load(const DataNode &node, Set<Planet> &planets, const ConditionsSt
 		while(root->parent >= 0)
 			root = &objects[root->parent];
 
-		static const string STAR = "You cannot land on this star!";
+		static const string STAR = "You cannot land on a star!";
 		static const string HOTPLANET = "This planet is too hot to land on.";
 		static const string COLDPLANET = "This planet is too cold to land on.";
 		static const string UNINHABITEDPLANET = "This planet doesn't have anywhere you can land.";
@@ -1069,10 +1071,11 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets,
 
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "hazard" && child.Size() >= 3)
+		const string &key = child.Token(0);
+		if(key == "hazard" && child.Size() >= 3)
 			object.hazards.emplace_back(GameData::Hazards().Get(child.Token(1)), child.Value(2),
 				child, playerConditions);
-		else if(child.Token(0) == "object")
+		else if(key == "object")
 			LoadObject(child, planets, playerConditions, index);
 		else
 			LoadObjectHelper(child, object);
@@ -1084,7 +1087,7 @@ void System::LoadObject(const DataNode &node, Set<Planet> &planets,
 void System::LoadObjectHelper(const DataNode &node, StellarObject &object, bool removing) const
 {
 	const string &key = node.Token(0);
-	bool hasValue = (node.Size() >= 2);
+	bool hasValue = node.Size() >= 2;
 	if(key == "sprite" && hasValue)
 	{
 		object.LoadSprite(node);
