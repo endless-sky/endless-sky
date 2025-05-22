@@ -322,7 +322,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			substitutions.Load(child, playerConditions);
 		else if(key == "npc")
 			npcs.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
-		else if(key == "timer" && hasValue >= 2)
+		else if(key == "timer" && hasValue)
 			timers.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "on" && hasValue && child.Token(1) == "enter")
 		{

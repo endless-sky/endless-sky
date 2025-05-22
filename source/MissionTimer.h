@@ -50,9 +50,11 @@ public:
 
 public:
 	MissionTimer() = default;
-	MissionTimer(const DataNode &node, const ConditionsStore *playerConditions);
+	MissionTimer(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Set up the timer from its data file node.
-	void Load(const DataNode &node, const ConditionsStore *playerConditions);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated MissionTimer, not a template,
 	// so the time to wait will be saved fully calculated, and with any elapsed time subtracted.
 	void Save(DataWriter &out) const;

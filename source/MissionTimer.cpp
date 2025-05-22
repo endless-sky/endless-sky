@@ -46,14 +46,16 @@ namespace {
 
 
 
-MissionTimer::MissionTimer(const DataNode &node, const ConditionsStore *playerConditions)
+MissionTimer::MissionTimer(const DataNode &node, const ConditionsStore *playerConditions,
+		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
-void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerConditions,
+		const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	if(node.Size() < 2)
 	{
@@ -114,7 +116,7 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 					if(hasValue)
 						system = GameData::Systems().Get(grand.Token(1));
 					else if(grand.HasChildren())
-						systems.Load(grand);
+						systems.Load(grand, visitedSystems, visitedPlanets);
 					else
 						grand.PrintTrace("Skipping unrecognized attribute:");
 				}
@@ -126,9 +128,9 @@ void MissionTimer::Load(const DataNode &node, const ConditionsStore *playerCondi
 		{
 			const string &trigger = child.Token(1);
 			if(trigger == "timeup")
-				actions[TimerTrigger::TIMEUP].Load(child, playerConditions);
+				actions[TimerTrigger::TIMEUP].Load(child, playerConditions, visitedSystems, visitedPlanets);
 			else if(trigger == "deactivation")
-				actions[TimerTrigger::DEACTIVATION].Load(child, playerConditions);
+				actions[TimerTrigger::DEACTIVATION].Load(child, playerConditions, visitedSystems, visitedPlanets);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
