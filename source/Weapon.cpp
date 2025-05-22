@@ -72,6 +72,40 @@ void Weapon::LoadWeapon(const DataNode &node)
 			canCollideAsteroids = false;
 		else if(key == "no minable collisions")
 			canCollideMinables = false;
+		else if(key == "homing")
+		{
+			homing = true;
+			// Convert the old formatting for defining homing for reverse
+			// compatibility.
+			if(child.Size() == 2)
+			{
+				int value = child.Value(1);
+				if(value == 0)
+					homing = false;
+				if(value == 1)
+					blindspot = true;
+				if(value >= 3)
+					throttleControl = true;
+				if(value >= 4)
+					leading = true;
+			}
+			for(const DataNode &grand : child)
+			{
+				for(int j = 0; j < grand.Size(); ++j)
+				{
+					const string &token = grand.Token(j);
+
+					if(token == "blindspot")
+						blindspot = true;
+					else if(token == "throttle control")
+						throttleControl = true;
+					else if(token == "leading")
+						leading = true;
+					else
+						grand.PrintTrace("Skipping unknown homing attribute:");
+				}
+			}
+		}
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
@@ -183,8 +217,6 @@ void Weapon::LoadWeapon(const DataNode &node)
 				burstReload = max(1., value);
 			else if(key == "burst count")
 				burstCount = max(1., value);
-			else if(key == "homing")
-				homing = value;
 			else if(key == "missile strength")
 				missileStrength = max(0., value);
 			else if(key == "anti-missile")
