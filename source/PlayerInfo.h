@@ -69,7 +69,7 @@ public:
 	// Don't allow copying this class.
 	PlayerInfo(const PlayerInfo &) = delete;
 	PlayerInfo &operator=(const PlayerInfo &) = delete;
-	PlayerInfo(PlayerInfo &&) = default;
+	PlayerInfo(PlayerInfo &&) = delete;
 	PlayerInfo &operator=(PlayerInfo &&) = default;
 	~PlayerInfo() noexcept = default;
 
@@ -280,6 +280,8 @@ public:
 	// Mark a system and its planets as unvisited, even if visited previously.
 	void Unvisit(const System &system);
 	void Unvisit(const Planet &planet);
+	const std::set<const System *> &VisitedSystems() const;
+	const std::set<const Planet *> &VisitedPlanets() const;
 
 	// Check whether the player has visited the <mapSize> systems around the current one.
 	bool HasMapped(int mapSize, bool mapMinables) const;
@@ -364,6 +366,8 @@ private:
 
 	// Set the flagship (on departure or during flight).
 	void SetFlagship(Ship &other);
+
+	void HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip);
 
 	// Helper function to update the ship selection.
 	void SelectShip(const std::shared_ptr<Ship> &ship, bool *first);

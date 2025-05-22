@@ -282,7 +282,7 @@ ship "Modified Dromedary"
 		"hull" 9600
 		"required crew" 95
 		"bunks" 300
-		"mass" 4732
+		"mass" 2366
 		"drag" 28.7
 		"heat dissipation" .22
 		"fuel capacity" 900
