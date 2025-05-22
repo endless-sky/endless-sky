@@ -144,8 +144,6 @@ void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 
 	const string &key = node.Token(0);
 	bool hasValue = node.Size() >= 2;
-
-	const ConditionsStore *playerConditions = &player.Conditions();
 	if(key == "fleet" && hasValue)
 		fleets.Get(node.Token(1))->Load(node);
 	else if(key == "galaxy" && hasValue)
