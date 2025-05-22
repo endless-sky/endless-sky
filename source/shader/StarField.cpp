@@ -19,8 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Body.h"
 #include "DrawList.h"
 #include "../GameData.h"
+#include "../Interface.h"
 #include "../pi.h"
-#include "../Point.h"
 #include "../Preferences.h"
 #include "../Random.h"
 #include "../Screen.h"
@@ -106,6 +106,15 @@ void StarField::Init(int stars, int width)
 
 
 
+void StarField::FinishLoading()
+{
+	const Interface *constants = GameData::Interfaces().Get("starfield");
+	fixedZoom = constants->GetValue("fixed zoom");
+	velocityReducer = constants->GetValue("velocity reducer");
+}
+
+
+
 void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
@@ -126,11 +135,38 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-void StarField::Draw(const Point &pos, const Point &vel, double zoom, const System *system) const
+void StarField::Step(Point vel, double zoom)
+{
+	if(Preferences::Has("Fixed starfield zoom"))
+	{
+		baseZoom = fixedZoom;
+		vel /= velocityReducer;
+	}
+	else if(zoom < .25)
+	{
+		// When the player's view zoom gets too small, the starfield begins to take up
+		// an extreme amount of system resources, and the tiling becomes very obvious.
+		// If the view zoom gets below 0.25, start zooming the starfield at a different
+		// rate, and don't go below 0.15 for the starfield's zoom.
+		// 0.25 is the vanilla minimum zoom, so this only applies when the "main view"
+		// interface has been modified to allow lower zoom values.
+		baseZoom = .4 * zoom + .15;
+		// Reduce the movement of the background by the same adjustment as the zoom
+		// so that the background doesn't appear like it's moving way quicker than
+		// the player is.
+		vel /= baseZoom / zoom;
+	}
+	else
+		baseZoom = zoom;
+
+	pos += vel;
+}
+
+
+
+void StarField::Draw(const Point &blur, const System *system) const
 {
 	double density = system ? system->StarfieldDensity() : 1.;
-
-	double baseZoom = zoom;
 
 	// Check preferences for the parallax quality.
 	const auto parallaxSetting = Preferences::GetBackgroundParallax();
@@ -139,6 +175,7 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 						parallaxSetting == Preferences::BackgroundParallax::FAST);
 
 	// Draw the starfield unless it is disabled in the preferences.
+	double zoom = baseZoom;
 	if(Preferences::Has("Draw starfield") && density > 0.)
 	{
 		glUseProgram(shader->Object());
@@ -150,8 +187,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			if(isParallax)
 				zoom = baseZoom * STAR_ZOOM * pow(pass, 0.2);
 
-			float length = vel.Length();
-			Point unit = length ? vel.Unit() : Point(1., 0.);
+			float length = blur.Length();
+			Point unit = length ? blur.Unit() : Point(1., 0.);
 			// Don't zoom the stars at the same rate as the field; otherwise, at the
 			// farthest out zoom they are too small to draw well.
 			unit /= pow(zoom, .75);
@@ -169,8 +206,8 @@ void StarField::Draw(const Point &pos, const Point &vel, double zoom, const Syst
 			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
 
 			// Stars this far beyond the border may still overlap the screen.
-			double borderX = fabs(vel.X()) + 1.;
-			double borderY = fabs(vel.Y()) + 1.;
+			double borderX = fabs(blur.X()) + 1.;
+			double borderY = fabs(blur.Y()) + 1.;
 			// Find the absolute bounds of the star field we must draw.
 			int minX = pos.X() + (Screen::Left() - borderX) / zoom;
 			int minY = pos.Y() + (Screen::Top() - borderY) / zoom;

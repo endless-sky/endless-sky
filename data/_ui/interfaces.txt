@@ -129,6 +129,10 @@ color "missile enemy" 1. 1. .25 .7
 color "missile locked" 1. .9 0. .9
 color "missile dangerous" 1. .1 .1 1.
 
+# Colors of overlays for flagship turrets with blindspots.
+color "overlay turret" 0. 1. 0. .1
+color "overlay turret blindspot" 1. 0. 0. .5
+
 # Colors used in the radar map while in-flight.
 color "radar player" .2 1. 0. 0.
 color "radar friendly" .4 .6 1. 0.
@@ -1265,6 +1269,7 @@ interface "hud"
 		center 0 100
 
 
+
 interface "main view"
 	list "zooms"
 		.25
@@ -1274,6 +1279,12 @@ interface "main view"
 		1.
 		1.4
 		2.
+
+
+
+interface "starfield"
+	value "fixed zoom" .35
+	value "velocity reducer" 1.4
 
 
 

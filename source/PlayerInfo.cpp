@@ -40,7 +40,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SavedGame.h"
 #include "Ship.h"
 #include "ShipEvent.h"
-#include "ShipJumpNavigation.h"
 #include "StartConditions.h"
 #include "StellarObject.h"
 #include "System.h"
@@ -217,111 +216,118 @@ void PlayerInfo::Load(const filesystem::path &path)
 	DataFile file(path);
 	for(const DataNode &child : file)
 	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
 		// Basic player information and persistent UI settings:
-		if(child.Token(0) == "pilot" && child.Size() >= 3)
+		if(key == "pilot" && child.Size() >= 3)
 		{
 			firstName = child.Token(1);
 			lastName = child.Token(2);
 		}
-		else if(child.Token(0) == "date" && child.Size() >= 4)
+		else if(key == "date" && child.Size() >= 4)
 			date = Date(child.Value(1), child.Value(2), child.Value(3));
-		else if(child.Token(0) == "system entry method" && child.Size() >= 2)
+		else if(key == "system entry method" && hasValue)
 			entry = StringToEntry(child.Token(1));
-		else if(child.Token(0) == "previous system" && child.Size() >= 2)
+		else if(key == "previous system" && hasValue)
 			previousSystem = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "system" && child.Size() >= 2)
+		else if(key == "system" && hasValue)
 			system = GameData::Systems().Get(child.Token(1));
-		else if(child.Token(0) == "planet" && child.Size() >= 2)
+		else if(key == "planet" && hasValue)
 			planet = GameData::Planets().Get(child.Token(1));
-		else if(child.Token(0) == "clearance")
+		else if(key == "clearance")
 			hasFullClearance = true;
-		else if(child.Token(0) == "launching")
+		else if(key == "launching")
 			shouldLaunch = true;
-		else if(child.Token(0) == "playtime" && child.Size() >= 2)
+		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
-		else if(child.Token(0) == "travel" && child.Size() >= 2)
+		else if(key == "travel" && hasValue)
 			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
-		else if(child.Token(0) == "travel destination" && child.Size() >= 2)
+		else if(key == "travel destination" && hasValue)
 			travelDestination = GameData::Planets().Get(child.Token(1));
-		else if(child.Token(0) == "map coloring" && child.Size() >= 2)
+		else if(key == "map coloring" && hasValue)
 			mapColoring = child.Value(1);
-		else if(child.Token(0) == "map zoom" && child.Size() >= 2)
+		else if(key == "map zoom" && hasValue)
 			mapZoom = child.Value(1);
-		else if(child.Token(0) == "collapsed" && child.Size() >= 2)
+		else if(key == "collapsed" && hasValue)
 		{
 			for(const DataNode &grand : child)
 				collapsed[child.Token(1)].insert(grand.Token(0));
 		}
-		else if(child.Token(0) == "reputation with")
+		else if(key == "reputation with")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					reputationChanges.emplace_back(
 						GameData::Governments().Get(grand.Token(0)), grand.Value(1));
 		}
-		else if(child.Token(0) == "tribute received")
+		else if(key == "tribute received")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					tributeReceived[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
 		}
 		// Records of things you own:
-		else if(child.Token(0) == "ship")
+		else if(key == "ship")
 		{
 			// Ships owned by the player have various special characteristics:
-			ships.push_back(make_shared<Ship>(child));
+			ships.push_back(make_shared<Ship>(child, &conditions));
 			ships.back()->SetIsSpecial();
 			ships.back()->SetIsYours();
 			// Defer finalizing this ship until we have processed all changes to game state.
 		}
-		else if(child.Token(0) == "groups" && child.Size() >= 2 && !ships.empty())
+		else if(key == "groups" && hasValue && !ships.empty())
 			groups[ships.back().get()] = child.Value(1);
-		else if(child.Token(0) == "storage")
+		else if(key == "storage")
 		{
 			for(const DataNode &grand : child)
-				if(grand.Size() >= 2 && grand.Token(0) == "planet")
-					for(const DataNode &grandGrand : grand)
-						if(grandGrand.Token(0) == "cargo")
+				if(grand.Token(0) == "planet" && grand.Size() >= 2)
+				{
+					const Planet *planet = GameData::Planets().Get(grand.Token(1));
+					for(const DataNode &great : grand)
+					{
+						if(great.Token(0) == "cargo")
 						{
-							CargoHold &storage = planetaryStorage[GameData::Planets().Get(grand.Token(1))];
-							storage.Load(grandGrand);
+							CargoHold &storage = planetaryStorage[planet];
+							storage.Load(great);
 						}
+					}
+				}
 		}
-		else if(child.Token(0) == "licenses")
+		else if(key == "licenses")
 		{
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
-		else if(child.Token(0) == "account")
+		else if(key == "account")
 			accounts.Load(child, true);
-		else if(child.Token(0) == "cargo")
+		else if(key == "cargo")
 			cargo.Load(child);
-		else if(child.Token(0) == "basis")
+		else if(key == "basis")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					costBasis[grand.Token(0)] += grand.Value(1);
 		}
-		else if(child.Token(0) == "stock")
+		else if(key == "stock")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
 					stock[GameData::Outfits().Get(grand.Token(0))] += grand.Value(1);
 		}
-		else if(child.Token(0) == "fleet depreciation")
+		else if(key == "fleet depreciation")
 			depreciation.Load(child);
-		else if(child.Token(0) == "stock depreciation")
+		else if(key == "stock depreciation")
 			stockDepreciation.Load(child);
 
 		// Records of things you have done or are doing, or have happened to you:
-		else if(child.Token(0) == "mission")
+		else if(key == "mission")
 		{
-			missions.emplace_back(child, &conditions);
+			missions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 			cargo.AddMissionCargo(&missions.back());
 		}
-		else if((child.Token(0) == "mission cargo" || child.Token(0) == "mission passengers") && child.HasChildren())
+		else if((key == "mission cargo" || key == "mission passengers") && child.HasChildren())
 		{
-			map<string, map<string, int>> &toDistribute = (child.Token(0) == "mission cargo")
+			map<string, map<string, int>> &toDistribute = (key == "mission cargo")
 					? missionCargoToDistribute : missionPassengersToDistribute;
 			for(const DataNode &grand : child)
 				if(grand.Token(0) == "player ships" && grand.HasChildren())
@@ -332,43 +338,43 @@ void PlayerInfo::Load(const filesystem::path &path)
 						toDistribute[great.Token(0)][great.Token(1)] = great.Value(2);
 					}
 		}
-		else if(child.Token(0) == "available job")
-			availableJobs.emplace_back(child, &conditions);
-		else if(child.Token(0) == "sort type")
+		else if(key == "available job")
+			availableJobs.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
+		else if(key == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
-		else if(child.Token(0) == "sort descending")
+		else if(key == "sort descending")
 			availableSortAsc = false;
-		else if(child.Token(0) == "separate deadline")
+		else if(key == "separate deadline")
 			sortSeparateDeadline = true;
-		else if(child.Token(0) == "separate possible")
+		else if(key == "separate possible")
 			sortSeparatePossible = true;
-		else if(child.Token(0) == "available mission")
-			availableMissions.emplace_back(child, &conditions);
-		else if(child.Token(0) == "conditions")
+		else if(key == "available mission")
+			availableMissions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
+		else if(key == "conditions")
 			conditions.Load(child);
-		else if(child.Token(0) == "gifted ships" && child.HasChildren())
+		else if(key == "gifted ships" && child.HasChildren())
 		{
 			for(const DataNode &grand : child)
 				giftedShips[grand.Token(0)] = EsUuid::FromString(grand.Token(1));
 		}
-		else if(child.Token(0) == "event")
+		else if(key == "event")
 			gameEvents.emplace(GameEvent(child, &conditions));
-		else if(child.Token(0) == "changes")
+		else if(key == "changes")
 		{
 			for(const DataNode &grand : child)
 				dataChanges.push_back(grand);
 		}
-		else if(child.Token(0) == "economy")
+		else if(key == "economy")
 			economy = child;
-		else if(child.Token(0) == "destroyed" && child.Size() >= 2)
+		else if(key == "destroyed" && hasValue)
 			destroyedPersons.push_back(child.Token(1));
 
 		// Records of things you have discovered:
-		else if(child.Token(0) == "visited" && child.Size() >= 2)
+		else if(key == "visited" && hasValue)
 			Visit(*GameData::Systems().Get(child.Token(1)));
-		else if(child.Token(0) == "visited planet" && child.Size() >= 2)
+		else if(key == "visited planet" && hasValue)
 			Visit(*GameData::Planets().Get(child.Token(1)));
-		else if(child.Token(0) == "harvested")
+		else if(key == "harvested")
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
@@ -376,7 +382,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 						GameData::Systems().Get(grand.Token(0)),
 						GameData::Outfits().Get(grand.Token(1)));
 		}
-		else if(child.Token(0) == "logbook")
+		else if(key == "logbook")
 		{
 			for(const DataNode &grand : child)
 			{
@@ -404,7 +410,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 				}
 			}
 		}
-		else if(child.Token(0) == "start")
+		else if(key == "start")
 			startData.Load(child);
 	}
 	// Modify the game data with any changes that were loaded from this file.
@@ -556,10 +562,11 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 	bool changedSystems = false;
 	for(const DataNode &change : changes)
 	{
-		changedSystems |= (change.Token(0) == "system");
-		changedSystems |= (change.Token(0) == "link");
-		changedSystems |= (change.Token(0) == "unlink");
-		GameData::Change(change, &conditions);
+		const string &key = change.Token(0);
+		changedSystems |= (key == "system");
+		changedSystems |= (key == "link");
+		changedSystems |= (key == "unlink");
+		GameData::Change(change, *this);
 	}
 	if(changedSystems)
 	{
@@ -1469,7 +1476,7 @@ CargoHold &PlayerInfo::Storage()
 
 
 // Get planetary storage information for all planets (for map and overviews).
-const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
+const map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;
 }
@@ -2451,7 +2458,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 		tributeReceived.begin(),
 		tributeReceived.end(),
 		0,
-		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
+		[](int64_t value, const map<const Planet *, int64_t>::value_type &tribute)
 		{
 			return value + tribute.second;
 		}
@@ -2587,6 +2594,20 @@ void PlayerInfo::Unvisit(const System &system)
 void PlayerInfo::Unvisit(const Planet &planet)
 {
 	visitedPlanets.erase(&planet);
+}
+
+
+
+const set<const System *> &PlayerInfo::VisitedSystems() const
+{
+	return visitedSystems;
+}
+
+
+
+const set<const Planet *> &PlayerInfo::VisitedPlanets() const
+{
+	return visitedPlanets;
 }
 
 
@@ -3236,7 +3257,25 @@ void PlayerInfo::RegisterDerivedConditions()
 	conditions["day"].ProvideNamed([this](const ConditionEntry &ce) { return date.Day(); });
 	conditions["month"].ProvideNamed([this](const ConditionEntry &ce) { return date.Month(); });
 	conditions["year"].ProvideNamed([this](const ConditionEntry &ce) { return date.Year(); });
-	conditions["weekday"].ProvideNamed([this](const ConditionEntry &ce) { return date.WeekdayNumber(); });
+	conditions["weekday: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
+		string day = ce.NameWithoutPrefix();
+		int number = date.WeekdayNumberOffset();
+		if(day == "saturday")
+			return number == 0;
+		if(day == "sunday")
+			return number == 1;
+		if(day == "monday")
+			return number == 2;
+		if(day == "tuesday")
+			return number == 3;
+		if(day == "wednesday")
+			return number == 4;
+		if(day == "thursday")
+			return number == 5;
+		if(day == "friday")
+			return number == 6;
+		return 0;
+	});
 	conditions["days since year start"].ProvideNamed([this](const ConditionEntry &ce) {
 		return date.DaysSinceYearStart(); });
 	conditions["days until year end"].ProvideNamed([this](const ConditionEntry &ce) {
@@ -3915,7 +3954,7 @@ void PlayerInfo::CreateMissions()
 	if(availableMissions.empty())
 		return;
 
-	// This list is already in alphabetical order by virture of the way that the Set
+	// This list is already in alphabetical order by virtue of the way that the Set
 	// class stores objects, so stable sorting on the offer precedence will maintain
 	// the alphabetical ordering for missions with the same precedence.
 	availableMissions.sort([](const Mission &a, const Mission &b)
@@ -4089,13 +4128,22 @@ void PlayerInfo::SortAvailable()
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
 void PlayerInfo::StepMissions(UI *ui)
 {
-	// Check for NPCs that have been destroyed without their destruction
-	// being registered, e.g. by self-destruct:
+	// Check for NPCs that have been destroyed without their destruction being
+	// registered, e.g. by self-destruct, or landed due to the player landing.
 	for(Mission &mission : missions)
 		for(const NPC &npc : mission.NPCs())
 			for(const shared_ptr<Ship> &ship : npc.Ships())
+			{
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
+				else if(ship->GetSystem() == system && !ship->IsDisabled()
+					&& ship->GetDestinationPlanet() == planet
+					&& npc.SucceedsOnLanding() && ship->AllStopoversVisited())
+				{
+					ship->LandForever();
+					mission.Do(ShipEvent(nullptr, ship, ShipEvent::LAND), *this, ui);
+				}
+			}
 
 	// Check missions for status changes from landing.
 	string visitText;
