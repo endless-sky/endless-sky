@@ -672,7 +672,7 @@ bool Mission::IsValid() const
 
 
 // Check if this mission has high priority. If any priority missions
-// are available, only other priority missions can offer alongside it.
+// are available, only other priority missions and non-blocking ones can offer alongside it.
 bool Mission::HasPriority() const
 {
 	return hasPriority;

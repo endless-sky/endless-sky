@@ -86,7 +86,7 @@ public:
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
 	// Check if this mission has high priority. If any priority missions
-	// are available, only other priority missions can offer alongside it.
+	// are available, only other priority missions and non-blocking ones can offer alongside it.
 	bool HasPriority() const;
 	// Check if this mission is a "non-blocking" mission.
 	// Such missions will not prevent minor missions from being offered alongside them,
