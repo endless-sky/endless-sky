@@ -26,7 +26,8 @@ using namespace std;
 
 
 
-void Person::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void Person::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	for(const DataNode &child : node)
 	{
@@ -34,7 +35,7 @@ void Person::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		bool hasValue = child.Size() >= 2;
 
 		if(key == "system")
-			location.Load(child);
+			location.Load(child, visitedSystems, visitedPlanets);
 		else if(key == "frequency" && hasValue)
 			frequency = child.Value(1);
 		else if(key == "formation" && hasValue)

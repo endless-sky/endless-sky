@@ -281,6 +281,8 @@ public:
 	// Mark a system and its planets as unvisited, even if visited previously.
 	void Unvisit(const System &system);
 	void Unvisit(const Planet &planet);
+	const std::set<const System *> &VisitedSystems() const;
+	const std::set<const Planet *> &VisitedPlanets() const;
 
 	// Check whether the player has visited the <mapSize> systems around the current one.
 	bool HasMapped(int mapSize, bool mapMinables) const;

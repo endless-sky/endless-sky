@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LocationFilter.h"
 #include "Outfit.h"
 #include "Planet.h"
+#include "PlayerInfo.h"
 #include "Port.h"
 #include "Ship.h"
 #include "Shop.h"
@@ -660,6 +661,8 @@ namespace {
 		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
 		LocationFilter filter;
+		const set<const System *> *visitedSystems = &player.VisitedSystems();
+		const set<const Planet *> *visitedPlanets = &player.VisitedPlanets();
 		for(const DataNode &node : file)
 		{
 			const string &key = node.Token(0);
@@ -674,7 +677,7 @@ namespace {
 			}
 			else if(key == "location")
 			{
-				filter.Load(node);
+				filter.Load(node, visitedSystems, visitedPlanets);
 				break;
 			}
 		}

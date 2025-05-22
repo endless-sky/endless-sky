@@ -115,15 +115,17 @@ namespace {
 
 
 // Construct and Load() at the same time.
-Mission::Mission(const DataNode &node, const ConditionsStore *playerConditions)
+Mission::Mission(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
-	Load(node, playerConditions);
+	Load(node, playerConditions, visitedSystems, visitedPlanets);
 }
 
 
 
 // Load a mission, either from the game data or from a saved game.
-void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions)
+void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions,
+	const set<const System *> *visitedSystems, const set<const Planet *> *visitedPlanets)
 {
 	// All missions need a name.
 	if(node.Size() < 2)
@@ -242,7 +244,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		else if(key == "clearance")
 		{
 			clearance = (child.Size() == 1 ? "auto" : child.Token(1));
-			clearanceFilter.Load(child);
+			clearanceFilter.Load(child, visitedSystems, visitedPlanets);
 		}
 		else if(child.Size() == 2 && key == "ignore" && child.Token(1) == "clearance")
 			ignoreClearance = true;
@@ -269,21 +271,21 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			ParseMixedSpecificity(child, "planet", 2);
 		}
 		else if(key == "source")
-			sourceFilter.Load(child);
+			sourceFilter.Load(child, visitedSystems, visitedPlanets);
 		else if(key == "destination" && child.Size() == 2)
 		{
 			destination = GameData::Planets().Get(child.Token(1));
 			ParseMixedSpecificity(child, "planet", 2);
 		}
 		else if(key == "destination")
-			destinationFilter.Load(child);
+			destinationFilter.Load(child, visitedSystems, visitedPlanets);
 		else if(key == "complete")
 		{
 			if(!hasValue)
 				child.PrintTrace("Incomplete \"complete\" option. Follow \"complete\" with \"at\".");
 			else if(child.Token(1) == "at")
 			{
-				LocationFilter loaded(child);
+				LocationFilter loaded(child, visitedSystems, visitedPlanets);
 				if(loaded.IsEmpty())
 					child.PrintTrace("Error: The \"complete at\" filter must not be empty. Ignoring this filter.");
 				else
@@ -300,7 +302,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			ParseMixedSpecificity(child, "system", 2 + visited);
 		}
 		else if(key == "waypoint" && child.HasChildren())
-			waypointFilters.emplace_back(child);
+			waypointFilters.emplace_back(child, visitedSystems, visitedPlanets);
 		else if(key == "stopover" && hasValue)
 		{
 			bool visited = child.Size() >= 3 && child.Token(2) == "visited";
@@ -309,7 +311,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			ParseMixedSpecificity(child, "planet", 2 + visited);
 		}
 		else if(key == "stopover" && child.HasChildren())
-			stopoverFilters.emplace_back(child);
+			stopoverFilters.emplace_back(child, visitedSystems, visitedPlanets);
 		else if(key == "mark" && hasValue)
 		{
 			bool unmarked = child.Size() >= 3 && child.Token(2) == "unmarked";
@@ -319,7 +321,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		else if(key == "substitutions" && child.HasChildren())
 			substitutions.Load(child, playerConditions);
 		else if(key == "npc")
-			npcs.emplace_back(child, playerConditions);
+			npcs.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
 		else if(key == "on" && hasValue && child.Token(1) == "enter")
 		{
 			// "on enter" nodes may either name a specific system or use a LocationFilter
@@ -327,10 +329,10 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			if(child.Size() >= 3)
 			{
 				MissionAction &action = onEnter[GameData::Systems().Get(child.Token(2))];
-				action.Load(child, playerConditions);
+				action.Load(child, playerConditions, visitedSystems, visitedPlanets);
 			}
 			else
-				genericOnEnter.emplace_back(child, playerConditions);
+				genericOnEnter.emplace_back(child, playerConditions, visitedSystems, visitedPlanets);
 		}
 		else if(key == "on" && hasValue)
 		{
@@ -350,7 +352,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
-				actions[it->second].Load(child, playerConditions);
+				actions[it->second].Load(child, playerConditions, visitedSystems, visitedPlanets);
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
@@ -1606,7 +1608,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		return result;
 	}
 	for(const NPC &npc : npcs)
-		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination->GetSystem(), jumps, payload));
+		result.npcs.push_back(npc.Instantiate(player, subs, sourceSystem, result.destination, jumps, payload));
 
 	// Instantiate the actions. The "complete" action is always first so that
 	// the "<payment>" substitution can be filled in.
