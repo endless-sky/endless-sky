@@ -322,7 +322,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		// Records of things you have done or are doing, or have happened to you:
 		else if(key == "mission")
 		{
-			missions.emplace_back(child, &conditions);
+			missions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 			cargo.AddMissionCargo(&missions.back());
 		}
 		else if((key == "mission cargo" || key == "mission passengers") && child.HasChildren())
@@ -339,7 +339,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 					}
 		}
 		else if(key == "available job")
-			availableJobs.emplace_back(child, &conditions);
+			availableJobs.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 		else if(key == "sort type")
 			availableSortType = static_cast<SortType>(child.Value(1));
 		else if(key == "sort descending")
@@ -349,7 +349,7 @@ void PlayerInfo::Load(const filesystem::path &path)
 		else if(key == "separate possible")
 			sortSeparatePossible = true;
 		else if(key == "available mission")
-			availableMissions.emplace_back(child, &conditions);
+			availableMissions.emplace_back(child, &conditions, &visitedSystems, &visitedPlanets);
 		else if(key == "conditions")
 			conditions.Load(child);
 		else if(key == "gifted ships" && child.HasChildren())
@@ -566,7 +566,7 @@ void PlayerInfo::AddChanges(list<DataNode> &changes)
 		changedSystems |= (key == "system");
 		changedSystems |= (key == "link");
 		changedSystems |= (key == "unlink");
-		GameData::Change(change, &conditions);
+		GameData::Change(change, *this);
 	}
 	if(changedSystems)
 	{
@@ -1476,7 +1476,7 @@ CargoHold &PlayerInfo::Storage()
 
 
 // Get planetary storage information for all planets (for map and overviews).
-const std::map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
+const map<const Planet *, CargoHold> &PlayerInfo::PlanetaryStorage() const
 {
 	return planetaryStorage;
 }
@@ -2535,7 +2535,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 		tributeReceived.begin(),
 		tributeReceived.end(),
 		0,
-		[](int64_t value, const std::map<const Planet *, int64_t>::value_type &tribute)
+		[](int64_t value, const map<const Planet *, int64_t>::value_type &tribute)
 		{
 			return value + tribute.second;
 		}
@@ -2671,6 +2671,20 @@ void PlayerInfo::Unvisit(const System &system)
 void PlayerInfo::Unvisit(const Planet &planet)
 {
 	visitedPlanets.erase(&planet);
+}
+
+
+
+const set<const System *> &PlayerInfo::VisitedSystems() const
+{
+	return visitedSystems;
+}
+
+
+
+const set<const Planet *> &PlayerInfo::VisitedPlanets() const
+{
+	return visitedPlanets;
 }
 
 
@@ -4034,25 +4048,14 @@ void PlayerInfo::SortMissions(list<Mission> &missions, bool hasPriorityMissions,
 			return a.OfferPrecedence() > b.OfferPrecedence();
 		});
 
-	// If any of the available missions are "priority" missions, no other
-	// special missions will be offered.
+	// If any of the available missions are "priority" missions, then only priority
+	// and non-blocking missions are allowed to offer.
 	if(hasPriorityMissions)
-	{
-		auto it = missions.begin();
-		while(it != missions.end())
-		{
-			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
-				|| it->IsAtLocation(Mission::SHIPYARD)
-				|| it->IsAtLocation(Mission::OUTFITTER)
-				|| it->IsAtLocation(Mission::JOB_BOARD)
-				|| it->IsAtLocation(Mission::ENTERING);
-			if(hasLowerPriorityLocation && !it->HasPriority())
-				it = missions.erase(it);
-			else
-				++it;
-		}
-	}
-	else if(missions.size() > 1 + nonBlockingMissions)
+		erase_if(availableMissions, [](const Mission &m) noexcept -> bool
+			{
+				return !m.HasPriority() && !m.IsNonBlocking();
+			});
+	else if(availableMissions.size() > 1 + nonBlockingMissions)+
 	{
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them, except for "non-blocking" missions.
@@ -4201,13 +4204,22 @@ void PlayerInfo::SortAvailable()
 // Visit, Complete, Fail), and remove now-complete or now-failed missions.
 void PlayerInfo::StepMissions(UI *ui)
 {
-	// Check for NPCs that have been destroyed without their destruction
-	// being registered, e.g. by self-destruct:
+	// Check for NPCs that have been destroyed without their destruction being
+	// registered, e.g. by self-destruct, or landed due to the player landing.
 	for(Mission &mission : missions)
 		for(const NPC &npc : mission.NPCs())
 			for(const shared_ptr<Ship> &ship : npc.Ships())
+			{
 				if(ship->IsDestroyed())
 					mission.Do(ShipEvent(nullptr, ship, ShipEvent::DESTROY), *this, ui);
+				else if(ship->GetSystem() == system && !ship->IsDisabled()
+					&& ship->GetDestinationPlanet() == planet
+					&& npc.SucceedsOnLanding() && ship->AllStopoversVisited())
+				{
+					ship->LandForever();
+					mission.Do(ShipEvent(nullptr, ship, ShipEvent::LAND), *this, ui);
+				}
+			}
 
 	// Check missions for status changes from landing.
 	string visitText;
