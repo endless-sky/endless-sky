@@ -717,6 +717,7 @@ void PreferencesPanel::DrawSettings()
 		"Draw starfield",
 		"Fixed starfield zoom",
 		BACKGROUND_PARALLAX,
+		"Animate main menu background",
 		"Show hyperspace flash",
 		EXTENDED_JUMP_EFFECTS,
 		SHIP_OUTLINES,
