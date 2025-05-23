@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LoadPanel.h"
 #include "Logger.h"
 #include "MainPanel.h"
+#include "pi.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
@@ -42,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <stdexcept>
 
 using namespace std;
@@ -95,6 +97,12 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	if(!scrollSpeed)
 		scrollSpeed = 1;
 
+	xSpeed = mainMenuUi->GetValue("x speed");
+	ySpeed = mainMenuUi->GetValue("y speed");
+	yAmplitude = mainMenuUi->GetValue("y amplitude");
+	// Start the animation wave at a random point.
+	animation = Random::Real() * 360.;
+
 	// When the player is in the menu, pause the game sounds.
 	Audio::Pause();
 }
@@ -110,6 +118,11 @@ MenuPanel::~MenuPanel()
 
 void MenuPanel::Step()
 {
+	if(Preferences::Has("Animate main menu background"))
+	{
+		GameData::StepBackground(Point(xSpeed, yAmplitude * sin(animation * TO_RAD)));
+		animation += ySpeed;
+	}
 	if(GetUI()->IsTop(this) && !scrollingPaused)
 	{
 		scroll += scrollSpeed;
