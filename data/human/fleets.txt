@@ -2498,7 +2498,7 @@ fleet "Large Northern Pirates"
 	variant 2
 		"Firebird"
 		"Corvette"
-	variant
+	variant 2
 		"Firebird (Heavy Blaster)"
 	variant 8
 		"Firebird (Plasma)"
