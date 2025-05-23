@@ -29501,7 +29501,7 @@ system Nunki
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
 	fleet "Small Militia" 2000
-	fleet "Old Southern Pirates" 8000
+	fleet "Old Southern Pirates" 7000
 	object
 		sprite star/m3
 		period 10
