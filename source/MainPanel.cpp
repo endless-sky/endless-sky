@@ -110,7 +110,7 @@ void MainPanel::Step()
 	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
 	{
 		Mission *mission = player.EnteringMission();
-		if(mission && mission->HasSpace(*player.Flagship()))
+		if(mission)
 			mission->Do(Mission::OFFER, player, GetUI());
 		else
 			player.HandleBlockedEnteringMissions(GetUI());
