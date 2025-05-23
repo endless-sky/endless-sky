@@ -4055,7 +4055,7 @@ void PlayerInfo::SortMissions(list<Mission> &missions, bool hasPriorityMissions,
 			{
 				return !m.HasPriority() && !m.IsNonBlocking();
 			});
-	else if(availableMissions.size() > 1 + nonBlockingMissions)+
+	else if(availableMissions.size() > 1 + nonBlockingMissions)
 	{
 		// Minor missions only get offered if no other missions (including other
 		// minor missions) are competing with them, except for "non-blocking" missions.
