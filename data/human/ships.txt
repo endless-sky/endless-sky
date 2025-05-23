@@ -2464,7 +2464,7 @@ ship "Jackal"
 		"mass" 100
 		"drag" .95
 		"heat dissipation" .68
-		"fuel capacity" 300
+		"fuel capacity" 500
 		"cargo space" 10
 		"outfit space" 155
 		"weapon capacity" 25
@@ -2496,7 +2496,7 @@ ship "Jackal"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
-	description "Jackal."
+	description "The Jackal is notable for being one of the earliest warships that was designed in mind for "freelancer" pilots, rather than for corporate or law enforcement usage. In its heyday, the Jackal contended with the Berserker for the title of the most popular Interceptor-class ship in human space. However, the Jackal's age and inflexibility with regards to new developments in weaponry led to a decline in sales that eventually bankrupted its manufacturer, ending a century-long production run - a phenomenon its age-old rival, the Berserker, may only have avoided thanks to Betelgeuse Shipyards' other, more popular models."
 
 
 
@@ -2847,7 +2847,7 @@ ship "Monitor"
 		"mass" 690
 		"drag" 8.4
 		"heat dissipation" .32
-		"fuel capacity" 300
+		"fuel capacity" 500
 		"cargo space" 20
 		"outfit space" 330
 		"weapon capacity" 130
