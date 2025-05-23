@@ -358,7 +358,7 @@ bool DistanceMap::CheckLink(const System &from, const System &to, bool linked, b
 	// Otherwise, when linked, but the link status is unknown, Propagate might
 	// have used hyperlane paths you don't know about. So we probably should
 	// just throw it out. But, it might still be within in your jump range.
-	// So for now, you cannot jump to unknown sytems that are outside your range.
+	// So for now, you cannot jump to unknown systems that are outside your range.
 	// (Do NOT use from.jumpRange because you also don't know about that)
 	double distance = from.Position().Distance(to.Position());
 	if(distance >= jumpRangeMax)
