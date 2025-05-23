@@ -3962,23 +3962,13 @@ void PlayerInfo::CreateMissions()
 			return a.OfferPrecedence() > b.OfferPrecedence();
 		});
 
-	// If any of the available missions are "priority" missions, no other
-	// special missions will be offered in the spaceport.
+	// If any of the available missions are "priority" missions, then only priority
+	// and non-blocking missions are allowed to offer.
 	if(hasPriorityMissions)
-	{
-		auto it = availableMissions.begin();
-		while(it != availableMissions.end())
-		{
-			bool hasLowerPriorityLocation = it->IsAtLocation(Mission::SPACEPORT)
-				|| it->IsAtLocation(Mission::SHIPYARD)
-				|| it->IsAtLocation(Mission::OUTFITTER)
-				|| it->IsAtLocation(Mission::JOB_BOARD);
-			if(hasLowerPriorityLocation && !it->HasPriority())
-				it = availableMissions.erase(it);
-			else
-				++it;
-		}
-	}
+		erase_if(availableMissions, [](const Mission &m) noexcept -> bool
+			{
+				return !m.HasPriority() && !m.IsNonBlocking();
+			});
 	else if(availableMissions.size() > 1 + nonBlockingMissions)
 	{
 		// Minor missions only get offered if no other missions (including other
