@@ -106,7 +106,7 @@ void MainPanel::Step()
 		isActive = false;
 	}
 
-	// Offer the next available in flight mission.
+	// Offer the next available entering mission.
 	if(isActive && player.HasAvailableEnteringMissions() && player.Flagship())
 	{
 		Mission *mission = player.EnteringMission();
@@ -700,7 +700,7 @@ void MainPanel::StepEvents(bool &isActive)
 		}
 
 		// Handle jump events from the player's flagship. This means we should check
-		// for in-flight missions that can be offered.
+		// for entering missions that can be offered.
 		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
 			player.CreateEnteringMissions();
 

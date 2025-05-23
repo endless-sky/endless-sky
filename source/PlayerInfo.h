@@ -246,8 +246,8 @@ public:
 	// space for it, and it specifies a message to be shown in that situation,
 	// show that message.
 	void HandleBlockedMissions(Mission::Location location, UI *ui);
-	// Display the blocked message for the first available in flight mission,
-	// then remove it from the available in flight missions list.
+	// Display the blocked message for the first available entering mission,
+	// then remove it from the available entering missions list.
 	void HandleBlockedEnteringMissions(UI *ui);
 	// Callback for accepting or declining whatever mission has been offered.
 	void MissionCallback(int response);
@@ -427,7 +427,7 @@ private:
 	// they will not change if you reload the game.
 	std::list<Mission> availableJobs;
 	std::list<Mission> availableMissions;
-	// This list is populated open entering a system, and isn't saved since
+	// This list is populated upon entering a system, and isn't saved since
 	// you can't save in space.
 	std::list<Mission> availableEnteringMissions;
 	// This list is populated upon boarding a ship, and isn't saved since
@@ -441,7 +441,7 @@ private:
 	// Missions that are failed or aborted, but not yet deleted, and any
 	// missions offered while in-flight are not saved.
 	std::list<Mission> doneMissions;
-	// This pointer to the most recently accepted boarding/assisting/in flight mission
+	// This pointer to the most recently accepted boarding/assisting/entering mission
 	// enables its NPCs to be placed before the player lands, and is then cleared.
 	Mission *activeInFlightMission = nullptr;
 	// How to sort availableJobs

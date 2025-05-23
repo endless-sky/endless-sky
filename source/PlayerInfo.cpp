@@ -2256,7 +2256,7 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 
 
 
-// Engine calls this after placing the boarding/assisting/in flight mission's NPCs.
+// Engine calls this after placing the boarding/assisting/entering mission's NPCs.
 void PlayerInfo::ClearActiveInFlightMission()
 {
 	activeInFlightMission = nullptr;
