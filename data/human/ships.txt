@@ -2889,8 +2889,8 @@ ship "Monitor"
 	explode "medium explosion" 20
 	explode "large explosion" 5
 	"final explode" "final explosion medium"
-	description "Before the time of the Navy, the formation of the Republic caused civil unrest amongst the inhabitants of several worlds. While some corporations happily joined the fledgling power, others wished to stay independent or even rebelled against governance. To both quell this uncertainty and bring order to the growing Republic, the Monitor was manufactured as a powerful security ship, armed with three large forward guns and three supportive turret mounts. These ships would also see use in the Alpha Wars, although they were eventually made obsolete by more robust designs such as the Firebird."
-	description "	In a twisted act of irony, aging Monitors have found themselves in the hands of those against whom they once fought, including groups of anarchists that now populate the north of human space."
+	description `When the Republic was first formed, planetary governments and corporations often fielded their own fleets; only the Deep had any form of a combined navy. The Republic's rapid expansion created both growth and disruption throughout human space, and Earth often found itself inefficiently directing its planetary fleets to fight against pirates or defiant worlds. With a need to bring "peace among the stars," as the Republic motto goes, the newly formed Republic Navy commissioned the shipyards on Luna to design a robust warship that would be able to project the power of a united Republic. The resulting ship, the Monitor, served as the mainstay of the Navy fleets until the introduction of the more advanced Frigate.`
+	description `The few Monitors that still fly today are remnants of those sold by the Navy to the government of Betelgeuse, before they joined the Republic. Of the Monitors that made it into private hands, some eventually found themselves passing through the black markets of the Far North.`
 
 
 
