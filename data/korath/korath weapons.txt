@@ -471,7 +471,7 @@ outfit "Piercer Missile Launcher"
 		"missile strength" 73
 		"stream"
 	description "Korath Piercer Missiles carry a pair of warheads. The first, a smaller one in the very tip of the missile, explodes on impact to blast a hole in the ship's shields to allow some of the subsequent, larger explosion to pierce through."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 effect "piercer fire"
 	sprite "effect/piercer fire"
@@ -641,7 +641,7 @@ outfit "Cluster Mine Layer"
 		"hit force" -225
 		"stream"
 	description "This launcher fires cluster munitions that split into a cloud of stationary mines that each do a considerable amount of damage if a ship crashes into them. However, if a ship hits the mine before it has a chance to deploy, the damage is considerably reduced."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 outfit "Korath Mine Submunition"
 	weapon
@@ -1030,7 +1030,7 @@ outfit "Firelight Missile Bank"
 		"stream"
 	description "As the Firestorm Torpedo does not require full reactor shielding or safety interlocks, Korath engineers were able to create the Firelight by further scaling down the reactor element to fit in a missile casing for use on and against smaller vessels."
 	description "	Rather than rely on traditional reaction engines attached to the missile for launch, this rapid-fire missile bank appears to operate on the same principles as a Banisher."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 
 outfit "Firelight Turning"
@@ -1200,7 +1200,7 @@ outfit "Firestorm Battery"
 		"hit force" 6000
 		"missile strength" 115
 	description "Though not as refined as the newer Firelight version, this torpedo contains an augmented Korath Plasma Core reactor element completely stripped of its protective casing and safety interlocks. When activated, it generates a tremendous explosion of heat and force that pushes ships away and will even melt their hulls."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 effect "firestorm ring"
 	sprite "effect/firestorm ring"
