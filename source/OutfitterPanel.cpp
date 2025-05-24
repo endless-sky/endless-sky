@@ -1302,7 +1302,7 @@ void OutfitterPanel::DrawButtons()
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH/2;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
 
 	// Draw the button panel (shop side panel footer).
@@ -1376,9 +1376,11 @@ void OutfitterPanel::DrawButtons()
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
 		for(int i = -1; i < 2; i++)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0) + Point(-.5 * modWidth, 10.), dim);
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0)
+			+ Point(-.5 * modWidth, 10.), dim);
 		for(int i = -1; i < 2; i++)
-			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1) + Point(-.5 * modWidth, 10.), dim);
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1)
+			+ Point(-.5 * modWidth, 10.), dim);
 	}
 
 	// Draw tooltips for the button being hovered over:
@@ -1414,8 +1416,8 @@ char OutfitterPanel::CheckButton(int x, int y)
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - 3. * rowOffsetY - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double w = BUTTON_WIDTH/2;
-	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH/2;
+	const double w = BUTTON_WIDTH / 2;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2;
 
 	// Check the Find button.
 	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
