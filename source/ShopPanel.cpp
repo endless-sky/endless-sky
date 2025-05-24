@@ -494,6 +494,28 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 
 
 
+char ShopPanel::CheckButton(int x, int y)
+{
+	// Check the Find button.
+	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
+		y > Screen::Bottom() - 31 && y < Screen::Bottom() - 4)
+		return 'f';
+
+	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
+		return '\0';
+
+	const Point clickPoint(x, y);
+
+	// Check all the buttonZones.
+	for(const ClickZone<char> zone : buttonZones)
+		if(zone.Contains(clickPoint))
+			return zone.Value();
+
+	return '\0';
+}
+
+
+
 bool ShopPanel::Click(int x, int y, int clicks)
 {
 	dragShip = nullptr;
@@ -1135,6 +1157,26 @@ int ShopPanel::DrawPlayerShipInfo(const Point &point)
 	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
 
 	return attributesHeight + shipInfo.OutfitsHeight();
+}
+
+
+void ShopPanel::DrawButton(const std::string &name, const Point &center, const Point &buttonSize, bool isActive,
+	bool hovering, char keyCode)
+{
+	// Define the colors and font
+	const Font &bigFont = FontSet::Get(18);
+	const Color &hover = *GameData::Colors().Get("hover");
+	const Color &active = *GameData::Colors().Get("active");
+	const Color &inactive = *GameData::Colors().Get("inactive");
+	
+	const Color *color = !isActive ? &inactive : hovering ? &hover : &active;
+	const Color &back = *GameData::Colors().Get("panel background");
+	
+	FillShader::Fill(center, buttonSize, back);
+	bigFont.Draw(name, center - .5 * Point(bigFont.Width(name), bigFont.Height()), *color);
+	
+	// Add this button to the buttonZones:
+	buttonZones.emplace_back(center, buttonSize, keyCode);
 }
 
 
