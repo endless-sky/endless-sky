@@ -6492,6 +6492,18 @@ mission "Lost Racer 1"
 		dialog "You've passed through all three systems outlined in the search plan, running long-range deep scans for Artemis Renard's transponder in each, but all you've gotten back is static. As far as you can tell, she's not in any of them."
 	on complete
 		payment 100000
+
+
+mission "Lost Racer 2"
+	landing
+	name "Return to <planet>"
+	description "You have decided not to continue the search for Artemis Renard. Return her grieving father August to <destination>."
+	source "Sunracer"
+	destination "Glory"
+	passengers 1
+	to offer
+		has "Lost Racer 1: done"
+	on offer
 		conversation
 			`You were unable to find Artemis Renard in any of the three uninhabited systems, and you have watched hope fade into desperation in her father with each successive failure. You can't imagine he's been getting much sleep.`
 			`	During the landing on <planet>, you notice that there is a great deal of race infrastructure still in place around the planet and spaceport: large camera drones remain in low orbit, and the spaceport is filled with a variety of ships in racing livery. A mostly depleted Navy contingent remains, empty areas testifying to the ongoing hunt, while the few remaining officers interview racers, organizers, and spectators. The spaceport seems busier and more hectic than usual.`
@@ -6503,26 +6515,14 @@ mission "Lost Racer 1"
 			action
 				set "abandoned lost racer"
 			`	"Fine," he says, "then take your money." He slams a credit chip for <payment> in your hand and storms off into the spaceport, on the verge of tears.`
-			`	Much later, you receive a request to meet him in the spaceport and take him to Glory.`
-				decline
+			`	Much later, you receive a request to take him to Glory.`
+				goto glory
 			label next
-			`	"You're a saint for this," he says, and hands you a credit chip for <payment>. "We have to find her."`
-
-
-mission "Lost Racer 2 - Abandoned"
-	landing
-	name "Return to <planet>"
-	description "You have decided not to continue the search for Artemis Renard. Return her grieving father August to <destination>."
-	deadline
-	source "Sunracer"
-	destination "Glory"
-	passengers 1
-	to offer
-		has "Lost Racer 1: done"
-		has "abandoned lost racer"
-	on offer
-		conversation
-			`When you meet August Renard in the spaceport, he looks no better than when he left <ship>. However, he does manage to speak. "Please take me to <planet>, captain. It's better to lead the search remotely from there than deal with these people in person."`
+			`	"You're a saint for this," he says, and hands you a credit chip for <payment>. "We have to find her.`
+			`	"Meet me in the spaceport in a couple of hours. I want to look for clues."`
+				decline
+			label glory
+			`	When you meet August Renard, he looks no better than when he left <ship>. However, he does manage to speak. "Please take me to <planet>, captain. It's better to lead the search remotely from there than deal with these people in person."`
 			choice
 				`	"I guess."`
 					accept
@@ -6545,7 +6545,7 @@ mission "Lost Racer 2 - Abandoned"
 			`	August turns. "What! After what you've done, crashed my hopes, you expect me to pay you! Why would you think that? Fine!" He throws a credit chip at you and exits <ship> in a huff.`
 			`	When you access the credit chip, you find it is only worth <payment>.`
 
-mission "Lost Racer 2"
+mission "Lost Racer 2 - Continued"
 	name "Search for Artemis Renard"
 	description "Search the system of <system> for Artemis Renard, especially <planet>."
 	source "Sunracer"
@@ -6554,7 +6554,7 @@ mission "Lost Racer 2"
 	passengers 1
 	deadline
 	to offer
-		has "Lost Racer 1: done"
+		has "Lost Racer 2: declined"
 		not "abandoned lost racer"
 	on offer
 		conversation
@@ -6563,7 +6563,7 @@ mission "Lost Racer 2"
 				`	(Watch the news broadcast.)`
 				`	(Wait for Mr. Renard to return.)`
 					goto renard
-			`	The voice of an eerily calm anchor plays over more vignettes of the race infrastructure. "... and, of course, today's top story: three-time Centurion-Division, Paradise Circuit racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for days now, led by Megaparsec with support from the Republic Navy and Syndicated Systems' internal security forces. The head of the event, Quinn Emerson, put out the following statement:`
+			`	The voice of an eerily calm anchor plays over more vignettes of the race infrastructure. "... and, of course, today's top story: three-time Centurion-Division, Paradise Circuit racing champion Artemis Renard has been officially declared 'missing' after she did not return here to Sunracer after this year's Megaparsec Core Championship. The search effort has been ongoing for days now, led by Megaparsec with support from the Republic Navy and Syndicated Security. The head of the event, Quinn Emerson, put out the following statement:`
 			`	'We at Megaparsec put the greatest attention into ensuring the safety and well-being of all our event participants and guests. Over the past forty-six hours, our search teams have fully scanned the Volax, Cardax, Moktar, Bellatrix, and Menkar systems, and we are working in conjunction with the Republic and Syndicate to fully scour their territories belonging to the circuit as well. Ms. Renard's family can rest assured that if she's out there, we'll find her.'`
 			`	'Artemis Renard, daughter of terraforming magnates August and Louisa Renard, is perhaps best known for shattering the record for the Betelgeuse Classic in last year's race, crossing the finish line nearly fifteen minutes faster than the record set by Jackson Lee over twenty years ago. She was last seen flying her ship, the "Moonfox," a white and red Lionheart Flivver with race registration B-168, in the Diphda system. Anyone with information regarding her whereabouts is encouraged to contact Syndicate or Navy authorities, as well as the Megaparsec Racing Events Commission, and may be entitled to monetary reward if such information leads to the retrieval of Ms. Renard or her ship.'"`
 			`	The broadcast then ends, going to an advertisement for the Megaparsec Splinter.`
