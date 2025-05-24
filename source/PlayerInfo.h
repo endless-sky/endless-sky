@@ -362,8 +362,6 @@ private:
 
 	// New missions are generated each time you land on a planet.
 	void CreateMissions();
-	// Sort the given list of missions in the order they should be offered.
-	void SortMissions(std::list<Mission> &missions, bool hasPriorityMissions, unsigned nonBlockingMissions);
 	void StepMissions(UI *ui);
 	void Autosave() const;
 	void Save(const std::string &path) const;

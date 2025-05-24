@@ -114,6 +114,49 @@ namespace {
 		};
 		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
 	}
+
+	// Sort the given list of missions in the order they should be offered.
+	void SortMissions(list<Mission> &missions, bool hasPriorityMissions, unsigned nonBlockingMissions)
+	{
+		if(missions.empty())
+			return;
+
+		// This list is already in alphabetical order by virtue of the way that the Set
+		// class stores objects, so stable sorting on the offer precedence will maintain
+		// the alphabetical ordering for missions with the same precedence.
+		missions.sort([](const Mission &a, const Mission &b)
+			{
+				return a.OfferPrecedence() > b.OfferPrecedence();
+			});
+
+		// If any of the available missions are "priority" missions, then only priority
+		// and non-blocking missions are allowed to offer.
+		if(hasPriorityMissions)
+			erase_if(missions, [](const Mission &m) noexcept -> bool
+				{
+					return !m.HasPriority() && !m.IsNonBlocking();
+				});
+		else if(missions.size() > 1 + nonBlockingMissions)
+		{
+			// Minor missions only get offered if no other missions (including other
+			// minor missions) are competing with them, except for "non-blocking" missions.
+			// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
+			// Note that the manner in which excess minor missions are discarded means that the
+			// minor mission with the lowest precedence is the one that will be offered.
+			auto it = missions.begin();
+			while(it != missions.end())
+			{
+				if(it->IsMinor())
+				{
+					it = missions.erase(it);
+					if(missions.size() <= 1 + nonBlockingMissions)
+						break;
+				}
+				else
+					++it;
+			}
+		}
+	}
 }
 
 
@@ -4031,50 +4074,6 @@ void PlayerInfo::CreateMissions()
 	}
 
 	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
-}
-
-
-
-void PlayerInfo::SortMissions(list<Mission> &missions, bool hasPriorityMissions, unsigned nonBlockingMissions)
-{
-	if(missions.empty())
-		return;
-
-	// This list is already in alphabetical order by virtue of the way that the Set
-	// class stores objects, so stable sorting on the offer precedence will maintain
-	// the alphabetical ordering for missions with the same precedence.
-	missions.sort([](const Mission &a, const Mission &b)
-		{
-			return a.OfferPrecedence() > b.OfferPrecedence();
-		});
-
-	// If any of the available missions are "priority" missions, then only priority
-	// and non-blocking missions are allowed to offer.
-	if(hasPriorityMissions)
-		erase_if(availableMissions, [](const Mission &m) noexcept -> bool
-			{
-				return !m.HasPriority() && !m.IsNonBlocking();
-			});
-	else if(availableMissions.size() > 1 + nonBlockingMissions)
-	{
-		// Minor missions only get offered if no other missions (including other
-		// minor missions) are competing with them, except for "non-blocking" missions.
-		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
-		// Note that the manner in which excess minor missions are discarded means that the
-		// minor mission with the lowest precedence is the one that will be offered.
-		auto it = missions.begin();
-		while(it != missions.end())
-		{
-			if(it->IsMinor())
-			{
-				it = missions.erase(it);
-				if(missions.size() <= 1 + nonBlockingMissions)
-					break;
-			}
-			else
-				++it;
-		}
-	}
 }
 
 
