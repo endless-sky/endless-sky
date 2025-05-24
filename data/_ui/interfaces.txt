@@ -259,6 +259,11 @@ interface "menu background"
 
 
 interface "main menu"
+	# Background animation:
+	value "x speed" -.5
+	value "y speed" .1
+	value "y amplitude" 2.
+
 	# Credits:
 	sprite "_menu/side panel"
 		center -360 0
@@ -1269,6 +1274,7 @@ interface "hud"
 		center 0 100
 
 
+
 interface "main view"
 	list "zooms"
 		.25
@@ -1278,6 +1284,12 @@ interface "main view"
 		1.
 		1.4
 		2.
+
+
+
+interface "starfield"
+	value "fixed zoom" .35
+	value "velocity reducer" 1.4
 
 
 

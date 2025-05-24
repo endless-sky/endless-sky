@@ -617,6 +617,10 @@ void Engine::Step(bool isActive)
 			// Update the current zoom modifier if the flagship is landing or taking off.
 			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
+
+		// Step the background to account for the current velocity and zoom.
+		if(!timePaused)
+			GameData::StepBackground(centerVelocity, zoom);
 	}
 
 	outlines.clear();
@@ -1195,8 +1199,9 @@ void Engine::Draw() const
 		motionBlur *= 1. + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
 
-	GameData::Background().Draw(center, motionBlur, zoom,
+	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
