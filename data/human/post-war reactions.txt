@@ -212,7 +212,7 @@ mission "War Reactions: Syndicate Orphan"
 			label attacking
 			action
 				set "WR: Orphan: attacking"
-			`	"My brother is a private, third class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "He monitors the Syndicate workplaces and he turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my brother."`
+			`	"My sister is a private, third class, in the Syndicate's Ancillary Security Service." He grins proudly, clearly having practiced that delivery. "She monitors the Syndicate workplaces and she turned those boys in for smoking on the job last week. I guess they finally got a break for the repair shop and came after me since they can't hurt my sister."`
 				goto questions
 			label young
 			`	As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
@@ -251,8 +251,8 @@ mission "War Reactions: Syndicate Orphan"
 			label honor
 			`	"Honor... and service. The Syndicate will train boys like me, but I've wondered about joining the Navy. It isn't as profitable, but it sounds more noble."`
 			label salute
-			`	You arrive at the repair shop, and an older boy, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
-			`	As Gus ends his salute, the boy attacks him from behind, putting him into a choke hold. It's clear he's taking extreme care when doing it. "Did you wander out of the childcare district? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Calvin! I was curious."`
-			`	Calvin lets him out of the hold and says to you, "Thank you for saving my brother. He's the only family I have left, and I hope," he pinches him, "he'll stop risking his life out of curiosity." He looks at Gus kindly. "Come on, let's get you to the medic."`
-			`	Calvin waves goodbye as he walks his brother in.`
+			`	You arrive at the repair shop, and an older girl, perhaps seventeen, meets the two of you. Gus stands to attention and gives you a well-practiced salute. You politely salute him in return.`
+			`	As Gus ends his salute, the girl attacks him from behind, putting him into a choke hold. It's clear she's taking extreme care when doing it. "Did you wander out of the childcare district? Was it the spaceport landing area this time? I can see scratches and bruises all over you." Gus replies, "I'm sorry, Sally! I was curious."`
+			`	The girl lets him out of the hold and says to you, "Thank you for saving my brother. He's the only family I have left, and I hope," she pinches him, "he'll stop risking his life out of curiosity." She looks at Gus kindly. "Come on, let's get you to the medic."`
+			`	Sally waves goodbye as she walks her brother in.`
 				decline
