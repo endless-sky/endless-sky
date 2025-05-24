@@ -214,8 +214,10 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"and\n\t\t14\n\t\t0\n\t\t5", 0},
 			{"or\n\t\t8\n\t\t2\n\t\t5", 8},
 			{"or\n\t\t9\n\t\t0\n\t\t5", 9},
+			{"or\n\t\t0\n\t\t0\n\t\t0", 0},
+			{"or\n\t\t0\n\t\t0\n\t\t-7", -7},
 
-			// Tests for min and max conditions.
+			// Tests for min and max single parent conditions.
 			{"max\n\t\t1\n\t\t10", 10},
 			{"min\n\t\t1\n\t\t10", 1},
 			{"max\n\t\t-30\n\t\t11", 11},
@@ -226,10 +228,34 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"max\n\t\t20", 20},
 			{"min\n\t\t20", 20},
 
+			// Tests for min and max as functions
+			{"4 + max ( 10 , 20 )", 24},
+			{"4 + min ( 10 , 20 )", 14},
+			{"4 + max ( 10 , -20 )", 14},
+			{"4 + min ( 10 , -20 )", -16},
+			{"max ( 10 , 20 )", 20},
+			{"min ( 10 , 20 )", 10},
+			{"max ( 10 , -20 )", 10},
+			{"min ( 10 , -20 )", -20},
+
+			// Tests for inline and and or
+			{"2 and 11", 2},
+			{"11 and 2 and 5", 11},
+			{"14 and 0 and 5", 0},
+			{"0 or 11", 11},
+			{"0 or 0", 0},
+			{"8 or 2 or 5", 8},
+			{"9 or 0 or 5", 9},
+			{"0 or 0 or 0", 0},
+			{"0 or 0 or -7", -7},
+
+			// Some tests with not.
+			{"not someData", 0},
+			{"not missingData", 1},
+
 			// Black magic below; parser might need to handle this, but nobody should ever write comparisons like this.
 			{"1 > 2 == 0", 1},
 			{"11 == 11 == 1", 1},
-
 		}));
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer)), &storeWithData};
 		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
