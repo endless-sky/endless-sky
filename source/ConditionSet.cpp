@@ -62,8 +62,8 @@ namespace
 
 	// Expressions that define how operators should be parsed and written
 	constexpr uint64_t ONE = 1;
-	constexpr uint64_t LONELY_SINGLE = ONE << 0; ///< Operator that can only exist as single keyword in a node, without child-nodes.
-	constexpr uint64_t SINGLE_PARENT = ONE << 1; ///< Operator that can only exist as a single keyword in a node, with child-nodes.
+	constexpr uint64_t LONELY_SINGLE = ONE << 0; ///< Can be a single keyword in a node, without child-nodes.
+	constexpr uint64_t SINGLE_PARENT = ONE << 1; ///< Can be a single keyword in a node, with child-nodes.
 	constexpr uint64_t INFIX_OPERATOR = ONE << 2; ///< Operator parsed and written as infix inbetween terminals.
 	constexpr uint64_t FUNCTION_OPERATOR = ONE << 3; ///< Operator parsed and written as a function.
 	constexpr uint64_t TERMINAL = ONE << 4; ///< Operator indicating a terminal node (number or condition variable).
