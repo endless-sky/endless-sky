@@ -1298,7 +1298,7 @@ void OutfitterPanel::DrawButtons()
 	// There will be two rows of buttons:
 	//  [ Buy  ] [  Install  ] [  Cargo  ]
 	//  [ Sell ] [ Uninstall ] [ Storage ]
-	//  		   [ Leave ]
+	//                         [  Leave  ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
