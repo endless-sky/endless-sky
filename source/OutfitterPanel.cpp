@@ -54,7 +54,6 @@ namespace {
 
 	// Button size/placement info:
 	constexpr double BUTTON_ROW_START_PAD = 4.;
-	constexpr double BUTTON_COL_START_PAD = 4.;
 	constexpr double BUTTON_ROW_PAD = 6.;
 	constexpr double BUTTON_COL_PAD = 6.;
 	constexpr double BUTTON_WIDTH = 75.;
