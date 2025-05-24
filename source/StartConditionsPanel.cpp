@@ -167,10 +167,12 @@ bool StartConditionsPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &c
 			player, startIt->GetConversation());
 		GetUI()->Push(panel);
 		panel->SetCallback(this, &StartConditionsPanel::OnConversationEnd);
+		return true;
 	}
 	else
 		return false;
 
+	UI::PlaySound(UI::UISound::NORMAL);
 	return true;
 }
 
@@ -190,6 +192,7 @@ bool StartConditionsPanel::Click(int x, int y, int /* clicks */)
 		{
 			if(startIt != it.Value())
 				Select(it.Value());
+			UI::PlaySound(UI::UISound::NORMAL);
 			return true;
 		}
 

@@ -296,6 +296,18 @@ outfit "EMP Torpedo Bay"
 		"hit force" 135
 		"missile strength" 80
 	description "Electromagnetic pulse weapons were developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
+
+outfitter "EMP Torpedo Restock"
+	to sell
+		or
+			has "outfit: EMP Torpedo Bay"
+			has "outfit: Ka'het EMP Deployer"
+			has "outfit: EMP Torpedo Storage Bay"
+	location
+		attributes "outfitter"
+	stock
+		"EMP Torpedo"
 
 
 
@@ -379,6 +391,7 @@ outfit "Teciimach Bay"
 		"missile strength" 95
 	description "Electromagnetic pulse weapons were originally developed by the Remnant during the early days of their colony, when they were living in fear that the Alphas would overrun human space and expand beyond it."
 	description "Centuries later, the Teciimach revision includes a range of upgrades to their effectiveness, efficiency, reliability, and safety. The Remnant attribute these improvements to a mix of the latest research and secrets uncovered by Warren research teams."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 outfit "Teciimach Pod"
 	category "Secondary Weapons"
@@ -433,6 +446,7 @@ outfit "Teciimach Pod"
 		"missile strength" 95
 	description "While originally developed as a heavy weapon to paralyze enemy capital ships, the Remnant have utilized on-the-spot assembly techniques to support their use on smaller ships. These pods sacrifice multiple assembly systems in order to fit them onto interceptor-class vessels."
 	description "	Despite this explanation, a careful examination of these bays and pods suggest that there is much more here than their volume would suggest."
+	description "	Ammunition for this weapon can be restocked at any outfitter."
 
 effect "emp torpedo fire"
 	sprite "effect/emp torpedo fire"
@@ -463,6 +477,17 @@ effect "emp spark"
 	"random frame rate" 6
 	"random velocity" 7
 	"velocity scale" 0.1
+
+outfitter "Teciimach Canister Restock"
+	to sell
+		or
+			has "outfit: Teciimach Bay"
+			has "outfit: Teciimach Pod"
+			has "outfit: Teciimach Canister Rack"
+	location
+		attributes "outfitter"
+	stock
+		"Teciimach Canister"
 
 
 
