@@ -580,6 +580,7 @@ outfit "Asteroid Anti-Missile"
 	"turret mounts" -1
 	"asteroid mount am" -1
 	weapon
+		sound "magic ring"
 		"fire effect" "asteroid am fire"
 		"anti-missile" 420
 		"velocity" 100
@@ -607,6 +608,7 @@ outfit "Asteroid Anti-Missile 2"
 	weapon
 		"hardpoint sprite" "hardpoint/asteroid am circle"
 			"frame time" 30
+		sound "magic ring"
 		"fire effect" "asteroid am circle defense"
 		"anti-missile" 420
 		"velocity" 50
@@ -636,6 +638,7 @@ outfit "Asteroid Weapon Small"
 			"frame time" 20
 			"start frame" 0
 			"no repeat"
+		sound "magic ring"
 		"hit effect" "large explosion"
 		"inaccuracy" .5
 		"submunition" "Asteroid Circle Submunition" 7
@@ -682,6 +685,7 @@ outfit "Asteroid Weapon Large"
 		sprite "effect/asteroid projectile print"
 			"frame rate" 21
 		"velocity" 10
+		sound "magic seekers"
 		"drag" .1
 		"turn" 16
 		"hit effect" "seeker impact"
@@ -1106,6 +1110,7 @@ outfit "Asteroid Weapon Large 2"
 	"gun ports" -1
 	"asteroid mount 2" -1
 	weapon
+		sound "magic chasers"
 		"velocity" 10
 		"drag" .1
 		"acceleration" 1
@@ -1452,6 +1457,7 @@ outfit "Asteroid Weapon Large 3"
 		sprite "projectile/asteroid twin projectile"
 			"frame rate" 10
 			"random start frame"
+		sound "magic trackers"
 		"velocity" 20
 		"drag" .1
 		"acceleration" 1
@@ -1590,6 +1596,7 @@ outfit "Asteroid Weapon Large 4"
 	weapon
 		sprite "effect/asteroid projectile print"
 			"frame rate" 21
+		sound "magic seekers"
 		"velocity" 100
 		"drag" .1
 		"acceleration" 1
