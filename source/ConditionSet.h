@@ -80,10 +80,15 @@ public:
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if the conditions cannot be parsed from the node.
 	void Load(const DataNode &node, const ConditionsStore *conditions);
-	// Save a set of conditions.
+
+	/// Save toplevel set of conditions as a tree of children under a dataNode.
 	void Save(DataWriter &out) const;
-	void SaveChild(int childNr, DataWriter &out) const;
-	void SaveSubset(DataWriter &out) const;
+
+	/// Save a set of conditions as a tree of children under a dataNode.
+	void SaveAsTree(DataWriter &out) const;
+
+	/// Save the condition inline. Can be part of a bigger conditionSet.
+	void SaveInline(DataWriter &out) const;
 
 	// Change this condition to always be false.
 	void MakeNever();

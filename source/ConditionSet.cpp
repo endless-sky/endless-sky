@@ -231,7 +231,6 @@ void ConditionSet::Load(const DataNode &node, const ConditionsStore *conditions)
 
 
 
-// Save a set of conditions.
 void ConditionSet::Save(DataWriter &out) const
 {
 	// Default should be AND, so if it is, then just write the subsets.
@@ -239,91 +238,108 @@ void ConditionSet::Save(DataWriter &out) const
 	if(expressionOperator == ExpressionOp::AND)
 		for(const auto &child : children)
 		{
-			child.SaveSubset(out);
+			child.SaveAsTree(out);
 			out.Write();
 		}
 	else
-		SaveSubset(out);
+		SaveAsTree(out);
 }
 
 
 
-void ConditionSet::SaveChild(int childNr, DataWriter &out) const
+void ConditionSet::SaveAsTree(DataWriter &out) const
 {
-	const ConditionSet &child = children[childNr];
-	bool needBrackets = child.children.size() > 0;
+	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
+		[this](const std::pair<const string, pair<ConditionSet::ExpressionOp, uint64_t>> &e) {
+			return e.second.first == expressionOperator;
+		});
 
-	if(needBrackets)
-		out.WriteToken("(");
-	children[childNr].SaveSubset(out);
-	if(needBrackets)
-		out.WriteToken(")");
+	if(it != CS_TOKEN_CONVERSION.end() && (it->second.second & SINGLE_PARENT))
+	{
+		// Single parents get written as keyword, with the children below them.
+		string opTxt = it->first;
+
+		out.Write(opTxt);
+		out.BeginChild();
+		for(const auto &child : children)
+		{
+			child.SaveAsTree(out);
+			out.Write();
+		}
+		out.EndChild();
+	}
+	else
+	{
+		// Anything else gets written inline.
+		SaveInline(out);
+	}
 }
 
 
 
 // Save a subset of conditions, by writing out tokens (without a newline).
-void ConditionSet::SaveSubset(DataWriter &out) const
+void ConditionSet::SaveInline(DataWriter &out) const
 {
-	string opTxt = "";
-	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
-		[this](const std::pair<const string, pair<ConditionSet::ExpressionOp, uint64_t>> &e) {
-			return e.second.first == expressionOperator;
-		});
-	if(it != CS_TOKEN_CONVERSION.end())
-		opTxt = it->first;
-
+	// Handle terminals and invalid.
 	switch(expressionOperator)
 	{
 	case ExpressionOp::INVALID:
 		out.WriteToken("never");
-		break;
+		return;
 	case ExpressionOp::VAR:
 		out.WriteToken(conditionName);
-		break;
+		return;
 	case ExpressionOp::LIT:
 		out.WriteToken(literal);
+		return;
+	default:
 		break;
-	case ExpressionOp::ADD:
-	case ExpressionOp::SUB:
-	case ExpressionOp::MUL:
-	case ExpressionOp::DIV:
-	case ExpressionOp::MOD:
-	case ExpressionOp::EQ:
-	case ExpressionOp::NE:
-	case ExpressionOp::LE:
-	case ExpressionOp::GE:
-	case ExpressionOp::LT:
-	case ExpressionOp::GT:
-		if(children.empty())
-		{
-			out.WriteToken("never");
-			break;
-		}
-		SaveChild(0, out);
+	}
+
+	// Lookup the operator to get the operator text and parsing/writing style
+	auto it = find_if(CS_TOKEN_CONVERSION.begin(), CS_TOKEN_CONVERSION.end(),
+		[this](const std::pair<const string, pair<ConditionSet::ExpressionOp, uint64_t>> &e) {
+			return e.second.first == expressionOperator;
+		});
+	if(it == CS_TOKEN_CONVERSION.end())
+	{
+		out.WriteToken("never");
+		return;
+	}
+	string opTxt = it->first;
+
+	// Handle infix operators.
+	if((it->second.second & INFIX_OPERATOR) && !children.empty())
+	{
+		out.WriteToken("(");
+		children[0].SaveInline(out);
+		out.WriteToken(")");
 		for(unsigned int i = 1; i < children.size(); ++i)
 		{
 			out.WriteToken(opTxt);
-			SaveChild(i, out);
+			out.WriteToken("(");
+			children[i].SaveInline(out);
+			out.WriteToken(")");
 		}
-		break;
-	case ExpressionOp::AND:
-	case ExpressionOp::OR:
-	case ExpressionOp::MAX:
-	case ExpressionOp::MIN:
-		out.Write(opTxt);
-		out.BeginChild();
-		for(const auto &child : children)
+		return;
+	}
+
+	// Handle function operators.
+	if((it->second.second & FUNCTION_OPERATOR) && !children.empty())
+	{
+		out.WriteToken(opTxt);
+		out.WriteToken("(");
+		children[0].SaveInline(out);
+		for(unsigned int i = 1; i < children.size(); ++i)
 		{
-			child.SaveSubset(out);
-			out.Write();
+			out.WriteToken(",");
+			children[i].SaveInline(out);
 		}
-		out.EndChild();
-		break;
-	default:
-		out.WriteToken("never");
-		break;
-	};
+		out.WriteToken(")");
+		return;
+	}
+
+	out.WriteToken("never");
 }
 
 

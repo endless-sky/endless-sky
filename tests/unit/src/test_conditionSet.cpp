@@ -20,6 +20,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Include a helper for creating well-formed DataNodes (to enable creating non-empty ConditionSets).
 #include "datanode-factory.h"
+// Include DataWriter for read/write/read/write tests.
+#include "../../../source/DataWriter.h"
 // Include a helper for capturing & asserting on logged output.
 #include "output-capture.hpp"
 
@@ -258,13 +260,70 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			{"11 == 11 == 1", 1},
 		}));
 		const auto numberSet = ConditionSet{AsDataNode("toplevel\n\t" + std::get<0>(expressionAndAnswer)), &storeWithData};
-		THEN( "The expression \'" + std::get<0>(expressionAndAnswer) + "\' is valid and evaluates to the correct number" ) {
+		std::string expressionString = std::get<0>(expressionAndAnswer);
+		auto answer = std::get<1>(expressionAndAnswer);
+		bool boolAnswer = answer;
+		THEN( "The expression \'" + expressionString + "\' is valid and evaluates to the correct number" ) {
 			REQUIRE_FALSE( numberSet.IsEmpty() );
 			REQUIRE( numberSet.IsValid() );
-			auto answer = std::get<1>(expressionAndAnswer);
-			bool boolAnswer = answer;
 			REQUIRE( numberSet.Evaluate() == answer );
 			REQUIRE( numberSet.Test() == boolAnswer );
+		}
+		THEN( "Loading and saving expression \'" + expressionString + "\' twice (as tree) results in two identical and working expressions" )
+		{
+			DataWriter dw1;
+			dw1.WriteToken("toplevel");
+			dw1.Write();
+			dw1.BeginChild();
+			numberSet.Save(dw1);
+			dw1.EndChild();
+
+			ConditionSet numberSetCopy = ConditionSet{AsDataNode(dw1.SaveToString()), &storeWithData};
+			REQUIRE_FALSE( numberSetCopy.IsEmpty() );
+			REQUIRE( numberSetCopy.IsValid() );
+			REQUIRE( numberSetCopy.Evaluate() == answer );
+			REQUIRE( numberSetCopy.Test() == boolAnswer );
+
+			DataWriter dwCopy;
+			dwCopy.WriteToken("toplevel");
+			dwCopy.Write();
+			dwCopy.BeginChild();
+			numberSetCopy.Save(dwCopy);
+			dwCopy.EndChild();
+			REQUIRE( dw1.SaveToString() == dwCopy.SaveToString() );
+
+			ConditionSet numberSetCopy2 =  ConditionSet{AsDataNode(dwCopy.SaveToString()), &storeWithData};
+			REQUIRE_FALSE( numberSetCopy2.IsEmpty() );
+			REQUIRE( numberSetCopy2.IsValid() );
+			REQUIRE( numberSetCopy2.Evaluate() == answer );
+			REQUIRE( numberSetCopy2.Test() == boolAnswer );
+		}
+		THEN( "Loading and saving expression \'" + expressionString + "\' twice (as separate-expression) results in two identical and working expressions" )
+		{
+			DataWriter dw1;
+			numberSet.SaveInline(dw1);
+			dw1.Write();
+
+			ConditionSet numberSetCopy(&storeWithData);
+			int numberSetCopyToken = 0;
+			numberSetCopy.ParseNode(AsDataNode(dw1.SaveToString()), numberSetCopyToken);
+			REQUIRE_FALSE( numberSetCopy.IsEmpty() );
+			REQUIRE( numberSetCopy.IsValid() );
+			REQUIRE( numberSetCopy.Evaluate() == answer );
+			REQUIRE( numberSetCopy.Test() == boolAnswer );
+
+			DataWriter dwCopy;
+			numberSetCopy.SaveInline(dwCopy);
+			dwCopy.Write();
+			REQUIRE( dw1.SaveToString() == dwCopy.SaveToString() );
+
+			ConditionSet numberSetCopy2(&storeWithData);
+			int numberSetCopyToken2 = 0;
+			numberSetCopy2.ParseNode(AsDataNode(dwCopy.SaveToString()), numberSetCopyToken2);
+			REQUIRE_FALSE( numberSetCopy2.IsEmpty() );
+			REQUIRE( numberSetCopy2.IsValid() );
+			REQUIRE( numberSetCopy2.Evaluate() == answer );
+			REQUIRE( numberSetCopy2.Test() == boolAnswer );
 		}
 	}
 	GIVEN( "various incorrect expression(s) as conditionSet" ) {

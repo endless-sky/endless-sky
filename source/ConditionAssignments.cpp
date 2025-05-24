@@ -74,7 +74,7 @@ void ConditionAssignments::Save(DataWriter &out) const
 		{
 			out.WriteToken(assignment.conditionToAssignTo);
 			out.WriteToken(it->second);
-			assignment.expressionToEvaluate.SaveSubset(out);
+			assignment.expressionToEvaluate.SaveInline(out);
 			out.Write();
 		}
 	}
