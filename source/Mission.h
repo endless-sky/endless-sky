@@ -100,7 +100,7 @@ public:
 	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD, ENTERING};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.

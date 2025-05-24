@@ -239,6 +239,8 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			location = OUTFITTER;
 		else if(key == "job board")
 			location = JOB_BOARD;
+		else if(key == "entering")
+			location = ENTERING;
 		else if(key == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(key == "clearance")
@@ -459,6 +461,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		else if(location == JOB)
 			out.Write("job");
+		else if(location == ENTERING)
+			out.Write("entering");
 		if(!clearance.empty())
 		{
 			out.Write("clearance", clearance);
@@ -905,6 +909,11 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 
 		if(!sourceFilter.Matches(*boardingShip))
+			return false;
+	}
+	else if(location == ENTERING)
+	{
+		if(!sourceFilter.Matches(player.GetSystem()))
 			return false;
 	}
 	else

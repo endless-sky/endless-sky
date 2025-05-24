@@ -114,6 +114,49 @@ namespace {
 		};
 		return any_of(player.Missions().begin(), player.Missions().end(), CheckClearance);
 	}
+
+	// Sort the given list of missions in the order they should be offered.
+	void SortMissions(list<Mission> &missions, bool hasPriorityMissions, unsigned nonBlockingMissions)
+	{
+		if(missions.empty())
+			return;
+
+		// This list is already in alphabetical order by virtue of the way that the Set
+		// class stores objects, so stable sorting on the offer precedence will maintain
+		// the alphabetical ordering for missions with the same precedence.
+		missions.sort([](const Mission &a, const Mission &b)
+			{
+				return a.OfferPrecedence() > b.OfferPrecedence();
+			});
+
+		// If any of the available missions are "priority" missions, then only priority
+		// and non-blocking missions are allowed to offer.
+		if(hasPriorityMissions)
+			erase_if(missions, [](const Mission &m) noexcept -> bool
+				{
+					return !m.HasPriority() && !m.IsNonBlocking();
+				});
+		else if(missions.size() > 1 + nonBlockingMissions)
+		{
+			// Minor missions only get offered if no other missions (including other
+			// minor missions) are competing with them, except for "non-blocking" missions.
+			// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
+			// Note that the manner in which excess minor missions are discarded means that the
+			// minor mission with the lowest precedence is the one that will be offered.
+			auto it = missions.begin();
+			while(it != missions.end())
+			{
+				if(it->IsMinor())
+				{
+					it = missions.erase(it);
+					if(missions.size() <= 1 + nonBlockingMissions)
+						break;
+				}
+				else
+					++it;
+			}
+		}
+	}
 }
 
 
@@ -2038,6 +2081,13 @@ const list<Mission> &PlayerInfo::AvailableJobs() const
 
 
 
+bool PlayerInfo::HasAvailableEnteringMissions() const
+{
+	return !availableEnteringMissions.empty();
+}
+
+
+
 const PlayerInfo::SortType PlayerInfo::GetAvailableSortType() const
 {
 	return availableSortType;
@@ -2099,9 +2149,9 @@ void PlayerInfo::ToggleSortSeparatePossible()
 
 
 // Return a pointer to the mission that was most recently accepted while in-flight.
-const Mission *PlayerInfo::ActiveBoardingMission() const
+const Mission *PlayerInfo::ActiveInFlightMission() const
 {
-	return activeBoardingMission;
+	return activeInFlightMission;
 }
 
 
@@ -2167,22 +2217,64 @@ Mission *PlayerInfo::BoardingMission(const shared_ptr<Ship> &ship)
 	ship->SetIsSpecial();
 
 	// "boardingMissions" is emptied by MissionCallback, but to be sure:
-	boardingMissions.clear();
+	availableBoardingMissions.clear();
 
 	Mission::Location location = (ship->GetGovernment()->IsEnemy()
 			? Mission::BOARDING : Mission::ASSISTING);
 
 	// Check for available boarding or assisting missions.
-	for(const auto &it : GameData::Missions())
-		if(it.second.IsAtLocation(location) && it.second.CanOffer(*this, ship))
+	for(const auto &[name, mission] : GameData::Missions())
+		if(mission.IsAtLocation(location) && mission.CanOffer(*this, ship))
 		{
-			boardingMissions.push_back(it.second.Instantiate(*this, ship));
-			if(boardingMissions.back().IsFailed())
-				boardingMissions.pop_back();
+			availableBoardingMissions.push_back(mission.Instantiate(*this, ship));
+			if(availableBoardingMissions.back().IsFailed())
+				availableBoardingMissions.pop_back();
 			else
-				return &boardingMissions.back();
+				return &availableBoardingMissions.back();
 		}
 
+	return nullptr;
+}
+
+
+
+void PlayerInfo::CreateEnteringMissions()
+{
+	availableEnteringMissions.clear();
+
+	bool hasPriorityMissions = false;
+	unsigned nonBlockingMissions = 0;
+	for(const auto &[name, mission] : GameData::Missions())
+		if(mission.IsAtLocation(Mission::ENTERING) && mission.CanOffer(*this))
+		{
+			availableEnteringMissions.push_back(mission.Instantiate(*this));
+			if(availableEnteringMissions.back().IsFailed())
+				availableEnteringMissions.pop_back();
+			else
+			{
+				hasPriorityMissions |= missions.back().HasPriority();
+				nonBlockingMissions += missions.back().IsNonBlocking();
+			}
+		}
+
+	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
+}
+
+
+
+Mission *PlayerInfo::EnteringMission()
+{
+	if(!flagship)
+		return nullptr;
+
+	// If a mission can be offered right now, move it to the start of the list
+	// so we know what mission the callback is referring to, and return it.
+	for(auto it = availableEnteringMissions.begin(); it != availableEnteringMissions.end(); ++it)
+		if(it->HasSpace(*flagship))
+		{
+			availableEnteringMissions.splice(availableEnteringMissions.begin(), availableEnteringMissions, it);
+			return &availableEnteringMissions.front();
+		}
 	return nullptr;
 }
 
@@ -2195,7 +2287,7 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 	// Check if there's a boarding mission being offered which allows this ship to be captured. If the boarding
 	// mission was declined, then this results in one-time capture access to the ship. If it was accepted, then
 	// the next boarding attempt will have the boarding mission in the player's active missions list, checked below.
-	const Mission *mission = boardingMissions.empty() ? nullptr : &boardingMissions.back();
+	const Mission *mission = availableBoardingMissions.empty() ? nullptr : &availableBoardingMissions.back();
 	// Otherwise, check if there's an already active mission which grants access. This allows trying to board the
 	// ship again after accepting the mission.
 	if(!mission)
@@ -2207,10 +2299,10 @@ bool PlayerInfo::CaptureOverriden(const shared_ptr<Ship> &ship) const
 
 
 
-// Engine calls this after placing the boarding mission's NPCs.
-void PlayerInfo::ClearActiveBoardingMission()
+// Engine calls this after placing the boarding/assisting/entering mission's NPCs.
+void PlayerInfo::ClearActiveInFlightMission()
 {
-	activeBoardingMission = nullptr;
+	activeInFlightMission = nullptr;
 }
 
 
@@ -2220,7 +2312,7 @@ void PlayerInfo::ClearActiveBoardingMission()
 // show that message.
 void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 {
-	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
+	list<Mission> &missionList = availableMissions.empty() ? availableBoardingMissions : availableMissions;
 	if(ships.empty() || missionList.empty())
 		return;
 
@@ -2238,12 +2330,39 @@ void PlayerInfo::HandleBlockedMissions(Mission::Location location, UI *ui)
 
 
 
+void PlayerInfo::HandleBlockedEnteringMissions(UI *ui)
+{
+	if(!flagship || availableEnteringMissions.empty())
+		return;
+
+	for(auto it = availableEnteringMissions.begin(); it != availableEnteringMissions.end(); )
+	{
+		if(!it->HasSpace(*flagship))
+		{
+			string message = it->BlockedMessage(*this);
+			// Remove this mission from the list so that the MainPanel stops
+			// trying to offer it.
+			it = availableEnteringMissions.erase(it);
+			if(!message.empty())
+			{
+				ui->Push(new Dialog(message));
+				return;
+			}
+		}
+		else
+			++it;
+	}
+}
+
+
+
 // Callback for accepting or declining whatever mission has been offered.
 // Responses which would kill the player are handled before the on offer
 // conversation ended.
 void PlayerInfo::MissionCallback(int response)
 {
-	list<Mission> &missionList = availableMissions.empty() ? boardingMissions : availableMissions;
+	list<Mission> &missionList = availableMissions.empty() ?
+		(availableEnteringMissions.empty() ? availableBoardingMissions : availableEnteringMissions) : availableMissions;
 	if(missionList.empty())
 		return;
 
@@ -2275,8 +2394,9 @@ void PlayerInfo::MissionCallback(int response)
 		// If this is a mission offered in-flight, expose a pointer to it
 		// so Engine::SpawnFleets can add its ships without requiring the
 		// player to land.
-		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING))
-			activeBoardingMission = &*--spliceIt;
+		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
+				|| mission.IsAtLocation(Mission::ENTERING))
+			activeInFlightMission = &*--spliceIt;
 	}
 	else if(response == Conversation::DECLINE || response == Conversation::FLEE)
 	{
@@ -3527,7 +3647,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// in the player's entire fleet. The only fleet parameter offered to a
 	// boarding mission is the fleet composition (e.g. 4 Heavy Warships).
 	conditions["cargo space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
-		if(flagship && !boardingMissions.empty())
+		if(flagship && !availableBoardingMissions.empty())
 			return flagship->Cargo().Free();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
@@ -3535,7 +3655,7 @@ void PlayerInfo::RegisterDerivedConditions()
 				retVal += ship->Attributes().Get("cargo space");
 		return retVal; });
 	conditions["passenger space"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
-		if(flagship && !boardingMissions.empty())
+		if(flagship && !availableBoardingMissions.empty())
 			return flagship->Cargo().BunksFree();
 		int64_t retVal = 0;
 		for(const shared_ptr<Ship> &ship : ships)
@@ -3922,28 +4042,30 @@ void PlayerInfo::RegisterDerivedConditions()
 // New missions are generated each time you land on a planet.
 void PlayerInfo::CreateMissions()
 {
-	boardingMissions.clear();
+	availableBoardingMissions.clear();
+	availableEnteringMissions.clear();
 
 	// Check for available missions.
 	bool skipJobs = planet && !planet->GetPort().HasService(Port::ServicesType::JobBoard);
 	bool hasPriorityMissions = false;
 	unsigned nonBlockingMissions = 0;
-	for(const auto &it : GameData::Missions())
+	for(const auto &[name, mission] : GameData::Missions())
 	{
-		if(it.second.IsAtLocation(Mission::BOARDING) || it.second.IsAtLocation(Mission::ASSISTING))
+		if(mission.IsAtLocation(Mission::BOARDING) || mission.IsAtLocation(Mission::ASSISTING)
+				|| mission.IsAtLocation(Mission::ENTERING))
 			continue;
-		if(skipJobs && it.second.IsAtLocation(Mission::JOB))
+		if(skipJobs && mission.IsAtLocation(Mission::JOB))
 			continue;
 
-		if(it.second.CanOffer(*this))
+		if(mission.CanOffer(*this))
 		{
 			list<Mission> &missions =
-				it.second.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
+				mission.IsAtLocation(Mission::JOB) ? availableJobs : availableMissions;
 
-			missions.push_back(it.second.Instantiate(*this));
+			missions.push_back(mission.Instantiate(*this));
 			if(missions.back().IsFailed())
 				missions.pop_back();
-			else if(!it.second.IsAtLocation(Mission::JOB))
+			else if(!mission.IsAtLocation(Mission::JOB))
 			{
 				hasPriorityMissions |= missions.back().HasPriority();
 				nonBlockingMissions += missions.back().IsNonBlocking();
@@ -3951,44 +4073,7 @@ void PlayerInfo::CreateMissions()
 		}
 	}
 
-	if(availableMissions.empty())
-		return;
-
-	// This list is already in alphabetical order by virtue of the way that the Set
-	// class stores objects, so stable sorting on the offer precedence will maintain
-	// the alphabetical ordering for missions with the same precedence.
-	availableMissions.sort([](const Mission &a, const Mission &b)
-		{
-			return a.OfferPrecedence() > b.OfferPrecedence();
-		});
-
-	// If any of the available missions are "priority" missions, then only priority
-	// and non-blocking missions are allowed to offer.
-	if(hasPriorityMissions)
-		erase_if(availableMissions, [](const Mission &m) noexcept -> bool
-			{
-				return !m.HasPriority() && !m.IsNonBlocking();
-			});
-	else if(availableMissions.size() > 1 + nonBlockingMissions)
-	{
-		// Minor missions only get offered if no other missions (including other
-		// minor missions) are competing with them, except for "non-blocking" missions.
-		// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
-		// Note that the manner in which excess minor missions are discarded means that the
-		// minor mission with the lowest precedence is the one that will be offered.
-		auto it = availableMissions.begin();
-		while(it != availableMissions.end())
-		{
-			if(it->IsMinor())
-			{
-				it = availableMissions.erase(it);
-				if(availableMissions.size() <= 1 + nonBlockingMissions)
-					break;
-			}
-			else
-				++it;
-		}
-	}
+	SortMissions(availableMissions, hasPriorityMissions, nonBlockingMissions);
 }
 
 
