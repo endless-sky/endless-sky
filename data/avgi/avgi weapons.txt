@@ -67,7 +67,7 @@ outfit "Speckle Coilgun"
 		"submunition" "Speck"
 	description "This compact coilgun fires a stream of hypervelocity projectiles, accelerating them on a traveling wave of magnetic energy as capacitors are discharged through a series of coils. Designed primarily for drones and smaller ships, the Speckle is a deadly albeit relatively unsophisticated weapon."
 	description "	Due to its limited range, the Speckle shines when a ship can sneak close enough to an enemy to bring it to bear, where it can begin tearing through armor and hull. However, its effectiveness is much more limited against shields, which shrug off its mass driver rounds with relative ease."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 	
 
 outfit "Speckle Turret"
@@ -105,7 +105,7 @@ outfit "Speckle Turret"
 			"offset" 3 0
 	description "Designed for mid-sized ships, this variation on the Speckle Coilgun mounts a pair of coilguns onto a nimble turret. Its compact size allows even smaller ships to fit one, making it a versatile option for mid-ranged combat."
 	description "	Of course, the inherently limited range and velocity of kinetic weapons makes the Speckle Turret a poor match for some of the longer-ranged weapons used by the Avgi, but the sheer firepower it can put out can make it deadly to close targets."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 
 outfit "Speck"
@@ -486,7 +486,7 @@ outfit "Medium VLS"
 		"submunition" "Nettle Active"
 	description "This large vertical launch system is made up of 36 independent launch cells arrayed in parallel. A wide variety of small to mid-sized Avgi missiles are compatible with the launch cells, which can be easily interchanged. Designed for rapid vertical cold-launch, the system needs an open space comparable to a turret mount to function properly."
 	description "	Vertical launch systems such as this one are capable of rapidly launching multiple missiles in parallel, but take up quite a bit of space."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 
 outfit `"Nettle" KKV`
