@@ -236,7 +236,7 @@ outfit "Swarm Pod"
 		"missile strength" 8
 		"stream"
 	description "The Swarm Pod proved to be an effective weapon in early conflicts with the Korath by overpowering early Korath anti-missile defenses. But just as the Bunrodea developed technology to combat Korath weaponry, the Korath did the same, prompting them to create their own rapid-fire anti-missile turret that limited the usefulness of the Swarm Pod against some Korath targets."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 effect "swarm flare"
 	sprite "effect/swarm"
