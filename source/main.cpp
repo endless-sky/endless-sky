@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
 
 		if(printData)
 		{
-			PrintData::Print(argv);
+			PrintData::Print(argv, player);
 			return 0;
 		}
 		if(printTests)

@@ -91,7 +91,7 @@ StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 void StartConditionsPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 
 	GameData::Interfaces().Get("menu background")->Draw(info, this);
 	GameData::Interfaces().Get("start conditions menu")->Draw(info, this);

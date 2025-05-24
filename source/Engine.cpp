@@ -442,8 +442,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		map<string, map<Ship *, int>> carriers;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed.
-			if(ship->IsDestroyed() || ship->IsDisabled())
+			// Skip ships that have been destroyed, have landed, or are disabled.
+			if(ship->LandedOrDestroyed() || ship->IsDisabled())
 				continue;
 
 			// Redo the loading up of fighters.
@@ -463,8 +463,8 @@ void Engine::Place(const list<NPC> &npcs, const shared_ptr<Ship> &flagship)
 		shared_ptr<Ship> npcFlagship;
 		for(const shared_ptr<Ship> &ship : npc.Ships())
 		{
-			// Skip ships that have been destroyed.
-			if(ship->IsDestroyed())
+			// Skip ships that have been destroyed or permanently landed.
+			if(ship->LandedOrDestroyed())
 				continue;
 
 			// Avoid the exploit where the player can wear down an NPC's
@@ -618,6 +618,10 @@ void Engine::Step(bool isActive)
 			// Update the current zoom modifier if the flagship is landing or taking off.
 			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
+
+		// Step the background to account for the current velocity and zoom.
+		if(!timePaused)
+			GameData::StepBackground(centerVelocity, zoom);
 	}
 
 	outlines.clear();
@@ -727,6 +731,7 @@ void Engine::Step(bool isActive)
 
 	statuses.clear();
 	missileLabels.clear();
+	turretOverlays.clear();
 	if(isActive)
 	{
 		// Create the status overlays.
@@ -740,9 +745,35 @@ void Engine::Step(bool isActive)
 						&& (pos.Length() < max(Screen::Width(), Screen::Height()) * .5 / zoom))
 					missileLabels.emplace_back(AlertLabel(pos, projectile, flagship, zoom));
 			}
+		// Create overlays for flagship turrets with blindspots.
+		if(flagship && Preferences::GetTurretOverlays() != Preferences::TurretOverlays::OFF)
+			for(const Hardpoint &hardpoint : flagship->Weapons())
+				if(!hardpoint.GetBaseAttributes().blindspots.empty())
+				{
+					bool isBlind = hardpoint.IsBlind();
+					if(Preferences::GetTurretOverlays() == Preferences::TurretOverlays::BLINDSPOTS_ONLY && !isBlind)
+						continue;
+					// TODO: once Apple Clang adds support for C++20 aggregate initialization,
+					// this can be removed.
+#ifdef __APPLE__
+					turretOverlays.push_back({
+#else
+					turretOverlays.emplace_back(
+#endif
+						(flagship->Position() - center
+							+ flagship->Zoom() * flagship->Facing().Rotate(hardpoint.GetPoint()))
+							* static_cast<double>(zoom),
+						(flagship->Facing() + hardpoint.GetAngle()).Unit(),
+						flagship->Zoom() * static_cast<double>(zoom),
+						isBlind
+#ifdef __APPLE__
+					}
+#endif
+					);
+				}
 		// Update the planet label positions.
 		for(PlanetLabel &label : labels)
-			label.Update(center, zoom);
+			label.Update(center, zoom, labels, *player.GetSystem());
 	}
 
 	if(flagship && flagship->IsOverheated())
@@ -1169,8 +1200,9 @@ void Engine::Draw() const
 		motionBlur *= 1. + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
 
-	GameData::Background().Draw(center, motionBlur, zoom,
+	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
+
 	static const Set<Color> &colors = GameData::Colors();
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
@@ -1229,6 +1261,18 @@ void Engine::Draw() const
 			continue;
 		Point size(outline.sprite->Width(), outline.sprite->Height());
 		OutlineShader::Draw(outline.sprite, outline.position, size, outline.color, outline.unit, outline.frame);
+	}
+
+	// Draw turret overlays.
+	if(!turretOverlays.empty())
+	{
+		const Color &blindspot = *GameData::Colors().Get("overlay turret blindspot");
+		const Color &normal = *GameData::Colors().Get("overlay turret");
+		PointerShader::Bind();
+		for(const TurretOverlay &it : turretOverlays)
+			PointerShader::Add(it.position, it.angle, 8 * it.scale, 24 * it.scale, 24 * it.scale,
+				it.isBlind ? blindspot : normal);
+		PointerShader::Unbind();
 	}
 
 	if(flash)
@@ -1875,11 +1919,11 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 	ship->Move(newVisuals, newFlotsam);
 	if(ship->IsDisabled() && !wasDisabled)
 		eventQueue.emplace_back(nullptr, ship, ShipEvent::DISABLE);
-	// Bail out if the ship just died.
+	// Ships which are dead or landed should report that event.
 	if(ship->ShouldBeRemoved())
 	{
-		// Make sure this ship's destruction was recorded, even if it died from
-		// self-destruct.
+		// Make sure this ship's destruction or landing was recorded, even if
+		// it died from self-destruct.
 		if(ship->IsDestroyed())
 		{
 			eventQueue.emplace_back(nullptr, ship, ShipEvent::DESTROY);
@@ -1891,6 +1935,8 @@ void Engine::MoveShip(const shared_ptr<Ship> &ship)
 			if(ship->IsYours())
 				player.DeselectShip(ship.get());
 		}
+		else if(ship->HasLanded() && ship->IsSpecial())
+			eventQueue.emplace_back(nullptr, ship, ShipEvent::LAND);
 		return;
 	}
 
@@ -1982,10 +2028,10 @@ void Engine::FillCollisionSets()
 void Engine::SpawnFleets()
 {
 	// If the player has a pending boarding mission, spawn its NPCs.
-	if(player.ActiveBoardingMission())
+	if(player.ActiveInFlightMission())
 	{
-		Place(player.ActiveBoardingMission()->NPCs(), player.FlagshipPtr());
-		player.ClearActiveBoardingMission();
+		Place(player.ActiveInFlightMission()->NPCs(), player.FlagshipPtr());
+		player.ClearActiveInFlightMission();
 	}
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
