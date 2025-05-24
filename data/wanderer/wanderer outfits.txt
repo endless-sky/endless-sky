@@ -266,7 +266,7 @@ outfit "Thunderhead Launcher"
 		"radar tracking" .6
 		"missile strength" 12
 	description "A prime example of Wanderer ingenuity, Thunderhead Missiles each carry five submunitions that are capable of independent tracking. Even if the target is able to shoot down or evade a few of them, the remaining missile fragments will still find their mark."
-	description "	Ammunition for this weapon can be restocked at any outfitter."
+	description "	This weapon comes with a small ammunition factory. At landing on a planet with the proper infrastructure and resources, it can stock up the magazine within a day."
 
 outfit "Thunderhead Missile"
 	category "Ammunition"
