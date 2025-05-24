@@ -138,7 +138,7 @@ LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
 void LoadPanel::Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	GameData::Background().Draw(Point(), Point());
+	GameData::Background().Draw(Point());
 	const Font &font = FontSet::Get(14);
 
 	Information info;

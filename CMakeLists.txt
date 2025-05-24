@@ -30,7 +30,7 @@ set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 if(ES_USE_VCPKG)
 	set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
 		CACHE STRING "Vcpkg toolchain file")
-	# No need to bootstrap vcpkg if the toolchain file is explictly provided.
+	# No need to bootstrap vcpkg if the toolchain file is explicitly provided.
 	if(CMAKE_TOOLCHAIN_FILE STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
 		include(utils/vcpkg_bootstrap.cmake)
 		x_vcpkg_bootstrap()
