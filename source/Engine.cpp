@@ -69,6 +69,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "SystemEntry.h"
 #include "test/Test.h"
+#include "UI.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -2286,7 +2287,10 @@ void Engine::HandleMouseClicks()
 						}
 					}
 					else
+					{
+						UI::PlaySound(UI::UISound::TARGET);
 						flagship->SetTargetStellar(&object);
+					}
 
 					clickedPlanet = true;
 				}
@@ -2316,6 +2320,7 @@ void Engine::HandleMouseClicks()
 	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
+		UI::PlaySound(UI::UISound::TARGET);
 		if(isRightClick)
 			ai.IssueShipTarget(clickTarget);
 		else
@@ -2353,7 +2358,10 @@ void Engine::HandleMouseClicks()
 		}
 	}
 	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
+	{
+		UI::PlaySound(UI::UISound::TARGET);
 		ai.IssueMoveTarget(clickPoint + center, playerSystem);
+	}
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)
