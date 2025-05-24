@@ -311,16 +311,18 @@ void ConditionSet::SaveInline(DataWriter &out) const
 	// Handle infix operators.
 	if((it->second.second & INFIX_OPERATOR) && !children.empty())
 	{
-		out.WriteToken("(");
+		// Just write brackets so that we don't need to calculate precedence.
+		// Children write their own brackets if they are also infix operators.
+		if(children.size() > 1)
+			out.WriteToken("(");
 		children[0].SaveInline(out);
-		out.WriteToken(")");
 		for(unsigned int i = 1; i < children.size(); ++i)
 		{
 			out.WriteToken(opTxt);
-			out.WriteToken("(");
 			children[i].SaveInline(out);
-			out.WriteToken(")");
 		}
+		if(children.size() > 1)
+			out.WriteToken(")");
 		return;
 	}
 
