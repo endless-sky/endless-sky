@@ -57,9 +57,7 @@ namespace {
 	constexpr double BUTTON_COL_START_PAD = 4.;
 	constexpr double BUTTON_ROW_PAD = 6.;
 	constexpr double BUTTON_COL_PAD = 6.;
-	// These button widths need to add up to 200 with the current right panel
-	// width and column padding (above):
-	constexpr double BUTTON_WIDTH = 56.;
+	constexpr double BUTTON_WIDTH = 75.;
 
 	// Determine the refillable ammunition a particular ship consumes or stores.
 	set<const Outfit *> GetRefillableAmmunition(const Ship &ship) noexcept
@@ -297,7 +295,7 @@ void OutfitterPanel::DrawItem(const string &name, const Point &point)
 double OutfitterPanel::ButtonPanelHeight() const
 {
 	// The 60 is for padding the credit and cargo space information lines.
-	return 60. + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD;
+	return 60. + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2;
 }
 
 
@@ -1299,12 +1297,13 @@ vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isBuy) const
 void OutfitterPanel::DrawButtons()
 {
 	// There will be two rows of buttons:
-	//  [ Buy  ] [  Install  ] [ Cargo ]
-	//  [ Sell ] [ Uninstall ] [ Keep  ] [ Leave ]
+	//  [ Buy  ] [  Install  ] [  Cargo  ]
+	//  [ Sell ] [ Uninstall ] [ Storage ]
+	//  		   [ Leave ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 1.5 * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 2.5 * rowOffsetY - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonBaseX = Screen::BottomRight().X() - buttonOffsetX * 3.5 - BUTTON_COL_START_PAD;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH/2;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
 
 	// Draw the button panel (shop side panel footer).
@@ -1352,19 +1351,22 @@ void OutfitterPanel::DrawButtons()
 			bigFont.Height()), *textColor);
 	};
 
-	DrawButton("_Buy", Point(buttonBaseX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0),
+	// Row 1
+	DrawButton("_Buy", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0),
 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b');
-	DrawButton("_Install", Point(buttonBaseX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0),
+	DrawButton("_Install", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0),
 		static_cast<bool>(CanInstall()), hoverButton == 'i');
-	DrawButton("_Cargo", Point(buttonBaseX + buttonOffsetX * 2, rowBaseY + rowOffsetY * 0),
+	DrawButton("_Cargo", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0),
 		(CanMoveToCargoFromStorage() || CanBuyToCargo()), hoverButton == 'c');
-	DrawButton("_Sell", Point(buttonBaseX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1),
+	// Row 2
+	DrawButton("_Sell", Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 1),
 		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Sell)), hoverButton == 's');
-	DrawButton("_Uninst", Point(buttonBaseX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1),
+	DrawButton("_Uninstall", Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1),
 		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Uninstall)), hoverButton == 'u');
-	DrawButton("Sto_re", Point(buttonBaseX + buttonOffsetX * 2, rowBaseY + rowOffsetY * 1),
+	DrawButton("Sto_re", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1),
 		static_cast<bool>(CanUninstall(ShopPanel::UninstallAction::Store)), hoverButton == 'r');
-	DrawButton("_Leave", Point(buttonBaseX + buttonOffsetX * 3, rowBaseY + rowOffsetY * 1),
+	// Row 3
+	DrawButton("_Leave", Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2),
 		true, hoverButton == 'l');
 
 	// Draw the Modifier hover text that appears below the buttons when a modifier
@@ -1374,10 +1376,10 @@ void OutfitterPanel::DrawButtons()
 	{
 		string mod = "x " + to_string(modifier);
 		int modWidth = font.Width(mod);
-		for(int i = 0; i < 3; i++)
-			font.Draw(mod, Point(buttonBaseX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0) + Point(-.5 * modWidth, 10.), dim);
-		for(int i = 0; i < 4; i++)
-			font.Draw(mod, Point(buttonBaseX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1) + Point(-.5 * modWidth, 10.), dim);
+		for(int i = -1; i < 2; i++)
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 0) + Point(-.5 * modWidth, 10.), dim);
+		for(int i = -1; i < 2; i++)
+			font.Draw(mod, Point(buttonCenterX + buttonOffsetX * i, rowBaseY + rowOffsetY * 1) + Point(-.5 * modWidth, 10.), dim);
 	}
 
 	// Draw tooltips for the button being hovered over:
@@ -1411,9 +1413,10 @@ void OutfitterPanel::DrawButtons()
 char OutfitterPanel::CheckButton(int x, int y)
 {
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - 2. * rowOffsetY - BUTTON_ROW_START_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 3. * rowOffsetY - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
-	const double buttonBaseX = Screen::BottomRight().X() - buttonOffsetX * 4. - BUTTON_COL_START_PAD;
+	const double w = BUTTON_WIDTH/2;
+	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH/2;
 
 	// Check the Find button.
 	if(x > Screen::Right() - SIDEBAR_WIDTH - 342 && x < Screen::Right() - SIDEBAR_WIDTH - 316 &&
@@ -1423,32 +1426,39 @@ char OutfitterPanel::CheckButton(int x, int y)
 	if(x < Screen::Right() - SIDEBAR_WIDTH || y < Screen::Bottom() - ButtonPanelHeight())
 		return '\0';
 
+	// Row 1
 	if(rowBaseY < y && y <= rowBaseY + BUTTON_HEIGHT)
 	{
 		// Check if it's the _Buy button.
-		if(buttonBaseX + buttonOffsetX * 0 <= x && x < buttonBaseX + buttonOffsetX * 1)
+		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
 			return 'b';
 		// Check if it's the _Install button.
-		if(buttonBaseX + buttonOffsetX * 1 <= x && x < buttonBaseX + buttonOffsetX * 2)
+		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
 			return 'i';
 		// Check if it's the _Cargo button.
-		if(buttonBaseX + buttonOffsetX * 2 <= x && x < buttonBaseX + buttonOffsetX * 3)
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
 			return 'c';
 	}
 
+	// Row 2
 	if(rowBaseY + rowOffsetY < y && y <= rowBaseY + rowOffsetY + BUTTON_HEIGHT)
 	{
 		// Check if it's the _Sell button:
-		if(buttonBaseX + buttonOffsetX * 0 <= x && x < buttonBaseX + buttonOffsetX * 1)
+		if(buttonCenterX + buttonOffsetX * -1 - w <= x && x < buttonCenterX + buttonOffsetX * -1 + w)
 			return 's';
 		// Check if it's the _Uninstall button.
-		if(buttonBaseX + buttonOffsetX * 1 <= x && x < buttonBaseX + buttonOffsetX * 2)
+		if(buttonCenterX + buttonOffsetX * 0 - w <= x && x < buttonCenterX + buttonOffsetX * 0 + w)
 			return 'u';
 		// Check if it's the Sto_re button.
-		if(buttonBaseX + buttonOffsetX * 2 <= x && x < buttonBaseX + buttonOffsetX * 3)
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
 			return 'r';
+	}
+
+	// Row 3
+	if(rowBaseY + rowOffsetY * 2 < y && y <= rowBaseY + rowOffsetY * 2 + BUTTON_HEIGHT)
+	{
 		// Check if it's the _Leave button.
-		if(buttonBaseX + buttonOffsetX * 3 <= x && x < buttonBaseX + buttonOffsetX * 4)
+		if(buttonCenterX + buttonOffsetX * 1 - w <= x && x < buttonCenterX + buttonOffsetX * 1 + w)
 			return 'l';
 	}
 
