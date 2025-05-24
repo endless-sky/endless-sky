@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Random.h"
+#include "Screen.h"
 #include "TextArea.h"
 #include "UI.h"
 
@@ -32,7 +33,8 @@ using namespace std;
 
 
 SpaceportPanel::SpaceportPanel(PlayerInfo &player)
-	: player(player), port(player.GetPlanet()->GetPort()), ui(*GameData::Interfaces().Get("spaceport"))
+	: player(player), port(player.GetPlanet()->GetPort()),
+	ui(*GameData::Interfaces().Get(Screen::Width() < 1280 ? "spaceport (small screen)" : "spaceport"))
 {
 	SetTrapAllEvents(false);
 
@@ -45,7 +47,7 @@ SpaceportPanel::SpaceportPanel(PlayerInfo &player)
 
 	// Query the news interface to find out the wrap width.
 	// TODO: Allow Interface to handle wrapped text directly.
-	const Interface *newsUi = GameData::Interfaces().Get("news");
+	const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
 	portraitWidth = newsUi->GetBox("message portrait").Width();
 	normalWidth = newsUi->GetBox("message").Width();
 	newsMessage.SetFont(FontSet::Get(14));
@@ -105,7 +107,7 @@ void SpaceportPanel::Draw()
 
 	if(hasNews)
 	{
-		const Interface *newsUi = GameData::Interfaces().Get("news");
+		const Interface *newsUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "news (small screen)" : "news");
 		newsUi->Draw(newsInfo);
 		// Depending on if the news has a portrait, the interface box that
 		// gets filled in changes.
