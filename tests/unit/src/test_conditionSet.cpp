@@ -269,7 +269,7 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			REQUIRE( numberSet.Evaluate() == answer );
 			REQUIRE( numberSet.Test() == boolAnswer );
 		}
-		THEN( "Loading and saving expression \'" + expressionString + "\' twice (as tree) results in two identical and working expressions" )
+		THEN( "Tree loading and saving \'" + expressionString + "\' results in identical and working expressions" )
 		{
 			DataWriter dw1;
 			dw1.WriteToken("toplevel");
@@ -292,13 +292,13 @@ SCENARIO( "Determining if condition requirements are met", "[ConditionSet][Usage
 			dwCopy.EndChild();
 			REQUIRE( dw1.SaveToString() == dwCopy.SaveToString() );
 
-			ConditionSet numberSetCopy2 =  ConditionSet{AsDataNode(dwCopy.SaveToString()), &storeWithData};
+			ConditionSet numberSetCopy2 = ConditionSet{AsDataNode(dwCopy.SaveToString()), &storeWithData};
 			REQUIRE_FALSE( numberSetCopy2.IsEmpty() );
 			REQUIRE( numberSetCopy2.IsValid() );
 			REQUIRE( numberSetCopy2.Evaluate() == answer );
 			REQUIRE( numberSetCopy2.Test() == boolAnswer );
 		}
-		THEN( "Loading and saving expression \'" + expressionString + "\' twice (as separate-expression) results in two identical and working expressions" )
+		THEN( "Inline loading and saving \'" + expressionString + "\' results in identical and working expressions" )
 		{
 			DataWriter dw1;
 			numberSet.SaveInline(dw1);
