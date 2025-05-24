@@ -147,7 +147,7 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[3].clear();
 
 	// Ensure that image sequences aren't mixed with other images.
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; ++i)
 		for(const auto &path : paths[i])
 		{
 			string ext = path.extension().string();
