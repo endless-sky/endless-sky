@@ -1,0 +1,22 @@
+version: '3'
+services:
+  es-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: tail -F /dev/null # Run indefinitely
+    restart: unless-stopped
+    devices:
+      - /dev/dri
+      - /dev/fuse
+      - /dev/snd
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - 'apparmor:unconfined'
+    volumes:
+      - /tmp:/tmp
+      - /run/user/${UID:-1000}/pulse/native:/run/user/${UID:-1000}/pulse/native
+    environment:
+      DISPLAY: ":1"
+      PULSE_SERVER: unix:/run/user/${UID:-1000}/pulse/native
