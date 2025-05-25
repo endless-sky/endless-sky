@@ -2496,7 +2496,7 @@ ship "Jackal"
 	explode "tiny explosion" 10
 	explode "small explosion" 10
 	"final explode" "final explosion small"
-	description `The Jackal is notable for being one of the earliest warships that was designed in mind for "freelancer" pilots, rather than for corporate or law enforcement usage. In its heyday, the Jackal contended with the Berserker for the title of the most popular Interceptor-class ship in human space. However, the Jackal's age and inflexibility with regards to new developments in weaponry led to a decline in sales that eventually saw its manufacturer absorbed by the shipyard of its age-old rival Beserker, Betelgeuse Shipyards.`
+	description `The Jackal is notable for being one of the earliest warships that was designed in mind for "freelancer" pilots, rather than for corporate or law enforcement usage. In its heyday, the Jackal contended with the Berserker for the title of the most popular Interceptor-class ship in human space. However, the Jackal's age and inflexibility with regards to new developments in weaponry led to a decline in sales that eventually saw its manufacturer absorbed by the shipyard of its age-old rival Berserker, Betelgeuse Shipyards.`
 
 
 
