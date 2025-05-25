@@ -4,19 +4,18 @@ VOLUME /tmp
 VOLUME /var/cache/apt/archives
 
 ENV DEBIAN_FRONTEND=noninteractive
-SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
 
 # Basic build and system requirements
 RUN \
 	apt-get update; \
-	apt-get install -y --no-install-recommends cmake pkg-config g++ ninja-build curl; \
+	apt-get install -y --no-install-recommends cmake pkg-config g++ ninja-build curl git; \
 	apt-get install -y --no-install-recommends libgl1-mesa-dev libglu1-mesa-dev; \
 	apt-get install -y --no-install-recommends libx11-dev libxft-dev libxext-dev
 
 # Game dependencies
 RUN \
 	apt-get update; \
-	apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-dev libglew-dev libminizip-dev libopenal-dev libmad0-dev uuid-dev \
+	apt-get install -y --no-install-recommends libsdl2-dev libpng-dev libjpeg-dev libglew-dev libminizip-dev libopenal-dev libmad0-dev uuid-dev; \
 	apt-get install -y --no-install-recommends pkgconf catch2
 
 # Optional dependencies
@@ -30,16 +29,8 @@ RUN \
 # Build caching
 RUN \
 	apt-get update; \
-	apt-get install ccache; \
+	apt-get install -y --no-install-recommends ccache
 ENV CMAKE_CXX_COMPILER_LAUNCHER=ccache
 ENV CMAKE_BUILD_PARALLEL_LEVEL=32
-
-# Create container user (assumes UID 1000)
-RUN \
-  adduser es-user; \
-  usermod -a -G audio es-user
-
-USER es-user
-WORKDIR /home/es-user
 
 CMD /bin/bash

@@ -43,7 +43,6 @@ docs/api/
 
 # IDEs (no support implied)
 .cache
-.devcontainer
 .vscode
 .vs
 .metadata

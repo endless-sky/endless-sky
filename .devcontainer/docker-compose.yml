@@ -17,6 +17,7 @@ services:
     volumes:
       - /tmp:/tmp
       - /run/user/${UID:-1000}/pulse/native:/run/user/${UID:-1000}/pulse/native
+      - ${HOME}/.cache/ccache:/home/es-user/.cache/ccache
     environment:
       DISPLAY: ":1"
       PULSE_SERVER: unix:/run/user/${UID:-1000}/pulse/native
