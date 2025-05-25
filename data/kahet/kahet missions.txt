@@ -1019,12 +1019,12 @@ mission "Ka'het: Patir Mystery 8A"
 	on offer
 		conversation
 			`It doesn't take long for you to see Dusk; he's waiting for you under a canopy next to your landing pad, right at the edge of Aventine's starport. "We are almost ready to go," he says, "but I have run into a problem. My plan for our next mission was to have a repeat of the last expedition, but this time carrying a temporary laboratory to the Builder site. I was able to gather most of the instruments I was looking for in the local scientific facilities, but none of the mobile laboratories I am authorized to requisition by default were in good enough condition to fly.`
-			`	"Because of that, before we can start our mission, we will need to make a stopover at <stopovers> - I was able to convince the prefects on Viminal to reallocate one of the outposts that they had just delivered there to our mission, given it has higher priority than the mining expeditions they are setting up."`
-			`	You help Dusk transport the chosen instruments to your ship; you also make sure to leave enough space for the facilities you're going to take from <planet stopovers>. As you're walking back to the ship's controls, Dusk reminds you to bring as many ramscoops with you as possible - you're going to need them in order to complete the mission plan while cloaked.`
+			`	"Because of that, before we can start our mission, we will need to make a stopover at <destination> - I was able to convince the prefects on Viminal to reallocate one of the outposts that they had just delivered there to our mission, given it has higher priority than the mining expeditions they are setting up. After outfitting it with our research equipment, it has reached a mass of 97 tons."`
+			`	You help Dusk transport the chosen instruments to your ship; you also make sure to leave enough space for the facilities you're going to take from <planet>. As you're walking back to the ship's controls, Dusk reminds you to bring as many ramscoops with you as possible - you're going to need them in order to complete the mission plan while cloaked.`
 				accept
 	on complete
 		dialog
-			`Dusk's coordinates indicate the border of a large canyon near the equator of <planet stopovers>. Unlike most cracks on the surface, this one shows signs of geological activity: you only narrowly avoid a stream ejecting from a geyser in the canyon as you pass overhead. As you land, a row of Remnant structures are clearly visible running parallel to the cliff.`
+			`Dusk's coordinates indicate the border of a large canyon near the equator of <planet>. Unlike most cracks on the surface, this one shows signs of geological activity: you only narrowly avoid a stream ejecting from a geyser in the canyon as you pass overhead. As you land, a row of Remnant structures are clearly visible running parallel to the cliff.`
 			`	The local crew assist in loading the modular laboratory split across three pallets; with them arrives a separate package, containing a surveillance satellite to be deployed near Patir while cloaked.`
 	on abort
 		clear "remnant: dusk busy"
