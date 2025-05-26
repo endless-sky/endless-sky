@@ -5573,7 +5573,7 @@ mission "Hroar's Haulers 13"
 				`	(Try to help Gunhilda to the exit.)`
 					goto helpgun
 				`	(Stay with Gunhilda.)`
-			`	Gunhilda, while nursing another drink, is talking aimlessly about the time she and her ma "found the motherlode on Muspel". The arguing and shouts draws nearer and nearer. Four riot-gear toting Syndicate Enforcers push through the mob and surround both of you.`
+			`	Gunhilda, while nursing another drink, is talking aimlessly about the time she and her ma "found the motherlode on Muspel." The arguing and shouts draws nearer and nearer. Four riot-gear toting Syndicate Enforcers push through the mob and surround both of you.`
 			`	"You two are coming with us for breaking Corporate Ordinance C7-A2, drunk and disorderly conduct in a Syndicate establishment." The nearest one shouts.`
 			choice
 				`	(Comply.)`
