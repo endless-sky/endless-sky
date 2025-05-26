@@ -230,9 +230,9 @@ void StarField::Draw(const Point &blur, const System *system) const
 					glUniform2fv(translateI, 1, translate);
 
 					int index = (gx & widthMod) / TILE_SIZE + ((gy & widthMod) / TILE_SIZE) * tileCols;
-					int first = 6 * tileIndex[index];
-					int count = 6 * tileIndex[index + 1] - first;
-					glDrawArrays(GL_TRIANGLES, first, density * count / (pass * layers));
+					int first = tileIndex[index];
+					int count = (tileIndex[index + 1] - first) * density / layers;
+					glDrawArrays(GL_TRIANGLES, 6 * (first + (pass - 1) * count), 6 * (count / pass));
 				}
 			}
 		}
