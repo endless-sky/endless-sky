@@ -4800,7 +4800,8 @@ mission "Hroar's Haulers 4"
 			`	"...Hroar gettin' sentimental in his middle years..."`
 			`	"...more like senile..."`
 			`	"...shut your mouth. Words like that'll get you on the next Long Haul..."`
-			`	Hroar's voice cuts through the chatter. "<first>, get over here."`
+			``
+			`	"<first>," Hroar's voice cuts through the chatter, "get over here!"`
 			choice
 				`	(Join Hroar at his booth.)`
 			`	Before you have a chance to get settled, Hroar begins. "Got another little fetch quest for ya. There's about 200 tons of Construction Materials waiting at <destination>. Go get them, and bring em back here."`
