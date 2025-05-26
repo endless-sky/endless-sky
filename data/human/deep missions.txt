@@ -4300,7 +4300,7 @@ mission "Hroar's Haulers: Transport Edition 2"
 			scene "scene/tower"
 			`	They escort you once more to the tallest building in Himinbjorg, but this time instead of rising to the penthouse, you descend to a deep subterranean sublevel.`
 			`	After being led through various twisting hallways for a quarter of an hour you're finally deposited at the entrance of a small dark office. Kaiden offers you a generic smile from within.`
-			`	"So wonderful that you decided to stop by, Captain <last>, "Kaiden says smoothly. "Would you care for a glacial water?"`
+			`	"So wonderful that you decided to stop by, Captain <last>," Kaiden says smoothly. "Would you care for a glacial water?"`
 			choice
 				`	"Yes."`
 					goto yes
