@@ -5706,7 +5706,7 @@ mission "Hroar's Haulers 13"
 			`	"For Hel-Hrut!"`
 			`	"For the Haulers!"`
 			`	Finally, some silent order must have been given, as the Enforcers give up their positions and retreat en masse.`
-			`	Sudden cheers fill the bar and various hands clap you on the back. Bruised and bloody Yngvar makes his way to you.`
+			`	Sudden cheers fill the bar and various hands clap you on the back. Bruised and bloody, Yngvar makes his way to you.`
 			choice
 				`	"Looks like you stayed and fought after all."`
 					goto stayedandfought
