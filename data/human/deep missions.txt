@@ -5150,7 +5150,7 @@ mission "Hroar's Haulers 10"
 			label nicehello
 			`	Captain Unferth, who Yngvar seems to call Solvi, tips his hat to you. "I know better than to quarrel with Hroar. Glad to have you on the Long Haul."`
 			`	He then glances at the lines of workers beyond. "I got to get back to it. Like I said, we're nearly ready to go. If you want to bring us in to Muspel that's fine, not like we really need the escort though."`
-			`	Yngvar waves as the captain marches off and then turns back to you. "He's a bit busy at the moment, but overall he's a good kid. His fleet is mostly made up of people movers. It's their job to haul the folks in the Long Haul."`
+			`	Yngvar waves as the captain marches off and then turns back to you. "He's a bit busy at the moment, but overall he's a good kid. His fleet is mostly made up of people-movers. It's their job to haul the folks in the Long Haul."`
 				goto points
 
 			label fringes
