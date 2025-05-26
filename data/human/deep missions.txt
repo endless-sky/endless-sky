@@ -4939,7 +4939,7 @@ mission "Hroar's Haulers 7"
 	on complete
 		event "hroar waiting" 14
 		conversation
-			`	The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the mining & excavation equipment. Outside you notice Hroar standing next to a crowd of dockhands.`
+			`	The Haulers, familiar with your ship, wave you into one of their dedicated docks. They begin unloading the mining and excavation equipment. Outside, you notice Hroar standing next to a crowd of dockhands.`
 			`	Hroar nods at your ship. "Appreciate the run. Good to finally have all that equipment collected."`
 			`	He abruptly looks past you and shouts, "Hey! Hey! Careful with that! That drill is worth more than your entire pension!"`
 			`	The workers unloading behind you make some apologies and get back to the cargo.`
