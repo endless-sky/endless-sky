@@ -6666,7 +6666,7 @@ mission "Hroar's Haulers 14b"
 
 			label labor
 			`	You cross the spaceport to the large building with a crooked "Labor" sign out front. There's lines upon lines of people wrapping around the structure and out into the dry dusty landscape beyond. Crewmembers from Captain Unferth's fleet can be seen ushering sporadic groups of people to their ships waiting on the pads.`
-			`	Once inside you struggle to make any forward progress in the packed crowds. You are greeted with angry words as you push past many of the waiting passengers. They keep mistaking you for one of them, due to your lack of a red-brown Hauler jacket. Eventually a few very unpleasant,and unshowered men attempt to block your way; demanding you return to end of the line.`
+			`	Once inside you struggle to make any forward progress in the packed crowds. You are greeted with angry words as you push past many of the waiting passengers. They keep mistaking you for one of them, due to your lack of a red-brown Hauler jacket. Eventually a few very unpleasant, and unshowered men attempt to block your way; demanding you return to end of the line.`
 			`	Captain Unferth suddenly appears. "He's with us. Let 'em through if you want a berth!"`
 			`	The unkept men melt back into the crowd and you make the rest of the way in without incident.`
 			`	"Sorry about that," Captain Unferth says as he leads you behind a large weathered desk where his officers are processing the passengers. "Out here civilization runs a bit thin. Probably something to do with the endless months of labor on a barely inhabited dust ball." He shrugs.`
