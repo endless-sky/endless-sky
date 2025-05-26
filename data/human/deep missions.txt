@@ -4685,6 +4685,13 @@ mission "Hroar's Haulers 2"
 					goto ready
 				`	"When exactly do I get paid?"`
 			`	Hroar raises a bushy eyebrow. "Paid? You'll get paid when you finish the job. Right now, all you're doing is just gathering the materials for the job."`
+			choice
+				`	"Fine."`
+					goto ready
+				`	"Nope. I am done with this. Haul your own materials."`
+			`	Hroar's eyes narrow. "And now here I was thinkin' there'd be a little more grit to ya. Guess that's my mistake."`
+			`	He points to the saloon's exit. "Don't let the door hit ya on the way out."`
+				decline
 			label ready
 			`	Hroar points at the exit. "Well, then. Get to it."`
 			`	You walk out of the saloon and back into the spaceport at large, each footfall leaving a small puff of red dust in your wake.`
