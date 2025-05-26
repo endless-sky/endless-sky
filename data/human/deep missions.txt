@@ -4842,7 +4842,7 @@ mission "Hroar's Haulers 5"
 				`	"Got it. Is my request processed yet?"`
 					goto notalk
 				`	"How did Haze get its name? It wouldn't have been this polluted before humans arrived."`
-			`	"Ah. That's a pretty common question. In the old language 'hasu' meant gray, or ashen. Haze used to be covered in gray basaltic plains, left overs from an earlier volcanic age. To the first settlers it was a dim gray world, and over time 'hasu' became 'Haze'."`
+			`	"Ah. That's a pretty common question. In the old language 'hasu' meant gray, or ashen. Haze used to be covered in gray basaltic plains, left overs from an earlier volcanic age. To the first settlers it was a dim gray world, and over time 'hasu' became 'Haze.'"`
 			label notalk
 			`	The computer beeps and the junior-liaison looks down. "Looks like you're good to go. Your materials are being loaded as we speak. And should be done before you return your ship. Good luck, Captain, and happy hauling."`
 			`	The junior-liaison dismisses you with a nod and indicates to the next person in line. Your own comm blinks, it reports that the cargo is all loaded up, and you're good to return to Muspel.`
