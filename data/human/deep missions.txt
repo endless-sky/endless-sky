@@ -5500,7 +5500,7 @@ mission "Hroar's Haulers 13"
 			`	Gunhilda grins. "We're all happy to have you keeping an eye on our oversized convoy."`
 			`	Unferth gulps down a shot. "Ain't that the truth! You might be green, but Hartha-Hroar has an eye for talent. Glad you're on our side."`
 			label nicesolvi
-			`	He then slams his glass down and offers you his hand. "I am Captain Unferth to my crew, but among fellow captains my first name will do, call me Solvi."`
+			`	He then slams his glass down and offers you his hand. "I am Captain Unferth to my crew, but among fellow captains my first name will do: call me Solvi."`
 			choice
 				`	(Shake his hand.)`
 					goto shake
