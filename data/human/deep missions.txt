@@ -4407,7 +4407,7 @@ mission "Hroar's Haulers: Deal"
 	on offer
 		dialog
 			`Your inbox blinks with a new message from Hroar on Muspel.`
-			`	'Remember that favor you owed me? I am calling it in. Meet me at the Red Rock Saloon in the Muspel spaceport.`
+			`	"Remember that favor you owed me? I am calling it in. Meet me at the Red Rock Saloon in the Muspel spaceport."`
 			`				-Hroar`
 			`			CEO of Hardy Hroar's Haulers`
 			`			"We're an unstoppable force that has never met an immovable object!"`
