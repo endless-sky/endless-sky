@@ -5747,7 +5747,7 @@ mission "Hroar's Haulers 13"
 					goto followyngvar
 
 			label complysong
-			`	The Syndicate Enforcer quickly handcuffs you drags you toward the exit.`
+			`	The Syndicate Enforcer quickly handcuffs you and drags you toward the exit.`
 				goto arrested
 
 			label escapesolvi
