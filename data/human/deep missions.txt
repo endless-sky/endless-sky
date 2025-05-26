@@ -4640,7 +4640,7 @@ mission "Hroar's Haulers 1"
 	destination "Muspel"
 	on offer
 		conversation
-			`You delve into the depths of the underground warehouses and storage tunnels within the waxcomb like spaceport. The man leading you, a commodity liaison, talks endlessly about the excavation of new corridors, and the excessive safety procedures that accompany such endeavors. You've lost count of the amount of times he's said 'double-thick lead-lined coating.' Finally, you stop at underlevel C-33.`
+			`You delve into the depths of the underground warehouses and storage tunnels within the waxcomb like spaceport. The man leading you, a commodity liaison, talks endlessly about the excavation of new corridors, and the excessive safety procedures that accompany such endeavors. You've lost count of the amount of times he's said "double-thick lead-lined coating." Finally, you stop at underlevel C-33.`
 			`	The liaison double-checks his manifest. "This is it, 150 tons of exotic minerals." He looks back at the containers. "Most are quite radioactive, but don't worry, we used double-thick lead-lined coating on them. So you, and your crew, should be fine."`
 			`	He winks as he hands you the touchscreen to sign. "We'll have our boys start loading it up immediately. You must be a pretty new Hauler, eh?"`
 			choice
