@@ -5101,7 +5101,7 @@ mission "Hroar's Haulers 10"
 			label join
 			`	"...will all be loaded and ready to go in the next 30 minutes." The younger man is saying as you approach. He's wearing a red hauler jacket and a captain's hat.`
 			`	"Good." Yngvar says, "The sooner the better. No point in keepin' everyone waiting at Muspel."`
-			`	The captain nods to you. "And what's their story? Your new minder Yngvar?"`
+			`	The captain nods to you. "And what's their story? Your new minder, Yngvar?"`
 			`	Yngvar laughs, "Ain't a red hand between here and Muspel that could mind me. No, Solvi, this is Captain <last>. The greenhorn that'll be escorting our Long Haul."`
 			`	The captain frowns. "A greenhorn as our hirthr? Our shepherd? That doesn't sound like a good idea."`
 			`	Yngvar holds out a calming hand. "Don't fret none, Solvi. <last> has a reputation. Hartha-Hroar wouldn't assign 'em the duty if he didn't think they could cut it."`
