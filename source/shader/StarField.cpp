@@ -358,7 +358,7 @@ void StarField::MakeStars(int stars, int width)
 	tileIndex.pop_back();
 	partial_sum(tileIndex.begin(), tileIndex.end(), tileIndex.begin());
 
-	// Each star consists of five vertices, each with four data elements.
+	// Each star consists of six vertices, each with four data elements.
 	vector<GLfloat> data(6 * 4 * stars, 0.f);
 	for(auto it = temp.begin(); it != temp.end(); )
 	{
