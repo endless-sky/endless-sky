@@ -4274,7 +4274,7 @@ mission "Hroar's Haulers: Transport Edition"
 			`Your inbox blinks with a new message from the Transport Union.`
 			`	"Captain <last>, we'd like to make you an offer. Please join us on Valhalla at your earliest convenience."`
 			`				-From the desk of Kaiden Withers`
-			`			Senior Executive of Marketing and Public Relations, Transport Union.`
+			`			Senior Executive of Marketing and Public Relations, Transport Union`
 	on complete
 		dialog
 			`Your ship weaves its way through the heavily trafficked near-planet space and down to glittering Valhalla below. Your hatch opens into crowded streets filled with important and busy people. Someone from the Transport Union is likely waiting for you in the spaceport.`
