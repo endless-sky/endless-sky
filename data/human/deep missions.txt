@@ -7320,15 +7320,11 @@ mission "Hroar's Haulers Gunhilda"
 				`	"Hello to you too, Gunhilda!"`
 			`	The Hauler captain rolls her eyes. "<first>, call me Runa. It's what my friends and other luminaries call me."`
 			`	"I knew we'd be up for some downtime, so I caught a ride on one of Solvi's ships and left the Iron Siren in the care of my crew." She shrugs. "Between you and me, I've seen enough of Wayfarer for one lifetime"`
+			`	"You're probably wondering why pick Humanika of all places for vacation?" A conspiratorial smile erupts on her face. "I may have been a little deep into my cups, but I think I made it clear last we spoke, royal dreamer. My soul is dirt and sky, and I've had my fill of sky for the time being. I've come to see some dirt."`
 			choice
-				`	"So you came to here?"`
-				`	"Humanika wouldn't be my first choice for a vacation."`
-				`	"What will you do now?"`
-			`	A conspiratorial smile erupts on her face. "I may have been a little deep into my cups, but I think I made it clear last we spoke, royal dreamer. My soul is dirt and sky, and I've had my fill of sky for the time being. I've come to see some dirt."`
-			choice
-				`	"You're here for dirt?"`
-				`	"What?"`
+				`	"Dirt?"`
 				`	"We're so high up I haven't really had a chance to scope out the local dirt options."`
+				`	"What?"`
 			`	"Mines!" She says with mock exacerbation, "I've seen my share of human-dug mines in my life. Hope turned into holes, and then turned back into hope again. But alien mines? What would they look like? What would they feel like? I don't know, but I intend to find out. And I was wondering if you wanted to tag along."`
 			choice
 				`	"Sure. I've got nothing better to do."`
