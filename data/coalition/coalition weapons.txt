@@ -190,8 +190,6 @@ outfit "Finisher Storage Tube"
 	category "Ammunition"
 	series "Ammunition"
 	index 08011
-	licenses
-		Heliarch
 	cost 58800
 	thumbnail "outfit/finisher storage"
 	"mass" 4
@@ -206,8 +204,6 @@ outfit "Finisher Torpedo"
 	category "Ammunition"
 	series "Ammunition"
 	index 08010
-	licenses
-		Heliarch
 	cost 32000
 	thumbnail "outfit/finisher"
 	"mass" .5
