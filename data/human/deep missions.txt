@@ -4869,7 +4869,7 @@ mission "Hroar's Haulers 6"
 				`	(Join Hroar at the bar.)`
 			`	"Ah, <first>, you're getting to be a right regular around these parts. Why, I think even ol' Havi here is warming up to you." Hroar nods to the bartender.`
 			`	Havi, the graying bartender with a prosthetic arm, only grunts and goes back to cleaning glasses.`
-			`	Hroar chuckles and takes another sip of his drink, "Don't you go fretting much on his account. He's all heart beneath that hard shell. Lost his arm saving more than a few folks in a mine collapse back when Adhara was naught but a Protostar."`
+			`	Hroar chuckles and takes another sip of his drink, "Don't you go fretting much on his account. He's all heart beneath that hard shell. Lost his arm saving more than a few folks in a mine collapse back when Adhara was naught but a protostar."`
 			choice
 				`	"I am less interested in the bartender, and more interested in my next job."`
 				`	"Sorry to hear about the arm."`
