@@ -5141,7 +5141,7 @@ mission "Hroar's Haulers 10"
 				accept
 			
 			label exploit
-			`	Yngvar shakes his head. "Nothing of the sort. We pay 'em better wages then they'd ever see on Earth, and if they keep their noses clean and stick around for three seasons, we sponsor them and make them full fledged members of our organization."`
+			`	Yngvar shakes his head. "Nothing of the sort. We pay 'em better wages then they'd ever see on Earth, and if they keep their noses clean and stick around for three seasons, we sponsor them and make them full-fledged members of our organization."`
 			`	He gets a wistful look in his eye. "Hel, nearly a quarter of the Haulers you see out there in the Gap started out as Guest-Workers. So, no, <last>, we don't exploit them. One might even argue that we save them."`
 			`	The old man jerks his head at the rapidly dwindling lines of miners. "But not this lot, they still belong to Earth. So we'll move them for a fee and make some extra money on the Long Haul. Can't rightly traverse the whole of human space without taking advantage of lucrative stops along the way."`
 			`	Yngvar casts a quick glance at the shirking lines of workers. "Anyways, I am done here. Just needed to check in with Solvi. Didn't want us sitting around on Muspel twiddling our thumbs because of a loggerjam on Helheim. So how abouts you take us to Muspel? Our shipment is waiting for us there, assuming you got space for 430 tons of cargo. But then, what kind of Hauler would you be if you couldn't haul."`
