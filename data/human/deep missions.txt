@@ -6302,8 +6302,8 @@ mission "Hroar's Haulers 13"
 				`	(Sit tight.)`
 			`	You sit on the ground and wait. Minutes pass as you ignore the background hum of angry muttering Haulers. Suddenly the door grinds open. Two Syndicate Enforcers snatch you up and toss you on the ground outside of the cell.`
 			label outofthecell
-			`	"Him?" An unfamiliar voice sneers. You look up into the offensively white teeth of a slick haired Syndicate official.`
-			`	"Aye, him." A tired sounding Yngvar pulls you to your feet.`
+			`	"Them?" An unfamiliar voice sneers. You look up into the offensively white teeth of a slick haired Syndicate official.`
+			`	"Aye, them." A tired sounding Yngvar pulls you to your feet.`
 			`	"What about the rest of them?" The Syndicate officer hisses. "There's a lot more left in the tank, surely you'll want to free them as well?"`
 			choice
 				`	"Tell me who you are, and what is going on here."`
