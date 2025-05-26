@@ -5516,7 +5516,7 @@ mission "Hroar's Haulers 13"
 				`	(Stay with Gunhilda.)`
 
 			label gunhilda
-			`	"Well, howdy there star-child." Gunhilda says as she saddles up next to you at the bar.`
+			`	"Well, howdy there, star-child." Gunhilda says as she saddles up next to you at the bar.`
 			`	She gives you an impish grin, her large gray eyes taking you in, and says, "You're not like the rest of us. Your aura dances in hues of royal purple and deep dreaming blues."`
 			`	She leans a little a closer to you, the alcohol thick on her breath, "So, what's a royal dreamer such as yourself doing amongst us lowly rusty-brown Haulers?"`
 			choice
