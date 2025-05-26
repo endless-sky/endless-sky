@@ -7676,7 +7676,7 @@ mission "Hroar's Haulers Gunhilda secret 2"
 	to offer
 		has "minewatchers"
 	on offer
-		conversation
+		dialog
 			`	"What are we doing back on Humanika?" Runa asks, "You said you were going to try and fly close to one of Grakhord's mines."`
 			decline
 
