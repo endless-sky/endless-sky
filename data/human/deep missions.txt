@@ -5340,7 +5340,7 @@ mission "Hroar's Haulers 11"
 
 	on complete
 		dialog
-			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparison to the ringworld, it still puts anything in human space to shame. Unusual looking prehensile tubes, like the myriad heads of hungry hydras, quickly swarm your ship and begin the process of unloading the cargo you've been carrying since Muspel.`
+			`	As you dock with the alien Lagrange station it's hard to ignore the inexplicable engineering on display. Though it pales in comparison to the ringworld, it still puts anything in human space to shame. Unusual-looking prehensile tubes, like the myriad heads of hungry hydras, quickly swarm your ship and begin the process of unloading the cargo you've been carrying since Muspel.`
 			`	Yngvar busy communicating with one of the station's sub-routines, pauses to holler to you before you leave the ship, "I'll meet you in the spaceport."`
 
 mission "Hroar's Haulers: Earth"
