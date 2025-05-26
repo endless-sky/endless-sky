@@ -209,7 +209,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 			double borderX = fabs(blur.X()) + 1.;
 			double borderY = fabs(blur.Y()) + 1.;
 			// Find the absolute bounds of the star field we must draw.
-			float shove = pow(-5., pass);
+			float shove = static_cast<int>(pow(-5., pass));
 			int minX = pos.X() + (Screen::Left() - borderX) / zoom - shove;
 			int minY = pos.Y() + (Screen::Top() - borderY) / zoom - shove;
 			int maxX = pos.X() + (Screen::Right() + borderX) / zoom - shove;
