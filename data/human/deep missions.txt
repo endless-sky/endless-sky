@@ -4742,7 +4742,7 @@ mission "Hroar's Haulers 3"
 			`	The liaison holds up his tablet and brings up the cargo manifest. "I am showing 120 tons of Helium-3 for transport. If that is correct please sign here."`
 			`	You leave your mark on the tablet, and the liaison brings it down to his side.`
 			`	"Excellent," he says. "We'll start loading it up immediately. It's a pretty tall order for Helium-3 - usually people want it in smaller amounts - but we're used to you Haulers asking for it in bulk."`
-			`	The liaison licks his lip and accidentally manages to clean off some of the smeared paste, "I've got some captains to speak to, but it's always a pleasure to meet a new Hauler. I hope you earn your jacket. He flashes you a boyish smile, and walks off.`
+			`	The liaison licks his lip and accidentally manages to clean off some of the smeared paste. "I've got some captains to speak to, but it's always a pleasure to meet a new Hauler. I hope you earn your jacket." He flashes you a boyish smile, and walks off.`
 				accept
 	on complete
 		dialog
