@@ -4649,7 +4649,7 @@ mission "Hroar's Haulers 1"
 				`	"Why do you ask?"`
 					goto why
 				`	"None of your business."`
-			`	He holds up his hands. "Sorry. Didn't mean to pry. Guys hauling goods out here are a pretty close knit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket Hauler. Was just guessing you were the later is all."`
+			`	He holds up his hands. "Sorry. Didn't mean to pry. Guys hauling goods out here are a pretty close knit bunch. Either you're a blue-cap-wearing Transport Union cog, or you're a red jacket Hauler. Was just guessing you were the later is all."`
 				goto bye
 			label yep
 			`	He grins. "I can always tell. This is generally one of the first assignments they send new Haulers on. Here, or Fenrir. Guys hauling goods out here are a pretty close knit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket Hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they're like early traders and settlers, the ones who spent years sailing the Gap."`
