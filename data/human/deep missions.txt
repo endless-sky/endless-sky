@@ -4803,7 +4803,7 @@ mission "Hroar's Haulers 4"
 			`	Hroar's voice cuts through the chatter. "<first>, get over here."`
 			choice
 				`	(Join Hroar at his booth.)`
-			`	Before you have a chance to get settled, Hroar begins. "Got another little fetch quest for ya. There's about 200 tons of Construction Materials waiting at <destination>, go get it, and bring it back here."`
+			`	Before you have a chance to get settled, Hroar begins. "Got another little fetch quest for ya. There's about 200 tons of Construction Materials waiting at <destination>. Go get them, and bring em back here."`
 			choice
 				`	"On it."`
 					goto onit
