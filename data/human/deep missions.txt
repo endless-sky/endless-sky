@@ -5451,7 +5451,7 @@ mission "Hroar's Haulers 13"
 		has "Hroar's Haulers 12: done"
 	on offer
 		conversation
-			`The large spaceport is remarkably easy to navigate. With clear signs and purpose-built walkways you easily find your way to the local pub, which is called the 'Watering Hole'.`
+			`The large spaceport is remarkably easy to navigate. With clear signs and purpose-built walkways you easily find your way to the local pub, which is called the "Watering Hole."`
 			choice
 				`	(Enter the Watering Hole.)`
 					goto enterhole
