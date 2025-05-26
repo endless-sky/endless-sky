@@ -7575,7 +7575,7 @@ mission "Hroar's Haulers Gunhilda 3"
 			`	"The legendary mines of Grakhord are known throughout the galaxy for their..."`
 			`	"...which were first discovered not long after first contact with the Quarg..."`
 			`	"...and that is why it's important to always to wash your footwear thoroughly..."`
-			`	"Finally," Runa says as the projection shows a recording of an actual mining operation.`
+			`	"Finally!" Runa says as the projection shows a recording of an actual mining operation.`
 			`	"Through careful husbandry of the ecosystem and the mining sites, the Quarg engineers peel and replace layers of the moon's surface, without disrupting the life cycles of the vibrant flora and fauna that inhabit Grokhord. Including humans!"`
 			`	The scene then shifts to images of the lofty towers. "Which is why Grakhord is a haven to human and Quarg alike. Thank you for watching, and remember to keep your footwear clean!"`
 			`	Runa shrugs. "Well, I guess that was something." She glances around quickly, "There is a kind of music here though, in the colors, maybe... maybe I'll come back some time. On my own."`
