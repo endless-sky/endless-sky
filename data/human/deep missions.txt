@@ -4597,7 +4597,7 @@ mission "Hroar's Haulers: Transit Edition"
 				`	"No, thanks."`
 					goto out
 			label pay
-			`	Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others, rest assured though, you'll get some of the highest paid courier jobs in the Deep.`
+			`	Hroar's teeth flash as he grins. "Now that's the question, ain't it? Some jobs pay better than others. Rest assured, though, you'll get some of the highest paid courier jobs in the Deep.`
 			`	"So, whaddya say? You in?"`
 			choice
 				`	"Yep. Sign me up."`
