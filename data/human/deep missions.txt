@@ -4571,7 +4571,7 @@ mission "Hroar's Haulers: Transit Edition"
 				`	"I'm here about the courier job."`
 					goto job
 				`	"Who says I'm not a local?"`
-			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper, and stone-slinger on Muspel. But you ain't got the red-hue of anyone that's spent serious time in the dust."`
+			`	The bartender's eyes narrow. "I do. I might not know every rock-hopper and stone-slinger on Muspel. But you ain't got the red hue of anyone that's spent serious time in the dust."`
 			`	"Now, either you got business, or you don't. So what are ya here for?" the bartender says with an angry glare.`
 			choice
 				`	"I'm here about the courier job."`
