@@ -4309,7 +4309,7 @@ mission "Hroar's Haulers: Transport Edition 2"
 				goto problem
 
 			label yes
-			`	"Lovely." He snaps his fingers and points to your escort, who quickly and quietly moves across the room, preparing you a drink of 'glacial water'.`
+			`	"Lovely." He snaps his fingers and points to your escort, who quickly and quietly moves across the room, preparing you a drink of "glacial water."`
 			`	Kaiden gives you a corporate smile and sips his own glass. "Now, I've called you here because you have particular set of skills, and I have a particular sort of problem."`
 			choice
 				`	(Take a sip of your glacial water.)`
