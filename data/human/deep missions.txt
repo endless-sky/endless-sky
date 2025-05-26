@@ -4272,7 +4272,7 @@ mission "Hroar's Haulers: Transport Edition"
 	on offer
 		dialog
 			`Your inbox blinks with a new message from the Transport Union.`
-			`	'Captain <last>, we'd like to make you an offer. Please join us on Valhalla at your earliest convenience.`
+			`	"Captain <last>, we'd like to make you an offer. Please join us on Valhalla at your earliest convenience."`
 			`				-From the desk of Kaiden Withers`
 			`			Senior Executive of Marketing and Public Relations, Transport Union.`
 	on complete
