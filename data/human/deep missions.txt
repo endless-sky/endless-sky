@@ -7701,7 +7701,7 @@ mission "Hroar's Haulers Unferth: Wayfarer"
 mission "Hroar's Haulers Unferth"
 	name "The Last Blush"
 	source "Humanika"
-	description "Captain Solvi Unferth has asked you to take him to <destination>. An old caravan station."
+	description "Captain Solvi Unferth has asked you to take him to <destination>, an old caravan station."
 	destination "Gardena Station"
 	passengers 1
 	cargo "Solvi's Pallet" 1
