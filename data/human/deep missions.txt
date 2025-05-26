@@ -4384,7 +4384,7 @@ mission "Hroar's Haulers: Transport Edition 2"
 				goto questions
 
 			label notinterested
-			`	Kaiden's face briefly twists into something hostile and furious, before quickly resetting to a calm indecipherable mask.`
+			`	Kaiden's face briefly twists into something hostile and furious, before quickly resetting to a calm, indecipherable mask.`
 			`	"How short-sighted of you. Very well, I believe our business is concluded."`
 			`	He hits a button on his desk and the escort immediately reappears. "Please see Captain <last> off the premises."`
 			`	The escort nods and leads you back to the surface.`
