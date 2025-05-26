@@ -4829,7 +4829,7 @@ mission "Hroar's Haulers 5"
 		has "Hroar's Haulers 4: done"
 	on offer
 		conversation
-			`The air is thick with the petrochemical scent of industry, and heavy with the weight of putrid pollution. You note that among the crowds in the spaceport, the more affluent are wearing air-purifying masks, while the rest seem unphased by the grim, grimy air.`
+			`The air is thick with the petrochemical scent of industry, and heavy with the weight of putrid pollution. You note that the more affluent among the crowds in the spaceport are wearing air-purifying masks, while the rest seem unfazed by the grim, grimy air.`
 			`	The cargo-master's station isn't hard to find, and a junior-liaison begins to process your request.`
 			`	"Nice day," he says, making small talk. "Usually can't see across the street; I wish we had more days like this."`
 			choice
