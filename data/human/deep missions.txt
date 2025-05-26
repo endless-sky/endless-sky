@@ -5661,8 +5661,12 @@ mission "Hroar's Haulers 13"
 			`	"Who led his crew into the maw! Who battled the Syndies and won it all! Who brought back the largest Long Haul, but..."`
 			choice
 				`	"Hel-Hruty!"`
+					goto "silent police"
 				`	"Hey, I think the police are here..."`
 				`	(Say nothing.)`
+					goto "silent police"
+			`	No one seems to hear you, and Solvi continues to sing raucously.`
+			label "silent police"
 			`	"But he met his doom, where no suns bloom, and the pirate-bought Syndie's loom - where Yngvar burned and Hroar was... hey!" Solvi's voice abruptly cuts off as he's grabbed by two Syndicate Enforcers.`
 			`	Suddenly the Enforcers are everywhere, grabbing everyone, and you hear Yngvar's booming voice cut through the din, "Haulers, out!"`
 			`	An Enforcer grabs you by the arm. "You're in violation of Corporate Ordinance C7-A2, drunk and disorderly conduct in a Syndicate establishment. You're coming with us."`
