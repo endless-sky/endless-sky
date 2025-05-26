@@ -5539,7 +5539,7 @@ mission "Hroar's Haulers 13"
 				`	"So you're all related?"`
 			`	She laughs and pushes a strand of thick black hair back behind her ear. "Why, Captain <last>, it's a little early to be meeting my mom, isn't it?"`
 			`	Gunhilda downs her glass, her face flush with the effects of alcohol. "Don't be so serious, my royal dreamer, I only kid. To answer your question; yes and no. It's all about your beginnings, you see."`
-			`	She holds up two fingers. "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Then there are those born strangers who hear the call of the earth below, and Gap above. The poor souls on overcrowded worlds, trapped in beige-tinted lives, that find their way to one of our mines on Muspel or Helheim. Those guest-workers who work up and into our red-tangled tribe."`
+			`	She holds up two fingers. "For most of us there are two paths to the Haulers. For many, we are born to this life. The tumbling children of generations of miners and spacers who have called themselves Haulers since the Caravan days. Then there are those born strangers who hear the call of the earth below, and Gap above. The poor souls on overcrowded worlds, trapped in beige-tinted lives, that find their way to one of our mines on Muspel or Helheim. Those Guest-Workers who work up and into our red-tangled tribe."`
 			`	"However," she pauses to gulp down some of her refilled beverage, "it's not long before the new Haulers marry the old Haulers, and we're back to where we started, one big cosmic family."`
 				goto gunext
 
