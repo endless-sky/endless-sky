@@ -7638,7 +7638,7 @@ mission "Hroar's Haulers Gunhilda secret"
 				`	(Say nothing.)`
 			`	Quarg rescue vessels launch toward you, their powerful tractor beams latching onto the <ship>. They steer you away from the course you had plotted, and help you land gently at the spaceport.`
 			`	Unfortunately, they reached you before you had a chance to fly over the mine. Your chance to get a good look at their operation is lost.`
-			`	It takes a few hours before you can convince the authorities that they do not need to check your ship for repairs, and that you have solved the rare unaccounted for problem that caused your thruster to fail.`
+			`	It takes a few hours before you can convince the authorities that they do not need to check your ship for repairs, and that you have solved the rare unaccounted-for problem that caused your thruster to fail.`
 			`	"You sure know how to show a girl a good time!" Runa laughs, after everyone else has left. "Don't feel too bad about not getting the pictures. I got to see you in action, and your soul lit up like a kaleidoscope. It was incredible. You have shades in you that I've never seen before. That was worth more than any mine."`
 			`	"Now, let's get back to Humanika before more officials come snooping around."`
 				accept
