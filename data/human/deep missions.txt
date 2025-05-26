@@ -6386,25 +6386,49 @@ mission "Yngvar Interlude"
 			`	Yngvar frowns, and doesn't move, "Respectfully, Captain, I wasn't really asking. This might be your ship, but," He jabs a thumb toward the bulkhead and space beyond, "that's all our fleet. So, you listening?"`
 			choice
 				`	"Yeah, I am listening"`
+					goto notgood
+					to display
+						has "brokecontract"
 				`	(Nod.)`
+					goto notgood
+					to display
+						has "brokecontract"
 				`	(Say nothing.)`
 					goto notgood
 					to display
 						has "brokecontract"
 				`	"Yeah, I am listening"`
+					goto sortagood
+					to display
+						has "makerhero"
 				`	(Nod.)`
+					goto sortagood
+					to display
+						has "makerhero"
 				`	(Say nothing.)`
 					goto sortagood
 					to display
 						has "makerhero"
 				`	"Yeah, I am listening"`
+					goto failed
+					to display
+						has "Hroar's Haulers 13: declined"
 				`	(Nod.)`
+					goto failed
+					to display
+						has "Hroar's Haulers 13: declined"
 				`	(Say nothing.)`
 					goto failed
 					to display
 						has "Hroar's Haulers 13: declined"
 				`	"Yeah, I am listening"`
+					goto paid
+					to display
+						has "Hroar's Haulers 13: accepted"
 				`	(Nod.)`
+					goto paid
+					to display
+						has "Hroar's Haulers 13: accepted"
 				`	(Say nothing.)`
 					goto paid
 					to display
