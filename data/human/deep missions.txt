@@ -4655,7 +4655,7 @@ mission "Hroar's Haulers 1"
 			`	He grins. "I can always tell. This is generally one of the first assignments they send new Haulers on. Here, or Fenrir. Guys hauling goods out here are a pretty close knit bunch. Either you're a blue-cap-wearing Transport Union cog, or you're a red jacket Hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they're like early traders and settlers, the ones who spent years sailing the Gap."`
 				goto bye
 			label why
-			`	He shrugs. "I can usually tell, and this is generally one of the first assignments they send new Haulers on. Here, or Fenrir. Guys hauling goods out here are a pretty close knit bunch. Either you're a blue cap wearing Transport Union cog, or you're a red jacket Hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they're like the early traders and settlers, the ones who spent years sailing the Gap."`
+			`	He shrugs. "I can usually tell, and this is generally one of the first assignments they send new Haulers on. Here, or Fenrir. Guys hauling goods out here are a pretty close knit bunch. Either you're a blue-cap-wearing Transport Union cog, or you're a red jacket Hauler. Blue caps are professional, little dry, and only do small quick runs. Haulers though, different breed, they're like the early traders and settlers, the ones who spent years sailing the Gap."`
 			label bye
 			`	"Anyways, I won't take any more of your time. Cargo should be loaded momentarily." He nods and heads back toward the elevator. The machines whirr in the background, and utilizing cargo-lifts, the materials are loaded up by the time you return to your ship.`
 				accept
