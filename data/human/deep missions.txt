@@ -5135,7 +5135,7 @@ mission "Hroar's Haulers 10"
 			choice
 				`	"And these Guest-Workers? You exploit them instead?"`
 					goto exploit
-				`	"Got it. So, we also transport guest-workers in the Long Haul."`
+				`	"Got it. So, we also transport Guest-Workers in the Long Haul."`
 			`	"Gotta maximize profits. Can't rightly traverse the whole of human space without taking advantage of lucrative stops along the way."`
 			`	Yngvar casts a quick glance at the shirking lines of workers. "Anyways, I am done here. Just needed to check in with Solvi. Didn't want us sitting around on Muspel twiddling our thumbs because of a loggerjam on Helheim. Now let's go to Muspel?"`
 				accept
