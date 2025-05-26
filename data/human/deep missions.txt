@@ -4872,6 +4872,7 @@ mission "Hroar's Haulers 6"
 			`	Hroar chuckles and takes another sip of his drink, "Don't you go fretting much on his account. He's all heart beneath that hard shell. Lost his arm saving more than a few folks in a mine collapse back when Adhara was naught but a protostar."`
 			choice
 				`	"I am less interested in the bartender, and more interested in my next job."`
+					goto job
 				`	"Sorry to hear about the arm."`
 					goto sorry
 				`	(Say nothing.)`
