@@ -4814,7 +4814,7 @@ mission "Hroar's Haulers 4"
 				accept
 	on complete
 		dialog
-			`You see little of Haze's famous sprawling mega-cities and mega-refineries, as the <ship> descends through it's dark, sooty atmosphere. At last your ship penetrates the thick smog coverage, and you can make out the dim smokey-lights of the capital city below. Once landed you head to the spaceport to meet your contact.`
+			`You see little of Haze's famous sprawling mega-cities and mega-refineries as the <ship> descends through its dark, sooty atmosphere. At last your ship penetrates the thick smog coverage, and you can make out the dim smokey-lights of the capital city below. Once landed you head to the spaceport to meet your contact.`
 
 
 
