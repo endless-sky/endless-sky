@@ -506,7 +506,7 @@ void Engine::Step(bool isActive)
 	else if(flagship)
 	{
 		if(isActive && !timePaused)
-			camera.MoveTo(flagship->Center(), hyperspacePercentage, flagship->IsHyperspacing());
+			camera.MoveTo(flagship->Center(), hyperspacePercentage);
 
 		if(doEnterLabels)
 		{
@@ -1597,13 +1597,12 @@ void Engine::CalculateStep()
 	{
 		if(!timePaused)
 		{
-			bool isHyperspacing = flagship->IsHyperspacing();
-			if(isHyperspacing)
+			if(flagship->IsHyperspacing())
 				hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 			else
 				hyperspacePercentage = 0.;
 			Camera newCamera = camera;
-			newCamera.MoveTo(flagship->Center(), hyperspacePercentage, isHyperspacing);
+			newCamera.MoveTo(flagship->Center(), hyperspacePercentage);
 			newCenter = newCamera.Center();
 			newCenterVelocity = newCamera.Velocity();
 		}

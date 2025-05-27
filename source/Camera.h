@@ -27,7 +27,7 @@ public:
 	// Instantly snap the camera to the given target.
 	void SnapTo(const Point &target);
 	// Move the camera toward the given target.
-	void MoveTo(const Point &target, double influence, bool killVelocity);
+	void MoveTo(const Point &target, double hyperspaceInfluence);
 
 	// The position of the camera's center.
 	const Point &Center() const;
@@ -38,5 +38,7 @@ public:
 private:
 	Point center;
 	Point velocity;
+
+	Point accel;
 	Point oldTarget;
 };
