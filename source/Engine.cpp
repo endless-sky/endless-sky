@@ -1591,27 +1591,18 @@ void Engine::CalculateStep()
 		CalculateUnpaused(flagship, playerSystem);
 
 	// Draw the objects. Start by figuring out where the view should be centered:
-	Point newCenter = camera.Center();
-	Point newCenterVelocity;
-	if(flagship)
+	Camera newCamera = camera;
+	if(flagship && !timePaused)
 	{
-		if(!timePaused)
-		{
-			if(flagship->IsHyperspacing())
-				hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
-			else
-				hyperspacePercentage = 0.;
-			Camera newCamera = camera;
-			newCamera.MoveTo(flagship->Center(), hyperspacePercentage);
-			newCenter = newCamera.Center();
-			newCenterVelocity = newCamera.Velocity();
-		}
+		if(flagship->IsHyperspacing())
+			hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
 		else
-			newCenterVelocity = flagship->Velocity();
+			hyperspacePercentage = 0.;
+		newCamera.MoveTo(flagship->Center(), hyperspacePercentage);
 	}
-	draw[currentCalcBuffer].SetCenter(newCenter, newCenterVelocity);
-	batchDraw[currentCalcBuffer].SetCenter(newCenter);
-	radar[currentCalcBuffer].SetCenter(newCenter);
+	draw[currentCalcBuffer].SetCenter(newCamera.Center(), newCamera.Velocity());
+	batchDraw[currentCalcBuffer].SetCenter(newCamera.Center());
+	radar[currentCalcBuffer].SetCenter(newCamera.Center());
 
 	// Populate the radar.
 	FillRadar();
@@ -1627,7 +1618,7 @@ void Engine::CalculateStep()
 				draw[currentCalcBuffer].Add(object);
 		}
 	// Draw the asteroids and minables.
-	asteroids.Draw(draw[currentCalcBuffer], newCenter, zoom);
+	asteroids.Draw(draw[currentCalcBuffer], newCamera.Center(), zoom);
 	// Draw the flotsam.
 	for(const shared_ptr<Flotsam> &it : flotsam)
 		draw[currentCalcBuffer].Add(*it);
