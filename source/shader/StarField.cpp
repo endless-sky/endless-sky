@@ -115,6 +115,20 @@ void StarField::FinishLoading()
 
 
 
+const Point &StarField::Position() const
+{
+	return pos;
+}
+
+
+
+void StarField::SetPosition(const Point &position)
+{
+	pos = position;
+}
+
+
+
 void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 {
 	// If no sprite is given, set the default one.
