@@ -1600,6 +1600,8 @@ void Engine::CalculateStep()
 			bool isHyperspacing = flagship->IsHyperspacing();
 			if(isHyperspacing)
 				hyperspacePercentage = flagship->GetHyperspacePercentage() / 100.;
+			else
+				hyperspacePercentage = 0.;
 			Camera newCamera = camera;
 			newCamera.MoveTo(flagship->Center(), hyperspacePercentage, isHyperspacing);
 			newCenter = newCamera.Center();
