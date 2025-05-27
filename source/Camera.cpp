@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Camera.h"
 
-#include "Logger.h"
 #include "Preferences.h"
 
 #include <cmath>
