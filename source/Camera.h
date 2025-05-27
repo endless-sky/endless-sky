@@ -17,8 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Point.h"
 
-#include <utility>
-
 
 
 // A class that represents the viewport while in space.
