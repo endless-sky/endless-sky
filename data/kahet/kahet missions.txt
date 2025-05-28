@@ -2197,7 +2197,7 @@ mission "Ka'het: Voice From The Past 3"
 			`	"Not as much as we were hoping. The only other place to turn a positive result was Eavine, a gas giant's moon located right in the middle of Ka'het-controlled space. It was a scientifically interesting finding, but not one that we could make use of in the near future."`
 				goto skip
 			label danger
-			`	"It can be. Many weapons have been tested here over the years, and even projects that had more peaceful purposes occasionally had some rather explosive results. Mind you, this is no matter to be taken lightly."
+			`	"It can be. Many weapons have been tested here over the years, and even projects that had more peaceful purposes occasionally had some rather explosive results. Mind you, this is no matter to be taken lightly."`
 			label skip
 			`	By the time you complete the post-landing checklist, Gavriil has already left the ship to meet up with the people on the ground. The crowd that has been gathering around the pad give him a warm welcome, to which he replies cheerfully. He must have spent a lot of time on this moon when he was younger.`
 			`	After some brief introductions, you follow the group as it moves down a few ramps of stairs and inside some well-lit tunnels right below the outpost. At the end of them lies a large hangar, wide in both directions but with a rather low ceiling. "We have a few rigs we used to capture test satellites in the past," one of the technicians explains. "They were Remnant spacecraft in those cases, but there is nothing fundamentally preventing their use in your mission.`
