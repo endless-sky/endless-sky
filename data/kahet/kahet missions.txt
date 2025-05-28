@@ -739,7 +739,6 @@ event "pacified ka'sei"
 
 event "patir mystery timer"
 
-
 ship "Cloak Check"
 	attributes
 		"heat dissipation" 1
