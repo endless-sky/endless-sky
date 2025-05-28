@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "EsUuid.h"
 #include "FireCommand.h"
 #include "Outfit.h"
+#include "Paragraphs.h"
 #include "Personality.h"
 #include "Point.h"
 #include "Port.h"
@@ -38,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class ConditionsStore;
 class DamageDealt;
 class DataNode;
 class DataWriter;
@@ -51,6 +53,7 @@ class Planet;
 class PlayerInfo;
 class Projectile;
 class StellarObject;
+class Swizzle;
 class System;
 class Visual;
 
@@ -148,10 +151,10 @@ public:
 
 	Ship() = default;
 	// Construct and Load() at the same time.
-	Ship(const DataNode &node);
+	Ship(const DataNode &node, const ConditionsStore *playerConditions);
 
 	// Load data for a type of ship:
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// When loading a ship, some of the outfits it lists may not have been
 	// loaded yet. So, wait until everything has been loaded, then call this.
 	void FinishLoading(bool isNewInstance);
@@ -179,7 +182,7 @@ public:
 	// Get the generic noun (e.g. "ship") to be used when describing this ship.
 	const std::string &Noun() const;
 	// Get this ship's description.
-	const std::string &Description() const;
+	std::string Description() const;
 	// Get the shipyard thumbnail for this ship.
 	const Sprite *Thumbnail() const;
 	// Get this ship's cost.
@@ -311,7 +314,8 @@ public:
 	// Check if this ship is allowed to enter this system, accounting for its personality.
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
-	int CustomSwizzle() const;
+	const Swizzle *CustomSwizzle() const;
+	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -333,6 +337,11 @@ public:
 	bool IsDamaged() const;
 	// Check if this ship has been destroyed.
 	bool IsDestroyed() const;
+	// Land/Check if this ship has permanently landed.
+	void LandForever();
+	bool HasLanded() const;
+	// Check if this ship has permanently landed or been destroyed.
+	bool LandedOrDestroyed() const;
 	// Recharge and repair this ship (e.g. because it has landed).
 	void Recharge(int rechargeType = Port::RechargeType::All, bool hireCrew = true);
 	// Check if this ship is able to give the given ship enough fuel to jump.
@@ -363,8 +372,10 @@ public:
 	// Get the maximum shield and hull values of the ship, accounting for multipliers.
 	double MaxShields() const;
 	double MaxHull() const;
-	// Get the actual shield level of the ship.
+	// Get the absolute shield, hull, and fuel levels of the ship.
 	double ShieldLevel() const;
+	double HullLevel() const;
+	double FuelLevel() const;
 	// Get how disrupted this ship's shields are.
 	double DisruptionLevel() const;
 	// Get the (absolute) amount of hull that needs to be damaged until the
@@ -496,6 +507,14 @@ public:
 	const StellarObject *GetTargetStellar() const;
 	// Get ship's target system (it should always be one jump / wormhole pass away).
 	const System *GetTargetSystem() const;
+	// Targets for persistent ships (i.e. mission NPCs).
+	bool HasTravelDirective() const;
+	const std::map<const Planet *, bool> &GetStopovers() const;
+	bool AllStopoversVisited() const;
+	const Planet *GetDestinationPlanet() const;
+	const System *GetDestinationSystem() const;
+	bool ContinueAfterDestination() const;
+
 	// Mining target.
 	std::shared_ptr<Minable> GetTargetAsteroid() const;
 	std::shared_ptr<Flotsam> GetTargetFlotsam() const;
@@ -512,6 +531,13 @@ public:
 	void SetTargetStellar(const StellarObject *object);
 	// Set ship's target system (it should always be one jump / wormhole pass away).
 	void SetTargetSystem(const System *system);
+	// Persistent targets associated with mission NPCs.
+	void SetDestination(const Planet *destination);
+	void SetStopovers(const std::vector<const Planet *> &stopovers);
+	void SetWaypoints(const std::vector<const System *> &waypoints);
+	const System *NextWaypoint();
+	void EraseWaypoint(const System *system);
+
 	// Mining target.
 	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetFlotsam(const std::shared_ptr<Flotsam> &flotsam);
@@ -533,7 +559,7 @@ public:
 	void Linger();
 
 	// Check if this ship looks the same as another, based on model display names and outfits.
-	bool Immitates(const Ship &other) const;
+	bool Imitates(const Ship &other) const;
 
 
 private:
@@ -585,6 +611,9 @@ private:
 	// Helper function for jettisoning flotsam.
 	void Jettison(std::shared_ptr<Flotsam> toJettison);
 
+	// Mark all stopovers as incomplete.
+	void ResetStopovers();
+
 
 private:
 	// Protected member variables of the Body class:
@@ -604,7 +633,7 @@ private:
 	std::string variantName;
 	std::string variantMapShopName;
 	std::string noun;
-	std::string description;
+	Paragraphs description;
 	const Sprite *thumbnail = nullptr;
 	// Characteristics of this particular ship:
 	EsUuid uuid;
@@ -614,7 +643,8 @@ private:
 	int forget = 0;
 	bool isInSystem = true;
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
-	// continue to exist and refuel instead of being deleted.
+	// continue to exist and refuel instead of being deleted, unless explicitly
+	// designed to do so by a mission's NPC specification.
 	bool isSpecial = false;
 	bool isYours = false;
 	bool isParked = false;
@@ -631,7 +661,9 @@ private:
 	bool neverDisabled = false;
 	bool isCapturable = true;
 	bool isInvisible = false;
-	int customSwizzle = -1;
+	bool hasLanded = false;
+	const Swizzle *customSwizzle = nullptr;
+	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.
@@ -756,6 +788,17 @@ private:
 	std::weak_ptr<Flotsam> targetFlotsam;
 	std::set<const Flotsam *> tractorFlotsam;
 	const FormationPattern *formationPattern = nullptr;
+
+	// NPC travel directives
+	const System *destinationSystem = nullptr;
+	// The list of consecutive NPC destination systems.
+	std::vector<const System *> waypoints;
+	size_t waypoint = 0;
+	// The list of stopover planets this NPC should try to land on, and if
+	// they have already been landed on in this sequence.
+	std::map<const Planet *, bool> stopovers;
+	// The final destination of this NPC after it has landed on all its stopovers.
+	const Planet *destinationPlanet = nullptr;
 
 	// Links between escorts and parents.
 	std::vector<std::weak_ptr<Ship>> escorts;

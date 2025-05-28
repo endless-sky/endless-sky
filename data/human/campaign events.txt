@@ -18,6 +18,7 @@ event "remembrance day"
 
 mission "remembrance day"
 	landing
+	non-blocking
 	source
 		government "Republic"
 		attributes "spaceport"
@@ -147,6 +148,7 @@ event "war begins"
 
 mission "event: war begins"
 	landing
+	non-blocking
 	source
 		government "Republic" "Syndicate" "Free Worlds"
 		attributes "spaceport"
@@ -1289,6 +1291,7 @@ event "fw suppressed Greenrock"
 		fleet "Large Free Worlds" 800
 		fleet "Small Southern Pirates" 3000
 		fleet "Large Southern Pirates" 5000
+		fleet "Old Southern Pirates" 10000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
 		description `	Now that the Free Worlds are occupying the system, Greenrock has become a marginally more respectable world. Pirates still run wild in the wilderness of the planet, but the Free Worlds are actively arresting criminals and freeing slaves in the population centers.`
@@ -1307,6 +1310,7 @@ event "fw abandoned Greenrock"
 		fleet "Large Core Pirates" 7000
 		fleet "Small Northern Pirates" 5000
 		fleet "Large Northern Pirates" 9000
+		fleet "Old Southern Pirates" 7000
 		fleet "Large Free Worlds" 9000
 	planet "Greenrock"
 		description `Greenrock was the closest thing that the pirates in southern human space had to a center of government, at least until the Free Worlds occupied it. When rival pirate bands sought to negotiate on neutral territory, this is where they met. Nearly everything was for sale here: illegal weapons, ships customized for pirating, and even slaves.`
@@ -1895,6 +1899,7 @@ event "albatross joins free worlds"
 		fleet "Large Free Worlds" 3000
 		fleet "Small Southern Pirates" 2000
 		fleet "Large Southern Pirates" 5000
+		fleet "Old Southern Pirates" 11000
 
 
 
@@ -2466,60 +2471,65 @@ event "pug flee"
 	system "Zeta Aquilae"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
-		fleet "Small Republic" 1000
-		fleet "Large Republic" 2000
+		fleet "Small Southern Pirates" 2000
+		fleet "Large Southern Pirates" 5000
 	system "Rasalhague"
 		fleet "Small Southern Merchants" 1500
 		fleet "Large Southern Merchants" 2000
-		fleet "Small Republic" 1200
-		fleet "Large Republic" 2500
+		fleet "Small Southern Pirates" 4000
+		fleet "Large Southern Pirates" 8000
 	system "Vega"
 		fleet "Small Northern Merchants" 800
 		fleet "Large Northern Merchants" 3000
-		fleet "Small Republic" 800
-		fleet "Large Republic" 1200
+		fleet "Small Republic" 1600
+		fleet "Large Republic" 5000
+		fleet "Human Miners" 5000
 	system "Altair"
 		fleet "Small Core Merchants" 400
 		fleet "Large Core Merchants" 600
 		fleet "Small Northern Merchants" 1000
 		fleet "Large Northern Merchants" 3000
-		fleet "Small Republic" 700
-		fleet "Large Republic" 900
+		fleet "Small Republic" 3000
+		fleet "Large Republic" 6000
+		fleet "Republic Logistics" 6000
+		fleet "Small Syndicate" 9000
 	system "Fomalhaut"
 		fleet "Small Core Merchants" 1000
 		fleet "Large Core Merchants" 1200
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 5000
+		fleet "Large Syndicate" 10000
+		fleet "Republic Logistics" 3300
 	system "Delta Capricorni"
 		fleet "Small Core Merchants" 700
 		fleet "Large Core Merchants" 800
-		fleet "Small Syndicate" 500
-		fleet "Large Syndicate" 600
+		fleet "Small Syndicate" 2000
+		fleet "Small Core Pirates" 4000
+		fleet "Human Miners" 3000
 	system "Alderamin"
 		fleet "Small Core Merchants" 2000
 		fleet "Large Core Merchants" 3200
-		fleet "Small Syndicate" 700
-		fleet "Large Syndicate" 900
+		fleet "Small Syndicate" 800
+		fleet "Large Syndicate" 800
+		fleet "Small Core Pirates" 1000
+		fleet "Large Core Pirates" 1200
 	system "Diphda"
 		fleet "Small Core Merchants" 2000
 		fleet "Large Core Merchants" 600
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 3000
 	system "Caph"
 		fleet "Small Core Merchants" 500
 		fleet "Large Core Merchants" 600
-		fleet "Small Republic" 1600
-		fleet "Large Republic" 3000
+		fleet "Small Syndicate" 1600
+		fleet "Human Miners" 2000
 	system "Nocte"
 		fleet "Small Northern Merchants" 1500
-		fleet "Large Northern Merchants" 5000
 		fleet "Small Republic" 3000
 		fleet "Large Republic" 7000
 		fleet "Small Northern Pirates" 2500
 		fleet "Derelict Northern" 10000
+		fleet "Human Miners" 1600
 	system "Orvala"
 		fleet "Small Southern Merchants" 3000
-		fleet "Large Southern Merchants" 6000
 		fleet "Small Southern Pirates" 1000
 		fleet "Large Southern Pirates" 3000
 		fleet "Derelict Southern" 10000
@@ -2679,6 +2689,8 @@ event "navy occupies algenib"
 		fleet "Small Republic" 800
 		fleet "Large Republic" 1200
 		fleet "Large Syndicate" 1000
+	planet "Covert"
+		description `Covert is home to a powerful mining cartel, only nominally under the control of Republic law. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A pirate fleet lurks on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel.`
 
 
 
@@ -2694,6 +2706,8 @@ event "navy done with algenib"
 		fleet "Small Core Pirates" 500
 		fleet "Large Core Pirates" 800
 		fleet "Large Syndicate" 5000
+	planet "Covert"
+		description `Covert is home to a powerful mining cartel, operating outside the control of Republic law or any other external authority. It is rumored to be one of the few planets in human space where weapons-grade uranium and plutonium is mined and enriched. Any goods for sale here were most likely produced by slave labor, often by survivors of ships that have been captured by pirates. A massive pirate fleet is docked on the outskirts of the spaceport, a warning to any private pilot who might think of cheating or opposing the cartel.`
 
 
 

@@ -96,7 +96,7 @@ double Body::Radius() const
 
 
 // Which color swizzle should be applied to the sprite?
-int Body::GetSwizzle() const
+const Swizzle *Body::GetSwizzle() const
 {
 	return swizzle;
 }
@@ -220,32 +220,34 @@ void Body::LoadSprite(const DataNode &node)
 	// to do that unless it is repeating endlessly.
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) == "frame rate" && child.Size() >= 2 && child.Value(1) >= 0.)
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+		if(key == "frame rate" && hasValue && child.Value(1) >= 0.)
 			frameRate = child.Value(1) / 60.;
-		else if(child.Token(0) == "frame time" && child.Size() >= 2 && child.Value(1) > 0.)
+		else if(key == "frame time" && hasValue && child.Value(1) > 0.)
 			frameRate = 1. / child.Value(1);
-		else if(child.Token(0) == "delay" && child.Size() >= 2 && child.Value(1) > 0.)
+		else if(key == "delay" && hasValue && child.Value(1) > 0.)
 			delay = child.Value(1);
-		else if(child.Token(0) == "scale" && child.Size() >= 2 && child.Value(1) > 0.)
+		else if(key == "scale" && hasValue && child.Value(1) > 0.)
 		{
 			double scaleY = (child.Size() >= 3 && child.Value(2) > 0.) ? child.Value(2) : child.Value(1);
 			scale = Point(child.Value(1), scaleY);
 		}
-		else if(child.Token(0) == "start frame" && child.Size() >= 2)
+		else if(key == "start frame" && hasValue)
 		{
 			frameOffset += static_cast<float>(child.Value(1));
 			startAtZero = true;
 		}
-		else if(child.Token(0) == "random start frame")
+		else if(key == "random start frame")
 			randomize = true;
-		else if(child.Token(0) == "no repeat")
+		else if(key == "no repeat")
 		{
 			repeat = false;
 			startAtZero = true;
 		}
-		else if(child.Token(0) == "rewind")
+		else if(key == "rewind")
 			rewind = true;
-		else if(child.Token(0) == "center" && child.Size() >= 3)
+		else if(key == "center" && child.Size() >= 3)
 			center = Point(child.Value(1), child.Value(2));
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -296,7 +298,7 @@ void Body::SetSprite(const Sprite *sprite)
 
 
 // Set the color swizzle.
-void Body::SetSwizzle(int swizzle)
+void Body::SetSwizzle(const Swizzle *swizzle)
 {
 	this->swizzle = swizzle;
 }
