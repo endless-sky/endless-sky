@@ -755,7 +755,7 @@ const std::vector<Trade::Commodity> &UniverseObjects::SpecialCommodities() const
 }
 
 
-const Sprite* UniverseObjects::StarIcon(const Sprite *sprite) const
+const Sprite *UniverseObjects::StarIcon(const Sprite *sprite) const
 {
 	const auto it = starIcons.find(sprite);
 	return (it == starIcons.end() ? nullptr : it->second);

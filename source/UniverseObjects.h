@@ -134,7 +134,7 @@ public:
 	double SolarWind(const Sprite *sprite) const;
 	const Set<News> &SpaceportNews() const;
 	const std::vector<Trade::Commodity> &SpecialCommodities() const;
-	const Sprite* StarIcon(const Sprite *sprite) const;
+	const Sprite *StarIcon(const Sprite *sprite) const;
 	const std::vector<StartConditions> &StartOptions() const;
 	const Set<Swizzle> &Swizzles() const;
 	const Set<System> &Systems() const;
