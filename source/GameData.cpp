@@ -76,7 +76,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	UniverseObjects objects;
+	UniverseObjects *objects;
 	Set<Fleet> defaultFleets;
 	Set<Government> defaultGovernments;
 	Set<Planet> defaultPlanets;
@@ -241,7 +241,7 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 		});
 	}
 
-	return objects.Load(queue, sources, player, &globalConditions, debugMode);
+	return objects->Load(queue, sources, player, &globalConditions, debugMode);
 }
 
 
@@ -249,16 +249,16 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 void GameData::FinishLoading()
 {
 	// Store the current state, to revert back to later.
-	defaultFleets = objects.fleets;
-	defaultGovernments = objects.governments;
-	defaultPlanets = objects.planets;
-	defaultSystems = objects.systems;
-	defaultGalaxies = objects.galaxies;
-	defaultShipSales = objects.shipSales;
-	defaultOutfitSales = objects.outfitSales;
-	defaultSubstitutions = objects.substitutions;
-	defaultWormholes = objects.wormholes;
-	playerGovernment = objects.governments.Get("Escort");
+	defaultFleets = objects->fleets;
+	defaultGovernments = objects->governments;
+	defaultPlanets = objects->planets;
+	defaultSystems = objects->systems;
+	defaultGalaxies = objects->galaxies;
+	defaultShipSales = objects->shipSales;
+	defaultOutfitSales = objects->outfitSales;
+	defaultSubstitutions = objects->substitutions;
+	defaultWormholes = objects->wormholes;
+	playerGovernment = objects->governments.Get("Escort");
 
 	politics.Reset();
 	background.FinishLoading();
@@ -268,7 +268,7 @@ void GameData::FinishLoading()
 
 void GameData::CheckReferences()
 {
-	objects.CheckReferences();
+	objects->CheckReferences();
 }
 
 
@@ -315,7 +315,7 @@ void GameData::LoadShaders()
 	// it can be turned into a shader object.
 	for(const auto &[key, s] : loaded)
 		if(!s.first.empty() && !s.second.empty())
-			objects.shaders.Get(key)->Load(Files::Read(s.first).c_str(), Files::Read(s.second).c_str());
+			objects->shaders.Get(key)->Load(Files::Read(s.first).c_str(), Files::Read(s.second).c_str());
 
 	FillShader::Init();
 	FogShader::Init();
@@ -345,7 +345,7 @@ double GameData::GetProgress()
 		else
 			spriteProgress = static_cast<double>(spritesLoaded) / totalSprites;
 	}
-	return min({spriteProgress, Audio::GetProgress(), objects.GetProgress()});
+	return min({spriteProgress, Audio::GetProgress(), objects->GetProgress()});
 }
 
 
@@ -415,7 +415,14 @@ const vector<filesystem::path> &GameData::Sources()
 // Get a reference to the UniverseObjects object.
 UniverseObjects &GameData::Objects()
 {
-	return objects;
+	return *objects;
+}
+
+
+
+void GameData::SetUniverse(UniverseObjects &universe)
+{
+	objects = &universe;
 }
 
 
@@ -423,16 +430,16 @@ UniverseObjects &GameData::Objects()
 // Revert any changes that have been made to the universe.
 void GameData::Revert()
 {
-	objects.fleets.Revert(defaultFleets);
-	objects.governments.Revert(defaultGovernments);
-	objects.planets.Revert(defaultPlanets);
-	objects.systems.Revert(defaultSystems);
-	objects.galaxies.Revert(defaultGalaxies);
-	objects.shipSales.Revert(defaultShipSales);
-	objects.outfitSales.Revert(defaultOutfitSales);
-	objects.substitutions.Revert(defaultSubstitutions);
-	objects.wormholes.Revert(defaultWormholes);
-	for(auto &it : objects.persons)
+	objects->fleets.Revert(defaultFleets);
+	objects->governments.Revert(defaultGovernments);
+	objects->planets.Revert(defaultPlanets);
+	objects->systems.Revert(defaultSystems);
+	objects->galaxies.Revert(defaultGalaxies);
+	objects->shipSales.Revert(defaultShipSales);
+	objects->outfitSales.Revert(defaultOutfitSales);
+	objects->substitutions.Revert(defaultSubstitutions);
+	objects->wormholes.Revert(defaultWormholes);
+	for(auto &it : objects->persons)
 		it.second.Restore();
 
 	politics.Reset();
@@ -443,7 +450,7 @@ void GameData::Revert()
 
 void GameData::SetDate(const Date &date)
 {
-	objects.SetDate(date);
+	objects->SetDate(date);
 	politics.ResetDaily();
 }
 
@@ -472,7 +479,7 @@ void GameData::ReadEconomy(const DataNode &node)
 		}
 		else
 		{
-			System &system = *objects.systems.Get(key);
+			System &system = *objects->systems.Get(key);
 
 			int index = 0;
 			for(const string &commodity : headings)
@@ -541,13 +548,13 @@ void GameData::StepEconomy()
 	purchases.clear();
 
 	// Then, have each system generate new goods for local use and trade.
-	for(auto &it : objects.systems)
+	for(auto &it : objects->systems)
 		it.second.StepEconomy();
 
 	// Finally, send out the trade goods. This has to be done in a separate step
 	// because otherwise whichever systems trade last would already have gotten
 	// supplied by the other systems.
-	for(auto &it : objects.systems)
+	for(auto &it : objects->systems)
 	{
 		System &system = it.second;
 		if(!system.Links().empty())
@@ -578,7 +585,7 @@ void GameData::AddPurchase(const System &system, const string &commodity, int to
 // Apply the given change to the universe.
 void GameData::Change(const DataNode &node, const PlayerInfo &player)
 {
-	objects.Change(node, player);
+	objects->Change(node, player);
 }
 
 
@@ -587,14 +594,14 @@ void GameData::Change(const DataNode &node, const PlayerInfo &player)
 // This must be done any time that a change creates or moves a system.
 void GameData::UpdateSystems()
 {
-	objects.UpdateSystems();
+	objects->UpdateSystems();
 }
 
 
 
 void GameData::AddJumpRange(double neighborDistance)
 {
-	objects.AddJumpRange(neighborDistance);
+	objects->AddJumpRange(neighborDistance);
 }
 
 
@@ -603,7 +610,7 @@ void GameData::AddJumpRange(double neighborDistance)
 // still alive.
 void GameData::ResetPersons()
 {
-	objects.ResetPersons();
+	objects->ResetPersons();
 }
 
 
@@ -611,168 +618,168 @@ void GameData::ResetPersons()
 // Mark all persons in the given list as dead.
 void GameData::DestroyPersons(vector<string> &names)
 {
-	objects.DestroyPersons(names);
+	objects->DestroyPersons(names);
 }
 
 
 
 const Set<Color> &GameData::Colors()
 {
-	return objects.Colors();
+	return objects->Colors();
 }
 
 
 
 const Set<Swizzle> &GameData::Swizzles()
 {
-	return objects.Swizzles();
+	return objects->Swizzles();
 }
 
 
 
 const Set<Conversation> &GameData::Conversations()
 {
-	return objects.Conversations();
+	return objects->Conversations();
 }
 
 
 
 const Set<Effect> &GameData::Effects()
 {
-	return objects.Effects();
+	return objects->Effects();
 }
 
 
 
 const Set<GameEvent> &GameData::Events()
 {
-	return objects.Events();
+	return objects->Events();
 }
 
 
 
 const Set<Fleet> &GameData::Fleets()
 {
-	return objects.Fleets();
+	return objects->Fleets();
 }
 
 
 
 const Set<FormationPattern> &GameData::Formations()
 {
-	return objects.Formations();
+	return objects->Formations();
 }
 
 
 
 const Set<Galaxy> &GameData::Galaxies()
 {
-	return objects.Galaxies();
+	return objects->Galaxies();
 }
 
 
 
 const Set<Government> &GameData::Governments()
 {
-	return objects.Governments();
+	return objects->Governments();
 }
 
 
 
 const Set<Hazard> &GameData::Hazards()
 {
-	return objects.Hazards();
+	return objects->Hazards();
 }
 
 
 
 const Set<Interface> &GameData::Interfaces()
 {
-	return objects.Interfaces();
+	return objects->Interfaces();
 }
 
 
 
 const Set<Minable> &GameData::Minables()
 {
-	return objects.Minables();
+	return objects->Minables();
 }
 
 
 
 const Set<Mission> &GameData::Missions()
 {
-	return objects.Missions();
+	return objects->Missions();
 }
 
 
 
 const Set<News> &GameData::SpaceportNews()
 {
-	return objects.SpaceportNews();
+	return objects->SpaceportNews();
 }
 
 
 
 const Set<Outfit> &GameData::Outfits()
 {
-	return objects.Outfits();
+	return objects->Outfits();
 }
 
 
 
 const Set<Shop<Outfit>> &GameData::Outfitters()
 {
-	return objects.Outfitters();
+	return objects->Outfitters();
 }
 
 
 
 const Set<Person> &GameData::Persons()
 {
-	return objects.Persons();
+	return objects->Persons();
 }
 
 
 
 const Set<Phrase> &GameData::Phrases()
 {
-	return objects.Phrases();
+	return objects->Phrases();
 }
 
 
 
 const Set<Planet> &GameData::Planets()
 {
-	return objects.Planets();
+	return objects->Planets();
 }
 
 
 
 const Set<Shader> &GameData::Shaders()
 {
-	return objects.Shaders();
+	return objects->Shaders();
 }
 
 
 
 const Set<Ship> &GameData::Ships()
 {
-	return objects.Ships();
+	return objects->Ships();
 }
 
 
 
 const Set<Test> &GameData::Tests()
 {
-	return objects.Tests();
+	return objects->Tests();
 }
 
 
 
 const Set<TestData> &GameData::TestDataSets()
 {
-	return objects.TestDataSets();
+	return objects->TestDataSets();
 }
 
 
@@ -786,21 +793,21 @@ ConditionsStore &GameData::GlobalConditions()
 
 const Set<Shop<Ship>> &GameData::Shipyards()
 {
-	return objects.Shipyards();
+	return objects->Shipyards();
 }
 
 
 
 const Set<System> &GameData::Systems()
 {
-	return objects.Systems();
+	return objects->Systems();
 }
 
 
 
 const Set<Wormhole> &GameData::Wormholes()
 {
-	return objects.Wormholes();
+	return objects->Wormholes();
 }
 
 
@@ -821,21 +828,21 @@ Politics &GameData::GetPolitics()
 
 const vector<StartConditions> &GameData::StartOptions()
 {
-	return objects.StartOptions();
+	return objects->StartOptions();
 }
 
 
 
 const vector<Trade::Commodity> &GameData::Commodities()
 {
-	return objects.Commodities();
+	return objects->Commodities();
 }
 
 
 
 const vector<Trade::Commodity> &GameData::SpecialCommodities()
 {
-	return objects.SpecialCommodities();
+	return objects->SpecialCommodities();
 }
 
 
@@ -843,14 +850,14 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 // Custom messages to be shown when trying to land on certain stellar objects.
 bool GameData::HasLandingMessage(const Sprite *sprite)
 {
-	return objects.HasLandingMessage(sprite);
+	return objects->HasLandingMessage(sprite);
 }
 
 
 
 const string &GameData::LandingMessage(const Sprite *sprite)
 {
-	return objects.LandingMessage(sprite);
+	return objects->LandingMessage(sprite);
 }
 
 
@@ -858,14 +865,14 @@ const string &GameData::LandingMessage(const Sprite *sprite)
 // Get the solar power and wind output of the given stellar object sprite.
 double GameData::SolarPower(const Sprite *sprite)
 {
-	return objects.SolarPower(sprite);
+	return objects->SolarPower(sprite);
 }
 
 
 
 double GameData::SolarWind(const Sprite *sprite)
 {
-	return objects.SolarWind(sprite);
+	return objects->SolarWind(sprite);
 }
 
 
@@ -873,7 +880,7 @@ double GameData::SolarWind(const Sprite *sprite)
 // Get the map icon of the given stellar object sprite.
 const Sprite *GameData::StarIcon(const Sprite *sprite)
 {
-	return objects.StarIcon(sprite);
+	return objects->StarIcon(sprite);
 }
 
 
@@ -881,7 +888,7 @@ const Sprite *GameData::StarIcon(const Sprite *sprite)
 // Strings for combat rating levels, etc.
 const string &GameData::Rating(const string &type, int level)
 {
-	return objects.Rating(type, level);
+	return objects->Rating(type, level);
 }
 
 
@@ -889,7 +896,7 @@ const string &GameData::Rating(const string &type, int level)
 // Collections for ship, bay type, outfit, and other categories.
 const CategoryList &GameData::GetCategory(const CategoryType type)
 {
-	return objects.GetCategory(type);
+	return objects->GetCategory(type);
 }
 
 
@@ -917,21 +924,21 @@ void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 const string &GameData::Tooltip(const string &label)
 {
-	return objects.Tooltip(label);
+	return objects->Tooltip(label);
 }
 
 
 
 string GameData::HelpMessage(const string &name)
 {
-	return objects.HelpMessage(name);
+	return objects->HelpMessage(name);
 }
 
 
 
 const map<string, string> &GameData::HelpTemplates()
 {
-	return objects.HelpTemplates();
+	return objects->HelpTemplates();
 }
 
 
@@ -945,14 +952,14 @@ MaskManager &GameData::GetMaskManager()
 
 const TextReplacements &GameData::GetTextReplacements()
 {
-	return objects.GetTextReplacements();
+	return objects->GetTextReplacements();
 }
 
 
 
 const Gamerules &GameData::GetGamerules()
 {
-	return objects.GetGamerules();
+	return objects->GetGamerules();
 }
 
 
@@ -1013,5 +1020,5 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 // Thread-safe way to draw the menu background.
 void GameData::DrawMenuBackground(Panel *panel)
 {
-	objects.DrawMenuBackground(panel);
+	objects->DrawMenuBackground(panel);
 }
