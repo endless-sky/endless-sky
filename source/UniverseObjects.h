@@ -94,6 +94,55 @@ public:
 	// through GameData, this function is thread-safe.
 	void DrawMenuBackground(Panel *panel) const;
 
+	// Modifiers for the stored data.
+	void AddJumpRange(double neighborDistance);
+	void DestroyPersons(const std::vector<std::string> &names);
+	void ResetPersons();
+	void SetDate(const Date &date);
+
+	// Accessors for the stored data.
+	const Set<Color> &Colors() const;
+	const std::vector<Trade::Commodity> &Commodities() const;
+	const Set<Conversation> &Conversations() const;
+	const Set<Effect> &Effects() const;
+	const Set<GameEvent> &Events() const;
+	const Set<Fleet> &Fleets() const;
+	const Set<FormationPattern> &Formations() const;
+	const Set<Galaxy> &Galaxies() const;
+	const CategoryList &GetCategory(CategoryType type);
+	const Gamerules &GetGamerules() const;
+	const TextReplacements &GetTextReplacements() const;
+	const Set<Government> &Governments() const;
+	bool HasLandingMessage(const Sprite *sprite) const;
+	const Set<Hazard> &Hazards() const;
+	const std::string HelpMessage(const std::string &name) const;
+	const std::map<std::string, std::string> &HelpTemplates() const;
+	const Set<Interface> &Interfaces() const;
+	const std::string &LandingMessage(const Sprite *sprite) const;
+	const Set<Minable> &Minables() const;
+	const Set<Mission> &Missions() const;
+	const Set<Outfit> &Outfits() const;
+	const Set<Shop<Outfit>> &Outfitters() const;
+	const Set<Person> &Persons() const;
+	const Set<Phrase> &Phrases() const;
+	const Set<Planet> &Planets() const;
+	const std::string &Rating(const std::string &type, int level) const;
+	const Set<Shader> &Shaders() const;
+	const Set<Ship> &Ships() const;
+	const Set<Shop<Ship>> &Shipyards() const;
+	double SolarPower(const Sprite *sprite) const;
+	double SolarWind(const Sprite *sprite) const;
+	const Set<News> &SpaceportNews() const;
+	const std::vector<Trade::Commodity> &SpecialCommodities() const;
+	const Sprite* StarIcon(const Sprite *sprite) const;
+	const std::vector<StartConditions> &StartOptions() const;
+	const Set<Swizzle> &Swizzles() const;
+	const Set<System> &Systems() const;
+	const Set<TestData> &TestDataSets() const;
+	const Set<Test> &Tests() const;
+	const std::string &Tooltip(const std::string &label) const;
+	const Set<Wormhole> &Wormholes() const;
+
 
 private:
 	void LoadFile(const std::filesystem::path &path, const PlayerInfo &player,
