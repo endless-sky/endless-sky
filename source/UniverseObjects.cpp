@@ -417,7 +417,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		else if(key == "test" && hasValue)
 			tests.Get(node.Token(1))->Load(node, playerConditions);
 		else if(key == "test-data" && hasValue)
-			testDataSets.Get(node.Token(1))->Load(node, path);
+			testDataSets.Get(node.Token(1))->Load(*this, node, path);
 		else if(key == "trade")
 			trade.Load(node);
 		else if(key == "landing message" && hasValue)

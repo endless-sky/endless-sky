@@ -19,7 +19,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../DataNode.h"
 #include "../DataWriter.h"
 #include "../Files.h"
-#include "../GameData.h"
 #include "../Mission.h"
 #include "../UniverseObjects.h"
 
@@ -35,8 +34,9 @@ const string &TestData::Name() const
 
 
 // Loader to load the generic test-data entry
-void TestData::Load(const DataNode &node, const filesystem::path &sourceDataFilePath)
+void TestData::Load(UniverseObjects &universe, const DataNode &node, const filesystem::path &sourceDataFilePath)
 {
+	this->universe = &universe;
 	sourceDataFile = sourceDataFilePath;
 	if(node.Size() < 2)
 	{
@@ -136,7 +136,7 @@ bool TestData::InjectMission(const ConditionsStore *playerConditions,
 	const DataNode &dataNode = *nodePtr;
 	for(const DataNode &node : dataNode)
 		if(node.Token(0) == "mission" && node.Size() > 1)
-			GameData::Objects().missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
+			universe->missions.Get(node.Token(1))->Load(node, playerConditions, visitedSystems, visitedPlanets);
 
 	return true;
 }

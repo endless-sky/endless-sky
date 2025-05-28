@@ -97,8 +97,7 @@ public:
 	// Get the list of resource sources (i.e. plugin folders).
 	static const std::vector<std::filesystem::path> &Sources();
 
-	// Get or set a reference to the UniverseObjects object.
-	static UniverseObjects &Objects();
+	// Set the reference to the UniverseObjects object.
 	static void SetUniverse(UniverseObjects &universe);
 
 	// Revert any changes that have been made to the universe.

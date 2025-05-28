@@ -412,14 +412,6 @@ const vector<filesystem::path> &GameData::Sources()
 
 
 
-// Get a reference to the UniverseObjects object.
-UniverseObjects &GameData::Objects()
-{
-	return *objects;
-}
-
-
-
 void GameData::SetUniverse(UniverseObjects &universe)
 {
 	objects = &universe;
