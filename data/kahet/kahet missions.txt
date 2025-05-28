@@ -2039,7 +2039,6 @@ ship "Builder Satellite" "Builder Satellite 2"
 mission "Ka'het: Voice From The Past 0"
 	landing
 	invisible
-	minor
 	to offer
 		has "event: remnant: cognizance calm"
 	to complete
@@ -2077,7 +2076,7 @@ mission "Ka'het: Voice From The Past 1"
 				`	(Not now.)`
 					defer
 			`	You spend at least half an hour looking for someone in the spaceport, but you can't seem to find anyone familiar. Just as you're starting to lose hope, you notice a flurry of movement in the direction of one of the scientific laboratories.`
-			`	Moving closer, you notice the crowd moving away to leave space for a convoy of heavy machinery to pass through. Though you can't seem to identify their function, you do recognize the person leading them: it's Plume, the scientist leading the Void Sprite Research program.`
+			`	Moving closer, you notice the crowd moving away to leave space for a convoy of heavy machinery to pass through. Though you can't seem to identify their function, you do recognize the person in front of the camels that head the vehicles: it's Plume, the scientist leading the Void Sprite Research program.`
 			`	You wave your arm to try to catch his attention as you slowly squeeze through the crowd until he notices you. "Captain <first>! I did not expect to see you here. You were part of the fleet as well?" he signs, excitedly gesturing toward the cargo being transported.`
 			`	Seeing your confused expression, he understands his mistake. "I have been spending some long days in the laboratory recently. It is good that we have such an abundance of data, of course, but the preparations for this expedition have been exhausting."`
 			choice
@@ -2121,6 +2120,19 @@ mission "Ka'het: Voice From The Past 1"
 			`	You hand him a data chip with the communication you received from the satellite, which he quickly puts into his pocket. "I will try to take a few hours off to give it a first pass with the instruments we have here. While they are not the best suited for this sort of analysis, I remember a few tricks that might get something usable out of it.`
 			`	"In the meantime, feel free to take a look at the changes we have been making here. I will give you a call from the spaceport when I have something to show."`
 
+mission "Ka'het: Voice From The Past 1B"
+	invisible
+	source "Ssil Vida"
+	to offer
+		has "Ka'het: Voice From The Past 0: done"
+	on offer
+		conversation
+			`Do you want to ask the Remnant about the communication received from the Builder satellite?`
+			choice
+				`	(Yes.)`
+				`	(Not now.)`
+					defer
+			`With the ongoing construction preventing you from reaching most of the station, you try to look around near the landing pad. It takes almost half an hour before you give up; there's too many people to try to find someone who knows you, and everyone else seems far too busy to stop and listen to your story.`
 
 mission "Ka'het: Voice From The Past 2"
 	name "Outpost on Kumkapi"
@@ -2179,8 +2191,13 @@ mission "Ka'het: Voice From The Past 3"
 			choice
 				`	"I see."`
 					goto skip
+				`	"Is this testing dangerous?"`
+					goto danger
 				`	"Was the Key Stone search successful?"`
 			`	"Not as much as we were hoping. The only other place to turn a positive result was Eavine, a gas giant's moon located right in the middle of Ka'het-controlled space. It was a scientifically interesting finding, but not one that we could make use of in the near future."`
+				goto skip
+			label danger
+			`	"It can be. Many weapons have been tested here over the years, and even projects that had more peaceful purposes occasionally had some rather explosive results. Mind you, this is no matter to be taken lightly."
 			label skip
 			`	By the time you complete the post-landing checklist, Gavriil has already left the ship to meet up with the people on the ground. The crowd that has been gathering around the pad give him a warm welcome, to which he replies cheerfully. He must have spent a lot of time on this moon when he was younger.`
 			`	After some brief introductions, you follow the group as it moves down a few ramps of stairs and inside some well-lit tunnels right below the outpost. At the end of them lies a large hangar, wide in both directions but with a rather low ceiling. "We have a few rigs we used to capture test satellites in the past," one of the technicians explains. "They were Remnant spacecraft in those cases, but there is nothing fundamentally preventing their use in your mission.`
