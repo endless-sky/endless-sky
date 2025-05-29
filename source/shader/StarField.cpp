@@ -214,7 +214,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 			GLfloat rotate[4] = {
 				static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
 				static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
-			glUniformMatrix2fv(rotateI, pass, false, rotate);
+			glUniformMatrix2fv(rotateI, 1, false, rotate);
 
 			glUniform1f(elongationI, length * zoom);
 			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
