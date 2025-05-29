@@ -69,6 +69,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "SystemEntry.h"
 #include "test/Test.h"
+#include "UI.h"
 #include "Visual.h"
 #include "Weather.h"
 #include "Wormhole.h"
@@ -619,8 +620,7 @@ void Engine::Step(bool isActive)
 		}
 
 		// Step the background to account for the current velocity and zoom.
-		if(!timePaused)
-			GameData::StepBackground(centerVelocity, zoom);
+		GameData::StepBackground(timePaused ? Point() : centerVelocity, zoom);
 	}
 
 	outlines.clear();
@@ -1192,12 +1192,15 @@ list<ShipEvent> &Engine::Events()
 // Draw a frame.
 void Engine::Draw() const
 {
-	Point motionBlur = Preferences::Has("Render motion blur") ? centerVelocity : Point();
+	Point motionBlur = centerVelocity;
+	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
 
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
-		motionBlur *= 1. + pow(hyperspacePercentage *
+		motionBlur *= baseBlur + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
+	else
+		motionBlur *= baseBlur;
 
 	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
@@ -2027,10 +2030,10 @@ void Engine::FillCollisionSets()
 void Engine::SpawnFleets()
 {
 	// If the player has a pending boarding mission, spawn its NPCs.
-	if(player.ActiveBoardingMission())
+	if(player.ActiveInFlightMission())
 	{
-		Place(player.ActiveBoardingMission()->NPCs(), player.FlagshipPtr());
-		player.ClearActiveBoardingMission();
+		Place(player.ActiveInFlightMission()->NPCs(), player.FlagshipPtr());
+		player.ClearActiveInFlightMission();
 	}
 
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
@@ -2286,7 +2289,10 @@ void Engine::HandleMouseClicks()
 						}
 					}
 					else
+					{
+						UI::PlaySound(UI::UISound::TARGET);
 						flagship->SetTargetStellar(&object);
+					}
 
 					clickedPlanet = true;
 				}
@@ -2316,6 +2322,7 @@ void Engine::HandleMouseClicks()
 	bool clickedAsteroid = false;
 	if(clickTarget)
 	{
+		UI::PlaySound(UI::UISound::TARGET);
 		if(isRightClick)
 			ai.IssueShipTarget(clickTarget);
 		else
@@ -2353,7 +2360,10 @@ void Engine::HandleMouseClicks()
 		}
 	}
 	if(isRightClick && !clickTarget && !clickedAsteroid && !isMouseTurningEnabled)
+	{
+		UI::PlaySound(UI::UISound::TARGET);
 		ai.IssueMoveTarget(clickPoint + center, playerSystem);
+	}
 
 	// Treat an "empty" click as a request to clear targets.
 	if(!clickTarget && !isRightClick && !clickedAsteroid && !clickedPlanet)

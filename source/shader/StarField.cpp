@@ -200,7 +200,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 			GLfloat rotate[4] = {
 				static_cast<float>(unit.Y()), static_cast<float>(-unit.X()),
 				static_cast<float>(unit.X()), static_cast<float>(unit.Y())};
-			glUniformMatrix2fv(rotateI, pass, false, rotate);
+			glUniformMatrix2fv(rotateI, 1, false, rotate);
 
 			glUniform1f(elongationI, length * zoom);
 			glUniform1f(brightnessI, min(1., pow(zoom, .5)));
@@ -209,17 +209,17 @@ void StarField::Draw(const Point &blur, const System *system) const
 			double borderX = fabs(blur.X()) + 1.;
 			double borderY = fabs(blur.Y()) + 1.;
 			// Find the absolute bounds of the star field we must draw.
-			int minX = pos.X() + (Screen::Left() - borderX) / zoom;
-			int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
-			int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
-			int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
+			float shove = pow(-5., pass);
+			int minX = pos.X() + (Screen::Left() - borderX) / zoom - shove;
+			int minY = pos.Y() + (Screen::Top() - borderY) / zoom - shove;
+			int maxX = pos.X() + (Screen::Right() + borderX) / zoom - shove;
+			int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom - shove;
 			// Round down to the start of the nearest tile.
 			minX &= ~(TILE_SIZE - 1l);
 			minY &= ~(TILE_SIZE - 1l);
 
 			for(int gy = minY; gy < maxY; gy += TILE_SIZE)
 			{
-				float shove = pow(-5., pass);
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
 					Point off = Point(gx + shove, gy + shove) - pos;
@@ -358,7 +358,7 @@ void StarField::MakeStars(int stars, int width)
 	tileIndex.pop_back();
 	partial_sum(tileIndex.begin(), tileIndex.end(), tileIndex.begin());
 
-	// Each star consists of five vertices, each with four data elements.
+	// Each star consists of six vertices, each with four data elements.
 	vector<GLfloat> data(6 * 4 * stars, 0.f);
 	for(auto it = temp.begin(); it != temp.end(); )
 	{

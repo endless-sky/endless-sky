@@ -239,6 +239,8 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			location = OUTFITTER;
 		else if(key == "job board")
 			location = JOB_BOARD;
+		else if(key == "entering")
+			location = ENTERING;
 		else if(key == "repeat")
 			repeat = (child.Size() == 1 ? 0 : static_cast<int>(child.Value(1)));
 		else if(key == "clearance")
@@ -380,8 +382,6 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 
 	if(displayName.empty())
 		displayName = name;
-	if(hasPriority && location == LANDING)
-		node.PrintTrace("Warning: \"priority\" tag has no effect on \"landing\" missions:");
 }
 
 
@@ -461,6 +461,8 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		}
 		else if(location == JOB)
 			out.Write("job");
+		else if(location == ENTERING)
+			out.Write("entering");
 		if(!clearance.empty())
 		{
 			out.Write("clearance", clearance);
@@ -675,9 +677,8 @@ bool Mission::IsValid() const
 
 
 
-// Check if this mission has high priority. If any high-priority missions
-// are available, no others will be shown at landing or in the spaceport.
-// This is to be used for missions that are part of a series.
+// Check if this mission has high priority. If any priority missions
+// are available, only other priority missions and non-blocking ones can offer alongside it.
 bool Mission::HasPriority() const
 {
 	return hasPriority;
@@ -686,7 +687,8 @@ bool Mission::HasPriority() const
 
 
 // Check if this mission is a "non-blocking" mission.
-// Such missions will not prevent minor missions from being offered alongside them.
+// Such missions will not prevent minor missions from being offered alongside them,
+// and will not be prevented from offering by priority missions.
 bool Mission::IsNonBlocking() const
 {
 	return isNonBlocking;
@@ -907,6 +909,11 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 			return false;
 
 		if(!sourceFilter.Matches(*boardingShip))
+			return false;
+	}
+	else if(location == ENTERING)
+	{
+		if(!sourceFilter.Matches(player.GetSystem()))
 			return false;
 	}
 	else

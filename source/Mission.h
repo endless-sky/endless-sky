@@ -87,12 +87,12 @@ public:
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
-	// Check if this mission has high priority. If any high-priority missions
-	// are available, no others will be shown at landing or in the spaceport.
-	// This is to be used for missions that are part of a series.
+	// Check if this mission has high priority. If any priority missions
+	// are available, only other priority missions and non-blocking ones can offer alongside it.
 	bool HasPriority() const;
 	// Check if this mission is a "non-blocking" mission.
-	// Such missions will not prevent minor missions from being offered alongside them.
+	// Such missions will not prevent minor missions from being offered alongside them,
+	// and will not be prevented from offering by priority missions.
 	bool IsNonBlocking() const;
 	// Check if this mission is a "minor" mission. Minor missions will only be
 	// offered if no other non-blocking missions (minor or otherwise) are being offered.
@@ -100,7 +100,7 @@ public:
 	int OfferPrecedence() const;
 
 	// Find out where this mission is offered.
-	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD};
+	enum Location {SPACEPORT, LANDING, JOB, ASSISTING, BOARDING, SHIPYARD, OUTFITTER, JOB_BOARD, ENTERING};
 	bool IsAtLocation(Location location) const;
 
 	// Information about what you are doing.
