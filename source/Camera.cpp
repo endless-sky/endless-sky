@@ -30,12 +30,13 @@ namespace {
 
 void Camera::SnapTo(const Point &target, bool keepVelocity)
 {
-	// If a player is jumping to a new system, preserve their velocity by offsetting oldTarget and center by the
-	// current velocity.
+	// If a player is jumping to a new system, preserve their velocity by offsetting oldTarget
+	// and center by the current velocity.
 	Point newTarget = keepVelocity ? target - velocity : target;
-	oldTarget = target;
-	center = target;
-	// Velocity is zeroed here, but it will be re-calculated when MoveTo is called later in this frame.
+	oldTarget = newTarget;
+	center = newTarget;
+	// Velocity is zeroed here even when keepVelocity is true, but it will be re-calculated
+	// when MoveTo is called later in this frame.
 	velocity = Point();
 	accel = Point();
 }
