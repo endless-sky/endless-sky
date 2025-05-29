@@ -1201,7 +1201,7 @@ void Engine::Draw() const
 		motionBlur *= baseBlur + pow(hyperspacePercentage *
 			(jumpEffectState == Preferences::ExtendedJumpEffects::MEDIUM ? 2.5 : 5.), 2);
 	else
-			motionBlur *= baseBlur;
+		motionBlur *= baseBlur;
 
 	GameData::Background().Draw(motionBlur,
 		(player.Flagship() ? player.Flagship()->GetSystem() : player.GetSystem()));
