@@ -493,8 +493,6 @@ outfit `"Nettle" KKV`
 	category "Ammunition"
 	series "Ammunition"
 	index 07020
-	licenses
-		"Twilight Guard"
 	cost 450
 	thumbnail "outfit/nettle kkv"
 	"mass" 0.15
