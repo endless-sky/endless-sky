@@ -209,11 +209,10 @@ void StarField::Draw(const Point &blur, const System *system) const
 			double borderX = fabs(blur.X()) + 1.;
 			double borderY = fabs(blur.Y()) + 1.;
 			// Find the absolute bounds of the star field we must draw.
-			float shove = pow(-5., pass);
-			int minX = pos.X() + (Screen::Left() - borderX) / zoom - shove;
-			int minY = pos.Y() + (Screen::Top() - borderY) / zoom - shove;
-			int maxX = pos.X() + (Screen::Right() + borderX) / zoom - shove;
-			int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom - shove;
+			int minX = pos.X() + (Screen::Left() - borderX) / zoom;
+			int minY = pos.Y() + (Screen::Top() - borderY) / zoom;
+			int maxX = pos.X() + (Screen::Right() + borderX) / zoom;
+			int maxY = pos.Y() + (Screen::Bottom() + borderY) / zoom;
 			// Round down to the start of the nearest tile.
 			minX &= ~(TILE_SIZE - 1l);
 			minY &= ~(TILE_SIZE - 1l);
@@ -222,7 +221,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 			{
 				for(int gx = minX; gx < maxX; gx += TILE_SIZE)
 				{
-					Point off = Point(gx + shove, gy + shove) - pos;
+					Point off = Point(gx, gy) - pos;
 					GLfloat translate[2] = {
 						static_cast<float>(off.X()),
 						static_cast<float>(off.Y())
