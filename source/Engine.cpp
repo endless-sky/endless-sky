@@ -1466,7 +1466,6 @@ void Engine::EnterSystem()
 	const System *system = flagship->GetSystem();
 	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
-	GameData::SetBackgroundPosition(center);
 
 	Messages::Add("Entering the " + system->DisplayName() + " system on "
 		+ today.ToString() + (system->IsInhabited(flagship) ?
@@ -1584,6 +1583,15 @@ void Engine::EnterSystem()
 	emptySoundsTimer.clear();
 
 	center = flagship->Center();
+
+	// If the player entered a system by wormhole or jump drive, center the background
+	// on the player's position. This is not done when entering a system by hyperdrive
+	// so that there is a seamless transition between systems, and entry by taking off
+	// from a planet is also excluded as to prevent the background from snapping to a
+	// different position relative to what it was when the player landed.
+	SystemEntry entry = player.GetSystemEntry();
+	if(entry == SystemEntry::WORMHOLE || entry == SystemEntry::JUMP)
+		GameData::SetBackgroundPosition(center);
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.
