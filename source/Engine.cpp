@@ -1543,7 +1543,7 @@ void Engine::EnterSystem()
 
 	emptySoundsTimer.clear();
 
-	camera.SnapTo(flagship->Center());
+	camera.SnapTo(flagship->Center(), true);
 
 	// Help message for new players. Show this message for the first four days,
 	// since the new player ships can make at most four jumps before landing.

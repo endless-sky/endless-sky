@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Camera {
 public:
 	// Instantly snap the camera to the given target.
-	void SnapTo(const Point &target);
+	void SnapTo(const Point &target, bool keepVelocity = false);
 	// Move the camera toward the given target.
 	void MoveTo(const Point &target, double hyperspaceInfluence);
 
