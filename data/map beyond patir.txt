@@ -25,7 +25,7 @@ system Athiri
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Athiri Black Hole Event Horizon" 1
 	hazard "Athiri Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole corona core"
 		period 1
@@ -52,7 +52,7 @@ system Balnii
 	fleet "Magic Asteroid" 900
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Balnii Black Hole Event Horizon" 1
-	hazard "Black Hole Gravity" 2
+	hazard "Small Black Hole Gravity" 2
 	object
 		sprite "star/big black hole core"
 		period 1
@@ -70,7 +70,7 @@ system Chanai
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Chanai Black Hole Event Horizon" 1
 	hazard "Chanai Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 3 core"
 		period 1
@@ -93,7 +93,7 @@ system Ghila
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Ghila Black Hole Event Horizon" 1
 	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black-hole-still-core"
 		period 1
@@ -142,7 +142,7 @@ system Maithi
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Beyond Patir Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 5 core"
 		period 1
@@ -165,7 +165,7 @@ system Mitera
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Beyond Patir Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 4 core"
 		period 1
@@ -188,7 +188,7 @@ system Sarifa
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Sarifa Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/f8"
 		distance 549
@@ -210,7 +210,7 @@ system Thepa
 	hazard "Beyond Patir Shield Eraser" 1
 	hazard "Beyond Patir Black Hole Event Horizon" 1
 	hazard "Thepa and Ghila Black Hole Accretion Disk" 1
-	hazard "Black Hole Gravity" 1
+	hazard "Small Black Hole Gravity" 1
 	object
 		sprite "star/black hole 6 core"
 		period 1
